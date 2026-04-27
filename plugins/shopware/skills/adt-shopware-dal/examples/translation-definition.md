@@ -3,21 +3,44 @@
 ## ProductTranslationDefinition
 
 ```php
+/**
+ * @class ProductTranslationDefinition
+ * @package Shopware\Core\Content\Product\Aggregate\ProductTranslation
+ */
 #[Package('inventory')]
 class ProductTranslationDefinition extends EntityTranslationDefinition
 {
+    /**
+     * @var string
+     */
     final public const ENTITY_NAME = 'product_translation';
 
+    /**
+     * @return string
+     */
     public function getEntityName(): string { return self::ENTITY_NAME; }
+
+    /**
+     * @return string
+     */
     public function getCollectionClass(): string { return ProductTranslationCollection::class; }
+
+    /**
+     * @return string
+     */
     public function getEntityClass(): string { return ProductTranslationEntity::class; }
 
-    // MUST override this
+    /**
+     * @return string
+     */
     protected function getParentDefinitionClass(): string
     {
         return ProductDefinition::class;
     }
 
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
@@ -38,13 +61,23 @@ class ProductTranslationDefinition extends EntityTranslationDefinition
 ## CategoryTranslationDefinition
 
 ```php
+/**
+ * @class CategoryTranslationDefinition
+ * @package Shopware\Core\Content\Category\Aggregate\CategoryTranslation
+ */
 class CategoryTranslationDefinition extends EntityTranslationDefinition
 {
+    /**
+     * @return string
+     */
     protected function getParentDefinitionClass(): string
     {
         return CategoryDefinition::class;
     }
 
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([

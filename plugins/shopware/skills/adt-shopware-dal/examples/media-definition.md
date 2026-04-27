@@ -3,8 +3,35 @@
 Demonstrates: Computed fields, RestrictDelete, SetNullOnDelete, Runtime fields, WriteProtected with scopes, BlobField.
 
 ```php
+/**
+ * @class MediaDefinition
+ * @package Shopware\Core\Content\Media
+ */
 class MediaDefinition extends EntityDefinition
 {
+    /**
+     * @var string
+     */
+    final public const ENTITY_NAME = 'media';
+
+    /**
+     * @return string
+     */
+    public function getEntityName(): string { return self::ENTITY_NAME; }
+
+    /**
+     * @return string
+     */
+    public function getCollectionClass(): string { return MediaCollection::class; }
+
+    /**
+     * @return string
+     */
+    public function getEntityClass(): string { return MediaEntity::class; }
+
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([

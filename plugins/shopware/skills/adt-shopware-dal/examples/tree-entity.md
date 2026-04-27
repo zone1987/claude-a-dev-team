@@ -3,8 +3,15 @@
 Demonstrates: tree structure with path, level, breadcrumb, parent/children, after-sorting.
 
 ```php
+/**
+ * @class CategoryDefinition
+ * @package Shopware\Core\Content\Category
+ */
 class CategoryDefinition extends EntityDefinition
 {
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([

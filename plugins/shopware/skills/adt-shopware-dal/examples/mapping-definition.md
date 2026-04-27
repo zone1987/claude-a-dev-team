@@ -3,14 +3,31 @@
 ## ProductCategoryDefinition
 
 ```php
+/**
+ * @class ProductCategoryDefinition
+ * @package Shopware\Core\Content\Product\Aggregate\ProductCategory
+ */
 #[Package('inventory')]
 class ProductCategoryDefinition extends MappingEntityDefinition
 {
+    /**
+     * @var string
+     */
     final public const ENTITY_NAME = 'product_category';
 
+    /**
+     * @return string
+     */
     public function getEntityName(): string { return self::ENTITY_NAME; }
+
+    /**
+     * @return bool
+     */
     public function isVersionAware(): bool { return true; }
 
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([

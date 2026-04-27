@@ -5,15 +5,45 @@ Demonstrates: parent/child definitions, getParentDefinitionClass, ReverseInherit
 ## PropertyGroupDefinition
 
 ```php
+/**
+ * @class PropertyGroupDefinition
+ * @package Shopware\Core\Content\Property
+ */
 class PropertyGroupDefinition extends EntityDefinition
 {
+    /**
+     * @var string
+     */
     final public const DISPLAY_TYPE_TEXT = 'text';
+
+    /**
+     * @var string
+     */
     final public const DISPLAY_TYPE_IMAGE = 'image';
+
+    /**
+     * @var string
+     */
     final public const DISPLAY_TYPE_MEDIA = 'media';
+
+    /**
+     * @var string
+     */
     final public const DISPLAY_TYPE_COLOR = 'color';
+
+    /**
+     * @var string
+     */
     final public const SORTING_TYPE_ALPHANUMERIC = 'alphanumeric';
+
+    /**
+     * @var string
+     */
     final public const SORTING_TYPE_POSITION = 'position';
 
+    /**
+     * @return array{displayType: string, sortingType: string, filterable: bool, visibleOnProductDetailPage: bool}
+     */
     public function getDefaults(): array
     {
         return [
@@ -24,6 +54,9 @@ class PropertyGroupDefinition extends EntityDefinition
         ];
     }
 
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
@@ -46,14 +79,23 @@ class PropertyGroupDefinition extends EntityDefinition
 ## PropertyGroupOptionDefinition (Child)
 
 ```php
+/**
+ * @class PropertyGroupOptionDefinition
+ * @package Shopware\Core\Content\Property\Aggregate\PropertyGroupOption
+ */
 class PropertyGroupOptionDefinition extends EntityDefinition
 {
-    // Declares parent for sub-entity relationship
+    /**
+     * @return string|null
+     */
     protected function getParentDefinitionClass(): ?string
     {
         return PropertyGroupDefinition::class;
     }
 
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([

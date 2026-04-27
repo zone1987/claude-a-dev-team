@@ -3,18 +3,51 @@
 Demonstrates: inheritance, versioning, all association types, translated fields, ManyToManyIdFields, feature flags, defaults, multiple FK types.
 
 ```php
+/**
+ * @class ProductDefinition
+ * @package Shopware\Core\Content\Product
+ */
 #[Package('inventory')]
 class ProductDefinition extends EntityDefinition
 {
+    /**
+     * @var string
+     */
     final public const ENTITY_NAME = 'product';
 
+    /**
+     * @return string
+     */
     public function getEntityName(): string { return self::ENTITY_NAME; }
+
+    /**
+     * @return bool
+     */
     public function isInheritanceAware(): bool { return true; }
+
+    /**
+     * @return string
+     */
     public function getCollectionClass(): string { return ProductCollection::class; }
+
+    /**
+     * @return string
+     */
     public function getEntityClass(): string { return ProductEntity::class; }
+
+    /**
+     * @return string
+     */
     public function getHydratorClass(): string { return ProductHydrator::class; }
+
+    /**
+     * @return string|null
+     */
     public function since(): ?string { return '6.0.0.0'; }
 
+    /**
+     * @return array{isCloseout: false, minPurchase: 1, purchaseSteps: 1, shippingFree: false, restockTime: null, active: true, markAsTopseller: false, type: string}
+     */
     public function getDefaults(): array
     {
         return [
@@ -29,6 +62,9 @@ class ProductDefinition extends EntityDefinition
         ];
     }
 
+    /**
+     * @return FieldCollection
+     */
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
