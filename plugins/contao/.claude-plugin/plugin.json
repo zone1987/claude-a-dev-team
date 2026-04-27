@@ -1,0 +1,9 @@
+{
+  "name": "contao",
+  "version": "1.0.0",
+  "description": "Best practices for Contao development",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "shopware",
+  "version": "1.0.0",
+  "description": "Best practices for Shopware development",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  }
+}

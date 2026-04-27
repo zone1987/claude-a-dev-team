@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(shopware/.env)",
+      "Read(shopware/.env.dev)",
+      "Read(shopware/.env.local)",
+      "Read(shopware/auth.json)",
+      "Read(shopware/config/jwt/private.pem)",
+      "Read(shopware/config/jwt/*.pem)",
+      "Read(**/*.sql)",
+      "Read(**/*.sql.gz)",
+      "Read(backup/**)",
+      "Read(backups/**)",
+      "Read(shopware/var/backups/**)",
+      "Read(shopware/files/**)",
+      "Read(.ddev/config.deploy.yaml)"
+    ]
+  }
+}
