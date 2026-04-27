@@ -1,9 +1,30 @@
 {
   "name": "shopware",
-  "version": "1.0.0",
-  "description": "Best practices for Shopware development",
-  "author": {
+  "owner": {
     "name": "Andreas Gerhardt",
     "email": "a.gerhardt1987@gmail.com"
-  }
+  },
+  "metadata": {
+    "description": "Shopware Toolkit",
+    "version": "1.0.1",
+    "homepage": "https://github.com/zone1987/claude-a-dev-team"
+  },
+  "plugins": [
+    {
+      "name": "shopware",
+      "source": "./",
+      "description": "Best practices for Shopware development",
+      "version": "1.0.1",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "propietary",
+      "keywords": ["shopware"],
+      "category": "development",
+      "skills": [
+        "./skills/adt-shopware-dal"
+      ]
+    }
+  ]
 }

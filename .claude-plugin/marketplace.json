@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Shopware Toolkit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "homepage": "https://github.com/zone1987/claude-adt-shopware"
   },
   "plugins": [
@@ -14,7 +14,7 @@
       "name": "shopware",
       "source": "./plugins/shopware",
       "description": "Best practices for Shopware development",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Andreas Gerhardt",
         "email": "a.gerhardt1987@gmail.com"
@@ -24,6 +24,22 @@
       "category": "development",
       "skills": [
         "./plugins/shopware/skills/adt-shopware-dal"
+      ]
+    },
+    {
+      "name": "contao",
+      "source": "./plugins/contao",
+      "description": "Best practices for Contao development",
+      "version": "1.0.1",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "propietary",
+      "keywords": ["contao"],
+      "category": "development",
+      "skills": [
+        "./plugins/contao/skills/adt-contao-dal"
       ]
     }
   ]

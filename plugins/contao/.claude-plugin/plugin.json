@@ -1,6 +1,6 @@
 {
   "name": "contao",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Best practices for Contao development",
   "author": {
     "name": "Andreas Gerhardt",
