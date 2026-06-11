@@ -177,7 +177,15 @@
       "license": "proprietary",
       "keywords": ["shopware", "cms"],
       "category": "development",
-      "skills": []
+      "skills": [
+        "./skills/sw-cms-block",
+        "./skills/sw-cms-block-admin",
+        "./skills/sw-cms-element",
+        "./skills/sw-cms-element-admin",
+        "./skills/sw-cms-element-storefront",
+        "./skills/sw-cms-data-resolver",
+        "./skills/sw-cms-slot-config"
+      ]
     },
     {
       "name": "shopware-checkout",
