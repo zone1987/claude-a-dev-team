@@ -15,9 +15,15 @@
       "source": "./plugins/shopware-core",
       "description": "Shopware 6 plugin fundamentals: DI, services, decoration, events/subscribers, CLI, config, logging, filesystem, rate limiter, feature flags.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "core"],
+      "keywords": [
+        "shopware",
+        "core"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-architecture-overview",
@@ -44,9 +50,15 @@
       "source": "./plugins/shopware-data",
       "description": "Shopware 6 Data Abstraction Layer (DAL) + project entity introspection.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "dal"],
+      "keywords": [
+        "shopware",
+        "dal"
+      ],
       "category": "development",
       "skills": [
         "./skills/adt-shopware-dal",
@@ -86,9 +98,15 @@
       "source": "./plugins/shopware-framework",
       "description": "Shopware 6 framework features: scheduled tasks, message queue, rules, flow builder, store/admin API routes, webhooks, app scripts, mail, media.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "framework"],
+      "keywords": [
+        "shopware",
+        "framework"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-elasticsearch",
@@ -100,9 +118,15 @@
       "source": "./plugins/shopware-storefront",
       "description": "Shopware 6 storefront: controllers, pages, page loaders, Twig, SCSS, themes, JavaScript storefront plugins + JS plugin introspection.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "storefront"],
+      "keywords": [
+        "shopware",
+        "storefront"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-storefront-controller",
@@ -143,9 +167,15 @@
       "source": "./plugins/shopware-admin",
       "description": "Shopware 6 administration (Meteor/Vue 3): modules, components, routing, data handling, Pinia, services, ACL, Vite.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "admin"],
+      "keywords": [
+        "shopware",
+        "admin"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-admin-sdk",
@@ -181,9 +211,15 @@
       "source": "./plugins/shopware-cms",
       "description": "Shopware 6 CMS: custom blocks, elements and data resolvers (admin + storefront).",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "cms"],
+      "keywords": [
+        "shopware",
+        "cms"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-cms-block",
@@ -200,9 +236,15 @@
       "source": "./plugins/shopware-checkout",
       "description": "Shopware 6 checkout: cart processors, line items, prices, tax, payment handlers, shipping, order state machine, documents, promotions.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "checkout"],
+      "keywords": [
+        "shopware",
+        "checkout"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-paypal-sdk"
@@ -213,9 +255,15 @@
       "source": "./plugins/shopware-testing",
       "description": "Shopware 6 testing: PHPUnit (unit/integration/API), Jest (admin/storefront), Playwright E2E.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "testing"],
+      "keywords": [
+        "shopware",
+        "testing"
+      ],
       "category": "development",
       "skills": [
         "./skills/shopware-phpunit"
@@ -226,9 +274,15 @@
       "source": "./plugins/shopware-apps",
       "description": "Shopware 6 app development: manifest, webhooks, auth, app scripts, payment/tax/CMS/flow gateways, IAP, JS/PHP SDK.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "apps"],
+      "keywords": [
+        "shopware",
+        "apps"
+      ],
       "category": "development",
       "skills": [
         "./skills/shopware-apps",
@@ -241,9 +295,15 @@
       "source": "./plugins/shopware-migration",
       "description": "Shopware 6 version migrations: 6.6->6.7->6.8, Meteor/Vite/Pinia migration, deprecation handling, upgrade guides.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "migration"],
+      "keywords": [
+        "shopware",
+        "migration"
+      ],
       "category": "development",
       "skills": [
         "./skills/shopware-6.7-migration"
@@ -254,9 +314,15 @@
       "source": "./plugins/shopware-quality",
       "description": "Shopware 6 quality: coding guidelines, ADR knowledge, domain exceptions, static analysis, README generator + self-updating knowledge sync.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "quality"],
+      "keywords": [
+        "shopware",
+        "quality"
+      ],
       "category": "development",
       "skills": [
         "./skills/shopware-readme",
@@ -268,9 +334,17 @@
       "source": "./plugins/ff-octo-api",
       "description": "FfOctoApi — Ventrata OCTO API integration for Shopware 6.7 (tourism ticketing: GoldenTours, GoCity, RheinKurier) incl. ResubmissionAppServer.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "octo", "ventrata", "ticketing"],
+      "keywords": [
+        "shopware",
+        "octo",
+        "ventrata",
+        "ticketing"
+      ],
       "category": "development",
       "skills": [
         "./skills/ff-octo-api"
@@ -281,9 +355,15 @@
       "source": "./plugins/shopware-api",
       "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "api"],
+      "keywords": [
+        "shopware",
+        "api"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-api-overview",
@@ -307,9 +387,16 @@
       "source": "./plugins/shopware-frontends",
       "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, composables, api-gen, cms-base, helpers, Vue 3 / Nuxt.",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "frontends", "headless"],
+      "keywords": [
+        "shopware",
+        "frontends",
+        "headless"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-frontends-overview",
@@ -327,9 +414,14 @@
       "source": "./plugins/contao",
       "description": "Best practices for Contao development",
       "version": "1.0.1",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["contao"],
+      "keywords": [
+        "contao"
+      ],
       "category": "development",
       "skills": [
         "./skills/adt-contao-dal"
@@ -340,9 +432,15 @@
       "source": "./plugins/shopware-devops",
       "description": "Shopware DevOps: shopware-cli commands, Symfony Flex recipes and PaaS deployment (Platform.sh).",
       "version": "1.0.0",
-      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
       "license": "proprietary",
-      "keywords": ["shopware", "devops"],
+      "keywords": [
+        "shopware",
+        "devops"
+      ],
       "category": "development",
       "skills": [
         "./skills/sw-cli",
@@ -351,6 +449,86 @@
         "./skills/sw-cli-account",
         "./skills/sw-recipes",
         "./skills/sw-paas"
+      ]
+    },
+    {
+      "name": "shopware-merchant",
+      "source": "./plugins/shopware-merchant",
+      "description": "Shopware 6 Merchant/Operator knowledge — how to run the shop from the Administration: catalog, orders, customers, content, marketing, settings, sales channels (from docs.shopware.com).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "merchant",
+        "administration",
+        "handbuch"
+      ],
+      "category": "documentation",
+      "skills": [
+        "./skills/sw-merchant-overview",
+        "./skills/sw-merchant-catalog",
+        "./skills/sw-merchant-catalog-categories",
+        "./skills/sw-merchant-catalog-manufacturers",
+        "./skills/sw-merchant-catalog-media",
+        "./skills/sw-merchant-catalog-product-streams",
+        "./skills/sw-merchant-catalog-products",
+        "./skills/sw-merchant-catalog-properties",
+        "./skills/sw-merchant-catalog-reviews",
+        "./skills/sw-merchant-content",
+        "./skills/sw-merchant-content-cms-extensions",
+        "./skills/sw-merchant-content-media",
+        "./skills/sw-merchant-content-shopping-experiences",
+        "./skills/sw-merchant-content-themes",
+        "./skills/sw-merchant-customers",
+        "./skills/sw-merchant-customers-accounts",
+        "./skills/sw-merchant-customers-addresses",
+        "./skills/sw-merchant-customers-b2b",
+        "./skills/sw-merchant-customers-bulk",
+        "./skills/sw-merchant-customers-groups",
+        "./skills/sw-merchant-extensions",
+        "./skills/sw-merchant-getting-started",
+        "./skills/sw-merchant-marketing",
+        "./skills/sw-merchant-marketing-codes",
+        "./skills/sw-merchant-marketing-newsletter",
+        "./skills/sw-merchant-marketing-promotions",
+        "./skills/sw-merchant-marketing-rule-builder",
+        "./skills/sw-merchant-orders",
+        "./skills/sw-merchant-orders-create",
+        "./skills/sw-merchant-orders-documents",
+        "./skills/sw-merchant-orders-edit",
+        "./skills/sw-merchant-orders-overview",
+        "./skills/sw-merchant-orders-refunds",
+        "./skills/sw-merchant-orders-states",
+        "./skills/sw-merchant-sales-channels",
+        "./skills/sw-merchant-sales-channels-agentic",
+        "./skills/sw-merchant-sales-channels-api-access",
+        "./skills/sw-merchant-sales-channels-config",
+        "./skills/sw-merchant-sales-channels-create",
+        "./skills/sw-merchant-sales-channels-domains",
+        "./skills/sw-merchant-sales-channels-product-comparison",
+        "./skills/sw-merchant-sales-channels-products",
+        "./skills/sw-merchant-sales-channels-social-shopping",
+        "./skills/sw-merchant-settings",
+        "./skills/sw-merchant-settings-caches-indexes",
+        "./skills/sw-merchant-settings-currencies-languages",
+        "./skills/sw-merchant-settings-delivery-times",
+        "./skills/sw-merchant-settings-flow-builder",
+        "./skills/sw-merchant-settings-import-export",
+        "./skills/sw-merchant-settings-integrations-api",
+        "./skills/sw-merchant-settings-mail-templates",
+        "./skills/sw-merchant-settings-payment-methods",
+        "./skills/sw-merchant-settings-rule-builder",
+        "./skills/sw-merchant-settings-seo",
+        "./skills/sw-merchant-settings-shipping-methods",
+        "./skills/sw-merchant-settings-shop-basics",
+        "./skills/sw-merchant-settings-snippets",
+        "./skills/sw-merchant-settings-system-info",
+        "./skills/sw-merchant-settings-tax",
+        "./skills/sw-merchant-settings-users-permissions"
       ]
     }
   ]
