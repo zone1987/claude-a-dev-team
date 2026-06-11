@@ -1,0 +1,12 @@
+{
+  "name": "shopware-quality",
+  "version": "1.0.0",
+  "description": "Shopware 6 Qualität: Coding-Guidelines, ADR-Wissen, Domain-Exceptions, Static-Analysis, README-Generator — plus selbstaktualisierender Knowledge-Sync.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "quality"],
+  "category": "development"
+}

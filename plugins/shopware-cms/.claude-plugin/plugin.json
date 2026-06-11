@@ -1,0 +1,12 @@
+{
+  "name": "shopware-cms",
+  "version": "1.0.0",
+  "description": "Shopware 6 CMS: Custom Blocks, Elements und DataResolver (Admin- und Storefront-Seite).",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "cms"],
+  "category": "development"
+}

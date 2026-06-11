@@ -1,0 +1,9 @@
+{
+  "name": "shopware-frontends",
+  "version": "1.0.0",
+  "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, @shopware/composables, @shopware/api-gen, cms-base, helpers, Vue 3 / Nuxt.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["shopware", "frontends", "headless"],
+  "category": "development"
+}

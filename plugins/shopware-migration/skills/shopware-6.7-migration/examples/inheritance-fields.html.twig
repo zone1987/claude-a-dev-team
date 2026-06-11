@@ -1,0 +1,41 @@
+{# Sales Channel Inheritance Fields (Shopware 6.7) #}
+{# Use these props/events on any mt-* form field to support multi-channel inheritance #}
+{# The inheritance toggle allows editors to override or restore parent values #}
+
+<mt-text-field
+    v-model="product.name"
+    :label="$tc('sw-product.detail.labelName')"
+    :is-inheritance-field="true"
+    :is-inherited="isInherited(product, 'name')"
+    @inheritance-restore="restoreInheritance(product, 'name')"
+    @inheritance-remove="removeInheritance(product, 'name')"
+/>
+
+<mt-textarea
+    v-model="product.description"
+    :label="$tc('sw-product.detail.labelDescription')"
+    :is-inheritance-field="true"
+    :is-inherited="isInherited(product, 'description')"
+    @inheritance-restore="restoreInheritance(product, 'description')"
+    @inheritance-remove="removeInheritance(product, 'description')"
+/>
+
+<mt-switch
+    v-model="product.active"
+    :label="$tc('sw-product.detail.labelActive')"
+    :is-inheritance-field="true"
+    :is-inherited="isInherited(product, 'active')"
+    :inherited-value="parentProduct ? parentProduct.active : null"
+    @inheritance-restore="restoreInheritance(product, 'active')"
+    @inheritance-remove="removeInheritance(product, 'active')"
+/>
+
+<mt-select
+    v-model="product.taxId"
+    :label="$tc('sw-product.detail.labelTax')"
+    :options="taxOptions"
+    :is-inheritance-field="true"
+    :is-inherited="isInherited(product, 'taxId')"
+    @inheritance-restore="restoreInheritance(product, 'taxId')"
+    @inheritance-remove="removeInheritance(product, 'taxId')"
+/>

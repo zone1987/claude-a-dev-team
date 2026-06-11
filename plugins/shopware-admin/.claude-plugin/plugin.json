@@ -1,0 +1,12 @@
+{
+  "name": "shopware-admin",
+  "version": "1.0.0",
+  "description": "Shopware 6 Administration (Meteor/Vue 3): Module, Components, Routing, Data-Handling, Pinia, Services, ACL, Vite.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "admin"],
+  "category": "development"
+}

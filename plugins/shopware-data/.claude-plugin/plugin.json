@@ -1,0 +1,12 @@
+{
+  "name": "shopware-data",
+  "version": "1.0.0",
+  "description": "Shopware 6 Data Abstraction Layer (DAL): Entities, Definitions, Collections, Fields, Flags, Associations, Translations, Criteria — plus Projekt-Entity-Introspektion.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "dal"],
+  "category": "development"
+}

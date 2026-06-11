@@ -1,0 +1,12 @@
+{
+  "name": "shopware-framework",
+  "version": "1.0.0",
+  "description": "Shopware 6 Framework-Features: ScheduledTasks, MessageQueue, Rules, Flow-Builder, Store-/Admin-API-Routes, Webhooks, App-Scripts, Mail, Media.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "framework"],
+  "category": "development"
+}

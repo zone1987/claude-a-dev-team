@@ -1,0 +1,12 @@
+{
+  "name": "shopware-core",
+  "version": "1.0.0",
+  "description": "Shopware 6 Plugin-Fundamentals: DI, Services, Decoration, Events/Subscriber, CLI, Config, Logging, Filesystem, Rate-Limiter, Feature-Flags, NumberRange, SystemConfig.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "core"],
+  "category": "development"
+}

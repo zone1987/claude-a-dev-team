@@ -1,0 +1,9 @@
+{
+    "_comment": "composer.json version constraints for Shopware 6.7 plugin",
+    "require": {
+        "shopware/core": "~6.7.0"
+    },
+    "conflict": {
+        "shopware/core": "<6.7 || >=6.8"
+    }
+}

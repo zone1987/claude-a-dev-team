@@ -1,0 +1,12 @@
+{
+  "name": "shopware-apps",
+  "version": "1.0.0",
+  "description": "Shopware 6 App-Entwicklung: Manifest, Webhooks, Auth, App-Scripts, Payment-/Tax-/CMS-/Flow-Gateways, IAP, JS-/PHP-SDK.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "apps"],
+  "category": "development"
+}

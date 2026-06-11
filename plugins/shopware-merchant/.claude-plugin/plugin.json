@@ -1,0 +1,9 @@
+{
+  "name": "shopware-merchant",
+  "version": "1.0.0",
+  "description": "Shopware 6 Merchant/Operator knowledge — how to run the shop from the Administration: catalog, orders, customers, content, marketing, settings, sales channels (from docs.shopware.com).",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["shopware", "merchant", "administration", "handbuch"],
+  "category": "documentation"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "shopware-devops",
+  "version": "1.0.0",
+  "description": "Shopware DevOps: shopware-cli commands, Symfony Flex recipes and PaaS deployment",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "devops"],
+  "category": "development"
+}

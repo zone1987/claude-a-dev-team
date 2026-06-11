@@ -5,26 +5,475 @@
     "email": "a.gerhardt1987@gmail.com"
   },
   "metadata": {
-    "description": "Shopware Toolkit",
-    "version": "1.0.1",
-    "homepage": "https://github.com/zone1987/claude-adt-shopware"
+    "description": "Shopware development toolkit — themed plugins (skills, agents, commands, hooks) for Shopware 6.7",
+    "version": "1.1.0",
+    "homepage": "https://github.com/zone1987/claude-a-dev-team"
   },
   "plugins": [
     {
-      "name": "shopware",
-      "source": "./plugins/shopware",
-      "description": "Best practices for Shopware development",
-      "version": "1.0.1",
+      "name": "shopware-core",
+      "source": "./plugins/shopware-core",
+      "description": "Shopware 6 plugin fundamentals: DI, services, decoration, events/subscribers, CLI, config, logging, filesystem, rate limiter, feature flags.",
+      "version": "1.0.0",
       "author": {
         "name": "Andreas Gerhardt",
         "email": "a.gerhardt1987@gmail.com"
       },
-      "license": "propietary",
-      "keywords": ["shopware"],
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "core"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-architecture-overview",
+        "./skills/sw-plugin-base",
+        "./skills/sw-plugin-lifecycle",
+        "./skills/sw-plugin-config",
+        "./skills/sw-dependency-injection",
+        "./skills/sw-service-decoration",
+        "./skills/sw-service-tags",
+        "./skills/sw-events-subscriber",
+        "./skills/sw-extension-points",
+        "./skills/sw-cli-command",
+        "./skills/sw-logging",
+        "./skills/sw-filesystem",
+        "./skills/sw-rate-limiter",
+        "./skills/sw-feature-flags",
+        "./skills/sw-number-range",
+        "./skills/sw-system-config",
+        "./skills/sw-event-catalog"
+      ]
+    },
+    {
+      "name": "shopware-data",
+      "source": "./plugins/shopware-data",
+      "description": "Shopware 6 Data Abstraction Layer (DAL) + project entity introspection.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "dal"
+      ],
       "category": "development",
       "skills": [
         "./skills/adt-shopware-dal",
+        "./skills/sw-entity-definition",
+        "./skills/sw-entity-class",
+        "./skills/sw-entity-collection",
+        "./skills/sw-entity-repository",
+        "./skills/sw-field-types",
+        "./skills/sw-field-flags",
+        "./skills/sw-associations-onetomany",
+        "./skills/sw-associations-manytoone",
+        "./skills/sw-associations-onetoone",
+        "./skills/sw-associations-manytomany",
+        "./skills/sw-translations",
+        "./skills/sw-field-inheritance",
+        "./skills/sw-entity-versioning",
+        "./skills/sw-entity-extension",
+        "./skills/sw-custom-fields",
+        "./skills/sw-custom-entity",
+        "./skills/sw-entity-indexer",
+        "./skills/sw-field-serializer",
+        "./skills/sw-criteria",
+        "./skills/sw-filters",
+        "./skills/sw-sorting",
+        "./skills/sw-aggregations",
+        "./skills/sw-write-events",
+        "./skills/sw-pricing-field",
+        "./skills/sw-attribute-entities",
+        "./skills/sw-entity-protection",
+        "./skills/sw-plain-sql-vs-dal",
+        "./skills/sw-database-migration",
+        "./skills/sw-entity-catalog"
+      ]
+    },
+    {
+      "name": "shopware-framework",
+      "source": "./plugins/shopware-framework",
+      "description": "Shopware 6 framework features: scheduled tasks, message queue, rules, flow builder, store/admin API routes, webhooks, app scripts, mail, media.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "framework"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-admin-api-controller",
+        "./skills/sw-api-acl",
+        "./skills/sw-app-script",
+        "./skills/sw-custom-rule",
+        "./skills/sw-elasticsearch",
+        "./skills/sw-elasticsearch-extension",
+        "./skills/sw-flow-action",
+        "./skills/sw-flow-transaction",
+        "./skills/sw-flow-trigger",
+        "./skills/sw-mail-data",
+        "./skills/sw-mail-template",
+        "./skills/sw-media-handling",
+        "./skills/sw-media-thumbnail",
+        "./skills/sw-message-handler",
+        "./skills/sw-message-middleware",
+        "./skills/sw-message-queue",
+        "./skills/sw-rule-condition",
+        "./skills/sw-scheduled-task",
+        "./skills/sw-store-api-override",
+        "./skills/sw-store-api-route",
+        "./skills/sw-webhook"
+      ]
+    },
+    {
+      "name": "shopware-storefront",
+      "source": "./plugins/shopware-storefront",
+      "description": "Shopware 6 storefront: controllers, pages, page loaders, Twig, SCSS, themes, JavaScript storefront plugins + JS plugin introspection.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "storefront"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-storefront-controller",
+        "./skills/sw-storefront-page",
+        "./skills/sw-storefront-pagelet",
+        "./skills/sw-page-loader",
+        "./skills/sw-storefront-data",
+        "./skills/sw-twig-templates",
+        "./skills/sw-twig-extension",
+        "./skills/sw-twig-functions",
+        "./skills/sw-storefront-scss",
+        "./skills/sw-scss-variables",
+        "./skills/sw-storefront-assets",
+        "./skills/sw-storefront-icons",
+        "./skills/sw-storefront-js-plugin",
+        "./skills/sw-js-plugin-override",
+        "./skills/sw-js-plugin-extend",
+        "./skills/sw-ajax-data",
+        "./skills/sw-js-events",
+        "./skills/sw-storefront-caching",
+        "./skills/sw-cookie-manager",
+        "./skills/sw-captcha",
+        "./skills/sw-listing-filter",
+        "./skills/sw-custom-sorting",
+        "./skills/sw-seo-urls",
+        "./skills/sw-sitemap",
+        "./skills/sw-storefront-translations",
+        "./skills/sw-theme",
+        "./skills/sw-theme-config",
+        "./skills/sw-theme-inheritance",
+        "./skills/sw-js-plugin-catalog",
+        "./skills/sw-js-event-catalog",
+        "./skills/sw-storefront-typescript"
+      ]
+    },
+    {
+      "name": "shopware-admin",
+      "source": "./plugins/shopware-admin",
+      "description": "Shopware 6 administration (Meteor/Vue 3): modules, components, routing, data handling, Pinia, services, ACL, Vite.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "admin"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-admin-sdk",
+        "./skills/sw-admin-module",
+        "./skills/sw-admin-component",
+        "./skills/sw-admin-component-override",
+        "./skills/sw-admin-routing",
+        "./skills/sw-admin-menu",
+        "./skills/sw-admin-data-handling",
+        "./skills/sw-admin-repository-js",
+        "./skills/sw-admin-pinia-store",
+        "./skills/sw-admin-vuex-store",
+        "./skills/sw-admin-api-requests",
+        "./skills/sw-admin-services",
+        "./skills/sw-admin-mixins",
+        "./skills/sw-admin-directives",
+        "./skills/sw-admin-snippets",
+        "./skills/sw-admin-assets",
+        "./skills/sw-admin-styles",
+        "./skills/sw-admin-acl-permissions",
+        "./skills/sw-admin-error-handling",
+        "./skills/sw-admin-data-grid",
+        "./skills/sw-meteor-components",
+        "./skills/sw-admin-vite",
+        "./skills/sw-admin-utils-filters",
+        "./skills/sw-admin-catalog",
+        "./skills/sw-meteor-admin-sdk",
+        "./skills/sw-admin-typescript"
+      ]
+    },
+    {
+      "name": "shopware-cms",
+      "source": "./plugins/shopware-cms",
+      "description": "Shopware 6 CMS: custom blocks, elements and data resolvers (admin + storefront).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "cms"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-cms-block",
+        "./skills/sw-cms-block-admin",
+        "./skills/sw-cms-element",
+        "./skills/sw-cms-element-admin",
+        "./skills/sw-cms-element-storefront",
+        "./skills/sw-cms-data-resolver",
+        "./skills/sw-cms-slot-config"
+      ]
+    },
+    {
+      "name": "shopware-checkout",
+      "source": "./plugins/shopware-checkout",
+      "description": "Shopware 6 checkout: cart processors, line items, prices, tax, payment handlers, shipping, order state machine, documents, promotions.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "checkout"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-cart-collector",
+        "./skills/sw-cart-discount",
+        "./skills/sw-cart-facade-script",
+        "./skills/sw-cart-line-item",
+        "./skills/sw-cart-price",
+        "./skills/sw-cart-processor",
+        "./skills/sw-cart-validator",
+        "./skills/sw-customer",
+        "./skills/sw-delivery",
+        "./skills/sw-document",
+        "./skills/sw-document-type",
+        "./skills/sw-nested-line-items",
+        "./skills/sw-order-events",
+        "./skills/sw-order-state-machine",
+        "./skills/sw-payment-app",
+        "./skills/sw-payment-handler",
+        "./skills/sw-paypal-sdk",
+        "./skills/sw-promotion",
+        "./skills/sw-shipping-method",
+        "./skills/sw-tax-provider"
+      ]
+    },
+    {
+      "name": "shopware-testing",
+      "source": "./plugins/shopware-testing",
+      "description": "Shopware 6 testing: PHPUnit (unit/integration/API), Jest (admin/storefront), Playwright E2E.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "testing"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-phpunit",
+        "./skills/sw-admin-api-test",
+        "./skills/sw-integration-test",
+        "./skills/sw-jest-admin",
+        "./skills/sw-jest-storefront",
+        "./skills/sw-mock-repository",
+        "./skills/sw-mock-system-config",
+        "./skills/sw-phpunit-setup",
+        "./skills/sw-playwright-e2e",
+        "./skills/sw-store-api-test",
+        "./skills/sw-test-builder",
+        "./skills/sw-test-fixtures",
+        "./skills/sw-unit-test",
+        "./skills/sw-vue-test"
+      ]
+    },
+    {
+      "name": "shopware-apps",
+      "source": "./plugins/shopware-apps",
+      "description": "Shopware 6 app development: manifest, webhooks, auth, app scripts, payment/tax/CMS/flow gateways, IAP, JS/PHP SDK.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "apps"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-apps",
+        "./skills/sw-app-php-sdk",
+        "./skills/sw-app-sdk-js"
+      ]
+    },
+    {
+      "name": "shopware-migration",
+      "source": "./plugins/shopware-migration",
+      "description": "Shopware 6 version migrations: 6.6->6.7->6.8, Meteor/Vite/Pinia migration, deprecation handling, upgrade guides.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "migration"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-6.7-migration",
+        "./skills/sw-deprecation-handling",
+        "./skills/sw-meteor-component-map",
+        "./skills/sw-php-migration-patterns",
+        "./skills/sw-upgrade-overview",
+        "./skills/sw-vite-migration",
+        "./skills/sw-vuex-to-pinia"
+      ]
+    },
+    {
+      "name": "shopware-quality",
+      "source": "./plugins/shopware-quality",
+      "description": "Shopware 6 quality: coding guidelines, ADR knowledge, domain exceptions, static analysis, README generator + self-updating knowledge sync.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "quality"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-readme",
+        "./skills/sw-adr-knowledge",
+        "./skills/sw-changelog",
+        "./skills/sw-coding-guidelines",
+        "./skills/sw-deptrac",
+        "./skills/sw-domain-exceptions",
+        "./skills/sw-ecs-cs-fixer",
+        "./skills/sw-knowledge-sync",
+        "./skills/sw-phpstan",
+        "./skills/sw-phpstan-shopware",
+        "./skills/sw-rector",
+        "./skills/sw-static-analysis"
+      ]
+    },
+    {
+      "name": "ff-octo-api",
+      "source": "./plugins/ff-octo-api",
+      "description": "FfOctoApi — Ventrata OCTO API integration for Shopware 6.7 (tourism ticketing: GoldenTours, GoCity, RheinKurier) incl. ResubmissionAppServer.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "octo",
+        "ventrata",
+        "ticketing"
+      ],
+      "category": "development",
+      "skills": [
         "./skills/ff-octo-api"
+      ]
+    },
+    {
+      "name": "shopware-api",
+      "source": "./plugins/shopware-api",
+      "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "api"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-api-overview",
+        "./skills/sw-admin-api-auth",
+        "./skills/sw-admin-api-crud",
+        "./skills/sw-admin-api-search",
+        "./skills/sw-sync-api",
+        "./skills/sw-admin-api-actions",
+        "./skills/sw-store-api-auth",
+        "./skills/sw-store-api-endpoints",
+        "./skills/sw-api-headers",
+        "./skills/sw-api-errors",
+        "./skills/sw-api-versioning",
+        "./skills/sw-sales-agent-api",
+        "./skills/sw-api-catalog",
+        "./skills/sw-admin-api-endpoints"
+      ]
+    },
+    {
+      "name": "shopware-frontends",
+      "source": "./plugins/shopware-frontends",
+      "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, composables, api-gen, cms-base, helpers, Vue 3 / Nuxt.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "frontends",
+        "headless"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-frontends-overview",
+        "./skills/sw-api-client-js",
+        "./skills/sw-api-gen-types",
+        "./skills/sw-composables",
+        "./skills/sw-frontends-session-context",
+        "./skills/sw-frontends-cms",
+        "./skills/sw-frontends-helpers",
+        "./skills/sw-frontends-nuxt"
       ]
     },
     {
@@ -36,11 +485,165 @@
         "name": "Andreas Gerhardt",
         "email": "a.gerhardt1987@gmail.com"
       },
-      "license": "propietary",
-      "keywords": ["contao"],
+      "license": "proprietary",
+      "keywords": [
+        "contao"
+      ],
       "category": "development",
       "skills": [
         "./skills/adt-contao-dal"
+      ]
+    },
+    {
+      "name": "shopware-devops",
+      "source": "./plugins/shopware-devops",
+      "description": "Shopware DevOps: shopware-cli commands, Symfony Flex recipes and PaaS deployment (Platform.sh).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "devops"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-cli",
+        "./skills/sw-cli-extension",
+        "./skills/sw-cli-project",
+        "./skills/sw-cli-account",
+        "./skills/sw-recipes",
+        "./skills/sw-paas"
+      ]
+    },
+    {
+      "name": "shopware-merchant",
+      "source": "./plugins/shopware-merchant",
+      "description": "Shopware 6 Merchant/Operator knowledge — how to run the shop from the Administration: catalog, orders, customers, content, marketing, settings, sales channels (from docs.shopware.com).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "merchant",
+        "administration",
+        "handbuch"
+      ],
+      "category": "documentation",
+      "skills": [
+        "./skills/sw-merchant-overview",
+        "./skills/sw-merchant-catalog",
+        "./skills/sw-merchant-catalog-categories",
+        "./skills/sw-merchant-catalog-manufacturers",
+        "./skills/sw-merchant-catalog-media",
+        "./skills/sw-merchant-catalog-product-streams",
+        "./skills/sw-merchant-catalog-products",
+        "./skills/sw-merchant-catalog-properties",
+        "./skills/sw-merchant-catalog-reviews",
+        "./skills/sw-merchant-cloud",
+        "./skills/sw-merchant-cloud-saas-betrieb",
+        "./skills/sw-merchant-cloud-saas-setup",
+        "./skills/sw-merchant-commercial",
+        "./skills/sw-merchant-commercial-advanced-search",
+        "./skills/sw-merchant-commercial-ai-copilot",
+        "./skills/sw-merchant-commercial-b2b",
+        "./skills/sw-merchant-commercial-custom-pricing",
+        "./skills/sw-merchant-commercial-digital-sales-rooms",
+        "./skills/sw-merchant-commercial-flow-builder",
+        "./skills/sw-merchant-commercial-multi-inventory",
+        "./skills/sw-merchant-commercial-returns",
+        "./skills/sw-merchant-commercial-rule-builder",
+        "./skills/sw-merchant-commercial-sales-agent",
+        "./skills/sw-merchant-commercial-spatial",
+        "./skills/sw-merchant-commercial-subscriptions",
+        "./skills/sw-merchant-content",
+        "./skills/sw-merchant-content-cms-extensions",
+        "./skills/sw-merchant-content-media",
+        "./skills/sw-merchant-content-shopping-experiences",
+        "./skills/sw-merchant-content-themes",
+        "./skills/sw-merchant-customers",
+        "./skills/sw-merchant-customers-accounts",
+        "./skills/sw-merchant-customers-addresses",
+        "./skills/sw-merchant-customers-b2b",
+        "./skills/sw-merchant-customers-bulk",
+        "./skills/sw-merchant-customers-groups",
+        "./skills/sw-merchant-extensions",
+        "./skills/sw-merchant-features",
+        "./skills/sw-merchant-getting-started",
+        "./skills/sw-merchant-insider-previews",
+        "./skills/sw-merchant-insider-previews-bundles",
+        "./skills/sw-merchant-insider-previews-scene-editor",
+        "./skills/sw-merchant-marketing",
+        "./skills/sw-merchant-marketing-codes",
+        "./skills/sw-merchant-marketing-newsletter",
+        "./skills/sw-merchant-marketing-promotions",
+        "./skills/sw-merchant-marketing-rule-builder",
+        "./skills/sw-merchant-migration",
+        "./skills/sw-merchant-migration-livegang",
+        "./skills/sw-merchant-migration-prozess",
+        "./skills/sw-merchant-orders",
+        "./skills/sw-merchant-orders-create",
+        "./skills/sw-merchant-orders-documents",
+        "./skills/sw-merchant-orders-edit",
+        "./skills/sw-merchant-orders-overview",
+        "./skills/sw-merchant-orders-refunds",
+        "./skills/sw-merchant-orders-states",
+        "./skills/sw-merchant-sales-channels",
+        "./skills/sw-merchant-sales-channels-agentic",
+        "./skills/sw-merchant-sales-channels-api-access",
+        "./skills/sw-merchant-sales-channels-config",
+        "./skills/sw-merchant-sales-channels-create",
+        "./skills/sw-merchant-sales-channels-domains",
+        "./skills/sw-merchant-sales-channels-product-comparison",
+        "./skills/sw-merchant-sales-channels-products",
+        "./skills/sw-merchant-sales-channels-social-shopping",
+        "./skills/sw-merchant-services",
+        "./skills/sw-merchant-services-3d-preview",
+        "./skills/sw-merchant-services-cad-3d",
+        "./skills/sw-merchant-services-copilot",
+        "./skills/sw-merchant-services-image-editor",
+        "./skills/sw-merchant-services-intelligence-plus",
+        "./skills/sw-merchant-services-nexus",
+        "./skills/sw-merchant-services-payments",
+        "./skills/sw-merchant-services-recommendation-preview",
+        "./skills/sw-merchant-settings",
+        "./skills/sw-merchant-settings-caches-indexes",
+        "./skills/sw-merchant-settings-currencies-languages",
+        "./skills/sw-merchant-settings-delivery-times",
+        "./skills/sw-merchant-settings-flow-builder",
+        "./skills/sw-merchant-settings-import-export",
+        "./skills/sw-merchant-settings-integrations-api",
+        "./skills/sw-merchant-settings-mail-templates",
+        "./skills/sw-merchant-settings-payment-methods",
+        "./skills/sw-merchant-settings-rule-builder",
+        "./skills/sw-merchant-settings-seo",
+        "./skills/sw-merchant-settings-shipping-methods",
+        "./skills/sw-merchant-settings-shop-basics",
+        "./skills/sw-merchant-settings-snippets",
+        "./skills/sw-merchant-settings-system-info",
+        "./skills/sw-merchant-settings-tax",
+        "./skills/sw-merchant-settings-users-permissions",
+        "./skills/sw-merchant-spatial-3d-produkte",
+        "./skills/sw-merchant-spatial-commerce",
+        "./skills/sw-merchant-spatial-immersive-elements",
+        "./skills/sw-merchant-spatial-scene-editor",
+        "./skills/sw-merchant-tutorials",
+        "./skills/sw-merchant-tutorials-allgemeines",
+        "./skills/sw-merchant-tutorials-beispiele",
+        "./skills/sw-merchant-tutorials-bestellungen",
+        "./skills/sw-merchant-tutorials-eu-regelungen",
+        "./skills/sw-merchant-tutorials-gewusst-wie",
+        "./skills/sw-merchant-tutorials-mehrsprachig",
+        "./skills/sw-merchant-tutorials-troubleshooting",
+        "./skills/sw-merchant-update-guides",
+        "./skills/sw-merchant-update-guides-ausfuehren",
+        "./skills/sw-merchant-update-guides-staging",
+        "./skills/sw-merchant-update-guides-versionen"
       ]
     }
   ]

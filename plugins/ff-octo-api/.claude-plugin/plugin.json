@@ -1,0 +1,12 @@
+{
+  "name": "ff-octo-api",
+  "version": "1.0.0",
+  "description": "FfOctoApi — Ventrata OCTO API Integration für Shopware 6.7 (Tourismus-Ticketing: GoldenTours, GoCity, RheinKurier) inkl. ResubmissionAppServer.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "ticketing"],
+  "category": "development"
+}

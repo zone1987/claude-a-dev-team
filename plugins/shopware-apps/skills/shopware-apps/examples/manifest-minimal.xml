@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
+    <meta>
+        <name>MyMinimalApp</name>
+        <label>My Minimal App</label>
+        <label lang="de-DE">Meine Minimal-App</label>
+        <description>A minimal app using only scripts and templates</description>
+        <author>Your Company</author>
+        <copyright>(c) Your Company</copyright>
+        <version>1.0.0</version>
+        <icon>Resources/config/plugin.png</icon>
+        <license>MIT</license>
+    </meta>
+</manifest>

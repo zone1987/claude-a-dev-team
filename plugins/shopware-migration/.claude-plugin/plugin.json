@@ -1,0 +1,12 @@
+{
+  "name": "shopware-migration",
+  "version": "1.0.0",
+  "description": "Shopware 6 Versions-Migration: 6.6→6.7→6.8, Meteor-/Vite-/Pinia-Migration, Deprecation-Handling, Upgrade-Guides.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "migration"],
+  "category": "development"
+}

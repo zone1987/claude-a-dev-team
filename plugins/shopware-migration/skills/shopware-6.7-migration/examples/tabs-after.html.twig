@@ -1,0 +1,27 @@
+{# Migrated tabs with content panels (Shopware 6.7) #}
+{# Note: mt-tabs uses :items array prop instead of child <sw-tabs-item> components #}
+{# Tab content is rendered separately, controlled by activeTab data property #}
+
+<mt-tabs
+    :items="[
+        { label: $tc('my-plugin.tabs.general'), name: 'general' },
+        { label: $tc('my-plugin.tabs.advanced'), name: 'advanced' },
+        { label: $tc('my-plugin.tabs.permissions'), name: 'permissions' },
+    ]"
+    @new-item-active="activeTab = $event"
+/>
+
+<mt-card v-if="activeTab === 'general'">
+    <mt-text-field v-model="item.name" :label="$tc('my-plugin.detail.labelName')" />
+    <mt-textarea v-model="item.description" :label="$tc('my-plugin.detail.labelDescription')" />
+</mt-card>
+
+<mt-card v-if="activeTab === 'advanced'">
+    <mt-number-field v-model="item.priority" :label="$tc('my-plugin.detail.labelPriority')" numberType="int" />
+    <mt-datepicker v-model="item.validFrom" :label="$tc('my-plugin.detail.labelValidFrom')" dateType="date" />
+</mt-card>
+
+<mt-card v-if="activeTab === 'permissions'">
+    <mt-checkbox v-model="item.public" :label="$tc('my-plugin.detail.labelPublic')" />
+    <mt-switch v-model="item.editable" :label="$tc('my-plugin.detail.labelEditable')" />
+</mt-card>
