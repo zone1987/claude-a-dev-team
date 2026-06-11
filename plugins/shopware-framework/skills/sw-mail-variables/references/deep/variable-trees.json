@@ -1,0 +1,732 @@
+{
+  "_meta": {
+    "shopware_version": "6.7",
+    "source": "src/Core/Content/MailTemplate/MailTemplateTypes.php + Fixtures/mails/ + Entity definitions",
+    "conventions": {
+      "type_nullable": "type ends with '?' means nullable",
+      "array_of": "array<T> means collection/array of T",
+      "translated": "fields marked 'translated' are resolved via translation fallback chain",
+      "always_available": ["eventName", "salesChannelId", "salesChannel"]
+    }
+  },
+
+  "order_confirmation_mail": {
+    "technicalName": "order_confirmation_mail",
+    "triggerEvent": "checkout.order.placed",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true },
+      "eventName": { "type": "string" },
+      "salesChannelId": { "type": "string" }
+    }
+  },
+
+  "order.state.open": {
+    "technicalName": "order.state.open",
+    "triggerEvent": "state_enter.order.open",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order.state.in_progress": {
+    "technicalName": "order.state.in_progress",
+    "triggerEvent": "state_enter.order.in_progress",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order.state.completed": {
+    "technicalName": "order.state.completed",
+    "triggerEvent": "state_enter.order.completed",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order.state.cancelled": {
+    "technicalName": "order.state.cancelled",
+    "triggerEvent": "state_enter.order.cancelled",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+
+  "order_delivery.state.shipped": {
+    "technicalName": "order_delivery.state.shipped",
+    "triggerEvent": "state_enter.order_delivery.shipped",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order_delivery.state.shipped_partially": {
+    "technicalName": "order_delivery.state.shipped_partially",
+    "triggerEvent": "state_enter.order_delivery.shipped_partially",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order_delivery.state.returned": {
+    "technicalName": "order_delivery.state.returned",
+    "triggerEvent": "state_enter.order_delivery.returned",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order_delivery.state.returned_partially": {
+    "technicalName": "order_delivery.state.returned_partially",
+    "triggerEvent": "state_enter.order_delivery.returned_partially",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order_delivery.state.cancelled": {
+    "technicalName": "order_delivery.state.cancelled",
+    "triggerEvent": "state_enter.order_delivery.cancelled",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+
+  "order_transaction.state.open": {
+    "technicalName": "order_transaction.state.open",
+    "triggerEvent": "state_enter.order_transaction.open",
+    "note": "Zeigt vollständige Bestelldetails inkl. nestedLineItems (wie order_confirmation_mail)",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order_transaction.state.paid": {
+    "technicalName": "order_transaction.state.paid",
+    "triggerEvent": "state_enter.order_transaction.paid",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "order_transaction.state.paid_partially": { "triggerEvent": "state_enter.order_transaction.paid_partially", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.refunded": { "triggerEvent": "state_enter.order_transaction.refunded", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.refunded_partially": { "triggerEvent": "state_enter.order_transaction.refunded_partially", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.cancelled": { "triggerEvent": "state_enter.order_transaction.cancelled", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.reminded": { "triggerEvent": "state_enter.order_transaction.reminded", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.authorized": { "triggerEvent": "state_enter.order_transaction.authorized", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.chargeback": { "triggerEvent": "state_enter.order_transaction.chargeback", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "order_transaction.state.unconfirmed": { "triggerEvent": "state_enter.order_transaction.unconfirmed", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+
+  "order.payment_method.changed": {
+    "technicalName": "order.payment_method.changed",
+    "triggerEvent": "checkout.order.payment_method.changed",
+    "note": "Verwendet order.transactions.last (nicht .first) fuer neue Zahlungsmethode",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "orderTransaction": { "$ref": "#/$defs/OrderTransactionEntity" },
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "invoice_mail": {
+    "technicalName": "invoice_mail",
+    "triggerEvent": "document.invoice.created (via Flow)",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" },
+      "a11yDocuments": { "type": "array<A11yDocument>", "optional": true }
+    }
+  },
+  "delivery_mail": { "technicalName": "delivery_mail", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "credit_note_mail": { "technicalName": "credit_note_mail", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+  "cancellation_mail": { "technicalName": "cancellation_mail", "rootVariables": { "order": { "$ref": "#/$defs/OrderEntity" }, "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }, "a11yDocuments": { "type": "array<A11yDocument>", "optional": true } } },
+
+  "downloads_delivery": {
+    "technicalName": "downloads_delivery",
+    "triggerEvent": "checkout.order.placed (nach Zahlungsfreigabe)",
+    "rootVariables": {
+      "order": { "$ref": "#/$defs/OrderEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "customer_register": {
+    "technicalName": "customer_register",
+    "triggerEvent": "checkout.customer.register",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "customer_register.double_opt_in": {
+    "technicalName": "customer_register.double_opt_in",
+    "triggerEvent": "checkout.customer.double_opt_in_registration",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "confirmUrl": { "type": "string", "description": "Bestaetigunslink fuer DOI" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "guest_order.double_opt_in": {
+    "technicalName": "guest_order.double_opt_in",
+    "triggerEvent": "checkout.customer.double_opt_in_guest_order",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "confirmUrl": { "type": "string" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "password_change": {
+    "technicalName": "password_change",
+    "triggerEvent": "customer.recovery.request",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "resetUrl": { "type": "string", "description": "Passwort-Reset-Link" },
+      "shopName": { "type": "string" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "customer.password.changed": {
+    "technicalName": "customer.password.changed",
+    "triggerEvent": "customer.password.changed",
+    "note": "Neu in Shopware 6.7",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "shopName": { "type": "string" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "customer.group.registration.accepted": {
+    "technicalName": "customer.group.registration.accepted",
+    "triggerEvent": "customer.group.registration.accepted",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "customerGroup": { "$ref": "#/$defs/CustomerGroupEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "customer.group.registration.declined": {
+    "technicalName": "customer.group.registration.declined",
+    "triggerEvent": "customer.group.registration.declined",
+    "rootVariables": {
+      "customer": { "$ref": "#/$defs/CustomerEntity" },
+      "customerGroup": { "$ref": "#/$defs/CustomerGroupEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "newsletterDoubleOptIn": {
+    "technicalName": "newsletterDoubleOptIn",
+    "triggerEvent": "newsletter.register",
+    "rootVariables": {
+      "newsletterRecipient": { "$ref": "#/$defs/NewsletterRecipientEntity" },
+      "url": { "type": "string", "description": "DOI-Bestaedigungslink" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "newsletterRegister": {
+    "technicalName": "newsletterRegister",
+    "triggerEvent": "newsletter.confirm",
+    "rootVariables": {
+      "newsletterRecipient": { "$ref": "#/$defs/NewsletterRecipientEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "contact_form": {
+    "technicalName": "contact_form",
+    "triggerEvent": "contact_form.send",
+    "rootVariables": {
+      "contactFormData": { "$ref": "#/$defs/ContactFormData" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "revocation_request.merchant": {
+    "technicalName": "revocation_request.merchant",
+    "note": "Neu in Shopware 6.7",
+    "rootVariables": {
+      "revocationRequestFormData": { "$ref": "#/$defs/RevocationRequestFormData" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+  "revocation_request.customer": {
+    "technicalName": "revocation_request.customer",
+    "note": "Neu in Shopware 6.7",
+    "rootVariables": {
+      "revocationRequestFormData": { "$ref": "#/$defs/RevocationRequestFormData" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "review_form": {
+    "technicalName": "review_form",
+    "rootVariables": {
+      "reviewFormData": { "$ref": "#/$defs/ReviewFormData" },
+      "product": { "$ref": "#/$defs/ProductEntity" },
+      "salesChannel": { "$ref": "#/$defs/SalesChannelEntity" }
+    }
+  },
+
+  "$defs": {
+    "OrderEntity": {
+      "type": "object",
+      "entity": "order",
+      "properties": {
+        "orderNumber": { "type": "string" },
+        "orderDateTime": { "type": "DateTimeInterface" },
+        "orderDate": { "type": "DateTimeInterface" },
+        "amountTotal": { "type": "float" },
+        "amountNet": { "type": "float" },
+        "positionPrice": { "type": "float" },
+        "shippingTotal": { "type": "float" },
+        "taxStatus": { "type": "string", "enum": ["gross", "net", "tax-free"] },
+        "deepLinkCode": { "type": "string" },
+        "affiliateCode": { "type": "string?" },
+        "campaignCode": { "type": "string?" },
+        "customerComment": { "type": "string?" },
+        "internalComment": { "type": "string?" },
+        "currencyFactor": { "type": "float" },
+        "billingAddressId": { "type": "string" },
+        "price": { "$ref": "#/$defs/CartPrice" },
+        "shippingCosts": { "$ref": "#/$defs/CalculatedPrice" },
+        "totalRounding": { "$ref": "#/$defs/CashRoundingConfig" },
+        "itemRounding": { "$ref": "#/$defs/CashRoundingConfig" },
+        "currency": { "$ref": "#/$defs/CurrencyEntity" },
+        "orderCustomer": { "$ref": "#/$defs/OrderCustomerEntity" },
+        "stateMachineState": { "$ref": "#/$defs/StateMachineStateEntity" },
+        "billingAddress": { "$ref": "#/$defs/OrderAddressEntity", "note": "via order.addresses.get(order.billingAddressId)" },
+        "addresses": { "type": "array<OrderAddressEntity>", "$ref": "#/$defs/OrderAddressEntity" },
+        "deliveries": { "type": "array<OrderDeliveryEntity>", "$ref": "#/$defs/OrderDeliveryEntity" },
+        "deliveries.first": { "$ref": "#/$defs/OrderDeliveryEntity" },
+        "transactions": { "type": "array<OrderTransactionEntity>", "$ref": "#/$defs/OrderTransactionEntity" },
+        "transactions.first": { "$ref": "#/$defs/OrderTransactionEntity" },
+        "transactions.last": { "$ref": "#/$defs/OrderTransactionEntity" },
+        "nestedLineItems": { "type": "array<OrderLineItemEntity>", "$ref": "#/$defs/OrderLineItemEntity", "note": "Hierarchisch verschachtelt" },
+        "lineItems": { "type": "array<OrderLineItemEntity>", "$ref": "#/$defs/OrderLineItemEntity", "note": "Flache Liste" },
+        "documents": { "type": "array<DocumentEntity>" }
+      }
+    },
+
+    "OrderCustomerEntity": {
+      "type": "object",
+      "entity": "order_customer",
+      "properties": {
+        "email": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "title": { "type": "string?" },
+        "company": { "type": "string?" },
+        "customerNumber": { "type": "string?" },
+        "vatIds": { "type": "array<string>?" },
+        "remoteAddress": { "type": "string?" },
+        "salutation": { "$ref": "#/$defs/SalutationEntity", "nullable": true },
+        "customer": { "$ref": "#/$defs/CustomerEntity", "note": "Live-Kundendatensatz, kann null sein bei Gaesten" }
+      }
+    },
+
+    "OrderAddressEntity": {
+      "type": "object",
+      "entity": "order_address",
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "zipcode": { "type": "string?" },
+        "company": { "type": "string?" },
+        "department": { "type": "string?" },
+        "title": { "type": "string?" },
+        "phoneNumber": { "type": "string?" },
+        "additionalAddressLine1": { "type": "string?" },
+        "additionalAddressLine2": { "type": "string?" },
+        "salutation": { "$ref": "#/$defs/SalutationEntity", "nullable": true },
+        "country": { "$ref": "#/$defs/CountryEntity" },
+        "countryState": { "$ref": "#/$defs/CountryStateEntity", "nullable": true }
+      }
+    },
+
+    "OrderDeliveryEntity": {
+      "type": "object",
+      "entity": "order_delivery",
+      "properties": {
+        "trackingCodes": { "type": "array<string>" },
+        "shippingDateEarliest": { "type": "DateTimeInterface" },
+        "shippingDateLatest": { "type": "DateTimeInterface" },
+        "shippingCosts": { "$ref": "#/$defs/CalculatedPrice" },
+        "stateMachineState": { "$ref": "#/$defs/StateMachineStateEntity" },
+        "shippingMethod": { "$ref": "#/$defs/ShippingMethodEntity" },
+        "shippingOrderAddress": { "$ref": "#/$defs/OrderAddressEntity" },
+        "positions": { "type": "array<OrderDeliveryPositionEntity>" }
+      }
+    },
+
+    "OrderTransactionEntity": {
+      "type": "object",
+      "entity": "order_transaction",
+      "properties": {
+        "amount": { "$ref": "#/$defs/CalculatedPrice" },
+        "stateMachineState": { "$ref": "#/$defs/StateMachineStateEntity" },
+        "paymentMethod": { "$ref": "#/$defs/PaymentMethodEntity" }
+      }
+    },
+
+    "OrderLineItemEntity": {
+      "type": "object",
+      "entity": "order_line_item",
+      "properties": {
+        "label": { "type": "string", "note": "Produktname zum Bestellzeitpunkt" },
+        "quantity": { "type": "int" },
+        "unitPrice": { "type": "float" },
+        "totalPrice": { "type": "float" },
+        "description": { "type": "string?" },
+        "type": { "type": "string?", "examples": ["product", "promotion", "credit", "custom"] },
+        "position": { "type": "int" },
+        "good": { "type": "bool" },
+        "referencedId": { "type": "string?" },
+        "identifier": { "type": "string" },
+        "price": { "$ref": "#/$defs/CalculatedPrice", "nullable": true },
+        "payload": {
+          "type": "array?",
+          "properties": {
+            "productNumber": { "type": "string" },
+            "manufacturerId": { "type": "string?" },
+            "taxId": { "type": "string?" },
+            "productType": { "type": "string" },
+            "categoryIds": { "type": "array<string>" },
+            "options": {
+              "type": "array",
+              "items": { "type": "object", "properties": { "group": { "type": "string" }, "option": { "type": "string" } } }
+            },
+            "features": { "type": "array" }
+          }
+        },
+        "cover": { "type": "MediaEntity?", "properties": { "url": { "type": "string" } } },
+        "product": { "$ref": "#/$defs/ProductEntity", "nullable": true },
+        "children": { "type": "array<OrderLineItemEntity>", "note": "Rekursiv" },
+        "downloads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "accessGranted": { "type": "bool" },
+              "id": { "type": "string" },
+              "media": { "type": "object", "properties": { "fileName": { "type": "string" }, "fileExtension": { "type": "string" } } }
+            }
+          }
+        }
+      }
+    },
+
+    "CustomerEntity": {
+      "type": "object",
+      "entity": "customer",
+      "properties": {
+        "customerNumber": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "title": { "type": "string?" },
+        "company": { "type": "string?" },
+        "accountType": { "type": "string", "enum": ["private", "business"] },
+        "active": { "type": "bool" },
+        "guest": { "type": "bool" },
+        "birthday": { "type": "DateTimeInterface?" },
+        "firstLogin": { "type": "DateTimeInterface?" },
+        "lastLogin": { "type": "DateTimeInterface?" },
+        "doubleOptInRegistration": { "type": "bool" },
+        "doubleOptInConfirmDate": { "type": "DateTimeInterface?" },
+        "affiliateCode": { "type": "string?" },
+        "campaignCode": { "type": "string?" },
+        "vatIds": { "type": "array<string>?" },
+        "salutation": { "$ref": "#/$defs/SalutationEntity", "nullable": true },
+        "language": { "type": "LanguageEntity" },
+        "group": { "$ref": "#/$defs/CustomerGroupEntity" },
+        "defaultBillingAddress": { "$ref": "#/$defs/CustomerAddressEntity" },
+        "defaultShippingAddress": { "$ref": "#/$defs/CustomerAddressEntity" },
+        "lastPaymentMethod": { "$ref": "#/$defs/PaymentMethodEntity", "nullable": true }
+      }
+    },
+
+    "CustomerAddressEntity": {
+      "type": "object",
+      "entity": "customer_address",
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "street": { "type": "string" },
+        "zipcode": { "type": "string?" },
+        "city": { "type": "string" },
+        "company": { "type": "string?" },
+        "department": { "type": "string?" },
+        "title": { "type": "string?" },
+        "phoneNumber": { "type": "string?" },
+        "additionalAddressLine1": { "type": "string?" },
+        "additionalAddressLine2": { "type": "string?" },
+        "salutation": { "$ref": "#/$defs/SalutationEntity", "nullable": true },
+        "country": { "$ref": "#/$defs/CountryEntity" },
+        "countryState": { "$ref": "#/$defs/CountryStateEntity", "nullable": true }
+      }
+    },
+
+    "SalesChannelEntity": {
+      "type": "object",
+      "entity": "sales_channel",
+      "properties": {
+        "name": { "type": "string?", "translated": true },
+        "shortName": { "type": "string?" },
+        "active": { "type": "bool" },
+        "taxCalculationType": { "type": "string" },
+        "domains": {
+          "type": "array<SalesChannelDomainEntity>",
+          "items": { "properties": { "url": { "type": "string" }, "languageId": { "type": "string" } } }
+        },
+        "currency": { "$ref": "#/$defs/CurrencyEntity" },
+        "language": { "type": "LanguageEntity" },
+        "country": { "$ref": "#/$defs/CountryEntity" },
+        "paymentMethod": { "$ref": "#/$defs/PaymentMethodEntity" },
+        "shippingMethod": { "$ref": "#/$defs/ShippingMethodEntity" },
+        "customerGroup": { "$ref": "#/$defs/CustomerGroupEntity" }
+      }
+    },
+
+    "CurrencyEntity": {
+      "type": "object",
+      "entity": "currency",
+      "properties": {
+        "isoCode": { "type": "string", "example": "EUR" },
+        "symbol": { "type": "string", "example": "€" },
+        "name": { "type": "string?", "translated": true },
+        "shortName": { "type": "string?", "translated": true },
+        "factor": { "type": "float" },
+        "isSystemDefault": { "type": "bool?" }
+      }
+    },
+
+    "PaymentMethodEntity": {
+      "type": "object",
+      "entity": "payment_method",
+      "properties": {
+        "name": { "type": "string?", "translated": true },
+        "distinguishableName": { "type": "string?", "translated": true },
+        "description": { "type": "string?", "translated": true },
+        "shortName": { "type": "string?" },
+        "technicalName": { "type": "string" },
+        "active": { "type": "bool" },
+        "position": { "type": "int" }
+      }
+    },
+
+    "ShippingMethodEntity": {
+      "type": "object",
+      "entity": "shipping_method",
+      "properties": {
+        "name": { "type": "string?", "translated": true },
+        "description": { "type": "string?", "translated": true },
+        "trackingUrl": { "type": "string?", "note": "Enthaelt %s als Platzhalter fuer Trackingnummer" },
+        "technicalName": { "type": "string" },
+        "active": { "type": "bool?" },
+        "deliveryTime": { "type": "DeliveryTimeEntity" }
+      }
+    },
+
+    "StateMachineStateEntity": {
+      "type": "object",
+      "entity": "state_machine_state",
+      "properties": {
+        "technicalName": {
+          "type": "string",
+          "examples": {
+            "order": ["open", "in_progress", "completed", "cancelled"],
+            "order_delivery": ["open", "shipped", "shipped_partially", "returned", "returned_partially", "cancelled"],
+            "order_transaction": ["open", "paid", "paid_partially", "refunded", "refunded_partially", "cancelled", "failed", "reminded", "authorized", "chargeback", "unconfirmed"]
+          }
+        },
+        "name": { "type": "string?", "translated": true, "example": "Offen" }
+      }
+    },
+
+    "SalutationEntity": {
+      "type": "object",
+      "entity": "salutation",
+      "properties": {
+        "salutationKey": { "type": "string", "examples": ["mr", "mrs", "not_specified"] },
+        "letterName": { "type": "string?", "translated": true, "example": "Sehr geehrter Herr" },
+        "displayName": { "type": "string?", "translated": true, "example": "Herr" }
+      }
+    },
+
+    "CountryEntity": {
+      "type": "object",
+      "entity": "country",
+      "properties": {
+        "name": { "type": "string?", "translated": true },
+        "iso": { "type": "string?", "example": "DE" },
+        "iso3": { "type": "string?", "example": "DEU" }
+      }
+    },
+
+    "CountryStateEntity": {
+      "type": "object",
+      "entity": "country_state",
+      "properties": {
+        "name": { "type": "string?", "translated": true },
+        "shortCode": { "type": "string" }
+      }
+    },
+
+    "CustomerGroupEntity": {
+      "type": "object",
+      "entity": "customer_group",
+      "properties": {
+        "name": { "type": "string?", "translated": true },
+        "displayGross": { "type": "bool" }
+      }
+    },
+
+    "NewsletterRecipientEntity": {
+      "type": "object",
+      "entity": "newsletter_recipient",
+      "properties": {
+        "email": { "type": "string" },
+        "firstName": { "type": "string?" },
+        "lastName": { "type": "string?" },
+        "title": { "type": "string?" },
+        "zipCode": { "type": "string?" },
+        "city": { "type": "string?" },
+        "street": { "type": "string?" },
+        "status": { "type": "string", "enum": ["notSet", "direct", "optIn", "optOut"] },
+        "hash": { "type": "string", "note": "Fuer Abmelde-/Bestaedigungslinks" },
+        "confirmedAt": { "type": "DateTimeInterface?" },
+        "salutation": { "$ref": "#/$defs/SalutationEntity", "nullable": true }
+      }
+    },
+
+    "ProductEntity": {
+      "type": "object",
+      "entity": "product",
+      "properties": {
+        "productNumber": { "type": "string" },
+        "name": { "type": "string?", "translated": true },
+        "description": { "type": "string?", "translated": true },
+        "ean": { "type": "string?" },
+        "manufacturerNumber": { "type": "string?" },
+        "stock": { "type": "int" },
+        "availableStock": { "type": "int?" },
+        "weight": { "type": "float?" },
+        "width": { "type": "float?" },
+        "height": { "type": "float?" },
+        "length": { "type": "float?" },
+        "ratingAverage": { "type": "float?" },
+        "manufacturer": { "type": "ProductManufacturerEntity?", "properties": { "name": { "type": "string?", "translated": true } } },
+        "cover": { "type": "ProductMediaEntity?", "properties": { "media": { "properties": { "url": { "type": "string" } } } } }
+      }
+    },
+
+    "CartPrice": {
+      "type": "object",
+      "properties": {
+        "totalPrice": { "type": "float" },
+        "rawTotal": { "type": "float" },
+        "netPrice": { "type": "float" },
+        "taxStatus": { "type": "string" },
+        "calculatedTaxes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CalculatedTax" }
+        }
+      }
+    },
+
+    "CalculatedPrice": {
+      "type": "object",
+      "properties": {
+        "totalPrice": { "type": "float" },
+        "unitPrice": { "type": "float" },
+        "quantity": { "type": "int" },
+        "calculatedTaxes": { "type": "array", "items": { "$ref": "#/$defs/CalculatedTax" } }
+      }
+    },
+
+    "CalculatedTax": {
+      "type": "object",
+      "properties": {
+        "taxRate": { "type": "float" },
+        "tax": { "type": "float" },
+        "price": { "type": "float" }
+      }
+    },
+
+    "CashRoundingConfig": {
+      "type": "object",
+      "properties": {
+        "decimals": { "type": "int" },
+        "interval": { "type": "float" },
+        "roundForNet": { "type": "bool" }
+      }
+    },
+
+    "A11yDocument": {
+      "type": "object",
+      "properties": {
+        "documentId": { "type": "string" },
+        "deepLinkCode": { "type": "string" },
+        "fileExtension": { "type": "string" }
+      }
+    },
+
+    "ContactFormData": {
+      "type": "array_map",
+      "properties": {
+        "email": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "phone": { "type": "string?" },
+        "subject": { "type": "string?" },
+        "comment": { "type": "string" }
+      }
+    },
+
+    "RevocationRequestFormData": {
+      "type": "array_map",
+      "note": "Neu in Shopware 6.7",
+      "properties": {
+        "contractNumber": { "type": "string?" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "comment": { "type": "string?" },
+        "submitTime": { "type": "DateTimeInterface" }
+      }
+    },
+
+    "ReviewFormData": {
+      "type": "array_map",
+      "properties": {
+        "id": { "type": "string?" },
+        "name": { "type": "string?" },
+        "lastName": { "type": "string?" },
+        "email": { "type": "string?" },
+        "points": { "type": "int" },
+        "title": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  }
+}

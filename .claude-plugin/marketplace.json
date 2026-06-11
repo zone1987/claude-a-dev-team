@@ -123,6 +123,7 @@
         "./skills/sw-flow-trigger",
         "./skills/sw-mail-data",
         "./skills/sw-mail-template",
+        "./skills/sw-mail-variables",
         "./skills/sw-media-handling",
         "./skills/sw-media-thumbnail",
         "./skills/sw-message-handler",
@@ -672,7 +673,8 @@
         "./skills/sw-merchant-update-guides",
         "./skills/sw-merchant-update-guides-ausfuehren",
         "./skills/sw-merchant-update-guides-staging",
-        "./skills/sw-merchant-update-guides-versionen"
+        "./skills/sw-merchant-update-guides-versionen",
+        "./skills/sw-merchant-vs-shopify"
       ]
     },
     {
