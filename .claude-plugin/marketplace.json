@@ -141,7 +141,32 @@
       "license": "proprietary",
       "keywords": ["shopware", "admin"],
       "category": "development",
-      "skills": []
+      "skills": [
+        "./skills/sw-admin-sdk",
+        "./skills/sw-admin-module",
+        "./skills/sw-admin-component",
+        "./skills/sw-admin-component-override",
+        "./skills/sw-admin-routing",
+        "./skills/sw-admin-menu",
+        "./skills/sw-admin-data-handling",
+        "./skills/sw-admin-repository-js",
+        "./skills/sw-admin-pinia-store",
+        "./skills/sw-admin-vuex-store",
+        "./skills/sw-admin-api-requests",
+        "./skills/sw-admin-services",
+        "./skills/sw-admin-mixins",
+        "./skills/sw-admin-directives",
+        "./skills/sw-admin-snippets",
+        "./skills/sw-admin-assets",
+        "./skills/sw-admin-styles",
+        "./skills/sw-admin-acl-permissions",
+        "./skills/sw-admin-error-handling",
+        "./skills/sw-admin-data-grid",
+        "./skills/sw-meteor-components",
+        "./skills/sw-admin-vite",
+        "./skills/sw-admin-utils-filters",
+        "./skills/sw-admin-catalog"
+      ]
     },
     {
       "name": "shopware-cms",
