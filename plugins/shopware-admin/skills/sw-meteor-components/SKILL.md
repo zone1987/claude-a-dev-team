@@ -27,3 +27,8 @@ ADR „implementation of meteor component library").
 
 Props/Events teils anders als bei `sw-*` (z.B. `v-model:value`, Event-Namen). Bei Migration bestehender Plugins
 Mapping beachten (Plugin `shopware-migration` → `sw-meteor-component-map`). Neue UIs immer mit `mt-*` bauen.
+
+**Tiefe Referenz-Dokumentation:**
+- Alle mt-*-Komponenten (Props/Events/Slots): `references/deep/components.md`
+- Meteor Icon Kit (Namensschema, Icon-Liste): `references/deep/icon-kit.md`
+- Design-Tokens (CSS-Custom-Properties): `references/deep/tokens.md`

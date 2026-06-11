@@ -90,7 +90,10 @@
       "license": "proprietary",
       "keywords": ["shopware", "framework"],
       "category": "development",
-      "skills": []
+      "skills": [
+        "./skills/sw-elasticsearch",
+        "./skills/sw-elasticsearch-extension"
+      ]
     },
     {
       "name": "shopware-storefront",
@@ -167,7 +170,8 @@
         "./skills/sw-meteor-components",
         "./skills/sw-admin-vite",
         "./skills/sw-admin-utils-filters",
-        "./skills/sw-admin-catalog"
+        "./skills/sw-admin-catalog",
+        "./skills/sw-meteor-admin-sdk"
       ]
     },
     {
@@ -198,7 +202,9 @@
       "license": "proprietary",
       "keywords": ["shopware", "checkout"],
       "category": "development",
-      "skills": []
+      "skills": [
+        "./skills/sw-paypal-sdk"
+      ]
     },
     {
       "name": "shopware-testing",
@@ -223,7 +229,9 @@
       "keywords": ["shopware", "apps"],
       "category": "development",
       "skills": [
-        "./skills/shopware-apps"
+        "./skills/shopware-apps",
+        "./skills/sw-app-php-sdk",
+        "./skills/sw-app-sdk-js"
       ]
     },
     {
@@ -249,7 +257,8 @@
       "keywords": ["shopware", "quality"],
       "category": "development",
       "skills": [
-        "./skills/shopware-readme"
+        "./skills/shopware-readme",
+        "./skills/sw-phpstan-shopware"
       ]
     },
     {
@@ -287,7 +296,28 @@
         "./skills/sw-api-errors",
         "./skills/sw-api-versioning",
         "./skills/sw-sales-agent-api",
-        "./skills/sw-api-catalog"
+        "./skills/sw-api-catalog",
+        "./skills/sw-admin-api-endpoints"
+      ]
+    },
+    {
+      "name": "shopware-frontends",
+      "source": "./plugins/shopware-frontends",
+      "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, composables, api-gen, cms-base, helpers, Vue 3 / Nuxt.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "frontends", "headless"],
+      "category": "development",
+      "skills": [
+        "./skills/sw-frontends-overview",
+        "./skills/sw-api-client-js",
+        "./skills/sw-api-gen-types",
+        "./skills/sw-composables",
+        "./skills/sw-frontends-session-context",
+        "./skills/sw-frontends-cms",
+        "./skills/sw-frontends-helpers",
+        "./skills/sw-frontends-nuxt"
       ]
     },
     {
@@ -301,6 +331,24 @@
       "category": "development",
       "skills": [
         "./skills/adt-contao-dal"
+      ]
+    },
+    {
+      "name": "shopware-devops",
+      "source": "./plugins/shopware-devops",
+      "description": "Shopware DevOps: shopware-cli commands, Symfony Flex recipes and PaaS deployment (Platform.sh).",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "devops"],
+      "category": "development",
+      "skills": [
+        "./skills/sw-cli",
+        "./skills/sw-cli-extension",
+        "./skills/sw-cli-project",
+        "./skills/sw-cli-account",
+        "./skills/sw-recipes",
+        "./skills/sw-paas"
       ]
     }
   ]
