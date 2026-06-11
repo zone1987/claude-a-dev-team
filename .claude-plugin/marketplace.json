@@ -134,7 +134,8 @@
         "./skills/sw-theme-config",
         "./skills/sw-theme-inheritance",
         "./skills/sw-js-plugin-catalog",
-        "./skills/sw-js-event-catalog"
+        "./skills/sw-js-event-catalog",
+        "./skills/sw-storefront-typescript"
       ]
     },
     {
@@ -171,7 +172,8 @@
         "./skills/sw-admin-vite",
         "./skills/sw-admin-utils-filters",
         "./skills/sw-admin-catalog",
-        "./skills/sw-meteor-admin-sdk"
+        "./skills/sw-meteor-admin-sdk",
+        "./skills/sw-admin-typescript"
       ]
     },
     {
