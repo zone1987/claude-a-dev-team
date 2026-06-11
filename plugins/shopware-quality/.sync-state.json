@@ -1,0 +1,8 @@
+{
+  "repository": "shopware/shopware",
+  "branch": "trunk",
+  "lastCommit": null,
+  "lastRelease": null,
+  "lastChecked": null,
+  "note": "Initial state — populated on first /sw-sync run."
+}

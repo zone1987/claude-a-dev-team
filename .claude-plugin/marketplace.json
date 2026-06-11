@@ -364,7 +364,17 @@
       "category": "development",
       "skills": [
         "./skills/shopware-readme",
-        "./skills/sw-phpstan-shopware"
+        "./skills/sw-adr-knowledge",
+        "./skills/sw-changelog",
+        "./skills/sw-coding-guidelines",
+        "./skills/sw-deptrac",
+        "./skills/sw-domain-exceptions",
+        "./skills/sw-ecs-cs-fixer",
+        "./skills/sw-knowledge-sync",
+        "./skills/sw-phpstan",
+        "./skills/sw-phpstan-shopware",
+        "./skills/sw-rector",
+        "./skills/sw-static-analysis"
       ]
     },
     {
