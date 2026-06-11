@@ -109,8 +109,27 @@
       ],
       "category": "development",
       "skills": [
+        "./skills/sw-admin-api-controller",
+        "./skills/sw-api-acl",
+        "./skills/sw-app-script",
+        "./skills/sw-custom-rule",
         "./skills/sw-elasticsearch",
-        "./skills/sw-elasticsearch-extension"
+        "./skills/sw-elasticsearch-extension",
+        "./skills/sw-flow-action",
+        "./skills/sw-flow-transaction",
+        "./skills/sw-flow-trigger",
+        "./skills/sw-mail-data",
+        "./skills/sw-mail-template",
+        "./skills/sw-media-handling",
+        "./skills/sw-media-thumbnail",
+        "./skills/sw-message-handler",
+        "./skills/sw-message-middleware",
+        "./skills/sw-message-queue",
+        "./skills/sw-rule-condition",
+        "./skills/sw-scheduled-task",
+        "./skills/sw-store-api-override",
+        "./skills/sw-store-api-route",
+        "./skills/sw-webhook"
       ]
     },
     {
