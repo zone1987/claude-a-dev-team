@@ -35,7 +35,8 @@
         "./skills/sw-rate-limiter",
         "./skills/sw-feature-flags",
         "./skills/sw-number-range",
-        "./skills/sw-system-config"
+        "./skills/sw-system-config",
+        "./skills/sw-event-catalog"
       ]
     },
     {
@@ -129,7 +130,8 @@
         "./skills/sw-theme",
         "./skills/sw-theme-config",
         "./skills/sw-theme-inheritance",
-        "./skills/sw-js-plugin-catalog"
+        "./skills/sw-js-plugin-catalog",
+        "./skills/sw-js-event-catalog"
       ]
     },
     {

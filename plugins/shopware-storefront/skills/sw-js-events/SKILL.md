@@ -17,6 +17,9 @@ this.$emitter.publish('ffExample/done', { id });
 document.$emitter.subscribe('ffExample/done', (event) => { const { id } = event.detail; });
 ```
 
+**Welche JS-Events gibt es?** Projekt-Katalog nutzen (`sw-js-event-catalog` / `/sw-js-plugin-map`) — listet alle
+JS-Events mit Publish-/Subscribe-Orten und Argumenten.
+
 Eigene Plugins emittieren Lifecycle-Events automatisch; zusätzlich kann man via `window.PluginManager` auf
 Initialisierung reagieren. Für Core-Interaktionen (z.B. Cart-Update) auf die jeweiligen Core-Events hören. DOM-Updates
 nach AJAX → betroffene Plugins re-initialisieren (`window.PluginManager.initializePlugins()`).

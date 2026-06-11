@@ -25,5 +25,8 @@ public static function getSubscribedEvents(): array
 Event-Arten: **Entity-Events** (`{entity}.written/.deleted/.loaded`), **Business-Events** (Checkout, Order, Mail …),
 **Page-Loaded-Events** (Storefront, → `sw-storefront-data`), **Kernel-Events**. Prioritäten: `[ 'method', 100 ]`.
 
+**Welches Event?** Projekt-Event-Katalog nutzen (`sw-event-catalog` / `/sw-event-map`) — listet alle Events mit
+Klasse, Dispatch-Ort und Argumenten/Payload.
+
 → Events finden, alle Event-Typen, Datenmanipulation, Beispiele: [references/subscribers.md](references/subscribers.md)
 → Gerüst: [examples/EventSubscriber.php](examples/EventSubscriber.php)
