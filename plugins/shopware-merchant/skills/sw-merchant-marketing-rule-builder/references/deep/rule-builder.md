@@ -33,7 +33,7 @@ Die Übersichtsseite zeigt alle Regeln in einer Tabelle.
 | Flow-Zuweisung | Anzahl der Flows die diese Regel nutzen |
 | Rabatt-Zuweisung | Anzahl der Rabattaktionen die diese Regel nutzen |
 
-![Rule Builder Übersicht](../assets/Uebersicht.jpg)
+![Rule Builder Übersicht](../../assets/Uebersicht.jpg)
 
 ---
 
@@ -60,7 +60,7 @@ Die Übersichtsseite zeigt alle Regeln in einer Tabelle.
 | **ODER-Verknüpfung** | Mindestens eine Bedingung muss erfüllt sein |
 | **Unterbedingungen** | Automatisch erstellt bei Wechsel der Verknüpfungsart |
 
-![Beispielregel](../assets/Beispielregel.jpg)
+![Beispielregel](../../assets/Beispielregel.jpg)
 
 ---
 
@@ -118,7 +118,7 @@ Der Vorschaumodus ermöglicht die Echtzeit-Prüfung einer Regel:
 4. Optional: Zeitpunkt simulieren
 5. Ergebnis: WAHR/FALSCH für jede Bedingung
 
-![Vorschaumodus](../assets/Vorschau.jpg)
+![Vorschaumodus](../../assets/Vorschau.jpg)
 
 ---
 
@@ -132,9 +132,9 @@ Drei Bedingungen bieten ein Filter-Symbol zur weiteren Eingrenzung:
 | Gesamtanzahl aller Produkte | Nach Tags filtern |
 | Gesamtanzahl unterschiedlicher Produkte | Nach Streichpreis filtern |
 
-![Filter Beispiel 1](../assets/Zusatzfilter.jpg)
-![Rule Zwischensumme](../assets/Rule_Zwischensumme_Positionen.jpg)
-![Rule Gesamtanzahl](../assets/Rule_Gesamtanzahl.jpg)
+![Filter Beispiel 1](../../assets/Zusatzfilter.jpg)
+![Rule Zwischensumme](../../assets/Rule_Zwischensumme_Positionen.jpg)
+![Rule Gesamtanzahl](../../assets/Rule_Gesamtanzahl.jpg)
 
 ---
 
@@ -323,7 +323,7 @@ Drei Bedingungen bieten ein Filter-Symbol zur weiteren Eingrenzung:
 2. Option "Herunterladen" wählen
 3. JSON-Datei wird heruntergeladen (enthält alle Bedingungen, Operatoren, Referenzen)
 
-![Download Kontextmenü](../assets/RuleBuilder_RegelnTeilen-Kontextmenue_DE.png)
+![Download Kontextmenü](../../assets/RuleBuilder_RegelnTeilen-Kontextmenue_DE.png)
 
 > **Hinweis:** Kunden, Kundengruppen und Verkaufskanäle aus der Regel können im Ziel-Shop fehlen.
 
@@ -334,5 +334,5 @@ Drei Bedingungen bieten ein Filter-Symbol zur weiteren Eingrenzung:
 3. Validierung läuft automatisch
 4. Fehlende Referenzen können neu zugeordnet werden
 
-![Upload Button](../assets/RuleBuilder_RegelnTeilen-Uebersicht_DE.png)
-![Upload Dialog](../assets/RuleBuilder_RegelnTeilen-PopUpHochladen_DE.png)
+![Upload Button](../../assets/RuleBuilder_RegelnTeilen-Uebersicht_DE.png)
+![Upload Dialog](../../assets/RuleBuilder_RegelnTeilen-PopUpHochladen_DE.png)

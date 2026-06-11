@@ -214,19 +214,19 @@ df -h /pfad/zum/shop
 
 ## Screenshots: Update-Prozess
 
-![Admin Update Start](../assets/update-admin-start.png)
+![Admin Update Start](../../assets/update-admin-start.png)
 *Admin-Panel: Einstellungen > System > Shopware-Update — Systemvoraussetzungen prüfen*
 
-![Admin Update Version](../assets/update-admin-version.png)
+![Admin Update Version](../../assets/update-admin-version.png)
 *Verfügbare Update-Versionen werden angezeigt*
 
-![Erweiterungen deaktivieren](../assets/update-erweiterungen-deaktivieren.png)
+![Erweiterungen deaktivieren](../../assets/update-erweiterungen-deaktivieren.png)
 *Erweiterungen-Kompatibilitätsstatus und Deaktivierungsoptionen*
 
-![Admin Update Finish](../assets/update-admin-finish.png)
+![Admin Update Finish](../../assets/update-admin-finish.png)
 *Erfolgreicher Abschluss des Updates*
 
-![Browser Changelog](../assets/update-browser-changelog.png)
+![Browser Changelog](../../assets/update-browser-changelog.png)
 *Browser-Installer: Download des Shopware-Installers aus dem Changelog*
 
 ---

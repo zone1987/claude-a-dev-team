@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-api-access
 description: >
   Shopware API Zugang Verkaufskanal, Sales Channel Access Key generieren, Store API Key,

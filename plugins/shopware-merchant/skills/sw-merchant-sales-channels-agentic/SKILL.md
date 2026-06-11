@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-agentic
 description: >
   Shopware Agentic Commerce, KI-Plattform Feed, ChatGPT Marktplatz Shopware, JSONL Feed,

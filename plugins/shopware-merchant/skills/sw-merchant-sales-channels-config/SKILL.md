@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-config
 description: >
   Shopware Verkaufskanal konfigurieren, Grundeinstellungen Verkaufskanal, Storefront Einstellungen,

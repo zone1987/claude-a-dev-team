@@ -9,7 +9,7 @@
 
 Der Reiter **Produkte** in der Verkaufskanal-Konfiguration ermöglicht die Zuweisung von Produkten, ohne jedes Produkt einzeln öffnen und bearbeiten zu müssen.
 
-![Produkte Reiter](../../sw-merchant-sales-channels/assets/produkte-reiter.png)
+![Produkte Reiter](../../../sw-merchant-sales-channels/assets/produkte-reiter.png)
 
 ### Bedienelemente
 
@@ -24,7 +24,7 @@ Der Reiter **Produkte** in der Verkaufskanal-Konfiguration ermöglicht die Zuwei
 
 ## 2. Produkte hinzufügen – Dialog
 
-![Produkte hinzufügen Dialog](../../sw-merchant-sales-channels/assets/produkte-hinzufuegen.png)
+![Produkte hinzufügen Dialog](../../../sw-merchant-sales-channels/assets/produkte-hinzufuegen.png)
 
 Der Dialog bietet drei Registerkarten:
 

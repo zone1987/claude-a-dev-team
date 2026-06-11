@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels
 description: >
   Shopware Verkaufskanäle Überblick, Verkaufskanal Typen, Storefront Kanal, Headless Kanal,

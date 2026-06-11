@@ -20,7 +20,7 @@ Die Übersichtsseite enthält folgende Elemente:
 | **(3) Listeneinstellungen** | Spalten anpassen, Einträge pro Seite |
 | **(4) Filter** | Filtern nach Status, Sprache, Verkaufskanal |
 
-![Newsletter Empfänger Übersicht](../assets/Uebersicht.png)
+![Newsletter Empfänger Übersicht](../../assets/Uebersicht.png)
 
 ---
 
@@ -47,7 +47,7 @@ Jeder Empfänger hat einen der folgenden Status:
 - **Sprache:** Sprachversion des Shops
 - **Verkaufskanal:** Welcher Shop-Kanal der Empfänger zugeordnet ist
 
-![Filter Newsletter](../assets/Filter.png)
+![Filter Newsletter](../../assets/Filter.png)
 
 ---
 
@@ -66,7 +66,7 @@ Jeder Empfänger hat einen der folgenden Status:
 
 > **Tags:** Ermöglichen das Hinterlegen eigener Keywords, nach denen in der Übersicht gesucht werden kann. Nützlich für Segmentierung (z. B. "VIP", "Kunde2023").
 
-![Empfänger bearbeiten](../assets/Editieren.png)
+![Empfänger bearbeiten](../../assets/Editieren.png)
 
 ---
 

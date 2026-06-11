@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-products
 description: >
   Shopware Produkte Verkaufskanal zuweisen, Produkte Kanal hinzufügen, Produktzuordnung Kanal,

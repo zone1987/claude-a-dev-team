@@ -36,7 +36,7 @@ Ein Code, den mehrere Kunden verwenden können.
 2. Code im Textfeld eingeben (z. B. `SOMMER20`)
 3. Speichern
 
-![Festgelegter Aktionscode](../assets/Allgemein_Aktionscodes_Festgelegter-Code.png)
+![Festgelegter Aktionscode](../../assets/Allgemein_Aktionscodes_Festgelegter-Code.png)
 
 ### Nutzungsregeln
 
@@ -66,8 +66,8 @@ Einmalige Codes für einzelne Kunden. Jeder Code kann nur einmal eingelöst werd
 4. Optional: Präfix/Suffix für Codes definieren
 5. Generieren bestätigen
 
-![Individuelle Aktionscodes](../assets/Allgemein_Aktionscodes_Individuelle-Codes.png)
-![Codes erzeugen Dialog](../assets/Allgemein_Aktionscodes_Individuellen-Code-erzeugen.png)
+![Individuelle Aktionscodes](../../assets/Allgemein_Aktionscodes_Individuelle-Codes.png)
+![Codes erzeugen Dialog](../../assets/Allgemein_Aktionscodes_Individuellen-Code-erzeugen.png)
 
 ### Regeln für individuelle Codes
 
@@ -89,8 +89,8 @@ Einmalige Codes für einzelne Kunden. Jeder Code kann nur einmal eingelöst werd
 - Filter: "Aktionscode" = [gewünschter Code]
 - Zugehörige Bestellung wird angezeigt
 
-![Individueller Code Übersicht](../assets/1_Individuell_code_DE.png)
-![Bestellübersicht Codes](../assets/2_Uebersicht_DE.png)
+![Individueller Code Übersicht](../../assets/1_Individuell_code_DE.png)
+![Bestellübersicht Codes](../../assets/2_Uebersicht_DE.png)
 
 ---
 

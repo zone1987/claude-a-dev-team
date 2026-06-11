@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-social-shopping
 description: >
   Shopware Social Shopping, Facebook Feed einrichten, Instagram Feed Shopware, Google Shopping Feed,

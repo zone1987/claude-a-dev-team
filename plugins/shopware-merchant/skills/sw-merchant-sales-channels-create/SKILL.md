@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-create
 description: >
   Shopware Verkaufskanal anlegen, neuen Kanal erstellen, Storefront anlegen, Headless Kanal,

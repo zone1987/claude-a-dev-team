@@ -11,7 +11,7 @@ Der Menüpunkt Rabatte & Aktionen bietet ein Modul, mit dem Rabattaktionen für 
 
 Die Übersichtsseite zeigt alle vorhandenen Aktionen in einer Liste. Über das Kontextmenü können Aktionen bearbeitet oder gelöscht werden.
 
-![Übersicht Rabatte & Aktionen](../assets/rabatt_overviewpng.png)
+![Übersicht Rabatte & Aktionen](../../assets/rabatt_overviewpng.png)
 
 ---
 
@@ -33,7 +33,7 @@ Reiter für grundlegende Einstellungen der Aktion.
 | **Nutzung je Kunde** | Wie oft darf ein einzelner Kunde die Aktion nutzen |
 | **Aktiv** | Schalter zum Aktivieren/Deaktivieren der Aktion |
 
-![Allgemeine Einstellungen](../assets/Promotions_AllgemeineEinstellungen_DE.png)
+![Allgemeine Einstellungen](../../assets/Promotions_AllgemeineEinstellungen_DE.png)
 
 > **Hinweis:** Das Feld "Priorität" entscheidet bei mehreren gleichzeitig gültigen Aktionen, welche zuerst angewendet wird.
 
@@ -52,7 +52,7 @@ Ein einheitlicher Code, den mehrere Kunden verwenden können.
 - Code wird vom Händler definiert (z. B. `SOMMER20`)
 - Kann mehrfach eingelöst werden (begrenzt durch Gesamtnutzung/Nutzung je Kunde)
 
-![Festgelegter Aktionscode](../assets/Allgemein_Aktionscodes_Festgelegter-Code.png)
+![Festgelegter Aktionscode](../../assets/Allgemein_Aktionscodes_Festgelegter-Code.png)
 
 #### Individuelle Aktionscodes
 Einmalige Codes für einzelne Kunden.
@@ -61,8 +61,8 @@ Einmalige Codes für einzelne Kunden.
 - Jeder Code kann nur einmal eingelöst werden
 - Für Newsletter-Aktionen oder personalisierte Angebote geeignet
 
-![Individuelle Aktionscodes](../assets/Allgemein_Aktionscodes_Individuelle-Codes.png)
-![Code erzeugen](../assets/Allgemein_Aktionscodes_Individuellen-Code-erzeugen.png)
+![Individuelle Aktionscodes](../../assets/Allgemein_Aktionscodes_Individuelle-Codes.png)
+![Code erzeugen](../../assets/Allgemein_Aktionscodes_Individuellen-Code-erzeugen.png)
 
 > **Hinweis:** Es ist nicht möglich, mehrere unterschiedliche individuelle Codes aus einer einzigen Promotion gleichzeitig anzuwenden.
 
@@ -76,7 +76,7 @@ Definiert, für wen und unter welchen Umständen die Aktion gilt.
 
 Legt fest, ob Kunden bestimmte Voraussetzungen erfüllen müssen.
 
-![Voraussetzungen](../assets/Marketing-Rabatte-Voraussetzungen.png)
+![Voraussetzungen](../../assets/Marketing-Rabatte-Voraussetzungen.png)
 
 #### Regelbasierte Bedingungen
 
@@ -89,8 +89,8 @@ Vier Regeltypen stehen zur Verfügung:
 | **Aktion auf Produkt-Sets** | Komplexe Produktkombinationen mit Set-Gruppen |
 | **Bestellungsregeln** | Zahlungs- oder Versandartbeschränkungen |
 
-![Regelbasierte Bedingungen](../assets/Bedingungen_Regelbasierte-Bedingungen.png)
-![Produkt-Sets](../assets/Bedingungen_Regelbasierte-Bedingungen_Produkt-Sets.png)
+![Regelbasierte Bedingungen](../../assets/Bedingungen_Regelbasierte-Bedingungen.png)
+![Produkt-Sets](../../assets/Bedingungen_Regelbasierte-Bedingungen_Produkt-Sets.png)
 
 ##### Set-Gruppen-Eigenschaften
 
@@ -105,8 +105,8 @@ Vier Regeltypen stehen zur Verfügung:
 
 Über die erweiterte Auswahl können weitere Regeln für Produkte innerhalb der Aktion definiert werden.
 
-![Erweiterte Auswahl](../assets/Rabatte_ErweiterteAuswahl_DE.png)
-![Erweiterte Auswahl Regeln](../assets/Rabatte_ErweiterteAuswahl-Regeln_DE.png)
+![Erweiterte Auswahl](../../assets/Rabatte_ErweiterteAuswahl_DE.png)
+![Erweiterte Auswahl Regeln](../../assets/Rabatte_ErweiterteAuswahl-Regeln_DE.png)
 
 ---
 
@@ -131,7 +131,7 @@ Konfiguration des eigentlichen Rabatts.
 | **Prozentual** | Prozentualer Abzug (mit optionaler Obergrenze in €) |
 | **Festpreis / Stückpreis** | Produkt wird auf einen festgelegten Preis gesetzt |
 
-![Rabatt Konfiguration](../assets/Rabatte_Rabatt.png)
+![Rabatt Konfiguration](../../assets/Rabatte_Rabatt.png)
 
 ---
 
@@ -147,10 +147,10 @@ Kunden können Aktionscodes im Warenkorb oder im Off-Canvas-Warenkorb eingeben:
 
 Rabatte werden nach Eingabe in der Artikelübersicht angezeigt.
 
-![Off-Canvas-Warenkorb](../assets/OffCanvas-Warenkorb.png)
-![Warenkorb](../assets/Warenkorb.png)
-![Off-Canvas-Warenkorb mit Rabatt](../assets/OffCanvas-Warenkorb-Rabatt.png)
-![Warenkorb mit Rabatt](../assets/Warenkorb-Rabatt.png)
+![Off-Canvas-Warenkorb](../../assets/OffCanvas-Warenkorb.png)
+![Warenkorb](../../assets/Warenkorb.png)
+![Off-Canvas-Warenkorb mit Rabatt](../../assets/OffCanvas-Warenkorb-Rabatt.png)
+![Warenkorb mit Rabatt](../../assets/Warenkorb-Rabatt.png)
 
 ### Darstellung eingelöster Gutscheincodes
 
@@ -162,8 +162,8 @@ Rabatte werden nach Eingabe in der Artikelübersicht angezeigt.
 - Kann mehrfach verwendet werden
 - Filterbar in der Bestellübersicht nach Code
 
-![Individueller Code Übersicht](../assets/1_Individuell_code_DE.png)
-![Übersicht eingelöste Codes](../assets/2_Uebersicht_DE.png)
+![Individueller Code Übersicht](../../assets/1_Individuell_code_DE.png)
+![Übersicht eingelöste Codes](../../assets/2_Uebersicht_DE.png)
 
 ---
 
@@ -233,7 +233,7 @@ Kombiniere zwei Produktgruppen (z. B. Hose + T-Shirt) mit festem Paketpreis:
 | Anwenden auf | 1. Produkt der Set-Gruppe |
 | Rabattart | Prozentual: 100% |
 
-![Kaufe 3 zahle 2 Konfiguration](../assets/Beispiel_Kaufe3Zahle2.PNG)
+![Kaufe 3 zahle 2 Konfiguration](../../assets/Beispiel_Kaufe3Zahle2.PNG)
 
 ### Beispiel 9: Newsletter-Empfänger-Rabatt
 

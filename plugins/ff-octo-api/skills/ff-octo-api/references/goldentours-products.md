@@ -1,6 +1,6 @@
 # GoldenTours Produktdaten
 
-> **Produktdaten (komprimiert):** [api/products/goldentours.json](api/products/goldentours.json) (6.2 MB, 278 Produkte)
+> **Produktdaten (komprimiert):** [api/ids/goldentours.json](api/ids/goldentours.json) (6.2 MB, 278 Produkte)
 > **Ventrata API Docs:** https://docs.ventrata.com/
 
 ## Übersicht

@@ -45,8 +45,8 @@ Im Admin-Menü werden alle Verkaufskanäle aufgelistet. Das **+** Symbol neben d
 - Nicht-favorisierte werden ausgeblendet (aber im dedizierten Menü erreichbar)
 - Mehrere Kanäle können gleichzeitig favorisiert werden
 
-![Verkaufskanäle verwalten](../assets/vk-verwalten.png)
-![Favoriten in der Sidebar](../assets/vk-favoriten.png)
+![Verkaufskanäle verwalten](../../assets/vk-verwalten.png)
+![Favoriten in der Sidebar](../../assets/vk-favoriten.png)
 
 ---
 
@@ -73,7 +73,7 @@ In **Kunden > Übersicht** kann die Verkaufskanal-Spalte via Listeneinstellungen
 2. Option "Verkaufskanal" aktivieren
 3. Spalte erscheint in der Tabelle
 
-![Kunden-Zuweisung Einstellungen](../assets/kunden-zuweisung.png)
+![Kunden-Zuweisung Einstellungen](../../assets/kunden-zuweisung.png)
 
 ---
 
@@ -85,7 +85,7 @@ Im Reiter **Theme** eines Storefront-Kanals:
 - Klick auf Vorschaubild oder "Theme ändern" → Liste installierter Themes
 - "Themes bearbeiten" → Theme-Konfiguration
 
-![Theme-Reiter](../assets/theme-reiter.png)
+![Theme-Reiter](../../assets/theme-reiter.png)
 
 ---
 
@@ -126,7 +126,7 @@ Folgende Berichte via gtag.js verfügbar:
 - Angebotsdaten
 - Aktionsdaten
 
-![Analyse Konfiguration](../assets/analyse-konfiguration.png)
+![Analyse Konfiguration](../../assets/analyse-konfiguration.png)
 
 ---
 

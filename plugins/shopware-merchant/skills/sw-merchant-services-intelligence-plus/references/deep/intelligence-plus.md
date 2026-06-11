@@ -78,10 +78,10 @@ auch wenn das Abonnement aktiv ist. Dies gilt insbesondere für automatisierte M
 
 ## Enthaltene Services im Detail
 
-→ Copilot: [`../../sw-merchant-services-copilot/references/deep/copilot.md`](../../sw-merchant-services-copilot/references/deep/copilot.md)
-→ Bild-Editor: [`../../sw-merchant-services-image-editor/references/deep/image-editor.md`](../../sw-merchant-services-image-editor/references/deep/image-editor.md)
-→ 3D Preview: [`../../sw-merchant-services-3d-preview/references/deep/3d-preview.md`](../../sw-merchant-services-3d-preview/references/deep/3d-preview.md)
-→ CAD to 3D: [`../../sw-merchant-services-cad-3d/references/deep/cad-3d.md`](../../sw-merchant-services-cad-3d/references/deep/cad-3d.md)
+→ Copilot: [`../../sw-merchant-services-copilot/references/deep/copilot.md`](../../../sw-merchant-services-copilot/references/deep/copilot.md)
+→ Bild-Editor: [`../../sw-merchant-services-image-editor/references/deep/image-editor.md`](../../../sw-merchant-services-image-editor/references/deep/image-editor.md)
+→ 3D Preview: [`../../sw-merchant-services-3d-preview/references/deep/3d-preview.md`](../../../sw-merchant-services-3d-preview/references/deep/3d-preview.md)
+→ CAD to 3D: [`../../sw-merchant-services-cad-3d/references/deep/cad-3d.md`](../../../sw-merchant-services-cad-3d/references/deep/cad-3d.md)
 
 ---
 

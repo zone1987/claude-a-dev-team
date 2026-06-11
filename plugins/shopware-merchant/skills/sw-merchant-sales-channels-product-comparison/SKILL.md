@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-product-comparison
 description: >
   Shopware Produktvergleich Verkaufskanal, Preisportal Feed, Produktexport XML CSV,

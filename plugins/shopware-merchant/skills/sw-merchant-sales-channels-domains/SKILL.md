@@ -1,3 +1,4 @@
+---
 name: sw-merchant-sales-channels-domains
 description: >
   Shopware Domain hinzufügen, Verkaufskanal Domain konfigurieren, Mehrere Sprachen Domain,

@@ -7,7 +7,7 @@
 
 ## 1. Grundeinstellungen
 
-![Grundeinstellungen Übersicht](../../sw-merchant-sales-channels/assets/grundeinstellungen.png)
+![Grundeinstellungen Übersicht](../../../sw-merchant-sales-channels/assets/grundeinstellungen.png)
 
 | Nr. | Feld | Funktion |
 |---|---|---|
@@ -26,7 +26,7 @@
 
 ## 2. Zahlung und Versand
 
-![Zahlung und Versand](../../sw-merchant-sales-channels/assets/zahlung-versand.png)
+![Zahlung und Versand](../../../sw-merchant-sales-channels/assets/zahlung-versand.png)
 
 | Nr. | Feld | Konfiguriert unter |
 |---|---|---|
@@ -41,7 +41,7 @@
 
 Das Hreflang-Metatag ist relevant, wenn es mehrere Sprachversionen des Shops gibt. Es ordnet Inhalte eindeutig Sprachen zu und verhindert, dass Google mehrsprachige Versionen als Duplicate Content einstuft.
 
-![Hreflang Einstellung](../../sw-merchant-sales-channels/assets/hreflang.png)
+![Hreflang Einstellung](../../../sw-merchant-sales-channels/assets/hreflang.png)
 
 **Aktivierung:**
 - Nach Aktivierung werden alle konfigurierten Domains im Dropdown angezeigt
@@ -51,7 +51,7 @@ Das Hreflang-Metatag ist relevant, wenn es mehrere Sprachversionen des Shops gib
 
 ## 4. Status und Wartungsmodus
 
-![Status Einstellung](../../sw-merchant-sales-channels/assets/status.png)
+![Status Einstellung](../../../sw-merchant-sales-channels/assets/status.png)
 
 | Option | Wirkung |
 |---|---|
@@ -73,7 +73,7 @@ https://symfony.com/doc/current/deployment/proxies.html#solution-settrustedproxi
 
 ## 5. Theme-Zuweisung (Reiter "Theme")
 
-![Theme-Reiter](../../sw-merchant-sales-channels/assets/theme-reiter.png)
+![Theme-Reiter](../../../sw-merchant-sales-channels/assets/theme-reiter.png)
 
 - Zeigt das aktuell zugeordnete Theme mit Vorschaubild
 - Klick auf Vorschau oder "Theme ändern" → Auswahl installierter Themes
@@ -85,7 +85,7 @@ https://symfony.com/doc/current/deployment/proxies.html#solution-settrustedproxi
 
 ## 6. Analyse – Google Analytics (Reiter "Analyse")
 
-![Analyse Konfiguration](../../sw-merchant-sales-channels/assets/analyse-konfiguration.png)
+![Analyse Konfiguration](../../../sw-merchant-sales-channels/assets/analyse-konfiguration.png)
 
 ### Konfigurationsfelder
 

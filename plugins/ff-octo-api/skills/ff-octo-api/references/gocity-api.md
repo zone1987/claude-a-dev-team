@@ -1,7 +1,7 @@
 # GoCity OCTO API Dokumentation
 
 > **Offizielle Dokumentation:** https://leisurepassgroup.github.io/trade-api-docs/octo/
-> **Produktdaten (komprimiert):** [api/products/gocity.json](api/products/gocity.json) (344 KB, 49 Produkte)
+> **Produktdaten (komprimiert):** [api/ids/gocity.json](api/ids/gocity.json) (344 KB, 49 Produkte)
 
 ## Übersicht
 

@@ -7,7 +7,7 @@
 
 ## 1. API-Zugangs-ID generieren
 
-![API-Zugang](../../sw-merchant-sales-channels/assets/api-zugang.png)
+![API-Zugang](../../../sw-merchant-sales-channels/assets/api-zugang.png)
 
 Im Abschnitt **API-Zugang** jedes Verkaufskanals kann ein API-Schlüssel generiert werden.
 

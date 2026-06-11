@@ -9,7 +9,7 @@
 
 Das **+** Symbol neben **Verkaufskanäle** im Hauptmenü öffnet den Typ-Auswahl-Dialog.
 
-![Verkaufskanal anlegen Dialog](../../sw-merchant-sales-channels/assets/kanal-hinzufuegen-dialog.png)
+![Verkaufskanal anlegen Dialog](../../../sw-merchant-sales-channels/assets/kanal-hinzufuegen-dialog.png)
 
 ---
 
@@ -83,7 +83,7 @@ Weitere Details → Skill `sw-merchant-sales-channels-config`
 - Headless-Kanal: **niemals löschen**
 - Alternative: Als Nicht-Favorit markieren → wird aus Sidebar ausgeblendet
 
-![Verkaufskanal löschen Button](../../sw-merchant-sales-channels/assets/loeschen.png)
+![Verkaufskanal löschen Button](../../../sw-merchant-sales-channels/assets/loeschen.png)
 
 ---
 
