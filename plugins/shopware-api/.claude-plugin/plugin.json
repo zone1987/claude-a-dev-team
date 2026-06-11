@@ -1,0 +1,9 @@
+{
+  "name": "shopware-api",
+  "version": "1.0.0",
+  "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["shopware", "api"],
+  "category": "development"
+}

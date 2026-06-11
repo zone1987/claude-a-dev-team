@@ -266,6 +266,31 @@
       ]
     },
     {
+      "name": "shopware-api",
+      "source": "./plugins/shopware-api",
+      "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "api"],
+      "category": "development",
+      "skills": [
+        "./skills/sw-api-overview",
+        "./skills/sw-admin-api-auth",
+        "./skills/sw-admin-api-crud",
+        "./skills/sw-admin-api-search",
+        "./skills/sw-sync-api",
+        "./skills/sw-admin-api-actions",
+        "./skills/sw-store-api-auth",
+        "./skills/sw-store-api-endpoints",
+        "./skills/sw-api-headers",
+        "./skills/sw-api-errors",
+        "./skills/sw-api-versioning",
+        "./skills/sw-sales-agent-api",
+        "./skills/sw-api-catalog"
+      ]
+    },
+    {
       "name": "contao",
       "source": "./plugins/contao",
       "description": "Best practices for Contao development",
