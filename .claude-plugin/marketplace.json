@@ -304,7 +304,20 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/shopware-phpunit"
+        "./skills/shopware-phpunit",
+        "./skills/sw-admin-api-test",
+        "./skills/sw-integration-test",
+        "./skills/sw-jest-admin",
+        "./skills/sw-jest-storefront",
+        "./skills/sw-mock-repository",
+        "./skills/sw-mock-system-config",
+        "./skills/sw-phpunit-setup",
+        "./skills/sw-playwright-e2e",
+        "./skills/sw-store-api-test",
+        "./skills/sw-test-builder",
+        "./skills/sw-test-fixtures",
+        "./skills/sw-unit-test",
+        "./skills/sw-vue-test"
       ]
     },
     {
