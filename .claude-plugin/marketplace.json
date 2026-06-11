@@ -125,6 +125,7 @@
         "./skills/sw-message-handler",
         "./skills/sw-message-middleware",
         "./skills/sw-message-queue",
+        "./skills/sw-redis",
         "./skills/sw-rule-condition",
         "./skills/sw-scheduled-task",
         "./skills/sw-store-api-override",
