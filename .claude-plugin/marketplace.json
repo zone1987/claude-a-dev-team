@@ -357,7 +357,13 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/shopware-6.7-migration"
+        "./skills/shopware-6.7-migration",
+        "./skills/sw-deprecation-handling",
+        "./skills/sw-meteor-component-map",
+        "./skills/sw-php-migration-patterns",
+        "./skills/sw-upgrade-overview",
+        "./skills/sw-vite-migration",
+        "./skills/sw-vuex-to-pinia"
       ]
     },
     {
