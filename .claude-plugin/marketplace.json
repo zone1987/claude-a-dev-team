@@ -266,7 +266,26 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-paypal-sdk"
+        "./skills/sw-cart-collector",
+        "./skills/sw-cart-discount",
+        "./skills/sw-cart-facade-script",
+        "./skills/sw-cart-line-item",
+        "./skills/sw-cart-price",
+        "./skills/sw-cart-processor",
+        "./skills/sw-cart-validator",
+        "./skills/sw-customer",
+        "./skills/sw-delivery",
+        "./skills/sw-document",
+        "./skills/sw-document-type",
+        "./skills/sw-nested-line-items",
+        "./skills/sw-order-events",
+        "./skills/sw-order-state-machine",
+        "./skills/sw-payment-app",
+        "./skills/sw-payment-handler",
+        "./skills/sw-paypal-sdk",
+        "./skills/sw-promotion",
+        "./skills/sw-shipping-method",
+        "./skills/sw-tax-provider"
       ]
     },
     {
