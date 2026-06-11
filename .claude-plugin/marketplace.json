@@ -23,8 +23,8 @@
       "keywords": ["shopware"],
       "category": "development",
       "skills": [
-        "./plugins/shopware/skills/adt-shopware-dal",
-        "./plugins/shopware/skills/ff-octo-api"
+        "./skills/adt-shopware-dal",
+        "./skills/ff-octo-api"
       ]
     },
     {
@@ -40,7 +40,7 @@
       "keywords": ["contao"],
       "category": "development",
       "skills": [
-        "./plugins/contao/skills/adt-contao-dal"
+        "./skills/adt-contao-dal"
       ]
     }
   ]
