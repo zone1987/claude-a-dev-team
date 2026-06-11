@@ -1,0 +1,12 @@
+{
+  "name": "shopware-checkout",
+  "version": "1.0.0",
+  "description": "Shopware 6 Checkout: Cart-Processors, LineItems, Preise, Tax, Payment-Handler, Shipping, Order-StateMachine, Dokumente, Promotions.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "checkout"],
+  "category": "development"
+}

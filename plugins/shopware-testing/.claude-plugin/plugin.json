@@ -1,0 +1,12 @@
+{
+  "name": "shopware-testing",
+  "version": "1.0.0",
+  "description": "Shopware 6 Testing: PHPUnit (Unit/Integration/API), Jest (Admin/Storefront), Playwright-E2E.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "testing"],
+  "category": "development"
+}

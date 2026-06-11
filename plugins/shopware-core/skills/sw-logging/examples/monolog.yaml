@@ -1,0 +1,9 @@
+monolog:
+    channels: ['{plugin-kebab-case}']
+
+    handlers:
+        {PluginNameNoPrefixCamel}LogHandler:
+            type: rotating_file
+            path: "%kernel.logs_dir%/{vendor-prefix}-{plugin-kebab-case}-%kernel.environment%.log"
+            level: error
+            channels: ["{plugin-kebab-case}"]

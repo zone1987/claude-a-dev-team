@@ -5,25 +5,169 @@
     "email": "a.gerhardt1987@gmail.com"
   },
   "metadata": {
-    "description": "Shopware Toolkit",
-    "version": "1.0.1",
-    "homepage": "https://github.com/zone1987/claude-adt-shopware"
+    "description": "Shopware development toolkit — themed plugins (skills, agents, commands, hooks) for Shopware 6.7",
+    "version": "1.1.0",
+    "homepage": "https://github.com/zone1987/claude-a-dev-team"
   },
   "plugins": [
     {
-      "name": "shopware",
-      "source": "./plugins/shopware",
-      "description": "Best practices for Shopware development",
-      "version": "1.0.1",
-      "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
-      },
-      "license": "propietary",
-      "keywords": ["shopware"],
+      "name": "shopware-core",
+      "source": "./plugins/shopware-core",
+      "description": "Shopware 6 plugin fundamentals: DI, services, decoration, events/subscribers, CLI, config, logging, filesystem, rate limiter, feature flags.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "core"],
       "category": "development",
       "skills": [
-        "./skills/adt-shopware-dal",
+        "./skills/sw-architecture-overview",
+        "./skills/sw-plugin-base",
+        "./skills/sw-plugin-lifecycle",
+        "./skills/sw-plugin-config",
+        "./skills/sw-dependency-injection",
+        "./skills/sw-service-decoration",
+        "./skills/sw-service-tags",
+        "./skills/sw-events-subscriber",
+        "./skills/sw-extension-points",
+        "./skills/sw-cli-command",
+        "./skills/sw-logging",
+        "./skills/sw-filesystem",
+        "./skills/sw-rate-limiter",
+        "./skills/sw-feature-flags",
+        "./skills/sw-number-range",
+        "./skills/sw-system-config"
+      ]
+    },
+    {
+      "name": "shopware-data",
+      "source": "./plugins/shopware-data",
+      "description": "Shopware 6 Data Abstraction Layer (DAL) + project entity introspection.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "dal"],
+      "category": "development",
+      "skills": [
+        "./skills/adt-shopware-dal"
+      ]
+    },
+    {
+      "name": "shopware-framework",
+      "source": "./plugins/shopware-framework",
+      "description": "Shopware 6 framework features: scheduled tasks, message queue, rules, flow builder, store/admin API routes, webhooks, app scripts, mail, media.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "framework"],
+      "category": "development",
+      "skills": []
+    },
+    {
+      "name": "shopware-storefront",
+      "source": "./plugins/shopware-storefront",
+      "description": "Shopware 6 storefront: controllers, pages, page loaders, Twig, SCSS, themes, JavaScript storefront plugins + JS plugin introspection.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "storefront"],
+      "category": "development",
+      "skills": []
+    },
+    {
+      "name": "shopware-admin",
+      "source": "./plugins/shopware-admin",
+      "description": "Shopware 6 administration (Meteor/Vue 3): modules, components, routing, data handling, Pinia, services, ACL, Vite.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "admin"],
+      "category": "development",
+      "skills": []
+    },
+    {
+      "name": "shopware-cms",
+      "source": "./plugins/shopware-cms",
+      "description": "Shopware 6 CMS: custom blocks, elements and data resolvers (admin + storefront).",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "cms"],
+      "category": "development",
+      "skills": []
+    },
+    {
+      "name": "shopware-checkout",
+      "source": "./plugins/shopware-checkout",
+      "description": "Shopware 6 checkout: cart processors, line items, prices, tax, payment handlers, shipping, order state machine, documents, promotions.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "checkout"],
+      "category": "development",
+      "skills": []
+    },
+    {
+      "name": "shopware-testing",
+      "source": "./plugins/shopware-testing",
+      "description": "Shopware 6 testing: PHPUnit (unit/integration/API), Jest (admin/storefront), Playwright E2E.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "testing"],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-phpunit"
+      ]
+    },
+    {
+      "name": "shopware-apps",
+      "source": "./plugins/shopware-apps",
+      "description": "Shopware 6 app development: manifest, webhooks, auth, app scripts, payment/tax/CMS/flow gateways, IAP, JS/PHP SDK.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "apps"],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-apps"
+      ]
+    },
+    {
+      "name": "shopware-migration",
+      "source": "./plugins/shopware-migration",
+      "description": "Shopware 6 version migrations: 6.6->6.7->6.8, Meteor/Vite/Pinia migration, deprecation handling, upgrade guides.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "migration"],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-6.7-migration"
+      ]
+    },
+    {
+      "name": "shopware-quality",
+      "source": "./plugins/shopware-quality",
+      "description": "Shopware 6 quality: coding guidelines, ADR knowledge, domain exceptions, static analysis, README generator + self-updating knowledge sync.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "quality"],
+      "category": "development",
+      "skills": [
+        "./skills/shopware-readme"
+      ]
+    },
+    {
+      "name": "ff-octo-api",
+      "source": "./plugins/ff-octo-api",
+      "description": "FfOctoApi — Ventrata OCTO API integration for Shopware 6.7 (tourism ticketing: GoldenTours, GoCity, RheinKurier) incl. ResubmissionAppServer.",
+      "version": "1.0.0",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
+      "keywords": ["shopware", "octo", "ventrata", "ticketing"],
+      "category": "development",
+      "skills": [
         "./skills/ff-octo-api"
       ]
     },
@@ -32,11 +176,8 @@
       "source": "./plugins/contao",
       "description": "Best practices for Contao development",
       "version": "1.0.1",
-      "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
-      },
-      "license": "propietary",
+      "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+      "license": "proprietary",
       "keywords": ["contao"],
       "category": "development",
       "skills": [

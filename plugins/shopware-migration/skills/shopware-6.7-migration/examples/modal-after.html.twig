@@ -1,0 +1,45 @@
+{# Migrated modal with form fields (Shopware 6.7) #}
+{# Usage: Include in a component template, toggle with v-if on a boolean data property #}
+
+<mt-modal
+    v-if="showCreateModal"
+    :title="$tc('my-plugin.modal.createTitle')"
+    width="l"
+    @close="onCloseModal"
+>
+    <mt-banner variant="attention" :closable="false">
+        {{ $tc('my-plugin.modal.warningMessage') }}
+    </mt-banner>
+
+    <mt-text-field
+        v-model="newItem.name"
+        :label="$tc('my-plugin.modal.labelName')"
+        :required="true"
+        :error="nameError"
+    />
+
+    <mt-select
+        v-model="newItem.category"
+        :label="$tc('my-plugin.modal.labelCategory')"
+        :options="categoryOptions"
+    />
+
+    <mt-switch
+        v-model="newItem.active"
+        :label="$tc('my-plugin.modal.labelActive')"
+    />
+
+    <template #footer>
+        <mt-button @click="onCloseModal">
+            {{ $tc('global.default.cancel') }}
+        </mt-button>
+        <mt-button
+            variant="primary"
+            :disabled="!isFormValid"
+            :isLoading="isSaving"
+            @click="onSave"
+        >
+            {{ $tc('global.default.save') }}
+        </mt-button>
+    </template>
+</mt-modal>

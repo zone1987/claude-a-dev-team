@@ -1,0 +1,95 @@
+{# Migrated admin detail page template (Shopware 6.7) #}
+{# src/Resources/app/administration/src/module/{plugin}/page/{plugin}-detail/{plugin}-detail.html.twig #}
+{# Replace {plugin} with your plugin kebab-name, e.g. ff-content-plus #}
+
+{% block my_plugin_detail %}
+<sw-page class="my-plugin-detail">
+    <template #smart-bar-actions>
+        <mt-button variant="secondary" :ghost="true" @click="onCancel">
+            {{ $tc('global.default.cancel') }}
+        </mt-button>
+        <mt-button
+            variant="primary"
+            :isLoading="isLoading"
+            :disabled="!hasChanges"
+            @click="onSave"
+        >
+            {{ $tc('global.default.save') }}
+        </mt-button>
+    </template>
+
+    <template #content>
+        <sw-card-view>
+            {# General card with common field types #}
+            <mt-card :title="$tc('my-plugin.detail.generalCard')" :isLoading="isLoading">
+                <mt-text-field
+                    v-model="item.name"
+                    :label="$tc('my-plugin.detail.labelName')"
+                    :error="nameError"
+                    :required="true"
+                />
+
+                <mt-textarea
+                    v-model="item.description"
+                    :label="$tc('my-plugin.detail.labelDescription')"
+                    :maxLength="500"
+                />
+
+                <mt-switch
+                    v-model="item.active"
+                    :label="$tc('my-plugin.detail.labelActive')"
+                />
+
+                <mt-select
+                    v-model="item.type"
+                    :label="$tc('my-plugin.detail.labelType')"
+                    :options="typeOptions"
+                />
+
+                <mt-number-field
+                    v-model="item.priority"
+                    :label="$tc('my-plugin.detail.labelPriority')"
+                    numberType="int"
+                    :min="0"
+                    :max="100"
+                />
+
+                <mt-colorpicker
+                    v-model="item.color"
+                    :label="$tc('my-plugin.detail.labelColor')"
+                />
+
+                <mt-datepicker
+                    v-model="item.validFrom"
+                    :label="$tc('my-plugin.detail.labelValidFrom')"
+                    dateType="datetime"
+                />
+            </mt-card>
+
+            {# Settings card with specialized field types #}
+            <mt-card :title="$tc('my-plugin.detail.settingsCard')">
+                <mt-email-field
+                    v-model="item.contactEmail"
+                    :label="$tc('my-plugin.detail.labelEmail')"
+                />
+
+                <mt-url-field
+                    v-model="item.website"
+                    :label="$tc('my-plugin.detail.labelWebsite')"
+                />
+
+                <mt-password-field
+                    v-model="item.apiKey"
+                    :label="$tc('my-plugin.detail.labelApiKey')"
+                    :toggable="true"
+                />
+
+                <mt-checkbox
+                    v-model="item.sendNotifications"
+                    :label="$tc('my-plugin.detail.labelNotifications')"
+                />
+            </mt-card>
+        </sw-card-view>
+    </template>
+</sw-page>
+{% endblock %}
