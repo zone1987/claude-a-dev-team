@@ -1,0 +1,12 @@
+{
+  "name": "shopware-concepts",
+  "version": "1.0.0",
+  "description": "Konzept-Wissen für Shopware 6: Architektur, DAL, APIs, Catalog, Checkout, CMS, Rule-System, Translations, Extensions, App-System, Messaging. Beantwortet 'Wie funktioniert X architektonisch in Shopware?'",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": ["shopware", "concepts"],
+  "category": "documentation"
+}
