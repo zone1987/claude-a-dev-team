@@ -23,7 +23,8 @@
       "keywords": ["shopware"],
       "category": "development",
       "skills": [
-        "./skills/adt-shopware-dal"
+        "./skills/adt-shopware-dal",
+        "./skills/ff-octo-api"
       ]
     }
   ]
