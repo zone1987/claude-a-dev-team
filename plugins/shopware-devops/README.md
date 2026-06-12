@@ -1,20 +1,20 @@
 # shopware-devops
 
-Skills for Shopware DevOps tooling: the `shopware-cli` Go CLI, Symfony Flex Recipes, and the Shopware PaaS deployment setup.
+**Wofür:** Tooling & Betrieb: shopware-cli (Build/Validate/Zip/Project/Account), Recipes, PaaS, lokale Dev-Setups (Docker/devenv/Symfony-CLI), Hosting/Infrastruktur/Performance, Troubleshooting, MCP-Server.
 
-## Skills
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
 
-| Skill | Trigger |
-|---|---|
-| `sw-cli` | shopware-cli install, global commands, flags |
-| `sw-cli-extension` | `shopware-cli extension *` build/validate/zip/watch |
-| `sw-cli-project` | `shopware-cli project *` create/ci/build/worker |
-| `sw-cli-account` | `shopware-cli account *` login/upload/producer |
-| `sw-recipes` | Symfony Flex recipes for Shopware, manifest.json |
-| `sw-paas` | Shopware PaaS setup, Platform.sh config, deploy hooks |
+## Installation (Claude Code)
 
-## Sources
+```
+/plugin marketplace add zone1987/claude-a-dev-team
+/plugin install shopware-devops@claude-a-dev-team
+```
 
-- [shopware/shopware-cli](https://github.com/shopware/shopware-cli) — Go CLI (version documented: 0.6.x)
-- [shopware/recipes](https://github.com/shopware/recipes) — Symfony Flex recipe server
-- [shopware/sw-paas](https://github.com/shopware/sw-paas) — PaaS CLI distribution + paas-meta recipe (Platform.sh)
+## Skills (37)
+
+`sw-cli`, `sw-cli-account`, `sw-cli-commands-reference`, `sw-cli-extension`, `sw-cli-project`, `sw-cli-reference`, `sw-dal-reference`, `sw-hosting-caching-http`, `sw-hosting-database`, `sw-hosting-deployment`, `sw-hosting-env-config`, `sw-hosting-filesystem-s3`, `sw-hosting-installation`, `sw-hosting-observability`, `sw-hosting-performance`, `sw-hosting-requirements`, `sw-hosting-search`, `sw-hosting-updates`, `sw-hosting-webserver`, `sw-hosting-worker-cron`, `sw-mcp-server`, `sw-paas`, `sw-paas-build-deploy`, `sw-paas-cdn`, `sw-paas-composable-frontends`, `sw-paas-cron-worker`, `sw-paas-environments`, `sw-paas-fundamentals`, `sw-paas-get-started`, `sw-paas-monitoring`, `sw-paas-resources-scaling`, `sw-paas-services`, `sw-recipes`, `sw-tooling-fixture-bundle`, `sw-tooling-ide`, `sw-tooling-watchers`, `sw-troubleshooting`
+
+## Agents (1)
+
+- **`shopware-devops`** — Spezialist für Shopware-Tooling & Deployment: shopware-cli (Extension build/validate/zip, Project-Commands, Account/Store-Upload), Symfony-Flex-Recipes, Shopware PaaS (sw-paas) Deployment, Build/Deplo

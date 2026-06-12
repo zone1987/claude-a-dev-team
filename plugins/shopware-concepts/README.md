@@ -1,32 +1,20 @@
 # shopware-concepts
 
-Konzept-Plugin für Shopware 6 — destilliertes Architektur- und Konzept-Wissen aus der offiziellen Shopware-Dokumentation.
+**Wofür:** Architektur- & Domänen-Konzepte: wie Shopware funktioniert (DAL, API, Catalog, Checkout, Content/CMS, Rule-System, Translations, Extensions, App-System, Messaging) — das „Warum" hinter den How-tos.
 
-## Zweck
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
 
-Dieses Plugin beantwortet konzeptionelle Fragen der Art „Wie funktioniert X architektonisch in Shopware?" — ohne Implementierungsdetails, aber mit dem notwendigen Hintergrundwissen für fundierte Entwicklungsentscheidungen.
+## Installation (Claude Code)
 
-## Skills (Konzeptbereiche)
+```
+/plugin marketplace add zone1987/claude-a-dev-team
+/plugin install shopware-concepts@claude-a-dev-team
+```
 
-| Skill | Thema |
-|---|---|
-| `sw-concept-architecture` | Shopware-Architektur: Core, Storefront, Administration, API-first |
-| `sw-concept-dal` | Data Abstraction Layer: Repositories, Criteria, Inheritance, Versioning |
-| `sw-concept-api` | Admin API & Store API: Zweck, Auth, Unterschiede |
-| `sw-concept-catalog` | Produktkatalog: Products, Categories, Sales Channels |
-| `sw-concept-checkout` | Checkout: Cart, Orders, Payments |
-| `sw-concept-content-cms` | Shopping Experiences (CMS): Struktur, Hydration, Headless |
-| `sw-concept-rule-system` | Rule Builder & Rule-System: Evaluation, Scopes, Container Rules |
-| `sw-concept-translations` | Übersetzungssystem: Fallback-Layers, Built-in Translation, Snippet-Dateien |
-| `sw-concept-extensions` | Apps vs. Plugins: Unterschiede, Einsatzgebiete |
-| `sw-concept-app-system` | App-System: Manifest, Webhooks, App Scripts, Cloud-Kompatibilität |
-| `sw-concept-data-stores` | Weitere Konzepte: Messaging, Flow Builder, HTTP Cache, Elasticsearch, Migrations |
-| `sw-concept-messaging` | Symfony Messenger in Shopware: Bus, Handler, Transport, Async |
+## Skills (12)
 
-## Agent
+`sw-concept-api`, `sw-concept-app-system`, `sw-concept-architecture`, `sw-concept-catalog`, `sw-concept-checkout`, `sw-concept-content-cms`, `sw-concept-dal`, `sw-concept-data-stores`, `sw-concept-extensions`, `sw-concept-messaging`, `sw-concept-rule-system`, `sw-concept-translations`
 
-`shopware-concepts` — Berater-Agent für konzeptionelle Fragen. Nutzt die Konzept-Skills und verweist für technische Umsetzung auf die passenden Dev-Plugins (`shopware-core`, `shopware-data`, `shopware-checkout`, etc.).
+## Agents (1)
 
-## Quellen
-
-Destilliert aus `docs-main/concepts/` — vollständig eingearbeitet (37 Dateien).
+- **`shopware-concepts`** — Shopware-6-Konzept-Berater. Beantwortet architektonische und konzeptionelle Fragen zu Shopware — "wie funktioniert X in Shopware", "was ist der Unterschied zwischen App und Plugin", "wie arbeitet der
