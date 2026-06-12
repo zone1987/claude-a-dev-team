@@ -965,6 +965,55 @@
         "./skills/swiper-vue",
         "./skills/swiper-zoom"
       ]
+    },
+    {
+      "name": "gotenberg",
+      "source": "./plugins/gotenberg",
+      "description": "Gotenberg — Docker-based stateless API for PDF generation & manipulation: convert HTML/Markdown/URL (Chromium) and Office (LibreOffice) to PDF, screenshots, merge/split/convert (PDF/A, PDF/UA)/flatten/encrypt/metadata/bookmarks/attachments/stamp/watermark/rotate, full configuration, routes, webhook, system & clients.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "gotenberg",
+        "pdf",
+        "docker",
+        "api",
+        "chromium",
+        "libreoffice"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/gotenberg-introduction",
+        "./skills/gotenberg-installation",
+        "./skills/gotenberg-routes",
+        "./skills/gotenberg-clients",
+        "./skills/gotenberg-configuration",
+        "./skills/gotenberg-chromium-html",
+        "./skills/gotenberg-chromium-markdown",
+        "./skills/gotenberg-chromium-screenshots",
+        "./skills/gotenberg-chromium-url",
+        "./skills/gotenberg-libreoffice",
+        "./skills/gotenberg-outbound-filtering",
+        "./skills/gotenberg-pdf-attachments",
+        "./skills/gotenberg-pdf-bookmarks",
+        "./skills/gotenberg-pdf-convert",
+        "./skills/gotenberg-pdf-encrypt",
+        "./skills/gotenberg-pdf-facturx",
+        "./skills/gotenberg-pdf-flatten",
+        "./skills/gotenberg-pdf-merge",
+        "./skills/gotenberg-pdf-metadata",
+        "./skills/gotenberg-pdf-rotate",
+        "./skills/gotenberg-pdf-split",
+        "./skills/gotenberg-pdf-stamp",
+        "./skills/gotenberg-pdf-watermark",
+        "./skills/gotenberg-system",
+        "./skills/gotenberg-telemetry",
+        "./skills/gotenberg-troubleshooting",
+        "./skills/gotenberg-webhook"
+      ]
     }
   ]
 }

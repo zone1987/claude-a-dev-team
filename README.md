@@ -1,10 +1,11 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **21 Plugins**, **570 Skills**, **36 Agents**, **39 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **22 Plugins**, **597 Skills**, **38 Agents**, **41 Commands** und **3 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
 - **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
 - **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
 - **Frontend-Bibliotheken** (framework-agnostisch): flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen.
+- **Tools & APIs**: Gotenberg (Docker-basierte PDF-Generierung & -Manipulation) — weitere folgen.
 
 Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
 
@@ -98,6 +99,12 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 |---|---|--:|--:|--:|
 | [`flatpickr`](./plugins/flatpickr/README.md) | Leichtgewichtiger JS-Datetime-Picker (v4.6.x): alle Optionen, Tokens, Events/Hooks, Instanz-API, 67 Locales, Themes, alle Plugins. | 11 | 1 | 1 |
 | [`swiper`](./plugins/swiper/README.md) | Moderner Touch-Slider/Carousel (v11/v12): komplette API (236 Parameter, 68 Methoden, 74 Events), alle Module, Swiper Element + React/Vue/Angular/Svelte/Solid, Migration. | 33 | 1 | 1 |
+
+### Tools & APIs
+
+| Plugin | Wofür | Skills | Agents | Commands |
+|---|---|--:|--:|--:|
+| [`gotenberg`](./plugins/gotenberg/README.md) | Gotenberg — Docker-basierte, stateless PDF-API: HTML/Markdown/URL (Chromium) & Office (LibreOffice) → PDF, Screenshots, merge/split/convert (PDF/A·PDF/UA)/flatten/encrypt/metadata/bookmarks/Factur-X/rotate/stamp/watermark, Konfiguration, Webhook, Betrieb & Clients. | 27 | 2 | 2 |
 
 ### Weitere
 
