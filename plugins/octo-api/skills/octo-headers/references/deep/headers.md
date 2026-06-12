@@ -16,7 +16,7 @@ https://api.ventrata.com/octo
 Authorization: Bearer {api_key}
 ```
 
-- **Format:** Bearer-Token (UUID-Format, z.B. `5bd1629a-323e-4edb-ac9b-327ef51e6136`)
+- **Format:** Bearer-Token (UUID-Format, z.B. `<API_KEY>`)
 - **Pflicht:** Ja — alle Anfragen
 - **Fehler ohne Header:** `403 Forbidden` mit Error `UNAUTHORIZED`
 - **Wichtig:** Jeder API-Key gewährt Zugriff auf genau einen Supplier; für mehrere Supplier sind separate Keys nötig
@@ -179,7 +179,7 @@ Listet alle Sprachen auf, in die der Supplier seinen Inhalt übersetzt hat. Nüt
 
 ```http
 GET https://api.ventrata.com/octo/products/
-Authorization: Bearer 5bd1629a-323e-4edb-ac9b-327ef51e6136
+Authorization: Bearer <API_KEY>
 Octo-Capabilities: octo/pricing,octo/content
 Octo-Env: test
 Accept-Language: de
@@ -187,7 +187,7 @@ Accept-Language: de
 
 ```http
 POST https://api.ventrata.com/octo/bookings/
-Authorization: Bearer 5bd1629a-323e-4edb-ac9b-327ef51e6136
+Authorization: Bearer <API_KEY>
 Content-Type: application/json
 Octo-Capabilities: octo/pricing
 Octo-Env: test
