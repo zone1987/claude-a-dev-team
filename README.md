@@ -1,6 +1,11 @@
-# A-Dev-Team — Shopware Development Toolkit
+# A-Dev-Team — Development Toolkit (Shopware, Contao & mehr)
 
-Ein Claude-Code-**Marketplace** mit **19 Plugins**, **526 Skills**, **34 Agents**, **37 Commands** und **2 Hooks** — die allumfassende Wissens- und Werkzeugbibliothek für die Entwicklung mit und in **Shopware 6.7** (PHP 8.2+, Symfony 7), inkl. Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku und der OCTO-/Ventrata-/Go-City-API — plus eine eigenständige Entwickler-Bibliothek für das **Contao-5.x-CMS**.
+Ein Claude-Code-**Marketplace** mit **19 Plugins**, **526 Skills**, **34 Agents**, **37 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+
+- **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
+- **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
+
+Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
 
 Das Wissen ist aus den offiziellen Quellen destilliert (Shopware-Trunk-Source, developer.shopware.com, docs.shopware.com, die offiziellen GitHub-Repos sowie die OCTO-/Ventrata-/Go-City-Doku) und in den Skills **eingebettet** (keine externen Laufzeit-Abhängigkeiten). Skills sind schlank; die Tiefe liegt in `references/`. Agents/Commands nutzen das je Aufgabe günstigste Modell (haiku/sonnet/opus).
 
