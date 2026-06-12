@@ -1,4 +1,4 @@
-# A-Dev-Team — Development Toolkit (Shopware, Contao & mehr)
+# A-Dev-Team — Development Toolkit
 
 Ein Claude-Code-**Marketplace** mit **19 Plugins**, **526 Skills**, **34 Agents**, **37 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
