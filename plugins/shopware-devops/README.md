@@ -1,13 +1,25 @@
 # shopware-devops
 
-**Wofür:** Tooling & Betrieb: shopware-cli (Build/Validate/Zip/Project/Account), Recipes, PaaS, lokale Dev-Setups (Docker/devenv/Symfony-CLI), Hosting/Infrastruktur/Performance, Troubleshooting, MCP-Server.
+> Werkzeuge & Betrieb: CLI, lokale Setups, Hosting, PaaS, Performance.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-devops` bündelt **Werkzeuge, lokale Entwicklung und Betrieb** rund um Shopware.
 
-## Installation (Claude Code)
+Enthalten: die **`shopware-cli`** (Extension build/validate/zip, Project-Commands, Account/Store-Upload) inkl.
+Befehls-Referenz und **MCP-Server**; **Symfony-Flex-Recipes**; **Shopware PaaS** in der Tiefe (Fundamentals,
+Get-Started, Umgebungen, Build/Deploy, Services, CDN, Monitoring, Skalierung, Composable Frontends); **lokale
+Dev-Setups** (Docker/dockware, devenv/Nix, Symfony-CLI, ZIP→Composer-Migration); **Hosting & Infrastruktur**
+(Systemanforderungen, Installation/Updates, Webserver, Datenbank, HTTP-Cache, Worker/Cron, Suche, Filesystem/S3,
+Env-Config, Deployment, Observability); **Performance** und **Troubleshooting** (inkl. Dev-Tooling/IDE/Watcher).
+
+Spezialist: **`shopware-devops`**. **Wann nutzen:** für CI/CD, Build/Release von Extensions, lokale Umgebungen,
+Deployment und Hosting/Performance-Fragen. Qualitäts-Gates (Lint/Static-Analysis) liefert `shopware-quality`.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-devops@claude-a-dev-team
 ```
 
@@ -17,4 +29,4 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus de
 
 ## Agents (1)
 
-- **`shopware-devops`** — Spezialist für Shopware-Tooling & Deployment: shopware-cli (Extension build/validate/zip, Project-Commands, Account/Store-Upload), Symfony-Flex-Recipes, Shopware PaaS (sw-paas) Deployment, Build/Deplo
+- **`shopware-devops`** — Spezialist für Shopware-Tooling & Deployment: shopware-cli (Extension build/validate/zip, Project-Commands, Account/Store-Upload), Symfony-Flex-Recipes, Shopware PaaS (sw-paas) Deployment, Build/Deploy-Hooks, CI/CD.

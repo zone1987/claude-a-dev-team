@@ -1,13 +1,26 @@
 # shopware-cms
 
-**Wofür:** CMS / Erlebniswelten: eigene CMS-Blöcke, CMS-Elemente und DataResolver (Admin- und Storefront-Seite).
+> Eigene CMS-Bausteine für die Erlebniswelten (Shopping Experiences).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-cms` ist auf die **Erlebniswelten** (Shopping Experiences / CMS) spezialisiert und zeigt, wie man die
+drei Ebenen eines eigenen CMS-Bausteins konsistent umsetzt.
 
-## Installation (Claude Code)
+Enthalten: eigene **CMS-Blöcke** (Layout-Container mit benannten Slots — Admin-Registrierung via `cmsService` +
+Block-/Preview-Komponente + Storefront-Template), eigene **CMS-Elemente** (Inhaltsbausteine — Admin-Komponente,
+Config-Komponente, Preview, **PHP-DataResolver** mit `collect()`/`enrich()`, Storefront-Template) sowie die
+**Slot-/Element-Konfiguration** (`FieldConfig`, `source: static|mapped`).
+
+Spezialist **`shopware-cms`**; Scaffolder **`/sw-cms-element`** und **`/sw-cms-block`** erzeugen alle Ebenen mit
+konsistenten Namen. **Wann nutzen:** für individuelle Inhaltsbausteine im Page-Builder. Das headless-Rendering der
+gleichen Inhalte behandelt `shopware-frontends` (`@shopware/cms-base`); die Bedienung der Erlebniswelten aus
+Betreibersicht `shopware-merchant`.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-cms@claude-a-dev-team
 ```
 

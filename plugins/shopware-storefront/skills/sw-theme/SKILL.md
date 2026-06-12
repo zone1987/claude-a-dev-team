@@ -14,7 +14,7 @@ Ein Theme ist ein Plugin, dessen Klasse `ThemeInterface` implementiert; Kern ist
 ```json
 {
   "name": "FfTheme",
-  "author": "forty-four",
+  "author": "A-Dev-Team",
   "views": ["@Storefront", "@Plugins", "@FfTheme"],
   "style": ["@Storefront", "app/storefront/src/scss/base.scss"],
   "script": ["@Storefront", "app/storefront/dist/storefront/js/ff-theme.js"],

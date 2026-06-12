@@ -1,13 +1,17 @@
 # contao
 
-**Wofür:** Contao-Entwicklung (separates CMS): Best Practices / DAL-Referenz für Contao.
+> Entwicklung für das Contao-CMS (separates Ökosystem).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`contao` betrifft die Entwicklung für das **Contao-CMS** — ein vom Shopware-Ökosystem **getrenntes** System. Das
+Plugin bündelt Best Practices bzw. eine DAL-Referenz für Contao und ist unabhängig von den Shopware-Plugins
+installierbar. **Wann nutzen:** ausschließlich für Contao-Projekte.
 
-## Installation (Claude Code)
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install contao@claude-a-dev-team
 ```
 

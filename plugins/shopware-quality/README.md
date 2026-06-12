@@ -1,13 +1,28 @@
 # shopware-quality
 
-**Wofür:** Qualität & Selbst-Update: Coding-Guidelines, Extendability, Code-Struktur, Domain-Exceptions, ADR-Wissen, Static-Analysis (ECS/PHPStan/Deptrac/Rector), README/Changelog — plus Knowledge-Sync gegen Upstream und Lint-/Katalog-Hooks.
+> Qualität, Konventionen, Static-Analysis — und die Selbst-Aktualisierung der Bibliothek.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-quality` sorgt für **Konventionskonformität, Code-Qualität** — und hält die gesamte Bibliothek aktuell.
 
-## Installation (Claude Code)
+Abgedeckt: die **Core-Coding-Guidelines** (Extendability, `final`/`@internal`, Decorator-Pattern, Deprecation,
+DB-Migrationen, Code für Static Analysis) inklusive der vollständigen Guideline-Referenz, **Domain-Exceptions**
+(Factory mit stabilen `code`s), **Extendability** und **Code-Struktur**, das destillierte **ADR-Wissen** (Index aller
+~150 ADRs) und die **Static-Analysis-Werkzeuge** **ECS/PHP-CS-Fixer**, **PHPStan** (+ `phpstan-shopware`-Regeln),
+**Deptrac** und **Rector**. Dazu der **README-Generator** und die **Changelog**-Konvention.
+
+Das Herzstück ist der **Knowledge-Sync** (Skill `sw-knowledge-sync`, Agent **`shopware-librarian`**, Command
+**`/sw-sync`**): er prüft das Upstream-Repo `shopware/shopware` über die **Releases-/Tags-API** *und* den **Trunk-Diff**,
+mappt Änderungen auf betroffene Skills und schlägt Aktualisierungen vor (`--check`) bzw. wendet sie an (`--apply`).
+Ergänzend liefern **Hooks** kontextsensitive Lint-/Katalog-Reminder nach Datei-Änderungen. Spezialist:
+**`shopware-reviewer`**. **Wann nutzen:** für Code-Reviews, Qualitäts-Gates, README/Changelog und das Aktuell-Halten
+der Bibliothek.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-quality@claude-a-dev-team
 ```
 
@@ -17,8 +32,8 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus de
 
 ## Agents (2)
 
-- **`shopware-librarian`** — Selbst-Update-Agent der Shopware-Skill-Bibliothek. Prüft Upstream (shopware/shopware) auf neue Versionen/Releases und Trunk-Drift, mappt Änderungen auf betroffene sw-*-Skills und aktualisiert/ergänzt/
-- **`shopware-reviewer`** — Qualitäts-/Review-Spezialist für Shopware-6-Plugins: prüft gegen Coding-Guidelines, Domain-Exceptions, Static-Analysis (ECS/PHPStan/Deptrac/Rector), Konventionen und ADRs; schlägt Fixes vor; erstellt 
+- **`shopware-librarian`** — Selbst-Update-Agent der Shopware-Skill-Bibliothek. Prüft Upstream (shopware/shopware) auf neue Versionen/Releases und Trunk-Drift, mappt Änderungen auf betroffene sw-*-Skills und aktualisiert/ergänzt/entfernt Wissen, pfl
+- **`shopware-reviewer`** — Qualitäts-/Review-Spezialist für Shopware-6-Plugins: prüft gegen Coding-Guidelines, Domain-Exceptions, Static-Analysis (ECS/PHPStan/Deptrac/Rector), Konventionen und ADRs; schlägt Fixes vor; erstellt README/Changelog.
 
 ## Commands (3)
 

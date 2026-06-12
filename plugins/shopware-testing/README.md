@@ -1,13 +1,26 @@
 # shopware-testing
 
-**Wofür:** Testing über alle Ebenen: PHPUnit (Unit/Integration/Store-API/Admin-API), Fixtures/Builder/Mocks, Jest (Admin/Vue, Storefront), Playwright-E2E.
+> Testen über alle Ebenen (PHPUnit, Jest, Playwright).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-testing` deckt das **Testen über alle Ebenen der Test-Pyramide** ab.
 
-## Installation (Claude Code)
+**PHP/PHPUnit:** Setup & Kernel-Bootstrap (`IntegrationTestBehaviour`), **Unit-Tests** (reine Logik, gemockt) vs.
+**Integrationstests** (echte DAL/DB mit Transaktions-Rollback), **Store-API-** und **Admin-API-Tests**, **Fixtures**
+und **Builder** (mit `IdsCollection`) sowie **Static-Mocks** (`StaticEntityRepository`, `StaticSystemConfigService`).
+**JavaScript:** **Jest** für die Administration (inkl. `fail-on-console`) und Vue-Komponententests (`@vue/test-utils`,
+`Shopware.Component.build`) sowie Jest für **Storefront**-JS-Plugins. **E2E:** **Playwright** (Acceptance Test Suite)
+für kritische End-to-End-Flows.
+
+Spezialist: **`shopware-tester`**; Scaffolder **`/sw-test`** erzeugt den passenden Test je Klasse/Ebene. **Wann
+nutzen:** beim Schreiben/Reparieren von Tests oder zum Absichern nach Code-Änderungen (z. B. delegiert von
+`shopware-dev`). Konventionen/Static-Analysis ergänzt `shopware-quality`.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-testing@claude-a-dev-team
 ```
 
@@ -17,7 +30,7 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus de
 
 ## Agents (1)
 
-- **`shopware-tester`** — Test-Spezialist für Shopware-6-Plugins über alle Ebenen: PHPUnit (Unit/Integration/Store-API/Admin-API), Test-Daten (Fixtures/Builder), Mocks (StaticEntityRepository/StaticSystemConfigService), Jest (
+- **`shopware-tester`** — Test-Spezialist für Shopware-6-Plugins über alle Ebenen: PHPUnit (Unit/Integration/Store-API/Admin-API), Test-Daten (Fixtures/Builder), Mocks (StaticEntityRepository/StaticSystemConfigService), Jest (Admin/Vue, Storefron
 
 ## Commands (1)
 

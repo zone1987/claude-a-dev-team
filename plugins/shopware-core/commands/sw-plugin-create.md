@@ -12,7 +12,7 @@ Lege ein neues Shopware-6-Plugin an. Nutze das Skill `sw-plugin-base` für die D
 
 ## Ablauf (eine Frage pro Schritt, überspringe Beantwortetes)
 1. **Plugin-Name** (PascalCase, kein Theme). Aus `$ARGUMENTS` falls vorhanden.
-2. **Owner** aus Präfix ableiten (`Ff`→forty-four, `Adt`→A-Dev-Team, `Ag`→Andreas Gerhardt, `Pb`→Pfötchenbuddies);
+2. **Owner** aus Präfix ableiten (`Ff`→A-Dev-Team, `Adt`→A-Dev-Team, `Ag`→Andreas Gerhardt, `Pb`→Pfötchenbuddies);
    sonst fragen und Präfix voranstellen.
 3. **Zweck** ("Was soll das Plugin machen?") → DE- + EN-`label` für composer.json.
 4. **Lizenz** (MIT oder proprietary).

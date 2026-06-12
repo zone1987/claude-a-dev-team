@@ -4,7 +4,7 @@
 Manifest der Shopware-App **FfResubmission** — registriert den ResubmissionAppServer in der Admin: zwei Iframe-Module, die Order-Custom-Fields, die Admin-API-Permissions und den OAuth-Registrierungs-Handshake. Bindeglied zwischen Shop, AppServer und FfOctoApi-Plugin.
 
 ## Inhalt (Zusammenfassung)
-- **meta:** name `FfResubmission`, v1.0.0, Autor Nico Schnaß / Forty-Four, Icon.
+- **meta:** name `FfResubmission`, v1.0.0, Autor Nico Schnaß / A-Dev-Team, Icon.
 - **custom-fields** (Set `resubmission` auf `order`): `resubmission_active` (bool), `resubmission_date` (datetime), `resubmission_note` (text-area), `resubmission_user` (single-entity-select → user).
 - **admin module** `resubmission` (parent `sw-order`) → `https://resubmissionappserve.dev.44go.shop/resubmission`; `customProductTemplate` (parent `sw-catalogue`) → `…/customProductTemplate`.
 - **setup:** `registrationUrl` `…/app/lifecycle/register`, `secret`.

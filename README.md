@@ -9,7 +9,7 @@ Das Wissen ist aus den offiziellen Quellen destilliert (Shopware-Trunk-Source, d
 **1. Marketplace hinzufügen** (GitHub oder lokaler Pfad):
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 ```
 
 ```
@@ -111,4 +111,4 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 ## Lizenz & Autor
 
-proprietary — Andreas Gerhardt, forty-four Multimedia GmbH.
+proprietary — Andreas Gerhardt, A-Dev-Team.

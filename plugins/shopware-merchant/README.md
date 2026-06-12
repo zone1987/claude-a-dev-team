@@ -1,13 +1,29 @@
 # shopware-merchant
 
-**Wofür:** Betreiber-/Merchant-Wissen: Bedienung der Administration (Kataloge, Bestellungen, Kunden, Inhalte, Marketing, Einstellungen, Verkaufskanäle, Erweiterungen, Cloud, Migration, Commercial, Services, Spatial, Tutorials, Update-Guides) inkl. Screenshots.
+> Betreiber-/Bedienwissen für die Administration (kein Code).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-merchant` ist das **Betreiber-/Bedienwissen** — wie man den Shop **in der Administration bedient**
+(kein Code). Es ist aus der offiziellen Endnutzer-Dokumentation (`docs.shopware.com`) destilliert und enthält
+**Screenshots**.
 
-## Installation (Claude Code)
+Abgedeckt sind alle Bereiche der Administration: **Kataloge** (Produkte, Kategorien, Hersteller, Eigenschaften,
+dynamische Produktgruppen, Bewertungen, Medien), **Bestellungen** (anlegen/bearbeiten, Status, Dokumente, Erstattungen),
+**Kunden** (Konten, Adressen, Gruppen, B2B), **Inhalte** (Erlebniswelten, Medien, Themes), **Marketing** (Aktionen,
+Gutscheine, Newsletter, Rule Builder), **Einstellungen** (Shop, Steuern, Währungen/Sprachen, Versand-/Zahlarten,
+Lieferzeiten, Flow/Rule Builder, Mail-Templates, Import/Export, Benutzer/Rechte, Caches/Indizes), **Verkaufskanäle**,
+**Erweiterungen**, **Cloud**, **Migration**, die **Commercial-Features**, **Services**, **Spatial Commerce**,
+**Insider Previews**, **Tutorials/FAQ** und **Update-Guides**.
+
+Berater: **`shopware-merchant-guide`** beantwortet „wie konfiguriere/mache ich X im Admin". **Wann nutzen:** für
+Bedien-/Konfigurationsfragen aus Betreibersicht. Die *technische* Umsetzung derselben Konzepte liegt in den
+Entwickler-Plugins.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-merchant@claude-a-dev-team
 ```
 
@@ -17,4 +33,4 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus de
 
 ## Agents (1)
 
-- **`shopware-merchant-guide`** — Berater für Shopware-6-Betreiber/Merchants: beantwortet "wie mache ich X in der Administration?" anhand der destillierten Merchant-Doku (Kataloge, Bestellungen, Kunden, Inhalte/Erlebniswelten, Marketi
+- **`shopware-merchant-guide`** — Berater für Shopware-6-Betreiber/Merchants: beantwortet "wie mache ich X in der Administration?" anhand der destillierten Merchant-Doku (Kataloge, Bestellungen, Kunden, Inhalte/Erlebniswelten, Marketing, Einstellungen, V

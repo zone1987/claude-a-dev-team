@@ -1,13 +1,26 @@
 # shopware-migration
 
-**Wofür:** Versions-Upgrades von Plugins: 6.6→6.7→6.8, Admin sw-*→Meteor mt-*, Webpack→Vite, Vuex→Pinia, PHP-Migrationsmuster, Deprecation-Handling.
+> Versions-Upgrades bestehender Plugins (6.6 → 6.7 → 6.8).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-migration` begleitet das **Upgrade bestehender Plugins** zwischen Shopware-Major-Versionen aus
+**Entwickler-Sicht** (das Aktualisieren eines Shops als Betreiber liegt in `shopware-merchant`).
 
-## Installation (Claude Code)
+Enthalten: ein **Upgrade-Überblick** (Strategie, `UPGRADE-*.md`/`RELEASE_INFO` nutzen, schrittweise je Minor/Major)
+und die konkreten Migrationspfade für **6.6 → 6.7 (→ 6.8)**: Admin-Komponenten **`sw-*` → Meteor `mt-*`** (Mapping
+von Props/Events/Slots), **Webpack → Vite**, **Vuex → Pinia**, **PHP-Migrationsmuster** (geänderte Signaturen/
+Interfaces wie der neue Payment-Handler, moderne PHP-Features) sowie systematisches **Deprecation-Handling**
+(Notices finden, Rector-Codemods, Major-Feature-Flags). Zusätzlich die Admin-spezifischen Upgrade-Themen (Vue-3-
+Umstellung, Migration-Build, Native-Vue-Roadmap) und Übersetzungs-/Sprachpaket-Migration.
+
+Spezialist: **`shopware-migrator`** (opus); Scaffolder/Helfer **`/sw-migrate-component`**. **Wann nutzen:** beim
+Hochziehen eines Plugins auf eine neue Shopware-Version.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-migration@claude-a-dev-team
 ```
 

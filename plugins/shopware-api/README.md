@@ -1,13 +1,29 @@
 # shopware-api
 
-**Wofür:** Die drei Shopware-APIs: Admin API (OAuth), Store API, Sync API — Auth, Endpunkte, Requests/Responses, Header, Fehler, Versionierung — plus OpenAPI-Introspektion (Endpunkt-Katalog des konkreten Shops).
+> Die drei Shopware-APIs (Admin/Store/Sync) zum Konsumieren & Integrieren.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-api` macht die **drei Shopware-APIs** zum Konsumieren und Integrieren beherrschbar — als Gegenstück zum
+*Erstellen* eigener Routen (das liegt in `shopware-framework`).
 
-## Installation (Claude Code)
+- **Admin API** (`/api`): OAuth2 (`/api/oauth/token`, `client_credentials`/`password`), Bearer-Token, generisches
+  **CRUD** je Entity, der **Such-Endpunkt** `/api/search/{entity}` mit Criteria-JSON, sowie alle **`_action`-
+  Endpunkte** (Order-State-Transitions, Cache, Number-Range, Dokumente, Mail …).
+- **Store API** (`/store-api`): Auth über `sw-access-key` und der zustandsbehaftete `sw-context-token`; die
+  wichtigsten Endpunkt-Gruppen (Kontext, Katalog/Listing, Warenkorb, Checkout, Konto, Methoden) — inkl. einer
+  **vollständigen 110-Operationen-Referenz** aus der offiziellen OpenAPI.
+- **Sync API** (`/api/_action/sync`): Bulk-Operationen.
+
+Dazu: alle relevanten **HTTP-Header** (Sprache/Währung/Version/Inheritance), das **Fehlerformat** (stabile
+`code`s) und **Versionierung**. Die **OpenAPI-Introspektion** (`/sw-api-map`, Agent `shopware-api-mapper`) zieht aus
+`/_info/openapi3.json` den **vollständigen Endpunkt-Katalog des konkreten Shops** (inkl. Plugin-Routen). Spezialist:
+**`shopware-api-expert`**. **Wann nutzen:** für Integrationen, Headless-Datenzugriff und API-Debugging.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-api@claude-a-dev-team
 ```
 

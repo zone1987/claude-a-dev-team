@@ -55,7 +55,7 @@ eine `shop`-Tabelle mit den OAuth-Credentials des registrierten Shops und arbeit
 ## Shopware-App `FfResubmission` (`shopware/custom/apps/FfResubmission/manifest.xml`)
 
 Das Manifest (Schema `manifest-3.0.xsd`, App-Name `FfResubmission`, Version 1.0.0, Autor Nico Schnaß /
-Forty-Four) ist die vollständige Registrierung. Inhalt im Detail:
+A-Dev-Team) ist die vollständige Registrierung. Inhalt im Detail:
 
 **Admin-Module (Iframes):**
 | Modul | `source` | `parent` | `position` |

@@ -1,13 +1,28 @@
 # shopware-frontends
 
-**Wofür:** Headless/Composable Storefronts (Shopware Frontends): @shopware/api-client, composables, api-gen, cms-base, helpers, Vue 3 / Nuxt, Routing/i18n/B2B/Features.
+> Headless/Composable Storefronts mit den offiziellen @shopware-Paketen.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-frontends` dokumentiert **Shopware Frontends** — den offiziellen Weg zu **entkoppelten (headless)
+Storefronts** auf Basis der Store API, als Alternative zum Twig-Storefront.
 
-## Installation (Claude Code)
+Abgedeckt sind die `@shopware`-Pakete und ihr Zusammenspiel: **`@shopware/api-client`** (typisierter Client,
+`createAPIClient`/`invoke`, Hooks, Context-Token), **`@shopware/api-gen`** (TypeScript-Typen aus der OpenAPI
+generieren), **`@shopware/composables`** (40+ Vue-Composables wie `useCart`, `useCheckout`, `useProductSearch`,
+`useListing`, `useCustomer`), **`@shopware/cms-base`** (CMS-Rendering headless), **`@shopware/helpers`** (Preise,
+Übersetzungen, URLs) sowie **Session-/Context-Handling** (SSR-sicher) und das **Nuxt-Setup**. Dazu die offizielle
+Frontends-Doku: **Routing**, **i18n/Mehrsprachigkeit**, **B2B**, weitere **Features** (Wishlist, Broadcasting,
+Sitemap …), **Best Practices/Deployment** und **Integrationen** (Storyblok, Payment …).
+
+Spezialist: **`shopware-frontends-dev`**. **Wann nutzen:** für eigene Vue/Nuxt-Frontends bzw. PWA. Die API selbst
+(Auth/Endpunkte) liegt in `shopware-api`, eigene Store-API-Routen in `shopware-framework`, das klassische Storefront
+in `shopware-storefront`.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-frontends@claude-a-dev-team
 ```
 
@@ -17,4 +32,4 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus de
 
 ## Agents (1)
 
-- **`shopware-frontends-dev`** — Spezialist für Shopware Frontends (headless/composable Storefronts): @shopware/api-client, @shopware/api-gen (Typgenerierung), @shopware/composables (useCart/useCheckout/…), @shopware/cms-base (CMS-Re
+- **`shopware-frontends-dev`** — Spezialist für Shopware Frontends (headless/composable Storefronts): @shopware/api-client, @shopware/api-gen (Typgenerierung), @shopware/composables (useCart/useCheckout/…), @shopware/cms-base (CMS-Rendering), @shopware/

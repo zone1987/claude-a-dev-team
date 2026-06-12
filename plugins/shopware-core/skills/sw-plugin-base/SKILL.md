@@ -2,7 +2,7 @@
 name: sw-plugin-base
 description: >
   Eine Shopware-6-Plugin-Basis anlegen: Plugin-Bootstrap-Klasse, composer.json, PSR-4-Autoload,
-  Owner-/Namens-Konventionen (forty-four Ff, A-Dev-Team Adt, Andreas Gerhardt Ag, Pfötchenbuddies Pb).
+  Owner-/Namens-Konventionen (A-Dev-Team Ff, A-Dev-Team Adt, Andreas Gerhardt Ag, Pfötchenbuddies Pb).
   Trigger: "neues Plugin", "Plugin erstellen/anlegen/scaffolden", "Plugin-Basisklasse", "composer.json plugin",
   "create shopware plugin", "FfXxx/AdtXxx/AgXxx/PbXxx". Shopware 6.7. Scaffolder: /sw-plugin-create.
 ---
@@ -16,7 +16,7 @@ Plugin-Name PascalCase mit Owner-Präfix; Namespace = `{PluginName}\{PluginName}
 
 | Owner | Präfix | Composer-Vendor | Beispiel |
 |---|---|---|---|
-| forty-four Multimedia GmbH | `Ff` | `ff/` | `FfContentPlus` → `ff/content-plus` |
+| A-Dev-Team | `Ff` | `ff/` | `FfContentPlus` → `ff/content-plus` |
 | A-Dev-Team | `Adt` | `adt/` | `AdtProductExport` → `adt/product-export` |
 | Andreas Gerhardt | `Ag` | `ag/` | `AgNewsletterTools` → `ag/newsletter-tools` |
 | Pfötchenbuddies | `Pb` | `pb/` | `PbHidePrices` → `pb/hide-prices` |

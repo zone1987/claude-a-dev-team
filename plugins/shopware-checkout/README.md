@@ -1,13 +1,28 @@
 # shopware-checkout
 
-**Wofür:** Checkout: Cart-Pipeline (Collector/Processor/Validator), LineItems, Preise/Rabatte/Tax, Payment-Handler (6.7) & App-Payment, Shipping, Order-StateMachine, Dokumente (inkl. ZUGFeRD), Promotions, Kunden.
+> Der gesamte Kauf-/Bestellprozess: Warenkorb, Zahlung, Versand, Bestellung, Dokumente.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus der Shopware-/OCTO-Quelle destilliert; Skills laden Tiefe progressiv aus `references/`.
+`shopware-checkout` deckt den **kompletten Kauf- und Bestellprozess** ab — von der Warenkorbberechnung bis zum
+fertigen Beleg.
 
-## Installation (Claude Code)
+**Warenkorb-Pipeline:** Collector (Daten gebündelt laden) → Processor (Preise/Struktur berechnen) → Validator
+(prüfen/blockieren), dazu **LineItems** (inkl. verschachtelter Bundles), **Preisberechnung** über die
+Calculator-Services, **Rabatte**, **Tax-Provider** und Cart-Manipulation per **App-Script-Facade**.
+**Lieferung & Versand:** Delivery-Berechnung und eigene Versandarten. **Zahlung:** der vereinheitlichte
+**`AbstractPaymentHandler`** (6.7) und **App-Payment**. **Bestellung:** die **State-Machines** (Order/Transaction/
+Delivery) und die Order-Lifecycle-Events. **Belege:** **Dokumente** (Rechnung, Lieferschein, Storno, Gutschrift,
+inkl. **ZUGFeRD**) und eigene Dokumenttypen. Plus **Promotions** und **Kunden**(-Kontext). Als konkretes Beispiel
+liegt hier auch das **PayPal-PHP-SDK**.
+
+Spezialist **`shopware-checkout`**; Scaffolder **`/sw-payment-handler`**, **`/sw-cart-processor`**,
+**`/sw-document-type`**. **Wann nutzen:** für alles rund um Warenkorb, Zahlung, Versand, Bestellstatus und Belege.
+
+Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+
+## Installation
 
 ```
-/plugin marketplace add zone1987/claude-a-dev-team
+/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 /plugin install shopware-checkout@claude-a-dev-team
 ```
 
@@ -17,7 +32,7 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen ist aus de
 
 ## Agents (1)
 
-- **`shopware-checkout`** — Spezialist für den Shopware-6.7-Checkout: Warenkorb (Collector/Processor/Validator, LineItems, Preise/Rabatte), Tax-Provider, Lieferung/Versandarten, Payment-Handler (6.7 AbstractPaymentHandler) & App
+- **`shopware-checkout`** — Spezialist für den Shopware-6.7-Checkout: Warenkorb (Collector/Processor/Validator, LineItems, Preise/Rabatte), Tax-Provider, Lieferung/Versandarten, Payment-Handler (6.7 AbstractPaymentHandler) & App-Payment, Order-Stat
 
 ## Commands (3)
 

@@ -9,7 +9,7 @@ description: >
 # Shopware 6 — Logging
 
 Plugins sollten in einen **eigenen Monolog-Channel** loggen (eigene Datei unter `var/log/`), nicht in den
-Core-Channel. forty-four-Muster: `PluginLoggerTrait` registriert in `build()` einen plugin-spezifischen Logger.
+Core-Channel. A-Dev-Team-Muster: `PluginLoggerTrait` registriert in `build()` einen plugin-spezifischen Logger.
 
 ```php
 // in der Plugin-Klasse
