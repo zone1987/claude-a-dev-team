@@ -1,0 +1,9 @@
+{
+  "name": "shopware-commercial",
+  "version": "1.0.0",
+  "description": "Shopware 6 commercial extensions & products (developer view): Commercial bundle, B2B Suite/Components, Subscriptions, Advanced Search, Migration Assistant, Digital Sales Rooms, Sales Agent, Nexus.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["shopware", "commercial", "b2b"],
+  "category": "development"
+}

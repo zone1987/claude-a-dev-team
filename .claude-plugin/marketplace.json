@@ -530,6 +530,7 @@
       "skills": [
         "./skills/sw-cli",
         "./skills/sw-cli-account",
+        "./skills/sw-cli-commands-reference",
         "./skills/sw-cli-extension",
         "./skills/sw-cli-project",
         "./skills/sw-cli-reference",
@@ -547,7 +548,18 @@
         "./skills/sw-hosting-updates",
         "./skills/sw-hosting-webserver",
         "./skills/sw-hosting-worker-cron",
+        "./skills/sw-mcp-server",
         "./skills/sw-paas",
+        "./skills/sw-paas-build-deploy",
+        "./skills/sw-paas-cdn",
+        "./skills/sw-paas-composable-frontends",
+        "./skills/sw-paas-cron-worker",
+        "./skills/sw-paas-environments",
+        "./skills/sw-paas-fundamentals",
+        "./skills/sw-paas-get-started",
+        "./skills/sw-paas-monitoring",
+        "./skills/sw-paas-resources-scaling",
+        "./skills/sw-paas-services",
         "./skills/sw-recipes",
         "./skills/sw-tooling-fixture-bundle",
         "./skills/sw-tooling-ide",
@@ -712,6 +724,48 @@
         "./skills/sw-concept-messaging",
         "./skills/sw-concept-rule-system",
         "./skills/sw-concept-translations"
+      ]
+    },
+    {
+      "name": "shopware-commercial",
+      "source": "./plugins/shopware-commercial",
+      "description": "Shopware 6 commercial extensions & products (developer view): B2B, Subscriptions, Advanced Search, Migration Assistant, Digital Sales Rooms, Sales Agent, Nexus.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "shopware",
+        "commercial",
+        "b2b"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-commercial-overview",
+        "./skills/sw-advanced-search",
+        "./skills/sw-b2b-components",
+        "./skills/sw-b2b-components-employee-management",
+        "./skills/sw-b2b-components-quotes",
+        "./skills/sw-b2b-order-approval",
+        "./skills/sw-b2b-suite",
+        "./skills/sw-b2b-suite-migration",
+        "./skills/sw-commercial-bundle",
+        "./skills/sw-digital-sales-rooms",
+        "./skills/sw-digital-sales-rooms-3rdparty",
+        "./skills/sw-digital-sales-rooms-config",
+        "./skills/sw-digital-sales-rooms-customization",
+        "./skills/sw-digital-sales-rooms-deployment",
+        "./skills/sw-digital-sales-rooms-installation",
+        "./skills/sw-migration-assistant",
+        "./skills/sw-migration-assistant-custom-profile",
+        "./skills/sw-nexus",
+        "./skills/sw-sales-agent",
+        "./skills/sw-sales-agent-customization",
+        "./skills/sw-sales-agent-deployment",
+        "./skills/sw-sales-agent-setup",
+        "./skills/sw-subscriptions"
       ]
     }
   ]
