@@ -1,4 +1,4 @@
-# claude-a-dev-team — Shopware Development Toolkit
+# A-Dev-Team — Shopware Development Toolkit
 
 Ein Claude-Code-**Marketplace** mit **19 Plugins**, **470 Skills**, **32 Agents**, **33 Commands** und **1 Hook** — die allumfassende Wissens- und Werkzeugbibliothek für die Entwicklung mit und in **Shopware 6.7** (PHP 8.2+, Symfony 7), inkl. Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku und der OCTO-/Ventrata-/Go-City-API.
 
