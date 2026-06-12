@@ -26,12 +26,22 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 
 ## Skills (5)
 
-`shopware-apps`, `sw-app-manifest-reference`, `sw-app-php-sdk`, `sw-app-sdk-js`, `sw-monetization-iap`
+| Skill | Beschreibung |
+|---|---|
+| `shopware-apps` | Comprehensive guide for developing Shopware 6 Apps, covering manifest configuration, webhooks, authentication, app scripts, storefront/admin customization, payments, custom data, flow actions, gateways, and in-app purchases |
+| `sw-app-manifest-reference` | Shopware 6 App manifest.xml Vollreferenz — alle Sektionen (meta, setup, requirements, permissions, webhooks, admin, custom-fields, cookies, payments, shipping-methods, rule-conditions, tax, storefront), Custom Entities XML, CMS-Blocks XML,  |
+| `sw-app-php-sdk` | Exhaustive reference for `shopware/app-php-sdk` (PHP 8.1+, PSR-based, framework-agnostic) |
+| `sw-app-sdk-js` | Exhaustive reference for `@shopware-ag/app-server-sdk` (TypeScript, runtime-agnostic: Node 20, Bun, Deno, Cloudflare Workers) |
+| `sw-monetization-iap` | Shopware In-App Purchases (IAP) — Features hinter Paywall in Extensions |
 
 ## Agents (1)
 
-- **`shopware-app-dev`** — Spezialist für die Shopware-6 App-Entwicklung (App-System statt Plugin): Manifest, Registrierung/Signatur, Webhooks, App-Scripts, Admin-/Storefront-Integration, Custom-Data/-Entities/-CMS, Payment/Tax/Flow/Gateways, IAP,
+| Agent | Beschreibung |
+|---|---|
+| `shopware-app-dev` | Spezialist für die Shopware-6 App-Entwicklung (App-System statt Plugin): Manifest, Registrierung/Signatur, Webhooks, App-Scripts, Admin-/Storefront-Integration, Custom-Data/-Entities/-CMS, Payment/Tax/Flow/Gateways, IAP, sowie die SDKs (app |
 
 ## Commands (1)
 
-- **`/sw-app-create`** — Scaffold einer Shopware-6-App (App-System): manifest.xml mit Meta/Permissions, optional Setup (Registrierung/Signatur) und Auswahl SDK (PHP/JS) bzw.
+| Command | Beschreibung |
+|---|---|
+| `/sw-app-create` | Scaffold einer Shopware-6-App (App-System): manifest.xml mit Meta/Permissions, optional Setup (Registrierung/Signatur) und Auswahl SDK (PHP/JS) bzw |

@@ -26,13 +26,25 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 
 ## Skills (7)
 
-`sw-cms-block`, `sw-cms-block-admin`, `sw-cms-data-resolver`, `sw-cms-element`, `sw-cms-element-admin`, `sw-cms-element-storefront`, `sw-cms-slot-config`
+| Skill | Beschreibung |
+|---|---|
+| `sw-cms-block` | Einen eigenen CMS-Block in Shopware 6 (Erlebniswelten/Shopping Experiences) erstellen: Block-Registrierung im Admin (Shopware.Service('cmsService').registerCmsBlock), Slots, Storefront-Template |
+| `sw-cms-block-admin` | Die Admin-Seite eines Shopware-6 CMS-Blocks: Block-Komponente (sw-cms-block-*) + Preview-Komponente (sw-cms-preview-*), Slot-Markup, Registrierung |
+| `sw-cms-data-resolver` | Ein CmsElementResolver (DataResolver) in Shopware 6: AbstractCmsElementResolver, collect() (Criteria-Collection) + enrich() (Daten ans Element), Slot-Config auswerten |
+| `sw-cms-element` | Ein eigenes CMS-Element in Shopware 6 erstellen (Inhaltsbaustein in Block-Slots): registerCmsElement (Admin) + DataResolver (PHP) + Storefront-Template |
+| `sw-cms-element-admin` | Die Admin-Komponenten eines Shopware-6 CMS-Elements: Element-Komponente (sw-cms-el-*), Config-Komponente (sw-cms-el-config-*), Preview (sw-cms-el-preview-*), cms-element/cms-config-Mixin, defaultConfig |
+| `sw-cms-element-storefront` | Das Storefront-Template eines Shopware-6 CMS-Elements: cms-element-<name>.html.twig, Zugriff auf element.data/ element.config, Block-/Slot-Rendering |
+| `sw-cms-slot-config` | Slot-/Element-Konfiguration in Shopware 6 CMS: FieldConfig/FieldConfigCollection, source 'static' vs |
 
 ## Agents (1)
 
-- **`shopware-cms`** — Spezialist für das Shopware-6.7 CMS (Erlebniswelten/Shopping Experiences): eigene CMS-Blöcke und CMS-Elemente (Admin-Komponenten + DataResolver + Storefront-Template), Slot-/Element-Konfiguration.
+| Agent | Beschreibung |
+|---|---|
+| `shopware-cms` | Spezialist für das Shopware-6.7 CMS (Erlebniswelten/Shopping Experiences): eigene CMS-Blöcke und CMS-Elemente (Admin-Komponenten + DataResolver + Storefront-Template), Slot-/Element-Konfiguration |
 
 ## Commands (2)
 
-- **`/sw-cms-block`** — Scaffold eines Shopware-6 CMS-Blocks — Admin-Block-/Preview-Komponente + registerCmsBlock (Slots) und Storefront-Block-Template.
-- **`/sw-cms-element`** — Scaffold eines kompletten Shopware-6 CMS-Elements — Admin (component/config/preview + registerCmsElement), PHP-DataResolver und Storefront-Template.
+| Command | Beschreibung |
+|---|---|
+| `/sw-cms-block` | Scaffold eines Shopware-6 CMS-Blocks — Admin-Block-/Preview-Komponente + registerCmsBlock (Slots) und Storefront-Block-Template |
+| `/sw-cms-element` | Scaffold eines kompletten Shopware-6 CMS-Elements — Admin (component/config/preview + registerCmsElement), PHP-DataResolver und Storefront-Template |
