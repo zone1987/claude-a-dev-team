@@ -1,9 +1,12 @@
 {
   "name": "contao",
   "version": "1.0.1",
-  "description": "Best practices for Contao development",
+  "description": "Contao 5.x developer library: DCA, models, content elements & modules (fragment controllers), page-/fragment controllers, routing, Twig templates, insert tags, widgets, all hooks, security/filesystem/image-processing, bundles/extensions, manager-plugin.",
   "author": {
     "name": "Andreas Gerhardt",
     "email": "a.gerhardt1987@gmail.com"
-  }
+  },
+  "keywords": [
+    "contao"
+  ]
 }
