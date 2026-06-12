@@ -1,6 +1,6 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **23 Plugins**, **632 Skills**, **41 Agents**, **44 Commands**, **4 Hooks** und einem mitgelieferten **MCP-Server** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **23 Plugins**, **631 Skills**, **34 Agents**, **44 Commands**, **4 Hooks** und einem mitgelieferten **MCP-Server** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
 - **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
 - **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
@@ -75,7 +75,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 | [`shopware-api`](./plugins/shopware-api/README.md) | Admin/Store/Sync API: Auth, Endpunkte, Requests/Responses, Header, Fehler + OpenAPI-Introspektion. | 17 | 2 | 1 |
 | [`shopware-apps`](./plugins/shopware-apps/README.md) | App-System: Manifest, Webhooks, Auth/Signatur, App-Scripts, Gateways, IAP + PHP-SDK & JS-SDK. | 5 | 1 | 1 |
 | [`shopware-commercial`](./plugins/shopware-commercial/README.md) | Commercial-Extensions (Entwickler-Sicht): B2B, Subscriptions, Advanced Search, Migration Assistant, DSR, Sales Agent, Nexus. | 23 | 1 | 0 |
-| [`octo-api`](./plugins/octo-api/README.md) | OCTO-API (Tourismus-Ticketing): Ventrata-OCTO (Core + 23 Capabilities, alle Endpunkte), Go-City-Trade-API, Vergleich + FfOctoApi-Shopware-Integration. | 39 | 8 | 1 |
+| [`octo-api`](./plugins/octo-api/README.md) | OCTO-API (Tourismus-Ticketing), vollständig dokumentiert: Ventrata-OCTO (Core + 23 Capabilities, alle Endpunkte mit Requests/Responses/Parametern), Go-City-Trade-API und der Vergleich Ventrata ↔ Go-City. | 38 | 1 | 1 |
 
 ### Qualität, Tooling, Tests & Migration
 

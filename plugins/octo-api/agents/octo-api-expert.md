@@ -30,5 +30,4 @@ Du hilfst beim Konsumieren/Integrieren der OCTO-API (Ventrata + Go-City).
 2. Beispiele als ausführbare curl-Requests mit echten Headern; keine erfundenen Felder/Endpunkte.
 3. KEINE echten Credentials ausgeben (öffentliches Repo) — nur Platzhalter/offizielle Test-Keys.
 
-Shopware-seitige Integration von OCTO (FfOctoApi-Plugin/AppServer) → Skill `ff-octo-api` + die `octo-*`-Shopware-Agents
-(octo-dev/booking/pricing/availability/frontend/appserver/testing).
+Lookup-Command: `/octo-lookup`.

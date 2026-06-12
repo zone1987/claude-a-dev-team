@@ -1,17 +1,19 @@
 {
   "name": "octo-api",
   "version": "1.0.0",
-  "description": "Ventrata OCTO API (generic) + FfOctoApi Shopware integration (A-Dev-Team): OCTO core (products/availability/bookings), all capabilities, headers/errors, plus the Ff plugin + ResubmissionAppServer.",
+  "description": "Vollständig dokumentierte OCTO-API (Open Connection for Tourism): Ventrata-OCTO (Core products/availability/bookings + alle Capabilities pricing/content/offers/extras/redemption/cart/webhooks/…, Header, Errors, alle Endpunkte mit Requests/Responses/Parametern) sowie die Go-City-Trade-API und der Vergleich Ventrata ↔ Go-City.",
   "author": {
     "name": "Andreas Gerhardt",
     "email": "a.gerhardt1987@gmail.com"
   },
   "license": "proprietary",
   "keywords": [
-    "shopware",
     "ticketing",
     "octo",
-    "ventrata"
+    "ventrata",
+    "gocity",
+    "tourism",
+    "api"
   ],
   "category": "development"
 }
