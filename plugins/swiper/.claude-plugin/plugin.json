@@ -1,0 +1,9 @@
+{
+  "name": "swiper",
+  "version": "1.0.0",
+  "description": "Swiper — the most modern mobile touch slider: full API (all parameters, methods, events, properties), all modules (navigation, pagination, effects, autoplay, virtual, zoom, thumbs, grid, a11y, …), Swiper Element (web component) and React/Vue/Angular/Svelte/Solid integrations, migration & plugins.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["swiper", "slider", "carousel", "javascript"],
+  "category": "development"
+}

@@ -1,10 +1,10 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **20 Plugins**, **537 Skills**, **35 Agents**, **38 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **21 Plugins**, **570 Skills**, **36 Agents**, **39 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
 - **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
 - **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
-- **Frontend-Bibliotheken**: flatpickr (Datetime-Picker) — weitere folgen.
+- **Frontend-Bibliotheken** (framework-agnostisch): flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen.
 
 Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
 
@@ -92,11 +92,17 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 | [`shopware-concepts`](./plugins/shopware-concepts/README.md) | Architektur-/Domänen-Konzepte: das Warum hinter den How-tos (DAL, API, Catalog, Checkout, CMS, Rules, Messaging, App-System). | 12 | 1 | 0 |
 | [`shopware-merchant`](./plugins/shopware-merchant/README.md) | Betreiber-Wissen: Bedienung der Administration (alle Bereiche) inkl. Screenshots — aus docs.shopware.com. | 109 | 1 | 0 |
 
+### Frontend-Bibliotheken
+
+| Plugin | Wofür | Skills | Agents | Commands |
+|---|---|--:|--:|--:|
+| [`flatpickr`](./plugins/flatpickr/README.md) | Leichtgewichtiger JS-Datetime-Picker (v4.6.x): alle Optionen, Tokens, Events/Hooks, Instanz-API, 67 Locales, Themes, alle Plugins. | 11 | 1 | 1 |
+| [`swiper`](./plugins/swiper/README.md) | Moderner Touch-Slider/Carousel (v11/v12): komplette API (236 Parameter, 68 Methoden, 74 Events), alle Module, Swiper Element + React/Vue/Angular/Svelte/Solid, Migration. | 33 | 1 | 1 |
+
 ### Weitere
 
 | Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`flatpickr`](./plugins/flatpickr/README.md) | Vollständige Doku des leichtgewichtigen JS-Datetime-Pickers flatpickr (v4.6.x): alle Optionen/Tokens/Events/Instanz-API/Locales/Plugins. | 11 | 1 | 1 |
 | [`contao`](./plugins/contao/README.md) | Vollumfängliche Bibliothek für das Contao-5.x-CMS — Entwicklung (DCA, Models, Module, Templates, alle Hooks, Referenzen) UND Bedienung (komplettes Benutzerhandbuch). | 57 | 2 | 4 |
 
 ## Konzepte

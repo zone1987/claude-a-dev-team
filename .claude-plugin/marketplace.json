@@ -912,6 +912,59 @@
         "./skills/flatpickr-plugins",
         "./skills/flatpickr-themes"
       ]
+    },
+    {
+      "name": "swiper",
+      "source": "./plugins/swiper",
+      "description": "Swiper — the most modern mobile touch slider: full API (all parameters, methods, events, properties), all modules (navigation, pagination, effects, autoplay, virtual, zoom, thumbs, grid, a11y, …), Swiper Element (web component) and React/Vue/Angular/Svelte/Solid integrations, migration & plugins.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "swiper",
+        "slider",
+        "carousel",
+        "javascript"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/swiper-getting-started",
+        "./skills/swiper-a11y",
+        "./skills/swiper-angular",
+        "./skills/swiper-autoplay",
+        "./skills/swiper-controller",
+        "./skills/swiper-effects",
+        "./skills/swiper-element",
+        "./skills/swiper-events",
+        "./skills/swiper-free-mode",
+        "./skills/swiper-grid",
+        "./skills/swiper-hash-navigation",
+        "./skills/swiper-history",
+        "./skills/swiper-keyboard",
+        "./skills/swiper-lazy",
+        "./skills/swiper-manipulation",
+        "./skills/swiper-mcp",
+        "./skills/swiper-methods",
+        "./skills/swiper-migration",
+        "./skills/swiper-mousewheel",
+        "./skills/swiper-navigation",
+        "./skills/swiper-pagination",
+        "./skills/swiper-parallax",
+        "./skills/swiper-parameters",
+        "./skills/swiper-plugins",
+        "./skills/swiper-properties",
+        "./skills/swiper-react",
+        "./skills/swiper-scrollbar",
+        "./skills/swiper-solid",
+        "./skills/swiper-svelte",
+        "./skills/swiper-thumbs",
+        "./skills/swiper-virtual",
+        "./skills/swiper-vue",
+        "./skills/swiper-zoom"
+      ]
     }
   ]
 }
