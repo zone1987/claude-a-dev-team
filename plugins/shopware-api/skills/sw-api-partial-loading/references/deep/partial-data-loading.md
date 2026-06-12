@@ -9,7 +9,7 @@ Partial Data Loading ermöglicht die Selektion spezifischer Entity-Felder, die v
 - **`fields` (Partial Data Loading)**: Arbeitet auf Datenbankebene — nur angeforderte Felder werden geladen. Reduziert DB-Last direkt.
 - **`includes`**: Post-Output-Processing — vollständige Entity wird geladen und dann im Response gefiltert.
 
-Shopware selbst nutzt diesen Mechanismus für Storefront-Produktlistings: `core.listing.partialDataLoading` = 1. Siehe [Performance Tweaks](../../hosting/performance/performance-tweaks.md#reduced-product-data-in-listings).
+Shopware selbst nutzt diesen Mechanismus für Storefront-Produktlistings: `core.listing.partialDataLoading` = 1. Siehe Performance Tweaks.
 
 ## Verwendung — Einfache Felder
 

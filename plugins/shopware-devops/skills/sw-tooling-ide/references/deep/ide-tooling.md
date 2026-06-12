@@ -74,7 +74,7 @@ Shopware's built-in CLI für:
 - Scheduled Tasks ausführen
 - System-Status inspizieren
 
-Befehlsreferenz: [Commands Reference](../../../resources/references/core-reference/commands-reference.md)
+Befehlsreferenz: Commands Reference
 
 ### Deployment Helper
 

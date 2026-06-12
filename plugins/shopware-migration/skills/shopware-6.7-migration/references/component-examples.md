@@ -546,7 +546,7 @@ A typical plugin detail page with cards, form fields, tabs, and action buttons.
 computed: {
     nameError() {
         if (this.$store) {
-            return Shopware.State.getters['error/getApiError'](this.product, 'name');
+            return Shopware.State.getters'error/getApiError';
         }
         return null;
     },

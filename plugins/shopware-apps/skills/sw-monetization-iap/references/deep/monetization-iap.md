@@ -23,7 +23,7 @@ Nützlich für:
 Wenn eine Extension externe Services integriert und Umsatz generiert (z.B. transaktionsbasierte Gebühren):
 → Shopware Technology Partner (STP)-Vereinbarung kann erforderlich sein.
 
-**Alle monetarisierten Extensions müssen die [Quality Guidelines](../../testing/store/quality-guidelines.md) erfüllen.**
+**Alle monetarisierten Extensions müssen die Quality Guidelines erfüllen.**
 
 ---
 
@@ -125,7 +125,7 @@ Für JavaScript-Zugriff → in die Anwendung injizieren (siehe Template-Beispiel
 ### IAP-Gateway-Event
 
 Apps können verfügbare IAPs manipulieren via:
-[In-App Purchase Gateway](../../plugins/apps/gateways/in-app-purchase/in-app-purchase-gateway)
+In-App Purchase Gateway
 
 ---
 

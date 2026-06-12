@@ -198,7 +198,7 @@ Assets aus Parent-Themes einschließen wenn nötig.
 
 Konfigurationsfelder lassen sich strukturieren:
 
-![Theme Config Tabs/Blocks/Sections](../assets/theme-config.png)
+![Theme Config Tabs/Blocks/Sections](../../assets/theme-config.png)
 
 ```json
 "config": {
@@ -238,7 +238,7 @@ Snippets für Übersetzungen (ab Shopware 6.7.1.0):
 }
 ```
 
-![Single-Select Config Beispiel](../assets/example-single-select-config.png)
+![Single-Select Config Beispiel](../../assets/example-single-select-config.png)
 
 ### Multi-Select
 
@@ -254,7 +254,7 @@ Snippets für Übersetzungen (ab Shopware 6.7.1.0):
 }
 ```
 
-![Multi-Select Config Beispiel](../assets/example-multi-select-config.png)
+![Multi-Select Config Beispiel](../../assets/example-multi-select-config.png)
 
 ---
 

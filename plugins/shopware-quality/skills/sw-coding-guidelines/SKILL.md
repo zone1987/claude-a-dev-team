@@ -22,3 +22,6 @@ Verbindliche Leitlinien aus dem Core (`coding-guidelines/`). Kernpunkte:
 
 Lint/Analyse-Befehle: `composer ecs[-fix]`, `composer phpstan`, `composer eslint:admin|storefront`, `stylelint`, `ludtwig`.
 Architektur-Entscheidungen: `sw-adr-knowledge`. Static-Analysis-Tools: `sw-static-analysis`.
+
+**Vollständige Code-Guidelines** (alle Regeln aus `resources/guidelines/code/core`): `references/deep/code-guidelines-full.md`
+Erweiterungs-Patterns & @internal/@final in Tiefe: `sw-extendability`. Plugin-/Bundle-Struktur: `sw-code-structure`.
