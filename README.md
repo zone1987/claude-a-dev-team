@@ -1,6 +1,6 @@
 # A-Dev-Team — Shopware Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **19 Plugins**, **509 Skills**, **33 Agents**, **37 Commands** und **2 Hooks** — die allumfassende Wissens- und Werkzeugbibliothek für die Entwicklung mit und in **Shopware 6.7** (PHP 8.2+, Symfony 7), inkl. Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku und der OCTO-/Ventrata-/Go-City-API — plus eine eigenständige Entwickler-Bibliothek für das **Contao-5.x-CMS**.
+Ein Claude-Code-**Marketplace** mit **19 Plugins**, **526 Skills**, **34 Agents**, **37 Commands** und **2 Hooks** — die allumfassende Wissens- und Werkzeugbibliothek für die Entwicklung mit und in **Shopware 6.7** (PHP 8.2+, Symfony 7), inkl. Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku und der OCTO-/Ventrata-/Go-City-API — plus eine eigenständige Entwickler-Bibliothek für das **Contao-5.x-CMS**.
 
 Das Wissen ist aus den offiziellen Quellen destilliert (Shopware-Trunk-Source, developer.shopware.com, docs.shopware.com, die offiziellen GitHub-Repos sowie die OCTO-/Ventrata-/Go-City-Doku) und in den Skills **eingebettet** (keine externen Laufzeit-Abhängigkeiten). Skills sind schlank; die Tiefe liegt in `references/`. Agents/Commands nutzen das je Aufgabe günstigste Modell (haiku/sonnet/opus).
 
@@ -90,7 +90,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 | Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`contao`](./plugins/contao/README.md) | Vollumfängliche Entwickler-Bibliothek für das Contao-5.x-CMS (DCA, Models, Content-Elemente/Module, Templates, alle Hooks, Referenzen). | 40 | 1 | 4 |
+| [`contao`](./plugins/contao/README.md) | Vollumfängliche Bibliothek für das Contao-5.x-CMS — Entwicklung (DCA, Models, Module, Templates, alle Hooks, Referenzen) UND Bedienung (komplettes Benutzerhandbuch). | 57 | 2 | 4 |
 
 ## Konzepte
 
