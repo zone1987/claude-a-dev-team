@@ -1,11 +1,11 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **22 Plugins**, **597 Skills**, **38 Agents**, **41 Commands** und **3 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **23 Plugins**, **632 Skills**, **41 Agents**, **44 Commands**, **4 Hooks** und einem mitgelieferten **MCP-Server** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
 - **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
 - **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
 - **Frontend-Bibliotheken** (framework-agnostisch): flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen.
-- **Tools & APIs**: Gotenberg (Docker-basierte PDF-Generierung & -Manipulation) — weitere folgen.
+- **Tools & APIs**: Gotenberg (Docker-basierte PDF-Generierung & -Manipulation), Playwright (E2E-Testing & Browser-Automation, inkl. mitgeliefertem Playwright-MCP) — weitere folgen.
 
 Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
 
@@ -105,6 +105,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 | Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`gotenberg`](./plugins/gotenberg/README.md) | Gotenberg — Docker-basierte, stateless PDF-API: HTML/Markdown/URL (Chromium) & Office (LibreOffice) → PDF, Screenshots, merge/split/convert (PDF/A·PDF/UA)/flatten/encrypt/metadata/bookmarks/Factur-X/rotate/stamp/watermark, Konfiguration, Webhook, Betrieb & Clients. | 27 | 2 | 2 |
+| [`playwright`](./plugins/playwright/README.md) | Playwright — E2E-Testing & Browser-Automation: Test-Runner & Library-API, **komplette API-Referenz aller ~70 Klassen**, Assertions, Fixtures, Reporter, Parallelität/Sharding, Trace Viewer, Codegen, CI/Docker, Emulation, Auth, A11y, Migration + Playwright MCP & Agent-CLI. Liefert den **Playwright-MCP-Server** mit. | 35 | 3 | 3 |
 
 ### Weitere
 

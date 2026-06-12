@@ -1014,6 +1014,63 @@
         "./skills/gotenberg-troubleshooting",
         "./skills/gotenberg-webhook"
       ]
+    },
+    {
+      "name": "playwright",
+      "source": "./plugins/playwright",
+      "description": "Playwright — End-to-End-Testing & Browser-Automation: Test-Runner (@playwright/test), Library-API (Browser/Context/Page/Locator/Network/…), komplette API-Referenz aller Klassen, Assertions, Fixtures, Reporter, Parallelität, Trace Viewer, Codegen, CI/Docker, Emulation, Auth, Accessibility, Komponenten-Tests, Migration (Puppeteer/Selenium/Protractor), Playwright MCP & Agent-CLI.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "playwright",
+        "testing",
+        "e2e",
+        "browser-automation",
+        "test-runner",
+        "mcp"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/playwright-intro",
+        "./skills/playwright-writing-tests",
+        "./skills/playwright-browsers",
+        "./skills/playwright-locators",
+        "./skills/playwright-actions",
+        "./skills/playwright-evaluating",
+        "./skills/playwright-io-events",
+        "./skills/playwright-network",
+        "./skills/playwright-api-testing",
+        "./skills/playwright-emulation",
+        "./skills/playwright-auth",
+        "./skills/playwright-accessibility",
+        "./skills/playwright-test-config",
+        "./skills/playwright-test-fixtures",
+        "./skills/playwright-test-assertions",
+        "./skills/playwright-test-execution",
+        "./skills/playwright-test-reporters",
+        "./skills/playwright-test-components",
+        "./skills/playwright-pom",
+        "./skills/playwright-trace-viewer",
+        "./skills/playwright-ci",
+        "./skills/playwright-migration",
+        "./skills/playwright-misc",
+        "./skills/playwright-api-page",
+        "./skills/playwright-api-locator",
+        "./skills/playwright-api-assertions",
+        "./skills/playwright-api-browser",
+        "./skills/playwright-api-network",
+        "./skills/playwright-api-io",
+        "./skills/playwright-api-test",
+        "./skills/playwright-api-devices",
+        "./skills/playwright-mcp",
+        "./skills/playwright-mcp-tools",
+        "./skills/playwright-agent-cli",
+        "./skills/playwright-agent-cli-commands"
+      ]
     }
   ]
 }

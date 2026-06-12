@@ -1,0 +1,9 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "Playwright — End-to-End-Testing & Browser-Automation: Test-Runner (@playwright/test), Library-API (Browser/Context/Page/Locator/Network/…), komplette API-Referenz aller Klassen, Assertions, Fixtures, Reporter, Parallelität, Trace Viewer, Codegen, CI/Docker, Emulation, Auth, Accessibility, Komponenten-Tests, Migration (Puppeteer/Selenium/Protractor), Playwright MCP & Agent-CLI.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["playwright", "testing", "e2e", "browser-automation", "test-runner", "mcp"],
+  "category": "development"
+}
