@@ -1,0 +1,17 @@
+{
+  "name": "octo-api",
+  "version": "1.0.0",
+  "description": "Ventrata OCTO API (generic) + FfOctoApi Shopware integration (forty-four): OCTO core (products/availability/bookings), all capabilities, headers/errors, plus the Ff plugin + ResubmissionAppServer.",
+  "author": {
+    "name": "Andreas Gerhardt",
+    "email": "a.gerhardt1987@gmail.com"
+  },
+  "license": "proprietary",
+  "keywords": [
+    "shopware",
+    "ticketing",
+    "octo",
+    "ventrata"
+  ],
+  "category": "development"
+}

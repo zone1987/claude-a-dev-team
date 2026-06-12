@@ -422,9 +422,9 @@
       ]
     },
     {
-      "name": "ff-octo-api",
-      "source": "./plugins/ff-octo-api",
-      "description": "FfOctoApi — Ventrata OCTO API integration for Shopware 6.7 (tourism ticketing: GoldenTours, GoCity, RheinKurier) incl. ResubmissionAppServer.",
+      "name": "octo-api",
+      "source": "./plugins/octo-api",
+      "description": "Ventrata OCTO API (generic) + FfOctoApi Shopware integration (forty-four): OCTO core (products/availability/bookings), all capabilities, headers/errors, plus the Ff plugin + ResubmissionAppServer.",
       "version": "1.0.0",
       "author": {
         "name": "Andreas Gerhardt",
@@ -439,7 +439,38 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/ff-octo-api"
+        "./skills/ff-octo-api",
+        "./skills/octo-overview",
+        "./skills/octo-adjustments",
+        "./skills/octo-availability",
+        "./skills/octo-bookings",
+        "./skills/octo-campaigns",
+        "./skills/octo-card-payments",
+        "./skills/octo-cart",
+        "./skills/octo-clients-implementations",
+        "./skills/octo-content",
+        "./skills/octo-errors",
+        "./skills/octo-extras",
+        "./skills/octo-gift-vouchers",
+        "./skills/octo-headers",
+        "./skills/octo-identities",
+        "./skills/octo-localization",
+        "./skills/octo-mappings",
+        "./skills/octo-memberships",
+        "./skills/octo-notifications",
+        "./skills/octo-offers",
+        "./skills/octo-online-check-in",
+        "./skills/octo-packages",
+        "./skills/octo-pickups",
+        "./skills/octo-pricing",
+        "./skills/octo-products",
+        "./skills/octo-questions",
+        "./skills/octo-redemption",
+        "./skills/octo-rentals",
+        "./skills/octo-resources",
+        "./skills/octo-waitlists",
+        "./skills/octo-waivers",
+        "./skills/octo-webhooks"
       ]
     },
     {
