@@ -882,6 +882,36 @@
         "./skills/sw-sales-agent-setup",
         "./skills/sw-subscriptions"
       ]
+    },
+    {
+      "name": "flatpickr",
+      "source": "./plugins/flatpickr",
+      "description": "flatpickr — the lightweight, dependency-free JavaScript datetime picker: getting started, all options, formatting tokens, events/hooks, instance API, localization, themes, official plugins, examples, mobile, migration.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "flatpickr",
+        "datepicker",
+        "javascript"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/flatpickr-getting-started",
+        "./skills/flatpickr-events",
+        "./skills/flatpickr-examples",
+        "./skills/flatpickr-formatting",
+        "./skills/flatpickr-instance",
+        "./skills/flatpickr-localization",
+        "./skills/flatpickr-migration",
+        "./skills/flatpickr-mobile",
+        "./skills/flatpickr-options",
+        "./skills/flatpickr-plugins",
+        "./skills/flatpickr-themes"
+      ]
     }
   ]
 }

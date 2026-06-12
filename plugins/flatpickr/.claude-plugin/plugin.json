@@ -1,0 +1,9 @@
+{
+  "name": "flatpickr",
+  "version": "1.0.0",
+  "description": "flatpickr — the lightweight, dependency-free JavaScript datetime picker: getting started, all options, formatting tokens, events/hooks, instance API, localization, themes, official plugins, examples, mobile, migration.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["flatpickr", "datepicker", "javascript"],
+  "category": "development"
+}

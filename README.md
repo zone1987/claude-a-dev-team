@@ -1,9 +1,10 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **19 Plugins**, **526 Skills**, **34 Agents**, **37 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **20 Plugins**, **537 Skills**, **35 Agents**, **38 Commands** und **2 Hooks** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
 - **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
 - **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
+- **Frontend-Bibliotheken**: flatpickr (Datetime-Picker) — weitere folgen.
 
 Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
 
@@ -95,6 +96,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 | Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
+| [`flatpickr`](./plugins/flatpickr/README.md) | Vollständige Doku des leichtgewichtigen JS-Datetime-Pickers flatpickr (v4.6.x): alle Optionen/Tokens/Events/Instanz-API/Locales/Plugins. | 11 | 1 | 1 |
 | [`contao`](./plugins/contao/README.md) | Vollumfängliche Bibliothek für das Contao-5.x-CMS — Entwicklung (DCA, Models, Module, Templates, alle Hooks, Referenzen) UND Bedienung (komplettes Benutzerhandbuch). | 57 | 2 | 4 |
 
 ## Konzepte
