@@ -12,11 +12,6 @@ Das Wissen ist aus den offiziellen Quellen destilliert (Shopware-Trunk-Source, d
 /plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 ```
 
-```
-# alternativ aus lokalem Klon
-/plugin marketplace add /pfad/zu/claude-a-dev-team
-```
-
 **2. Plugin(s) installieren** — interaktiv über `/plugin` (Browse & install) oder gezielt:
 
 ```
@@ -50,7 +45,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 ### Entwicklung — Backend, Daten & Domänen
 
-| Plugin | Wofür | Skills | Agents | Cmds |
+| Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`shopware-core`](./plugins/shopware-core/README.md) | Plugin-Fundament: DI, Decoration, Events/Subscriber, CLI, Config, Logging, Filesystem, Rate-Limiter, Feature-Flags, NumberRange, SystemConfig + Event-Katalog. | 18 | 3 | 4 |
 | [`shopware-data`](./plugins/shopware-data/README.md) | DAL komplett (Entities/Fields/Flags/Associations/Translations/Criteria/Hydration) + vollständige Core-Entity-Referenz (312 Entities) + Entity-Introspektion. | 33 | 2 | 5 |
@@ -60,7 +55,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 ### Entwicklung — Frontend
 
-| Plugin | Wofür | Skills | Agents | Cmds |
+| Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`shopware-storefront`](./plugins/shopware-storefront/README.md) | Controller/Pages/Twig/SCSS/Themes, JS-Storefront-Plugins, TypeScript, Accessibility + JS-Plugin-/Event-/SCSS-Introspektion. | 39 | 2 | 4 |
 | [`shopware-admin`](./plugins/shopware-admin/README.md) | Vue 3 / Pinia / Vite / Meteor: Module, Komponenten, Routing, Data-Handling, Services, ACL, Admin-SDK, TypeScript + Admin-Introspektion. | 29 | 2 | 3 |
@@ -68,7 +63,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 ### API, Apps & Commercial
 
-| Plugin | Wofür | Skills | Agents | Cmds |
+| Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`shopware-api`](./plugins/shopware-api/README.md) | Admin/Store/Sync API: Auth, Endpunkte, Requests/Responses, Header, Fehler + OpenAPI-Introspektion. | 17 | 2 | 1 |
 | [`shopware-apps`](./plugins/shopware-apps/README.md) | App-System: Manifest, Webhooks, Auth/Signatur, App-Scripts, Gateways, IAP + PHP-SDK & JS-SDK. | 5 | 1 | 1 |
@@ -77,7 +72,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 ### Qualität, Tooling, Tests & Migration
 
-| Plugin | Wofür | Skills | Agents | Cmds |
+| Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`shopware-quality`](./plugins/shopware-quality/README.md) | Coding-Guidelines, ADR-Wissen, Static-Analysis (ECS/PHPStan/Deptrac/Rector) + Knowledge-Sync (Selbst-Update) + Hooks. | 15 | 2 | 3 |
 | [`shopware-devops`](./plugins/shopware-devops/README.md) | shopware-cli, Recipes, PaaS, lokale Dev-Setups, Hosting/Performance, Troubleshooting, MCP-Server. | 37 | 1 | 0 |
@@ -86,14 +81,14 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 
 ### Wissen & Betrieb
 
-| Plugin | Wofür | Skills | Agents | Cmds |
+| Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`shopware-concepts`](./plugins/shopware-concepts/README.md) | Architektur-/Domänen-Konzepte: das Warum hinter den How-tos (DAL, API, Catalog, Checkout, CMS, Rules, Messaging, App-System). | 12 | 1 | 0 |
 | [`shopware-merchant`](./plugins/shopware-merchant/README.md) | Betreiber-Wissen: Bedienung der Administration (alle Bereiche) inkl. Screenshots — aus docs.shopware.com. | 109 | 1 | 0 |
 
 ### Weitere
 
-| Plugin | Wofür | Skills | Agents | Cmds |
+| Plugin | Wofür | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`contao`](./plugins/contao/README.md) | Contao-Entwicklung (separates CMS). | 1 | 0 | 0 |
 
