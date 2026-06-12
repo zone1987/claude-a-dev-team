@@ -2,6 +2,83 @@
 
 Paket: `@shopware-ag/meteor-tokens`
 
+Ergänzende Quellen: `packages/component-library/src/docs/foundations/tokens/` (Storybook),
+`packages/tokens/README.md`
+
+## Was sind Design Tokens
+
+Design Tokens sind standardisierte Name-Wert-Paare, die Design-Entscheidungen (Farben, Typografie,
+Abstände, Motion) kodieren. Sie sind die Brücke zwischen Design und Entwicklung und sichern
+Konsistenz über Plattformen und Tools hinweg.
+
+## Token-Namensstruktur
+
+Semantische Farb-Tokens folgen der 4-teiligen Struktur:
+
+```
+[type]-[category]-[instance]-[variant]
+```
+
+| Teil | Beschreibung | Beispiele |
+|---|---|---|
+| **Type** | Breiteste Klassifikation | `color`, `font`, `scale`, `border-radius` |
+| **Category** | Funktionale Gruppe innerhalb des Typs | `icon`, `text`, `background`, `elevation` |
+| **Instance** | Konkrete Verwendung | `primary`, `positive`, `critical` |
+| **Variant** | Zustand oder Modifikation | `default`, `hover`, `pressed`, `disabled` |
+
+Beispiele:
+- `--color-text-primary-default` → Farbe / Text / primär / Standard-Zustand
+- `--color-interaction-primary-hover` → Farbe / Interaktion / primär / Hover-Zustand
+- `--color-icon-critical-default` → Farbe / Icon / kritisch / Standard
+
+Einfachere Tokens wie `--font-size-s` oder `--scale-size-8` haben weniger Teile da sie keinen Zustand tragen.
+
+## Farb-Palette (primitives)
+
+Palette-Werte haben keine semantische Bedeutung. Sie sind der Werkzeugkasten für semantische Tokens und Themes.
+**In Produktcode immer Tokens statt primitiven Palette-Werten verwenden.** Palette-Werte umgehen
+die Abstraktionsebene und brechen das Theming.
+
+Jeder Palette-Farbton hat einen Nummern-Shade (50 = hellstes bis 950 = dunklstes):
+- `--color-blue-50` = nahzu weiß; `--color-blue-950` = nahzu schwarz
+- Höhere Zahl = immer dunkler, unabhängig vom Farbton
+
+## Token-Anpassung (Customization)
+
+**Empfehlung**: Bestehende Meteor-Tokens NICHT überschreiben. Überschreibungen können zu unerwartetem
+visuellen Divergenz führen und brechen wenn Token-Werte in zukünftigen Releases geändert werden.
+
+**Stattdessen**: Eigene Tokens mit eigenem Präfix definieren:
+
+```css
+@import "@shopware-ag/meteor-tokens/administration/light.css";
+@import "@shopware-ag/meteor-tokens/administration/dark.css";
+
+/* Eigene Tokens mit benutzerdefiniertem Präfix */
+:root {
+  --myapp-color-brand-default: #7c3aed;
+  --myapp-color-brand-hover: #6d28d9;
+}
+
+[data-theme="dark"] {
+  --myapp-color-brand-default: #8b5cf6;
+  --myapp-color-brand-hover: #7c3aed;
+}
+```
+
+## Neuen Token vorschlagen
+
+Neue Tokens erfordern Zustimmung von Design und Engineering. Prozess:
+
+1. **Initiierung**: Design oder Engineering erkennen Lücke (GitHub-Issue, Figma-Kommentar, Meteor-Slack)
+2. **Proposal-Inhalt**:
+   - Was der Token repräsentiert und wo er verwendet wird
+   - Vorgeschlagener Name nach `type-category-instance-variant`-Struktur
+   - Beabsichtigter Wert in allen verfügbaren Themes
+   - Ob ein bestehender Token den Bedarf abdecken könnte
+3. **Review**: Design-Team + Meteor-Engineering prüfen Namen, Notwendigkeit, Theme-Kompatibilität
+4. **Figma → Code**: Token zuerst in Figma Variables Library, dann per Sync-Workflow ins Paket
+
 ## Einbindung
 
 ```css
@@ -219,6 +296,55 @@ Abstände und Größen in 4px-Schritten (Grundlage 0.25rem = 4px):
 --scale-size-48: 3rem      /* 48px */
 /* ... bis --scale-size-640 */
 ```
+
+## Spacing-Richtlinien
+
+Die Spacing-Scale ist numerisch: `--scale-size-8` = 8px. Keine semantische Zwischenschicht.
+
+Empfehlungen:
+- **4–8px**: Enger interner Abstand (Icon-zu-Label-Gap, Badge-Padding)
+- **12–16px**: Standard-Komponent-Padding und Item-Spacing
+- **24–40px**: Zwischen Formularelementen, Abschnitte innerhalb einer View
+- **48–64px**: Zwischen Haupt-Layout-Regionen
+
+Negierung: `calc(var(--scale-size-8) * -1)` statt `-8px`.
+
+**Nicht** `--scale-size-*` für `border-radius` verwenden — eigener Token-Typ.
+
+## Border-Radius-Richtlinien
+
+Reihenfolge der Präferenz:
+1. **Element-spezifische Tokens** (wenn vorhanden): `--border-radius-card`, `--border-radius-button`, `--border-radius-checkbox`
+2. **Semantische Tokens** als Fallback: `--border-radius-xs` bis `--border-radius-round`
+3. **Nie**: Arbiträre px-Werte oder `50%`
+
+Für Pills/Avatar-Kreise/vollständig abgerundete Tags: `--border-radius-round`.
+
+## Elevation Surface — Semantische Verwendung
+
+| Token | Verwendung |
+|---|---|
+| `--color-elevation-surface-sunken` | Sidebar-Sektionen, Zebra-Tabellenzeilen, Code-Blocks, große Seiten-Hintergründe (wenn default für Hauptfläche) |
+| `--color-elevation-surface-default` | Haupt-Anwendungshintergrund / Seite |
+| `--color-elevation-surface-raised` | Cards, Panels, Container über dem Hintergrund |
+| `--color-elevation-floating-default` | Tooltips — benötigen hohen Kontrast zur Seite |
+| `--color-elevation-backdrop-default` | Semi-transparenter Scrim hinter Modals/Drawers |
+| `--color-elevation-shadow-default` | Box-Shadow-Farbe für erhobene Elemente wie Popovers |
+
+Token-Werte wechseln automatisch bei `data-theme="dark"`.
+
+## Typografie-Richtlinien
+
+`--font-size-*` immer mit passendem `--font-line-height-*` kombinieren.
+
+Hierarchie-Empfehlung:
+- `3xl`, `2xl`: Seitentitel, Haupt-Section-Header
+- `xl`, `l`: Sub-Sektionen
+- `m`, `s`: Card- und Abschnitts-Überschriften
+- `xs`: Body-Text, Support-Labels, Metadaten
+
+Sekundäre Informationen: `--color-text-secondary-default` statt kleinerer Schriftgröße.
+Body-Text-Zeilenlänge: `max-width: 65ch` für optimale Lesbarkeit.
 
 ## Tailwind-Integration
 

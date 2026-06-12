@@ -235,7 +235,10 @@
         "./skills/sw-admin-vite",
         "./skills/sw-admin-vuex-store",
         "./skills/sw-meteor-admin-sdk",
-        "./skills/sw-meteor-components"
+        "./skills/sw-meteor-components",
+        "./skills/sw-meteor-composables",
+        "./skills/sw-meteor-getting-started",
+        "./skills/sw-meteor-usage-guidelines"
       ]
     },
     {
@@ -377,6 +380,7 @@
         "./skills/sw-deprecation-handling",
         "./skills/sw-meteor-component-map",
         "./skills/sw-php-migration-patterns",
+        "./skills/sw-release-notes",
         "./skills/sw-vite-migration",
         "./skills/sw-vuex-to-pinia"
       ]
@@ -491,9 +495,20 @@
         "./skills/sw-api-client-js",
         "./skills/sw-api-gen-types",
         "./skills/sw-composables",
+        "./skills/sw-frontends-b2b",
+        "./skills/sw-frontends-best-practices",
         "./skills/sw-frontends-cms",
+        "./skills/sw-frontends-customization",
+        "./skills/sw-frontends-deployment",
+        "./skills/sw-frontends-examples",
+        "./skills/sw-frontends-features",
+        "./skills/sw-frontends-framework",
+        "./skills/sw-frontends-getting-started",
         "./skills/sw-frontends-helpers",
+        "./skills/sw-frontends-i18n",
+        "./skills/sw-frontends-integrations",
         "./skills/sw-frontends-nuxt",
+        "./skills/sw-frontends-routing",
         "./skills/sw-frontends-session-context"
       ]
     },
