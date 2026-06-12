@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PHPUnit 10/11 + Symfony Panther. Quelle: panther-installation / panther-config-env. -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         failOnRisky="true"
+         failOnWarning="true">
+    <php>
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="-1"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+
+        <!-- Panther-Konfiguration (alle Variablen: Skill panther-config-env) -->
+        <!-- Verzeichnis des Document-Roots des eingebauten Webservers -->
+        <env name="PANTHER_WEB_SERVER_DIR" value="./public"/>
+        <!-- Sichtbarer Browser statt headless: setzen, um Tests live zu sehen -->
+        <!-- <env name="PANTHER_NO_HEADLESS" value="1"/> -->
+        <!-- In Docker/CI nötig: -->
+        <!-- <env name="PANTHER_NO_SANDBOX" value="1"/> -->
+        <!-- Fenstergröße / zusätzliche Chrome-Argumente -->
+        <!-- <env name="PANTHER_CHROME_ARGUMENTS" value="--window-size=1920,1080"/> -->
+        <!-- Screenshots bei Fehlern ablegen -->
+        <env name="PANTHER_ERROR_SCREENSHOT_DIR" value="./var/error-screenshots"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="e2e">
+            <directory>tests/E2E</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Startet/stoppt den Webserver und legt bei Fehlern Screenshots an (PHPUnit 10+). -->
+    <extensions>
+        <bootstrap class="Symfony\Component\Panther\ServerExtension"/>
+    </extensions>
+</phpunit>

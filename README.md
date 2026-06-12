@@ -1,11 +1,13 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **23 Plugins**, **631 Skills**, **34 Agents**, **44 Commands**, **4 Hooks** und einem mitgelieferten **MCP-Server** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **24 Plugins**, **642 Skills**, **36 Agents**, **46 Commands**, **5 Hooks**, einem mitgelieferten **MCP-Server** und **Utils** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
-- **Shopware 6.7** (umfassend, PHP 8.2+ / Symfony 7): Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API.
-- **Contao 5.x** (Symfony-basiertes CMS): Entwicklung **und** Benutzerhandbuch.
-- **Frontend-Bibliotheken** (framework-agnostisch): flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen.
-- **Tools & APIs**: Gotenberg (Docker-basierte PDF-Generierung & -Manipulation), Playwright (E2E-Testing & Browser-Automation, inkl. mitgeliefertem Playwright-MCP) — weitere folgen.
+| Bereich | Abdeckung |
+|---|---|
+| **Shopware 6.7** (PHP 8.2+ / Symfony 7) | Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API. |
+| **Contao 5.x** (Symfony-basiertes CMS) | Entwicklung **und** Benutzerhandbuch. |
+| **Frontend-Bibliotheken** (framework-agnostisch) | flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen. |
+| **Tools & APIs** | Gotenberg (Docker-basierte PDF-Generierung & -Manipulation), Playwright (E2E-Testing & Browser-Automation, inkl. mitgeliefertem Playwright-MCP), Symfony Panther (E2E-/Browser-Testing für PHP) — weitere folgen. |
 
 Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
 
@@ -106,6 +108,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 |---|---|--:|--:|--:|
 | [`gotenberg`](./plugins/gotenberg/README.md) | Gotenberg — Docker-basierte, stateless PDF-API: HTML/Markdown/URL (Chromium) & Office (LibreOffice) → PDF, Screenshots, merge/split/convert (PDF/A·PDF/UA)/flatten/encrypt/metadata/bookmarks/Factur-X/rotate/stamp/watermark, Konfiguration, Webhook, Betrieb & Clients. | 27 | 2 | 2 |
 | [`playwright`](./plugins/playwright/README.md) | Playwright — E2E-Testing & Browser-Automation: Test-Runner & Library-API, **komplette API-Referenz aller ~70 Klassen**, Assertions, Fixtures, Reporter, Parallelität/Sharding, Trace Viewer, Codegen, CI/Docker, Emulation, Auth, A11y, Migration + Playwright MCP & Agent-CLI. Liefert den **Playwright-MCP-Server** mit. | 35 | 3 | 3 |
+| [`panther`](./plugins/panther/README.md) | Symfony Panther — E2E-/Browser-Testing für PHP: echte Browser (WebDriver) + headless HTTP (BrowserKit), PantherTestCase/Client/Crawler-API, Interaktionen, `waitFor*`, JS/Screenshots, alle `PANTHER_*`-Env-Vars, Selenium/Docker/CI — **gegen den Paket-Quellcode verifiziert**, inkl. **Utils** (Dockerfile, CI, phpunit). | 11 | 2 | 2 |
 
 ### Weitere
 

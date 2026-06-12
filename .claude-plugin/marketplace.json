@@ -1072,6 +1072,40 @@
         "./skills/playwright-agent-cli",
         "./skills/playwright-agent-cli-commands"
       ]
+    },
+    {
+      "name": "panther",
+      "source": "./plugins/panther",
+      "description": "Symfony Panther — End-to-End- & Browser-Testing für PHP: echte Browser via WebDriver (Chrome/Firefox) und headless HTTP via BrowserKit, PantherTestCase/Client/Crawler-API, Formulare & Interaktionen, Mouse/Keyboard, waitFor*-Mechanik, JavaScript-Ausführung, Screenshots, alle PANTHER_*-Umgebungsvariablen, Selenium/Proxy/SSL, Real-Time-Tests, Docker & CI.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Andreas Gerhardt",
+        "email": "a.gerhardt1987@gmail.com"
+      },
+      "license": "proprietary",
+      "keywords": [
+        "symfony",
+        "panther",
+        "testing",
+        "e2e",
+        "webdriver",
+        "browserkit",
+        "php"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/panther-overview",
+        "./skills/panther-installation",
+        "./skills/panther-testcase",
+        "./skills/panther-client",
+        "./skills/panther-crawler",
+        "./skills/panther-interactions",
+        "./skills/panther-javascript-screenshots",
+        "./skills/panther-config-env",
+        "./skills/panther-browserkit-clients",
+        "./skills/panther-selenium-remote",
+        "./skills/panther-docker-ci"
+      ]
     }
   ]
 }

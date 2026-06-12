@@ -1,0 +1,43 @@
+# GitHub-Actions-Workflow für Symfony-Panther-E2E-Tests (Quelle: panther-docker-ci).
+# Nach .github/workflows/ kopieren und anpassen. Secrets via ${{ secrets.* }}, keine Klartext-Credentials.
+name: E2E (Panther)
+
+on: [push, pull_request]
+
+jobs:
+  panther:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: dom, libxml, zip
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Install browser drivers
+        run: vendor/bin/bdi detect drivers
+
+      # Falls AssetMapper/Frontend: Assets vor den Tests bauen.
+      - name: Compile assets
+        run: php bin/console asset-map:compile --env=test || true
+
+      - name: Run Panther tests
+        env:
+          PANTHER_NO_SANDBOX: "1"
+          PANTHER_CHROME_ARGUMENTS: "--disable-dev-shm-usage"
+          PANTHER_ERROR_SCREENSHOT_DIR: "./var/error-screenshots"
+        run: vendor/bin/phpunit -c phpunit.panther.xml
+
+      - name: Upload error screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: panther-error-screenshots
+          path: var/error-screenshots
+          if-no-files-found: ignore
