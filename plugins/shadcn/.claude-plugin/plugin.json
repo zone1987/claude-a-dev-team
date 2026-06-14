@@ -1,0 +1,9 @@
+{
+  "name": "shadcn",
+  "version": "1.0.0",
+  "description": "shadcn/ui — die vollständige Bibliothek: alle ~60 Komponenten (Base-UI & Radix-UI-Variante, kompletter Quellcode, Props/Anatomy, alle Examples), 100+ Blocks, 70+ Charts, Theming/Colors/Tailwind-v4, Dark-Mode, Installation (Next/Vite/Astro/Remix/Laravel/TanStack/React-Router), CLI, components.json, eigene Registry bauen, MCP-Server, Forms, RTL, monorepo. Liefert den shadcn-MCP-Server mit.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["shadcn", "ui", "react", "tailwind", "radix", "base-ui", "components", "mcp"],
+  "category": "development"
+}
