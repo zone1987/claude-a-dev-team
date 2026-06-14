@@ -1,0 +1,9 @@
+{
+  "name": "shadcn-vue",
+  "version": "1.0.0",
+  "description": "shadcn-vue — der Vue-Port von shadcn/ui (auf Basis von reka-ui, Tailwind v4): alle 64 Komponenten mit komplettem Vue-Quellcode, Props/Slots/Emits, allen Demos und Reka-UI-API, dazu Blocks, Charts, Theming/Colors/Dark-Mode, Installation (Vite/Nuxt/Astro/Laravel/SvelteKit u.a.), CLI, components.json, eigene Registry, Forms (vee-validate/Zod), MCP-Server. Liefert den shadcn-vue-MCP-Server mit.",
+  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
+  "license": "proprietary",
+  "keywords": ["shadcn", "shadcn-vue", "vue", "nuxt", "reka-ui", "tailwind", "components", "mcp"],
+  "category": "development"
+}
