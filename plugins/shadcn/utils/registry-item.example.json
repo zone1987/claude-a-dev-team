@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hello-world",
+  "type": "registry:component",
+  "title": "Hello World",
+  "description": "A simple hello world component.",
+  "author": "Acme <hi@acme.com>",
+  "dependencies": ["zod"],
+  "registryDependencies": ["button", "input", "@acme/utils"],
+  "files": [
+    {
+      "path": "registry/new-york/hello-world/hello-world.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/new-york/hello-world/use-hello.ts",
+      "type": "registry:hook"
+    }
+  ],
+  "cssVars": {
+    "theme": { "font-heading": "Poppins, sans-serif" },
+    "light": { "brand": "20 14.3% 4.1%" },
+    "dark": { "brand": "20 14.3% 4.1%" }
+  },
+  "css": {
+    "@layer components": {
+      ".card": { "background-color": "var(--color-card)", "border-radius": "var(--radius)" }
+    }
+  },
+  "envVars": {
+    "API_BASE_URL": "https://api.example.com"
+  },
+  "meta": { "category": "marketing" },
+  "docs": "Run `npm run setup` after installing this item."
+}
