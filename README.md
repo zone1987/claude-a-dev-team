@@ -1,6 +1,6 @@
 # A-Dev-Team — Development Toolkit
 
-Ein Claude-Code-**Marketplace** mit **25 Plugins**, **738 Skills**, **42 Agents**, **52 Commands**, **6 Hooks**, **2 mitgelieferten MCP-Servern** und **Utils** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+Ein Claude-Code-**Marketplace** mit **26 Plugins**, **831 Skills**, **48 Agents**, **58 Commands**, **7 Hooks**, **3 mitgelieferten MCP-Servern** und **Utils** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
 
 | Bereich | Abdeckung |
 |---|---|
@@ -8,6 +8,7 @@ Ein Claude-Code-**Marketplace** mit **25 Plugins**, **738 Skills**, **42 Agents*
 | **Contao 5.x** (Symfony-basiertes CMS) | Entwicklung **und** Benutzerhandbuch. |
 | **Frontend-Bibliotheken** (framework-agnostisch) | flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen. |
 | **React-UI** | shadcn/ui — alle Komponenten (Code/Props/Examples, Radix & Base UI), Blocks, Charts, Theming, eigene Registry, inkl. mitgeliefertem shadcn-MCP. |
+| **Vue-UI** | shadcn-vue — Vue-Port von shadcn/ui (reka-ui): alle 64 Komponenten (Vue-Code/Props/Slots/Emits, Demos), Blocks, Charts, Forms (vee-validate/TanStack), Theming, eigene Registry, inkl. mitgeliefertem shadcn-vue-MCP. |
 | **Tools & APIs** | Gotenberg (Docker-basierte PDF-Generierung & -Manipulation), Playwright (E2E-Testing & Browser-Automation, inkl. mitgeliefertem Playwright-MCP), Symfony Panther (E2E-/Browser-Testing für PHP) — weitere folgen. |
 
 Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
@@ -103,6 +104,7 @@ Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der j
 | [`flatpickr`](./plugins/flatpickr/README.md) | Leichtgewichtiger JS-Datetime-Picker (v4.6.x): alle Optionen, Tokens, Events/Hooks, Instanz-API, 67 Locales, Themes, alle Plugins. | 11 | 1 | 1 |
 | [`swiper`](./plugins/swiper/README.md) | Moderner Touch-Slider/Carousel (v11/v12): komplette API (236 Parameter, 68 Methoden, 74 Events), alle Module, Swiper Element + React/Vue/Angular/Svelte/Solid, Migration. | 33 | 1 | 1 |
 | [`shadcn`](./plugins/shadcn/README.md) | **shadcn/ui komplett**: alle **59 Komponenten** (kompletter Code + Props + alle Examples, **Radix & Base UI**), **27 Blocks**, **70 Charts**, Setup/CLI/components.json, Theming/Tailwind-v4/Dark-Mode, Forms, RTL, eigene **Registry** bauen — inkl. mitgeliefertem **shadcn-MCP** + Utils. | 96 | 6 | 6 |
+| [`shadcn-vue`](./plugins/shadcn-vue/README.md) | **shadcn-vue komplett** (Vue-Port, reka-ui): alle **64 Komponenten** (kompletter Vue-Code + Props/Slots/Emits + alle Demos), Blocks, Charts, Setup/CLI/components.json, Theming/Tailwind-v4/Dark-Mode, Forms (vee-validate/TanStack), eigene **Registry** — inkl. mitgeliefertem **shadcn-vue-MCP** + Utils. | 93 | 6 | 6 |
 
 ### Tools & APIs
 
