@@ -137,9 +137,9 @@ POST /forms/pdfengines/merge
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form files=@/path/to/01_deckblatt.pdf \
-  --form files=@/path/to/02_inhalt.pdf \
-  --form files=@/path/to/03_anhang.pdf \
-  -o zusammengefuehrt.pdf
+  --form files=@/path/to/02_content.pdf \
+  --form files=@/path/to/03_attachment.pdf \
+  -o merged.pdf
 ```
 
 ### With metadata
@@ -149,7 +149,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form files=@/path/to/1_pdf.pdf \
   --form files=@/path/to/2_pdf.pdf \
   --form 'metadata={"Author":"Max Mustermann","Title":"Jahresbericht 2024","Keywords":["bericht","2024"]}' \
-  -o mein.pdf
+  -o my.pdf
 ```
 
 ### With encryption
@@ -162,7 +162,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form ownerPassword=verwalten \
   --form allowCopying=false \
   --form allowModifying=false \
-  -o verschluesselt.pdf
+  -o encrypted.pdf
 ```
 
 ### With a watermark (text)
@@ -180,8 +180,8 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
-  --form files=@/path/to/rechnung.pdf \
-  --form facturxXml=@/path/to/rechnung.xml \
+  --form files=@/path/to/invoice.pdf \
+  --form facturxXml=@/path/to/invoice.xml \
   --form 'facturxConformanceLevel=EN 16931' \
   -o e-rechnung.pdf
 ```
@@ -194,7 +194,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form files=@/path/to/2_pdf.pdf \
   --form pdfa=PDF/A-3b \
   --form autoIndexBookmarks=true \
-  -o archiv.pdf
+  -o archive.pdf
 ```
 
 ### With a custom output filename and trace

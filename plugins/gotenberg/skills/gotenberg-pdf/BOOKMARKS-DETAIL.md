@@ -50,7 +50,7 @@ POST /forms/pdfengines/bookmarks/read
 
 ```json
 {
-  "dokument.pdf": [
+  "document.pdf": [
     {
       "title": "Kapitel 1",
       "page": 1,
@@ -79,7 +79,7 @@ POST /forms/pdfengines/bookmarks/read
       ]
     }
   ],
-  "bericht.pdf": []
+  "report.pdf": []
 }
 ```
 
@@ -95,8 +95,8 @@ POST /forms/pdfengines/bookmarks/read
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/read \
-  --form files=@/path/to/dokument.pdf \
-  --form files=@/path/to/bericht.pdf
+  --form files=@/path/to/document.pdf \
+  --form files=@/path/to/report.pdf
 ```
 
 ---
@@ -183,7 +183,7 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/write \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form 'bookmarks=[{"title":"Kapitel 1","page":1,"children":[]},{"title":"Kapitel 2","page":5,"children":[{"title":"Abschnitt 2.1","page":6,"children":[]}]}]' \
   -o with-bookmarks.pdf
 ```

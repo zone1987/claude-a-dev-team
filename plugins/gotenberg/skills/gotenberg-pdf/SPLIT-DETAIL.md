@@ -146,17 +146,17 @@ POST /forms/pdfengines/split
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form splitMode=intervals \
   --form splitSpan=1 \
-  -o seiten.zip
+  -o pages.zip
 ```
 
 ### 3 pages each together
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form splitMode=intervals \
   --form splitSpan=3 \
   -o chunks.zip
@@ -166,7 +166,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form splitMode=pages \
   --form splitSpan=1-3 \
   --form splitUnify=true \
@@ -177,7 +177,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form splitMode=pages \
   --form 'splitSpan=2,5,7' \
   -o auswahl.zip
@@ -187,12 +187,12 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form splitMode=intervals \
   --form splitSpan=1 \
   --form userPassword=geheim \
   --form allowCopying=false \
-  -o verschluesselt.zip
+  -o encrypted.zip
 ```
 
 ---

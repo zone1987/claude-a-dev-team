@@ -155,7 +155,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
 
 ```bash
 curl --request POST http://localhost:3000/forms/libreoffice/convert \
-  --form 'downloadFrom=[{"url":"https://example.com/dokument.docx","extraHttpHeaders":{"X-Header":"Wert"}}]' \
+  --form 'downloadFrom=[{"url":"https://example.com/document.docx","extraHttpHeaders":{"X-Header":"Wert"}}]' \
   -o konvertiert.pdf
 ```
 
@@ -163,7 +163,7 @@ curl --request POST http://localhost:3000/forms/libreoffice/convert \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form watermarkSource=image \
   --form 'downloadFrom=[{"url":"https://cdn.example.com/logo.png","field":"watermark"}]' \
   --form watermarkExpression=logo.png \

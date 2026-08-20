@@ -105,7 +105,7 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form watermarkSource=text \
   --form watermarkExpression=VERTRAULICH \
   --form 'watermarkOptions={"opacity":0.25,"rotation":45}' \
@@ -116,18 +116,18 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form watermarkSource=text \
   --form watermarkExpression=ENTWURF \
   --form 'watermarkOptions={"font":"Helvetica","points":48,"color":"#808080","rotation":45,"opacity":0.15}' \
-  -o entwurf.pdf
+  -o draft.pdf
 ```
 
 ### Image watermark (logo as background)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form watermark=@/path/to/logo.png \
   --form watermarkSource=image \
   --form watermarkExpression=logo.png \
@@ -139,10 +139,10 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
-  --form files=@/path/to/dokument.pdf \
-  --form watermark=@/path/to/hintergrund.pdf \
+  --form files=@/path/to/document.pdf \
+  --form watermark=@/path/to/background.pdf \
   --form watermarkSource=pdf \
-  --form watermarkExpression=hintergrund.pdf \
+  --form watermarkExpression=background.pdf \
   -o with-background.pdf
 ```
 
@@ -150,7 +150,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form watermarkSource=text \
   --form watermarkExpression=KOPIE \
   --form watermarkPages=1-3 \

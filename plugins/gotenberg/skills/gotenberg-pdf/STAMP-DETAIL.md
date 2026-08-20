@@ -108,7 +108,7 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form stampSource=text \
   --form stampExpression=GENEHMIGT \
   --form 'stampOptions={"color":"#008000","rotation":0,"opacity":0.8,"pos":"tr"}' \
@@ -119,7 +119,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form stampSource=text \
   --form stampExpression=VERTRAULICH \
   --form 'stampOptions={"font":"Helvetica","points":48,"color":"#FF0000","rotation":45,"opacity":0.5}' \
@@ -130,7 +130,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form stamp=@/path/to/logo.png \
   --form stampSource=image \
   --form stampExpression=logo.png \
@@ -142,22 +142,22 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
-  --form files=@/path/to/dokument.pdf \
-  --form stamp=@/path/to/stempel.pdf \
+  --form files=@/path/to/document.pdf \
+  --form stamp=@/path/to/stamp.pdf \
   --form stampSource=pdf \
-  --form stampExpression=stempel.pdf \
-  -o gestempelt.pdf
+  --form stampExpression=stamp.pdf \
+  -o stamped.pdf
 ```
 
 ### Stamp the first page only
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form stampSource=text \
   --form stampExpression=ORIGINAL \
   --form stampPages=1 \
-  -o gestempelt.pdf
+  -o stamped.pdf
 ```
 
 ---

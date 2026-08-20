@@ -50,7 +50,7 @@ POST /forms/pdfengines/metadata/read
 
 ```json
 {
-  "rechnung.pdf": {
+  "invoice.pdf": {
     "PDFVersion": 1.7,
     "Author": "Gotenberg",
     "Title": "Rechnung #001",
@@ -62,7 +62,7 @@ POST /forms/pdfengines/metadata/read
     "MIMEType": "application/pdf",
     "Keywords": "rechnung,2024"
   },
-  "bericht.pdf": {
+  "report.pdf": {
     "PDFVersion": 1.4,
     "Author": "Max Mustermann",
     "PageCount": 15
@@ -77,8 +77,8 @@ Reference: https://exiftool.org/TagNames/PDF.html
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/read \
-  --form files=@/path/to/rechnung.pdf \
-  --form files=@/path/to/bericht.pdf
+  --form files=@/path/to/invoice.pdf \
+  --form files=@/path/to/report.pdf
 ```
 
 ---
@@ -136,7 +136,7 @@ Supported XMP tags: https://exiftool.org/TagNames/XMP.html#pdf
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form 'metadata={"Author":"Max Mustermann","Title":"Jahresbericht"}' \
   -o aktualisiert.pdf
 ```
@@ -145,9 +145,9 @@ curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form 'metadata={"Author":"Gotenberg","Producer":"Gotenberg","Keywords":["leitfaden","dokumentation"]}' \
-  -o mein.pdf
+  -o my.pdf
 ```
 
 #### Updating several PDFs at once (→ ZIP)

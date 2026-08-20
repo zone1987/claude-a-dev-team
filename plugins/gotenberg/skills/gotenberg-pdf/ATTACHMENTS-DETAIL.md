@@ -54,7 +54,7 @@ POST /forms/pdfengines/embed
 
 ```json
 {
-  "rechnung.xml": {
+  "invoice.xml": {
     "mimeType": "text/xml",
     "relationship": "Alternative"
   },
@@ -113,8 +113,8 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
-  --form files=@/path/to/rechnung.pdf \
-  --form embeds=@/path/to/rechnung.xml \
+  --form files=@/path/to/invoice.pdf \
+  --form embeds=@/path/to/invoice.xml \
   -o with-attachment.pdf
 ```
 
@@ -122,7 +122,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
-  --form files=@/path/to/rechnung.pdf \
+  --form files=@/path/to/invoice.pdf \
   --form embeds=@/path/to/factur-x.xml \
   --form 'embedsMetadata={"factur-x.xml":{"mimeType":"text/xml","relationship":"Alternative"}}' \
   -o with-attachment.pdf
@@ -132,8 +132,8 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
-  --form files=@/path/to/rechnung.pdf \
-  --form facturxXml=@/path/to/rechnung.xml \
+  --form files=@/path/to/invoice.pdf \
+  --form facturxXml=@/path/to/invoice.xml \
   --form 'facturxConformanceLevel=EN 16931' \
   -o e-rechnung.pdf
 ```
@@ -142,7 +142,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form embeds=@/path/to/daten.xml \
   --form embeds=@/path/to/logo.png \
   --form 'embedsMetadata={"daten.xml":{"mimeType":"text/xml","relationship":"Data"},"logo.png":{"mimeType":"image/png","relationship":"Supplement"}}' \

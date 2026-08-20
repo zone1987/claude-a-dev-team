@@ -64,7 +64,7 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/flatten \
-  --form files=@/path/to/formular.pdf \
+  --form files=@/path/to/form.pdf \
   -o geflattenet.pdf
 ```
 
@@ -82,8 +82,8 @@ curl --request POST http://localhost:3000/forms/pdfengines/flatten \
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/flatten \
   --header 'Gotenberg-Output-Filename: ausgefuelltes-formular' \
-  --form files=@/path/to/formular.pdf \
-  -o ausgefuelltes-formular.pdf
+  --form files=@/path/to/form.pdf \
+  -o filled-form.pdf
 ```
 
 ---

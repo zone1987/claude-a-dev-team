@@ -94,26 +94,26 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form userPassword=geheimesPasswort \
-  -o verschluesselt.pdf
+  -o encrypted.pdf
 ```
 
 ### User and owner password
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form userPassword=oeffnen \
   --form ownerPassword=verwalten \
-  -o verschluesselt.pdf
+  -o encrypted.pdf
 ```
 
 ### Allow reading only (block copying and editing)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form userPassword=oeffnen \
   --form ownerPassword=verwalten \
   --form allowCopying=false \
@@ -128,7 +128,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form userPassword=oeffnen \
   --form allowPrinting=false \
   -o kein-druck.pdf
@@ -138,7 +138,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form ownerPassword=nurFuerAdmin \
   --form allowCopying=false \
   --form allowModifying=false \

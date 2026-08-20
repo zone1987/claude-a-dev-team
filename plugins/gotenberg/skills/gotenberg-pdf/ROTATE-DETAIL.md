@@ -73,7 +73,7 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form rotateAngle=90 \
   -o rotiert.pdf
 ```
@@ -82,7 +82,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form rotateAngle=180 \
   -o umgekehrt.pdf
 ```
@@ -91,27 +91,27 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form rotateAngle=90 \
   --form rotatePages=1 \
-  -o teilrotiert.pdf
+  -o partly-rotated.pdf
 ```
 
 ### Rotate pages 2-4 by 270 degrees
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form rotateAngle=270 \
   --form rotatePages=2-4 \
-  -o teilrotiert.pdf
+  -o partly-rotated.pdf
 ```
 
 ### Fix landscape pages (pages 3, 5, 7)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form rotateAngle=90 \
   --form 'rotatePages=3,5,7' \
   -o korrigiert.pdf

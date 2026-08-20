@@ -105,8 +105,8 @@ Gotenberg-Trace: {trace}
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/factur-x \
-  --form files=@/path/to/rechnung.pdf \
-  --form facturxXml=@/path/to/cii-rechnung.xml \
+  --form files=@/path/to/invoice.pdf \
+  --form facturxXml=@/path/to/cii-invoice.xml \
   --form 'facturxConformanceLevel=EN 16931' \
   -o e-rechnung.pdf
 ```
@@ -115,8 +115,8 @@ curl --request POST http://localhost:3000/forms/pdfengines/factur-x \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/factur-x \
-  --form files=@/path/to/rechnung.pdf \
-  --form facturxXml=@/path/to/xrechnung.xml \
+  --form files=@/path/to/invoice.pdf \
+  --form facturxXml=@/path/to/xinvoice.xml \
   --form facturxConformanceLevel=XRECHNUNG \
   -o xrechnung.pdf
 ```
@@ -125,22 +125,22 @@ curl --request POST http://localhost:3000/forms/pdfengines/factur-x \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/factur-x \
-  --form files=@/path/to/rechnung.pdf \
+  --form files=@/path/to/invoice.pdf \
   --form facturxXml=@/path/to/minimum.xml \
   --form facturxConformanceLevel=MINIMUM \
-  -o e-rechnung-minimal.pdf
+  -o e-rechnung-minimum.pdf
 ```
 
 ### With PDF/A-3a and PDF/UA
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/factur-x \
-  --form files=@/path/to/rechnung.pdf \
+  --form files=@/path/to/invoice.pdf \
   --form facturxXml=@/path/to/cii.xml \
   --form 'facturxConformanceLevel=EN 16931' \
   --form pdfa=PDF/A-3a \
   --form pdfua=true \
-  -o e-rechnung-barrierefrei.pdf
+  -o e-rechnung-accessible.pdf
 ```
 
 ### Purchase order (ORDER document type)

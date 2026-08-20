@@ -67,34 +67,34 @@ All responses include: `Content-Disposition`, `Content-Type`, `Content-Length`, 
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form pdfa=PDF/A-1b \
-  -o archiv.pdf
+  -o archive.pdf
 ```
 
 ### Convert to PDF/A-2b
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form pdfa=PDF/A-2b \
-  -o archiv.pdf
+  -o archive.pdf
 ```
 
 ### Convert to PDF/A-3b (with attachment support)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form pdfa=PDF/A-3b \
-  -o archiv.pdf
+  -o archive.pdf
 ```
 
 ### Enable PDF/UA accessibility
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form pdfua=true \
   -o barrierefrei.pdf
 ```
@@ -103,10 +103,10 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
-  --form files=@/path/to/dokument.pdf \
+  --form files=@/path/to/document.pdf \
   --form pdfa=PDF/A-3b \
   --form pdfua=true \
-  -o archiv-barrierefrei.pdf
+  -o archive-accessible.pdf
 ```
 
 ### Multiple files at once (→ ZIP)
