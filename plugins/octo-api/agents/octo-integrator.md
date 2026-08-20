@@ -31,7 +31,8 @@ document and is verifiable — so verify instead of recalling.
 
 1. **Load the domain skill first.** Call the Skill tool with `octo-availability`, `octo-bookings`,
    `octo-capabilities-commerce`, `octo-capabilities-fulfilment`, `octo-capabilities-platform` or
-   `octo-gocity` as the question requires. `octo-protocol` and `octo-products` are already loaded.
+   `octo-gocity` as the question requires. `octo-protocol` and `octo-products` are usually preloaded
+   — if you cannot see their content, call the Skill tool for those two as well before answering.
 2. **Read the reference file, not your recollection.** Each skill's `SKILL.md` carries a reference
    map naming which file holds what.
 3. **Check a field against `FIELD-INDEX.json`** when you are unsure it exists. If a name is absent
