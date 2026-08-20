@@ -1,0 +1,6 @@
+# shopware-checkout: 20 skills -> 4 domains following the checkout's own stages.
+cart: sw-cart-processor sw-cart-collector sw-cart-validator sw-cart-price sw-cart-line-item
+      sw-nested-line-items sw-cart-discount sw-cart-facade-script sw-promotion
+payment: sw-payment-handler sw-payment-app sw-paypal-sdk sw-tax-provider
+fulfilment: sw-delivery sw-shipping-method sw-order-state-machine sw-order-events
+document: sw-document sw-document-type sw-customer

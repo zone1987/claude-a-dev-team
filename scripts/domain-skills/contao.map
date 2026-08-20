@@ -1,0 +1,26 @@
+# Contao 5: 56 skills -> 9 domains. Development and the end-user manual stay apart: a
+# developer writing a DCA and an editor building a page have nothing to say to each other.
+
+core: core-concepts getting-started initial-setup extension-bundle manager-plugin
+      coding-standards profiler maintenance logging reference-misc
+
+data: dca-framework dca-reference models migrations search-indexing
+      adt-contao-dal
+
+frontend: content-elements frontend-modules fragment-controllers templates twig-reference
+          insert-tags widgets-reference asset-management image-processing
+
+backend: backend-modules backend-routes page-controllers routing request-tokens
+         response-context
+
+platform: hooks hooks-reference security csp filesystem caching cron messaging-jobs
+          translations
+
+manual-basics: manual-overview manual-installation manual-backend manual-system
+               manual-user-management manual-cli manual-performance manual-migration
+
+manual-content: manual-page-structure manual-articles-content manual-layout
+                manual-file-management manual-insert-tags-tokens
+
+manual-features: manual-form-generator manual-core-extensions manual-third-party-extensions
+                 manual-tutorials

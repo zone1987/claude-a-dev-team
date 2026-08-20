@@ -1,0 +1,29 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) (Data Abstraction Layer guides and reference) plus the Shopware 6.7 source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "entity": {
+      "title": "Shopware DAL entities",
+      "description": "Shopware DAL entities: EntityDefinition, entity class, collection, repository, extensions, versioning, indexers, custom entities. Use when the request names a Shopware entity or EntityDefinition.",
+      "intro": "An entity is three classes plus a definition. The core reference lists all 312 shipped entities."
+    },
+    "fields": {
+      "title": "Shopware DAL fields and associations",
+      "description": "Shopware DAL fields: field types, flags, inheritance, serializers, custom fields, translations, all four association kinds. Use when the request names a Shopware field type or association.",
+      "intro": "What a definition is made of. Associations come in four shapes and each needs a specific field pair."
+    },
+    "query": {
+      "title": "Shopware DAL queries",
+      "description": "Shopware DAL queries: the Criteria API, filters, sorting, aggregations, and when plain SQL beats the DAL. Use when the request names a Shopware Criteria, DAL filter or aggregation.",
+      "intro": "Reading data. Criteria is the single entry point; filters, sorting and aggregations are its parts."
+    },
+    "write": {
+      "title": "Shopware DAL writes and migrations",
+      "description": "Shopware DAL writes: write events and their payloads, database migrations. Use when the request names a Shopware write event or database migration.",
+      "intro": "Changing data and changing schema. Write events fire around every persist and are the hook for side effects."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "defaults": {
+    "prefix": "shadcn-vue",
+    "source": "Distilled from [shadcn-vue.com](https://www.shadcn-vue.com) and the [shadcn-vue repository](https://github.com/unovue/shadcn-vue), retrieved 2026-08-20. Components are Vue SFCs built on reka-ui primitives with Tailwind v4.",
+    "notes": ""
+  },
+  "domains": {
+    "setup": {
+      "title": "shadcn-vue setup",
+      "description": "shadcn-vue installation and configuration: CLI, components.json, Tailwind v4, Vite, Nuxt, Astro, Laravel, MCP server. Use when the request names shadcn-vue setup, init or components.json.",
+      "intro": "Getting shadcn-vue into a project and keeping it configured. The CLI copies component source into your repository — there is no runtime package to upgrade."
+    },
+    "theming": {
+      "title": "shadcn-vue theming",
+      "description": "shadcn-vue theming: CSS variable tokens, light and dark mode, Tailwind v4 @theme, typography. Use when the request names shadcn-vue theming, dark mode or its CSS variables.",
+      "intro": "Colour and typography come from CSS variable tokens, not from component props. Change a token and every component follows."
+    },
+    "forms": {
+      "title": "shadcn-vue form components",
+      "description": "shadcn-vue form components: Form, Field, Input, Select, Checkbox, Switch, Slider, Combobox, DatePicker, Calendar, Stepper, vee-validate and TanStack Form. Use when building a form with shadcn-vue.",
+      "intro": "Everything you assemble a form from, plus the two validation integrations shadcn-vue documents: vee-validate and TanStack Form."
+    },
+    "layout": {
+      "title": "shadcn-vue layout components",
+      "description": "shadcn-vue layout components: Card, Sidebar, Sheet, Drawer, Tabs, Accordion, Collapsible, Resizable, ScrollArea, Separator, Skeleton, Spinner. Use when structuring a page with shadcn-vue.",
+      "intro": "Components that arrange a page rather than collect input. Sidebar is the largest of them and has its own composable and keyboard handling."
+    },
+    "navigation": {
+      "title": "shadcn-vue navigation components",
+      "description": "shadcn-vue navigation components: NavigationMenu, Menubar, DropdownMenu, ContextMenu, Command, Breadcrumb, Pagination, Kbd. Use when building navigation or a command palette with shadcn-vue.",
+      "intro": "Menus, command palettes and positional cues. Command is the base for a searchable palette; the menu components differ mainly in how they are triggered."
+    },
+    "feedback": {
+      "title": "shadcn-vue feedback components",
+      "description": "shadcn-vue feedback components: Dialog, Alert, Popover, Tooltip, Toast, Sonner, Progress, Badge, Button. Use when showing state or confirming with shadcn-vue.",
+      "intro": "Components that tell the user something or ask them to confirm. Dialog and AlertDialog differ in intent: AlertDialog interrupts and requires an answer."
+    },
+    "data": {
+      "title": "shadcn-vue data display",
+      "description": "shadcn-vue data display: Table, DataTable with TanStack Table, Chart wrappers, Carousel. Use when the request names a shadcn-vue table, data table or chart.",
+      "intro": "Table is markup; DataTable adds TanStack Table for sorting, filtering and pagination. Charts wrap a charting library behind a ChartContainer plus a config object."
+    },
+    "blocks": {
+      "title": "shadcn-vue blocks and registry",
+      "description": "shadcn-vue blocks and custom registries: dashboard, login, signup, OTP and sidebar blocks, registry.json. Use when the request names a shadcn-vue block or registry.",
+      "intro": "Blocks are multi-component page sections you copy in whole. A registry is how you publish your own blocks and components for the CLI to install."
+    }
+  }
+}

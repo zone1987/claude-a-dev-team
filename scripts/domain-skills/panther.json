@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "prefix": "panther",
+    "source": "Distilled from the [symfony/panther](https://github.com/symfony/panther) documentation and package source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "testing": {
+      "title": "Symfony Panther: writing tests",
+      "description": "Symfony Panther tests: PantherTestCase, client API, crawler, interactions, waitFor mechanics, screenshots. Use when writing a Symfony Panther browser test.",
+      "intro": "Panther drives a real browser through the familiar BrowserKit API. waitFor* is what makes a JavaScript-heavy page testable."
+    },
+    "setup": {
+      "title": "Symfony Panther: setup and CI",
+      "description": "Symfony Panther setup: ChromeDriver and GeckoDriver, all PANTHER_* variables, Selenium, Docker and CI. Use when configuring Panther or running it in CI.",
+      "intro": "Most Panther problems are environment problems. The PANTHER_* variables control everything from headless mode to window size."
+    }
+  }
+}

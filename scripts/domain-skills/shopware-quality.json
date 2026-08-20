@@ -1,0 +1,24 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. Coding guidelines and ADRs come from the shopware/shopware repository.",
+    "notes": ""
+  },
+  "domains": {
+    "guidelines": {
+      "title": "Shopware coding guidelines",
+      "description": "Shopware coding guidelines: code structure, domain exceptions, extendability rules, ADR knowledge, documentation guidelines. Use when reviewing Shopware code against the platform's own conventions.",
+      "intro": "The platform's own rules for platform-shaped code. Domain exceptions and extendability are where most plugins diverge."
+    },
+    "analysis": {
+      "title": "Shopware static analysis",
+      "description": "Shopware static analysis: PHPStan and its Shopware extension, ECS and PHP-CS-Fixer, Deptrac, Rector. Use when configuring or fixing Shopware static analysis.",
+      "intro": "The tool chain a Shopware plugin is expected to pass, with the configuration each one needs."
+    },
+    "release": {
+      "title": "Shopware release hygiene",
+      "description": "Shopware release hygiene: README and changelog conventions, and the knowledge-sync process for keeping distilled documentation current. Use when preparing a Shopware plugin release.",
+      "intro": "What ships alongside the code, and how this library keeps itself current."
+    }
+  }
+}

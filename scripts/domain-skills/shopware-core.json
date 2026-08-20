@@ -1,0 +1,24 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "plugin": {
+      "title": "Shopware plugin fundamentals",
+      "description": "Shopware plugin fundamentals: base class, lifecycle, plugin configuration, extension points, feature flags. Use when creating or configuring a Shopware plugin.",
+      "intro": "Where a plugin hooks into the platform, and which lifecycle method runs when."
+    },
+    "services": {
+      "title": "Shopware services and events",
+      "description": "Shopware services: dependency injection, service decoration, service tags, event subscribers, the event catalogue, CLI commands. Use when registering a Shopware service, subscriber or console command.",
+      "intro": "Extend by event subscriber first, decorator second — the platform's own guidance and the reason the event catalogue exists."
+    },
+    "platform": {
+      "title": "Shopware platform services",
+      "description": "Shopware platform services: system config, config reference, logging, filesystem, rate limiter, number ranges. Use when the request names Shopware system config or logging.",
+      "intro": "Infrastructure a plugin consumes rather than extends."
+    }
+  }
+}

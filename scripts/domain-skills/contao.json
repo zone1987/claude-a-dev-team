@@ -1,0 +1,49 @@
+{
+  "defaults": {
+    "prefix": "contao",
+    "source": "Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) — the developer documentation and the German end-user manual — plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "core": {
+      "title": "Contao core concepts",
+      "description": "Contao 5 fundamentals: bundle structure, Manager plugin, setup, coding standards, logging, profiler. Use when the request names Contao setup, a Contao bundle or the Manager plugin.",
+      "intro": "How a Contao 5 extension is put together and how the framework boots it. Start here before any of the other Contao domains."
+    },
+    "data": {
+      "title": "Contao data layer",
+      "description": "Contao 5 data layer: DCA definition and reference, Models, Collections, migrations, search indexing. Use when the request names a Contao DCA, tl_ table, Contao Model or migration.",
+      "intro": "The DCA array describes a table to Contao; a Model gives you typed access to it. Both are needed for any custom data."
+    },
+    "frontend": {
+      "title": "Contao frontend",
+      "description": "Contao 5 frontend: content elements, frontend modules, fragment controllers, Twig templates, insert tags, widgets. Use when building a Contao content element or frontend module.",
+      "intro": "Everything rendered to a visitor. Content elements and frontend modules are both fragment controllers with a Twig template."
+    },
+    "backend": {
+      "title": "Contao backend",
+      "description": "Contao 5 backend: backend modules, backend routes, page controllers, routing, request tokens, response context. Use when building a Contao backend module or route.",
+      "intro": "Extending the administration area, and the routing and CSRF machinery behind it."
+    },
+    "platform": {
+      "title": "Contao platform services",
+      "description": "Contao 5 platform services: hooks and the hook reference, security, CSP, filesystem, caching, cron, translations. Use when the request names a Contao hook or Contao caching.",
+      "intro": "Cross-cutting services. Hooks are Contao's main extension point and have their own complete reference here."
+    },
+    "manual-basics": {
+      "title": "Contao manual: basics and administration",
+      "description": "Contao 5 user manual: installation, the backend interface, system settings, user and permission management, CLI. Use when asked how to operate or administer Contao.",
+      "intro": "Operating Contao rather than developing for it. Written for administrators and editors, from the German manual."
+    },
+    "manual-content": {
+      "title": "Contao manual: pages and content",
+      "description": "Contao 5 user manual: page structure, articles and content elements, layout and themes, file management. Use when asked how to build pages or content in the Contao backend.",
+      "intro": "The editor's daily work: page tree, articles, content elements, layouts and the file manager."
+    },
+    "manual-features": {
+      "title": "Contao manual: forms and extensions",
+      "description": "Contao 5 user manual: form generator, core extensions such as news and calendar, third-party extensions. Use when asked about a Contao form or a Contao extension in the backend.",
+      "intro": "Features an editor configures rather than codes: the form generator, the bundled extensions, and step-by-step tutorials."
+    }
+  }
+}

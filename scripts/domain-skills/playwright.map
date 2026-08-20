@@ -1,0 +1,10 @@
+# playwright: 35 skills -> 5 domains. The test runner and the library API are different
+# surfaces even though they ship together.
+writing: intro writing-tests locators actions test-assertions api-assertions auth
+         accessibility emulation evaluating
+runner: test-config test-fixtures test-execution test-reporters test-components pom
+        api-test ci
+library: api-page api-browser api-locator api-network api-io api-devices io-events network
+         api-testing
+debugging: trace-viewer misc migration
+tooling: mcp mcp-tools agent-cli agent-cli-commands browsers

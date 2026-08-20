@@ -1,0 +1,17 @@
+---
+name: sw-sales
+description: Shopware sales tools: Sales Agent app with setup and deployment, Digital Sales Rooms with installation and config. Use when the request names Sales Agent or Digital Sales Rooms.
+---
+
+# Shopware sales tools
+
+Assisted-selling products, each shipping as its own app with a separate deployment.
+
+## Reference map
+
+- **[AGENT.md](AGENT.md)**: Sales Agent ist eine lizenzpflichtige Shopware-App, die Vertriebsmitarbeitern eine optimierte Arbeitsumgebung…. [AGENT-CUSTOMIZATION-CUSTOMIZATION](AGENT-CUSTOMIZATION-CUSTOMIZATION.md), [AGENT-CUSTOMIZATION](AGENT-CUSTOMIZATION.md), [AGENT-DEPLOYMENT-DEPLOYMENT](AGENT-DEPLOYMENT-DEPLOYMENT.md), [AGENT-DEPLOYMENT](AGENT-DEPLOYMENT.md), [AGENT-OVERVIEW](AGENT-OVERVIEW.md), [AGENT-SETUP-SETUP](AGENT-SETUP-SETUP.md), [AGENT-SETUP](AGENT-SETUP.md).
+- **[DIGITAL-SALES-ROOMS.md](DIGITAL-SALES-ROOMS.md)**: Digital Sales Rooms ist eine lizenzpflichtige Shopware-Erweiterung, die interaktive Live-Video-Shopping-Event…. [DIGITAL-SALES-ROOMS-3RDPARTY-3RDPARTY](DIGITAL-SALES-ROOMS-3RDPARTY-3RDPARTY.md), [DIGITAL-SALES-ROOMS-3RDPARTY](DIGITAL-SALES-ROOMS-3RDPARTY.md), [DIGITAL-SALES-ROOMS-CONFIG-CONFIGURATION](DIGITAL-SALES-ROOMS-CONFIG-CONFIGURATION.md), [DIGITAL-SALES-ROOMS-CONFIG](DIGITAL-SALES-ROOMS-CONFIG.md), [DIGITAL-SALES-ROOMS-CUSTOMIZATION-CUSTOMIZATION](DIGITAL-SALES-ROOMS-CUSTOMIZATION-CUSTOMIZATION.md), [DIGITAL-SALES-ROOMS-CUSTOMIZATION](DIGITAL-SALES-ROOMS-CUSTOMIZATION.md), [DIGITAL-SALES-ROOMS-DEPLOYMENT-DEPLOYMENT](DIGITAL-SALES-ROOMS-DEPLOYMENT-DEPLOYMENT.md), [DIGITAL-SALES-ROOMS-DEPLOYMENT](DIGITAL-SALES-ROOMS-DEPLOYMENT.md), [DIGITAL-SALES-ROOMS-INSTALLATION-INSTALLATION](DIGITAL-SALES-ROOMS-INSTALLATION-INSTALLATION.md), [DIGITAL-SALES-ROOMS-INSTALLATION](DIGITAL-SALES-ROOMS-INSTALLATION.md), [DIGITAL-SALES-ROOMS-OVERVIEW](DIGITAL-SALES-ROOMS-OVERVIEW.md).
+
+## Source
+
+Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. These are paid features: availability is plan-bound (Rise, Evolve, Beyond).

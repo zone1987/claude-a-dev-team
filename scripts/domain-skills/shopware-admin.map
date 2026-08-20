@@ -1,0 +1,10 @@
+# shopware-admin: 29 skills -> 4 domains.
+components: sw-admin-component sw-admin-component-override sw-admin-module sw-admin-menu
+            sw-admin-routing sw-admin-data-grid sw-admin-directives sw-admin-mixins
+            sw-admin-utils-filters
+data: sw-admin-data-handling sw-admin-repository-js sw-admin-api-requests
+      sw-admin-pinia-store sw-admin-vuex-store sw-admin-services sw-admin-error-handling
+      sw-admin-acl-permissions sw-admin-catalog
+build: sw-admin-vite sw-admin-typescript sw-admin-styles sw-admin-assets sw-admin-snippets
+meteor: sw-meteor-getting-started sw-meteor-components sw-meteor-composables
+        sw-meteor-usage-guidelines sw-meteor-admin-sdk sw-admin-sdk

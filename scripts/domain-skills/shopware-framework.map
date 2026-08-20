@@ -1,0 +1,8 @@
+# shopware-framework: 25 skills -> 4 domains.
+api: sw-store-api-route sw-store-api-override sw-admin-api-controller sw-api-acl
+     sw-webhook sw-app-script
+automation: sw-flow-action sw-flow-trigger sw-flow-transaction sw-flow-reference
+            sw-custom-rule sw-rule-condition sw-scheduled-task sw-events-reference
+messaging: sw-message-queue sw-message-handler sw-message-middleware sw-redis
+content: sw-mail-template sw-mail-data sw-mail-variables sw-media-handling
+         sw-media-thumbnail sw-elasticsearch sw-elasticsearch-extension

@@ -1,0 +1,38 @@
+{# Resources/scripts/cart/cart-discount.twig #}
+{# Cart manipulation script: Apply tiered discounts based on cart total #}
+
+{% set cartTotal = services.cart.price.total %}
+{% set itemCount = services.cart.items.count %}
+{% set discountId = 'myapp-tiered-discount' %}
+
+{# Remove existing discount before recalculating (idempotency) #}
+{% if services.cart.has(discountId) %}
+    {# Discount already handled by cart system on recalculation #}
+{% endif %}
+
+{# Tiered percentage discount based on total #}
+{% if cartTotal >= 200 %}
+    {% do services.cart.discount(discountId, 'percentage', 15, 'VIP Discount 15%') %}
+{% elseif cartTotal >= 100 %}
+    {% do services.cart.discount(discountId, 'percentage', 10, 'Bulk Discount 10%') %}
+{% elseif cartTotal >= 50 %}
+    {% do services.cart.discount(discountId, 'percentage', 5, 'Starter Discount 5%') %}
+{% endif %}
+
+{# Add free shipping surcharge removal for orders > 75 EUR #}
+{% set freeShippingId = 'myapp-free-shipping' %}
+{% if cartTotal >= 75 %}
+    {% set shippingPrice = services.cart.price.create({
+        'default': { 'gross': 0.0, 'net': 0.0 }
+    }) %}
+    {% do services.cart.surcharge(freeShippingId, 'absolute', shippingPrice, 'Free Shipping') %}
+{% endif %}
+
+{# Add a free product when cart has 5+ items #}
+{% if itemCount >= 5 %}
+    {% set freeProductId = services.config.app('freeGiftProductId') %}
+    {% if freeProductId %}
+        {% do services.cart.products.add(freeProductId, 1) %}
+        {% do services.cart.calculate() %}
+    {% endif %}
+{% endif %}

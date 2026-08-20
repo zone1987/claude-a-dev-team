@@ -1,0 +1,14 @@
+# shopware-devops: 37 skills -> 5 domains, split by what you are operating.
+cli: sw-cli sw-cli-account sw-cli-extension sw-cli-project sw-cli-reference
+     sw-cli-commands-reference sw-mcp-server
+hosting: sw-hosting-installation sw-hosting-requirements sw-hosting-webserver
+         sw-hosting-database sw-hosting-search sw-hosting-caching-http
+         sw-hosting-filesystem-s3 sw-hosting-env-config sw-hosting-worker-cron
+         sw-hosting-performance sw-hosting-observability sw-hosting-updates
+         sw-hosting-deployment
+paas: sw-paas sw-paas-fundamentals sw-paas-get-started sw-paas-environments
+      sw-paas-build-deploy sw-paas-services sw-paas-cron-worker sw-paas-cdn
+      sw-paas-monitoring sw-paas-resources-scaling sw-paas-composable-frontends
+tooling: sw-tooling-ide sw-tooling-watchers sw-tooling-fixture-bundle sw-recipes
+         sw-dal-reference
+support: sw-troubleshooting

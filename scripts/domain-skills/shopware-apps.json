@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "prefix": "sw-app",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. App SDK documentation comes from the app-php-sdk and app-sdk-js repositories.",
+    "notes": ""
+  },
+  "domains": {
+    "manifest": {
+      "title": "Shopware app manifest",
+      "description": "Shopware apps: the app system versus plugins, the complete manifest.xml reference, registration and signatures, in-app purchases. Use when building a Shopware app or writing a manifest.xml.",
+      "intro": "An app is declared entirely in manifest.xml and runs outside the shop. Start here before either SDK."
+    },
+    "sdk": {
+      "title": "Shopware app SDKs",
+      "description": "Shopware app SDKs: app-php-sdk and app-sdk-js — registration handling, request signing, webhooks, app scripts. Use when the request names the Shopware app-php-sdk or app-sdk-js.",
+      "intro": "The SDKs handle registration, signature verification and webhook plumbing so you do not reimplement them."
+    }
+  }
+}

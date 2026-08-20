@@ -1,0 +1,29 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. These are paid features: availability is plan-bound (Rise, Evolve, Beyond).",
+    "notes": ""
+  },
+  "domains": {
+    "b2b": {
+      "title": "Shopware B2B",
+      "description": "Shopware B2B: B2B Suite, B2B Components, employee management, quotes, order approval, migration from Suite to Components. Use when the request names Shopware B2B, a quote or order approval.",
+      "intro": "Two generations coexist: the older B2B Suite and the newer B2B Components. New work goes to Components."
+    },
+    "sales": {
+      "title": "Shopware sales tools",
+      "description": "Shopware sales tools: Sales Agent app with setup and deployment, Digital Sales Rooms with installation and config. Use when the request names Sales Agent or Digital Sales Rooms.",
+      "intro": "Assisted-selling products, each shipping as its own app with a separate deployment."
+    },
+    "features": {
+      "title": "Shopware Commercial features",
+      "description": "Shopware Commercial features: the Commercial bundle itself, Subscriptions, Advanced Search, Nexus. Use when the request names Shopware Subscriptions, Advanced Search or Nexus.",
+      "intro": "Features delivered through the Commercial bundle. Each states the plan and minimum version it needs."
+    },
+    "migration": {
+      "title": "Shopware Migration Assistant",
+      "description": "Shopware Migration Assistant: migrating shop data from Shopware 5 or another system, and writing a custom migration profile. Use when the request names the Shopware Migration Assistant.",
+      "intro": "Data migration into Shopware 6. A custom profile is how you support a source system it does not know."
+    }
+  }
+}

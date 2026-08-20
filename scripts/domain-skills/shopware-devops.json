@@ -1,0 +1,34 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) (hosting, deployment, PaaS, shopware-cli) and the shopware-cli reference, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "cli": {
+      "title": "shopware-cli",
+      "description": "shopware-cli: extension build, validate and zip, project commands, account and store upload, the full command reference, MCP server. Use when the request names shopware-cli.",
+      "intro": "The official CLI for building extensions and driving a project. Each command's flags are in the reference file."
+    },
+    "hosting": {
+      "title": "Shopware self-hosting",
+      "description": "Shopware self-hosted operations: requirements, installation, webserver, database, search, HTTP caching, S3, env config, worker and cron, performance, observability, updates, deployment.",
+      "intro": "Running Shopware on your own infrastructure. Ordered as you would set a server up: requirements first, deployment last."
+    },
+    "paas": {
+      "title": "Shopware PaaS",
+      "description": "Shopware PaaS: fundamentals, getting started, environments, build and deploy, services, cron and worker, CDN, monitoring, scaling, composable frontends. Use when the request names Shopware PaaS.",
+      "intro": "Shopware's managed platform. The build and deploy model differs fundamentally from self-hosting — read fundamentals before anything else."
+    },
+    "tooling": {
+      "title": "Shopware development tooling",
+      "description": "Shopware development tooling: IDE setup, file watchers, the fixture bundle, Symfony Flex recipes, the DAL reference. Use when setting up a Shopware development environment.",
+      "intro": "What makes local development bearable: watchers, IDE integration and fixtures."
+    },
+    "support": {
+      "title": "Shopware troubleshooting",
+      "description": "Shopware troubleshooting: diagnosing installation, cache, permission, performance and worker problems. Use when a Shopware shop misbehaves and the cause is unclear.",
+      "intro": "Symptom-first diagnosis for a shop that will not behave."
+    }
+  }
+}

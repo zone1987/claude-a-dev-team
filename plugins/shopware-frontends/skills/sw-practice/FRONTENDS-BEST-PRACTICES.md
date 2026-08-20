@@ -1,0 +1,3 @@
+# sw-frontends-best-practices
+
+Vollständige Referenz: [FRONTENDS-BEST-PRACTICES-BEST-PRACTICES.md](FRONTENDS-BEST-PRACTICES-BEST-PRACTICES.md)

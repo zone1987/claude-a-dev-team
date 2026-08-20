@@ -1,0 +1,10 @@
+# gotenberg: 27 skills -> 3 domains: what converts, what manipulates, how it runs.
+convert: gotenberg-chromium-html gotenberg-chromium-url gotenberg-chromium-markdown
+         gotenberg-chromium-screenshots gotenberg-libreoffice gotenberg-routes
+pdf: gotenberg-pdf-merge gotenberg-pdf-split gotenberg-pdf-convert gotenberg-pdf-flatten
+     gotenberg-pdf-encrypt gotenberg-pdf-metadata gotenberg-pdf-bookmarks
+     gotenberg-pdf-attachments gotenberg-pdf-facturx gotenberg-pdf-rotate
+     gotenberg-pdf-stamp gotenberg-pdf-watermark
+operations: gotenberg-introduction gotenberg-installation gotenberg-configuration
+            gotenberg-webhook gotenberg-outbound-filtering gotenberg-system
+            gotenberg-telemetry gotenberg-troubleshooting gotenberg-clients

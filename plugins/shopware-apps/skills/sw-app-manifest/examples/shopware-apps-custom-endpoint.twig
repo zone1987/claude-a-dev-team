@@ -1,0 +1,67 @@
+{# Resources/scripts/store-api-product-recommendations/product-recommendations.twig #}
+{# Custom Store API endpoint: GET/POST /store-api/script/product-recommendations #}
+
+{% block response %}
+    {# Read query parameters #}
+    {% set productId = hook.query.productId|default(null) %}
+    {% set limit = hook.query.limit|default(8) %}
+
+    {% if not productId %}
+        {% set response = services.response.json({
+            'error': 'Missing required parameter: productId',
+            'code': 'MISSING_PRODUCT_ID'
+        }) %}
+        {% do hook.setResponse(response) %}
+        {% do hook.stopPropagation() %}
+    {% else %}
+        {# Load the source product with its categories #}
+        {% set sourceProduct = services.store.search('product', {
+            'ids': [productId],
+            'associations': {
+                'categories': { 'limit': 3 }
+            }
+        }).first %}
+
+        {% if sourceProduct %}
+            {# Find related products in same categories #}
+            {% set categoryIds = sourceProduct.categories|map(c => c.id) %}
+
+            {% set recommendations = services.store.search('product', {
+                'limit': limit,
+                'filter': [
+                    { 'type': 'equalsAny', 'field': 'categories.id', 'value': categoryIds },
+                    { 'type': 'not', 'operator': 'and', 'queries': [
+                        { 'type': 'equals', 'field': 'id', 'value': productId }
+                    ]},
+                    { 'type': 'equals', 'field': 'active', 'value': true },
+                    { 'type': 'range', 'field': 'stock', 'parameters': { 'gte': 1 } }
+                ],
+                'sort': [
+                    { 'field': 'sales', 'order': 'DESC' }
+                ]
+            }) %}
+
+            {% set response = services.response.json({
+                'total': recommendations|length,
+                'sourceProductId': productId,
+                'recommendations': recommendations|map(p => {
+                    'id': p.id,
+                    'name': p.translated.name,
+                    'productNumber': p.productNumber,
+                    'calculatedPrice': p.calculatedPrice
+                })
+            }) %}
+            {% do hook.setResponse(response) %}
+        {% else %}
+            {% set response = services.response.json({
+                'error': 'Product not found',
+                'code': 'PRODUCT_NOT_FOUND'
+            }) %}
+            {% do hook.setResponse(response) %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block cache_key %}
+    {{ hook.query.productId|default('none') }}-{{ hook.query.limit|default(8) }}
+{% endblock %}

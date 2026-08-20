@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+
+    <!-- Store locator entity with all common field types -->
+    <entity name="ce_store_locator" custom-fields-aware="true" label-property="name">
+        <fields>
+            <string name="name" required="true" translatable="true" store-api-aware="true" />
+            <string name="street" required="true" store-api-aware="true" />
+            <string name="city" required="true" store-api-aware="true" />
+            <string name="zip" store-api-aware="true" />
+            <string name="phone" store-api-aware="true" />
+            <email name="email" store-api-aware="true" />
+            <string name="website" store-api-aware="true" />
+            <float name="latitude" store-api-aware="true" />
+            <float name="longitude" store-api-aware="true" />
+            <bool name="active" store-api-aware="true" default="true" />
+            <text name="description" store-api-aware="true" translatable="true" allow-html="true" />
+            <json name="openingHours" store-api-aware="true" />
+            <many-to-one name="country" reference="country" store-api-aware="true" on-delete="set-null" />
+            <many-to-one name="media" reference="media" store-api-aware="true" on-delete="set-null" />
+        </fields>
+    </entity>
+
+    <!-- Blog entity with relations -->
+    <entity name="ce_blog_post" custom-fields-aware="true" label-property="title">
+        <fields>
+            <string name="title" required="true" translatable="true" store-api-aware="true" />
+            <string name="slug" required="true" store-api-aware="true" />
+            <text name="content" required="true" translatable="true" store-api-aware="true" allow-html="true" />
+            <text name="excerpt" translatable="true" store-api-aware="true" />
+            <bool name="published" store-api-aware="true" default="false" />
+            <date name="publishedAt" store-api-aware="true" />
+            <int name="position" store-api-aware="true" />
+            <many-to-one name="author" reference="customer" store-api-aware="true" on-delete="set-null" />
+            <many-to-one name="coverImage" reference="media" store-api-aware="true" on-delete="set-null" />
+            <many-to-many name="categories" reference="category" store-api-aware="true" />
+            <many-to-many name="products" reference="product" store-api-aware="true" />
+        </fields>
+    </entity>
+</entities>

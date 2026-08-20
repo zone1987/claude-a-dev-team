@@ -1,0 +1,23 @@
+---
+name: contao-platform
+description: Contao 5 platform services: hooks and the hook reference, security, CSP, filesystem, caching, cron, translations. Use when the request names a Contao hook or Contao caching.
+---
+
+# Contao platform services
+
+Cross-cutting services. Hooks are Contao's main extension point and have their own complete reference here.
+
+## Reference map
+
+- **[CACHING.md](CACHING.md)**: Vollständige Referenz: `CACHING-CONTAO-CACHING.md`. [CACHING-CONTAO-CACHING](CACHING-CONTAO-CACHING.md).
+- **[CRON.md](CRON.md)**: Vollständige Referenz: `CRON-CONTAO-CRON.md`. [CRON-CONTAO-CRON](CRON-CONTAO-CRON.md).
+- **[CSP.md](CSP.md)**: Vollständige Referenz: `CSP-CONTAO-CSP.md`. [CSP-CONTAO-CSP](CSP-CONTAO-CSP.md).
+- **[FILESYSTEM.md](FILESYSTEM.md)**: Vollständige Referenz: `FILESYSTEM-CONTAO-FILESYSTEM.md`. [FILESYSTEM-CONTAO-FILESYSTEM](FILESYSTEM-CONTAO-FILESYSTEM.md).
+- **[HOOKS.md](HOOKS.md)** [HOOKS-HOW-TO](HOOKS-HOW-TO.md), [HOOKS-REFERENCE-00-INDEX](HOOKS-REFERENCE-00-INDEX.md), [HOOKS-REFERENCE-01-MEMBER-ACCOUNT](HOOKS-REFERENCE-01-MEMBER-ACCOUNT.md), [HOOKS-REFERENCE-02-NEWSLETTER](HOOKS-REFERENCE-02-NEWSLETTER.md), [HOOKS-REFERENCE-03-COMMENTS](HOOKS-REFERENCE-03-COMMENTS.md), [HOOKS-REFERENCE-04-FORMS](HOOKS-REFERENCE-04-FORMS.md), [HOOKS-REFERENCE-05-PAGE-LAYOUT](HOOKS-REFERENCE-05-PAGE-LAYOUT.md), [HOOKS-REFERENCE-06-TEMPLATES](HOOKS-REFERENCE-06-TEMPLATES.md), [HOOKS-REFERENCE-07-CONTENT-MODULES](HOOKS-REFERENCE-07-CONTENT-MODULES.md), [HOOKS-REFERENCE-08-DCA-BACKEND](HOOKS-REFERENCE-08-DCA-BACKEND.md), [HOOKS-REFERENCE-09-CALENDAR-NEWS](HOOKS-REFERENCE-09-CALENDAR-NEWS.md), [HOOKS-REFERENCE-10-SEARCH](HOOKS-REFERENCE-10-SEARCH.md), [HOOKS-REFERENCE-11-INSERT-TAGS](HOOKS-REFERENCE-11-INSERT-TAGS.md), [HOOKS-REFERENCE-12-THEME-FILES](HOOKS-REFERENCE-12-THEME-FILES.md), [HOOKS-REFERENCE-13-SYSTEM](HOOKS-REFERENCE-13-SYSTEM.md), [HOOKS-REFERENCE](HOOKS-REFERENCE.md).
+- **[MESSAGING-JOBS.md](MESSAGING-JOBS.md)**: Vollständige Referenz: `MESSAGING-JOBS-CONTAO-MESSAGING-JOBS.md`. [MESSAGING-JOBS-CONTAO-MESSAGING-JOBS](MESSAGING-JOBS-CONTAO-MESSAGING-JOBS.md).
+- **[SECURITY.md](SECURITY.md)**: Vollständige Referenz: `SECURITY-CONTAO-SECURITY.md`. [SECURITY-CONTAO-SECURITY](SECURITY-CONTAO-SECURITY.md).
+- **[TRANSLATIONS.md](TRANSLATIONS.md)**: Lies `TRANSLATIONS-DETAIL.md` für vollständige Dokumentation des Contao 5 Übersetzungssystems inklusive Symfo…. [TRANSLATIONS-DETAIL](TRANSLATIONS-DETAIL.md).
+
+## Source
+
+Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) — the developer documentation and the German end-user manual — plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.

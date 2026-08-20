@@ -1,0 +1,8 @@
+# shopware-frontends: 19 skills -> 3 domains.
+client: sw-api-client-js sw-api-gen-types sw-composables sw-frontends-session-context
+        sw-frontends-helpers
+building: sw-frontends-getting-started sw-frontends-overview sw-frontends-framework
+          sw-frontends-nuxt sw-frontends-routing sw-frontends-cms sw-frontends-i18n
+          sw-frontends-customization sw-frontends-features sw-frontends-b2b
+practice: sw-frontends-best-practices sw-frontends-examples sw-frontends-integrations
+          sw-frontends-deployment

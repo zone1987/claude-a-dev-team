@@ -1,0 +1,19 @@
+# Shopware 6 — Theme
+
+Ein Theme ist ein Plugin, dessen Klasse `ThemeInterface` implementiert; Kern ist die `theme.json` unter
+`src/Resources/`.
+
+```json
+{
+  "name": "FfTheme",
+  "author": "A-Dev-Team",
+  "views": ["@Storefront", "@Plugins", "@FfTheme"],
+  "style": ["@Storefront", "app/storefront/src/scss/base.scss"],
+  "script": ["@Storefront", "app/storefront/dist/storefront/js/ff-theme.js"],
+  "asset": ["@Storefront", "app/storefront/src/assets"]
+}
+```
+
+`theme.json` definiert View-/Style-/Script-/Asset-Reihenfolge und Config-Felder (`sw-theme-config`).
+Aktivieren: `bin/console theme:change`; kompilieren: `theme:compile`. Vererbung über `@`-Referenzen
+(`sw-theme-inheritance`). Reines Styling ohne eigenes Theme geht auch als Plugin-SCSS (`sw-storefront-scss`).

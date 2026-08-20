@@ -1,0 +1,3 @@
+# shopware-apps: 5 skills -> 2 domains.
+manifest: shopware-apps sw-app-manifest-reference sw-monetization-iap
+sdk: sw-app-php-sdk sw-app-sdk-js

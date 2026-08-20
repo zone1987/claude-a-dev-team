@@ -1,0 +1,6 @@
+# swiper: 33 skills -> 5 domains.
+core: getting-started parameters methods properties events element migration mcp
+modules: navigation pagination scrollbar autoplay effects virtual zoom thumbs grid
+         free-mode keyboard mousewheel a11y
+advanced: controller history hash-navigation parallax lazy manipulation plugins
+frameworks: react vue angular svelte solid

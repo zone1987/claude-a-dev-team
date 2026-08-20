@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "prefix": "flatpickr",
+    "source": "Distilled from [flatpickr.js.org](https://flatpickr.js.org) and the flatpickr repository (v4.6.x), retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "api": {
+      "title": "flatpickr API",
+      "description": "flatpickr API: installation, all options, instance methods, events and hooks, date format tokens, examples. Use when the request names flatpickr or a JS date picker.",
+      "intro": "The whole API surface. Options configure, the instance controls, hooks react."
+    },
+    "extend": {
+      "title": "flatpickr extensions",
+      "description": "flatpickr extensions: the official plugins (range, confirmDate, weekSelect, monthSelect), 67 locales, themes, mobile. Use when the request names a flatpickr plugin or locale.",
+      "intro": "Everything beyond the core: plugins, localisation, styling and the native mobile fallback."
+    }
+  }
+}

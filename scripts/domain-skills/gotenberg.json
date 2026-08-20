@@ -1,0 +1,24 @@
+{
+  "defaults": {
+    "prefix": "gotenberg",
+    "source": "Distilled from [gotenberg.dev](https://gotenberg.dev) — routes, configuration and every module — retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "convert": {
+      "title": "Gotenberg conversion routes",
+      "description": "Gotenberg conversion: HTML, URL and Markdown to PDF via Chromium, Office documents via LibreOffice, screenshots, the full route list. Use when converting a document or page to PDF with Gotenberg.",
+      "intro": "Two engines: Chromium renders web content, LibreOffice handles Office formats. The route decides which."
+    },
+    "pdf": {
+      "title": "Gotenberg PDF manipulation",
+      "description": "Gotenberg PDF manipulation: merge, split, PDF/A and PDF/UA, flatten, encrypt, metadata, bookmarks, Factur-X, stamp, watermark. Use when manipulating an existing PDF with Gotenberg.",
+      "intro": "Operations on a PDF you already have. All live under the PDF engines route and compose in one request."
+    },
+    "operations": {
+      "title": "Gotenberg operations",
+      "description": "Gotenberg operations: Docker and Kubernetes installation, all CLI flags and env vars, webhooks, URL filtering, metrics, troubleshooting, clients. Use when deploying or configuring Gotenberg.",
+      "intro": "Running and calling Gotenberg. It is stateless, so configuration is entirely flags and environment."
+    }
+  }
+}

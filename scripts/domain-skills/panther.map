@@ -1,0 +1,4 @@
+# panther: 11 skills -> 2 domains: writing tests, and getting them to run.
+testing: panther-overview panther-testcase panther-client panther-crawler
+         panther-interactions panther-javascript-screenshots panther-browserkit-clients
+setup: panther-installation panther-config-env panther-selenium-remote panther-docker-ci

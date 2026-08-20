@@ -1,0 +1,10 @@
+# shopware-commercial: 23 skills -> 4 domains, one per product line.
+b2b: sw-b2b-suite sw-b2b-suite-migration sw-b2b-components
+     sw-b2b-components-employee-management sw-b2b-components-quotes sw-b2b-order-approval
+sales: sw-sales-agent sw-sales-agent-setup sw-sales-agent-customization
+       sw-sales-agent-deployment sw-digital-sales-rooms sw-digital-sales-rooms-installation
+       sw-digital-sales-rooms-config sw-digital-sales-rooms-customization
+       sw-digital-sales-rooms-deployment sw-digital-sales-rooms-3rdparty
+features: sw-commercial-overview sw-commercial-bundle sw-subscriptions sw-advanced-search
+          sw-nexus
+migration: sw-migration-assistant sw-migration-assistant-custom-profile

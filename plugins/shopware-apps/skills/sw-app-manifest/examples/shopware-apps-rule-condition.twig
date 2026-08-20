@@ -1,0 +1,13 @@
+{# Resources/scripts/rule-conditions/customer-order-count-check.twig #}
+{# Rule condition script: Check if customer has placed a minimum number of orders #}
+{# Manifest constraint names become variables: operator, orderCount #}
+
+{# Guard: no customer = condition cannot match #}
+{% if scope.salesChannelContext.customer is not defined %}
+    {% return false %}
+{% endif %}
+
+{% set customer = scope.salesChannelContext.customer %}
+
+{# Use the built-in compare helper with operator from rule config #}
+{% return compare(operator, customer.orderCount, orderCount) %}

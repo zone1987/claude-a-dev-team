@@ -1,0 +1,6 @@
+# shopware-quality: 15 skills -> 3 domains.
+guidelines: sw-coding-guidelines sw-code-structure sw-domain-exceptions sw-extendability
+            sw-adr-knowledge sw-documentation-guidelines
+analysis: sw-static-analysis sw-phpstan sw-phpstan-shopware sw-ecs-cs-fixer sw-deptrac
+          sw-rector
+release: shopware-readme sw-changelog sw-knowledge-sync

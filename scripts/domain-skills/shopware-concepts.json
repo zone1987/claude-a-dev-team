@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "prefix": "sw-concept",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. Conceptual explanations: for implementation, use the other shopware-* plugins.",
+    "notes": ""
+  },
+  "domains": {
+    "architecture": {
+      "title": "Shopware architecture concepts",
+      "description": "How Shopware works: overall architecture, the DAL, data stores, extension mechanisms, the APIs, the app system, messaging. Use when asked why Shopware works a certain way rather than how to code it.",
+      "intro": "The reasoning behind the platform. Answers \"why is it built this way\", not \"how do I write it\"."
+    },
+    "domain": {
+      "title": "Shopware domain concepts",
+      "description": "Shopware domain concepts: catalogue, checkout, content and CMS, the rule system, translations. Use when asked how a Shopware domain is modelled conceptually.",
+      "intro": "How Shopware models its business domains, independent of the code that implements them."
+    }
+  }
+}

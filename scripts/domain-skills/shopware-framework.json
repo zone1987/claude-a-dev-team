@@ -1,0 +1,29 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) (framework guides and reference) plus the Shopware 6.7 source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "api": {
+      "title": "Shopware API extension",
+      "description": "Shopware API extension: Store API routes and overrides, Admin API controllers, API ACL, webhooks, app scripts. Use when adding or overriding a Shopware Store API or Admin API route.",
+      "intro": "Adding endpoints. A Store API route is a controller with a route annotation plus an ACL entry."
+    },
+    "automation": {
+      "title": "Shopware rules, flows and tasks",
+      "description": "Shopware automation: Flow Builder actions and triggers, custom rules and conditions, scheduled tasks, the event reference. Use when the request names a Shopware flow, rule or scheduled task.",
+      "intro": "Reacting to events without code changes. The event reference lists every dispatchable event."
+    },
+    "messaging": {
+      "title": "Shopware message queue",
+      "description": "Shopware messaging: the message queue, handlers, middleware, Redis configuration. Use when the request names a Shopware message queue, message handler or Redis.",
+      "intro": "Asynchronous work through Symfony Messenger, with Shopware's own middleware and transports."
+    },
+    "content": {
+      "title": "Shopware mail, media and search",
+      "description": "Shopware content services: mail templates and variables, media handling and thumbnails, Elasticsearch. Use when the request names a Shopware mail template, media or Elasticsearch.",
+      "intro": "Services around content: transactional mail, media processing, and search indexing."
+    }
+  }
+}

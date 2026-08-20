@@ -1,0 +1,4 @@
+# shopware-cms: 7 skills -> 2 domains: a block groups elements, an element holds data.
+block: sw-cms-block sw-cms-block-admin sw-cms-slot-config
+element: sw-cms-element sw-cms-element-admin sw-cms-element-storefront
+         sw-cms-data-resolver

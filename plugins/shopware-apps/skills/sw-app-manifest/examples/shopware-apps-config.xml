@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>General Settings</title>
+        <title lang="de-DE">Allgemeine Einstellungen</title>
+
+        <input-field type="text">
+            <name>apiKey</name>
+            <label>API Key</label>
+            <label lang="de-DE">API-Schlüssel</label>
+            <placeholder>Enter your API key...</placeholder>
+            <helpText>Your API key from the external service</helpText>
+            <copyable>true</copyable>
+            <required>true</required>
+        </input-field>
+
+        <input-field type="password">
+            <name>apiSecret</name>
+            <label>API Secret</label>
+            <placeholder>Enter your API secret...</placeholder>
+            <required>true</required>
+        </input-field>
+
+        <input-field type="url">
+            <name>apiEndpoint</name>
+            <label>API Endpoint</label>
+            <defaultValue>https://api.example.com/v1</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>isActive</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Display Settings</title>
+        <title lang="de-DE">Anzeigeeinstellungen</title>
+
+        <input-field type="single-select">
+            <name>displayMode</name>
+            <label>Display Mode</label>
+            <options>
+                <option>
+                    <id>compact</id>
+                    <name>Compact</name>
+                    <name lang="de-DE">Kompakt</name>
+                </option>
+                <option>
+                    <id>detailed</id>
+                    <name>Detailed</name>
+                    <name lang="de-DE">Detailliert</name>
+                </option>
+                <option>
+                    <id>minimal</id>
+                    <name>Minimal</name>
+                </option>
+            </options>
+            <defaultValue>compact</defaultValue>
+        </input-field>
+
+        <input-field type="multi-select">
+            <name>enabledFeatures</name>
+            <label>Enabled Features</label>
+            <options>
+                <option>
+                    <id>search</id>
+                    <name>Search</name>
+                </option>
+                <option>
+                    <id>filter</id>
+                    <name>Filters</name>
+                </option>
+                <option>
+                    <id>sorting</id>
+                    <name>Sorting</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="int">
+            <name>itemsPerPage</name>
+            <label>Items per Page</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+
+        <input-field type="float">
+            <name>taxRate</name>
+            <label>Tax Rate (%)</label>
+            <defaultValue>19.0</defaultValue>
+        </input-field>
+
+        <input-field type="colorpicker">
+            <name>accentColor</name>
+            <label>Accent Color</label>
+            <defaultValue>#0063d4</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>customCss</name>
+            <label>Custom CSS</label>
+            <placeholder>Enter custom CSS here...</placeholder>
+        </input-field>
+
+        <input-field type="datetime">
+            <name>campaignStart</name>
+            <label>Campaign Start</label>
+        </input-field>
+    </card>
+</config>

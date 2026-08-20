@@ -1,0 +1,7 @@
+# shopware-core: 18 skills -> 3 domains.
+plugin: sw-plugin-base sw-plugin-lifecycle sw-plugin-config sw-architecture-overview
+        sw-extension-points sw-feature-flags
+services: sw-dependency-injection sw-service-decoration sw-service-tags
+          sw-events-subscriber sw-event-catalog sw-cli-command
+platform: sw-system-config sw-config-reference sw-logging sw-filesystem sw-rate-limiter
+          sw-number-range

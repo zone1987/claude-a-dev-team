@@ -1,0 +1,29 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "cart": {
+      "title": "Shopware cart pipeline",
+      "description": "Shopware cart: the processor pipeline, collectors, validators, price calculation, line items, discounts, the cart facade. Use when changing Shopware cart behaviour.",
+      "intro": "The cart is recalculated on every change through collector, processor and validator stages. Never mutate a cart outside them."
+    },
+    "payment": {
+      "title": "Shopware payment",
+      "description": "Shopware payment: the 6.7 AbstractPaymentHandler, app payment, the PayPal SDK, tax providers. Use when the request names a Shopware payment handler or tax provider.",
+      "intro": "6.7 replaced the old payment handler interfaces with a single AbstractPaymentHandler — older examples do not apply."
+    },
+    "fulfilment": {
+      "title": "Shopware delivery and order states",
+      "description": "Shopware fulfilment: deliveries, shipping methods, the order state machine and its transitions, order events. Use when the request names a Shopware shipping method or order state.",
+      "intro": "Three independent state machines run per order — order, payment, delivery — and each transition fires its own event."
+    },
+    "document": {
+      "title": "Shopware documents and customers",
+      "description": "Shopware documents: document generation, custom document types, ZUGFeRD, and the customer entity in checkout. Use when the request names a Shopware document type or invoice.",
+      "intro": "Documents are generated from templates per order. A custom type needs a renderer and a config."
+    }
+  }
+}

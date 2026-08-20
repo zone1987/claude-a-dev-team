@@ -1,0 +1,29 @@
+{
+  "defaults": {
+    "prefix": "swiper",
+    "source": "Distilled from [swiperjs.com](https://swiperjs.com) — parameters, methods, events, every module and every framework binding — retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "core": {
+      "title": "Swiper core API",
+      "description": "Swiper core API: all parameters, methods, properties and events, the Swiper Element web component, migration between major versions. Use when the request names Swiper, a slider or a carousel.",
+      "intro": "The complete API surface. Parameters configure, methods control, events react — most integration questions are answered by one of the three."
+    },
+    "modules": {
+      "title": "Swiper modules",
+      "description": "Swiper modules: navigation, pagination, scrollbar, autoplay, effects, virtual, zoom, thumbs, grid, free mode, keyboard, a11y. Use when the request names a Swiper module.",
+      "intro": "Features ship as modules you register explicitly — an unregistered module's options are silently ignored."
+    },
+    "advanced": {
+      "title": "Swiper advanced features",
+      "description": "Swiper advanced features: controller, history and hash navigation, parallax, lazy loading, DOM manipulation, custom plugins. Use when the request names Swiper parallax or a Swiper plugin.",
+      "intro": "Less common modules, plus the plugin API for writing your own."
+    },
+    "frameworks": {
+      "title": "Swiper framework bindings",
+      "description": "Swiper framework bindings: React, Vue, Angular, Svelte and Solid components with their props and slots. Use when using Swiper inside React, Vue, Angular, Svelte or Solid.",
+      "intro": "Each binding wraps the same core; what differs is how slides are declared and how the instance is reached."
+    }
+  }
+}

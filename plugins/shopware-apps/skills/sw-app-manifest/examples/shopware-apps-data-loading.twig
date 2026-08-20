@@ -1,0 +1,49 @@
+{# Resources/scripts/product-page-loaded/product-page-loaded.twig #}
+{# Data loading script: Add related blog posts and store locations to product detail page #}
+
+{# Get the current product from the page #}
+{% set product = hook.page.product %}
+
+{# Load blog posts that reference this product's categories #}
+{% set categoryIds = product.categories|map(c => c.id) %}
+{% if categoryIds|length > 0 %}
+    {% set blogPosts = services.repository.search('ce_blog_post', {
+        'limit': 3,
+        'filter': [
+            { 'type': 'equalsAny', 'field': 'categories.id', 'value': categoryIds },
+            { 'type': 'equals', 'field': 'published', 'value': true }
+        ],
+        'sort': [
+            { 'field': 'publishedAt', 'order': 'DESC' }
+        ]
+    }) %}
+    {% do hook.page.addExtension('myappBlogPosts', blogPosts) %}
+{% endif %}
+
+{# Load nearest store locations #}
+{% set storeLocations = services.repository.search('ce_store_locator', {
+    'limit': 5,
+    'filter': [
+        { 'type': 'equals', 'field': 'active', 'value': true }
+    ],
+    'associations': {
+        'products': {
+            'filter': [
+                { 'type': 'equals', 'field': 'id', 'value': product.id }
+            ]
+        }
+    }
+}) %}
+
+{# Filter to stores that carry this product #}
+{% set availableStores = storeLocations|filter(s => s.products|length > 0) %}
+
+{% do hook.page.addExtension('myappAvailableStores', availableStores) %}
+
+{# Add mixed data as array extension #}
+{% do hook.page.addArrayExtension('myappProductMeta', {
+    'hasStores': availableStores|length > 0,
+    'storeCount': availableStores|length,
+    'hasBlogPosts': blogPosts is defined and blogPosts|length > 0,
+    'showRecommendations': services.config.app('showRecommendations') ?? true
+}) %}

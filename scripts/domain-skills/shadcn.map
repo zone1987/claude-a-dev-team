@@ -1,0 +1,25 @@
+# shadcn/ui: 96 skills -> 8 domains. Same grouping as shadcn-vue, so a developer moving
+# between the React and Vue ports finds knowledge in the same place.
+
+setup: installation cli components-json tailwind-v4 javascript legacy mcp figma changelog
+       overview create monorepo package-imports react-19 directory
+
+theming: theming dark-mode typography colors rtl direction
+
+forms: forms field input input-group input-otp textarea select native-select checkbox
+       radio-group switch toggle toggle-group slider combobox date-picker calendar label
+
+layout: card separator aspect-ratio scroll-area resizable sidebar sheet drawer collapsible
+        accordion tabs item empty spinner skeleton
+
+navigation: breadcrumb pagination navigation-menu menubar command context-menu dropdown-menu
+            kbd
+
+feedback: alert alert-dialog dialog popover hover-card tooltip toast sonner progress badge
+          avatar button button-group
+
+data: table data-table chart charts-area charts-bar charts-line charts-pie charts-radar
+      charts-radial charts-tooltip charts-overview carousel
+
+blocks: blocks-overview blocks-dashboard blocks-login blocks-signup blocks-sidebar
+        registry registry-json registry-item-json registry-api

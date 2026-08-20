@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. Upgrade notes come from the UPGRADE-*.md files in the shopware/shopware repository.",
+    "notes": ""
+  },
+  "domains": {
+    "upgrade": {
+      "title": "Shopware version upgrades",
+      "description": "Shopware upgrades: the 6.6 to 6.7 to 6.8 path, release notes, resolving deprecations, PHP-side migration patterns. Use when upgrading a Shopware plugin to a newer version.",
+      "intro": "What breaks between versions and how to fix it. Start with the deprecation list for your target version."
+    },
+    "admin": {
+      "title": "Shopware administration migration",
+      "description": "Shopware administration migration: sw-* to Meteor mt-* component mapping, Webpack to Vite, Vuex to Pinia. Use when migrating Shopware administration code to 6.7.",
+      "intro": "The three administration migrations 6.7 forces, each with a mapping table."
+    }
+  }
+}

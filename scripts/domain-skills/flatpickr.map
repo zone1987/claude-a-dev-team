@@ -1,0 +1,4 @@
+# flatpickr: 11 skills -> 2 domains.
+api: flatpickr-getting-started flatpickr-options flatpickr-instance flatpickr-events
+     flatpickr-formatting flatpickr-examples flatpickr-migration
+extend: flatpickr-plugins flatpickr-localization flatpickr-themes flatpickr-mobile

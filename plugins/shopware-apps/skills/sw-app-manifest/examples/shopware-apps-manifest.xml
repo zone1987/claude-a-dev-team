@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
+    <meta>
+        <name>MyExampleApp</name>
+        <label>My Example App</label>
+        <label lang="de-DE">Meine Beispiel-App</label>
+        <description>A comprehensive example Shopware app</description>
+        <description lang="de-DE">Eine umfassende Beispiel-Shopware-App</description>
+        <author>Your Company Ltd.</author>
+        <copyright>(c) by Your Company Ltd.</copyright>
+        <version>1.0.0</version>
+        <icon>Resources/config/plugin.png</icon>
+        <license>MIT</license>
+        <privacy>https://example.com/privacy</privacy>
+    </meta>
+
+    <setup>
+        <registrationUrl>https://my-app.example.com/app/lifecycle/register</registrationUrl>
+        <secret>my-development-secret-change-in-production</secret>
+    </setup>
+
+    <permissions>
+        <crud>product</crud>
+        <read>category</read>
+        <read>order</read>
+        <read>customer</read>
+        <update>order</update>
+        <permission>system:cache:info</permission>
+    </permissions>
+
+    <allowed-hosts>
+        <host>my-app.example.com</host>
+        <host>api.external-service.com</host>
+    </allowed-hosts>
+
+    <webhooks>
+        <webhook name="product-changed" url="https://my-app.example.com/webhook/product-changed" event="product.written"/>
+        <webhook name="order-placed" url="https://my-app.example.com/webhook/order-placed" event="checkout.order.placed" onlyLiveVersion="true"/>
+        <webhook name="customer-registered" url="https://my-app.example.com/webhook/customer-registered" event="checkout.customer.register"/>
+    </webhooks>
+
+    <admin>
+        <base-app-url>https://my-app.example.com</base-app-url>
+
+        <module name="myAppDashboard" parent="sw-marketing" position="50"
+                source="https://my-app.example.com/admin/dashboard">
+            <label>App Dashboard</label>
+            <label lang="de-DE">App-Dashboard</label>
+        </module>
+
+        <module name="myAppSettings" parent="app-MyExampleApp-myAppDashboard"
+                source="https://my-app.example.com/admin/settings">
+            <label>Settings</label>
+            <label lang="de-DE">Einstellungen</label>
+        </module>
+
+        <action-button action="syncProduct" entity="product" view="detail"
+                       url="https://my-app.example.com/action/sync-product">
+            <label>Sync Product</label>
+            <label lang="de-DE">Produkt synchronisieren</label>
+        </action-button>
+
+        <action-button action="exportOrders" entity="order" view="list"
+                       url="https://my-app.example.com/action/export-orders">
+            <label>Export Selected Orders</label>
+            <label lang="de-DE">Ausgewählte Bestellungen exportieren</label>
+        </action-button>
+
+        <main-module source="https://my-app.example.com/admin/main"/>
+    </admin>
+
+    <storefront>
+        <template-load-priority>100</template-load-priority>
+    </storefront>
+
+    <custom-fields>
+        <custom-field-set>
+            <name>myapp_product_extras</name>
+            <label>Product Extras</label>
+            <label lang="de-DE">Produkt-Extras</label>
+            <related-entities>
+                <product/>
+            </related-entities>
+            <fields>
+                <text name="myapp_external_id">
+                    <label>External ID</label>
+                    <label lang="de-DE">Externe ID</label>
+                    <position>1</position>
+                </text>
+                <bool name="myapp_sync_enabled">
+                    <label>Sync Enabled</label>
+                    <position>2</position>
+                </bool>
+            </fields>
+        </custom-field-set>
+    </custom-fields>
+
+    <cookies>
+        <group>
+            <snippet-name>cookie.groupComfortFeatures</snippet-name>
+            <entries>
+                <cookie>
+                    <cookie>myapp_session</cookie>
+                    <snippet-name>myapp.cookie.session</snippet-name>
+                    <snippet-description>myapp.cookie.sessionDescription</snippet-description>
+                    <value>1</value>
+                    <expiration>30</expiration>
+                </cookie>
+            </entries>
+        </group>
+    </cookies>
+
+    <payments>
+        <payment-method>
+            <identifier>myAppPayment</identifier>
+            <name>My App Payment</name>
+            <name lang="de-DE">Meine App-Zahlung</name>
+            <description>Pay securely with My App</description>
+            <pay-url>https://my-app.example.com/payment/pay</pay-url>
+            <finalize-url>https://my-app.example.com/payment/finalize</finalize-url>
+            <refund-url>https://my-app.example.com/payment/refund</refund-url>
+            <icon>Resources/payment-icon.png</icon>
+        </payment-method>
+    </payments>
+
+    <shipping-methods>
+        <shipping-method>
+            <identifier>myAppShipping</identifier>
+            <name>My App Shipping</name>
+            <name lang="de-DE">Mein App-Versand</name>
+            <active>true</active>
+            <delivery-time>
+                <id>a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4</id>
+                <name>2-4 business days</name>
+                <name lang="de-DE">2-4 Werktage</name>
+                <min>2</min>
+                <max>4</max>
+                <unit>day</unit>
+            </delivery-time>
+        </shipping-method>
+    </shipping-methods>
+
+    <tax>
+        <tax-provider>
+            <identifier>myAppTaxProvider</identifier>
+            <name>My App Tax Provider</name>
+            <priority>1</priority>
+            <process-url>https://my-app.example.com/tax/calculate</process-url>
+        </tax-provider>
+    </tax>
+
+    <rule-conditions>
+        <rule-condition>
+            <identifier>myapp_customer_check</identifier>
+            <name>My App Customer Check</name>
+            <name lang="de-DE">Meine App Kundenprüfung</name>
+            <group>customer</group>
+            <script>customer-check.twig</script>
+            <constraints>
+                <single-select name="operator">
+                    <label>Operator</label>
+                    <options>
+                        <option value="="><name>Is equal to</name></option>
+                        <option value="!="><name>Is not equal to</name></option>
+                    </options>
+                    <required>true</required>
+                </single-select>
+                <text name="value">
+                    <label>Value</label>
+                    <required>true</required>
+                </text>
+            </constraints>
+        </rule-condition>
+    </rule-conditions>
+
+    <gateways>
+        <checkout>https://my-app.example.com/gateway/checkout</checkout>
+    </gateways>
+</manifest>

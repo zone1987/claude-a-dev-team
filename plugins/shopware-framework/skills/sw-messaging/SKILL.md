@@ -1,0 +1,19 @@
+---
+name: sw-messaging
+description: Shopware messaging: the message queue, handlers, middleware, Redis configuration. Use when the request names a Shopware message queue, message handler or Redis.
+---
+
+# Shopware message queue
+
+Asynchronous work through Symfony Messenger, with Shopware's own middleware and transports.
+
+## Reference map
+
+- **[MESSAGE-HANDLER.md](MESSAGE-HANDLER.md)**: Ein Handler verarbeitet eine Message asynchron.
+- **[MESSAGE-MIDDLEWARE.md](MESSAGE-MIDDLEWARE.md)**: Middleware umschließt jede Message auf dem Bus.
+- **[MESSAGE-QUEUE.md](MESSAGE-QUEUE.md)**: Shopware nutzt Symfony Messenger für asynchrone Tasks. [MESSAGE-QUEUE-DETAIL](MESSAGE-QUEUE-DETAIL.md).
+- **[REDIS.md](REDIS.md)**: Redis wird in Shopware optional als schneller Speicher für mehrere Subsysteme genutzt — über Konfiguration. [REDIS-DETAIL](REDIS-DETAIL.md).
+
+## Source
+
+Distilled from [developer.shopware.com](https://developer.shopware.com) (framework guides and reference) plus the Shopware 6.7 source, retrieved 2026-08-20.

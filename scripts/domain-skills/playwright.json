@@ -1,0 +1,34 @@
+{
+  "defaults": {
+    "prefix": "playwright",
+    "source": "Distilled from [playwright.dev](https://playwright.dev) — the guides, the test-runner reference and the full library API — retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "writing": {
+      "title": "Playwright: writing tests",
+      "description": "Playwright test authoring: locators, actions, assertions, auto-waiting, authentication, accessibility, emulation, evaluating in the page. Use when writing or fixing a Playwright test.",
+      "intro": "The day-to-day surface. Locators and web-first assertions carry the auto-waiting that makes a test stable — reach for them before any explicit wait."
+    },
+    "runner": {
+      "title": "Playwright: test runner",
+      "description": "Playwright test runner: playwright.config, projects, fixtures, parallelism and sharding, retries, reporters, component testing, page object model, CI. Use when configuring a Playwright suite.",
+      "intro": "How a suite is structured and executed, rather than what a single test does."
+    },
+    "library": {
+      "title": "Playwright: library API",
+      "description": "Playwright library API: Page, Browser, BrowserContext, Locator, Request, Response, network routing, devices, file and clipboard IO, API testing. Use when automating a browser outside the test runner.",
+      "intro": "The complete class reference, for automation and for the parts of a test the guides do not cover."
+    },
+    "debugging": {
+      "title": "Playwright: debugging",
+      "description": "Playwright debugging: trace viewer, inspector, PWDEBUG, UI mode, flaky tests, migration from other frameworks. Use when a Playwright test fails unclearly or is flaky.",
+      "intro": "A failing trace answers more questions than a rerun. Start with the trace viewer."
+    },
+    "tooling": {
+      "title": "Playwright: MCP and CLI tooling",
+      "description": "Playwright tooling: the Playwright MCP server and its tools, the agent CLI and its commands, browser installation. Use when the request names Playwright MCP or the Playwright CLI.",
+      "intro": "The tooling around the library: MCP for agent-driven browsing, the CLI for installation and codegen."
+    }
+  }
+}

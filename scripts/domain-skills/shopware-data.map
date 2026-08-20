@@ -1,0 +1,11 @@
+# shopware-data: 33 skills -> 4 domains along the DAL's own layers.
+entity: sw-entity-definition sw-entity-class sw-entity-collection sw-entity-repository
+        sw-entity-extension sw-entity-hydration sw-entity-aliases sw-entity-protection
+        sw-entity-versioning sw-entity-indexer sw-custom-entity sw-attribute-entities
+        sw-entity-catalog sw-core-entity-reference adt-shopware-dal
+fields: sw-field-types sw-field-flags sw-field-inheritance sw-field-serializer
+        sw-custom-fields sw-pricing-field sw-translations
+        sw-associations-onetoone sw-associations-onetomany sw-associations-manytoone
+        sw-associations-manytomany
+query: sw-criteria sw-filters sw-sorting sw-aggregations sw-plain-sql-vs-dal
+write: sw-write-events sw-database-migration

@@ -1,0 +1,13 @@
+# shopware-storefront: 39 skills -> 5 domains.
+controller: sw-storefront-controller sw-storefront-page sw-storefront-pagelet
+            sw-page-loader sw-storefront-data sw-ajax-data
+twig: sw-twig-templates sw-twig-extension sw-twig-functions sw-storefront-translations
+javascript: sw-storefront-js-plugin sw-js-plugin-extend sw-js-plugin-override
+            sw-js-plugin-catalog sw-js-events sw-js-event-catalog
+            sw-storefront-typescript
+theme: sw-theme sw-theme-create sw-theme-config sw-theme-inheritance sw-theme-assets
+       sw-theme-compile sw-theme-multiple sw-theme-storefront-customization
+       sw-storefront-scss sw-scss-structure sw-scss-variables sw-scss-catalog
+       sw-storefront-assets sw-storefront-icons
+features: sw-listing-filter sw-custom-sorting sw-seo-urls sw-sitemap sw-cookie-manager
+          sw-captcha sw-accessibility sw-storefront-caching

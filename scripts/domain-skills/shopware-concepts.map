@@ -1,0 +1,6 @@
+# shopware-concepts: 12 skills -> 2 domains. Conceptual answers, no code.
+architecture: sw-concept-architecture sw-concept-dal sw-concept-data-stores
+              sw-concept-extensions sw-concept-api sw-concept-app-system
+              sw-concept-messaging
+domain: sw-concept-catalog sw-concept-checkout sw-concept-content-cms
+        sw-concept-rule-system sw-concept-translations

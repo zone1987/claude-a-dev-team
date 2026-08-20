@@ -1,0 +1,49 @@
+{
+  "defaults": {
+    "prefix": "shadcn",
+    "source": "Distilled from [ui.shadcn.com](https://ui.shadcn.com) and the [shadcn-ui repository](https://github.com/shadcn-ui/ui), retrieved 2026-08-20. Components are React source you copy into your project, styled with Tailwind and built on Radix UI or Base UI.",
+    "notes": ""
+  },
+  "domains": {
+    "setup": {
+      "title": "shadcn/ui setup",
+      "description": "shadcn/ui installation and configuration: CLI, components.json, Tailwind v4, Next.js, Vite, Remix, monorepo, React 19, MCP. Use when the request names shadcn setup, init or components.json.",
+      "intro": "Getting shadcn/ui into a project. The CLI copies component source into your repository — there is no runtime package, so an upgrade means re-running `add`."
+    },
+    "theming": {
+      "title": "shadcn/ui theming",
+      "description": "shadcn/ui theming: CSS variable tokens, colour palettes, light and dark mode, Tailwind v4 @theme, RTL and direction. Use when the request names shadcn theming, colors or dark mode.",
+      "intro": "Colour, radius and typography come from CSS variable tokens rather than component props. Change a token and every component follows."
+    },
+    "forms": {
+      "title": "shadcn/ui form components",
+      "description": "shadcn/ui form components: Form, Field, Input, Select, Checkbox, Switch, Slider, Combobox, DatePicker, Calendar, Label. Use when building a form with shadcn/ui.",
+      "intro": "Everything a form is assembled from. Form wraps react-hook-form and Zod; the rest are the controls it validates."
+    },
+    "layout": {
+      "title": "shadcn/ui layout components",
+      "description": "shadcn/ui layout components: Card, Sidebar, Sheet, Drawer, Tabs, Accordion, Collapsible, Resizable, ScrollArea, Skeleton. Use when structuring a page with shadcn/ui.",
+      "intro": "Components that arrange a page rather than collect input. Sidebar is the largest and ships its own provider, hook and keyboard shortcut."
+    },
+    "navigation": {
+      "title": "shadcn/ui navigation components",
+      "description": "shadcn/ui navigation components: NavigationMenu, Menubar, DropdownMenu, ContextMenu, Command, Breadcrumb, Pagination, Kbd. Use when building navigation or a command palette with shadcn/ui.",
+      "intro": "Menus, command palettes and positional cues. Command is the base for a searchable palette; the menu components differ mainly in trigger."
+    },
+    "feedback": {
+      "title": "shadcn/ui feedback components",
+      "description": "shadcn/ui feedback components: Dialog, Alert, Popover, Tooltip, Toast, Sonner, Progress, Badge, Button. Use when showing state or confirming with shadcn/ui.",
+      "intro": "Components that tell the user something or ask them to confirm. AlertDialog interrupts and demands an answer; Dialog does not."
+    },
+    "data": {
+      "title": "shadcn/ui data display",
+      "description": "shadcn/ui data display: Table, DataTable with TanStack Table, 70 Recharts chart examples, Carousel. Use when the request names a shadcn table, data table or chart.",
+      "intro": "Table is markup; DataTable adds TanStack Table for sorting, filtering and pagination. Charts wrap Recharts behind a ChartContainer and a config object."
+    },
+    "blocks": {
+      "title": "shadcn/ui blocks and registry",
+      "description": "shadcn/ui blocks and custom registries: dashboard, login, signup and sidebar blocks, registry.json, registry-item.json, the registry API. Use when the request names a shadcn block or registry.",
+      "intro": "Blocks are multi-component page sections you copy whole. A registry publishes your own components for the CLI to install, including from a private URL."
+    }
+  }
+}

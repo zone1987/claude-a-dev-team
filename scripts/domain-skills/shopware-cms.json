@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "prefix": "sw-cms",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "block": {
+      "title": "Shopware CMS blocks",
+      "description": "Shopware CMS blocks: registering a block, its administration component, slot configuration. Use when building a Shopware CMS block or Shopping Experience block.",
+      "intro": "A block is a layout container holding slots. Each slot takes an element."
+    },
+    "element": {
+      "title": "Shopware CMS elements",
+      "description": "Shopware CMS elements: registering an element, its administration component, the storefront template, and the data resolver that loads its data. Use when building a Shopware CMS element.",
+      "intro": "An element needs three parts: an admin component, a storefront template, and a data resolver."
+    }
+  }
+}

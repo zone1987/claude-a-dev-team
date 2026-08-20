@@ -1,0 +1,6 @@
+# shopware-testing: 14 skills -> 3 domains, one per test level.
+phpunit: shopware-phpunit sw-phpunit-setup sw-unit-test sw-integration-test
+         sw-store-api-test sw-admin-api-test sw-test-fixtures sw-test-builder
+         sw-mock-repository sw-mock-system-config
+javascript: sw-jest-admin sw-jest-storefront sw-vue-test
+e2e: sw-playwright-e2e

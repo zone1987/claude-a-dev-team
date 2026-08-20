@@ -1,0 +1,3 @@
+# sw-frontends-integrations
+
+Vollständige Referenz: [FRONTENDS-INTEGRATIONS-INTEGRATIONS.md](FRONTENDS-INTEGRATIONS-INTEGRATIONS.md)

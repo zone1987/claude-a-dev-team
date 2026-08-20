@@ -1,0 +1,4 @@
+# shopware-migration: 8 skills -> 2 domains.
+upgrade: sw-upgrade-overview shopware-6.7-migration sw-release-notes
+         sw-deprecation-handling sw-php-migration-patterns
+admin: sw-meteor-component-map sw-vite-migration sw-vuex-to-pinia

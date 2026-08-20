@@ -1,0 +1,9 @@
+# playwright-api-browser
+
+Vollstaendige API-Referenz (alle Methoden/Properties/Events):
+- `API-BROWSER-CLASS-BROWSER.md`
+- `API-BROWSER-CLASS-BROWSERCONTEXT.md`
+- `API-BROWSER-CLASS-BROWSERTYPE.md`
+- `API-BROWSER-CLASS-BROWSERSERVER.md`
+- `API-BROWSER-CLASS-PLAYWRIGHT.md`
+- `API-BROWSER-CLASS-CDPSESSION.md`

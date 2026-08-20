@@ -1,0 +1,20 @@
+# sw-elasticsearch-extension
+
+Eigene Entities/Felder in den Shopware-Elasticsearch-Index bringen.
+
+## Eigene Entity (Storefront) indizieren
+`AbstractElasticsearchDefinition` implementieren (`getMapping()`, `fetch()`), via `shopware.es.definition`-Tag
+registrieren — definiert Mapping + Daten je Dokument.
+
+## Felder zu bestehendem Index (z.B. product) hinzufügen
+- Mapping erweitern über den passenden Mapping-Event bzw. eine Definition-Extension.
+- **Custom Fields**: auf `ElasticsearchCustomFieldsMappingEvent` hören und Feld-Mapping ergänzen.
+- Übersetzte Felder über `ElasticsearchFieldBuilder::translated(...)`.
+
+## Admin-Suche erweitern
+`AbstractAdminIndexer` implementieren (eigene Entity in der Admin-ES-Suche). Alle 18 Core-Admin-Entities haben
+bereits fertige Indexer.
+
+Nach Mapping-Änderungen Index neu aufbauen (`bin/console es:index`). Grundlagen/Aktivierung: `sw-elasticsearch`.
+
+→ Vollständige Muster (Definition, FieldMapping, CustomFields, AdminIndexer, Beispiele): [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md)

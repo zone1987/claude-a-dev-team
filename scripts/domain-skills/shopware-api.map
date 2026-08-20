@@ -1,0 +1,6 @@
+# shopware-api: 17 skills -> 3 domains, one per API surface plus what they share.
+admin: sw-admin-api-auth sw-admin-api-crud sw-admin-api-search sw-admin-api-actions
+       sw-admin-api-endpoints sw-sync-api sw-sales-agent-api
+store: sw-store-api-auth sw-store-api-endpoints
+shared: sw-api-overview sw-api-headers sw-api-errors sw-api-versioning
+        sw-api-partial-loading sw-api-integration sw-api-flows sw-api-catalog

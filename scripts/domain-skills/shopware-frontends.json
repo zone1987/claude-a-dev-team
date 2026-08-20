@@ -1,0 +1,24 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [frontends.shopware.com](https://frontends.shopware.com) and the shopware/frontends repository, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "client": {
+      "title": "Shopware Frontends API client",
+      "description": "Shopware Frontends client: @shopware/api-client, api-gen types, composables, session and context tokens. Use when the request names the Shopware api-client, api-gen or a composable.",
+      "intro": "The data layer. api-gen turns the shop's OpenAPI into types, so the client is typed against your actual shop."
+    },
+    "building": {
+      "title": "Shopware Frontends application",
+      "description": "Shopware Frontends application: getting started, framework choice, Nuxt setup, routing, CMS rendering, i18n, customisation, features, B2B. Use when building a headless Shopware storefront.",
+      "intro": "Assembling a storefront. cms-base renders Shopping Experiences without you rebuilding the block system."
+    },
+    "practice": {
+      "title": "Shopware Frontends practice",
+      "description": "Shopware Frontends practice: best practices, worked examples, third-party integrations, deployment. Use when deploying a Shopware Frontends storefront or looking for an example.",
+      "intro": "Guidance and examples rather than API surface."
+    }
+  }
+}

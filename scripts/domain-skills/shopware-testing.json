@@ -1,0 +1,24 @@
+{
+  "defaults": {
+    "prefix": "sw",
+    "source": "Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.",
+    "notes": ""
+  },
+  "domains": {
+    "phpunit": {
+      "title": "Shopware PHPUnit testing",
+      "description": "Shopware PHPUnit: setup, unit and integration tests, Store API and Admin API tests, fixtures and builders, repository and config mocks. Use when writing a PHPUnit test for a Shopware plugin.",
+      "intro": "The PHP side. Integration tests need the kernel; unit tests need the mocks listed here instead."
+    },
+    "javascript": {
+      "title": "Shopware JavaScript testing",
+      "description": "Shopware JavaScript testing: Jest for the administration and the storefront, Vue component tests. Use when writing a Jest or Vue test for Shopware.",
+      "intro": "Jest with Shopware's own setup. Administration and storefront have different configurations."
+    },
+    "e2e": {
+      "title": "Shopware end-to-end testing",
+      "description": "Shopware end-to-end testing with Playwright: setup, fixtures and the shop-specific helpers. Use when writing a Playwright end-to-end test against a Shopware shop.",
+      "intro": "Full-stack tests against a running shop."
+    }
+  }
+}
