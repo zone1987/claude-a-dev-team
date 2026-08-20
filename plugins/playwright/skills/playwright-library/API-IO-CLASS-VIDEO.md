@@ -1,26 +1,26 @@
 # Playwright — class: Video
 
-> **Manifest:** 3 Methoden, 0 Properties, 0 Events.
-> Repraesentiert die Video-Aufzeichnung einer Browser-Seite.
-> Verfuegbar wenn BrowserContext mit `recordVideo`-Option erstellt wurde.
-> Zugriff: `page.video()`.
+> **Manifest:** 3 methods, 0 properties, 0 events.
+> Represents the video recording of a browser page.
+> Available when the BrowserContext was created with the `recordVideo` option.
+> Access: `page.video()`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [BrowserContext-Konfiguration fuer Video](#browsercontext-konfiguration-fuer-video)
-- [Typische Einsatzszenarien](#typische-einsatzszenarien)
+- [Overview](#overview)
+- [Methods](#methods)
+- [BrowserContext configuration for video](#browsercontext-configuration-for-video)
+- [Typical usage scenarios](#typical-usage-scenarios)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Video` erlaubt den Zugriff auf die aufgezeichnete Video-Datei einer Seiten-
-Sitzung. Videos werden erst vollstaendig geschrieben, wenn der BrowserContext
-geschlossen wird. `saveAs()` kann sicher aufgerufen werden, waehrend die
-Aufnahme noch laeuft.
+`Video` gives access to the recorded video file of a page
+session. Videos are only written completely once the BrowserContext
+is closed. `saveAs()` can be called safely while the
+recording is still running.
 
 ```javascript
 const context = await browser.newContext({
@@ -31,33 +31,33 @@ const context = await browser.newContext({
 });
 const page = await context.newPage();
 await page.goto('https://example.com');
-// ... Interaktionen ...
-await context.close(); // Video wird jetzt gespeichert
+// ... interactions ...
+await context.close(); // the video is saved now
 const videoPath = await page.video().path();
 ```
 
 ---
 
-## Methoden
+## Methods
 
 ### video.delete()
 
-Loescht die Video-Datei. Wartet ggf. auf den Abschluss der Aufnahme.
+Deletes the video file. Waits for the recording to finish if necessary.
 
-**Signatur:**
+**Signature:**
 ```typescript
 video.delete(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.11
+**Added:** v1.11
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Video nach dem Test loeschen (z.B. wenn Test bestanden hat)
+// Delete the video after the test (e.g. when the test passed)
 await page.video().delete();
 ```
 
@@ -65,66 +65,66 @@ await page.video().delete();
 
 ### video.path()
 
-Gibt den Dateisystem-Pfad zurueck, unter dem das Video gespeichert wird.
-Das Video ist garantiert geschrieben, sobald der BrowserContext geschlossen
-wurde.
+Returns the filesystem path under which the video is stored.
+The video is guaranteed to be written as soon as the BrowserContext has been
+closed.
 
-**Signatur:**
+**Signature:**
 ```typescript
 video.path(): Promise<string>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<string>` — absoluter Dateipfad zur Video-Datei
+**Returns:** `Promise<string>` — absolute file path to the video file
 
-**Hinzugefuegt:** Vor v1.9
+**Added:** Before v1.9
 
-**Hinweis:** Wirft einen Fehler, wenn Playwright mit einem Remote-Browser
-verbunden ist (keine lokale Dateisystem-Kontrolle).
+**Note:** Throws an error when Playwright is connected to a remote browser
+(no local filesystem control).
 
-**Beispiel:**
+**Example:**
 ```javascript
 const path = await page.video().path();
-console.log('Video gespeichert unter:', path);
-// z.B. "./videos/test-2024-01-15-abc123.webm"
+console.log('Video saved at:', path);
+// e.g. "./videos/test-2024-01-15-abc123.webm"
 ```
 
 ---
 
 ### video.saveAs(path)
 
-Speichert das Video an einem benutzerdefinierten Pfad. Sicher waehrend
-laufender Aufnahme und nach dem Schliessen der Seite aufrufbar.
+Saves the video at a custom path. Safe to call while
+recording is running and after the page has been closed.
 
-**Signatur:**
+**Signature:**
 ```typescript
 video.saveAs(path: string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `path` | `string` | ja | — | Zieldateipfad inkl. Dateiname (absolut oder relativ zum CWD) |
+| `path` | `string` | yes | — | Target file path including file name (absolute or relative to the CWD) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.11
+**Added:** v1.11
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.video().saveAs('/recordings/test-login-flow.webm');
 ```
 
 ---
 
-## BrowserContext-Konfiguration fuer Video
+## BrowserContext configuration for video
 
 ```javascript
 const context = await browser.newContext({
   recordVideo: {
-    dir: './test-videos/',     // Verzeichnis fuer automatische Videos
+    dir: './test-videos/',     // directory for automatic videos
     size: {
       width: 1280,
       height: 720
@@ -133,7 +133,7 @@ const context = await browser.newContext({
 });
 ```
 
-Mit Playwright Test (`playwright.config.ts`):
+With Playwright Test (`playwright.config.ts`):
 
 ```typescript
 import { defineConfig } from '@playwright/test';
@@ -147,19 +147,19 @@ export default defineConfig({
 
 ---
 
-## Typische Einsatzszenarien
+## Typical usage scenarios
 
-### Video nur bei Fehler behalten
+### Keep the video only on failure
 
 ```javascript
-// In einem Playwright-Test
-test('mein test', async ({ page }, testInfo) => {
+// In a Playwright test
+test('my test', async ({ page }, testInfo) => {
   const context = await browser.newContext({ recordVideo: { dir: './videos' } });
   const page = await context.newPage();
 
   try {
     await page.goto('https://example.com');
-    // ... Testschritte ...
+    // ... test steps ...
   } finally {
     await context.close();
     if (testInfo.status !== 'passed') {
@@ -175,17 +175,17 @@ test('mein test', async ({ page }, testInfo) => {
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 3      |
+| Methods   | 3      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `saveAs()` ist die wichtigste Methode — sie erlaubt es, Videos
-gezielt und unabhaengig vom Default-Speicherort zu sichern. `path()` gibt
-den automatisch gewaehlten Pfad zurueck. `delete()` ermoeglicht explizites
-Aufraeumen z.B. bei bestandenen Tests, um Speicherplatz zu sparen.
+**Conclusion:** `saveAs()` is the most important method — it allows videos
+to be stored deliberately and independently of the default location. `path()` returns
+the automatically chosen path. `delete()` enables explicit
+cleanup, e.g. for passed tests, in order to save disk space.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-video*
+*Source: https://playwright.dev/docs/api/class-video*

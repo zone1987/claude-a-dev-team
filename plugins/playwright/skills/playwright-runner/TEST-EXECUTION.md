@@ -1,8 +1,8 @@
 # playwright-test-execution
 
-Alle CLI-Optionen, Parallelitaet, Sharding, Retries und Timeout-Typen.
-Vollstaendige Flags-Tabelle, `webServer`-Konfiguration und UI-Mode-Features.
+All CLI options, parallelism, sharding, retries and timeout types.
+Complete flags table, `webServer` configuration and UI mode features.
 
-## Vertiefung
+## Deep dive
 
-- [TEST-EXECUTION-EXECUTION.md](TEST-EXECUTION-EXECUTION.md) — CLI-Flags-Tabelle, Parallelitaet, Sharding, Retries, Timeouts, UI-Mode
+- [TEST-EXECUTION-EXECUTION.md](TEST-EXECUTION-EXECUTION.md) — CLI flags table, parallelism, sharding, retries, timeouts, UI mode

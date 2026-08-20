@@ -1,9 +1,9 @@
 # playwright-pom
 
-Page Object Model (POM)-Muster mit Playwright: Klassen-Struktur, Locator-Eigenschaften,
-zusammengesetzte Methoden. Best Practices: Isolation, bevorzugte Locatoren, Web-First-
-Assertions, Debugging (Inspector, Trace Viewer), CI-Optimierung.
+Page Object Model (POM) pattern with Playwright: class structure, locator properties,
+composed methods. Best practices: isolation, preferred locators, web-first
+assertions, debugging (Inspector, Trace Viewer), CI optimization.
 
-## Vertiefung
+## Deep dive
 
-- [POM-BEST-PRACTICES.md](POM-BEST-PRACTICES.md) — POM-Beispiel + alle Best Practices
+- [POM-BEST-PRACTICES.md](POM-BEST-PRACTICES.md) — POM example + all best practices

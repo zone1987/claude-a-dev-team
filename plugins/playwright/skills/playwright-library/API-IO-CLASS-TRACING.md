@@ -1,27 +1,27 @@
 # Playwright — class: Tracing
 
-> **Manifest:** 8 Methoden, 0 Properties, 0 Events.
-> Erstellt und verwaltet Playwright Traces fuer den Trace Viewer.
-> Zugriff: `browserContext.tracing`.
+> **Manifest:** 8 methods, 0 properties, 0 events.
+> Creates and manages Playwright traces for the Trace Viewer.
+> Access: `browserContext.tracing`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Vollstaendiges Beispiel (Playwright Test)](#vollstaendiges-beispiel-playwright-test)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Complete example (Playwright Test)](#complete-example-playwright-test)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Tracing` zeichnet detaillierte Informationen ueber Netzwerk-Requests,
-Seitenaktionen, Screenshots und DOM-Snapshots auf. Die resultierenden
-`.zip`-Dateien koennen im Playwright Trace Viewer (`npx playwright show-trace
-trace.zip`) geoeffnet werden.
+`Tracing` records detailed information about network requests,
+page actions, screenshots and DOM snapshots. The resulting
+`.zip` files can be opened in the Playwright Trace Viewer (`npx playwright show-trace
+trace.zip`).
 
 ```javascript
-// Einfaches Beispiel
+// Simple example
 await context.tracing.start({ screenshots: true, snapshots: true });
 const page = await context.newPage();
 await page.goto('https://playwright.dev');
@@ -30,14 +30,14 @@ await context.tracing.stop({ path: 'trace.zip' });
 
 ---
 
-## Methoden
+## Methods
 
 ### tracing.group(name, options?)
 
-Erstellt eine benannte Gruppe im Trace, die alle folgenden API-Aufrufe
-bis zum naechsten `groupEnd()` zusammenfasst.
+Creates a named group in the trace that bundles all subsequent API calls
+up to the next `groupEnd()`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.group(name: string, options?: {
   location?: {
@@ -48,21 +48,21 @@ tracing.group(name: string, options?: {
 }): Promise<Disposable>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `name` | `string` | ja | — | Bezeichnung der Gruppe im Trace Viewer |
-| `options.location` | `Object` | nein | — | Quellcode-Ort der Gruppe (fuer Test-Annotierungen) |
-| `options.location.file` | `string` | nein | — | Quelldatei-Pfad |
-| `options.location.line` | `number` | nein | — | Zeilennummer |
-| `options.location.column` | `number` | nein | — | Spaltennummer |
+| `name` | `string` | yes | — | Label of the group in the Trace Viewer |
+| `options.location` | `Object` | no | — | Source code location of the group (for test annotations) |
+| `options.location.file` | `string` | no | — | Source file path |
+| `options.location.line` | `number` | no | — | Line number |
+| `options.location.column` | `number` | no | — | Column number |
 
-**Rueckgabe:** `Promise<Disposable>` — beim Dispose wird die Gruppe geschlossen
+**Returns:** `Promise<Disposable>` — on dispose the group is closed
 
-**Beispiel:**
+**Example:**
 ```javascript
-await context.tracing.group('Login-Flow');
+await context.tracing.group('Login flow');
 await page.fill('#username', 'user');
 await page.fill('#password', 'pass');
 await page.click('#submit');
@@ -73,18 +73,18 @@ await context.tracing.groupEnd();
 
 ### tracing.groupEnd()
 
-Schliesst die zuletzt mit `group()` geoeffnete Gruppe.
+Closes the group most recently opened with `group()`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.groupEnd(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.groupEnd();
 ```
@@ -93,9 +93,9 @@ await context.tracing.groupEnd();
 
 ### tracing.start(options?)
 
-Startet die Trace-Aufzeichnung fuer diesen BrowserContext.
+Starts trace recording for this BrowserContext.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.start(options?: {
   live?: boolean;
@@ -107,26 +107,26 @@ tracing.start(options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.live` | `boolean` | nein | `false` | Trace-Datei wird nicht archiviert — erlaubt Live-Inspektion ueber `tracesDir` |
-| `options.name` | `string` | nein | — | Praefix fuer temporaere Trace-Dateien in `tracesDir` |
-| `options.screenshots` | `boolean` | nein | `false` | Screenshots fuer Timeline-Vorschau aufnehmen |
-| `options.snapshots` | `boolean` | nein | `false` | DOM-Snapshots und Netzwerk-Aktivitaet aufzeichnen (ermoeglicht Inspect-Modus im Viewer) |
-| `options.sources` | `boolean` | nein | `false` | Quell-Dateien in den Trace einbinden |
-| `options.title` | `string` | nein | — | Angezeigter Name im Trace Viewer |
+| `options.live` | `boolean` | no | `false` | The trace file is not archived — allows live inspection via `tracesDir` |
+| `options.name` | `string` | no | — | Prefix for temporary trace files in `tracesDir` |
+| `options.screenshots` | `boolean` | no | `false` | Capture screenshots for the timeline preview |
+| `options.snapshots` | `boolean` | no | `false` | Record DOM snapshots and network activity (enables inspect mode in the viewer) |
+| `options.sources` | `boolean` | no | `false` | Include source files in the trace |
+| `options.title` | `string` | no | — | Name displayed in the Trace Viewer |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.start({
   screenshots: true,
   snapshots: true,
   sources: true,
-  title: 'Checkout-Flow Test'
+  title: 'Checkout flow test'
 });
 ```
 
@@ -134,11 +134,11 @@ await context.tracing.start({
 
 ### tracing.startChunk(options?)
 
-Startet einen neuen Trace-Chunk auf demselben bereits laufenden Context.
-Ermaoglicht es, mehrere Teil-Traces aus einer einzigen Testsession zu
-erzeugen.
+Starts a new trace chunk on the same already running context.
+Makes it possible to produce several partial traces from a single test
+session.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.startChunk(options?: {
   name?: string;
@@ -146,25 +146,25 @@ tracing.startChunk(options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.name` | `string` | nein | — | Praefix fuer temporaere Chunk-Dateien |
-| `options.title` | `string` | nein | — | Angezeigter Name im Trace Viewer |
+| `options.name` | `string` | no | — | Prefix for temporary chunk files |
+| `options.title` | `string` | no | — | Name displayed in the Trace Viewer |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.start({ screenshots: true, snapshots: true });
 
-// Erster Test
+// First test
 await context.tracing.startChunk({ title: 'Test: Login' });
 await page.goto('/login');
 await context.tracing.stopChunk({ path: 'trace-login.zip' });
 
-// Zweiter Test auf demselben Context
+// Second test on the same context
 await context.tracing.startChunk({ title: 'Test: Checkout' });
 await page.goto('/checkout');
 await context.tracing.stopChunk({ path: 'trace-checkout.zip' });
@@ -174,10 +174,10 @@ await context.tracing.stopChunk({ path: 'trace-checkout.zip' });
 
 ### tracing.startHar(path, options?)
 
-Startet die HAR-Aufzeichnung von Netzwerk-Aktivitaet. Die Datei wird beim
-Aufruf von `stopHar()` gespeichert.
+Starts HAR recording of network activity. The file is written when
+`stopHar()` is called.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.startHar(path: string, options?: {
   content?: 'omit' | 'embed' | 'attach';
@@ -187,19 +187,19 @@ tracing.startHar(path: string, options?: {
 }): Promise<Disposable>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `path` | `string` | ja | — | Zieldateipfad fuer die HAR-Datei (`.zip` wird unterstuetzt) |
-| `options.content` | `'omit' \| 'embed' \| 'attach'` | nein | — | Wie Response-Inhalte gespeichert werden: `'omit'` = nicht speichern, `'embed'` = in HAR einbetten, `'attach'` = als separate Dateien |
-| `options.mode` | `'full' \| 'minimal'` | nein | — | `'full'` = alle Details, `'minimal'` = nur zum Routing noetige Daten |
-| `options.resourcesDir` | `string` | nein | — | Verzeichnis fuer Response-Bodies (bei `'attach'`) |
-| `options.urlFilter` | `string \| RegExp` | nein | — | Nur passende URLs aufzeichnen |
+| `path` | `string` | yes | — | Target file path for the HAR file (`.zip` is supported) |
+| `options.content` | `'omit' \| 'embed' \| 'attach'` | no | — | How response contents are stored: `'omit'` = do not store, `'embed'` = embed in HAR, `'attach'` = as separate files |
+| `options.mode` | `'full' \| 'minimal'` | no | — | `'full'` = all details, `'minimal'` = only data needed for routing |
+| `options.resourcesDir` | `string` | no | — | Directory for response bodies (with `'attach'`) |
+| `options.urlFilter` | `string \| RegExp` | no | — | Record only matching URLs |
 
-**Rueckgabe:** `Promise<Disposable>` — beim Dispose wird HAR-Recording gestoppt
+**Returns:** `Promise<Disposable>` — on dispose HAR recording is stopped
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.startHar('network.har', {
   content: 'attach',
@@ -213,24 +213,24 @@ await context.tracing.stopHar();
 
 ### tracing.stop(options?)
 
-Beendet die Trace-Aufzeichnung und exportiert optional in eine Datei.
+Ends trace recording and optionally exports it to a file.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.stop(options?: {
   path?: string;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.path` | `string` | nein | — | Zieldateipfad fuer den Trace (`.zip`). Ohne Angabe wird der Trace verworfen. |
+| `options.path` | `string` | no | — | Target file path for the trace (`.zip`). Without it the trace is discarded. |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.stop({ path: 'trace.zip' });
 // Viewer: npx playwright show-trace trace.zip
@@ -240,24 +240,24 @@ await context.tracing.stop({ path: 'trace.zip' });
 
 ### tracing.stopChunk(options?)
 
-Beendet den aktuellen Trace-Chunk und exportiert ihn.
+Ends the current trace chunk and exports it.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.stopChunk(options?: {
   path?: string;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.path` | `string` | nein | — | Zieldateipfad fuer den Chunk-Trace |
+| `options.path` | `string` | no | — | Target file path for the chunk trace |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.stopChunk({ path: 'trace-chunk-1.zip' });
 ```
@@ -266,26 +266,26 @@ await context.tracing.stopChunk({ path: 'trace-chunk-1.zip' });
 
 ### tracing.stopHar()
 
-Beendet die HAR-Aufzeichnung und schreibt die Datei in den in `startHar()`
-angegebenen Pfad.
+Ends HAR recording and writes the file to the path given in
+`startHar()`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 tracing.stopHar(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await context.tracing.stopHar();
 ```
 
 ---
 
-## Vollstaendiges Beispiel (Playwright Test)
+## Complete example (Playwright Test)
 
 ```typescript
 import { test } from '@playwright/test';
@@ -297,8 +297,8 @@ test.describe('E-Commerce Flow', () => {
     // ... setup ...
   });
 
-  test('Warenkorb hinzufuegen', async ({ page, context }) => {
-    await context.tracing.startChunk({ title: 'Warenkorb' });
+  test('add to cart', async ({ page, context }) => {
+    await context.tracing.startChunk({ title: 'Cart' });
     await page.goto('/shop');
     await page.click('[data-testid="add-to-cart"]');
     await context.tracing.stopChunk({ path: 'trace-cart.zip' });
@@ -310,18 +310,18 @@ test.describe('E-Commerce Flow', () => {
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 8      |
+| Methods   | 8      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `start()` + `stop()` decken den Standardfall ab. `startChunk()` /
-`stopChunk()` ermoeglicht granulare Traces pro Test bei gemeinsamem Context.
-`startHar()` ist unabhaengig von der Trace-Aufzeichnung und dient gezielt der
-Netzwerk-Analyse. `group()` / `groupEnd()` verbessern die Lesbarkeit im Trace
-Viewer erheblich.
+**Conclusion:** `start()` + `stop()` cover the standard case. `startChunk()` /
+`stopChunk()` enables granular traces per test with a shared context.
+`startHar()` is independent of trace recording and serves network
+analysis specifically. `group()` / `groupEnd()` improve readability in the Trace
+Viewer considerably.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-tracing*
+*Source: https://playwright.dev/docs/api/class-tracing*

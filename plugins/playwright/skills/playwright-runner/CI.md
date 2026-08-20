@@ -1,5 +1,5 @@
 # playwright-ci
 
-Playwright in CI/CD: GitHub Actions/GitLab/Jenkins/Azure/CircleCI/Docker, Browser-Caching, Sharding, Artefakt-Upload.
+Playwright in CI/CD: GitHub Actions/GitLab/Jenkins/Azure/CircleCI/Docker, browser caching, sharding, artifact upload.
 
-Vollständige Referenz mit allen Optionen/Parametern/Tools: `CI-DETAIL.md`.
+Complete reference with all options/parameters/tools: `CI-DETAIL.md`.

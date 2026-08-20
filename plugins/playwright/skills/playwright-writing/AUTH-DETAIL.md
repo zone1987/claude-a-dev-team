@@ -1,45 +1,45 @@
-# Playwright Authentication - Vollstaendige Referenz
+# Playwright Authentication - Complete Reference
 
 ---
 
 ## Contents
 
-- [1. Grundprinzip](#1-grundprinzip)
-- [2. Strategie 1: Geteilter Account (Empfohlen fuer statuslose Tests)](#2-strategie-1-geteilter-account-empfohlen-fuer-statuslose-tests)
-- [3. Strategie 2: Ein Account pro Worker (Fuer state-modifizierende Tests)](#3-strategie-2-ein-account-pro-worker-fuer-state-modifizierende-tests)
-- [4. Strategie 3: Login per API](#4-strategie-3-login-per-api)
-- [5. Mehrere Rollen](#5-mehrere-rollen)
-- [6. Beide Rollen in einem Test](#6-beide-rollen-in-einem-test)
-- [7. Page Object Model mit Rollen-Fixtures](#7-page-object-model-mit-rollen-fixtures)
+- [1. Basic principle](#1-basic-principle)
+- [2. Strategy 1: Shared account (recommended for stateless tests)](#2-strategy-1-shared-account-recommended-for-stateless-tests)
+- [3. Strategy 2: One account per worker (for state-modifying tests)](#3-strategy-2-one-account-per-worker-for-state-modifying-tests)
+- [4. Strategy 3: Login via API](#4-strategy-3-login-via-api)
+- [5. Multiple roles](#5-multiple-roles)
+- [6. Both roles in one test](#6-both-roles-in-one-test)
+- [7. Page Object Model with role fixtures](#7-page-object-model-with-role-fixtures)
 - [8. Session Storage](#8-session-storage)
-- [9. Tests ohne Authentifizierung](#9-tests-ohne-authentifizierung)
-- [10. storageState API-Referenz](#10-storagestate-api-referenz)
-- [11. Auth-Ablauf und Refresh](#11-auth-ablauf-und-refresh)
+- [9. Tests without authentication](#9-tests-without-authentication)
+- [10. storageState API reference](#10-storagestate-api-reference)
+- [11. Auth expiry and refresh](#11-auth-expiry-and-refresh)
 
-## 1. Grundprinzip
+## 1. Basic principle
 
-Playwright speichert den gesamten Authentifizierungszustand (Cookies,
-LocalStorage, SessionStorage) in einer JSON-Datei (`storageState`). Diese
-Datei wird einmalig erzeugt und dann von allen Tests wiederverwendet.
+Playwright stores the entire authentication state (cookies,
+LocalStorage, SessionStorage) in a JSON file (`storageState`). This
+file is created once and then reused by all tests.
 
-### Verzeichnis-Setup
+### Directory setup
 
 ```bash
 mkdir -p playwright/.auth
 echo "playwright/.auth/" >> .gitignore
 ```
 
-**Sicherheitshinweis:** Storage-State-Dateien enthalten echte Cookies und
-Auth-Token. Niemals in Git committen.
+**Security note:** Storage state files contain real cookies and
+auth tokens. Never commit them to Git.
 
 ---
 
-## 2. Strategie 1: Geteilter Account (Empfohlen fuer statuslose Tests)
+## 2. Strategy 1: Shared account (recommended for stateless tests)
 
-Ideal fuer Tests, die keinen serverseitigen Zustand modifizieren und parallel
-laufen koennen.
+Ideal for tests that do not modify server-side state and can run in
+parallel.
 
-### Setup-Datei: tests/auth.setup.ts
+### Setup file: tests/auth.setup.ts
 
 ```typescript
 import { test as setup, expect } from '@playwright/test';
@@ -48,19 +48,19 @@ import path from 'path';
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 
 setup('authenticate', async ({ page }) => {
-  // Login-Seite aufrufen
+  // Open the login page
   await page.goto('https://example.com/login');
 
-  // Credentials eingeben
+  // Enter credentials
   await page.getByLabel('Email').fill(process.env.TEST_EMAIL!);
   await page.getByLabel('Password').fill(process.env.TEST_PASSWORD!);
   await page.getByRole('button', { name: 'Sign in' }).click();
 
-  // Auf erfolgreichen Login warten
+  // Wait for a successful login
   await page.waitForURL('https://example.com/dashboard');
   await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
 
-  // Zustand speichern
+  // Save the state
   await page.context().storageState({ path: authFile });
 });
 ```
@@ -72,12 +72,12 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   projects: [
-    // Setup laeuft zuerst
+    // Setup runs first
     {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
     },
-    // Chromium-Tests nutzen gespeicherten Zustand
+    // Chromium tests use the saved state
     {
       name: 'chromium',
       use: {
@@ -86,7 +86,7 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
-    // Firefox-Tests nutzen denselben Zustand
+    // Firefox tests use the same state
     {
       name: 'firefox',
       use: {
@@ -99,27 +99,27 @@ export default defineConfig({
 });
 ```
 
-### Test (automatisch authentifiziert)
+### Test (authenticated automatically)
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
 test('authenticated page', async ({ page }) => {
-  // page ist bereits eingeloggt - kein Login-Code noetig
+  // page is already logged in - no login code needed
   await page.goto('https://example.com/dashboard');
-  await expect(page.getByText('Willkommen')).toBeVisible();
+  await expect(page.getByText('Welcome')).toBeVisible();
 });
 ```
 
-**UI Mode:** Setup-Datei manuell ausfuehren wenn die Auth-Session ablaeuft
-(Dreieck-Button in den Filtern des UI-Mode).
+**UI Mode:** Run the setup file manually when the auth session expires
+(triangle button in the UI mode filters).
 
 ---
 
-## 3. Strategie 2: Ein Account pro Worker (Fuer state-modifizierende Tests)
+## 3. Strategy 2: One account per worker (for state-modifying tests)
 
-Wenn Tests serverseitigen Zustand aendern und parallel laufen, braucht jeder
-Worker einen eigenen Account.
+When tests change server-side state and run in parallel, every
+worker needs its own account.
 
 ### playwright/fixtures.ts
 
@@ -128,7 +128,7 @@ import { test as baseTest, expect } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 
-// Account-Pool (aus Datenbank, Env-Variablen etc.)
+// Account pool (from a database, env variables, etc.)
 async function acquireAccount(parallelIndex: number) {
   const accounts = [
     { username: 'user1@test.com', password: 'pass1' },
@@ -141,7 +141,7 @@ async function acquireAccount(parallelIndex: number) {
 export * from '@playwright/test';
 
 export const test = baseTest.extend<{}, { workerStorageState: string }>({
-  // storageState wird durch Worker-State ersetzt
+  // storageState is replaced by the worker state
   storageState: ({ workerStorageState }, use) => use(workerStorageState),
 
   workerStorageState: [async ({ browser }, use) => {
@@ -151,13 +151,13 @@ export const test = baseTest.extend<{}, { workerStorageState: string }>({
       `.auth/worker-${id}.json`
     );
 
-    // Bereits gespeicherter Zustand: wiederverwenden
+    // State already saved: reuse it
     if (fs.existsSync(fileName)) {
       await use(fileName);
       return;
     }
 
-    // Neu einloggen
+    // Log in again
     const page = await browser.newPage({ storageState: undefined });
     const account = await acquireAccount(id);
 
@@ -175,14 +175,14 @@ export const test = baseTest.extend<{}, { workerStorageState: string }>({
 });
 ```
 
-### Test mit Worker-Fixture
+### Test with the worker fixture
 
 ```typescript
-// WICHTIG: Fixture-File importieren, nicht @playwright/test
+// IMPORTANT: import the fixture file, not @playwright/test
 import { test, expect } from '../playwright/fixtures';
 
 test('isolated state test', async ({ page }) => {
-  // Jeder Worker nutzt seinen eigenen Account
+  // Every worker uses its own account
   await page.goto('/my-orders');
   await expect(page.locator('.order-count')).toBeVisible();
 });
@@ -190,11 +190,11 @@ test('isolated state test', async ({ page }) => {
 
 ---
 
-## 4. Strategie 3: Login per API
+## 4. Strategy 3: Login via API
 
-Schneller als UI-Login, wenn ein API-Endpoint verfuegbar ist.
+Faster than a UI login when an API endpoint is available.
 
-### Setup via request-Fixture
+### Setup via the request fixture
 
 ```typescript
 import { test as setup } from '@playwright/test';
@@ -202,7 +202,7 @@ import { test as setup } from '@playwright/test';
 const authFile = 'playwright/.auth/user.json';
 
 setup('authenticate via API', async ({ request }) => {
-  // POST zum Login-Endpoint
+  // POST to the login endpoint
   const response = await request.post('https://example.com/api/login', {
     data: {
       username: process.env.TEST_USER,
@@ -211,12 +211,12 @@ setup('authenticate via API', async ({ request }) => {
   });
   expect(response.ok()).toBeTruthy();
 
-  // Cookies und LocalStorage speichern
+  // Save cookies and LocalStorage
   await request.storageState({ path: authFile });
 });
 ```
 
-### Worker-Fixture mit API-Login
+### Worker fixture with API login
 
 ```typescript
 workerStorageState: [async ({}, use) => {
@@ -243,9 +243,9 @@ workerStorageState: [async ({}, use) => {
 
 ---
 
-## 5. Mehrere Rollen
+## 5. Multiple roles
 
-### Mehrere Setup-Tests
+### Multiple setup tests
 
 ```typescript
 // tests/auth.setup.ts
@@ -270,12 +270,12 @@ setup('authenticate as user', async ({ page }) => {
 });
 ```
 
-### Rollen im Test wechseln
+### Switching roles in a test
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-// Alle Tests in dieser Datei: Admin
+// All tests in this file: admin
 test.use({ storageState: 'playwright/.auth/admin.json' });
 
 test('admin can see user list', async ({ page }) => {
@@ -283,7 +283,7 @@ test('admin can see user list', async ({ page }) => {
   await expect(page.locator('table')).toBeVisible();
 });
 
-// Gruppe mit anderer Rolle
+// Group with a different role
 test.describe('user permissions', () => {
   test.use({ storageState: 'playwright/.auth/user.json' });
 
@@ -296,23 +296,23 @@ test.describe('user permissions', () => {
 
 ---
 
-## 6. Beide Rollen in einem Test
+## 6. Both roles in one test
 
 ```typescript
 test('admin sees user content', async ({ browser }) => {
-  // Admin-Context
+  // Admin context
   const adminContext = await browser.newContext({
     storageState: 'playwright/.auth/admin.json',
   });
   const adminPage = await adminContext.newPage();
 
-  // User-Context
+  // User context
   const userContext = await browser.newContext({
     storageState: 'playwright/.auth/user.json',
   });
   const userPage = await userContext.newPage();
 
-  // Interaktionen
+  // Interactions
   await adminPage.goto('/admin/posts');
   await adminPage.getByRole('button', { name: 'New Post' }).click();
   await adminPage.fill('#title', 'Test Post');
@@ -321,7 +321,7 @@ test('admin sees user content', async ({ browser }) => {
   await userPage.goto('/feed');
   await expect(userPage.getByText('Test Post')).toBeVisible();
 
-  // Aufraeumen
+  // Clean up
   await adminContext.close();
   await userContext.close();
 });
@@ -329,7 +329,7 @@ test('admin sees user content', async ({ browser }) => {
 
 ---
 
-## 7. Page Object Model mit Rollen-Fixtures
+## 7. Page Object Model with role fixtures
 
 ```typescript
 // playwright/fixtures.ts
@@ -378,15 +378,15 @@ test('multi-role interaction', async ({ adminPage, userPage }) => {
 
 ## 8. Session Storage
 
-Nicht in `storageState` enthalten (nur LocalStorage + Cookies). Manuell
-verwalten:
+Not included in `storageState` (only LocalStorage + cookies). Manage it
+manually:
 
 ```typescript
-// Speichern
+// Save
 const sessionData = await page.evaluate(() => JSON.stringify(sessionStorage));
 fs.writeFileSync('playwright/.auth/session.json', sessionData, 'utf-8');
 
-// Wiederherstellen (vor Navigation)
+// Restore (before navigating)
 const sessionData = JSON.parse(fs.readFileSync('playwright/.auth/session.json', 'utf-8'));
 await context.addInitScript(storage => {
   if (window.location.hostname === 'example.com') {
@@ -396,18 +396,18 @@ await context.addInitScript(storage => {
   }
 }, sessionData);
 
-await page.goto('https://example.com'); // Session-Storage ist jetzt gefuellt
+await page.goto('https://example.com'); // Session storage is now populated
 ```
 
 ---
 
-## 9. Tests ohne Authentifizierung
+## 9. Tests without authentication
 
 ```typescript
 // not-signed-in.spec.ts
 import { test, expect } from '@playwright/test';
 
-// Leeren Storage-State setzen
+// Set an empty storage state
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test('public page without login', async ({ page }) => {
@@ -423,32 +423,32 @@ test('redirect to login when accessing protected page', async ({ page }) => {
 
 ---
 
-## 10. storageState API-Referenz
+## 10. storageState API reference
 
 ### context.storageState(options?)
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |--------|-----|--------------|
-| `path` | `string` | Dateipfad zum Speichern (relativ zu cwd) |
-| `indexedDB` | `boolean` | IndexedDB einschliessen (default: false, ab v1.51) |
+| `path` | `string` | File path to save to (relative to cwd) |
+| `indexedDB` | `boolean` | Include IndexedDB (default: false, from v1.51) |
 
 ```typescript
-// Speichern nach Login
+// Save after login
 await page.context().storageState({ path: 'playwright/.auth/user.json' });
 
-// Wert zurueckgeben
+// Return the value
 const state = await page.context().storageState();
-console.log(state.cookies);   // Array von Cookie-Objekten
-console.log(state.origins);   // Array von {origin, localStorage[{name, value}]}
+console.log(state.cookies);   // Array of cookie objects
+console.log(state.origins);   // Array of {origin, localStorage[{name, value}]}
 
-// Mit IndexedDB
+// With IndexedDB
 await page.context().storageState({
   path: 'playwright/.auth/full-state.json',
   indexedDB: true,
 });
 ```
 
-### Storage-State-Format
+### Storage state format
 
 ```json
 {
@@ -477,7 +477,7 @@ await page.context().storageState({
 
 ### request.storageState(options?)
 
-Gleiche Optionen wie context.storageState(). Fuer API-basierte Auth.
+Same options as context.storageState(). For API-based auth.
 
 ```typescript
 await request.post('/login', { data: { username: 'alice', password: 'secret' } });
@@ -486,37 +486,37 @@ await request.storageState({ path: 'playwright/.auth/alice.json' });
 
 ---
 
-## 11. Auth-Ablauf und Refresh
+## 11. Auth expiry and refresh
 
-### Auth-Ablauf erkennen
+### Detecting auth expiry
 
 ```typescript
-// In setup: pruefen ob noch eingeloggt
+// In setup: check whether still logged in
 setup('conditionally authenticate', async ({ page }) => {
   const authFile = 'playwright/.auth/user.json';
 
-  // Gespeicherten State laden
+  // Load the saved state
   if (fs.existsSync(authFile)) {
     const context = await browser.newContext({ storageState: authFile });
     const page = await context.newPage();
     await page.goto('/dashboard');
 
-    // Pruefen ob noch eingeloggt
+    // Check whether still logged in
     if (await page.locator('#user-menu').isVisible()) {
       await context.close();
-      return; // Noch gueltig
+      return; // Still valid
     }
     await context.close();
   }
 
-  // Neu einloggen
+  // Log in again
   await page.goto('/login');
   // ... login ...
   await page.context().storageState({ path: authFile });
 });
 ```
 
-### Konfiguration fuer mehrere Browserprojekte
+### Configuration for multiple browser projects
 
 ```typescript
 export default defineConfig({
@@ -539,4 +539,4 @@ export default defineConfig({
 
 ---
 
-Quelle: https://playwright.dev/docs/auth
+Source: https://playwright.dev/docs/auth

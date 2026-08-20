@@ -2,96 +2,96 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
-- [Test mit Debug-Modus starten](#test-mit-debug-modus-starten)
-- [attach (Test-Debugging-Modus)](#attach-test-debugging-modus)
-- [Seitenzustand erkunden](#seitenzustand-erkunden)
-- [Ausfuehrungs-Kontrolle](#ausfuehrungs-kontrolle)
-- [Vollstaendiger Debugging-Workflow](#vollstaendiger-debugging-workflow)
-- [Flaky-Test untersuchen](#flaky-test-untersuchen)
+- [Command overview](#command-overview)
+- [Starting a test in debug mode](#starting-a-test-in-debug-mode)
+- [attach (test debugging mode)](#attach-test-debugging-mode)
+- [Exploring the page state](#exploring-the-page-state)
+- [Execution control](#execution-control)
+- [Complete debugging workflow](#complete-debugging-workflow)
+- [Investigating a flaky test](#investigating-a-flaky-test)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `pause-at <file>:<line>` | Breakpoint an bestimmter Zeile setzen |
-| `resume` | Test-Ausfuehrung fortsetzen |
-| `step-over` | Zur naechsten Aktion vorgehen |
-| `attach <session-name>` | Mit pausiertem Test verbinden |
+| `pause-at <file>:<line>` | Set a breakpoint at a specific line |
+| `resume` | Resume test execution |
+| `step-over` | Advance to the next action |
+| `attach <session-name>` | Connect to a paused test |
 
 ---
 
-## Test mit Debug-Modus starten
+## Starting a test in debug mode
 
 ```bash
 npx playwright test --debug=cli
 # Output: Session name: pw-debug-session-abc123
 ```
 
-Startet den Test pausiert und gibt den Session-Namen aus, mit dem die CLI verbunden werden kann.
+Starts the test paused and prints the session name the CLI can connect with.
 
 ---
 
-## attach (Test-Debugging-Modus)
+## attach (test debugging mode)
 
 ```bash
 playwright-cli attach pw-debug-session-abc123
 ```
 
-### attach-Argumente (Test-Modus)
+### attach arguments (test mode)
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<session-name>` | string | Ja | Session-Name aus `--debug=cli` Ausgabe |
+| `<session-name>` | string | Yes | Session name from the `--debug=cli` output |
 
 ---
 
-## Seitenzustand erkunden
+## Exploring the page state
 
-Nach dem Verbinden stehen alle normalen Befehle zur Verfuegung:
+Once connected, all normal commands are available:
 
-| Befehl | Zweck |
+| Command | Purpose |
 |--------|-------|
-| `playwright-cli snapshot` | Aktuellen Seitenzustand ansehen |
-| `playwright-cli console error` | Auf Fehler pruefen |
-| `playwright-cli eval "() => document.title"` | JavaScript ausfuehren |
-| `playwright-cli screenshot --filename=debug-state.png` | Screenshot aufnehmen |
-| `playwright-cli network` | Netzwerk-Anfragen pruefen |
+| `playwright-cli snapshot` | View the current page state |
+| `playwright-cli console error` | Check for errors |
+| `playwright-cli eval "() => document.title"` | Execute JavaScript |
+| `playwright-cli screenshot --filename=debug-state.png` | Take a screenshot |
+| `playwright-cli network` | Inspect network requests |
 
 ---
 
-## Ausfuehrungs-Kontrolle
+## Execution control
 
-| Befehl | Typ | Beschreibung |
+| Command | Type | Description |
 |--------|-----|-------------|
-| `resume` | — | Test-Ausfuehrung fortsetzen |
-| `step-over` | — | Zur naechsten Aktion vorgehen |
-| `pause-at <datei>:<zeile>` | string | Breakpoint an spezifischer Testdatei-Zeile |
+| `resume` | — | Resume test execution |
+| `step-over` | — | Advance to the next action |
+| `pause-at <file>:<line>` | string | Breakpoint at a specific test file line |
 
-### pause-at-Argumente
+### pause-at arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<file>:<line>` | string | Ja | Dateipfad und Zeilennummer (z. B. `test.ts:42`) |
+| `<file>:<line>` | string | Yes | File path and line number (e.g. `test.ts:42`) |
 
 ---
 
-## Vollstaendiger Debugging-Workflow
+## Complete debugging workflow
 
-### 1. Test mit Debug-Flag starten
+### 1. Start the test with the debug flag
 
 ```bash
 npx playwright test --debug=cli tests/checkout.spec.ts
 # Output: Connect with: playwright-cli attach pw-debug-abc123
 ```
 
-### 2. CLI in separatem Terminal verbinden
+### 2. Connect the CLI in a separate terminal
 
 ```bash
 playwright-cli attach pw-debug-abc123
 ```
 
-### 3. Seitenzustand inspizieren
+### 3. Inspect the page state
 
 ```bash
 playwright-cli snapshot
@@ -99,31 +99,31 @@ playwright-cli console error
 playwright-cli network
 ```
 
-### 4. Tracing fuer Analyse starten
+### 4. Start tracing for analysis
 
 ```bash
 playwright-cli tracing-start
 ```
 
-### 5. Durch Ausfuehrung schreiten
+### 5. Step through the execution
 
 ```bash
-playwright-cli step-over              # Naechste Aktion
-playwright-cli step-over              # Naechste Aktion
-playwright-cli snapshot               # Zustand nach Aktionen pruefen
-playwright-cli console                # Nachrichten pruefen
+playwright-cli step-over              # Next action
+playwright-cli step-over              # Next action
+playwright-cli snapshot               # Check the state after the actions
+playwright-cli console                # Check messages
 ```
 
-### 6. Zum Fehler-Punkt navigieren
+### 6. Navigate to the failure point
 
 ```bash
-playwright-cli pause-at test.ts:42   # Breakpoint setzen
-playwright-cli resume                 # Bis dahin ausfuehren
-playwright-cli snapshot               # Seitenzustand bei Fehler
+playwright-cli pause-at test.ts:42   # Set a breakpoint
+playwright-cli resume                 # Run up to it
+playwright-cli snapshot               # Page state at the failure
 playwright-cli screenshot --filename=failure-point.png
 ```
 
-### 7. Trace speichern
+### 7. Save the trace
 
 ```bash
 playwright-cli tracing-stop
@@ -132,10 +132,10 @@ npx playwright show-trace .playwright-cli/trace.zip
 
 ---
 
-## Flaky-Test untersuchen
+## Investigating a flaky test
 
 ```bash
-# Test mehrfach mit Debug-Flag ausfuehren
+# Run the test repeatedly with the debug flag
 npx playwright test --debug=cli --repeat-each=3 tests/flaky.spec.ts
 
 playwright-cli attach <session>
@@ -149,4 +149,4 @@ playwright-cli tracing-stop
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/test-debugging
+Source: https://playwright.dev/agent-cli/commands/test-debugging

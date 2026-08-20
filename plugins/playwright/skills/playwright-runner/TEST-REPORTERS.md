@@ -1,8 +1,8 @@
 # playwright-test-reporters
 
-Alle eingebauten Reporter mit Optionen, Custom-Reporter-API mit allen Callback-Methoden,
-Annotationen (`test.skip`, `test.fail`, `test.fixme`, `test.slow`, Tags, `test.step`).
+All built-in reporters with options, custom reporter API with all callback methods,
+annotations (`test.skip`, `test.fail`, `test.fixme`, `test.slow`, tags, `test.step`).
 
-## Vertiefung
+## Deep dive
 
-- [TEST-REPORTERS-REPORTERS.md](TEST-REPORTERS-REPORTERS.md) — Reporter-Optionen, Custom-API, Annotationen
+- [TEST-REPORTERS-REPORTERS.md](TEST-REPORTERS-REPORTERS.md) — Reporter options, custom API, annotations

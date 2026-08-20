@@ -1,16 +1,16 @@
 # class-locatorassertions — Playwright API Reference
 
-`LocatorAssertions` ist die Assertion-Klasse fuer `Locator`-Objekte. Alle Matcher retrien automatisch bis der Test erfolgreich ist oder der Timeout erreicht wird. Standardtimeout: Wert aus `TestConfig.expect` (Standard 5000 ms).
+`LocatorAssertions` is the assertion class for `Locator` objects. All matchers retry automatically until the test succeeds or the timeout is reached. Default timeout: value from `TestConfig.expect` (default 5000 ms).
 
-Zugriff via `expect(locator).*`.
+Accessed via `expect(locator).*`.
 
-Matcher-Anzahl: 29 Matcher + Property `not`
+Matcher count: 29 matchers + property `not`
 
 ---
 
 ## Contents
 
-- [Uebersicht: Timeout-Muster](#uebersicht-timeout-muster)
+- [Overview: timeout pattern](#overview-timeout-pattern)
 - [not](#not)
 - [toBeAttached()](#tobeattached)
 - [toBeChecked()](#tobechecked)
@@ -27,26 +27,26 @@ Matcher-Anzahl: 29 Matcher + Property `not`
 - [toHaveAccessibleDescription()](#tohaveaccessibledescription)
 - [toHaveAccessibleErrorMessage()](#tohaveaccessibleerrormessage)
 - [toHaveAccessibleName()](#tohaveaccessiblename)
-- [toHaveAttribute() — mit Wert](#tohaveattribute-mit-wert)
-- [toHaveAttribute() — nur Existenz](#tohaveattribute-nur-existenz)
+- [toHaveAttribute() — with value](#tohaveattribute-with-value)
+- [toHaveAttribute() — existence only](#tohaveattribute-existence-only)
 - [toHaveClass()](#tohaveclass)
 - [toHaveCount()](#tohavecount)
 - [toHaveCSS()](#tohavecss)
 - [toHaveId()](#tohaveid)
 - [toHaveJSProperty()](#tohavejsproperty)
 - [toHaveRole()](#tohaverole)
-- [toHaveScreenshot() — mit Name](#tohavescreenshot-mit-name)
-- [toHaveScreenshot() — automatisch](#tohavescreenshot-automatisch)
+- [toHaveScreenshot() — with name](#tohavescreenshot-with-name)
+- [toHaveScreenshot() — automatic](#tohavescreenshot-automatic)
 - [toHaveText()](#tohavetext)
 - [toHaveValue()](#tohavevalue)
 - [toHaveValues()](#tohavevalues)
 - [toMatchAriaSnapshot() — inline](#tomatchariasnapshot-inline)
-- [toMatchAriaSnapshot() — gespeichert](#tomatchariasnapshot-gespeichert)
-- [Matcher-Uebersicht (29 Matcher)](#matcher-uebersicht-29-matcher)
+- [toMatchAriaSnapshot() — stored](#tomatchariasnapshot-stored)
+- [Matcher overview (29 matchers)](#matcher-overview-29-matchers)
 
-## Uebersicht: Timeout-Muster
+## Overview: timeout pattern
 
-Jeder Matcher akzeptiert optional `{ timeout?: number }` als letztes options-Objekt. Der Timeout-Wert ueberschreibt `TestConfig.expect.timeout` fuer diesen einzelnen Aufruf.
+Every matcher optionally accepts `{ timeout?: number }` as the last options object. The timeout value overrides `TestConfig.expect.timeout` for this single call.
 
 ```typescript
 await expect(locator).toBeVisible({ timeout: 10_000 });
@@ -60,7 +60,7 @@ await expect(locator).toBeVisible({ timeout: 10_000 });
 not: LocatorAssertions
 ```
 
-Invertiert die Assertion — prueft das Gegenteil der nachfolgenden Assertion.
+Inverts the assertion — checks the opposite of the following assertion.
 
 ```typescript
 await expect(page.locator('.error')).not.toBeVisible();
@@ -78,14 +78,14 @@ toBeAttached(options?: {
 }): Promise<void>
 ```
 
-Prueft, ob das Element mit dem DOM verbunden ist (an `Document` oder `ShadowRoot` angehaengt).
+Checks whether the element is connected to the DOM (attached to a `Document` or `ShadowRoot`).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.attached` | `boolean` | nein | `true` | `true` = muss angehaengt sein; `false` = darf nicht angehaengt sein |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.attached` | `boolean` | no | `true` | `true` = must be attached; `false` = must not be attached |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('#modal')).toBeAttached();
@@ -104,15 +104,15 @@ toBeChecked(options?: {
 }): Promise<void>
 ```
 
-Prueft den angehakten Zustand einer Checkbox, eines Radio-Buttons oder eines `aria-checked`-Elements.
+Checks the checked state of a checkbox, a radio button or an `aria-checked` element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.checked` | `boolean` | nein | `true` | Erwarteter Zustand |
-| `options.indeterminate` | `boolean` | nein | `false` | Prueft auf unbestimmten Zustand (`indeterminate`) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.checked` | `boolean` | no | `true` | Expected state |
+| `options.indeterminate` | `boolean` | no | `false` | Checks for the indeterminate state (`indeterminate`) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByLabel('AGB akzeptieren')).toBeChecked();
@@ -127,13 +127,13 @@ await expect(page.getByLabel('Option')).toBeChecked({ checked: false });
 toBeDisabled(options?: { timeout?: number }): Promise<void>
 ```
 
-Prueft, ob das Element deaktiviert ist (ueber `disabled`-Attribut oder `aria-disabled`).
+Checks whether the element is disabled (via the `disabled` attribute or `aria-disabled`).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByRole('button', { name: 'Senden' })).toBeDisabled();
@@ -150,14 +150,14 @@ toBeEditable(options?: {
 }): Promise<void>
 ```
 
-Prueft, ob das Element editierbar ist.
+Checks whether the element is editable.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.editable` | `boolean` | nein | `true` | Erwarteter Zustand |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.editable` | `boolean` | no | `true` | Expected state |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByLabel('Kommentar')).toBeEditable();
@@ -172,13 +172,13 @@ await expect(page.getByLabel('Readonly')).toBeEditable({ editable: false });
 toBeEmpty(options?: { timeout?: number }): Promise<void>
 ```
 
-Prueft, ob ein editierbares Element oder DOM-Knoten keinen Text enthaelt.
+Checks whether an editable element or DOM node contains no text.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByRole('textbox')).toBeEmpty();
@@ -195,17 +195,17 @@ toBeEnabled(options?: {
 }): Promise<void>
 ```
 
-Prueft, ob das Element aktiviert (nicht deaktiviert) ist.
+Checks whether the element is enabled (not disabled).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.enabled` | `boolean` | nein | `true` | Erwarteter Zustand |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.enabled` | `boolean` | no | `true` | Expected state |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await expect(page.getByRole('button', { name: 'Absenden' })).toBeEnabled();
+await expect(page.getByRole('button', { name: 'Submit' })).toBeEnabled();
 ```
 
 ---
@@ -216,13 +216,13 @@ await expect(page.getByRole('button', { name: 'Absenden' })).toBeEnabled();
 toBeFocused(options?: { timeout?: number }): Promise<void>
 ```
 
-Prueft, ob das Element den Tastaturfokus hat.
+Checks whether the element has keyboard focus.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByLabel('Suche')).toBeFocused();
@@ -236,13 +236,13 @@ await expect(page.getByLabel('Suche')).toBeFocused();
 toBeHidden(options?: { timeout?: number }): Promise<void>
 ```
 
-Prueft, ob das Element verborgen oder nicht sichtbar ist.
+Checks whether the element is hidden or not visible.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.loading-spinner')).toBeHidden();
@@ -259,14 +259,14 @@ toBeInViewport(options?: {
 }): Promise<void>
 ```
 
-Prueft, ob das Element den Viewport schneidet (Intersection Observer API).
+Checks whether the element intersects the viewport (Intersection Observer API).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.ratio` | `number` | nein | 0 | Mindestanteil des Elements im Viewport (0-1) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.ratio` | `number` | no | 0 | Minimum proportion of the element inside the viewport (0-1) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('#cta')).toBeInViewport();
@@ -284,14 +284,14 @@ toBeVisible(options?: {
 }): Promise<void>
 ```
 
-Prueft, ob das Element im DOM angehaengt und sichtbar ist.
+Checks whether the element is attached to the DOM and visible.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
-| `options.visible` | `boolean` | nein | `true` | `false` entspricht `.not.toBeVisible()` |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
+| `options.visible` | `boolean` | no | `true` | `false` is equivalent to `.not.toBeVisible()` |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.toast')).toBeVisible();
@@ -309,14 +309,14 @@ toContainClass(
 ): Promise<void>
 ```
 
-Prueft, ob das Element die angegebenen CSS-Klassen enthaelt (nicht notwendigerweise alle).
+Checks whether the element contains the given CSS classes (not necessarily all of them).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string \| string[]` | ja | — | Erwartete Klasse(n); Leerzeichen-getrennt oder als Array |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `expected` | `string \| string[]` | yes | — | Expected class(es); space-separated or as an array |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.btn')).toContainClass('active');
@@ -338,16 +338,16 @@ toContainText(
 ): Promise<void>
 ```
 
-Prueft, ob das Element den angegebenen Text enthaelt (Teilstring oder Regex-Match).
+Checks whether the element contains the given text (substring or regex match).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string \| RegExp \| Array<string \| RegExp>` | ja | — | Erwarteter Text; bei Array werden Elemente sequenziell geprueft |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
-| `options.useInnerText` | `boolean` | nein | `false` | `innerText` statt `textContent` verwenden |
+| `expected` | `string \| RegExp \| Array<string \| RegExp>` | yes | — | Expected text; with an array the elements are checked sequentially |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
+| `options.useInnerText` | `boolean` | no | `false` | Use `innerText` instead of `textContent` |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.message')).toContainText('Erfolg');
@@ -368,15 +368,15 @@ toHaveAccessibleDescription(
 ): Promise<void>
 ```
 
-Prueft die accessible description des Elements gemaess W3C-Spezifikation.
+Checks the element's accessible description according to the W3C specification.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `description` | `string \| RegExp` | ja | — | Erwartete Beschreibung |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `description` | `string \| RegExp` | yes | — | Expected description |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByRole('img')).toHaveAccessibleDescription('Produktfoto');
@@ -396,18 +396,18 @@ toHaveAccessibleErrorMessage(
 ): Promise<void>
 ```
 
-Prueft den Wert des `aria-errormessage`-Attributs.
+Checks the value of the `aria-errormessage` attribute.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `errorMessage` | `string \| RegExp` | ja | — | Erwartete Fehlermeldung |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `errorMessage` | `string \| RegExp` | yes | — | Expected error message |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await expect(page.getByLabel('E-Mail')).toHaveAccessibleErrorMessage('Ungueltige E-Mail');
+await expect(page.getByLabel('Email')).toHaveAccessibleErrorMessage('Invalid email');
 ```
 
 ---
@@ -424,23 +424,23 @@ toHaveAccessibleName(
 ): Promise<void>
 ```
 
-Prueft den accessible name des Elements gemaess W3C-Spezifikation.
+Checks the element's accessible name according to the W3C specification.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string \| RegExp` | ja | — | Erwarteter Name |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string \| RegExp` | yes | — | Expected name |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await expect(page.getByRole('button')).toHaveAccessibleName('Anmelden');
+await expect(page.getByRole('button')).toHaveAccessibleName('Sign in');
 ```
 
 ---
 
-## toHaveAttribute() — mit Wert
+## toHaveAttribute() — with value
 
 ```typescript
 toHaveAttribute(
@@ -453,16 +453,16 @@ toHaveAttribute(
 ): Promise<void>
 ```
 
-Prueft, ob das Element ein bestimmtes Attribut mit einem bestimmten Wert hat.
+Checks whether the element has a certain attribute with a certain value.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string` | ja | — | Attributname |
-| `value` | `string \| RegExp` | ja | — | Erwarteter Attributwert |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string` | yes | — | Attribute name |
+| `value` | `string \| RegExp` | yes | — | Expected attribute value |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByRole('link')).toHaveAttribute('href', '/dashboard');
@@ -471,7 +471,7 @@ await expect(page.locator('img')).toHaveAttribute('src', /\.webp$/);
 
 ---
 
-## toHaveAttribute() — nur Existenz
+## toHaveAttribute() — existence only
 
 ```typescript
 toHaveAttribute(
@@ -480,14 +480,14 @@ toHaveAttribute(
 ): Promise<void>
 ```
 
-Prueft nur die Existenz des Attributs, unabhaengig vom Wert.
+Checks only the existence of the attribute, regardless of its value.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string` | ja | — | Attributname |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string` | yes | — | Attribute name |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('video')).toHaveAttribute('controls');
@@ -504,19 +504,19 @@ toHaveClass(
 ): Promise<void>
 ```
 
-Prueft die vollstaendige `class`-Eigenschaft des Elements (exakter Match oder Regex).
+Checks the element's complete `class` property (exact match or regex).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string \| RegExp \| Array<string \| RegExp>` | ja | — | Vollstaendige erwartete Klassen-Zeichenkette; bei Array: je Listenelement ein Element |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `expected` | `string \| RegExp \| Array<string \| RegExp>` | yes | — | Complete expected class string; with an array: one element per list entry |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-// Einzelnes Element: exakter class-Attribut-Vergleich
+// Single element: exact class attribute comparison
 await expect(page.locator('.btn')).toHaveClass('btn btn-primary');
-// Liste von Elementen (Array-Form)
+// List of elements (array form)
 await expect(page.getByRole('listitem')).toHaveClass(['active', 'inactive', 'active']);
 ```
 
@@ -531,14 +531,14 @@ toHaveCount(
 ): Promise<void>
 ```
 
-Prueft, ob der Locator exakt die angegebene Anzahl DOM-Knoten aufloest.
+Checks whether the locator resolves to exactly the given number of DOM nodes.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `count` | `number` | ja | — | Erwartete Anzahl Elemente |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `count` | `number` | yes | — | Expected number of elements |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByRole('listitem')).toHaveCount(5);
@@ -559,16 +559,16 @@ toHaveCSS(
 ): Promise<void>
 ```
 
-Prueft einen berechneten (computed) CSS-Eigenschaftswert.
+Checks a computed CSS property value.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string` | ja | — | CSS-Eigenschaftsname (z.B. `'display'`, `'color'`) |
-| `value` | `string \| RegExp` | ja | — | Erwarteter Wert |
-| `options.pseudo` | `'before' \| 'after'` | nein | — | Pseudo-Element pruefen |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string` | yes | — | CSS property name (e.g. `'display'`, `'color'`) |
+| `value` | `string \| RegExp` | yes | — | Expected value |
+| `options.pseudo` | `'before' \| 'after'` | no | — | Check the pseudo element |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.badge')).toHaveCSS('display', 'flex');
@@ -586,14 +586,14 @@ toHaveId(
 ): Promise<void>
 ```
 
-Prueft die DOM-`id`-Eigenschaft des Elements.
+Checks the element's DOM `id` property.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `id` | `string \| RegExp` | ja | — | Erwarteter ID-Wert |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `id` | `string \| RegExp` | yes | — | Expected ID value |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('input').first()).toHaveId('username');
@@ -611,15 +611,15 @@ toHaveJSProperty(
 ): Promise<void>
 ```
 
-Prueft eine JavaScript-Eigenschaft des DOM-Elements (nicht nur Attribute).
+Checks a JavaScript property of the DOM element (not just attributes).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string` | ja | — | Eigenschaftsname |
-| `value` | `unknown` | ja | — | Erwarteter Wert (primitiv oder serialisierbares Objekt) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string` | yes | — | Property name |
+| `value` | `unknown` | yes | — | Expected value (primitive or serializable object) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('input[type=checkbox]')).toHaveJSProperty('indeterminate', true);
@@ -636,14 +636,14 @@ toHaveRole(
 ): Promise<void>
 ```
 
-Prueft die ARIA-Rolle des Elements gemaess W3C-Spezifikation (exakter String-Vergleich).
+Checks the element's ARIA role according to the W3C specification (exact string comparison).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `role` | `AriaRole` | ja | — | Erwartete ARIA-Rolle z.B. `'button'`, `'dialog'` |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `role` | `AriaRole` | yes | — | Expected ARIA role e.g. `'button'`, `'dialog'` |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.modal')).toHaveRole('dialog');
@@ -651,7 +651,7 @@ await expect(page.locator('.modal')).toHaveRole('dialog');
 
 ---
 
-## toHaveScreenshot() — mit Name
+## toHaveScreenshot() — with name
 
 ```typescript
 toHaveScreenshot(
@@ -672,24 +672,24 @@ toHaveScreenshot(
 ): Promise<void>
 ```
 
-Vergleicht einen Element-Screenshot mit einem gespeicherten Snapshot (benannter Modus). Nur im Test-Runner verfuegbar.
+Compares an element screenshot with a stored snapshot (named mode). Only available in the test runner.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string \| string[]` | ja | — | Dateiname oder Pfad-Segmente fuer den Snapshot |
-| `options.animations` | `'disabled' \| 'allow'` | nein | `'disabled'` | CSS-Animationen beim Screenshot behandeln |
-| `options.caret` | `'hide' \| 'initial'` | nein | `'hide'` | Text-Cursor-Sichtbarkeit |
-| `options.mask` | `Locator[]` | nein | `[]` | Zu maskierende Elemente (Magenta-Rechteck) |
-| `options.maskColor` | `string` | nein | `'#FF00FF'` | Farbe der Maskierung |
-| `options.maxDiffPixelRatio` | `number` | nein | aus Config | Maximaler Anteil unterschiedlicher Pixel (0-1) |
-| `options.maxDiffPixels` | `number` | nein | aus Config | Maximale Anzahl unterschiedlicher Pixel |
-| `options.omitBackground` | `boolean` | nein | `false` | Hintergrund transparent (nur PNG) |
-| `options.scale` | `'css' \| 'device'` | nein | `'css'` | Pixel-Masseinheit |
-| `options.stylePath` | `string \| string[]` | nein | — | Zusaetzliche CSS-Dateien fuer den Screenshot |
-| `options.threshold` | `number` | nein | `0.2` | Farbdifferenz-Schwellenwert (YIQ, 0-1) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string \| string[]` | yes | — | File name or path segments for the snapshot |
+| `options.animations` | `'disabled' \| 'allow'` | no | `'disabled'` | How to handle CSS animations during the screenshot |
+| `options.caret` | `'hide' \| 'initial'` | no | `'hide'` | Text cursor visibility |
+| `options.mask` | `Locator[]` | no | `[]` | Elements to mask (magenta rectangle) |
+| `options.maskColor` | `string` | no | `'#FF00FF'` | Color of the mask |
+| `options.maxDiffPixelRatio` | `number` | no | from config | Maximum proportion of differing pixels (0-1) |
+| `options.maxDiffPixels` | `number` | no | from config | Maximum number of differing pixels |
+| `options.omitBackground` | `boolean` | no | `false` | Transparent background (PNG only) |
+| `options.scale` | `'css' \| 'device'` | no | `'css'` | Pixel unit |
+| `options.stylePath` | `string \| string[]` | no | — | Additional CSS files for the screenshot |
+| `options.threshold` | `number` | no | `0.2` | Color difference threshold (YIQ, 0-1) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('.chart')).toHaveScreenshot('chart-baseline.png');
@@ -701,7 +701,7 @@ await expect(page.locator('.header')).toHaveScreenshot('header.png', {
 
 ---
 
-## toHaveScreenshot() — automatisch
+## toHaveScreenshot() — automatic
 
 ```typescript
 toHaveScreenshot(options?: {
@@ -719,7 +719,7 @@ toHaveScreenshot(options?: {
 }): Promise<void>
 ```
 
-Wie oben, aber Name wird automatisch aus Testname + Zaehlnummer generiert.
+Same as above, but the name is generated automatically from the test name + counter.
 
 ```typescript
 await expect(page.locator('.widget')).toHaveScreenshot();
@@ -740,19 +740,19 @@ toHaveText(
 ): Promise<void>
 ```
 
-Prueft den vollstaendigen Text des Elements (whitespace-normalisiert fuer Strings).
+Checks the element's complete text (whitespace-normalized for strings).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string \| RegExp \| Array<string \| RegExp>` | ja | — | Erwarteter Text; bei Array: je Listenelement ein Element |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
-| `options.useInnerText` | `boolean` | nein | `false` | `innerText` statt `textContent` verwenden |
+| `expected` | `string \| RegExp \| Array<string \| RegExp>` | yes | — | Expected text; with an array: one element per list entry |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
+| `options.useInnerText` | `boolean` | no | `false` | Use `innerText` instead of `textContent` |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await expect(page.locator('h1')).toHaveText('Willkommen');
+await expect(page.locator('h1')).toHaveText('Welcome');
 await expect(page.getByRole('listitem')).toHaveText(['Eins', 'Zwei', 'Drei']);
 ```
 
@@ -767,17 +767,17 @@ toHaveValue(
 ): Promise<void>
 ```
 
-Prueft den aktuellen Wert eines `<input>`, `<textarea>` oder `<select>`-Elements.
+Checks the current value of an `<input>`, `<textarea>` or `<select>` element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `value` | `string \| RegExp` | ja | — | Erwarteter Wert |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `value` | `string \| RegExp` | yes | — | Expected value |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await expect(page.getByLabel('Name')).toHaveValue('Max Mustermann');
+await expect(page.getByLabel('Name')).toHaveValue('John Doe');
 ```
 
 ---
@@ -791,14 +791,14 @@ toHaveValues(
 ): Promise<void>
 ```
 
-Prueft die ausgewaehlten Werte eines Multi-Select- oder Combobox-Elements.
+Checks the selected values of a multi-select or combobox element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `values` | `Array<string \| RegExp>` | ja | — | Erwartete ausgewaehlte Werte |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `values` | `Array<string \| RegExp>` | yes | — | Expected selected values |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.getByLabel('Sprachen')).toHaveValues(['de', 'en']);
@@ -815,26 +815,26 @@ toMatchAriaSnapshot(
 ): Promise<void>
 ```
 
-Prueft, ob das Element einem inline-ARIA-Snapshot entspricht.
+Checks whether the element matches an inline ARIA snapshot.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string` | ja | — | ARIA-Snapshot als YAML-String |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `expected` | `string` | yes | — | ARIA snapshot as a YAML string |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('nav')).toMatchAriaSnapshot(`
   - navigation:
-    - link "Startseite"
+    - link "Home"
     - link "Produkte"
 `);
 ```
 
 ---
 
-## toMatchAriaSnapshot() — gespeichert
+## toMatchAriaSnapshot() — stored
 
 ```typescript
 toMatchAriaSnapshot(options?: {
@@ -843,14 +843,14 @@ toMatchAriaSnapshot(options?: {
 }): Promise<void>
 ```
 
-Vergleicht mit einer gespeicherten `.aria.yml`-Snapshot-Datei.
+Compares against a stored `.aria.yml` snapshot file.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.name` | `string` | nein | auto | Dateiname des gespeicherten Snapshots |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.name` | `string` | no | auto | File name of the stored snapshot |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page.locator('main')).toMatchAriaSnapshot({ name: 'main-content.aria.yml' });
@@ -858,20 +858,20 @@ await expect(page.locator('main')).toMatchAriaSnapshot({ name: 'main-content.ari
 
 ---
 
-## Matcher-Uebersicht (29 Matcher)
+## Matcher overview (29 matchers)
 
-| Kategorie | Matcher |
+| Category | Matcher |
 |---|---|
-| Sichtbarkeit / DOM-Zustand | `toBeAttached`, `toBeHidden`, `toBeVisible`, `toBeInViewport` |
-| Aktivierung / Interaktion | `toBeChecked`, `toBeDisabled`, `toBeEditable`, `toBeEmpty`, `toBeEnabled`, `toBeFocused` |
-| Texte | `toContainText`, `toHaveText`, `toHaveValue`, `toHaveValues` |
-| CSS / Layout | `toContainClass`, `toHaveClass`, `toHaveCSS` |
-| Attribute / Eigenschaften | `toHaveAttribute`, `toHaveId`, `toHaveJSProperty`, `toHaveRole` |
+| Visibility / DOM state | `toBeAttached`, `toBeHidden`, `toBeVisible`, `toBeInViewport` |
+| Enablement / interaction | `toBeChecked`, `toBeDisabled`, `toBeEditable`, `toBeEmpty`, `toBeEnabled`, `toBeFocused` |
+| Text | `toContainText`, `toHaveText`, `toHaveValue`, `toHaveValues` |
+| CSS / layout | `toContainClass`, `toHaveClass`, `toHaveCSS` |
+| Attributes / properties | `toHaveAttribute`, `toHaveId`, `toHaveJSProperty`, `toHaveRole` |
 | Accessibility | `toHaveAccessibleDescription`, `toHaveAccessibleErrorMessage`, `toHaveAccessibleName` |
-| Anzahl | `toHaveCount` |
-| Screenshots | `toHaveScreenshot` (2 Ueberladungen) |
-| ARIA-Snapshots | `toMatchAriaSnapshot` (2 Ueberladungen) |
+| Count | `toHaveCount` |
+| Screenshots | `toHaveScreenshot` (2 overloads) |
+| ARIA snapshots | `toMatchAriaSnapshot` (2 overloads) |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-locatorassertions
+Source: https://playwright.dev/docs/api/class-locatorassertions

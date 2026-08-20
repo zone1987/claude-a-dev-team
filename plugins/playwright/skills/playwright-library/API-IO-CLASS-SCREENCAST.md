@@ -1,47 +1,47 @@
 # Playwright — class: Screencast
 
-> **Manifest:** 7 Methoden, 0 Properties, 0 Events.
-> Steuert visuelle Annotierungen und Video-Frames fuer Screencast-Aufnahmen.
-> Experimentelles Feature. Zugriff: `page.screencast`.
+> **Manifest:** 7 methods, 0 properties, 0 events.
+> Controls visual annotations and video frames for screencast recordings.
+> Experimental feature. Access: `page.screencast`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
+- [Overview](#overview)
+- [Methods](#methods)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Screencast` bietet eine erweiterte API fuer Video-Aufnahmen mit visuellen
-Ueberlagerungen: Aktions-Annotierungen, Kapitel-Overlays und benutzerdefinierte
-HTML-Overlays. Ausserdem koennen JPEG-Frames live per Callback empfangen
-werden.
+`Screencast` offers an extended API for video recordings with visual
+overlays: action annotations, chapter overlays and custom
+HTML overlays. In addition, JPEG frames can be received live via a
+callback.
 
-**Hinweis:** Diese API ist experimentell und kann sich in zukunftigen
-Versionen aendern.
+**Note:** This API is experimental and may change in future
+versions.
 
 ---
 
-## Methoden
+## Methods
 
 ### screencast.hideActions()
 
-Entfernt alle Aktions-Annotierungen (Action-Decorations) von der Aufnahme.
+Removes all action annotations (action decorations) from the recording.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.hideActions(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.screencast.hideActions();
 ```
@@ -50,35 +50,35 @@ await page.screencast.hideActions();
 
 ### screencast.hideOverlays()
 
-Versteckt alle aktiven Overlays, ohne sie zu entfernen. Overlays koennen
-danach mit `showOverlays()` wieder sichtbar gemacht werden.
+Hides all active overlays without removing them. Overlays can
+be made visible again afterwards with `showOverlays()`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.hideOverlays(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.screencast.hideOverlays();
-// Overlays sind jetzt unsichtbar aber noch vorhanden
+// Overlays are now invisible but still present
 await page.screencast.showOverlays();
-// Overlays sind wieder sichtbar
+// Overlays are visible again
 ```
 
 ---
 
 ### screencast.showActions(options?)
 
-Aktiviert visuelle Annotierungen auf Elementen, mit denen interagiert wird
-(Klicks, Tipp-Events usw.). Gibt ein `Disposable` zurueck — beim Dispose
-werden Aktions-Annotierungen wieder deaktiviert.
+Enables visual annotations on elements that are interacted with
+(clicks, typing events etc.). Returns a `Disposable` — on dispose
+action annotations are disabled again.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.showActions(options?: {
   duration?: number;
@@ -87,25 +87,25 @@ screencast.showActions(options?: {
 }): Promise<Disposable>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.duration` | `number` | nein | `500` | Anzeigedauer der Annotation in Millisekunden |
-| `options.fontSize` | `number` | nein | `24` | Schriftgroesse des Titels in Pixeln |
-| `options.position` | `string` | nein | `'top-right'` | Position der Annotation relativ zum Element |
+| `options.duration` | `number` | no | `500` | Display duration of the annotation in milliseconds |
+| `options.fontSize` | `number` | no | `24` | Font size of the title in pixels |
+| `options.position` | `string` | no | `'top-right'` | Position of the annotation relative to the element |
 
-**Rueckgabe:** `Promise<Disposable>` — bei `dispose()` werden Aktions-
-Annotierungen gestoppt
+**Returns:** `Promise<Disposable>` — on `dispose()` action
+annotations are stopped
 
-**Beispiel:**
+**Example:**
 ```javascript
 const disposable = await page.screencast.showActions({
   duration: 800,
   fontSize: 18,
   position: 'bottom'
 });
-// ... Interaktionen werden visuell annotiert ...
+// ... interactions are annotated visually ...
 await disposable.dispose();
 ```
 
@@ -113,10 +113,10 @@ await disposable.dispose();
 
 ### screencast.showChapter(title, options?)
 
-Zeigt ein prominentes Kapitel-Overlay in der Mitte der Seite an, mit
-optionaler Beschreibung und unscharfem Hintergrund.
+Shows a prominent chapter overlay in the centre of the page, with
+an optional description and a blurred background.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.showChapter(title: string, options?: {
   description?: string;
@@ -124,20 +124,20 @@ screencast.showChapter(title: string, options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `title` | `string` | ja | — | Haupttitel-Text, prominent angezeigt |
-| `options.description` | `string` | nein | — | Optionaler Beschreibungstext unterhalb des Titels |
-| `options.duration` | `number` | nein | `2000` | Automatische Entfernung nach N Millisekunden |
+| `title` | `string` | yes | — | Main title text, displayed prominently |
+| `options.description` | `string` | no | — | Optional description text below the title |
+| `options.duration` | `number` | no | `2000` | Automatic removal after N milliseconds |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-await page.screencast.showChapter('Schritt 3: Warenkorb', {
-  description: 'Produkt zum Warenkorb hinzufuegen',
+await page.screencast.showChapter('Step 3: Cart', {
+  description: 'Add product to the cart',
   duration: 3000
 });
 await page.click('[data-testid="add-to-cart"]');
@@ -147,29 +147,29 @@ await page.click('[data-testid="add-to-cart"]');
 
 ### screencast.showOverlay(html, options?)
 
-Fuegt ein benutzerdefiniertes HTML-Overlay ueber der Seite ein.
+Inserts a custom HTML overlay on top of the page.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.showOverlay(html: string, options?: {
   duration?: number;
 }): Promise<Disposable>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `html` | `string` | ja | — | HTML-Inhalt des Overlays |
-| `options.duration` | `number` | nein | — | Automatische Entfernung nach N ms. Ohne Angabe: manuell via `dispose()` entfernen |
+| `html` | `string` | yes | — | HTML content of the overlay |
+| `options.duration` | `number` | no | — | Automatic removal after N ms. Without it: remove manually via `dispose()` |
 
-**Rueckgabe:** `Promise<Disposable>` — bei `dispose()` oder nach `duration`
-wird das Overlay entfernt
+**Returns:** `Promise<Disposable>` — on `dispose()` or after `duration`
+the overlay is removed
 
-**Beispiel:**
+**Example:**
 ```javascript
 const overlay = await page.screencast.showOverlay(
-  '<div style="background:rgba(0,0,0,0.8);color:white;padding:10px">Test lauft...</div>'
+  '<div style="background:rgba(0,0,0,0.8);color:white;padding:10px">Test running...</div>'
 );
 await page.click('#submit');
 await overlay.dispose();
@@ -179,18 +179,18 @@ await overlay.dispose();
 
 ### screencast.showOverlays()
 
-Zeigt alle zuvor mit `hideOverlays()` versteckten Overlays wieder an.
+Shows all overlays previously hidden with `hideOverlays()` again.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.showOverlays(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.screencast.showOverlays();
 ```
@@ -199,10 +199,10 @@ await page.screencast.showOverlays();
 
 ### screencast.start(options?)
 
-Startet die Screencast-Aufnahme. Kann gleichzeitig eine Video-Datei
-aufzeichnen und/oder Frames per Callback liefern.
+Starts the screencast recording. Can record a video file and/or
+deliver frames via callback at the same time.
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.start(options?: {
   onFrame?: (frame: {
@@ -219,31 +219,31 @@ screencast.start(options?: {
 }): Promise<Disposable>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.onFrame` | `Function` | nein | — | Callback fuer jeden JPEG-kodierten Frame. Erhaelt `data` (Buffer), `viewportWidth` (number), `viewportHeight` (number) |
-| `options.path` | `string` | nein | — | Dateipfad fuer Video-Aufzeichnung. Wenn angegeben, wird ein Video gespeichert. |
-| `options.quality` | `number` | nein | — | JPEG-Bildqualitaet zwischen 0 und 100 |
-| `options.size` | `Object` | nein | — | Abmessungen der aufgezeichneten Frames |
-| `options.size.width` | `number` | nein | — | Breite in Pixeln |
-| `options.size.height` | `number` | nein | — | Hoehe in Pixeln |
+| `options.onFrame` | `Function` | no | — | Callback for every JPEG-encoded frame. Receives `data` (Buffer), `viewportWidth` (number), `viewportHeight` (number) |
+| `options.path` | `string` | no | — | File path for the video recording. If given, a video is saved. |
+| `options.quality` | `number` | no | — | JPEG image quality between 0 and 100 |
+| `options.size` | `Object` | no | — | Dimensions of the recorded frames |
+| `options.size.width` | `number` | no | — | Width in pixels |
+| `options.size.height` | `number` | no | — | Height in pixels |
 
-**Rueckgabe:** `Promise<Disposable>` — beim Dispose wird die Aufnahme gestoppt
-(entspricht `stop()`)
+**Returns:** `Promise<Disposable>` — on dispose the recording is stopped
+(equivalent to `stop()`)
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Video-Datei aufnehmen
+// Record a video file
 const recording = await page.screencast.start({ path: 'demo.webm', quality: 80 });
 await page.goto('https://example.com');
 await recording.dispose();
 
-// Frame-Callback
+// Frame callback
 await page.screencast.start({
   onFrame: ({ data, viewportWidth, viewportHeight }) => {
-    // JPEG-Buffer verarbeiten (z.B. an Streaming-Service senden)
+    // Process the JPEG buffer (e.g. send to a streaming service)
     console.log(`Frame ${viewportWidth}x${viewportHeight}: ${data.length} bytes`);
   },
   size: { width: 1280, height: 720 }
@@ -254,19 +254,19 @@ await page.screencast.start({
 
 ### screencast.stop()
 
-Stoppt die Screencast-Aufnahme und speichert das Video (falls `path` in
-`start()` angegeben wurde).
+Stops the screencast recording and saves the video (if `path` was given
+in `start()`).
 
-**Signatur:**
+**Signature:**
 ```typescript
 screencast.stop(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.screencast.stop();
 ```
@@ -275,28 +275,28 @@ await page.screencast.stop();
 
 ## Properties
 
-Keine offentlichen Properties.
+No public properties.
 
 ## Events
 
-Keine eigenen Events.
+No own events.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 7      |
+| Methods   | 7      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `start()` mit `path` bietet eine Alternative zur `recordVideo`-
-Context-Option mit feingranularer Kontrolle. `showChapter()` und
-`showOverlay()` sind besonders wertvoll fuer Demo-Videos und Tutorial-
-Aufzeichnungen. `showActions()` macht Klicks und Eingaben fuer Zuschauer
-sichtbar.
+**Conclusion:** `start()` with `path` offers an alternative to the `recordVideo`
+context option with fine-grained control. `showChapter()` and
+`showOverlay()` are especially valuable for demo videos and tutorial
+recordings. `showActions()` makes clicks and inputs visible to
+viewers.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-screencast*
+*Source: https://playwright.dev/docs/api/class-screencast*

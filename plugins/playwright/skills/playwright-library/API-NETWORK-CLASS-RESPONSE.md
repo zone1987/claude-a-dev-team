@@ -1,8 +1,8 @@
 # class-response
 
-`Response` repraesentiert eine HTTP-Antwort auf eine Playwright-Anfrage. Instanzen werden ueber Page/Context-Events (`on('response')`) oder via `request.response()` erhalten. Das Objekt ist read-only.
+`Response` represents an HTTP response to a Playwright request. Instances are obtained through page/context events (`on('response')`) or via `request.response()`. The object is read-only.
 
-Methoden: 15 | Properties: 0 | Events: 0
+Methods: 15 | Properties: 0 | Events: 0
 
 ---
 
@@ -14,7 +14,7 @@ Methoden: 15 | Properties: 0 | Events: 0
 await response.allHeaders(): Promise<Object<string, string>>
 ```
 
-Gibt alle Response-Header als Objekt zurueck (lowercase Keys). Enthaelt auch sicherheitsrelevante Header, die von `headers()` ausgelassen werden. Multi-Value-Headers werden mit Komma zusammengefuehrt.
+Returns all response headers as an object (lowercase keys). Also includes security-relevant headers that are omitted by `headers()`. Multi-value headers are joined with a comma.
 
 **Returns:** `Promise<Object<string, string>>`
 
@@ -31,7 +31,7 @@ console.log(headers['content-type']);
 await response.body(): Promise<Buffer>
 ```
 
-Gibt den vollstaendigen Response-Body als binaeren `Buffer` zurueck.
+Returns the complete response body as a binary `Buffer`.
 
 **Returns:** `Promise<Buffer>`
 
@@ -48,13 +48,13 @@ require('fs').writeFileSync('response.bin', buffer);
 await response.finished(): Promise<null | Error>
 ```
 
-Wartet bis die Response vollstaendig heruntergeladen wurde. Gibt immer `null` zurueck bei Erfolg.
+Waits until the response has been downloaded completely. Always returns `null` on success.
 
-**Returns:** `Promise<null | Error>` — `null` bei Erfolg, `Error` bei Fehler
+**Returns:** `Promise<null | Error>` — `null` on success, `Error` on failure
 
 ```js
 const err = await response.finished();
-if (err) console.error('Download fehlgeschlagen:', err.message);
+if (err) console.error('Download failed:', err.message);
 ```
 
 ---
@@ -65,7 +65,7 @@ if (err) console.error('Download fehlgeschlagen:', err.message);
 response.frame(): Frame
 ```
 
-Gibt den `Frame` zurueck, der diese Response ausgeloest hat.
+Returns the `Frame` that triggered this response.
 
 **Returns:** `Frame`
 
@@ -77,7 +77,7 @@ Gibt den `Frame` zurueck, der diese Response ausgeloest hat.
 response.fromServiceWorker(): boolean
 ```
 
-Gibt `true` zurueck wenn diese Response von einem Service Worker Fetch Handler bedient wurde.
+Returns `true` when this response was served by a service worker fetch handler.
 
 **Returns:** `boolean`
 
@@ -89,13 +89,13 @@ Gibt `true` zurueck wenn diese Response von einem Service Worker Fetch Handler b
 await response.headerValue(name): Promise<string | null>
 ```
 
-Gibt den Wert eines einzelnen Response-Headers zurueck. Bei mehrfach vorkommenden Headers werden die Werte kommasepariert zusammengefuehrt.
+Returns the value of a single response header. For headers that occur multiple times, the values are joined comma-separated.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `name` | string | Yes | — | Header-Name (case-insensitive) |
+| `name` | string | Yes | — | Header name (case-insensitive) |
 
 **Returns:** `Promise<string | null>`
 
@@ -111,13 +111,13 @@ const contentType = await response.headerValue('content-type');
 await response.headerValues(name): Promise<Array<string>>
 ```
 
-Gibt alle Werte eines Headers als Array zurueck. Besonders nuetzlich fuer `Set-Cookie`, der mehrfach vorkommen kann.
+Returns all values of a header as an array. Especially useful for `Set-Cookie`, which can occur multiple times.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `name` | string | Yes | — | Header-Name (case-insensitive) |
+| `name` | string | Yes | — | Header name (case-insensitive) |
 
 **Returns:** `Promise<Array<string>>`
 
@@ -134,7 +134,7 @@ cookies.forEach(c => console.log('Cookie:', c));
 response.headers(): Object<string, string>
 ```
 
-Gibt Response-Header synchron als Objekt zurueck (lowercase Keys). Schliesst einige sicherheitsrelevante Headers aus. Fuer alle Headers `allHeaders()` verwenden.
+Returns response headers synchronously as an object (lowercase keys). Excludes some security-relevant headers. Use `allHeaders()` for all headers.
 
 **Returns:** `Object<string, string>`
 
@@ -146,7 +146,7 @@ Gibt Response-Header synchron als Objekt zurueck (lowercase Keys). Schliesst ein
 await response.headersArray(): Promise<Array<{name: string, value: string}>>
 ```
 
-Gibt alle Response-Header als Array von Name/Wert-Objekten zurueck. Behaelt Original-Casing bei; Multi-Value-Headers erscheinen als separate Eintraege.
+Returns all response headers as an array of name/value objects. Preserves the original casing; multi-value headers appear as separate entries.
 
 **Returns:** `Promise<Array<{name: string, value: string}>>`
 
@@ -163,9 +163,9 @@ headers.forEach(h => console.log(`${h.name}: ${h.value}`));
 await response.httpVersion(): Promise<string>
 ```
 
-Gibt die HTTP-Version zurueck, die fuer diese Response verwendet wurde.
+Returns the HTTP version that was used for this response.
 
-**Returns:** `Promise<string>` — z.B. `"HTTP/1.1"`, `"HTTP/2.0"`, `"HTTP/3.0"`
+**Returns:** `Promise<string>` — e.g. `"HTTP/1.1"`, `"HTTP/2.0"`, `"HTTP/3.0"`
 
 ```js
 const version = await response.httpVersion();
@@ -180,7 +180,7 @@ console.log('HTTP Version:', version);
 await response.json(): Promise<Serializable>
 ```
 
-Gibt den Response-Body als geparste JavaScript-Objekt zurueck. Wirft eine Exception wenn der Body kein gueltiges JSON ist.
+Returns the response body as a parsed JavaScript object. Throws an exception when the body is not valid JSON.
 
 **Returns:** `Promise<Serializable>`
 
@@ -197,7 +197,7 @@ console.log(data.users[0].name);
 response.ok(): boolean
 ```
 
-Gibt `true` zurueck wenn der Status-Code im Bereich 200-299 liegt.
+Returns `true` when the status code is in the range 200-299.
 
 **Returns:** `boolean`
 
@@ -213,13 +213,13 @@ expect(response.ok()).toBeTruthy();
 response.request(): Request
 ```
 
-Gibt die zugehoerige `Request`-Instanz zurueck.
+Returns the associated `Request` instance.
 
 **Returns:** `Request`
 
 ```js
 const req = response.request();
-console.log('Methode:', req.method(), 'URL:', req.url());
+console.log('Method:', req.method(), 'URL:', req.url());
 ```
 
 ---
@@ -230,17 +230,17 @@ console.log('Methode:', req.method(), 'URL:', req.url());
 await response.securityDetails(): Promise<null | Object>
 ```
 
-Gibt SSL/TLS-Sicherheitsinformationen zurueck. `null` fuer unsichere (HTTP) Verbindungen.
+Returns SSL/TLS security information. `null` for insecure (HTTP) connections.
 
-**Returns:** `Promise<null | Object>` mit:
+**Returns:** `Promise<null | Object>` with:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `issuer` | string | Zertifikat-Aussteller (Common Name) |
-| `protocol` | string | TLS-Protokollversion |
-| `subjectName` | string | Zertifikat-Subject (Common Name) |
-| `validFrom` | number | Gueltigkeitsbeginn (Unix-Timestamp) |
-| `validTo` | number | Gueltigkeitsende (Unix-Timestamp) |
+| `issuer` | string | Certificate issuer (common name) |
+| `protocol` | string | TLS protocol version |
+| `subjectName` | string | Certificate subject (common name) |
+| `validFrom` | number | Start of validity (Unix timestamp) |
+| `validTo` | number | End of validity (Unix timestamp) |
 
 ```js
 const details = await response.securityDetails();
@@ -258,7 +258,7 @@ if (details) {
 await response.serverAddr(): Promise<null | {ipAddress: string, port: number}>
 ```
 
-Gibt IP-Adresse und Port des Servers zurueck, der die Response gesendet hat.
+Returns the IP address and port of the server that sent the response.
 
 **Returns:** `Promise<null | {ipAddress: string, port: number}>`
 
@@ -277,9 +277,9 @@ if (addr) {
 response.status(): number
 ```
 
-Gibt den numerischen HTTP-Status-Code zurueck.
+Returns the numeric HTTP status code.
 
-**Returns:** `number` — z.B. `200`, `201`, `301`, `404`, `500`
+**Returns:** `number` — e.g. `200`, `201`, `301`, `404`, `500`
 
 ```js
 expect(response.status()).toBe(200);
@@ -293,9 +293,9 @@ expect(response.status()).toBe(200);
 response.statusText(): string
 ```
 
-Gibt den HTTP-Status-Text zurueck.
+Returns the HTTP status text.
 
-**Returns:** `string` — z.B. `"OK"`, `"Not Found"`, `"Internal Server Error"`
+**Returns:** `string` — e.g. `"OK"`, `"Not Found"`, `"Internal Server Error"`
 
 ---
 
@@ -305,7 +305,7 @@ Gibt den HTTP-Status-Text zurueck.
 await response.text(): Promise<string>
 ```
 
-Gibt den Response-Body als String zurueck (UTF-8-Dekodierung).
+Returns the response body as a string (UTF-8 decoding).
 
 **Returns:** `Promise<string>`
 
@@ -322,7 +322,7 @@ console.log(html.includes('<title>'));
 response.url(): string
 ```
 
-Gibt die URL der Response zurueck (kann nach Redirects von der urspruenglichen Request-URL abweichen).
+Returns the URL of the response (may differ from the original request URL after redirects).
 
 **Returns:** `string`
 
@@ -336,7 +336,7 @@ Gibt die URL der Response zurueck (kann nach Redirects von der urspruenglichen R
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `Response` ist ein read-only Datenobjekt fuer HTTP-Antworten. Fuer API-Tests sind `status()`, `ok()`, `json()` und `text()` die am haeufigsten verwendeten Methoden. `headerValues()` ist wichtig fuer `Set-Cookie`-Analyse. `securityDetails()` und `serverAddr()` decken TLS- und Infrastruktur-Pruefungen ab.
+**Conclusion:** `Response` is a read-only data object for HTTP responses. For API tests, `status()`, `ok()`, `json()` and `text()` are the most frequently used methods. `headerValues()` is important for `Set-Cookie` analysis. `securityDetails()` and `serverAddr()` cover TLS and infrastructure checks.
 
 ---
 

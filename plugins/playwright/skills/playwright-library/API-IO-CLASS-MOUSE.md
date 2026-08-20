@@ -1,34 +1,34 @@
 # Playwright — class: Mouse
 
-> **Manifest:** 6 Methoden, 0 Properties, 0 Events.
-> Vollstandige Maussteuerung in CSS-Pixel-Koordinaten relativ zur Viewport-Ecke oben-links.
-> Zugriff: `page.mouse`.
+> **Manifest:** 6 methods, 0 properties, 0 events.
+> Complete mouse control in CSS pixel coordinates relative to the top-left viewport corner.
+> Access: `page.mouse`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Vollstaendiges Beispiel: Drag-Rechteck zeichnen](#vollstaendiges-beispiel-drag-rechteck-zeichnen)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Complete example: drawing a drag rectangle](#complete-example-drawing-a-drag-rectangle)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Mouse` emuliert alle Maus-Interaktionen des Browsers. Die Koordinaten beziehen
-sich auf den Haupt-Frame-Viewport. Die Instanz ist ueber `page.mouse` erreichbar.
+`Mouse` emulates all mouse interactions of the browser. The coordinates refer
+to the main frame viewport. The instance is reachable via `page.mouse`.
 
 ---
 
-## Methoden
+## Methods
 
 ### mouse.click(x, y, options?)
 
-Kombination aus `move()`, `down()` und `up()` — klickt an einer Koordinate.
+Combination of `move()`, `down()` and `up()` — clicks at a coordinate.
 
-**Signatur:**
+**Signature:**
 ```typescript
 mouse.click(x: number, y: number, options?: {
   button?: 'left' | 'right' | 'middle';
@@ -37,19 +37,19 @@ mouse.click(x: number, y: number, options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `x` | `number` | ja | — | X-Koordinate in CSS-Pixeln |
-| `y` | `number` | ja | — | Y-Koordinate in CSS-Pixeln |
-| `options.button` | `'left' \| 'right' \| 'middle'` | nein | `'left'` | Welche Maustaste |
-| `options.clickCount` | `number` | nein | `1` | Anzahl Klicks (fuer Einfach-/Doppelklick usw.) |
-| `options.delay` | `number` | nein | `0` | Millisekunden zwischen mousedown und mouseup |
+| `x` | `number` | yes | — | X coordinate in CSS pixels |
+| `y` | `number` | yes | — | Y coordinate in CSS pixels |
+| `options.button` | `'left' \| 'right' \| 'middle'` | no | `'left'` | Which mouse button |
+| `options.clickCount` | `number` | no | `1` | Number of clicks (for single/double click etc.) |
+| `options.delay` | `number` | no | `0` | Milliseconds between mousedown and mouseup |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.mouse.click(100, 200);
 await page.mouse.click(100, 200, { button: 'right' });
@@ -60,9 +60,9 @@ await page.mouse.click(100, 200, { clickCount: 2, delay: 50 });
 
 ### mouse.dblclick(x, y, options?)
 
-Doppelklick: `move()`, `down()`, `up()`, `down()`, `up()`.
+Double click: `move()`, `down()`, `up()`, `down()`, `up()`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 mouse.dblclick(x: number, y: number, options?: {
   button?: 'left' | 'right' | 'middle';
@@ -70,18 +70,18 @@ mouse.dblclick(x: number, y: number, options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `x` | `number` | ja | — | X-Koordinate in CSS-Pixeln |
-| `y` | `number` | ja | — | Y-Koordinate in CSS-Pixeln |
-| `options.button` | `'left' \| 'right' \| 'middle'` | nein | `'left'` | Welche Maustaste |
-| `options.delay` | `number` | nein | `0` | Millisekunden zwischen den einzelnen Klicks |
+| `x` | `number` | yes | — | X coordinate in CSS pixels |
+| `y` | `number` | yes | — | Y coordinate in CSS pixels |
+| `options.button` | `'left' \| 'right' \| 'middle'` | no | `'left'` | Which mouse button |
+| `options.delay` | `number` | no | `0` | Milliseconds between the individual clicks |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.mouse.dblclick(150, 300);
 ```
@@ -90,9 +90,9 @@ await page.mouse.dblclick(150, 300);
 
 ### mouse.down(options?)
 
-Sendet ein `mousedown`-Event an der aktuellen Mausposition.
+Sends a `mousedown` event at the current mouse position.
 
-**Signatur:**
+**Signature:**
 ```typescript
 mouse.down(options?: {
   button?: 'left' | 'right' | 'middle';
@@ -100,16 +100,16 @@ mouse.down(options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.button` | `'left' \| 'right' \| 'middle'` | nein | `'left'` | Welche Maustaste gedrueckt wird |
-| `options.clickCount` | `number` | nein | `1` | Click-Count im Event (relevant fuer Doppelklick-Sequenzen) |
+| `options.button` | `'left' \| 'right' \| 'middle'` | no | `'left'` | Which mouse button is pressed |
+| `options.clickCount` | `number` | no | `1` | Click count in the event (relevant for double-click sequences) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.mouse.move(100, 100);
 await page.mouse.down();
@@ -119,31 +119,31 @@ await page.mouse.down();
 
 ### mouse.move(x, y, options?)
 
-Bewegt die Maus zu den angegebenen Koordinaten. Sendet `mousemove`-Events.
+Moves the mouse to the given coordinates. Sends `mousemove` events.
 
-**Signatur:**
+**Signature:**
 ```typescript
 mouse.move(x: number, y: number, options?: {
   steps?: number;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `x` | `number` | ja | — | Ziel-X-Koordinate in CSS-Pixeln |
-| `y` | `number` | ja | — | Ziel-Y-Koordinate in CSS-Pixeln |
-| `options.steps` | `number` | nein | `1` | Anzahl interpolierter Zwischenpositionen (erzeugt mehrere mousemove-Events) |
+| `x` | `number` | yes | — | Target X coordinate in CSS pixels |
+| `y` | `number` | yes | — | Target Y coordinate in CSS pixels |
+| `options.steps` | `number` | no | `1` | Number of interpolated intermediate positions (produces several mousemove events) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Direkte Bewegung
+// Direct movement
 await page.mouse.move(200, 300);
 
-// Sanfte Bewegung mit Zwischenpunkten (z.B. fuer Hover-Animationen)
+// Smooth movement with intermediate points (e.g. for hover animations)
 await page.mouse.move(200, 300, { steps: 10 });
 ```
 
@@ -151,9 +151,9 @@ await page.mouse.move(200, 300, { steps: 10 });
 
 ### mouse.up(options?)
 
-Sendet ein `mouseup`-Event an der aktuellen Mausposition.
+Sends a `mouseup` event at the current mouse position.
 
-**Signatur:**
+**Signature:**
 ```typescript
 mouse.up(options?: {
   button?: 'left' | 'right' | 'middle';
@@ -161,16 +161,16 @@ mouse.up(options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.button` | `'left' \| 'right' \| 'middle'` | nein | `'left'` | Welche Maustaste losgelassen wird |
-| `options.clickCount` | `number` | nein | `1` | Click-Count im Event |
+| `options.button` | `'left' \| 'right' \| 'middle'` | no | `'left'` | Which mouse button is released |
+| `options.clickCount` | `number` | no | `1` | Click count in the event |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.mouse.up();
 ```
@@ -179,41 +179,41 @@ await page.mouse.up();
 
 ### mouse.wheel(deltaX, deltaY)
 
-Simuliert ein Mausrad-Event (horizontales und vertikales Scrollen).
+Simulates a mouse wheel event (horizontal and vertical scrolling).
 
-**Signatur:**
+**Signature:**
 ```typescript
 mouse.wheel(deltaX: number, deltaY: number): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `deltaX` | `number` | ja | — | Horizontale Scroll-Delta in Pixeln (positiv = rechts) |
-| `deltaY` | `number` | ja | — | Vertikale Scroll-Delta in Pixeln (positiv = unten) |
+| `deltaX` | `number` | yes | — | Horizontal scroll delta in pixels (positive = right) |
+| `deltaY` | `number` | yes | — | Vertical scroll delta in pixels (positive = down) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinweis:** Das `wheel`-Event kann Scrollen ausloesen, ohne darauf zu warten
-dass das Scrollen abgeschlossen ist. Ggf. danach `page.waitForTimeout()` oder
-einen sichtbaren Zustandswechsel abwarten.
+**Note:** The `wheel` event can trigger scrolling without waiting for
+the scrolling to complete. If needed, afterwards await `page.waitForTimeout()` or
+a visible state change.
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Nach unten scrollen
+// Scroll down
 await page.mouse.wheel(0, 500);
 
-// Horizontal scrollen
+// Scroll horizontally
 await page.mouse.wheel(200, 0);
 ```
 
 ---
 
-## Vollstaendiges Beispiel: Drag-Rechteck zeichnen
+## Complete example: drawing a drag rectangle
 
 ```javascript
-// Quadrat von (0,0) nach (100,100) zeichnen (Drag-Geste)
+// Draw a square from (0,0) to (100,100) (drag gesture)
 await page.mouse.move(0, 0);
 await page.mouse.down();
 await page.mouse.move(0, 100);
@@ -227,27 +227,27 @@ await page.mouse.up();
 
 ## Properties
 
-Keine offentlichen Properties.
+No public properties.
 
 ## Events
 
-Keine eigenen Events — Mouse-Interaktionen loesen Events auf den Seiten-
-Elementen aus, nicht auf dem Mouse-Objekt selbst.
+No own events — mouse interactions trigger events on the page
+elements, not on the Mouse object itself.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 6      |
+| Methods  | 6      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `click()` und `dblclick()` decken den Grossteil der Anwendungsfaelle ab.
-`down()` / `move()` / `up()` benoetigt man fuer Drag-and-Drop oder komplexe
-Mausgesten. `wheel()` ist die einzige Scroll-Methode auf der Maus-Ebene.
+**Conclusion:** `click()` and `dblclick()` cover the majority of use cases.
+`down()` / `move()` / `up()` are needed for drag-and-drop or complex
+mouse gestures. `wheel()` is the only scroll method at the mouse level.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-mouse*
+*Source: https://playwright.dev/docs/api/class-mouse*

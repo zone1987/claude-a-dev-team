@@ -1,42 +1,42 @@
-# Playwright class-frame: Vollstaendige API-Referenz
+# Playwright class-frame: Complete API reference
 
-`Frame` repraesentiert einen einzelnen Frame (Haupt-Frame oder iframe) innerhalb einer Seite.
-Viele Methoden der `Page`-Klasse delegieren intern an den Haupt-Frame (`page.mainFrame()`).
-Beim direkten Arbeiten mit iframes erhaelt man ein `Frame`-Objekt via `page.frame()`,
-`page.frames()`, oder als Ergebnis von `frameattached`-Events.
+`Frame` represents a single frame (main frame or iframe) within a page.
+Many methods of the `Page` class delegate internally to the main frame (`page.mainFrame()`).
+When working directly with iframes you obtain a `Frame` object via `page.frame()`,
+`page.frames()`, or as the result of `frameattached` events.
 
 ---
 
 ## Contents
 
-- [Inhaltsverzeichnis](#inhaltsverzeichnis)
-- [1. Navigation & Inhalt](#1-navigation-inhalt)
-- [2. Frame-Eigenschaften & Hierarchie](#2-frame-eigenschaften-hierarchie)
-- [3. Locator-Fabrik-Methoden](#3-locator-fabrik-methoden)
-- [4. JavaScript-Ausfuehrung](#4-javascript-ausfuehrung)
-- [5. Skript- und Style-Injektion](#5-skript--und-style-injektion)
-- [6. Elementinteraktionen (Selector-basiert, deprecated)](#6-elementinteraktionen-selector-basiert-deprecated)
-- [7. Element-Inhalte & Zustand (Selector-basiert, deprecated)](#7-element-inhalte-zustand-selector-basiert-deprecated)
-- [8. Warten / Synchronisation](#8-warten-synchronisation)
+- [Table of contents](#table-of-contents)
+- [1. Navigation & content](#1-navigation-content)
+- [2. Frame properties & hierarchy](#2-frame-properties-hierarchy)
+- [3. Locator factory methods](#3-locator-factory-methods)
+- [4. JavaScript execution](#4-javascript-execution)
+- [5. Script and style injection](#5-script-and-style-injection)
+- [6. Element interactions (selector-based, deprecated)](#6-element-interactions-selector-based-deprecated)
+- [7. Element content & state (selector-based, deprecated)](#7-element-content-state-selector-based-deprecated)
+- [8. Waiting / synchronization](#8-waiting-synchronization)
 - [9. Legacy Selector API (deprecated)](#9-legacy-selector-api-deprecated)
 - [10. Manifest](#10-manifest)
 
-## Inhaltsverzeichnis
+## Table of contents
 
-1. [Navigation & Inhalt](#1-navigation--inhalt)
-2. [Frame-Eigenschaften & Hierarchie](#2-frame-eigenschaften--hierarchie)
-3. [Locator-Fabrik-Methoden](#3-locator-fabrik-methoden)
-4. [JavaScript-Ausfuehrung](#4-javascript-ausfuehrung)
-5. [Skript- und Style-Injektion](#5-skript--und-style-injektion)
-6. [Elementinteraktionen (Selector-basiert, deprecated)](#6-elementinteraktionen-selector-basiert-deprecated)
-7. [Element-Inhalte & Zustand (Selector-basiert, deprecated)](#7-element-inhalte--zustand-selector-basiert-deprecated)
-8. [Warten / Synchronisation](#8-warten--synchronisation)
+1. [Navigation & content](#1-navigation--content)
+2. [Frame properties & hierarchy](#2-frame-properties--hierarchy)
+3. [Locator factory methods](#3-locator-factory-methods)
+4. [JavaScript execution](#4-javascript-execution)
+5. [Script and style injection](#5-script-and-style-injection)
+6. [Element interactions (selector-based, deprecated)](#6-element-interactions-selector-based-deprecated)
+7. [Element content & state (selector-based, deprecated)](#7-element-content--state-selector-based-deprecated)
+8. [Waiting / synchronization](#8-waiting--synchronization)
 9. [Legacy Selector API (deprecated)](#9-legacy-selector-api-deprecated)
 10. [Manifest](#10-manifest)
 
 ---
 
-## 1. Navigation & Inhalt
+## 1. Navigation & content
 
 ### frame.goto()
 
@@ -48,20 +48,20 @@ frame.goto(url: string, options?: {
 }): Promise<Response | null>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `url` | `string` | ja | — | Ziel-URL |
-| `options.referer` | `string` | nein | — | HTTP-Referer-Header |
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
-| `options.waitUntil` | `string` | nein | `'load'` | Wann Navigation abgeschlossen gilt |
+| `url` | `string` | yes | — | Target URL |
+| `options.referer` | `string` | no | — | HTTP Referer header |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
+| `options.waitUntil` | `string` | no | `'load'` | When navigation counts as complete |
 
-Navigiert den Frame zur angegebenen URL.
+Navigates the frame to the given URL.
 
 ```typescript
-// Haupt-Frame navigieren (entspricht page.goto)
+// Navigate the main frame (equivalent to page.goto)
 await page.mainFrame().goto('https://example.com');
 
-// iframe navigieren
+// Navigate an iframe
 const frame = page.frame({ name: 'my-frame' });
 await frame?.goto('https://other-domain.com');
 ```
@@ -74,7 +74,7 @@ await frame?.goto('https://other-domain.com');
 frame.content(): Promise<string>
 ```
 
-Gibt den vollstaendigen HTML-Inhalt des Frames zurueck (inkl. Doctype).
+Returns the complete HTML content of the frame (including the doctype).
 
 ```typescript
 const html = await frame.content();
@@ -92,14 +92,14 @@ frame.setContent(html: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `html` | `string` | ja | — | Vollstaendiger HTML-String |
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
-| `options.waitUntil` | `string` | nein | `'load'` | Wann Setzen abgeschlossen gilt |
+| `html` | `string` | yes | — | Complete HTML string |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
+| `options.waitUntil` | `string` | no | `'load'` | When setting counts as complete |
 
 ```typescript
-await frame.setContent('<h1>Test</h1><p>Inhalt</p>');
+await frame.setContent('<h1>Test</h1><p>Content</p>');
 await frame.setContent(htmlString, { waitUntil: 'domcontentloaded' });
 ```
 
@@ -111,7 +111,7 @@ await frame.setContent(htmlString, { waitUntil: 'domcontentloaded' });
 frame.title(): Promise<string>
 ```
 
-Gibt den Seitentitel des Frames zurueck.
+Returns the page title of the frame.
 
 ```typescript
 const title = await frame.title();
@@ -125,7 +125,7 @@ const title = await frame.title();
 frame.url(): string
 ```
 
-Gibt die aktuelle URL des Frames zurueck (synchron).
+Returns the current URL of the frame (synchronously).
 
 ```typescript
 console.log(frame.url()); // 'https://example.com/path'
@@ -133,7 +133,7 @@ console.log(frame.url()); // 'https://example.com/path'
 
 ---
 
-## 2. Frame-Eigenschaften & Hierarchie
+## 2. Frame properties & hierarchy
 
 ### frame.name()
 
@@ -141,10 +141,10 @@ console.log(frame.url()); // 'https://example.com/path'
 frame.name(): string
 ```
 
-Gibt das `name`-Attribut des `<iframe>`-Tags zurueck. Leerer String fuer den Haupt-Frame.
+Returns the `name` attribute of the `<iframe>` tag. Empty string for the main frame.
 
 ```typescript
-const name = frame.name(); // 'my-frame' oder ''
+const name = frame.name(); // 'my-frame' or ''
 ```
 
 ---
@@ -155,7 +155,7 @@ const name = frame.name(); // 'my-frame' oder ''
 frame.isDetached(): boolean
 ```
 
-Gibt `true` zurueck wenn der Frame vom DOM entfernt wurde.
+Returns `true` if the frame has been removed from the DOM.
 
 ```typescript
 if (!frame.isDetached()) {
@@ -171,7 +171,7 @@ if (!frame.isDetached()) {
 frame.page(): Page
 ```
 
-Gibt die `Page`-Instanz zurueck, zu der dieser Frame gehoert.
+Returns the `Page` instance this frame belongs to.
 
 ```typescript
 const page = frame.page();
@@ -186,12 +186,12 @@ await page.screenshot();
 frame.parentFrame(): Frame | null
 ```
 
-Gibt den uebergeordneten Frame zurueck. `null` fuer den Haupt-Frame und abgehaengte Frames.
+Returns the parent frame. `null` for the main frame and for detached frames.
 
 ```typescript
 const parent = frame.parentFrame();
 if (parent) {
-  console.log('Parent-URL:', parent.url());
+  console.log('Parent URL:', parent.url());
 }
 ```
 
@@ -203,12 +203,12 @@ if (parent) {
 frame.childFrames(): Frame[]
 ```
 
-Gibt alle direkt untergeordneten Frames zurueck.
+Returns all direct child frames.
 
 ```typescript
 const children = frame.childFrames();
 for (const child of children) {
-  console.log('Child-Frame:', child.url());
+  console.log('Child frame:', child.url());
 }
 ```
 
@@ -220,7 +220,7 @@ for (const child of children) {
 frame.frameElement(): Promise<ElementHandle>
 ```
 
-Gibt das `<iframe>`- oder `<frame>`-DOM-Element zurueck, das diesem Frame entspricht.
+Returns the `<iframe>` or `<frame>` DOM element that corresponds to this frame.
 
 ```typescript
 const frameElement = await frame.frameElement();
@@ -230,10 +230,10 @@ console.log('iframe src:', src);
 
 ---
 
-## 3. Locator-Fabrik-Methoden
+## 3. Locator factory methods
 
-Alle Locator-Methoden des Frames entsprechen 1:1 den gleichnamigen Methoden auf `Page`.
-Sie operieren aber im Kontext dieses spezifischen Frames.
+All locator methods of the frame correspond 1:1 to the identically named methods on `Page`.
+They operate in the context of this specific frame, however.
 
 ### frame.locator()
 
@@ -246,7 +246,7 @@ frame.locator(selector: string, options?: {
 }): Locator
 ```
 
-Erstellt einen Locator relativ zum Frame.
+Creates a locator relative to the frame.
 
 ```typescript
 const iframe = page.frame({ name: 'payment' });
@@ -261,7 +261,7 @@ await iframe?.locator('input[name=card]').fill('4111111111111111');
 frame.frameLocator(selector: string): FrameLocator
 ```
 
-Erstellt einen Locator fuer verschachtelte iframes.
+Creates a locator for nested iframes.
 
 ```typescript
 const outerFrame = page.frame('outer');
@@ -288,12 +288,12 @@ frame.getByRole(role: AriaRole, options?: {
 }): Locator
 ```
 
-Findet Elemente nach ARIA-Rolle im Frame-Kontext.
+Finds elements by ARIA role in the frame context.
 
 ```typescript
 const frame = page.frame('login-frame');
-await frame?.getByRole('button', { name: 'Anmelden' }).click();
-await frame?.getByRole('textbox', { name: 'Passwort' }).fill('geheim');
+await frame?.getByRole('button', { name: 'Sign in' }).click();
+await frame?.getByRole('textbox', { name: 'Password' }).fill('secret');
 ```
 
 ---
@@ -306,7 +306,7 @@ frame.getByText(text: string | RegExp, options?: { exact?: boolean }): Locator
 
 ```typescript
 const frame = page.frame('content');
-await frame?.getByText('Willkommen').click();
+await frame?.getByText('Welcome').click();
 ```
 
 ---
@@ -318,7 +318,7 @@ frame.getByLabel(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
 ```typescript
-await frame?.getByLabel('E-Mail').fill('test@example.com');
+await frame?.getByLabel('E-mail').fill('test@example.com');
 ```
 
 ---
@@ -330,7 +330,7 @@ frame.getByPlaceholder(text: string | RegExp, options?: { exact?: boolean }): Lo
 ```
 
 ```typescript
-await frame?.getByPlaceholder('Suchbegriff').fill('Playwright');
+await frame?.getByPlaceholder('Search term').fill('Playwright');
 ```
 
 ---
@@ -354,7 +354,7 @@ frame.getByTitle(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
 ```typescript
-await frame?.getByTitle('Schliessen').click();
+await frame?.getByTitle('Close').click();
 ```
 
 ---
@@ -371,7 +371,7 @@ await frame?.getByTestId('submit-btn').click();
 
 ---
 
-## 4. JavaScript-Ausfuehrung
+## 4. JavaScript execution
 
 ### frame.evaluate()
 
@@ -382,19 +382,19 @@ frame.evaluate<T>(
 ): Promise<T>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pageFunction` | `Function\|string` | ja | Funktion die im Frame-Kontext ausgefuehrt wird |
-| `arg` | `Serializable\|JSHandle` | nein | Argument (serialisierbar oder JSHandle) |
+| `pageFunction` | `Function\|string` | yes | Function executed in the frame context |
+| `arg` | `Serializable\|JSHandle` | no | Argument (serializable or JSHandle) |
 
-Gibt serialisierten JSON-Wert zurueck.
+Returns a serialized JSON value.
 
 ```typescript
 const url = await frame.evaluate(() => window.location.href);
 const sum = await frame.evaluate(({ a, b }) => a + b, { a: 5, b: 3 });
 const title = await frame.evaluate('document.title');
 
-// DOM-Manipulation
+// DOM manipulation
 await frame.evaluate(() => {
   document.querySelector('.overlay')?.remove();
 });
@@ -411,7 +411,7 @@ frame.evaluateHandle<T>(
 ): Promise<JSHandle<T>>
 ```
 
-Wie `evaluate()`, gibt aber ein `JSHandle` zurueck (kein JSON-Serialisierungs-Overhead).
+Like `evaluate()`, but returns a `JSHandle` (no JSON serialization overhead).
 
 ```typescript
 const bodyHandle = await frame.evaluateHandle(() => document.body);
@@ -421,7 +421,7 @@ await bodyHandle.dispose();
 
 ---
 
-## 5. Skript- und Style-Injektion
+## 5. Script and style injection
 
 ### frame.addScriptTag()
 
@@ -434,14 +434,14 @@ frame.addScriptTag(options?: {
 }): Promise<ElementHandle>
 ```
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `content` | `string` | Inline-JS-Code |
-| `path` | `string` | Lokaler Dateipfad |
-| `type` | `string` | Script-type-Attribut (z.B. `'module'`) |
-| `url` | `string` | Externe URL |
+| `content` | `string` | Inline JS code |
+| `path` | `string` | Local file path |
+| `type` | `string` | Script type attribute (e.g. `'module'`) |
+| `url` | `string` | External URL |
 
-Fuegt ein `<script>`-Tag in den Frame ein.
+Inserts a `<script>` tag into the frame.
 
 ```typescript
 await frame.addScriptTag({ url: 'https://cdn.example.com/lib.js' });
@@ -461,7 +461,7 @@ frame.addStyleTag(options?: {
 }): Promise<ElementHandle>
 ```
 
-Fuegt ein `<style>`-Tag oder `<link rel=stylesheet>` in den Frame ein.
+Inserts a `<style>` tag or `<link rel=stylesheet>` into the frame.
 
 ```typescript
 await frame.addStyleTag({ content: '.highlight { background: yellow; }' });
@@ -470,9 +470,9 @@ await frame.addStyleTag({ url: 'https://cdn.example.com/style.css' });
 
 ---
 
-## 6. Elementinteraktionen (Selector-basiert, deprecated)
+## 6. Element interactions (selector-based, deprecated)
 
-**Hinweis:** Bevorzuge `frame.locator().click()` etc. gegenueber diesen direkten Selector-Methoden.
+**Note:** prefer `frame.locator().click()` etc. over these direct selector methods.
 
 ### frame.click()
 
@@ -491,7 +491,7 @@ frame.click(selector: string, options?: {
 }): Promise<void>
 ```
 
-Klickt auf das erste Element, das dem Selektor entspricht.
+Clicks the first element matching the selector.
 
 ```typescript
 await frame.click('button[type=submit]');
@@ -517,7 +517,7 @@ frame.dblclick(selector: string, options?: {
 }): Promise<void>
 ```
 
-Doppelklick.
+Double click.
 
 ```typescript
 await frame.dblclick('.editable');
@@ -538,7 +538,7 @@ frame.check(selector: string, options?: {
 }): Promise<void>
 ```
 
-Aktiviert Checkbox oder Radio.
+Checks a checkbox or radio.
 
 ```typescript
 await frame.check('#accept-terms');
@@ -559,7 +559,7 @@ frame.uncheck(selector: string, options?: {
 }): Promise<void>
 ```
 
-Deaktiviert Checkbox.
+Unchecks a checkbox.
 
 ```typescript
 await frame.uncheck('#newsletter');
@@ -578,11 +578,11 @@ frame.fill(selector: string, value: string, options?: {
 }): Promise<void>
 ```
 
-Loescht bestehenden Wert und fuellt Eingabefeld.
+Clears the existing value and fills the input field.
 
 ```typescript
 await frame.fill('input[name=email]', 'test@example.com');
-await frame.fill('textarea#comment', 'Mein Kommentar');
+await frame.fill('textarea#comment', 'My comment');
 ```
 
 ---
@@ -596,7 +596,7 @@ frame.focus(selector: string, options?: {
 }): Promise<void>
 ```
 
-Setzt Fokus auf Element.
+Sets focus on an element.
 
 ```typescript
 await frame.focus('input[autofocus]');
@@ -618,7 +618,7 @@ frame.hover(selector: string, options?: {
 }): Promise<void>
 ```
 
-Bewegt Maus ueber Element.
+Moves the mouse over an element.
 
 ```typescript
 await frame.hover('.tooltip-trigger');
@@ -640,7 +640,7 @@ frame.tap(selector: string, options?: {
 }): Promise<void>
 ```
 
-Touch-Tap (Touchscreen-Emulation erforderlich).
+Touch tap (touchscreen emulation required).
 
 ```typescript
 await frame.tap('.mobile-button');
@@ -659,11 +659,11 @@ frame.press(selector: string, key: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selector` | `string` | ja | — | Zu fokussierendes Element |
-| `key` | `string` | ja | — | Tastenkombination |
-| `options.delay` | `number` | nein | `0` | Ms zwischen keydown und keyup |
+| `selector` | `string` | yes | — | Element to focus |
+| `key` | `string` | yes | — | Key combination |
+| `options.delay` | `number` | no | `0` | Ms between keydown and keyup |
 
 ```typescript
 await frame.press('input', 'Enter');
@@ -683,10 +683,10 @@ frame.type(selector: string, text: string, options?: {
 }): Promise<void>
 ```
 
-**Deprecated.** Simuliert echte Tastatureingaben ohne bestehenden Inhalt zu loeschen.
+**Deprecated.** Simulates real keyboard input without clearing the existing content.
 
 ```typescript
-await frame.type('input', 'Hallo', { delay: 50 });
+await frame.type('input', 'Hello', { delay: 50 });
 ```
 
 ---
@@ -706,11 +706,11 @@ frame.selectOption(
 ): Promise<string[]>
 ```
 
-Waehlt Optionen in einem `<select>`-Element aus.
+Selects options in a `<select>` element.
 
 ```typescript
 await frame.selectOption('select#country', 'de');
-await frame.selectOption('select', { label: 'Deutschland' });
+await frame.selectOption('select', { label: 'Germany' });
 await frame.selectOption('select[multiple]', ['de', 'at']);
 ```
 
@@ -730,7 +730,7 @@ frame.setInputFiles(
 ): Promise<void>
 ```
 
-Setzt Dateien fuer ein `<input type=file>`.
+Sets files for an `<input type=file>`.
 
 ```typescript
 await frame.setInputFiles('input[type=file]', '/path/to/file.pdf');
@@ -753,7 +753,7 @@ frame.dispatchEvent(
 ): Promise<void>
 ```
 
-Loest ein DOM-Event aus.
+Triggers a DOM event.
 
 ```typescript
 await frame.dispatchEvent('button', 'click');
@@ -777,7 +777,7 @@ frame.dragAndDrop(source: string, target: string, options?: {
 }): Promise<void>
 ```
 
-Drag-and-Drop innerhalb des Frames.
+Drag and drop within the frame.
 
 ```typescript
 await frame.dragAndDrop('#source', '#target');
@@ -786,7 +786,7 @@ await frame.dragAndDrop('.card', '.dropzone', { steps: 5 });
 
 ---
 
-## 7. Element-Inhalte & Zustand (Selector-basiert, deprecated)
+## 7. Element content & state (selector-based, deprecated)
 
 ### frame.getAttribute()
 
@@ -963,7 +963,7 @@ frame.selectText(selector: string, options?: {
 }): Promise<void>
 ```
 
-Selektiert Text eines Eingabefelds.
+Selects the text of an input field.
 
 ```typescript
 await frame.selectText('input[name=title]');
@@ -971,7 +971,7 @@ await frame.selectText('input[name=title]');
 
 ---
 
-## 8. Warten / Synchronisation
+## 8. Waiting / synchronization
 
 ### frame.waitForLoadState()
 
@@ -982,10 +982,10 @@ frame.waitForLoadState(
 ): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `state` | `string` | nein | `'load'` | Gewuenschter Lade-Zustand |
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
+| `state` | `string` | no | `'load'` | Desired load state |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
 
 ```typescript
 await frame.waitForLoadState('networkidle');
@@ -1004,7 +1004,7 @@ frame.waitForNavigation(options?: {
 }): Promise<Response | null>
 ```
 
-**Deprecated** — Verwende `frame.waitForURL()`. Wartet auf Navigation im Frame.
+**Deprecated** — use `frame.waitForURL()`. Waits for navigation in the frame.
 
 ```typescript
 await Promise.all([
@@ -1027,7 +1027,7 @@ frame.waitForURL(
 ): Promise<void>
 ```
 
-Wartet bis die Frame-URL mit dem Muster uebereinstimmt.
+Waits until the frame URL matches the pattern.
 
 ```typescript
 await frame.waitForURL('**/dashboard');
@@ -1049,12 +1049,12 @@ frame.waitForFunction<T>(
 ): Promise<JSHandle<T>>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `polling` | `number\|'raf'` | `'raf'` | Polling-Intervall |
-| `timeout` | `number` | `defaultTimeout` | Max. Wartezeit |
+| `polling` | `number\|'raf'` | `'raf'` | Polling interval |
+| `timeout` | `number` | `defaultTimeout` | Max. wait time |
 
-Wartet bis Funktion im Frame-Kontext truthy zurueckgibt.
+Waits until the function returns truthy in the frame context.
 
 ```typescript
 await frame.waitForFunction(() => document.readyState === 'complete');
@@ -1073,7 +1073,7 @@ frame.waitForSelector(selector: string, options?: {
 }): Promise<ElementHandle | null>
 ```
 
-**Deprecated** — Verwende `frame.locator().waitFor()`.
+**Deprecated** — use `frame.locator().waitFor()`.
 
 ```typescript
 await frame.waitForSelector('.content', { state: 'visible' });
@@ -1090,7 +1090,7 @@ const handle = await frame.waitForSelector('.result');
 frame.$(selector: string, options?: { strict?: boolean }): Promise<ElementHandle | null>
 ```
 
-Gibt das erste Element zurueck, das dem Selektor entspricht. `null` wenn nicht gefunden.
+Returns the first element matching the selector. `null` if not found.
 
 ```typescript
 const el = await frame.$('h1');
@@ -1107,7 +1107,7 @@ if (el) {
 frame.$$(selector: string): Promise<ElementHandle[]>
 ```
 
-Gibt alle Elemente zurueck, die dem Selektor entsprechen.
+Returns all elements matching the selector.
 
 ```typescript
 const items = await frame.$$('li.item');
@@ -1129,7 +1129,7 @@ frame.$eval<T>(
 ): Promise<T>
 ```
 
-Fuehrt Funktion auf dem ersten gematchten Element aus.
+Runs the function on the first matched element.
 
 ```typescript
 const text = await frame.$eval('h1', el => el.textContent);
@@ -1148,7 +1148,7 @@ frame.$$eval<T>(
 ): Promise<T>
 ```
 
-Fuehrt Funktion auf ALLEN gematchten Elementen aus.
+Runs the function on ALL matched elements.
 
 ```typescript
 const texts = await frame.$$eval('li', els => els.map(el => el.textContent));
@@ -1159,25 +1159,25 @@ const count = await frame.$$eval('.item', els => els.length);
 
 ## 10. Manifest
 
-| Kategorie | Dokumentierte Mitglieder |
+| Category | Documented members |
 |---|---|
-| Navigation & Inhalt | 5 Methoden (goto, content, setContent, title, url) |
-| Frame-Eigenschaften & Hierarchie | 6 Methoden (name, isDetached, page, parentFrame, childFrames, frameElement) |
-| Locator-Fabrik | 10 Methoden (locator, frameLocator, getByRole, getByText, getByLabel, getByPlaceholder, getByAltText, getByTitle, getByTestId) |
-| JavaScript-Ausfuehrung | 2 Methoden (evaluate, evaluateHandle) |
-| Skript/Style-Injektion | 2 Methoden (addScriptTag, addStyleTag) |
-| Elementinteraktionen | 12 Methoden (click, dblclick, check, uncheck, fill, focus, hover, tap, press, type, selectOption, setInputFiles, dispatchEvent, dragAndDrop) |
-| Element-Inhalte & Zustand | 11 Methoden (getAttribute, innerHTML, innerText, textContent, inputValue, isChecked, isDisabled, isEditable, isEnabled, isHidden, isVisible, selectText) |
-| Warten/Sync | 4 Methoden (waitForLoadState, waitForNavigation, waitForURL, waitForFunction, waitForSelector) |
-| Legacy Selector API | 4 Methoden ($, $$, $eval, $$eval) |
+| Navigation & content | 5 methods (goto, content, setContent, title, url) |
+| Frame properties & hierarchy | 6 methods (name, isDetached, page, parentFrame, childFrames, frameElement) |
+| Locator factory | 10 methods (locator, frameLocator, getByRole, getByText, getByLabel, getByPlaceholder, getByAltText, getByTitle, getByTestId) |
+| JavaScript execution | 2 methods (evaluate, evaluateHandle) |
+| Script/style injection | 2 methods (addScriptTag, addStyleTag) |
+| Element interactions | 12 methods (click, dblclick, check, uncheck, fill, focus, hover, tap, press, type, selectOption, setInputFiles, dispatchEvent, dragAndDrop) |
+| Element content & state | 11 methods (getAttribute, innerHTML, innerText, textContent, inputValue, isChecked, isDisabled, isEditable, isEnabled, isHidden, isVisible, selectText) |
+| Waiting/sync | 4 methods (waitForLoadState, waitForNavigation, waitForURL, waitForFunction, waitForSelector) |
+| Legacy Selector API | 4 methods ($, $$, $eval, $$eval) |
 
-**Gesamt: ~56 Methoden/Properties**
+**Total: ~56 methods/properties**
 
-**Fazit:** `Frame` spiegelt weitgehend die `Page`-API wider, gilt aber spezifisch fuer einen einzelnen
-iframe-Kontext. Moderne Playwright-Tests sollten `page.frameLocator()` mit Locator-basierten Methoden
-bevorzugen. Direktes `Frame`-Arbeiten ist vor allem bei komplexen Multi-Frame-Szenarien und
-`evaluate()`-Ausfuehrungen im iframe-Kontext relevant.
+**Conclusion:** `Frame` largely mirrors the `Page` API, but applies specifically to a single
+iframe context. Modern Playwright tests should prefer `page.frameLocator()` with locator-based
+methods. Working with `Frame` directly is mainly relevant for complex multi-frame scenarios and
+`evaluate()` executions in the iframe context.
 
 ---
 
-**Quelle:** https://playwright.dev/docs/api/class-frame
+**Source:** https://playwright.dev/docs/api/class-frame

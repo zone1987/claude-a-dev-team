@@ -1,15 +1,15 @@
 # class-playwright
 
-Das `Playwright`-Objekt ist der Root-Einstiegspunkt der Playwright-API. Es wird durch `require('playwright')` oder den Test-Runner bereitgestellt und enthaelt die Browser-Typen sowie globale Hilfsobjekte.
+The `Playwright` object is the root entry point of the Playwright API. It is provided by `require('playwright')` or the test runner and contains the browser types as well as global helper objects.
 
-Methoden: 0 | Properties: 6 | Events: 0
+Methods: 0 | Properties: 6 | Events: 0
 
 ---
 
 ## Contents
 
 - [Properties](#properties)
-- [Import-Patterns](#import-patterns)
+- [Import Patterns](#import-patterns)
 - [Manifest](#manifest)
 
 ## Properties
@@ -18,7 +18,7 @@ Methoden: 0 | Properties: 6 | Events: 0
 
 **Type:** `BrowserType`
 
-Objekt zum Starten oder Verbinden mit Chromium-Browser-Instanzen (einschliesslich Chrome und Edge ueber `channel`-Option).
+Object for launching or connecting to Chromium browser instances (including Chrome and Edge via the `channel` option).
 
 ```js
 const { chromium } = require('playwright');
@@ -34,7 +34,7 @@ await browser.close();
 
 **Type:** `BrowserType`
 
-Objekt zum Starten oder Verbinden mit Firefox-Browser-Instanzen.
+Object for launching or connecting to Firefox browser instances.
 
 ```js
 const { firefox } = require('playwright');
@@ -47,7 +47,7 @@ const browser = await firefox.launch();
 
 **Type:** `BrowserType`
 
-Objekt zum Starten oder Verbinden mit WebKit-Browser-Instanzen (Safari-Engine).
+Object for launching or connecting to WebKit browser instances (Safari engine).
 
 ```js
 const { webkit } = require('playwright');
@@ -60,11 +60,11 @@ const browser = await webkit.launch();
 
 **Type:** `Object`
 
-Woerterbuch mit vordefinierten Geraete-Deskriptoren fuer mobile Emulation. Kann mit `browser.newContext()` oder `browser.newPage()` verwendet werden (Spread-Operator).
+Dictionary of predefined device descriptors for mobile emulation. Can be used with `browser.newContext()` or `browser.newPage()` (spread operator).
 
-**Verfuegbare Geraete:** Alle in den [Playwright-Devicedescriptors](https://playwright.dev/docs/emulation#devices) aufgefuehrten Geraete, z.B. `"iPhone 15"`, `"Pixel 7"`, `"Galaxy S9+"`, etc.
+**Available devices:** All devices listed in the [Playwright device descriptors](https://playwright.dev/docs/emulation#devices), e.g. `"iPhone 15"`, `"Pixel 7"`, `"Galaxy S9+"`, etc.
 
-Jeder Eintrag enthaelt: `userAgent`, `viewport`, `deviceScaleFactor`, `isMobile`, `hasTouch`, `defaultBrowserType`.
+Each entry contains: `userAgent`, `viewport`, `deviceScaleFactor`, `isMobile`, `hasTouch`, `defaultBrowserType`.
 
 ```js
 const { webkit, devices } = require('playwright');
@@ -85,7 +85,7 @@ await page.goto('https://example.com');
 
 **Type:** `APIRequest`
 
-Singleton-Instanz der `APIRequest`-Klasse fuer das Erstellen unabhaengiger `APIRequestContext`-Instanzen (ohne Browser-Context).
+Singleton instance of the `APIRequest` class for creating independent `APIRequestContext` instances (without a browser context).
 
 ```js
 const { request } = require('playwright');
@@ -104,12 +104,12 @@ await context.dispose();
 
 **Type:** `Selectors`
 
-Ermoeglicht die Installation eigener Selector-Engines (z.B. Datenbindungs-Selektoren fuer spezifische Frameworks).
+Allows installing custom selector engines (e.g. data-binding selectors for specific frameworks).
 
 ```js
 const { selectors, chromium } = require('playwright');
 
-// Selector-Engine registrieren
+// Register a selector engine
 await selectors.register('tag', {
   query(root, selector) {
     return root.querySelector(selector);
@@ -131,13 +131,13 @@ const element = await page.locator('tag=h1');
 
 **Type:** `Object`
 
-Enthaelt Fehlerklassen, die von Playwright-Methoden geworfen werden.
+Contains error classes thrown by Playwright methods.
 
 **Sub-properties:**
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `TimeoutError` | Function | Wird geworfen wenn ein Timeout ablaeuft |
+| `TimeoutError` | Function | Thrown when a timeout expires |
 
 ```js
 const { errors } = require('playwright');
@@ -146,14 +146,14 @@ try {
   await page.locator('.nonexistent').waitFor({ timeout: 1000 });
 } catch (e) {
   if (e instanceof errors.TimeoutError) {
-    console.log('Element nicht gefunden innerhalb des Timeouts');
+    console.log('Element not found within the timeout');
   }
 }
 ```
 
 ---
 
-## Import-Patterns
+## Import Patterns
 
 ```js
 // CommonJS
@@ -162,7 +162,7 @@ const { chromium, firefox, webkit, devices, request, selectors } = require('play
 // ES Modules
 import { chromium, firefox, webkit, devices } from 'playwright';
 
-// Im Playwright Test-Framework (automatisch injiziert)
+// In the Playwright test framework (injected automatically)
 import { test, expect } from '@playwright/test';
 // browserType via test.use({ browserName: 'chromium' })
 ```
@@ -177,7 +177,7 @@ import { test, expect } from '@playwright/test';
 | Properties | 6 |
 | Events | 0 |
 
-**Fazit:** Das `Playwright`-Objekt ist ein reiner Namespace ohne eigene Methoden. Die drei BrowserType-Properties (`chromium`, `firefox`, `webkit`) sind der Startpunkt jeder Browser-Interaktion. `devices` und `request` sind globale Hilfsobjekte fuer Geraete-Emulation bzw. standalone API-Tests.
+**Conclusion:** The `Playwright` object is a pure namespace without methods of its own. The three BrowserType properties (`chromium`, `firefox`, `webkit`) are the starting point of every browser interaction. `devices` and `request` are global helper objects for device emulation and standalone API tests respectively.
 
 ---
 

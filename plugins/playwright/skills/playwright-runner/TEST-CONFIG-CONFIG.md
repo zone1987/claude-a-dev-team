@@ -1,15 +1,15 @@
-# Playwright Test Configuration — Vollstaendige Referenz
+# Playwright Test Configuration — Complete Reference
 
 ## Contents
 
-- [Grundstruktur `playwright.config.ts`](#grundstruktur-playwrightconfigts)
-- [Top-Level-Konfigurationsoptionen](#top-level-konfigurationsoptionen)
-- [`use`-Optionen (vollstaendig)](#use-optionen-vollstaendig)
-- [`webServer`-Konfiguration](#webserver-konfiguration)
-- [Projects-Konfiguration](#projects-konfiguration)
-- [TypeScript-Setup](#typescript-setup)
+- [Basic structure `playwright.config.ts`](#basic-structure-playwrightconfigts)
+- [Top-level configuration options](#top-level-configuration-options)
+- [`use` options (complete)](#use-options-complete)
+- [`webServer` configuration](#webserver-configuration)
+- [Projects configuration](#projects-configuration)
+- [TypeScript setup](#typescript-setup)
 
-## Grundstruktur `playwright.config.ts`
+## Basic structure `playwright.config.ts`
 
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
@@ -40,51 +40,51 @@ export default defineConfig({
 
 ---
 
-## Top-Level-Konfigurationsoptionen
+## Top-level configuration options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `testDir` | `string` | — | Verzeichnis mit Testdateien |
-| `testMatch` | `string \| RegExp \| (string \| RegExp)[]` | `**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}` | Glob/Regex-Muster fuer Testdateien |
-| `testIgnore` | `string \| RegExp \| (string \| RegExp)[]` | `**/node_modules/**` | Glob/Regex-Muster zum Ignorieren |
-| `fullyParallel` | `boolean` | `false` | Alle Tests in allen Dateien parallel ausfuehren |
-| `forbidOnly` | `boolean` | `false` | Fehler, wenn `test.only` vorhanden (fuer CI) |
-| `retries` | `number` | `0` | Max. Wiederholungsversuche pro Test |
-| `workers` | `number \| string` | `undefined` | Parallele Worker-Prozesse; auch Prozentsatz z.B. `'50%'` |
-| `timeout` | `number` | `30000` | Timeout pro Test in ms |
-| `globalTimeout` | `number` | `0` | Max. Laufzeit der gesamten Test-Suite in ms (0 = kein Limit) |
-| `outputDir` | `string` | `'test-results'` | Ordner fuer Artefakte (Screenshots, Videos, Traces) |
-| `reporter` | `string \| [string, object][] \| 'dot' \| 'line' \| 'list' \| 'html' \| 'json' \| 'junit' \| 'blob'` | `'list'` | Reporter(n) |
-| `globalSetup` | `string` | — | Pfad zu globalem Setup-Modul |
-| `globalTeardown` | `string` | — | Pfad zu globalem Teardown-Modul |
-| `projects` | `Project[]` | `[]` | Projektdefinitionen |
-| `webServer` | `WebServerConfig \| WebServerConfig[]` | — | Webserver-Konfiguration |
-| `maxFailures` | `number` | `0` | Stop nach N Fehlern (0 = nie) |
-| `preserveOutput` | `'always' \| 'never' \| 'failures-only'` | `'failures-only'` | Wann Artefakte behalten werden |
-| `quiet` | `boolean` | `false` | Stdout-Ausgabe unterdruecken |
-| `shard` | `{ current: number, total: number } \| null` | `null` | Sharding-Konfiguration |
-| `tsconfig` | `string` | — | Expliziter Pfad zur tsconfig |
-| `use` | `PlaywrightTestOptions & BrowserContextOptions & LaunchOptions` | `{}` | Geteilte Browser/Context-Optionen |
-| `expect` | `ExpectSettings` | — | Assertion-Einstellungen (timeout, toHaveScreenshot, toMatchSnapshot) |
-| `snapshotDir` | `string` | `'__snapshots__'` | Basisverzeichnis fuer Snapshots |
-| `snapshotPathTemplate` | `string` | — | Template fuer Snapshot-Pfade |
-| `metadata` | `object` | — | Freie Metadaten fuer Reporter |
-| `updateSnapshots` | `'all' \| 'none' \| 'missing'` | `'missing'` | Snapshot-Update-Verhalten |
-| `ignoreSnapshots` | `boolean` | `false` | Screenshot/Snapshot-Assertions ignorieren |
+| `testDir` | `string` | — | Directory containing test files |
+| `testMatch` | `string \| RegExp \| (string \| RegExp)[]` | `**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}` | Glob/regex pattern for test files |
+| `testIgnore` | `string \| RegExp \| (string \| RegExp)[]` | `**/node_modules/**` | Glob/regex pattern to ignore |
+| `fullyParallel` | `boolean` | `false` | Run all tests in all files in parallel |
+| `forbidOnly` | `boolean` | `false` | Fail if `test.only` is present (for CI) |
+| `retries` | `number` | `0` | Max. retry attempts per test |
+| `workers` | `number \| string` | `undefined` | Parallel worker processes; also a percentage e.g. `'50%'` |
+| `timeout` | `number` | `30000` | Timeout per test in ms |
+| `globalTimeout` | `number` | `0` | Max. runtime of the entire test suite in ms (0 = no limit) |
+| `outputDir` | `string` | `'test-results'` | Folder for artifacts (screenshots, videos, traces) |
+| `reporter` | `string \| [string, object][] \| 'dot' \| 'line' \| 'list' \| 'html' \| 'json' \| 'junit' \| 'blob'` | `'list'` | Reporter(s) |
+| `globalSetup` | `string` | — | Path to a global setup module |
+| `globalTeardown` | `string` | — | Path to a global teardown module |
+| `projects` | `Project[]` | `[]` | Project definitions |
+| `webServer` | `WebServerConfig \| WebServerConfig[]` | — | Web server configuration |
+| `maxFailures` | `number` | `0` | Stop after N failures (0 = never) |
+| `preserveOutput` | `'always' \| 'never' \| 'failures-only'` | `'failures-only'` | When artifacts are kept |
+| `quiet` | `boolean` | `false` | Suppress stdout output |
+| `shard` | `{ current: number, total: number } \| null` | `null` | Sharding configuration |
+| `tsconfig` | `string` | — | Explicit path to the tsconfig |
+| `use` | `PlaywrightTestOptions & BrowserContextOptions & LaunchOptions` | `{}` | Shared browser/context options |
+| `expect` | `ExpectSettings` | — | Assertion settings (timeout, toHaveScreenshot, toMatchSnapshot) |
+| `snapshotDir` | `string` | `'__snapshots__'` | Base directory for snapshots |
+| `snapshotPathTemplate` | `string` | — | Template for snapshot paths |
+| `metadata` | `object` | — | Arbitrary metadata for reporters |
+| `updateSnapshots` | `'all' \| 'none' \| 'missing'` | `'missing'` | Snapshot update behavior |
+| `ignoreSnapshots` | `boolean` | `false` | Ignore screenshot/snapshot assertions |
 
-### `expect`-Optionen
+### `expect` options
 
 ```typescript
 expect: {
-  timeout: 5000,                           // Assertion-Timeout in ms (Default: 5000)
+  timeout: 5000,                           // Assertion timeout in ms (default: 5000)
   toHaveScreenshot: {
-    maxDiffPixels: 100,                    // Max. Pixel-Unterschiede
-    maxDiffPixelRatio: 0.01,              // Max. Anteil abweichender Pixel (0-1)
-    threshold: 0.2,                        // Pixelmatch-Schwellenwert (0-1)
-    animations: 'disabled',               // Animationen deaktivieren
-    caret: 'hide',                         // Cursor ausblenden
-    scale: 'css',                          // CSS oder Device-Skalierung
-    stylePath: './screenshot.css',         // CSS zum Ueberlagern
+    maxDiffPixels: 100,                    // Max. pixel differences
+    maxDiffPixelRatio: 0.01,              // Max. ratio of differing pixels (0-1)
+    threshold: 0.2,                        // Pixelmatch threshold (0-1)
+    animations: 'disabled',               // Disable animations
+    caret: 'hide',                         // Hide the caret
+    scale: 'css',                          // CSS or device scaling
+    stylePath: './screenshot.css',         // CSS to overlay
   },
   toMatchSnapshot: {
     maxDiffPixels: 100,
@@ -96,88 +96,88 @@ expect: {
 
 ---
 
-## `use`-Optionen (vollstaendig)
+## `use` options (complete)
 
-### Browser-Optionen
+### Browser options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `browserName` | `'chromium' \| 'firefox' \| 'webkit'` | `'chromium'` | Browser-Engine |
-| `channel` | `string` | — | Browser-Channel: `'chrome'`, `'chrome-beta'`, `'msedge'`, `'msedge-beta'` |
-| `headless` | `boolean` | `true` | Headless-Modus |
-| `launchOptions` | `object` | `{}` | Alle `browserType.launch()`-Optionen (slowMo, devtools, executablePath …) |
-| `connectOptions` | `object` | `{}` | Alle `browserType.connect()`-Optionen |
-| `screenshot` | `'off' \| 'on' \| 'only-on-failure'` | `'off'` | Screenshots automatisch aufnehmen |
-| `trace` | `'off' \| 'on' \| 'retain-on-failure' \| 'on-first-retry' \| 'on-all-retries'` | `'off'` | Trace-Aufnahme |
-| `video` | `'off' \| 'on' \| 'retain-on-failure' \| 'on-first-retry'` | `'off'` | Video-Aufnahme |
+| `browserName` | `'chromium' \| 'firefox' \| 'webkit'` | `'chromium'` | Browser engine |
+| `channel` | `string` | — | Browser channel: `'chrome'`, `'chrome-beta'`, `'msedge'`, `'msedge-beta'` |
+| `headless` | `boolean` | `true` | Headless mode |
+| `launchOptions` | `object` | `{}` | All `browserType.launch()` options (slowMo, devtools, executablePath …) |
+| `connectOptions` | `object` | `{}` | All `browserType.connect()` options |
+| `screenshot` | `'off' \| 'on' \| 'only-on-failure'` | `'off'` | Capture screenshots automatically |
+| `trace` | `'off' \| 'on' \| 'retain-on-failure' \| 'on-first-retry' \| 'on-all-retries'` | `'off'` | Trace recording |
+| `video` | `'off' \| 'on' \| 'retain-on-failure' \| 'on-first-retry'` | `'off'` | Video recording |
 
-### Browser-Context-Optionen
+### Browser context options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `baseURL` | `string` | — | Basis-URL fuer `page.goto('/')` |
-| `storageState` | `string \| object` | — | Storage State (Auth, Cookies) |
-| `viewport` | `{ width: number, height: number } \| null` | `{ width: 1280, height: 720 }` | Viewport-Groesse; `null` = kein fester Viewport |
-| `colorScheme` | `'light' \| 'dark' \| 'no-preference'` | `'light'` | prefers-color-scheme emulieren |
-| `geolocation` | `{ longitude: number, latitude: number, accuracy?: number }` | — | Geoposition |
-| `locale` | `string` | — | Browser-Locale z.B. `'de-DE'` |
-| `timezoneId` | `string` | — | Zeitzone z.B. `'Europe/Berlin'` |
-| `permissions` | `string[]` | `[]` | Browser-Permissions: `'geolocation'`, `'notifications'` … |
-| `acceptDownloads` | `boolean` | `true` | Downloads automatisch akzeptieren |
-| `bypassCSP` | `boolean` | `false` | Content-Security-Policy umgehen |
-| `extraHTTPHeaders` | `Record<string, string>` | `{}` | Zusaetzliche HTTP-Header |
-| `httpCredentials` | `{ username: string, password: string }` | — | HTTP Basic Auth |
-| `ignoreHTTPSErrors` | `boolean` | `false` | HTTPS-Fehler ignorieren |
-| `javaScriptEnabled` | `boolean` | `true` | JavaScript im Browser |
-| `offline` | `boolean` | `false` | Offline-Modus emulieren |
-| `proxy` | `{ server: string, bypass?: string, username?: string, password?: string }` | — | Proxy-Einstellungen |
-| `serviceWorkers` | `'allow' \| 'block'` | `'allow'` | Service Workers zulassen/blockieren |
-| `userAgent` | `string` | — | User-Agent-String |
-| `deviceScaleFactor` | `number` | — | Device Pixel Ratio |
-| `hasTouch` | `boolean` | `false` | Touch-Events emulieren |
-| `isMobile` | `boolean` | `false` | Mobile-Modus |
-| `contextOptions` | `object` | `{}` | Alle `browser.newContext()`-Optionen |
+| `baseURL` | `string` | — | Base URL for `page.goto('/')` |
+| `storageState` | `string \| object` | — | Storage state (auth, cookies) |
+| `viewport` | `{ width: number, height: number } \| null` | `{ width: 1280, height: 720 }` | Viewport size; `null` = no fixed viewport |
+| `colorScheme` | `'light' \| 'dark' \| 'no-preference'` | `'light'` | Emulate prefers-color-scheme |
+| `geolocation` | `{ longitude: number, latitude: number, accuracy?: number }` | — | Geolocation |
+| `locale` | `string` | — | Browser locale e.g. `'de-DE'` |
+| `timezoneId` | `string` | — | Time zone e.g. `'Europe/Berlin'` |
+| `permissions` | `string[]` | `[]` | Browser permissions: `'geolocation'`, `'notifications'` … |
+| `acceptDownloads` | `boolean` | `true` | Accept downloads automatically |
+| `bypassCSP` | `boolean` | `false` | Bypass the Content Security Policy |
+| `extraHTTPHeaders` | `Record<string, string>` | `{}` | Additional HTTP headers |
+| `httpCredentials` | `{ username: string, password: string }` | — | HTTP basic auth |
+| `ignoreHTTPSErrors` | `boolean` | `false` | Ignore HTTPS errors |
+| `javaScriptEnabled` | `boolean` | `true` | JavaScript in the browser |
+| `offline` | `boolean` | `false` | Emulate offline mode |
+| `proxy` | `{ server: string, bypass?: string, username?: string, password?: string }` | — | Proxy settings |
+| `serviceWorkers` | `'allow' \| 'block'` | `'allow'` | Allow/block service workers |
+| `userAgent` | `string` | — | User agent string |
+| `deviceScaleFactor` | `number` | — | Device pixel ratio |
+| `hasTouch` | `boolean` | `false` | Emulate touch events |
+| `isMobile` | `boolean` | `false` | Mobile mode |
+| `contextOptions` | `object` | `{}` | All `browser.newContext()` options |
 
-### Timeout-Optionen
+### Timeout options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `actionTimeout` | `number` | `0` | Max. Dauer fuer Aktionen (click, fill …) in ms |
-| `navigationTimeout` | `number` | `0` | Max. Dauer fuer Navigation in ms |
+| `actionTimeout` | `number` | `0` | Max. duration for actions (click, fill …) in ms |
+| `navigationTimeout` | `number` | `0` | Max. duration for navigation in ms |
 
-### Test-ID-Option
+### Test ID option
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `testIdAttribute` | `string` | `'data-testid'` | HTML-Attribut fuer `getByTestId()` |
+| `testIdAttribute` | `string` | `'data-testid'` | HTML attribute for `getByTestId()` |
 
 ---
 
-## `webServer`-Konfiguration
+## `webServer` configuration
 
 ```typescript
 webServer: {
-  command: 'npm run start',          // (required) Shell-Befehl zum Starten
-  url: 'http://localhost:3000',      // (required) URL, die 2xx/3xx/4xx zurueckgibt
-  cwd: '.',                          // Arbeitsverzeichnis (Default: config-Verzeichnis)
-  env: { NODE_ENV: 'test' },         // Zusaetzliche Env-Variablen
-  timeout: 60000,                    // Wartezeit in ms (Default: 60000)
-  reuseExistingServer: true,         // Vorhandenen Server wiederverwenden
-  stdout: 'pipe',                    // 'pipe' | 'ignore' (Default: 'ignore')
-  stderr: 'pipe',                    // 'pipe' | 'ignore' (Default: 'pipe')
-  name: 'Frontend',                  // Anzeigename fuer Logs
-  ignoreHTTPSErrors: false,          // HTTPS-Fehler ignorieren
-  gracefulShutdown: {                // Sanftes Beenden
+  command: 'npm run start',          // (required) Shell command to start it
+  url: 'http://localhost:3000',      // (required) URL that returns 2xx/3xx/4xx
+  cwd: '.',                          // Working directory (default: config directory)
+  env: { NODE_ENV: 'test' },         // Additional env variables
+  timeout: 60000,                    // Wait time in ms (default: 60000)
+  reuseExistingServer: true,         // Reuse an existing server
+  stdout: 'pipe',                    // 'pipe' | 'ignore' (default: 'ignore')
+  stderr: 'pipe',                    // 'pipe' | 'ignore' (default: 'pipe')
+  name: 'Frontend',                  // Display name for logs
+  ignoreHTTPSErrors: false,          // Ignore HTTPS errors
+  gracefulShutdown: {                // Graceful shutdown
     signal: 'SIGTERM',
     timeout: 5000,
   },
-  wait: {                            // Auf bestimmte Ausgabe warten
+  wait: {                            // Wait for specific output
     regex: /Server started/,
   },
 }
 ```
 
-Mehrere Server als Array:
+Multiple servers as an array:
 
 ```typescript
 webServer: [
@@ -188,9 +188,9 @@ webServer: [
 
 ---
 
-## Projects-Konfiguration
+## Projects configuration
 
-### Mehrere Browser
+### Multiple browsers
 
 ```typescript
 projects: [
@@ -204,31 +204,31 @@ projects: [
 ],
 ```
 
-### Project-Optionen
+### Project options
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `name` | `string` | Eindeutiger Projektname |
-| `use` | `object` | Alle `use`-Optionen; ueberschreibt globale `use` |
-| `testDir` | `string` | Testverzeichnis fuer dieses Projekt |
-| `testMatch` | `string \| RegExp` | Testdatei-Filter fuer dieses Projekt |
-| `testIgnore` | `string \| RegExp` | Ignorier-Muster fuer dieses Projekt |
-| `retries` | `number` | Wiederholungen fuer dieses Projekt |
-| `timeout` | `number` | Test-Timeout fuer dieses Projekt |
-| `fullyParallel` | `boolean` | Vollparallelisierung fuer dieses Projekt |
-| `dependencies` | `string[]` | Projekte, die vorher laufen muessen |
-| `teardown` | `string` | Projekt-Name fuer Teardown nach diesem Projekt |
-| `metadata` | `object` | Freie Metadaten |
-| `snapshotDir` | `string` | Snapshot-Verzeichnis fuer dieses Projekt |
+| `name` | `string` | Unique project name |
+| `use` | `object` | All `use` options; overrides the global `use` |
+| `testDir` | `string` | Test directory for this project |
+| `testMatch` | `string \| RegExp` | Test file filter for this project |
+| `testIgnore` | `string \| RegExp` | Ignore pattern for this project |
+| `retries` | `number` | Retries for this project |
+| `timeout` | `number` | Test timeout for this project |
+| `fullyParallel` | `boolean` | Full parallelization for this project |
+| `dependencies` | `string[]` | Projects that must run beforehand |
+| `teardown` | `string` | Project name for teardown after this project |
+| `metadata` | `object` | Arbitrary metadata |
+| `snapshotDir` | `string` | Snapshot directory for this project |
 
-### Project Dependencies (Setup/Teardown)
+### Project dependencies (setup/teardown)
 
 ```typescript
 projects: [
   {
     name: 'setup',
     testMatch: /global\.setup\.ts/,
-    teardown: 'cleanup',             // laeuft nach allen abhaengigen Projekten
+    teardown: 'cleanup',             // runs after all dependent projects
   },
   {
     name: 'cleanup',
@@ -237,37 +237,37 @@ projects: [
   {
     name: 'chromium',
     use: { ...devices['Desktop Chrome'] },
-    dependencies: ['setup'],         // wartet auf 'setup'
+    dependencies: ['setup'],         // waits for 'setup'
   },
 ],
 ```
 
-**Ausfuehrungsreihenfolge:**
-1. `setup`-Projekt laeuft vollstaendig
-2. Bei Erfolg: abhaengige Projekte parallel
-3. Danach: `teardown`-Projekt (wenn konfiguriert)
-4. Bei Fehler im Setup: abhaengige Projekte werden uebersprungen
+**Execution order:**
+1. The `setup` project runs to completion
+2. On success: dependent projects in parallel
+3. Afterwards: the `teardown` project (if configured)
+4. On a setup failure: dependent projects are skipped
 
-`--no-deps` ignoriert Dependencies (nur direkt ausgewaehlte Projekte).
+`--no-deps` ignores dependencies (only the directly selected projects).
 
 ---
 
-## TypeScript-Setup
+## TypeScript setup
 
-### Automatische Erkennung
+### Automatic detection
 
-Playwright erkennt `tsconfig.json` / `jsconfig.json` automatisch (Directory-Traversal aufwaerts).
+Playwright detects `tsconfig.json` / `jsconfig.json` automatically (directory traversal upwards).
 
-### Unterstuetzte tsconfig-Optionen
+### Supported tsconfig options
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| `allowJs` | JS-Dateien erlauben |
-| `baseUrl` | Basis-URL fuer Module |
-| `paths` | Pfad-Aliase |
-| `references` | Projekt-Referenzen |
+| `allowJs` | Allow JS files |
+| `baseUrl` | Base URL for modules |
+| `paths` | Path aliases |
+| `references` | Project references |
 
-### Pfad-Aliase
+### Path aliases
 
 ```json
 // tsconfig.json
@@ -283,11 +283,11 @@ Playwright erkennt `tsconfig.json` / `jsconfig.json` automatisch (Directory-Trav
 ```
 
 ```typescript
-// Test-Datei
+// Test file
 import { myHelper } from '@helpers/utils';
 ```
 
-### Explizite tsconfig
+### Explicit tsconfig
 
 ```typescript
 // playwright.config.ts
@@ -296,19 +296,19 @@ export default defineConfig({
 });
 ```
 
-Oder CLI: `npx playwright test --tsconfig=tsconfig.test.json`
+Or via CLI: `npx playwright test --tsconfig=tsconfig.test.json`
 
-### Type-Checking parallel
+### Type checking in parallel
 
 ```bash
-# Typ-Check ohne Ausfuehren
+# Type check without running
 npx tsc -p tsconfig.json --noEmit
 
-# Watch-Modus
+# Watch mode
 npx tsc -p tsconfig.json --noEmit -w
 ```
 
-Playwright fuehrt Tests auch bei TS-Fehlern aus (keine Blockierung).
+Playwright runs tests even when there are TS errors (no blocking).
 
 ---
 

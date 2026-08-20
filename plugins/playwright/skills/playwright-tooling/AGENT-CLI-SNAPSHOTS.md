@@ -1,21 +1,21 @@
-# Playwright Agent CLI — Snapshots & Accessibility-Tree
+# Playwright Agent CLI — Snapshots & accessibility tree
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Element-Refs](#element-refs)
-- [On-Demand-Snapshots](#on-demand-snapshots)
-- [Refs verwenden](#refs-verwenden)
-- [Selektoren als Alternative](#selektoren-als-alternative)
-- [Raw-Output](#raw-output)
-- [Best Practices](#best-practices)
+- [Overview](#overview)
+- [Element refs](#element-refs)
+- [On-demand snapshots](#on-demand-snapshots)
+- [Using refs](#using-refs)
+- [Selectors as an alternative](#selectors-as-an-alternative)
+- [Raw output](#raw-output)
+- [Best practices](#best-practices)
 
-## Uebersicht
+## Overview
 
-Nach jedem Befehl gibt `playwright-cli` einen Snapshot des aktuellen Browser-Zustands aus —
-einen Accessibility-Tree mit Element-Refs fuer die Interaktion.
+After every command `playwright-cli` prints a snapshot of the current browser state —
+an accessibility tree with element refs for interaction.
 
-### Automatische Ausgabe
+### Automatic output
 
 ```
 ### Page
@@ -26,7 +26,7 @@ einen Accessibility-Tree mit Element-Refs fuer die Interaktion.
 [Snapshot](.playwright-cli/page-2026-02-14T19-22-42-679Z.yml)
 ```
 
-### Beispiel-Accessibility-Tree
+### Example accessibility tree
 
 ```yaml
 - heading "todos" [level=1]
@@ -46,61 +46,61 @@ einen Accessibility-Tree mit Element-Refs fuer die Interaktion.
 
 ---
 
-## Element-Refs
+## Element refs
 
-| Eigenschaft | Detail |
+| Property | Detail |
 |-------------|--------|
-| Format | `e` gefolgt von einer Zahl (z. B. `e1`, `e15`, `e203`) |
-| Gueltigkeit | Eindeutig innerhalb eines einzelnen Snapshots |
-| Lebensdauer | Gueltig bis zur naechsten Seitenaenderung |
-| Zuweisung | Nur interaktive Elemente erhalten Refs (Buttons, Links, Inputs usw.) |
+| Format | `e` followed by a number (e.g. `e1`, `e15`, `e203`) |
+| Validity | Unique within a single snapshot |
+| Lifetime | Valid until the next page change |
+| Assignment | Only interactive elements receive refs (buttons, links, inputs etc.) |
 
-Wichtig: **Refs sind stabil innerhalb eines Snapshots, werden aber ungueltig wenn die Seite
-sich aendert — immer neu snapshotten nach Navigation.**
+Important: **Refs are stable within a snapshot, but become invalid when the page
+changes — always take a new snapshot after navigation.**
 
 ---
 
-## On-Demand-Snapshots
+## On-demand snapshots
 
 ```bash
-playwright-cli snapshot                           # Ganze Seite, Zeitstempel-Dateiname
-playwright-cli snapshot --filename=after.yaml     # Benutzerdefinierter Dateiname
-playwright-cli snapshot "#main"                   # Scope auf CSS-Selektor
-playwright-cli snapshot e34                       # Scope auf Element-Ref
-playwright-cli snapshot --depth=4                 # Baum-Tiefe begrenzen
+playwright-cli snapshot                           # Whole page, timestamped filename
+playwright-cli snapshot --filename=after.yaml     # Custom filename
+playwright-cli snapshot "#main"                   # Scope to a CSS selector
+playwright-cli snapshot e34                       # Scope to an element ref
+playwright-cli snapshot --depth=4                 # Limit tree depth
 ```
 
-### snapshot-Optionen
+### snapshot options
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |--------|-----|-------------|
-| `--filename=<name>` | string | Dateiname fuer den Snapshot |
-| `--depth=<n>` | number | Maximale Baum-Tiefe (reduziert Output bei komplexen Seiten) |
-| `--raw` | flag | Nur Befehlsausgabe, ohne Seiteninformationen |
-| `<ref>` | string | Element-Ref oder CSS-Selektor als Scope |
+| `--filename=<name>` | string | Filename for the snapshot |
+| `--depth=<n>` | number | Maximum tree depth (reduces output on complex pages) |
+| `--raw` | flag | Command output only, without page information |
+| `<ref>` | string | Element ref or CSS selector as scope |
 
 ---
 
-## Refs verwenden
+## Using refs
 
 ```bash
-playwright-cli click e10           # Checkbox anklicken
-playwright-cli fill e5 "Walk the dog"  # Text in Textbox eingeben
-playwright-cli hover e20           # Ueber "All"-Link hovern
+playwright-cli click e10           # Click the checkbox
+playwright-cli fill e5 "Walk the dog"  # Enter text into the textbox
+playwright-cli hover e20           # Hover over the "All" link
 ```
 
 ---
 
-## Selektoren als Alternative
+## Selectors as an alternative
 
-### CSS-Selektoren
+### CSS selectors
 
 ```bash
 playwright-cli click "#main > button.submit"
 playwright-cli click "[data-testid='submit']"
 ```
 
-### Playwright-Locators
+### Playwright locators
 
 ```bash
 playwright-cli click "getByRole('button', { name: 'Submit' })"
@@ -110,9 +110,9 @@ playwright-cli click "getByText('Login')"
 
 ---
 
-## Raw-Output
+## Raw output
 
-Seiteninformationen weglassen, nur Befehlsausgabe:
+Omit page information, command output only:
 
 ```bash
 playwright-cli snapshot --raw | grep "button"
@@ -120,17 +120,17 @@ playwright-cli snapshot --raw | grep "button"
 
 ---
 
-## Best Practices
+## Best practices
 
-1. **Refs statt Selektoren verwenden** — Refs aus Snapshots sind zuverlaessiger als CSS-Selektoren,
-   weil sie auf das genaue Element zeigen, das der Agent gerade gesehen hat.
-2. **Nach Navigation neu snapshotten** — Refs werden ungueltig wenn die Seite sich aendert.
-3. **Tiefe begrenzen** — `--depth` auf komplexen Seiten nutzen, um die Ausgabegroesse zu reduzieren.
-4. **Auf Elemente scopen** — Einen spezifischen Abschnitt statt der ganzen Seite snapshotten.
-5. **Snapshot-Dateien benennen** — `--filename` nutzen wenn der Snapshot Teil eines Workflow-Ergebnisses ist.
-6. **Auf Dialoge pruefen** — Wenn ein Befehl meldet, dass ein Dialog offen ist, diesen zuerst
-   behandeln bevor weitere Aktionen ausgefuehrt werden.
+1. **Use refs instead of selectors** — refs from snapshots are more reliable than CSS selectors,
+   because they point at the exact element the agent has just seen.
+2. **Re-snapshot after navigation** — refs become invalid when the page changes.
+3. **Limit the depth** — use `--depth` on complex pages to reduce the output size.
+4. **Scope to elements** — snapshot a specific section instead of the whole page.
+5. **Name snapshot files** — use `--filename` when the snapshot is part of a workflow result.
+6. **Check for dialogs** — if a command reports that a dialog is open, handle it first
+   before performing further actions.
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/snapshots
+Source: https://playwright.dev/agent-cli/snapshots

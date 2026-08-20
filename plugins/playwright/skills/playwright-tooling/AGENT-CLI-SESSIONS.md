@@ -1,32 +1,32 @@
-# Playwright Agent CLI — Sessions & Dashboard
+# Playwright Agent CLI — Sessions & dashboard
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Benannte Sessions](#benannte-sessions)
-- [Standard-Session per Umgebungsvariable](#standard-session-per-umgebungsvariable)
-- [Profil-Persistenz](#profil-persistenz)
-- [Session-Management-Befehle](#session-management-befehle)
+- [Overview](#overview)
+- [Named sessions](#named-sessions)
+- [Default session via environment variable](#default-session-via-environment-variable)
+- [Profile persistence](#profile-persistence)
+- [Session management commands](#session-management-commands)
 - [Dashboard](#dashboard)
-- [State-Management](#state-management)
-- [Isolierter Test-Workflow (Beispiel)](#isolierter-test-workflow-beispiel)
+- [State management](#state-management)
+- [Isolated test workflow (example)](#isolated-test-workflow-example)
 
-## Uebersicht
+## Overview
 
-Die CLI haelt das Browser-Profil standardmaessig im Arbeitsspeicher — Cookies und Storage-State
-bleiben zwischen CLI-Aufrufen innerhalb einer Session erhalten, gehen aber beim Schliessen des
-Browsers verloren.
+By default the CLI keeps the browser profile in memory — cookies and storage state
+persist between CLI invocations within a session, but are lost when the
+browser is closed.
 
 ---
 
-## Benannte Sessions
+## Named sessions
 
-Mehrere isolierte Browser-Instanzen koennen gleichzeitig laufen, jede mit:
-- eigenem Browser-Prozess
-- eigenen Cookies
-- eigenem localStorage
-- eigener Navigations-History
-- eigenem Console-Log
+Multiple isolated browser instances can run at the same time, each with:
+- its own browser process
+- its own cookies
+- its own localStorage
+- its own navigation history
+- its own console log
 
 ```bash
 playwright-cli open https://playwright.dev
@@ -34,17 +34,17 @@ playwright-cli -s=example open https://example.com --persistent
 playwright-cli list
 ```
 
-### Session-Flag
+### Session flag
 
-| Flag | Beschreibung |
+| Flag | Description |
 |------|-------------|
-| `-s=<name>` | Benannte Session fuer diesen Befehl verwenden |
+| `-s=<name>` | Use a named session for this command |
 
 ---
 
-## Standard-Session per Umgebungsvariable
+## Default session via environment variable
 
-Session-Namen fuer alle CLI-Befehle innerhalb eines Agent-Prozesses vorbelegen:
+Preset the session name for all CLI commands within an agent process:
 
 ```bash
 PLAYWRIGHT_CLI_SESSION=todo-app claude .
@@ -52,33 +52,33 @@ PLAYWRIGHT_CLI_SESSION=todo-app claude .
 
 ---
 
-## Profil-Persistenz
+## Profile persistence
 
-### In-Memory (Standard)
+### In-memory (default)
 
-Profil-Daten bleiben nur waehrend der aktiven Session erhalten und gehen beim Schliessen verloren.
+Profile data is only retained during the active session and is lost when it closes.
 
 ```bash
 playwright-cli open https://example.com
 ```
 
-### Persistent (auf Disk)
+### Persistent (on disk)
 
-Profil wird gespeichert und ueberlebt Browser-Neustarts.
+The profile is stored and survives browser restarts.
 
 ```bash
 playwright-cli open https://example.com --persistent
 ```
 
-Standard-Speicherorte:
+Default storage locations:
 
-| Plattform | Pfad |
+| Platform | Path |
 |-----------|------|
 | macOS | `~/Library/Caches/ms-playwright/mcp-{channel}-profile` |
 | Linux | `~/.cache/ms-playwright/mcp-{channel}-profile` |
 | Windows | `%LOCALAPPDATA%\ms-playwright\mcp-{channel}-profile` |
 
-### Benutzerdefiniertes Verzeichnis
+### Custom directory
 
 ```bash
 playwright-cli open https://example.com --profile=./my-profile
@@ -86,15 +86,15 @@ playwright-cli open https://example.com --profile=./my-profile
 
 ---
 
-## Session-Management-Befehle
+## Session management commands
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `playwright-cli list` | Alle Sessions auflisten |
-| `playwright-cli -s=<name> close` | Spezifische Session schliessen |
-| `playwright-cli close-all` | Alle Browser schliessen |
-| `playwright-cli kill-all` | Nicht reagierende Browser zwangsbeenden |
-| `playwright-cli -s=<name> delete-data` | Profil-Daten loeschen |
+| `playwright-cli list` | List all sessions |
+| `playwright-cli -s=<name> close` | Close a specific session |
+| `playwright-cli close-all` | Close all browsers |
+| `playwright-cli kill-all` | Force-terminate unresponsive browsers |
+| `playwright-cli -s=<name> delete-data` | Delete profile data |
 
 ---
 
@@ -104,48 +104,48 @@ playwright-cli open https://example.com --profile=./my-profile
 playwright-cli show
 ```
 
-Zeigt ein Session-Grid mit:
-- Live-Screencast aller Sessions
-- Session-Details mit Remote-Input-Moeglichkeiten
-- Monitoring, Uebernahme bei Fehlern, Session-Management
+Shows a session grid with:
+- live screencast of all sessions
+- session details with remote input options
+- monitoring, taking over on errors, session management
 
 ---
 
-## State-Management
+## State management
 
 ```bash
-playwright-cli state-save auth-state.json   # Authentifizierten State speichern
-playwright-cli state-load auth-state.json   # State in neuer Session wiederherstellen
+playwright-cli state-save auth-state.json   # Save the authenticated state
+playwright-cli state-load auth-state.json   # Restore the state in a new session
 ```
 
 ---
 
-## Isolierter Test-Workflow (Beispiel)
+## Isolated test workflow (example)
 
-Separate Admin- und Nutzer-Sessions mit persistenter Authentifizierung und gleichzeitigem
-Monitoring beider Sessions via Dashboard:
+Separate admin and user sessions with persistent authentication and simultaneous
+monitoring of both sessions via the dashboard:
 
 ```bash
-# Admin-Session einrichten
+# Set up the admin session
 playwright-cli -s=admin open https://app.example.com/login --persistent
 playwright-cli -s=admin fill e3 "admin@example.com"
 playwright-cli -s=admin fill e5 "admin-password"
 playwright-cli -s=admin click e7
 playwright-cli -s=admin state-save admin-auth.json
 
-# Nutzer-Session einrichten
+# Set up the user session
 playwright-cli -s=user open https://app.example.com/login --persistent
 playwright-cli -s=user fill e3 "user@example.com"
 playwright-cli -s=user fill e5 "user-password"
 playwright-cli -s=user click e7
 
-# Beide Sessions gleichzeitig ueberwachen
+# Monitor both sessions at the same time
 playwright-cli show
 
-# Session-Liste pruefen
+# Check the session list
 playwright-cli list
 ```
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/sessions
+Source: https://playwright.dev/agent-cli/sessions

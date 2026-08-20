@@ -1,13 +1,13 @@
-# Playwright Aktionen und Actionability
+# Playwright Actions and Actionability
 
-Alle Aktionen fuehren vor der Ausfuehrung Actionability-Checks durch und warten
-automatisch, bis die Bedingungen erfuellt sind (Auto-Waiting).
+All actions perform actionability checks before execution and wait
+automatically until the conditions are met (auto-waiting).
 
 ---
 
 ## Contents
 
-- [Actionability-Checks](#actionability-checks)
+- [Actionability checks](#actionability-checks)
 - [click()](#click)
 - [dblclick()](#dblclick)
 - [fill()](#fill)
@@ -15,62 +15,62 @@ automatisch, bis die Bedingungen erfuellt sind (Auto-Waiting).
 - [pressSequentially()](#presssequentially)
 - [press()](#press)
 - [hover()](#hover)
-- [check() und uncheck()](#check-und-uncheck)
+- [check() and uncheck()](#check-and-uncheck)
 - [selectOption()](#selectoption)
 - [setInputFiles()](#setinputfiles)
 - [dragTo()](#dragto)
 - [tap()](#tap)
-- [focus() und blur()](#focus-und-blur)
+- [focus() and blur()](#focus-and-blur)
 - [dispatchEvent()](#dispatchevent)
 - [scrollIntoViewIfNeeded()](#scrollintoviewifneeded)
-- [evaluate() und evaluateAll()](#evaluate-und-evaluateall)
-- [Zustandsabfrage-Methoden](#zustandsabfrage-methoden)
+- [evaluate() and evaluateAll()](#evaluate-and-evaluateall)
+- [State query methods](#state-query-methods)
 - [waitFor()](#waitfor)
 - [selectText()](#selecttext)
-- [Vollstaendiges Interaktions-Beispiel](#vollstaendiges-interaktions-beispiel)
+- [Complete interaction example](#complete-interaction-example)
 
-## Actionability-Checks
+## Actionability checks
 
-### Die fuenf Pruefungen
+### The five checks
 
-| Pruefung | Kriterium |
+| Check | Criterion |
 |---|---|
-| **Visible** | Element hat eine nicht-leere Bounding Box UND hat KEIN `visibility:hidden`. Elemente mit `display:none` oder Groesse 0 schlagen fehl. `opacity:0` besteht die Pruefung. |
-| **Stable** | Element hat dieselbe Bounding Box in mindestens zwei aufeinanderfolgenden Animations-Frames (kein laufende Animation). |
-| **Receives Events** | Am Aktions-Koordinatenpunkt empfaengt das Zielelement Pointer-Events (kein Overlay darueber). |
-| **Enabled** | Element ist NICHT deaktiviert. Deaktiviert durch: `[disabled]`-Attribut (button/select/input/textarea/option/optgroup), deaktiviertes Fieldset-Vorfahre, `[aria-disabled=true]`-Vorfahre. |
-| **Editable** | Element ist Enabled UND hat KEIN `[readonly]`- oder `[aria-readonly=true]`-Attribut. |
+| **Visible** | Element has a non-empty bounding box AND does NOT have `visibility:hidden`. Elements with `display:none` or size 0 fail. `opacity:0` passes the check. |
+| **Stable** | Element has the same bounding box for at least two consecutive animation frames (no running animation). |
+| **Receives Events** | At the action's coordinate point, the target element receives pointer events (no overlay on top of it). |
+| **Enabled** | Element is NOT disabled. Disabled by: `[disabled]` attribute (button/select/input/textarea/option/optgroup), disabled fieldset ancestor, `[aria-disabled=true]` ancestor. |
+| **Editable** | Element is Enabled AND does NOT have a `[readonly]` or `[aria-readonly=true]` attribute. |
 
-### Welche Aktion prueft was
+### Which action checks what
 
-| Aktion | Visible | Stable | Receives Events | Enabled | Editable |
+| Action | Visible | Stable | Receives Events | Enabled | Editable |
 |---|---|---|---|---|---|
-| `click`, `check`, `tap` | Ja | Ja | Ja | Ja | — |
-| `hover`, `dragTo` | Ja | Ja | Ja | — | — |
-| `fill`, `clear` | Ja | — | — | Ja | Ja |
-| `screenshot` | Ja | Ja | — | — | — |
+| `click`, `check`, `tap` | Yes | Yes | Yes | Yes | — |
+| `hover`, `dragTo` | Yes | Yes | Yes | — | — |
+| `fill`, `clear` | Yes | — | — | Yes | Yes |
+| `screenshot` | Yes | Yes | — | — | — |
 | `blur`, `focus`, `press`, `dispatchEvent` | — | — | — | — | — |
 
-### force: true — Pruefungen ueberspringen
+### force: true — skip the checks
 
 ```typescript
 await page.getByRole('button').click({ force: true });
-// Ueberspringt Receives-Events-Pruefung; sonstige Pruefungen bleiben
+// Skips the receives-events check; all other checks remain
 ```
 
-### trial: true — Nur Pruefungen, keine Ausfuehrung
+### trial: true — checks only, no execution
 
 ```typescript
 await page.getByRole('button').click({ trial: true });
-// Fuehrt alle Actionability-Checks durch, fuehrt aber die Aktion NICHT aus
-// Nuetzlich um vorab zu pruefen ob ein Element klickbar ist
+// Performs all actionability checks but does NOT execute the action
+// Useful for checking up front whether an element is clickable
 ```
 
-### Timeout-Verhalten
+### Timeout behavior
 
-Wenn Actionability-Checks nicht innerhalb des Timeouts bestehen: `TimeoutError`.
-Default-Timeout: `0` (kein Timeout) — kann ueberschrieben werden mit `timeout`-Option
-oder `page.setDefaultTimeout()` / `browserContext.setDefaultTimeout()`.
+If the actionability checks do not pass within the timeout: `TimeoutError`.
+Default timeout: `0` (no timeout) — can be overridden with the `timeout` option
+or `page.setDefaultTimeout()` / `browserContext.setDefaultTimeout()`.
 
 ---
 
@@ -80,36 +80,36 @@ oder `page.setDefaultTimeout()` / `browserContext.setDefaultTimeout()`.
 await locator.click(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `button` | `'left' \| 'right' \| 'middle'` | `'left'` | Maustaste |
-| `clickCount` | `number` | `1` | Anzahl der Klicks |
-| `delay` | `number` | `0` | Verzoegerung in ms zwischen mousedown und mouseup |
-| `force` | `boolean` | `false` | Actionability-Checks ueberspringen |
-| `modifiers` | `Array<'Alt' \| 'Control' \| 'ControlOrMeta' \| 'Meta' \| 'Shift'>` | — | Modifier-Tasten |
-| `noWaitAfter` | `boolean` | `false` | **Veraltet**, hat keine Wirkung mehr |
-| `position` | `{ x: number; y: number }` | Mittelpunkt | Position relativ zur Padding Box |
-| `steps` | `number` | `1` | Interpolierte Mausbewegungsschritte |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur Checks, Aktion nicht ausfuehren |
+| `button` | `'left' \| 'right' \| 'middle'` | `'left'` | Mouse button |
+| `clickCount` | `number` | `1` | Number of clicks |
+| `delay` | `number` | `0` | Delay in ms between mousedown and mouseup |
+| `force` | `boolean` | `false` | Skip actionability checks |
+| `modifiers` | `Array<'Alt' \| 'Control' \| 'ControlOrMeta' \| 'Meta' \| 'Shift'>` | — | Modifier keys |
+| `noWaitAfter` | `boolean` | `false` | **Deprecated**, no longer has any effect |
+| `position` | `{ x: number; y: number }` | Center | Position relative to the padding box |
+| `steps` | `number` | `1` | Interpolated mouse movement steps |
+| `timeout` | `number` | `0` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Checks only, do not execute the action |
 
 ```typescript
-// Einfacher Klick
-await page.getByRole('button', { name: 'Absenden' }).click();
+// Simple click
+await page.getByRole('button', { name: 'Submit' }).click();
 
-// Rechtsklick
+// Right click
 await page.getByRole('button').click({ button: 'right' });
 
-// Doppelklick (Alternative zu dblclick)
+// Double click (alternative to dblclick)
 await page.getByRole('button').click({ clickCount: 2 });
 
-// Mit Modifier
+// With modifier
 await page.getByRole('link').click({ modifiers: ['Shift'] });
 
-// Prazise Position
+// Precise position
 await page.getByRole('button').click({ position: { x: 10, y: 5 } });
 
-// Ctrl+Klick (macOS: Meta)
+// Ctrl+click (macOS: Meta)
 await page.getByRole('link').click({ modifiers: ['ControlOrMeta'] });
 ```
 
@@ -121,16 +121,16 @@ await page.getByRole('link').click({ modifiers: ['ControlOrMeta'] });
 await locator.dblclick(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `button` | `'left' \| 'right' \| 'middle'` | `'left'` | Maustaste |
-| `delay` | `number` | `0` | Verzoegerung zwischen Klicks in ms |
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `modifiers` | `Array<...>` | — | Modifier-Tasten |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `position` | `{ x: number; y: number }` | Mittelpunkt | Position |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur Checks |
+| `button` | `'left' \| 'right' \| 'middle'` | `'left'` | Mouse button |
+| `delay` | `number` | `0` | Delay between clicks in ms |
+| `force` | `boolean` | `false` | Skip checks |
+| `modifiers` | `Array<...>` | — | Modifier keys |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `position` | `{ x: number; y: number }` | Center | Position |
+| `timeout` | `number` | `0` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Checks only |
 
 ```typescript
 await page.getByRole('listitem').dblclick();
@@ -140,25 +140,25 @@ await page.getByRole('listitem').dblclick();
 
 ## fill()
 
-Loescht den vorhandenen Wert und gibt neuen Text ein. Fuer `<input>`, `<textarea>` und
-`contenteditable`-Elemente.
+Clears the existing value and enters new text. For `<input>`, `<textarea>` and
+`contenteditable` elements.
 
 ```typescript
 await locator.fill(value: string, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string` | — | **Pflicht** — einzugebender Text |
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `value` | `string` | — | **Required** — text to enter |
+| `force` | `boolean` | `false` | Skip checks |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
-await page.getByLabel('E-Mail').fill('user@example.com');
-await page.getByPlaceholder('Passwort').fill('geheim');
+await page.getByLabel('Email').fill('user@example.com');
+await page.getByPlaceholder('Password').fill('secret');
 
-// Inhalt loeschen (leerer String)
+// Clear the content (empty string)
 await page.getByRole('textbox').fill('');
 ```
 
@@ -166,17 +166,17 @@ await page.getByRole('textbox').fill('');
 
 ## clear()
 
-Loescht den Inhalt eines Input-Felds.
+Clears the content of an input field.
 
 ```typescript
 await locator.clear(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `force` | `boolean` | `false` | Skip checks |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
 await page.getByRole('textbox').clear();
@@ -186,22 +186,22 @@ await page.getByRole('textbox').clear();
 
 ## pressSequentially()
 
-Gibt Text Zeichen fuer Zeichen ein (loest Tastaturereignisse aus). Nuetzlich fuer
-Felder mit Autocomplete oder zeichenweise Validierung.
+Enters text character by character (fires keyboard events). Useful for
+fields with autocomplete or character-by-character validation.
 
 ```typescript
 await locator.pressSequentially(text: string, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `text` | `string` | — | **Pflicht** — einzugebender Text |
-| `delay` | `number` | `0` | Verzoegerung in ms zwischen Tastenanschlaegen |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `text` | `string` | — | **Required** — text to enter |
+| `delay` | `number` | `0` | Delay in ms between keystrokes |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
-// Mit Tipp-Verzoegerung fuer realistischere Simulation
+// With typing delay for a more realistic simulation
 await page.getByRole('textbox').pressSequentially('Hallo Welt', { delay: 50 });
 ```
 
@@ -209,50 +209,50 @@ await page.getByRole('textbox').pressSequentially('Hallo Welt', { delay: 50 });
 
 ## press()
 
-Drueckt eine einzelne Taste oder Tastenkombination.
+Presses a single key or key combination.
 
 ```typescript
 await locator.press(key: string, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `key` | `string` | — | **Pflicht** — Taste oder Kombination |
-| `delay` | `number` | `0` | Zeit in ms zwischen keydown und keyup |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `key` | `string` | — | **Required** — key or combination |
+| `delay` | `number` | `0` | Time in ms between keydown and keyup |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
-### Taste-Format
+### Key format
 
-- Einzelne Taste: `'Enter'`, `'Tab'`, `'Escape'`, `'Space'`, `'Backspace'`
-- Kombination: `'Control+A'`, `'Shift+Tab'`, `'Control+ArrowRight'`
-- Plattform-uebergreifend: `'ControlOrMeta+A'` (Control auf Windows/Linux, Meta auf macOS)
+- Single key: `'Enter'`, `'Tab'`, `'Escape'`, `'Space'`, `'Backspace'`
+- Combination: `'Control+A'`, `'Shift+Tab'`, `'Control+ArrowRight'`
+- Cross-platform: `'ControlOrMeta+A'` (Control on Windows/Linux, Meta on macOS)
 
 ```typescript
 await page.getByRole('textbox').press('Enter');
 await page.getByRole('textbox').press('Control+A');
 await page.getByRole('textbox').press('Shift+Tab');
-await page.keyboard.press('Escape');    // Globaler Tastendruck
+await page.keyboard.press('Escape');    // Global key press
 ```
 
 ---
 
 ## hover()
 
-Bewegt die Maus ueber ein Element.
+Moves the mouse over an element.
 
 ```typescript
 await locator.hover(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `modifiers` | `Array<'Alt' \| 'Control' \| 'ControlOrMeta' \| 'Meta' \| 'Shift'>` | — | Modifier-Tasten |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `position` | `{ x: number; y: number }` | Mittelpunkt | Position relativ zur Padding Box |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur Checks |
+| `force` | `boolean` | `false` | Skip checks |
+| `modifiers` | `Array<'Alt' \| 'Control' \| 'ControlOrMeta' \| 'Meta' \| 'Shift'>` | — | Modifier keys |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `position` | `{ x: number; y: number }` | Center | Position relative to the padding box |
+| `timeout` | `number` | `0` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Checks only |
 
 ```typescript
 await page.getByRole('button').hover();
@@ -261,20 +261,20 @@ await page.locator('.menu-item').hover({ position: { x: 5, y: 5 } });
 
 ---
 
-## check() und uncheck()
+## check() and uncheck()
 
 ```typescript
 await locator.check(options?)
 await locator.uncheck(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `position` | `{ x: number; y: number }` | Mittelpunkt | Position |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur Checks |
+| `force` | `boolean` | `false` | Skip checks |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `position` | `{ x: number; y: number }` | Center | Position |
+| `timeout` | `number` | `0` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Checks only |
 
 ```typescript
 await page.getByRole('checkbox', { name: 'AGB akzeptieren' }).check();
@@ -282,7 +282,7 @@ await page.getByRole('checkbox').uncheck();
 await expect(page.getByRole('checkbox')).toBeChecked();
 ```
 
-### setChecked() — kombiniert check/uncheck
+### setChecked() — combines check/uncheck
 
 ```typescript
 await locator.setChecked(checked: boolean, options?)
@@ -297,45 +297,45 @@ await page.getByRole('checkbox').setChecked(false);
 
 ## selectOption()
 
-Waehlt eine oder mehrere Optionen in einem `<select>`-Element.
+Selects one or more options in a `<select>` element.
 
 ```typescript
 await locator.selectOption(values, options?)
 ```
 
-### values-Parameter
+### values parameter
 
-| Format | Beschreibung | Beispiel |
+| Format | Description | Example |
 |---|---|---|
-| `string` | Einzelner Wert | `'option-value'` |
-| `string[]` | Mehrere Werte | `['val1', 'val2']` |
-| `{ value?: string }` | Objekt mit Wert | `{ value: 'rot' }` |
-| `{ label?: string }` | Objekt mit Label | `{ label: 'Rot' }` |
-| `{ index?: number }` | Objekt mit Index | `{ index: 0 }` |
-| Kombinierte Arrays | Mehrere Objekte | `[{ label: 'Rot' }, { value: 'blau' }]` |
+| `string` | Single value | `'option-value'` |
+| `string[]` | Multiple values | `['val1', 'val2']` |
+| `{ value?: string }` | Object with value | `{ value: 'rot' }` |
+| `{ label?: string }` | Object with label | `{ label: 'Rot' }` |
+| `{ index?: number }` | Object with index | `{ index: 0 }` |
+| Combined arrays | Multiple objects | `[{ label: 'Rot' }, { value: 'blau' }]` |
 
-### Options-Parameter
+### options parameter
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `force` | `boolean` | `false` | Skip checks |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
-// Nach Wert auswaehlen
+// Select by value
 await page.getByRole('combobox').selectOption('farbe-rot');
 
-// Nach Label auswaehlen
+// Select by label
 await page.getByRole('combobox').selectOption({ label: 'Rot' });
 
-// Nach Index auswaehlen
+// Select by index
 await page.getByRole('combobox').selectOption({ index: 2 });
 
-// Mehrere Optionen (Multi-Select)
+// Multiple options (multi-select)
 await page.getByRole('listbox').selectOption(['rot', 'blau', 'gruen']);
 
-// Gemischt
+// Mixed
 await page.getByRole('listbox').selectOption([
   { label: 'Rot' },
   { value: 'blau' },
@@ -346,57 +346,57 @@ await page.getByRole('listbox').selectOption([
 
 ## setInputFiles()
 
-Setzt Dateien fuer `<input type="file">`-Elemente.
+Sets files for `<input type="file">` elements.
 
 ```typescript
 await locator.setInputFiles(files, options?)
 ```
 
-### files-Parameter
+### files parameter
 
-| Format | Beschreibung |
+| Format | Description |
 |---|---|
-| `string` | Einzelner Dateipfad |
-| `string[]` | Mehrere Dateipfade |
-| `FilePayload` | Datei-Objekt (kein Dateisystem noetig) |
-| `FilePayload[]` | Mehrere Datei-Objekte |
-| `[]` | Leeres Array = Auswahl loeschen |
+| `string` | Single file path |
+| `string[]` | Multiple file paths |
+| `FilePayload` | File object (no file system needed) |
+| `FilePayload[]` | Multiple file objects |
+| `[]` | Empty array = clear the selection |
 
-### FilePayload-Objekt
+### FilePayload object
 
 ```typescript
 interface FilePayload {
-  name: string;       // Dateiname
-  mimeType: string;   // MIME-Typ, z.B. 'image/png'
-  buffer: Buffer;     // Dateiinhalt als Buffer
+  name: string;       // File name
+  mimeType: string;   // MIME type, e.g. 'image/png'
+  buffer: Buffer;     // File content as a Buffer
 }
 ```
 
 ### Options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
-// Einzelne Datei
-await page.getByLabel('Datei hochladen').setInputFiles('/pfad/zur/datei.pdf');
+// Single file
+await page.getByLabel('Upload file').setInputFiles('/pfad/zur/datei.pdf');
 
-// Mehrere Dateien
+// Multiple files
 await page.getByLabel('Bilder').setInputFiles([
   '/pfad/bild1.png',
   '/pfad/bild2.jpg',
 ]);
 
-// Aus Buffer (kein Dateisystem)
+// From a buffer (no file system)
 await page.getByLabel('Upload').setInputFiles({
-  name: 'dokument.txt',
+  name: 'document.txt',
   mimeType: 'text/plain',
-  buffer: Buffer.from('Dateiinhalt'),
+  buffer: Buffer.from('File content'),
 });
 
-// Auswahl loeschen
+// Clear the selection
 await page.getByLabel('Upload').setInputFiles([]);
 ```
 
@@ -404,34 +404,34 @@ await page.getByLabel('Upload').setInputFiles([]);
 
 ## dragTo()
 
-Zieht ein Element zu einem anderen Locator.
+Drags an element to another locator.
 
 ```typescript
 await locator.dragTo(target: Locator, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `sourcePosition` | `{ x: number; y: number }` | Mittelpunkt | Startpunkt relativ zur Padding Box |
-| `targetPosition` | `{ x: number; y: number }` | Mittelpunkt | Zielpunkt relativ zur Padding Box |
-| `steps` | `number` | `1` | Interpolierte Mausbewegungsschritte |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur Checks |
+| `force` | `boolean` | `false` | Skip checks |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `sourcePosition` | `{ x: number; y: number }` | Center | Start point relative to the padding box |
+| `targetPosition` | `{ x: number; y: number }` | Center | Target point relative to the padding box |
+| `steps` | `number` | `1` | Interpolated mouse movement steps |
+| `timeout` | `number` | `0` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Checks only |
 
 ```typescript
-// Einfaches Drag & Drop
+// Simple drag & drop
 await page.getByText('Aufgabe 1').dragTo(page.getByText('Erledigt'));
 
-// Mit Positionierung
+// With positioning
 await page.locator('#element').dragTo(page.locator('#ziel'), {
   sourcePosition: { x: 10, y: 10 },
   targetPosition: { x: 5, y: 5 },
 });
 ```
 
-### Manuelles Drag & Drop mit Mouse-API
+### Manual drag & drop with the mouse API
 
 ```typescript
 await page.mouse.move(startX, startY);
@@ -444,20 +444,20 @@ await page.mouse.up();
 
 ## tap()
 
-Tippt auf ein Element (Touch-Geste). Erfordert `hasTouch: true` in den Context-Optionen.
+Taps an element (touch gesture). Requires `hasTouch: true` in the context options.
 
 ```typescript
 await locator.tap(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `modifiers` | `Array<...>` | — | Modifier-Tasten |
-| `noWaitAfter` | `boolean` | `false` | Veraltet |
-| `position` | `{ x: number; y: number }` | Mittelpunkt | Position |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur Checks |
+| `force` | `boolean` | `false` | Skip checks |
+| `modifiers` | `Array<...>` | — | Modifier keys |
+| `noWaitAfter` | `boolean` | `false` | Deprecated |
+| `position` | `{ x: number; y: number }` | Center | Position |
+| `timeout` | `number` | `0` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Checks only |
 
 ```typescript
 const context = await browser.newContext({ hasTouch: true });
@@ -467,16 +467,16 @@ await page.getByRole('button').tap();
 
 ---
 
-## focus() und blur()
+## focus() and blur()
 
 ```typescript
 await locator.focus(options?)
 await locator.blur(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
 await page.getByRole('textbox').focus();
@@ -487,17 +487,17 @@ await page.getByRole('textbox').blur();
 
 ## dispatchEvent()
 
-Loest ein DOM-Event programmatisch aus (ignoriert Actionability-Checks).
+Fires a DOM event programmatically (ignores actionability checks).
 
 ```typescript
 await locator.dispatchEvent(type: string, eventInit?, options?)
 ```
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |---|---|---|
-| `type` | `string` | Event-Typ, z.B. `'click'`, `'input'`, `'change'` |
-| `eventInit` | `object` | Event-Initialisierungsobjekt |
-| `timeout` | `number` | Max. Wartezeit in ms |
+| `type` | `string` | Event type, e.g. `'click'`, `'input'`, `'change'` |
+| `eventInit` | `object` | Event initialization object |
+| `timeout` | `number` | Max. wait time in ms |
 
 ```typescript
 await page.getByRole('button').dispatchEvent('click');
@@ -510,47 +510,47 @@ await page.locator('#datepicker').dispatchEvent('change', {
 
 ## scrollIntoViewIfNeeded()
 
-Scrollt das Element in den sichtbaren Bereich.
+Scrolls the element into the visible area.
 
 ```typescript
 await locator.scrollIntoViewIfNeeded(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
 await page.getByRole('button').scrollIntoViewIfNeeded();
 ```
 
-### Mausrad
+### Mouse wheel
 
 ```typescript
 await page.mouse.wheel(deltaX, deltaY);
-// deltaX: horizontales Scrollen, deltaY: vertikales Scrollen
-await page.mouse.wheel(0, 500);  // 500px nach unten scrollen
+// deltaX: horizontal scrolling, deltaY: vertical scrolling
+await page.mouse.wheel(0, 500);  // scroll 500px down
 ```
 
 ---
 
-## evaluate() und evaluateAll()
+## evaluate() and evaluateAll()
 
-Fuehrt JavaScript im Browser-Kontext aus.
+Executes JavaScript in the browser context.
 
 ```typescript
-// Auf einem Element
+// On a single element
 const result = await locator.evaluate(fn, arg?, options?)
 
-// Auf allen passenden Elementen
+// On all matching elements
 const results = await locator.evaluateAll(fn, arg?)
 ```
 
 ```typescript
-// Element-Eigenschaft lesen
+// Read an element property
 const value = await page.getByRole('textbox').evaluate(el => el.value);
 
-// Alle Element-Texte sammeln
+// Collect all element texts
 const texte = await page.getByRole('listitem').evaluateAll(
   items => items.map(el => el.textContent?.trim())
 );
@@ -558,7 +558,7 @@ const texte = await page.getByRole('listitem').evaluateAll(
 
 ---
 
-## Zustandsabfrage-Methoden
+## State query methods
 
 ```typescript
 await locator.getAttribute(name: string, options?): Promise<string | null>
@@ -574,7 +574,7 @@ await locator.isHidden(options?):   Promise<boolean>
 await locator.isVisible(options?):  Promise<boolean>
 ```
 
-Alle akzeptieren `{ timeout?: number }`.
+All accept `{ timeout?: number }`.
 
 ```typescript
 const titel = await page.getByRole('heading').innerText();
@@ -587,16 +587,16 @@ const html = await page.locator('.container').innerHTML();
 
 ## waitFor()
 
-Wartet bis ein Element in einem bestimmten Zustand ist.
+Waits until an element is in a certain state.
 
 ```typescript
 await locator.waitFor(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `state` | `'attached' \| 'detached' \| 'visible' \| 'hidden'` | `'visible'` | Erwarteter Zustand |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `state` | `'attached' \| 'detached' \| 'visible' \| 'hidden'` | `'visible'` | Expected state |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ```typescript
 await page.getByText('Laden...').waitFor({ state: 'hidden' });
@@ -608,20 +608,20 @@ await page.getByRole('button').waitFor({ state: 'attached' });
 
 ## selectText()
 
-Markiert den Text-Inhalt eines Elements.
+Selects the text content of an element.
 
 ```typescript
 await locator.selectText(options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `force` | `boolean` | `false` | Checks ueberspringen |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `force` | `boolean` | `false` | Skip checks |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
 ---
 
-## Vollstaendiges Interaktions-Beispiel
+## Complete interaction example
 
 ```typescript
 import { test, expect } from '@playwright/test';
@@ -629,10 +629,10 @@ import { test, expect } from '@playwright/test';
 test('Bestellformular ausfullen', async ({ page }) => {
   await page.goto('https://shop.example.com/checkout');
 
-  // Texteingabe
+  // Text input
   await page.getByLabel('Vorname').fill('Anna');
   await page.getByLabel('Nachname').fill('Muster');
-  await page.getByLabel('E-Mail').fill('anna@example.com');
+  await page.getByLabel('Email').fill('anna@example.com');
 
   // Dropdown
   await page.getByLabel('Land').selectOption({ label: 'Deutschland' });
@@ -640,22 +640,22 @@ test('Bestellformular ausfullen', async ({ page }) => {
   // Checkbox
   await page.getByRole('checkbox', { name: 'Expresszustellung' }).check();
 
-  // Radio-Button
+  // Radio button
   await page.getByRole('radio', { name: 'Kreditkarte' }).check();
 
-  // Datei-Upload
+  // File upload
   await page.getByLabel('Rechnung hochladen').setInputFiles('/pfad/rechnung.pdf');
 
-  // Absenden
+  // Submit
   await page.getByRole('button', { name: 'Bestellen' }).click();
 
-  // Ergebnis pruefen
+  // Check the result
   await expect(page.getByRole('heading', { name: 'Bestellung erfolgreich' }))
     .toBeVisible({ timeout: 10000 });
 });
 ```
 
-<!-- Quellen:
+<!-- Sources:
 https://playwright.dev/docs/input
 https://playwright.dev/docs/actionability
 https://playwright.dev/docs/api/class-locator

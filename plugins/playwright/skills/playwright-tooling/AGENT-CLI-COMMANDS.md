@@ -1,8 +1,8 @@
-# Playwright Agent CLI — Befehlsreferenz
+# Playwright Agent CLI — Command reference
 
-Vollstaendige Referenz aller Befehle der Playwright Agent CLI, gruppiert nach Themenbereich.
+Complete reference of all Playwright Agent CLI commands, grouped by topic area.
 
-## Referenzdateien
+## Reference files
 
 - [Navigation](`AGENT-CLI-COMMANDS-NAVIGATION.md`) — open, goto, go-back, go-forward, reload, close
 - [Interaction](`AGENT-CLI-COMMANDS-INTERACTION.md`) — click, fill, type, select, check, hover, drag, upload, resize

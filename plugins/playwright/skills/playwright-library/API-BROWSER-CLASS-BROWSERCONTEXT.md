@@ -1,8 +1,8 @@
 # class-browsercontext
 
-`BrowserContext` bietet eine isolierte Browser-Sitzung mit eigenem Cookie-Speicher, LocalStorage, Berechtigungen und Netzwerk-Routing. Jede Testdatei sollte einen eigenen Context verwenden, um Seiteneffekte zu vermeiden.
+`BrowserContext` provides an isolated browser session with its own cookie storage, LocalStorage, permissions and network routing. Each test file should use its own context to avoid side effects.
 
-Methoden: 25 | Properties: 4 | Events: 16
+Methods: 25 | Properties: 4 | Events: 16
 
 ---
 
@@ -22,23 +22,23 @@ Methoden: 25 | Properties: 4 | Events: 16
 await browserContext.addCookies(cookies): Promise<void>
 ```
 
-Fuegt Cookies zum Context hinzu. Felder `url` oder beide `domain` + `path` sind erforderlich.
+Adds cookies to the context. Either the `url` field or both `domain` + `path` are required.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `cookies` | Array<Object> | Yes | — | Array von Cookie-Objekten |
-| `cookies[].name` | string | Yes | — | Cookie-Name |
-| `cookies[].value` | string | Yes | — | Cookie-Wert |
-| `cookies[].url` | string | No* | — | Cookie-URL (alternativ: domain+path) |
-| `cookies[].domain` | string | No* | — | Domain; mit `.` prefix fuer Subdomains |
-| `cookies[].path` | string | No* | — | Pfad |
-| `cookies[].expires` | number | No | — | Ablaufzeitpunkt als Unix-Timestamp (Sekunden) |
-| `cookies[].httpOnly` | boolean | No | — | HttpOnly-Flag |
-| `cookies[].secure` | boolean | No | — | Secure-Flag |
-| `cookies[].sameSite` | `"Strict"` \| `"Lax"` \| `"None"` | No | — | SameSite-Attribut |
-| `cookies[].partitionKey` | string | No | — | CHIPS partition key (Top-Level-Site) |
+| `cookies` | Array<Object> | Yes | — | Array of cookie objects |
+| `cookies[].name` | string | Yes | — | Cookie name |
+| `cookies[].value` | string | Yes | — | Cookie value |
+| `cookies[].url` | string | No* | — | Cookie URL (alternatively: domain+path) |
+| `cookies[].domain` | string | No* | — | Domain; with a `.` prefix for subdomains |
+| `cookies[].path` | string | No* | — | Path |
+| `cookies[].expires` | number | No | — | Expiry time as a Unix timestamp (seconds) |
+| `cookies[].httpOnly` | boolean | No | — | HttpOnly flag |
+| `cookies[].secure` | boolean | No | — | Secure flag |
+| `cookies[].sameSite` | `"Strict"` \| `"Lax"` \| `"None"` | No | — | SameSite attribute |
+| `cookies[].partitionKey` | string | No | — | CHIPS partition key (top-level site) |
 
 **Returns:** `Promise<void>`
 
@@ -61,26 +61,26 @@ await context.addCookies([{
 await browserContext.addInitScript(script[, arg]): Promise<Disposable>
 ```
 
-Fuegt ein Script hinzu, das in jedem Frame jeder Page dieses Contexts vor dem Seiten-Script ausgefuehrt wird. Wird auch nach Navigationen erneut ausgefuehrt.
+Adds a script that is executed in every frame of every page of this context before the page script. It is also re-executed after navigations.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `script` | Function \| string \| Object | Yes | — | Funktion, Script-String oder `{ path?, content? }` |
-| `script.path` | string | No | — | Pfad zur Script-Datei (relativ zu cwd) |
-| `script.content` | string | No | — | Script-Inhalt als String |
-| `arg` | Serializable | No | — | Argument, das an die Funktion uebergeben wird (nur bei Funktionen) |
+| `script` | Function \| string \| Object | Yes | — | Function, script string or `{ path?, content? }` |
+| `script.path` | string | No | — | Path to the script file (relative to cwd) |
+| `script.content` | string | No | — | Script content as a string |
+| `arg` | Serializable | No | — | Argument passed to the function (only for functions) |
 
-**Returns:** `Promise<Disposable>` — Aufruf von `.dispose()` entfernt das Script
+**Returns:** `Promise<Disposable>` — calling `.dispose()` removes the script
 
 ```js
-// Math.random fuer alle Pages ueberschreiben
+// Override Math.random for all pages
 await context.addInitScript(() => {
   Math.random = () => 0.42;
 });
 
-// Mit Argument
+// With an argument
 await context.addInitScript(({ seed }) => {
   Math.random = () => seed;
 }, { seed: 0.5 });
@@ -94,7 +94,7 @@ await context.addInitScript(({ seed }) => {
 browserContext.browser(): Browser | null
 ```
 
-Gibt den `Browser` zurueck, dem dieser Context gehoert. Gibt `null` zurueck fuer den persistenten Context (von `launchPersistentContext()`).
+Returns the `Browser` that owns this context. Returns `null` for the persistent context (from `launchPersistentContext()`).
 
 **Returns:** `Browser | null`
 
@@ -106,21 +106,21 @@ Gibt den `Browser` zurueck, dem dieser Context gehoert. Gibt `null` zurueck fuer
 await browserContext.clearCookies([options]): Promise<void>
 ```
 
-Loescht Cookies des Contexts, optional gefiltert.
+Deletes the context's cookies, optionally filtered.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.domain` | string \| RegExp | No | — | Nur Cookies dieser Domain loeschen |
-| `options.name` | string \| RegExp | No | — | Nur Cookies mit diesem Namen |
-| `options.path` | string \| RegExp | No | — | Nur Cookies mit diesem Pfad |
+| `options.domain` | string \| RegExp | No | — | Only delete cookies of this domain |
+| `options.name` | string \| RegExp | No | — | Only cookies with this name |
+| `options.path` | string \| RegExp | No | — | Only cookies with this path |
 
 **Returns:** `Promise<void>`
 
 ```js
-await context.clearCookies(); // alle loeschen
-await context.clearCookies({ name: /session.*/ }); // gefiltert
+await context.clearCookies(); // delete all
+await context.clearCookies({ name: /session.*/ }); // filtered
 ```
 
 ---
@@ -131,7 +131,7 @@ await context.clearCookies({ name: /session.*/ }); // gefiltert
 await browserContext.clearPermissions(): Promise<void>
 ```
 
-Widerruft alle zuvor erteilten Berechtigungen.
+Revokes all previously granted permissions.
 
 **Returns:** `Promise<void>`
 
@@ -143,13 +143,13 @@ Widerruft alle zuvor erteilten Berechtigungen.
 await browserContext.close([options]): Promise<void>
 ```
 
-Schliesst den Context und alle darin enthaltenen Pages. Der Default-BrowserContext kann nicht geschlossen werden.
+Closes the context and all pages it contains. The default BrowserContext cannot be closed.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.reason` | string | No | — | Grund, der unterbrochenen Operationen gemeldet wird |
+| `options.reason` | string | No | — | Reason reported to interrupted operations |
 
 **Returns:** `Promise<void>`
 
@@ -161,15 +161,15 @@ Schliesst den Context und alle darin enthaltenen Pages. Der Default-BrowserConte
 await browserContext.cookies([urls]): Promise<Array<Cookie>>
 ```
 
-Gibt Cookies des Contexts zurueck, optional gefiltert nach URLs.
+Returns the context's cookies, optionally filtered by URLs.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `urls` | string \| Array<string> | No | — | URL(s) zum Filtern |
+| `urls` | string \| Array<string> | No | — | URL(s) to filter by |
 
-**Returns:** `Promise<Array<Cookie>>` mit Feldern: `name`, `value`, `domain`, `path` (strings), `expires` (number), `httpOnly`, `secure` (booleans), `sameSite` (`"Strict"` \| `"Lax"` \| `"None"`), `partitionKey?` (string)
+**Returns:** `Promise<Array<Cookie>>` with fields: `name`, `value`, `domain`, `path` (strings), `expires` (number), `httpOnly`, `secure` (booleans), `sameSite` (`"Strict"` \| `"Lax"` \| `"None"`), `partitionKey?` (string)
 
 ```js
 const cookies = await context.cookies('https://example.com');
@@ -183,21 +183,21 @@ const cookies = await context.cookies('https://example.com');
 await browserContext.exposeBinding(name, callback[, options]): Promise<Disposable>
 ```
 
-Stellt eine Funktion unter `window[name]` in allen Frames aller Pages bereit. Der Callback wird im Playwright-Prozess ausgefuehrt und erhaelt als erstes Argument ein Source-Objekt `{ browserContext, page, frame }`.
+Exposes a function under `window[name]` in all frames of all pages. The callback runs in the Playwright process and receives a source object `{ browserContext, page, frame }` as its first argument.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `name` | string | Yes | — | Funktionsname auf dem `window`-Objekt |
-| `callback` | Function | Yes | — | Callback-Funktion; erstes Argument ist `{ browserContext, page, frame }` |
-| `options.handle` | boolean | No | false | Wenn `true`, erhaelt der Callback ein JSHandle statt des deserialisierten Werts |
+| `name` | string | Yes | — | Function name on the `window` object |
+| `callback` | Function | Yes | — | Callback function; the first argument is `{ browserContext, page, frame }` |
+| `options.handle` | boolean | No | false | If `true`, the callback receives a JSHandle instead of the deserialized value |
 
 **Returns:** `Promise<Disposable>`
 
 ```js
 await context.exposeBinding('pageURL', ({ page }) => page.url());
-// Im Browser: const url = await window.pageURL();
+// In the browser: const url = await window.pageURL();
 ```
 
 ---
@@ -208,14 +208,14 @@ await context.exposeBinding('pageURL', ({ page }) => page.url());
 await browserContext.exposeFunction(name, callback): Promise<Disposable>
 ```
 
-Stellt eine Funktion unter `window[name]` bereit (ohne Source-Argument, einfachere Variante von `exposeBinding`).
+Exposes a function under `window[name]` (without a source argument, a simpler variant of `exposeBinding`).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `name` | string | Yes | — | Funktionsname |
-| `callback` | Function | Yes | — | Wird mit den Argumenten des Browser-Aufrufs aufgerufen |
+| `name` | string | Yes | — | Function name |
+| `callback` | Function | Yes | — | Called with the arguments of the browser-side call |
 
 **Returns:** `Promise<Disposable>`
 
@@ -224,7 +224,7 @@ const crypto = require('crypto');
 await context.exposeFunction('sha256', (text) =>
   crypto.createHash('sha256').update(text).digest('hex')
 );
-// Im Browser: const hash = await window.sha256('hello');
+// In the browser: const hash = await window.sha256('hello');
 ```
 
 ---
@@ -235,16 +235,16 @@ await context.exposeFunction('sha256', (text) =>
 await browserContext.grantPermissions(permissions[, options]): Promise<void>
 ```
 
-Erteilt Berechtigungen fuer den Context (optional eingeschraenkt auf einen Origin).
+Grants permissions for the context (optionally restricted to one origin).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `permissions` | Array<string> | Yes | — | Zu erteilende Berechtigungen |
-| `options.origin` | string | No | — | Nur fuer diesen Origin erteilen |
+| `permissions` | Array<string> | Yes | — | Permissions to grant |
+| `options.origin` | string | No | — | Grant only for this origin |
 
-**Moegliche Berechtigungen:** `"accelerometer"`, `"ambient-light-sensor"`, `"background-sync"`, `"camera"`, `"clipboard-read"`, `"clipboard-write"`, `"geolocation"`, `"gyroscope"`, `"local-fonts"`, `"local-network-access"`, `"magnetometer"`, `"microphone"`, `"midi"`, `"midi-sysex"`, `"notifications"`, `"payment-handler"`, `"storage-access"`, `"screen-wake-lock"`
+**Possible permissions:** `"accelerometer"`, `"ambient-light-sensor"`, `"background-sync"`, `"camera"`, `"clipboard-read"`, `"clipboard-write"`, `"geolocation"`, `"gyroscope"`, `"local-fonts"`, `"local-network-access"`, `"magnetometer"`, `"microphone"`, `"midi"`, `"midi-sysex"`, `"notifications"`, `"payment-handler"`, `"storage-access"`, `"screen-wake-lock"`
 
 **Returns:** `Promise<void>`
 
@@ -260,7 +260,7 @@ await context.grantPermissions(['geolocation'], { origin: 'https://example.com' 
 browserContext.isClosed(): boolean
 ```
 
-Gibt `true` zurueck wenn der Context geschlossen wurde.
+Returns `true` if the context has been closed.
 
 **Returns:** `boolean`
 
@@ -272,13 +272,13 @@ Gibt `true` zurueck wenn der Context geschlossen wurde.
 await browserContext.newCDPSession(page): Promise<CDPSession>
 ```
 
-Erstellt eine neue CDP-Session fuer eine Page oder einen Frame. **Nur Chromium.**
+Creates a new CDP session for a page or a frame. **Chromium only.**
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `page` | Page \| Frame | Yes | — | Ziel der CDP-Session |
+| `page` | Page \| Frame | Yes | — | Target of the CDP session |
 
 **Returns:** `Promise<CDPSession>`
 
@@ -290,7 +290,7 @@ Erstellt eine neue CDP-Session fuer eine Page oder einen Frame. **Nur Chromium.*
 await browserContext.newPage(): Promise<Page>
 ```
 
-Erstellt eine neue Page in diesem Context.
+Creates a new page in this context.
 
 **Returns:** `Promise<Page>`
 
@@ -302,7 +302,7 @@ Erstellt eine neue Page in diesem Context.
 browserContext.pages(): Array<Page>
 ```
 
-Gibt alle offenen Pages in diesem Context zurueck.
+Returns all open pages in this context.
 
 **Returns:** `Array<Page>`
 
@@ -314,14 +314,14 @@ Gibt alle offenen Pages in diesem Context zurueck.
 await browserContext.removeAllListeners([type, options]): Promise<void>
 ```
 
-Entfernt Event-Listener.
+Removes event listeners.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `type` | string | No | — | Event-Typ |
-| `options.behavior` | `"wait"` \| `"ignoreErrors"` \| `"default"` | No | `"default"` | Umgang mit laufenden Handlern |
+| `type` | string | No | — | Event type |
+| `options.behavior` | `"wait"` \| `"ignoreErrors"` \| `"default"` | No | `"default"` | How to handle running handlers |
 
 **Returns:** `Promise<void>`
 
@@ -333,23 +333,23 @@ Entfernt Event-Listener.
 await browserContext.route(url, handler[, options]): Promise<Disposable>
 ```
 
-Registriert einen Netzwerk-Handler fuer alle Pages in diesem Context. Handler wird fuer jede Anfrage aufgerufen, die `url` matcht.
+Registers a network handler for all pages in this context. The handler is called for every request matching `url`.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string \| RegExp \| URLPattern \| Function(URL):boolean | Yes | — | URL-Muster oder Praedikat |
-| `handler` | Function(Route, Request) | Yes | — | Handler-Funktion; muss `route.fulfill()`, `route.continue()`, `route.abort()` oder `route.fallback()` aufrufen |
-| `options.times` | number | No | — | Wie oft der Handler angewendet wird (danach entfernt) |
+| `url` | string \| RegExp \| URLPattern \| Function(URL):boolean | Yes | — | URL pattern or predicate |
+| `handler` | Function(Route, Request) | Yes | — | Handler function; must call `route.fulfill()`, `route.continue()`, `route.abort()` or `route.fallback()` |
+| `options.times` | number | No | — | How many times the handler is applied (removed afterwards) |
 
 **Returns:** `Promise<Disposable>`
 
 ```js
-// Alle Bilder blockieren
+// Block all images
 await context.route('**/*.{png,jpg,jpeg}', route => route.abort());
 
-// API-Anfragen mocken
+// Mock API requests
 await context.route(/api\/users/, async route => {
   await route.fulfill({ json: [{ id: 1, name: 'Alice' }] });
 });
@@ -363,18 +363,18 @@ await context.route(/api\/users/, async route => {
 await browserContext.routeFromHAR(har[, options]): Promise<void>
 ```
 
-Bedient Netzwerkanfragen aus einer HAR-Datei (HTTP Archive).
+Serves network requests from a HAR file (HTTP Archive).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `har` | string | Yes | — | Pfad zur HAR-Datei |
-| `options.notFound` | `"abort"` \| `"fallback"` | No | `"abort"` | Verhalten fuer nicht gematchte Anfragen |
-| `options.update` | boolean | No | false | HAR mit echten Daten aktualisieren |
-| `options.updateContent` | `"embed"` \| `"attach"` | No | — | Content-Speichermodus beim Update |
-| `options.updateMode` | `"full"` \| `"minimal"` | No | `"minimal"` | Update-Umfang |
-| `options.url` | string \| RegExp | No | — | Nur Anfragen fuer dieses Muster aus HAR bedienen |
+| `har` | string | Yes | — | Path to the HAR file |
+| `options.notFound` | `"abort"` \| `"fallback"` | No | `"abort"` | Behavior for unmatched requests |
+| `options.update` | boolean | No | false | Update the HAR with real data |
+| `options.updateContent` | `"embed"` \| `"attach"` | No | — | Content storage mode when updating |
+| `options.updateMode` | `"full"` \| `"minimal"` | No | `"minimal"` | Update scope |
+| `options.url` | string \| RegExp | No | — | Serve only requests matching this pattern from the HAR |
 
 **Returns:** `Promise<void>`
 
@@ -393,14 +393,14 @@ await context.routeFromHAR('fixtures/api.har', {
 await browserContext.routeWebSocket(url, handler): Promise<void>
 ```
 
-Registriert einen Handler fuer WebSocket-Verbindungen in allen Pages dieses Contexts.
+Registers a handler for WebSocket connections in all pages of this context.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string \| RegExp \| Function(URL):boolean | Yes | — | WebSocket-URL-Muster |
-| `handler` | Function(WebSocketRoute) | Yes | — | Handler-Funktion |
+| `url` | string \| RegExp \| Function(URL):boolean | Yes | — | WebSocket URL pattern |
+| `handler` | Function(WebSocketRoute) | Yes | — | Handler function |
 
 **Returns:** `Promise<void>`
 
@@ -420,7 +420,7 @@ await context.routeWebSocket(/ws\.example\.com/, ws => {
 browserContext.serviceWorkers(): Array<Worker>
 ```
 
-Gibt alle aktiven Service Workers in diesem Context zurueck. **Nur Chromium.**
+Returns all active service workers in this context. **Chromium only.**
 
 **Returns:** `Array<Worker>`
 
@@ -432,13 +432,13 @@ Gibt alle aktiven Service Workers in diesem Context zurueck. **Nur Chromium.**
 browserContext.setDefaultNavigationTimeout(timeout): void
 ```
 
-Setzt das Standard-Timeout fuer Navigationsoperationen (`goto`, `goBack`, `goForward`, `reload`, `setContent`, `waitForNavigation`).
+Sets the default timeout for navigation operations (`goto`, `goBack`, `goForward`, `reload`, `setContent`, `waitForNavigation`).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `timeout` | number | Yes | — | Timeout in Millisekunden |
+| `timeout` | number | Yes | — | Timeout in milliseconds |
 
 ---
 
@@ -448,13 +448,13 @@ Setzt das Standard-Timeout fuer Navigationsoperationen (`goto`, `goBack`, `goFor
 browserContext.setDefaultTimeout(timeout): void
 ```
 
-Setzt das Standard-Timeout fuer alle Operationen (ausser Navigation).
+Sets the default timeout for all operations (except navigation).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `timeout` | number | Yes | — | Timeout in Millisekunden; `0` = kein Timeout |
+| `timeout` | number | Yes | — | Timeout in milliseconds; `0` = no timeout |
 
 ---
 
@@ -464,13 +464,13 @@ Setzt das Standard-Timeout fuer alle Operationen (ausser Navigation).
 await browserContext.setExtraHTTPHeaders(headers): Promise<void>
 ```
 
-Setzt zusaetzliche HTTP-Header, die bei jeder Anfrage aller Pages gesendet werden.
+Sets additional HTTP headers that are sent with every request of all pages.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `headers` | Object<string,string> | Yes | — | Header-Name/-Wert-Paare |
+| `headers` | Object<string,string> | Yes | — | Header name/value pairs |
 
 **Returns:** `Promise<void>`
 
@@ -486,16 +486,16 @@ await context.setExtraHTTPHeaders({ 'X-Custom-Header': 'value' });
 await browserContext.setGeolocation(geolocation): Promise<void>
 ```
 
-Setzt oder aendert die Geolocation-Emulation. Erfordert zuvor `grantPermissions(['geolocation'])`.
+Sets or changes the geolocation emulation. Requires a prior `grantPermissions(['geolocation'])`.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `geolocation` | Object \| null | Yes | — | `null` loescht die Emulation |
-| `geolocation.latitude` | number | Yes | — | Breitengrad (-90 bis 90) |
-| `geolocation.longitude` | number | Yes | — | Laengengrad (-180 bis 180) |
-| `geolocation.accuracy` | number | No | 0 | Genauigkeit in Metern (>= 0) |
+| `geolocation` | Object \| null | Yes | — | `null` clears the emulation |
+| `geolocation.latitude` | number | Yes | — | Latitude (-90 to 90) |
+| `geolocation.longitude` | number | Yes | — | Longitude (-180 to 180) |
+| `geolocation.accuracy` | number | No | 0 | Accuracy in meters (>= 0) |
 
 **Returns:** `Promise<void>`
 
@@ -512,13 +512,13 @@ await context.setGeolocation({ latitude: 52.52, longitude: 13.405 });
 await browserContext.setOffline(offline): Promise<void>
 ```
 
-Aktiviert oder deaktiviert die Offline-Netzwerkemulation.
+Enables or disables offline network emulation.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `offline` | boolean | Yes | — | `true` = offline emulieren |
+| `offline` | boolean | Yes | — | `true` = emulate offline |
 
 **Returns:** `Promise<void>`
 
@@ -530,13 +530,13 @@ Aktiviert oder deaktiviert die Offline-Netzwerkemulation.
 await browserContext.setStorageState(storageState): Promise<void>
 ```
 
-Setzt Cookies und LocalStorage des Contexts (loescht zuvor vorhandene Daten).
+Sets the context's cookies and LocalStorage (clearing any previously existing data).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `storageState` | string \| Object | Yes | — | Dateipfad oder State-Objekt mit `cookies` und `origins` |
+| `storageState` | string \| Object | Yes | — | File path or state object with `cookies` and `origins` |
 
 **Returns:** `Promise<void>`
 
@@ -548,19 +548,19 @@ Setzt Cookies und LocalStorage des Contexts (loescht zuvor vorhandene Daten).
 await browserContext.storageState([options]): Promise<StorageState>
 ```
 
-Gibt den aktuellen Storage-State (Cookies + LocalStorage) als serialisierbares Objekt zurueck.
+Returns the current storage state (cookies + LocalStorage) as a serializable object.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.indexedDB` | boolean | No | false | IndexedDB-Snapshot einschliessen |
-| `options.path` | string | No | — | Dateipfad zum Speichern |
+| `options.indexedDB` | boolean | No | false | Include an IndexedDB snapshot |
+| `options.path` | string | No | — | File path to save to |
 
-**Returns:** `Promise<StorageState>` mit Feldern `cookies` (Array) und `origins` (Array mit `localStorage`)
+**Returns:** `Promise<StorageState>` with the fields `cookies` (array) and `origins` (array containing `localStorage`)
 
 ```js
-// Nach dem Login speichern
+// Save after logging in
 await page.locator('#login').click();
 await context.storageState({ path: 'auth.json' });
 ```
@@ -573,14 +573,14 @@ await context.storageState({ path: 'auth.json' });
 await browserContext.unroute(url[, handler]): Promise<void>
 ```
 
-Entfernt einen zuvor registrierten Route-Handler.
+Removes a previously registered route handler.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string \| RegExp \| URLPattern \| Function | Yes | — | Zu entfernendes URL-Muster |
-| `handler` | Function | No | — | Bestimmten Handler entfernen (sonst alle fuer `url`) |
+| `url` | string \| RegExp \| URLPattern \| Function | Yes | — | URL pattern to remove |
+| `handler` | Function | No | — | Remove a specific handler (otherwise all for `url`) |
 
 **Returns:** `Promise<void>`
 
@@ -592,13 +592,13 @@ Entfernt einen zuvor registrierten Route-Handler.
 await browserContext.unrouteAll([options]): Promise<void>
 ```
 
-Entfernt alle Route-Handler.
+Removes all route handlers.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.behavior` | `"wait"` \| `"ignoreErrors"` \| `"default"` | No | `"default"` | Umgang mit laufenden Handlern |
+| `options.behavior` | `"wait"` \| `"ignoreErrors"` \| `"default"` | No | `"default"` | How to handle running handlers |
 
 **Returns:** `Promise<void>`
 
@@ -610,18 +610,18 @@ Entfernt alle Route-Handler.
 await browserContext.waitForEvent(event[, optionsOrPredicate]): Promise<Object>
 ```
 
-Wartet auf ein Event und gibt dessen Daten zurueck.
+Waits for an event and returns its data.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `event` | string | Yes | — | Event-Name (z.B. `"page"`, `"request"`) |
-| `optionsOrPredicate` | Function \| Object | No | — | Praedikat oder Options-Objekt |
-| `optionsOrPredicate.predicate` | Function | No | — | Gibt `true` zurueck wenn das Event akzeptiert werden soll |
-| `optionsOrPredicate.timeout` | number | No | 30000 | Timeout in Millisekunden |
+| `event` | string | Yes | — | Event name (e.g. `"page"`, `"request"`) |
+| `optionsOrPredicate` | Function \| Object | No | — | Predicate or options object |
+| `optionsOrPredicate.predicate` | Function | No | — | Returns `true` if the event should be accepted |
+| `optionsOrPredicate.timeout` | number | No | 30000 | Timeout in milliseconds |
 
-**Returns:** `Promise<Object>` — Event-Daten
+**Returns:** `Promise<Object>` — event data
 
 ```js
 const pagePromise = context.waitForEvent('page');
@@ -637,7 +637,7 @@ const newPage = await pagePromise;
 
 **Type:** `Clock`
 
-Erlaubt die Steuerung der Zeit (Mock-Clock). Ermoeglicht das Vorspulen von Timern, Dates und Intervallen.
+Allows controlling time (mock clock). Enables fast-forwarding timers, dates and intervals.
 
 ```js
 await context.clock.setFixedTime(new Date('2024-01-01'));
@@ -649,7 +649,7 @@ await context.clock.setFixedTime(new Date('2024-01-01'));
 
 **Type:** `Debugger`
 
-Ermoeglicht das Pausieren und Fortsetzen der Ausfuehrung waehrend des Debuggings.
+Allows pausing and resuming execution while debugging.
 
 ---
 
@@ -657,7 +657,7 @@ Ermoeglicht das Pausieren und Fortsetzen der Ausfuehrung waehrend des Debuggings
 
 **Type:** `APIRequestContext`
 
-API-Testing-Helfer, der die Cookies des Contexts teilt. Verwendet fuer HTTP-Anfragen ausserhalb des Browsers.
+API testing helper that shares the context's cookies. Used for HTTP requests outside the browser.
 
 ```js
 const response = await context.request.get('https://api.example.com/users');
@@ -669,11 +669,11 @@ const response = await context.request.get('https://api.example.com/users');
 
 **Type:** `Tracing`
 
-Playwright Tracing-Unterstuetzung fuer diesen Context.
+Playwright tracing support for this context.
 
 ```js
 await context.tracing.start({ screenshots: true, snapshots: true });
-// ... Test durchfuehren ...
+// ... run the test ...
 await context.tracing.stop({ path: 'trace.zip' });
 ```
 
@@ -683,7 +683,7 @@ await context.tracing.stop({ path: 'trace.zip' });
 
 ### event: 'close'
 
-Wird ausgeloest wenn der Context geschlossen wird.
+Emitted when the context is closed.
 
 **Event data:** `BrowserContext`
 
@@ -691,7 +691,7 @@ Wird ausgeloest wenn der Context geschlossen wird.
 
 ### event: 'console'
 
-Wird ausgeloest wenn `console.log()`, `console.error()` o.ae. in einer Page aufgerufen wird.
+Emitted when `console.log()`, `console.error()` or similar is called in a page.
 
 **Event data:** `ConsoleMessage`
 
@@ -703,7 +703,7 @@ context.on('console', msg => console.log(msg.text()));
 
 ### event: 'dialog'
 
-Wird ausgeloest wenn ein JavaScript-Dialog erscheint (`alert`, `prompt`, `confirm`, `beforeunload`). Dialog muss mit `dialog.accept()` oder `dialog.dismiss()` behandelt werden.
+Emitted when a JavaScript dialog appears (`alert`, `prompt`, `confirm`, `beforeunload`). The dialog must be handled with `dialog.accept()` or `dialog.dismiss()`.
 
 **Event data:** `Dialog`
 
@@ -711,7 +711,7 @@ Wird ausgeloest wenn ein JavaScript-Dialog erscheint (`alert`, `prompt`, `confir
 
 ### event: 'download'
 
-Wird ausgeloest wenn ein Datei-Download in einer Page des Contexts beginnt.
+Emitted when a file download starts in a page of the context.
 
 **Event data:** `Download`
 
@@ -719,7 +719,7 @@ Wird ausgeloest wenn ein Datei-Download in einer Page des Contexts beginnt.
 
 ### event: 'frameattached'
 
-Wird ausgeloest wenn ein Frame in einer Page des Contexts hinzugefuegt wird.
+Emitted when a frame is added in a page of the context.
 
 **Event data:** `Frame`
 
@@ -727,7 +727,7 @@ Wird ausgeloest wenn ein Frame in einer Page des Contexts hinzugefuegt wird.
 
 ### event: 'framedetached'
 
-Wird ausgeloest wenn ein Frame aus einer Page des Contexts entfernt wird.
+Emitted when a frame is removed from a page of the context.
 
 **Event data:** `Frame`
 
@@ -735,7 +735,7 @@ Wird ausgeloest wenn ein Frame aus einer Page des Contexts entfernt wird.
 
 ### event: 'framenavigated'
 
-Wird ausgeloest wenn ein Frame zu einer neuen URL navigiert.
+Emitted when a frame navigates to a new URL.
 
 **Event data:** `Frame`
 
@@ -743,7 +743,7 @@ Wird ausgeloest wenn ein Frame zu einer neuen URL navigiert.
 
 ### event: 'page'
 
-Wird ausgeloest wenn eine neue Page im Context erstellt wird (z.B. durch Popup oder `context.newPage()`).
+Emitted when a new page is created in the context (e.g. by a popup or `context.newPage()`).
 
 **Event data:** `Page`
 
@@ -758,7 +758,7 @@ context.on('page', async page => {
 
 ### event: 'pageclose'
 
-Wird ausgeloest wenn eine Page im Context geschlossen wird.
+Emitted when a page in the context is closed.
 
 **Event data:** `Page`
 
@@ -766,7 +766,7 @@ Wird ausgeloest wenn eine Page im Context geschlossen wird.
 
 ### event: 'pageload'
 
-Wird ausgeloest wenn das JavaScript-`load`-Event einer Page im Context dispatched wird.
+Emitted when the JavaScript `load` event of a page in the context is dispatched.
 
 **Event data:** `Page`
 
@@ -774,7 +774,7 @@ Wird ausgeloest wenn das JavaScript-`load`-Event einer Page im Context dispatche
 
 ### event: 'request'
 
-Wird ausgeloest wenn eine Netzwerk-Anfrage von einer Page des Contexts initiiert wird.
+Emitted when a network request is initiated by a page of the context.
 
 **Event data:** `Request`
 
@@ -782,7 +782,7 @@ Wird ausgeloest wenn eine Netzwerk-Anfrage von einer Page des Contexts initiiert
 
 ### event: 'requestfailed'
 
-Wird ausgeloest wenn eine Anfrage fehlschlaegt (Timeout, Abbruch, o.ae.).
+Emitted when a request fails (timeout, abort, or similar).
 
 **Event data:** `Request`
 
@@ -790,7 +790,7 @@ Wird ausgeloest wenn eine Anfrage fehlschlaegt (Timeout, Abbruch, o.ae.).
 
 ### event: 'requestfinished'
 
-Wird ausgeloest wenn eine Anfrage abgeschlossen ist (Response vollstaendig heruntergeladen).
+Emitted when a request has completed (response fully downloaded).
 
 **Event data:** `Request`
 
@@ -798,7 +798,7 @@ Wird ausgeloest wenn eine Anfrage abgeschlossen ist (Response vollstaendig herun
 
 ### event: 'response'
 
-Wird ausgeloest wenn Status-Code und Header einer Antwort empfangen wurden.
+Emitted when the status code and headers of a response have been received.
 
 **Event data:** `Response`
 
@@ -806,7 +806,7 @@ Wird ausgeloest wenn Status-Code und Header einer Antwort empfangen wurden.
 
 ### event: 'serviceworker'
 
-Wird ausgeloest wenn ein neuer Service Worker im Context registriert wird. **Nur Chromium.**
+Emitted when a new service worker is registered in the context. **Chromium only.**
 
 **Event data:** `Worker`
 
@@ -814,9 +814,9 @@ Wird ausgeloest wenn ein neuer Service Worker im Context registriert wird. **Nur
 
 ### event: 'weberror'
 
-Wird ausgeloest wenn eine unbehandelte Exception in einer Page des Contexts auftritt.
+Emitted when an unhandled exception occurs in a page of the context.
 
-**Event data:** `WebError` mit `error()` und `page()`
+**Event data:** `WebError` with `error()` and `page()`
 
 ```js
 context.on('weberror', err => console.error(err.error().message));
@@ -828,11 +828,11 @@ context.on('weberror', err => console.error(err.error().message));
 
 ### browserContext.setHTTPCredentials(httpCredentials) [DEPRECATED]
 
-Veraltet. Browser cachen Credentials; stattdessen neuen Context mit `httpCredentials`-Option erstellen.
+Deprecated. Browsers cache credentials; create a new context with the `httpCredentials` option instead.
 
 ### backgroundPages() [DEPRECATED]
 
-Veraltet (Chromium Manifest V3). Gibt immer leeres Array zurueck.
+Deprecated (Chromium Manifest V3). Always returns an empty array.
 
 ---
 
@@ -844,7 +844,7 @@ Veraltet (Chromium Manifest V3). Gibt immer leeres Array zurueck.
 | Properties | 4 |
 | Events | 16 |
 
-**Fazit:** `BrowserContext` ist die zentrale Isolationseinheit in Playwright. Die wichtigsten Features sind Netzwerk-Routing (`route`, `routeFromHAR`), Cookie/Storage-Management (`addCookies`, `storageState`, `setStorageState`) und Berechtigungen (`grantPermissions`). Fuer End-to-End-Authentication-Flows ist `storageState()` unverzichtbar.
+**Conclusion:** `BrowserContext` is the central isolation unit in Playwright. The most important features are network routing (`route`, `routeFromHAR`), cookie/storage management (`addCookies`, `storageState`, `setStorageState`) and permissions (`grantPermissions`). For end-to-end authentication flows, `storageState()` is indispensable.
 
 ---
 

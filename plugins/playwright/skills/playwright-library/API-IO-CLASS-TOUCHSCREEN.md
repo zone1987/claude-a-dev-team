@@ -1,28 +1,28 @@
 # Playwright — class: Touchscreen
 
-> **Manifest:** 1 Methode, 0 Properties, 0 Events.
-> Simuliert Touch-Gesten. Nur verfuegbar, wenn der BrowserContext mit `hasTouch: true` erstellt wurde.
-> Zugriff: `page.touchscreen`.
+> **Manifest:** 1 method, 0 properties, 0 events.
+> Simulates touch gestures. Only available when the BrowserContext was created with `hasTouch: true`.
+> Access: `page.touchscreen`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Manuelle Multi-Touch-Gesten](#manuelle-multi-touch-gesten)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Manual multi-touch gestures](#manual-multi-touch-gestures)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Touchscreen` erlaubt das Senden von Touch-Events an den Browser. Die Klasse
-ist auf einen einzelnen Tap-Befehl beschraenkt; komplexere Gesten (Pinch,
-Swipe, Multi-Touch) muessen manuell ueber `page.dispatchEvent()` implementiert
-werden.
+`Touchscreen` allows sending touch events to the browser. The class
+is limited to a single tap command; more complex gestures (pinch,
+swipe, multi-touch) must be implemented manually via
+`page.dispatchEvent()`.
 
-**Voraussetzung:** Der BrowserContext muss mit `hasTouch: true` erzeugt werden:
+**Prerequisite:** the BrowserContext must be created with `hasTouch: true`:
 
 ```javascript
 const context = await browser.newContext({ hasTouch: true });
@@ -31,34 +31,34 @@ const page = await context.newPage();
 
 ---
 
-## Methoden
+## Methods
 
 ### touchscreen.tap(x, y)
 
-Sendet ein `touchstart`- gefolgt von einem `touchend`-Event an der
-angegebenen Position.
+Sends a `touchstart` followed by a `touchend` event at the
+given position.
 
-**Signatur:**
+**Signature:**
 ```typescript
 touchscreen.tap(x: number, y: number): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `x` | `number` | ja | — | X-Koordinate in CSS-Pixeln, relativ zum Haupt-Frame-Viewport |
-| `y` | `number` | ja | — | Y-Koordinate in CSS-Pixeln, relativ zum Haupt-Frame-Viewport |
+| `x` | `number` | yes | — | X coordinate in CSS pixels, relative to the main frame viewport |
+| `y` | `number` | yes | — | Y coordinate in CSS pixels, relative to the main frame viewport |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinweise:**
-- Wirft einen Fehler, wenn `hasTouch` im BrowserContext nicht aktiviert wurde.
-- Loest `touchstart` + `touchend` aus; kein `touchmove`.
-- Koordinaten beziehen sich auf den Haupt-Frame — bei iframes ggf. Offset
-  berechnen.
+**Notes:**
+- Throws an error if `hasTouch` was not enabled in the BrowserContext.
+- Triggers `touchstart` + `touchend`; no `touchmove`.
+- Coordinates refer to the main frame — with iframes, calculate the offset
+  if necessary.
 
-**Beispiel:**
+**Example:**
 ```javascript
 const context = await browser.newContext({ hasTouch: true });
 const page = await context.newPage();
@@ -68,13 +68,13 @@ await page.touchscreen.tap(150, 200);
 
 ---
 
-## Manuelle Multi-Touch-Gesten
+## Manual multi-touch gestures
 
-Da `Touchscreen` nur `tap()` anbietet, werden komplexere Gesten ueber
-`page.dispatchEvent()` implementiert:
+Since `Touchscreen` only offers `tap()`, more complex gestures are implemented via
+`page.dispatchEvent()`:
 
 ```javascript
-// Swipe nach links (touchstart -> touchmove -> touchend)
+// Swipe to the left (touchstart -> touchmove -> touchend)
 const element = await page.$('#swipeable');
 const box = await element.boundingBox();
 
@@ -91,28 +91,28 @@ await page.dispatchEvent('#swipeable', 'touchend', { touches: [] });
 
 ## Properties
 
-Keine offentlichen Properties.
+No public properties.
 
 ## Events
 
-Keine eigenen Events.
+No events of its own.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 1      |
+| Methods  | 1      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** Die Klasse ist bewusst minimal gehalten. Fuer einfache Touch-Tests
-genuegt `tap()`. Fuer reale Mobile-Emulation empfiehlt sich die Kombination mit
-`page.emulate({ device: playwright.devices['iPhone 14'] })` und
-`hasTouch: true` im Context. Komplexe Gesten erfordern manuelles
+**Conclusion:** the class is deliberately kept minimal. For simple touch tests
+`tap()` is sufficient. For realistic mobile emulation, the combination with
+`page.emulate({ device: playwright.devices['iPhone 14'] })` and
+`hasTouch: true` in the context is recommended. Complex gestures require manual
 `dispatchEvent`.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-touchscreen*
+*Source: https://playwright.dev/docs/api/class-touchscreen*

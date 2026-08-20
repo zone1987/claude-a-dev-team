@@ -1,10 +1,10 @@
 # class-playwrightassertions — Playwright API Reference
 
-`PlaywrightAssertions` ist die Factory-Klasse, die die `expect()`-Funktion bereitstellt. Sie ist ueberladen und gibt je nach Typ des uebergebenen Argument die passende Assertion-Klasse zurueck. Alle Ueberladungen implementieren "Web-First Assertions", die automatisch retrien bis die Bedingung zutrifft oder der Timeout ablaeuft.
+`PlaywrightAssertions` is the factory class that provides the `expect()` function. It is overloaded and returns the matching assertion class depending on the type of the argument passed. All overloads implement "web-first assertions" that retry automatically until the condition holds or the timeout expires.
 
-Standard-Timeout: 5000 ms (konfigurierbar via `TestConfig.expect.timeout`).
+Default timeout: 5000 ms (configurable via `TestConfig.expect.timeout`).
 
-Methoden-Anzahl: 4 Ueberladungen von `expect()`
+Method count: 4 overloads of `expect()`
 
 ---
 
@@ -14,7 +14,7 @@ Methoden-Anzahl: 4 Ueberladungen von `expect()`
 - [expect(value)](#expectvalue)
 - [expect(locator)](#expectlocator)
 - [expect(page)](#expectpage)
-- [Rueckgabetypen nach Argument](#rueckgabetypen-nach-argument)
+- [Return types by argument](#return-types-by-argument)
 - [Soft Assertions](#soft-assertions)
 - [expect.poll()](#expectpoll)
 - [expect.toPass()](#expecttopass)
@@ -26,24 +26,24 @@ Methoden-Anzahl: 4 Ueberladungen von `expect()`
 expect(response: APIResponse): APIResponseAssertions
 ```
 
-Erstellt Assertion-Utilities fuer ein `APIResponse`-Objekt.
+Creates assertion utilities for an `APIResponse` object.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `response` | `APIResponse` | ja | — | Antwort-Objekt aus `request.get()`, `request.post()` etc. |
+| `response` | `APIResponse` | yes | — | Response object from `request.get()`, `request.post()` etc. |
 
-**Rueckgabe:** `APIResponseAssertions`
+**Returns:** `APIResponseAssertions`
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test('API-Endpunkt antwortet erfolgreich', async ({ request }) => {
+test('API endpoint responds successfully', async ({ request }) => {
   const response = await request.get('/api/health');
   await expect(response).toBeOK();
 });
 ```
 
-**Verfuegbare Assertions:** Alle Methoden von `APIResponseAssertions` — insbesondere `toBeOK()`.
+**Available assertions:** All methods of `APIResponseAssertions` — in particular `toBeOK()`.
 
 ---
 
@@ -53,13 +53,13 @@ test('API-Endpunkt antwortet erfolgreich', async ({ request }) => {
 expect(value: unknown): GenericAssertions
 ```
 
-Erstellt Assertion-Utilities fuer beliebige JavaScript-Werte. Kein auto-retry.
+Creates assertion utilities for arbitrary JavaScript values. No auto-retry.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `value` | `unknown` | ja | — | Zu pruefender Wert (Primitive, Objekte, Arrays, Promises, Funktionen) |
+| `value` | `unknown` | yes | — | Value to check (primitives, objects, arrays, promises, functions) |
 
-**Rueckgabe:** `GenericAssertions`
+**Returns:** `GenericAssertions`
 
 ```typescript
 expect(42).toBe(42);
@@ -69,7 +69,7 @@ await expect(Promise.resolve('ok')).resolves.toBe('ok');
 expect(() => JSON.parse('{bad}')).toThrow(SyntaxError);
 ```
 
-**Verfuegbare Assertions:** Alle Methoden von `GenericAssertions`.
+**Available assertions:** All methods of `GenericAssertions`.
 
 ---
 
@@ -79,13 +79,13 @@ expect(() => JSON.parse('{bad}')).toThrow(SyntaxError);
 expect(locator: Locator): LocatorAssertions
 ```
 
-Erstellt Assertion-Utilities fuer einen `Locator`. Alle Assertions retrien automatisch.
+Creates assertion utilities for a `Locator`. All assertions retry automatically.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `locator` | `Locator` | ja | — | Playwright-Locator fuer das zu pruefende Element |
+| `locator` | `Locator` | yes | — | Playwright locator for the element to check |
 
-**Rueckgabe:** `LocatorAssertions`
+**Returns:** `LocatorAssertions`
 
 ```typescript
 await expect(page.getByRole('button', { name: 'Senden' })).toBeEnabled();
@@ -94,7 +94,7 @@ await expect(page.getByLabel('Name')).toHaveValue('Max');
 await expect(page.getByRole('listitem')).toHaveCount(3);
 ```
 
-**Verfuegbare Assertions:** Alle 29 Matcher von `LocatorAssertions` + `not`.
+**Available assertions:** All 29 matchers of `LocatorAssertions` + `not`.
 
 ---
 
@@ -104,51 +104,51 @@ await expect(page.getByRole('listitem')).toHaveCount(3);
 expect(page: Page): PageAssertions
 ```
 
-Erstellt Assertion-Utilities fuer ein `Page`-Objekt. Alle Assertions retrien automatisch.
+Creates assertion utilities for a `Page` object. All assertions retry automatically.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `page` | `Page` | ja | — | Playwright-Seiteninstanz |
+| `page` | `Page` | yes | — | Playwright page instance |
 
-**Rueckgabe:** `PageAssertions`
+**Returns:** `PageAssertions`
 
 ```typescript
 await expect(page).toHaveURL('/dashboard');
-await expect(page).toHaveTitle('Meine App');
+await expect(page).toHaveTitle('My App');
 await expect(page).toHaveScreenshot('baseline.png');
 ```
 
-**Verfuegbare Assertions:** Alle 6 Matcher von `PageAssertions` + `not`.
+**Available assertions:** All 6 matchers of `PageAssertions` + `not`.
 
 ---
 
-## Rueckgabetypen nach Argument
+## Return types by argument
 
-| Argument-Typ | Rueckgabetyp | Auto-Retry |
+| Argument type | Return type | Auto-retry |
 |---|---|---|
-| `APIResponse` | `APIResponseAssertions` | nein |
-| beliebiger Wert | `GenericAssertions` | nein |
-| `Locator` | `LocatorAssertions` | ja |
-| `Page` | `PageAssertions` | ja |
+| `APIResponse` | `APIResponseAssertions` | no |
+| any value | `GenericAssertions` | no |
+| `Locator` | `LocatorAssertions` | yes |
+| `Page` | `PageAssertions` | yes |
 
 ---
 
 ## Soft Assertions
 
-`expect.soft()` markiert fehlgeschlagene Assertions, bricht den Test aber nicht sofort ab. Alle Fehler werden am Testende gesammelt gemeldet.
+`expect.soft()` marks failed assertions but does not abort the test immediately. All errors are reported collectively at the end of the test.
 
 ```typescript
-// Schlaegt fehl, fuehrt Test aber fort:
+// Fails, but continues the test:
 await expect.soft(page.locator('.title')).toHaveText('Erwarteter Titel');
 await expect.soft(page.locator('.count')).toHaveText('5');
-// Erst hier wird geworfen, wenn soft assertions fehlgeschlagen sind:
+// Only here is it thrown, if soft assertions have failed:
 ```
 
 ---
 
 ## expect.poll()
 
-Fuehrt eine Funktion wiederholt aus und prueft das Ergebnis mit einem GenericAssertion-Matcher. Nuetzlich fuer Nicht-Playwright-Zustaende.
+Runs a function repeatedly and checks the result with a GenericAssertion matcher. Useful for non-Playwright state.
 
 ```typescript
 await expect.poll(async () => {
@@ -164,7 +164,7 @@ await expect.poll(async () => {
 
 ## expect.toPass()
 
-Fuehrt einen Block wiederholt aus, bis er ohne Fehler durchlaeuft.
+Runs a block repeatedly until it completes without an error.
 
 ```typescript
 await expect(async () => {
@@ -177,7 +177,7 @@ await expect(async () => {
 
 ## expect.extend()
 
-Registriert eigene Matcher.
+Registers custom matchers.
 
 ```typescript
 expect.extend({
@@ -190,10 +190,10 @@ expect.extend({
   },
 });
 
-// Verwendung:
+// Usage:
 await expect(page).toBeLoggedIn();
 ```
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-playwrightassertions
+Source: https://playwright.dev/docs/api/class-playwrightassertions

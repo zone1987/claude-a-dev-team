@@ -1,15 +1,15 @@
 # class-apirequest
 
-`APIRequest` ist eine Singleton-Klasse, die ueber `playwright.request` (im eigenstaendigen Betrieb) oder `test.request` (im Test-Framework) zugaenglich ist. Sie dient als Factory fuer `APIRequestContext`-Instanzen.
+`APIRequest` is a singleton class accessible via `playwright.request` (in standalone operation) or `test.request` (in the test framework). It serves as a factory for `APIRequestContext` instances.
 
-Methoden: 1 | Properties: 0 | Events: 0
+Methods: 1 | Properties: 0 | Events: 0
 
 ---
 
 ## Contents
 
 - [Methods](#methods)
-- [Beziehung zu BrowserContext.request](#beziehung-zu-browsercontextrequest)
+- [Relationship to BrowserContext.request](#relationship-to-browsercontextrequest)
 - [Manifest](#manifest)
 
 ## Methods
@@ -20,29 +20,29 @@ Methoden: 1 | Properties: 0 | Events: 0
 await apiRequest.newContext([options]): Promise<APIRequestContext>
 ```
 
-Erstellt eine neue, isolierte `APIRequestContext`-Instanz fuer HTTP-API-Tests. Die Instanz verwaltet eigenstaendige Cookies und hat keinen Bezug zu einem Browser-Context.
+Creates a new, isolated `APIRequestContext` instance for HTTP API tests. The instance manages its own cookies and has no relation to a browser context.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options` | Object | No | — | Context-Konfiguration |
-| `options.baseURL` | string | No | — | Basis-URL fuer relative Anfrage-Pfade (verwendet Node.js URL-Konstruktor-Regeln) |
-| `options.clientCertificates` | Array<Object> | No | — | TLS-Client-Zertifikate: `{ origin, certPath?, cert?, keyPath?, key?, pfxPath?, pfx?, passphrase? }` |
-| `options.extraHTTPHeaders` | Object<string,string> | No | — | Zusaetzliche Header, die bei jeder Anfrage gesendet werden |
-| `options.failOnStatusCode` | boolean | No | false | Wirft Exception bei Non-2xx/3xx Status-Codes |
-| `options.httpCredentials` | Object | No | — | HTTP-Basic/Digest-Auth: `{ username, password, origin?, send? }` |
-| `options.ignoreHTTPSErrors` | boolean | No | false | TLS/SSL-Zertifikatsfehler ignorieren |
-| `options.maxRedirects` | number | No | 20 | Maximale Anzahl automatischer Redirects; `0` = keine Redirects |
+| `options` | Object | No | — | Context configuration |
+| `options.baseURL` | string | No | — | Base URL for relative request paths (uses Node.js URL constructor rules) |
+| `options.clientCertificates` | Array<Object> | No | — | TLS client certificates: `{ origin, certPath?, cert?, keyPath?, key?, pfxPath?, pfx?, passphrase? }` |
+| `options.extraHTTPHeaders` | Object<string,string> | No | — | Additional headers sent with every request |
+| `options.failOnStatusCode` | boolean | No | false | Throws an exception on non-2xx/3xx status codes |
+| `options.httpCredentials` | Object | No | — | HTTP basic/digest auth: `{ username, password, origin?, send? }` |
+| `options.ignoreHTTPSErrors` | boolean | No | false | Ignore TLS/SSL certificate errors |
+| `options.maxRedirects` | number | No | 20 | Maximum number of automatic redirects; `0` = no redirects |
 | `options.proxy` | Object | No | — | Proxy: `{ server, bypass?, username?, password? }` |
-| `options.storageState` | string \| Object | No | — | Initialen Context-State aus Datei oder Objekt laden (Cookies + LocalStorage) |
-| `options.timeout` | number | No | 30000 | Standard-Response-Timeout in Millisekunden |
-| `options.userAgent` | string | No | — | Custom User-Agent-String |
+| `options.storageState` | string \| Object | No | — | Load the initial context state from a file or object (cookies + local storage) |
+| `options.timeout` | number | No | 30000 | Default response timeout in milliseconds |
+| `options.userAgent` | string | No | — | Custom user agent string |
 
 **Returns:** `Promise<APIRequestContext>`
 
 ```js
-// Eigenstaendiger API-Test (ausserhalb von @playwright/test)
+// Standalone API test (outside of @playwright/test)
 const { request } = require('playwright');
 
 const context = await request.newContext({
@@ -61,11 +61,11 @@ await context.dispose();
 ```
 
 ```js
-// Im @playwright/test Framework
+// Inside the @playwright/test framework
 import { test, expect } from '@playwright/test';
 
-test('API-Test', async ({ request }) => {
-  // request ist eine vorkonfigurierte APIRequestContext-Instanz
+test('API test', async ({ request }) => {
+  // request is a preconfigured APIRequestContext instance
   const response = await request.post('/auth/login', {
     data: { username: 'user', password: 'pass' },
   });
@@ -74,7 +74,7 @@ test('API-Test', async ({ request }) => {
 ```
 
 ```js
-// Konfiguration in playwright.config.ts
+// Configuration in playwright.config.ts
 export default defineConfig({
   use: {
     baseURL: 'https://api.example.com',
@@ -87,20 +87,20 @@ export default defineConfig({
 
 ---
 
-## Beziehung zu BrowserContext.request
+## Relationship to BrowserContext.request
 
-Jeder `BrowserContext` hat automatisch eine `APIRequestContext`-Instanz unter `context.request` (bzw. `page.request`). Diese teilt Cookies mit dem Browser-Context — Anmeldungen im Browser gelten auch fuer API-Requests und umgekehrt.
+Every `BrowserContext` automatically has an `APIRequestContext` instance under `context.request` (or `page.request`). It shares cookies with the browser context — logins in the browser also apply to API requests and vice versa.
 
-`apiRequest.newContext()` erstellt einen **unabhaengigen** Context ohne Verbindung zu einem Browser.
+`apiRequest.newContext()` creates an **independent** context with no connection to a browser.
 
 ```js
-// Cookies zwischen Browser und API teilen (via browserContext.request)
+// Share cookies between browser and API (via browserContext.request)
 await page.goto('https://example.com/login');
 await page.fill('#username', 'user');
 await page.fill('#password', 'pass');
 await page.click('[type=submit]');
 
-// Dieselbe Session fuer API-Tests verwenden
+// Use the same session for API tests
 const response = await page.request.get('https://example.com/api/profile');
 const profile = await response.json();
 ```
@@ -115,7 +115,7 @@ const profile = await response.json();
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `APIRequest` ist ein schlankes Factory-Objekt mit einer einzigen Methode. `newContext()` erstellt isolierte HTTP-Clients mit voller Konfiguration fuer Basis-URL, Auth, TLS, Proxies und Timeouts. Im `@playwright/test`-Framework wird der `request`-Fixture automatisch bereitgestellt.
+**Conclusion:** `APIRequest` is a lean factory object with a single method. `newContext()` creates isolated HTTP clients with full configuration for base URL, auth, TLS, proxies and timeouts. In the `@playwright/test` framework, the `request` fixture is provided automatically.
 
 ---
 

@@ -1,25 +1,25 @@
 # Playwright — class: Location
 
-> **Manifest:** 0 Methoden, 3 Properties, 0 Events.
-> Repraesentiert einen Quellcode-Ort (Datei, Zeile, Spalte) in Playwright Test.
-> Wird als Rueckgabetyp und Parameter in verschiedenen APIs verwendet.
+> **Manifest:** 0 methods, 3 properties, 0 events.
+> Represents a source code location (file, line, column) in Playwright Test.
+> Used as a return type and parameter in various APIs.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
+- [Overview](#overview)
 - [Properties](#properties)
-- [Verwendung als Interface](#verwendung-als-interface)
-- [Vollstaendiges Beispiel](#vollstaendiges-beispiel)
+- [Usage as an interface](#usage-as-an-interface)
+- [Complete example](#complete-example)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Location` ist ein einfaches Daten-Interface ohne Methoden. Es beschreibt,
-wo eine Testdatei, eine Test-Suite oder ein Testfall im Quellcode definiert
-ist. Es erscheint als Property auf `TestCase`, `Suite`, `TestResult` sowie
-als Parameter in Tracing-APIs.
+`Location` is a simple data interface without methods. It describes
+where a test file, a test suite or a test case is defined in the source
+code. It appears as a property on `TestCase`, `Suite`, `TestResult` as well as
+a parameter in tracing APIs.
 
 ---
 
@@ -27,78 +27,78 @@ als Parameter in Tracing-APIs.
 
 ### location.file
 
-Pfad zur Quelldatei.
+Path to the source file.
 
-**Typ:** `string`
+**Type:** `string`
 
-**Hinzugefuegt:** v1.10
+**Added:** v1.10
 
-**Beispiel:**
+**Example:**
 ```javascript
 console.log(testCase.location.file);
-// z.B. "/home/user/tests/login.spec.ts"
+// e.g. "/home/user/tests/login.spec.ts"
 ```
 
 ---
 
 ### location.line
 
-Zeilennummer in der Quelldatei.
+Line number in the source file.
 
-**Typ:** `number`
+**Type:** `number`
 
-**Hinzugefuegt:** v1.10
+**Added:** v1.10
 
-**Hinweis:** 1-basiert in den meisten Kontexten, aber in einigen APIs
-(z.B. `ConsoleMessage.location()`) 0-basiert. Kontext pruefen.
+**Note:** 1-based in most contexts, but in some APIs
+(e.g. `ConsoleMessage.location()`) 0-based. Check the context.
 
-**Beispiel:**
+**Example:**
 ```javascript
-console.log(testCase.location.line); // z.B. 42
+console.log(testCase.location.line); // e.g. 42
 ```
 
 ---
 
 ### location.column
 
-Spaltennummer in der Quelldatei.
+Column number in the source file.
 
-**Typ:** `number`
+**Type:** `number`
 
-**Hinzugefuegt:** v1.10
+**Added:** v1.10
 
-**Hinweis:** Wie `line` — Indexierung haengt vom aufrufenden Kontext ab.
+**Note:** As with `line` — indexing depends on the calling context.
 
-**Beispiel:**
+**Example:**
 ```javascript
-console.log(testCase.location.column); // z.B. 5
+console.log(testCase.location.column); // e.g. 5
 ```
 
 ---
 
-## Verwendung als Interface
+## Usage as an interface
 
-`Location` taucht in folgenden APIs auf:
+`Location` appears in the following APIs:
 
-### Als Property:
-- `TestCase.location` — wo der Test definiert ist
-- `Suite.location` — wo die Suite definiert ist
+### As a property:
+- `TestCase.location` — where the test is defined
+- `Suite.location` — where the suite is defined
 
-### Als Rueckgabetyp:
-- `ConsoleMessage.location()` — Ort des `console.*()`-Aufrufs (0-basiert)
-- `WebError.location()` — Ort des unbehandelten Fehlers (0-basiert)
-- `Debugger.pausedDetails()` — aktueller Pause-Ort
+### As a return type:
+- `ConsoleMessage.location()` — location of the `console.*()` call (0-based)
+- `WebError.location()` — location of the unhandled error (0-based)
+- `Debugger.pausedDetails()` — current pause location
 
-### Als Parameter:
-- `tracing.group(name, { location })` — Quellortzuordnung fuer Trace-Gruppe
-- `debugger.runTo(location)` — Zielort fuer bedingtes Pausieren
+### As a parameter:
+- `tracing.group(name, { location })` — source location mapping for the trace group
+- `debugger.runTo(location)` — target location for conditional pausing
 
 ---
 
-## Vollstaendiges Beispiel
+## Complete example
 
 ```javascript
-// In einem Reporter
+// In a reporter
 class MyReporter {
   onTestBegin(test) {
     const loc = test.location;
@@ -106,8 +106,8 @@ class MyReporter {
   }
 }
 
-// In Tracing
-await context.tracing.group('Mein Schritt', {
+// In tracing
+await context.tracing.group('My step', {
   location: {
     file: '/tests/login.spec.ts',
     line: 45,
@@ -120,18 +120,18 @@ await context.tracing.group('Mein Schritt', {
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 0      |
+| Methods  | 0      |
 | Properties | 3 (file, line, column) |
 | Events    | 0      |
 
-**Fazit:** `Location` ist ein reines Daten-Transfer-Objekt ohne Logik.
-Es verbindet Laufzeit-Informationen mit Quellcode-Positionen und ist
-zentral fuer Reporter, Tracing und Debugger-Integrationen. Die Indexierung
-(0- vs. 1-basiert) variiert je nach API-Kontext — immer die jeweilige
-API-Dokumentation pruefen.
+**Conclusion:** `Location` is a pure data transfer object without logic.
+It links runtime information with source code positions and is
+central to reporter, tracing and debugger integrations. The indexing
+(0- vs. 1-based) varies with the API context — always check the
+respective API documentation.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-location*
+*Source: https://playwright.dev/docs/api/class-location*

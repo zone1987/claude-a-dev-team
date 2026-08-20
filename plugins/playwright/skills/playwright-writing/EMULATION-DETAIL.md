@@ -1,25 +1,25 @@
-# Playwright Emulation, Clock und Screenshots - Vollstaendige Referenz
+# Playwright Emulation, Clock and Screenshots - Complete Reference
 
 ---
 
 ## Contents
 
-- [1. Geraete-Emulation](#1-geraete-emulation)
+- [1. Device emulation](#1-device-emulation)
 - [2. Viewport](#2-viewport)
 - [3. isMobile](#3-ismobile)
 - [4. User Agent](#4-user-agent)
-- [5. Locale und Timezone](#5-locale-und-timezone)
+- [5. Locale and timezone](#5-locale-and-timezone)
 - [6. Geolocation](#6-geolocation)
-- [7. Berechtigungen (Permissions)](#7-berechtigungen-permissions)
-- [8. Farbschema und Media](#8-farbschema-und-media)
-- [9. Offline-Modus und JavaScript](#9-offline-modus-und-javascript)
+- [7. Permissions](#7-permissions)
+- [8. Color scheme and media](#8-color-scheme-and-media)
+- [9. Offline mode and JavaScript](#9-offline-mode-and-javascript)
 - [10. Clock API](#10-clock-api)
 - [11. Screenshots](#11-screenshots)
-- [12. Vollstaendiges Emulations-Beispiel](#12-vollstaendiges-emulations-beispiel)
+- [12. Complete emulation example](#12-complete-emulation-example)
 
-## 1. Geraete-Emulation
+## 1. Device emulation
 
-Playwright beinhaltet eine Datenbank mit vordefinierten Geraete-Parametern.
+Playwright ships with a database of predefined device parameters.
 
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
@@ -42,14 +42,14 @@ export default defineConfig({
 });
 ```
 
-Ein Geraete-Preset setzt automatisch: `userAgent`, `viewport`, `deviceScaleFactor`,
+A device preset automatically sets: `userAgent`, `viewport`, `deviceScaleFactor`,
 `isMobile`, `hasTouch`.
 
 ```typescript
-// Plattform-agnostischer User-Agent (Preset ueberschreiben)
+// Platform-agnostic user agent (override the preset)
 test.use({
   ...devices['iPhone 15'],
-  userAgent: undefined, // Kein platform-spezifischer UA
+  userAgent: undefined, // No platform-specific UA
 });
 ```
 
@@ -57,7 +57,7 @@ test.use({
 
 ## 2. Viewport
 
-### Konfiguration
+### Configuration
 
 ```typescript
 // playwright.config.ts
@@ -65,12 +65,12 @@ use: {
   viewport: { width: 1280, height: 720 },
 }
 
-// Pro Test
+// Per test
 test.use({
   viewport: { width: 1920, height: 1080 },
 });
 
-// Zur Laufzeit
+// At runtime
 await page.setViewportSize({ width: 375, height: 812 });
 ```
 
@@ -87,12 +87,12 @@ const context = await browser.newContext({
 
 ## 3. isMobile
 
-Steuert, ob der meta-viewport-Tag beachtet und Touch-Events aktiviert werden.
+Controls whether the meta viewport tag is respected and touch events are enabled.
 
 ```typescript
-use: { isMobile: true }  // Default bei mobilen Devices: true
+use: { isMobile: true }  // Default for mobile devices: true
 
-// Zur Laufzeit kein direktes API - nur per Context-Erstellung
+// No direct API at runtime - only when creating the context
 const context = await browser.newContext({ isMobile: true });
 ```
 
@@ -101,39 +101,39 @@ const context = await browser.newContext({ isMobile: true });
 ## 4. User Agent
 
 ```typescript
-// Konfiguration
+// Configuration
 test.use({ userAgent: 'MyTestBot/1.0' });
 
-// Per Context
+// Per context
 const context = await browser.newContext({
   userAgent: 'Mozilla/5.0 (compatible; TestRunner/1.0)',
 });
 
-// Laufzeit (nur per neuer Page im Context)
+// Runtime (only via a new page in the context)
 ```
 
 ---
 
-## 5. Locale und Timezone
+## 5. Locale and timezone
 
 ```typescript
-// Konfiguration
+// Configuration
 use: {
   locale: 'de-DE',
   timezoneId: 'Europe/Berlin',
 }
 
-// Per Context
+// Per context
 const context = await browser.newContext({
   locale: 'ja-JP',
   timezoneId: 'Asia/Tokyo',
 });
 ```
 
-**Hinweis:** `timezoneId` betrifft nur den Browser, nicht den Test-Runner.
-Fuer Test-Runner: `TZ`-Umgebungsvariable setzen.
+**Note:** `timezoneId` affects only the browser, not the test runner.
+For the test runner: set the `TZ` environment variable.
 
-Gueltige Timezone-IDs: IANA-Format, z.B. `'America/New_York'`, `'UTC'`,
+Valid timezone IDs: IANA format, e.g. `'America/New_York'`, `'UTC'`,
 `'Europe/Paris'`, `'Asia/Shanghai'`.
 
 ---
@@ -141,60 +141,60 @@ Gueltige Timezone-IDs: IANA-Format, z.B. `'America/New_York'`, `'UTC'`,
 ## 6. Geolocation
 
 ```typescript
-// Konfiguration
+// Configuration
 use: {
   geolocation: { longitude: 13.405, latitude: 52.52 }, // Berlin
   permissions: ['geolocation'],
 }
 
-// Zur Laufzeit aktualisieren (gilt fuer alle Pages im Context)
+// Update at runtime (applies to all pages in the context)
 await context.setGeolocation({ longitude: 2.349, latitude: 48.864 }); // Paris
 
-// Mit Genauigkeit
+// With accuracy
 await context.setGeolocation({
   longitude: -0.1276,
   latitude: 51.5074,
-  accuracy: 10, // Meter
+  accuracy: 10, // meters
 });
 ```
 
-**Wichtig:** Geolocation nur aenderbar fuer den gesamten Context, nicht
-individuell pro Page.
+**Important:** Geolocation can only be changed for the entire context, not
+individually per page.
 
 ---
 
-## 7. Berechtigungen (Permissions)
+## 7. Permissions
 
-### Vergeben
+### Granting
 
 ```typescript
-// Konfiguration (alle Pages im Projekt)
+// Configuration (all pages in the project)
 use: {
   permissions: ['notifications', 'geolocation'],
 }
 
-// Per Context
+// Per context
 const context = await browser.newContext({
   permissions: ['camera', 'microphone'],
 });
 
-// Domain-spezifisch
+// Domain-specific
 await context.grantPermissions(['notifications'], {
   origin: 'https://example.com',
 });
 
-// Mehrere Domains
+// Multiple domains
 await context.grantPermissions(['geolocation'], { origin: 'https://maps.google.com' });
 await context.grantPermissions(['geolocation'], { origin: 'https://openstreetmap.org' });
 ```
 
-### Zuruecksetzen
+### Resetting
 
 ```typescript
-await context.clearPermissions(); // Alle Permissions widerrufen
+await context.clearPermissions(); // Revoke all permissions
 ```
 
-### Unterstuetzte Permissions
+### Supported permissions
 
 `'accelerometer'`, `'ambient-light-sensor'`, `'background-sync'`,
 `'camera'`, `'clipboard-read'`, `'clipboard-write'`, `'geolocation'`,
@@ -204,15 +204,15 @@ await context.clearPermissions(); // Alle Permissions widerrufen
 
 ---
 
-## 8. Farbschema und Media
+## 8. Color scheme and media
 
 ### Color Scheme
 
 ```typescript
-// Konfiguration
+// Configuration
 use: { colorScheme: 'dark' } // 'light' | 'dark' | 'no-preference'
 
-// Zur Laufzeit
+// At runtime
 await page.emulateMedia({ colorScheme: 'dark' });
 await page.emulateMedia({ colorScheme: 'light' });
 ```
@@ -220,27 +220,27 @@ await page.emulateMedia({ colorScheme: 'light' });
 ### Media Type
 
 ```typescript
-// Druckvorschau emulieren
+// Emulate print preview
 await page.emulateMedia({ media: 'print' }); // 'screen' | 'print' | null
 
-// Reduzierte Bewegung
+// Reduced motion
 await page.emulateMedia({ reducedMotion: 'reduce' }); // 'reduce' | 'no-preference' | null
 
-// Kontrastpraeferenz
+// Contrast preference
 await page.emulateMedia({ forcedColors: 'active' }); // 'active' | 'none' | null
 ```
 
-### emulateMedia Vollstaendige Optionen
+### emulateMedia complete options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `colorScheme` | `'light' \| 'dark' \| 'no-preference' \| null` | - | Farbschema-Praeferenz |
-| `forcedColors` | `'active' \| 'none' \| null` | - | Forced Colors |
-| `media` | `'screen' \| 'print' \| null` | - | CSS-Media-Type |
-| `reducedMotion` | `'reduce' \| 'no-preference' \| null` | - | Animationsreduzierung |
+| `colorScheme` | `'light' \| 'dark' \| 'no-preference' \| null` | - | Color scheme preference |
+| `forcedColors` | `'active' \| 'none' \| null` | - | Forced colors |
+| `media` | `'screen' \| 'print' \| null` | - | CSS media type |
+| `reducedMotion` | `'reduce' \| 'no-preference' \| null` | - | Animation reduction |
 
 ```typescript
-// Alle Optionen zusammen
+// All options together
 await page.emulateMedia({
   colorScheme: 'dark',
   media: 'screen',
@@ -250,17 +250,17 @@ await page.emulateMedia({
 
 ---
 
-## 9. Offline-Modus und JavaScript
+## 9. Offline mode and JavaScript
 
 ```typescript
 // Offline
 use: { offline: true }
 
 const context = await browser.newContext({ offline: true });
-await context.setOffline(true);  // Zur Laufzeit
+await context.setOffline(true);  // At runtime
 await context.setOffline(false);
 
-// JavaScript deaktivieren
+// Disable JavaScript
 test.use({ javaScriptEnabled: false });
 
 const context = await browser.newContext({ javaScriptEnabled: false });
@@ -270,40 +270,40 @@ const context = await browser.newContext({ javaScriptEnabled: false });
 
 ## 10. Clock API
 
-Die Clock API ermoeglicht vollstaendige Kontrolle ueber Zeit im Browser.
+The Clock API provides complete control over time in the browser.
 
-### Methoden-Uebersicht
+### Method overview
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|--------------|
-| `page.clock.setFixedTime(time)` | Fixe Zeit fuer Date.now() und new Date() |
-| `page.clock.install(options?)` | Vollstaendige Clock-Uebernahme |
-| `page.clock.pauseAt(time)` | Zur Zeit springen und anhalten |
-| `page.clock.fastForward(ticks)` | Zeit vorspulen (Timer max. einmal ausloesen) |
-| `page.clock.runFor(ticks)` | Zeit vorspulen (alle Timer ausloesen) |
-| `page.clock.resume()` | Pausierte Clock weiterlaufen lassen |
-| `page.clock.setSystemTime(time)` | Systemzeit setzen ohne Timer auszuloesen |
+| `page.clock.setFixedTime(time)` | Fixed time for Date.now() and new Date() |
+| `page.clock.install(options?)` | Complete clock takeover |
+| `page.clock.pauseAt(time)` | Jump to a time and pause |
+| `page.clock.fastForward(ticks)` | Fast-forward time (timers fire at most once) |
+| `page.clock.runFor(ticks)` | Fast-forward time (fire all timers) |
+| `page.clock.resume()` | Let a paused clock continue |
+| `page.clock.setSystemTime(time)` | Set the system time without firing timers |
 
 ---
 
 ### page.clock.setFixedTime(time)
 
-Einfachste Methode: Fixiert `Date.now()` und `new Date()`. Timer laufen weiter.
+Simplest method: pins `Date.now()` and `new Date()`. Timers keep running.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `time` | `number \| string \| Date` | Feste Zeit |
+| `time` | `number \| string \| Date` | Fixed time |
 
 ```typescript
-// Datum fixieren
+// Pin the date
 await page.clock.setFixedTime(new Date('2024-02-29T10:00:00'));
 await page.goto('http://localhost:3000');
 await expect(page.getByTestId('date-display')).toHaveText('Feb 29, 2024');
 
-// Als Unix-Timestamp (ms)
+// As a Unix timestamp (ms)
 await page.clock.setFixedTime(1709200000000);
 
-// Als ISO-String
+// As an ISO string
 await page.clock.setFixedTime('2024-02-29');
 ```
 
@@ -311,41 +311,41 @@ await page.clock.setFixedTime('2024-02-29');
 
 ### page.clock.install(options?)
 
-Ersetzt alle nativen Zeit-Funktionen mit Fakes.
+Replaces all native time functions with fakes.
 
-**Ueberschriebene Globals:**
+**Overridden globals:**
 `Date`, `setTimeout`, `clearTimeout`, `setInterval`, `clearInterval`,
 `requestAnimationFrame`, `cancelAnimationFrame`, `requestIdleCallback`,
 `cancelIdleCallback`, `performance`, `Event.timeStamp`
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `time` | `number \| string \| Date` | Systemzeit | Startzeitpunkt |
+| `time` | `number \| string \| Date` | System time | Start time |
 
-**Wichtig:** `install()` MUSS vor allen anderen Clock-Aufrufen stehen,
-falls verwendet.
+**Important:** `install()` MUST come before all other clock calls,
+if used at all.
 
 ```typescript
 await page.clock.install({ time: new Date('2024-01-01T09:00:00') });
 await page.goto('http://localhost:3000/dashboard');
-// Jetzt sind alle Timer und Date-Aufrufe kontrollierbar
+// All timers and Date calls are now controllable
 ```
 
 ---
 
 ### page.clock.pauseAt(time)
 
-Springt zur angegebenen Zeit und haelt alle Timer an.
+Jumps to the given time and pauses all timers.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `time` | `number \| string \| Date` | Zielzeit |
+| `time` | `number \| string \| Date` | Target time |
 
 ```typescript
 await page.clock.install({ time: new Date('2024-12-10T08:00:00') });
 await page.goto('http://localhost:3000');
 await page.clock.pauseAt(new Date('2024-12-10T10:00:00'));
-// Zeit ist jetzt 10:00 Uhr, keine Timer laufen
+// Time is now 10:00, no timers are running
 
 await expect(page.getByTestId('clock')).toHaveText('10:00:00');
 ```
@@ -354,91 +354,91 @@ await expect(page.getByTestId('clock')).toHaveText('10:00:00');
 
 ### page.clock.fastForward(ticks)
 
-Springt vorwaerts, jeder faellige Timer wird maximal einmal ausgefuehrt.
-Simuliert z.B. Laptop-Klappvorgang.
+Jumps forward; every due timer runs at most once.
+Simulates e.g. closing a laptop lid.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `ticks` | `number \| string` | Millisekunden oder `'HH:MM:SS'`-Format |
+| `ticks` | `number \| string` | Milliseconds or `'HH:MM:SS'` format |
 
 ```typescript
-// 30 Minuten vorspulen
+// Fast-forward 30 minutes
 await page.clock.fastForward('30:00');
 
-// Als Millisekunden
+// As milliseconds
 await page.clock.fastForward(1800000);
 
 // Pattern: install -> navigate -> pause -> fastForward
 await page.clock.install({ time: new Date('2024-02-02T08:00:00') });
 await page.goto('http://localhost:3000');
 await page.clock.pauseAt(new Date('2024-02-02T10:00:00'));
-await page.clock.fastForward('30:00'); // Bis 10:30
+await page.clock.fastForward('30:00'); // Up to 10:30
 ```
 
 ---
 
 ### page.clock.runFor(ticks)
 
-Wie `fastForward`, aber alle Timer feuern in Echtzeit-Reihenfolge.
+Like `fastForward`, but all timers fire in real-time order.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `ticks` | `number \| string` | Millisekunden oder `'HH:MM:SS'`-Format |
+| `ticks` | `number \| string` | Milliseconds or `'HH:MM:SS'` format |
 
 ```typescript
-// 2 Sekunden simulieren (alle Timeouts/Intervals feuern)
+// Simulate 2 seconds (all timeouts/intervals fire)
 await page.clock.runFor(2000);
-await page.clock.runFor('00:02'); // 2 Sekunden
+await page.clock.runFor('00:02'); // 2 seconds
 
-// Interval-Test
+// Interval test
 await page.clock.install();
 await page.evaluate(() => {
   setInterval(() => document.body.setAttribute('data-tick', String(Date.now())), 1000);
 });
-await page.clock.runFor(5000); // 5 Ticks
+await page.clock.runFor(5000); // 5 ticks
 ```
 
 ---
 
 ### page.clock.resume()
 
-Setzt eine pausierte Clock fort.
+Resumes a paused clock.
 
 ```typescript
 await page.clock.install();
 await page.clock.pauseAt(new Date('2024-06-15T12:00:00'));
-// ... Tests zur Zeit 12:00 ...
-await page.clock.resume(); // Timer laufen wieder
+// ... tests at time 12:00 ...
+await page.clock.resume(); // Timers run again
 ```
 
 ---
 
 ### page.clock.setSystemTime(time)
 
-Setzt Systemzeit, loest aber keine Timer aus. Fuer Zeitzonensprung-Tests.
+Sets the system time but does not fire any timers. For timezone-jump tests.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `time` | `number \| string \| Date` | Neue Systemzeit |
+| `time` | `number \| string \| Date` | New system time |
 
 ```typescript
 await page.clock.install();
 await page.clock.setSystemTime(new Date('2024-12-31T23:59:00'));
-// Seite reagiert auf Jahreswechsel-Logik
+// The page reacts to year-change logic
 ```
 
 ---
 
-### Zeit-Format fuer ticks/time
+### Time format for ticks/time
 
-| Format | Beispiel | Bedeutung |
+| Format | Example | Meaning |
 |--------|---------|-----------|
-| `number` | `3600000` | Millisekunden |
-| `string HH` | `'30'` | 30 Sekunden |
-| `string HH:MM` | `'01:30'` | 1 Minute 30 Sekunden |
-| `string HH:MM:SS` | `'02:30:00'` | 2 Stunden 30 Minuten |
-| `Date` | `new Date('2024-01-01')` | Datum-Objekt |
-| ISO-String | `'2024-01-01T12:00:00'` | ISO-Datum |
+| `number` | `3600000` | Milliseconds |
+| `string HH` | `'30'` | 30 seconds |
+| `string HH:MM` | `'01:30'` | 1 minute 30 seconds |
+| `string HH:MM:SS` | `'02:30:00'` | 2 hours 30 minutes |
+| `Date` | `new Date('2024-01-01')` | Date object |
+| ISO string | `'2024-01-01T12:00:00'` | ISO date |
 
 ---
 
@@ -446,73 +446,73 @@ await page.clock.setSystemTime(new Date('2024-12-31T23:59:00'));
 
 ### page.screenshot(options?)
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `path` | `string` | - | Speicherpfad (Endung bestimmt Format: .png, .jpg) |
-| `type` | `'png' \| 'jpeg'` | `'png'` | Bildformat |
-| `quality` | `number` | - | JPEG-Qualitaet 0-100 (nur JPEG) |
-| `fullPage` | `boolean` | `false` | Gesamte scrollbare Seite |
-| `clip` | `{x, y, width, height}` | - | Ausschnitt-Rechteck |
-| `omitBackground` | `boolean` | `false` | Transparenz statt weissem Hintergrund (nur PNG) |
-| `animations` | `'disabled' \| 'allow'` | `'disabled'` | CSS-Animationen |
-| `caret` | `'hide' \| 'initial'` | `'hide'` | Cursor-Sichtbarkeit |
-| `scale` | `'css' \| 'device'` | `'device'` | Rendermassstab |
-| `mask` | `Locator[]` | - | Elemente maskieren |
-| `maskColor` | `string` | `'#FF00FF'` | Maskierungsfarbe |
+| `path` | `string` | - | Save path (extension determines the format: .png, .jpg) |
+| `type` | `'png' \| 'jpeg'` | `'png'` | Image format |
+| `quality` | `number` | - | JPEG quality 0-100 (JPEG only) |
+| `fullPage` | `boolean` | `false` | Entire scrollable page |
+| `clip` | `{x, y, width, height}` | - | Clipping rectangle |
+| `omitBackground` | `boolean` | `false` | Transparency instead of a white background (PNG only) |
+| `animations` | `'disabled' \| 'allow'` | `'disabled'` | CSS animations |
+| `caret` | `'hide' \| 'initial'` | `'hide'` | Caret visibility |
+| `scale` | `'css' \| 'device'` | `'device'` | Render scale |
+| `mask` | `Locator[]` | - | Mask elements |
+| `maskColor` | `string` | `'#FF00FF'` | Masking color |
 | `timeout` | `number` | `0` | Timeout in ms |
 
 ```typescript
-// Einfacher Screenshot
+// Simple screenshot
 await page.screenshot({ path: 'screenshot.png' });
 
-// Ganze Seite
+// Whole page
 await page.screenshot({ path: 'full.png', fullPage: true });
 
-// Ausschnitt
+// Clipping
 await page.screenshot({
   path: 'header.png',
   clip: { x: 0, y: 0, width: 1280, height: 80 },
 });
 
-// JPEG mit Qualitaet
+// JPEG with quality
 await page.screenshot({
   path: 'preview.jpg',
   type: 'jpeg',
   quality: 80,
 });
 
-// Transparenter Hintergrund
+// Transparent background
 await page.screenshot({
   path: 'transparent.png',
   omitBackground: true,
 });
 
-// Sensible Daten maskieren
+// Mask sensitive data
 await page.screenshot({
   path: 'masked.png',
   mask: [page.locator('.credit-card'), page.locator('#password')],
   maskColor: '#000000',
 });
 
-// Buffer (kein Dateipfad)
+// Buffer (no file path)
 const buffer = await page.screenshot();
 const base64 = buffer.toString('base64');
 ```
 
 ### locator.screenshot(options?)
 
-Screenshot eines einzelnen Elements (gleiche Optionen wie page.screenshot).
+Screenshot of a single element (same options as page.screenshot).
 
 ```typescript
 await page.locator('.product-card').first().screenshot({ path: 'card.png' });
 
-// Element-Screenshot in Buffer
+// Element screenshot into a buffer
 const cardBuffer = await page.locator('.hero-image').screenshot();
 ```
 
 ---
 
-## 12. Vollstaendiges Emulations-Beispiel
+## 12. Complete emulation example
 
 ```typescript
 import { test, expect, devices } from '@playwright/test';
@@ -521,18 +521,18 @@ test.use({
   ...devices['iPhone 15 Pro'],
   locale: 'de-DE',
   timezoneId: 'Europe/Berlin',
-  geolocation: { latitude: 48.137, longitude: 11.576 }, // Muenchen
+  geolocation: { latitude: 48.137, longitude: 11.576 }, // Munich
   permissions: ['geolocation'],
   colorScheme: 'dark',
 });
 
 test('mobile dark mode with geolocation', async ({ page, context }) => {
-  // Clock fixieren
+  // Pin the clock
   await page.clock.setFixedTime(new Date('2024-06-21T14:30:00+02:00'));
 
   await page.goto('http://localhost:3000');
 
-  // Geolocation zur Laufzeit aktualisieren
+  // Update geolocation at runtime
   await context.setGeolocation({ latitude: 52.52, longitude: 13.405 }); // Berlin
   await page.reload();
 
@@ -546,4 +546,4 @@ test('mobile dark mode with geolocation', async ({ page, context }) => {
 
 ---
 
-Quelle: https://playwright.dev/docs/emulation | https://playwright.dev/docs/clock | https://playwright.dev/docs/screenshots | https://playwright.dev/docs/api/class-clock
+Source: https://playwright.dev/docs/emulation | https://playwright.dev/docs/clock | https://playwright.dev/docs/screenshots | https://playwright.dev/docs/api/class-clock

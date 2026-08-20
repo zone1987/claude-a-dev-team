@@ -1,9 +1,9 @@
 # playwright-test-assertions
 
-Vollstaendige Assertion-Referenz: alle `expect(locator).*`-Matcher (auto-retry),
-`expect(page).*`, `expect(response).*`, alle generischen Matcher, Snapshot-Assertions
-mit allen Optionen, Soft-Assertions, `expect.poll`, `expect.toPass`, `expect.extend`.
+Complete assertion reference: all `expect(locator).*` matchers (auto-retry),
+`expect(page).*`, `expect(response).*`, all generic matchers, snapshot assertions
+with all options, soft assertions, `expect.poll`, `expect.toPass`, `expect.extend`.
 
-## Vertiefung
+## Deep dive
 
-- [TEST-ASSERTIONS-ASSERTIONS.md](TEST-ASSERTIONS-ASSERTIONS.md) — Alle Matcher als Tabelle mit Typen und Beispielen
+- [TEST-ASSERTIONS-ASSERTIONS.md](TEST-ASSERTIONS-ASSERTIONS.md) — All matchers as a table with types and examples

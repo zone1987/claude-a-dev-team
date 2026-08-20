@@ -1,10 +1,10 @@
 # class-apiresponseassertions — Playwright API Reference
 
-`APIResponseAssertions` ist die Assertion-Klasse fuer `APIResponse`-Objekte aus Playwright-API-Tests. Sie bietet einen einzigen Matcher fuer HTTP-Statuspruefungen.
+`APIResponseAssertions` is the assertion class for `APIResponse` objects from Playwright API tests. It offers a single matcher for HTTP status checks.
 
-Zugriff via `expect(response).*`.
+Accessed via `expect(response).*`.
 
-Matcher-Anzahl: 1 Matcher + Property `not`
+Matcher count: 1 matcher + property `not`
 
 ---
 
@@ -14,7 +14,7 @@ Matcher-Anzahl: 1 Matcher + Property `not`
 not: APIResponseAssertions
 ```
 
-Invertiert die nachfolgende Assertion.
+Inverts the following assertion.
 
 ```typescript
 await expect(response).not.toBeOK();
@@ -28,52 +28,52 @@ await expect(response).not.toBeOK();
 toBeOK(): Promise<void>
 ```
 
-Prueft, ob der HTTP-Statuscode der Antwort im Erfolgsbereich `200..299` liegt.
+Checks whether the response's HTTP status code lies in the success range `200..299`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test('API gibt Erfolgsantwort zurueck', async ({ request }) => {
+test('API returns success response', async ({ request }) => {
   const response = await request.get('/api/products');
   await expect(response).toBeOK();
 });
 
-test('Geloeschte Ressource ist nicht mehr verfuegbar', async ({ request }) => {
+test('Deleted resource is no longer available', async ({ request }) => {
   const response = await request.get('/api/products/geloescht');
   await expect(response).not.toBeOK();
-  // Beispiel: Status 404 wuerde den Test bestehen lassen
+  // Example: status 404 would make the test pass
 });
 ```
 
 ---
 
-## Praktische Hinweise
+## Practical notes
 
-`toBeOK()` ist bewusst einfach gehalten. Fuer praezisere Statuspruefungen den Statuscode direkt pruefen:
+`toBeOK()` is deliberately kept simple. For more precise status checks, check the status code directly:
 
 ```typescript
 const response = await request.post('/api/orders', { data: payload });
-await expect(response).toBeOK(); // Prueft nur 2xx
+await expect(response).toBeOK(); // Only checks 2xx
 
-// Explizite Statuspruefung:
+// Explicit status check:
 expect(response.status()).toBe(201);
 expect(response.ok()).toBe(true);
 ```
 
 ---
 
-## Matcher-Uebersicht (1 Matcher)
+## Matcher overview (1 matcher)
 
-| Matcher | Prueft |
+| Matcher | Checks |
 |---|---|
-| `toBeOK` | HTTP-Statuscode im Bereich 200-299 |
+| `toBeOK` | HTTP status code in the range 200-299 |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-apiresponseassertions
+Source: https://playwright.dev/docs/api/class-apiresponseassertions

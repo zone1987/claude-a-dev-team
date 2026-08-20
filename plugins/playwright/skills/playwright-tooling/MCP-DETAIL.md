@@ -1,41 +1,41 @@
-# Playwright MCP-Server
+# Playwright MCP Server
 
 ## Contents
 
-- [Was ist Playwright MCP?](#was-ist-playwright-mcp)
+- [What is Playwright MCP?](#what-is-playwright-mcp)
 - [Installation](#installation)
-- [Client-spezifische Installation](#client-spezifische-installation)
-- [Konfigurationsoptionen](#konfigurationsoptionen)
+- [Client-specific installation](#client-specific-installation)
+- [Configuration options](#configuration-options)
 - [Capabilities](#capabilities)
-- [Profil-Modi](#profil-modi)
-- [Accessibility-Snapshots](#accessibility-snapshots)
-- [Vision-Modus](#vision-modus)
-- [Konfigurationsdatei (config.json)](#konfigurationsdatei-configjson)
-- [Quellen](#quellen)
+- [Profile modes](#profile-modes)
+- [Accessibility snapshots](#accessibility-snapshots)
+- [Vision mode](#vision-mode)
+- [Configuration file (config.json)](#configuration-file-configjson)
+- [Source](#source)
 
-## Was ist Playwright MCP?
+## What is Playwright MCP?
 
-Playwright MCP ist ein Model Context Protocol-Server fuer Browser-Automation durch LLMs.
-Statt visueller Verarbeitung nutzt er strukturierte **Accessibility-Snapshots** (ARIA-Baum),
-die deterministische Interaktion ohne Vision-Modell ermoeglichen.
+Playwright MCP is a Model Context Protocol server for browser automation by LLMs.
+Instead of visual processing it uses structured **accessibility snapshots** (ARIA tree),
+which enable deterministic interaction without a vision model.
 
-### Architektur-Kernpunkte
+### Core architecture points
 
-- **Snapshot-basiert**: Accessibility-Tree mit eindeutigen `ref`-IDs fuer interaktive Elemente
-- **Token-effizient**: ~200-400 Token/Snapshot vs. 3.000-5.000 Token fuer Screenshots
-- **Determinismus**: Gleiche Struktur = gleiche Interaktion
-- **Headed by default**: Browser wird sichtbar gestartet fuer Echtzeit-Beobachtung
+- **Snapshot-based**: accessibility tree with unique `ref` IDs for interactive elements
+- **Token-efficient**: ~200-400 tokens/snapshot vs. 3,000-5,000 tokens for screenshots
+- **Determinism**: same structure = same interaction
+- **Headed by default**: the browser is started visibly for real-time observation
 
 ---
 
 ## Installation
 
-### Voraussetzungen
+### Prerequisites
 
-- Node.js 20 oder neuer
-- Kompatibler MCP-Client
+- Node.js 20 or newer
+- A compatible MCP client
 
-### Standard-Konfiguration (alle Clients)
+### Standard configuration (all clients)
 
 ```json
 {
@@ -48,25 +48,25 @@ die deterministische Interaktion ohne Vision-Modell ermoeglichen.
 }
 ```
 
-Der Browser wird **beim ersten Aufruf automatisch heruntergeladen**.
+The browser is **downloaded automatically on the first call**.
 
 ---
 
-## Client-spezifische Installation
+## Client-specific installation
 
 ### VS Code
 
 ```bash
-# CLI-Installation
+# CLI installation
 code --add-mcp '{"name":"playwright","command":"npx","args":["@playwright/mcp@latest"]}'
 ```
 
-Oder: VS Code Insiders:
+Or: VS Code Insiders:
 ```bash
 code-insiders --add-mcp '{"name":"playwright","command":"npx","args":["@playwright/mcp@latest"]}'
 ```
 
-Integriert sich als GitHub Copilot-Agent in VS Code.
+Integrates into VS Code as a GitHub Copilot agent.
 
 ### Claude Code
 
@@ -74,70 +74,70 @@ Integriert sich als GitHub Copilot-Agent in VS Code.
 claude mcp add playwright npx @playwright/mcp@latest
 ```
 
-Verfuegbar in der naechsten Claude-Code-Session.
+Available in the next Claude Code session.
 
 ### Cursor
 
-Einstellungen -> MCP -> "Add new MCP Server":
+Settings -> MCP -> "Add new MCP Server":
 - Name: `playwright`
 - Type: `command`
 - Command: `npx @playwright/mcp@latest`
 
 ### Windsurf / Cline / Goose / Kiro / Codex / Copilot CLI
 
-Standard-MCP-Konfiguration (siehe Client-Dokumentation).
+Standard MCP configuration (see the client documentation).
 
 ---
 
-## Konfigurationsoptionen
+## Configuration options
 
-### CLI-Flags
+### CLI flags
 
 ```bash
-# Headless-Modus
+# Headless mode
 npx @playwright/mcp@latest --headless
 
-# Browser waehlen: chrome (Standard), firefox, webkit, msedge
+# Choose browser: chrome (default), firefox, webkit, msedge
 npx @playwright/mcp@latest --browser=firefox
 
-# HTTP-Transport (Standalone-Server)
+# HTTP transport (standalone server)
 npx @playwright/mcp@latest --port 8931
 
-# Capabilities aktivieren
+# Enable capabilities
 npx @playwright/mcp@latest --caps=vision,pdf,devtools
 
-# Alle Capabilities
+# All capabilities
 npx @playwright/mcp@latest --caps=core,network,storage,testing,vision,pdf,devtools
 
-# Isolierter Modus (kein State zwischen Sessions)
+# Isolated mode (no state between sessions)
 npx @playwright/mcp@latest --isolated
 
-# Browser-Extension-Modus
+# Browser extension mode
 npx @playwright/mcp@latest --extension
 
-# Benutzerprofil-Verzeichnis
+# User profile directory
 npx @playwright/mcp@latest --user-data-dir=/path/to/profile
 
-# Session-State laden
+# Load session state
 npx @playwright/mcp@latest --storage-state=./auth-state.json
 
-# Gemeinsamer Context fuer alle Clients
+# Shared context for all clients
 npx @playwright/mcp@latest --shared-browser-context
 
 # Proxy
 npx @playwright/mcp@latest --proxy-server=http://myproxy:3128
 
-# Proxy-Bypass
+# Proxy bypass
 npx @playwright/mcp@latest --proxy-bypass=localhost,*.internal.com
 
 # Viewport
 npx @playwright/mcp@latest --viewport=1280x720
 
-# Device-Emulation
+# Device emulation
 npx @playwright/mcp@latest --device="iPhone 15"
 ```
 
-### HTTP-Transport-Konfiguration
+### HTTP transport configuration
 
 ```json
 {
@@ -154,98 +154,98 @@ npx @playwright/mcp@latest --device="iPhone 15"
 }
 ```
 
-Client-Endpunkt: `http://localhost:8931/mcp`
+Client endpoint: `http://localhost:8931/mcp`
 
-### Vollstaendige Optionen-Tabelle
+### Complete options table
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `--headless` | flag | headed | Browser ohne UI starten |
-| `--browser` | string | `chrome` | Browser-Engine: `chrome`/`firefox`/`webkit`/`msedge` |
-| `--device` | string | — | Device-Emulation (z.B. `"iPhone 15"`) |
-| `--viewport` | string | — | Viewport-Groesse (z.B. `1280x720`) |
-| `--port` | number | — | HTTP-Transport-Port |
-| `--host` | string | `localhost` | Bind-Adresse (`0.0.0.0` fuer Container) |
-| `--caps` | string | `core` | Komma-getrennte Capabilities |
-| `--isolated` | flag | — | Kein persistenter State zwischen Sessions |
-| `--extension` | flag | — | Browser-Extension-Modus |
-| `--user-data-dir` | string | Plattform-Cache | Profil-Verzeichnis |
-| `--storage-state` | string | — | Session-State-Datei laden |
-| `--proxy-server` | string | — | Proxy-URL |
-| `--proxy-bypass` | string | — | Komma-getrennte Bypass-Hosts |
-| `--save-session` | flag | — | Session automatisch aufzeichnen |
-| `--config` | string | — | Pfad zur Konfigurationsdatei |
-| `--shared-browser-context` | flag | — | Einzelner Context fuer alle Clients |
-| `--allow-unrestricted-file-access` | flag | — | Datei-Uploads ohne Workspace-Beschraenkung |
+| `--headless` | flag | headed | Start the browser without a UI |
+| `--browser` | string | `chrome` | Browser engine: `chrome`/`firefox`/`webkit`/`msedge` |
+| `--device` | string | — | Device emulation (e.g. `"iPhone 15"`) |
+| `--viewport` | string | — | Viewport size (e.g. `1280x720`) |
+| `--port` | number | — | HTTP transport port |
+| `--host` | string | `localhost` | Bind address (`0.0.0.0` for containers) |
+| `--caps` | string | `core` | Comma-separated capabilities |
+| `--isolated` | flag | — | No persistent state between sessions |
+| `--extension` | flag | — | Browser extension mode |
+| `--user-data-dir` | string | Platform cache | Profile directory |
+| `--storage-state` | string | — | Load a session state file |
+| `--proxy-server` | string | — | Proxy URL |
+| `--proxy-bypass` | string | — | Comma-separated bypass hosts |
+| `--save-session` | flag | — | Record the session automatically |
+| `--config` | string | — | Path to the configuration file |
+| `--shared-browser-context` | flag | — | Single context for all clients |
+| `--allow-unrestricted-file-access` | flag | — | File uploads without workspace restriction |
 
-### Timeout-Konfiguration
+### Timeout configuration
 
-| Timeout | Default | Beschreibung |
+| Timeout | Default | Description |
 |---------|---------|--------------|
-| Action | 5.000 ms | Einzelne Interaktion |
-| Navigation | 60.000 ms | Seitennavigation |
-| Expect | 5.000 ms | Assertions |
+| Action | 5,000 ms | Single interaction |
+| Navigation | 60,000 ms | Page navigation |
+| Expect | 5,000 ms | Assertions |
 
 ---
 
 ## Capabilities
 
-### Uebersicht
+### Overview
 
-| Capability | Stets aktiv | Tools | Beschreibung |
+| Capability | Always active | Tools | Description |
 |-----------|------------|-------|--------------|
-| `core` | Ja | 15+ | Basis-Browser-Automation |
-| `core-navigation` | Nein | — | Nur Navigation-Subset |
-| `core-tabs` | Nein | — | Nur Tab-Management |
-| `core-input` | Nein | — | Nur Input-Operationen |
-| `network` | Nein | 4 | Request-Mocking, Online/Offline |
-| `storage` | Nein | 15+ | Cookies, localStorage, State |
-| `testing` | Nein | 5 | Assertions + Locator-Generierung |
-| `vision` | Nein | 6 | Koordinaten-basierte Maus-Tools |
-| `pdf` | Nein | 1 | PDF-Export |
-| `devtools` | Nein | 4 | Tracing, Video, Debugging |
-| `config` | Nein | 1 | Konfiguration abrufen |
+| `core` | Yes | 15+ | Basic browser automation |
+| `core-navigation` | No | — | Navigation subset only |
+| `core-tabs` | No | — | Tab management only |
+| `core-input` | No | — | Input operations only |
+| `network` | No | 4 | Request mocking, online/offline |
+| `storage` | No | 15+ | Cookies, localStorage, state |
+| `testing` | No | 5 | Assertions + locator generation |
+| `vision` | No | 6 | Coordinate-based mouse tools |
+| `pdf` | No | 1 | PDF export |
+| `devtools` | No | 4 | Tracing, video, debugging |
+| `config` | No | 1 | Retrieve configuration |
 
-### Aktivierungsoptionen
+### Activation options
 
 ```bash
-# CLI-Flag
+# CLI flag
 npx @playwright/mcp@latest --caps=vision,pdf,devtools
 
-# Umgebungsvariable
+# Environment variable
 PLAYWRIGHT_MCP_CAPS=vision,devtools npx @playwright/mcp@latest
 
-# In MCP-Konfiguration
+# In the MCP configuration
 {
   "args": ["@playwright/mcp@latest", "--caps=storage,testing,devtools"]
 }
 ```
 
-### Designprinzip
+### Design principle
 
-Nur benoettigte Capabilities aktivieren, um:
-- Token-Kosten zu reduzieren
-- Halluzinierte Tool-Aufrufe zu minimieren
-- Antwortzeiten zu beschleunigen
+Only enable the capabilities you need, in order to:
+- reduce token cost
+- minimise hallucinated tool calls
+- speed up response times
 
 ---
 
-## Profil-Modi
+## Profile modes
 
-### Persistent (Standard)
+### Persistent (default)
 
-Login-State, Cookies und localStorage werden zwischen Sessions beibehalten.
+Login state, cookies and localStorage are retained between sessions.
 
-Plattform-spezifische Speicherorte:
+Platform-specific storage locations:
 - macOS: `~/Library/Caches/ms-playwright/mcp-{channel}-profile`
 - Linux: `~/.cache/ms-playwright/mcp-{channel}-profile`
 - Windows: `%LOCALAPPDATA%\ms-playwright\mcp-{channel}-profile`
 
-Ueberschreiben: `--user-data-dir=/pfad/zum/profil`
+Override: `--user-data-dir=/path/to/profile`
 
-### Isoliert
+### Isolated
 
-Jede Session startet ohne gespeicherten State.
+Every session starts without stored state.
 
 ```json
 {
@@ -253,11 +253,11 @@ Jede Session startet ohne gespeicherten State.
 }
 ```
 
-Initiale Credentials laden: `--storage-state=./auth-state.json`
+Load initial credentials: `--storage-state=./auth-state.json`
 
-### Browser-Extension-Modus
+### Browser extension mode
 
-Verbindet sich mit bestehenden Browser-Tabs statt neue zu starten.
+Connects to existing browser tabs instead of starting new ones.
 
 ```json
 {
@@ -265,18 +265,18 @@ Verbindet sich mit bestehenden Browser-Tabs statt neue zu starten.
 }
 ```
 
-Anwendungsfaelle:
-- SSO/2FA: Authentifizierte Session wiederverwenden
-- Browser-Extensions: Seiten mit installierten Add-ons automatisieren
-- Bestehende Tabs: Bereits geoeffnete Seiten automatisieren
+Use cases:
+- SSO/2FA: reuse an authenticated session
+- Browser extensions: automate pages with installed add-ons
+- Existing tabs: automate already opened pages
 
 ---
 
-## Accessibility-Snapshots
+## Accessibility snapshots
 
-### Funktionsprinzip
+### How it works
 
-Jede Interaktion gibt einen strukturierten ARIA-Baum mit `ref`-IDs zurueck:
+Every interaction returns a structured ARIA tree with `ref` IDs:
 
 ```
 - heading "TodoMVC" [level=1]
@@ -289,36 +289,36 @@ Jede Interaktion gibt einen strukturierten ARIA-Baum mit `ref`-IDs zurueck:
     - checkbox "Read Playwright docs" [ref=e10] [checked]
 ```
 
-### Ref-Eigenschaften
+### Ref properties
 
-| Eigenschaft | Wert |
+| Property | Value |
 |-------------|------|
-| Format | `e` gefolgt von Zahl (z.B. `e5`, `e203`) |
-| Eindeutigkeit | Pro Snapshot |
-| Lebensdauer | Bis zur naechsten Navigation oder DOM-Aenderung |
-| Vergabe | Nur interaktive Elemente erhalten refs |
+| Format | `e` followed by a number (e.g. `e5`, `e203`) |
+| Uniqueness | Per snapshot |
+| Lifetime | Until the next navigation or DOM change |
+| Assignment | Only interactive elements receive refs |
 
-### Workflow-Muster
+### Workflow pattern
 
 ```
-1. browser_navigate -> Snapshot zurueck
-2. LLM liest Snapshot, identifiziert ref
+1. browser_navigate -> snapshot returned
+2. LLM reads the snapshot, identifies the ref
 3. browser_type { ref: "e5", text: "..." }
-4. Naechster Snapshot automatisch
-5. Refs neu einlesen nach Navigation
+4. Next snapshot automatically
+5. Re-read refs after navigation
 ```
 
-### Snapshot + Screenshot kombinieren
+### Combining snapshot + screenshot
 
-Fuer visuell-intensive Interfaces: Strukturierten Snapshot fuer Interaktion + Screenshot fuer Layout-Verstaendnis kombinieren.
+For visually intensive interfaces: combine the structured snapshot for interaction with a screenshot for understanding the layout.
 
 ---
 
-## Vision-Modus
+## Vision mode
 
-Ergaenzt snapshots um koordinaten-basierte Tools fuer Elemente ohne ARIA-Unterstuetzung.
+Extends snapshots with coordinate-based tools for elements without ARIA support.
 
-### Aktivierung
+### Activation
 
 ```json
 {
@@ -326,23 +326,23 @@ Ergaenzt snapshots um koordinaten-basierte Tools fuer Elemente ohne ARIA-Unterst
 }
 ```
 
-### Anwendungsfaelle
+### Use cases
 
-| Szenario | Begruendung |
+| Scenario | Rationale |
 |----------|-------------|
-| Canvas/WebGL | Keine ARIA-Elemente |
-| Karten-Interaktion | Pan/Zoom benoetigt Koordinaten |
-| Bild-Editoren | Zeichen-Operationen |
-| Charts | Datenpunkte anwaehlen |
-| Custom-Widgets ohne ARIA | Kein Accessibility-Tree |
+| Canvas/WebGL | No ARIA elements |
+| Map interaction | Pan/zoom requires coordinates |
+| Image editors | Drawing operations |
+| Charts | Selecting data points |
+| Custom widgets without ARIA | No accessibility tree |
 
-### Empfehlung
+### Recommendation
 
-Fuer normale Web-Anwendungen: **Snapshot-basierter Ansatz bevorzugen** (zuverlaessiger und token-effizienter). Vision als Fallback nutzen.
+For normal web applications: **prefer the snapshot-based approach** (more reliable and more token-efficient). Use vision as a fallback.
 
 ---
 
-## Konfigurationsdatei (config.json)
+## Configuration file (config.json)
 
 ```json
 {
@@ -369,13 +369,13 @@ Fuer normale Web-Anwendungen: **Snapshot-basierter Ansatz bevorzugen** (zuverlae
 }
 ```
 
-Verwenden: `npx @playwright/mcp@latest --config path/to/config.json`
+Usage: `npx @playwright/mcp@latest --config path/to/config.json`
 
 Schema: https://github.com/microsoft/playwright-mcp/blob/main/config.d.ts
 
 ---
 
-## Quellen
+## Source
 
 - https://playwright.dev/docs/getting-started-mcp
 - https://playwright.dev/mcp/introduction

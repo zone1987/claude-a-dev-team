@@ -2,21 +2,21 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [tab-list](#tab-list)
 - [tab-new](#tab-new)
 - [tab-select](#tab-select)
 - [tab-close](#tab-close)
-- [Workflow: Seiten vergleichen](#workflow-seiten-vergleichen)
+- [Workflow: comparing pages](#workflow-comparing-pages)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `tab-list` | Alle offenen Tabs auflisten |
-| `tab-new [url]` | Neuen Tab oeffnen |
-| `tab-select <index>` | Zu Tab wechseln (per Index) |
-| `tab-close [index]` | Tab schliessen |
+| `tab-list` | List all open tabs |
+| `tab-new [url]` | Open a new tab |
+| `tab-select <index>` | Switch to a tab (by index) |
+| `tab-close [index]` | Close a tab |
 
 ---
 
@@ -26,7 +26,7 @@
 playwright-cli tab-list
 ```
 
-Ausgabe-Beispiel:
+Example output:
 
 ```
 Tabs:
@@ -35,83 +35,83 @@ Tabs:
   [2] https://github.com/ - GitHub
 ```
 
-- Aktiver Tab wird mit `[active]` markiert
-- Keine Argumente oder Optionen
+- The active tab is marked with `[active]`
+- No arguments or options
 
 ---
 
 ## tab-new
 
 ```bash
-playwright-cli tab-new                              # Leerer Tab
-playwright-cli tab-new https://example.com          # Direkt navigieren
-playwright-cli tab-new https://staging.example.com  # Staging-Umgebung
+playwright-cli tab-new                              # Empty tab
+playwright-cli tab-new https://example.com          # Navigate directly
+playwright-cli tab-new https://staging.example.com  # Staging environment
 ```
 
-### tab-new-Argumente
+### tab-new arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `[url]` | string | Nein | URL zu der sofort navigiert wird (optional) |
+| `[url]` | string | No | URL to navigate to immediately (optional) |
 
 ---
 
 ## tab-select
 
 ```bash
-playwright-cli tab-select 0   # Ersten Tab aktivieren
-playwright-cli tab-select 1   # Zweiten Tab aktivieren
-playwright-cli tab-select 2   # Dritten Tab aktivieren
+playwright-cli tab-select 0   # Activate the first tab
+playwright-cli tab-select 1   # Activate the second tab
+playwright-cli tab-select 2   # Activate the third tab
 ```
 
-### tab-select-Argumente
+### tab-select arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<index>` | number | Ja | Null-basierter Tab-Index (0 = erster Tab) |
+| `<index>` | number | Yes | Zero-based tab index (0 = first tab) |
 
-Tab-Indizes sind null-basiert (0 = erster Tab).
+Tab indices are zero-based (0 = first tab).
 
 ---
 
 ## tab-close
 
 ```bash
-playwright-cli tab-close       # Aktuellen Tab schliessen
-playwright-cli tab-close 2     # Dritten Tab schliessen
-playwright-cli tab-close 0     # Ersten Tab schliessen
+playwright-cli tab-close       # Close the current tab
+playwright-cli tab-close 2     # Close the third tab
+playwright-cli tab-close 0     # Close the first tab
 ```
 
-### tab-close-Argumente
+### tab-close arguments
 
-| Argument | Typ | Pflicht | Standard | Beschreibung |
+| Argument | Type | Required | Default | Description |
 |----------|-----|---------|---------|-------------|
-| `[index]` | number | Nein | Aktueller Tab | Null-basierter Index des zu schliessenden Tabs |
+| `[index]` | number | No | Current tab | Zero-based index of the tab to close |
 
 ---
 
-## Workflow: Seiten vergleichen
+## Workflow: comparing pages
 
 ```bash
-# Zwei Umgebungen in separaten Tabs oeffnen
+# Open two environments in separate tabs
 playwright-cli open https://staging.example.com
 playwright-cli tab-new https://production.example.com
 
-# Tabs pruefen
+# Check the tabs
 playwright-cli tab-list
 
-# Staging inspizieren
+# Inspect staging
 playwright-cli tab-select 0
 playwright-cli snapshot --filename=staging.yaml
 
-# Produktion inspizieren
+# Inspect production
 playwright-cli tab-select 1
 playwright-cli snapshot --filename=production.yaml
 
-# Zweiten Tab schliessen
+# Close the second tab
 playwright-cli tab-close 1
 ```
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/tabs
+Source: https://playwright.dev/agent-cli/commands/tabs

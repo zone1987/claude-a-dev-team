@@ -1,25 +1,25 @@
-# Playwright class-jshandle: Vollstaendige API-Referenz
+# Playwright class-jshandle: Complete API reference
 
-`JSHandle` repraesentiert einen Verweis auf ein JavaScript-Objekt im Browser-Kontext.
-Es ermoeglicht den Zugriff auf JavaScript-Objekte, die nicht JSON-serialisierbar sind
-(z.B. `window`, DOM-Elemente, komplexe Objekte).
+`JSHandle` represents a reference to a JavaScript object in the browser context.
+It provides access to JavaScript objects that are not JSON-serializable
+(e.g. `window`, DOM elements, complex objects).
 
-`JSHandle` wird zurueckgegeben von:
+`JSHandle` is returned by:
 - `page.evaluateHandle()`
 - `frame.evaluateHandle()`
 - `jsHandle.evaluateHandle()`
 - `jsHandle.getProperty()`
-- `jsHandle.getProperties()` (Map-Werte)
+- `jsHandle.getProperties()` (map values)
 - `page.waitForFunction()`
 - `frame.waitForFunction()`
 
-`ElementHandle` ist eine Unterklasse von `JSHandle` und erbt alle hier dokumentierten Methoden.
+`ElementHandle` is a subclass of `JSHandle` and inherits all methods documented here.
 
 ---
 
 ## Contents
 
-- [Inhaltsverzeichnis](#inhaltsverzeichnis)
+- [Table of contents](#table-of-contents)
 - [1. asElement()](#1-aselement)
 - [2. dispose()](#2-dispose)
 - [3. evaluate()](#3-evaluate)
@@ -27,10 +27,10 @@ Es ermoeglicht den Zugriff auf JavaScript-Objekte, die nicht JSON-serialisierbar
 - [5. getProperties()](#5-getproperties)
 - [6. getProperty()](#6-getproperty)
 - [7. jsonValue()](#7-jsonvalue)
-- [8. Typische Verwendungsszenarien](#8-typische-verwendungsszenarien)
+- [8. Typical usage scenarios](#8-typical-usage-scenarios)
 - [9. Manifest](#9-manifest)
 
-## Inhaltsverzeichnis
+## Table of contents
 
 1. [asElement()](#1-aselement)
 2. [dispose()](#2-dispose)
@@ -39,7 +39,7 @@ Es ermoeglicht den Zugriff auf JavaScript-Objekte, die nicht JSON-serialisierbar
 5. [getProperties()](#5-getproperties)
 6. [getProperty()](#6-getproperty)
 7. [jsonValue()](#7-jsonvalue)
-8. [Typische Verwendungsszenarien](#8-typische-verwendungsszenarien)
+8. [Typical usage scenarios](#8-typical-usage-scenarios)
 9. [Manifest](#9-manifest)
 
 ---
@@ -50,32 +50,32 @@ Es ermoeglicht den Zugriff auf JavaScript-Objekte, die nicht JSON-serialisierbar
 jsHandle.asElement(): null | ElementHandle
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `ElementHandle` wenn das Handle ein DOM-Element repraesentiert, sonst `null`.
+**Returns:** `ElementHandle` if the handle represents a DOM element, otherwise `null`.
 
-Ermoeglicht sicheres Casting eines `JSHandle` zu `ElementHandle`.
+Allows safe casting of a `JSHandle` to `ElementHandle`.
 
 ```typescript
-// Aus evaluateHandle gewonnenes Handle pruefen
+// Check a handle obtained from evaluateHandle
 const handle = await page.evaluateHandle(() => document.querySelector('h1'));
 const elementHandle = handle.asElement();
 
 if (elementHandle) {
-  // Ist ein DOM-Element
+  // Is a DOM element
   const text = await elementHandle.textContent();
-  console.log('Titel:', text);
+  console.log('Title:', text);
   const box = await elementHandle.boundingBox();
   console.log('Position:', box);
 } else {
-  // Kein DOM-Element (z.B. primitiver Wert oder komplexes Objekt)
+  // Not a DOM element (e.g. primitive value or complex object)
   const value = await handle.jsonValue();
-  console.log('Wert:', value);
+  console.log('Value:', value);
 }
 
-// Unterschied zu ElementHandle.asElement():
-// ElementHandle.asElement() gibt immer sich selbst zurueck
-// JSHandle.asElement() gibt null zurueck wenn kein DOM-Element
+// Difference to ElementHandle.asElement():
+// ElementHandle.asElement() always returns itself
+// JSHandle.asElement() returns null if not a DOM element
 ```
 
 ---
@@ -86,23 +86,23 @@ if (elementHandle) {
 jsHandle.dispose(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-Gibt das JavaScript-Objekt-Handle frei. Das Browser-seitige Objekt wird nicht mehr von Playwright
-referenziert und kann vom Garbage Collector abgeraeumt werden. Nach `dispose()` sind keine
-weiteren Operationen auf dem Handle moeglich — sie wuerfeln einen Fehler.
+Releases the JavaScript object handle. The browser-side object is no longer referenced by
+Playwright and can be cleaned up by the garbage collector. After `dispose()` no
+further operations on the handle are possible — they throw an error.
 
 ```typescript
 const handle = await page.evaluateHandle(() => window);
-// Arbeit mit handle...
+// Work with handle...
 const userAgent = await handle.evaluate(win => win.navigator.userAgent);
 console.log(userAgent);
-// Handle freigeben wenn nicht mehr benoetigt
+// Release the handle when no longer needed
 await handle.dispose();
 
-// Handles in Arrays/Maps ebenfalls bereinigen
+// Also clean up handles in arrays/maps
 const propsMap = await handle.getProperties();
 for (const [key, propHandle] of propsMap) {
   await propHandle.dispose();
@@ -120,37 +120,37 @@ jsHandle.evaluate<T>(
 ): Promise<T>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pageFunction` | `Function\|string` | ja | Funktion die im Browser ausgefuehrt wird; das Handle wird als erstes Argument uebergeben |
-| `arg` | `Serializable\|JSHandle` | nein | Optionales zweites Argument |
+| `pageFunction` | `Function\|string` | yes | Function executed in the browser; the handle is passed as the first argument |
+| `arg` | `Serializable\|JSHandle` | no | Optional second argument |
 
-**Rueckgabe:** `Promise<T>` — serialisierter JSON-Wert. Nicht-JSON-faehige Werte werden zu `undefined`.
+**Returns:** `Promise<T>` — serialized JSON value. Non-JSON-capable values become `undefined`.
 
-Fuehrt eine Funktion im Browser-Kontext aus und uebergibt das Handle als erstes Argument.
-Ideal fuer Operationen auf JavaScript-Objekten, die nicht direkt serialisierbar sind.
+Executes a function in the browser context and passes the handle as the first argument.
+Ideal for operations on JavaScript objects that are not directly serializable.
 
 ```typescript
-// window-Objekt analysieren
+// Analyze the window object
 const windowHandle = await page.evaluateHandle(() => window);
 const url = await windowHandle.evaluate(win => win.location.href);
 const scrollY = await windowHandle.evaluate(win => win.scrollY);
 
-// Array-Handle auswerten
+// Evaluate an array handle
 const arrayHandle = await page.evaluateHandle(() =>
   Array.from(document.querySelectorAll('a'))
 );
 const count = await arrayHandle.evaluate(arr => arr.length);
 const firstHref = await arrayHandle.evaluate(arr => arr[0]?.getAttribute('href'));
 
-// Mit Zusatz-Argument
+// With an additional argument
 const threshold = 5;
 const longLinks = await arrayHandle.evaluate(
   (links, minLen) => links.filter(a => a.textContent!.length > minLen).length,
   threshold
 );
 
-// Map-Objekt
+// Map object
 const mapHandle = await page.evaluateHandle(() => new Map([['key', 'value']]));
 const hasKey = await mapHandle.evaluate(m => m.has('key'));
 ```
@@ -166,38 +166,38 @@ jsHandle.evaluateHandle<T>(
 ): Promise<JSHandle<T>>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pageFunction` | `Function\|string` | ja | Funktion die im Browser ausgefuehrt wird; das Handle als erstes Argument |
-| `arg` | `Serializable\|JSHandle` | nein | Optionales zweites Argument |
+| `pageFunction` | `Function\|string` | yes | Function executed in the browser; the handle as the first argument |
+| `arg` | `Serializable\|JSHandle` | no | Optional second argument |
 
-**Rueckgabe:** `Promise<JSHandle<T>>` — ein neues Handle auf das Rueckgabe-Objekt.
+**Returns:** `Promise<JSHandle<T>>` — a new handle to the returned object.
 
-Wie `evaluate()`, aber gibt ein `JSHandle` statt eines serialisierten Werts zurueck.
-Nuetzlich wenn der Rueckgabewert selbst komplex/nicht-serialisierbar ist oder fuer Chaining.
+Like `evaluate()`, but returns a `JSHandle` instead of a serialized value.
+Useful when the return value itself is complex/non-serializable, or for chaining.
 
 ```typescript
-// Element aus Array-Handle extrahieren
+// Extract an element from an array handle
 const listHandle = await page.evaluateHandle(() =>
   document.querySelectorAll('li')
 );
-// Erstes Element als neues Handle
+// First element as a new handle
 const firstHandle = await listHandle.evaluateHandle(list => list[0]);
 const elementHandle = firstHandle.asElement();
 if (elementHandle) {
   const text = await elementHandle.textContent();
 }
 
-// Kindelement traversieren
+// Traverse child elements
 const bodyHandle = await page.evaluateHandle(() => document.body);
 const headerHandle = await bodyHandle.evaluateHandle(body => body.querySelector('header'));
 const headerEl = headerHandle.asElement();
 
-// window.history navigieren und als Handle behalten
+// Navigate window.history and keep it as a handle
 const historyHandle = await page.evaluateHandle(() => window.history);
 const stateHandle = await historyHandle.evaluateHandle(h => h.state);
 
-// Sauber aufraumen
+// Clean up properly
 await listHandle.dispose();
 await firstHandle.dispose();
 await bodyHandle.dispose();
@@ -214,16 +214,16 @@ await stateHandle.dispose();
 jsHandle.getProperties(): Promise<Map<string, JSHandle>>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<Map<string, JSHandle>>` — Map mit Eigenschaftsnamen als Schluesseln
-und JSHandle-Instanzen als Werten.
+**Returns:** `Promise<Map<string, JSHandle>>` — map with property names as keys
+and JSHandle instances as values.
 
-Gibt alle **eigenen** (nicht-vererbten) Eigenschaften des referenzierten Objekts zurueck.
-Jede Eigenschaft ist selbst ein JSHandle.
+Returns all **own** (non-inherited) properties of the referenced object.
+Each property is itself a JSHandle.
 
 ```typescript
-// Alle eigenen Eigenschaften eines Objekts
+// All own properties of an object
 const handle = await page.evaluateHandle(() => ({ name: 'Max', age: 30, active: true }));
 const props = await handle.getProperties();
 
@@ -233,12 +233,12 @@ for (const [key, valueHandle] of props) {
   await valueHandle.dispose();
 }
 await handle.dispose();
-// Ausgabe:
+// Output:
 // name: Max
 // age: 30
 // active: true
 
-// DOM-Element-Eigenschaften
+// DOM element properties
 const inputHandle = await page.evaluateHandle(() => document.querySelector('input'));
 const inputProps = await inputHandle.getProperties();
 const valueHandle = inputProps.get('value');
@@ -248,10 +248,10 @@ if (valueHandle) {
   await valueHandle.dispose();
 }
 
-// Nur eigene Eigenschaften (keine Prototype-Eigenschaften)
+// Own properties only (no prototype properties)
 const arrayHandle = await page.evaluateHandle(() => [1, 2, 3]);
 const arrayProps = await arrayHandle.getProperties();
-// Enthaelt '0', '1', '2', 'length' — aber NICHT Array.prototype-Methoden
+// Contains '0', '1', '2', 'length' — but NOT Array.prototype methods
 ```
 
 ---
@@ -262,17 +262,17 @@ const arrayProps = await arrayHandle.getProperties();
 jsHandle.getProperty(propertyName: string): Promise<JSHandle>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `propertyName` | `string` | ja | Name der abzurufenden Eigenschaft |
+| `propertyName` | `string` | yes | Name of the property to retrieve |
 
-**Rueckgabe:** `Promise<JSHandle>` — Handle auf den Eigenschaftswert.
+**Returns:** `Promise<JSHandle>` — handle to the property value.
 
-Ruft eine einzelne Eigenschaft ab, ohne alle Eigenschaften zu laden.
-Effizienter als `getProperties()` wenn nur eine Eigenschaft benoetigt wird.
+Retrieves a single property without loading all properties.
+More efficient than `getProperties()` when only one property is needed.
 
 ```typescript
-// Einfache Eigenschaft
+// Simple property
 const handle = await page.evaluateHandle(() => ({
   name: 'Max',
   address: { city: 'Berlin' }
@@ -283,31 +283,31 @@ const name = await nameHandle.jsonValue();
 console.log('Name:', name); // 'Max'
 await nameHandle.dispose();
 
-// Verschachtelte Eigenschaft (ergibt Handle auf Objekt)
+// Nested property (yields a handle to an object)
 const addressHandle = await handle.getProperty('address');
 const cityHandle = await addressHandle.getProperty('city');
 const city = await cityHandle.jsonValue();
-console.log('Stadt:', city); // 'Berlin'
+console.log('City:', city); // 'Berlin'
 await cityHandle.dispose();
 await addressHandle.dispose();
 
 await handle.dispose();
 
-// Input-Wert lesen
+// Read an input value
 const inputHandle = await page.evaluateHandle(() =>
   document.querySelector('input[name=email]')
 );
 const valueHandle = await inputHandle.getProperty('value');
 const value = await valueHandle.jsonValue();
-console.log('E-Mail:', value);
+console.log('E-mail:', value);
 
-// Checked-Zustand einer Checkbox
+// Checked state of a checkbox
 const checkboxHandle = await page.evaluateHandle(() =>
   document.querySelector('input[type=checkbox]')
 );
 const checkedHandle = await checkboxHandle.getProperty('checked');
 const checked = await checkedHandle.jsonValue();
-console.log('Angehakt:', checked);
+console.log('Checked:', checked);
 
 await valueHandle.dispose();
 await inputHandle.dispose();
@@ -323,33 +323,33 @@ await checkboxHandle.dispose();
 jsHandle.jsonValue<T>(): Promise<T>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<T>` — JSON-Repraesentation des referenzierten Objekts.
+**Returns:** `Promise<T>` — JSON representation of the referenced object.
 
-Serialisiert das referenzierte JavaScript-Objekt als JSON. Wenn das Objekt eine `toJSON()`-
-Methode hat, wird diese **nicht** aufgerufen. Zirkulaere Referenzen und nicht-serialisierbare
-Werte (z.B. `undefined`, Funktionen, Symbols) werden ignoriert/entfernt.
+Serializes the referenced JavaScript object as JSON. If the object has a `toJSON()`
+method, it is **not** called. Circular references and non-serializable
+values (e.g. `undefined`, functions, symbols) are ignored/removed.
 
-Fuer DOM-Elemente gibt `jsonValue()` ein leeres Objekt `{}` zurueck — in diesem Fall
-`evaluate()` oder `ElementHandle`-Methoden verwenden.
+For DOM elements, `jsonValue()` returns an empty object `{}` — in that case
+use `evaluate()` or `ElementHandle` methods.
 
 ```typescript
-// Primitive Werte
+// Primitive values
 const numHandle = await page.evaluateHandle(() => 42);
 const num = await numHandle.jsonValue();
 console.log(num); // 42
 
-const strHandle = await page.evaluateHandle(() => 'Hallo');
+const strHandle = await page.evaluateHandle(() => 'Hello');
 const str = await strHandle.jsonValue();
-console.log(str); // 'Hallo'
+console.log(str); // 'Hello'
 
 // Arrays
-const arrHandle = await page.evaluateHandle(() => [1, 2, 3, 'vier']);
+const arrHandle = await page.evaluateHandle(() => [1, 2, 3, 'four']);
 const arr = await arrHandle.jsonValue();
-console.log(arr); // [1, 2, 3, 'vier']
+console.log(arr); // [1, 2, 3, 'four']
 
-// Objekte
+// Objects
 const objHandle = await page.evaluateHandle(() => ({
   user: 'Max',
   scores: [10, 20],
@@ -358,18 +358,18 @@ const objHandle = await page.evaluateHandle(() => ({
 const obj = await objHandle.jsonValue();
 console.log(obj.user); // 'Max'
 
-// DOM-Element — gibt {} zurueck
+// DOM element — returns {}
 const elHandle = await page.evaluateHandle(() => document.body);
 const elJson = await elHandle.jsonValue();
 console.log(elJson); // {}
-// Stattdessen: elHandle.asElement()?.textContent()
+// Instead: elHandle.asElement()?.textContent()
 
-// Nicht-serialisierbare Werte
+// Non-serializable values
 const fnHandle = await page.evaluateHandle(() => function test() {});
 const fnJson = await fnHandle.jsonValue();
 console.log(fnJson); // undefined
 
-// Aufraumen
+// Clean up
 await numHandle.dispose();
 await strHandle.dispose();
 await arrHandle.dispose();
@@ -380,14 +380,14 @@ await fnHandle.dispose();
 
 ---
 
-## 8. Typische Verwendungsszenarien
+## 8. Typical usage scenarios
 
-### Szenario 1: Window-Objekt inspizieren
+### Scenario 1: Inspect the window object
 
 ```typescript
 const windowHandle = await page.evaluateHandle(() => window);
 
-// Eigenschaften auslesen
+// Read properties
 const location = await windowHandle.evaluate(w => ({
   href: w.location.href,
   pathname: w.location.pathname,
@@ -395,7 +395,7 @@ const location = await windowHandle.evaluate(w => ({
 }));
 console.log(location);
 
-// Globale Variable pruefen
+// Check a global variable
 const appState = await windowHandle.evaluate(w => (w as any).__APP_STATE__);
 
 await windowHandle.dispose();
@@ -403,18 +403,18 @@ await windowHandle.dispose();
 
 ---
 
-### Szenario 2: NodeList / HTMLCollection verarbeiten
+### Scenario 2: Process a NodeList / HTMLCollection
 
 ```typescript
-// Alle Links als Handle
+// All links as a handle
 const linksHandle = await page.evaluateHandle(() =>
   document.querySelectorAll('a[href]')
 );
 
-// Anzahl
+// Count
 const count = await linksHandle.evaluate(links => links.length);
 
-// Alle HREFs
+// All HREFs
 const hrefs = await linksHandle.evaluate(links =>
   Array.from(links).map(a => (a as HTMLAnchorElement).href)
 );
@@ -424,10 +424,10 @@ await linksHandle.dispose();
 
 ---
 
-### Szenario 3: Komplexe Rueckgabewerte aus evaluate
+### Scenario 3: Complex return values from evaluate
 
 ```typescript
-// Wenn evaluate nicht ausreicht (Objekt nicht JSON-faehig)
+// When evaluate is not enough (object not JSON-capable)
 const setHandle = await page.evaluateHandle(() => new Set(['a', 'b', 'c']));
 const size = await setHandle.evaluate(s => s.size);
 const hasA = await setHandle.evaluate(s => s.has('a'));
@@ -439,10 +439,10 @@ await setHandle.dispose();
 
 ---
 
-### Szenario 4: Handle-Chaining
+### Scenario 4: Handle chaining
 
 ```typescript
-// Ohne Chaining (ineffizient — mehrere evaluate-Aufrufe)
+// Without chaining (inefficient — multiple evaluate calls)
 const formHandle = await page.evaluateHandle(() =>
   document.querySelector('form#checkout')
 );
@@ -454,24 +454,24 @@ if (inputEl) {
   await inputEl.fill('4111111111111111');
 }
 
-// Sauber aufraumen
+// Clean up properly
 await inputHandle.dispose();
 await formHandle.dispose();
 ```
 
 ---
 
-### Szenario 5: Memory-sichere Verwendung mit using
+### Scenario 5: Memory-safe usage with using
 
 ```typescript
-// TypeScript 5+ Symbol.asyncDispose (falls Playwright-Version unterstuetzt)
+// TypeScript 5+ Symbol.asyncDispose (if the Playwright version supports it)
 {
   const handle = await page.evaluateHandle(() => window);
   try {
     const title = await handle.evaluate(w => w.document.title);
     console.log(title);
   } finally {
-    await handle.dispose(); // Immer aufraumen
+    await handle.dispose(); // Always clean up
   }
 }
 ```
@@ -480,25 +480,25 @@ await formHandle.dispose();
 
 ## 9. Manifest
 
-| Methode | Rueckgabe | Beschreibung |
+| Method | Returns | Description |
 |---|---|---|
-| `asElement()` | `null \| ElementHandle` | Cast zu ElementHandle |
-| `dispose()` | `Promise<void>` | Handle freigeben |
-| `evaluate(fn, arg?)` | `Promise<T>` | Funktion mit Handle ausfuehren, serialisierten Wert zurueckgeben |
-| `evaluateHandle(fn, arg?)` | `Promise<JSHandle>` | Funktion mit Handle ausfuehren, Handle zurueckgeben |
-| `getProperties()` | `Promise<Map<string, JSHandle>>` | Alle eigenen Eigenschaften als Map |
-| `getProperty(name)` | `Promise<JSHandle>` | Einzelne Eigenschaft als Handle |
-| `jsonValue()` | `Promise<T>` | JSON-Serialisierung des referenzierten Objekts |
+| `asElement()` | `null \| ElementHandle` | Cast to ElementHandle |
+| `dispose()` | `Promise<void>` | Release the handle |
+| `evaluate(fn, arg?)` | `Promise<T>` | Run a function with the handle, return the serialized value |
+| `evaluateHandle(fn, arg?)` | `Promise<JSHandle>` | Run a function with the handle, return a handle |
+| `getProperties()` | `Promise<Map<string, JSHandle>>` | All own properties as a map |
+| `getProperty(name)` | `Promise<JSHandle>` | Single property as a handle |
+| `jsonValue()` | `Promise<T>` | JSON serialization of the referenced object |
 
-**Gesamt: 7 Methoden** (keine Properties, keine Events)
+**Total: 7 methods** (no properties, no events)
 
-**Fazit:** `JSHandle` ist die Basis-Klasse fuer alle Browser-Objekt-Handles in Playwright.
-Sie ermoeglicht das sichere Arbeiten mit nicht-serialisierbaren JavaScript-Werten im Browser.
-Wichtig: Handles immer mit `dispose()` freigeben, um Memory-Leaks zu vermeiden.
-In der Praxis wird `JSHandle` meist indirekt ueber `ElementHandle` und `page.evaluateHandle()`
-verwendet — direktes `JSHandle`-Arbeiten ist vor allem bei komplexen Browser-Objekten
-(Sets, Maps, Window, komplexe Klassen) notwendig.
+**Conclusion:** `JSHandle` is the base class for all browser object handles in Playwright.
+It enables safe work with non-serializable JavaScript values in the browser.
+Important: always release handles with `dispose()` to avoid memory leaks.
+In practice, `JSHandle` is mostly used indirectly through `ElementHandle` and `page.evaluateHandle()`
+— working with `JSHandle` directly is mainly necessary for complex browser objects
+(sets, maps, window, complex classes).
 
 ---
 
-**Quelle:** https://playwright.dev/docs/api/class-jshandle
+**Source:** https://playwright.dev/docs/api/class-jshandle

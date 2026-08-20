@@ -1,16 +1,16 @@
 # class-apiresponse
 
-`APIResponse` repraesentiert die HTTP-Antwort auf eine Anfrage ueber `APIRequestContext`. Im Gegensatz zu `Response` (Browser-Requests) muss `APIResponse` explizit via `dispose()` freigegeben werden, wenn der Body nicht benoetigt wird, um Speicherlecks zu vermeiden.
+`APIResponse` represents the HTTP response to a request made via `APIRequestContext`. Unlike `Response` (browser requests), `APIResponse` must be released explicitly via `dispose()` when the body is not needed, in order to avoid memory leaks.
 
-Methoden: 10 | Properties: 0 | Events: 0
+Methods: 10 | Properties: 0 | Events: 0
 
 ---
 
 ## Contents
 
 - [Methods](#methods)
-- [Nutzungsmuster](#nutzungsmuster)
-- [Unterschied zu class-response](#unterschied-zu-class-response)
+- [Usage patterns](#usage-patterns)
+- [Difference from class-response](#difference-from-class-response)
 - [Manifest](#manifest)
 
 ## Methods
@@ -21,7 +21,7 @@ Methoden: 10 | Properties: 0 | Events: 0
 await apiResponse.body(): Promise<Buffer>
 ```
 
-Gibt den vollstaendigen Response-Body als binaeren `Buffer` zurueck.
+Returns the complete response body as a binary `Buffer`.
 
 **Returns:** `Promise<Buffer>`
 
@@ -38,15 +38,15 @@ require('fs').writeFileSync('download.pdf', buffer);
 await apiResponse.dispose(): Promise<void>
 ```
 
-Gibt den Response-Body aus dem Speicher frei. Sollte aufgerufen werden wenn der Body nicht benoetigt wird (z.B. bei Status-Only-Checks). Andernfalls bleibt der Body im Speicher bis der Context geschlossen wird.
+Releases the response body from memory. Should be called when the body is not needed (e.g. for status-only checks). Otherwise the body stays in memory until the context is closed.
 
 **Returns:** `Promise<void>`
 
 ```js
-// Status pruefen ohne Body zu lesen
+// Check status without reading the body
 const response = await request.get('/api/health');
 expect(response.status()).toBe(200);
-await response.dispose(); // Speicher freigeben
+await response.dispose(); // free memory
 ```
 
 ---
@@ -57,7 +57,7 @@ await response.dispose(); // Speicher freigeben
 apiResponse.headers(): Object<string, string>
 ```
 
-Gibt alle Response-Header als Objekt zurueck. Multi-Value-Headers werden kommasepariert zusammengefuehrt.
+Returns all response headers as an object. Multi-value headers are joined with commas.
 
 **Returns:** `Object<string, string>`
 
@@ -75,9 +75,9 @@ console.log('Cache-Control:', headers['cache-control']);
 apiResponse.headersArray(): Array<{name: string, value: string}>
 ```
 
-Gibt alle Response-Header als Array zurueck. Behaelt Original-Casing bei; Multi-Value-Headers (z.B. `Set-Cookie`) erscheinen als separate Eintraege.
+Returns all response headers as an array. Preserves the original casing; multi-value headers (e.g. `Set-Cookie`) appear as separate entries.
 
-**Returns:** `Array<{name: string, value: string}>` — Synchron, kein `await` noetig
+**Returns:** `Array<{name: string, value: string}>` — synchronous, no `await` needed
 
 ```js
 const headers = apiResponse.headersArray();
@@ -94,7 +94,7 @@ const setCookies = headers
 await apiResponse.json(): Promise<Serializable>
 ```
 
-Gibt den Response-Body als geparste JavaScript-Objekt zurueck. Wirft eine Exception wenn der Body kein gueltiges JSON ist.
+Returns the response body as a parsed JavaScript object. Throws an exception if the body is not valid JSON.
 
 **Returns:** `Promise<Serializable>`
 
@@ -115,7 +115,7 @@ expect(data.users[0]).toMatchObject({
 apiResponse.ok(): boolean
 ```
 
-Gibt `true` zurueck wenn der HTTP-Status-Code im Bereich 200-299 liegt.
+Returns `true` if the HTTP status code is in the range 200-299.
 
 **Returns:** `boolean`
 
@@ -132,7 +132,7 @@ expect(response.ok()).toBeTruthy();
 apiResponse.status(): number
 ```
 
-Gibt den numerischen HTTP-Status-Code zurueck.
+Returns the numeric HTTP status code.
 
 **Returns:** `number`
 
@@ -149,13 +149,13 @@ expect(response.status()).toBe(404);
 apiResponse.statusText(): string
 ```
 
-Gibt den HTTP-Status-Text zurueck.
+Returns the HTTP status text.
 
-**Returns:** `string` — z.B. `"OK"`, `"Created"`, `"Not Found"`, `"Internal Server Error"`
+**Returns:** `string` — e.g. `"OK"`, `"Created"`, `"Not Found"`, `"Internal Server Error"`
 
 ```js
 console.log(response.status(), response.statusText());
-// z.B. "201 Created"
+// e.g. "201 Created"
 ```
 
 ---
@@ -166,7 +166,7 @@ console.log(response.status(), response.statusText());
 await apiResponse.text(): Promise<string>
 ```
 
-Gibt den Response-Body als UTF-8-String zurueck.
+Returns the response body as a UTF-8 string.
 
 **Returns:** `Promise<string>`
 
@@ -186,23 +186,23 @@ const rows = csv.split('\n').map(r => r.split(','));
 apiResponse.url(): string
 ```
 
-Gibt die URL zurueck, auf die diese Response antwortet (nach Redirects: finale URL).
+Returns the URL this response answers (after redirects: the final URL).
 
 **Returns:** `string`
 
 ```js
 console.log('Final URL:', response.url());
-// Bei Redirects: URL nach dem letzten Redirect
+// With redirects: URL after the last redirect
 ```
 
 ---
 
-## Nutzungsmuster
+## Usage patterns
 
-### Pattern 1: Vollstaendige JSON-API-Tests
+### Pattern 1: Complete JSON API tests
 
 ```js
-test('CRUD-Zyklus', async ({ request }) => {
+test('CRUD cycle', async ({ request }) => {
   // Create
   const createResp = await request.post('/api/items', {
     data: { name: 'Test Item', price: 9.99 },
@@ -225,16 +225,16 @@ test('CRUD-Zyklus', async ({ request }) => {
   // Delete
   const deleteResp = await request.delete(`/api/items/${id}`);
   expect(deleteResp.status()).toBe(204);
-  await deleteResp.dispose(); // kein Body erwartet
+  await deleteResp.dispose(); // no body expected
 });
 ```
 
-### Pattern 2: Fehlerbehandlung
+### Pattern 2: Error handling
 
 ```js
-test('Fehler-Responses pruefen', async ({ request }) => {
+test('check error responses', async ({ request }) => {
   const response = await request.post('/api/users', {
-    data: { name: '' }, // invalide Daten
+    data: { name: '' }, // invalid data
   });
 
   expect(response.status()).toBe(422);
@@ -245,10 +245,10 @@ test('Fehler-Responses pruefen', async ({ request }) => {
 });
 ```
 
-### Pattern 3: Header-Pruefung
+### Pattern 3: Header check
 
 ```js
-test('CORS-Header pruefen', async ({ request }) => {
+test('check CORS headers', async ({ request }) => {
   const response = await request.get('/api/public', {
     headers: { 'Origin': 'https://trusted.example.com' },
   });
@@ -261,34 +261,34 @@ test('CORS-Header pruefen', async ({ request }) => {
 });
 ```
 
-### Pattern 4: Datei-Download
+### Pattern 4: File download
 
 ```js
-test('PDF-Export herunterladen', async ({ request }) => {
+test('download PDF export', async ({ request }) => {
   const response = await request.get('/api/report.pdf');
   expect(response.ok()).toBeTruthy();
   expect(response.headers()['content-type']).toBe('application/pdf');
 
   const buffer = await response.body();
   expect(buffer.length).toBeGreaterThan(0);
-  // PDF-Magic-Bytes pruefen
+  // check PDF magic bytes
   expect(buffer.slice(0, 4).toString()).toBe('%PDF');
 });
 ```
 
 ---
 
-## Unterschied zu class-response
+## Difference from class-response
 
-| Aspekt | `APIResponse` | `Response` |
+| Aspect | `APIResponse` | `Response` |
 |--------|---------------|------------|
-| Herkunft | `APIRequestContext` | Browser/Page-Netzwerk |
-| `dispose()` | Erforderlich | Nicht noetig |
-| `headersArray()` | Synchron | Asynchron (await) |
-| `allHeaders()` | Nicht vorhanden | Vorhanden |
-| `fromServiceWorker()` | Nicht vorhanden | Vorhanden |
-| `securityDetails()` | Nicht vorhanden | Vorhanden |
-| `serverAddr()` | Nicht vorhanden | Vorhanden |
+| Origin | `APIRequestContext` | Browser/page network |
+| `dispose()` | Required | Not needed |
+| `headersArray()` | Synchronous | Asynchronous (await) |
+| `allHeaders()` | Not available | Available |
+| `fromServiceWorker()` | Not available | Available |
+| `securityDetails()` | Not available | Available |
+| `serverAddr()` | Not available | Available |
 
 ---
 
@@ -300,7 +300,7 @@ test('PDF-Export herunterladen', async ({ request }) => {
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `APIResponse` ist das leichtgewichtige Response-Objekt fuer API-Tests. `ok()`, `status()` und `json()` sind die haeufigsten Methoden. `dispose()` muss aufgerufen werden wenn kein Body gelesen wird, um Speicherlecks zu vermeiden. `headersArray()` ist (im Gegensatz zu `class-response`) synchron.
+**Conclusion:** `APIResponse` is the lightweight response object for API tests. `ok()`, `status()` and `json()` are the most common methods. `dispose()` must be called when no body is read, in order to avoid memory leaks. `headersArray()` is (unlike in `class-response`) synchronous.
 
 ---
 

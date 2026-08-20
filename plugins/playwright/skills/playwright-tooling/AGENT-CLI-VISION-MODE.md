@@ -2,84 +2,84 @@
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Vision-Befehle](#vision-befehle)
-- [Anwendungsfaelle](#anwendungsfaelle)
-- [Workflow 1: Canvas-App](#workflow-1-canvas-app)
-- [Workflow 2: Icon ohne barrierefreien Namen klicken](#workflow-2-icon-ohne-barrierefreien-namen-klicken)
-- [Workflow 3: Rechtsklick-Kontextmenue](#workflow-3-rechtsklick-kontextmenue)
-- [Workflow 4: Scrollen](#workflow-4-scrollen)
-- [Koordinaten ermitteln](#koordinaten-ermitteln)
+- [Overview](#overview)
+- [Vision commands](#vision-commands)
+- [Use cases](#use-cases)
+- [Workflow 1: Canvas app](#workflow-1-canvas-app)
+- [Workflow 2: Clicking an icon without an accessible name](#workflow-2-clicking-an-icon-without-an-accessible-name)
+- [Workflow 3: Right-click context menu](#workflow-3-right-click-context-menu)
+- [Workflow 4: Scrolling](#workflow-4-scrolling)
+- [Determining coordinates](#determining-coordinates)
 
-## Uebersicht
+## Overview
 
-Vision Mode ermoeglicht die Interaktion mit Seitenelementen ueber Koordinaten und Screenshots —
-fuer Elemente, die nicht im Accessibility-Tree sichtbar sind.
+Vision Mode enables interaction with page elements via coordinates and screenshots —
+for elements that are not visible in the accessibility tree.
 
-**Grundregel:** Fuer die meisten Webanwendungen ist der Standard-Snapshot-Ansatz
-zuverlaessiger und token-effizienter. Vision Mode nur nutzen, wenn der Accessibility-Tree
-den Anwendungsfall nicht abdeckt.
+**Basic rule:** For most web applications the standard snapshot approach is
+more reliable and more token-efficient. Only use Vision Mode when the accessibility tree
+does not cover the use case.
 
 ---
 
-## Vision-Befehle
+## Vision commands
 
-| Befehl | Typ | Beschreibung |
+| Command | Type | Description |
 |--------|-----|-------------|
-| `mousemove <x> <y>` | Pflicht: x (number), y (number) | Maus zu Pixel-Koordinaten bewegen |
-| `mousedown [button]` | Optional: `left` (Standard), `right`, `middle` | Maustaste druecken |
-| `mouseup [button]` | Optional: `left` (Standard), `right`, `middle` | Maustaste loslassen |
-| `mousewheel <dx> <dy>` | Pflicht: dx (number), dy (number) | Scrollen (dx=horizontal, dy=vertikal) |
-| `screenshot` | — | Viewport erfassen fuer Koordinaten-Referenz |
+| `mousemove <x> <y>` | Required: x (number), y (number) | Move the mouse to pixel coordinates |
+| `mousedown [button]` | Optional: `left` (default), `right`, `middle` | Press a mouse button |
+| `mouseup [button]` | Optional: `left` (default), `right`, `middle` | Release a mouse button |
+| `mousewheel <dx> <dy>` | Required: dx (number), dy (number) | Scroll (dx=horizontal, dy=vertical) |
+| `screenshot` | — | Capture the viewport as a coordinate reference |
 
 ---
 
-## Anwendungsfaelle
+## Use cases
 
-| Szenario | Empfohlener Ansatz |
+| Scenario | Recommended approach |
 |----------|-------------------|
-| Buttons, Links, Formularelemente klicken | `click`, `fill`, ref-basierte Befehle |
-| Canvas-/WebGL-Applikationen | Maus-Befehle mit Koordinaten |
-| Karten-Interaktion (Pan/Zoom) | Maus-Befehle mit Koordinaten |
-| Bild-Bearbeitungs-Tools | Maus-Befehle mit Koordinaten |
-| Diagramm-/Graph-Interaktion | Maus-Befehle mit Koordinaten |
-| Benutzerdefinierte Widgets ohne ARIA | Maus-Befehle mit Koordinaten |
-| Pixel-praezise Drag-Interaktionen | Maus-Befehle mit Koordinaten |
+| Clicking buttons, links, form elements | `click`, `fill`, ref-based commands |
+| Canvas/WebGL applications | Mouse commands with coordinates |
+| Map interaction (pan/zoom) | Mouse commands with coordinates |
+| Image editing tools | Mouse commands with coordinates |
+| Chart/graph interaction | Mouse commands with coordinates |
+| Custom widgets without ARIA | Mouse commands with coordinates |
+| Pixel-precise drag interactions | Mouse commands with coordinates |
 
 ---
 
-## Workflow 1: Canvas-App
+## Workflow 1: Canvas app
 
 ```bash
-# Screenshot fuer visuelle Referenz aufnehmen
+# Take a screenshot as a visual reference
 playwright-cli screenshot
 
-# Koordinaten aus Screenshot identifizieren, dann interagieren
+# Identify coordinates from the screenshot, then interact
 playwright-cli mousemove 100 200
 playwright-cli mousedown
 playwright-cli mousemove 300 400
 playwright-cli mouseup
 
-# Ergebnis pruefen
+# Check the result
 playwright-cli screenshot --filename=after-draw.png
 ```
 
-## Workflow 2: Icon ohne barrierefreien Namen klicken
+## Workflow 2: Clicking an icon without an accessible name
 
 ```bash
-# Screenshot aufnehmen um Koordinaten zu identifizieren
+# Take a screenshot to identify coordinates
 playwright-cli screenshot --filename=reference.png
 
-# Koordinatenbasiert klicken
+# Click based on coordinates
 playwright-cli mousemove 450 320
 playwright-cli mousedown
 playwright-cli mouseup
 
-# Ergebnis pruefen
+# Check the result
 playwright-cli screenshot --filename=after-click.png
 ```
 
-## Workflow 3: Rechtsklick-Kontextmenue
+## Workflow 3: Right-click context menu
 
 ```bash
 playwright-cli screenshot
@@ -89,30 +89,30 @@ playwright-cli mouseup right
 playwright-cli snapshot
 ```
 
-## Workflow 4: Scrollen
+## Workflow 4: Scrolling
 
 ```bash
-# Nach unten scrollen (500 Pixel)
+# Scroll down (500 pixels)
 playwright-cli mousewheel 0 500
 
-# Nach rechts scrollen (200 Pixel)
+# Scroll right (200 pixels)
 playwright-cli mousewheel 200 0
 
-# Nach oben scrollen
+# Scroll up
 playwright-cli mousewheel 0 -300
 ```
 
 ---
 
-## Koordinaten ermitteln
+## Determining coordinates
 
-1. `playwright-cli screenshot --filename=ref.png` ausfuehren
-2. Bild analysieren (visuell oder per Bildanalyse-Tool)
-3. x/y-Koordinaten des Zielelements bestimmen
-4. `playwright-cli mousemove <x> <y>` ausfuehren
-5. Maus-Down/Up oder weitere Aktionen ausfuehren
-6. Ergebnis per Screenshot pruefen
+1. Run `playwright-cli screenshot --filename=ref.png`
+2. Analyse the image (visually or with an image-analysis tool)
+3. Determine the x/y coordinates of the target element
+4. Run `playwright-cli mousemove <x> <y>`
+5. Perform mouse down/up or further actions
+6. Check the result with a screenshot
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/vision-mode
+Source: https://playwright.dev/agent-cli/vision-mode

@@ -1,52 +1,52 @@
 # Playwright — class: ConsoleMessage
 
-> **Manifest:** 6 Methoden, 0 Properties, 0 Events (1 externer Page-Event).
-> Repraesentiert eine einzelne Console-Nachricht aus dem Browser-Kontext.
-> Instanzen werden ueber `page.on('console')` und `worker.on('console')` erhalten.
+> **Manifest:** 6 methods, 0 properties, 0 events (1 external page event).
+> Represents a single console message from the browser context.
+> Instances are obtained via `page.on('console')` and `worker.on('console')`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Page-Event: 'console'](#page-event-console)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Page event: 'console'](#page-event-console)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`ConsoleMessage` kapselt alle Informationen zu einem einzelnen Console-API-
-Aufruf der Seite (`console.log`, `console.error`, usw.). Jede Instanz
-enthaelt den Text, den Typ, den Ursprungs-Ort und ggf. die Argumente.
+`ConsoleMessage` encapsulates all information about a single console API
+call made by the page (`console.log`, `console.error`, etc.). Each instance
+contains the text, the type, the origin location and possibly the arguments.
 
 ```javascript
 page.on('console', async msg => {
   console.log(`[${msg.type()}] ${msg.text()}`);
   if (msg.type() === 'error') {
-    console.error('Browser-Fehler:', msg.text());
+    console.error('Browser error:', msg.text());
   }
 });
 ```
 
 ---
 
-## Methoden
+## Methods
 
 ### consoleMessage.args()
 
-Gibt alle Argumente zurueck, die der Console-Funktion uebergeben wurden,
-als JSHandle-Array.
+Returns all arguments that were passed to the console function,
+as a JSHandle array.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.args(): Array<JSHandle>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Array<JSHandle>` — ein Handle pro Argument
+**Returns:** `Array<JSHandle>` — one handle per argument
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', async msg => {
   for (const arg of msg.args()) {
@@ -55,16 +55,16 @@ page.on('console', async msg => {
 });
 ```
 
-**Hinweis:** `JSHandle.jsonValue()` wirft fuer nicht-serialisierbare Werte.
-Fuer DOM-Elemente `asElement()` nutzen.
+**Note:** `JSHandle.jsonValue()` throws for non-serializable values.
+Use `asElement()` for DOM elements.
 
 ---
 
 ### consoleMessage.location()
 
-Gibt den Quellcode-Ort des Console-Aufrufs zurueck.
+Returns the source code location of the console call.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.location(): {
   url: string;
@@ -75,19 +75,19 @@ consoleMessage.location(): {
 }
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** Objekt mit:
+**Returns:** Object with:
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `url` | `string` | URL der Quell-Ressource |
-| `line` | `number` | 0-basierte Zeilennummer |
-| `column` | `number` | 0-basierte Spaltennummer |
-| `lineNumber` | `number` | Deprecated — `line` verwenden |
-| `columnNumber` | `number` | Deprecated — `column` verwenden |
+| `url` | `string` | URL of the source resource |
+| `line` | `number` | 0-based line number |
+| `column` | `number` | 0-based column number |
+| `lineNumber` | `number` | Deprecated — use `line` |
+| `columnNumber` | `number` | Deprecated — use `column` |
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', msg => {
   const loc = msg.location();
@@ -99,22 +99,22 @@ page.on('console', msg => {
 
 ### consoleMessage.page()
 
-Gibt die Seite zurueck, die diese Nachricht erzeugt hat.
+Returns the page that produced this message.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.page(): Page | null
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Page | null` — die ausloesende Seite oder `null`
+**Returns:** `Page | null` — the triggering page or `null`
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', msg => {
   const p = msg.page();
-  if (p) console.log('Seite:', p.url());
+  if (p) console.log('Page:', p.url());
 });
 ```
 
@@ -122,21 +122,21 @@ page.on('console', msg => {
 
 ### consoleMessage.text()
 
-Gibt den Textinhalt der Console-Nachricht zurueck.
+Returns the text content of the console message.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.text(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `string` — der serialisierte Nachrichtentext
+**Returns:** `string` — the serialized message text
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', msg => {
-  console.log('Nachricht:', msg.text());
+  console.log('Message:', msg.text());
 });
 ```
 
@@ -144,20 +144,20 @@ page.on('console', msg => {
 
 ### consoleMessage.timestamp()
 
-Gibt den Zeitstempel der Nachricht in Millisekunden seit Unix-Epoch zurueck.
+Returns the timestamp of the message in milliseconds since the Unix epoch.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.timestamp(): number
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `number` — Millisekunden-Timestamp
+**Returns:** `number` — millisecond timestamp
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', msg => {
   const date = new Date(msg.timestamp());
@@ -169,18 +169,18 @@ page.on('console', msg => {
 
 ### consoleMessage.type()
 
-Gibt den Typ der Console-Nachricht zurueck.
+Returns the type of the console message.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.type(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** Einer der folgenden Strings:
+**Returns:** One of the following strings:
 
-| Wert | Entspricht |
+| Value | Corresponds to |
 |------|-----------|
 | `'log'` | `console.log()` |
 | `'debug'` | `console.debug()` |
@@ -202,7 +202,7 @@ consoleMessage.type(): string
 | `'time'` | `console.time()` |
 | `'timeEnd'` | `console.timeEnd()` |
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', async msg => {
   if (msg.type() === 'error') {
@@ -215,39 +215,39 @@ page.on('console', async msg => {
 
 ### consoleMessage.worker()
 
-Gibt den Web Worker oder Service Worker zurueck, der die Nachricht erzeugt hat.
+Returns the Web Worker or Service Worker that produced the message.
 
-**Signatur:**
+**Signature:**
 ```typescript
 consoleMessage.worker(): Worker | null
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Worker | null`
+**Returns:** `Worker | null`
 
-**Hinzugefuegt:** v1.57
+**Added:** v1.57
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('console', msg => {
   const w = msg.worker();
-  if (w) console.log('Von Worker:', w.url());
+  if (w) console.log('From worker:', w.url());
 });
 ```
 
 ---
 
-## Page-Event: 'console'
+## Page event: 'console'
 
 ```javascript
 page.on('console', msg => {
-  // msg ist ConsoleMessage
+  // msg is a ConsoleMessage
   console.log(`[${msg.type()}] ${msg.text()}`);
 });
 ```
 
-Auch verfuegbar auf `Worker`:
+Also available on `Worker`:
 
 ```javascript
 worker.on('console', msg => { /* ... */ });
@@ -257,17 +257,17 @@ worker.on('console', msg => { /* ... */ });
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 6 (+1 seit v1.57: worker()) |
+| Methods  | 6 (+1 since v1.57: worker()) |
 | Properties | 0     |
-| Events    | 0 (1 Page-Event: 'console', 1 Worker-Event: 'console') |
+| Events    | 0 (1 page event: 'console', 1 worker event: 'console') |
 
-**Fazit:** `text()` und `type()` reichen fuer einfache Log-Ueberwachung aus.
-`args()` wird benoetigt, wenn strukturierte Objekte (Arrays, Objekte) geprueft
-werden sollen. `timestamp()` ermaoglicht zeitliche Korrelation von Browser-
-Nachrichten mit Test-Schritten.
+**Conclusion:** `text()` and `type()` are enough for simple log monitoring.
+`args()` is required when structured objects (arrays, objects) need to be
+inspected. `timestamp()` enables temporal correlation of browser
+messages with test steps.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-consolemessage*
+*Source: https://playwright.dev/docs/api/class-consolemessage*

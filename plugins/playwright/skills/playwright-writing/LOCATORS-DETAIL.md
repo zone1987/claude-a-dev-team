@@ -1,8 +1,8 @@
-# Playwright Locators: Vollstaendige Referenz
+# Playwright Locators: Complete Reference
 
-Locators repraesentieren eine Methode, Elemente auf der Seite zu finden.
-Alle Locator-Methoden sind verfuegbar auf `page`, `Locator` und `FrameLocator`.
-Shadow DOM wird automatisch durchsucht (ausser XPath und geschlossene Shadow Roots).
+Locators represent a way to find elements on the page.
+All locator methods are available on `page`, `Locator` and `FrameLocator`.
+Shadow DOM is searched automatically (except XPath and closed shadow roots).
 
 ---
 
@@ -15,26 +15,26 @@ Shadow DOM wird automatisch durchsucht (ausser XPath und geschlossene Shadow Roo
 - [5. getByAltText()](#5-getbyalttext)
 - [6. getByTitle()](#6-getbytitle)
 - [7. getByTestId()](#7-getbytestid)
-- [8. locator() — CSS und XPath](#8-locator-css-und-xpath)
-- [9. Filtern mit filter()](#9-filtern-mit-filter)
-- [10. and() und or()](#10-and-und-or)
-- [11. Listenoperationen](#11-listenoperationen)
-- [12. Chaining (Verketten)](#12-chaining-verketten)
+- [8. locator() — CSS and XPath](#8-locator-css-and-xpath)
+- [9. Filtering with filter()](#9-filtering-with-filter)
+- [10. and() and or()](#10-and-and-or)
+- [11. List operations](#11-list-operations)
+- [12. Chaining](#12-chaining)
 - [13. FrameLocator — iframes](#13-framelocator-iframes)
-- [14. Elternelement finden](#14-elternelement-finden)
-- [15. Legacy-Locatoren (veraltet, aber dokumentiert)](#15-legacy-locatoren-veraltet-aber-dokumentiert)
-- [16. Locator Striktheit](#16-locator-striktheit)
-- [Empfohlene Prioritaet](#empfohlene-prioritaet)
+- [14. Finding the parent element](#14-finding-the-parent-element)
+- [15. Legacy locators (deprecated, but documented)](#15-legacy-locators-deprecated-but-documented)
+- [16. Locator strictness](#16-locator-strictness)
+- [Recommended priority](#recommended-priority)
 
 ## 1. getByRole()
 
-Bevorzugter Locator. Findet Elemente nach ihrer ARIA-Rolle und ihrem zugaenglichen Namen.
+Preferred locator. Finds elements by their ARIA role and their accessible name.
 
 ```typescript
 page.getByRole(role: AriaRole, options?)
 ```
 
-### ARIA-Rollen (haeufig verwendet)
+### ARIA roles (commonly used)
 
 `alert`, `alertdialog`, `application`, `article`, `banner`, `blockquote`, `button`,
 `caption`, `cell`, `checkbox`, `code`, `columnheader`, `combobox`, `complementary`,
@@ -48,30 +48,30 @@ page.getByRole(role: AriaRole, options?)
 `superscript`, `switch`, `tab`, `table`, `tablist`, `tabpanel`, `term`, `textbox`,
 `time`, `timer`, `toolbar`, `tooltip`, `tree`, `treegrid`, `treeitem`
 
-### Alle Optionen
+### All options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `name` | `string \| RegExp` | — | Zugaenglicher Name; case-insensitiver Teilstring (Default) oder Regex |
-| `exact` | `boolean` | `false` | Exaktes Matching fuer `name` und `description`: case-sensitiv, vollstaendiger String |
-| `checked` | `boolean` | — | `aria-checked` oder native Checkbox |
-| `disabled` | `boolean` | — | `aria-disabled` oder `disabled`-Attribut (vererbt) |
+| `name` | `string \| RegExp` | — | Accessible name; case-insensitive substring (default) or regex |
+| `exact` | `boolean` | `false` | Exact matching for `name` and `description`: case-sensitive, full string |
+| `checked` | `boolean` | — | `aria-checked` or native checkbox |
+| `disabled` | `boolean` | — | `aria-disabled` or `disabled` attribute (inherited) |
 | `expanded` | `boolean` | — | `aria-expanded` |
-| `includeHidden` | `boolean` | `false` | Auch ARIA-versteckte Elemente einschliessen |
-| `level` | `number` | — | `aria-level` (z.B. fuer heading h1-h6) |
+| `includeHidden` | `boolean` | `false` | Also include ARIA-hidden elements |
+| `level` | `number` | — | `aria-level` (e.g. for heading h1-h6) |
 | `pressed` | `boolean` | — | `aria-pressed` |
 | `selected` | `boolean` | — | `aria-selected` |
-| `description` | `string \| RegExp` | — | Zugaengliche Beschreibung (Teilstring/case-insensitiv) |
+| `description` | `string \| RegExp` | — | Accessible description (substring/case-insensitive) |
 
-### Beispiele
+### Examples
 
 ```typescript
-// Button mit Text
-await page.getByRole('button', { name: 'Absenden' }).click();
+// Button with text
+await page.getByRole('button', { name: 'Submit' }).click();
 await page.getByRole('button', { name: /absenden/i }).click();
-await page.getByRole('button', { name: 'Absenden', exact: true }).click();
+await page.getByRole('button', { name: 'Submit', exact: true }).click();
 
-// Ueberschrift
+// Heading
 await expect(page.getByRole('heading', { name: 'Registrieren', level: 2 })).toBeVisible();
 
 // Checkbox
@@ -80,10 +80,10 @@ await page.getByRole('checkbox', { name: 'Newsletter' }).check();
 // Link
 await page.getByRole('link', { name: 'Mehr erfahren' }).click();
 
-// Nur aktivierte Elemente
+// Only enabled elements
 await page.getByRole('option', { selected: false }).first().click();
 
-// Erweiterte Listenbox
+// Expanded list box
 await page.getByRole('combobox', { expanded: true }).locator('option').first().click();
 ```
 
@@ -91,24 +91,24 @@ await page.getByRole('combobox', { expanded: true }).locator('option').first().c
 
 ## 2. getByText()
 
-Findet Elemente anhand ihres sichtbaren Textinhalts.
+Finds elements by their visible text content.
 
 ```typescript
 page.getByText(text: string | RegExp, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `exact` | `boolean` | `false` | `true` = exakter Match (case-sensitiv, ganzer String); `false` = Teilstring, case-insensitiv |
+| `exact` | `boolean` | `false` | `true` = exact match (case-sensitive, whole string); `false` = substring, case-insensitive |
 
-Whitespace wird automatisch normalisiert.
+Whitespace is normalized automatically.
 
 ```typescript
-// Teilstring (Standard)
-await expect(page.getByText('Willkommen')).toBeVisible();
+// Substring (default)
+await expect(page.getByText('Welcome')).toBeVisible();
 
-// Exakter Match
-await expect(page.getByText('Willkommen, Maria', { exact: true })).toBeVisible();
+// Exact match
+await expect(page.getByText('Welcome, Maria', { exact: true })).toBeVisible();
 
 // Regex
 await expect(page.getByText(/willkommen, [A-Za-z]+/i)).toBeVisible();
@@ -118,34 +118,34 @@ await expect(page.getByText(/willkommen, [A-Za-z]+/i)).toBeVisible();
 
 ## 3. getByLabel()
 
-Findet Formularelemente anhand des zugehoerigen Label-Texts.
+Finds form elements by their associated label text.
 
 ```typescript
 page.getByLabel(text: string | RegExp, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `exact` | `boolean` | `false` | Exaktes Label-Text-Matching |
+| `exact` | `boolean` | `false` | Exact label text matching |
 
 ```typescript
-await page.getByLabel('Benutzername').fill('maria');
-await page.getByLabel('Passwort', { exact: true }).fill('geheim');
+await page.getByLabel('Username').fill('maria');
+await page.getByLabel('Password', { exact: true }).fill('secret');
 ```
 
 ---
 
 ## 4. getByPlaceholder()
 
-Findet Inputs anhand ihres Placeholder-Texts.
+Finds inputs by their placeholder text.
 
 ```typescript
 page.getByPlaceholder(text: string | RegExp, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `exact` | `boolean` | `false` | Exaktes Placeholder-Text-Matching |
+| `exact` | `boolean` | `false` | Exact placeholder text matching |
 
 ```typescript
 await page.getByPlaceholder('name@beispiel.de').fill('user@test.de');
@@ -156,15 +156,15 @@ await page.getByPlaceholder(/suche/i).fill('Playwright');
 
 ## 5. getByAltText()
 
-Findet Bilder (`<img>`) und `<area>`-Elemente anhand ihres Alt-Texts.
+Finds images (`<img>`) and `<area>` elements by their alt text.
 
 ```typescript
 page.getByAltText(text: string | RegExp, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `exact` | `boolean` | `false` | Exaktes Alt-Text-Matching |
+| `exact` | `boolean` | `false` | Exact alt text matching |
 
 ```typescript
 await page.getByAltText('Playwright Logo').click();
@@ -175,15 +175,15 @@ await expect(page.getByAltText(/firmen.*logo/i)).toBeVisible();
 
 ## 6. getByTitle()
 
-Findet Elemente anhand ihres `title`-Attributs.
+Finds elements by their `title` attribute.
 
 ```typescript
 page.getByTitle(text: string | RegExp, options?)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `exact` | `boolean` | `false` | Exaktes Title-Matching |
+| `exact` | `boolean` | `false` | Exact title matching |
 
 ```typescript
 await expect(page.getByTitle('Anzahl der Issues')).toHaveText('25 Issues');
@@ -194,7 +194,7 @@ await page.getByTitle(/schliessen/i).click();
 
 ## 7. getByTestId()
 
-Findet Elemente anhand des `data-testid`-Attributs (konfigurierbar).
+Finds elements by the `data-testid` attribute (configurable).
 
 ```typescript
 page.getByTestId(testId: string | RegExp)
@@ -205,74 +205,74 @@ await page.getByTestId('route-button').click();
 await expect(page.getByTestId(/submit/)).toBeVisible();
 ```
 
-### Benutzerdefiniertes TestId-Attribut
+### Custom test ID attribute
 
 ```typescript
 // playwright.config.ts
 export default defineConfig({
   use: {
-    testIdAttribute: 'data-pw',  // Standard: 'data-testid'
+    testIdAttribute: 'data-pw',  // Default: 'data-testid'
   },
 });
 ```
 
 ---
 
-## 8. locator() — CSS und XPath
+## 8. locator() — CSS and XPath
 
 ```typescript
 page.locator(selector: string | Locator, options?)
 ```
 
-### CSS-Selektoren
+### CSS selectors
 
 ```typescript
 await page.locator('button').click();
-await page.locator('css=button').click();                    // explizit
+await page.locator('css=button').click();                    // explicit
 await page.locator('#submit-button').click();               // ID
-await page.locator('.nav-link').first().click();            // Klasse
-await page.locator('input[type="email"]').fill('a@b.de');   // Attribut
+await page.locator('.nav-link').first().click();            // class
+await page.locator('input[type="email"]').fill('a@b.de');   // attribute
 ```
 
-### CSS-Pseudoklassen (Playwright-spezifisch)
+### CSS pseudo-classes (Playwright-specific)
 
-| Pseudoklasse | Beschreibung | Beispiel |
+| Pseudo-class | Description | Example |
 |---|---|---|
-| `:has-text("text")` | Enthaelt Text irgendwo (case-insensitiv, Teilstring) | `article:has-text("News")` |
-| `:text("text")` | Kleinstes Element mit Text (case-insensitiv, Teilstring) | `#nav :text("Start")` |
-| `:text-is("text")` | Exakter Text (case-sensitiv, voller String) | `:text-is("Log in")` |
-| `:text-matches("regex", "flags")` | Regex-Text-Matching | `:text-matches("Log\s*in", "i")` |
-| `:visible` | Nur sichtbare Elemente | `button:visible` |
-| `:has(selector)` | Enthaelt Kind-Element | `article:has(div.promo)` |
-| `:is(sel1, sel2)` | Matches einer von mehreren | `:is(button, a):has-text("OK")` |
-| `:nth-match(sel, n)` | N-tes Element (1-basiert) | `:nth-match(:text("Kaufen"), 2)` |
+| `:has-text("text")` | Contains text anywhere (case-insensitive, substring) | `article:has-text("News")` |
+| `:text("text")` | Smallest element with text (case-insensitive, substring) | `#nav :text("Start")` |
+| `:text-is("text")` | Exact text (case-sensitive, full string) | `:text-is("Log in")` |
+| `:text-matches("regex", "flags")` | Regex text matching | `:text-matches("Log\s*in", "i")` |
+| `:visible` | Only visible elements | `button:visible` |
+| `:has(selector)` | Contains child element | `article:has(div.promo)` |
+| `:is(sel1, sel2)` | Matches one of several | `:is(button, a):has-text("OK")` |
+| `:nth-match(sel, n)` | N-th element (1-based) | `:nth-match(:text("Kaufen"), 2)` |
 
-**Veraltete Layout-Pseudoklassen** (koennen bei Layout-AEnderungen brechen):
-`:right-of()`, `:left-of()`, `:above()`, `:below()`, `:near()` (Standard: 50px)
+**Deprecated layout pseudo-classes** (can break on layout changes):
+`:right-of()`, `:left-of()`, `:above()`, `:below()`, `:near()` (default: 50px)
 
-### XPath-Selektoren
+### XPath selectors
 
 ```typescript
 await page.locator('xpath=//button').click();
-await page.locator('//button').click();    // // am Anfang = automatisch XPath
-await page.locator('..button').click();    // .. am Anfang = automatisch XPath
+await page.locator('//button').click();    // // at the start = automatically XPath
+await page.locator('..button').click();    // .. at the start = automatically XPath
 
-// XPath-Union (mehrere Ausdruecke)
+// XPath union (multiple expressions)
 await page.locator(
   '//span[contains(@class, "spinner")]|//div[@id="bestaetigung"]'
 ).waitFor();
 ```
 
-Hinweis: XPath durchdringt Shadow DOM NICHT.
+Note: XPath does NOT pierce Shadow DOM.
 
-### locator()-Optionen
+### locator() options
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `has` | `Locator` | Muss diesen Kind-Locator enthalten |
-| `hasNot` | `Locator` | Darf diesen Kind-Locator NICHT enthalten |
-| `hasText` | `string \| RegExp` | Muss diesen Text enthalten |
-| `hasNotText` | `string \| RegExp` | Darf diesen Text NICHT enthalten |
+| `has` | `Locator` | Must contain this child locator |
+| `hasNot` | `Locator` | Must NOT contain this child locator |
+| `hasText` | `string \| RegExp` | Must contain this text |
+| `hasNotText` | `string \| RegExp` | Must NOT contain this text |
 
 ```typescript
 await page.locator('article', { hasText: 'Playwright' }).click();
@@ -281,42 +281,42 @@ await page.locator('li', { has: page.getByRole('checkbox') }).all();
 
 ---
 
-## 9. Filtern mit filter()
+## 9. Filtering with filter()
 
 ```typescript
 locator.filter(options?)
 ```
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `has` | `Locator` | Enthaelt dieses Kind-Element |
-| `hasNot` | `Locator` | Enthaelt dieses Kind-Element NICHT |
-| `hasText` | `string \| RegExp` | Enthaelt diesen Text |
-| `hasNotText` | `string \| RegExp` | Enthaelt diesen Text NICHT |
-| `visible` | `boolean` | Nur sichtbare / nur unsichtbare Elemente |
+| `has` | `Locator` | Contains this child element |
+| `hasNot` | `Locator` | Does NOT contain this child element |
+| `hasText` | `string \| RegExp` | Contains this text |
+| `hasNotText` | `string \| RegExp` | Does NOT contain this text |
+| `visible` | `boolean` | Only visible / only invisible elements |
 
 ```typescript
-// Nach Text filtern
+// Filter by text
 await page.getByRole('listitem')
   .filter({ hasText: 'Produkt 2' })
   .getByRole('button', { name: 'In den Warenkorb' })
   .click();
 
-// Nach Kind-Locator filtern
+// Filter by child locator
 await page.getByRole('listitem')
   .filter({ has: page.getByRole('heading', { name: 'Produkt 2' }) })
   .getByRole('button', { name: 'Kaufen' })
   .click();
 
-// Negierung: hat diesen Text NICHT
+// Negation: does NOT have this text
 await expect(
   page.getByRole('listitem').filter({ hasNotText: 'Ausverkauft' })
 ).toHaveCount(5);
 
-// Nur sichtbare Buttons
+// Only visible buttons
 await page.locator('button').filter({ visible: true }).first().click();
 
-// Verkettetes Filtern
+// Chained filtering
 const rows = page.getByRole('row')
   .filter({ has: page.getByRole('checkbox', { checked: true }) })
   .filter({ hasNotText: 'archiviert' });
@@ -324,18 +324,18 @@ const rows = page.getByRole('row')
 
 ---
 
-## 10. and() und or()
+## 10. and() and or()
 
-### and() — Beide Bedingungen muessen erfuellt sein
+### and() — Both conditions must be satisfied
 
 ```typescript
 const button = page.getByRole('button').and(page.getByTitle('Newsletter abonnieren'));
 await button.click();
 ```
 
-### or() — Eine von zwei Bedingungen
+### or() — One of two conditions
 
-Nuetzlich wenn zwei moegliche Ziele erscheinen koennen:
+Useful when two possible targets can appear:
 
 ```typescript
 const neueEmail = page.getByRole('button', { name: 'Neu' });
@@ -349,24 +349,24 @@ await neueEmail.click();
 
 ---
 
-## 11. Listenoperationen
+## 11. List operations
 
-### nth(index) — Element per Index (0-basiert)
+### nth(index) — Element by index (0-based)
 
 ```typescript
 const zweitesBanane = await page.getByRole('listitem').nth(1);
-await page.getByRole('button').nth(0).click();   // erstes Element
-await page.getByRole('button').nth(-1).click();  // letztes Element (via locator: nth=-1)
+await page.getByRole('button').nth(0).click();   // first element
+await page.getByRole('button').nth(-1).click();  // last element (via locator: nth=-1)
 ```
 
-### first() und last()
+### first() and last()
 
 ```typescript
 await page.getByRole('button').first().click();
 await page.getByRole('listitem').last().click();
 ```
 
-### all() — Alle Elemente als Array
+### all() — All elements as an array
 
 ```typescript
 for (const row of await page.getByRole('listitem').all()) {
@@ -374,14 +374,14 @@ for (const row of await page.getByRole('listitem').all()) {
 }
 ```
 
-### count() — Anzahl bestimmen
+### count() — Determine the number
 
 ```typescript
 const anzahl = await page.getByRole('listitem').count();
 await expect(page.getByRole('listitem')).toHaveCount(5);
 ```
 
-### evaluateAll() — JavaScript auf allen Elementen
+### evaluateAll() — JavaScript on all elements
 
 ```typescript
 const texte = await page.getByRole('listitem')
@@ -390,14 +390,14 @@ const texte = await page.getByRole('listitem')
 
 ---
 
-## 12. Chaining (Verketten)
+## 12. Chaining
 
 ```typescript
-// Engere Suche: innerhalb eines Containers
+// Narrower search: within a container
 const nav = page.getByRole('navigation');
 await nav.getByRole('link', { name: 'Start' }).click();
 
-// Mehrstufig
+// Multi-level
 await page.getByRole('table')
   .getByRole('row').filter({ hasText: 'Bestellung 42' })
   .getByRole('button', { name: 'Details' })
@@ -409,64 +409,64 @@ await page.getByRole('table')
 ## 13. FrameLocator — iframes
 
 ```typescript
-// Elemente innerhalb eines iframes finden
+// Find elements inside an iframe
 const frame = page.frameLocator('iframe.login-frame');
-await frame.getByLabel('Benutzername').fill('admin');
+await frame.getByLabel('Username').fill('admin');
 await frame.getByRole('button', { name: 'Einloggen' }).click();
 ```
 
-### Alle FrameLocator-Methoden
+### All FrameLocator methods
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---|---|---|
-| `frameLocator` | `(selector: string) => FrameLocator` | Verschachtelter Frame |
-| `getByRole` | `(role, options?) => Locator` | Alle getByRole-Optionen |
+| `frameLocator` | `(selector: string) => FrameLocator` | Nested frame |
+| `getByRole` | `(role, options?) => Locator` | All getByRole options |
 | `getByText` | `(text, options?) => Locator` | `exact?: boolean` |
 | `getByLabel` | `(text, options?) => Locator` | `exact?: boolean` |
 | `getByPlaceholder` | `(text, options?) => Locator` | `exact?: boolean` |
 | `getByAltText` | `(text, options?) => Locator` | `exact?: boolean` |
 | `getByTitle` | `(text, options?) => Locator` | `exact?: boolean` |
 | `getByTestId` | `(testId: string \| RegExp) => Locator` | — |
-| `locator` | `(selector, options?) => Locator` | CSS/XPath mit has/hasText etc. |
-| `owner` | `() => Locator` | Locator fuer das iframe-Element selbst |
+| `locator` | `(selector, options?) => Locator` | CSS/XPath with has/hasText etc. |
+| `owner` | `() => Locator` | Locator for the iframe element itself |
 
-### Frame ueber Name oder URL (legacy)
+### Frame by name or URL (legacy)
 
 ```typescript
-// Ueber Frame-Name
+// By frame name
 const frame = page.frame('frame-login');
 await frame.fill('#username', 'admin');
 
-// Ueber URL-Muster
+// By URL pattern
 const frame = page.frame({ url: /login/ });
 ```
 
 ---
 
-## 14. Elternelement finden
+## 14. Finding the parent element
 
 ```typescript
-// Empfohlen: filter() mit has
+// Recommended: filter() with has
 const child = page.getByText('Inhalt');
 const parent = page.getByRole('listitem').filter({ has: child });
 
-// Alternative: XPath-Parent-Traversal
+// Alternative: XPath parent traversal
 await page.locator('span').locator('xpath=..').click();
 ```
 
 ---
 
-## 15. Legacy-Locatoren (veraltet, aber dokumentiert)
+## 15. Legacy locators (deprecated, but documented)
 
-### text= Locator
+### text= locator
 
 ```typescript
-await page.locator('text=Einloggen').click();         // Teilstring, case-insensitiv
-await page.locator('text="Einloggen"').click();       // Exakt
-await page.locator('text=/ein.*gen/i').click();       // Regex
+await page.locator('text=Einloggen').click();         // substring, case-insensitive
+await page.locator('text="Einloggen"').click();       // exact
+await page.locator('text=/ein.*gen/i').click();       // regex
 ```
 
-### Attribut-Kurz-Locatoren
+### Attribute shorthand locators
 
 ```typescript
 await page.locator('id=benutzername').fill('admin');
@@ -475,46 +475,46 @@ await page.locator('data-test=submit').click();
 await page.locator('data-test-id=submit').click();
 ```
 
-Hinweis: Diese unterstuetzen keine CSS-Pseudoklassen wie `:enabled`.
+Note: These do not support CSS pseudo-classes such as `:enabled`.
 
-### nth= Locator (legacy Index)
+### nth= locator (legacy index)
 
 ```typescript
-await page.locator('button').locator('nth=0').click();   // erstes Element
-await page.locator('button').locator('nth=-1').click();  // letztes Element
+await page.locator('button').locator('nth=0').click();   // first element
+await page.locator('button').locator('nth=-1').click();  // last element
 ```
 
-### Selektor-Verkettung mit >>
+### Selector chaining with >>
 
 ```typescript
 await page.locator('css=article >> css=.preis >> css=span').click();
-// * prefix: Intermediate-Element zurueckgeben
-await page.locator('*css=article >> text=Willkommen').screenshot();
+// * prefix: return the intermediate element
+await page.locator('*css=article >> text=Welcome').screenshot();
 ```
 
 ---
 
-## 16. Locator Striktheit
+## 16. Locator strictness
 
-Standardmaessig schlagen Operationen auf Einzel-Locatoren mit einem Fehler fehl,
-wenn mehrere Elemente passen. Multi-Element-Operationen (`count()`, `all()`) funktionieren
-mit mehreren Matches.
+By default, operations on single-element locators fail with an error
+when multiple elements match. Multi-element operations (`count()`, `all()`) work
+with multiple matches.
 
-`strictSelectors: true` in `newContext()` erzwingt strikte Pruefung fuer alle Selektoren.
+`strictSelectors: true` in `newContext()` enforces strict checking for all selectors.
 
 ---
 
-## Empfohlene Prioritaet
+## Recommended priority
 
-1. `getByRole()` — bevorzugt (zugaenglich, semantisch)
-2. `getByLabel()` — fuer Formulare
-3. `getByPlaceholder()` — wenn kein Label vorhanden
-4. `getByText()` — fuer nicht-interaktive Elemente
-5. `getByTestId()` — bei Test-spezifischen Attributen
-6. `getByAltText()` / `getByTitle()` — fuer Bilder und Titel
-7. CSS / XPath — nur wenn semantische Locatoren nicht moeglich sind
+1. `getByRole()` — preferred (accessible, semantic)
+2. `getByLabel()` — for forms
+3. `getByPlaceholder()` — when no label is present
+4. `getByText()` — for non-interactive elements
+5. `getByTestId()` — for test-specific attributes
+6. `getByAltText()` / `getByTitle()` — for images and titles
+7. CSS / XPath — only when semantic locators are not possible
 
-<!-- Quellen:
+<!-- Sources:
 https://playwright.dev/docs/locators
 https://playwright.dev/docs/other-locators
 https://playwright.dev/docs/frames

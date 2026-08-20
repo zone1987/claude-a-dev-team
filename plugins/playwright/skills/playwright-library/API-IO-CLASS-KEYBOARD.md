@@ -1,64 +1,64 @@
 # Playwright — class: Keyboard
 
-> **Manifest:** 5 Methoden, 0 Properties, 0 Events.
-> Bietet vollstandige Tastatursteuerung uber keydown/keyup/press/type/insertText.
-> Modifier-Kombinationen wie `Control+A` werden nativ unterstuetzt.
-> Zugriff: `page.keyboard`.
+> **Manifest:** 5 methods, 0 properties, 0 events.
+> Provides complete keyboard control via keydown/keyup/press/type/insertText.
+> Modifier combinations such as `Control+A` are supported natively.
+> Access: `page.keyboard`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
+- [Overview](#overview)
+- [Methods](#methods)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Keyboard` steuert die virtuelle Tastatur des Browsers. Alle Koordinaten arbeiten
-im Kontext des aktiven Fokus-Elements. Die Instanz ist ueber `page.keyboard`
-erreichbar und nicht direkt instanziierbar.
+`Keyboard` controls the browser's virtual keyboard. All coordinates operate
+in the context of the currently focused element. The instance is reachable via
+`page.keyboard` and cannot be instantiated directly.
 
 ---
 
-## Methoden
+## Methods
 
 ### keyboard.down(key)
 
-Sendet ein `keydown`-Event fuer den angegebenen Key.
+Sends a `keydown` event for the given key.
 
-**Signatur:**
+**Signature:**
 ```typescript
 keyboard.down(key: string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `key` | `string` | ja | — | Key-Name oder einzelnes Zeichen, z.B. `"ArrowLeft"`, `"a"`, `"F5"` |
+| `key` | `string` | yes | — | Key name or single character, e.g. `"ArrowLeft"`, `"a"`, `"F5"` |
 
-**Unterstuetzte Keys (Auswahl):**
+**Supported keys (selection):**
 F1–F12, Digit0–Digit9, KeyA–KeyZ, Backquote, Minus, Equal, Backslash,
 Backspace, Tab, Delete, Escape, ArrowLeft, ArrowRight, ArrowUp, ArrowDown,
 End, Enter, Home, Insert, PageDown, PageUp, Space,
 Shift, Control, Alt, Meta, ShiftLeft, ControlOrMeta
 
-`ControlOrMeta` loest sich automatisch zu `Control` (Windows/Linux) oder
-`Meta` (macOS) auf.
+`ControlOrMeta` resolves automatically to `Control` (Windows/Linux) or
+`Meta` (macOS).
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinweise:**
-- Modifier-Keys (Shift, Control usw.) beeinflussen den Zeichencase
-  nachfolgender `type()`-Aufrufe.
-- Wiederholtes `down()` ohne zwischengeschaltetes `up()` setzt `repeat: true`.
+**Notes:**
+- Modifier keys (Shift, Control etc.) affect the character case
+  of subsequent `type()` calls.
+- Repeated `down()` without an intervening `up()` sets `repeat: true`.
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Shift druecken, dann Buchstabe A tippen (Grossbuchstabe), dann Shift loslassen
+// Press Shift, then type the letter A (uppercase), then release Shift
 await page.keyboard.down('Shift');
 await page.keyboard.press('KeyA');
 await page.keyboard.up('Shift');
@@ -68,22 +68,22 @@ await page.keyboard.up('Shift');
 
 ### keyboard.up(key)
 
-Sendet ein `keyup`-Event fuer den angegebenen Key.
+Sends a `keyup` event for the given key.
 
-**Signatur:**
+**Signature:**
 ```typescript
 keyboard.up(key: string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `key` | `string` | ja | — | Key-Name oder Zeichen; gleiche Werte wie bei `down()` |
+| `key` | `string` | yes | — | Key name or character; same values as for `down()` |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.keyboard.up('Shift');
 ```
@@ -92,33 +92,33 @@ await page.keyboard.up('Shift');
 
 ### keyboard.press(key, options?)
 
-Kombination aus `down()` und `up()`. Sendet keydown, wartet optional, sendet keyup.
+Combination of `down()` and `up()`. Sends keydown, optionally waits, sends keyup.
 
-**Signatur:**
+**Signature:**
 ```typescript
 keyboard.press(key: string, options?: {
   delay?: number;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `key` | `string` | ja | — | Key-Name oder Zeichen. Shortcuts wie `"Control+o"`, `"Shift+T"`, `"ControlOrMeta+A"` moeglich |
-| `options.delay` | `number` | nein | `0` | Millisekunden zwischen keydown und keyup |
+| `key` | `string` | yes | — | Key name or character. Shortcuts such as `"Control+o"`, `"Shift+T"`, `"ControlOrMeta+A"` are possible |
+| `options.delay` | `number` | no | `0` | Milliseconds between keydown and keyup |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Einzelne Taste
+// Single key
 await page.keyboard.press('ArrowLeft');
 
 // Shortcut
 await page.keyboard.press('Control+a');
 
-// Mit Verzoegerung
+// With delay
 await page.keyboard.press('Enter', { delay: 50 });
 ```
 
@@ -126,62 +126,62 @@ await page.keyboard.press('Enter', { delay: 50 });
 
 ### keyboard.type(text, options?)
 
-Sendet fuer jedes Zeichen des Strings `keydown`, `keypress`/`input` und `keyup`.
+Sends `keydown`, `keypress`/`input` and `keyup` for each character of the string.
 
-**Signatur:**
+**Signature:**
 ```typescript
 keyboard.type(text: string, options?: {
   delay?: number;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `text` | `string` | ja | — | Text, der Zeichen fuer Zeichen eingetippt wird |
-| `options.delay` | `number` | nein | `0` | Millisekunden zwischen aufeinanderfolgenden Tastendruecken |
+| `text` | `string` | yes | — | Text that is typed character by character |
+| `options.delay` | `number` | no | `0` | Milliseconds between consecutive key presses |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinweise:**
-- Modifier-Keys beeinflussen den Case **nicht** — `type()` ist unabhaengig
-  vom aktuellen Shift/Caps-Zustand.
-- Fuer Nicht-US-Zeichen (z.B. Umlaute) wird nur das `input`-Event gefeuert,
-  kein `keydown`/`keyup`.
+**Notes:**
+- Modifier keys do **not** affect the case — `type()` is independent
+  of the current Shift/Caps state.
+- For non-US characters (e.g. umlauts) only the `input` event is fired,
+  no `keydown`/`keyup`.
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.keyboard.type('Hello, World!');
-await page.keyboard.type('Langsam', { delay: 100 });
+await page.keyboard.type('Slowly', { delay: 100 });
 ```
 
 ---
 
 ### keyboard.insertText(text)
 
-Sendet ausschliesslich ein `input`-Event — kein `keydown`, kein `keypress`,
-kein `keyup`.
+Sends only an `input` event — no `keydown`, no `keypress`,
+no `keyup`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 keyboard.insertText(text: string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `text` | `string` | ja | — | Text, der direkt als Input-Event eingefuegt wird |
+| `text` | `string` | yes | — | Text that is inserted directly as an input event |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinweise:**
-- Geeignet fuer Zeichen, die keine eigene Key-Entsprechung haben (z.B. Emoji,
-  CJK-Zeichen).
-- Modifier-Keys haben keinen Effekt.
+**Notes:**
+- Suitable for characters that have no key equivalent of their own (e.g. emoji,
+  CJK characters).
+- Modifier keys have no effect.
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.keyboard.insertText('嗨');
 await page.keyboard.insertText('🎉');
@@ -191,28 +191,28 @@ await page.keyboard.insertText('🎉');
 
 ## Properties
 
-Keine offentlichen Properties.
+No public properties.
 
 ## Events
 
-Keine eigenen Events — Keyboard-Interaktionen loesen Events auf den Seiten-
-Elementen aus, nicht auf dem Keyboard-Objekt selbst.
+No events of its own — keyboard interactions trigger events on the page
+elements, not on the keyboard object itself.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 5      |
+| Methods   | 5      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** Die Klasse deckt die gesamte low-level Tastatureingabe ab. `press()`
-und `type()` sind die Allzweck-Methoden; `down()`/`up()` werden benoetigt, wenn
-Modifier-Keys waehrend anderer Aktionen gehalten werden sollen. `insertText()`
-ist die effizienteste Option fuer reine Text-Eingabe ohne Event-Overhead.
+**Conclusion:** The class covers all low-level keyboard input. `press()`
+and `type()` are the general-purpose methods; `down()`/`up()` are needed when
+modifier keys have to be held during other actions. `insertText()`
+is the most efficient option for pure text input without event overhead.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-keyboard*
+*Source: https://playwright.dev/docs/api/class-keyboard*

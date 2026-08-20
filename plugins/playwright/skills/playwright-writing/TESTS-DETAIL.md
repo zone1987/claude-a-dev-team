@@ -1,64 +1,64 @@
-# Playwright: Tests schreiben, ausfuehren, Codegen, VS Code
+# Playwright: Writing tests, running them, Codegen, VS Code
 
 ## Contents
 
-- [Test-Struktur](#test-struktur)
-- [test() — Funktion](#test-funktion)
-- [test.describe() — Gruppierung](#testdescribe-gruppierung)
+- [Test structure](#test-structure)
+- [test() — function](#test-function)
+- [test.describe() — grouping](#testdescribe-grouping)
 - [Hooks](#hooks)
-- [Seitennavigation](#seitennavigation)
-- [Interaktionen (Kurzreferenz)](#interaktionen-kurzreferenz)
-- [expect() — Assertions](#expect-assertions)
-- [Vollstaendiges Test-Beispiel](#vollstaendiges-test-beispiel)
-- [CLI: Tests ausfuehren](#cli-tests-ausfuehren)
-- [Codegen: Test-Recorder](#codegen-test-recorder)
-- [VS Code Extension](#vs-code-extension)
+- [Page navigation](#page-navigation)
+- [Interactions (quick reference)](#interactions-quick-reference)
+- [expect() — assertions](#expect-assertions)
+- [Complete test example](#complete-test-example)
+- [CLI: running tests](#cli-running-tests)
+- [Codegen: test recorder](#codegen-test-recorder)
+- [VS Code extension](#vs-code-extension)
 
-## Test-Struktur
+## Test structure
 
-### Minimaler Test
+### Minimal test
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test('Seitentitel pruefen', async ({ page }) => {
+test('check page title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
   await expect(page).toHaveTitle(/Playwright/);
 });
 ```
 
-### Test-Fixtures
+### Test fixtures
 
-Jeder Test erhaelt automatisch isolierte Fixtures:
-- `page` — neue Seite in einem frischen `BrowserContext`
-- `context` — isolierter `BrowserContext`
-- `browser` — gemeinsamer Browser-Prozess
+Every test automatically gets isolated fixtures:
+- `page` — new page in a fresh `BrowserContext`
+- `context` — isolated `BrowserContext`
+- `browser` — shared browser process
 
 ---
 
-## test() — Funktion
+## test() — function
 
 ```typescript
 test(title: string, fn: (fixtures) => Promise<void>): void
 test(title: string, details: TestDetails, fn: (fixtures) => Promise<void>): void
 ```
 
-Jeder Test laeuft in einem frischen, isolierten `BrowserContext` (automatische Isolation).
+Every test runs in a fresh, isolated `BrowserContext` (automatic isolation).
 
 ---
 
-## test.describe() — Gruppierung
+## test.describe() — grouping
 
 ```typescript
-test.describe('Gruppe', () => {
+test.describe('Group', () => {
   test('Test 1', async ({ page }) => { /* ... */ });
   test('Test 2', async ({ page }) => { /* ... */ });
 });
 
-// Verschachtelt
-test.describe('Aeussere Gruppe', () => {
-  test.describe('Innere Gruppe', () => {
-    test('tief verschachtelter Test', async ({ page }) => { /* ... */ });
+// Nested
+test.describe('Outer group', () => {
+  test.describe('Inner group', () => {
+    test('deeply nested test', async ({ page }) => { /* ... */ });
   });
 });
 ```
@@ -68,25 +68,25 @@ test.describe('Aeussere Gruppe', () => {
 ## Hooks
 
 ```typescript
-test.describe('Mit Hooks', () => {
+test.describe('With hooks', () => {
   test.beforeAll(async () => {
-    // Einmalig vor allen Tests der Gruppe (kein page-Fixture hier)
+    // Once before all tests of the group (no page fixture here)
   });
 
   test.afterAll(async () => {
-    // Einmalig nach allen Tests der Gruppe
+    // Once after all tests of the group
   });
 
   test.beforeEach(async ({ page }) => {
-    // Vor jedem Test; page-Fixture verfuegbar
+    // Before each test; page fixture available
     await page.goto('https://playwright.dev/');
   });
 
   test.afterEach(async ({ page }) => {
-    // Nach jedem Test
+    // After each test
   });
 
-  test('erster Test', async ({ page }) => {
+  test('first test', async ({ page }) => {
     await expect(page).toHaveTitle(/Playwright/);
   });
 });
@@ -94,67 +94,67 @@ test.describe('Mit Hooks', () => {
 
 ---
 
-## Seitennavigation
+## Page navigation
 
 ```typescript
 await page.goto('https://example.com');
-// Playwright wartet auf den Load-State vor dem Fortfahren
+// Playwright waits for the load state before continuing
 ```
 
 ---
 
-## Interaktionen (Kurzreferenz)
+## Interactions (quick reference)
 
-| Aktion | Methode |
+| Action | Method |
 |---|---|
-| Klicken | `await locator.click()` |
-| Text eingeben | `await locator.fill('text')` |
-| Checkbox aktivieren | `await locator.check()` |
-| Checkbox deaktivieren | `await locator.uncheck()` |
+| Click | `await locator.click()` |
+| Enter text | `await locator.fill('text')` |
+| Check checkbox | `await locator.check()` |
+| Uncheck checkbox | `await locator.uncheck()` |
 | Hover | `await locator.hover()` |
-| Fokussieren | `await locator.focus()` |
-| Taste druecken | `await locator.press('Enter')` |
-| Datei hochladen | `await locator.setInputFiles('/pfad/datei.pdf')` |
-| Option auswaehlen | `await locator.selectOption('wert')` |
+| Focus | `await locator.focus()` |
+| Press key | `await locator.press('Enter')` |
+| Upload file | `await locator.setInputFiles('/pfad/datei.pdf')` |
+| Select option | `await locator.selectOption('wert')` |
 
 ---
 
-## expect() — Assertions
+## expect() — assertions
 
-### Web-First Assertions (mit `await` — haben Auto-Retry)
+### Web-first assertions (with `await` — have auto-retry)
 
-Diese Assertions warten, bis die Bedingung erfuellt ist oder ein Timeout eintritt.
+These assertions wait until the condition is met or a timeout occurs.
 
-| Assertion | Prueft |
+| Assertion | Checks |
 |---|---|
-| `await expect(locator).toBeChecked()` | Checkbox ist aktiviert |
-| `await expect(locator).toBeChecked({ checked: false })` | Checkbox ist deaktiviert |
-| `await expect(locator).toBeDisabled()` | Element ist deaktiviert |
-| `await expect(locator).toBeEditable()` | Element ist editierbar |
-| `await expect(locator).toBeEmpty()` | Element hat keinen Text / leeres Input |
-| `await expect(locator).toBeEnabled()` | Element ist aktiviert |
-| `await expect(locator).toBeFocused()` | Element hat den Fokus |
-| `await expect(locator).toBeHidden()` | Element ist nicht sichtbar |
-| `await expect(locator).toBeInViewport()` | Element ist im Viewport |
-| `await expect(locator).toBeVisible()` | Element ist sichtbar |
-| `await expect(locator).toContainText('text')` | Element enthaelt Text (Teil) |
-| `await expect(locator).toContainText(/regex/)` | Element enthaelt Text (Regex) |
-| `await expect(locator).toHaveAttribute('name', 'wert')` | Element hat Attribut mit Wert |
-| `await expect(locator).toHaveClass('klasse')` | Element hat CSS-Klasse |
-| `await expect(locator).toHaveCount(n)` | Anzahl der Elemente |
-| `await expect(locator).toHaveCSS('prop', 'wert')` | Berechnetes CSS |
-| `await expect(locator).toHaveId('id')` | Element-ID |
-| `await expect(locator).toHaveJSProperty('prop', wert)` | JS-Eigenschaft |
-| `await expect(locator).toHaveRole('button')` | ARIA-Rolle |
-| `await expect(locator).toHaveText('exakt')` | Exakter Text |
-| `await expect(locator).toHaveText(['a', 'b'])` | Texte aller Elemente |
-| `await expect(locator).toHaveValue('wert')` | Input-Wert |
-| `await expect(locator).toHaveValues(['a', 'b'])` | Mehrfach-Select-Werte |
-| `await expect(page).toHaveTitle('Titel')` | Seitentitel |
-| `await expect(page).toHaveTitle(/Regex/)` | Seitentitel per Regex |
-| `await expect(page).toHaveURL('https://...')` | Seiten-URL |
-| `await expect(page).toHaveURL(/regex/)` | Seiten-URL per Regex |
-| `await expect(response).toBeOK()` | HTTP-Response ist OK (2xx) |
+| `await expect(locator).toBeChecked()` | Checkbox is checked |
+| `await expect(locator).toBeChecked({ checked: false })` | Checkbox is unchecked |
+| `await expect(locator).toBeDisabled()` | Element is disabled |
+| `await expect(locator).toBeEditable()` | Element is editable |
+| `await expect(locator).toBeEmpty()` | Element has no text / empty input |
+| `await expect(locator).toBeEnabled()` | Element is enabled |
+| `await expect(locator).toBeFocused()` | Element has focus |
+| `await expect(locator).toBeHidden()` | Element is not visible |
+| `await expect(locator).toBeInViewport()` | Element is in the viewport |
+| `await expect(locator).toBeVisible()` | Element is visible |
+| `await expect(locator).toContainText('text')` | Element contains text (substring) |
+| `await expect(locator).toContainText(/regex/)` | Element contains text (regex) |
+| `await expect(locator).toHaveAttribute('name', 'wert')` | Element has attribute with value |
+| `await expect(locator).toHaveClass('klasse')` | Element has CSS class |
+| `await expect(locator).toHaveCount(n)` | Number of elements |
+| `await expect(locator).toHaveCSS('prop', 'wert')` | Computed CSS |
+| `await expect(locator).toHaveId('id')` | Element ID |
+| `await expect(locator).toHaveJSProperty('prop', wert)` | JS property |
+| `await expect(locator).toHaveRole('button')` | ARIA role |
+| `await expect(locator).toHaveText('exakt')` | Exact text |
+| `await expect(locator).toHaveText(['a', 'b'])` | Texts of all elements |
+| `await expect(locator).toHaveValue('wert')` | Input value |
+| `await expect(locator).toHaveValues(['a', 'b'])` | Multi-select values |
+| `await expect(page).toHaveTitle('Titel')` | Page title |
+| `await expect(page).toHaveTitle(/Regex/)` | Page title via regex |
+| `await expect(page).toHaveURL('https://...')` | Page URL |
+| `await expect(page).toHaveURL(/regex/)` | Page URL via regex |
+| `await expect(response).toBeOK()` | HTTP response is OK (2xx) |
 
 #### Negation
 
@@ -163,18 +163,18 @@ await expect(locator).not.toBeVisible();
 await expect(page).not.toHaveURL(/error/);
 ```
 
-#### Optionen fuer alle Web-First Assertions
+#### Options for all web-first assertions
 
 ```typescript
-await expect(locator).toBeVisible({ timeout: 5000 }); // ms, Default: 5000
+await expect(locator).toBeVisible({ timeout: 5000 }); // ms, default: 5000
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `timeout` | `number` | `5000` | Max. Wartezeit in ms |
-| `message` | `string` | — | Benutzerdefinierte Fehlermeldung |
+| `timeout` | `number` | `5000` | Max. wait time in ms |
+| `message` | `string` | — | Custom error message |
 
-### Synchrone Assertions (ohne `await` — kein Retry)
+### Synchronous assertions (without `await` — no retry)
 
 ```typescript
 expect(value).toEqual(erwarteterWert);
@@ -188,29 +188,29 @@ expect(number).toBeLessThan(n);
 expect(string).toMatch(/regex/);
 ```
 
-### Soft Assertions
+### Soft assertions
 
-Sammeln Fehler, ohne den Test sofort abzubrechen:
+Collect failures without aborting the test immediately:
 
 ```typescript
 await expect.soft(locator).toHaveText('erwartet');
 await expect.soft(locator2).toBeVisible();
-// Test laeuft weiter, auch wenn Assertions fehlschlagen
+// Test continues even if assertions fail
 ```
 
 ---
 
-## Vollstaendiges Test-Beispiel
+## Complete test example
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test.describe('Todo-App', () => {
+test.describe('Todo app', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://demo.playwright.dev/todomvc');
   });
 
-  test('Todo hinzufuegen', async ({ page }) => {
+  test('add todo', async ({ page }) => {
     await page.getByPlaceholder('What needs to be done?').fill('Einkaufen');
     await page.getByPlaceholder('What needs to be done?').press('Enter');
 
@@ -218,7 +218,7 @@ test.describe('Todo-App', () => {
     await expect(page.getByRole('listitem')).toHaveCount(1);
   });
 
-  test('Todo abschliessen', async ({ page }) => {
+  test('complete todo', async ({ page }) => {
     await page.getByPlaceholder('What needs to be done?').fill('Aufgabe');
     await page.getByPlaceholder('What needs to be done?').press('Enter');
     await page.getByRole('checkbox').first().check();
@@ -230,100 +230,100 @@ test.describe('Todo-App', () => {
 
 ---
 
-## CLI: Tests ausfuehren
+## CLI: running tests
 
-### Grundbefehle
+### Basic commands
 
 ```bash
-npx playwright test                       # Alle Tests headless
-npx playwright test --headed              # Mit sichtbarem Browser
-npx playwright test --ui                  # UI-Modus (Watch + Live-Debug)
-npx playwright test --debug               # Inspector-Debugging
-npx playwright show-report                # HTML-Report anzeigen
+npx playwright test                       # All tests headless
+npx playwright test --headed              # With visible browser
+npx playwright test --ui                  # UI mode (watch + live debug)
+npx playwright test --debug               # Inspector debugging
+npx playwright show-report                # Show HTML report
 ```
 
-### Filter und Selektion
+### Filters and selection
 
-| Flag | Beschreibung | Beispiel |
+| Flag | Description | Example |
 |---|---|---|
-| `<datei>` | Bestimmte Datei ausfuehren | `npx playwright test login.spec.ts` |
-| `<dir1> <dir2>` | Mehrere Verzeichnisse | `npx playwright test tests/auth/ tests/shop/` |
-| `<keyword>` | Dateiname enthaelt Keyword | `npx playwright test login home` |
-| `-g "titel"` | Test-Titel per grep | `npx playwright test -g "add a todo"` |
-| `--last-failed` | Nur zuletzt fehlgeschlagene | `npx playwright test --last-failed` |
+| `<datei>` | Run a specific file | `npx playwright test login.spec.ts` |
+| `<dir1> <dir2>` | Multiple directories | `npx playwright test tests/auth/ tests/shop/` |
+| `<keyword>` | File name contains keyword | `npx playwright test login home` |
+| `-g "titel"` | Test title via grep | `npx playwright test -g "add a todo"` |
+| `--last-failed` | Only the last failed ones | `npx playwright test --last-failed` |
 
-### Browser und Parallelisierung
+### Browsers and parallelization
 
-| Flag | Beschreibung | Beispiel |
+| Flag | Description | Example |
 |---|---|---|
-| `--project <name>` | Bestimmtes Browser-Projekt | `npx playwright test --project webkit` |
-| `--project a --project b` | Mehrere Projekte | `npx playwright test --project webkit --project firefox` |
+| `--project <name>` | Specific browser project | `npx playwright test --project webkit` |
+| `--project a --project b` | Multiple projects | `npx playwright test --project webkit --project firefox` |
 
-### Ausgabe und Reporting
+### Output and reporting
 
-| Flag | Beschreibung |
+| Flag | Description |
 |---|---|
-| `--reporter=html` | HTML-Reporter |
-| `--reporter=list` | Listen-Reporter |
-| `--reporter=dot` | Kompakter Dot-Reporter |
+| `--reporter=html` | HTML reporter |
+| `--reporter=list` | List reporter |
+| `--reporter=dot` | Compact dot reporter |
 
 ---
 
-## Codegen: Test-Recorder
+## Codegen: test recorder
 
-### Grundbefehl
+### Basic command
 
 ```bash
 npx playwright codegen [URL]
-# URL ist optional; kann auch im Browserfenster eingegeben werden
+# URL is optional; it can also be entered in the browser window
 ```
 
-Oeffnet zwei Fenster:
-1. Interaktiven Browser fuer Aktionen
-2. Playwright Inspector mit generiertem Code
+Opens two windows:
+1. Interactive browser for actions
+2. Playwright Inspector with the generated code
 
-### Alle CLI-Flags
+### All CLI flags
 
-| Flag | Typ | Beschreibung | Beispiel |
+| Flag | Type | Description | Example |
 |---|---|---|---|
-| `--viewport-size` | `string` | Viewport-Groesse | `--viewport-size="800,600"` |
-| `--device` | `string` | Geraete-Emulation | `--device="iPhone 13"` |
-| `--color-scheme` | `string` | `dark` oder `light` | `--color-scheme=dark` |
-| `--timezone` | `string` | Zeitzone | `--timezone="Europe/Berlin"` |
-| `--geolocation` | `string` | GPS-Koordinaten | `--geolocation="52.52,13.40"` |
-| `--lang` | `string` | Sprache/Locale | `--lang="de-DE"` |
-| `--save-storage` | `string` | Auth-Zustand speichern | `--save-storage=auth.json` |
-| `--load-storage` | `string` | Auth-Zustand laden | `--load-storage=auth.json` |
-| `--user-data-dir` | `string` | Browser-Profilverzeichnis | `--user-data-dir=/pfad/profil` |
+| `--viewport-size` | `string` | Viewport size | `--viewport-size="800,600"` |
+| `--device` | `string` | Device emulation | `--device="iPhone 13"` |
+| `--color-scheme` | `string` | `dark` or `light` | `--color-scheme=dark` |
+| `--timezone` | `string` | Time zone | `--timezone="Europe/Berlin"` |
+| `--geolocation` | `string` | GPS coordinates | `--geolocation="52.52,13.40"` |
+| `--lang` | `string` | Language/locale | `--lang="de-DE"` |
+| `--save-storage` | `string` | Save auth state | `--save-storage=auth.json` |
+| `--load-storage` | `string` | Load auth state | `--load-storage=auth.json` |
+| `--user-data-dir` | `string` | Browser profile directory | `--user-data-dir=/pfad/profil` |
 
-### Assertion-Typen im Recorder
+### Assertion types in the recorder
 
-| Typ | Prueft |
+| Type | Checks |
 |---|---|
-| Assert Visibility | Element sichtbar/unsichtbar |
-| Assert Text | Bestimmten Text-Inhalt |
-| Assert Value | Wert eines Inputs |
+| Assert Visibility | Element visible/invisible |
+| Assert Text | Specific text content |
+| Assert Value | Value of an input |
 
-### Inspector-Steuerung
+### Inspector controls
 
-| Schaltflaeche | Funktion |
+| Button | Function |
 |---|---|
-| Record | Aufnahme ein-/ausschalten |
-| Copy | Generierten Code kopieren |
-| Clear | Code zuruecksetzen / neue Aufnahme |
-| Pick Locator | Element-Selektor auswaehlen |
+| Record | Toggle recording on/off |
+| Copy | Copy generated code |
+| Clear | Reset code / new recording |
+| Pick Locator | Pick an element selector |
 
-### Auth-Zustand speichern und laden
+### Saving and loading the auth state
 
 ```bash
-# Login aufzeichnen und Auth speichern
+# Record the login and save the auth state
 npx playwright codegen github.com/login --save-storage=auth.json
 
-# Spa	ter mit gespeichertem Auth weiterarbeiten
+# La	ter, continue with the saved auth state
 npx playwright codegen --load-storage=auth.json github.com/dashboard
 ```
 
-### Codegen in eigenem Context (page.pause())
+### Codegen in your own context (page.pause())
 
 ```typescript
 import { chromium } from '@playwright/test';
@@ -331,56 +331,56 @@ import { chromium } from '@playwright/test';
 (async () => {
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext();
-  // Eigene Routing-/Interzeptions-Logik
+  // Your own routing/interception logic
   await context.route('**/*', route => route.continue());
   const page = await context.newPage();
-  // Oeffnet den Inspector innerhalb des eigenen Contexts
+  // Opens the Inspector inside your own context
   await page.pause();
 })();
 ```
 
 ---
 
-## VS Code Extension
+## VS Code extension
 
 ### Installation
 
-1. Extensions (`Cmd+Shift+X`) oeffnen, "Playwright" suchen, Microsoft-Extension installieren
+1. Open Extensions (`Cmd+Shift+X`), search for "Playwright", install the Microsoft extension
 2. Command Palette (`Cmd+Shift+P`) → `Test: Install Playwright`
-3. Browser auswaehlen (Chromium / Firefox / WebKit), optional GitHub Actions
+3. Choose browsers (Chromium / Firefox / WebKit), optionally GitHub Actions
 
-### Tests ausfuehren
+### Running tests
 
-| Aktion | Methode |
+| Action | Method |
 |---|---|
-| Einzeltest | Gruenes Play-Icon neben dem Test anklicken |
-| Mehrere Tests | Play-Icon auf Datei- oder Projektebene |
-| Multi-Browser | Projekte in der Playwright-Sidebar auswaehlen |
-| Browserfenster sichtbar | "Show Browsers" in Sidebar aktivieren |
+| Single test | Click the green play icon next to the test |
+| Multiple tests | Play icon at file or project level |
+| Multi-browser | Select projects in the Playwright sidebar |
+| Visible browser window | Enable "Show Browsers" in the sidebar |
 
 ### Debugging
 
-| Funktion | Beschreibung |
+| Function | Description |
 |---|---|
-| Breakpoints | Gutter-Zeile anklicken, dann Rechtsklick → "Debug Test" |
-| Live-Inspektion | Mit "Show Browsers": Lokator anklicken = Element hervorheben |
-| Fehler-Details | "expected vs. received" + vollstaendiger Call-Log |
-| AI-Hilfe | Sparkle-Icon: Copilot-Vorschlaege fuer Fehlerursachen |
-| Trace Viewer | "Show Trace Viewer": Timeline + DOM-Snapshots + Netzwerk |
+| Breakpoints | Click the gutter line, then right-click → "Debug Test" |
+| Live inspection | With "Show Browsers": click a locator = highlight the element |
+| Error details | "expected vs. received" + full call log |
+| AI help | Sparkle icon: Copilot suggestions for error causes |
+| Trace Viewer | "Show Trace Viewer": timeline + DOM snapshots + network |
 
-### Test-Aufnahme (CodeGen in VS Code)
+### Test recording (CodeGen in VS Code)
 
-| Funktion | Beschreibung |
+| Function | Description |
 |---|---|
-| Record new | Neuen Test aufzeichnen → `test-1.spec.ts` |
-| Record at cursor | Aktionen an Cursor-Position anhaengen |
-| Pick locator | Element klicken → optimaler Lokator in Zwischenablage |
+| Record new | Record a new test → `test-1.spec.ts` |
+| Record at cursor | Append actions at the cursor position |
+| Pick locator | Click an element → optimal locator in the clipboard |
 
-### Konfiguration wechseln
+### Switching configuration
 
-Zahnrad-Icon in der Sidebar: Zwischen mehreren `playwright.config.ts`-Dateien wechseln.
+Gear icon in the sidebar: switch between multiple `playwright.config.ts` files.
 
-<!-- Quellen:
+<!-- Sources:
 https://playwright.dev/docs/writing-tests
 https://playwright.dev/docs/running-tests
 https://playwright.dev/docs/codegen-intro

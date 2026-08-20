@@ -1,97 +1,97 @@
 # Playwright — class: Disposable
 
-> **Manifest:** 1 Methode, 0 Properties, 0 Events.
-> Erlaubt das Rueckgaengigmachen von Aktionen, die ein Disposable-Objekt zurueckgeben.
-> Wird von verschiedenen Playwright-Methoden zurueckgegeben.
+> **Manifest:** 1 method, 0 properties, 0 events.
+> Allows undoing actions that return a Disposable object.
+> Returned by various Playwright methods.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Rueckgabe-Kontext: Methoden die Disposable zurueckgeben](#rueckgabe-kontext-methoden-die-disposable-zurueckgeben)
-- [Using-Muster mit `await using` (TypeScript / ECMAScript)](#using-muster-mit-await-using-typescript-ecmascript)
-- [Typisches Nutzungsmuster](#typisches-nutzungsmuster)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Return context: methods that return Disposable](#return-context-methods-that-return-disposable)
+- [Using pattern with `await using` (TypeScript / ECMAScript)](#using-pattern-with-await-using-typescript-ecmascript)
+- [Typical usage pattern](#typical-usage-pattern)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Disposable` ist ein leichtgewichtiges Interface, das eine einzelne `dispose()`-
-Methode bereitstellt, um eine zugehoerige Ressource oder Aktion zu widerrufen.
-Es wird von Methoden zurueckgegeben, die eine reversible Aktion ausfuehren
-(z.B. `page.addInitScript()`, `browserContext.addInitScript()`,
+`Disposable` is a lightweight interface that provides a single `dispose()`
+method to revoke an associated resource or action.
+It is returned by methods that perform a reversible action
+(e.g. `page.addInitScript()`, `browserContext.addInitScript()`,
 `tracing.group()`, `screencast.showActions()`, `screencast.showOverlay()`,
 `screencast.start()`).
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
 ---
 
-## Methoden
+## Methods
 
 ### disposable.dispose()
 
-Entfernt die zugehoerige Ressource oder macht die zugehoerige Aktion rueckgaengig.
+Removes the associated resource or undoes the associated action.
 
-**Signatur:**
+**Signature:**
 ```typescript
 disposable.dispose(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Init-Script hinzufuegen und spaeter entfernen
+// Add an init script and remove it later
 const disposable = await page.addInitScript(() => {
   window.__testMode = true;
 });
 // ...
-await disposable.dispose(); // Init-Script ist jetzt entfernt
+await disposable.dispose(); // init script is now removed
 ```
 
 ---
 
-## Rueckgabe-Kontext: Methoden die Disposable zurueckgeben
+## Return context: methods that return Disposable
 
-| Methode | Effekt beim Dispose |
+| Method | Effect on dispose |
 |---------|---------------------|
-| `page.addInitScript()` | Init-Script wird entfernt |
-| `browserContext.addInitScript()` | Init-Script wird entfernt |
-| `tracing.group()` | Trace-Gruppe wird geschlossen |
-| `tracing.startHar()` | HAR-Aufzeichnung wird gestoppt |
-| `screencast.showActions()` | Aktions-Annotierungen werden gestoppt |
-| `screencast.showOverlay()` | Overlay wird entfernt |
-| `screencast.start()` | Screencast-Aufnahme wird gestoppt |
+| `page.addInitScript()` | Init script is removed |
+| `browserContext.addInitScript()` | Init script is removed |
+| `tracing.group()` | Trace group is closed |
+| `tracing.startHar()` | HAR recording is stopped |
+| `screencast.showActions()` | Action annotations are stopped |
+| `screencast.showOverlay()` | Overlay is removed |
+| `screencast.start()` | Screencast recording is stopped |
 
 ---
 
-## Using-Muster mit `await using` (TypeScript / ECMAScript)
+## Using pattern with `await using` (TypeScript / ECMAScript)
 
-Mit TypeScript und Symbol.asyncDispose kann das `Disposable`-Interface
-sauber mit `await using` genutzt werden (sofern Playwright die
-`Symbol.asyncDispose`-Schnittstelle implementiert):
+With TypeScript and Symbol.asyncDispose the `Disposable` interface
+can be used cleanly with `await using` (provided Playwright implements the
+`Symbol.asyncDispose` interface):
 
 ```typescript
-// Konzeptionelles Muster (TypeScript 5.2+)
+// Conceptual pattern (TypeScript 5.2+)
 {
   await using overlay = await page.screencast.showOverlay('<div>Loading...</div>');
   await performLongOperation();
-  // overlay.dispose() wird automatisch am Ende des Blocks aufgerufen
+  // overlay.dispose() is called automatically at the end of the block
 }
 ```
 
 ---
 
-## Typisches Nutzungsmuster
+## Typical usage pattern
 
 ```javascript
-// Visuellen Hint waehrend eines Test-Schritts anzeigen
+// Show a visual hint during a test step
 async function withHint(page, label, fn) {
   const overlay = await page.screencast.showOverlay(
     `<div class="hint">${label}</div>`
@@ -103,7 +103,7 @@ async function withHint(page, label, fn) {
   }
 }
 
-await withHint(page, 'Anmeldung', async () => {
+await withHint(page, 'Sign-in', async () => {
   await page.fill('#email', 'test@example.com');
   await page.fill('#password', 'secret');
   await page.click('#login-button');
@@ -114,28 +114,28 @@ await withHint(page, 'Anmeldung', async () => {
 
 ## Properties
 
-Keine offentlichen Properties.
+No public properties.
 
 ## Events
 
-Keine Events.
+No events.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 1      |
+| Methods  | 1      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `Disposable` folgt dem Resource-Management-Pattern. Die Klasse ist
-minimal gehalten — es gibt nur eine Methode. Wichtig ist es, `dispose()` im
-`finally`-Block aufzurufen, um sicherzustellen, dass Ressourcen auch bei
-Fehlern freigegeben werden. In TypeScript kann `await using` ab TS 5.2 als
-elegante Alternative genutzt werden.
+**Conclusion:** `Disposable` follows the resource management pattern. The class is
+kept minimal — there is only one method. It is important to call `dispose()` in the
+`finally` block in order to ensure that resources are released even on
+errors. In TypeScript, `await using` can be used from TS 5.2 onwards as an
+elegant alternative.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-disposable*
+*Source: https://playwright.dev/docs/api/class-disposable*

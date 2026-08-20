@@ -1,23 +1,23 @@
-# Playwright Assertions — Vollstaendige Referenz
+# Playwright Assertions — Complete Reference
 
 ## Contents
 
-- [Grundprinzip](#grundprinzip)
-- [Locator-Assertions (auto-retrying)](#locator-assertions-auto-retrying)
-- [Page-Assertions (auto-retrying)](#page-assertions-auto-retrying)
-- [APIResponse-Assertions (auto-retrying)](#apiresponse-assertions-auto-retrying)
-- [Generische Assertions (NICHT auto-retrying)](#generische-assertions-nicht-auto-retrying)
-- [Snapshot-Assertions](#snapshot-assertions)
+- [Basic principle](#basic-principle)
+- [Locator assertions (auto-retrying)](#locator-assertions-auto-retrying)
+- [Page assertions (auto-retrying)](#page-assertions-auto-retrying)
+- [APIResponse assertions (auto-retrying)](#apiresponse-assertions-auto-retrying)
+- [Generic assertions (NOT auto-retrying)](#generic-assertions-not-auto-retrying)
+- [Snapshot assertions](#snapshot-assertions)
 - [Negation](#negation)
 - [Soft Assertions](#soft-assertions)
-- [Benutzerdefinierte Fehlermeldung](#benutzerdefinierte-fehlermeldung)
+- [Custom error message](#custom-error-message)
 - [`expect.configure()`](#expectconfigure)
 - [`expect.poll()`](#expectpoll)
 - [`expect.toPass()`](#expecttopass)
-- [Asymmetrische Matcher](#asymmetrische-matcher)
-- [`expect.extend()` — Eigene Matcher](#expectextend-eigene-matcher)
+- [Asymmetric matchers](#asymmetric-matchers)
+- [`expect.extend()` — Custom matchers](#expectextend--custom-matchers)
 
-## Grundprinzip
+## Basic principle
 
 ```typescript
 import { test, expect } from '@playwright/test';
@@ -25,88 +25,88 @@ import { test, expect } from '@playwright/test';
 test('example', async ({ page }) => {
   await page.goto('/');
 
-  // Auto-retrying: wartet bis Bedingung erfuellt oder Timeout
+  // Auto-retrying: waits until the condition is met or timeout
   await expect(page.getByRole('heading')).toBeVisible();
 
-  // Generisch (nicht retrying): sofortige Auswertung
+  // Generic (not retrying): immediate evaluation
   expect(42).toBe(42);
 });
 ```
 
-**Default-Timeout fuer Assertions:** 5000 ms (konfigurierbar ueber `expect.timeout` in Config).
+**Default timeout for assertions:** 5000 ms (configurable via `expect.timeout` in the config).
 
 ---
 
-## Locator-Assertions (auto-retrying)
+## Locator assertions (auto-retrying)
 
-Alle Locator-Assertions wiederholen die Pruefung bis die Bedingung erfuellt ist oder der Timeout ablaeuft.
+All locator assertions repeat the check until the condition is met or the timeout expires.
 
-| Assertion | Parameter | Beschreibung |
+| Assertion | Parameter | Description |
 |---|---|---|
-| `toBeAttached(options?)` | `options?: { attached?: boolean, timeout?: number }` | Element ist an den DOM angehaengt |
-| `toBeChecked(options?)` | `options?: { checked?: boolean, timeout?: number }` | Checkbox/Radio ist angekreuzt |
-| `toBeDisabled(options?)` | `options?: { timeout?: number }` | Element ist deaktiviert |
-| `toBeEditable(options?)` | `options?: { editable?: boolean, timeout?: number }` | Element ist editierbar |
-| `toBeEmpty(options?)` | `options?: { timeout?: number }` | Container ist leer (kein Text/Kinder) |
-| `toBeEnabled(options?)` | `options?: { timeout?: number }` | Element ist aktiviert |
-| `toBeFocused(options?)` | `options?: { timeout?: number }` | Element hat den Fokus |
-| `toBeHidden(options?)` | `options?: { timeout?: number }` | Element ist nicht sichtbar |
-| `toBeInViewport(options?)` | `options?: { ratio?: number, timeout?: number }` | Element schneidet Viewport |
-| `toBeVisible(options?)` | `options?: { visible?: boolean, timeout?: number }` | Element ist sichtbar |
-| `toContainText(expected, options?)` | `expected: string \| RegExp \| (string \| RegExp)[]`, `options?: { ignoreCase?, normalizeWhitespace?, useInnerText?, timeout? }` | Element enthaelt Text |
-| `toContainClass(expected, options?)` | `expected: string \| string[]`, `options?: { timeout? }` | Element hat (mindestens) diese CSS-Klassen |
-| `toHaveAccessibleDescription(description?, options?)` | `description?: string \| RegExp`, `options?: { ignoreCase?, timeout? }` | Zugehoeriger ARIA-Description-Wert |
-| `toHaveAccessibleName(name?, options?)` | `name?: string \| RegExp`, `options?: { ignoreCase?, timeout? }` | Zugehoeriger ARIA-Name |
-| `toHaveAttribute(name, value?, options?)` | `name: string`, `value?: string \| RegExp`, `options?: { ignoreCase?, timeout? }` | HTML-Attribut (und Wert) vorhanden |
-| `toHaveClass(expected, options?)` | `expected: string \| RegExp \| (string \| RegExp)[]`, `options?: { timeout? }` | CSS-class-Eigenschaft |
-| `toHaveCount(count, options?)` | `count: number`, `options?: { timeout? }` | Locator-Liste hat genau N Eintraege |
-| `toHaveCSS(name, value, options?)` | `name: string`, `value: string \| RegExp`, `options?: { timeout? }` | CSS-Eigenschaft hat Wert |
-| `toHaveId(id, options?)` | `id: string \| RegExp`, `options?: { timeout? }` | Element hat ID |
-| `toHaveJSProperty(name, value, options?)` | `name: string`, `value: any`, `options?: { timeout? }` | JS-Property hat Wert |
-| `toHaveRole(role, options?)` | `role: AriaRole`, `options?: { timeout? }` | Element hat ARIA-Rolle |
-| `toHaveScreenshot(name?, options?)` | Siehe Snapshot-Abschnitt | Screenshot-Vergleich |
-| `toHaveText(expected, options?)` | `expected: string \| RegExp \| (string \| RegExp)[]`, `options?: { ignoreCase?, normalizeWhitespace?, useInnerText?, timeout? }` | Exakter Text-Match |
-| `toHaveValue(value, options?)` | `value: string \| RegExp`, `options?: { timeout? }` | Input-Wert |
-| `toHaveValues(values, options?)` | `values: (string \| RegExp)[]`, `options?: { timeout? }` | Select-Mehrfachauswahl |
-| `toMatchAriaSnapshot(expected?, options?)` | `expected?: string`, `options?: { timeout? }` | ARIA-Snapshot-Vergleich |
+| `toBeAttached(options?)` | `options?: { attached?: boolean, timeout?: number }` | Element is attached to the DOM |
+| `toBeChecked(options?)` | `options?: { checked?: boolean, timeout?: number }` | Checkbox/radio is checked |
+| `toBeDisabled(options?)` | `options?: { timeout?: number }` | Element is disabled |
+| `toBeEditable(options?)` | `options?: { editable?: boolean, timeout?: number }` | Element is editable |
+| `toBeEmpty(options?)` | `options?: { timeout?: number }` | Container is empty (no text/children) |
+| `toBeEnabled(options?)` | `options?: { timeout?: number }` | Element is enabled |
+| `toBeFocused(options?)` | `options?: { timeout?: number }` | Element has focus |
+| `toBeHidden(options?)` | `options?: { timeout?: number }` | Element is not visible |
+| `toBeInViewport(options?)` | `options?: { ratio?: number, timeout?: number }` | Element intersects the viewport |
+| `toBeVisible(options?)` | `options?: { visible?: boolean, timeout?: number }` | Element is visible |
+| `toContainText(expected, options?)` | `expected: string \| RegExp \| (string \| RegExp)[]`, `options?: { ignoreCase?, normalizeWhitespace?, useInnerText?, timeout? }` | Element contains text |
+| `toContainClass(expected, options?)` | `expected: string \| string[]`, `options?: { timeout? }` | Element has (at least) these CSS classes |
+| `toHaveAccessibleDescription(description?, options?)` | `description?: string \| RegExp`, `options?: { ignoreCase?, timeout? }` | Associated ARIA description value |
+| `toHaveAccessibleName(name?, options?)` | `name?: string \| RegExp`, `options?: { ignoreCase?, timeout? }` | Associated ARIA name |
+| `toHaveAttribute(name, value?, options?)` | `name: string`, `value?: string \| RegExp`, `options?: { ignoreCase?, timeout? }` | HTML attribute (and value) present |
+| `toHaveClass(expected, options?)` | `expected: string \| RegExp \| (string \| RegExp)[]`, `options?: { timeout? }` | CSS class property |
+| `toHaveCount(count, options?)` | `count: number`, `options?: { timeout? }` | Locator list has exactly N entries |
+| `toHaveCSS(name, value, options?)` | `name: string`, `value: string \| RegExp`, `options?: { timeout? }` | CSS property has value |
+| `toHaveId(id, options?)` | `id: string \| RegExp`, `options?: { timeout? }` | Element has ID |
+| `toHaveJSProperty(name, value, options?)` | `name: string`, `value: any`, `options?: { timeout? }` | JS property has value |
+| `toHaveRole(role, options?)` | `role: AriaRole`, `options?: { timeout? }` | Element has ARIA role |
+| `toHaveScreenshot(name?, options?)` | See snapshot section | Screenshot comparison |
+| `toHaveText(expected, options?)` | `expected: string \| RegExp \| (string \| RegExp)[]`, `options?: { ignoreCase?, normalizeWhitespace?, useInnerText?, timeout? }` | Exact text match |
+| `toHaveValue(value, options?)` | `value: string \| RegExp`, `options?: { timeout? }` | Input value |
+| `toHaveValues(values, options?)` | `values: (string \| RegExp)[]`, `options?: { timeout? }` | Select multi-selection |
+| `toMatchAriaSnapshot(expected?, options?)` | `expected?: string`, `options?: { timeout? }` | ARIA snapshot comparison |
 
-### Beispiele
+### Examples
 
 ```typescript
 // Text
 await expect(page.getByRole('heading')).toHaveText('Welcome');
 await expect(page.locator('.status')).toContainText(/error/i);
 
-// Formular
+// Form
 await expect(page.getByRole('checkbox')).toBeChecked();
 await expect(page.getByRole('textbox')).toHaveValue('John');
 await expect(page.getByRole('combobox')).toHaveValues(['option1', 'option2']);
 
-// Attribute
+// Attributes
 await expect(page.getByRole('img')).toHaveAttribute('alt', 'Logo');
 await expect(page.getByRole('button')).toBeEnabled();
 
-// Liste
+// List
 await expect(page.getByRole('listitem')).toHaveCount(3);
 
 // CSS
 await expect(page.locator('.box')).toHaveCSS('color', 'rgb(0, 0, 0)');
 
-// Sichtbarkeit
+// Visibility
 await expect(page.getByText('Error')).toBeHidden();
 await expect(page.getByText('Success')).toBeVisible();
 ```
 
 ---
 
-## Page-Assertions (auto-retrying)
+## Page assertions (auto-retrying)
 
-| Assertion | Parameter | Beschreibung |
+| Assertion | Parameter | Description |
 |---|---|---|
-| `toHaveTitle(title, options?)` | `title: string \| RegExp`, `options?: { timeout? }` | Seiten-Titel |
-| `toHaveURL(url, options?)` | `url: string \| RegExp`, `options?: { timeout? }` | Aktuelle URL |
-| `toHaveScreenshot(name?, options?)` | Siehe Snapshot-Abschnitt | Seiten-Screenshot |
-| `toMatchAriaSnapshot(expected?, options?)` | `expected?: string`, `options?: { timeout? }` | ARIA-Snapshot |
+| `toHaveTitle(title, options?)` | `title: string \| RegExp`, `options?: { timeout? }` | Page title |
+| `toHaveURL(url, options?)` | `url: string \| RegExp`, `options?: { timeout? }` | Current URL |
+| `toHaveScreenshot(name?, options?)` | See snapshot section | Page screenshot |
+| `toMatchAriaSnapshot(expected?, options?)` | `expected?: string`, `options?: { timeout? }` | ARIA snapshot |
 
 ```typescript
 await expect(page).toHaveTitle(/Playwright/);
@@ -115,11 +115,11 @@ await expect(page).toHaveURL('https://example.com/dashboard');
 
 ---
 
-## APIResponse-Assertions (auto-retrying)
+## APIResponse assertions (auto-retrying)
 
-| Assertion | Parameter | Beschreibung |
+| Assertion | Parameter | Description |
 |---|---|---|
-| `toBeOK(options?)` | `options?: { timeout? }` | Status ist 2xx |
+| `toBeOK(options?)` | `options?: { timeout? }` | Status is 2xx |
 
 ```typescript
 const response = await page.request.get('/api/users');
@@ -128,34 +128,34 @@ await expect(response).toBeOK();
 
 ---
 
-## Generische Assertions (NICHT auto-retrying)
+## Generic assertions (NOT auto-retrying)
 
-Sofortige Auswertung — nicht fuer asynchrone Szenarien geeignet.
+Immediate evaluation — not suitable for asynchronous scenarios.
 
-| Assertion | Parameter | Beschreibung |
+| Assertion | Parameter | Description |
 |---|---|---|
-| `toBe(value)` | `value: any` | Referenzgleichheit (`===`) |
-| `toBeCloseTo(value, digits?)` | `value: number`, `digits?: number` | Genaeherte Gleichheit |
-| `toBeDefined()` | — | Wert ist nicht `undefined` |
+| `toBe(value)` | `value: any` | Reference equality (`===`) |
+| `toBeCloseTo(value, digits?)` | `value: number`, `digits?: number` | Approximate equality |
+| `toBeDefined()` | — | Value is not `undefined` |
 | `toBeFalsy()` | — | Falsy (false, 0, '', null, undefined, NaN) |
-| `toBeGreaterThan(value)` | `value: number \| bigint` | Groesser als |
-| `toBeGreaterThanOrEqual(value)` | `value: number \| bigint` | Groesser gleich |
-| `toBeInstanceOf(cls)` | `cls: Function` | Instanz einer Klasse |
-| `toBeLessThan(value)` | `value: number \| bigint` | Kleiner als |
-| `toBeLessThanOrEqual(value)` | `value: number \| bigint` | Kleiner gleich |
-| `toBeNaN()` | — | Wert ist NaN |
-| `toBeNull()` | — | Wert ist null |
+| `toBeGreaterThan(value)` | `value: number \| bigint` | Greater than |
+| `toBeGreaterThanOrEqual(value)` | `value: number \| bigint` | Greater than or equal |
+| `toBeInstanceOf(cls)` | `cls: Function` | Instance of a class |
+| `toBeLessThan(value)` | `value: number \| bigint` | Less than |
+| `toBeLessThanOrEqual(value)` | `value: number \| bigint` | Less than or equal |
+| `toBeNaN()` | — | Value is NaN |
+| `toBeNull()` | — | Value is null |
 | `toBeTruthy()` | — | Truthy |
-| `toBeUndefined()` | — | Wert ist undefined |
-| `toContain(value)` | `value: string \| any` | String/Array/Set enthaelt Element |
-| `toContainEqual(value)` | `value: any` | Array/Set enthaelt aehnliches Element |
-| `toEqual(value)` | `value: any` | Tiefe Gleichheit |
-| `toHaveLength(length)` | `length: number` | Array/String-Laenge |
-| `toHaveProperty(path, value?)` | `path: string \| string[]`, `value?: any` | Objekt-Eigenschaft |
-| `toMatch(regexp)` | `regexp: RegExp \| string` | String passt zu Regex |
-| `toMatchObject(object)` | `object: object` | Objekt enthaelt Untermenge |
-| `toStrictEqual(value)` | `value: any` | Strikte Gleichheit inkl. Typen |
-| `toThrow(error?)` | `error?: string \| RegExp \| Error \| Function` | Funktion wirft Fehler |
+| `toBeUndefined()` | — | Value is undefined |
+| `toContain(value)` | `value: string \| any` | String/array/set contains element |
+| `toContainEqual(value)` | `value: any` | Array/set contains a similar element |
+| `toEqual(value)` | `value: any` | Deep equality |
+| `toHaveLength(length)` | `length: number` | Array/string length |
+| `toHaveProperty(path, value?)` | `path: string \| string[]`, `value?: any` | Object property |
+| `toMatch(regexp)` | `regexp: RegExp \| string` | String matches regex |
+| `toMatchObject(object)` | `object: object` | Object contains subset |
+| `toStrictEqual(value)` | `value: any` | Strict equality including types |
+| `toThrow(error?)` | `error?: string \| RegExp \| Error \| Function` | Function throws an error |
 
 ```typescript
 expect(result).toEqual({ id: 1, name: 'Alice' });
@@ -166,12 +166,12 @@ expect(value).toBeGreaterThan(0);
 
 ---
 
-## Snapshot-Assertions
+## Snapshot assertions
 
 ### `toHaveScreenshot()`
 
 ```typescript
-// Seite
+// Page
 await expect(page).toHaveScreenshot('landing.png');
 await expect(page).toHaveScreenshot(['subdir', 'landing.png']);
 
@@ -179,29 +179,29 @@ await expect(page).toHaveScreenshot(['subdir', 'landing.png']);
 await expect(page.getByRole('main')).toHaveScreenshot('main-content.png');
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `name` | `string \| string[]` | auto | Snapshot-Dateiname (Segment-Array = Unterverzeichnis) |
-| `maxDiffPixels` | `number` | — | Max. abweichende Pixel |
-| `maxDiffPixelRatio` | `number` | — | Max. Anteil abweichender Pixel (0-1) |
-| `threshold` | `number` | `0.2` | Pixelmatch-Schwellenwert (0-1) |
-| `animations` | `'disabled' \| 'allow'` | `'disabled'` | CSS-Animationen |
-| `caret` | `'hide' \| 'initial'` | `'hide'` | Text-Cursor |
-| `scale` | `'css' \| 'device'` | `'css'` | Skalierungsmodus |
-| `stylePath` | `string \| string[]` | — | CSS zum Ueberlagern volatiler Elemente |
-| `timeout` | `number` | (expect timeout) | Max. Wartezeit |
-| `clip` | `{ x, y, width, height }` | — | Ausschnitt |
-| `mask` | `Locator[]` | — | Bereiche maskieren |
-| `maskColor` | `string` | `'#FF00FF'` | Farbe fuer Masken |
-| `fullPage` | `boolean` | `false` | Vollseiten-Screenshot |
-| `omitBackground` | `boolean` | `false` | Hintergrund transparent |
+| `name` | `string \| string[]` | auto | Snapshot file name (segment array = subdirectory) |
+| `maxDiffPixels` | `number` | — | Max. differing pixels |
+| `maxDiffPixelRatio` | `number` | — | Max. ratio of differing pixels (0-1) |
+| `threshold` | `number` | `0.2` | Pixelmatch threshold (0-1) |
+| `animations` | `'disabled' \| 'allow'` | `'disabled'` | CSS animations |
+| `caret` | `'hide' \| 'initial'` | `'hide'` | Text cursor |
+| `scale` | `'css' \| 'device'` | `'css'` | Scaling mode |
+| `stylePath` | `string \| string[]` | — | CSS for overlaying volatile elements |
+| `timeout` | `number` | (expect timeout) | Max. wait time |
+| `clip` | `{ x, y, width, height }` | — | Crop region |
+| `mask` | `Locator[]` | — | Mask regions |
+| `maskColor` | `string` | `'#FF00FF'` | Color for masks |
+| `fullPage` | `boolean` | `false` | Full-page screenshot |
+| `omitBackground` | `boolean` | `false` | Transparent background |
 
-**Benennung:** `{testName}-{browser}-{platform}.png`
-**Verzeichnis:** `{testfile}-snapshots/`
+**Naming:** `{testName}-{browser}-{platform}.png`
+**Directory:** `{testfile}-snapshots/`
 
-**Globale Konfiguration:**
+**Global configuration:**
 
 ```typescript
 expect: {
@@ -214,28 +214,28 @@ expect: {
 
 ### `toMatchSnapshot()`
 
-Fuer Text und Binaerdaten:
+For text and binary data:
 
 ```typescript
 expect(await page.textContent('.hero')).toMatchSnapshot('hero.txt');
 expect(buffer).toMatchSnapshot('data.bin');
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `name` | `string \| string[]` | Snapshot-Dateiname |
-| `maxDiffPixels` | `number` | Max. Pixel-Unterschiede (Bilder) |
-| `maxDiffPixelRatio` | `number` | Max. Anteil (Bilder) |
-| `threshold` | `number` | Schwellenwert (Bilder) |
+| `name` | `string \| string[]` | Snapshot file name |
+| `maxDiffPixels` | `number` | Max. pixel differences (images) |
+| `maxDiffPixelRatio` | `number` | Max. ratio (images) |
+| `threshold` | `number` | Threshold (images) |
 
-**Snapshots aktualisieren:**
+**Updating snapshots:**
 
 ```bash
 npx playwright test --update-snapshots
-npx playwright test --update-snapshots=changed   # nur geaenderte
-npx playwright test --update-snapshots=missing   # nur fehlende (Default)
+npx playwright test --update-snapshots=changed   # only changed ones
+npx playwright test --update-snapshots=missing   # only missing ones (default)
 ```
 
 ---
@@ -251,23 +251,23 @@ expect(value).not.toEqual(0);
 
 ## Soft Assertions
 
-Fehlgeschlagene Assertions brechen den Test NICHT ab; der Test wird am Ende als fehlerhaft markiert.
+Failed assertions do NOT abort the test; the test is marked as failed at the end.
 
 ```typescript
-// Einzeln
+// Individually
 await expect.soft(page.getByTestId('status')).toHaveText('Success');
 await expect.soft(page.getByTestId('count')).toHaveText('3');
 
-// Mit benutzerdefinierter Meldung
+// With a custom message
 expect.soft(value, 'should be positive').toBeGreaterThan(0);
 
-// Fehler manuell pruefen
+// Check errors manually
 expect(test.info().errors).toHaveLength(0);
 ```
 
 ---
 
-## Benutzerdefinierte Fehlermeldung
+## Custom error message
 
 ```typescript
 await expect(
@@ -280,7 +280,7 @@ await expect(
 
 ## `expect.configure()`
 
-Vorkonfigurierte expect-Instanz:
+Pre-configured expect instance:
 
 ```typescript
 const slowExpect = expect.configure({ timeout: 30_000 });
@@ -290,13 +290,13 @@ await slowExpect(locator).toBeVisible();
 await softExpect(locator).toHaveText('hello');
 ```
 
-Parameter: `timeout: number`, `soft: boolean`
+Parameters: `timeout: number`, `soft: boolean`
 
 ---
 
 ## `expect.poll()`
 
-Synchrone expect-Funktion asynchron pollen:
+Poll a synchronous expect function asynchronously:
 
 ```typescript
 await expect.poll(async () => {
@@ -305,17 +305,17 @@ await expect.poll(async () => {
 }, {
   message: 'API sollte 200 zurueckgeben',
   timeout: 10_000,
-  intervals: [100, 250, 500, 1000],   // ms zwischen Versuchen
+  intervals: [100, 250, 500, 1000],   // ms between attempts
 }).toBe(200);
 ```
 
-Kombinierbar mit soft: `expect.configure({ soft: true }).poll(fn).toBe(x)`
+Combinable with soft: `expect.configure({ soft: true }).poll(fn).toBe(x)`
 
 ---
 
 ## `expect.toPass()`
 
-Codeblock wiederholen bis er erfolgreich ist:
+Repeat a code block until it succeeds:
 
 ```typescript
 await expect(async () => {
@@ -324,26 +324,26 @@ await expect(async () => {
   expect(await response.json()).toHaveProperty('items');
 }).toPass({
   intervals: [100, 250, 500, 1000],
-  timeout: 10_000,                    // Default: 0 (kein Timeout)
+  timeout: 10_000,                    // Default: 0 (no timeout)
 });
 ```
 
 ---
 
-## Asymmetrische Matcher
+## Asymmetric matchers
 
-Innerhalb anderer Assertions fuer flexible Pruefungen:
+Inside other assertions for flexible checks:
 
-| Matcher | Beschreibung |
+| Matcher | Description |
 |---|---|
-| `expect.any(Class)` | Beliebige Instanz der Klasse/Primitiv |
-| `expect.anything()` | Beliebiger Wert (nicht null/undefined) |
-| `expect.arrayContaining([...])` | Array enthaelt alle aufgelisteten Elemente |
-| `expect.arrayOf(type)` | Array aus Elementen des Typs |
-| `expect.closeTo(num, digits?)` | Genaeherte Zahl |
-| `expect.objectContaining({...})` | Objekt enthaelt bestimmte Eigenschaften |
-| `expect.stringContaining(str)` | String enthaelt Teilstring |
-| `expect.stringMatching(re)` | String passt zu Regex |
+| `expect.any(Class)` | Any instance of the class/primitive |
+| `expect.anything()` | Any value (not null/undefined) |
+| `expect.arrayContaining([...])` | Array contains all listed elements |
+| `expect.arrayOf(type)` | Array of elements of the type |
+| `expect.closeTo(num, digits?)` | Approximate number |
+| `expect.objectContaining({...})` | Object contains certain properties |
+| `expect.stringContaining(str)` | String contains substring |
+| `expect.stringMatching(re)` | String matches regex |
 
 ```typescript
 expect(obj).toEqual({
@@ -355,7 +355,7 @@ expect(obj).toEqual({
 
 ---
 
-## `expect.extend()` — Eigene Matcher
+## `expect.extend()` — Custom matchers
 
 ```typescript
 import { expect as baseExpect } from '@playwright/test';
@@ -387,7 +387,7 @@ export const expect = baseExpect.extend({
 });
 ```
 
-Mehrere Custom-Expect zusammenfuehren:
+Merging several custom expects:
 
 ```typescript
 import { mergeExpects } from '@playwright/test';

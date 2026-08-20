@@ -1,74 +1,74 @@
-# Playwright Downloads, Dialoge, Navigation und Touch-Events - Vollstaendige Referenz
+# Playwright Downloads, Dialogs, Navigation and Touch Events - Complete Reference
 
 ---
 
 ## Contents
 
 - [1. Downloads](#1-downloads)
-- [2. Dialoge](#2-dialoge)
-- [3. Navigation und Warten](#3-navigation-und-warten)
-- [4. Touch-Events und Gesten](#4-touch-events-und-gesten)
-- [5. File Chooser (Datei-Upload)](#5-file-chooser-datei-upload)
+- [2. Dialogs](#2-dialogs)
+- [3. Navigation and Waiting](#3-navigation-and-waiting)
+- [4. Touch Events and Gestures](#4-touch-events-and-gestures)
+- [5. File Chooser (file upload)](#5-file-chooser-file-upload)
 
 ## 1. Downloads
 
-### Grundprinzip
+### Basic principle
 
-Jeder Download loest das `'download'`-Event auf der Page aus. Die Datei wird
-zunaechst in einem temporaeren Verzeichnis abgelegt. Downloads werden beim
-Schliessen des Browser-Contexts geloescht.
+Every download fires the `'download'` event on the page. The file is
+first placed in a temporary directory. Downloads are deleted when the
+browser context is closed.
 
-### Download abfangen
+### Intercepting a download
 
 ```typescript
-// Sicher: Promise vor dem Klick setzen
+// Safe: set up the promise before the click
 const downloadPromise = page.waitForEvent('download');
 await page.getByText('Download Report').click();
 const download = await downloadPromise;
 
-// Dateiname und Pfad
-console.log(download.suggestedFilename()); // z.B. 'report-2024.pdf'
-const tmpPath = await download.path();     // Temporaerer Pfad
+// File name and path
+console.log(download.suggestedFilename()); // e.g. 'report-2024.pdf'
+const tmpPath = await download.path();     // Temporary path
 
-// Als eigene Datei speichern
+// Save under your own path
 await download.saveAs('./downloads/' + download.suggestedFilename());
 ```
 
-### Download-Objekt - Alle Methoden
+### Download object - all methods
 
-| Methode | Rueckgabe | Beschreibung |
+| Method | Returns | Description |
 |---------|-----------|--------------|
-| `download.url()` | `string` | Original-URL des Downloads |
-| `download.suggestedFilename()` | `string` | Empfohlener Dateiname (aus Content-Disposition oder URL) |
-| `download.path()` | `Promise<string>` | Pfad zur temp. Datei (wartet auf Abschluss, wirft bei Fehler) |
-| `download.saveAs(path)` | `Promise<void>` | Kopiert Download zu eigenem Pfad |
-| `download.failure()` | `Promise<string \| null>` | Fehlermeldung falls fehlgeschlagen |
-| `download.createReadStream()` | `Promise<Readable>` | Readable Stream (nur bei erfolg.) |
-| `download.cancel()` | `Promise<void>` | Download abbrechen (keine Exception wenn bereits fertig) |
-| `download.delete()` | `Promise<void>` | Temp-Datei loeschen |
-| `download.page()` | `Page` | Ausloesendes Page-Objekt |
+| `download.url()` | `string` | Original URL of the download |
+| `download.suggestedFilename()` | `string` | Suggested file name (from Content-Disposition or URL) |
+| `download.path()` | `Promise<string>` | Path to the temp file (waits for completion, throws on error) |
+| `download.saveAs(path)` | `Promise<void>` | Copies the download to your own path |
+| `download.failure()` | `Promise<string \| null>` | Error message if it failed |
+| `download.createReadStream()` | `Promise<Readable>` | Readable stream (only on success) |
+| `download.cancel()` | `Promise<void>` | Cancel the download (no exception if already finished) |
+| `download.delete()` | `Promise<void>` | Delete the temp file |
+| `download.page()` | `Page` | Triggering page object |
 
-### Event-basiertes Handling
+### Event-based handling
 
 ```typescript
-// Alle Downloads einer Session protokollieren
+// Log all downloads of a session
 page.on('download', async download => {
   const path = await download.path();
   console.log(`Downloaded: ${download.suggestedFilename()} -> ${path}`);
 });
 ```
 
-### Download-Pfad konfigurieren
+### Configuring the download path
 
 ```typescript
-// Persistent Download-Verzeichnis (kein automatisches Loeschen)
+// Persistent download directory (no automatic deletion)
 const browser = await chromium.launch();
 const context = await browser.newContext({
   acceptDownloads: true, // Default: true
 });
 ```
 
-### Download mit Praedikat abwarten
+### Awaiting a download with a predicate
 
 ```typescript
 const pdfDownload = await page.waitForEvent('download', {
@@ -77,7 +77,7 @@ const pdfDownload = await page.waitForEvent('download', {
 });
 ```
 
-### Vollstaendiges Beispiel
+### Complete example
 
 ```typescript
 test('download and verify CSV', async ({ page }) => {
@@ -99,55 +99,55 @@ test('download and verify CSV', async ({ page }) => {
 
 ---
 
-## 2. Dialoge
+## 2. Dialogs
 
-Playwright schliesst Dialoge standardmaessig automatisch (dismiss). Eigene
-Handler muessen VOR der ausloesenden Aktion registriert werden.
+Playwright closes dialogs automatically by default (dismiss). Custom
+handlers must be registered BEFORE the triggering action.
 
-**Wichtig:** Ein nicht behandelter Dialog blockiert die Seite (modal). Ohne
-Handler wird er automatisch dismissed.
+**Important:** An unhandled dialog blocks the page (modal). Without a
+handler it is dismissed automatically.
 
-### Dialog-Typen
+### Dialog types
 
-| Typ | Beschreibung | accept()-Verhalten |
+| Type | Description | accept() behavior |
 |-----|--------------|-------------------|
-| `'alert'` | Einfache Meldung | Schliessen |
-| `'confirm'` | Bestaetigung | OK (true) |
-| `'prompt'` | Texteingabe | OK mit eingegebenem Text |
-| `'beforeunload'` | Navigationswarnung | Verlassen bestaetigen |
+| `'alert'` | Simple message | Close |
+| `'confirm'` | Confirmation | OK (true) |
+| `'prompt'` | Text input | OK with the entered text |
+| `'beforeunload'` | Navigation warning | Confirm leaving |
 
-### Dialog-Methoden
+### Dialog methods
 
-| Methode | Rueckgabe | Beschreibung |
+| Method | Returns | Description |
 |---------|-----------|--------------|
 | `dialog.type()` | `string` | `'alert'`, `'confirm'`, `'prompt'`, `'beforeunload'` |
-| `dialog.message()` | `string` | Angezeigte Nachricht |
-| `dialog.defaultValue()` | `string` | Vorbelegung bei Prompt (sonst leer) |
-| `dialog.accept(promptText?)` | `Promise<void>` | Dialog akzeptieren; bei Prompt: Text eingeben |
-| `dialog.dismiss()` | `Promise<void>` | Dialog abweisen (Cancel) |
-| `dialog.page()` | `Page \| null` | Ausloesendes Page-Objekt |
+| `dialog.message()` | `string` | Displayed message |
+| `dialog.defaultValue()` | `string` | Prefilled value on a prompt (otherwise empty) |
+| `dialog.accept(promptText?)` | `Promise<void>` | Accept the dialog; on a prompt: enter text |
+| `dialog.dismiss()` | `Promise<void>` | Dismiss the dialog (Cancel) |
+| `dialog.page()` | `Page \| null` | Triggering page object |
 
 ### Alert
 
 ```typescript
-page.on('dialog', dialog => dialog.dismiss()); // oder accept()
-await page.evaluate(() => alert('Hallo!'));
+page.on('dialog', dialog => dialog.dismiss()); // or accept()
+await page.evaluate(() => alert('Hello!'));
 ```
 
 ### Confirm
 
 ```typescript
-// Bestaetigen
+// Confirm
 page.on('dialog', dialog => {
   expect(dialog.type()).toBe('confirm');
-  expect(dialog.message()).toBe('Wirklich loeschen?');
+  expect(dialog.message()).toBe('Really delete?');
   dialog.accept();
 });
-await page.getByRole('button', { name: 'Loeschen' }).click();
+await page.getByRole('button', { name: 'Delete' }).click();
 
-// Abweisen
+// Dismiss
 page.on('dialog', dialog => dialog.dismiss());
-await page.getByRole('button', { name: 'Loeschen' }).click();
+await page.getByRole('button', { name: 'Delete' }).click();
 ```
 
 ### Prompt
@@ -155,18 +155,18 @@ await page.getByRole('button', { name: 'Loeschen' }).click();
 ```typescript
 page.on('dialog', async dialog => {
   expect(dialog.type()).toBe('prompt');
-  expect(dialog.defaultValue()).toBe('Ihr Name');
+  expect(dialog.defaultValue()).toBe('Your name');
   await dialog.accept('Alice');
 });
-await page.evaluate("prompt('Ihr Name', 'Ihr Name')");
+await page.evaluate("prompt('Your name', 'Your name')");
 ```
 
-### once-Pattern (empfohlen)
+### once pattern (recommended)
 
 ```typescript
-// Einmaligen Dialog-Handler mit once registrieren
+// Register a one-time dialog handler with once
 page.once('dialog', dialog => dialog.accept('2024-01-01'));
-await page.getByRole('button', { name: 'Datum eingeben' }).click();
+await page.getByRole('button', { name: 'Enter date' }).click();
 ```
 
 ### beforeunload
@@ -174,41 +174,41 @@ await page.getByRole('button', { name: 'Datum eingeben' }).click();
 ```typescript
 page.on('dialog', async dialog => {
   expect(dialog.type()).toBe('beforeunload');
-  await dialog.dismiss(); // Auf der Seite bleiben
-  // oder: await dialog.accept(); // Seite verlassen
+  await dialog.dismiss(); // Stay on the page
+  // or: await dialog.accept(); // Leave the page
 });
 
-// runBeforeUnload triggert den Dialog
+// runBeforeUnload triggers the dialog
 await page.close({ runBeforeUnload: true });
-// Hinweis: page.close() wartet NICHT auf vollstaendiges Schliessen
+// Note: page.close() does NOT wait for the close to complete
 ```
 
-### Print-Dialog (window.print)
+### Print dialog (window.print)
 
 ```typescript
-// window.print ueberschreiben bevor der Button geklickt wird
+// Override window.print before the button is clicked
 await page.goto('/invoice');
 await page.evaluate(() => {
   window.waitForPrintDialog = new Promise(resolve => {
     window.print = resolve as any;
   });
 });
-await page.getByText('Drucken').click();
+await page.getByText('Print').click();
 await page.waitForFunction(() => (window as any).waitForPrintDialog);
 ```
 
 ---
 
-## 3. Navigation und Warten
+## 3. Navigation and Waiting
 
 ### page.goto(url, options?)
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `url` | `string` | - | Ziel-URL |
-| `waitUntil` | `'load' \| 'domcontentloaded' \| 'networkidle' \| 'commit'` | `'load'` | Wann als abgeschlossen gelten |
+| `url` | `string` | - | Target URL |
+| `waitUntil` | `'load' \| 'domcontentloaded' \| 'networkidle' \| 'commit'` | `'load'` | When to consider it complete |
 | `timeout` | `number` | `30000` | Timeout in ms |
-| `referer` | `string` | - | Referer-Header |
+| `referer` | `string` | - | Referer header |
 
 ```typescript
 await page.goto('https://example.com');
@@ -216,40 +216,40 @@ await page.goto('/dashboard', { waitUntil: 'networkidle' });
 await page.goto('/fast-page', { waitUntil: 'domcontentloaded' });
 ```
 
-### waitUntil-Werte
+### waitUntil values
 
-| Wert | Beschreibung |
+| Value | Description |
 |------|--------------|
-| `'load'` | Load-Event gefeuert |
-| `'domcontentloaded'` | DOMContentLoaded gefeuert |
-| `'networkidle'` | Keine Netzwerkanfragen fuer 500ms |
-| `'commit'` | Netzwerkantwort erhalten und Navigation begonnen |
+| `'load'` | Load event fired |
+| `'domcontentloaded'` | DOMContentLoaded fired |
+| `'networkidle'` | No network requests for 500ms |
+| `'commit'` | Network response received and navigation started |
 
 ### page.waitForURL(url, options?)
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `url` | `string \| RegExp \| (url: URL) => boolean` | Erwartete URL |
-| `options.waitUntil` | wie goto | Warte-Zustand |
+| `url` | `string \| RegExp \| (url: URL) => boolean` | Expected URL |
+| `options.waitUntil` | as in goto | Wait state |
 | `options.timeout` | `number` | Timeout in ms |
 
 ```typescript
-// Nach Klick auf Link warten
-await page.getByRole('button', { name: 'Abschicken' }).click();
+// Wait after clicking a link
+await page.getByRole('button', { name: 'Submit' }).click();
 await page.waitForURL('/confirmation');
 
-// Mit Regex
+// With a regex
 await page.waitForURL(/\/orders\/\d+/);
 
-// Mit Praedikat
+// With a predicate
 await page.waitForURL(url => url.searchParams.get('status') === 'success');
 ```
 
 ### page.waitForLoadState(state?, options?)
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |-----------|-----|---------|--------------|
-| `state` | `'load' \| 'domcontentloaded' \| 'networkidle'` | `'load'` | Ziel-Zustand |
+| `state` | `'load' \| 'domcontentloaded' \| 'networkidle'` | `'load'` | Target state |
 | `options.timeout` | `number` | - | Timeout in ms |
 
 ```typescript
@@ -257,29 +257,29 @@ await page.waitForLoadState('networkidle');
 await page.waitForLoadState('domcontentloaded', { timeout: 5000 });
 ```
 
-### Navigations-Pattern (Klick + Warten)
+### Navigation pattern (click + wait)
 
 ```typescript
-// Gleichzeitig auf Navigation und Klick warten
+// Wait for navigation and click simultaneously
 await Promise.all([
   page.waitForURL('/dashboard'),
   page.getByRole('button', { name: 'Login' }).click(),
 ]);
 
-// Auf Netzwerkanfrage warten
+// Wait for a network request
 const [response] = await Promise.all([
   page.waitForResponse('**/api/user'),
   page.click('#refresh'),
 ]);
 const data = await response.json();
 
-// Navigation abwarten nach SPA-Routing
+// Await navigation after SPA routing
 await page.locator('nav a').filter({ hasText: 'Profile' }).click();
 await page.waitForURL('**/profile');
 await page.waitForLoadState('networkidle');
 ```
 
-### Navigations-Events
+### Navigation events
 
 ```typescript
 page.on('domcontentloaded', () => console.log('DOM ready'));
@@ -291,66 +291,66 @@ page.on('framenavigated', frame => {
 });
 ```
 
-### Hydration-Probleme
+### Hydration problems
 
-Bei SSR-Frameworks kann die Seite visuell fertig sein, aber JS noch nicht
-hydratisiert haben.
+With SSR frameworks the page can be visually finished while the JS has not
+hydrated yet.
 
 ```typescript
-// Warten bis Element interaktiv ist (nicht nur sichtbar)
-await page.locator('#checkout-button').click(); // Auto-waits bis enabled
+// Wait until the element is interactive (not just visible)
+await page.locator('#checkout-button').click(); // Auto-waits until enabled
 
-// Explizit warten
+// Wait explicitly
 await expect(page.locator('#form')).toBeEnabled();
 await page.locator('#form input[name="email"]').fill('test@example.com');
 ```
 
 ---
 
-## 4. Touch-Events und Gesten
+## 4. Touch Events and Gestures
 
-Playwright unterstuetzt Legacy-Touch-Events (TouchEvent-API) ueber
+Playwright supports legacy touch events (TouchEvent API) via
 `locator.dispatchEvent()`.
 
-**Hinweis:** `dispatchEvent()` setzt `Event.isTrusted = false`. Apps, die
-auf isTrusted pruefen, muessen angepasst werden.
+**Note:** `dispatchEvent()` sets `Event.isTrusted = false`. Apps that
+check isTrusted have to be adapted.
 
 ### locator.dispatchEvent(type, eventInit?)
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `type` | `string` | Event-Typ: `'touchstart'`, `'touchmove'`, `'touchend'` |
-| `eventInit` | `Object` | TouchEvent-Eigenschaften |
+| `type` | `string` | Event type: `'touchstart'`, `'touchmove'`, `'touchend'` |
+| `eventInit` | `Object` | TouchEvent properties |
 
-### TouchEvent-Eigenschaften
+### TouchEvent properties
 
-| Eigenschaft | Typ | Beschreibung |
+| Property | Type | Description |
 |-------------|-----|--------------|
-| `touches` | `Touch[]` | Aktuelle Beruehrungspunkte |
-| `targetTouches` | `Touch[]` | Beruehrungspunkte auf Target |
-| `changedTouches` | `Touch[]` | Geaenderte Beruehrungspunkte |
+| `touches` | `Touch[]` | Current touch points |
+| `targetTouches` | `Touch[]` | Touch points on the target |
+| `changedTouches` | `Touch[]` | Changed touch points |
 
-### Touch-Objekt-Eigenschaften
+### Touch object properties
 
-| Eigenschaft | Typ | Beschreibung |
+| Property | Type | Description |
 |-------------|-----|--------------|
-| `identifier` | `number` | Eindeutige ID des Touchpoints |
-| `clientX` | `number` | X-Koordinate relativ zum Viewport |
-| `clientY` | `number` | Y-Koordinate relativ zum Viewport |
-| `pageX` | `number` | X-Koordinate relativ zur Seite |
-| `pageY` | `number` | Y-Koordinate relativ zur Seite |
+| `identifier` | `number` | Unique ID of the touch point |
+| `clientX` | `number` | X coordinate relative to the viewport |
+| `clientY` | `number` | Y coordinate relative to the viewport |
+| `pageX` | `number` | X coordinate relative to the page |
+| `pageY` | `number` | Y coordinate relative to the page |
 
-### Geraet-Konfiguration fuer Touch
+### Device configuration for touch
 
 ```typescript
 test.use({ ...devices['Pixel 7'] });
-// oder manuell:
+// or manually:
 test.use({ hasTouch: true, isMobile: true });
 ```
 
 ---
 
-### Pan-Geste (Wischen/Verschieben)
+### Pan gesture (swipe/move)
 
 ```typescript
 async function pan(
@@ -360,7 +360,7 @@ async function pan(
   steps = 5
 ): Promise<void> {
   const box = await locator.boundingBox();
-  if (!box) throw new Error('Element nicht sichtbar');
+  if (!box) throw new Error('Element not visible');
 
   const centerX = box.x + box.width / 2;
   const centerY = box.y + box.height / 2;
@@ -388,13 +388,13 @@ async function pan(
   });
 }
 
-// Verwendung
+// Usage
 test('map pan', async ({ page }) => {
   test.use({ ...devices['Pixel 7'] });
   await page.goto('https://www.google.com/maps');
   const map = page.locator('#map');
   for (let i = 0; i < 5; i++) {
-    await pan(map, 100, 0); // 100px nach rechts
+    await pan(map, 100, 0); // 100px to the right
   }
   await expect(page).toHaveScreenshot('map-panned.png');
 });
@@ -402,7 +402,7 @@ test('map pan', async ({ page }) => {
 
 ---
 
-### Pinch-Geste (Zoom rein/raus)
+### Pinch gesture (zoom in/out)
 
 ```typescript
 async function pinch(
@@ -411,12 +411,12 @@ async function pinch(
 ): Promise<void> {
   const { deltaX = 50, steps = 5, direction = 'in' } = arg;
   const box = await locator.boundingBox();
-  if (!box) throw new Error('Element nicht sichtbar');
+  if (!box) throw new Error('Element not visible');
 
   const centerX = box.x + box.width / 2;
   const centerY = box.y + box.height / 2;
 
-  // Starteingabe: zwei Punkte um Zentrum
+  // Initial input: two points around the center
   const startDistance = direction === 'in' ? deltaX : 0;
   await locator.dispatchEvent('touchstart', {
     touches: [
@@ -435,8 +435,8 @@ async function pinch(
 
   for (let i = 1; i <= steps; i++) {
     const offset = direction === 'in'
-      ? deltaX - (deltaX * i) / steps  // Punkte zusammenfuehren
-      : (deltaX * i) / steps;           // Punkte auseinanderziehen
+      ? deltaX - (deltaX * i) / steps  // Bring the points together
+      : (deltaX * i) / steps;           // Pull the points apart
 
     await locator.dispatchEvent('touchmove', {
       touches: [
@@ -465,39 +465,39 @@ async function pinch(
   });
 }
 
-// Verwendung
+// Usage
 test('map zoom', async ({ page }) => {
   await page.goto('https://www.google.com/maps');
   const map = page.locator('#map');
 
-  // Reinzoomen
+  // Zoom in
   for (let i = 0; i < 3; i++) {
-    await pinch(map, { direction: 'out', deltaX: 80 }); // Finger auseinanderziehen = zoom in
+    await pinch(map, { direction: 'out', deltaX: 80 }); // pulling fingers apart = zoom in
   }
-  // Rauszoomen
+  // Zoom out
   for (let i = 0; i < 3; i++) {
-    await pinch(map, { direction: 'in', deltaX: 80 }); // Finger zusammenfuehren = zoom out
+    await pinch(map, { direction: 'in', deltaX: 80 }); // bringing fingers together = zoom out
   }
 });
 ```
 
 ---
 
-## 5. File Chooser (Datei-Upload)
+## 5. File Chooser (file upload)
 
 ```typescript
-// Datei-Upload ueber Datei-Dialog
+// File upload via the file dialog
 const fileChooserPromise = page.waitForEvent('filechooser');
-await page.getByLabel('Avatar hochladen').click();
+await page.getByLabel('Upload avatar').click();
 const fileChooser = await fileChooserPromise;
 
-// Einzelne Datei
+// Single file
 await fileChooser.setFiles('./fixtures/avatar.png');
 
-// Mehrere Dateien
+// Multiple files
 await fileChooser.setFiles(['./a.pdf', './b.pdf']);
 
-// Datei-Objekt ohne Disk-Datei
+// File object without a file on disk
 await fileChooser.setFiles({
   name: 'test.txt',
   mimeType: 'text/plain',
@@ -507,4 +507,4 @@ await fileChooser.setFiles({
 
 ---
 
-Quelle: https://playwright.dev/docs/downloads | https://playwright.dev/docs/dialogs | https://playwright.dev/docs/navigations | https://playwright.dev/docs/touch-events | https://playwright.dev/docs/api/class-download | https://playwright.dev/docs/api/class-dialog
+Source: https://playwright.dev/docs/downloads | https://playwright.dev/docs/dialogs | https://playwright.dev/docs/navigations | https://playwright.dev/docs/touch-events | https://playwright.dev/docs/api/class-download | https://playwright.dev/docs/api/class-dialog

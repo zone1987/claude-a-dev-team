@@ -1,5 +1,5 @@
 # playwright-mcp-tools
 
-Alle Playwright-MCP-Tools mit Parametern (Navigation, Snapshot, Interaktion, Forms, Screenshots, Tabs, Network, Storage, Testing, Tracing, Video, PDF).
+All Playwright MCP tools with parameters (navigation, snapshot, interaction, forms, screenshots, tabs, network, storage, testing, tracing, video, PDF).
 
-Vollständige Referenz mit allen Optionen/Parametern/Tools: `MCP-TOOLS-DETAIL.md`.
+Complete reference with all options/parameters/tools: `MCP-TOOLS-DETAIL.md`.

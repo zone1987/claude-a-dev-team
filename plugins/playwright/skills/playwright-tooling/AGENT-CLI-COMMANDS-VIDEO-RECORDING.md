@@ -2,21 +2,21 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [video-start](#video-start)
 - [video-chapter](#video-chapter)
 - [video-stop](#video-stop)
-- [Vollstaendiger Aufnahme-Workflow](#vollstaendiger-aufnahme-workflow)
-- [Automatische Aufnahme](#automatische-aufnahme)
-- [Anwendungsfaelle](#anwendungsfaelle)
+- [Complete recording workflow](#complete-recording-workflow)
+- [Automatic recording](#automatic-recording)
+- [Use cases](#use-cases)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `video-start [filename]` | Videoaufnahme starten |
-| `video-chapter <title>` | Kapitelmarke einfuegen |
-| `video-stop` | Aufnahme beenden und speichern |
+| `video-start [filename]` | Start video recording |
+| `video-chapter <title>` | Insert a chapter marker |
+| `video-stop` | Stop the recording and save it |
 
 ---
 
@@ -24,21 +24,21 @@
 
 ```bash
 playwright-cli video-start
-# Gespeichert unter: .playwright-cli/<timestamp>.webm
+# Saved to: .playwright-cli/<timestamp>.webm
 
 playwright-cli video-start demo.webm
-# Benutzerdefinierter Dateiname
+# Custom file name
 
 playwright-cli video-start recording.webm --size=800x600
-# Mit spezifischer Groesse
+# With a specific size
 ```
 
-### video-start-Argumente und Optionen
+### video-start arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `[filename]` | string | Nein | Zeitstempel | Dateiname fuer die Videoaufnahme (`.webm`) |
-| `--size=<WxH>` | string | Nein | Viewport-Groesse | Videoaufloessung z. B. `800x600`, `1280x720` |
+| `[filename]` | string | No | Timestamp | File name for the video recording (`.webm`) |
+| `--size=<WxH>` | string | No | Viewport size | Video resolution, e.g. `800x600`, `1280x720` |
 
 ---
 
@@ -50,13 +50,13 @@ playwright-cli video-chapter "Checkout" --description="Entering payment details"
 playwright-cli video-chapter "Confirmation" --description="Order confirmed" --duration=2000
 ```
 
-### video-chapter-Argumente und Optionen
+### video-chapter arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `<title>` | string | Ja | — | Kapitel-Bezeichnung |
-| `--description=<text>` | string | Nein | — | Zusaetzlicher Beschreibungstext |
-| `--duration=<ms>` | number | Nein | — | Millisekunden, die die Kapitelkarte angezeigt wird |
+| `<title>` | string | Yes | — | Chapter label |
+| `--description=<text>` | string | No | — | Additional description text |
+| `--duration=<ms>` | number | No | — | Milliseconds the chapter card is displayed |
 
 ---
 
@@ -66,23 +66,23 @@ playwright-cli video-chapter "Confirmation" --description="Order confirmed" --du
 playwright-cli video-stop
 ```
 
-Keine Argumente. Beendet die Aufnahme und speichert die Datei.
+No arguments. Stops the recording and saves the file.
 
 ---
 
-## Vollstaendiger Aufnahme-Workflow
+## Complete recording workflow
 
 ```bash
 playwright-cli video-start demo.webm
 
-playwright-cli video-chapter "Startseite" --description="Landing page loaded"
+playwright-cli video-chapter "Home" --description="Landing page loaded"
 playwright-cli goto https://demo.playwright.dev/todomvc/
 
-playwright-cli video-chapter "Todo hinzufuegen"
+playwright-cli video-chapter "Add todo"
 playwright-cli type "Buy groceries"
 playwright-cli press Enter
 
-playwright-cli video-chapter "Abschliessen"
+playwright-cli video-chapter "Complete"
 playwright-cli check e21
 
 playwright-cli video-stop
@@ -91,11 +91,11 @@ playwright-cli video-stop
 
 ---
 
-## Automatische Aufnahme
+## Automatic recording
 
-Automatisch starten ohne manuelle Befehle:
+Start automatically without manual commands:
 
-### Via Konfigurationsdatei
+### Via a configuration file
 
 ```json
 {
@@ -106,7 +106,7 @@ Automatisch starten ohne manuelle Befehle:
 }
 ```
 
-### Via Umgebungsvariable
+### Via an environment variable
 
 ```bash
 PLAYWRIGHT_MCP_SAVE_VIDEO=800x600 playwright-cli open https://example.com
@@ -114,15 +114,15 @@ PLAYWRIGHT_MCP_SAVE_VIDEO=800x600 playwright-cli open https://example.com
 
 ---
 
-## Anwendungsfaelle
+## Use cases
 
-| Szenario | Beschreibung |
+| Scenario | Description |
 |----------|-------------|
-| Bug-Reproduktion | Fehlerhaftes Verhalten fuer Entwickler aufzeichnen |
-| Test-Dokumentation | Manuellen Test-Durchlauf dokumentieren |
-| Agent-Monitoring | Automatisierten Agent-Ablauf beobachten |
-| Demovideo erstellen | Produktfunktionen demonstrieren |
+| Bug reproduction | Record faulty behavior for developers |
+| Test documentation | Document a manual test run |
+| Agent monitoring | Observe an automated agent run |
+| Creating a demo video | Demonstrate product features |
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/video-recording
+Source: https://playwright.dev/agent-cli/commands/video-recording

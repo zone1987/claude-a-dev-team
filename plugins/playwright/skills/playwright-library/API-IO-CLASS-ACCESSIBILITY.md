@@ -1,39 +1,39 @@
-# Playwright — class: Accessibility (Deprecated / Entfernt)
+# Playwright — class: Accessibility (deprecated / removed)
 
-> **Manifest:** 1 Methode (deprecated), 0 Properties, 0 Events.
-> Diese Klasse ist aus den aktuellen Playwright-Docs entfernt worden.
-> Der Accessibility-Snapshot ist jetzt ueber `page.ariaSnapshot()` verfuegbar.
+> **Manifest:** 1 method (deprecated), 0 properties, 0 events.
+> This class has been removed from the current Playwright docs.
+> The accessibility snapshot is now available via `page.ariaSnapshot()`.
 
 ---
 
 ## Contents
 
 - [Status](#status)
-- [Historische API: snapshot(options?)](#historische-api-snapshotoptions)
-- [Aktuelle Alternative: page.ariaSnapshot()](#aktuelle-alternative-pageariasnapshot)
-- [Accessibility-Testing mit @axe-core/playwright](#accessibility-testing-mit-axe-coreplaywright)
-- [ARIA-Role-basierte Lokalisierung](#aria-role-basierte-lokalisierung)
+- [Historical API: snapshot(options?)](#historical-api-snapshotoptions)
+- [Current alternative: page.ariaSnapshot()](#current-alternative-pageariasnapshot)
+- [Accessibility testing with @axe-core/playwright](#accessibility-testing-with-axe-coreplaywright)
+- [ARIA role based locating](#aria-role-based-locating)
 - [Manifest](#manifest)
 
 ## Status
 
-Die `Accessibility`-Klasse war bis Playwright v1.x ueber `page.accessibility`
-erreichbar und bot einen `snapshot()`-Befehl. Sie ist nicht mehr in der
-aktuellen stabilen API-Dokumentation enthalten.
+The `Accessibility` class was reachable via `page.accessibility` up to
+Playwright v1.x and offered a `snapshot()` command. It is no longer contained in the
+current stable API documentation.
 
-**Empfohlene Alternativen:**
-- `page.ariaSnapshot()` — gibt einen ARIA-basierten Snapshot des DOM-Baums zurueck
-- `page.getByRole()` — lokalisiert Elemente nach ARIA-Rolle und accessible name
-- `@axe-core/playwright` — vollstaendige Accessibility-Pruefung mit axe-Engine
+**Recommended alternatives:**
+- `page.ariaSnapshot()` — returns an ARIA-based snapshot of the DOM tree
+- `page.getByRole()` — locates elements by ARIA role and accessible name
+- `@axe-core/playwright` — complete accessibility check with the axe engine
 
 ---
 
-## Historische API: snapshot(options?)
+## Historical API: snapshot(options?)
 
-Die Methode war ueber `page.accessibility.snapshot()` aufrufbar und gab
-einen vereinfachten Accessibility-Baum der Seite zurueck.
+The method was callable via `page.accessibility.snapshot()` and returned
+a simplified accessibility tree of the page.
 
-**Signatur (historisch):**
+**Signature (historical):**
 ```typescript
 page.accessibility.snapshot(options?: {
   interestingOnly?: boolean;
@@ -41,20 +41,20 @@ page.accessibility.snapshot(options?: {
 }): Promise<null | AccessibilityNode>
 ```
 
-**Parameter (historisch):**
+**Parameters (historical):**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.interestingOnly` | `boolean` | nein | `true` | Wenn `true`, werden nur "interessante" Knoten zurueckgegeben (d.h. Knoten mit semantischer Bedeutung) |
-| `options.root` | `ElementHandle` | nein | — | Wurzelelement fuer den Snapshot; standardmaessig gesamte Seite |
+| `options.interestingOnly` | `boolean` | no | `true` | When `true`, only "interesting" nodes are returned (i.e. nodes with semantic meaning) |
+| `options.root` | `ElementHandle` | no | — | Root element for the snapshot; by default the entire page |
 
-**Rueckgabe (historisch):**
-`Promise<null | AccessibilityNode>` — ein Objekt mit `role`, `name`, `value`,
+**Returns (historical):**
+`Promise<null | AccessibilityNode>` — an object with `role`, `name`, `value`,
 `description`, `children` etc.
 
 ---
 
-## Aktuelle Alternative: page.ariaSnapshot()
+## Current alternative: page.ariaSnapshot()
 
 ```typescript
 page.ariaSnapshot(options?: {
@@ -63,20 +63,20 @@ page.ariaSnapshot(options?: {
 }): Promise<string>
 ```
 
-Gibt einen ARIA-Snapshot als lesbaren String zurueck:
+Returns an ARIA snapshot as a readable string:
 
 ```javascript
 const snapshot = await page.ariaSnapshot();
 console.log(snapshot);
-// Ausgabe:
-// - heading "Willkommen" [level=1]
-// - button "Anmelden"
-// - textbox "E-Mail"
+// Output:
+// - heading "Welcome" [level=1]
+// - button "Sign in"
+// - textbox "Email"
 ```
 
 ---
 
-## Accessibility-Testing mit @axe-core/playwright
+## Accessibility testing with @axe-core/playwright
 
 ```javascript
 const { chromium } = require('playwright');
@@ -96,41 +96,41 @@ await browser.close();
 
 ---
 
-## ARIA-Role-basierte Lokalisierung
+## ARIA role based locating
 
 ```javascript
-// Button nach accessible name finden
-await page.getByRole('button', { name: 'Absenden' }).click();
+// Find a button by accessible name
+await page.getByRole('button', { name: 'Submit' }).click();
 
-// Navigationslink
-await page.getByRole('link', { name: 'Startseite' }).click();
+// Navigation link
+await page.getByRole('link', { name: 'Home' }).click();
 
-// Formularfeld nach Label
-await page.getByRole('textbox', { name: 'E-Mail-Adresse' }).fill('test@example.com');
+// Form field by label
+await page.getByRole('textbox', { name: 'Email address' }).fill('test@example.com');
 
-// Heading-Text pruefen
-await expect(page.getByRole('heading', { level: 1 })).toHaveText('Willkommen');
+// Check heading text
+await expect(page.getByRole('heading', { level: 1 })).toHaveText('Welcome');
 ```
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 1 (historisch, nicht mehr verfuegbar) |
+| Methods  | 1 (historical, no longer available) |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** Die separate `Accessibility`-Klasse existiert in der aktuellen
-Playwright-API nicht mehr als eigenstaendige Doku-Seite. `page.ariaSnapshot()`
-ist der moderne Ersatz fuer strukturelle Accessibility-Pruefungen. Fuer
-umfassende WCAG-Compliance-Tests wird `@axe-core/playwright` empfohlen.
-`page.getByRole()` mit `accessible name` ist die empfohlene Strategie fuer
-Accessibility-bewusstes Element-Targeting in Tests.
+**Conclusion:** The separate `Accessibility` class no longer exists in the current
+Playwright API as a documentation page of its own. `page.ariaSnapshot()`
+is the modern replacement for structural accessibility checks. For
+comprehensive WCAG compliance tests, `@axe-core/playwright` is recommended.
+`page.getByRole()` with `accessible name` is the recommended strategy for
+accessibility-aware element targeting in tests.
 
 ---
 
-*Hinweis: Die Seite https://playwright.dev/docs/api/class-accessibility
-existiert nicht mehr in den aktuellen stabilen Playwright-Docs (Stand 2024/2025).
-Alternativen: https://playwright.dev/docs/api/class-page#page-aria-snapshot*
+*Note: the page https://playwright.dev/docs/api/class-accessibility
+no longer exists in the current stable Playwright docs (as of 2024/2025).
+Alternatives: https://playwright.dev/docs/api/class-page#page-aria-snapshot*

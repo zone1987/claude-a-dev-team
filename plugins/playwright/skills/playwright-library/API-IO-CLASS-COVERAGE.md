@@ -1,56 +1,56 @@
 # Playwright — class: Coverage
 
-> **Manifest:** 4 Methoden, 0 Properties, 0 Events.
-> Erfasst JavaScript- und CSS-Codeabdeckung waehrend der Seitenausfuehrung.
-> **Nur in Chromium-basierten Browsern verfuegbar.** Zugriff: `page.coverage`.
+> **Manifest:** 4 methods, 0 properties, 0 events.
+> Captures JavaScript and CSS code coverage during page execution.
+> **Only available in Chromium-based browsers.** Access: `page.coverage`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Vollstaendiges Beispiel (Istanbul-Integration)](#vollstaendiges-beispiel-istanbul-integration)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Complete example (Istanbul integration)](#complete-example-istanbul-integration)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Coverage` sammelt Informationen darueber, welche Teile von JavaScript- und
-CSS-Code waehrend einer Sitzung tatsaechlich ausgefuehrt wurden. Die
-gesammelten Daten koennen mit Tools wie `v8-to-istanbul` in Istanbul/NYC-
-kompatible Coverage-Berichte konvertiert werden.
+`Coverage` collects information about which parts of JavaScript and
+CSS code were actually executed during a session. The
+collected data can be converted with tools such as `v8-to-istanbul` into
+Istanbul/NYC-compatible coverage reports.
 
-**Wichtig:** Coverage ist ausschliesslich in Chromium/Chrome verfuegbar.
-In Firefox und WebKit sind diese APIs nicht unterstuetzt.
+**Important:** Coverage is available exclusively in Chromium/Chrome.
+In Firefox and WebKit these APIs are not supported.
 
 ---
 
-## Methoden
+## Methods
 
 ### coverage.startCSSCoverage(options?)
 
-Startet die CSS-Coverage-Erfassung.
+Starts CSS coverage capturing.
 
-**Signatur:**
+**Signature:**
 ```typescript
 coverage.startCSSCoverage(options?: {
   resetOnNavigation?: boolean;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.resetOnNavigation` | `boolean` | nein | `true` | Ob die Coverage bei jeder Navigation zurueckgesetzt wird |
+| `options.resetOnNavigation` | `boolean` | no | `true` | Whether the coverage is reset on each navigation |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.coverage.startCSSCoverage({ resetOnNavigation: false });
 await page.goto('https://example.com');
-// ... Interaktionen ...
+// ... interactions ...
 const coverage = await page.coverage.stopCSSCoverage();
 ```
 
@@ -58,9 +58,9 @@ const coverage = await page.coverage.stopCSSCoverage();
 
 ### coverage.startJSCoverage(options?)
 
-Startet die JavaScript-Coverage-Erfassung.
+Starts JavaScript coverage capturing.
 
-**Signatur:**
+**Signature:**
 ```typescript
 coverage.startJSCoverage(options?: {
   reportAnonymousScripts?: boolean;
@@ -68,16 +68,16 @@ coverage.startJSCoverage(options?: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.reportAnonymousScripts` | `boolean` | nein | `false` | Anonyme Skripte (via `eval` oder `new Function`) erfassen; erhalten die URL `__playwright_evaluation_script__` |
-| `options.resetOnNavigation` | `boolean` | nein | `true` | Ob die Coverage bei jeder Navigation zurueckgesetzt wird |
+| `options.reportAnonymousScripts` | `boolean` | no | `false` | Capture anonymous scripts (via `eval` or `new Function`); they get the URL `__playwright_evaluation_script__` |
+| `options.resetOnNavigation` | `boolean` | no | `true` | Whether the coverage is reset on each navigation |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.coverage.startJSCoverage({ reportAnonymousScripts: true });
 ```
@@ -86,9 +86,9 @@ await page.coverage.startJSCoverage({ reportAnonymousScripts: true });
 
 ### coverage.stopCSSCoverage()
 
-Beendet die CSS-Coverage-Erfassung und gibt die gesammelten Daten zurueck.
+Stops CSS coverage capturing and returns the collected data.
 
-**Signatur:**
+**Signature:**
 ```typescript
 coverage.stopCSSCoverage(): Promise<Array<{
   url: string;
@@ -100,29 +100,29 @@ coverage.stopCSSCoverage(): Promise<Array<{
 }>>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<Array<CSSCoverageEntry>>` mit:
+**Returns:** `Promise<Array<CSSCoverageEntry>>` with:
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `url` | `string` | URL des Stylesheets |
-| `text` | `string` (optional) | Stylesheet-Inhalt (falls verfuegbar) |
-| `ranges` | `Array<{start, end}>` | Genutzte Bereiche (sortiert, nicht ueberlappend) |
-| `ranges[].start` | `number` | Inklusiver Text-Offset (Zeichen) |
-| `ranges[].end` | `number` | Exklusiver Text-Offset (Zeichen) |
+| `url` | `string` | URL of the stylesheet |
+| `text` | `string` (optional) | Stylesheet content (if available) |
+| `ranges` | `Array<{start, end}>` | Used ranges (sorted, non-overlapping) |
+| `ranges[].start` | `number` | Inclusive text offset (characters) |
+| `ranges[].end` | `number` | Exclusive text offset (characters) |
 
-**Hinweis:** Dynamisch injizierte Styles ohne `sourceURL` werden nicht
-erfasst.
+**Note:** Dynamically injected styles without a `sourceURL` are not
+captured.
 
-**Beispiel:**
+**Example:**
 ```javascript
 const cssCoverage = await page.coverage.stopCSSCoverage();
 for (const entry of cssCoverage) {
   const totalChars = entry.text?.length ?? 0;
   const usedChars = entry.ranges.reduce((acc, r) => acc + (r.end - r.start), 0);
   const pct = totalChars > 0 ? (usedChars / totalChars * 100).toFixed(1) : 'N/A';
-  console.log(`${entry.url}: ${pct}% CSS genutzt`);
+  console.log(`${entry.url}: ${pct}% CSS used`);
 }
 ```
 
@@ -130,10 +130,10 @@ for (const entry of cssCoverage) {
 
 ### coverage.stopJSCoverage()
 
-Beendet die JavaScript-Coverage-Erfassung und gibt die Daten im V8-Format
-zurueck.
+Stops JavaScript coverage capturing and returns the data in V8
+format.
 
-**Signatur:**
+**Signature:**
 ```typescript
 coverage.stopJSCoverage(): Promise<Array<{
   url: string;
@@ -151,29 +151,29 @@ coverage.stopJSCoverage(): Promise<Array<{
 }>>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<Array<JSCoverageEntry>>` mit:
+**Returns:** `Promise<Array<JSCoverageEntry>>` with:
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `url` | `string` | Skript-URL |
-| `scriptId` | `string` | Interne Skript-ID des Browsers |
-| `source` | `string` (optional) | Skript-Quellcode (falls verfuegbar) |
-| `functions` | `Array<...>` | V8 Coverage-Daten pro Funktion |
-| `functions[].functionName` | `string` | Funktionsname (leer fuer Anonym) |
-| `functions[].isBlockCoverage` | `boolean` | Ob Block-Coverage oder Zeilen-Coverage |
-| `functions[].ranges` | `Array<...>` | Abdeckungs-Bereiche |
-| `functions[].ranges[].count` | `number` | Ausfuehrungs-Zaehler |
-| `functions[].ranges[].startOffset` | `number` | Start-Offset im Quellcode |
-| `functions[].ranges[].endOffset` | `number` | End-Offset im Quellcode |
+| `url` | `string` | Script URL |
+| `scriptId` | `string` | Internal script ID of the browser |
+| `source` | `string` (optional) | Script source code (if available) |
+| `functions` | `Array<...>` | V8 coverage data per function |
+| `functions[].functionName` | `string` | Function name (empty for anonymous) |
+| `functions[].isBlockCoverage` | `boolean` | Whether block coverage or line coverage |
+| `functions[].ranges` | `Array<...>` | Coverage ranges |
+| `functions[].ranges[].count` | `number` | Execution counter |
+| `functions[].ranges[].startOffset` | `number` | Start offset in the source code |
+| `functions[].ranges[].endOffset` | `number` | End offset in the source code |
 
-**Hinweis:** Anonyme Skripte werden ausgeschlossen, sofern
-`reportAnonymousScripts: true` nicht gesetzt wurde.
+**Note:** Anonymous scripts are excluded unless
+`reportAnonymousScripts: true` was set.
 
 ---
 
-## Vollstaendiges Beispiel (Istanbul-Integration)
+## Complete example (Istanbul integration)
 
 ```javascript
 const { chromium } = require('playwright');
@@ -185,7 +185,7 @@ const v8toIstanbul = require('v8-to-istanbul');
 
   await page.coverage.startJSCoverage();
   await page.goto('https://chromium.org');
-  // ... Interaktionen ...
+  // ... interactions ...
   const jsCoverage = await page.coverage.stopJSCoverage();
 
   for (const entry of jsCoverage) {
@@ -203,18 +203,18 @@ const v8toIstanbul = require('v8-to-istanbul');
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 4      |
+| Methods   | 4      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** Die Coverage-API liefert V8-native Abdeckungsdaten, die fuer moderne
-Code-Coverage-Reports geeignet sind. Fuer CSS-Optimierungen (unused CSS
-entfernen) ist `stopCSSCoverage()` besonders wertvoll. Die Daten muessen
-extern (z.B. via `v8-to-istanbul`) konvertiert werden, da Playwright selbst
-keine Coverage-Reports generiert.
+**Conclusion:** The coverage API delivers V8-native coverage data suitable for modern
+code-coverage reports. For CSS optimizations (removing unused CSS)
+`stopCSSCoverage()` is particularly valuable. The data must be
+converted externally (e.g. via `v8-to-istanbul`), since Playwright itself
+generates no coverage reports.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-coverage*
+*Source: https://playwright.dev/docs/api/class-coverage*

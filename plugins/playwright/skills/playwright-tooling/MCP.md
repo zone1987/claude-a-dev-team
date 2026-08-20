@@ -1,5 +1,5 @@
 # playwright-mcp
 
-Playwright MCP-Server: Installation, Konfiguration, Capabilities, Profil-Modi, Clients, Snapshot-Prinzip, Vision-Modus.
+Playwright MCP server: installation, configuration, capabilities, profile modes, clients, snapshot principle, vision mode.
 
-Vollständige Referenz mit allen Optionen/Parametern/Tools: `MCP-DETAIL.md`.
+Complete reference with all options/parameters/tools: `MCP-DETAIL.md`.

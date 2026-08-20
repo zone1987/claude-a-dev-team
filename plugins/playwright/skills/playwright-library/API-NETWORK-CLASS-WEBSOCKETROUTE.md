@@ -1,17 +1,17 @@
 # class-websocketroute
 
-`WebSocketRoute` ermoeglicht das aktive Intercepten, Modifizieren und Mocken von WebSocket-Verbindungen. Instanzen werden als Parameter an Handler uebergeben, die via `page.routeWebSocket()` oder `browserContext.routeWebSocket()` registriert wurden.
+`WebSocketRoute` allows actively intercepting, modifying and mocking WebSocket connections. Instances are passed as parameters to handlers registered via `page.routeWebSocket()` or `browserContext.routeWebSocket()`.
 
-Jede `WebSocketRoute`-Instanz repraesentiert die **Seite der Page** (Browser-seitig). Wird `connectToServer()` aufgerufen, entsteht eine zweite Instanz fuer die **Server-Seite**.
+Every `WebSocketRoute` instance represents the **page side** (browser side). When `connectToServer()` is called, a second instance is created for the **server side**.
 
-Methoden: 6 | Properties: 0 | Events: 0
+Methods: 6 | Properties: 0 | Events: 0
 
 ---
 
 ## Contents
 
 - [Methods](#methods)
-- [Verwendungsmuster](#verwendungsmuster)
+- [Usage patterns](#usage-patterns)
 - [Manifest](#manifest)
 
 ## Methods
@@ -22,20 +22,20 @@ Methoden: 6 | Properties: 0 | Events: 0
 webSocketRoute.close([options]): Promise<void>
 ```
 
-Schliesst eine Seite der WebSocket-Verbindung (Page-seitig oder Server-seitig, je nachdem auf welcher Instanz aufgerufen).
+Closes one side of the WebSocket connection (page side or server side, depending on which instance it is called on).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.code` | number | No | — | Close-Code gemaess WebSocket-Standard (z.B. 1000 = normal closure, 1001 = going away) |
-| `options.reason` | string | No | — | Schliessungsgrund als String |
+| `options.code` | number | No | — | Close code according to the WebSocket standard (e.g. 1000 = normal closure, 1001 = going away) |
+| `options.reason` | string | No | — | Reason for closing, as a string |
 
 **Returns:** `Promise<void>`
 
 ```js
 await page.routeWebSocket('**/ws', ws => {
-  // Verbindung sofort schliessen
+  // Close the connection immediately
   ws.close({ code: 1001, reason: 'Maintenance' });
 });
 ```
@@ -48,27 +48,27 @@ await page.routeWebSocket('**/ws', ws => {
 webSocketRoute.connectToServer(): WebSocketRoute
 ```
 
-Verbindet sich mit dem echten WebSocket-Server. Gibt eine neue `WebSocketRoute`-Instanz zurueck, die die **Server-Seite** repraesentiert.
+Connects to the real WebSocket server. Returns a new `WebSocketRoute` instance representing the **server side**.
 
-Wenn diese Methode aufgerufen wird, werden Nachrichten automatisch zwischen Page und Server weitergeleitet, es sei denn, es werden `onMessage()`-Handler fuer Interception registriert.
+When this method is called, messages are forwarded automatically between page and server, unless `onMessage()` handlers are registered for interception.
 
-**Returns:** `WebSocketRoute` — Server-seitige Route-Instanz
+**Returns:** `WebSocketRoute` — server-side route instance
 
 ```js
 await page.routeWebSocket('**/ws', ws => {
   const server = ws.connectToServer();
 
-  // Nachrichten von der Page zum Server intercepten
+  // Intercept messages from the page to the server
   ws.onMessage(msg => {
     console.log('Page -> Server:', msg);
-    server.send(msg); // manuell weiterleiten
+    server.send(msg); // forward manually
   });
 
-  // Nachrichten vom Server zur Page intercepten
+  // Intercept messages from the server to the page
   server.onMessage(msg => {
     const data = JSON.parse(msg);
-    data.modified = true; // modifizieren
-    ws.send(JSON.stringify(data)); // an Page senden
+    data.modified = true; // modify
+    ws.send(JSON.stringify(data)); // send to the page
   });
 });
 ```
@@ -81,20 +81,20 @@ await page.routeWebSocket('**/ws', ws => {
 webSocketRoute.onClose(handler): void
 ```
 
-Registriert einen Handler fuer das Schliessen der WebSocket-Verbindung. Wenn ein Handler gesetzt wird, wird das Standard-Weiterleitungsverhalten fuer Close-Events deaktiviert.
+Registers a handler for the closing of the WebSocket connection. When a handler is set, the default forwarding behavior for close events is disabled.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `handler` | Function | Yes | — | Erhaelt optionalen Close-Code (number) und Reason (string) |
+| `handler` | Function | Yes | — | Receives an optional close code (number) and reason (string) |
 
 **Returns:** `void`
 
 ```js
 ws.onClose((code, reason) => {
-  console.log(`Geschlossen: Code=${code}, Reason=${reason}`);
-  // Manuell auf Server-Seite schliessen wenn noetig:
+  console.log(`Closed: code=${code}, reason=${reason}`);
+  // Close the server side manually if needed:
   // serverWs.close({ code, reason });
 });
 ```
@@ -107,30 +107,30 @@ ws.onClose((code, reason) => {
 webSocketRoute.onMessage(handler): void
 ```
 
-Registriert einen Handler fuer eingehende Nachrichten. Deaktiviert das automatische Weiterleiten von Nachrichten — der Handler muss selbst entscheiden, ob und wie die Nachricht weitergeleitet wird.
+Registers a handler for incoming messages. Disables automatic forwarding of messages — the handler itself must decide whether and how the message is forwarded.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `handler` | Function | Yes | — | Erhaelt die Nachricht als `string` (Text-Frame) oder `Buffer` (Binaer-Frame) |
+| `handler` | Function | Yes | — | Receives the message as a `string` (text frame) or `Buffer` (binary frame) |
 
 **Returns:** `void`
 
 ```js
-// Auf Page-seitiger Route: Nachrichten von der Page
+// On the page-side route: messages from the page
 ws.onMessage(msg => {
   const data = JSON.parse(msg);
   if (data.type === 'ping') {
-    ws.send(JSON.stringify({ type: 'pong' })); // direkte Antwort
+    ws.send(JSON.stringify({ type: 'pong' })); // direct answer
   } else {
-    server.send(msg); // weiterleiten
+    server.send(msg); // forward
   }
 });
 
-// Auf Server-seitiger Route: Nachrichten vom Server
+// On the server-side route: messages from the server
 server.onMessage(msg => {
-  ws.send(msg); // unmodifiziert an Page
+  ws.send(msg); // unmodified to the page
 });
 ```
 
@@ -142,16 +142,16 @@ server.onMessage(msg => {
 webSocketRoute.protocols(): Array<string>
 ```
 
-Gibt die angeforderten WebSocket-Subprotokolle zurueck (entspricht dem `Sec-WebSocket-Protocol`-Header).
+Returns the requested WebSocket subprotocols (corresponds to the `Sec-WebSocket-Protocol` header).
 
-**Returns:** `Array<string>` — Leeres Array wenn keine Protokolle angefordert
+**Returns:** `Array<string>` — empty array when no protocols are requested
 
 ```js
 const protocols = ws.protocols();
 if (protocols.includes('chat.v2')) {
-  // v2-Protokoll-Handling
+  // v2 protocol handling
 } else {
-  // Fallback auf v1
+  // fall back to v1
 }
 ```
 
@@ -163,21 +163,21 @@ if (protocols.includes('chat.v2')) {
 webSocketRoute.send(message): void
 ```
 
-Sendet eine Nachricht ueber die WebSocket-Verbindung. Auf der **Page-seitigen** Route: Nachricht wird an die Page gesendet. Auf der **Server-seitigen** Route: Nachricht wird an den echten Server gesendet.
+Sends a message over the WebSocket connection. On the **page-side** route: the message is sent to the page. On the **server-side** route: the message is sent to the real server.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `message` | string \| Buffer | Yes | — | Zu sendende Nachricht; String fuer Text-Frame, Buffer fuer Binaer-Frame |
+| `message` | string \| Buffer | Yes | — | Message to send; string for a text frame, buffer for a binary frame |
 
 **Returns:** `void`
 
 ```js
-// Text-Nachricht
+// Text message
 ws.send(JSON.stringify({ type: 'update', data: { count: 42 } }));
 
-// Binaer-Nachricht
+// Binary message
 ws.send(Buffer.from([0x01, 0x02, 0x03]));
 ```
 
@@ -189,7 +189,7 @@ ws.send(Buffer.from([0x01, 0x02, 0x03]));
 webSocketRoute.url(): string
 ```
 
-Gibt die URL des WebSocket zurueck, der in der Page erstellt wurde.
+Returns the URL of the WebSocket that was created in the page.
 
 **Returns:** `string`
 
@@ -199,9 +199,9 @@ console.log('WebSocket URL:', ws.url());
 
 ---
 
-## Verwendungsmuster
+## Usage patterns
 
-### Pattern 1: Vollstaendiges Mocken (kein echter Server)
+### Pattern 1: Complete mocking (no real server)
 
 ```js
 await page.routeWebSocket('**/ws', ws => {
@@ -214,16 +214,16 @@ await page.routeWebSocket('**/ws', ws => {
 });
 ```
 
-### Pattern 2: Transparent Intercepten (echter Server)
+### Pattern 2: Transparent interception (real server)
 
 ```js
 await page.routeWebSocket('**/ws', ws => {
   const server = ws.connectToServer();
-  // Ohne onMessage: automatisches Durchleiten in beide Richtungen
+  // Without onMessage: automatic passthrough in both directions
 });
 ```
 
-### Pattern 3: Server-Nachrichten modifizieren
+### Pattern 3: Modify server messages
 
 ```js
 await page.routeWebSocket('**/ws', ws => {
@@ -231,7 +231,7 @@ await page.routeWebSocket('**/ws', ws => {
 
   server.onMessage(msg => {
     const data = JSON.parse(msg);
-    // Sensible Felder maskieren
+    // Mask sensitive fields
     if (data.creditCard) {
       data.creditCard = '****';
     }
@@ -240,7 +240,7 @@ await page.routeWebSocket('**/ws', ws => {
 });
 ```
 
-### Pattern 4: Server-Push simulieren
+### Pattern 4: Simulate server push
 
 ```js
 let wsRoute;
@@ -251,8 +251,8 @@ await page.routeWebSocket('**/ws', ws => {
 
 await page.goto('/dashboard');
 
-// Von aussen eine Nachricht injecten
-await page.evaluate(() => {}); // sicherstellen dass WS verbunden ist
+// Inject a message from the outside
+await page.evaluate(() => {}); // make sure the WS is connected
 wsRoute.send(JSON.stringify({ type: 'notification', message: 'New order!' }));
 ```
 
@@ -266,7 +266,7 @@ wsRoute.send(JSON.stringify({ type: 'notification', message: 'New order!' }));
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `WebSocketRoute` ist das maechtigue Werkzeug fuer WebSocket-Tests. `connectToServer()` aktiviert Transparent-Mode mit optionaler Interception via `onMessage()`. Ohne `connectToServer()` wird die Page komplett gemockt — kein echter Server wird kontaktiert. `send()` ist die zentrale Methode zum Einschleusen von Nachrichten von aussen.
+**Conclusion:** `WebSocketRoute` is the powerful tool for WebSocket tests. `connectToServer()` activates transparent mode with optional interception via `onMessage()`. Without `connectToServer()`, the page is mocked completely — no real server is contacted. `send()` is the central method for injecting messages from the outside.
 
 ---
 

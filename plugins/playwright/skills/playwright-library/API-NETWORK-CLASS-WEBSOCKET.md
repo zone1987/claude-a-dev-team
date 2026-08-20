@@ -1,10 +1,10 @@
 # class-websocket
 
-`WebSocket` repraesentiert eine WebSocket-Verbindung, die von einer Page geoeffnet wurde. Instanzen werden ueber das `page.on('websocket')` Event erhalten. Das Objekt ist read-only und erlaubt das Beobachten von WebSocket-Nachrichten.
+`WebSocket` represents a WebSocket connection opened by a page. Instances are obtained through the `page.on('websocket')` event. The object is read-only and allows observing WebSocket messages.
 
-Fuer aktives Mocken/Intercepten von WebSocket-Verbindungen: `page.routeWebSocket()` verwenden (liefert `WebSocketRoute`).
+For actively mocking/intercepting WebSocket connections: use `page.routeWebSocket()` (returns `WebSocketRoute`).
 
-Methoden: 3 | Properties: 0 | Events: 4
+Methods: 3 | Properties: 0 | Events: 4
 
 ---
 
@@ -12,7 +12,7 @@ Methoden: 3 | Properties: 0 | Events: 4
 
 - [Methods](#methods)
 - [Events](#events)
-- [Vollstaendiges Observing-Beispiel](#vollstaendiges-observing-beispiel)
+- [Complete observing example](#complete-observing-example)
 - [Manifest](#manifest)
 
 ## Methods
@@ -23,13 +23,13 @@ Methoden: 3 | Properties: 0 | Events: 4
 webSocket.isClosed(): boolean
 ```
 
-Gibt `true` zurueck wenn die WebSocket-Verbindung geschlossen wurde.
+Returns `true` when the WebSocket connection has been closed.
 
 **Returns:** `boolean`
 
 ```js
 if (webSocket.isClosed()) {
-  console.log('WebSocket ist geschlossen');
+  console.log('WebSocket is closed');
 }
 ```
 
@@ -41,13 +41,13 @@ if (webSocket.isClosed()) {
 webSocket.url(): string
 ```
 
-Gibt die URL des WebSocket-Servers zurueck.
+Returns the URL of the WebSocket server.
 
 **Returns:** `string`
 
 ```js
 console.log('WebSocket URL:', webSocket.url());
-// z.B. "wss://example.com/socket"
+// e.g. "wss://example.com/socket"
 ```
 
 ---
@@ -58,21 +58,21 @@ console.log('WebSocket URL:', webSocket.url());
 await webSocket.waitForEvent(event[, optionsOrPredicate]): Promise<Object>
 ```
 
-Wartet auf ein Event und gibt dessen Daten zurueck. Nuetzlich fuer die synchrone Behandlung von WebSocket-Ereignissen in Tests.
+Waits for an event and returns its data. Useful for handling WebSocket events synchronously in tests.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `event` | string | Yes | — | Event-Name (`"framereceived"`, `"framesent"`, `"close"`, `"socketerror"`) |
-| `optionsOrPredicate` | Function \| Object | No | — | Praedikat-Funktion oder Options-Objekt |
-| `optionsOrPredicate.predicate` | Function | No | — | Evaluiert Event-Daten; wartet weiter wenn `false` |
-| `optionsOrPredicate.timeout` | number | No | 0 | Timeout in ms; `0` = kein Timeout |
+| `event` | string | Yes | — | Event name (`"framereceived"`, `"framesent"`, `"close"`, `"socketerror"`) |
+| `optionsOrPredicate` | Function \| Object | No | — | Predicate function or options object |
+| `optionsOrPredicate.predicate` | Function | No | — | Evaluates event data; keeps waiting when `false` |
+| `optionsOrPredicate.timeout` | number | No | 0 | Timeout in ms; `0` = no timeout |
 
-**Returns:** `Promise<Object>` — Event-Daten
+**Returns:** `Promise<Object>` — event data
 
 ```js
-// Auf spezifische Nachricht warten
+// Wait for a specific message
 const wsPromise = page.waitForEvent('websocket');
 await page.goto('/chat');
 const ws = await wsPromise;
@@ -90,13 +90,13 @@ console.log('Received:', payload);
 
 ### event: 'close'
 
-Wird ausgeloest wenn die WebSocket-Verbindung geschlossen wird.
+Fired when the WebSocket connection is closed.
 
-**Event data:** `WebSocket` — die WebSocket-Instanz selbst
+**Event data:** `WebSocket` — the WebSocket instance itself
 
 ```js
 ws.on('close', (ws) => {
-  console.log('WebSocket geschlossen:', ws.url());
+  console.log('WebSocket closed:', ws.url());
 });
 ```
 
@@ -104,19 +104,19 @@ ws.on('close', (ws) => {
 
 ### event: 'framereceived'
 
-Wird ausgeloest wenn der WebSocket eine eingehende Nachricht empfaengt.
+Fired when the WebSocket receives an incoming message.
 
-**Event data:** Object mit:
+**Event data:** object with:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `payload` | string \| Buffer | Nachrichteninhalt; String fuer Text-Frames, Buffer fuer Binaer-Frames |
+| `payload` | string \| Buffer | Message content; string for text frames, buffer for binary frames |
 
 ```js
 ws.on('framereceived', ({ payload }) => {
   if (typeof payload === 'string') {
     const data = JSON.parse(payload);
-    console.log('Empfangen:', data);
+    console.log('Received:', data);
   }
 });
 ```
@@ -125,17 +125,17 @@ ws.on('framereceived', ({ payload }) => {
 
 ### event: 'framesent'
 
-Wird ausgeloest wenn der WebSocket eine ausgehende Nachricht sendet.
+Fired when the WebSocket sends an outgoing message.
 
-**Event data:** Object mit:
+**Event data:** object with:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `payload` | string \| Buffer | Gesendeter Nachrichteninhalt |
+| `payload` | string \| Buffer | Sent message content |
 
 ```js
 ws.on('framesent', ({ payload }) => {
-  console.log('Gesendet:', payload);
+  console.log('Sent:', payload);
 });
 ```
 
@@ -143,27 +143,27 @@ ws.on('framesent', ({ payload }) => {
 
 ### event: 'socketerror'
 
-Wird ausgeloest wenn ein Fehler im WebSocket auftritt.
+Fired when an error occurs in the WebSocket.
 
-**Event data:** `string` — Fehlermeldung
+**Event data:** `string` — error message
 
 ```js
 ws.on('socketerror', (error) => {
-  console.error('WebSocket-Fehler:', error);
+  console.error('WebSocket error:', error);
 });
 ```
 
 ---
 
-## Vollstaendiges Observing-Beispiel
+## Complete observing example
 
 ```js
-test('WebSocket-Kommunikation beobachten', async ({ page }) => {
+test('observe WebSocket communication', async ({ page }) => {
   const messages = [];
 
-  // WebSocket abfangen
+  // Intercept the WebSocket
   page.on('websocket', ws => {
-    console.log('WebSocket geoeffnet:', ws.url());
+    console.log('WebSocket opened:', ws.url());
 
     ws.on('framereceived', ({ payload }) => {
       messages.push({ direction: 'in', payload });
@@ -183,13 +183,13 @@ test('WebSocket-Kommunikation beobachten', async ({ page }) => {
   await page.locator('#message').fill('Hello');
   await page.locator('#send').click();
 
-  // Auf Antwort warten
+  // Wait for the answer
   const ws = await page.waitForEvent('websocket');
   await ws.waitForEvent('framereceived', {
     predicate: ({ payload }) => payload.includes('echo'),
   });
 
-  expect(messages).toHaveLength(2); // gesendet + empfangen
+  expect(messages).toHaveLength(2); // sent + received
 });
 ```
 
@@ -203,7 +203,7 @@ test('WebSocket-Kommunikation beobachten', async ({ page }) => {
 | Properties | 0 |
 | Events | 4 |
 
-**Fazit:** `WebSocket` ist ein read-only Beobachter fuer WebSocket-Verbindungen. Die Events `framereceived` und `framesent` sind die Kern-Werkzeuge fuer das Monitoring. Fuer aktives Intercepten und Modifizieren von WebSocket-Verbindungen muss `WebSocketRoute` (via `page.routeWebSocket()`) verwendet werden.
+**Conclusion:** `WebSocket` is a read-only observer for WebSocket connections. The events `framereceived` and `framesent` are the core tools for monitoring. For actively intercepting and modifying WebSocket connections, `WebSocketRoute` (via `page.routeWebSocket()`) must be used.
 
 ---
 

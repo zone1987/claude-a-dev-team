@@ -1,7 +1,7 @@
-# Playwright MCP: Vollstaendige Tool-Referenz
+# Playwright MCP: Complete Tool Reference
 
-Alle Tools sind nach Capability-Gruppe organisiert. Core-Tools sind immer verfuegbar;
-weitere Gruppen muessen explizit aktiviert werden (`--caps=...`).
+All tools are organised by capability group. Core tools are always available;
+further groups must be enabled explicitly (`--caps=...`).
 
 ---
 
@@ -12,79 +12,79 @@ weitere Gruppen muessen explizit aktiviert werden (`--caps=...`).
 - [Core: Interaction](#core-interaction)
 - [Core: Forms](#core-forms)
 - [Core: Screenshots](#core-screenshots)
-- [Core: Keyboard & Maus](#core-keyboard-maus)
+- [Core: Keyboard & Mouse](#core-keyboard-mouse)
 - [Core: Tabs](#core-tabs)
-- [Core: Dialoge](#core-dialoge)
-- [Core: Wartebedingungen](#core-wartebedingungen)
+- [Core: Dialogs](#core-dialogs)
+- [Core: Wait conditions](#core-wait-conditions)
 - [Core: Console](#core-console)
 - [Core: File Upload](#core-file-upload)
-- [Code-Ausfuehrung](#code-ausfuehrung)
+- [Code execution](#code-execution)
 - [Network](#network)
 - [Storage](#storage)
 - [Testing](#testing)
 - [Devtools: Tracing](#devtools-tracing)
 - [Devtools: Video](#devtools-video)
 - [PDF](#pdf)
-- [Vollstaendige Tool-Uebersicht](#vollstaendige-tool-uebersicht)
-- [Quellen](#quellen)
+- [Complete tool overview](#complete-tool-overview)
+- [Source](#source)
 
 ## Core: Navigation
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_navigate`
 
-Navigiert zu einer URL im aktuellen Tab.
+Navigates to a URL in the current tab.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `url` | string | Ja | Vollstaendige URL mit Protokoll |
+| `url` | string | Yes | Complete URL including protocol |
 
 ```
 browser_navigate { url: "https://demo.playwright.dev/todomvc" }
 ```
 
-Gibt Accessibility-Snapshot der geladenen Seite zurueck.
+Returns an accessibility snapshot of the loaded page.
 
 ---
 
 ### `browser_navigate_back`
 
-Geht in der Browser-Historie zurueck.
+Goes back in the browser history.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| — | — | — | Keine Parameter |
+| — | — | — | No parameters |
 
 ---
 
 ### `browser_navigate_forward`
 
-Geht in der Browser-Historie vorwaerts.
+Goes forward in the browser history.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| — | — | — | Keine Parameter |
+| — | — | — | No parameters |
 
 ---
 
 ### `browser_reload`
 
-Laedt die aktuelle Seite neu.
+Reloads the current page.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| — | — | — | Keine Parameter |
+| — | — | — | No parameters |
 
 ---
 
 ### `browser_close`
 
-Schliesst den aktuellen Tab und den Browser.
+Closes the current tab and the browser.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| — | — | — | Keine Parameter |
+| — | — | — | No parameters |
 
 ---
 
@@ -92,27 +92,27 @@ Schliesst den aktuellen Tab und den Browser.
 
 ### `browser_snapshot`
 
-Nimmt einen Accessibility-Snapshot der aktuellen Seite auf.
+Takes an accessibility snapshot of the current page.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| — | — | — | Keine Parameter |
+| — | — | — | No parameters |
 
-Gibt strukturierten ARIA-Baum mit ref-IDs zurueck. Meiste Tools geben nach Aktionen automatisch einen Snapshot zurueck.
+Returns a structured ARIA tree with ref IDs. Most tools return a snapshot automatically after actions.
 
 ---
 
 ## Core: Interaction
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_click`
 
-Klickt ein Element auf der Seite.
+Clicks an element on the page.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Element-Referenz aus Snapshot (z.B. `e5`) |
+| `ref` | string | Yes | Element reference from the snapshot (e.g. `e5`) |
 
 ```
 browser_click { ref: "e10" }
@@ -122,33 +122,33 @@ browser_click { ref: "e10" }
 
 ### `browser_hover`
 
-Hovert ueber ein Element (Tooltips, Dropdown-Hover-States).
+Hovers over an element (tooltips, dropdown hover states).
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Element-Referenz aus Snapshot |
+| `ref` | string | Yes | Element reference from the snapshot |
 
 ---
 
 ### `browser_drag`
 
-Drag-and-Drop zwischen zwei Elementen.
+Drag and drop between two elements.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `startRef` | string | Ja | Zu ziehendes Element |
-| `endRef` | string | Ja | Ziel-Element |
+| `startRef` | string | Yes | Element to be dragged |
+| `endRef` | string | Yes | Target element |
 
 ---
 
 ### `browser_select_option`
 
-Waehlt eine oder mehrere Optionen in einem `<select>`-Dropdown.
+Selects one or more options in a `<select>` dropdown.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Das `<select>`-Element |
-| `values` | string[] | Ja | Werte oder Labels der Optionen |
+| `ref` | string | Yes | The `<select>` element |
+| `values` | string[] | Yes | Values or labels of the options |
 
 ```
 browser_select_option { ref: "e15", values: ["germany"] }
@@ -158,29 +158,29 @@ browser_select_option { ref: "e15", values: ["germany"] }
 
 ### `browser_resize`
 
-Aendert die Groesse des Browser-Fensters.
+Changes the size of the browser window.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `width` | number | Ja | Breite in Pixel |
-| `height` | number | Ja | Hoehe in Pixel |
+| `width` | number | Yes | Width in pixels |
+| `height` | number | Yes | Height in pixels |
 
 ---
 
 ## Core: Forms
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_type`
 
-Text in editierbare Elemente eingeben (input, textarea, contenteditable).
+Enter text into editable elements (input, textarea, contenteditable).
 
-| Parameter | Typ | Required | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |-----------|-----|----------|---------|--------------|
-| `ref` | string | Ja | — | Element-Referenz |
-| `text` | string | Ja | — | Einzugebender Text |
-| `submit` | boolean | Nein | false | Enter nach dem Tippen druecken |
-| `slowly` | boolean | Nein | false | Zeichen fuer Zeichen tippen (loest Key-Handler aus) |
+| `ref` | string | Yes | — | Element reference |
+| `text` | string | Yes | — | Text to be entered |
+| `submit` | boolean | No | false | Press Enter after typing |
+| `slowly` | boolean | No | false | Type character by character (triggers key handlers) |
 
 ```
 browser_type { ref: "e5", text: "Buy groceries", submit: true }
@@ -191,13 +191,13 @@ browser_type { ref: "e8", text: "search query", slowly: true }
 
 ### `browser_fill_form`
 
-Fuellt mehrere Formularfelder gleichzeitig (effizienter als einzelne type/click-Aufrufe).
+Fills several form fields at once (more efficient than individual type/click calls).
 
-Unterstuetzte Elemente: Textboxen, Checkboxen, Radio-Buttons, Comboboxen, Slider.
+Supported elements: textboxes, checkboxes, radio buttons, comboboxes, sliders.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `fields` | array | Ja | Array von `{ ref, value }`-Objekten |
+| `fields` | array | Yes | Array of `{ ref, value }` objects |
 
 ```
 browser_fill_form {
@@ -213,66 +213,66 @@ browser_fill_form {
 
 ### `browser_check`
 
-Aktiviert eine Checkbox oder einen Radio-Button.
+Activates a checkbox or a radio button.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Element-Referenz |
+| `ref` | string | Yes | Element reference |
 
 ---
 
 ### `browser_uncheck`
 
-Deaktiviert eine Checkbox.
+Deactivates a checkbox.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Element-Referenz |
+| `ref` | string | Yes | Element reference |
 
 ---
 
 ## Core: Screenshots
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_take_screenshot`
 
-Nimmt einen Screenshot der aktuellen Seite, eines Elements oder der gesamten scrollbaren Seite.
+Takes a screenshot of the current page, of an element or of the entire scrollable page.
 
-| Parameter | Typ | Required | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |-----------|-----|----------|---------|--------------|
-| `type` | string | Nein | `png` | Bildformat: `png` oder `jpeg` |
-| `ref` | string | Nein | — | Element-Referenz fuer Element-Screenshot |
-| `fullPage` | boolean | Nein | false | Gesamte scrollbare Seite aufnehmen |
+| `type` | string | No | `png` | Image format: `png` or `jpeg` |
+| `ref` | string | No | — | Element reference for an element screenshot |
+| `fullPage` | boolean | No | false | Capture the entire scrollable page |
 
 ```
-# Viewport-Screenshot
+# Viewport screenshot
 browser_take_screenshot {}
 
-# Element-Screenshot
+# Element screenshot
 browser_take_screenshot { ref: "e20" }
 
-# Vollstaendige Seite
+# Complete page
 browser_take_screenshot { fullPage: true, type: "jpeg" }
 ```
 
 ---
 
-## Core: Keyboard & Maus
+## Core: Keyboard & Mouse
 
-Capability: `core` (immer aktiv, ohne Vision)
+Capability: `core` (always active, without vision)
 
 ### `browser_press_key`
 
-Drueckt eine Taste oder Tastenkombination.
+Presses a key or a key combination.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `key` | string | Ja | Taste oder Kombination |
+| `key` | string | Yes | Key or combination |
 
-Haeufige Tasten: `Enter`, `Tab`, `Escape`, `Backspace`, `Delete`, `ArrowUp`, `ArrowDown`, `ArrowLeft`, `ArrowRight`, `Home`, `End`, `PageUp`, `PageDown`, `F5`
+Common keys: `Enter`, `Tab`, `Escape`, `Backspace`, `Delete`, `ArrowUp`, `ArrowDown`, `ArrowLeft`, `ArrowRight`, `Home`, `End`, `PageUp`, `PageDown`, `F5`
 
-Kombinationen: `Control+a`, `Control+c`, `Control+v`, `Shift+Tab`, `Alt+F4`
+Combinations: `Control+a`, `Control+c`, `Control+v`, `Shift+Tab`, `Alt+F4`
 
 ```
 browser_press_key { key: "Control+a" }
@@ -281,179 +281,179 @@ browser_press_key { key: "Enter" }
 
 ---
 
-### Vision-Modus: Maus-Tools
+### Vision mode: mouse tools
 
-Nur verfuegbar mit `--caps=vision`. Arbeiten mit Pixel-Koordinaten aus Screenshots.
+Only available with `--caps=vision`. They work with pixel coordinates from screenshots.
 
 #### `browser_mouse_move_xy`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `x` | number | Ja | Horizontale Pixel-Position |
-| `y` | number | Ja | Vertikale Pixel-Position |
+| `x` | number | Yes | Horizontal pixel position |
+| `y` | number | Yes | Vertical pixel position |
 
 #### `browser_mouse_click_xy`
 
-| Parameter | Typ | Required | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |-----------|-----|----------|---------|--------------|
-| `x` | number | Ja | — | Horizontale Koordinate |
-| `y` | number | Ja | — | Vertikale Koordinate |
-| `button` | string | Nein | `left` | `left`, `right`, `middle` |
-| `clickCount` | number | Nein | 1 | Anzahl Klicks (2 fuer Doppelklick) |
-| `delay` | number | Nein | 0 | Pause zwischen mousedown/mouseup (ms) |
+| `x` | number | Yes | — | Horizontal coordinate |
+| `y` | number | Yes | — | Vertical coordinate |
+| `button` | string | No | `left` | `left`, `right`, `middle` |
+| `clickCount` | number | No | 1 | Number of clicks (2 for a double click) |
+| `delay` | number | No | 0 | Pause between mousedown/mouseup (ms) |
 
 #### `browser_mouse_drag_xy`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `startX` | number | Ja | Start-X-Koordinate |
-| `startY` | number | Ja | Start-Y-Koordinate |
-| `endX` | number | Ja | Ziel-X-Koordinate |
-| `endY` | number | Ja | Ziel-Y-Koordinate |
+| `startX` | number | Yes | Start X coordinate |
+| `startY` | number | Yes | Start Y coordinate |
+| `endX` | number | Yes | Target X coordinate |
+| `endY` | number | Yes | Target Y coordinate |
 
 #### `browser_mouse_down` / `browser_mouse_up`
 
-Maus-Button druecken / loslassen an der aktuellen Position. Keine Parameter.
+Press / release the mouse button at the current position. No parameters.
 
 #### `browser_mouse_wheel`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `deltaX` | number | Ja | Horizontaler Scroll-Betrag (Pixel) |
-| `deltaY` | number | Ja | Vertikaler Scroll-Betrag (positiv = nach unten) |
+| `deltaX` | number | Yes | Horizontal scroll amount (pixels) |
+| `deltaY` | number | Yes | Vertical scroll amount (positive = downwards) |
 
 ---
 
 ## Core: Tabs
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_tabs`
 
-Verwaltet Browser-Tabs (auflisten, erstellen, schliessen, wechseln).
+Manages browser tabs (list, create, close, switch).
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `action` | string | Ja | `list`, `new`, `close`, `select` |
-| `url` | string | Nein | URL fuer `new`-Aktion |
-| `index` | number | Nein | Tab-Index fuer `select` oder `close` |
+| `action` | string | Yes | `list`, `new`, `close`, `select` |
+| `url` | string | No | URL for the `new` action |
+| `index` | number | No | Tab index for `select` or `close` |
 
 ```
-# Alle Tabs auflisten
+# List all tabs
 browser_tabs { action: "list" }
 
-# Neuen Tab oeffnen
+# Open a new tab
 browser_tabs { action: "new", url: "https://example.com" }
 
-# Zu Tab 1 wechseln
+# Switch to tab 1
 browser_tabs { action: "select", index: 1 }
 
-# Aktuellen Tab schliessen
+# Close the current tab
 browser_tabs { action: "close" }
 
-# Spezifischen Tab schliessen
+# Close a specific tab
 browser_tabs { action: "close", index: 2 }
 ```
 
 ---
 
-## Core: Dialoge
+## Core: Dialogs
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_handle_dialog`
 
-Behandelt Browser-Dialoge (alert, confirm, prompt).
+Handles browser dialogs (alert, confirm, prompt).
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `accept` | boolean | Ja | `true` = akzeptieren, `false` = abweisen |
-| `promptText` | string | Nein | Text fuer Prompt-Dialoge |
+| `accept` | boolean | Yes | `true` = accept, `false` = dismiss |
+| `promptText` | string | No | Text for prompt dialogs |
 
 ```
-# Alert bestaetigen
+# Confirm an alert
 browser_handle_dialog { accept: true }
 
-# Confirm abweisen
+# Dismiss a confirm
 browser_handle_dialog { accept: false }
 
-# Prompt mit Text bestaetigen
-browser_handle_dialog { accept: true, promptText: "Mein Eingabewert" }
+# Confirm a prompt with text
+browser_handle_dialog { accept: true, promptText: "My input value" }
 ```
 
-Dialog-Typen: `alert` (Nachricht), `confirm` (Ja/Nein), `prompt` (Texteingabe)
-Hinweis: Dialog muss behandelt werden, bevor weitere Operationen moeglich sind.
+Dialog types: `alert` (message), `confirm` (yes/no), `prompt` (text input)
+Note: the dialog must be handled before further operations are possible.
 
 ---
 
-## Core: Wartebedingungen
+## Core: Wait conditions
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_wait_for`
 
-Wartet auf eine Bedingung bevor fortgefahren wird.
+Waits for a condition before continuing.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `time` | number | Nein | Sekunden warten |
-| `text` | string | Nein | Auf Erscheinen dieses Textes warten |
-| `textGone` | string | Nein | Auf Verschwinden dieses Textes warten |
+| `time` | number | No | Wait this many seconds |
+| `text` | string | No | Wait for this text to appear |
+| `textGone` | string | No | Wait for this text to disappear |
 
 ```
-# 2 Sekunden warten
+# Wait 2 seconds
 browser_wait_for { time: 2 }
 
-# Auf Text warten
-browser_wait_for { text: "Erfolgreich gespeichert" }
+# Wait for text
+browser_wait_for { text: "Successfully saved" }
 
-# Auf Verschwinden des Ladeindikators warten
-browser_wait_for { textGone: "Laden..." }
+# Wait for the loading indicator to disappear
+browser_wait_for { textGone: "Loading..." }
 ```
 
-Fuer komplexere Bedingungen: `browser_run_code { code: "await page.waitForSelector('.data-loaded')" }`
+For more complex conditions: `browser_run_code { code: "await page.waitForSelector('.data-loaded')" }`
 
 ---
 
 ## Core: Console
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_console_messages`
 
-Greift auf Browser-Konsolen-Ausgaben zu.
+Accesses browser console output.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `level` | string | Nein | Mindest-Level: `error`, `warning`, `info`, `debug` |
+| `level` | string | No | Minimum level: `error`, `warning`, `info`, `debug` |
 
-Jedes Level schliesst schwerwiegendere Level ein (`debug` = alle).
+Each level includes the more severe levels (`debug` = all).
 
 ---
 
 ### `browser_console_clear`
 
-Leert den Konsolen-Nachrichten-Puffer. Keine Parameter.
+Clears the console message buffer. No parameters.
 
 ---
 
 ## Core: File Upload
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_file_upload`
 
-Behandelt Datei-Auswahldialoge.
+Handles file selection dialogs.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `paths` | string[] | Ja | Absolute Dateipfade; leeres Array = abbrechen |
+| `paths` | string[] | Yes | Absolute file paths; empty array = cancel |
 
 ```
-# Einzelne Datei
+# Single file
 browser_file_upload { paths: ["/home/user/report.pdf"] }
 
-# Mehrere Dateien
+# Several files
 browser_file_upload {
   paths: [
     "/home/user/photo1.jpg",
@@ -461,25 +461,25 @@ browser_file_upload {
   ]
 }
 
-# Abbrechen
+# Cancel
 browser_file_upload { paths: [] }
 ```
 
-Sicherheit: Standardmaessig nur aus MCP-Workspace-Roots. `--allow-unrestricted-file-access` fuer beliebige Pfade.
+Security: by default only from the MCP workspace roots. `--allow-unrestricted-file-access` for arbitrary paths.
 
 ---
 
-## Code-Ausfuehrung
+## Code execution
 
-Capability: `core` (immer aktiv)
+Capability: `core` (always active)
 
 ### `browser_run_code`
 
-Fuehrt Playwright-Code-Schnipsel mit vollem API-Zugriff ueber ein `page`-Objekt aus.
+Executes Playwright code snippets with full API access via a `page` object.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `code` | string | Ja | Playwright-Code-String |
+| `code` | string | Yes | Playwright code string |
 
 ```
 browser_run_code { code: "return await page.title()" }
@@ -493,18 +493,18 @@ browser_run_code {
 }
 ```
 
-Einsatz fuer: komplexe Multi-Step-Logik, Geolocation/Permissions, Custom-Wartebedingungen, iFrame-Interaktionen, Clipboard-Operationen.
+Use for: complex multi-step logic, geolocation/permissions, custom wait conditions, iFrame interactions, clipboard operations.
 
 ---
 
 ### `browser_evaluate`
 
-Wertet JavaScript direkt auf der Seite oder einem Element aus.
+Evaluates JavaScript directly on the page or on an element.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `expression` | string | Ja | Auszufuehrender JavaScript-Code |
-| `ref` | string | Nein | Element-Referenz fuer Element-Scope |
+| `expression` | string | Yes | JavaScript code to execute |
+| `ref` | string | No | Element reference for element scope |
 
 ```
 browser_evaluate { expression: "document.title" }
@@ -516,33 +516,33 @@ browser_evaluate { expression: "window.innerWidth + 'x' + window.innerHeight" }
 
 ## Network
 
-Capability: `network` (mit `--caps=network`)
+Capability: `network` (with `--caps=network`)
 
 ### `browser_network_requests`
 
-Listet seit dem Seitenlade erfasste Netzwerk-Requests.
+Lists the network requests captured since the page load.
 
-| Parameter | Typ | Required | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |-----------|-----|----------|---------|--------------|
-| `filter` | string | Nein | — | RegExp-Muster zum Filtern nach URL |
-| `includeStatic` | boolean | Nein | false | Bilder, CSS, Fonts einschliessen |
-| `includeBody` | boolean | Nein | false | Request-Body einschliessen |
-| `includeHeaders` | boolean | Nein | false | Request-Headers einschliessen |
+| `filter` | string | No | — | RegExp pattern for filtering by URL |
+| `includeStatic` | boolean | No | false | Include images, CSS, fonts |
+| `includeBody` | boolean | No | false | Include the request body |
+| `includeHeaders` | boolean | No | false | Include the request headers |
 
 ---
 
 ### `browser_route`
 
-Intercepts eine URL und gibt eine benutzerdefinierte Antwort zurueck.
+Intercepts a URL and returns a custom response.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `pattern` | string | Ja | URL-Muster mit Glob-Unterstuetzung |
-| `status` | number | Nein | HTTP-Status-Code |
-| `body` | string | Nein | Response-Body |
-| `contentType` | string | Nein | Content-Type-Header |
-| `headers` | object | Nein | Zusaetzliche Response-Header |
-| `removeHeaders` | string[] | Nein | Zu entfernende Request-Header |
+| `pattern` | string | Yes | URL pattern with glob support |
+| `status` | number | No | HTTP status code |
+| `body` | string | No | Response body |
+| `contentType` | string | No | Content-Type header |
+| `headers` | object | No | Additional response headers |
+| `removeHeaders` | string[] | No | Request headers to be removed |
 
 ```
 browser_route {
@@ -557,119 +557,119 @@ browser_route {
 
 ### `browser_route_list`
 
-Zeigt aktive Route-Muster, Status-Codes und Content-Types. Keine Parameter.
+Shows the active route patterns, status codes and content types. No parameters.
 
 ---
 
 ### `browser_unroute`
 
-Entfernt aktive Routen.
+Removes active routes.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `pattern` | string | Nein | Spezifisches Muster; weglassen = alle entfernen |
+| `pattern` | string | No | Specific pattern; omit = remove all |
 
 ---
 
 ### `browser_network_state_set`
 
-Simuliert Online/Offline-Zustand.
+Simulates the online/offline state.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `state` | string | Ja | `"online"` oder `"offline"` |
+| `state` | string | Yes | `"online"` or `"offline"` |
 
 ---
 
 ## Storage
 
-Capability: `storage` (mit `--caps=storage`)
+Capability: `storage` (with `--caps=storage`)
 
 ### `browser_storage_state`
 
-Speichert den kompletten Browser-State (Cookies + localStorage) als JSON. Keine Parameter.
+Saves the complete browser state (cookies + localStorage) as JSON. No parameters.
 
 ---
 
 ### `browser_set_storage_state`
 
-Stellt einen gespeicherten Browser-State wieder her.
+Restores a saved browser state.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `path` | string | Ja | Pfad zur State-JSON-Datei |
+| `path` | string | Yes | Path to the state JSON file |
 
 ---
 
-### Cookie-Tools
+### Cookie tools
 
 #### `browser_cookie_list`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `domain` | string | Nein | Nach Domain filtern |
-| `path` | string | Nein | Nach Pfad filtern |
+| `domain` | string | No | Filter by domain |
+| `path` | string | No | Filter by path |
 
-Gibt: Name, Value, Domain, HttpOnly, Secure, Expires zurueck.
+Returns: name, value, domain, HttpOnly, Secure, Expires.
 
 #### `browser_cookie_get`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `name` | string | Ja | Cookie-Name |
+| `name` | string | Yes | Cookie name |
 
 #### `browser_cookie_set`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `name` | string | Ja | Cookie-Name |
-| `value` | string | Ja | Cookie-Wert |
-| `domain` | string | Nein | Domain |
-| `path` | string | Nein | Pfad |
-| `expires` | number | Nein | Unix-Timestamp |
-| `httpOnly` | boolean | Nein | HttpOnly-Flag |
-| `secure` | boolean | Nein | Secure-Flag |
-| `sameSite` | string | Nein | `Strict`, `Lax`, oder `None` |
+| `name` | string | Yes | Cookie name |
+| `value` | string | Yes | Cookie value |
+| `domain` | string | No | Domain |
+| `path` | string | No | Path |
+| `expires` | number | No | Unix timestamp |
+| `httpOnly` | boolean | No | HttpOnly flag |
+| `secure` | boolean | No | Secure flag |
+| `sameSite` | string | No | `Strict`, `Lax`, or `None` |
 
 #### `browser_cookie_delete`
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `name` | string | Ja | Cookie-Name |
+| `name` | string | Yes | Cookie name |
 
 #### `browser_cookie_clear`
 
-Loescht alle Cookies. Keine Parameter.
+Deletes all cookies. No parameters.
 
 ---
 
-### localStorage-Tools
+### localStorage tools
 
 #### `browser_localstorage_list`
-Listet alle localStorage-Eintraege. Keine Parameter.
+Lists all localStorage entries. No parameters.
 
 #### `browser_localstorage_get`
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `key` | string | Ja | Schlussel |
+| `key` | string | Yes | Key |
 
 #### `browser_localstorage_set`
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `key` | string | Ja | Schlussel |
-| `value` | string | Ja | Wert |
+| `key` | string | Yes | Key |
+| `value` | string | Yes | Value |
 
 #### `browser_localstorage_delete`
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `key` | string | Ja | Schlussel |
+| `key` | string | Yes | Key |
 
 #### `browser_localstorage_clear`
-Loescht alle localStorage-Eintraege. Keine Parameter.
+Deletes all localStorage entries. No parameters.
 
-### sessionStorage-Tools
+### sessionStorage tools
 
-Identische Schnittstelle wie localStorage, aber Session-begrenzt:
+Identical interface to localStorage, but limited to the session:
 - `browser_sessionstorage_list`
 - `browser_sessionstorage_get` (`key`)
 - `browser_sessionstorage_set` (`key`, `value`)
@@ -680,144 +680,144 @@ Identische Schnittstelle wie localStorage, aber Session-begrenzt:
 
 ## Testing
 
-Capability: `testing` (mit `--caps=testing`)
+Capability: `testing` (with `--caps=testing`)
 
 ### `browser_verify_element_visible`
 
-Verifiziert Sichtbarkeit eines Elements ueber ARIA-Rolle.
+Verifies the visibility of an element via its ARIA role.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `role` | string | Ja | ARIA-Rolle (z.B. `button`, `heading`, `textbox`) |
-| `name` | string | Ja | Zugaenglicher Name des Elements |
+| `role` | string | Yes | ARIA role (e.g. `button`, `heading`, `textbox`) |
+| `name` | string | Yes | Accessible name of the element |
 
 ```
-browser_verify_element_visible { role: "button", name: "Speichern" }
+browser_verify_element_visible { role: "button", name: "Save" }
 ```
 
 ---
 
 ### `browser_verify_text_visible`
 
-Prueft ob ein Text auf der Seite sichtbar ist.
+Checks whether a text is visible on the page.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `text` | string | Ja | Zu pruefender Text |
+| `text` | string | Yes | Text to be checked |
 
 ---
 
 ### `browser_verify_list_visible`
 
-Validiert eine Liste mit erwarteten Eintraegen.
+Validates a list against expected entries.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `label` | string | Ja | Listenbeschriftung / Zugaenglicher Name |
-| `items` | string[] | Ja | Erwartete Listenelemente |
+| `label` | string | Yes | List label / accessible name |
+| `items` | string[] | Yes | Expected list items |
 
 ---
 
 ### `browser_verify_value`
 
-Prueft ob der Wert eines Elements dem erwarteten Wert entspricht.
+Checks whether the value of an element matches the expected value.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Element-Referenz |
-| `value` | string | Ja | Erwarteter Wert |
+| `ref` | string | Yes | Element reference |
+| `value` | string | Yes | Expected value |
 
 ---
 
 ### `browser_generate_locator`
 
-Generiert einen Playwright-Locator fuer ein Element (fuer Test-Code-Generierung).
+Generates a Playwright locator for an element (for test code generation).
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `ref` | string | Ja | Element-Referenz aus Snapshot |
+| `ref` | string | Yes | Element reference from the snapshot |
 
 ```
 browser_generate_locator { ref: "e5" }
-// Gibt zurueck: page.getByRole('textbox', { name: 'New todo' })
+// Returns: page.getByRole('textbox', { name: 'New todo' })
 ```
 
 ---
 
 ## Devtools: Tracing
 
-Capability: `devtools` (mit `--caps=devtools`)
+Capability: `devtools` (with `--caps=devtools`)
 
 ### `browser_start_tracing`
 
-Startet die Aufzeichnung eines Execution-Trace. Keine Parameter.
+Starts recording an execution trace. No parameters.
 
-Aufgenommen wird: DOM-Snapshots, Screenshots, Netzwerk-Requests, Konsolen-Nachrichten, Timing.
+Recorded are: DOM snapshots, screenshots, network requests, console messages, timing.
 
 ---
 
 ### `browser_stop_tracing`
 
-Stoppt die Aufzeichnung und speichert als `.zip`-Datei. Keine Parameter.
+Stops the recording and saves it as a `.zip` file. No parameters.
 
 ```bash
-# Trace anzeigen
+# View the trace
 npx playwright show-trace /output/trace-2024-03-15.zip
 ```
 
-Automatische Aufzeichnung: `--save-session`-Flag.
+Automatic recording: the `--save-session` flag.
 
 ---
 
 ## Devtools: Video
 
-Capability: `devtools` (mit `--caps=devtools`)
+Capability: `devtools` (with `--caps=devtools`)
 
 ### `browser_start_video`
 
-Startet die Video-Aufzeichnung der Browser-Session.
+Starts video recording of the browser session.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `filename` | string | Nein | Benutzerdefinierter Dateiname |
-| `width` | number | Nein | Video-Breite in Pixel |
-| `height` | number | Nein | Video-Hoehe in Pixel |
+| `filename` | string | No | Custom file name |
+| `width` | number | No | Video width in pixels |
+| `height` | number | No | Video height in pixels |
 
 ---
 
 ### `browser_stop_video`
 
-Stoppt die Aufzeichnung und speichert als WebM-Datei. Keine Parameter.
+Stops the recording and saves it as a WebM file. No parameters.
 
 ---
 
 ### `browser_video_chapter`
 
-Fuegt Chapter-Markierungen in die Aufzeichnung ein.
+Inserts chapter markers into the recording.
 
-| Parameter | Typ | Required | Beschreibung |
+| Parameter | Type | Required | Description |
 |-----------|-----|----------|--------------|
-| `title` | string | Ja | Chapter-Titel |
-| `description` | string | Nein | Chapter-Beschreibung |
-| `duration` | number | Nein | Anzeigedauer in Millisekunden |
+| `title` | string | Yes | Chapter title |
+| `description` | string | No | Chapter description |
+| `duration` | number | No | Display duration in milliseconds |
 
 ---
 
 ## PDF
 
-Capability: `pdf` (mit `--caps=pdf`)
+Capability: `pdf` (with `--caps=pdf`)
 
 ### `browser_pdf_save`
 
-Exportiert die aktuelle Seite als PDF-Datei. Keine Parameter.
+Exports the current page as a PDF file. No parameters.
 
-Datei wird im Output-Verzeichnis gespeichert. Anwendungsfaelle: Belege, Archive, Berichte, Dokumentation.
+The file is saved in the output directory. Use cases: receipts, archives, reports, documentation.
 
 ---
 
-## Vollstaendige Tool-Uebersicht
+## Complete tool overview
 
-| Tool | Capability | Parameter |
+| Tool | Capability | Parameters |
 |------|-----------|-----------|
 | `browser_navigate` | core | url |
 | `browser_navigate_back` | core | — |
@@ -867,7 +867,7 @@ Datei wird im Output-Verzeichnis gespeichert. Anwendungsfaelle: Belege, Archive,
 | `browser_localstorage_set` | storage | key, value |
 | `browser_localstorage_delete` | storage | key |
 | `browser_localstorage_clear` | storage | — |
-| `browser_sessionstorage_*` | storage | (wie localStorage) |
+| `browser_sessionstorage_*` | storage | (as localStorage) |
 | `browser_verify_element_visible` | testing | role, name |
 | `browser_verify_text_visible` | testing | text |
 | `browser_verify_list_visible` | testing | label, items[] |
@@ -882,7 +882,7 @@ Datei wird im Output-Verzeichnis gespeichert. Anwendungsfaelle: Belege, Archive,
 
 ---
 
-## Quellen
+## Source
 
 - https://playwright.dev/mcp/tools/navigation
 - https://playwright.dev/mcp/tools/interaction

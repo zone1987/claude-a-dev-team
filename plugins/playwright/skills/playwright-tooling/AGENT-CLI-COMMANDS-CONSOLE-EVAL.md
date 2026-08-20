@@ -2,19 +2,19 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [console](#console)
 - [eval](#eval)
 - [run-code](#run-code)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `console [level]` | Console-Nachrichten anzeigen |
-| `eval <expression> [ref]` | JavaScript im Kontext der Seite oder eines Elements ausfuehren |
-| `run-code <code>` | Playwright-Code ausfuehren |
-| `run-code --filename=<datei>` | Playwright-Code aus Datei ausfuehren |
+| `console [level]` | Show console messages |
+| `eval <expression> [ref]` | Execute JavaScript in the context of the page or an element |
+| `run-code <code>` | Execute Playwright code |
+| `run-code --filename=<file>` | Execute Playwright code from a file |
 
 ---
 
@@ -28,23 +28,23 @@ playwright-cli console debug
 playwright-cli console --clear
 ```
 
-### console-Argumente und Optionen
+### console arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `[level]` | string | Nein | `info` | Mindest-Level: `error`, `warning`, `info`, `debug` |
-| `--clear` | flag | Nein | false | Nachrichten-Buffer leeren |
+| `[level]` | string | No | `info` | Minimum level: `error`, `warning`, `info`, `debug` |
+| `--clear` | flag | No | false | Clear the message buffer |
 
-### Level-Verhalten
+### Level behavior
 
-| Level-Argument | Zeigt an |
+| Level argument | Shows |
 |----------------|---------|
-| (kein) | info und hoeher |
-| `error` | Nur Fehler |
-| `warning` | Warnungen und Fehler |
-| `debug` | Alle Nachrichten |
+| (none) | info and higher |
+| `error` | Errors only |
+| `warning` | Warnings and errors |
+| `debug` | All messages |
 
-### Beispielausgabe
+### Example output
 
 ```
 $ playwright-cli console error
@@ -53,15 +53,15 @@ $ playwright-cli console error
 [error] Failed to fetch: GET /api/users 404
 ```
 
-### Debugging-Workflow
+### Debugging workflow
 
 ```bash
 playwright-cli goto https://app.example.com
-playwright-cli console error          # Fehler pruefen
-playwright-cli network --filter="api" # Problematische Anfragen finden
+playwright-cli console error          # Check errors
+playwright-cli network --filter="api" # Find problematic requests
 playwright-cli route "**/api/users" --status=200 --body='[]' --content-type=application/json
 playwright-cli reload
-playwright-cli console                # Pruefen ob Fehler behoben
+playwright-cli console                # Check whether errors are fixed
 ```
 
 ---
@@ -69,52 +69,52 @@ playwright-cli console                # Pruefen ob Fehler behoben
 ## eval
 
 ```bash
-# Seiten-Kontext
+# Page context
 playwright-cli eval "() => document.title"
 playwright-cli eval "() => window.innerWidth + 'x' + window.innerHeight"
 playwright-cli eval "() => document.querySelectorAll('button').length"
 
-# Element-Kontext
+# Element context
 playwright-cli eval "(el) => el.getAttribute('data-id')" e15
 playwright-cli eval "(el) => getComputedStyle(el).color" e15
 playwright-cli eval "(el) => el.getBoundingClientRect()" e15
 playwright-cli eval "(el) => el.innerHTML" "#main"
 ```
 
-### eval-Argumente
+### eval arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<expression>` | string | Ja | JavaScript-Ausdruck als Pfeil-Funktion (`() => ...` oder `(el) => ...`) |
-| `[ref]` | string | Nein | Element-Ref oder CSS-Selektor; wenn angegeben, wird `el` uebergeben |
+| `<expression>` | string | Yes | JavaScript expression as an arrow function (`() => ...` or `(el) => ...`) |
+| `[ref]` | string | No | Element ref or CSS selector; if given, `el` is passed in |
 
-Gibt den Rueckgabewert der Funktion aus.
+Prints the function's return value.
 
 ---
 
 ## run-code
 
 ```bash
-# Inline-Code
+# Inline code
 playwright-cli run-code "await page.evaluate(() => navigator.geolocation)"
 
-# Aus Datei
+# From a file
 playwright-cli run-code --filename=script.js
 playwright-cli run-code --filename=setup.ts
 ```
 
-### run-code-Argumente und Optionen
+### run-code arguments and options
 
-| Argument/Option | Typ | Pflicht | Beschreibung |
+| Argument/Option | Type | Required | Description |
 |-----------------|-----|---------|-------------|
-| `<code>` | string | Ja* | Playwright-Code als String (alternativ zu `--filename`) |
-| `--filename=<datei>` | string | Ja* | Pfad zur JavaScript/TypeScript-Datei |
+| `<code>` | string | Yes* | Playwright code as a string (alternative to `--filename`) |
+| `--filename=<file>` | string | Yes* | Path to a JavaScript/TypeScript file |
 
-*Entweder `<code>` oder `--filename` muss angegeben werden.
+*Either `<code>` or `--filename` must be provided.
 
-### run-code Anwendungsbeispiele
+### run-code usage examples
 
-**Geolocation setzen:**
+**Setting geolocation:**
 
 ```javascript
 // geolocation.js
@@ -129,7 +129,7 @@ await page.evaluate(() => {
 playwright-cli run-code --filename=geolocation.js
 ```
 
-**Auf DOM-Bedingung warten:**
+**Waiting for a DOM condition:**
 
 ```javascript
 // wait-for.js
@@ -138,7 +138,7 @@ await page.waitForFunction(() =>
 );
 ```
 
-**Strukturierte Daten scrapen:**
+**Scraping structured data:**
 
 ```javascript
 // scrape.js
@@ -153,4 +153,4 @@ console.log(JSON.stringify(data, null, 2));
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/console-eval
+Source: https://playwright.dev/agent-cli/commands/console-eval

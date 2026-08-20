@@ -1,82 +1,82 @@
-# Playwright Agent CLI — Konfiguration
+# Playwright Agent CLI — Configuration
 
 ## Contents
 
-- [Headed / Headless-Modus](#headed-headless-modus)
-- [Browser-Auswahl](#browser-auswahl)
-- [Profil-Modi](#profil-modi)
-- [Konfigurationsdatei](#konfigurationsdatei)
-- [Vollstaendiges Config-Schema](#vollstaendiges-config-schema)
-- [Beispiel-Konfigurationen](#beispiel-konfigurationen)
-- [Browser-Extension](#browser-extension)
-- [open-Befehl — alle Parameter](#open-befehl-alle-parameter)
-- [Umgebungsvariablen](#umgebungsvariablen)
+- [Headed / headless mode](#headed-headless-mode)
+- [Browser selection](#browser-selection)
+- [Profile modes](#profile-modes)
+- [Configuration file](#configuration-file)
+- [Complete config schema](#complete-config-schema)
+- [Example configurations](#example-configurations)
+- [Browser extension](#browser-extension)
+- [open command — all parameters](#open-command-all-parameters)
+- [Environment variables](#environment-variables)
 
-## Headed / Headless-Modus
+## Headed / headless mode
 
-Standard ist Headless. Browser-Fenster anzeigen:
+The default is headless. To show the browser window:
 
 ```bash
 playwright-cli open https://playwright.dev --headed
 ```
 
-## Browser-Auswahl
+## Browser selection
 
 ```bash
-playwright-cli open --browser=chrome     # Google Chrome (Standard)
+playwright-cli open --browser=chrome     # Google Chrome (default)
 playwright-cli open --browser=firefox    # Mozilla Firefox
-playwright-cli open --browser=webkit     # WebKit (Safari-Engine)
+playwright-cli open --browser=webkit     # WebKit (Safari engine)
 playwright-cli open --browser=msedge     # Microsoft Edge
 ```
 
-## Profil-Modi
+## Profile modes
 
-### In-Memory (Standard)
-Cookies und Storage bleiben zwischen Befehlen erhalten, werden beim Schliessen geloescht:
+### In-memory (default)
+Cookies and storage persist between commands and are deleted on close:
 
 ```bash
 playwright-cli open https://example.com
 ```
 
-### Persistent (auf Disk)
-Profil wird gespeichert und ueberlebt Neustarts:
+### Persistent (on disk)
+The profile is stored and survives restarts:
 
 ```bash
 playwright-cli open https://example.com --persistent
 ```
 
-Standard-Speicherorte:
+Default storage locations:
 - macOS: `~/Library/Caches/ms-playwright/mcp-{channel}-profile`
 - Linux: `~/.cache/ms-playwright/mcp-{channel}-profile`
 - Windows: `%LOCALAPPDATA%\ms-playwright\mcp-{channel}-profile`
 
-### Benutzerdefiniertes Profil-Verzeichnis
+### Custom profile directory
 
 ```bash
 playwright-cli open https://example.com --profile=./my-profile
 ```
 
-### Isoliert (explizit In-Memory via Config)
+### Isolated (explicitly in-memory via config)
 
 ```json
 {"browser": {"isolated": true}}
 ```
 
-## Konfigurationsdatei
+## Configuration file
 
 ```bash
 playwright-cli --config path/to/config.json open example.com
 ```
 
-Automatisch geladen, wenn vorhanden: `.playwright/cli.config.json`
+Loaded automatically when present: `.playwright/cli.config.json`
 
-Aktuellen Config anzeigen:
+Show the current config:
 
 ```bash
 playwright-cli config-print
 ```
 
-## Vollstaendiges Config-Schema
+## Complete config schema
 
 ```json
 {
@@ -124,7 +124,7 @@ playwright-cli config-print
     "allowedOrigins": ["https://api.example.com"],
     "blockedOrigins": ["https://analytics.com"]
   },
-  "secrets": { "API_KEY": "geheim" },
+  "secrets": { "API_KEY": "secret" },
   "testIdAttribute": "data-testid",
   "timeouts": {
     "action": 5000,
@@ -136,15 +136,15 @@ playwright-cli config-print
 }
 ```
 
-## Beispiel-Konfigurationen
+## Example configurations
 
-### Lokale Entwicklung
+### Local development
 
 ```json
 {"browser": {"launchOptions": {"headless": false}}}
 ```
 
-### CI-Umgebung
+### CI environment
 
 ```json
 {
@@ -156,7 +156,7 @@ playwright-cli config-print
 }
 ```
 
-### Hinter einem Proxy
+### Behind a proxy
 
 ```json
 {
@@ -171,7 +171,7 @@ playwright-cli config-print
 }
 ```
 
-### Geraete-Emulation (mobil)
+### Device emulation (mobile)
 
 ```json
 {
@@ -184,7 +184,7 @@ playwright-cli config-print
 }
 ```
 
-### Init-Skripte
+### Init scripts
 
 ```json
 {
@@ -195,66 +195,66 @@ playwright-cli config-print
 }
 ```
 
-## Browser-Extension
+## Browser extension
 
-Bestehende Browser-Tabs verbinden ohne neuen Browser zu starten:
+Connect to existing browser tabs without launching a new browser:
 
 ```bash
 playwright-cli attach --extension
 ```
 
-## open-Befehl — alle Parameter
+## open command — all parameters
 
 ```bash
-playwright-cli open [url]                  # Browser oeffnen
-playwright-cli open --headed               # Browser-Fenster anzeigen
-playwright-cli open --browser=firefox      # Spezifischer Browser
-playwright-cli open --persistent           # Profil auf Disk speichern
-playwright-cli open --profile=<pfad>       # Benutzerdefiniertes Profil
-playwright-cli open --config=file.json     # Config-Datei
-playwright-cli attach --extension          # via Extension verbinden
-playwright-cli attach --cdp <url>          # via CDP verbinden
-playwright-cli attach --endpoint <url>     # Playwright-Server verbinden
+playwright-cli open [url]                  # Open the browser
+playwright-cli open --headed               # Show the browser window
+playwright-cli open --browser=firefox      # Specific browser
+playwright-cli open --persistent           # Store the profile on disk
+playwright-cli open --profile=<pfad>       # Custom profile
+playwright-cli open --config=file.json     # Config file
+playwright-cli attach --extension          # Connect via extension
+playwright-cli attach --cdp <url>          # Connect via CDP
+playwright-cli attach --endpoint <url>     # Connect to a Playwright server
 ```
 
-## Umgebungsvariablen
+## Environment variables
 
-| Variable | Beschreibung |
+| Variable | Description |
 |----------|-------------|
-| `PLAYWRIGHT_CLI_SESSION` | Standard-Session-Name |
-| `PLAYWRIGHT_MCP_BROWSER` | Browser-Auswahl (`chrome`, `firefox`, `webkit`, `msedge`) |
-| `PLAYWRIGHT_MCP_HEADLESS` | Headless-Modus |
-| `PLAYWRIGHT_MCP_CAPS` | Capabilities aktivieren (kommagetrennt) |
-| `PLAYWRIGHT_MCP_CONFIG` | Pfad zur Config-Datei |
-| `PLAYWRIGHT_MCP_ISOLATED` | In-Memory-Profil |
-| `PLAYWRIGHT_MCP_EXTENSION` | Via Browser-Extension verbinden |
-| `PLAYWRIGHT_MCP_USER_DATA_DIR` | Profil-Verzeichnis |
-| `PLAYWRIGHT_MCP_STORAGE_STATE` | Storage-State-Datei |
-| `PLAYWRIGHT_MCP_DEVICE` | Zu emulierendes Geraet |
-| `PLAYWRIGHT_MCP_EXECUTABLE_PATH` | Benutzerdefinierter Browser-Pfad |
-| `PLAYWRIGHT_MCP_VIEWPORT_SIZE` | Viewport-Groesse (z. B. `1280x720`) |
-| `PLAYWRIGHT_MCP_PROXY_SERVER` | Proxy-Server-URL |
-| `PLAYWRIGHT_MCP_PROXY_BYPASS` | Domains, die Proxy umgehen |
-| `PLAYWRIGHT_MCP_USER_AGENT` | Benutzerdefinierter User-Agent |
-| `PLAYWRIGHT_MCP_IGNORE_HTTPS_ERRORS` | HTTPS-Fehler ignorieren |
-| `PLAYWRIGHT_MCP_TIMEOUT_ACTION` | Action-Timeout (ms) |
-| `PLAYWRIGHT_MCP_TIMEOUT_NAVIGATION` | Navigation-Timeout (ms) |
-| `PLAYWRIGHT_MCP_CONSOLE_LEVEL` | Console-Nachrichten-Level |
-| `PLAYWRIGHT_MCP_TEST_ID_ATTRIBUTE` | Test-ID-Attribut |
-| `PLAYWRIGHT_MCP_CDP_ENDPOINT` | CDP-Endpoint |
-| `PLAYWRIGHT_MCP_OUTPUT_DIR` | Ausgabe-Verzeichnis |
-| `PLAYWRIGHT_MCP_CODEGEN` | Code-Generierungs-Sprache |
-| `PLAYWRIGHT_MCP_INIT_PAGE` | Page-Init-TypeScript |
-| `PLAYWRIGHT_MCP_INIT_SCRIPT` | Page-Init-JavaScript |
-| `PLAYWRIGHT_MCP_BLOCKED_ORIGINS` | Origins blockieren |
-| `PLAYWRIGHT_MCP_ALLOWED_ORIGINS` | Origins erlauben |
-| `PLAYWRIGHT_MCP_GRANT_PERMISSIONS` | Browser-Berechtigungen |
-| `PLAYWRIGHT_MCP_BLOCK_SERVICE_WORKERS` | Service-Worker blockieren |
-| `PLAYWRIGHT_MCP_NO_SANDBOX` | Sandbox deaktivieren |
-| `PLAYWRIGHT_MCP_SAVE_SESSION` | Session-Daten speichern |
-| `PLAYWRIGHT_MCP_SAVE_VIDEO` | Video automatisch aufzeichnen (z. B. `800x600`) |
-| `PLAYWRIGHT_MCP_SECRETS_FILE` | Secrets-Datei (dotenv-Format) |
+| `PLAYWRIGHT_CLI_SESSION` | Default session name |
+| `PLAYWRIGHT_MCP_BROWSER` | Browser selection (`chrome`, `firefox`, `webkit`, `msedge`) |
+| `PLAYWRIGHT_MCP_HEADLESS` | Headless mode |
+| `PLAYWRIGHT_MCP_CAPS` | Enable capabilities (comma-separated) |
+| `PLAYWRIGHT_MCP_CONFIG` | Path to the config file |
+| `PLAYWRIGHT_MCP_ISOLATED` | In-memory profile |
+| `PLAYWRIGHT_MCP_EXTENSION` | Connect via browser extension |
+| `PLAYWRIGHT_MCP_USER_DATA_DIR` | Profile directory |
+| `PLAYWRIGHT_MCP_STORAGE_STATE` | Storage state file |
+| `PLAYWRIGHT_MCP_DEVICE` | Device to emulate |
+| `PLAYWRIGHT_MCP_EXECUTABLE_PATH` | Custom browser path |
+| `PLAYWRIGHT_MCP_VIEWPORT_SIZE` | Viewport size (e.g. `1280x720`) |
+| `PLAYWRIGHT_MCP_PROXY_SERVER` | Proxy server URL |
+| `PLAYWRIGHT_MCP_PROXY_BYPASS` | Domains that bypass the proxy |
+| `PLAYWRIGHT_MCP_USER_AGENT` | Custom user agent |
+| `PLAYWRIGHT_MCP_IGNORE_HTTPS_ERRORS` | Ignore HTTPS errors |
+| `PLAYWRIGHT_MCP_TIMEOUT_ACTION` | Action timeout (ms) |
+| `PLAYWRIGHT_MCP_TIMEOUT_NAVIGATION` | Navigation timeout (ms) |
+| `PLAYWRIGHT_MCP_CONSOLE_LEVEL` | Console message level |
+| `PLAYWRIGHT_MCP_TEST_ID_ATTRIBUTE` | Test ID attribute |
+| `PLAYWRIGHT_MCP_CDP_ENDPOINT` | CDP endpoint |
+| `PLAYWRIGHT_MCP_OUTPUT_DIR` | Output directory |
+| `PLAYWRIGHT_MCP_CODEGEN` | Code generation language |
+| `PLAYWRIGHT_MCP_INIT_PAGE` | Page init TypeScript |
+| `PLAYWRIGHT_MCP_INIT_SCRIPT` | Page init JavaScript |
+| `PLAYWRIGHT_MCP_BLOCKED_ORIGINS` | Block origins |
+| `PLAYWRIGHT_MCP_ALLOWED_ORIGINS` | Allow origins |
+| `PLAYWRIGHT_MCP_GRANT_PERMISSIONS` | Browser permissions |
+| `PLAYWRIGHT_MCP_BLOCK_SERVICE_WORKERS` | Block service workers |
+| `PLAYWRIGHT_MCP_NO_SANDBOX` | Disable the sandbox |
+| `PLAYWRIGHT_MCP_SAVE_SESSION` | Save session data |
+| `PLAYWRIGHT_MCP_SAVE_VIDEO` | Record video automatically (e.g. `800x600`) |
+| `PLAYWRIGHT_MCP_SECRETS_FILE` | Secrets file (dotenv format) |
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/configuration
+Source: https://playwright.dev/agent-cli/configuration

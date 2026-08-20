@@ -2,23 +2,23 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [network](#network)
 - [route](#route)
 - [route-list](#route-list)
 - [unroute](#unroute)
 - [network-state-set](#network-state-set)
-- [Vollstaendiger Test-Workflow](#vollstaendiger-test-workflow)
+- [Complete test workflow](#complete-test-workflow)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `network` | Netzwerk-Anfragen seit Seitenaufruf auflisten |
-| `route <pattern> [optionen]` | Anfragen fuer URL-Muster mocken |
-| `route-list` | Aktive Mock-Routen auflisten |
-| `unroute [pattern]` | Mock-Route(n) entfernen |
-| `network-state-set <state>` | Online/Offline-Zustand setzen |
+| `network` | List network requests since the page was loaded |
+| `route <pattern> [options]` | Mock requests for a URL pattern |
+| `route-list` | List active mock routes |
+| `unroute [pattern]` | Remove mock route(s) |
+| `network-state-set <state>` | Set the online/offline state |
 
 ---
 
@@ -33,15 +33,15 @@ playwright-cli network --request-headers
 playwright-cli network --clear
 ```
 
-### network-Optionen
+### network options
 
-| Option | Typ | Standard | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `--filter=<pattern>` | string | — | URL-Pattern als Filter (Teilstring-Match) |
-| `--static` | flag | false | Statische Ressourcen einschliessen (Bilder, CSS, Fonts) |
-| `--request-body` | flag | false | Request-Bodies einschliessen |
-| `--request-headers` | flag | false | Request-Header einschliessen |
-| `--clear` | flag | false | Log leeren |
+| `--filter=<pattern>` | string | — | URL pattern used as a filter (substring match) |
+| `--static` | flag | false | Include static resources (images, CSS, fonts) |
+| `--request-body` | flag | false | Include request bodies |
+| `--request-headers` | flag | false | Include request headers |
+| `--clear` | flag | false | Clear the log |
 
 ---
 
@@ -59,20 +59,20 @@ playwright-cli route "**/analytics/**" --status=204
 playwright-cli route "**/*" --remove-header=cookie,authorization
 ```
 
-### route-Argumente und Optionen
+### route arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `<pattern>` | string | Ja | — | Glob-Muster der abzufangenden URLs (z. B. `**/api/**`) |
-| `--status=<code>` | number | Nein | 200 | HTTP-Status-Code der Mock-Antwort |
-| `--body=<text>` | string | Nein | `""` | Antwort-Body (Text oder JSON-String) |
-| `--content-type=<type>` | string | Nein | `text/plain` | Content-Type-Header der Antwort |
-| `--header=<name:value>` | string | Nein | — | Zusaetzlicher Response-Header (wiederholbar) |
-| `--remove-header=<names>` | string | Nein | — | Kommagetrennte Header-Namen, die aus dem Request entfernt werden |
+| `<pattern>` | string | Yes | — | Glob pattern of the URLs to intercept (e.g. `**/api/**`) |
+| `--status=<code>` | number | No | 200 | HTTP status code of the mock response |
+| `--body=<text>` | string | No | `""` | Response body (text or JSON string) |
+| `--content-type=<type>` | string | No | `text/plain` | Content-Type header of the response |
+| `--header=<name:value>` | string | No | — | Additional response header (repeatable) |
+| `--remove-header=<names>` | string | No | — | Comma-separated header names to remove from the request |
 
-### route-Anwendungsbeispiele
+### route usage examples
 
-**API-Antwort mocken:**
+**Mocking an API response:**
 
 ```bash
 playwright-cli route "**/api/users" \
@@ -80,14 +80,14 @@ playwright-cli route "**/api/users" \
   --content-type=application/json
 ```
 
-**Fehlerbehandlung testen:**
+**Testing error handling:**
 
 ```bash
 playwright-cli route "**/api/data" --status=500
 playwright-cli route "**/api/timeout" --status=503
 ```
 
-**Ressourcen blockieren:**
+**Blocking resources:**
 
 ```bash
 playwright-cli route "**/*.jpg" --status=404
@@ -95,15 +95,15 @@ playwright-cli route "**/analytics/**" --status=204
 playwright-cli route "**/ads/**" --status=204
 ```
 
-**Authentifizierungs-Header entfernen:**
+**Removing authentication headers:**
 
 ```bash
 playwright-cli route "**/*" --remove-header=cookie,authorization
 ```
 
-**Komplexe Szenarien mit run-code:**
+**Complex scenarios with run-code:**
 
-Fuer bedingte Antworten, Verzoegerungen oder Request-Body-Inspektion `run-code` verwenden.
+Use `run-code` for conditional responses, delays or request body inspection.
 
 ---
 
@@ -113,49 +113,49 @@ Fuer bedingte Antworten, Verzoegerungen oder Request-Body-Inspektion `run-code` 
 playwright-cli route-list
 ```
 
-Listet alle aktiven Mock-Routen auf. Keine Argumente.
+Lists all active mock routes. No arguments.
 
 ---
 
 ## unroute
 
 ```bash
-playwright-cli unroute "**/api/users"   # Spezifische Route entfernen
-playwright-cli unroute                  # Alle Routen entfernen
+playwright-cli unroute "**/api/users"   # Remove a specific route
+playwright-cli unroute                  # Remove all routes
 ```
 
-### unroute-Argumente
+### unroute arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `[pattern]` | string | Nein | Glob-Muster der zu entfernenden Route; ohne Argument alle entfernen |
+| `[pattern]` | string | No | Glob pattern of the route to remove; without an argument, remove all |
 
 ---
 
 ## network-state-set
 
 ```bash
-playwright-cli network-state-set offline   # Offline gehen
-playwright-cli reload                      # Seite zeigt Offline-State
-playwright-cli network-state-set online    # Verbindung wiederherstellen
+playwright-cli network-state-set offline   # Go offline
+playwright-cli reload                      # The page shows its offline state
+playwright-cli network-state-set online    # Restore the connection
 ```
 
-### network-state-set-Argumente
+### network-state-set arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<state>` | string | Ja | `online` oder `offline` |
+| `<state>` | string | Yes | `online` or `offline` |
 
 ---
 
-## Vollstaendiger Test-Workflow
+## Complete test workflow
 
 ```bash
-# Seite laden und Netzwerk inspizieren
+# Load the page and inspect the network
 playwright-cli open https://app.example.com
 playwright-cli network
 
-# API mocken
+# Mock the API
 playwright-cli route "**/api/products" \
   --body='[{"id":1,"name":"Widget","price":9.99}]' \
   --content-type=application/json
@@ -163,18 +163,18 @@ playwright-cli route "**/api/products" \
 playwright-cli reload
 playwright-cli snapshot
 
-# Aktive Routen pruefen
+# Check the active routes
 playwright-cli route-list
 
-# Fehlerbehandlung testen
+# Test error handling
 playwright-cli route "**/api/products" --status=500
 playwright-cli reload
 playwright-cli screenshot --filename=error-state.png
 
-# Alle Routen entfernen
+# Remove all routes
 playwright-cli unroute
 
-# Offline-Verhalten testen
+# Test offline behavior
 playwright-cli network-state-set offline
 playwright-cli reload
 playwright-cli screenshot --filename=offline.png
@@ -183,4 +183,4 @@ playwright-cli network-state-set online
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/network-routing
+Source: https://playwright.dev/agent-cli/commands/network-routing

@@ -1,77 +1,77 @@
 # Playwright — class: FileChooser
 
-> **Manifest:** 4 Methoden, 0 Properties, 0 Events (1 externer Page-Event).
-> Repraesentiert einen vom Browser geoeffneten Dateiauswahl-Dialog.
-> Instanzen werden ueber `page.on('filechooser')` bzw. `page.waitForEvent('filechooser')` erhalten.
+> **Manifest:** 4 methods, 0 properties, 0 events (1 external page event).
+> Represents a file selection dialog opened by the browser.
+> Instances are obtained via `page.on('filechooser')` or `page.waitForEvent('filechooser')`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Page-Event: 'filechooser'](#page-event-filechooser)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Page event: 'filechooser'](#page-event-filechooser)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`FileChooser` entsteht, wenn ein `<input type="file">`-Element aktiviert wird.
-Der Dialog wird nicht wirklich geoeffnet — Playwright interceptiert ihn und
-erlaubt das programmatische Setzen von Dateien ueber `setFiles()`.
+`FileChooser` is created when an `<input type="file">` element is activated.
+The dialog is not actually opened — Playwright intercepts it and
+allows files to be set programmatically via `setFiles()`.
 
 ```javascript
 const fileChooserPromise = page.waitForEvent('filechooser');
-await page.getByText('Datei hochladen').click();
+await page.getByText('Upload file').click();
 const fileChooser = await fileChooserPromise;
 await fileChooser.setFiles('/path/to/myfile.pdf');
 ```
 
 ---
 
-## Methoden
+## Methods
 
 ### fileChooser.element()
 
-Gibt das `<input type="file">`-Element zurueck, das den FileChooser
-ausgeloest hat.
+Returns the `<input type="file">` element that triggered the
+FileChooser.
 
-**Signatur:**
+**Signature:**
 ```typescript
 fileChooser.element(): ElementHandle
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `ElementHandle` — das Input-Element
+**Returns:** `ElementHandle` — the input element
 
-**Hinzugefuegt:** Vor v1.9
+**Added:** Before v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 const input = fileChooser.element();
 const accept = await input.getAttribute('accept');
-console.log('Erlaubte Typen:', accept); // z.B. ".pdf,.docx"
+console.log('Allowed types:', accept); // e.g. ".pdf,.docx"
 ```
 
 ---
 
 ### fileChooser.isMultiple()
 
-Gibt an, ob der FileChooser mehrere Dateien gleichzeitig akzeptiert
-(`multiple`-Attribut gesetzt).
+Indicates whether the FileChooser accepts several files at once
+(`multiple` attribute set).
 
-**Signatur:**
+**Signature:**
 ```typescript
 fileChooser.isMultiple(): boolean
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `boolean` — `true` wenn `multiple` gesetzt ist
+**Returns:** `boolean` — `true` if `multiple` is set
 
-**Hinzugefuegt:** Vor v1.9
+**Added:** Before v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 if (fileChooser.isMultiple()) {
   await fileChooser.setFiles(['/path/file1.jpg', '/path/file2.jpg']);
@@ -84,32 +84,32 @@ if (fileChooser.isMultiple()) {
 
 ### fileChooser.page()
 
-Gibt die Seite zurueck, zu der dieser FileChooser gehoert.
+Returns the page this FileChooser belongs to.
 
-**Signatur:**
+**Signature:**
 ```typescript
 fileChooser.page(): Page
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Page`
+**Returns:** `Page`
 
-**Hinzugefuegt:** Vor v1.9
+**Added:** Before v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 const p = fileChooser.page();
-console.log('Seite:', p.url());
+console.log('Page:', p.url());
 ```
 
 ---
 
 ### fileChooser.setFiles(files, options?)
 
-Setzt die Dateien fuer das Input-Element. Setzt damit den Dialog-Auswahl.
+Sets the files for the input element, thereby setting the dialog selection.
 
-**Signatur:**
+**Signature:**
 ```typescript
 fileChooser.setFiles(
   files: string | Array<string> | {
@@ -128,47 +128,47 @@ fileChooser.setFiles(
 ): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `files` | `string \| string[] \| FilePayload \| FilePayload[]` | ja | — | Dateipfad(e) oder Datei-Buffer-Objekte. Relative Pfade werden relativ zum CWD aufgeloest. Leeres Array loescht die Auswahl. |
-| `files[].name` | `string` | ja (bei Buffer) | — | Dateiname inkl. Endung |
-| `files[].mimeType` | `string` | ja (bei Buffer) | — | MIME-Typ, z.B. `"application/pdf"` |
-| `files[].buffer` | `Buffer` | ja (bei Buffer) | — | Datei-Inhalt als Buffer |
-| `options.noWaitAfter` | `boolean` | nein | — | Deprecated; hat keinen Effekt mehr |
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in Millisekunden (`0` = kein Timeout) |
+| `files` | `string \| string[] \| FilePayload \| FilePayload[]` | yes | — | File path(s) or file buffer objects. Relative paths are resolved relative to the CWD. An empty array clears the selection. |
+| `files[].name` | `string` | yes (with buffer) | — | File name including extension |
+| `files[].mimeType` | `string` | yes (with buffer) | — | MIME type, e.g. `"application/pdf"` |
+| `files[].buffer` | `Buffer` | yes (with buffer) | — | File content as a buffer |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated; has no effect anymore |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in milliseconds (`0` = no timeout) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** Vor v1.9
+**Added:** Before v1.9
 
-**Beispiele:**
+**Examples:**
 
 ```javascript
-// Einfacher Pfad
-await fileChooser.setFiles('/home/user/dokument.pdf');
+// Simple path
+await fileChooser.setFiles('/home/user/document.pdf');
 
-// Mehrere Pfade
+// Several paths
 await fileChooser.setFiles([
   '/home/user/bild1.jpg',
   '/home/user/bild2.jpg'
 ]);
 
-// In-Memory Buffer (kein echtes Filesystem noetig)
+// In-memory buffer (no real filesystem needed)
 await fileChooser.setFiles({
   name: 'test.txt',
   mimeType: 'text/plain',
-  buffer: Buffer.from('Dateiinhalt hier')
+  buffer: Buffer.from('File content here')
 });
 
-// Auswahl zuruecksetzen
+// Reset the selection
 await fileChooser.setFiles([]);
 ```
 
 ---
 
-## Page-Event: 'filechooser'
+## Page event: 'filechooser'
 
 ```javascript
 page.on('filechooser', async (fileChooser) => {
@@ -176,7 +176,7 @@ page.on('filechooser', async (fileChooser) => {
 });
 ```
 
-Oder als einmaliges Warten vor dem ausloesenden Klick:
+Or as a one-off wait before the triggering click:
 
 ```javascript
 const [fileChooser] = await Promise.all([
@@ -190,17 +190,17 @@ await fileChooser.setFiles('/path/to/file.jpg');
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 4      |
+| Methods   | 4      |
 | Properties | 0     |
-| Events    | 0 (1 Page-Event: 'filechooser') |
+| Events    | 0 (1 page event: 'filechooser') |
 
-**Fazit:** `setFiles()` ist die einzige relevante Aktionsmethode. `isMultiple()`
-sollte vor dem Setzen mehrerer Dateien geprueft werden. Die Buffer-Variante
-von `setFiles()` ist besonders nuetzlich in CI-Umgebungen, wo kein echtes
-Filesystem-Fixture benoetigt wird.
+**Conclusion:** `setFiles()` is the only relevant action method. `isMultiple()`
+should be checked before setting several files. The buffer variant
+of `setFiles()` is particularly useful in CI environments where no real
+filesystem fixture is needed.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-filechooser*
+*Source: https://playwright.dev/docs/api/class-filechooser*

@@ -1,23 +1,23 @@
 # playwright-api-assertions
 
-Erschoepfende API-Referenz fuer alle sechs Playwright-Assertion-Klassen.
+Exhaustive API reference for all six Playwright assertion classes.
 
-## Enthaltene Klassen
+## Included classes
 
-- [API-ASSERTIONS-CLASS-LOCATORASSERTIONS.md](API-ASSERTIONS-CLASS-LOCATORASSERTIONS.md) — 29 Matcher + `not`
-- [API-ASSERTIONS-CLASS-PAGEASSERTIONS.md](API-ASSERTIONS-CLASS-PAGEASSERTIONS.md) — 6 Matcher + `not`
-- [API-ASSERTIONS-CLASS-APIRESPONSEASSERTIONS.md](API-ASSERTIONS-CLASS-APIRESPONSEASSERTIONS.md) — 1 Matcher + `not`
-- [API-ASSERTIONS-CLASS-GENERICASSERTIONS.md](API-ASSERTIONS-CLASS-GENERICASSERTIONS.md) — 27 Methoden + `not`/`resolves`/`rejects`
-- [API-ASSERTIONS-CLASS-SNAPSHOTASSERTIONS.md](API-ASSERTIONS-CLASS-SNAPSHOTASSERTIONS.md) — 2 Methoden
-- [API-ASSERTIONS-CLASS-PLAYWRIGHTASSERTIONS.md](API-ASSERTIONS-CLASS-PLAYWRIGHTASSERTIONS.md) — 4 expect()-Ueberladungen
+- [API-ASSERTIONS-CLASS-LOCATORASSERTIONS.md](API-ASSERTIONS-CLASS-LOCATORASSERTIONS.md) — 29 matchers + `not`
+- [API-ASSERTIONS-CLASS-PAGEASSERTIONS.md](API-ASSERTIONS-CLASS-PAGEASSERTIONS.md) — 6 matchers + `not`
+- [API-ASSERTIONS-CLASS-APIRESPONSEASSERTIONS.md](API-ASSERTIONS-CLASS-APIRESPONSEASSERTIONS.md) — 1 matcher + `not`
+- [API-ASSERTIONS-CLASS-GENERICASSERTIONS.md](API-ASSERTIONS-CLASS-GENERICASSERTIONS.md) — 27 methods + `not`/`resolves`/`rejects`
+- [API-ASSERTIONS-CLASS-SNAPSHOTASSERTIONS.md](API-ASSERTIONS-CLASS-SNAPSHOTASSERTIONS.md) — 2 methods
+- [API-ASSERTIONS-CLASS-PLAYWRIGHTASSERTIONS.md](API-ASSERTIONS-CLASS-PLAYWRIGHTASSERTIONS.md) — 4 expect() overloads
 
 ## Manifest
 
-| Klasse | Methoden/Matcher | Fazit |
+| Class | Methods/Matchers | Conclusion |
 |---|---|---|
-| LocatorAssertions | 29 + `not` | Reichhaltigste Klasse; alle Matcher retrien automatisch bis timeout; `not` invertiert jeden Matcher. |
-| PageAssertions | 6 + `not` | Prueft URL, Titel, Screenshots und ARIA-Snapshots auf Seitenebene. |
-| APIResponseAssertions | 1 + `not` | Nur `toBeOK()`; genuegt fuer HTTP-Statuspruefung in API-Tests. |
-| GenericAssertions | 27 + `not`/`resolves`/`rejects` | Jest-kompatible Matcher ohne auto-retry; deckt Primitive, Objekte, Promises und Funktionen ab. |
-| SnapshotAssertions | 2 | `toMatchSnapshot` fuer Strings/Buffer mit Pixel-Toleranz; kein auto-retry. |
-| PlaywrightAssertions | 4 | expect()-Factory-Ueberladungen; gibt je nach Argument-Typ die passende Assertion-Klasse zurueck. |
+| LocatorAssertions | 29 + `not` | Richest class; all matchers retry automatically until timeout; `not` inverts every matcher. |
+| PageAssertions | 6 + `not` | Checks URL, title, screenshots and ARIA snapshots at page level. |
+| APIResponseAssertions | 1 + `not` | Only `toBeOK()`; sufficient for HTTP status checking in API tests. |
+| GenericAssertions | 27 + `not`/`resolves`/`rejects` | Jest-compatible matchers without auto-retry; covers primitives, objects, promises and functions. |
+| SnapshotAssertions | 2 | `toMatchSnapshot` for strings/buffers with pixel tolerance; no auto-retry. |
+| PlaywrightAssertions | 4 | expect() factory overloads; returns the matching assertion class depending on the argument type. |

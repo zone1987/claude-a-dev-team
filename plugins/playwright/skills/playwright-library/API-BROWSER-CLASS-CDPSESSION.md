@@ -1,12 +1,12 @@
 # class-cdpsession
 
-`CDPSession` ermoeglicht die direkte Kommunikation ueber das Chrome DevTools Protocol (CDP). Damit koennen rohe CDP-Befehle gesendet und CDP-Events abonniert werden, die nicht Teil der hoeheren Playwright-API sind.
+`CDPSession` enables direct communication over the Chrome DevTools Protocol (CDP). It allows sending raw CDP commands and subscribing to CDP events that are not part of the higher-level Playwright API.
 
-Erstellt via: `browser.newBrowserCDPSession()`, `browserContext.newCDPSession(page)`, `page.context().newCDPSession(page)`.
+Created via: `browser.newBrowserCDPSession()`, `browserContext.newCDPSession(page)`, `page.context().newCDPSession(page)`.
 
-**Hinweis:** Nur Chromium-basierte Browser (Chrome, Edge) unterstuetzen CDP.
+**Note:** Only Chromium-based browsers (Chrome, Edge) support CDP.
 
-Methoden: 2 | Properties: 0 | Events: 2
+Methods: 2 | Properties: 0 | Events: 2
 
 ---
 
@@ -14,8 +14,8 @@ Methoden: 2 | Properties: 0 | Events: 2
 
 - [Methods](#methods)
 - [Events](#events)
-- [Typische CDP-Anwendungsfaelle](#typische-cdp-anwendungsfaelle)
-- [CDP-Ressourcen](#cdp-ressourcen)
+- [Typical CDP Use Cases](#typical-cdp-use-cases)
+- [CDP Resources](#cdp-resources)
 - [Manifest](#manifest)
 
 ## Methods
@@ -26,7 +26,7 @@ Methoden: 2 | Properties: 0 | Events: 2
 await cdpSession.detach(): Promise<void>
 ```
 
-Trennt die CDP-Session vom Ziel. Nach dem Trennen werden keine weiteren Events mehr emittiert und Methoden-Aufrufe werfen Exceptions.
+Detaches the CDP session from the target. After detaching, no further events are emitted and method calls throw exceptions.
 
 **Returns:** `Promise<void>`
 
@@ -42,40 +42,40 @@ await cdpSession.detach();
 await cdpSession.send(method[, params]): Promise<Object>
 ```
 
-Sendet einen CDP-Befehl und gibt die Antwort als Objekt zurueck.
+Sends a CDP command and returns the response as an object.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `method` | string | Yes | — | CDP-Methodenname, z.B. `"Network.enable"`, `"DOM.getDocument"` |
-| `params` | Object | No | — | Methodenspezifische Parameter gemaess CDP-Spezifikation |
+| `method` | string | Yes | — | CDP method name, e.g. `"Network.enable"`, `"DOM.getDocument"` |
+| `params` | Object | No | — | Method-specific parameters according to the CDP specification |
 
-**Returns:** `Promise<Object>` — Antwort-Objekt gemaess CDP-Spezifikation
+**Returns:** `Promise<Object>` — response object according to the CDP specification
 
 ```js
-// CDP-Session an einer Page erstellen
+// Create a CDP session on a page
 const client = await page.context().newCDPSession(page);
 
-// Network-Monitoring aktivieren
+// Enable network monitoring
 await client.send('Network.enable');
 
-// Performance-Metriken abrufen
+// Retrieve performance metrics
 const { metrics } = await client.send('Performance.getMetrics');
 console.log(metrics);
 
-// Animationsrate abfragen
+// Query the animation rate
 const { currentPlaybackRate } = await client.send('Animation.getPlaybackRate');
 
-// Coverage aktivieren
+// Enable coverage
 await client.send('CSS.startRuleUsageTracking');
-// ... Seite navigieren ...
+// ... navigate the page ...
 const { ruleUsage } = await client.send('CSS.stopRuleUsageTracking');
 
-// DOM-Dokument abrufen
+// Retrieve the DOM document
 const { root } = await client.send('DOM.getDocument', { depth: 1 });
 
-// Emulation: Netzwerk-Bedingungen setzen
+// Emulation: set network conditions
 await client.send('Network.emulateNetworkConditions', {
   offline: false,
   downloadThroughput: (1.5 * 1024 * 1024) / 8,
@@ -90,13 +90,13 @@ await client.send('Network.emulateNetworkConditions', {
 
 ### event: 'close'
 
-Wird ausgeloest wenn die CDP-Session geschlossen wird, entweder durch das Schliessen des Ziels oder durch expliziten `detach()`-Aufruf.
+Emitted when the CDP session is closed, either by closing the target or by an explicit `detach()` call.
 
-**Event data:** `CDPSession` — die Session selbst
+**Event data:** `CDPSession` — the session itself
 
 ```js
 cdpSession.on('close', (session) => {
-  console.log('CDP Session geschlossen');
+  console.log('CDP Session closed');
 });
 ```
 
@@ -104,14 +104,14 @@ cdpSession.on('close', (session) => {
 
 ### event: 'event'
 
-Wird fuer alle eingehenden CDP-Events ausgeloest. Ermoeglicht das generische Abonnieren ohne explizite Event-Namen zu kennen.
+Emitted for all incoming CDP events. Allows generic subscription without knowing explicit event names.
 
-**Event data:** Object mit:
+**Event data:** Object with:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `method` | string | CDP-Event-Bezeichner, z.B. `"Network.requestWillBeSent"` |
-| `params` | Object | Event-spezifische Daten |
+| `method` | string | CDP event identifier, e.g. `"Network.requestWillBeSent"` |
+| `params` | Object | Event-specific data |
 
 ```js
 cdpSession.on('event', ({ method, params }) => {
@@ -121,15 +121,15 @@ cdpSession.on('event', ({ method, params }) => {
 
 ---
 
-## Typische CDP-Anwendungsfaelle
+## Typical CDP Use Cases
 
 ```js
-// Browser-Level Session (kein Page-Target)
+// Browser-level session (no page target)
 const browserSession = await browser.newBrowserCDPSession();
 const { browserContextIds } = await browserSession.send('Target.getBrowserContexts');
 console.log('Contexts:', browserContextIds);
 
-// Network-Events abhoeren
+// Listen to network events
 const client = await page.context().newCDPSession(page);
 await client.send('Network.enable');
 client.on('event', ({ method, params }) => {
@@ -138,24 +138,24 @@ client.on('event', ({ method, params }) => {
   }
 });
 
-// JavaScript-Profiling
+// JavaScript profiling
 await client.send('Profiler.enable');
 await client.send('Profiler.start');
 await page.goto('https://example.com');
 const { profile } = await client.send('Profiler.stop');
 require('fs').writeFileSync('profile.json', JSON.stringify(profile));
 
-// Aufraumen
+// Clean up
 await client.detach();
 ```
 
 ---
 
-## CDP-Ressourcen
+## CDP Resources
 
-Die vollstaendige CDP-API-Dokumentation (alle Domaenen und Methoden):
+The complete CDP API documentation (all domains and methods):
 - Chrome: https://chromedevtools.github.io/devtools-protocol/
-- Domänen: `Animation`, `Browser`, `CSS`, `DOM`, `Debugger`, `Emulation`, `Input`, `Network`, `Page`, `Performance`, `Profiler`, `Runtime`, `Security`, `ServiceWorker`, `Storage`, `Target`, `Tracing`, u.v.m.
+- Domains: `Animation`, `Browser`, `CSS`, `DOM`, `Debugger`, `Emulation`, `Input`, `Network`, `Page`, `Performance`, `Profiler`, `Runtime`, `Security`, `ServiceWorker`, `Storage`, `Target`, `Tracing`, and many more.
 
 ---
 
@@ -167,7 +167,7 @@ Die vollstaendige CDP-API-Dokumentation (alle Domaenen und Methoden):
 | Properties | 0 |
 | Events | 2 |
 
-**Fazit:** `CDPSession` ist ein Low-Level-Escape-Hatch fuer Chromium-spezifische Funktionen, die Playwright nicht nativ abdeckt. `send()` ist die einzige relevante Methode; die CDP-Methodennamen kommen aus der Chrome DevTools Protocol-Spezifikation. Fuer Standard-Tests sollten immer die hoeheren Playwright-Abstraktionen bevorzugt werden.
+**Conclusion:** `CDPSession` is a low-level escape hatch for Chromium-specific features that Playwright does not cover natively. `send()` is the only relevant method; the CDP method names come from the Chrome DevTools Protocol specification. For standard tests, the higher-level Playwright abstractions should always be preferred.
 
 ---
 

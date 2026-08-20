@@ -1,8 +1,8 @@
 # playwright-api-page
 
-Vollstaendige API-Referenz fuer die vier Playwright-Kern-Interaktionsklassen:
+Complete API reference for the four Playwright core interaction classes:
 
-- `API-PAGE-CLASS-PAGE.md` — Page-Klasse: ~102 Methoden + 17 Events
-- `API-PAGE-CLASS-FRAME.md` — Frame-Klasse: ~56 Methoden
-- `API-PAGE-CLASS-ELEMENTHANDLE.md` — ElementHandle-Klasse: ~42 Methoden
-- `API-PAGE-CLASS-JSHANDLE.md` — JSHandle-Klasse: 7 Methoden
+- `API-PAGE-CLASS-PAGE.md` — Page class: ~102 methods + 17 events
+- `API-PAGE-CLASS-FRAME.md` — Frame class: ~56 methods
+- `API-PAGE-CLASS-ELEMENTHANDLE.md` — ElementHandle class: ~42 methods
+- `API-PAGE-CLASS-JSHANDLE.md` — JSHandle class: 7 methods

@@ -1,176 +1,176 @@
-# Playwright Test-Ausfuehrung — Vollstaendige Referenz
+# Playwright Test Execution — Complete Reference
 
 ## Contents
 
-- [CLI-Grundbefehle](#cli-grundbefehle)
-- [Alle CLI-Flags (`npx playwright test`)](#alle-cli-flags-npx-playwright-test)
-- [Parallelitaet](#parallelitaet)
+- [Basic CLI commands](#basic-cli-commands)
+- [All CLI flags (`npx playwright test`)](#all-cli-flags-npx-playwright-test)
+- [Parallelism](#parallelism)
 - [Sharding](#sharding)
 - [Retries](#retries)
 - [Timeouts](#timeouts)
-- [UI-Modus](#ui-modus)
+- [UI mode](#ui-mode)
 - [webServer](#webserver)
 
-## CLI-Grundbefehle
+## Basic CLI commands
 
 ```bash
-# Alle Tests
+# All tests
 npx playwright test
 
-# Bestimmte Datei(en)
+# Specific file(s)
 npx playwright test landing-page.spec.ts
 npx playwright test tests/todo/ tests/login/
 
-# Nach Dateinamen-Stichwort
-npx playwright test landing login         # Dateien mit "landing" ODER "login"
+# By filename keyword
+npx playwright test landing login         # Files containing "landing" OR "login"
 
-# Nach Test-Titel (Regex)
+# By test title (regex)
 npx playwright test -g "add a todo item"
 
-# Nur zuletzt fehlgeschlagene Tests
+# Only the most recently failed tests
 npx playwright test --last-failed
 
-# Zeilenangabe (bestimmter Test)
+# Line number (specific test)
 npx playwright test example.spec.ts:10
 
-# Report anzeigen
+# Show report
 npx playwright show-report
 ```
 
 ---
 
-## Alle CLI-Flags (`npx playwright test`)
+## All CLI flags (`npx playwright test`)
 
-| Flag | Kurz | Typ | Beschreibung |
+| Flag | Short | Type | Description |
 |---|---|---|---|
-| `--debug` | | boolean | Playwright Inspector oeffnen (Schritt-fuer-Schritt) |
-| `--headed` | | boolean | Tests im sichtbaren Browser-Fenster ausfuehren |
-| `--ui` | | boolean | Interaktiver UI-Modus |
-| `--ui-host` | | string | Host fuer UI-Server (Default: localhost; `0.0.0.0` fuer Docker) |
-| `--ui-port` | | number | Port fuer UI-Server (0 = zufaellig) |
-| `--grep` | `-g` | string (Regex) | Nur Tests, deren Titel zum Regex passen |
-| `--grep-invert` | | string (Regex) | Tests AUSSCHLIESSEN, die dem Regex entsprechen |
-| `--workers` | `-j` | number \| `'N%'` | Anzahl paralleler Worker (z.B. `4` oder `'50%'`) |
-| `--project` | | string[] | Nur Tests aus diesem Projekt ausfuehren |
-| `--config` | `-c` | Dateipfad | Konfigurationsdatei oder Testverzeichnis |
-| `--fail-on-flaky-tests` | | boolean | Fehler wenn ein Test als "flaky" markiert wird |
-| `--forbid-only` | | boolean | Fehler bei `test.only` (fuer CI) |
-| `--fully-parallel` | | boolean | Alle Tests parallel |
-| `--global-timeout` | | ms | Max. Laufzeit der gesamten Suite |
-| `--ignore-snapshots` | | boolean | Screenshot/Snapshot-Assertions ignorieren |
-| `--last-failed` | | boolean | Nur zuvor fehlgeschlagene Tests |
-| `--list` | | boolean | Tests auflisten ohne Ausfuehren |
-| `--max-failures` | `-x` | number | Nach N Fehlern abbrechen |
-| `--no-deps` | | boolean | Projekt-Dependencies ignorieren |
-| `--only-changed` | | ref? | Nur geaenderte Testdateien seit ref/HEAD |
-| `--output` | | Verzeichnis | Ordner fuer Artefakte |
-| `--pass-with-no-tests` | | boolean | Erfolg auch wenn keine Tests gefunden |
-| `--quiet` | | boolean | Stdout unterdruecken |
-| `--repeat-each` | | number | Jeden Test N-mal ausfuehren |
+| `--debug` | | boolean | Open the Playwright Inspector (step by step) |
+| `--headed` | | boolean | Run tests in a visible browser window |
+| `--ui` | | boolean | Interactive UI mode |
+| `--ui-host` | | string | Host for the UI server (default: localhost; `0.0.0.0` for Docker) |
+| `--ui-port` | | number | Port for the UI server (0 = random) |
+| `--grep` | `-g` | string (regex) | Only tests whose title matches the regex |
+| `--grep-invert` | | string (regex) | EXCLUDE tests matching the regex |
+| `--workers` | `-j` | number \| `'N%'` | Number of parallel workers (e.g. `4` or `'50%'`) |
+| `--project` | | string[] | Run only tests from this project |
+| `--config` | `-c` | file path | Configuration file or test directory |
+| `--fail-on-flaky-tests` | | boolean | Fail if a test is marked "flaky" |
+| `--forbid-only` | | boolean | Fail on `test.only` (for CI) |
+| `--fully-parallel` | | boolean | All tests in parallel |
+| `--global-timeout` | | ms | Max. runtime of the entire suite |
+| `--ignore-snapshots` | | boolean | Ignore screenshot/snapshot assertions |
+| `--last-failed` | | boolean | Only previously failed tests |
+| `--list` | | boolean | List tests without running them |
+| `--max-failures` | `-x` | number | Abort after N failures |
+| `--no-deps` | | boolean | Ignore project dependencies |
+| `--only-changed` | | ref? | Only test files changed since ref/HEAD |
+| `--output` | | directory | Folder for artifacts |
+| `--pass-with-no-tests` | | boolean | Succeed even if no tests were found |
+| `--quiet` | | boolean | Suppress stdout |
+| `--repeat-each` | | number | Run each test N times |
 | `--reporter` | | string | Reporter (dot, line, list, html, json, junit, blob) |
-| `--retries` | | number | Max. Wiederholungsversuche |
-| `--shard` | | `N/M` | Shard N von M (1-basiert) |
-| `--test-list` | | Dateipfad | Datei mit auszufuehrenden Tests |
-| `--test-list-invert` | | Dateipfad | Datei mit zu ueberspringenden Tests |
-| `--timeout` | | ms | Test-Timeout |
-| `--trace` | | mode | Trace-Modus (on, off, on-first-retry, retain-on-failure) |
-| `--tsconfig` | | Dateipfad | TypeScript-Konfiguration |
-| `--update-snapshots` | `-u` | `all \| changed \| missing` | Snapshots aktualisieren |
-| `--update-source-method` | | `patch \| 3way \| overwrite` | Snapshot-Update-Methode |
+| `--retries` | | number | Max. retry attempts |
+| `--shard` | | `N/M` | Shard N of M (1-based) |
+| `--test-list` | | file path | File listing the tests to run |
+| `--test-list-invert` | | file path | File listing the tests to skip |
+| `--timeout` | | ms | Test timeout |
+| `--trace` | | mode | Trace mode (on, off, on-first-retry, retain-on-failure) |
+| `--tsconfig` | | file path | TypeScript configuration |
+| `--update-snapshots` | `-u` | `all \| changed \| missing` | Update snapshots |
+| `--update-source-method` | | `patch \| 3way \| overwrite` | Snapshot update method |
 
-### Weitere Unterbefehle
+### Further subcommands
 
 ```bash
-# Installationen
-npx playwright install [browser...]          # Browser installieren
-npx playwright install --with-deps chromium  # inkl. Systemabhaengigkeiten
+# Installations
+npx playwright install [browser...]          # Install browsers
+npx playwright install --with-deps chromium  # including system dependencies
 
-# Reports zusammenfuehren
+# Merge reports
 npx playwright merge-reports ./blob-reports --reporter html
 
-# Trace anzeigen
+# Show trace
 npx playwright show-trace trace.zip
 
-# Code generieren
+# Generate code
 npx playwright codegen https://example.com
 
-# Cache leeren
+# Clear cache
 npx playwright clear-cache
 ```
 
 ---
 
-## Parallelitaet
+## Parallelism
 
-### Standard-Verhalten
+### Default behavior
 
-- Test-Dateien werden standardmaessig parallel ausgefuehrt (eine Datei pro Worker)
-- Tests INNERHALB einer Datei laufen sequenziell im selben Worker
+- Test files are run in parallel by default (one file per worker)
+- Tests WITHIN a file run sequentially in the same worker
 
-### Worker konfigurieren
+### Configuring workers
 
 ```typescript
 // playwright.config.ts
 export default defineConfig({
-  workers: process.env.CI ? 2 : undefined,  // undefined = automatisch (Anzahl CPU-Kerne)
+  workers: process.env.CI ? 2 : undefined,  // undefined = automatic (number of CPU cores)
 });
 ```
 
 ```bash
 npx playwright test --workers 4
-npx playwright test --workers=50%   # 50% der CPUs
-npx playwright test --workers=1     # komplett sequenziell
+npx playwright test --workers=50%   # 50% of the CPUs
+npx playwright test --workers=1     # fully sequential
 ```
 
-### `fullyParallel` — Tests innerhalb einer Datei parallelisieren
+### `fullyParallel` — parallelize tests within a file
 
 ```typescript
 // Global
 export default defineConfig({ fullyParallel: true });
 
-// Per Projekt
+// Per project
 projects: [{ name: 'chromium', fullyParallel: true }],
 ```
 
 ```typescript
-// Per Datei
+// Per file
 import { test } from '@playwright/test';
 test.describe.configure({ mode: 'parallel' });
 ```
 
-### `serial` — Abhaengige Tests in Reihe
+### `serial` — dependent tests in sequence
 
 ```typescript
 test.describe.configure({ mode: 'serial' });
 
-test('schritt 1', async ({ page }) => { /* ... */ });
-test('schritt 2', async ({ page }) => { /* ... */ });
-// Schritt 2 wird uebersprungen wenn Schritt 1 fehlschlaegt (ohne retries)
+test('step 1', async ({ page }) => { /* ... */ });
+test('step 2', async ({ page }) => { /* ... */ });
+// Step 2 is skipped if step 1 fails (without retries)
 ```
 
-### Selektiv aus fullyParallel ausnehmen
+### Selectively opting out of fullyParallel
 
 ```typescript
-test.describe('sequenziell', () => {
+test.describe('sequential', () => {
   test.describe.configure({ mode: 'default' });
   test('in order 1', async ({ page }) => { /* ... */ });
   test('in order 2', async ({ page }) => { /* ... */ });
 });
 ```
 
-### Worker-Identifikation
+### Worker identification
 
 ```typescript
-// In Fixtures/Tests:
-testInfo.workerIndex       // 0 bis (maxWorkers - 1)
-testInfo.parallelIndex     // 0 bis (aktive Worker - 1)
+// In fixtures/tests:
+testInfo.workerIndex       // 0 to (maxWorkers - 1)
+testInfo.parallelIndex     // 0 to (active workers - 1)
 
-// Umgebungsvariablen (auch in globalSetup):
+// Environment variables (also in globalSetup):
 process.env.TEST_WORKER_INDEX
 process.env.TEST_PARALLEL_INDEX
 ```
 
-### Fehler limitieren
+### Limiting failures
 
 ```typescript
 export default defineConfig({
@@ -182,21 +182,21 @@ export default defineConfig({
 
 ## Sharding
 
-Verteilt Tests auf mehrere Maschinen:
+Distributes tests across multiple machines:
 
 ```bash
-# Auf 4 Maschinen (jeweils ein Shard):
+# Across 4 machines (one shard each):
 npx playwright test --shard=1/4
 npx playwright test --shard=2/4
 npx playwright test --shard=3/4
 npx playwright test --shard=4/4
 ```
 
-**Granularitaet:**
-- Mit `fullyParallel: true`: Sharding auf Test-Ebene (gleichmaessigere Verteilung)
-- Ohne: Sharding auf Datei-Ebene
+**Granularity:**
+- With `fullyParallel: true`: sharding at test level (more even distribution)
+- Without: sharding at file level
 
-### Reports aus Shards zusammenfuehren
+### Merging reports from shards
 
 ```typescript
 // playwright.config.ts
@@ -206,11 +206,11 @@ export default defineConfig({
 ```
 
 ```bash
-# Alle Blob-Reports sammeln, dann:
+# Collect all blob reports, then:
 npx playwright merge-reports --reporter html ./all-blob-reports
 ```
 
-### GitHub Actions Beispiel
+### GitHub Actions example
 
 ```yaml
 strategy:
@@ -224,7 +224,7 @@ steps:
       name: blob-report-${{ matrix.shardIndex }}
       path: blob-report
 
-# Nach allen Shards: merge job
+# After all shards: merge job
 merge-reports:
   needs: test
   steps:
@@ -240,13 +240,13 @@ merge-reports:
 
 ## Retries
 
-### Konfiguration
+### Configuration
 
 ```typescript
 // playwright.config.ts
 export default defineConfig({ retries: 2 });
 
-// Per Projekt
+// Per project
 projects: [{ name: 'ci', retries: 2 }],
 ```
 
@@ -255,31 +255,31 @@ npx playwright test --retries=3
 ```
 
 ```typescript
-// Per Test-Gruppe
+// Per test group
 test.describe.configure({ retries: 2 });
 ```
 
-### Test-Status mit Retries
+### Test status with retries
 
-| Status | Bedeutung |
+| Status | Meaning |
 |---|---|
-| `passed` | Im ersten Versuch bestanden |
-| `flaky` | Im ersten Versuch fehlgeschlagen, dann bestanden |
-| `failed` | In allen Versuchen fehlgeschlagen |
+| `passed` | Passed on the first attempt |
+| `flaky` | Failed on the first attempt, then passed |
+| `failed` | Failed on all attempts |
 
-### `testInfo.retry` — Retry erkennen
+### `testInfo.retry` — detecting a retry
 
 ```typescript
 test('example', async ({ page }, testInfo) => {
   if (testInfo.retry > 0) {
-    // Beim Retry: Cache/State zuruecksetzen
+    // On retry: reset cache/state
     await page.context().clearCookies();
   }
   // ...
 });
 ```
 
-Auch in Fixtures verfuegbar:
+Also available in fixtures:
 
 ```typescript
 myFixture: async ({}, use, testInfo) => {
@@ -290,55 +290,55 @@ myFixture: async ({}, use, testInfo) => {
 }
 ```
 
-### Worker-Verhalten bei Fehlschlag
+### Worker behavior on failure
 
-Nach einem fehlgeschlagenen Test: Worker-Prozess und Browser werden verworfen.
-Neuer Worker startet fuer den Retry-Versuch.
+After a failed test: the worker process and browser are discarded.
+A new worker starts for the retry attempt.
 
 ### serial + retries
 
-Bei `test.describe.configure({ mode: 'serial' })` und aktivierten Retries:
-Alle Tests der Gruppe werden gemeinsam wiederholt.
+With `test.describe.configure({ mode: 'serial' })` and retries enabled:
+all tests of the group are retried together.
 
 ---
 
 ## Timeouts
 
-### Uebersicht aller Timeout-Typen
+### Overview of all timeout types
 
-| Typ | Default | Gilt fuer | Konfiguration |
+| Type | Default | Applies to | Configuration |
 |---|---|---|---|
-| Test-Timeout | 30.000 ms | Test-Funktion + Fixture-Setup + beforeEach | `timeout` in Config |
-| Expect-Timeout | 5.000 ms | Auto-retrying Assertions | `expect.timeout` in Config |
-| Action-Timeout | 0 (kein Limit) | click, fill, hover etc. | `use.actionTimeout` |
-| Navigation-Timeout | 0 (kein Limit) | page.goto, page.waitForURL etc. | `use.navigationTimeout` |
-| Global-Timeout | 0 (kein Limit) | Gesamte Test-Suite | `globalTimeout` in Config |
-| Fixture-Timeout | (wie Test) | Einzelnes Fixture | `{ timeout }` in extend |
-| beforeAll/afterAll | 30.000 ms | Hook-Funktion | `test.setTimeout()` im Hook |
+| Test timeout | 30,000 ms | Test function + fixture setup + beforeEach | `timeout` in config |
+| Expect timeout | 5,000 ms | Auto-retrying assertions | `expect.timeout` in config |
+| Action timeout | 0 (no limit) | click, fill, hover etc. | `use.actionTimeout` |
+| Navigation timeout | 0 (no limit) | page.goto, page.waitForURL etc. | `use.navigationTimeout` |
+| Global timeout | 0 (no limit) | Entire test suite | `globalTimeout` in config |
+| Fixture timeout | (same as test) | Individual fixture | `{ timeout }` in extend |
+| beforeAll/afterAll | 30,000 ms | Hook function | `test.setTimeout()` in the hook |
 
-### Test-Timeout
+### Test timeout
 
 ```typescript
 // Global
 export default defineConfig({ timeout: 120_000 });
 
-// Per Test
+// Per test
 test('slow test', async ({ page }) => {
   test.setTimeout(120_000);
 });
 
-// test.slow() = dreifacher Timeout
+// test.slow() = triple the timeout
 test('very slow test', async ({ page }) => {
   test.slow();
 });
 
-// Aus beforeEach
+// From beforeEach
 test.beforeEach(async ({ page }, testInfo) => {
   testInfo.setTimeout(testInfo.timeout + 30_000);
 });
 ```
 
-### Expect-Timeout
+### Expect timeout
 
 ```typescript
 // Global
@@ -346,15 +346,15 @@ export default defineConfig({
   expect: { timeout: 10_000 },
 });
 
-// Per Assertion
+// Per assertion
 await expect(locator).toHaveText('hello', { timeout: 10_000 });
 
-// Vorkonfiguriert
+// Preconfigured
 const slowExpect = expect.configure({ timeout: 30_000 });
 await slowExpect(locator).toBeVisible();
 ```
 
-### Action-Timeout
+### Action timeout
 
 ```typescript
 // Global
@@ -362,11 +362,11 @@ export default defineConfig({
   use: { actionTimeout: 10_000 },
 });
 
-// Per Aktion
+// Per action
 await page.getByRole('button').click({ timeout: 10_000 });
 ```
 
-### Navigation-Timeout
+### Navigation timeout
 
 ```typescript
 // Global
@@ -374,15 +374,15 @@ export default defineConfig({
   use: { navigationTimeout: 30_000 },
 });
 
-// Per Navigation
+// Per navigation
 await page.goto('https://example.com', { timeout: 30_000 });
 ```
 
-### Global-Timeout
+### Global timeout
 
 ```typescript
 export default defineConfig({
-  globalTimeout: 60 * 60 * 1000,  // 1 Stunde
+  globalTimeout: 60 * 60 * 1000,  // 1 hour
 });
 ```
 
@@ -390,7 +390,7 @@ export default defineConfig({
 npx playwright test --global-timeout=3600000
 ```
 
-### Fixture-Timeout
+### Fixture timeout
 
 ```typescript
 const test = base.extend({
@@ -403,7 +403,7 @@ const test = base.extend({
 
 ---
 
-## UI-Modus
+## UI mode
 
 ```bash
 npx playwright test --ui
@@ -412,20 +412,20 @@ npx playwright test --ui-host=0.0.0.0 --ui-port=8080
 ```
 
 **Features:**
-- Timeline mit Aktionen und DOM-Snapshots (Time Travel)
-- Vor/Nach-Ansicht fuer jede Aktion
-- Locator-Picker zum Verifizieren von Selektoren
-- Watch-Modus: Auto-Rerun bei Code-Aenderungen
+- Timeline with actions and DOM snapshots (time travel)
+- Before/after view for each action
+- Locator picker for verifying selectors
+- Watch mode: auto-rerun on code changes
 - Tabs: Call, Log, Errors, Console, Network, Attachments, Metadata
-- "Open in VSCode" fuer direkten Code-Sprung
+- "Open in VSCode" for jumping straight to the code
 
-**Sicherheit:** Bei `--ui-host=0.0.0.0` sind Traces inkl. Passworten fuer andere Netzwerkteilnehmer zugaenglich.
+**Security:** With `--ui-host=0.0.0.0`, traces including passwords are accessible to others on the network.
 
 ---
 
 ## webServer
 
-Komplette Konfiguration — siehe auch `playwright-test-config`:
+Complete configuration — see also `playwright-test-config`:
 
 ```typescript
 webServer: {
@@ -442,7 +442,7 @@ use: {
 },
 ```
 
-Mit `baseURL` koennen Tests relative Pfade verwenden: `await page.goto('/login')`
+With `baseURL`, tests can use relative paths: `await page.goto('/login')`
 
 ---
 

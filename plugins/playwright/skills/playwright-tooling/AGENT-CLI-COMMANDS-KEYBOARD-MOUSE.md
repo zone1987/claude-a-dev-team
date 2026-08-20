@@ -2,22 +2,22 @@
 
 ## Contents
 
-- [Tastatur-Befehle](#tastatur-befehle)
+- [Keyboard commands](#keyboard-commands)
 - [press](#press)
 - [keydown / keyup](#keydown-keyup)
-- [Maus-Befehle](#maus-befehle)
+- [Mouse commands](#mouse-commands)
 - [mousemove](#mousemove)
 - [mousedown / mouseup](#mousedown-mouseup)
 - [mousewheel](#mousewheel)
-- [Wann welchen Ansatz verwenden](#wann-welchen-ansatz-verwenden)
+- [When to use which approach](#when-to-use-which-approach)
 
-## Tastatur-Befehle
+## Keyboard commands
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `press <key>` | Taste druecken und loslassen |
-| `keydown <key>` | Taste niederdruecken (haelt gehalten) |
-| `keyup <key>` | Taste loslassen |
+| `press <key>` | Press and release a key |
+| `keydown <key>` | Press a key down (keeps it held) |
+| `keyup <key>` | Release a key |
 
 ---
 
@@ -35,76 +35,76 @@ playwright-cli press Shift+Tab
 playwright-cli press Alt+Enter
 ```
 
-### press-Argumente
+### press arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<key>` | string | Ja | Taste oder Tastenkombination (z. B. `Enter`, `Control+a`) |
+| `<key>` | string | Yes | Key or key combination (e.g. `Enter`, `Control+a`) |
 
-### Haeufige Tasten
+### Common keys
 
-| Taste | Beschreibung |
+| Key | Description |
 |-------|-------------|
-| `Enter` | Bestaetigen / Formular absenden |
-| `Tab` | Naechstes Feld fokussieren |
-| `Shift+Tab` | Vorheriges Feld fokussieren |
-| `Escape` | Abbrechen / Schliessen |
-| `Backspace` | Zeichen loeschen (rueckwaerts) |
-| `Delete` | Zeichen loeschen (vorwaerts) |
-| `Space` | Leerzeichen / Checkbox umschalten |
-| `ArrowUp` | Aufwaerts navigieren |
-| `ArrowDown` | Abwaerts navigieren |
-| `ArrowLeft` | Links navigieren |
-| `ArrowRight` | Rechts navigieren |
-| `Home` | Zum Anfang springen |
-| `End` | Zum Ende springen |
-| `PageUp` | Seite aufwaerts blaettern |
-| `PageDown` | Seite abwaerts blaettern |
-| `Control+a` | Alles auswaehlen |
-| `Control+c` | Kopieren |
-| `Control+v` | Einfuegen |
-| `Control+x` | Ausschneiden |
-| `Control+z` | Rueckgaengig |
-| `Control+y` | Wiederherstellen |
-| `F1` bis `F12` | Funktionstasten |
+| `Enter` | Confirm / submit form |
+| `Tab` | Focus the next field |
+| `Shift+Tab` | Focus the previous field |
+| `Escape` | Cancel / close |
+| `Backspace` | Delete character (backwards) |
+| `Delete` | Delete character (forwards) |
+| `Space` | Space / toggle checkbox |
+| `ArrowUp` | Navigate up |
+| `ArrowDown` | Navigate down |
+| `ArrowLeft` | Navigate left |
+| `ArrowRight` | Navigate right |
+| `Home` | Jump to the beginning |
+| `End` | Jump to the end |
+| `PageUp` | Scroll one page up |
+| `PageDown` | Scroll one page down |
+| `Control+a` | Select all |
+| `Control+c` | Copy |
+| `Control+v` | Paste |
+| `Control+x` | Cut |
+| `Control+z` | Undo |
+| `Control+y` | Redo |
+| `F1` to `F12` | Function keys |
 
-### Tastaturnavigation (Beispiel)
+### Keyboard navigation (example)
 
 ```bash
-playwright-cli press Tab                # Naechstes Feld
-playwright-cli press ArrowDown          # Dropdown-Navigation
-playwright-cli press Enter              # Option auswaehlen
-playwright-cli press Shift+Tab          # Zurueck
+playwright-cli press Tab                # Next field
+playwright-cli press ArrowDown          # Dropdown navigation
+playwright-cli press Enter              # Select option
+playwright-cli press Shift+Tab          # Back
 ```
 
 ---
 
 ## keydown / keyup
 
-Fuer modifizierte Interaktionen (z. B. gehalten halten waehrend Klick):
+For modified interactions (e.g. holding a key down while clicking):
 
 ```bash
 playwright-cli keydown Shift
-playwright-cli click e15               # Shift+Klick
+playwright-cli click e15               # Shift+click
 playwright-cli keyup Shift
 ```
 
-### keydown/keyup-Argumente
+### keydown/keyup arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<key>` | string | Ja | Zu haltende Taste (z. B. `Shift`, `Control`, `Alt`) |
+| `<key>` | string | Yes | Key to hold (e.g. `Shift`, `Control`, `Alt`) |
 
 ---
 
-## Maus-Befehle
+## Mouse commands
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `mousemove <x> <y>` | Maus zu Koordinaten bewegen |
-| `mousedown [button]` | Maustaste niederdruecken |
-| `mouseup [button]` | Maustaste loslassen |
-| `mousewheel <dx> <dy>` | Mit Mausrad scrollen |
+| `mousemove <x> <y>` | Move the mouse to coordinates |
+| `mousedown [button]` | Press a mouse button down |
+| `mouseup [button]` | Release a mouse button |
+| `mousewheel <dx> <dy>` | Scroll with the mouse wheel |
 
 ---
 
@@ -115,72 +115,72 @@ playwright-cli mousemove 100 200
 playwright-cli mousemove 450 320
 ```
 
-### mousemove-Argumente
+### mousemove arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<x>` | number | Ja | Horizontale Koordinate in Pixeln |
-| `<y>` | number | Ja | Vertikale Koordinate in Pixeln |
+| `<x>` | number | Yes | Horizontal coordinate in pixels |
+| `<y>` | number | Yes | Vertical coordinate in pixels |
 
 ---
 
 ## mousedown / mouseup
 
 ```bash
-# Linksklick bei Koordinaten
+# Left click at coordinates
 playwright-cli mousemove 100 200
 playwright-cli mousedown
 playwright-cli mouseup
 
-# Rechtsklick
+# Right click
 playwright-cli mousemove 300 400
 playwright-cli mousedown right
 playwright-cli mouseup right
 
-# Mittelklick
+# Middle click
 playwright-cli mousemove 500 300
 playwright-cli mousedown middle
 playwright-cli mouseup middle
 ```
 
-### mousedown/mouseup-Argumente
+### mousedown/mouseup arguments
 
-| Argument | Typ | Pflicht | Standard | Beschreibung |
+| Argument | Type | Required | Default | Description |
 |----------|-----|---------|---------|-------------|
-| `[button]` | string | Nein | `left` | Taste: `left`, `right`, `middle` |
+| `[button]` | string | No | `left` | Button: `left`, `right`, `middle` |
 
 ---
 
 ## mousewheel
 
 ```bash
-playwright-cli mousewheel 0 500        # 500px nach unten scrollen
-playwright-cli mousewheel 0 -300       # 300px nach oben scrollen
-playwright-cli mousewheel 200 0        # 200px nach rechts scrollen
-playwright-cli mousewheel -100 0       # 100px nach links scrollen
-playwright-cli mousewheel 0 1000       # Schnell nach unten scrollen
+playwright-cli mousewheel 0 500        # Scroll 500px down
+playwright-cli mousewheel 0 -300       # Scroll 300px up
+playwright-cli mousewheel 200 0        # Scroll 200px right
+playwright-cli mousewheel -100 0       # Scroll 100px left
+playwright-cli mousewheel 0 1000       # Scroll quickly down
 ```
 
-### mousewheel-Argumente
+### mousewheel arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<dx>` | number | Ja | Horizontaler Scroll-Wert in Pixeln (negativ = links) |
-| `<dy>` | number | Ja | Vertikaler Scroll-Wert in Pixeln (negativ = oben) |
+| `<dx>` | number | Yes | Horizontal scroll value in pixels (negative = left) |
+| `<dy>` | number | Yes | Vertical scroll value in pixels (negative = up) |
 
 ---
 
-## Wann welchen Ansatz verwenden
+## When to use which approach
 
-| Szenario | Empfohlener Ansatz |
+| Scenario | Recommended approach |
 |----------|-------------------|
-| Buttons, Links, Formularfelder klicken | `click`, `fill`, ref-basierte Befehle |
-| Canvas-Anwendungen (Zeichnen, Karten) | Maus-Befehle mit Koordinaten |
-| Benutzerdefinierte UI-Steuerelemente ohne Accessibility | Maus-Befehle mit Koordinaten |
-| Drag-Interaktionen auf pixel-praezisen Zielen | Maus-Befehle mit Koordinaten |
-| Tastaturkuerzel | `press` mit Modifier+Taste |
-| Modifier waehrend Mausklick halten | `keydown` / `keyup` um `click` herum |
+| Clicking buttons, links, form fields | `click`, `fill`, ref-based commands |
+| Canvas applications (drawing, maps) | Mouse commands with coordinates |
+| Custom UI controls without accessibility | Mouse commands with coordinates |
+| Drag interactions on pixel-precise targets | Mouse commands with coordinates |
+| Keyboard shortcuts | `press` with modifier+key |
+| Holding a modifier during a mouse click | `keydown` / `keyup` around `click` |
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/keyboard-mouse
+Source: https://playwright.dev/agent-cli/commands/keyboard-mouse

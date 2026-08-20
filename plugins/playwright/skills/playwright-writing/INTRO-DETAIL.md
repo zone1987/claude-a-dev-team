@@ -2,42 +2,42 @@
 
 ## Contents
 
-- [Was ist Playwright](#was-ist-playwright)
-- [Systemanforderungen](#systemanforderungen)
-- [Installation: @playwright/test (empfohlen)](#installation-playwrighttest-empfohlen)
-- [Library-Modus (ohne Test-Runner)](#library-modus-ohne-test-runner)
-- [BrowserType.launch() — Alle Optionen](#browsertypelaunch-alle-optionen)
-- [Browser.newContext() — Alle Optionen](#browsernewcontext-alle-optionen)
-- [Browser-Lifecycle-Muster](#browser-lifecycle-muster)
-- [Unterstuetzte Sprachen](#unterstuetzte-sprachen)
-- [Update-Prozess](#update-prozess)
-- [Tests ausfuehren (Schnellreferenz)](#tests-ausfuehren-schnellreferenz)
+- [What is Playwright](#what-is-playwright)
+- [System requirements](#system-requirements)
+- [Installation: @playwright/test (recommended)](#installation-playwrighttest-recommended)
+- [Library mode (without the test runner)](#library-mode-without-the-test-runner)
+- [BrowserType.launch() — All options](#browsertypelaunch-all-options)
+- [Browser.newContext() — All options](#browsernewcontext-all-options)
+- [Browser lifecycle pattern](#browser-lifecycle-pattern)
+- [Supported languages](#supported-languages)
+- [Update process](#update-process)
+- [Running tests (quick reference)](#running-tests-quick-reference)
 
-## Was ist Playwright
+## What is Playwright
 
-Playwright ist ein End-to-End-Testframework fuer moderne Webanwendungen. Es buendelt:
-- Test-Runner mit Parallelisierung
-- Assertions mit Web-First-Retry
-- Isolation ueber BrowserContext
-- Tooling: Trace Viewer, UI Mode, Codegen, VS Code Extension
+Playwright is an end-to-end test framework for modern web applications. It bundles:
+- Test runner with parallelization
+- Assertions with web-first retry
+- Isolation via BrowserContext
+- Tooling: Trace Viewer, UI Mode, Codegen, VS Code extension
 
-Unterstuetzte Browser-Engines: **Chromium**, **WebKit**, **Firefox** (headless und headed,
-native Mobile-Emulation fuer Android Chrome und Mobile Safari).
+Supported browser engines: **Chromium**, **WebKit**, **Firefox** (headless and headed,
+native mobile emulation for Android Chrome and Mobile Safari).
 
 ---
 
-## Systemanforderungen
+## System requirements
 
-| Komponente | Anforderung |
+| Component | Requirement |
 |---|---|
-| Node.js | 20.x, 22.x oder 24.x |
-| Windows | 11+ oder Server 2019+ (inkl. WSL) |
-| macOS | 14 (Sonoma) oder neuer |
-| Linux | Debian 12/13 oder Ubuntu 22.04/24.04 (x86-64 oder arm64) |
+| Node.js | 20.x, 22.x or 24.x |
+| Windows | 11+ or Server 2019+ (incl. WSL) |
+| macOS | 14 (Sonoma) or newer |
+| Linux | Debian 12/13 or Ubuntu 22.04/24.04 (x86-64 or arm64) |
 
 ---
 
-## Installation: @playwright/test (empfohlen)
+## Installation: @playwright/test (recommended)
 
 ```bash
 # npm
@@ -50,38 +50,38 @@ yarn create playwright
 pnpm create playwright
 ```
 
-Der interaktive Setup fragt:
-- Sprache: TypeScript (Standard) oder JavaScript
-- Testverzeichnis (Standard: `tests`)
-- GitHub Actions Workflow anlegen
-- Browser-Binaries herunterladen
+The interactive setup asks:
+- Language: TypeScript (default) or JavaScript
+- Test directory (default: `tests`)
+- Create a GitHub Actions workflow
+- Download browser binaries
 
-Erzeugte Dateien:
-- `playwright.config.ts` — zentrale Konfiguration
-- `tests/example.spec.ts` — Beispieltest
-- `package.json` / Lock-Dateien
+Generated files:
+- `playwright.config.ts` — central configuration
+- `tests/example.spec.ts` — example test
+- `package.json` / lock files
 
 ---
 
-## Library-Modus (ohne Test-Runner)
+## Library mode (without the test runner)
 
-Fuer Skripte ohne `@playwright/test`:
+For scripts without `@playwright/test`:
 
 ```bash
 npm i -D playwright
 npx playwright install chromium firefox webkit
 ```
 
-Oder mit automatischem Browser-Download ueber Helper-Packages:
+Or with automatic browser download via helper packages:
 
 ```bash
 npm i -D @playwright/browser-chromium @playwright/browser-firefox @playwright/browser-webkit
 ```
 
-### Grundstruktur eines Library-Skripts
+### Basic structure of a library script
 
-Alle Playwright-APIs sind asynchron und geben `Promise`-Objekte zurueck.
-Empfohlenes Muster: `async/await`.
+All Playwright APIs are asynchronous and return `Promise` objects.
+Recommended pattern: `async/await`.
 
 ```typescript
 import { chromium } from 'playwright';
@@ -99,56 +99,56 @@ import { chromium } from 'playwright';
 })();
 ```
 
-### TypeScript-Unterstuetzung in Library-Skripten
+### TypeScript support in library scripts
 
 ```typescript
-// @ts-check  (fuer .js-Dateien)
+// @ts-check  (for .js files)
 /** @type {import('playwright').Page} */
 let page;
 ```
 
 ### Library vs. @playwright/test
 
-| Merkmal | Library (`playwright`) | Test-Runner (`@playwright/test`) |
+| Feature | Library (`playwright`) | Test runner (`@playwright/test`) |
 |---|---|---|
-| Test-Framework | Keins (selbst waehlen) | Integriert |
-| Fixtures | Manuell | `page`, `context`, `browser` etc. |
-| Assertions | Einfach (kein Retry) | Web-First mit Auto-Retry |
-| Parallelisierung | Manuell | Automatisch |
-| Isolation | Manuell (`newContext()`) | Automatisch pro Test |
-| Trace/Reporting | Manuell konfigurieren | Integriert |
+| Test framework | None (choose your own) | Built in |
+| Fixtures | Manual | `page`, `context`, `browser` etc. |
+| Assertions | Simple (no retry) | Web-first with auto retry |
+| Parallelization | Manual | Automatic |
+| Isolation | Manual (`newContext()`) | Automatic per test |
+| Trace/reporting | Configure manually | Built in |
 
 ---
 
-## BrowserType.launch() — Alle Optionen
+## BrowserType.launch() — All options
 
 ```typescript
 const browser = await chromium.launch(options);
-// auch: firefox.launch(options), webkit.launch(options)
+// also: firefox.launch(options), webkit.launch(options)
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `headless` | `boolean` | `true` | Headless-Modus; `false` zeigt das Browserfenster |
-| `channel` | `string` | — | Browser-Channel: `'chrome'`, `'chrome-beta'`, `'chrome-dev'`, `'chrome-canary'`, `'msedge'`, `'msedge-beta'`, `'msedge-dev'`, `'msedge-canary'`, `'chromium'` |
-| `executablePath` | `string` | gebundeltes Binary | Pfad zum Browser-Binary |
-| `args` | `string[]` | — | Zus. CLI-Argumente fuer den Browser-Prozess |
-| `ignoreDefaultArgs` | `boolean \| string[]` | `false` | Standard-Args deaktivieren (`true` = alle, `string[]` = bestimmte) |
+| `headless` | `boolean` | `true` | Headless mode; `false` shows the browser window |
+| `channel` | `string` | — | Browser channel: `'chrome'`, `'chrome-beta'`, `'chrome-dev'`, `'chrome-canary'`, `'msedge'`, `'msedge-beta'`, `'msedge-dev'`, `'msedge-canary'`, `'chromium'` |
+| `executablePath` | `string` | bundled binary | Path to the browser binary |
+| `args` | `string[]` | — | Additional CLI arguments for the browser process |
+| `ignoreDefaultArgs` | `boolean \| string[]` | `false` | Disable default args (`true` = all, `string[]` = specific ones) |
 | `proxy` | `object` | — | `{ server, bypass?, username?, password? }` |
-| `downloadsPath` | `string` | temp. Verzeichnis | Pfad fuer heruntergeladene Dateien |
-| `tracesDir` | `string` | — | Verzeichnis fuer Trace-Dateien |
-| `chromiumSandbox` | `boolean` | `false` | Chromium-Sandbox aktivieren |
-| `firefoxUserPrefs` | `Record<string, string \| number \| boolean>` | — | Firefox-Benutzereinstellungen |
-| `handleSIGINT` | `boolean` | `true` | Browser bei Ctrl+C schliessen |
-| `handleSIGTERM` | `boolean` | `true` | Browser bei SIGTERM schliessen |
-| `handleSIGHUP` | `boolean` | `true` | Browser bei SIGHUP schliessen |
-| `logger` | `Logger` | — | Benutzerdefiniertes Logger-Objekt |
-| `timeout` | `number` | `30000` | Max. Zeit fuer Browser-Start in ms |
-| `env` | `Record<string, string \| undefined>` | — | Umgebungsvariablen fuer den Browser-Prozess |
-| `slowMo` | `number` | — | Verzoegerung in ms zwischen Aktionen (Debugging) |
-| `artifactsDir` | `string` | temp. Verzeichnis | Verzeichnis fuer Artefakte |
+| `downloadsPath` | `string` | temp directory | Path for downloaded files |
+| `tracesDir` | `string` | — | Directory for trace files |
+| `chromiumSandbox` | `boolean` | `false` | Enable the Chromium sandbox |
+| `firefoxUserPrefs` | `Record<string, string \| number \| boolean>` | — | Firefox user preferences |
+| `handleSIGINT` | `boolean` | `true` | Close the browser on Ctrl+C |
+| `handleSIGTERM` | `boolean` | `true` | Close the browser on SIGTERM |
+| `handleSIGHUP` | `boolean` | `true` | Close the browser on SIGHUP |
+| `logger` | `Logger` | — | Custom logger object |
+| `timeout` | `number` | `30000` | Max. time for the browser to start in ms |
+| `env` | `Record<string, string \| undefined>` | — | Environment variables for the browser process |
+| `slowMo` | `number` | — | Delay in ms between actions (debugging) |
+| `artifactsDir` | `string` | temp directory | Directory for artifacts |
 
-### Beispiel: Browser sichtbar mit Slow-Motion
+### Example: visible browser with slow motion
 
 ```typescript
 const browser = await firefox.launch({
@@ -159,45 +159,45 @@ const browser = await firefox.launch({
 
 ---
 
-## Browser.newContext() — Alle Optionen
+## Browser.newContext() — All options
 
 ```typescript
 const context = await browser.newContext(options);
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `viewport` | `{ width: number; height: number } \| null` | `1280x720` | Viewport-Groesse; `null` = kein fester Viewport |
-| `colorScheme` | `'light' \| 'dark' \| 'no-preference'` | `'light'` | CSS `prefers-color-scheme` Emulation |
-| `locale` | `string` | — | Browser-Locale, z.B. `'de-DE'`, `'en-GB'` |
-| `timezoneId` | `string` | — | ICU-Timezone-ID, z.B. `'Europe/Berlin'` |
-| `geolocation` | `{ latitude: number; longitude: number; accuracy?: number }` | — | GPS-Position |
-| `offline` | `boolean` | `false` | Offline-Modus simulieren |
-| `proxy` | `{ server: string; bypass?: string; username?: string; password?: string }` | — | Proxy-Konfiguration |
-| `httpCredentials` | `{ username: string; password: string; origin?: string; send?: 'always' \| 'unauthorized' }` | — | HTTP-Authentifizierung |
-| `extraHTTPHeaders` | `Record<string, string>` | — | Zus. HTTP-Header fuer alle Requests |
-| `userAgent` | `string` | — | User-Agent-String |
-| `deviceScaleFactor` | `number` | `1` | Geraetepixelverhaeltnis (DPR) |
-| `isMobile` | `boolean` | `false` | Mobile-Emulation |
-| `hasTouch` | `boolean` | `false` | Touch-Events aktivieren |
-| `javaScriptEnabled` | `boolean` | `true` | JavaScript deaktivieren |
-| `bypassCSP` | `boolean` | `false` | Content Security Policy umgehen |
-| `ignoreHTTPSErrors` | `boolean` | `false` | SSL-Fehler ignorieren |
-| `acceptDownloads` | `boolean` | `true` | Downloads akzeptieren |
-| `baseURL` | `string` | — | Basis-URL fuer `page.goto()` (relative Pfade) |
-| `storageState` | `string \| object` | — | Gespeicherter Auth-Zustand (Pfad oder Objekt) |
-| `recordHar` | `object` | — | HAR-Aufnahme konfigurieren |
-| `recordVideo` | `object` | — | Video-Aufnahme konfigurieren |
-| `permissions` | `string[]` | — | Vorab erteilte Browser-Permissions |
-| `serviceWorkers` | `'allow' \| 'block'` | `'allow'` | Service Worker steuern |
-| `strictSelectors` | `boolean` | `false` | Strikte Selektor-Pruefung (Fehler bei mehreren Matches) |
-| `contrast` | `'no-preference' \| 'more' \| 'null'` | — | `prefers-contrast` Emulation |
-| `forcedColors` | `'active' \| 'none' \| 'null'` | — | `forced-colors` Emulation |
-| `reducedMotion` | `'reduce' \| 'no-preference' \| 'null'` | — | `prefers-reduced-motion` Emulation |
-| `screen` | `{ width: number; height: number }` | — | Bildschirmgroesse (unabh. von Viewport) |
-| `clientCertificates` | `object[]` | — | Client-Zertifikate fuer mTLS |
+| `viewport` | `{ width: number; height: number } \| null` | `1280x720` | Viewport size; `null` = no fixed viewport |
+| `colorScheme` | `'light' \| 'dark' \| 'no-preference'` | `'light'` | CSS `prefers-color-scheme` emulation |
+| `locale` | `string` | — | Browser locale, e.g. `'de-DE'`, `'en-GB'` |
+| `timezoneId` | `string` | — | ICU timezone ID, e.g. `'Europe/Berlin'` |
+| `geolocation` | `{ latitude: number; longitude: number; accuracy?: number }` | — | GPS position |
+| `offline` | `boolean` | `false` | Simulate offline mode |
+| `proxy` | `{ server: string; bypass?: string; username?: string; password?: string }` | — | Proxy configuration |
+| `httpCredentials` | `{ username: string; password: string; origin?: string; send?: 'always' \| 'unauthorized' }` | — | HTTP authentication |
+| `extraHTTPHeaders` | `Record<string, string>` | — | Additional HTTP headers for all requests |
+| `userAgent` | `string` | — | User agent string |
+| `deviceScaleFactor` | `number` | `1` | Device pixel ratio (DPR) |
+| `isMobile` | `boolean` | `false` | Mobile emulation |
+| `hasTouch` | `boolean` | `false` | Enable touch events |
+| `javaScriptEnabled` | `boolean` | `true` | Disable JavaScript |
+| `bypassCSP` | `boolean` | `false` | Bypass the Content Security Policy |
+| `ignoreHTTPSErrors` | `boolean` | `false` | Ignore SSL errors |
+| `acceptDownloads` | `boolean` | `true` | Accept downloads |
+| `baseURL` | `string` | — | Base URL for `page.goto()` (relative paths) |
+| `storageState` | `string \| object` | — | Saved auth state (path or object) |
+| `recordHar` | `object` | — | Configure HAR recording |
+| `recordVideo` | `object` | — | Configure video recording |
+| `permissions` | `string[]` | — | Browser permissions granted up front |
+| `serviceWorkers` | `'allow' \| 'block'` | `'allow'` | Control service workers |
+| `strictSelectors` | `boolean` | `false` | Strict selector checking (error on multiple matches) |
+| `contrast` | `'no-preference' \| 'more' \| 'null'` | — | `prefers-contrast` emulation |
+| `forcedColors` | `'active' \| 'none' \| 'null'` | — | `forced-colors` emulation |
+| `reducedMotion` | `'reduce' \| 'no-preference' \| 'null'` | — | `prefers-reduced-motion` emulation |
+| `screen` | `{ width: number; height: number }` | — | Screen size (independent of the viewport) |
+| `clientCertificates` | `object[]` | — | Client certificates for mTLS |
 
-### Geraete-Emulation
+### Device emulation
 
 ```typescript
 import { chromium, devices } from 'playwright';
@@ -211,29 +211,29 @@ const page = await context.newPage();
 
 ---
 
-## Browser-Lifecycle-Muster
+## Browser lifecycle pattern
 
 ```typescript
 import { chromium } from 'playwright';
 
 (async () => {
-  // 1. Browser starten
+  // 1. Start the browser
   const browser = await chromium.launch({ headless: false });
 
-  // 2. Isolierten Context erstellen
+  // 2. Create an isolated context
   const context = await browser.newContext({
     locale: 'de-DE',
     timezoneId: 'Europe/Berlin',
   });
 
-  // 3. Seite oeffnen
+  // 3. Open a page
   const page = await context.newPage();
   await page.goto('https://example.com');
 
-  // 4. Aktionen ausfuehren
+  // 4. Perform actions
   await page.screenshot({ path: 'screenshot.png' });
 
-  // 5. Ressourcen freigeben (Reihenfolge wichtig)
+  // 5. Release resources (order matters)
   await context.close();
   await browser.close();
 })();
@@ -241,20 +241,20 @@ import { chromium } from 'playwright';
 
 ---
 
-## Unterstuetzte Sprachen
+## Supported languages
 
-| Sprache | Package | Test-Integration |
+| Language | Package | Test integration |
 |---|---|---|
-| **JavaScript / TypeScript** | `@playwright/test` | Eigener Test-Runner (Standard) |
-| **Python** | `playwright` (pip) | `pytest-playwright`-Plugin (empfohlen) |
+| **JavaScript / TypeScript** | `@playwright/test` | Own test runner (default) |
+| **Python** | `playwright` (pip) | `pytest-playwright` plugin (recommended) |
 | **Java** | `com.microsoft.playwright` | JUnit / TestNG |
 | **.NET** | `Microsoft.Playwright` | MSTest / NUnit / xUnit / xUnit v3 |
 
-Alle Sprachen teilen dieselbe Kern-Implementierung und unterstuetzen die gleichen Browser-Automatisierungs-APIs. Das Testing-Ecosystem variiert je Sprache.
+All languages share the same core implementation and support the same browser automation APIs. The testing ecosystem varies per language.
 
 ---
 
-## Update-Prozess
+## Update process
 
 ```bash
 # npm
@@ -269,23 +269,23 @@ yarn playwright install --with-deps
 pnpm install --save-dev @playwright/test@latest
 pnpm exec playwright install --with-deps
 
-# Version pruefen
+# Check the version
 npx playwright --version
 ```
 
 ---
 
-## Tests ausfuehren (Schnellreferenz)
+## Running tests (quick reference)
 
 ```bash
-npx playwright test              # Alle Tests (headless, parallel)
-npx playwright test --headed     # Browser sichtbar
-npx playwright test --ui         # UI-Modus (Watch + Debugger)
-npx playwright test --debug      # Inspector-Debugging
-npx playwright show-report       # HTML-Report oeffnen
+npx playwright test              # All tests (headless, parallel)
+npx playwright test --headed     # Browser visible
+npx playwright test --ui         # UI mode (watch + debugger)
+npx playwright test --debug      # Inspector debugging
+npx playwright show-report       # Open the HTML report
 ```
 
-<!-- Quellen:
+<!-- Sources:
 https://playwright.dev/docs/intro
 https://playwright.dev/docs/library
 https://playwright.dev/docs/languages

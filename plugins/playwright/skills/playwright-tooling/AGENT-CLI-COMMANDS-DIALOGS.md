@@ -1,19 +1,19 @@
 # Playwright Agent CLI — Dialogs
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `dialog-accept [prompt]` | Dialog akzeptieren, optional mit Eingabetext fuer Prompt-Dialoge |
-| `dialog-dismiss` | Dialog abbrechen (Cancel) |
+| `dialog-accept [prompt]` | Accept a dialog, optionally with input text for prompt dialogs |
+| `dialog-dismiss` | Dismiss a dialog (Cancel) |
 
 ---
 
-## Hintergrund
+## Background
 
-Browser-Dialoge (alert, confirm, prompt) koennen Seiteninteraktionen blockieren. Wenn ein Dialog
-erscheint, melden folgende Befehle dies und koennen nicht ausgefuehrt werden, bis der Dialog
-behandelt wurde.
+Browser dialogs (alert, confirm, prompt) can block page interactions. When a dialog
+appears, the following commands report it and cannot be executed until the dialog
+has been handled.
 
 ---
 
@@ -21,15 +21,15 @@ behandelt wurde.
 
 ```bash
 playwright-cli dialog-accept
-playwright-cli dialog-accept "Alice"           # Prompt mit Text
-playwright-cli dialog-accept "Bestaetigt"      # Alert/Confirm
+playwright-cli dialog-accept "Alice"           # Prompt with text
+playwright-cli dialog-accept "Confirmed"       # Alert/confirm
 ```
 
-### dialog-accept-Argumente
+### dialog-accept arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `[prompt]` | string | Nein | Text fuer Prompt-Dialoge (wird ignoriert bei alert/confirm) |
+| `[prompt]` | string | No | Text for prompt dialogs (ignored for alert/confirm) |
 
 ---
 
@@ -39,13 +39,13 @@ playwright-cli dialog-accept "Bestaetigt"      # Alert/Confirm
 playwright-cli dialog-dismiss
 ```
 
-Keine Argumente. Entspricht dem Klick auf "Cancel" / "Abbrechen".
+No arguments. Equivalent to clicking "Cancel".
 
 ---
 
-## Dialog-Typen
+## Dialog types
 
-### Alert-Dialog
+### Alert dialog
 
 ```bash
 playwright-cli click e5
@@ -53,44 +53,44 @@ playwright-cli click e5
 playwright-cli dialog-accept
 ```
 
-Alerts haben nur OK. `dialog-accept` und `dialog-dismiss` sind gleichwertig.
+Alerts only have OK. `dialog-accept` and `dialog-dismiss` are equivalent.
 
-### Confirm-Dialog
+### Confirm dialog
 
 ```bash
 playwright-cli click e10
 # ⚠ Dialog appeared: [confirm] "Are you sure you want to delete this?"
-# Bestaetigen (OK):
+# Confirm (OK):
 playwright-cli dialog-accept
-# Abbrechen (Cancel):
+# Cancel:
 playwright-cli dialog-dismiss
 ```
 
-### Prompt-Dialog
+### Prompt dialog
 
 ```bash
 playwright-cli click e8
 # ⚠ Dialog appeared: [prompt] "Enter your name:"
-# Mit Text akzeptieren:
+# Accept with text:
 playwright-cli dialog-accept "Alice"
-# Abbrechen:
+# Cancel:
 playwright-cli dialog-dismiss
 ```
 
 ---
 
-## Workflow-Muster
+## Workflow pattern
 
-Wenn ein Dialog erscheint, melden andere Befehle dies. Dialog zuerst behandeln:
+When a dialog appears, other commands report it. Handle the dialog first:
 
 ```bash
-playwright-cli click e15                         # Loeschen-Button klicken
+playwright-cli click e15                         # Click the delete button
 # ⚠ Dialog appeared: [confirm] "Delete all items?"
-playwright-cli snapshot                           # Meldet: Dialog is open
-playwright-cli dialog-accept                      # Dialog zuerst behandeln
-playwright-cli snapshot                           # Jetzt aktueller State
+playwright-cli snapshot                           # Reports: Dialog is open
+playwright-cli dialog-accept                      # Handle the dialog first
+playwright-cli snapshot                           # Now the current state
 ```
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/dialogs
+Source: https://playwright.dev/agent-cli/commands/dialogs

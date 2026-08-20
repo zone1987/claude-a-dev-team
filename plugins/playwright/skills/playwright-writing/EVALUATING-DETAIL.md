@@ -1,4 +1,4 @@
-# Playwright Evaluating, Handles und Events - Vollstaendige Referenz
+# Playwright Evaluating, Handles and Events - Complete Reference
 
 ---
 
@@ -6,55 +6,55 @@
 
 - [1. page.evaluate()](#1-pageevaluate)
 - [2. page.evaluateHandle()](#2-pageevaluatehandle)
-- [3. Argument-Uebergabe an evaluate](#3-argument-uebergabe-an-evaluate)
+- [3. Passing arguments to evaluate](#3-passing-arguments-to-evaluate)
 - [4. JSHandle](#4-jshandle)
 - [5. ElementHandle](#5-elementhandle)
 - [6. addInitScript](#6-addinitscript)
 - [7. page.exposeFunction](#7-pageexposefunction)
 - [8. Events](#8-events)
-- [9. Verfuegbare Page-Events](#9-verfuegbare-page-events)
+- [9. Available page events](#9-available-page-events)
 - [10. context.exposeFunction](#10-contextexposefunction)
 - [11. Locator vs. ElementHandle](#11-locator-vs-elementhandle)
 
 ## 1. page.evaluate()
 
-Fuehrt eine Funktion im Browser-Kontext aus und gibt das serialisierte Ergebnis
-an den Test-Kontext zurueck.
+Runs a function in the browser context and returns the serialized result
+to the test context.
 
 ```typescript
 evaluate(pageFunction: Function | string, arg?: any): Promise<any>
 ```
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `pageFunction` | `Function \| string` | Funktion oder JS-String zur Ausfuehrung im Browser |
-| `arg` | `Serializable \| JSHandle` | Einziger Argument-Wert (komplexe Daten als Objekt/Array) |
+| `pageFunction` | `Function \| string` | Function or JS string to run in the browser |
+| `arg` | `Serializable \| JSHandle` | Single argument value (complex data as an object/array) |
 
-**Wichtig:** Promises werden automatisch aufgeloest. Die Funktion laeuft im
-Browser-Prozess, nicht im Test-Prozess - Variablen aus dem Test-Scope sind
-NICHT direkt zugaenglich.
+**Important:** Promises are resolved automatically. The function runs in the
+browser process, not in the test process - variables from the test scope are
+NOT directly accessible.
 
 ```typescript
-// Einfacher Zugriff auf Browser-APIs
+// Simple access to browser APIs
 const href = await page.evaluate(() => document.location.href);
 const title = await page.evaluate(() => document.title);
 
-// Async-Funktion
+// Async function
 const status = await page.evaluate(async () => {
   const response = await fetch('/api/health');
   return response.status;
 });
 
-// Argument uebergeben (serialisierbarer Wert)
+// Pass an argument (serializable value)
 const doubled = await page.evaluate(n => n * 2, 21); // 42
 
-// Objekt-Argument
+// Object argument
 const result = await page.evaluate(({ a, b }) => a + b, { a: 10, b: 20 });
 
-// Array-Argument
+// Array argument
 const sum = await page.evaluate(([a, b]) => a + b, [10, 20]);
 
-// DOM-Manipulation
+// DOM manipulation
 await page.evaluate(() => {
   document.querySelector('#banner')?.remove();
 });
@@ -64,55 +64,55 @@ await page.evaluate(() => {
 
 ## 2. page.evaluateHandle()
 
-Wie `evaluate()`, gibt aber einen `JSHandle` zurueck statt des serialisierten
-Werts. Verwendbar wenn das Ergebnis nicht serialisierbar ist oder direkt
-weitergegeben werden soll.
+Like `evaluate()`, but returns a `JSHandle` instead of the serialized
+value. Useful when the result is not serializable or is to be passed on
+directly.
 
 ```typescript
 evaluateHandle(pageFunction: Function | string, arg?: any): Promise<JSHandle>
 ```
 
 ```typescript
-// Window-Objekt als Handle
+// Window object as a handle
 const windowHandle = await page.evaluateHandle('window');
 
-// DOM-Element als Handle
+// DOM element as a handle
 const bodyHandle = await page.evaluateHandle(() => document.body);
 
-// Komplexes Objekt (Map, Set etc.)
+// Complex object (Map, Set, etc.)
 const mapHandle = await page.evaluateHandle(() => new Map([['a', 1], ['b', 2]]));
 ```
 
 ---
 
-## 3. Argument-Uebergabe an evaluate
+## 3. Passing arguments to evaluate
 
-Nur ein Argument wird unterstuetzt. Fuer mehrere Werte: Objekt oder Array nutzen.
+Only one argument is supported. For multiple values: use an object or array.
 
-### Unterstuetzte Typen
+### Supported types
 
-| Typ | Beispiel |
+| Type | Example |
 |-----|---------|
-| Primitive | `42`, `'string'`, `true`, `null` |
+| Primitives | `42`, `'string'`, `true`, `null` |
 | Arrays | `[1, 2, 3]` |
-| Plain Objects | `{ key: 'value' }` |
-| `JSHandle` | Von `evaluateHandle()` zurueckgegeben |
-| Gemischt | Objekt/Array aus Primitives + Handles |
+| Plain objects | `{ key: 'value' }` |
+| `JSHandle` | Returned by `evaluateHandle()` |
+| Mixed | Object/array of primitives + handles |
 
 ```typescript
-// FALSCH: Variable aus Test-Scope ist nicht sichtbar
+// WRONG: a variable from the test scope is not visible
 const value = 42;
 const result = await page.evaluate(() => value); // ReferenceError!
 
-// RICHTIG: Als Argument uebergeben
+// RIGHT: pass it as an argument
 const result = await page.evaluate(v => v, value);
 
-// Handle als Argument
+// Handle as an argument
 const buttonHandle = await page.evaluateHandle(() => document.querySelector('button'));
 const text = await page.evaluate(btn => btn.textContent, buttonHandle);
 await buttonHandle.dispose();
 
-// Mehrere Handles in Objekt
+// Multiple handles in an object
 const btn1 = await page.evaluateHandle(() => document.getElementById('btn1'));
 const btn2 = await page.evaluateHandle(() => document.getElementById('btn2'));
 const combined = await page.evaluate(
@@ -122,7 +122,7 @@ const combined = await page.evaluate(
 await btn1.dispose();
 await btn2.dispose();
 
-// Handle mit eigenem evaluate
+// Handle with its own evaluate
 const text = await buttonHandle.evaluate(
   (el, from) => el.textContent?.substring(from),
   5
@@ -133,32 +133,32 @@ const text = await buttonHandle.evaluate(
 
 ## 4. JSHandle
 
-Referenz auf ein JavaScript-Objekt im Browser-Prozess.
+Reference to a JavaScript object in the browser process.
 
-### Methoden
+### Methods
 
-| Methode | Rueckgabe | Beschreibung |
+| Method | Returns | Description |
 |---------|-----------|--------------|
-| `jsHandle.evaluate(fn, arg?)` | `Promise<any>` | Funktion mit Handle als erstem Arg ausfuehren |
-| `jsHandle.evaluateHandle(fn, arg?)` | `Promise<JSHandle>` | Wie evaluate, gibt Handle zurueck |
-| `jsHandle.getProperties()` | `Promise<Map<string, JSHandle>>` | Alle Properties als Map von Handles |
-| `jsHandle.getProperty(name)` | `Promise<JSHandle>` | Einzelne Property als Handle |
-| `jsHandle.jsonValue()` | `Promise<any>` | Serialisierten Wert des Handles holen |
-| `jsHandle.asElement()` | `ElementHandle \| null` | Als ElementHandle (wenn DOM-Element) |
-| `jsHandle.dispose()` | `Promise<void>` | Handle und referenziertes Objekt freigeben |
+| `jsHandle.evaluate(fn, arg?)` | `Promise<any>` | Run a function with the handle as the first arg |
+| `jsHandle.evaluateHandle(fn, arg?)` | `Promise<JSHandle>` | Like evaluate, returns a handle |
+| `jsHandle.getProperties()` | `Promise<Map<string, JSHandle>>` | All properties as a map of handles |
+| `jsHandle.getProperty(name)` | `Promise<JSHandle>` | Single property as a handle |
+| `jsHandle.jsonValue()` | `Promise<any>` | Get the serialized value of the handle |
+| `jsHandle.asElement()` | `ElementHandle \| null` | As an ElementHandle (if a DOM element) |
+| `jsHandle.dispose()` | `Promise<void>` | Release the handle and the referenced object |
 
 ```typescript
-// Array-Groesse ohne Serialisierung pruefen
+// Check the array size without serialization
 const arrayHandle = await page.evaluateHandle(() => {
   window.myArray = [1, 2, 3];
   return window.myArray;
 });
 const length = await page.evaluate(arr => arr.length, arrayHandle);
 
-// Element-Manipulation ueber Handle
+// Element manipulation via the handle
 await page.evaluate(arr => arr.push(4), arrayHandle);
 
-// Properties eines Objekts durchgehen
+// Iterate the properties of an object
 const propsMap = await arrayHandle.getProperties();
 for (const [key, prop] of propsMap) {
   console.log(key, await prop.jsonValue());
@@ -172,42 +172,42 @@ await arrayHandle.dispose();
 
 ## 5. ElementHandle
 
-Spezialisierter `JSHandle` fuer DOM-Elemente. **Empfehlung:** Locator
-bevorzugen - ElementHandle wird nach Navigationen stale.
+Specialized `JSHandle` for DOM elements. **Recommendation:** prefer locators
+- an ElementHandle goes stale after navigations.
 
-### Methoden
+### Methods
 
-| Methode | Rueckgabe | Beschreibung |
+| Method | Returns | Description |
 |---------|-----------|--------------|
-| `elementHandle.boundingBox()` | `Promise<{x,y,width,height} \| null>` | Position und Groesse |
-| `elementHandle.getAttribute(name)` | `Promise<string \| null>` | Attributwert |
+| `elementHandle.boundingBox()` | `Promise<{x,y,width,height} \| null>` | Position and size |
+| `elementHandle.getAttribute(name)` | `Promise<string \| null>` | Attribute value |
 | `elementHandle.innerHTML()` | `Promise<string>` | Inner HTML |
-| `elementHandle.innerText()` | `Promise<string>` | Inner Text |
-| `elementHandle.textContent()` | `Promise<string \| null>` | Text Content |
-| `elementHandle.inputValue()` | `Promise<string>` | Wert von input/select/textarea |
-| `elementHandle.isVisible()` | `Promise<boolean>` | Sichtbarkeit |
-| `elementHandle.isEnabled()` | `Promise<boolean>` | Aktivierungszustand |
-| `elementHandle.isChecked()` | `Promise<boolean>` | Checkbox-Zustand |
-| `elementHandle.click(options?)` | `Promise<void>` | Klick ausloesen |
-| `elementHandle.fill(value)` | `Promise<void>` | Formularfeld benoetigt |
-| `elementHandle.$(selector)` | `Promise<ElementHandle \| null>` | Kind-Element finden |
-| `elementHandle.$$(selector)` | `Promise<ElementHandle[]>` | Kind-Elemente finden |
-| `elementHandle.$eval(selector, fn)` | `Promise<any>` | Kind evaluieren |
-| `elementHandle.$$eval(selector, fn)` | `Promise<any>` | Kinder evaluieren |
-| `elementHandle.waitForSelector(sel, opts?)` | `Promise<ElementHandle>` | Auf Kind warten |
-| `elementHandle.asElement()` | `ElementHandle` | Sich selbst zurueckgeben |
-| `elementHandle.dispose()` | `Promise<void>` | Freigeben |
+| `elementHandle.innerText()` | `Promise<string>` | Inner text |
+| `elementHandle.textContent()` | `Promise<string \| null>` | Text content |
+| `elementHandle.inputValue()` | `Promise<string>` | Value of input/select/textarea |
+| `elementHandle.isVisible()` | `Promise<boolean>` | Visibility |
+| `elementHandle.isEnabled()` | `Promise<boolean>` | Enabled state |
+| `elementHandle.isChecked()` | `Promise<boolean>` | Checkbox state |
+| `elementHandle.click(options?)` | `Promise<void>` | Trigger a click |
+| `elementHandle.fill(value)` | `Promise<void>` | Requires a form field |
+| `elementHandle.$(selector)` | `Promise<ElementHandle \| null>` | Find a child element |
+| `elementHandle.$$(selector)` | `Promise<ElementHandle[]>` | Find child elements |
+| `elementHandle.$eval(selector, fn)` | `Promise<any>` | Evaluate a child |
+| `elementHandle.$$eval(selector, fn)` | `Promise<any>` | Evaluate children |
+| `elementHandle.waitForSelector(sel, opts?)` | `Promise<ElementHandle>` | Wait for a child |
+| `elementHandle.asElement()` | `ElementHandle` | Return itself |
+| `elementHandle.dispose()` | `Promise<void>` | Release |
 
 ```typescript
-// ElementHandle erstellen (nur wenn wirklich noetig)
+// Create an ElementHandle (only when really necessary)
 const el = await page.waitForSelector('#container');
 const box = await el.boundingBox();
 console.log(`Position: ${box?.x}, ${box?.y}`);
 
-// Mit evaluate
+// With evaluate
 const text = await el.evaluate(node => node.textContent);
 
-// Als Locator bevorzugt
+// Locator preferred
 const locator = page.locator('#container');
 await expect(locator).toBeVisible();
 ```
@@ -216,31 +216,31 @@ await expect(locator).toBeVisible();
 
 ## 6. addInitScript
 
-Fuehrt Code vor jedem Page-Load aus (auch nach Navigationen).
+Runs code before every page load (also after navigations).
 
 ### page.addInitScript(script, arg?)
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `script` | `Function \| string \| {path: string, content: string}` | Auszufuehrendes Script |
-| `arg` | `Serializable` | Argument fuer Script-Funktion |
+| `script` | `Function \| string \| {path: string, content: string}` | Script to run |
+| `arg` | `Serializable` | Argument for the script function |
 
 ```typescript
-// Funktion mit Argument
+// Function with an argument
 await page.addInitScript(seed => {
   Math.random = () => seed;
 }, 0.42);
 
-// Aus Datei laden
+// Load from a file
 await page.addInitScript({ path: './mocks/preload.js' });
 
-// Als String
+// As a string
 await page.addInitScript('window.__TEST__ = true;');
 
-// beforeEach typisches Pattern
+// Typical beforeEach pattern
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    // Globale Mock-Variablen setzen
+    // Set global mock variables
     (window as any).__MOCK_USER__ = { id: 1, role: 'admin' };
   });
 });
@@ -248,11 +248,11 @@ test.beforeEach(async ({ page }) => {
 
 ### context.addInitScript(script, arg?)
 
-Gilt fuer alle Pages im Context (auch neu geoeffnete).
+Applies to all pages in the context (including newly opened ones).
 
 ```typescript
 await context.addInitScript(() => {
-  // Gilt fuer alle Pages dieses Contexts
+  // Applies to all pages of this context
   window.__ENV__ = 'test';
 });
 ```
@@ -261,25 +261,25 @@ await context.addInitScript(() => {
 
 ## 7. page.exposeFunction
 
-Macht eine Node.js-Funktion im Browser-Kontext aufrufbar.
+Makes a Node.js function callable in the browser context.
 
 ```typescript
 exposeFunction(name: string, callback: Function): Promise<void>
 ```
 
 ```typescript
-// Funktion exponieren
+// Expose a function
 await page.exposeFunction('sha256', async (text: string) => {
   const { createHash } = await import('crypto');
   return createHash('sha256').update(text).digest('hex');
 });
 
-// Im Browser aufrufbar
+// Callable in the browser
 const hash = await page.evaluate(async () => {
   return await window.sha256('hello world');
 });
 
-// Typische Verwendung: Logging aus Browser zum Test leiten
+// Typical use: routing browser logs to the test
 const logs: string[] = [];
 await page.exposeFunction('recordLog', (msg: string) => {
   logs.push(msg);
@@ -295,21 +295,21 @@ await page.evaluate(() => {
 
 ### page.waitForEvent(event, options?)
 
-Wartet auf ein einzelnes Event-Vorkommen.
+Waits for a single occurrence of an event.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|--------------|
-| `event` | `string` | Event-Name |
-| `optionOrPredicate` | `Function \| {predicate?, timeout?}` | Filterfunktion oder Options-Objekt |
+| `event` | `string` | Event name |
+| `optionOrPredicate` | `Function \| {predicate?, timeout?}` | Filter function or options object |
 
 ```typescript
-// Popup abfangen
+// Catch a popup
 const popupPromise = page.waitForEvent('popup');
 await page.click('#open-popup');
 const popup = await popupPromise;
 await popup.waitForLoadState();
 
-// Mit Praedikat
+// With a predicate
 const downloadPromise = page.waitForEvent('download', {
   predicate: download => download.suggestedFilename().endsWith('.pdf'),
   timeout: 10000,
@@ -317,7 +317,7 @@ const downloadPromise = page.waitForEvent('download', {
 await page.click('#export-pdf');
 const download = await downloadPromise;
 
-// Gleichzeitig auf Navigation und Event warten
+// Wait for navigation and an event at the same time
 const [response, request] = await Promise.all([
   page.waitForEvent('response'),
   page.waitForRequest(/\/api\//),
@@ -327,10 +327,10 @@ const [response, request] = await Promise.all([
 
 ### page.on(event, handler)
 
-Dauerhaftes Event-Listening.
+Persistent event listening.
 
 ```typescript
-// Request/Response protokollieren
+// Log requests/responses
 page.on('request', (request) => {
   console.log(`>> ${request.method()} ${request.url()}`);
 });
@@ -338,7 +338,7 @@ page.on('response', (response) => {
   console.log(`<< ${response.status()} ${response.url()}`);
 });
 
-// Fehler abfangen
+// Catch errors
 page.on('pageerror', (err) => {
   console.error('Page error:', err.message);
 });
@@ -346,7 +346,7 @@ page.on('console', (msg) => {
   if (msg.type() === 'error') console.error('Console error:', msg.text());
 });
 
-// Worker-Events
+// Worker events
 page.on('worker', (worker) => {
   console.log('Worker created:', worker.url());
 });
@@ -354,14 +354,14 @@ page.on('worker', (worker) => {
 
 ### page.once(event, handler)
 
-Einmaliger Handler (wird nach erstem Auftreten automatisch entfernt).
+One-off handler (removed automatically after the first occurrence).
 
 ```typescript
-// Dialog einmalig akzeptieren
+// Accept a dialog once
 page.once('dialog', dialog => dialog.accept('test input'));
 await page.evaluate("prompt('Name:')");
 
-// Naechsten Request abfangen
+// Catch the next request
 page.once('request', request => {
   console.log('Next request:', request.url());
 });
@@ -369,46 +369,46 @@ page.once('request', request => {
 
 ### page.off(event, handler)
 
-Handler entfernen.
+Remove a handler.
 
 ```typescript
 const handler = (request: Request) => console.log(request.url());
 page.on('request', handler);
 await page.goto('/some-page');
-page.off('request', handler); // Nicht mehr aktiv
+page.off('request', handler); // No longer active
 ```
 
 ---
 
-## 9. Verfuegbare Page-Events
+## 9. Available page events
 
-| Event | Callback-Parameter | Beschreibung |
+| Event | Callback parameter | Description |
 |-------|--------------------|--------------|
-| `'close'` | `Page` | Seite geschlossen |
-| `'console'` | `ConsoleMessage` | console.*-Aufruf |
-| `'crash'` | `Page` | Seite abgestuerzt |
+| `'close'` | `Page` | Page closed |
+| `'console'` | `ConsoleMessage` | console.* call |
+| `'crash'` | `Page` | Page crashed |
 | `'dialog'` | `Dialog` | alert/confirm/prompt |
 | `'domcontentloaded'` | `Page` | DOMContentLoaded |
-| `'download'` | `Download` | Download gestartet |
-| `'filechooser'` | `FileChooser` | Datei-Dialog geoeffnet |
-| `'frameattached'` | `Frame` | Frame hinzugefuegt |
-| `'framedetached'` | `Frame` | Frame entfernt |
-| `'framenavigated'` | `Frame` | Frame navigiert |
-| `'load'` | `Page` | Load-Event |
-| `'pageerror'` | `Error` | Uncaught Exception |
-| `'popup'` | `Page` | Popup geoeffnet |
-| `'request'` | `Request` | Anfrage gesendet |
-| `'requestfailed'` | `Request` | Anfrage fehlgeschlagen |
-| `'requestfinished'` | `Request` | Anfrage abgeschlossen |
-| `'response'` | `Response` | Antwort erhalten |
-| `'websocket'` | `WebSocket` | WebSocket geoeffnet |
-| `'worker'` | `Worker` | Worker erstellt |
+| `'download'` | `Download` | Download started |
+| `'filechooser'` | `FileChooser` | File dialog opened |
+| `'frameattached'` | `Frame` | Frame added |
+| `'framedetached'` | `Frame` | Frame removed |
+| `'framenavigated'` | `Frame` | Frame navigated |
+| `'load'` | `Page` | Load event |
+| `'pageerror'` | `Error` | Uncaught exception |
+| `'popup'` | `Page` | Popup opened |
+| `'request'` | `Request` | Request sent |
+| `'requestfailed'` | `Request` | Request failed |
+| `'requestfinished'` | `Request` | Request finished |
+| `'response'` | `Response` | Response received |
+| `'websocket'` | `WebSocket` | WebSocket opened |
+| `'worker'` | `Worker` | Worker created |
 
 ---
 
 ## 10. context.exposeFunction
 
-Wie `page.exposeFunction`, gilt fuer alle Pages im Context.
+Like `page.exposeFunction`, applies to all pages in the context.
 
 ```typescript
 await context.exposeFunction('testHelper', () => ({
@@ -421,20 +421,20 @@ await context.exposeFunction('testHelper', () => ({
 
 ## 11. Locator vs. ElementHandle
 
-| Aspekt | Locator | ElementHandle |
+| Aspect | Locator | ElementHandle |
 |--------|---------|---------------|
-| Referenz | Lazy (neu aufgeloest bei jeder Verwendung) | Fest (wird stale nach Navigation) |
-| Navigation | Sicher | Kann stale werden |
-| Auto-Wait | Ja | Nein |
-| Empfehlung | Bevorzugen | Nur in Ausnahmen |
+| Reference | Lazy (re-resolved on every use) | Fixed (goes stale after navigation) |
+| Navigation | Safe | Can go stale |
+| Auto-wait | Yes | No |
+| Recommendation | Prefer | Only in exceptions |
 
 ```typescript
-// BEVORZUGT: Locator
+// PREFERRED: locator
 const button = page.locator('#submit');
 await expect(button).toBeVisible();
 await button.click();
 
-// NUR wenn noetig: ElementHandle
+// ONLY when necessary: ElementHandle
 const handle = await page.waitForSelector('#lazy-element');
 const bbox = await handle.boundingBox();
 await handle.dispose();
@@ -442,4 +442,4 @@ await handle.dispose();
 
 ---
 
-Quelle: https://playwright.dev/docs/evaluating | https://playwright.dev/docs/handles | https://playwright.dev/docs/events
+Source: https://playwright.dev/docs/evaluating | https://playwright.dev/docs/handles | https://playwright.dev/docs/events

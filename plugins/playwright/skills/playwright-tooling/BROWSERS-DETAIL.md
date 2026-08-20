@@ -255,7 +255,7 @@ interface Cookie {
 ### Mehrere Contexts (Multi-User-Test)
 
 ```typescript
-test('Admin und Benutzer gleichzeitig', async ({ browser }) => {
+test('Admin and user at the same time', async ({ browser }) => {
   const adminContext = await browser.newContext({ storageState: 'admin-auth.json' });
   const userContext  = await browser.newContext({ storageState: 'user-auth.json' });
 

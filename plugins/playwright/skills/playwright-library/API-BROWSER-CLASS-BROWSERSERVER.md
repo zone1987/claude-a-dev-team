@@ -1,8 +1,8 @@
 # class-browserserver
 
-`BrowserServer` repraesentiert eine laufende Browser-Server-Instanz, die via `browserType.launchServer()` gestartet wurde. Clients koennen sich per `browserType.connect(wsEndpoint)` verbinden.
+`BrowserServer` represents a running browser server instance that was started via `browserType.launchServer()`. Clients can connect using `browserType.connect(wsEndpoint)`.
 
-Methoden: 4 | Properties: 0 | Events: 1
+Methods: 4 | Properties: 0 | Events: 1
 
 ---
 
@@ -10,7 +10,7 @@ Methoden: 4 | Properties: 0 | Events: 1
 
 - [Methods](#methods)
 - [Events](#events)
-- [Typisches Usage-Pattern](#typisches-usage-pattern)
+- [Typical Usage Pattern](#typical-usage-pattern)
 - [Manifest](#manifest)
 
 ## Methods
@@ -21,7 +21,7 @@ Methoden: 4 | Properties: 0 | Events: 1
 await browserServer.close(): Promise<void>
 ```
 
-Schliesst den Browser-Server gracefully und wartet, bis der Prozess beendet ist.
+Closes the browser server gracefully and waits until the process has terminated.
 
 **Returns:** `Promise<void>`
 
@@ -37,7 +37,7 @@ await browserServer.close();
 await browserServer.kill(): Promise<void>
 ```
 
-Beendet den Browser-Prozess sofort (kill) und wartet bis der Prozess terminiert ist. Im Gegensatz zu `close()` ohne graceful shutdown.
+Terminates the browser process immediately (kill) and waits until the process has terminated. Unlike `close()`, without a graceful shutdown.
 
 **Returns:** `Promise<void>`
 
@@ -53,7 +53,7 @@ await browserServer.kill();
 browserServer.process(): ChildProcess
 ```
 
-Gibt den Node.js `ChildProcess` des gestarteten Browser-Prozesses zurueck.
+Returns the Node.js `ChildProcess` of the launched browser process.
 
 **Returns:** `ChildProcess`
 
@@ -71,15 +71,15 @@ proc.stderr.pipe(process.stderr);
 browserServer.wsEndpoint(): string
 ```
 
-Gibt den WebSocket-Endpoint zurueck, der als Argument fuer `browserType.connect()` verwendet werden kann.
+Returns the WebSocket endpoint that can be used as the argument for `browserType.connect()`.
 
-**Returns:** `string` — WebSocket-URL
+**Returns:** `string` — WebSocket URL
 
 ```js
 const endpoint = browserServer.wsEndpoint();
-// z.B. "ws://localhost:9222/secret-token"
+// e.g. "ws://localhost:9222/secret-token"
 
-// Anderer Prozess verbindet sich:
+// Another process connects:
 const browser = await chromium.connect(endpoint);
 ```
 
@@ -89,9 +89,9 @@ const browser = await chromium.connect(endpoint);
 
 ### event: 'close'
 
-Wird ausgeloest wenn der Browser-Server geschlossen wird.
+Emitted when the browser server is closed.
 
-**Event data:** keine Daten
+**Event data:** no data
 
 ```js
 browserServer.on('close', () => {
@@ -101,25 +101,25 @@ browserServer.on('close', () => {
 
 ---
 
-## Typisches Usage-Pattern
+## Typical Usage Pattern
 
 ```js
-// Server-Prozess:
+// Server process:
 const { chromium } = require('playwright');
 const server = await chromium.launchServer({
   port: 9222,
   wsPath: 'my-secret-token',
 });
 console.log('Endpoint:', server.wsEndpoint());
-// Endpoint sicher an Client weitergeben...
+// Pass the endpoint securely to the client...
 
-// Client-Prozess:
+// Client process:
 const browser = await chromium.connect('ws://localhost:9222/my-secret-token');
 const page = await browser.newPage();
 await page.goto('https://example.com');
 await browser.close();
 
-// Server herunterfahren:
+// Shut down the server:
 await server.close();
 ```
 
@@ -133,7 +133,7 @@ await server.close();
 | Properties | 0 |
 | Events | 1 |
 
-**Fazit:** `BrowserServer` ist ein schlankes Handle fuer Remote-Browser-Instanzen. `wsEndpoint()` ist die entscheidende Methode, um den Verbindungspunkt an Clients weiterzugeben. Fuer Produktions-Setups sollte `wsPath` ein unvorhersehbares Token enthalten, um unautorisierten Zugriff zu verhindern.
+**Conclusion:** `BrowserServer` is a lightweight handle for remote browser instances. `wsEndpoint()` is the crucial method for passing the connection point to clients. For production setups, `wsPath` should contain an unpredictable token to prevent unauthorized access.
 
 ---
 

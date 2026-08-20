@@ -1,46 +1,46 @@
-# Playwright Agent CLI — Einfuehrung, Quick-Start, Installation, Skills
+# Playwright Agent CLI — Introduction, quick start, installation, skills
 
 ## Contents
 
-- [Was ist die Playwright Agent CLI?](#was-ist-die-playwright-agent-cli)
-- [Quick-Start](#quick-start)
+- [What is the Playwright Agent CLI?](#what-is-the-playwright-agent-cli)
+- [Quick start](#quick-start)
 - [Installation](#installation)
 - [Skills](#skills)
-- [Alle Befehle — Uebersicht](#alle-befehle-uebersicht)
+- [All commands — overview](#all-commands-overview)
 
-## Was ist die Playwright Agent CLI?
+## What is the Playwright Agent CLI?
 
-Eine Kommandozeilen-Schnittstelle fuer Browser-Automatisierung, die speziell fuer Coding-Agents
-entworfen wurde. Die CLI bietet token-effiziente Befehle und installierbare Skills, damit Agents
-Browser-Automatisierung und grosse Codebasen innerhalb begrenzter Context-Windows ausbalancieren
-koennen.
+A command-line interface for browser automation that was designed specifically for coding
+agents. The CLI provides token-efficient commands and installable skills so that agents
+can balance browser automation and large codebases within limited context
+windows.
 
-### Kernmerkmale
+### Core characteristics
 
-| Merkmal | Beschreibung |
+| Characteristic | Description |
 |---------|-------------|
-| Token-effizient | Kompakte CLI-Ausgabe vermeidet das Laden grosser Tool-Schemas in den Modell-Context |
-| Skill-basiert | Agents entdecken Faehigkeiten ueber installierbare Skills |
-| Daemon-Architektur | Persistenter Browser-Prozess eliminiert Startkosten je Befehl |
-| Ref-basiert | Accessibility-Snapshots mit Element-Refs fuer deterministische Interaktion |
-| Cross-Browser | Chrome, Firefox, WebKit und Edge |
-| Sessions | Mehrere isolierte Browser-Instanzen mit eigenem State |
+| Token-efficient | Compact CLI output avoids loading large tool schemas into the model context |
+| Skill-based | Agents discover capabilities via installable skills |
+| Daemon architecture | A persistent browser process eliminates per-command startup cost |
+| Ref-based | Accessibility snapshots with element refs for deterministic interaction |
+| Cross-browser | Chrome, Firefox, WebKit and Edge |
+| Sessions | Multiple isolated browser instances with their own state |
 
 ### Playwright CLI vs. MCP
 
-| Aspekt | Playwright CLI | MCP |
+| Aspect | Playwright CLI | MCP |
 |--------|---------------|-----|
-| Beste fuer | Coding-Agents mit grossen Codebasen | Spezialisierte Agentic-Loops, explorative Automatisierung |
-| Funktionsweise | Agent fuehrt Shell-Befehle aus | LLM ruft MCP-Tools mit strukturierten Parametern auf |
-| Token-Kosten | Niedriger — kompakte Ausgabe, Skills on Demand | Hoeher — Tool-Schemas + Snapshots im Context |
-| Standard-Modus | Headless | Headed |
-| Setup | `npm install -g @playwright/cli` | JSON-Config im MCP-Client |
+| Best for | Coding agents with large codebases | Specialised agentic loops, exploratory automation |
+| How it works | The agent runs shell commands | The LLM calls MCP tools with structured parameters |
+| Token cost | Lower — compact output, skills on demand | Higher — tool schemas + snapshots in the context |
+| Default mode | Headless | Headed |
+| Setup | `npm install -g @playwright/cli` | JSON config in the MCP client |
 
 ---
 
-## Quick-Start
+## Quick start
 
-### Typischer Workflow
+### Typical workflow
 
 ```bash
 playwright-cli open https://demo.playwright.dev/todomvc --headed
@@ -52,7 +52,7 @@ playwright-cli check e21
 playwright-cli screenshot
 ```
 
-### Beispielausgabe nach einem Befehl
+### Example output after a command
 
 ```
 ### Page
@@ -63,102 +63,102 @@ playwright-cli screenshot
 [Snapshot](.playwright-cli/page-2026-02-14T19-22-42-679Z.yml)
 ```
 
-Der Snapshot enthaelt den Accessibility-Tree mit Element-Refs (z. B. `e5`, `e21`) fuer
-deterministische Folgebefehle.
+The snapshot contains the accessibility tree with element refs (e.g. `e5`, `e21`) for
+deterministic follow-up commands.
 
-### Kernablauf
+### Core flow
 
-1. URL oeffnen via `playwright-cli open <url>`
-2. Snapshot liefert Accessibility-Tree mit Element-Refs
-3. Interagieren mit Refs: `click`, `type`, `fill`
-4. Erneuter Snapshot liefert aktualisierten State mit neuen Refs
+1. Open a URL via `playwright-cli open <url>`
+2. The snapshot provides the accessibility tree with element refs
+3. Interact using refs: `click`, `type`, `fill`
+4. Another snapshot provides the updated state with new refs
 
 ---
 
 ## Installation
 
-### Voraussetzungen
+### Prerequisites
 
-- Node.js 20 oder neuer
-- Ein Coding-Agent (Claude Code, GitHub Copilot oder aequivalent)
+- Node.js 20 or newer
+- A coding agent (Claude Code, GitHub Copilot or equivalent)
 
-### Globale Installation
+### Global installation
 
 ```bash
 npm install -g @playwright/cli@latest
 playwright-cli --help
 ```
 
-### Lokale Nutzung (ohne globale Installation)
+### Local usage (without a global installation)
 
 ```bash
 npx playwright-cli --help
 ```
 
-### Browser installieren
+### Installing browsers
 
-Der erste Aufruf laedt den Standard-Browser automatisch herunter. Fuer explizite Installation:
+The first invocation downloads the default browser automatically. For an explicit installation:
 
 ```bash
-playwright-cli install-browser               # Standard (Chromium)
-playwright-cli install-browser firefox       # spezifischer Browser
-playwright-cli install-browser --with-deps   # inkl. System-Abhaengigkeiten (Linux)
+playwright-cli install-browser               # default (Chromium)
+playwright-cli install-browser firefox       # specific browser
+playwright-cli install-browser --with-deps   # incl. system dependencies (Linux)
 ```
 
-#### install-browser Flags
+#### install-browser flags
 
-| Flag | Beschreibung |
+| Flag | Description |
 |------|-------------|
-| `--with-deps` | System-Abhaengigkeiten installieren (Linux) |
-| `--dry-run` | Vorschau: was wuerde installiert |
-| `--list` | Verfuegbare Browser aller Installationen auflisten |
-| `--force` | Reinstallieren, auch wenn bereits vorhanden |
-| `--only-shell` | Nur Chromium Headless Shell installieren |
-| `--no-shell` | Chromium Headless Shell ueberspringen |
+| `--with-deps` | Install system dependencies (Linux) |
+| `--dry-run` | Preview: what would be installed |
+| `--list` | List available browsers of all installations |
+| `--force` | Reinstall, even if already present |
+| `--only-shell` | Install only the Chromium headless shell |
+| `--no-shell` | Skip the Chromium headless shell |
 
 ---
 
 ## Skills
 
-### Was Skills leisten
+### What skills do
 
-Skills lehren Coding-Agents die effektive Nutzung von `playwright-cli` durch strukturierte
-Referenz-Dokumentation, die Agents entdecken und nutzen koennen.
+Skills teach coding agents the effective use of `playwright-cli` through structured
+reference documentation that agents can discover and use.
 
-Die Installation umfasst detaillierte Referenz-Guides fuer:
+The installation includes detailed reference guides for:
 
-- Playwright-Tests ausfuehren und debuggen
-- Request-Mocking (Netzwerk-Requests abfangen/mocken)
-- Playwright-Code ausfuehren (beliebige Skripte)
-- Browser-Session-Management
-- Storage-State-Management (Cookies, localStorage)
-- Test-Generierung aus Interaktionen
-- Tracing (Ausfuehrungs-Traces aufzeichnen/inspizieren)
-- Video-Aufnahme von Browser-Sessions
-- Element-Attribute inspizieren (jenseits von Snapshots)
+- Running and debugging Playwright tests
+- Request mocking (intercepting/mocking network requests)
+- Running Playwright code (arbitrary scripts)
+- Browser session management
+- Storage state management (cookies, localStorage)
+- Test generation from interactions
+- Tracing (recording/inspecting execution traces)
+- Video recording of browser sessions
+- Inspecting element attributes (beyond snapshots)
 
-### Skills installieren
+### Installing skills
 
 ```bash
 playwright-cli install --skills
 ```
 
-### Unterstuetzte Agents
+### Supported agents
 
 - Claude Code
 - GitHub Copilot
 - Cursor
-- Jeder Coding-Agent mit Unterstuetzung fuer lokal installierte Skills
+- Any coding agent with support for locally installed skills
 
-### Skills-loser Betrieb
+### Operating without skills
 
-Alternativ kann der Agent Befehle selbst entdecken:
+Alternatively the agent can discover the commands itself:
 
 ```bash
 playwright-cli --help
 ```
 
-### Session-Voreinstellung per Umgebungsvariable
+### Session preset via environment variable
 
 ```bash
 PLAYWRIGHT_CLI_SESSION=todo-app claude .
@@ -166,9 +166,9 @@ PLAYWRIGHT_CLI_SESSION=todo-app claude .
 
 ---
 
-## Alle Befehle — Uebersicht
+## All commands — overview
 
-### Kern-Befehle
+### Core commands
 `open [url]`, `close`, `click <ref>`, `dblclick <ref>`, `fill <ref> <text>`, `type <text>`,
 `select <ref> <val>`, `check <ref>`, `uncheck <ref>`, `hover <ref>`, `drag <start> <end>`,
 `upload <file>`, `snapshot`, `screenshot [ref]`, `pdf`, `eval <func> [ref]`, `resize <w> <h>`,
@@ -177,7 +177,7 @@ PLAYWRIGHT_CLI_SESSION=todo-app claude .
 ### Navigation
 `go-back`, `go-forward`, `reload`
 
-### Tastatur & Maus
+### Keyboard & mouse
 `press <key>`, `keydown <key>`, `keyup <key>`, `mousemove <x> <y>`, `mousedown [btn]`,
 `mouseup [btn]`, `mousewheel <dx> <dy>`
 
@@ -191,7 +191,7 @@ PLAYWRIGHT_CLI_SESSION=todo-app claude .
 `localstorage-clear`, `sessionstorage-list`, `sessionstorage-get <key>`,
 `sessionstorage-set <k> <v>`, `sessionstorage-delete <k>`, `sessionstorage-clear`
 
-### Netzwerk
+### Network
 `network`, `route <pattern> [opts]`, `route-list`, `unroute [pattern]`
 
 ### DevTools
@@ -203,4 +203,4 @@ PLAYWRIGHT_CLI_SESSION=todo-app claude .
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/introduction · https://playwright.dev/agent-cli/quick-start · https://playwright.dev/agent-cli/installation · https://playwright.dev/agent-cli/skills
+Source: https://playwright.dev/agent-cli/introduction · https://playwright.dev/agent-cli/quick-start · https://playwright.dev/agent-cli/installation · https://playwright.dev/agent-cli/skills

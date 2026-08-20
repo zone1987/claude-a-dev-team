@@ -1,8 +1,8 @@
 # class-framelocator — Playwright API Reference
 
-Ein `FrameLocator` repraesentiert eine Ansicht auf ein `iframe`-Element auf der Seite. Er ermoeglicht die Interaktion mit Elementen innerhalb des Frames. Alle `getBy*`- und `locator()`-Methoden verhalten sich identisch zu den Pendants in `Locator`, wirken aber im Kontext des adressierten Frames.
+A `FrameLocator` represents a view onto an `iframe` element on the page. It enables interaction with elements inside the frame. All `getBy*` and `locator()` methods behave identically to their counterparts in `Locator`, but operate in the context of the addressed frame.
 
-Methoden-Anzahl: 11 (davon 3 deprecated)
+Method count: 11 (3 of them deprecated)
 
 ---
 
@@ -18,8 +18,8 @@ Methoden-Anzahl: 11 (davon 3 deprecated)
 - [getByTitle()](#getbytitle)
 - [locator()](#locator)
 - [owner()](#owner)
-- [Deprecated Methoden](#deprecated-methoden)
-- [Methoden-Uebersicht](#methoden-uebersicht)
+- [Deprecated Methods](#deprecated-methods)
+- [Method Overview](#method-overview)
 
 ## frameLocator()
 
@@ -27,13 +27,13 @@ Methoden-Anzahl: 11 (davon 3 deprecated)
 frameLocator(selector: string): FrameLocator
 ```
 
-Navigiert in ein verschachteltes iframe innerhalb dieses Frames.
+Navigates into a nested iframe within this frame.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selector` | `string` | ja | — | CSS-/Playwright-Selektor fuer das verschachtelte iframe |
+| `selector` | `string` | yes | — | CSS/Playwright selector for the nested iframe |
 
-**Rueckgabe:** `FrameLocator`
+**Returns:** `FrameLocator`
 
 ```typescript
 const outer = page.frameLocator('#outer');
@@ -49,14 +49,14 @@ await inner.getByRole('button').click();
 getByAltText(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Elemente im Frame ueber ihren `alt`-Text.
+Finds elements in the frame by their `alt` text.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Alt-Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter (Gross-/Kleinschreibung + vollstaendiger String) Vergleich |
+| `text` | `string \| RegExp` | yes | — | Alt text |
+| `options.exact` | `boolean` | no | `false` | Exact comparison (case-sensitive + full string) |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 await page.frameLocator('#widget').getByAltText('Logo').click();
@@ -70,17 +70,17 @@ await page.frameLocator('#widget').getByAltText('Logo').click();
 getByLabel(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Formularelemente im Frame ueber ihr Label.
+Finds form elements in the frame by their label.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Label-Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Label text |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.frameLocator('#editor').getByLabel('Titel').fill('Test');
+await page.frameLocator('#editor').getByLabel('Title').fill('Test');
 ```
 
 ---
@@ -91,17 +91,17 @@ await page.frameLocator('#editor').getByLabel('Titel').fill('Test');
 getByPlaceholder(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet `<input>`-Elemente im Frame ueber ihren `placeholder`-Text.
+Finds `<input>` elements in the frame by their `placeholder` text.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Placeholder-Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Placeholder text |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.frameLocator('#form-frame').getByPlaceholder('E-Mail').fill('user@test.de');
+await page.frameLocator('#form-frame').getByPlaceholder('Email').fill('user@test.com');
 ```
 
 ---
@@ -123,26 +123,26 @@ getByRole(role: AriaRole, options?: {
 }): Locator
 ```
 
-Findet Elemente im Frame ueber ARIA-Rolle und optionale Attribute.
+Finds elements in the frame by ARIA role and optional attributes.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `role` | `AriaRole` | ja | — | ARIA-Rolle z.B. `'button'`, `'textbox'` |
-| `options.checked` | `boolean` | nein | — | Filtert nach `aria-checked` |
-| `options.description` | `string \| RegExp` | nein | — | Accessible description |
-| `options.disabled` | `boolean` | nein | — | Filtert nach `aria-disabled` |
-| `options.exact` | `boolean` | nein | `false` | Exakter name/description-Vergleich |
-| `options.expanded` | `boolean` | nein | — | Filtert nach `aria-expanded` |
-| `options.includeHidden` | `boolean` | nein | `false` | Versteckte Elemente einbeziehen |
-| `options.level` | `number` | nein | — | Filtert nach `aria-level` |
-| `options.name` | `string \| RegExp` | nein | — | Accessible name |
-| `options.pressed` | `boolean` | nein | — | Filtert nach `aria-pressed` |
-| `options.selected` | `boolean` | nein | — | Filtert nach `aria-selected` |
+| `role` | `AriaRole` | yes | — | ARIA role, e.g. `'button'`, `'textbox'` |
+| `options.checked` | `boolean` | no | — | Filters by `aria-checked` |
+| `options.description` | `string \| RegExp` | no | — | Accessible description |
+| `options.disabled` | `boolean` | no | — | Filters by `aria-disabled` |
+| `options.exact` | `boolean` | no | `false` | Exact name/description comparison |
+| `options.expanded` | `boolean` | no | — | Filters by `aria-expanded` |
+| `options.includeHidden` | `boolean` | no | `false` | Include hidden elements |
+| `options.level` | `number` | no | — | Filters by `aria-level` |
+| `options.name` | `string \| RegExp` | no | — | Accessible name |
+| `options.pressed` | `boolean` | no | — | Filters by `aria-pressed` |
+| `options.selected` | `boolean` | no | — | Filters by `aria-selected` |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.frameLocator('#checkout').getByRole('button', { name: 'Kaufen' }).click();
+await page.frameLocator('#checkout').getByRole('button', { name: 'Buy' }).click();
 ```
 
 ---
@@ -153,13 +153,13 @@ await page.frameLocator('#checkout').getByRole('button', { name: 'Kaufen' }).cli
 getByTestId(testId: string | RegExp): Locator
 ```
 
-Findet Elemente im Frame ueber ihr Test-ID-Attribut.
+Finds elements in the frame by their test ID attribute.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `testId` | `string \| RegExp` | ja | — | Wert des Test-ID-Attributs |
+| `testId` | `string \| RegExp` | yes | — | Value of the test ID attribute |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 await page.frameLocator('#app').getByTestId('confirm-btn').click();
@@ -173,17 +173,17 @@ await page.frameLocator('#app').getByTestId('confirm-btn').click();
 getByText(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Elemente im Frame, die den angegebenen Text enthalten.
+Finds elements in the frame that contain the given text.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Gesuchter Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Text to search for |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.frameLocator('#preview').getByText('Bestaetigen').click();
+await page.frameLocator('#preview').getByText('Confirm').click();
 ```
 
 ---
@@ -194,17 +194,17 @@ await page.frameLocator('#preview').getByText('Bestaetigen').click();
 getByTitle(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Elemente im Frame ueber ihr `title`-Attribut.
+Finds elements in the frame by their `title` attribute.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Title-Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Title text |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.frameLocator('#map').getByTitle('Vollbild').click();
+await page.frameLocator('#map').getByTitle('Fullscreen').click();
 ```
 
 ---
@@ -220,17 +220,17 @@ locator(selectorOrLocator: string | Locator, options?: {
 }): Locator
 ```
 
-Erstellt einen Locator innerhalb des Frames.
+Creates a locator within the frame.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selectorOrLocator` | `string \| Locator` | ja | — | Selektor oder Locator |
-| `options.has` | `Locator` | nein | — | Enthaelt diesen Locator |
-| `options.hasNot` | `Locator` | nein | — | Enthaelt diesen Locator nicht |
-| `options.hasNotText` | `string \| RegExp` | nein | — | Enthaelt diesen Text nicht |
-| `options.hasText` | `string \| RegExp` | nein | — | Enthaelt diesen Text |
+| `selectorOrLocator` | `string \| Locator` | yes | — | Selector or locator |
+| `options.has` | `Locator` | no | — | Contains this locator |
+| `options.hasNot` | `Locator` | no | — | Does not contain this locator |
+| `options.hasNotText` | `string \| RegExp` | no | — | Does not contain this text |
+| `options.hasText` | `string \| RegExp` | no | — | Contains this text |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 const frame = page.frameLocator('#app');
@@ -245,13 +245,13 @@ await frame.locator('.submit-btn').click();
 owner(): Locator
 ```
 
-Konvertiert den `FrameLocator` in einen `Locator`, der auf dasselbe iframe-Element zeigt.
+Converts the `FrameLocator` into a `Locator` pointing at the same iframe element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 const frame = page.frameLocator('#app');
@@ -260,9 +260,9 @@ await expect(frame.owner()).toBeVisible();
 
 ---
 
-## Deprecated Methoden
+## Deprecated Methods
 
-Diese Methoden sind deprecated. Stattdessen `locator().nth(n).contentFrame()` etc. verwenden.
+These methods are deprecated. Use `locator().nth(n).contentFrame()` etc. instead.
 
 ### first() — DEPRECATED
 
@@ -270,8 +270,8 @@ Diese Methoden sind deprecated. Stattdessen `locator().nth(n).contentFrame()` et
 first(): FrameLocator
 ```
 
-Gibt einen FrameLocator fuer das erste passende iframe zurueck.
-**Ersatz:** `locator('iframe').first().contentFrame()`
+Returns a FrameLocator for the first matching iframe.
+**Replacement:** `locator('iframe').first().contentFrame()`
 
 ### last() — DEPRECATED
 
@@ -279,8 +279,8 @@ Gibt einen FrameLocator fuer das erste passende iframe zurueck.
 last(): FrameLocator
 ```
 
-Gibt einen FrameLocator fuer das letzte passende iframe zurueck.
-**Ersatz:** `locator('iframe').last().contentFrame()`
+Returns a FrameLocator for the last matching iframe.
+**Replacement:** `locator('iframe').last().contentFrame()`
 
 ### nth() — DEPRECATED
 
@@ -288,25 +288,25 @@ Gibt einen FrameLocator fuer das letzte passende iframe zurueck.
 nth(index: number): FrameLocator
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `index` | `number` | ja | — | Nullbasierter Index |
+| `index` | `number` | yes | — | Zero-based index |
 
-Gibt einen FrameLocator fuer das n-te passende iframe zurueck.
-**Ersatz:** `locator('iframe').nth(n).contentFrame()`
+Returns a FrameLocator for the nth matching iframe.
+**Replacement:** `locator('iframe').nth(n).contentFrame()`
 
 ---
 
-## Methoden-Uebersicht
+## Method Overview
 
-| Kategorie | Methoden |
+| Category | Methods |
 |---|---|
-| Konversion | `owner()` |
-| Verschachtelung | `frameLocator()` |
-| Fabrikmethoden (getBy*) | `getByAltText`, `getByLabel`, `getByPlaceholder`, `getByRole`, `getByTestId`, `getByText`, `getByTitle` |
-| Allgemeine Locatoren | `locator()` |
+| Conversion | `owner()` |
+| Nesting | `frameLocator()` |
+| Factory methods (getBy*) | `getByAltText`, `getByLabel`, `getByPlaceholder`, `getByRole`, `getByTestId`, `getByText`, `getByTitle` |
+| General locators | `locator()` |
 | Deprecated | `first()`, `last()`, `nth()` |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-framelocator
+Source: https://playwright.dev/docs/api/class-framelocator

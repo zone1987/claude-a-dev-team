@@ -1,43 +1,43 @@
-# Playwright class-elementhandle: Vollstaendige API-Referenz
+# Playwright class-elementhandle: Complete API reference
 
-`ElementHandle` repraesentiert ein DOM-Element-Handle. Es ist ein spezielles `JSHandle` mit
-zusaetzlichen DOM-spezifischen Methoden. **Wichtig:** Die Playwright-Dokumentation empfiehlt
-ausdruecklich, `ElementHandle` NICHT mehr direkt zu verwenden und stattdessen `Locator`-Objekte
-und web-first assertions zu nutzen. Alle Interaktionsmethoden von ElementHandle sind als
-"deprecated" (entmutigt) markiert.
+`ElementHandle` represents a DOM element handle. It is a special `JSHandle` with
+additional DOM-specific methods. **Important:** the Playwright documentation explicitly
+recommends NOT using `ElementHandle` directly any more, and using `Locator` objects
+and web-first assertions instead. All interaction methods of ElementHandle are marked
+"deprecated" (discouraged).
 
-Ausnahmen: `boundingBox()`, `contentFrame()`, `ownerFrame()` und `waitForElementState()`
-gelten als nicht deprecated und koennen weiterhin verwendet werden wenn ein ElementHandle
-bereits vorhanden ist (z.B. aus `page.waitForSelector()`).
+Exceptions: `boundingBox()`, `contentFrame()`, `ownerFrame()` and `waitForElementState()`
+are considered not deprecated and may still be used when an ElementHandle
+is already available (e.g. from `page.waitForSelector()`).
 
-ElementHandle erbt alle Methoden von [JSHandle](API-PAGE-CLASS-JSHANDLE.md).
+ElementHandle inherits all methods from [JSHandle](API-PAGE-CLASS-JSHANDLE.md).
 
 ---
 
 ## Contents
 
-- [Inhaltsverzeichnis](#inhaltsverzeichnis)
-- [1. Nicht-deprecated Methoden](#1-nicht-deprecated-methoden)
-- [2. Deprecated: Selektor-Methoden](#2-deprecated-selektor-methoden)
-- [3. Deprecated: Interaktionsmethoden](#3-deprecated-interaktionsmethoden)
-- [4. Deprecated: Inhalts-/Zustandsmethoden](#4-deprecated-inhalts-zustandsmethoden)
-- [5. Deprecated: Hilfsmethoden](#5-deprecated-hilfsmethoden)
-- [6. Geerbte JSHandle-Methoden](#6-geerbte-jshandle-methoden)
+- [Table of contents](#table-of-contents)
+- [1. Non-deprecated methods](#1-non-deprecated-methods)
+- [2. Deprecated: selector methods](#2-deprecated-selector-methods)
+- [3. Deprecated: interaction methods](#3-deprecated-interaction-methods)
+- [4. Deprecated: content/state methods](#4-deprecated-content-state-methods)
+- [5. Deprecated: helper methods](#5-deprecated-helper-methods)
+- [6. Inherited JSHandle methods](#6-inherited-jshandle-methods)
 - [7. Manifest](#7-manifest)
 
-## Inhaltsverzeichnis
+## Table of contents
 
-1. [Nicht-deprecated Methoden](#1-nicht-deprecated-methoden)
-2. [Deprecated: Selektor-Methoden](#2-deprecated-selektor-methoden)
-3. [Deprecated: Interaktionsmethoden](#3-deprecated-interaktionsmethoden)
-4. [Deprecated: Inhalts-/Zustandsmethoden](#4-deprecated-inhaltszustandsmethoden)
-5. [Deprecated: Hilfsmethoden](#5-deprecated-hilfsmethoden)
-6. [Geerbte JSHandle-Methoden](#6-geerbte-jshandle-methoden)
+1. [Non-deprecated methods](#1-non-deprecated-methods)
+2. [Deprecated: selector methods](#2-deprecated-selector-methods)
+3. [Deprecated: interaction methods](#3-deprecated-interaction-methods)
+4. [Deprecated: content/state methods](#4-deprecated-contentstate-methods)
+5. [Deprecated: helper methods](#5-deprecated-helper-methods)
+6. [Inherited JSHandle methods](#6-inherited-jshandle-methods)
 7. [Manifest](#7-manifest)
 
 ---
 
-## 1. Nicht-deprecated Methoden
+## 1. Non-deprecated methods
 
 ### elementHandle.boundingBox()
 
@@ -50,25 +50,25 @@ elementHandle.boundingBox(): Promise<null | {
 }>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** Promise mit Bounding-Box-Objekt oder `null` wenn Element nicht sichtbar ist.
+**Returns:** Promise with a bounding box object, or `null` if the element is not visible.
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |---|---|---|
-| `x` | `number` | X-Koordinate der linken oberen Ecke (relativ zum Viewport) |
-| `y` | `number` | Y-Koordinate der linken oberen Ecke |
-| `width` | `number` | Breite des Elements in Pixel |
-| `height` | `number` | Hoehe des Elements in Pixel |
+| `x` | `number` | X coordinate of the top-left corner (relative to the viewport) |
+| `y` | `number` | Y coordinate of the top-left corner |
+| `width` | `number` | Width of the element in pixels |
+| `height` | `number` | Height of the element in pixels |
 
-Gibt `null` zurueck wenn das Element nicht sichtbar ist (z.B. `display: none`).
+Returns `null` if the element is not visible (e.g. `display: none`).
 
 ```typescript
 const handle = await page.waitForSelector('.my-element');
 const box = await handle?.boundingBox();
 if (box) {
-  console.log(`Element bei (${box.x}, ${box.y}), ${box.width}x${box.height}px`);
-  // Manuelle Mausbewegung zur Element-Mitte
+  console.log(`Element at (${box.x}, ${box.y}), ${box.width}x${box.height}px`);
+  // Manual mouse movement to the element center
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
 }
 ```
@@ -81,18 +81,18 @@ if (box) {
 elementHandle.contentFrame(): Promise<null | Frame>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** Promise mit Frame-Objekt oder `null`.
+**Returns:** Promise with a Frame object or `null`.
 
-Gibt den Frame-Inhalt eines `<iframe>`-Elements zurueck. Gibt `null` zurueck wenn das Element
-kein `<iframe>` ist.
+Returns the frame content of an `<iframe>` element. Returns `null` if the element
+is not an `<iframe>`.
 
 ```typescript
 const iframeHandle = await page.$('iframe#my-frame');
 const frame = await iframeHandle?.contentFrame();
 if (frame) {
-  await frame.getByRole('button', { name: 'Absenden' }).click();
+  await frame.getByRole('button', { name: 'Submit' }).click();
 }
 ```
 
@@ -104,17 +104,17 @@ if (frame) {
 elementHandle.ownerFrame(): Promise<null | Frame>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** Promise mit Frame-Objekt oder `null`.
+**Returns:** Promise with a Frame object or `null`.
 
-Gibt den Frame zurueck, der dieses Element enthaelt. `null` wenn der Frame nicht mehr existiert
-oder abgehaengt wurde.
+Returns the frame that contains this element. `null` if the frame no longer exists
+or has been detached.
 
 ```typescript
 const handle = await page.$('h1');
 const frame = await handle?.ownerFrame();
-console.log('Element gehoert zu Frame:', frame?.url());
+console.log('Element belongs to frame:', frame?.url());
 ```
 
 ---
@@ -128,41 +128,41 @@ elementHandle.waitForElementState(
 ): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `state` | `string` | ja | — | Gewuenschter Zustand des Elements |
-| `options.timeout` | `number` | nein | `0` (kein Timeout) | Max. Wartezeit in ms |
+| `state` | `string` | yes | — | Desired state of the element |
+| `options.timeout` | `number` | no | `0` (no timeout) | Max. wait time in ms |
 
-**Zustaende:**
+**States:**
 
-| Zustand | Beschreibung |
+| State | Description |
 |---|---|
-| `'visible'` | Element hat nicht-leere Bounding Box, kein `visibility:hidden`, kein `opacity:0` |
-| `'hidden'` | Gegenteil von `visible` (oder Element existiert nicht im DOM) |
-| `'stable'` | Element bewegt sich nicht und ist sichtbar |
-| `'enabled'` | Nicht deaktiviert (`disabled`-Attribut abwesend) |
-| `'disabled'` | Hat `disabled`-Attribut oder `aria-disabled` |
-| `'editable'` | Weder `disabled` noch `readonly` |
+| `'visible'` | Element has a non-empty bounding box, no `visibility:hidden`, no `opacity:0` |
+| `'hidden'` | Opposite of `visible` (or the element does not exist in the DOM) |
+| `'stable'` | Element is not moving and is visible |
+| `'enabled'` | Not disabled (`disabled` attribute absent) |
+| `'disabled'` | Has a `disabled` attribute or `aria-disabled` |
+| `'editable'` | Neither `disabled` nor `readonly` |
 
 ```typescript
 const spinnerHandle = await page.$('.spinner');
-// Warten bis Spinner verschwindet
+// Wait until the spinner disappears
 await spinnerHandle?.waitForElementState('hidden');
 
 const buttonHandle = await page.$('button#save');
-// Warten bis Button klickbar
+// Wait until the button is clickable
 await buttonHandle?.waitForElementState('enabled', { timeout: 5000 });
 
-// Warten bis animiertes Element zur Ruhe kommt
+// Wait until an animated element comes to rest
 const animHandle = await page.$('.animated-card');
 await animHandle?.waitForElementState('stable');
 ```
 
 ---
 
-## 2. Deprecated: Selektor-Methoden
+## 2. Deprecated: selector methods
 
-**Empfehlung:** Verwende `locator.locator()` stattdessen.
+**Recommendation:** use `locator.locator()` instead.
 
 ### elementHandle.$()
 
@@ -170,11 +170,11 @@ await animHandle?.waitForElementState('stable');
 elementHandle.$(selector: string): Promise<null | ElementHandle>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `selector` | `string` | ja | CSS/XPath-Selektor |
+| `selector` | `string` | yes | CSS/XPath selector |
 
-Sucht das erste Element, das dem Selektor im Kontext dieses Elements entspricht.
+Finds the first element matching the selector in the context of this element.
 
 ```typescript
 const row = await page.$('tr.selected');
@@ -190,11 +190,11 @@ const text = await cell?.textContent();
 elementHandle.$$(selector: string): Promise<Array<ElementHandle>>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `selector` | `string` | ja | CSS/XPath-Selektor |
+| `selector` | `string` | yes | CSS/XPath selector |
 
-Sucht alle Elemente, die dem Selektor im Kontext dieses Elements entsprechen.
+Finds all elements matching the selector in the context of this element.
 
 ```typescript
 const list = await page.$('ul.items');
@@ -216,13 +216,13 @@ elementHandle.$eval<T>(
 ): Promise<T>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `selector` | `string` | ja | CSS-Selektor relativ zu diesem Element |
-| `pageFunction` | `Function\|string` | ja | Im Browser ausgefuehrte Funktion |
-| `arg` | `Serializable\|JSHandle` | nein | Argument |
+| `selector` | `string` | yes | CSS selector relative to this element |
+| `pageFunction` | `Function\|string` | yes | Function executed in the browser |
+| `arg` | `Serializable\|JSHandle` | no | Argument |
 
-Fuehrt Funktion auf dem ersten gematchten Kind-Element aus.
+Runs the function on the first matched child element.
 
 ```typescript
 const form = await page.$('form#login');
@@ -241,7 +241,7 @@ elementHandle.$$eval<T>(
 ): Promise<T>
 ```
 
-Fuehrt Funktion auf ALLEN gematchten Kind-Elementen aus.
+Runs the function on ALL matched child elements.
 
 ```typescript
 const table = await page.$('table');
@@ -250,9 +250,9 @@ const cellTexts = await table?.$$eval('td', cells => cells.map(c => c.textConten
 
 ---
 
-## 3. Deprecated: Interaktionsmethoden
+## 3. Deprecated: interaction methods
 
-**Empfehlung:** Verwende `page.locator().click()`, `locator.fill()` etc.
+**Recommendation:** use `page.locator().click()`, `locator.fill()` etc.
 
 ### elementHandle.click()
 
@@ -271,17 +271,17 @@ elementHandle.click(options?: {
 }): Promise<void>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `button` | `string` | `'left'` | Maustaste |
-| `clickCount` | `number` | `1` | Anzahl Klicks |
-| `delay` | `number` | `0` | Ms zwischen mousedown und mouseup |
-| `force` | `boolean` | `false` | Actionability-Checks ueberspringen |
-| `modifiers` | `string[]` | `[]` | Tasten waehrend Klick |
-| `position` | `{x,y}` | Element-Mitte | Klick-Position relativ zum Element |
-| `steps` | `number` | `1` | Bewegungsschritte zur Klick-Position |
-| `timeout` | `number` | `0` | Max. Wartezeit |
-| `trial` | `boolean` | `false` | Nur pruefen ohne auszufuehren |
+| `button` | `string` | `'left'` | Mouse button |
+| `clickCount` | `number` | `1` | Number of clicks |
+| `delay` | `number` | `0` | Ms between mousedown and mouseup |
+| `force` | `boolean` | `false` | Skip actionability checks |
+| `modifiers` | `string[]` | `[]` | Keys held during the click |
+| `position` | `{x,y}` | Element center | Click position relative to the element |
+| `steps` | `number` | `1` | Movement steps to the click position |
+| `timeout` | `number` | `0` | Max. wait time |
+| `trial` | `boolean` | `false` | Only check without performing |
 
 ```typescript
 const button = await page.$('button.submit');
@@ -308,7 +308,7 @@ elementHandle.dblclick(options?: {
 }): Promise<void>
 ```
 
-Doppelklick.
+Double click.
 
 ```typescript
 const cell = await page.$('.editable-cell');
@@ -329,7 +329,7 @@ elementHandle.check(options?: {
 }): Promise<void>
 ```
 
-Aktiviert Checkbox oder Radio-Button.
+Checks a checkbox or radio button.
 
 ```typescript
 const checkbox = await page.$('#accept-terms');
@@ -351,7 +351,7 @@ elementHandle.uncheck(options?: {
 }): Promise<void>
 ```
 
-Deaktiviert Checkbox.
+Unchecks a checkbox.
 
 ```typescript
 const checkbox = await page.$('#newsletter');
@@ -372,9 +372,9 @@ elementHandle.setChecked(checked: boolean, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `checked` | `boolean` | ja | `true` = ankracken, `false` = abwaehlen |
+| `checked` | `boolean` | yes | `true` = check, `false` = uncheck |
 
 ```typescript
 const checkbox = await page.$('#newsletter');
@@ -394,11 +394,11 @@ elementHandle.fill(value: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `value` | `string` | ja | Einzufuegender Text |
+| `value` | `string` | yes | Text to insert |
 
-Loescht bestehenden Wert und fuellt Eingabefeld neu.
+Clears the existing value and refills the input field.
 
 ```typescript
 const input = await page.$('input[name=email]');
@@ -413,7 +413,7 @@ await input?.fill('test@example.com');
 elementHandle.focus(): Promise<void>
 ```
 
-Setzt Fokus auf das Element.
+Sets focus on the element.
 
 ```typescript
 const input = await page.$('input[autofocus]');
@@ -435,7 +435,7 @@ elementHandle.hover(options?: {
 }): Promise<void>
 ```
 
-Bewegt Maus ueber Element.
+Moves the mouse over the element.
 
 ```typescript
 const trigger = await page.$('.dropdown-trigger');
@@ -457,7 +457,7 @@ elementHandle.tap(options?: {
 }): Promise<void>
 ```
 
-Touch-Tap (Touchscreen-Emulation erforderlich).
+Touch tap (touchscreen emulation required).
 
 ```typescript
 const button = await page.$('.mobile-btn');
@@ -476,10 +476,10 @@ elementHandle.press(key: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `key` | `string` | ja | — | Taste oder Kombination (z.B. `'Enter'`, `'Control+a'`) |
-| `options.delay` | `number` | nein | `0` | Ms zwischen keydown und keyup |
+| `key` | `string` | yes | — | Key or combination (e.g. `'Enter'`, `'Control+a'`) |
+| `options.delay` | `number` | no | `0` | Ms between keydown and keyup |
 
 ```typescript
 const input = await page.$('input[type=search]');
@@ -499,11 +499,11 @@ elementHandle.type(text: string, options?: {
 }): Promise<void>
 ```
 
-**Deprecated.** Simuliert echte Tastatureingaben ohne bestehenden Wert zu loeschen.
+**Deprecated.** Simulates real keyboard input without clearing the existing value.
 
 ```typescript
 const input = await page.$('input');
-await input?.type('Hallo Welt', { delay: 50 });
+await input?.type('Hello World', { delay: 50 });
 ```
 
 ---
@@ -517,10 +517,10 @@ elementHandle.dispatchEvent(
 ): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `type` | `string` | ja | DOM-Event-Typ |
-| `eventInit` | `EvaluationArgument` | nein | Event-Initialisierungsobjekt |
+| `type` | `string` | yes | DOM event type |
+| `eventInit` | `EvaluationArgument` | no | Event initialization object |
 
 ```typescript
 const button = await page.$('button');
@@ -543,19 +543,19 @@ elementHandle.selectOption(
 ): Promise<string[]>
 ```
 
-| `values` Varianten | Beschreibung |
+| `values` variants | Description |
 |---|---|
-| `'value'` | Option nach value-Attribut |
-| `{ label: 'Text' }` | Option nach sichtbarem Label |
-| `{ index: 2 }` | Option nach Index (0-basiert) |
-| `['val1', 'val2']` | Mehrfachauswahl |
-| `null` | Selektion aufheben |
+| `'value'` | Option by value attribute |
+| `{ label: 'Text' }` | Option by visible label |
+| `{ index: 2 }` | Option by index (0-based) |
+| `['val1', 'val2']` | Multiple selection |
+| `null` | Clear the selection |
 
 ```typescript
 const select = await page.$('select#country');
 await select?.selectOption('de');
-await select?.selectOption({ label: 'Deutschland' });
-await select?.selectOption(null); // Auswahl aufheben
+await select?.selectOption({ label: 'Germany' });
+await select?.selectOption(null); // Clear the selection
 ```
 
 ---
@@ -569,7 +569,7 @@ elementHandle.selectText(options?: {
 }): Promise<void>
 ```
 
-Selektiert den gesamten Text des Eingabefelds.
+Selects the entire text of the input field.
 
 ```typescript
 const input = await page.$('input[name=title]');
@@ -590,12 +590,12 @@ elementHandle.setInputFiles(
 ): Promise<void>
 ```
 
-| `files` Varianten | Beschreibung |
+| `files` variants | Description |
 |---|---|
-| `'path/to/file'` | Einzelne Datei |
-| `['file1', 'file2']` | Mehrere Dateien |
-| `{ name, mimeType, buffer }` | Datei im Speicher |
-| `[]` | Alle Dateien entfernen |
+| `'path/to/file'` | Single file |
+| `['file1', 'file2']` | Multiple files |
+| `{ name, mimeType, buffer }` | In-memory file |
+| `[]` | Remove all files |
 
 ```typescript
 const fileInput = await page.$('input[type=file]');
@@ -603,13 +603,13 @@ await fileInput?.setInputFiles('/path/to/test.pdf');
 await fileInput?.setInputFiles({
   name: 'test.txt',
   mimeType: 'text/plain',
-  buffer: Buffer.from('Hallo')
+  buffer: Buffer.from('Hello')
 });
 ```
 
 ---
 
-## 4. Deprecated: Inhalts-/Zustandsmethoden
+## 4. Deprecated: content/state methods
 
 ### elementHandle.getAttribute()
 
@@ -617,9 +617,9 @@ await fileInput?.setInputFiles({
 elementHandle.getAttribute(name: string): Promise<null | string>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | ja | Attribut-Name |
+| `name` | `string` | yes | Attribute name |
 
 ```typescript
 const link = await page.$('a.nav-link');
@@ -635,7 +635,7 @@ const className = await link?.getAttribute('class');
 elementHandle.innerHTML(): Promise<string>
 ```
 
-Gibt den inneren HTML-Inhalt zurueck.
+Returns the inner HTML content.
 
 ```typescript
 const div = await page.$('.content');
@@ -650,7 +650,7 @@ const html = await div?.innerHTML();
 elementHandle.innerText(): Promise<string>
 ```
 
-Gibt den sichtbaren Textinhalt zurueck (respektiert CSS `display`, `visibility`).
+Returns the visible text content (respects CSS `display`, `visibility`).
 
 ```typescript
 const h1 = await page.$('h1');
@@ -665,7 +665,7 @@ const text = await h1?.innerText();
 elementHandle.textContent(): Promise<null | string>
 ```
 
-Gibt den `textContent` zurueck (inkl. versteckter Elemente). `null` wenn nicht vorhanden.
+Returns the `textContent` (including hidden elements). `null` if not present.
 
 ```typescript
 const el = await page.$('#description');
@@ -680,7 +680,7 @@ const text = await el?.textContent();
 elementHandle.inputValue(options?: { timeout?: number }): Promise<string>
 ```
 
-Gibt den aktuellen Wert von `<input>`, `<textarea>` oder `<select>` zurueck.
+Returns the current value of an `<input>`, `<textarea>` or `<select>`.
 
 ```typescript
 const input = await page.$('input[name=email]');
@@ -695,7 +695,7 @@ const value = await input?.inputValue();
 elementHandle.isChecked(): Promise<boolean>
 ```
 
-Gibt `true` wenn Checkbox/Radio angehakt ist.
+Returns `true` if the checkbox/radio is checked.
 
 ```typescript
 const checkbox = await page.$('#terms');
@@ -710,7 +710,7 @@ const checked = await checkbox?.isChecked();
 elementHandle.isDisabled(): Promise<boolean>
 ```
 
-Gibt `true` wenn Element deaktiviert ist.
+Returns `true` if the element is disabled.
 
 ```typescript
 const button = await page.$('button[type=submit]');
@@ -725,7 +725,7 @@ const disabled = await button?.isDisabled();
 elementHandle.isEditable(): Promise<boolean>
 ```
 
-Gibt `true` wenn Element editierbar ist (weder `disabled` noch `readonly`).
+Returns `true` if the element is editable (neither `disabled` nor `readonly`).
 
 ```typescript
 const input = await page.$('input[name=username]');
@@ -740,7 +740,7 @@ const editable = await input?.isEditable();
 elementHandle.isEnabled(): Promise<boolean>
 ```
 
-Gegenteil von `isDisabled()`.
+Opposite of `isDisabled()`.
 
 ```typescript
 const submit = await page.$('button[type=submit]');
@@ -755,7 +755,7 @@ const enabled = await submit?.isEnabled();
 elementHandle.isHidden(): Promise<boolean>
 ```
 
-Gibt `true` wenn Element nicht sichtbar ist.
+Returns `true` if the element is not visible.
 
 ```typescript
 const spinner = await page.$('.loading-spinner');
@@ -770,7 +770,7 @@ const hidden = await spinner?.isHidden();
 elementHandle.isVisible(): Promise<boolean>
 ```
 
-Gibt `true` wenn Element sichtbar ist.
+Returns `true` if the element is visible.
 
 ```typescript
 const modal = await page.$('.modal');
@@ -779,7 +779,7 @@ const visible = await modal?.isVisible();
 
 ---
 
-## 5. Deprecated: Hilfsmethoden
+## 5. Deprecated: helper methods
 
 ### elementHandle.screenshot()
 
@@ -799,19 +799,19 @@ elementHandle.screenshot(options?: {
 }): Promise<Buffer>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `animations` | `string` | `'allow'` | CSS-Animationen deaktivieren fuer Screenshot |
-| `caret` | `string` | `'hide'` | Text-Cursor verstecken |
-| `mask` | `Locator[]` | — | Bereiche mit Farbe ueberdecken |
-| `maskColor` | `string` | `'#FF00FF'` | Masken-Farbe |
-| `omitBackground` | `boolean` | `false` | Transparenz (nur PNG) |
-| `path` | `string` | — | Speicherpfad |
-| `quality` | `number` | — | JPEG-Qualitaet 0–100 |
-| `scale` | `string` | `'device'` | CSS oder Device-Pixel |
-| `type` | `string` | `'png'` | Bildformat |
+| `animations` | `string` | `'allow'` | Disable CSS animations for the screenshot |
+| `caret` | `string` | `'hide'` | Hide the text cursor |
+| `mask` | `Locator[]` | — | Cover areas with a color |
+| `maskColor` | `string` | `'#FF00FF'` | Mask color |
+| `omitBackground` | `boolean` | `false` | Transparency (PNG only) |
+| `path` | `string` | — | Save path |
+| `quality` | `number` | — | JPEG quality 0–100 |
+| `scale` | `string` | `'device'` | CSS or device pixels |
+| `type` | `string` | `'png'` | Image format |
 
-Macht Screenshot des Elements (nur der Bounding Box des Elements).
+Takes a screenshot of the element (only the element's bounding box).
 
 ```typescript
 const card = await page.$('.product-card');
@@ -829,12 +829,12 @@ elementHandle.scrollIntoViewIfNeeded(options?: {
 }): Promise<void>
 ```
 
-Scrollt das Element in den sichtbaren Bereich, falls noetig.
+Scrolls the element into the visible area if needed.
 
 ```typescript
 const element = await page.$('#footer-element');
 await element?.scrollIntoViewIfNeeded();
-// Jetzt sichtbar und interagierbar
+// Now visible and interactable
 await element?.click();
 ```
 
@@ -850,13 +850,13 @@ elementHandle.waitForSelector(selector: string, options?: {
 }): Promise<null | ElementHandle>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `state` | `string` | `'visible'` | Gewuenschter Zustand |
-| `strict` | `boolean` | `false` | Fehler bei mehreren Matches |
-| `timeout` | `number` | `0` | Max. Wartezeit in ms |
+| `state` | `string` | `'visible'` | Desired state |
+| `strict` | `boolean` | `false` | Error on multiple matches |
+| `timeout` | `number` | `0` | Max. wait time in ms |
 
-**Deprecated** — Wartet auf ein Kind-Element im Kontext dieses Elements.
+**Deprecated** — waits for a child element in the context of this element.
 
 ```typescript
 const form = await page.$('form');
@@ -867,9 +867,9 @@ const submitBtn = await form?.waitForSelector('button[type=submit]', {
 
 ---
 
-## 6. Geerbte JSHandle-Methoden
+## 6. Inherited JSHandle methods
 
-ElementHandle erbt alle Methoden von `JSHandle`:
+ElementHandle inherits all methods from `JSHandle`:
 
 ### elementHandle.asElement()
 
@@ -877,11 +877,11 @@ ElementHandle erbt alle Methoden von `JSHandle`:
 elementHandle.asElement(): ElementHandle
 ```
 
-Gibt sich selbst zurueck (da ElementHandle bereits ein ElementHandle ist).
+Returns itself (since an ElementHandle is already an ElementHandle).
 
 ```typescript
 const handle = await page.$('h1');
-const el = handle?.asElement(); // identisch mit handle
+const el = handle?.asElement(); // identical to handle
 ```
 
 ---
@@ -892,11 +892,11 @@ const el = handle?.asElement(); // identisch mit handle
 elementHandle.dispose(): Promise<void>
 ```
 
-Gibt das Element-Handle-Objekt frei. Nach `dispose()` sind keine Operationen mehr moeglich.
+Releases the element handle object. After `dispose()` no further operations are possible.
 
 ```typescript
 const handle = await page.$('.temp-element');
-// Arbeit mit handle...
+// Work with handle...
 await handle?.dispose();
 ```
 
@@ -911,10 +911,10 @@ elementHandle.evaluate<T>(
 ): Promise<T>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pageFunction` | `Function\|string` | ja | Funktion mit diesem Element als erstem Argument |
-| `arg` | `Serializable\|JSHandle` | nein | Zusaetzliches Argument |
+| `pageFunction` | `Function\|string` | yes | Function with this element as the first argument |
+| `arg` | `Serializable\|JSHandle` | no | Additional argument |
 
 ```typescript
 const el = await page.$('input');
@@ -933,7 +933,7 @@ elementHandle.evaluateHandle<T>(
 ): Promise<JSHandle<T>>
 ```
 
-Wie `evaluate()`, gibt aber ein `JSHandle` zurueck.
+Like `evaluate()`, but returns a `JSHandle`.
 
 ```typescript
 const el = await page.$('ul');
@@ -948,7 +948,7 @@ const firstChild = await el?.evaluateHandle(ul => ul.firstElementChild);
 elementHandle.getProperties(): Promise<Map<string, JSHandle>>
 ```
 
-Gibt alle eigenen Eigenschaften als Map von JSHandles zurueck.
+Returns all own properties as a map of JSHandles.
 
 ```typescript
 const el = await page.$('a');
@@ -965,9 +965,9 @@ const href = await hrefHandle?.jsonValue();
 elementHandle.getProperty(propertyName: string): Promise<JSHandle>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `propertyName` | `string` | ja | Name der Eigenschaft |
+| `propertyName` | `string` | yes | Name of the property |
 
 ```typescript
 const input = await page.$('input[type=text]');
@@ -983,7 +983,7 @@ const value = await valueHandle?.jsonValue();
 elementHandle.jsonValue(): Promise<Serializable>
 ```
 
-Gibt eine JSON-Repraesentation zurueck. Bei DOM-Elementen ist das Ergebnis ein leeres Objekt `{}`.
+Returns a JSON representation. For DOM elements the result is an empty object `{}`.
 
 ```typescript
 const handle = await page.$('input');
@@ -994,23 +994,23 @@ const json = await handle?.jsonValue(); // {}
 
 ## 7. Manifest
 
-| Kategorie | Dokumentierte Methoden |
+| Category | Documented methods |
 |---|---|
-| Nicht-deprecated | 4 (boundingBox, contentFrame, ownerFrame, waitForElementState) |
-| Deprecated: Selektor | 4 ($, $$, $eval, $$eval) |
-| Deprecated: Interaktion | 14 (click, dblclick, check, uncheck, setChecked, fill, focus, hover, tap, press, type, dispatchEvent, selectOption, selectText, setInputFiles) |
-| Deprecated: Inhalte/Zustand | 11 (getAttribute, innerHTML, innerText, textContent, inputValue, isChecked, isDisabled, isEditable, isEnabled, isHidden, isVisible) |
-| Deprecated: Hilfe | 3 (screenshot, scrollIntoViewIfNeeded, waitForSelector) |
-| Von JSHandle geerbt | 6 (asElement, dispose, evaluate, evaluateHandle, getProperties, getProperty, jsonValue) |
+| Non-deprecated | 4 (boundingBox, contentFrame, ownerFrame, waitForElementState) |
+| Deprecated: selector | 4 ($, $$, $eval, $$eval) |
+| Deprecated: interaction | 14 (click, dblclick, check, uncheck, setChecked, fill, focus, hover, tap, press, type, dispatchEvent, selectOption, selectText, setInputFiles) |
+| Deprecated: content/state | 11 (getAttribute, innerHTML, innerText, textContent, inputValue, isChecked, isDisabled, isEditable, isEnabled, isHidden, isVisible) |
+| Deprecated: helpers | 3 (screenshot, scrollIntoViewIfNeeded, waitForSelector) |
+| Inherited from JSHandle | 6 (asElement, dispose, evaluate, evaluateHandle, getProperties, getProperty, jsonValue) |
 
-**Gesamt: ~42 Methoden**
+**Total: ~42 methods**
 
-**Fazit:** `ElementHandle` ist die Legacy-API fuer DOM-Element-Interaktionen in Playwright.
-Alle Interaktionsmethoden sind offiziell als "discouraged" markiert. Fuer neue Tests sollten
-ausschliesslich Locator-basierte Methoden verwendet werden. Die drei nicht-deprecated Methoden
-(`boundingBox`, `contentFrame`, `waitForElementState`) sind nuetzlich wenn ein ElementHandle
-bereits aus Legacy-Code oder `waitForSelector()` vorliegt.
+**Conclusion:** `ElementHandle` is the legacy API for DOM element interactions in Playwright.
+All interaction methods are officially marked "discouraged". New tests should
+use locator-based methods exclusively. The three non-deprecated methods
+(`boundingBox`, `contentFrame`, `waitForElementState`) are useful when an ElementHandle
+is already available from legacy code or `waitForSelector()`.
 
 ---
 
-**Quelle:** https://playwright.dev/docs/api/class-elementhandle
+**Source:** https://playwright.dev/docs/api/class-elementhandle

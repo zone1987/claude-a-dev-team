@@ -2,24 +2,24 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [open](#open)
 - [goto](#goto)
 - [go-back / go-forward](#go-back-go-forward)
 - [reload](#reload)
 - [close](#close)
-- [Vollstaendiger Navigations-Workflow](#vollstaendiger-navigations-workflow)
+- [Complete navigation workflow](#complete-navigation-workflow)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `open [url]` | Browser oeffnen, optional zu URL navigieren |
-| `goto <url>` | Zu einer URL navigieren |
-| `go-back` | Zur vorherigen Seite zurueck |
-| `go-forward` | Zur naechsten Seite vor |
-| `reload` | Aktuelle Seite neu laden |
-| `close` | Browser schliessen |
+| `open [url]` | Open the browser, optionally navigating to a URL |
+| `goto <url>` | Navigate to a URL |
+| `go-back` | Go back to the previous page |
+| `go-forward` | Go forward to the next page |
+| `reload` | Reload the current page |
+| `close` | Close the browser |
 
 ---
 
@@ -35,16 +35,16 @@ playwright-cli open https://example.com --profile=./my-profile
 playwright-cli open https://example.com --config=config.json
 ```
 
-### open-Optionen
+### open options
 
-| Option | Typ | Standard | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `[url]` | string | — | Zu oeffnende URL (optional) |
-| `--headed` | flag | false | Browser-Fenster anzeigen |
+| `[url]` | string | — | URL to open (optional) |
+| `--headed` | flag | false | Show the browser window |
 | `--browser=<name>` | string | `chrome` | Browser: `chrome`, `firefox`, `webkit`, `msedge` |
-| `--persistent` | flag | false | Profil auf Disk speichern |
-| `--profile=<pfad>` | string | — | Benutzerdefiniertes Profil-Verzeichnis |
-| `--config=<datei>` | string | — | Pfad zur JSON-Konfigurationsdatei |
+| `--persistent` | flag | false | Store the profile on disk |
+| `--profile=<path>` | string | — | Custom profile directory |
+| `--config=<file>` | string | — | Path to a JSON configuration file |
 
 ---
 
@@ -54,13 +54,13 @@ playwright-cli open https://example.com --config=config.json
 playwright-cli goto https://demo.playwright.dev/todomvc
 ```
 
-### goto-Argumente
+### goto arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<url>` | string | Ja | Vollstaendige URL inklusive Protokoll |
+| `<url>` | string | Yes | Full URL including the protocol |
 
-Ausgabe: Seiteninformationen (URL, Titel) und Snapshot-Dateireferenz.
+Output: page information (URL, title) and a snapshot file reference.
 
 ---
 
@@ -73,7 +73,7 @@ playwright-cli go-back
 playwright-cli go-forward
 ```
 
-Keine Argumente oder Optionen.
+No arguments or options.
 
 ---
 
@@ -83,20 +83,20 @@ Keine Argumente oder Optionen.
 playwright-cli reload
 ```
 
-Keine Argumente. Laedt die aktuelle Seite neu.
+No arguments. Reloads the current page.
 
 ---
 
 ## close
 
 ```bash
-playwright-cli close          # Aktuellen Browser schliessen
-playwright-cli close-all      # Alle Sessions schliessen
+playwright-cli close          # Close the current browser
+playwright-cli close-all      # Close all sessions
 ```
 
 ---
 
-## Vollstaendiger Navigations-Workflow
+## Complete navigation workflow
 
 ```bash
 playwright-cli open https://example.com --headed --browser=firefox
@@ -110,4 +110,4 @@ playwright-cli close
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/navigation
+Source: https://playwright.dev/agent-cli/commands/navigation

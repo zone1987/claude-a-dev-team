@@ -1,46 +1,46 @@
-# Playwright class-page: Vollstaendige API-Referenz
+# Playwright class-page: Complete API reference
 
-Die `Page`-Klasse repraesentiert eine einzelne Browser-Seite (Tab). Sie ist die zentrale
-Einstiegsklasse fuer nahezu alle Playwright-Operationen: Navigation, Interaktion, Evaluation,
-Netzwerk-Routing, Screenshot/PDF und Event-Handling.
+The `Page` class represents a single browser page (tab). It is the central
+entry class for nearly all Playwright operations: navigation, interaction, evaluation,
+network routing, screenshot/PDF and event handling.
 
 ---
 
 ## Contents
 
-- [Inhaltsverzeichnis](#inhaltsverzeichnis)
+- [Table of contents](#table-of-contents)
 - [1. Navigation](#1-navigation)
-- [2. Seiteninhalte lesen/setzen](#2-seiteninhalte-lesensetzen)
-- [3. Locator-Fabrik-Methoden](#3-locator-fabrik-methoden)
-- [4. Frame-Verwaltung](#4-frame-verwaltung)
-- [5. Elementinteraktionen (Selector-basiert, deprecated)](#5-elementinteraktionen-selector-basiert-deprecated)
-- [6. JavaScript-Ausfuehrung](#6-javascript-ausfuehrung)
-- [7. Skript- und Style-Injektion](#7-skript--und-style-injektion)
-- [8. Netzwerk / Routing](#8-netzwerk-routing)
-- [9. Warten / Synchronisation](#9-warten-synchronisation)
+- [2. Reading/setting page content](#2-readingsetting-page-content)
+- [3. Locator factory methods](#3-locator-factory-methods)
+- [4. Frame management](#4-frame-management)
+- [5. Element interactions (selector-based, deprecated)](#5-element-interactions-selector-based-deprecated)
+- [6. JavaScript execution](#6-javascript-execution)
+- [7. Script and style injection](#7-script-and-style-injection)
+- [8. Network / routing](#8-network-routing)
+- [9. Waiting / synchronization](#9-waiting-synchronization)
 - [10. Screenshots & PDF](#10-screenshots-pdf)
-- [11. Browser-Konfiguration](#11-browser-konfiguration)
-- [12. Event-Handling / Listener](#12-event-handling-listener)
-- [13. Diverse Hilfsmethoden](#13-diverse-hilfsmethoden)
+- [11. Browser configuration](#11-browser-configuration)
+- [12. Event handling / listeners](#12-event-handling-listeners)
+- [13. Miscellaneous helper methods](#13-miscellaneous-helper-methods)
 - [14. Properties](#14-properties)
 - [15. Events](#15-events)
 - [16. Manifest](#16-manifest)
 
-## Inhaltsverzeichnis
+## Table of contents
 
 1. [Navigation](#1-navigation)
-2. [Seiteninhalte lesen/setzen](#2-seiteninhalte-lesensetzen)
-3. [Locator-Fabrik-Methoden](#3-locator-fabrik-methoden)
-4. [Frame-Verwaltung](#4-frame-verwaltung)
-5. [Elementinteraktionen (Selector-basiert, deprecated)](#5-elementinteraktionen-selector-basiert-deprecated)
-6. [JavaScript-Ausfuehrung](#6-javascript-ausfuehrung)
-7. [Skript- und Style-Injektion](#7-skript--und-style-injektion)
-8. [Netzwerk / Routing](#8-netzwerk--routing)
-9. [Warten / Synchronisation](#9-warten--synchronisation)
+2. [Reading/setting page content](#2-readingsetting-page-content)
+3. [Locator factory methods](#3-locator-factory-methods)
+4. [Frame management](#4-frame-management)
+5. [Element interactions (selector-based, deprecated)](#5-element-interactions-selector-based-deprecated)
+6. [JavaScript execution](#6-javascript-execution)
+7. [Script and style injection](#7-script-and-style-injection)
+8. [Network / routing](#8-network--routing)
+9. [Waiting / synchronization](#9-waiting--synchronization)
 10. [Screenshots & PDF](#10-screenshots--pdf)
-11. [Browser-Konfiguration](#11-browser-konfiguration)
-12. [Event-Handling / Listener](#12-event-handling--listener)
-13. [Diverse Hilfsmethoden](#13-diverse-hilfsmethoden)
+11. [Browser configuration](#11-browser-configuration)
+12. [Event handling / listeners](#12-event-handling--listeners)
+13. [Miscellaneous helper methods](#13-miscellaneous-helper-methods)
 14. [Properties](#14-properties)
 15. [Events](#15-events)
 16. [Manifest](#16-manifest)
@@ -59,14 +59,14 @@ page.goto(url: string, options?: {
 }): Promise<Response | null>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `url` | `string` | ja | — | Ziel-URL (absolut, data:, about:blank erlaubt) |
-| `options.referer` | `string` | nein | — | HTTP-Referer-Header |
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms (0 = unbegrenzt) |
-| `options.waitUntil` | `string` | nein | `'load'` | `'load'`: wartet auf load-Event; `'domcontentloaded'`: DOMContentLoaded; `'networkidle'`: keine offenen Netzwerk-Verbindungen seit 500ms; `'commit'`: nur Netzwerkantwort empfangen |
+| `url` | `string` | yes | — | Target URL (absolute, data:, about:blank allowed) |
+| `options.referer` | `string` | no | — | HTTP Referer header |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms (0 = unlimited) |
+| `options.waitUntil` | `string` | no | `'load'` | `'load'`: waits for the load event; `'domcontentloaded'`: DOMContentLoaded; `'networkidle'`: no open network connections for 500ms; `'commit'`: network response received only |
 
-Gibt die Haupt-Ressourcen-Antwort zurueck. `null` bei Navigation zu `about:blank` oder gleicher URL mit anderem Hash.
+Returns the main resource response. `null` when navigating to `about:blank` or to the same URL with a different hash.
 
 ```typescript
 const response = await page.goto('https://example.com');
@@ -89,12 +89,12 @@ page.goBack(options?: {
 }): Promise<Response | null>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
-| `options.waitUntil` | `string` | nein | `'load'` | Wann Navigation als abgeschlossen gilt |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
+| `options.waitUntil` | `string` | no | `'load'` | When navigation counts as complete |
 
-Navigiert eine Seite zurueck in der Browser-History. `null` wenn kein vorheriger Eintrag existiert.
+Navigates one page back in the browser history. `null` if no previous entry exists.
 
 ```typescript
 await page.goBack();
@@ -112,12 +112,12 @@ page.goForward(options?: {
 }): Promise<Response | null>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
-| `options.waitUntil` | `string` | nein | `'load'` | Wann Navigation als abgeschlossen gilt |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
+| `options.waitUntil` | `string` | no | `'load'` | When navigation counts as complete |
 
-Navigiert vorwaerts in der Browser-History. `null` wenn kein naechster Eintrag existiert.
+Navigates forward in the browser history. `null` if no next entry exists.
 
 ```typescript
 await page.goForward();
@@ -134,12 +134,12 @@ page.reload(options?: {
 }): Promise<Response | null>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
-| `options.waitUntil` | `string` | nein | `'load'` | Wann Reload als abgeschlossen gilt |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
+| `options.waitUntil` | `string` | no | `'load'` | When the reload counts as complete |
 
-Laedt die aktuelle Seite neu (entspricht `Ctrl+R`/`F5`).
+Reloads the current page (equivalent to `Ctrl+R`/`F5`).
 
 ```typescript
 await page.reload();
@@ -154,7 +154,7 @@ await page.reload({ waitUntil: 'networkidle' });
 page.url(): string
 ```
 
-Gibt die aktuelle URL der Seite zurueck (synchron, kein Promise).
+Returns the current URL of the page (synchronously, no promise).
 
 ```typescript
 console.log(page.url()); // 'https://example.com/path'
@@ -168,16 +168,16 @@ console.log(page.url()); // 'https://example.com/path'
 page.title(): Promise<string>
 ```
 
-Gibt den Titel (`<title>`-Element) der Seite zurueck.
+Returns the title (`<title>` element) of the page.
 
 ```typescript
 const title = await page.title();
-expect(title).toBe('Meine Seite');
+expect(title).toBe('My page');
 ```
 
 ---
 
-## 2. Seiteninhalte lesen/setzen
+## 2. Reading/setting page content
 
 ### page.content()
 
@@ -185,7 +185,7 @@ expect(title).toBe('Meine Seite');
 page.content(): Promise<string>
 ```
 
-Gibt den vollstaendigen HTML-Inhalt der Seite zurueck, einschliesslich Doctype.
+Returns the complete HTML content of the page, including the doctype.
 
 ```typescript
 const html = await page.content();
@@ -203,14 +203,14 @@ page.setContent(html: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `html` | `string` | ja | — | Vollstaendiger HTML-String |
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
-| `options.waitUntil` | `string` | nein | `'load'` | Wann Setzen als abgeschlossen gilt |
+| `html` | `string` | yes | — | Complete HTML string |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
+| `options.waitUntil` | `string` | no | `'load'` | When setting counts as complete |
 
 ```typescript
-await page.setContent('<h1>Hallo Welt</h1>');
+await page.setContent('<h1>Hello World</h1>');
 await page.setContent('<html><body><p>Test</p></body></html>', {
   waitUntil: 'domcontentloaded'
 });
@@ -227,12 +227,12 @@ page.getAttribute(selector: string, name: string, options?: {
 }): Promise<string | null>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selector` | `string` | ja | — | CSS/XPath-Selektor |
-| `name` | `string` | ja | — | Attribut-Name |
-| `options.strict` | `boolean` | nein | `false` | Fehler wenn mehr als ein Element gefunden |
-| `options.timeout` | `number` | nein | `defaultTimeout` | Max. Wartezeit in ms |
+| `selector` | `string` | yes | — | CSS/XPath selector |
+| `name` | `string` | yes | — | Attribute name |
+| `options.strict` | `boolean` | no | `false` | Error if more than one element is found |
+| `options.timeout` | `number` | no | `defaultTimeout` | Max. wait time in ms |
 
 ```typescript
 const href = await page.getAttribute('a', 'href');
@@ -250,7 +250,7 @@ page.innerHTML(selector: string, options?: {
 }): Promise<string>
 ```
 
-Gibt das innere HTML des ersten gematchten Elements zurueck.
+Returns the inner HTML of the first matched element.
 
 ```typescript
 const content = await page.innerHTML('.article-body');
@@ -267,7 +267,7 @@ page.innerText(selector: string, options?: {
 }): Promise<string>
 ```
 
-Gibt den sichtbaren Text (wie `HTMLElement.innerText`) zurueck; ignoriert versteckte Elemente.
+Returns the visible text (like `HTMLElement.innerText`); ignores hidden elements.
 
 ```typescript
 const text = await page.innerText('h1');
@@ -284,7 +284,7 @@ page.textContent(selector: string, options?: {
 }): Promise<string | null>
 ```
 
-Gibt den `textContent`-Wert zurueck (inkl. versteckter Elemente). `null` wenn kein Element gefunden.
+Returns the `textContent` value (including hidden elements). `null` if no element is found.
 
 ```typescript
 const text = await page.textContent('#description');
@@ -301,7 +301,7 @@ page.inputValue(selector: string, options?: {
 }): Promise<string>
 ```
 
-Gibt den aktuellen Wert von `<input>`, `<textarea>` oder `<select>` zurueck.
+Returns the current value of an `<input>`, `<textarea>` or `<select>`.
 
 ```typescript
 const value = await page.inputValue('input[name=email]');
@@ -318,7 +318,7 @@ page.isChecked(selector: string, options?: {
 }): Promise<boolean>
 ```
 
-Prueft ob Checkbox oder Radio-Button angehakt ist.
+Checks whether a checkbox or radio button is checked.
 
 ```typescript
 const checked = await page.isChecked('#terms');
@@ -335,7 +335,7 @@ page.isDisabled(selector: string, options?: {
 }): Promise<boolean>
 ```
 
-Prueft ob Element deaktiviert ist (`disabled`-Attribut oder `aria-disabled`).
+Checks whether an element is disabled (`disabled` attribute or `aria-disabled`).
 
 ```typescript
 if (await page.isDisabled('button[type=submit]')) { /* ... */ }
@@ -352,7 +352,7 @@ page.isEditable(selector: string, options?: {
 }): Promise<boolean>
 ```
 
-Prueft ob Element editierbar ist (weder `disabled` noch `readonly`).
+Checks whether an element is editable (neither `disabled` nor `readonly`).
 
 ```typescript
 const editable = await page.isEditable('input[name=username]');
@@ -369,7 +369,7 @@ page.isEnabled(selector: string, options?: {
 }): Promise<boolean>
 ```
 
-Gegenteil von `isDisabled()`.
+Opposite of `isDisabled()`.
 
 ```typescript
 await expect(page.locator('button')).toBeEnabled();
@@ -386,7 +386,7 @@ page.isHidden(selector: string, options?: {
 }): Promise<boolean>
 ```
 
-Gibt `true` wenn Element versteckt ist ODER kein Element gefunden wurde.
+Returns `true` if the element is hidden OR no element was found.
 
 ```typescript
 const hidden = await page.isHidden('.spinner');
@@ -403,7 +403,7 @@ page.isVisible(selector: string, options?: {
 }): Promise<boolean>
 ```
 
-Gibt `true` wenn Element sichtbar ist (nicht `display:none`, nicht `visibility:hidden`, nicht `opacity:0`).
+Returns `true` if the element is visible (not `display:none`, not `visibility:hidden`, not `opacity:0`).
 
 ```typescript
 const visible = await page.isVisible('.success-message');
@@ -411,7 +411,7 @@ const visible = await page.isVisible('.success-message');
 
 ---
 
-## 3. Locator-Fabrik-Methoden
+## 3. Locator factory methods
 
 ### page.locator()
 
@@ -424,25 +424,25 @@ page.locator(selector: string, options?: {
 }): Locator
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selector` | `string` | ja | — | CSS, XPath, text=, role=, etc. |
-| `options.has` | `Locator` | nein | — | Element muss diesen Sub-Locator enthalten |
-| `options.hasNot` | `Locator` | nein | — | Element darf diesen Sub-Locator NICHT enthalten |
-| `options.hasText` | `string\|RegExp` | nein | — | Element muss diesen Text (Teilstring) enthalten |
-| `options.hasNotText` | `string\|RegExp` | nein | — | Element darf diesen Text NICHT enthalten |
+| `selector` | `string` | yes | — | CSS, XPath, text=, role=, etc. |
+| `options.has` | `Locator` | no | — | Element must contain this sub-locator |
+| `options.hasNot` | `Locator` | no | — | Element must NOT contain this sub-locator |
+| `options.hasText` | `string\|RegExp` | no | — | Element must contain this text (substring) |
+| `options.hasNotText` | `string\|RegExp` | no | — | Element must NOT contain this text |
 
-Erstellt einen Locator. **Empfohlene Methode** gegenueber direkten Selector-basierten Methoden.
+Creates a locator. **Recommended method** over direct selector-based methods.
 
 ```typescript
 const button = page.locator('button.primary');
 await button.click();
 
-// Mit Filter
-const row = page.locator('tr', { hasText: 'Max Mustermann' });
+// With a filter
+const row = page.locator('tr', { hasText: 'John Doe' });
 await row.locator('td.actions button').click();
 
-// Kombiniert
+// Combined
 const item = page.locator('.list-item', {
   has: page.locator('.badge'),
   hasNotText: 'archived'
@@ -468,25 +468,25 @@ page.getByRole(role: AriaRole, options?: {
 }): Locator
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `role` | `AriaRole` | — | ARIA-Rolle (button, link, textbox, checkbox, ...) |
-| `name` | `string\|RegExp` | — | Zugaenglicher Name (case-insensitiv, Teilstring) |
-| `exact` | `boolean` | `false` | Exaktes Matching fuer `name` |
+| `role` | `AriaRole` | — | ARIA role (button, link, textbox, checkbox, ...) |
+| `name` | `string\|RegExp` | — | Accessible name (case-insensitive, substring) |
+| `exact` | `boolean` | `false` | Exact matching for `name` |
 | `checked` | `boolean` | — | `aria-checked` |
-| `disabled` | `boolean` | — | `aria-disabled` oder `disabled` |
+| `disabled` | `boolean` | — | `aria-disabled` or `disabled` |
 | `expanded` | `boolean` | — | `aria-expanded` |
-| `includeHidden` | `boolean` | `false` | ARIA-versteckte Elemente einschliessen |
-| `level` | `number` | — | Fuer headings: 1–6 |
+| `includeHidden` | `boolean` | `false` | Include ARIA-hidden elements |
+| `level` | `number` | — | For headings: 1–6 |
 | `pressed` | `boolean` | — | `aria-pressed` |
 | `selected` | `boolean` | — | `aria-selected` |
-| `description` | `string\|RegExp` | — | Zugaengliche Beschreibung |
+| `description` | `string\|RegExp` | — | Accessible description |
 
 ```typescript
-await page.getByRole('button', { name: 'Absenden' }).click();
-await page.getByRole('heading', { name: /willkommen/i, level: 1 });
+await page.getByRole('button', { name: 'Submit' }).click();
+await page.getByRole('heading', { name: /welcome/i, level: 1 });
 await page.getByRole('checkbox', { name: 'Newsletter' }).check();
-await page.getByRole('textbox', { name: 'E-Mail' }).fill('test@example.com');
+await page.getByRole('textbox', { name: 'E-mail' }).fill('test@example.com');
 ```
 
 ---
@@ -499,15 +499,15 @@ page.getByText(text: string | RegExp, options?: {
 }): Locator
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string\|RegExp` | ja | — | Suchtext (Teilstring bei String, case-insensitiv) |
-| `options.exact` | `boolean` | nein | `false` | Exaktes, case-sensitives Matching |
+| `text` | `string\|RegExp` | yes | — | Search text (substring for a string, case-insensitive) |
+| `options.exact` | `boolean` | no | `false` | Exact, case-sensitive matching |
 
 ```typescript
-page.getByText('Anmelden');
-page.getByText(/anmelden/i);
-page.getByText('Anmelden', { exact: true });
+page.getByText('Sign in');
+page.getByText(/sign in/i);
+page.getByText('Sign in', { exact: true });
 ```
 
 ---
@@ -520,10 +520,10 @@ page.getByLabel(text: string | RegExp, options?: {
 }): Locator
 ```
 
-Findet Formular-Elemente, die mit einem `<label>`-Element (via `for`/`aria-labelledby`/`aria-label`) verbunden sind.
+Finds form elements associated with a `<label>` element (via `for`/`aria-labelledby`/`aria-label`).
 
 ```typescript
-await page.getByLabel('Passwort').fill('geheim123');
+await page.getByLabel('Password').fill('secret123');
 await page.getByLabel(/e-mail/i).fill('test@example.com');
 ```
 
@@ -537,11 +537,11 @@ page.getByPlaceholder(text: string | RegExp, options?: {
 }): Locator
 ```
 
-Findet Inputs/Textareas mit passendem `placeholder`-Attribut.
+Finds inputs/textareas with a matching `placeholder` attribute.
 
 ```typescript
-await page.getByPlaceholder('Benutzername').fill('admin');
-await page.getByPlaceholder(/suche/i).fill('Playwright');
+await page.getByPlaceholder('Username').fill('admin');
+await page.getByPlaceholder(/search/i).fill('Playwright');
 ```
 
 ---
@@ -554,11 +554,11 @@ page.getByAltText(text: string | RegExp, options?: {
 }): Locator
 ```
 
-Findet Elemente (meist `<img>`) mit passendem `alt`-Attribut.
+Finds elements (mostly `<img>`) with a matching `alt` attribute.
 
 ```typescript
-await page.getByAltText('Firmenlogo').click();
-await expect(page.getByAltText('Produktbild')).toBeVisible();
+await page.getByAltText('Company logo').click();
+await expect(page.getByAltText('Product image')).toBeVisible();
 ```
 
 ---
@@ -571,10 +571,10 @@ page.getByTitle(text: string | RegExp, options?: {
 }): Locator
 ```
 
-Findet Elemente mit passendem `title`-Attribut.
+Finds elements with a matching `title` attribute.
 
 ```typescript
-await page.getByTitle('Schliessen').click();
+await page.getByTitle('Close').click();
 await page.getByTitle(/tooltip/i);
 ```
 
@@ -586,7 +586,7 @@ await page.getByTitle(/tooltip/i);
 page.getByTestId(testId: string | RegExp): Locator
 ```
 
-Findet Elemente anhand des `data-testid`-Attributs (konfigurierbar via `playwright.config.ts`).
+Finds elements by the `data-testid` attribute (configurable via `playwright.config.ts`).
 
 ```typescript
 await page.getByTestId('submit-button').click();
@@ -601,20 +601,20 @@ await page.getByTestId(/user-row-\d+/).first();
 page.frameLocator(selector: string): FrameLocator
 ```
 
-Erstellt einen Locator fuer Inhalte innerhalb eines `<iframe>`. Alle weiteren Methoden werden auf den iframe-Inhalt angewendet.
+Creates a locator for content inside an `<iframe>`. All further methods are applied to the iframe content.
 
 ```typescript
 const frame = page.frameLocator('#my-iframe');
 await frame.getByRole('button', { name: 'Submit' }).click();
 
-// Verschachtelte iframes
+// Nested iframes
 const nested = page.frameLocator('.outer').frameLocator('.inner');
-await nested.getByText('Hallo').click();
+await nested.getByText('Hello').click();
 ```
 
 ---
 
-## 4. Frame-Verwaltung
+## 4. Frame management
 
 ### page.frames()
 
@@ -622,7 +622,7 @@ await nested.getByText('Hallo').click();
 page.frames(): Frame[]
 ```
 
-Gibt alle Frames der Seite zurueck (inkl. Haupt-Frame und iframes).
+Returns all frames of the page (including the main frame and iframes).
 
 ```typescript
 const frames = page.frames();
@@ -640,11 +640,11 @@ page.frame(frameSelector: string | {
 }): Frame | null
 ```
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |---|---|---|
-| `frameSelector` | `string` | Frame-Name als String |
-| `frameSelector.name` | `string` | Name-Attribut des iframes |
-| `frameSelector.url` | `string\|RegExp\|...` | URL des Frames (Match) |
+| `frameSelector` | `string` | Frame name as a string |
+| `frameSelector.name` | `string` | Name attribute of the iframe |
+| `frameSelector.url` | `string\|RegExp\|...` | URL of the frame (match) |
 
 ```typescript
 const frame = page.frame({ url: /my-frame/ });
@@ -659,7 +659,7 @@ const namedFrame = page.frame('my-frame-name');
 page.mainFrame(): Frame
 ```
 
-Gibt den Haupt-Frame der Seite zurueck.
+Returns the main frame of the page.
 
 ```typescript
 const main = page.mainFrame();
@@ -667,11 +667,11 @@ const main = page.mainFrame();
 
 ---
 
-## 5. Elementinteraktionen (Selector-basiert, deprecated)
+## 5. Element interactions (selector-based, deprecated)
 
-**Hinweis:** Diese Methoden akzeptieren direkte CSS-/XPath-Selektoren. Laut Playwright-Dokumentation
-sollte stattdessen `page.locator()` + `locator.click()` etc. verwendet werden.
-Sie werden aber weiterhin unterstuetzt.
+**Note:** these methods accept direct CSS/XPath selectors. According to the Playwright documentation
+`page.locator()` + `locator.click()` etc. should be used instead.
+They remain supported, however.
 
 ### page.click()
 
@@ -690,19 +690,19 @@ page.click(selector: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `selector` | `string` | — | CSS/XPath-Selektor |
-| `button` | `string` | `'left'` | Maustaste |
-| `clickCount` | `number` | `1` | Anzahl Klicks |
-| `delay` | `number` | `0` | Ms zwischen mousedown und mouseup |
-| `force` | `boolean` | `false` | Actionability-Checks ueberspringen |
-| `modifiers` | `string[]` | `[]` | Zusaetzliche Tasten halten |
-| `noWaitAfter` | `boolean` | `false` | Nicht auf Navigationen warten |
-| `position` | `{x,y}` | Element-Mitte | Klick-Position relativ zum Element |
-| `strict` | `boolean` | `false` | Fehler wenn mehrere Elemente gefunden |
-| `timeout` | `number` | `defaultTimeout` | Max. Wartezeit in ms |
-| `trial` | `boolean` | `false` | Nur pruefen ohne auszufuehren |
+| `selector` | `string` | — | CSS/XPath selector |
+| `button` | `string` | `'left'` | Mouse button |
+| `clickCount` | `number` | `1` | Number of clicks |
+| `delay` | `number` | `0` | Ms between mousedown and mouseup |
+| `force` | `boolean` | `false` | Skip actionability checks |
+| `modifiers` | `string[]` | `[]` | Hold additional keys |
+| `noWaitAfter` | `boolean` | `false` | Do not wait for navigations |
+| `position` | `{x,y}` | Element center | Click position relative to the element |
+| `strict` | `boolean` | `false` | Error if multiple elements are found |
+| `timeout` | `number` | `defaultTimeout` | Max. wait time in ms |
+| `trial` | `boolean` | `false` | Only check without performing |
 
 ```typescript
 await page.click('button.submit');
@@ -729,7 +729,7 @@ page.dblclick(selector: string, options?: {
 }): Promise<void>
 ```
 
-Doppelklick auf Element. Parameter identisch mit `click()` (ohne `clickCount`).
+Double click on an element. Parameters identical to `click()` (without `clickCount`).
 
 ```typescript
 await page.dblclick('.editable-cell');
@@ -750,7 +750,7 @@ page.check(selector: string, options?: {
 }): Promise<void>
 ```
 
-Aktiviert eine Checkbox oder einen Radio-Button (kein Fehler wenn bereits gecheckt).
+Checks a checkbox or a radio button (no error if already checked).
 
 ```typescript
 await page.check('#accept-terms');
@@ -772,7 +772,7 @@ page.uncheck(selector: string, options?: {
 }): Promise<void>
 ```
 
-Deaktiviert eine Checkbox (kein Fehler wenn bereits unchecked).
+Unchecks a checkbox (no error if already unchecked).
 
 ```typescript
 await page.uncheck('#newsletter');
@@ -793,10 +793,10 @@ page.setChecked(selector: string, checked: boolean, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `selector` | `string` | ja | CSS/XPath-Selektor |
-| `checked` | `boolean` | ja | `true` = ankracken, `false` = abwählen |
+| `selector` | `string` | yes | CSS/XPath selector |
+| `checked` | `boolean` | yes | `true` = check, `false` = uncheck |
 
 ```typescript
 await page.setChecked('#newsletter', true);
@@ -816,16 +816,16 @@ page.fill(selector: string, value: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `selector` | `string` | ja | Input/Textarea-Selektor |
-| `value` | `string` | ja | Einzufuegender Text (ersetzt vorhandenen Wert) |
+| `selector` | `string` | yes | Input/textarea selector |
+| `value` | `string` | yes | Text to insert (replaces the existing value) |
 
-Lscht bestehenden Wert und fuellt Feld. Fuer `<input type=file>` stattdessen `setInputFiles()` verwenden.
+Clears the existing value and fills the field. For `<input type=file>` use `setInputFiles()` instead.
 
 ```typescript
 await page.fill('input[name=email]', 'test@example.com');
-await page.fill('textarea', 'Mein Kommentar');
+await page.fill('textarea', 'My comment');
 ```
 
 ---
@@ -839,7 +839,7 @@ page.focus(selector: string, options?: {
 }): Promise<void>
 ```
 
-Setzt Fokus auf Element.
+Sets focus on an element.
 
 ```typescript
 await page.focus('input[name=search]');
@@ -861,7 +861,7 @@ page.hover(selector: string, options?: {
 }): Promise<void>
 ```
 
-Bewegt Maus ueber Element (loest `mouseenter`/`mousemove` aus).
+Moves the mouse over an element (triggers `mouseenter`/`mousemove`).
 
 ```typescript
 await page.hover('.dropdown-trigger');
@@ -881,11 +881,11 @@ page.press(selector: string, key: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selector` | `string` | ja | — | Zu fokussierendes Element |
-| `key` | `string` | ja | — | Tastenkombination (z.B. `'Enter'`, `'Tab'`, `'Control+a'`, `'F5'`) |
-| `options.delay` | `number` | nein | `0` | Ms zwischen keydown und keyup |
+| `selector` | `string` | yes | — | Element to focus |
+| `key` | `string` | yes | — | Key combination (e.g. `'Enter'`, `'Tab'`, `'Control+a'`, `'F5'`) |
+| `options.delay` | `number` | no | `0` | Ms between keydown and keyup |
 
 ```typescript
 await page.press('input', 'Enter');
@@ -906,11 +906,11 @@ page.type(selector: string, text: string, options?: {
 }): Promise<void>
 ```
 
-**Deprecated** — Verwende `page.locator().pressSequentially()`. Simuliert echte Tastatureingaben
-(einen Buchstaben nach dem anderen), ohne bestehenden Inhalt zu lschen.
+**Deprecated** — use `page.locator().pressSequentially()`. Simulates real keyboard input
+(one character after another) without clearing the existing content.
 
 ```typescript
-await page.type('input', 'Hallo', { delay: 50 });
+await page.type('input', 'Hello', { delay: 50 });
 ```
 
 ---
@@ -929,7 +929,7 @@ page.tap(selector: string, options?: {
 }): Promise<void>
 ```
 
-Touch-Tap auf Element (Touchscreen-Simulation erforderlich).
+Touch tap on an element (touchscreen simulation required).
 
 ```typescript
 await page.tap('.mobile-menu-button');
@@ -952,19 +952,19 @@ page.selectOption(
 ): Promise<string[]>
 ```
 
-| `values` Varianten | Beschreibung |
+| `values` variants | Description |
 |---|---|
-| `'value'` | Option nach value-Attribut |
-| `{ label: 'Text' }` | Option nach sichtbarem Text |
-| `{ index: 2 }` | Option nach Index |
-| `['val1', 'val2']` | Mehrfachauswahl |
-| `null` | Selektion aufheben |
+| `'value'` | Option by value attribute |
+| `{ label: 'Text' }` | Option by visible text |
+| `{ index: 2 }` | Option by index |
+| `['val1', 'val2']` | Multiple selection |
+| `null` | Clear the selection |
 
-Gibt Array der ausgewaehlten `value`-Attribute zurueck.
+Returns an array of the selected `value` attributes.
 
 ```typescript
 await page.selectOption('select', 'de');
-await page.selectOption('select', { label: 'Deutschland' });
+await page.selectOption('select', { label: 'Germany' });
 await page.selectOption('select[multiple]', ['de', 'at', 'ch']);
 ```
 
@@ -984,12 +984,12 @@ page.setInputFiles(
 ): Promise<void>
 ```
 
-| `files` Varianten | Beschreibung |
+| `files` variants | Description |
 |---|---|
-| `'path/to/file.pdf'` | Einzelne Datei per Pfad |
-| `['file1.pdf', 'file2.pdf']` | Mehrere Dateien per Pfad |
-| `{ name, mimeType, buffer }` | Datei im Speicher (kein Dateisystem noetig) |
-| `[]` | Alle Dateien entfernen |
+| `'path/to/file.pdf'` | Single file by path |
+| `['file1.pdf', 'file2.pdf']` | Multiple files by path |
+| `{ name, mimeType, buffer }` | In-memory file (no file system needed) |
+| `[]` | Remove all files |
 
 ```typescript
 await page.setInputFiles('input[type=file]', 'test.pdf');
@@ -997,7 +997,7 @@ await page.setInputFiles('input', ['file1.pdf', 'file2.jpg']);
 await page.setInputFiles('input', {
   name: 'test.txt',
   mimeType: 'text/plain',
-  buffer: Buffer.from('Hallo')
+  buffer: Buffer.from('Hello')
 });
 await page.setInputFiles('input', []); // Reset
 ```
@@ -1018,11 +1018,11 @@ page.dispatchEvent(
 ): Promise<void>
 ```
 
-Loest ein DOM-Event auf dem Element aus (z.B. `'click'`, `'input'`, `'change'`, Custom Events).
+Triggers a DOM event on the element (e.g. `'click'`, `'input'`, `'change'`, custom events).
 
 ```typescript
 await page.dispatchEvent('button', 'click');
-await page.dispatchEvent('#field', 'input', { data: 'neuer Wert' });
+await page.dispatchEvent('#field', 'input', { data: 'new value' });
 await page.dispatchEvent('.el', 'custom:event', { detail: { key: 'value' } });
 ```
 
@@ -1043,13 +1043,13 @@ page.dragAndDrop(source: string, target: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `source` | `string` | ja | — | Selektor des zu ziehenden Elements |
-| `target` | `string` | ja | — | Selektor des Zielelements |
-| `sourcePosition` | `{x,y}` | nein | Element-Mitte | Startposition |
-| `targetPosition` | `{x,y}` | nein | Element-Mitte | Zielposition |
-| `steps` | `number` | nein | `1` | Anzahl Bewegungsschritte |
+| `source` | `string` | yes | — | Selector of the element to drag |
+| `target` | `string` | yes | — | Selector of the target element |
+| `sourcePosition` | `{x,y}` | no | Element center | Start position |
+| `targetPosition` | `{x,y}` | no | Element center | Target position |
+| `steps` | `number` | no | `1` | Number of movement steps |
 
 ```typescript
 await page.dragAndDrop('#source', '#target');
@@ -1068,16 +1068,16 @@ page.selectText(selector: string, options?: {
 }): Promise<void>
 ```
 
-Selektiert den Text eines Input- oder Textarea-Elements (`select()`).
+Selects the text of an input or textarea element (`select()`).
 
 ```typescript
 await page.selectText('input[name=title]');
-// Danach: Ctrl+C oder Typing ueberschreibt den Inhalt
+// Afterwards: Ctrl+C or typing overwrites the content
 ```
 
 ---
 
-## 6. JavaScript-Ausfuehrung
+## 6. JavaScript execution
 
 ### page.evaluate()
 
@@ -1088,12 +1088,12 @@ page.evaluate<T>(
 ): Promise<T>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pageFunction` | `function\|string` | ja | Funktion oder JS-Code-String, der im Browser ausgefuehrt wird |
-| `arg` | `Serializable\|JSHandle` | nein | Argument wird in die Funktion uebergeben |
+| `pageFunction` | `function\|string` | yes | Function or JS code string executed in the browser |
+| `arg` | `Serializable\|JSHandle` | no | Argument passed into the function |
 
-Gibt serialisierten Rueckgabewert zurueck (JSON-faehig). Nicht-serialisierbare Werte werden `undefined`.
+Returns a serialized return value (JSON-capable). Non-serializable values become `undefined`.
 
 ```typescript
 const url = await page.evaluate(() => window.location.href);
@@ -1101,10 +1101,10 @@ const title = await page.evaluate('document.title');
 
 const result = await page.evaluate(({ a, b }) => a + b, { a: 1, b: 2 });
 
-// Mit DOM-Manipulation
+// With DOM manipulation
 const count = await page.evaluate(() => document.querySelectorAll('li').length);
 
-// Elementhandle uebergeben
+// Pass an element handle
 const el = await page.locator('h1').elementHandle();
 const text = await page.evaluate(el => el.textContent, el);
 ```
@@ -1120,8 +1120,8 @@ page.evaluateHandle<T>(
 ): Promise<JSHandle<T>>
 ```
 
-Wie `evaluate()`, gibt aber ein `JSHandle` zurueck (kein JSON-Serialisierungs-Overhead). Nuetzlich
-fuer komplexe Browser-Objekte.
+Like `evaluate()`, but returns a `JSHandle` (no JSON serialization overhead). Useful
+for complex browser objects.
 
 ```typescript
 const arrayHandle = await page.evaluateHandle(() => Array.from(document.querySelectorAll('a')));
@@ -1137,19 +1137,19 @@ await arrayHandle.dispose();
 page.exposeFunction(name: string, callback: Function): Promise<Disposable>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | ja | Funktionsname auf `window` |
-| `callback` | `Function` | ja | Node.js-Funktion, die im Browser aufrufbar ist |
+| `name` | `string` | yes | Function name on `window` |
+| `callback` | `Function` | yes | Node.js function callable from the browser |
 
-Macht eine Node.js-Funktion unter `window[name]` im Browser aufrufbar. Seiten-Reloads behalten die Exposition.
+Makes a Node.js function callable in the browser under `window[name]`. Page reloads keep the exposure.
 
 ```typescript
 await page.exposeFunction('sha256', async (text: string) => {
   const { createHash } = require('crypto');
   return createHash('sha256').update(text).digest('hex');
 });
-const hash = await page.evaluate(() => (window as any).sha256('Hallo'));
+const hash = await page.evaluate(() => (window as any).sha256('Hello'));
 ```
 
 ---
@@ -1164,17 +1164,17 @@ page.exposeBinding(
 ): Promise<Disposable>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | ja | Funktionsname auf `window` |
-| `callback` | `Function` | ja | Callback mit Kontext-Objekt als erstem Argument |
-| `options.handle` | `boolean` | nein | Wenn `true`: Argumente als JSHandles uebergeben |
+| `name` | `string` | yes | Function name on `window` |
+| `callback` | `Function` | yes | Callback with a context object as the first argument |
+| `options.handle` | `boolean` | no | If `true`: pass arguments as JSHandles |
 
-Wie `exposeFunction()`, der Callback erhaelt zusaetzlich ein `source`-Objekt mit `{browserContext, page, frame}`.
+Like `exposeFunction()`, but the callback additionally receives a `source` object with `{browserContext, page, frame}`.
 
 ```typescript
 await page.exposeBinding('openBrowser', async (source, url) => {
-  console.log(`Aufgerufen von ${source.frame.url()}`);
+  console.log(`Called from ${source.frame.url()}`);
   await source.page.goto(url);
 });
 ```
@@ -1190,33 +1190,33 @@ page.addInitScript(
 ): Promise<Disposable>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `script` | `Function\|string\|{path?,content?}` | ja | Skript, das VOR jedem Seitenlade-Vorgang ausgefuehrt wird |
-| `arg` | `Serializable` | nein | Argument fuer die Funktion |
+| `script` | `Function\|string\|{path?,content?}` | yes | Script executed BEFORE every page load |
+| `arg` | `Serializable` | no | Argument for the function |
 
-Wird bei jedem Navigation-Event erneut ausgefuehrt (auch nach `reload()`).
+Runs again on every navigation event (also after `reload()`).
 
 ```typescript
-// Globale Variable setzen bevor Seite laedt
+// Set a global variable before the page loads
 await page.addInitScript(() => {
   (window as any).__TEST_MODE__ = true;
 });
 
-// Mit Argument
+// With an argument
 await page.addInitScript(({ key, value }) => {
   (window as any)[key] = value;
 }, { key: 'API_BASE', value: 'http://mock-server' });
 
-// Aus Datei
+// From a file
 await page.addInitScript({ path: './preload.js' });
 ```
 
-Gibt ein `Disposable` zurueck — `await script[Symbol.asyncDispose]()` entfernt das Skript.
+Returns a `Disposable` — `await script[Symbol.asyncDispose]()` removes the script.
 
 ---
 
-## 7. Skript- und Style-Injektion
+## 7. Script and style injection
 
 ### page.addScriptTag()
 
@@ -1229,14 +1229,14 @@ page.addScriptTag(options?: {
 }): Promise<ElementHandle>
 ```
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `content` | `string` | Inline-JS-Code |
-| `path` | `string` | Lokaler Dateipfad (automatisch base64-kodiert) |
-| `type` | `string` | Script-type-Attribut (z.B. `'module'`) |
-| `url` | `string` | Externe URL |
+| `content` | `string` | Inline JS code |
+| `path` | `string` | Local file path (base64-encoded automatically) |
+| `type` | `string` | Script type attribute (e.g. `'module'`) |
+| `url` | `string` | External URL |
 
-Fuegt ein `<script>`-Tag in den `<head>` der Seite ein.
+Inserts a `<script>` tag into the `<head>` of the page.
 
 ```typescript
 await page.addScriptTag({ url: 'https://cdn.example.com/lib.js' });
@@ -1256,7 +1256,7 @@ page.addStyleTag(options?: {
 }): Promise<ElementHandle>
 ```
 
-Fuegt ein `<style>`-Tag oder `<link rel=stylesheet>` ein.
+Inserts a `<style>` tag or `<link rel=stylesheet>`.
 
 ```typescript
 await page.addStyleTag({ content: 'body { display: none }' });
@@ -1266,7 +1266,7 @@ await page.addStyleTag({ path: './fixtures/test.css' });
 
 ---
 
-## 8. Netzwerk / Routing
+## 8. Network / routing
 
 ### page.route()
 
@@ -1278,35 +1278,35 @@ page.route(
 ): Promise<Disposable>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `url` | `string\|RegExp\|URLPattern\|Function` | ja | URL-Pattern oder Filterfunktion |
-| `handler` | `Function` | ja | Callback fuer jede gematchte Anfrage |
-| `options.times` | `number` | nein | Max. Anzahl Aufrufe des Handlers |
+| `url` | `string\|RegExp\|URLPattern\|Function` | yes | URL pattern or filter function |
+| `handler` | `Function` | yes | Callback for every matched request |
+| `options.times` | `number` | no | Max. number of handler invocations |
 
-Interseptiert Netzwerkanfragen. Innerhalb des Handlers muss `route.fulfill()`, `route.abort()` oder
-`route.continue()` aufgerufen werden.
+Intercepts network requests. Inside the handler, `route.fulfill()`, `route.abort()` or
+`route.continue()` must be called.
 
 ```typescript
-// Anfrage abbrechen
+// Abort a request
 await page.route('**/*.png', route => route.abort());
 
-// Mocken
+// Mocking
 await page.route('**/api/users', route => route.fulfill({
   status: 200,
   contentType: 'application/json',
   body: JSON.stringify([{ id: 1, name: 'Test' }])
 }));
 
-// Modifizieren
+// Modifying
 await page.route('**/api/**', async route => {
   const response = await route.fetch();
   const json = await response.json();
-  json.extra = 'hinzugefuegt';
+  json.extra = 'added';
   await route.fulfill({ response, json });
 });
 
-// Nur einmal
+// Only once
 await page.route('**/api/data', route => route.fulfill({ body: '[]' }), { times: 1 });
 ```
 
@@ -1321,7 +1321,7 @@ page.unroute(
 ): Promise<void>
 ```
 
-Entfernt Route-Handler. Ohne `handler` werden alle Handler fuer die URL entfernt.
+Removes route handlers. Without `handler`, all handlers for the URL are removed.
 
 ```typescript
 await page.unroute('**/*.png');
@@ -1338,7 +1338,7 @@ page.unrouteAll(options?: {
 }): Promise<void>
 ```
 
-Entfernt alle Route-Handler.
+Removes all route handlers.
 
 ```typescript
 await page.unrouteAll();
@@ -1361,13 +1361,13 @@ page.routeFromHAR(har: string, options?: {
 }): Promise<Disposable>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `har` | `string` | — | Pfad zur HAR-Datei |
-| `fallback` | `string` | `'abort'` | Was tun wenn kein Match: `'abort'` oder `'continue'` |
-| `notFound` | `string` | `'abort'` | Was tun wenn HAR keinen Eintrag hat |
-| `update` | `boolean` | `false` | HAR-Datei automatisch aktualisieren |
-| `url` | `string\|RegExp` | — | Nur Anfragen an diese URL(s) |
+| `har` | `string` | — | Path to the HAR file |
+| `fallback` | `string` | `'abort'` | What to do when there is no match: `'abort'` or `'continue'` |
+| `notFound` | `string` | `'abort'` | What to do when the HAR has no entry |
+| `update` | `boolean` | `false` | Update the HAR file automatically |
+| `url` | `string\|RegExp` | — | Only requests to this URL/these URLs |
 
 ```typescript
 await page.routeFromHAR('./tests/fixtures/api.har');
@@ -1382,7 +1382,7 @@ await page.routeFromHAR('./api.har', { fallback: 'continue', url: '**/api/**' })
 page.requests(): Promise<Request[]>
 ```
 
-Gibt bis zu 100 neueste Netzwerkanfragen zurueck.
+Returns up to 100 most recent network requests.
 
 ```typescript
 const requests = await page.requests();
@@ -1397,7 +1397,7 @@ const apiRequests = requests.filter(r => r.url().includes('/api/'));
 page.setExtraHTTPHeaders(headers: { [key: string]: string }): Promise<void>
 ```
 
-Setzt zusaetzliche HTTP-Header fuer alle Anfragen der Seite.
+Sets additional HTTP headers for all requests of the page.
 
 ```typescript
 await page.setExtraHTTPHeaders({
@@ -1408,7 +1408,7 @@ await page.setExtraHTTPHeaders({
 
 ---
 
-## 9. Warten / Synchronisation
+## 9. Waiting / synchronization
 
 ### page.waitForLoadState()
 
@@ -1419,10 +1419,10 @@ page.waitForLoadState(
 ): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `state` | `string` | nein | `'load'` | Gewuenschter Lade-Zustand |
-| `options.timeout` | `number` | nein | `defaultNavigationTimeout` | Max. Wartezeit in ms |
+| `state` | `string` | no | `'load'` | Desired load state |
+| `options.timeout` | `number` | no | `defaultNavigationTimeout` | Max. wait time in ms |
 
 ```typescript
 await page.waitForLoadState('networkidle');
@@ -1441,8 +1441,8 @@ page.waitForNavigation(options?: {
 }): Promise<Response | null>
 ```
 
-**Deprecated** — Verwende `page.waitForURL()` oder `page.goto()` mit `waitUntil`.
-Wartet auf die naechste Navigation.
+**Deprecated** — use `page.waitForURL()` or `page.goto()` with `waitUntil`.
+Waits for the next navigation.
 
 ```typescript
 await Promise.all([
@@ -1465,7 +1465,7 @@ page.waitForURL(
 ): Promise<void>
 ```
 
-Wartet bis die Seiten-URL mit dem Muster uebereinstimmt.
+Waits until the page URL matches the pattern.
 
 ```typescript
 await page.waitForURL('**/dashboard');
@@ -1488,12 +1488,12 @@ page.waitForFunction<T>(
 ): Promise<JSHandle<T>>
 ```
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `pageFunction` | `Function\|string` | ja | — | Funktion im Browser-Kontext, muss truthy zurueckgeben |
-| `arg` | `any` | nein | — | Argument fuer die Funktion |
-| `options.polling` | `number\|'raf'` | nein | `'raf'` | Polling-Intervall in ms oder `'raf'` |
-| `options.timeout` | `number` | nein | `defaultTimeout` | Max. Wartezeit in ms |
+| `pageFunction` | `Function\|string` | yes | — | Function in the browser context, must return truthy |
+| `arg` | `any` | no | — | Argument for the function |
+| `options.polling` | `number\|'raf'` | no | `'raf'` | Polling interval in ms or `'raf'` |
+| `options.timeout` | `number` | no | `defaultTimeout` | Max. wait time in ms |
 
 ```typescript
 await page.waitForFunction(() => document.readyState === 'complete');
@@ -1515,13 +1515,13 @@ page.waitForSelector(selector: string, options?: {
 }): Promise<ElementHandle | null>
 ```
 
-**Deprecated** — Verwende `page.locator().waitFor()`.
+**Deprecated** — use `page.locator().waitFor()`.
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `state` | `string` | `'visible'` | Gewuenschter Zustand |
-| `strict` | `boolean` | `false` | Fehler bei mehreren Elementen |
-| `timeout` | `number` | `defaultTimeout` | Max. Wartezeit in ms |
+| `state` | `string` | `'visible'` | Desired state |
+| `strict` | `boolean` | `false` | Error on multiple elements |
+| `timeout` | `number` | `defaultTimeout` | Max. wait time in ms |
 
 ```typescript
 const el = await page.waitForSelector('.success-message');
@@ -1539,7 +1539,7 @@ page.waitForRequest(
 ): Promise<Request>
 ```
 
-Wartet auf eine eingehende Netzwerkanfrage.
+Waits for an outgoing network request.
 
 ```typescript
 const request = await page.waitForRequest('**/api/login');
@@ -1559,7 +1559,7 @@ page.waitForResponse(
 ): Promise<Response>
 ```
 
-Wartet auf eine Netzwerkantwort.
+Waits for a network response.
 
 ```typescript
 const response = await page.waitForResponse('**/api/data');
@@ -1581,18 +1581,18 @@ page.waitForEvent(event: string, optionsOrPredicate?: {
 } | Function): Promise<any>
 ```
 
-Wartet auf ein Page-Event.
+Waits for a page event.
 
 ```typescript
 const popup = await page.waitForEvent('popup');
 const download = await page.waitForEvent('download');
 
-// Mit Predicate
+// With a predicate
 const dialog = await page.waitForEvent('dialog', {
   predicate: d => d.type() === 'confirm'
 });
 
-// Mit Timeout
+// With a timeout
 const frame = await page.waitForEvent('frameattached', { timeout: 5000 });
 ```
 
@@ -1607,7 +1607,7 @@ page.waitForPopup(
 ): Promise<Page>
 ```
 
-Wartet auf ein Popup das durch `callback` ausgeloest wird.
+Waits for a popup triggered by `callback`.
 
 ```typescript
 const popup = await page.waitForPopup(async () => {
@@ -1640,32 +1640,32 @@ page.screenshot(options?: {
 }): Promise<Buffer>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `animations` | `string` | `'allow'` | CSS-Animationen deaktivieren |
-| `caret` | `string` | `'hide'` | Text-Cursor verstecken |
-| `clip` | `object` | — | Nur diesen Bereich aufnehmen |
-| `fullPage` | `boolean` | `false` | Ganze Seite (auch nicht-sichtbarer Bereich) |
-| `mask` | `Locator[]` | — | Diese Elemente mit `maskColor` ueberdecken |
-| `maskColor` | `string` | `'#FF00FF'` | Farbe fuer maskierte Bereiche |
-| `omitBackground` | `boolean` | `false` | Transparenter Hintergrund (nur PNG) |
-| `path` | `string` | — | Speicherpfad |
-| `quality` | `number` | `100` (PNG) | JPEG-Qualitaet 0–100 |
-| `scale` | `string` | `'device'` | `'device'` respektiert devicePixelRatio |
-| `type` | `string` | `'png'` | Bildformat |
+| `animations` | `string` | `'allow'` | Disable CSS animations |
+| `caret` | `string` | `'hide'` | Hide the text cursor |
+| `clip` | `object` | — | Capture only this area |
+| `fullPage` | `boolean` | `false` | Whole page (including the non-visible area) |
+| `mask` | `Locator[]` | — | Cover these elements with `maskColor` |
+| `maskColor` | `string` | `'#FF00FF'` | Color for masked areas |
+| `omitBackground` | `boolean` | `false` | Transparent background (PNG only) |
+| `path` | `string` | — | Save path |
+| `quality` | `number` | `100` (PNG) | JPEG quality 0–100 |
+| `scale` | `string` | `'device'` | `'device'` respects devicePixelRatio |
+| `type` | `string` | `'png'` | Image format |
 
 ```typescript
 await page.screenshot({ path: 'screenshot.png' });
 await page.screenshot({ fullPage: true, path: 'full.png' });
 const buffer = await page.screenshot({ type: 'jpeg', quality: 80 });
 
-// Bereiche ausblenden
+// Hide areas
 await page.screenshot({
   mask: [page.locator('.user-avatar')],
   maskColor: '#aabbcc'
 });
 
-// Nur Viewport-Ausschnitt
+// Only a viewport section
 await page.screenshot({
   clip: { x: 0, y: 0, width: 800, height: 600 }
 });
@@ -1700,22 +1700,22 @@ page.pdf(options?: {
 }): Promise<Buffer>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `format` | `string` | `'Letter'` | Papierformat: `'A4'`, `'Letter'`, `'A3'`, etc. |
-| `landscape` | `boolean` | `false` | Querformat |
-| `printBackground` | `boolean` | `false` | Hintergrundfarben/-bilder |
-| `displayHeaderFooter` | `boolean` | `false` | Kopf-/Fusszeile anzeigen |
-| `headerTemplate` | `string` | — | HTML-Template fuer Header |
-| `footerTemplate` | `string` | — | HTML-Template fuer Footer |
-| `margin` | `object` | — | Seitenraender |
-| `scale` | `number` | `1` | Skalierung (0.1–2) |
-| `pageRanges` | `string` | — | z.B. `'1-5'`, `'8,10-12'` |
-| `path` | `string` | — | Speicherpfad |
-| `tagged` | `boolean` | `false` | Getaggtes PDF (Accessibility) |
-| `outline` | `boolean` | `false` | PDF-Outline aus Headings |
+| `format` | `string` | `'Letter'` | Paper format: `'A4'`, `'Letter'`, `'A3'`, etc. |
+| `landscape` | `boolean` | `false` | Landscape orientation |
+| `printBackground` | `boolean` | `false` | Background colors/images |
+| `displayHeaderFooter` | `boolean` | `false` | Show header/footer |
+| `headerTemplate` | `string` | — | HTML template for the header |
+| `footerTemplate` | `string` | — | HTML template for the footer |
+| `margin` | `object` | — | Page margins |
+| `scale` | `number` | `1` | Scaling (0.1–2) |
+| `pageRanges` | `string` | — | e.g. `'1-5'`, `'8,10-12'` |
+| `path` | `string` | — | Save path |
+| `tagged` | `boolean` | `false` | Tagged PDF (accessibility) |
+| `outline` | `boolean` | `false` | PDF outline from headings |
 
-Nur fuer Chromium verfuegbar.
+Available for Chromium only.
 
 ```typescript
 await page.pdf({ path: 'output.pdf', format: 'A4' });
@@ -1731,7 +1731,7 @@ const pdfBuffer = await page.pdf({ format: 'A4' });
 
 ---
 
-## 11. Browser-Konfiguration
+## 11. Browser configuration
 
 ### page.setViewportSize()
 
@@ -1755,7 +1755,7 @@ await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE
 page.viewportSize(): { width: number, height: number } | null
 ```
 
-Gibt aktuelle Viewport-Groesse zurueck (`null` wenn nicht gesetzt).
+Returns the current viewport size (`null` if not set).
 
 ```typescript
 const viewport = page.viewportSize();
@@ -1776,13 +1776,13 @@ page.emulateMedia(options?: {
 }): Promise<void>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `colorScheme` | `string\|null` | — | Farbschema-Emulation; `null` = reset |
-| `contrast` | `string\|null` | — | Kontrastpraeferenz |
+| `colorScheme` | `string\|null` | — | Color scheme emulation; `null` = reset |
+| `contrast` | `string\|null` | — | Contrast preference |
 | `forcedColors` | `string\|null` | — | Windows Forced Colors Mode |
-| `media` | `string\|null` | — | CSS-Medientyp; `null` = reset |
-| `reducedMotion` | `string\|null` | — | Bewegungsreduzierung |
+| `media` | `string\|null` | — | CSS media type; `null` = reset |
+| `reducedMotion` | `string\|null` | — | Motion reduction |
 
 ```typescript
 await page.emulateMedia({ colorScheme: 'dark' });
@@ -1798,10 +1798,10 @@ await page.emulateMedia({ colorScheme: null }); // Reset
 page.setDefaultTimeout(timeout: number): void
 ```
 
-Setzt Standard-Timeout fuer alle Aktionen UND Assertions (in ms). `0` = unbegrenzt.
+Sets the default timeout for all actions AND assertions (in ms). `0` = unlimited.
 
 ```typescript
-page.setDefaultTimeout(10000); // 10 Sekunden
+page.setDefaultTimeout(10000); // 10 seconds
 ```
 
 ---
@@ -1812,7 +1812,7 @@ page.setDefaultTimeout(10000); // 10 Sekunden
 page.setDefaultNavigationTimeout(timeout: number): void
 ```
 
-Setzt Standard-Timeout nur fuer Navigations-Methoden (`goto`, `goBack`, etc.).
+Sets the default timeout for navigation methods only (`goto`, `goBack`, etc.).
 
 ```typescript
 page.setDefaultNavigationTimeout(30000);
@@ -1820,7 +1820,7 @@ page.setDefaultNavigationTimeout(30000);
 
 ---
 
-## 12. Event-Handling / Listener
+## 12. Event handling / listeners
 
 ### page.on()
 
@@ -1828,21 +1828,21 @@ page.setDefaultNavigationTimeout(30000);
 page.on(event: string, listener: Function): Page
 ```
 
-Registriert dauerhaften Event-Listener. Gibt `Page` zurueck (chainable).
+Registers a permanent event listener. Returns `Page` (chainable).
 
 ```typescript
 page.on('console', msg => console.log('Browser:', msg.text()));
-page.on('pageerror', err => console.error('Seiten-Fehler:', err.message));
+page.on('pageerror', err => console.error('Page error:', err.message));
 page.on('dialog', async dialog => {
   console.log(dialog.message());
   await dialog.accept();
 });
 page.on('download', download => {
-  console.log('Download gestartet:', download.suggestedFilename());
+  console.log('Download started:', download.suggestedFilename());
 });
 page.on('request', request => {
   if (request.url().includes('/api/')) {
-    console.log(`API-Anfrage: ${request.method()} ${request.url()}`);
+    console.log(`API request: ${request.method()} ${request.url()}`);
   }
 });
 ```
@@ -1855,7 +1855,7 @@ page.on('request', request => {
 page.once(event: string, listener: Function): Page
 ```
 
-Wie `on()`, wird aber nach dem ersten Aufruf automatisch entfernt.
+Like `on()`, but removed automatically after the first invocation.
 
 ```typescript
 page.once('dialog', dialog => dialog.accept());
@@ -1869,7 +1869,7 @@ page.once('dialog', dialog => dialog.accept());
 page.off(event: string, listener: Function): Page
 ```
 
-Entfernt einen spezifischen Event-Listener.
+Removes a specific event listener.
 
 ```typescript
 const handler = (msg: ConsoleMessage) => console.log(msg.text());
@@ -1888,19 +1888,19 @@ page.removeAllListeners(type?: string, options?: {
 }): Promise<void>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `type` | `string` | nein | Event-Typ; ohne = alle entfernen |
-| `options.behavior` | `string` | nein | `'wait'`: auf laufende Handler warten; `'ignoreErrors'`: Fehler ignorieren |
+| `type` | `string` | no | Event type; omitted = remove all |
+| `options.behavior` | `string` | no | `'wait'`: wait for running handlers; `'ignoreErrors'`: ignore errors |
 
 ```typescript
 await page.removeAllListeners('console');
-await page.removeAllListeners(); // Alle
+await page.removeAllListeners(); // All
 ```
 
 ---
 
-## 13. Diverse Hilfsmethoden
+## 13. Miscellaneous helper methods
 
 ### page.context()
 
@@ -1908,7 +1908,7 @@ await page.removeAllListeners(); // Alle
 page.context(): BrowserContext
 ```
 
-Gibt den `BrowserContext` zurueck, zu dem diese Seite gehoert.
+Returns the `BrowserContext` this page belongs to.
 
 ```typescript
 const context = page.context();
@@ -1923,12 +1923,12 @@ await context.clearCookies();
 page.opener(): Promise<Page | null>
 ```
 
-Gibt die Seite zurueck, die dieses Popup geoeffnet hat. `null` fuer normale Seiten.
+Returns the page that opened this popup. `null` for normal pages.
 
 ```typescript
 const opener = await page.opener();
 if (opener) {
-  console.log('Geoeffnet von:', opener.url());
+  console.log('Opened by:', opener.url());
 }
 ```
 
@@ -1940,7 +1940,7 @@ if (opener) {
 page.isClosed(): boolean
 ```
 
-Gibt `true` wenn die Seite geschlossen wurde.
+Returns `true` if the page has been closed.
 
 ```typescript
 if (!page.isClosed()) {
@@ -1959,15 +1959,15 @@ page.close(options?: {
 }): Promise<void>
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `reason` | `string` | — | Grund fuer Schliessung (bei kuenftigen Aktionen gemeldet) |
-| `runBeforeUnload` | `boolean` | `false` | `beforeunload`-Handler ausfuehren |
+| `reason` | `string` | — | Reason for closing (reported on future actions) |
+| `runBeforeUnload` | `boolean` | `false` | Run `beforeunload` handlers |
 
 ```typescript
 await page.close();
 await page.close({ runBeforeUnload: true });
-await page.close({ reason: 'Test abgeschlossen' });
+await page.close({ reason: 'Test finished' });
 ```
 
 ---
@@ -1978,7 +1978,7 @@ await page.close({ reason: 'Test abgeschlossen' });
 page.bringToFront(): Promise<void>
 ```
 
-Bringt die Seite (Tab) in den Vordergrund.
+Brings the page (tab) to the foreground.
 
 ```typescript
 await page.bringToFront();
@@ -1992,10 +1992,10 @@ await page.bringToFront();
 page.pause(): Promise<void>
 ```
 
-Haelt die Test-Ausfuehrung an und oeffnet den Playwright-Inspector (nur im headed-Modus).
+Pauses test execution and opens the Playwright Inspector (headed mode only).
 
 ```typescript
-await page.pause(); // Fuer Debugging
+await page.pause(); // For debugging
 ```
 
 ---
@@ -2011,11 +2011,11 @@ page.ariaSnapshot(options?: {
 }): Promise<string>
 ```
 
-Erstellt einen ARIA-Accessibility-Tree-Snapshot als YAML-String.
+Creates an ARIA accessibility tree snapshot as a YAML string.
 
 ```typescript
 const snapshot = await page.ariaSnapshot();
-expect(snapshot).toContain('button "Absenden"');
+expect(snapshot).toContain('button "Submit"');
 
 await page.ariaSnapshot({ mode: 'ai' });
 ```
@@ -2030,7 +2030,7 @@ page.consoleMessages(options?: {
 }): Promise<ConsoleMessage[]>
 ```
 
-Gibt bis zu 200 zuletzt empfangene Konsolen-Nachrichten zurueck.
+Returns up to 200 most recently received console messages.
 
 ```typescript
 const messages = await page.consoleMessages();
@@ -2047,12 +2047,12 @@ page.pageErrors(options?: {
 }): Promise<Error[]>
 ```
 
-Gibt bis zu 200 zuletzt erfasste ungefangene Fehler zurueck.
+Returns up to 200 most recently captured uncaught errors.
 
 ```typescript
 const errors = await page.pageErrors();
 if (errors.length > 0) {
-  console.error('Seiten-Fehler gefunden:', errors[0].message);
+  console.error('Page errors found:', errors[0].message);
 }
 ```
 
@@ -2064,7 +2064,7 @@ if (errors.length > 0) {
 page.clearConsoleMessages(): Promise<void>
 ```
 
-Leert den gespeicherten Konsolen-Nachrichten-Puffer.
+Clears the stored console message buffer.
 
 ```typescript
 await page.clearConsoleMessages();
@@ -2078,7 +2078,7 @@ await page.clearConsoleMessages();
 page.clearPageErrors(): Promise<void>
 ```
 
-Leert den gespeicherten Seiten-Fehler-Puffer.
+Clears the stored page error buffer.
 
 ```typescript
 await page.clearPageErrors();
@@ -2099,20 +2099,20 @@ page.addLocatorHandler(
 ): Promise<Disposable>
 ```
 
-| Parameter | Typ | Pflicht | Beschreibung |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `locator` | `Locator` | ja | Locator des Overlays/Popups |
-| `handler` | `Function` | ja | Wird aufgerufen wenn Overlay erscheint und Actionability blockiert |
-| `options.noWaitAfter` | `boolean` | nein | Nicht auf Verschwinden warten |
-| `options.times` | `number` | nein | Max. Aufrufe (dann automatisch entfernt) |
+| `locator` | `Locator` | yes | Locator of the overlay/popup |
+| `handler` | `Function` | yes | Called when the overlay appears and blocks actionability |
+| `options.noWaitAfter` | `boolean` | no | Do not wait for it to disappear |
+| `options.times` | `number` | no | Max. invocations (then removed automatically) |
 
-Registriert Handler fuer Cookie-Banner, Modals etc. die Actionability-Checks blockieren.
+Registers handlers for cookie banners, modals etc. that block actionability checks.
 
 ```typescript
 await page.addLocatorHandler(
-  page.getByText('Cookie-Einstellungen'),
+  page.getByText('Cookie settings'),
   async () => {
-    await page.getByRole('button', { name: 'Alle akzeptieren' }).click();
+    await page.getByRole('button', { name: 'Accept all' }).click();
   }
 );
 ```
@@ -2125,10 +2125,10 @@ await page.addLocatorHandler(
 page.removeLocatorHandler(locator: Locator): Promise<void>
 ```
 
-Entfernt Handler fuer einen bestimmten Locator.
+Removes the handler for a specific locator.
 
 ```typescript
-await page.removeLocatorHandler(page.getByText('Cookie-Einstellungen'));
+await page.removeLocatorHandler(page.getByText('Cookie settings'));
 ```
 
 ---
@@ -2139,11 +2139,11 @@ await page.removeLocatorHandler(page.getByText('Cookie-Einstellungen'));
 page.pickLocator(): Promise<Locator>
 ```
 
-Startet den interaktiven Locator-Picker (Playwright Inspector). Gibt den ausgewaehlten Locator zurueck.
+Starts the interactive locator picker (Playwright Inspector). Returns the selected locator.
 
 ```typescript
 const locator = await page.pickLocator();
-console.log(locator); // Locator-Objekt
+console.log(locator); // Locator object
 ```
 
 ---
@@ -2154,7 +2154,7 @@ console.log(locator); // Locator-Objekt
 page.cancelPickLocator(): Promise<void>
 ```
 
-Bricht den Locator-Picker ab.
+Cancels the locator picker.
 
 ```typescript
 await page.cancelPickLocator();
@@ -2168,7 +2168,7 @@ await page.cancelPickLocator();
 page.hideHighlight(): Promise<void>
 ```
 
-Versteckt alle aktiven Locator-Highlight-Overlays.
+Hides all active locator highlight overlays.
 
 ```typescript
 await page.hideHighlight();
@@ -2182,7 +2182,7 @@ await page.hideHighlight();
 page.requestGC(): Promise<void>
 ```
 
-Fordert Garbage Collection im Browser an (experimentell, hilfreich fuer Memory-Leak-Tests).
+Requests garbage collection in the browser (experimental, helpful for memory leak tests).
 
 ```typescript
 await page.requestGC();
@@ -2198,11 +2198,11 @@ await page.requestGC();
 page.keyboard: Keyboard
 ```
 
-Zugriff auf `Keyboard`-Objekt fuer Low-Level-Tastatureingaben.
+Access to the `Keyboard` object for low-level keyboard input.
 
 ```typescript
 await page.keyboard.press('Enter');
-await page.keyboard.type('Hallo Welt');
+await page.keyboard.type('Hello World');
 await page.keyboard.down('Shift');
 await page.keyboard.up('Shift');
 await page.keyboard.insertText('Unicode: é');
@@ -2216,7 +2216,7 @@ await page.keyboard.insertText('Unicode: é');
 page.mouse: Mouse
 ```
 
-Zugriff auf `Mouse`-Objekt fuer Low-Level-Mausoperationen.
+Access to the `Mouse` object for low-level mouse operations.
 
 ```typescript
 await page.mouse.move(100, 200);
@@ -2224,7 +2224,7 @@ await page.mouse.down();
 await page.mouse.up();
 await page.mouse.click(100, 200);
 await page.mouse.dblclick(100, 200);
-await page.mouse.wheel(0, 300); // Scrollen
+await page.mouse.wheel(0, 300); // Scrolling
 ```
 
 ---
@@ -2235,7 +2235,7 @@ await page.mouse.wheel(0, 300); // Scrollen
 page.touchscreen: Touchscreen
 ```
 
-Zugriff auf `Touchscreen`-Objekt fuer Touch-Events.
+Access to the `Touchscreen` object for touch events.
 
 ```typescript
 await page.touchscreen.tap(150, 250);
@@ -2245,41 +2245,41 @@ await page.touchscreen.tap(150, 250);
 
 ## 15. Events
 
-Events werden mit `page.on(event, listener)` abonniert.
+Events are subscribed to with `page.on(event, listener)`.
 
-| Event | Payload-Typ | Beschreibung |
+| Event | Payload type | Description |
 |---|---|---|
-| `'close'` | `Page` | Seite wurde geschlossen |
-| `'console'` | `ConsoleMessage` | Browser-Konsolen-Nachricht (log, warn, error, dir, ...) |
-| `'crash'` | `Page` | Seite ist abgestuerzt (z.B. OOM) |
-| `'dialog'` | `Dialog` | `alert()`, `confirm()`, `prompt()` oder `beforeunload` |
-| `'download'` | `Download` | Download wird gestartet |
-| `'error'` | `Error` | Ungefangene Ausnahme in der Seite |
-| `'filechooser'` | `FileChooser` | Dateiauswahl-Dialog erscheint |
-| `'frameattached'` | `Frame` | Neuer Frame wurde angehaengt |
-| `'framedetached'` | `Frame` | Frame wurde entfernt |
-| `'framenavigated'` | `Frame` | Frame hat navigiert |
-| `'load'` | `Page` | `load`-Event der Seite |
-| `'pageerror'` | `Error` | Ungefangener Fehler in Seite (wie `window.onerror`) |
-| `'popup'` | `Page` | Popup-Seite wurde geoeffnet |
-| `'request'` | `Request` | Netzwerkanfrage wurde gesendet |
-| `'requestfailed'` | `Request` | Netzwerkanfrage ist fehlgeschlagen |
-| `'requestfinished'` | `Request` | Netzwerkanfrage abgeschlossen |
-| `'response'` | `Response` | Netzwerkantwort erhalten |
-| `'websocket'` | `WebSocket` | Neues WebSocket-Objekt erstellt |
-| `'worker'` | `Worker` | Web Worker wurde erstellt |
-| `'domcontentloaded'` | `Page` | `DOMContentLoaded`-Event |
+| `'close'` | `Page` | The page was closed |
+| `'console'` | `ConsoleMessage` | Browser console message (log, warn, error, dir, ...) |
+| `'crash'` | `Page` | The page crashed (e.g. OOM) |
+| `'dialog'` | `Dialog` | `alert()`, `confirm()`, `prompt()` or `beforeunload` |
+| `'download'` | `Download` | A download is starting |
+| `'error'` | `Error` | Uncaught exception in the page |
+| `'filechooser'` | `FileChooser` | A file selection dialog appears |
+| `'frameattached'` | `Frame` | A new frame was attached |
+| `'framedetached'` | `Frame` | A frame was removed |
+| `'framenavigated'` | `Frame` | A frame navigated |
+| `'load'` | `Page` | `load` event of the page |
+| `'pageerror'` | `Error` | Uncaught error in the page (like `window.onerror`) |
+| `'popup'` | `Page` | A popup page was opened |
+| `'request'` | `Request` | A network request was sent |
+| `'requestfailed'` | `Request` | A network request failed |
+| `'requestfinished'` | `Request` | A network request finished |
+| `'response'` | `Response` | A network response was received |
+| `'websocket'` | `WebSocket` | A new WebSocket object was created |
+| `'worker'` | `Worker` | A web worker was created |
+| `'domcontentloaded'` | `Page` | `DOMContentLoaded` event |
 
-### Event-Beispiele
+### Event examples
 
 ```typescript
-// Console-Ausgaben abfangen
+// Capture console output
 page.on('console', msg => {
   const type = msg.type();
   if (type === 'error') console.error('[BROWSER ERROR]', msg.text());
 });
 
-// Dialoge automatisch behandeln
+// Handle dialogs automatically
 page.on('dialog', async dialog => {
   if (dialog.type() === 'confirm') {
     await dialog.accept();
@@ -2288,32 +2288,32 @@ page.on('dialog', async dialog => {
   }
 });
 
-// Datei-Downloads
+// File downloads
 page.on('download', async download => {
   await download.saveAs('/tmp/' + download.suggestedFilename());
 });
 
-// Popups behandeln
+// Handle popups
 page.on('popup', async popup => {
   await popup.waitForLoadState();
   console.log('Popup URL:', popup.url());
 });
 
-// Netzwerk-Monitoring
+// Network monitoring
 page.on('response', response => {
   if (!response.ok()) {
-    console.warn(`HTTP ${response.status()} fuer ${response.url()}`);
+    console.warn(`HTTP ${response.status()} for ${response.url()}`);
   }
 });
 
-// File Chooser
+// File chooser
 page.on('filechooser', async fileChooser => {
   await fileChooser.setFiles('/path/to/file.pdf');
 });
 
-// Web Worker
+// Web worker
 page.on('worker', worker => {
-  console.log('Worker erstellt:', worker.url());
+  console.log('Worker created:', worker.url());
 });
 ```
 
@@ -2321,31 +2321,31 @@ page.on('worker', worker => {
 
 ## 16. Manifest
 
-| Kategorie | Anzahl dokumentierter Mitglieder |
+| Category | Number of documented members |
 |---|---|
-| Navigation | 6 Methoden (goto, goBack, goForward, reload, url, title) |
-| Seiteninhalte | 9 Methoden (content, setContent, getAttribute, innerHTML, innerText, textContent, inputValue, isChecked, isDisabled, isEditable, isEnabled, isHidden, isVisible) |
-| Locator-Fabrik | 10 Methoden (locator, getByRole, getByText, getByLabel, getByPlaceholder, getByAltText, getByTitle, getByTestId, frameLocator) |
-| Frame-Verwaltung | 3 Methoden (frames, frame, mainFrame) |
-| Element-Interaktion | 16 Methoden (click, dblclick, check, uncheck, setChecked, fill, focus, hover, press, type, tap, selectOption, setInputFiles, dispatchEvent, dragAndDrop, selectText) |
-| JavaScript | 5 Methoden (evaluate, evaluateHandle, exposeFunction, exposeBinding, addInitScript) |
-| Skript/Style-Injektion | 2 Methoden (addScriptTag, addStyleTag) |
-| Netzwerk/Routing | 5 Methoden (route, unroute, unrouteAll, routeFromHAR, requests, setExtraHTTPHeaders) |
-| Warten/Sync | 8 Methoden (waitForLoadState, waitForNavigation, waitForURL, waitForFunction, waitForSelector, waitForRequest, waitForResponse, waitForEvent, waitForPopup) |
-| Screenshots/PDF | 2 Methoden (screenshot, pdf) |
-| Browser-Konfiguration | 5 Methoden (setViewportSize, viewportSize, emulateMedia, setDefaultTimeout, setDefaultNavigationTimeout) |
-| Event-Handling | 4 Methoden (on, once, off, removeAllListeners) |
-| Diverse | 14 Methoden (context, opener, isClosed, close, bringToFront, pause, ariaSnapshot, consoleMessages, pageErrors, clearConsoleMessages, clearPageErrors, addLocatorHandler, removeLocatorHandler, pickLocator, cancelPickLocator, hideHighlight, requestGC) |
+| Navigation | 6 methods (goto, goBack, goForward, reload, url, title) |
+| Page content | 9 methods (content, setContent, getAttribute, innerHTML, innerText, textContent, inputValue, isChecked, isDisabled, isEditable, isEnabled, isHidden, isVisible) |
+| Locator factory | 10 methods (locator, getByRole, getByText, getByLabel, getByPlaceholder, getByAltText, getByTitle, getByTestId, frameLocator) |
+| Frame management | 3 methods (frames, frame, mainFrame) |
+| Element interaction | 16 methods (click, dblclick, check, uncheck, setChecked, fill, focus, hover, press, type, tap, selectOption, setInputFiles, dispatchEvent, dragAndDrop, selectText) |
+| JavaScript | 5 methods (evaluate, evaluateHandle, exposeFunction, exposeBinding, addInitScript) |
+| Script/style injection | 2 methods (addScriptTag, addStyleTag) |
+| Network/routing | 5 methods (route, unroute, unrouteAll, routeFromHAR, requests, setExtraHTTPHeaders) |
+| Waiting/sync | 8 methods (waitForLoadState, waitForNavigation, waitForURL, waitForFunction, waitForSelector, waitForRequest, waitForResponse, waitForEvent, waitForPopup) |
+| Screenshots/PDF | 2 methods (screenshot, pdf) |
+| Browser configuration | 5 methods (setViewportSize, viewportSize, emulateMedia, setDefaultTimeout, setDefaultNavigationTimeout) |
+| Event handling | 4 methods (on, once, off, removeAllListeners) |
+| Miscellaneous | 14 methods (context, opener, isClosed, close, bringToFront, pause, ariaSnapshot, consoleMessages, pageErrors, clearConsoleMessages, clearPageErrors, addLocatorHandler, removeLocatorHandler, pickLocator, cancelPickLocator, hideHighlight, requestGC) |
 | Properties | 3 (keyboard, mouse, touchscreen) |
-| Events | 17 Events |
+| Events | 17 events |
 
-**Gesamt: ~102 Methoden/Properties + 17 Events**
+**Total: ~102 methods/properties + 17 events**
 
-**Fazit:** Die `Page`-Klasse ist das Herzst der Playwright-API. Sie vereint Navigation, Elementinteraktion
-(via Selector und Locator), JavaScript-Evaluation, Netzwerk-Interception, Konfiguration und Event-Handling
-in einer einzigen Klasse. Fuer neue Tests sollten Locator-basierte Methoden (`page.locator()`, `getBy*()`)
-den veralteten direkten Selector-Methoden vorgezogen werden.
+**Conclusion:** the `Page` class is the heart of the Playwright API. It combines navigation, element interaction
+(via selector and locator), JavaScript evaluation, network interception, configuration and event handling
+in a single class. For new tests, locator-based methods (`page.locator()`, `getBy*()`) should be
+preferred over the outdated direct selector methods.
 
 ---
 
-**Quelle:** https://playwright.dev/docs/api/class-page
+**Source:** https://playwright.dev/docs/api/class-page

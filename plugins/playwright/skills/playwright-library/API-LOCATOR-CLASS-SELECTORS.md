@@ -1,8 +1,8 @@
 # class-selectors — Playwright API Reference
 
-Die `Selectors`-Klasse ermoeglicht das Registrieren eigener Selektor-Engines und das Konfigurieren des Test-ID-Attributs. Beide Methoden muessen **vor** der Erstellung von Seiten aufgerufen werden. Zugriff via `playwright.selectors` (globale Playwright-Instanz).
+The `Selectors` class allows registering custom selector engines and configuring the test ID attribute. Both methods must be called **before** creating any pages. Access via `playwright.selectors` (global Playwright instance).
 
-Methoden-Anzahl: 2
+Method count: 2
 
 ---
 
@@ -10,7 +10,7 @@ Methoden-Anzahl: 2
 
 - [register()](#register)
 - [setTestIdAttribute()](#settestidattribute)
-- [Methoden-Uebersicht](#methoden-uebersicht)
+- [Method Overview](#method-overview)
 
 ## register()
 
@@ -22,29 +22,29 @@ register(
 ): Promise<void>
 ```
 
-Registriert eine eigene Selektor-Engine. Nach der Registrierung kann der Selektor ueber das Praefix `name=myselector` in allen Methoden verwendet werden, die Selektoren akzeptieren.
+Registers a custom selector engine. After registration, the selector can be used via the prefix `name=myselector` in all methods that accept selectors.
 
-**Wichtig:** Muss aufgerufen werden, bevor Seiten (`page`) erstellt werden.
+**Important:** Must be called before pages (`page`) are created.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string` | ja | — | Eindeutiger Bezeichner (nur `[a-zA-Z0-9_]`); wird als Praefix `name=...` genutzt |
-| `script` | `Function \| string \| { path?: string; content?: string }` | ja | — | Evaluiert zu einer Selektor-Engine-Instanz; wird im Seitenkontext ausgefuehrt |
-| `options.contentScript` | `boolean` | nein | `false` | Engine in isolierter JS-Umgebung ausfuehren (hat Zugriff auf DOM, aber nicht auf Frame-Scripts) |
+| `name` | `string` | yes | — | Unique identifier (only `[a-zA-Z0-9_]`); used as prefix `name=...` |
+| `script` | `Function \| string \| { path?: string; content?: string }` | yes | — | Evaluates to a selector engine instance; executed in the page context |
+| `options.contentScript` | `boolean` | no | `false` | Run the engine in an isolated JS environment (has access to the DOM, but not to frame scripts) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-### Selektor-Engine API
+### Selector Engine API
 
-Das Script muss ein Objekt mit folgenden Methoden zurueckgeben:
+The script must return an object with the following methods:
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---|---|---|
-| `query` | `(root: Element, selector: string) => Element \| null` | Findet erstes passendes Element |
-| `queryAll` | `(root: Element, selector: string) => Element[]` | Findet alle passenden Elemente |
+| `query` | `(root: Element, selector: string) => Element \| null` | Finds the first matching element |
+| `queryAll` | `(root: Element, selector: string) => Element[]` | Finds all matching elements |
 
 ```typescript
-// Eigene Engine: findet Elemente ueber data-qa-Attribut
+// Custom engine: finds elements via the data-qa attribute
 await playwright.selectors.register('qa', () => ({
   query(root, selector) {
     return root.querySelector(`[data-qa="${selector}"]`);
@@ -54,11 +54,11 @@ await playwright.selectors.register('qa', () => ({
   },
 }));
 
-// Verwendung
+// Usage
 await page.locator('qa=submit-button').click();
 ```
 
-Aus einer Datei laden:
+Load from a file:
 
 ```typescript
 await playwright.selectors.register('myengine', {
@@ -74,34 +74,34 @@ await playwright.selectors.register('myengine', {
 setTestIdAttribute(attributeName: string): void
 ```
 
-Setzt das HTML-Attribut, das von `getByTestId()` verwendet wird. Standard ist `data-testid`.
+Sets the HTML attribute used by `getByTestId()`. The default is `data-testid`.
 
-**Wichtig:** Muss vor der Erstellung von Seiten aufgerufen werden.
+**Important:** Must be called before creating any pages.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `attributeName` | `string` | ja | — | Name des Attributs, das als Test-ID interpretiert wird |
+| `attributeName` | `string` | yes | — | Name of the attribute interpreted as the test ID |
 
-**Rueckgabe:** `void`
+**Returns:** `void`
 
 ```typescript
-// In playwright.config.ts oder einer globalen Setup-Datei:
+// In playwright.config.ts or a global setup file:
 import { selectors } from '@playwright/test';
 selectors.setTestIdAttribute('data-cy');
 
-// Anschliessend:
-await page.getByTestId('login-form').fill('...'); // sucht nach data-cy="login-form"
+// Afterwards:
+await page.getByTestId('login-form').fill('...'); // looks for data-cy="login-form"
 ```
 
 ---
 
-## Methoden-Uebersicht
+## Method Overview
 
-| Methode | Zweck |
+| Method | Purpose |
 |---|---|
-| `register()` | Eigene Selektor-Engine registrieren |
-| `setTestIdAttribute()` | Test-ID-Attributname konfigurieren |
+| `register()` | Register a custom selector engine |
+| `setTestIdAttribute()` | Configure the test ID attribute name |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-selectors
+Source: https://playwright.dev/docs/api/class-selectors

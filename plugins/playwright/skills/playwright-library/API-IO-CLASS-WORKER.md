@@ -1,46 +1,46 @@
 # Playwright — class: Worker
 
-> **Manifest:** 4 Methoden, 0 Properties, 2 Events.
-> Repraesentiert einen Web Worker oder Service Worker einer Seite.
-> Instanzen werden ueber `page.on('worker')` oder `page.workers()` erhalten.
+> **Manifest:** 4 methods, 0 properties, 2 events.
+> Represents a Web Worker or Service Worker of a page.
+> Instances are obtained via `page.on('worker')` or `page.workers()`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
+- [Overview](#overview)
+- [Methods](#methods)
 - [Events](#events)
-- [Worker-Zugriff ueber Page](#worker-zugriff-ueber-page)
+- [Worker access via Page](#worker-access-via-page)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Worker` bildet einen dedizierten Web Worker ab. Service Workers koennen
-ueber `browserContext.serviceWorkers()` abgerufen werden. Worker-Instanzen
-erlauben die Ausfuehrung von Code innerhalb des Worker-Kontexts sowie
-das Abfragen der Worker-URL.
+`Worker` represents a dedicated Web Worker. Service Workers can be
+retrieved via `browserContext.serviceWorkers()`. Worker instances
+allow code to be executed inside the worker context as well as
+querying the worker URL.
 
 ```javascript
 page.on('worker', worker => {
-  console.log('Worker gestartet:', worker.url());
+  console.log('Worker started:', worker.url());
 });
 
 page.on('workerdestroyed', worker => {
-  console.log('Worker beendet:', worker.url());
+  console.log('Worker terminated:', worker.url());
 });
 ```
 
 ---
 
-## Methoden
+## Methods
 
 ### worker.evaluate(pageFunction, arg?)
 
-Fuehrt eine Funktion im Worker-Kontext aus und gibt das Ergebnis als
-serialisierten Wert zurueck.
+Executes a function in the worker context and returns the result as a
+serialized value.
 
-**Signatur:**
+**Signature:**
 ```typescript
 worker.evaluate<R>(
   pageFunction: Function | string,
@@ -48,19 +48,19 @@ worker.evaluate<R>(
 ): Promise<R>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `pageFunction` | `Function \| string` | ja | — | Funktion oder JS-String, der im Worker-Kontext ausgefuehrt wird |
-| `arg` | `EvaluationArgument` | nein | — | Optionales Argument, das an `pageFunction` uebergeben wird. Muss JSON-serialisierbar sein oder ein JSHandle. |
+| `pageFunction` | `Function \| string` | yes | — | Function or JS string that is executed in the worker context |
+| `arg` | `EvaluationArgument` | no | — | Optional argument passed to `pageFunction`. Must be JSON-serializable or a JSHandle. |
 
-**Rueckgabe:** `Promise<R>` — serialisierter Rueckgabewert (JSON-kompatible Typen)
+**Returns:** `Promise<R>` — serialized return value (JSON-compatible types)
 
-**Besondere Werte:** `NaN`, `Infinity`, `-0` und `undefined` werden korrekt
-behandelt.
+**Special values:** `NaN`, `Infinity`, `-0` and `undefined` are handled
+correctly.
 
-**Beispiel:**
+**Example:**
 ```javascript
 const workerValue = await worker.evaluate(() => {
   return { workerType: 'dedicated', navigator: navigator.userAgent };
@@ -72,10 +72,10 @@ console.log(workerValue);
 
 ### worker.evaluateHandle(pageFunction, arg?)
 
-Wie `evaluate()`, gibt aber ein `JSHandle` statt eines serialisierten Werts
-zurueck. Geeignet fuer nicht-serialisierbare Worker-Objekte.
+Like `evaluate()`, but returns a `JSHandle` instead of a serialized value.
+Suitable for non-serializable worker objects.
 
-**Signatur:**
+**Signature:**
 ```typescript
 worker.evaluateHandle<R>(
   pageFunction: Function | string,
@@ -83,16 +83,16 @@ worker.evaluateHandle<R>(
 ): Promise<JSHandle<R>>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `pageFunction` | `Function \| string` | ja | — | Funktion oder JS-String |
-| `arg` | `EvaluationArgument` | nein | — | Optionales Argument |
+| `pageFunction` | `Function \| string` | yes | — | Function or JS string |
+| `arg` | `EvaluationArgument` | no | — | Optional argument |
 
-**Rueckgabe:** `Promise<JSHandle>` — Handle auf den Worker-Wert
+**Returns:** `Promise<JSHandle>` — handle on the worker value
 
-**Beispiel:**
+**Example:**
 ```javascript
 const handle = await worker.evaluateHandle(() => globalThis);
 const keys = await handle.getProperties();
@@ -102,30 +102,30 @@ const keys = await handle.getProperties();
 
 ### worker.url()
 
-Gibt die URL des Worker-Skripts zurueck.
+Returns the URL of the worker script.
 
-**Signatur:**
+**Signature:**
 ```typescript
 worker.url(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `string` — vollstaendige URL des Worker-Skripts
+**Returns:** `string` — full URL of the worker script
 
-**Beispiel:**
+**Example:**
 ```javascript
-console.log('Worker-URL:', worker.url());
-// z.B. "https://example.com/workers/background.js"
+console.log('Worker URL:', worker.url());
+// e.g. "https://example.com/workers/background.js"
 ```
 
 ---
 
 ### worker.waitForEvent(event, optionsOrPredicate?)
 
-Wartet darauf, dass ein bestimmtes Event auf dem Worker-Objekt gefeuert wird.
+Waits for a specific event to be fired on the worker object.
 
-**Signatur:**
+**Signature:**
 ```typescript
 worker.waitForEvent(
   event: string,
@@ -136,21 +136,21 @@ worker.waitForEvent(
 ): Promise<any>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `event` | `string` | ja | — | Event-Name (z.B. `'close'`, `'console'`) |
-| `optionsOrPredicate` | `Function \| Object` | nein | — | Filterfunktion oder Options-Objekt |
-| `optionsOrPredicate.predicate` | `Function` | nein | — | Filtert Events; gibt `true` zurueck wenn das Event akzeptiert werden soll |
-| `optionsOrPredicate.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms (`0` = kein Timeout) |
+| `event` | `string` | yes | — | Event name (e.g. `'close'`, `'console'`) |
+| `optionsOrPredicate` | `Function \| Object` | no | — | Filter function or options object |
+| `optionsOrPredicate.predicate` | `Function` | no | — | Filters events; returns `true` when the event should be accepted |
+| `optionsOrPredicate.timeout` | `number` | no | `0` | Maximum wait time in ms (`0` = no timeout) |
 
-**Rueckgabe:** `Promise<any>` — der Event-Payload
+**Returns:** `Promise<any>` — the event payload
 
-**Beispiel:**
+**Example:**
 ```javascript
 const closeEvent = await worker.waitForEvent('close');
-console.log('Worker geschlossen');
+console.log('Worker closed');
 ```
 
 ---
@@ -159,14 +159,14 @@ console.log('Worker geschlossen');
 
 ### worker.on('close')
 
-Wird gefeuert, wenn dieser dedizierte Web Worker beendet wird.
+Fired when this dedicated Web Worker is terminated.
 
-**Event-Payload:** `Worker` — das Worker-Objekt selbst
+**Event payload:** `Worker` — the worker object itself
 
-**Beispiel:**
+**Example:**
 ```javascript
 worker.on('close', (w) => {
-  console.log('Worker beendet:', w.url());
+  console.log('Worker terminated:', w.url());
 });
 ```
 
@@ -174,14 +174,14 @@ worker.on('close', (w) => {
 
 ### worker.on('console')
 
-Wird gefeuert, wenn JavaScript im Worker `console`-API-Methoden aufruft
-(z.B. `console.log`, `console.dir`).
+Fired when JavaScript in the worker calls `console` API methods
+(e.g. `console.log`, `console.dir`).
 
-**Event-Payload:** `ConsoleMessage`
+**Event payload:** `ConsoleMessage`
 
-**Hinzugefuegt:** v1.57
+**Added:** v1.57
 
-**Beispiel:**
+**Example:**
 ```javascript
 worker.on('console', msg => {
   console.log(`[Worker ${worker.url()}] [${msg.type()}] ${msg.text()}`);
@@ -190,21 +190,21 @@ worker.on('console', msg => {
 
 ---
 
-## Worker-Zugriff ueber Page
+## Worker access via Page
 
 ```javascript
-// Alle aktiven Worker einer Seite abrufen
+// Retrieve all active workers of a page
 const workers = page.workers();
 for (const w of workers) {
   console.log(w.url());
 }
 
-// Auf neuen Worker warten
+// Wait for a new worker
 const workerPromise = page.waitForEvent('worker');
-await page.goto('https://example.com'); // laedt Worker
+await page.goto('https://example.com'); // loads worker
 const worker = await workerPromise;
 
-// Service Workers (ueber BrowserContext)
+// Service Workers (via BrowserContext)
 const serviceWorkers = context.serviceWorkers();
 ```
 
@@ -212,18 +212,18 @@ const serviceWorkers = context.serviceWorkers();
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 4      |
+| Methods   | 4      |
 | Properties | 0     |
 | Events    | 2 ('close', 'console') |
 
-**Fazit:** `evaluate()` ist die primaere Methode, um Code im Worker-Kontext
-auszufuehren und Ergebnisse abzurufen. `url()` identifiziert Worker eindeutig.
-Das `console`-Event ermoeglicht vollstaendiges Logging auch von Worker-
-Aktivitaeten, was besonders wichtig fuer Debugging in Service-Worker-
-Umgebungen ist.
+**Conclusion:** `evaluate()` is the primary method for executing code in the
+worker context and retrieving results. `url()` identifies workers uniquely.
+The `console` event enables complete logging of worker activity as
+well, which is particularly important for debugging in Service-Worker
+environments.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-worker*
+*Source: https://playwright.dev/docs/api/class-worker*

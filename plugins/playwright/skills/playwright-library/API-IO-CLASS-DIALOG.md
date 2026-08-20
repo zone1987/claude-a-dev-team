@@ -1,26 +1,26 @@
 # Playwright — class: Dialog
 
-> **Manifest:** 6 Methoden, 0 Properties, 0 Events.
-> Repraesentiert Browser-Dialoge (alert, confirm, prompt, beforeunload).
-> Instanzen werden ueber das `page.on('dialog')`-Event erhalten.
+> **Manifest:** 6 methods, 0 properties, 0 events.
+> Represents browser dialogs (alert, confirm, prompt, beforeunload).
+> Instances are obtained via the `page.on('dialog')` event.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Wichtige Hinweise](#wichtige-hinweise)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Important notes](#important-notes)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Dialog` kapselt native Browser-Dialoge. Ohne einen registrierten
-`dialog`-Handler werden Dialoge automatisch abgewiesen (Chromium/WebKit)
-bzw. koennen die Seite blockieren. Der Handler muss `accept()` oder
-`dismiss()` aufrufen, sonst haengt die Seite.
+`Dialog` encapsulates native browser dialogs. Without a registered
+`dialog` handler, dialogs are dismissed automatically (Chromium/WebKit)
+or may block the page. The handler must call `accept()` or
+`dismiss()`, otherwise the page hangs.
 
 ```javascript
 page.on('dialog', async dialog => {
@@ -31,31 +31,31 @@ page.on('dialog', async dialog => {
 
 ---
 
-## Methoden
+## Methods
 
 ### dialog.accept(promptText?)
 
-Akzeptiert den Dialog. Bei `prompt`-Dialogen kann optional ein Text-Wert
-uebergeben werden.
+Accepts the dialog. For `prompt` dialogs a text value can optionally
+be passed.
 
-**Signatur:**
+**Signature:**
 ```typescript
 dialog.accept(promptText?: string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `promptText` | `string` | nein | `""` | Text, der in ein Prompt-Eingabefeld eingetragen wird. Bei `alert`, `confirm`, `beforeunload` ohne Effekt. |
+| `promptText` | `string` | no | `""` | Text that is entered into a prompt input field. Has no effect for `alert`, `confirm`, `beforeunload`. |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('dialog', async dialog => {
   if (dialog.type() === 'prompt') {
-    await dialog.accept('Mein Name');
+    await dialog.accept('My name');
   } else {
     await dialog.accept();
   }
@@ -66,18 +66,18 @@ page.on('dialog', async dialog => {
 
 ### dialog.dismiss()
 
-Verwirft den Dialog (entspricht "Abbrechen" / "OK nicht gewaehlt").
+Dismisses the dialog (equivalent to "Cancel" / "OK not chosen").
 
-**Signatur:**
+**Signature:**
 ```typescript
 dialog.dismiss(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('dialog', async dialog => {
   await dialog.dismiss();
@@ -88,21 +88,21 @@ page.on('dialog', async dialog => {
 
 ### dialog.message()
 
-Gibt den im Dialog angezeigten Text zurueck.
+Returns the text displayed in the dialog.
 
-**Signatur:**
+**Signature:**
 ```typescript
 dialog.message(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `string` — der Nachrichtentext des Dialogs
+**Returns:** `string` — the message text of the dialog
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('dialog', dialog => {
-  console.log('Dialog-Text:', dialog.message());
+  console.log('Dialog text:', dialog.message());
 });
 ```
 
@@ -110,22 +110,22 @@ page.on('dialog', dialog => {
 
 ### dialog.defaultValue()
 
-Gibt den vorausgefuellten Wert eines `prompt`-Dialogs zurueck.
-Fuer alle anderen Dialog-Typen wird `""` zurueckgegeben.
+Returns the pre-filled value of a `prompt` dialog.
+For all other dialog types `""` is returned.
 
-**Signatur:**
+**Signature:**
 ```typescript
 dialog.defaultValue(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `string` — vorausgefuellter Prompt-Wert oder leerer String
+**Returns:** `string` — pre-filled prompt value or empty string
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('dialog', async dialog => {
-  console.log('Default:', dialog.defaultValue()); // z.B. "Max Mustermann"
+  console.log('Default:', dialog.defaultValue()); // e.g. "John Doe"
   await dialog.accept(dialog.defaultValue());
 });
 ```
@@ -134,25 +134,25 @@ page.on('dialog', async dialog => {
 
 ### dialog.type()
 
-Gibt den Typ des Dialogs zurueck.
+Returns the type of the dialog.
 
-**Signatur:**
+**Signature:**
 ```typescript
 dialog.type(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `'alert' | 'beforeunload' | 'confirm' | 'prompt'`
+**Returns:** `'alert' | 'beforeunload' | 'confirm' | 'prompt'`
 
-| Wert | Beschreibung |
+| Value | Description |
 |------|--------------|
-| `'alert'` | `window.alert()` — nur OK-Button |
-| `'confirm'` | `window.confirm()` — OK und Abbrechen |
-| `'prompt'` | `window.prompt()` — Texteingabe |
-| `'beforeunload'` | `beforeunload`-Event-Dialog — Verlassen bestaetigen |
+| `'alert'` | `window.alert()` — OK button only |
+| `'confirm'` | `window.confirm()` — OK and Cancel |
+| `'prompt'` | `window.prompt()` — text input |
+| `'beforeunload'` | `beforeunload` event dialog — confirm leaving |
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('dialog', async dialog => {
   switch (dialog.type()) {
@@ -163,7 +163,7 @@ page.on('dialog', async dialog => {
       await dialog.dismiss();
       break;
     case 'prompt':
-      await dialog.accept('Antwort');
+      await dialog.accept('Answer');
       break;
   }
 });
@@ -173,64 +173,64 @@ page.on('dialog', async dialog => {
 
 ### dialog.page()
 
-Gibt die Seite zurueck, die den Dialog ausgeloest hat.
+Returns the page that triggered the dialog.
 
-**Signatur:**
+**Signature:**
 ```typescript
 dialog.page(): Page | null
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Page | null` — die ausloesende Seite, oder `null` wenn nicht bestimmbar
+**Returns:** `Page | null` — the triggering page, or `null` if it cannot be determined
 
-**Beispiel:**
+**Example:**
 ```javascript
 page.on('dialog', dialog => {
   const origin = dialog.page();
   if (origin) {
-    console.log('Dialog von:', origin.url());
+    console.log('Dialog from:', origin.url());
   }
 });
 ```
 
 ---
 
-## Wichtige Hinweise
+## Important notes
 
-- **Automatisches Abweisen:** Ohne Handler werden Dialoge automatisch
-  abgewiesen. Dies kann dazu fuehren, dass `confirm()` `false` zurueckgibt
-  und Seiten-Logik entsprechend verzweigt.
-- **Blockierung:** Der Handler muss zwingend `accept()` oder `dismiss()`
-  aufrufen — sonst wartet der Browser ewig.
-- **Async-Handler:** Der Event-Handler kann `async` sein; Playwright wartet
-  auf die Aufloesung.
+- **Automatic dismissal:** Without a handler, dialogs are dismissed
+  automatically. This can cause `confirm()` to return `false`
+  and page logic to branch accordingly.
+- **Blocking:** The handler must always call `accept()` or `dismiss()`
+  — otherwise the browser waits forever.
+- **Async handlers:** The event handler may be `async`; Playwright waits
+  for it to resolve.
 
 ---
 
 ## Properties
 
-Keine offentlichen Properties.
+No public properties.
 
 ## Events
 
-Keine eigenen Events auf dem Dialog-Objekt. Dialog-Instanzen werden ueber
-`page.on('dialog')` empfangen.
+No own events on the Dialog object. Dialog instances are received via
+`page.on('dialog')`.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 6      |
+| Methods  | 6      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `type()` und `message()` lesen den Dialog aus; `accept()`/`dismiss()`
-beenden ihn. `defaultValue()` ist nur fuer Prompts relevant. `page()` hilft
-in Multi-Page-Szenarien beim Zuordnen des Dialogs zur Quelle.
+**Conclusion:** `type()` and `message()` read the dialog out; `accept()`/`dismiss()`
+close it. `defaultValue()` is only relevant for prompts. `page()` helps
+in multi-page scenarios to map the dialog to its source.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-dialog*
+*Source: https://playwright.dev/docs/api/class-dialog*

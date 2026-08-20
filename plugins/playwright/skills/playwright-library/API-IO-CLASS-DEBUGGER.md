@@ -1,63 +1,63 @@
 # Playwright — class: Debugger
 
-> **Manifest:** 5 Methoden, 0 Properties, 1 Event.
-> Erlaubt programmatisches Pausieren und Kontrollieren der Playwright-Test-Ausfuehrung.
-> Hinzugefuegt: v1.59. Zugriff: `test.info().debugger` oder via `@playwright/test`-API.
+> **Manifest:** 5 methods, 0 properties, 1 event.
+> Allows pausing and controlling Playwright test execution programmatically.
+> Added: v1.59. Access: `test.info().debugger` or via the `@playwright/test` API.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
+- [Overview](#overview)
+- [Methods](#methods)
 - [Events](#events)
-- [Vollstaendiges Beispiel](#vollstaendiges-beispiel)
+- [Complete example](#complete-example)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Debugger` bietet eine programmatische Schnittstelle zum Debuggen von
-Playwright-Tests — aehnlich wie Browser-DevTools-Breakpoints, aber auf
-Playwright-Aktions-Ebene. Der Debugger pausiert *vor* der naechsten
-Playwright-Aktion (nicht im JavaScript-Interpreter).
+`Debugger` provides a programmatic interface for debugging
+Playwright tests — similar to browser DevTools breakpoints, but at the
+Playwright action level. The debugger pauses *before* the next
+Playwright action (not inside the JavaScript interpreter).
 
-Alle Methoden wurden in v1.59 eingefuehrt.
+All methods were introduced in v1.59.
 
 ---
 
-## Methoden
+## Methods
 
 ### debugger.next()
 
-Setzt die Ausfuehrung fort und pausiert vor der naechsten Aktion.
-Wirft einen Fehler, wenn der Debugger nicht pausiert ist.
+Resumes execution and pauses before the next action.
+Throws an error if the debugger is not paused.
 
-**Signatur:**
+**Signature:**
 ```typescript
 debugger.next(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Schritt fuer Schritt durch Aktionen gehen
-await debugger.next(); // eine Aktion vorwaerts
-await debugger.next(); // naechste Aktion
+// Step through actions one at a time
+await debugger.next(); // one action forward
+await debugger.next(); // next action
 ```
 
 ---
 
 ### debugger.pausedDetails()
 
-Gibt Informationen ueber den aktuellen Pause-Zustand zurueck.
-Gibt `null` zurueck, wenn der Debugger nicht pausiert ist.
+Returns information about the current paused state.
+Returns `null` if the debugger is not paused.
 
-**Signatur:**
+**Signature:**
 ```typescript
 debugger.pausedDetails(): null | {
   location: {
@@ -69,26 +69,26 @@ debugger.pausedDetails(): null | {
 }
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `null | Object` mit:
+**Returns:** `null | Object` with:
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `location` | `Object` | Quellcode-Ort der naechsten Aktion |
-| `location.file` | `string` | Quelldatei-Pfad |
-| `location.line` | `number` (optional) | Zeilennummer |
-| `location.column` | `number` (optional) | Spaltennummer |
-| `title` | `string` | Beschreibung der naechsten Aktion |
+| `location` | `Object` | Source code location of the next action |
+| `location.file` | `string` | Source file path |
+| `location.line` | `number` (optional) | Line number |
+| `location.column` | `number` (optional) | Column number |
+| `title` | `string` | Description of the next action |
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Beispiel:**
+**Example:**
 ```javascript
 const details = debugger.pausedDetails();
 if (details) {
-  console.log(`Pausiert bei: "${details.title}"`);
-  console.log(`Ort: ${details.location.file}:${details.location.line}`);
+  console.log(`Paused at: "${details.title}"`);
+  console.log(`Location: ${details.location.file}:${details.location.line}`);
 }
 ```
 
@@ -96,52 +96,52 @@ if (details) {
 
 ### debugger.requestPause()
 
-Konfiguriert den Debugger, vor der naechsten Aktion zu pausieren.
-Wirft einen Fehler, wenn bereits pausiert.
+Configures the debugger to pause before the next action.
+Throws an error if already paused.
 
-**Signatur:**
+**Signature:**
 ```typescript
 debugger.requestPause(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Unterschied zu `page.pause()`:**
-- `page.pause()`: Pausiert *sofort* an der aktuellen Stelle.
-- `debugger.requestPause()`: Setzt einen Breakpoint fuer die *naechste* Aktion.
+**Difference from `page.pause()`:**
+- `page.pause()`: Pauses *immediately* at the current position.
+- `debugger.requestPause()`: Sets a breakpoint for the *next* action.
 
-**Beispiel:**
+**Example:**
 ```javascript
 await debugger.requestPause();
-// Naechste Playwright-Aktion wird jetzt pausieren
-await page.click('#button'); // pausiert hier
+// The next Playwright action will now pause
+await page.click('#button'); // pauses here
 ```
 
 ---
 
 ### debugger.resume()
 
-Setzt die Ausfuehrung vom pausierten Zustand fort.
-Wirft einen Fehler, wenn nicht pausiert.
+Resumes execution from the paused state.
+Throws an error if not paused.
 
-**Signatur:**
+**Signature:**
 ```typescript
 debugger.resume(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Debugger laeuft bis zum naechsten requestPause() oder runTo()
+// The debugger runs until the next requestPause() or runTo()
 await debugger.resume();
 ```
 
@@ -149,10 +149,10 @@ await debugger.resume();
 
 ### debugger.runTo(location)
 
-Setzt die Ausfuehrung fort und pausiert, wenn eine Aktion vom angegebenen
-Quellcode-Ort ausgeloest wird. Wirft einen Fehler, wenn nicht pausiert.
+Resumes execution and pauses when an action is triggered from the given
+source code location. Throws an error if not paused.
 
-**Signatur:**
+**Signature:**
 ```typescript
 debugger.runTo(location: {
   file: string;
@@ -161,22 +161,22 @@ debugger.runTo(location: {
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `location` | `Object` | ja | — | Ziel-Quellortobjekt |
-| `location.file` | `string` | ja | — | Pfad zur Zieldatei |
-| `location.line` | `number` | nein | — | Zeilennummer des Breakpoints |
-| `location.column` | `number` | nein | — | Spaltennummer des Breakpoints |
+| `location` | `Object` | yes | — | Target source location object |
+| `location.file` | `string` | yes | — | Path to the target file |
+| `location.line` | `number` | no | — | Line number of the breakpoint |
+| `location.column` | `number` | no | — | Column number of the breakpoint |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Ausfuehren bis Zeile 55 in der Testdatei
+// Run until line 55 in the test file
 await debugger.runTo({
   file: '/tests/checkout.spec.ts',
   line: 55
@@ -189,56 +189,56 @@ await debugger.runTo({
 
 ### debugger.on('pausedstatechanged')
 
-Wird gefeuert, wenn der Debugger pausiert oder fortgesetzt wird.
+Fired when the debugger pauses or resumes.
 
-**Hinzugefuegt:** v1.59
+**Added:** v1.59
 
-**Signatur:**
+**Signature:**
 ```javascript
 debugger.on('pausedstatechanged', (data) => {
-  // data: Payload (Typ nicht spezifiziert in Dokumentation)
+  // data: payload (type not specified in the documentation)
 });
 ```
 
-**Beispiel:**
+**Example:**
 ```javascript
 debugger.on('pausedstatechanged', () => {
   const details = debugger.pausedDetails();
   if (details) {
-    console.log(`Debugger pausiert: "${details.title}"`);
+    console.log(`Debugger paused: "${details.title}"`);
   } else {
-    console.log('Debugger fortgesetzt');
+    console.log('Debugger resumed');
   }
 });
 ```
 
 ---
 
-## Vollstaendiges Beispiel
+## Complete example
 
 ```javascript
-// Programmatischer Debugger-Workflow
+// Programmatic debugger workflow
 test('checkout flow', async ({ page, debugger: dbg }) => {
-  // Auf naechste Aktion warten
+  // Wait for the next action
   await dbg.requestPause();
 
   await page.goto('/checkout');
 
-  // Details der aktuellen Pause pruefen
+  // Inspect the details of the current pause
   const details = dbg.pausedDetails();
-  console.log('Pausiert bei:', details?.title);
+  console.log('Paused at:', details?.title);
 
-  // Schritt fuer Schritt
+  // Step by step
   await dbg.next();
   await dbg.next();
 
-  // Bis zu einem bestimmten Ort laufen
+  // Run to a specific location
   await dbg.runTo({
     file: 'checkout.spec.ts',
     line: 42
   });
 
-  // Weiterlaufen lassen
+  // Let it continue
   await dbg.resume();
 });
 ```
@@ -247,18 +247,18 @@ test('checkout flow', async ({ page, debugger: dbg }) => {
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 5      |
+| Methods  | 5      |
 | Properties | 0     |
 | Events    | 1 ('pausedstatechanged') |
 
-**Fazit:** Der `Debugger` ist ein programmatischer Breakpoint-Mechanismus auf
-Playwright-Aktions-Ebene. `requestPause()` + `next()` ermoeglicht Step-Debugging.
-`runTo()` ist das Aequivalent zu "Run to Cursor" in IDEs. Das
-`pausedstatechanged`-Event ermoeglicht reaktive Debug-UIs oder Reporter-
-Integrationen.
+**Conclusion:** The `Debugger` is a programmatic breakpoint mechanism at the
+Playwright action level. `requestPause()` + `next()` enables step debugging.
+`runTo()` is the equivalent of "Run to Cursor" in IDEs. The
+`pausedstatechanged` event enables reactive debug UIs or reporter
+integrations.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-debugger*
+*Source: https://playwright.dev/docs/api/class-debugger*

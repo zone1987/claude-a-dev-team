@@ -1,42 +1,42 @@
 # Playwright — class: Logger
 
-> **Manifest:** 2 Methoden, 0 Properties, 0 Events.
-> **DEPRECATED** — Playwright empfiehlt stattdessen `Tracing` zu verwenden.
-> Interface zur Weiterleitung von Playwright-internen Logs an benutzerdefinierte Log-Handler.
+> **Manifest:** 2 methods, 0 properties, 0 events.
+> **DEPRECATED** — Playwright recommends using `Tracing` instead.
+> Interface for forwarding Playwright-internal logs to custom log handlers.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Interface-Methoden](#interface-methoden)
-- [Verwendung](#verwendung)
+- [Overview](#overview)
+- [Interface methods](#interface-methods)
+- [Usage](#usage)
 - [Properties](#properties)
 - [Events](#events)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Logger` ist ein Interface (kein konkretes Objekt), das beim Erstellen des
-Browsers in der `logger`-Option uebergeben werden kann. Es erlaubt das
-Abfangen und Weiterleiten interner Playwright-Logs an eigene Log-Systeme.
+`Logger` is an interface (not a concrete object) that can be passed in the
+`logger` option when creating the browser. It allows
+intercepting and forwarding internal Playwright logs to your own log systems.
 
-**Deprecation-Hinweis:** "The logs pumped through this class are incomplete.
-Please use tracing instead." — Playwright empfiehlt die Verwendung von
-`context.tracing` fuer vollstaendige Diagnostik.
+**Deprecation note:** "The logs pumped through this class are incomplete.
+Please use tracing instead." — Playwright recommends using
+`context.tracing` for complete diagnostics.
 
 ---
 
-## Interface-Methoden
+## Interface methods
 
 ### logger.isEnabled(name, severity)
 
-Prueft, ob der Logger-Sink an Logs eines bestimmten Loggers mit dem
-angegebenen Schweregrad interessiert ist. Playwright ruft diese Methode
-vor dem eigentlichen `log()`-Aufruf auf — gibt `false` zurueck, wird
-`log()` nicht aufgerufen.
+Checks whether the logger sink is interested in logs from a particular logger with
+the given severity. Playwright calls this method
+before the actual `log()` call — if it returns `false`,
+`log()` is not called.
 
-**Signatur:**
+**Signature:**
 ```typescript
 logger.isEnabled(
   name: string,
@@ -44,20 +44,20 @@ logger.isEnabled(
 ): boolean
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `name` | `string` | ja | — | Name des Loggers (z.B. `'api'`, `'browser'`, `'context'`) |
-| `severity` | `'verbose' \| 'info' \| 'warning' \| 'error'` | ja | — | Schweregrad des Log-Eintrags |
+| `name` | `string` | yes | — | Name of the logger (e.g. `'api'`, `'browser'`, `'context'`) |
+| `severity` | `'verbose' \| 'info' \| 'warning' \| 'error'` | yes | — | Severity of the log entry |
 
-**Rueckgabe:** `boolean` — `true` wenn der Logger diesen Eintrag verarbeiten soll
+**Returns:** `boolean` — `true` if the logger should process this entry
 
-**Beispiel:**
+**Example:**
 ```javascript
 const myLogger = {
   isEnabled: (name, severity) => {
-    // Nur API-Logs auf Error-Level
+    // Only API logs at error level
     return name === 'api' && severity === 'error';
   },
   log: (name, severity, message, args) => {
@@ -70,10 +70,10 @@ const myLogger = {
 
 ### logger.log(name, severity, message, args, hints)
 
-Verarbeitet einen Log-Eintrag. Wird nur aufgerufen, wenn `isEnabled()`
-`true` zurueckgegeben hat.
+Processes a log entry. Only called when `isEnabled()`
+has returned `true`.
 
-**Signatur:**
+**Signature:**
 ```typescript
 logger.log(
   name: string,
@@ -86,25 +86,25 @@ logger.log(
 ): void
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `name` | `string` | ja | — | Logger-Name |
-| `severity` | `'verbose' \| 'info' \| 'warning' \| 'error'` | ja | — | Schweregrad |
-| `message` | `string \| Error` | ja | — | Log-Nachricht als String oder Error-Objekt |
-| `args` | `Array<Object>` | ja | — | Argumente fuer String-Formatierung |
-| `hints` | `Object` | nein | `{}` | Formatierungs-Hinweise |
-| `hints.color` | `string` | nein | — | Bevorzugte Farbe fuer Display (z.B. `'red'`, `'green'`) |
+| `name` | `string` | yes | — | Logger name |
+| `severity` | `'verbose' \| 'info' \| 'warning' \| 'error'` | yes | — | Severity |
+| `message` | `string \| Error` | yes | — | Log message as string or Error object |
+| `args` | `Array<Object>` | yes | — | Arguments for string formatting |
+| `hints` | `Object` | no | `{}` | Formatting hints |
+| `hints.color` | `string` | no | — | Preferred color for display (e.g. `'red'`, `'green'`) |
 
-**Rueckgabe:** `void` (synchron)
+**Returns:** `void` (synchronous)
 
 ---
 
-## Verwendung
+## Usage
 
-Das Logger-Interface wird beim `chromium.launch()` / `chromium.connect()` /
-`firefox.launch()` / `webkit.launch()` als Option uebergeben:
+The Logger interface is passed as an option to `chromium.launch()` / `chromium.connect()` /
+`firefox.launch()` / `webkit.launch()`:
 
 ```javascript
 const { chromium } = require('playwright');
@@ -122,7 +122,7 @@ const browser = await chromium.launch({
 });
 ```
 
-### Alle Logs aufzeichnen
+### Record all logs
 
 ```javascript
 const logs: string[] = [];
@@ -136,9 +136,9 @@ const browser = await chromium.launch({
   }
 });
 
-// ... Test-Aktionen ...
+// ... test actions ...
 
-// Bei Fehlschlag anzeigen
+// Display on failure
 if (testFailed) {
   console.log(logs.join('\n'));
 }
@@ -148,29 +148,29 @@ if (testFailed) {
 
 ## Properties
 
-Keine offentlichen Properties — rein Interface-basiert.
+No public properties — purely interface-based.
 
 ## Events
 
-Keine Events.
+No events.
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 2      |
+| Methods  | 2      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** Logger ist deprecated und sollte in neuem Code nicht mehr verwendet
-werden. Fuer vollstaendige Diagnostik und Debug-Informationen bietet
-`context.tracing` eine weit ueberlegene Alternative mit visueller
-Aufbereitung im Trace Viewer. Falls doch Logger benoetigt wird: `isEnabled()`
-als Gating-Funktion implementieren, um Performance-Overhead durch selektives
-Logging zu minimieren.
+**Conclusion:** Logger is deprecated and should no longer be used in new
+code. For complete diagnostics and debug information,
+`context.tracing` offers a far superior alternative with visual
+presentation in the Trace Viewer. Should Logger still be needed: implement `isEnabled()`
+as a gating function in order to minimize performance overhead through selective
+logging.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-logger*
+*Source: https://playwright.dev/docs/api/class-logger*

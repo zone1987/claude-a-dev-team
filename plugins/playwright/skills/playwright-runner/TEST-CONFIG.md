@@ -1,9 +1,9 @@
 # playwright-test-config
 
-Konfigurationsdatei `playwright.config.ts` mit `defineConfig()`. Vollstaendige Referenz
-aller Top-Level-Optionen, aller `use`-Optionen (Browser, Netzwerk, Emulation, Recording),
-Projects inkl. Dependencies/Teardown und TypeScript-Integration.
+Configuration file `playwright.config.ts` with `defineConfig()`. Complete reference
+of all top-level options, all `use` options (browser, network, emulation, recording),
+projects including dependencies/teardown and TypeScript integration.
 
-## Vertiefung
+## Deep dive
 
-- [TEST-CONFIG-CONFIG.md](TEST-CONFIG-CONFIG.md) — Alle Top-Level + use-Optionen als Tabelle
+- [TEST-CONFIG-CONFIG.md](TEST-CONFIG-CONFIG.md) — All top-level + use options as a table

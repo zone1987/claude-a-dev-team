@@ -1,8 +1,8 @@
 # class-request
 
-`Request` repraesentiert eine HTTP-Anfrage, die von einer Playwright-Page initiiert wurde. Instanzen werden ueber Page/Context-Events (`on('request')`) oder als Parameter von Route-Handlern erhalten. Das Objekt ist read-only.
+`Request` represents an HTTP request initiated by a Playwright page. Instances are obtained through page/context events (`on('request')`) or as parameters of route handlers. The object is read-only.
 
-Methoden: 15 | Properties: 0 | Events: 0
+Methods: 15 | Properties: 0 | Events: 0
 
 ---
 
@@ -14,7 +14,7 @@ Methoden: 15 | Properties: 0 | Events: 0
 await request.allHeaders(): Promise<Object<string, string>>
 ```
 
-Gibt alle HTTP-Request-Header als Objekt zurueck. Header-Namen sind lowercase. Enthaelt auch sicherheitsrelevante Header (`cookie`, etc.), die von `headers()` ausgelassen werden.
+Returns all HTTP request headers as an object. Header names are lowercase. Also includes security-relevant headers (`cookie`, etc.) that are omitted by `headers()`.
 
 **Returns:** `Promise<Object<string, string>>`
 
@@ -31,7 +31,7 @@ console.log(headers['content-type']);
 request.existingResponse(): Response | null
 ```
 
-Gibt die Response sofort zurueck, wenn sie bereits empfangen wurde — ohne zu warten. Gibt `null` zurueck wenn noch keine Response vorliegt.
+Returns the response immediately if it has already been received — without waiting. Returns `null` when no response is available yet.
 
 **Returns:** `Response | null`
 
@@ -50,7 +50,7 @@ if (response) {
 request.failure(): { errorText: string } | null
 ```
 
-Gibt ein Objekt mit dem Fehlertext zurueck wenn die Anfrage fehlgeschlagen ist. Gibt `null` zurueck fuer erfolgreiche Anfragen. Wird typischerweise in `requestfailed`-Events verwendet.
+Returns an object with the error text when the request has failed. Returns `null` for successful requests. Typically used in `requestfailed` events.
 
 **Returns:** `{ errorText: string } | null`
 
@@ -68,11 +68,11 @@ page.on('requestfailed', request => {
 request.frame(): Frame
 ```
 
-Gibt den `Frame` zurueck, der diese Anfrage initiiert hat.
+Returns the `Frame` that initiated this request.
 
 **Returns:** `Frame`
 
-**Hinweis:** Wirft eine Exception wenn der Frame nicht verfuegbar ist (z.B. bei Service Worker-Anfragen oder sehr fruehen Navigationsanfragen).
+**Note:** Throws an exception when the frame is not available (e.g. for service worker requests or very early navigation requests).
 
 ```js
 const frame = request.frame();
@@ -87,15 +87,15 @@ console.log('Frame URL:', frame.url());
 await request.headerValue(name): Promise<string | null>
 ```
 
-Gibt den Wert eines einzelnen Request-Headers zurueck (case-insensitive).
+Returns the value of a single request header (case-insensitive).
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `name` | string | Yes | — | Header-Name (Gross-/Kleinschreibung irrelevant) |
+| `name` | string | Yes | — | Header name (capitalization irrelevant) |
 
-**Returns:** `Promise<string | null>` — `null` wenn Header nicht vorhanden
+**Returns:** `Promise<string | null>` — `null` when the header is absent
 
 ```js
 const contentType = await request.headerValue('Content-Type');
@@ -109,7 +109,7 @@ const contentType = await request.headerValue('Content-Type');
 request.headers(): Object<string, string>
 ```
 
-Gibt Request-Header als Objekt zurueck (synchron). Schliesst sicherheitsrelevante Headers wie `cookie` und internale Playwright-Headers aus. Fuer vollstaendige Headers `allHeaders()` verwenden.
+Returns request headers as an object (synchronously). Excludes security-relevant headers such as `cookie` and internal Playwright headers. Use `allHeaders()` for complete headers.
 
 **Returns:** `Object<string, string>`
 
@@ -121,7 +121,7 @@ Gibt Request-Header als Objekt zurueck (synchron). Schliesst sicherheitsrelevant
 await request.headersArray(): Promise<Array<{name: string, value: string}>>
 ```
 
-Gibt alle Request-Header als Array von Name/Wert-Objekten zurueck. Behaelt Original-Casing bei und enthaelt mehrfache Eintraege fuer Multi-Value-Headers.
+Returns all request headers as an array of name/value objects. Preserves the original casing and contains multiple entries for multi-value headers.
 
 **Returns:** `Promise<Array<{name: string, value: string}>>`
 
@@ -138,7 +138,7 @@ headers.forEach(h => console.log(`${h.name}: ${h.value}`));
 request.isNavigationRequest(): boolean
 ```
 
-Gibt `true` zurueck wenn diese Anfrage eine Frame-Navigation antreibt.
+Returns `true` when this request drives a frame navigation.
 
 **Returns:** `boolean`
 
@@ -150,9 +150,9 @@ Gibt `true` zurueck wenn diese Anfrage eine Frame-Navigation antreibt.
 request.method(): string
 ```
 
-Gibt die HTTP-Methode der Anfrage zurueck.
+Returns the HTTP method of the request.
 
-**Returns:** `string` — z.B. `"GET"`, `"POST"`, `"PUT"`, `"DELETE"`
+**Returns:** `string` — e.g. `"GET"`, `"POST"`, `"PUT"`, `"DELETE"`
 
 ---
 
@@ -162,7 +162,7 @@ Gibt die HTTP-Methode der Anfrage zurueck.
 request.postData(): string | null
 ```
 
-Gibt den Request-Body als String zurueck. `null` wenn kein Body vorhanden (z.B. GET-Anfragen).
+Returns the request body as a string. `null` when no body is present (e.g. GET requests).
 
 **Returns:** `string | null`
 
@@ -174,7 +174,7 @@ Gibt den Request-Body als String zurueck. `null` wenn kein Body vorhanden (z.B. 
 request.postDataBuffer(): Buffer | null
 ```
 
-Gibt den Request-Body als binaeren `Buffer` zurueck. `null` wenn kein Body vorhanden.
+Returns the request body as a binary `Buffer`. `null` when no body is present.
 
 **Returns:** `Buffer | null`
 
@@ -186,7 +186,7 @@ Gibt den Request-Body als binaeren `Buffer` zurueck. `null` wenn kein Body vorha
 request.postDataJSON(): Serializable | null
 ```
 
-Gibt den Request-Body als geparste JavaScript-Objekt zurueck. Unterstuetzt `application/json` und `application/x-www-form-urlencoded`. Gibt `null` zurueck wenn Body nicht parsbar ist.
+Returns the request body as a parsed JavaScript object. Supports `application/json` and `application/x-www-form-urlencoded`. Returns `null` when the body is not parsable.
 
 **Returns:** `Serializable | null`
 
@@ -203,16 +203,16 @@ console.log(body?.userId);
 request.redirectedFrom(): Request | null
 ```
 
-Gibt die vorherige `Request`-Instanz zurueck, die zu dieser Anfrage weitergeleitet hat. Bildet die Redirect-Kette rueckwaerts ab.
+Returns the previous `Request` instance that redirected to this request. Maps the redirect chain backwards.
 
 **Returns:** `Request | null`
 
 ```js
-// Redirect-Chain durchlaufen
+// Walk through the redirect chain
 let req = request;
 while (req.redirectedFrom()) {
   req = req.redirectedFrom();
-  console.log('Redirect von:', req.url());
+  console.log('Redirect from:', req.url());
 }
 ```
 
@@ -224,7 +224,7 @@ while (req.redirectedFrom()) {
 request.redirectedTo(): Request | null
 ```
 
-Gibt die nachfolgende `Request`-Instanz zurueck, die durch einen Server-Redirect erstellt wurde. Gegenteil von `redirectedFrom()`.
+Returns the subsequent `Request` instance created by a server redirect. The opposite of `redirectedFrom()`.
 
 **Returns:** `Request | null`
 
@@ -236,9 +236,9 @@ Gibt die nachfolgende `Request`-Instanz zurueck, die durch einen Server-Redirect
 request.resourceType(): string
 ```
 
-Gibt den Ressourcentyp der Anfrage zurueck.
+Returns the resource type of the request.
 
-**Returns:** `string` — Moegliche Werte: `"document"`, `"stylesheet"`, `"image"`, `"media"`, `"font"`, `"script"`, `"texttrack"`, `"xhr"`, `"fetch"`, `"eventsource"`, `"websocket"`, `"manifest"`, `"other"`
+**Returns:** `string` — possible values: `"document"`, `"stylesheet"`, `"image"`, `"media"`, `"font"`, `"script"`, `"texttrack"`, `"xhr"`, `"fetch"`, `"eventsource"`, `"websocket"`, `"manifest"`, `"other"`
 
 ```js
 page.on('request', req => {
@@ -256,7 +256,7 @@ page.on('request', req => {
 await request.response(): Promise<Response | null>
 ```
 
-Wartet auf die Response zu dieser Anfrage und gibt sie zurueck. `null` wenn keine Response empfangen wurde (z.B. bei abgebrochenen Anfragen).
+Waits for the response to this request and returns it. `null` when no response was received (e.g. for aborted requests).
 
 **Returns:** `Promise<Response | null>`
 
@@ -275,7 +275,7 @@ page.on('requestfinished', async request => {
 request.serviceWorker(): Worker | null
 ```
 
-Gibt den Service Worker zurueck, der diese Anfrage ausfuehrt. `null` wenn kein Service Worker beteiligt ist. **Nur Chromium; auf anderen Browsern immer `null`.**
+Returns the service worker that performs this request. `null` when no service worker is involved. **Chromium only; always `null` on other browsers.**
 
 **Returns:** `Worker | null`
 
@@ -287,16 +287,16 @@ Gibt den Service Worker zurueck, der diese Anfrage ausfuehrt. `null` wenn kein S
 await request.sizes(): Promise<{requestBodySize: number, requestHeadersSize: number, responseBodySize: number, responseHeadersSize: number}>
 ```
 
-Gibt Groesseninformationen zur Anfrage und Antwort zurueck (in Bytes).
+Returns size information about the request and response (in bytes).
 
-**Returns:** `Promise<Object>` mit:
+**Returns:** `Promise<Object>` with:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `requestBodySize` | number | Groesse des Request-Bodys |
-| `requestHeadersSize` | number | Groesse der Request-Header |
-| `responseBodySize` | number | Groesse des Response-Bodys |
-| `responseHeadersSize` | number | Groesse der Response-Header |
+| `requestBodySize` | number | Size of the request body |
+| `requestHeadersSize` | number | Size of the request headers |
+| `responseBodySize` | number | Size of the response body |
+| `responseHeadersSize` | number | Size of the response headers |
 
 ```js
 const sizes = await request.sizes();
@@ -311,21 +311,21 @@ console.log(`Response: ${sizes.responseBodySize} bytes`);
 request.timing(): Object
 ```
 
-Gibt Timing-Informationen zur Anfrage zurueck (aehnlich Resource Timing API).
+Returns timing information about the request (similar to the Resource Timing API).
 
-**Returns:** `Object` mit:
+**Returns:** `Object` with:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `startTime` | number | Request-Startzeitpunkt (ms seit Epoch) |
-| `domainLookupStart` | number | DNS-Lookup-Beginn (ms seit startTime) |
-| `domainLookupEnd` | number | DNS-Lookup-Ende |
-| `connectStart` | number | TCP-Verbindungsaufbau-Beginn |
-| `secureConnectionStart` | number | TLS-Handshake-Beginn |
-| `connectEnd` | number | TCP-Verbindungsaufbau-Ende |
-| `requestStart` | number | Erster Byte gesendet |
-| `responseStart` | number | Erster Byte empfangen (TTFB) |
-| `responseEnd` | number | Letzter Byte empfangen |
+| `startTime` | number | Request start time (ms since epoch) |
+| `domainLookupStart` | number | DNS lookup start (ms since startTime) |
+| `domainLookupEnd` | number | DNS lookup end |
+| `connectStart` | number | TCP connection setup start |
+| `secureConnectionStart` | number | TLS handshake start |
+| `connectEnd` | number | TCP connection setup end |
+| `requestStart` | number | First byte sent |
+| `responseStart` | number | First byte received (TTFB) |
+| `responseEnd` | number | Last byte received |
 
 ```js
 const timing = request.timing();
@@ -341,7 +341,7 @@ console.log(`TTFB: ${ttfb}ms`);
 request.url(): string
 ```
 
-Gibt die vollstaendige URL der Anfrage zurueck.
+Returns the complete URL of the request.
 
 **Returns:** `string`
 
@@ -355,7 +355,7 @@ Gibt die vollstaendige URL der Anfrage zurueck.
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `Request` ist ein read-only Datenobjekt. Die wichtigsten Methoden fuer Tests sind `url()`, `method()`, `postData()`/`postDataJSON()` und `resourceType()`. Fuer vollstaendige Header-Infos (inkl. Cookies) muss `allHeaders()` statt `headers()` verwendet werden.
+**Conclusion:** `Request` is a read-only data object. The most important methods for tests are `url()`, `method()`, `postData()`/`postDataJSON()` and `resourceType()`. For complete header information (including cookies) `allHeaders()` must be used instead of `headers()`.
 
 ---
 

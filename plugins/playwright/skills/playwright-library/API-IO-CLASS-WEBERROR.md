@@ -1,59 +1,59 @@
 # Playwright — class: WebError
 
-> **Manifest:** 3 Methoden, 0 Properties, 0 Events (1 externer Context-Event).
-> Repraesentiert einen unbehandelten JavaScript-Fehler (uncaught exception) in einer Seite.
-> Instanzen werden ueber `browserContext.on('weberror')` erhalten.
+> **Manifest:** 3 methods, 0 properties, 0 events (1 external context event).
+> Represents an unhandled JavaScript error (uncaught exception) in a page.
+> Instances are received via `browserContext.on('weberror')`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Context-Event: 'weberror'](#context-event-weberror)
-- [Vollstaendiges Beispiel: Fehler-Sammlung](#vollstaendiges-beispiel-fehler-sammlung)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Context event: 'weberror'](#context-event-weberror)
+- [Complete example: error collection](#complete-example-error-collection)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`WebError` kapselt unbehandelte Ausnahmen, die im Browser-Kontext auftreten
-(d.h. Fehler, die nicht per `try/catch` oder `window.onerror` abgefangen
-wurden). Dies unterscheidet sich von `page.on('pageerror')`, das den gleichen
-Zweck hat, aber auf eine einzelne Seite beschraenkt ist.
+`WebError` encapsulates unhandled exceptions that occur in the browser context
+(i.e. errors that were not caught by `try/catch` or `window.onerror`).
+This differs from `page.on('pageerror')`, which serves the same
+purpose but is limited to a single page.
 
 ```javascript
-// Auf Context-Ebene
+// At context level
 context.on('weberror', webError => {
   console.error('Uncaught exception:', webError.error());
-  console.error('In Seite:', webError.page()?.url());
+  console.error('In page:', webError.page()?.url());
 });
 ```
 
 ---
 
-## Methoden
+## Methods
 
 ### webError.error()
 
-Gibt das zugrunde liegende JavaScript-Error-Objekt zurueck.
+Returns the underlying JavaScript Error object.
 
-**Signatur:**
+**Signature:**
 ```typescript
 webError.error(): Error
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Error` — das JavaScript Error-Objekt mit `message`, `stack`
-und ggf. weiteren Properties.
+**Returns:** `Error` — the JavaScript Error object with `message`, `stack`
+and possibly further properties.
 
-**Hinzugefuegt:** v1.38
+**Added:** v1.38
 
-**Beispiel:**
+**Example:**
 ```javascript
 context.on('weberror', webError => {
   const err = webError.error();
-  console.error('Fehler:', err.message);
+  console.error('Error:', err.message);
   console.error('Stack:', err.stack);
 });
 ```
@@ -62,9 +62,9 @@ context.on('weberror', webError => {
 
 ### webError.location()
 
-Gibt den Quellcode-Ort des Fehlers zurueck.
+Returns the source code location of the error.
 
-**Signatur:**
+**Signature:**
 ```typescript
 webError.location(): {
   url: string;
@@ -73,23 +73,23 @@ webError.location(): {
 }
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** Objekt mit:
+**Returns:** Object with:
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `url` | `string` | URL der Ressource, in der der Fehler aufgetreten ist |
-| `line` | `number` | 0-basierte Zeilennummer |
-| `column` | `number` | 0-basierte Spaltennummer |
+| `url` | `string` | URL of the resource in which the error occurred |
+| `line` | `number` | 0-based line number |
+| `column` | `number` | 0-based column number |
 
-**Hinzugefuegt:** v1.60
+**Added:** v1.60
 
-**Beispiel:**
+**Example:**
 ```javascript
 context.on('weberror', webError => {
   const loc = webError.location();
-  console.error(`Fehler bei ${loc.url}:${loc.line}:${loc.column}`);
+  console.error(`Error at ${loc.url}:${loc.line}:${loc.column}`);
 });
 ```
 
@@ -97,37 +97,37 @@ context.on('weberror', webError => {
 
 ### webError.page()
 
-Gibt die Seite zurueck, in der der unbehandelte Fehler aufgetreten ist.
+Returns the page in which the unhandled error occurred.
 
-**Signatur:**
+**Signature:**
 ```typescript
 webError.page(): Page | null
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Page | null` — die Seite oder `null`, wenn der Fehler
-nicht einer Seite zugeordnet werden konnte (z.B. in einem Service Worker)
+**Returns:** `Page | null` — the page, or `null` if the error
+could not be associated with a page (e.g. in a service worker)
 
-**Hinzugefuegt:** v1.38
+**Added:** v1.38
 
-**Beispiel:**
+**Example:**
 ```javascript
 context.on('weberror', webError => {
   const p = webError.page();
   if (p) {
-    console.error('Fehler auf Seite:', p.url());
+    console.error('Error on page:', p.url());
   } else {
-    console.error('Fehler in unbekanntem Kontext');
+    console.error('Error in unknown context');
   }
 });
 ```
 
 ---
 
-## Context-Event: 'weberror'
+## Context event: 'weberror'
 
-Das Event wird auf dem `BrowserContext` registriert:
+The event is registered on the `BrowserContext`:
 
 ```javascript
 context.on('weberror', (webError) => {
@@ -135,18 +135,18 @@ context.on('weberror', (webError) => {
 });
 ```
 
-Fuer seitenspezifische Fehler gibt es auch `page.on('pageerror')`:
+For page-specific errors there is also `page.on('pageerror')`:
 
 ```javascript
 page.on('pageerror', (error) => {
-  // error: Error (direkt, kein WebError-Wrapper)
+  // error: Error (directly, no WebError wrapper)
   console.error(error.message);
 });
 ```
 
 ---
 
-## Vollstaendiges Beispiel: Fehler-Sammlung
+## Complete example: error collection
 
 ```javascript
 const errors: string[] = [];
@@ -158,10 +158,10 @@ context.on('weberror', webError => {
 });
 
 await page.goto('https://example.com');
-// ... Testschritte ...
+// ... test steps ...
 
 if (errors.length > 0) {
-  throw new Error(`Unbehandelte Browser-Fehler:\n${errors.join('\n')}`);
+  throw new Error(`Unhandled browser errors:\n${errors.join('\n')}`);
 }
 ```
 
@@ -169,17 +169,17 @@ if (errors.length > 0) {
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 3      |
+| Methods  | 3      |
 | Properties | 0     |
-| Events    | 0 (1 Context-Event: 'weberror') |
+| Events    | 0 (1 context event: 'weberror') |
 
-**Fazit:** `error()` liefert den eigentlichen Fehler inkl. Stack-Trace.
-`location()` (ab v1.60) ist essentiell fuer die Quellortkartierung in
-Source-Map-Szenarien. `page()` hilft dabei, Fehler im Multi-Page-Kontext
-der richtigen Seite zuzuordnen.
+**Conclusion:** `error()` provides the actual error including the stack trace.
+`location()` (from v1.60) is essential for source location mapping in
+source map scenarios. `page()` helps to attribute errors in a multi-page context
+to the correct page.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-weberror*
+*Source: https://playwright.dev/docs/api/class-weberror*

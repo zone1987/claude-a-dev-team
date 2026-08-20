@@ -1,54 +1,54 @@
 # Playwright — class: Download
 
-> **Manifest:** 9 Methoden, 0 Properties, 0 Events (1 externer Page-Event).
-> Repraesentiert eine gestartete oder abgeschlossene Datei-Download-Operation.
-> Instanzen werden ueber `page.on('download')` bzw. `page.waitForEvent('download')` erhalten.
+> **Manifest:** 9 methods, 0 properties, 0 events (1 external page event).
+> Represents a started or completed file download operation.
+> Instances are obtained via `page.on('download')` or `page.waitForEvent('download')`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Page-Event: 'download'](#page-event-download)
-- [Vollstaendiges Beispiel](#vollstaendiges-beispiel)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Page event: 'download'](#page-event-download)
+- [Complete example](#complete-example)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Download`-Objekte entstehen, wenn eine Seite einen Download ausloest.
-Playwright speichert heruntergeladene Dateien temporaer im System-Temp-
-Verzeichnis; diese werden beim Schliessen des Contexts automatisch geloescht.
-Zum dauerhaften Speichern muss `saveAs()` aufgerufen werden.
+`Download` objects are created when a page triggers a download.
+Playwright stores downloaded files temporarily in the system temp
+directory; they are deleted automatically when the context closes.
+For permanent storage `saveAs()` must be called.
 
 ```javascript
 const downloadPromise = page.waitForEvent('download');
-await page.getByText('Herunterladen').click();
+await page.getByText('Download').click();
 const download = await downloadPromise;
-await download.saveAs('/tmp/meine-datei.pdf');
+await download.saveAs('/tmp/my-file.pdf');
 ```
 
 ---
 
-## Methoden
+## Methods
 
 ### download.cancel()
 
-Bricht den laufenden Download ab. Schlaegt nicht fehl, wenn der Download
-bereits abgeschlossen oder abgebrochen wurde.
+Cancels the running download. Does not fail if the download
+has already completed or been cancelled.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.cancel(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.13
+**Added:** v1.13
 
-**Beispiel:**
+**Example:**
 ```javascript
 await download.cancel();
 ```
@@ -57,21 +57,21 @@ await download.cancel();
 
 ### download.createReadStream()
 
-Gibt einen lesbaren Node.js-Stream fuer den heruntergeladenen Inhalt zurueck.
-Wirft einen Fehler bei fehlgeschlagenem oder abgebrochenem Download.
+Returns a readable Node.js stream for the downloaded content.
+Throws an error for a failed or cancelled download.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.createReadStream(): Promise<Readable>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<Readable>` — Node.js Readable Stream
+**Returns:** `Promise<Readable>` — Node.js readable stream
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 const stream = await download.createReadStream();
 const chunks: Buffer[] = [];
@@ -85,21 +85,21 @@ const content = Buffer.concat(chunks).toString('utf-8');
 
 ### download.delete()
 
-Loescht die heruntergeladene temporaere Datei. Wartet ggf. auf den Abschluss
-des Downloads.
+Deletes the downloaded temporary file. Waits for the download to
+complete if necessary.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.delete(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 await download.delete();
 ```
@@ -108,25 +108,25 @@ await download.delete();
 
 ### download.failure()
 
-Gibt den Fehlertext zurueck, falls der Download fehlgeschlagen ist.
-Gibt `null` bei erfolgreichem Download zurueck. Wartet ggf. auf Abschluss.
+Returns the error text if the download failed.
+Returns `null` for a successful download. Waits for completion if necessary.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.failure(): Promise<null | string>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<null | string>` — Fehler-String oder `null`
+**Returns:** `Promise<null | string>` — error string or `null`
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 const error = await download.failure();
 if (error) {
-  console.error('Download fehlgeschlagen:', error);
+  console.error('Download failed:', error);
 }
 ```
 
@@ -134,75 +134,75 @@ if (error) {
 
 ### download.page()
 
-Gibt die Seite zurueck, der dieser Download gehoert.
+Returns the page this download belongs to.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.page(): Page
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Page`
+**Returns:** `Page`
 
-**Hinzugefuegt:** v1.12
+**Added:** v1.12
 
-**Beispiel:**
+**Example:**
 ```javascript
 const sourcePage = download.page();
-console.log('Download von:', sourcePage.url());
+console.log('Download from:', sourcePage.url());
 ```
 
 ---
 
 ### download.path()
 
-Gibt den absoluten Dateipfad zur heruntergeladenen temporaeren Datei zurueck.
-Wirft einen Fehler bei fehlgeschlagenem oder abgebrochenem Download.
-Wartet ggf. auf Abschluss.
+Returns the absolute file path to the downloaded temporary file.
+Throws an error for a failed or cancelled download.
+Waits for completion if necessary.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.path(): Promise<string>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<string>` — absoluter Pfad zur temporaeren Datei
+**Returns:** `Promise<string>` — absolute path to the temporary file
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Hinweis:** Der Pfad ist nur gueltig, solange der BrowserContext offen ist.
+**Note:** The path is only valid while the BrowserContext is open.
 
-**Beispiel:**
+**Example:**
 ```javascript
 const tmpPath = await download.path();
-console.log('Temporaerer Pfad:', tmpPath);
+console.log('Temporary path:', tmpPath);
 ```
 
 ---
 
 ### download.saveAs(path)
 
-Kopiert die heruntergeladene Datei an den angegebenen Pfad. Sicher waehrend
-laufendem Download aufrufbar.
+Copies the downloaded file to the given path. Safe to call while
+the download is still running.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.saveAs(path: string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `path` | `string` | ja | — | Zieldateipfad (absolut oder relativ zum CWD) |
+| `path` | `string` | yes | — | Target file path (absolute or relative to the CWD) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
 await download.saveAs('/downloads/' + download.suggestedFilename());
 ```
@@ -211,23 +211,23 @@ await download.saveAs('/downloads/' + download.suggestedFilename());
 
 ### download.suggestedFilename()
 
-Gibt den vom Browser vorgeschlagenen Dateinamen zurueck (aus
-`Content-Disposition`-Header oder `download`-Attribut).
+Returns the filename suggested by the browser (from the
+`Content-Disposition` header or the `download` attribute).
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.suggestedFilename(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `string` — vorgeschlagener Dateiname
+**Returns:** `string` — suggested filename
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
-console.log(download.suggestedFilename()); // z.B. "bericht-2024.pdf"
+console.log(download.suggestedFilename()); // e.g. "report-2024.pdf"
 await download.saveAs('/tmp/' + download.suggestedFilename());
 ```
 
@@ -235,36 +235,36 @@ await download.saveAs('/tmp/' + download.suggestedFilename());
 
 ### download.url()
 
-Gibt die URL zurueck, von der heruntergeladen wurde.
+Returns the URL the file was downloaded from.
 
-**Signatur:**
+**Signature:**
 ```typescript
 download.url(): string
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `string` — Download-URL
+**Returns:** `string` — download URL
 
-**Hinzugefuegt:** v1.9
+**Added:** v1.9
 
-**Beispiel:**
+**Example:**
 ```javascript
-console.log('Download-URL:', download.url());
+console.log('Download URL:', download.url());
 ```
 
 ---
 
-## Page-Event: 'download'
+## Page event: 'download'
 
 ```javascript
 page.on('download', async (download) => {
-  console.log('Neuer Download:', download.suggestedFilename());
+  console.log('New download:', download.suggestedFilename());
   await download.saveAs('./downloads/' + download.suggestedFilename());
 });
 ```
 
-Oder als einmaliges Warten:
+Or as a one-time wait:
 
 ```javascript
 const download = await page.waitForEvent('download');
@@ -272,7 +272,7 @@ const download = await page.waitForEvent('download');
 
 ---
 
-## Vollstaendiges Beispiel
+## Complete example
 
 ```javascript
 const { chromium } = require('playwright');
@@ -286,13 +286,13 @@ const downloadPromise = page.waitForEvent('download');
 await page.click('#download-button');
 const download = await downloadPromise;
 
-// Fehlercheck
+// Error check
 const err = await download.failure();
 if (err) throw new Error(err);
 
-// Speichern
+// Save
 await download.saveAs(`/tmp/${download.suggestedFilename()}`);
-console.log('Gespeichert:', download.suggestedFilename());
+console.log('Saved:', download.suggestedFilename());
 
 await browser.close();
 ```
@@ -301,17 +301,17 @@ await browser.close();
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 9      |
+| Methods   | 9      |
 | Properties | 0     |
-| Events    | 0 (1 Page-Event: 'download') |
+| Events    | 0 (1 page event: 'download') |
 
-**Fazit:** `saveAs()` + `suggestedFilename()` sind die Kern-Methoden fuer
-typische Download-Tests. `failure()` sollte immer geprueft werden, bevor
-`path()` aufgerufen wird. `createReadStream()` erlaubt In-Memory-Verarbeitung
-ohne Zwischenspeicherung.
+**Conclusion:** `saveAs()` + `suggestedFilename()` are the core methods for
+typical download tests. `failure()` should always be checked before
+`path()` is called. `createReadStream()` allows in-memory processing
+without intermediate storage.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-download*
+*Source: https://playwright.dev/docs/api/class-download*

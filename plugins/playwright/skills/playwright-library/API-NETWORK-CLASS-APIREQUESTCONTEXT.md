@@ -1,43 +1,43 @@
 # class-apirequestcontext
 
-`APIRequestContext` ist der HTTP-Client von Playwright fuer Web-API-Tests. Instanzen werden via `apiRequest.newContext()`, `browserContext.request` oder `page.request` erhalten. Jede Instanz verwaltet eigenstaendige Cookies und konfigurierbare Einstellungen.
+`APIRequestContext` is Playwright's HTTP client for web API tests. Instances are obtained via `apiRequest.newContext()`, `browserContext.request` or `page.request`. Each instance manages its own cookies and configurable settings.
 
-Methoden: 8 | Properties: 1 | Events: 0
+Methods: 8 | Properties: 1 | Events: 0
 
 ---
 
 ## Contents
 
-- [Standard-Request-Optionen](#standard-request-optionen)
+- [Standard request options](#standard-request-options)
 - [Methods](#methods)
 - [Properties](#properties)
-- [Vollstaendiges Nutzungsbeispiel (Setup + Tests)](#vollstaendiges-nutzungsbeispiel-setup-tests)
+- [Complete usage example (setup + tests)](#complete-usage-example-setup-tests)
 - [Manifest](#manifest)
 
-## Standard-Request-Optionen
+## Standard request options
 
-Die folgenden Optionen gelten fuer alle HTTP-Methoden (`get`, `post`, `put`, `patch`, `delete`, `head`, `fetch`):
+The following options apply to all HTTP methods (`get`, `post`, `put`, `patch`, `delete`, `head`, `fetch`):
 
 | Option | Type | Required | Default | Description |
 |--------|------|----------|---------|-------------|
-| `data` | string \| Buffer \| Serializable | No | — | Request-Body; wird als JSON serialisiert wenn Objekt/Array, als String/Buffer direkt |
-| `failOnStatusCode` | boolean | No | false | Wirft Exception bei Non-2xx/3xx Status |
-| `form` | Object \| FormData | No | — | URL-kodierte Form-Daten (`application/x-www-form-urlencoded`) |
-| `headers` | Object<string,string> | No | — | Anfragespezifische Header (ergaenzen Context-Header) |
-| `ignoreHTTPSErrors` | boolean | No | false | TLS-Fehler ignorieren |
-| `maxRedirects` | number | No | 20 | Max. automatische Redirects; `0` = keine Redirects |
-| `maxRetries` | number | No | 0 | Wiederholungen bei Netzwerkfehlern |
-| `multipart` | FormData \| Object | No | — | Multipart-Formulardaten (`multipart/form-data`); unterstuetzt File-Uploads |
-| `params` | Object \| URLSearchParams \| string | No | — | Query-Parameter (werden an URL angehaengt) |
-| `timeout` | number | No | 30000 | Request-Timeout in ms |
+| `data` | string \| Buffer \| Serializable | No | — | Request body; serialized as JSON when object/array, sent directly as string/buffer |
+| `failOnStatusCode` | boolean | No | false | Throws an exception on non-2xx/3xx status |
+| `form` | Object \| FormData | No | — | URL-encoded form data (`application/x-www-form-urlencoded`) |
+| `headers` | Object<string,string> | No | — | Request-specific headers (add to the context headers) |
+| `ignoreHTTPSErrors` | boolean | No | false | Ignore TLS errors |
+| `maxRedirects` | number | No | 20 | Max. automatic redirects; `0` = no redirects |
+| `maxRetries` | number | No | 0 | Retries on network errors |
+| `multipart` | FormData \| Object | No | — | Multipart form data (`multipart/form-data`); supports file uploads |
+| `params` | Object \| URLSearchParams \| string | No | — | Query parameters (appended to the URL) |
+| `timeout` | number | No | 30000 | Request timeout in ms |
 
-**`multipart`-Objekt-Format:**
+**`multipart` object format:**
 ```js
 {
   fieldName: string | number | boolean | ReadStream | Buffer | {
-    name: string,      // Dateiname
-    mimeType: string,  // MIME-Typ
-    buffer: Buffer,    // Dateiinhalt
+    name: string,      // File name
+    mimeType: string,  // MIME type
+    buffer: Buffer,    // File content
   }
 }
 ```
@@ -52,14 +52,14 @@ Die folgenden Optionen gelten fuer alle HTTP-Methoden (`get`, `post`, `put`, `pa
 await apiRequestContext.delete(url[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-DELETE-Request.
+Sends an HTTP DELETE request.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string | Yes | — | Ziel-URL (absolut oder relativ zu `baseURL`) |
-| `options` | Object | No | — | Standard-Request-Optionen (s. oben) |
+| `url` | string | Yes | — | Target URL (absolute or relative to `baseURL`) |
+| `options` | Object | No | — | Standard request options (see above) |
 
 **Returns:** `Promise<APIResponse>`
 
@@ -76,20 +76,20 @@ expect(response.status()).toBe(204);
 await apiRequestContext.dispose([options]): Promise<void>
 ```
 
-Gibt alle Ressourcen des Contexts frei (Cookies, gecachte Responses, Verbindungen). Alle nachfolgenden Aufrufe werfen Exceptions. Muss nach Abschluss aller Tests aufgerufen werden wenn der Context nicht von Playwright verwaltet wird.
+Releases all resources of the context (cookies, cached responses, connections). All subsequent calls throw exceptions. Must be called after all tests have finished when the context is not managed by Playwright.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.reason` | string | No | — | Grund fuer die Freigabe (fuer Logging/Debugging) |
+| `options.reason` | string | No | — | Reason for the disposal (for logging/debugging) |
 
 **Returns:** `Promise<void>`
 
 ```js
 const context = await request.newContext({ baseURL: 'https://api.example.com' });
 try {
-  // Tests durchfuehren
+  // Run tests
 } finally {
   await context.dispose();
 }
@@ -103,26 +103,26 @@ try {
 await apiRequestContext.fetch(urlOrRequest[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-Request mit freier Methodenwahl. Akzeptiert eine URL-String oder eine bestehende `Request`-Instanz.
+Sends an HTTP request with a freely chosen method. Accepts a URL string or an existing `Request` instance.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `urlOrRequest` | string \| Request | Yes | — | Ziel-URL oder Request-Objekt |
-| `options` | Object | No | — | Standard-Request-Optionen plus: |
-| `options.method` | string | No | `"GET"` | HTTP-Methode (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, etc.) |
+| `urlOrRequest` | string \| Request | Yes | — | Target URL or request object |
+| `options` | Object | No | — | Standard request options plus: |
+| `options.method` | string | No | `"GET"` | HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, etc.) |
 
 **Returns:** `Promise<APIResponse>`
 
 ```js
-// Mit Methoden-Override
+// With method override
 const response = await request.fetch('https://api.example.com/books', {
   method: 'POST',
   data: { title: 'Playwright Testing', author: 'Alice' },
 });
 
-// Multipart-Upload
+// Multipart upload
 const form = new FormData();
 form.append('file', new File(['content'], 'report.pdf', { type: 'application/pdf' }));
 form.append('description', 'Monthly report');
@@ -140,32 +140,32 @@ const uploadResponse = await request.fetch('/api/upload', {
 await apiRequestContext.get(url[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-GET-Request mit optionalen Query-Parametern.
+Sends an HTTP GET request with optional query parameters.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string | Yes | — | Ziel-URL |
-| `options` | Object | No | — | Standard-Request-Optionen |
+| `url` | string | Yes | — | Target URL |
+| `options` | Object | No | — | Standard request options |
 
 **Returns:** `Promise<APIResponse>`
 
 ```js
-// Einfacher GET
+// Simple GET
 const response = await request.get('https://api.example.com/users');
 expect(response.ok()).toBeTruthy();
 
-// Mit Query-Parametern als Objekt
+// With query parameters as an object
 const response = await request.get('/api/products', {
   params: { category: 'electronics', page: 2, limit: 20 },
 });
 
-// Mit URLSearchParams
+// With URLSearchParams
 const params = new URLSearchParams({ isbn: '9783161484100', page: '1' });
 const response = await request.get('/api/books', { params });
 
-// Mit String-Query
+// With a string query
 const response = await request.get('/api/search', { params: 'q=playwright&lang=de' });
 ```
 
@@ -177,23 +177,23 @@ const response = await request.get('/api/search', { params: 'q=playwright&lang=d
 await apiRequestContext.head(url[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-HEAD-Request. Gibt nur Header zurueck, keinen Body.
+Sends an HTTP HEAD request. Returns headers only, no body.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string | Yes | — | Ziel-URL |
-| `options` | Object | No | — | Standard-Request-Optionen |
+| `url` | string | Yes | — | Target URL |
+| `options` | Object | No | — | Standard request options |
 
 **Returns:** `Promise<APIResponse>`
 
 ```js
-// Ressource-Existenz pruefen
+// Check resource existence
 const response = await request.head('/api/users/42');
 expect(response.status()).toBe(200);
 
-// Content-Length ohne Download abrufen
+// Retrieve Content-Length without downloading
 const headers = response.headers();
 console.log('Content-Length:', headers['content-length']);
 ```
@@ -206,14 +206,14 @@ console.log('Content-Length:', headers['content-length']);
 await apiRequestContext.patch(url[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-PATCH-Request fuer partielle Ressourcen-Updates.
+Sends an HTTP PATCH request for partial resource updates.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string | Yes | — | Ziel-URL |
-| `options` | Object | No | — | Standard-Request-Optionen |
+| `url` | string | Yes | — | Target URL |
+| `options` | Object | No | — | Standard request options |
 
 **Returns:** `Promise<APIResponse>`
 
@@ -232,31 +232,31 @@ expect(response.status()).toBe(200);
 await apiRequestContext.post(url[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-POST-Request. Unterstuetzt JSON, Form-Daten und Multipart.
+Sends an HTTP POST request. Supports JSON, form data and multipart.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string | Yes | — | Ziel-URL |
-| `options` | Object | No | — | Standard-Request-Optionen |
+| `url` | string | Yes | — | Target URL |
+| `options` | Object | No | — | Standard request options |
 
 **Returns:** `Promise<APIResponse>`
 
 ```js
-// JSON-Body
+// JSON body
 const response = await request.post('/api/users', {
   data: { name: 'Alice', email: 'alice@example.com', role: 'admin' },
 });
 const user = await response.json();
 expect(user.id).toBeDefined();
 
-// URL-kodierte Form
+// URL-encoded form
 const loginResponse = await request.post('/auth/login', {
   form: { username: 'alice', password: 'secret' },
 });
 
-// Multipart mit Datei-Upload
+// Multipart with file upload
 const fileContent = Buffer.from('column1,column2\nvalue1,value2');
 const importResponse = await request.post('/api/import', {
   multipart: {
@@ -278,14 +278,14 @@ const importResponse = await request.post('/api/import', {
 await apiRequestContext.put(url[, options]): Promise<APIResponse>
 ```
 
-Sendet einen HTTP-PUT-Request fuer vollstaendiges Ersetzen einer Ressource.
+Sends an HTTP PUT request for completely replacing a resource.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `url` | string | Yes | — | Ziel-URL |
-| `options` | Object | No | — | Standard-Request-Optionen |
+| `url` | string | Yes | — | Target URL |
+| `options` | Object | No | — | Standard request options |
 
 **Returns:** `Promise<APIResponse>`
 
@@ -309,16 +309,16 @@ expect(response.ok()).toBeTruthy();
 await apiRequestContext.storageState([options]): Promise<StorageState>
 ```
 
-Gibt den aktuellen Storage-State des Contexts zurueck (Cookies und LocalStorage). Kann fuer spaetere Wiederverwendung gespeichert werden.
+Returns the current storage state of the context (cookies and local storage). Can be saved for later reuse.
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
-| `options.indexedDB` | boolean | No | false | IndexedDB in Snapshot einschliessen |
-| `options.path` | string | No | — | Dateipfad zum Speichern (relativ zu cwd) |
+| `options.indexedDB` | boolean | No | false | Include IndexedDB in the snapshot |
+| `options.path` | string | No | — | File path for saving (relative to cwd) |
 
-**Returns:** `Promise<StorageState>` mit Struktur:
+**Returns:** `Promise<StorageState>` with the structure:
 ```ts
 {
   cookies: Array<{
@@ -326,7 +326,7 @@ Gibt den aktuellen Storage-State des Contexts zurueck (Cookies und LocalStorage)
     value: string,
     domain: string,
     path: string,
-    expires: number,    // Unix-Timestamp
+    expires: number,    // Unix timestamp
     httpOnly: boolean,
     secure: boolean,
     sameSite: "Strict" | "Lax" | "None"
@@ -342,13 +342,13 @@ Gibt den aktuellen Storage-State des Contexts zurueck (Cookies und LocalStorage)
 ```
 
 ```js
-// Login via API, dann State fuer Browser-Tests speichern
+// Log in via API, then save state for browser tests
 const loginResponse = await request.post('/auth/login', {
   data: { username: 'admin', password: 'secret' },
 });
 expect(loginResponse.ok()).toBeTruthy();
 
-// Cookies fuer spaetere Browser-Context-Verwendung speichern
+// Save cookies for later browser context use
 await request.storageState({ path: 'playwright/.auth/admin.json' });
 ```
 
@@ -360,7 +360,7 @@ await request.storageState({ path: 'playwright/.auth/admin.json' });
 
 **Type:** `Tracing`
 
-Bietet Zugriff auf Playwright Tracing fuer diesen Request-Context. Ermoeglicht das Aufzeichnen von API-Request-Traces zur Fehleranalyse.
+Provides access to Playwright tracing for this request context. Enables recording API request traces for error analysis.
 
 ```js
 await context.tracing.start({ snapshots: true });
@@ -370,10 +370,10 @@ await context.tracing.stop({ path: 'api-trace.zip' });
 
 ---
 
-## Vollstaendiges Nutzungsbeispiel (Setup + Tests)
+## Complete usage example (setup + tests)
 
 ```js
-// playwright.config.ts - Global Setup fuer Auth
+// playwright.config.ts - global setup for auth
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
@@ -395,16 +395,16 @@ export default async function setup() {
     data: { username: 'testuser', password: 'testpass' },
   });
 
-  if (!response.ok()) throw new Error('Login fehlgeschlagen');
+  if (!response.ok()) throw new Error('Login failed');
 
   await context.storageState({ path: 'playwright/.auth/user.json' });
   await context.dispose();
 }
 
-// user.spec.ts - Tests mit authentifiziertem Request
+// user.spec.ts - tests with an authenticated request
 import { test, expect } from '@playwright/test';
 
-test('Benutzerprofil abrufen', async ({ request }) => {
+test('retrieve user profile', async ({ request }) => {
   const response = await request.get('/api/profile');
   expect(response.ok()).toBeTruthy();
 
@@ -412,15 +412,15 @@ test('Benutzerprofil abrufen', async ({ request }) => {
   expect(profile.username).toBe('testuser');
 });
 
-test('Benutzer erstellen und loeschen', async ({ request }) => {
-  // Erstellen
+test('create and delete user', async ({ request }) => {
+  // Create
   const createResponse = await request.post('/api/users', {
     data: { name: 'Test User', email: 'test@example.com' },
   });
   expect(createResponse.status()).toBe(201);
   const { id } = await createResponse.json();
 
-  // Loeschen
+  // Delete
   const deleteResponse = await request.delete(`/api/users/${id}`);
   expect(deleteResponse.status()).toBe(204);
 });
@@ -436,7 +436,7 @@ test('Benutzer erstellen und loeschen', async ({ request }) => {
 | Properties | 1 |
 | Events | 0 |
 
-**Fazit:** `APIRequestContext` ist der vollstaendige HTTP-Client fuer Playwright API-Tests. `post()` mit `data` (JSON), `form` (URL-encoded) oder `multipart` (Datei-Upload) deckt alle gaengigen Content-Types ab. `storageState()` ist der Schluesselmechanismus fuer den Auth-State-Transfer zwischen API-Setup und Browser-Tests.
+**Conclusion:** `APIRequestContext` is the complete HTTP client for Playwright API tests. `post()` with `data` (JSON), `form` (URL-encoded) or `multipart` (file upload) covers all common content types. `storageState()` is the key mechanism for transferring auth state between API setup and browser tests.
 
 ---
 

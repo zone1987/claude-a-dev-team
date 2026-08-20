@@ -1,8 +1,8 @@
 # playwright-test-components
 
-Experimentelles Component Testing fuer React/Vue/Svelte: Setup, `mount()`-API mit Props,
-Slots, Events, `update()`, `unmount()`, Lifecycle-Hooks, und Testing-Library-Migration.
+Experimental component testing for React/Vue/Svelte: setup, `mount()` API with props,
+slots, events, `update()`, `unmount()`, lifecycle hooks, and Testing Library migration.
 
-## Vertiefung
+## Deep dive
 
-- [TEST-COMPONENTS-COMPONENTS.md](TEST-COMPONENTS-COMPONENTS.md) — Setup, mount-API, alle Optionen, Testing-Library-Mapping
+- [TEST-COMPONENTS-COMPONENTS.md](TEST-COMPONENTS-COMPONENTS.md) — Setup, mount API, all options, Testing Library mapping

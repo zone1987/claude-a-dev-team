@@ -1,21 +1,21 @@
 # class-snapshotassertions — Playwright API Reference
 
-`SnapshotAssertions` bietet Methoden zum Vergleich von Strings oder Buffer-Werten mit gespeicherten Snapshots. Kein auto-retry. Fuer Screenshots von Seiten oder Elementen sollte stattdessen `expect(page).toHaveScreenshot()` bzw. `expect(locator).toHaveScreenshot()` verwendet werden.
+`SnapshotAssertions` offers methods for comparing strings or buffer values against stored snapshots. No auto-retry. For screenshots of pages or elements, `expect(page).toHaveScreenshot()` or `expect(locator).toHaveScreenshot()` should be used instead.
 
-Zugriff via `expect(value).toMatchSnapshot(...)`.
+Accessed via `expect(value).toMatchSnapshot(...)`.
 
-Methoden-Anzahl: 2 (toMatchSnapshot mit und ohne Name)
+Method count: 2 (toMatchSnapshot with and without name)
 
 ---
 
 ## Contents
 
-- [toMatchSnapshot() — mit Name](#tomatchsnapshot-mit-name)
-- [toMatchSnapshot() — automatisch](#tomatchsnapshot-automatisch)
-- [Hinweise zur Verwendung](#hinweise-zur-verwendung)
-- [Methoden-Uebersicht (2 Methoden)](#methoden-uebersicht-2-methoden)
+- [toMatchSnapshot() — with name](#tomatchsnapshot-with-name)
+- [toMatchSnapshot() — automatic](#tomatchsnapshot-automatic)
+- [Usage notes](#usage-notes)
+- [Method overview (2 methods)](#method-overview-2-methods)
 
-## toMatchSnapshot() — mit Name
+## toMatchSnapshot() — with name
 
 ```typescript
 toMatchSnapshot(
@@ -28,32 +28,32 @@ toMatchSnapshot(
 ): Promise<void>
 ```
 
-Vergleicht einen `string`- oder `Buffer`-Wert mit dem gespeicherten Snapshot unter dem angegebenen Namen.
+Compares a `string` or `Buffer` value against the snapshot stored under the given name.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string \| string[]` | ja | — | Snapshot-Dateiname oder Array von Pfadsegmenten |
-| `options.maxDiffPixels` | `number` | nein | aus `TestConfig.expect` | Maximale Anzahl erlaubter unterschiedlicher Pixel |
-| `options.maxDiffPixelRatio` | `number` | nein | aus `TestConfig.expect` | Maximaler Anteil unterschiedlicher Pixel (0-1) |
-| `options.threshold` | `number` | nein | `0.2` | Wahrgenommene Farbdifferenz-Toleranz im YIQ-Farbraum (0 = streng, 1 = permissiv) |
+| `name` | `string \| string[]` | yes | — | Snapshot file name or array of path segments |
+| `options.maxDiffPixels` | `number` | no | from `TestConfig.expect` | Maximum number of differing pixels allowed |
+| `options.maxDiffPixelRatio` | `number` | no | from `TestConfig.expect` | Maximum ratio of differing pixels (0-1) |
+| `options.threshold` | `number` | no | `0.2` | Perceived color difference tolerance in the YIQ color space (0 = strict, 1 = permissive) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-// String-Snapshot
+// String snapshot
 expect(generatedCSV).toMatchSnapshot('export.csv');
 
-// Buffer-Snapshot (z.B. PDF)
+// Buffer snapshot (e.g. PDF)
 const pdfBuffer = await page.pdf();
 expect(pdfBuffer).toMatchSnapshot('report.pdf');
 
-// Pfad-Segmente
+// Path segments
 expect(xmlData).toMatchSnapshot(['exports', 'data.xml']);
 ```
 
 ---
 
-## toMatchSnapshot() — automatisch
+## toMatchSnapshot() — automatic
 
 ```typescript
 toMatchSnapshot(options?: {
@@ -64,22 +64,22 @@ toMatchSnapshot(options?: {
 }): Promise<void>
 ```
 
-Vergleicht mit einem Snapshot; Name wird aus dem Testnamen und einer Ordinalzahl generiert, wenn `name` fehlt.
+Compares against a snapshot; the name is generated from the test name and an ordinal number when `name` is missing.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.name` | `string \| string[]` | nein | auto (Testname + Zaehlnummer) | Optionaler Snapshot-Name |
-| `options.maxDiffPixels` | `number` | nein | aus `TestConfig.expect` | Maximale Anzahl erlaubter unterschiedlicher Pixel |
-| `options.maxDiffPixelRatio` | `number` | nein | aus `TestConfig.expect` | Maximaler Anteil unterschiedlicher Pixel (0-1) |
-| `options.threshold` | `number` | nein | `0.2` | Farbdifferenz-Toleranz (YIQ-Farbraum, 0-1) |
+| `options.name` | `string \| string[]` | no | auto (test name + counter) | Optional snapshot name |
+| `options.maxDiffPixels` | `number` | no | from `TestConfig.expect` | Maximum number of differing pixels allowed |
+| `options.maxDiffPixelRatio` | `number` | no | from `TestConfig.expect` | Maximum ratio of differing pixels (0-1) |
+| `options.threshold` | `number` | no | `0.2` | Color difference tolerance (YIQ color space, 0-1) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-// Automatisch benannt (erster Aufruf im Test = "-1", zweiter = "-2", usw.)
+// Automatically named (first call in the test = "-1", second = "-2", etc.)
 expect(jsonOutput).toMatchSnapshot();
 
-// Mit explizitem Namen im options-Objekt
+// With an explicit name in the options object
 expect(htmlContent).toMatchSnapshot({ name: 'rendered-template.html' });
 expect(imageBuffer).toMatchSnapshot({
   name: 'thumbnail.png',
@@ -90,30 +90,30 @@ expect(imageBuffer).toMatchSnapshot({
 
 ---
 
-## Hinweise zur Verwendung
+## Usage notes
 
-**Snapshot-Aktualisierung:** Beim ersten Aufruf wird der Snapshot erstellt. Zur Aktualisierung:
+**Snapshot updating:** On the first call the snapshot is created. To update:
 
 ```bash
 npx playwright test --update-snapshots
 ```
 
-**Speicherort:** Snapshots werden standardmaessig in einem `__snapshots__`-Verzeichnis neben der Testdatei gespeichert. Konfigurierbar via `TestConfig.snapshotDir`.
+**Storage location:** Snapshots are stored by default in a `__snapshots__` directory next to the test file. Configurable via `TestConfig.snapshotDir`.
 
-**Abgrenzung zu `toHaveScreenshot`:**
-- `toMatchSnapshot` fuer beliebige `string`- oder `Buffer`-Werte
-- `expect(page).toHaveScreenshot()` fuer Seiten-Screenshots (mit Stabilisierungs-Wartezeit)
-- `expect(locator).toHaveScreenshot()` fuer Element-Screenshots
+**Distinction from `toHaveScreenshot`:**
+- `toMatchSnapshot` for arbitrary `string` or `Buffer` values
+- `expect(page).toHaveScreenshot()` for page screenshots (with stabilization wait time)
+- `expect(locator).toHaveScreenshot()` for element screenshots
 
 ---
 
-## Methoden-Uebersicht (2 Methoden)
+## Method overview (2 methods)
 
-| Methode | Beschreibung |
+| Method | Description |
 |---|---|
-| `toMatchSnapshot(name, options?)` | Vergleich mit benanntem Snapshot |
-| `toMatchSnapshot(options?)` | Vergleich mit auto-benanntem Snapshot |
+| `toMatchSnapshot(name, options?)` | Comparison against a named snapshot |
+| `toMatchSnapshot(options?)` | Comparison against an auto-named snapshot |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-snapshotassertions
+Source: https://playwright.dev/docs/api/class-snapshotassertions

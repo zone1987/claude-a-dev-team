@@ -2,8 +2,8 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
-- [Elemente ansprechen](#elemente-ansprechen)
+- [Command overview](#command-overview)
+- [Addressing elements](#addressing-elements)
 - [click](#click)
 - [dblclick](#dblclick)
 - [fill](#fill)
@@ -14,32 +14,32 @@
 - [drag](#drag)
 - [upload](#upload)
 - [resize](#resize)
-- [Login-Workflow (Beispiel)](#login-workflow-beispiel)
+- [Login workflow (example)](#login-workflow-example)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `click <ref> [button]` | Element klicken (links, rechts oder Mitte) |
-| `dblclick <ref> [button]` | Element doppelklicken |
-| `fill <ref> <text>` | Text-Feld leeren und befuellen |
-| `fill <ref> <text> --submit` | Befuellen und Enter druecken |
-| `type <text>` | Text in fokussiertes Element eingeben |
-| `select <ref> <value>` | Dropdown-Option auswaehlen |
-| `check <ref>` | Checkbox oder Radio-Button anklicken (aktivieren) |
-| `uncheck <ref>` | Checkbox deaktivieren |
-| `hover <ref>` | Ueber ein Element hovern |
-| `drag <startRef> <endRef>` | Drag & Drop |
-| `upload <file>` | Datei hochladen |
-| `resize <width> <height>` | Browser-Fenster anpassen |
+| `click <ref> [button]` | Click an element (left, right or middle) |
+| `dblclick <ref> [button]` | Double-click an element |
+| `fill <ref> <text>` | Clear a text field and fill it |
+| `fill <ref> <text> --submit` | Fill and press Enter |
+| `type <text>` | Type text into the focused element |
+| `select <ref> <value>` | Select a dropdown option |
+| `check <ref>` | Click a checkbox or radio button (activate) |
+| `uncheck <ref>` | Deactivate a checkbox |
+| `hover <ref>` | Hover over an element |
+| `drag <startRef> <endRef>` | Drag & drop |
+| `upload <file>` | Upload a file |
+| `resize <width> <height>` | Resize the browser window |
 
 ---
 
-## Elemente ansprechen
+## Addressing elements
 
-### Drei unterstuetzte Methoden
+### Three supported methods
 
-**Refs aus Snapshots (empfohlen):**
+**Refs from snapshots (recommended):**
 
 ```bash
 playwright-cli snapshot
@@ -47,7 +47,7 @@ playwright-cli click e15
 playwright-cli fill e3 "hello"
 ```
 
-**CSS-Selektoren:**
+**CSS selectors:**
 
 ```bash
 playwright-cli click "#main > button.submit"
@@ -55,7 +55,7 @@ playwright-cli fill "#email" "test@example.com"
 playwright-cli click "[data-testid='submit']"
 ```
 
-**Playwright-Locators:**
+**Playwright locators:**
 
 ```bash
 playwright-cli click "getByRole('button', { name: 'Submit' })"
@@ -70,18 +70,18 @@ playwright-cli click "getByText('Login')"
 
 ```bash
 playwright-cli click e15
-playwright-cli click e15 right        # Rechtsklick
-playwright-cli click e15 middle       # Mittelklick
+playwright-cli click e15 right        # Right click
+playwright-cli click e15 middle       # Middle click
 playwright-cli click "#submit-btn"
 playwright-cli click "getByRole('button', { name: 'Save' })"
 ```
 
-### click-Argumente
+### click arguments
 
-| Argument | Typ | Pflicht | Standard | Beschreibung |
+| Argument | Type | Required | Default | Description |
 |----------|-----|---------|---------|-------------|
-| `<ref>` | string | Ja | — | Element-Ref, CSS-Selektor oder Playwright-Locator |
-| `[button]` | string | Nein | `left` | Maustaste: `left`, `right`, `middle` |
+| `<ref>` | string | Yes | — | Element ref, CSS selector or Playwright locator |
+| `[button]` | string | No | `left` | Mouse button: `left`, `right`, `middle` |
 
 ---
 
@@ -92,12 +92,12 @@ playwright-cli dblclick e15
 playwright-cli dblclick "#my-element"
 ```
 
-### dblclick-Argumente
+### dblclick arguments
 
-| Argument | Typ | Pflicht | Standard | Beschreibung |
+| Argument | Type | Required | Default | Description |
 |----------|-----|---------|---------|-------------|
-| `<ref>` | string | Ja | — | Element-Ref, CSS-Selektor oder Playwright-Locator |
-| `[button]` | string | Nein | `left` | Maustaste: `left`, `right`, `middle` |
+| `<ref>` | string | Yes | — | Element ref, CSS selector or Playwright locator |
+| `[button]` | string | No | `left` | Mouse button: `left`, `right`, `middle` |
 
 ---
 
@@ -110,13 +110,13 @@ playwright-cli fill "#search" "playwright"
 playwright-cli fill "getByLabel('Email')" "user@example.com"
 ```
 
-### fill-Argumente und Optionen
+### fill arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `<ref>` | string | Ja | — | Element-Ref, CSS-Selektor oder Playwright-Locator |
-| `<text>` | string | Ja | — | Einzugebender Text (ersetzt vorhandenen Inhalt) |
-| `--submit` | flag | Nein | false | Enter nach dem Befuellen druecken |
+| `<ref>` | string | Yes | — | Element ref, CSS selector or Playwright locator |
+| `<text>` | string | Yes | — | Text to enter (replaces existing content) |
+| `--submit` | flag | No | false | Press Enter after filling |
 
 ---
 
@@ -127,14 +127,14 @@ playwright-cli type "Buy groceries"
 playwright-cli type "Water flowers"
 ```
 
-### type-Argumente
+### type arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<text>` | string | Ja | In das aktuell fokussierte Element einzugebender Text |
+| `<text>` | string | Yes | Text to type into the currently focused element |
 
-Unterschied zu `fill`: `type` simuliert echte Tastatureingaben zeichenweise,
-`fill` setzt den Wert direkt und loescht vorher.
+Difference from `fill`: `type` simulates real keyboard input character by character,
+`fill` sets the value directly and clears it beforehand.
 
 ---
 
@@ -146,12 +146,12 @@ playwright-cli select "#country" "US"
 playwright-cli select "getByLabel('Country')" "France"
 ```
 
-### select-Argumente
+### select arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<ref>` | string | Ja | Element-Ref, CSS-Selektor oder Playwright-Locator des `<select>`-Elements |
-| `<value>` | string | Ja | Wert (`value`-Attribut) oder sichtbarer Text der Option |
+| `<ref>` | string | Yes | Element ref, CSS selector or Playwright locator of the `<select>` element |
+| `<value>` | string | Yes | Value (`value` attribute) or visible text of the option |
 
 ---
 
@@ -163,11 +163,11 @@ playwright-cli uncheck e21
 playwright-cli check "[name='agree']"
 ```
 
-### check/uncheck-Argumente
+### check/uncheck arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<ref>` | string | Ja | Element-Ref, CSS-Selektor oder Playwright-Locator der Checkbox/Radio |
+| `<ref>` | string | Yes | Element ref, CSS selector or Playwright locator of the checkbox/radio |
 
 ---
 
@@ -179,11 +179,11 @@ playwright-cli hover "#menu-trigger"
 playwright-cli hover "getByText('Hover me')"
 ```
 
-### hover-Argumente
+### hover arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<ref>` | string | Ja | Element-Ref, CSS-Selektor oder Playwright-Locator |
+| `<ref>` | string | Yes | Element ref, CSS selector or Playwright locator |
 
 ---
 
@@ -194,12 +194,12 @@ playwright-cli drag e10 e20
 playwright-cli drag "#draggable" "#droptarget"
 ```
 
-### drag-Argumente
+### drag arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<startRef>` | string | Ja | Quell-Element-Ref, CSS-Selektor oder Playwright-Locator |
-| `<endRef>` | string | Ja | Ziel-Element-Ref, CSS-Selektor oder Playwright-Locator |
+| `<startRef>` | string | Yes | Source element ref, CSS selector or Playwright locator |
+| `<endRef>` | string | Yes | Target element ref, CSS selector or Playwright locator |
 
 ---
 
@@ -210,13 +210,13 @@ playwright-cli upload ./document.pdf
 playwright-cli upload ./image.png
 ```
 
-### upload-Argumente
+### upload arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<file>` | string (Pfad) | Ja | Pfad zur hochzuladenden Datei |
+| `<file>` | string (path) | Yes | Path to the file to upload |
 
-Der Datei-Eingabe-Dialog muss vorher durch Klick geoeffnet worden sein.
+The file input dialog must have been opened beforehand by a click.
 
 ---
 
@@ -224,20 +224,20 @@ Der Datei-Eingabe-Dialog muss vorher durch Klick geoeffnet worden sein.
 
 ```bash
 playwright-cli resize 1280 720
-playwright-cli resize 375 812          # iPhone-Groesse
-playwright-cli resize 1920 1080        # Full-HD Desktop
+playwright-cli resize 375 812          # iPhone size
+playwright-cli resize 1920 1080        # Full HD desktop
 ```
 
-### resize-Argumente
+### resize arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<width>` | number | Ja | Fensterbreite in Pixeln |
-| `<height>` | number | Ja | Fensterhoehe in Pixeln |
+| `<width>` | number | Yes | Window width in pixels |
+| `<height>` | number | Yes | Window height in pixels |
 
 ---
 
-## Login-Workflow (Beispiel)
+## Login workflow (example)
 
 ```bash
 playwright-cli open https://app.example.com/login
@@ -250,4 +250,4 @@ playwright-cli screenshot --filename=after-login.png
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/interaction
+Source: https://playwright.dev/agent-cli/commands/interaction

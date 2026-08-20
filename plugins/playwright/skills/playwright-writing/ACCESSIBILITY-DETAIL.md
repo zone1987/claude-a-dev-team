@@ -1,51 +1,51 @@
-# Playwright Accessibility Testing - Vollstaendige Referenz
+# Playwright Accessibility Testing - Complete Reference
 
 ---
 
 ## Contents
 
-- [1. Uebersicht und Grenzen](#1-uebersicht-und-grenzen)
-- [2. ARIA-Snapshots](#2-aria-snapshots)
-- [3. ARIA-Snapshot-Template-Syntax](#3-aria-snapshot-template-syntax)
-- [4. Matching-Modi](#4-matching-modi)
-- [5. Regex-Matching in Templates](#5-regex-matching-in-templates)
-- [6. Snapshot-Generierung und Aktualisierung](#6-snapshot-generierung-und-aktualisierung)
-- [7. Code-Generator fuer ARIA-Snapshots](#7-code-generator-fuer-aria-snapshots)
-- [8. axe-core Integration](#8-axe-core-integration)
-- [9. Axe-Beispiele](#9-axe-beispiele)
-- [10. AxeResults-Struktur](#10-axeresults-struktur)
-- [11. Test-Fixtures fuer axe](#11-test-fixtures-fuer-axe)
-- [12. Dynamische Inhalte pruefen](#12-dynamische-inhalte-pruefen)
-- [13. ARIA-Snapshot vs. axe](#13-aria-snapshot-vs-axe)
+- [1. Overview and limits](#1-overview-and-limits)
+- [2. ARIA snapshots](#2-aria-snapshots)
+- [3. ARIA snapshot template syntax](#3-aria-snapshot-template-syntax)
+- [4. Matching modes](#4-matching-modes)
+- [5. Regex matching in templates](#5-regex-matching-in-templates)
+- [6. Snapshot generation and updating](#6-snapshot-generation-and-updating)
+- [7. Code generator for ARIA snapshots](#7-code-generator-for-aria-snapshots)
+- [8. axe-core integration](#8-axe-core-integration)
+- [9. Axe examples](#9-axe-examples)
+- [10. AxeResults structure](#10-axeresults-structure)
+- [11. Test fixtures for axe](#11-test-fixtures-for-axe)
+- [12. Checking dynamic content](#12-checking-dynamic-content)
+- [13. ARIA snapshot vs. axe](#13-aria-snapshot-vs-axe)
 
-## 1. Uebersicht und Grenzen
+## 1. Overview and limits
 
-Automatisierte Accessibility-Tests koennen strukturelle Probleme erkennen
-(fehlende Alt-Texte, falsche ARIA-Rollen, fehlende Labels). Viele
-Barrierefreiheitsprobleme erfordern jedoch manuelle Pruefung mit Tools wie
+Automated accessibility tests can detect structural problems
+(missing alt texts, wrong ARIA roles, missing labels). Many
+accessibility problems, however, require manual checking with tools such as
 "Accessibility Insights for Web".
 
-Playwright bietet zwei Ansaetze:
-1. **ARIA-Snapshots** - Playwright-native, schnell, kein extra Package
-2. **axe-core Integration** - WCAG-konformes Regelwerk, ausfuehrlichere Berichte
+Playwright offers two approaches:
+1. **ARIA snapshots** - Playwright-native, fast, no extra package
+2. **axe-core integration** - WCAG-compliant rule set, more detailed reports
 
 ---
 
-## 2. ARIA-Snapshots
+## 2. ARIA snapshots
 
 ### toMatchAriaSnapshot(template, options?)
 
-Vergleicht den Accessibility-Tree gegen ein YAML-Template.
+Compares the accessibility tree against a YAML template.
 
 ```typescript
-// Ganze Seite
+// Whole page
 await expect(page).toMatchAriaSnapshot(`
   - heading "Playwright" [level=1]
   - link "Get Started"
   - link "API Reference"
 `);
 
-// Spezifisches Element
+// Specific element
 await expect(page.locator('nav')).toMatchAriaSnapshot(`
   - list
     - listitem
@@ -57,7 +57,7 @@ await expect(page.locator('nav')).toMatchAriaSnapshot(`
 
 ### page.ariaSnapshot() / locator.ariaSnapshot()
 
-Programmatische Erzeugung des ARIA-Snapshots als YAML-String.
+Programmatic generation of the ARIA snapshot as a YAML string.
 
 ```typescript
 const snapshot = await page.ariaSnapshot();
@@ -68,20 +68,20 @@ const navSnapshot = await page.locator('nav').ariaSnapshot();
 
 ---
 
-## 3. ARIA-Snapshot-Template-Syntax
+## 3. ARIA snapshot template syntax
 
-### Grundstruktur
+### Basic structure
 
 ```yaml
 - role "accessible name" [attribute=value]
   - child-role "child name"
 ```
 
-Jede Zeile: `- <role> "<name>"` optional gefolgt von `[attr=value]`.
+Each line: `- <role> "<name>"` optionally followed by `[attr=value]`.
 
-### Rollen (Auswahl)
+### Roles (selection)
 
-| ARIA/HTML-Rolle | Beispiel |
+| ARIA/HTML role | Example |
 |-----------------|---------|
 | `heading` | `- heading "Title" [level=1]` |
 | `button` | `- button "Submit"` |
@@ -108,11 +108,11 @@ Jede Zeile: `- <role> "<name>"` optional gefolgt von `[attr=value]`.
 | `alert` | `- alert: Error message` |
 | `dialog` | `- dialog "Confirm"` |
 
-### Attribute
+### Attributes
 
-| Attribut | Typ | Beispiel |
+| Attribute | Type | Example |
 |----------|-----|---------|
-| `checked` | boolean | `[checked]` oder `[checked=false]` |
+| `checked` | boolean | `[checked]` or `[checked=false]` |
 | `disabled` | boolean | `[disabled]` |
 | `expanded` | boolean | `[expanded=true]` |
 | `level` | number | `[level=2]` |
@@ -122,12 +122,12 @@ Jede Zeile: `- <role> "<name>"` optional gefolgt von `[attr=value]`.
 
 ---
 
-## 4. Matching-Modi
+## 4. Matching modes
 
-### Partial Matching (Standard)
+### Partial matching (default)
 
-Nur angegebene Kinder muessen vorhanden sein, weitere duerfen existieren.
-Reihenfolge muss stimmen.
+Only the specified children must be present, further ones may exist.
+The order must match.
 
 ```typescript
 await expect(page).toMatchAriaSnapshot(`
@@ -135,12 +135,12 @@ await expect(page).toMatchAriaSnapshot(`
   - list
     - listitem: "Laptop"
 `);
-// Auch okay wenn weitere listitem-Elemente vorhanden sind
+// Also okay if further listitem elements are present
 ```
 
 ### children: equal
 
-Exakt diese Kinder, keine weiteren erlaubt.
+Exactly these children, no further ones allowed.
 
 ```typescript
 await expect(page.locator('ul.colors')).toMatchAriaSnapshot(`
@@ -154,7 +154,7 @@ await expect(page.locator('ul.colors')).toMatchAriaSnapshot(`
 
 ### children: deep-equal
 
-Exakt-Match inkl. aller verschachtelten Kinder.
+Exact match including all nested children.
 
 ```typescript
 await expect(page.locator('nav')).toMatchAriaSnapshot(`
@@ -168,14 +168,14 @@ await expect(page.locator('nav')).toMatchAriaSnapshot(`
 `);
 ```
 
-### Globale Konfiguration
+### Global configuration
 
 ```typescript
 // playwright.config.ts
 export default defineConfig({
   expect: {
     toMatchAriaSnapshot: {
-      children: 'equal',  // Standard fuer alle toMatchAriaSnapshot-Aufrufe
+      children: 'equal',  // Default for all toMatchAriaSnapshot calls
     },
   },
 });
@@ -183,23 +183,23 @@ export default defineConfig({
 
 ---
 
-## 5. Regex-Matching in Templates
+## 5. Regex matching in templates
 
-Fuer dynamische Texte (Zahlen, Timestamps, etc.):
+For dynamic texts (numbers, timestamps, etc.):
 
 ```typescript
-// Zahl in Ueberschrift
+// Number in heading
 await expect(page).toMatchAriaSnapshot(`
   - heading /Issues \d+/ [level=2]
 `);
 
-// URL-Pattern bei Link
+// URL pattern on a link
 await expect(page.locator('footer')).toMatchAriaSnapshot(`
   - link "YouTube":
     - /url: /https:\/\/www\.youtube\.com\/.*/
 `);
 
-// Beliebiger Text
+// Any text
 await expect(page.locator('.timestamp')).toMatchAriaSnapshot(`
   - text /\d{2}\.\d{2}\.\d{4}/
 `);
@@ -207,45 +207,45 @@ await expect(page.locator('.timestamp')).toMatchAriaSnapshot(`
 
 ---
 
-## 6. Snapshot-Generierung und Aktualisierung
+## 6. Snapshot generation and updating
 
-### Leeres Template (auto-generieren)
+### Empty template (auto-generate)
 
 ```typescript
-// Snapshot wird beim ersten Lauf erzeugt
+// Snapshot is created on the first run
 await expect(page.locator('#navigation')).toMatchAriaSnapshot('');
 ```
 
-### CLI-Flags
+### CLI flags
 
 ```bash
-# Alle Snapshots aktualisieren
+# Update all snapshots
 npx playwright test --update-snapshots
 
-# Kurzform
+# Short form
 npx playwright test -u
 
-# Update-Methode (patch = git-apply-barer Diff, Standard)
+# Update method (patch = git-apply-able diff, default)
 npx playwright test --update-snapshots --update-source-method=patch
 
-# Merge-Konflikte fuer manuelle Auswahl
+# Merge conflicts for manual selection
 npx playwright test --update-snapshots --update-source-method=3way
 
-# Direkte Ueberschreibung
+# Direct overwrite
 npx playwright test --update-snapshots --update-source-method=overwrite
 ```
 
-### Separate Snapshot-Dateien
+### Separate snapshot files
 
 ```typescript
-// Snapshot in eigener .aria.yml-Datei
+// Snapshot in its own .aria.yml file
 await expect(page.getByRole('main')).toMatchAriaSnapshot({
   name: 'main-content.aria.yml',
 });
-// Gespeichert in: {testFile}-snapshots/main-content.aria.yml
+// Stored in: {testFile}-snapshots/main-content.aria.yml
 ```
 
-### Pfad-Konfiguration
+### Path configuration
 
 ```typescript
 // playwright.config.ts
@@ -258,18 +258,18 @@ expect: {
 
 ---
 
-## 7. Code-Generator fuer ARIA-Snapshots
+## 7. Code generator for ARIA snapshots
 
-Playwright Inspector kann Snapshots interaktiv erstellen:
+The Playwright Inspector can create snapshots interactively:
 
-1. `npx playwright codegen https://example.com` starten
-2. "Assert snapshot"-Aktion auswaehlen
-3. Element anklicken -> ARIA-Snapshot wird generiert
-4. "Aria snapshot"-Tab zeigt Rollen, Attribute, Namen
+1. Start `npx playwright codegen https://example.com`
+2. Select the "Assert snapshot" action
+3. Click an element -> ARIA snapshot is generated
+4. The "Aria snapshot" tab shows roles, attributes, names
 
 ---
 
-## 8. axe-core Integration
+## 8. axe-core integration
 
 ### Installation
 
@@ -277,7 +277,7 @@ Playwright Inspector kann Snapshots interaktiv erstellen:
 npm install --save-dev @axe-core/playwright
 ```
 
-### AxeBuilder - Konstruktor
+### AxeBuilder - constructor
 
 ```typescript
 import { AxeBuilder } from '@axe-core/playwright';
@@ -285,23 +285,23 @@ import { AxeBuilder } from '@axe-core/playwright';
 const axeBuilder = new AxeBuilder({ page });
 ```
 
-### AxeBuilder - Methoden
+### AxeBuilder - methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameter | Description |
 |---------|-----------|--------------|
-| `analyze()` | - | Scan ausfuehren, gibt Promise<AxeResults> zurueck |
-| `include(selector)` | `string \| string[]` | Nur diese Bereiche pruefen |
-| `exclude(selector)` | `string \| string[]` | Diese Bereiche ausnehmen |
-| `withTags(tags)` | `string[]` | Nur Regeln mit diesen WCAG-Tags |
-| `disableRules(rules)` | `string[]` | Bestimmte Regeln deaktivieren |
-| `withRules(rules)` | `string[]` | Nur bestimmte Regeln pruefen |
-| `options(options)` | `RunOptions` | Vollstaendige axe-Optionen |
+| `analyze()` | - | Run the scan, returns Promise<AxeResults> |
+| `include(selector)` | `string \| string[]` | Check only these areas |
+| `exclude(selector)` | `string \| string[]` | Exclude these areas |
+| `withTags(tags)` | `string[]` | Only rules with these WCAG tags |
+| `disableRules(rules)` | `string[]` | Disable specific rules |
+| `withRules(rules)` | `string[]` | Check only specific rules |
+| `options(options)` | `RunOptions` | Complete axe options |
 
 ---
 
-### WCAG-Tags
+### WCAG tags
 
-| Tag | Bedeutung |
+| Tag | Meaning |
 |-----|-----------|
 | `'wcag2a'` | WCAG 2.0 Level A |
 | `'wcag2aa'` | WCAG 2.0 Level AA |
@@ -313,9 +313,9 @@ const axeBuilder = new AxeBuilder({ page });
 
 ---
 
-## 9. Axe-Beispiele
+## 9. Axe examples
 
-### Einfacher Seitenscans
+### Simple page scan
 
 ```typescript
 import { test, expect } from '@playwright/test';
@@ -330,7 +330,7 @@ test('page should have no accessibility violations', async ({ page }) => {
 });
 ```
 
-### WCAG-konformer Scan
+### WCAG-compliant scan
 
 ```typescript
 test('WCAG 2.1 AA compliance', async ({ page }) => {
@@ -344,7 +344,7 @@ test('WCAG 2.1 AA compliance', async ({ page }) => {
 });
 ```
 
-### Gezielter Scan eines Bereichs
+### Targeted scan of an area
 
 ```typescript
 test('navigation accessibility', async ({ page }) => {
@@ -360,22 +360,22 @@ test('navigation accessibility', async ({ page }) => {
 });
 ```
 
-### Bekannte Probleme ausschliessen
+### Excluding known issues
 
 ```typescript
 test('page with known issues excluded', async ({ page }) => {
   await page.goto('/legacy-section');
 
   const results = await new AxeBuilder({ page })
-    .exclude('#legacy-widget')           // Element + Kinder ausschliessen
-    .disableRules(['color-contrast'])    // Regel fuer ganzen Scan deaktivieren
+    .exclude('#legacy-widget')           // Exclude element + children
+    .disableRules(['color-contrast'])    // Disable rule for the whole scan
     .analyze();
 
   expect(results.violations).toEqual([]);
 });
 ```
 
-### Violations-Fingerprint (empfohlen ueber vollstaendigen Snapshot)
+### Violations fingerprint (recommended over a full snapshot)
 
 ```typescript
 function violationFingerprints(results: AxeResults) {
@@ -390,57 +390,57 @@ test('track known violations', async ({ page }, testInfo) => {
 
   const results = await new AxeBuilder({ page }).analyze();
 
-  // Als Attachment speichern (nicht im Snapshot-Vergleich)
+  // Store as an attachment (not in the snapshot comparison)
   await testInfo.attach('accessibility-scan', {
     body: JSON.stringify(results, null, 2),
     contentType: 'application/json',
   });
 
-  // Nur Fingerprint vergleichen (stabil)
+  // Compare only the fingerprint (stable)
   expect(violationFingerprints(results)).toMatchSnapshot();
 });
 ```
 
 ---
 
-## 10. AxeResults-Struktur
+## 10. AxeResults structure
 
 ```typescript
 interface AxeResults {
-  violations: Result[];      // Gefundene Verstoesse
-  passes: Result[];          // Bestandene Regeln
-  incomplete: Result[];      // Unvollstaendige Pruefung (manuell noetig)
-  inapplicable: Result[];    // Nicht anwendbare Regeln
+  violations: Result[];      // Violations found
+  passes: Result[];          // Rules passed
+  incomplete: Result[];      // Incomplete check (manual needed)
+  inapplicable: Result[];    // Non-applicable rules
   url: string;
   timestamp: string;
 }
 
 interface Result {
-  id: string;                // Regel-ID z.B. 'color-contrast', 'image-alt'
+  id: string;                // Rule ID e.g. 'color-contrast', 'image-alt'
   impact: 'minor' | 'moderate' | 'serious' | 'critical';
   description: string;
   help: string;
-  helpUrl: string;           // Link zur axe-Dokumentation
-  tags: string[];            // WCAG-Tags
+  helpUrl: string;           // Link to the axe documentation
+  tags: string[];            // WCAG tags
   nodes: NodeResult[];
 }
 
 interface NodeResult {
-  target: string[];          // CSS-Selektoren des betroffenen Elements
-  html: string;              // HTML des Elements
+  target: string[];          // CSS selectors of the affected element
+  html: string;              // HTML of the element
   impact: string;
-  any: Check[];              // Mindestens einer muss passen
-  all: Check[];              // Alle muessen passen
-  none: Check[];             // Keiner darf passen
+  any: Check[];              // At least one must match
+  all: Check[];              // All must match
+  none: Check[];             // None may match
   failureSummary: string;
 }
 ```
 
 ---
 
-## 11. Test-Fixtures fuer axe
+## 11. Test fixtures for axe
 
-Wiederverwendbare AxeBuilder-Konfiguration ueber Custom Fixtures:
+Reusable AxeBuilder configuration via custom fixtures:
 
 ```typescript
 // playwright/fixtures.ts
@@ -456,7 +456,7 @@ export const test = base.extend<AxeFixture>({
     const makeAxeBuilder = () => new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .exclude('#known-issue')
-      .disableRules(['duplicate-id']); // projektweite Ausnahme
+      .disableRules(['duplicate-id']); // project-wide exception
 
     await use(makeAxeBuilder);
   },
@@ -465,7 +465,7 @@ export const test = base.extend<AxeFixture>({
 export { expect };
 ```
 
-### Verwendung des Fixtures
+### Using the fixture
 
 ```typescript
 import { test, expect } from '../playwright/fixtures';
@@ -479,7 +479,7 @@ test('home page accessibility', async ({ page, makeAxeBuilder }) => {
 test('checkout flow accessibility', async ({ page, makeAxeBuilder }) => {
   await page.goto('/checkout');
   const results = await makeAxeBuilder()
-    .include('#checkout-form')  // Zusaetzliche Eingrenzung
+    .include('#checkout-form')  // Additional narrowing
     .analyze();
   expect(results.violations).toEqual([]);
 });
@@ -487,18 +487,18 @@ test('checkout flow accessibility', async ({ page, makeAxeBuilder }) => {
 
 ---
 
-## 12. Dynamische Inhalte pruefen
+## 12. Checking dynamic content
 
 ```typescript
 test('modal accessibility', async ({ page }) => {
   await page.goto('/products');
 
-  // Warten bis Modal vollstaendig geladen
+  // Wait until the modal is fully loaded
   await page.getByRole('button', { name: 'Quick View' }).click();
   const modal = page.getByRole('dialog');
   await modal.waitFor();
 
-  // Nur den Modal-Bereich pruefen
+  // Check only the modal area
   const results = await new AxeBuilder({ page })
     .include('[role="dialog"]')
     .analyze();
@@ -509,18 +509,18 @@ test('modal accessibility', async ({ page }) => {
 
 ---
 
-## 13. ARIA-Snapshot vs. axe
+## 13. ARIA snapshot vs. axe
 
-| Aspekt | ARIA-Snapshot | axe-core |
+| Aspect | ARIA snapshot | axe-core |
 |--------|---------------|----------|
-| Package | Kein extra Package | `@axe-core/playwright` |
-| Geschwindigkeit | Sehr schnell | Langsamer (ausfuehrlich) |
-| WCAG-Konformitaet | Nein | Ja (WCAG-Tags) |
-| Strukturpruefung | Ja (vollstaendig) | Teilweise |
-| Falsch-Positive | Weniger | Moeglich |
-| CI-Ausgabe | Diff-basiert | Versuche-Bericht |
-| Empfehlung | Struktur-Regression | WCAG-Compliance |
+| Package | No extra package | `@axe-core/playwright` |
+| Speed | Very fast | Slower (detailed) |
+| WCAG conformance | No | Yes (WCAG tags) |
+| Structure check | Yes (complete) | Partially |
+| False positives | Fewer | Possible |
+| CI output | Diff-based | Attempts report |
+| Recommendation | Structure regression | WCAG compliance |
 
 ---
 
-Quelle: https://playwright.dev/docs/accessibility-testing | https://playwright.dev/docs/aria-snapshots
+Source: https://playwright.dev/docs/accessibility-testing | https://playwright.dev/docs/aria-snapshots

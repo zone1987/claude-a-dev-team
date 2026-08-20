@@ -2,35 +2,35 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
-- [attach --cdp (Kanal-Name)](#attach---cdp-kanal-name)
-- [attach --cdp (URL/Endpoint)](#attach---cdp-urlendpoint)
+- [Command overview](#command-overview)
+- [attach --cdp (channel name)](#attach---cdp-channel-name)
+- [attach --cdp (URL/endpoint)](#attach---cdp-urlendpoint)
 - [attach --endpoint](#attach---endpoint)
 - [attach --extension](#attach---extension)
-- [Benannte Sessions mit attach](#benannte-sessions-mit-attach)
-- [Vollstaendige Workflows](#vollstaendige-workflows)
+- [Named sessions with attach](#named-sessions-with-attach)
+- [Complete workflows](#complete-workflows)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `attach --cdp=<channel>` | Verbinden mit laufendem Browser per Kanal-Name |
-| `attach --cdp=<url>` | Verbinden via Chrome DevTools Protocol Endpoint |
-| `attach --endpoint=<url>` | Verbinden mit Playwright-Server-Endpoint |
-| `attach --extension` | Verbinden via Playwright-Extension (Standard: Chrome) |
-| `attach --extension=<channel>` | Verbinden via Playwright-Extension mit spezifischem Kanal |
-| `attach <session-name>` | Verbinden mit pausiertem Test (Test-Debugging) |
+| `attach --cdp=<channel>` | Connect to a running browser by channel name |
+| `attach --cdp=<url>` | Connect via Chrome DevTools Protocol endpoint |
+| `attach --endpoint=<url>` | Connect to a Playwright server endpoint |
+| `attach --extension` | Connect via the Playwright extension (default: Chrome) |
+| `attach --extension=<channel>` | Connect via the Playwright extension with a specific channel |
+| `attach <session-name>` | Connect to a paused test (test debugging) |
 
 ---
 
-## attach --cdp (Kanal-Name)
+## attach --cdp (channel name)
 
-Verbindet mit laufenden Chrome- oder Edge-Instanzen. Der Browser muss Remote-Debugging aktiviert haben:
-Chrome: `chrome://inspect/#remote-debugging` → "Allow remote debugging for this browser instance" aktivieren.
+Connects to running Chrome or Edge instances. The browser must have remote debugging enabled:
+Chrome: `chrome://inspect/#remote-debugging` → enable "Allow remote debugging for this browser instance".
 
-### Unterstuetzte Kanaele
+### Supported channels
 
-| Kanal | Beschreibung |
+| Channel | Description |
 |-------|-------------|
 | `chrome` | Google Chrome (Stable) |
 | `chrome-beta` | Google Chrome Beta |
@@ -50,56 +50,56 @@ playwright-cli attach --cdp=msedge-dev
 
 ---
 
-## attach --cdp (URL/Endpoint)
+## attach --cdp (URL/endpoint)
 
-Verbindet mit Chromium-basierten Browsern via CDP-Endpoint:
+Connects to Chromium-based browsers via a CDP endpoint:
 
 ```bash
-# Browser mit Remote-Debugging starten
+# Start the browser with remote debugging
 google-chrome --remote-debugging-port=9222
 
-# Verbinden
+# Connect
 playwright-cli attach --cdp=http://localhost:9222
 playwright-cli snapshot
 playwright-cli click e5
 ```
 
-### attach --cdp-Optionen
+### attach --cdp options
 
-| Option | Typ | Pflicht | Beschreibung |
+| Option | Type | Required | Description |
 |--------|-----|---------|-------------|
-| `--cdp=<channel\|url>` | string | Ja | Kanal-Name (`chrome`, `msedge` usw.) oder vollstaendige CDP-URL |
+| `--cdp=<channel\|url>` | string | Yes | Channel name (`chrome`, `msedge`, etc.) or a full CDP URL |
 
-### Kompatibel mit
+### Compatible with
 
-- Chrome/Chromium mit `--remote-debugging-port`
-- Edge mit Remote-Debugging
-- Electron-Apps, die CDP exponieren
-- Cloud-Browser-Dienste (Browserbase usw.)
+- Chrome/Chromium with `--remote-debugging-port`
+- Edge with remote debugging
+- Electron apps that expose CDP
+- Cloud browser services (Browserbase, etc.)
 
 ---
 
 ## attach --endpoint
 
-Verbindet mit einem Playwright-Server-Endpoint:
+Connects to a Playwright server endpoint:
 
 ```bash
 playwright-cli attach --endpoint=ws://localhost:3000
 playwright-cli snapshot
 ```
 
-### attach --endpoint-Optionen
+### attach --endpoint options
 
-| Option | Typ | Pflicht | Beschreibung |
+| Option | Type | Required | Description |
 |--------|-----|---------|-------------|
-| `--endpoint=<url>` | string | Ja | WebSocket-URL des Playwright-Servers |
+| `--endpoint=<url>` | string | Yes | WebSocket URL of the Playwright server |
 
 ---
 
 ## attach --extension
 
-Verbindet ueber die Playwright-Extension fuer bestehende Browser-Sessions
-(inkl. Cookies, Extensions, eingeloggte Sessions):
+Connects through the Playwright extension for existing browser sessions
+(including cookies, extensions, logged-in sessions):
 
 ```bash
 playwright-cli attach --extension
@@ -108,23 +108,23 @@ playwright-cli attach --extension=msedge
 playwright-cli attach --extension=msedge-dev
 ```
 
-### attach --extension-Optionen
+### attach --extension options
 
-| Option | Typ | Pflicht | Standard | Beschreibung |
+| Option | Type | Required | Default | Description |
 |--------|-----|---------|---------|-------------|
-| `--extension[=<channel>]` | string | — | `chrome` | Browser-Kanal fuer Extension-Verbindung |
+| `--extension[=<channel>]` | string | — | `chrome` | Browser channel for the extension connection |
 
-### Anwendungsfaelle
+### Use cases
 
-| Szenario | Vorteil |
+| Scenario | Benefit |
 |----------|---------|
-| SSO/2FA-Authentifizierung umgehen | Bestehende Login-Session nutzen |
-| Browser-Extensions integrieren | Extensions laufen wie beim normalen Nutzer |
-| Bestehenden Tab automatisieren | Kein neuer Browser-Start noetig |
+| Bypass SSO/2FA authentication | Reuse the existing login session |
+| Integrate browser extensions | Extensions run as they do for a normal user |
+| Automate an existing tab | No new browser launch required |
 
 ---
 
-## Benannte Sessions mit attach
+## Named sessions with attach
 
 ```bash
 playwright-cli attach --cdp=chrome -s=debug-session
@@ -132,17 +132,17 @@ playwright-cli -s=debug-session snapshot
 playwright-cli -s=debug-session click e5
 ```
 
-### Session-Flag
+### Session flag
 
-| Flag | Typ | Beschreibung |
+| Flag | Type | Description |
 |------|-----|-------------|
-| `-s=<name>` | string | Session-Name fuer diesen attach-Befehl |
+| `-s=<name>` | string | Session name for this attach command |
 
 ---
 
-## Vollstaendige Workflows
+## Complete workflows
 
-### Verbindung zu laufendem Chrome
+### Connecting to a running Chrome
 
 ```bash
 playwright-cli attach --cdp=chrome
@@ -151,26 +151,26 @@ playwright-cli screenshot --filename=current-state.png
 playwright-cli state-save auth.json
 ```
 
-### Remote-Browser-Debugging (SSH-Tunnel)
+### Remote browser debugging (SSH tunnel)
 
 ```bash
-# Auf Remote-Server
+# On the remote server
 google-chrome --remote-debugging-port=9222
 
-# Lokaler SSH-Tunnel
+# Local SSH tunnel
 ssh -L 9222:localhost:9222 user@remote-host
 
-# Verbinden
+# Connect
 playwright-cli attach --cdp=http://localhost:9222
 playwright-cli snapshot
 playwright-cli screenshot --filename=remote-state.png
 playwright-cli console error
 ```
 
-### CDP-Verbindung zu Electron-App
+### CDP connection to an Electron app
 
 ```bash
-# Electron muss CDP exponieren (z. B. --remote-debugging-port=9229)
+# Electron must expose CDP (e.g. --remote-debugging-port=9229)
 playwright-cli attach --cdp=http://localhost:9229
 playwright-cli snapshot
 playwright-cli click e10
@@ -178,4 +178,4 @@ playwright-cli click e10
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/attach
+Source: https://playwright.dev/agent-cli/commands/attach

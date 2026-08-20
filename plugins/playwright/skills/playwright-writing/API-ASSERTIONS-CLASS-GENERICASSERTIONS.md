@@ -1,19 +1,19 @@
 # class-genericassertions — Playwright API Reference
 
-`GenericAssertions` sind Jest-kompatible Assertion-Methoden fuer beliebige JavaScript-Werte. Sie **retrien nicht automatisch** (im Gegensatz zu `LocatorAssertions`). Geeignet fuer Daten, Primitive, Objekte, Promises und Funktionen.
+`GenericAssertions` are Jest-compatible assertion methods for arbitrary JavaScript values. They **do not retry automatically** (unlike `LocatorAssertions`). Suitable for data, primitives, objects, promises and functions.
 
-Zugriff via `expect(value).*`.
+Accessed via `expect(value).*`.
 
-Methoden-Anzahl: 27 Methoden + Properties `not`, `resolves`, `rejects`
+Method count: 27 methods + properties `not`, `resolves`, `rejects`
 
 ---
 
 ## Contents
 
 - [Properties](#properties)
-- [Asymmetrische Matcher (Pattern-Matching fuer toEqual/toMatchObject)](#asymmetrische-matcher-pattern-matching-fuer-toequaltomatchobject)
-- [Direkte Assertion-Methoden](#direkte-assertion-methoden)
-- [Methoden-Uebersicht (27 Methoden)](#methoden-uebersicht-27-methoden)
+- [Asymmetric matchers (pattern matching for toEqual/toMatchObject)](#asymmetric-matchers-pattern-matching-for-toequaltomatchobject)
+- [Direct assertion methods](#direct-assertion-methods)
+- [Method overview (27 methods)](#method-overview-27-methods)
 
 ## Properties
 
@@ -23,7 +23,7 @@ Methoden-Anzahl: 27 Methoden + Properties `not`, `resolves`, `rejects`
 not: GenericAssertions
 ```
 
-Invertiert die nachfolgende Assertion.
+Inverts the following assertion.
 
 ```typescript
 expect(value).not.toBe(null);
@@ -38,7 +38,7 @@ expect(fn).not.toThrow();
 resolves: GenericAssertions
 ```
 
-Entpackt einen aufgeloesten Promise-Wert fuer nachfolgende Assertions. Schlaegt fehl, wenn der Promise abgelehnt wird.
+Unwraps a resolved promise value for the following assertions. Fails if the promise is rejected.
 
 ```typescript
 await expect(Promise.resolve(42)).resolves.toBe(42);
@@ -53,7 +53,7 @@ await expect(fetchUser()).resolves.toHaveProperty('name');
 rejects: GenericAssertions
 ```
 
-Entpackt den Ablehnungsgrund eines abgelehnten Promises fuer nachfolgende Assertions. Schlaegt fehl, wenn der Promise aufgeloest wird.
+Unwraps the rejection reason of a rejected promise for the following assertions. Fails if the promise is resolved.
 
 ```typescript
 await expect(Promise.reject(new Error('fail'))).rejects.toThrow('fail');
@@ -61,7 +61,7 @@ await expect(Promise.reject(new Error('fail'))).rejects.toThrow('fail');
 
 ---
 
-## Asymmetrische Matcher (Pattern-Matching fuer toEqual/toMatchObject)
+## Asymmetric matchers (pattern matching for toEqual/toMatchObject)
 
 ### any()
 
@@ -69,13 +69,13 @@ await expect(Promise.reject(new Error('fail'))).rejects.toThrow('fail');
 any(constructor: Function): AsymmetricMatcher
 ```
 
-Matcht jede Instanz des angegebenen Konstruktors oder primitiven Typs.
+Matches any instance of the given constructor or primitive type.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `constructor` | `Function` | ja | — | Konstruktorfunktion z.B. `String`, `Number`, `Date` |
+| `constructor` | `Function` | yes | — | Constructor function e.g. `String`, `Number`, `Date` |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect({ id: 5, name: 'Test' }).toEqual({
@@ -92,9 +92,9 @@ expect({ id: 5, name: 'Test' }).toEqual({
 anything(): AsymmetricMatcher
 ```
 
-Matcht jeden Wert ausser `null` und `undefined`.
+Matches any value except `null` and `undefined`.
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect({ value: 42 }).toEqual({ value: expect.anything() });
@@ -108,13 +108,13 @@ expect({ value: 42 }).toEqual({ value: expect.anything() });
 arrayContaining(expected: Array<unknown>): AsymmetricMatcher
 ```
 
-Matcht ein Array, das alle erwarteten Elemente in beliebiger Reihenfolge enthaelt.
+Matches an array that contains all expected elements in any order.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `Array<unknown>` | ja | — | Teilmenge der erwarteten Elemente |
+| `expected` | `Array<unknown>` | yes | — | Subset of the expected elements |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect([1, 2, 3, 4]).toEqual(expect.arrayContaining([2, 4]));
@@ -128,13 +128,13 @@ expect([1, 2, 3, 4]).toEqual(expect.arrayContaining([2, 4]));
 arrayOf(constructor: Function): AsymmetricMatcher
 ```
 
-Matcht ein Array, dessen alle Elemente Instanzen des angegebenen Typs sind.
+Matches an array whose elements are all instances of the given type.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `constructor` | `Function` | ja | — | Konstruktorfunktion fuer alle Elemente |
+| `constructor` | `Function` | yes | — | Constructor function for all elements |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect([1, 2, 3]).toEqual(expect.arrayOf(Number));
@@ -148,14 +148,14 @@ expect([1, 2, 3]).toEqual(expect.arrayOf(Number));
 closeTo(expected: number, numDigits?: number): AsymmetricMatcher
 ```
 
-Matcht Gleitkommazahlen mit angegebener Dezimalstellengenauigkeit.
+Matches floating-point numbers with the given decimal precision.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number` | ja | — | Erwarteter Wert |
-| `numDigits` | `number` | nein | `2` | Anzahl Dezimalstellen fuer Vergleich |
+| `expected` | `number` | yes | — | Expected value |
+| `numDigits` | `number` | no | `2` | Number of decimal places for the comparison |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect(0.1 + 0.2).toEqual(expect.closeTo(0.3, 5));
@@ -169,13 +169,13 @@ expect(0.1 + 0.2).toEqual(expect.closeTo(0.3, 5));
 objectContaining(expected: Record<string, unknown>): AsymmetricMatcher
 ```
 
-Matcht ein Objekt, das alle erwarteten Eigenschaften enthaelt.
+Matches an object that contains all expected properties.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `Record<string, unknown>` | ja | — | Teilmenge der erwarteten Eigenschaften |
+| `expected` | `Record<string, unknown>` | yes | — | Subset of the expected properties |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect({ id: 1, name: 'Test', extra: true }).toEqual(
@@ -191,13 +191,13 @@ expect({ id: 1, name: 'Test', extra: true }).toEqual(
 stringContaining(expected: string): AsymmetricMatcher
 ```
 
-Matcht Strings, die den erwarteten Teilstring enthalten.
+Matches strings that contain the expected substring.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string` | ja | — | Gesuchter Teilstring |
+| `expected` | `string` | yes | — | Substring to look for |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect('Hallo Welt').toEqual(expect.stringContaining('Welt'));
@@ -211,13 +211,13 @@ expect('Hallo Welt').toEqual(expect.stringContaining('Welt'));
 stringMatching(expected: string | RegExp): AsymmetricMatcher
 ```
 
-Matcht Strings, die dem angegebenen Muster entsprechen.
+Matches strings that match the given pattern.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string \| RegExp` | ja | — | Gesuchtes Muster oder Regex |
+| `expected` | `string \| RegExp` | yes | — | Pattern or regex to look for |
 
-**Rueckgabe:** `AsymmetricMatcher`
+**Returns:** `AsymmetricMatcher`
 
 ```typescript
 expect('user@example.com').toEqual(expect.stringMatching(/@example\.com$/));
@@ -225,7 +225,7 @@ expect('user@example.com').toEqual(expect.stringMatching(/@example\.com$/));
 
 ---
 
-## Direkte Assertion-Methoden
+## Direct assertion methods
 
 ### toBe()
 
@@ -233,15 +233,15 @@ expect('user@example.com').toEqual(expect.stringMatching(/@example\.com$/));
 toBe(expected: unknown): void
 ```
 
-Prueft strikte Gleichheit via `Object.is()` (wie `===`).
+Checks strict equality via `Object.is()` (like `===`).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `unknown` | ja | — | Erwarteter Wert (Referenzvergleich) |
+| `expected` | `unknown` | yes | — | Expected value (reference comparison) |
 
 ```typescript
 expect(42).toBe(42);
-expect(obj).toBe(obj); // gleiche Referenz
+expect(obj).toBe(obj); // same reference
 ```
 
 ---
@@ -252,12 +252,12 @@ expect(obj).toBe(obj); // gleiche Referenz
 toBeCloseTo(expected: number, numDigits?: number): void
 ```
 
-Prueft Gleitkommazahlen mit angegebener Dezimalstellengenauigkeit.
+Checks floating-point numbers with the given decimal precision.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number` | ja | — | Erwarteter Wert |
-| `numDigits` | `number` | nein | `2` | Anzahl Dezimalstellen |
+| `expected` | `number` | yes | — | Expected value |
+| `numDigits` | `number` | no | `2` | Number of decimal places |
 
 ```typescript
 expect(0.1 + 0.2).toBeCloseTo(0.3, 5);
@@ -271,7 +271,7 @@ expect(0.1 + 0.2).toBeCloseTo(0.3, 5);
 toBeDefined(): void
 ```
 
-Prueft, dass der Wert nicht `undefined` ist.
+Checks that the value is not `undefined`.
 
 ```typescript
 expect(someVar).toBeDefined();
@@ -285,7 +285,7 @@ expect(someVar).toBeDefined();
 toBeFalsy(): void
 ```
 
-Prueft, dass der Wert falsy ist (`false`, `0`, `''`, `null`, `undefined`, `NaN`).
+Checks that the value is falsy (`false`, `0`, `''`, `null`, `undefined`, `NaN`).
 
 ```typescript
 expect(0).toBeFalsy();
@@ -300,11 +300,11 @@ expect('').toBeFalsy();
 toBeGreaterThan(expected: number | bigint): void
 ```
 
-Prueft `value > expected`.
+Checks `value > expected`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number \| bigint` | ja | — | Vergleichswert |
+| `expected` | `number \| bigint` | yes | — | Comparison value |
 
 ```typescript
 expect(count).toBeGreaterThan(0);
@@ -318,11 +318,11 @@ expect(count).toBeGreaterThan(0);
 toBeGreaterThanOrEqual(expected: number | bigint): void
 ```
 
-Prueft `value >= expected`.
+Checks `value >= expected`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number \| bigint` | ja | — | Vergleichswert |
+| `expected` | `number \| bigint` | yes | — | Comparison value |
 
 ```typescript
 expect(items.length).toBeGreaterThanOrEqual(1);
@@ -336,11 +336,11 @@ expect(items.length).toBeGreaterThanOrEqual(1);
 toBeInstanceOf(expected: Function): void
 ```
 
-Prueft `value instanceof expected`.
+Checks `value instanceof expected`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `Function` | ja | — | Konstruktorfunktion |
+| `expected` | `Function` | yes | — | Constructor function |
 
 ```typescript
 expect(new Date()).toBeInstanceOf(Date);
@@ -354,11 +354,11 @@ expect(new Date()).toBeInstanceOf(Date);
 toBeLessThan(expected: number | bigint): void
 ```
 
-Prueft `value < expected`.
+Checks `value < expected`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number \| bigint` | ja | — | Vergleichswert |
+| `expected` | `number \| bigint` | yes | — | Comparison value |
 
 ```typescript
 expect(responseTime).toBeLessThan(500);
@@ -372,11 +372,11 @@ expect(responseTime).toBeLessThan(500);
 toBeLessThanOrEqual(expected: number | bigint): void
 ```
 
-Prueft `value <= expected`.
+Checks `value <= expected`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number \| bigint` | ja | — | Vergleichswert |
+| `expected` | `number \| bigint` | yes | — | Comparison value |
 
 ```typescript
 expect(retries).toBeLessThanOrEqual(3);
@@ -390,7 +390,7 @@ expect(retries).toBeLessThanOrEqual(3);
 toBeNaN(): void
 ```
 
-Prueft, ob der Wert `NaN` ist.
+Checks whether the value is `NaN`.
 
 ```typescript
 expect(NaN).toBeNaN();
@@ -405,7 +405,7 @@ expect(parseInt('abc', 10)).toBeNaN();
 toBeNull(): void
 ```
 
-Prueft, ob der Wert `null` ist.
+Checks whether the value is `null`.
 
 ```typescript
 expect(result).toBeNull();
@@ -419,7 +419,7 @@ expect(result).toBeNull();
 toBeTruthy(): void
 ```
 
-Prueft, dass der Wert truthy ist (alles ausser `false`, `0`, `''`, `null`, `undefined`, `NaN`).
+Checks that the value is truthy (anything except `false`, `0`, `''`, `null`, `undefined`, `NaN`).
 
 ```typescript
 expect('hello').toBeTruthy();
@@ -434,7 +434,7 @@ expect(1).toBeTruthy();
 toBeUndefined(): void
 ```
 
-Prueft, ob der Wert `undefined` ist.
+Checks whether the value is `undefined`.
 
 ```typescript
 expect(obj.missingProp).toBeUndefined();
@@ -442,17 +442,17 @@ expect(obj.missingProp).toBeUndefined();
 
 ---
 
-### toContain() — String
+### toContain() — string
 
 ```typescript
 toContain(expected: string): void
 ```
 
-Prueft, ob der String den erwarteten Teilstring enthaelt (case-sensitive).
+Checks whether the string contains the expected substring (case-sensitive).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string` | ja | — | Gesuchter Teilstring |
+| `expected` | `string` | yes | — | Substring to look for |
 
 ```typescript
 expect('Hallo Welt').toContain('Welt');
@@ -466,11 +466,11 @@ expect('Hallo Welt').toContain('Welt');
 toContain(expected: unknown): void
 ```
 
-Prueft, ob Array oder Set das Element enthaelt (Referenzvergleich).
+Checks whether an array or set contains the element (reference comparison).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `unknown` | ja | — | Gesuchtes Element |
+| `expected` | `unknown` | yes | — | Element to look for |
 
 ```typescript
 expect([1, 2, 3]).toContain(2);
@@ -484,11 +484,11 @@ expect([1, 2, 3]).toContain(2);
 toContainEqual(expected: unknown): void
 ```
 
-Prueft, ob Array oder Set ein Element enthaelt, das via tiefer Gleichheit `expected` entspricht.
+Checks whether an array or set contains an element that matches `expected` by deep equality.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `unknown` | ja | — | Erwartetes Element (tiefer Vergleich) |
+| `expected` | `unknown` | yes | — | Expected element (deep comparison) |
 
 ```typescript
 expect(users).toContainEqual({ id: 1, name: 'Max' });
@@ -502,11 +502,11 @@ expect(users).toContainEqual({ id: 1, name: 'Max' });
 toEqual(expected: unknown): void
 ```
 
-Prueft tiefe Gleichheit; unterstuetzt asymmetrische Matcher.
+Checks deep equality; supports asymmetric matchers.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `unknown` | ja | — | Erwarteter Wert (tiefer Vergleich) |
+| `expected` | `unknown` | yes | — | Expected value (deep comparison) |
 
 ```typescript
 expect({ a: 1, b: { c: 2 } }).toEqual({ a: 1, b: { c: 2 } });
@@ -520,11 +520,11 @@ expect({ a: 1, b: { c: 2 } }).toEqual({ a: 1, b: { c: 2 } });
 toHaveLength(expected: number): void
 ```
 
-Prueft die `.length`-Eigenschaft des Werts.
+Checks the `.length` property of the value.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `number` | ja | — | Erwartete Laenge |
+| `expected` | `number` | yes | — | Expected length |
 
 ```typescript
 expect([1, 2, 3]).toHaveLength(3);
@@ -539,12 +539,12 @@ expect('Hallo').toHaveLength(5);
 toHaveProperty(keyPath: string, expected?: unknown): void
 ```
 
-Prueft, ob eine Eigenschaft am angegebenen Pfad existiert; optional mit Wertvergleich.
+Checks whether a property exists at the given path; optionally with a value comparison.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `keyPath` | `string` | ja | — | Eigenschaftspfad mit Punkt- oder Klammer-Notation |
-| `expected` | `unknown` | nein | — | Erwarteter Wert |
+| `keyPath` | `string` | yes | — | Property path with dot or bracket notation |
+| `expected` | `unknown` | no | — | Expected value |
 
 ```typescript
 expect(obj).toHaveProperty('user.name');
@@ -560,11 +560,11 @@ expect(arr).toHaveProperty('[0].id', 1);
 toMatch(expected: RegExp | string): void
 ```
 
-Prueft, ob ein String dem angegebenen Regex oder Teilstring entspricht.
+Checks whether a string matches the given regex or substring.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `RegExp \| string` | ja | — | Regex oder Teilstring |
+| `expected` | `RegExp \| string` | yes | — | Regex or substring |
 
 ```typescript
 expect('test@example.com').toMatch(/@example\.com$/);
@@ -578,11 +578,11 @@ expect('test@example.com').toMatch(/@example\.com$/);
 toMatchObject(expected: Record<string, unknown> | Array<unknown>): void
 ```
 
-Prueft tiefe Gleichheit; erlaubt zusaetzliche Eigenschaften im tatsaechlichen Objekt.
+Checks deep equality; allows additional properties in the actual object.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `Record<string, unknown> \| Array<unknown>` | ja | — | Erwartete (Teil-)Struktur |
+| `expected` | `Record<string, unknown> \| Array<unknown>` | yes | — | Expected (partial) structure |
 
 ```typescript
 expect(response).toMatchObject({ status: 'ok', data: { count: 5 } });
@@ -596,11 +596,11 @@ expect(response).toMatchObject({ status: 'ok', data: { count: 5 } });
 toStrictEqual(expected: unknown): void
 ```
 
-Wie `toEqual`, aber strikter: prueft auch Typen und unterscheidet `undefined`-Eigenschaften.
+Like `toEqual`, but stricter: it also checks types and distinguishes `undefined` properties.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `unknown` | ja | — | Erwarteter Wert (strikter Vergleich) |
+| `expected` | `unknown` | yes | — | Expected value (strict comparison) |
 
 ```typescript
 expect({ a: undefined }).toStrictEqual({ a: undefined });
@@ -614,11 +614,11 @@ expect({ a: undefined }).toStrictEqual({ a: undefined });
 toThrow(expected?: string | RegExp | Error | { message?: string | RegExp }): void
 ```
 
-Prueft, ob eine Funktion einen Fehler wirft; optional mit Uebereinstimmung der Fehlermeldung oder des Typs.
+Checks whether a function throws an error; optionally matching the error message or the type.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string \| RegExp \| Error \| { message?: string \| RegExp }` | nein | — | Erwartete Fehlermeldung, Regex, Instanz oder Objekt |
+| `expected` | `string \| RegExp \| Error \| { message?: string \| RegExp }` | no | — | Expected error message, regex, instance or object |
 
 ```typescript
 expect(() => JSON.parse('invalid')).toThrow(SyntaxError);
@@ -633,11 +633,11 @@ expect(() => riskyFn()).toThrow('Unerwarteter Fehler');
 toThrowError(expected?: string | RegExp | Error | { message?: string | RegExp }): void
 ```
 
-Alias fuer `toThrow()`.
+Alias for `toThrow()`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | — | nein | — | Identisch mit `toThrow()` |
+| `expected` | — | no | — | Identical to `toThrow()` |
 
 ```typescript
 expect(() => riskyFn()).toThrowError(/nicht gefunden/);
@@ -645,18 +645,18 @@ expect(() => riskyFn()).toThrowError(/nicht gefunden/);
 
 ---
 
-## Methoden-Uebersicht (27 Methoden)
+## Method overview (27 methods)
 
-| Kategorie | Methoden |
+| Category | Methods |
 |---|---|
-| Asymmetrisch | `any`, `anything`, `arrayContaining`, `arrayOf`, `closeTo`, `objectContaining`, `stringContaining`, `stringMatching` |
-| Gleichheit | `toBe`, `toEqual`, `toStrictEqual` |
-| Wahrheitswerte | `toBeTruthy`, `toBeFalsy`, `toBeDefined`, `toBeUndefined`, `toBeNull`, `toBeNaN` |
-| Vergleich (Zahlen) | `toBeGreaterThan`, `toBeGreaterThanOrEqual`, `toBeLessThan`, `toBeLessThanOrEqual`, `toBeCloseTo` |
-| Typ | `toBeInstanceOf` |
+| Asymmetric | `any`, `anything`, `arrayContaining`, `arrayOf`, `closeTo`, `objectContaining`, `stringContaining`, `stringMatching` |
+| Equality | `toBe`, `toEqual`, `toStrictEqual` |
+| Truthiness | `toBeTruthy`, `toBeFalsy`, `toBeDefined`, `toBeUndefined`, `toBeNull`, `toBeNaN` |
+| Comparison (numbers) | `toBeGreaterThan`, `toBeGreaterThanOrEqual`, `toBeLessThan`, `toBeLessThanOrEqual`, `toBeCloseTo` |
+| Type | `toBeInstanceOf` |
 | String/Array | `toContain`, `toContainEqual`, `toMatch`, `toMatchObject`, `toHaveLength`, `toHaveProperty` |
-| Fehlerbehandlung | `toThrow`, `toThrowError` |
+| Error handling | `toThrow`, `toThrowError` |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-genericassertions
+Source: https://playwright.dev/docs/api/class-genericassertions

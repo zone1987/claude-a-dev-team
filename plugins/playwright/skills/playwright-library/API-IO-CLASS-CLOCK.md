@@ -1,90 +1,90 @@
 # Playwright — class: Clock
 
-> **Manifest:** 7 Methoden, 0 Properties, 0 Events.
-> Kontrolliert Zeit-APIs im Browser: Date, setTimeout, setInterval, requestAnimationFrame, performance.
-> Gilt fuer den gesamten BrowserContext. Zugriff: `page.clock` oder `browserContext.clock`.
+> **Manifest:** 7 methods, 0 properties, 0 events.
+> Controls time APIs in the browser: Date, setTimeout, setInterval, requestAnimationFrame, performance.
+> Applies to the entire BrowserContext. Access: `page.clock` or `browserContext.clock`.
 
 ---
 
 ## Contents
 
-- [Uebersicht](#uebersicht)
-- [Methoden](#methoden)
-- [Typische Anwendungsmuster](#typische-anwendungsmuster)
+- [Overview](#overview)
+- [Methods](#methods)
+- [Typical usage patterns](#typical-usage-patterns)
 - [Manifest](#manifest)
 
-## Uebersicht
+## Overview
 
-`Clock` ersetzt die nativen Browser-Zeit-APIs durch fake Implementierungen,
-um deterministische Zeitsteuerung in Tests zu ermoeglichen. Betroffen sind:
+`Clock` replaces the native browser time APIs with fake implementations
+to enable deterministic time control in tests. Affected are:
 `Date`, `setTimeout`, `clearTimeout`, `setInterval`, `clearInterval`,
 `requestAnimationFrame`, `cancelAnimationFrame`, `requestIdleCallback`,
-`cancelIdleCallback` und `performance`.
+`cancelIdleCallback` and `performance`.
 
-Wichtig: Die Clock-API wirkt auf den gesamten BrowserContext — alle Pages
-und iframes.
+Important: the Clock API affects the entire BrowserContext — all pages
+and iframes.
 
 ---
 
-## Methoden
+## Methods
 
 ### clock.fastForward(ticks)
 
-Springt die Zeit vorwaerts, ohne alle Timer mehrfach auszuloesen.
-Jeder faellige Timer wird hoechstens einmal gefeuert.
+Jumps time forward without triggering all timers repeatedly.
+Every due timer fires at most once.
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.fastForward(ticks: number | string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `ticks` | `number \| string` | ja | — | Anzahl Millisekunden als Zahl oder als lesbarer String: `"08"` = 8s, `"01:00"` = 1min, `"02:34:10"` = 2h34m10s |
+| `ticks` | `number \| string` | yes | — | Number of milliseconds as a number or as a readable string: `"08"` = 8s, `"01:00"` = 1min, `"02:34:10"` = 2h34m10s |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Numerisch
-await page.clock.fastForward(1000);        // 1 Sekunde
-await page.clock.fastForward(3600 * 1000); // 1 Stunde
+// Numeric
+await page.clock.fastForward(1000);        // 1 second
+await page.clock.fastForward(3600 * 1000); // 1 hour
 
-// Lesbar
-await page.clock.fastForward('30:00');     // 30 Minuten
-await page.clock.fastForward('01:00:00'); // 1 Stunde
+// Readable
+await page.clock.fastForward('30:00');     // 30 minutes
+await page.clock.fastForward('01:00:00'); // 1 hour
 ```
 
 ---
 
 ### clock.install(options?)
 
-Installiert fake Zeit-Implementierungen. Muss vor der zu testenden
-Seiten-Interaktion aufgerufen werden.
+Installs fake time implementations. Must be called before the page
+interaction under test.
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.install(options?: {
   time?: number | string | Date;
 }): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `options.time` | `number \| string \| Date` | nein | aktuelles System-Datum | Startzeitpunkt der fake Uhr. Zahl = Unix-Timestamp (ms), String = ISO-Datum-String, Date-Objekt |
+| `options.time` | `number \| string \| Date` | no | current system date | Start time of the fake clock. Number = Unix timestamp (ms), string = ISO date string, Date object |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Mit festem Startpunkt (nuetzlich fuer reproduzierbare Tests)
+// With a fixed starting point (useful for reproducible tests)
 await page.clock.install({ time: new Date('2024-01-15T10:00:00Z') });
 
-// Ohne Option: aktuelles System-Datum
+// Without the option: current system date
 await page.clock.install();
 ```
 
@@ -92,198 +92,198 @@ await page.clock.install();
 
 ### clock.pauseAt(time)
 
-Springt zur angegebenen Zeit und pausiert die Uhr. Nach diesem Aufruf
-werden keine Timer mehr gefeuert, bis `runFor()`, `fastForward()`,
-`pauseAt()` oder `resume()` aufgerufen werden.
+Jumps to the given time and pauses the clock. After this call
+no more timers fire until `runFor()`, `fastForward()`,
+`pauseAt()` or `resume()` are called.
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.pauseAt(time: number | string | Date): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `time` | `number \| string \| Date` | ja | — | Zielzeitpunkt: Unix-Timestamp (ms), ISO-String oder Date-Objekt |
+| `time` | `number \| string \| Date` | yes | — | Target time: Unix timestamp (ms), ISO string or Date object |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Einfrieren auf bestimmtes Datum
+// Freeze at a specific date
 await page.clock.pauseAt(new Date('2020-02-02'));
 await page.clock.pauseAt('2020-02-02');
 await page.clock.pauseAt(1580601600000);
 
-// Typischer Einsatz: Seite laden, dann auf bestimmte Zeit einfrieren
+// Typical use: load the page, then freeze at a specific time
 await page.clock.install({ time: new Date('2024-01-01') });
 await page.goto('https://example.com');
 await page.clock.pauseAt(new Date('2024-01-15T09:00:00'));
-// Jetzt ist die Seite eingefroren — ideal fuer Screenshot-Tests
+// The page is now frozen — ideal for screenshot tests
 ```
 
 ---
 
 ### clock.resume()
 
-Setzt die fake Uhr fort. Zeit laeuft wieder, Timer werden normal gefeuert.
+Resumes the fake clock. Time runs again, timers fire normally.
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.resume(): Promise<void>
 ```
 
-**Parameter:** Keine
+**Parameters:** None
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Beispiel:**
+**Example:**
 ```javascript
 await page.clock.pauseAt(new Date('2024-01-15'));
-// ... Assertions ...
-await page.clock.resume(); // Zeit laeuft weiter
+// ... assertions ...
+await page.clock.resume(); // time continues to run
 ```
 
 ---
 
 ### clock.runFor(ticks)
 
-Laesst die Zeit um `ticks` vorlaufen und feuert dabei ALLE faelligen Timer
-(im Gegensatz zu `fastForward()`, das Timer nur einmal ausloest).
+Advances time by `ticks` and fires ALL due timers along the way
+(in contrast to `fastForward()`, which triggers a timer only once).
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.runFor(ticks: number | string): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `ticks` | `number \| string` | ja | — | Millisekunden als Zahl oder lesbarer String (gleiche Formate wie `fastForward`) |
+| `ticks` | `number \| string` | yes | — | Milliseconds as a number or a readable string (same formats as `fastForward`) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Unterschied zu `fastForward()`:**
-- `runFor()`: Feuert *alle* Timer, die im Zeitfenster faellig werden (inkl. rekursiver Timer).
-- `fastForward()`: Feuert jeden Timer hoechstens *einmal*.
+**Difference from `fastForward()`:**
+- `runFor()`: fires *all* timers that come due within the time window (including recursive timers).
+- `fastForward()`: fires each timer at most *once*.
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Alle Timer in den naechsten 5 Sekunden ausfuehren
+// Run all timers within the next 5 seconds
 await page.clock.runFor(5000);
-await page.clock.runFor('05:00'); // 5 Minuten
+await page.clock.runFor('05:00'); // 5 minutes
 ```
 
 ---
 
 ### clock.setFixedTime(time)
 
-Setzt `Date.now()` und `new Date()` auf einen festen Wert. Timer laufen
-weiterhin normal — nur die zurueckgegebene Zeit ist eingefroren.
+Sets `Date.now()` and `new Date()` to a fixed value. Timers keep
+running normally — only the returned time is frozen.
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.setFixedTime(time: number | string | Date): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `time` | `number \| string \| Date` | ja | — | Fester Zeitwert fuer alle Date-Aufrufe |
+| `time` | `number \| string \| Date` | yes | — | Fixed time value for all Date calls |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Hinweis:** Keine vorherige `install()`-Aufruf noetig — `setFixedTime()` kann
-direkt genutzt werden ohne andere Time-APIs zu beeinflussen.
+**Note:** No prior `install()` call needed — `setFixedTime()` can be
+used directly without affecting other time APIs.
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Datum einfrieren fuer "Heute ist 2024-12-31"-Tests
+// Freeze the date for "today is 2024-12-31" tests
 await page.clock.setFixedTime(new Date('2024-12-31'));
 await page.goto('https://example.com');
-// Date.now() und new Date() geben jetzt immer 2024-12-31 zurueck
+// Date.now() and new Date() now always return 2024-12-31
 ```
 
 ---
 
 ### clock.setSystemTime(time)
 
-Setzt die Systemzeit, ohne Timer auszuloesen. Dient dazu, das Verhalten
-der Seite bei Zeitsprungen zu testen.
+Sets the system time without triggering timers. Serves to test the
+behaviour of the page across time jumps.
 
-**Signatur:**
+**Signature:**
 ```typescript
 clock.setSystemTime(time: number | string | Date): Promise<void>
 ```
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `time` | `number \| string \| Date` | ja | — | Neue Systemzeit |
+| `time` | `number \| string \| Date` | yes | — | New system time |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
-**Unterschied zu `setFixedTime()`:**
-- `setFixedTime()`: Zeit bleibt eingefroren.
-- `setSystemTime()`: Zeit wird gesetzt, laeuft dann aber normal weiter.
+**Difference from `setFixedTime()`:**
+- `setFixedTime()`: time stays frozen.
+- `setSystemTime()`: time is set, but then continues to run normally.
 
-**Beispiel:**
+**Example:**
 ```javascript
-// Systemzeit setzen ohne Auswirkung auf Timer
+// Set the system time without affecting timers
 await page.clock.setSystemTime(new Date('2023-06-01'));
 ```
 
 ---
 
-## Typische Anwendungsmuster
+## Typical usage patterns
 
-### Muster 1: Bestimmtes Datum testen (Date-Only)
+### Pattern 1: testing a specific date (date only)
 
 ```javascript
-// Nur Date.now() faelschen, Timer nicht beeinflussen
+// Fake only Date.now(), leave timers untouched
 await page.clock.setFixedTime(new Date('2024-12-31T23:59:59'));
 await page.goto('https://myapp.com/countdown');
-await expect(page.getByText('1 Sekunde bis Neujahr')).toBeVisible();
+await expect(page.getByText('1 second until new year')).toBeVisible();
 ```
 
-### Muster 2: Timer-Verhalten testen
+### Pattern 2: testing timer behaviour
 
 ```javascript
 await page.clock.install();
 await page.goto('https://myapp.com/auto-refresh');
-// Seite aktualisiert sich alle 30 Sekunden
+// The page refreshes every 30 seconds
 await page.clock.runFor(30000);
-await expect(page.getByText('Aktualisiert')).toBeVisible();
+await expect(page.getByText('Refreshed')).toBeVisible();
 ```
 
-### Muster 3: Spezifisches Datum einfrieren + Screenshot
+### Pattern 3: freeze a specific date + screenshot
 
 ```javascript
 await page.clock.install({ time: new Date('2024-01-01') });
 await page.goto('https://myapp.com/dashboard');
 await page.clock.pauseAt(new Date('2024-06-15T14:30:00'));
-await page.screenshot({ path: 'dashboard-juni.png' });
+await page.screenshot({ path: 'dashboard-june.png' });
 ```
 
 ---
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 7      |
+| Methods   | 7      |
 | Properties | 0     |
 | Events    | 0      |
 
-**Fazit:** `setFixedTime()` ist die schnellste Option fuer einfache Datumstests.
-`install()` + `pauseAt()` + `resume()` ermaoglicht praezise Kontrolle ueber
-Timer-Verhalten. `runFor()` vs. `fastForward()` unterscheiden sich im
-Umgang mit rekursiven Timern — bei Polling-Logik `runFor()` bevorzugen.
+**Conclusion:** `setFixedTime()` is the fastest option for simple date tests.
+`install()` + `pauseAt()` + `resume()` enables precise control over
+timer behaviour. `runFor()` vs. `fastForward()` differ in how they
+handle recursive timers — prefer `runFor()` for polling logic.
 
 ---
 
-*Quelle: https://playwright.dev/docs/api/class-clock*
+*Source: https://playwright.dev/docs/api/class-clock*

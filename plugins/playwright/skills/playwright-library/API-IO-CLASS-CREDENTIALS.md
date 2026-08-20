@@ -1,34 +1,34 @@
 # Playwright — class: Credentials (HTTPCredentials)
 
-> **Manifest:** 0 Methoden, 2-4 Properties (Interface), 0 Events.
-> Kein eigenstaendiges Klassenobjekt — `Credentials` / `HTTPCredentials` ist ein
-> Konfigurations-Interface fuer HTTP-Basic-Authentifizierung in BrowserContext.
+> **Manifest:** 0 methods, 2-4 properties (interface), 0 events.
+> Not a standalone class object — `Credentials` / `HTTPCredentials` is a
+> configuration interface for HTTP basic authentication in BrowserContext.
 
 ---
 
 ## Contents
 
 - [Status](#status)
-- [HTTPCredentials Interface](#httpcredentials-interface)
-- [Verwendung](#verwendung)
+- [HTTPCredentials interface](#httpcredentials-interface)
+- [Usage](#usage)
 - [Deprecated: browserContext.setHTTPCredentials()](#deprecated-browsercontextsethttpcredentials)
 - [In playwright.config.ts](#in-playwrightconfigts)
-- [Vollstaendiges Beispiel](#vollstaendiges-beispiel)
+- [Complete example](#complete-example)
 - [Manifest](#manifest)
 
 ## Status
 
-`Credentials` / `HTTPCredentials` ist kein eigenes Playwright-Klassenobjekt mit
-Instanzmethoden, sondern ein Konfigurations-Interface, das als Option beim
-Erstellen eines `BrowserContext` uebergeben wird.
+`Credentials` / `HTTPCredentials` is not a Playwright class object of its own with
+instance methods, but a configuration interface that is passed as an option when
+creating a `BrowserContext`.
 
-Die Seite `https://playwright.dev/docs/api/class-credentials` existiert nicht in
-den aktuellen Playwright-Docs. HTTP-Credentials sind als Interface-Typ in
-`BrowserContext.newPage()` / `browser.newContext()` dokumentiert.
+The page `https://playwright.dev/docs/api/class-credentials` does not exist in
+the current Playwright docs. HTTP credentials are documented as an interface type in
+`BrowserContext.newPage()` / `browser.newContext()`.
 
 ---
 
-## HTTPCredentials Interface
+## HTTPCredentials interface
 
 ```typescript
 interface HTTPCredentials {
@@ -41,29 +41,29 @@ interface HTTPCredentials {
 
 ### Properties
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |------|-----|---------|---------|--------------|
-| `username` | `string` | ja | — | HTTP Basic Auth Benutzername |
-| `password` | `string` | ja | — | HTTP Basic Auth Passwort |
-| `origin` | `string` | nein | — | Einschraenkung auf bestimmte Origin (z.B. `'https://example.com'`). Wenn angegeben, werden Credentials nur fuer diese Origin gesendet. |
-| `send` | `'always' \| 'unauthorized'` | nein | `'unauthorized'` | `'always'`: Credentials bei jeder Anfrage senden. `'unauthorized'`: Nur bei HTTP 401-Antworten. |
+| `username` | `string` | yes | — | HTTP basic auth user name |
+| `password` | `string` | yes | — | HTTP basic auth password |
+| `origin` | `string` | no | — | Restriction to a particular origin (e.g. `'https://example.com'`). When specified, credentials are only sent for this origin. |
+| `send` | `'always' \| 'unauthorized'` | no | `'unauthorized'` | `'always'`: send credentials with every request. `'unauthorized'`: only on HTTP 401 responses. |
 
 ---
 
-## Verwendung
+## Usage
 
-### Bei Context-Erstellung
+### On context creation
 
 ```javascript
 const context = await browser.newContext({
   httpCredentials: {
     username: 'admin',
-    password: 'geheimpasswort'
+    password: 'secretpassword'
   }
 });
 ```
 
-### Mit Origin-Einschraenkung
+### With origin restriction
 
 ```javascript
 const context = await browser.newContext({
@@ -75,7 +75,7 @@ const context = await browser.newContext({
 });
 ```
 
-### Immer senden (pre-emptive auth)
+### Always send (pre-emptive auth)
 
 ```javascript
 const context = await browser.newContext({
@@ -91,21 +91,21 @@ const context = await browser.newContext({
 
 ## Deprecated: browserContext.setHTTPCredentials()
 
-Die Methode `browserContext.setHTTPCredentials()` ist deprecated:
+The method `browserContext.setHTTPCredentials()` is deprecated:
 
 ```javascript
-// NICHT MEHR VERWENDEN:
+// DO NOT USE ANY MORE:
 await context.setHTTPCredentials({ username: 'user', password: 'pass' });
 
-// Stattdessen: Neuen Context erstellen
+// Instead: create a new context
 const context = await browser.newContext({
   httpCredentials: { username: 'user', password: 'pass' }
 });
 ```
 
-**Hinweis:** Browser koennen Credentials nach erfolgreicher Authentifizierung
-cachen. Daher empfiehlt Playwright, fuer jeden Test mit anderen Credentials einen
-neuen BrowserContext zu erstellen.
+**Note:** Browsers may cache credentials after successful authentication.
+Playwright therefore recommends creating a
+new BrowserContext for each test that uses different credentials.
 
 ---
 
@@ -126,14 +126,14 @@ export default defineConfig({
 
 ---
 
-## Vollstaendiges Beispiel
+## Complete example
 
 ```javascript
 const { chromium } = require('playwright');
 
 const browser = await chromium.launch();
 
-// Kontext mit HTTP Basic Auth fuer alle Requests
+// Context with HTTP basic auth for all requests
 const context = await browser.newContext({
   httpCredentials: {
     username: 'testuser',
@@ -145,7 +145,7 @@ const context = await browser.newContext({
 
 const page = await context.newPage();
 await page.goto('https://protected.example.com/dashboard');
-// Seite sollte ohne Login-Dialog laden
+// Page should load without a login dialog
 
 await context.close();
 await browser.close();
@@ -155,19 +155,19 @@ await browser.close();
 
 ## Manifest
 
-| Kategorie | Anzahl |
+| Category | Count |
 |-----------|--------|
-| Methoden  | 0 (Interface, kein Klassenobjekt) |
+| Methods  | 0 (interface, not a class object) |
 | Properties | 4 (username, password, origin, send) |
 | Events    | 0      |
 
-**Fazit:** `HTTPCredentials` ist ein reines Konfigurations-Interface fuer
-HTTP Basic Auth — keine Klasse mit Instanzmethoden. Die Konfiguration erfolgt
-einmalig beim Erstellen des BrowserContext. Fuer fortgeschrittene Authentifizierung
-(OAuth, Cookie-basiert, session storage) bietet Playwright die `storageState`-
-Option als Alternative.
+**Conclusion:** `HTTPCredentials` is a pure configuration interface for
+HTTP basic auth — not a class with instance methods. Configuration happens
+once when creating the BrowserContext. For advanced authentication
+(OAuth, cookie-based, session storage) Playwright offers the `storageState`
+option as an alternative.
 
 ---
 
-*Hinweis: https://playwright.dev/docs/api/class-credentials existiert nicht in
-den aktuellen stabilen Playwright-Docs. Referenz: https://playwright.dev/docs/api/class-browser#browser-new-context*
+*Note: https://playwright.dev/docs/api/class-credentials does not exist in
+the current stable Playwright docs. Reference: https://playwright.dev/docs/api/class-browser#browser-new-context*

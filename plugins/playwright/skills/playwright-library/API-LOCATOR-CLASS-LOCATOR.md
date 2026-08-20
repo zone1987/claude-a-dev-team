@@ -1,8 +1,8 @@
 # class-locator — Playwright API Reference
 
-Vollstaendige Methoden-Referenz der `Locator`-Klasse. Ein `Locator` repraesentiert eine Moeglichkeit, ein oder mehrere Elemente auf der Seite zu finden. Er ist lazy und fuehrt die eigentliche DOM-Suche erst bei Ausfuehrung einer Aktion durch.
+Complete method reference for the `Locator` class. A `Locator` represents a way to find one or more elements on the page. It is lazy and performs the actual DOM search only when an action is executed.
 
-Methoden-Anzahl: 57 (ohne veraltete Aliase)
+Method count: 57 (excluding deprecated aliases)
 
 ---
 
@@ -70,7 +70,7 @@ Methoden-Anzahl: 57 (ohne veraltete Aliase)
 - [textContent()](#textcontent)
 - [uncheck()](#uncheck)
 - [waitFor()](#waitfor)
-- [Methoden-Uebersicht (57 Methoden)](#methoden-uebersicht-57-methoden)
+- [Method Overview (57 methods)](#method-overview-57-methods)
 
 ## all()
 
@@ -78,14 +78,14 @@ Methoden-Anzahl: 57 (ohne veraltete Aliase)
 all(): Promise<Array<Locator>>
 ```
 
-Gibt alle Elemente zurueck, die auf den Locator passen, als Array einzelner Locatoren.
-Wartet **nicht** auf Elemente — gibt sofort eine Momentaufnahme zurueck.
+Returns all elements matching the locator as an array of individual locators.
+Does **not** wait for elements — returns an immediate snapshot.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Promise<Array<Locator>>`
+**Returns:** `Promise<Array<Locator>>`
 
 ```typescript
 const rows = await page.getByRole('row').all();
@@ -100,13 +100,13 @@ for (const row of rows) await row.click();
 allInnerTexts(): Promise<Array<string>>
 ```
 
-Gibt `node.innerText`-Werte aller passenden Elemente zurueck.
+Returns the `node.innerText` values of all matching elements.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Promise<Array<string>>`
+**Returns:** `Promise<Array<string>>`
 
 ```typescript
 const texts = await page.getByRole('listitem').allInnerTexts();
@@ -120,13 +120,13 @@ const texts = await page.getByRole('listitem').allInnerTexts();
 allTextContents(): Promise<Array<string>>
 ```
 
-Gibt `node.textContent`-Werte aller passenden Elemente zurueck.
+Returns the `node.textContent` values of all matching elements.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Promise<Array<string>>`
+**Returns:** `Promise<Array<string>>`
 
 ```typescript
 const contents = await page.locator('p').allTextContents();
@@ -140,16 +140,16 @@ const contents = await page.locator('p').allTextContents();
 and(locator: Locator): Locator
 ```
 
-Erstellt einen neuen Locator, der **beide** Bedingungen erfuellen muss (logisches UND).
+Creates a new locator that must satisfy **both** conditions (logical AND).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `locator` | `Locator` | ja | — | Weiterer Locator, dessen Bedingung erfuellt sein muss |
+| `locator` | `Locator` | yes | — | Additional locator whose condition must be satisfied |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-const button = page.getByRole('button').and(page.getByTitle('Speichern'));
+const button = page.getByRole('button').and(page.getByTitle('Save'));
 ```
 
 ---
@@ -165,16 +165,16 @@ ariaSnapshot(options?: {
 }): Promise<string>
 ```
 
-Erstellt einen ARIA-Snapshot des Elements fuer Accessibility-Tests.
+Creates an ARIA snapshot of the element for accessibility tests.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.boxes` | `boolean` | nein | `false` | Bounding-Box-Informationen in Snapshot aufnehmen |
-| `options.depth` | `number` | nein | unbegrenzt | Maximale Tiefe des Snapshots |
-| `options.mode` | `'ai' \| 'default'` | nein | `'default'` | Snapshot-Format |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.boxes` | `boolean` | no | `false` | Include bounding box information in the snapshot |
+| `options.depth` | `number` | no | unlimited | Maximum depth of the snapshot |
+| `options.mode` | `'ai' \| 'default'` | no | `'default'` | Snapshot format |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<string>`
+**Returns:** `Promise<string>`
 
 ```typescript
 const snapshot = await page.locator('#nav').ariaSnapshot();
@@ -188,13 +188,13 @@ const snapshot = await page.locator('#nav').ariaSnapshot();
 blur(options?: { timeout?: number }): Promise<void>
 ```
 
-Ruft `blur()` auf dem Element auf und entfernt damit den Fokus.
+Calls `blur()` on the element, thereby removing focus.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByLabel('Name').blur();
@@ -213,13 +213,13 @@ boundingBox(options?: { timeout?: number }): Promise<null | {
 }>
 ```
 
-Gibt die Bounding-Box des Elements relativ zum Haupt-Viewport zurueck, oder `null` wenn unsichtbar.
+Returns the bounding box of the element relative to the main viewport, or `null` if it is invisible.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<null | { x: number; y: number; width: number; height: number }>`
+**Returns:** `Promise<null | { x: number; y: number; width: number; height: number }>`
 
 ```typescript
 const box = await page.locator('.tooltip').boundingBox();
@@ -240,20 +240,20 @@ check(options?: {
 }): Promise<void>
 ```
 
-Setzt eine Checkbox oder ein Radio-Element in den angehakten Zustand.
+Puts a checkbox or radio element into the checked state.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.force` | `boolean` | nein | `false` | Actionability-Pruefungen uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Klickposition relativ zur Padding-Box |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen, nicht klicken |
+| `options.force` | `boolean` | no | `false` | Bypass actionability checks |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.position` | `{ x: number; y: number }` | no | center | Click position relative to the padding box |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability, do not click |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByLabel('Ich stimme zu').check();
+await page.getByLabel('I agree').check();
 ```
 
 ---
@@ -268,15 +268,15 @@ clear(options?: {
 }): Promise<void>
 ```
 
-Leert den Inhalt eines Input-Feldes.
+Clears the content of an input field.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.force` | `boolean` | nein | `false` | Actionability-Pruefungen uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.force` | `boolean` | no | `false` | Bypass actionability checks |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByRole('textbox').clear();
@@ -301,26 +301,26 @@ click(options?: {
 }): Promise<void>
 ```
 
-Klickt auf das Element.
+Clicks the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.button` | `'left' \| 'right' \| 'middle'` | nein | `'left'` | Maus-Taste |
-| `options.clickCount` | `number` | nein | `1` | Anzahl Klicks |
-| `options.delay` | `number` | nein | `0` | Verzoegerung zwischen mousedown und mouseup in ms |
-| `options.force` | `boolean` | nein | `false` | Actionability-Pruefungen uebergehen |
-| `options.modifiers` | `Array<string>` | nein | `[]` | Gleichzeitig gedrueckte Modifier-Tasten |
-| `options.noWaitAfter` | `boolean` | nein | `false` | Navigation nach Klick nicht abwarten |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Klickkoordinaten relativ zur Padding-Box |
-| `options.steps` | `number` | nein | `1` | Interpolierte mousemove-Events |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen, nicht klicken |
+| `options.button` | `'left' \| 'right' \| 'middle'` | no | `'left'` | Mouse button |
+| `options.clickCount` | `number` | no | `1` | Number of clicks |
+| `options.delay` | `number` | no | `0` | Delay between mousedown and mouseup in ms |
+| `options.force` | `boolean` | no | `false` | Bypass actionability checks |
+| `options.modifiers` | `Array<string>` | no | `[]` | Modifier keys held down simultaneously |
+| `options.noWaitAfter` | `boolean` | no | `false` | Do not wait for navigation after the click |
+| `options.position` | `{ x: number; y: number }` | no | center | Click coordinates relative to the padding box |
+| `options.steps` | `number` | no | `1` | Interpolated mousemove events |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability, do not click |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByRole('button', { name: 'Absenden' }).click();
-await page.getByText('Optionen').click({ button: 'right' });
+await page.getByRole('button', { name: 'Submit' }).click();
+await page.getByText('Options').click({ button: 'right' });
 ```
 
 ---
@@ -331,17 +331,17 @@ await page.getByText('Optionen').click({ button: 'right' });
 contentFrame(): FrameLocator
 ```
 
-Gibt einen `FrameLocator` zurueck, der auf das iframe-Element zeigt, das dieser Locator beschreibt.
+Returns a `FrameLocator` pointing at the iframe element that this locator describes.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `FrameLocator`
+**Returns:** `FrameLocator`
 
 ```typescript
 const frame = page.locator('iframe[title="Editor"]').contentFrame();
-await frame.getByRole('textbox').fill('Hallo');
+await frame.getByRole('textbox').fill('Hello');
 ```
 
 ---
@@ -352,13 +352,13 @@ await frame.getByRole('textbox').fill('Hallo');
 count(): Promise<number>
 ```
 
-Gibt die Anzahl der passenden Elemente zurueck.
+Returns the number of matching elements.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Promise<number>`
+**Returns:** `Promise<number>`
 
 ```typescript
 const n = await page.getByRole('listitem').count();
@@ -383,24 +383,24 @@ dblclick(options?: {
 }): Promise<void>
 ```
 
-Doppelklickt auf das Element.
+Double-clicks the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.button` | `'left' \| 'right' \| 'middle'` | nein | `'left'` | Maus-Taste |
-| `options.delay` | `number` | nein | `0` | Verzoegerung zwischen mousedown/mouseup in ms |
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.modifiers` | `Array<string>` | nein | `[]` | Modifier-Tasten |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Klickposition |
-| `options.steps` | `number` | nein | `1` | Interpolierte mousemove-Events |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen |
+| `options.button` | `'left' \| 'right' \| 'middle'` | no | `'left'` | Mouse button |
+| `options.delay` | `number` | no | `0` | Delay between mousedown/mouseup in ms |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.modifiers` | `Array<string>` | no | `[]` | Modifier keys |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.position` | `{ x: number; y: number }` | no | center | Click position |
+| `options.steps` | `number` | no | `1` | Interpolated mousemove events |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByText('Dateiname').dblclick();
+await page.getByText('Filename').dblclick();
 ```
 
 ---
@@ -411,16 +411,16 @@ await page.getByText('Dateiname').dblclick();
 describe(description: string): Locator
 ```
 
-Setzt eine benutzerdefinierte Beschreibung, die im Trace Viewer angezeigt wird. Gibt den Locator zurueck (chainable).
+Sets a custom description that is shown in the Trace Viewer. Returns the locator (chainable).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `description` | `string` | ja | — | Beschreibungstext fuer den Trace Viewer |
+| `description` | `string` | yes | — | Description text for the Trace Viewer |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-const btn = page.getByRole('button').describe('Haupt-CTA');
+const btn = page.getByRole('button').describe('Main CTA');
 ```
 
 ---
@@ -431,17 +431,17 @@ const btn = page.getByRole('button').describe('Haupt-CTA');
 description(): null | string
 ```
 
-Gibt die zuvor mit `describe()` gesetzte Beschreibung zurueck, oder `null`.
+Returns the description previously set with `describe()`, or `null`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `null | string`
+**Returns:** `null | string`
 
 ```typescript
-const desc = page.getByRole('button').describe('Speichern').description();
-// => 'Speichern'
+const desc = page.getByRole('button').describe('Save').description();
+// => 'Save'
 ```
 
 ---
@@ -456,15 +456,15 @@ dispatchEvent(
 ): Promise<void>
 ```
 
-Sendet ein DOM-Event auf dem Element.
+Dispatches a DOM event on the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `type` | `string` | ja | — | DOM-Event-Typ z.B. `'click'`, `'dragstart'` |
-| `eventInit` | `EvaluationArgument` | nein | `{}` | Event-spezifische Initialisierungsparameter |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `type` | `string` | yes | — | DOM event type, e.g. `'click'`, `'dragstart'` |
+| `eventInit` | `EvaluationArgument` | no | `{}` | Event-specific initialization parameters |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.locator('#drag').dispatchEvent('dragstart');
@@ -486,20 +486,20 @@ dragTo(target: Locator, options?: {
 }): Promise<void>
 ```
 
-Zieht das Element auf ein Ziel-Element.
+Drags the element onto a target element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `target` | `Locator` | ja | — | Ziel-Locator, auf den das Element gezogen wird |
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.sourcePosition` | `{ x: number; y: number }` | nein | Mittelpunkt | Startposition innerhalb des Quellelements |
-| `options.steps` | `number` | nein | `1` | Interpolierte mousemove-Events |
-| `options.targetPosition` | `{ x: number; y: number }` | nein | Mittelpunkt | Zielposition innerhalb des Zielelements |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen |
+| `target` | `Locator` | yes | — | Target locator the element is dragged onto |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.sourcePosition` | `{ x: number; y: number }` | no | center | Start position within the source element |
+| `options.steps` | `number` | no | `1` | Interpolated mousemove events |
+| `options.targetPosition` | `{ x: number; y: number }` | no | center | Target position within the target element |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.locator('#item-1').dragTo(page.locator('#target-zone'));
@@ -517,16 +517,16 @@ drop(payload: {
 }, options?: { timeout?: number }): Promise<void>
 ```
 
-Simuliert einen externen Drag-and-Drop von Dateien oder Daten auf das Element.
+Simulates an external drag-and-drop of files or data onto the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `payload.files` | `string \| string[] \| FilePayload \| FilePayload[]` | nein | — | Dateipfade oder Buffer-Objekte |
-| `payload.data` | `Record<string, string>` | nein | — | MIME-Typ zu Daten-Map |
-| `payload.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Drop-Position |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `payload.files` | `string \| string[] \| FilePayload \| FilePayload[]` | no | — | File paths or buffer objects |
+| `payload.data` | `Record<string, string>` | no | — | MIME type to data map |
+| `payload.position` | `{ x: number; y: number }` | no | center | Drop position |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.locator('#dropzone').drop({ files: ['path/to/file.pdf'] });
@@ -544,15 +544,15 @@ evaluate<R>(
 ): Promise<R>
 ```
 
-Fuehrt JavaScript im Browser-Kontext aus; das passende Element wird als erstes Argument uebergeben.
+Executes JavaScript in the browser context; the matching element is passed as the first argument.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `pageFunction` | `function \| string` | ja | — | Auszufuehrender Code; erstes Argument ist das DOM-Element |
-| `arg` | `EvaluationArgument` | nein | — | Serialisierbarer Wert, der als zweites Argument uebergeben wird |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit fuer den Locator in ms |
+| `pageFunction` | `function \| string` | yes | — | Code to execute; the first argument is the DOM element |
+| `arg` | `EvaluationArgument` | no | — | Serializable value passed as the second argument |
+| `options.timeout` | `number` | no | global default | Maximum wait time for the locator in ms |
 
-**Rueckgabe:** `Promise<R>`
+**Returns:** `Promise<R>`
 
 ```typescript
 const tagName = await page.locator('h1').evaluate(el => el.tagName);
@@ -569,14 +569,14 @@ evaluateAll<R>(
 ): Promise<R>
 ```
 
-Fuehrt JavaScript aus; alle passenden Elemente werden als Array uebergeben.
+Executes JavaScript; all matching elements are passed as an array.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `pageFunction` | `function \| string` | ja | — | Code; erstes Argument ist ein Array aller DOM-Elemente |
-| `arg` | `EvaluationArgument` | nein | — | Serialisierbarer Wert |
+| `pageFunction` | `function \| string` | yes | — | Code; the first argument is an array of all DOM elements |
+| `arg` | `EvaluationArgument` | no | — | Serializable value |
 
-**Rueckgabe:** `Promise<R>`
+**Returns:** `Promise<R>`
 
 ```typescript
 const values = await page.locator('input').evaluateAll(els => els.map(e => e.value));
@@ -594,15 +594,15 @@ evaluateHandle(
 ): Promise<JSHandle>
 ```
 
-Fuehrt JavaScript aus und gibt ein `JSHandle` mit dem Ergebnis zurueck (nicht serialisiert).
+Executes JavaScript and returns a `JSHandle` with the result (not serialized).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `pageFunction` | `function \| string` | ja | — | Auszufuehrender Code |
-| `arg` | `EvaluationArgument` | nein | — | Argument |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `pageFunction` | `function \| string` | yes | — | Code to execute |
+| `arg` | `EvaluationArgument` | no | — | Argument |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<JSHandle>`
+**Returns:** `Promise<JSHandle>`
 
 ```typescript
 const handle = await page.locator('canvas').evaluateHandle(el => el.getContext('2d'));
@@ -620,19 +620,19 @@ fill(value: string, options?: {
 }): Promise<void>
 ```
 
-Setzt den Wert eines `<input>`, `<textarea>` oder `contenteditable`-Elements.
+Sets the value of an `<input>`, `<textarea>` or `contenteditable` element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `value` | `string` | ja | — | Einzufuegender Wert |
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `value` | `string` | yes | — | Value to insert |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByLabel('E-Mail').fill('user@example.com');
+await page.getByLabel('Email').fill('user@example.com');
 ```
 
 ---
@@ -649,20 +649,20 @@ filter(options?: {
 }): Locator
 ```
 
-Filtert die passenden Elemente nach weiteren Kriterien. Gibt einen neuen Locator zurueck.
+Filters the matching elements by additional criteria. Returns a new locator.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.has` | `Locator` | nein | — | Nur Elemente behalten, die diesen Locator enthalten |
-| `options.hasNot` | `Locator` | nein | — | Elemente ausschliessen, die diesen Locator enthalten |
-| `options.hasNotText` | `string \| RegExp` | nein | — | Elemente ausschliessen, die diesen Text enthalten |
-| `options.hasText` | `string \| RegExp` | nein | — | Nur Elemente behalten, die diesen Text enthalten |
-| `options.visible` | `boolean` | nein | — | Nach Sichtbarkeit filtern |
+| `options.has` | `Locator` | no | — | Keep only elements that contain this locator |
+| `options.hasNot` | `Locator` | no | — | Exclude elements that contain this locator |
+| `options.hasNotText` | `string \| RegExp` | no | — | Exclude elements that contain this text |
+| `options.hasText` | `string \| RegExp` | no | — | Keep only elements that contain this text |
+| `options.visible` | `boolean` | no | — | Filter by visibility |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-const items = page.getByRole('listitem').filter({ hasText: 'Aktiv' });
+const items = page.getByRole('listitem').filter({ hasText: 'Active' });
 const enabled = page.getByRole('row').filter({ hasNot: page.locator('[disabled]') });
 ```
 
@@ -674,13 +674,13 @@ const enabled = page.getByRole('row').filter({ hasNot: page.locator('[disabled]'
 first(): Locator
 ```
 
-Gibt einen Locator zurueck, der auf das erste passende Element zeigt.
+Returns a locator pointing at the first matching element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 await page.getByRole('button').first().click();
@@ -694,13 +694,13 @@ await page.getByRole('button').first().click();
 focus(options?: { timeout?: number }): Promise<void>
 ```
 
-Ruft `focus()` auf dem Element auf.
+Calls `focus()` on the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByRole('textbox').focus();
@@ -714,13 +714,13 @@ await page.getByRole('textbox').focus();
 frameLocator(selector: string): FrameLocator
 ```
 
-Gibt einen `FrameLocator` fuer ein iframe-Element innerhalb dieses Locators zurueck.
+Returns a `FrameLocator` for an iframe element inside this locator.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selector` | `string` | ja | — | CSS-/Playwright-Selektor fuer das iframe |
+| `selector` | `string` | yes | — | CSS/Playwright selector for the iframe |
 
-**Rueckgabe:** `FrameLocator`
+**Returns:** `FrameLocator`
 
 ```typescript
 const frame = page.locator('.widget').frameLocator('iframe');
@@ -735,14 +735,14 @@ await frame.getByRole('button').click();
 getAttribute(name: string, options?: { timeout?: number }): Promise<null | string>
 ```
 
-Gibt den Wert eines Attributs zurueck, oder `null` wenn das Attribut nicht existiert.
+Returns the value of an attribute, or `null` if the attribute does not exist.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string` | ja | — | Attributname |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `name` | `string` | yes | — | Attribute name |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<null | string>`
+**Returns:** `Promise<null | string>`
 
 ```typescript
 const href = await page.getByRole('link').getAttribute('href');
@@ -756,17 +756,17 @@ const href = await page.getByRole('link').getAttribute('href');
 getByAltText(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Elemente ueber ihren `alt`-Text (typisch fuer Bilder).
+Finds elements by their `alt` text (typical for images).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Alt-Text zum Suchen |
-| `options.exact` | `boolean` | nein | `false` | Exakter (Gross-/Kleinschreibung + vollstaendiger String) Vergleich |
+| `text` | `string \| RegExp` | yes | — | Alt text to search for |
+| `options.exact` | `boolean` | no | `false` | Exact comparison (case-sensitive + full string) |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.getByAltText('Firmenlogo').click();
+await page.getByAltText('Company logo').click();
 ```
 
 ---
@@ -777,17 +777,17 @@ await page.getByAltText('Firmenlogo').click();
 getByLabel(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Formularelemente ueber ihren Label-Text, `aria-label` oder `aria-labelledby`.
+Finds form elements by their label text, `aria-label` or `aria-labelledby`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Label-Text zum Suchen |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Label text to search for |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.getByLabel('Passwort').fill('geheim');
+await page.getByLabel('Password').fill('secret');
 ```
 
 ---
@@ -798,17 +798,17 @@ await page.getByLabel('Passwort').fill('geheim');
 getByPlaceholder(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet `<input>`-Elemente ueber ihren `placeholder`-Text.
+Finds `<input>` elements by their `placeholder` text.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Placeholder-Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Placeholder text |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.getByPlaceholder('Suche...').fill('Playwright');
+await page.getByPlaceholder('Search...').fill('Playwright');
 ```
 
 ---
@@ -830,26 +830,25 @@ getByRole(role: AriaRole, options?: {
 }): Locator
 ```
 
-Findet Elemente ueber ihre ARIA-Rolle und optionale ARIA-Attribute.
+Finds elements by their ARIA role and optional ARIA attributes.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `role` | `AriaRole` | ja | — | ARIA-Rolle z.B. `'button'`, `'link'`, `'heading'` |
-| `options.checked` | `boolean` | nein | — | Filtert nach `aria-checked` oder nativem `checked`-Zustand |
-| `options.description` | `string \| RegExp` | nein | — | Filtert nach accessible description |
-| `options.disabled` | `boolean` | nein | — | Filtert nach `aria-disabled` oder nativem `disabled` |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich fuer `name` und `description` |
-| `options.expanded` | `boolean` | nein | — | Filtert nach `aria-expanded` |
-| `options.includeHidden` | `boolean` | nein | `false` | Versteckte Elemente einbeziehen |
-| `options.level` | `number` | nein | — | Filtert nach `aria-level` (fuer Headings) |
-| `options.name` | `string \| RegExp` | nein | — | Filtert nach accessible name |
-| `options.pressed` | `boolean` | nein | — | Filtert nach `aria-pressed` |
-| `options.selected` | `boolean` | nein | — | Filtert nach `aria-selected` |
+| `role` | `AriaRole` | yes | — | ARIA role, e.g. `'button'`, `'link'`, `'heading'` |
+| `options.checked` | `boolean` | no | — | Filters by `aria-checked` or the native `checked` state |
+| `options.description` | `string \| RegExp` | no | — | Filters by accessible description |
+| `options.disabled` | `boolean` | no | — | Filters by `aria-disabled` or native `disabled` |
+| `options.exact` | `boolean` | no | `false` | Exact comparison for `name` and `description` |
+| `options.expanded` | `boolean` | no | — | Filters by `aria-expanded` |
+| `options.includeHidden` | `boolean` | no | `false` | Include hidden elements |
+| `options.level` | `number` | no | — | Filters by `aria-level` (for headings) |
+| `options.name` | `string \| RegExp` | no | — | Filters by accessible name |
+| `options.pressed` | `boolean` | no | — | Filters by `aria-pressed` |
+| `options.selected` | `boolean` | no | — | Filters by `aria-selected` |
 
-**Rueckgabe:** `Locator`
-
+**Returns:** `Locator`
 ```typescript
-await page.getByRole('button', { name: 'Anmelden' }).click();
+await page.getByRole('button', { name: 'Sign in' }).click();
 await page.getByRole('heading', { level: 2 }).first().click();
 ```
 
@@ -861,13 +860,13 @@ await page.getByRole('heading', { level: 2 }).first().click();
 getByTestId(testId: string | RegExp): Locator
 ```
 
-Findet Elemente ueber ihr Test-ID-Attribut (Standard: `data-testid`; konfigurierbar via `selectors.setTestIdAttribute`).
+Finds elements by their test ID attribute (default: `data-testid`; configurable via `selectors.setTestIdAttribute`).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `testId` | `string \| RegExp` | ja | — | Wert des Test-ID-Attributs |
+| `testId` | `string \| RegExp` | yes | — | Value of the test ID attribute |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 await page.getByTestId('submit-button').click();
@@ -881,18 +880,18 @@ await page.getByTestId('submit-button').click();
 getByText(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Elemente, die den angegebenen Text enthalten (Whitespace wird normalisiert).
+Finds elements that contain the given text (whitespace is normalized).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Gesuchter Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich (Gross-/Kleinschreibung + vollstaendiger String) |
+| `text` | `string \| RegExp` | yes | — | Text to search for |
+| `options.exact` | `boolean` | no | `false` | Exact comparison (case-sensitive + full string) |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.getByText('Bestellbestaetigung').click();
-await page.getByText(/Willkommen/i).waitFor();
+await page.getByText('Order confirmation').click();
+await page.getByText(/Welcome/i).waitFor();
 ```
 
 ---
@@ -903,17 +902,17 @@ await page.getByText(/Willkommen/i).waitFor();
 getByTitle(text: string | RegExp, options?: { exact?: boolean }): Locator
 ```
 
-Findet Elemente ueber ihr `title`-Attribut.
+Finds elements by their `title` attribute.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string \| RegExp` | ja | — | Title-Text |
-| `options.exact` | `boolean` | nein | `false` | Exakter Vergleich |
+| `text` | `string \| RegExp` | yes | — | Title text |
+| `options.exact` | `boolean` | no | `false` | Exact comparison |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.getByTitle('Profil bearbeiten').click();
+await page.getByTitle('Edit profile').click();
 ```
 
 ---
@@ -924,13 +923,13 @@ await page.getByTitle('Profil bearbeiten').click();
 hideHighlight(): Promise<void>
 ```
 
-Versteckt das Element-Highlight, das mit `highlight()` erzeugt wurde.
+Hides the element highlight created with `highlight()`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.locator('.box').hideHighlight();
@@ -946,13 +945,13 @@ highlight(options?: {
 }): Promise<Disposable>
 ```
 
-Hebt das Element auf dem Bildschirm hervor. Gibt ein `Disposable` zurueck.
+Highlights the element on screen. Returns a `Disposable`.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.style` | `string \| Record<string, string \| number>` | nein | Standard-Overlay | CSS-Stile fuer das Hervorhebungs-Overlay |
+| `options.style` | `string \| Record<string, string \| number>` | no | default overlay | CSS styles for the highlight overlay |
 
-**Rueckgabe:** `Promise<Disposable>`
+**Returns:** `Promise<Disposable>`
 
 ```typescript
 const highlight = await page.locator('button').highlight();
@@ -975,21 +974,21 @@ hover(options?: {
 }): Promise<void>
 ```
 
-Bewegt die Maus ueber das Element (Hover).
+Moves the mouse over the element (hover).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.modifiers` | `Array<string>` | nein | `[]` | Modifier-Tasten |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Hover-Position |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.modifiers` | `Array<string>` | no | `[]` | Modifier keys |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.position` | `{ x: number; y: number }` | no | center | Hover position |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByRole('menuitem', { name: 'Datei' }).hover();
+await page.getByRole('menuitem', { name: 'File' }).hover();
 ```
 
 ---
@@ -1000,13 +999,13 @@ await page.getByRole('menuitem', { name: 'Datei' }).hover();
 innerHTML(options?: { timeout?: number }): Promise<string>
 ```
 
-Gibt den `innerHTML`-Wert des Elements zurueck.
+Returns the `innerHTML` value of the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<string>`
+**Returns:** `Promise<string>`
 
 ```typescript
 const html = await page.locator('.content').innerHTML();
@@ -1020,13 +1019,13 @@ const html = await page.locator('.content').innerHTML();
 innerText(options?: { timeout?: number }): Promise<string>
 ```
 
-Gibt den `innerText`-Wert des Elements zurueck (sichtbarer Text, CSS-Rendering beruecksichtigt).
+Returns the `innerText` value of the element (visible text, taking CSS rendering into account).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<string>`
+**Returns:** `Promise<string>`
 
 ```typescript
 const text = await page.locator('h1').innerText();
@@ -1040,13 +1039,13 @@ const text = await page.locator('h1').innerText();
 inputValue(options?: { timeout?: number }): Promise<string>
 ```
 
-Gibt den aktuellen Wert eines `<input>`, `<textarea>` oder `<select>`-Elements zurueck.
+Returns the current value of an `<input>`, `<textarea>` or `<select>` element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<string>`
+**Returns:** `Promise<string>`
 
 ```typescript
 const val = await page.getByLabel('Name').inputValue();
@@ -1060,16 +1059,16 @@ const val = await page.getByLabel('Name').inputValue();
 isChecked(options?: { timeout?: number }): Promise<boolean>
 ```
 
-Gibt zurueck, ob die Checkbox oder das Radio-Element angehakt ist.
+Returns whether the checkbox or radio element is checked.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ```typescript
-if (await page.getByLabel('Datenschutz').isChecked()) { /* ... */ }
+if (await page.getByLabel('Privacy policy').isChecked()) { /* ... */ }
 ```
 
 ---
@@ -1080,13 +1079,13 @@ if (await page.getByLabel('Datenschutz').isChecked()) { /* ... */ }
 isDisabled(options?: { timeout?: number }): Promise<boolean>
 ```
 
-Gibt zurueck, ob das Element deaktiviert ist.
+Returns whether the element is disabled.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ```typescript
 const disabled = await page.getByRole('button').isDisabled();
@@ -1100,13 +1099,13 @@ const disabled = await page.getByRole('button').isDisabled();
 isEditable(options?: { timeout?: number }): Promise<boolean>
 ```
 
-Gibt zurueck, ob das Element editierbar ist.
+Returns whether the element is editable.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ```typescript
 const editable = await page.getByRole('textbox').isEditable();
@@ -1120,13 +1119,13 @@ const editable = await page.getByRole('textbox').isEditable();
 isEnabled(options?: { timeout?: number }): Promise<boolean>
 ```
 
-Gibt zurueck, ob das Element aktiviert (nicht deaktiviert) ist.
+Returns whether the element is enabled (not disabled).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ```typescript
 const enabled = await page.getByRole('button').isEnabled();
@@ -1140,13 +1139,13 @@ const enabled = await page.getByRole('button').isEnabled();
 isHidden(options?: { timeout?: number }): Promise<boolean>
 ```
 
-Gibt zurueck, ob das Element versteckt oder nicht sichtbar ist. Timeout `0` bedeutet keine Wartezeit.
+Returns whether the element is hidden or not visible. A timeout of `0` means no waiting.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ```typescript
 if (await page.locator('.spinner').isHidden()) { /* ... */ }
@@ -1160,13 +1159,13 @@ if (await page.locator('.spinner').isHidden()) { /* ... */ }
 isVisible(options?: { timeout?: number }): Promise<boolean>
 ```
 
-Gibt zurueck, ob das Element sichtbar ist. Timeout `0` bedeutet keine Wartezeit.
+Returns whether the element is visible. A timeout of `0` means no waiting.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | `0` | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | `0` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ```typescript
 if (await page.locator('.modal').isVisible()) { /* ... */ }
@@ -1180,13 +1179,13 @@ if (await page.locator('.modal').isVisible()) { /* ... */ }
 last(): Locator
 ```
 
-Gibt einen Locator zurueck, der auf das letzte passende Element zeigt.
+Returns a locator pointing at the last matching element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| — | — | — | — | Keine Parameter |
+| — | — | — | — | No parameters |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 await page.getByRole('row').last().click();
@@ -1205,17 +1204,17 @@ locator(selectorOrLocator: string | Locator, options?: {
 }): Locator
 ```
 
-Erstellt einen untergeordneten Locator — sucht innerhalb des aktuellen Locators.
+Creates a child locator — searches within the current locator.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `selectorOrLocator` | `string \| Locator` | ja | — | CSS/Playwright-Selektor oder anderer Locator |
-| `options.has` | `Locator` | nein | — | Nur Elemente behalten, die diesen Locator enthalten |
-| `options.hasNot` | `Locator` | nein | — | Elemente ausschliessen, die diesen Locator enthalten |
-| `options.hasNotText` | `string \| RegExp` | nein | — | Ausschliessen nach Text |
-| `options.hasText` | `string \| RegExp` | nein | — | Behalten nach Text |
+| `selectorOrLocator` | `string \| Locator` | yes | — | CSS/Playwright selector or another locator |
+| `options.has` | `Locator` | no | — | Keep only elements that contain this locator |
+| `options.hasNot` | `Locator` | no | — | Exclude elements that contain this locator |
+| `options.hasNotText` | `string \| RegExp` | no | — | Exclude by text |
+| `options.hasText` | `string \| RegExp` | no | — | Keep by text |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 const row = page.locator('tr').filter({ hasText: 'Max' });
@@ -1230,16 +1229,16 @@ const cell = row.locator('td:nth-child(2)');
 nth(index: number): Locator
 ```
 
-Gibt den n-ten (nullbasiert) passenden Element-Locator zurueck.
+Returns the locator for the nth (zero-based) matching element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `index` | `number` | ja | — | Nullbasierter Index |
+| `index` | `number` | yes | — | Zero-based index |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
-await page.getByRole('button').nth(2).click(); // drittes Button
+await page.getByRole('button').nth(2).click(); // third button
 ```
 
 ---
@@ -1248,15 +1247,16 @@ await page.getByRole('button').nth(2).click(); // drittes Button
 
 ```typescript
 or(locator: Locator): Locator
+or(locator: Locator): Locator
 ```
 
-Erstellt einen Locator, der Elemente beider Locatoren matched (logisches ODER).
+Creates a locator that matches elements of either locator (logical OR).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `locator` | `Locator` | ja | — | Alternativer Locator |
+| `locator` | `Locator` | yes | — | Alternative locator |
 
-**Rueckgabe:** `Locator`
+**Returns:** `Locator`
 
 ```typescript
 const el = page.getByRole('button').or(page.getByRole('link'));
@@ -1273,15 +1273,15 @@ press(key: string, options?: {
 }): Promise<void>
 ```
 
-Drueckt eine Taste auf dem Element (das Element muss fokussiert sein).
+Presses a key on the element (the element must be focused).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `key` | `string` | ja | — | Taste z.B. `'Enter'`, `'Tab'`, `'ArrowDown'`, `'Control+A'` |
-| `options.delay` | `number` | nein | `0` | Verzoegerung zwischen keydown und keyup in ms |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `key` | `string` | yes | — | Key, e.g. `'Enter'`, `'Tab'`, `'ArrowDown'`, `'Control+A'` |
+| `options.delay` | `number` | no | `0` | Delay between keydown and keyup in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByRole('textbox').press('Enter');
@@ -1299,15 +1299,15 @@ pressSequentially(text: string, options?: {
 }): Promise<void>
 ```
 
-Tippt Text Zeichen fuer Zeichen mit optionaler Verzoegerung (simuliert menschliche Eingabe).
+Types text character by character with an optional delay (simulates human input).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `text` | `string` | ja | — | Einzutippender Text |
-| `options.delay` | `number` | nein | `0` | Verzoegerung zwischen Tastendrucken in ms |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `text` | `string` | yes | — | Text to type |
+| `options.delay` | `number` | no | `0` | Delay between key presses in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByRole('textbox').pressSequentially('Hello', { delay: 50 });
@@ -1331,21 +1331,21 @@ screenshot(options?: {
 }): Promise<Buffer>
 ```
 
-Erstellt einen Screenshot des Elements.
+Takes a screenshot of the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.animations` | `'disabled' \| 'allow'` | nein | `'disabled'` | CSS-Animationen behandeln |
-| `options.mask` | `Array<Locator>` | nein | `[]` | Elemente, die maskiert (unkenntlich) werden sollen |
-| `options.maskColor` | `string` | nein | `'#FF00FF'` | Farbe fuer Maskierung |
-| `options.omitBackground` | `boolean` | nein | `false` | Hintergrund weglassen (PNG transparent) |
-| `options.path` | `string` | nein | — | Speicherpfad |
-| `options.quality` | `number` | nein | — | JPEG-Qualitaet 0-100 |
-| `options.scale` | `'css' \| 'device'` | nein | `'device'` | CSS-Pixel oder Geraetemasseinheit |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.type` | `'png' \| 'jpeg'` | nein | `'png'` | Bildformat |
+| `options.animations` | `'disabled' \| 'allow'` | no | `'disabled'` | How to handle CSS animations |
+| `options.mask` | `Array<Locator>` | no | `[]` | Elements to be masked (obscured) |
+| `options.maskColor` | `string` | no | `'#FF00FF'` | Color used for masking |
+| `options.omitBackground` | `boolean` | no | `false` | Omit the background (transparent PNG) |
+| `options.path` | `string` | no | — | Save path |
+| `options.quality` | `number` | no | — | JPEG quality 0-100 |
+| `options.scale` | `'css' \| 'device'` | no | `'device'` | CSS pixels or device units |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.type` | `'png' \| 'jpeg'` | no | `'png'` | Image format |
 
-**Rueckgabe:** `Promise<Buffer>`
+**Returns:** `Promise<Buffer>`
 
 ```typescript
 const buf = await page.locator('.chart').screenshot({ path: 'chart.png' });
@@ -1359,13 +1359,13 @@ const buf = await page.locator('.chart').screenshot({ path: 'chart.png' });
 scrollIntoViewIfNeeded(options?: { timeout?: number }): Promise<void>
 ```
 
-Scrollt das Element in den sichtbaren Bereich, wenn noetig.
+Scrolls the element into the visible area if necessary.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.locator('#footer').scrollIntoViewIfNeeded();
@@ -1386,20 +1386,20 @@ selectOption(
 ): Promise<string[]>
 ```
 
-Waehlt Optionen in einem `<select>`-Element aus.
+Selects options in a `<select>` element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `values` | `string \| string[] \| SelectOption \| SelectOption[]` | ja | — | Zu waehlende Werte/Labels/Indizes |
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `values` | `string \| string[] \| SelectOption \| SelectOption[]` | yes | — | Values/labels/indices to select |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<string[]>` — gewaehlte Optionswerte
+**Returns:** `Promise<string[]>` — the selected option values
 
 ```typescript
-await page.getByLabel('Land').selectOption('DE');
-await page.getByLabel('Farben').selectOption(['rot', 'blau']);
+await page.getByLabel('Country').selectOption('DE');
+await page.getByLabel('Colors').selectOption(['red', 'blue']);
 ```
 
 ---
@@ -1413,14 +1413,14 @@ selectText(options?: {
 }): Promise<void>
 ```
 
-Markiert den gesamten Textinhalt eines Input- oder Textarea-Elements.
+Selects the entire text content of an input or textarea element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByRole('textbox').selectText();
@@ -1440,18 +1440,18 @@ setChecked(checked: boolean, options?: {
 }): Promise<void>
 ```
 
-Setzt den angehakten Zustand einer Checkbox oder eines Radio-Elements explizit.
+Explicitly sets the checked state of a checkbox or radio element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `checked` | `boolean` | ja | — | `true` = angehakt, `false` = nicht angehakt |
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Klickposition |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen |
+| `checked` | `boolean` | yes | — | `true` = checked, `false` = unchecked |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.position` | `{ x: number; y: number }` | no | center | Click position |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByLabel('Newsletter').setChecked(true);
@@ -1471,18 +1471,18 @@ setInputFiles(
 ): Promise<void>
 ```
 
-Setzt Dateien fuer ein `<input type="file">`-Element.
+Sets files for an `<input type="file">` element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `files` | `string \| string[] \| FilePayload \| FilePayload[]` | ja | — | Dateipfade oder Buffer-Objekte mit `name`, `mimeType`, `buffer` |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `files` | `string \| string[] \| FilePayload \| FilePayload[]` | yes | — | File paths or buffer objects with `name`, `mimeType`, `buffer` |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByLabel('Datei hochladen').setInputFiles('pfad/zu/datei.pdf');
+await page.getByLabel('Upload file').setInputFiles('path/to/file.pdf');
 ```
 
 ---
@@ -1500,18 +1500,18 @@ tap(options?: {
 }): Promise<void>
 ```
 
-Fuehrt eine Touch-Tap-Geste auf dem Element aus.
+Performs a touch tap gesture on the element.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.modifiers` | `Array<string>` | nein | `[]` | Modifier-Tasten |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Tap-Position |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.modifiers` | `Array<string>` | no | `[]` | Modifier keys |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.position` | `{ x: number; y: number }` | no | center | Tap position |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.getByRole('button').tap();
@@ -1525,13 +1525,13 @@ await page.getByRole('button').tap();
 textContent(options?: { timeout?: number }): Promise<string | null>
 ```
 
-Gibt den `textContent`-Wert des Elements zurueck (inklusive unsichtbarer Kinder).
+Returns the `textContent` value of the element (including invisible children).
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<string | null>`
+**Returns:** `Promise<string | null>`
 
 ```typescript
 const raw = await page.locator('script').textContent();
@@ -1551,20 +1551,20 @@ uncheck(options?: {
 }): Promise<void>
 ```
 
-Stellt sicher, dass eine Checkbox oder ein Radio-Element nicht angehakt ist.
+Ensures that a checkbox or radio element is not checked.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.force` | `boolean` | nein | `false` | Actionability uebergehen |
-| `options.noWaitAfter` | `boolean` | nein | — | Veraltet, ohne Wirkung |
-| `options.position` | `{ x: number; y: number }` | nein | Mittelpunkt | Klickposition |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
-| `options.trial` | `boolean` | nein | `false` | Nur Actionability pruefen |
+| `options.force` | `boolean` | no | `false` | Bypass actionability |
+| `options.noWaitAfter` | `boolean` | no | — | Deprecated, has no effect |
+| `options.position` | `{ x: number; y: number }` | no | center | Click position |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
+| `options.trial` | `boolean` | no | `false` | Only check actionability |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await page.getByLabel('Alle auswaehlen').uncheck();
+await page.getByLabel('Select all').uncheck();
 ```
 
 ---
@@ -1578,14 +1578,14 @@ waitFor(options?: {
 }): Promise<void>
 ```
 
-Wartet, bis das Element den gewuenschten Zustand erreicht hat.
+Waits until the element has reached the desired state.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.state` | `'attached' \| 'detached' \| 'visible' \| 'hidden'` | nein | `'visible'` | Gewuenschter DOM-/Sichtbarkeits-Zustand |
-| `options.timeout` | `number` | nein | global default | Maximale Wartezeit in ms |
+| `options.state` | `'attached' \| 'detached' \| 'visible' \| 'hidden'` | no | `'visible'` | Desired DOM/visibility state |
+| `options.timeout` | `number` | no | global default | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await page.locator('.toast').waitFor({ state: 'visible' });
@@ -1594,21 +1594,21 @@ await page.locator('.spinner').waitFor({ state: 'hidden' });
 
 ---
 
-## Methoden-Uebersicht (57 Methoden)
+## Method Overview (57 methods)
 
-| Kategorie | Methoden |
+| Category | Methods |
 |---|---|
-| Iteration/Komposition | `all`, `and`, `or`, `filter`, `first`, `last`, `nth`, `count` |
-| Fabrikmethoden (getBy*) | `getByAltText`, `getByLabel`, `getByPlaceholder`, `getByRole`, `getByTestId`, `getByText`, `getByTitle` |
-| Untergeordnete Locatoren | `locator`, `frameLocator`, `contentFrame` |
-| Lesen (keine Aktion) | `allInnerTexts`, `allTextContents`, `getAttribute`, `innerHTML`, `innerText`, `inputValue`, `textContent`, `boundingBox` |
-| Zustands-Checks | `isChecked`, `isDisabled`, `isEditable`, `isEnabled`, `isHidden`, `isVisible` |
-| Aktionen | `check`, `uncheck`, `setChecked`, `click`, `dblclick`, `tap`, `hover`, `fill`, `clear`, `press`, `pressSequentially`, `selectOption`, `selectText`, `setInputFiles`, `focus`, `blur`, `dragTo`, `drop`, `scrollIntoViewIfNeeded` |
-| Screenshot/Snapshot | `screenshot`, `ariaSnapshot` |
+| Iteration/composition | `all`, `and`, `or`, `filter`, `first`, `last`, `nth`, `count` |
+| Factory methods (getBy*) | `getByAltText`, `getByLabel`, `getByPlaceholder`, `getByRole`, `getByTestId`, `getByText`, `getByTitle` |
+| Child locators | `locator`, `frameLocator`, `contentFrame` |
+| Reading (no action) | `allInnerTexts`, `allTextContents`, `getAttribute`, `innerHTML`, `innerText`, `inputValue`, `textContent`, `boundingBox` |
+| State checks | `isChecked`, `isDisabled`, `isEditable`, `isEnabled`, `isHidden`, `isVisible` |
+| Actions | `check`, `uncheck`, `setChecked`, `click`, `dblclick`, `tap`, `hover`, `fill`, `clear`, `press`, `pressSequentially`, `selectOption`, `selectText`, `setInputFiles`, `focus`, `blur`, `dragTo`, `drop`, `scrollIntoViewIfNeeded` |
+| Screenshot/snapshot | `screenshot`, `ariaSnapshot` |
 | Eval | `evaluate`, `evaluateAll`, `evaluateHandle`, `dispatchEvent` |
-| Warten | `waitFor` |
+| Waiting | `waitFor` |
 | Debugging | `describe`, `description`, `highlight`, `hideHighlight` |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-locator
+Source: https://playwright.dev/docs/api/class-locator

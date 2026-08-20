@@ -2,24 +2,24 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [screenshot](#screenshot)
 - [pdf](#pdf)
-- [snapshot (Accessibility-Tree)](#snapshot-accessibility-tree)
-- [Wann welches Tool verwenden](#wann-welches-tool-verwenden)
-- [Typischer Workflow](#typischer-workflow)
+- [snapshot (accessibility tree)](#snapshot-accessibility-tree)
+- [When to use which tool](#when-to-use-which-tool)
+- [Typical workflow](#typical-workflow)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `screenshot` | Screenshot des sichtbaren Viewports |
-| `screenshot [ref]` | Screenshot eines spezifischen Elements |
-| `screenshot --filename=<name>` | Screenshot mit benutzerdefiniertem Dateinamen |
-| `screenshot --full-page` | Screenshot der gesamten scrollbaren Seite |
-| `pdf` | Seite als PDF exportieren |
-| `pdf --filename=<name>` | PDF mit benutzerdefiniertem Dateinamen |
-| `snapshot` | Accessibility-Tree erfassen (kein visuelles Bild) |
+| `screenshot` | Screenshot of the visible viewport |
+| `screenshot [ref]` | Screenshot of a specific element |
+| `screenshot --filename=<name>` | Screenshot with a custom file name |
+| `screenshot --full-page` | Screenshot of the entire scrollable page |
+| `pdf` | Export the page as a PDF |
+| `pdf --filename=<name>` | PDF with a custom file name |
+| `snapshot` | Capture the accessibility tree (no visual image) |
 
 ---
 
@@ -27,30 +27,30 @@
 
 ```bash
 playwright-cli screenshot
-# Gespeichert unter: .playwright-cli/screenshot-2026-03-15.png
+# Saved to: .playwright-cli/screenshot-2026-03-15.png
 
 playwright-cli screenshot e15
-# Screenshot von Element e15
+# Screenshot of element e15
 
 playwright-cli screenshot "#main"
-# Screenshot des Elements mit ID 'main'
+# Screenshot of the element with ID 'main'
 
 playwright-cli screenshot --filename=login-page.png
-# Benutzerdefinierter Dateiname
+# Custom file name
 
 playwright-cli screenshot --full-page --filename=full-page.png
-# Komplette scrollbare Seite
+# Entire scrollable page
 ```
 
-### screenshot-Argumente und Optionen
+### screenshot arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `[ref]` | string | Nein | — | Element-Ref oder CSS-Selektor fuer Element-Screenshot |
-| `--filename=<name>` | string | Nein | Zeitstempel | Dateiname fuer den Screenshot |
-| `--full-page` | flag | Nein | false | Gesamte scrollbare Seite erfassen |
+| `[ref]` | string | No | — | Element ref or CSS selector for an element screenshot |
+| `--filename=<name>` | string | No | Timestamp | File name for the screenshot |
+| `--full-page` | flag | No | false | Capture the entire scrollable page |
 
-Standard-Speicherort: `.playwright-cli/screenshot-<timestamp>.png`
+Default location: `.playwright-cli/screenshot-<timestamp>.png`
 
 ---
 
@@ -58,74 +58,74 @@ Standard-Speicherort: `.playwright-cli/screenshot-<timestamp>.png`
 
 ```bash
 playwright-cli pdf
-# Gespeichert unter: .playwright-cli/page-<timestamp>.pdf
+# Saved to: .playwright-cli/page-<timestamp>.pdf
 
 playwright-cli pdf --filename=report.pdf
-# Benutzerdefinierter Dateiname
+# Custom file name
 ```
 
-### pdf-Optionen
+### pdf options
 
-| Option | Typ | Pflicht | Standard | Beschreibung |
+| Option | Type | Required | Default | Description |
 |--------|-----|---------|---------|-------------|
-| `--filename=<name>` | string | Nein | Zeitstempel | Dateiname fuer das PDF |
+| `--filename=<name>` | string | No | Timestamp | File name for the PDF |
 
-Standard-Speicherort: `.playwright-cli/page-<timestamp>.pdf`
+Default location: `.playwright-cli/page-<timestamp>.pdf`
 
 ---
 
-## snapshot (Accessibility-Tree)
+## snapshot (accessibility tree)
 
-Im Gegensatz zu `screenshot` (visuell) erfasst `snapshot` den Accessibility-Tree.
+In contrast to `screenshot` (visual), `snapshot` captures the accessibility tree.
 
 ```bash
-playwright-cli snapshot                     # Ganze Seite
-playwright-cli snapshot --filename=f.yaml   # Benutzerdefinierter Dateiname
-playwright-cli snapshot e34                 # Element-Scope per Ref
-playwright-cli snapshot "#main"             # Element-Scope per CSS-Selektor
-playwright-cli snapshot --depth=4           # Baum-Tiefe begrenzen
-playwright-cli snapshot --raw               # Nur Ausgabe, ohne Seiteninformationen
+playwright-cli snapshot                     # Whole page
+playwright-cli snapshot --filename=f.yaml   # Custom file name
+playwright-cli snapshot e34                 # Element scope by ref
+playwright-cli snapshot "#main"             # Element scope by CSS selector
+playwright-cli snapshot --depth=4           # Limit the tree depth
+playwright-cli snapshot --raw               # Output only, without page information
 ```
 
 ---
 
-## Wann welches Tool verwenden
+## When to use which tool
 
-| Anwendungsfall | Empfohlenes Tool |
+| Use case | Recommended tool |
 |----------------|-----------------|
-| Visuelles Layout pruefen | `screenshot` |
-| Canvas-/Diagramm-Inhalt erfassen | `screenshot` |
-| Bug dokumentieren | `screenshot` |
-| Ganze Seite als Bild | `screenshot --full-page` |
-| Seite als Dokument exportieren | `pdf` |
-| Elemente fuer Interaktion finden | `snapshot` (Accessibility-Tree) |
-| Seitenstruktur verstehen | `snapshot` |
-| Textinhalt lesen | `snapshot` |
-| Element-Refs fuer Befehle ermitteln | `snapshot` |
+| Check the visual layout | `screenshot` |
+| Capture canvas/diagram content | `screenshot` |
+| Document a bug | `screenshot` |
+| Whole page as an image | `screenshot --full-page` |
+| Export the page as a document | `pdf` |
+| Find elements for interaction | `snapshot` (accessibility tree) |
+| Understand the page structure | `snapshot` |
+| Read text content | `snapshot` |
+| Determine element refs for commands | `snapshot` |
 
 ---
 
-## Typischer Workflow
+## Typical workflow
 
 ```bash
-# Seite laden
+# Load the page
 playwright-cli open https://app.example.com --headed
 
-# Strukturellen Snapshot nehmen
+# Take a structural snapshot
 playwright-cli snapshot
 
-# Interagieren
+# Interact
 playwright-cli click e15
 playwright-cli fill e3 "test@example.com"
 
-# Visuellen Beweis nehmen
+# Take visual evidence
 playwright-cli screenshot --filename=state-after-fill.png
 
-# Bug-Dokumentation
+# Bug documentation
 playwright-cli screenshot --full-page --filename=full-bug-report.png
 playwright-cli pdf --filename=bug-report.pdf
 ```
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/screenshots-pdf
+Source: https://playwright.dev/agent-cli/commands/screenshots-pdf

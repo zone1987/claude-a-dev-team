@@ -2,21 +2,21 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [tracing-start](#tracing-start)
 - [tracing-stop](#tracing-stop)
-- [Trace anzeigen](#trace-anzeigen)
-- [Basis-Workflow](#basis-workflow)
-- [Debugging-Workflow](#debugging-workflow)
-- [Automatische Session-Aufnahme](#automatische-session-aufnahme)
-- [Wann Tracing nutzen](#wann-tracing-nutzen)
+- [Viewing a trace](#viewing-a-trace)
+- [Basic workflow](#basic-workflow)
+- [Debugging workflow](#debugging-workflow)
+- [Automatic session recording](#automatic-session-recording)
+- [When to use tracing](#when-to-use-tracing)
 
-## Befehlsuebersicht
+## Command overview
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|-------------|
-| `tracing-start` | Trace-Aufnahme starten |
-| `tracing-stop` | Trace-Aufnahme beenden und speichern |
+| `tracing-start` | Start trace recording |
+| `tracing-stop` | Stop trace recording and save it |
 
 ---
 
@@ -26,8 +26,8 @@
 playwright-cli tracing-start
 ```
 
-Keine Argumente. Startet die Aufzeichnung aller Aktionen, DOM-Snapshots, Netzwerk-Anfragen
-und Timing-Informationen.
+No arguments. Starts recording all actions, DOM snapshots, network requests
+and timing information.
 
 ---
 
@@ -38,30 +38,30 @@ playwright-cli tracing-stop
 # Trace saved to .playwright-cli/trace.zip
 ```
 
-Keine Argumente. Beendet die Aufnahme und speichert als ZIP-Datei.
+No arguments. Stops the recording and saves it as a ZIP file.
 
 ---
 
-## Trace anzeigen
+## Viewing a trace
 
 ```bash
 npx playwright show-trace .playwright-cli/trace.zip
 ```
 
-Der Trace Viewer zeigt:
+The Trace Viewer shows:
 
-| Information | Beschreibung |
+| Information | Description |
 |-------------|-------------|
-| Aktions-Timeline | Chronologische Liste aller ausgefuehrten Aktionen |
-| DOM-Snapshots | Seitenzustand vor und nach jeder Aktion |
-| Screenshots | Visuelle Referenz fuer jeden Schritt |
-| Netzwerk-Anfragen | Alle HTTP-Anfragen und Antworten |
-| Console-Nachrichten | Browser-Console-Output |
-| Timing-Informationen | Dauer jeder Aktion |
+| Action timeline | Chronological list of all executed actions |
+| DOM snapshots | Page state before and after each action |
+| Screenshots | Visual reference for every step |
+| Network requests | All HTTP requests and responses |
+| Console messages | Browser console output |
+| Timing information | Duration of each action |
 
 ---
 
-## Basis-Workflow
+## Basic workflow
 
 ```bash
 playwright-cli tracing-start
@@ -76,7 +76,7 @@ npx playwright show-trace .playwright-cli/trace.zip
 
 ---
 
-## Debugging-Workflow
+## Debugging workflow
 
 ```bash
 playwright-cli tracing-start
@@ -86,31 +86,31 @@ playwright-cli click e15
 playwright-cli snapshot
 playwright-cli console error
 playwright-cli tracing-stop
-# Trace fuer Team-Analyse bereitstellen
+# Provide the trace for team analysis
 ```
 
 ---
 
-## Automatische Session-Aufnahme
+## Automatic session recording
 
-Sessions ohne manuelle Befehle automatisch tracen:
+Trace sessions automatically without manual commands:
 
 ```bash
 playwright-cli --save-session
 ```
 
-Zeichnet automatisch Traces fuer jede Session auf ohne manuellen Eingriff.
+Automatically records traces for every session without manual intervention.
 
 ---
 
-## Wann Tracing nutzen
+## When to use tracing
 
-- Nicht-reproduzierbare Fehler debuggen
-- Ausfuehrungskontext fuer Team-Analyse erfassen
-- Timing-Probleme diagnostizieren
-- Netzwerk-Anfragen bei Fehlern dokumentieren
-- CI-Fehler in Playwright-Tests analysieren
+- Debugging non-reproducible errors
+- Capturing the execution context for team analysis
+- Diagnosing timing problems
+- Documenting network requests on failures
+- Analyzing CI failures in Playwright tests
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/tracing
+Source: https://playwright.dev/agent-cli/commands/tracing

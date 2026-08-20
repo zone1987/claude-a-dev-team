@@ -2,60 +2,60 @@
 
 ## Contents
 
-- [Befehlsuebersicht](#befehlsuebersicht)
+- [Command overview](#command-overview)
 - [state-save / state-load](#state-save-state-load)
 - [Cookies](#cookies)
 - [localStorage](#localstorage)
 - [sessionStorage](#sessionstorage)
 
-## Befehlsuebersicht
+## Command overview
 
-| Gruppe | Befehl | Beschreibung |
+| Group | Command | Description |
 |--------|--------|-------------|
-| State | `state-save [filename]` | Kompletten Browser-State speichern (Cookies + localStorage) |
-| State | `state-load <filename>` | State aus Datei wiederherstellen |
-| Cookies | `cookie-list` | Alle Cookies auflisten |
-| Cookies | `cookie-get <name>` | Bestimmtes Cookie abrufen |
-| Cookies | `cookie-set <name> <value>` | Cookie erstellen/aendern |
-| Cookies | `cookie-delete <name>` | Cookie loeschen |
-| Cookies | `cookie-clear` | Alle Cookies loeschen |
-| localStorage | `localstorage-list` | Alle Schluessel-Wert-Paare auflisten |
-| localStorage | `localstorage-get <key>` | Wert nach Schluessel abrufen |
-| localStorage | `localstorage-set <key> <value>` | Wert setzen |
-| localStorage | `localstorage-delete <key>` | Schluessel loeschen |
-| localStorage | `localstorage-clear` | Gesamten Storage leeren |
-| sessionStorage | `sessionstorage-list` | Alle Schluessel-Wert-Paare auflisten |
-| sessionStorage | `sessionstorage-get <key>` | Wert nach Schluessel abrufen |
-| sessionStorage | `sessionstorage-set <key> <value>` | Wert setzen |
-| sessionStorage | `sessionstorage-delete <key>` | Schluessel loeschen |
-| sessionStorage | `sessionstorage-clear` | Gesamten Storage leeren |
+| State | `state-save [filename]` | Save the complete browser state (cookies + localStorage) |
+| State | `state-load <filename>` | Restore state from a file |
+| Cookies | `cookie-list` | List all cookies |
+| Cookies | `cookie-get <name>` | Retrieve a specific cookie |
+| Cookies | `cookie-set <name> <value>` | Create/modify a cookie |
+| Cookies | `cookie-delete <name>` | Delete a cookie |
+| Cookies | `cookie-clear` | Delete all cookies |
+| localStorage | `localstorage-list` | List all key-value pairs |
+| localStorage | `localstorage-get <key>` | Retrieve a value by key |
+| localStorage | `localstorage-set <key> <value>` | Set a value |
+| localStorage | `localstorage-delete <key>` | Delete a key |
+| localStorage | `localstorage-clear` | Clear the entire storage |
+| sessionStorage | `sessionstorage-list` | List all key-value pairs |
+| sessionStorage | `sessionstorage-get <key>` | Retrieve a value by key |
+| sessionStorage | `sessionstorage-set <key> <value>` | Set a value |
+| sessionStorage | `sessionstorage-delete <key>` | Delete a key |
+| sessionStorage | `sessionstorage-clear` | Clear the entire storage |
 
 ---
 
 ## state-save / state-load
 
-Speichert und stellt den vollstaendigen Browser-State (Cookies + localStorage) in einer Datei
-wieder her.
+Saves and restores the complete browser state (cookies + localStorage) in a
+file.
 
 ```bash
-playwright-cli state-save                         # automatisch benannte Datei
-playwright-cli state-save auth.json               # benutzerdefinierter Dateiname
-playwright-cli state-load auth.json               # wiederherstellen
+playwright-cli state-save                         # automatically named file
+playwright-cli state-save auth.json               # custom file name
+playwright-cli state-load auth.json               # restore
 ```
 
-### state-save-Argumente
+### state-save arguments
 
-| Argument | Typ | Pflicht | Standard | Beschreibung |
+| Argument | Type | Required | Default | Description |
 |----------|-----|---------|---------|-------------|
-| `[filename]` | string | Nein | Auto-generiert | Zieldatei (JSON) |
+| `[filename]` | string | No | Auto-generated | Target file (JSON) |
 
-### state-load-Argumente
+### state-load arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<filename>` | string | Ja | Quelldatei (JSON) |
+| `<filename>` | string | Yes | Source file (JSON) |
 
-### Authentifizierungs-Persistenz (Beispiel)
+### Authentication persistence (example)
 
 ```bash
 playwright-cli open https://app.example.com/login
@@ -64,7 +64,7 @@ playwright-cli fill e5 "password123"
 playwright-cli click e7
 playwright-cli state-save auth.json
 
-# Spaeter: State laden und direkt zur geschuetzten Seite navigieren
+# Later: load the state and navigate directly to the protected page
 playwright-cli state-load auth.json
 playwright-cli goto https://app.example.com/dashboard
 ```
@@ -81,12 +81,12 @@ playwright-cli cookie-list --domain=.github.com
 playwright-cli cookie-list --path=/app
 ```
 
-#### cookie-list-Optionen
+#### cookie-list options
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |--------|-----|-------------|
-| `--domain=<domain>` | string | Filter nach Domain |
-| `--path=<path>` | string | Filter nach Pfad |
+| `--domain=<domain>` | string | Filter by domain |
+| `--path=<path>` | string | Filter by path |
 
 ### cookie-get
 
@@ -95,11 +95,11 @@ playwright-cli cookie-get session_id
 playwright-cli cookie-get auth_token
 ```
 
-#### cookie-get-Argumente
+#### cookie-get arguments
 
-| Argument | Typ | Pflicht | Beschreibung |
+| Argument | Type | Required | Description |
 |----------|-----|---------|-------------|
-| `<name>` | string | Ja | Name des abzurufenden Cookies |
+| `<name>` | string | Yes | Name of the cookie to retrieve |
 
 ### cookie-set
 
@@ -110,18 +110,18 @@ playwright-cli cookie-set prefs "{\"lang\":\"de\"}" --domain=.example.com
 playwright-cli cookie-set consent true --expires=1735689600 --same-site=Strict
 ```
 
-#### cookie-set-Argumente und Optionen
+#### cookie-set arguments and options
 
-| Argument/Option | Typ | Pflicht | Standard | Beschreibung |
+| Argument/Option | Type | Required | Default | Description |
 |-----------------|-----|---------|---------|-------------|
-| `<name>` | string | Ja | — | Cookie-Name |
-| `<value>` | string | Ja | — | Cookie-Wert |
-| `--domain=<domain>` | string | Nein | Aktuelle Domain | Cookie-Domain |
-| `--path=<path>` | string | Nein | `/` | Cookie-Pfad |
-| `--expires=<timestamp>` | number | Nein | Session | Unix-Timestamp fuer Ablauf |
-| `--http-only` | flag | Nein | false | HTTP-Only-Flag (kein JavaScript-Zugriff) |
-| `--secure` | flag | Nein | false | Secure-Flag (nur HTTPS) |
-| `--same-site=<value>` | string | Nein | — | `Strict`, `Lax` oder `None` |
+| `<name>` | string | Yes | — | Cookie name |
+| `<value>` | string | Yes | — | Cookie value |
+| `--domain=<domain>` | string | No | Current domain | Cookie domain |
+| `--path=<path>` | string | No | `/` | Cookie path |
+| `--expires=<timestamp>` | number | No | Session | Unix timestamp for expiry |
+| `--http-only` | flag | No | false | HTTP-Only flag (no JavaScript access) |
+| `--secure` | flag | No | false | Secure flag (HTTPS only) |
+| `--same-site=<value>` | string | No | — | `Strict`, `Lax` or `None` |
 
 ### cookie-delete
 
@@ -159,7 +159,7 @@ playwright-cli localstorage-get theme
 playwright-cli localstorage-set onboarding_done "false"
 playwright-cli localstorage-set theme "dark"
 playwright-cli localstorage-set user_prefs '{"lang":"de","currency":"EUR"}'
-playwright-cli reload      # Seite neu laden um Aenderung zu aktivieren
+playwright-cli reload      # Reload the page to activate the change
 ```
 
 ### localstorage-delete
@@ -178,7 +178,7 @@ playwright-cli localstorage-clear
 
 ## sessionStorage
 
-Hinweis: Daten werden beim Schliessen des Tabs geloescht.
+Note: data is deleted when the tab is closed.
 
 ```bash
 playwright-cli sessionstorage-list
@@ -188,8 +188,8 @@ playwright-cli sessionstorage-delete temp_data
 playwright-cli sessionstorage-clear
 ```
 
-Alle Befehle haben identische Argumente wie ihre localStorage-Aequivalente.
+All commands take identical arguments to their localStorage equivalents.
 
 ---
 
-Quelle: https://playwright.dev/agent-cli/commands/storage
+Source: https://playwright.dev/agent-cli/commands/storage

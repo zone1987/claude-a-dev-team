@@ -1,23 +1,23 @@
 # class-pageassertions — Playwright API Reference
 
-`PageAssertions` ist die Assertion-Klasse fuer `Page`-Objekte. Alle Matcher retrien automatisch. Standardtimeout: `TestConfig.expect` (Standard 5000 ms).
+`PageAssertions` is the assertion class for `Page` objects. All matchers retry automatically. Default timeout: `TestConfig.expect` (default 5000 ms).
 
-Zugriff via `expect(page).*`.
+Accessed via `expect(page).*`.
 
-Matcher-Anzahl: 6 Matcher + Property `not`
+Matcher count: 6 matchers + property `not`
 
 ---
 
 ## Contents
 
 - [not](#not)
-- [toHaveScreenshot() — mit Name](#tohavescreenshot-mit-name)
-- [toHaveScreenshot() — automatisch](#tohavescreenshot-automatisch)
+- [toHaveScreenshot() — with name](#tohavescreenshot-with-name)
+- [toHaveScreenshot() — automatic](#tohavescreenshot-automatic)
 - [toHaveTitle()](#tohavetitle)
 - [toHaveURL()](#tohaveurl)
 - [toMatchAriaSnapshot() — inline](#tomatchariasnapshot-inline)
-- [toMatchAriaSnapshot() — gespeichert](#tomatchariasnapshot-gespeichert)
-- [Matcher-Uebersicht (6 Matcher)](#matcher-uebersicht-6-matcher)
+- [toMatchAriaSnapshot() — stored](#tomatchariasnapshot-stored)
+- [Matcher overview (6 matchers)](#matcher-overview-6-matchers)
 
 ## not
 
@@ -25,7 +25,7 @@ Matcher-Anzahl: 6 Matcher + Property `not`
 not: PageAssertions
 ```
 
-Invertiert die nachfolgende Assertion.
+Inverts the following assertion.
 
 ```typescript
 await expect(page).not.toHaveURL('/error');
@@ -33,7 +33,7 @@ await expect(page).not.toHaveURL('/error');
 
 ---
 
-## toHaveScreenshot() — mit Name
+## toHaveScreenshot() — with name
 
 ```typescript
 toHaveScreenshot(
@@ -56,26 +56,26 @@ toHaveScreenshot(
 ): Promise<void>
 ```
 
-Vergleicht einen Seiten-Screenshot mit einem gespeicherten Snapshot. Wartet auf aufeinanderfolgende identische Screenshots, bevor verglichen wird.
+Compares a page screenshot against a stored snapshot. Waits for consecutive identical screenshots before comparing.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `name` | `string \| string[]` | ja | — | Snapshot-Dateiname oder Pfad-Segmente |
-| `options.animations` | `'disabled' \| 'allow'` | nein | `'disabled'` | CSS-Animationen behandeln |
-| `options.caret` | `'hide' \| 'initial'` | nein | `'hide'` | Text-Cursor-Sichtbarkeit |
-| `options.clip` | `{ x; y; width; height }` | nein | ganze Seite | Bereich des Screenshots |
-| `options.fullPage` | `boolean` | nein | `false` | Vollstaendige scrollbare Seite aufnehmen |
-| `options.mask` | `Locator[]` | nein | `[]` | Zu maskierende Elemente |
-| `options.maskColor` | `string` | nein | `'#FF00FF'` | Farbe fuer Maskierung |
-| `options.maxDiffPixelRatio` | `number` | nein | aus Config | Maximaler Anteil unterschiedlicher Pixel (0-1) |
-| `options.maxDiffPixels` | `number` | nein | aus Config | Maximale Anzahl unterschiedlicher Pixel |
-| `options.omitBackground` | `boolean` | nein | `false` | Hintergrund transparent (nur PNG) |
-| `options.scale` | `'css' \| 'device'` | nein | `'css'` | Pixel-Masseinheit |
-| `options.stylePath` | `string \| string[]` | nein | — | Zusaetzliche CSS-Dateien |
-| `options.threshold` | `number` | nein | `0.2` | Farbdifferenz-Schwellenwert (YIQ, 0-1) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `name` | `string \| string[]` | yes | — | Snapshot file name or path segments |
+| `options.animations` | `'disabled' \| 'allow'` | no | `'disabled'` | How to handle CSS animations |
+| `options.caret` | `'hide' \| 'initial'` | no | `'hide'` | Text cursor visibility |
+| `options.clip` | `{ x; y; width; height }` | no | whole page | Region of the screenshot |
+| `options.fullPage` | `boolean` | no | `false` | Capture the full scrollable page |
+| `options.mask` | `Locator[]` | no | `[]` | Elements to mask |
+| `options.maskColor` | `string` | no | `'#FF00FF'` | Color used for masking |
+| `options.maxDiffPixelRatio` | `number` | no | from config | Maximum ratio of differing pixels (0-1) |
+| `options.maxDiffPixels` | `number` | no | from config | Maximum number of differing pixels |
+| `options.omitBackground` | `boolean` | no | `false` | Transparent background (PNG only) |
+| `options.scale` | `'css' \| 'device'` | no | `'css'` | Pixel unit of measurement |
+| `options.stylePath` | `string \| string[]` | no | — | Additional CSS files |
+| `options.threshold` | `number` | no | `0.2` | Color difference threshold (YIQ, 0-1) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page).toHaveScreenshot('startseite.png');
@@ -88,7 +88,7 @@ await expect(page).toHaveScreenshot('full.png', {
 
 ---
 
-## toHaveScreenshot() — automatisch
+## toHaveScreenshot() — automatic
 
 ```typescript
 toHaveScreenshot(options?: {
@@ -108,13 +108,13 @@ toHaveScreenshot(options?: {
 }): Promise<void>
 ```
 
-Wie oben, aber Snapshot-Name wird automatisch aus Testname + Zaehlnummer generiert.
+As above, but the snapshot name is generated automatically from the test name + a counter.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| alle `options.*` | — | nein | — | Identisch mit benannter Variante (ohne `name`) |
+| all `options.*` | — | no | — | Identical to the named variant (without `name`) |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page).toHaveScreenshot({ fullPage: true });
@@ -131,17 +131,17 @@ toHaveTitle(
 ): Promise<void>
 ```
 
-Prueft den Titel der aktuellen Seite.
+Checks the title of the current page.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `titleOrRegExp` | `string \| RegExp` | ja | — | Erwarteter Titel (exakter String oder Regex) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `titleOrRegExp` | `string \| RegExp` | yes | — | Expected title (exact string or regex) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
-await expect(page).toHaveTitle('Meine App - Dashboard');
+await expect(page).toHaveTitle('My App - Dashboard');
 await expect(page).toHaveTitle(/Dashboard/);
 ```
 
@@ -159,15 +159,15 @@ toHaveURL(
 ): Promise<void>
 ```
 
-Prueft die aktuelle URL der Seite.
+Checks the page's current URL.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `url` | `string \| RegExp \| URLPattern \| ((url: URL) => boolean)` | ja | — | Erwartete URL: exakter String, Regex, URLPattern oder Praedikat-Funktion |
-| `options.ignoreCase` | `boolean` | nein | `false` | Gross-/Kleinschreibung ignorieren (nur bei String) |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `url` | `string \| RegExp \| URLPattern \| ((url: URL) => boolean)` | yes | — | Expected URL: exact string, regex, URLPattern or predicate function |
+| `options.ignoreCase` | `boolean` | no | `false` | Ignore case (string only) |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page).toHaveURL('/dashboard');
@@ -186,25 +186,25 @@ toMatchAriaSnapshot(
 ): Promise<void>
 ```
 
-Prueft, ob der `<body>` der Seite dem angegebenen ARIA-Snapshot entspricht.
+Checks whether the page's `<body>` matches the given ARIA snapshot.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `expected` | `string` | ja | — | ARIA-Snapshot als YAML-String |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `expected` | `string` | yes | — | ARIA snapshot as a YAML string |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page).toMatchAriaSnapshot(`
-  - heading "Willkommen" [level=1]
-  - link "Anmelden"
+  - heading "Welcome" [level=1]
+  - link "Sign in"
 `);
 ```
 
 ---
 
-## toMatchAriaSnapshot() — gespeichert
+## toMatchAriaSnapshot() — stored
 
 ```typescript
 toMatchAriaSnapshot(options?: {
@@ -213,14 +213,14 @@ toMatchAriaSnapshot(options?: {
 }): Promise<void>
 ```
 
-Vergleicht mit einer gespeicherten `.aria.yml`-Datei. Bei fehlendem `name` wird der Name automatisch generiert.
+Compares against a stored `.aria.yml` file. If `name` is missing, the name is generated automatically.
 
-| Parameter | Typ | Pflicht | Default | Beschreibung |
+| Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `options.name` | `string` | nein | auto | Dateiname der Snapshot-Datei |
-| `options.timeout` | `number` | nein | `TestConfig.expect` | Maximale Wartezeit in ms |
+| `options.name` | `string` | no | auto | File name of the snapshot file |
+| `options.timeout` | `number` | no | `TestConfig.expect` | Maximum wait time in ms |
 
-**Rueckgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```typescript
 await expect(page).toMatchAriaSnapshot({ name: 'homepage.aria.yml' });
@@ -228,15 +228,15 @@ await expect(page).toMatchAriaSnapshot({ name: 'homepage.aria.yml' });
 
 ---
 
-## Matcher-Uebersicht (6 Matcher)
+## Matcher overview (6 matchers)
 
-| Matcher | Prueft |
+| Matcher | Checks |
 |---|---|
-| `toHaveScreenshot` (2x) | Visuellen Seitenvergleich mit gespeichertem Baseline-Screenshot |
+| `toHaveScreenshot` (2x) | Visual page comparison against a stored baseline screenshot |
 | `toHaveTitle` | `document.title` |
-| `toHaveURL` | Aktuelle Seiten-URL |
-| `toMatchAriaSnapshot` (2x) | ARIA-Baum des `<body>` |
+| `toHaveURL` | Current page URL |
+| `toMatchAriaSnapshot` (2x) | ARIA tree of the `<body>` |
 
 ---
 
-Quelle: https://playwright.dev/docs/api/class-pageassertions
+Source: https://playwright.dev/docs/api/class-pageassertions
