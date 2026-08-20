@@ -24,10 +24,25 @@ Three consequences that decide how we write skills:
   without a description is still listed by name, but it never auto-activates again. Rarely used
   skills are the first to go silent — which is exactly backwards from what an author wants.
 
-Two hard limits on top: each entry's combined `description` + `when_to_use` is **capped at 1,536
-characters** regardless of budget, and **plugin skills are exempt from `skillOverrides`** — a user
-cannot trim our descriptions from their settings. Staying inside the budget is the author's job,
-not the user's.
+Two further limits, both documented:
+
+> "each entry's combined text is capped at 1,536 characters regardless of budget. The cap is
+> configurable with `skillListingMaxDescChars`."
+> — [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills#skill-listing-budget)
+
+The frontmatter reference says the same from the other side: the combined `description` and
+`when_to_use` text "is truncated at 1,536 characters in the skill listing to reduce context usage".
+Treat 1,536 as the ceiling to design against, not as a fixed property of the platform — a user who
+raises `skillListingMaxDescChars` is not who we are writing for.
+
+> "Plugin skills are not affected by `skillOverrides`. Manage those through `/plugin` instead."
+> — [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings)
+
+That is the load-bearing one. `skillOverrides` is how a user reclaims budget from a skill they
+rarely need — setting it to `"name-only"` keeps the name and drops the description. It does not
+reach plugin skills. A user who installs from this marketplace therefore cannot trim our
+descriptions from their settings; their only lever is enabling or disabling the whole plugin via
+`/plugin`. Staying inside the budget is the author's job, not the user's.
 
 ### Where this repository stands
 
@@ -87,10 +102,12 @@ restructuring is not finished until it reports zero losses.
   cap, so it buys nothing and doubles the maintenance surface. Put the triggers in `description`.
 - **`skills[]` in `plugin.json` is mandatory.** It defines the shipped set, so work in progress can
   live in the repo without entering anyone's budget.
-- **`SKILL.md` ≤ 120 lines.** The documented ceiling is 500; we stay well inside it.
-- **≤ 120 lines per `SKILL.md`, ≤ 40 for a domain map.** A map that grows past 40 lines is
-  listing files rather than orienting a reader: drop the per-file gist and group companions
-  onto their topic's line.
+- **`SKILL.md` ≤ 120 lines, ≤ 40 for a domain map.** The documented ceiling is higher — "Keep
+  SKILL.md body under 500 lines for optimal performance"
+  ([best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#token-budgets))
+  — and we stay well inside it, because a loaded skill is a recurring cost on every turn. A map that
+  grows past 40 lines is listing files rather than orienting a reader: drop the per-file gist and
+  group companions onto their topic's line.
 - **Every reference file over 100 lines carries a table of contents** — unless it has fewer
   than three `##` sections, where a two-entry list is noise rather than navigation.
   `scripts/add-toc.py` applies exactly that rule.
@@ -181,13 +198,25 @@ skills/octo-products/
 └── CAPABILITY-EXTENSIONS.md
 ```
 
-- **One level deep, flat siblings, `SCREAMING-CASE.md`.** The best-practices doc is explicit:
-  "Keep references one level deep from SKILL.md" — deeper files get partially read (`head -100`),
-  so anything past line 100 of a nested file is effectively invisible. A `references/deep/x.md`
-  layout silently loses most of its own content.
+- **One level deep, flat siblings, `SCREAMING-CASE.md`.** This is the documented mechanism, not a
+  preference:
+
+  > "Claude may partially read files when they're referenced from other referenced files. When
+  > encountering nested references, Claude might use commands like `head -100` to preview content
+  > rather than reading entire files, resulting in incomplete information."
+  >
+  > "**Keep references one level deep from SKILL.md**. All reference files should link directly
+  > from SKILL.md to ensure Claude reads complete files when needed."
+  > — [Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-deeply-nested-references)
+
+  So a `references/deep/x.md` layout silently loses most of its own content: anything past line 100
+  of a nested file is effectively invisible.
 - **Link every reference from `SKILL.md`** with a note on what it contains, so Claude can decide
   whether to open it: `- **[PRODUCT-SCHEMA.md](PRODUCT-SCHEMA.md)**: all 23 base fields and enums.`
-- **Table of contents at the top of any file over 100 lines.**
+- **Table of contents at the top of any file over 100 lines.** Same source, same reason: "For
+  reference files longer than 100 lines, include a table of contents at the top. This ensures
+  Claude can see the full scope of available information even when previewing with partial reads."
+  The 100 is not arbitrary — it is the `head -100` preview boundary above.
 - **Reach other skills by tool call, not by path**: `Call the Skill tool with "octo-protocol".`
   A relative link into another skill's directory is not an invocation and loads nothing.
 
@@ -195,12 +224,13 @@ skills/octo-products/
 
 > "Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the
 > first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens."
+> — [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
 
 Put load-bearing content first. Anything past the first 5,000 tokens of a skill disappears at the
 first compaction and does not come back.
 
 And because "once a skill loads, its content stays in context across turns, so every line is a
-recurring token cost": state what to do, not how you arrived at it. When a sentence adds nothing
+recurring token cost" ([same source](https://code.claude.com/docs/en/skills)): state what to do, not how you arrived at it. When a sentence adds nothing
 the model would not already do, delete the whole sentence rather than trimming its words.
 
 ## Body style
@@ -219,13 +249,23 @@ Imperative, second person, addressed to the agent. Force comes from precise word
 - **`context: fork` on a reference skill.** Documented to fail: "If your skill contains guidelines
   like 'use these API conventions' without a task, the subagent receives the guidelines but no
   actionable prompt, and returns without meaningful output."
-- **A `triggers:` field.** It does not exist. Triggers belong in `description`.
-- **`model:` in a skill.** Model selection belongs to agents and commands.
-- **`hooks`, `mcpServers` or `permissionMode` in a plugin agent.** Ignored for plugin subagents;
-  writing them creates false confidence.
+  ([skills](https://code.claude.com/docs/en/skills#run-a-skill-in-a-subagent))
+- **A `triggers:` field.** It does not exist — it is absent from the frontmatter reference, so it is
+  parsed as unknown and silently does nothing. Triggers belong in `description`.
+  ([frontmatter reference](https://code.claude.com/docs/en/skills#skill-frontmatter))
+- **`model:` in a skill.** Not a skill frontmatter field; model selection belongs to agents and
+  commands. Same reference.
+- **`hooks`, `mcpServers` or `permissionMode` in a plugin agent.** Writing them creates false
+  confidence:
+
+  > "For security reasons, plugin subagents don't support the `hooks`, `mcpServers`, or
+  > `permissionMode` frontmatter fields. These fields are ignored when loading agents from a plugin."
+  > — [Subagents](https://code.claude.com/docs/en/sub-agents)
+
 - **`paths:` on a prose-triggered knowledge skill.** It is a filter, not an amplifier: "When set,
   Claude loads the skill automatically **only** when working with files matching the patterns."
-  A question with no file open then matches nothing.
+  ([skills](https://code.claude.com/docs/en/skills)) A question with no matching file open then
+  matches nothing — which is the main case for a knowledge plugin.
 
 ## Agents
 
@@ -233,12 +273,15 @@ An agent runs in its own context window, so it is the right place for bulk refer
 conversation pays only for the summary it returns.
 
 - **`skills:` injects full content**, not just descriptions — "The full skill content is injected,
-  not only the description." Preload the two or three skills the agent always needs; let it reach
-  the rest through the Skill tool.
+  not only the description." ([Subagents](https://code.claude.com/docs/en/sub-agents)) Preload the
+  two or three skills the agent always needs; let it reach the rest through the Skill tool.
 - **Least privilege on `tools`.** A lookup agent needs no `Edit`/`Write`. Withholding them also
   protects a source-of-truth plugin from accidental edits.
-- **`use proactively` in the description** is the documented way to encourage delegation. It is a
-  nudge, not a guarantee; `@agent-<plugin>:<name>` is the guarantee.
+- **`use proactively` in the description** is the documented way to encourage delegation: "To
+  encourage proactive delegation, include phrases like 'use proactively' in your subagent's
+  description field." ([Subagents](https://code.claude.com/docs/en/sub-agents)) Note what that
+  sentence does not promise — it is a nudge, not a guarantee. `@agent-<plugin>:<name>` is the
+  guarantee.
 - **Agent teams are not shippable.** They are experimental, generated at session start, must not be
   pre-authored, and they ignore a definition's `skills` and `mcpServers` fields.
 
@@ -250,14 +293,22 @@ Model choice: `haiku` for mechanical scanning and scaffolding, `sonnet` for spec
 A hook is the deterministic layer. It cannot force a skill to load — there is no such mechanism —
 but it can inject context that makes the right choice obvious.
 
-- **`UserPromptSubmit` has no `matcher`.** It fires on every prompt; do the matching in the script
-  and return early. Anything else is silently ignored.
-- **`additionalContext` must sit inside `hookSpecificOutput`.** At the top level of the JSON it is
-  silently dropped. This is the most common mistake with this event.
+- **`UserPromptSubmit` has no `matcher`.** The events table lists it under "no matcher support —
+  always fires on every occurrence" ([Hooks](https://code.claude.com/docs/en/hooks#matcher-patterns)).
+  It fires on every prompt; do the matching in the script and return early.
+- **`additionalContext` must sit inside `hookSpecificOutput`.** The documentation is explicit:
+  "Return `additionalContext` inside `hookSpecificOutput` alongside the event name"
+  ([Hooks](https://code.claude.com/docs/en/hooks#add-context-for-claude)), and the
+  `UserPromptSubmit` example nests it under `hookEventName: "UserPromptSubmit"`. At the top level it
+  is not picked up. This is the most common mistake with this event.
 - **Use exec form** (`"command": ["python3", "${CLAUDE_PLUGIN_ROOT}/hooks/x.py"]`) whenever a path
   placeholder is involved.
-- **Set `timeout: 5`.** The default drops to 30 s for this event, but the hook runs synchronously
-  before every prompt. Exit 0 on every path; never block the user's work.
+- **Set `timeout: 5`.** The `command` default is 600 s, which `UserPromptSubmit` lowers to 30 s
+  ([Hooks](https://code.claude.com/docs/en/hooks)) — still far too long for something that runs
+  synchronously before every prompt. And a hook that times out has its output discarded entirely:
+  "A `UserPromptSubmit` command, HTTP, or MCP tool hook that reaches its timeout is canceled and
+  its output, including any `additionalContext`, is discarded." So a slow hook is not a late hook,
+  it is no hook. Exit 0 on every path; never block the user's work.
 
 ## Source of truth
 
