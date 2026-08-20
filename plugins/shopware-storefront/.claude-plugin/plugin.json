@@ -1,12 +1,22 @@
 {
   "name": "shopware-storefront",
-  "version": "1.0.0",
-  "description": "Shopware 6 Storefront: Controller, Pages, PageLoader, Twig, SCSS, Themes, JavaScript-Storefront-Plugins — plus JS-Plugin-Introspektion.",
+  "version": "2.0.0",
+  "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching — 5 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "storefront"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "storefront"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-controller",
+    "./skills/sw-features",
+    "./skills/sw-javascript",
+    "./skills/sw-theme",
+    "./skills/sw-twig"
+  ]
 }

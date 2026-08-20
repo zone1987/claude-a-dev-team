@@ -1,64 +1,23 @@
 ---
 name: shadcn-theming
-description: >
-  shadcn/ui theming — CSS variables, theme tokens, semantic background/foreground
-  pairs, --primary, --background, --muted, --accent, --destructive, radius scale,
-  adding custom tokens, without CSS variables mode, full neutral theme CSS.
-  Use when asked about theming, CSS variables, dark mode tokens, custom colors,
-  shadcn theme, color tokens.
+description: shadcn/ui theming: CSS variable tokens, colour palettes, light and dark mode, Tailwind v4 @theme, RTL and direction. Use when the request names shadcn theming, colors or dark mode.
 ---
 
-# shadcn/ui — Theming
+# shadcn/ui theming
 
-shadcn/ui uses CSS variables for theming by default. This gives semantic theme
-tokens that components use. Override those tokens in your CSS to change the look
-of your app without rewriting component classes.
+Colour, radius and typography come from CSS variable tokens rather than component props. Change a token and every component follows.
 
-```tsx
-<div className="bg-background text-foreground" />
-<div className="bg-primary text-primary-foreground" />
-```
+## Reference map
 
-## Token Convention
+- **[COLORS.md](COLORS.md)**: shadcn/ui uses OKLCH for all color values in Tailwind v4. [COLORS-NEUTRAL-PALETTE](COLORS-NEUTRAL-PALETTE.md), [COLORS-THEME-VARIABLE-MAPPING](COLORS-THEME-VARIABLE-MAPPING.md).
+- **[DARK-MODE.md](DARK-MODE.md)**: Dark mode works by toggling the `.dark` class on the `<html>` element. [DARK-MODE-ASTRO](DARK-MODE-ASTRO.md), [DARK-MODE-NEXT](DARK-MODE-NEXT.md), [DARK-MODE-REMIX](DARK-MODE-REMIX.md), [DARK-MODE-TANSTACK-START](DARK-MODE-TANSTACK-START.md), [DARK-MODE-VITE](DARK-MODE-VITE.md).
+- **[DIRECTION.md](DIRECTION.md)**: The `DirectionProvider` sets text direction for shadcn/ui components. [DIRECTION-API](DIRECTION-API.md), [DIRECTION-INSTALLATION](DIRECTION-INSTALLATION.md), [DIRECTION-SOURCE](DIRECTION-SOURCE.md).
+- **[FULL-THEME.md](FULL-THEME.md)**: Complete default `neutral` theme scaffold for `app/globals.css`:. [FULL-THEME-2](FULL-THEME-2.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: shadcn/ui uses CSS variables for theming by default.
+- **[RTL.md](RTL.md)**: First-class RTL support for shadcn/ui: Arabic, Hebrew, Persian and any other RTL language. [RTL-CONCEPTS](RTL-CONCEPTS.md), [RTL-NEXT](RTL-NEXT.md), [RTL-START](RTL-START.md), [RTL-VITE](RTL-VITE.md).
+- **[TOKENS.md](TOKENS.md)**: `--radius` is the base radius token. [TOKENS-2](TOKENS-2.md).
+- **[TYPOGRAPHY.md](TYPOGRAPHY.md)**: Utility class patterns for styling headings, paragraphs, lists, blockquotes, tables, and other text elements. [TYPOGRAPHY-CLASSES](TYPOGRAPHY-CLASSES.md), [TYPOGRAPHY-EXAMPLES](TYPOGRAPHY-EXAMPLES.md).
 
-Background/foreground pairs. The base token controls the surface color; the
-`-foreground` variant controls the text color on that surface.
+## Source
 
-```css
---primary: oklch(0.205 0 0);
---primary-foreground: oklch(0.985 0 0);
-```
-
-```tsx
-<div className="bg-primary text-primary-foreground">Hello</div>
-```
-
-## All Theme Tokens
-
-| Token | What it controls | Used by |
-|-------|-----------------|---------|
-| `background` / `foreground` | Default app background and text | Page shell, sections, default text |
-| `card` / `card-foreground` | Elevated surfaces | Card, dashboard panels |
-| `popover` / `popover-foreground` | Floating surfaces | Popover, DropdownMenu, ContextMenu |
-| `primary` / `primary-foreground` | High-emphasis, brand surfaces | Default Button, selected states, badges |
-| `secondary` / `secondary-foreground` | Lower-emphasis filled actions | Secondary buttons, badges |
-| `muted` / `muted-foreground` | Subtle surfaces and subdued content | Descriptions, placeholders, helper text |
-| `accent` / `accent-foreground` | Hover/focus/active surfaces | Ghost buttons, menu highlight, hovered rows |
-| `destructive` | Destructive actions and error emphasis | Destructive buttons, invalid states |
-| `border` | Default borders and separators | Cards, menus, tables |
-| `input` | Form control borders | Input, Textarea, Select |
-| `ring` | Focus rings | Buttons, inputs, checkboxes |
-| `chart-1` ... `chart-5` | Chart palette | Charts |
-| `sidebar` / `sidebar-foreground` | Sidebar base | Sidebar container |
-| `sidebar-primary` / `sidebar-primary-foreground` | Sidebar high-emphasis | Active items, badges |
-| `sidebar-accent` / `sidebar-accent-foreground` | Sidebar hover/selected | Sidebar menu hover states |
-| `sidebar-border` | Sidebar borders | Sidebar headers, groups |
-| `sidebar-ring` | Sidebar focus rings | Focused controls in sidebar |
-| `radius` | Base corner radius scale | Cards, inputs, buttons |
-
-## Reference files
-
-- [references/tokens.md](references/tokens.md)
-- [references/full-theme.md](references/full-theme.md)
-
-Source: `/tmp/shadcn-repo/apps/v4/content/docs/(root)/theming.mdx`
+Distilled from [ui.shadcn.com](https://ui.shadcn.com) and the [shadcn-ui repository](https://github.com/shadcn-ui/ui), retrieved 2026-08-20. Components are React source you copy into your project, styled with Tailwind and built on Radix UI or Base UI.

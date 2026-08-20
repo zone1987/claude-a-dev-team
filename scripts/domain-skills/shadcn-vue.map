@@ -1,0 +1,27 @@
+# shadcn-vue: 93 skills -> 8 domains.
+# Components are grouped by what a developer is building, not alphabetically: someone laying
+# out a form reaches for input, select and field together, never for "everything starting
+# with i".
+
+setup: installation cli components-json tailwind-v4 javascript legacy mcp figma changelog overview
+
+theming: theming dark-mode typography
+
+forms: form forms field input input-group input-otp pin-input number-field textarea select
+       native-select checkbox radio-group switch toggle toggle-group slider combobox
+       date-picker calendar range-calendar tags-input stepper label
+
+layout: card separator aspect-ratio scroll-area resizable sidebar sheet drawer collapsible
+        accordion tabs item empty spinner skeleton
+
+navigation: breadcrumb pagination navigation-menu menubar command context-menu dropdown-menu
+            kbd
+
+feedback: alert alert-dialog dialog popover hover-card tooltip toast sonner progress badge
+          avatar button button-group
+
+data: table data-table chart charts-area charts-bar charts-line charts-pie charts-tooltip
+      charts-overview carousel
+
+blocks: blocks-overview blocks-dashboard blocks-login blocks-signup blocks-otp blocks-sidebar
+        registry registry-json registry-item-json registry-examples

@@ -1,28 +1,16 @@
 ---
 name: sw-merchant-customers
-description: >
-  Shopware 6 Kunden-Administration: Übersicht, Anlage, Bearbeitung, Mehrfachänderung,
-  AI-Klassifizierung. Trigger: Kunden anlegen, Kundenübersicht, Kundenverwaltung,
-  Kundenstamm, Kundendetails, als Kunde anmelden, Schnellbesteller, Kunden klassifizieren.
+description: Operating Shopware customers: accounts, addresses, customer groups, bulk edits, B2B customers, storefront account view. Use when the request is about the Shopware admin under Kunden.
 ---
 
-# Shopware 6 – Kunden (Überblick)
+# Shopware customer administration
 
-Dieses Skill deckt die **komplette Kundenverwaltung** im Shopware 6 Admin ab.
+Everything under **Kunden**, plus what the customer sees in their storefront account.
 
-## Unter-Skills
+## Reference map
 
-| Skill | Thema |
-|---|---|
-| `sw-merchant-customers-accounts` | Kundenaccount (Storefront-Sicht, Passwort-Reset) |
-| `sw-merchant-customers-addresses` | Adressen verwalten (Liefer-/Rechnungsadresse) |
-| `sw-merchant-customers-groups` | Kundengruppen & Preisregeln |
-| `sw-merchant-customers-b2b` | B2B / Firmenkonten: Mitarbeiter & Rollen (ab 6.5.6) |
-| `sw-merchant-customers-bulk` | Mehrfachänderung & AI-Klassifizierung |
+- **[CUSTOMERS-OVERVIEW.md](CUSTOMERS-OVERVIEW.md)**: > Quelle: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht > Dokumentierte Version: 6.7.0.0+.
 
-## Schnell-Referenz
+## Source
 
-- Detaildokumentation → `references/deep/customers-overview.md`
-- Alle Screenshots → `assets/`
-
-Für tiefe Einzelthemen lade den jeweiligen Unter-Skill.
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

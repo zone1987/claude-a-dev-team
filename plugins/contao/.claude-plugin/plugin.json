@@ -1,12 +1,23 @@
 {
   "name": "contao",
-  "version": "1.0.1",
-  "description": "Contao 5.x developer library: DCA, models, content elements & modules (fragment controllers), page-/fragment controllers, routing, Twig templates, insert tags, widgets, all hooks, security/filesystem/image-processing, bundles/extensions, manager-plugin.",
+  "version": "2.0.0",
+  "description": "Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete German end-user manual — 8 domain skills over 128 reference files.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
   "keywords": [
     "contao"
-  ]
+  ],
+  "skills": [
+    "./skills/contao-backend",
+    "./skills/contao-core",
+    "./skills/contao-data",
+    "./skills/contao-frontend",
+    "./skills/contao-manual-basics",
+    "./skills/contao-manual-content",
+    "./skills/contao-manual-features",
+    "./skills/contao-platform"
+  ],
+  "license": "MIT"
 }

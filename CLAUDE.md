@@ -52,6 +52,32 @@ authored from here on must fit its share; the largest consumers are being remedi
 `octo-api` is the reference implementation of these rules: 8 skills, 2,392 characters, 30 % of the
 budget, with all 65 operations and 254 capability fields covered and machine-verified.
 
+## The standard every plugin meets
+
+Two obligations, and neither may be traded for the other.
+
+**Complete.** A plugin must carry everything the thing it documents can do. Every endpoint,
+every field, every option, every possible value, every default, every error, every caveat the
+upstream documentation states — extracted from that documentation, not recalled. If a page
+exists upstream and the plugin claims that subject, the page's content is in the plugin. No
+detail is too small: an enum value without its meaning, a parameter without its type, a field
+without its optionality are all gaps. When the upstream itself is silent, say so explicitly
+rather than leaving a blank that reads as absence.
+
+**Efficient.** The knowledge is organised so it costs almost nothing until it is needed:
+`mattpocock/skills` is the benchmark. Few skills, sharp descriptions, short maps, depth behind
+one-level references. Every limit below is binding at all times, not on first authoring.
+
+These pull in opposite directions only if you think in files. They do not conflict in fact:
+descriptions cost budget, reference files do not. `octo-api` documents 139 schemas, 412
+properties and 65 operations across 7,700 lines and spends 2,392 characters — 30 % of the
+budget — because the depth sits in references that load on demand.
+
+So the rule for restructuring is absolute: **bundling may never drop content.** Move a body
+into a reference file, rename it, split it — but verify afterwards that every source body still
+appears in the result. `scripts/verify-bundle.py` exists for exactly that check, and a
+restructuring is not finished until it reports zero losses.
+
 ## Hard limits
 
 - **`description` ≤ 200 characters.** Single line, English, third person.
@@ -62,6 +88,11 @@ budget, with all 65 operations and 254 capability fields covered and machine-ver
 - **`skills[]` in `plugin.json` is mandatory.** It defines the shipped set, so work in progress can
   live in the repo without entering anyone's budget.
 - **`SKILL.md` ≤ 120 lines.** The documented ceiling is 500; we stay well inside it.
+- **≤ 120 lines per `SKILL.md`, ≤ 40 for a domain map.** A map that grows past 40 lines is
+  listing files rather than orienting a reader: drop the per-file gist and group companions
+  onto their topic's line.
+- **Every reference file over 100 lines carries a table of contents.** `scripts/add-toc.py`
+  adds them.
 - **Every skill names its source.** A `## Source` section at the end of `SKILL.md` states where
   the knowledge comes from — the upstream URL, the specification file, the version or commit it was
   distilled from, and the date. A reader must be able to check any claim against the original, and
@@ -257,6 +288,34 @@ This marketplace is public and international.
 - **`license` must match reality.** `proprietary` in a public repository is a contradiction.
   Where knowledge is distilled from third-party documentation, credit the source in the README and
   in the generated files.
+
+## Restructuring an existing plugin
+
+The tooling in `scripts/` does this in a fixed order, and each step is verifiable:
+
+```bash
+# 1. back the skills up — every later check compares against this
+cp -R plugins/<name>/skills /tmp/backup-<name>
+
+# 2. group: by name prefix, or by an explicit scripts/domain-skills/<name>.map when the
+#    skills share no prefix (a component library has none: button and dialog are siblings)
+python3 scripts/bundle-skills.py --plugin <name> --plan
+python3 scripts/bundle-skills.py --plugin <name> --apply
+
+# 3. remove the source directories, flatten leftover depth, add tables of contents
+bash scripts/finish-bundle.sh <name>
+
+# 4. write the domain maps from scripts/domain-skills/<name>.json
+python3 scripts/write-domain-skills.py --plugin <name>
+
+# 5. prove nothing was lost, then register
+python3 scripts/verify-bundle.py --plugin <name> --backup /tmp/backup-<name>
+python3 scripts/register-plugin.py --plugin <name> --version <x.y.z>
+```
+
+Step 5 is the gate. `bundle-skills.py` refuses to overwrite a file rather than silently
+merging two skills into one name — a collision is a defect to fix in the mapping, never
+something to accept.
 
 ## Verify before shipping
 

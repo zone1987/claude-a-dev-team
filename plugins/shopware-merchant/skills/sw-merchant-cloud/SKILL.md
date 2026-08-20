@@ -1,46 +1,16 @@
 ---
 name: sw-merchant-cloud
-description: >
-  Shopware in der Cloud — Überblick SaaS vs. PaaS: Unterschiede, Einsatzszenarien, wann welche
-  Option passt, PaaS-Support, Cloud vs. Self-hosted. Trigger: "Shopware Cloud", "Shopware SaaS",
-  "Shopware PaaS", "Shopware Cloud vs self-hosted", "Shopware in der Cloud", "SaaS oder PaaS
-  Shopware", "Shopware Cloud Unterschiede", "welche Shopware Cloud Option", "Shopware Cloud
-  Betrieb", "Shopware gehostet von Shopware". Shopware 6.7.
+description: Operating Shopware Cloud: SaaS setup, tenant administration, what differs from a self-hosted shop. Use when the request names Shopware Cloud or SaaS.
 ---
 
-# Shopware in der Cloud — Überblick
+# Shopware Cloud (SaaS)
 
-Destilliert aus `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
+Setting up and running a Shopware Cloud tenant, and the limits that distinguish it from self-hosted.
 
-## Zwei Cloud-Modelle
+## Reference map
 
-### SaaS (Software as a Service)
-- Shopware verwaltet **gesamte Infrastruktur**
-- Standardisiert, keine Serververwaltung nötig
-- Updates erfolgen **automatisch**
-- Für Händler ohne tiefes technisches Know-how geeignet
-- Pläne: Rise, Evolve, Beyond
-- Detail-Skill: `sw-merchant-cloud-saas-setup` + `sw-merchant-cloud-saas-betrieb`
+- **[CLOUD-UEBERBLICK.md](CLOUD-UEBERBLICK.md)**: > „eine cloud-basierte Lösung, bei der Shopware die gesamte Infrastruktur verwaltet.".
 
-### PaaS (Platform as a Service)
-- **Mehr Flexibilität** als SaaS
-- Individuelle Anpassungen möglich
-- Mehr Kontrolle über Konfigurationen
-- Höhere technische Eigenverantwortung
-- Hauptdoku: **Entwicklerdokumentation** (developer.shopware.com/docs/products/paas/)
-- Support-Tickets: über console.shopware.com
+## Source
 
-## Vergleich
-
-| Merkmal | SaaS | PaaS | Self-hosted |
-|---|---|---|---|
-| Infrastruktur | Shopware | Shopware (flexibel) | Eigener Server |
-| Updates | Automatisch | Konfigurierbar | Manuell |
-| Anpassbarkeit | Standard | Hoch | Vollständig |
-| Technischer Aufwand | Gering | Mittel | Hoch |
-
-Weiterführend: `https://www.shopware.com/de/news/saas-paas-oder-self-hosted-welche-loesung-passt-am-besten-zu-deinem-business/`
-
----
-
-*Quelle: https://docs.shopware.com/de/shopware-6-de/in-der-cloud*
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

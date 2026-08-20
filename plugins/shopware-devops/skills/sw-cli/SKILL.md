@@ -1,46 +1,24 @@
 ---
 name: sw-cli
-description: >
-  shopware-cli — das offizielle Go-CLI für Shopware 6. Überblick: Installation,
-  globale Flags, alle Command-Gruppen (account, extension, project). Trigger:
-  "shopware-cli", "sw-cli install", "shopware cli", "welche Commands hat shopware-cli",
-  "shopware cli flags", "shopware-cli global options".
+description: shopware-cli: extension build, validate and zip, project commands, account and store upload, the full command reference, MCP server. Use when the request names shopware-cli.
 ---
 
-# shopware-cli — Überblick
+# shopware-cli
 
-`shopware-cli` ist ein in Go geschriebenes CLI für alle Shopware-DevOps-Aufgaben:
-Extension-Build, Projekt-Management, Account-Upload, CI-Pipelines.
+The official CLI for building extensions and driving a project. Each command's flags are in the reference file.
 
-```bash
-# Installation
-curl -1sLf https://dl.cloudsmith.io/public/friendsofshopware/stable/setup.deb.sh | sudo bash
-sudo apt install shopware-cli          # Debian/Ubuntu
+## Reference map
 
-brew install shopware/homebrew-tap/shopware-cli  # macOS
+- **[ACCOUNT.md](ACCOUNT.md)**: Commands für Shopware Account-Verwaltung und Store-Publishing. [ACCOUNT-COMMANDS](ACCOUNT-COMMANDS.md).
+- **[ALL-COMMANDS.md](ALL-COMMANDS.md)**: Quelle: `github.com/shopware/shopware-cli`. [ALL-COMMANDS-2](ALL-COMMANDS-2.md).
+- **[COMMANDS-REFERENCE.md](COMMANDS-REFERENCE.md)**: Alle Subcommands mit Flags. [COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS](COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS.md).
+- **[EXTENSION.md](EXTENSION.md)**: Commands zum Bauen, Validieren und Paketieren von Shopware Extensions. [EXTENSION-COMMANDS](EXTENSION-COMMANDS.md).
+- **[INTERNAL-PACKAGES.md](INTERNAL-PACKAGES.md)**: Quelle: `github.com/shopware/shopware-cli/internal/`. [INTERNAL-PACKAGES-2](INTERNAL-PACKAGES-2.md).
+- **[MCP-SERVER.md](MCP-SERVER.md)**: Shopware 6.7+ liefert einen nativen MCP-Server — verbindet KI-Clients direkt mit dem Shop. [MCP-SERVER-DETAIL](MCP-SERVER-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: `shopware-cli` ist ein in Go geschriebenes CLI für alle Shopware-DevOps-Aufgaben: Extension-Build, Projekt-Ma….
+- **[PROJECT.md](PROJECT.md)**: Commands für das gesamte Shopware-Projekt-Management. [PROJECT-COMMANDS](PROJECT-COMMANDS.md).
+- **[REFERENCE.md](REFERENCE.md)**: Vollständige Tabelle aller `bin/console`-Befehle nach Gruppe sowie Composer-Dev-Commands. [REFERENCE-COMPOSER-COMMANDS](REFERENCE-COMPOSER-COMMANDS.md), [REFERENCE-CONSOLE-COMMANDS](REFERENCE-CONSOLE-COMMANDS.md).
 
-go install github.com/shopware/shopware-cli@latest  # Go
-npm install -g @shopware-ag/shopware-cli            # npm
-# Docker: shopware/shopware-cli:latest
-```
+## Source
 
-## Globale Flags
-
-| Flag | Kurz | Default | Beschreibung |
-|------|------|---------|--------------|
-| `--verbose` | | false | Debug-Ausgabe |
-| `--no-interaction` | `-n` | false | Kein interaktiver Input (CI-safe) |
-| `--version` | | | Version ausgeben |
-
-## Command-Gruppen
-
-| Gruppe | Beschreibung |
-|--------|--------------|
-| `account` | Shopware Account: Login, Logout, Producer/Store-Aktionen |
-| `extension` | Extension Build, Validate, Zip, Watch, Fix, Format |
-| `project` | Projekt-Management: Create, CI-Build, DB-Dump, Worker, Admin-API |
-
-## Vertiefung
-
-- [references/deep/all-commands.md](references/deep/all-commands.md) — Alle Commands mit Flags und Zweck (erschöpfend)
-- [references/deep/internal-packages.md](references/deep/internal-packages.md) — Wichtige interne Go-Packages
+Distilled from [developer.shopware.com](https://developer.shopware.com) (hosting, deployment, PaaS, shopware-cli) and the shopware-cli reference, retrieved 2026-08-20.

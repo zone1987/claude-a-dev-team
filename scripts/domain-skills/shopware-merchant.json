@@ -1,0 +1,90 @@
+{
+  "defaults": {
+    "prefix": "sw-merchant",
+    "source": "Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.",
+    "notes": ""
+  },
+  "domains": {
+    "catalog": {
+      "title": "Shopware catalogue administration",
+      "description": "Operating the Shopware catalogue: products, variants, categories, properties, manufacturers, media, product streams, reviews. Use when the request is about the Shopware admin under Kataloge.",
+      "intro": "Everything under **Kataloge** in the Shopware administration. Product creation with its mandatory fields, variant generation, advanced prices, SEO and cross-selling."
+    },
+    "orders": {
+      "title": "Shopware order administration",
+      "description": "Operating Shopware orders: order list, creating and editing orders, state machine transitions, documents, refunds. Use when the request is about the Shopware admin under Bestellungen.",
+      "intro": "Everything under **Bestellungen**. An order's three state machines — order, payment, delivery — and the documents and refunds that hang off them."
+    },
+    "customers": {
+      "title": "Shopware customer administration",
+      "description": "Operating Shopware customers: accounts, addresses, customer groups, bulk edits, B2B customers, storefront account view. Use when the request is about the Shopware admin under Kunden.",
+      "intro": "Everything under **Kunden**, plus what the customer sees in their storefront account."
+    },
+    "content": {
+      "title": "Shopware content administration",
+      "description": "Operating Shopware content: Shopping Experiences, CMS blocks and elements, themes, media manager. Use when the request is about the Shopware admin under Inhalte or Erlebniswelten.",
+      "intro": "Everything under **Inhalte** — Shopping Experiences (Erlebniswelten), themes and the media manager."
+    },
+    "marketing": {
+      "title": "Shopware marketing administration",
+      "description": "Operating Shopware marketing: promotions, discount codes, newsletter, the rule builder for marketing rules. Use when the request is about the Shopware admin under Marketing or Aktionen.",
+      "intro": "Everything under **Marketing** — promotions and their conditions, discount codes, and the newsletter."
+    },
+    "settings": {
+      "title": "Shopware settings administration",
+      "description": "Operating Shopware settings: shop basics, taxes, currencies, payment and shipping methods, rule and flow builder, mail templates. Use when the request is about Shopware Einstellungen.",
+      "intro": "Everything under **Einstellungen** — the largest area of the administration, from shop basics to the rule and flow builders."
+    },
+    "sales": {
+      "title": "Shopware sales channel administration",
+      "description": "Operating Shopware sales channels: creating channels, domains, product assignment, API access, comparison feeds. Use when the request names a Shopware Verkaufskanal or sales channel.",
+      "intro": "Creating and configuring sales channels: domains, currencies, payment and shipping assignment, API access, comparison feeds and social shopping."
+    },
+    "commercial": {
+      "title": "Shopware Commercial features",
+      "description": "Operating Shopware Commercial features: B2B suite, subscriptions, custom pricing, returns, multi-inventory, advanced search. Use when the request names a Shopware Commercial or Evolve feature.",
+      "intro": "Paid features from the Commercial extension. Each entry notes the plan and minimum version it needs — check that before promising a feature.",
+      "notes": "Availability is plan-bound: Rise, Evolve and Beyond differ, and several features carry a minimum Shopware version."
+    },
+    "services": {
+      "title": "Shopware Services",
+      "description": "Operating Shopware Services: AI copilot, image editor, 3D preview, Nexus, Intelligence Plus. Use when the request names a Shopware Service or Shopware Payments.",
+      "intro": "Cloud services booked on top of a Shopware installation, billed and enabled separately from Commercial features."
+    },
+    "cloud": {
+      "title": "Shopware Cloud (SaaS)",
+      "description": "Operating Shopware Cloud: SaaS setup, tenant administration, what differs from a self-hosted shop. Use when the request names Shopware Cloud or SaaS.",
+      "intro": "Setting up and running a Shopware Cloud tenant, and the limits that distinguish it from self-hosted."
+    },
+    "update": {
+      "title": "Shopware updates",
+      "description": "Updating a Shopware shop: running the update, version specifics, staging environments, pre-update checks. Use when the request is about updating or upgrading a Shopware shop.",
+      "intro": "Planning and running a Shopware update: the pre-flight checks, the staging rehearsal, and what changes per version."
+    },
+    "migration": {
+      "title": "Shopware migration",
+      "description": "Migrating to Shopware: the migration process, data mapping, going live. Use when the request is about migrating a shop to Shopware or the Migration Assistant.",
+      "intro": "Moving an existing shop to Shopware: what the Migration Assistant transfers, and the go-live sequence."
+    },
+    "spatial": {
+      "title": "Shopware Spatial Commerce",
+      "description": "Operating Shopware Spatial Commerce: 3D products, AR, the scene editor, immersive elements. Use when the request names Shopware Spatial, 3D products or AR.",
+      "intro": "3D and augmented-reality product presentation: model requirements, the scene editor and immersive CMS elements."
+    },
+    "insider": {
+      "title": "Shopware insider previews",
+      "description": "Shopware insider previews: bundles, the new scene editor, features not yet generally available. Use when the request names a Shopware insider preview or an unreleased feature.",
+      "intro": "Features in preview. Treat everything here as subject to change — behaviour and UI can differ from the released product."
+    },
+    "tutorials": {
+      "title": "Shopware how-to guides",
+      "description": "Shopware how-to guides: worked examples, multilingual shops, EU regulations, troubleshooting recipes. Use when the request asks how to accomplish a concrete task in the Shopware admin.",
+      "intro": "Task-oriented recipes from the documentation — the answers to \"how do I actually do X\" rather than what a screen contains."
+    },
+    "general": {
+      "title": "Shopware administration overview",
+      "description": "Shopware administration orientation: first steps, feature overview, extension management, comparison with Shopify. Use when the request asks what the Shopware admin offers or how to get started.",
+      "intro": "Orientation for the administration as a whole: where things live, what the editions include, and how to install extensions."
+    }
+  }
+}

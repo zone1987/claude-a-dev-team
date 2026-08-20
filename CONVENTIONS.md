@@ -121,8 +121,8 @@ description: OCTO/Ventrata product catalogue: GET /products, Product, Option and
 
 ## Reference map
 
-- **[PRODUCT-SCHEMA.md](PRODUCT-SCHEMA.md)**: alle 23 Basisfelder, Enums, Sub-Schemas.
-- **[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)**: die 16 capability-abhängigen Felder.
+- **`[PRODUCT-SCHEMA.md](PRODUCT-SCHEMA.md)`**: alle 23 Basisfelder, Enums, Sub-Schemas.
+- **`[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)`**: die 16 capability-abhängigen Felder.
 
 ## Related
 

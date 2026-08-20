@@ -1,51 +1,30 @@
 ---
 name: sw-paas
-description: >
-  Shopware PaaS — Platform.sh-basiertes Managed Hosting. Konfiguration via
-  .platform/-Dateien (applications.yaml, services.yaml, routes.yaml), Build-Hook
-  mit shopware-cli, Deploy-Hook mit deployment-helper, Mounts, Worker, Crons,
-  sw-paas CLI. Trigger: "shopware paas", "sw-paas", "shopware platform.sh",
-  "paas deploy", ".platform/applications.yaml", "paas-meta recipe",
-  "shopware paas cli", "paas build hook", "paas worker".
+description: Shopware PaaS: fundamentals, getting started, environments, build and deploy, services, cron and worker, CDN, monitoring, scaling, composable frontends. Use when the request names Shopware PaaS.
 ---
 
 # Shopware PaaS
 
-Shopware PaaS basiert auf **Platform.sh**. Die Konfiguration wird via Symfony Flex
-Recipe (`shopware/paas-meta`) ins Projekt eingespielt und besteht aus drei
-`.platform/`-Dateien sowie Hilfsskripten.
+Shopware's managed platform. The build and deploy model differs fundamentally from self-hosting — read fundamentals before anything else.
 
-```bash
-# sw-paas CLI installieren
-curl -L https://install.sw-paas-cli.shopware.systems | sh
-sw-paas auth
-```
+## Reference map
 
-```bash
-# Recipe installieren
-composer require shopware/paas-meta
-```
+- **[BUILD-DEPLOY.md](BUILD-DEPLOY.md)**: [BUILD-DEPLOY-DETAIL](BUILD-DEPLOY-DETAIL.md).
+- **[CDN.md](CDN.md)**: [CDN-DETAIL](CDN-DETAIL.md).
+- **[COMPOSABLE-FRONTENDS.md](COMPOSABLE-FRONTENDS.md)**: [COMPOSABLE-FRONTENDS-DETAIL](COMPOSABLE-FRONTENDS-DETAIL.md).
+- **[CONFIG.md](CONFIG.md)**
+- **[CRON-WORKER.md](CRON-WORKER.md)**: [CRON-WORKER-DETAIL](CRON-WORKER-DETAIL.md).
+- **[ENVIRONMENTS.md](ENVIRONMENTS.md)**: [ENVIRONMENTS-DETAIL](ENVIRONMENTS-DETAIL.md).
+- **[FUNDAMENTALS.md](FUNDAMENTALS.md)**: [FUNDAMENTALS-DETAIL](FUNDAMENTALS-DETAIL.md).
+- **[GET-STARTED.md](GET-STARTED.md)**: [GET-STARTED-DETAIL](GET-STARTED-DETAIL.md).
+- **[MONITORING.md](MONITORING.md)**: [MONITORING-DETAIL](MONITORING-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**
+- **[PAAS-CONFIG.md](PAAS-CONFIG.md)**
+- **[PAAS-WORKFLOW.md](PAAS-WORKFLOW.md)**
+- **[RESOURCES-SCALING.md](RESOURCES-SCALING.md)**: [RESOURCES-SCALING-DETAIL](RESOURCES-SCALING-DETAIL.md).
+- **[SERVICES.md](SERVICES.md)**: [SERVICES-DETAIL](SERVICES-DETAIL.md).
+- **[WORKFLOW.md](WORKFLOW.md)**
 
-## Konfigurations-Dateien
+## Source
 
-| Datei | Zweck |
-|-------|-------|
-| `.platform/applications.yaml` | App-Definition: PHP-Version, Hooks, Mounts, Worker, Crons |
-| `.platform/services.yaml` | Services: MariaDB, Redis (Cache+Session), RabbitMQ, Network-Storage |
-| `.platform/routes.yaml` | HTTP-Routing mit Cache-Policy |
-| `config/packages/paas.yaml` | Symfony-Konfiguration: Redis-Session/Cache, Cluster-Mode |
-| `.environment` | Shell-Env-Vars bei jedem Request (`APP_CACHE_DIR`) |
-| `.shopware-project.yaml` | shopware-cli Projekt-Config: `deployment.cache.always_clear: true` |
-
-## Build → Deploy → Post-Deploy
-
-```
-BUILD:    Node + shopware-cli installieren → shopware-cli project ci .
-DEPLOY:   rsync cache/var aus Build → shopware-deployment-helper run → domain update
-POST_DEPLOY: bin/console theme:compile --sync
-```
-
-## Vertiefung
-
-- [references/deep/paas-config.md](references/deep/paas-config.md) — Vollständige applications.yaml, services.yaml, routes.yaml mit Erklärungen
-- [references/deep/paas-workflow.md](references/deep/paas-workflow.md) — Deploy-Workflow, sw-paas CLI, Umgebungsvariablen
+Distilled from [developer.shopware.com](https://developer.shopware.com) (hosting, deployment, PaaS, shopware-cli) and the shopware-cli reference, retrieved 2026-08-20.

@@ -1,38 +1,38 @@
 ---
 name: shadcn-vue-forms
-description: >
-  shadcn-vue Formulare mit vee-validate + Zod (toTypedSchema, useForm, VeeField, FieldArray) und
-  mit TanStack Form (useForm aus @tanstack/vue-form, form.Field, mode="array"). Beide Ansaetze:
-  Input, Textarea, Select, Checkbox-Array, RadioGroup, Switch. Field-Komponente, FieldError,
-  FieldLabel, FieldDescription. Validierungs-Modi, Array-Felder, Reset, Barrierefreiheit.
-  shadcn-vue forms with vee-validate + Zod and TanStack Form: full guide for both approaches,
-  all field types (input, textarea, select, checkbox, radiogroup, switch), array fields, reset,
-  accessibility, Field component, FieldError, validation modes.
-triggers:
-  - shadcn-vue form vee-validate
-  - shadcn-vue form tanstack
-  - vee-validate zod vue form
-  - tanstack form vue
-  - form field shadcn vue
-  - FieldError shadcn
-  - form validation vue
-  - form array fields vue
-  - shadcn form checkbox array
-  - shadcn form select
-  - shadcn form switch
-  - formular shadcn vue
+description: shadcn-vue form components: Form, Field, Input, Select, Checkbox, Switch, Slider, Combobox, DatePicker, Calendar, Stepper, vee-validate and TanStack Form. Use when building a form with shadcn-vue.
 ---
 
-# shadcn-vue Forms
+# shadcn-vue form components
 
-Vollstaendige Formular-Integration mit vee-validate + Zod und TanStack Form.
+Everything you assemble a form from, plus the two validation integrations shadcn-vue documents: vee-validate and TanStack Form.
 
-## Referenzen
+## Reference map
 
-- [vee-validate.md](references/vee-validate.md) — Vollstaendige Anleitung: Schema, useForm,
-  VeeField, alle Feld-Typen, Validierungs-Modi, Fehlerdarstellung, Array-Felder, Reset
-- [tanstack-form.md](references/tanstack-form.md) — Vollstaendige Anleitung: useForm aus
-  @tanstack/vue-form, form.Field, isInvalid Helper, alle Feld-Typen, mode="array", Reset
+- **[CALENDAR.md](CALENDAR.md)**: [CALENDAR-API](CALENDAR-API.md), [CALENDAR-EXAMPLES](CALENDAR-EXAMPLES.md), [CALENDAR-INSTALLATION](CALENDAR-INSTALLATION.md), [CALENDAR-SOURCE](CALENDAR-SOURCE.md).
+- **[CHECKBOX.md](CHECKBOX.md)**: [CHECKBOX-API](CHECKBOX-API.md), [CHECKBOX-EXAMPLES](CHECKBOX-EXAMPLES.md), [CHECKBOX-INSTALLATION](CHECKBOX-INSTALLATION.md), [CHECKBOX-SOURCE](CHECKBOX-SOURCE.md).
+- **[COMBOBOX.md](COMBOBOX.md)**: [COMBOBOX-API](COMBOBOX-API.md), [COMBOBOX-EXAMPLES](COMBOBOX-EXAMPLES.md), [COMBOBOX-INSTALLATION](COMBOBOX-INSTALLATION.md), [COMBOBOX-SOURCE](COMBOBOX-SOURCE.md).
+- **[DATE-PICKER.md](DATE-PICKER.md)**: [DATE-PICKER-API](DATE-PICKER-API.md), [DATE-PICKER-EXAMPLES](DATE-PICKER-EXAMPLES.md), [DATE-PICKER-INSTALLATION](DATE-PICKER-INSTALLATION.md), [DATE-PICKER-SOURCE](DATE-PICKER-SOURCE.md).
+- **[FIELD.md](FIELD.md)**: [FIELD-API](FIELD-API.md), [FIELD-EXAMPLES](FIELD-EXAMPLES.md), [FIELD-INSTALLATION](FIELD-INSTALLATION.md), [FIELD-SOURCE](FIELD-SOURCE.md).
+- **[FORM.md](FORM.md)**: [FORM-API](FORM-API.md), [FORM-EXAMPLES](FORM-EXAMPLES.md), [FORM-INSTALLATION](FORM-INSTALLATION.md), [FORM-SOURCE](FORM-SOURCE.md).
+- **[INPUT.md](INPUT.md)**: [INPUT-API](INPUT-API.md), [INPUT-EXAMPLES](INPUT-EXAMPLES.md), [INPUT-GROUP-API](INPUT-GROUP-API.md), [INPUT-GROUP-EXAMPLES](INPUT-GROUP-EXAMPLES.md), [INPUT-GROUP-INSTALLATION](INPUT-GROUP-INSTALLATION.md), [INPUT-GROUP-SOURCE](INPUT-GROUP-SOURCE.md), [INPUT-GROUP](INPUT-GROUP.md), [INPUT-INSTALLATION](INPUT-INSTALLATION.md), [INPUT-OTP-API](INPUT-OTP-API.md), [INPUT-OTP-EXAMPLES](INPUT-OTP-EXAMPLES.md), [INPUT-OTP-INSTALLATION](INPUT-OTP-INSTALLATION.md), [INPUT-OTP-SOURCE](INPUT-OTP-SOURCE.md), [INPUT-OTP](INPUT-OTP.md), [INPUT-SOURCE](INPUT-SOURCE.md).
+- **[LABEL.md](LABEL.md)**: [LABEL-API](LABEL-API.md), [LABEL-EXAMPLES](LABEL-EXAMPLES.md), [LABEL-INSTALLATION](LABEL-INSTALLATION.md), [LABEL-SOURCE](LABEL-SOURCE.md).
+- **[NATIVE-SELECT.md](NATIVE-SELECT.md)**: [NATIVE-SELECT-API](NATIVE-SELECT-API.md), [NATIVE-SELECT-EXAMPLES](NATIVE-SELECT-EXAMPLES.md), [NATIVE-SELECT-INSTALLATION](NATIVE-SELECT-INSTALLATION.md), [NATIVE-SELECT-SOURCE](NATIVE-SELECT-SOURCE.md).
+- **[NUMBER-FIELD.md](NUMBER-FIELD.md)**: [NUMBER-FIELD-API](NUMBER-FIELD-API.md), [NUMBER-FIELD-EXAMPLES](NUMBER-FIELD-EXAMPLES.md), [NUMBER-FIELD-INSTALLATION](NUMBER-FIELD-INSTALLATION.md), [NUMBER-FIELD-SOURCE](NUMBER-FIELD-SOURCE.md).
+- **[OVERVIEW.md](OVERVIEW.md)**
+- **[PIN-INPUT.md](PIN-INPUT.md)**: [PIN-INPUT-API](PIN-INPUT-API.md), [PIN-INPUT-EXAMPLES](PIN-INPUT-EXAMPLES.md), [PIN-INPUT-INSTALLATION](PIN-INPUT-INSTALLATION.md), [PIN-INPUT-SOURCE](PIN-INPUT-SOURCE.md).
+- **[RADIO-GROUP.md](RADIO-GROUP.md)**: [RADIO-GROUP-API](RADIO-GROUP-API.md), [RADIO-GROUP-EXAMPLES](RADIO-GROUP-EXAMPLES.md), [RADIO-GROUP-INSTALLATION](RADIO-GROUP-INSTALLATION.md), [RADIO-GROUP-SOURCE](RADIO-GROUP-SOURCE.md).
+- **[RANGE-CALENDAR.md](RANGE-CALENDAR.md)**: [RANGE-CALENDAR-API](RANGE-CALENDAR-API.md), [RANGE-CALENDAR-EXAMPLES](RANGE-CALENDAR-EXAMPLES.md), [RANGE-CALENDAR-INSTALLATION](RANGE-CALENDAR-INSTALLATION.md), [RANGE-CALENDAR-SOURCE](RANGE-CALENDAR-SOURCE.md).
+- **[SELECT.md](SELECT.md)**: [SELECT-API](SELECT-API.md), [SELECT-EXAMPLES](SELECT-EXAMPLES.md), [SELECT-INSTALLATION](SELECT-INSTALLATION.md), [SELECT-SOURCE](SELECT-SOURCE.md).
+- **[SLIDER.md](SLIDER.md)**: [SLIDER-API](SLIDER-API.md), [SLIDER-EXAMPLES](SLIDER-EXAMPLES.md), [SLIDER-INSTALLATION](SLIDER-INSTALLATION.md), [SLIDER-SOURCE](SLIDER-SOURCE.md).
+- **[STEPPER.md](STEPPER.md)**: [STEPPER-API](STEPPER-API.md), [STEPPER-EXAMPLES](STEPPER-EXAMPLES.md), [STEPPER-INSTALLATION](STEPPER-INSTALLATION.md), [STEPPER-SOURCE](STEPPER-SOURCE.md).
+- **[SWITCH.md](SWITCH.md)**: [SWITCH-API](SWITCH-API.md), [SWITCH-EXAMPLES](SWITCH-EXAMPLES.md), [SWITCH-INSTALLATION](SWITCH-INSTALLATION.md), [SWITCH-SOURCE](SWITCH-SOURCE.md).
+- **[TAGS-INPUT.md](TAGS-INPUT.md)**: [TAGS-INPUT-API](TAGS-INPUT-API.md), [TAGS-INPUT-EXAMPLES](TAGS-INPUT-EXAMPLES.md), [TAGS-INPUT-INSTALLATION](TAGS-INPUT-INSTALLATION.md), [TAGS-INPUT-SOURCE](TAGS-INPUT-SOURCE.md).
+- **[TANSTACK-FORM.md](TANSTACK-FORM.md)**: [TANSTACK-FORM-2](TANSTACK-FORM-2.md).
+- **[TEXTAREA.md](TEXTAREA.md)**: [TEXTAREA-API](TEXTAREA-API.md), [TEXTAREA-EXAMPLES](TEXTAREA-EXAMPLES.md), [TEXTAREA-INSTALLATION](TEXTAREA-INSTALLATION.md), [TEXTAREA-SOURCE](TEXTAREA-SOURCE.md).
+- **[TOGGLE.md](TOGGLE.md)**: [TOGGLE-API](TOGGLE-API.md), [TOGGLE-EXAMPLES](TOGGLE-EXAMPLES.md), [TOGGLE-GROUP-API](TOGGLE-GROUP-API.md), [TOGGLE-GROUP-EXAMPLES](TOGGLE-GROUP-EXAMPLES.md), [TOGGLE-GROUP-INSTALLATION](TOGGLE-GROUP-INSTALLATION.md), [TOGGLE-GROUP-SOURCE](TOGGLE-GROUP-SOURCE.md), [TOGGLE-GROUP](TOGGLE-GROUP.md), [TOGGLE-INSTALLATION](TOGGLE-INSTALLATION.md), [TOGGLE-SOURCE](TOGGLE-SOURCE.md).
+- **[VEE-VALIDATE.md](VEE-VALIDATE.md)**: [VEE-VALIDATE-2](VEE-VALIDATE-2.md).
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/content/docs/forms/01.vee-validate.md` +
-`/tmp/shadcn-vue-repo/apps/v4/content/docs/forms/02.tanstack-form.md`
+## Source
+
+Distilled from [shadcn-vue.com](https://www.shadcn-vue.com) and the [shadcn-vue repository](https://github.com/unovue/shadcn-vue), retrieved 2026-08-20. Components are Vue SFCs built on reka-ui primitives with Tailwind v4.

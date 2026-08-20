@@ -1,12 +1,22 @@
 {
   "name": "shopware-devops",
-  "version": "1.0.0",
-  "description": "Shopware DevOps: shopware-cli commands, Symfony Flex recipes and PaaS deployment",
+  "version": "2.0.0",
+  "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting — 5 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "devops"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "devops"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-cli",
+    "./skills/sw-hosting",
+    "./skills/sw-paas",
+    "./skills/sw-support",
+    "./skills/sw-tooling"
+  ]
 }

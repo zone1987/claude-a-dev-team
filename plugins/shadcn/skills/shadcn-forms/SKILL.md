@@ -1,37 +1,34 @@
 ---
 name: shadcn-forms
-description: shadcn/ui Formulare — Field/Form-Komponenten mit react-hook-form, TanStack Form, Formisch, Next.js Server Actions und Zod. Trigger: shadcn form, shadcn Formular, react-hook-form shadcn, shadcn zod, shadcn Field, useForm shadcn.
+description: shadcn/ui form components: Form, Field, Input, Select, Checkbox, Switch, Slider, Combobox, DatePicker, Calendar, Label. Use when building a form with shadcn/ui.
 ---
 
-# shadcn-forms
+# shadcn/ui form components
 
-Build accessible, validated forms with shadcn `<Field />` components and your
-choice of form library.
+Everything a form is assembled from. Form wraps react-hook-form and Zod; the rest are the controls it validates.
 
-## Supported libraries
+## Reference map
 
-| Library            | Validation | Reference                             |
-|--------------------|------------|---------------------------------------|
-| React Hook Form    | Zod        | [react-hook-form.md](references/react-hook-form.md) |
-| TanStack Form      | Zod        | [tanstack-form.md](references/tanstack-form.md)     |
-| Formisch           | Valibot    | [formisch.md](references/formisch.md)               |
-| Next.js Server Actions | Zod   | [next-server-actions.md](references/next-server-actions.md) |
+- **[CALENDAR.md](CALENDAR.md)**: [CALENDAR-API](CALENDAR-API.md), [CALENDAR-BASE-VS-RADIX](CALENDAR-BASE-VS-RADIX.md), [CALENDAR-EXAMPLES](CALENDAR-EXAMPLES.md), [CALENDAR-INSTALLATION](CALENDAR-INSTALLATION.md), [CALENDAR-SOURCE](CALENDAR-SOURCE.md).
+- **[CHECKBOX.md](CHECKBOX.md)**: [CHECKBOX-API](CHECKBOX-API.md), [CHECKBOX-EXAMPLES](CHECKBOX-EXAMPLES.md), [CHECKBOX-INSTALLATION](CHECKBOX-INSTALLATION.md), [CHECKBOX-SOURCE](CHECKBOX-SOURCE.md).
+- **[COMBOBOX.md](COMBOBOX.md)**: [COMBOBOX-API](COMBOBOX-API.md), [COMBOBOX-EXAMPLES](COMBOBOX-EXAMPLES.md), [COMBOBOX-INSTALLATION](COMBOBOX-INSTALLATION.md), [COMBOBOX-SOURCE](COMBOBOX-SOURCE.md).
+- **[DATE-PICKER.md](DATE-PICKER.md)**: [DATE-PICKER-EXAMPLES](DATE-PICKER-EXAMPLES.md), [DATE-PICKER-GUIDE](DATE-PICKER-GUIDE.md), [DATE-PICKER-INSTALLATION](DATE-PICKER-INSTALLATION.md).
+- **[FIELD.md](FIELD.md)**: [FIELD-API](FIELD-API.md), [FIELD-EXAMPLES](FIELD-EXAMPLES.md), [FIELD-INSTALLATION](FIELD-INSTALLATION.md), [FIELD-SOURCE](FIELD-SOURCE.md).
+- **[FORMISCH.md](FORMISCH.md)**: [FORMISCH-2](FORMISCH-2.md).
+- **[INPUT.md](INPUT.md)**: [INPUT-API](INPUT-API.md), [INPUT-EXAMPLES](INPUT-EXAMPLES.md), [INPUT-GROUP-API](INPUT-GROUP-API.md), [INPUT-GROUP-EXAMPLES](INPUT-GROUP-EXAMPLES.md), [INPUT-GROUP-INSTALLATION](INPUT-GROUP-INSTALLATION.md), [INPUT-GROUP-SOURCE](INPUT-GROUP-SOURCE.md), [INPUT-GROUP](INPUT-GROUP.md), [INPUT-INSTALLATION](INPUT-INSTALLATION.md), [INPUT-OTP-API](INPUT-OTP-API.md), [INPUT-OTP-EXAMPLES](INPUT-OTP-EXAMPLES.md), [INPUT-OTP-INSTALLATION](INPUT-OTP-INSTALLATION.md), [INPUT-OTP-SOURCE](INPUT-OTP-SOURCE.md), [INPUT-OTP](INPUT-OTP.md), [INPUT-SOURCE](INPUT-SOURCE.md).
+- **[LABEL.md](LABEL.md)**: [LABEL-API](LABEL-API.md), [LABEL-BASE-VS-RADIX](LABEL-BASE-VS-RADIX.md), [LABEL-EXAMPLES](LABEL-EXAMPLES.md), [LABEL-INSTALLATION](LABEL-INSTALLATION.md), [LABEL-SOURCE](LABEL-SOURCE.md).
+- **[NATIVE-SELECT.md](NATIVE-SELECT.md)**: [NATIVE-SELECT-API](NATIVE-SELECT-API.md), [NATIVE-SELECT-EXAMPLES](NATIVE-SELECT-EXAMPLES.md), [NATIVE-SELECT-INSTALLATION](NATIVE-SELECT-INSTALLATION.md), [NATIVE-SELECT-SOURCE](NATIVE-SELECT-SOURCE.md).
+- **[NEXT-SERVER-ACTIONS.md](NEXT-SERVER-ACTIONS.md)**: [NEXT-SERVER-ACTIONS-2](NEXT-SERVER-ACTIONS-2.md).
+- **[OVERVIEW.md](OVERVIEW.md)**
+- **[RADIO-GROUP.md](RADIO-GROUP.md)**: [RADIO-GROUP-API](RADIO-GROUP-API.md), [RADIO-GROUP-BASE-VS-RADIX](RADIO-GROUP-BASE-VS-RADIX.md), [RADIO-GROUP-EXAMPLES](RADIO-GROUP-EXAMPLES.md), [RADIO-GROUP-INSTALLATION](RADIO-GROUP-INSTALLATION.md), [RADIO-GROUP-SOURCE](RADIO-GROUP-SOURCE.md).
+- **[REACT-HOOK-FORM.md](REACT-HOOK-FORM.md)**: [REACT-HOOK-FORM-2](REACT-HOOK-FORM-2.md).
+- **[SELECT.md](SELECT.md)**: [SELECT-API](SELECT-API.md), [SELECT-BASE-VS-RADIX](SELECT-BASE-VS-RADIX.md), [SELECT-EXAMPLES](SELECT-EXAMPLES.md), [SELECT-INSTALLATION](SELECT-INSTALLATION.md), [SELECT-SOURCE](SELECT-SOURCE.md).
+- **[SLIDER.md](SLIDER.md)**: [SLIDER-API](SLIDER-API.md), [SLIDER-BASE-VS-RADIX](SLIDER-BASE-VS-RADIX.md), [SLIDER-EXAMPLES](SLIDER-EXAMPLES.md), [SLIDER-INSTALLATION](SLIDER-INSTALLATION.md), [SLIDER-SOURCE](SLIDER-SOURCE.md).
+- **[SWITCH.md](SWITCH.md)**: [SWITCH-API](SWITCH-API.md), [SWITCH-BASE-VS-RADIX](SWITCH-BASE-VS-RADIX.md), [SWITCH-EXAMPLES](SWITCH-EXAMPLES.md), [SWITCH-INSTALLATION](SWITCH-INSTALLATION.md), [SWITCH-SOURCE](SWITCH-SOURCE.md).
+- **[TANSTACK-FORM.md](TANSTACK-FORM.md)**: [TANSTACK-FORM-2](TANSTACK-FORM-2.md).
+- **[TEXTAREA.md](TEXTAREA.md)**: [TEXTAREA-API](TEXTAREA-API.md), [TEXTAREA-BASE-VS-RADIX](TEXTAREA-BASE-VS-RADIX.md), [TEXTAREA-EXAMPLES](TEXTAREA-EXAMPLES.md), [TEXTAREA-INSTALLATION](TEXTAREA-INSTALLATION.md), [TEXTAREA-SOURCE](TEXTAREA-SOURCE.md).
+- **[TOGGLE.md](TOGGLE.md)**: [TOGGLE-API](TOGGLE-API.md), [TOGGLE-BASE-VS-RADIX](TOGGLE-BASE-VS-RADIX.md), [TOGGLE-EXAMPLES](TOGGLE-EXAMPLES.md), [TOGGLE-GROUP-API](TOGGLE-GROUP-API.md), [TOGGLE-GROUP-BASE-VS-RADIX](TOGGLE-GROUP-BASE-VS-RADIX.md), [TOGGLE-GROUP-EXAMPLES](TOGGLE-GROUP-EXAMPLES.md), [TOGGLE-GROUP-INSTALLATION](TOGGLE-GROUP-INSTALLATION.md), [TOGGLE-GROUP-SOURCE](TOGGLE-GROUP-SOURCE.md), [TOGGLE-GROUP](TOGGLE-GROUP.md), [TOGGLE-INSTALLATION](TOGGLE-INSTALLATION.md), [TOGGLE-SOURCE](TOGGLE-SOURCE.md).
 
-## Key `<Field />` props
+## Source
 
-| Prop            | Purpose                                      |
-|-----------------|----------------------------------------------|
-| `data-invalid`  | Triggers error styling on the Field wrapper  |
-| `orientation`   | `"vertical"` (default) or `"horizontal"` or `"responsive"` |
-| `data-disabled` | Applies disabled styling                     |
-
-Always set `aria-invalid` on the native control (`<Input>`, `<SelectTrigger>`,
-`<Checkbox>`, etc.) alongside `data-invalid` on `<Field>` for accessibility.
-
-## Error display pattern (all libraries)
-
-```tsx
-{isInvalid && <FieldError errors={[fieldState.error]} />}
-```
-
-Source: forms/index.mdx
+Distilled from [ui.shadcn.com](https://ui.shadcn.com) and the [shadcn-ui repository](https://github.com/shadcn-ui/ui), retrieved 2026-08-20. Components are React source you copy into your project, styled with Tailwind and built on Radix UI or Base UI.

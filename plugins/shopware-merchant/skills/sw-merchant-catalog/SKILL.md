@@ -1,44 +1,16 @@
 ---
 name: sw-merchant-catalog
-description: >
-  Shopware Katalog Überblick, Kataloge verwalten, Produktkatalog, Shopware Katalog-Bereich,
-  Produktverwaltung Überblick, Kategorien Hersteller Eigenschaften, Produktstreams, Bewertungen,
-  Medien verwalten, Shopware 6 Katalog-Kapitel, Katalogstruktur
+description: Operating the Shopware catalogue: products, variants, categories, properties, manufacturers, media, product streams, reviews. Use when the request is about the Shopware admin under Kataloge.
 ---
 
-# Shopware 6 – Kataloge (Überblick)
+# Shopware catalogue administration
 
-Der Bereich **Kataloge** ist das Herzstück der Produktverwaltung in Shopware 6. Hier werden alle produktbezogenen Daten angelegt und gepflegt.
+Everything under **Kataloge** in the Shopware administration. Product creation with its mandatory fields, variant generation, advanced prices, SEO and cross-selling.
 
-## Enthaltene Bereiche
+## Reference map
 
-| Bereich | Pfad im Admin | Skill |
-|---|---|---|
-| Produkte | Kataloge > Produkte | `sw-merchant-catalog-products` |
-| Kategorien | Kataloge > Kategorien | `sw-merchant-catalog-categories` |
-| Hersteller | Kataloge > Hersteller | `sw-merchant-catalog-manufacturers` |
-| Eigenschaften | Kataloge > Eigenschaften | `sw-merchant-catalog-properties` |
-| Dynamische Produktgruppen | Kataloge > Dynamische Produktgruppen | `sw-merchant-catalog-product-streams` |
-| Bewertungen | Kataloge > Bewertungen | `sw-merchant-catalog-reviews` |
-| Medien | Inhalte > Medien | `sw-merchant-catalog-media` |
+- **[CATALOG-OVERVIEW.md](CATALOG-OVERVIEW.md)**: > Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge.
 
-## Schnelleinstieg
+## Source
 
-- **Neues Produkt anlegen**: Kataloge > Produkte > „Produkt hinzufügen"
-- **Kategorie anlegen**: Kataloge > Kategorien > Kontextmenü in der Baumstruktur
-- **Eigenschaft anlegen** (für Filter/Varianten): Kataloge > Eigenschaften > „Eigenschaft hinzufügen"
-- **Hersteller anlegen**: Kataloge > Hersteller > „Hersteller anlegen"
-- **Produktgruppe anlegen**: Kataloge > Dynamische Produktgruppen > „Produktgruppe anlegen"
-
-## Abhängigkeiten zwischen Bereichen
-
-```
-Eigenschaften ──→ Produkte (Filter + Varianten)
-Hersteller ──→ Produkte (Zuordnung)
-Kategorien ──→ Produkte (Navigation)
-Dynamische Produktgruppen ──→ Kategorien / Cross-Selling / Erlebniswelten
-Medien ──→ Produkte / Kategorien / Hersteller
-```
-
-## Quelle
-https://docs.shopware.com/de/shopware-6-de/kataloge
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

@@ -1,35 +1,16 @@
 ---
 name: sw-merchant-content
-description: >
-  Shopware Inhalte Überblick, Content verwalten, Erlebniswelten, Shopping Experiences,
-  Medien verwalten, Themes konfigurieren, Layouts erstellen, Inhalte Kapitel,
-  Shopware CMS, Shop gestalten, Landingpage, Kategorieseite, Produktseite
+description: Operating Shopware content: Shopping Experiences, CMS blocks and elements, themes, media manager. Use when the request is about the Shopware admin under Inhalte or Erlebniswelten.
 ---
 
-# Shopware 6 – Inhalte (Überblick)
+# Shopware content administration
 
-Der Bereich **Inhalte** im Shopware 6 Admin umfasst alle Werkzeuge zur visuellen
-Gestaltung und Inhaltsverwaltung des Shops.
+Everything under **Inhalte** — Shopping Experiences (Erlebniswelten), themes and the media manager.
 
-## Enthaltene Bereiche
+## Reference map
 
-| Bereich | Pfad im Admin | Skill |
-|---|---|---|
-| Erlebniswelten | Inhalte > Erlebniswelten | `sw-merchant-content-shopping-experiences` |
-| Medien | Inhalte > Medien | `sw-merchant-content-media` |
-| Themes | Inhalte > Themes | `sw-merchant-content-themes` |
-| CMS-Erweiterungen | Erweiterungen > CMS-Erweiterungen | `sw-merchant-content-cms-extensions` |
+- **[CONTENT-OVERVIEW.md](CONTENT-OVERVIEW.md)**: Pfad: **Inhalte**.
 
-## Konzept
+## Source
 
-- **Erlebniswelten** (Shopping Experiences): Drag-and-Drop-CMS für Layouts
-  aller Seitentypen. Struktur: Sektion → Block → Element.
-- **Medien**: Zentrale Medienbibliothek für Bilder, Videos, Dokumente, 3D-Modelle.
-- **Themes**: Visuelles Design des Storefronts; Farben, Schriften, Logos.
-- **CMS-Erweiterungen**: Zusatzfunktionen (Quickview, Scroll-Navigation,
-  Block-Sichtbarkeit, Custom-Formulare) – Teil von Shopware Evolve.
-
-## Schnellnavigation
-
-Siehe `references/deep/content-overview.md` für eine detaillierte Übersicht
-aller Funktionen und Querverweise.
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

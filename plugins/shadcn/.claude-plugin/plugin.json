@@ -1,9 +1,31 @@
 {
   "name": "shadcn",
-  "version": "1.0.0",
-  "description": "shadcn/ui — die vollständige Bibliothek: alle ~60 Komponenten (Base-UI & Radix-UI-Variante, kompletter Quellcode, Props/Anatomy, alle Examples), 100+ Blocks, 70+ Charts, Theming/Colors/Tailwind-v4, Dark-Mode, Installation (Next/Vite/Astro/Remix/Laravel/TanStack/React-Router), CLI, components.json, eigene Registry bauen, MCP-Server, Forms, RTL, monorepo. Liefert den shadcn-MCP-Server mit.",
-  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
-  "license": "proprietary",
-  "keywords": ["shadcn", "ui", "react", "tailwind", "radix", "base-ui", "components", "mcp"],
-  "category": "development"
+  "version": "2.0.0",
+  "description": "shadcn/ui component library: all 59 components with full React source, props and examples for both Radix UI and Base UI, plus setup, theming, forms, blocks, 70 charts and custom registries — 8 domain skills over 444 reference files.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "shadcn",
+    "ui",
+    "react",
+    "tailwind",
+    "radix",
+    "base-ui",
+    "components",
+    "mcp"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/shadcn-blocks",
+    "./skills/shadcn-data",
+    "./skills/shadcn-feedback",
+    "./skills/shadcn-forms",
+    "./skills/shadcn-layout",
+    "./skills/shadcn-navigation",
+    "./skills/shadcn-setup",
+    "./skills/shadcn-theming"
+  ]
 }
