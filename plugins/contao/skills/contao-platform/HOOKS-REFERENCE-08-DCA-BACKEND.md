@@ -1,6 +1,6 @@
-# Contao Hooks – DCA / Backend
+# Contao Hooks – DCA / Back end
 
-Hooks für Data Container Array (DCA), Backend-Navigation, AJAX-Aktionen und Systemwartung.
+Hooks for the Data Container Array (DCA), back end navigation, AJAX actions and system maintenance.
 
 ---
 
@@ -16,18 +16,18 @@ Hooks für Data Container Array (DCA), Backend-Navigation, AJAX-Aktionen und Sys
 
 ## `executePostActions`
 
-**Zweck:** Wird bei AJAX-Requests ausgelöst, die ein DCA-Objekt benötigen (Post-Actions).
+**Purpose:** Triggered on AJAX requests that require a DCA object (post actions).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$action` | Name der ausgeführten Aktion |
-| 2 | `\Contao\DataContainer` | `$dc` | Das DataContainer-Objekt der aktuellen DCA-Instanz |
+| 1 | `string` | `$action` | Name of the executed action |
+| 2 | `\Contao\DataContainer` | `$dc` | The DataContainer object of the current DCA instance |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Bei AJAX-Requests mit DCA-Objekt, nach der primären Aktionsverarbeitung.
+**Timing:** On AJAX requests with a DCA object, after the primary action has been processed.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -39,7 +39,7 @@ class ExecutePostActionsListener
     public function __invoke(string $action, DataContainer $dc): void
     {
         if ('myCustomAction' === $action) {
-            // Eigene AJAX-Aktion verarbeiten
+            // Process your own AJAX action
             echo json_encode(['status' => 'ok']);
             exit;
         }
@@ -51,17 +51,17 @@ class ExecutePostActionsListener
 
 ## `executePreActions`
 
-**Zweck:** Wird bei AJAX-Requests ausgelöst, die **kein** DCA-Objekt benötigen (Pre-Actions).
+**Purpose:** Triggered on AJAX requests that do **not** require a DCA object (pre actions).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$action` | Name der ausgeführten Aktion |
+| 1 | `string` | `$action` | Name of the executed action |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Bei AJAX-Requests ohne DCA-Objekt.
+**Timing:** On AJAX requests without a DCA object.
 
 ```php
 #[AsHook('executePreActions')]
@@ -70,7 +70,7 @@ class ExecutePreActionsListener
     public function __invoke(string $action): void
     {
         if ('myPreAction' === $action) {
-            // Verarbeiten und Response ausgeben
+            // Process and output the response
             echo 'result';
             exit;
         }
@@ -82,18 +82,18 @@ class ExecutePreActionsListener
 
 ## `getAttributesFromDca`
 
-**Zweck:** Wird ausgelöst, wenn Widget-Attribute aus einem Data Container Array extrahiert werden.
+**Purpose:** Triggered when widget attributes are extracted from a Data Container Array.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$attributes` | Array der Widget-Attribute |
-| 2 | `mixed` | `$context` | `\Contao\DataContainer`, `\Contao\Module` oder `null` |
+| 1 | `array` | `$attributes` | Array of the widget attributes |
+| 2 | `mixed` | `$context` | `\Contao\DataContainer`, `\Contao\Module` or `null` |
 
-**Rückgabe:** `array` – Das (ggf. modifizierte) Attribut-Array.
+**Returns:** `array` – The (possibly modified) attribute array.
 
-**Zeitpunkt:** Bei der Widget-Attribut-Extraktion aus DCA-Konfiguration.
+**Timing:** While widget attributes are extracted from the DCA configuration.
 
 ```php
 #[AsHook('getAttributesFromDca')]
@@ -101,7 +101,7 @@ class GetAttributesFromDcaListener
 {
     public function __invoke(array $attributes, $context = null): array
     {
-        // Widget-Attribute anpassen
+        // Adjust the widget attributes
         if (isset($attributes['inputType']) && 'text' === $attributes['inputType']) {
             $attributes['class'] = ($attributes['class'] ?? '') . ' my-text-field';
         }
@@ -114,18 +114,18 @@ class GetAttributesFromDcaListener
 
 ## `getUserNavigation`
 
-**Zweck:** Erlaubt Manipulation der Backend-Benutzer-Navigation.
+**Purpose:** Allows manipulating the back end user navigation.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$modules` | Kompilierte Liste der Backend-Module |
-| 2 | `bool` | `$showAll` | Ob alle Module angezeigt werden (auch bei zugeklappten Gruppen) |
+| 1 | `array` | `$modules` | Compiled list of the back end modules |
+| 2 | `bool` | `$showAll` | Whether all modules are shown (even for collapsed groups) |
 
-**Rückgabe:** `array` – Das (ggf. modifizierte) Modul-Array.
+**Returns:** `array` – The (possibly modified) module array.
 
-**Zeitpunkt:** Während der Kompilierung der Backend-Benutzer-Navigation.
+**Timing:** While the back end user navigation is compiled.
 
 ```php
 #[AsHook('getUserNavigation')]
@@ -134,8 +134,8 @@ class GetUserNavigationListener
     public function __invoke(array $modules, bool $showAll): array
     {
         $modules['system']['modules']['my_link'] = [
-            'label' => 'Externe Seite',
-            'title' => 'Externe Seite besuchen',
+            'label' => 'External page',
+            'title' => 'Visit the external page',
             'class' => 'navigation',
             'href'  => 'https://example.com',
         ];
@@ -148,13 +148,13 @@ class GetUserNavigationListener
 
 ## `getSystemMessages`
 
-**Zweck:** Erlaubt das Hinzufügen eigener Meldungen auf dem Backend-Startbildschirm.
+**Purpose:** Allows adding your own messages to the back end start screen.
 
-**Parameter:** keine
+**Parameters:** none
 
-**Rückgabe:** `string` – HTML mit Meldungen, oder leerer String.
+**Returns:** `string` – HTML with the messages, or an empty string.
 
-**Zeitpunkt:** Beim Rendern des Backend-Startbildschirms.
+**Timing:** While the back end start screen is rendered.
 
 ```php
 #[AsHook('getSystemMessages')]
@@ -163,7 +163,7 @@ class GetSystemMessagesListener
     public function __invoke(): string
     {
         if ($this->hasWarnings()) {
-            return '<p class="tl_error">Achtung: Es gibt offene Aufgaben!</p>';
+            return '<p class="tl_error">Caution: there are open tasks!</p>';
         }
         return '';
     }
@@ -174,17 +174,17 @@ class GetSystemMessagesListener
 
 ## `loadDataContainer`
 
-**Zweck:** Wird ausgelöst, wenn eine DCA-Datei geladen wird. Ideal für dynamische DCA-Anpassungen.
+**Purpose:** Triggered when a DCA file is loaded. Ideal for dynamic DCA adjustments.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$table` | Name des geladenen Data Containers (z.B. `tl_content`) |
+| 1 | `string` | `$table` | Name of the loaded data container (e.g. `tl_content`) |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Wenn eine DCA-Datei in das System geladen wird.
+**Timing:** When a DCA file is loaded into the system.
 
 ```php
 #[AsHook('loadDataContainer')]
@@ -193,7 +193,7 @@ class LoadDataContainerListener
     public function __invoke(string $table): void
     {
         if ('tl_content' === $table) {
-            // DCA dynamisch erweitern
+            // Extend the DCA dynamically
             $GLOBALS['TL_DCA']['tl_content']['fields']['myField'] = [
                 'inputType' => 'text',
                 'eval'      => ['tl_class' => 'w50'],
@@ -208,20 +208,20 @@ class LoadDataContainerListener
 
 ## `reviseTable`
 
-**Zweck:** Wird ausgelöst, wenn Contao verwaiste Datensätze aus einer Tabelle entfernt.
+**Purpose:** Triggered when Contao removes orphaned records from a table.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$table` | Aktuelle Tabellenname |
-| 2 | `array\|null` | `$newRecords` | IDs neuer Datensätze |
-| 3 | `string\|null` | `$parentTable` | Optionaler Eltern-Tabellenname |
-| 4 | `array\|null` | `$childTables` | Optionale Namen von Kind-Tabellen |
+| 1 | `string` | `$table` | Current table name |
+| 2 | `array\|null` | `$newRecords` | IDs of new records |
+| 3 | `string\|null` | `$parentTable` | Optional parent table name |
+| 4 | `array\|null` | `$childTables` | Optional names of child tables |
 
-**Rückgabe:** `bool|null` – `true` um die aktuelle Seite neu zu laden, sonst `false`/`null`.
+**Returns:** `bool|null` – `true` to reload the current page, otherwise `false`/`null`.
 
-**Zeitpunkt:** Beim Bereinigungsprozess verwaister Datensätze im Backend.
+**Timing:** During the clean-up process for orphaned records in the back end.
 
 ```php
 #[AsHook('reviseTable')]
@@ -230,8 +230,8 @@ class ReviseTableListener
     public function __invoke(string $table, array|null $newRecords, string|null $parentTable, array|null $childTables): bool|null
     {
         if ('tl_my_table' === $table) {
-            // Eigene Bereinigungslogik ausführen
-            return true; // Seite neu laden
+            // Run your own clean-up logic
+            return true; // reload the page
         }
         return null;
     }
@@ -240,4 +240,4 @@ class ReviseTableListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

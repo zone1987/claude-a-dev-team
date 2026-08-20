@@ -1,51 +1,51 @@
 # InputOTP — API
 
-Basis-Dokumentation: https://vue-input-otp.vercel.app/
+Base documentation: https://vue-input-otp.vercel.app/
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `InputOTP` | Root-Wrapper (OTPInput von vue-input-otp) |
-| `InputOTPGroup` | Gruppiert zusammenhaengende Slots |
-| `InputOTPSlot` | Einzelne Eingabezelle (zeigt Zeichen + Caret) |
-| `InputOTPSeparator` | Trenner zwischen Gruppen (Standard: MinusIcon) |
+| `InputOTP` | Root wrapper (OTPInput from vue-input-otp) |
+| `InputOTPGroup` | Groups related slots |
+| `InputOTPSlot` | Single input cell (renders character + caret) |
+| `InputOTPSeparator` | Separator between groups (default: MinusIcon) |
 
-## InputOTP (Root)
+## InputOTP (root)
 
-Leitet alle `OTPInputProps` von vue-input-otp weiter.
+Forwards all `OTPInputProps` from vue-input-otp.
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `maxlength` | `number` | - | Maximale Zeichen (Pflicht) |
-| `modelValue` / `v-model` | `string` | - | Kontrollierter Wert |
-| `pattern` | `string \| RegExp` | - | Erlaubte Zeichen (z.B. `REGEXP_ONLY_DIGITS_AND_CHARS`) |
-| `disabled` | `boolean` | `false` | Deaktiviert alle Slots |
-| `class` | `string` | - | CSS-Klassen fuer den Container |
+| `maxlength` | `number` | - | Maximum characters (required) |
+| `modelValue` / `v-model` | `string` | - | Controlled value |
+| `pattern` | `string \| RegExp` | - | Allowed characters (e.g. `REGEXP_ONLY_DIGITS_AND_CHARS`) |
+| `disabled` | `boolean` | `false` | Disables all slots |
+| `class` | `string` | - | CSS classes for the container |
 
-| Emit | Beschreibung |
+| Emit | Description |
 |---|---|
-| `update:modelValue` | Wert geaendert |
-| `complete` | Alle Slots ausgefuellt |
+| `update:modelValue` | Value changed |
+| `complete` | All slots filled |
 
 ## InputOTPSlot
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `index` | `number` | - | Position im OTP (0-basiert, Pflicht) |
-| `class` | `string` | - | Zusaetzliche CSS-Klassen |
-| `aria-invalid` | `boolean` | - | Fehler-Styling aktivieren |
+| `index` | `number` | - | Position within the OTP (0-based, required) |
+| `class` | `string` | - | Additional CSS classes |
+| `aria-invalid` | `boolean` | - | Enable error styling |
 
-Das Slot zeigt automatisch `slot?.char` aus dem OTP-Context und rendert einen blinkenden Caret wenn `slot?.hasFakeCaret` aktiv ist.
+The slot automatically renders `slot?.char` from the OTP context and shows a blinking caret when `slot?.hasFakeCaret` is active.
 
-## Pattern-Konstanten (vue-input-otp)
+## Pattern constants (vue-input-otp)
 
 ```ts
 import { REGEXP_ONLY_DIGITS, REGEXP_ONLY_CHARS, REGEXP_ONLY_DIGITS_AND_CHARS } from 'vue-input-otp'
 ```
 
-| Konstante | Muster |
+| Constant | Pattern |
 |---|---|
-| `REGEXP_ONLY_DIGITS` | Nur Ziffern (0-9) |
-| `REGEXP_ONLY_CHARS` | Nur Buchstaben (A-Z) |
-| `REGEXP_ONLY_DIGITS_AND_CHARS` | Ziffern und Buchstaben |
+| `REGEXP_ONLY_DIGITS` | Digits only (0-9) |
+| `REGEXP_ONLY_CHARS` | Letters only (A-Z) |
+| `REGEXP_ONLY_DIGITS_AND_CHARS` | Digits and letters |

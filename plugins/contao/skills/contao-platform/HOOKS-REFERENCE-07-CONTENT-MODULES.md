@@ -1,6 +1,6 @@
-# Contao Hooks – Content-Elemente / Frontend-Module
+# Contao Hooks – Content elements / Front end modules
 
-Hooks für das Rendern von Artikeln, Inhaltselementen, Frontend-Modulen und Formularen.
+Hooks for rendering articles, content elements, front end modules and forms.
 
 ---
 
@@ -16,19 +16,19 @@ Hooks für das Rendern von Artikeln, Inhaltselementen, Frontend-Modulen und Form
 
 ## `compileArticle`
 
-**Zweck:** Wird ausgelöst, nachdem das Artikel-Modul kompiliert wurde. Ermöglicht Hinzufügen zusätzlicher Daten zum Template.
+**Purpose:** Triggered after the article module has been compiled. Allows adding extra data to the template.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\FrontendTemplate` | `$template` | Frontend-Template des Artikel-Moduls |
-| 2 | `array` | `$data` | Modul-Konfiguration als assoziatives Array |
-| 3 | `\Contao\Module` | `$module` | Die aktuelle Modul-Instanz |
+| 1 | `\Contao\FrontendTemplate` | `$template` | Front end template of the article module |
+| 2 | `array` | `$data` | Module configuration as an associative array |
+| 3 | `\Contao\Module` | `$module` | The current module instance |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach Abschluss der Artikel-Modul-Kompilierung.
+**Timing:** After the article module compilation has finished.
 
 ```php
 #[AsHook('compileArticle')]
@@ -36,7 +36,7 @@ class CompileArticleListener
 {
     public function __invoke(FrontendTemplate $template, array $data, Module $module): void
     {
-        $template->customContent = '<p>Dieser Inhalt ist in mod_article.html5 über $this->customContent verfügbar</p>';
+        $template->customContent = '<p>This content is available in mod_article.html5 through $this->customContent</p>';
     }
 }
 ```
@@ -45,17 +45,17 @@ class CompileArticleListener
 
 ## `getArticle`
 
-**Zweck:** Erlaubt die Überschreibung der Artikel-Konfiguration **vor** dem Rendern.
+**Purpose:** Allows overriding the article configuration **before** rendering.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\ArticleModel` | `$article` | DB-Ergebnis aus `tl_article` |
+| 1 | `\Contao\ArticleModel` | `$article` | DB result from `tl_article` |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Vor dem Rendern eines Artikels.
+**Timing:** Before an article is rendered.
 
 ```php
 use Contao\ArticleModel;
@@ -65,8 +65,8 @@ class GetArticleListener
 {
     public function __invoke(ArticleModel $article): void
     {
-        // Artikel-Eigenschaften modifizieren
-        $article->cssID = serialize(['', 'meine-klasse']);
+        // Modify the article properties
+        $article->cssID = serialize(['', 'my-class']);
     }
 }
 ```
@@ -75,18 +75,18 @@ class GetArticleListener
 
 ## `getArticles`
 
-**Zweck:** Erlaubt das Ersetzen der Artikel einer Spalte durch eigene Inhalte.
+**Purpose:** Allows replacing the articles of a column with your own content.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `int` | `$pageId` | Eltern-Seiten-ID der Artikel |
-| 2 | `string` | `$column` | Die Spalte, für die Artikel gerendert werden |
+| 1 | `int` | `$pageId` | Parent page ID of the articles |
+| 2 | `string` | `$column` | The column the articles are rendered for |
 
-**Rückgabe:** `string|null` – String mit eigenem Inhalt (verhindert weitere Hook-Ausführung), oder `null` für Standardverhalten.
+**Returns:** `string|null` – String with your own content (prevents further hook execution), or `null` for the default behaviour.
 
-**Zeitpunkt:** Beim Rendern von Artikeln einer Seiten-Spalte.
+**Timing:** While the articles of a page column are rendered.
 
 ```php
 #[AsHook('getArticles')]
@@ -95,7 +95,7 @@ class GetArticlesListener
     public function __invoke(int $pageId, string $column): string|null
     {
         if (42 === $pageId && 'main' === $column) {
-            return '<div class="custom">Eigener Inhalt</div>';
+            return '<div class="custom">Custom content</div>';
         }
         return null;
     }
@@ -106,19 +106,19 @@ class GetArticlesListener
 
 ## `getContentElement`
 
-**Zweck:** Wird ausgelöst, wenn ein Content-Element gerendert wird. Erlaubt Modifikation der gerenderten Ausgabe.
+**Purpose:** Triggered when a content element is rendered. Allows modifying the rendered output.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\ContentModel` | `$contentModel` | DB-Ergebnis aus `tl_content` |
-| 2 | `string` | `$buffer` | Generierte Ausgabe des Content-Elements |
-| 3 | `object` | `$element` | Instanz der Content-Element-Klasse |
+| 1 | `\Contao\ContentModel` | `$contentModel` | DB result from `tl_content` |
+| 2 | `string` | `$buffer` | Generated output of the content element |
+| 3 | `object` | `$element` | Instance of the content element class |
 
-**Rückgabe:** `string` – Originaler oder modifizierter Ausgabe-Puffer.
+**Returns:** `string` – The original or modified output buffer.
 
-**Zeitpunkt:** Beim Rendern jedes Content-Elements einer Seite.
+**Timing:** While each content element of a page is rendered.
 
 ```php
 use Contao\ContentModel;
@@ -140,19 +140,19 @@ class GetContentElementListener
 
 ## `getFrontendModule`
 
-**Zweck:** Erlaubt Manipulation der generierten Ausgabe von Frontend-Modulen. Wird auch für Formulare in Seiten-Layouts ausgeführt.
+**Purpose:** Allows manipulating the generated output of front end modules. Also runs for forms in page layouts.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\ModuleModel` | `$model` | DB-Ergebnis des Frontend-Moduls |
-| 2 | `string` | `$buffer` | Generierte Ausgabe des Moduls |
-| 3 | `object` | `$module` | Instanz der Frontend-Modul-Klasse |
+| 1 | `\Contao\ModuleModel` | `$model` | DB result of the front end module |
+| 2 | `string` | `$buffer` | Generated output of the module |
+| 3 | `object` | `$module` | Instance of the front end module class |
 
-**Rückgabe:** `string` – Modifizierter oder originaler `$buffer`.
+**Returns:** `string` – The modified or original `$buffer`.
 
-**Zeitpunkt:** Während der Frontend-Modul-Generierung.
+**Timing:** During front end module generation.
 
 ```php
 use Contao\ModuleModel;
@@ -174,19 +174,19 @@ class GetFrontendModuleListener
 
 ## `getForm`
 
-**Zweck:** Erlaubt Manipulation der Formular-Generierung. Wird nur aufgerufen, wenn ein Formular via `\Contao\Controller::getForm()` gerendert wird (z.B. über `{{insert_form::*}}`-Insert-Tag). **Nicht** bei direkter Formular-Darstellung über Form-Content-Elemente.
+**Purpose:** Allows manipulating the form generation. Called only when a form is rendered via `\Contao\Controller::getForm()` (for example through the `{{insert_form::*}}` insert tag). **Not** when a form is rendered directly through form content elements.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\FormModel` | `$formModel` | DB-Ergebnis aus `tl_form` |
-| 2 | `string` | `$buffer` | Generierte Formular-Ausgabe |
-| 3 | `\Contao\Form` | `$form` | Die Formular-Instanz |
+| 1 | `\Contao\FormModel` | `$formModel` | DB result from `tl_form` |
+| 2 | `string` | `$buffer` | Generated form output |
+| 3 | `\Contao\Form` | `$form` | The form instance |
 
-**Rückgabe:** `string` – Modifizierter oder originaler `$buffer`.
+**Returns:** `string` – The modified or original `$buffer`.
 
-**Zeitpunkt:** Beim Rendern eines Formulars über `{{insert_form::*}}`.
+**Timing:** While a form is rendered through `{{insert_form::*}}`.
 
 ```php
 use Contao\Form;
@@ -198,7 +198,7 @@ class GetFormListener
     public function __invoke(FormModel $formModel, string $buffer, Form $form): string
     {
         if (5 === (int) $form->id) {
-            // Formular-Ausgabe modifizieren
+            // Modify the form output
         }
         return $buffer;
     }
@@ -209,18 +209,18 @@ class GetFormListener
 
 ## `isVisibleElement`
 
-**Zweck:** Bestimmt, ob ein Element (Artikel, Frontend-Modul oder Content-Element) im Frontend sichtbar sein soll. Verhindert im Gegensatz zu anderen Hooks die komplette Markup-Generierung.
+**Purpose:** Determines whether an element (article, front end module or content element) should be visible in the front end. Unlike other hooks, it prevents the markup generation entirely.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\Model` | `$element` | DB-Ergebnis aus `tl_article`, `tl_content` oder `tl_module` |
-| 2 | `bool` | `$isVisible` | Aktueller Sichtbarkeitsstatus |
+| 1 | `\Contao\Model` | `$element` | DB result from `tl_article`, `tl_content` or `tl_module` |
+| 2 | `bool` | `$isVisible` | Current visibility state |
 
-**Rückgabe:** `bool` – `true` = sichtbar, `false` = ausgeblendet.
+**Returns:** `bool` – `true` = visible, `false` = hidden.
 
-**Zeitpunkt:** Bei der Frontend-Sichtbarkeitsprüfung von Artikeln, Content-Elementen und Modulen.
+**Timing:** During the front end visibility check of articles, content elements and modules.
 
 ```php
 use Contao\ContentModel;
@@ -232,7 +232,7 @@ class IsVisibleElementListener
     public function __invoke(Model $element, bool $isVisible): bool
     {
         if ($element instanceof ContentModel) {
-            // Eigene Sichtbarkeitslogik anwenden
+            // Apply your own visibility logic
             if ($this->shouldHideElement($element)) {
                 return false;
             }
@@ -244,4 +244,4 @@ class IsVisibleElementListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

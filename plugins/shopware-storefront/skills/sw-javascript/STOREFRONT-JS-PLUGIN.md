@@ -1,6 +1,6 @@
-# Shopware 6 — JavaScript-Storefront-Plugin
+# Shopware 6 — JavaScript Storefront plugin
 
-Vanilla-JS-Plugin, das an ein `data-*`-Attribut gebunden und vom `PluginManager` initialisiert wird.
+A vanilla JS plugin bound to a `data-*` attribute and initialized by the `PluginManager`.
 
 ```js
 // src/Resources/app/storefront/src/ff-example/ff-example.plugin.js
@@ -20,7 +20,7 @@ const PluginManager = window.PluginManager;
 PluginManager.register('FfExample', FfExamplePlugin, '[data-ff-example]');
 ```
 
-Template-Bindung: `<div data-ff-example data-ff-example-options='{"url":"..."}'>`. Build via `bin/build-storefront.sh`
-bzw. Watcher. Daten ins DOM über `data-*` (`sw-ajax-data`). Bestehende Plugins anpassen: `sw-js-plugin-override` / `sw-js-plugin-extend`.
+Template binding: `<div data-ff-example data-ff-example-options='{"url":"..."}'>`. Build via `bin/build-storefront.sh`
+or the watcher. Pass data into the DOM via `data-*` (`sw-ajax-data`). Adjust existing plugins: `sw-js-plugin-override` / `sw-js-plugin-extend`.
 
-→ Gerüst: [examples/StorefrontJsPlugin.js](examples/StorefrontJsPlugin.js) · [examples/main.js](examples/main.js)
+→ Scaffold: [examples/StorefrontJsPlugin.js](examples/StorefrontJsPlugin.js) · [examples/main.js](examples/main.js)

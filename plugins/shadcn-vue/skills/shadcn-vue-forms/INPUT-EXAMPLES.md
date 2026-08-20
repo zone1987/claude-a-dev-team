@@ -1,18 +1,18 @@
-# Input — Beispiele
+# Input — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input/`
 
 ## Contents
 
 - [Basic](#basic)
-- [Mit Label (InputWithLabel.vue)](#mit-label-inputwithlabelvue)
-- [Mit Beschreibung (InputWithDescription.vue)](#mit-beschreibung-inputwithdescriptionvue)
-- [Deaktiviert (InputDisabled.vue)](#deaktiviert-inputdisabledvue)
-- [Fehlerzustand (InputInvalid.vue)](#fehlerzustand-inputinvalidvue)
-- [Mit Button (InputWithButton.vue)](#mit-button-inputwithbuttonvue)
-- [Alle Input-Typen (InputTypes.vue)](#alle-input-typen-inputtypesvue)
-- [Mit Select (InputWithSelect.vue)](#mit-select-inputwithselectvue)
-- [Formular-Beispiel (InputForm.vue)](#formular-beispiel-inputformvue)
+- [With Label (InputWithLabel.vue)](#with-label-inputwithlabelvue)
+- [With Description (InputWithDescription.vue)](#with-description-inputwithdescriptionvue)
+- [Disabled (InputDisabled.vue)](#disabled-inputdisabledvue)
+- [Error State (InputInvalid.vue)](#error-state-inputinvalidvue)
+- [With Button (InputWithButton.vue)](#with-button-inputwithbuttonvue)
+- [All Input Types (InputTypes.vue)](#all-input-types-inputtypesvue)
+- [With Select (InputWithSelect.vue)](#with-select-inputwithselectvue)
+- [Form Example (InputForm.vue)](#form-example-inputformvue)
 
 ## Basic
 
@@ -26,7 +26,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Mit Label (InputWithLabel.vue)
+## With Label (InputWithLabel.vue)
 
 ```vue
 <script setup lang="ts">
@@ -48,7 +48,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Mit Beschreibung (InputWithDescription.vue)
+## With Description (InputWithDescription.vue)
 
 ```vue
 <script setup lang="ts">
@@ -67,7 +67,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Deaktiviert (InputDisabled.vue)
+## Disabled (InputDisabled.vue)
 
 ```vue
 <script setup lang="ts">
@@ -83,7 +83,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Fehlerzustand (InputInvalid.vue)
+## Error State (InputInvalid.vue)
 
 ```vue
 <script setup lang="ts">
@@ -95,7 +95,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Mit Button (InputWithButton.vue)
+## With Button (InputWithButton.vue)
 
 ```vue
 <script setup lang="ts">
@@ -111,7 +111,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Alle Input-Typen (InputTypes.vue)
+## All Input Types (InputTypes.vue)
 
 ```vue
 <script setup lang="ts">
@@ -157,7 +157,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Mit Select (InputWithSelect.vue)
+## With Select (InputWithSelect.vue)
 
 ```vue
 <script setup lang="ts">
@@ -184,7 +184,7 @@ import {
 </template>
 ```
 
-## Formular-Beispiel (InputForm.vue)
+## Form Example (InputForm.vue)
 
 ```vue
 <script setup lang="ts">
@@ -216,6 +216,6 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input/`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/input.md`

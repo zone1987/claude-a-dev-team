@@ -1,6 +1,6 @@
-# Shopware 6 — Storefront-Controller
+# Shopware 6 — Storefront controller
 
-Erweitert `Storefront\Controller\StorefrontController`. Routen mit `_routeScope: ['storefront']`.
+Extends `Storefront\Controller\StorefrontController`. Routes use `_routeScope: ['storefront']`.
 
 ```php
 #[Route(defaults: ['_routeScope' => ['storefront']])]
@@ -17,8 +17,8 @@ class ExampleController extends StorefrontController
 }
 ```
 
-Route-Name-Konvention `frontend.*`. Daten kommen aus einem **PageLoader** (`sw-page-loader`), nicht direkt im Controller.
-`renderStorefront()` für HTML, `$this->json()`/`renderStorefront` für AJAX (`sw-ajax-data`). Caching: `sw-storefront-caching`.
+Route name convention `frontend.*`. Data comes from a **PageLoader** (`sw-page-loader`), not directly from the controller.
+Use `renderStorefront()` for HTML, `$this->json()`/`renderStorefront` for AJAX (`sw-ajax-data`). Caching: `sw-storefront-caching`.
 
-→ Controller, Routing, Beispiele: [STOREFRONT.md](STOREFRONT.md)
-→ Gerüst: [examples/StorefrontController.php](examples/StorefrontController.php) · [examples/routes.xml](examples/routes.xml)
+→ Controllers, routing, examples: [STOREFRONT.md](STOREFRONT.md)
+→ Scaffold: [examples/StorefrontController.php](examples/StorefrontController.php) · [examples/routes.xml](examples/routes.xml)

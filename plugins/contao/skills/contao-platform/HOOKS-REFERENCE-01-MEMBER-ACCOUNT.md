@@ -1,6 +1,6 @@
 # Contao Hooks – Member / Account
 
-Hooks rund um Frontend-Benutzer-Registrierung, -Aktivierung, Passwort und Datenpflege.
+Hooks around front end member registration, activation, passwords and data maintenance.
 
 ---
 
@@ -14,18 +14,18 @@ Hooks rund um Frontend-Benutzer-Registrierung, -Aktivierung, Passwort und Datenp
 
 ## `activateAccount`
 
-**Zweck:** Wird ausgelöst, wenn ein neues Frontend-Benutzerkonto aktiviert wird.
+**Purpose:** Triggered when a new front end member account is activated.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\MemberModel` | `$member` | Das aktivierte Mitglied |
-| 2 | `\Contao\Module` | `$module` | Das Registrierungs-Modul |
+| 1 | `\Contao\MemberModel` | `$member` | The activated member |
+| 2 | `\Contao\Module` | `$module` | The registration module |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach erfolgreicher Konto-Aktivierung über ein Registrierungs-Modul.
+**Timing:** After a successful account activation through a registration module.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -37,7 +37,7 @@ class ActivateAccountListener
 {
     public function __invoke(MemberModel $member, Module $module): void
     {
-        // z.B. Willkommens-E-Mail senden, externes System benachrichtigen
+        // e.g. send a welcome e-mail, notify an external system
     }
 }
 ```
@@ -46,19 +46,19 @@ class ActivateAccountListener
 
 ## `closeAccount`
 
-**Zweck:** Wird ausgelöst, wenn ein Benutzer sein Konto schließt (deaktiviert oder löscht).
+**Purpose:** Triggered when a member closes their account (deactivates or deletes it).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `int` | `$userId` | ID des Benutzers |
-| 2 | `string` | `$mode` | `close_deactivate` oder `close_delete` |
-| 3 | `\Contao\Module` | `$module` | Das Frontend-Modul |
+| 1 | `int` | `$userId` | ID of the member |
+| 2 | `string` | `$mode` | `close_deactivate` or `close_delete` |
+| 3 | `\Contao\Module` | `$module` | The front end module |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Wenn ein Benutzer die Konto-Schließung über das Frontend initiiert.
+**Timing:** When a member initiates the account closure from the front end.
 
 ```php
 #[AsHook('closeAccount')]
@@ -67,7 +67,7 @@ class CloseAccountListener
     public function __invoke(int $userId, string $mode, Module $module): void
     {
         if ('close_delete' === $mode) {
-            // Externe Daten des Nutzers bereinigen
+            // Clean up the member's external data
         }
     }
 }
@@ -77,19 +77,19 @@ class CloseAccountListener
 
 ## `createNewUser`
 
-**Zweck:** Wird ausgelöst, wenn sich ein neuer Frontend-Benutzer registriert.
+**Purpose:** Triggered when a new front end member registers.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `int` | `$userId` | ID des neuen Benutzers |
-| 2 | `array` | `$userData` | Übermittelte Registrierungsformulardaten (ohne ID) |
-| 3 | `\Contao\Module` | `$module` | Das Frontend-Modul |
+| 1 | `int` | `$userId` | ID of the new member |
+| 2 | `array` | `$userData` | Submitted registration form data (without the ID) |
+| 3 | `\Contao\Module` | `$module` | The front end module |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach erfolgreicher Registrierung.
+**Timing:** After a successful registration.
 
 ```php
 #[AsHook('createNewUser')]
@@ -97,7 +97,7 @@ class CreateNewUserListener
 {
     public function __invoke(int $userId, array $userData, Module $module): void
     {
-        // z.B. Benutzer in externer Datenbank anlegen
+        // e.g. create the user in an external database
     }
 }
 ```
@@ -106,19 +106,19 @@ class CreateNewUserListener
 
 ## `setNewPassword`
 
-**Zweck:** Wird ausgelöst, nachdem ein Benutzer ein neues Passwort gesetzt hat (über Passwort-Ändern- oder Passwort-Reset-Modul).
+**Purpose:** Triggered after a member has set a new password (via the change password or password reset module).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `object` | `$member` | Frontend-Benutzer (`\Contao\Database\Result` oder `\Contao\MemberModel`) |
-| 2 | `string` | `$password` | Das neue verschlüsselte Passwort |
-| 3 | `\Contao\Module\|null` | `$module` | Das aufrufende Modul (null im Backend-Kontext) |
+| 1 | `object` | `$member` | Front end member (`\Contao\Database\Result` or `\Contao\MemberModel`) |
+| 2 | `string` | `$password` | The new encrypted password |
+| 3 | `\Contao\Module\|null` | `$module` | The calling module (null in a back end context) |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach erfolgreichem Passwort-Setzen.
+**Timing:** After the password has been set successfully.
 
 ```php
 #[AsHook('setNewPassword')]
@@ -126,7 +126,7 @@ class SetNewPasswordListener
 {
     public function __invoke($member, string $password, ?Module $module): void
     {
-        // z.B. Passwort-Änderungs-Log schreiben
+        // e.g. write a password change log entry
     }
 }
 ```
@@ -135,19 +135,19 @@ class SetNewPasswordListener
 
 ## `updatePersonalData`
 
-**Zweck:** Wird ausgelöst, nachdem ein Mitglied seine persönlichen Daten über das Personal-Data-Modul aktualisiert hat. Benutzer-Objekt und Datenbank sind bereits aktualisiert.
+**Purpose:** Triggered after a member has updated their personal data through the personal data module. The member object and the database are already updated.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\FrontendUser` | `$member` | Der angemeldete Frontend-Benutzer |
-| 2 | `array` | `$data` | Die übermittelten Formulardaten |
-| 3 | `\Contao\Module` | `$module` | Das `ModulePersonalData`-Modul |
+| 1 | `\Contao\FrontendUser` | `$member` | The logged-in front end member |
+| 2 | `array` | `$data` | The submitted form data |
+| 3 | `\Contao\Module` | `$module` | The `ModulePersonalData` module |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach der Datenbankpersistenz der aktualisierten Benutzerdaten.
+**Timing:** After the updated member data has been persisted to the database.
 
 ```php
 #[AsHook('updatePersonalData')]
@@ -155,11 +155,11 @@ class UpdatePersonalDataListener
 {
     public function __invoke(FrontendUser $member, array $data, Module $module): void
     {
-        // z.B. Daten mit externem CRM synchronisieren
+        // e.g. synchronise the data with an external CRM
     }
 }
 ```
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

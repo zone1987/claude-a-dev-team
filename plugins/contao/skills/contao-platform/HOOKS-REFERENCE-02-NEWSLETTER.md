@@ -1,24 +1,24 @@
 # Contao Hooks – Newsletter
 
-Hooks für Newsletter-Abonnements (An- und Abmeldung).
+Hooks for newsletter subscriptions (subscribe and unsubscribe).
 
 ---
 
 ## `activateRecipient`
 
-**Zweck:** Wird ausgelöst, wenn ein neuer Newsletter-Empfänger hinzugefügt wird (Double-Opt-In bestätigt).
+**Purpose:** Triggered when a new newsletter recipient is added (double opt-in confirmed).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$email` | E-Mail-Adresse des Empfängers |
-| 2 | `array` | `$recipientIds` | Empfänger-IDs zu dieser E-Mail-Adresse |
-| 3 | `array` | `$channelIds` | Newsletter-Kanal-IDs, für die abonniert wurde |
+| 1 | `string` | `$email` | E-mail address of the recipient |
+| 2 | `array` | `$recipientIds` | Recipient IDs for this e-mail address |
+| 3 | `array` | `$channelIds` | Newsletter channel IDs that were subscribed to |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Beim Hinzufügen eines neuen Newsletter-Empfängers.
+**Timing:** When a new newsletter recipient is added.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -28,7 +28,7 @@ class ActivateRecipientListener
 {
     public function __invoke(string $email, array $recipientIds, array $channelIds): void
     {
-        // z.B. Empfänger in externem Mailchimp-System anmelden
+        // e.g. subscribe the recipient in an external Mailchimp system
     }
 }
 ```
@@ -37,18 +37,18 @@ class ActivateRecipientListener
 
 ## `removeRecipient`
 
-**Zweck:** Wird ausgelöst, wenn ein Newsletter-Empfänger abgemeldet/entfernt wird.
+**Purpose:** Triggered when a newsletter recipient unsubscribes or is removed.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$email` | E-Mail-Adresse des Empfängers |
-| 2 | `array` | `$channels` | Kanäle, von denen abgemeldet wurde |
+| 1 | `string` | `$email` | E-mail address of the recipient |
+| 2 | `array` | `$channels` | Channels that were unsubscribed from |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Wenn ein Newsletter-Abonnent abgemeldet wird.
+**Timing:** When a newsletter subscriber is unsubscribed.
 
 ```php
 #[AsHook('removeRecipient')]
@@ -56,11 +56,11 @@ class RemoveRecipientListener
 {
     public function __invoke(string $email, array $channels): void
     {
-        // z.B. Abmeldung in externem System spiegeln
+        // e.g. mirror the unsubscribe in an external system
     }
 }
 ```
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

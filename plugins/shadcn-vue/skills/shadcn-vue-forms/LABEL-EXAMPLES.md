@@ -1,8 +1,8 @@
-# Label — Beispiele
+# Label — Examples
 
-## Beispiel 1: Label with Input (LabelWithInput.vue)
+## Example 1: Label with Input (LabelWithInput.vue)
 
-Einfache Verknupfung von Label und Input via `html-for`.
+Simple association of Label and Input via `html-for`.
 
 ```vue
 <script setup lang="ts">
@@ -20,9 +20,9 @@ import { Label } from "@/components/ui/label"
 
 ---
 
-## Beispiel 2: Label with Checkbox (LabelWithCheckbox.vue)
+## Example 2: Label with Checkbox (LabelWithCheckbox.vue)
 
-Horizontale Ausrichtung mit Checkbox.
+Horizontal alignment with a Checkbox.
 
 ```vue
 <script setup lang="ts">
@@ -42,9 +42,9 @@ import { Label } from "@/components/ui/label"
 
 ---
 
-## Beispiel 3: Disabled (LabelDisabled.vue)
+## Example 3: Disabled (LabelDisabled.vue)
 
-Disabled-Zustand uber das `data-disabled`-Group-Pattern.
+Disabled state via the `data-disabled` group pattern.
 
 ```vue
 <script setup lang="ts">
@@ -64,7 +64,7 @@ import { Label } from "@/components/ui/label"
 
 ---
 
-## Beispiel 4: Label with Textarea (LabelWithTextarea.vue)
+## Example 4: Label with Textarea (LabelWithTextarea.vue)
 
 ```vue
 <script setup lang="ts">
@@ -84,7 +84,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/label/LabelWithInput.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/label/LabelWithCheckbox.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/label/LabelDisabled.vue`

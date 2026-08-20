@@ -1,8 +1,8 @@
-# PinInput — Beispiele
+# PinInput — Examples
 
-## Beispiel 1: Basic Pin Input (PinInputBasic.vue)
+## Example 1: Basic Pin Input (PinInputBasic.vue)
 
-4-stelliger PIN ohne Separator.
+4-digit PIN without a separator.
 
 ```vue
 <script setup lang="ts">
@@ -24,9 +24,9 @@ import {
 
 ---
 
-## Beispiel 2: Pin Input with Separator (PinInputWithSeparator.vue)
+## Example 2: Pin Input with Separator (PinInputWithSeparator.vue)
 
-Zwei Gruppen mit Trennzeichen (z. B. fur Anmeldecodes wie 123-456).
+Two groups with a separator (e.g. for login codes like 123-456).
 
 ```vue
 <script setup lang="ts">
@@ -53,9 +53,9 @@ import {
 
 ---
 
-## Beispiel 3: Masked Pin Input (PinInputMasked.vue)
+## Example 3: Masked Pin Input (PinInputMasked.vue)
 
-6-stelliger maskierter PIN (Eingabe wird als Punkte angezeigt).
+6-digit masked PIN (input is displayed as dots).
 
 ```vue
 <script setup lang="ts">
@@ -77,7 +77,7 @@ import {
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/pin-input/PinInputBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/pin-input/PinInputWithSeparator.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/pin-input/PinInputMasked.vue`

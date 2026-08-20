@@ -1,11 +1,11 @@
-# Shopware 6 — Mehrere Themes & SalesChannel-Zuweisung
+# Shopware 6 — Multiple themes & sales channel assignment
 
-Vollständige Referenz: [MULTIPLE-DETAIL.md](MULTIPLE-DETAIL.md)
+Full reference: [MULTIPLE-DETAIL.md](MULTIPLE-DETAIL.md)
 
-**Muster:** Ein Basis-Theme (Corporate Design), abgeleitete Themes für SalesChannels/Aktionen.
+**Pattern:** one base theme (corporate design), derived themes for sales channels/campaigns.
 
 ```json
-// Abgeleitetes Theme: theme.json
+// derived theme: theme.json
 {
   "name": "SwagHolidayTheme",
   "configInheritance": ["@Storefront", "@SwagBasicExampleTheme"],
@@ -18,8 +18,8 @@ Vollständige Referenz: [MULTIPLE-DETAIL.md](MULTIPLE-DETAIL.md)
 ```
 
 ```bash
-bin/console theme:change   # pro SalesChannel interaktiv auswählen
+bin/console theme:change   # select interactively per sales channel
 ```
 
-`configInheritance` erbt Felder + Snippets; Werte aus Parent werden übernommen, sofern nicht
-explizit überschrieben. Relationship wird bei `plugin:install` gesetzt, Update via `theme:refresh`.
+`configInheritance` inherits fields and snippets; values from the parent are adopted unless
+explicitly overridden. The relationship is set during `plugin:install`, updated via `theme:refresh`.

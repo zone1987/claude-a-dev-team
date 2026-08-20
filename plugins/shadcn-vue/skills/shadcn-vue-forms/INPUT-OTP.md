@@ -1,11 +1,11 @@
 # shadcn-vue InputOTP
 
-Zugaengliche OTP-Eingabe basierend auf vue-input-otp. Unterstuetzt Copy-Paste, Muster-Validierung, Gruppen und Separatoren.
+Accessible OTP input based on vue-input-otp. Supports copy-paste, pattern validation, groups, and separators.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `INPUT-OTP-INSTALLATION.md` — CLI- und manuelle Installation
-- `INPUT-OTP-SOURCE.md` — Vollstaendiger Quellcode
-- `INPUT-OTP-API.md` — Props, Emits aller Sub-Komponenten
-- `INPUT-OTP-EXAMPLES.md` — Alle Demos
+Load the references:
+- `INPUT-OTP-INSTALLATION.md` — CLI and manual installation
+- `INPUT-OTP-SOURCE.md` — Complete source code
+- `INPUT-OTP-API.md` — Props, emits of all sub-components
+- `INPUT-OTP-EXAMPLES.md` — All demos

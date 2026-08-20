@@ -1,6 +1,6 @@
 # Contao Hooks – Templates
 
-Hooks für Backend- und Frontend-Template-Parsing und Widget-Ausgabe.
+Hooks for back end and front end template parsing and widget output.
 
 ---
 
@@ -14,18 +14,18 @@ Hooks für Backend- und Frontend-Template-Parsing und Widget-Ausgabe.
 
 ## `outputBackendTemplate`
 
-**Zweck:** Wird ausgelöst, wenn ein Backend-Template auf dem Bildschirm ausgegeben wird. Ermöglicht Modifikation des gerenderten Template-Inhalts.
+**Purpose:** Triggered when a back end template is sent to the screen. Allows modifying the rendered template content.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Gerenderter Backend-Template-Inhalt |
-| 2 | `string` | `$template` | Template-Name ohne Extension (z.B. `be_main`) |
+| 1 | `string` | `$buffer` | Rendered back end template content |
+| 2 | `string` | `$template` | Template name without the extension (e.g. `be_main`) |
 
-**Rückgabe:** `string` – Originaler oder modifizierter `$buffer`.
+**Returns:** `string` – The original or modified `$buffer`.
 
-**Zeitpunkt:** Nach dem Rendern, vor der Ausgabe an den Browser.
+**Timing:** After rendering, before the output is sent to the browser.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -47,18 +47,18 @@ class OutputBackendTemplateListener
 
 ## `parseBackendTemplate`
 
-**Zweck:** Wird ausgelöst, wenn ein Backend-Template geparsed wird. Ähnlich wie `outputBackendTemplate`, feuert aber beim Parsen (früher im Prozess).
+**Purpose:** Triggered when a back end template is parsed. Similar to `outputBackendTemplate`, but fires at parse time (earlier in the process).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Geparster Backend-Template-Inhalt |
-| 2 | `string` | `$template` | Template-Name ohne Extension (z.B. `be_widget`) |
+| 1 | `string` | `$buffer` | Parsed back end template content |
+| 2 | `string` | `$template` | Template name without the extension (e.g. `be_widget`) |
 
-**Rückgabe:** `string` – Originaler oder modifizierter `$buffer`.
+**Returns:** `string` – The original or modified `$buffer`.
 
-**Zeitpunkt:** Beim Parsen von Backend-Templates im Admin-Interface.
+**Timing:** While back end templates are parsed in the admin interface.
 
 ```php
 #[AsHook('parseBackendTemplate')]
@@ -67,7 +67,7 @@ class ParseBackendTemplateListener
     public function __invoke(string $buffer, string $template): string
     {
         if ('be_main' === $template) {
-            // Custom-Inhalte einfügen
+            // Insert custom content
         }
         return $buffer;
     }
@@ -78,19 +78,19 @@ class ParseBackendTemplateListener
 
 ## `parseFrontendTemplate`
 
-**Zweck:** Wird ausgelöst, wenn ein Frontend-Template geparsed wird.
+**Purpose:** Triggered when a front end template is parsed.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Geparster Frontend-Template-Inhalt |
-| 2 | `string` | `$templateName` | Template-Name ohne Extension (z.B. `nav_default`) |
-| 3 | `\Contao\FrontendTemplate` | `$template` | Die Template-Instanz |
+| 1 | `string` | `$buffer` | Parsed front end template content |
+| 2 | `string` | `$templateName` | Template name without the extension (e.g. `nav_default`) |
+| 3 | `\Contao\FrontendTemplate` | `$template` | The template instance |
 
-**Rückgabe:** `string` – Originaler oder modifizierter `$buffer`.
+**Returns:** `string` – The original or modified `$buffer`.
 
-**Zeitpunkt:** Nach dem Parsen eines Frontend-Templates, vor der Ausgabe.
+**Timing:** After a front end template has been parsed, before the output.
 
 ```php
 #[AsHook('parseFrontendTemplate')]
@@ -99,7 +99,7 @@ class ParseFrontendTemplateListener
     public function __invoke(string $buffer, string $templateName, FrontendTemplate $template): string
     {
         if ('ce_text' === $templateName) {
-            // Inhalt eines Textelements modifizieren
+            // Modify the content of a text element
         }
         return $buffer;
     }
@@ -110,17 +110,17 @@ class ParseFrontendTemplateListener
 
 ## `parseTemplate`
 
-**Zweck:** Wird **vor** dem Parsen eines Templates ausgelöst. Übergibt das Template-Objekt – ideal für das Hinzufügen eigener Template-Variablen.
+**Purpose:** Triggered **before** a template is parsed. Receives the template object – ideal for adding your own template variables.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\Template` | `$template` | Frontend- oder Backend-Template-Instanz |
+| 1 | `\Contao\Template` | `$template` | Front end or back end template instance |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Vor dem Parsen des Templates. Template-Variablen können hier gesetzt werden.
+**Timing:** Before the template is parsed. Template variables can be set here.
 
 ```php
 #[AsHook('parseTemplate')]
@@ -129,13 +129,13 @@ class ParseTemplateListener
     public function __invoke(Template $template): void
     {
         if ('fe_page' === $template->getName() || str_starts_with($template->getName(), 'fe_page_')) {
-            $template->customVar = 'meinWert';
+            $template->customVar = 'myValue';
         }
     }
 }
 ```
 
-**Tipp:** Mit Closures können auch Hilfsfunktionen injiziert werden:
+**Tip:** Closures let you inject helper functions as well:
 
 ```php
 $template->isMemberOf = fn(int $groupId): bool =>
@@ -149,18 +149,18 @@ $template->isMemberOf = fn(int $groupId): bool =>
 
 ## `parseWidget`
 
-**Zweck:** Erlaubt die Anpassung der Ausgabe eines `\Contao\Widget` beim Parsen.
+**Purpose:** Allows adjusting the output of a `\Contao\Widget` while it is parsed.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Ausgabe-Puffer des Widgets |
-| 2 | `\Contao\Widget` | `$widget` | Die Widget-Instanz |
+| 1 | `string` | `$buffer` | Output buffer of the widget |
+| 2 | `\Contao\Widget` | `$widget` | The widget instance |
 
-**Rückgabe:** `string` – Modifizierter Ausgabe-Puffer.
+**Returns:** `string` – The modified output buffer.
 
-**Zeitpunkt:** Beim Parsen eines Widgets, bevor das HTML gerendert wird.
+**Timing:** While a widget is parsed, before the HTML is rendered.
 
 ```php
 use Contao\Widget;
@@ -180,4 +180,4 @@ class ParseWidgetListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

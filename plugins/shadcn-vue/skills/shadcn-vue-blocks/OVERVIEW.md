@@ -5,19 +5,18 @@
 - [What are Blocks?](#what-are-blocks)
 - [Installation](#installation)
 - [Customization](#customization)
-- [Block-Kategorien](#block-kategorien)
-- [Alle verfuegbaren Blocks](#alle-verfuegbaren-blocks)
+- [Block categories](#block-categories)
+- [All available blocks](#all-available-blocks)
 - [Related Skills](#related-skills)
 
 ## What are Blocks?
 
-Blocks sind vollstaendige, produktionsreife Seiten-Layouts, die direkt in ein Projekt kopiert
-werden koennen. Sie sind aus bestehenden shadcn-vue Komponenten zusammengesetzt und decken
-typische UI-Patterns ab: Authentifizierungs-Flows (Login, Signup, OTP), Dashboards, Produkt-
-tabellen und Sidebar-Layouts.
+Blocks are complete, production-ready page layouts that you can copy straight into a project.
+They are composed of existing shadcn-vue components and cover typical UI patterns:
+authentication flows (login, signup, OTP), dashboards, product tables and sidebar layouts.
 
-Im Unterschied zu einzelnen Komponenten umfasst ein Block mehrere Dateien (Page-Komponente,
-Sub-Komponenten, ggf. Daten-Fixtures) und bildet ein vollstaendiges Seiten-Layout ab.
+Unlike individual components, a block spans several files (page component, sub-components,
+optionally data fixtures) and represents a complete page layout.
 
 ## Installation
 
@@ -25,7 +24,7 @@ Sub-Komponenten, ggf. Daten-Fixtures) und bildet ein vollstaendiges Seiten-Layou
 npx shadcn-vue@latest add <block-name>
 ```
 
-Beispiel:
+Example:
 
 ```bash
 npx shadcn-vue@latest add dashboard-01
@@ -33,102 +32,102 @@ npx shadcn-vue@latest add login-02
 npx shadcn-vue@latest add sidebar-07
 ```
 
-Die Dateien werden direkt ins Projekt kopiert (standardmaessig nach `src/components/blocks/`)
-und koennen anschliessend beliebig angepasst werden. Es gibt keine externe Abhaengigkeit — der
-Block gehoert nach dem `add`-Befehl vollstaendig zum eigenen Codebase.
+The files are copied directly into the project (by default into `src/components/blocks/`)
+and you can adapt them freely afterwards. There is no external dependency — after the
+`add` command the block belongs entirely to your own codebase.
 
 ## Customization
 
-Da Blocks durch Kopieren installiert werden, ist jede Datei direkt editierbar:
+Because blocks are installed by copying, every file is directly editable:
 
-- Layout und Struktur anpassen
-- Farben und Abstande via Tailwind-Klassen aendern
-- Daten durch echte API-Calls ersetzen
-- Sub-Komponenten extrahieren oder umbenennen
-- Beliebige shadcn-vue Komponenten erganzen oder entfernen
+- Adjust layout and structure
+- Change colors and spacing via Tailwind classes
+- Replace data with real API calls
+- Extract or rename sub-components
+- Add or remove any shadcn-vue components
 
-## Block-Kategorien
+## Block categories
 
-| Kategorie | Beschreibung |
+| Category | Description |
 |---|---|
-| `dashboard-*` | Admin-Dashboards mit Charts, Tabellen, Karten |
-| `login-*` | Login-Formulare (verschiedene Layouts) |
-| `signup-*` | Registrierungs-Formulare |
-| `otp-*` | One-Time-Password / Code-Eingabe |
-| `products-*` | Produkt-Tabellen und -Listen |
-| `sidebar-*` | Anwendungs-Layouts mit Sidebar-Navigation |
+| `dashboard-*` | Admin dashboards with charts, tables, cards |
+| `login-*` | Login forms (various layouts) |
+| `signup-*` | Registration forms |
+| `otp-*` | One-time password / code entry |
+| `products-*` | Product tables and lists |
+| `sidebar-*` | Application layouts with sidebar navigation |
 
-## Alle verfuegbaren Blocks
+## All available blocks
 
-Detaillierte Beschreibungen, Dateilisten und Anwendungsfaelle sind in der Referenz dokumentiert:
+Detailed descriptions, file lists and use cases are documented in the reference:
 `OVERVIEW-DETAIL.md`
 
 ### Dashboard
 
-| Block | Beschreibung |
+| Block | Description |
 |---|---|
-| `dashboard-01` | Dashboard mit Sidebar, Datentabelle, Area-Chart und Section-Cards |
+| `dashboard-01` | Dashboard with sidebar, data table, area chart and section cards |
 
 ### Authentication — Login
 
-| Block | Beschreibung |
+| Block | Description |
 |---|---|
-| `login-01` | Einfaches zentriertes Login-Formular (E-Mail/Passwort + Google OAuth) |
-| `login-02` | Zweispaltig: Cover-Bild links, GitHub OAuth rechts |
-| `login-03` | Login auf geda mpftem Hintergrund mit Social Auth |
-| `login-04` | Bild links, Card-Layout rechts |
-| `login-05` | Minimales Login ohne Card-Wrapper |
+| `login-01` | Simple centered login form (email/password + Google OAuth) |
+| `login-02` | Two columns: cover image on the left, GitHub OAuth on the right |
+| `login-03` | Login on a muted background with social auth |
+| `login-04` | Image on the left, card layout on the right |
+| `login-05` | Minimal login without a card wrapper |
 
 ### Authentication — Signup
 
-| Block | Beschreibung |
+| Block | Description |
 |---|---|
-| `signup-01` | Einfaches zentriertes Signup-Formular |
-| `signup-02` | Zweispaltig mit Cover-Bild |
-| `signup-03` | Signup auf geda mpftem Hintergrund |
-| `signup-04` | Signup mit zusaetzlichen Feldern (Vor- und Nachname) |
-| `signup-05` | Minimales Signup |
+| `signup-01` | Simple centered signup form |
+| `signup-02` | Two columns with cover image |
+| `signup-03` | Signup on a muted background |
+| `signup-04` | Signup with additional fields (first and last name) |
+| `signup-05` | Minimal signup |
 
 ### Authentication — OTP
 
-| Block | Beschreibung |
+| Block | Description |
 |---|---|
-| `otp-01` | OTP-Eingabe mit 6 Ziffern, zentriert |
-| `otp-02` | OTP mit E-Mail-Anzeige und Resend-Link |
-| `otp-03` | OTP minimales Layout |
-| `otp-04` | OTP mit Countdown-Timer |
-| `otp-05` | OTP mit Anleitung und Hilfetext |
+| `otp-01` | OTP entry with 6 digits, centered |
+| `otp-02` | OTP with email display and resend link |
+| `otp-03` | OTP minimal layout |
+| `otp-04` | OTP with countdown timer |
+| `otp-05` | OTP with instructions and help text |
 
 ### Products
 
-| Block | Beschreibung |
+| Block | Description |
 |---|---|
-| `products-01` | Produkttabelle mit Suche und Filter |
+| `products-01` | Product table with search and filters |
 
 ### Sidebar Layouts
 
-| Block | Beschreibung |
+| Block | Description |
 |---|---|
-| `sidebar-01` | Einfache Sidebar mit Navigation in Gruppen |
-| `sidebar-02` | Sidebar mit aufklappbarer Subnavigation (inset-Variante) |
-| `sidebar-03` | Sidebar mit aufklappbarer Subnavigation (floating-Variante) |
-| `sidebar-04` | Sidebar mit aufklappbarer Subnavigation (ohne Header) |
-| `sidebar-05` | Sidebar mit sekundaerer Navigation (floating) |
-| `sidebar-06` | Sidebar mit sekundaerer Navigation (nur Icons) |
-| `sidebar-07` | Kollabierbare Sidebar mit Icon-Rail |
-| `sidebar-08` | Sidebar mit verschachtelten Unterpunkten und Icons |
-| `sidebar-09` | Sidebar mit Workspace-/Team-Switcher |
-| `sidebar-10` | Sidebar mit Benutzerprofil im Footer |
-| `sidebar-11` | Sidebar mit Floating-Action-Buttons |
-| `sidebar-12` | Sidebar mit Datepicker im Footer |
-| `sidebar-13` | Sidebar mit Projekt-/Workspace-Navigation |
-| `sidebar-14` | Sidebar mit Suche und Einstellungen (minimal) |
-| `sidebar-15` | Sidebar mit Breadcrumb und klebrigem Header |
-| `sidebar-16` | Sidebar mit schwebender Top-Navigationsleiste |
+| `sidebar-01` | Simple sidebar with navigation in groups |
+| `sidebar-02` | Sidebar with collapsible subnavigation (inset variant) |
+| `sidebar-03` | Sidebar with collapsible subnavigation (floating variant) |
+| `sidebar-04` | Sidebar with collapsible subnavigation (without header) |
+| `sidebar-05` | Sidebar with secondary navigation (floating) |
+| `sidebar-06` | Sidebar with secondary navigation (icons only) |
+| `sidebar-07` | Collapsible sidebar with icon rail |
+| `sidebar-08` | Sidebar with nested sub-items and icons |
+| `sidebar-09` | Sidebar with workspace/team switcher |
+| `sidebar-10` | Sidebar with user profile in the footer |
+| `sidebar-11` | Sidebar with floating action buttons |
+| `sidebar-12` | Sidebar with date picker in the footer |
+| `sidebar-13` | Sidebar with project/workspace navigation |
+| `sidebar-14` | Sidebar with search and settings (minimal) |
+| `sidebar-15` | Sidebar with breadcrumb and sticky header |
+| `sidebar-16` | Sidebar with a floating top navigation bar |
 
 ## Related Skills
 
-- `shadcn-vue-sidebar` — Sidebar-Komponente (Einzelkomponente, API, Props, Composable)
-- `shadcn-vue-chart` — Chart-Komponenten fuer Dashboard-Blocks
-- `shadcn-vue-data-table` — Datentabellen-Komponente
-- `shadcn-vue-input-otp` — OTP-Input-Komponente
+- `shadcn-vue-sidebar` — Sidebar component (single component, API, props, composable)
+- `shadcn-vue-chart` — Chart components for dashboard blocks
+- `shadcn-vue-data-table` — Data table component
+- `shadcn-vue-input-otp` — OTP input component

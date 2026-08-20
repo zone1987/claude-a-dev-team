@@ -1,4 +1,4 @@
 # contao-getting-started
 
-Lies `GETTING-STARTED-DETAIL.md` für vollständige Details zu Verzeichnisstruktur,
-Konfigurationsdateien, DCA-Einstieg, Hooks-Überblick und Translations in Contao 5.
+Read `GETTING-STARTED-DETAIL.md` for complete details on the directory structure,
+configuration files, the DCA entry point, the hooks overview and translations in Contao 5.

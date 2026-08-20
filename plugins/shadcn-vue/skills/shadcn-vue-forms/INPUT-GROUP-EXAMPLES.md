@@ -1,15 +1,15 @@
-# InputGroup — Beispiele
+# InputGroup — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input-group/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input-group/`
 
 ## Contents
 
-- [Basic — Icons und Text (InputGroupBasic.vue)](#basic-icons-und-text-inputgroupbasicvue)
-- [Mit Buttons (InputGroupWithButton.vue)](#mit-buttons-inputgroupwithbuttonvue)
-- [Mit Textarea (InputGroupWithTextarea.vue)](#mit-textarea-inputgroupwithtextareavue)
-- [Custom Input mit data-slot](#custom-input-mit-data-slot)
+- [Basic — Icons and Text (InputGroupBasic.vue)](#basic--icons-and-text-inputgroupbasicvue)
+- [With Buttons (InputGroupWithButton.vue)](#with-buttons-inputgroupwithbuttonvue)
+- [With Textarea (InputGroupWithTextarea.vue)](#with-textarea-inputgroupwithtextareavue)
+- [Custom Input with data-slot](#custom-input-with-data-slot)
 
-## Basic — Icons und Text (InputGroupBasic.vue)
+## Basic — Icons and Text (InputGroupBasic.vue)
 
 ```vue
 <script setup lang="ts">
@@ -23,7 +23,7 @@ import {
 
 <template>
   <div class="grid w-full max-w-sm items-center gap-4">
-    <!-- Icon links -->
+    <!-- Icon leading -->
     <InputGroup>
       <InputGroupAddon align="inline-start">
         <MailIcon />
@@ -31,7 +31,7 @@ import {
       <InputGroupInput type="email" placeholder="Email" />
     </InputGroup>
 
-    <!-- Text rechts -->
+    <!-- Text trailing -->
     <InputGroup>
       <InputGroupInput type="text" placeholder="Username" />
       <InputGroupAddon align="inline-end">
@@ -39,7 +39,7 @@ import {
       </InputGroupAddon>
     </InputGroup>
 
-    <!-- Text links -->
+    <!-- Text leading -->
     <InputGroup>
       <InputGroupAddon align="inline-start">
         https://
@@ -50,7 +50,7 @@ import {
 </template>
 ```
 
-## Mit Buttons (InputGroupWithButton.vue)
+## With Buttons (InputGroupWithButton.vue)
 
 ```vue
 <script setup lang="ts">
@@ -99,9 +99,9 @@ import {
 </template>
 ```
 
-## Mit Textarea (InputGroupWithTextarea.vue)
+## With Textarea (InputGroupWithTextarea.vue)
 
-Textarea mit `block-start` / `block-end` Addons.
+Textarea with `block-start` / `block-end` addons.
 
 ```vue
 <script setup lang="ts">
@@ -115,7 +115,7 @@ import {
 
 <template>
   <div class="grid w-full max-w-sm items-center gap-4">
-    <!-- Icon links (block) -->
+    <!-- Icon leading (block) -->
     <InputGroup>
       <InputGroupAddon align="inline-start">
         <MessageSquareIcon />
@@ -123,7 +123,7 @@ import {
       <InputGroupTextarea placeholder="Type your message here..." />
     </InputGroup>
 
-    <!-- Send-Icon rechts -->
+    <!-- Send icon trailing -->
     <InputGroup>
       <InputGroupTextarea placeholder="Add a comment..." rows="4" />
       <InputGroupAddon align="inline-end">
@@ -134,7 +134,7 @@ import {
 </template>
 ```
 
-## Custom Input mit data-slot
+## Custom Input with data-slot
 
 ```vue
 <template>
@@ -155,6 +155,6 @@ import {
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input-group/`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/input-group.md`

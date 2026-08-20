@@ -1,25 +1,25 @@
-# Contao 5.x – Hook-System: How-To
+# Contao 5.x – Hook system: How-to
 
 ## Contents
 
-- [Was sind Hooks?](#was-sind-hooks)
-- [Registrierungsmethoden](#registrierungsmethoden)
-- [Invokable Services](#invokable-services)
-- [Priorität](#priorität)
-- [Typisches Listener-Muster](#typisches-listener-muster)
+- [What are hooks?](#what-are-hooks)
+- [Registration methods](#registration-methods)
+- [Invokable services](#invokable-services)
+- [Priority](#priority)
+- [Typical listener pattern](#typical-listener-pattern)
 - [Hook vs. Symfony Event Dispatcher](#hook-vs-symfony-event-dispatcher)
-- [Referenz: Alle Hook-Namen](#referenz-alle-hook-namen)
+- [Reference: all hook names](#reference-all-hook-names)
 
-## Was sind Hooks?
+## What are hooks?
 
-Hooks sind Einstiegspunkte in den Contao-Kern (und einige Extension-Bundles), über die eigene Logik an bestimmten Stellen im Ausführungsfluss eingebettet werden kann. Technisch gesehen ist ein Hook ein benanntes Array von Callables, die der Reihe nach aufgerufen werden, wenn der Hook-Punkt erreicht wird.
+Hooks are entry points into the Contao core (and some extension bundles) that let you embed your own logic at specific places in the execution flow. Technically, a hook is a named array of callables that are invoked one after another when the hook point is reached.
 
-> **Hinweis:** Hooks sind ein veraltetes Konzept aus Contao 2/3. Für neuen event-gesteuerten Code empfiehlt Contao, den **Symfony Event Dispatcher** zu verwenden, wo möglich. Viele Hooks bleiben jedoch die einzige Möglichkeit, bestimmte Core-Logik zu erweitern.
+> **Note:** Hooks are a legacy concept from Contao 2/3. For new event-driven code, Contao recommends using the **Symfony Event Dispatcher** where possible. Many hooks, however, remain the only way to extend certain core logic.
 
-### Internes Ausführungsmuster
+### Internal execution pattern
 
 ```php
-// Vereinfachtes Beispiel aus dem Contao-Kern
+// Simplified example from the Contao core
 if (isset($GLOBALS['TL_HOOKS']['activateAccount']) && \is_array($GLOBALS['TL_HOOKS']['activateAccount'])) {
     foreach ($GLOBALS['TL_HOOKS']['activateAccount'] as $callback) {
         $this->import($callback[0]);
@@ -28,15 +28,15 @@ if (isset($GLOBALS['TL_HOOKS']['activateAccount']) && \is_array($GLOBALS['TL_HOO
 }
 ```
 
-Listener erhalten hook-spezifische Parameter und müssen ggf. einen Wert zurückgeben, der an den nächsten Listener weitergegeben wird.
+Listeners receive hook-specific parameters and may have to return a value that is passed on to the next listener.
 
 ---
 
-## Registrierungsmethoden
+## Registration methods
 
-### 1. PHP-Attribut `#[AsHook]` (empfohlen)
+### 1. PHP attribute `#[AsHook]` (recommended)
 
-Der moderne Weg. Voraussetzung: Symfony Autowiring/Autoconfigure ist aktiv (Standard in Contao-Applikationen).
+The modern approach. Prerequisite: Symfony autowiring/autoconfigure is enabled (the default in Contao applications).
 
 ```php
 namespace App\EventListener;
@@ -50,29 +50,29 @@ class ParseArticlesListener
 {
     public function onParseArticles(FrontendTemplate $template, array $newsEntry, Module $module): void
     {
-        // Eigene Logik …
+        // Your own logic …
     }
 }
 ```
 
-Das Attribut kann auf **Klassen-** oder **Methoden-Ebene** verwendet werden:
+The attribute can be used at **class** or **method level**:
 
-- **Methoden-Ebene** (wie oben): Die annotierte Methode wird aufgerufen.
-- **Klassen-Ebene** (invokable): Die Klasse muss `__invoke()` implementieren (siehe unten).
+- **Method level** (as above): the annotated method is called.
+- **Class level** (invokable): the class must implement `__invoke()` (see below).
 
-#### Parameter des Attributs
+#### Attribute parameters
 
-| Parameter  | Typ    | Bedeutung                                     |
+| Parameter  | Type   | Meaning                                       |
 |-----------|--------|-----------------------------------------------|
-| `hook`    | string | Name des Hooks (Pflicht, erster Parameter)    |
-| `priority`| int    | Ausführungsreihenfolge, Standard `0`          |
-| `method`  | string | Methode, wenn nicht `__invoke` (optional)     |
+| `hook`    | string | Name of the hook (required, first parameter)  |
+| `priority`| int    | Execution order, default `0`                  |
+| `method`  | string | Method, if not `__invoke` (optional)          |
 
 ---
 
-### 2. YAML Service-Tag `contao.hook`
+### 2. YAML service tag `contao.hook`
 
-Konfiguration in `config/services.yaml`:
+Configuration in `config/services.yaml`:
 
 ```yaml
 services:
@@ -80,24 +80,24 @@ services:
         tags:
             - name: contao.hook
               hook: activateAccount
-              method: onAccountActivation   # optional, sonst aus Hook-Name abgeleitet
-              priority: 100                 # optional, Standard 0
+              method: onAccountActivation   # optional, otherwise derived from the hook name
+              priority: 100                 # optional, default 0
 ```
 
-Tag-Optionen:
+Tag options:
 
-| Option   | Pflicht | Beschreibung                                      |
+| Option   | Required | Description                                      |
 |---------|---------|---------------------------------------------------|
-| `name`  | ja      | Muss `contao.hook` sein                           |
-| `hook`  | ja      | Der Hook-Name                                     |
-| `method`| nein    | Methode; wird sonst automatisch aus Hook-Name abgeleitet |
-| `priority`| nein | Ausführungsreihenfolge, Standard `0`              |
+| `name`  | yes     | Must be `contao.hook`                             |
+| `hook`  | yes     | The hook name                                     |
+| `method`| no      | Method; otherwise derived automatically from the hook name |
+| `priority`| no    | Execution order, default `0`                      |
 
 ---
 
-### 3. Service-Annotation `@Hook` (veraltet)
+### 3. Service annotation `@Hook` (deprecated)
 
-Erfordert das Service Annotation Bundle. Nicht mehr empfohlen.
+Requires the Service Annotation Bundle. No longer recommended.
 
 ```php
 use Contao\CoreBundle\ServiceAnnotation\Hook;
@@ -115,18 +115,18 @@ public function onParseArticles(FrontendTemplate $template, array $newsEntry, Mo
 
 ### 4. Legacy `$GLOBALS['TL_HOOKS']`
 
-Funktioniert weiterhin für Rückwärtskompatibilität, aber nicht mehr empfohlen:
+Still works for backwards compatibility, but is no longer recommended:
 
 ```php
-// In einer Contao-spezifischen Konfigurationsdatei oder einem Bundle
+// In a Contao-specific configuration file or in a bundle
 $GLOBALS['TL_HOOKS']['activateAccount'][] = ['App\MyClass', 'myMethod'];
 ```
 
 ---
 
-## Invokable Services
+## Invokable services
 
-Klassen mit `__invoke()` können ohne Methoden-Angabe als Hook-Listener registriert werden:
+Classes with `__invoke()` can be registered as hook listeners without specifying a method:
 
 ```php
 namespace App\EventListener;
@@ -140,12 +140,12 @@ class ParseArticlesListener
 {
     public function __invoke(FrontendTemplate $template, array $newsEntry, Module $module): void
     {
-        // Eigene Logik …
+        // Your own logic …
     }
 }
 ```
 
-Oder via YAML (ohne `method`-Angabe):
+Or via YAML (without a `method` entry):
 
 ```yaml
 services:
@@ -156,21 +156,21 @@ services:
 
 ---
 
-## Priorität
+## Priority
 
-Die `priority` bestimmt, wann ein Listener relativ zu anderen (auch legacy) Listenern ausgeführt wird:
+The `priority` determines when a listener runs relative to other (including legacy) listeners:
 
-| Priorität       | Ausführungszeitpunkt                                                  |
+| Priority        | Execution time                                                        |
 |----------------|------------------------------------------------------------------------|
-| `priority > 0`  | **Vor** legacy `$GLOBALS['TL_HOOKS']`-Listenern                       |
-| `priority = 0`  | Gemäß Extension-Ladereihenfolge, zusammen mit legacy Listenern        |
-| `priority < 0`  | **Nach** legacy `$GLOBALS['TL_HOOKS']`-Listenern                      |
+| `priority > 0`  | **Before** legacy `$GLOBALS['TL_HOOKS']` listeners                    |
+| `priority = 0`  | According to extension load order, together with legacy listeners     |
+| `priority < 0`  | **After** legacy `$GLOBALS['TL_HOOKS']` listeners                     |
 
-Höhere Werte = frühere Ausführung (wie bei Symfony Event Listener).
+Higher values = earlier execution (as with Symfony event listeners).
 
 ---
 
-## Typisches Listener-Muster
+## Typical listener pattern
 
 ```php
 // src/EventListener/MyHookListener.php
@@ -181,34 +181,34 @@ use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 #[AsHook('hookName', priority: 10)]
 class MyHookListener
 {
-    public function __invoke(/* hook-spezifische Parameter */): /* Rückgabetyp */
+    public function __invoke(/* hook-specific parameters */): /* return type */
     {
-        // Logik
+        // Logic
     }
 }
 ```
 
-Ablageort: `src/EventListener/` (wird durch Symfony-Autowiring automatisch als Service registriert).
+Location: `src/EventListener/` (registered automatically as a service through Symfony autowiring).
 
 ---
 
 ## Hook vs. Symfony Event Dispatcher
 
-| Aspekt          | Hook                            | Symfony Event                    |
+| Aspect          | Hook                            | Symfony event                    |
 |----------------|----------------------------------|----------------------------------|
-| Stil            | Legacy Contao-Konzept           | Modern, empfohlen                |
-| Typsicherheit   | Schwächer                       | Stark (Event-Klasse)             |
-| Reihenfolge     | Über `priority`                 | Über `priority`                  |
-| Neue Features   | Nein (Contao 6 deprecated)      | Ja                               |
-| Contao-Core     | Pflicht für viele Core-Punkte   | Wo Events verfügbar              |
+| Style           | Legacy Contao concept           | Modern, recommended              |
+| Type safety     | Weaker                          | Strong (event class)             |
+| Order           | Via `priority`                  | Via `priority`                   |
+| New features    | No (deprecated in Contao 6)     | Yes                              |
+| Contao core     | Required for many core points   | Where events are available       |
 
 ---
 
-## Referenz: Alle Hook-Namen
+## Reference: all hook names
 
-Vollständige Referenz aller ~69 Hooks mit Parametern, Rückgabewerten und Beispielen:
+Full reference of all ~69 hooks with parameters, return values and examples:
 → Skill `contao-hooks-reference` / `references/deep/`
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/framework/hooks/ und https://docs.contao.org/5.x/dev/getting-started/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/framework/hooks/ and https://docs.contao.org/5.x/dev/getting-started/hooks/ (as of 2025-06)_

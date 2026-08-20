@@ -1,29 +1,29 @@
 # shadcn-vue Blocks: dashboard-01 & products-01
 
-Diese Skill-Referenz enthält den vollständigen Code für zwei fertige shadcn-vue Blocks:
+This skill reference contains the complete code for two ready-made shadcn-vue blocks:
 
-- **dashboard-01** — eine komplette Admin-Dashboard-Seite mit Sidebar-Navigation, KPI-Cards, interaktivem Flächendiagramm und einer drag-&-drop-fähigen Datentabelle mit Paginierung.
-- **products-01** — eine Produkttabelle mit Status-Badges, Kategoriefiltern, Preis- und Statusfilter-Selects sowie Paginierung.
+- **dashboard-01** — a complete admin dashboard page with sidebar navigation, KPI cards, an interactive area chart and a drag-and-drop data table with pagination.
+- **products-01** — a product table with status badges, category filters, price and status filter selects, plus pagination.
 
-Beide Blocks nutzen shadcn-vue UI-Komponenten (Button, Badge, Card, Table, Tabs, Select, Sidebar, Dropdown u.a.) und Tabler Icons bzw. Lucide Icons.
+Both blocks use shadcn-vue UI components (Button, Badge, Card, Table, Tabs, Select, Sidebar, Dropdown and others) and Tabler Icons or Lucide Icons.
 
 ---
 
 ## dashboard-01: Dashboard with Sidebar, Data Table, Area Chart, Section Cards
 
-Der `dashboard-01`-Block liefert eine vollständige Dashboard-Seite bestehend aus:
+The `dashboard-01` block delivers a complete dashboard page consisting of:
 
-- **AppSidebar** — Collapsible Offcanvas-Sidebar mit Logo, Hauptnavigation (NavMain), Dokument-Links (NavDocuments), sekundärer Navigation (NavSecondary) und Nutzer-Footer (NavUser).
-- **NavMain** — Hauptnavigationsgruppe mit "Quick Create"-Button und Icon-Links (Dashboard, Lifecycle, Analytics, Projects, Team).
-- **NavDocuments** — Sidebar-Gruppe "Documents" mit Dropdown-Aktionen (Open, Share, Delete) pro Eintrag.
-- **NavSecondary** — Sekundäre Links (Settings, Get Help, Search) am unteren Sidebar-Rand.
-- **NavUser** — Avatar + Name + Email im Sidebar-Footer, öffnet Dropdown mit Account, Billing, Notifications, Logout.
-- **SiteHeader** — Sticky Header mit SidebarTrigger, Separator und Seitentitel "Documents".
-- **SectionCards** — Responsive Grid mit 4 KPI-Cards: Total Revenue, New Customers, Active Accounts, Growth Rate — jeweils mit Trendpfeil-Badge und Footer-Text.
-- **ChartAreaInteractive** — Flächendiagramm (Desktop vs. Mobile Visitors) mit Zeitraumfilter (90d / 30d / 7d), basiert auf `@unovis/vue`.
-- **DataTable** — TanStack Vue Table mit Drag-&-Drop-Sortierung (dnd-kit-vue), Tabs (Outline / Past Performance / Key Personnel / Focus Documents), Spalten-Visibility-Menü, Paginierung und Zeilenauswahl. Zod-Schema als exportierter Typ.
-- **DraggableRow** — Wrapper-Komponente für draggable Tabellenzeilen via `useSortable`.
-- **DragHandle** — Grip-Icon-Button als Drag-Handle via `useSortableContext`.
+- **AppSidebar** — collapsible offcanvas sidebar with logo, main navigation (NavMain), document links (NavDocuments), secondary navigation (NavSecondary) and user footer (NavUser).
+- **NavMain** — main navigation group with a "Quick Create" button and icon links (Dashboard, Lifecycle, Analytics, Projects, Team).
+- **NavDocuments** — sidebar group "Documents" with dropdown actions (Open, Share, Delete) per entry.
+- **NavSecondary** — secondary links (Settings, Get Help, Search) at the bottom edge of the sidebar.
+- **NavUser** — avatar + name + email in the sidebar footer, opens a dropdown with Account, Billing, Notifications, Logout.
+- **SiteHeader** — sticky header with SidebarTrigger, Separator and the page title "Documents".
+- **SectionCards** — responsive grid with 4 KPI cards: Total Revenue, New Customers, Active Accounts, Growth Rate — each with a trend arrow badge and footer text.
+- **ChartAreaInteractive** — area chart (Desktop vs. Mobile Visitors) with a time range filter (90d / 30d / 7d), based on `@unovis/vue`.
+- **DataTable** — TanStack Vue Table with drag-and-drop sorting (dnd-kit-vue), tabs (Outline / Past Performance / Key Personnel / Focus Documents), column visibility menu, pagination and row selection. Zod schema as an exported type.
+- **DraggableRow** — wrapper component for draggable table rows via `useSortable`.
+- **DragHandle** — grip icon button as a drag handle via `useSortableContext`.
 
 ### Installation
 
@@ -31,7 +31,7 @@ Der `dashboard-01`-Block liefert eine vollständige Dashboard-Seite bestehend au
 npx shadcn-vue@latest add dashboard-01
 ```
 
-### Dateien (12)
+### Files (12)
 
 ```
 dashboard-01/
@@ -50,18 +50,18 @@ dashboard-01/
     └── SiteHeader.vue
 ```
 
-Vollständiger Code: `DASHBOARD-01.md`
+Complete code: `DASHBOARD-01.md`
 
 ---
 
 ## products-01: Products Table
 
-Der `products-01`-Block liefert eine einsatzbereite Produkttabelle mit:
+The `products-01` block delivers a ready-to-use product table with:
 
 - **Tabs** — All Products / In Stock / Low Stock / Archived / Add Product.
-- **Filter-Selects** — Category, Price-Range, Status.
-- **Tabelle** — Checkbox-Selektion, Produkt-Name, Preis, Lagerbestand, Status-Badge (grün/orange), Hinzufügedatum, Row-Actions-Dropdown (Edit / Delete).
-- **Pagination** — Seitennummerierung mit Ellipsis.
+- **Filter selects** — Category, price range, status.
+- **Table** — checkbox selection, product name, price, stock level, status badge (green/orange), date added, row actions dropdown (Edit / Delete).
+- **Pagination** — page numbering with ellipsis.
 
 ### Installation
 
@@ -69,7 +69,7 @@ Der `products-01`-Block liefert eine einsatzbereite Produkttabelle mit:
 npx shadcn-vue@latest add products-01
 ```
 
-### Dateien (2)
+### Files (2)
 
 ```
 products-01/
@@ -78,4 +78,4 @@ products-01/
     └── ProductsTable.vue
 ```
 
-Vollständiger Code: `DASHBOARD-PRODUCTS-01.md`
+Complete code: `DASHBOARD-PRODUCTS-01.md`

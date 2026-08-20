@@ -1,17 +1,17 @@
-# InputOTP — Beispiele
+# InputOTP — Examples
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input-otp/InputOTPExample.vue`
+Source: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input-otp/InputOTPExample.vue`
 
 ## Contents
 
-- [Einfach — 6 Ziffern mit Separator](#einfach-6-ziffern-mit-separator)
-- [Kontrollierter Wert (v-model)](#kontrollierter-wert-v-model)
-- [Deaktiviert](#deaktiviert)
-- [4-stellige PIN](#4-stellige-pin)
-- [Fehlerzustand](#fehlerzustand)
-- [Formular mit Verifizierungskarte](#formular-mit-verifizierungskarte)
+- [Simple — 6 Digits with Separator](#simple--6-digits-with-separator)
+- [Controlled Value (v-model)](#controlled-value-v-model)
+- [Disabled](#disabled)
+- [4-Digit PIN](#4-digit-pin)
+- [Error State](#error-state)
+- [Form with Verification Card](#form-with-verification-card)
 
-## Einfach — 6 Ziffern mit Separator
+## Simple — 6 Digits with Separator
 
 ```vue
 <script setup lang="ts">
@@ -44,7 +44,7 @@ import {
 </template>
 ```
 
-## Kontrollierter Wert (v-model)
+## Controlled Value (v-model)
 
 ```vue
 <script setup lang="ts">
@@ -79,7 +79,7 @@ const value = ref("123456")
 </template>
 ```
 
-## Deaktiviert
+## Disabled
 
 ```vue
 <template>
@@ -99,7 +99,7 @@ const value = ref("123456")
 </template>
 ```
 
-## 4-stellige PIN
+## 4-Digit PIN
 
 ```vue
 <template>
@@ -118,7 +118,7 @@ const value = ref("123456")
 </template>
 ```
 
-## Fehlerzustand
+## Error State
 
 ```vue
 <script setup lang="ts">
@@ -158,7 +158,7 @@ const value = ref("000000")
 </template>
 ```
 
-## Formular mit Verifizierungskarte
+## Form with Verification Card
 
 ```vue
 <script setup lang="ts">
@@ -215,6 +215,6 @@ import {
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/input-otp/InputOTPExample.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/input-otp.md`

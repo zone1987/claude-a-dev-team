@@ -1,4 +1,4 @@
 # contao-core-concepts
 
-Lies `CONCEPTS-DETAIL.md` für die vollständige Übersicht aller
-Kernkonzepte und Erweiterungspunkte in Contao 5.
+Read `CONCEPTS-DETAIL.md` for the complete overview of all
+core concepts and extension points in Contao 5.

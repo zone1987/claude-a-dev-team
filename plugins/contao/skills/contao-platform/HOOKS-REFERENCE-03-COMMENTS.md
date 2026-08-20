@@ -1,6 +1,6 @@
-# Contao Hooks – Kommentare
+# Contao Hooks – Comments
 
-Hooks für das Kommentar-System (Hinzufügen, Berechtigungen, Auflistung).
+Hooks for the comment system (adding, permissions, listing).
 
 ---
 
@@ -12,19 +12,19 @@ Hooks für das Kommentar-System (Hinzufügen, Berechtigungen, Auflistung).
 
 ## `addComment`
 
-**Zweck:** Wird ausgelöst, wenn ein Kommentar hinzugefügt wird.
+**Purpose:** Triggered when a comment is added.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `int` | `$commentId` | Datenbank-ID des neuen Kommentars (`tl_comments`) |
-| 2 | `array` | `$commentData` | Kommentar-Felder (ohne ID) |
-| 3 | `\Contao\Comments` | `$comments` | Die Comments-Klasse, die den Hook ausgelöst hat |
+| 1 | `int` | `$commentId` | Database ID of the new comment (`tl_comments`) |
+| 2 | `array` | `$commentData` | Comment fields (without the ID) |
+| 3 | `\Contao\Comments` | `$comments` | The Comments class that triggered the hook |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Direkt nachdem ein Kommentar in der Datenbank gespeichert wurde.
+**Timing:** Immediately after a comment has been saved to the database.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -35,7 +35,7 @@ class AddCommentListener
 {
     public function __invoke(int $commentId, array $commentData, Comments $comments): void
     {
-        // z.B. Moderations-Benachrichtigung senden
+        // e.g. send a moderation notification
     }
 }
 ```
@@ -44,18 +44,18 @@ class AddCommentListener
 
 ## `isAllowedToEditComment`
 
-**Zweck:** Bestimmt, ob ein Backend-Benutzer einen Kommentar aus einer unbekannten Quelle bearbeiten darf.
+**Purpose:** Determines whether a back end user may edit a comment from an unknown source.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `int` | `$parentId` | ID des übergeordneten Datensatzes |
-| 2 | `string` | `$parentTable` | Name der übergeordneten Tabelle |
+| 1 | `int` | `$parentId` | ID of the parent record |
+| 2 | `string` | `$parentTable` | Name of the parent table |
 
-**Rückgabe:** `bool` – `true` = Zugriff erlaubt, `false` = Zugriff verweigert oder Hook nicht zuständig.
+**Returns:** `bool` – `true` = access granted, `false` = access denied or the hook is not responsible.
 
-**Zeitpunkt:** Wenn im Backend geprüft wird, ob ein Benutzer einen Kommentar bearbeiten darf.
+**Timing:** When the back end checks whether a user may edit a comment.
 
 ```php
 #[AsHook('isAllowedToEditComment')]
@@ -75,17 +75,17 @@ class IsAllowedToEditCommentListener
 
 ## `listComments`
 
-**Zweck:** Wird ausgelöst, wenn Kommentare aus einer unbekannten Quelle im Backend aufgelistet werden. Ermöglicht die Darstellung von Kommentaren aus eigenen Tabellen.
+**Purpose:** Triggered when comments from an unknown source are listed in the back end. Allows rendering comments from your own tables.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$comment` | Der aktuelle Kommentar-Datensatz |
+| 1 | `array` | `$comment` | The current comment record |
 
-**Rückgabe:** `string` – HTML-Darstellung des Kommentars, oder leerer String wenn Hook nicht zuständig.
+**Returns:** `string` – HTML representation of the comment, or an empty string if the hook is not responsible.
 
-**Zeitpunkt:** Beim Rendern der Kommentar-Liste im Backend.
+**Timing:** When the comment list is rendered in the back end.
 
 ```php
 #[AsHook('listComments')]
@@ -103,4 +103,4 @@ class ListCommentsListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

@@ -1,40 +1,40 @@
 # Contao Profiler (5.x)
 
-## Überblick
+## Overview
 
-Contao liefert das `symfony/profiler-pack` mit, das eine **Web Developer Toolbar** und die **Profiler-Ansicht** als Entwicklungswerkzeug bereitstellt.
+Contao ships the `symfony/profiler-pack`, which provides a **Web Developer Toolbar** and the **profiler view** as a development tool.
 
 ---
 
-## Komponenten
+## Components
 
-### Contao Data Collector
+### Contao data collector
 
-Contao erweitert den Standard-Symfony-Profiler mit einem eigenen Data Collector, der Contao-spezifische Request-Daten sammelt und im Profiler darstellt.
+Contao extends the standard Symfony profiler with its own data collector that gathers Contao-specific request data and displays it in the profiler.
 
 ### Web Developer Toolbar
 
-Toolbar-Erweiterung für visuelle Entwicklungs-Rückmeldung.
+Toolbar extension for visual development feedback.
 
 ---
 
-## Zugriff
+## Access
 
-Profiler-Interface erreichbar unter: `/_profiler/`
-
----
-
-## Verfügbarkeit
-
-> **Nur im `dev`-Modus:** Data Collectors, Profiler und Web Developer Toolbar sind im `prod`-Modus aus Performance- und Sicherheitsgründen deaktiviert.
+The profiler interface is available at: `/_profiler/`
 
 ---
 
-## Symfony-Profiler-Dokumentation
+## Availability
 
-Für vollständige Implementierungsdetails des Profiler-Frameworks:
+> **`dev` mode only:** data collectors, the profiler and the Web Developer Toolbar are disabled in `prod` mode for performance and security reasons.
+
+---
+
+## Symfony profiler documentation
+
+For complete implementation details of the profiler framework:
 → https://symfony.com/doc/current/profiler.html
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/profiler/*
+*Source: https://docs.contao.org/5.x/dev/framework/profiler/*

@@ -2,18 +2,18 @@
 
 ## Contents
 
-- [Traces aufnehmen](#traces-aufnehmen)
-- [Trace Viewer oeffnen](#trace-viewer-oeffnen)
-- [Trace Viewer: UI-Tabs und Features](#trace-viewer-ui-tabs-und-features)
+- [Recording traces](#recording-traces)
+- [Opening the Trace Viewer](#opening-the-trace-viewer)
+- [Trace Viewer: UI tabs and features](#trace-viewer-ui-tabs-and-features)
 - [Playwright Inspector](#playwright-inspector)
 - [VS Code Debugger](#vs-code-debugger)
-- [PWDEBUG: Browser-Konsolen-API](#pwdebug-browser-konsolen-api)
-- [Weitere Debug-Methoden](#weitere-debug-methoden)
-- [Quellen](#quellen)
+- [PWDEBUG: browser console API](#pwdebug-browser-console-api)
+- [Further debugging methods](#further-debugging-methods)
+- [Source](#source)
 
-## Traces aufnehmen
+## Recording traces
 
-### Konfiguration in `playwright.config.ts`
+### Configuration in `playwright.config.ts`
 
 ```typescript
 import { defineConfig } from '@playwright/test';
@@ -21,151 +21,151 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   retries: 1,
   use: {
-    // Trace-Modus waehlen:
+    // Choose the trace mode:
     trace: 'on-first-retry',
   },
 });
 ```
 
-### Trace-Optionen
+### Trace options
 
-| Wert | Verhalten |
+| Value | Behavior |
 |------|-----------|
-| `'off'` | Kein Trace |
-| `'on'` | Jeder Test (performance-intensiv) |
-| `'retain-on-failure'` | Trace bei jedem Test, loescht Erfolge am Ende |
-| `'on-first-retry'` | Nur beim ersten Retry (empfohlen fuer CI) |
-| `'on-all-retries'` | Alle Retry-Versuche |
+| `'off'` | No trace |
+| `'on'` | Every test (performance-intensive) |
+| `'retain-on-failure'` | Trace for every test, deletes the passing ones at the end |
+| `'on-first-retry'` | Only on the first retry (recommended for CI) |
+| `'on-all-retries'` | All retry attempts |
 
-### Trace per CLI erzwingen (lokal)
+### Forcing a trace from the CLI (locally)
 
 ```bash
 npx playwright test --trace on
 npx playwright show-report
 ```
 
-### Trace per Library-API (ohne Test-Runner)
+### Traces via the library API (without the test runner)
 
 ```typescript
 const context = await browser.newContext();
 
-// Trace starten
+// Start the trace
 await context.tracing.start({
-  screenshots: true,   // Screenshots in Timeline
-  snapshots: true,     // DOM-Snapshots bei jeder Aktion
-  sources: true,       // Quellcode-Zeilen
+  screenshots: true,   // Screenshots in the timeline
+  snapshots: true,     // DOM snapshots for every action
+  sources: true,       // Source-code lines
 });
 
 const page = await context.newPage();
 await page.goto('https://example.com');
 
-// Trace stoppen und speichern
+// Stop the trace and save it
 await context.tracing.stop({ path: 'trace.zip' });
 ```
 
-### `tracing.start()` Optionen
+### `tracing.start()` options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `screenshots` | boolean | false | Film-Strip-Screenshots aufnehmen |
-| `snapshots` | boolean | false | DOM-Snapshots vor/nach jeder Aktion |
-| `sources` | boolean | false | Quellcode-Zeilen einbinden |
-| `title` | string | — | Optionaler Titel fuer den Trace |
+| `screenshots` | boolean | false | Record film-strip screenshots |
+| `snapshots` | boolean | false | DOM snapshots before/after every action |
+| `sources` | boolean | false | Include source-code lines |
+| `title` | string | — | Optional title for the trace |
 
-### HAR-Recording (ab v1.60)
+### HAR recording (from v1.60)
 
 ```typescript
 await context.tracing.startHar({ path: 'network.har' });
-// ... Test ausfuehren ...
+// ... run the test ...
 await context.tracing.stopHar({ path: 'network.har' });
 ```
 
 ---
 
-## Trace Viewer oeffnen
+## Opening the Trace Viewer
 
-### Per CLI (lokal)
+### From the CLI (locally)
 
 ```bash
-# Lokale ZIP-Datei
+# Local ZIP file
 npx playwright show-trace path/to/trace.zip
 
 # Remote URL
 npx playwright show-trace https://example.com/trace.zip
 ```
 
-### Per HTML-Report
+### From the HTML report
 
 ```bash
 npx playwright show-report
 ```
-Im Report: Trace-Icon neben dem Testdateinamen anklicken.
+In the report: click the trace icon next to the test file name.
 
-### Per Web-Interface
+### From the web interface
 
 URL: **https://trace.playwright.dev**
 
-- Keine externe Datenuebertragung (statisch gehostet)
-- Upload per Drag-and-Drop oder Dateiauswahl
-- Remote-Trace: `https://trace.playwright.dev/?trace=https://example.com/trace.zip`
+- No external data transfer (statically hosted)
+- Upload by drag-and-drop or file picker
+- Remote trace: `https://trace.playwright.dev/?trace=https://example.com/trace.zip`
 
 ---
 
-## Trace Viewer: UI-Tabs und Features
+## Trace Viewer: UI tabs and features
 
-| Tab | Inhalt |
+| Tab | Content |
 |-----|--------|
-| **Actions** | Aktionsliste mit Locators, Timing, DOM-Snapshots (Before/After) |
-| **Screenshots** | Film-Strip mit vergroesserter Timeline |
-| **Snapshots** | DOM-Zustand: Before / Action / After |
-| **Source** | Hervorgehobene Codezeile |
-| **Call** | Aktionsdauer, Locator, Strict-Mode-Infos |
-| **Log** | Detaillierte Aktionssequenz (Scrollen, Warten, Klicken) |
-| **Errors** | Fehlermeldungen mit Timeline-Markierung |
-| **Console** | Browser- und Test-Logs mit Quellenkennung |
-| **Network** | Requests nach Typ/Status/Methode/Dauer filterbar |
-| **Metadata** | Browser, Viewport, Testdauer |
-| **Attachments** | Visual-Regression-Vergleiche mit Slider |
+| **Actions** | Action list with locators, timing, DOM snapshots (before/after) |
+| **Screenshots** | Film strip with a magnified timeline |
+| **Snapshots** | DOM state: before / action / after |
+| **Source** | Highlighted line of code |
+| **Call** | Action duration, locator, strict-mode information |
+| **Log** | Detailed action sequence (scrolling, waiting, clicking) |
+| **Errors** | Error messages with a timeline marker |
+| **Console** | Browser and test logs with source attribution |
+| **Network** | Requests filterable by type/status/method/duration |
+| **Metadata** | Browser, viewport, test duration |
+| **Attachments** | Visual-regression comparisons with a slider |
 
-### Interaktionen im Viewer
+### Interactions in the viewer
 
-- Doppelklick auf Aktion -> Zeitbereich filtern
-- Timeline-Slider zum Auswaehlen von Aktionsbereichen
-- Film-Strip hovern fuer vergroesserte Vorschau
-- "Show all" zum Zuruecksetzen von Filtern
+- Double-click an action -> filter the time range
+- Timeline slider to select action ranges
+- Hover the film strip for a magnified preview
+- "Show all" to reset filters
 
 ---
 
 ## Playwright Inspector
 
-### Starten
+### Starting it
 
 ```bash
-# Alle Tests debuggen
+# Debug all tests
 npx playwright test --debug
 
-# Einzelner Test nach Datei und Zeile
+# A single test by file and line
 npx playwright test example.spec.ts:10 --debug
 
-# Spezifischer Browser
+# A specific browser
 npx playwright test --project=chromium --debug
 
-# Kombiniert
+# Combined
 npx playwright test example.spec.ts:10 --project=webkit --debug
 ```
 
-### Inspector-Features
+### Inspector features
 
-- **Playback-Controls**: Schritt vor/zurueck, Play, Pause
-- **Aktueller Schritt**: Im Inspector und im Browser hervorgehoben
-- **Pick Locator**: Interaktive Elementauswahl mit Echtzeit-Highlighting
-- **Locator-Editor**: Live-Bearbeitung des Locators
-- **Actionability-Log**: Zeigt Sichtbarkeit, Stabilitaet, Scroll-Notwendigkeit
+- **Playback controls**: step forward/back, play, pause
+- **Current step**: highlighted in the inspector and in the browser
+- **Pick Locator**: interactive element selection with real-time highlighting
+- **Locator editor**: edit the locator live
+- **Actionability log**: shows visibility, stability, whether a scroll is needed
 
-### Breakpoints im Code
+### Breakpoints in code
 
 ```typescript
-// Test bleibt an dieser Stelle stehen
+// The test halts at this point
 await page.pause();
 ```
 
@@ -173,68 +173,68 @@ await page.pause();
 
 ## VS Code Debugger
 
-### Voraussetzungen
+### Prerequisites
 
-- VS Code Extension: "Playwright Test for VS Code" installieren
+- Install the VS Code extension "Playwright Test for VS Code"
 
 ### Features
 
-- Rote Punkte als Breakpoints per Klick auf Zeilennummern setzen
-- Rechtsklick auf Testzeile -> "Debug Test" startet den Browser und haelt an Breakpoints
-- **Live-Locator-Picking**: Im VS Code-Panel Locatoren anklicken -> Browserhighlight
-- **Multi-Browser-Debugging**: Debug-Icon Rechtsklick -> "Select Default Profile" -> Chromium/Firefox/WebKit/Mobile
-- **Chrome DevTools**: Mit "Show Browser" + offenen DevTools weiterarbeiten
+- Set breakpoints as red dots by clicking the line numbers
+- Right-click a test line -> "Debug Test" launches the browser and stops at breakpoints
+- **Live locator picking**: click locators in the VS Code panel -> browser highlight
+- **Multi-browser debugging**: right-click the debug icon -> "Select Default Profile" -> Chromium/Firefox/WebKit/Mobile
+- **Chrome DevTools**: keep working with "Show Browser" plus open DevTools
 
 ---
 
-## PWDEBUG: Browser-Konsolen-API
+## PWDEBUG: browser console API
 
-### Aktivieren
+### Enabling it
 
 ```bash
-# Gibt `playwright`-Objekt in der Browser-Konsole bereit
+# Exposes the `playwright` object in the browser console
 PWDEBUG=console npx playwright test
 
-# Oeffnet Playwright Inspector
+# Opens the Playwright Inspector
 PWDEBUG=1 npx playwright test
 ```
 
-### `playwright`-Objekt in der Konsole
+### The `playwright` object in the console
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|--------------|
-| `playwright.$(selector)` | Erstes Element mit Playwright-Engine abfragen |
-| `playwright.$$(selector)` | Alle Treffer zurueckgeben |
-| `playwright.inspect(selector)` | Element im Elements-Panel hervorheben |
-| `playwright.locator(selector)` | Locator mit Matching-Info erstellen |
-| `playwright.selector(element)` | Selector fuer ein DOM-Element generieren |
+| `playwright.$(selector)` | Query the first element with the Playwright engine |
+| `playwright.$$(selector)` | Return all matches |
+| `playwright.inspect(selector)` | Highlight the element in the Elements panel |
+| `playwright.locator(selector)` | Create a locator with matching information |
+| `playwright.selector(element)` | Generate a selector for a DOM element |
 
-Voraussetzung: `await page.pause();` vor dem Testlauf einfuegen.
+Prerequisite: insert `await page.pause();` before the test run.
 
 ---
 
-## Weitere Debug-Methoden
+## Further debugging methods
 
-### Verbose-Logging
+### Verbose logging
 
 ```bash
-# Alle API-Aufrufe loggen
+# Log all API calls
 DEBUG=pw:api npx playwright test
 
-# Browser-spezifisch
+# Browser-specific
 DEBUG=pw:browser npx playwright test
 ```
 
-### Headed-Modus + SlowMo
+### Headed mode + slowMo
 
 ```typescript
 const browser = await chromium.launch({
   headless: false,
-  slowMo: 100,  // Jede Aktion um 100 ms verlangsamen
+  slowMo: 100,  // Slow every action down by 100 ms
 });
 ```
 
-### Headed per Config
+### Headed via config
 
 ```typescript
 export default defineConfig({
@@ -249,7 +249,7 @@ export default defineConfig({
 
 ---
 
-## Quellen
+## Source
 
 - https://playwright.dev/docs/trace-viewer
 - https://playwright.dev/docs/trace-viewer-intro

@@ -1,34 +1,34 @@
-# NativeSelect — API-Referenz
+# NativeSelect — API reference
 
 ## NativeSelect
 
-Rendert einen nativen `<select>` mit einem chevron-Icon-Wrapper.
+Renders a native `<select>` with a chevron icon wrapper.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `AcceptableValue \| AcceptableValue[]` | `""` | v-model Wert |
-| `class` | `HTMLAttributes["class"]` | — | Wird auf `<select>` angewendet |
-| Alle nativen `<select>` attrs | — | Via `$attrs` weitergeleitet |
+| `modelValue` | `AcceptableValue \| AcceptableValue[]` | `""` | v-model value |
+| `class` | `HTMLAttributes["class"]` | — | Applied to `<select>` |
+| All native `<select>` attrs | — | Forwarded via `$attrs` |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| `update:modelValue` | `AcceptableValue` | Feuert bei Anderung |
+| `update:modelValue` | `AcceptableValue` | Fires on change |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | `NativeSelectOption` und `NativeSelectOptGroup` |
+| default | `NativeSelectOption` and `NativeSelectOptGroup` |
 
-### Besonderheiten
-- `inheritAttrs: false` — Attrs werden manuell auf `<select>` weitergeleitet
-- `useVModel` mit `passive: true` und `defaultValue: ""`
-- Wrapper-Div: `has-[select:disabled]:opacity-50`
-- Chevron-Icon ist `pointer-events-none` und `aria-hidden`
+### Notable details
+- `inheritAttrs: false` — attrs are forwarded to `<select>` manually
+- `useVModel` with `passive: true` and `defaultValue: ""`
+- Wrapper div: `has-[select:disabled]:opacity-50`
+- The chevron icon is `pointer-events-none` and `aria-hidden`
 
 ---
 
@@ -38,26 +38,26 @@ Renders `<optgroup>`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `label` | `string` | Gruppen-Label (natives HTML-Attr) |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `label` | `string` | Group label (native HTML attr) |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## NativeSelectOption
 
-Rendert `<option>`.
+Renders `<option>`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `value` | `string` | Option-Wert |
-| `disabled` | `boolean` | Deaktiviert |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `value` | `string` | Option value |
+| `disabled` | `boolean` | Disabled |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
-## Hinweis
-`NativeSelect` hat keine reka-ui-Basis und verwendet keine Custom-Dropdown-Logik. Das Dropdown-Verhalten kommt vollstandig vom Browser.
+## Note
+`NativeSelect` has no reka-ui base and uses no custom dropdown logic. The dropdown behavior comes entirely from the browser.

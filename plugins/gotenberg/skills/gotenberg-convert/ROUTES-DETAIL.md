@@ -1,27 +1,27 @@
-# Gotenberg — Vollstaendige Routen-Referenz
+# Gotenberg — Complete route reference
 
 ## Contents
 
-- [Protokoll](#protokoll)
-- [Gemeinsame Request-Header](#gemeinsame-request-header)
-- [Standard Response-Header (Erfolg 200)](#standard-response-header-erfolg-200)
-- [Authentifizierung](#authentifizierung)
-- [Alle Routen](#alle-routen)
-- [Hinweis zu Konvertierungsrouten](#hinweis-zu-konvertierungsrouten)
-- [HTTP-Statuscodes](#http-statuscodes)
+- [Protocol](#protocol)
+- [Common request headers](#common-request-headers)
+- [Standard response headers (success 200)](#standard-response-headers-success-200)
+- [Authentication](#authentication)
+- [All routes](#all-routes)
+- [Note on conversion routes](#note-on-conversion-routes)
+- [HTTP status codes](#http-status-codes)
 
-## Protokoll
+## Protocol
 
-Jede Route akzeptiert einen **`multipart/form-data` POST-Request** und gibt eine Datei zurueck.
+Every route accepts a **`multipart/form-data` POST request** and returns a file.
 
-## Gemeinsame Request-Header
+## Common request headers
 
-| Header | Typ | Default | Beschreibung |
+| Header | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `Gotenberg-Output-Filename` | string | Random UUID | Dateiname der Ausgabedatei ohne Extension. Gotenberg haengt die korrekte Extension automatisch an. |
-| `Gotenberg-Trace` | string | Random UUID | Eigene Request-ID zur Identifikation im Log. Ueberschreibt die Standard-UUID. Konfigurierbar via `--api-correlation-id-header`. |
+| `Gotenberg-Output-Filename` | string | Random UUID | Filename of the output file without extension. Gotenberg appends the correct extension automatically. |
+| `Gotenberg-Trace` | string | Random UUID | Custom request ID for identification in the log. Overrides the default UUID. Configurable via `--api-correlation-id-header`. |
 
-## Standard Response-Header (Erfolg 200)
+## Standard response headers (success 200)
 
 ```
 Content-Disposition: attachment; filename={output-filename.ext}
@@ -31,86 +31,86 @@ Gotenberg-Trace: {trace}
 Body: {output-file}
 ```
 
-## Authentifizierung
+## Authentication
 
-Basic Auth wird aktiviert per CLI-Flag:
+Enable Basic Auth via the CLI flag:
 ```bash
 docker run --rm -p "3000:3000" gotenberg/gotenberg:8 \
   gotenberg --api-enable-basic-auth
 ```
 
-Credentials werden ausschliesslich per Umgebungsvariable gesetzt:
+Set credentials exclusively via environment variable:
 - `GOTENBERG_API_BASIC_AUTH_USERNAME`
 - `GOTENBERG_API_BASIC_AUTH_PASSWORD`
 
-## Alle Routen
+## All routes
 
-### Konvertierung zu PDF
+### Conversion to PDF
 
-| Aufgabe | Route | Engine |
+| Task | Route | Engine |
 |---------|-------|--------|
-| URL zu PDF | `POST /forms/chromium/convert/url` | Chromium |
-| HTML-Datei zu PDF | `POST /forms/chromium/convert/html` | Chromium |
-| Markdown zu PDF | `POST /forms/chromium/convert/markdown` | Chromium |
-| Office-Dokumente zu PDF | `POST /forms/libreoffice/convert` | LibreOffice |
+| URL to PDF | `POST /forms/chromium/convert/url` | Chromium |
+| HTML file to PDF | `POST /forms/chromium/convert/html` | Chromium |
+| Markdown to PDF | `POST /forms/chromium/convert/markdown` | Chromium |
+| Office documents to PDF | `POST /forms/libreoffice/convert` | LibreOffice |
 
 ### Screenshots
 
-| Aufgabe | Route |
+| Task | Route |
 |---------|-------|
-| URL screenshotten | `POST /forms/chromium/screenshot/url` |
-| HTML screenshotten | `POST /forms/chromium/screenshot/html` |
-| Markdown screenshotten | `POST /forms/chromium/screenshot/markdown` |
+| Screenshot a URL | `POST /forms/chromium/screenshot/url` |
+| Screenshot HTML | `POST /forms/chromium/screenshot/html` |
+| Screenshot Markdown | `POST /forms/chromium/screenshot/markdown` |
 
-### PDF-Manipulation (PDF Engines)
+### PDF manipulation (PDF Engines)
 
-| Aufgabe | Route |
+| Task | Route |
 |---------|-------|
 | Merge | `POST /forms/pdfengines/merge` |
 | Split | `POST /forms/pdfengines/split` |
-| PDF/A oder PDF/UA | `POST /forms/pdfengines/convert` |
-| Metadaten lesen | `POST /forms/pdfengines/metadata/read` |
-| Metadaten schreiben | `POST /forms/pdfengines/metadata/write` |
-| Lesezeichen lesen | `POST /forms/pdfengines/bookmarks/read` |
-| Lesezeichen schreiben | `POST /forms/pdfengines/bookmarks/write` |
-| Dateianhange einbetten | `POST /forms/pdfengines/embed` |
+| PDF/A or PDF/UA | `POST /forms/pdfengines/convert` |
+| Read metadata | `POST /forms/pdfengines/metadata/read` |
+| Write metadata | `POST /forms/pdfengines/metadata/write` |
+| Read bookmarks | `POST /forms/pdfengines/bookmarks/read` |
+| Write bookmarks | `POST /forms/pdfengines/bookmarks/write` |
+| Embed file attachments | `POST /forms/pdfengines/embed` |
 | Factur-X / ZUGFeRD | `POST /forms/pdfengines/factur-x` |
-| Formularfelder glaetten | `POST /forms/pdfengines/flatten` |
-| Wasserzeichen | `POST /forms/pdfengines/watermark` |
-| Stempel | `POST /forms/pdfengines/stamp` |
-| Drehen | `POST /forms/pdfengines/rotate` |
-| Verschluesseln | `POST /forms/pdfengines/encrypt` |
+| Flatten form fields | `POST /forms/pdfengines/flatten` |
+| Watermark | `POST /forms/pdfengines/watermark` |
+| Stamp | `POST /forms/pdfengines/stamp` |
+| Rotate | `POST /forms/pdfengines/rotate` |
+| Encrypt | `POST /forms/pdfengines/encrypt` |
 
-### System & Betrieb
+### System & operations
 
-| Route | Beschreibung |
+| Route | Description |
 |-------|-------------|
-| `GET /health` | Health-Check |
-| `GET /version` | Versionsinfo |
-| `GET /debug` | Konfigurationsdump (muss via `--api-enable-debug-route` aktiviert werden) |
+| `GET /health` | Health check |
+| `GET /version` | Version info |
+| `GET /debug` | Configuration dump (must be enabled via `--api-enable-debug-route`) |
 
-### Asynchron & Remote
+### Asynchronous & remote
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---------|-------------|
-| Webhooks | Asynchrone Verarbeitung; Gotenberg laedt Ergebnis zu einer URL hoch |
-| Download From | Input-Dateien koennen per Remote-URL angegeben werden |
+| Webhooks | Asynchronous processing; Gotenberg uploads the result to a URL |
+| Download From | Input files can be supplied by remote URL |
 
-## Hinweis zu Konvertierungsrouten
+## Note on conversion routes
 
-Konvertierungsrouten akzeptieren die meisten PDF-Engine-Funktionen
-(Metadaten, Anhange, Wasserzeichen, Verschluesselung, ...) direkt im selben Request.
-Kein separater zweiter API-Aufruf noetig.
+Conversion routes accept most PDF engine features
+(metadata, attachments, watermark, encryption, ...) directly in the same request.
+No separate second API call needed.
 
-## HTTP-Statuscodes
+## HTTP status codes
 
-| Code | Bedeutung |
+| Code | Meaning |
 |------|-----------|
-| 200 | Erfolg — Datei im Body |
-| 400 | Ungueltige Felder oder kritischer Netzwerkfehler |
-| 403 | URL verboten (Outbound-Filter) |
-| 409 | HTTP-Statuscode-Fehler der Zielseite / Chromium-Console-Exception |
-| 503 | Timeout — Request hat das Zeitlimit ueberschritten |
+| 200 | Success — file in the body |
+| 400 | Invalid fields or critical network error |
+| 403 | URL forbidden (outbound filter) |
+| 409 | HTTP status code error from the target page / Chromium console exception |
+| 503 | Timeout — the request exceeded the time limit |
 
 ---
-Quelle: https://gotenberg.dev/docs/getting-started/routes
+Source: https://gotenberg.dev/docs/getting-started/routes

@@ -1,83 +1,83 @@
-# PinInput — API-Referenz
+# PinInput — API reference
 
-## PinInput (Root)
+## PinInput (root)
 
-Basiert auf reka-ui `PinInputRoot`. Generischer Typ `Type extends 'text' | 'number' = 'text'`.
+Based on reka-ui `PinInputRoot`. Generic type `Type extends 'text' | 'number' = 'text'`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string[]` | — | Kontrollierter Wert (Array pro Slot) |
-| `defaultValue` | `string[]` | — | Unkontrollierter Startwert |
-| `otp` | `boolean` | `true` | OTP-Autocomplete aktivieren |
-| `mask` | `boolean` | `false` | Eingabe maskieren (Passwort-Modus) |
-| `type` | `"text" \| "number"` | `"text"` | Input-Typ |
-| `placeholder` | `string` | — | Platzhalter fur alle Slots |
-| `disabled` | `boolean` | `false` | Alle Slots deaktivieren |
-| `id` | `string` | — | Fur `<Label>`-Verknupfung |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `modelValue` | `string[]` | — | Controlled value (one array entry per slot) |
+| `defaultValue` | `string[]` | — | Uncontrolled initial value |
+| `otp` | `boolean` | `true` | Enable OTP autocomplete |
+| `mask` | `boolean` | `false` | Mask the input (password mode) |
+| `type` | `"text" \| "number"` | `"text"` | Input type |
+| `placeholder` | `string` | — | Placeholder for all slots |
+| `disabled` | `boolean` | `false` | Disable all slots |
+| `id` | `string` | — | For `<Label>` association |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| `update:modelValue` | `string[]` | Bei Anderung eines Slots |
-| `complete` | `string[]` | Wenn alle Slots ausgefullt sind |
+| `update:modelValue` | `string[]` | On change of a slot |
+| `complete` | `string[]` | When all slots are filled |
 
 ---
 
 ## PinInputGroup
 
-Basiert auf reka-ui `Primitive`.
+Based on reka-ui `Primitive`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `as` | `string \| Component` | `"div"` | HTML-Element |
-| `asChild` | `boolean` | `false` | Rendert als Kind-Element |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `as` | `string \| Component` | `"div"` | HTML element |
+| `asChild` | `boolean` | `false` | Render as child element |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ---
 
 ## PinInputSlot
 
-Basiert auf reka-ui `PinInputInput`. Jeder Slot ist ein eigenstandiges Input-Element.
+Based on reka-ui `PinInputInput`. Each slot is a standalone input element.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `index` | `number` | **Erforderlich**: 0-basierte Position im PIN |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `PinInputInputProps` | — | Weitergeleitet |
+| `index` | `number` | **Required**: 0-based position within the PIN |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `PinInputInputProps` | — | Forwarded |
 
-### Styling-Besonderheiten
-- `first:rounded-l-md first:border-l` — nur erster Slot hat linken Rand und Abrundung
-- `last:rounded-r-md` — nur letzter Slot hat rechte Abrundung
-- `focus:z-10` — aktiver Slot liegt uber Nachbarn
+### Styling details
+- `first:rounded-l-md first:border-l` — only the first slot has a left border and rounding
+- `last:rounded-r-md` — only the last slot has right rounding
+- `focus:z-10` — the active slot sits above its neighbors
 
 ---
 
 ## PinInputSeparator
 
-Basiert auf reka-ui `Primitive`. Standard-Icon: `<Minus>`.
+Based on reka-ui `Primitive`. Default icon: `<Minus>`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `as` | `string \| Component` | HTML-Element (Standard: `"div"`) |
-| `asChild` | `boolean` | Kind-Element-Modus |
+| `as` | `string \| Component` | HTML element (default: `"div"`) |
+| `asChild` | `boolean` | Child element mode |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Benutzerdefiniertes Trennzeichen (Standard: `<Minus>`) |
+| default | Custom separator (default: `<Minus>`) |
 
 ---
 
-## reka-ui Referenz
+## reka-ui reference
 - https://reka-ui.com/docs/components/pin-input

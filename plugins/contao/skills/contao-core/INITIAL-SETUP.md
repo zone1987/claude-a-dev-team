@@ -1,4 +1,4 @@
 # contao-initial-setup
 
-Lies `INITIAL-SETUP-DETAIL.md` für vollständige Installationsanleitungen,
-Managed Edition Internals und Symfony-Application-Integration.
+Read `INITIAL-SETUP-DETAIL.md` for complete installation guides,
+Managed Edition internals and Symfony application integration.

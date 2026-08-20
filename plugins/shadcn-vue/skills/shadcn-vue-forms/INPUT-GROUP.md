@@ -1,11 +1,11 @@
 # shadcn-vue InputGroup
 
-Wrapper-Komponente, die Input- oder Textarea-Felder mit Addons (Icons, Texte, Buttons) kombiniert. Unterstuetzt alle vier Ausrichtungen: inline-start, inline-end, block-start, block-end.
+Wrapper component that combines Input or Textarea fields with addons (icons, text, buttons). Supports all four alignments: inline-start, inline-end, block-start, block-end.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `INPUT-GROUP-INSTALLATION.md` — CLI- und manuelle Installation
-- `INPUT-GROUP-SOURCE.md` — Vollstaendiger Quellcode aller Komponenten
-- `INPUT-GROUP-API.md` — Props, Varianten aller Sub-Komponenten
-- `INPUT-GROUP-EXAMPLES.md` — Alle Demos mit Code
+Load the references:
+- `INPUT-GROUP-INSTALLATION.md` — CLI and manual installation
+- `INPUT-GROUP-SOURCE.md` — Complete source code of all components
+- `INPUT-GROUP-API.md` — Props, variants of all sub-components
+- `INPUT-GROUP-EXAMPLES.md` — All demos with code

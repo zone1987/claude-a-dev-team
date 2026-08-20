@@ -1,6 +1,6 @@
-# Contao Hooks – Seite / Layout / Frontend-Ausgabe
+# Contao Hooks – Page / Layout / Front end output
 
-Hooks für Seitenaufbau, Layout-Auswahl, Breadcrumb, Ausgabemodifikation.
+Hooks for page assembly, layout selection, breadcrumb and output modification.
 
 ---
 
@@ -17,19 +17,19 @@ Hooks für Seitenaufbau, Layout-Auswahl, Breadcrumb, Ausgabemodifikation.
 
 ## `generatePage`
 
-**Zweck:** Wird **vor** dem Kompilieren des Haupt-Layouts (`fe_page`) ausgelöst.
+**Purpose:** Triggered **before** the main layout (`fe_page`) is compiled.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\PageModel` | `$pageModel` | Das aktuelle Seitenobjekt |
-| 2 | `\Contao\LayoutModel` | `$layout` | Das verwendete Seiten-Layout |
-| 3 | `\Contao\PageRegular` | `$pageRegular` | Der aktuelle Seitentyp |
+| 1 | `\Contao\PageModel` | `$pageModel` | The current page object |
+| 2 | `\Contao\LayoutModel` | `$layout` | The page layout in use |
+| 3 | `\Contao\PageRegular` | `$pageRegular` | The current page type |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Vor dem Kompilieren des Haupt-Layout-Templates.
+**Timing:** Before the main layout template is compiled.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -42,7 +42,7 @@ class GeneratePageListener
 {
     public function __invoke(PageModel $pageModel, LayoutModel $layout, PageRegular $pageRegular): void
     {
-        // z.B. JS/CSS dynamisch zur Seite hinzufügen
+        // e.g. add JS/CSS to the page dynamically
     }
 }
 ```
@@ -51,18 +51,18 @@ class GeneratePageListener
 
 ## `generateBreadcrumb`
 
-**Zweck:** Ermöglicht Manipulation der Breadcrumb-Navigation des Breadcrumb-Frontend-Moduls.
+**Purpose:** Allows manipulating the breadcrumb navigation of the breadcrumb front end module.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$items` | Breadcrumb-Items (je mit `isRoot`, `isActive`, `href`, `title`, `link`, `data`, `class`) |
-| 2 | `\Contao\Module` | `$module` | Die Frontend-Modul-Instanz |
+| 1 | `array` | `$items` | Breadcrumb items (each with `isRoot`, `isActive`, `href`, `title`, `link`, `data`, `class`) |
+| 2 | `\Contao\Module` | `$module` | The front end module instance |
 
-**Rückgabe:** `array` – Das (ggf. modifizierte) Array der Breadcrumb-Items.
+**Returns:** `array` – The (possibly modified) array of breadcrumb items.
 
-**Zeitpunkt:** Beim Generieren der Breadcrumb-Navigation.
+**Timing:** While the breadcrumb navigation is generated.
 
 ```php
 #[AsHook('generateBreadcrumb')]
@@ -70,7 +70,7 @@ class GenerateBreadcrumbListener
 {
     public function __invoke(array $items, Module $module): array
     {
-        // Breadcrumb-Items modifizieren, hinzufügen oder entfernen
+        // Modify, add or remove breadcrumb items
         return $items;
     }
 }
@@ -80,19 +80,19 @@ class GenerateBreadcrumbListener
 
 ## `getPageLayout`
 
-**Zweck:** Wird beim Generieren einer regulären Seite ausgelöst. Ermöglicht Modifikation des Seiten- oder Layout-Objekts.
+**Purpose:** Triggered while a regular page is generated. Allows modifying the page or layout object.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\PageModel` | `$page` | Die Seiten-Modell-Instanz |
-| 2 | `\Contao\LayoutModel` | `$layout` | Das Layout der Seite |
-| 3 | `\Contao\PageRegular` | `$pageRegular` | Die Seitentyp-Instanz |
+| 1 | `\Contao\PageModel` | `$page` | The page model instance |
+| 2 | `\Contao\LayoutModel` | `$layout` | The layout of the page |
+| 3 | `\Contao\PageRegular` | `$pageRegular` | The page type instance |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Während der regulären Seitengenerierung.
+**Timing:** During regular page generation.
 
 ```php
 #[AsHook('getPageLayout')]
@@ -100,7 +100,7 @@ class GetPageLayoutListener
 {
     public function __invoke(PageModel $page, LayoutModel $layout, PageRegular $pageRegular): void
     {
-        // Layout-Objekt modifizieren, z.B. andere Stylesheets einbinden
+        // Modify the layout object, e.g. include different style sheets
     }
 }
 ```
@@ -109,18 +109,18 @@ class GetPageLayoutListener
 
 ## `getPageStatusIcon`
 
-**Zweck:** Wird ausgelöst, wenn das passende Seiten-Status-Icon berechnet wird. Ermöglicht eigene Icons für benutzerdefinierte Seitentypen.
+**Purpose:** Triggered when the matching page status icon is determined. Allows your own icons for custom page types.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `object` | `$page` | DB-Ergebnis aus `tl_page` (`PageModel`, `Database\Result` oder `stdClass`) |
-| 2 | `string` | `$image` | Standardmäßig berechneter Icon-Dateiname |
+| 1 | `object` | `$page` | DB result from `tl_page` (`PageModel`, `Database\Result` or `stdClass`) |
+| 2 | `string` | `$image` | Icon file name determined by default |
 
-**Rückgabe:** `string` – Eigener Icon-Pfad oder unveränderter `$image`-Wert.
+**Returns:** `string` – Your own icon path or the unchanged `$image` value.
 
-**Zeitpunkt:** Bei der Berechnung des Status-Icons im Backend.
+**Timing:** While the status icon is determined in the back end.
 
 ```php
 #[AsHook('getPageStatusIcon')]
@@ -140,18 +140,18 @@ class GetPageStatusIconListener
 
 ## `loadPageDetails`
 
-**Zweck:** Wird ausgeführt, wenn Seiten-Details via `\Contao\PageModel::loadDetails()` geladen werden. Ermöglicht Hinzufügen eigener Daten zur Seiten-Instanz (z.B. Vererbung von Root-Seiten-Einstellungen).
+**Purpose:** Runs when page details are loaded via `\Contao\PageModel::loadDetails()`. Allows adding your own data to the page instance (e.g. inheriting settings from root pages).
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$parentModels` | Alle übergeordneten Seiten-Modelle |
-| 2 | `\Contao\PageModel` | `$page` | Die aktuelle Seite |
+| 1 | `array` | `$parentModels` | All parent page models |
+| 2 | `\Contao\PageModel` | `$page` | The current page |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Beim Laden der Seiten-Details über `PageModel::loadDetails()`.
+**Timing:** When the page details are loaded through `PageModel::loadDetails()`.
 
 ```php
 #[AsHook('loadPageDetails')]
@@ -171,20 +171,20 @@ class LoadPageDetailsListener
 
 ## `modifyFrontendPage`
 
-**Zweck:** Wird ausgelöst, wenn ein Frontend-Template auf dem Bildschirm ausgegeben wird. Ermöglicht Änderungen am gerenderten HTML. Feuert **nach** Insert-Tag-Ersetzung.
+**Purpose:** Triggered when a front end template is sent to the screen. Allows changes to the rendered HTML. Fires **after** insert tags have been replaced.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Gerenderter Template-Inhalt |
-| 2 | `string` | `$templateName` | Template-Name ohne Extension (z.B. `fe_page`) |
+| 1 | `string` | `$buffer` | Rendered template content |
+| 2 | `string` | `$templateName` | Template name without the extension (e.g. `fe_page`) |
 
-**Rückgabe:** `string` – Originaler oder modifizierter `$buffer`.
+**Returns:** `string` – The original or modified `$buffer`.
 
-**Zeitpunkt:** Nach Insert-Tag-Ersetzung, vor endgültiger Ausgabe.
+**Timing:** After insert tags have been replaced, before the final output.
 
-> Für Modifikationen **vor** Insert-Tag-Ersetzung: `outputFrontendTemplate` verwenden.
+> For modifications **before** insert tag replacement, use `outputFrontendTemplate`.
 
 ```php
 #[AsHook('modifyFrontendPage')]
@@ -204,18 +204,18 @@ class ModifyFrontendPageListener
 
 ## `outputFrontendTemplate`
 
-**Zweck:** Wird ausgelöst, wenn ein Frontend-Template ausgegeben wird. Feuert **vor** Insert-Tag-Ersetzung.
+**Purpose:** Triggered when a front end template is output. Fires **before** insert tags are replaced.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Gerenderter Template-Inhalt |
-| 2 | `string` | `$template` | Template-Name ohne Extension (z.B. `fe_page`) |
+| 1 | `string` | `$buffer` | Rendered template content |
+| 2 | `string` | `$template` | Template name without the extension (e.g. `fe_page`) |
 
-**Rückgabe:** `string` – Originaler oder modifizierter `$buffer`.
+**Returns:** `string` – The original or modified `$buffer`.
 
-**Zeitpunkt:** Vor Insert-Tag-Ersetzung.
+**Timing:** Before insert tags are replaced.
 
 ```php
 #[AsHook('outputFrontendTemplate')]
@@ -224,7 +224,7 @@ class OutputFrontendTemplateListener
     public function __invoke(string $buffer, string $template): string
     {
         if ('fe_page' === $template) {
-            // Insert-Tags noch nicht ersetzt – Vorsicht!
+            // Insert tags are not replaced yet – be careful!
         }
         return $buffer;
     }
@@ -235,17 +235,17 @@ class OutputFrontendTemplateListener
 
 ## `replaceDynamicScriptTags`
 
-**Zweck:** Wird ausgeführt, bevor Contao dynamische Script-Tags (`[[TL_JQUERY]]`, `[[TL_MOOTOOLS]]`, `[[TL_BODY]]`, `[[TL_CSS]]`, `[[TL_HEAD]]`) ersetzt. Ermöglicht eigene Ersetzung oder vorgelagerte Logik.
+**Purpose:** Runs before Contao replaces dynamic script tags (`[[TL_JQUERY]]`, `[[TL_MOOTOOLS]]`, `[[TL_BODY]]`, `[[TL_CSS]]`, `[[TL_HEAD]]`). Allows your own replacement or upstream logic.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$buffer` | Seiten-Ausgabe-Puffer mit noch nicht ersetzten Script-Tags |
+| 1 | `string` | `$buffer` | Page output buffer with the script tags still unreplaced |
 
-**Rückgabe:** `string` – Modifizierter Puffer.
+**Returns:** `string` – The modified buffer.
 
-**Zeitpunkt:** Vor der Ersetzung von Script-Tags durch Contao.
+**Timing:** Before Contao replaces the script tags.
 
 ```php
 #[AsHook('replaceDynamicScriptTags')]
@@ -260,4 +260,4 @@ class ReplaceDynamicScriptTagsListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

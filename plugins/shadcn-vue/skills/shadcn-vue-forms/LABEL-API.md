@@ -1,32 +1,32 @@
-# Label — API-Referenz
+# Label — API reference
 
 ## Label
 
-Basiert auf reka-ui `Label`.
+Based on reka-ui `Label`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `htmlFor` | `string` | ID des verknupften Form-Elements |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `LabelProps` von reka-ui | — | Vollstandig weitergeleitet via `reactiveOmit` |
+| `htmlFor` | `string` | ID of the associated form element |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `LabelProps` from reka-ui | — | Fully forwarded via `reactiveOmit` |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Label-Text oder kombinierter Inhalt (Text + Icon) |
+| default | Label text or combined content (text + icon) |
 
-### Automatische Disabled-Styles
+### Automatic disabled styles
 
-| Selector | Effekt |
+| Selector | Effect |
 |---|---|
 | `group-data-[disabled=true]` | `pointer-events-none opacity-50` |
 | `peer-disabled` | `cursor-not-allowed opacity-50` |
 
 ### data-slot
-`data-slot="label"` wird automatisch gesetzt.
+`data-slot="label"` is set automatically.
 
-## reka-ui Referenz
+## reka-ui reference
 - https://reka-ui.com/docs/utilities/label

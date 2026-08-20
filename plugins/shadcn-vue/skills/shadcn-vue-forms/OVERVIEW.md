@@ -1,13 +1,13 @@
 # shadcn-vue Forms
 
-Vollstaendige Formular-Integration mit vee-validate + Zod und TanStack Form.
+Complete form integration with vee-validate + Zod and TanStack Form.
 
-## Referenzen
+## References
 
-- [vee-validate.md](`VEE-VALIDATE.md`) — Vollstaendige Anleitung: Schema, useForm,
-  VeeField, alle Feld-Typen, Validierungs-Modi, Fehlerdarstellung, Array-Felder, Reset
-- [tanstack-form.md](`TANSTACK-FORM.md`) — Vollstaendige Anleitung: useForm aus
-  @tanstack/vue-form, form.Field, isInvalid Helper, alle Feld-Typen, mode="array", Reset
+- [vee-validate.md](`VEE-VALIDATE.md`) — Complete guide: schema, useForm,
+  VeeField, all field types, validation modes, error display, array fields, reset
+- [tanstack-form.md](`TANSTACK-FORM.md`) — Complete guide: useForm from
+  @tanstack/vue-form, form.Field, isInvalid helper, all field types, mode="array", reset
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/content/docs/forms/01.vee-validate.md` +
+Source: `/tmp/shadcn-vue-repo/apps/v4/content/docs/forms/01.vee-validate.md` +
 `/tmp/shadcn-vue-repo/apps/v4/content/docs/forms/02.tanstack-form.md`

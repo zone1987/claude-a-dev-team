@@ -1,45 +1,45 @@
 # InputGroup — API
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `InputGroup` | Root-Container, steuert Focus- und Error-State via has-[...] |
-| `InputGroupAddon` | Addon-Bereich (Icon, Text, Button), automatisch fokussiert Input bei Klick |
-| `InputGroupInput` | Input-Ersatz mit `data-slot="input-group-control"` |
-| `InputGroupTextarea` | Textarea-Ersatz mit `data-slot="input-group-control"` |
-| `InputGroupButton` | Button innerhalb eines Addons (ghost, xs als Standard) |
-| `InputGroupText` | Text-Span fuer statische Labels im Addon |
+| `InputGroup` | Root container, controls focus and error state via has-[...] |
+| `InputGroupAddon` | Addon area (icon, text, button), automatically focuses the input on click |
+| `InputGroupInput` | Input replacement with `data-slot="input-group-control"` |
+| `InputGroupTextarea` | Textarea replacement with `data-slot="input-group-control"` |
+| `InputGroupButton` | Button inside an addon (ghost, xs by default) |
+| `InputGroupText` | Text span for static labels in the addon |
 
 ## InputGroupAddon
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `align` | `"inline-start" \| "inline-end" \| "block-start" \| "block-end"` | `"inline-start"` | Position des Addons |
+| `align` | `"inline-start" \| "inline-end" \| "block-start" \| "block-end"` | `"inline-start"` | Position of the addon |
 | `class` | `string` | - | - |
 
-### Ausrichtungen
+### Alignments
 
-| Wert | Verwendung | Platzierung |
+| Value | Usage | Placement |
 |---|---|---|
-| `inline-start` | Fuer `InputGroupInput` | Links/vorne, `order-first` |
-| `inline-end` | Fuer `InputGroupInput` | Rechts/hinten, `order-last` |
-| `block-start` | Fuer `InputGroupTextarea` | Oben, `order-first`, `w-full` |
-| `block-end` | Fuer `InputGroupTextarea` | Unten, `order-last`, `w-full` |
+| `inline-start` | For `InputGroupInput` | Left/leading, `order-first` |
+| `inline-end` | For `InputGroupInput` | Right/trailing, `order-last` |
+| `block-start` | For `InputGroupTextarea` | Top, `order-first`, `w-full` |
+| `block-end` | For `InputGroupTextarea` | Bottom, `order-last`, `w-full` |
 
-Wichtig: Addon NACH dem Input in der DOM-Reihenfolge platzieren (CSS `order` regelt die visuelle Reihenfolge). So bleibt die Tab-Reihenfolge korrekt.
+Important: place the addon AFTER the input in DOM order (CSS `order` controls the visual order). This keeps the tab order correct.
 
 ## InputGroupButton
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"xs" \| "icon-xs" \| "sm" \| "icon-sm"` | `"xs"` | Button-Groesse |
-| `variant` | `ButtonVariants["variant"]` | `"ghost"` | Button-Variante |
+| `size` | `"xs" \| "icon-xs" \| "sm" \| "icon-sm"` | `"xs"` | Button size |
+| `variant` | `ButtonVariants["variant"]` | `"ghost"` | Button variant |
 | `class` | `string` | - | - |
 
 ## Custom Input
 
-Eigene Input-Elemente koennen mit `data-slot="input-group-control"` versehen werden, um Focus-State-Handling zu erhalten:
+Add `data-slot="input-group-control"` to your own input elements to get focus-state handling:
 
 ```vue
 <InputGroup>

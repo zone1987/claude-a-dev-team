@@ -1,6 +1,6 @@
-# Contao Hooks – Formulare
+# Contao Hooks – Forms
 
-Hooks für den Formular-Generator: Felder laden, validieren, Daten verarbeiten und speichern.
+Hooks for the form generator: loading fields, validating, processing and storing data.
 
 ---
 
@@ -15,19 +15,19 @@ Hooks für den Formular-Generator: Felder laden, validieren, Daten verarbeiten u
 
 ## `compileFormFields`
 
-**Zweck:** Wird ausgelöst, wenn die Felder eines Formulars zusammengestellt werden. Erlaubt Modifikation der Feldliste vor dem Rendern.
+**Purpose:** Triggered when the fields of a form are compiled. Allows modifying the field list before rendering.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$fields` | Array von `\Contao\FormFieldModel`-Instanzen |
-| 2 | `string` | `$formId` | Formular-Alias mit Präfix `auto_` |
-| 3 | `\Contao\Form` | `$form` | Die Formular-Instanz |
+| 1 | `array` | `$fields` | Array of `\Contao\FormFieldModel` instances |
+| 2 | `string` | `$formId` | Form alias with the prefix `auto_` |
+| 3 | `\Contao\Form` | `$form` | The form instance |
 
-**Rückgabe:** `array` – Das (ggf. modifizierte) Array von `FormFieldModel`-Instanzen.
+**Returns:** `array` – The (possibly modified) array of `FormFieldModel` instances.
 
-**Zeitpunkt:** Während der Formular-Feld-Zusammenstellung beim Rendern.
+**Timing:** While the form fields are compiled during rendering.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -38,7 +38,7 @@ class CompileFormFieldsListener
 {
     public function __invoke(array $fields, string $formId, Form $form): array
     {
-        // Felder dynamisch hinzufügen, entfernen oder modifizieren
+        // Add, remove or modify fields dynamically
         return $fields;
     }
 }
@@ -48,20 +48,20 @@ class CompileFormFieldsListener
 
 ## `loadFormField`
 
-**Zweck:** Wird ausgelöst, wenn ein Formularfeld geladen wird. Erlaubt dynamische Modifikation von Widgets.
+**Purpose:** Triggered when a form field is loaded. Allows dynamic modification of widgets.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\Widget` | `$widget` | Die aktuelle Frontend-Widget-Instanz |
-| 2 | `string` | `$formId` | Formular-Alias mit Präfix `auto_` |
-| 3 | `array` | `$formData` | Formular-Konfiguration aus `tl_form` |
-| 4 | `\Contao\Form` | `$form` | Die Formular-Instanz |
+| 1 | `\Contao\Widget` | `$widget` | The current front end widget instance |
+| 2 | `string` | `$formId` | Form alias with the prefix `auto_` |
+| 3 | `array` | `$formData` | Form configuration from `tl_form` |
+| 4 | `\Contao\Form` | `$form` | The form instance |
 
-**Rückgabe:** `\Contao\Widget` – Die (ggf. modifizierte) Widget-Instanz.
+**Returns:** `\Contao\Widget` – The (possibly modified) widget instance.
 
-**Zeitpunkt:** Beim Laden eines Formularfelds aus dem Formular-Generator.
+**Timing:** When a form field is loaded from the form generator.
 
 ```php
 #[AsHook('loadFormField')]
@@ -81,21 +81,21 @@ class LoadFormFieldListener
 
 ## `prepareFormData`
 
-**Zweck:** Wird nach der Formularübermittlung, aber **vor** der Verarbeitung ausgelöst. Ermöglicht Modifikation oder Erweiterung der Formulardaten, z.B. Hinzufügen von Dateianhängen.
+**Purpose:** Triggered after the form has been submitted, but **before** it is processed. Allows modifying or extending the form data, for example by adding file attachments.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array&` | `$submittedData` | Benutzer-Eingaben (als Referenz) |
-| 2 | `array` | `$labels` | Feld-Labels des Formulars |
-| 3 | `array` | `$fields` | Formularfelder als `\Contao\Widget`-Instanzen |
-| 4 | `\Contao\Form` | `$form` | Die Formular-Instanz |
-| 5 | `array&` | `$files` | Dateien-Array (Contao 5.2+, als Referenz) |
+| 1 | `array&` | `$submittedData` | User input (by reference) |
+| 2 | `array` | `$labels` | Field labels of the form |
+| 3 | `array` | `$fields` | Form fields as `\Contao\Widget` instances |
+| 4 | `\Contao\Form` | `$form` | The form instance |
+| 5 | `array&` | `$files` | Files array (Contao 5.2+, by reference) |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach Übermittlung, vor weiterer Verarbeitung (E-Mail, Datenbankpersistenz etc.).
+**Timing:** After submission, before further processing (e-mail, database persistence etc.).
 
 ```php
 #[AsHook('prepareFormData')]
@@ -108,13 +108,13 @@ class PrepareFormDataListener
         Form $form,
         array &$files
     ): void {
-        // Dateianhang programmatisch hinzufügen
+        // Add a file attachment programmatically
         $files[] = [
             'name'     => 'MyFile.txt',
             'tmp_name' => '/path/to/MyFile.txt',
             'type'     => 'text/plain',
         ];
-        // Zusätzliche Felder berechnen
+        // Compute additional fields
         $submittedData['computed_deadline'] = strtotime('+1 hour');
     }
 }
@@ -124,21 +124,21 @@ class PrepareFormDataListener
 
 ## `processFormData`
 
-**Zweck:** Wird ausgelöst, nachdem ein Formular übermittelt wurde. Für eigene Verarbeitungslogik nach dem Standardablauf.
+**Purpose:** Triggered after a form has been submitted. For your own processing logic after the standard flow.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$submittedData` | Übermittelte Formulardaten |
-| 2 | `array` | `$formData` | Formular-Konfiguration aus `tl_form` |
-| 3 | `array\|null` | `$files` | Informationen über hochgeladene Dateien |
-| 4 | `array` | `$labels` | Feld-Labels des Formulars |
-| 5 | `\Contao\Form` | `$form` | Die Formular-Instanz |
+| 1 | `array` | `$submittedData` | Submitted form data |
+| 2 | `array` | `$formData` | Form configuration from `tl_form` |
+| 3 | `array\|null` | `$files` | Information about uploaded files |
+| 4 | `array` | `$labels` | Field labels of the form |
+| 5 | `\Contao\Form` | `$form` | The form instance |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Nach der vollständigen Formularverarbeitung.
+**Timing:** After the form has been processed completely.
 
 ```php
 #[AsHook('processFormData')]
@@ -146,7 +146,7 @@ class ProcessFormDataListener
 {
     public function __invoke(array $submittedData, array $formData, array|null $files, array $labels, Form $form): void
     {
-        // z.B. Daten an externe API weiterleiten
+        // e.g. forward the data to an external API
     }
 }
 ```
@@ -155,18 +155,18 @@ class ProcessFormDataListener
 
 ## `storeFormData`
 
-**Zweck:** Wird ausgelöst, **bevor** übermittelte Formulardaten in der Datenbank gespeichert werden. Erlaubt Modifikation der zu speichernden Daten.
+**Purpose:** Triggered **before** submitted form data is written to the database. Allows modifying the data that is about to be stored.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array` | `$data` | Datensatz, der gespeichert wird |
-| 2 | `\Contao\Form` | `$form` | Die Formular-Instanz |
+| 1 | `array` | `$data` | The record that is stored |
+| 2 | `\Contao\Form` | `$form` | The form instance |
 
-**Rückgabe:** `array` – Das (ggf. modifizierte) Datensatz-Array.
+**Returns:** `array` – The (possibly modified) record array.
 
-**Zeitpunkt:** Direkt vor dem Schreiben in die Datenbanktabelle.
+**Timing:** Immediately before the write to the database table.
 
 ```php
 #[AsHook('storeFormData')]
@@ -174,7 +174,7 @@ class StoreFormDataListener
 {
     public function __invoke(array $data, Form $form): array
     {
-        // Aktuellen Frontend-Benutzer zuordnen
+        // Assign the current front end member
         $data['member'] = 0;
         $user = $this->tokenStorage->getToken()?->getUser();
         if ($user instanceof FrontendUser) {
@@ -189,20 +189,20 @@ class StoreFormDataListener
 
 ## `validateFormField`
 
-**Zweck:** Wird ausgelöst, wenn ein Formularfeld übermittelt wird. Ermöglicht benutzerdefinierte Validierungslogik.
+**Purpose:** Triggered when a form field is submitted. Allows custom validation logic.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `\Contao\Widget` | `$widget` | Das aktuelle Frontend-Widget |
-| 2 | `string` | `$formId` | Formular-Alias mit Präfix `auto_` |
-| 3 | `array` | `$formData` | Formular-Konfiguration aus `tl_form` |
-| 4 | `\Contao\Form` | `$form` | Die Formular-Instanz |
+| 1 | `\Contao\Widget` | `$widget` | The current front end widget |
+| 2 | `string` | `$formId` | Form alias with the prefix `auto_` |
+| 3 | `array` | `$formData` | Form configuration from `tl_form` |
+| 4 | `\Contao\Form` | `$form` | The form instance |
 
-**Rückgabe:** `\Contao\Widget` – Die (ggf. modifizierte) Widget-Instanz.
+**Returns:** `\Contao\Widget` – The (possibly modified) widget instance.
 
-**Zeitpunkt:** Während der Widget-Validierung bei Formularübermittlung.
+**Timing:** During widget validation on form submission.
 
 ```php
 #[AsHook('validateFormField')]
@@ -211,8 +211,8 @@ class ValidateFormFieldListener
     public function __invoke(Widget $widget, string $formId, array $formData, Form $form): Widget
     {
         if ('myform' === $form->formID && 'mywidget' === $widget->name) {
-            if ($widget->value === 'verbotenerWert') {
-                $widget->addError('Dieser Wert ist nicht erlaubt.');
+            if ($widget->value === 'forbiddenValue') {
+                $widget->addError('This value is not allowed.');
             }
         }
         return $widget;
@@ -222,4 +222,4 @@ class ValidateFormFieldListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

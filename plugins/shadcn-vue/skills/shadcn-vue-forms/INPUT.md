@@ -1,11 +1,11 @@
 # shadcn-vue Input
 
-Einfaches, styled Eingabefeld. Unterstuetzt v-model (modelValue/defaultValue), alle nativen Input-Typen, disabled- und aria-invalid-Zustaende.
+Simple, styled input field. Supports v-model (modelValue/defaultValue), all native input types, and the disabled and aria-invalid states.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `INPUT-INSTALLATION.md` — CLI- und manuelle Installation
-- `INPUT-SOURCE.md` — Vollstaendiger Quellcode
-- `INPUT-API.md` — Props, Emits
-- `INPUT-EXAMPLES.md` — Alle Demos
+Load the references:
+- `INPUT-INSTALLATION.md` — CLI and manual installation
+- `INPUT-SOURCE.md` — Complete source code
+- `INPUT-API.md` — Props, emits
+- `INPUT-EXAMPLES.md` — All demos

@@ -1,14 +1,14 @@
-# NativeSelect — Beispiele
+# NativeSelect — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Native Select (NativeSelectBasic.vue)](#beispiel-1-basic-native-select-nativeselectbasicvue)
-- [Beispiel 2: Native Select with OptGroup (NativeSelectWithOptGroup.vue)](#beispiel-2-native-select-with-optgroup-nativeselectwithoptgroupvue)
-- [Quellen](#quellen)
+- [Example 1: Basic Native Select (NativeSelectBasic.vue)](#example-1-basic-native-select-nativeselectbasicvue)
+- [Example 2: Native Select with OptGroup (NativeSelectWithOptGroup.vue)](#example-2-native-select-with-optgroup-nativeselectwithoptgroupvue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Native Select (NativeSelectBasic.vue)
+## Example 1: Basic Native Select (NativeSelectBasic.vue)
 
-Einfaches Select mit Optionen.
+Simple select with options.
 
 ```vue
 <script setup lang="ts">
@@ -50,9 +50,9 @@ import {
 
 ---
 
-## Beispiel 2: Native Select with OptGroup (NativeSelectWithOptGroup.vue)
+## Example 2: Native Select with OptGroup (NativeSelectWithOptGroup.vue)
 
-`NativeSelectOptGroup` gruppiert Optionen mit einem `label`-Attribut.
+`NativeSelectOptGroup` groups options with a `label` attribute.
 
 ```vue
 <script setup lang="ts">
@@ -101,7 +101,7 @@ import {
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/native-select/NativeSelectBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/native-select/NativeSelectWithOptGroup.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/native-select/NativeSelectExample.vue`

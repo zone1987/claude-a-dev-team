@@ -1,23 +1,23 @@
-# Swiper — Getting Started (vollständige Referenz, v11/12)
+# Swiper — Getting Started (complete reference, v11/12)
 
 ## Contents
 
 - [Version](#version)
 - [Installation](#installation)
-- [Import-Varianten](#import-varianten)
-- [CSS-Import-Pfade (vollständig)](#css-import-pfade-vollständig)
-- [Module-Import-Pfade](#module-import-pfade)
+- [Import variants](#import-variants)
+- [CSS import paths (complete)](#css-import-paths-complete)
+- [Module import paths](#module-import-paths)
 - [CDN — jsDelivr](#cdn-jsdelivr)
-- [HTML-Struktur (Pflicht)](#html-struktur-pflicht)
-- [Erste Instanz](#erste-instanz)
-- [Vollständiges Beispiel (npm + Module)](#vollständiges-beispiel-npm-module)
+- [HTML structure (required)](#html-structure-required)
+- [First instance](#first-instance)
+- [Complete example (npm + modules)](#complete-example-npm-modules)
 - [Swiper Element (Web Component)](#swiper-element-web-component)
-- [Framework-Integration](#framework-integration)
-- [Globale Module-Registrierung (Legacy-API, v7 und älter)](#globale-module-registrierung-legacy-api-v7-und-älter)
+- [Framework integration](#framework-integration)
+- [Global module registration (legacy API, v7 and older)](#global-module-registration-legacy-api-v7-and-older)
 
 ## Version
 
-**Swiper v11/12** (aktuelle Stable-Serie). CDN-Beispiele verwenden `@12`.
+**Swiper v11/12** (current stable series). CDN examples use `@12`.
 
 ---
 
@@ -39,9 +39,9 @@ bun add swiper
 
 ---
 
-## Import-Varianten
+## Import variants
 
-### 1. Core only (kleinste Bundle-Größe)
+### 1. Core only (smallest bundle size)
 
 ```js
 import Swiper from 'swiper';
@@ -50,7 +50,7 @@ import 'swiper/css';
 const swiper = new Swiper('.swiper', { loop: true });
 ```
 
-### 2. Core + ausgewählte Module (empfohlen)
+### 2. Core + selected modules (recommended)
 
 ```js
 import Swiper from 'swiper';
@@ -68,7 +68,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-### 3. Bundle (alle Module, einfachster Import)
+### 3. Bundle (all modules, simplest import)
 
 ```js
 import Swiper from 'swiper/bundle';
@@ -77,7 +77,7 @@ import 'swiper/css/bundle';
 const swiper = new Swiper('.swiper', { loop: true });
 ```
 
-### 4. CommonJS (ältere Bundler / Node)
+### 4. CommonJS (older bundlers / Node)
 
 ```js
 const Swiper = require('swiper');
@@ -86,37 +86,37 @@ require('swiper/css');
 
 ---
 
-## CSS-Import-Pfade (vollständig)
+## CSS import paths (complete)
 
-| Import-Pfad | Inhalt |
+| Import path | Contents |
 |---|---|
-| `swiper/css` | Core-CSS (Basis, immer nötig) |
-| `swiper/css/bundle` | Alle CSS-Module in einem File |
-| `swiper/css/navigation` | Navigations-Pfeil-Styles |
-| `swiper/css/pagination` | Pagination-Styles (Bullets etc.) |
-| `swiper/css/scrollbar` | Scrollbar-Styles |
-| `swiper/css/autoplay` | Autoplay-spezifische Styles |
-| `swiper/css/effect-fade` | Fade-Effekt-CSS |
-| `swiper/css/effect-cube` | Cube-Effekt-CSS |
-| `swiper/css/effect-flip` | Flip-Effekt-CSS |
-| `swiper/css/effect-coverflow` | Coverflow-Effekt-CSS |
-| `swiper/css/effect-creative` | Creative-Effekt-CSS |
-| `swiper/css/effect-cards` | Cards-Effekt-CSS |
-| `swiper/css/grid` | Grid/Multirow-CSS |
-| `swiper/css/thumbs` | Thumbs-CSS |
-| `swiper/css/zoom` | Zoom-CSS |
-| `swiper/css/free-mode` | Free-Mode-CSS |
-| `swiper/css/hash-navigation` | Hash-Navigation-CSS |
-| `swiper/css/history` | History-Navigation-CSS |
-| `swiper/css/keyboard` | Keyboard-CSS |
-| `swiper/css/mousewheel` | Mousewheel-CSS |
-| `swiper/css/parallax` | Parallax-CSS |
-| `swiper/css/virtual` | Virtual-Slides-CSS |
-| `swiper/css/a11y` | Accessibility-CSS |
+| `swiper/css` | Core CSS (base, always required) |
+| `swiper/css/bundle` | All CSS modules in one file |
+| `swiper/css/navigation` | Navigation arrow styles |
+| `swiper/css/pagination` | Pagination styles (bullets etc.) |
+| `swiper/css/scrollbar` | Scrollbar styles |
+| `swiper/css/autoplay` | Autoplay-specific styles |
+| `swiper/css/effect-fade` | Fade effect CSS |
+| `swiper/css/effect-cube` | Cube effect CSS |
+| `swiper/css/effect-flip` | Flip effect CSS |
+| `swiper/css/effect-coverflow` | Coverflow effect CSS |
+| `swiper/css/effect-creative` | Creative effect CSS |
+| `swiper/css/effect-cards` | Cards effect CSS |
+| `swiper/css/grid` | Grid/multirow CSS |
+| `swiper/css/thumbs` | Thumbs CSS |
+| `swiper/css/zoom` | Zoom CSS |
+| `swiper/css/free-mode` | Free mode CSS |
+| `swiper/css/hash-navigation` | Hash navigation CSS |
+| `swiper/css/history` | History navigation CSS |
+| `swiper/css/keyboard` | Keyboard CSS |
+| `swiper/css/mousewheel` | Mousewheel CSS |
+| `swiper/css/parallax` | Parallax CSS |
+| `swiper/css/virtual` | Virtual slides CSS |
+| `swiper/css/a11y` | Accessibility CSS |
 
 ---
 
-## Module-Import-Pfade
+## Module import paths
 
 ```js
 import {
@@ -128,7 +128,7 @@ import {
   // Autoplay
   Autoplay,
 
-  // Effekte
+  // Effects
   EffectFade,
   EffectCube,
   EffectFlip,
@@ -136,7 +136,7 @@ import {
   EffectCreative,
   EffectCards,
 
-  // Fortgeschritten
+  // Advanced
   FreeMode,
   Grid,
   Thumbs,
@@ -156,7 +156,7 @@ import {
 
 ## CDN — jsDelivr
 
-### Bundle (einfachste Option)
+### Bundle (simplest option)
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
@@ -167,7 +167,7 @@ import {
 </script>
 ```
 
-### ES-Module via CDN
+### ES modules via CDN
 
 ```html
 <script type="module">
@@ -185,10 +185,10 @@ import {
 
 ---
 
-## HTML-Struktur (Pflicht)
+## HTML structure (required)
 
 ```html
-<!-- Minimale Struktur -->
+<!-- Minimal structure -->
 <div class="swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">Slide 1</div>
@@ -199,7 +199,7 @@ import {
 ```
 
 ```html
-<!-- Mit allen optionalen UI-Elementen -->
+<!-- With all optional UI elements -->
 <div class="swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">Slide 1</div>
@@ -220,7 +220,7 @@ import {
 ```
 
 ```css
-/* CSS-Sizing ist erforderlich */
+/* CSS sizing is required */
 .swiper {
   width: 100%;
   height: 300px;
@@ -229,20 +229,20 @@ import {
 
 ---
 
-## Erste Instanz
+## First instance
 
 ```js
-// Selector-String
+// Selector string
 const swiper = new Swiper('.swiper', { /* options */ });
 
-// HTMLElement direkt
+// HTMLElement directly
 const el = document.querySelector('.swiper');
 const swiper = new Swiper(el, { /* options */ });
 ```
 
 ---
 
-## Vollständiges Beispiel (npm + Module)
+## Complete example (npm + modules)
 
 ```js
 import Swiper from 'swiper';
@@ -278,7 +278,7 @@ const swiper = new Swiper('.swiper', {
 ## Swiper Element (Web Component)
 
 ```html
-<!-- Kein JS nötig, custom element -->
+<!-- No JS needed, custom element -->
 <script type="module">
   import { register } from 'swiper/element/bundle';
   register();
@@ -293,7 +293,7 @@ const swiper = new Swiper('.swiper', {
 
 ---
 
-## Framework-Integration
+## Framework integration
 
 ### React
 
@@ -334,20 +334,20 @@ import 'swiper/css/navigation';
 ### Angular
 
 ```ts
-// app.module.ts / app.config.ts: importiere SwiperModule aus swiper/angular
+// app.module.ts / app.config.ts: import SwiperModule from swiper/angular
 import { SwiperModule } from 'swiper/angular';
 ```
 
 ---
 
-## Globale Module-Registrierung (Legacy-API, v7 und älter)
+## Global module registration (legacy API, v7 and older)
 
 ```js
-// Nicht mehr empfohlen ab v8 — stattdessen modules: [...] im Konstruktor
+// No longer recommended from v8 on — use modules: [...] in the constructor instead
 import Swiper, { Navigation, Pagination } from 'swiper';
 Swiper.use([Navigation, Pagination]);
 ```
 
 ---
 
-*Quelle: https://swiperjs.com/get-started | https://swiperjs.com/swiper-api*
+*Source: https://swiperjs.com/get-started | https://swiperjs.com/swiper-api*
