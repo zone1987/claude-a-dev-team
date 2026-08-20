@@ -1,6 +1,6 @@
 # Shopware 6 — Sitemap
 
-Eigene Seiten in die XML-Sitemap aufnehmen über einen `AbstractUrlProvider`.
+Add your own pages to the XML sitemap via an `AbstractUrlProvider`.
 
 ```php
 class FfExampleUrlProvider extends AbstractUrlProvider
@@ -18,5 +18,5 @@ class FfExampleUrlProvider extends AbstractUrlProvider
 }
 ```
 
-Registrierung via `shopware.sitemap.url_provider`-Tag. Sitemap wird per ScheduledTask/Command (`sitemap:generate`) gebaut.
-Einträge entfernen/anpassen über den jeweiligen Provider bzw. Events.
+Register it via the `shopware.sitemap.url_provider` tag. The sitemap is built by a scheduled task/command (`sitemap:generate`).
+Remove or adjust entries through the respective provider or through events.

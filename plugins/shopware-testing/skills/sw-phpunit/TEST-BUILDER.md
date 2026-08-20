@@ -1,7 +1,7 @@
-# Shopware 6 — Test-Builder
+# Shopware 6 — Test Builder
 
-Builder erzeugen komplexe Entity-Payloads lesbar (fluent). Shopware liefert u.a. `ProductBuilder`; eigene Builder
-folgen demselben Muster.
+Builders make complex entity payloads readable (fluent). Shopware ships `ProductBuilder` among others; your own builders
+follow the same pattern.
 
 ```php
 $product = (new ProductBuilder($ids, 'SW-1'))
@@ -12,7 +12,7 @@ $product = (new ProductBuilder($ids, 'SW-1'))
     ->build();
 ```
 
-Ein eigener Builder hält eine `IdsCollection`, bietet fluent-Setter und ein `build(): array` (DAL-Payload).
-Reduziert Boilerplate und macht Tests robust gegen Pflichtfeld-Änderungen. Nutzung mit Fixtures (`sw-test-fixtures`).
+Your own builder holds an `IdsCollection`, offers fluent setters and a `build(): array` (DAL payload).
+It cuts boilerplate and makes tests resilient to changes in required fields. Use it with fixtures (`sw-test-fixtures`).
 
 → [../shopware-phpunit/`TEST-BUILDER-DATA-PRODUCT-BUILDER.md`](../shopware-phpunit/`TEST-BUILDER-DATA-PRODUCT-BUILDER.md`)

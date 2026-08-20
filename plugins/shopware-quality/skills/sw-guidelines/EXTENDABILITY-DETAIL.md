@@ -1,53 +1,53 @@
-# Shopware 6 — Erweiterbarkeit: Vollständige Referenz
+# Shopware 6 — extendability: complete reference
 
-Quellen: `guides/development/extensions/architecture/{extendability,final-and-internal,internal,index}.md` +
+Sources: `guides/development/extensions/architecture/{extendability,final-and-internal,internal,index}.md` plus
 `resources/guidelines/code/core/{extendability,final-and-internal,internal,decorator-pattern}.md`
 
 ---
 
 ## Contents
 
-- [Überblick: Warum Erweiterbarkeit?](#überblick-warum-erweiterbarkeit)
-- [Technische Anforderungen](#technische-anforderungen)
-- [Erweiterungsmuster (Patterns)](#erweiterungsmuster-patterns)
-- [Public API und @internal/@final](#public-api-und-internalfinal)
-- [Entscheidungsbaum: Welches Pattern?](#entscheidungsbaum-welches-pattern)
-- [Architektur-Subsysteme](#architektur-subsysteme)
-- [Referenzen](#referenzen)
+- [Overview: why extendability?](#overview-why-extendability)
+- [Technical requirements](#technical-requirements)
+- [Extension patterns](#extension-patterns)
+- [Public API and @internal/@final](#public-api-and-internalfinal)
+- [Decision tree: which pattern?](#decision-tree-which-pattern)
+- [Architecture subsystems](#architecture-subsystems)
+- [References](#references)
 
-## Überblick: Warum Erweiterbarkeit?
+## Overview: why extendability?
 
-Shopware muss von Drittanbietern und intern angepasst werden können, ohne dass jede Änderung die Stabilität des Core bricht. Deshalb gibt es ein klares Erweiterungsmodell mit definierten Mustern und API-Grenzen.
+Shopware must be adaptable by third parties and internally without every change breaking core stability. That is why there is a clear extension model with defined patterns and API boundaries.
 
-Erweiterungstypen: **Plugins** (voller Server-Zugriff, Self-hosted only), **Apps** (API-basiert, Cloud-kompatibel), **Project Bundles** (projektspezifisch).
+Extension types: **plugins** (full server access, self-hosted only), **apps** (API-based, cloud-compatible), **project bundles** (project-specific).
 
 ---
 
-## Technische Anforderungen
+## Technical requirements
 
-| Kategorie | Beschreibung | Beispiel |
+| Category | Description | Example |
 |-----------|-------------|---------|
-| Functional extensibility | Feature mit zusätzlichen Features erweitern | Enterprise Search um Suggestion-Feature ergänzen |
-| Functional modifiability | Teile eines Features überschreiben | Steuerberechnung für USA via Tax Provider |
-| Functional differentiation | Teile kostenpflichtig machen | Feature hinter Version-Flag |
-| Functional exchange market | Feature komplett ersetzen | Externes Newsletter-System anbinden |
+| Functional extensibility | Extend a feature with additional features | Add a suggestion feature to enterprise search |
+| Functional modifiability | Override parts of a feature | Tax calculation for the USA via a tax provider |
+| Functional differentiation | Make parts paid | Feature behind a version flag |
+| Functional exchange market | Replace a feature entirely | Connect an external newsletter system |
 
 ---
 
-## Erweiterungsmuster (Patterns)
+## Extension patterns
 
-### 1. Decoration (Decorator Pattern)
+### 1. Decoration (decorator pattern)
 
-**Einsatz:** Kompletters Ersetzen oder Erweitern von Services; Store API Routes; Functional Exchange Market.
+**Use for:** completely replacing or extending services; store API routes; the functional exchange market.
 
-**Pflicht-Regeln:**
+**Mandatory rules:**
 
-1. AbstractClass (kein Interface!) mit `getDecorated(): static` definieren.
-2. Core-Klasse: `getDecorated()` wirft `DecorationPatternException(self::class)`.
-3. Die AbstractClass darf NICHT `@internal` oder `@final` sein.
-4. Implementierungen dürfen KEINE zusätzlichen public Methoden über die AbstractClass hinaus hinzufügen.
-5. Implementierungen dürfen NICHT als `EventSubscriberInterface` dienen (Symfony-Event-System-Limitation).
-6. PHPStan-Regel `DecorationPatternRule` erzwingt diese Regeln automatisch.
+1. Define an abstract class (not an interface!) with `getDecorated(): static`.
+2. Core class: `getDecorated()` throws `DecorationPatternException(self::class)`.
+3. The abstract class must NOT be `@internal` or `@final`.
+4. Implementations must NOT add public methods beyond those of the abstract class.
+5. Implementations must NOT act as an `EventSubscriberInterface` (Symfony event system limitation).
+6. The PHPStan rule `DecorationPatternRule` enforces these rules automatically.
 
 ```php
 abstract class AbstractRuleLoader
@@ -55,7 +55,7 @@ abstract class AbstractRuleLoader
     abstract public function getDecorated(): AbstractRuleLoader;
     abstract public function load(Context $context): RuleCollection;
 
-    // Neue Methoden: als non-abstract mit Delegation hinzufügen (BC-safe):
+    // New methods: add them as non-abstract with delegation (BC-safe):
     public function create(Context $context): RuleCollection
     {
         return $this->getDecorated()->create($context);
@@ -80,13 +80,13 @@ class PluginRuleLoader extends AbstractRuleLoader
     public function load(Context $context): RuleCollection
     {
         $rules = $this->inner->load($context);
-        // Erweiterung / Modifikation
+        // extension / modification
         return $rules;
     }
 }
 ```
 
-**Interne Decoration (ohne externe Erweiterbarkeit):** Wenn nur intern dekoriert werden soll (z.B. Cache- oder Log-Layer), AbstractClass verwenden, aber alle Klassen als `@internal` oder `@final` markieren.
+**Internal decoration (without external extendability):** if decoration is only needed internally (for example a cache or log layer), use an abstract class but mark all classes as `@internal` or `@final`.
 
 ```php
 /**
@@ -110,11 +110,11 @@ ADR: [2020-11-25-decoration-pattern](https://github.com/shopware/shopware/blob/t
 
 ---
 
-### 2. Factory Pattern
+### 2. Factory pattern
 
-**Einsatz:** User-Input interpretieren und validieren; Functional extensibility; neue Typen hinzufügen.
+**Use for:** interpreting and validating user input; functional extensibility; adding new types.
 
-**Beispiel:** `LineItemFactoryRegistry` — Registry mit Tagged Services; Drittanbieter können eigene Handler registrieren.
+**Example:** `LineItemFactoryRegistry` — a registry with tagged services; third parties can register their own handlers.
 
 ```xml
 <!-- services.xml -->
@@ -125,123 +125,123 @@ ADR: [2020-11-25-decoration-pattern](https://github.com/shopware/shopware/blob/t
 
 ---
 
-### 3. Visitor Pattern
+### 3. Visitor pattern
 
-**Einsatz:** Verarbeitung von Objekt-Mengen; Functional extensibility + modifiability.
+**Use for:** processing sets of objects; functional extensibility plus modifiability.
 
-**Beispiel:** `Processor` (Cart) ruft alle `LineItemProcessor`-Implementierungen auf; Drittanbieter-Visitor werden vor/nach Core-Visitor ausgeführt.
+**Example:** the cart `Processor` calls all `LineItemProcessor` implementations; third-party visitors run before or after the core visitor.
 
 ---
 
-### 4. Mediator Pattern — Events
+### 4. Mediator pattern — events
 
-**Einsatz:** Einstiegspunkte für Listener; asynchrone Verarbeitung.
+**Use for:** entry points for listeners; asynchronous processing.
 
-**Best Practices:**
-- Nur Primary Keys im Event weitergeben, keine Entities oder Objekte — ermöglicht asynchrone Verarbeitung.
-- Listener registrieren via `EventSubscriberInterface`.
+**Best practices:**
+- Pass only primary keys in the event, no entities or objects — this enables asynchronous processing.
+- Register listeners via `EventSubscriberInterface`.
 
 ```php
-// Gut: Nur ID weitergeben
+// Good: pass the ID only
 class CheckoutOrderPlacedEvent
 {
     public function __construct(private readonly string $orderId) {}
     public function getOrderId(): string { return $this->orderId; }
 }
 
-// Schlecht: Ganzes Entity weitergeben
+// Bad: pass the whole entity
 class CheckoutOrderPlacedEvent
 {
     public function __construct(private readonly OrderEntity $order) {}
 }
 ```
 
-#### Hooks (für Apps)
+#### Hooks (for apps)
 
-Hooks sind App-Script-Einstiegspunkte — äquivalent zu Events für Plugins. Da Apps keinen direkten Server-Zugriff haben, erlauben Hooks komplexere Businesslogik ohne HTTP-Roundtrip zum App-Server.
+Hooks are app script entry points — the equivalent of events for plugins. Since apps have no direct server access, hooks allow more complex business logic without an HTTP round trip to the app server.
 
-Beispiel: `ProductPageLoadedHook` — wird im Controller dispatcht; jedes registrierte App-Script wird ausgeführt.
-
----
-
-### 5. Adapter Pattern
-
-**Einsatz:** Functional Exchange Market; Technologietausch (z.B. Captcha-Typ wechseln).
-
-**Implementierung:** Registry + Tagged Services; Benutzer wählt Adapter via Konfiguration.
+Example: `ProductPageLoadedHook` — dispatched in the controller; every registered app script runs.
 
 ---
 
-## Public API und @internal/@final
+### 5. Adapter pattern
 
-### Was ist Public API?
+**Use for:** the functional exchange market; swapping technology (for example changing the captcha type).
 
-Alle `public` und `protected` Methoden, Eigenschaften und Konstanten gelten initial als Public API für Drittanbieter.
-
-Die Shopware Public API muss in Minor-Releases kompatibel bleiben für:
-- Service-Nutzung (Methoden aufrufen)
-- Service-Decoration (erweitern)
-- DTO-Nutzung (Daten lesen/übergeben)
-
-### @final Annotation
-
-Klasse ist Public API (konsumierbar), aber **nicht erweiterbar**.
-
-**Erlaubte Änderungen an `@final`-Klassen:**
-- Neue public Methoden/Properties/Konstanten hinzufügen
-- Neue optionale Parameter zu public Methoden hinzufügen
-- Protected/private Methoden ohne Einschränkung ändern
-- Typen von public-Methoden-Parametern erweitern (widening)
-
-**Verbotene Änderungen:**
-- Public Methoden/Properties/Konstanten entfernen
-- Public Methoden-Parameter entfernen
-- Typen von public Methoden/Properties/Konstanten verengen (narrowing)
-
-**Warum `final`?**
-- DI-Container-Services: `final`, damit keine direkte Vererbung stattfindet — dekorierbare Services haben AbstractClass
-- DTO-Klassen: `final` + Struct-Extensions für zusätzliche Daten
-- Event-Subscriber: `final`
-
-Hinweis: Da es sich um Doc-Annotations handelt, ist technisch Vererbung möglich — aber ohne Garantien.
-
-### @internal Annotation
-
-Klasse ist **Private API** — kein Einsatz in Plugins/Apps.
-
-- Kann ohne Einschränkungen und ohne Deprecation geändert oder entfernt werden
-- Einsatz: Interne Implementierungsdetails, Refactoring-Kandidaten, Klassen die nur existieren um "Master-Klassen" aufzuteilen
-- `@internal` Interfaces: Wenn mehrere Implementierungen intern gebraucht werden, aber keine externe Interferenz gewünscht ist (z.B. DAL Field/FieldSerializer)
+**Implementation:** registry plus tagged services; the user selects the adapter through configuration.
 
 ---
 
-## Entscheidungsbaum: Welches Pattern?
+## Public API and @internal/@final
+
+### What is public API?
+
+All `public` and `protected` methods, properties and constants count as public API for third parties by default.
+
+The Shopware public API must stay compatible across minor releases for:
+- Service usage (calling methods)
+- Service decoration (extending)
+- DTO usage (reading and passing data)
+
+### @final annotation
+
+The class is public API (consumable) but **not extendable**.
+
+**Permitted changes to `@final` classes:**
+- Add new public methods, properties or constants
+- Add new optional parameters to public methods
+- Change protected/private methods without restriction
+- Widen the types of public method parameters
+
+**Forbidden changes:**
+- Remove public methods, properties or constants
+- Remove public method parameters
+- Narrow the types of public methods, properties or constants
+
+**Why `final`?**
+- DI container services: `final`, so no direct inheritance takes place — decoratable services have an abstract class
+- DTO classes: `final` plus struct extensions for additional data
+- Event subscribers: `final`
+
+Note: because these are doc annotations, inheritance is technically possible — but without guarantees.
+
+### @internal annotation
+
+The class is **private API** — do not use it in plugins or apps.
+
+- Can be changed or removed without restriction and without deprecation
+- Use for internal implementation details, refactoring candidates, and classes that exist only to split up a "master class"
+- `@internal` interfaces: when several implementations are needed internally but no external interference is wanted (for example DAL Field/FieldSerializer)
+
+---
+
+## Decision tree: which pattern?
 
 ```
-Brauche ich externe Erweiterbarkeit?
-├─ Ja, Listener-basiert (vor/nach einer Aktion) → Events / Hooks
-├─ Ja, Service komplett ersetzbar/erweiterbar → Decoration Pattern (AbstractClass)
-├─ Ja, neue Typen/Handler hinzufügbar → Factory / Registry + Tagged Services
-├─ Ja, Objekte während Verarbeitung besuchen → Visitor Pattern
-├─ Ja, Technologie komplett tauschbar → Adapter Pattern
-└─ Nein, nur intern → @internal oder @final, kein AbstractClass nötig
+Do I need external extendability?
+├─ Yes, listener-based (before/after an action) → events / hooks
+├─ Yes, service fully replaceable/extendable → decoration pattern (abstract class)
+├─ Yes, new types/handlers can be added → factory / registry + tagged services
+├─ Yes, visit objects during processing → visitor pattern
+├─ Yes, technology fully swappable → adapter pattern
+└─ No, internal only → @internal or @final, no abstract class needed
 ```
 
 ---
 
-## Architektur-Subsysteme
+## Architecture subsystems
 
-Shopware unterscheidet klar: **Core**, **Storefront**, **Administration**.
+Shopware draws a clear line between **Core**, **Storefront** and **Administration**.
 
-Extensions müssen diese Grenzen respektieren:
-- Kein nicht-deterministisches Verhalten einführen
-- Hintergrundjobs und CLI-Commands nicht brechen
-- Keine Performance-Regressionen
-- Upgrade-Kompatibilität sicherstellen
+Extensions must respect these boundaries:
+- Do not introduce non-deterministic behavior
+- Do not break background jobs or CLI commands
+- No performance regressions
+- Ensure upgrade compatibility
 
 ---
 
-## Referenzen
+## References
 
 - `guides/development/extensions/architecture/extendability.md`
 - `guides/development/extensions/architecture/final-and-internal.md`

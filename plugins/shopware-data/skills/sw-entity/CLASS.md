@@ -1,7 +1,7 @@
-# Shopware 6 — Entity-Klasse
+# Shopware 6 — Entity class
 
-Die Entity ist das typisierte Datenobjekt zur Definition. Sie erweitert `Entity` und nutzt meist `EntityIdTrait`
-(liefert `id`). Pro Feld der Definition ein `protected` Property + Getter/Setter; nullable für optionale Felder.
+The entity is the typed data object matching the definition. It extends `Entity` and usually uses `EntityIdTrait`
+(which supplies `id`). One `protected` property plus getter/setter per definition field; nullable for optional fields.
 
 ```php
 class FfExampleEntity extends Entity
@@ -14,7 +14,7 @@ class FfExampleEntity extends Entity
 }
 ```
 
-`TranslatedField`-Werte landen im `translated`-Array bzw. werden auf die Properties gemappt (`sw-translations`).
-Association-Properties typisieren auf die jeweilige Entity/Collection. Keine Geschäftslogik in der Entity.
+`TranslatedField` values end up in the `translated` array or get mapped onto the properties (`sw-translations`).
+Type association properties to the respective entity/collection. No business logic in the entity.
 
-→ Vollständiges Beispiel: [CLASS-EXAMPLE.md](CLASS-EXAMPLE.md)
+→ Full example: [CLASS-EXAMPLE.md](CLASS-EXAMPLE.md)

@@ -1,7 +1,7 @@
-# Shopware 6 — Unit-Test
+# Shopware 6 — Unit Test
 
-Testet isolierte Logik (Services, Value-Objects, Berechnungen) **ohne** Kernel/DB — Abhängigkeiten werden gemockt.
-Schnellste Stufe der Test-Pyramide.
+Tests isolated logic (services, value objects, calculations) **without** kernel or DB — dependencies are mocked.
+The fastest tier of the test pyramid.
 
 ```php
 final class PriceCalculatorTest extends TestCase
@@ -14,6 +14,6 @@ final class PriceCalculatorTest extends TestCase
 }
 ```
 
-Kein `IntegrationTestBehaviour`. Repositories/Config über statische Mocks (`sw-mock-repository`, `sw-mock-system-config`).
-`assertSame` statt `assertEquals` (strikte Gleichheit, ADR). Exceptions über `expectExceptionObject` testen.
-Für DAL/DB-Verhalten → `sw-integration-test`.
+No `IntegrationTestBehaviour`. Use static mocks for repositories/config (`sw-mock-repository`, `sw-mock-system-config`).
+Prefer `assertSame` over `assertEquals` (strict equality, ADR). Test exceptions with `expectExceptionObject`.
+For DAL/DB behaviour → `sw-integration-test`.

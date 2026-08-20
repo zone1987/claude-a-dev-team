@@ -1,7 +1,7 @@
 # Shopware 6 — EntityDefinition
 
-Die `EntityDefinition` beschreibt Schema (Felder, Associations, Flags) einer DAL-Entity. Drei Bausteine gehören
-immer zusammen: **Definition** (Schema), **Entity** (`sw-entity-class`), **Collection** (`sw-entity-collection`).
+The `EntityDefinition` describes the schema (fields, associations, flags) of a DAL entity. Three building blocks always
+belong together: **definition** (schema), **entity** (`sw-entity-class`), **collection** (`sw-entity-collection`).
 
 ```php
 class FfExampleDefinition extends EntityDefinition
@@ -21,9 +21,9 @@ class FfExampleDefinition extends EntityDefinition
 }
 ```
 
-Registrierung in `services.xml` mit Tag `shopware.entity.definition`. Tabellenname = `ENTITY_NAME` (snake_case),
-PK ist immer ein `IdField` mit BinaryUUIDv7. Schema per Migration anlegen (`sw-database-migration`).
+Register it in `services.xml` with the tag `shopware.entity.definition`. Table name = `ENTITY_NAME` (snake_case),
+the PK is always an `IdField` with a binary UUIDv7. Create the schema through a migration (`sw-database-migration`).
 
-→ Core-Klassen & Architektur: [DEFINITION-CORE-CLASSES.md](DEFINITION-CORE-CLASSES.md)
-→ Vollständiges Beispiel: [DEFINITION-EXAMPLE.md](DEFINITION-EXAMPLE.md) · PropertyGroup-Beispiel: [DEFINITION-PROPERTY-GROUP-EXAMPLE.md](DEFINITION-PROPERTY-GROUP-EXAMPLE.md)
-→ Felder: `sw-field-types` · Flags: `sw-field-flags` · Associations: `sw-associations-*` · Attribut-Variante: `sw-attribute-entities`
+→ Core classes and architecture: [DEFINITION-CORE-CLASSES.md](DEFINITION-CORE-CLASSES.md)
+→ Full example: [DEFINITION-EXAMPLE.md](DEFINITION-EXAMPLE.md) · PropertyGroup example: [DEFINITION-PROPERTY-GROUP-EXAMPLE.md](DEFINITION-PROPERTY-GROUP-EXAMPLE.md)
+→ Fields: `sw-field-types` · Flags: `sw-field-flags` · Associations: `sw-associations-*` · Attribute variant: `sw-attribute-entities`

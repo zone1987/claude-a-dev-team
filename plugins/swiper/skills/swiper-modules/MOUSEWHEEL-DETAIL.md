@@ -1,6 +1,6 @@
-# Swiper Mousewheel-Modul — Vollständige Referenz
+# Swiper Mousewheel module — Complete reference
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -14,57 +14,57 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
-|------|-----|---------|--------------|
-| `enabled` | `boolean` | `false` | Mausrad-Steuerung aktivieren |
-| `eventsTarget` | `HTMLElement \| string` | `'container'` | Element das Mausrad-Events empfängt; `'container'` = Swiper-Container |
-| `invert` | `boolean` | `false` | Scroll-Richtung umkehren |
-| `forceToAxis` | `boolean` | `false` | Scroll auf die Swiper-Achse beschränken (verhindert diagonales Scrollen) |
-| `releaseOnEdges` | `boolean` | `false` | Seiten-Scrollen erlauben wenn Swiper am ersten/letzten Slide ist |
-| `sensitivity` | `number` | `1` | Multiplikator für Scroll-Delta (> 1 = empfindlicher) |
-| `thresholdDelta` | `number \| null` | `null` | Mindest-Scroll-Delta zum Auslösen einer Transition |
-| `thresholdTime` | `number \| null` | `null` | Mindest-Zeit in ms zwischen Scroll-Events |
-| `noMousewheelClass` | `string` | `'swiper-no-mousewheel'` | CSS-Klasse auf Kindelementen um Mausrad dort zu deaktivieren |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `enabled` | `boolean` | `false` | Enable mouse wheel control |
+| `eventsTarget` | `HTMLElement \| string` | `'container'` | Element that receives wheel events; `'container'` = the Swiper container |
+| `invert` | `boolean` | `false` | Invert the scroll direction |
+| `forceToAxis` | `boolean` | `false` | Restrict scrolling to the Swiper axis (prevents diagonal scrolling) |
+| `releaseOnEdges` | `boolean` | `false` | Allow page scrolling when Swiper is on the first/last slide |
+| `sensitivity` | `number` | `1` | Multiplier for the scroll delta (> 1 = more sensitive) |
+| `thresholdDelta` | `number \| null` | `null` | Minimum scroll delta needed to trigger a transition |
+| `thresholdTime` | `number \| null` | `null` | Minimum time in ms between scroll events |
+| `noMousewheelClass` | `string` | `'swiper-no-mousewheel'` | CSS class on child elements to disable the mouse wheel there |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
-|----------|-----|--------------|
-| `swiper.mousewheel.enabled` | `boolean` | Gibt an ob Mausrad-Steuerung aktiv ist |
+| Property | Type | Description |
+|----------|------|-------------|
+| `swiper.mousewheel.enabled` | `boolean` | Indicates whether mouse wheel control is active |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
-|---------|--------------|
-| `swiper.mousewheel.enable()` | Mausrad-Steuerung aktivieren |
-| `swiper.mousewheel.disable()` | Mausrad-Steuerung deaktivieren |
+| Method | Description |
+|--------|-------------|
+| `swiper.mousewheel.enable()` | Enable mouse wheel control |
+| `swiper.mousewheel.disable()` | Disable mouse wheel control |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
-|-------|-----------|--------------|
-| `scroll` | `(swiper, event)` | Wird bei Mausrad-Scroll ausgelöst |
+| Event | Arguments | Description |
+|-------|-----------|-------------|
+| `scroll` | `(swiper, event)` | Fires on mouse wheel scroll |
 
-## noMousewheelClass — Scroll in Kindelementen deaktivieren
+## noMousewheelClass — disable scrolling inside child elements
 
 ```html
 <div class="swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <!-- Dieses Element scrollt normal, löst keinen Slide-Wechsel aus -->
+      <!-- This element scrolls normally and does not trigger a slide change -->
       <div class="swiper-no-mousewheel" style="overflow-y: scroll; height: 200px;">
-        Langer Text der gescrollt werden kann...
+        Long text that can be scrolled...
       </div>
     </div>
   </div>
 </div>
 ```
 
-## Vollständige Beispiele
+## Complete examples
 
-### Vollbild-Vertikalscroller
+### Full-screen vertical scroller
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -82,7 +82,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-### Mit Body als Event-Target
+### With body as the event target
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -96,4 +96,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#mousewheel-control
+Source: https://swiperjs.com/swiper-api#mousewheel-control

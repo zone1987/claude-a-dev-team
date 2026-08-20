@@ -1,7 +1,7 @@
-# Shopware 6 — PHPUnit-Setup
+# Shopware 6 — PHPUnit Setup
 
-Plugin-Tests laufen gegen den Shopware-Kernel. `phpunit.xml.dist` im Plugin, Bootstrap über Shopwares
-`TestBootstrapper`; Integrationstests nutzen `IntegrationTestBehaviour` (Transaktion je Test + DB-Reset).
+Plugin tests run against the Shopware kernel. Put `phpunit.xml.dist` in the plugin, bootstrap through Shopware's
+`TestBootstrapper`; integration tests use `IntegrationTestBehaviour` (a transaction per test + DB reset).
 
 ```php
 class FooTest extends TestCase
@@ -12,7 +12,7 @@ class FooTest extends TestCase
 }
 ```
 
-Ausführen: `vendor/bin/phpunit` bzw. `composer test` (DB-Env `DATABASE_URL` der Test-DB). Test-Pyramide (ADR
-„follow test pyramid"): viele Unit- (`sw-unit-test`), weniger Integration- (`sw-integration-test`), wenige E2E-Tests.
+Run with `vendor/bin/phpunit` or `composer test` (the DB env `DATABASE_URL` points at the test DB). Test pyramid (ADR
+"follow test pyramid"): many unit tests (`sw-unit-test`), fewer integration tests (`sw-integration-test`), few E2E tests.
 
-→ Bootstrap & Base-Class: [../shopware-phpunit/`SETUP-KERNEL-BOOTSTRAP.md`](../shopware-phpunit/`SETUP-KERNEL-BOOTSTRAP.md`), [../shopware-phpunit/`SETUP-BASE-TEST-CLASS.md`](../shopware-phpunit/`SETUP-BASE-TEST-CLASS.md`)
+→ Bootstrap & base class: [../shopware-phpunit/`SETUP-KERNEL-BOOTSTRAP.md`](../shopware-phpunit/`SETUP-KERNEL-BOOTSTRAP.md`), [../shopware-phpunit/`SETUP-BASE-TEST-CLASS.md`](../shopware-phpunit/`SETUP-BASE-TEST-CLASS.md`)

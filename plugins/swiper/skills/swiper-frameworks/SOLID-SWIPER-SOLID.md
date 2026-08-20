@@ -1,28 +1,28 @@
-# Swiper SolidJS — Vollständige Referenz (via Swiper Element)
+# Swiper SolidJS — Complete reference (via Swiper Element)
 
-**Wichtig:** Die separaten SolidJS-Komponenten (`swiper/solid`) wurden in Swiper v9 entfernt.
-Der offizielle Weg ist seither die Integration via **Swiper Element** (Web Component).
+**Important:** The separate SolidJS components (`swiper/solid`) were removed in Swiper v9.
+Since then, the official approach is integration via **Swiper Element** (Web Component).
 
-Archiv für v8 (alte SolidJS-Komponenten): https://v8.swiperjs.com/solid
+Archive for v8 (the old SolidJS components): https://v8.swiperjs.com/solid
 
 ---
 
 ## Contents
 
 - [Installation](#installation)
-- [Registrierung (einmalig)](#registrierung-einmalig)
-- [CSS importieren](#css-importieren)
-- [Minimales Beispiel](#minimales-beispiel)
-- [Property-Binding via `ref` und `onMount`](#property-binding-via-ref-und-onmount)
+- [Registration (once)](#registration-once)
+- [Import the CSS](#import-the-css)
+- [Minimal example](#minimal-example)
+- [Property binding via `ref` and `onMount`](#property-binding-via-ref-and-onmount)
 - [Events](#events)
-- [Swiper-Methoden aufrufen](#swiper-methoden-aufrufen)
-- [Reaktive Parameter mit Signals](#reaktive-parameter-mit-signals)
-- [Slides aus Array rendern (For)](#slides-aus-array-rendern-for)
+- [Calling Swiper methods](#calling-swiper-methods)
+- [Reactive parameters with signals](#reactive-parameters-with-signals)
+- [Rendering slides from an array (For)](#rendering-slides-from-an-array-for)
 - [Slots](#slots)
-- [Lazy Initialization (SolidStart / SSR)](#lazy-initialization-solidstart-ssr)
-- [Thumbs-Integration](#thumbs-integration)
-- [SolidJS-spezifische JSX-Hinweise](#solidjs-spezifische-jsx-hinweise)
-- [Häufige Probleme & Lösungen](#häufige-probleme-lösungen)
+- [Lazy initialization (SolidStart / SSR)](#lazy-initialization-solidstart-ssr)
+- [Thumbs integration](#thumbs-integration)
+- [SolidJS-specific JSX notes](#solidjs-specific-jsx-notes)
+- [Common problems and solutions](#common-problems-and-solutions)
 
 ## Installation
 
@@ -32,29 +32,29 @@ npm install swiper
 
 ---
 
-## Registrierung (einmalig)
+## Registration (once)
 
 ```javascript
-// src/index.jsx oder src/root.jsx
+// src/index.jsx or src/root.jsx
 import { register } from 'swiper/element/bundle';
 register();
 ```
 
 ---
 
-## CSS importieren
+## Import the CSS
 
 ```javascript
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// Oder:
+// Or:
 import 'swiper/css/bundle';
 ```
 
 ---
 
-## Minimales Beispiel
+## Minimal example
 
 ```jsx
 import { register } from 'swiper/element/bundle';
@@ -80,9 +80,9 @@ function App() {
 
 ---
 
-## Property-Binding via `ref` und `onMount`
+## Property binding via `ref` and `onMount`
 
-Für komplexe Parameter (Breakpoints, Render-Funktionen etc.):
+For complex parameters (breakpoints, render functions, etc.):
 
 ```jsx
 import { onMount, createSignal } from 'solid-js';
@@ -130,7 +130,7 @@ function MySwiper() {
 
 ## Events
 
-Ab Swiper v11: Events haben standardmäßig den Präfix `swiper`:
+As of Swiper v11, events carry the prefix `swiper` by default:
 
 ```jsx
 function MySwiper() {
@@ -163,18 +163,18 @@ function MySwiper() {
 }
 ```
 
-**Hinweis:** SolidJS nutzt `on:eventname` für native DOM-Events.
+**Note:** SolidJS uses `on:eventname` for native DOM events.
 
-Präfix anpassen:
+Change the prefix:
 ```jsx
 <swiper-container events-prefix="">
-  {/* Events: "slidechange", "progress" (kein Prefix) */}
+  {/* Events: "slidechange", "progress" (no prefix) */}
 </swiper-container>
 ```
 
 ---
 
-## Swiper-Methoden aufrufen
+## Calling Swiper methods
 
 ```jsx
 function MySwiper() {
@@ -198,8 +198,8 @@ function MySwiper() {
         <swiper-slide>Slide 1</swiper-slide>
         <swiper-slide>Slide 2</swiper-slide>
       </swiper-container>
-      <button onClick={prev}>Zurück</button>
-      <button onClick={next}>Vor</button>
+      <button onClick={prev}>Back</button>
+      <button onClick={next}>Forward</button>
     </div>
   );
 }
@@ -207,7 +207,7 @@ function MySwiper() {
 
 ---
 
-## Reaktive Parameter mit Signals
+## Reactive parameters with signals
 
 ```jsx
 import { createSignal, createEffect } from 'solid-js';
@@ -246,7 +246,7 @@ function ReactiveSwiper() {
 
 ---
 
-## Slides aus Array rendern (For)
+## Rendering slides from an array (For)
 
 ```jsx
 import { For } from 'solid-js';
@@ -279,18 +279,18 @@ function ListSwiper() {
 
 ```jsx
 <swiper-container>
-  <div slot="container-start">Vor den Slides</div>
+  <div slot="container-start">Before the slides</div>
 
   <swiper-slide>Slide 1</swiper-slide>
   <swiper-slide>Slide 2</swiper-slide>
 
-  <div slot="container-end">Nach den Slides</div>
+  <div slot="container-end">After the slides</div>
 </swiper-container>
 ```
 
 ---
 
-## Lazy Initialization (SolidStart / SSR)
+## Lazy initialization (SolidStart / SSR)
 
 ```jsx
 import { onMount, Show } from 'solid-js';
@@ -324,7 +324,7 @@ function LazySwiper() {
 
 ---
 
-## Thumbs-Integration
+## Thumbs integration
 
 ```jsx
 import { onMount } from 'solid-js';
@@ -336,7 +336,7 @@ function ThumbsExample() {
   let thumbsRef;
 
   onMount(() => {
-    // Thumbs zuerst
+    // Thumbs first
     Object.assign(thumbsRef, {
       slidesPerView: 4,
       spaceBetween: 10,
@@ -345,7 +345,7 @@ function ThumbsExample() {
     });
     thumbsRef.initialize();
 
-    // Dann Haupt-Swiper
+    // Then the main Swiper
     Object.assign(mainRef, {
       spaceBetween: 10,
       thumbs: { swiper: thumbsRef.swiper },
@@ -370,34 +370,34 @@ function ThumbsExample() {
 
 ---
 
-## SolidJS-spezifische JSX-Hinweise
+## SolidJS-specific JSX notes
 
-SolidJS kompiliert JSX direkt zu DOM-Operationen (kein Virtual DOM). Wichtig:
+SolidJS compiles JSX straight to DOM operations (no virtual DOM). Key points:
 
-- `ref={refVar}` für Elementen-Referenz (kein Callback-Ref wie React)
-- `on:eventname` für native Custom Events (lowercase)
-- Attribute werden als echte DOM-Attribute gesetzt
+- `ref={refVar}` for the element reference (not a callback ref as in React)
+- `on:eventname` for native custom events (lowercase)
+- Attributes are set as real DOM attributes
 
 ```jsx
-// SolidJS-spezifische Event-Syntax:
+// SolidJS-specific event syntax:
 <swiper-container
-  on:swiperslidechange={handler}  // Native Custom Event
-  onClick={handler}               // Synthetischer Click-Event
+  on:swiperslidechange={handler}  // Native custom event
+  onClick={handler}               // Synthetic click event
 />
 ```
 
 ---
 
-## Häufige Probleme & Lösungen
+## Common problems and solutions
 
-| Problem | Lösung |
+| Problem | Solution |
 |---|---|
-| `swiper-container` unbekannt | `register()` aufrufen, idealerweise einmalig in `index.jsx` |
-| Styles fehlen | `import 'swiper/css'` sicherstellen |
-| Events werden nicht gefeuert | SolidJS nutzt `on:eventname` für native DOM-Events |
-| SSR-Fehler | Lazy import in `onMount` verwenden |
-| Komplexe Params nicht übernommen | `init="false"` + `Object.assign` + `initialize()` |
+| `swiper-container` unknown | Call `register()`, ideally once in `index.jsx` |
+| Styles missing | Make sure `import 'swiper/css'` is present |
+| Events are not fired | SolidJS uses `on:eventname` for native DOM events |
+| SSR error | Use a lazy import inside `onMount` |
+| Complex params not applied | `init="false"` + `Object.assign` + `initialize()` |
 
 ---
 
-*Quelle: https://swiperjs.com/solid + https://swiperjs.com/element — Swiper v12.2.0*
+*Source: https://swiperjs.com/solid + https://swiperjs.com/element — Swiper v12.2.0*

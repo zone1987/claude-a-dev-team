@@ -1,15 +1,15 @@
-# Gotenberg — LibreOffice-Konvertierung
+# Gotenberg — LibreOffice conversion
 
 **Route:** `POST /forms/libreoffice/convert`
 
-Konvertiert Office-Dokumente zu PDF via LibreOffice. Unterstuetzt Word, Excel, PowerPoint,
-OpenDocument, Textdateien und viele weitere Formate.
+Converts Office documents to PDF via LibreOffice. Supports Word, Excel, PowerPoint,
+OpenDocument, text files and many more formats.
 
-## Pflichtfeld
+## Required field
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `files` | file[] | Mindestens eine Datei zum Konvertieren |
+| `files` | file[] | At least one file to convert |
 
 ```bash
 curl --request POST http://localhost:3000/forms/libreoffice/convert \
@@ -17,13 +17,13 @@ curl --request POST http://localhost:3000/forms/libreoffice/convert \
   -o my.pdf
 ```
 
-## Layout-Felder
+## Layout fields
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `landscape` | boolean | `false` | Querformat |
-| `singlePageSheets` | boolean | `false` | Jedes Tabellenblatt auf genau eine Seite zwingen |
-| `skipEmptyPages` | boolean | `false` | Automatisch eingefuegte Leerseiten unterdruecken (nur Writer) |
-| `exportPlaceholders` | boolean | `false` | Platzhalterfelder als visuelle Markierungen exportieren |
+| `landscape` | boolean | `false` | Landscape orientation |
+| `singlePageSheets` | boolean | `false` | Force every spreadsheet sheet onto exactly one page |
+| `skipEmptyPages` | boolean | `false` | Suppress automatically inserted blank pages (Writer only) |
+| `exportPlaceholders` | boolean | `false` | Export placeholder fields as visual markers |
 
-Vollstaendige Formatenliste & Feldtabellen: `LIBREOFFICE-DETAIL.md`
+Complete format list & field tables: `LIBREOFFICE-DETAIL.md`

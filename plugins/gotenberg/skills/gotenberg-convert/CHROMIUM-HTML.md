@@ -1,25 +1,25 @@
-# Gotenberg — HTML zu PDF
+# Gotenberg — HTML to PDF
 
 **Route:** `POST /forms/chromium/convert/html`
 
-Konvertiert eine `index.html` (mit optionalen Assets) zu PDF via Headless Chromium.
+Converts an `index.html` (with optional assets) to PDF via headless Chromium.
 
-## Pflichtfeld
+## Required field
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `files` (index.html) | file | HTML-Datei, muss `index.html` heissen |
+| `files` (index.html) | file | HTML file, must be named `index.html` |
 
-## Gemeinsame Header
+## Common headers
 
-| Header | Beschreibung |
+| Header | Description |
 |--------|-------------|
-| `Gotenberg-Output-Filename` | Dateiname (ohne Extension) |
-| `Gotenberg-Trace` | Request-ID fuer Logs |
+| `Gotenberg-Output-Filename` | Filename (without extension) |
+| `Gotenberg-Trace` | Request ID for logs |
 
-## Seitengroesse (ca. 10 Felder)
+## Page size (approx. 10 fields)
 
 `paperWidth`, `paperHeight`, `marginTop`, `marginBottom`, `marginLeft`, `marginRight`,
 `landscape`, `scale`, `singlePage`, `preferCssPageSize`
 
-Vollstaendige Feldtabellen: `CHROMIUM-HTML-DETAIL.md`
+Complete field tables: `CHROMIUM-HTML-DETAIL.md`

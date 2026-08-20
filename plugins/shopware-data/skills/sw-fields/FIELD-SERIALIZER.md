@@ -1,7 +1,7 @@
 # Shopware 6 — FieldSerializer
 
-Jeder Field-Typ hat einen Serializer, der `encode()` (Entity→DB) und `decode()` (DB→Entity) sowie Validation regelt.
-Nur nötig für **eigene** Field-Typen oder spezielle Persistenz.
+Every field type has a serializer that governs `encode()` (entity→DB), `decode()` (DB→entity) and validation.
+Only needed for **your own** field types or special persistence.
 
 ```php
 class FfMoneyFieldSerializer extends AbstractFieldSerializer
@@ -17,5 +17,5 @@ class FfMoneyFieldSerializer extends AbstractFieldSerializer
 }
 ```
 
-Registrierung via `shopware.field_serializer`-Tag, der eigene `Field` referenziert den Serializer-Service.
-In den meisten Fällen reichen Standard-Felder (`sw-field-types`) — Serializer nur bei echten Sonderformaten.
+Register it with the `shopware.field_serializer` tag; your own `Field` references the serializer service.
+In most cases the standard fields are enough (`sw-field-types`) — write a serializer only for genuinely special formats.

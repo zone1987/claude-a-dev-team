@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-API-Test
+# Shopware 6 — Admin API Test
 
-Testet Admin-API-Endpunkte mit authentifiziertem Client (`AdminApiTestBehaviour`/`getBrowser`).
+Tests admin API endpoints with an authenticated client (`AdminApiTestBehaviour`/`getBrowser`).
 
 ```php
 use IntegrationTestBehaviour, AdminApiTestBehaviour;
@@ -12,5 +12,5 @@ public function testAction(): void
 }
 ```
 
-Der Browser hält ein gültiges Bearer-Token. ACL-/Berechtigungsfälle gezielt testen (eigener Integration-User mit
-eingeschränkten Rechten). Eigene Endpunkte/ACL: `shopware-framework` (`sw-admin-api-controller`/`sw-api-acl`).
+The browser holds a valid bearer token. Test ACL/permission cases explicitly (a dedicated integration user with
+restricted rights). Custom endpoints/ACL: `shopware-framework` (`sw-admin-api-controller`/`sw-api-acl`).

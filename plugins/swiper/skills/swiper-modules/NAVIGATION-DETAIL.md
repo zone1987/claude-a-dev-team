@@ -1,18 +1,18 @@
-# Swiper Navigation-Modul — Vollständige Referenz
+# Swiper Navigation module — Complete reference
 
 ## Contents
 
-- [Import & Aktivierung](#import-aktivierung)
-- [HTML-Struktur](#html-struktur)
-- [Parameter](#parameter)
+- [Import and activation](#import-and-activation)
+- [HTML structure](#html-structure)
+- [Parameters](#parameters)
 - [Properties](#properties)
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Events](#events)
 - [CSS Custom Properties](#css-custom-properties)
-- [Breakpoint-spezifische Navigation](#breakpoint-spezifische-navigation)
-- [Externe Buttons (außerhalb des Swiper-Containers)](#externe-buttons-außerhalb-des-swiper-containers)
+- [Breakpoint-specific navigation](#breakpoint-specific-navigation)
+- [External buttons (outside the Swiper container)](#external-buttons-outside-the-swiper-container)
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -29,7 +29,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## HTML-Struktur
+## HTML structure
 
 ```html
 <div class="swiper">
@@ -43,47 +43,47 @@ const swiper = new Swiper('.swiper', {
 </div>
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
-|------|-----|---------|--------------|
-| `nextEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS-Selektor oder Element für den "Weiter"-Button |
-| `prevEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS-Selektor oder Element für den "Zurück"-Button |
-| `hideOnClick` | `boolean` | `false` | Navigation beim Klick auf den Slider-Container ein-/ausblenden |
-| `disabledClass` | `string` | `'swiper-button-disabled'` | CSS-Klasse wenn Button inaktiv (erster/letzter Slide ohne Loop) |
-| `hiddenClass` | `string` | `'swiper-button-hidden'` | CSS-Klasse wenn Button ausgeblendet |
-| `lockClass` | `string` | `'swiper-button-lock'` | CSS-Klasse wenn Navigation per Breakpoint deaktiviert |
-| `navigationDisabledClass` | `string` | `'swiper-navigation-disabled'` | Klasse am Container-Element wenn Navigation per Breakpoint deaktiviert |
-| `addIcons` | `boolean` | `true` | SVG-Icons automatisch in die Buttons einfügen |
-| `enabled` | `boolean` | — | Navigation für bestimmte Breakpoints aktivieren/deaktivieren |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `nextEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS selector or element for the "next" button |
+| `prevEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS selector or element for the "previous" button |
+| `hideOnClick` | `boolean` | `false` | Toggle the navigation when clicking the slider container |
+| `disabledClass` | `string` | `'swiper-button-disabled'` | CSS class when the button is inactive (first/last slide without loop) |
+| `hiddenClass` | `string` | `'swiper-button-hidden'` | CSS class when the button is hidden |
+| `lockClass` | `string` | `'swiper-button-lock'` | CSS class when navigation is disabled by a breakpoint |
+| `navigationDisabledClass` | `string` | `'swiper-navigation-disabled'` | Class on the container element when navigation is disabled by a breakpoint |
+| `addIcons` | `boolean` | `true` | Insert SVG icons into the buttons automatically |
+| `enabled` | `boolean` | — | Enable/disable navigation for specific breakpoints |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
-|----------|-----|--------------|
-| `swiper.navigation.nextEl` | `HTMLElement` | Referenz auf den Next-Button |
-| `swiper.navigation.prevEl` | `HTMLElement` | Referenz auf den Prev-Button |
+| Property | Type | Description |
+|----------|------|-------------|
+| `swiper.navigation.nextEl` | `HTMLElement` | Reference to the next button |
+| `swiper.navigation.prevEl` | `HTMLElement` | Reference to the prev button |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
-|---------|--------------|
-| `swiper.navigation.init()` | Navigation initialisieren |
-| `swiper.navigation.destroy()` | Navigation entfernen und aufräumen |
-| `swiper.navigation.update()` | Status (enabled/disabled) der Buttons aktualisieren |
+| Method | Description |
+|--------|-------------|
+| `swiper.navigation.init()` | Initialize navigation |
+| `swiper.navigation.destroy()` | Remove navigation and clean up |
+| `swiper.navigation.update()` | Update the enabled/disabled state of the buttons |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
-|-------|-----------|--------------|
-| `navigationHide` | `(swiper)` | Buttons werden ausgeblendet |
-| `navigationShow` | `(swiper)` | Buttons werden eingeblendet |
-| `navigationPrev` | `(swiper)` | Prev-Button wurde geklickt |
-| `navigationNext` | `(swiper)` | Next-Button wurde geklickt |
+| Event | Arguments | Description |
+|-------|-----------|-------------|
+| `navigationHide` | `(swiper)` | The buttons are being hidden |
+| `navigationShow` | `(swiper)` | The buttons are being shown |
+| `navigationPrev` | `(swiper)` | The prev button was clicked |
+| `navigationNext` | `(swiper)` | The next button was clicked |
 
 ```js
 swiper.on('navigationNext', (swiper) => {
-  console.log('Weiter geklickt, aktiver Index:', swiper.activeIndex);
+  console.log('Next clicked, active index:', swiper.activeIndex);
 });
 ```
 
@@ -98,7 +98,7 @@ swiper.on('navigationNext', (swiper) => {
 }
 ```
 
-## Breakpoint-spezifische Navigation
+## Breakpoint-specific navigation
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -118,7 +118,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Externe Buttons (außerhalb des Swiper-Containers)
+## External buttons (outside the Swiper container)
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -131,4 +131,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#navigation
+Source: https://swiperjs.com/swiper-api#navigation

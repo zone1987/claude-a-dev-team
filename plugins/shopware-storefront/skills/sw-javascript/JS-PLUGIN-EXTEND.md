@@ -1,7 +1,7 @@
-# Shopware 6 — JS-Plugin erweitern (extend)
+# Shopware 6 — Extend a JS plugin (extend)
 
-`extend` registriert eine Subklasse für einen bestehenden Plugin-Namen und behält den Rest des Verhaltens —
-geeignet, um gezielt Methoden zu ergänzen.
+`extend` registers a subclass for an existing plugin name and keeps the rest of the behavior —
+suitable for adding specific methods.
 
 ```js
 import AddToCartPlugin from 'src/plugin/add-to-cart/add-to-cart.plugin';
@@ -11,11 +11,11 @@ export default class FfAddToCart extends AddToCartPlugin {
         super.init();
         this._trackAdd();
     }
-    _trackAdd() { /* zusätzliches Tracking */ }
+    _trackAdd() { /* additional tracking */ }
 }
 // main.js
 window.PluginManager.extend('AddToCart', 'FfAddToCart', FfAddToCart, '[data-add-to-cart]');
 ```
 
-Unterschied zu `override`: `extend` ist additiv/vererbend gedacht, `override` ersetzt komplett (`sw-js-plugin-override`).
-`super.*` aufrufen, um Core-Logik zu erhalten.
+Difference to `override`: `extend` is meant to be additive/inheriting, `override` replaces completely (`sw-js-plugin-override`).
+Call `super.*` to preserve the core logic.

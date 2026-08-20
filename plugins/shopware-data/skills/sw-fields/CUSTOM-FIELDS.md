@@ -1,9 +1,9 @@
-# Shopware 6 — Custom Fields
+# Shopware 6 — Custom fields
 
-Konfigurierbare Zusatzfelder an bestehenden Entities (ohne neue Spalte) — landen im `custom_fields`-JSON.
+Configurable extra fields on existing entities (without a new column) — stored in the `custom_fields` JSON.
 
 ```php
-// per Repository/Migration: CustomFieldSet mit relations + fields
+// via repository/migration: CustomFieldSet with relations + fields
 $this->customFieldSetRepo->upsert([[
     'name' => 'ff_extra',
     'config' => ['label' => ['de-DE' => 'Extra']],
@@ -15,7 +15,7 @@ $this->customFieldSetRepo->upsert([[
 ]], $context);
 ```
 
-Auslesen: `$entity->getCustomFields()['ff_extra_hint']`. Typen u.a. `text`, `bool`, `int`, `float`, `datetime`,
-`select`, `entity` (Entity-Selection), `media`. Eigene echte Spalten/Associations → `sw-entity-extension`.
+Reading: `$entity->getCustomFields()['ff_extra_hint']`. Types include `text`, `bool`, `int`, `float`, `datetime`,
+`select`, `entity` (entity selection), `media`. For real columns and associations of your own → `sw-entity-extension`.
 
-→ Typen, Media-/Entity-Selection, Storefront-Zugriff: [CUSTOM-FIELDS-DETAIL.md](CUSTOM-FIELDS-DETAIL.md)
+→ Types, media/entity selection, storefront access: [CUSTOM-FIELDS-DETAIL.md](CUSTOM-FIELDS-DETAIL.md)

@@ -1,6 +1,6 @@
-# Shopware 6 — SystemConfig mocken
+# Shopware 6 — Mocking SystemConfig
 
-Config-abhängige Logik im Unit-Test ohne DB testen mit `StaticSystemConfigService`.
+Test config-dependent logic in unit tests without a DB using `StaticSystemConfigService`.
 
 ```php
 $config = new StaticSystemConfigService([
@@ -10,7 +10,7 @@ $config = new StaticSystemConfigService([
 $sut = new FfService($config);
 ```
 
-Sales-Channel-spezifische Werte als verschachteltes Array je Channel-ID. Vermeidet Mock-Stubs auf `get()`.
-Für Integration mit echter Config → `sw-integration-test`. Config-Nutzung im Code: `shopware-core` (`sw-system-config`).
+Provide sales-channel-specific values as a nested array per channel ID. This avoids mock stubs on `get()`.
+For integration with the real config → `sw-integration-test`. Using config in code: `shopware-core` (`sw-system-config`).
 
 → [../shopware-phpunit/`MOCK-SYSTEM-CONFIG-MOCK-STATIC-SYSTEM-CONFIG-SERVICE.md`](../shopware-phpunit/`MOCK-SYSTEM-CONFIG-MOCK-STATIC-SYSTEM-CONFIG-SERVICE.md`)

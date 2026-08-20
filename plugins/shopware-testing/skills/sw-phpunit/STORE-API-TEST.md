@@ -1,6 +1,6 @@
-# Shopware 6 — Store-API-Test
+# Shopware 6 — Store API Test
 
-Testet Store-API-Routen end-to-end über einen SalesChannel-Browser.
+Tests Store API routes end-to-end through a sales channel browser.
 
 ```php
 use IntegrationTestBehaviour, SalesChannelApiTestBehaviour;
@@ -14,7 +14,7 @@ public function testRoute(): void
 }
 ```
 
-Browser setzt `sw-access-key` automatisch. Für Admin-API → `sw-admin-api-test`. Eigene Routen: `shopware-framework`
+The browser sets `sw-access-key` automatically. For the Admin API → `sw-admin-api-test`. Custom routes: `shopware-framework`
 (`sw-store-api-route`).
 
 → [../shopware-phpunit/`STORE-API-TEST-API-STORE-API-TESTING.md`](../shopware-phpunit/`STORE-API-TEST-API-STORE-API-TESTING.md`)

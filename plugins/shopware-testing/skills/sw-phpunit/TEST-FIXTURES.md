@@ -1,7 +1,7 @@
-# Shopware 6 — Test-Fixtures
+# Shopware 6 — Test Fixtures
 
-Wiederverwendbare Testdaten über Helper/Traits anlegen; IDs zentral über eine `IdsCollection` verwalten
-(lesbare, stabile Referenzen).
+Create reusable test data through helpers/traits; manage IDs centrally in an `IdsCollection`
+(readable, stable references).
 
 ```php
 $ids = new IdsCollection();
@@ -11,7 +11,7 @@ $this->getContainer()->get('product.repository')->create([
 $productId = $ids->get('p1');
 ```
 
-Komplexe Entities über **Builder** (`sw-test-builder`). Wiederkehrende Setups in Trait/Helper kapseln. Bei DB-Tests
-mit `IntegrationTestBehaviour` (Rollback). Für Symfony-Foundry-artige Factories siehe generische Skills.
+Build complex entities with **builders** (`sw-test-builder`). Encapsulate recurring setups in a trait/helper. For DB tests
+use `IntegrationTestBehaviour` (rollback). For Symfony-Foundry-style factories see the generic skills.
 
 → [../shopware-phpunit/`TEST-FIXTURES-DATA-TEST-FIXTURES.md`](../shopware-phpunit/`TEST-FIXTURES-DATA-TEST-FIXTURES.md`)

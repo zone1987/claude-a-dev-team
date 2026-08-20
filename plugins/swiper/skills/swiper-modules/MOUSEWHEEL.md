@@ -1,6 +1,6 @@
-# Swiper — Mousewheel-Modul
+# Swiper — Mousewheel module
 
-Mausrad-/Trackpad-Steuerung für Swiper mit konfigurierbarer Sensitivität.
+Mouse wheel / trackpad control for Swiper with configurable sensitivity.
 
 ```js
 import Swiper from 'swiper';
@@ -17,5 +17,5 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Vertiefung
-- [MOUSEWHEEL-DETAIL.md](MOUSEWHEEL-DETAIL.md) — alle Parameter, Methoden, Events, noMousewheelClass-Verwendung
+## Further reading
+- [MOUSEWHEEL-DETAIL.md](MOUSEWHEEL-DETAIL.md) — all parameters, methods, events, using noMousewheelClass

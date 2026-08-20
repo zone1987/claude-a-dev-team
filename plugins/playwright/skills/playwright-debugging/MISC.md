@@ -1,5 +1,5 @@
 # playwright-misc
 
-Playwright-Erweiterbarkeit & Sonstiges: Custom-Selector-Engines (selectors.register), Video-Aufnahme, Release-Kanäle/Canary.
+Playwright extensibility and miscellaneous topics: custom selector engines (selectors.register), video recording, release channels/canary.
 
-Vollständige Referenz mit allen Optionen/Parametern/Tools: `MISC-DETAIL.md`.
+Complete reference with all options/parameters/tools: `MISC-DETAIL.md`.

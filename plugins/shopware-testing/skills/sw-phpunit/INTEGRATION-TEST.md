@@ -1,7 +1,7 @@
-# Shopware 6 — Integrationstest
+# Shopware 6 — Integration Test
 
-Testet gegen echte DB/Container (DAL, Services). `IntegrationTestBehaviour` kapselt jede Testmethode in eine
-Transaktion (Rollback danach) → isolierte, schnelle Tests.
+Tests against a real DB/container (DAL, services). `IntegrationTestBehaviour` wraps every test method in a
+transaction (rolled back afterwards) → isolated, fast tests.
 
 ```php
 public function testWrite(): void
@@ -13,7 +13,7 @@ public function testWrite(): void
 }
 ```
 
-Services via `$this->getContainer()->get(...)`. Bevorzugt `assertSame` (ADR), Daten über Builder/Fixtures
-(`sw-test-builder`, `sw-test-fixtures`). Für reine Logik ohne DB → Unit-Test (`sw-unit-test`).
+Fetch services via `$this->getContainer()->get(...)`. Prefer `assertSame` (ADR), create data through builders/fixtures
+(`sw-test-builder`, `sw-test-fixtures`). For pure logic without a DB → a unit test (`sw-unit-test`).
 
 → [../shopware-phpunit/`INTEGRATION-TEST-INTEGRATION-REPOSITORY-TESTING.md`](../shopware-phpunit/`INTEGRATION-TEST-INTEGRATION-REPOSITORY-TESTING.md`)

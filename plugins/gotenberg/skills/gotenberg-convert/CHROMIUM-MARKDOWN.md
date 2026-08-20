@@ -1,12 +1,12 @@
-# Gotenberg — Markdown zu PDF
+# Gotenberg — Markdown to PDF
 
 **Route:** `POST /forms/chromium/convert/markdown`
 
-Konvertiert Markdown (mit MathJax-Unterstuetzung) zu PDF via Headless Chromium.
-Benoetigt eine `index.html`-Template-Datei mit Go-Template-Direktive
-und mindestens eine `.md`-Datei.
+Converts Markdown (with MathJax support) to PDF via headless Chromium.
+Requires an `index.html` template file with a Go template directive
+and at least one `.md` file.
 
-## Template-Pflichtstruktur
+## Required template structure
 
 ```html
 <!DOCTYPE html>
@@ -18,12 +18,12 @@ und mindestens eine `.md`-Datei.
 </html>
 ```
 
-## Pflicht-Files
+## Required files
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `files` (index.html) | file | HTML-Template mit `{{ toHTML "dateiname.md" }}` |
-| `files` (*.md) | file[] | Mindestens eine Markdown-Datei |
+| `files` (index.html) | file | HTML template with `{{ toHTML "filename.md" }}` |
+| `files` (*.md) | file[] | At least one Markdown file |
 
 ```bash
 curl --request POST http://localhost:3000/forms/chromium/convert/markdown \
@@ -32,5 +32,5 @@ curl --request POST http://localhost:3000/forms/chromium/convert/markdown \
   -o my.pdf
 ```
 
-Alle weiteren Felder identisch mit HTML-Endpunkt.
-Vollstaendige Referenz: `CHROMIUM-MARKDOWN-DETAIL.md`
+All further fields are identical to the HTML endpoint.
+Complete reference: `CHROMIUM-MARKDOWN-DETAIL.md`

@@ -1,27 +1,27 @@
-# flatpickr — Events & Hooks (vollständige Referenz, v4.6.13)
+# flatpickr — Events and hooks (complete reference, v4.6.13)
 
-Quelle: `src/types/options.ts` (Typ `HookKey`, Konstante `HOOKS`, Stand v4.6.13).
+Source: `src/types/options.ts` (type `HookKey`, constant `HOOKS`, as of v4.6.13).
 
 ## Contents
 
-- [Grundprinzip](#grundprinzip)
-- [Alle Hook-Keys](#alle-hook-keys)
-- [Standard-Hook Signatur (Typ `Hook`)](#standard-hook-signatur-typ-hook)
-- [Hooks im Detail](#hooks-im-detail)
-- [Hooks nach Initialisierung manipulieren](#hooks-nach-initialisierung-manipulieren)
-- [Hooks via `set()` dynamisch setzen](#hooks-via-set-dynamisch-setzen)
-- [Mehrere Hooks gleichzeitig als Array](#mehrere-hooks-gleichzeitig-als-array)
+- [Basic principle](#basic-principle)
+- [All hook keys](#all-hook-keys)
+- [Standard hook signature (type `Hook`)](#standard-hook-signature-type-hook)
+- [Hooks in detail](#hooks-in-detail)
+- [Manipulating hooks after initialization](#manipulating-hooks-after-initialization)
+- [Setting hooks dynamically via `set()`](#setting-hooks-dynamically-via-set)
+- [Several hooks at once as an array](#several-hooks-at-once-as-an-array)
 
-## Grundprinzip
+## Basic principle
 
-Hooks werden als Options-Properties übergeben. Jeder Hook kann eine einzelne Funktion
-oder ein Array von Funktionen sein.
+Hooks are passed as option properties. Every hook can be a single function
+or an array of functions.
 
 ```js
 flatpickr("#date", {
   onChange: function(selectedDates, dateStr, instance) {
-    console.log("Ausgewählt:", dateStr);
-    console.log("Als Date-Objekt:", selectedDates[0]);
+    console.log("Selected:", dateStr);
+    console.log("As a Date object:", selectedDates[0]);
   },
   onClose: [
     function(selectedDates, dateStr, instance) { /* fn1 */ },
@@ -30,9 +30,9 @@ flatpickr("#date", {
 });
 ```
 
-## Alle Hook-Keys
+## All hook keys
 
-Vollständige Liste laut `src/types/options.ts`:
+Complete list according to `src/types/options.ts`:
 
 ```typescript
 type HookKey =
@@ -50,51 +50,51 @@ type HookKey =
   | "onPreCalendarPosition";
 ```
 
-## Standard-Hook Signatur (Typ `Hook`)
+## Standard hook signature (type `Hook`)
 
-Alle Hooks erhalten dieselbe Signatur:
+All hooks receive the same signature:
 
 ```typescript
 type Hook = (
-  dates: Date[],              // Array der ausgewählten Daten
-  currentDateString: string,  // Formatierter Datumsstring (gem. dateFormat)
-  self: Instance,             // Die flatpickr-Instanz
-  data?: any                  // Optionale Zusatzdaten
+  dates: Date[],              // Array of the selected dates
+  currentDateString: string,  // Formatted date string (per dateFormat)
+  self: Instance,             // The flatpickr instance
+  data?: any                  // Optional extra data
 ) => void;
 ```
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `selectedDates` | `Date[]` | Array der ausgewählten Date-Objekte |
-| `dateStr` | `String` | String-Repräsentation des zuletzt ausgewählten Datums (gem. `dateFormat`) |
-| `instance` | `Instance` | Die flatpickr-Instanz mit allen Methoden und Properties |
-| `data` | `any` | Optionale Zusatzdaten (bei `onDayCreate`: das HTML-Element) |
+| `selectedDates` | `Date[]` | Array of the selected Date objects |
+| `dateStr` | `String` | String representation of the most recently selected date (per `dateFormat`) |
+| `instance` | `Instance` | The flatpickr instance with all methods and properties |
+| `data` | `any` | Optional extra data (for `onDayCreate`: the HTML element) |
 
-## Hooks im Detail
+## Hooks in detail
 
 ### `onChange`
 
-Wird ausgelöst wenn der Nutzer ein Datum auswählt, abwählt oder die Zeit bei einem ausgewählten Datum ändert. Auch bei programmatischen Änderungen wenn `triggerChange: true`.
+Fires when the user selects a date, deselects it, or changes the time of a selected date. Also on programmatic changes when `triggerChange: true`.
 
 ```js
 flatpickr("#date", {
   onChange: function(selectedDates, dateStr, instance) {
-    console.log("Neues Datum:", dateStr);
-    console.log("Als Date:", selectedDates[0]);
+    console.log("New date:", dateStr);
+    console.log("As a Date:", selectedDates[0]);
 
-    // Zweite Instanz aktualisieren (z.B. für "bis"-Datum)
+    // Update a second instance (e.g. for the "to" date)
     toDatePicker.set("minDate", selectedDates[0]);
   }
 });
 ```
 
-Bei `mode: "range"`:
+With `mode: "range"`:
 
 ```js
 onChange: function(selectedDates) {
   if (selectedDates.length === 2) {
     const [from, to] = selectedDates;
-    console.log("Von:", from, "Bis:", to);
+    console.log("From:", from, "To:", to);
   }
 }
 ```
@@ -103,13 +103,13 @@ onChange: function(selectedDates) {
 
 ### `onOpen`
 
-Wird ausgelöst wenn der Kalender geöffnet wird (durch Nutzer-Interaktion oder `fp.open()`).
+Fires when the calendar opens (through user interaction or `fp.open()`).
 
 ```js
 flatpickr("#date", {
   onOpen: function(selectedDates, dateStr, instance) {
-    console.log("Kalender geöffnet");
-    // Zum heutigen Monat springen
+    console.log("Calendar opened");
+    // Jump to the current month
     instance.jumpToDate(new Date());
   }
 });
@@ -119,13 +119,13 @@ flatpickr("#date", {
 
 ### `onClose`
 
-Wird ausgelöst wenn der Kalender geschlossen wird (durch Nutzer-Interaktion oder `fp.close()`).
+Fires when the calendar closes (through user interaction or `fp.close()`).
 
 ```js
 flatpickr("#date", {
   onClose: function(selectedDates, dateStr, instance) {
-    console.log("Kalender geschlossen, Wert:", dateStr);
-    // Validierung beim Schließen
+    console.log("Calendar closed, value:", dateStr);
+    // Validate on close
     if (!dateStr) {
       instance.setDate(new Date());
     }
@@ -137,13 +137,13 @@ flatpickr("#date", {
 
 ### `onReady`
 
-Wird **einmalig** ausgelöst wenn der Kalender vollständig initialisiert ist (nach allen Plugin-`onReady`-Hooks).
+Fires **once** when the calendar is fully initialized (after all plugin `onReady` hooks).
 
 ```js
 flatpickr("#date", {
   onReady: function(selectedDates, dateStr, instance) {
-    console.log("flatpickr initialisiert:", instance);
-    // Externe Referenz setzen
+    console.log("flatpickr initialized:", instance);
+    // Store an external reference
     window.myPicker = instance;
   }
 });
@@ -153,13 +153,13 @@ flatpickr("#date", {
 
 ### `onValueUpdate`
 
-Wird ausgelöst wenn der Input-Wert mit einem neuen Datumsstring aktualisiert wird.
-Kann häufiger als `onChange` ausgelöst werden (auch bei Hover, partiellem Input, etc.).
+Fires when the input value is updated with a new date string.
+Can fire more often than `onChange` (also on hover, partial input, etc.).
 
 ```js
 flatpickr("#date", {
   onValueUpdate: function(selectedDates, dateStr, instance) {
-    // Wird auch bei programmatischer Änderung ausgelöst
+    // Also fires on programmatic changes
     document.getElementById("display").textContent = dateStr;
   }
 });
@@ -169,13 +169,13 @@ flatpickr("#date", {
 
 ### `onMonthChange`
 
-Wird ausgelöst wenn der angezeigte Monat wechselt (durch Nutzer oder programmatisch via `changeMonth()`).
+Fires when the displayed month changes (by the user or programmatically via `changeMonth()`).
 
 ```js
 flatpickr("#date", {
   onMonthChange: function(selectedDates, dateStr, instance) {
-    console.log("Monat:", instance.currentMonth, "Jahr:", instance.currentYear);
-    // Verfügbare Daten dynamisch nachladen
+    console.log("Month:", instance.currentMonth, "Year:", instance.currentYear);
+    // Load available dates dynamically
     loadAvailableDates(instance.currentYear, instance.currentMonth);
   }
 });
@@ -185,12 +185,12 @@ flatpickr("#date", {
 
 ### `onYearChange`
 
-Wird ausgelöst wenn das angezeigte Jahr wechselt (durch Nutzer oder programmatisch).
+Fires when the displayed year changes (by the user or programmatically).
 
 ```js
 flatpickr("#date", {
   onYearChange: function(selectedDates, dateStr, instance) {
-    console.log("Jahr gewechselt:", instance.currentYear);
+    console.log("Year changed:", instance.currentYear);
   }
 });
 ```
@@ -199,24 +199,24 @@ flatpickr("#date", {
 
 ### `onDayCreate`
 
-Wird für jedes Tages-DOM-Element beim Rendern des Kalenders aufgerufen.
-Ermöglicht vollständige Kontrolle über jeden Kalendertag.
-Das 4. Argument `data` ist hier das `DayElement` (HTMLSpanElement mit `.dateObj`-Property).
+Called for every day DOM element while the calendar renders.
+Gives full control over each calendar day.
+Here the 4th argument `data` is the `DayElement` (HTMLSpanElement with a `.dateObj` property).
 
 ```js
 flatpickr("#date", {
   onDayCreate: function(dObj, dStr, fp, dayElem) {
-    // dayElem ist ein DayElement (HTMLSpanElement & { dateObj: Date; $i: number })
+    // dayElem is a DayElement (HTMLSpanElement & { dateObj: Date; $i: number })
     
-    // Tooltip hinzufügen
-    dayElem.title = "Klick für " + dStr;
+    // Add a tooltip
+    dayElem.title = "Click for " + dStr;
 
-    // Event-Punkt hinzufügen
+    // Add an event dot
     if (hasEvent(dObj)) {
       dayElem.innerHTML += "<span class='event-dot'></span>";
     }
 
-    // Bestimmte Tage markieren
+    // Mark specific days
     if (dObj.getDate() === 15) {
       dayElem.classList.add("pay-day");
     }
@@ -244,15 +244,15 @@ flatpickr("#date", {
 
 ### `onParseConfig`
 
-Wird nach dem Parsen der Konfiguration ausgelöst. Erlaubt Manipulation der `ParsedOptions`
-bevor der Kalender aufgebaut wird. Wird auch von Plugins genutzt (`rangePlugin`, `weekSelect`, `monthSelect`).
+Fires after the configuration has been parsed. Allows manipulation of the `ParsedOptions`
+before the calendar is built. Also used by plugins (`rangePlugin`, `weekSelect`, `monthSelect`).
 
 ```js
 flatpickr("#date", {
   onParseConfig: function(selectedDates, dateStr, instance) {
-    // Konfig nach dem Parsen anpassen
-    // Achtung: instance.config ist zu diesem Zeitpunkt noch im Aufbau
-    console.log("Konfig geparsed");
+    // Adjust the config after parsing
+    // Caution: instance.config is still being built at this point
+    console.log("Config parsed");
   }
 });
 ```
@@ -261,16 +261,16 @@ flatpickr("#date", {
 
 ### `onDestroy`
 
-Wird ausgelöst bevor die flatpickr-Instanz zerstört wird (`fp.destroy()`).
-Nützlich für Aufräumarbeiten in Plugins und Integrations-Code.
+Fires before the flatpickr instance is destroyed (`fp.destroy()`).
+Useful for cleanup work in plugins and integration code.
 
 ```js
 flatpickr("#date", {
   onDestroy: function(selectedDates, dateStr, instance) {
-    console.log("Picker wird entfernt");
-    // Externe Referenzen freigeben
+    console.log("Picker is being removed");
+    // Release external references
     window.myPicker = null;
-    // Eigene Event-Listener entfernen
+    // Remove your own event listeners
     document.removeEventListener("click", myHandler);
   }
 });
@@ -280,15 +280,15 @@ flatpickr("#date", {
 
 ### `onKeyDown`
 
-Wird bei gültigen Tastatureingaben im Kalender ausgelöst.
-Das 4. Argument `data` ist das `KeyboardEvent`.
+Fires on valid keyboard input inside the calendar.
+Here the 4th argument `data` is the `KeyboardEvent`.
 
 ```js
 flatpickr("#date", {
   onKeyDown: function(selectedDates, dateStr, instance, event) {
-    // event ist das KeyboardEvent
+    // event is the KeyboardEvent
     if (event.key === "Enter") {
-      console.log("Enter gedrückt");
+      console.log("Enter pressed");
     }
     if (event.key === "Escape") {
       instance.close();
@@ -301,51 +301,51 @@ flatpickr("#date", {
 
 ### `onPreCalendarPosition`
 
-Wird unmittelbar vor der Positionierungsberechnung des Kalenders ausgelöst.
-Nützlich für Plugins, die das `positionElement` dynamisch ändern müssen (z.B. `rangePlugin`).
+Fires immediately before the calendar's position is calculated.
+Useful for plugins that need to change the `positionElement` dynamically (e.g. `rangePlugin`).
 
 ```js
 flatpickr("#date", {
   onPreCalendarPosition: function(selectedDates, dateStr, instance) {
-    // Vor der Positionierung: kann instance._positionElement überschreiben
-    console.log("Kalender wird positioniert");
+    // Before positioning: can overwrite instance._positionElement
+    console.log("Calendar is being positioned");
   }
 });
 ```
 
 ---
 
-## Hooks nach Initialisierung manipulieren
+## Manipulating hooks after initialization
 
 ```js
 const fp = flatpickr("#date", { onChange: originalHandler });
 
-// Weiteren Handler hinzufügen
+// Add another handler
 fp.config.onChange.push(function(selectedDates, dateStr) {
-  console.log("Zusätzlicher Handler:", dateStr);
+  console.log("Additional handler:", dateStr);
 });
 
-// Handler vollständig ersetzen
+// Replace the handlers entirely
 fp.config.onChange = [newHandler];
 ```
 
-## Hooks via `set()` dynamisch setzen
+## Setting hooks dynamically via `set()`
 
 ```js
 const fp = flatpickr("#date", {});
 
 fp.set("onChange", function(selectedDates, dateStr) {
-  console.log("Dynamisch gesetzt:", dateStr);
+  console.log("Set dynamically:", dateStr);
 });
 ```
 
-## Mehrere Hooks gleichzeitig als Array
+## Several hooks at once as an array
 
 ```js
 flatpickr("#date", {
   onReady: [
-    function(selectedDates, dateStr, fp) { /* Initialisierung A */ },
-    function(selectedDates, dateStr, fp) { /* Initialisierung B */ },
+    function(selectedDates, dateStr, fp) { /* initialization A */ },
+    function(selectedDates, dateStr, fp) { /* initialization B */ },
   ],
   onDestroy: [cleanupA, cleanupB],
 });
@@ -353,4 +353,4 @@ flatpickr("#date", {
 
 ---
 
-Quelle: `src/types/options.ts` (v4.6.13) | https://flatpickr.js.org/events/
+Source: `src/types/options.ts` (v4.6.13) | https://flatpickr.js.org/events/

@@ -1,15 +1,15 @@
-# Gotenberg — URL zu PDF
+# Gotenberg — URL to PDF
 
 **Route:** `POST /forms/chromium/convert/url`
 
-Konvertiert eine Webseite per URL zu PDF via Headless Chromium.
-Unterstuetzt JavaScript-Ausfuehrung, SPAs und dynamischen Inhalt.
+Converts a web page by URL to PDF via headless Chromium.
+Supports JavaScript execution, SPAs and dynamic content.
 
-## Pflichtfeld
+## Required field
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `url` | string | URL der zu konvertierenden Seite. `file://`-URLs geben 400 zurueck. |
+| `url` | string | URL of the page to convert. `file://` URLs return 400. |
 
 ```bash
 curl --request POST http://localhost:3000/forms/chromium/convert/url \
@@ -17,8 +17,8 @@ curl --request POST http://localhost:3000/forms/chromium/convert/url \
   -o my.pdf
 ```
 
-Alle weiteren Form-Felder sind identisch mit dem HTML-Endpunkt:
-Seitenlayout, Hintergrund, Medientyp, Warten, Cookies, Headers, Header/Footer,
-Metadaten, Wasserzeichen, Split, PDF/A, Verschluesselung.
+All further form fields are identical to the HTML endpoint:
+page layout, background, media type, waiting, cookies, headers, header/footer,
+metadata, watermark, split, PDF/A, encryption.
 
-Vollstaendige Feldtabellen: `CHROMIUM-URL-DETAIL.md`
+Complete field tables: `CHROMIUM-URL-DETAIL.md`

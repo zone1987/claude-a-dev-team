@@ -9,12 +9,12 @@ Two engines: Chromium renders web content, LibreOffice handles Office formats. T
 
 ## Reference map
 
-- **[CHROMIUM-HTML.md](CHROMIUM-HTML.md)**: Konvertiert eine `index.html` zu PDF via Headless Chromium. [CHROMIUM-HTML-DETAIL](CHROMIUM-HTML-DETAIL.md).
-- **[CHROMIUM-MARKDOWN.md](CHROMIUM-MARKDOWN.md)**: Konvertiert Markdown zu PDF via Headless Chromium. [CHROMIUM-MARKDOWN-DETAIL](CHROMIUM-MARKDOWN-DETAIL.md).
-- **[CHROMIUM-SCREENSHOTS.md](CHROMIUM-SCREENSHOTS.md)**: Drei Routen fuer Screenshots via Headless Chromium:. [CHROMIUM-SCREENSHOTS-DETAIL](CHROMIUM-SCREENSHOTS-DETAIL.md).
-- **[CHROMIUM-URL.md](CHROMIUM-URL.md)**: Konvertiert eine Webseite per URL zu PDF via Headless Chromium. [CHROMIUM-URL-DETAIL](CHROMIUM-URL-DETAIL.md).
-- **[LIBREOFFICE.md](LIBREOFFICE.md)**: Konvertiert Office-Dokumente zu PDF via LibreOffice. [LIBREOFFICE-DETAIL](LIBREOFFICE-DETAIL.md).
-- **[ROUTES.md](ROUTES.md)**: Jede Route akzeptiert einen `multipart/form-data` POST-Request und gibt eine Datei zurueck. [ROUTES-DETAIL](ROUTES-DETAIL.md).
+- **[CHROMIUM-HTML.md](CHROMIUM-HTML.md)**: Converts an `index.html` to PDF via headless Chromium. [CHROMIUM-HTML-DETAIL](CHROMIUM-HTML-DETAIL.md).
+- **[CHROMIUM-MARKDOWN.md](CHROMIUM-MARKDOWN.md)**: Converts Markdown to PDF via headless Chromium. [CHROMIUM-MARKDOWN-DETAIL](CHROMIUM-MARKDOWN-DETAIL.md).
+- **[CHROMIUM-SCREENSHOTS.md](CHROMIUM-SCREENSHOTS.md)**: Three routes for screenshots via headless Chromium. [CHROMIUM-SCREENSHOTS-DETAIL](CHROMIUM-SCREENSHOTS-DETAIL.md).
+- **[CHROMIUM-URL.md](CHROMIUM-URL.md)**: Converts a web page by URL to PDF via headless Chromium. [CHROMIUM-URL-DETAIL](CHROMIUM-URL-DETAIL.md).
+- **[LIBREOFFICE.md](LIBREOFFICE.md)**: Converts Office documents to PDF via LibreOffice. [LIBREOFFICE-DETAIL](LIBREOFFICE-DETAIL.md).
+- **[ROUTES.md](ROUTES.md)**: Every route accepts a `multipart/form-data` POST request and returns a file. [ROUTES-DETAIL](ROUTES-DETAIL.md).
 
 ## Source
 

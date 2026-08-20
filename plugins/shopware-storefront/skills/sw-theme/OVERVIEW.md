@@ -1,6 +1,6 @@
 # Shopware 6 — Theme
 
-Ein Theme ist ein Plugin, dessen Klasse `ThemeInterface` implementiert; Kern ist die `theme.json` unter
+A theme is a plugin whose class implements `ThemeInterface`; its core is the `theme.json` in
 `src/Resources/`.
 
 ```json
@@ -14,6 +14,6 @@ Ein Theme ist ein Plugin, dessen Klasse `ThemeInterface` implementiert; Kern ist
 }
 ```
 
-`theme.json` definiert View-/Style-/Script-/Asset-Reihenfolge und Config-Felder (`sw-theme-config`).
-Aktivieren: `bin/console theme:change`; kompilieren: `theme:compile`. Vererbung über `@`-Referenzen
-(`sw-theme-inheritance`). Reines Styling ohne eigenes Theme geht auch als Plugin-SCSS (`sw-storefront-scss`).
+`theme.json` defines the view/style/script/asset order and the config fields (`sw-theme-config`).
+Activate: `bin/console theme:change`; compile: `theme:compile`. Inheritance works through `@` references
+(`sw-theme-inheritance`). Pure styling without a dedicated theme also works as plugin SCSS (`sw-storefront-scss`).

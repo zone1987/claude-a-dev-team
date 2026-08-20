@@ -9,10 +9,10 @@ Templates are overridden by mirroring the path, never by editing core. Blocks ar
 
 ## Reference map
 
-- **[EXTENSION.md](EXTENSION.md)**: Eigene Twig-Funktionen/-Filter über eine `AbstractExtension`-Klasse, registriert mit `twig.extension`-Tag.
-- **[FUNCTIONS.md](FUNCTIONS.md)**: Wichtige eingebaute Funktionen/Helfer in Storefront-Templates:.
-- **[STOREFRONT-TRANSLATIONS.md](STOREFRONT-TRANSLATIONS.md)**: Übersetzungen liegen als JSON unter `src/Resources/snippet/<locale>/<name>.<locale>.json` und werden automati….
-- **[TEMPLATES.md](TEMPLATES.md)**: Templates liegen unter `src/Resources/views/storefront/...` und spiegeln die Core-Pfade.
+- **[EXTENSION.md](EXTENSION.md)**: Add custom Twig functions/filters through an `AbstractExtension` class, registered with the `twig.extension` tag.
+- **[FUNCTIONS.md](FUNCTIONS.md)**: Important built-in functions/helpers in Storefront templates:.
+- **[STOREFRONT-TRANSLATIONS.md](STOREFRONT-TRANSLATIONS.md)**: Translations live as JSON in `src/Resources/snippet/<locale>/<name>.<locale>.json` and are loaded automati….
+- **[TEMPLATES.md](TEMPLATES.md)**: Templates live in `src/Resources/views/storefront/...` and mirror the core paths.
 
 ## Source
 

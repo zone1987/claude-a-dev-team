@@ -1,6 +1,6 @@
-# Shopware 6 — Entity-Extension
+# Shopware 6 — Entity extension
 
-Um einer Core-Entity (oder fremden Entity) Felder/Associations hinzuzufügen, OHNE deren Definition zu ändern.
+Adds fields and associations to a core entity (or a third-party entity) WITHOUT changing its definition.
 
 ```php
 class ProductExtension extends EntityExtension
@@ -17,7 +17,7 @@ class ProductExtension extends EntityExtension
 }
 ```
 
-Registrierung via `shopware.entity.extension`-Tag. Eigene Spalten erfordern eine Migration. Zusätzliche
-einfache Felder gehen oft einfacher über **CustomFields** (`sw-custom-fields`) — Extension für echte Associations/Logik.
+Register it with the `shopware.entity.extension` tag. Columns of your own require a migration. Additional
+simple fields are often easier through **custom fields** (`sw-custom-fields`) — use an extension for real associations and logic.
 
-→ Gerüst: [examples/EntityExtension.php](examples/EntityExtension.php)
+→ Scaffold: [examples/EntityExtension.php](examples/EntityExtension.php)

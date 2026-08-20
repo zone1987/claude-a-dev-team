@@ -1,19 +1,19 @@
-# Shopware 6 — SEO-URLs
+# Shopware 6 — SEO URLs
 
-Für eigene Detailseiten sprechende URLs über eine `AbstractSeoUrlRoute` + konfigurierbares SEO-Template bereitstellen.
+Provide readable URLs for your own detail pages via an `AbstractSeoUrlRoute` plus a configurable SEO template.
 
 ```php
 class FfExampleSeoUrlRoute extends AbstractSeoUrlRoute
 {
     public const ROUTE_NAME = 'frontend.ff.example';
     public const DEFAULT_TEMPLATE = '{{ example.name }}';
-    public function getConfig(): SeoUrlRouteConfig { /* Entity + Route + Template */ }
-    public function prepareCriteria(Criteria $criteria, SalesChannelEntity $sc): void { /* Associations */ }
-    public function getMapping(Entity $example, ?SalesChannelEntity $sc): SeoUrlMapping { /* infoPath + seoPathInfo-Vars */ }
+    public function getConfig(): SeoUrlRouteConfig { /* entity + route + template */ }
+    public function prepareCriteria(Criteria $criteria, SalesChannelEntity $sc): void { /* associations */ }
+    public function getMapping(Entity $example, ?SalesChannelEntity $sc): SeoUrlMapping { /* infoPath + seoPathInfo vars */ }
 }
 ```
 
-Registrierung via `shopware.seo_url.route`-Tag; generieren über den SeoUrlUpdater (bei Writes/Indexer). Im Template
-`{{ seoUrl('frontend.ff.example', {id: id}) }}`. `robots.txt` per Subscriber auf das Robots-Event erweitern.
+Register it via the `shopware.seo_url.route` tag; generate URLs through the SeoUrlUpdater (on writes/indexer). In the template
+use `{{ seoUrl('frontend.ff.example', {id: id}) }}`. Extend `robots.txt` with a subscriber on the robots event.
 
-→ SEO-Details: [SEO.md](SEO.md)
+→ SEO details: [SEO.md](SEO.md)

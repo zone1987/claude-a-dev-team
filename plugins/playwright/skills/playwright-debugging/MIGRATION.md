@@ -1,5 +1,5 @@
 # playwright-migration
 
-Migration zu Playwright: von Puppeteer & Protractor, Selenium-Grid-Anbindung — API-Mappings und Vorher/Nachher.
+Migration to Playwright: from Puppeteer and Protractor, Selenium Grid integration — API mappings and before/after.
 
-Vollständige Referenz mit allen Optionen/Parametern/Tools: `MIGRATION-DETAIL.md`.
+Complete reference with all options/parameters/tools: `MIGRATION-DETAIL.md`.

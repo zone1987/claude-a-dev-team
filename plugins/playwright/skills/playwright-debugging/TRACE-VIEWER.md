@@ -1,5 +1,5 @@
 # playwright-trace-viewer
 
-Playwright Trace Viewer & Debugging: Trace aufnehmen/öffnen, UI-Inspector, PWDEBUG, Playwright Inspector, VS-Code-Debug.
+Playwright Trace Viewer and debugging: record/open a trace, UI inspector, PWDEBUG, Playwright Inspector, VS Code debugging.
 
-Vollständige Referenz mit allen Optionen/Parametern/Tools: `TRACE-VIEWER-DETAIL.md`.
+Complete reference with all options/parameters/tools: `TRACE-VIEWER-DETAIL.md`.

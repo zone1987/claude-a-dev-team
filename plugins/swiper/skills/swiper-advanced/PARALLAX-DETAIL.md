@@ -1,23 +1,23 @@
-# Swiper Parallax-Modul — Vollständige Referenz
+# Swiper Parallax module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [Data-Attribute](#data-attribute)
-- [Werte erklärt](#werte-erklärt)
-- [Vollständiges HTML-Beispiel](#vollständiges-html-beispiel)
-- [Konfigurationsbeispiele](#konfigurationsbeispiele)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [Data attributes](#data-attributes)
+- [Values explained](#values-explained)
+- [Complete HTML example](#complete-html-example)
+- [Configuration examples](#configuration-examples)
 
-## Konzept
+## Concept
 
-Das Parallax-Modul ermöglicht Parallax-Scroll-Effekte auf beliebigen HTML-Elementen innerhalb des Swipers. Elemente bewegen sich mit unterschiedlicher Geschwindigkeit relativ zum Slide-Übergang. Zwei Scoping-Bereiche:
+The Parallax module enables parallax scroll effects on any HTML element inside the Swiper. Elements move at a different speed relative to the slide transition. Two scoping levels:
 
-- **Direkte Swiper-Kinder** (z.B. Hintergründe): Parallax basiert auf dem Gesamtfortschritt des Swipers
-- **Slide-Kinder** (Texte, Icons): Parallax basiert auf dem Fortschritt des einzelnen Slides
+- **Direct Swiper children** (backgrounds, for example): parallax is based on the overall progress of the Swiper
+- **Slide children** (text, icons): parallax is based on the progress of the individual slide
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -25,42 +25,42 @@ import { Parallax } from 'swiper/modules';
 
 const swiper = new Swiper('.swiper', {
   modules: [Parallax],
-  parallax: true,    // oder: parallax: { enabled: true }
-  speed: 600,        // Parallax-Timing folgt dem Transition-Speed
+  parallax: true,    // or: parallax: { enabled: true }
+  speed: 600,        // parallax timing follows the transition speed
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `enabled` | `boolean` | `false` | Parallax-Modul aktivieren |
+| `enabled` | `boolean` | `false` | Enable the Parallax module |
 
-**Hinweis:** Das Modul hat nur diesen einen Parameter. Alle Parallax-Werte werden über HTML-Data-Attribute gesteuert.
+**Note:** The module has only this single parameter. All parallax values are driven by HTML data attributes.
 
-## Data-Attribute
+## Data attributes
 
-| Attribut | Typ | Beschreibung |
+| Attribute | Type | Description |
 |----------|-----|--------------|
-| `data-swiper-parallax` | `number` (px) oder `string` (%) | Translate-Versatz auf der Slide-Bewegungsachse |
-| `data-swiper-parallax-x` | `number` (px) oder `string` (%) | Horizontaler Parallax-Versatz |
-| `data-swiper-parallax-y` | `number` (px) oder `string` (%) | Vertikaler Parallax-Versatz |
-| `data-swiper-parallax-scale` | `number` | Skalierungsfaktor wenn Slide inaktiv (1 = Originalgröße) |
-| `data-swiper-parallax-opacity` | `number` (0–1) | Opazität wenn Slide inaktiv |
-| `data-swiper-parallax-duration` | `number` (ms) | Eigene Transition-Dauer für dieses Element |
+| `data-swiper-parallax` | `number` (px) or `string` (%) | Translate offset along the slide movement axis |
+| `data-swiper-parallax-x` | `number` (px) or `string` (%) | Horizontal parallax offset |
+| `data-swiper-parallax-y` | `number` (px) or `string` (%) | Vertical parallax offset |
+| `data-swiper-parallax-scale` | `number` | Scale factor while the slide is inactive (1 = original size) |
+| `data-swiper-parallax-opacity` | `number` (0–1) | Opacity while the slide is inactive |
+| `data-swiper-parallax-duration` | `number` (ms) | Individual transition duration for this element |
 
-## Werte erklärt
+## Values explained
 
-- **Positiver Wert:** Element bewegt sich langsamer als der Slide (klassischer Parallax)
-- **Negativer Wert:** Element bewegt sich schneller als der Slide (inverser Parallax)
-- **Prozent-Werte:** Relativ zur Swiper-Container-Breite/-Höhe
-- **`data-swiper-parallax="-23%"`** auf einem direkten Kind: bewegt sich 23% weniger als der Swiper scrollt
+- **Positive value:** the element moves slower than the slide (classic parallax)
+- **Negative value:** the element moves faster than the slide (inverse parallax)
+- **Percentage values:** relative to the Swiper container width/height
+- **`data-swiper-parallax="-23%"`** on a direct child: moves 23% less than the Swiper scrolls
 
-## Vollständiges HTML-Beispiel
+## Complete HTML example
 
 ```html
 <div class="swiper">
-  <!-- Parallax-Hintergrund (direktes Kind = basiert auf Gesamt-Progress) -->
+  <!-- Parallax background (direct child = based on overall progress) -->
   <div
     class="parallax-bg"
     style="background-image: url(background.jpg); position: absolute; width: 130%; height: 100%; left: -15%;"
@@ -69,47 +69,47 @@ const swiper = new Swiper('.swiper', {
 
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <!-- Slide-Kinder: Parallax basiert auf diesem Slide's Progress -->
+      <!-- Slide children: parallax is based on this slide's progress -->
 
-      <!-- Starker Versatz (bewegt sich schneller) -->
+      <!-- Strong offset (moves faster) -->
       <div class="slide-icon"
            data-swiper-parallax="-200"
            data-swiper-parallax-opacity="0">
         🎯
       </div>
 
-      <!-- Mittlerer Versatz -->
+      <!-- Medium offset -->
       <h2 class="slide-title" data-swiper-parallax="-100">
-        Slide-Titel
+        Slide title
       </h2>
 
-      <!-- Leichter Versatz mit eigenem Timing -->
+      <!-- Slight offset with its own timing -->
       <p class="slide-text"
          data-swiper-parallax="-50"
          data-swiper-parallax-duration="800">
-        Beschreibungstext
+        Description text
       </p>
 
-      <!-- Nur Skalierung -->
+      <!-- Scaling only -->
       <div class="slide-badge"
            data-swiper-parallax-scale="0.5">
-        Neu
+        New
       </div>
 
-      <!-- X und Y separat -->
+      <!-- X and Y separately -->
       <div class="slide-element"
            data-swiper-parallax-x="-100"
            data-swiper-parallax-y="-50">
-        Diagonaler Parallax
+        Diagonal parallax
       </div>
     </div>
   </div>
 </div>
 ```
 
-## Konfigurationsbeispiele
+## Configuration examples
 
-### Einfache Text-Animation
+### Simple text animation
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -121,12 +121,12 @@ const swiper = new Swiper('.swiper', {
 
 ```html
 <div class="swiper-slide">
-  <h1 data-swiper-parallax="-300">Großer Titel</h1>
-  <p data-swiper-parallax="-150">Untertitel mit halbem Versatz</p>
+  <h1 data-swiper-parallax="-300">Large title</h1>
+  <p data-swiper-parallax="-150">Subtitle with half the offset</p>
 </div>
 ```
 
-### Mit verschiedenen Achsen (vertikaler Slider)
+### With different axes (vertical slider)
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -137,14 +137,14 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ```html
-<!-- Bei vertikalem Slider: data-swiper-parallax wirkt auf Y-Achse -->
+<!-- On a vertical slider: data-swiper-parallax acts on the Y axis -->
 <div class="swiper-slide">
-  <div data-swiper-parallax="-200">Parallax nach oben/unten</div>
-  <div data-swiper-parallax-x="-100">Horizontaler Parallax-Akzent</div>
+  <div data-swiper-parallax="-200">Parallax up/down</div>
+  <div data-swiper-parallax-x="-100">Horizontal parallax accent</div>
 </div>
 ```
 
-### Hintergrund + Inhalt kombiniert
+### Background and content combined
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -156,4 +156,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#parallax
+Source: https://swiperjs.com/swiper-api#parallax

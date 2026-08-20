@@ -1,7 +1,7 @@
 # Shopware 6 — EntityCollection
 
-Die Collection hält mehrere Entities typisiert. Sie erweitert `EntityCollection` und gibt in `getExpectedClass()`
-die Entity-Klasse zurück. Eigene Convenience-Helfer (filter/map/group) sind üblich.
+The collection holds multiple entities in a typed way. It extends `EntityCollection` and returns the entity class
+from `getExpectedClass()`. Convenience helpers of your own (filter/map/group) are common.
 
 ```php
 /** @extends EntityCollection<FfExampleEntity> */
@@ -16,7 +16,7 @@ class FfExampleCollection extends EntityCollection
 }
 ```
 
-Suchergebnisse (`$result->getEntities()`) liefern diese Collection. PHPDoc-Generic `@extends EntityCollection<...>`
-für PHPStan/IDE setzen.
+Search results (`$result->getEntities()`) return this collection. Add the PHPDoc generic `@extends EntityCollection<...>`
+for PHPStan and your IDE.
 
-→ Vollständiges Beispiel: [COLLECTION-EXAMPLE.md](COLLECTION-EXAMPLE.md)
+→ Full example: [COLLECTION-EXAMPLE.md](COLLECTION-EXAMPLE.md)

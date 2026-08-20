@@ -1,195 +1,195 @@
-# Swiper — Vollständige Properties-Referenz (v11/12)
+# Swiper — Complete properties reference (v11/12)
 
-Alle Properties sind auf der Swiper-Instanz verfügbar. Die meisten sind read-only; `allowSlideNext`, `allowSlidePrev`, `allowTouchMove` sind read-write.
+All properties are available on the Swiper instance. Most are read-only; `allowSlideNext`, `allowSlidePrev` and `allowTouchMove` are read-write.
 
 ```js
 const swiper = new Swiper('.swiper', { ... });
-console.log(swiper.activeIndex);  // aktueller Folien-Index
+console.log(swiper.activeIndex);  // current slide index
 ```
 
 ---
 
 ## Contents
 
-- [1. Core-Properties](#1-core-properties)
-- [2. Navigation-Properties](#2-navigation-properties)
-- [3. Pagination-Properties](#3-pagination-properties)
-- [4. Scrollbar-Properties](#4-scrollbar-properties)
-- [5. Autoplay-Properties](#5-autoplay-properties)
-- [6. Thumbs-Properties](#6-thumbs-properties)
-- [7. Zoom-Properties](#7-zoom-properties)
-- [8. Keyboard-Properties](#8-keyboard-properties)
-- [9. Mousewheel-Properties](#9-mousewheel-properties)
-- [Nutzungsbeispiele](#nutzungsbeispiele)
+- [1. Core properties](#1-core-properties)
+- [2. Navigation properties](#2-navigation-properties)
+- [3. Pagination properties](#3-pagination-properties)
+- [4. Scrollbar properties](#4-scrollbar-properties)
+- [5. Autoplay properties](#5-autoplay-properties)
+- [6. Thumbs properties](#6-thumbs-properties)
+- [7. Zoom properties](#7-zoom-properties)
+- [8. Keyboard properties](#8-keyboard-properties)
+- [9. Mousewheel properties](#9-mousewheel-properties)
+- [Usage examples](#usage-examples)
 
-## 1. Core-Properties
+## 1. Core properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `activeIndex` | `number` | Index der aktuell aktiven Folie. Im Loop-Modus enthält er den Index inklusive der geklonten Folien; für den "echten" Index `realIndex` nutzen. |
-| `allowSlideNext` | `boolean` | Steuert ob zur nächsten Folie gewechselt werden kann. Lese-/Schreibbar: `swiper.allowSlideNext = false`. |
-| `allowSlidePrev` | `boolean` | Steuert ob zur vorherigen Folie gewechselt werden kann. Lese-/Schreibbar. |
-| `allowTouchMove` | `boolean` | Steuert ob Touch/Maus-Wischgesten möglich sind. Lese-/Schreibbar. |
-| `animating` | `boolean` | `true` wenn Swiper gerade in einer Transition ist. |
-| `clickedIndex` | `number` | Index der zuletzt geklickten Folie. |
-| `clickedSlide` | `HTMLElement` | HTMLElement der zuletzt geklickten Folie. |
-| `defaults` | `SwiperOptions` | Globale Standard-Optionen (statisch). |
-| `el` | `HTMLElement` | Container-HTMLElement des Sliders. |
-| `enabled` | `boolean` | `true` wenn Swiper aktiviert ist. |
-| `extendedDefaults` | `SwiperOptions` | Objekt mit global erweiterten Swiper-Optionen. |
-| `height` | `number` | Aktuelle Höhe des Containers in px. |
-| `isBeginning` | `boolean` | `true` wenn Swiper ganz links/oben ist. |
-| `isEnd` | `boolean` | `true` wenn Swiper ganz rechts/unten ist. |
-| `isLocked` | `boolean` | `true` wenn Swiper gesperrt ist (zu wenige Folien für `slidesPerView`). |
-| `originalParams` | `SwiperOptions` | Ursprüngliche Initialisierungsparameter (unverändertes Objekt). |
-| `params` | `SwiperOptions` | Aktive Konfiguration (kann durch Breakpoints abweichen). |
-| `previousIndex` | `number` | Index der zuletzt aktiven Folie. |
-| `progress` | `number` | Fortschritt des Wrapper-Translates von 0 (Anfang) bis 1 (Ende). |
-| `realIndex` | `number` | Index der aktiven Folie bereinigt um geklonte Loop-Folien. Im nicht-Loop-Modus identisch mit `activeIndex`. |
-| `slides` | `HTMLElement[]` | Array aller Folien-HTMLElements. |
-| `slidesEl` | `HTMLElement` | Wrapper-HTMLElement (identisch mit `wrapperEl`). |
-| `slidesGrid` | `number[]` | Array der berechneten Positionen jeder Folie. |
-| `slidesSizesGrid` | `number[]` | Array der Breiten (horizontal) oder Höhen (vertikal) jeder Folie in px. |
-| `snapGrid` | `number[]` | Snap-Punkte des Sliders. |
-| `snapIndex` | `number` | Index des aktuellen Snap-Punktes in `snapGrid`. |
-| `swipeDirection` | `'next' \| 'prev' \| undefined` | Aktuelle Wisch-Richtung. |
-| `touches` | `object` | Objekt mit Touch-Event-Werten: `startX`, `startY`, `currentX`, `currentY`, `diff`. |
-| `translate` | `number` | Aktueller Translate-Wert des Wrappers in px (negativ bei normalem Schieben nach links). |
-| `width` | `number` | Aktuelle Breite des Containers in px. |
-| `wrapperEl` | `HTMLElement` | Wrapper-HTMLElement (das Element mit `swiper-wrapper`-Klasse). |
+| `activeIndex` | `number` | Index of the currently active slide. In loop mode it includes the cloned slides; use `realIndex` for the "real" index. |
+| `allowSlideNext` | `boolean` | Controls whether moving to the next slide is possible. Read-write: `swiper.allowSlideNext = false`. |
+| `allowSlidePrev` | `boolean` | Controls whether moving to the previous slide is possible. Read-write. |
+| `allowTouchMove` | `boolean` | Controls whether touch/mouse swipe gestures are possible. Read-write. |
+| `animating` | `boolean` | `true` while Swiper is in a transition. |
+| `clickedIndex` | `number` | Index of the last clicked slide. |
+| `clickedSlide` | `HTMLElement` | HTMLElement of the last clicked slide. |
+| `defaults` | `SwiperOptions` | Global default options (static). |
+| `el` | `HTMLElement` | Container HTMLElement of the slider. |
+| `enabled` | `boolean` | `true` when Swiper is enabled. |
+| `extendedDefaults` | `SwiperOptions` | Object with the globally extended Swiper options. |
+| `height` | `number` | Current height of the container in px. |
+| `isBeginning` | `boolean` | `true` when Swiper is at the far left/top. |
+| `isEnd` | `boolean` | `true` when Swiper is at the far right/bottom. |
+| `isLocked` | `boolean` | `true` when Swiper is locked (too few slides for `slidesPerView`). |
+| `originalParams` | `SwiperOptions` | Original initialization parameters (unmodified object). |
+| `params` | `SwiperOptions` | Active configuration (may differ due to breakpoints). |
+| `previousIndex` | `number` | Index of the previously active slide. |
+| `progress` | `number` | Progress of the wrapper translate, from 0 (beginning) to 1 (end). |
+| `realIndex` | `number` | Index of the active slide with cloned loop slides discounted. Identical to `activeIndex` outside loop mode. |
+| `slides` | `HTMLElement[]` | Array of all slide HTMLElements. |
+| `slidesEl` | `HTMLElement` | Wrapper HTMLElement (identical to `wrapperEl`). |
+| `slidesGrid` | `number[]` | Array of the calculated positions of every slide. |
+| `slidesSizesGrid` | `number[]` | Array of the widths (horizontal) or heights (vertical) of every slide in px. |
+| `snapGrid` | `number[]` | Snap points of the slider. |
+| `snapIndex` | `number` | Index of the current snap point in `snapGrid`. |
+| `swipeDirection` | `'next' \| 'prev' \| undefined` | Current swipe direction. |
+| `touches` | `object` | Object with touch event values: `startX`, `startY`, `currentX`, `currentY`, `diff`. |
+| `translate` | `number` | Current translate value of the wrapper in px (negative when sliding left normally). |
+| `width` | `number` | Current width of the container in px. |
+| `wrapperEl` | `HTMLElement` | Wrapper HTMLElement (the element with the `swiper-wrapper` class). |
 
 ---
 
-## 2. Navigation-Properties
+## 2. Navigation properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.navigation.nextEl` | `HTMLElement` | HTMLElement des Weiter-Buttons. |
-| `swiper.navigation.prevEl` | `HTMLElement` | HTMLElement des Zurück-Buttons. |
+| `swiper.navigation.nextEl` | `HTMLElement` | HTMLElement of the next button. |
+| `swiper.navigation.prevEl` | `HTMLElement` | HTMLElement of the previous button. |
 
 ---
 
-## 3. Pagination-Properties
+## 3. Pagination properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.pagination.bullets` | `HTMLElement[]` | Array aller Pagination-Bullet-HTMLElements. |
-| `swiper.pagination.el` | `HTMLElement` | HTMLElement des Pagination-Containers. |
+| `swiper.pagination.bullets` | `HTMLElement[]` | Array of all pagination bullet HTMLElements. |
+| `swiper.pagination.el` | `HTMLElement` | HTMLElement of the pagination container. |
 
 ---
 
-## 4. Scrollbar-Properties
+## 4. Scrollbar properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.scrollbar.dragEl` | `HTMLElement` | HTMLElement des ziehbaren Scrollbar-Handles. |
-| `swiper.scrollbar.el` | `HTMLElement` | HTMLElement des Scrollbar-Containers. |
+| `swiper.scrollbar.dragEl` | `HTMLElement` | HTMLElement of the draggable scrollbar handle. |
+| `swiper.scrollbar.el` | `HTMLElement` | HTMLElement of the scrollbar container. |
 
 ---
 
-## 5. Autoplay-Properties
+## 5. Autoplay properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.autoplay.paused` | `boolean` | `true` wenn Autoplay pausiert ist. |
-| `swiper.autoplay.running` | `boolean` | `true` wenn Autoplay aktiviert ist und läuft. |
-| `swiper.autoplay.timeLeft` | `number` | Wenn pausiert: verbleibende Zeit in ms bis zur nächsten Transition. |
+| `swiper.autoplay.paused` | `boolean` | `true` when autoplay is paused. |
+| `swiper.autoplay.running` | `boolean` | `true` when autoplay is enabled and running. |
+| `swiper.autoplay.timeLeft` | `number` | When paused: remaining time in ms until the next transition. |
 
 ---
 
-## 6. Thumbs-Properties
+## 6. Thumbs properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.thumbs.swiper` | `Swiper` | Swiper-Instanz des Thumbs-Swipers. |
+| `swiper.thumbs.swiper` | `Swiper` | Swiper instance of the thumbs Swiper. |
 
 ---
 
-## 7. Zoom-Properties
+## 7. Zoom properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.zoom.enabled` | `boolean` | `true` wenn das Zoom-Modul aktiviert ist. |
-| `swiper.zoom.scale` | `number` | Aktueller Zoom-Faktor des Bildes. |
+| `swiper.zoom.enabled` | `boolean` | `true` when the Zoom module is enabled. |
+| `swiper.zoom.scale` | `number` | Current zoom factor of the image. |
 
 ---
 
-## 8. Keyboard-Properties
+## 8. Keyboard properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.keyboard.enabled` | `boolean` | `true` wenn Tastatursteuerung aktiviert ist. |
+| `swiper.keyboard.enabled` | `boolean` | `true` when keyboard control is enabled. |
 
 ---
 
-## 9. Mousewheel-Properties
+## 9. Mousewheel properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `swiper.mousewheel.enabled` | `boolean` | `true` wenn Mausrad-Steuerung aktiviert ist. |
+| `swiper.mousewheel.enabled` | `boolean` | `true` when mouse wheel control is enabled. |
 
 ---
 
-## Nutzungsbeispiele
+## Usage examples
 
 ```js
 const swiper = new Swiper('.swiper', { loop: true });
 
 // Indices
-console.log(swiper.activeIndex);    // z.B. 3 (mit geklonten Loop-Folien)
-console.log(swiper.realIndex);      // z.B. 1 (echter Index ohne Klone)
-console.log(swiper.previousIndex);  // letzter aktiver Index
+console.log(swiper.activeIndex);    // e.g. 3 (including cloned loop slides)
+console.log(swiper.realIndex);      // e.g. 1 (real index without clones)
+console.log(swiper.previousIndex);  // last active index
 
-// Grenzprüfung
-if (swiper.isBeginning) console.log('Erste Folie');
-if (swiper.isEnd) console.log('Letzte Folie');
-if (swiper.isLocked) console.log('Nicht genug Folien zum Wischen');
+// Boundary checks
+if (swiper.isBeginning) console.log('First slide');
+if (swiper.isEnd) console.log('Last slide');
+if (swiper.isLocked) console.log('Not enough slides to swipe');
 
-// Geometrie
-console.log(swiper.width, swiper.height);       // Container-Dimensionen
-console.log(swiper.translate);                   // aktueller Wrapper-Offset
+// Geometry
+console.log(swiper.width, swiper.height);       // container dimensions
+console.log(swiper.translate);                   // current wrapper offset
 console.log(swiper.progress);                    // 0..1
-console.log(swiper.slides.length);               // Anzahl Folien (inkl. Klone)
+console.log(swiper.slides.length);               // number of slides (incl. clones)
 
-// DOM-Zugriff
+// DOM access
 swiper.el.classList.add('active');
 swiper.wrapperEl.style.transitionDuration = '0ms';
 swiper.slides[swiper.activeIndex].style.opacity = '1';
 
-// Grid-Daten
+// Grid data
 console.log(swiper.slidesGrid);      // [0, 320, 640, ...]
 console.log(swiper.slidesSizesGrid); // [310, 310, 310, ...]
-console.log(swiper.snapGrid);        // Snap-Punkte
+console.log(swiper.snapGrid);        // snap points
 
-// Touch-Daten
+// Touch data
 swiper.on('touchMove', (s, e) => {
   console.log('touchStart X:', s.touches.startX);
   console.log('current X:',    s.touches.currentX);
   console.log('diff:',         s.touches.diff);
 });
 
-// Richtung ermitteln
+// Determine direction
 swiper.on('sliderMove', (s) => {
-  console.log('wische:', s.swipeDirection); // 'next' oder 'prev'
+  console.log('swiping:', s.swipeDirection); // 'next' or 'prev'
 });
 
-// Dynamische Steuerung
-swiper.allowSlideNext = false;  // Vorwärts sperren
-swiper.allowSlidePrev = false;  // Rückwärts sperren
-swiper.allowTouchMove = false;  // Touch deaktivieren
+// Dynamic control
+swiper.allowSlideNext = false;  // lock forward
+swiper.allowSlidePrev = false;  // lock backward
+swiper.allowTouchMove = false;  // disable touch
 
-// Autoplay-Zustand
+// Autoplay state
 if (swiper.autoplay.running) {
-  console.log('läuft, nächste Folie in', swiper.autoplay.timeLeft, 'ms');
+  console.log('running, next slide in', swiper.autoplay.timeLeft, 'ms');
 }
 
 // Zoom
-console.log('Zoom-Faktor:', swiper.zoom.scale);
+console.log('zoom factor:', swiper.zoom.scale);
 
-// Aktive Parameter (u.U. durch Breakpoints geändert)
+// Active parameters (possibly changed by breakpoints)
 console.log('slidesPerView:', swiper.params.slidesPerView);
 ```
 
 ---
 
-*Quelle: https://swiperjs.com/swiper-api*
+*Source: https://swiperjs.com/swiper-api*

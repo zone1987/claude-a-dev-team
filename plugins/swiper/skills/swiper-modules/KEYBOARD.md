@@ -1,6 +1,6 @@
-# Swiper — Keyboard-Modul
+# Swiper — Keyboard module
 
-Tastaturnavigation (Pfeiltasten, Page Up/Down) für Swiper-Instanzen.
+Keyboard navigation (arrow keys, Page Up/Down) for Swiper instances.
 
 ```js
 import Swiper from 'swiper';
@@ -15,10 +15,10 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Programmgesteuert
+// Programmatic control
 swiper.keyboard.enable();
 swiper.keyboard.disable();
 ```
 
-## Vertiefung
-- [KEYBOARD-DETAIL.md](KEYBOARD-DETAIL.md) — alle Parameter, Methoden, Events
+## Further reading
+- [KEYBOARD-DETAIL.md](KEYBOARD-DETAIL.md) — all parameters, methods, events

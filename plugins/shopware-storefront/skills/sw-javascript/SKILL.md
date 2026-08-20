@@ -9,13 +9,13 @@ Storefront JS is a plugin system: register a class against a selector. The catal
 
 ## Reference map
 
-- **[JS-EVENT-CATALOG.md](JS-EVENT-CATALOG.md)**: Beantwortet: **„welche JS-Events existieren, wo werden sie gefeuert/abonniert, was tragen sie?"** — aus einem….
-- **[JS-EVENTS.md](JS-EVENTS.md)**: Storefront-JS nutzt einen globalen Event-Emitter und native DOM-Events zur Kommunikation zwischen Plugins.
-- **[JS-PLUGIN-CATALOG.md](JS-PLUGIN-CATALOG.md)**: Beantwortet: **„welche JS-Storefront-Plugins existieren in DIESEM Projekt?"** — aus einem gecachten Katalog.
-- **[JS-PLUGIN-EXTEND.md](JS-PLUGIN-EXTEND.md)**: `extend` registriert eine Subklasse für einen bestehenden Plugin-Namen und behält den Rest des Verhaltens — g….
-- **[JS-PLUGIN-OVERRIDE.md](JS-PLUGIN-OVERRIDE.md)**: Um das Verhalten eines Core-/Fremd-JS-Plugins komplett zu ersetzen, eine Subklasse registrieren mit `override`.
-- **[STOREFRONT-JS-PLUGIN.md](STOREFRONT-JS-PLUGIN.md)**: Vanilla-JS-Plugin, das an ein `data-*`-Attribut gebunden und vom `PluginManager` initialisiert wird.
-- **[STOREFRONT-TYPESCRIPT.md](STOREFRONT-TYPESCRIPT.md)**: Das Storefront unterstützt TypeScript; JS-Plugins können als `.ts` geschrieben werden. [STOREFRONT-TYPESCRIPT-TYPESCRIPT](STOREFRONT-TYPESCRIPT-TYPESCRIPT.md).
+- **[JS-EVENT-CATALOG.md](JS-EVENT-CATALOG.md)**: Answers: **"which JS events exist, where are they published/subscribed, what do they carry?"** — from a….
+- **[JS-EVENTS.md](JS-EVENTS.md)**: Storefront JS uses a global event emitter and native DOM events for communication between plugins.
+- **[JS-PLUGIN-CATALOG.md](JS-PLUGIN-CATALOG.md)**: Answers: **"which Storefront JS plugins exist in THIS project?"** — from a cached catalog.
+- **[JS-PLUGIN-EXTEND.md](JS-PLUGIN-EXTEND.md)**: `extend` registers a subclass for an existing plugin name and keeps the rest of the behavior — s….
+- **[JS-PLUGIN-OVERRIDE.md](JS-PLUGIN-OVERRIDE.md)**: To completely replace the behavior of a core or third-party JS plugin, register a subclass with `override`.
+- **[STOREFRONT-JS-PLUGIN.md](STOREFRONT-JS-PLUGIN.md)**: A vanilla JS plugin bound to a `data-*` attribute and initialized by the `PluginManager`.
+- **[STOREFRONT-TYPESCRIPT.md](STOREFRONT-TYPESCRIPT.md)**: The Storefront supports TypeScript; JS plugins can be written as `.ts`. [STOREFRONT-TYPESCRIPT-TYPESCRIPT](STOREFRONT-TYPESCRIPT-TYPESCRIPT.md).
 
 ## Source
 

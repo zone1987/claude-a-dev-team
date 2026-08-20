@@ -1,7 +1,7 @@
-# Shopware 6 — JS-Plugin überschreiben (override)
+# Shopware 6 — Override a JS plugin (override)
 
-Um das Verhalten eines Core-/Fremd-JS-Plugins komplett zu ersetzen, eine Subklasse registrieren mit `override`
-(gleicher Plugin-Name, optional gleicher Selector).
+To completely replace the behavior of a core or third-party JS plugin, register a subclass with `override`
+(same plugin name, optionally the same selector).
 
 ```js
 import CookiePermissionPlugin from 'src/plugin/cookie/cookie-permission.plugin';
@@ -9,12 +9,12 @@ import CookiePermissionPlugin from 'src/plugin/cookie/cookie-permission.plugin';
 export default class FfCookiePermission extends CookiePermissionPlugin {
     _registerEvents() {
         super._registerEvents();
-        // zusätzliches/abweichendes Verhalten
+        // additional/divergent behavior
     }
 }
 // main.js
 window.PluginManager.override('CookiePermission', FfCookiePermission, '[data-cookie-permission]');
 ```
 
-`override` ersetzt die registrierte Klasse für diesen Namen. Für additive Erweiterung ohne Ersetzen → `sw-js-plugin-extend`.
-Welche Plugins/Selektoren existieren: Katalog via `sw-js-plugin-catalog` / `/sw-js-plugin-map`.
+`override` replaces the registered class for that name. For additive extension without replacing → `sw-js-plugin-extend`.
+Which plugins/selectors exist: catalog via `sw-js-plugin-catalog` / `/sw-js-plugin-map`.

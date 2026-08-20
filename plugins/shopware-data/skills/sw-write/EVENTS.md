@@ -1,14 +1,14 @@
-# Shopware 6 — Write-System & Events
+# Shopware 6 — Write system and events
 
-Jeder Write (`create/update/upsert/delete`) durchläuft den `EntityWriter` und dispatcht Events — der saubere
-Weg, um auf Datenänderungen zu reagieren (statt Polling/Decorator).
+Every write (`create/update/upsert/delete`) passes through the `EntityWriter` and dispatches events — the clean
+way to react to data changes (instead of polling or decorators).
 
 ```php
 public static function getSubscribedEvents(): array
 {
     return [
-        'ff_example.written' => 'onWritten',          // EntityWrittenEvent (eine Entity)
-        EntityWrittenContainerEvent::class => 'onAny', // alle Entities eines Writes
+        'ff_example.written' => 'onWritten',          // EntityWrittenEvent (one entity)
+        EntityWrittenContainerEvent::class => 'onAny', // all entities of one write
         'ff_example.deleted' => 'onDeleted',
     ];
 }
@@ -17,7 +17,7 @@ public function onWritten(EntityWrittenEvent $event): void {
 }
 ```
 
-`{entity}.written/.deleted` für gezielte Reaktion; Container-Event für transaktionsweite Sicht. Validierung/
-Manipulation vor dem Schreiben über `PreWriteValidationEvent`/`BeforeWriteEvent`. Schwere Folgeaktionen async (`sw-message-queue`).
+Use `{entity}.written/.deleted` for targeted reactions; the container event for a transaction-wide view. Validate and
+manipulate before the write via `PreWriteValidationEvent`/`BeforeWriteEvent`. Run heavy follow-up work async (`sw-message-queue`).
 
-→ Write-Pipeline, Commands, alle Events: [EVENTS-SYSTEM.md](EVENTS-SYSTEM.md)
+→ Write pipeline, commands, all events: [EVENTS-SYSTEM.md](EVENTS-SYSTEM.md)

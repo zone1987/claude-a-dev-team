@@ -1,22 +1,22 @@
-# Shopware 6 — Field-Typen
+# Shopware 6 — Field types
 
-Felder werden in `defineFields()` deklariert. Auswahl der wichtigsten (50+ insgesamt):
+Fields are declared in `defineFields()`. The most important ones (50+ in total):
 
-| Feld | Zweck |
+| Field | Purpose |
 |---|---|
-| `IdField` / `FkField` / `ReferenceVersionField` | Primär-/Fremdschlüssel (Binary UUID) |
-| `StringField` / `LongTextField` | Text |
-| `IntField` / `FloatField` / `BoolField` | Skalare |
-| `JsonField` / `ListField` | strukturierte Daten / Arrays |
-| `DateTimeField` / `DateField` | Zeit |
-| `PriceField` | Preise (→ `sw-pricing-field`) |
-| `TranslatedField` | übersetzbar (→ `sw-translations`) |
-| `EnumField` | PHP-Enum-Backed (6.6+) |
-| `CustomFields` | Custom-Fields-Container (→ `sw-custom-fields`) |
-| `*AssociationField` | Beziehungen (→ `sw-associations-*`) |
+| `IdField` / `FkField` / `ReferenceVersionField` | primary/foreign keys (binary UUID) |
+| `StringField` / `LongTextField` | text |
+| `IntField` / `FloatField` / `BoolField` | scalars |
+| `JsonField` / `ListField` | structured data / arrays |
+| `DateTimeField` / `DateField` | time |
+| `PriceField` | prices (→ `sw-pricing-field`) |
+| `TranslatedField` | translatable (→ `sw-translations`) |
+| `EnumField` | backed by a PHP enum (6.6+) |
+| `CustomFields` | custom fields container (→ `sw-custom-fields`) |
+| `*AssociationField` | relations (→ `sw-associations-*`) |
 
-Jedes Feld: `new XField('storageName', 'propertyName')`, optional `->addFlags(...)` (`sw-field-flags`).
-`storageName` = DB-Spalte (snake_case), `propertyName` = Entity-Property (camelCase).
+Every field: `new XField('storageName', 'propertyName')`, optionally `->addFlags(...)` (`sw-field-flags`).
+`storageName` = DB column (snake_case), `propertyName` = entity property (camelCase).
 
-→ Vollständige Field-Liste mit Optionen: [FIELD-TYPES-DETAIL.md](FIELD-TYPES-DETAIL.md)
-→ Media-/File-Feld-Beispiel: [FIELD-TYPES-MEDIA-EXAMPLE.md](FIELD-TYPES-MEDIA-EXAMPLE.md)
+→ Complete field list with options: [FIELD-TYPES-DETAIL.md](FIELD-TYPES-DETAIL.md)
+→ Media/file field example: [FIELD-TYPES-MEDIA-EXAMPLE.md](FIELD-TYPES-MEDIA-EXAMPLE.md)

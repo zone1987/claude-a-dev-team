@@ -1,24 +1,24 @@
 # Gotenberg — Screenshots
 
-Drei Routen fuer Screenshots via Headless Chromium:
+Three routes for screenshots via headless Chromium:
 
 | Route | Input |
 |-------|-------|
-| `POST /forms/chromium/screenshot/url` | URL der Webseite |
-| `POST /forms/chromium/screenshot/html` | `index.html` Datei |
-| `POST /forms/chromium/screenshot/markdown` | `index.html` + `.md` Dateien |
+| `POST /forms/chromium/screenshot/url` | URL of the web page |
+| `POST /forms/chromium/screenshot/html` | `index.html` file |
+| `POST /forms/chromium/screenshot/markdown` | `index.html` + `.md` files |
 
-## Screenshot-spezifische Felder
+## Screenshot-specific fields
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `width` | number | `800` | Viewport-Breite in Pixel |
-| `height` | number | `600` | Viewport-Hoehe in Pixel |
-| `clip` | boolean | `false` | Screenshot auf Viewport-Abmessungen beschneiden |
-| `deviceScaleFactor` | number | `1` | Pixel-Dichte (2 = Retina-Qualitaet) |
-| `format` | enum | `png` | Bildformat: `png`, `jpeg`, `webp` |
-| `quality` | number | `100` | Kompressionsqualitaet 0-100 (nur bei `jpeg`) |
-| `omitBackground` | boolean | `false` | Weisshintergrund ausblenden |
-| `optimizeForSpeed` | boolean | `false` | Encoding fuer Geschwindigkeit optimieren |
+| `width` | number | `800` | Viewport width in pixels |
+| `height` | number | `600` | Viewport height in pixels |
+| `clip` | boolean | `false` | Clip the screenshot to the viewport dimensions |
+| `deviceScaleFactor` | number | `1` | Pixel density (2 = retina quality) |
+| `format` | enum | `png` | Image format: `png`, `jpeg`, `webp` |
+| `quality` | number | `100` | Compression quality 0-100 (only with `jpeg`) |
+| `omitBackground` | boolean | `false` | Hide the white background |
+| `optimizeForSpeed` | boolean | `false` | Optimize encoding for speed |
 
-Vollstaendige Referenz: `CHROMIUM-SCREENSHOTS-DETAIL.md`
+Complete reference: `CHROMIUM-SCREENSHOTS-DETAIL.md`

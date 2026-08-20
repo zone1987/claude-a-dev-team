@@ -1,20 +1,20 @@
-# Shopware 6 — Field-Flags
+# Shopware 6 — Field flags
 
-Flags steuern Verhalten/Sichtbarkeit eines Feldes: `->addFlags(new Required(), new ApiAware())`.
+Flags control a field's behaviour and visibility: `->addFlags(new Required(), new ApiAware())`.
 
-| Flag | Wirkung |
+| Flag | Effect |
 |---|---|
-| `PrimaryKey` | Teil des Primärschlüssels |
-| `Required` | Pflichtfeld beim Schreiben |
-| `ApiAware` | über API les-/schreibbar (sonst intern) |
-| `Inherited` | Vererbung Parent→Child (→ `sw-field-inheritance`) |
-| `Runtime` | nicht persistiert, zur Laufzeit befüllt (Subscriber/Resolver) |
-| `Computed` | berechnet, nicht schreibbar |
-| `CascadeDelete` / `RestrictDelete` / `SetNullOnDelete` | Lösch-Verhalten von Associations |
-| `SearchRanking` | Gewicht in der Volltextsuche |
-| `ReadProtected` / `WriteProtected` | Zugriffsschutz je Scope (→ `sw-entity-protection`) |
-| `AllowHtml` | HTML im Wert erlaubt |
+| `PrimaryKey` | part of the primary key |
+| `Required` | mandatory on write |
+| `ApiAware` | readable/writable via API (otherwise internal) |
+| `Inherited` | inheritance parent→child (→ `sw-field-inheritance`) |
+| `Runtime` | not persisted, filled at runtime (subscriber/resolver) |
+| `Computed` | computed, not writable |
+| `CascadeDelete` / `RestrictDelete` / `SetNullOnDelete` | delete behaviour of associations |
+| `SearchRanking` | weight in full-text search |
+| `ReadProtected` / `WriteProtected` | access protection per scope (→ `sw-entity-protection`) |
+| `AllowHtml` | HTML allowed in the value |
 
-Faustregel: API-Felder explizit `ApiAware` machen; interne Felder ohne. Association-Lösch-Flags bewusst wählen.
+Rule of thumb: mark API fields `ApiAware` explicitly; leave internal fields without it. Choose association delete flags deliberately.
 
-→ Alle Flags mit Details: [FIELD-FLAGS-FLAGS.md](FIELD-FLAGS-FLAGS.md)
+→ All flags in detail: [FIELD-FLAGS-FLAGS.md](FIELD-FLAGS-FLAGS.md)

@@ -1,7 +1,7 @@
-# Shopware 6 — Attribut-basierte Entities
+# Shopware 6 — Attribute-based entities
 
-Seit 6.6 lassen sich Entities kompakt über PHP-Attribute beschreiben — eine einzige annotierte Klasse statt
-Definition + Entity + Collection.
+Since 6.6 you can describe entities compactly through PHP attributes — a single annotated class instead of
+definition + entity + collection.
 
 ```php
 #[Entity('ff_example')]
@@ -18,7 +18,7 @@ class FfExample extends Entity
 }
 ```
 
-Shopware leitet Definition/Collection automatisch ab. Gut für neue, überschaubare Entities. Komplexe Fälle
-(spezielle Serializer, viele Associations) weiterhin klassisch (`sw-entity-definition`).
+Shopware derives definition and collection automatically. Good for new, manageable entities. Keep complex cases
+(special serializers, many associations) classic (`sw-entity-definition`).
 
-→ Attribut-Referenz & Mapping: [ATTRIBUTE-ENTITIES-ATTRIBUTES.md](ATTRIBUTE-ENTITIES-ATTRIBUTES.md)
+→ Attribute reference and mapping: [ATTRIBUTE-ENTITIES-ATTRIBUTES.md](ATTRIBUTE-ENTITIES-ATTRIBUTES.md)

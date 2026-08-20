@@ -1,17 +1,17 @@
-# Gotenberg — Routen-Uebersicht
+# Gotenberg — Route overview
 
-Jede Route akzeptiert einen `multipart/form-data` POST-Request und gibt eine Datei zurueck.
+Every route accepts a `multipart/form-data` POST request and returns a file.
 
-## Gemeinsame Request-Header
+## Common request headers
 
-| Header | Typ | Beschreibung |
+| Header | Type | Description |
 |--------|-----|-------------|
-| `Gotenberg-Output-Filename` | string | Dateiname der Antwort (ohne Extension). Default: zufaellige UUID. |
-| `Gotenberg-Trace` | string | Eigene Request-ID fuer Logs. Ersetzt Standard-UUID. |
+| `Gotenberg-Output-Filename` | string | Filename of the response (without extension). Default: random UUID. |
+| `Gotenberg-Trace` | string | Custom request ID for logs. Replaces the default UUID. |
 
-## Authentifizierung
+## Authentication
 
-Basic Auth per CLI-Flag `--api-enable-basic-auth`. Credentials per Env-Var
+Basic Auth via the CLI flag `--api-enable-basic-auth`. Credentials via the env vars
 `GOTENBERG_API_BASIC_AUTH_USERNAME` / `GOTENBERG_API_BASIC_AUTH_PASSWORD`.
 
-Vollstaendige Routentabelle: `ROUTES-DETAIL.md`
+Complete route table: `ROUTES-DETAIL.md`

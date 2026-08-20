@@ -1,6 +1,6 @@
-# Shopware 6 — Cookie-Manager / Consent
+# Shopware 6 — Cookie manager / consent
 
-Eigene Cookies in die Consent-Verwaltung aufnehmen, indem der `CookieProviderInterface` dekoriert wird (`sw-service-decoration`).
+Add your own cookies to the consent management by decorating `CookieProviderInterface` (`sw-service-decoration`).
 
 ```php
 class FfCookieProvider implements CookieProviderInterface
@@ -17,5 +17,5 @@ class FfCookieProvider implements CookieProviderInterface
 }
 ```
 
-JS-seitig auf Consent reagieren: `document.$emitter.subscribe('CookieConfiguration_Update', cb)` bzw. Cookie erst
-nach Zustimmung setzen. Nur funktionale Cookies ohne Consent.
+React to consent on the JS side: `document.$emitter.subscribe('CookieConfiguration_Update', cb)`, or set the cookie only
+after consent is given. Only functional cookies may be set without consent.

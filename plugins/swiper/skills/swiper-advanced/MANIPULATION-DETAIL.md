@@ -1,20 +1,20 @@
-# Swiper Manipulation-Modul — Vollständige Referenz
+# Swiper Manipulation module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Methoden](#methoden)
-- [Vollständiges Beispiel (dynamische Galerie)](#vollständiges-beispiel-dynamische-galerie)
-- [Hinweise zur Framework-Integration](#hinweise-zur-framework-integration)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Methods](#methods)
+- [Complete example (dynamic gallery)](#complete-example-dynamic-gallery)
+- [Notes on framework integration](#notes-on-framework-integration)
 
-## Konzept
+## Concept
 
-Das Manipulation-Modul stellt Methoden bereit um Slides dynamisch im DOM hinzuzufügen, einzufügen und zu entfernen. Nach jeder Manipulation aktualisiert Swiper automatisch seinen internen State.
+The Manipulation module provides methods to add, insert, and remove slides dynamically in the DOM. After every manipulation, Swiper updates its internal state automatically.
 
-**Wichtig:** Dieses Modul ist für Swiper Core (Vanilla JS) gedacht. In React/Vue sollte der Slides-State über den Framework-State gesteuert werden.
+**Important:** This module is intended for Swiper Core (vanilla JS). In React/Vue, the slides state should be driven by the framework state.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -27,25 +27,25 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Methoden
+## Methods
 
 ### appendSlide(slides)
 
-Fügt einen oder mehrere Slides ans Ende an.
+Appends one or more slides at the end.
 
-**Signatur:** `appendSlide(slides: HTMLElement | string | (HTMLElement | string)[]) => void`
+**Signature:** `appendSlide(slides: HTMLElement | string | (HTMLElement | string)[]) => void`
 
 ```js
-// Einzelner Slide (HTML-String)
-swiper.appendSlide('<div class="swiper-slide">Neuer Slide am Ende</div>');
+// Single slide (HTML string)
+swiper.appendSlide('<div class="swiper-slide">New slide at the end</div>');
 
-// Einzelner Slide (HTMLElement)
+// Single slide (HTMLElement)
 const slideEl = document.createElement('div');
 slideEl.className = 'swiper-slide';
-slideEl.textContent = 'Dynamischer Slide';
+slideEl.textContent = 'Dynamic slide';
 swiper.appendSlide(slideEl);
 
-// Mehrere Slides auf einmal
+// Several slides at once
 swiper.appendSlide([
   '<div class="swiper-slide">Slide A</div>',
   '<div class="swiper-slide">Slide B</div>',
@@ -55,63 +55,63 @@ swiper.appendSlide([
 
 ### prependSlide(slides)
 
-Fügt einen oder mehrere Slides am Anfang ein.
+Inserts one or more slides at the beginning.
 
-**Signatur:** `prependSlide(slides: HTMLElement | string | (HTMLElement | string)[]) => void`
+**Signature:** `prependSlide(slides: HTMLElement | string | (HTMLElement | string)[]) => void`
 
 ```js
-// Einzelner Slide
-swiper.prependSlide('<div class="swiper-slide">Erster Slide</div>');
+// Single slide
+swiper.prependSlide('<div class="swiper-slide">First slide</div>');
 
-// Mehrere Slides
+// Several slides
 swiper.prependSlide([
-  '<div class="swiper-slide">Neu-1</div>',
-  '<div class="swiper-slide">Neu-2</div>',
+  '<div class="swiper-slide">New-1</div>',
+  '<div class="swiper-slide">New-2</div>',
 ]);
 ```
 
 ### addSlide(index, slides)
 
-Fügt Slides an einer bestimmten Position ein.
+Inserts slides at a specific position.
 
-**Signatur:** `addSlide(index: number, slides: HTMLElement | string | (HTMLElement | string)[]) => void`
+**Signature:** `addSlide(index: number, slides: HTMLElement | string | (HTMLElement | string)[]) => void`
 
 ```js
-// An Position 2 einfügen (0-basiert)
-swiper.addSlide(2, '<div class="swiper-slide">Slide an Position 2</div>');
+// Insert at position 2 (zero-based)
+swiper.addSlide(2, '<div class="swiper-slide">Slide at position 2</div>');
 
-// Mehrere Slides ab Position 1 einfügen
+// Insert several slides starting at position 1
 swiper.addSlide(1, [
-  '<div class="swiper-slide">Neu an Position 1</div>',
-  '<div class="swiper-slide">Neu an Position 2</div>',
+  '<div class="swiper-slide">New at position 1</div>',
+  '<div class="swiper-slide">New at position 2</div>',
 ]);
 ```
 
 ### removeSlide(slideIndex)
 
-Entfernt einen oder mehrere Slides per Index.
+Removes one or more slides by index.
 
-**Signatur:** `removeSlide(slideIndex: number | number[]) => void`
+**Signature:** `removeSlide(slideIndex: number | number[]) => void`
 
 ```js
-// Ersten Slide entfernen
+// Remove the first slide
 swiper.removeSlide(0);
 
-// Mehrere Slides entfernen
-swiper.removeSlide([0, 2, 4]);  // Slides an Index 0, 2 und 4
+// Remove several slides
+swiper.removeSlide([0, 2, 4]);  // slides at index 0, 2, and 4
 ```
 
 ### removeAllSlides()
 
-Entfernt alle Slides.
+Removes all slides.
 
-**Signatur:** `removeAllSlides() => void`
+**Signature:** `removeAllSlides() => void`
 
 ```js
 swiper.removeAllSlides();
 ```
 
-## Vollständiges Beispiel (dynamische Galerie)
+## Complete example (dynamic gallery)
 
 ```js
 import Swiper from 'swiper';
@@ -130,7 +130,7 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Slide laden und anhängen
+// Load slides and append them
 async function loadMoreSlides(page) {
   const response = await fetch(`/api/slides?page=${page}`);
   const slides = await response.json();
@@ -145,41 +145,41 @@ async function loadMoreSlides(page) {
   swiper.appendSlide(html);
 }
 
-// Schaltfläche: Slide hinzufügen
+// Button: add a slide
 document.querySelector('#add-slide').addEventListener('click', () => {
   const index = swiper.slides.length;
   swiper.appendSlide(
     `<div class="swiper-slide">Slide ${index + 1}</div>`
   );
-  swiper.slideTo(index); // Zum neuen Slide navigieren
+  swiper.slideTo(index); // navigate to the new slide
 });
 
-// Schaltfläche: Aktuellen Slide entfernen
+// Button: remove the current slide
 document.querySelector('#remove-current').addEventListener('click', () => {
   swiper.removeSlide(swiper.activeIndex);
 });
 
-// Alle leeren und neu laden
+// Clear everything and reload
 document.querySelector('#reset').addEventListener('click', () => {
   swiper.removeAllSlides();
   loadMoreSlides(1);
 });
 ```
 
-## Hinweise zur Framework-Integration
+## Notes on framework integration
 
-In React/Vue/Angular werden Slides nicht per Manipulation-Modul verwaltet, sondern durch reaktive State-Updates:
+In React/Vue/Angular, slides are not managed through the Manipulation module but through reactive state updates:
 
 ```jsx
-// React: Slides über State verwalten
+// React: manage slides via state
 const [slides, setSlides] = useState(['Slide 1', 'Slide 2']);
 
 const addSlide = () => {
   setSlides(prev => [...prev, `Slide ${prev.length + 1}`]);
 };
 
-// Swiper aktualisiert sich automatisch wenn sich die Slides ändern
+// Swiper updates itself automatically when the slides change
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#manipulation
+Source: https://swiperjs.com/swiper-api#manipulation
