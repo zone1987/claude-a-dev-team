@@ -1,26 +1,26 @@
-# Contao Hooks – Suche
+# Contao Hooks – Search
 
-Hooks für die Frontend-Suche und den Suchindex.
+Hooks for the front end search and the search index.
 
 ---
 
 ## `customizeSearch`
 
-**Zweck:** Erlaubt Anpassung der Seiten, die beim Einsatz des Suchmoduls im Frontend durchsucht werden. Die `$pageIds` werden per Referenz übergeben.
+**Purpose:** Allows adjusting the pages that are searched when the search module is used in the front end. `$pageIds` is passed by reference.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `array&` | `$pageIds` | Die aktuellen Seiten-IDs, die durchsucht werden (Referenz) |
-| 2 | `string` | `$keywords` | Die Suchbegriffe |
-| 3 | `string` | `$queryType` | Abfrage-Typ: `and` oder `or` |
-| 4 | `bool` | `$fuzzy` | Ob unscharfe Suche verwendet werden soll |
-| 5 | `\Contao\Module` | `$module` | Die Frontend-Modul-Instanz |
+| 1 | `array&` | `$pageIds` | The current page IDs that are searched (by reference) |
+| 2 | `string` | `$keywords` | The search keywords |
+| 3 | `string` | `$queryType` | Query type: `and` or `or` |
+| 4 | `bool` | `$fuzzy` | Whether a fuzzy search is used |
+| 5 | `\Contao\Module` | `$module` | The front end module instance |
 
-**Rückgabe:** `void` (Modifikation über Referenz)
+**Returns:** `void` (modification through the reference)
 
-**Zeitpunkt:** Wenn ein Benutzer eine Suche über das Frontend-Suchmodul startet, vor der Ausführung.
+**Timing:** When a user starts a search through the front end search module, before it is executed.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -36,7 +36,7 @@ class CustomizeSearchListener
         bool $fuzzy,
         Module $module
     ): void {
-        // Bestimmte Seiten von der Suche ausschließen
+        // Exclude certain pages from the search
         $excludedIds = [42, 43, 44];
         $pageIds = array_diff($pageIds, $excludedIds);
     }
@@ -47,19 +47,19 @@ class CustomizeSearchListener
 
 ## `indexPage`
 
-**Zweck:** Wird ausgelöst, wenn der Seiteninhalt dem Suchindex hinzugefügt wird. Ermöglicht Modifikation der Indexierungsdaten.
+**Purpose:** Triggered when page content is added to the search index. Allows modifying the indexing data.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$content` | Seiteninhalt |
-| 2 | `array` | `$pageData` | Informationen über die Seite |
-| 3 | `array&` | `$indexData` | Für die Indexierung gesammelte Daten (Referenz, wird in `tl_search` gespeichert) |
+| 1 | `string` | `$content` | Page content |
+| 2 | `array` | `$pageData` | Information about the page |
+| 3 | `array&` | `$indexData` | Data collected for indexing (by reference, stored in `tl_search`) |
 
-**Rückgabe:** `void`
+**Returns:** `void`
 
-**Zeitpunkt:** Beim Indexierungsprozess, wenn Seiteninhalt dem Suchindex hinzugefügt wird.
+**Timing:** During the indexing process, when page content is added to the search index.
 
 ```php
 #[AsHook('indexPage')]
@@ -67,7 +67,7 @@ class IndexPageListener
 {
     public function __invoke(string $content, array $pageData, array &$indexData): void
     {
-        // Eigene Metadaten zum Index hinzufügen
+        // Add your own metadata to the index
         $indexData['custom_field'] = $this->extractCustomData($content);
     }
 }
@@ -75,4 +75,4 @@ class IndexPageListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_

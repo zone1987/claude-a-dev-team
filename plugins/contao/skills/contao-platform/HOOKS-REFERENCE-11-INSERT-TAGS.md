@@ -1,33 +1,33 @@
-# Contao Hooks – Insert-Tags
+# Contao Hooks – Insert tags
 
-Hooks für eigene Insert-Tags und Insert-Tag-Flags.
+Hooks for custom insert tags and insert tag flags.
 
-> **Hinweis:** Beide Hooks in dieser Gruppe sind in Contao 5.x deprecated und werden in Contao 6 entfernt. Als Alternative sollte der `Contao\CoreBundle\InsertTag\InsertTagParser` mit eigenen `InsertTagSubscriber`-Klassen verwendet werden.
+> **Note:** Both hooks in this group are deprecated in Contao 5.x and will be removed in Contao 6. Use `Contao\CoreBundle\InsertTag\InsertTagParser` with your own `InsertTagSubscriber` classes instead.
 
 ---
 
 ## `replaceInsertTags`
 
-**Zweck:** Wird ausgelöst, wenn ein unbekanntes Insert-Tag gefunden wird. Ermöglicht die Implementierung eigener Insert-Tags.
+**Purpose:** Triggered when an unknown insert tag is found. Allows implementing your own insert tags.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$insertTag` | Das unbekannte Insert-Tag |
-| 2 | `bool` | `$useCache` | Ob Caching verwendet werden soll |
-| 3 | `string` | `$cachedValue` | Der gecachte Ersetzungswert (falls vorhanden) |
-| 4 | `array` | `$flags` | An das Tag angehängte Flags |
-| 5 | `array` | `$tags` | Aufgeteilter Seiteninhalt für Tag-Ersetzung |
-| 6 | `array` | `$cache` | Bisher gefundene gecachte Ersetzungen |
-| 7 | `int` | `$_rit` | Zähler für die Iteration über Tag-Teile |
-| 8 | `int` | `$_cnt` | Anzahl der Elemente in `$tags` |
+| 1 | `string` | `$insertTag` | The unknown insert tag |
+| 2 | `bool` | `$useCache` | Whether caching is used |
+| 3 | `string` | `$cachedValue` | The cached replacement value (if present) |
+| 4 | `array` | `$flags` | Flags appended to the tag |
+| 5 | `array` | `$tags` | Split page content for tag replacement |
+| 6 | `array` | `$cache` | Cached replacements found so far |
+| 7 | `int` | `$_rit` | Counter for the iteration over the tag parts |
+| 8 | `int` | `$_cnt` | Number of elements in `$tags` |
 
-**Rückgabe:** `string` – Ersetzungstext wenn Tag behandelt wird, `false` um weiterzumachen.
+**Returns:** `string` – Replacement text if the tag is handled, `false` to continue.
 
-**Zeitpunkt:** Wenn das System auf ein unbekanntes Insert-Tag stößt.
+**Timing:** When the system encounters an unknown insert tag.
 
-**Deprecated:** Wird in Contao 6 entfernt. → Stattdessen `InsertTagSubscriber` verwenden.
+**Deprecated:** Will be removed in Contao 6. → Use `InsertTagSubscriber` instead.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -46,7 +46,7 @@ class ReplaceInsertTagsListener
 }
 ```
 
-**Moderne Alternative (Contao 5+):**
+**Modern alternative (Contao 5+):**
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
@@ -65,27 +65,27 @@ class MyTagListener
 
 ## `insertTagFlags`
 
-**Zweck:** Wird ausgelöst, wenn unbekannte Flags an Insert-Tags übergeben werden. Ermöglicht eigene Verarbeitungslogik für unbekannte Flags.
+**Purpose:** Triggered when unknown flags are passed to insert tags. Allows your own processing logic for unknown flags.
 
-**Parameter:**
+**Parameters:**
 
-| # | Typ | Name | Beschreibung |
+| # | Type | Name | Description |
 |---|-----|------|-------------|
-| 1 | `string` | `$flag` | Name des Insert-Tag-Flags |
-| 2 | `string` | `$tag` | Name des Insert-Tags |
-| 3 | `string` | `$cachedValue` | Der gecachte Ersetzungswert |
-| 4 | `array` | `$flags` | Array der verwendeten Flags |
-| 5 | `bool` | `$useCache` | Ob Caching angewendet werden soll |
-| 6 | `array` | `$tags` | Aufgeteilter Seiteninhalt |
-| 7 | `array` | `$cache` | Bisher gefundene gecachte Ersetzungen |
-| 8 | `int` | `$_rit` | Zähler für Tag-Teil-Iteration |
-| 9 | `int` | `$_cnt` | Anzahl der Elemente in `$tags` |
+| 1 | `string` | `$flag` | Name of the insert tag flag |
+| 2 | `string` | `$tag` | Name of the insert tag |
+| 3 | `string` | `$cachedValue` | The cached replacement value |
+| 4 | `array` | `$flags` | Array of the flags in use |
+| 5 | `bool` | `$useCache` | Whether caching is applied |
+| 6 | `array` | `$tags` | Split page content |
+| 7 | `array` | `$cache` | Cached replacements found so far |
+| 8 | `int` | `$_rit` | Counter for the tag part iteration |
+| 9 | `int` | `$_cnt` | Number of elements in `$tags` |
 
-**Rückgabe:** `string|false` – Ersetzungstext wenn Flag behandelt wird, `false` um weiterzumachen.
+**Returns:** `string|false` – Replacement text if the flag is handled, `false` to continue.
 
-**Zeitpunkt:** Bei der Verarbeitung unbekannter Flags in Insert-Tags (z.B. `{{date::D d. F Y|myFlag}}`).
+**Timing:** While unknown flags in insert tags are processed (e.g. `{{date::D d. F Y|myFlag}}`).
 
-**Deprecated:** Wird in Contao 6 entfernt.
+**Deprecated:** Will be removed in Contao 6.
 
 ```php
 #[AsHook('insertTagFlags')]
@@ -116,4 +116,4 @@ class InsertTagFlagsListener
 
 ---
 
-_Quelle: https://docs.contao.org/5.x/dev/reference/hooks/ (Stand 2025-06)_
+_Source: https://docs.contao.org/5.x/dev/reference/hooks/ (as of 2025-06)_
