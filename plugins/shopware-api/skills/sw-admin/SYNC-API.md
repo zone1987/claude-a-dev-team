@@ -1,6 +1,6 @@
-# Shopware 6 — Sync API (Bulk)
+# Shopware 6 — Sync API (bulk)
 
-Mehrere Schreiboperationen über verschiedene Entities in **einem** Request — effizient für Import/Sync.
+Several write operations across different entities in **one** request — efficient for import/sync.
 
 ```bash
 curl -X POST "$BASE/api/_action/sync" -H "Authorization: Bearer $T" -H "Content-Type: application/json" -d '{
@@ -13,9 +13,9 @@ curl -X POST "$BASE/api/_action/sync" -H "Authorization: Bearer $T" -H "Content-
 }'
 ```
 
-Jeder Key = eine benannte Operation (`entity`, `action` = `upsert`|`delete`, `payload`-Array). Steuer-Header:
-- `single-operation: 1` — alles in einer Transaktion (sonst je Operation).
-- `fail-on-error: false` — Teilerfolge zulassen.
-- `indexing-behavior: use-queue-indexing` / `disable-indexing` — Indexer-Last steuern (großer Import).
+Each key = one named operation (`entity`, `action` = `upsert`|`delete`, `payload` array). Control headers:
+- `single-operation: 1` — everything in one transaction (otherwise one per operation).
+- `fail-on-error: false` — allow partial success.
+- `indexing-behavior: use-queue-indexing` / `disable-indexing` — control indexer load (large imports).
 
-Auth = Admin-OAuth (`sw-admin-api-auth`). Für einzelne Datensätze reicht `sw-admin-api-crud`.
+Auth = admin OAuth (`sw-admin-api-auth`). For single records `sw-admin-api-crud` is enough.

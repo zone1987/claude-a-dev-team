@@ -19,9 +19,9 @@
 
 `Kunden` (Customers) → select customer → **"Adressen"** tab
 
-![Addresses tab in the admin](../../assets/kunden-uebersicht-adressen.png)
+![Addresses tab in the admin](assets/customers-overview-addresses.png)
 
-*(Screenshot from sw-merchant-customers/assets/kunden-uebersicht-adressen.png)*
+*(Screenshot from sw-merchant-customers/assets/customers-overview-addresses.png)*
 
 ### Elements
 

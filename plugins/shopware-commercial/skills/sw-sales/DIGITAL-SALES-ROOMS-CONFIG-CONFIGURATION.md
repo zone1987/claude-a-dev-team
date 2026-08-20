@@ -1,92 +1,92 @@
-# Digital Sales Rooms — Konfiguration (vollständig)
+# Digital Sales Rooms — configuration (complete)
 
-## 1. Domain-Konfiguration
+## 1. Domain configuration
 
-Die DSR-Frontend-App läuft auf einer eigenen Domain (z.B. `https://dsr.shopware.io`).
-Diese Domain muss im Shopware Sales Channel eingetragen werden.
+The DSR frontend app runs on its own domain (e.g. `https://dsr.shopware.io`).
+This domain has to be entered in the Shopware sales channel.
 
-### Domains zum Sales Channel hinzufügen
+### Adding domains to the sales channel
 
-Im Shopware Admin unter dem gewünschten Sales Channel → **Domains-Sektion**:
+In the Shopware admin, under the desired sales channel → **Domains section**:
 
-DSR unterstützt Sprach-Switching über den URL-Pfad. Empfohlene Struktur:
+DSR supports language switching via the URL path. Recommended structure:
 
 ```
 https://dsr.shopware.io       → English
-https://dsr.shopware.io/de-DE → Deutsch
+https://dsr.shopware.io/de-DE → German
 https://dsr.shopware.io/en-US → English (US)
 ```
 
-![Domain für Sales Channel einrichten](../../assets/setup-domain-for-sales-channel-DSR.png)
+![Set up the domain for the sales channel](assets/setup-domain-for-sales-channel-DSR.png)
 
-> **Wichtig:** Nach Domain-Änderungen muss die Frontend-App neu deployed/gestartet
-> werden, damit die Änderungen greifen.
+> **Important:** after domain changes the frontend app has to be redeployed/restarted
+> for the changes to take effect.
 
-Die eingetragenen Domains werden anschließend in der Plugin-Konfiguration
-unter "Appointments → Available domains" ausgewählt.
+The domains entered are then selected in the plugin configuration
+under "Appointments → Available domains".
 
-![Domain in Konfiguration eintragen](../../assets/fill-domain-into-configuration.png)
+![Enter the domain in the configuration](assets/fill-domain-into-configuration.png)
 
 ---
 
-## 2. Konfiguration via CLI (empfohlen)
+## 2. Configuration via CLI (recommended)
 
-Aus dem Plugin-Root-Verzeichnis:
+From the plugin root directory:
 
 ```bash
 composer dsr:config
 ```
 
-Dieser Befehl führt automatisch folgende Setup-Commands aus:
+This command automatically runs the following setup commands:
 
-| Sub-Command | Beschreibung |
+| Sub-command | Description |
 |-------------|-------------|
-| `composer dsr:domain-setup` | Domain-Konfigurationen einrichten |
-| `composer dsr:daily-setup` | Daily.co für Video/Audio konfigurieren |
-| `composer dsr:mercure-setup` | Mercure Hub für Realtime-Updates konfigurieren |
+| `composer dsr:domain-setup` | set up the domain configurations |
+| `composer dsr:daily-setup` | configure Daily.co for video/audio |
+| `composer dsr:mercure-setup` | configure the Mercure hub for realtime updates |
 
-Die Sub-Commands können auch einzeln ausgeführt werden, um nur bestimmte
-Teile neu zu konfigurieren.
+The sub-commands can also be run individually to reconfigure only certain
+parts.
 
 ---
 
-## 3. Plugin-Konfigurationsseite
+## 3. Plugin configuration page
 
 Navigation: **Marketing › Digital Sales Rooms › Configuration**
 
-![Konfigurationsseite](../../assets/products-digitalSalesRooms-configuration.png)
+![Configuration page](assets/products-digitalSalesRooms-configuration.png)
 
-### Abschnitt: Appointments
+### Section: Appointments
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| Available domains | Dropdown mit allen Sales-Channel-Domains. DSR-Domains aus Schritt 1 auswählen. |
+| Available domains | Dropdown with all sales channel domains. Select the DSR domains from step 1. |
 
-### Abschnitt: Video and Audio
+### Section: Video and Audio
 
-| Feld | Wert |
+| Field | Value |
 |------|------|
 | API base url | `https://api.daily.co/v1/` |
-| API key | API-Key aus dem Daily.co Dashboard (→ `sw-digital-sales-rooms-3rdparty`) |
+| API key | API key from the Daily.co dashboard (→ `sw-digital-sales-rooms-3rdparty`) |
 
-### Abschnitt: Realtime service
+### Section: Realtime service
 
-| Feld | Quelle |
+| Field | Source |
 |------|--------|
-| Hub url | Mercure Hub URL (aus Stackhero oder eigenem Docker-Setup) |
-| Hub public url | Mercure Public Hub URL (meistens identisch mit Hub url) |
-| Hub subscriber secret | JWT-Key für Subscriber-Authentifizierung |
-| Hub publisher secret | JWT-Key für Publisher-Authentifizierung |
+| Hub url | Mercure hub URL (from Stackhero or your own Docker setup) |
+| Hub public url | Mercure public hub URL (usually identical to the hub url) |
+| Hub subscriber secret | JWT key for subscriber authentication |
+| Hub publisher secret | JWT key for publisher authentication |
 
-Alle Mercure-Werte kommen aus dem Stackhero-Dashboard oder dem eigenen
-Mercure-Setup → Details in `sw-digital-sales-rooms-3rdparty`.
+All Mercure values come from the Stackhero dashboard or your own
+Mercure setup → details in `sw-digital-sales-rooms-3rdparty`.
 
 ---
 
-## Abhängigkeiten
+## Dependencies
 
-Die Plugin-Konfiguration setzt voraus, dass:
+The plugin configuration requires that:
 
-1. Daily.co API-Key vorhanden ist → `sw-digital-sales-rooms-3rdparty`
-2. Mercure Hub läuft und konfiguriert ist → `sw-digital-sales-rooms-3rdparty`
-3. DSR-Domain im Sales Channel eingetragen ist (Schritt 1 oben)
+1. a Daily.co API key is available → `sw-digital-sales-rooms-3rdparty`
+2. the Mercure hub is running and configured → `sw-digital-sales-rooms-3rdparty`
+3. the DSR domain is entered in the sales channel (step 1 above)

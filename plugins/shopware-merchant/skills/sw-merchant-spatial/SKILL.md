@@ -9,10 +9,10 @@ description: Operating Shopware Spatial Commerce: 3D products, AR, the scene edi
 
 ## Reference map
 
-- **[3D-PRODUKTE.md](3D-PRODUKTE.md)**: 3D-Modelle an Produkten hochladen und per AR-QR-Code in der Storefront aktivieren. [3D-PRODUKTE-AR](3D-PRODUKTE-AR.md).
-- **[COMMERCE.md](COMMERCE.md)**: Shopware Spatial Commerce umfasst alle Funktionen zur Darstellung von Produkten in 3D, Augmented Reality und …. [COMMERCE-DETAIL](COMMERCE-DETAIL.md).
-- **[IMMERSIVE-ELEMENTS.md](IMMERSIVE-ELEMENTS.md)**: App mit sechs immersiven 3D-Blöcken für Erlebniswelten. [IMMERSIVE-ELEMENTS-DETAIL](IMMERSIVE-ELEMENTS-DETAIL.md).
-- **[SCENE-EDITOR.md](SCENE-EDITOR.md)**: 3D-Szenen erstellen, Produkte platzieren und Produktbilder exportieren. [SCENE-EDITOR-DETAIL](SCENE-EDITOR-DETAIL.md).
+- **[3D-PRODUCTS.md](3D-PRODUCTS.md)**: Upload 3D models to products and activate them in the storefront via an AR QR code. [3D-PRODUKTE-AR](3D-PRODUCTS-AR.md).
+- **[COMMERCE.md](COMMERCE.md)**: Shopware Spatial Commerce comprises all functions for presenting products in 3D, augmented reality and …. [COMMERCE-DETAIL](COMMERCE-DETAIL.md).
+- **[IMMERSIVE-ELEMENTS.md](IMMERSIVE-ELEMENTS.md)**: An app with six immersive 3D blocks for the Erlebniswelten (Shopping Experiences). [IMMERSIVE-ELEMENTS-DETAIL](IMMERSIVE-ELEMENTS-DETAIL.md).
+- **[SCENE-EDITOR.md](SCENE-EDITOR.md)**: Create 3D scenes, place products and export product images. [SCENE-EDITOR-DETAIL](SCENE-EDITOR-DETAIL.md).
 
 ## Source
 

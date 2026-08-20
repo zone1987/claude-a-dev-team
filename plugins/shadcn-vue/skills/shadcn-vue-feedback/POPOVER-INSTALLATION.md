@@ -1,20 +1,20 @@
 # Popover — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add popover
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install the dependencies:
 
 ```bash
 npm install reka-ui @vueuse/core
 ```
 
-2. Folgende Dateien nach `src/components/ui/popover/` kopieren:
+2. Copy the following files into `src/components/ui/popover/`:
    - `Popover.vue`
    - `PopoverAnchor.vue`
    - `PopoverContent.vue`
@@ -32,5 +32,5 @@ import {
 } from "@/components/ui/popover"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/popover/index.ts`

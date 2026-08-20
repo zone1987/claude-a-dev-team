@@ -1,12 +1,12 @@
 # Skill: sw-commercial-bundle
 
-Entwickler-Referenz fuer die Bundle-Struktur des Shopware Commercial Plugins.
+Developer reference for the bundle structure of the Shopware Commercial plugin.
 
-## Referenzen
+## References
 
 - [COMMERCIAL-BUNDLE-DETAIL.md](COMMERCIAL-BUNDLE-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-Commercial Uebersicht (Plaene, Activation): `sw-commercial-overview`.
-B2B Components Feature-Toggles: `sw-b2b-components`.
+Commercial overview (plans, activation): `sw-commercial-overview`.
+B2B Components feature toggles: `sw-b2b-components`.

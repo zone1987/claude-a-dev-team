@@ -1,27 +1,27 @@
-# B2B Employee Management — Entwickler-Referenz
+# B2B Employee Management — Developer reference
 
 ## Contents
 
-- [Grundkonzept](#grundkonzept)
-- [Datenbankschema](#datenbankschema)
-- [Mitarbeiter anlegen / einladen](#mitarbeiter-anlegen-einladen)
-- [Berechtigungssystem](#berechtigungssystem)
+- [Core concept](#core-concept)
+- [Database schema](#database-schema)
+- [Creating / inviting employees](#creating--inviting-employees)
+- [Permission system](#permission-system)
 - [Route Restriction (Denylist)](#route-restriction-denylist)
 - [Organization Unit](#organization-unit)
-- [Subscription-Integration](#subscription-integration)
+- [Subscription integration](#subscription-integration)
 
-## Grundkonzept
+## Core concept
 
-Employee Management ermoeglicht B2B-Haendlern, eine Kaeuferplattform fuer Geschaeftspartner
-aufzubauen. Mitarbeiter (Employees) sind separate Logins innerhalb eines Unternehmens-Kunden
-(Business Partner) und agieren im Namen des Unternehmens.
+Employee Management enables B2B merchants to build a buyer platform for business
+partners. Employees are separate logins within a company customer
+(business partner) and act on behalf of the company.
 
-**Kernentitaeten:**
-- **Business Partner** (`swag_b2b_business_partner`): Erweiterung eines regulaeren Storefront-Kunden
-- **Employee** (`swag_b2b_employee`): Separate Login-Instanz mit eigenem Passwort und Rolle
-- **Role** (`swag_b2b_role`): Berechtigungs-Set, das einem Mitarbeiter zugewiesen wird
+**Core entities:**
+- **Business Partner** (`swag_b2b_business_partner`): extension of a regular storefront customer
+- **Employee** (`swag_b2b_employee`): separate login instance with its own password and role
+- **Role** (`swag_b2b_role`): permission set assigned to an employee
 
-## Datenbankschema
+## Database schema
 
 ```sql
 swag_b2b_business_partner:
@@ -35,32 +35,32 @@ swag_b2b_role:
   id, business_partner_customer_id (FK), name, permissions (JSON)
 ```
 
-Employees sind ueber E-Mail eindeutig. Beim Einladen wird auf Eindeutigkeit geprueft.
+Employees are unique by email. Uniqueness is checked when inviting.
 
-## Mitarbeiter anlegen / einladen
+## Creating / inviting employees
 
-### Via Storefront
-Business Partner navigiert zu `/account` → Employee-Seite → Neuen Mitarbeiter hinzufuegen.
+### Via storefront
+The business partner navigates to `/account` → employee page → add new employee.
 
 ### Via Store API
-`POST /store-api/employee/create` (als eingeloggter Kunde).
+`POST /store-api/employee/create` (as a logged-in customer).
 
 ### Via Administration
-Merchant waehlt Business-Partner-Kunden → Tab "Company" → Mitarbeiter hinzufuegen.
+The merchant selects the business partner customer → "Company" tab → add employee.
 
-**Einladungs-URL (Standard):** `/account/business-partner/employee/invite/%%RECOVERHASH%%`
+**Invitation URL (default):** `/account/business-partner/employee/invite/%%RECOVERHASH%%`
 
-**URL anpassen via System Config:**
+**Customize the URL via system config:**
 ```php
-// Schluessel: b2b.employee.invitationURL
+// Key: b2b.employee.invitationURL
 ```
 
-## Berechtigungssystem
+## Permission system
 
-Roles enthalten eine Liste von Permissions als JSON. Business Partner definiert eine
-Default-Rolle, die beim Erstellen neuer Mitarbeiter vorausgewaehlt wird.
+Roles contain a list of permissions as JSON. The business partner defines a
+default role that is preselected when creating new employees.
 
-### Eigene Permissions via Plugin
+### Custom permissions via plugin
 
 ```php
 class PermissionCollectorSubscriber implements EventSubscriberInterface
@@ -82,21 +82,21 @@ class PermissionCollectorSubscriber implements EventSubscriberInterface
 }
 ```
 
-Twig-Pruefung: `{% if isB2bAllowed(constant('...::OWN_ENTITY_READ')) %}`
+Twig check: `{% if isB2bAllowed(constant('...::OWN_ENTITY_READ')) %}`
 
-PHP-Pruefung: `$context->getCustomer()->getEmployee()->getRole()->can('own_entity.read')`
+PHP check: `$context->getCustomer()->getEmployee()->getRole()->can('own_entity.read')`
 
-### Eigene Permissions via App
+### Custom permissions via app
 
-Via Store API `POST /store-api/permission` mit Berechtigungsnamen (muss eindeutig sein).
-Snippet-Key: `b2b.role-edit.permissions.[name]` z.B. `b2b.role-edit.permissions.order.delete`.
+Via Store API `POST /store-api/permission` with a permission name (must be unique).
+Snippet key: `b2b.role-edit.permissions.[name]`, e.g. `b2b.role-edit.permissions.order.delete`.
 
 ## Route Restriction (Denylist)
 
-Mitarbeiter teilen den Kunden-Account mit dem Business Partner. Um unerlaubte
-Daten-Aenderungen zu verhindern, gibt es eine Denylist:
+Employees share the customer account with the business partner. To prevent
+unauthorized data changes, there is a denylist:
 
-Konfiguration: `Resources/config/employee_route_access.xml`
+Configuration: `Resources/config/employee_route_access.xml`
 
 ```xml
 <routes>
@@ -106,9 +106,9 @@ Konfiguration: `Resources/config/employee_route_access.xml`
 </routes>
 ```
 
-Der `B2bRouteBlocker` subscriber prueft Routen vor Erreichen des Controllers.
+The `B2bRouteBlocker` subscriber checks routes before the controller is reached.
 
-### Denylist erweitern (Decoration)
+### Extending the denylist (decoration)
 
 ```php
 class DecoratedEmployeeRouteAccessLoader extends AbstractEmployeeRouteAccessLoader
@@ -126,10 +126,10 @@ class DecoratedEmployeeRouteAccessLoader extends AbstractEmployeeRouteAccessLoad
 
 ## Organization Unit
 
-Ermoeglicht differenzierte Zugriffsrechte innerhalb komplexer Unternehmensstrukturen.
-Setzt Employee Management voraus.
+Enables differentiated access rights within complex company structures.
+Requires Employee Management.
 
-### Entitaeten
+### Entities
 
 ```sql
 b2b_components_organization:
@@ -140,7 +140,7 @@ b2b_components_organization_customer_address:
   id, organization_id (FK), customer_address_id (FK), type
 ```
 
-### Organization aus Context auslesen
+### Reading the organization from the context
 
 ```php
 $employee = $context->getCustomer()?->getExtension(SalesChannelContextFactoryDecorator::CUSTOMER_EMPLOYEE_EXTENSION);
@@ -149,20 +149,20 @@ if ($employee instanceof EmployeeEntity) {
 }
 ```
 
-### Store API Endpoints
+### Store API endpoints
 
 ```http
-POST /store-api/organization-unit           # Anlegen
-POST /store-api/organization-unit/{id}      # Aktualisieren
-GET|POST /store-api/organization-unit/{id}  # Einzeln laden
-GET|POST /store-api/organization-units      # Liste laden
-DELETE /store-api/organization-unit         # Loeschen (ids: array)
+POST /store-api/organization-unit           # Create
+POST /store-api/organization-unit/{id}      # Update
+GET|POST /store-api/organization-unit/{id}  # Load single
+GET|POST /store-api/organization-units      # Load list
+DELETE /store-api/organization-unit         # Delete (ids: array)
 ```
 
-### Organization Entity erweitern
+### Extending the Organization entity
 
-Organization Entity ist eine Attribute Entity (kein klassisches EntityDefinition).
-Entity-Name: `b2b_components_organization`
+The Organization entity is an attribute entity (not a classic EntityDefinition).
+Entity name: `b2b_components_organization`
 
 ```php
 class OrganizationExtension extends EntityExtension
@@ -184,33 +184,33 @@ class OrganizationExtension extends EntityExtension
 
 Services: `b2b_components_organization.definition`, `b2b_components_organization.repository`
 
-## Subscription-Integration
+## Subscription integration
 
-B2B Employees koennen Abonnements erstellen und verwalten. Die Integration nutzt
-Decorator-Pattern und Event-Subscriber ohne Core-Modifikation.
+B2B employees can create and manage subscriptions. The integration uses the
+decorator pattern and event subscribers without core modification.
 
-### Berechtigungen fuer Subscription-Zugriff
+### Permissions for subscription access
 
-| Permission                              | Zugriff                              |
+| Permission                              | Access                               |
 |-----------------------------------------|--------------------------------------|
-| `subscription.read.all`                 | Alle Abonnements sehen               |
-| `organization_unit.subscription.read`   | Eigene + Abteilungs-Abonnements      |
-| (keine)                                 | Nur eigene Abonnements               |
+| `subscription.read.all`                 | See all subscriptions                |
+| `organization_unit.subscription.read`   | Own + department subscriptions       |
+| (none)                                  | Only own subscriptions               |
 
 ### Tracking
 
-Tabelle `b2b_components_subscription_employee` verknuepft Subscription mit erstellendem Employee.
+The table `b2b_components_subscription_employee` links a subscription to the creating employee.
 
-### Kernartefakte
+### Core artifacts
 
-- `SubscriptionRouteDecorator` — permission-basiertes Filtern
-- `SalesChannelContextServiceDecorator` — Employee-Context in Subscription-Kontexten
-- `SubscriptionTransformedSubscriber` — Employee-Daten beim Erstellen hinzufuegen
-- `SubscriptionCartConvertedSubscriber` — Employee-Daten in Erstbestellung
-- `SubscriptionOrderPlacedSubscriber` — Employee-Context in Folgebestellungen
-- `SubscriptionExtension` + `SubscriptionEmployeeDefinition` — Entity-Extension
+- `SubscriptionRouteDecorator` — permission-based filtering
+- `SalesChannelContextServiceDecorator` — employee context in subscription contexts
+- `SubscriptionTransformedSubscriber` — add employee data on creation
+- `SubscriptionCartConvertedSubscriber` — employee data in the initial order
+- `SubscriptionOrderPlacedSubscriber` — employee context in follow-up orders
+- `SubscriptionExtension` + `SubscriptionEmployeeDefinition` — entity extension
 
-### Employee aus Subscription laden
+### Loading the employee from a subscription
 
 ```php
 $criteria = new Criteria();

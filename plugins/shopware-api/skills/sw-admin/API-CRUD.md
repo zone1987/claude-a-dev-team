@@ -1,13 +1,13 @@
-# Shopware 6 — Admin-API-CRUD
+# Shopware 6 — Admin API CRUD
 
-Generisches Schema je DAL-Entity (Entity-Name in **kebab/plural-Form** der Route, z.B. `product`, `product-manufacturer`):
+Generic schema per DAL entity (entity name in **kebab/plural form** in the route, e.g. `product`, `product-manufacturer`):
 
 ```
-GET    /api/{entity}            # Liste (einfach; für echte Queries -> /api/search)
-GET    /api/{entity}/{id}       # einzeln
-POST   /api/{entity}            # anlegen (Body = Attribute, optional eigene id als 32-hex-UUID)
-PATCH  /api/{entity}/{id}       # teilweise aktualisieren
-DELETE /api/{entity}/{id}       # löschen
+GET    /api/{entity}            # list (simple; for real queries -> /api/search)
+GET    /api/{entity}/{id}       # single
+POST   /api/{entity}            # create (body = attributes, optionally your own id as 32-hex UUID)
+PATCH  /api/{entity}/{id}       # partial update
+DELETE /api/{entity}/{id}       # delete
 ```
 
 ```bash
@@ -17,6 +17,6 @@ curl -X POST "$BASE/api/product" -H "Authorization: Bearer $T" -H "Content-Type:
 }'
 ```
 
-IDs sind 32-stellige Hex-UUIDs. Verschachtelte Associations direkt im Body (`"categories": [{"id": "..."}]`).
-Erfolg meist `204 No Content` (kein Body) bzw. `200`. Filtern/Sortieren/Assoziationen laden → `sw-admin-api-search`.
-Massen-Writes → `sw-sync-api`. Kontext-Header (Sprache/Währung/Version) → `sw-api-headers`.
+IDs are 32-character hex UUIDs. Nested associations go directly in the body (`"categories": [{"id": "..."}]`).
+Success is usually `204 No Content` (no body) or `200`. Filtering/sorting/loading associations → `sw-admin-api-search`.
+Bulk writes → `sw-sync-api`. Context headers (language/currency/version) → `sw-api-headers`.

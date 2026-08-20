@@ -20,9 +20,9 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/shopware-services/shopware-pa
 
 ## Screenshots
 
-![Bestelldetails](../../assets/payments-bestelldetails.png)
-![Manuelle Zahlungsaktionen](../../assets/payments-manuelle-aktionen.png)
-![Testkonto](../../assets/payments-testkonto.png)
+![Bestelldetails](assets/payments-order-details.png)
+![Manuelle Zahlungsaktionen](assets/payments-manual-actions.png)
+![Testkonto](assets/payments-test-account.png)
 
 ## Was ist Shopware Payments?
 

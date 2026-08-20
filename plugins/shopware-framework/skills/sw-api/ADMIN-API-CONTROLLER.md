@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-API-Controller
+# Shopware 6 — Admin API controller
 
-Für Nicht-CRUD-Aktionen im Backend (Importe, Trigger, Custom-Operationen). Route-Scope `api`, Pfad unter `/api/_action/...`.
+For non-CRUD actions in the backend (imports, triggers, custom operations). Route scope `api`, path under `/api/_action/...`.
 
 ```php
 #[Route(defaults: ['_routeScope' => ['api']])]
@@ -16,5 +16,5 @@ class FfActionController extends AbstractController
 }
 ```
 
-Auth = Admin-OAuth (Bearer, `shopware-api` → `sw-admin-api-auth`). Mit `_acl` absichern (`sw-api-acl`). Entity-CRUD
-braucht keinen eigenen Controller (generische Admin-API nutzen). Vom Admin-JS via ApiService aufrufen (`shopware-admin`).
+Auth = admin OAuth (Bearer, `shopware-api` → `sw-admin-api-auth`). Secure with `_acl` (`sw-api-acl`). Entity CRUD
+needs no own controller (use the generic admin API). Call from the admin JS via ApiService (`shopware-admin`).

@@ -1,17 +1,17 @@
-# Shopware 6 — App manifest.xml Referenz
+# Shopware 6 — App manifest.xml reference
 
-> Quelle: `resources/references/app-reference/manifest-reference.md`
+> Source: `resources/references/app-reference/manifest-reference.md`
 
 ---
 
 ## Contents
 
-- [Meta (Pflicht)](#meta-pflicht)
+- [Meta (required)](#meta-required)
 - [Setup (Optional)](#setup-optional)
-- [Requirements (seit 6.7.10.0, optional)](#requirements-seit-67100-optional)
+- [Requirements (since 6.7.10.0, optional)](#requirements-since-67100-optional)
 - [Storefront (Optional)](#storefront-optional)
 - [Permissions (Optional)](#permissions-optional)
-- [Allowed Hosts (seit 6.4.12.0, optional)](#allowed-hosts-seit-64120-optional)
+- [Allowed Hosts (since 6.4.12.0, optional)](#allowed-hosts-since-64120-optional)
 - [Webhooks (Optional)](#webhooks-optional)
 - [Admin Extension (Optional)](#admin-extension-optional)
 - [Custom Fields (Optional)](#custom-fields-optional)
@@ -21,9 +21,9 @@
 - [Rule Conditions (Optional)](#rule-conditions-optional)
 - [Tax (Optional)](#tax-optional)
 
-## Meta (Pflicht)
+## Meta (required)
 
-Metadaten über die App. Im `<meta>`-Element angeben.
+Metadata about the app. Specify inside the `<meta>` element.
 
 ```xml
 <meta>
@@ -44,7 +44,7 @@ Metadaten über die App. Im `<meta>`-Element angeben.
 
 ## Setup (Optional)
 
-Wird benötigt, wenn Kommunikation zwischen Shopware und der App nötig ist.
+Required when communication between Shopware and the app is needed.
 
 ```xml
 <setup>
@@ -55,9 +55,9 @@ Wird benötigt, wenn Kommunikation zwischen Shopware und der App nötig ist.
 
 ---
 
-## Requirements (seit 6.7.10.0, optional)
+## Requirements (since 6.7.10.0, optional)
 
-Anforderungen, die erfüllt sein müssen, damit die App funktioniert.
+Requirements that must be met for the app to work.
 
 ```xml
 <requirements>
@@ -65,17 +65,17 @@ Anforderungen, die erfüllt sein müssen, damit die App funktioniert.
 </requirements>
 ```
 
-### Verfügbare Requirements
+### Available requirements
 
-| Requirement | Beschreibung | Seit |
+| Requirement | Description | Since |
 |:------------|:-------------|:-----|
-| `public-access` | Shopware-Instanz muss öffentlich erreichbar sein (HTTPS, kein localhost, DNS-Auflösung, Health-Check gibt HTTP 200 zurück) | 6.7.10.0 |
+| `public-access` | Shopware instance must be publicly reachable (HTTPS, no localhost, DNS resolution, health check returns HTTP 200) | 6.7.10.0 |
 
 ---
 
 ## Storefront (Optional)
 
-Kann weggelassen werden wenn die App-Template-Priorität höher als andere Plugins/Apps sein soll.
+Can be omitted unless the app template priority should be higher than other plugins/apps.
 
 ```xml
 <storefront>
@@ -87,9 +87,9 @@ Kann weggelassen werden wenn die App-Template-Priorität höher als andere Plugi
 
 ## Permissions (Optional)
 
-Berechtigungen für Entity-Zugriff.
+Permissions for entity access.
 
-**Granulare Permissions:**
+**Granular permissions:**
 ```xml
 <permissions>
     <read>product</read>
@@ -99,19 +99,19 @@ Berechtigungen für Entity-Zugriff.
 </permissions>
 ```
 
-**CRUD-Shortcut (seit 6.7.3.0):**
+**CRUD shortcut (since 6.7.3.0):**
 ```xml
 <permissions>
     <crud>product</crud>
-    <!-- äquivalent zu read+create+update+delete für product -->
+    <!-- equivalent to read+create+update+delete for product -->
 </permissions>
 ```
 
 ---
 
-## Allowed Hosts (seit 6.4.12.0, optional)
+## Allowed Hosts (since 6.4.12.0, optional)
 
-Alle externen Endpunkte, mit denen die App kommuniziert.
+All external endpoints the app communicates with.
 
 ```xml
 <allowed-hosts>
@@ -134,13 +134,13 @@ Alle externen Endpunkte, mit denen die App kommuniziert.
 </webhooks>
 ```
 
-Alle verfügbaren Events: siehe `references/deep/webhook-events-reference.md` (sw-events-reference).
+All available events: see `references/deep/webhook-events-reference.md` (sw-events-reference).
 
 ---
 
 ## Admin Extension (Optional)
 
-Nur nötig wenn die Administration erweitert werden soll.
+Only needed when the Administration should be extended.
 
 ```xml
 <admin>
@@ -185,7 +185,7 @@ Nur nötig wenn die Administration erweitert werden soll.
 
 ## Cookies (Optional)
 
-**Einzelnes Cookie:**
+**Single cookie:**
 ```xml
 <cookies>
     <cookie>
@@ -199,7 +199,7 @@ Nur nötig wenn die Administration erweitert werden soll.
 </cookies>
 ```
 
-**Cookie-Gruppe:**
+**Cookie group:**
 ```xml
 <cookies>
     <group>
@@ -258,7 +258,7 @@ Nur nötig wenn die Administration erweitert werden soll.
 
 ## Rule Conditions (Optional)
 
-Der Identifier muss eindeutig und unveränderlich sein.
+The identifier must be unique and immutable.
 
 ```xml
 <rule-conditions>

@@ -1,26 +1,26 @@
-# Shopware DAL — Vollständige Konzept-Doku
+# Shopware DAL — complete concept documentation
 
-Quelle: `concepts/framework/data-abstraction-layer.md`
-
----
-
-## Datenbankzugriff
-
-Shopware verwendet **kein ORM** (kein Doctrine), sondern eine eigene Data Abstraction Layer (DAL).
-Konzepte wie Criteria sind Doctrine ähnlich, aber für Shopware-spezifische Anforderungen implementiert.
-
-Referenz-ERD: https://developer.shopware.com/assets/shopware6-erd.pdf (für 6.6.5.0)
+Source: `concepts/framework/data-abstraction-layer.md`
 
 ---
 
-## CRUD-Operationen
+## Database access
 
-`EntityRepository` ist der einzige empfohlene Weg, mit der DAL zu interagieren.
+Shopware uses **no ORM** (no Doctrine), but a Data Abstraction Layer (DAL) of its own.
+Concepts such as Criteria are similar to Doctrine, but implemented for Shopware-specific requirements.
 
-### Bereitstellen via Dependency Injection
+Reference ERD: https://developer.shopware.com/assets/shopware6-erd.pdf (for 6.6.5.0)
+
+---
+
+## CRUD operations
+
+`EntityRepository` is the only recommended way to interact with the DAL.
+
+### Providing it via dependency injection
 
 ```php
-// Konstruktor-Injection
+// Constructor injection
 public function __construct(EntityRepository $productRepository)
 {
     $this->productRepository = $productRepository;
@@ -28,66 +28,66 @@ public function __construct(EntityRepository $productRepository)
 ```
 
 ```php
-// Explizite DI-Konfiguration (services.php)
+// Explicit DI configuration (services.php)
 $services->set(DalExampleService::class)
     ->args([service('product.repository')]);
 ```
 
-Mit Service-Autowiring und korrektem Typ + Argumentname wird das Repository automatisch injiziert.
+With service autowiring and the correct type + argument name, the repository is injected automatically.
 
 ---
 
-## Übersetzungen (DAL-Ebene)
+## Translations (DAL level)
 
-Bei Lese-/Suchoperationen werden drei Sprachebenen durchsucht:
+On read/search operations three language levels are searched:
 
-1. **Aktuelle Sprache** — die dem Nutzer angezeigte Sprache
-2. **Parent-Sprache** — optionale übergeordnete Sprache für Dialekte (z.B. `de-DE` als Parent von `de-AT`)
-3. **Systemsprache** — Installations-Sprache; jede Entität hat hier mindestens eine Übersetzung (finaler Fallback)
+1. **Current language** — the language shown to the user
+2. **Parent language** — optional superordinate language for dialects (e.g. `de-DE` as parent of `de-AT`)
+3. **System language** — the installation language; every entity has at least one translation here (final fallback)
 
-Übersetzungen werden in separaten Tabellen gespeichert: `<entity-tabelle>_translation` (Suffix `_translation`).
+Translations are stored in separate tables: `<entity-table>_translation` (suffix `_translation`).
 
 ---
 
 ## Versioning
 
-- Ermöglicht mehrere Versionen einer Entität
-- Alle assoziierten Daten werden dupliziert für neue Version
-- Mehrere Entities/Änderungen können einer Version zugeordnet werden
-- Einsatz: Previews, Publishing, Kampagnen (Änderungen vorbereiten ohne live zu gehen)
+- Enables multiple versions of an entity
+- All associated data is duplicated for the new version
+- Multiple entities/changes can be assigned to one version
+- Use: previews, publishing, campaigns (prepare changes without going live)
 
-**Einschränkung**: Kein "Entwurf zuerst, dann live" — es muss immer eine Live-Version existieren,
-bevor eine neue Version abgeleitet werden kann.
+**Restriction**: no "draft first, then live" — a live version must always exist
+before a new version can be derived from it.
 
-**Datenbankstruktur**: Versionierbare Entities haben Compound-FK: `id` + `version_id`.
-Fremdschlüssel auf versionierte Records: `product_id` + `product_version_id`.
+**Database structure**: versionable entities have a compound FK: `id` + `version_id`.
+Foreign keys onto versioned records: `product_id` + `product_version_id`.
 
 ---
 
 ## Context (`core/Framework/Context.php`)
 
-- Einmal pro Request instanziiert
-- Definiert wichtige Shop-Konfiguration
-- Beeinflusst CRUD-Verhalten der DAL (z.B. Währung wechseln → alle Operationen nutzen neue Währung)
-- Enthält: Sprache, Währung, Preisregeln, Berechtigungen
+- Instantiated once per request
+- Defines important shop configuration
+- Influences the CRUD behaviour of the DAL (e.g. switch currency → all operations use the new currency)
+- Contains: language, currency, price rules, permissions
 
 ---
 
-## Inheritance (Vererbung)
+## Inheritance
 
-Implementiert für das Produkt-/Variantensystem:
+Implemented for the product/variant system:
 
-- **Parent-Child-Vererbung** — Varianten erben Records, Properties und Associations vom Parent-Produkt
-- Beispiel: Variante ohne eigene Kategorien/Bilder → erbt vom Parent-Produkt
-- Gilt für Felder und Associations
+- **Parent-child inheritance** — variants inherit records, properties and associations from the parent product
+- Example: a variant without its own categories/images → inherits from the parent product
+- Applies to fields and associations
 
 ---
 
-## Indexing (Entity Indexer Pattern)
+## Indexing (entity indexer pattern)
 
-Design-Prinzip: "Je mehr Zeit ins Indizieren investiert wird, desto schneller ist das Lesen."
+Design principle: "the more time is invested in indexing, the faster reading becomes."
 
-- Produkte werden selten geschrieben, aber sehr häufig gelesen
-- Beim Schreiben: entsprechender **Product Indexer** wird getriggert
-- Indexer pre-selektiert Aggregationen und schreibt sie optimiert für spätere Lesevorgänge
-- Ergebnis: Lesevorgänge sind minimal aufwändig (denormalisierte, indexierte Daten)
+- Products are written rarely, but read very frequently
+- On write: the corresponding **product indexer** is triggered
+- The indexer pre-selects aggregations and writes them optimised for later reads
+- Result: reads are minimally expensive (denormalised, indexed data)

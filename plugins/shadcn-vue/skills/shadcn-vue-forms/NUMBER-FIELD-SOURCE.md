@@ -1,4 +1,4 @@
-# NumberField — Vollstandiger Quellcode
+# NumberField — Complete Source Code
 
 ## Contents
 
@@ -8,7 +8,7 @@
 - [NumberFieldDecrement.vue](#numberfielddecrementvue)
 - [NumberFieldIncrement.vue](#numberfieldincrementvue)
 - [NumberFieldInput.vue](#numberfieldinputvue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -139,5 +139,5 @@ const props = defineProps<{
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/number-field/`

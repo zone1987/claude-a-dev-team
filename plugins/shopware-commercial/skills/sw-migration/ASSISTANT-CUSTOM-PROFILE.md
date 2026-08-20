@@ -1,11 +1,11 @@
 # Skill: sw-migration-assistant-custom-profile
 
-Entwickler-Referenz fuer das Erstellen eigener Migrationserweiterungen.
+Developer reference for creating custom migration extensions.
 
-## Referenzen
+## References
 
 - [ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md](ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md)
 
-## Querverweise
+## Cross-references
 
-Migration Assistant Konzepte: `sw-migration-assistant`.
+Migration Assistant concepts: `sw-migration-assistant`.

@@ -1,83 +1,83 @@
-# Digital Sales Rooms – Live-Shopping-Events
+# Digital Sales Rooms – live shopping events
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/digital-sales-rooms  
-**Plan**: Shopware Beyond (exklusiv)  
-**Technologie**: Separate Frontend-Applikation + daily.co API + Mercure Service
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/digital-sales-rooms  
+**Plan**: Shopware Beyond (exclusive)  
+**Technology**: Separate frontend application + daily.co API + Mercure service
 
-## Überblick
+## Overview
 
-**Digital Sales Rooms** ermöglicht interaktive Live-Shopping-Events mit ausgewählten Kunden:
-- Video-basierte Produktpräsentationen
-- Geführte oder selbstständige Navigation
-- Direkter Kaufabschluss während des Events
+**Digital Sales Rooms** enables interactive live shopping events with selected customers:
+- Video-based product presentations
+- Guided or self-directed navigation
+- Direct purchase during the event
 
 ---
 
-## Technische Voraussetzungen
+## Technical prerequisites
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| **daily.co API-Account** | Video-Konferenz-Dienst (Pflicht) |
-| **Mercure-Service** | Real-Time-Kommunikation zwischen Guide und Teilnehmern |
-| Separate Frontend-App | Eigenständige Anwendung (nicht ein Admin-Plugin) |
+| **daily.co API account** | Video conferencing service (mandatory) |
+| **Mercure service** | Real-time communication between the guide and the participants |
+| Separate frontend app | Standalone application (not an admin plugin) |
 
-> **Hinweis**: Die Einrichtung erfordert Entwickler/Administrator-Unterstützung.
-> daily.co und Mercure werden vom Team konfiguriert.
-
----
-
-## Betriebsmodi
-
-### 1. Ungeleiteter Modus (Unguided)
-- Kunden navigieren die Präsentation **selbstständig**
-- Keine Live-Interaktion mit einem Guide
-- Asynchrone Präsentation (Kunden öffnen den Link zu ihrem Zeitpunkt)
-
-### 2. Geleiteter Modus (Guided)
-- Ein **Guide** führt Teilnehmer in Echtzeit durch die Präsentation
-- Guide-Ansicht: Sonderwerkzeuge für Live-Steuerung
-- Video-Verbindung zwischen Guide und Teilnehmern aktiv
+> **Note**: The setup requires developer/administrator support.
+> daily.co and Mercure are configured by the team.
 
 ---
 
-## Hauptkomponenten
+## Operating modes
 
-### Präsentationen
-- CMS-ähnliche Layouts (ähnlich Erlebniswelten)
-- Individuell gestaltbare Shopping-Erlebnisse
-- Produkte, Texte, Bilder, Videos einbindbar
+### 1. Unguided mode
+- Customers navigate the presentation **on their own**
+- No live interaction with a guide
+- Asynchronous presentation (customers open the link whenever they like)
 
-### Termine (Appointments)
-- Geplante Events mit spezifischen Kunden
-- Einladungs-E-Mails mit Zugangslinks
-- Datum, Uhrzeit, Teilnehmer konfigurierbar
+### 2. Guided mode
+- A **guide** leads participants through the presentation in real time
+- Guide view: special tools for live control
+- Video connection between the guide and the participants is active
 
-### Guide-Ansicht (Guide View)
-Während Live-Events stehen zur Verfügung:
-| Tool | Funktion |
+---
+
+## Main components
+
+### Presentations
+- CMS-like layouts (similar to Erlebniswelten (Shopping Experiences))
+- Individually designable shopping experiences
+- Products, texts, images and videos can be embedded
+
+### Appointments
+- Scheduled events with specific customers
+- Invitation emails with access links
+- Date, time and participants configurable
+
+### Guide view
+The following are available during live events:
+| Tool | Function |
 |---|---|
-| Produkt-Schnelllist | Bestimmte Produkte sofort anzeigen |
-| Teilnehmer-Management | Teilnehmer stumm schalten, entfernen |
-| Echtzeit-Rabatte | Spontane Rabatte während des Events vergeben |
-| Chat | Schriftliche Kommunikation |
+| Product quick list | Show specific products immediately |
+| Participant management | Mute or remove participants |
+| Real-time discounts | Grant spontaneous discounts during the event |
+| Chat | Written communication |
 
 ---
 
-## Teilnehmer-Funktionen (Kunden)
+## Participant features (customers)
 
-| Funktion | Beschreibung |
+| Feature | Description |
 |---|---|
-| Produkte durchsuchen | Präsentierte Produkte ansehen |
-| Zuletzt angesehene Produkte | Quick-Access-Liste |
-| Wunschlisten | Produkte zur Wunschliste hinzufügen |
-| Warenkorb verwalten | Direkt im Event kaufen |
-| Angebote anfragen | (Mit B2B-Components aktiviert) |
-| Shared Shopping Lists | Gemeinsame Einkaufslisten mit anderen Teilnehmern |
-| Folgetermin buchen | Neuen Termin direkt buchen |
+| Browse products | View the presented products |
+| Recently viewed products | Quick access list |
+| Wishlists | Add products to the wishlist |
+| Manage the cart | Buy directly within the event |
+| Request quotes | (Enabled with B2B Components) |
+| Shared Shopping Lists | Shared shopping lists with other participants |
+| Book a follow-up appointment | Book a new appointment directly |
 
 ---
 
-## Einrichtungsworkflow (vereinfacht)
+## Setup workflow (simplified)
 
 ```
 1. daily.co API-Account erstellen
@@ -85,15 +85,15 @@ Während Live-Events stehen zur Verfügung:
 3. Frontend-App deployen (Entwickler)
 4. Im Admin: Digital Sales Rooms konfigurieren
 5. Erste Präsentation erstellen
-6. Ersten Termin anlegen
-7. Kunden einladen (automatische E-Mail mit Link)
+6. Create the first appointment
+7. Invite customers (automatic email with link)
 ```
 
 ---
 
-## Anwendungsfälle
+## Use cases
 
-- **Fashion**: Virtuelle Kollektionspräsentation für B2B-Einkäufer
-- **Luxusgüter**: Exklusive Produktvorstellungen für VIP-Kunden
-- **B2B-Vertrieb**: Produktdemonstrationen für Geschäftskunden
-- **Beauty/Kosmetik**: Live-Beratung mit Produkt-Empfehlungen
+- **Fashion**: Virtual collection presentation for B2B buyers
+- **Luxury goods**: Exclusive product presentations for VIP customers
+- **B2B sales**: Product demonstrations for business customers
+- **Beauty/cosmetics**: Live consultation with product recommendations

@@ -1,19 +1,19 @@
-# Shopware 6 – Immersive Elements App
+# Shopware 6 – Immersive Elements app
 
-App (entwickelt mit Instorier) mit sechs immersiven 3D-Blöcken für Erlebniswelten.
-Verfügbar ab **Rise Plan** oder für €49/Monat im Shopware Store. Alle Elemente unter
-**Erlebniswelten > Blöcke > Commerce**.
+An app (developed with Instorier) with six immersive 3D blocks for the **Erlebniswelten** (Shopping Experiences).
+Available from the **Rise plan** or for €49/month in the Shopware Store. All elements under
+**Erlebniswelten > Blöcke > Commerce** (Shopping Experiences > Blocks > Commerce).
 
-## Die sechs Elemente
+## The six elements
 
-1. **Cylinder Gallery** – 360°-Bildslider mit Maussteuerung
-2. **Depth Gallery** – Parallax-Tiefeneffekt (Maus + Scrollen)
-3. **Exploded View** – Interaktive Produktzerlegung (€49/Monat Zusatz)
-4. **3D Model Journey** – Animierte 3D-Produkttour mit Hotspots & Audio
-5. **Slide Behind Gallery** – Horizontaler Tiefenslider
-6. **VR Cinema** – 3D/VR-Videoerlebnis (webp-Format)
+1. **Cylinder Gallery** – 360° image slider with mouse control
+2. **Depth Gallery** – parallax depth effect (mouse + scrolling)
+3. **Exploded View** – interactive product breakdown (€49/month add-on)
+4. **3D Model Journey** – animated 3D product tour with hotspots & audio
+5. **Slide Behind Gallery** – horizontal depth slider
+6. **VR Cinema** – 3D/VR video experience (webp format)
 
-Vollständige Referenz: `IMMERSIVE-ELEMENTS-DETAIL.md`
+Full reference: `IMMERSIVE-ELEMENTS-DETAIL.md`
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/erweiterungen/immersive-elements

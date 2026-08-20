@@ -1,29 +1,29 @@
-# Shopware 6 Storefront SCSS-Variablen
+# Shopware 6 Storefront SCSS variables
 
-Alle SCSS-Variablen mit Default-Werten, gruppiert nach Herkunft.  
-Quelle: `src/Storefront/Resources/app/storefront/src/scss/`
+All SCSS variables with default values, grouped by origin.  
+Source: `src/Storefront/Resources/app/storefront/src/scss/`
 
 ---
 
 ## Contents
 
-- [1. Theme-Variablen (`skin/shopware/abstract/variables/_theme.scss`)](#1-theme-variablen-skinshopwareabstractvariables_themescss)
-- [2. Bootstrap-Overrides MIT Theme-Farben (`skin/shopware/abstract/variables/_bootstrap.scss`)](#2-bootstrap-overrides-mit-theme-farben-skinshopwareabstractvariables_bootstrapscss)
-- [3. Custom-Variablen MIT Theme-Referenzen (`skin/shopware/abstract/variables/_custom.scss`)](#3-custom-variablen-mit-theme-referenzen-skinshopwareabstractvariables_customscss)
-- [4. Bootstrap-Basis-Overrides OHNE Theme-Farben (`abstract/variables/_bootstrap.scss`)](#4-bootstrap-basis-overrides-ohne-theme-farben-abstractvariables_bootstrapscss)
-- [5. Framework Custom-Variablen (`abstract/variables/_custom.scss`)](#5-framework-custom-variablen-abstractvariables_customscss)
+- [1. Theme variables (`skin/shopware/abstract/variables/_theme.scss`)](#1-theme-variables-skinshopwareabstractvariables_themescss)
+- [2. Bootstrap overrides WITH theme colors (`skin/shopware/abstract/variables/_bootstrap.scss`)](#2-bootstrap-overrides-with-theme-colors-skinshopwareabstractvariables_bootstrapscss)
+- [3. Custom variables WITH theme references (`skin/shopware/abstract/variables/_custom.scss`)](#3-custom-variables-with-theme-references-skinshopwareabstractvariables_customscss)
+- [4. Bootstrap base overrides WITHOUT theme colors (`abstract/variables/_bootstrap.scss`)](#4-bootstrap-base-overrides-without-theme-colors-abstractvariables_bootstrapscss)
+- [5. Framework custom variables (`abstract/variables/_custom.scss`)](#5-framework-custom-variables-abstractvariables_customscss)
 - [6. Mixins / Functions](#6-mixins-functions)
-- [7. Admin-SCSS-Variablen (`src/Administration/.../scss/variables.scss`)](#7-admin-scss-variablen-srcadministrationscssvariablesscss)
+- [7. Admin SCSS variables (`src/Administration/.../scss/variables.scss`)](#7-admin-scss-variables-srcadministrationscssvariablesscss)
 
-## 1. Theme-Variablen (`skin/shopware/abstract/variables/_theme.scss`)
+## 1. Theme variables (`skin/shopware/abstract/variables/_theme.scss`)
 
-Diese Variablen sind die **konfigurierbaren Kern-Design-Tokens** des Shopware-Themes.  
-Sie sind identisch mit den `config.fields`-Einträgen in `theme.json` und werden vom
-Theme-Manager im Admin überschreibbar gemacht.
+These variables are the **configurable core design tokens** of the Shopware theme.  
+They are identical to the `config.fields` entries in `theme.json` and are made
+overridable by the Theme Manager in the admin.
 
-### Farben
+### Colors
 
-| Variable | Default | theme.json-Field | Block |
+| Variable | Default | theme.json field | Block |
 |---|---|---|---|
 | `$sw-color-brand-primary` | `#0042a0` | `sw-color-brand-primary` | themeColors |
 | `$sw-color-brand-secondary` | `#474a57` | `sw-color-brand-secondary` | themeColors |
@@ -39,9 +39,9 @@ Theme-Manager im Admin überschreibbar gemacht.
 | `$sw-color-buy-button` | `#0042a0` | `sw-color-buy-button` | eCommerce |
 | `$sw-color-buy-button-text` | `#fff` | `sw-color-buy-button-text` | eCommerce |
 
-### Typografie
+### Typography
 
-| Variable | Default | theme.json-Field | Block |
+| Variable | Default | theme.json field | Block |
 |---|---|---|---|
 | `$sw-font-family-base` | `'Inter', sans-serif` | `sw-font-family-base` | typography |
 | `$sw-font-family-headline` | `'Inter', sans-serif` | `sw-font-family-headline` | typography |
@@ -59,11 +59,11 @@ Theme-Manager im Admin überschreibbar gemacht.
 | `$sw-logo-favicon` | `url('logo-favicon.png')` |
 | `$sw-logo-app-icon` | `url('logo-app-icon.png')` |
 
-### Breakpoints (via theme.json, nicht direkt als SCSS-Var)
+### Breakpoints (via theme.json, not directly as an SCSS var)
 
-Werden als Bootstrap-Breakpoints `$grid-breakpoints` gemappt:
+They are mapped to the Bootstrap breakpoints `$grid-breakpoints`:
 
-| theme.json-Field | Wert |
+| theme.json field | Value |
 |---|---|
 | `sw-breakpoint-xs` | 0 |
 | `sw-breakpoint-sm` | 576 |
@@ -74,11 +74,11 @@ Werden als Bootstrap-Breakpoints `$grid-breakpoints` gemappt:
 
 ---
 
-## 2. Bootstrap-Overrides MIT Theme-Farben (`skin/shopware/abstract/variables/_bootstrap.scss`)
+## 2. Bootstrap overrides WITH theme colors (`skin/shopware/abstract/variables/_bootstrap.scss`)
 
-Diese Datei überschreibt Bootstrap-Variablen und nutzt dabei die `$sw-*`-Theme-Variablen als Werte.
+This file overrides Bootstrap variables and uses the `$sw-*` theme variables as values.
 
-### Farb-System
+### Color system
 
 | Variable | Default |
 |---|---|
@@ -109,7 +109,7 @@ Diese Datei überschreibt Bootstrap-Variablen und nutzt dabei die `$sw-*`-Theme-
 | `$border-radius-lg` | `0` |
 | `$border-radius-sm` | `0` |
 
-### Typografie
+### Typography
 
 | Variable | Default |
 |---|---|
@@ -241,7 +241,7 @@ Diese Datei überschreibt Bootstrap-Variablen und nutzt dabei die `$sw-*`-Theme-
 | `$table-striped-bg` | `#f9f9f9` |
 | `$table-color` | `$sw-text-color` |
 
-### Sonstiges
+### Miscellaneous
 
 | Variable | Default |
 |---|---|
@@ -254,7 +254,7 @@ Diese Datei überschreibt Bootstrap-Variablen und nutzt dabei die `$sw-*`-Theme-
 
 ---
 
-## 3. Custom-Variablen MIT Theme-Referenzen (`skin/shopware/abstract/variables/_custom.scss`)
+## 3. Custom variables WITH theme references (`skin/shopware/abstract/variables/_custom.scss`)
 
 | Variable | Default |
 |---|---|
@@ -271,9 +271,9 @@ Diese Datei überschreibt Bootstrap-Variablen und nutzt dabei die `$sw-*`-Theme-
 
 ---
 
-## 4. Bootstrap-Basis-Overrides OHNE Theme-Farben (`abstract/variables/_bootstrap.scss`)
+## 4. Bootstrap base overrides WITHOUT theme colors (`abstract/variables/_bootstrap.scss`)
 
-Wird geladen **bevor** Skin-Variablen; enthält keine Farbwerte.
+Loaded **before** the skin variables; contains no color values.
 
 | Variable | Default |
 |---|---|
@@ -287,7 +287,7 @@ Wird geladen **bevor** Skin-Variablen; enthält keine Farbwerte.
 
 ---
 
-## 5. Framework Custom-Variablen (`abstract/variables/_custom.scss`)
+## 5. Framework custom variables (`abstract/variables/_custom.scss`)
 
 | Variable | Default |
 |---|---|
@@ -317,35 +317,35 @@ Wird geladen **bevor** Skin-Variablen; enthält keine Farbwerte.
 
 ## 6. Mixins / Functions
 
-| Name | Datei | Signatur |
+| Name | File | Signature |
 |---|---|---|
 | `truncate-multiline` | `abstract/mixins/truncate-multiline.scss` | `@mixin truncate-multiline($line-height: 1.2em, $line-count: 2, $bg-color: white)` |
-| `feature` | `abstract/functions/feature.scss` | `@function feature($feature-flag)` — gibt `map-get($sw-features, $flag)` zurück |
+| `feature` | `abstract/functions/feature.scss` | `@function feature($feature-flag)` — returns `map-get($sw-features, $flag)` |
 
 ---
 
-## 7. Admin-SCSS-Variablen (`src/Administration/.../scss/variables.scss`)
+## 7. Admin SCSS variables (`src/Administration/.../scss/variables.scss`)
 
-Separate Palette, nur für die Administration. Kein Bezug zu Storefront-Variablen.
+Separate palette, for the administration only. No relation to Storefront variables.
 
-### Grau-Palette (Grayish blue)
-`$color-gray-50…900`: `#f9fafb` bis `#758ca3`
+### Gray palette (grayish blue)
+`$color-gray-50…900`: `#f9fafb` to `#758ca3`
 
-### Dunkelgrau-Palette
-`$color-darkgray-50…900`: `#667f99` bis `#0a0d0f`
+### Dark gray palette
+`$color-darkgray-50…900`: `#667f99` to `#0a0d0f`
 
-### Shopware Brand (Vivid blue)
-`$color-shopware-brand-50…900`: `#e3f3ff` bis `#0870ff`
+### Shopware Brand (vivid blue)
+`$color-shopware-brand-50…900`: `#e3f3ff` to `#0870ff`
 
-### Status-Farben
-- Emerald (Grün): `$color-emerald-50…900`
-- Pumpkin Spice (Orange): `$color-pumpkin-spice-50…900`
-- Crimson (Rot): `$color-crimson-50…900`
+### Status colors
+- Emerald (green): `$color-emerald-50…900`
+- Pumpkin Spice (orange): `$color-pumpkin-spice-50…900`
+- Crimson (red): `$color-crimson-50…900`
 
-### Modul-Farben
+### Module colors
 `$color-module-yellow/orange/pink/blue/purple/green-50…900`
 
-### Typografie
+### Typography
 
 | Variable | Default |
 |---|---|
@@ -358,9 +358,9 @@ Separate Palette, nur für die Administration. Kein Bezug zu Storefront-Variable
 | `$font-size-xl` | `24px` |
 | `$font-size-3xl` | `28px` |
 
-### Z-Index Admin
+### Z-index admin
 
-| Variable | Wert |
+| Variable | Value |
 |---|---|
 | `$z-index-modal` | `1000` |
 | `$z-index-notifications` | `1200` |

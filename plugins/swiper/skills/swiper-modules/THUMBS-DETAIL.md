@@ -1,36 +1,36 @@
-# Swiper Thumbs-Modul — Vollständige Referenz
+# Swiper Thumbs module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
 - [Properties](#properties)
-- [Methoden](#methoden)
-- [HTML-Struktur](#html-struktur)
-- [CSS für aktiven Thumbnail](#css-für-aktiven-thumbnail)
-- [Thumbs via Konfigurationsobjekt (ohne separate Instanz)](#thumbs-via-konfigurationsobjekt-ohne-separate-instanz)
-- [Vollständiges Galerie-Beispiel](#vollständiges-galerie-beispiel)
+- [Methods](#methods)
+- [HTML structure](#html-structure)
+- [CSS for the active thumbnail](#css-for-the-active-thumbnail)
+- [Thumbs via configuration object (without a separate instance)](#thumbs-via-configuration-object-without-a-separate-instance)
+- [Complete gallery example](#complete-gallery-example)
 
-## Konzept
+## Concept
 
-Das Thumbs-Modul synchronisiert einen Thumbnail-Swiper mit einem Haupt-Swiper. Der Thumbnail-Swiper zeigt kleine Vorschaubilder; das Aktivieren eines Thumbnails wechselt den Haupt-Slider.
+The Thumbs module synchronizes a thumbnail Swiper with a main Swiper. The thumbnail Swiper shows small preview images; activating a thumbnail switches the main slider.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
 import { Thumbs, Navigation } from 'swiper/modules';
 
-// Zuerst den Thumbs-Swiper erstellen
+// Create the thumbs Swiper first
 const thumbsSwiper = new Swiper('.swiper-thumbs', {
   spaceBetween: 10,
   slidesPerView: 4,
   freeMode: true,
-  watchSlidesProgress: true,  // Wichtig für korrekte Synchronisierung!
+  watchSlidesProgress: true,  // Important for correct synchronization!
 });
 
-// Dann den Haupt-Swiper mit thumbs-Konfiguration
+// Then the main Swiper with the thumbs configuration
 const mainSwiper = new Swiper('.swiper-main', {
   modules: [Thumbs, Navigation],
   spaceBetween: 10,
@@ -46,33 +46,33 @@ const mainSwiper = new Swiper('.swiper-main', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `swiper` | `Swiper \| SwiperOptions \| null` | `null` | Thumbs-Swiper-Instanz oder Konfigurationsobjekt |
-| `multipleActiveThumbs` | `boolean` | `true` | Mehrere Thumbnails gleichzeitig als aktiv markieren (wenn `slidesPerView > 1`) |
-| `autoScrollOffset` | `number` | `0` | Ab wie vielen Slides vom Rand der aktive Thumbnail automatisch in den sichtbaren Bereich gescrollt wird |
-| `slideThumbActiveClass` | `string` | `'swiper-slide-thumb-active'` | CSS-Klasse für den aktiven Thumbnail-Slide |
-| `thumbsContainerClass` | `string` | `'swiper-thumbs'` | CSS-Klasse für den Thumbs-Container |
+| `swiper` | `Swiper \| SwiperOptions \| null` | `null` | Thumbs Swiper instance or configuration object |
+| `multipleActiveThumbs` | `boolean` | `true` | Mark multiple thumbnails as active at once (when `slidesPerView > 1`) |
+| `autoScrollOffset` | `number` | `0` | How many slides from the edge the active thumbnail is automatically scrolled into the visible area |
+| `slideThumbActiveClass` | `string` | `'swiper-slide-thumb-active'` | CSS class for the active thumbnail slide |
+| `thumbsContainerClass` | `string` | `'swiper-thumbs'` | CSS class for the thumbs container |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.thumbs.swiper` | `Swiper` | Referenz auf die Thumbs-Swiper-Instanz |
+| `swiper.thumbs.swiper` | `Swiper` | Reference to the thumbs Swiper instance |
 
-## Methoden
+## Methods
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---------|---------|--------------|
-| `swiper.thumbs.init()` | `() => void` | Thumbs-Modul initialisieren |
-| `swiper.thumbs.update(initial?, position?)` | `(initial?: boolean, position?: string) => void` | Thumbs-Status aktualisieren |
+| `swiper.thumbs.init()` | `() => void` | Initialize the Thumbs module |
+| `swiper.thumbs.update(initial?, position?)` | `(initial?: boolean, position?: string) => void` | Update the thumbs state |
 
-## HTML-Struktur
+## HTML structure
 
 ```html
-<!-- Haupt-Swiper -->
+<!-- Main Swiper -->
 <div class="swiper-main">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
@@ -89,7 +89,7 @@ const mainSwiper = new Swiper('.swiper-main', {
   <div class="swiper-button-next"></div>
 </div>
 
-<!-- Thumbs-Swiper -->
+<!-- Thumbs Swiper -->
 <div class="swiper-thumbs">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
@@ -105,7 +105,7 @@ const mainSwiper = new Swiper('.swiper-main', {
 </div>
 ```
 
-## CSS für aktiven Thumbnail
+## CSS for the active thumbnail
 
 ```css
 .swiper-thumbs .swiper-slide {
@@ -119,7 +119,7 @@ const mainSwiper = new Swiper('.swiper-main', {
 }
 ```
 
-## Thumbs via Konfigurationsobjekt (ohne separate Instanz)
+## Thumbs via configuration object (without a separate instance)
 
 ```js
 const mainSwiper = new Swiper('.swiper-main', {
@@ -135,7 +135,7 @@ const mainSwiper = new Swiper('.swiper-main', {
 });
 ```
 
-## Vollständiges Galerie-Beispiel
+## Complete gallery example
 
 ```js
 import Swiper from 'swiper';
@@ -168,4 +168,4 @@ const gallerySwiper = new Swiper('.gallery-main', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#thumbs
+Source: https://swiperjs.com/swiper-api#thumbs

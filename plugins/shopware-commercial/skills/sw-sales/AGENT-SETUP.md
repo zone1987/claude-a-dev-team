@@ -1,24 +1,24 @@
 # Sales Agent — Installation & Setup
 
-Vollständige Referenz: [AGENT-SETUP-SETUP.md](AGENT-SETUP-SETUP.md)
+Full reference: [AGENT-SETUP-SETUP.md](AGENT-SETUP-SETUP.md)
 
-## Schnellstart
+## Quick start
 
 ```bash
 git clone https://github.com/shopware/swagsalesagent.git
 cd swagsalesagent
 cp .env.template .env
-# .env befüllen (MySQL, Redis, APP_NAME, APP_SECRET, ...)
+# fill in .env (MySQL, Redis, APP_NAME, APP_SECRET, ...)
 pnpm install --frozen-lockfile --prefer-offline
-pnpm db:migration:deploy   # Datenbank migrieren
-pnpm dev                    # Entwicklung
-# oder:
-pnpm build                  # Produktion
+pnpm db:migration:deploy   # migrate the database
+pnpm dev                    # development
+# or:
+pnpm build                  # production
 ```
 
-## Mit Shopware verbinden
+## Connect to Shopware
 
 ```bash
-pnpm app:build  # ZIP erstellen
-# ZIP unter bundle/swagsalesagent.zip in Shopware Extensions hochladen
+pnpm app:build  # create the ZIP
+# upload the ZIP at bundle/swagsalesagent.zip in Shopware Extensions
 ```

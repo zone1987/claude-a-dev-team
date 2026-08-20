@@ -1,12 +1,12 @@
-# shadcn-vue Sidebar Blocks (sidebar-01 bis sidebar-16)
+# shadcn-vue Sidebar Blocks (sidebar-01 to sidebar-16)
 
-16 fertige Sidebar-Seitenlayouts aus shadcn-vue. Jeder Block ist ein vollstaendiges Seitenlayout
-bestehend aus `page.vue` und einer Reihe von Komponenten unter `components/`. Alle Bloecke
-verwenden `SidebarProvider` + `SidebarInset` als aeusseres Geruest.
+16 ready-made sidebar page layouts from shadcn-vue. Each block is a complete page layout
+consisting of `page.vue` and a set of components under `components/`. All blocks
+use `SidebarProvider` + `SidebarInset` as the outer scaffold.
 
 ## Contents
 
-- [Uebersicht aller 16 Bloecke](#uebersicht-aller-16-bloecke)
+- [Overview of all 16 blocks](#overview-of-all-16-blocks)
 - [sidebar-01](#sidebar-01)
 - [sidebar-02](#sidebar-02)
 - [sidebar-03](#sidebar-03)
@@ -24,39 +24,39 @@ verwenden `SidebarProvider` + `SidebarInset` als aeusseres Geruest.
 - [sidebar-15](#sidebar-15)
 - [sidebar-16](#sidebar-16)
 
-## Uebersicht aller 16 Bloecke
+## Overview of all 16 blocks
 
-| Block | Beschreibung | Key Features |
+| Block | Description | Key Features |
 |-------|-------------|--------------|
-| sidebar-01 | Einfache Sidebar mit Navigation in Abschnitten | VersionSwitcher, SearchForm, SidebarRail |
-| sidebar-02 | Sidebar mit einklappbaren Abschnitten (inset style) | Collapsible + ChevronRight, sticky Header |
-| sidebar-03 | Sidebar mit statischen Submenus | SidebarMenuSub, GalleryVerticalEnd Header |
-| sidebar-04 | Sidebar mit statischen Submenus (floating style) | variant="floating", 19rem Breite |
-| sidebar-05 | Sidebar mit einklappbaren Submenus (Plus/Minus) | Collapsible + Plus/Minus Icons, SearchForm |
-| sidebar-06 | Sidebar mit Submenus als Dropdowns | DropdownMenu fuer Subnavigation, Opt-In Card |
-| sidebar-07 | Sidebar kollabierbar zu Icons (icon-rail) | collapsible="icon", TeamSwitcher, NavUser |
-| sidebar-08 | Sidebar Inset-Variante mit sekundaerer Navigation | variant="inset", NavSecondary mt-auto |
-| sidebar-09 | Doppelte Sidebar: Icon-Rail + Mail-Liste | Zwei verschachtelte Sidebar-Komponenten, Switch |
-| sidebar-10 | Sidebar mit Team-Switcher und Workspaces | TeamSwitcher, NavFavorites, NavWorkspaces |
-| sidebar-11 | Sidebar mit einklappbarem Dateibaum | Tree-Komponente, Changes-Liste, SidebarRail |
-| sidebar-12 | Sidebar mit Kalender im Footer | Calendar, DatePicker, Calendars, NavUser Header |
-| sidebar-13 | Sidebar innerhalb eines Dialogs (Settings) | Dialog + SidebarProvider, Settings-Navigation |
-| sidebar-14 | Sidebar rechtsseitig (side="right") | AppSidebar side="right", Table-of-Contents |
-| sidebar-15 | Zwei Sidebars: links + rechts | SidebarLeft + SidebarRight, sticky Header |
-| sidebar-16 | Sidebar mit festem SiteHeader oben | SiteHeader mit SearchForm + SidebarIcon Button |
+| sidebar-01 | Simple sidebar with navigation in sections | VersionSwitcher, SearchForm, SidebarRail |
+| sidebar-02 | Sidebar with collapsible sections (inset style) | Collapsible + ChevronRight, sticky header |
+| sidebar-03 | Sidebar with static submenus | SidebarMenuSub, GalleryVerticalEnd header |
+| sidebar-04 | Sidebar with static submenus (floating style) | variant="floating", 19rem width |
+| sidebar-05 | Sidebar with collapsible submenus (plus/minus) | Collapsible + Plus/Minus icons, SearchForm |
+| sidebar-06 | Sidebar with submenus as dropdowns | DropdownMenu for subnavigation, opt-in card |
+| sidebar-07 | Sidebar collapsible to icons (icon rail) | collapsible="icon", TeamSwitcher, NavUser |
+| sidebar-08 | Sidebar inset variant with secondary navigation | variant="inset", NavSecondary mt-auto |
+| sidebar-09 | Double sidebar: icon rail + mail list | Two nested sidebar components, Switch |
+| sidebar-10 | Sidebar with team switcher and workspaces | TeamSwitcher, NavFavorites, NavWorkspaces |
+| sidebar-11 | Sidebar with collapsible file tree | Tree component, changes list, SidebarRail |
+| sidebar-12 | Sidebar with calendar in the footer | Calendar, DatePicker, Calendars, NavUser header |
+| sidebar-13 | Sidebar inside a dialog (settings) | Dialog + SidebarProvider, settings navigation |
+| sidebar-14 | Sidebar on the right-hand side (side="right") | AppSidebar side="right", table of contents |
+| sidebar-15 | Two sidebars: left + right | SidebarLeft + SidebarRight, sticky header |
+| sidebar-16 | Sidebar with a fixed SiteHeader on top | SiteHeader with SearchForm + SidebarIcon button |
 
 ---
 
 ## sidebar-01
 
-Einfache Sidebar mit Navigation gruppiert nach Abschnitten, VersionSwitcher und SearchForm.
+Simple sidebar with navigation grouped into sections, VersionSwitcher and SearchForm.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-01
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-01/
 ├── page.vue
@@ -67,25 +67,25 @@ sidebar-01/
 ```
 
 **Key Features:**
-- `VersionSwitcher` als Dropdown im SidebarHeader (GalleryVerticalEnd Icon)
-- `SearchForm` mit `SidebarInput` direkt unter dem Version-Switcher
-- Navigation in statischen `SidebarGroup`-Abschnitten (kein Collapsible)
-- `SidebarRail` fuer Resize-Handle
+- `VersionSwitcher` as a dropdown in the SidebarHeader (GalleryVerticalEnd icon)
+- `SearchForm` with `SidebarInput` directly below the version switcher
+- Navigation in static `SidebarGroup` sections (no Collapsible)
+- `SidebarRail` for the resize handle
 
-**Vollstaendiger Code:** siehe `SIDEBAR-01-04.md`
+**Complete code:** see `SIDEBAR-01-04.md`
 
 ---
 
 ## sidebar-02
 
-Sidebar mit einklappbaren Abschnitten, inset style, sticky Header.
+Sidebar with collapsible sections, inset style, sticky header.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-02
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-02/
 ├── page.vue
@@ -96,25 +96,25 @@ sidebar-02/
 ```
 
 **Key Features:**
-- `Collapsible` + `ChevronRight`-Rotation fuer jede Navigationsgruppe
-- `SidebarGroupLabel` als `CollapsibleTrigger` (hover-Styles)
-- Sticky `bg-background` Header in `page.vue`
-- Scrollbare Liste von Items in der Vorschau
+- `Collapsible` + `ChevronRight` rotation for each navigation group
+- `SidebarGroupLabel` as `CollapsibleTrigger` (hover styles)
+- Sticky `bg-background` header in `page.vue`
+- Scrollable list of items in the preview
 
-**Vollstaendiger Code:** siehe `SIDEBAR-01-04.md`
+**Complete code:** see `SIDEBAR-01-04.md`
 
 ---
 
 ## sidebar-03
 
-Sidebar mit kollabierenden Subnavigations-Items, inset style.
+Sidebar with collapsing subnavigation items, inset style.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-03
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-03/
 ├── page.vue
@@ -123,24 +123,24 @@ sidebar-03/
 ```
 
 **Key Features:**
-- Statische `SidebarMenuSub` / `SidebarMenuSubItem` (kein Collapsible)
-- `GalleryVerticalEnd` Logo im Header
-- Kompakte Variante ohne Collapsible-Overhead
+- Static `SidebarMenuSub` / `SidebarMenuSubItem` (no Collapsible)
+- `GalleryVerticalEnd` logo in the header
+- Compact variant without the Collapsible overhead
 
-**Vollstaendiger Code:** siehe `SIDEBAR-01-04.md`
+**Complete code:** see `SIDEBAR-01-04.md`
 
 ---
 
 ## sidebar-04
 
-Sidebar mit kollabierenden Subnavigations-Items, floating style.
+Sidebar with collapsing subnavigation items, floating style.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-04
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-04/
 ├── page.vue
@@ -150,24 +150,24 @@ sidebar-04/
 
 **Key Features:**
 - `variant: "floating"` via `withDefaults`
-- Benutzerdefinierte Sidebar-Breite `--sidebar-width: 19rem`
-- Sub-Items ohne linken Rahmen: `ml-0 border-l-0 px-1.5`
-- Kein `SidebarRail`
+- Custom sidebar width `--sidebar-width: 19rem`
+- Sub-items without a left border: `ml-0 border-l-0 px-1.5`
+- No `SidebarRail`
 
-**Vollstaendiger Code:** siehe `SIDEBAR-01-04.md`
+**Complete code:** see `SIDEBAR-01-04.md`
 
 ---
 
 ## sidebar-05
 
-Sidebar mit einklappbaren Subnavigations-Items und Plus/Minus Toggle-Icons.
+Sidebar with collapsible subnavigation items and plus/minus toggle icons.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-05
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-05/
 ├── page.vue
@@ -177,24 +177,24 @@ sidebar-05/
 ```
 
 **Key Features:**
-- `Collapsible` mit `Plus`/`Minus` Icons statt ChevronRight
-- `SearchForm` im SidebarHeader
-- Zweiter Abschnitt standardmaessig offen (`index === 1`)
+- `Collapsible` with `Plus`/`Minus` icons instead of ChevronRight
+- `SearchForm` in the SidebarHeader
+- Second section open by default (`index === 1`)
 
-**Vollstaendiger Code:** siehe `SIDEBAR-05-08.md`
+**Complete code:** see `SIDEBAR-05-08.md`
 
 ---
 
 ## sidebar-06
 
-Sidebar mit Subnavigation als Dropdown-Menus (icon-rail).
+Sidebar with subnavigation as dropdown menus (icon rail).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-06
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-06/
 ├── page.vue
@@ -205,24 +205,24 @@ sidebar-06/
 ```
 
 **Key Features:**
-- `DropdownMenu` als Subnavigation (kein Collapsible), `MoreHorizontal` Trigger
-- `SidebarOptInForm` als Card im SidebarFooter (Newsletter Opt-In)
-- `useMediaQuery` fuer mobile/desktop Dropdown-Position
+- `DropdownMenu` as subnavigation (no Collapsible), `MoreHorizontal` trigger
+- `SidebarOptInForm` as a card in the SidebarFooter (newsletter opt-in)
+- `useMediaQuery` for the mobile/desktop dropdown position
 
-**Vollstaendiger Code:** siehe `SIDEBAR-05-08.md`
+**Complete code:** see `SIDEBAR-05-08.md`
 
 ---
 
 ## sidebar-07
 
-Sidebar kollabierbar zu Icons (Teams/Navbar/NavUser).
+Sidebar collapsible to icons (teams/navbar/NavUser).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-07
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-07/
 ├── page.vue
@@ -235,25 +235,25 @@ sidebar-07/
 ```
 
 **Key Features:**
-- `collapsible: "icon"` — Sidebar kollabiert zu Icon-Leiste
-- `TeamSwitcher` mit `ChevronsUpDown` und Keyboard-Shortcuts
-- `NavMain` mit Tooltip-Support fuer kollabierte Icons
-- `NavUser` Avatar-Dropdown im Footer
+- `collapsible: "icon"` — the sidebar collapses to an icon bar
+- `TeamSwitcher` with `ChevronsUpDown` and keyboard shortcuts
+- `NavMain` with tooltip support for collapsed icons
+- `NavUser` avatar dropdown in the footer
 
-**Vollstaendiger Code:** siehe `SIDEBAR-05-08.md`
+**Complete code:** see `SIDEBAR-05-08.md`
 
 ---
 
 ## sidebar-08
 
-Sidebar Inset-Variante mit verschachtelten einklappbaren Items und Dokumenten-Verwaltung.
+Sidebar inset variant with nested collapsible items and document management.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-08
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-08/
 ├── page.vue
@@ -266,25 +266,25 @@ sidebar-08/
 ```
 
 **Key Features:**
-- `variant: "inset"` fuer eingebettetes Sidebar-Layout
-- `NavSecondary` mit `mt-auto` am unteren Ende des SidebarContent
-- `SidebarMenuAction` als Collapsible-Trigger mit `data-[state=open]:rotate-90`
-- Kein TeamSwitcher, stattdessen fester Command-Logo-Header
+- `variant: "inset"` for an embedded sidebar layout
+- `NavSecondary` with `mt-auto` at the bottom of the SidebarContent
+- `SidebarMenuAction` as the Collapsible trigger with `data-[state=open]:rotate-90`
+- No TeamSwitcher, a fixed command logo header instead
 
-**Vollstaendiger Code:** siehe `SIDEBAR-05-08.md`
+**Complete code:** see `SIDEBAR-05-08.md`
 
 ---
 
 ## sidebar-09
 
-Sidebar mit Workspace/Team-Switcher (doppelte verschachtelte Sidebars).
+Sidebar with a workspace/team switcher (two nested sidebars).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-09
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-09/
 ├── page.vue
@@ -294,25 +294,25 @@ sidebar-09/
 ```
 
 **Key Features:**
-- Zwei verschachtelte `<Sidebar>`-Komponenten: Icon-Rail + Mail-Liste
-- Aeussere Sidebar: `overflow-hidden *:data-[sidebar=sidebar]:flex-row`
-- Innere Icon-Sidebar: `collapsible="none"`, feste Icon-Breite
-- `Switch` + `Label` fuer "Unreads"-Filter, `SidebarInput` fuer Suche
+- Two nested `<Sidebar>` components: icon rail + mail list
+- Outer sidebar: `overflow-hidden *:data-[sidebar=sidebar]:flex-row`
+- Inner icon sidebar: `collapsible="none"`, fixed icon width
+- `Switch` + `Label` for the "Unreads" filter, `SidebarInput` for search
 
-**Vollstaendiger Code:** siehe `SIDEBAR-09-12.md`
+**Complete code:** see `SIDEBAR-09-12.md`
 
 ---
 
 ## sidebar-10
 
-Sidebar mit Benutzerprofil im Footer (NavUser mit Avatar).
+Sidebar with a user profile in the footer (NavUser with avatar).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-10
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-10/
 ├── page.vue
@@ -327,25 +327,25 @@ sidebar-10/
 ```
 
 **Key Features:**
-- `TeamSwitcher` mit `ChevronDown` (kompakte Variante, `w-fit px-1.5`)
-- `NavFavorites` mit Emoji-Icons und `DropdownMenu` pro Item
-- `NavWorkspaces` mit `Collapsible` + `Plus`-Action per Workspace
-- `NavActions` als Popover-Menu rechts im Header
+- `TeamSwitcher` with `ChevronDown` (compact variant, `w-fit px-1.5`)
+- `NavFavorites` with emoji icons and a `DropdownMenu` per item
+- `NavWorkspaces` with `Collapsible` + a `Plus` action per workspace
+- `NavActions` as a popover menu on the right of the header
 
-**Vollstaendiger Code:** siehe `SIDEBAR-09-12.md`
+**Complete code:** see `SIDEBAR-09-12.md`
 
 ---
 
 ## sidebar-11
 
-Sidebar mit einklappbarem Dateibaum und schwebenden Aktionsschaltflaechen.
+Sidebar with a collapsible file tree and floating action buttons.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-11
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-11/
 ├── page.vue
@@ -355,25 +355,25 @@ sidebar-11/
 ```
 
 **Key Features:**
-- Rekursive `Tree`-Komponente fuer Dateibaum-Darstellung
-- "Changes"-Gruppe mit `SidebarMenuBadge` (M/U Status-Badges)
-- `Tree` unterstuetzt Dateien und Ordner (Collapsible mit ChevronRight)
-- `SidebarRail` fuer Resize
+- Recursive `Tree` component for rendering the file tree
+- "Changes" group with `SidebarMenuBadge` (M/U status badges)
+- `Tree` supports files and folders (Collapsible with ChevronRight)
+- `SidebarRail` for resizing
 
-**Vollstaendiger Code:** siehe `SIDEBAR-09-12.md`
+**Complete code:** see `SIDEBAR-09-12.md`
 
 ---
 
 ## sidebar-12
 
-Sidebar mit Datumsauswahl im Footer.
+Sidebar with a date picker in the footer.
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-12
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-12/
 ├── page.vue
@@ -385,25 +385,25 @@ sidebar-12/
 ```
 
 **Key Features:**
-- `DatePicker` mit shadcn-vue `Calendar`-Komponente im SidebarContent
-- `Calendars` mit Collapsible-Gruppen und Checkbox-artigem Status
-- `NavUser` Avatar im SidebarHeader (nicht Footer)
-- `SidebarSeparator` zwischen DatePicker und Calendars
+- `DatePicker` with the shadcn-vue `Calendar` component in the SidebarContent
+- `Calendars` with collapsible groups and a checkbox-like state
+- `NavUser` avatar in the SidebarHeader (not the footer)
+- `SidebarSeparator` between DatePicker and Calendars
 
-**Vollstaendiger Code:** siehe `SIDEBAR-09-12.md`
+**Complete code:** see `SIDEBAR-09-12.md`
 
 ---
 
 ## sidebar-13
 
-Sidebar minimal mit Suche, kein Footer (Settings-Dialog).
+Minimal sidebar with search, no footer (settings dialog).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-13
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-13/
 ├── page.vue
@@ -412,25 +412,25 @@ sidebar-13/
 ```
 
 **Key Features:**
-- `Dialog` + `SidebarProvider` kombiniert fuer Settings-Modal
-- Sidebar `collapsible="none"` innerhalb des Dialogs
-- Breadcrumb zeigt aktuellen Settings-Bereich
-- `DialogTitle`/`DialogDescription` mit `sr-only` fuer A11y
+- `Dialog` + `SidebarProvider` combined for a settings modal
+- Sidebar `collapsible="none"` inside the dialog
+- Breadcrumb shows the current settings area
+- `DialogTitle`/`DialogDescription` with `sr-only` for a11y
 
-**Vollstaendiger Code:** siehe `SIDEBAR-13-16.md`
+**Complete code:** see `SIDEBAR-13-16.md`
 
 ---
 
 ## sidebar-14
 
-Sidebar mit stickigem Site-Header und Breadcrumb (sidebar side="right").
+Sidebar with a sticky site header and breadcrumb (sidebar side="right").
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-14
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-14/
 ├── page.vue
@@ -439,25 +439,25 @@ sidebar-14/
 ```
 
 **Key Features:**
-- `AppSidebar` mit `side="right"` — Sidebar rechts
-- `SidebarTrigger` rotiert `rotate-180` und positioniert `ml-auto`
-- `AppSidebar` zeigt Table-of-Contents mit `SidebarMenuSub`
-- Einfaches Layout ohne TeamSwitcher oder NavUser
+- `AppSidebar` with `side="right"` — sidebar on the right
+- `SidebarTrigger` rotates `rotate-180` and is positioned `ml-auto`
+- `AppSidebar` shows a table of contents with `SidebarMenuSub`
+- Simple layout without TeamSwitcher or NavUser
 
-**Vollstaendiger Code:** siehe `SIDEBAR-13-16.md`
+**Complete code:** see `SIDEBAR-13-16.md`
 
 ---
 
 ## sidebar-15
 
-Sidebar mit zwei Sidebars nebeneinander (links + rechts).
+Sidebar with two sidebars side by side (left + right).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-15
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-15/
 ├── page.vue
@@ -475,25 +475,25 @@ sidebar-15/
 ```
 
 **Key Features:**
-- `SidebarLeft` (linke Hauptnavigation) + `SidebarRight` (Kalender)
-- `SidebarRight` ist `sticky top-0 h-svh border-l`, `collapsible="none"` 
-- `SidebarRight` nur auf `lg:flex` sichtbar
-- Gleiche Komponenten wie sidebar-10 (NavFavorites, NavWorkspaces)
+- `SidebarLeft` (left main navigation) + `SidebarRight` (calendar)
+- `SidebarRight` is `sticky top-0 h-svh border-l`, `collapsible="none"` 
+- `SidebarRight` visible only at `lg:flex`
+- Same components as sidebar-10 (NavFavorites, NavWorkspaces)
 
-**Vollstaendiger Code:** siehe `SIDEBAR-13-16.md`
+**Complete code:** see `SIDEBAR-13-16.md`
 
 ---
 
 ## sidebar-16
 
-Sidebar mit schwebender Top-Navigationsleiste (SiteHeader).
+Sidebar with a floating top navigation bar (SiteHeader).
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add sidebar-16
 ```
 
-**Dateien:**
+**Files:**
 ```
 sidebar-16/
 ├── page.vue
@@ -508,9 +508,9 @@ sidebar-16/
 ```
 
 **Key Features:**
-- `SiteHeader` als sticky `z-50` Header mit `SidebarIcon`-Button
-- `--header-height: calc(--spacing(14))` CSS-Variable fuer Layout-Koordination
-- `AppSidebar` mit `top-(--header-height)` und angepasster Hoehe
-- `SearchForm` im SiteHeader (nicht in der Sidebar)
+- `SiteHeader` as a sticky `z-50` header with a `SidebarIcon` button
+- `--header-height: calc(--spacing(14))` CSS variable for layout coordination
+- `AppSidebar` with `top-(--header-height)` and an adjusted height
+- `SearchForm` in the SiteHeader (not in the sidebar)
 
-**Vollstaendiger Code:** siehe `SIDEBAR-13-16.md`
+**Complete code:** see `SIDEBAR-13-16.md`

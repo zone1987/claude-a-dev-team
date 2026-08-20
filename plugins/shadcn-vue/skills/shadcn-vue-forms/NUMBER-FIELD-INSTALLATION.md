@@ -1,20 +1,20 @@
 # NumberField — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add number-field
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install dependencies:
 
 ```bash
 npm install reka-ui @vueuse/core @lucide/vue
 ```
 
-2. Folgende Dateien nach `src/components/ui/number-field/` kopieren:
+2. Copy the following files to `src/components/ui/number-field/`:
    - `NumberField.vue`
    - `NumberFieldContent.vue`
    - `NumberFieldDecrement.vue`
@@ -34,5 +34,5 @@ import {
 } from "@/components/ui/number-field"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/number-field/index.ts`

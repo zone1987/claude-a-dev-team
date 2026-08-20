@@ -1,28 +1,28 @@
-# Sales Agent — Überblick
+# Sales Agent — overview
 
-Sales Agent ist eine lizenzpflichtige Shopware-App (Beyond oder Evolve),
-die Vertriebsmitarbeitern eine optimierte Arbeitsumgebung bietet — ohne
-den Overhead der Shopware-Administration.
+Sales Agent is a licensed Shopware app (Beyond or Evolve) that gives
+sales representatives an optimized working environment — without the
+overhead of the Shopware administration.
 
 ![Sales Agent Overview](assets/sales-agent-overview.jpg)
 
-## Architektur
+## Architecture
 
-| Schicht | Technologie |
+| Layer | Technology |
 |---------|------------|
 | Frontend | Vue |
 | Backend/Server | Nuxt 3 + Nitro |
-| Datenbank | MySQL (via Prisma) |
+| Database | MySQL (via Prisma) |
 | Cache | Redis (via Nitro Storage) |
 
-![Architektur](assets/sales-agent-architecture.jpg)
+![Architecture](assets/sales-agent-architecture.jpg)
 
-Vollständige Referenz: [AGENT-OVERVIEW.md](AGENT-OVERVIEW.md)
+Full reference: [AGENT-OVERVIEW.md](AGENT-OVERVIEW.md)
 
-## Verwandte Skills
+## Related skills
 
-| Thema | Skill |
+| Topic | Skill |
 |-------|-------|
-| Installation & App-Server-Setup | `sw-sales-agent-setup` |
-| Anpassung (Branding, Komponenten, i18n) | `sw-sales-agent-customization` |
+| Installation & app server setup | `sw-sales-agent-setup` |
+| Customization (branding, components, i18n) | `sw-sales-agent-customization` |
 | Deployment (AWS, Cloudflare, Ubuntu) | `sw-sales-agent-deployment` |

@@ -1,6 +1,6 @@
-# Shopware 6 – Währungen, Sprachen & Länder (vollständige Referenz)
+# Shopware 6 – Währungen (Currencies), Sprachen (Languages) & Länder (Countries) – complete reference
 
-Quellen:
+Sources:
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/waehrungen
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/sprachen
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/laender
@@ -15,127 +15,127 @@ Quellen:
 
 ## Währungen
 
-**Pfad:** Einstellungen > Shop > Währungen
+**Path:** Einstellungen (Settings) > Shop > Währungen
 
-### Übersicht
-- Alle konfigurierten Währungen anzeigen
-- Kontextmenü: Bearbeiten oder Entfernen
-- Faktor basiert auf der obersten Systemwährung (sollte unverändert bleiben)
+### Overview
+- Shows all configured currencies
+- Context menu: edit or remove
+- The factor is based on the topmost system currency (which should remain unchanged)
 
-### Neue Währung erstellen
+### Creating a new currency
 
-#### 1. Einstellungen
-| Feld | Beschreibung |
+#### 1. Settings
+| Field | Description |
 |---|---|
-| Name | Bezeichnung (z.B. „Euro") |
-| ISO-Code | Gültiger ISO-Währungscode |
-| Kurzname | Dreistellige Abkürzung (z.B. „EUR") |
-| Symbol | Währungssymbol (z.B. „€") |
-| Faktor | Umrechnungsfaktor zur Systemwährung |
+| Name | Label (e.g. "Euro") |
+| ISO-Code | Valid ISO currency code |
+| Kurzname (Short name) | Three-letter abbreviation (e.g. "EUR") |
+| Symbol | Currency symbol (e.g. "€") |
+| Faktor (Factor) | Conversion factor relative to the system currency |
 
-#### 2. Preisrundungen
-| Feld | Beschreibung |
+#### 2. Price rounding
+| Field | Description |
 |---|---|
-| Nachkommastellen | Dezimalstellen bei Warenkorb-Berechnungen |
-| Rundungsintervall | Rundungslogik festlegen |
-| Nettokunden | Rundung auf Nettokunden anwenden |
-| Summen | Separate Einstellungen für Gesamtsummen |
+| Nachkommastellen (Decimal places) | Decimal places in cart calculations |
+| Rundungsintervall (Rounding interval) | Defines the rounding logic |
+| Nettokunden (Net customers) | Apply rounding to net customers |
+| Summen (Totals) | Separate settings for grand totals |
 
-#### 3. Länder
-Länderspezifische Preisrundungseinstellungen können abweichend konfiguriert werden.
+#### 3. Countries
+Country-specific price rounding settings can be configured differently.
 
-### Bearbeiten & Entfernen
-- Bestehende Währungen editierbar
-- Sprachvarianten hinzufügbar
-- Entfernen nur möglich, wenn Währung keinem Objekt zugewiesen
+### Editing & removing
+- Existing currencies can be edited
+- Language variants can be added
+- Removal is only possible if the currency is not assigned to any object
 
-### Darstellung
-Die Formatierung des Währungssymbols hängt von der gewählten Sprache ab:
-- Deutsch: „499,99 $"
-- Englisch: „US$499.99"
+### Presentation
+The formatting of the currency symbol depends on the selected language:
+- German: "499,99 $"
+- English: "US$499.99"
 
 ---
 
 ## Sprachen
 
-**Pfad:** Einstellungen > Allgemein > Sprachen  
-**Verfügbar ab:** 6.7.3.0
+**Path:** Einstellungen > Allgemein (General) > Sprachen  
+**Available from:** 6.7.3.0
 
-> **Kritisch:** Die System-Standardsprache wird bei der Installation gewählt und kann **danach nicht mehr geändert** werden.
+> **Critical:** The system default language is chosen during installation and **cannot be changed afterwards**.
 
-### Übersicht
-Alle konfigurierten Sprachen mit Name, Lokalisierung, ISO-Code, Aktivstatus.
+### Overview
+All configured languages with name, locale, ISO code, active status.
 
-### Filter-Optionen
-| Filter | Beschreibung |
+### Filter options
+| Filter | Description |
 |---|---|
-| Nur Root-Sprachen | Hauptsprachen ohne Vererbung |
-| Nur abgeleitete Sprachen | Sprachen, die von einer Elternsprache erben |
+| Nur Root-Sprachen (Root languages only) | Main languages without inheritance |
+| Nur abgeleitete Sprachen (Derived languages only) | Languages that inherit from a parent language |
 
-> Abgeleitete Sprachen erben Kernkomponenten vom Elternteil, erlauben aber spezifische Anpassungen.
+> Derived languages inherit core components from the parent but allow specific adjustments.
 
-### Felder (Erstellen / Bearbeiten)
-| Feld | Beschreibung |
+### Fields (create / edit)
+| Field | Description |
 |---|---|
-| Name | Sprachbezeichnung |
-| Aktiv | Im Shop aktivieren/deaktivieren |
-| Lokalisierung | Land-/Regionszuweisung |
-| ISO-Code | Offizieller Code (z.B. `de-DE`, `en-GB`) |
-| Erben von | Elternsprache (max. eine möglich) |
+| Name | Language label |
+| Aktiv (Active) | Activate/deactivate in the shop |
+| Lokalisierung (Locale) | Country/region assignment |
+| ISO-Code | Official code (e.g. `de-DE`, `en-GB`) |
+| Erben von (Inherit from) | Parent language (at most one possible) |
 
-### Sprache anlegen
-1. Auf „Sprache anlegen" klicken
-2. Felder ausfüllen
-3. Speichern → Sprache in Verkaufskanälen verfügbar
+### Creating a language
+1. Click "Sprache anlegen" (Create language)
+2. Fill in the fields
+3. Save → the language is available in the sales channels
 
 ---
 
 ## Länder
 
-**Pfad:** Einstellungen > Regional > Länder  
-**Verfügbar ab:** 6.7.0.0
+**Path:** Einstellungen > Regional > Länder  
+**Available from:** 6.7.0.0
 
-### Übersicht
-Tabelle mit: Ländername, Positionierung, ISO-2-Code, ISO-3-Code, Aktivstatus
+### Overview
+Table with: country name, positioning, ISO-2 code, ISO-3 code, active status
 
-### Allgemein-Bereich (beim Anlegen)
-| Feld | Beschreibung |
+### Allgemein (General) area (when creating)
+| Field | Description |
 |---|---|
-| Name | Länderbezeichnung (in Systemstandard-Sprache) |
-| Position | Sortierreihenfolge in der Storefront |
-| ISO2 | Zweistelliger ISO-Code (z.B. DE) |
-| ISO3 | Dreistelliger ISO-Code (z.B. DEU) |
+| Name | Country label (in the system default language) |
+| Position | Sort order in the storefront |
+| ISO2 | Two-letter ISO code (e.g. DE) |
+| ISO3 | Three-letter ISO code (e.g. DEU) |
 
-### Optionen-Bereich (8 Schalter)
-| Option | Beschreibung |
+### Optionen (Options) area (8 switches)
+| Option | Description |
 |---|---|
-| Aktiv | Verfügbarkeit im Shop |
-| Versand | Versandoptionen aktivieren/deaktivieren |
-| Steuerfrei (B2C) | Steuerbefreiung für Einzelkunden |
-| Steuerfrei ab | Wertgrenze für B2C-Steuerbefreiung |
-| Währungsabhängige Werte | Mehrwährungsunterstützung |
-| Steuerfrei (B2B) | Unternehmenssteuerbefreiung (erfordert gültige USt-ID) |
-| USt-ID-Format überprüfen | EU-Validierung der Umsatzsteuer-ID |
-| USt-ID Pflichtfeld | Obligatorische USt-ID-Eingabe |
-| EU-Mitgliedstaat | Automatisch für EU-Länder; fügt „innergemeinschaftliche Lieferung" hinzu |
+| Aktiv | Availability in the shop |
+| Versand (Shipping) | Activate/deactivate shipping options |
+| Steuerfrei (B2C) (Tax-free, B2C) | Tax exemption for private customers |
+| Steuerfrei ab (Tax-free from) | Value threshold for the B2C tax exemption |
+| Währungsabhängige Werte (Currency-dependent values) | Multi-currency support |
+| Steuerfrei (B2B) (Tax-free, B2B) | Company tax exemption (requires a valid VAT ID) |
+| USt-ID-Format überprüfen (Check VAT ID format) | EU validation of the VAT ID |
+| USt-ID Pflichtfeld (VAT ID mandatory) | Mandatory entry of the VAT ID |
+| EU-Mitgliedstaat (EU member state) | Automatic for EU countries; adds "intra-community delivery" |
 
-### Länder/Regionen (Reiter)
-- Bundesländer/Regionen verwalten
-- Neue Regionen hinzufügen: Name, ISO-Code, Position
-- Inline-Bearbeitung per Doppelklick
+### Länder/Regionen (Countries/regions) (tab)
+- Manage federal states/regions
+- Add new regions: name, ISO code, position
+- Inline editing via double-click
 
-### Adress-Verwaltung (Validierung)
-| Option | Beschreibung |
+### Address management (validation)
+| Option | Description |
 |---|---|
-| Land/Region Pflichtfeld | Pflichtangabe im Adressformular |
-| Postleitzahl Pflichtfeld | Pflichtangabe |
-| Postleitzahl validieren | Format-Validierung aktivieren |
-| Erweiterte Validierungsregeln | RegEx-Format (z.B. `^\d{5}$` für 5 Ziffern) |
+| Land/Region Pflichtfeld (Country/region mandatory) | Mandatory entry in the address form |
+| Postleitzahl Pflichtfeld (Postcode mandatory) | Mandatory entry |
+| Postleitzahl validieren (Validate postcode) | Activate format validation |
+| Erweiterte Validierungsregeln (Advanced validation rules) | RegEx format (e.g. `^\d{5}$` for 5 digits) |
 
-**Beispiele:**
-- `^\d{5}$` → exakt 5 Ziffern (Deutschland)
-- `^(\d{4})\s*([A-Z]{2})$` → Format „1234 AB" (Niederlande)
+**Examples:**
+- `^\d{5}$` → exactly 5 digits (Germany)
+- `^(\d{4})\s*([A-Z]{2})$` → format "1234 AB" (Netherlands)
 
-### Adressformat
-- Länderspezifische Adressformatierung konfigurierbar (z.B. USA: Hausnummer vor Straße)
-- Live-Vorschau zur Validierung verfügbar
+### Address format
+- Country-specific address formatting is configurable (e.g. USA: house number before street)
+- A live preview is available for validation

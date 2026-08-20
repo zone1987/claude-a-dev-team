@@ -1,168 +1,168 @@
-# Shopware 6 – Produktübersicht (Listansicht): Vollständige Referenz
+# Shopware 6 – Produktübersicht (Product overview, list view): complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/produkte/uebersicht  
-> Gilt ab: Shopware 6.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/produkte/uebersicht  
+> Applies from: Shopware 6.0.0+
 
 ---
 
 ## Contents
 
-- [1. Überblick](#1-überblick)
-- [2. Spalten und Darstellung](#2-spalten-und-darstellung)
-- [3. Kontextmenü pro Produkt](#3-kontextmenü-pro-produkt)
-- [4. Mehrfachänderung](#4-mehrfachänderung)
-- [5. Suche und Filter](#5-suche-und-filter)
-- [6. Wichtige Hinweise](#6-wichtige-hinweise)
+- [1. Overview](#1-overview)
+- [2. Columns and presentation](#2-columns-and-presentation)
+- [3. Context menu per product](#3-context-menu-per-product)
+- [4. Mehrfachänderung (Bulk edit)](#4-mehrfachänderung-bulk-edit)
+- [5. Search and filters](#5-search-and-filters)
+- [6. Important notes](#6-important-notes)
 
-## 1. Überblick
+## 1. Overview
 
-Die Produktübersicht unter **Kataloge > Produkte** ist die zentrale Liste aller angelegten Produkte. Sie bietet eine schnelle Orientierung und ermöglicht Massenoperationen.
+The product overview under **Kataloge** (Catalogues) > **Produkte** (Products) is the central list of all products that exist. It provides quick orientation and enables bulk operations.
 
 ---
 
-## 2. Spalten und Darstellung
+## 2. Columns and presentation
 
-### Standard-Spalten
+### Default columns
 
-| Spalte | Beschreibung | Sortierbar |
+| Column | Description | Sortable |
 |---|---|---|
-| Aktiv | Verfügbarkeitsstatus (grün = aktiv, rot = inaktiv) | Ja |
-| Name | Produktbezeichnung | Ja |
-| Produktnummer | Eindeutige Kennzeichnung | Ja |
-| Preis | Preis für die Standardkundengruppe | Ja |
-| Lagerbestand | Aktueller Bestand (farbkodiert) | Ja |
-| Hersteller | Zugeordneter Herstellername | Ja |
+| Aktiv (Active) | Availability status (green = active, red = inactive) | Yes |
+| Name | Product name | Yes |
+| Produktnummer (Product number) | Unique identifier | Yes |
+| Preis (Price) | Price for the default customer group | Yes |
+| Lagerbestand (Stock) | Current stock (colour-coded) | Yes |
+| Hersteller (Manufacturer) | Assigned manufacturer name | Yes |
 
-### Lagerbestand-Farbkodierung
+### Stock colour coding
 
-| Farbe | Bestand |
+| Colour | Stock |
 |---|---|
-| Rot | 0 (nicht auf Lager) |
-| Gelb | 1–25 (niedriger Bestand) |
-| Grün | > 25 (ausreichend) |
+| Red | 0 (not in stock) |
+| Yellow | 1–25 (low stock) |
+| Green | > 25 (sufficient) |
 
-### Spalten anpassen
+### Adjusting columns
 
-Über **Listeneinstellungen** (Zahnrad-Symbol):
-- Spalten ein- und ausblenden
-- Spaltenreihenfolge per Drag & Drop anpassen
-- **Kompaktmodus** aktivieren (weniger Zeilenhöhe, mehr Produkte sichtbar)
+Via **Listeneinstellungen** (List settings) (gear icon):
+- Show and hide columns
+- Adjust the column order by drag & drop
+- Activate **Kompaktmodus** (Compact mode) (less row height, more products visible)
 
 ---
 
-## 3. Kontextmenü pro Produkt
+## 3. Context menu per product
 
-Klick auf **„..."** (Drei-Punkte-Button) rechts neben einem Produkt:
+Click on **"..."** (three-dot button) to the right of a product:
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| Bearbeiten | Öffnet die vollständige Produktdetailmaske |
-| Duplizieren | Erstellt eine Kopie des Produkts mit allen Einstellungen |
-| Löschen | Löscht das Produkt dauerhaft |
+| Bearbeiten (Edit) | Opens the full product detail screen |
+| Duplizieren (Duplicate) | Creates a copy of the product with all settings |
+| Löschen (Delete) | Deletes the product permanently |
 
-### Variantenprodukte
+### Variant products
 
-- Symbol vor dem Produktnamen zeigt, dass es sich um ein Variantenprodukt handelt
-- Klick auf das Symbol öffnet ein **Modal** mit Übersicht aller Varianten und deren Kerninfos
+- An icon in front of the product name shows that this is a variant product
+- Clicking the icon opens a **modal** with an overview of all variants and their core information
 
 ---
 
-## 4. Mehrfachänderung
+## 4. Mehrfachänderung (Bulk edit)
 
-### Was ist Mehrfachänderung?
+### What is Mehrfachänderung?
 
-Die Mehrfachänderung ermöglicht die gleichzeitige Bearbeitung mehrerer Produkte ohne jedes einzeln öffnen zu müssen. Besonders nützlich für Massenaktualisierungen von Preisen, Kategorien oder Status.
+The bulk edit allows several products to be edited at the same time without having to open each one individually. It is especially useful for mass updates of prices, categories or status.
 
-### Voraussetzungen
+### Prerequisites
 
-- Maximal **1000 Produkte** pro Vorgang
-- Auswahl kann seitenübergreifend erfolgen
+- A maximum of **1000 products** per operation
+- The selection can span several pages
 
-### Schritt-für-Schritt
+### Step by step
 
-1. Produkte auswählen (Checkbox links neben dem Produkt)
-   - Einzelne Produkte: Checkboxen anklicken
-   - Alle auf der Seite: Checkbox im Tabellenkopf
-   - Alle Seiten: Erweiterte Auswahl nutzen
-2. Button **„Mehrfachänderung"** klickt
-3. Gewünschte Felder per **Checkbox** aktivieren
-4. Werte eingeben oder Operationen auswählen
-5. Speichern → Fortschrittsbalken erscheint
+1. Select products (checkbox to the left of the product)
+   - Individual products: click the checkboxes
+   - All on the page: checkbox in the table header
+   - All pages: use the extended selection
+2. Click the button **"Mehrfachänderung"** (Bulk edit)
+3. Activate the desired fields via **checkbox**
+4. Enter values or choose operations
+5. Save → a progress bar appears
 
-### Dropdown-Operationen
+### Dropdown operations
 
-| Operation | Verhalten |
+| Operation | Behaviour |
 |---|---|
-| **Überschreiben** | Ersetzt alle bisherigen Werte durch den neuen Wert |
-| **Leeren** | Entfernt alle Einstellungen dieses Blocks (löscht Werte) |
-| **Hinzufügen** | Ergänzt den neuen Wert ohne bestehende Werte zu löschen |
-| **Entfernen** | Löscht spezifisch den angegebenen Wert aus der Zuordnung |
+| **Überschreiben** (Overwrite) | Replaces all previous values with the new value |
+| **Leeren** (Clear) | Removes all settings of this block (deletes values) |
+| **Hinzufügen** (Add) | Adds the new value without deleting existing values |
+| **Entfernen** (Remove) | Specifically deletes the given value from the assignment |
 
-### Änderbare Felder
+### Editable fields
 
-**Allgemein:**
-- Aktiv-Status (Ein/Aus für alle ausgewählten Produkte)
+**Allgemein (General):**
+- Aktiv status (on/off for all selected products)
 - Hersteller
-- Tags (hinzufügen/entfernen)
-- Sichtbarkeit / Erweiterte Sichtbarkeit
-- Kategorien
-- Such-Schlagwörter
-- Versandkostenfrei
+- Tags (add/remove)
+- Sichtbarkeit (Visibility) / Erweiterte Sichtbarkeit (Advanced visibility)
+- Kategorien (Categories)
+- Search keywords
+- Versandkostenfrei (Free shipping)
 
-**Lieferbarkeit:**
+**Lieferbarkeit (Availability):**
 - Lagerbestand
-- Abverkauf
-- Lieferzeit
-- Wiederauffüllzeit
-- Mindest-/Staffel-/Maximalabnahme
+- Abverkauf (Clearance sale)
+- Lieferzeit (Delivery time)
+- Wiederauffüllzeit (Restock time)
+- Minimum/scaled/maximum purchase quantity
 
-**Preise (Basis-Preisfelder):**
-- Steuersatz
-- Bruttopreis / Nettopreis
-- Streichpreis
-- Einkaufspreis
-- Günstigster Preis (30 Tage)
+**Preise (Prices) (basic price fields):**
+- Steuersatz (Tax rate)
+- Bruttopreis (Gross price) / Nettopreis (Net price)
+- Streichpreis (List price)
+- Einkaufspreis (Purchase price)
+- Günstigster Preis (Lowest price) (30 days)
 
-**Erweiterte Preise:**
-- Staffelpreise und regelbasierte Preise über ein Modal-Interface
-- Optionen: Duplizieren, Löschen, Hinzufügen von Preisregeln
+**Erweiterte Preise (Advanced prices):**
+- Scaled prices and rule-based prices via a modal interface
+- Options: duplicate, delete, add price rules
 
 ---
 
-## 5. Suche und Filter
+## 5. Search and filters
 
-### Volltextsuche
+### Full text search
 
-- Suchfeld oben in der Produktliste
-- Sucht in: Name, Produktnummer, EAN, Herstellernummer
+- Search field at the top of the product list
+- Searches in: name, product number, EAN, manufacturer number
 
-### Listenfilter
+### List filters
 
-Filter-Optionen (je nach Konfiguration verfügbar):
-- Aktiv / Inaktiv
+Filter options (available depending on the configuration):
+- Aktiv / Inaktiv (Active / Inactive)
 - Hersteller
 - Kategorien
-- Lagerbestand-Bereiche
-- Verkaufskanal-Zuordnung
+- Stock ranges
+- Verkaufskanal (Sales channel) assignment
 
 ---
 
-## 6. Wichtige Hinweise
+## 6. Important notes
 
-### Produkte löschen vs. deaktivieren
+### Deleting vs. deactivating products
 
-> **Empfehlung**: Produkte **nicht löschen** wenn sie in bestehenden Bestellungen vorkommen!
+> **Recommendation**: do **not delete** products if they appear in existing orders!
 > 
-> Gelöschte Produkte bleiben zwar als Positionen in Bestellungen sichtbar, aber alle weiteren Verwaltungsoptionen (Retouren, Nachbestellungen etc.) können eingeschränkt sein.
+> Deleted products do remain visible as line items in orders, but all further management options (returns, reorders etc.) may be restricted.
 >
-> **Besser**: Produkt **inaktiv** schalten (Aktiv-Status deaktivieren)
+> **Better**: set the product to **inaktiv** (deactivate the Aktiv status)
 
-### Variantenprodukte in der Liste
+### Variant products in the list
 
-- Das Variantensymbol erscheint nur beim Hauptprodukt
-- Varianten selbst erscheinen nicht als separate Zeilen in der Liste
-- Über das Modal (Klick auf Variantensymbol) Varianten-Schnellübersicht abrufen
+- The variant icon only appears on the main product
+- The variants themselves do not appear as separate rows in the list
+- Use the modal (click on the variant icon) to get a quick variant overview
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/produkte/uebersicht*
+*Source: https://docs.shopware.com/de/shopware-6-de/produkte/uebersicht*

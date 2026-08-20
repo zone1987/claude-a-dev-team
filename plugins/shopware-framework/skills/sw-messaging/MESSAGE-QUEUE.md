@@ -1,17 +1,17 @@
 # Shopware 6 — Message Queue
 
-Shopware nutzt Symfony Messenger für asynchrone Tasks. Eine Message ist ein einfaches DTO; ein Handler verarbeitet sie
-(siehe `sw-message-handler`). Dispatch über den Bus:
+Shopware uses Symfony Messenger for asynchronous tasks. A message is a simple DTO; a handler processes it
+(see `sw-message-handler`). Dispatch through the bus:
 
 ```php
 $this->bus->dispatch(new FfImportMessage($id));
 ```
 
-Transports: `async` (Standard) und `low_priority` (z.B. Indexing). Worker konsumiert:
-`bin/console messenger:consume async low_priority`. In Produktion als Daemon (Supervisor) betreiben;
-fehlgeschlagene Messages landen im `failed`-Transport (`messenger:failed:*`).
+Transports: `async` (default) and `low_priority` (e.g. indexing). The worker consumes:
+`bin/console messenger:consume async low_priority`. In production run it as a daemon (Supervisor);
+failed messages end up in the `failed` transport (`messenger:failed:*`).
 
-Geeignet für lange/teure Operationen (Import, Mailversand, Indexierung). Wiederkehrend zeitgesteuert → `sw-scheduled-task`.
-Eigene Middleware: `sw-message-middleware`.
+Suitable for long/expensive operations (import, mail sending, indexing). Recurring on a schedule → `sw-scheduled-task`.
+Own middleware: `sw-message-middleware`.
 
-→ Konfiguration, Transports, Retry: [MESSAGE-QUEUE-DETAIL.md](MESSAGE-QUEUE-DETAIL.md)
+→ Configuration, transports, retry: [MESSAGE-QUEUE-DETAIL.md](MESSAGE-QUEUE-DETAIL.md)

@@ -1,16 +1,16 @@
-# Popover — Beispiele
+# Popover — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Popover (PopoverBasic.vue)](#beispiel-1-basic-popover-popoverbasicvue)
-- [Beispiel 2: Popover with Form (PopoverWithForm.vue)](#beispiel-2-popover-with-form-popoverwithformvue)
-- [Beispiel 3: Popover Alignments (PopoverAlignments.vue)](#beispiel-3-popover-alignments-popoveralignmentsvue)
-- [Beispiel 4: Popover in Dialog (PopoverInDialog.vue)](#beispiel-4-popover-in-dialog-popoverindialogvue)
-- [Quellen](#quellen)
+- [Example 1: Basic Popover (PopoverBasic.vue)](#example-1-basic-popover-popoverbasicvue)
+- [Example 2: Popover with Form (PopoverWithForm.vue)](#example-2-popover-with-form-popoverwithformvue)
+- [Example 3: Popover Alignments (PopoverAlignments.vue)](#example-3-popover-alignments-popoveralignmentsvue)
+- [Example 4: Popover in Dialog (PopoverInDialog.vue)](#example-4-popover-in-dialog-popoverindialogvue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Popover (PopoverBasic.vue)
+## Example 1: Basic Popover (PopoverBasic.vue)
 
-Einfacher Popover mit Trigger-Button.
+Simple popover with a trigger button.
 
 ```vue
 <script setup lang="ts">
@@ -45,9 +45,9 @@ import {
 
 ---
 
-## Beispiel 2: Popover with Form (PopoverWithForm.vue)
+## Example 2: Popover with Form (PopoverWithForm.vue)
 
-Popover mit Formularfeldern (Width/Height).
+Popover with form fields (Width/Height).
 
 ```vue
 <script setup lang="ts">
@@ -94,9 +94,9 @@ import {
 
 ---
 
-## Beispiel 3: Popover Alignments (PopoverAlignments.vue)
+## Example 3: Popover Alignments (PopoverAlignments.vue)
 
-Drei Ausrichtungsvarianten: `start`, `center`, `end`.
+Three alignment variants: `start`, `center`, `end`.
 
 ```vue
 <script setup lang="ts">
@@ -140,9 +140,9 @@ import {
 
 ---
 
-## Beispiel 4: Popover in Dialog (PopoverInDialog.vue)
+## Example 4: Popover in Dialog (PopoverInDialog.vue)
 
-Verschachtelter Popover innerhalb eines Dialogs.
+Nested popover inside a dialog.
 
 ```vue
 <script setup lang="ts">
@@ -198,7 +198,7 @@ import {
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/popover/PopoverBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/popover/PopoverWithForm.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/popover/PopoverAlignments.vue`

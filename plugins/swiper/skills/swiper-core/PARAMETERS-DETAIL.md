@@ -1,154 +1,154 @@
-# Swiper — Vollständige Parameter-Referenz (v11/12)
+# Swiper — Complete parameter reference (v11/12)
 
-Alle Parameter werden als zweites Argument an `new Swiper(el, options)` übergeben.
+All parameters are passed as the second argument to `new Swiper(el, options)`.
 
 ---
 
 ## Contents
 
-- [1. Core-Parameter](#1-core-parameter)
+- [1. Core parameters](#1-core-parameters)
 - [2. Breakpoints](#2-breakpoints)
-- [3. Navigation-Parameter](#3-navigation-parameter)
-- [4. Pagination-Parameter](#4-pagination-parameter)
-- [5. Scrollbar-Parameter](#5-scrollbar-parameter)
-- [6. Autoplay-Parameter](#6-autoplay-parameter)
-- [7. FreeMode-Parameter](#7-freemode-parameter)
-- [8. Grid-Parameter (Multirow)](#8-grid-parameter-multirow)
-- [9. Fade-Effekt-Parameter](#9-fade-effekt-parameter)
-- [10. Coverflow-Effekt-Parameter](#10-coverflow-effekt-parameter)
-- [11. Flip-Effekt-Parameter](#11-flip-effekt-parameter)
-- [12. Cube-Effekt-Parameter](#12-cube-effekt-parameter)
-- [13. Cards-Effekt-Parameter](#13-cards-effekt-parameter)
-- [14. Creative-Effekt-Parameter](#14-creative-effekt-parameter)
-- [15. Thumbs-Parameter](#15-thumbs-parameter)
-- [16. Zoom-Parameter](#16-zoom-parameter)
-- [17. Keyboard-Parameter](#17-keyboard-parameter)
-- [18. Mousewheel-Parameter](#18-mousewheel-parameter)
-- [19. Virtual Slides-Parameter](#19-virtual-slides-parameter)
+- [3. Navigation parameters](#3-navigation-parameters)
+- [4. Pagination parameters](#4-pagination-parameters)
+- [5. Scrollbar parameters](#5-scrollbar-parameters)
+- [6. Autoplay parameters](#6-autoplay-parameters)
+- [7. FreeMode parameters](#7-freemode-parameters)
+- [8. Grid parameters (multirow)](#8-grid-parameters-multirow)
+- [9. Fade effect parameters](#9-fade-effect-parameters)
+- [10. Coverflow effect parameters](#10-coverflow-effect-parameters)
+- [11. Flip effect parameters](#11-flip-effect-parameters)
+- [12. Cube effect parameters](#12-cube-effect-parameters)
+- [13. Cards effect parameters](#13-cards-effect-parameters)
+- [14. Creative effect parameters](#14-creative-effect-parameters)
+- [15. Thumbs parameters](#15-thumbs-parameters)
+- [16. Zoom parameters](#16-zoom-parameters)
+- [17. Keyboard parameters](#17-keyboard-parameters)
+- [18. Mousewheel parameters](#18-mousewheel-parameters)
+- [19. Virtual Slides parameters](#19-virtual-slides-parameters)
 
-## 1. Core-Parameter
+## 1. Core parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `a11y` | `boolean \| A11yOptions` | — | Barrierefreiheit (ARIA-Labels). `true` = Defaults. |
-| `allowSlideNext` | `boolean` | `true` | `false` = Swipen zur nächsten Folie deaktiviert. |
-| `allowSlidePrev` | `boolean` | `true` | `false` = Swipen zur vorherigen Folie deaktiviert. |
-| `allowTouchMove` | `boolean` | `true` | `false` = Wischen deaktiviert; nur API-Steuerung. |
-| `autoHeight` | `boolean` | `false` | Wrapper passt seine Höhe an die aktive Folie an. |
-| `autoplay` | `boolean \| AutoplayOptions` | — | Autoplay aktivieren. Siehe Autoplay-Parameter. |
-| `breakpoints` | `object` | — | Breakpoint-spezifische Parameter (responsive). |
-| `breakpointsBase` | `'container' \| CSSSelector \| 'window'` | `'window'` | Basis für Breakpoints: `'window'` oder `'container'` (Beta). |
-| `cardsEffect` | `CardsEffectOptions` | — | Cards-Effekt-Parameter. Siehe Cards-Effekt. |
-| `centerInsufficientSlides` | `boolean` | `false` | Zentriert Folien, wenn weniger als `slidesPerView` vorhanden. |
-| `centeredSlides` | `boolean` | `false` | `true` = Aktive Folie wird zentriert (nicht immer links). |
-| `centeredSlidesBounds` | `boolean` | `false` | Zentriert aktive Folie ohne Lücken an den Rändern. |
-| `containerModifierClass` | `string` | `'swiper-'` | Präfix der CSS-Modifier-Klasse für den Container. |
-| `controller` | `boolean \| ControllerOptions` | — | Zwei Swiper koppeln (synchron steuern). |
-| `coverflowEffect` | `CoverflowEffectOptions` | — | Coverflow-Effekt-Parameter. |
-| `createElements` | `boolean` | `false` | Swiper umschließt Folien automatisch mit einem Wrapper. |
-| `creativeEffect` | `CreativeEffectOptions` | — | Creative-Effekt-Parameter. |
-| `cssMode` | `boolean` | `false` | Nutzt modernes CSS Scroll Snap API. |
-| `cubeEffect` | `CubeEffectOptions` | — | Cube-Effekt-Parameter. |
-| `direction` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slider-Richtung. |
-| `edgeSwipeDetection` | `string \| boolean` | `false` | Gibt Swiper-Events frei für Swipe-Back in Apps. |
-| `edgeSwipeThreshold` | `number` | `20` | Bereich in px vom linken Bildschirmrand für Touch-Event-Freigabe. |
-| `effect` | `'slide' \| 'fade' \| 'cube' \| 'coverflow' \| 'flip' \| 'creative' \| 'cards'` | `'slide'` | Übergangseffekt. |
-| `enabled` | `boolean` | `true` | `false` = Swiper initial deaktiviert. |
-| `eventsPrefix` | `string` | `'swiper'` | Event-Name-Präfix für alle DOM-Events (Swiper Element). |
-| `fadeEffect` | `FadeEffectOptions` | — | Fade-Effekt-Parameter. |
-| `flipEffect` | `FlipEffectOptions` | — | Flip-Effekt-Parameter. |
-| `focusableElements` | `string` | `'input, select, option, textarea, button, video, label'` | CSS-Selektor für fokussierbare Elemente (Touch-Unterbrechung). |
-| `followFinger` | `boolean` | `true` | `false` = Slider animiert erst beim Loslassen. |
-| `freeMode` | `boolean \| FreeModeOptions` | — | Free-Mode (kein Einrasten). Siehe FreeMode-Parameter. |
-| `grabCursor` | `boolean` | `false` | `true` = Grab-Cursor beim Hover. |
-| `grid` | `GridOptions` | — | Multirow-Layout. Siehe Grid-Parameter. |
-| `hashNavigation` | `boolean \| HashNavigationOptions` | — | URL-Hash-Navigation pro Folie. |
-| `height` | `number \| null` | `null` | Swiper-Höhe in px erzwingen. |
-| `history` | `boolean \| HistoryOptions` | — | History-pushState-Navigation. |
-| `init` | `boolean` | `true` | `false` = Swiper nicht automatisch initialisieren. |
-| `initialSlide` | `number` | `0` | Index der initialen Folie. |
-| `injectStyles` | `string[]` | — | Text-Styles in den Shadow DOM injizieren (Swiper Element). |
-| `injectStylesUrls` | `string[]` | — | `<link>`-Styles in den Shadow DOM injizieren (Swiper Element). |
-| `keyboard` | `boolean \| KeyboardOptions` | — | Tastaturnavigation. Siehe Keyboard-Parameter. |
-| `lazyPreloadPrevNext` | `number` | `0` | Anzahl der vorab geladenen Folien vor/nach der aktiven. |
-| `lazyPreloaderClass` | `string` | `'swiper-lazy-preloader'` | CSS-Klasse des Lazy-Preloaders. |
-| `longSwipes` | `boolean` | `true` | `false` = Lange Wischgesten deaktiviert. |
-| `longSwipesMs` | `number` | `300` | Minimale Dauer (ms) für langen Wisch. |
-| `longSwipesRatio` | `number` | `0.5` | Verhältnis für langen Wisch zur nächsten/vorherigen Folie. |
-| `loop` | `boolean` | `false` | `true` = Endlos-Loop-Modus. |
-| `loopAddBlankSlides` | `boolean` | `true` | Fügt automatisch leere Folien bei Grid / `slidesPerGroup` hinzu. |
-| `loopAdditionalSlides` | `number` | `0` | Anzahl zusätzlicher geklonter Folien im Loop. |
-| `loopPreventsSliding` | `boolean` | `true` | `slideNext`/`Prev` tun nichts während der Loop-Animation. |
-| `maxBackfaceHiddenSlides` | `number` | `10` | Bei weniger Slides als dieser Wert wird `backface-visibility` aktiviert. |
-| `modules` | `SwiperModule[]` | — | Array der zu verwendenden Swiper-Module. |
-| `mousewheel` | `boolean \| MousewheelOptions` | — | Mausrad-Navigation. Siehe Mousewheel-Parameter. |
-| `navigation` | `boolean \| NavigationOptions` | — | Navigations-Pfeile. Siehe Navigation-Parameter. |
-| `nested` | `boolean` | `false` | `true` für korrekte Touch-Interception bei verschachtelten Swipern. |
-| `noSwiping` | `boolean` | `true` | Swipen auf Elementen mit `noSwipingClass` deaktivieren. |
-| `noSwipingClass` | `string` | `'swiper-no-swiping'` | CSS-Klasse für Elemente ohne Swipen. |
-| `noSwipingSelector` | `string` | — | CSS-Selektor statt `noSwipingClass`. |
-| `normalizeSlideIndex` | `boolean` | `true` | Folien-Index normalisieren. |
-| `observeParents` | `boolean` | `false` | MutationObserver auch auf Eltern-Elemente. |
-| `observeSlideChildren` | `boolean` | `false` | MutationObserver auf Kind-Elemente der Folien. |
-| `observer` | `boolean` | `false` | MutationObserver auf dem Swiper aktivieren. |
-| `on` | `object` | — | Event-Handler direkt im Konstruktor registrieren. |
-| `onAny` | `function(handler)` | — | Listener der bei jedem Event feuert. |
-| `oneWayMovement` | `boolean` | `false` | Nur Vorwärts-Swipen möglich. |
-| `pagination` | `boolean \| PaginationOptions` | — | Pagination. Siehe Pagination-Parameter. |
-| `parallax` | `boolean \| ParallaxOptions` | — | Parallax-Effekte. |
-| `passiveListeners` | `boolean` | `true` | Passive Event-Listener für bessere Scroll-Performance. |
-| `preventClicks` | `boolean` | `true` | Verhindert unbeabsichtigte Klicks auf Links während Swipe. |
-| `preventClicksPropagation` | `boolean` | `true` | Stoppt Click-Event-Propagation auf Links. |
-| `preventInteractionOnTransition` | `boolean` | `false` | Keine Folien-Wechsel während der Transition möglich. |
-| `resistance` | `boolean` | `true` | `false` = Kein Widerstand an den Rändern. |
-| `resistanceRatio` | `number` | `0.85` | Widerstandsstärke an den Rändern (0–1). |
-| `resizeObserver` | `boolean` | `true` | ResizeObserver für Container-Größenänderungen nutzen. |
-| `rewind` | `boolean` | `false` | Am Ende zur ersten Folie zurückspringen (kein Loop). |
-| `roundLengths` | `boolean` | `false` | Breite/Höhe der Folien runden. |
-| `runCallbacksOnInit` | `boolean` | `true` | Events bei Initialisierung feuern. |
-| `scrollbar` | `boolean \| ScrollbarOptions` | — | Scrollbar. Siehe Scrollbar-Parameter. |
-| `setWrapperSize` | `boolean` | `false` | Wrapper-Breite/-Höhe auf Gesamtgröße setzen. |
-| `shortSwipes` | `boolean` | `true` | `false` = Kurze Wischgesten deaktiviert. |
-| `simulateTouch` | `boolean` | `true` | `true` = Swiper reagiert auf Maus-Events wie Touch-Events. |
-| `slideActiveClass` | `string` | `'swiper-slide-active'` | CSS-Klasse der aktiven Folie. |
-| `slideBlankClass` | `string` | `'swiper-slide-blank'` | CSS-Klasse leerer Folien (Loop-Modus). |
-| `slideClass` | `string` | `'swiper-slide'` | CSS-Klasse der Folien. |
-| `slideFullyVisibleClass` | `string` | `'swiper-slide-fully-visible'` | CSS-Klasse vollständig sichtbarer Folien. |
-| `slideNextClass` | `string` | `'swiper-slide-next'` | CSS-Klasse der Folie nach der aktiven. |
-| `slidePrevClass` | `string` | `'swiper-slide-prev'` | CSS-Klasse der Folie vor der aktiven. |
-| `slideToClickedSlide` | `boolean` | `false` | Klick auf Folie erzeugt Transition zu ihr. |
-| `slideVisibleClass` | `string` | `'swiper-slide-visible'` | CSS-Klasse teilweise sichtbarer Folien. |
-| `slidesOffsetAfter` | `number` | `0` | Zusätzlicher Offset (px) am Ende des Wrappers. |
-| `slidesOffsetBefore` | `number` | `0` | Zusätzlicher Offset (px) am Anfang des Wrappers. |
-| `slidesPerGroup` | `number` | `1` | Anzahl Folien pro Gruppe beim Wischen. |
-| `slidesPerGroupAuto` | `boolean` | `false` | Nur bei `slidesPerView: 'auto'` + `slidesPerGroup: 1`. |
-| `slidesPerGroupSkip` | `number` | `0` | Erste X Folien einzeln, Rest nach `slidesPerGroup`. |
-| `slidesPerView` | `number \| 'auto'` | `1` | Anzahl sichtbarer Folien gleichzeitig. |
-| `snapToSlideEdge` | `boolean` | `false` | Einrasten an Folienkanten statt berechneten Positionen. |
-| `spaceBetween` | `string \| number` | `0` | Abstand zwischen Folien in px. |
-| `speed` | `number` | `300` | Transition-Dauer in ms. |
-| `swipeHandler` | `HTMLElement \| CSSSelector \| null` | `null` | Container der als Swipe-Handler dient. |
-| `swiperElementNodeName` | `string` | `'SWIPER-CONTAINER'` | Node-Name des Swiper-Elements. |
-| `threshold` | `number` | `5` | Mindest-Bewegung in px um Swipe auszulösen. |
-| `thumbs` | `ThumbsOptions` | — | Thumbs-Komponente. Siehe Thumbs-Parameter. |
-| `touchAngle` | `number` | `45` | Maximalwinkel (Grad) für Touch-Move-Auslösung. |
-| `touchEventsTarget` | `'container' \| 'wrapper'` | `'wrapper'` | Element auf dem Touch-Events registriert werden. |
-| `touchMoveStopPropagation` | `boolean` | `false` | Stoppt `touchmove`-Event-Propagation. |
-| `touchRatio` | `number` | `1` | Touch-Ratio (Multiplikator für Touch-Bewegung). |
-| `touchReleaseOnEdges` | `boolean` | `false` | Touch-Events an Rändern freigeben (für Scroll). |
-| `touchStartForcePreventDefault` | `boolean` | `false` | `touchstart` immer `preventDefault()` aufrufen. |
-| `touchStartPreventDefault` | `boolean` | `true` | `false` = `pointerdown` nicht prevented. |
-| `uniqueNavElements` | `boolean` | `true` | Navigation-Elemente nur in Child-Elementen suchen. |
-| `updateOnWindowResize` | `boolean` | `true` | Neu berechnen bei Fenstergrößenänderung. |
-| `url` | `string \| null` | `null` | URL für aktive Folie bei Server-Side Rendering. |
-| `userAgent` | `string \| null` | `null` | UserAgent-String für Server-Side Rendering. |
-| `virtual` | `boolean \| VirtualOptions` | — | Virtuelle Folien. Siehe Virtual-Parameter. |
-| `virtualTranslate` | `boolean` | `false` | Swiper funktioniert normal, bewegt sich aber nicht physisch. |
-| `watchOverflow` | `boolean` | `true` | Navigation/Scrollbar ausblenden wenn zu wenige Folien. |
-| `watchSlidesProgress` | `boolean` | `false` | Progress und Sichtbarkeit jeder Folie berechnen. |
-| `width` | `number \| null` | `null` | Swiper-Breite in px erzwingen. |
-| `wrapperClass` | `string` | `'swiper-wrapper'` | CSS-Klasse des Wrappers. |
-| `zoom` | `boolean \| ZoomOptions` | — | Zoom-Funktion. Siehe Zoom-Parameter. |
+| `a11y` | `boolean \| A11yOptions` | — | Accessibility (ARIA labels). `true` = defaults. |
+| `allowSlideNext` | `boolean` | `true` | `false` = swiping to the next slide disabled. |
+| `allowSlidePrev` | `boolean` | `true` | `false` = swiping to the previous slide disabled. |
+| `allowTouchMove` | `boolean` | `true` | `false` = swiping disabled; API control only. |
+| `autoHeight` | `boolean` | `false` | Wrapper adjusts its height to the active slide. |
+| `autoplay` | `boolean \| AutoplayOptions` | — | Enable autoplay. See Autoplay parameters. |
+| `breakpoints` | `object` | — | Breakpoint-specific parameters (responsive). |
+| `breakpointsBase` | `'container' \| CSSSelector \| 'window'` | `'window'` | Base for breakpoints: `'window'` or `'container'` (beta). |
+| `cardsEffect` | `CardsEffectOptions` | — | Cards effect parameters. See Cards effect. |
+| `centerInsufficientSlides` | `boolean` | `false` | Centers slides when fewer than `slidesPerView` are present. |
+| `centeredSlides` | `boolean` | `false` | `true` = active slide is centered (not always left). |
+| `centeredSlidesBounds` | `boolean` | `false` | Centers the active slide without gaps at the edges. |
+| `containerModifierClass` | `string` | `'swiper-'` | Prefix of the CSS modifier class for the container. |
+| `controller` | `boolean \| ControllerOptions` | — | Couple two Swipers (control them in sync). |
+| `coverflowEffect` | `CoverflowEffectOptions` | — | Coverflow effect parameters. |
+| `createElements` | `boolean` | `false` | Swiper wraps slides automatically in a wrapper. |
+| `creativeEffect` | `CreativeEffectOptions` | — | Creative effect parameters. |
+| `cssMode` | `boolean` | `false` | Uses the modern CSS Scroll Snap API. |
+| `cubeEffect` | `CubeEffectOptions` | — | Cube effect parameters. |
+| `direction` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slider direction. |
+| `edgeSwipeDetection` | `string \| boolean` | `false` | Releases Swiper events for swipe-back in apps. |
+| `edgeSwipeThreshold` | `number` | `20` | Area in px from the left screen edge for touch event release. |
+| `effect` | `'slide' \| 'fade' \| 'cube' \| 'coverflow' \| 'flip' \| 'creative' \| 'cards'` | `'slide'` | Transition effect. |
+| `enabled` | `boolean` | `true` | `false` = Swiper initially disabled. |
+| `eventsPrefix` | `string` | `'swiper'` | Event name prefix for all DOM events (Swiper Element). |
+| `fadeEffect` | `FadeEffectOptions` | — | Fade effect parameters. |
+| `flipEffect` | `FlipEffectOptions` | — | Flip effect parameters. |
+| `focusableElements` | `string` | `'input, select, option, textarea, button, video, label'` | CSS selector for focusable elements (touch interruption). |
+| `followFinger` | `boolean` | `true` | `false` = slider only animates on release. |
+| `freeMode` | `boolean \| FreeModeOptions` | — | Free mode (no snapping). See FreeMode parameters. |
+| `grabCursor` | `boolean` | `false` | `true` = grab cursor on hover. |
+| `grid` | `GridOptions` | — | Multirow layout. See Grid parameters. |
+| `hashNavigation` | `boolean \| HashNavigationOptions` | — | URL hash navigation per slide. |
+| `height` | `number \| null` | `null` | Force Swiper height in px. |
+| `history` | `boolean \| HistoryOptions` | — | History pushState navigation. |
+| `init` | `boolean` | `true` | `false` = do not initialize Swiper automatically. |
+| `initialSlide` | `number` | `0` | Index of the initial slide. |
+| `injectStyles` | `string[]` | — | Inject text styles into the shadow DOM (Swiper Element). |
+| `injectStylesUrls` | `string[]` | — | Inject `<link>` styles into the shadow DOM (Swiper Element). |
+| `keyboard` | `boolean \| KeyboardOptions` | — | Keyboard navigation. See Keyboard parameters. |
+| `lazyPreloadPrevNext` | `number` | `0` | Number of preloaded slides before/after the active one. |
+| `lazyPreloaderClass` | `string` | `'swiper-lazy-preloader'` | CSS class of the lazy preloader. |
+| `longSwipes` | `boolean` | `true` | `false` = long swipe gestures disabled. |
+| `longSwipesMs` | `number` | `300` | Minimum duration (ms) for a long swipe. |
+| `longSwipesRatio` | `number` | `0.5` | Ratio for a long swipe to the next/previous slide. |
+| `loop` | `boolean` | `false` | `true` = endless loop mode. |
+| `loopAddBlankSlides` | `boolean` | `true` | Automatically adds blank slides with grid / `slidesPerGroup`. |
+| `loopAdditionalSlides` | `number` | `0` | Number of additional cloned slides in loop mode. |
+| `loopPreventsSliding` | `boolean` | `true` | `slideNext`/`Prev` do nothing during the loop animation. |
+| `maxBackfaceHiddenSlides` | `number` | `10` | With fewer slides than this value, `backface-visibility` is enabled. |
+| `modules` | `SwiperModule[]` | — | Array of the Swiper modules to use. |
+| `mousewheel` | `boolean \| MousewheelOptions` | — | Mouse wheel navigation. See Mousewheel parameters. |
+| `navigation` | `boolean \| NavigationOptions` | — | Navigation arrows. See Navigation parameters. |
+| `nested` | `boolean` | `false` | `true` for correct touch interception with nested Swipers. |
+| `noSwiping` | `boolean` | `true` | Disable swiping on elements with `noSwipingClass`. |
+| `noSwipingClass` | `string` | `'swiper-no-swiping'` | CSS class for elements without swiping. |
+| `noSwipingSelector` | `string` | — | CSS selector instead of `noSwipingClass`. |
+| `normalizeSlideIndex` | `boolean` | `true` | Normalize the slide index. |
+| `observeParents` | `boolean` | `false` | MutationObserver on parent elements as well. |
+| `observeSlideChildren` | `boolean` | `false` | MutationObserver on the child elements of the slides. |
+| `observer` | `boolean` | `false` | Enable MutationObserver on the Swiper. |
+| `on` | `object` | — | Register event handlers directly in the constructor. |
+| `onAny` | `function(handler)` | — | Listener that fires on every event. |
+| `oneWayMovement` | `boolean` | `false` | Only forward swiping possible. |
+| `pagination` | `boolean \| PaginationOptions` | — | Pagination. See Pagination parameters. |
+| `parallax` | `boolean \| ParallaxOptions` | — | Parallax effects. |
+| `passiveListeners` | `boolean` | `true` | Passive event listeners for better scroll performance. |
+| `preventClicks` | `boolean` | `true` | Prevents unintended clicks on links during a swipe. |
+| `preventClicksPropagation` | `boolean` | `true` | Stops click event propagation on links. |
+| `preventInteractionOnTransition` | `boolean` | `false` | No slide changes possible during the transition. |
+| `resistance` | `boolean` | `true` | `false` = no resistance at the edges. |
+| `resistanceRatio` | `number` | `0.85` | Resistance strength at the edges (0–1). |
+| `resizeObserver` | `boolean` | `true` | Use ResizeObserver for container size changes. |
+| `rewind` | `boolean` | `false` | Jump back to the first slide at the end (no loop). |
+| `roundLengths` | `boolean` | `false` | Round the width/height of the slides. |
+| `runCallbacksOnInit` | `boolean` | `true` | Fire events on initialization. |
+| `scrollbar` | `boolean \| ScrollbarOptions` | — | Scrollbar. See Scrollbar parameters. |
+| `setWrapperSize` | `boolean` | `false` | Set the wrapper width/height to the total size. |
+| `shortSwipes` | `boolean` | `true` | `false` = short swipe gestures disabled. |
+| `simulateTouch` | `boolean` | `true` | `true` = Swiper reacts to mouse events like touch events. |
+| `slideActiveClass` | `string` | `'swiper-slide-active'` | CSS class of the active slide. |
+| `slideBlankClass` | `string` | `'swiper-slide-blank'` | CSS class of blank slides (loop mode). |
+| `slideClass` | `string` | `'swiper-slide'` | CSS class of the slides. |
+| `slideFullyVisibleClass` | `string` | `'swiper-slide-fully-visible'` | CSS class of fully visible slides. |
+| `slideNextClass` | `string` | `'swiper-slide-next'` | CSS class of the slide after the active one. |
+| `slidePrevClass` | `string` | `'swiper-slide-prev'` | CSS class of the slide before the active one. |
+| `slideToClickedSlide` | `boolean` | `false` | Clicking a slide triggers a transition to it. |
+| `slideVisibleClass` | `string` | `'swiper-slide-visible'` | CSS class of partially visible slides. |
+| `slidesOffsetAfter` | `number` | `0` | Additional offset (px) at the end of the wrapper. |
+| `slidesOffsetBefore` | `number` | `0` | Additional offset (px) at the start of the wrapper. |
+| `slidesPerGroup` | `number` | `1` | Number of slides per group when swiping. |
+| `slidesPerGroupAuto` | `boolean` | `false` | Only with `slidesPerView: 'auto'` + `slidesPerGroup: 1`. |
+| `slidesPerGroupSkip` | `number` | `0` | First X slides individually, the rest per `slidesPerGroup`. |
+| `slidesPerView` | `number \| 'auto'` | `1` | Number of slides visible at the same time. |
+| `snapToSlideEdge` | `boolean` | `false` | Snap to slide edges instead of calculated positions. |
+| `spaceBetween` | `string \| number` | `0` | Spacing between slides in px. |
+| `speed` | `number` | `300` | Transition duration in ms. |
+| `swipeHandler` | `HTMLElement \| CSSSelector \| null` | `null` | Container that serves as the swipe handler. |
+| `swiperElementNodeName` | `string` | `'SWIPER-CONTAINER'` | Node name of the Swiper element. |
+| `threshold` | `number` | `5` | Minimum movement in px to trigger a swipe. |
+| `thumbs` | `ThumbsOptions` | — | Thumbs component. See Thumbs parameters. |
+| `touchAngle` | `number` | `45` | Maximum angle (degrees) for touch move triggering. |
+| `touchEventsTarget` | `'container' \| 'wrapper'` | `'wrapper'` | Element on which touch events are registered. |
+| `touchMoveStopPropagation` | `boolean` | `false` | Stops `touchmove` event propagation. |
+| `touchRatio` | `number` | `1` | Touch ratio (multiplier for touch movement). |
+| `touchReleaseOnEdges` | `boolean` | `false` | Release touch events at the edges (for scrolling). |
+| `touchStartForcePreventDefault` | `boolean` | `false` | Always call `preventDefault()` on `touchstart`. |
+| `touchStartPreventDefault` | `boolean` | `true` | `false` = `pointerdown` not prevented. |
+| `uniqueNavElements` | `boolean` | `true` | Look for navigation elements only in child elements. |
+| `updateOnWindowResize` | `boolean` | `true` | Recalculate on window resize. |
+| `url` | `string \| null` | `null` | URL for the active slide in server-side rendering. |
+| `userAgent` | `string \| null` | `null` | UserAgent string for server-side rendering. |
+| `virtual` | `boolean \| VirtualOptions` | — | Virtual slides. See Virtual parameters. |
+| `virtualTranslate` | `boolean` | `false` | Swiper works normally but does not move physically. |
+| `watchOverflow` | `boolean` | `true` | Hide navigation/scrollbar when there are too few slides. |
+| `watchSlidesProgress` | `boolean` | `false` | Calculate progress and visibility of every slide. |
+| `width` | `number \| null` | `null` | Force Swiper width in px. |
+| `wrapperClass` | `string` | `'swiper-wrapper'` | CSS class of the wrapper. |
+| `zoom` | `boolean \| ZoomOptions` | — | Zoom function. See Zoom parameters. |
 
 ---
 
@@ -159,11 +159,11 @@ const swiper = new Swiper('.swiper', {
   slidesPerView: 1,
   spaceBetween: 10,
   breakpoints: {
-    // ab 640px
+    // from 640px
     640: { slidesPerView: 2, spaceBetween: 20 },
-    // ab 768px
+    // from 768px
     768: { slidesPerView: 3, spaceBetween: 30 },
-    // ab 1024px
+    // from 1024px
     1024: { slidesPerView: 4, spaceBetween: 40 },
   },
 });
@@ -171,112 +171,112 @@ const swiper = new Swiper('.swiper', {
 
 ---
 
-## 3. Navigation-Parameter
+## 3. Navigation parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `navigation.addIcons` | `boolean` | `true` | SVG-Icons automatisch zu Navigations-Buttons hinzufügen. |
-| `navigation.disabledClass` | `string` | `'swiper-button-disabled'` | CSS-Klasse wenn Button deaktiviert. |
-| `navigation.enabled` | `boolean` | — | Für Breakpoints: Navigation aktivieren/deaktivieren. |
-| `navigation.hiddenClass` | `string` | `'swiper-button-hidden'` | CSS-Klasse wenn Button versteckt. |
-| `navigation.hideOnClick` | `boolean` | `false` | Navigation nach Klick auf Slider verstecken/zeigen. |
-| `navigation.lockClass` | `string` | `'swiper-button-lock'` | CSS-Klasse wenn Navigation gesperrt ist. |
-| `navigation.navigationDisabledClass` | `string` | `'swiper-navigation-disabled'` | Container-Klasse wenn Navigation deaktiviert. |
-| `navigation.nextEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS-Selektor oder HTMLElement für Weiter-Button. |
-| `navigation.prevEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS-Selektor oder HTMLElement für Zurück-Button. |
+| `navigation.addIcons` | `boolean` | `true` | Add SVG icons to navigation buttons automatically. |
+| `navigation.disabledClass` | `string` | `'swiper-button-disabled'` | CSS class when the button is disabled. |
+| `navigation.enabled` | `boolean` | — | For breakpoints: enable/disable navigation. |
+| `navigation.hiddenClass` | `string` | `'swiper-button-hidden'` | CSS class when the button is hidden. |
+| `navigation.hideOnClick` | `boolean` | `false` | Hide/show navigation after a click on the slider. |
+| `navigation.lockClass` | `string` | `'swiper-button-lock'` | CSS class when navigation is locked. |
+| `navigation.navigationDisabledClass` | `string` | `'swiper-navigation-disabled'` | Container class when navigation is disabled. |
+| `navigation.nextEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS selector or HTMLElement for the next button. |
+| `navigation.prevEl` | `HTMLElement \| CSSSelector \| null` | `null` | CSS selector or HTMLElement for the previous button. |
 
 ---
 
-## 4. Pagination-Parameter
+## 4. Pagination parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `pagination.bulletActiveClass` | `string` | `'swiper-pagination-bullet-active'` | CSS-Klasse des aktiven Bullets. |
-| `pagination.bulletClass` | `string` | `'swiper-pagination-bullet'` | CSS-Klasse eines Bullets. |
-| `pagination.bulletElement` | `string` | `'span'` | HTML-Tag für Bullets. |
-| `pagination.clickable` | `boolean` | `false` | Klick auf Bullet navigiert zur Folie. |
-| `pagination.clickableClass` | `string` | `'swiper-pagination-clickable'` | Klasse wenn Pagination klickbar. |
-| `pagination.currentClass` | `string` | `'swiper-pagination-current'` | Klasse des aktuellen Fraction-Elements. |
-| `pagination.dynamicBullets` | `boolean` | `false` | Nur wenige Bullets sichtbar bei vielen Folien. |
-| `pagination.dynamicMainBullets` | `number` | `1` | Anzahl sichtbarer Haupt-Bullets bei `dynamicBullets`. |
-| `pagination.el` | `HTMLElement \| CSSSelector \| null` | `null` | CSS-Selektor oder HTMLElement der Pagination. |
-| `pagination.enabled` | `boolean` | — | Für Breakpoints. |
-| `pagination.formatFractionCurrent` | `function(number)` | — | Fraction-Zähler formatieren. |
-| `pagination.formatFractionTotal` | `function(number)` | — | Fraction-Gesamtzahl formatieren. |
-| `pagination.hiddenClass` | `string` | `'swiper-pagination-hidden'` | Klasse wenn Pagination inaktiv. |
-| `pagination.hideOnClick` | `boolean` | `true` | Pagination nach Klick auf Slider ausblenden. |
-| `pagination.horizontalClass` | `string` | `'swiper-pagination-horizontal'` | Klasse bei horizontalem Swiper. |
-| `pagination.lockClass` | `string` | `'swiper-pagination-lock'` | Klasse wenn Pagination deaktiviert. |
-| `pagination.modifierClass` | `string` | `'swiper-pagination-'` | Präfix der Modifier-CSS-Klasse. |
-| `pagination.paginationDisabledClass` | `string` | `'swiper-pagination-disabled'` | Container-Klasse wenn Pagination deaktiviert. |
-| `pagination.progressbarFillClass` | `string` | `'swiper-pagination-progressbar-fill'` | CSS-Klasse des Progressbar-Füll-Elements. |
-| `pagination.progressbarOpposite` | `boolean` | `false` | Progressbar entgegengesetzt zur Slider-Richtung. |
-| `pagination.progressbarOppositeClass` | `string` | `'swiper-pagination-progressbar-opposite'` | Klasse der gegenüberliegenden Progressbar. |
-| `pagination.renderBullet` | `function(index, className)` | `null` | Bullets individuell rendern. |
-| `pagination.renderCustom` | `function(swiper, current, total)` | `null` | Pflicht bei `type: 'custom'`. |
-| `pagination.renderFraction` | `function(currentClass, totalClass)` | `null` | Fraction-Pagination individuell rendern. |
-| `pagination.renderProgressbar` | `function(progressbarFillClass)` | `null` | Progressbar individuell rendern. |
-| `pagination.totalClass` | `string` | `'swiper-pagination-total'` | Klasse des Gesamt-Anzahl-Elements. |
-| `pagination.type` | `'bullets' \| 'fraction' \| 'progressbar' \| 'custom'` | `'bullets'` | Pagination-Typ. |
-| `pagination.verticalClass` | `string` | `'swiper-pagination-vertical'` | Klasse bei vertikalem Swiper. |
+| `pagination.bulletActiveClass` | `string` | `'swiper-pagination-bullet-active'` | CSS class of the active bullet. |
+| `pagination.bulletClass` | `string` | `'swiper-pagination-bullet'` | CSS class of a bullet. |
+| `pagination.bulletElement` | `string` | `'span'` | HTML tag for bullets. |
+| `pagination.clickable` | `boolean` | `false` | Clicking a bullet navigates to the slide. |
+| `pagination.clickableClass` | `string` | `'swiper-pagination-clickable'` | Class when the pagination is clickable. |
+| `pagination.currentClass` | `string` | `'swiper-pagination-current'` | Class of the current fraction element. |
+| `pagination.dynamicBullets` | `boolean` | `false` | Only a few bullets visible with many slides. |
+| `pagination.dynamicMainBullets` | `number` | `1` | Number of visible main bullets with `dynamicBullets`. |
+| `pagination.el` | `HTMLElement \| CSSSelector \| null` | `null` | CSS selector or HTMLElement of the pagination. |
+| `pagination.enabled` | `boolean` | — | For breakpoints. |
+| `pagination.formatFractionCurrent` | `function(number)` | — | Format the fraction counter. |
+| `pagination.formatFractionTotal` | `function(number)` | — | Format the fraction total. |
+| `pagination.hiddenClass` | `string` | `'swiper-pagination-hidden'` | Class when the pagination is inactive. |
+| `pagination.hideOnClick` | `boolean` | `true` | Hide the pagination after a click on the slider. |
+| `pagination.horizontalClass` | `string` | `'swiper-pagination-horizontal'` | Class with a horizontal Swiper. |
+| `pagination.lockClass` | `string` | `'swiper-pagination-lock'` | Class when the pagination is disabled. |
+| `pagination.modifierClass` | `string` | `'swiper-pagination-'` | Prefix of the modifier CSS class. |
+| `pagination.paginationDisabledClass` | `string` | `'swiper-pagination-disabled'` | Container class when the pagination is disabled. |
+| `pagination.progressbarFillClass` | `string` | `'swiper-pagination-progressbar-fill'` | CSS class of the progress bar fill element. |
+| `pagination.progressbarOpposite` | `boolean` | `false` | Progress bar opposite to the slider direction. |
+| `pagination.progressbarOppositeClass` | `string` | `'swiper-pagination-progressbar-opposite'` | Class of the opposite progress bar. |
+| `pagination.renderBullet` | `function(index, className)` | `null` | Render bullets individually. |
+| `pagination.renderCustom` | `function(swiper, current, total)` | `null` | Required with `type: 'custom'`. |
+| `pagination.renderFraction` | `function(currentClass, totalClass)` | `null` | Render fraction pagination individually. |
+| `pagination.renderProgressbar` | `function(progressbarFillClass)` | `null` | Render the progress bar individually. |
+| `pagination.totalClass` | `string` | `'swiper-pagination-total'` | Class of the total count element. |
+| `pagination.type` | `'bullets' \| 'fraction' \| 'progressbar' \| 'custom'` | `'bullets'` | Pagination type. |
+| `pagination.verticalClass` | `string` | `'swiper-pagination-vertical'` | Class with a vertical Swiper. |
 
 ---
 
-## 5. Scrollbar-Parameter
+## 5. Scrollbar parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `scrollbar.dragClass` | `string` | `'swiper-scrollbar-drag'` | CSS-Klasse des Scrollbar-Drag-Elements. |
-| `scrollbar.dragSize` | `number \| 'auto'` | `'auto'` | Größe des Drag-Elements in px. |
-| `scrollbar.draggable` | `boolean` | `false` | Scrollbar ist ziehbar. |
-| `scrollbar.el` | `HTMLElement \| CSSSelector \| null` | `null` | CSS-Selektor oder HTMLElement der Scrollbar. |
-| `scrollbar.enabled` | `boolean` | — | Für Breakpoints. |
-| `scrollbar.hide` | `boolean` | `true` | Scrollbar nach Interaktion automatisch ausblenden. |
-| `scrollbar.horizontalClass` | `string` | `'swiper-scrollbar-horizontal'` | Klasse bei horizontalem Swiper. |
-| `scrollbar.lockClass` | `string` | `'swiper-scrollbar-lock'` | Klasse wenn Scrollbar deaktiviert. |
-| `scrollbar.scrollbarDisabledClass` | `string` | `'swiper-scrollbar-disabled'` | Container-Klasse wenn Scrollbar deaktiviert. |
-| `scrollbar.snapOnRelease` | `boolean` | `false` | Einrasten auf Folie beim Loslassen. |
-| `scrollbar.verticalClass` | `string` | `'swiper-scrollbar-vertical'` | Klasse bei vertikalem Swiper. |
+| `scrollbar.dragClass` | `string` | `'swiper-scrollbar-drag'` | CSS class of the scrollbar drag element. |
+| `scrollbar.dragSize` | `number \| 'auto'` | `'auto'` | Size of the drag element in px. |
+| `scrollbar.draggable` | `boolean` | `false` | The scrollbar is draggable. |
+| `scrollbar.el` | `HTMLElement \| CSSSelector \| null` | `null` | CSS selector or HTMLElement of the scrollbar. |
+| `scrollbar.enabled` | `boolean` | — | For breakpoints. |
+| `scrollbar.hide` | `boolean` | `true` | Hide the scrollbar automatically after interaction. |
+| `scrollbar.horizontalClass` | `string` | `'swiper-scrollbar-horizontal'` | Class with a horizontal Swiper. |
+| `scrollbar.lockClass` | `string` | `'swiper-scrollbar-lock'` | Class when the scrollbar is disabled. |
+| `scrollbar.scrollbarDisabledClass` | `string` | `'swiper-scrollbar-disabled'` | Container class when the scrollbar is disabled. |
+| `scrollbar.snapOnRelease` | `boolean` | `false` | Snap to a slide on release. |
+| `scrollbar.verticalClass` | `string` | `'swiper-scrollbar-vertical'` | Class with a vertical Swiper. |
 
 ---
 
-## 6. Autoplay-Parameter
+## 6. Autoplay parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `autoplay.delay` | `number` | `3000` | Pause zwischen Transitionen in ms. |
-| `autoplay.disableOnInteraction` | `boolean` | `true` | `false` = Autoplay läuft nach Benutzer-Interaktion weiter. |
-| `autoplay.pauseOnMouseEnter` | `boolean` | `false` | Autoplay pausiert beim Hover. |
-| `autoplay.reverseDirection` | `boolean` | `false` | Autoplay in Rückwärtsrichtung. |
-| `autoplay.stopOnLastSlide` | `boolean` | `false` | Autoplay stoppt bei letzter Folie. |
-| `autoplay.waitForTransition` | `boolean` | `true` | Autoplay wartet auf Wrapper-Transition. |
+| `autoplay.delay` | `number` | `3000` | Pause between transitions in ms. |
+| `autoplay.disableOnInteraction` | `boolean` | `true` | `false` = autoplay continues after user interaction. |
+| `autoplay.pauseOnMouseEnter` | `boolean` | `false` | Autoplay pauses on hover. |
+| `autoplay.reverseDirection` | `boolean` | `false` | Autoplay in reverse direction. |
+| `autoplay.stopOnLastSlide` | `boolean` | `false` | Autoplay stops at the last slide. |
+| `autoplay.waitForTransition` | `boolean` | `true` | Autoplay waits for the wrapper transition. |
 
 ---
 
-## 7. FreeMode-Parameter
+## 7. FreeMode parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `freeMode.enabled` | `boolean` | `false` | Free-Mode aktivieren. |
-| `freeMode.minimumVelocity` | `number` | `0.02` | Mindest-Wisch-Geschwindigkeit für Momentum. |
-| `freeMode.momentum` | `boolean` | `true` | Folie gleitet nach dem Loslassen weiter. |
-| `freeMode.momentumBounce` | `boolean` | `true` | `false` = Kein Bounce am Rand. |
-| `freeMode.momentumBounceRatio` | `number` | `1` | Bounce-Stärke. |
-| `freeMode.momentumRatio` | `number` | `1` | Momentum-Distanz-Multiplikator. |
-| `freeMode.momentumVelocityRatio` | `number` | `1` | Momentum-Geschwindigkeits-Multiplikator. |
-| `freeMode.sticky` | `boolean` | `false` | An Folien-Positionen einrasten (Free-Mode + Snap). |
+| `freeMode.enabled` | `boolean` | `false` | Enable free mode. |
+| `freeMode.minimumVelocity` | `number` | `0.02` | Minimum swipe speed for momentum. |
+| `freeMode.momentum` | `boolean` | `true` | The slide keeps gliding after release. |
+| `freeMode.momentumBounce` | `boolean` | `true` | `false` = no bounce at the edge. |
+| `freeMode.momentumBounceRatio` | `number` | `1` | Bounce strength. |
+| `freeMode.momentumRatio` | `number` | `1` | Momentum distance multiplier. |
+| `freeMode.momentumVelocityRatio` | `number` | `1` | Momentum speed multiplier. |
+| `freeMode.sticky` | `boolean` | `false` | Snap to slide positions (free mode + snap). |
 
 ---
 
-## 8. Grid-Parameter (Multirow)
+## 8. Grid parameters (multirow)
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `grid.fill` | `'row' \| 'column'` | `'column'` | Befüllungsrichtung: spalten- oder zeilenweise. |
-| `grid.rows` | `number` | `1` | Anzahl der Zeilen. |
+| `grid.fill` | `'row' \| 'column'` | `'column'` | Fill direction: by column or by row. |
+| `grid.rows` | `number` | `1` | Number of rows. |
 
 ```js
-// Beispiel: 2 Zeilen, 3 Spalten
+// Example: 2 rows, 3 columns
 const swiper = new Swiper('.swiper', {
   modules: [Grid],
   grid: { rows: 2, fill: 'row' },
@@ -287,136 +287,136 @@ const swiper = new Swiper('.swiper', {
 
 ---
 
-## 9. Fade-Effekt-Parameter
+## 9. Fade effect parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `fadeEffect.crossFade` | `boolean` | `false` | Cross-Fade aktivieren (ausblenden + einblenden gleichzeitig). |
+| `fadeEffect.crossFade` | `boolean` | `false` | Enable cross fade (fade out + fade in at the same time). |
 
 ---
 
-## 10. Coverflow-Effekt-Parameter
+## 10. Coverflow effect parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `coverflowEffect.depth` | `number` | `100` | Tiefenversatz in px (Z-Achse). |
-| `coverflowEffect.modifier` | `number` | `1` | Effekt-Multiplikator. |
-| `coverflowEffect.rotate` | `number` | `50` | Rotation in Grad. |
-| `coverflowEffect.scale` | `number` | `1` | Skalierungs-Effekt. |
-| `coverflowEffect.slideShadows` | `boolean` | `true` | Folien-Schatten aktivieren. |
-| `coverflowEffect.stretch` | `number` | `0` | Zusätzlicher Abstand zwischen Folien. |
+| `coverflowEffect.depth` | `number` | `100` | Depth offset in px (Z axis). |
+| `coverflowEffect.modifier` | `number` | `1` | Effect multiplier. |
+| `coverflowEffect.rotate` | `number` | `50` | Rotation in degrees. |
+| `coverflowEffect.scale` | `number` | `1` | Scaling effect. |
+| `coverflowEffect.slideShadows` | `boolean` | `true` | Enable slide shadows. |
+| `coverflowEffect.stretch` | `number` | `0` | Additional space between slides. |
 
 ---
 
-## 11. Flip-Effekt-Parameter
+## 11. Flip effect parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `flipEffect.limitRotation` | `boolean` | `true` | Rotation der Rand-Folien begrenzen. |
-| `flipEffect.slideShadows` | `boolean` | `true` | Folien-Schatten aktivieren. |
+| `flipEffect.limitRotation` | `boolean` | `true` | Limit the rotation of the edge slides. |
+| `flipEffect.slideShadows` | `boolean` | `true` | Enable slide shadows. |
 
 ---
 
-## 12. Cube-Effekt-Parameter
+## 12. Cube effect parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `cubeEffect.shadow` | `boolean` | `true` | Haupt-Slider-Schatten. |
-| `cubeEffect.shadowOffset` | `number` | `20` | Schatten-Offset in px. |
-| `cubeEffect.shadowScale` | `number` | `0.94` | Schatten-Skalierungsverhältnis. |
-| `cubeEffect.slideShadows` | `boolean` | `true` | Folien-Schatten aktivieren. |
+| `cubeEffect.shadow` | `boolean` | `true` | Main slider shadow. |
+| `cubeEffect.shadowOffset` | `number` | `20` | Shadow offset in px. |
+| `cubeEffect.shadowScale` | `number` | `0.94` | Shadow scale ratio. |
+| `cubeEffect.slideShadows` | `boolean` | `true` | Enable slide shadows. |
 
 ---
 
-## 13. Cards-Effekt-Parameter
+## 13. Cards effect parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `cardsEffect.perSlideOffset` | `number` | `8` | Versatz pro Folie in px. |
-| `cardsEffect.perSlideRotate` | `number` | `2` | Rotation pro Folie in Grad. |
-| `cardsEffect.rotate` | `boolean` | `true` | Cards-Rotation aktivieren. |
-| `cardsEffect.slideShadows` | `boolean` | `true` | Folien-Schatten aktivieren. |
+| `cardsEffect.perSlideOffset` | `number` | `8` | Offset per slide in px. |
+| `cardsEffect.perSlideRotate` | `number` | `2` | Rotation per slide in degrees. |
+| `cardsEffect.rotate` | `boolean` | `true` | Enable cards rotation. |
+| `cardsEffect.slideShadows` | `boolean` | `true` | Enable slide shadows. |
 
 ---
 
-## 14. Creative-Effekt-Parameter
+## 14. Creative effect parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `creativeEffect.limitProgress` | `number` | `1` | Fortschritt/Offset auf Seiten-Folien begrenzen. |
-| `creativeEffect.next` | `CreativeEffectTransform` | — | Transformationen der nächsten Folie. |
-| `creativeEffect.perspective` | `boolean` | `true` | 3D-Transformationen aktivieren. |
-| `creativeEffect.prev` | `CreativeEffectTransform` | — | Transformationen der vorherigen Folie. |
-| `creativeEffect.progressMultiplier` | `number` | `1` | Transformations- und Opacity-Multiplikator. |
-| `creativeEffect.shadowPerProgress` | `boolean` | `false` | Schatten-Opacity pro Folie aufteilen. |
+| `creativeEffect.limitProgress` | `number` | `1` | Limit progress/offset on the side slides. |
+| `creativeEffect.next` | `CreativeEffectTransform` | — | Transforms of the next slide. |
+| `creativeEffect.perspective` | `boolean` | `true` | Enable 3D transforms. |
+| `creativeEffect.prev` | `CreativeEffectTransform` | — | Transforms of the previous slide. |
+| `creativeEffect.progressMultiplier` | `number` | `1` | Transform and opacity multiplier. |
+| `creativeEffect.shadowPerProgress` | `boolean` | `false` | Split shadow opacity per slide. |
 
 ---
 
-## 15. Thumbs-Parameter
+## 15. Thumbs parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `thumbs.autoScrollOffset` | `number` | `0` | Ab wie vielen Folien vom Rand der aktive Thumb gescrollt wird. |
-| `thumbs.multipleActiveThumbs` | `boolean` | `true` | Mehrere Thumbs gleichzeitig aktiv möglich. |
-| `thumbs.slideThumbActiveClass` | `string` | `'swiper-slide-thumb-active'` | Klasse des aktiven Thumb-Slides. |
-| `thumbs.swiper` | `string \| Swiper \| null` | `null` | Swiper-Instanz oder CSS-Selektor des Thumbs-Swipers. |
-| `thumbs.thumbsContainerClass` | `string` | `'swiper-thumbs'` | Klasse des Thumbs-Containers. |
+| `thumbs.autoScrollOffset` | `number` | `0` | How many slides from the edge the active thumb is scrolled at. |
+| `thumbs.multipleActiveThumbs` | `boolean` | `true` | Several thumbs can be active at the same time. |
+| `thumbs.slideThumbActiveClass` | `string` | `'swiper-slide-thumb-active'` | Class of the active thumb slide. |
+| `thumbs.swiper` | `string \| Swiper \| null` | `null` | Swiper instance or CSS selector of the thumbs Swiper. |
+| `thumbs.thumbsContainerClass` | `string` | `'swiper-thumbs'` | Class of the thumbs container. |
 
 ---
 
-## 16. Zoom-Parameter
+## 16. Zoom parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `zoom.containerClass` | `string` | `'swiper-zoom-container'` | CSS-Klasse des Zoom-Containers. |
-| `zoom.limitToOriginalSize` | `boolean` | `false` | Bild nicht über 100% skalieren. |
-| `zoom.maxRatio` | `number` | `3` | Maximaler Zoom-Faktor. |
-| `zoom.minRatio` | `number` | `1` | Minimaler Zoom-Faktor. |
-| `zoom.panOnMouseMove` | `boolean` | `false` | Gezoomtes Bild folgt Mausbewegung. |
-| `zoom.toggle` | `boolean` | `true` | Doppeltippen zum Zoomen aktivieren. |
-| `zoom.zoomedSlideClass` | `string` | `'swiper-slide-zoomed'` | Klasse der gezoomten Folie. |
+| `zoom.containerClass` | `string` | `'swiper-zoom-container'` | CSS class of the zoom container. |
+| `zoom.limitToOriginalSize` | `boolean` | `false` | Do not scale the image beyond 100%. |
+| `zoom.maxRatio` | `number` | `3` | Maximum zoom factor. |
+| `zoom.minRatio` | `number` | `1` | Minimum zoom factor. |
+| `zoom.panOnMouseMove` | `boolean` | `false` | The zoomed image follows the mouse movement. |
+| `zoom.toggle` | `boolean` | `true` | Enable double tap to zoom. |
+| `zoom.zoomedSlideClass` | `string` | `'swiper-slide-zoomed'` | Class of the zoomed slide. |
 
 ---
 
-## 17. Keyboard-Parameter
+## 17. Keyboard parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `keyboard.enabled` | `boolean` | `false` | Tastatursteuerung aktivieren. |
-| `keyboard.onlyInViewport` | `boolean` | `true` | Nur steuern wenn Swiper im Viewport sichtbar. |
-| `keyboard.pageUpDown` | `boolean` | `true` | Page-Up/Down-Tasten aktivieren. |
-| `keyboard.speed` | `number` | `undefined` | Geschwindigkeit der Tastatur-Navigation in ms. |
+| `keyboard.enabled` | `boolean` | `false` | Enable keyboard control. |
+| `keyboard.onlyInViewport` | `boolean` | `true` | Only control when the Swiper is visible in the viewport. |
+| `keyboard.pageUpDown` | `boolean` | `true` | Enable the Page Up/Down keys. |
+| `keyboard.speed` | `number` | `undefined` | Speed of the keyboard navigation in ms. |
 
 ---
 
-## 18. Mousewheel-Parameter
+## 18. Mousewheel parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `mousewheel.enabled` | `boolean` | `false` | Mausrad-Steuerung aktivieren. |
-| `mousewheel.eventsTarget` | `HTMLElement \| 'container' \| 'wrapper' \| CSSSelector` | `'container'` | Element das Mausrad-Events empfängt. |
-| `mousewheel.forceToAxis` | `boolean` | `false` | Mausrad-Bewegung auf Slider-Achse erzwingen. |
-| `mousewheel.invert` | `boolean` | `false` | Richtung invertieren. |
-| `mousewheel.noMousewheelClass` | `string` | `'swiper-no-mousewheel'` | Elemente mit dieser Klasse ignorieren Mausrad. |
-| `mousewheel.releaseOnEdges` | `boolean` | `false` | Mausrad an Rändern freigeben (Seiten-Scroll). |
-| `mousewheel.sensitivity` | `number` | `1` | Mausrad-Sensitivitäts-Multiplikator. |
-| `mousewheel.thresholdDelta` | `number \| null` | `null` | Mindestwert des Scroll-Delta für Folienwechsel. |
-| `mousewheel.thresholdTime` | `number \| null` | `null` | Mindest-Zeit-Delta (ms) für Folienwechsel. |
+| `mousewheel.enabled` | `boolean` | `false` | Enable mouse wheel control. |
+| `mousewheel.eventsTarget` | `HTMLElement \| 'container' \| 'wrapper' \| CSSSelector` | `'container'` | Element that receives mouse wheel events. |
+| `mousewheel.forceToAxis` | `boolean` | `false` | Force mouse wheel movement onto the slider axis. |
+| `mousewheel.invert` | `boolean` | `false` | Invert the direction. |
+| `mousewheel.noMousewheelClass` | `string` | `'swiper-no-mousewheel'` | Elements with this class ignore the mouse wheel. |
+| `mousewheel.releaseOnEdges` | `boolean` | `false` | Release the mouse wheel at the edges (page scroll). |
+| `mousewheel.sensitivity` | `number` | `1` | Mouse wheel sensitivity multiplier. |
+| `mousewheel.thresholdDelta` | `number \| null` | `null` | Minimum scroll delta value for a slide change. |
+| `mousewheel.thresholdTime` | `number \| null` | `null` | Minimum time delta (ms) for a slide change. |
 
 ---
 
-## 19. Virtual Slides-Parameter
+## 19. Virtual Slides parameters
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `virtual.addSlidesAfter` | `number` | `0` | Zusätzliche vorgerenderte Folien nach aktiver. |
-| `virtual.addSlidesBefore` | `number` | `0` | Zusätzliche vorgerenderte Folien vor aktiver. |
-| `virtual.cache` | `boolean` | `true` | DOM-Cache der gerenderten Folien. |
-| `virtual.enabled` | `boolean` | `false` | Virtuelle Folien aktivieren. |
-| `virtual.renderExternal` | `function(VirtualData)` | `null` | Externes Rendering (z.B. React/Vue). |
+| `virtual.addSlidesAfter` | `number` | `0` | Additional pre-rendered slides after the active one. |
+| `virtual.addSlidesBefore` | `number` | `0` | Additional pre-rendered slides before the active one. |
+| `virtual.cache` | `boolean` | `true` | DOM cache of the rendered slides. |
+| `virtual.enabled` | `boolean` | `false` | Enable virtual slides. |
+| `virtual.renderExternal` | `function(VirtualData)` | `null` | External rendering (e.g. React/Vue). |
 
 ```js
-// Virtual Slides Beispiel
+// Virtual slides example
 const swiper = new Swiper('.swiper', {
   modules: [Virtual],
   virtual: {
@@ -431,4 +431,4 @@ const swiper = new Swiper('.swiper', {
 
 ---
 
-*Quelle: https://swiperjs.com/swiper-api*
+*Source: https://swiperjs.com/swiper-api*

@@ -1,6 +1,6 @@
-# DropdownMenu — Quellcode
+# DropdownMenu — Source code
 
-Alle Dateien aus `registry/new-york-v4/ui/dropdown-menu/`.
+All files from `registry/new-york-v4/ui/dropdown-menu/`.
 
 ## Contents
 
@@ -470,5 +470,5 @@ export { default as DropdownMenuTrigger } from "./DropdownMenuTrigger.vue"
 export { DropdownMenuPortal } from "reka-ui"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/dropdown-menu/`

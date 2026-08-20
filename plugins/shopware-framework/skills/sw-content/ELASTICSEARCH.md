@@ -1,25 +1,25 @@
 # sw-elasticsearch
 
-Das `Shopware\Elasticsearch`-Bundle integriert OpenSearch/Elasticsearch als Such-/Aggregationsbackend
-(Client: `opensearch-project/opensearch-php`). **Storefront-** und **Admin-Suche** haben getrennte Index-Sätze
-mit eigenen Env-Konfigs.
+The `Shopware\Elasticsearch` bundle integrates OpenSearch/Elasticsearch as the search/aggregation backend
+(client: `opensearch-project/opensearch-php`). **Storefront** and **admin search** have separate index sets
+with their own env configs.
 
 ```bash
-# Storefront-Suche
+# Storefront search
 SHOPWARE_ES_ENABLED=1
 SHOPWARE_ES_HOSTS=elasticsearch:9200
 SHOPWARE_ES_INDEXING_ENABLED=1
-# Admin-Suche
+# Admin search
 ADMIN_ES_ENABLED=1
 ADMIN_ES_HOSTS=elasticsearch:9200
 ```
 
 ```bash
-bin/console es:index            # Index (neu) aufbauen, blue-green via Alias
-bin/console es:index:cleanup    # alte Indizes entfernen
-bin/console dal:refresh:index   # DAL-Indexer (Voraussetzung für ES-Daten)
+bin/console es:index            # (re)build index, blue-green via alias
+bin/console es:index:cleanup    # remove old indices
+bin/console dal:refresh:index   # DAL indexer (prerequisite for ES data)
 ```
 
-Indizierung läuft asynchron über Symfony Messenger. Eigene Entities/Felder in den Index bringen: `sw-elasticsearch-extension`.
+Indexing runs asynchronously via Symfony Messenger. To get custom entities/fields into the index: `sw-elasticsearch-extension`.
 
-→ Architektur, Registry, Mapping-System, Befehle, Troubleshooting: [ELASTICSEARCH-ARCHITECTURE.md](ELASTICSEARCH-ARCHITECTURE.md)
+→ Architecture, registry, mapping system, commands, troubleshooting: [ELASTICSEARCH-ARCHITECTURE.md](ELASTICSEARCH-ARCHITECTURE.md)

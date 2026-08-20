@@ -1,30 +1,30 @@
-# B2B Quote Management & Shopping Lists — Entwickler-Referenz
+# B2B Quote Management & Shopping Lists — Developer reference
 
 ## Quote Management
 
-### Konzept
+### Concept
 
-B2B-Partner fuellen den Warenkorb → stellen Angebotsanfrage → Haendler prueft/passt an →
-angepasstes Angebot an Partner → Partner akzeptiert/lehnt ab → bei Akzeptanz automatische Bestellung.
+B2B partners fill the cart → submit a quote request → the merchant reviews/adjusts it →
+adjusted quote goes to the partner → the partner accepts/declines → on acceptance an order is created automatically.
 
-### Entitaeten
+### Entities
 
-| Entitaet               | Beschreibung                                             |
+| Entity                 | Description                                              |
 |------------------------|----------------------------------------------------------|
-| `Quote`                | Hauptentitaet: Status, Preise, Rabatt, Benutzer          |
-| `QuoteLineItem`        | Positionen (nur Produkttyp unterstuetzt)                 |
-| `QuoteDelivery`        | Lieferinformationen (Versandmethode, Termine)            |
-| `QuoteDeliveryPosition`| Lieferpositionen mit Preisen                             |
-| `QuoteTransaction`     | Zahlungsinformationen                                    |
-| `QuoteComment`         | Kommentare zu einem Angebot                              |
-| `QuoteEmployee`        | Verknuepfte Mitarbeiter                                  |
-| `QuoteDocument`        | Zugehoerige Dokumente                                    |
+| `Quote`                | Main entity: state, prices, discount, users              |
+| `QuoteLineItem`        | Line items (only the product type is supported)          |
+| `QuoteDelivery`        | Delivery information (shipping method, dates)            |
+| `QuoteDeliveryPosition`| Delivery positions with prices                           |
+| `QuoteTransaction`     | Payment information                                      |
+| `QuoteComment`         | Comments on a quote                                      |
+| `QuoteEmployee`        | Linked employees                                         |
+| `QuoteDocument`        | Associated documents                                     |
 
-Schluessel-Felder Quote:
+Key fields of Quote:
 `id`, `version_id`, `state_id`, `customer_id`, `order_id`, `quote_number`,
 `price` (JSON), `shipping_costs` (JSON), `discount` (JSON), `amount_total`, `amount_net`
 
-### Konvertierung: Warenkorb → Angebot
+### Conversion: cart → quote
 
 ```php
 // Shopware\Commercial\B2B\QuoteManagement\Domain\CartToQuote\CartToQuoteConverter
@@ -32,13 +32,13 @@ Schluessel-Felder Quote:
 public function convertToQuote(Cart $cart, SalesChannelContext $context, ?OrderConversionContext $orderContext = null): Quote
 {
     $order = $this->orderConverter->convertToOrder($cart, $context, $orderContext);
-    $quote = $order; // Quote erbt Struktur der Order
-    // Anreicherung der Quote-Daten und Line-Items
+    $quote = $order; // Quote inherits the structure of the order
+    // Enrichment of the quote data and line items
     return $quote;
 }
 ```
 
-### Konvertierung: Angebot → Warenkorb (Bestellung)
+### Conversion: quote → cart (order)
 
 ```php
 // Shopware\Commercial\B2B\QuoteManagement\Domain\QuoteToCart\QuoteToCartConverter
@@ -49,7 +49,7 @@ public function convertToCart(QuoteEntity $quote, SalesChannelContext $context):
     $cart->setPrice($quote->getPrice());
     $lineItems = QuoteLineItemTransformer::transformToLineItems($quote->getLineItems());
     $cart->setLineItems($lineItems);
-    // Weitere Anreicherung
+    // Further enrichment
     return $cart;
 }
 ```
@@ -58,12 +58,12 @@ public function convertToCart(QuoteEntity $quote, SalesChannelContext $context):
 
 ## Shopping Lists
 
-### Konzept
+### Concept
 
-Einkaufslisten fuer B2B-Kunden. Produkte koennen schnell in den Warenkorb uebertragen werden.
-Preise werden NICHT gespeichert — sie werden bei jedem Laden neu berechnet.
+Shopping lists for B2B customers. Products can be transferred into the cart quickly.
+Prices are NOT stored — they are recalculated on every load.
 
-### Datenbankschema
+### Database schema
 
 ```sql
 b2b_components_shopping_list:
@@ -74,26 +74,26 @@ b2b_components_shopping_list_line_item:
   id, b2b_components_shopping_list_id (FK), product_id (FK), quantity
 ```
 
-### Store API Endpoints
+### Store API endpoints
 
 ```http
-POST /store-api/shopping-list                   # Neue Liste erstellen
-POST /store-api/shopping-list/{id}/duplicate    # Liste duplizieren
-GET  /store-api/shopping-list/{id}              # Einzelne Liste laden
-GET  /store-api/shopping-lists                  # Alle Listen laden
-DELETE /store-api/shopping-lists                # Listen loeschen (ids: array)
-GET  /store-api/shopping-list/{id}/summary      # Zusammenfassung mit Preisen
+POST /store-api/shopping-list                   # Create a new list
+POST /store-api/shopping-list/{id}/duplicate    # Duplicate a list
+GET  /store-api/shopping-list/{id}              # Load a single list
+GET  /store-api/shopping-lists                  # Load all lists
+DELETE /store-api/shopping-lists                # Delete lists (ids: array)
+GET  /store-api/shopping-list/{id}/summary      # Summary with prices
 ```
 
-### Preisberechnung
+### Price calculation
 
-`ShoppingListSubscriber` hoert auf:
+`ShoppingListSubscriber` listens to:
 - `SHOPPING_LIST_LOADED` → `adminLoadedForSpecificCustomer()`
 - `SALES_CHANNEL_SHOPPING_LIST_LOADED` → `salesChannelLoaded()`
 - `SALES_CHANNEL_SHOPPING_LIST_LINE_ITEM_LOADED` → `salesChannelLineItemLoaded()`
 
-`ShoppingListPriceCalculator::calculate()` laedt Produkte und berechnet Preise dynamisch
-pro SalesChannel und Customer-Context.
+`ShoppingListPriceCalculator::calculate()` loads the products and calculates prices dynamically
+per sales channel and customer context.
 
-**Wichtig:** Im Admin muessen alle Shopping-Lists denselben Kunden haben, sonst kein Preis.
-Deaktivierte Produkte werden in Listen gespeichert, aber nicht in die Preisberechnung einbezogen.
+**Important:** in the admin all shopping lists must belong to the same customer, otherwise no price.
+Deactivated products are stored in lists but are not included in the price calculation.

@@ -1,8 +1,8 @@
-# shadcn-vue registry.json — Vollstaendiges Schema
+# shadcn-vue registry.json — Complete Schema
 
 JSON-Schema-URL: `https://shadcn-vue.com/schema/registry.json`
 
-## Minimales Beispiel
+## Minimal example
 
 ```json
 {
@@ -28,7 +28,7 @@ JSON-Schema-URL: `https://shadcn-vue.com/schema/registry.json`
 
 ---
 
-## Felder
+## Fields
 
 ### $schema
 
@@ -40,7 +40,7 @@ JSON-Schema-URL: `https://shadcn-vue.com/schema/registry.json`
 
 ### name
 
-Name der Registry. Wird fuer Data-Attribute und Metadaten verwendet.
+Name of the registry. Used for data attributes and metadata.
 
 ```json
 {
@@ -50,7 +50,7 @@ Name der Registry. Wird fuer Data-Attribute und Metadaten verwendet.
 
 ### homepage
 
-Homepage der Registry. Wird fuer Data-Attribute und Metadaten verwendet.
+Homepage of the registry. Used for data attributes and metadata.
 
 ```json
 {
@@ -60,8 +60,8 @@ Homepage der Registry. Wird fuer Data-Attribute und Metadaten verwendet.
 
 ### items
 
-Array von Registry-Items. Jedes Item muss dem
-[registry-item Schema](https://shadcn-vue.com/schema/registry-item.json) entsprechen.
+Array of registry items. Every item must conform to the
+[registry-item schema](https://shadcn-vue.com/schema/registry-item.json).
 
 ```json
 {
@@ -82,4 +82,4 @@ Array von Registry-Items. Jedes Item muss dem
 }
 ```
 
-Vollstaendige Dokumentation der Item-Felder: siehe `registry-item-json.md`.
+Complete documentation of the item fields: see `registry-item-json.md`.

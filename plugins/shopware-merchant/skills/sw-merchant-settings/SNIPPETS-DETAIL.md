@@ -1,128 +1,128 @@
-# Shopware 6 – Textbausteine / Snippets (vollständige Referenz)
+# Shopware 6 – Textbausteine (Snippets) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/Textbausteine
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/Textbausteine
 
 ---
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Standard-Textbaustein-Sets](#standard-textbaustein-sets)
-- [Verwaltungsfunktionen (Übersicht)](#verwaltungsfunktionen-übersicht)
-- [Textbaustein bearbeiten](#textbaustein-bearbeiten)
-- [Zurücksetzen-Dialog](#zurücksetzen-dialog)
-- [Filter-Optionen](#filter-optionen)
-- [Neuen Textbaustein anlegen](#neuen-textbaustein-anlegen)
-- [Neues Textbaustein-Set anlegen](#neues-textbaustein-set-anlegen)
-- [Tipps & Tricks](#tipps-tricks)
+- [Overview](#overview)
+- [Default snippet sets](#default-snippet-sets)
+- [Management functions (overview)](#management-functions-overview)
+- [Editing a snippet](#editing-a-snippet)
+- [Reset dialog](#reset-dialog)
+- [Filter options](#filter-options)
+- [Creating a new snippet](#creating-a-new-snippet)
+- [Creating a new snippet set](#creating-a-new-snippet-set)
+- [Tips & tricks](#tips--tricks)
 
-## Überblick
+## Overview
 
-**Pfad:** Einstellungen > Shop > Textbausteine  
-Textbausteine dienen der Übersetzung und Anpassung von Texten in Storefront oder Dokumenten.
-
----
-
-## Standard-Textbaustein-Sets
-
-- `BASE de-DE` — Standardübersetzungen Deutsch
-- `BASE en-GB` — Standardübersetzungen Englisch
-
-> Die Basis-JSON-Dateien (`messages.de.base.json`, `storefront.de.json`) sollten **nicht manuell** angepasst werden, da sie zum Zurücksetzen benötigt werden.
+**Path:** Einstellungen (Settings) > Shop > Textbausteine  
+Snippets are used to translate and adapt texts in the storefront or in documents.
 
 ---
 
-## Verwaltungsfunktionen (Übersicht)
+## Default snippet sets
 
-| Funktion | Beschreibung |
+- `BASE de-DE` — default German translations
+- `BASE en-GB` — default English translations
+
+> The base JSON files (`messages.de.base.json`, `storefront.de.json`) should **not be edited manually**, as they are needed for resetting.
+
+---
+
+## Management functions (overview)
+
+| Function | Description |
 |---|---|
-| Mehrfachänderung | Mehrere Sets gleichzeitig bearbeiten |
-| Textbaustein-Set hinzufügen | Neues Set basierend auf Basisdateien erstellen |
-| Kontextmenü | Sets bearbeiten, duplizieren oder löschen |
-| Inline-Bearbeitung | Doppelklick aktiviert direkte Änderungen |
+| Mehrfachänderung (Bulk edit) | Edit several sets at the same time |
+| Textbaustein-Set hinzufügen (Add snippet set) | Create a new set based on the base files |
+| Kontextmenü (Context menu) | Edit, duplicate or delete sets |
+| Inline-Bearbeitung (Inline editing) | Double-click enables direct changes |
 
 ---
 
-## Textbaustein bearbeiten
+## Editing a snippet
 
-### Zugangswege
-1. Direkt auf den Setnamen klicken
-2. Sets per Checkbox auswählen → „Mehrfachänderung"
-3. Kontextmenü verwenden
+### Access paths
+1. Click the set name directly
+2. Select sets via checkbox → "Mehrfachänderung"
+3. Use the context menu
 
-### Listenfunktionen
-- Name-Spalte: Textbaustein-Schlüssel
-- Separate Eingabefelder pro Set
-- Aktualisieren-Button: Ansicht aktualisieren
-- Filter-Optionen verfügbar
+### List functions
+- Name column: snippet key
+- Separate input fields per set
+- Refresh button: refresh the view
+- Filter options available
 
-### Detailseite
-Durch Klick auf Schlüssel oder „Bearbeiten" können Übersetzungen **setübergreifend** bearbeitet werden.
-
----
-
-## Zurücksetzen-Dialog
-
-- Auswahl via Checkboxen: Welche Sets sollen zurückgesetzt werden
-- Anzeige aktueller und ursprünglicher Übersetzung
-- „Für alle Textbaustein-Sets zurücksetzen": Globales Zurücksetzen
+### Detail page
+By clicking a key or "Bearbeiten" (Edit), translations can be edited **across sets**.
 
 ---
 
-## Filter-Optionen
+## Reset dialog
 
-| Filter | Beschreibung |
+- Selection via checkboxes: which sets should be reset
+- Display of the current and the original translation
+- "Für alle Textbaustein-Sets zurücksetzen" (Reset for all snippet sets): global reset
+
+---
+
+## Filter options
+
+| Filter | Description |
 |---|---|
-| Nur leere Textbausteine | Einträge ohne Inhalt |
-| Nur angepasste Textbausteine | Manuell bearbeitete Texte |
-| Nur hinzugefügte Textbausteine | Von Admins erstellte Texte |
-| Autor | Filtert nach Ersteller (Standard: „Shopware") |
-| Bereich/Funktion | z.B. `_checkout_` |
+| Nur leere Textbausteine (Empty snippets only) | Entries without content |
+| Nur angepasste Textbausteine (Customised snippets only) | Manually edited texts |
+| Nur hinzugefügte Textbausteine (Added snippets only) | Texts created by admins |
+| Autor (Author) | Filters by creator (default: "Shopware") |
+| Bereich/Funktion (Area/function) | e.g. `_checkout_` |
 
 ---
 
-## Neuen Textbaustein anlegen
+## Creating a new snippet
 
-**Globale Erstellung** — kein separates Anlegen pro Set nötig.
+**Global creation** — no separate creation per set is needed.
 
-### Anforderungen
-- Eindeutiger Name/Schlüssel (keine Leerzeichen oder Sonderzeichen)
-- Beschreibender Name empfohlen (z.B. `checkout.headline`)
-- Separate Eingabefelder pro verfügbarem Set
-
----
-
-## Neues Textbaustein-Set anlegen
-
-### Methode 1: Hinzufügen via Button
-1. Inline-Bearbeitung mit aktiviertem Formular
-2. Name eingeben
-3. **Locale** festlegen (z.B. `en-GB`, `de-DE` oder zweistelliger ISO-639-1-Code)
-4. **Basisdatei** auswählen (Fallback)
-5. Speichern
-
-> Locale folgt dem **BCP-47-Standard** und ist auf ISO-639-1-Sprachcodes beschränkt.
-
-### Methode 2: Duplizieren
-1. Kontextmenü eines bestehenden Sets
-2. Kopie erhält Suffix `_Kopie`
-3. Namenänderung via Doppelklick in der Übersicht (nicht auf der Detailseite)
+### Requirements
+- Unique name/key (no spaces or special characters)
+- A descriptive name is recommended (e.g. `checkout.headline`)
+- Separate input fields per available set
 
 ---
 
-## Tipps & Tricks
+## Creating a new snippet set
 
-### Links in Textbausteine einbinden
+### Method 1: adding via button
+1. Inline editing with the form activated
+2. Enter a name
+3. Define the **Locale** (e.g. `en-GB`, `de-DE` or a two-letter ISO 639-1 code)
+4. Select the **Basisdatei** (Base file) (fallback)
+5. Save
+
+> The locale follows the **BCP 47 standard** and is limited to ISO 639-1 language codes.
+
+### Method 2: duplicating
+1. Context menu of an existing set
+2. The copy receives the suffix `_Kopie`
+3. Rename via double-click in the overview (not on the detail page)
+
+---
+
+## Tips & tricks
+
+### Embedding links in snippets
 ```html
 <a href="https://example.com">Angezeigter Text</a>
 ```
 
-### Service-Hotline bearbeiten
-- Textbaustein-Schlüssel: `footer.serviceHotline`
-- Wird im Storefront-Footer angezeigt
-- Erreichbar über Einstellungen > Shop > Textbausteine
+### Editing the service hotline
+- Snippet key: `footer.serviceHotline`
+- Displayed in the storefront footer
+- Reachable via Einstellungen > Shop > Textbausteine
 
-### Zeilenumbrüche einfügen
+### Inserting line breaks
 ```html
-Nach dem Komma,<br> kommt ein Zeilenumbruch.
+After the comma,<br> a line break follows.
 ```

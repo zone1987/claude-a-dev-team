@@ -58,7 +58,7 @@ Flexible Zeitplanung für Lieferungen:
 
 Im Admin wird eine Vorschau der nächsten Bestelltermine angezeigt.
 
-**Screenshot:** `../../assets/abonnements-intervalle.png`
+**Screenshot:** `../../assets/subscriptions-intervalle.png`
 
 ---
 
@@ -71,7 +71,7 @@ Im Admin wird eine Vorschau der nächsten Bestelltermine angezeigt.
 - Bei Auswahl eines Plans ändert sich der Button zu „Jetzt abonnieren"
 - Separater Checkout-Prozess für Abonnements
 
-**Screenshot:** `../../assets/abonnements-storefront.png`
+**Screenshot:** `../../assets/subscriptions-storefront.png`
 
 ### Mixed Cart (ab 6.7.4.0)
 
@@ -108,7 +108,7 @@ Kunden können ihre Abonnements eigenständig verwalten:
 | Kündigen | Abonnement beenden |
 | Status einsehen | Aktueller Status jedes Abonnements |
 
-**Admin-Screenshot:** `../../assets/abonnements-pause-admin.png`
+**Admin-Screenshot:** `../../assets/subscriptions-pause-admin.png`
 
 ---
 

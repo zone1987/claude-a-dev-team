@@ -1,152 +1,152 @@
-# Shopware 6 – Retouren & Rückerstattungen: Vollständige Referenz
+# Shopware 6 – Returns & refunds: complete reference
 
 ## Contents
 
-- [Retouren-Management](#retouren-management)
-- [Retoure erstellen](#retoure-erstellen)
-- [Retoure bearbeiten](#retoure-bearbeiten)
-- [Kundensicht: Retouren im Kundenkonto](#kundensicht-retouren-im-kundenkonto)
-- [Bestellung stornieren (Zahlungsabbruch)](#bestellung-stornieren-zahlungsabbruch)
-- [Rückerstattung / Erstatten über Zahlungsanbieter](#rückerstattung-erstatten-über-zahlungsanbieter)
-- [Zusammenfassung: Rückgabe-Workflows](#zusammenfassung-rückgabe-workflows)
-- [Quelle](#quelle)
+- [Returns management](#returns-management)
+- [Creating a return](#creating-a-return)
+- [Editing a return](#editing-a-return)
+- [Customer view: returns in the customer account](#customer-view-returns-in-the-customer-account)
+- [Cancelling an order (aborted payment)](#cancelling-an-order-aborted-payment)
+- [Refunding via the payment provider](#refunding-via-the-payment-provider)
+- [Summary: return workflows](#summary-return-workflows)
+- [Source](#source)
 
-## Retouren-Management
+## Returns management
 
-### Voraussetzungen
+### Prerequisites
 
-| Bedingung | Detail |
+| Condition | Detail |
 |---|---|
-| Shopware-Plan | **Rise** oder höher |
-| Extension | **Commercial** Extension muss installiert sein |
-| Mindestversion | Shopware **6.5.0.0** |
+| Shopware plan | **Rise** or higher |
+| Extension | The **Commercial** extension must be installed |
+| Minimum version | Shopware **6.5.0.0** |
 
-> Das Retouren-Management ist eine kommerzielle Funktion und **nicht** im kostenlosen Shopware-Plan enthalten.
-
----
-
-## Retoure erstellen
-
-### Schritt 1: Bestellung öffnen
-
-![Retoure Bestellung](../../assets/retoure-bestellung.png)
-
-Eine bestehende Bestellung in der Administration öffnen (Bestellungen > Bestellung anklicken).
-
-### Schritt 2: Positionen auswählen
-
-![Positionen auswählen](../../assets/retoure-positionen.png)
-
-Im Tab **„Allgemein"** unter **Positionen**:
-1. Artikel-Checkboxen für Rückgabepositionen aktivieren
-2. Button **„Artikel zurückgeben"** anklicken
-
-> **Einschränkung:** Derzeit kann **nur eine Retoure pro Bestellung** erstellt werden.
-
-### Schritt 3: Rückgabe-Dialog ausfüllen
-
-Im Dialog:
-- **Rückgabemenge** je Position festlegen
-- **Kommentar** (optional) hinzufügen
-- Bestätigen mit „Retoure erstellen"
+> Returns management is a commercial feature and is **not** included in the free Shopware plan.
 
 ---
 
-## Retoure bearbeiten
+## Creating a return
 
-![Retoure Tab](../../assets/retoure-tab.png)
+### Step 1: Open the order
 
-Nach der Erstellung erscheint der Tab **„Retouren"** in der Bestellansicht.
+![Retoure order](assets/return-order.png)
 
-### Bereich „Allgemein" im Retouren-Tab
+Open an existing order in the administration (Bestellungen (Orders) > click the order).
 
-| Feld | Beschreibung |
+### Step 2: Select line items
+
+![Selecting line items](assets/return-positionen.png)
+
+In the **"Allgemein"** (General) tab under **Positionen** (Line items):
+1. Tick the item checkboxes for the returned line items
+2. Click the **"Artikel zurückgeben"** (Return items) button
+
+> **Limitation:** currently **only one return per order** can be created.
+
+### Step 3: Fill in the return dialogue
+
+In the dialogue:
+- Set the **Rückgabemenge** (Return quantity) per line item
+- Add a **Kommentar** (Comment) (optional)
+- Confirm with "Retoure erstellen" (Create return)
+
+---
+
+## Editing a return
+
+![Retouren tab](assets/return-tab.png)
+
+Once created, the **"Retouren"** (Returns) tab appears in the order view.
+
+### "Allgemein" section in the Retouren tab
+
+| Field | Description |
 |---|---|
-| Retouren-Nummer | Eindeutige Nummer der Retoure |
-| Status | Aktueller Retouren-Status |
-| Kommentar | Interner Kommentar zur Retoure |
+| Retouren-Nummer (Return number) | Unique number of the return |
+| Status | Current return status |
+| Kommentar | Internal comment on the return |
 
-![Retoure Nummer bearbeiten](../../assets/retoure-nummer.png)
+![Editing the return number](assets/return-nummer.png)
 
-### Status ändern
+### Changing the status
 
-![Retoure Status](../../assets/retoure-status.png)
+![Retoure status](assets/return-status.png)
 
-Der Retouren-Status kann direkt im Tab gesetzt werden. Kunden sehen diesen Status in ihrem Kundenkonto.
+The return status can be set directly in the tab. Customers see this status in their customer account.
 
-### Positionen anpassen
+### Adjusting line items
 
-Im Bereich **Positionen** des Retouren-Tabs sind folgende Anpassungen möglich:
+The **Positionen** section of the Retouren tab allows the following adjustments:
 
-| Aktion | Beschreibung |
+| Action | Description |
 |---|---|
-| Rückgabemenge ändern | Menge pro Position anpassen |
-| Status je Position | Individuellen Status pro Retourenposition setzen |
-| Positionen entfernen | Einzelne Positionen aus der Retoure löschen |
-| Versandkosten anpassen | Doppelklick auf Versandkosten > Betrag ändern |
+| Change return quantity | Adjust the quantity per line item |
+| Status per line item | Set an individual status per return line item |
+| Remove line items | Delete individual line items from the return |
+| Adjust shipping costs | Double-click the shipping costs > change the amount |
 
-### Teilgutschrift erstellen
+### Creating a partial credit note
 
-Wenn für die Bestellung bereits eine **Rechnung** vorhanden ist, kann aus der Retoure eine **Teilgutschrift** erstellt werden:
+If an **invoice** already exists for the order, a **partial credit note** can be created from the return:
 
-1. Im Retouren-Tab auf „Gutschrift erstellen" klicken
-2. Positionen und Beträge werden aus der Retoure übernommen
-3. Das Gutschrift-Dokument erscheint in der Dokumentenliste der Bestellung
-
----
-
-## Kundensicht: Retouren im Kundenkonto
-
-Registrierte Kunden können die Retoure in ihrem Konto einsehen:
-- **Pfad:** Kundenkonto > Bestellungen > [Bestellung] > Retouren-Tab
-- Angezeigt werden: Retouren-Status, zurückgegebene Positionen
-- Kunden können den Status verfolgen, aber keine Änderungen vornehmen
+1. In the Retouren tab, click "Gutschrift erstellen" (Create credit note)
+2. Line items and amounts are taken from the return
+3. The credit note document appears in the order's document list
 
 ---
 
-## Bestellung stornieren (Zahlungsabbruch)
+## Customer view: returns in the customer account
 
-### Stornierungseinstellung aktivieren
-
-Damit Kunden Bestellungen nach einem Zahlungsabbruch selbst stornieren können:
-
-**Admin-Pfad:** Einstellungen > Warenkorb > **„Stornierungen erlauben"** aktivieren
-
-![Stornierungen Einstellungen](../../assets/stornierungen-einstellungen.png)
-
-### Stornierungsfluss aus Kundensicht
-
-1. Bestellung wurde aufgegeben, Zahlung ist fehlgeschlagen
-2. Im Kundenkonto: Bestellungen > „..."-Menü > **„Bestellung stornieren"**
-3. Lagerbestand wird bei Stornierung über das Kundenkonto wieder freigegeben
-
-> **Hinweis:** Das Stornieren ist nur möglich, solange der Zahlungsstatus **nicht** „Bezahlt" ist.
+Registered customers can view the return in their account:
+- **Path:** customer account > Bestellungen > [order] > Retouren tab
+- Shown are: return status, returned line items
+- Customers can track the status but cannot make any changes
 
 ---
 
-## Rückerstattung / Erstatten über Zahlungsanbieter
+## Cancelling an order (aborted payment)
 
-Shopware verwaltet den **Zahlungsstatus**, die eigentliche Rückbuchung erfolgt über den **Zahlungsanbieter** (z. B. PayPal, Stripe). Der Ablauf:
+### Enabling the cancellation setting
 
-1. Retoure in Shopware erfassen
-2. Rückbuchung beim Zahlungsanbieter veranlassen (je nach Zahlungsanbieter-Plugin automatisch oder manuell)
-3. Zahlungsstatus in Shopware manuell auf „Erstattet" oder „Teilweise erstattet" setzen
+To let customers cancel orders themselves after an aborted payment:
+
+**Admin path:** Einstellungen (Settings) > Warenkorb (Cart) > enable **"Stornierungen erlauben"** (Allow cancellations)
+
+![Cancellation settings](assets/cancellations-settings.png)
+
+### Cancellation flow from the customer's perspective
+
+1. The order has been placed, the payment has failed
+2. In the customer account: Bestellungen > "..." menu > **"Bestellung stornieren"** (Cancel order)
+3. Stock is released again when the order is cancelled via the customer account
+
+> **Note:** cancelling is only possible as long as the payment status is **not** "Bezahlt" (Paid).
 
 ---
 
-## Zusammenfassung: Rückgabe-Workflows
+## Refunding via the payment provider
+
+Shopware manages the **payment status**; the actual chargeback happens via the **payment provider** (e.g. PayPal, Stripe). The process:
+
+1. Record the return in Shopware
+2. Initiate the chargeback with the payment provider (automatically or manually, depending on the payment provider plugin)
+3. Set the payment status in Shopware manually to "Erstattet" (Refunded) or "Teilweise erstattet" (Partially refunded)
+
+---
+
+## Summary: return workflows
 
 ```
-Kunde sendet Ware zurück
-  └─→ Admin: Retoure erstellen (Artikel zurückgeben)
-        ├─→ Retoure bearbeiten (Status, Mengen)
-        ├─→ Teilgutschrift erstellen (wenn Rechnung vorhanden)
-        └─→ Rückerstattung beim Zahlungsanbieter auslösen
-              └─→ Zahlungsstatus → "Erstattet"
+Customer sends goods back
+  └─→ Admin: create return (Artikel zurückgeben)
+        ├─→ Edit return (status, quantities)
+        ├─→ Create partial credit note (if an invoice exists)
+        └─→ Trigger the refund with the payment provider
+              └─→ Payment status → "Erstattet"
 ```
 
 ---
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/retouren-management
 https://docs.shopware.com/de/shopware-6-de/bestellungen/zahlungsvorgang-nach-bestellung

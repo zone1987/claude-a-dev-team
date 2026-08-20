@@ -1,112 +1,112 @@
-# Dynamic Access – Regelbasierte Inhaltszugangskontrolle
+# Dynamic Access – rule-based content access control
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/dynamicaccess  
-**Plan**: Shopware Evolve (oder höher)  
-**Verfügbar ab**: Shopware 6.4.6.0 (Rule Builder Integration)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/dynamicaccess  
+**Plan**: Shopware Evolve (or higher)  
+**Available from**: Shopware 6.4.6.0 (Rule Builder integration)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Anwendungsbereiche](#anwendungsbereiche)
-- [Regeln erstellen (Rule Builder)](#regeln-erstellen-rule-builder)
-- [Wichtige Hinweise & Fallstricke](#wichtige-hinweise-fallstricke)
-- [Bulk-Zuweisung per Import/Export](#bulk-zuweisung-per-importexport)
-- [Abgrenzung zu anderen Zugangsmechanismen](#abgrenzung-zu-anderen-zugangsmechanismen)
+- [Overview](#overview)
+- [Areas of application](#areas-of-application)
+- [Creating rules (Rule Builder)](#creating-rules-rule-builder)
+- [Important notes & pitfalls](#important-notes-pitfalls)
+- [Bulk assignment via Import/Export](#bulk-assignment-via-importexport)
+- [Distinction from other access mechanisms](#distinction-from-other-access-mechanisms)
 
-## Überblick
+## Overview
 
-**Dynamic Access** ermöglicht es, Shop-Inhalte (Kategorien, Produkte, Varianten) auf Basis
-von Rule-Builder-Regeln **bedingt anzuzeigen oder zu verbergen**. Inhalte erscheinen im
-Storefront nur, wenn eine der definierten Regeln zutrifft.
-
----
-
-## Anwendungsbereiche
-
-### 1. Kategorien ausblenden
-
-**Konfiguration**:
-1. **Katalog > Kategorien** → Kategorie öffnen
-2. Tab **Allgemein** → Abschnitt "Sichtbarkeit"
-3. Unter "Dynamic Access Rules" → Regeln hinzufügen
-
-**Verhalten**:
-- Kategorie wird im Storefront nur angezeigt, wenn **mindestens eine** der Regeln zutrifft
-- Keine Regeln gesetzt = Kategorie immer sichtbar (Standard)
-
-> **Hinweis**: Versteckte Kategorien verbergen die enthaltenen Produkte **nicht automatisch**.
-> Produkte können über die Suche noch gefunden werden – daher auch auf Produktebene Regeln setzen.
-
-### 2. Produkte ausblenden
-
-**Konfiguration**:
-1. **Katalog > Produkte** → Produkt öffnen
-2. Tab **Allgemein** → Abschnitt "Sichtbarkeit"
-3. Unter "Dynamic Access Rules" → Regeln hinzufügen
-
-**Verhalten**:
-- Produkt wird nur angezeigt, wenn mindestens eine Regel zutrifft
-- Unsichtbare Produkte sind auch **nicht suchbar**
-
-### 3. Varianten ausblenden
-
-**Konfiguration**: Auf Variantenebene (innerhalb des Produkts, Tab Varianten)
-
-**Besonderheit**: Varianten werden nicht direkt ausgeblendet. Stattdessen:
-- Variante ist auf der Produktdetailseite **nicht wählbar** (ausgegraut)
-- Das Produkt selbst bleibt sichtbar
+**Dynamic Access** makes it possible to **conditionally show or hide** shop content
+(categories, products, variants) on the basis of Rule Builder rules. Content only appears in
+the storefront if one of the defined rules applies.
 
 ---
 
-## Regeln erstellen (Rule Builder)
+## Areas of application
 
-### Typische Regeln für Dynamic Access
+### 1. Hiding categories
 
-| Regel | Anwendungsfall |
+**Configuration**:
+1. **Katalog** (Catalogue) **> Kategorien** (Categories) → open the category
+2. **Allgemein** (General) tab → "Sichtbarkeit" (Visibility) section
+3. Under "Dynamic Access Rules" → add rules
+
+**Behaviour**:
+- The category is only shown in the storefront if **at least one** of the rules applies
+- No rules set = the category is always visible (default)
+
+> **Note**: Hidden categories do **not** automatically hide the products they contain.
+> Products can still be found via the search – so set rules at product level as well.
+
+### 2. Hiding products
+
+**Configuration**:
+1. **Katalog** (Catalogue) **> Produkte** (Products) → open the product
+2. **Allgemein** (General) tab → "Sichtbarkeit" (Visibility) section
+3. Under "Dynamic Access Rules" → add rules
+
+**Behaviour**:
+- The product is only shown if at least one rule applies
+- Invisible products are also **not searchable**
+
+### 3. Hiding variants
+
+**Configuration**: At variant level (inside the product, Varianten (Variants) tab)
+
+**Special feature**: Variants are not hidden directly. Instead:
+- The variant is **not selectable** on the product detail page (greyed out)
+- The product itself remains visible
+
+---
+
+## Creating rules (Rule Builder)
+
+### Typical rules for Dynamic Access
+
+| Rule | Use case |
 |---|---|
-| Kundengruppe = "B2B" | Nur für B2B-Kunden sichtbar |
-| Kunde ist eingeloggt | Nur für registrierte Kunden |
-| Land = "DE" | Nur in Deutschland sichtbar |
-| Datum zwischen [Start] und [Ende] | Saisonale Produkte |
-| Warenkorb enthält Produkt X | Cross-Selling-Logik |
+| Kundengruppe (Customer group) = "B2B" | Visible only for B2B customers |
+| The customer is logged in | Only for registered customers |
+| Country = "DE" | Visible only in Germany |
+| Date between [start] and [end] | Seasonal products |
+| The cart contains product X | Cross-selling logic |
 
-Regeln erstellen: **Einstellungen > Regeln > Neue Regel**
-
----
-
-## Wichtige Hinweise & Fallstricke
-
-### Produkte in versteckten Kategorien
-- Wenn eine Kategorie per Dynamic Access versteckt wird, bleiben die Produkte
-  darin über die **Suche** auffindbar
-- **Lösung**: Gleiche Regeln auch auf Produktebene anwenden (oder Bulk-Assignment)
-
-### Sich gegenseitig ausschließende Regeln
-- Regeln sollten nicht so konfiguriert sein, dass der Inhalt **nie** angezeigt wird
-- Beispiel: Regel A = "Land DE" UND Regel B = "Land FR" mit AND-Verknüpfung → niemals sichtbar
-- Verwende OR-Verknüpfung oder prüfe die Regellogik
-
-### Warenkorb mit verstecktem Produkt
-- Wenn ein Produkt in den Warenkorb gelegt wurde und danach per Dynamic Access
-  ausgeblendet wird, **blockiert es den Checkout**
-- Der Kunde muss das Produkt aus dem Warenkorb entfernen
+Creating rules: **Einstellungen** (Settings) **> Regeln** (Rules) **> Neue Regel** (New rule)
 
 ---
 
-## Bulk-Zuweisung per Import/Export
+## Important notes & pitfalls
 
-Für große Kataloge: Regeln über den **Import/Export-Bereich** in Massen zuweisen:
-1. **Einstellungen > Import/Export** öffnen
-2. Produkt-Export durchführen (CSV)
-3. Dynamic-Access-Spalten in der CSV ausfüllen
-4. Importieren
+### Products in hidden categories
+- If a category is hidden via Dynamic Access, the products it contains
+  remain discoverable via the **search**
+- **Solution**: Apply the same rules at product level as well (or a bulk assignment)
+
+### Mutually exclusive rules
+- Rules should not be configured in such a way that the content is **never** shown
+- Example: rule A = "Country DE" AND rule B = "Country FR" with an AND link → never visible
+- Use an OR link or check the rule logic
+
+### A cart containing a hidden product
+- If a product was added to the cart and is hidden via Dynamic Access afterwards,
+  it **blocks the checkout**
+- The customer has to remove the product from the cart
 
 ---
 
-## Abgrenzung zu anderen Zugangsmechanismen
+## Bulk assignment via Import/Export
 
-| Mechanismus | Beschreibung |
+For large catalogues: assign rules in bulk via the **Import/Export** area:
+1. Open **Einstellungen** (Settings) **> Import/Export**
+2. Run a product export (CSV)
+3. Fill in the Dynamic Access columns in the CSV
+4. Import it
+
+---
+
+## Distinction from other access mechanisms
+
+| Mechanism | Description |
 |---|---|
-| Dynamic Access | Regelbasierte Sichtbarkeit (Plan: Evolve+) |
-| Kundengruppen-Sichtbarkeit | Standard: Produkte/Kategorien für Kundengruppen konfigurieren |
-| Shopware Login Required | Shop komplett hinter Login sperren (Einstellungen > Benutzer & Rechte) |
+| Dynamic Access | Rule-based visibility (plan: Evolve+) |
+| Customer group visibility | Standard: configure products/categories for customer groups |
+| Shopware Login Required | Lock the entire shop behind a login (Einstellungen > Benutzer & Rechte (Users & permissions)) |

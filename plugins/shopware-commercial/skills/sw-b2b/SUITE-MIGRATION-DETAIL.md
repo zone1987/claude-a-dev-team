@@ -1,60 +1,60 @@
-# B2B Suite Migration zu B2B Components — Entwickler-Referenz
+# B2B Suite migration to B2B Components — Developer reference
 
-> **Wichtig:** B2B Suite wird ab Shopware 6.8 nicht mehr unterstuetzt.
-> Migration sollte zeitnah geplant werden.
+> **Important:** the B2B Suite is no longer supported as of Shopware 6.8.
+> The migration should be planned soon.
 
 ## Contents
 
-- [Zweck](#zweck)
-- [Voraussetzungen](#voraussetzungen)
-- [Migrationstabellen](#migrationstabellen)
-- [Migrationsablauf](#migrationsablauf)
-- [Konfiguration via XML](#konfiguration-via-xml)
-- [Handler (Custom Transformations)](#handler-custom-transformations)
-- [Komponenten-Migration-Reihenfolge](#komponenten-migration-reihenfolge)
-- [Fehlerbehandlung](#fehlerbehandlung)
-- [Nachmigrations-Aktionen](#nachmigrations-aktionen)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Migration tables](#migration-tables)
+- [Migration process](#migration-process)
+- [Configuration via XML](#configuration-via-xml)
+- [Handlers (custom transformations)](#handlers-custom-transformations)
+- [Component migration order](#component-migration-order)
+- [Error handling](#error-handling)
+- [Post-migration actions](#post-migration-actions)
 
-## Zweck
+## Purpose
 
-Das B2B Suite Migration Extension migriert Daten aus der B2B Suite in B2B Components
-(Teil des Commercial Plugins). Die Migration ergaenzt Daten in B2B Components ohne
-B2B Suite-Daten zu loeschen.
+The B2B Suite Migration extension migrates data from the B2B Suite into B2B Components
+(part of the Commercial plugin). The migration adds data to B2B Components without
+deleting B2B Suite data.
 
-## Voraussetzungen
+## Prerequisites
 
-- B2B Suite Version 4.9.3 oder hoeher
-- Queue Worker muss laufen (`bin/console messenger:consume`)
-- Datenbank-Backup vor Migration erstellen (besonders wenn B2B Commercial bereits Daten hat)
-- Budget Management: benoetigt B2B Commercial Version 7.6.0 oder hoeher
+- B2B Suite version 4.9.3 or higher
+- The queue worker must be running (`bin/console messenger:consume`)
+- Create a database backup before the migration (especially if B2B Commercial already has data)
+- Budget Management: requires B2B Commercial version 7.6.0 or higher
 
-## Migrationstabellen
+## Migration tables
 
-Drei Tracking-Tabellen werden angelegt:
+Three tracking tables are created:
 
-| Tabelle                          | Zweck                                         |
+| Table                            | Purpose                                       |
 |----------------------------------|-----------------------------------------------|
-| `b2b_components_migration_state` | Status des Migrationsprozesses pro Entitaet   |
-| `b2b_components_migration_map`   | Mapping zwischen Suite- und Components-IDs    |
-| `b2b_components_migration_errors`| Fehlerprotokoll fuer Debugging                |
+| `b2b_components_migration_state` | State of the migration process per entity     |
+| `b2b_components_migration_map`   | Mapping between Suite and Components IDs      |
+| `b2b_components_migration_errors`| Error log for debugging                       |
 
-## Migrationsablauf
+## Migration process
 
-1. **Message Queue** verarbeitet die Migration (skalierbar fuer grosse Datenmengen)
-2. **Sequentielle Verarbeitung** respektiert Abhaengigkeiten:
-   - Employee → Budget (Budget braucht Employee)
+1. The **message queue** processes the migration (scalable for large data volumes)
+2. **Sequential processing** respects the dependencies:
+   - Employee → Budget (Budget needs Employee)
    - Employee → Quote → Shopping List
-3. **Entity-Sequencing** innerhalb jeder Komponente
+3. **Entity sequencing** within each component
 
-## Konfiguration via XML
+## Configuration via XML
 
-Alle Feld-Mappings sind in XML-Konfigurationsdateien definiert:
+All field mappings are defined in XML configuration files:
 
 ```xml
 <entity>
   <name>migration_b2b_component_employee</name>
-  <source>b2b_debtor_contact</source>      <!-- Quell-Tabelle -->
-  <target>b2b_employee</target>            <!-- Ziel-Tabelle -->
+  <source>b2b_debtor_contact</source>      <!-- Source table -->
+  <target>b2b_employee</target>            <!-- Target table -->
   <fields>
     <field source="first_name" target="first_name"/>
     <field source="last_name" target="last_name"/>
@@ -63,20 +63,20 @@ Alle Feld-Mappings sind in XML-Konfigurationsdateien definiert:
 </entity>
 ```
 
-## Handler (Custom Transformations)
+## Handlers (custom transformations)
 
-Handler ermöglichen komplexe Datentransformationen vor dem Mapping.
+Handlers enable complex data transformations before the mapping.
 
-### Handler registrieren
+### Registering a handler
 
 ```php
 $services->set(MyCustomTransformer::class)
-    ->lazy()  // Best Practice: lazy loading
+    ->lazy()  // Best practice: lazy loading
     ->args([service(ExtensionDispatcher::class)])
     ->tag('b2b.migration.transformer');
 ```
 
-### Handler implementieren
+### Implementing a handler
 
 ```php
 class MyStatusTransformer extends AbstractFieldTransformer
@@ -88,12 +88,12 @@ class MyStatusTransformer extends AbstractFieldTransformer
 
     public function getName(): string
     {
-        return 'b2b.my.status_transformer';  // Eindeutiger Name, referenziert in XML
+        return 'b2b.my.status_transformer';  // Unique name, referenced in the XML
     }
 
     protected function requiredSourceFields(): array
     {
-        return ['active'];  // Pflichtfelder aus Quell-Tabelle
+        return ['active'];  // Required fields from the source table
     }
 
     protected function _transform(Field $field, array $sourceRecord): mixed
@@ -104,14 +104,14 @@ class MyStatusTransformer extends AbstractFieldTransformer
 }
 ```
 
-### Handler-Optionen im XML
+### Handler options in the XML
 
-**Einzel-Quelle → Einzel-Ziel:**
+**Single source → single target:**
 ```xml
 <field source="active" target="status" handler="b2b.my.status_transformer"/>
 ```
 
-**Mehrere Quellen → Einzel-Ziel:**
+**Several sources → single target:**
 ```xml
 <field target="quote_number" handler="b2b.my.transformer">
     <source>currency_factor</source>
@@ -119,7 +119,7 @@ class MyStatusTransformer extends AbstractFieldTransformer
 </field>
 ```
 
-**Mehrere Quellen → Mehrere Ziele:**
+**Several sources → several targets:**
 ```xml
 <field handler="b2b.my.transformer">
     <source>source_field_a</source>
@@ -129,7 +129,7 @@ class MyStatusTransformer extends AbstractFieldTransformer
 </field>
 ```
 
-**Einzel-Quelle → Mehrere Ziele:**
+**Single source → several targets:**
 ```xml
 <field source="converted_at" handler="b2b.my.transformer">
     <target>order_version_id</target>
@@ -137,36 +137,36 @@ class MyStatusTransformer extends AbstractFieldTransformer
 </field>
 ```
 
-### Relational-Pfade in Source-Feldern
+### Relational paths in source fields
 
-Punktgetrennte Pfade traversieren Relationen (z.B. `auth_id.b2b_store_front_auth.customer_id`).
+Dot-separated paths traverse relations (e.g. `auth_id.b2b_store_front_auth.customer_id`).
 
-### Rueckgabewerte des _transform-Methode
+### Return values of the _transform method
 
-- Einzel-Ziel: Einzelwert (string, int, JSON)
-- Mehrere Ziele: Assoziatives Array `['target_field' => value, ...]`
+- Single target: single value (string, int, JSON)
+- Several targets: associative array `['target_field' => value, ...]`
 
-### Handler-Logik erweitern
+### Extending handler logic
 
-Handler dispatchen via `ExtensionDispatcher` ein `B2BMigrationFieldTransformerExtension`-Event
-mit dem technischen Namen des Handlers. Subscriber koennen eigene Logik hinzufuegen ohne
-den Original-Handler zu aendern.
+Handlers dispatch a `B2BMigrationFieldTransformerExtension` event via the `ExtensionDispatcher`
+carrying the technical name of the handler. Subscribers can add their own logic without
+changing the original handler.
 
-## Komponenten-Migration-Reihenfolge
+## Component migration order
 
 1. Business Partner (Debtor) → `swag_b2b_business_partner` → `swag_b2b_business_partner`
 2. Employees (Contacts) → `b2b_debtor_contact` → `b2b_employee`
 3. Roles → `b2b_acl_route` → `swag_b2b_role`
 4. Quotes → `b2b_offer` → `quote`
 5. Shopping Lists → `b2b_order_list` → `b2b_components_shopping_list`
-6. Budgets → Eigene Migration (benoetigt Commercial 7.6.0+)
+6. Budgets → separate migration (requires Commercial 7.6.0+)
 
-## Fehlerbehandlung
+## Error handling
 
-Fehler werden in `b2b_components_migration_errors` protokolliert.
-Migrationen koennen nach Fehlerbehebung erneut ausgefuehrt werden (idempotent dank Mapping-Tabelle).
+Errors are logged in `b2b_components_migration_errors`.
+Migrations can be re-run after fixing errors (idempotent thanks to the mapping table).
 
-## Nachmigrations-Aktionen
+## Post-migration actions
 
-Budget Management: Organisations-Einheit des Budgets muss nach Migration
-**manuell in B2B Commercial zugewiesen** werden (kann nicht automatisch migriert werden).
+Budget Management: the organizational unit of a budget must be
+**assigned manually in B2B Commercial** after the migration (it cannot be migrated automatically).

@@ -23,13 +23,13 @@
 
 | Datei | Inhalt |
 |---|---|
-| `../../assets/themes-uebersicht.png` | Themes-Übersicht |
-| `../../assets/theme-farben.png` | Theme-Farben Konfiguration |
+| `../../assets/themes-overview.png` | Themes-Übersicht |
+| `../../assets/theme-colors.png` | Theme-Farben Konfiguration |
 | `../../assets/status-ausgaben.png` | Status-Ausgaben Konfiguration |
-| `../../assets/typografie.png` | Typografie-Einstellungen |
+| `../../assets/typography.png` | Typografie-Einstellungen |
 | `../../assets/e-commerce.png` | E-Commerce-Einstellungen |
-| `../../assets/medien-logos.png` | Medien / Logos Konfiguration |
-| `../../assets/verkaufskanal-zuordnen.png` | Theme einem Verkaufskanal zuordnen |
+| `../../assets/media-logos.png` | Medien / Logos Konfiguration |
+| `../../assets/sales-channel-zuordnen.png` | Theme einem Verkaufskanal zuordnen |
 
 ---
 

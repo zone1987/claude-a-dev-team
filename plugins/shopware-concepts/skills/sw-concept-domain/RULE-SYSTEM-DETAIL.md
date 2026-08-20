@@ -1,34 +1,34 @@
-# Shopware Rule-System — Vollständige Konzept-Doku
+# Shopware rule system — complete concept documentation
 
-Quellen: `concepts/framework/rule-system/index.md`, `rule-concepts.md`, `rule-evaluation.md`
+Sources: `concepts/framework/rule-system/index.md`, `rule-concepts.md`, `rule-evaluation.md`
 
 ---
 
 ## Contents
 
-- [Rule-System Überblick (index.md)](#rule-system-überblick-indexmd)
+- [Rule system overview (index.md)](#rule-system-overview-indexmd)
 - [Rule Concepts (rule-concepts.md)](#rule-concepts-rule-conceptsmd)
 - [Rule Evaluation (rule-evaluation.md)](#rule-evaluation-rule-evaluationmd)
 
-## Rule-System Überblick (index.md)
+## Rule system overview (index.md)
 
-Generisches System zur Beschreibung von Business-Bedingungen als **komposable Regeln**.
-Ausgewertet gegen spezifischen Kontext (Cart, Order, Customer).
+A generic system for describing business conditions as **composable rules**.
+Evaluated against a specific context (cart, order, customer).
 
-**Rule Builder** = Administration-Feature für visuelle Konfiguration und Kombination von Regeln.
+The **Rule Builder** = an administration feature for visually configuring and combining rules.
 
-### Einsatzbereiche
+### Areas of use
 
-- **Checkout / Cart** — Availability und Verhalten von Versand-/Zahlungsmethoden, Produktpreisen
-- **Promotionen** — Anwenden/Einschränken basierend auf Customer, Cart-Inhalt, anderen Kriterien
-- **Flow Builder** — Regel-Bedingungen für Flows
+- **Checkout / cart** — availability and behaviour of shipping/payment methods, product prices
+- **Promotions** — applying/restricting based on customer, cart content, other criteria
+- **Flow Builder** — rule conditions for flows
 
-### Beispiel-Szenario
+### Example scenario
 
-"Wenn Kunde ein Auto kauft, bekommt er eine Sonnenbrille gratis im selben Auftrag."
+"If a customer buys a car, they get a pair of sunglasses for free in the same order."
 
-Rule-System sitzt zwischen Cart-Zustand (Auto ist im Cart) und gewünschter Aktion
-(Sonnenbrille ist gratis), ohne diese Logik direkt in den Cart zu embedden.
+The rule system sits between the cart state (a car is in the cart) and the desired action
+(the sunglasses are free), without embedding that logic directly into the cart.
 
 ---
 
@@ -36,133 +36,133 @@ Rule-System sitzt zwischen Cart-Zustand (Auto ist im Cart) und gewünschter Akti
 
 ### Rule
 
-- Einzelne Bedingung → `true` oder `false`
-- Beantwortet spezifische Fragen: "Gehört Kunde zur Standardgruppe?", "Ist Cart > 50€?"
-- **Keine Datenbeschaffung** — erhält alle Daten via RuleScope
-- **Keine Seiteneffekte** — ändert nichts an Cart, Orders oder anderen States (pure function)
+- Single condition → `true` or `false`
+- Answers specific questions: "Does the customer belong to the default group?", "Is the cart > €50?"
+- **No data fetching** — receives all data via the RuleScope
+- **No side effects** — changes nothing in the cart, orders or other state (pure function)
 
-### RuleScope (Kontext-Träger)
+### RuleScope (context carrier)
 
-Definiert Kontext für Regelauswertung und stellt Daten bereit.
+Defines the context for rule evaluation and provides the data.
 
-| Scope | Inhalt |
+| Scope | Content |
 |---|---|
-| `CheckoutRuleScope` | SalesChannelContext (Customer, Sales Channel, Currency, etc.) |
-| `CartRuleScope` | CheckoutRuleScope + Cart-Daten |
-| `FlowRuleScope` | Checkout-Infos + Order-Daten |
-| `LineItemScope` | Einzelnes Line Item |
+| `CheckoutRuleScope` | SalesChannelContext (customer, sales channel, currency, etc.) |
+| `CartRuleScope` | CheckoutRuleScope + cart data |
+| `FlowRuleScope` | Checkout info + order data |
+| `LineItemScope` | A single line item |
 
-Regeln hängen nur von dem ab, was der Scope exponiert → wiederverwendbar über Features hinweg.
+Rules depend only on what the scope exposes → reusable across features.
 
-### Container Rules (Baumstruktur)
+### Container rules (tree structure)
 
-Kombinieren Ergebnisse anderer Regeln via logische Operatoren. Keine eigene Bedingungsauswertung.
+Combine the results of other rules via logical operators. No condition evaluation of their own.
 
-| Container | Bedeutung |
+| Container | Meaning |
 |---|---|
-| `AndRule` | Alle Kinder müssen matchen |
-| `OrRule` | Mindestens ein Kind muss matchen |
-| `NotRule` | Dieses Kind darf nicht matchen |
+| `AndRule` | All children must match |
+| `OrRule` | At least one child must match |
+| `NotRule` | This child must not match |
 
-Vollständige Regeldefinition = **Baum** aus Container-Knoten (AND/OR/NOT) und Blatt-Knoten
-(konkrete Bedingungen).
+A complete rule definition = a **tree** of container nodes (AND/OR/NOT) and leaf nodes
+(concrete conditions).
 
-Beispiel-Baum:
+Example tree:
 ```
 OrRule
 ├── LineItemsInCartCountRule (operator: ">=", count: 40)
 └── GoodsPriceRule (operator: ">=", amount: 500)
 ```
 
-### Operatoren und Vergleiche
+### Operators and comparisons
 
-- Gleichheit/Ungleichheit: `=`, `!=`
-- Bereiche: `<`, `<=`, `>`, `>=`
-- Leer-Prüfungen: `empty`
+- Equality/inequality: `=`, `!=`
+- Ranges: `<`, `<=`, `>`, `>=`
+- Emptiness checks: `empty`
 
-Konsistente Semantik via `RuleComparison` für vergleichbare Werttypen.
+Consistent semantics via `RuleComparison` for comparable value types.
 
-### Rule Config (UI-Vertrag)
+### Rule Config (UI contract)
 
-`RuleConfig` definiert, welche Felder und Operatoren in der Admin-UI angezeigt werden:
+`RuleConfig` defines which fields and operators are shown in the admin UI:
 
-- **Operator-Set** — welche Operatoren sind für diese Regel gültig
-- **Field Definitions** — `name` (Identifier), `type` (UI-Darstellung: number/text/date), zusätzliche Config
-  (Optionen für Select-Felder, Einheit für Zahlenfelder)
+- **Operator set** — which operators are valid for this rule
+- **Field definitions** — `name` (identifier), `type` (UI representation: number/text/date), additional config
+  (options for select fields, unit for number fields)
 
-### Rule Constraints (Validierung)
+### Rule Constraints (validation)
 
-`RuleConstraints` beschreiben, was eine valide Konfiguration für eine Regel ist.
+`RuleConstraints` describe what a valid configuration for a rule is.
 
-- **Value Constraints** — Felder müssen bestimmte Typen/Werte haben (nicht leer, numerisch, etc.)
-- **Operator Constraints** — nur bestimmte Operatoren erlaubt
+- **Value constraints** — fields must have certain types/values (not empty, numeric, etc.)
+- **Operator constraints** — only certain operators allowed
 
 ---
 
 ## Rule Evaluation (rule-evaluation.md)
 
-### Lifecycle Überblick
+### Lifecycle overview
 
 ```
 Rule Builder → Validation → Database → Runtime scope → Match / Evaluate
 ```
 
-1. Rule Builder lässt User Regelbaum erstellen (Container + Bedingungen)
-2. Rule-System validiert jede Bedingung gegen entsprechende Rule-Klasse im Registry
-3. Valide Regeln werden in DB persistiert
-4. Zur Laufzeit: Domain baut passenden RuleScope, berechnet matchende Regeln
-5. Features filtern nach Rule-IDs im Context oder evaluieren Regelbaum direkt
+1. The Rule Builder lets the user create a rule tree (containers + conditions)
+2. The rule system validates each condition against the corresponding rule class in the registry
+3. Valid rules are persisted in the DB
+4. At runtime: the domain builds the matching RuleScope, computes the matching rules
+5. Features filter by rule IDs in the context or evaluate the rule tree directly
 
-### 1. Von Rule Builder zu gespeicherter Regeldefinition
+### 1. From Rule Builder to a stored rule definition
 
-**Datenbankstruktur:**
-- `rule` — repräsentiert die gesamte Regel
-- `rule_condition` — Container-Knoten und Blatt-Bedingungen
-  - `parent_id` — für Baumstruktur
-  - `type` — mappt auf Rule-Klasse
-  - `value` — JSON mit konfiguriertem Werten (Operator, Schwellwerte, IDs)
+**Database structure:**
+- `rule` — represents the entire rule
+- `rule_condition` — container nodes and leaf conditions
+  - `parent_id` — for the tree structure
+  - `type` — maps to a rule class
+  - `value` — JSON with the configured values (operator, thresholds, IDs)
 
-**Validierung**: `RuleValidator` subscribt auf Write-Events und prüft `RuleConditionEntity`:
-- Typ → Rule-Klasse via `RuleConditionRegistry` auflösen
-- Constraints der Rule-Klasse prüfen
-- Ungültige Payloads werden abgelehnt
+**Validation**: `RuleValidator` subscribes to write events and checks the `RuleConditionEntity`:
+- Resolve the type → rule class via `RuleConditionRegistry`
+- Check the constraints of the rule class
+- Invalid payloads are rejected
 
-### 2. Evaluation vorbereiten
+### 2. Preparing the evaluation
 
-**Scope Owners** (wer baut welchen Scope):
+**Scope owners** (who builds which scope):
 
-- **Cart/Checkout**: `CartRuleLoader` — Haupt-Einstiegspunkt; baut Scopes und evaluiert Regeln
-- **Flows**: `FlowRuleScopeBuilder` — baut `FlowRuleScope`; rekonstruiert Cart-ähnlichen Kontext aus Order
-- **Line Items**: `AnyRuleLineItemMatcher` — baut `LineItemScope` für Einzelzeilen-Tests
+- **Cart/checkout**: `CartRuleLoader` — main entry point; builds scopes and evaluates rules
+- **Flows**: `FlowRuleScopeBuilder` — builds the `FlowRuleScope`; reconstructs a cart-like context from the order
+- **Line items**: `AnyRuleLineItemMatcher` — builds the `LineItemScope` for single-line tests
 
-Regeln sind **pure functions** — abhängig nur von übergebenem Scope, kein globaler State.
+Rules are **pure functions** — dependent only on the scope passed in, no global state.
 
-### 3. Matching Rules (Checkout)
+### 3. Matching rules (checkout)
 
-**Iterativer Prozess** (bei Checkout):
+**Iterative process** (during checkout):
 
 ```
 Load candidate rules
 → Build scope from cart
 → Filter matching rules (RuleCollection::filterMatchingRules)
-→ Cart changed? → Recalculate cart → (wiederholen)
+→ Cart changed? → Recalculate cart → (repeat)
 → Expose matching rule IDs on SalesChannelContext
 ```
 
-Ergebnis: konsistentes Paar (Cart, matching Rule IDs).
+Result: a consistent pair (cart, matching rule IDs).
 
-### 4. Rules zur Laufzeit nutzen
+### 4. Using rules at runtime
 
-#### ID-basierte Entscheidungen (Performance-Pfad)
+#### ID-based decisions (the performance path)
 
-Entities wie `shipping_method`, `payment_method`, `tax_provider` haben `availability_rule_id`.
-Erlaubt wenn Rule ID in `SalesChannelContext::getRuleIds()` → kein Direktaufruf nötig.
+Entities such as `shipping_method`, `payment_method`, `tax_provider` have an `availability_rule_id`.
+Allowed if the rule ID is in `SalesChannelContext::getRuleIds()` → no direct call needed.
 
-#### Direkte Evaluation (Flexibilitäts-Pfad)
+#### Direct evaluation (the flexibility path)
 
-Features holen Regelbaum aus DB, bauen entsprechenden Scope, rufen `Rule::match(RuleScope $scope)` auf.
+Features fetch the rule tree from the DB, build the corresponding scope, and call `Rule::match(RuleScope $scope)`.
 
-Delegation bei Container Rules:
+Delegation with container rules:
 ```
 Feature → OrRule::match(scope)
 OrRule → Rule1::match(scope) → false

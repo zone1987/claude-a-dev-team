@@ -68,4 +68,4 @@ Setup and tools for the shadcn-vue MCP server, which lets AI assistants search, 
 
 
 ---
-Quelle: `unovue/shadcn-vue` (dev) `apps/v4/content/docs/skills.md`
+Source: `unovue/shadcn-vue` (dev) `apps/v4/content/docs/skills.md`

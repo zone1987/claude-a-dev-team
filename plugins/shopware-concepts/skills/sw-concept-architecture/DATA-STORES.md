@@ -1,50 +1,50 @@
-# Shopware Framework-Konzepte (weitere)
+# Shopware framework concepts (further)
 
-Vollständige Konzept-Doku: `DATA-STORES-DETAIL.md`
+Complete concept documentation: `DATA-STORES-DETAIL.md`
 
-## Kurzüberblick
+## Brief overview
 
-### Flow Builder
+### Flow builder
 
-- **Trigger** → **Condition** → **Action** (visuelle Automatisierung, kein Code)
-- `FlowDispatcher` → `FlowExecutor` → Sequenz mit Regel-Checks
-- **Storer-Konzept**: `*Storer`-Klassen persistieren Flow-Daten; Lazy Loading bei sofortiger Ausführung,
-  DB-Persistenz nur bei verzögerten Flows
-- Flow Templates — vorgefertigte Flows (via Apps oder Plugins)
+- **Trigger** → **condition** → **action** (visual automation, no code)
+- `FlowDispatcher` → `FlowExecutor` → sequence with rule checks
+- **Storer concept**: `*Storer` classes persist flow data; lazy loading on immediate execution,
+  DB persistence only for delayed flows
+- Flow templates — ready-made flows (via apps or plugins)
 
-### HTTP Cache
+### HTTP cache
 
-- Reverse-Proxy-Ansatz; `_httpCache: true` in Route-Defaults aktiviert Caching
-- **`sw-cache-hash` Cookie** — kodiert aktuellen Anwendungszustand (logged-in, Währung, Regeln, etc.)
-- Cache Key = Request + cache-hash (maximale Trefferrate, minimale Permutationen)
-- **Cache-Invalidierung** via Tags; Listen-Routen verlassen sich auf TTL statt entity-spezifische Invalidierung
-- Caching Policies (Experimental → Standard ab 6.8): pro Route konfigurierbar
+- Reverse proxy approach; `_httpCache: true` in the route defaults enables caching
+- **`sw-cache-hash` cookie** — encodes the current application state (logged in, currency, rules, etc.)
+- Cache key = request + cache hash (maximum hit rate, minimal permutations)
+- **Cache invalidation** via tags; listing routes rely on TTL instead of entity-specific invalidation
+- Caching policies (experimental → standard from 6.8): configurable per route
 
 ### Elasticsearch
 
-- Nur explizit aktivierte Suchen nutzen ES (`STATE_ELASTICSEARCH_AWARE` im Context)
-- `ElasticsearchDefinition` — definiert Felder und Aggregationen pro Entity
-- Fallback auf MySQL bei ES-Fehler (deaktivierbar via `SHOPWARE_ES_THROW_EXCEPTION`)
+- Only explicitly enabled searches use ES (`STATE_ELASTICSEARCH_AWARE` in the context)
+- `ElasticsearchDefinition` — defines fields and aggregations per entity
+- Fallback to MySQL on an ES error (can be disabled via `SHOPWARE_ES_THROW_EXCEPTION`)
 - Commands: `es:index`, `es:reset`, `es:status`, `es:create:alias`
 
 ### Migrations
 
-- PHP-Klassen mit `update()` (non-destructive) und `updateDestructive()` (destruktiv)
-- Automatisch erkannt im `Migration/`-Verzeichnis des Plugins
+- PHP classes with `update()` (non-destructive) and `updateDestructive()` (destructive)
+- Detected automatically in the plugin's `Migration/` directory
 
-### System Checks
+### System checks
 
-- Typen: Readiness, Health, Long-running
-- Kategorien: SYSTEM, FEATURE, EXTERNAL, AUXILIARY
-- Status: OK, SKIPPED, UNKNOWN, WARNING, ERROR, FAILURE
-- Kontext: WEB, CLI, PRE_ROLLOUT, RECURRENT
+- Types: readiness, health, long-running
+- Categories: SYSTEM, FEATURE, EXTERNAL, AUXILIARY
+- Statuses: OK, SKIPPED, UNKNOWN, WARNING, ERROR, FAILURE
+- Contexts: WEB, CLI, PRE_ROLLOUT, RECURRENT
 
-### Storefront Components (ab 6.7.11)
+### Storefront components (from 6.7.11)
 
-- Symfony UX Twig Components — atomic, wiederverwendbare Templates
-- Anonymous (Template only) oder PHP-backed (Plugin only)
-- JS-Component-System — auto-initialisiert via `data-component` Attribut, ES Module Loading (Vite)
-- Event-System via `window.Shopware.emit/on/intercept`
+- Symfony UX Twig components — atomic, reusable templates
+- Anonymous (template only) or PHP-backed (plugin only)
+- JS component system — auto-initialised via the `data-component` attribute, ES module loading (Vite)
+- Event system via `window.Shopware.emit/on/intercept`
 - Build: `composer npm:storefront run build:components`
 
-Technische Umsetzung: `shopware-framework`, `shopware-storefront` (Dev-Plugins)
+Technical implementation: `shopware-framework`, `shopware-storefront` (dev plugins)

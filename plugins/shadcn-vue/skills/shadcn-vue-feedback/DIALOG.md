@@ -1,11 +1,11 @@
 # shadcn-vue Dialog
 
-Zeigt ein modales Fenster an, das den primären Fensterinhalt inert setzt. Basiert auf reka-ui DialogRoot.
+Displays a modal window that renders the primary window content inert. Built on reka-ui DialogRoot.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `DIALOG-INSTALLATION.md` — CLI- und manuelle Installation
-- `DIALOG-SOURCE.md` — Vollstaendiger Quellcode aller Komponenten
-- `DIALOG-API.md` — Props, Slots, Emits aller Sub-Komponenten
-- `DIALOG-EXAMPLES.md` — Alle Demos mit Code
+Load the references:
+- `DIALOG-INSTALLATION.md` — CLI and manual installation
+- `DIALOG-SOURCE.md` — Complete source code of all components
+- `DIALOG-API.md` — Props, slots, emits of all sub-components
+- `DIALOG-EXAMPLES.md` — All demos with code

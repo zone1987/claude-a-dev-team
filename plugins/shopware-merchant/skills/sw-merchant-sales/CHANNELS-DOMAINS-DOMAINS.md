@@ -34,7 +34,7 @@ Dieses Konzept ermöglicht es, **mehrere Sprachshops** über einen einzigen Verk
 
 ## 2. Domain-Konfiguration: Selbst gehostete Instanz
 
-![Domains – Selbst gehostete Instanz](../../../sw-merchant-sales-channels/assets/domains-self-hosted.png)
+![Domains – Selbst gehostete Instanz](assets/domains-self-hosted.png)
 
 **Zugang:** Verkaufskanal > Reiter "Allgemein" > Abschnitt "Domains"
 
@@ -42,7 +42,7 @@ Dieses Konzept ermöglicht es, **mehrere Sprachshops** über einen einzigen Verk
 
 ### Konfigurationsfelder
 
-![Domain-Konfiguration Detail](../../../sw-merchant-sales-channels/assets/domains-detail.png)
+![Domain-Konfiguration Detail](assets/domains-detail.png)
 
 | Nr. | Feld | Beschreibung |
 |---|---|---|
@@ -61,7 +61,7 @@ Dieses Konzept ermöglicht es, **mehrere Sprachshops** über einen einzigen Verk
 
 ## 3. Domain-Konfiguration: Cloud-Instanz
 
-![Domains – Cloud Instanz](../../../sw-merchant-sales-channels/assets/domains-cloud.png)
+![Domains – Cloud Instanz](assets/domains-cloud.png)
 
 **Standard:** Eine automatisch generierte URL wird beim Erstellen des Kanals angelegt.
 
@@ -95,7 +95,7 @@ Nach Aktivierung:
 - **ISO-Norm** (z.B. `de-DE`, `de-AT`, `en-US`) – empfohlen für länderspezifische Sprachvarianten
 - **Browsersprache** (z.B. `de`, `en`) – einfacher, aber weniger präzise
 
-![Hreflang Einstellung](../../../sw-merchant-sales-channels/assets/hreflang.png)
+![Hreflang Einstellung](assets/hreflang.png)
 
 ---
 

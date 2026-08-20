@@ -1,116 +1,116 @@
-# Shopware 6 – Abonnements (vollständige Referenz)
+# Shopware 6 – Abonnements (Subscriptions) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/abonnements
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/abonnements
 
 ---
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Konfiguration: Drei Tabs](#konfiguration-drei-tabs)
-- [Storefront-Darstellung](#storefront-darstellung)
-- [Verwaltung](#verwaltung)
-- [Admin-Ansicht (gemischte Bestellungen)](#admin-ansicht-gemischte-bestellungen)
+- [Overview](#overview)
+- [Configuration: three tabs](#configuration-three-tabs)
+- [Storefront presentation](#storefront-presentation)
+- [Management](#management)
+- [Admin view (mixed orders)](#admin-view-mixed-orders)
 - [Integration](#integration)
 
-## Überblick
+## Overview
 
-**Pfad:** Einstellungen > Handel > Abonnements  
-**Verfügbar ab:** 6.5.4.0  
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Abonnements  
+**Available from:** 6.5.4.0  
 **Plan:** Commercial — Shopware Beyond
 
-Ermöglicht wiederkehrende Bestellungen mit konfigurierbaren Intervallen.
+Enables recurring orders with configurable intervals.
 
 ---
 
-## Konfiguration: Drei Tabs
+## Configuration: three tabs
 
-### Tab 1: Pläne
+### Tab 1: Pläne (Plans)
 
-**Allgemeine Einstellungen:**
-| Feld | Beschreibung |
+**General settings:**
+| Field | Description |
 |---|---|
-| Name | Name des Abonnements |
-| Aktiv | Aktivierungsschalter |
-| Abweichender Storefront-Name | Optional anderen Namen für Kunden anzeigen |
-| Beschreibung | Erklärungstext |
-| Verfügbarkeitsregeln | Rule-Builder-Integration |
+| Name | Name of the subscription |
+| Aktiv (Active) | Activation switch |
+| Abweichender Storefront-Name (Different storefront name) | Optionally show a different name to customers |
+| Beschreibung (Description) | Explanatory text |
+| Verfügbarkeitsregeln (Availability rules) | Rule Builder integration |
 
-**Intervall-Konfiguration:**
-| Feld | Beschreibung |
+**Interval configuration:**
+| Field | Description |
 |---|---|
-| Intervalle | Auswahl verfügbarer Intervalle |
-| Mindestlaufzeit | Mindestabonnementszeit (z.B. 24 Monate) |
-| Rabatt | Prozentrabatt während Abonnementdauer |
+| Intervalle (Intervals) | Selection of the available intervals |
+| Mindestlaufzeit (Minimum term) | Minimum subscription period (e.g. 24 months) |
+| Rabatt (Discount) | Percentage discount for the subscription period |
 
-**Produkte-Zuordnung:** Produkte per Checkbox auswählen (Produktname + Produktnummer).
+**Product assignment:** select products via checkbox (product name + product number).
 
 ---
 
-### Tab 2: Intervalle
+### Tab 2: Intervalle (Intervals)
 
-**Grundeinstellungen pro Intervall:**
-| Feld | Beschreibung |
+**Basic settings per interval:**
+| Field | Description |
 |---|---|
-| Name | Bezeichnung des Intervalls |
-| Aktiv | Ein-/Ausschalten |
-| Verfügbarkeitsregeln | Rule-Builder-Integration |
-| Frequenz | z.B. wöchentlich, zweiwöchentlich |
-| Zeitintervall | Tage, Wochen, Monate |
-| Vorschau | Zukünftige Liefertermine |
+| Name | Label of the interval |
+| Aktiv | Switch on/off |
+| Verfügbarkeitsregeln | Rule Builder integration |
+| Frequenz (Frequency) | e.g. weekly, fortnightly |
+| Zeitintervall (Time interval) | Days, weeks, months |
+| Vorschau (Preview) | Future delivery dates |
 
-**Erweiterte Einstellungen:**
-- Reguläre Frequenz mit Detailoptionen
-- Wochentag-Selektion
-- Tage im Monat
-- Monate im Jahr
+**Advanced settings:**
+- Regular frequency with detailed options
+- Weekday selection
+- Days in the month
+- Months in the year
 
 ---
 
-### Tab 3: Einstellungen (ab v6.7.4.0)
+### Tab 3: Einstellungen (Settings) (from v6.7.4.0)
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| Gemischte Warenkörbe | Einmalprodukte und Abonnements in einer Bestellung kombinieren |
+| Gemischte Warenkörbe (Mixed carts) | Combine one-off products and subscriptions in one order |
 
 ---
 
-## Storefront-Darstellung
+## Storefront presentation
 
-- Neben Warenkorb-Button erscheint Abonnement-Button
-- Bei mehreren Plänen: Auswahl via Radiobutton
-- Button wechselt zu „Jetzt abonnieren" bei Planauswahl
-
----
-
-## Verwaltung
-
-### Im Admin (Bestellungen > Abonnements)
-- Abonnementdetails einsehen
-- Status ändern: Aktiv, Pausiert, Gekündigt
-
-### Im Kundenlogin
-- Pausieren für einen Turnus
-- Kündigen des Abonnements
-
-**Status-Logik bei Kündigung vor Mindestlaufzeit:**
-Admin zeigt „zur Kündigung vorgemerkt" — weitere Bestellungen werden weiterhin generiert bis Mindestlaufzeit erfüllt.
+- A subscription button appears next to the add-to-cart button
+- With several plans: selection via radio button
+- The button changes to "Jetzt abonnieren" (Subscribe now) when a plan is selected
 
 ---
 
-## Admin-Ansicht (gemischte Bestellungen)
+## Management
 
-- Alle Positionen sichtbar
-- Abonnementartikel tragen Abonnement-Nummer
-- Einmalprodukte ohne Nummer
-- Rabatte automatisch zugeordnet
+### In the admin (Bestellungen (Orders) > Abonnements)
+- View subscription details
+- Change the status: Aktiv, Pausiert (Paused), Gekündigt (Cancelled)
+
+### In the customer account
+- Pause for one cycle
+- Cancel the subscription
+
+**Status logic when cancelling before the minimum term:**
+The admin shows "zur Kündigung vorgemerkt" (marked for cancellation) — further orders continue to be generated until the minimum term is fulfilled.
+
+---
+
+## Admin view (mixed orders)
+
+- All line items visible
+- Subscription items carry a subscription number
+- One-off products without a number
+- Discounts assigned automatically
 
 ---
 
 ## Integration
 
-| System | Unterstützung |
+| System | Support |
 |---|---|
-| Rule Builder | Zahlungsarten-Ausschluss, Verfügbarkeit |
-| Flow Builder | Erinnerungsmails mit Delay-Funktion |
-| Zahlungsarten | Vorkasse, Rechnung; mit PayPal Vaulting auch PayPal und Kreditkarte |
+| Rule Builder | Exclusion of payment methods, availability |
+| Flow Builder | Reminder emails with delay function |
+| Zahlungsarten (Payment methods) | Vorkasse (Prepayment), Rechnung (Invoice); with PayPal Vaulting also PayPal and credit card |

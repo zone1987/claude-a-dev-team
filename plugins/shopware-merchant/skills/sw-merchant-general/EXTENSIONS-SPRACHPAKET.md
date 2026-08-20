@@ -1,95 +1,95 @@
-# Sprachpaket – Mehrsprachigkeit für Admin & Storefront
+# Sprachpaket (Language pack) – multilingualism for admin & storefront
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/sprachpaket  
-**Verfügbar**: Kostenlos im Shopware Store  
-**Wichtig**: Ab Shopware 6.8 nicht mehr unterstützt!
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/sprachpaket  
+**Availability**: Free in the Shopware Store  
+**Important**: No longer supported from Shopware 6.8!
 
-## Überblick
+## Overview
 
-Das **Sprachpaket** ermöglicht den Betrieb von Shopware 6 in bis zu 29 Sprachen –
-sowohl für die Administration als auch für den Storefront.
-
----
-
-## WICHTIG: Deprecation ab Version 6.8
-
-> **Das Sprachpaket wird ab Shopware 6.8 nicht mehr unterstützt.**
-> Ab Shopware 6.7.3.0 steht ein **natives Sprach-Management-System** zur Verfügung.
-> → Migration auf das native System für neue Installationen empfohlen.
+The **Sprachpaket** lets you run Shopware 6 in up to 29 languages –
+for the administration as well as for the storefront.
 
 ---
 
-## Unterstützte Sprachen (29)
+## IMPORTANT: deprecation from version 6.8
 
-| Sprache | Sprache | Sprache |
+> **The Sprachpaket is no longer supported from Shopware 6.8.**
+> From Shopware 6.7.3.0 a **native language management system** is available.
+> → Migration to the native system is recommended for new installations.
+
+---
+
+## Supported languages (29)
+
+| Language | Language | Language |
 |---|---|---|
-| Bosnisch | Bulgarisch | Chinesisch (vereinfacht) |
-| Chinesisch (traditionell) | Dänisch | Englisch (USA) |
-| Finnisch | Französisch | Griechisch |
-| Hebräisch | Hindi | Indonesisch |
-| Italienisch | Japanisch | Koreanisch |
-| Kroatisch | Niederländisch | Norwegisch |
-| Persisch | Polnisch | Portugiesisch |
-| Russisch | Schwedisch | Serbisch |
-| Slowakisch | Spanisch | Tschechisch |
-| Türkisch | Ukrainisch | Ungarisch |
-| Vietnamesisch | | |
+| Bosnian | Bulgarian | Chinese (simplified) |
+| Chinese (traditional) | Danish | English (USA) |
+| Finnish | French | Greek |
+| Hebrew | Hindi | Indonesian |
+| Italian | Japanese | Korean |
+| Croatian | Dutch | Norwegian |
+| Persian | Polish | Portuguese |
+| Russian | Swedish | Serbian |
+| Slovak | Spanish | Czech |
+| Turkish | Ukrainian | Hungarian |
+| Vietnamese | | |
 
-(Englisch und Deutsch sind in Shopware standardmäßig enthalten)
+(English and German are included in Shopware by default)
 
 ---
 
 ## Installation
 
-### Variante 1: Ersteinrichtungs-Assistent
-- Im Wizard-Schritt "Erweiterungen" Sprachpaket suchen und installieren
+### Option 1: first-run setup assistant
+- In the wizard step "Erweiterungen" (Extensions), search for and install the Sprachpaket
 
-### Variante 2: Shopware Store
-1. https://store.shopware.com → "Sprachpaket Shopware 6" suchen
-2. Kostenlose Lizenz aktivieren
-3. Im Admin: **Erweiterungen > Meine Erweiterungen** → Installieren + Aktivieren
-
----
-
-## Konfiguration
-
-### Für die Administration (Admin-Interface)
-Nach Installation und Aktivierung:
-1. **Profil** (unten links) → Sprache auswählen
-2. Seite neu laden → Admin in neuer Sprache
-
-### Für den Storefront
-Storefront-Sprachen müssen explizit aktiviert werden:
-1. **Verkaufskanäle** → Storefront öffnen
-2. Abschnitt "Sprachen" → gewünschte Sprache hinzufügen
-3. Als Standard-Sprache setzen oder als zusätzliche Sprache
+### Option 2: Shopware Store
+1. https://store.shopware.com → search for "Sprachpaket Shopware 6"
+2. Activate the free licence
+3. In the admin: **Erweiterungen > Meine Erweiterungen** (My extensions) → install + activate
 
 ---
 
-## Übersetzungsworkflow
+## Configuration
 
-Nachdem eine Sprache zum Verkaufskanal hinzugefügt wurde:
+### For the administration (admin interface)
+After installation and activation:
+1. **Profil** (Profile, bottom left) → select the language
+2. Reload the page → admin in the new language
 
-1. **Produkte** übersetzen: Katalog > Produkte > [Produkt] → Sprache oben rechts wechseln
-2. **Kategorien** übersetzen: Katalog > Kategorien → Sprache wechseln
-3. **E-Mail-Templates** übersetzen: Einstellungen > E-Mail-Templates → Sprache wechseln
-4. **Erlebniswelten** übersetzen: Content > Erlebniswelten → Sprache wechseln
-
-### Vererbungsmodell
-- Felder ohne Übersetzung erben von der **Standard-/Fallback-Sprache**
-- Vererbung wird durch grünes Schloss-Symbol angezeigt
-- Schloss öffnen = Feld kann überschrieben werden
+### For the storefront
+Storefront languages have to be enabled explicitly:
+1. **Verkaufskanäle** (Sales channels) → open the storefront
+2. Section "Sprachen" (Languages) → add the desired language
+3. Set it as the default language or as an additional language
 
 ---
 
-## Migration auf natives Sprachsystem (ab 6.7.3.0)
+## Translation workflow
 
-Ab Shopware 6.7.3.0 ist das Sprachpaket nicht mehr notwendig:
-- Sprachen direkt in den Shop-Einstellungen verwalten
-- Kein separater Extension-Download nötig
-- **Einstellungen > Sprachen** im Admin
+Once a language has been added to the sales channel:
 
-Für bestehende Installationen mit Sprachpaket:
-1. Native Sprachen im Admin konfigurieren
-2. Sprachpaket deaktivieren (nach Überprüfung, dass alle Übersetzungen vorhanden)
-3. Sprachpaket deinstallieren
+1. Translate **Produkte** (Products): Katalog > Produkte > [product] → switch language at the top right
+2. Translate **Kategorien** (Categories): Katalog > Kategorien → switch language
+3. Translate **E-Mail-Templates**: Einstellungen (Settings) > E-Mail-Templates → switch language
+4. Translate **Erlebniswelten** (Shopping Experiences): Content > Erlebniswelten → switch language
+
+### Inheritance model
+- Fields without a translation inherit from the **default/fallback language**
+- Inheritance is indicated by the green padlock icon
+- Opening the padlock = the field can be overwritten
+
+---
+
+## Migration to the native language system (from 6.7.3.0)
+
+From Shopware 6.7.3.0 the Sprachpaket is no longer necessary:
+- Manage languages directly in the shop settings
+- No separate extension download needed
+- **Einstellungen > Sprachen** in the admin
+
+For existing installations with the Sprachpaket:
+1. Configure the native languages in the admin
+2. Deactivate the Sprachpaket (after verifying that all translations are present)
+3. Uninstall the Sprachpaket

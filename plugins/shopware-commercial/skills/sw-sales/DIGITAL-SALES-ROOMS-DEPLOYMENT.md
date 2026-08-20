@@ -1,18 +1,18 @@
 # Digital Sales Rooms — Deployment
 
-Vollständige Referenz: [DIGITAL-SALES-ROOMS-DEPLOYMENT-DEPLOYMENT.md](DIGITAL-SALES-ROOMS-DEPLOYMENT-DEPLOYMENT.md)
+Full reference: [DIGITAL-SALES-ROOMS-DEPLOYMENT-DEPLOYMENT.md](DIGITAL-SALES-ROOMS-DEPLOYMENT-DEPLOYMENT.md)
 
-## Deployment-Optionen
+## Deployment options
 
-| Option | Vorteile |
+| Option | Advantages |
 |--------|---------|
 | **AWS Amplify** | Git-Push-Deployment, managed |
 | **Cloudflare Pages** | Edge-Deployment, GitHub Actions |
-| **Ubuntu Server + PM2** | Self-hosted, volle Kontrolle |
+| **Ubuntu Server + PM2** | self-hosted, full control |
 
 ## SaaS (Beyond)
 
-Im SaaS-Betrieb ist das Plugin bereits installiert. Nur noch tun:
-1. Frontend-App deployen (eine der Optionen oben)
-2. 3rd-Party-Dienste konfigurieren
-3. Plugin konfigurieren
+In SaaS operation the plugin is already installed. All that remains:
+1. Deploy the frontend app (one of the options above)
+2. Configure the third-party services
+3. Configure the plugin

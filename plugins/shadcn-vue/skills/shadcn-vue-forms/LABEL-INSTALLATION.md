@@ -1,20 +1,20 @@
 # Label — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add label
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install dependencies:
 
 ```bash
 npm install reka-ui @vueuse/core
 ```
 
-2. Folgende Dateien nach `src/components/ui/label/` kopieren:
+2. Copy the following files to `src/components/ui/label/`:
    - `Label.vue`
    - `index.ts`
 
@@ -24,6 +24,6 @@ npm install reka-ui @vueuse/core
 import { Label } from "@/components/ui/label"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/label/index.ts`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/label/Label.vue`

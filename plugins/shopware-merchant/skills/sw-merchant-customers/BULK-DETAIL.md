@@ -1,136 +1,136 @@
-# Shopware 6 – Mehrfachänderung & AI-Klassifizierung: Vollständige Referenz
+# Shopware 6 – Bulk edit & AI classification: Complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht  
-> Dokumentierte Version: 6.7.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht  
+> Documented version: 6.7.0.0+
 
 ---
 
 ## Contents
 
-- [1. Mehrfachänderung](#1-mehrfachänderung)
-- [2. AI-generierte Kunden-Klassifizierung](#2-ai-generierte-kunden-klassifizierung)
-- [3. Versionsmatrix](#3-versionsmatrix)
+- [1. Bulk edit](#1-bulk-edit)
+- [2. AI-generated customer classification](#2-ai-generated-customer-classification)
+- [3. Version matrix](#3-version-matrix)
 
-## 1. Mehrfachänderung
+## 1. Bulk edit
 
-Ermöglicht das gleichzeitige Bearbeiten oder Löschen von bis zu **1.000 Kunden**.
+Allows you to edit or delete up to **1,000 customers** at the same time.
 
-### 1.1 Kunden auswählen
+### 1.1 Selecting customers
 
-![Mehrfachänderung Auswahl](../../assets/bulk-aenderung-1.png)
+![Bulk edit selection](assets/bulk-change-1.png)
 
-| Element | Funktion |
+| Element | Function |
 |---------|----------|
-| (1) | **Alle Kunden auf Seite** auswählen (Checkbox im Header) |
-| (2) | **Einzelne Kunden** auswählen |
-| — | Auswahl funktioniert **seitenübergreifend** |
-| — | **Maximum: 1.000 Datensätze** |
-| (3) | Anzeige der **Anzahl ausgewählter Kunden** |
-| (4) | Button **„Mehrfachänderung"** → Bearbeitungsmodus |
-| (5) | Button **„Löschen"** → Alle ausgewählten Kunden löschen |
+| (1) | Select **all customers on the page** (checkbox in the header) |
+| (2) | Select **individual customers** |
+| — | The selection works **across pages** |
+| — | **Maximum: 1,000 records** |
+| (3) | Display of the **number of selected customers** |
+| (4) | **"Mehrfachänderung"** (Bulk edit) button → editing mode |
+| (5) | **"Löschen"** (Delete) button → delete all selected customers |
 
-### 1.2 Mehrfachänderung starten
+### 1.2 Starting the bulk edit
 
-![Mehrfachänderung Schritt 2](../../assets/bulk-aenderung-2.png)
+![Bulk edit step 2](assets/bulk-change-2.png)
 
-1. Button **„Mehrfachänderung (4)"** klicken
-2. Pop-Up öffnet sich mit Liste der ausgewählten Kunden
-3. Einzelne Kunden können aus der Liste entfernt werden (ohne sie zu löschen)
-4. **„Mehrfachänderung starten"** klicken
+1. Click the **"Mehrfachänderung (4)"** button
+2. A pop-up opens with a list of the selected customers
+3. Individual customers can be removed from the list (without deleting them)
+4. Click **"Mehrfachänderung starten"** (Start bulk edit)
 
-### 1.3 Felder auswählen und Werte eingeben
+### 1.3 Selecting fields and entering values
 
-![Mehrfachänderung Schritt 3](../../assets/bulk-aenderung-3.png)
-![Mehrfachänderung Schritt 4](../../assets/bulk-aenderung-4.png)
+![Bulk edit step 3](assets/bulk-change-3.png)
+![Bulk edit step 4](assets/bulk-change-4.png)
 
-| Element | Funktion |
+| Element | Function |
 |---------|----------|
-| Checkbox (1) | Feld für Änderung **aktivieren** |
-| Werte (2) | Neue Werte eingeben |
-| „Änderungen übernehmen" (3) | Änderungen für alle ausgewählten Kunden übernehmen |
+| Checkbox (1) | **Activate** the field for the change |
+| Werte (2) (Values) | Enter the new values |
+| "Änderungen übernehmen" (3) (Apply changes) | Apply the changes to all selected customers |
 
-### 1.4 Dropdown-Operatoren
+### 1.4 Dropdown operators
 
-Bei bestimmten Feldern (z.B. Tags, Kundengruppen) steht ein **Operator-Dropdown** zur Verfügung:
+For certain fields (e.g. tags, customer groups) an **operator dropdown** is available:
 
-| Operator | Wirkung |
+| Operator | Effect |
 |----------|---------|
-| **Überschreiben** | Ersetzt alle vorherigen Informationen des Feldes vollständig |
-| **Leeren** | Entfernt alle Einstellungen des Blocks (Feld wird geleert) |
-| **Hinzufügen** | Ergänzt neue Einstellungen, bestehende Werte bleiben erhalten |
-| **Entfernen** | Löscht spezifische Einstellungen (nur die eingegebenen Werte) |
+| **Überschreiben** (Overwrite) | Completely replaces all previous information in the field |
+| **Leeren** (Clear) | Removes all settings of the block (the field is emptied) |
+| **Hinzufügen** (Add) | Adds new settings, existing values are retained |
+| **Entfernen** (Remove) | Deletes specific settings (only the values entered) |
 
-### 1.5 Änderungen anwenden und Abschluss
+### 1.5 Applying the changes and completion
 
-![Mehrfachänderung Schritt 5](../../assets/bulk-aenderung-5.png)
-![Mehrfachänderung Schritt 6](../../assets/bulk-aenderung-6.png)
-![Mehrfachänderung Schritt 7](../../assets/bulk-aenderung-7.png)
+![Bulk edit step 5](assets/bulk-change-5.png)
+![Bulk edit step 6](assets/bulk-change-6.png)
+![Bulk edit step 7](assets/bulk-change-7.png)
 
-1. **Bestätigungs-Pop-Up** zeigt Anzahl der betroffenen Kunden
-2. **„Änderungen anwenden"** klicken
-3. System verarbeitet die Änderungen (Ladebalken)
-4. **Benachrichtigung** bei Fertigstellung erscheint
-5. **„Schließen"** → zurück zur Kundenübersicht
+1. A **confirmation pop-up** shows the number of affected customers
+2. Click **"Änderungen anwenden"** (Apply changes)
+3. The system processes the changes (progress bar)
+4. A **notification** appears once processing is finished
+5. **"Schließen"** (Close) → back to the customer overview
 
 ---
 
-## 2. AI-generierte Kunden-Klassifizierung
+## 2. AI-generated customer classification
 
-> Voraussetzung: **Shopware Rise Plan**
+> Prerequisite: **Shopware Rise Plan**
 
-Automatische KI-gestützte Klassifizierung der Kunden. Ergebnisse werden als **Tags** gespeichert und können für weitere Shopware-Funktionen (z.B. Rule Builder, Marketing) genutzt werden.
+Automatic AI-supported classification of customers. Results are stored as **tags** and can be used for further Shopware functions (e.g. Rule Builder, marketing).
 
-### 2.1 Schritt 1 – Kunden auswählen und Klassifizierung starten
+### 2.1 Step 1 – select customers and start the classification
 
-![AI Klassifizierung Übersicht](../../assets/ai-klassifizierung-uebersicht.png)
+![AI classification overview](assets/ai-classification-overview.png)
 
-1. Kunden in der Übersicht auswählen
-2. Button **„Klassifizieren (1)"** klicken
-3. Konfigurations-Fenster öffnet sich
+1. Select customers in the overview
+2. Click the **"Klassifizieren (1)"** (Classify) button
+3. The configuration window opens
 
-### 2.2 Schritt 2 – Klassifizierung konfigurieren
+### 2.2 Step 2 – configuring the classification
 
-![AI Klassifizierung Konfiguration](../../assets/ai-klassifizierung-konfiguration.png)
+![AI classification configuration](assets/ai-classification-configuration.png)
 
-| Element | Pflicht | Beschreibung |
+| Element | Required | Description |
 |---------|---------|-------------|
-| **Zusätzliche Informationen (1)** | Nein | Kontext für die KI: Klassifizierungszweck, Marketing-Kampagne, Auswertungsgrund. Leer lassen = KI verwendet nur Kundendaten |
-| **Anzahl Tags (2)** | Ja | Gewünschte Anzahl der zu generierenden Klassifizierungen |
-| **„Tags generieren" (3)** | — | Startet den KI-Prozess |
+| **Zusätzliche Informationen (1)** (Additional information) | No | Context for the AI: classification purpose, marketing campaign, reason for the analysis. Leave empty = the AI uses only the customer data |
+| **Anzahl Tags (2)** (Number of tags) | Yes | Desired number of classifications to be generated |
+| **"Tags generieren" (3)** (Generate tags) | — | Starts the AI process |
 
-### 2.3 Schritt 3 – Review und Anpassung
+### 2.3 Step 3 – review and adjustment
 
-![AI Klassifizierung Tags](../../assets/ai-klassifizierung-tags.png)
+![AI classification tags](assets/ai-classification-tags.png)
 
-Die KI generiert Tags, die folgende Informationen enthalten:
+The AI generates tags that contain the following information:
 
-| Element | Beschreibung |
+| Element | Description |
 |---------|-------------|
-| **Name (1)** | Kurzbezeichnung des Tags (z.B. „Stammkunde", „Großbesteller") |
-| **Beschreibung (2)** | Erklärung welche Kundengruppe dieser Tag beschreibt |
-| **Bedingung (3)** | Detaillierte Kriterien, nach denen der Tag vergeben wird |
-| **Kontextmenü (4)** | Manuelle Anpassung des Tags möglich |
+| **Name (1)** | Short label of the tag (e.g. "Stammkunde" (Regular customer), "Großbesteller" (Bulk buyer)) |
+| **Beschreibung (2)** (Description) | Explanation of which customer group this tag describes |
+| **Bedingung (3)** (Condition) | Detailed criteria by which the tag is assigned |
+| **Kontextmenü (4)** (Context menu) | Manual adjustment of the tag is possible |
 
-### 2.4 Schritt 4 – Tags zuweisen
+### 2.4 Step 4 – assigning tags
 
-1. Gewünschte Tags auswählen
-2. Button **„Start (5)"** klicken
-3. KI vergibt Tags an Kunden, die den jeweiligen Bedingungen entsprechen
+1. Select the desired tags
+2. Click the **"Start (5)"** button
+3. The AI assigns tags to the customers that match the respective conditions
 
-> **Hinweis:** Nicht jeder initially ausgewählte Kunde erhält zwingend alle Tags.  
-> Die KI vergibt Tags nur, wenn die Bedingungen für den jeweiligen Kunden zutreffen.
+> **Note:** Not every initially selected customer necessarily receives all tags.  
+> The AI only assigns a tag if its conditions apply to the respective customer.
 
-### 2.5 Wichtige Warnung
+### 2.5 Important warning
 
-> **Achtung:** Eine erneute Klassifizierung entfernt **ALLE** vorherigen KI-generierten Tags  
-> und **löscht** diese dauerhaft. Nicht mehr umkehrbar.
+> **Caution:** Running the classification again removes **ALL** previously AI-generated tags  
+> and **deletes** them permanently. This cannot be undone.
 
 ---
 
-## 3. Versionsmatrix
+## 3. Version matrix
 
-| Feature | Mindestversion | Plan |
+| Feature | Minimum version | Plan |
 |---------|---------------|------|
-| Mehrfachänderung | 6.0.0 | alle |
-| Mehrfachänderung Max. 1.000 Datensätze | 6.0.0 | alle |
-| AI-Klassifizierung | beliebig | Rise |
+| Mehrfachänderung | 6.0.0 | all |
+| Mehrfachänderung max. 1,000 records | 6.0.0 | all |
+| AI classification | any | Rise |

@@ -1,6 +1,6 @@
-# Swiper — Navigation-Modul
+# Swiper — Navigation module
 
-Prev/Next-Schaltflächen zum Navigieren zwischen Slides.
+Prev/next buttons for navigating between slides.
 
 ```js
 import Swiper from 'swiper';
@@ -26,5 +26,5 @@ HTML:
 </div>
 ```
 
-## Vertiefung
-- [NAVIGATION-DETAIL.md](NAVIGATION-DETAIL.md) — alle Parameter, CSS-Variablen, Events, Methoden, Properties
+## Deep dive
+- [NAVIGATION-DETAIL.md](NAVIGATION-DETAIL.md) — all parameters, CSS variables, events, methods, properties

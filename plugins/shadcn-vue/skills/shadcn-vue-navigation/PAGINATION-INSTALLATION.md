@@ -1,26 +1,26 @@
 # Pagination — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add pagination
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install dependencies:
 
 ```bash
 npm install reka-ui @vueuse/core @lucide/vue
 ```
 
-2. Die `Button`-Komponente muss vorhanden sein (Pagination nutzt `buttonVariants`):
+2. The `Button` component must be present (Pagination uses `buttonVariants`):
 
 ```bash
 npx shadcn-vue@latest add button
 ```
 
-3. Folgende Dateien nach `src/components/ui/pagination/` kopieren:
+3. Copy the following files to `src/components/ui/pagination/`:
    - `Pagination.vue`
    - `PaginationContent.vue`
    - `PaginationEllipsis.vue`
@@ -46,5 +46,5 @@ import {
 } from "@/components/ui/pagination"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/pagination/index.ts`

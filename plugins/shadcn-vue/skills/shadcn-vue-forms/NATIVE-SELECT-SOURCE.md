@@ -1,4 +1,4 @@
-# NativeSelect — Vollstandiger Quellcode
+# NativeSelect — Complete Source Code
 
 ## Contents
 
@@ -6,7 +6,7 @@
 - [NativeSelect.vue](#nativeselectvue)
 - [NativeSelectOptGroup.vue](#nativeselectoptgroupvue)
 - [NativeSelectOption.vue](#nativeselectoptionvue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -105,5 +105,5 @@ const props = defineProps<{ class?: HTMLAttributes["class"] }>()
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/native-select/`

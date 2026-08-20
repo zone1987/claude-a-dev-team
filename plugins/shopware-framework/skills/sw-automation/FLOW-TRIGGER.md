@@ -1,17 +1,17 @@
-# Shopware 6 — Flow-Trigger (Event)
+# Shopware 6 — Flow trigger (event)
 
-Trigger im Flow Builder sind Business-Events, die `FlowEventAware` implementieren und über Aware-Interfaces Daten
-bereitstellen.
+Triggers in the Flow Builder are business events that implement `FlowEventAware` and expose data via aware
+interfaces.
 
 ```php
 class FfThingHappenedEvent extends Event implements FlowEventAware, OrderAware
 {
     public static function getName(): string { return 'ff.thing.happened'; }
     public function getOrderId(): string { return $this->order->getId(); }
-    // BusinessEventCollector erfasst es automatisch als Trigger
+    // the BusinessEventCollector picks it up as a trigger automatically
 }
 ```
 
-Das Event dispatchen (`sw-events-subscriber`/Service). Damit Actions die Daten erhalten, ein `FlowStorer` registrieren
-(legt Daten in den `StorableFlow`) — Actions lesen sie via Aware-Interface (`sw-flow-action`). Skalare Werte sind
-seit ADR „flow storer with scalar values" möglich.
+Dispatch the event (`sw-events-subscriber`/a service). So actions receive the data, register a `FlowStorer`
+(it puts data into the `StorableFlow`) — actions read it via the aware interface (`sw-flow-action`). Scalar values are
+possible since the ADR "flow storer with scalar values".

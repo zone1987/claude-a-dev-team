@@ -1,29 +1,29 @@
-# Shopware Produktkatalog — Konzept
+# Shopware product catalogue — concept
 
-Vollständige Konzept-Doku: `CATALOG-DETAIL.md`
+Complete concept documentation: `CATALOG-DETAIL.md`
 
-## Kurzüberblick
+## Quick overview
 
-### Produkte
+### Products
 
-- **Selbst-referenzierendes Entity** — Parent-Produkt + Kind-Varianten (Inheritance)
-- **Properties** — nicht-variantenbestimmend (Herkunft, Waschhinweis)
-- **Options** — variantenbestimmend (Größe, Farbe)
-- **Configurator** — Store API liefert alle Variantenoptionen für die Auswahl im Frontend
+- **Self-referencing entity** — parent product + child variants (inheritance)
+- **Properties** — not variant-defining (origin, washing instructions)
+- **Options** — variant-defining (size, colour)
+- **Configurator** — Store API delivers all variant options for selection in the frontend
 
-### Kategorien
+### Categories
 
-- **Baumstruktur** — `parentId`, `path`, `level` für Breadcrumbs und Navigation
-- **Typen**: `page`, `folder`, `link`
-- **CMS-Layout-Vererbung** — fehlt `cmsPageId`, wird vom Parent übernommen
-- **Dynamic Product Groups** — Stream-basierte Zuweisung statt manueller Produkt-Zuweisung
-- **SEO** — URL-Templates und per-Sales-Channel-Domain-Routing
+- **Tree structure** — `parentId`, `path`, `level` for breadcrumbs and navigation
+- **Types**: `page`, `folder`, `link`
+- **CMS layout inheritance** — if `cmsPageId` is missing, it is taken from the parent
+- **Dynamic Product Groups** — stream-based assignment instead of manual product assignment
+- **SEO** — URL templates and per-sales-channel domain routing
 
 ### Sales Channels
 
-- **Ein-Shopware-Instanz, mehrere Stores** — Sprache, Währung, Zahlungsarten pro Channel
-- **Domains** — je Domain: Sprache + Währung + Snippet-Set (getrennte Subdomains empfohlen)
-- **Navigation Roots** — `navigation`, `footer`, `service` Category-Einstiegspunkte
-- **Product Visibility** — Produkte müssen je Sales Channel sichtbar geschaltet sein
+- **One Shopware instance, multiple stores** — language, currency, payment methods per channel
+- **Domains** — per domain: language + currency + snippet set (separate subdomains recommended)
+- **Navigation Roots** — `navigation`, `footer`, `service` category entry points
+- **Product Visibility** — products must be set visible per sales channel
 
-Technische Umsetzung: `shopware-core`, `shopware-data` (Dev-Plugins)
+Technical implementation: `shopware-core`, `shopware-data` (dev plugins)

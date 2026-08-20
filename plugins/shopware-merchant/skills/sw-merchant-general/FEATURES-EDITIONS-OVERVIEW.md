@@ -1,19 +1,19 @@
-# Shopware 6 – Editionen & Feature-Überblick (vollständig)
+# Shopware 6 – editions & feature overview (complete)
 
 ## Contents
 
-- [Editionen-Hierarchie](#editionen-hierarchie)
-- [Community Edition (CE) – Kernfunktionen](#community-edition-ce-kernfunktionen)
-- [Rise Plan – Zusatzfeatures](#rise-plan-zusatzfeatures)
-- [Evolve Plan – Zusatzfeatures](#evolve-plan-zusatzfeatures)
-- [Beyond Plan – Zusatzfeatures](#beyond-plan-zusatzfeatures)
-- [Support-Vergleich](#support-vergleich)
-- [Shopware Commercial Extension – Installation](#shopware-commercial-extension-installation)
-- [Weiterführende Skills](#weiterführende-skills)
+- [Edition hierarchy](#edition-hierarchy)
+- [Community Edition (CE) – core functions](#community-edition-ce-core-functions)
+- [Rise plan – additional features](#rise-plan-additional-features)
+- [Evolve plan – additional features](#evolve-plan-additional-features)
+- [Beyond plan – additional features](#beyond-plan-additional-features)
+- [Support comparison](#support-comparison)
+- [Shopware Commercial Extension – installation](#shopware-commercial-extension-installation)
+- [Further skills](#further-skills)
 
-## Editionen-Hierarchie
+## Edition hierarchy
 
-Shopware 6 ist in vier kumulativen Editionen verfügbar:
+Shopware 6 is available in four cumulative editions:
 
 ```
 Community Edition (CE/Core)
@@ -22,157 +22,157 @@ Community Edition (CE/Core)
               └── Beyond (enthält alles aus Evolve)
 ```
 
-Die **Shopware Commercial** Erweiterung schaltet planabhängige Zusatzfunktionen frei. Bei Cloud-Installationen ist sie vorinstalliert; bei Self-Hosted muss sie über **Erweiterungen > Store** manuell installiert werden.
+The **Shopware Commercial** extension unlocks plan-dependent additional functions. On Cloud installations it is pre-installed; on self-hosted it has to be installed manually via **Erweiterungen** (Extensions) **> Store**.
 
 ---
 
-## Community Edition (CE) – Kernfunktionen
+## Community Edition (CE) – core functions
 
-### Content Management & Design
-- **Erlebniswelten (Shopping Experiences)**: Drag-&-Drop-Editor für Shopseiten, Landingpages, Kategorie- und Produktseiten
-  - 5 Layout-Typen: Shop-Seiten, Landingpages, Kategorieseiten, Produktseiten, Bundle-Seiten
-  - Blöcke: Text, Bilder, Slider, Galerien, Commerce, Video, Formulare, HTML
-  - Viewport-Vorschau für responsives Design
-  - Datenmapping für dynamische Inhalte auf Kategorie-/Produktseiten
-- Geräteoptimieertes Design mit anpassbaren Templates
+### Content management & design
+- **Erlebniswelten (Shopping Experiences)**: drag-and-drop editor for shop pages, landing pages, category and product pages
+  - 5 layout types: shop pages, landing pages, category pages, product pages, bundle pages
+  - Blocks: text, images, sliders, galleries, commerce, video, forms, HTML
+  - Viewport preview for responsive design
+  - Data mapping for dynamic content on category/product pages
+- Device-optimised design with customisable templates
 
-### Workflow & Automatisierung
-- **Rollen & Rechte**: Benutzerverwaltung mit individuellen Berechtigungsstufen
-  - Berechtigungshierarchie: Anzeigen → Bearbeiten → Erstellen → Löschen → Alle
-  - Spezielle Berechtigungen: Grundeinstellungen, Updates, Erweiterungen, Ereignisprotokoll, Cache, Import/Export
-  - API-Zugriffsschlüssel für Integrationen
-- **Rule Builder**: Bedingungsbasierte Regeln für Versandkosten und andere Funktionen (Basis)
-- **Flow Builder**: Event-basierte Automatisierung von Geschäftsprozessen ohne Code (Basis)
-  - 100+ Trigger (Bestellungen, Kunden, Zahlungen, Benachrichtigungen)
-  - Aktionen: E-Mail-Versand, Dokumentenerstellung, Statusvergabe, Kundengruppenänderung, Tag-Management
+### Workflow & automation
+- **Roles & permissions**: user management with individual permission levels
+  - Permission hierarchy: view → edit → create → delete → all
+  - Special permissions: basic settings, updates, extensions, event log, cache, import/export
+  - API access keys for integrations
+- **Rule Builder**: condition-based rules for shipping costs and other functions (basis)
+- **Flow Builder**: event-based automation of business processes without code (basis)
+  - 100+ triggers (orders, customers, payments, notifications)
+  - Actions: sending emails, document creation, status assignment, customer group change, tag management
 
-### Customer Experience & Marketing
-- Kundengruppen
-- Aktionen & Promotions
-- SEO-Optimierung
-- Produktsuche
-- Cross-Selling
-- Produktbewertungen
-- Tag-Management
+### Customer experience & marketing
+- Customer groups
+- Aktionen (Promotions) & promotions
+- SEO optimisation
+- Product search
+- Cross-selling
+- Product reviews
+- Tag management
 
-### Inventar & Bestellverwaltung
-- Physische und digitale Produkte
-- Dynamische Produktgruppen
-- Zahlungsgateway-Integration
-- Versandanbieter-Integration
-- Kategorieverwaltung
+### Inventory & order management
+- Physical and digital products
+- Dynamische Produktgruppen (Dynamic product groups)
+- Payment gateway integration
+- Shipping provider integration
+- Category management
 
-### B2B (Basis)
-- Brutto-/Netto-Preisanzeige nach Kundengruppe mit konfigurierbaren Steuersätzen
+### B2B (basis)
+- Gross/net price display by customer group with configurable tax rates
 
-### Internationalisierung
-- Unbegrenzte Verkaufskanäle (Storefronts, Vergleichsportale, Social Shopping)
-- Multi-Währung und Steuerverwaltung
-- Multi-Sprach-Unterstützung
+### Internationalisation
+- Unlimited Verkaufskanäle (Sales channels) (storefronts, comparison portals, social shopping)
+- Multi-currency and tax management
+- Multi-language support
 
-### Weitere Features
-- Import/Export-Tools
-- Migration von anderen eCommerce-Plattformen
-- Erweiterbarkeit über den Shopware Store
+### Further features
+- Import/export tools
+- Migration from other eCommerce platforms
+- Extensibility via the Shopware Store
 
 ---
 
-## Rise Plan – Zusatzfeatures
+## Rise plan – additional features
 
-Enthält alle CE-Features plus:
+Contains all CE features plus:
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---|---|
-| **Flow Builder – Flows teilen** | Export/Import von Flows zwischen Instanzen (ab 6.4.19.0) |
-| **Custom Products** | Konfigurierbare/personalisierbare Produkte mit individuellen Optionen |
-| **Premium Themes** | Professionelle Design-Templates für Storefronts |
-| **Retouren-Management** | Retourenabwicklung direkt im Admin-Panel |
-| **Rule Builder – Vorschau** | Echtzeit-Test von Regeln gegen echte Bestellungen (TRUE/FALSE) |
-| **Social Commerce** | Integration mit Social-Media-Verkaufskanälen |
-| **Shopware AI Copilot** | KI-Assistent für Inhalte, Produktbeschreibungen, Suche |
-| **3D-Viewer Block für Erlebniswelten** | 3D-Produktvisualisierung in Shopping Experiences |
-| **Immersive Elements** | 5 verschiedene 3D-Elemente für Erlebniswelten (ab 16.05.2024) |
-| **Scene Editor (Beta)** | Visuelle 3D-Szenen erstellen und Produktbilder generieren |
-| **Rule Builder – Regeln teilen** | Download/Import von Regeln als JSON (ab 6.7.1.0) |
+| **Flow Builder – sharing flows** | Export/import of flows between instances (from 6.4.19.0) |
+| **Custom Products** | Configurable/personalisable products with individual options |
+| **Premium Themes** | Professional design templates for storefronts |
+| **Retouren-Management (Returns management)** | Returns handling directly in the admin panel |
+| **Rule Builder – Vorschau (Preview)** | Real-time testing of rules against real orders (TRUE/FALSE) |
+| **Social Commerce** | Integration with social media sales channels |
+| **Shopware AI Copilot** | AI assistant for content, product descriptions, search |
+| **3D viewer block for Erlebniswelten** | 3D product visualisation in Shopping Experiences |
+| **Immersive Elements** | 5 different 3D elements for Erlebniswelten (from 16/05/2024) |
+| **Scene Editor (beta)** | Create visual 3D scenes and generate product images |
+| **Rule Builder – sharing rules** | Download/import of rules as JSON (from 6.7.1.0) |
 
 ---
 
-## Evolve Plan – Zusatzfeatures
+## Evolve plan – additional features
 
-Enthält alle Rise-Features plus:
+Contains all Rise features plus:
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---|---|
-| **Advanced Search 2.0** | OpenSearch-basierte erweiterte Suche mit Boostings, Actions, Synonymen |
-| **B2B Components** | B2B-Funktionalitäten: Angebote, Mitarbeiter, Genehmigungen, Budgets |
-| **CMS Erweiterungen** | Erweiterte CMS-Funktionen |
-| **CMS Regeln** | Regelbasierte Sichtbarkeit von CMS-Inhalten |
-| **Dynamic Access** | Zugriffssteuerung und Berechtigungsverwaltung |
-| **Publisher** | Content-Publishing-Tools |
-| **Flow Builder – Webhook-Aktionen** | Externe URLs via GET/POST/PUT/PATCH/DELETE aufrufen |
-| **Sales Agent** | Außendienstmitarbeiter-App für B2B-Kundenverwaltung |
+| **Advanced Search 2.0** | OpenSearch-based advanced search with boostings, actions, synonyms |
+| **B2B Components** | B2B functionality: Angebote (Quotes), Mitarbeiter (Employees), Genehmigungen (Approvals), Budgets |
+| **CMS extensions** | Extended CMS functions |
+| **CMS rules** | Rule-based visibility of CMS content |
+| **Dynamic Access** | Access control and permission management |
+| **Publisher** | Content publishing tools |
+| **Flow Builder – webhook actions** | Call external URLs via GET/POST/PUT/PATCH/DELETE |
+| **Sales Agent** | Field sales representative app for B2B customer management |
 
 ---
 
-## Beyond Plan – Zusatzfeatures
+## Beyond plan – additional features
 
-Enthält alle Evolve-Features plus:
+Contains all Evolve features plus:
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---|---|
-| **Digital Sales Rooms** | Interaktive Live-Video-Shopping-Events |
-| **Kundenspezifische Preise** | Individuelle Preise pro Kunde via API (ERP-Integration) |
-| **Multi-Inventory** | Lagerverwaltung über mehrere Standorte |
-| **Abonnements** | Wiederkehrende Bestellungen mit konfigurierbaren Intervallen |
-| **Flow Builder – zeitverzögerte Aktionen** | Geplante Ausführung von Flow-Aktionen (Stunden/Tage/Wochen) |
+| **Digital Sales Rooms** | Interactive live video shopping events |
+| **Customer-specific prices** | Individual prices per customer via API (ERP integration) |
+| **Multi-Inventory** | Stock management across multiple locations |
+| **Abonnements (Subscriptions)** | Recurring orders with configurable intervals |
+| **Flow Builder – time-delayed actions** | Scheduled execution of flow actions (hours/days/weeks) |
 
 ---
 
-## Support-Vergleich
+## Support comparison
 
-| Leistung | Rise | Evolve | Beyond |
+| Service | Rise | Evolve | Beyond |
 |---|---|---|---|
-| **Verfügbarkeit** | 09:00–17:00 Uhr* | 07:00–19:00 Uhr* | 24/7 |
-| **Reaktionszeit** | 8 Stunden | 4 Stunden | 1 Stunde |
-| **Schriftlicher Support** | ✓ | ✓ | ✓ |
-| **Telefonischer Support (Rückruf)** | — | ✓ | ✓ |
+| **Availability** | 09:00–17:00* | 07:00–19:00* | 24/7 |
+| **Response time** | 8 hours | 4 hours | 1 hour |
+| **Written support** | ✓ | ✓ | ✓ |
+| **Telephone support (callback)** | — | ✓ | ✓ |
 | **Hotline** | — | ✓ | ✓ |
-| **Entwickler-Support** | — | — | ✓ |
-| **Persönliches Onboarding** | — | — | ✓ |
+| **Developer support** | — | — | ✓ |
+| **Personal onboarding** | — | — | ✓ |
 | **Account Manager** | — | — | ✓ |
-| **Community-Forum** | ✓ | ✓ | ✓ |
-| **Kostenfreie Erstinstallation** | ✓ | ✓ | ✓ |
-| **Updates & Patches** | ✓ | ✓ | ✓ |
+| **Community forum** | ✓ | ✓ | ✓ |
+| **Free initial installation** | ✓ | ✓ | ✓ |
+| **Updates & patches** | ✓ | ✓ | ✓ |
 
-*Ausnahmen: Feiertage NRW, 24.12. ab 12:00, 31.12. ab 12:00, 3 interne Events/Jahr (2026: 15.01., 14.04., 08.10.)
-
----
-
-## Shopware Commercial Extension – Installation
-
-- **Cloud**: Automatisch vorinstalliert
-- **Self-Hosted**: Erweiterungen > Store → „Shopware Commercial" suchen und installieren
-
-Die Extension aktiviert Features je nach gebuchtem Plan automatisch.
+*Exceptions: public holidays in NRW, 24/12 from 12:00, 31/12 from 12:00, 3 internal events per year (2026: 15/01, 14/04, 08/10)
 
 ---
 
-## Weiterführende Skills
+## Shopware Commercial Extension – installation
 
-- `sw-merchant-commercial` – Überblick aller Commercial Features
-- `sw-merchant-commercial-ai-copilot` – AI Copilot Funktionen
-- `sw-merchant-commercial-subscriptions` – Abonnements
+- **Cloud**: automatically pre-installed
+- **Self-hosted**: Erweiterungen > Store → search for "Shopware Commercial" and install
+
+The extension activates features automatically according to the booked plan.
+
+---
+
+## Further skills
+
+- `sw-merchant-commercial` – overview of all Commercial features
+- `sw-merchant-commercial-ai-copilot` – AI Copilot functions
+- `sw-merchant-commercial-subscriptions` – Abonnements (Subscriptions)
 - `sw-merchant-commercial-advanced-search` – Advanced Search 2.0
 - `sw-merchant-commercial-b2b` – B2B Components
-- `sw-merchant-commercial-returns` – Retouren-Management
+- `sw-merchant-commercial-returns` – Retouren-Management (Returns management)
 - `sw-merchant-commercial-flow-builder` – Flow Builder (Commercial)
 - `sw-merchant-commercial-rule-builder` – Rule Builder (Commercial)
 - `sw-merchant-commercial-multi-inventory` – Multi-Inventory
 - `sw-merchant-commercial-sales-agent` – Sales Agent
 - `sw-merchant-commercial-digital-sales-rooms` – Digital Sales Rooms
-- `sw-merchant-commercial-custom-pricing` – Kundenspezifische Preise
+- `sw-merchant-commercial-custom-pricing` – customer-specific prices
 - `sw-merchant-commercial-spatial` – Spatial Commerce
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/features (Stand: 2026-06)*
+*Source: https://docs.shopware.com/de/shopware-6-de/features (as of: 2026-06)*

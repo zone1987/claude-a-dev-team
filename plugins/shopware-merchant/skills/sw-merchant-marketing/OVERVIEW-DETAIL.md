@@ -1,54 +1,54 @@
-# Marketing – Übersicht
+# Marketing – overview
 
-**Pfad:** Admin > Marketing
+**Path:** Admin > Marketing
 
-## Beschreibung
+## Description
 
-Der Bereich Marketing in der Shopware 6 Administration bietet alle Werkzeuge zur Durchführung von Rabattaktionen und zur Verwaltung von Newsletter-Abonnenten.
+The Marketing area in the Shopware 6 administration offers all the tools for running discount promotions and for managing newsletter subscribers.
 
-> **Hinweis:** Der Marketing-Bereich ist Teil der Shopware-Administration und ab Version 6.0.0 verfügbar.
+> **Note:** the Marketing area is part of the Shopware administration and is available from version 6.0.0.
 
-## Enthaltene Bereiche
+## Included areas
 
-### 1. Rabatte & Aktionen
+### 1. Rabatte & Aktionen (Discounts & promotions)
 
-Pfad: Admin > Marketing > Rabatte & Aktionen
+Path: Admin > Marketing > **Rabatte & Aktionen**
 
-Ermöglicht das Anlegen von Rabattaktionen (Promotions) für Verkaufskanäle. Unterstützt:
+Allows discount promotions (promotions) to be created for sales channels. Supports:
 
-- Aktionscodes (keine, festgelegte oder individuelle Codes)
-- Bedingungen über den Rule Builder
-- Verschiedene Rabattarten (absolut, prozentual, Festpreis)
-- Zeitliche Begrenzungen
-- Nutzungslimits (gesamt und je Kunde)
+- **Aktionscodes** (Promotion codes — none, fixed or individual codes)
+- Conditions via the Rule Builder
+- Various discount types (absolute, percentage, fixed price)
+- Time limits
+- Usage limits (in total and per customer)
 
-**Details:** Siehe `sw-merchant-marketing-promotions` und `sw-merchant-marketing-codes`
+**Details:** see `sw-merchant-marketing-promotions` and `sw-merchant-marketing-codes`
 
-### 2. Newsletter Empfänger
+### 2. Newsletter Empfänger (Newsletter recipients)
 
-Pfad: Admin > Marketing > Newsletter Empfänger
+Path: Admin > Marketing > **Newsletter Empfänger**
 
-Verwaltung aller Kunden, die sich für den Newsletter eingetragen haben. Unterstützt:
+Management of all customers who have signed up for the newsletter. Supports:
 
-- Statusverwaltung (Warten auf Aktivierung, Sofort Aktiv, Aktiv, Warten auf Löschung)
-- Filterung nach Status, Sprache und Verkaufskanal
-- Bearbeitung von Empfängerdaten (Adresse, Sprache, E-Mail, Tags)
+- Status management (**Warten auf Aktivierung** – waiting for activation, **Sofort Aktiv** – directly active, **Aktiv** – active, **Warten auf Löschung** – waiting for deletion)
+- Filtering by status, language and sales channel
+- Editing recipient data (address, language, email, tags)
 
-**Details:** Siehe `sw-merchant-marketing-newsletter`
+**Details:** see `sw-merchant-marketing-newsletter`
 
-## Verwandte Bereiche
+## Related areas
 
-| Bereich | Pfad | Relevanz |
+| Area | Path | Relevance |
 |---------|------|----------|
-| Rule Builder | Einstellungen > Automatisierung > Rule Builder | Bedingungen für Promotions |
-| Verkaufskanäle | Verkaufskanäle | Promotions kanalbezogen zuweisen |
-| Flow Builder | Einstellungen > Automatisierung > Flow Builder | Automatisierung auf Basis von Promotions |
+| Rule Builder | **Einstellungen > Automatisierung** (Settings > Automation) **> Rule Builder** | Conditions for promotions |
+| **Verkaufskanäle** (Sales channels) | Verkaufskanäle | Assign promotions per channel |
+| Flow Builder | Einstellungen > Automatisierung > Flow Builder | Automation based on promotions |
 
-## Sub-Skills
+## Sub-skills
 
-| Skill | Thema |
+| Skill | Topic |
 |-------|-------|
-| `sw-merchant-marketing-promotions` | Rabatte & Aktionen anlegen, konfigurieren |
-| `sw-merchant-marketing-codes` | Aktionscodes: festgelegt, individuell, Beispiele |
-| `sw-merchant-marketing-newsletter` | Newsletter-Empfänger verwalten |
-| `sw-merchant-marketing-rule-builder` | Rule Builder für Bedingungen |
+| `sw-merchant-marketing-promotions` | Creating and configuring Rabatte & Aktionen |
+| `sw-merchant-marketing-codes` | Aktionscodes: fixed, individual, examples |
+| `sw-merchant-marketing-newsletter` | Managing newsletter recipients |
+| `sw-merchant-marketing-rule-builder` | Rule Builder for conditions |

@@ -13,7 +13,7 @@
 
 The order overview is reachable under **Bestellungen** (Orders) in the administration.
 
-![Order overview](../../assets/bestellungen-uebersicht.png)
+![Order overview](assets/orders-overview.png)
 
 ### Elements of the list view
 
@@ -29,7 +29,7 @@ The order overview is reachable under **Bestellungen** (Orders) in the administr
 
 ## Filter options
 
-![Filter](../../assets/bestellungen-filter.png)
+![Filter](assets/orders-filter.png)
 
 The following filter criteria are available (they can be combined):
 
@@ -55,7 +55,7 @@ The following filter criteria are available (they can be combined):
 
 ## List menu
 
-![List menu](../../assets/bestellungen-menue.png)
+![List menu](assets/orders-menu.png)
 
 Via the action menu (three dots) on each row or via checkbox selection, single actions are available: open, edit or delete the order.
 
@@ -63,7 +63,7 @@ Via the action menu (three dots) on each row or via checkbox selection, single a
 
 ## Bulk actions (Mehrfachänderung)
 
-![Bulk edit](../../assets/mehrfachaenderung.png)
+![Bulk edit](assets/bulk-change.png)
 
 ### Selection
 

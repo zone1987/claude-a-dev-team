@@ -1,19 +1,19 @@
-# Shopware 6 — App Flow-Action XML-Referenz
+# Shopware 6 — App flow action XML reference
 
-> Quelle: `resources/references/app-reference/flow-action-reference.md`
+> Source: `resources/references/app-reference/flow-action-reference.md`
 
 ---
 
 ## Contents
 
-- [XML-Struktur: flow-action.xml](#xml-struktur-flow-actionxml)
-- [`<meta>`-Elemente](#meta-elemente)
-- [`<config>`-Eingabefelder](#config-eingabefelder)
-- [Verfügbare Variablen je Trigger-Event](#verfügbare-variablen-je-trigger-event)
-- [`<requirements>` — Aware-Interfaces](#requirements-aware-interfaces)
-- [Beispiel: Telegram-Flow-Action](#beispiel-telegram-flow-action)
+- [XML structure: flow-action.xml](#xml-structure-flow-actionxml)
+- [`<meta>` elements](#meta-elements)
+- [`<config>` input fields](#config-input-fields)
+- [Available variables per trigger event](#available-variables-per-trigger-event)
+- [`<requirements>` — aware interfaces](#requirements--aware-interfaces)
+- [Example: Telegram flow action](#example-telegram-flow-action)
 
-## XML-Struktur: flow-action.xml
+## XML structure: flow-action.xml
 
 ```xml
 // Resources/flow-action.xml
@@ -66,56 +66,56 @@
 
 ---
 
-## `<meta>`-Elemente
+## `<meta>` elements
 
-| Element | Pflicht | Beschreibung |
-|:--------|:--------|:-------------|
-| `<name>` | ja | Eindeutiger technischer Name der Action |
-| `<label>` | ja | Bezeichnung (wiederholbar mit `lang="de-DE"`) |
-| `<headline>` | nein | Überschrift (übersetzbar) |
-| `<description>` | nein | Beschreibung (übersetzbar) |
-| `<url>` | ja | Ziel-URL, wird per POST aufgerufen |
-| `<sw-icon>` | nein | Shopware-Icon-Name |
-| `<icon>` | nein | Eigene Icon-Datei (im Resources-Verzeichnis) |
-| `<requirements>` | nein | Aware-Interface-Anforderungen (z.B. `orderAware`, `customerAware`) — wiederholbar |
+| Element | Required | Description |
+|:--------|:---------|:------------|
+| `<name>` | yes | Unique technical name of the action |
+| `<label>` | yes | Label (repeatable with `lang="de-DE"`) |
+| `<headline>` | no | Headline (translatable) |
+| `<description>` | no | Description (translatable) |
+| `<url>` | yes | Target URL, called via POST |
+| `<sw-icon>` | no | Shopware icon name |
+| `<icon>` | no | Custom icon file (in the Resources directory) |
+| `<requirements>` | no | Aware interface requirements (e.g. `orderAware`, `customerAware`) — repeatable |
 
 ---
 
-## `<config>`-Eingabefelder
+## `<config>` input fields
 
-### input-field type Werte
+### input-field type values
 
-| Type | Beschreibung |
+| Type | Description |
 |:-----|:-------------|
-| `text` | Einzeiliger Text |
-| `textarea` | Mehrzeiliger Text |
-| `int` | Ganzzahl |
-| `float` | Dezimalzahl |
+| `text` | Single-line text |
+| `textarea` | Multi-line text |
+| `int` | Integer |
+| `float` | Decimal number |
 | `bool` | Checkbox |
-| `date` | Datum |
-| `datetime` | Datum + Zeit |
-| `colorpicker` | Farbauswahl |
-| `password` | Passwort-Feld |
-| `single-select` | Einzelauswahl |
-| `multi-select` | Mehrfachauswahl |
+| `date` | Date |
+| `datetime` | Date + time |
+| `colorpicker` | Color picker |
+| `password` | Password field |
+| `single-select` | Single selection |
+| `multi-select` | Multiple selection |
 
-### Sub-Elemente je input-field
+### Sub-elements per input-field
 
-| Element | Pflicht | Beschreibung |
-|:--------|:--------|:-------------|
-| `<name>` | ja | Feldname (technisch) |
-| `<label>` | ja | Bezeichnung (übersetzbar) |
-| `<place-holder>` | nein | Platzhalter (übersetzbar) |
-| `<required>` | nein | `true`/`false` |
-| `<defaultValue>` | nein | Standardwert |
-| `<helpText>` | nein | Hilfetext (übersetzbar) |
+| Element | Required | Description |
+|:--------|:---------|:------------|
+| `<name>` | yes | Field name (technical) |
+| `<label>` | yes | Label (translatable) |
+| `<place-holder>` | no | Placeholder (translatable) |
+| `<required>` | no | `true`/`false` |
+| `<defaultValue>` | no | Default value |
+| `<helpText>` | no | Help text (translatable) |
 
 ---
 
-## Verfügbare Variablen je Trigger-Event
+## Available variables per trigger event
 
-| Event(s) | Verfügbare Variablen |
-|:---------|:---------------------|
+| Event(s) | Available variables |
+|:---------|:--------------------|
 | `checkout.order.placed` `state_enter.order.state.*` `state_enter.order_transaction.state.*` `state_enter.order_delivery.state.*` | `order` |
 | `customer.group.registration.declined` `customer.group.registration.accepted` | `customer`, `customerGroup` |
 | `user.recovery.request` | `userRecovery` |
@@ -128,19 +128,19 @@
 
 ---
 
-## `<requirements>` — Aware-Interfaces
+## `<requirements>` — aware interfaces
 
-| Requirement | Beschreibung |
+| Requirement | Description |
 |:------------|:-------------|
-| `orderAware` | Gibt Zugriff auf `order`-Objekt |
-| `customerAware` | Gibt Zugriff auf `customer`-Objekt |
-| `mailAware` | Gibt Zugriff auf Mail-Daten |
-| `salesChannelAware` | Gibt Zugriff auf Sales-Channel-Kontext |
-| `userAware` | Gibt Zugriff auf Admin-User |
+| `orderAware` | Grants access to the `order` object |
+| `customerAware` | Grants access to the `customer` object |
+| `mailAware` | Grants access to mail data |
+| `salesChannelAware` | Grants access to the sales channel context |
+| `userAware` | Grants access to the admin user |
 
 ---
 
-## Beispiel: Telegram-Flow-Action
+## Example: Telegram flow action
 
 ```xml
 <flow-action>

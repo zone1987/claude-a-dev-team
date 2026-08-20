@@ -1,18 +1,18 @@
-# Swiper Zoom-Modul — Vollständige Referenz
+# Swiper Zoom module — Complete reference
 
 ## Contents
 
-- [Import & Aktivierung](#import-aktivierung)
-- [HTML-Struktur](#html-struktur)
-- [Parameter](#parameter)
-- [Data-Attribute](#data-attribute)
+- [Import and activation](#import-and-activation)
+- [HTML structure](#html-structure)
+- [Parameters](#parameters)
+- [Data attributes](#data-attributes)
 - [Properties](#properties)
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Events](#events)
-- [Programmatische Steuerung](#programmatische-steuerung)
-- [Vollständiges Beispiel (Foto-Galerie)](#vollständiges-beispiel-foto-galerie)
+- [Programmatic control](#programmatic-control)
+- [Complete example (photo gallery)](#complete-example-photo-gallery)
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -29,32 +29,32 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## HTML-Struktur
+## HTML structure
 
-Alle zoom-fähigen Bilder müssen in `.swiper-zoom-container` eingewickelt werden:
+All zoomable images must be wrapped in a `.swiper-zoom-container`:
 
 ```html
 <div class="swiper">
   <div class="swiper-wrapper">
-    <!-- Standard-Zoom -->
+    <!-- Standard zoom -->
     <div class="swiper-slide">
       <div class="swiper-zoom-container">
         <img src="image1.jpg" />
       </div>
     </div>
 
-    <!-- Per-Slide maxRatio überschreiben -->
+    <!-- Override maxRatio per slide -->
     <div class="swiper-slide">
       <div class="swiper-zoom-container" data-swiper-zoom="5">
         <img src="image2.jpg" />
       </div>
     </div>
 
-    <!-- Benutzerdefiniertes Zoom-Target (nicht img) -->
+    <!-- Custom zoom target (not an img) -->
     <div class="swiper-slide">
       <div class="swiper-zoom-container">
         <div class="swiper-zoom-target">
-          Zoomfähiger Inhalt
+          Zoomable content
         </div>
       </div>
     </div>
@@ -62,51 +62,51 @@ Alle zoom-fähigen Bilder müssen in `.swiper-zoom-container` eingewickelt werde
 </div>
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `enabled` | `boolean` | `false` | Zoom-Modul aktivieren |
-| `maxRatio` | `number` | `3` | Maximaler Zoom-Faktor (3 = 300%) |
-| `minRatio` | `number` | `1` | Minimaler Zoom-Faktor (1 = Originalgröße) |
-| `toggle` | `boolean` | `true` | Zoom per Doppeltipp ein-/ausschalten |
-| `containerClass` | `string` | `'swiper-zoom-container'` | CSS-Klasse für Zoom-Container-Elemente |
-| `zoomedSlideClass` | `string` | `'swiper-slide-zoomed'` | CSS-Klasse für den aktuell gezoomten Slide |
-| `limitToOriginalSize` | `boolean` | `false` | Bild nie über 100% seiner Originalgröße zoomen |
-| `panOnMouseMove` | `boolean` | `false` | Gezoomtes Bild beim Mausbewegen automatisch verschieben |
+| `enabled` | `boolean` | `false` | Enable the Zoom module |
+| `maxRatio` | `number` | `3` | Maximum zoom factor (3 = 300%) |
+| `minRatio` | `number` | `1` | Minimum zoom factor (1 = original size) |
+| `toggle` | `boolean` | `true` | Toggle zoom with a double tap |
+| `containerClass` | `string` | `'swiper-zoom-container'` | CSS class for zoom container elements |
+| `zoomedSlideClass` | `string` | `'swiper-slide-zoomed'` | CSS class for the currently zoomed slide |
+| `limitToOriginalSize` | `boolean` | `false` | Never zoom an image beyond 100% of its original size |
+| `panOnMouseMove` | `boolean` | `false` | Pan the zoomed image automatically as the mouse moves |
 
-## Data-Attribute
+## Data attributes
 
-| Attribut | Typ | Beschreibung |
+| Attribute | Type | Description |
 |----------|-----|--------------|
-| `data-swiper-zoom` | `number` | Per-Slide `maxRatio` überschreiben |
+| `data-swiper-zoom` | `number` | Override `maxRatio` per slide |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.zoom.enabled` | `boolean` | Zoom-Modul aktiv? |
-| `swiper.zoom.scale` | `number` | Aktueller Zoom-Faktor des aktiven Slides |
+| `swiper.zoom.enabled` | `boolean` | Is the Zoom module active? |
+| `swiper.zoom.scale` | `number` | Current zoom factor of the active slide |
 
-## Methoden
+## Methods
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---------|---------|--------------|
-| `swiper.zoom.enable()` | `() => void` | Zoom-Modul aktivieren |
-| `swiper.zoom.disable()` | `() => void` | Zoom-Modul deaktivieren |
-| `swiper.zoom.in(ratio?)` | `(ratio?: number) => void` | Aktiven Slide hereinzoomen; optionaler Ziel-Faktor |
-| `swiper.zoom.out()` | `() => void` | Aktiven Slide auf `minRatio` zurückzoomen |
-| `swiper.zoom.toggle(event?)` | `(event?: Event) => void` | Zoom-Status des aktiven Slides umschalten |
+| `swiper.zoom.enable()` | `() => void` | Enable the Zoom module |
+| `swiper.zoom.disable()` | `() => void` | Disable the Zoom module |
+| `swiper.zoom.in(ratio?)` | `(ratio?: number) => void` | Zoom into the active slide; optional target factor |
+| `swiper.zoom.out()` | `() => void` | Zoom the active slide back to `minRatio` |
+| `swiper.zoom.toggle(event?)` | `(event?: Event) => void` | Toggle the zoom state of the active slide |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |-------|-----------|--------------|
-| `zoomChange` | `(swiper, scale, imageEl, slideEl)` | Wird ausgelöst wenn sich der Zoom-Faktor ändert |
+| `zoomChange` | `(swiper, scale, imageEl, slideEl)` | Fires when the zoom factor changes |
 
 ```js
 swiper.on('zoomChange', (swiper, scale, imageEl, slideEl) => {
-  console.log('Aktueller Zoom:', scale);
+  console.log('Current zoom:', scale);
   if (scale > 1) {
     slideEl.classList.add('is-zoomed');
   } else {
@@ -115,13 +115,13 @@ swiper.on('zoomChange', (swiper, scale, imageEl, slideEl) => {
 });
 ```
 
-## Programmatische Steuerung
+## Programmatic control
 
 ```js
-// Auf 2x zoomen
+// Zoom to 2x
 swiper.zoom.in(2);
 
-// Zurück auf Originalgröße
+// Back to original size
 swiper.zoom.out();
 
 // Toggle
@@ -129,11 +129,11 @@ document.querySelector('#zoom-btn').addEventListener('click', () => {
   swiper.zoom.toggle();
 });
 
-// Zoom anzeigen
+// Display the zoom
 document.querySelector('#scale').textContent = swiper.zoom.scale + 'x';
 ```
 
-## Vollständiges Beispiel (Foto-Galerie)
+## Complete example (photo gallery)
 
 ```js
 import Swiper from 'swiper';
@@ -159,7 +159,7 @@ const swiper = new Swiper('.gallery-swiper', {
   },
   on: {
     zoomChange: (swiper, scale) => {
-      // Navigation bei gezoomtem Bild ausblenden
+      // Hide the navigation while the image is zoomed
       document.querySelector('.swiper-button-next').style.opacity =
         scale > 1 ? '0' : '1';
     },
@@ -168,4 +168,4 @@ const swiper = new Swiper('.gallery-swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#zoom
+Source: https://swiperjs.com/swiper-api#zoom

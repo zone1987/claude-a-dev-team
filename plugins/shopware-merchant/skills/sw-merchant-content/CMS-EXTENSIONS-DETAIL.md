@@ -25,10 +25,10 @@
 | `../../assets/quickview.png` | Quickview in the listing |
 | `../../assets/scroll-navigation-sektion.png` | Scroll-Navigation section setting |
 | `../../assets/scroll-navigation-frontend.png` | Scroll-Navigation in the storefront |
-| `../../assets/block-sichtbarkeit.png` | Block-Sichtbarkeit via the Rule Builder |
-| `../../assets/custom-form-erstellen.png` | Creating a custom form |
-| `../../assets/custom-form-optionen.png` | Custom form options |
-| `../../assets/custom-form-felder.png` | Custom form fields and groups |
+| `../../assets/block-visibility.png` | Block-Sichtbarkeit via the Rule Builder |
+| `../../assets/custom-form-create.png` | Creating a custom form |
+| `../../assets/custom-form-options.png` | Custom form options |
+| `../../assets/custom-form-fields.png` | Custom form fields and groups |
 
 ---
 

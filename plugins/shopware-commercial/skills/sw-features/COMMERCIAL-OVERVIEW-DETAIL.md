@@ -1,64 +1,64 @@
-# Shopware Commercial Plugin — Entwickler-Referenz
+# Shopware Commercial plugin — developer reference
 
-## Uberblick
+## Overview
 
-Das Shopware 6 Commercial Plugin ist eine Gruppe von verschachtelten Sub-Bundles, die erweiterte
-Funktionalitaet fuer B2B und Enterprise-Shopbetreiber bereitstellt. Es umfasst u.a.:
+The Shopware 6 Commercial plugin is a group of nested sub-bundles that provide extended
+functionality for B2B and enterprise shop operators. Among other things it covers:
 
-- Advanced Search (Elasticsearch/OpenSearch-basiert)
+- Advanced Search (Elasticsearch/OpenSearch based)
 - B2B Components (Employee Management, Quotes, Order Approval, Shopping Lists, Individual Pricing, Organization Unit)
-- Subscriptions (Abonnement-Produkte)
-- B2B Suite (Legacy, bis SW 6.8 unterstuetzt)
-- Migration Assistant (Datenmigration aus SW5, SW6, Magento)
+- Subscriptions (subscription products)
+- B2B Suite (legacy, supported up to SW 6.8)
+- Migration Assistant (data migration from SW5, SW6, Magento)
 
-## Plugin-Struktur
+## Plugin structure
 
-Das Commercial Plugin ist als Gruppe von Sub-Bundles aufgebaut (Konzept: Shopware Plugins).
-Jedes Feature ist ein eigenstaendiges Bundle. Betreiber-Konfiguration aktiviert/deaktiviert
-Features gemaess Lizenz.
+The Commercial plugin is built as a group of sub-bundles (concept: Shopware plugins).
+Every feature is a self-contained bundle. Merchant configuration enables/disables
+features according to the license.
 
-## Lizenzierung
+## Licensing
 
-Bei Installation versucht das Plugin den Lizenzschluessel ueber den eingeloggten Shopware-Account
-zu holen. Ohne Schluessel bleibt das Plugin installiert, aber alle Features sind deaktiviert.
+On installation the plugin tries to fetch the license key via the logged-in Shopware account.
+Without a key the plugin stays installed, but all features are disabled.
 
 ```bash
-# Lizenzschluessel aktualisieren
+# Update the license key
 bin/console commercial:license:update
 
-# Lizenzstatus pruefen
+# Check the license status
 bin/console commercial:license:info
 ```
 
-## Bundles selektiv aktivieren
+## Enabling bundles selectively
 
-Seit Commercial 6.6.10.0 koennen einzelne Bundles ueber die Umgebungsvariable gesteuert werden:
+Since Commercial 6.6.10.0 individual bundles can be controlled via the environment variable:
 
 ```env
 SHOPWARE_COMMERCIAL_ENABLED_BUNDLES=CustomPricing,Subscription
 ```
 
-Alle verfuegbaren Bundle-Namen ermitteln:
+Determine all available bundle names:
 
 ```bash
 ./bin/console debug:container --parameter kernel.bundles --format=json
 ```
 
-## Plaene
+## Plans
 
-| Plan    | Features (Auszug)                          |
+| Plan    | Features (excerpt)                         |
 |---------|--------------------------------------------|
-| Rise    | Basisfeatures                              |
+| Rise    | Base features                              |
 | Evolve  | Advanced Search, B2B Components            |
-| Beyond  | Vollstaendige Commercial-Suite             |
+| Beyond  | Full Commercial suite                      |
 
 ## Installation
 
-Keine Sonderbehandlung erforderlich — identisch mit Standard-Plugin-Installation:
+No special handling required — identical to a standard plugin installation:
 `bin/console plugin:install --activate SwagCommercial`
 
-## Wichtig fuer Entwickler
+## Important for developers
 
-- Jedes Commercial-Bundle kann in einer Plugin-Erweiterung optional abhaengig sein (conditional loading).
-- Bei Entwicklung gegen Commercial-Features: Immer pruefen ob das jeweilige Bundle lizenziert und aktiv ist.
-- Betreiber-Sicht (Admin-UI, Merchant-Doku): siehe `shopware-merchant`.
+- Every Commercial bundle can be an optional dependency in a plugin extension (conditional loading).
+- When developing against Commercial features: always check whether the respective bundle is licensed and active.
+- Merchant perspective (admin UI, merchant docs): see `shopware-merchant`.

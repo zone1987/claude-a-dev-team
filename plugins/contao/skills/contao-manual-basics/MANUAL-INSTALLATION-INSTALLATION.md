@@ -70,7 +70,7 @@ Contao automatically chooses an image processing library:
 
 URL: `https://www.example.com/contao-manager.phar.php`
 
-![Contao Manager welcome page](../../assets/contao-manager-willkommen.png)
+![Contao Manager welcome page](assets/contao-manager-willkommen.png)
 
 Basic configuration:
 - Create a new Manager user (independent of the later Contao user)

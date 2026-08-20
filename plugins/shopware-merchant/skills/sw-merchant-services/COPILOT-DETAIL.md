@@ -18,12 +18,12 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/erweiterungen/copilot
 
 ## Screenshots
 
-![Copilot Bedienung Beispiel](../../assets/copilot-bedienung-beispiel.png)
-![Copilot Chat-Historie](../../assets/copilot-chat-historie.png)
-![Copilot Data Insights](../../assets/copilot-data-insights.png)
-![Copilot Agentic Anfrage](../../assets/copilot-agentic-anfrage.png)
-![Copilot EU-Info Datenschutz](../../assets/copilot-eu-info.png)
-![Copilot Berechtigungen](../../assets/copilot-berechtigungen.png)
+![Copilot Bedienung Beispiel](assets/copilot-usage-example.png)
+![Copilot Chat-Historie](assets/copilot-chat-historie.png)
+![Copilot Data Insights](assets/copilot-data-insights.png)
+![Copilot Agentic Anfrage](assets/copilot-agentic-anfrage.png)
+![Copilot EU-Info Datenschutz](assets/copilot-eu-info.png)
+![Copilot Berechtigungen](assets/copilot-berechtigungen.png)
 
 ## Was ist der Shopware Copilot?
 

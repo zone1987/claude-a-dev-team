@@ -1,64 +1,64 @@
-# Shopware 6 – Steuern (vollständige Referenz)
+# Shopware 6 – Steuern (Taxes) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/steuern
-
----
-
-## Überblick
-
-**Pfad:** Einstellungen > Regional > Steuern
-
-Ein grüner Haken kennzeichnet den aktuellen Standard-Steuersatz.
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/steuern
 
 ---
 
-## Steuersatz erstellen
+## Overview
 
-| Feld | Beschreibung |
+**Path:** Einstellungen (Settings) > Regional > Steuern
+
+A green check mark identifies the current default tax rate.
+
+---
+
+## Creating a tax rate
+
+| Field | Description |
 |---|---|
-| Name | Bezeichnung des Steuersatzes |
-| Prozentwert | Steuerprozentsatz (z.B. 19) |
-| Als Standard verwenden | Vorgabe für neue Produkte |
+| Name | Label of the tax rate |
+| Prozentwert (Percentage value) | Tax percentage (e.g. 19) |
+| Als Standard verwenden (Use as default) | Default for new products |
 
 ---
 
-## Steuersatz bearbeiten
+## Editing a tax rate
 
-> **Warnung:** Die Änderung eines bereits verwendeten Steuersatzes kann zu abweichenden Kalkulationen bei bestehenden Rechnungen und Artikeln führen.
-
----
-
-## Länderspezifische Steuerregeln
-
-Innerhalb eines Steuersatzes können differenzierte Regeln für folgende Einheiten eingerichtet werden:
-- Einzelne Postleitzahlen
-- Postleitzahlenbereiche
-- Bundesländer
-- Gesamte Länder
-
-### Feld „Aktiv ab"
-Wenn ein Datum hinterlegt wird, gilt der Steuersatz erst ab diesem Termin in der Storefront.
-> **Hinweis:** Preise im Produkt werden bei einem geänderten Steuersatz **nicht** automatisch neu berechnet.
+> **Warning:** Changing a tax rate that is already in use can lead to differing calculations on existing invoices and items.
 
 ---
 
-## EU-OSS (One-Stop-Shop)
+## Country-specific tax rules
 
-Ab 1. Juli 2021 gilt ein Schwellenwert von **10.000 €** für innergemeinschaftliche B2C-Verkäufe.
-- Überschreiter müssen sich im Online-OSS-Portal registrieren
-- Shopware unterstützt die notwendigen Steuerregeln pro Land
+Within a tax rate, differentiated rules can be set up for the following units:
+- Individual postcodes
+- Postcode ranges
+- Federal states
+- Entire countries
 
----
-
-## Steueranbieter (externe Dienste)
-
-Für komplexe Steuersysteme (z.B. USA) können externe Steuerdienstleister integriert werden:
-- Dienst aktivieren
-- Priorität anpassen
-- Verfügbarkeitsbedingungen konfigurieren
+### Field "Aktiv ab" (Active from)
+If a date is entered, the tax rate only applies in the storefront from that date onwards.
+> **Note:** Prices in the product are **not** recalculated automatically when a tax rate changes.
 
 ---
 
-## Integration mit Kundengruppen
+## EU OSS (One-Stop-Shop)
 
-In den Kundengruppen-Einstellungen kann für jede Gruppe einzeln konfiguriert werden, ob Preise **brutto** oder **netto** angezeigt und berechnet werden.
+From 1 July 2021 a threshold of **EUR 10,000** applies to intra-community B2C sales.
+- Those exceeding it must register in the online OSS portal
+- Shopware supports the necessary tax rules per country
+
+---
+
+## Tax providers (external services)
+
+For complex tax systems (e.g. USA) external tax service providers can be integrated:
+- Activate the service
+- Adjust the Priorität (Priority)
+- Configure availability conditions
+
+---
+
+## Integration with customer groups
+
+In the Kundengruppen (Customer groups) settings you can configure individually for each group whether prices are displayed and calculated **gross** or **net**.

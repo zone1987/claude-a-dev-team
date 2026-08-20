@@ -1,22 +1,22 @@
 # Shopware Nexus
 
-> **Beta:** Nexus ist aktuell in Beta. Funktionsumfang und Verhalten können sich ändern.
+> **Beta:** Nexus is currently in beta. Feature scope and behavior may change.
 
-Shopware Nexus ist eine unified Platform für **event-getriebene Automatisierung
-und Integration**. Low-Code-Workflows verbinden Shopware visuell mit ERPs, CRMs
-und anderen Business-Systemen (z.B. Microsoft Dynamics Business Central).
+Shopware Nexus is a unified platform for **event-driven automation
+and integration**. Low-code workflows visually connect Shopware with ERPs, CRMs
+and other business systems (e.g. Microsoft Dynamics Business Central).
 
-Vollständige Referenz: [NEXUS-DETAIL.md](NEXUS-DETAIL.md)
+Full reference: [NEXUS-DETAIL.md](NEXUS-DETAIL.md)
 
-## Kern-Features (Beta)
+## Core features (beta)
 
-- Visual Workflow Builder (Drag & Drop)
-- Shopware Event-Trigger + Schedule-Trigger (Cron)
+- Visual workflow builder (drag & drop)
+- Shopware event triggers + schedule triggers (cron)
 - Business Central CRUD (customers, items, salesOrders)
-- Slack-Notifications, S3-Storage, Conditional Logic
+- Slack notifications, S3 storage, conditional logic
 - Expressions: `{{payload.order.orderNumber}}`
 
-## Zugang
+## Access
 
-- Shopware 6.7+ + aktives Abonnement + Beta-Zugang von Shopware
+- Shopware 6.7+ + active subscription + beta access from Shopware
 - Login via Shopware SSO (Ory/OIDC)

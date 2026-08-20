@@ -1,37 +1,37 @@
-# Shopware 6 – Eigenschaften
+# Shopware 6 – Eigenschaften (Properties)
 
-Eigenschaften werden unter **Kataloge > Eigenschaften** verwaltet. Sie dienen als filterbare
-Produktinformationen (z. B. Größe, Farbe) und als Basis für Produktvarianten.
+Properties are managed under **Kataloge** (Catalogues) > **Eigenschaften** (Properties). They serve as filterable
+product information (e.g. size, colour) and as the basis for product variants.
 
-## Eigenschaft anlegen
+## Creating a property
 
-1. Kataloge > Eigenschaften > **„Eigenschaft hinzufügen"**
-2. Name eingeben (erscheint auf Produktdetailseite und in Filtern)
-3. Optionale Felder: Beschreibung, Filterbarkeit, Anzeigetyp, Sortierung, Position
-4. Ausprägungen (Werte) hinzufügen
+1. Kataloge > Eigenschaften > **"Eigenschaft hinzufügen"** (Add property)
+2. Enter a name (appears on the product detail page and in filters)
+3. Optional fields: description, filterability, display type, sorting, position
+4. Add Ausprägungen (Options) (values)
 
-## Anzeigetypen
+## Display types
 
-| Typ | Darstellung im Filter |
+| Type | Presentation in the filter |
 |---|---|
-| Text | Textuell |
-| Farbe | HEX-Farbwert |
-| Bild | Custom-Bild |
-| Dropdown | Dropdown im Produkt, Text im Filter |
+| Text | Textual |
+| Farbe (Colour) | HEX colour value |
+| Bild (Image) | Custom image |
+| Dropdown | Dropdown on the product, text in the filter |
 
-## Sortieroptionen
+## Sorting options
 
-- **Alphanumerisch**: Standard a–z, 1–10
-- **Benutzerdefiniert**: Manuelle Positionsreihenfolge
+- **Alphanumerisch** (Alphanumeric): default a–z, 1–10
+- **Benutzerdefiniert** (Custom): manual position order
 
-## Ausprägungen (Werte) anlegen
+## Creating Ausprägungen (options / values)
 
-Jede Ausprägung benötigt: Name, Position (für benutzerdefinierte Sortierung).
-Optional: Farb-HEX (bei Typ Farbe) oder Bild (bei Typ Bild).
+Every option requires: name, position (for custom sorting).
+Optional: colour HEX (for type Farbe) or image (for type Bild).
 
-> **Achtung**: Eigenschaft löschen entfernt sie von ALLEN zugewiesenen Produkten!
+> **Caution**: deleting a property removes it from ALL assigned products!
 
-Siehe `PROPERTIES-DETAIL.md` für vollständige Details.
+See `PROPERTIES-DETAIL.md` for full details.
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/produkte/eigenschaften

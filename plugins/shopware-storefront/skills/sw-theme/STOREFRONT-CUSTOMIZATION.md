@@ -1,20 +1,20 @@
-# Shopware 6 — Storefront-Customization im Theme
+# Shopware 6 — Storefront customization in the theme
 
-Vollständige Referenz: [STOREFRONT-CUSTOMIZATION-CUSTOMIZATION.md](STOREFRONT-CUSTOMIZATION-CUSTOMIZATION.md)
+Full reference: [STOREFRONT-CUSTOMIZATION-CUSTOMIZATION.md](STOREFRONT-CUSTOMIZATION-CUSTOMIZATION.md)
 
-**Bootstrap-Variablen** überschreiben in `overrides.scss` (muss **vor** `@Storefront` stehen):
+**Override Bootstrap variables** in `overrides.scss` (must come **before** `@Storefront`):
 ```scss
-// overrides.scss — NUR Variablen, kein CSS
+// overrides.scss — variables ONLY, no CSS
 $border-radius: 0;
 $sw-color-brand-primary: #ff0000;
 ```
 
-**Responsive Breakpoints** (ab 6.7.8.0) via theme.json:
+**Responsive breakpoints** (as of 6.7.8.0) via theme.json:
 ```json
 "config": { "fields": { "sw-breakpoint-lg": { "value": 1024 } } }
 ```
 
-**Ohne Shopware-Skin** (nur Bootstrap):
+**Without the Shopware skin** (Bootstrap only):
 ```json
 "style": ["@StorefrontBootstrap", "@Plugins", "app/storefront/src/scss/base.scss"]
 ```

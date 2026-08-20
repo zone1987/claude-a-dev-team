@@ -6,12 +6,12 @@ This skill documents all topics of the "Erweiterungen" chapter of the Shopware 6
 
 | Topic | Reference |
 |---|---|
-| Extensions overview & Meine Erweiterungen (My extensions) | `EXTENSIONS-MEINE-ERWEITERUNGEN.md` |
+| Extensions overview & Meine Erweiterungen (My extensions) | `EXTENSIONS-MY-EXTENSIONS.md` |
 | Shopware Commercial (plan features) | `EXTENSIONS-SHOPWARE-COMMERCIAL.md` |
 | PayPal | `EXTENSIONS-PAYPAL.md` |
 | Klarna Payments | `EXTENSIONS-KLARNA.md` |
 | Advanced Search | `EXTENSIONS-ADVANCED-SEARCH.md` |
-| CMS extensions | `EXTENSIONS-CMS-ERWEITERUNGEN.md` |
+| CMS extensions | `EXTENSIONS-CMS-EXTENSIONS.md` |
 | Custom Products | `EXTENSIONS-CUSTOM-PRODUCTS.md` |
 | Dynamic Access | `EXTENSIONS-DYNAMIC-ACCESS.md` |
 | Shopware Analytics | `EXTENSIONS-SHOPWARE-ANALYTICS.md` |
@@ -22,7 +22,7 @@ This skill documents all topics of the "Erweiterungen" chapter of the Shopware 6
 | Immersive Elements | `EXTENSIONS-IMMERSIVE-ELEMENTS.md` |
 | Language pack | `EXTENSIONS-SPRACHPAKET.md` |
 | Zettle by PayPal | `EXTENSIONS-ZETTLE.md` |
-| Customer-specific prices | `EXTENSIONS-KUNDENSPEZIFISCHE-PREISE.md` |
+| Customer-specific prices | `EXTENSIONS-CUSTOMER-SPECIFIC-PRICES.md` |
 | Customisable popups & notifications | `EXTENSIONS-POPUPS-BENACHRICHTIGUNGEN.md` |
 | Sales Agent | `EXTENSIONS-SALES-AGENT.md` |
 | Agentic Commerce | `EXTENSIONS-AGENTIC-COMMERCE.md` |
@@ -54,10 +54,10 @@ This skill documents all topics of the "Erweiterungen" chapter of the Shopware 6
 | File | Content |
 |---|---|
 | `assets/paypal-wizard-setup.png` | PayPal setup in the first-run wizard |
-| `assets/paypal-zahlungsarten.png` | PayPal payment methods configuration |
-| `assets/paypal-konfiguration-uebersicht.png` | PayPal general configuration overview |
-| `assets/custom-products-vorlagen.png` | Custom Products – template overview |
-| `assets/custom-products-optionen.png` | Custom Products – option types |
+| `assets/paypal-payment-methods.png` | PayPal payment methods configuration |
+| `assets/paypal-configuration-overview.png` | PayPal general configuration overview |
+| `assets/custom-products-templates.png` | Custom Products – template overview |
+| `assets/custom-products-options.png` | Custom Products – option types |
 | `assets/analytics-dashboard.png` | Shopware Analytics dashboard |
 | `assets/analytics-datumsauswahl.png` | Analytics date selection interface |
 

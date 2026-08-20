@@ -10,7 +10,7 @@
 
 **Pfad:** Einstellungen > Shop > Stammdaten
 
-![Stammdaten Übersicht](../../assets/saas-stammdaten.png)
+![Stammdaten Übersicht](assets/saas-master-data.png)
 
 Konfigurierbar global oder individuell je Verkaufskanal:
 
@@ -48,7 +48,7 @@ Layouts für gesetzliche und informative Seiten:
 
 ## Sicherheit und Datenschutz
 
-![Stammdaten Sicherheit und Datenschutz](../../assets/saas-stammdaten-datenschutz.png)
+![Stammdaten Sicherheit und Datenschutz](assets/saas-master-data-privacy.png)
 
 Aktivierbare Optionen:
 
@@ -73,20 +73,20 @@ Aktivierbare Optionen:
 - Feld zur Eingabe der USt-ID
 - Option: Kleingewerbetreibender kennzeichnen
 
-![Firma USt-ID](../../assets/saas-firma-ustid.png)
+![Firma USt-ID](assets/saas-company-ustid.png)
 
 ### 2. Kontaktinformationen
 
 - Für Kontaktaufnahme durch Shopware AG
 
-![Firma Kontaktinformationen](../../assets/saas-firma-kontakt.png)
+![Firma Kontaktinformationen](assets/saas-company-kontakt.png)
 
 ### 3. Rechnungsinformationen
 
 - Werden bei der Rechnungsstellung für SaaS-Kosten genutzt
 - Bei Shopware-Account-Verknüpfung: Manche Felder nicht direkt änderbar
 
-![Firma Rechnungsinformationen](../../assets/saas-firma-rechnung.png)
+![Firma Rechnungsinformationen](assets/saas-company-invoice.png)
 
 ---
 

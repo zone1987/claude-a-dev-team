@@ -1,24 +1,24 @@
 # Shopware 6 Storefront CSS Custom Properties
 
-Alle `--*`-Variablen des Shopware 6 Storefronts, gruppiert nach Herkunft und Typ.
+All `--*` variables of the Shopware 6 Storefront, grouped by origin and type.
 
 ---
 
 ## Contents
 
-- [1. Storefront Core: `:root`-Definitionen](#1-storefront-core-root-definitionen)
+- [1. Storefront Core: `:root` definitions](#1-storefront-core-root-definitions)
 - [2. Bootstrap 5 CSS Custom Properties (via `--bs-*`)](#2-bootstrap-5-css-custom-properties-via---bs-)
 - [3. Administration CSS Custom Properties](#3-administration-css-custom-properties)
-- [Verwendung in Plugin/Theme-Overrides](#verwendung-in-plugintheme-overrides)
+- [Usage in plugin/theme overrides](#usage-in-plugintheme-overrides)
 
-## 1. Storefront Core: `:root`-Definitionen
+## 1. Storefront Core: `:root` definitions
 
-Definiert in `abstract/variables/_css-properties.scss`.  
-Alle Custom Properties werden dort als `--name: #{$scss-var}` aus den SCSS-Variablen abgeleitet.
+Defined in `abstract/variables/_css-properties.scss`.  
+There, all custom properties are derived from the SCSS variables as `--name: #{$scss-var}`.
 
-### Z-Index-Properties
+### Z-index properties
 
-| Custom Property | SCSS-Quelle | Wert |
+| Custom Property | SCSS source | Value |
 |---|---|---|
 | `--search-suggest-zindex` | `$search-suggest-zindex` | `1000` |
 | `--offcanvas-zindex` | `$offcanvas-zindex` | `1050` |
@@ -28,18 +28,18 @@ Alle Custom Properties werden dort als `--name: #{$scss-var}` aus den SCSS-Varia
 | `--zoom-modal-action-zindex` | `$zoom-modal-action-zindex` | `1051` |
 | `--magnifier-overlay-zindex` | `$magnifier-overlay-zindex` | `1100` |
 
-### Icon-Properties
+### Icon properties
 
-| Custom Property | SCSS-Quelle | Wert |
+| Custom Property | SCSS source | Value |
 |---|---|---|
 | `--icon-base-size` | `$icon-base-size` | `1.375rem` |
 | `--icon-base-color` | `$icon-base-color` | `#4a545b` |
 | `--icon-review-color` | `$icon-review-color` | `#fedc70` |
 | `--progress-bar-review` | `$progress-bar-review` | `#fedc70` |
 
-### Layout/Spacing-Properties
+### Layout/spacing properties
 
-| Custom Property | SCSS-Quelle | Wert |
+| Custom Property | SCSS source | Value |
 |---|---|---|
 | `--element-backdrop-bg` | `$element-backdrop-bg` | `rgba(#fff, 0.5)` |
 | `--spacer-xs` | `$spacer-xs` | `$spacer * 0.25` |
@@ -48,9 +48,9 @@ Alle Custom Properties werden dort als `--name: #{$scss-var}` aus den SCSS-Varia
 | `--spacer-lg` | `$spacer-lg` | `$spacer * 1.5` |
 | `--spacer-xl` | `$spacer-xl` | `$spacer * 3` |
 
-### E-Commerce-Properties
+### E-commerce properties
 
-| Custom Property | SCSS-Quelle | Wert |
+| Custom Property | SCSS source | Value |
 |---|---|---|
 | `--buy-btn-bg` | `$buy-btn-bg` | `$sw-color-buy-button` → `#0042a0` |
 | `--buy-btn-color` | `$buy-btn-color` | `$sw-color-buy-button-text` → `#fff` |
@@ -58,17 +58,17 @@ Alle Custom Properties werden dort als `--name: #{$scss-var}` aus den SCSS-Varia
 | `--disabled-btn-border-color` | `$disabled-btn-border-color` | `#eee` |
 | `--price-color` | `$price-color` | `$sw-color-price` → `#2b3136` |
 
-### CMS-Properties
+### CMS properties
 
-| Custom Property | SCSS-Quelle | Wert |
+| Custom Property | SCSS source | Value |
 |---|---|---|
 | `--cms-block-text-hero-hr-color` | `$cms-block-text-hero-hr-color` | `#e9edf0` |
 | `--cms-element-text-quotes-color` | `$cms-element-text-quotes-color` | `#9aa7be` |
 | `--cms-element-product-listing-gutter-width` | `$cms-element-product-listing-gutter-width` | `30px` |
 
-### Typografie-Properties
+### Typography properties
 
-| Custom Property | SCSS-Quelle | Wert |
+| Custom Property | SCSS source | Value |
 |---|---|---|
 | `--font-weight-semibold` | `$font-weight-semibold` | `600` |
 
@@ -76,43 +76,43 @@ Alle Custom Properties werden dort als `--name: #{$scss-var}` aus den SCSS-Varia
 
 ## 2. Bootstrap 5 CSS Custom Properties (via `--bs-*`)
 
-Bootstrap 5 generiert automatisch `--bs-*`-Properties für Farbwerte, Typography und Komponenten.
-Im Shopware-Storefront wird das Bootstrap-Prefix `$prefix` = `bs-` genutzt.
+Bootstrap 5 automatically generates `--bs-*` properties for color values, typography and components.
+In the Shopware Storefront the Bootstrap prefix `$prefix` = `bs-` is used.
 
-Wichtige Bootstrap-Properties, die im Shopware-Skin verwendet werden:
+Important Bootstrap properties that are used in the Shopware skin:
 
-### Buttons (an `.btn`-Elementen gesetzt)
+### Buttons (set on `.btn` elements)
 
-| Property | Wo gesetzt | Verwendungszweck |
+| Property | Where set | Purpose |
 |---|---|---|
-| `--bs-btn-focus-box-shadow` | `.header-search-btn`, `.btn-buy`, `.btn-link` | Focus-Ring anpassen |
-| `--bs-btn-border-color` | `.header-search-btn` | Border-Farbe |
-| `--bs-btn-hover-color` | `.header-search-btn`, `.header-actions-btn` | Hover-Farbe |
-| `--bs-btn-hover-border-color` | `.header-search-btn` | Hover-Border |
-| `--bs-btn-active-border-color` | `.header-actions-btn` | Active-Border |
-| `--bs-btn-active-bg` | `.header-actions-btn` | Active-Background |
-| `--bs-btn-hover-bg` | `.header-actions-btn` | Hover-Background |
-| `--bs-btn-disabled-bg` | `.header-search-btn` | Disabled-Background |
-| `--bs-btn-disabled-border-color` | `.header-search-btn` | Disabled-Border |
-| `--bs-btn-disabled-color` | `.btn` | Disabled-Text-Farbe |
-| `--bs-btn-color` | `.top-bar-nav-btn` | Button-Textfarbe |
-| `--bs-btn-font-weight` | `.top-bar-nav-btn`, `.btn-link` | Font-Weight |
-| `--bs-btn-border-width` | `.top-bar-nav-btn` | Border-Breite |
-| `--bs-btn-padding-x` | `.top-bar-nav-btn`, `.btn-link-inline` | Horizontal-Padding |
-| `--bs-btn-padding-y` | `.top-bar-nav-btn`, `.btn-link-inline` | Vertikal-Padding |
-| `--bs-btn-line-height` | `.btn-link-inline` | Zeilenhöhe |
-| `--bs-btn-font-size` | `.btn-link-inline` | Schriftgröße |
+| `--bs-btn-focus-box-shadow` | `.header-search-btn`, `.btn-buy`, `.btn-link` | Adjust focus ring |
+| `--bs-btn-border-color` | `.header-search-btn` | Border color |
+| `--bs-btn-hover-color` | `.header-search-btn`, `.header-actions-btn` | Hover color |
+| `--bs-btn-hover-border-color` | `.header-search-btn` | Hover border |
+| `--bs-btn-active-border-color` | `.header-actions-btn` | Active border |
+| `--bs-btn-active-bg` | `.header-actions-btn` | Active background |
+| `--bs-btn-hover-bg` | `.header-actions-btn` | Hover background |
+| `--bs-btn-disabled-bg` | `.header-search-btn` | Disabled background |
+| `--bs-btn-disabled-border-color` | `.header-search-btn` | Disabled border |
+| `--bs-btn-disabled-color` | `.btn` | Disabled text color |
+| `--bs-btn-color` | `.top-bar-nav-btn` | Button text color |
+| `--bs-btn-font-weight` | `.top-bar-nav-btn`, `.btn-link` | Font weight |
+| `--bs-btn-border-width` | `.top-bar-nav-btn` | Border width |
+| `--bs-btn-padding-x` | `.top-bar-nav-btn`, `.btn-link-inline` | Horizontal padding |
+| `--bs-btn-padding-y` | `.top-bar-nav-btn`, `.btn-link-inline` | Vertical padding |
+| `--bs-btn-line-height` | `.btn-link-inline` | Line height |
+| `--bs-btn-font-size` | `.btn-link-inline` | Font size |
 
 ### Navbar
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
 | `--bs-navbar-color` | `.main-navigation-menu` |
 | `--bs-navbar-nav-link-padding-x` | `.main-navigation-menu` |
 
 ### Dropdown
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
 | `--bs-dropdown-spacer` | `.main-navigation-menu .dropdown-menu::after` (calc) |
 | `--bs-dropdown-link-hover-bg` | `.top-bar-list` |
@@ -122,7 +122,7 @@ Wichtige Bootstrap-Properties, die im Shopware-Skin verwendet werden:
 
 ### Card
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
 | `--bs-card-bg` | `.product-box` |
 | `--bs-card-spacer-y` | `.product-box .card-body` |
@@ -133,7 +133,7 @@ Wichtige Bootstrap-Properties, die im Shopware-Skin verwendet werden:
 
 ### Nav/Tabs
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
 | `--bs-nav-link-padding-x` | `.card-tabs .nav-link` |
 | `--bs-nav-link-padding-y` | `.card-tabs .nav-link` |
@@ -147,15 +147,15 @@ Wichtige Bootstrap-Properties, die im Shopware-Skin verwendet werden:
 
 ### Alert
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
-| `--bs-alert-border-color` | `.alert-{variant}` (via Loop) |
-| `--bs-alert-bg` | `.alert-{variant}` (via Loop) |
-| `--bs-alert-color` | `.alert-{variant}` (via Loop) |
+| `--bs-alert-border-color` | `.alert-{variant}` (via loop) |
+| `--bs-alert-bg` | `.alert-{variant}` (via loop) |
+| `--bs-alert-color` | `.alert-{variant}` (via loop) |
 
 ### List Group
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
 | `--bs-list-group-item-padding-x` | `.account-aside-item` |
 | `--bs-list-group-action-active-color` | `.account-aside-item` |
@@ -166,7 +166,7 @@ Wichtige Bootstrap-Properties, die im Shopware-Skin verwendet werden:
 
 ### Modal
 
-| Property | Wo gesetzt |
+| Property | Where set |
 |---|---|
 | `--bs-modal-box-shadow` | `.modal-content` |
 
@@ -174,7 +174,7 @@ Wichtige Bootstrap-Properties, die im Shopware-Skin verwendet werden:
 
 ## 3. Administration CSS Custom Properties
 
-In `global.scss` werden **alle** SCSS-Variablen aus `variables.scss` automatisch als CSS Custom Properties registriert:
+In `global.scss`, **all** SCSS variables from `variables.scss` are automatically registered as CSS custom properties:
 
 ```scss
 :root {
@@ -184,15 +184,15 @@ In `global.scss` werden **alle** SCSS-Variablen aus `variables.scss` automatisch
 }
 ```
 
-Das bedeutet: Jede `$variable` aus `variables.scss` wird zu `--variable` in `:root`.
+This means: every `$variable` from `variables.scss` becomes `--variable` in `:root`.
 
-Beispiele:
+Examples:
 - `--color-gray-50` → `#f9fafb`
 - `--color-shopware-brand-500` → `#189eff`
 - `--font-size-s` → `16px`
 - `--z-index-modal` → `1000`
 
-Zusätzlich nutzt die Admin semantische Properties (aus dem Meteor Component Library):
+In addition, the admin uses semantic properties (from the Meteor Component Library):
 - `--color-text-primary-default`
 - `--color-text-brand-default`
 - `--color-elevation-surface-sunken`
@@ -200,25 +200,25 @@ Zusätzlich nutzt die Admin semantische Properties (aus dem Meteor Component Lib
 - `--color-border-primary-default`
 - `--color-icon-brand-default`
 
-Diese werden von der Meteor Component Library (`@shopware-ag/meteor-component-library`) bereitgestellt.
+These are provided by the Meteor Component Library (`@shopware-ag/meteor-component-library`).
 
 ---
 
-## Verwendung in Plugin/Theme-Overrides
+## Usage in plugin/theme overrides
 
-Um eine CSS Custom Property aus dem Storefront in einem Plugin zu überschreiben:
+To override a CSS custom property from the Storefront inside a plugin:
 
 ```scss
-// In deinem Plugin-SCSS:
+// In your plugin SCSS:
 :root {
-    --buy-btn-bg: #ff6600;    // überschreibt den Kauf-Button-Hintergrund
-    --price-color: #cc0000;   // überschreibt die Preisfarbe
+    --buy-btn-bg: #ff6600;    // overrides the buy button background
+    --price-color: #cc0000;   // overrides the price color
 }
 ```
 
-Oder SCSS-Variable override (wird dann über CSS-Property abgeleitet):
+Or override the SCSS variable (which is then derived via the CSS property):
 ```scss
-// Muss VOR dem Core-Laden stehen (in variables.scss des Plugins):
-$sw-color-buy-button: #ff6600 !default;  // FALSCH — !default wirkt nicht wenn bereits gesetzt
-$sw-color-buy-button: #ff6600;           // Korrekt: ohne !default
+// Must come BEFORE the core is loaded (in the plugin's variables.scss):
+$sw-color-buy-button: #ff6600 !default;  // WRONG — !default has no effect if already set
+$sw-color-buy-button: #ff6600;           // Correct: without !default
 ```

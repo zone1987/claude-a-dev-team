@@ -1,4 +1,4 @@
-# NavigationMenu — API-Referenz
+# NavigationMenu — API reference
 
 ## Contents
 
@@ -10,121 +10,121 @@
 - [NavigationMenuLink](#navigationmenulink)
 - [NavigationMenuViewport](#navigationmenuviewport)
 - [NavigationMenuIndicator](#navigationmenuindicator)
-- [Exportierte Utility](#exportierte-utility)
-- [reka-ui Referenz](#reka-ui-referenz)
+- [Exported utility](#exported-utility)
+- [reka-ui reference](#reka-ui-reference)
 
 ## NavigationMenu (Root)
 
-Basiert auf reka-ui `NavigationMenuRoot`. Enthalt automatisch `NavigationMenuViewport`.
+Based on reka-ui `NavigationMenuRoot`. Automatically includes `NavigationMenuViewport`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `viewport` | `boolean` | `true` | Viewport-Komponente einschliessen |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
-| Alle `NavigationMenuRootProps` | — | Weitergeleitet |
+| `viewport` | `boolean` | `true` | Include the viewport component |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
+| All `NavigationMenuRootProps` | — | Forwarded |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| Alle `NavigationMenuRootEmits` | — | Weitergeleitet |
+| All `NavigationMenuRootEmits` | — | Forwarded |
 
 ---
 
 ## NavigationMenuList
 
-Horizontale Liste der Menu-Eintrager.
+Horizontal list of the menu entries.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `NavigationMenuListProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `NavigationMenuListProps` | — | Forwarded |
 
 ---
 
 ## NavigationMenuItem
 
-Einzelner Navigationseintrag. Kann `Trigger + Content` oder direkten `Link` enthalten.
+Single navigation entry. Can contain `Trigger + Content` or a direct `Link`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `value` | `string` | Eindeutiger Wert (fur controlled mode) |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `value` | `string` | Unique value (for controlled mode) |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## NavigationMenuTrigger
 
-Button mit ChevronDown-Icon, das sich bei `data-[state=open]` dreht.
+Button with a ChevronDown icon that rotates on `data-[state=open]`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `NavigationMenuTriggerProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `NavigationMenuTriggerProps` | — | Forwarded |
 
 ---
 
 ## NavigationMenuContent
 
-Dropdown-Panel-Inhalt. Animationen basieren auf `data-motion`.
+Dropdown panel content. Animations are based on `data-motion`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `NavigationMenuContentProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `NavigationMenuContentProps` | — | Forwarded |
 
 ---
 
 ## NavigationMenuLink
 
-Aktiver-Zustand-bewusster Link. Erkennt `data-active` automatisch.
+Active-state-aware link. Detects `data-active` automatically.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `active` | `boolean` | Aktiver Zustand |
-| `asChild` | `boolean` | Rendert als Kind (fur `<a>`-Tags) |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `active` | `boolean` | Active state |
+| `asChild` | `boolean` | Renders as child (for `<a>` tags) |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## NavigationMenuViewport
 
-Animiertes schwebendes Fenster. Normalerweise automatisch durch `NavigationMenu` eingebunden.
+Animated floating panel. Normally included automatically by `NavigationMenu`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## NavigationMenuIndicator
 
-Animierter Pfeil-Indikator unter dem aktiven Trigger.
+Animated arrow indicator below the active trigger.
 
 ---
 
-## Exportierte Utility
+## Exported utility
 
 ```ts
 export const navigationMenuTriggerStyle = cva("...")
-// Gibt CVA-Klassennamen zuruck, verwendbar auf eigenstandigen Links
+// Returns a CVA class name string, usable on standalone links
 ```
 
-### Verwendung
+### Usage
 
 ```vue
 <NavigationMenuLink
@@ -135,5 +135,5 @@ export const navigationMenuTriggerStyle = cva("...")
 </NavigationMenuLink>
 ```
 
-## reka-ui Referenz
+## reka-ui reference
 - https://reka-ui.com/docs/components/navigation-menu

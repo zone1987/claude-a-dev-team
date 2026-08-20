@@ -1,11 +1,11 @@
-# Shopware 6 — Deprecation-Handling
+# Shopware 6 — deprecation handling
 
-Shopware kündigt Breaking Changes über `@deprecated tag:v6.x`-Notices und Major-Feature-Flags an (konsistente
-Deprecation-Notices, ADR).
+Shopware announces breaking changes via `@deprecated tag:v6.x` notices and major feature flags (consistent
+deprecation notices, ADR).
 
-- **Finden**: `@deprecated`-Hinweise im Core (gegen genutzte APIs), Deprecation-Log zur Laufzeit, `UPGRADE-*.md`.
-- **Auflösen**: empfohlene Nachfolge-API nutzen; wo angeboten, Rector-Regel anwenden (`shopware-quality` → `sw-rector`).
-- **Major-Flags**: neues Verhalten testweise via `Feature::isActive('v6.x.0.0')`/Flag aktivieren (`shopware-core` → `sw-feature-flags`).
-- **Tests**: Deprecation-Handling in PHPUnit (ADR „deprecation handling during phpunit") — Tests nicht an deprecierten Pfaden festmachen.
+- **Finding them**: `@deprecated` hints in the core (against the APIs you use), deprecation log at runtime, `UPGRADE-*.md`.
+- **Resolving them**: use the recommended successor API; where offered, apply the Rector rule (`shopware-quality` → `sw-rector`).
+- **Major flags**: activate the new behavior for testing via `Feature::isActive('v6.x.0.0')`/flag (`shopware-core` → `sw-feature-flags`).
+- **Tests**: deprecation handling in PHPUnit (ADR "deprecation handling during phpunit") — do not pin tests to deprecated paths.
 
-Nicht auf `@internal`/deprecierte APIs verlassen. Versionsspezifische Liste: `sw-upgrade-overview` + `UPGRADE-6.x.md`.
+Do not rely on `@internal`/deprecated APIs. Version-specific list: `sw-upgrade-overview` + `UPGRADE-6.x.md`.

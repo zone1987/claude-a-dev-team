@@ -1,14 +1,14 @@
-# Kbd — Beispiele
+# Kbd — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Kbd (KbdBasic.vue)](#beispiel-1-basic-kbd-kbdbasicvue)
-- [Beispiel 2: Kbd with Group (KbdWithGroup.vue)](#beispiel-2-kbd-with-group-kbdwithgroupvue)
-- [Quellen](#quellen)
+- [Example 1: Basic Kbd (KbdBasic.vue)](#example-1-basic-kbd-kbdbasicvue)
+- [Example 2: Kbd with Group (KbdWithGroup.vue)](#example-2-kbd-with-group-kbdwithgroupvue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Kbd (KbdBasic.vue)
+## Example 1: Basic Kbd (KbdBasic.vue)
 
-Einzelne Tasten fur haufige Tastaturkurzel.
+Individual keys for common keyboard shortcuts.
 
 ```vue
 <script setup lang="ts">
@@ -60,9 +60,9 @@ import { Kbd } from "@/components/ui/kbd"
 
 ---
 
-## Beispiel 2: Kbd with Group (KbdWithGroup.vue)
+## Example 2: Kbd with Group (KbdWithGroup.vue)
 
-`KbdGroup` kombiniert mehrere Tasten ohne sichtbares Trennzeichen.
+`KbdGroup` combines multiple keys without a visible separator.
 
 ```vue
 <script setup lang="ts">
@@ -117,7 +117,7 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd"
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/kbd/KbdBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/kbd/KbdWithGroup.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/kbd/KbdExample.vue`

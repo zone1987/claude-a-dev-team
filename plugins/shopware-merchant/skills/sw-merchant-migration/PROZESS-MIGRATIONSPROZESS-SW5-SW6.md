@@ -1,203 +1,203 @@
-# Migrationsprozess: Shopware 5 → Shopware 6 (Schritt für Schritt)
+# Migration process: Shopware 5 → Shopware 6 (step by step)
 
-**Quelle**: https://docs.shopware.com/de/migration-de/Migrationsprozess
+**Source**: https://docs.shopware.com/de/migration-de/Migrationsprozess
 
 ---
 
 ## Contents
 
-- [Schritt 1: Erweiterungen installieren](#schritt-1-erweiterungen-installieren)
-- [Schritt 2: Integration im Quellshop anlegen (API-Zugang)](#schritt-2-integration-im-quellshop-anlegen-api-zugang)
-- [Schritt 3: Migrationsverbindung herstellen](#schritt-3-migrationsverbindung-herstellen)
-- [Schritt 4: Migrationsdaten kontrollieren](#schritt-4-migrationsdaten-kontrollieren)
-- [Schritt 5: Migration starten](#schritt-5-migration-starten)
-- [Migration erneut durchführen](#migration-erneut-durchführen)
-- [Shopware 5: Metadaten-Anpassung vor Migration](#shopware-5-metadaten-anpassung-vor-migration)
+- [Step 1: install the extensions](#step-1-install-the-extensions)
+- [Step 2: create an integration in the source shop (API access)](#step-2-create-an-integration-in-the-source-shop-api-access)
+- [Step 3: establish the migration connection](#step-3-establish-the-migration-connection)
+- [Step 4: check the migration data](#step-4-check-the-migration-data)
+- [Step 5: start the migration](#step-5-start-the-migration)
+- [Running the migration again](#running-the-migration-again)
+- [Shopware 5: metadata adjustment before the migration](#shopware-5-metadata-adjustment-before-the-migration)
 
-## Schritt 1: Erweiterungen installieren
+## Step 1: install the extensions
 
-### Im Zielshop (Shopware 6)
-- Erweiterung: **SwagMigrationAssistent** (aus Community Store)
-- Dokumentation gilt ab Version **16.0.0** des Assistenten
+### In the target shop (Shopware 6)
+- Extension: **SwagMigrationAssistent** (from the Community Store)
+- The documentation applies from version **16.0.0** of the assistant
 
-### Im Quellshop (Shopware 5)
-- Erweiterung: **SwagMigrationConnector**
+### In the source shop (Shopware 5)
+- Extension: **SwagMigrationConnector**
 
-> **Empfehlung:** Datenmigration vollständig abschließen, **bevor** Design/Styling begonnen wird.
-> Der Prozess ist iterativ und kann System-Resets erfordern.
+> **Recommendation:** complete the data migration entirely **before** starting on design/styling.
+> The process is iterative and may require system resets.
 
 ---
 
-## Schritt 2: Integration im Quellshop anlegen (API-Zugang)
+## Step 2: create an integration in the source shop (API access)
 
-**Pfad im Quellshop (SW6):** Einstellungen > System > Integrationen > Integration anlegen
+**Path in the source shop (SW6):** **Einstellungen** (Settings) **> System > Integrationen** (Integrations) **> Integration anlegen** (Create integration)
 
-| Feld | Beschreibung | Hinweis |
+| Field | Description | Note |
 |---|---|---|
-| **Name (1)** | Eindeutiger Name (z.B. „Migration") | Zur Unterscheidung mehrerer Integrationen |
-| **Administrator (2)** | Checkbox aktivieren | Gibt Vollzugriff auf Quellshop-Ressourcen |
-| **Zugangs-ID (3)** | Automatisch generiert | **Notieren!** — Wird in Schritt 3 benötigt |
-| **Sicherheitsschlüssel (4)** | Automatisch generiert | **Notieren!** — Wird in Schritt 3 benötigt |
+| **Name (1)** | Unique name (e.g. "Migration") | To distinguish several integrations |
+| **Administrator (2)** | Enable the checkbox | Grants full access to the source shop resources |
+| **Zugangs-ID (3)** (Access ID) | Generated automatically | **Write it down!** — needed in step 3 |
+| **Sicherheitsschlüssel (4)** (Secret access key) | Generated automatically | **Write it down!** — needed in step 3 |
 
-Abschließen: Button **„Integration speichern"** klicken.
+To finish: click the **"Integration speichern"** (Save integration) button.
 
 ---
 
-## Schritt 3: Migrationsverbindung herstellen
+## Step 3: establish the migration connection
 
-**Pfad im Zielshop:** Einstellungen > Erweiterungen > Migrations-Assistent
+**Path in the target shop:** **Einstellungen > Erweiterungen** (Extensions) **> Migrations-Assistent**
 
-### 3.1 Initiale Verbindung
-1. Button **„Initiale Verbindung anlegen"** anklicken
-2. Profil wählen:
-   - `Shopware 5.5` für SW5-Migration
-   - `Shopware 6` für SW6-zu-SW6-Migration
-3. **„Fortfahren"** anklicken
+### 3.1 Initial connection
+1. Click the **"Initiale Verbindung anlegen"** (Create initial connection) button
+2. Choose the profile:
+   - `Shopware 5.5` for an SW5 migration
+   - `Shopware 6` for an SW6-to-SW6 migration
+3. Click **"Fortfahren"** (Continue)
 
-### 3.2 Verbindung konfigurieren
+### 3.2 Configure the connection
 
-**Verbindungsfelder (alle Quellsysteme):**
+**Connection fields (all source systems):**
 
-| Feld | Inhalt |
+| Field | Content |
 |---|---|
-| **Name** | Eindeutiger Verbindungsname (wichtig bei mehreren Quellshops) |
-| **Profil** | Quellsystem-Typ (z.B. Shopware 5.5) |
-| **Schnittstelle** | Verbindungstyp (s. unten) |
+| **Name** | Unique connection name (important with several source shops) |
+| **Profil** (Profile) | Source system type (e.g. Shopware 5.5) |
+| **Schnittstelle** (Interface) | Connection type (see below) |
 
-> ⚠️ **Warnung:** Keine Bindestriche im Verbindungsnamen verwenden!
+> ⚠️ **Warning:** do not use hyphens in the connection name!
 
-### 3.3 Verbindungstypen (Shopware 5)
+### 3.3 Connection types (Shopware 5)
 
-#### API-Methode
-| Feld | Beschreibung |
+#### API method
+| Field | Description |
 |---|---|
-| **API-Schlüssel** | Aus SW5-Benutzerverwaltung |
-| **Benutzername** | Admin-Benutzer (Gruppe: local_admins) |
-| **Shopdomain** | Mit SSL-Status |
+| **API-Schlüssel** (API key) | From the SW5 user administration |
+| **Benutzername** (User name) | Admin user (group: local_admins) |
+| **Shopdomain** (Shop domain) | With SSL status |
 
-#### Local-Methode (Direktzugriff auf DB)
-| Feld | Beschreibung |
+#### Local method (direct access to the DB)
+| Field | Description |
 |---|---|
-| **DB-Host** | `localhost` oder URL |
-| **DB-Port** | Standard: `3306` |
-| **DB-Benutzer** | Benutzer mit Admin-Rechten |
-| **DB-Passwort** | Zugehöriges Passwort |
-| **DB-Name** | Name der SW5-Datenbank |
-| **Root Verzeichnis** | Absoluter Installationspfad |
+| **DB-Host** | `localhost` or a URL |
+| **DB-Port** | Default: `3306` |
+| **DB-Benutzer** (DB user) | User with admin rights |
+| **DB-Passwort** (DB password) | The corresponding password |
+| **DB-Name** | Name of the SW5 database |
+| **Root Verzeichnis** (Root directory) | Absolute installation path |
 
-#### Shopware 6-Profil (API ist einzige Option)
-Zugangs-ID und Sicherheitsschlüssel aus Schritt 2 eintragen.
-
----
-
-## Schritt 4: Migrationsdaten kontrollieren
-
-### Übersicht-Seite
-Nach der Verbindungskonfiguration erscheint die Migrationsübersicht mit:
-- (1) Shopsystem / aktuelle Verbindung
-- System-Profil und Schnittstellen-Typ
-- Zeitpunkt der letzten Verbindungsprüfung
-- Zeitpunkt der letzten Migration
-
-**Aktionen:**
-- Button **„Verbindung bearbeiten"** (2) — Änderungen vornehmen
-- Kontextmenü (3) mit Optionen:
-  - Neue Verbindung anlegen
-  - Zugangsdaten löschen
-  - Zu anderer Verbindung wechseln
-  - **Prüfsumme zurücksetzen** (erzwingt komplette Neuübertragung aller Daten)
-
-### Datenauswahl
-Checkboxen für gewünschte Daten setzen. Angezeigt wird:
-- Datentyp (Shopdaten vs. Plugindaten/Erweiterungsdaten)
-- Anzahl zu migrierender Datensätze
-- Information zu Drittanbieter-Erweiterungen
-
-> Drittanbieter-Daten erscheinen mit Typ **„Plugindaten"** in der Liste.
-
-### Datencheck
-Automatische Überprüfung auf Zuordnungsfähigkeit:
-- **Erfolgreiche Zuordnung:** Migration kann sofort starten
-- **Manuelle Zuordnung erforderlich:** Korrekturen vornehmen, dann **„Fortfahren"** klicken
-- Beispiel für Nacharbeit: Standard-Zahlungsart zuweisen
-- Automatische Zuordnungen lassen sich kontrollieren und nachjustieren
-
-### Historie
-- Alle bisherigen Migrationsversuche einsehbar
-- Kontextmenü: **„Details anzeigen"** oder **„Protokoll herunterladen"** (.txt-Datei)
+#### Shopware 6 profile (API is the only option)
+Enter the access ID and secret access key from step 2.
 
 ---
 
-## Schritt 5: Migration starten
+## Step 4: check the migration data
 
-Button **„Migration starten"** anklicken.
+### Overview page
+After the connection has been configured the migration overview appears with:
+- (1) Shop system / current connection
+- System profile and interface type
+- Time of the last connection check
+- Time of the last migration
 
-### 6 Migrationsphasen
+**Actions:**
+- Button **"Verbindung bearbeiten"** (Edit connection) (2) — make changes
+- Context menu (3) with options:
+  - Create a new connection
+  - Delete the credentials
+  - Switch to another connection
+  - **"Prüfsumme zurücksetzen"** (Reset checksum) (forces a complete retransfer of all data)
 
-#### Phase 1: Lesen der Daten
-- Alle Datensätze aus dem Quellshop werden erfasst
-- Für jeden Datensatz wird eine **Prüfsumme** generiert
-- Bereits übertragene, unveränderte Daten werden **nicht erneut migriert**
-- Prüfsummen zurücksetzen: Kontextmenü > „Prüfsumme zurücksetzen" (erzwingt Vollübertragung)
+### Data selection
+Set the checkboxes for the desired data. What is shown:
+- Data type (**Shopdaten** – shop data – vs. **Plugindaten**/extension data)
+- Number of records to be migrated
+- Information about third-party extensions
 
-#### Phase 2: Fehlerbehebung (intelligente Pause)
-- Problematische Datensätze werden identifiziert
-- Korrekturen direkt in der Admin-Oberfläche möglich
-- Kein Neustart erforderlich nach Korrekturen
+> Third-party data appears with the type **"Plugindaten"** in the list.
 
-#### Phase 3: Schreiben der Daten
-Automatische Erstellung falls im Zielshop noch nicht vorhanden:
-- Kundengruppen
-- Kategorien
-- Sprachen
-- Währungen
-- Verkaufskanäle
+### Data check
+Automatic check for mappability:
+- **Successful mapping:** the migration can start immediately
+- **Manual mapping required:** make corrections, then click **"Fortfahren"**
+- Example of follow-up work: assign a default payment method
+- Automatic mappings can be reviewed and readjusted
 
-#### Phase 4: Download
-- Mediendateien werden aus dem Quellshop heruntergeladen
-- Ablage in der Medienverwaltung des Zielshops
-
-#### Phase 5: Aufräumen
-- Zwischengespeicherte Daten aus Tabelle `swag_migration_data` werden gelöscht
-
-#### Phase 6: Indexierung
-- Alle Shopware-Indexer werden neu angestoßen
-- Gewährleistet Shopware-interne Datenintegrität
-
-### Logbuch
-- Fehler, Warnungen, Informationen nach der Migration
-- Download-Link: **„Protokoll herunterladen"**
-- Auch später über **Historie > Details** abrufbar
+### History
+- All previous migration attempts can be viewed
+- Context menu: **"Details anzeigen"** (Show details) or **"Protokoll herunterladen"** (Download log) (.txt file)
 
 ---
 
-## Migration erneut durchführen
+## Step 5: start the migration
 
-Die Migration kann **beliebig oft** wiederholt werden.
+Click the **"Migration starten"** (Start migration) button.
 
-**Standard-Verhalten (mit Prüfsummen):**
-- Geänderte Daten werden erneut migriert
-- Unveränderte Daten werden übersprungen
+### The 6 migration phases
 
-**Vollständige Neuübertragung erzwingen:**
-1. Migrationsübersicht aufrufen
-2. Shopsystem-Bereich > Kontextmenü (1)
-3. **„Prüfsumme zurücksetzen"** wählen
-4. Alle Daten werden im Zielsystem **überschrieben**
+#### Phase 1: reading the data
+- All records from the source shop are captured
+- A **checksum** is generated for every record
+- Data that has already been transferred and is unchanged is **not migrated again**
+- Reset checksums: context menu > "Prüfsumme zurücksetzen" (forces a full transfer)
+
+#### Phase 2: troubleshooting (intelligent pause)
+- Problematic records are identified
+- Corrections are possible directly in the admin interface
+- No restart is required after corrections
+
+#### Phase 3: writing the data
+Automatically created if not yet present in the target shop:
+- Customer groups
+- Categories
+- Languages
+- Currencies
+- Sales channels
+
+#### Phase 4: download
+- Media files are downloaded from the source shop
+- Stored in the media management of the target shop
+
+#### Phase 5: cleanup
+- Cached data is deleted from the `swag_migration_data` table
+
+#### Phase 6: indexing
+- All Shopware indexers are triggered again
+- Ensures Shopware-internal data integrity
+
+### Log book
+- Errors, warnings, information after the migration
+- Download link: **"Protokoll herunterladen"**
+- Also retrievable later via **Historie > Details** (History > Details)
 
 ---
 
-## Shopware 5: Metadaten-Anpassung vor Migration
+## Running the migration again
 
-Einige Metadaten werden auf **varchar(255)** gekürzt:
+The migration can be repeated **as often as you like**.
 
-| Tabelle | Spalten |
+**Default behaviour (with checksums):**
+- Changed data is migrated again
+- Unchanged data is skipped
+
+**Forcing a complete retransfer:**
+1. Open the migration overview
+2. Shop system area > context menu (1)
+3. Choose **"Prüfsumme zurücksetzen"**
+4. All data is **overwritten** in the target system
+
+---
+
+## Shopware 5: metadata adjustment before the migration
+
+Some metadata is truncated to **varchar(255)**:
+
+| Table | Columns |
 |---|---|
 | s_articles | description |
 | s_categories | metadescription, metakeywords |
 
-> **Hinweis:** Texte über 255 Zeichen werden abgeschnitten. Vor der Migration prüfen!
+> **Note:** texts over 255 characters are cut off. Check before the migration!
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de/Migrationsprozess | https://docs.shopware.com/de/migration-de/shopware6-Migrationsprozess*
+*Source: https://docs.shopware.com/de/migration-de/Migrationsprozess | https://docs.shopware.com/de/migration-de/shopware6-Migrationsprozess*

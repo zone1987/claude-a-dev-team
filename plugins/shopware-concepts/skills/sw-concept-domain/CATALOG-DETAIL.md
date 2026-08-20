@@ -1,182 +1,182 @@
-# Shopware Produktkatalog — Vollständige Konzept-Doku
+# Shopware product catalogue — complete concept documentation
 
-Quellen: `concepts/commerce/catalog/index.md`, `products.md`, `categories.md`, `sales-channels.md`
+Sources: `concepts/commerce/catalog/index.md`, `products.md`, `categories.md`, `sales-channels.md`
 
 ---
 
 ## Contents
 
-- [Produkte (concepts/commerce/catalog/products.md)](#produkte-conceptscommercecatalogproductsmd)
-- [Kategorien (concepts/commerce/catalog/categories.md)](#kategorien-conceptscommercecatalogcategoriesmd)
+- [Products (concepts/commerce/catalog/products.md)](#products-conceptscommercecatalogproductsmd)
+- [Categories (concepts/commerce/catalog/categories.md)](#categories-conceptscommercecatalogcategoriesmd)
 - [Sales Channels (concepts/commerce/catalog/sales-channels.md)](#sales-channels-conceptscommercecatalogsales-channelsmd)
 
-## Produkte (concepts/commerce/catalog/products.md)
+## Products (concepts/commerce/catalog/products.md)
 
-Produkte sind verkäufliche Entitäten (physisch und digital) im Shop.
+Products are sellable entities (physical and digital) in the shop.
 
-### Produktstruktur
+### Product structure
 
-- **Produktdetails** — allgemeine Informationen (Titel, ID, Hersteller, Preis, etc.)
-- **Produkteigenschaften** — Property Groups und Options; in Tabelle auf Produktdetailseite, Listings, Filterung
-- **Kategorien** — hierarchischer Baum; Produkt kann in mehreren Kategorien sein
-- **Verpackungsmaße** — Gewicht (kg), Dimensionen (mm); ab 6.7.1.0 konfigurierbare Anzeigeeinheiten
+- **Product details** — general information (title, ID, manufacturer, price, etc.)
+- **Product properties** — property groups and options; in a table on the product detail page, listings, filtering
+- **Categories** — hierarchical tree; a product can be in several categories
+- **Packaging dimensions** — weight (kg), dimensions (mm); from 6.7.1.0 configurable display units
 
-### Datenbankstruktur (ERD-Kernrelationen)
+### Database structure (core ERD relations)
 
 - `Product` 1:M `ProductCategory` M:1 `Category`
 - `Product` 1:M `ProductOption` M:1 `PropertyGroupOption` M:1 `PropertyGroup`
 
-### Produktvarianten
+### Product variants
 
-- **Selbst-referenzierendes Entity** — Parent-Child-Beziehung (`parent_id`)
-- Varianten erben Felder und Associations vom Parent (DAL-Vererbungsmechanismus)
-- Kategorien ohne eigene Zuweisung → Eltern-Produkt wird verwendet
+- **Self-referencing entity** — parent-child relationship (`parent_id`)
+- Variants inherit fields and associations from the parent (DAL inheritance mechanism)
+- Categories without their own assignment → the parent product is used
 
-### Properties vs. Options — wichtiger Unterschied!
+### Properties vs. options — an important difference!
 
 | | Properties | Options |
 |---|---|---|
-| **Bedeutung** | Fakten über das Produkt | Variantenbestimmende Merkmale |
-| **Beispiele** | Produktserie, Waschanleitung, Herkunftsland | Größe, Farbe, Behältervolumen |
-| **Variantenbildend?** | Nein | **Ja** |
-| **DB-Relation** | product → property_group_option | product → property_group_option |
+| **Meaning** | Facts about the product | Variant-defining characteristics |
+| **Examples** | Product series, washing instructions, country of origin | Size, colour, container volume |
+| **Variant-forming?** | No | **Yes** |
+| **DB relation** | product → property_group_option | product → property_group_option |
 
-Beide nutzen dieselbe Datenbankrelation, aber nur **Options** konstituieren Varianten.
+Both use the same database relation, but only **options** constitute variants.
 
 ### Configurator
 
-Bei Laden eines Variantenprodukts über Store API liefert Shopware ein **Configurator-Objekt**
-mit allen Property Groups und den entsprechenden Varianten. Storefront und Composable Frontends
-nutzen dieses Objekt für die Variantenauswahl-UI.
+When a variant product is loaded via the Store API, Shopware delivers a **configurator object**
+with all property groups and the corresponding variants. Storefront and composable frontends
+use this object for the variant selection UI.
 
 ---
 
-## Kategorien (concepts/commerce/catalog/categories.md)
+## Categories (concepts/commerce/catalog/categories.md)
 
-Kategorien organisieren Produkte, steuern Storefront-Navigation und definieren SEO-relevante URLs.
-Der gesamte Katalog lebt in **einem Kategoriebaum**; jeder Sales Channel wählt Einstiegspunkte.
+Categories organise products, control storefront navigation and define SEO-relevant URLs.
+The entire catalogue lives in **one category tree**; each sales channel chooses entry points.
 
-### Category-Modell
+### Category model
 
-- `parentId`, `path`, `level` — für Breadcrumbs, Vererbung, effizientes Traversieren
-- **Flags**: `active`, `visible`, `hideInNavigation` — steuern Rendering unabhängig
-- **Typen**:
-  - `page` — reguläre Kategorie (Listing oder Landing Page)
-  - `folder` — Strukturierungselement; wird nicht als Seite gerendert
-  - `link` — Redirect zu externer URL oder internem Link
+- `parentId`, `path`, `level` — for breadcrumbs, inheritance, efficient traversal
+- **Flags**: `active`, `visible`, `hideInNavigation` — control rendering independently
+- **Types**:
+  - `page` — regular category (listing or landing page)
+  - `folder` — structuring element; is not rendered as a page
+  - `link` — redirect to an external URL or an internal link
 
-### Entity-Assoziationen
+### Entity associations
 
 ```
-CATEGORY ←→ CATEGORY_TRANSLATION (Übersetzungen)
-CATEGORY → CMS_PAGE (Layout-Referenz, vererbbar)
-CATEGORY → PRODUCT_STREAM (dynamische Produktzuweisung)
-CATEGORY ←→ PRODUCT (explizite Produkt-Links via product_category)
-SALES_CHANNEL → CATEGORY (navigation/footer/service Einstiegspunkte)
-CATEGORY → SEO_URL (generierte URLs per Category + Sales Channel)
+CATEGORY ←→ CATEGORY_TRANSLATION (translations)
+CATEGORY → CMS_PAGE (layout reference, inheritable)
+CATEGORY → PRODUCT_STREAM (dynamic product assignment)
+CATEGORY ←→ PRODUCT (explicit product links via product_category)
+SALES_CHANNEL → CATEGORY (navigation/footer/service entry points)
+CATEGORY → SEO_URL (generated URLs per category + sales channel)
 ```
 
-### Sales Channel Navigation
+### Sales channel navigation
 
-Jeder Sales Channel definiert `navigation`, `footer`, `service`-Einstiegskategorien.
-Storefront baut Menüs aus den Kind-Kategorien dieser Einstiegspunkte.
+Every sales channel defines `navigation`, `footer`, `service` entry categories.
+The storefront builds menus from the child categories of these entry points.
 
-Store-API-Endpunkte:
-- `GET /store-api/navigation/{activeId}/{rootId}` — hierarchische Menüs
-- `GET /store-api/category/{navigationId}` — Kategorie-Details inkl. CMS-Layout-Daten
+Store API endpoints:
+- `GET /store-api/navigation/{activeId}/{rootId}` — hierarchical menus
+- `GET /store-api/category/{navigationId}` — category details incl. CMS layout data
 
-Navigation-Responses sind gecacht. Cache-Anpassung via `NavigationRouteCacheKeyEvent` und `NavigationRouteCacheTagsEvent`.
+Navigation responses are cached. Cache adjustment via `NavigationRouteCacheKeyEvent` and `NavigationRouteCacheTagsEvent`.
 
-### Produktzuweisungen
+### Product assignments
 
-1. **Explizite Zuweisung** — direkte Links in `product_category` (und `product_category_tree`)
-2. **Dynamic Product Groups** — gespeicherte Filter als `product_stream` auf Kategorie (Runtime-Auswertung)
+1. **Explicit assignment** — direct links in `product_category` (and `product_category_tree`)
+2. **Dynamic Product Groups** — stored filters as a `product_stream` on the category (runtime evaluation)
 
-Beide Zuweisungstypen werden für Kategorie-Listings zusammengeführt.
-Listing-Kriterien: `ProductListingRoute` → erweiterbar via `ProductListingCriteriaEvent`.
+Both assignment types are merged for category listings.
+Listing criteria: `ProductListingRoute` → extensible via `ProductListingCriteriaEvent`.
 
-### CMS-Layout-Integration
+### CMS layout integration
 
-- Kategorien können CMS-Layout referenzieren (`cmsPageId`)
-- **Vererbung**: fehlt `cmsPageId` → Parent-Layout wird verwendet
-- Kategorie-spezifische Slot-Konfiguration wird zur Laufzeit gemergt
-- `folder`-Kategorien ignorieren Layouts; `link`-Kategorien redirecten sofort
+- Categories can reference a CMS layout (`cmsPageId`)
+- **Inheritance**: if `cmsPageId` is missing → the parent layout is used
+- Category-specific slot configuration is merged at runtime
+- `folder` categories ignore layouts; `link` categories redirect immediately
 
-### SEO-Felder
+### SEO fields
 
 - `metaTitle`, `metaDescription`, `keywords`, `seoUrl`, `noIndex`, `noFollow`
-- URL-Templates konfigurierbar unter *Einstellungen → SEO*
-- Rebuild beim Ändern von Kategorien oder via SEO-Indexer
+- URL templates configurable under *Settings → SEO*
+- Rebuild when categories change or via the SEO indexer
 
-### Extensibility-Events
+### Extensibility events
 
-- `NavigationLoadedEvent` — Navigation-Baum geladen; anreichern/anpassen
-- `CategoryIndexerEvent` — De-normalisierte Daten oder externe Such-Indizes synchronisieren
-- `ProductListingCriteriaEvent` — Listing-Filter, Sorting, Aggregationen anpassen
-- `SeoUrlUpdateEvent` — auf SEO-URL-Regenerierung reagieren
+- `NavigationLoadedEvent` — navigation tree loaded; enrich/adjust
+- `CategoryIndexerEvent` — synchronise denormalised data or external search indexes
+- `ProductListingCriteriaEvent` — adjust listing filters, sorting, aggregations
+- `SeoUrlUpdateEvent` — react to SEO URL regeneration
 
 ---
 
 ## Sales Channels (concepts/commerce/catalog/sales-channels.md)
 
-Sales Channels definieren, wie der Katalog einer konkreten Zielgruppe exponiert wird.
-Ein Shopware-Instanz kann mehrere "Stores" bedienen ohne Daten zu duplizieren.
+Sales channels define how the catalogue is exposed to a concrete target audience.
+One Shopware instance can serve multiple "stores" without duplicating data.
 
-### Was ein Sales Channel steuert
+### What a sales channel controls
 
-- **Channel-Typ**: Storefront, Headless Store API, Product Feed, custom
-- **Audience Defaults**: Sprache, Währung, Land, Steuerberechnungsmodus, Kundengruppe, Standard-Zahlung/Versand
-- **Navigation Roots**: `navigation`, `footer`, `service` Einstiegskategorien
-- **Presentation**: Home-CMS-Page (`homeCmsPageId`) + Theme-Konfiguration
-- **Availability**: erlaubte Domains, Zahlungs-/Versandmethoden, Sprachen, Währungen, Länder, Produktsichtbarkeit
+- **Channel type**: storefront, headless Store API, product feed, custom
+- **Audience defaults**: language, currency, country, tax calculation mode, customer group, default payment/shipping
+- **Navigation roots**: `navigation`, `footer`, `service` entry categories
+- **Presentation**: home CMS page (`homeCmsPageId`) + theme configuration
+- **Availability**: allowed domains, payment/shipping methods, languages, currencies, countries, product visibility
 
-### Kernmodell
+### Core model
 
 ```
-SALES_CHANNEL → SALES_CHANNEL_DOMAIN (URLs + Sprache + Währung + Snippet-Set)
+SALES_CHANNEL → SALES_CHANNEL_DOMAIN (URLs + language + currency + snippet set)
 SALES_CHANNEL → CATEGORY (navigation/footer/service roots)
-SALES_CHANNEL → CMS_PAGE (Home-Page)
+SALES_CHANNEL → CMS_PAGE (home page)
 SALES_CHANNEL ←→ PRODUCT (via product_visibility)
-SALES_CHANNEL ←→ PAYMENT_METHOD / SHIPPING_METHOD / CURRENCY / LANGUAGE (Mappings)
+SALES_CHANNEL ←→ PAYMENT_METHOD / SHIPPING_METHOD / CURRENCY / LANGUAGE (mappings)
 ```
 
-- `sales_channel`: Defaults, Navigation Roots, Home CMS Page, Access Key, Maintenance-Flags, hreflang
-- `sales_channel_domain`: URL + Sprache + Währung + Snippet Set — Matching über Host/Pfad
+- `sales_channel`: defaults, navigation roots, home CMS page, access key, maintenance flags, hreflang
+- `sales_channel_domain`: URL + language + currency + snippet set — matched via host/path
 
-### Domains und Lokalisierung
+### Domains and localisation
 
-Beispiel-Konfiguration:
+Example configuration:
 ```
 https://example.com/     → en-GB, GBP
 https://de.example.com   → de-DE, EUR
 https://example.es/      → es-ES, EUR
 ```
 
-**Empfehlung**: Subdomains (z.B. `de.example.com`) statt Sub-Pfade (z.B. `example.com/de`),
-da Sub-Pfade bei gleicher Domain zu Cookie-Konflikten zwischen Channels führen.
+**Recommendation**: subdomains (e.g. `de.example.com`) instead of sub-paths (e.g. `example.com/de`),
+because sub-paths on the same domain lead to cookie conflicts between channels.
 
-`hreflangActive` und `hreflangDefaultDomainId` steuern hreflang-Links.
+`hreflangActive` and `hreflangDefaultDomainId` control hreflang links.
 
-### Produkt-Sichtbarkeit
+### Product visibility
 
-Produkte benötigen eine `product_visibility`-Zeile pro Sales Channel.
-Visibility-Level bestimmt: durchsuchbar und/oder direkt erreichbar.
-`main_category` — SEO-freundliche URL pro Produkt und Sales Channel.
+Products need a `product_visibility` row per sales channel.
+The visibility level determines: searchable and/or directly reachable.
+`main_category` — SEO-friendly URL per product and sales channel.
 
-### Context-Erstellung
+### Context creation
 
-Eingehende Requests → Sales Channel via Access Key oder Domain-Matching auflösen.
-`SalesChannelContextService` baut `SalesChannelContext` mit:
-- Defaults (Sprache, Währung, Zahlung, Versand)
-- Token, Customer, regelbasierte Preise, Berechtigungen
+Incoming requests → resolve the sales channel via access key or domain matching.
+`SalesChannelContextService` builds the `SalesChannelContext` with:
+- Defaults (language, currency, payment, shipping)
+- Token, customer, rule-based prices, permissions
 
-Relevante Store-API-Routen:
-- `GET /store-api/context` — aktuellen Kontext lesen/wechseln
+Relevant Store API routes:
+- `GET /store-api/context` — read/switch the current context
 - `GET /store-api/navigation/{activeId}/{rootId}`
 - `GET /store-api/category/{navigationId}`
 
 ### Extension Points
 
-- `SalesChannelContextCreatedEvent` — Kontext aufgebaut; anreichern oder Session persistieren
-- `SalesChannelContextSwitchEvent` — bei Wechsel von Währung, Sprache, Zahlung, Versand, Adresse
-- `SalesChannelContextRestoredEvent` — gespeicherter Context-Token wiederhergestellt
+- `SalesChannelContextCreatedEvent` — context built; enrich or persist the session
+- `SalesChannelContextSwitchEvent` — on a change of currency, language, payment, shipping, address
+- `SalesChannelContextRestoredEvent` — stored context token restored

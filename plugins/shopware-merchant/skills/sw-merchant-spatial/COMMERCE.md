@@ -1,24 +1,24 @@
 # Shopware 6 – Spatial Commerce
 
-Shopware Spatial Commerce umfasst alle Funktionen zur Darstellung von Produkten in 3D,
-Augmented Reality und immersiven Erlebnissen. Verfügbar ab dem **Rise Plan** (oder höher).
+Shopware Spatial Commerce comprises all functions for presenting products in 3D,
+augmented reality and immersive experiences. Available from the **Rise plan** (or higher).
 
-## Übersicht der Funktionen
+## Overview of the functions
 
-| Funktion | Ort im Admin | Plan |
+| Function | Location in the admin | Plan |
 |---|---|---|
-| 3D-Modelle an Produkten | Kataloge > Produkte > Medien | Rise+ |
-| 3D-Viewer Block (Erlebniswelten) | Inhalte > Erlebniswelten | Rise+ |
-| Immersive Elements App | Erweiterungen > Meine Erweiterungen | Rise+ |
-| Scene Editor | Inhalte > Scene Editor | Rise+ |
+| 3D models on products | **Kataloge > Produkte > Medien** (Catalogues > Products > Media) | Rise+ |
+| 3D viewer block (Erlebniswelten) | **Inhalte > Erlebniswelten** (Content > Shopping Experiences) | Rise+ |
+| Immersive Elements app | **Erweiterungen > Meine Erweiterungen** (Extensions > My extensions) | Rise+ |
+| Scene Editor | **Inhalte > Scene Editor** | Rise+ |
 
-## Sub-Skills
+## Sub-skills
 
-- `sw-merchant-spatial-3d-produkte` – 3D-Modelle an Produkten & AR-Konfiguration
-- `sw-merchant-spatial-immersive-elements` – Immersive Elements App (6 Blöcke)
-- `sw-merchant-spatial-scene-editor` – Scene Editor (3D-Szenen & Bildexport)
+- `sw-merchant-spatial-3d-produkte` – 3D models on products & AR configuration
+- `sw-merchant-spatial-immersive-elements` – Immersive Elements app (6 blocks)
+- `sw-merchant-spatial-scene-editor` – Scene Editor (3D scenes & image export)
 
-Vollständige Referenz: `COMMERCE-DETAIL.md`
+Full reference: `COMMERCE-DETAIL.md`
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/spatial-commerce

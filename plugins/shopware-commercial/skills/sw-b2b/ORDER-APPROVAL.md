@@ -1,12 +1,12 @@
 # Skill: sw-b2b-order-approval
 
-Entwickler-Referenz fuer den B2B Order Approval Workflow.
+Developer reference for the B2B Order Approval workflow.
 
-## Referenzen
+## References
 
 - [ORDER-APPROVAL-DETAIL.md](ORDER-APPROVAL-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-Employee Management (Voraussetzung): `sw-b2b-components-employee-management`.
-Uberblick B2B Components: `sw-b2b-components`.
+Employee Management (prerequisite): `sw-b2b-components-employee-management`.
+Overview of B2B Components: `sw-b2b-components`.

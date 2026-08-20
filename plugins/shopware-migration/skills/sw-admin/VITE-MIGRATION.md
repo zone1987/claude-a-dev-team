@@ -1,13 +1,13 @@
-# Shopware 6 — Webpack → Vite (Admin-Build)
+# Shopware 6 — Webpack → Vite (admin build)
 
-6.7 stellt den Admin-Build von Webpack auf **Vite** um. Plugins müssen i.d.R. nur dem neuen Build folgen
-(Entry `main.js` bleibt); eigene Webpack-Configs entfallen/werden ersetzt.
+6.7 switches the admin build from Webpack to **Vite**. Plugins usually only have to follow the new build
+(entry `main.js` stays); custom Webpack configs are dropped/replaced.
 
-- Eigene `build/webpack.config.js`-Anpassungen auf die Vite-Mechanik überführen (sofern vorhanden).
-- Asset-/Alias-Auflösung über Vite; `import` statt Webpack-spezifischer Loader.
+- Port custom `build/webpack.config.js` adjustments to the Vite mechanics (if any exist).
+- Asset/alias resolution via Vite; `import` instead of Webpack-specific loaders.
 - Dev: `./bin/watch-administration.sh` (HMR). Build: `bin/console administration:build`.
 
-Die meisten Standard-Plugins funktionieren ohne Build-Config-Änderung. Details/Edge-Cases in den References des Skills
-`shopware-6.7-migration`. Storefront-Build bleibt Webpack-basiert.
+Most standard plugins work without a build config change. Details/edge cases in the references of the
+`shopware-6.7-migration` skill. The storefront build stays Webpack-based.
 
 → [../shopware-6.7-migration/`VITE-MIGRATION-BUILD-SYSTEM-MIGRATION.md`](../shopware-6.7-migration/`VITE-MIGRATION-BUILD-SYSTEM-MIGRATION.md`)

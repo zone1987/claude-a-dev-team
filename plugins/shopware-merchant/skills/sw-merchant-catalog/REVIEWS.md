@@ -1,39 +1,39 @@
-# Shopware 6 – Bewertungen
+# Shopware 6 – Bewertungen (Reviews)
 
-Produktbewertungen werden unter **Kataloge > Bewertungen** verwaltet.
-Kunden können auf der Produktdetailseite Rezensionen hinterlassen.
+Product reviews are managed under **Kataloge** (Catalogues) > **Bewertungen** (Reviews).
+Customers can leave reviews on the product detail page.
 
-## Bewertungsübersicht
+## Review overview
 
-Zeigt: Titel, Sternebewertung, bewertetes Produkt, Kunde, Veröffentlichungsstatus.
+Shows: title, star rating, reviewed product, customer, publication status.
 
-## Bewertung freigeben
+## Approving a review
 
-1. Kataloge > Bewertungen > Bewertung öffnen
-2. Tab „Eigenschaften" > **„Sichtbar"** aktivieren
-3. Sprache festlegen
-4. Speichern
+1. Kataloge > Bewertungen > open the review
+2. Tab "Eigenschaften" (Properties) > activate **"Sichtbar"** (Visible)
+3. Set the language
+4. Save
 
-> Bewertungen sind erst nach Freigabe im Frontend sichtbar!
+> Reviews are only visible in the frontend after approval!
 
-## Bewertungen deaktivieren (global)
+## Deactivating reviews (globally)
 
-Einstellungen > Handel > Produkte > **„Bewertungen anzeigen"** pro Verkaufskanal deaktivieren.
+Einstellungen (Settings) > Handel (Commerce) > Produkte (Products) > deactivate **"Bewertungen anzeigen"** (Show reviews) per Verkaufskanal (Sales channel).
 
-## AI-Features (ab Rise-Plan)
+## AI features (from the Rise plan)
 
-- **KI-Übersetzung**: Bewertungen automatisch übersetzen (in Einstellungen aktivieren)
-- **AI-Zusammenfassung**: Automatische Kurzzusammenfassung (neutral oder positiv), bearbeitbar
+- **KI-Übersetzung** (AI translation): translate reviews automatically (activate in Einstellungen)
+- **AI summary**: automatic short summary (neutral or positive), editable
 
-## Kunden-Frontend
+## Customer frontend
 
-- Gesamtbewertung mit Sterne-Anzeige
-- Prozentuale Verteilung der Bewertungen
-- Filterung nach Sternanzahl
-- Mindestlänge: 40 Zeichen für eigene Bewertung
-- Anzeige von Bewertungen anderer Sprachen möglich
+- Overall rating with star display
+- Percentage distribution of the ratings
+- Filtering by number of stars
+- Minimum length: 40 characters for your own review
+- Reviews in other languages can be displayed
 
-Siehe `REVIEWS-DETAIL.md` für vollständige Details.
+See `REVIEWS-DETAIL.md` for full details.
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/kataloge/bewertungen

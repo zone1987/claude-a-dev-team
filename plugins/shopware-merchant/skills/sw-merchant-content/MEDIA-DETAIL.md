@@ -1,341 +1,341 @@
-# Shopware 6 – Medien: Vollständige Dokumentation
+# Shopware 6 – Medien (Media): full documentation
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/Inhalte/medien  
-**Version:** ab 6.7.0.0
+**Source:** https://docs.shopware.com/de/shopware-6-de/Inhalte/medien  
+**Version:** from 6.7.0.0
 
 ---
 
 ## Contents
 
 - [Screenshots](#screenshots)
-- [Übersicht](#übersicht)
-- [Unterstützte Dateitypen](#unterstützte-dateitypen)
-- [Dateien hochladen](#dateien-hochladen)
-- [Medien-Konfiguration (Einzeldatei)](#medien-konfiguration-einzeldatei)
-- [Ordnerverwaltung](#ordnerverwaltung)
-- [Ungenutzte Medien löschen](#ungenutzte-medien-löschen)
-- [AI-Copilot: Bildgenerierung](#ai-copilot-bildgenerierung)
-- [3D-Modelle (GLB-Format)](#3d-modelle-glb-format)
-- [Best Practices](#best-practices)
-- [CLI-Befehle (Konsole)](#cli-befehle-konsole)
+- [Overview](#overview)
+- [Supported file types](#supported-file-types)
+- [Uploading files](#uploading-files)
+- [Media configuration (single file)](#media-configuration-single-file)
+- [Folder management](#folder-management)
+- [Deleting unused media](#deleting-unused-media)
+- [AI Copilot: image generation](#ai-copilot-image-generation)
+- [3D models (GLB format)](#3d-models-glb-format)
+- [Best practices](#best-practices)
+- [CLI commands (console)](#cli-commands-console)
 
 ## Screenshots
 
-| Datei | Inhalt |
+| File | Content |
 |---|---|
-| `../../assets/medien-uebersicht.png` | Medien-Übersicht |
-| `../../assets/medien-ersetzen.png` | Aktionen-Toolbar (Ersetzen, Download, etc.) |
-| `../../assets/medien-metadaten.png` | Metadaten-Bearbeitungsbereich |
-| `../../assets/medien-verwendung.png` | „Wird verwendet in"-Bereich |
-| `../../assets/ordner.png` | Ordnerstruktur-Ansicht |
-| `../../assets/ordner-aktionen.png` | Ordner-Kontextmenü |
-| `../../assets/ordner-einstellungen.png` | Ordner-Einstellungen-Dialog |
-| `../../assets/thumbnails.png` | Thumbnail-Konfiguration |
-| `../../assets/bild-generierung.jpg` | AI Bildgenerierung Interface |
-| `../../assets/bild-generiert.jpg` | Generiertes Bild Ergebnis |
-| `../../assets/model-viewer.png` | 3D Model Viewer in Sidebar |
-| `../../assets/model-editor.png` | 3D Model Editor Vollbild |
+| `../../assets/medien-uebersicht.png` | Medien overview |
+| `../../assets/medien-ersetzen.png` | Actions toolbar (replace, download, etc.) |
+| `../../assets/medien-metadaten.png` | Metadata editing area |
+| `../../assets/medien-verwendung.png` | "Wird verwendet in" (Used in) area |
+| `../../assets/ordner.png` | Folder structure view |
+| `../../assets/folder-actions.png` | Folder context menu |
+| `../../assets/ordner-einstellungen.png` | Folder settings dialogue |
+| `../../assets/thumbnails.png` | Thumbnail configuration |
+| `../../assets/bild-generierung.jpg` | AI image generation interface |
+| `../../assets/bild-generiert.jpg` | Generated image result |
+| `../../assets/model-viewer.png` | 3D model viewer in the sidebar |
+| `../../assets/model-editor.png` | 3D model editor, full screen |
 
 ---
 
-## Übersicht
+## Overview
 
-Pfad: **Inhalte > Medien**
+Path: **Inhalte** (Content) **> Medien**
 
-Die Medienverwaltung ist die zentrale Bibliothek für alle Dateien im Shop.
-Alle Bereiche (Erlebniswelten, Produkte, Kategorien, Themes) greifen auf
-diese Bibliothek zu.
+Media management is the central library for all files in the shop.
+All areas (Erlebniswelten (Shopping Experiences), Produkte (Products), Kategorien (Categories), Themes) access
+this library.
 
-### Interface-Elemente der Übersicht
+### Interface elements of the overview
 
-| Element | Funktion |
+| Element | Function |
 |---|---|
-| Suchfeld (oben) | Medien nach Name suchen |
-| „Dateien hochladen" | Upload-Dialog öffnen |
-| URL-Upload | Datei per URL hochladen |
-| Anzeige-Optionen | Listen- oder Kachelansicht |
-| Sortier-Optionen | Nach Name, Datum, Typ sortieren |
-| „Bildgenerierung" | KI-Bildgenerierung (kommerziell) |
-| „Neuen Ordner hinzufügen" | Neuen Ordner anlegen |
+| Search field (top) | Search media by name |
+| "Dateien hochladen" (Upload files) | Open the upload dialogue |
+| URL upload | Upload a file via URL |
+| Display options | List or tile view |
+| Sorting options | Sort by name, date, type |
+| "Bildgenerierung" (Image generation) | AI image generation (commercial) |
+| "Neuen Ordner hinzufügen" (Add new folder) | Create a new folder |
 
 ---
 
-## Unterstützte Dateitypen
+## Supported file types
 
-### Bilder
+### Images
 jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps
 
 ### Video
 webm, mkv, flv, ogv, ogg, mov, mp4, avi, wmv
 
-### Dokumente
+### Documents
 pdf, txt, doc
 
 ### Audio
 aac, mp3, wav, flac, oga, wma
 
-### 3D-Modelle
-glb (GL Binary – für Model Viewer und 3D-Blöcke in Erlebniswelten)
+### 3D models
+glb (GL Binary – for the model viewer and 3D blocks in Erlebniswelten)
 
 ---
 
-## Dateien hochladen
+## Uploading files
 
-### Methode 1: Direktupload
-1. „Dateien hochladen" anklicken
-2. Dateien aus dem Dateisystem auswählen
-3. Mehrere Dateien gleichzeitig möglich
+### Method 1: direct upload
+1. Click "Dateien hochladen"
+2. Select files from the file system
+3. Several files at once are possible
 
-### Methode 2: URL-Upload
-1. URL-Upload-Symbol anklicken
-2. Direkte URL zur Datei eingeben
-3. Shopware lädt Datei automatisch herunter und speichert sie
+### Method 2: URL upload
+1. Click the URL upload icon
+2. Enter the direct URL to the file
+3. Shopware downloads the file automatically and stores it
 
-### Duplikat-Handling
+### Duplicate handling
 
-Wenn eine Datei mit gleichem Namen bereits existiert, erscheint ein Pop-up:
+If a file with the same name already exists, a pop-up appears:
 
-| Option | Verhalten |
+| Option | Behaviour |
 |---|---|
-| Hochladen und ersetzen | Vorhandene Datei wird überschrieben |
-| Hochladen und umbenennen | Neue Datei erhält automatisch geänderten Namen |
-| Vorhandene Datei verwenden | Upload abbrechen, bestehende Datei nutzen |
-| Datei überspringen | Upload für diese Datei überspringen |
+| Hochladen und ersetzen (Upload and replace) | The existing file is overwritten |
+| Hochladen und umbenennen (Upload and rename) | The new file automatically gets a changed name |
+| Vorhandene Datei verwenden (Use existing file) | Cancel the upload, use the existing file |
+| Datei überspringen (Skip file) | Skip the upload for this file |
 
 ---
 
-## Medien-Konfiguration (Einzeldatei)
+## Media configuration (single file)
 
-Klick auf ein Medium öffnet das Detailpanel rechts.
+Clicking a medium opens the detail panel on the right.
 
-### Vorschau
-- Bildvorschau oder Datei-Icon
-- Bei 3D-Modellen: interaktiver Model Viewer
+### Preview
+- Image preview or file icon
+- For 3D models: interactive model viewer
 
-### Metadaten (editierbar)
+### Metadata (editable)
 
-| Feld | Beschreibung |
+| Field | Beschreibung (Description) |
 |---|---|
-| Name | Anzeigename der Datei (nicht Dateiname) |
-| Alt-Text | Barrierefreiheits-Text für Bilder (wichtig für SEO) |
-| Meta-Titel | Titel für Suchmaschinen |
+| Name | Display name of the file (not the file name) |
+| Alt-Text (Alt text) | Accessibility text for images (important for SEO) |
+| Meta-Titel (Meta title) | Title for search engines |
 
 ### Tags
-- Schlagworte zur besseren Auffindbarkeit
-- Mehrere Tags möglich
+- Keywords for better findability
+- Several tags possible
 
-### Aktionen (Toolbar)
+### Actions (toolbar)
 
-| Aktion | Beschreibung |
+| Action | Beschreibung |
 |---|---|
-| Ersetzen | Datei durch neue Version austauschen (URL bleibt gleich) |
-| Download | Datei herunterladen |
-| Verschieben | In anderen Ordner verschieben |
-| Link kopieren | Direkte URL der Datei in Zwischenablage |
-| Löschen | Datei permanent entfernen |
+| Ersetzen (Replace) | Swap the file for a new version (the URL stays the same) |
+| Download | Download the file |
+| Verschieben (Move) | Move to another folder |
+| Link kopieren (Copy link) | Direct URL of the file to the clipboard |
+| Löschen (Delete) | Remove the file permanently |
 
-### „Wird verwendet in"
-- Zeigt alle Stellen, an denen das Medium verwendet wird
-- Mit Direktlinks zur jeweiligen Seite/Produkt/Kategorie
-- Wichtig: Vor dem Löschen prüfen!
+### "Wird verwendet in" (Used in)
+- Shows every place where the medium is used
+- With direct links to the respective page/product/category
+- Important: check before deleting!
 
 ---
 
-## Ordnerverwaltung
+## Folder management
 
-### Ordner erstellen
-„Neuen Ordner hinzufügen" → Namen eingeben → Bestätigen
+### Creating a folder
+"Neuen Ordner hinzufügen" → enter a name → confirm
 
-### Ordner-Navigation
-- Klick auf Ordner öffnet Inhalt
-- Zurück-Navigation über Pfeil-Symbol oder Breadcrumb
+### Folder navigation
+- Clicking a folder opens its content
+- Navigate back via the arrow icon or the breadcrumb
 
-### Ordner-Aktionen (Kontextmenü)
+### Folder actions (context menu)
 
-| Aktion | Beschreibung |
+| Action | Beschreibung |
 |---|---|
-| Verschieben | Ordner in übergeordneten Ordner verschieben |
-| Einstellungen | Ordner-Konfiguration öffnen |
-| Auflösen | Ordner entfernen; Inhalt in übergeordneten Ordner verschieben |
-| Löschen | Ordner und gesamten Inhalt permanent löschen |
+| Verschieben (Move) | Move the folder into the parent folder |
+| Einstellungen (Settings) | Open the folder configuration |
+| Auflösen (Dissolve) | Remove the folder; move the content into the parent folder |
+| Löschen (Delete) | Delete the folder and all of its content permanently |
 
-**Achtung**: „Löschen" entfernt alle darin enthaltenen Dateien unwiederbringlich.
+**Caution**: "Löschen" removes all files it contains irretrievably.
 
-### Ordner-Einstellungen
+### Folder settings
 
-**Tab „Allgemein":**
-- Namen ändern
-- Standard-Speicherort für bestimmte Medientypen definieren
-  (z.B. „Alle Produktbilder landen automatisch in diesem Ordner")
+**"Allgemein" (General) tab:**
+- Change the name
+- Define the default storage location for certain media types
+  (e.g. "all product images automatically end up in this folder")
 
-**Tab „Thumbnails":**
+**"Thumbnails" tab:**
 
-| Einstellung | Beschreibung |
+| Setting | Beschreibung |
 |---|---|
-| Einstellungen vom übergeordneten Ordner übernehmen | Thumbnails von Elternordner erben |
-| Thumbnails generieren | Thumbnail-Generierung für diesen Ordner aktivieren |
-| Seitenverhältnis beibehalten | Proportionen beim Skalieren beibehalten |
-| Thumbnail-Qualität | Wert 1–100 (Komprimierungsqualität) |
-| Thumbnail-Größen | Liste der generierten Größen |
+| Einstellungen vom übergeordneten Ordner übernehmen (Adopt settings from the parent folder) | Inherit thumbnails from the parent folder |
+| Thumbnails generieren (Generate thumbnails) | Enable thumbnail generation for this folder |
+| Seitenverhältnis beibehalten (Keep aspect ratio) | Keep the proportions when scaling |
+| Thumbnail-Qualität (Thumbnail quality) | Value 1–100 (compression quality) |
+| Thumbnail-Größen (Thumbnail sizes) | List of generated sizes |
 
-**Standard-Thumbnail-Größen:** 400×400, 800×800, 1920×1920
+**Default thumbnail sizes:** 400×400, 800×800, 1920×1920
 
-### Thumbnails neu generieren
+### Regenerating thumbnails
 
-Via Konsole (SSH/CLI):
+Via the console (SSH/CLI):
 ```bash
 bin/console media:generate-thumbnails
 ```
 
 ---
 
-## Ungenutzte Medien löschen
+## Deleting unused media
 
-### Über Konsole (empfohlen bei großer Menge)
+### Via the console (recommended for large amounts)
 
 ```bash
 bin/console media:delete-unused
 ```
 
-Optionale Parameter:
+Optional parameters:
 ```bash
-# Nur Vorschau (trocken laufen lassen)
+# Preview only (dry run)
 bin/console media:delete-unused --dry-run
 
-# Bestimmten Ordner prüfen
+# Check a specific folder
 bin/console media:delete-unused --folder-id=<ID>
 ```
 
-**Hinweis**: Vor dem Ausführen Backup erstellen. Aktion ist nicht umkehrbar.
+**Note**: create a backup before running it. The action cannot be reversed.
 
 ---
 
-## AI-Copilot: Bildgenerierung
+## AI Copilot: image generation
 
-**Verfügbarkeit:** Shopware Rise Plan oder höher + Shopware Commercial Extension installiert
+**Availability:** Shopware Rise plan or higher + Shopware Commercial extension installed
 
-### Verwendung
+### Usage
 
-1. Inhalte > Medien > Button „Bildgenerierung"
-2. Beschreibung des gewünschten Bildes eingeben (Prompt)
-3. „Bild generieren" anklicken
-4. Generiertes Bild prüfen:
-   - „Speichern" → Bild wird in Ordner „AI-generated" abgelegt
-   - „Neu generieren" → Neues Bild mit gleichem Prompt erstellen
+1. Inhalte > Medien > "Bildgenerierung" button
+2. Enter a description of the desired image (prompt)
+3. Click "Bild generieren" (Generate image)
+4. Check the generated image:
+   - "Speichern" (Save) → the image is stored in the "AI-generated" folder
+   - "Neu generieren" (Regenerate) → create a new image with the same prompt
 
-### Technische Details
+### Technical details
 
-- **KI-Modell:** Google Nano Banana 2
-- **Bilder pro Anfrage:** 1 Bild
-- **Tägliches Limit:** Begrenzte Anzahl Anfragen pro Tag
-- **Nachbearbeitung:** Nicht möglich; bei Unzufriedenheit: neu generieren
-- **Speicherort:** Automatisch im Ordner „AI-generated"
+- **AI model:** Google Nano Banana 2
+- **Images per request:** 1 image
+- **Daily limit:** limited number of requests per day
+- **Post-processing:** not possible; if unsatisfied: regenerate
+- **Storage location:** automatically in the "AI-generated" folder
 
-### Unterstützte Seitenverhältnisse
+### Supported aspect ratios
 
 1:1 | 2:3 | 3:2 | 3:4 | 4:3 | 9:16 | 16:9 | 21:9
 
-### Unterstützte Auflösungen
+### Supported resolutions
 
-- 1K (Standard)
+- 1K (default)
 - 2K
 
-**Standardwerte:** 16:9 Seitenverhältnis, 1K Auflösung
+**Default values:** 16:9 aspect ratio, 1K resolution
 
-### Prompt-Tipps für bessere Ergebnisse
+### Prompt tips for better results
 
-- **Konkret sein**: „Produkt-Lifestyle-Bild eines Sneakers auf Holzboden, natürliches Licht, horizontal"
-- **Qualitätshinweise**: Adjektive wie „hochwertig", „professionell", „sauber" verwenden
-- **Ausrichtung angeben**: Landscape/Portrait explizit nennen
-- **Maße optional**: Seitenverhältnis kann im Prompt genannt werden
+- **Be concrete**: "product lifestyle image of a sneaker on a wooden floor, natural light, horizontal"
+- **Quality hints**: use adjectives such as "high-quality", "professional", "clean"
+- **State the orientation**: name landscape/portrait explicitly
+- **Dimensions optional**: the aspect ratio can be named in the prompt
 
-### Automatische Erkennung aus Prompt
+### Automatic detection from the prompt
 
-Das System analysiert den Prompt und erkennt automatisch:
-- Format (Landscape/Portrait/Square)
-- Seitenverhältnis
-- Gewünschte Auflösung
+The system analyses the prompt and automatically detects:
+- Format (landscape/portrait/square)
+- Aspect ratio
+- Desired resolution
 
 ---
 
-## 3D-Modelle (GLB-Format)
+## 3D models (GLB format)
 
-### Voraussetzungen
-- Datei im .glb Format (GL Binary)
-- Für 3D-Blöcke in Erlebniswelten: Shopware Rise Plan
+### Prerequisites
+- File in .glb format (GL Binary)
+- For 3D blocks in Erlebniswelten: Shopware Rise plan
 
-### Model Viewer (Vorschau)
+### Model viewer (preview)
 
-Automatisch aktiv wenn GLB-Datei ausgewählt:
+Automatically active when a GLB file is selected:
 
-| Steuerung | Aktion |
+| Control | Action |
 |---|---|
-| Linke Maustaste + Ziehen | Modell drehen |
-| Rechte Maustaste + Ziehen | Kamera verschieben (Pan) |
-| Scrollrad | Zoom In/Out |
-| Expand-Button | Model Editor als Modal öffnen |
+| Left mouse button + drag | Rotate the model |
+| Right mouse button + drag | Move the camera (pan) |
+| Scroll wheel | Zoom in/out |
+| Expand button | Open the model editor as a modal |
 
-### Model Editor (Bearbeitung)
+### Model editor (editing)
 
-Öffnet sich über Expand-Button des Model Viewers.
+Opens via the expand button of the model viewer.
 
-#### Werkzeuge
+#### Tools
 
-**Verschieben-Werkzeug (Move Tool):**
-- Blauer Pfeil: Z-Achse (Tiefe)
-- Grüner Pfeil: Y-Achse (Höhe)
-- Roter Pfeil: X-Achse (Breite)
-- Farbige Quadrate: Kombinierte Ebenen (XY, XZ, YZ)
+**Move tool (Verschieben-Werkzeug):**
+- Blue arrow: Z axis (depth)
+- Green arrow: Y axis (height)
+- Red arrow: X axis (width)
+- Coloured squares: combined planes (XY, XZ, YZ)
 
-**Drehen-Werkzeug (Rotate Tool):**
-- Roter Ring: Vorwärts/Rückwärts kippen (Pitch)
-- Blauer Ring: Links/Rechts kippen (Yaw)
-- Grüner Ring: Rotation um eigene Achse (Roll)
-- Gelber Außenring: Kameraperspektive ändern
+**Rotate tool (Drehen-Werkzeug):**
+- Red ring: tilt forwards/backwards (pitch)
+- Blue ring: tilt left/right (yaw)
+- Green ring: rotation around its own axis (roll)
+- Yellow outer ring: change the camera perspective
 
-**Skalieren-Werkzeug:**
-- Standard: Proportionale Skalierung (alle Achsen gleichzeitig)
-- Optional: Einzelne Achsen skalieren
-  - Grün: Höhe (Y)
-  - Rot: Breite (X)
-  - Blau: Tiefe (Z)
+**Scale tool:**
+- Default: proportional scaling (all axes at once)
+- Optional: scale individual axes
+  - Green: height (Y)
+  - Red: width (X)
+  - Blue: depth (Z)
 
-#### Persistenz
-Alle Änderungen im Model Editor werden automatisch in der Datenbank gespeichert.
-Kein manuelles Speichern erforderlich.
+#### Persistence
+All changes in the model editor are saved to the database automatically.
+No manual saving required.
 
 ---
 
-## Best Practices
+## Best practices
 
-### Dateiorganisation
-- Ordnerstruktur von Anfang an anlegen (z.B. nach Kategorie oder Kampagne)
-- Standard-Speicherorte für häufige Medientypen konfigurieren
-- Regelmäßig ungenutzte Medien aufräumen (`media:delete-unused`)
+### File organisation
+- Set up the folder structure from the start (e.g. by category or campaign)
+- Configure default storage locations for common media types
+- Tidy up unused media regularly (`media:delete-unused`)
 
-### Bildoptimierung
-- Webp-Format bevorzugen (bessere Kompression als JPG/PNG)
-- Thumbnails für Produktbilder aktivieren
-- Alt-Texte immer pflegen (SEO und Barrierefreiheit)
+### Image optimisation
+- Prefer the webp format (better compression than JPG/PNG)
+- Enable thumbnails for product images
+- Always maintain alt texts (SEO and accessibility)
 
 ### Performance
-- Bilder vor dem Upload komprimieren
-- Maximale Dateigröße beachten (je nach Server-Konfiguration)
-- Thumbnails nutzen statt Originalgröße auszuliefern
+- Compress images before uploading
+- Mind the maximum file size (depending on the server configuration)
+- Use thumbnails instead of delivering the original size
 
 ---
 
-## CLI-Befehle (Konsole)
+## CLI commands (console)
 
 ```bash
-# Ungenutzte Medien löschen
+# Delete unused media
 bin/console media:delete-unused
 
-# Thumbnails neu generieren
+# Regenerate thumbnails
 bin/console media:generate-thumbnails
 
-# Thumbnails für bestimmten Ordner
+# Thumbnails for a specific folder
 bin/console media:generate-thumbnails --folder-id=<ID>
 ```
 
-Weitere CLI-Dokumentation: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/shopware-cli#media
+Further CLI documentation: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/shopware-cli#media

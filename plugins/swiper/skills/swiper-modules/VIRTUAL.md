@@ -1,6 +1,6 @@
-# Swiper — Virtual Slides-Modul
+# Swiper — Virtual Slides module
 
-Nur die im sichtbaren Bereich benötigten Slides im DOM halten — ideal für hunderte Slides.
+Keep only the slides needed in the visible area in the DOM — ideal for hundreds of slides.
 
 ```js
 import Swiper from 'swiper';
@@ -18,7 +18,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-**Hinweis:** Nicht kompatibel mit Grid-Modul und `slidesPerView: 'auto'`.
+**Note:** Not compatible with the Grid module and `slidesPerView: 'auto'`.
 
-## Vertiefung
-- [VIRTUAL-DETAIL.md](VIRTUAL-DETAIL.md) — alle Parameter, Properties, Methoden, React/Vue-Integration
+## Deep dive
+- [VIRTUAL-DETAIL.md](VIRTUAL-DETAIL.md) — all parameters, properties, methods, React/Vue integration

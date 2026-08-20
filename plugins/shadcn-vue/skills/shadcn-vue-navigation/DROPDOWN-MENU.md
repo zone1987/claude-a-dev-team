@@ -1,11 +1,11 @@
 # shadcn-vue DropdownMenu
 
-Vollstaendiges Dropdown-Menu basierend auf reka-ui DropdownMenuRoot. Unterstuetzt einfache Items, Checkboxen, Radio-Gruppen, Submenus, Shortcuts und destruktive Varianten.
+Complete dropdown menu based on reka-ui DropdownMenuRoot. Supports simple items, checkboxes, radio groups, submenus, shortcuts and destructive variants.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `DROPDOWN-MENU-INSTALLATION.md` — CLI- und manuelle Installation
-- `DROPDOWN-MENU-SOURCE.md` — Vollstaendiger Quellcode aller Komponenten
-- `DROPDOWN-MENU-API.md` — Props, Slots, Emits aller Sub-Komponenten
-- `DROPDOWN-MENU-EXAMPLES.md` — Alle Demos mit Code
+Load the references:
+- `DROPDOWN-MENU-INSTALLATION.md` — CLI and manual installation
+- `DROPDOWN-MENU-SOURCE.md` — Complete source code of all components
+- `DROPDOWN-MENU-API.md` — Props, slots, emits of all sub-components
+- `DROPDOWN-MENU-EXAMPLES.md` — All demos with code

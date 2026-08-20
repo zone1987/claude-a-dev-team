@@ -6,18 +6,18 @@
 npx shadcn-vue@latest add dropdown-menu
 ```
 
-## Manuell
+## Manual
 
-### Abhaengigkeiten
+### Dependencies
 
 ```bash
 npm install reka-ui
 ```
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren nach `components/ui/dropdown-menu/`
-2. Importpfade anpassen
+1. Copy the source code to `components/ui/dropdown-menu/`
+2. Adjust the import paths
 
 ### Import
 
@@ -43,7 +43,7 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://reka-ui.com/docs/components/dropdown-menu
 - https://reka-ui.com/docs/components/dropdown-menu#api-reference
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/dropdown-menu

@@ -1,120 +1,120 @@
-# Shopware App-System — Vollständige Konzept-Doku
+# Shopware app system — complete concept documentation
 
-Quellen: `concepts/extensions/apps-concept.md`, `concepts/framework/in-app-purchases.md`
+Sources: `concepts/extensions/apps-concept.md`, `concepts/framework/in-app-purchases.md`
 
 ---
 
-## App-System (apps-concept.md)
+## App system (apps-concept.md)
 
-Das App-System ermöglicht Erweiterung und Anpassung von Shopware-Funktionalität und -Erscheinungsbild.
-Nutzt wohldefinierte Extension Points.
+The app system makes it possible to extend and adapt Shopware functionality and appearance.
+It uses well-defined extension points.
 
-### Architektur-Prinzip
+### Architectural principle
 
-**Entkopplung** von Shopware:
-- Nur HTTP-Schnittstelle muss verstanden werden (kein Shopware-Internals-Wissen nötig)
-- Freie Technologiewahl für App-Backend-Server
-- Deployment von Shopware und App unabhängig
-- Admin API + Webhooks als Kommunikationsmedium (statt Sprachkonstrukte)
+**Decoupling** from Shopware:
+- Only the HTTP interface has to be understood (no knowledge of Shopware internals needed)
+- Free choice of technology for the app backend server
+- Deployment of Shopware and the app is independent
+- Admin API + webhooks as the communication medium (instead of language constructs)
 
-**Folge**: App ist automatisch Multi-Tenant-Cloud-kompatibel (Shopware SaaS).
+**Consequence**: an app is automatically multi-tenant cloud-compatible (Shopware SaaS).
 
 ### Manifest (`manifest.xml`)
 
-Zentrales Bindeglied zwischen Shopware und App:
-- Definiert verfügbare Features
-- Beschreibt Endpoints für Shopware-Anfragen
-- Deklariert Permissions
-- Registriert Webhooks, Actions, CMS-Blöcke, etc.
+The central link between Shopware and the app:
+- Defines the available features
+- Describes the endpoints for Shopware requests
+- Declares permissions
+- Registers webhooks, actions, CMS blocks, etc.
 
-Mehr Details: App Base Guide in der Shopware-Dokumentation.
+More details: the App Base Guide in the Shopware documentation.
 
-### Kommunikation Shopware ↔ App
+### Communication Shopware ↔ app
 
-**Shopware → App** (Events/Webhooks):
-- HTTP-POST an in manifest.xml definierte Endpoints
-- App abonniert Events, die sie interessieren
+**Shopware → app** (events/webhooks):
+- HTTP POST to the endpoints defined in manifest.xml
+- The app subscribes to the events it cares about
 
-**App → Shopware** (Daten):
-- Admin REST API für Lesen und Schreiben von Shopware-Daten
+**App → Shopware** (data):
+- Admin REST API for reading and writing Shopware data
 
-**Sicherheit**: Registration Handshake bei Installation:
-- Shopware verifiziert App-Backend-Server
-- App erhält Credentials für API-Authentifizierung
+**Security**: registration handshake on installation:
+- Shopware verifies the app backend server
+- The app receives credentials for API authentication
 
-**Optional**: Falls App und Shopware nicht kommunizieren müssen (z.B. reine Theme-App)
-ist die Registrierung optional.
+**Optional**: if app and Shopware do not need to communicate (e.g. a pure theme app),
+registration is optional.
 
-### App-Capabilities
+### App capabilities
 
-#### 1. Storefront-Erscheinungsbild anpassen
+#### 1. Adapt the storefront appearance
 
-Assets (Twig-Templates, JS-Quellen, SCSS, Snippets) mit `manifest.xml` mitliefern.
-Shopware rebuildet Storefront automatisch bei App-Installation.
-Keine Bereitstellung der Assets über externen Server nötig.
+Ship assets (Twig templates, JS sources, SCSS, snippets) with `manifest.xml`.
+Shopware rebuilds the storefront automatically on app installation.
+No need to serve the assets from an external server.
 
-#### 2. Payment-Provider integrieren (ab 6.4.1.0)
+#### 2. Integrate payment providers (from 6.4.1.0)
 
-**Synchrone Payments**: Keine Benutzerinteraktion; Genehmigung via Hintergrundanfrage.
-**Asynchrone Payments**: Benutzer-Redirect; App liefert Redirect-URL;
-nach Rückkehr: Shopware verifiziert Zahlungsstatus bei App.
+**Synchronous payments**: no user interaction; approval via a background request.
+**Asynchronous payments**: user redirect; the app supplies the redirect URL;
+after the return: Shopware verifies the payment status with the app.
 
-#### 3. App Scripts (ab 6.4.8.0)
+#### 3. App scripts (from 6.4.8.0)
 
-Business-Logik **im Shopware Execution Stack** (nicht auf externem Server):
-- Use Case 1: Zusätzliche Daten laden, die im Storefront gerendert werden sollen
-- Use Case 2: Cart manipulieren
-- Implementierung: Twig-basiert (sicherer als direktes PHP)
-- Läuft innerhalb Shopware, nicht auf App-Server → kein Webhook benötigt
+Business logic **inside the Shopware execution stack** (not on an external server):
+- Use case 1: load additional data to be rendered in the storefront
+- Use case 2: manipulate the cart
+- Implementation: Twig-based (safer than direct PHP)
+- Runs inside Shopware, not on the app server → no webhook needed
 
-#### 4. Custom Rule Builder Conditions (ab 6.4.12.0)
+#### 4. Custom rule builder conditions (from 6.4.12.0)
 
-Eigene Bedingungen für den Rule Builder hinzufügen.
-Deklaration in `manifest.xml`.
+Add custom conditions for the rule builder.
+Declared in `manifest.xml`.
 
 ---
 
-## In-App Purchases / IAP (in-app-purchases.md)
+## In-app purchases / IAP (in-app-purchases.md)
 
-Ab Shopware 6.6.9.0 verfügbar.
+Available from Shopware 6.6.9.0.
 
-### Konzept
+### Concept
 
-Features hinter Paywall **innerhalb derselben Extension** — Free Tier mit limitierten Features,
-Paid Version mit mehr Features.
+Features behind a paywall **within the same extension** — a free tier with limited features,
+a paid version with more features.
 
-### IAP erstellen
+### Creating an IAP
 
-Erstellung im Shopware Account.
-Dokumentation: Extension Partner-Bereich in Shopware Account.
+Created in the Shopware Account.
+Documentation: the extension partner area in the Shopware Account.
 
-### Token-Mechanismus (JWT)
+### Token mechanism (JWT)
 
-- Jeder In-App Purchase repräsentiert durch **signiertes JWT** (issued per Extension)
-- JWT stellt sicher: Kauf-Daten können nicht manipuliert oder gefälscht werden
-- **Alle gekauften IAPs** sind Teil der JWT Claims
+- Every in-app purchase is represented by a **signed JWT** (issued per extension)
+- The JWT guarantees that purchase data cannot be manipulated or forged
+- **All purchased IAPs** are part of the JWT claims
 
-**Verifikation**:
+**Verification**:
 - JWKS: `https://api.shopware.com/inappfeatures/jwks`
-- Shopware verifiziert Signatur automatisch für Core und Admin
+- Shopware verifies the signature automatically for core and admin
 
-**Token-Aktualisierung**:
-- Automatisch bei neuen Käufen und bei periodischen Updates
-- Manuell: `bin/console scheduled-task:run-single in-app-purchase.update`
-- Oder: `POST /api/_action/in-app-purchases/refresh`
+**Token refresh**:
+- Automatically on new purchases and on periodic updates
+- Manually: `bin/console scheduled-task:run-single in-app-purchase.update`
+- Or: `POST /api/_action/in-app-purchases/refresh`
 
-### IAP für Apps (empfohlen)
+### IAP for apps (recommended)
 
-Optimiert für App-Server-Use-Case:
-- IAP JWT wird bei **jedem** Request von Shopware an App-Server mitgesendet
-- App-Server validiert aktive Käufe und schaltet entsprechende Features frei
-- Apps sind inherent sicherer für IAP (kein direkter Code-Zugriff)
+Optimised for the app server use case:
+- The IAP JWT is sent along with **every** request from Shopware to the app server
+- The app server validates active purchases and unlocks the corresponding features
+- Apps are inherently safer for IAP (no direct code access)
 
-### IAP für Plugins (weniger empfohlen)
+### IAP for plugins (less recommended)
 
-Plugins sind weniger sicher wegen offener Natur (anfälliger für Spoofing/Tampering).
+Plugins are less secure due to their open nature (more susceptible to spoofing/tampering).
 
-### Checkout-Prozess
+### Checkout process
 
-Shopware übernimmt den **gesamten Checkout-Prozess** (Payment + Subscription Management).
-Extension muss nur IAP-Identifier bereitstellen → Modal-Window für Kauf wird automatisch geöffnet.
+Shopware handles the **entire checkout process** (payment + subscription management).
+The extension only needs to supply the IAP identifier → a modal window for the purchase opens automatically.

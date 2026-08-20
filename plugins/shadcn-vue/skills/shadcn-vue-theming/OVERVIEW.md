@@ -1,14 +1,14 @@
 # shadcn-vue: Theming
 
-shadcn-vue empfiehlt CSS-Variablen fuer das Theming. Semantische Token-Namen
-(`background`, `foreground`, `primary` etc.) werden in Tailwind-Utilities gemappt:
+shadcn-vue recommends CSS variables for theming. Semantic token names
+(`background`, `foreground`, `primary` etc.) are mapped to Tailwind utilities:
 `bg-background`, `text-foreground`, `border-border`, `ring-ring`.
 
-Dark Mode arbeitet mit denselben Tokens, die im `.dark`-Selektor ueberschrieben werden.
+Dark mode works with the same tokens, overridden in the `.dark` selector.
 
 ## Reference Files
 
-- `OVERVIEW-DETAIL.md` — Token-Konvention (background/foreground-Paare),
-  vollstaendige Token-Tabelle mit Verwendungszweck, Radius-Scale (sm/md/lg/xl/2xl/3xl/4xl),
-  neue Tokens hinzufuegen (@theme inline), Base-Colors (Neutral/Gray/Zinc/Stone/Slate),
-  vollstaendiges neutrales Theme-CSS, Variante ohne CSS-Variablen (--no-css-variables)
+- `OVERVIEW-DETAIL.md` — Token convention (background/foreground pairs),
+  complete token table with intended use, radius scale (sm/md/lg/xl/2xl/3xl/4xl),
+  adding new tokens (@theme inline), base colors (Neutral/Gray/Zinc/Stone/Slate),
+  complete neutral theme CSS, variant without CSS variables (--no-css-variables)

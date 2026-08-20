@@ -1,251 +1,251 @@
-# Shopware 6 – Immersive Elements App: Vollständige Referenz
+# Shopware 6 – Immersive Elements app: full reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/erweiterungen/immersive-elements
+> Source: https://docs.shopware.com/de/shopware-6-de/erweiterungen/immersive-elements
 > Store: https://store.shopware.com/de/insto94276218562m/immersive-elements.html
-> Plan: Rise (oder höher) / alternativ €49/Monat
+> Plan: Rise (or higher) / alternatively €49/month
 
 ---
 
 ## Contents
 
-- [1. Überblick](#1-überblick)
+- [1. Overview](#1-overview)
 - [2. Installation](#2-installation)
-- [3. Nutzung der Elemente](#3-nutzung-der-elemente)
-- [4. Die sechs Elemente im Detail](#4-die-sechs-elemente-im-detail)
-- [5. Vergleichstabelle der Elemente](#5-vergleichstabelle-der-elemente)
+- [3. Using the elements](#3-using-the-elements)
+- [4. The six elements in detail](#4-the-six-elements-in-detail)
+- [5. Comparison table of the elements](#5-comparison-table-of-the-elements)
 - [6. Screenshots](#6-screenshots)
-- [8. Best Practices](#8-best-practices)
-- [Quelle](#quelle)
+- [8. Best practices](#8-best-practices)
+- [Source](#source)
 
-## 1. Überblick
+## 1. Overview
 
-**Immersive Elements** ist eine App, die in Zusammenarbeit zwischen Shopware und
-**Instorier** (norwegische Experten für digitales Storytelling) entwickelt wurde.
-Sie transformiert Online-Shops in dynamische Markenerlebnisse durch sechs spezialisierte
-3D-Blöcke, die in Erlebniswelten eingesetzt werden können.
+**Immersive Elements** is an app that was developed in collaboration between Shopware and
+**Instorier** (Norwegian experts for digital storytelling).
+It transforms online shops into dynamic brand experiences through six specialised
+3D blocks that can be used in the **Erlebniswelten** (Shopping Experiences).
 
-Die App ist optimiert für **Mobile, Desktop und Spatial Devices**.
+The app is optimised for **mobile, desktop and spatial devices**.
 
-### Ziele
+### Goals
 
-- Kunden stärker einbinden und die Markenbindung stärken
-- Konversionsraten erhöhen durch immersivere Produktpräsentation
-- Produkte erlebbar machen, bevor sie gekauft werden
+- Involve customers more strongly and strengthen brand loyalty
+- Increase conversion rates through a more immersive product presentation
+- Make products experienceable before they are bought
 
 ---
 
 ## 2. Installation
 
-### 2.1 Voraussetzungen
+### 2.1 Prerequisites
 
-- **Shopware-Plan**: Mindestens **Rise** (für die Shop-Domain registriert)
-- **Shopware-Account**: Im Admin unter dem Shopware-Account-Tab eingeloggt
+- **Shopware plan**: at least **Rise** (registered for the shop domain)
+- **Shopware account**: logged in under the Shopware account tab in the admin
 
-### 2.2 Installationsweg (über Plan)
+### 2.2 Installation route (via the plan)
 
-1. **Erweiterungen > Meine Erweiterungen** im Admin öffnen
-2. Sicherstellen, dass der Shopware-Account-Tab aktiv und eingeloggt ist
-3. **Immersive Elements** aus den verfügbaren Erweiterungen installieren
-4. Nach der Installation den **Aktivierungsschalter** umlegen
+1. Open **Erweiterungen > Meine Erweiterungen** (Extensions > My extensions) in the admin
+2. Make sure the Shopware account tab is active and logged in
+3. Install **Immersive Elements** from the available extensions
+4. After the installation flip the **activation toggle**
 
-### 2.3 Installationsweg (ohne Plan, über Store)
+### 2.3 Installation route (without a plan, via the Store)
 
-- Erwerb über den **Shopware Store** für **€49/Monat** (Mietlizenz)
+- Purchase via the **Shopware Store** for **€49/month** (rental licence)
 - URL: https://store.shopware.com/de/insto94276218562m/immersive-elements.html
 
 ---
 
-## 3. Nutzung der Elemente
+## 3. Using the elements
 
-Alle sechs Elemente befinden sich in den **Erlebniswelten** unter:
-**Blöcke > Commerce**
+All six elements are located in the **Erlebniswelten** under:
+**Blöcke > Commerce** (Blocks > Commerce)
 
-### Allgemeine Konfigurationsempfehlungen
+### General configuration recommendations
 
-- **Größenmodus**: "Full Width (1)" für optimale Darstellung wählen
-- **Platzierung**: Immersive Elements sollten **aufeinanderfolgend** ohne zwischenliegende
-  andere Blöcke platziert werden, um ein nahtloses visuelles Erlebnis zu schaffen
-- **Community Hub**: Interaktiver Lernpfad verfügbar unter
+- **Size mode**: choose "Full Width (1)" for optimal presentation
+- **Placement**: Immersive Elements should be placed **consecutively** without other
+  blocks in between, in order to create a seamless visual experience
+- **Community Hub**: an interactive learning path is available at
   https://hub.shopware.com/learn/unit/user-immersive-elements
 
 ---
 
-## 4. Die sechs Elemente im Detail
+## 4. The six elements in detail
 
 ### 4.1 Cylinder Gallery
 
-**Funktion**: Interaktiver Bildslider in 360°-Zylinderform
+**Function**: interactive image slider in a 360° cylinder shape
 
-**Wie es funktioniert**:
-- Bilder werden in einem rotierenden Zylinder angeordnet
-- In der Storefront läuft die Animation automatisch
-- Besucher können Geschwindigkeit und Richtung durch Klicken und Mausbewegung steuern
+**How it works**:
+- Images are arranged in a rotating cylinder
+- In the storefront the animation runs automatically
+- Visitors can control the speed and direction by clicking and moving the mouse
 
-**Einsatzbereich**: Kollektion-Präsentation, Lookbooks, Bildergalerien mit vielen Motiven
+**Area of use**: collection presentation, lookbooks, image galleries with many motifs
 
 ---
 
 ### 4.2 Depth Gallery
 
-**Funktion**: Parallax-Tiefeneffekt durch Maus- und Scroll-Interaktion
+**Function**: parallax depth effect through mouse and scroll interaction
 
-**Wie es funktioniert**:
-- Bilder reagieren auf die Mausbewegung des Besuchers und erzeugen einen
-  dreidimensionalen Tiefeneindruck
-- Scrollen aktiviert weitere Tiefenebenen
-- Erzeugt "mehr Tiefe und Interaktivität im Layout"
+**How it works**:
+- Images react to the visitor's mouse movement and create a
+  three-dimensional impression of depth
+- Scrolling activates further depth levels
+- Creates "more depth and interactivity in the layout"
 
-**Einsatzbereich**: Hero-Bilder, Lifestyle-Aufnahmen, atmosphärische Produktdarstellungen
+**Area of use**: hero images, lifestyle shots, atmospheric product presentations
 
 ---
 
 ### 4.3 Exploded View
 
-**Funktion**: Interaktive Produktzerlegung in Einzelkomponenten (mit Animation)
+**Function**: interactive breakdown of the product into individual components (with animation)
 
-**Preis**: **€49/Monat** als In-App-Kauf (zusätzlich zum Grundplan)
+**Price**: **€49/month** as an in-app purchase (in addition to the base plan)
 
-**Wie es funktioniert**:
-- 3D-Modell des Produkts wird in seine Einzelteile "zerlegt" (Explosion View)
-- Besucher können einzelne Komponenten auf verschiedenen Detailebenen erkunden
-- Animationen zeigen die Zusammensetzung des Produkts
+**How it works**:
+- The 3D model of the product is "taken apart" into its individual parts (exploded view)
+- Visitors can explore individual components at various levels of detail
+- Animations show how the product is composed
 
-**Konfiguration**:
-1. `.glb`-Datei des Produkts hochladen
-2. Mehrere Animationsschritte ("Views") erstellen
-3. Komponenten hierarchisch gruppieren (übergeordnete und untergeordnete Teile)
-4. **Annotationen hinzufügen**: Produktteile mit Titeln, Beschreibungen und
-   optionalen Links zu anderen Produktdetailseiten versehen
-5. **Explosion-Intensität** einstellen: Wie weit Teile auseinandergezogen werden
-6. **Beleuchtung konfigurieren**: Lichtart, Intensität, Presets
-7. **Interaktivität**: Benutzer können durch die Views navigieren (vor/zurück)
-8. **Auto-Play**: Animation läuft automatisch durch alle Views
-9. Im Bereich **Szene**: Gruppierung von Komponenten verwalten
-10. **Import/Export**: Konfigurationen als JSON exportieren und importieren
+**Configuration**:
+1. Upload the `.glb` file of the product
+2. Create several animation steps ("views")
+3. Group the components hierarchically (parent and child parts)
+4. **Add annotations**: give the product parts titles, descriptions and
+   optional links to other product detail pages
+5. Set the **explosion intensity**: how far apart the parts are pulled
+6. **Configure the lighting**: light type, intensity, presets
+7. **Interactivity**: users can navigate through the views (forward/back)
+8. **Auto-play**: the animation runs automatically through all views
+9. In the **Szene** (Scene) area: manage the grouping of components
+10. **Import/export**: export and import the configurations as JSON
 
-**Navigation für Besucher**:
-- Vor/Zurück-Buttons
-- Views-Übersicht für direkten Sprung zu bestimmten Explosionsstufen
+**Navigation for visitors**:
+- Forward/back buttons
+- A views overview for jumping directly to particular explosion levels
 
 ---
 
 ### 4.4 3D Model Journey
 
-**Funktion**: Animierte 360°-Produkttour mit Hotspots und Audio
+**Function**: animated 360° product tour with hotspots and audio
 
-**Wie es funktioniert**:
-- 3D-Modell des Produkts wird in einer animierten Tour präsentiert
-- Kamera umkreist das Produkt automatisch oder auf Benutzersteuerung
-- Interaktive Hotspots zeigen Produktdetails und -informationen an
+**How it works**:
+- The 3D model of the product is presented in an animated tour
+- The camera orbits the product automatically or under user control
+- Interactive hotspots show product details and information
 
-**Konfiguration**:
-1. `.glb`-Datei hochladen (3D-Modell des Produkts)
-2. `.mp3`-Audiodatei hochladen (optionaler Audio-Track für die Tour)
-3. **Hintergrundfarbe** konfigurieren
-4. Optionales **Hintergrundbild** hinzufügen
-5. **Mehrere Abschnitte** erstellen mit unterschiedlichen:
-   - Kamerapositionen
-   - Beleuchtungseffekten (Presets und Intensitätsregler)
-6. **Hotspots hinzufügen**:
-   - Titel des Hotspots
-   - Beschreibungstext
-   - Positionierung im 3D-Raum
-7. **360°-Interaktivität** aktivieren: Besucher können das Modell selbst drehen
+**Configuration**:
+1. Upload the `.glb` file (3D model of the product)
+2. Upload an `.mp3` audio file (optional audio track for the tour)
+3. Configure the **background colour**
+4. Add an optional **background image**
+5. Create **several sections** with different:
+   - camera positions
+   - lighting effects (presets and an intensity slider)
+6. **Add hotspots**:
+   - title of the hotspot
+   - description text
+   - positioning in 3D space
+7. Enable **360° interactivity**: visitors can rotate the model themselves
 
-**Einsatzbereich**: Premium-Produkte, technische Produkte mit erklärungsbedürftigen
-Details, Schmuck, Elektronik
+**Area of use**: premium products, technical products with details that need
+explanation, jewellery, electronics
 
 ---
 
 ### 4.5 Slide Behind Gallery
 
-**Funktion**: Horizontaler Inhaltswechsel mit Tiefeneffekt
+**Function**: horizontal content change with a depth effect
 
-**Wie es funktioniert**:
-- Inhalte wechseln horizontal (ähnlich einem Slider)
-- Im Gegensatz zu klassischen Slidern entsteht ein Tiefeneffekt durch die
-  Slide-Behind-Mechanik
-- Erzeugt "mehr Tiefe im Layout als herkömmliche Slider"
+**How it works**:
+- The content changes horizontally (similar to a slider)
+- In contrast to classic sliders a depth effect is created by the
+  slide-behind mechanism
+- Creates "more depth in the layout than conventional sliders"
 
-**Einsatzbereich**: Vorher-Nachher-Vergleiche, Feature-Präsentationen, Varianten-Showcase
+**Area of use**: before/after comparisons, feature presentations, variant showcases
 
 ---
 
 ### 4.6 VR Cinema
 
-**Funktion**: 3D- und Virtual-Reality-Erlebnis für Produkte und Markengeschichten
+**Function**: 3D and virtual reality experience for products and brand stories
 
-**Wie es funktioniert**:
-- Besucher werden in ein 3D/VR-Kino-Erlebnis eingetaucht
-- Unterstützt das **webp-Videoformat** für optimale Performance
-- Geeignet für Produkt-Narrativen und Marken-Storytelling
+**How it works**:
+- Visitors are immersed in a 3D/VR cinema experience
+- Supports the **webp video format** for optimal performance
+- Suitable for product narratives and brand storytelling
 
-**Einsatzbereich**: Immersive Markenpräsentation, Produktvideos in VR, Storytelling-Kampagnen
+**Area of use**: immersive brand presentation, product videos in VR, storytelling campaigns
 
 ---
 
-## 5. Vergleichstabelle der Elemente
+## 5. Comparison table of the elements
 
-| Element | Technologie | Preis | Haupteinsatz | Interaktivität |
+| Element | Technology | Price | Main use | Interactivity |
 |---|---|---|---|---|
-| Cylinder Gallery | 360°-Bilder | Inklusive | Galerien | Maussteuerung |
-| Depth Gallery | Parallax | Inklusive | Hero-Bereiche | Maus + Scroll |
-| Exploded View | 3D GLB | +€49/Monat | Technik-Produkte | Animation + Navigation |
-| 3D Model Journey | 3D GLB + MP3 | Inklusive | Premium-Produkte | 360° + Hotspots |
-| Slide Behind Gallery | CSS | Inklusive | Vergleiche | Horizontal-Slide |
-| VR Cinema | WebP-Video | Inklusive | Marken-Erlebnisse | VR-Immersion |
+| Cylinder Gallery | 360° images | Included | Galleries | Mouse control |
+| Depth Gallery | Parallax | Included | Hero areas | Mouse + scroll |
+| Exploded View | 3D GLB | +€49/month | Technical products | Animation + navigation |
+| 3D Model Journey | 3D GLB + MP3 | Included | Premium products | 360° + hotspots |
+| Slide Behind Gallery | CSS | Included | Comparisons | Horizontal slide |
+| VR Cinema | WebP video | Included | Brand experiences | VR immersion |
 
 ---
 
 ## 6. Screenshots
 
-![Immersive Elements Blöcke in Erlebniswelten](../../assets/immersive-elements-bloecke.png)
-*Alle Immersive Elements Blöcke in der Erlebniswelten-Blockbibliothek unter „Commerce"*
+![Immersive Elements blocks in the Erlebniswelten](assets/immersive-elements-bloecke.png)
+*All Immersive Elements blocks in the Erlebniswelten block library under "Commerce"*
 
-![Immersive Elements Volle Breite](../../assets/immersive-elements-volle-breite.png)
-*Optimale Darstellung mit Vollbild-Modus (Full Width)*
+![Immersive Elements full width](assets/immersive-elements-volle-width.png)
+*Optimal presentation with full-screen mode (Full Width)*
 
-![3D Model Journey Settings](../../assets/immersive-3d-journey-settings.png)
-*Einstellungen für den 3D Model Journey Block*
+![3D Model Journey Settings](assets/immersive-3d-journey-settings.png)
+*Settings for the 3D Model Journey block*
 
-![3D Model Journey Content 1](../../assets/immersive-3d-journey-content-1.png)
-*Content-Konfiguration: GLB-Datei und Audio hochladen, Abschnitte erstellen*
+![3D Model Journey Content 1](assets/immersive-3d-journey-content-1.png)
+*Content configuration: upload the GLB file and audio, create sections*
 
-![3D Model Journey Content 2](../../assets/immersive-3d-journey-content-2.png)
-*Weitere Content-Einstellungen: Hintergrundfarbe, Beleuchtung*
+![3D Model Journey Content 2](assets/immersive-3d-journey-content-2.png)
+*Further content settings: background colour, lighting*
 
-![3D Model Journey Hotspot hinzufügen](../../assets/immersive-3d-journey-hotspot.png)
-*Hotspot hinzufügen und im 3D-Raum positionieren*
+![Adding a 3D Model Journey hotspot](assets/immersive-3d-journey-hotspot.png)
+*Add a hotspot and position it in 3D space*
 
-![3D Model Journey Beleuchtung](../../assets/immersive-3d-journey-lighting.png)
-*Beleuchtungsoptionen mit Preset-Auswahl und Intensitätsregler*
+![3D Model Journey lighting](assets/immersive-3d-journey-lighting.png)
+*Lighting options with preset selection and an intensity slider*
 
-![Immersive Elements Vorschau im Block](../../assets/immersive-elements-vorschau.png)
-*Vorschau eines Elements in der Erlebniswelten-Bearbeitungsansicht*
+![Immersive Elements preview in the block](assets/immersive-elements-preview.png)
+*Preview of an element in the Erlebniswelten editing view*
 
-![Element Einstellungen – Settings Tab](../../assets/immersive-element-einstellungen-settings.png)
-*Settings-Tab eines Immersive Elements mit Darstellungsoptionen*
+![Element settings – Settings tab](assets/immersive-element-settings-settings.png)
+*Settings tab of an Immersive Element with presentation options*
 
-![Element Einstellungen – Content Tab](../../assets/immersive-element-einstellungen-content.png)
-*Content-Tab: Medien und inhaltliche Konfiguration*
+![Element settings – Content tab](assets/immersive-element-settings-content.png)
+*Content tab: media and content configuration*
 
-![Immersive Elements Storefront](../../assets/immersive-elements-storefront.png)
-*Darstellung eines Immersive Elements in der Storefront*
-
----
-
-## 8. Best Practices
-
-1. **Dateigröße optimieren**: Besonders .glb-Dateien vor dem Upload optimieren
-2. **Elemente gruppieren**: Mehrere Immersive Elements hintereinander platzieren für
-   maximale Wirkung
-3. **Full Width**: Immer den Vollbild-Modus für optimale Wirkung nutzen
-4. **Mobile testen**: Alle Elemente auf verschiedenen Geräten testen
-5. **Community Hub**: Interaktiven Lernpfad durchlaufen für praktisches Wissen
+![Immersive Elements storefront](assets/immersive-elements-storefront.png)
+*Presentation of an Immersive Element in the storefront*
 
 ---
 
-## Quelle
+## 8. Best practices
+
+1. **Optimise the file size**: optimise .glb files in particular before uploading
+2. **Group the elements**: place several Immersive Elements one after another for
+   maximum effect
+3. **Full Width**: always use full-screen mode for optimal effect
+4. **Test on mobile**: test all elements on various devices
+5. **Community Hub**: work through the interactive learning path for practical knowledge
+
+---
+
+## Source
 https://docs.shopware.com/de/shopware-6-de/erweiterungen/immersive-elements
 https://store.shopware.com/de/insto94276218562m/immersive-elements.html
 https://hub.shopware.com/learn/unit/user-immersive-elements

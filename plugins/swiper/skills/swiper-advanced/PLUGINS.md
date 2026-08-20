@@ -1,5 +1,5 @@
 # Swiper Plugins & Custom Module
 
-Premium-Plugins von UI Initiative / Swiper Studio sowie Grundstruktur eigener Module.
+Premium plugins from UI Initiative / Swiper Studio, plus the basic structure of your own modules.
 
-Vollständige Referenz: `PLUGINS-SWIPER-PLUGINS.md`
+Complete reference: `PLUGINS-SWIPER-PLUGINS.md`

@@ -1,31 +1,31 @@
-# shadcn-vue Registry — Uebersicht & Getting Started
+# shadcn-vue Registry — Overview & Getting Started
 
-Eigene Komponenten-Registry aufbauen, hosten und nutzen.
+Build, host and use your own component registry.
 
 ## Contents
 
-- [Was ist eine Registry?](#was-ist-eine-registry)
-- [Schritt 1: registry.json anlegen](#schritt-1-registryjson-anlegen)
-- [Schritt 2: Komponente erstellen](#schritt-2-komponente-erstellen)
-- [Schritt 3: Item zur registry.json hinzufuegen](#schritt-3-item-zur-registryjson-hinzufuegen)
-- [Schritt 4: CLI installieren und Build-Script anlegen](#schritt-4-cli-installieren-und-build-script-anlegen)
-- [Schritt 5: Registry bereitstellen](#schritt-5-registry-bereitstellen)
-- [Schritt 6: Veroeffentlichen](#schritt-6-veroeffentlichen)
-- [Auth hinzufuegen](#auth-hinzufuegen)
-- [Item per CLI installieren](#item-per-cli-installieren)
-- [Richtlinien (Guidelines)](#richtlinien-guidelines)
+- [What is a registry?](#what-is-a-registry)
+- [Step 1: create registry.json](#step-1-create-registryjson)
+- [Step 2: create a component](#step-2-create-a-component)
+- [Step 3: add the item to registry.json](#step-3-add-the-item-to-registryjson)
+- [Step 4: install the CLI and add a build script](#step-4-install-the-cli-and-add-a-build-script)
+- [Step 5: serve the registry](#step-5-serve-the-registry)
+- [Step 6: publish](#step-6-publish)
+- [Add auth](#add-auth)
+- [Install an item via the CLI](#install-an-item-via-the-cli)
+- [Guidelines](#guidelines)
 
-## Was ist eine Registry?
+## What is a registry?
 
-Mit der `shadcn-vue` CLI kann man eigene Komponenten-Registries betreiben und verteilen.
-Registry-Items sind automatisch kompatibel mit der `shadcn-vue` CLI.
+With the `shadcn-vue` CLI you can run and distribute your own component registries.
+Registry items are automatically compatible with the `shadcn-vue` CLI.
 
-**Anforderung:** Registry-Items muessen valide JSON-Dateien sein, die dem
-[registry-item Schema](/docs/registry/registry-item-json) entsprechen.
+**Requirement:** registry items must be valid JSON files that conform to the
+[registry-item schema](/docs/registry/registry-item-json).
 
 ---
 
-## Schritt 1: registry.json anlegen
+## Step 1: create registry.json
 
 ```json
 {
@@ -36,11 +36,11 @@ Registry-Items sind automatisch kompatibel mit der `shadcn-vue` CLI.
 }
 ```
 
-Muss dem [registry.json Schema](/docs/registry/registry-json) entsprechen.
+Must conform to the [registry.json schema](/docs/registry/registry-json).
 
 ---
 
-## Schritt 2: Komponente erstellen
+## Step 2: create a component
 
 ```vue
 <!-- registry/new-york/HelloWorld/HelloWorld.vue -->
@@ -53,7 +53,7 @@ import { Button } from "@/components/ui/button"
 </template>
 ```
 
-Verzeichnisstruktur (Pflicht):
+Directory structure (required):
 ```
 registry/
 └── new-york/
@@ -61,7 +61,7 @@ registry/
         └── HelloWorld.vue
 ```
 
-Tailwind-Konfiguration (wenn in custom directory):
+Tailwind configuration (when in a custom directory):
 ```ts
 // tailwind.config.ts
 export default {
@@ -71,7 +71,7 @@ export default {
 
 ---
 
-## Schritt 3: Item zur registry.json hinzufuegen
+## Step 3: add the item to registry.json
 
 ```json
 {
@@ -97,7 +97,7 @@ export default {
 
 ---
 
-## Schritt 4: CLI installieren und Build-Script anlegen
+## Step 4: install the CLI and add a build script
 
 ```bash
 npm install shadcn-vue@latest
@@ -115,42 +115,42 @@ npm install shadcn-vue@latest
 npm run registry:build
 ```
 
-Output: `public/r/hello-world.json` (Standard-Pfad).
+Output: `public/r/hello-world.json` (default path).
 
 Custom output: `shadcn-vue build --output dist/r`
 
 ---
 
-## Schritt 5: Registry bereitstellen
+## Step 5: serve the registry
 
 ```bash
 npm run dev
 ```
 
-Verfuegbar unter: `http://localhost:3000/r/hello-world.json`
+Available at: `http://localhost:3000/r/hello-world.json`
 
 ---
 
-## Schritt 6: Veroeffentlichen
+## Step 6: publish
 
-Registry auf einer oeffentlichen URL deployen (z.B. Vercel, Netlify).
+Deploy the registry to a public URL (e.g. Vercel, Netlify).
 
 ---
 
-## Auth hinzufuegen
+## Add auth
 
-Die CLI unterstuetzt kein eingebautes Auth. Empfehlung: Token als Query-Parameter.
+The CLI has no built-in auth support. Recommendation: pass a token as a query parameter.
 
 ```
 http://localhost:3000/r/hello-world.json?token=SECURE_TOKEN
 ```
 
-Die CLI behandelt `401 Unauthorized` Antworten und zeigt dem Benutzer eine Meldung.
-Token verschluesseln und mit Ablaufzeit versehen.
+The CLI handles `401 Unauthorized` responses and shows the user a message.
+Encrypt tokens and give them an expiry time.
 
 ---
 
-## Item per CLI installieren
+## Install an item via the CLI
 
 ```bash
 npx shadcn-vue@latest add http://localhost:3000/r/hello-world.json
@@ -158,12 +158,12 @@ npx shadcn-vue@latest add http://localhost:3000/r/hello-world.json
 
 ---
 
-## Richtlinien (Guidelines)
+## Guidelines
 
-- Registry-Items unter `registry/[STYLE]/[NAME]` ablegen
-- Pflichtfelder: `name`, `description`, `type`, `files`
-- Alle Registry-Abhaengigkeiten in `registryDependencies` auflisten
-  (Name z.B. `button`, `card` oder URL `http://...`)
-- Alle npm-Pakete in `dependencies` auflisten (Format: `name@version`)
-- **Imports immer mit `@/registry`-Pfad:** `import { HelloWorld } from "@/registry/new-york/hello-world/hello-world"`
-- Dateien idealerweise in `components/`, `hooks/`, `lib/` unterordnern
+- Place registry items under `registry/[STYLE]/[NAME]`
+- Required fields: `name`, `description`, `type`, `files`
+- List all registry dependencies in `registryDependencies`
+  (a name such as `button`, `card`, or a URL `http://...`)
+- List all npm packages in `dependencies` (format: `name@version`)
+- **Always import via the `@/registry` path:** `import { HelloWorld } from "@/registry/new-york/hello-world/hello-world"`
+- Ideally nest files into `components/`, `hooks/`, `lib/` subfolders

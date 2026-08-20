@@ -1,280 +1,280 @@
-# Shopware vs. Shopify – Vollständiger Plattformvergleich
+# Shopware vs. Shopify – complete platform comparison
 
 ## Contents
 
-- [1. Architektur & Hosting](#1-architektur-hosting)
-- [2. Kostenmodell & TCO (Total Cost of Ownership)](#2-kostenmodell-tco-total-cost-of-ownership)
-- [3. Anpassbarkeit & Erweiterungen](#3-anpassbarkeit-erweiterungen)
-- [4. B2B-Funktionalität](#4-b2b-funktionalität)
-- [5. Internationalisierung & Omnichannel](#5-internationalisierung-omnichannel)
-- [6. API-first & Headless](#6-api-first-headless)
-- [7. SEO & Performance](#7-seo-performance)
-- [8. Datenschutz & DSGVO](#8-datenschutz-dsgvo)
-- [9. Support & Community](#9-support-community)
-- [10. Zielgruppen](#10-zielgruppen)
-- [11. Migrationspfad Shopify → Shopware](#11-migrationspfad-shopify-shopware)
-- [Kennzahlen Shopware (Stand 2025)](#kennzahlen-shopware-stand-2025)
-- [Quellen](#quellen)
+- [1. Architecture & hosting](#1-architecture-hosting)
+- [2. Cost model & TCO (total cost of ownership)](#2-cost-model-tco-total-cost-of-ownership)
+- [3. Customisability & extensions](#3-customisability-extensions)
+- [4. B2B functionality](#4-b2b-functionality)
+- [5. Internationalisation & omnichannel](#5-internationalisation-omnichannel)
+- [6. API-first & headless](#6-api-first-headless)
+- [7. SEO & performance](#7-seo-performance)
+- [8. Data protection & GDPR](#8-data-protection-gdpr)
+- [9. Support & community](#9-support-community)
+- [10. Target groups](#10-target-groups)
+- [11. Migration path Shopify → Shopware](#11-migration-path-shopify-shopware)
+- [Key figures Shopware (as of 2025)](#key-figures-shopware-as-of-2025)
+- [Sources](#sources)
 
-## 1. Architektur & Hosting
+## 1. Architecture & hosting
 
 ### Shopware
-- **Open Source** (Community Edition kostenfrei, kommerziell: Rise, Evolve, Beyond)
-- Deployment-Optionen: Self-hosted (eigener Server), PaaS (z. B. Platform.sh, Uberspace), Shopware PaaS, Shopware SaaS
-- Vollständige Kontrolle über Serverstandort (AWS, Google Cloud, Azure oder On-Premise)
-- API-first-Architektur: REST- und GraphQL-Storefront-API, Admin-API
-- Headless-Betrieb nativ unterstützt (entkoppeltes Frontend möglich)
+- **Open source** (Community Edition free of charge, commercial: Rise, Evolve, Beyond)
+- Deployment options: self-hosted (own server), PaaS (e.g. Platform.sh, Uberspace), Shopware PaaS, Shopware SaaS
+- Full control over the server location (AWS, Google Cloud, Azure or on-premise)
+- API-first architecture: REST and GraphQL storefront API, admin API
+- Headless operation natively supported (a decoupled frontend is possible)
 
 ### Shopify
-- Reines SaaS-Modell – kein eigenes Hosting möglich
-- Datenspeicherung ausschließlich in Shopify-eigener Cloud-Infrastruktur
-- Serverstandort nicht selbst wählbar (relevant für DSGVO)
-- Headless über Storefront API möglich, aber eingeschränkter als Shopware
-- Liquid-Templating als Standard-Customization-Ebene
+- Pure SaaS model – no self-hosting possible
+- Data is stored exclusively in Shopify's own cloud infrastructure
+- The server location cannot be chosen yourself (relevant for GDPR)
+- Headless is possible via the Storefront API, but more restricted than Shopware
+- Liquid templating as the standard customisation layer
 
-**Fazit Architektur:** Shopware gibt deutlich mehr Kontrolle über Infrastruktur, Datenhaltung und technischen Stack. Shopify punktet mit sofortiger Betriebsbereitschaft ohne DevOps-Aufwand.
+**Architecture conclusion:** Shopware gives considerably more control over infrastructure, data storage and the technical stack. Shopify scores with immediate operational readiness without DevOps effort.
 
 ---
 
-## 2. Kostenmodell & TCO (Total Cost of Ownership)
+## 2. Cost model & TCO (total cost of ownership)
 
 ### Shopware
 
-| Edition | Lizenzkosten | Zielgruppe |
+| Edition | Licence costs | Target group |
 |---|---|---|
-| Community Edition | Kostenlos | Technisch versierte KMU, Agenturen |
-| Rise | GMV-basiert | Wachsende Shops |
-| Evolve | GMV-basiert | Mid-Market |
-| Beyond | GMV-basiert | Enterprise |
+| Community Edition | Free | Technically skilled SMEs, agencies |
+| Rise | GMV-based | Growing shops |
+| Evolve | GMV-based | Mid-market |
+| Beyond | GMV-based | Enterprise |
 
-- **Keine Transaktionsgebühren** auf Umsätze bei Drittanbieter-Zahlungsmethoden
-- Hostingkosten trägt der Betreiber selbst (Vorteil: Flexibilität; Nachteil: Verantwortung)
-- Erweiterungen: teils kostenfrei (Community), teils kostenpflichtig
+- **No transaction fees** on revenue with third-party payment methods
+- The operator bears the hosting costs themselves (advantage: flexibility; disadvantage: responsibility)
+- Extensions: partly free of charge (community), partly chargeable
 
 ### Shopify
 
-| Plan | Monatspreis (ca.) | Transaktionsgebühren (ext. Zahler) |
+| Plan | Monthly price (approx.) | Transaction fees (ext. payment provider) |
 |---|---|---|
-| Basic | ab 29 €/Monat | 2,0 % |
-| Shopify | ab 79 €/Monat | 1,0 % |
-| Advanced | ab 299 €/Monat | 0,5 % |
-| Plus | ab 2.300 €/Monat | 0,15 % |
+| Basic | from €29/month | 2.0 % |
+| Shopify | from €79/month | 1.0 % |
+| Advanced | from €299/month | 0.5 % |
+| Plus | from €2,300/month | 0.15 % |
 
-- Transaktionsgebühren entfallen nur bei Nutzung von Shopify Payments (nicht in DE verfügbar)
-- Viele essenzielle Funktionen nur über kostenpflichtige Apps realisierbar
+- Transaction fees are only waived when using Shopify Payments (not available in Germany)
+- Many essential functions can only be realised via chargeable apps
 
-**Fazit Kosten:** Bei hohem GMV ist Shopware durch fehlende Transaktionsgebühren deutlich günstiger. Shopify hat niedrige Einstiegshürde, aber steigende Fixkosten und versteckte App-Kosten.
+**Cost conclusion:** With a high GMV, Shopware is considerably cheaper because there are no transaction fees. Shopify has a low entry barrier but rising fixed costs and hidden app costs.
 
 ---
 
-## 3. Anpassbarkeit & Erweiterungen
+## 3. Customisability & extensions
 
 ### Shopware
-- Vollständiger Quellcodezugriff (PHP/Symfony-Stack)
-- Plugin-System mit 3.100+ Erweiterungen im Shopware Store
-- Rule Builder: regelbasierte Automatisierungen ohne Code
-- Flow Builder: Event-getriggerte Workflows (kommerziell)
-- Theme-System: Twig + SCSS, vollständig anpassbar
-- Custom Fields, Custom Entities, Extension SDK für Apps
+- Full source code access (PHP/Symfony stack)
+- Plugin system with 3,100+ extensions in the Shopware Store
+- Rule Builder: rule-based automations without code
+- Flow Builder: event-triggered workflows (commercial)
+- Theme system: Twig + SCSS, fully customisable
+- Custom fields, custom entities, Extension SDK for apps
 
 ### Shopify
-- Liquid-Templating für Theme-Anpassungen
-- App Store mit ~8.000+ Apps (viele kostenpflichtig)
-- Metafields für zusätzliche Datenpunkte
-- Shopify Functions für einfache Backend-Logiken
-- Strukturvorgaben durch Shopify-Plattform schwer zu umgehen
+- Liquid templating for theme customisations
+- App Store with ~8,000+ apps (many chargeable)
+- Metafields for additional data points
+- Shopify Functions for simple backend logic
+- Structural constraints imposed by the Shopify platform are hard to circumvent
 
-**Fazit Anpassbarkeit:** Shopware ermöglicht tiefgreifende technische Anpassungen ohne Limitierungen durch die Plattform. Shopify ist schneller startklar, stößt aber bei komplexen Anforderungen schnell an Grenzen.
+**Customisability conclusion:** Shopware enables far-reaching technical customisations without limitations imposed by the platform. Shopify is quicker to get started with, but quickly reaches its limits with complex requirements.
 
 ---
 
-## 4. B2B-Funktionalität
+## 4. B2B functionality
 
-### Shopware (nativ)
-- Kundengruppen und individuelle Preislisten
-- Angebotswesen (kommerziell)
-- Bestelllisten / Schnellbestellung
-- Digital Sales Rooms für kollaborativen B2B-Verkauf (kommerziell)
-- Custom Pricing (kommerziell)
-- Netto-Preisdarstellung pro Kundengruppe
-- B2B-Komponenten: Freigabe-Workflows, Mitarbeiterverwaltung pro Unternehmen
+### Shopware (native)
+- Customer groups and individual price lists
+- Quote management (commercial)
+- Order lists / quick order
+- Digital Sales Rooms for collaborative B2B selling (commercial)
+- Custom Pricing (commercial)
+- Net price display per customer group
+- B2B components: approval workflows, employee management per company
 
 ### Shopify
-- B2B-Features seit Shopify Plus (teuerster Plan)
-- Separate B2B-Storefront nur über Plus verfügbar
-- Individuelle Preislisten: Über Apps oder Plus-Feature
-- Kein natives Angebotswesen
+- B2B features from Shopify Plus (the most expensive plan)
+- A separate B2B storefront is only available via Plus
+- Individual price lists: via apps or as a Plus feature
+- No native quote management
 
-**Fazit B2B:** Shopware hat klar die Nase vorn. B2B-Funktionen sind tief integriert und ab kommerziellen Tarifen verfügbar. Shopify benötigt für gleichwertige B2B-Funktionalität den teuren Plus-Plan oder externe Apps.
+**B2B conclusion:** Shopware is clearly ahead. B2B functions are deeply integrated and available from the commercial tariffs. Shopify needs the expensive Plus plan or external apps for equivalent B2B functionality.
 
 ---
 
-## 5. Internationalisierung & Omnichannel
+## 5. Internationalisation & omnichannel
 
 ### Shopware
-- Beliebig viele Sales Channels (unterschiedliche Sprachen, Währungen, Preislisten)
-- Mehrsprachigkeit nativ im Core
-- POS-Integration via API
-- Marktplatz-Anbindung (Amazon, eBay) über Extensions
-- Omnichannel-Strategie nativ unterstützt
+- Any number of sales channels (different languages, currencies, price lists)
+- Multilingualism natively in the core
+- POS integration via API
+- Marketplace connection (Amazon, eBay) via extensions
+- Omnichannel strategy natively supported
 
 ### Shopify
-- Shopify Markets für mehrere Märkte (Sprache + Währung)
-- Maximale Flexibilität durch App-Ökosystem
-- POS (Shopify POS) als eigenständiges Produkt
-- Marktplatz-Anbindung über Apps
+- Shopify Markets for multiple markets (language + currency)
+- Maximum flexibility through the app ecosystem
+- POS (Shopify POS) as a standalone product
+- Marketplace connection via apps
 
-**Fazit Internationalisierung:** Shopware bietet mehr native Flexibilität. Shopify Markets ist solide, aber weniger konfigurierbar für komplexe Multi-Market-Setups.
+**Internationalisation conclusion:** Shopware offers more native flexibility. Shopify Markets is solid, but less configurable for complex multi-market setups.
 
 ---
 
-## 6. API-first & Headless
+## 6. API-first & headless
 
 ### Shopware
-- Storefront API (GraphQL) für Headless-Setups
-- Admin API (REST) für Backend-Integration
-- Composable-Commerce-Ansatz: Frontend vollständig entkoppelbar
-- Native Integration in Vue.js Frontends (Shopware Frontends)
-- Event-System für reaktive Architekturen
+- Storefront API (GraphQL) for headless setups
+- Admin API (REST) for backend integration
+- Composable commerce approach: the frontend can be fully decoupled
+- Native integration into Vue.js frontends (Shopware Frontends)
+- Event system for reactive architectures
 
 ### Shopify
-- Storefront API (GraphQL) vorhanden
-- Hydrogen-Framework (React-basiert) für Headless
-- Sinnvoller Headless-Einstieg, aber stärker an Shopify-Ökosystem gebunden
+- Storefront API (GraphQL) available
+- Hydrogen framework (React-based) for headless
+- A sensible headless entry point, but more tightly bound to the Shopify ecosystem
 
-**Fazit Headless:** Beide Plattformen unterstützen Headless, Shopware mit offenerem Ökosystem. Shopify mit Hydrogen liefert einen fertigen React-Stack.
+**Headless conclusion:** Both platforms support headless, Shopware with a more open ecosystem. Shopify with Hydrogen delivers a ready-made React stack.
 
 ---
 
-## 7. SEO & Performance
+## 7. SEO & performance
 
 ### Shopware
-- Volle Kontrolle über URL-Struktur, Canonical-Tags, Sitemap
-- Server-seitiges Rendering (SSR) im Standard-Storefront
-- HTTP-Cache, Redis, Varnish-Unterstützung konfigurierbar
-- Performance abhängig von Hosting-Konfiguration (Chance und Risiko)
-- SEO-Grundlagen: Meta-Tags, Breadcrumbs, strukturierte Daten via Extensions
+- Full control over URL structure, canonical tags, sitemap
+- Server-side rendering (SSR) in the standard storefront
+- HTTP cache, Redis, Varnish support configurable
+- Performance depends on the hosting configuration (an opportunity and a risk)
+- SEO basics: meta tags, breadcrumbs, structured data via extensions
 
 ### Shopify
-- SEO-Grundfunktionen im Core vorhanden
-- Automatisches CDN und Bildoptimierung durch Shopify-Infrastruktur
-- Sehr stabile Performance durch Shopify-Hosting
-- Eingeschränkte Kontrolle über technische SEO-Parameter (z. B. URL-Struktur festgelegt)
+- Basic SEO functions are available in the core
+- Automatic CDN and image optimisation through the Shopify infrastructure
+- Very stable performance thanks to Shopify hosting
+- Restricted control over technical SEO parameters (e.g. the URL structure is fixed)
 
-**Fazit SEO/Performance:** Shopify liefert out-of-the-box stabiles Hosting und CDN. Shopware ermöglicht bei richtiger Konfiguration überlegene Performance, erfordert aber technisches Know-how.
+**SEO/performance conclusion:** Shopify delivers stable hosting and a CDN out of the box. With the right configuration, Shopware enables superior performance, but requires technical know-how.
 
 ---
 
-## 8. Datenschutz & DSGVO
+## 8. Data protection & GDPR
 
 ### Shopware
-- Serverstandort vollständig selbst wählbar (EU-Hosting problemlos)
-- Keine erzwungene Datenübertragung an Dritte
-- DSGVO-Anforderungen technisch leichter vollständig erfüllbar
-- Shopware GmbH mit Sitz in Schöppingen (Deutschland)
+- The server location can be chosen entirely by you (EU hosting is no problem)
+- No enforced data transfer to third parties
+- GDPR requirements are technically easier to fulfil completely
+- Shopware GmbH, based in Schöppingen (Germany)
 
 ### Shopify
-- Datenspeicherung in Shopify-Cloud (USA/Kanada)
-- Standardmäßig Drittland-Datentransfer
-- DSGVO-Compliance nur eingeschränkt selbst steuerbar
-- Data Processing Agreement mit Shopify möglich, aber keine EU-Only-Option
+- Data storage in the Shopify cloud (USA/Canada)
+- Third-country data transfer by default
+- GDPR compliance can only be controlled by you to a limited extent
+- A data processing agreement with Shopify is possible, but there is no EU-only option
 
-**Fazit DSGVO:** Für datensensibler aufgestellte Unternehmen und öffentliche Auftraggeber ist Shopware klar vorzuziehen.
+**GDPR conclusion:** For companies with a more data-sensitive setup and for public sector clients, Shopware is clearly preferable.
 
 ---
 
-## 9. Support & Community
+## 9. Support & community
 
 ### Shopware
-- Offizielle Dokumentation (docs.shopware.com)
-- Community Forum + Slack
-- Shopware-Partner-Netzwerk: 1.600+ Partner weltweit
-- Direkter Hersteller-Support (kommerziell)
-- Gartner Magic Quadrant 2025: Visionary-Status
+- Official documentation (docs.shopware.com)
+- Community forum + Slack
+- Shopware partner network: 1,600+ partners worldwide
+- Direct vendor support (commercial)
+- Gartner Magic Quadrant 2025: Visionary status
 
 ### Shopify
-- Umfangreiche Dokumentation und Hilfe-Center
-- 24/7-Support (Chat/E-Mail)
-- Sehr große Community und App-Ökosystem
-- Shopify Experts Marketplace für Agenturen
+- Extensive documentation and help centre
+- 24/7 support (chat/email)
+- Very large community and app ecosystem
+- Shopify Experts Marketplace for agencies
 
-**Fazit Support:** Shopify punktet mit 24/7-Sofort-Support. Shopware hat starkes deutschsprachiges Partner-Netzwerk und besseren Enterprise-Support.
+**Support conclusion:** Shopify scores with 24/7 immediate support. Shopware has a strong German-speaking partner network and better enterprise support.
 
 ---
 
-## 10. Zielgruppen
+## 10. Target groups
 
-| Zielgruppe | Empfehlung |
+| Target group | Recommendation |
 |---|---|
-| Schneller Einstieg, wenig Technik | Shopify |
-| DSGVO-sensibler Betrieb, EU-Hosting | Shopware |
-| B2B-Handel | Shopware |
-| Enterprise mit komplexen Anforderungen | Shopware |
-| Internationaler Multi-Market-Betrieb | Shopware (mehr Flexibilität) |
-| Kleiner B2C-Shop, Einsteiger | Shopify |
-| Headless-Commerce-Projekt | Beide (je nach Stack-Präferenz) |
-| DACH-Markt mit Fokus auf Anpassbarkeit | Shopware |
+| Quick start, little technical effort | Shopify |
+| GDPR-sensitive operation, EU hosting | Shopware |
+| B2B trade | Shopware |
+| Enterprise with complex requirements | Shopware |
+| International multi-market operation | Shopware (more flexibility) |
+| Small B2C shop, beginners | Shopify |
+| Headless commerce project | Both (depending on stack preference) |
+| DACH market with a focus on customisability | Shopware |
 
 ---
 
-## 11. Migrationspfad Shopify → Shopware
+## 11. Migration path Shopify → Shopware
 
-### Offizielle Ressource
-Shopware stellt unter `/de/migration/zu-shopware/` Informationen zur Migration bereit.
+### Official resource
+Shopware provides information on migration under `/de/migration/zu-shopware/`.
 
-### Typischer Migrationsprozess
+### Typical migration process
 
-1. **Analyse & Vorbereitung**
-   - Produktkatalog exportieren (CSV/API)
-   - Kundendaten und Bestellhistorie sichern
-   - Erweiterungen/Apps auf Shopware-Äquivalente prüfen
-   - Theme/Design: Neuumsetzung erforderlich (kein Liquid → Twig)
+1. **Analysis & preparation**
+   - Export the product catalogue (CSV/API)
+   - Back up customer data and order history
+   - Check extensions/apps for Shopware equivalents
+   - Theme/design: a new implementation is required (no Liquid → Twig)
 
-2. **Datenmigration**
-   - Shopware Migration Assistant (Plugin) für automatisierten Import
-   - Produkte, Kategorien, Kunden, Bestellungen, Medien
-   - URL-Weiterleitungen planen (SEO-Schutz)
+2. **Data migration**
+   - Shopware Migration Assistant (plugin) for an automated import
+   - Products, categories, customers, orders, media
+   - Plan URL redirects (SEO protection)
 
-3. **Technische Einrichtung**
-   - Hosting aufsetzen (Self-hosted oder PaaS)
-   - Shopware installieren und konfigurieren
-   - Zahlungsanbieter integrieren (kein Transaktionsgebühren-Lock-in)
-   - Sales Channels und Sprachen anlegen
+3. **Technical setup**
+   - Set up hosting (self-hosted or PaaS)
+   - Install and configure Shopware
+   - Integrate payment providers (no transaction fee lock-in)
+   - Create sales channels and languages
 
-4. **Theme & Frontend**
-   - Shopware Storefront (Twig) oder Headless-Lösung
-   - Kein direktes Liquid-zu-Twig-Konverter vorhanden
-   - Shopware-zertifizierte Agenturen empfehlenswert
+4. **Theme & frontend**
+   - Shopware storefront (Twig) or a headless solution
+   - There is no direct Liquid-to-Twig converter
+   - Shopware-certified agencies are recommended
 
-5. **Go-Live**
-   - DNS-Umstellung
-   - 301-Weiterleitungen aktiv
-   - SEO-Monitoring nach Launch
+5. **Go-live**
+   - DNS switchover
+   - 301 redirects active
+   - SEO monitoring after launch
 
-### Herausforderungen der Migration
-- Theme muss neu entwickelt werden (kein 1:1-Export)
-- App-Äquivalente prüfen (nicht alle Shopify-Apps haben Shopware-Pendants)
-- Initiale Hosting-Infrastruktur muss aufgebaut werden
-- Technisches Know-how oder Agentur-Support empfohlen
+### Challenges of the migration
+- The theme has to be developed anew (no 1:1 export)
+- Check app equivalents (not all Shopify apps have Shopware counterparts)
+- The initial hosting infrastructure has to be built up
+- Technical know-how or agency support is recommended
 
-### Vorteile nach Migration
-- Keine monatlichen Fixkosten und Transaktionsgebühren ab bestimmtem GMV
-- Vollständige Datenkontrolle und EU-Hosting
-- Native B2B-Funktionen ohne Aufpreis (ab kommerziellem Tarif)
-- Unbegrenzte Anpassungsmöglichkeiten am Quellcode
+### Advantages after the migration
+- No monthly fixed costs and no transaction fees above a certain GMV
+- Full data control and EU hosting
+- Native B2B functions at no extra charge (from the commercial tariff)
+- Unlimited customisation options in the source code
 
 ---
 
-## Kennzahlen Shopware (Stand 2025)
+## Key figures Shopware (as of 2025)
 
-- 25 Mrd. € Plattform-GMV
-- 3.100+ Erweiterungen im Store
-- 1.600+ Partner weltweit
+- €25 bn platform GMV
+- 3,100+ extensions in the Store
+- 1,600+ partners worldwide
 - Gartner Magic Quadrant 2025: Visionary
 
 ---
 
-## Quellen
+## Sources
 
-- Shopware-Vergleichsseite: https://www.shopware.com/de/shopware-vs-shopify/ (abgerufen 2026-06-11)
-- Allgemeines Plattformwissen: Shopware-Dokumentation, Shopify-Pricing-Seite, öffentliche Gartner-Reports
+- Shopware comparison page: https://www.shopware.com/de/shopware-vs-shopify/ (retrieved 2026-06-11)
+- General platform knowledge: Shopware documentation, Shopify pricing page, public Gartner reports

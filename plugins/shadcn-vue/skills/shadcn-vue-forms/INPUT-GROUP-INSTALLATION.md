@@ -6,18 +6,18 @@
 npx shadcn-vue@latest add input-group
 ```
 
-## Manuell
+## Manual
 
-### Abhaengigkeiten
+### Dependencies
 
 ```bash
 npm install reka-ui
 ```
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren nach `components/ui/input-group/`
-2. Importpfade anpassen
+1. Copy source code to `components/ui/input-group/`
+2. Adjust import paths
 
 ### Import
 
@@ -34,5 +34,5 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/input-group

@@ -1,25 +1,25 @@
 # shadcn-vue Chart — Installation & Theming
 
-## CLI-Installation
+## CLI installation
 
 ```bash
 npx shadcn-vue@latest add chart
 ```
 
-Installiert `@unovis/vue` und `@unovis/ts` als Abhaengigkeiten und legt
-`components/ui/chart/` an.
+Installs `@unovis/vue` and `@unovis/ts` as dependencies and creates
+`components/ui/chart/`.
 
-## Manuelle Installation
+## Manual installation
 
 ```bash
 npm install @unovis/vue @unovis/ts
 ```
 
-Dann die Dateien aus `components/ui/chart/` anlegen (siehe `ui-chart-source.md`).
+Then create the files in `components/ui/chart/` (see `ui-chart-source.md`).
 
-## CSS-Farb-Variablen (--chart-1 bis --chart-5)
+## CSS color variables (--chart-1 to --chart-5)
 
-In der globalen CSS-Datei muessen die Chart-Farben definiert sein:
+The chart colors must be defined in the global CSS file:
 
 ```css
 :root {
@@ -39,16 +39,16 @@ In der globalen CSS-Datei muessen die Chart-Farben definiert sein:
 }
 ```
 
-## ChartConfig und CSS-Variablen
+## ChartConfig and CSS variables
 
-`ChartStyle.vue` injiziert `--color-<key>` CSS-Variablen basierend auf `ChartConfig`:
+`ChartStyle.vue` injects `--color-<key>` CSS variables based on `ChartConfig`:
 
 ```ts
-// Statische Farbe
+// Static color
 const chartConfig = {
   desktop: { label: "Desktop", color: "var(--chart-1)" }
 }
-// Theme-spezifische Farbe (light/dark)
+// Theme-specific color (light/dark)
 const chartConfig = {
   desktop: {
     label: "Desktop",
@@ -57,11 +57,11 @@ const chartConfig = {
 }
 ```
 
-Die Variablen sind dann im SVG als `var(--color-desktop)` verfuegbar.
+The variables are then available in the SVG as `var(--color-desktop)`.
 
-## unovis CSS-Reset (empfohlen)
+## unovis CSS reset (recommended)
 
-`ChartContainer.vue` setzt folgende CSS-Custom-Properties fuer unovis:
+`ChartContainer.vue` sets the following CSS custom properties for unovis:
 
 ```ts
 '--vis-tooltip-padding': '0px',

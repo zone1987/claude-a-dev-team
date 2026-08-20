@@ -1,24 +1,24 @@
-# Shopware 6 — Theme Assets & Icons: Vollständige Referenz
+# Shopware 6 — Theme Assets & Icons: Complete Reference
 
-Quellen: `guides/plugins/themes/assets/add-assets-to-theme.md`,
+Sources: `guides/plugins/themes/assets/add-assets-to-theme.md`,
 `guides/plugins/themes/assets/add-icons.md`
 
 ---
 
 ## Contents
 
-- [Assets in einem Theme einbinden](#assets-in-einem-theme-einbinden)
-- [Assets verlinken](#assets-verlinken)
+- [Including assets in a theme](#including-assets-in-a-theme)
+- [Linking assets](#linking-assets)
 - [Custom Icons](#custom-icons)
-- [Schnellreferenz: Pfade](#schnellreferenz-pfade)
+- [Quick reference: paths](#quick-reference-paths)
 
-## Assets in einem Theme einbinden
+## Including assets in a theme
 
-Es gibt zwei Methoden:
+There are two methods:
 
-### Methode 1: theme.json (empfohlen für Themes)
+### Method 1: theme.json (recommended for themes)
 
-In `theme.json` den Asset-Pfad konfigurieren:
+Configure the asset path in `theme.json`:
 
 ```json
 {
@@ -28,7 +28,7 @@ In `theme.json` den Asset-Pfad konfigurieren:
 }
 ```
 
-Mit dem Storefront-Default-Theme:
+With the storefront default theme:
 ```json
 {
   "asset": [
@@ -38,8 +38,8 @@ Mit dem Storefront-Default-Theme:
 }
 ```
 
-**Wie es funktioniert:** Der Befehl `bin/console theme:compile` kopiert alle Assets aus dem
-konfigurierten Pfad nach `<shopware-root>/public/theme/<theme-asset-uuid>/asset/`.
+**How it works:** The command `bin/console theme:compile` copies all assets from the
+configured path to `<shopware-root>/public/theme/<theme-asset-uuid>/asset/`.
 
 ```text
 public/
@@ -51,25 +51,25 @@ public/
     │       └── all.js
     └── <theme-asset-uuid>/
         └── asset/
-            └── your-image.png   ← hierhin wird kopiert
+            └── your-image.png   ← copied here
 ```
 
-### Methode 2: Plugin-Weg (Standard-Assets)
+### Method 2: plugin approach (standard assets)
 
-Funktioniert wie normale Plugin-Assets über `<plugin>/src/Resources/public/`.
+Works like normal plugin assets via `<plugin>/src/Resources/public/`.
 Details: `guides/plugins/storefront/styling/add-custom-assets.md`
 
 ---
 
-## Assets verlinken
+## Linking assets
 
-### In Twig-Templates
+### In Twig templates
 
 ```twig
 <img src="{{ asset('/assets/your-image.png', 'theme') }}">
 ```
 
-Der zweite Parameter `'theme'` gibt den Asset-Package-Namen an.
+The second parameter `'theme'` specifies the asset package name.
 
 ### In SCSS
 
@@ -79,23 +79,23 @@ body {
 }
 ```
 
-Die SCSS-Variable `$app-css-relative-asset-path` wird automatisch von Shopware gesetzt und
-zeigt auf das Theme-Asset-Verzeichnis.
+The SCSS variable `$app-css-relative-asset-path` is set automatically by Shopware and
+points to the theme asset directory.
 
 ---
 
 ## Custom Icons
 
-### Standard-Icon-System
+### Default icon system
 
-Shopware nutzt SVG-Icons. Standard-Icons liegen in:
+Shopware uses SVG icons. Default icons are located in:
 ```
 <shopware-root>/src/Storefront/Resources/app/storefront/dist/assets/icon/
-├── default/    ← Standard-Pack
-└── solid/      ← Solid-Pack
+├── default/    ← default pack
+└── solid/      ← solid pack
 ```
 
-### Icon im Twig verwenden
+### Using an icon in Twig
 
 ```twig
 {% sw_icon 'done-outline-24px' style {
@@ -105,36 +105,36 @@ Shopware nutzt SVG-Icons. Standard-Icons liegen in:
 } %}
 ```
 
-**`sw_icon` Konfigurations-Parameter:**
+**`sw_icon` configuration parameters:**
 
-| Parameter | Beschreibung |
+| Parameter | Description |
 |---|---|
-| `size` | Größe des Icons |
-| `namespace` | Plugin/Theme-Name, in dem das Icon gesucht wird — **wichtig für Custom Icons** |
-| `pack` | Icon-Pack-Name (default: `default`) |
-| `color` | Farbe (Bootstrap-Varianten oder beliebige CSS-Farbe) |
-| `class` | Zusätzliche CSS-Klasse |
+| `size` | Size of the icon |
+| `namespace` | Plugin/theme name in which the icon is looked up — **important for custom icons** |
+| `pack` | Icon pack name (default: `default`) |
+| `color` | Color (Bootstrap variants or any CSS color) |
+| `class` | Additional CSS class |
 
-> **Achtung:** Ohne `namespace`-Konfiguration zeigt Shopware die Standard-Storefront-Icons.
+> **Caution:** Without a `namespace` configuration, Shopware shows the default storefront icons.
 
-### Eigene Icons ablegen (klassisch)
+### Placing your own icons (classic)
 
-Icons im Plugin/Theme unter:
+Icons in the plugin/theme under:
 ```
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/default/
 ```
 
-Für eigene Icon-Packs einen Ordner mit dem Pack-Namen erstellen:
+For your own icon packs, create a folder with the pack name:
 ```
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/<pack-name>/
 ```
 
-> **Achtung:** Icons sind **nicht** Teil der Theme-Vererbung. Custom Icons müssen im eigenen
-> Theme-Namespace abgelegt und explizit per `namespace` referenziert werden.
+> **Caution:** Icons are **not** part of theme inheritance. Custom icons must be placed in your
+> own theme namespace and referenced explicitly via `namespace`.
 
-### iconSets in theme.json (ab Shopware 6.4.1.0) — PFLICHT für Apps
+### iconSets in theme.json (as of Shopware 6.4.1.0) — MANDATORY for apps
 
-Für App-Themes und als bevorzugte Methode:
+For app themes and as the preferred method:
 
 ```json
 {
@@ -144,22 +144,22 @@ Für App-Themes und als bevorzugte Methode:
 }
 ```
 
-Verwendung im Twig:
+Usage in Twig:
 ```twig
 {% sw_icon 'done-outline-24px' style {
     'pack': 'custom-icons'
 } %}
 ```
 
-> **Hinweis:** Für App-Themes ist `iconSets` **Pflicht**, da Icons sonst nicht geladen werden können.
+> **Note:** For app themes, `iconSets` is **mandatory**, since icons cannot be loaded otherwise.
 
 ---
 
-## Schnellreferenz: Pfade
+## Quick reference: paths
 
-| Zweck | Pfad |
+| Purpose | Path |
 |---|---|
-| Assets im Theme | `src/Resources/app/storefront/src/assets/` |
-| Default-Icons | `dist/assets/icon/default/` |
-| Custom Icon-Pack | `dist/assets/icon/<pack-name>/` |
-| Compiled Assets (public) | `public/theme/<theme-asset-uuid>/asset/` |
+| Assets in the theme | `src/Resources/app/storefront/src/assets/` |
+| Default icons | `dist/assets/icon/default/` |
+| Custom icon pack | `dist/assets/icon/<pack-name>/` |
+| Compiled assets (public) | `public/theme/<theme-asset-uuid>/asset/` |

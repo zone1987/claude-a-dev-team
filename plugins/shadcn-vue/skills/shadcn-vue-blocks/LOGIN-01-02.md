@@ -1,8 +1,8 @@
-# shadcn-vue Login Blocks: login-01 und login-02
+# shadcn-vue Login Blocks: login-01 and login-02
 
 ## Block: login-01
 
-**Description:** A simple login form — zentriertes Card-Formular mit Email/Passwort und Google-Button.
+**Description:** A simple login form — centered card form with email/password and a Google button.
 
 **Installation:**
 ```bash
@@ -121,7 +121,7 @@ const props = defineProps<{
 
 ## Block: login-02
 
-**Description:** A two column login page with a cover image — zweispaltiges Layout mit Logo und GitHub-Button.
+**Description:** A two column login page with a cover image — two-column layout with logo and a GitHub button.
 
 **Installation:**
 ```bash

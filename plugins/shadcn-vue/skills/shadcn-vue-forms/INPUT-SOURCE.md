@@ -1,4 +1,4 @@
-# Input — Quellcode
+# Input — Source Code
 
 ## Input.vue
 
@@ -44,5 +44,5 @@ const modelValue = useVModel(props, "modelValue", emits, {
 export { default as Input } from "./Input.vue"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/input/`

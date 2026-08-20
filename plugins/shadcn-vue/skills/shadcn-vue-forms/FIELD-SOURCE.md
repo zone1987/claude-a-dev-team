@@ -1,6 +1,6 @@
 # Field — Quellcode
 
-Alle Dateien aus `registry/new-york-v4/ui/field/`.
+All files from `registry/new-york-v4/ui/field/`.
 
 ## Contents
 
@@ -367,5 +367,5 @@ export { default as FieldSet } from "./FieldSet.vue"
 export { default as FieldTitle } from "./FieldTitle.vue"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/field/`

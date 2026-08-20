@@ -1,117 +1,117 @@
-# Anpassbare Popups & Benachrichtigungen
+# Anpassbare Popups & Benachrichtigungen (Customisable popups & notifications)
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/anpassbare-popups-und-benachrichtigungen  
-**Verfügbar**: Kostenlos im Shopware Store  
-**Mindestversion**: Shopware 6.4.0.0
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/anpassbare-popups-und-benachrichtigungen  
+**Availability**: Free of charge in the Shopware Store  
+**Minimum version**: Shopware 6.4.0.0
 
 ## Contents
 
-- [Überblick](#überblick)
+- [Overview](#overview)
 - [Installation](#installation)
-- [Konfigurationspfad](#konfigurationspfad)
-- [Popup-Typen](#popup-typen)
-- [Multi-Kanal-Konfiguration](#multi-kanal-konfiguration)
-- [DSGVO-Hinweise](#dsgvo-hinweise)
+- [Configuration path](#configuration-path)
+- [Popup types](#popup-types)
+- [Multi-channel configuration](#multi-channel-configuration)
+- [GDPR notes](#gdpr-notes)
 
-## Überblick
+## Overview
 
-Die Extension **Anpassbare Popups & Benachrichtigungen** ermöglicht verschiedene
-Popup- und Banner-Typen für den Storefront – zur Kundenkommunikation bei Shop-Besuch.
+The **Anpassbare Popups & Benachrichtigungen** extension enables various
+popup and banner types for the storefront – for customer communication on a shop visit.
 
 ---
 
 ## Installation
 
-1. **Erweiterungen > Store** → "Custom Popups & Notifications" suchen
-2. Kostenlos herunterladen
-3. **Erweiterungen > Meine Erweiterungen** → Installieren + Aktivieren
+1. **Erweiterungen** (Extensions) **> Store** → search for "Custom Popups & Notifications"
+2. Download it free of charge
+3. **Erweiterungen > Meine Erweiterungen** (My extensions) → install + activate
 
 ---
 
-## Konfigurationspfad
+## Configuration path
 
-**Erweiterungen > Meine Erweiterungen > Anpassbare Popups & Benachrichtigungen > Konfigurieren**
+**Erweiterungen > Meine Erweiterungen > Anpassbare Popups & Benachrichtigungen > Konfigurieren** (Configure)
 
-Oder direkt: **Einstellungen > Erweiterungen > Anpassbare Popups & Benachrichtigungen**
+Or directly: **Einstellungen** (Settings) **> Erweiterungen > Anpassbare Popups & Benachrichtigungen**
 
-Konfiguration ist **pro Verkaufskanal** möglich (verschiedene Popups für verschiedene Shops).
+The configuration is possible **per sales channel** (different popups for different shops).
 
 ---
 
-## Popup-Typen
+## Popup types
 
-### 1. Consent Popup (Einwilligungs-Popup)
-**Beschreibung**: Popup erscheint direkt beim Shop-Besuch und muss **aktiv bestätigt** werden.
+### 1. Consent popup
+**Description**: The popup appears immediately on the shop visit and has to be **actively confirmed**.
 
-**Anwendungsfälle**:
-- Altersprüfung ("Sind Sie 18 Jahre oder älter?")
-- Allgemeine Einwilligung/Hinweis für bestimmte Shops (z. B. Apotheken, Alkohol-Shops)
+**Use cases**:
+- Age verification ("Are you 18 years or older?")
+- A general consent/notice for certain shops (for example pharmacies, alcohol shops)
 
-**Konfigurierbar**:
-- Titel
-- Beschreibungstext
-- Button-Text (Bestätigen / Ablehnen)
-- Weiterleitung bei Ablehnung
+**Configurable**:
+- Title
+- Description text
+- Button text (confirm / decline)
+- Redirect on a decline
 
 ---
 
 ### 2. Banner
-**Beschreibung**: Konfigurierbare Leiste am **oberen Seitenrand**.
+**Description**: A configurable bar at the **top edge of the page**.
 
-**Konfigurierbare Optionen**:
-| Eigenschaft | Optionen |
+**Configurable options**:
+| Property | Options |
 |---|---|
-| Hintergrundfarbe | Frei wählbar (Color Picker) |
-| Textfarbe | Frei wählbar |
-| Text | Freitext |
-| Scrolling-Animation | Text läuft durch (Marquee-Effekt) |
-| Schließbar | Ja/Nein (X-Button für Kunden) |
-| Permanent | Immer sichtbar, auch nach Scroll |
+| Background colour | Freely selectable (colour picker) |
+| Text colour | Freely selectable |
+| Text | Free text |
+| Scrolling animation | The text scrolls through (marquee effect) |
+| Closable | Yes/no (X button for customers) |
+| Permanent | Always visible, even after scrolling |
 
-**Typische Anwendungsfälle**:
-- "Kostenloser Versand ab 50 €"
-- "SALE: 20% auf alles" (befristet)
-- "Neue Kollektion jetzt verfügbar"
-
----
-
-### 3. Info Popup
-**Beschreibung**: Popup beim Shop-Einstieg mit allgemeinen Informationen oder Aktionsankündigungen.
-
-**Konfigurierbar**:
-- Titel
-- Beschreibungstext
-- Bild hochladen (Banner-Bild für visuellen Eindruck)
-
-**Typische Anwendungsfälle**:
-- Saisonale Ankündigungen ("Winter Sale beginnt!")
-- Shop-News ("Neue Funktionen verfügbar")
-- Wartungsankündigungen
+**Typical use cases**:
+- "Kostenloser Versand ab 50 €" (Free shipping from 50 €)
+- "SALE: 20% auf alles" (20% off everything) (time-limited)
+- "Neue Kollektion jetzt verfügbar" (New collection available now)
 
 ---
 
-### 4. Newsletter-Registrierungs-Popup
-**Beschreibung**: Popup direkt beim Shop-Besuch zur **Newsletter-Anmeldung**.
+### 3. Info popup
+**Description**: A popup on entering the shop with general information or promotion announcements.
 
-**Konfigurierbar**:
-- Titel und Beschreibung
-- Optionale Felder: Vorname, Nachname (an/aus)
-- Pflichtfelder für Anmeldung
+**Configurable**:
+- Title
+- Description text
+- Image upload (a banner image for the visual impression)
 
-**Integration**: Verknüpft mit Shopware Newsletter-System
-→ Abonnenten erscheinen in **Marketing > Newsletter-Empfänger**
-
----
-
-## Multi-Kanal-Konfiguration
-
-Ein Popup kann für **mehrere Verkaufskanäle** oder nur für **spezifische Kanäle** aktiviert werden.
-Jeder Kanal kann unterschiedliche Popup-Einstellungen haben.
+**Typical use cases**:
+- Seasonal announcements ("Winter Sale beginnt!" – Winter sale starts!)
+- Shop news ("Neue Funktionen verfügbar" – New features available)
+- Maintenance announcements
 
 ---
 
-## DSGVO-Hinweise
+### 4. Newsletter registration popup
+**Description**: A popup right on the shop visit for the **newsletter sign-up**.
 
-- Consent Popup: Geeignet für Pflichteinwilligungen
-- Newsletter Popup: Double-Opt-In muss in Shopware-Einstellungen konfiguriert sein
-  → **Einstellungen > E-Mail-Templates > Newsletter-Bestätigung**
+**Configurable**:
+- Title and description
+- Optional fields: first name, last name (on/off)
+- Mandatory fields for the sign-up
+
+**Integration**: Linked to the Shopware newsletter system
+→ Subscribers appear in **Marketing > Newsletter-Empfänger** (Newsletter recipients)
+
+---
+
+## Multi-channel configuration
+
+A popup can be activated for **several sales channels** or only for **specific channels**.
+Each channel can have different popup settings.
+
+---
+
+## GDPR notes
+
+- Consent popup: suitable for mandatory consents
+- Newsletter popup: the double opt-in has to be configured in the Shopware settings
+  → **Einstellungen > E-Mail-Templates > Newsletter-Bestätigung** (Newsletter confirmation)

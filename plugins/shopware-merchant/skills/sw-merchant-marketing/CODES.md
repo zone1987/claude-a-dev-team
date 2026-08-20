@@ -1,3 +1,3 @@
 # sw-merchant-marketing-codes
 
-Dieser Skill erklärt alle drei Arten von Aktionscodes in Shopware 6 Promotions: kein Code (automatische Anwendung), festgelegter Code (ein Code für alle) und individuelle Codes (einmalige Nutzung pro Kunde). Er enthält die Schritte zur Code-Erzeugung, Nutzungsregeln sowie die Nachverfolgung eingelöster Codes in der Bestellübersicht und der Aktionsdetailansicht.
+This skill explains all three kinds of promotion code in Shopware 6 promotions: no code (automatic application), a fixed code (one code for everyone) and individual codes (single use per customer). It contains the steps for generating codes, the usage rules as well as the tracking of redeemed codes in the order overview and in the promotion detail view.

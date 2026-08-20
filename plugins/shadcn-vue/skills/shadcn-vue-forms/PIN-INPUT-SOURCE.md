@@ -1,4 +1,4 @@
-# PinInput — Vollstandiger Quellcode
+# PinInput — Complete Source Code
 
 ## Contents
 
@@ -7,7 +7,7 @@
 - [PinInputGroup.vue](#pininputgroupvue)
 - [PinInputSeparator.vue](#pininputseparatorvue)
 - [PinInputSlot.vue](#pininputslotvue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -125,5 +125,5 @@ const forwardedProps = useForwardProps(delegatedProps)
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/pin-input/`

@@ -1,117 +1,117 @@
-# Shopware Analytics – Erweitertes Reporting
+# Shopware Analytics – extended reporting
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/shopware-analytics  
-**Pfad im Admin**: Dashboard > Analytics  
-**Verfügbar für**: Alle Pläne (Rise, Evolve, Beyond)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/shopware-analytics  
+**Path in the admin**: Dashboard > Analytics  
+**Available for**: All plans (Rise, Evolve, Beyond)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Versionen](#versionen)
-- [Installation & Aktivierung](#installation-aktivierung)
-- [Konfigurationsoptionen](#konfigurationsoptionen)
-- [Backend-Metriken](#backend-metriken)
-- [Storefront-Metriken (erfordert Event Tracking)](#storefront-metriken-erfordert-event-tracking)
-- [Datenschutz & Performance-Hinweis](#datenschutz-performance-hinweis)
+- [Overview](#overview)
+- [Versions](#versions)
+- [Installation & activation](#installation-activation)
+- [Configuration options](#configuration-options)
+- [Backend metrics](#backend-metrics)
+- [Storefront metrics (requires event tracking)](#storefront-metrics-requires-event-tracking)
+- [Data protection & performance note](#data-protection-performance-note)
 - [Troubleshooting](#troubleshooting)
 
-## Überblick
+## Overview
 
-**Shopware Analytics** erweitert die Standard-Dashboard-Statistiken um detailliertes Reporting.
-Datenverarbeitung erfolgt auf dem eigenen System – kein Drittanbieter-Tracking.
+**Shopware Analytics** extends the standard dashboard statistics with detailed reporting.
+The data processing happens on your own system – no third-party tracking.
 
 ---
 
-## Versionen
+## Versions
 
-| Shopware Version | Analytics Version |
+| Shopware version | Analytics version |
 |---|---|
-| Shopware 6.5 | App Version 1.4.x |
-| Shopware 6.6+ | App Version 2.4.x |
+| Shopware 6.5 | App version 1.4.x |
+| Shopware 6.6+ | App version 2.4.x |
 
 ---
 
-## Installation & Aktivierung
+## Installation & activation
 
-1. **Erweiterungen > Meine Erweiterungen** oder **Erweiterungen > Store**
-2. "Shopware Analytics" suchen → Installieren + Aktivieren
-3. Zugang: **Dashboard > Analytics**
+1. **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions) or **Erweiterungen > Store**
+2. Search for "Shopware Analytics" → install + activate
+3. Access: **Dashboard > Analytics**
 
 ---
 
-## Konfigurationsoptionen
+## Configuration options
 
-### Zeitraum-Filter
-- Vordefinierte Zeiträume: Heute, Gestern, Letzte 7/30 Tage, Diesen/Letzten Monat, Dieses/Letztes Jahr
-- **Benutzerdefinierter Zeitraum**: Start- und Enddatum frei wählen
+### Period filter
+- Predefined periods: today, yesterday, the last 7/30 days, this/last month, this/last year
+- **Custom period**: choose the start and end date freely
 
-### Filter-Dimensionen
-| Filter | Mögliche Werte |
+### Filter dimensions
+| Filter | Possible values |
 |---|---|
-| Verkaufskanal | Alle Kanäle oder spezifischer Kanal |
-| Land | Kundenland der Bestellung |
-| Kundengruppe | z. B. B2C, B2B |
-| Bestellstatus | Offen, In Bearbeitung, Abgeschlossen, Storniert |
-| Zahlungsstatus | Offen, Bezahlt, Teilweise bezahlt |
+| Verkaufskanal (Sales channel) | All channels or a specific channel |
+| Country | The customer country of the order |
+| Kundengruppe (Customer group) | For example B2C, B2B |
+| Order status | Offen (Open), In Bearbeitung (In progress), Abgeschlossen (Completed), Storniert (Cancelled) |
+| Payment status | Offen (Open), Bezahlt (Paid), Teilweise bezahlt (Partially paid) |
 
 ---
 
-## Backend-Metriken
+## Backend metrics
 
-### Umsatz & Bestellungen
-| Kennzahl | Beschreibung |
+### Revenue & orders
+| Key figure | Description |
 |---|---|
-| Gesamtumsatz | Bruttoumsatz im gewählten Zeitraum |
-| Anzahl Bestellungen | Gesamtzahl der Bestellungen |
-| Durchschnittlicher Bestellwert | Umsatz / Anzahl Bestellungen |
+| Total revenue | Gross revenue in the selected period |
+| Number of orders | The total number of orders |
+| Average order value | Revenue / number of orders |
 
-### Zahlungsmethoden
-- Welche Zahlungsmethoden werden wie häufig genutzt?
-- Umsatzanteil pro Zahlungsmethode
+### Payment methods
+- Which payment methods are used, and how often?
+- The revenue share per payment method
 
-### Kundengewinnung
-- Neu- vs. Bestandskunden
-- Kundenentwicklung über Zeit
+### Customer acquisition
+- New vs. returning customers
+- Customer development over time
 
-### Rabatte & Gutscheine
-- Gesamtrabattvolumen
-- Häufig genutzte Gutscheincodes
+### Discounts & vouchers
+- The total discount volume
+- Frequently used voucher codes
 
-### Umsatz nach Dimension
-- Nach Hersteller
-- Nach Land / Region
-- Nach Produkt (Top-Seller)
-- Nach Versandmethode
+### Revenue by dimension
+- By manufacturer
+- By country / region
+- By product (top sellers)
+- By shipping method
 
 ---
 
-## Storefront-Metriken (erfordert Event Tracking)
+## Storefront metrics (requires event tracking)
 
-> **Voraussetzung**: Tracking muss aktiv sein und Kunden müssen zustimmen (DSGVO-konform)
+> **Prerequisite**: Tracking has to be active and customers have to consent (GDPR-compliant)
 
-| Kennzahl | Beschreibung |
+| Key figure | Description |
 |---|---|
-| Seitenaufrufe | Gesamte Page Views |
-| Unique Visitors | Eindeutige Besucher |
-| Conversion Rate | Besucher → Käufer (%) |
-| Customer Journey | Pfad vom ersten Besuch zur Bestellung |
+| Page impressions | Total page views |
+| Unique visitors | Distinct visitors |
+| Conversion rate | Visitors → buyers (%) |
+| Customer journey | The path from the first visit to the order |
 
 ---
 
-## Datenschutz & Performance-Hinweis
+## Data protection & performance note
 
-- Datenverarbeitung: **Auf dem eigenen Server** (keine Drittanbieter)
-- Nutzer müssen der Datenverarbeitung zustimmen
-- **Wichtig**: "Große Datenvolumen können die Systemperformance beeinflussen" – bei großen Shops
-  Analyse außerhalb der Peak-Zeiten durchführen
+- Data processing: **on your own server** (no third parties)
+- Users have to consent to the data processing
+- **Important**: "Large data volumes can affect the system performance" – on large shops
+  run the analysis outside the peak times
 
 ---
 
 ## Troubleshooting
 
-| Problem | Lösung |
+| Problem | Solution |
 |---|---|
-| Keine Daten nach URL-Wechsel | `bin/console app:url-change:resolve` ausführen |
-| Tracking-Aktivierung schlägt fehl | Prüfen ob externe Kommunikation (Firewall) geblockt wird |
-| Daten veraltet | Message-Queue prüfen (`php bin/console messenger:consume`) |
-| Berichte laden langsam | Zeitraum einschränken oder Off-Peak-Analyse durchführen |
+| No data after a URL change | Run `bin/console app:url-change:resolve` |
+| The tracking activation fails | Check whether external communication is blocked (firewall) |
+| The data is out of date | Check the message queue (`php bin/console messenger:consume`) |
+| The reports load slowly | Restrict the period or run the analysis off-peak |

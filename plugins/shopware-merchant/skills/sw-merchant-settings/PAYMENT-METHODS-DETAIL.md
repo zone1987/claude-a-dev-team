@@ -1,56 +1,56 @@
-# Shopware 6 – Zahlungsarten (vollständige Referenz)
+# Shopware 6 – Zahlungsarten (Payment methods) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/Zahlungsarten
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/Zahlungsarten
 
 ---
 
-## Überblick
+## Overview
 
-**Pfad:** Einstellungen > Handel > Zahlungsarten
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Zahlungsarten
 
-Listet alle gespeicherten Zahlungsmethoden mit Name, Aktivstatus und Beschreibung.
+Lists all stored payment methods with name, active status and description.
 
-### Standard-Zahlungsarten (vorinstalliert)
+### Default payment methods (pre-installed)
 - Nachnahme (Cash on Delivery)
 - Rechnung (Invoice)
 - Vorkasse (Prepayment)
 - Lastschrift (Direct Debit)
 
-> **Hinweis:** Die Verfügbarkeit im Shop hängt von der Zuweisung in den Verkaufskanal-Einstellungen ab.
+> **Note:** Availability in the shop depends on the assignment in the Verkaufskanäle (Sales channels) settings.
 
 ---
 
-## Zahlungsart erstellen
+## Creating a payment method
 
-Schaltfläche „Zahlungsart anlegen"
+Button "Zahlungsart anlegen" (Create payment method)
 
-| Feld | Nr. | Beschreibung |
+| Field | No. | Description |
 |---|---|---|
-| Name | 1 | Anzeigename der Zahlungsart |
-| Technischer Name | 2 | Eindeutiger Bezeichner (Änderung kann bestehende Zahlungsarten deaktivieren!) |
-| Position | 3 | Anzeigereihenfolge in der Storefront |
-| Beschreibung | 4 | Kurze Erklärung der Zahlungsmethode |
-| Logo | 5 | Eigenes Logo hochladen |
-| Aktiv | 6 | Zahlungsart aktivieren/deaktivieren |
-| Zahlungsartwechsel nach Abschluss | 7 | Kunden dürfen nach Bestellung die Zahlungsart im Account wechseln |
+| Name | 1 | Display name of the payment method |
+| Technischer Name (Technical name) | 2 | Unique identifier (changing it can deactivate existing payment methods!) |
+| Position | 3 | Display order in the storefront |
+| Beschreibung (Description) | 4 | Short explanation of the payment method |
+| Logo | 5 | Upload your own logo |
+| Aktiv (Active) | 6 | Activate/deactivate the payment method |
+| Zahlungsartwechsel nach Abschluss (Change payment method after completion) | 7 | Customers may change the payment method in their account after ordering |
 
-> **Wichtig:** Der technische Name darf nach dem Erstellen nicht mehr geändert werden, wenn die Zahlungsart bereits verwendet wird.
-
----
-
-## Verfügbarkeitsregel
-
-Bestimmt mithilfe des Rule Builders, unter welchen Bedingungen die Zahlungsart angezeigt wird.
-
-- Neue Regeln können direkt erstellt werden
-- Bestehende Regeln können ausgewählt werden
-- Typische Bedingungen: Lieferland, Warenkorbwert, Kundengruppe
+> **Important:** The technical name must not be changed after creation if the payment method is already in use.
 
 ---
 
-## Zahlungsart im Verkaufskanal zuweisen
+## Availability rule
 
-Nach dem Anlegen muss die Zahlungsart dem Verkaufskanal zugewiesen werden:
-1. Verkaufskanäle > [Kanal auswählen] > Grundeinstellungen > Zahlungsarten
-2. Zahlungsart hinzufügen
-3. Optional: Standard-Zahlungsart festlegen
+Uses the Rule Builder to determine the conditions under which the payment method is displayed.
+
+- New rules can be created directly
+- Existing rules can be selected
+- Typical conditions: delivery country, cart value, Kundengruppe (Customer group)
+
+---
+
+## Assigning a payment method to a sales channel
+
+After creation the payment method must be assigned to the sales channel:
+1. Verkaufskanäle > [select channel] > Grundeinstellungen (Basic settings) > Zahlungsarten
+2. Add payment method
+3. Optional: define the default payment method

@@ -1,34 +1,34 @@
-# Shopware Übersetzungssystem — Konzept
+# Shopware translation system — concept
 
-Vollständige Konzept-Doku: `TRANSLATIONS-DETAIL.md`
+Complete concept documentation: `TRANSLATIONS-DETAIL.md`
 
-## Kurzüberblick
+## Quick overview
 
-### DAL-Übersetzungen (Entitäten)
+### DAL translations (entities)
 
-- Jede translatierbare Entity hat eine `*_translation`-Tabelle
-- **3-stufige Auflösung**: Aktuelle Sprache → Parent-Sprache → Systemsprache
-- Parent-Sprache: Ermöglicht z.B. `de-AT` als Dialekt von `de-DE`
+- Every translatable entity has a `*_translation` table
+- **3-step resolution**: current language → parent language → system language
+- Parent language: allows e.g. `de-AT` as a dialect of `de-DE`
 
-### Snippet-Dateien (UI-Texte)
+### Snippet files (UI texts)
 
-- JSON-Dateien in `Resources/snippet/<locale>/`
-- Storefront: Twig-`trans`-Filter; Administration: Vue I18n
-- Ladereihenfolge (Priorität): DB-Translations > Country-spezifisch > Country-agnostisch > Built-in System
+- JSON files in `Resources/snippet/<locale>/`
+- Storefront: Twig `trans` filter; administration: Vue I18n
+- Load order (priority): DB translations > country-specific > country-agnostic > built-in system
 
-### Country-agnostisches Snippet-Layer (ab 6.7)
+### Country-agnostic snippet layer (from 6.7)
 
-- Ziel: Duplikate vermeiden (kein `en-US` als Kopie von `en-GB`)
-- `messages.<sprache>.base.json` — neutrale Basis-Datei
-- `storefront.<sprache>-<region>.json` — kleine Patch-Datei für regionale Unterschiede
-- Validierung: `bin/console translation:lint-filenames`
+- Goal: avoid duplicates (no `en-US` as a copy of `en-GB`)
+- `messages.<language>.base.json` — neutral base file
+- `storefront.<language>-<region>.json` — small patch file for regional differences
+- Validation: `bin/console translation:lint-filenames`
 
-### Built-in Translation System (ersetzt Language Pack)
+### Built-in translation system (replaces the Language Pack)
 
-- Translations aus GitHub-Repo `shopware/translations` (Crowdin-gespeist)
-- `translation:install --locales=fr-FR,de-AT` — Sprachen installieren
-- `translation:update` — Updates einspielen
-- Speichert via Flysystem (lokal, S3, etc.)
-- Language Pack Plugin wird in **6.8.0.0 entfernt**
+- Translations from the GitHub repo `shopware/translations` (fed by Crowdin)
+- `translation:install --locales=fr-FR,de-AT` — install languages
+- `translation:update` — apply updates
+- Stores via Flysystem (local, S3, etc.)
+- The Language Pack plugin will be **removed in 6.8.0.0**
 
-Technische Umsetzung: `shopware-core`, `shopware-storefront` (Dev-Plugins)
+Technical implementation: `shopware-core`, `shopware-storefront` (dev plugins)

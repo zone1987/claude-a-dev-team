@@ -1,12 +1,12 @@
 # Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add spinner
 ```
 
-## Manuell
+## Manual
 
 ### Dependencies
 
@@ -19,7 +19,7 @@ https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/sp
 
 Update import paths to match your project (e.g. `@/lib/utils`).
 
-### Hinweis zur Anpassung
+### Customization note
 
 You can replace the default `Loader2Icon` with any other icon by editing
 the `Spinner.vue` component. Use `size-*` Tailwind classes to resize and

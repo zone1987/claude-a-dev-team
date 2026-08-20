@@ -1,144 +1,144 @@
-# Shopware 6 – Bestellung bearbeiten: Vollständige Referenz
+# Shopware 6 – Editing an order: complete reference
 
 ## Contents
 
-- [Tab „Allgemein"](#tab-allgemein)
-- [Tab „Details"](#tab-details)
-- [Gastbestellungen & Kundenkonto-Ansicht](#gastbestellungen-kundenkonto-ansicht)
-- [Quelle](#quelle)
+- ["Allgemein" tab](#allgemein-tab)
+- ["Details" tab](#details-tab)
+- [Guest orders & customer account view](#guest-orders--customer-account-view)
+- [Source](#source)
 
-## Tab „Allgemein"
+## "Allgemein" tab
 
-### Info-Bereich
+### Info area
 
-![Info-Bereich](../../assets/bestellung-info.png)
+![Info area](assets/order-info.png)
 
-Der Info-Bereich oben zeigt auf einen Blick:
+The info area at the top shows at a glance:
 
-| Element | Beschreibung |
+| Element | Description |
 |---|---|
-| Bestellnummer | Eindeutige ID der Bestellung |
-| Kunde | Name + Link zum Kundenprofil |
-| Bestellzeitpunkt | Datum und Uhrzeit der Bestellung |
-| Zahlungsart | Verwendete Zahlungsmethode |
-| Versandart | Verwendete Versandmethode |
-| Bestellsumme | Brutto-Gesamtbetrag |
-| Letzte Änderung | Zeitstempel der letzten Bearbeitung |
-| **Bestellstatus** | Dropdown zur direkten Statusänderung |
-| **Zahlungsstatus** | Dropdown zur direkten Statusänderung |
-| **Lieferstatus** | Dropdown zur direkten Statusänderung |
-| Tags | Freie Verschlagwortung der Bestellung |
+| Bestellnummer (Order number) | Unique ID of the order |
+| Kunde (Customer) | Name + link to the customer profile |
+| Bestellzeitpunkt (Order date/time) | Date and time of the order |
+| Zahlungsart (Payment method) | Payment method used |
+| Versandart (Shipping method) | Shipping method used |
+| Bestellsumme (Order total) | Gross total amount |
+| Letzte Änderung (Last change) | Timestamp of the last edit |
+| **Bestellstatus** (Order status) | Dropdown for changing the status directly |
+| **Zahlungsstatus** (Payment status) | Dropdown for changing the status directly |
+| **Lieferstatus** (Delivery status) | Dropdown for changing the status directly |
+| Tags | Free tagging of the order |
 
-#### Status aktualisieren – Modal
+#### Updating a status – modal
 
-Beim Klick auf einen Status-Dropdown öffnet sich ein Modal mit:
-- Ziel-Status auswählen
-- Option: **E-Mail an Kunden senden** (Toggle)
-- Wenn E-Mail aktiv: Dokument auswählen (z. B. Rechnung als Anhang)
-- E-Mail-Template zuweisen
-
----
-
-### Positionen (Allgemein-Tab)
-
-![Positionen anlegen](../../assets/positionen-anlegen.png)
-
-In den Positionen sind alle Bestellpositionen aufgelistet. Folgende Bearbeitungen sind möglich:
-
-#### Produkt aus Katalog hinzufügen
-- „Produkt hinzufügen"-Button
-- Produkt per Suche auswählen
-- Preis, Menge und Steuersatz können angepasst werden
-
-#### Leere Position hinzufügen
-- Dropdown neben „Produkt hinzufügen" > „Leere Position hinzufügen"
-- Name, Bruttopreis, Steuersatz, Menge manuell eingeben
-
-#### Gutschrift hinzufügen
-- Dropdown > „Gutschrift hinzufügen"
-- Negativer Betrag → wird von Bestellsumme abgezogen
-- Steuersatz wird aus Produktpositionen berechnet
-
-#### Positionen bearbeiten
-- Doppelklick auf Zeile → inline bearbeiten
-- Änderbar: Preis, Menge, Steuersatz
-- Produktseite direkt über Icon aufrufbar
-- Gemischte Steuersätze (unterschiedliche Steuersätze je Position) werden unterstützt
-
-#### Positionen löschen
-- Checkbox aktivieren → Löschen-Button erscheint
+Clicking a status dropdown opens a modal with:
+- Select the target status
+- Option: **E-Mail an Kunden senden** (Send email to customer) (toggle)
+- If email is enabled: select a document (e.g. the invoice as an attachment)
+- Assign an email template
 
 ---
 
-### Stornierung einer Bestellung
+### Positionen (Line items) (Allgemein tab)
 
-> **Wichtig:** Lagerbestand wird nur freigegeben, wenn der **Bestellstatus** auf „Storniert" gesetzt wird. Eine alleinige Änderung des Zahlungs- oder Lieferstatus auf „Storniert" reicht **nicht** aus.
+![Creating line items](assets/positionen-create.png)
+
+The line items section lists all order line items. The following edits are possible:
+
+#### Adding a product from the catalogue
+- "Produkt hinzufügen" (Add product) button
+- Select the product via search
+- Price, quantity and tax rate can be adjusted
+
+#### Adding an empty line item
+- Dropdown next to "Produkt hinzufügen" > "Leere Position hinzufügen" (Add empty line item)
+- Enter name, gross price, tax rate and quantity manually
+
+#### Adding a credit note
+- Dropdown > "Gutschrift hinzufügen" (Add credit note)
+- Negative amount → deducted from the order total
+- The tax rate is calculated from the product line items
+
+#### Editing line items
+- Double-click a row → edit inline
+- Editable: price, quantity, tax rate
+- The product page can be opened directly via an icon
+- Mixed tax rates (different tax rates per line item) are supported
+
+#### Deleting line items
+- Tick the checkbox → the delete button appears
 
 ---
 
-## Tab „Details"
+### Cancelling an order
 
-### Bereich: Zahlung
+> **Important:** stock is only released when the **Bestellstatus** is set to "Storniert" (Cancelled). Changing only the payment or delivery status to "Storniert" is **not** sufficient.
 
-![Zahlung Details](../../assets/zahlung-details.png)
+---
 
-| Element | Beschreibung |
+## "Details" tab
+
+### Section: Zahlung (Payment)
+
+![Zahlung details](assets/payment-details.png)
+
+| Element | Description |
 |---|---|
-| Aktueller Zahlungsstatus | Anzeige mit Verlauf-Link |
-| Statusverlauf | Alle historischen Statusänderungen |
-| Rechnungsadresse | Änderbar über Dropdown |
-| Zahlungsart | Information über verwendete Methode |
-| Statusabhängigkeiten | Welche Übergänge von aktuellem Status aus möglich sind |
+| Current payment status | Display with a history link |
+| Status history | All historical status changes |
+| Rechnungsadresse (Billing address) | Can be changed via dropdown |
+| Zahlungsart | Information about the method used |
+| Status dependencies | Which transitions are possible from the current status |
 
-### Bereich: Versand
+### Section: Versand (Shipping)
 
-![Versand Details](../../assets/versand-details.png)
+![Versand details](assets/versand-details.png)
 
-| Element | Beschreibung |
+| Element | Description |
 |---|---|
-| Aktueller Lieferstatus | Anzeige mit Verlauf-Link |
-| Statusverlauf | Alle historischen Statusänderungen |
-| Lieferadresse | Vollständige Lieferadresse |
-| Versandart | Verwendete Versandmethode |
-| Versandkosten | Kosten |
-| Geplantes Lieferdatum | Datum (wenn hinterlegt) |
-| **Tracking-Nummer** | Eingabefeld für Sendungsverfolgung des Carriers |
+| Current delivery status | Display with a history link |
+| Status history | All historical status changes |
+| Lieferadresse (Shipping address) | Complete shipping address |
+| Versandart | Shipping method used |
+| Versandkosten (Shipping costs) | Costs |
+| Geplantes Lieferdatum (Planned delivery date) | Date (if stored) |
+| **Tracking-Nummer** (Tracking number) | Input field for the carrier's shipment tracking |
 
-### Bereich: Bestellung
+### Section: Bestellung (Order)
 
-![Bestellung Details](../../assets/bestellung-details.png)
+![Bestellung details](assets/order-details.png)
 
-| Element | Beschreibung |
+| Element | Description |
 |---|---|
-| Bestellstatus | Anzeige mit Verlauf-Link |
-| Kunden-E-Mail | Bearbeitbar |
-| Kundentelefon | Bearbeitbar |
-| Verkaufskanal | Quelle der Bestellung |
-| Bestellsprache | Sprache des Kunden beim Bestellvorgang |
-| Affiliate-Code | Tracking-Code (wenn verwendet) |
-| Kampagnen-Code | Marketing-Code (wenn verwendet) |
-| Kundenkommentar | Freitext-Kommentar aus dem Checkout |
-| Aktive Rabattaktionen | Angewendete Promotions |
-| Automatische Rabattaktionen | Toggle zum De-/Aktivieren |
+| Bestellstatus | Display with a history link |
+| Kunden-E-Mail (Customer email) | Editable |
+| Kundentelefon (Customer phone) | Editable |
+| Verkaufskanal (Sales channel) | Source of the order |
+| Bestellsprache (Order language) | Customer's language during the ordering process |
+| Affiliate-Code | Tracking code (if used) |
+| Kampagnen-Code (Campaign code) | Marketing code (if used) |
+| Kundenkommentar (Customer comment) | Free-text comment from the checkout |
+| Aktive Rabattaktionen (Active discount promotions) | Applied promotions |
+| Automatische Rabattaktionen (Automatic discount promotions) | Toggle to enable/disable |
 
 ---
 
-## Gastbestellungen & Kundenkonto-Ansicht
+## Guest orders & customer account view
 
-### Registrierte Kunden
-Können im Kundenkonto unter **Bestellungen**:
-- Bestellungen einsehen
-- Status verfolgen
-- Zahlungsart ändern (sofern noch nicht bezahlt)
-- Bestellung stornieren (wenn in Einstellungen > Warenkorb aktiviert)
-- Bestellung wiederholen (legt neuen Warenkorb mit denselben Artikeln an)
+### Registered customers
+In their customer account under **Bestellungen** (Orders) they can:
+- View orders
+- Track the status
+- Change the payment method (as long as it is not yet paid)
+- Cancel the order (if enabled under Einstellungen (Settings) > Warenkorb (Cart))
+- Repeat the order (creates a new cart with the same items)
 
-### Gastbestellungen
-Gäste erhalten keine Konto-Zugangsdaten, aber:
-- Bestätigungs-E-Mail mit Zugangslink zur Bestellung
-- Authentifizierung via **E-Mail-Adresse + PLZ**
+### Guest orders
+Guests receive no account credentials, but do get:
+- A confirmation email with an access link to the order
+- Authentication via **email address + postcode**
 
 ---
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht

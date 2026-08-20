@@ -9,10 +9,10 @@ Task-oriented recipes from the documentation — the answers to "how do I actual
 
 ## Reference map
 
-- **[ALLGEMEINES.md](ALLGEMEINES.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/allgemeines`. [ALLGEMEINES-DETAIL](ALLGEMEINES-DETAIL.md).
-- **[BEISPIELE.md](BEISPIELE.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/beispiele`. [BEISPIELE-DETAIL](BEISPIELE-DETAIL.md).
-- **[BESTELLUNGEN.md](BESTELLUNGEN.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`. [BESTELLUNGEN-DETAIL](BESTELLUNGEN-DETAIL.md).
-- **[EU-REGELUNGEN.md](EU-REGELUNGEN.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`. [EU-REGELUNGEN-DETAIL](EU-REGELUNGEN-DETAIL.md).
+- **[GENERAL.md](GENERAL.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/allgemeines`. [ALLGEMEINES-DETAIL](GENERAL-DETAIL.md).
+- **[EXAMPLES.md](EXAMPLES.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/beispiele`. [BEISPIELE-DETAIL](EXAMPLES-DETAIL.md).
+- **[ORDERS.md](ORDERS.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`. [BESTELLUNGEN-DETAIL](ORDERS-DETAIL.md).
+- **[EU-REGULATIONS.md](EU-REGULATIONS.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`. [EU-REGELUNGEN-DETAIL](EU-REGULATIONS-DETAIL.md).
 - **[GEWUSST-WIE.md](GEWUSST-WIE.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/gewusst-wie`. [GEWUSST-WIE-DETAIL](GEWUSST-WIE-DETAIL.md).
 - **[MEHRSPRACHIG.md](MEHRSPRACHIG.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/shops-in-anderen-sprachen`. [MEHRSPRACHIG-DETAIL](MEHRSPRACHIG-DETAIL.md).
 - **[OVERVIEW.md](OVERVIEW.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.

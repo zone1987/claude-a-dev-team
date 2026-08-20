@@ -1,4 +1,4 @@
-# Pagination — Vollstandiger Quellcode
+# Pagination — Complete source code
 
 ## Contents
 
@@ -11,7 +11,7 @@
 - [PaginationLast.vue](#paginationlastvue)
 - [PaginationNext.vue](#paginationnextvue)
 - [PaginationPrevious.vue](#paginationpreviousvue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -305,5 +305,5 @@ const forwarded = useForwardProps(delegatedProps)
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/pagination/`

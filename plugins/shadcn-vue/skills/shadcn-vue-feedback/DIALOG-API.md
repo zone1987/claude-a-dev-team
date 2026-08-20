@@ -1,72 +1,72 @@
 # Dialog — API
 
-Reka-UI API-Referenz: https://reka-ui.com/docs/components/dialog#api-reference
+Reka-UI API reference: https://reka-ui.com/docs/components/dialog#api-reference
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `Dialog` | Root-Wrapper (DialogRoot von reka-ui) |
-| `DialogTrigger` | Button/Element, das den Dialog oeffnet |
-| `DialogPortal` | Portiert Content in `<body>` (intern verwendet) |
-| `DialogOverlay` | Halbtransparentes Overlay hinter dem Dialog |
-| `DialogContent` | Der eigentliche Dialog-Container mit Close-Button |
-| `DialogScrollContent` | Scrollbarer Dialog-Container (Overlay scrollt) |
-| `DialogHeader` | Bereich fuer Title und Description |
-| `DialogFooter` | Bereich fuer Aktions-Buttons |
-| `DialogTitle` | Semantischer Titel (aria-labelledby) |
-| `DialogDescription` | Semantische Beschreibung (aria-describedby) |
-| `DialogClose` | Button zum Schliessen des Dialogs |
+| `Dialog` | Root wrapper (DialogRoot from reka-ui) |
+| `DialogTrigger` | Button/element that opens the dialog |
+| `DialogPortal` | Ports content into `<body>` (used internally) |
+| `DialogOverlay` | Semi-transparent overlay behind the dialog |
+| `DialogContent` | The actual dialog container with close button |
+| `DialogScrollContent` | Scrollable dialog container (the overlay scrolls) |
+| `DialogHeader` | Area for title and description |
+| `DialogFooter` | Area for action buttons |
+| `DialogTitle` | Semantic title (aria-labelledby) |
+| `DialogDescription` | Semantic description (aria-describedby) |
+| `DialogClose` | Button for closing the dialog |
 
 ## Dialog (Root)
 
-Leitet alle Props/Emits an `DialogRoot` weiter.
+Forwards all props/emits to `DialogRoot`.
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `open` | `boolean` | - | Kontrollierter Open-Zustand |
-| `defaultOpen` | `boolean` | `false` | Unkontrollierter Startwert |
-| `modal` | `boolean` | `true` | Ob Dialog modal ist |
+| `open` | `boolean` | - | Controlled open state |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial value |
+| `modal` | `boolean` | `true` | Whether the dialog is modal |
 
-| Emit | Payload | Beschreibung |
+| Emit | Payload | Description |
 |---|---|---|
-| `update:open` | `boolean` | Open-Zustand geaendert |
+| `update:open` | `boolean` | Open state changed |
 
 ## DialogContent
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `class` | `string` | - | Zusaetzliche CSS-Klassen |
-| `showCloseButton` | `boolean` | `true` | X-Button oben rechts anzeigen |
-| Alle `DialogContentProps` | - | - | Werden an reka-ui weitergeleitet |
+| `class` | `string` | - | Additional CSS classes |
+| `showCloseButton` | `boolean` | `true` | Show the X button in the top right |
+| All `DialogContentProps` | - | - | Are forwarded to reka-ui |
 
-| Emit | Beschreibung |
+| Emit | Description |
 |---|---|
-| `closeAutoFocus` | Fokus nach Schliessen |
-| `escapeKeyDown` | Escape-Taste gedrueckt |
-| `interactOutside` | Klick ausserhalb |
-| `openAutoFocus` | Fokus beim Oeffnen |
-| `pointerDownOutside` | Pointer-Event ausserhalb |
+| `closeAutoFocus` | Focus after closing |
+| `escapeKeyDown` | Escape key pressed |
+| `interactOutside` | Click outside |
+| `openAutoFocus` | Focus on opening |
+| `pointerDownOutside` | Pointer event outside |
 
 ## DialogFooter
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `class` | `string` | - | Zusaetzliche CSS-Klassen |
-| `showCloseButton` | `boolean` | `false` | Automatischer Close-Button |
+| `class` | `string` | - | Additional CSS classes |
+| `showCloseButton` | `boolean` | `false` | Automatic close button |
 
 ## DialogLegend / Label (Header/Footer/Title/Description)
 
-Alle einfachen Wrapper-Komponenten akzeptieren:
+All simple wrapper components accept:
 
-| Prop | Typ | Standard |
+| Prop | Type | Default |
 |---|---|---|
 | `class` | `string` | - |
 
 ## DialogOverlay
 
-Erbt alle `DialogOverlayProps` von reka-ui plus `class`.
+Inherits all `DialogOverlayProps` from reka-ui plus `class`.
 
 ## Slots
 
-Alle Komponenten verwenden Standard-Default-Slots (`<slot />`). `Dialog` und `DialogRoot` stellen zusaetzlich `slotProps` bereit (open-Zustand etc.).
+All components use standard default slots (`<slot />`). `Dialog` and `DialogRoot` additionally provide `slotProps` (open state etc.).

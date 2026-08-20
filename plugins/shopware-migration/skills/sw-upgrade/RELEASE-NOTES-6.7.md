@@ -1,6 +1,6 @@
-# Shopware 6.7 — Vollständige Release Notes
+# Shopware 6.7 — complete release notes
 
-Quelle: `RELEASE_INFO-6.7.md` (Trunk/Main). Versions-Highlights kumulativ ab 6.7.0 bis 6.7.12 (upcoming).
+Source: `RELEASE_INFO-6.7.md` (trunk/main). Version highlights cumulative from 6.7.0 to 6.7.12 (upcoming).
 
 ---
 
@@ -11,173 +11,173 @@ Quelle: `RELEASE_INFO-6.7.md` (Trunk/Main). Versions-Highlights kumulativ ab 6.7
 - [Administration](#administration)
 - [API](#api)
 - [App System](#app-system)
-- [Hosting & Konfiguration](#hosting-konfiguration)
-- [Wichtige Deprecations (Entfernung in 6.8)](#wichtige-deprecations-entfernung-in-68)
-- [Breaking Changes (aktiv seit 6.7)](#breaking-changes-aktiv-seit-67)
+- [Hosting & Configuration](#hosting-configuration)
+- [Important deprecations (removal in 6.8)](#important-deprecations-removal-in-68)
+- [Breaking changes (active since 6.7)](#breaking-changes-active-since-67)
 
 ## Core
 
 ### Symfony & PHP
 
-- **Symfony 7.4** (seit 6.7.7.0): alle Pakete aktualisiert; php-redis ≥ 6.1 Pflicht für Cache.
-- **PHP 8.5**-Support vollständig (seit 6.7.6.0); `symfony/polyfill-php85` (`array_first`/`array_last`).
+- **Symfony 7.4** (since 6.7.7.0): all packages updated; php-redis ≥ 6.1 mandatory for cache.
+- **PHP 8.5** support complete (since 6.7.6.0); `symfony/polyfill-php85` (`array_first`/`array_last`).
 
-### Produkt-Typ statt `product.states`
+### Product type instead of `product.states`
 
-Neues Feld `product.type` (`digital` / `physical` + erweiterbar via `shopware.product.allowed_types`).
+New field `product.type` (`digital` / `physical` + extensible via `shopware.product.allowed_types`).
 - `order_line_item.states` → `order_line_item.payload.product_type`
 - `LineItemProductStatesRule` → `LineItemProductTypeRule`
-- `StatesUpdater` und `ProductStatesBeforeChangeEvent`/`ProductStatesChangedEvent` deprecated
+- `StatesUpdater` and `ProductStatesBeforeChangeEvent`/`ProductStatesChangedEvent` deprecated
 
-### DAL-Optimierungen
+### DAL optimizations
 
-- **EXISTS-Subqueries** statt LEFT JOINs für verschachtelte Filtergruppen → massive Performance-Gewinne bei komplexen Criteria (z.B. mehrere `lineItems.type`-Filter).
-- Neues `Immutable`-DAL-Flag: `custom_field.name`, `custom_field.type`, `custom_field_set.name` sind nach Erstellung unveränderlich.
-- `#[Field]`-Attribut: `maxLength`-Parameter für STRING- und EMAIL-Felder.
-- `#[ListField]`, `#[Password]`, `FieldType::EMAIL`, `FieldType::PRICE` als neue Attribut-Feldtypen.
-- `OpenAPI enum`-Unterstützung via `Choice`-Flag.
-- Primary-Key-Validierung in `dal:validate`.
+- **EXISTS subqueries** instead of LEFT JOINs for nested filter groups → massive performance gains with complex Criteria (e.g. multiple `lineItems.type` filters).
+- New `Immutable` DAL flag: `custom_field.name`, `custom_field.type`, `custom_field_set.name` are immutable after creation.
+- `#[Field]` attribute: `maxLength` parameter for STRING and EMAIL fields.
+- `#[ListField]`, `#[Password]`, `FieldType::EMAIL`, `FieldType::PRICE` as new attribute field types.
+- **OpenAPI enum** support via `Choice` flag.
+- Primary key validation in `dal:validate`.
 
-### HTTP-Cache-Rework (`CACHE_REWORK`-Flag / 6.7.6+)
+### HTTP cache rework (`CACHE_REWORK` flag / 6.7.6+)
 
-- HTTP-Caching-Policies: benannte Policies pro Route und Area (`storefront`/`store_api`).
-- `sw-states`- und `sw-currency`-Handling deprecated; Cache künftig auch für eingeloggte Kunden / gefüllten Warenkorb aktiv.
-- `sw-cache-hash` enthält nur noch preisrelevante Rule-IDs.
+- HTTP caching policies: named policies per route and area (`storefront`/`store_api`).
+- `sw-states` and `sw-currency` handling deprecated; cache in future also active for logged-in customers / filled cart.
+- `sw-cache-hash` now only contains price-relevant rule IDs.
 - `SHOPWARE_HTTP_DEFAULT_TTL`, `shopware.http_cache.stale_while_revalidate` etc. deprecated.
 
 ### Elasticsearch / OpenSearch
 
-- **Dediziertes `completion`-Feld** für Admin-Suche-Autocomplete (ngram aus `text`/`textBoosted` entfernt).
-- **BM25 ohne Feldlängen-Normalisierung** (`b=0`) als Index-Default; Prose-Felder behalten Standard-BM25.
-- **`dis_max`-`tie_breaker`** konfigurierbar via `elasticsearch.search.dismax_tie_breaker` (default 0.2).
-- **Configurable `min_score`**: `core.search.minScore` (float, per Sales Channel).
-- **`TokenQueryBuilder` refaktoriert**: `AbstractFieldQueryBuilder` und `AbstractTokenQueryBuilder` als Dekorations-Extension-Points.
-- **OpenSearch PHP Client 2.6** (6.7.8.0): Mehrfach-Host-Konfiguration via CSV deprecated; → Single-LB-Endpoint.
-- **`ENABLE_OPENSEARCH_FOR_ADMIN_API`-Flag** (experimentell, 6.7.8.0): Admin-API-Suchen via OpenSearch.
-- **Konfigurierbare Shard/Replica-Counts**: `SHOPWARE_ES_NUMBER_OF_SHARDS` / `SHOPWARE_ES_NUMBER_OF_REPLICAS` etc.
-- **`SHOPWARE_ES_USE_LANGUAGE_ANALYZER`**: Sprachanalyzer für Suchanfragen steuerbar.
+- **Dedicated `completion` field** for admin search autocomplete (ngram removed from `text`/`textBoosted`).
+- **BM25 without field length normalization** (`b=0`) as index default; prose fields keep standard BM25.
+- **`dis_max` `tie_breaker`** configurable via `elasticsearch.search.dismax_tie_breaker` (default 0.2).
+- **Configurable `min_score`**: `core.search.minScore` (float, per sales channel).
+- **`TokenQueryBuilder` refactored**: `AbstractFieldQueryBuilder` and `AbstractTokenQueryBuilder` as decoration extension points.
+- **OpenSearch PHP Client 2.6** (6.7.8.0): multi-host configuration via CSV deprecated; → single LB endpoint.
+- **`ENABLE_OPENSEARCH_FOR_ADMIN_API` flag** (experimental, 6.7.8.0): Admin API searches via OpenSearch.
+- **Configurable shard/replica counts**: `SHOPWARE_ES_NUMBER_OF_SHARDS` / `SHOPWARE_ES_NUMBER_OF_REPLICAS` etc.
+- **`SHOPWARE_ES_USE_LANGUAGE_ANALYZER`**: language analyzer for search queries controllable.
 
-### Weitere Core-Änderungen
+### Further core changes
 
-- **`product.display_group`** nutzt jetzt SHA-256 (64 Zeichen statt MD5 32 Zeichen).
-- **Produkt-`descriptionTeaser`**: neues read-only-Feld, HTML-freier 512-Zeichen-Teaser; `core.listing.partialDataLoading` reduziert Listing-Payload.
-- **Varianten nach Eltern-Produktname suchen**: `parent.name`-Suchfeld (deaktiviert by default).
-- **Thumbnail-Processor pluggable**: `ThumbnailProcessorInterface`; `GdImageThumbnailProcessor` (default) und `ImagickThumbnailProcessor` wählbar via `shopware.media.thumbnail_processor`.
-- **`product.main_category` Vererbung** von Eltern-Produkt.
-- **Salutation `position`-Feld**: sortierbare Anreden in Formularen.
-- **Produkt Open Graph-Felder**: `og:title`, `og:description`, `og:image` pro Produkt (6.7.9.0).
-- **Default CMS-Page-ID** wird jetzt in DB persistiert (kein Runtime-Only mehr).
-- **Interner Kommentar** bei State-Machine-Übergängen.
-- **State-Machine-Transitions** gesperrt per Entity (Lock gegen Race Conditions).
-- **Plugin-Snippet-Lader**: Locale-spezifische statt plugin-weite Prüfung.
+- **`product.display_group`** now uses SHA-256 (64 characters instead of MD5 32 characters).
+- **Product `descriptionTeaser`**: new read-only field, HTML-free 512-character teaser; `core.listing.partialDataLoading` reduces the listing payload.
+- **Search variants by parent product name**: `parent.name` search field (disabled by default).
+- **Thumbnail processor pluggable**: `ThumbnailProcessorInterface`; `GdImageThumbnailProcessor` (default) and `ImagickThumbnailProcessor` selectable via `shopware.media.thumbnail_processor`.
+- **`product.main_category` inheritance** from parent product.
+- **Salutation `position` field**: sortable salutations in forms.
+- **Product Open Graph fields**: `og:title`, `og:description`, `og:image` per product (6.7.9.0).
+- **Default CMS page ID** is now persisted in the DB (no longer runtime-only).
+- **Internal comment** on state machine transitions.
+- **State machine transitions** locked per entity (lock against race conditions).
+- **Plugin snippet loader**: locale-specific instead of plugin-wide check.
 - **`RegisterScheduleTaskMessage`** deprecated.
-- **`IgnoreInUnusedMediaSearch`-Flag**: technische Media-Associations von `media:delete-unused` ausschließen.
-- **Doppeltes Opt-In**: Auto-Resend nach konfigurierbarem Interval (`core.loginRegistration.doubleOptInResendInterval`).
-- **CLI JSON-Output**: `--json`/`--output json` → `--format json` (deprecated, entfernt in 6.8).
-- **Standardisierter `sha256`-Twig-Filter**.
-- **`translation:list`**-Command und `translation:install` interaktiv mit Locales.
-- **Requirement-aware Plugin-Installationsreihenfolge** bei `plugin:install`.
-- **`TestBootstrapper`**: Composer-managed Plugins aus `vendor/` unterstützt.
-- **JSONL-Produktexport** (`ProductExportEntity::FILE_FORMAT_JSONL`).
-- **`product.search_keyword.indexing`** deaktivierbar; `relevant_keyword_count` konfigurierbar.
-- **Konfigurierbare Elasticsearch-Shard-/Replica-Counts** via Env-Vars.
-- **Telemetrie-Metriken** (hinter `TELEMETRY_METRICS`-Flag): `MetricTransportInterface::flush()`, Per-Label-Validation, `Telemetry`-Facade, `PeriodicMetricCollectorInterface`.
-- **SVG-Upload-Allowlist** (6.7.10.1): strikte passive Allowlist, konfigurierbar via `shopware.media.svg.*`.
+- **`IgnoreInUnusedMediaSearch` flag**: exclude technical media associations from `media:delete-unused`.
+- **Double opt-in**: auto-resend after a configurable interval (`core.loginRegistration.doubleOptInResendInterval`).
+- **CLI JSON output**: `--json`/`--output json` → `--format json` (deprecated, removed in 6.8).
+- **Standardized `sha256` Twig filter**.
+- **`translation:list`** command and `translation:install` interactive with locales.
+- **Requirement-aware plugin installation order** for `plugin:install`.
+- **`TestBootstrapper`**: Composer-managed plugins from `vendor/` supported.
+- **JSONL product export** (`ProductExportEntity::FILE_FORMAT_JSONL`).
+- **`product.search_keyword.indexing`** can be disabled; `relevant_keyword_count` configurable.
+- **Configurable Elasticsearch shard/replica counts** via env vars.
+- **Telemetry metrics** (behind the `TELEMETRY_METRICS` flag): `MetricTransportInterface::flush()`, per-label validation, `Telemetry` facade, `PeriodicMetricCollectorInterface`.
+- **SVG upload allowlist** (6.7.10.1): strict passive allowlist, configurable via `shopware.media.svg.*`.
 
 ---
 
 ## Storefront
 
-### Neues Komponenten-System (6.7.11.0)
+### New component system (6.7.11.0)
 
-- Basiert auf **Twig UX Components** + eigene SCSS/JS-Behandlung.
-- Dokumentation: https://developer.shopware.com/docs/concepts/framework/storefront-components.html
+- Based on **Twig UX Components** + dedicated SCSS/JS handling.
+- Documentation: https://developer.shopware.com/docs/concepts/framework/storefront-components.html
 
-### Vite Dev-Server (6.7.11.0)
+### Vite dev server (6.7.11.0)
 
 ```bash
 composer storefront:dev-server
 ```
-`composer watch:storefront` deprecated (nächste Major).
+`composer watch:storefront` deprecated (next major).
 
-### CSS Custom Properties für Theme-Config (6.7.11.0)
+### CSS custom properties for theme config (6.7.11.0)
 
-Theme-Konfigurationswerte als native CSS Custom Properties verfügbar:
+Theme configuration values available as native CSS custom properties:
 ```css
 .btn-primary { background: var(--sw-color-brand-primary); }
 ```
 
-### Globales JS-Event-System (6.7.11.0)
+### Global JS event system (6.7.11.0)
 
-Neues `window.Shopware`-Objekt mit Node-EventEmitter-basiertem System:
+New `window.Shopware` object with a Node EventEmitter-based system:
 ```js
 window.Shopware.emit('Filter:Change', { foo: 'bar' });
 window.Shopware.on('Filter:Change', ({ foo }) => { /* ... */ });
 ```
 
-### JSON-LD Structured Data (6.7.9.0, `JSON_LD_DATA`-Flag)
+### JSON-LD structured data (6.7.9.0, `JSON_LD_DATA` flag)
 
-Microdata ersetzt durch JSON-LD in `<head>`:
+Microdata replaced by JSON-LD in `<head>`:
 - `WebSite` + `SearchAction`, `Organization`, `WebPage`/`ProductPage`, `BreadcrumbList`, `Product`, `ItemList`
-- Eigene Templates unter `storefront/layout/structured-data/`; je Template 2 überschreibbare Blöcke.
+- Custom templates under `storefront/layout/structured-data/`; 2 overridable blocks per template.
 
-### Weitere Storefront-Features
+### Further storefront features
 
-- **Single-file-References in `theme.json`**: `@BundleName/path/to/file` für Style und Script.
-- **PluginManager.callPluginMethod()**: Methode auf allen Plugin-Instanzen aufrufen.
-- **GLTF-Animationen** in 3D-Modellen (6.7.10.0).
-- **Live-Kauf-Limits** für Closeout-Produkte via neuem Store-API-Endpunkt `GET /store-api/product/purchase-limit`.
-- **Single-Hit-Suche-Redirect** auch für EAN und Hersteller-Nr. (konfigurierbar via `shopware.storefront.redirect_on_single_hit_fields`).
-- **Cookie Consent sprachabhängig** (6.7.7.0).
-- **Google Analytics 4**: erweiterte E-Commerce-Events (`add_to_wishlist`, `view_cart`, `add_shipping_info` etc.), neue Konfiguration "Track Offcanvas Cart".
-- **IDN-E-Mail-Validierung** im Storefront.
-- **`list-price-affix.html.twig`**: zentraler Extension-Point für Content vor/nach Listenpreisen (6.7.12.0).
-- **`sizes`-Attribut für XXL-Breakpoint** (6.7.12.0).
-- **XHR-Login-Failures**: HTTP 403 statt Redirect (6.7.12.0).
-- **Mail-Templates**: `theme_config()` in Mails via temporären `salesChannelContext` (6.7.12.0).
+- **Single-file references in `theme.json`**: `@BundleName/path/to/file` for style and script.
+- **PluginManager.callPluginMethod()**: call a method on all plugin instances.
+- **GLTF animations** in 3D models (6.7.10.0).
+- **Live purchase limits** for closeout products via the new Store API endpoint `GET /store-api/product/purchase-limit`.
+- **Single-hit search redirect** also for EAN and manufacturer number (configurable via `shopware.storefront.redirect_on_single_hit_fields`).
+- **Cookie consent language-dependent** (6.7.7.0).
+- **Google Analytics 4**: extended e-commerce events (`add_to_wishlist`, `view_cart`, `add_shipping_info` etc.), new "Track Offcanvas Cart" configuration.
+- **IDN email validation** in the storefront.
+- **`list-price-affix.html.twig`**: central extension point for content before/after list prices (6.7.12.0).
+- **`sizes` attribute for the XXL breakpoint** (6.7.12.0).
+- **XHR login failures**: HTTP 403 instead of redirect (6.7.12.0).
+- **Mail templates**: `theme_config()` in mails via a temporary `salesChannelContext` (6.7.12.0).
 - **Google Ads Enhanced Conversions** (6.7.12.0).
-- **Checkout-Gateway-Fallback-Methode** für blockierte Zahlungs-/Versandmethoden (6.7.12.0).
-- **Kunden-Adressen** werden beim Speichern getrimmt (6.7.12.0).
-- **Cookie-Bar früher fokussiert** (Accessibility) und an `<body>`-Anfang verschoben (6.7.10.0).
-- **Bestellstornierung** nur noch für Bestellungen im Status `open` (6.7.10.0).
-- **Robots.txt** konfigurierbar mit eigenen `User-agent`-Blöcken (6.7.5.0).
-- **Steuer-Berechnung B2B/B2C** getrennt (6.7.5.0).
+- **Checkout gateway fallback method** for blocked payment/shipping methods (6.7.12.0).
+- **Customer addresses** are trimmed on save (6.7.12.0).
+- **Cookie bar focused earlier** (accessibility) and moved to the start of `<body>` (6.7.10.0).
+- **Order cancellation** now only for orders in the `open` state (6.7.10.0).
+- **Robots.txt** configurable with custom `User-agent` blocks (6.7.5.0).
+- **Tax calculation B2B/B2C** separated (6.7.5.0).
 
 ---
 
 ## Administration
 
-### SFC-Migration & Composition API
+### SFC migration & Composition API
 
-- **SFC-Codemod** (`npm run codemod:sfc-migration`): `.html.twig + index.js` → `.vue`; Options API → Composition API.
-- **Composition API Extension System** (`ADMIN_COMPOSITION_API_EXTENSION_SYSTEM`-Flag): `Options-API`-Overrides automatisch auf Composition-API-Komponenten gemappt (Compat-Shim); `Shopware.Component.overrideComponentSetup()` als neuer Weg.
-- **Native `<sw-block>`-Runtime**: Legacy-Twig-Overrides weiter kompatibel, Deprecation-Warning im Browser.
+- **SFC codemod** (`npm run codemod:sfc-migration`): `.html.twig + index.js` → `.vue`; Options API → Composition API.
+- **Composition API extension system** (`ADMIN_COMPOSITION_API_EXTENSION_SYSTEM` flag): `Options-API` overrides mapped automatically onto Composition API components (compat shim); `Shopware.Component.overrideComponentSetup()` as the new way.
+- **Native `<sw-block>` runtime**: legacy Twig overrides still compatible, deprecation warning in the browser.
 
-### MCP-Server (experimentell, 6.7.11.0, `MCP_SERVER`-Flag)
+### MCP server (experimental, 6.7.11.0, `MCP_SERVER` flag)
 
-- Endpunkt `/api/_mcp` (Streamable HTTP Transport).
-- Tools für Entity-Management, State-Machine-Transitions, Cache, Storefront-Suche.
-- Ressourcen: Entity-List, Sales-Channels, State-Machines, Business-Events, Flow-Actions.
-- Plugins via `mcp.tool`/`mcp.prompt`/`mcp.resource`-Tags erweiterbar.
+- Endpoint `/api/_mcp` (streamable HTTP transport).
+- Tools for entity management, state machine transitions, cache, storefront search.
+- Resources: entity list, sales channels, state machines, business events, flow actions.
+- Extensible by plugins via `mcp.tool`/`mcp.prompt`/`mcp.resource` tags.
 
-### Agentic Commerce (experimentell, 6.7.10.0)
+### Agentic commerce (experimental, 6.7.10.0)
 
-- Neuer Sales-Channel-Typ "Agentic Commerce"; OpenAI Merchant Center als erster Provider.
-- Dedizierte Admin-Views für Konfiguration, Produkt-Mapping, Usage-Insights.
+- New sales channel type "Agentic Commerce"; OpenAI Merchant Center as the first provider.
+- Dedicated admin views for configuration, product mapping, usage insights.
 
-### Weitere Admin-Änderungen
+### Further admin changes
 
-- **`sw-date-filter`**: 15 Zeitraum-Optionen (6.7.11.0), Bug-Fix "Last Quarter" falsches Jahr (6.7.11.0).
-- **Mail-Template-Preview** Sales-Channel-aware, sandboxed iframe (6.7.11.0).
-- **Interne Bestellkommentare** in der Bestellliste (Tooltip-Icon, 6.7.10.0).
-- **`sw-entity-multi-id-select`**: Varianten in Labels unterscheidbar (6.7.12.0).
-- **Rule-Builder-Labels** für Warenkorbsummen-Bedingungen präziser (6.7.12.0).
-- **Icon-Cache und Speculation-Rules** per Sales-Channel konfigurierbar (6.7.12.0).
-- **Analytics-Settings** in Configuration- und Tracking-Karten aufgeteilt (6.7.12.0).
-- **Axios 1.x** neben 0.30.2 (Dual-Client, `useAxiosV1: true`; Default in 6.8).
-- **Suche im Settings-Modul** (6.7.6.0).
-- **3D-Modell-Viewer und -Editor** in der Media-Verwaltung (6.7.7.0).
-- **Media umbenennen** löst URL-Aktualisierung aus (6.7.12.0).
+- **`sw-date-filter`**: 15 period options (6.7.11.0), bug fix "Last Quarter" wrong year (6.7.11.0).
+- **Mail template preview** sales-channel-aware, sandboxed iframe (6.7.11.0).
+- **Internal order comments** in the order list (tooltip icon, 6.7.10.0).
+- **`sw-entity-multi-id-select`**: variants distinguishable in labels (6.7.12.0).
+- **Rule builder labels** for cart total conditions more precise (6.7.12.0).
+- **Icon cache and speculation rules** configurable per sales channel (6.7.12.0).
+- **Analytics settings** split into configuration and tracking cards (6.7.12.0).
+- **Axios 1.x** alongside 0.30.2 (dual client, `useAxiosV1: true`; default in 6.8).
+- **Search in the settings module** (6.7.6.0).
+- **3D model viewer and editor** in media management (6.7.7.0).
+- **Renaming media** triggers a URL update (6.7.12.0).
 
 ---
 
@@ -185,68 +185,68 @@ Microdata ersetzt durch JSON-LD in `<head>`:
 
 ### Store API
 
-- **HTTP-Caching** für zahlreiche Store-API-Routes (hinter `CACHE_REWORK`-Flag, 6.7.6.0):
-  `/store-api/product`, `/store-api/category`, `/store-api/navigation/*`, `/store-api/search`, `/store-api/cms/*`, u.v.m.
-- **Gzip/Base64url-kodierte Criteria** als Query-Parameter (Alternative für lange URLs).
-- **Neue Versand-Kosten-Endpunkte** (6.7.10.0):
+- **HTTP caching** for numerous Store API routes (behind the `CACHE_REWORK` flag, 6.7.6.0):
+  `/store-api/product`, `/store-api/category`, `/store-api/navigation/*`, `/store-api/search`, `/store-api/cms/*`, and many more.
+- **Gzip/base64url-encoded Criteria** as a query parameter (alternative for long URLs).
+- **New shipping cost endpoints** (6.7.10.0):
   - `GET /store-api/shipping-cost/product/{productId}`
   - `GET /store-api/shipping-cost/cart`
-- **Per-User- und Per-IP-Rate-Limiter** für Login und OAuth (`shopware.api.rate_limiter`).
-- **Newsletter-Routen** geben jetzt `200 OK` + Body statt `204 No Content` zurück; `subscribe()`/`confirm()`/`unsubscribe()` deprecated → `*WithResponse()`.
-- **Store API: Cookie-Groups-Route** `/store-api/cookie-groups` (inkl. `languageId`).
-- **`/store-api/product/purchase-limit`**: Live-Kauf-Limits für Closeout-Produkte.
+- **Per-user and per-IP rate limiter** for login and OAuth (`shopware.api.rate_limiter`).
+- **Newsletter routes** now return `200 OK` + body instead of `204 No Content`; `subscribe()`/`confirm()`/`unsubscribe()` deprecated → `*WithResponse()`.
+- **Store API: cookie groups route** `/store-api/cookie-groups` (incl. `languageId`).
+- **`/store-api/product/purchase-limit`**: live purchase limits for closeout products.
 
 ### Admin API
 
-- **Sync API**: 7 neue Foreign-Key-Resolver (z.B. `currency.iso_code`, `payment_method.technical_name`, `salutation.salutation_key`).
-- **Mail-Template-Routen** (6.7.11.0): `/api/_action/mail-template/simulate`, `/preview`, `/get-data-and-send`, `/available-variables`.
-- **Number-Range-Preview by ID**: `/api/_action/number-range/{numberRangeId}/preview-pattern` (neu); Typ-basierter Route deprecated (→ 6.8 entfernt).
-- **Leere `sw-*`-ID-Header** werden wie fehlende Header behandelt (6.7.12.0).
-- **Plain JSON API**: Extension-Felder bleiben in `extensions`-Objekt bei `includes` (6.7.12.0).
-- **Video-Cover-Management**: `POST /api/_action/media/{mediaId}/video-cover`.
-- **Externe Media-Thumbnails**: `POST/DELETE /api/_action/media/{id}/external-thumbnails`.
+- **Sync API**: 7 new foreign key resolvers (e.g. `currency.iso_code`, `payment_method.technical_name`, `salutation.salutation_key`).
+- **Mail template routes** (6.7.11.0): `/api/_action/mail-template/simulate`, `/preview`, `/get-data-and-send`, `/available-variables`.
+- **Number range preview by ID**: `/api/_action/number-range/{numberRangeId}/preview-pattern` (new); type-based route deprecated (→ removed in 6.8).
+- **Empty `sw-*` ID headers** are treated like missing headers (6.7.12.0).
+- **Plain JSON API**: extension fields stay in the `extensions` object with `includes` (6.7.12.0).
+- **Video cover management**: `POST /api/_action/media/{mediaId}/video-cover`.
+- **External media thumbnails**: `POST/DELETE /api/_action/media/{id}/external-thumbnails`.
 - **`/api/_info/queue.json` deprecated** → `/api/_info/message-stats.json`.
-- **`/api/_action/mail-template/validate` deprecated** (entfernt in 6.8).
+- **`/api/_action/mail-template/validate` deprecated** (removed in 6.8).
 
 ---
 
 ## App System
 
-### Webhook-Rework (`WEBHOOKS_REWORK`-Flag, 6.7.12.0 opt-in → 6.8 default)
+### Webhook rework (`WEBHOOKS_REWORK` flag, 6.7.12.0 opt-in → 6.8 default)
 
-- DB-gestützter Outbox vor HTTP-Versuch.
-- Retry-Backoff: 5s → 30s → 5min → 30min → 4h (max 4 Stunden).
-- In-Flight-Deliveries überleben Worker-Crashes.
-- Identity-Headers: `X-Shopware-Event-Id`, `X-Shopware-Sequence`, `X-Shopware-Attempt`.
-- Neuer `webhook`-Messenger-Transport: `bin/console messenger:consume webhook async low_priority`.
+- DB-backed outbox before the HTTP attempt.
+- Retry backoff: 5s → 30s → 5min → 30min → 4h (max 4 hours).
+- In-flight deliveries survive worker crashes.
+- Identity headers: `X-Shopware-Event-Id`, `X-Shopware-Sequence`, `X-Shopware-Attempt`.
+- New `webhook` messenger transport: `bin/console messenger:consume webhook async low_priority`.
 - Rollback: `bin/console webhook:drain-to-async`.
 
-### Weitere App-Änderungen
+### Further app changes
 
-- **App Requirements** (`<requirements>` in Manifest, 6.7.10.0): z.B. `<public-access/>` validiert HTTPS und Erreichbarkeit.
-- **`app.system_heartbeat`** (6.7.8.0): wöchentlicher Heartbeat-Webhook.
-- **App Script Caching**: `response.cache.sharedMaxAge()` / `clientMaxAge()` (6.7.6.0).
+- **App requirements** (`<requirements>` in the manifest, 6.7.10.0): e.g. `<public-access/>` validates HTTPS and reachability.
+- **`app.system_heartbeat`** (6.7.8.0): weekly heartbeat webhook.
+- **App script caching**: `response.cache.sharedMaxAge()` / `clientMaxAge()` (6.7.6.0).
 
 ---
 
-## Hosting & Konfiguration
+## Hosting & Configuration
 
-- **Google Storage Application Default Credentials**: `keyFile`/`keyFilePath` optional.
-- **Local Filesystem**: `config.enforce_file_permissions: false` möglich.
-- **Staging-Modus**: `system_config`-Overrides konfigurierbar; Extensions deaktivierbar.
-- **`sales-channel:replace:url`**-Command (6.7.5.0).
-- **Konfigurierbare Order-Deep-Link-Ablaufzeit**: `shopware.order.deep_link.expire_days`.
-- **Long-running MySQL-Connections**: `doctrine-mysql-come-back`-Support; `wrapperClass` in `DATABASE_URL`.
-- **S3**: Custom HTTP-Client via DI (`shopware.filesystem.s3.client`).
-- **HTML-Sanitizer**: `custom_tags`-Konfiguration für eigene HTML-Elemente.
-- **Deprecierte HTTP-Cache-Reverse-Proxy-Konfiguration** (since 6.7.0.0, entfernt in 6.8):
+- **Google Storage application default credentials**: `keyFile`/`keyFilePath` optional.
+- **Local filesystem**: `config.enforce_file_permissions: false` possible.
+- **Staging mode**: `system_config` overrides configurable; extensions can be disabled.
+- **`sales-channel:replace:url`** command (6.7.5.0).
+- **Configurable order deep link expiry**: `shopware.order.deep_link.expire_days`.
+- **Long-running MySQL connections**: `doctrine-mysql-come-back` support; `wrapperClass` in `DATABASE_URL`.
+- **S3**: custom HTTP client via DI (`shopware.filesystem.s3.client`).
+- **HTML sanitizer**: `custom_tags` configuration for custom HTML elements.
+- **Deprecated HTTP cache reverse proxy configuration** (since 6.7.0.0, removed in 6.8):
   `shopware.http_cache.reverse_proxy.use_varnish_xkey` etc.
 
 ---
 
-## Wichtige Deprecations (Entfernung in 6.8)
+## Important deprecations (removal in 6.8)
 
-| Deprecated | Ersatz |
+| Deprecated | Replacement |
 |---|---|
 | `product.states` / `order_line_item.states` | `product.type` / `order_line_item.payload.product_type` |
 | `LineItemProductStatesRule` | `LineItemProductTypeRule` |
@@ -254,25 +254,25 @@ Microdata ersetzt durch JSON-LD in `<head>`:
 | `--json` / `--output json` (CLI) | `--format json` |
 | `AbstractNewsletterSubscribeRoute::subscribe()` etc. | `subscribeWithResponse()` etc. |
 | `/api/_info/queue.json` | `/api/_info/message-stats.json` |
-| `/api/_action/mail-template/validate` | (entfernt ohne Ersatz) |
-| `mail_template_type.template_data`-Spalte | Direkte `templateData` in API-Payload |
-| `CookieProviderInterface` und Implementierungen | `CookieGroupCollectEvent` |
-| `TemplateGroup` | (entfernt ohne Ersatz) |
-| `RuleComparison` (Vererbung) | `final` in 6.8 |
-| Increment-basierte Message-Queue-Stats | `message-stats.json`-Endpoint |
-| `shopware.admin_worker.enable_queue_stats_worker` | Deaktivieren via Config |
-| Typ-basierter Number-Range-Preview (`/preview-pattern/{type}`) | `/preview-pattern` by ID |
-| OpenSearch Multi-Host-CSV-Config | Single LB-Endpoint |
+| `/api/_action/mail-template/validate` | (removed without replacement) |
+| `mail_template_type.template_data` column | direct `templateData` in the API payload |
+| `CookieProviderInterface` and implementations | `CookieGroupCollectEvent` |
+| `TemplateGroup` | (removed without replacement) |
+| `RuleComparison` (inheritance) | `final` in 6.8 |
+| Increment-based message queue stats | `message-stats.json` endpoint |
+| `shopware.admin_worker.enable_queue_stats_worker` | disable via config |
+| Type-based number range preview (`/preview-pattern/{type}`) | `/preview-pattern` by ID |
+| OpenSearch multi-host CSV config | single LB endpoint |
 
 ---
 
-## Breaking Changes (aktiv seit 6.7)
+## Breaking changes (active since 6.7)
 
 - **`controllerName`/`controllerAction`** → `activeRoute` in Twig/CSS/JS (6.7.3.0).
-- **`context.token`** nicht mehr in Twig-Rendering-Context verfügbar (6.7.5.0).
-- **OpenSearch 3.x**: leere `properties: []` nicht mehr erlaubt → `{}` oder weglassen (6.7.3.1).
-- **Custom Fields nicht mehr searchable by default** (6.7.7.0); Opt-in nötig.
-- **`sw-select-base`**: `showClearableButton` jetzt abhängig von `required` (6.7.8.0).
+- **`context.token`** no longer available in the Twig rendering context (6.7.5.0).
+- **OpenSearch 3.x**: empty `properties: []` no longer allowed → `{}` or omit (6.7.3.1).
+- **Custom fields no longer searchable by default** (6.7.7.0); opt-in required.
+- **`sw-select-base`**: `showClearableButton` now depends on `required` (6.7.8.0).
 - **`EntityDefinitionQueryHelper::columnExists/tableExists`** deprecated → `TableHelper`.
-- **`CookieProviderInterface`**: deprecated, via `CookieGroupCollectEvent` ersetzen (6.7.7.0+).
-- **`migration.generator`**: Fremdschlüssel-Format `fk.<table>.<col>` → `fk__<table>__<col>` (6.7.8.0).
+- **`CookieProviderInterface`**: deprecated, replace via `CookieGroupCollectEvent` (6.7.7.0+).
+- **`migration.generator`**: foreign key format `fk.<table>.<col>` → `fk__<table>__<col>` (6.7.8.0).

@@ -1,18 +1,18 @@
-# Swiper Pagination-Modul — Vollständige Referenz
+# Swiper Pagination module — Complete reference
 
 ## Contents
 
-- [Import & Aktivierung](#import-aktivierung)
-- [HTML-Struktur](#html-struktur)
-- [Parameter (vollständig)](#parameter-vollständig)
-- [Render-Funktions-Signaturen](#render-funktions-signaturen)
+- [Import and activation](#import-and-activation)
+- [HTML structure](#html-structure)
+- [Parameters (complete)](#parameters-complete)
+- [Render function signatures](#render-function-signatures)
 - [Properties](#properties)
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Events](#events)
 - [CSS Custom Properties](#css-custom-properties)
-- [Komplettbeispiele](#komplettbeispiele)
+- [Complete examples](#complete-examples)
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -30,7 +30,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## HTML-Struktur
+## HTML structure
 
 ```html
 <div class="swiper">
@@ -42,47 +42,47 @@ const swiper = new Swiper('.swiper', {
 </div>
 ```
 
-## Parameter (vollständig)
+## Parameters (complete)
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `el` | `HTMLElement \| CSSSelector \| null` | `null` | Container-Element oder Selektor |
-| `type` | `string` | `'bullets'` | Pagination-Typ: `'bullets'`, `'fraction'`, `'progressbar'`, `'custom'` |
-| `clickable` | `boolean` | `false` | Slides per Klick auf Bullets wechseln (nur bullets-Typ) |
-| `dynamicBullets` | `boolean` | `false` | Nur begrenzte Bullets zeigen bei vielen Slides |
-| `dynamicMainBullets` | `number` | `1` | Anzahl sichtbarer Haupt-Bullets im dynamischen Modus |
-| `hideOnClick` | `boolean` | `true` | Pagination beim Klick auf Container ein-/ausblenden |
-| `enabled` | `boolean` | — | Pagination für bestimmte Breakpoints aktivieren/deaktivieren |
-| `bulletClass` | `string` | `'swiper-pagination-bullet'` | CSS-Klasse für einzelne Bullets |
-| `bulletActiveClass` | `string` | `'swiper-pagination-bullet-active'` | CSS-Klasse für den aktiven Bullet |
-| `bulletElement` | `string` | `'span'` | HTML-Tag für Bullets |
-| `clickableClass` | `string` | `'swiper-pagination-clickable'` | Klasse wenn Pagination anklickbar |
-| `currentClass` | `string` | `'swiper-pagination-current'` | Klasse für aktuellen Index (fraction) |
-| `totalClass` | `string` | `'swiper-pagination-total'` | Klasse für Gesamtanzahl (fraction) |
-| `hiddenClass` | `string` | `'swiper-pagination-hidden'` | Klasse wenn Pagination versteckt |
-| `horizontalClass` | `string` | `'swiper-pagination-horizontal'` | Klasse bei horizontaler Ausrichtung |
-| `verticalClass` | `string` | `'swiper-pagination-vertical'` | Klasse bei vertikaler Ausrichtung |
-| `lockClass` | `string` | `'swiper-pagination-lock'` | Klasse wenn Pagination gesperrt |
-| `modifierClass` | `string` | `'swiper-pagination-'` | CSS-Klassen-Präfix |
-| `paginationDisabledClass` | `string` | `'swiper-pagination-disabled'` | Klasse am Container wenn deaktiviert |
-| `progressbarFillClass` | `string` | `'swiper-pagination-progressbar-fill'` | Klasse für Progressbar-Füllbalken |
-| `progressbarOpposite` | `boolean` | `false` | Progressbar-Richtung umkehren |
-| `progressbarOppositeClass` | `string` | `'swiper-pagination-progressbar-opposite'` | Klasse für Gegenrichtungs-Progressbar |
-| `renderBullet` | `function(index, className)` | `null` | Benutzerdefiniertes Bullet-Rendering |
-| `renderFraction` | `function(currentClass, totalClass)` | `null` | Benutzerdefiniertes Fraction-Rendering |
-| `renderProgressbar` | `function(progressbarFillClass)` | `null` | Benutzerdefiniertes Progressbar-Rendering |
-| `renderCustom` | `function(swiper, current, total)` | `null` | Pflicht bei `type: 'custom'` |
-| `formatFractionCurrent` | `function(number)` | — | Aktuellen Index formatieren |
-| `formatFractionTotal` | `function(number)` | — | Gesamtanzahl formatieren |
+| `el` | `HTMLElement \| CSSSelector \| null` | `null` | Container element or selector |
+| `type` | `string` | `'bullets'` | Pagination type: `'bullets'`, `'fraction'`, `'progressbar'`, `'custom'` |
+| `clickable` | `boolean` | `false` | Change slides by clicking bullets (bullets type only) |
+| `dynamicBullets` | `boolean` | `false` | Show only a limited set of bullets when there are many slides |
+| `dynamicMainBullets` | `number` | `1` | Number of visible main bullets in dynamic mode |
+| `hideOnClick` | `boolean` | `true` | Show/hide the pagination when clicking the container |
+| `enabled` | `boolean` | — | Enable/disable pagination for specific breakpoints |
+| `bulletClass` | `string` | `'swiper-pagination-bullet'` | CSS class for individual bullets |
+| `bulletActiveClass` | `string` | `'swiper-pagination-bullet-active'` | CSS class for the active bullet |
+| `bulletElement` | `string` | `'span'` | HTML tag for bullets |
+| `clickableClass` | `string` | `'swiper-pagination-clickable'` | Class when the pagination is clickable |
+| `currentClass` | `string` | `'swiper-pagination-current'` | Class for the current index (fraction) |
+| `totalClass` | `string` | `'swiper-pagination-total'` | Class for the total count (fraction) |
+| `hiddenClass` | `string` | `'swiper-pagination-hidden'` | Class when the pagination is hidden |
+| `horizontalClass` | `string` | `'swiper-pagination-horizontal'` | Class for horizontal orientation |
+| `verticalClass` | `string` | `'swiper-pagination-vertical'` | Class for vertical orientation |
+| `lockClass` | `string` | `'swiper-pagination-lock'` | Class when the pagination is locked |
+| `modifierClass` | `string` | `'swiper-pagination-'` | CSS class prefix |
+| `paginationDisabledClass` | `string` | `'swiper-pagination-disabled'` | Class on the container when disabled |
+| `progressbarFillClass` | `string` | `'swiper-pagination-progressbar-fill'` | Class for the progressbar fill bar |
+| `progressbarOpposite` | `boolean` | `false` | Reverse the progressbar direction |
+| `progressbarOppositeClass` | `string` | `'swiper-pagination-progressbar-opposite'` | Class for the opposite-direction progressbar |
+| `renderBullet` | `function(index, className)` | `null` | Custom bullet rendering |
+| `renderFraction` | `function(currentClass, totalClass)` | `null` | Custom fraction rendering |
+| `renderProgressbar` | `function(progressbarFillClass)` | `null` | Custom progressbar rendering |
+| `renderCustom` | `function(swiper, current, total)` | `null` | Required with `type: 'custom'` |
+| `formatFractionCurrent` | `function(number)` | — | Format the current index |
+| `formatFractionTotal` | `function(number)` | — | Format the total count |
 
-## Render-Funktions-Signaturen
+## Render function signatures
 
 ### renderBullet
 ```js
 pagination: {
   renderBullet: function (index, className) {
-    // index: 0-basierter Slide-Index
-    // className: 'swiper-pagination-bullet' (+ aktiv-Klasse automatisch)
+    // index: 0-based slide index
+    // className: 'swiper-pagination-bullet' (+ active class automatically)
     return '<span class="' + className + '">' + (index + 1) + '</span>';
   },
 }
@@ -115,7 +115,7 @@ pagination: {
 pagination: {
   type: 'custom',
   renderCustom: function (swiper, current, total) {
-    return current + ' von ' + total;
+    return current + ' of ' + total;
   },
 }
 ```
@@ -131,28 +131,28 @@ pagination: {
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.pagination.el` | `HTMLElement` | Container-Element |
-| `swiper.pagination.bullets` | `HTMLElement[]` | Array aller Bullet-Elemente |
+| `swiper.pagination.el` | `HTMLElement` | Container element |
+| `swiper.pagination.bullets` | `HTMLElement[]` | Array of all bullet elements |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|--------------|
-| `swiper.pagination.init()` | Pagination initialisieren |
-| `swiper.pagination.destroy()` | Pagination entfernen |
-| `swiper.pagination.render()` | Pagination-Layout neu rendern |
-| `swiper.pagination.update()` | Pagination-Status aktualisieren |
+| `swiper.pagination.init()` | Initialize the pagination |
+| `swiper.pagination.destroy()` | Remove the pagination |
+| `swiper.pagination.render()` | Re-render the pagination layout |
+| `swiper.pagination.update()` | Update the pagination state |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |-------|-----------|--------------|
-| `paginationRender` | `(swiper, paginationEl)` | Nach dem Rendern |
-| `paginationUpdate` | `(swiper, paginationEl)` | Nach dem Aktualisieren |
-| `paginationShow` | `(swiper)` | Pagination eingeblendet |
-| `paginationHide` | `(swiper)` | Pagination ausgeblendet |
+| `paginationRender` | `(swiper, paginationEl)` | After rendering |
+| `paginationUpdate` | `(swiper, paginationEl)` | After updating |
+| `paginationShow` | `(swiper)` | Pagination was shown |
+| `paginationHide` | `(swiper)` | Pagination was hidden |
 
 ## CSS Custom Properties
 
@@ -177,9 +177,9 @@ pagination: {
 }
 ```
 
-## Komplettbeispiele
+## Complete examples
 
-### Fraction-Pagination mit Null-Padding
+### Fraction pagination with zero padding
 ```js
 const swiper = new Swiper('.swiper', {
   modules: [Pagination],
@@ -192,7 +192,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-### Nummerierte Bullets
+### Numbered bullets
 ```js
 const swiper = new Swiper('.swiper', {
   modules: [Pagination],
@@ -206,4 +206,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#pagination
+Source: https://swiperjs.com/swiper-api#pagination

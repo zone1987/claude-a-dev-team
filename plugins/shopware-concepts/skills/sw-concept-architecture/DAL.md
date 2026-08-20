@@ -1,20 +1,20 @@
-# Shopware DAL — Konzept
+# Shopware DAL — concept
 
-Vollständige Konzept-Doku: `DAL-DETAIL.md`
+Complete concept documentation: `DAL-DETAIL.md`
 
-## Kurzüberblick
+## Brief overview
 
-Shopware verwendet **kein Doctrine-ORM**, sondern eine eigene DAL. Vorteile: optimiert für E-Commerce
-(Mehrsprachigkeit, Variantenvererbung, Versionierung). Zentrales Konzept: EntityRepository + Criteria.
+Shopware uses **no Doctrine ORM**, but a DAL of its own. Advantages: optimised for e-commerce
+(multi-language, variant inheritance, versioning). Central concept: EntityRepository + Criteria.
 
-## Kernfeatures
+## Core features
 
-- **EntityRepository** — einziger empfohlener Datenbankzugriff
-- **Criteria** — Filter, Sorting, Aggregationen, Associations (kein QueryBuilder)
-- **3-stufige Übersetzungsauflösung** — aktuell → Parent-Sprache → Systemsprache
-- **Vererbung** — Varianten erben von Parent-Produkten (Felder, Associations)
-- **Versioning** — Entities können Versionen haben (Compound-PK: id + version_id)
-- **Context** — definiert Sprache, Währung, Regeln; einmal pro Request
-- **Entity Indexer** — schreiboptimiertes De-Normalisieren für schnelle Leseoperationen
+- **EntityRepository** — the only recommended database access
+- **Criteria** — filtering, sorting, aggregations, associations (no QueryBuilder)
+- **3-stage translation resolution** — current → parent language → system language
+- **Inheritance** — variants inherit from parent products (fields, associations)
+- **Versioning** — entities can have versions (compound PK: id + version_id)
+- **Context** — defines language, currency, rules; once per request
+- **Entity indexer** — write-optimised denormalisation for fast read operations
 
-Technische Umsetzung: `shopware-data` (Dev-Plugin)
+Technical implementation: `shopware-data` (dev plugin)

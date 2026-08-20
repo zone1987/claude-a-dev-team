@@ -37,7 +37,7 @@ Der Sales Agent ist eine separate Frontend-App (keine Admin-Erweiterung), die Au
 Nach der Erstellung erhält der Mitarbeiter automatisch eine Einladungs-E-Mail mit Setup-Anweisungen.
 
 **Screenshot Übersicht:** `../../assets/sales-agent-overview.png`
-**Screenshot Neuer Benutzer:** `../../assets/sales-agent-neuer-benutzer.png`
+**Screenshot Neuer Benutzer:** `../../assets/sales-agent-new-benutzer.png`
 
 ### Kunden zuweisen
 

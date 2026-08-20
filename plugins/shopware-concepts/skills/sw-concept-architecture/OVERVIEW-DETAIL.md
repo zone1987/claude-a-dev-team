@@ -1,159 +1,159 @@
-# Shopware 6 — Vollständige Architektur-Doku
+# Shopware 6 — complete architecture documentation
 
-Quellen: `concepts/framework/architecture/index.md`, `administration-concept.md`, `storefront-concept.md`
+Sources: `concepts/framework/architecture/index.md`, `administration-concept.md`, `storefront-concept.md`
 
 ---
 
 ## Contents
 
-- [Überblick (concepts/framework/architecture/index.md)](#überblick-conceptsframeworkarchitectureindexmd)
+- [Overview (concepts/framework/architecture/index.md)](#overview-conceptsframeworkarchitectureindexmd)
 - [Administration (concepts/framework/architecture/administration-concept.md)](#administration-conceptsframeworkarchitectureadministration-conceptmd)
 - [Storefront (concepts/framework/architecture/storefront-concept.md)](#storefront-conceptsframeworkarchitecturestorefront-conceptmd)
 
-## Überblick (concepts/framework/architecture/index.md)
+## Overview (concepts/framework/architecture/index.md)
 
-Shopware folgt einer modularen, API-first-Architektur auf Basis von Symfony und modernen Frontend-Technologien.
-Drei primäre Domänen, die unabhängig voneinander weiterentwickelt werden können:
+Shopware follows a modular, API-first architecture built on Symfony and modern frontend technologies.
+Three primary domains that can be developed further independently of each other:
 
-- **Core** — Backend-Fundament: Business-Logik, DAL, APIs, Extension-Mechanismus
-- **Storefront** — kundenseitiger Präsentationslayer: Sales Channels, Store API
-- **Administration** — Management-Interface für Händler und Operatoren
+- **Core** — backend foundation: business logic, DAL, APIs, extension mechanism
+- **Storefront** — customer-facing presentation layer: sales channels, Store API
+- **Administration** — management interface for merchants and operators
 
-Vereint durch gemeinsame API-Schicht und konsistentes Plugin-System.
+Unified by a common API layer and a consistent plugin system.
 
-### Architekturprinzipien
+### Architecture principles
 
-- **API-first** — alle Funktionalität über APIs erreichbar (headless und composable commerce)
-- **Separation of Concerns** — Frontend (Storefront/Admin) von Backend-Logik entkoppelt
-- **Erweiterbarkeit** — Plugins via Events, Services und Extension Points (keine Core-Modifikation)
-- **Asynchrone Verarbeitung** — Background Tasks via Message Queues und Workers
-- **Domain-driven Structure** — Business-Logik nach Commerce-Domänen organisiert
+- **API-first** — all functionality reachable via APIs (headless and composable commerce)
+- **Separation of concerns** — frontend (storefront/admin) decoupled from backend logic
+- **Extensibility** — plugins via events, services and extension points (no core modification)
+- **Asynchronous processing** — background tasks via message queues and workers
+- **Domain-driven structure** — business logic organised by commerce domains
 
-### Core-Komponenten
+### Core components
 
-- Data Abstraction Layer (DAL) für Datenbankinteraktion
-- Business Services und Domain-Logik
-- Sales Channel und Store APIs
-- Plugin- und Event-System
-- Messaging und Scheduled Task Infrastructure
+- Data Abstraction Layer (DAL) for database interaction
+- Business services and domain logic
+- Sales channel and store APIs
+- Plugin and event system
+- Messaging and scheduled task infrastructure
 
 ---
 
 ## Administration (concepts/framework/architecture/administration-concept.md)
 
-### Einführung
+### Introduction
 
-- Symfony Bundle mit Single Page Application (SPA) in JavaScript (Vue.js)
-- Sitzt konzeptionell auf dem Core — ähnlich wie Storefront
-- Kommuniziert mit Core ausschließlich via Admin API (REST-basiert)
-- Headless-Applikation aus custom Vue.js-Komponenten
-- SASS für Styling, Twig.js für Templates, Vue I18n für Übersetzungen, Webpack für Bundling
+- Symfony bundle with a single page application (SPA) in JavaScript (Vue.js)
+- Conceptually sits on top of the core — similar to the storefront
+- Communicates with the core exclusively via the Admin API (REST-based)
+- Headless application made of custom Vue.js components
+- SASS for styling, Twig.js for templates, Vue I18n for translations, Webpack for bundling
 
-### Hauptaufgaben
+### Main responsibilities
 
-- UI für alle administrativen Aufgaben des Shop-Betreibers
-- **Keine Business-Logik** — flache Modul-Liste, spiegelt Core-Module
-- Inheritance: Plugins können Komponenten überschreiben oder erweitern
-- Data Management: Entitäten des Core verwalten, REST-API-Kommunikation
-- State Management: Router, lokale Komponenten-States
+- UI for all administrative tasks of the shop operator
+- **No business logic** — flat module list, mirrors the core modules
+- Inheritance: plugins can override or extend components
+- Data management: manage core entities, REST API communication
+- State management: router, local component states
 
-### Struktur
+### Structure
 
 ```
 shopware/src/Administration/Resources/app/administration/src/
-├── app/     — Framework-abhängige Grundfunktionalität
-├── core/    — Admin API-Bindung und Services
-└── module/  — UI + State Management pro Thema (spiegelt Core-Module)
+├── app/     — framework-dependent base functionality
+├── core/    — Admin API binding and services
+└── module/  — UI + state management per topic (mirrors the core modules)
 ```
 
-### Module und Komponenten
+### Modules and components
 
-- **Modul** = Navigations-Eintrag; enthält Pages, Views, Components
-- **Page** = Einstiegspunkt, rendert vollständige Seite; enthält Views
-- **View** = Untergeordneter Teil einer Page; enthält Components
-- **Component** = Styling + Markup + Logik (MVC collapsed into one)
+- **Module** = navigation entry; contains pages, views, components
+- **Page** = entry point, renders a complete page; contains views
+- **View** = subordinate part of a page; contains components
+- **Component** = styling + markup + logic (MVC collapsed into one)
 
-Beispiel Order-Modul (`sw-order`):
+Order module example (`sw-order`):
 ```
 module/sw-order/
-├── acl/        — ACL-Mapping (viewer, editor, creator, deleter)
-├── component/  — Teilkomponenten
+├── acl/        — ACL mapping (viewer, editor, creator, deleter)
+├── component/  — sub-components
 ├── page/       — sw-order-create, sw-order-detail, sw-order-list
-├── snippet/    — Übersetzungsdateien
-├── state/      — Pinia-State
-└── view/       — Views
+├── snippet/    — translation files
+├── state/      — Pinia state
+└── view/       — views
 ```
 
-### Inheritance (Erweiterbarkeit)
+### Inheritance (extensibility)
 
-- `Component.extend()` — neue Komponente erstellen
-- `Component.override()` — bestehendes Verhalten überschreiben
-- Twig.js-Templates anpassen
-- Methoden und Computed Properties erweitern
+- `Component.extend()` — create a new component
+- `Component.override()` — override existing behaviour
+- Adjust Twig.js templates
+- Extend methods and computed properties
 
-### ACL in der Administration
+### ACL in the administration
 
-- CRUD-Berechtigungen pro Modul (`create`, `read`, `update`, `delete`)
-- Default-Rollen: `viewer`, `editor`, `creator`, `deleter`
-- Custom Roles via Admin-UI oder Plugin-Entwicklung
-- Granulare Rechte pro Modul
+- CRUD permissions per module (`create`, `read`, `update`, `delete`)
+- Default roles: `viewer`, `editor`, `creator`, `deleter`
+- Custom roles via the admin UI or plugin development
+- Granular rights per module
 
 ---
 
 ## Storefront (concepts/framework/architecture/storefront-concept.md)
 
-### Einführung
+### Introduction
 
-- PHP-Frontend; sitzt konzeptionell auf dem Core
-- Twig als Template-Engine, SASS für Styles, Bootstrap als CSS-Framework
-- Webpack für Bundling und Transpiling
-- Nutzt intern Store API-Routen für Datenbeschaffung
+- PHP frontend; conceptually sits on top of the core
+- Twig as template engine, SASS for styles, Bootstrap as CSS framework
+- Webpack for bundling and transpiling
+- Uses Store API routes internally to fetch data
 
-### Hauptaufgaben
+### Main responsibilities
 
-1. **Pages und Pagelets erstellen** — Composite Data Loading
-2. **Requests auf den Core mappen** — via Store API-Routen
-3. **Templates rendern** — Twig-basiert, vollständig anpassbar
-4. **Theming** — Theme-Engine für Layout-Anpassungen
+1. **Create pages and pagelets** — composite data loading
+2. **Map requests onto the core** — via Store API routes
+3. **Render templates** — Twig-based, fully customisable
+4. **Theming** — theme engine for layout adjustments
 
-### Store API im Kontext Storefront
+### The Store API in the storefront context
 
-In der traditionellen Twig-Storefront ruft der Browser **nicht direkt** die Store API auf.
-Stattdessen nutzen Storefront-Controller die Store API intern zur Datenbeschaffung.
-Storefront nutzt Session-basierte Auth; Store API selbst ist zustandslos mit Header-Auth.
+In the traditional Twig storefront the browser does **not** call the Store API directly.
+Instead, storefront controllers use the Store API internally to fetch data.
+The storefront uses session-based auth; the Store API itself is stateless with header auth.
 
-### Pages und Pagelets
+### Pages and pagelets
 
-- **Page** — vollständige Seite; 3-Klassen-Namespace:
-  - **Page-Struct** — repräsentiert die Daten
-  - **PageLoader** — erstellt Page-Structs
-  - **PageEvent** — sauberer Erweiterungspunkt
-- **Pagelet** — Teil einer Page oder via XHR-Route erreichbar; wie Page strukturiert
+- **Page** — complete page; 3-class namespace:
+  - **Page struct** — represents the data
+  - **PageLoader** — creates page structs
+  - **PageEvent** — clean extension point
+- **Pagelet** — part of a page or reachable via an XHR route; structured like a page
 
-### Composite Data Handling
+### Composite data handling
 
-Beispiel `AccountOrderPage`:
+`AccountOrderPage` example:
 
-1. Controller empfängt Request, fordert Page vom PageLoader an
-2. `AccountOrderPageLoader` ruft `GenericPageLoader` auf (Header, Footer)
-3. Zusätzliche Daten via Store API-Route (`OrderRoute`) laden
-4. `AccountOrderPageLoadedEvent` dispatchen (Plugin-Erweiterungspunkt)
-5. Page-Struct mit Template rendern
+1. Controller receives the request, asks the PageLoader for the page
+2. `AccountOrderPageLoader` calls `GenericPageLoader` (header, footer)
+3. Load additional data via a Store API route (`OrderRoute`)
+4. Dispatch `AccountOrderPageLoadedEvent` (plugin extension point)
+5. Render the page struct with the template
 
-### Struktur
+### Structure
 
 ```
 Storefront/
-├── Controller/         — Routing + Page-Struct-Übergabe an Twig
-├── Page/               — Page-Structs + PageLoader
-├── Pagelet/            — Pagelet-Structs + Loader
-├── Resources/          — Templates, Snippets, Assets (Bootstrap-Struktur)
-├── Theme/              — Theme-Engine
+├── Controller/         — routing + handing the page struct to Twig
+├── Page/               — page structs + PageLoader
+├── Pagelet/            — pagelet structs + loader
+├── Resources/          — templates, snippets, assets (Bootstrap structure)
+├── Theme/              — theme engine
 └── ...
 ```
 
-### Übersetzungen in der Storefront
+### Translations in the storefront
 
-- JSON-Dateien in `Resources/snippet/<locale>/` (z.B. `de_DE`)
+- JSON files in `Resources/snippet/<locale>/` (e.g. `de_DE`)
 - Twig: `{{ "general.homeLink"|trans }}`
-- Pluralisierung und Variablen via `%`-Wrapper
+- Pluralisation and variables via the `%` wrapper

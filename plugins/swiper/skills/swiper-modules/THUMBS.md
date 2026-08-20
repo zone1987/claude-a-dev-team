@@ -1,6 +1,6 @@
-# Swiper — Thumbs-Modul
+# Swiper — Thumbs module
 
-Thumbnail-Swiper mit Haupt-Swiper synchronisieren.
+Synchronize a thumbnail Swiper with the main Swiper.
 
 ```js
 import Swiper from 'swiper';
@@ -23,5 +23,5 @@ const mainSwiper = new Swiper('.swiper-main', {
 });
 ```
 
-## Vertiefung
-- [THUMBS-DETAIL.md](THUMBS-DETAIL.md) — alle Parameter, Properties, Methoden
+## Deep dive
+- [THUMBS-DETAIL.md](THUMBS-DETAIL.md) — all parameters, properties, methods

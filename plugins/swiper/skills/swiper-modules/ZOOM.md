@@ -1,6 +1,6 @@
-# Swiper — Zoom-Modul
+# Swiper — Zoom module
 
-Pinch-to-Zoom und programmatisches Zoomen einzelner Slides.
+Pinch-to-zoom and programmatic zooming of individual slides.
 
 ```js
 import Swiper from 'swiper';
@@ -15,13 +15,13 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Programmatisch
-swiper.zoom.in(2);    // auf 2x zoomen
-swiper.zoom.out();    // zurück auf minRatio
+// Programmatically
+swiper.zoom.in(2);    // zoom to 2x
+swiper.zoom.out();    // back to minRatio
 swiper.zoom.toggle(event);
 ```
 
-HTML-Struktur:
+HTML structure:
 ```html
 <div class="swiper-slide">
   <div class="swiper-zoom-container" data-swiper-zoom="5">
@@ -30,5 +30,5 @@ HTML-Struktur:
 </div>
 ```
 
-## Vertiefung
-- [ZOOM-DETAIL.md](ZOOM-DETAIL.md) — alle Parameter, Properties, Methoden, Events, HTML-Struktur
+## Deep dive
+- [ZOOM-DETAIL.md](ZOOM-DETAIL.md) — all parameters, properties, methods, events, HTML structure

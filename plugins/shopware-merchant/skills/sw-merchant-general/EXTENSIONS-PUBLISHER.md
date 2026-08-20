@@ -1,98 +1,98 @@
-# Shopware Publisher – Draft-Management für Erlebniswelten
+# Shopware Publisher – draft management for Erlebniswelten
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/ShopwarePublisher  
-**Plan**: Shopware Evolve (oder höher)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/ShopwarePublisher  
+**Plan**: Shopware Evolve (or higher)
 
-## Überblick
+## Overview
 
-Der **Shopware Publisher** ermöglicht kollaboratives Content-Management:
-Mehrere Versionen (Drafts) einer Erlebniswelt erstellen, ohne die **aktive Live-Version** zu verändern.
+The **Shopware Publisher** enables collaborative content management:
+create several versions (drafts) of an Erlebniswelt (Shopping Experience) without changing the **active live version**.
 
-Ideal für:
-- Saisonale Kampagnen vorbereiten
-- Content-Reviews vor Veröffentlichung
-- Team-Kollaboration an Landing-Pages
+Ideal for:
+- Preparing seasonal campaigns
+- Content reviews before publication
+- Team collaboration on landing pages
 
 ---
 
 ## Installation
 
-1. **Erweiterungen > Meine Erweiterungen** öffnen
-2. Im **Shopware Account Tab** einloggen (Lizenzverifizierung)
-3. Publisher installieren + aktivieren (**Apps Tab**)
+1. Open **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions)
+2. Log in on the **Shopware Account tab** (licence verification)
+3. Install and activate the Publisher (**Apps tab**)
 
 ---
 
-## Kernfunktionen
+## Core features
 
-### 1. Draft-Erstellung
+### 1. Creating a draft
 
-**Normales Speichern** (ohne Publisher): Direkt in Live-Version  
-**Mit Publisher**: Dropdown-Pfeil neben dem Speicher-Button → "Als neuen Entwurf speichern"
+**Normal saving** (without the Publisher): directly into the live version  
+**With the Publisher**: the dropdown arrow next to the save button → "Als neuen Entwurf speichern" (Save as a new draft)
 
-Optionen beim Speichern:
-| Option | Beschreibung |
+Options when saving:
+| Option | Description |
 |---|---|
-| Direkt speichern | Sofort in die Live-Version übernehmen |
-| Als neuen Entwurf speichern | Neue Draft-Version erstellen (Live unverändert) |
+| Direkt speichern (Save directly) | Apply it to the live version immediately |
+| Als neuen Entwurf speichern | Create a new draft version (live stays unchanged) |
 
-### 2. Drafts verwalten
+### 2. Managing drafts
 
-In der **Erlebniswelten-Übersicht** (Content > Erlebniswelten):
-- Neben jeder Erlebniswelt: Anzahl der Drafts und Live-Version sichtbar
-- Anzahl der kürzlich gemachten Änderungen anderer Nutzer
+In the **Erlebniswelten** overview (Content > Erlebniswelten (Shopping Experiences)):
+- Next to each Erlebniswelt: the number of drafts and the live version are visible
+- The number of recent changes made by other users
 
-### 3. Aktivitäts-Feed (Activity Tracking)
+### 3. Activity feed (activity tracking)
 
-Ein integrierter Feed zeigt:
-- Welcher Benutzer hat Änderungen gemacht
-- Was wurde geändert
-- Wann wurde geändert
+An integrated feed shows:
+- Which user made changes
+- What was changed
+- When it was changed
 
-Gilt sowohl für Live-Version als auch für Drafts.
+This applies to the live version as well as to the drafts.
 
-### 4. Preview (Vorschau)
+### 4. Preview
 
-Drafts können in der **Storefront-Vorschau** angezeigt werden, bevor sie veröffentlicht werden:
-- Erlebniswelt öffnen → Draft auswählen → "Vorschau" klicken
-- Zeigt genau, wie der Draft im Frontend aussehen würde
+Drafts can be shown in the **storefront preview** before they are published:
+- Open the Erlebniswelt → select the draft → click "Vorschau" (Preview)
+- Shows exactly how the draft would look in the frontend
 
 ---
 
-## Workflow-Beispiel: Saisonale Kampagne
+## Workflow example: a seasonal campaign
 
 ```
-1. Aktuelle Startseite (Live)  
-   └── Draft: "Weihnachten 2024" (wird parallel erstellt)
-       ├── Bearbeitung durch Content-Team
-       ├── Review durch Marketing-Lead
-       ├── Vorschau prüfen
-       └── Am 1. Dezember: Draft → Live publizieren
+1. Current home page (Live)  
+   └── Draft: "Weihnachten 2024" (created in parallel)
+       ├── Edited by the content team
+       ├── Reviewed by the marketing lead
+       ├── Check the Vorschau (preview)
+       └── On 1 December: publish Draft → Live
 ```
 
 ---
 
-## Benutzerrechte für den Publisher
+## User permissions for the Publisher
 
-Unterschiedliche Benutzerrollen können unterschiedliche Publisher-Berechtigungen haben:
+Different user roles can have different Publisher permissions:
 
-| Berechtigung | Beschreibung |
+| Permission | Description |
 |---|---|
-| Drafts erstellen | Neuen Entwurf anlegen |
-| Drafts bearbeiten | Vorhandenen Entwurf ändern |
-| Drafts publizieren | Entwurf zur Live-Version machen |
-| Drafts löschen | Entwürfe entfernen |
+| Create drafts | Create a new draft |
+| Edit drafts | Change an existing draft |
+| Publish drafts | Turn a draft into the live version |
+| Delete drafts | Remove drafts |
 
-Benutzerrechte: **Einstellungen > System > Benutzer & Rechte > Rollen**
+User permissions: **Einstellungen** (Settings) **> System > Benutzer & Rechte** (Users & permissions) **> Rollen** (Roles)
 
 ---
 
-## Unterschied zu Standard-Erlebniswelten-Speicherung
+## Difference from the standard Erlebniswelten saving
 
-| Aspekt | Ohne Publisher | Mit Publisher |
+| Aspect | Without the Publisher | With the Publisher |
 |---|---|---|
-| Speichern = Live | Ja, sofort | Nein – erst nach Publish |
-| Mehrere Versionen | Nein | Ja (unbegrenzt viele Drafts) |
-| Vorschau | Ja (aber Live) | Ja (Drafts vorschaubar) |
-| Änderungshistorie | Nein | Ja (Activity Feed) |
-| Rollback | Eingeschränkt | Ja (Draft aktivieren) |
+| Saving = live | Yes, immediately | No – only after publishing |
+| Several versions | No | Yes (an unlimited number of drafts) |
+| Preview | Yes (but live) | Yes (drafts can be previewed) |
+| Change history | No | Yes (activity feed) |
+| Rollback | Limited | Yes (activate a draft) |

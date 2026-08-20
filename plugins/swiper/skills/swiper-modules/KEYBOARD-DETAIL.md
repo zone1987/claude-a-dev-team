@@ -1,6 +1,6 @@
-# Swiper Keyboard-Modul — Vollständige Referenz
+# Swiper Keyboard module — Complete reference
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -16,59 +16,59 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `enabled` | `boolean` | `false` | Tastaturnavigation aktivieren |
-| `onlyInViewport` | `boolean` | `true` | Nur steuern wenn Swiper sichtbar im Viewport ist |
-| `pageUpDown` | `boolean` | `true` | Navigation per Page Up / Page Down aktivieren |
-| `speed` | `number` | `undefined` | Transitions-Dauer bei Tastendruck in ms (überschreibt globalen `speed`) |
+| `enabled` | `boolean` | `false` | Enable keyboard navigation |
+| `onlyInViewport` | `boolean` | `true` | Only control when the Swiper is visible in the viewport |
+| `pageUpDown` | `boolean` | `true` | Enable navigation via Page Up / Page Down |
+| `speed` | `number` | `undefined` | Transition duration on key press in ms (overrides the global `speed`) |
 
-## Unterstützte Tasten
+## Supported keys
 
-| Taste | Aktion |
+| Key | Action |
 |-------|--------|
-| `ArrowRight` / `ArrowDown` | Nächster Slide |
-| `ArrowLeft` / `ArrowUp` | Vorheriger Slide |
-| `Page Down` | Nächster Slide (wenn `pageUpDown: true`) |
-| `Page Up` | Vorheriger Slide (wenn `pageUpDown: true`) |
+| `ArrowRight` / `ArrowDown` | Next slide |
+| `ArrowLeft` / `ArrowUp` | Previous slide |
+| `Page Down` | Next slide (when `pageUpDown: true`) |
+| `Page Up` | Previous slide (when `pageUpDown: true`) |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.keyboard.enabled` | `boolean` | Gibt an ob Tastatursteuerung aktiv ist |
+| `swiper.keyboard.enabled` | `boolean` | Indicates whether keyboard control is active |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|--------------|
-| `swiper.keyboard.enable()` | Tastaturnavigation aktivieren |
-| `swiper.keyboard.disable()` | Tastaturnavigation deaktivieren |
+| `swiper.keyboard.enable()` | Enable keyboard navigation |
+| `swiper.keyboard.disable()` | Disable keyboard navigation |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |-------|-----------|--------------|
-| `keyPress` | `(swiper, keyCode)` | Wird bei jedem Tastendruck ausgelöst (keyCode = numerischer Key-Code) |
+| `keyPress` | `(swiper, keyCode)` | Fires on every key press (keyCode = numeric key code) |
 
 ```js
 swiper.on('keyPress', (swiper, keyCode) => {
-  console.log('Taste gedrückt:', keyCode);
+  console.log('Key pressed:', keyCode);
   // 37 = ArrowLeft, 38 = ArrowUp, 39 = ArrowRight, 40 = ArrowDown
   // 33 = Page Up, 34 = Page Down
 });
 ```
 
-## Vollständiges Beispiel
+## Complete example
 
 ```js
 const swiper = new Swiper('.swiper', {
   modules: [Keyboard],
   keyboard: {
     enabled: true,
-    onlyInViewport: false, // immer reagieren, auch wenn außerhalb
+    onlyInViewport: false, // always react, even when outside
     pageUpDown: true,
     speed: 400,
   },
@@ -81,7 +81,7 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Dynamisch umschalten
+// Toggle dynamically
 document.querySelector('#toggle-keyboard').addEventListener('click', () => {
   if (swiper.keyboard.enabled) {
     swiper.keyboard.disable();
@@ -92,4 +92,4 @@ document.querySelector('#toggle-keyboard').addEventListener('click', () => {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#keyboard-control
+Source: https://swiperjs.com/swiper-api#keyboard-control

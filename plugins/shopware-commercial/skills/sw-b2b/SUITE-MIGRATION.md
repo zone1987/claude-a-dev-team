@@ -1,11 +1,11 @@
 # Skill: sw-b2b-suite-migration
 
-Entwickler-Referenz fuer die Migration von B2B Suite zu B2B Components.
+Developer reference for the migration from B2B Suite to B2B Components.
 
-## Referenzen
+## References
 
 - [SUITE-MIGRATION-DETAIL.md](SUITE-MIGRATION-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-B2B Suite (Quelle): `sw-b2b-suite`. B2B Components (Ziel): `sw-b2b-components`.
+B2B Suite (source): `sw-b2b-suite`. B2B Components (target): `sw-b2b-components`.

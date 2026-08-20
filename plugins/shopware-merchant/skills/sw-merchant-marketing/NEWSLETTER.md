@@ -1,3 +1,3 @@
 # sw-merchant-marketing-newsletter
 
-Dieser Skill dokumentiert die Verwaltung von Newsletter-Empfängern in der Shopware 6 Administration. Er enthält die vier Status-Optionen (Warten auf Aktivierung, Sofort Aktiv, Aktiv, Warten auf Löschung), die Filtermöglichkeiten nach Status, Sprache und Verkaufskanal sowie die Bearbeitungsoptionen für einzelne Empfänger (Adresse, Sprache, E-Mail, Tags).
+This skill documents the management of newsletter recipients in the Shopware 6 administration. It contains the four status options (**Warten auf Aktivierung** – waiting for activation, **Sofort Aktiv** – directly active, **Aktiv** – active, **Warten auf Löschung** – waiting for deletion), the filter options by status, language and sales channel as well as the editing options for individual recipients (address, language, email, tags).

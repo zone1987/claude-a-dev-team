@@ -1,20 +1,20 @@
 # Shopware 6 — Redis
 
-Redis (bzw. Valkey) wird in Shopware optional als schneller Speicher für mehrere Subsysteme genutzt — über
-Konfiguration (kein Code nötig im Standardfall).
+Redis (or Valkey) is used in Shopware optionally as fast storage for several subsystems — through
+configuration (no code needed by default).
 
-## Einsatzbereiche
-| Bereich | Konfiguration |
+## Areas of use
+| Area | Configuration |
 |---|---|
-| **Cache** (App/HTTP) | Symfony-Cache-Adapter auf Redis (`framework.cache.app`) |
-| **Cart-Persister** | Warenkorb in Redis statt DB (ADR „redis-cart-persister") |
-| **Session** | Session-Handler auf Redis |
-| **Number-Range-Increment** | Increment-Storage Redis (clustersicher, schnell) |
-| **Lock-Store** | Symfony Lock über Redis |
-| **Messenger-Transport** | Queue-Transport via Redis (Alternative zu DB/AMQP) |
+| **Cache** (app/HTTP) | Symfony cache adapter on Redis (`framework.cache.app`) |
+| **Cart persister** | Cart in Redis instead of the DB (ADR "redis-cart-persister") |
+| **Session** | Session handler on Redis |
+| **Number range increment** | Increment storage Redis (cluster-safe, fast) |
+| **Lock store** | Symfony Lock through Redis |
+| **Messenger transport** | Queue transport via Redis (alternative to DB/AMQP) |
 
 ```yaml
-# config/packages/shopware.yaml (Beispiel-Auszüge)
+# config/packages/shopware.yaml (example excerpts)
 shopware:
     cart:
         redis_url: '%env(REDIS_URL)%'
@@ -23,7 +23,7 @@ shopware:
         redis_url: '%env(REDIS_URL)%'
 ```
 
-`REDIS_URL` (z.B. `redis://localhost:6379/0`) als Env setzen; je Subsystem eigene DB-Index/Connection empfehlenswert.
-In der Cloud/PaaS oft vorkonfiguriert (`shopware-devops` → `sw-paas`). Performance/Skalierung profitieren stark von Redis.
+Set `REDIS_URL` (e.g. `redis://localhost:6379/0`) as an env; a separate DB index/connection per subsystem is recommended.
+In the cloud/PaaS often preconfigured (`shopware-devops` → `sw-paas`). Performance/scaling benefit strongly from Redis.
 
-→ Vollständige Konfiguration je Subsystem (Cache/Cart/Session/Increment/Lock/Messenger): [REDIS-DETAIL.md](REDIS-DETAIL.md)
+→ Full configuration per subsystem (cache/cart/session/increment/lock/messenger): [REDIS-DETAIL.md](REDIS-DETAIL.md)

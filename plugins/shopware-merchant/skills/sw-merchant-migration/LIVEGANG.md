@@ -1,16 +1,16 @@
-# Shopware Migration — Livegang
+# Shopware migration — go-live
 
-Destilliert aus `docs.shopware.com/de/migration-de/Livegang`. Gilt für SW5→SW6, SW6→SW6, Magento→SW6.
+Distilled from `docs.shopware.com/de/migration-de/Livegang`. Applies to SW5→SW6, SW6→SW6, Magento→SW6.
 
-## Kurzübersicht
+## Short overview
 
-1. Änderungen im **Zielshop** (SW6): Lizenz + Domain in Verkaufskanälen
-2. Änderungen im **Quellshop**: Shop verschieben / Domain anpassen
-3. Änderungen beim **Hoster**: DNS-Routing auf `/public/` konfigurieren
-4. **Migrationsdaten aufräumen** (Datenbankbereinigung)
+1. Changes in the **target shop** (SW6): licence + domain in the **Verkaufskanäle** (Sales channels)
+2. Changes in the **source shop**: move the shop / adjust the domain
+3. Changes at the **hoster**: configure DNS routing to `/public/`
+4. **Clean up the migration data** (database cleanup)
 
-Tiefes Schritt-für-Schritt-Wissen: `LIVEGANG-DETAIL.md`
+Deep step-by-step knowledge: `LIVEGANG-DETAIL.md`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de/Livegang*
+*Source: https://docs.shopware.com/de/migration-de/Livegang*

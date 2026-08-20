@@ -1,6 +1,6 @@
 # Shopware DAL Entity Aliases — Deep Reference
 
-Quellen:
+Sources:
 - `src/Core/Framework/DataAbstractionLayer/Field/Field.php`
 - `src/Core/Framework/DataAbstractionLayer/Field/StorageAware.php`
 - `src/Core/Framework/DataAbstractionLayer/CompiledFieldCollection.php`
@@ -15,38 +15,38 @@ Quellen:
 - [CompiledFieldCollection — Lookup-Maps](#compiledfieldcollection-lookup-maps)
 - [SQL-Alias-Schema](#sql-alias-schema)
 - [EntityDefinitionQueryHelper::escape()](#entitydefinitionqueryhelperescape)
-- [getFieldAccessor() — Accessor-Auflösung](#getfieldaccessor-accessor-auflösung)
+- [getFieldAccessor() — Accessor Resolution](#getfieldaccessor--accessor-resolution)
 - [buildTranslationChain()](#buildtranslationchain)
-- [Field-Resolver und JOIN-Alias](#field-resolver-und-join-alias)
-- [Criteria-Feld-Notation Regeln](#criteria-feld-notation-regeln)
-- [Bekannte Fallstricke](#bekannte-fallstricke)
+- [Field Resolver and JOIN Alias](#field-resolver-and-join-alias)
+- [Criteria Field Notation Rules](#criteria-field-notation-rules)
+- [Known Pitfalls](#known-pitfalls)
 
 ## Storage-Name vs. Property-Name
 
-Jedes `StorageAware`-Feld hat zwei Namen:
+Every `StorageAware` field has two names:
 
-| Begriff | Quelle | Verwendung |
+| Term | Source | Usage |
 |---------|--------|------------|
-| **storageName** | `StorageAware::getStorageName()` | DB-Spaltenname in `CREATE TABLE`, SQL WHERE |
-| **propertyName** | `Field::getPropertyName()` | PHP-Property, Criteria-Accessor, SQL-Alias |
+| **storageName** | `StorageAware::getStorageName()` | DB column name in `CREATE TABLE`, SQL WHERE |
+| **propertyName** | `Field::getPropertyName()` | PHP property, Criteria accessor, SQL alias |
 
 ```php
 // Definition:
 new FkField('tax_id', 'taxId', TaxDefinition::class)
 //            ↑ storageName  ↑ propertyName
 
-// StorageAware-Interface:
+// StorageAware interface:
 interface StorageAware {
     public function getStorageName(): string;
 }
 
-// Field-Basisklasse:
+// Field base class:
 class Field {
     public function __construct(protected string $propertyName) {}
     public function getPropertyName(): string { return $this->propertyName; }
 }
 
-// Konkrete Klasse (z.B. IdField):
+// Concrete class (e.g. IdField):
 class IdField extends Field implements StorageAware {
     public function __construct(protected string $storageName, string $propertyName) {
         parent::__construct($propertyName);
@@ -55,19 +55,19 @@ class IdField extends Field implements StorageAware {
 }
 ```
 
-### Felder OHNE StorageAware
+### Fields WITHOUT StorageAware
 
-Diese Felder haben keinen storageName (kein eigener DB-Column):
-- `TranslatedField` — verweist auf Translation-Definition
-- `AssociationField` (alle) — JOIN, kein eigener Column
-- `Runtime`-Felder mit Flag `Runtime`
-- `ChildCountField`, `TreeLevelField`, `TreePathField` — berechnete Felder
+These fields have no storageName (no own DB column):
+- `TranslatedField` — points to the translation definition
+- `AssociationField` (all) — JOIN, no own column
+- `Runtime` fields with the `Runtime` flag
+- `ChildCountField`, `TreeLevelField`, `TreePathField` — computed fields
 
 ---
 
 ## CompiledFieldCollection — Lookup-Maps
 
-Nach `FieldCollection::compile()` wird eine `CompiledFieldCollection` erzeugt mit pre-built Maps:
+After `FieldCollection::compile()` a `CompiledFieldCollection` is created with pre-built maps:
 
 ```php
 class CompiledFieldCollection {
@@ -78,13 +78,13 @@ class CompiledFieldCollection {
         return $this->mappedByStorageName[$storageName] ?? null;
     }
 
-    // Aufgebaut in compile():
+    // Built up in compile():
     // foreach $fields:
     //   $this->mappedByStorageName[$field->getStorageName()] = $field;
 }
 ```
 
-Anwendung:
+Usage:
 ```php
 // In EntityHydrator::getManyToOneProperty():
 $reference = $field->getReferenceDefinition()->getFields()->getByStorageName(
@@ -96,7 +96,7 @@ $reference = $field->getReferenceDefinition()->getFields()->getByStorageName(
 
 ## SQL-Alias-Schema
 
-### Scalar-Felder
+### Scalar Fields
 
 ```sql
 -- Schema: `<table>`.`<storageName>` AS `<root>.<propertyName>`
@@ -105,7 +105,7 @@ SELECT `product`.`tax_id`         AS `product.taxId`
 SELECT `product`.`id`             AS `product.id`
 ```
 
-### Association-Aliase (JOINs)
+### Association Aliases (JOINs)
 
 ```sql
 -- ManyToOne: root = 'product.manufacturer'
@@ -115,7 +115,7 @@ LEFT JOIN `product_manufacturer` AS `product.manufacturer`
 SELECT `product.manufacturer`.`name` AS `product.manufacturer.name`
 ```
 
-### Translation-Aliase
+### Translation Aliases
 
 ```sql
 -- root = 'product', main language = 'de-DE'
@@ -149,31 +149,31 @@ public static function escape(string $string): string
 }
 ```
 
-Alle Table- und Column-Namen werden escaped. Aliase (AS `product.name`) auch.  
-**Wichtig:** Der Punkt in `product.name` ist Teil des Alias-Strings — MySQL erlaubt Backtick-escaped Strings mit Punkten.
+All table and column names are escaped. Aliases (AS `product.name`) as well.  
+**Important:** The dot in `product.name` is part of the alias string — MySQL allows backtick-escaped strings containing dots.
 
 ---
 
-## getFieldAccessor() — Accessor-Auflösung
+## getFieldAccessor() — Accessor Resolution
 
 ```php
 // EntityDefinitionQueryHelper::getFieldAccessor(
-//   $fieldName,    // 'productNumber' oder 'manufacturer.name'
+//   $fieldName,    // 'productNumber' or 'manufacturer.name'
 //   $definition,   // ProductDefinition
 //   $root,         // 'product'
 //   $context
 // ): string
 
-// Einfaches Feld:
+// Simple field:
 getFieldAccessor('productNumber', $productDef, 'product', $context)
-// → 'product.productNumber' (= SQL-Alias)
+// → 'product.productNumber' (= SQL alias)
 
-// Translated Feld:
+// Translated field:
 getFieldAccessor('name', $productDef, 'product', $context)
 // → COALESCE(`product.product`.`name`, `product.de-DE`.`name`)
-//   (bei Inheritance: komplexeres COALESCE mit parent)
+//   (with inheritance: more complex COALESCE including parent)
 
-// Inherited Feld:
+// Inherited field:
 getFieldAccessor('taxId', $productDef, 'product', $context)
 // → COALESCE(`product`.`tax_id`, `product.parent`.`tax_id`)
 ```
@@ -185,15 +185,15 @@ getFieldAccessor('taxId', $productDef, 'product', $context)
 ```php
 public static function buildTranslationChain(string $root, Context $context, bool $includeParent): array
 {
-    // Gibt Alias-Roots der Translation-JOINs zurück
+    // Returns the alias roots of the translation JOINs
     // Format: ['<root>.translation', '<root>.translation.fallback_1', ...]
 
-    // Mit $includeParent = true (isInheritanceAware && considerInheritance):
+    // With $includeParent = true (isInheritanceAware && considerInheritance):
     // ['<root>.translation', '<root>.parent.translation', '<root>.translation.fallback_1', '<root>.parent.translation.fallback_1']
 }
 ```
 
-Diese Chain wird in `hydrateFields()` genutzt um den richtigen Alias-Wert aus dem Row-Array zu lesen:
+This chain is used in `hydrateFields()` to read the correct alias value from the row array:
 
 ```php
 $chain = EntityDefinitionQueryHelper::buildTranslationChain($root, $context, $inherited);
@@ -203,9 +203,9 @@ $key = array_shift($chain) . '.' . $property;
 
 ---
 
-## Field-Resolver und JOIN-Alias
+## Field Resolver and JOIN Alias
 
-Bei verschachtelten Criteria-Pfaden (`manufacturer.name`) resolved der DAL:
+For nested Criteria paths (`manufacturer.name`) the DAL resolves as follows:
 
 ```
 resolveAccessor('manufacturer.name', ProductDefinition, 'product', $query, $context)
@@ -214,29 +214,29 @@ resolveAccessor('manufacturer.name', ProductDefinition, 'product', $query, $cont
   → resolver.join(FieldResolverContext('product', 'product', field, ...))
       → JOIN `product_manufacturer` AS `product.manufacturer`
   → $alias = 'product.manufacturer'
-  → field = getField('name') auf ProductManufacturerDefinition
+  → field = getField('name') on ProductManufacturerDefinition
   → return 'product.manufacturer.name'
 ```
 
 ---
 
-## Criteria-Feld-Notation Regeln
+## Criteria Field Notation Rules
 
-| Notation | Bedeutung | Beispiel |
+| Notation | Meaning | Example |
 |----------|-----------|---------|
-| `propertyName` | Direktes Feld | `productNumber` |
-| `a.b` | Association-Feld | `manufacturer.name` |
-| `a.b.c` | Tief verschachtelt | `manufacturer.translations.name` |
-| `extensions.myExt.field` | Extension-Feld | `extensions.myPlugin.customProp` |
+| `propertyName` | Direct field | `productNumber` |
+| `a.b` | Association field | `manufacturer.name` |
+| `a.b.c` | Deeply nested | `manufacturer.translations.name` |
+| `extensions.myExt.field` | Extension field | `extensions.myPlugin.customProp` |
 
-**Immer** camelCase Property-Namen, niemals snake_case Storage-Namen in Criteria.
+**Always** camelCase property names, never snake_case storage names in Criteria.
 
 ---
 
-## Bekannte Fallstricke
+## Known Pitfalls
 
-1. **`product_number` statt `productNumber`** in Criteria → `UnmappedFieldException`
-2. **Association ohne `->addAssociation()`** und dann Feld-Filter darauf → JOIN fehlt
-3. **Translated-Feld direkt filtern** → DAL baut automatisch COALESCE, kein manuelles JOIN nötig
-4. **`getByStorageName()`** gibt `null` für TranslatedField (kein StorageAware)
-5. **Version-Felder** haben storage `version_id` und property `versionId` — bei ManyToMany-Mappings auf versionierte Entities gibt es `ReferenceVersionField` mit explizitem storage-Name
+1. **`product_number` instead of `productNumber`** in Criteria → `UnmappedFieldException`
+2. **Association without `->addAssociation()`** and then a field filter on it → JOIN is missing
+3. **Filtering a translated field directly** → the DAL builds COALESCE automatically, no manual JOIN needed
+4. **`getByStorageName()`** returns `null` for TranslatedField (not StorageAware)
+5. **Version fields** have storage `version_id` and property `versionId` — for ManyToMany mappings onto versioned entities there is `ReferenceVersionField` with an explicit storage name

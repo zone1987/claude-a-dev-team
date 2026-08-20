@@ -1,23 +1,23 @@
-# Digital Sales Rooms — Konfiguration
+# Digital Sales Rooms — configuration
 
-Vollständige Referenz: [DIGITAL-SALES-ROOMS-CONFIG-CONFIGURATION.md](DIGITAL-SALES-ROOMS-CONFIG-CONFIGURATION.md)
+Full reference: [DIGITAL-SALES-ROOMS-CONFIG-CONFIGURATION.md](DIGITAL-SALES-ROOMS-CONFIG-CONFIGURATION.md)
 
-## Schnellstart via CLI
+## Quick start via CLI
 
 ```bash
-# Alle Konfigurationsschritte in einem Befehl (im Plugin-Root-Verzeichnis):
+# all configuration steps in one command (in the plugin root directory):
 composer dsr:config
 
-# Oder einzeln:
-composer dsr:domain-setup    # Domain-Konfiguration
-composer dsr:daily-setup     # Daily.co Video-Setup
-composer dsr:mercure-setup   # Mercure Realtime-Setup
+# or individually:
+composer dsr:domain-setup    # domain configuration
+composer dsr:daily-setup     # Daily.co video setup
+composer dsr:mercure-setup   # Mercure realtime setup
 ```
 
-## Manuelle Konfiguration
+## Manual configuration
 
-1. **Domain** → Sales Channel → Domains-Sektion → DSR-Domain hinzufügen
+1. **Domain** → sales channel → Domains section → add the DSR domain
 2. **Plugin** → Marketing › Digital Sales Rooms › Configuration
-   - Appointments: verfügbare DSR-Domains auswählen
-   - Video and Audio: Daily.co API-Key
-   - Realtime Service: Mercure Hub-URLs + Secrets
+   - Appointments: select the available DSR domains
+   - Video and Audio: Daily.co API key
+   - Realtime Service: Mercure hub URLs + secrets

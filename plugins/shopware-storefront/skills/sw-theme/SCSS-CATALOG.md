@@ -1,43 +1,43 @@
-# SW SCSS-Katalog — Projekt-Introspektions-Skill
+# SW SCSS catalog — project introspection skill
 
-Dieser Skill scannt ein konkretes Shopware-6-Projekt und erstellt einen vollständigen
-SCSS-Katalog unter `.shopware-catalog/scss.md`.
+This skill scans a concrete Shopware 6 project and creates a full
+SCSS catalog at `.shopware-catalog/scss.md`.
 
 ## Contents
 
-- [Wann verwenden](#wann-verwenden)
-- [Mechanik — Schritt für Schritt](#mechanik-schritt-für-schritt)
-- [SCSS-Dateien](#scss-dateien)
-- [SCSS-Variablen](#scss-variablen)
+- [When to use](#when-to-use)
+- [Mechanics — step by step](#mechanics--step-by-step)
+- [SCSS files](#scss-files)
+- [SCSS variables](#scss-variables)
 - [CSS Custom Properties](#css-custom-properties)
-- [Override-Konflikte](#override-konflikte)
-- [Automatisierung (Bash-Skript)](#automatisierung-bash-skript)
-- [Hinweise zur theme.json-Integration](#hinweise-zur-themejson-integration)
+- [Override conflicts](#override-conflicts)
+- [Automation (bash script)](#automation-bash-script)
+- [Notes on theme.json integration](#notes-on-themejson-integration)
 
-## Wann verwenden
+## When to use
 
-- Du willst wissen, welche SCSS/CSS-Variablen in **deinem** Projekt (inkl. aktives Theme, Plugins) definiert sind
-- Du willst einen Überblick über alle SCSS-Dateien und ihren Zweck haben
-- Du willst prüfen, ob ein Plugin oder Theme bestimmte Core-Variablen überschreibt
+- You want to know which SCSS/CSS variables are defined in **your** project (incl. active theme, plugins)
+- You want an overview of all SCSS files and their purpose
+- You want to check whether a plugin or theme overrides particular core variables
 
-## Mechanik — Schritt für Schritt
+## Mechanics — step by step
 
-### 1. Alle relevanten SCSS-Dateien finden
+### 1. Find all relevant SCSS files
 
 ```bash
-# Alle SCSS-Dateien im Projekt (Core + Plugins + Themes)
+# All SCSS files in the project (core + plugins + themes)
 find . -path "*/Resources/app/storefront/src/scss/**/*.scss" | sort
 ```
 
-Typische Pfade:
+Typical paths:
 - `vendor/shopware/storefront/src/Storefront/Resources/app/storefront/src/scss/` (Core)
 - `custom/plugins/MyPlugin/src/Resources/app/storefront/src/scss/` (Plugin)
 - `custom/static-plugins/MyTheme/src/Resources/app/storefront/src/scss/` (Theme)
 
-### 2. SCSS-Variablen extrahieren
+### 2. Extract SCSS variables
 
 ```bash
-# Alle $variablen-Definitionen mit Wert
+# All $variable definitions with their value
 grep -rn '^\$[a-z][a-z0-9_-]*:' \
   --include="*.scss" \
   ./vendor/shopware/storefront \
@@ -47,15 +47,15 @@ grep -rn '^\$[a-z][a-z0-9_-]*:' \
   | sort
 ```
 
-Regulärer Ausdruck für SCSS-Variable-Definitionen:
+Regular expression for SCSS variable definitions:
 ```
 \$[a-z][a-z0-9_-]*:\s*.+?(!default)?;
 ```
 
-### 3. CSS Custom Properties extrahieren
+### 3. Extract CSS custom properties
 
 ```bash
-# Alle --custom-property Definitionen
+# All --custom-property definitions
 grep -rn '--[a-z][a-z0-9_-]*:' \
   --include="*.scss" \
   ./vendor/shopware/storefront \
@@ -64,74 +64,74 @@ grep -rn '--[a-z][a-z0-9_-]*:' \
   | sort
 ```
 
-### 4. Theme-Variablen aus theme.json
+### 4. Theme variables from theme.json
 
 ```bash
-# Alle konfigurierbaren Theme-Felder
+# All configurable theme fields
 find . -name "theme.json" | xargs grep -l "config" | head -10
 ```
 
-Auslesen der `config.fields`-Keys:
+Reading out the `config.fields` keys:
 ```bash
 cat custom/static-plugins/MyTheme/src/Resources/theme.json \
   | python3 -c "import sys,json; d=json.load(sys.stdin); [print(k) for k in d.get('config',{}).get('fields',{}).keys()]"
 ```
 
-### 5. Override-Kette analysieren
+### 5. Analyze the override chain
 
-Reihenfolge der Variablen-Ladung (wer kann wen überschreiben):
+Order in which variables are loaded (who can override whom):
 
 ```
-1. Core abstract/variables/_bootstrap.scss  (strukturelle Bootstrap-Overrides)
-2. Skin/Theme abstract/variables/_theme.scss  (sw-* Theme-Variablen)
-3. Skin/Theme abstract/variables/_bootstrap.scss  (Bootstrap-Overrides MIT Farben)
-4. Skin/Theme abstract/variables/_custom.scss  (Skin-Custom-Variablen)
-5. Bootstrap scss/variables  (Bootstrap-Defaults)
-6. Core abstract/variables/_custom.scss  (Framework-Variablen)
-7. Plugin variables.scss  (Plugin-Overrides — müssen OHNE !default sein)
+1. Core abstract/variables/_bootstrap.scss  (structural Bootstrap overrides)
+2. Skin/theme abstract/variables/_theme.scss  (sw-* theme variables)
+3. Skin/theme abstract/variables/_bootstrap.scss  (Bootstrap overrides WITH colors)
+4. Skin/theme abstract/variables/_custom.scss  (skin custom variables)
+5. Bootstrap scss/variables  (Bootstrap defaults)
+6. Core abstract/variables/_custom.scss  (framework variables)
+7. Plugin variables.scss  (plugin overrides — must be WITHOUT !default)
 ```
 
-**Wichtig**: SCSS-Variablen mit `!default` können nur überschrieben werden,
-wenn die überschreibende Definition **vorher geladen** wird und **kein `!default`** hat.
+**Important**: SCSS variables with `!default` can only be overridden
+if the overriding definition is **loaded earlier** and has **no `!default`**.
 
-### 6. Katalog-Datei erstellen
+### 6. Create the catalog file
 
-Erstelle `.shopware-catalog/scss.md` mit folgendem Inhalt:
+Create `.shopware-catalog/scss.md` with the following content:
 
 ```markdown
-# SCSS-Katalog — [Projektname]
-Erstellt: [Datum]
+# SCSS catalog — [project name]
+Created: [date]
 
-## SCSS-Dateien
+## SCSS files
 
-| Pfad | Layer | Zweck |
+| Path | Layer | Purpose |
 |---|---|---|
 | ... | core/plugin/theme | ... |
 
-## SCSS-Variablen
+## SCSS variables
 
-### Theme-Variablen ($sw-*)
-| Variable | Wert | Herkunft |
+### Theme variables ($sw-*)
+| Variable | Value | Origin |
 |---|---|---|
 
-### Bootstrap-Overrides
-| Variable | Wert | Herkunft |
+### Bootstrap overrides
+| Variable | Value | Origin |
 |---|---|---|
 
-### Plugin/Theme-Overrides
-| Variable | Wert | Herkunft | Überschreibt |
+### Plugin/theme overrides
+| Variable | Value | Origin | Overrides |
 |---|---|---|---|
 
 ## CSS Custom Properties
 
-| Property | Wert | Datei |
+| Property | Value | File |
 |---|---|---|
 
-## Override-Konflikte
-[Variablen die mehrfach definiert werden, mit Ladereihenfolgensanalyse]
+## Override conflicts
+[variables defined more than once, with load-order analysis]
 ```
 
-## Automatisierung (Bash-Skript)
+## Automation (bash script)
 
 ```bash
 #!/bin/bash
@@ -140,11 +140,11 @@ Erstellt: [Datum]
 OUTPUT=".shopware-catalog/scss.md"
 mkdir -p .shopware-catalog
 
-echo "# SCSS-Katalog" > "$OUTPUT"
-echo "Erstellt: $(date)" >> "$OUTPUT"
+echo "# SCSS catalog" > "$OUTPUT"
+echo "Created: $(date)" >> "$OUTPUT"
 echo "" >> "$OUTPUT"
 
-echo "## SCSS-Dateien" >> "$OUTPUT"
+echo "## SCSS files" >> "$OUTPUT"
 echo "" >> "$OUTPUT"
 find . -path "*/Resources/app/storefront/src/scss/**/*.scss" \
   -not -path "*/vendor/bootstrap/*" \
@@ -156,7 +156,7 @@ find . -path "*/Resources/app/storefront/src/scss/**/*.scss" \
   done
 
 echo "" >> "$OUTPUT"
-echo "## SCSS-Variablen" >> "$OUTPUT"
+echo "## SCSS variables" >> "$OUTPUT"
 echo "" >> "$OUTPUT"
 echo '```' >> "$OUTPUT"
 grep -rn '^\$[a-z][a-z0-9_-]*:' \
@@ -179,19 +179,19 @@ grep -rn '\-\-[a-z][a-z0-9_-]*:' \
   | sort >> "$OUTPUT"
 echo '```' >> "$OUTPUT"
 
-echo "Katalog erstellt: $OUTPUT"
+echo "Catalog created: $OUTPUT"
 ```
 
-## Hinweise zur theme.json-Integration
+## Notes on theme.json integration
 
-Jede in `theme.json` unter `config.fields` definierte Variable wird vom ThemeCompiler
-als SCSS-Variable injiziert. Der Variablenname entspricht dem Key (kebab-case):
+Every variable defined in `theme.json` under `config.fields` is injected by the ThemeCompiler
+as a SCSS variable. The variable name matches the key (kebab-case):
 
 ```json
 "sw-color-brand-primary": { "type": "color", "value": "#0042a0" }
 ```
 
-→ wird zu `$sw-color-brand-primary: #0042a0` in SCSS injiziert (OHNE `!default`).
+→ is injected into SCSS as `$sw-color-brand-primary: #0042a0` (WITHOUT `!default`).
 
-Das bedeutet: Theme-Konfigurationswerte aus dem Admin **überschreiben immer** die
-`!default`-Werte in `_theme.scss`, weil sie ohne `!default` injiziert werden.
+This means: theme configuration values from the admin **always override** the
+`!default` values in `_theme.scss`, because they are injected without `!default`.

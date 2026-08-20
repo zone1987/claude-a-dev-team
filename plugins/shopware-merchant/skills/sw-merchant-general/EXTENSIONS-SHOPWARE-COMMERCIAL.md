@@ -1,112 +1,112 @@
-# Shopware Commercial – Plan-Features freischalten
+# Shopware Commercial – unlocking plan features
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/shopware-commercial
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/shopware-commercial
 
 ## Contents
 
-- [Überblick](#überblick)
+- [Overview](#overview)
 - [Installation](#installation)
-- [Features nach Plan](#features-nach-plan)
-- [AI Copilot – Details (alle Pläne)](#ai-copilot-details-alle-pläne)
-- [CLI-Befehle (Self-Hosted)](#cli-befehle-self-hosted)
-- [Häufige Fragen](#häufige-fragen)
+- [Features by plan](#features-by-plan)
+- [AI Copilot – details (all plans)](#ai-copilot-details-all-plans)
+- [CLI commands (self-hosted)](#cli-commands-self-hosted)
+- [Frequently asked questions](#frequently-asked-questions)
 
-## Überblick
+## Overview
 
-Die **Shopware Commercial Extension** schaltet alle Features des gebuchten Plans
-(Rise, Evolve oder Beyond) frei. Sie synct automatisch den aktiven Plan und stellt
-alle verfügbaren Funktionen bereit – ohne separate Updates pro Feature.
+The **Shopware Commercial Extension** unlocks all features of the booked plan
+(Rise, Evolve or Beyond). It automatically syncs the active plan and provides
+all available functions – without separate updates per feature.
 
 ---
 
 ## Installation
 
-### Cloud-Nutzer
-- Vorinstalliert und automatisch aktiv – kein Handlungsbedarf.
+### Cloud users
+- Pre-installed and automatically active – no action required.
 
-### Self-Hosted
-1. **Erweiterungen > Store** öffnen
-2. Nach "Shopware Commercial" suchen
-3. **Hinzufügen** klicken
-4. Danach: **Erweiterungen > Meine Erweiterungen > Aktivieren**
+### Self-hosted
+1. Open **Erweiterungen** (Extensions) **> Store**
+2. Search for "Shopware Commercial"
+3. Click **Hinzufügen** (Add)
+4. Then: **Erweiterungen > Meine Erweiterungen** (My extensions) **> Aktivieren** (Activate)
 
 ---
 
-## Features nach Plan
+## Features by plan
 
-### Shopware Rise (Basis)
+### Shopware Rise (basis)
 
-| Kategorie | Feature | Beschreibung |
+| Category | Feature | Description |
 |---|---|---|
-| **AI Copilot** | Inhaltserstellung | KI-generierte Produktbeschreibungen |
-| **AI Copilot** | Klassifizierung | Automatische Produktkategorisierung |
-| **AI Copilot** | Übersetzungen | KI-gestützte Übersetzungen |
-| **Workflow** | Rule Builder | Regelbasierte Automatisierungen |
-| **Workflow** | Flow Builder | Ereignis-basierte Workflows |
-| **Content** | Custom Products | Konfigurierbare Produkte mit Optionen |
+| **AI Copilot** | Content creation | AI-generated product descriptions |
+| **AI Copilot** | Classification | Automatic product categorisation |
+| **AI Copilot** | Translations | AI-assisted translations |
+| **Workflow** | Rule Builder | Rule-based automations |
+| **Workflow** | Flow Builder | Event-based workflows |
+| **Content** | Custom Products | Configurable products with options |
 | **Content** | Social Shopping | Facebook, Instagram, Google Shopping |
-| **Content** | Immersive Elements | 3D-/VR-Produktpräsentationen |
+| **Content** | Immersive Elements | 3D/VR product presentations |
 
-### Shopware Evolve (+ gegenüber Rise)
+### Shopware Evolve (+ compared with Rise)
 
-| Kategorie | Feature | Beschreibung |
+| Category | Feature | Description |
 |---|---|---|
-| **Suche** | Advanced Search 2.0 | OpenSearch-basierte Hochleistungssuche |
-| **Content** | CMS-Erweiterungen | Quick View, Scroll-Nav, Block-Visibility |
-| **Zugang** | Dynamic Access | Regelbasierte Sichtbarkeit für Produkte/Kategorien |
-| **B2B** | Quick Order | Schnellbestellung für Geschäftskunden |
-| **B2B** | Freigabeprozesse | Bestellgenehmigungen |
-| **B2B** | Angebote | Angebotserstellung und -verwaltung |
-| **Publishing** | Shopware Publisher | Draft-Verwaltung für Erlebniswelten |
-| **Sales** | Sales Agent | Außendienst-Frontend-App |
+| **Search** | Advanced Search 2.0 | OpenSearch-based high-performance search |
+| **Content** | CMS extensions | Quick View, scroll nav, block visibility |
+| **Access** | Dynamic Access | Rule-based visibility for products/categories |
+| **B2B** | Quick Order | Fast ordering for business customers |
+| **B2B** | Approval processes | Order approvals |
+| **B2B** | Angebote (Quotes) | Quote creation and management |
+| **Publishing** | Shopware Publisher | Draft management for Erlebniswelten (Shopping Experiences) |
+| **Sales** | Sales Agent | Field-sales frontend app |
 
-### Shopware Beyond (+ gegenüber Evolve)
+### Shopware Beyond (+ compared with Evolve)
 
-| Kategorie | Feature | Beschreibung |
+| Category | Feature | Description |
 |---|---|---|
-| **Inventar** | Multi-Inventory | Mehrere Lager, Bestands-Routing |
-| **Abo** | Subscriptions | Wiederkehrende Bestellungen |
-| **Preise** | Kundenspez. Preise | Individuelle Preise pro Kunde (API-basiert) |
-| **Sales** | Digital Sales Rooms | Live-Shopping-Events mit Video |
+| **Inventory** | Multi-Inventory | Multiple warehouses, stock routing |
+| **Subscription** | Subscriptions | Recurring orders |
+| **Pricing** | Customer-specific prices | Individual prices per customer (API-based) |
+| **Sales** | Digital Sales Rooms | Live shopping events with video |
 
 ---
 
-## AI Copilot – Details (alle Pläne)
+## AI Copilot – details (all plans)
 
-Der AI Copilot ist in der Administration integriert und unterstützt:
+The AI Copilot is integrated into the administration and supports:
 
-- **Produktbeschreibungen generieren**: Im Produkt-Formular → "Beschreibung generieren"
-- **SEO-Texte**: Meta-Descriptions, SEO-Titel vorschlagen
-- **Übersetzungen**: Bestehende Texte in andere Sprachen übersetzen
-- **Klassifizierung**: Produkte automatisch Kategorien zuweisen
+- **Generating product descriptions**: in the product form → "Beschreibung generieren" (Generate description)
+- **SEO texts**: suggest meta descriptions and SEO titles
+- **Translations**: translate existing texts into other languages
+- **Classification**: assign products to categories automatically
 
 ---
 
-## CLI-Befehle (Self-Hosted)
+## CLI commands (self-hosted)
 
-Die Commercial Extension fügt zusätzliche Konsolen-Befehle hinzu:
+The Commercial Extension adds additional console commands:
 
 ```bash
-# Lizenzstatus prüfen
+# Check the licence status
 php bin/console commercial:license:status
 
-# Features neu laden
+# Reload the features
 php bin/console commercial:feature:refresh
 
-# Index für Advanced Search neu aufbauen
+# Rebuild the index for Advanced Search
 php bin/console es:admin:index
 ```
 
 ---
 
-## Häufige Fragen
+## Frequently asked questions
 
-**F: Was passiert, wenn ich meinen Plan downgrade?**
-A: Features des höheren Plans werden sofort deaktiviert. Daten bleiben erhalten, sind aber
-nicht mehr zugänglich bis zu einem Plan-Upgrade.
+**Q: What happens if I downgrade my plan?**
+A: Features of the higher plan are deactivated immediately. Data is retained but is no
+longer accessible until a plan upgrade.
 
-**F: Muss ich Commercial nach einem Shopware-Update neu installieren?**
-A: Nein. Die Extension aktualisiert sich automatisch zusammen mit Shopware-Updates.
+**Q: Do I have to reinstall Commercial after a Shopware update?**
+A: No. The extension updates itself automatically together with Shopware updates.
 
-**F: Wo sehe ich, welchen Plan ich aktiv habe?**
-A: Shopware Account (account.shopware.com) > Shop-Details > Aktiver Plan
+**Q: Where do I see which plan I have active?**
+A: Shopware Account (account.shopware.com) > Shop details > Active plan

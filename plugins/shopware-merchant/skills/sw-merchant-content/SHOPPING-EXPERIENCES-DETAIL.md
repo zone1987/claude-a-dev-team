@@ -28,22 +28,22 @@
 
 | Datei | Inhalt |
 |---|---|
-| `../../assets/uebersicht.png` | Erlebniswelten-Übersicht |
-| `../../assets/layout-erstellen.png` | Dialog: Neues Layout anlegen |
-| `../../assets/sektion-auswahl.png` | Sektions-Layout-Auswahl |
+| `../../assets/overview.png` | Erlebniswelten-Übersicht |
+| `../../assets/layout-create.png` | Dialog: Neues Layout anlegen |
+| `../../assets/sektion-selection.png` | Sektions-Layout-Auswahl |
 | `../../assets/layout-editor.png` | Layout-Editor Gesamtansicht |
-| `../../assets/shopseite.png` | Shopseiten-Auswahl |
+| `../../assets/shop-page.png` | Shopseiten-Auswahl |
 | `../../assets/ai-copilot.png` | AI Copilot Text-Vorschlag |
-| `../../assets/bild-element.jpg` | Bild-Element Einstellungen |
-| `../../assets/slider-einstellungen.png` | Slider-Block Einstellungen |
-| `../../assets/galerie-einstellungen.png` | Galerie-Block Einstellungen |
-| `../../assets/produkt-slider-einstellungen.png` | Produkt-Slider Einstellungen |
-| `../../assets/block-einstellungen.png` | Block-Einstellungen Panel |
-| `../../assets/sektions-einstellungen.png` | Sektions-Einstellungen Panel |
-| `../../assets/sichtbarkeit.png` | Viewport-Sichtbarkeit |
+| `../../assets/image-element.jpg` | Bild-Element Einstellungen |
+| `../../assets/slider-settings.png` | Slider-Block Einstellungen |
+| `../../assets/gallery-settings.png` | Galerie-Block Einstellungen |
+| `../../assets/product-slider-settings.png` | Produkt-Slider Einstellungen |
+| `../../assets/block-settings.png` | Block-Einstellungen Panel |
+| `../../assets/section-settings.png` | Sektions-Einstellungen Panel |
+| `../../assets/visibility.png` | Viewport-Sichtbarkeit |
 | `../../assets/navigator.png` | Navigator-Ansicht |
-| `../../assets/layout-zuweisung.png` | Layout-Zuweisungs-Dialog |
-| `../../assets/kategorieseite.png` | Kategorieseite mit Listing |
+| `../../assets/layout-assignment.png` | Layout-Zuweisungs-Dialog |
+| `../../assets/category-page.png` | Kategorieseite mit Listing |
 | `../../assets/standardlayout.png` | Standardlayout festlegen |
 
 ---

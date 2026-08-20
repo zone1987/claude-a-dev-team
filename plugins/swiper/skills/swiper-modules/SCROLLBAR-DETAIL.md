@@ -1,17 +1,17 @@
-# Swiper Scrollbar-Modul — Vollständige Referenz
+# Swiper Scrollbar module — Complete reference
 
 ## Contents
 
-- [Import & Aktivierung](#import-aktivierung)
-- [HTML-Struktur](#html-struktur)
-- [Parameter](#parameter)
+- [Import and activation](#import-and-activation)
+- [HTML structure](#html-structure)
+- [Parameters](#parameters)
 - [Properties](#properties)
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Events](#events)
 - [CSS Custom Properties](#css-custom-properties)
-- [Vollständiges Beispiel (vertikal mit Snap)](#vollständiges-beispiel-vertikal-mit-snap)
+- [Complete example (vertical with snap)](#complete-example-vertical-with-snap)
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -29,7 +29,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## HTML-Struktur
+## HTML structure
 
 ```html
 <div class="swiper">
@@ -41,49 +41,49 @@ const swiper = new Swiper('.swiper', {
 </div>
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `el` | `HTMLElement \| CSSSelector \| null` | `null` | Scrollbar-Container-Element oder Selektor |
-| `draggable` | `boolean` | `false` | Scrollbar-Drag zur Slide-Navigation erlauben |
-| `dragClass` | `string` | `'swiper-scrollbar-drag'` | CSS-Klasse für das Drag-Handle-Element |
-| `dragSize` | `number \| 'auto'` | `'auto'` | Größe des Drag-Handles in px; `'auto'` = proportional |
-| `hide` | `boolean` | `true` | Scrollbar nach Interaktion automatisch ausblenden |
-| `snapOnRelease` | `boolean` | `false` | Beim Loslassen des Handles zum nächsten Slide snappen |
-| `enabled` | `boolean` | — | Scrollbar für bestimmte Breakpoints aktivieren/deaktivieren |
-| `horizontalClass` | `string` | `'swiper-scrollbar-horizontal'` | Klasse bei horizontaler Ausrichtung |
-| `verticalClass` | `string` | `'swiper-scrollbar-vertical'` | Klasse bei vertikaler Ausrichtung |
-| `lockClass` | `string` | `'swiper-scrollbar-lock'` | Klasse wenn Scrollbar gesperrt |
-| `scrollbarDisabledClass` | `string` | `'swiper-scrollbar-disabled'` | Klasse am Container wenn per Breakpoint deaktiviert |
+| `el` | `HTMLElement \| CSSSelector \| null` | `null` | Scrollbar container element or selector |
+| `draggable` | `boolean` | `false` | Allow dragging the scrollbar to navigate slides |
+| `dragClass` | `string` | `'swiper-scrollbar-drag'` | CSS class for the drag handle element |
+| `dragSize` | `number \| 'auto'` | `'auto'` | Size of the drag handle in px; `'auto'` = proportional |
+| `hide` | `boolean` | `true` | Hide the scrollbar automatically after interaction |
+| `snapOnRelease` | `boolean` | `false` | Snap to the nearest slide when the handle is released |
+| `enabled` | `boolean` | — | Enable/disable the scrollbar for specific breakpoints |
+| `horizontalClass` | `string` | `'swiper-scrollbar-horizontal'` | Class for horizontal orientation |
+| `verticalClass` | `string` | `'swiper-scrollbar-vertical'` | Class for vertical orientation |
+| `lockClass` | `string` | `'swiper-scrollbar-lock'` | Class when the scrollbar is locked |
+| `scrollbarDisabledClass` | `string` | `'swiper-scrollbar-disabled'` | Class on the container when disabled by a breakpoint |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.scrollbar.el` | `HTMLElement` | Scrollbar-Container-Element |
-| `swiper.scrollbar.dragEl` | `HTMLElement` | Drag-Handle-Element |
+| `swiper.scrollbar.el` | `HTMLElement` | Scrollbar container element |
+| `swiper.scrollbar.dragEl` | `HTMLElement` | Drag handle element |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|--------------|
-| `swiper.scrollbar.init()` | Scrollbar initialisieren |
-| `swiper.scrollbar.destroy()` | Scrollbar entfernen |
-| `swiper.scrollbar.setTranslate()` | Scrollbar-Position synchronisieren |
-| `swiper.scrollbar.updateSize()` | Track- und Handle-Größen neu berechnen |
+| `swiper.scrollbar.init()` | Initialize the scrollbar |
+| `swiper.scrollbar.destroy()` | Remove the scrollbar |
+| `swiper.scrollbar.setTranslate()` | Synchronize the scrollbar position |
+| `swiper.scrollbar.updateSize()` | Recalculate the track and handle sizes |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |-------|-----------|--------------|
-| `scrollbarDragStart` | `(swiper, event)` | Drag des Handles beginnt |
-| `scrollbarDragMove` | `(swiper, event)` | Handle wird gezogen |
-| `scrollbarDragEnd` | `(swiper, event)` | Drag des Handles endet |
+| `scrollbarDragStart` | `(swiper, event)` | Dragging of the handle begins |
+| `scrollbarDragMove` | `(swiper, event)` | The handle is being dragged |
+| `scrollbarDragEnd` | `(swiper, event)` | Dragging of the handle ends |
 
 ```js
 swiper.on('scrollbarDragEnd', (swiper, event) => {
-  console.log('Drag beendet, aktiver Slide:', swiper.activeIndex);
+  console.log('Drag finished, active slide:', swiper.activeIndex);
 });
 ```
 
@@ -103,7 +103,7 @@ swiper.on('scrollbarDragEnd', (swiper, event) => {
 }
 ```
 
-## Vollständiges Beispiel (vertikal mit Snap)
+## Complete example (vertical with snap)
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -120,4 +120,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#scrollbar
+Source: https://swiperjs.com/swiper-api#scrollbar

@@ -1,6 +1,6 @@
-# Shopware 6 — Store-API-Route
+# Shopware 6 — Store API route
 
-Kundenseitige API-Route (Headless/Storefront). Abstrakte Basisklasse + konkrete Route, Route-Scope `store-api`.
+Customer-facing API route (headless/storefront). Abstract base class + concrete route, route scope `store-api`.
 
 ```php
 #[Route(defaults: ['_routeScope' => ['store-api']])]
@@ -15,7 +15,7 @@ class FfExampleRoute extends AbstractFfExampleRoute
 }
 ```
 
-Response erweitert `StoreApiResponse` (cacheable). Abstract-Klasse ermöglicht Decoration. Auth via `sw-access-key`
-(`shopware-api` → `sw-store-api-auth`). Für Frontends typisieren (`@shopware/api-gen`). Bestehende Route ändern: `sw-store-api-override`.
+The response extends `StoreApiResponse` (cacheable). The abstract class enables decoration. Auth via `sw-access-key`
+(`shopware-api` → `sw-store-api-auth`). Type it for frontends (`@shopware/api-gen`). Change an existing route: `sw-store-api-override`.
 
-→ Store-API-Details: [STORE-API.md](STORE-API.md) · Beispiele: [examples/StoreApiRoute.php](examples/StoreApiRoute.php), [examples/StoreApiRouteResponse.php](examples/StoreApiRouteResponse.php)
+→ Store API details: [STORE-API.md](STORE-API.md) · Examples: [examples/StoreApiRoute.php](examples/StoreApiRoute.php), [examples/StoreApiRouteResponse.php](examples/StoreApiRouteResponse.php)

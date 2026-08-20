@@ -1,7 +1,7 @@
-# Shopware 6 — Mail-Daten & -Versand
+# Shopware 6 — Mail data & sending
 
-Template-Variablen kommen aus dem auslösenden Kontext (Flow/Event). Zusätzliche Daten oder Anhänge via Subscriber
-auf die Mail-Events ergänzen.
+Template variables come from the triggering context (flow/event). Add extra data or attachments via a subscriber
+on the mail events.
 
 ```php
 public static function getSubscribedEvents(): array
@@ -13,9 +13,9 @@ public function onBeforeValidate(MailBeforeValidateEvent $event): void
     $data = $event->getTemplateData();
     $data['ffExtra'] = $this->loadExtra($data['order'] ?? null);
     $event->setTemplateData($data);
-    // $event->getContext(), Anhänge über die Mail-Attachment-Mechanik
+    // $event->getContext(), attachments via the mail attachment mechanism
 }
 ```
 
-`MailBeforeValidateEvent` (Daten/Validierung) und `MailBeforeSentEvent` (kurz vor Versand). Versand selbst über den
-`AbstractMailService`. Templates/Typen: `sw-mail-template`. Versand als Flow-Action: `sw-flow-action`.
+`MailBeforeValidateEvent` (data/validation) and `MailBeforeSentEvent` (just before sending). Sending itself goes through
+the `AbstractMailService`. Templates/types: `sw-mail-template`. Sending as a flow action: `sw-flow-action`.

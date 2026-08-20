@@ -1,34 +1,34 @@
-# Individual Pricing — Entwickler-Referenz
+# Individual Pricing — Developer reference
 
-**Verfuegbar ab Shopware 6.7.8.0**
+**Available as of Shopware 6.7.8.0**
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Preistypen (actionType)](#preistypen-actiontype)
-- [Entitaeten](#entitaeten)
-- [Preis-Workflow (Runtime)](#preis-workflow-runtime)
-- [Caching-Strategie](#caching-strategie)
-- [HTTP-Cache-Verhalten](#http-cache-verhalten)
-- [Bekannte Einschraenkungen](#bekannte-einschraenkungen)
-- [Erweiterungspunkte](#erweiterungspunkte)
-- [Voraussetzungen](#voraussetzungen)
+- [Concept](#concept)
+- [Price types (actionType)](#price-types-actiontype)
+- [Entities](#entities)
+- [Price workflow (runtime)](#price-workflow-runtime)
+- [Caching strategy](#caching-strategy)
+- [HTTP cache behavior](#http-cache-behavior)
+- [Known limitations](#known-limitations)
+- [Extension points](#extension-points)
+- [Prerequisites](#prerequisites)
 
-## Konzept
+## Concept
 
-Individual Pricing ermoeglicht Haendlern, katalogweite Rabatte und Sonderpreise fuer B2B-Kunden
-zu definieren — auf Basis von Firmen, Organisationseinheiten, Mitarbeitern oder Tags.
+Individual Pricing enables merchants to define catalog-wide discounts and special prices for
+B2B customers — based on companies, organizational units, employees or tags.
 
-## Preistypen (actionType)
+## Price types (actionType)
 
-| Typ              | Beschreibung                                  |
+| Type             | Description                                   |
 |------------------|-----------------------------------------------|
-| `by_percent`     | Prozentualer Abzug (z.B. 10% Rabatt)          |
-| `by_fixed`       | Fixer Abzug (z.B. 5 EUR Rabatt)               |
-| `to_fixed`       | Festpreis (z.B. genau 99,99 EUR)              |
-| `volume_pricing` | Staffelpreise nach Menge                      |
+| `by_percent`     | Percentage deduction (e.g. 10% discount)      |
+| `by_fixed`       | Fixed deduction (e.g. 5 EUR discount)         |
+| `to_fixed`       | Fixed price (e.g. exactly 99.99 EUR)          |
+| `volume_pricing` | Tiered prices by quantity                     |
 
-## Entitaeten
+## Entities
 
 ```sql
 b2b_components_individual_pricing:
@@ -39,80 +39,80 @@ b2b_components_individual_pricing:
   created_by_id, updated_by_id, custom_fields
 
 b2b_components_individual_pricing_tier:
-  id, individual_pricing_id (FK), qty_from (INT), qty_to (INT, NULL = unbegrenzt), price (JSON)
+  id, individual_pricing_id (FK), qty_from (INT), qty_to (INT, NULL = unlimited), price (JSON)
 
 b2b_components_individual_pricing_company_assignment:
   id, individual_pricing_id (FK), customer_id (FK),
   scope (whole_company|all_org_units|specific_units), organization_unit_ids (JSON)
 
 b2b_components_individual_pricing_computed_cache:
-  id, individual_pricing_id (FK), product_id (FK, NULL = alle Produkte)
+  id, individual_pricing_id (FK), product_id (FK, NULL = all products)
 
 b2b_components_individual_pricing_tag:
   individual_pricing_id (FK), tag_id (FK)
 ```
 
-## Preis-Workflow (Runtime)
+## Price workflow (runtime)
 
-**Phase 1: Context-Erstellung** — `AudienceContextResolver` bestimmt Kundentyp
-(Business Partner, Employee, Tag-basierter Kunde)
+**Phase 1: context creation** — `AudienceContextResolver` determines the customer type
+(business partner, employee, tag-based customer)
 
-**Phase 2: Produkt-Laden** — `IndividualPricingProductSubscriber` wird bei Produktlade-Event ausgeloest
+**Phase 2: product loading** — `IndividualPricingProductSubscriber` is triggered on the product load event
 
-**Phase 3: Preisaufloesung** — computed cache wird abgefragt, Regeln nach Prioritaet gefiltert
+**Phase 3: price resolution** — the computed cache is queried, rules are filtered by priority
 
-**Phase 4: Preisanwendung** — Einzelpreise oder Volumenpreise werden angewendet, optional
-mit Strike-through des Originalpreises
+**Phase 4: price application** — single prices or volume prices are applied, optionally
+with a strike-through of the original price
 
-### Priorisierungslogik
+### Prioritization logic
 
-1. Nur Regeln hoechster Prioritaet werden ausgewertet
-2. Bei mehreren passenden Regeln gleicher Prioritaet: Regel mit niedrigstem Preis gewinnt
-3. Keine Regel passt → Standard-Katalogpreis
+1. Only rules of the highest priority are evaluated
+2. With several matching rules of equal priority: the rule with the lowest price wins
+3. No rule matches → standard catalog price
 
-### Prioritaetshierarchie gesamt
+### Overall priority hierarchy
 
-1. Individual Pricing (hoechste Prioritaet, wenn anwendbar)
+1. Individual Pricing (highest priority, when applicable)
 2. Shopware Custom Pricing
-3. Produkt-Staffelpreise/Advanced Prices
-4. Regel-basierte Preise
-5. Standard-Listenpreis
+3. Product tiered prices/advanced prices
+4. Rule-based prices
+5. Standard list price
 
-## Caching-Strategie
+## Caching strategy
 
-**Hybrid-Ansatz:**
-- Spezifische Produkte: Pre-computed Cache-Eintraege pro Produkt-Regel-Paar (sofortige Suche)
-- Alle Produkte: Single NULL-Eintrag pro Regel (schnelle Suche + Runtime-Berechnung)
+**Hybrid approach:**
+- Specific products: pre-computed cache entries per product-rule pair (immediate lookup)
+- All products: single NULL entry per rule (fast lookup + runtime calculation)
 
-Cache wird automatisch ueber Message Queue (asynchron) aktualisiert, in Batches von 1.000 Produkten.
+The cache is updated automatically via the message queue (asynchronously), in batches of 1,000 products.
 
-**Hinweis:** Nach Erstellen/Aendern von Preisregeln mit spezifischen Produkten:
-Wartezeit bis Queue verarbeitet ist, bevor Preise sichtbar werden.
-Regeln mit "Alle Produkte" wirken sofort (Runtime).
+**Note:** After creating/changing price rules with specific products:
+wait until the queue has been processed before prices become visible.
+Rules with "all products" take effect immediately (runtime).
 
-## HTTP-Cache-Verhalten
+## HTTP cache behavior
 
-| Kundentyp                    | Cachebar     | Grund                                      |
+| Customer type                | Cacheable    | Reason                                     |
 |------------------------------|--------------|--------------------------------------------|
-| Tag-basiert                  | Ja (shared)  | Gleiche Tags → gleiche Preise              |
-| Org.-Einheit-Mitarbeiter     | Ja (shared)  | Gleiche Abteilung → gleiche Preise         |
-| Business Partner             | Nein         | Kundenspezifische Preise                   |
-| Mitarbeiter ohne Org.-Einheit| Nein         | Individuell                                |
+| Tag-based                    | Yes (shared) | Same tags → same prices                    |
+| Org. unit employee           | Yes (shared) | Same department → same prices              |
+| Business partner             | No           | Customer-specific prices                   |
+| Employee without org. unit   | No           | Individual                                 |
 
-## Bekannte Einschraenkungen
+## Known limitations
 
-Preisfilterung und -sortierung in Produktlisten basiert auf indizierten Originalpreisen.
-Individual Pricing wird **nach** Datenbankabfragen angewendet → Preissortierung/-filterung
-kann inkorrekte Ergebnisse zeigen.
+Price filtering and sorting in product listings is based on indexed original prices.
+Individual Pricing is applied **after** database queries → price sorting/filtering
+can show incorrect results.
 
-**Workaround:** Preissortierung und Preisbereichs-Filterung werden in der Storefront automatisch
-deaktiviert, wenn Individual Pricing fuer den eingeloggten Kunden aktiv ist.
+**Workaround:** price sorting and price range filtering are disabled automatically in the
+storefront when Individual Pricing is active for the logged-in customer.
 
-## Erweiterungspunkte
+## Extension points
 
 ### Extension: `IndividualPricingApplyExtension`
 
-Hook beim Anwenden des Preises (Validation, Logging, Trigger externer Systeme):
+Hook when applying the price (validation, logging, triggering external systems):
 
 ```php
 class IndividualPricingLogger implements EventSubscriberInterface
@@ -135,20 +135,20 @@ class IndividualPricingLogger implements EventSubscriberInterface
 
 ### Events
 
-| Event                                       | Zweck                                       |
+| Event                                       | Purpose                                     |
 |---------------------------------------------|---------------------------------------------|
-| `IndividualPricingIndexerEvent`             | Reagieren auf Indexierungsanfragen          |
-| `IndividualPricingLookupCriteriaEvent`      | Criteria fuer Einzelprodukt-Lookup anpassen |
-| `IndividualPricingLookupBatchCriteriaEvent` | Criteria fuer Batch-Lookup anpassen         |
+| `IndividualPricingIndexerEvent`             | React to indexing requests                  |
+| `IndividualPricingLookupCriteriaEvent`      | Adjust criteria for single-product lookup   |
+| `IndividualPricingLookupBatchCriteriaEvent` | Adjust criteria for batch lookup            |
 
-### Messages (asynchron)
+### Messages (asynchronous)
 
-| Message                                         | Zweck                                          |
+| Message                                         | Purpose                                        |
 |-------------------------------------------------|------------------------------------------------|
-| `IndividualPricingCacheEntryUpdaterMessage`     | Cache bei Regelaenderungen neu aufbauen        |
-| `IndividualPricingBuildCacheSingleRuleMessage`  | Cache fuer einzelne Regel neu aufbauen         |
+| `IndividualPricingCacheEntryUpdaterMessage`     | Rebuild cache on rule changes                  |
+| `IndividualPricingBuildCacheSingleRuleMessage`  | Rebuild cache for a single rule                |
 
-## Voraussetzungen
+## Prerequisites
 
-- Employee Management + Organization Unit muessen installiert und aktiviert sein
-- Ab Shopware 6.7.8.0
+- Employee Management + Organization Unit must be installed and activated
+- As of Shopware 6.7.8.0

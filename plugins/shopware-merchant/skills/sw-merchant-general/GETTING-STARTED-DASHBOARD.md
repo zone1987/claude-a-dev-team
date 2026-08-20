@@ -1,65 +1,65 @@
 # Dashboard
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/dashboard  
-**Gilt ab**: Shopware 6.4.8.0 (für ältere Versionen separate Doku unter 6.0.0–6.4.7.0)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/dashboard  
+**Applies from**: Shopware 6.4.8.0 (for older versions there is separate documentation under 6.0.0–6.4.7.0)
 
-## Überblick
+## Overview
 
-Das Dashboard ist die **Startseite nach dem Login** in die Shopware-6-Administration.
-Es bietet einen ersten Überblick über aktuelle Shop-Themen und Kennzahlen.
+The dashboard is the **start page after logging in** to the Shopware 6 administration.
+It provides a first overview of current shop topics and key figures.
 
 ---
 
-## Bestandteile des Dashboards
+## Components of the dashboard
 
-### Statistik-Widgets
+### Statistics widgets
 
-Das Dashboard zeigt standardmäßig **zwei Statistik-Panels**:
+By default the dashboard shows **two statistics panels**:
 
-#### 1. Bestellungen (Anzahl-Trend)
-- Zeigt die Anzahl eingegangener Bestellungen im gewählten Zeitraum
-- Trend-Vergleich: aktueller Zeitraum vs. Vorperiode
+#### 1. Bestellungen (Orders) – count trend
+- Shows the number of incoming orders in the selected period
+- Trend comparison: current period vs. previous period
 
-#### 2. Umsatz (Entwicklung)
-- Zeigt den Umsatz (Brutto) im gewählten Zeitraum
-- Trend-Vergleich: aktueller Zeitraum vs. Vorperiode
+#### 2. Umsatz (Revenue) – development
+- Shows the revenue (gross) in the selected period
+- Trend comparison: current period vs. previous period
 
-### Zeitraum-Auswahl
+### Period selection
 
-Beide Widgets haben ein **Dropdown-Menü** zur Zeitraum-Auswahl:
+Both widgets have a **dropdown menu** for selecting the period:
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| Seit gestern | Alle Bestellungen ab Mitternacht des Vortags |
-| Letzte 7 Tage | Rollierendes 7-Tage-Fenster |
-| Letzte 30 Tage | Rollierendes 30-Tage-Fenster |
-| Diesen Monat | Aktueller Kalendermonat |
-| Letzten Monat | Vormonat komplett |
+| Seit gestern (Since yesterday) | All orders from midnight of the previous day |
+| Letzte 7 Tage (Last 7 days) | Rolling 7-day window |
+| Letzte 30 Tage (Last 30 days) | Rolling 30-day window |
+| Diesen Monat (This month) | Current calendar month |
+| Letzten Monat (Last month) | The entire previous month |
 
-> "Seit gestern" erfasst alle Bestellungen ab Mitternacht (00:00 Uhr) des Vortags.
-
----
-
-### Hilfe & Feedback-Bereich
-
-- **Hilfe-Links**: Direktzugang zur Shopware-Dokumentation
-- **Feedback-Button**: Weiterleitung zum Issue-Tracker für direktes Feedback an Shopware
+> "Seit gestern" covers all orders from midnight (00:00) of the previous day.
 
 ---
 
-## Shopware Analytics vs. Standard-Dashboard
+### Help & feedback area
 
-Das Standard-Dashboard zeigt einfache Kernzahlen. Für erweiterte Berichte:
-- **Shopware Analytics Extension** installieren (ab Dashboard > Analytics)
-- Liefert: Revenue, Conversion Rate, Seitenaufrufe, Kundensegmente, Zahlungsmethoden u.v.m.
-- Verfügbar für alle Pläne (Rise, Evolve, Beyond)
-
-→ Siehe `../../../sw-merchant-extensions/references/deep/shopware-analytics.md`
+- **Help links**: direct access to the Shopware documentation
+- **Feedback button**: forwards you to the issue tracker for direct feedback to Shopware
 
 ---
 
-## Tipps
+## Shopware Analytics vs. the standard dashboard
 
-- Das Dashboard kann nicht individuell angepasst werden (kein Widget-Drag & Drop in der Standard-Version)
-- Für tiefere Analysen: Shopware Analytics Extension oder externe BI-Tools via API
-- Schnellzugriff auf das Dashboard: Immer über das Shopware-Logo oben links in der Navigation
+The standard dashboard shows simple core figures. For extended reports:
+- Install the **Shopware Analytics Extension** (from Dashboard > Analytics)
+- Provides: revenue, conversion rate, page views, customer segments, payment methods and much more
+- Available for all plans (Rise, Evolve, Beyond)
+
+→ See `../../../sw-merchant-extensions/references/deep/shopware-analytics.md`
+
+---
+
+## Tips
+
+- The dashboard cannot be customised individually (no widget drag and drop in the standard version)
+- For deeper analyses: the Shopware Analytics Extension or external BI tools via the API
+- Quick access to the dashboard: always via the Shopware logo at the top left of the navigation

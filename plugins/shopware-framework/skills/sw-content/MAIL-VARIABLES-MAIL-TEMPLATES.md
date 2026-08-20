@@ -1,288 +1,288 @@
-# Shopware 6 — Alle Standard-Mail-Template-Typen
+# Shopware 6 — All default mail template types
 
-Quelle: `src/Core/Content/MailTemplate/MailTemplateTypes.php` + Migrations  
-Stand: Shopware 6.7 (trunk)
+Source: `src/Core/Content/MailTemplate/MailTemplateTypes.php` + migrations  
+Status: Shopware 6.7 (trunk)
 
 ---
 
 ## Contents
 
-- [Konventionen](#konventionen)
-- [1. Bestellungen (Order)](#1-bestellungen-order)
-- [2. Order-State-Mails (Bestellstatus)](#2-order-state-mails-bestellstatus)
-- [3. Lieferstatus-Mails (Order Delivery State)](#3-lieferstatus-mails-order-delivery-state)
-- [4. Zahlungsstatus-Mails (Order Transaction State)](#4-zahlungsstatus-mails-order-transaction-state)
-- [5. Dokument-Mails](#5-dokument-mails)
-- [6. Download-Lieferung](#6-download-lieferung)
-- [7. Kunden-Mails](#7-kunden-mails)
-- [8. Kundengruppen-Mails](#8-kundengruppen-mails)
-- [9. Newsletter-Mails](#9-newsletter-mails)
-- [10. Kontaktformular](#10-kontaktformular)
-- [11. Widerrufsformular (neu in 6.7)](#11-widerrufsformular-neu-in-67)
-- [12. Produktbewertung](#12-produktbewertung)
-- [13. SEPA & Lagerwarnungen (inline, keine Fixture-Dirs)](#13-sepa-lagerwarnungen-inline-keine-fixture-dirs)
-- [14. Benutzer (Admin-Bereich)](#14-benutzer-admin-bereich)
-- [Aware-Interfaces → Twig-Schlüssel (Referenz)](#aware-interfaces-twig-schlüssel-referenz)
+- [Conventions](#conventions)
+- [1. Orders (Order)](#1-orders-order)
+- [2. Order state mails (order status)](#2-order-state-mails-order-status)
+- [3. Delivery state mails (Order Delivery State)](#3-delivery-state-mails-order-delivery-state)
+- [4. Payment state mails (Order Transaction State)](#4-payment-state-mails-order-transaction-state)
+- [5. Document mails](#5-document-mails)
+- [6. Download delivery](#6-download-delivery)
+- [7. Customer mails](#7-customer-mails)
+- [8. Customer group mails](#8-customer-group-mails)
+- [9. Newsletter mails](#9-newsletter-mails)
+- [10. Contact form](#10-contact-form)
+- [11. Revocation form (new in 6.7)](#11-revocation-form-new-in-67)
+- [12. Product review](#12-product-review)
+- [13. SEPA & stock warnings (inline, no fixture dirs)](#13-sepa-stock-warnings-inline-no-fixture-dirs)
+- [14. Users (admin area)](#14-users-admin-area)
+- [Aware interfaces → Twig keys (reference)](#aware-interfaces-twig-keys-reference)
 
-## Konventionen
+## Conventions
 
-- **technicalName** = Schlüssel in `mail_template_type.technical_name` (Datenbank)
-- **Auslösendes Event** = PHP-Klasse + `EVENT_NAME`-Konstante
-- **Root-Variablen** = Top-Level-Twig-Variablen (immer zusätzlich: `eventName`, `salesChannelId`)
-- Fixtures liegen unter: `src/Core/Migration/Fixtures/mails/<technicalName>/`
+- **technicalName** = key in `mail_template_type.technical_name` (database)
+- **Triggering event** = PHP class + `EVENT_NAME` constant
+- **Root variables** = top-level Twig variables (always additionally: `eventName`, `salesChannelId`)
+- Fixtures live under: `src/Core/Migration/Fixtures/mails/<technicalName>/`
 
 ---
 
-## 1. Bestellungen (Order)
+## 1. Orders (Order)
 
 ### `order_confirmation_mail`
-- **Zweck:** Bestellbestätigung nach erfolgreicher Bestellung
+- **Purpose:** order confirmation after a successful order
 - **Event:** `CheckoutOrderPlacedEvent` / `checkout.order.placed`
-- **Root-Variablen:** `order` (OrderEntity), `salesChannel` (SalesChannelEntity), `a11yDocuments` (array, optional)
+- **Root variables:** `order` (OrderEntity), `salesChannel` (SalesChannelEntity), `a11yDocuments` (array, optional)
 - **Fixture:** `order_confirmation_mail/`
 
 ### `order.payment_method.changed`
-- **Zweck:** Benachrichtigung bei Änderung der Zahlungsmethode
+- **Purpose:** notification when the payment method changes
 - **Event:** `OrderPaymentMethodChangedEvent` / `checkout.order.payment_method.changed`
-- **Root-Variablen:** `order`, `orderTransaction` (OrderTransactionEntity), `customer` (CustomerEntity), `salesChannel`
+- **Root variables:** `order`, `orderTransaction` (OrderTransactionEntity), `customer` (CustomerEntity), `salesChannel`
 - **Fixture:** `order.payment_method.changed/`
 
 ---
 
-## 2. Order-State-Mails (Bestellstatus)
+## 2. Order state mails (order status)
 
-Alle vier werden von `OrderStateMachineStateChangeEvent` ausgelöst. Das Event setzt den EVENT_NAME dynamisch auf `state_enter.order.<state>`.
+All four are triggered by `OrderStateMachineStateChangeEvent`. The event sets EVENT_NAME dynamically to `state_enter.order.<state>`.
 
 ### `order.state.open`
-- **Zweck:** Bestellung geöffnet/zurückgesetzt
+- **Purpose:** order opened/reset
 - **Event:** `state_enter.order.open`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order.state.open/`
 
 ### `order.state.in_progress`
-- **Zweck:** Bestellung in Bearbeitung
+- **Purpose:** order in progress
 - **Event:** `state_enter.order.in_progress`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order.state.in_progress/`
 
 ### `order.state.completed`
-- **Zweck:** Bestellung abgeschlossen
+- **Purpose:** order completed
 - **Event:** `state_enter.order.completed`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order.state.completed/`
 
 ### `order.state.cancelled`
-- **Zweck:** Bestellung storniert
+- **Purpose:** order cancelled
 - **Event:** `state_enter.order.cancelled`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order.state.cancelled/`
 
 ---
 
-## 3. Lieferstatus-Mails (Order Delivery State)
+## 3. Delivery state mails (Order Delivery State)
 
 ### `order_delivery.state.shipped`
-- **Zweck:** Sendung versandt
+- **Purpose:** shipment shipped
 - **Event:** `state_enter.order_delivery.shipped`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order_delivery.state.shipped/`
 
 ### `order_delivery.state.shipped_partially`
-- **Zweck:** Sendung teilweise versandt
+- **Purpose:** shipment partially shipped
 - **Event:** `state_enter.order_delivery.shipped_partially`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order_delivery.state.shipped_partially/`
 
 ### `order_delivery.state.returned`
-- **Zweck:** Sendung retourniert
+- **Purpose:** shipment returned
 - **Event:** `state_enter.order_delivery.returned`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order_delivery.state.returned/`
 
 ### `order_delivery.state.returned_partially`
-- **Zweck:** Sendung teilweise retourniert
+- **Purpose:** shipment partially returned
 - **Event:** `state_enter.order_delivery.returned_partially`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order_delivery.state.returned_partially/`
 
 ### `order_delivery.state.cancelled`
-- **Zweck:** Lieferung storniert
+- **Purpose:** delivery cancelled
 - **Event:** `state_enter.order_delivery.cancelled`
-- **Root-Variablen:** `order`, `salesChannel`, `a11yDocuments`
+- **Root variables:** `order`, `salesChannel`, `a11yDocuments`
 - **Fixture:** `order_delivery.state.cancelled/`
 
 ---
 
-## 4. Zahlungsstatus-Mails (Order Transaction State)
+## 4. Payment state mails (Order Transaction State)
 
-Alle ausgelöst von `OrderStateMachineStateChangeEvent` mit `state_enter.order_transaction.<state>`.
+All triggered by `OrderStateMachineStateChangeEvent` with `state_enter.order_transaction.<state>`.
 
-| technicalName | Zweck | Event |
+| technicalName | Purpose | Event |
 |---|---|---|
-| `order_transaction.state.open` | Zahlung offen (zeigt vollst. Bestelldetails) | `state_enter.order_transaction.open` |
-| `order_transaction.state.paid` | Zahlung eingegangen | `state_enter.order_transaction.paid` |
-| `order_transaction.state.paid_partially` | Teilzahlung eingegangen | `state_enter.order_transaction.paid_partially` |
-| `order_transaction.state.refunded` | Zahlung erstattet | `state_enter.order_transaction.refunded` |
-| `order_transaction.state.refunded_partially` | Zahlung teilweise erstattet | `state_enter.order_transaction.refunded_partially` |
-| `order_transaction.state.cancelled` | Zahlung storniert | `state_enter.order_transaction.cancelled` |
-| `order_transaction.state.reminded` | Zahlungserinnerung | `state_enter.order_transaction.reminded` |
-| `order_transaction.state.authorized` | Zahlung autorisiert | `state_enter.order_transaction.authorized` |
-| `order_transaction.state.chargeback` | Rückbuchung | `state_enter.order_transaction.chargeback` |
-| `order_transaction.state.unconfirmed` | Zahlung unbestätigt | `state_enter.order_transaction.unconfirmed` |
+| `order_transaction.state.open` | payment open (shows full order details) | `state_enter.order_transaction.open` |
+| `order_transaction.state.paid` | payment received | `state_enter.order_transaction.paid` |
+| `order_transaction.state.paid_partially` | partial payment received | `state_enter.order_transaction.paid_partially` |
+| `order_transaction.state.refunded` | payment refunded | `state_enter.order_transaction.refunded` |
+| `order_transaction.state.refunded_partially` | payment partially refunded | `state_enter.order_transaction.refunded_partially` |
+| `order_transaction.state.cancelled` | payment cancelled | `state_enter.order_transaction.cancelled` |
+| `order_transaction.state.reminded` | payment reminder | `state_enter.order_transaction.reminded` |
+| `order_transaction.state.authorized` | payment authorized | `state_enter.order_transaction.authorized` |
+| `order_transaction.state.chargeback` | chargeback | `state_enter.order_transaction.chargeback` |
+| `order_transaction.state.unconfirmed` | payment unconfirmed | `state_enter.order_transaction.unconfirmed` |
 
-**Root-Variablen (alle):** `order`, `salesChannel`, `a11yDocuments`  
-**Ausnahme `order_transaction.state.open`:** zeigt vollständige Bestelldetails inkl. `order.nestedLineItems`
+**Root variables (all):** `order`, `salesChannel`, `a11yDocuments`  
+**Exception `order_transaction.state.open`:** shows full order details incl. `order.nestedLineItems`
 
 ---
 
-## 5. Dokument-Mails
+## 5. Document mails
 
-Alle ausgelöst wenn ein Dokument erzeugt und versendet wird. Root-Variablen: `order`, `salesChannel`, `a11yDocuments`.
+All triggered when a document is generated and sent. Root variables: `order`, `salesChannel`, `a11yDocuments`.
 
-| technicalName | Zweck | Fixture |
+| technicalName | Purpose | Fixture |
 |---|---|---|
-| `invoice_mail` | Rechnungsversand | `invoice_mail/` |
-| `delivery_mail` | Lieferscheinversand | `delivery_mail/` |
-| `credit_note_mail` | Gutschriftversand | `credit_note_mail/` |
-| `cancellation_mail` | Stornorechnung | `cancellation_mail/` |
+| `invoice_mail` | invoice dispatch | `invoice_mail/` |
+| `delivery_mail` | delivery note dispatch | `delivery_mail/` |
+| `credit_note_mail` | credit note dispatch | `credit_note_mail/` |
+| `cancellation_mail` | cancellation invoice | `cancellation_mail/` |
 
 ---
 
-## 6. Download-Lieferung
+## 6. Download delivery
 
 ### `downloads_delivery`
-- **Zweck:** Digitale Downloads nach Zahlung freigeschalten
-- **Event:** `CheckoutOrderPlacedEvent` o. Zahlungsevent
-- **Root-Variablen:** `order`, `salesChannel`
+- **Purpose:** digital downloads unlocked after payment
+- **Event:** `CheckoutOrderPlacedEvent` or a payment event
+- **Root variables:** `order`, `salesChannel`
 - **Fixture:** `downloads_delivery/`
 
 ---
 
-## 7. Kunden-Mails
+## 7. Customer mails
 
 ### `customer_register`
-- **Zweck:** Registrierungsbestätigung
+- **Purpose:** registration confirmation
 - **Event:** `CustomerRegisterEvent` / `checkout.customer.register`
-- **Root-Variablen:** `customer` (CustomerEntity), `salesChannel`
+- **Root variables:** `customer` (CustomerEntity), `salesChannel`
 - **Fixture:** inline in `Migration1536233560BasicData`
 
 ### `customer_register.double_opt_in`
-- **Zweck:** Double-Opt-In-Bestätigung bei Registrierung
+- **Purpose:** double opt-in confirmation on registration
 - **Event:** `CustomerDoubleOptInRegistrationEvent` / `checkout.customer.double_opt_in_registration`
-- **Root-Variablen:** `customer`, `confirmUrl` (string), `salesChannel`
+- **Root variables:** `customer`, `confirmUrl` (string), `salesChannel`
 - **Fixture:** inline in `Migration1572425108`
 
 ### `guest_order.double_opt_in`
-- **Zweck:** Double-Opt-In für Gastbestellung
+- **Purpose:** double opt-in for a guest order
 - **Event:** `DoubleOptInGuestOrderEvent` / `checkout.customer.double_opt_in_guest_order`
-- **Root-Variablen:** `customer`, `confirmUrl` (string), `salesChannel`
+- **Root variables:** `customer`, `confirmUrl` (string), `salesChannel`
 - **Fixture:** `guest_order.double_opt_in/`
 
 ### `password_change`
-- **Zweck:** Passwort-Reset-Link
+- **Purpose:** password reset link
 - **Event:** `CustomerAccountRecoverRequestEvent` / `customer.recovery.request`
-- **Root-Variablen:** `customer`, `resetUrl` (string), `salesChannel`, `shopName` (string)
+- **Root variables:** `customer`, `resetUrl` (string), `salesChannel`, `shopName` (string)
 - **Fixture:** `password_change/`
 
 ### `customer.password.changed`
-- **Zweck:** Bestätigung nach erfolgter Passwortänderung (neu in 6.7)
+- **Purpose:** confirmation after a completed password change (new in 6.7)
 - **Event:** `CustomerPasswordChangedEvent` / `customer.password.changed`
-- **Root-Variablen:** `customer`, `shopName` (string), `salesChannel`
+- **Root variables:** `customer`, `shopName` (string), `salesChannel`
 - **Fixture:** `customer.password.changed/`
 
 ---
 
-## 8. Kundengruppen-Mails
+## 8. Customer group mails
 
 ### `customer_group_change_accept` *(legacy)*
-- **Zweck:** Kundengruppen-Wechsel genehmigt (älteres System)
-- **Root-Variablen:** `salesChannel`
+- **Purpose:** customer group change approved (older system)
+- **Root variables:** `salesChannel`
 
 ### `customer_group_change_reject` *(legacy)*
-- **Zweck:** Kundengruppen-Wechsel abgelehnt (älteres System)
-- **Root-Variablen:** keine (statischer Text)
+- **Purpose:** customer group change rejected (older system)
+- **Root variables:** none (static text)
 
 ### `customer.group.registration.accepted`
-- **Zweck:** Kundengruppen-Registrierung genehmigt
+- **Purpose:** customer group registration approved
 - **Event:** `CustomerGroupRegistrationAccepted` / `customer.group.registration.accepted`
-- **Root-Variablen:** `customer`, `customerGroup` (CustomerGroupEntity), `salesChannel`
+- **Root variables:** `customer`, `customerGroup` (CustomerGroupEntity), `salesChannel`
 - **Fixture:** `customer.group.registration.accepted/`
 
 ### `customer.group.registration.declined`
-- **Zweck:** Kundengruppen-Registrierung abgelehnt
+- **Purpose:** customer group registration rejected
 - **Event:** `CustomerGroupRegistrationDeclined` / `customer.group.registration.declined`
-- **Root-Variablen:** `customer`, `customerGroup`, `salesChannel`
+- **Root variables:** `customer`, `customerGroup`, `salesChannel`
 - **Fixture:** `customer.group.registration.declined/`
 
 ---
 
-## 9. Newsletter-Mails
+## 9. Newsletter mails
 
-Die Konstanten (`MAILTYPE_NEWSLETTER`, `MAILTYPE_NEWSLETTER_DO_CONFIRM`, `MAILTYPE_NEWSLETTER_CONFIRMED`) sind in `MailTemplateTypes.php` definiert, haben aber keine Fixture-Verzeichnisse. DB-Einträge werden inline in der BasicData-Migration erstellt.
+The constants (`MAILTYPE_NEWSLETTER`, `MAILTYPE_NEWSLETTER_DO_CONFIRM`, `MAILTYPE_NEWSLETTER_CONFIRMED`) are defined in `MailTemplateTypes.php` but have no fixture directories. DB entries are created inline in the BasicData migration.
 
-| technicalName (DB) | Zweck | Event |
+| technicalName (DB) | Purpose | Event |
 |---|---|---|
-| `newsletterRegister` | Newsletter-Anmeldung-Bestätigung | `newsletter.register` |
-| `newsletterDoubleOptIn` | Newsletter-Double-Opt-In | `newsletter.confirm` |
+| `newsletterRegister` | newsletter subscription confirmation | `newsletter.register` |
+| `newsletterDoubleOptIn` | newsletter double opt-in | `newsletter.confirm` |
 
-**Root-Variablen:** `newsletterRecipient` (NewsletterRecipientEntity), `url` (string, DOI), `salesChannel`
+**Root variables:** `newsletterRecipient` (NewsletterRecipientEntity), `url` (string, DOI), `salesChannel`
 
 ---
 
-## 10. Kontaktformular
+## 10. Contact form
 
 ### `contact_form`
-- **Zweck:** Kontaktanfrage-Bestätigung (an Shop-Betreiber)
+- **Purpose:** contact request confirmation (to the shop operator)
 - **Event:** `ContactFormEvent` / `contact_form.send`
-- **Root-Variablen:** `contactFormData` (array), `salesChannel`
+- **Root variables:** `contactFormData` (array), `salesChannel`
 - **Fixture:** `contact_form/`
 
 ---
 
-## 11. Widerrufsformular (neu in 6.7)
+## 11. Revocation form (new in 6.7)
 
 ### `revocation_request.merchant`
-- **Zweck:** Widerrufsantrag an Händler
-- **Root-Variablen:** `revocationRequestFormData` (array), `salesChannel`
+- **Purpose:** revocation request to the merchant
+- **Root variables:** `revocationRequestFormData` (array), `salesChannel`
 - **Fixture:** `revocation_request.merchant/`
 
 ### `revocation_request.customer`
-- **Zweck:** Widerrufsbestätigung an Kunden
-- **Root-Variablen:** `revocationRequestFormData` (array), `salesChannel`
+- **Purpose:** revocation confirmation to the customer
+- **Root variables:** `revocationRequestFormData` (array), `salesChannel`
 - **Fixture:** `revocation_request.customer/`
 
 ---
 
-## 12. Produktbewertung
+## 12. Product review
 
 ### `review_form`
-- **Zweck:** Bewertungsbestätigung/-benachrichtigung
-- **Root-Variablen:** `reviewFormData` (array), `product` (ProductEntity), `salesChannel`
+- **Purpose:** review confirmation/notification
+- **Root variables:** `reviewFormData` (array), `product` (ProductEntity), `salesChannel`
 - **Fixture:** `review_form/`
 
 ---
 
-## 13. SEPA & Lagerwarnungen (inline, keine Fixture-Dirs)
+## 13. SEPA & stock warnings (inline, no fixture dirs)
 
-| technicalName | Zweck |
+| technicalName | Purpose |
 |---|---|
-| `sepa_confirmation` | SEPA-Lastschrift-Vorankündigung |
-| `product_stock_warning` | Lagerbestand-Warnung (intern) |
+| `sepa_confirmation` | SEPA direct debit pre-notification |
+| `product_stock_warning` | stock level warning (internal) |
 
 ---
 
-## 14. Benutzer (Admin-Bereich)
+## 14. Users (admin area)
 
-| technicalName | Zweck | Migration |
+| technicalName | Purpose | Migration |
 |---|---|---|
-| `user.recovery.request` | Admin-Passwort-Reset | `Migration1562240231` |
-| `admin_sso_user_invite` | Admin-SSO-Einladung | `Administration/V6_7/Migration1744203319` |
+| `user.recovery.request` | admin password reset | `Migration1562240231` |
+| `admin_sso_user_invite` | admin SSO invitation | `Administration/V6_7/Migration1744203319` |
 
 ---
 
-## Aware-Interfaces → Twig-Schlüssel (Referenz)
+## Aware interfaces → Twig keys (reference)
 
-| Interface | Twig-Schlüssel |
+| Interface | Twig key |
 |---|---|
 | `OrderAware` | `order`, `orderId` |
 | `CustomerAware` | `customer`, `customerId` |
@@ -290,6 +290,6 @@ Die Konstanten (`MAILTYPE_NEWSLETTER`, `MAILTYPE_NEWSLETTER_DO_CONFIRM`, `MAILTY
 | `NewsletterRecipientAware` | `newsletterRecipient`, `newsletterRecipientId` |
 | `CustomerRecoveryAware` | `customerRecovery`, `customerRecoveryId` |
 | `OrderTransactionAware` | `orderTransaction`, `orderTransactionId` |
-| `ScalarValuesAware` | dynamisch via `getValues()` |
+| `ScalarValuesAware` | dynamic via `getValues()` |
 | `MailAware` | `mailStruct`, `salesChannelId` |
-| MailService (immer) | `salesChannel` |
+| MailService (always) | `salesChannel` |

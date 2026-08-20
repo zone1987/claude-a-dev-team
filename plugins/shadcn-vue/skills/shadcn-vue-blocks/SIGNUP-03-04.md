@@ -1,12 +1,12 @@
-# shadcn-vue Signup Blocks — signup-03 und signup-04
+# shadcn-vue Signup Blocks — signup-03 and signup-04
 
-Vollständiger Quellcode beider Blöcke ohne Kürzungen.
+Complete source code of both blocks, unabridged.
 
 ---
 
 ## Block: signup-03
 
-**Description:** Muted-Background-Layout mit Logo, Card-Formular, Passwort-Felder im 2-Spalten-Grid und ToS-Hinweis.
+**Description:** Muted background layout with a logo, card form, password fields in a 2-column grid and a ToS note.
 
 **Installation:**
 ```bash
@@ -140,7 +140,7 @@ const props = defineProps<{
 
 ## Block: signup-04
 
-**Description:** Breite Card (max-w-4xl) mit Cover-Image und drei Social-Auth-Icon-Buttons (Apple, Google, Meta).
+**Description:** Wide card (max-w-4xl) with a cover image and three social auth icon buttons (Apple, Google, Meta).
 
 **Installation:**
 ```bash

@@ -1,13 +1,13 @@
-# Shopware 6 — Upgrade-Überblick (Code/Plugin)
+# Shopware 6 — upgrade overview (code/plugin)
 
-Code-/Plugin-Migration zwischen Major-Versionen (Entwicklersicht; Betreiber-Update siehe `shopware-merchant` →
+Code/plugin migration between major versions (developer perspective; for the operator update see `shopware-merchant` →
 `sw-merchant-update-guides`).
 
-- **Quellen**: `UPGRADE-6.x.md` (Breaking Changes je Version), `CHANGELOG.md`, `RELEASE_INFO-*`, Deprecation-Notices im Code.
-- **Reihenfolge**: schrittweise je Minor/Major (z.B. 6.6 → 6.7 → 6.8), nicht überspringen; `composer.json`-`conflict` anpassen.
-- **Werkzeuge**: Rector-Sets für deprecierte APIs (`shopware-quality` → `sw-rector`); PHPStan/ECS nach jedem Schritt.
-- **Schwerpunkte 6.6→6.7**: Admin `sw-*`→Meteor `mt-*` (`sw-meteor-component-map`), Webpack→Vite (`sw-vite-migration`),
-  Vuex→Pinia (`sw-vuex-to-pinia`), PHP-Features/Signaturen (`sw-php-migration-patterns`), neuer Payment-Handler.
+- **Sources**: `UPGRADE-6.x.md` (breaking changes per version), `CHANGELOG.md`, `RELEASE_INFO-*`, deprecation notices in the code.
+- **Order**: step by step per minor/major (e.g. 6.6 → 6.7 → 6.8), do not skip; adjust the `conflict` in `composer.json`.
+- **Tools**: Rector sets for deprecated APIs (`shopware-quality` → `sw-rector`); PHPStan/ECS after every step.
+- **Focus areas 6.6→6.7**: admin `sw-*`→Meteor `mt-*` (`sw-meteor-component-map`), Webpack→Vite (`sw-vite-migration`),
+  Vuex→Pinia (`sw-vuex-to-pinia`), PHP features/signatures (`sw-php-migration-patterns`), new payment handler.
 
-Versionsspezifische Schritte: dedizierte Skills + die References des Skills `shopware-6.7-migration`.
-Deprecations sauflösen: `sw-deprecation-handling`.
+Version-specific steps: dedicated skills + the references of the `shopware-6.7-migration` skill.
+Resolving deprecations cleanly: `sw-deprecation-handling`.

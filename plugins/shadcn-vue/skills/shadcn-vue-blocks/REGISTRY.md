@@ -1,12 +1,12 @@
 # shadcn-vue Registry — Getting Started
 
-Eigene Komponenten-Registry aufbauen und hosten.
+Build and host your own component registry.
 
-## Referenzen
+## References
 
-- [REGISTRY-OVERVIEW.md](REGISTRY-OVERVIEW.md) — Uebersicht, Anforderungen,
-  Schritt-fuer-Schritt-Anleitung (registry.json, Komponente erstellen, hinzufuegen, bauen,
-  bereitstellen, veroeffentlichen, Auth, Richtlinien, per CLI installieren)
+- [REGISTRY-OVERVIEW.md](REGISTRY-OVERVIEW.md) — Overview, requirements,
+  step-by-step guide (registry.json, create a component, add it, build,
+  serve, publish, auth, guidelines, install via CLI)
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/content/docs/registry/index.md` +
+Source: `/tmp/shadcn-vue-repo/apps/v4/content/docs/registry/index.md` +
 `/tmp/shadcn-vue-repo/apps/v4/content/docs/registry/getting-started.md`

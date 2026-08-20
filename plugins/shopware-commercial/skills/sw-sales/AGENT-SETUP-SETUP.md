@@ -1,80 +1,80 @@
-# Sales Agent — Installation & Setup (vollständig)
+# Sales Agent — installation & setup (complete)
 
 ## Contents
 
-- [Voraussetzungen](#voraussetzungen)
-- [App-Server einrichten](#app-server-einrichten)
-- [Mit Shopware-Instanz verbinden](#mit-shopware-instanz-verbinden)
+- [Prerequisites](#prerequisites)
+- [Set up the app server](#set-up-the-app-server)
+- [Connect to a Shopware instance](#connect-to-a-shopware-instance)
 - [Tests](#tests)
 
-## Voraussetzungen
+## Prerequisites
 
-Credentials für folgende Services bereitstellen:
+Provide credentials for the following services:
 
-- **MySQL-Datenbank** — Verbindungsdaten
-- **Redis Cache** — Verbindungsdaten
+- **MySQL database** — connection details
+- **Redis cache** — connection details
 
-## App-Server einrichten
+## Set up the app server
 
-### 1. Repository klonen
+### 1. Clone the repository
 
 ```shell
 git clone https://github.com/shopware/swagsalesagent.git
 cd swagsalesagent
 ```
 
-> Zugang zum privaten GitLab-Repository via Support-Ticket in
-> [Shopware Account](https://account.shopware.com).
+> Access to the private GitLab repository via a support ticket in your
+> [Shopware account](https://account.shopware.com).
 
-### 2. `.env`-Datei erstellen
+### 2. Create the `.env` file
 
 ```shell
 cp .env.template .env
 ```
 
-Alle Properties mit Erklärungen sind in `.env.template` dokumentiert.
-Mindestens folgende Werte eintragen:
+All properties are documented with explanations in `.env.template`.
+Enter at least the following values:
 
-| Variable | Beispiel |
+| Variable | Example |
 |----------|---------|
-| `DATABASE_URL` | MySQL Connection String |
+| `DATABASE_URL` | MySQL connection string |
 | `REDIS_CACHE` | `true` |
-| `REDIS_HOST` | Redis-Hostname |
+| `REDIS_HOST` | Redis hostname |
 | `REDIS_PORT` | `6379` |
-| `REDIS_PASSWORD` | Redis-Passwort |
-| `REDIS_TLS` | `true` (Produktion) / `false` (lokal) |
-| `APP_NAME` | Name der Shopware-App |
-| `APP_SECRET` | Geheimer App-Token |
-| `ORIGIN` | App-Domain, z.B. `https://agent.shopware.io` |
-| `COMPANY_NAME` | Firmenname |
+| `REDIS_PASSWORD` | Redis password |
+| `REDIS_TLS` | `true` (production) / `false` (local) |
+| `APP_NAME` | name of the Shopware app |
+| `APP_SECRET` | secret app token |
+| `ORIGIN` | app domain, e.g. `https://agent.shopware.io` |
+| `COMPANY_NAME` | company name |
 
-### 3. Abhängigkeiten installieren
+### 3. Install dependencies
 
 ```shell
 pnpm install --frozen-lockfile --prefer-offline
 ```
 
-### 4. Datenbank migrieren
+### 4. Migrate the database
 
-**Nur vorhandene Migrationen ausführen (Produktion/erste Installation):**
+**Run existing migrations only (production/first installation):**
 
 ```bash
 pnpm db:migration:deploy
 ```
 
-**Neue Migrationsdateien erstellen bei Schema-Änderungen (Entwicklung):**
+**Create new migration files on schema changes (development):**
 
 ```bash
 pnpm db:migration:dev
 ```
 
-### 5. Dev-Server starten
+### 5. Start the dev server
 
 ```shell
 pnpm dev
 ```
 
-### 6. Produktions-Build erstellen
+### 6. Create a production build
 
 ```shell
 pnpm build
@@ -82,35 +82,35 @@ pnpm build
 
 ---
 
-## Mit Shopware-Instanz verbinden
+## Connect to a Shopware instance
 
-### App-ZIP bauen
+### Build the app ZIP
 
 ```bash
 pnpm app:build
 ```
 
-Erzeugt `bundle/swagsalesagent.zip`.
+Creates `bundle/swagsalesagent.zip`.
 
-### In Shopware installieren
+### Install in Shopware
 
 1. Shopware Admin → **Extensions**
-2. ZIP-Datei (`bundle/swagsalesagent.zip`) hochladen
-3. Nach erfolgreicher Installation: **Sales Agent** Menüeintrag erscheint unter Settings
+2. Upload the ZIP file (`bundle/swagsalesagent.zip`)
+3. After a successful installation the **Sales Agent** menu entry appears under Settings
 
-![Sales Agent Menüeintrag](../../assets/sales-agent-item.png)
+![Sales Agent menu entry](assets/sales-agent-item.png)
 
 ---
 
 ## Tests
 
-Sales Agent nutzt [Vitest](https://vitest.dev/) für Unit-Tests.
-Tests befinden sich im `tests/`-Verzeichnis.
+Sales Agent uses [Vitest](https://vitest.dev/) for unit tests.
+The tests live in the `tests/` directory.
 
 ```bash
-# Unit Tests ausführen
+# run unit tests
 pnpm run test
 
-# Code-Coverage ermitteln
+# determine code coverage
 pnpm run test:coverage
 ```

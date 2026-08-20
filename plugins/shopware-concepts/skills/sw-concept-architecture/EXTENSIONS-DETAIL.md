@@ -1,107 +1,107 @@
-# Shopware Extensions — Vollständige Konzept-Doku
+# Shopware extensions — complete concept documentation
 
-Quellen: `concepts/extensions/index.md`, `apps-concept.md`, `plugins-concept.md`
+Sources: `concepts/extensions/index.md`, `apps-concept.md`, `plugins-concept.md`
 
 ---
 
 ## Contents
 
-- [Extensions Überblick (index.md)](#extensions-überblick-indexmd)
+- [Extensions overview (index.md)](#extensions-overview-indexmd)
 - [Apps (apps-concept.md)](#apps-apps-conceptmd)
 - [Plugins (plugins-concept.md)](#plugins-plugins-conceptmd)
 
-## Extensions Überblick (index.md)
+## Extensions overview (index.md)
 
-Shopware Core ist so designed, dass Erweiterbarkeit ohne Beeinträchtigung von Wartbarkeit
-oder struktureller Integrität möglich ist.
+The Shopware core is designed so that extensibility is possible without impairing maintainability
+or structural integrity.
 
-**Zwei Extensionstypen:**
+**Two extension types:**
 
 | | Apps | Plugins |
 |---|---|---|
-| Ausführung | Außerhalb Shopware-Prozess | Innerhalb Shopware-Prozess |
-| Kommunikation | HTTP-Webhooks + Admin API | Direkter Code-Zugriff |
-| Cloud-kompatibel | Ja (SaaS + Self-hosted) | **Nein** (nur Self-hosted) |
-| Technologie | Beliebig | PHP (Symfony Bundle) |
+| Execution | Outside the Shopware process | Inside the Shopware process |
+| Communication | HTTP webhooks + Admin API | Direct code access |
+| Cloud-compatible | Yes (SaaS + self-hosted) | **No** (self-hosted only) |
+| Technology | Any | PHP (Symfony bundle) |
 
 ---
 
 ## Apps (apps-concept.md)
 
-### Design-Ziel: Entkopplung
+### Design goal: decoupling
 
-Das App-System ist von Shopware selbst entkoppelt — zwei Vorteile:
+The app system is decoupled from Shopware itself — two advantages:
 
-1. **Technologie-Freiheit** — Nur die HTTP-Schnittstelle muss verstanden werden; keine Shopware-Internals nötig. Beliebige Sprache/Framework für den App-Backend-Server.
-2. **Cloud-kompatibel** — Funktioniert mit Multi-Tenant-Cloud-Systemen (Shopware SaaS).
+1. **Freedom of technology** — only the HTTP interface has to be understood; no Shopware internals needed. Any language/framework for the app backend server.
+2. **Cloud-compatible** — works with multi-tenant cloud systems (Shopware SaaS).
 
-### Zentrales Interface: Manifest (`manifest.xml`)
+### The central interface: manifest (`manifest.xml`)
 
-- Verbindet Shopware und die App
-- Definiert Features der App und wie Shopware sich verbindet
-- Muss mit jeder App ausgeliefert werden
+- Connects Shopware and the app
+- Defines the app's features and how Shopware connects to it
+- Must be shipped with every app
 
-### Kommunikation
+### Communication
 
-**Shopware → App**: HTTP-POST an definierte Endpoints (Webhooks); App reagiert auf Events
-**App → Shopware**: Admin REST API für Datenzugriff und -modifikation
+**Shopware → app**: HTTP POST to defined endpoints (webhooks); the app reacts to events
+**App → Shopware**: Admin REST API for data access and modification
 
-Beim Installieren: **Registration Handshake** — Shopware verifiziert App-Server, App erhält API-Credentials.
+On installation: **registration handshake** — Shopware verifies the app server, the app receives API credentials.
 
-### App-Capabilities
+### App capabilities
 
-#### Storefront-Erscheinungsbild anpassen
+#### Adapt the storefront appearance
 
-- Twig-Templates, JavaScript, SCSS, Snippets mitliefern
-- Shopware rebuildet Storefront bei App-Installation automatisch
-- Keine Bereitstellung über externen Server nötig
+- Ship Twig templates, JavaScript, SCSS, snippets
+- Shopware rebuilds the storefront automatically on app installation
+- No need to serve them from an external server
 
-#### Payment-Provider integrieren (ab 6.4.1.0)
+#### Integrate payment providers (from 6.4.1.0)
 
-- **Synchrone Payments** — keine Nutzer-Interaktion; Hintergrundanfrage für Genehmigung
-- **Asynchrone Payments** — Nutzer-Redirect; App liefert Redirect-URL; nach Rückkehr: Shopware verifiziert Status bei App
+- **Synchronous payments** — no user interaction; background request for approval
+- **Asynchronous payments** — user redirect; the app supplies the redirect URL; after the return: Shopware verifies the status with the app
 
-#### App Scripts (ab 6.4.8.0)
+#### App scripts (from 6.4.8.0)
 
-- Custom Business-Logik **im Shopware Execution Stack** ausführen
-- Use Cases: zusätzliche Daten für Storefront laden, Cart manipulieren
-- Twig-basiert (sicher, keine direkten PHP-Aufrufe)
+- Execute custom business logic **inside the Shopware execution stack**
+- Use cases: load additional data for the storefront, manipulate the cart
+- Twig-based (safe, no direct PHP calls)
 
-#### Rule Builder Conditions (ab 6.4.12.0)
+#### Rule builder conditions (from 6.4.12.0)
 
-- Custom Bedingungen für den Rule Builder hinzufügen
-- Über `manifest.xml` deklarieren
+- Add custom conditions for the rule builder
+- Declare them via `manifest.xml`
 
 ---
 
 ## Plugins (plugins-concept.md)
 
-### Konzept
+### Concept
 
-Plugins sind **Symfony Bundle Extensions** — basieren auf Symfony Bundles und erweitern diese.
+Plugins are **Symfony bundle extensions** — they build on Symfony bundles and extend them.
 
-Bundles/Plugins können bereitstellen:
-- Assets (Templates, CSS, JS)
+Bundles/plugins can provide:
+- Assets (templates, CSS, JS)
 - Controllers
-- Services (DI-Container)
+- Services (DI container)
 - Tests
 
-### Basisklasse
+### Base class
 
-Abstrakte Base Class (`PluginBaseClass`) mit Helper-Methoden:
-- Plugin-Name und Root-Path im DI-Container initialisieren
-- Helper für Lifecycle (install, update, uninstall, activate, deactivate)
+An abstract base class (`PluginBaseClass`) with helper methods:
+- Initialise plugin name and root path in the DI container
+- Helpers for the lifecycle (install, update, uninstall, activate, deactivate)
 
-Jedes Plugin = Composer-Package (kann Abhängigkeiten definieren).
+Every plugin = a Composer package (can define dependencies).
 
-### Tiefer Zugriff
+### Deep access
 
-Plugins können fast alles:
-- Custom User Provider
-- Custom Search Engine
-- Beliebige Symfony-Services überschreiben oder dekorieren
+Plugins can do almost anything:
+- Custom user provider
+- Custom search engine
+- Override or decorate any Symfony services
 
-### Cloud-Inkompatibilität
+### Cloud incompatibility
 
-**Wichtig**: Plugins sind wegen direktem Prozess- und Datenbankzugriff **nicht** mit Shopware Cloud
-kompatibel. Für Cloud: App-System verwenden.
+**Important**: because of their direct process and database access, plugins are **not** compatible
+with Shopware Cloud. For cloud: use the app system.

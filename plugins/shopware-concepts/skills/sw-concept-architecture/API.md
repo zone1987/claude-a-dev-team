@@ -1,27 +1,27 @@
-# Shopware APIs — Konzept
+# Shopware APIs — concept
 
-Vollständige Konzept-Doku: `API-DETAIL.md`
+Complete concept documentation: `API-DETAIL.md`
 
-## Kurzüberblick
+## Brief overview
 
-Shopware stellt **zwei funktionale APIs** bereit:
+Shopware provides **two functional APIs**:
 
 | | Store API | Admin API |
 |---|---|---|
-| Zweck | Kundenseitige Interaktionen | Administrative/Backend-Operationen |
-| Auth | Öffentlich + Context-Header | OAuth 2.0 |
-| Pfad | `/store-api/` | `/api/` |
-| Einsatz | Storefront, Headless-Frontend, SPAs | Backend-Integrationen, Sync, Automatisierung |
+| Purpose | Customer-facing interactions | Administrative/backend operations |
+| Auth | Public + context header | OAuth 2.0 |
+| Path | `/store-api/` | `/api/` |
+| Usage | Storefront, headless frontend, SPAs | Backend integrations, sync, automation |
 
-## Gemeinsame Muster
+## Shared patterns
 
-- JSON-Payloads (HTTP)
-- Search Criteria Abstraktion (Filter, Sorting, Pagination)
-- Header-basiertes kontextuelles Verhalten
+- JSON payloads (HTTP)
+- Search criteria abstraction (filtering, sorting, pagination)
+- Header-based contextual behaviour
 
-## Store API Besonderheit
+## Store API particularity
 
-Normalisierter Interface-Layer zwischen Frontend und Shopware-Core. Storefront und Headless-Clients
-nutzen **dieselben Store-API-Routen** — keine doppelte Business-Logik.
+A normalised interface layer between frontend and Shopware core. Storefront and headless clients
+use **the same Store API routes** — no duplicated business logic.
 
-Technische Umsetzung: `shopware-api`, `shopware-framework` (Dev-Plugins)
+Technical implementation: `shopware-api`, `shopware-framework` (dev plugins)

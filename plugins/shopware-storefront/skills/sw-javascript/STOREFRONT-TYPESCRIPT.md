@@ -1,10 +1,10 @@
-# Shopware 6 — TypeScript im Storefront-Plugin
+# Shopware 6 — TypeScript in the Storefront plugin
 
-Das Storefront unterstützt TypeScript (ADR „add typescript support for storefront js"); JS-Plugins können als `.ts`
-geschrieben werden (Core-Beispiel: `plugin/spatial/*.plugin.ts`).
+The Storefront supports TypeScript (ADR "add typescript support for storefront js"); JS plugins can be written as
+`.ts` (core example: `plugin/spatial/*.plugin.ts`).
 
-## tsconfig.json (Plugin)
-Im Storefront-Source-Root (`src/Resources/app/storefront/`):
+## tsconfig.json (plugin)
+In the Storefront source root (`src/Resources/app/storefront/`):
 
 ```json
 {
@@ -18,8 +18,8 @@ Im Storefront-Source-Root (`src/Resources/app/storefront/`):
 }
 ```
 
-## JS-Plugin typisieren
-`window.PluginBaseClass` erweitern, `Options`-Interface deklarieren, DOM-Elemente typisiert holen:
+## Typing a JS plugin
+Extend `window.PluginBaseClass`, declare an `Options` interface, fetch DOM elements typed:
 
 ```ts
 interface FfExampleOptions { url: string; }
@@ -33,7 +33,7 @@ export default class FfExamplePlugin extends window.PluginBaseClass<FfExampleOpt
 }
 ```
 
-Globale Typen (`window.PluginManager`, `window.PluginBaseClass`) per `.d.ts` deklarieren, falls nicht vorhanden.
-Build via Storefront-Vite/Webpack (transpiliert `.ts`). Lint: `composer eslint:storefront`.
+Declare global types (`window.PluginManager`, `window.PluginBaseClass`) via `.d.ts` if not present.
+Build via Storefront Vite/webpack (transpiles `.ts`). Lint: `composer eslint:storefront`.
 
-→ tsconfig-Details, globale window-Typen, AJAX/HttpClient-Typing, Beispiele: [STOREFRONT-TYPESCRIPT-TYPESCRIPT.md](STOREFRONT-TYPESCRIPT-TYPESCRIPT.md)
+→ tsconfig details, global window types, AJAX/HttpClient typing, examples: [STOREFRONT-TYPESCRIPT-TYPESCRIPT.md](STOREFRONT-TYPESCRIPT-TYPESCRIPT.md)

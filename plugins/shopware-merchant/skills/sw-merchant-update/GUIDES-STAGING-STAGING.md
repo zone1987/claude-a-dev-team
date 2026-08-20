@@ -1,41 +1,41 @@
-# Shopware 6 — Staging & Testumgebung: Vollständige Referenz
+# Shopware 6 — Staging & test environment: complete reference
 
 ## Contents
 
-- [Begriffe und Unterschiede](#begriffe-und-unterschiede)
-- [4-Schritte-Prozess: Staging-Instanz einrichten](#4-schritte-prozess-staging-instanz-einrichten)
-- [Was der Staging-Modus NICHT tut](#was-der-staging-modus-nicht-tut)
-- [App-Verwaltung nach Staging-Aktivierung](#app-verwaltung-nach-staging-aktivierung)
-- [Staging-Umgebung schützen](#staging-umgebung-schützen)
-- [Testumgebung für Updates: Best Practices](#testumgebung-für-updates-best-practices)
+- [Terms and differences](#terms-and-differences)
+- [4-step process: setting up a staging instance](#4-step-process-setting-up-a-staging-instance)
+- [What staging mode does NOT do](#what-staging-mode-does-not-do)
+- [App management after activating staging](#app-management-after-activating-staging)
+- [Protecting the staging environment](#protecting-the-staging-environment)
+- [Test environment for updates: best practices](#test-environment-for-updates-best-practices)
 
-## Begriffe und Unterschiede
+## Terms and differences
 
-### Staging-Umgebung
-Eine vollständig separate, nicht-produktive Kopie des Live-Shops mit:
-- **Eigenem Hosting** (separater Server oder Container)
-- **Eigener Domain** (z.B. staging.meinshop.de)
-- **Eigener Datenbank** (Klon der Live-DB)
-- **Eigenem Redis-Instanz** (getrennt von Live!)
-- **Eigenem Elasticsearch/OpenSearch-Index-Präfix**
-- **Eigener .env-Konfiguration**
+### Staging environment
+A completely separate, non-production copy of the live shop with:
+- **Its own hosting** (a separate server or container)
+- **Its own domain** (e.g. staging.meinshop.de)
+- **Its own database** (a clone of the live DB)
+- **Its own Redis instance** (separate from live!)
+- **Its own Elasticsearch/OpenSearch index prefix**
+- **Its own .env configuration**
 
-### Staging-Modus (seit Shopware 6.6.1.0)
-Ein Shopware-Mechanismus aktiviert via `bin/console system:setup:staging`, der:
-- App-Verbindungen zur Produktion trennt
-- E-Mail-Versand deaktiviert
-- URLs zur Staging-Domain umschreibt
-- Banner in Admin und Storefront anzeigt
+### Staging mode (since Shopware 6.6.1.0)
+A Shopware mechanism activated via `bin/console system:setup:staging` which:
+- Severs app connections to production
+- Disables e-mail sending
+- Rewrites URLs to the staging domain
+- Shows a banner in the admin and the storefront
 
-> **Kritisch:** `system:setup:staging` dupliziert KEINE Datenbank und KEINE Dateien — das muss separat erledigt werden.
+> **Critical:** `system:setup:staging` duplicates NO database and NO files — that has to be done separately.
 
 ---
 
-## 4-Schritte-Prozess: Staging-Instanz einrichten
+## 4-step process: setting up a staging instance
 
-### Schritt 1: Separate Installation einrichten
+### Step 1: set up a separate installation
 
-**Empfohlen:** Aus dem Git-Repository in die neue Umgebung deployen.
+**Recommended:** deploy into the new environment from the Git repository.
 
 ```bash
 # Neue Domain/Subdomain einrichten
@@ -47,11 +47,11 @@ APP_ENV=prod
 APP_SECRET=<neues-geheimes-secret>
 ```
 
-> **Lizenz-Hinweis:** In der Shopware Account Lizenz weiterhin die **Live-Domain** verwenden, um Lizenzprobleme zu vermeiden. Shopware toleriert Staging-Instanzen unter anderen Domains.
+> **Licence note:** in the Shopware Account licence, keep using the **live domain** to avoid licence problems. Shopware tolerates staging instances under other domains.
 
-### Schritt 2: Datenbank klonen
+### Step 2: clone the database
 
-#### Option A: shopware-cli (empfohlen)
+#### Option A: shopware-cli (recommended)
 
 ```bash
 # Standard-Dump (ohne Cart-Daten, "clean")
@@ -74,13 +74,13 @@ shopware-cli project dump \
   shopware_datenbankname
 ```
 
-**Was --anonymize anonymisiert:**
-- Kundennamen → zufällige Namen
-- E-Mail-Adressen → example.com-Adressen
-- Telefonnummern → zufällige Nummern
-- Adressen → generische Adressen
+**What --anonymize anonymises:**
+- Customer names → random names
+- E-mail addresses → example.com addresses
+- Phone numbers → random numbers
+- Addresses → generic addresses
 
-#### Option B: mysqldump (klassisch)
+#### Option B: mysqldump (the classic way)
 
 ```bash
 # Vollständiger Dump
@@ -93,9 +93,9 @@ mysqldump -u user -p --single-transaction \
   shopware_db > backup.sql
 ```
 
-> **Warnung:** `mysqldump` und `mysql` müssen dieselbe Hauptversion und denselben Anbieter (MySQL/MariaDB) haben.
+> **Warning:** `mysqldump` and `mysql` must have the same major version and the same vendor (MySQL/MariaDB).
 
-#### Dump auf Staging-Datenbank einspielen
+#### Importing the dump into the staging database
 
 ```bash
 # Staging-Datenbank vorbereiten
@@ -108,9 +108,9 @@ mysql -u staging_user -p staging_db < shop-anon.sql
 pv shop-anon.sql | mysql -u staging_user -p staging_db
 ```
 
-### Schritt 3: Staging konfigurieren
+### Step 3: configure staging
 
-#### .env für Staging anpassen
+#### Adjusting .env for staging
 
 ```bash
 # Staging .env (config/packages/.env oder .env.local)
@@ -128,11 +128,11 @@ SHOPWARE_ES_HOSTS=localhost:9200
 SHOPWARE_ES_ENABLED=0
 ```
 
-> **KRITISCH:** Redis und Elasticsearch NIEMALS zwischen Live und Staging teilen. Unterschiedliche Daten → Datenverlust und Inkonsistenzen.
+> **CRITICAL:** NEVER share Redis and Elasticsearch between live and staging. Different data → data loss and inconsistencies.
 
-#### staging.yaml Konfiguration
+#### staging.yaml configuration
 
-Datei erstellen: `config/packages/staging.yaml`
+Create the file: `config/packages/staging.yaml`
 
 ```yaml
 shopware:
@@ -149,9 +149,9 @@ shopware:
             check_for_existence: true   # Prüft ob ES-Index bereits existiert
 ```
 
-#### URL-Umschreibung (drei Methoden)
+#### URL rewriting (three methods)
 
-**Methode 1: Direkter Austausch (equal)**
+**Method 1: direct exchange (equal)**
 ```yaml
 shopware:
     staging:
@@ -162,7 +162,7 @@ shopware:
                   replace: https://staging.meinshop.de
 ```
 
-**Methode 2: Präfix-Ersetzung (prefix)**
+**Method 2: prefix replacement (prefix)**
 ```yaml
 shopware:
     staging:
@@ -173,7 +173,7 @@ shopware:
                   replace: https://staging.meinshop.de
 ```
 
-**Methode 3: Regex-Ersetzung (regex)**
+**Method 3: regex replacement (regex)**
 ```yaml
 shopware:
     staging:
@@ -184,7 +184,7 @@ shopware:
                   replace: 'http://$1-$2.local'
 ```
 
-### Schritt 4: Staging-Modus aktivieren
+### Step 4: activate staging mode
 
 ```bash
 # Interaktiv (Bestätigung erforderlich)
@@ -194,39 +194,39 @@ bin/console system:setup:staging
 bin/console system:setup:staging --no-interaction --force
 ```
 
-**Was der Befehl ausführt:**
-1. Löscht alle Apps mit aktiven externen Verbindungen
-2. Setzt Instanz-ID zurück (verhindert App-Konflikte mit Live)
-3. Deaktiviert E-Mail-Versand
-4. Schreibt Sales-Channel-URLs um (aus domain_rewrite-Konfiguration)
-5. Verifiziert Elasticsearch-Indizes (auf Existenz prüfen)
-6. Aktiviert Staging-Banner in Admin und Storefront
+**What the command carries out:**
+1. Deletes all apps with active external connections
+2. Resets the instance ID (prevents app conflicts with live)
+3. Disables e-mail sending
+4. Rewrites the sales channel URLs (from the domain_rewrite configuration)
+5. Verifies the Elasticsearch indexes (checking for existence)
+6. Activates the staging banner in the admin and the storefront
 
 ---
 
-## Was der Staging-Modus NICHT tut
+## What staging mode does NOT do
 
-| Nicht enthalten | Muss separat erledigt werden |
+| Not included | Has to be done separately |
 |---|---|
-| Datenbank duplizieren | mysqldump / shopware-cli project dump |
-| Dateien kopieren | rsync / Hosting-Tools |
-| Live-Umgebung modifizieren | — |
-| Hosting einrichten | Hosting-Provider / DevOps |
+| Duplicating the database | mysqldump / shopware-cli project dump |
+| Copying files | rsync / hosting tools |
+| Modifying the live environment | — |
+| Setting up hosting | Hosting provider / DevOps |
 
 ---
 
-## App-Verwaltung nach Staging-Aktivierung
+## App management after activating staging
 
-Der Staging-Befehl **löscht alle Apps** mit externen Verbindungen (Shopware App Server, externe APIs).
+The staging command **deletes all apps** with external connections (Shopware App Server, external APIs).
 
-Nach Staging-Aktivierung:
+After activating staging:
 ```bash
 # Apps neu installieren (generiert neue Instanz-IDs)
 bin/console app:install <app-name>
 # oder über Admin: Erweiterungen > Apps > Installieren
 ```
 
-Für Plugin-Entwickler: Staging-Event abonnieren
+For plugin developers: subscribing to the staging event
 ```php
 use Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent;
 
@@ -244,11 +244,11 @@ public function onSetupStaging(SetupStagingEvent $event): void
 
 ---
 
-## Staging-Umgebung schützen
+## Protecting the staging environment
 
-Die Staging-Umgebung sollte vor öffentlichem Zugang geschützt werden:
+The staging environment should be protected against public access:
 
-### Apache: Basic Auth
+### Apache: basic auth
 ```apache
 # .htaccess im Web-Root
 AuthType Basic
@@ -262,7 +262,7 @@ Require valid-user
 htpasswd -c /pfad/zu/.htpasswd staging_user
 ```
 
-### Nginx: Basic Auth
+### Nginx: basic auth
 ```nginx
 server {
     auth_basic "Staging";
@@ -270,7 +270,7 @@ server {
 }
 ```
 
-### IP-Beschränkung (Apache)
+### IP restriction (Apache)
 ```apache
 Order Deny,Allow
 Deny from all
@@ -278,7 +278,7 @@ Allow from 192.168.1.0/24
 Allow from 10.0.0.100
 ```
 
-### IP-Beschränkung (Nginx)
+### IP restriction (Nginx)
 ```nginx
 allow 192.168.1.0/24;
 allow 10.0.0.100;
@@ -286,36 +286,36 @@ deny all;
 ```
 
 ### Cloudflare Access / Azure Application Gateway
-- OAuth2-Proxy-Lösung
-- Mitarbeiter-Login via SSO
-- Keine separate Passwort-Verwaltung nötig
+- An OAuth2 proxy solution
+- Staff login via SSO
+- No separate password management needed
 
 ---
 
-## Testumgebung für Updates: Best Practices
+## Test environment for updates: best practices
 
-### Workflow für Update-Tests
+### Workflow for update tests
 
-1. **Datenbank-Snapshot erstellen** (Live → Staging)
-2. **Dateien synchronisieren** (`rsync` von Live → Staging)
-3. **Staging-Modus aktivieren** (`system:setup:staging`)
-4. **Update auf Staging durchführen** (Admin oder Composer)
-5. **Testen:** Storefront, Admin, Bestellprozess, Extensions
-6. **Falls OK:** Update auf Live durchführen
-7. **Falls Fehler:** Staging für Debugging nutzen; Live unangetastet
+1. **Create a database snapshot** (live → staging)
+2. **Synchronise the files** (`rsync` from live → staging)
+3. **Activate staging mode** (`system:setup:staging`)
+4. **Run the update on staging** (admin or Composer)
+5. **Test:** storefront, admin, ordering process, extensions
+6. **If everything is fine:** run the update on live
+7. **If there are errors:** use staging for debugging; live stays untouched
 
-### Checkliste nach Update auf Staging
+### Checklist after the update on staging
 
-- [ ] Startseite lädt korrekt
-- [ ] Admin-Login funktioniert
-- [ ] Produkte werden angezeigt
-- [ ] Bestellung aufgeben möglich (Testbestellung)
-- [ ] Alle aktivierten Extensions funktionieren
-- [ ] Theme wird korrekt dargestellt
-- [ ] E-Mails werden NICHT versendet (Staging-Modus aktiv)
-- [ ] Keine PHP-Fehler in den Logs (`var/log/`)
+- [ ] The home page loads correctly
+- [ ] The admin login works
+- [ ] Products are displayed
+- [ ] Placing an order is possible (test order)
+- [ ] All activated extensions work
+- [ ] The theme is rendered correctly
+- [ ] E-mails are NOT sent (staging mode active)
+- [ ] No PHP errors in the logs (`var/log/`)
 
 ---
 
-*Quelle: https://developer.shopware.com/docs/guides/hosting/installation-updates/creating-a-staging-instance.html*
-*Ergänzend: https://docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten*
+*Source: https://developer.shopware.com/docs/guides/hosting/installation-updates/creating-a-staging-instance.html*
+*Additionally: https://docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten*

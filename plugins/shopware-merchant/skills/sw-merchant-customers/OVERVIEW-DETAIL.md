@@ -1,286 +1,286 @@
-# Shopware 6 – Kunden: Vollständige Referenz (Admin)
+# Shopware 6 – Customers: Complete reference (Admin)
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht  
-> Dokumentierte Version: 6.7.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht  
+> Documented version: 6.7.0.0+
 
 ---
 
 ## Contents
 
-- [1. Kundenübersicht](#1-kundenübersicht)
-- [2. Kundendetailansicht – Tabs](#2-kundendetailansicht-tabs)
-- [3. Bearbeitungsmodus](#3-bearbeitungsmodus)
-- [4. Neuen Kunden anlegen](#4-neuen-kunden-anlegen)
-- [5. Storefront-Kundenbereich](#5-storefront-kundenbereich)
-- [6. Schnellbesteller-Funktion (ab v6.5.4.0, Evolve Plan)](#6-schnellbesteller-funktion-ab-v6540-evolve-plan)
-- [7. Mehrfachänderung](#7-mehrfachänderung)
-- [8. AI-generierte Kunden-Klassifizierung (ab Shopware Rise Plan)](#8-ai-generierte-kunden-klassifizierung-ab-shopware-rise-plan)
-- [Versionsmatrix](#versionsmatrix)
+- [1. Customer overview](#1-customer-overview)
+- [2. Customer detail view – tabs](#2-customer-detail-view-tabs)
+- [3. Editing mode](#3-editing-mode)
+- [4. Creating a new customer](#4-creating-a-new-customer)
+- [5. Storefront customer area](#5-storefront-customer-area)
+- [6. Quick order function (from v6.5.4.0, Evolve Plan)](#6-quick-order-function-from-v6540-evolve-plan)
+- [7. Bulk edit](#7-bulk-edit)
+- [8. AI-generated customer classification (from Shopware Rise Plan)](#8-ai-generated-customer-classification-from-shopware-rise-plan)
+- [Version matrix](#version-matrix)
 
-## 1. Kundenübersicht
+## 1. Customer overview
 
-Die Kundenübersicht (`Kunden` im Hauptmenü) ermöglicht die **komfortable Verwaltung des Kundenstamms**.
+The customer overview (`Kunden` (Customers) in the main menu) enables **convenient management of the customer base**.
 
-![Kundenübersicht](../../assets/kunden-uebersicht.png)
+![Customer overview](assets/customers-overview.png)
 
-### Verfügbare Aktionen
+### Available actions
 
-| Nr. | Aktion | Beschreibung |
+| No. | Action | Description |
 |-----|--------|-------------|
-| (1) | **Suchen** | Freitext-Suche über alle Kundenfelder |
-| (2) | **Anzeigen** | Detail-Ansicht eines Kunden öffnen |
-| (3) | **Bearbeiten** | Kundendaten direkt bearbeiten |
-| (4) | **Löschen** | Kunden entfernen |
-| (5) | **Kunden anlegen** | Neuen Kunden manuell erstellen |
-| (6) | **Tools** | Filter setzen, Übersicht aktualisieren |
-| (7) | **Badge „Erstellt von Admin"** | Markiert manuell angelegte Kunden |
+| (1) | **Suchen** (Search) | Full-text search across all customer fields |
+| (2) | **Anzeigen** (View) | Open the detail view of a customer |
+| (3) | **Bearbeiten** (Edit) | Edit the customer data directly |
+| (4) | **Löschen** (Delete) | Remove customers |
+| (5) | **Kunden anlegen** (Create customer) | Create a new customer manually |
+| (6) | **Tools** | Set filters, refresh the overview |
+| (7) | **Badge "Erstellt von Admin"** (Created by admin) | Marks manually created customers |
 
-### Angezeigte Felder
+### Displayed fields
 
-- Kundennummer (Kd.-Nr.)
-- Vor- und Nachname
-- Adressdaten (aus Standardrechnungsadresse)
-- E-Mail-Adresse
+- Customer number (Kd.-Nr.)
+- First and last name
+- Address data (from the default billing address)
+- Email address
 
 ---
 
-## 2. Kundendetailansicht – Tabs
+## 2. Customer detail view – tabs
 
-### Tab: Allgemein
+### Tab: Allgemein (General)
 
-Zeigt alle Kundeninformationen in einer Übersicht.
+Shows all customer information in one overview.
 
-**„Als Kunde anmelden" (2)**  
-Admin kann sich mit diesem Button direkt in der Storefront als der jeweilige Kunde einloggen.  
-Ein Pop-Up erscheint zur Auswahl des Verkaufskanals.
+**"Als Kunde anmelden" (2)** (Log in as customer)  
+With this button the admin can log in to the storefront directly as the respective customer.  
+A pop-up appears for selecting the sales channel.
 
-![Als Kunde anmelden](../../assets/kunden-als-kunde-anmelden.png)
+![Log in as customer](assets/customers-als-customer-login.png)
 
-### Tab: Adressen
+### Tab: Adressen (Addresses)
 
-![Adressen Tab](../../assets/kunden-uebersicht-adressen.png)
+![Addresses tab](assets/customers-overview-addresses.png)
 
-Alle hinterlegten Adressen des Kunden.
+All addresses stored for the customer.
 
-| Nr. | Element | Funktion |
+| No. | Element | Function |
 |-----|---------|----------|
-| (1) | **Standard-Lieferadresse** | Markierung/Änderung |
-| (2) | **Standard-Rechnungsadresse** | Markierung/Änderung |
-| (3) | **Suche** | Adressen filtern |
-| (4) | **Neue Adresse hinzufügen** | Formular öffnen |
-| (5) | **Kontextmenü** | Bearbeiten · Duplizieren · Löschen |
+| (1) | **Standard-Lieferadresse** (Default shipping address) | Mark/change |
+| (2) | **Standard-Rechnungsadresse** (Default billing address) | Mark/change |
+| (3) | **Suche** | Filter addresses |
+| (4) | **Neue Adresse hinzufügen** (Add new address) | Open the form |
+| (5) | **Kontextmenü** (Context menu) | Edit · Duplicate · Delete |
 
-### Tab: Bestellungen
+### Tab: Bestellungen (Orders)
 
-![Bestellungen Tab](../../assets/kunden-uebersicht-bestellungen.png)
+![Orders tab](assets/customers-overview-orders.png)
 
-| Element | Angezeigt |
+| Element | Displayed |
 |---------|-----------|
-| (1) | Suchfunktion |
-| (2) | Bestellnummer, Betrag, Status, Datum (klickbar → Bestelldetails) |
+| (1) | Search function |
+| (2) | Order number, amount, status, date (clickable → order details) |
 
-### Tab: Unternehmen (ab v6.5.6.0, Evolve Plan)
+### Tab: Unternehmen (Companies) (from v6.5.6.0, Evolve Plan)
 
-Nur sichtbar wenn Feature aktiv. Enthält zwei Unterbereiche:
+Only visible when the feature is active. Contains two sub-areas:
 
-**Mitarbeiterverwaltung**
+**Mitarbeiterverwaltung** (Employee management)
 
-![Mitarbeitermanagement](../../assets/b2b-mitarbeitermanagement.png)
+![Employee management](assets/b2b-mitarbeitermanagement.png)
 
-- `Konto hinzufügen (1)`: Neuen Mitarbeiter einladen
-- Pflichtfelder: Vor-/Nachname, E-Mail
-- Rolle: optional wählbar
-- Akzeptanzfrist für Einladungs-Link: **2 Stunden**
-- Status nach Einladung: verfolgbar
-- Deaktivierung: über Kontextmenü
+- `Konto hinzufügen (1)` (Add account): invite a new employee
+- Required fields: first/last name, email
+- Rolle (Role): optionally selectable
+- Acceptance period for the invitation link: **2 hours**
+- Status after the invitation: can be tracked
+- Deactivation: via the context menu
 
-**Rollenverwaltung**
+**Rollenverwaltung** (Role management)
 
-![Neue Rolle](../../assets/b2b-neue-rolle.png)
+![New role](assets/b2b-new-rolle.png)
 
-- `Rolle hinzufügen (2)`: Neue Rolle anlegen
-- Name (1): Pflichtfeld
-- Standard-Rolle für neue Mitarbeiter (2): optional
-- Berechtigungen (3): Mitarbeiterverwaltung · Rollenverwaltung · Bestellungen
+- `Rolle hinzufügen (2)` (Add role): create a new role
+- Name (1): required field
+- Default role for new employees (2): optional
+- Berechtigungen (3) (Permissions): employee management · role management · orders
 
-**Frontend-Ansicht (Storefront)**
+**Frontend view (Storefront)**
 
-![B2B Frontend](../../assets/b2b-frontend.png)
+![B2B frontend](assets/b2b-frontend.png)
 
-Zugriff über `Konto-Icon (1)` → identische Konfiguration wie im Admin.
-
----
-
-## 3. Bearbeitungsmodus
-
-![Kunden bearbeiten](../../assets/kunden-bearbeiten.png)
-
-Über den Bearbeitungs-Button zugänglich. Konfigurierbar:
-- Name, Adressdaten, alle Kundeninformationen
-- Standard-Liefer- und Rechnungsadresse
+Access via the `Konto-Icon (1)` (Account icon) → configuration identical to the admin.
 
 ---
 
-## 4. Neuen Kunden anlegen
+## 3. Editing mode
 
-![Kunden anlegen 1](../../assets/kunden-anlegen-1.png)
-![Kunden anlegen 2](../../assets/kunden-anlegen-2.png)
+![Edit customer](assets/customers-edit.png)
 
-### Eingabefelder
+Accessible via the edit button. Configurable:
+- Name, address data, all customer information
+- Default shipping and billing address
 
-| Feld | Pflicht | Beschreibung |
+---
+
+## 4. Creating a new customer
+
+![Create customer 1](assets/customers-create-1.png)
+![Create customer 2](assets/customers-create-2.png)
+
+### Input fields
+
+| Field | Required | Description |
 |------|---------|-------------|
-| Name | Ja | Vor- und Nachname |
-| Adresse | Ja | Standardadresse |
-| Kundengruppe (1) | Nein | Weist vordefinierte Einstellungen zu |
-| Verkaufskanal (2) | Ja | Bestimmt Shop-Sichtbarkeit und Sortiment |
-| Tags (3) | Nein | Mehrere Schlagworte möglich |
-| Adressen | Nein | Adresse vorab zuweisen |
+| Name | Yes | First and last name |
+| Adresse (Address) | Yes | Default address |
+| Kundengruppe (1) (Customer group) | No | Assigns predefined settings |
+| Verkaufskanal (2) (Sales channel) | Yes | Determines shop visibility and assortment |
+| Tags (3) | No | Several keywords possible |
+| Adressen | No | Assign an address in advance |
 
-> Rot markierte Felder = Pflichtfelder
-
----
-
-## 5. Storefront-Kundenbereich
-
-![Storefront Übersicht](../../assets/storefront-uebersicht.png)
-
-Kunden sehen im Account folgende Bereiche:
-- **Übersicht**: Dashboard mit Bestellungen, Adressen
-- **Persönliches Profil**: E-Mail und Passwort ändern
-- **Adressen**: Verwalten gespeicherter Lieferadressen
-- **Bestellungen**: Bestellhistorie mit Status
-- **Abonnements**: Aktive Abos (ab v6.5.4.0, Beyond Plan)
+> Fields marked in red = required fields
 
 ---
 
-## 6. Schnellbesteller-Funktion (ab v6.5.4.0, Evolve Plan)
+## 5. Storefront customer area
 
-Beschleunigt den Bestellprozess für B2B-Kunden.
+![Storefront overview](assets/storefront-overview.png)
 
-### Aktivierung (Admin)
+In their account, customers see the following areas:
+- **Übersicht** (Overview): dashboard with orders, addresses
+- **Persönliches Profil** (Personal profile): change email and password
+- **Adressen**: manage saved shipping addresses
+- **Bestellungen**: order history with status
+- **Abonnements** (Subscriptions): active subscriptions (from v6.5.4.0, Beyond Plan)
 
-Bearbeitungsmodus des Kunden → Option „Schnellbestellung" aktivieren.
+---
 
-### Frontend-Zugriff
+## 6. Quick order function (from v6.5.4.0, Evolve Plan)
 
-![Schnellbesteller Frontend](../../assets/schnellbesteller-frontend.png)
+Speeds up the ordering process for B2B customers.
 
-`Konto-Icon (1)` → `Schnellbestellungen (2)`
+### Activation (admin)
 
-### Funktionalität
+Editing mode of the customer → activate the "Schnellbestellung" (Quick order) option.
 
-![Schnellbesteller Ansicht](../../assets/schnellbesteller-frontend-ansicht.png)
+### Frontend access
 
-| Element | Funktion |
+![Quick order frontend](assets/quick-order-frontend.png)
+
+`Konto-Icon (1)` → `Schnellbestellungen (2)` (Quick orders)
+
+### Functionality
+
+![Quick order view](assets/quick-order-frontend-view.png)
+
+| Element | Function |
 |---------|----------|
-| Suche (1) | Nach Produktname oder -nummer suchen |
-| Anzahl (2) | Menge direkt eingeben |
-| CSV-Upload (3) | Spalten: `product_number`, `quantity` |
-| „In Warenkorb" (4) | Alle Produkte in den Warenkorb legen |
-| „Liste leeren" (5) | Gesamte Liste zurücksetzen |
+| Suche (1) | Search by product name or number |
+| Anzahl (2) (Quantity) | Enter the quantity directly |
+| CSV-Upload (3) | Columns: `product_number`, `quantity` |
+| "In Warenkorb" (4) (Add to cart) | Add all products to the shopping cart |
+| "Liste leeren" (5) (Clear list) | Reset the entire list |
 
-> CSV-Template steht zum Download bereit.
+> A CSV template is available for download.
 
 ---
 
-## 7. Mehrfachänderung
+## 7. Bulk edit
 
-Ermöglicht gleichzeitige Bearbeitung mehrerer Kunden.
+Allows several customers to be edited at the same time.
 
-![Mehrfachänderung Auswahl](../../assets/bulk-aenderung-1.png)
+![Bulk edit selection](assets/bulk-change-1.png)
 
-### Auswahl
+### Selection
 
-| Element | Funktion |
+| Element | Function |
 |---------|----------|
-| (1) | Alle Kunden auf Seite auswählen |
-| (2) | Einzelne Kunden auswählen |
-| – | Auswahl über mehrere Seiten möglich |
-| – | **Maximum: 1.000 Datensätze** |
-| (3) | Anzahl ausgewählter Kunden |
-| (4) | Button „Mehrfachänderung" |
-| (5) | Button „Löschen" |
+| (1) | Select all customers on the page |
+| (2) | Select individual customers |
+| – | Selection across several pages is possible |
+| – | **Maximum: 1,000 records** |
+| (3) | Number of selected customers |
+| (4) | **"Mehrfachänderung"** (Bulk edit) button |
+| (5) | "Löschen" button |
 
-### Ablauf
+### Procedure
 
-![Mehrfachänderung Schritt 2](../../assets/bulk-aenderung-2.png)
-![Mehrfachänderung Schritt 3](../../assets/bulk-aenderung-3.png)
-![Mehrfachänderung Schritt 4](../../assets/bulk-aenderung-4.png)
+![Bulk edit step 2](assets/bulk-change-2.png)
+![Bulk edit step 3](assets/bulk-change-3.png)
+![Bulk edit step 4](assets/bulk-change-4.png)
 
-1. Pop-Up: Liste ausgewählter Kunden prüfen / einzelne entfernen
-2. „Mehrfachänderung starten" klicken
-3. Checkboxen (1) für zu ändernde Felder setzen
-4. Neue Werte (2) eingeben
-5. „Änderungen übernehmen (3)" klicken
+1. Pop-up: check the list of selected customers / remove individual ones
+2. Click "Mehrfachänderung starten" (Start bulk edit)
+3. Set the checkboxes (1) for the fields to be changed
+4. Enter the new values (2)
+5. Click "Änderungen übernehmen (3)" (Apply changes)
 
-### Dropdown-Operatoren
+### Dropdown operators
 
-| Operator | Wirkung |
+| Operator | Effect |
 |----------|---------|
-| **Überschreiben** | Ersetzt alle vorherigen Informationen des Feldes |
-| **Leeren** | Entfernt alle Einstellungen des Blocks |
-| **Hinzufügen** | Ergänzt neue Einstellungen (bestehende bleiben) |
-| **Entfernen** | Löscht spezifische Einstellungen |
+| **Überschreiben** (Overwrite) | Replaces all previous information in the field |
+| **Leeren** (Clear) | Removes all settings of the block |
+| **Hinzufügen** (Add) | Adds new settings (existing ones remain) |
+| **Entfernen** (Remove) | Deletes specific settings |
 
-### Abschluss
+### Completion
 
-![Mehrfachänderung Abschluss](../../assets/bulk-aenderung-5.png)
+![Bulk edit completion](assets/bulk-change-5.png)
 
-- Bestätigungs-Pop-Up zeigt Kundenzahl
-- „Änderungen anwenden" klicken
-- Systemverarbeitung abwarten
-- Benachrichtigung bei Fertigstellung
-- „Schließen" → zurück zur Übersicht
+- The confirmation pop-up shows the number of customers
+- Click "Änderungen anwenden" (Apply changes)
+- Wait for the system to finish processing
+- Notification once processing is complete
+- "Schließen" (Close) → back to the overview
 
 ---
 
-## 8. AI-generierte Kunden-Klassifizierung (ab Shopware Rise Plan)
+## 8. AI-generated customer classification (from Shopware Rise Plan)
 
-Automatische KI-gestützte Klassifizierung für Marketing-Zwecke. Klassifizierungen werden als **Tags** gespeichert.
+Automatic AI-supported classification for marketing purposes. Classifications are stored as **tags**.
 
-### Schritt 1: Auswahl & Start
+### Step 1: selection & start
 
-![AI Klassifizierung Übersicht](../../assets/ai-klassifizierung-uebersicht.png)
+![AI classification overview](assets/ai-classification-overview.png)
 
-Kunden in der Übersicht auswählen → **„Klassifizieren (1)"** klicken.
+Select customers in the overview → click **"Klassifizieren (1)"** (Classify).
 
-### Schritt 2: Konfiguration
+### Step 2: configuration
 
-![AI Klassifizierung Konfiguration](../../assets/ai-klassifizierung-konfiguration.png)
+![AI classification configuration](assets/ai-classification-configuration.png)
 
-| Element | Beschreibung |
+| Element | Description |
 |---------|-------------|
-| Zusätzliche Informationen (1) | Optional: Zweck, Kampagne, Auswertungsgrund. Leer = KI nutzt nur Kundendaten |
-| Anzahl Tags (2) | Gewünschte Anzahl Klassifizierungen |
-| „Tags generieren" (3) | Startet KI-Prozess |
+| Zusätzliche Informationen (1) (Additional information) | Optional: purpose, campaign, reason for the analysis. Empty = the AI uses only the customer data |
+| Anzahl Tags (2) (Number of tags) | Desired number of classifications |
+| "Tags generieren" (3) (Generate tags) | Starts the AI process |
 
-### Schritt 3: Review & Anpassung
+### Step 3: review & adjustment
 
-![AI Klassifizierung Tags](../../assets/ai-klassifizierung-tags.png)
+![AI classification tags](assets/ai-classification-tags.png)
 
-Generierte Tags zeigen:
+The generated tags show:
 - **Name (1)**
-- **Beschreibung (2)**: Erklärung der betroffenen Kundengruppe
-- **Bedingung (3)**: Detaillierte Zuweisungskriterien
-- **Kontextmenü (4)**: Manuelle Tag-Anpassung möglich
+- **Beschreibung (2)** (Description): explanation of the customer group concerned
+- **Bedingung (3)** (Condition): detailed assignment criteria
+- **Kontextmenü (4)**: manual tag adjustment possible
 
-### Schritt 4: Zuweisung
+### Step 4: assignment
 
-- Gewünschte Tags auswählen → **„Start (5)"** klicken
-- Tags werden an Kunden mit passenden Bedingungen vergeben
-- Nicht jeder ausgewählte Kunde erhält zwingend alle Tags
+- Select the desired tags → click **"Start (5)"**
+- Tags are assigned to customers whose conditions match
+- Not every selected customer necessarily receives all tags
 
-> **Wichtig:** Erneute Klassifizierung entfernt ALLE vorherigen KI-generierten Tags und löscht diese.
+> **Important:** Running the classification again removes ALL previously AI-generated tags and deletes them.
 
 ---
 
-## Versionsmatrix
+## Version matrix
 
-| Feature | Mindestversion | Plan |
+| Feature | Minimum version | Plan |
 |---------|---------------|------|
-| Kundenübersicht (Basis) | 6.0.0 | alle |
-| Schnellbesteller | 6.5.4.0 | Evolve |
-| Unternehmen/B2B Tab | 6.5.6.0 | Evolve |
-| AI-Klassifizierung | beliebig | Rise |
-| Abonnements (Storefront) | 6.5.4.0 | Beyond |
+| Customer overview (basic) | 6.0.0 | all |
+| Quick order | 6.5.4.0 | Evolve |
+| Unternehmen/B2B tab | 6.5.6.0 | Evolve |
+| AI classification | any | Rise |
+| Abonnements (storefront) | 6.5.4.0 | Beyond |

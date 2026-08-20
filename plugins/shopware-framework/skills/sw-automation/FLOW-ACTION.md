@@ -1,6 +1,6 @@
-# Shopware 6 — Flow-Action
+# Shopware 6 — Flow action
 
-Eine Action wird im Flow Builder als Reaktion auf einen Trigger (Event) ausgeführt.
+An action runs in the Flow Builder in reaction to a trigger (event).
 
 ```php
 class FfNotifyAction extends FlowAction
@@ -10,13 +10,13 @@ class FfNotifyAction extends FlowAction
     public function handleFlow(StorableFlow $flow): void
     {
         if (!$flow->hasData(OrderAware::ORDER_ID)) { return; }
-        // Aktion ausführen (z.B. externe Benachrichtigung)
+        // run the action (e.g. an external notification)
     }
 }
 ```
 
-Registrierung via `flow.action`-Tag. `requirements()` deklariert benötigte Aware-Interfaces (Daten aus dem Trigger).
-Seit „transactional flow actions" laufen Actions nach dem Geschäftsprozess (`sw-flow-transaction`). Admin-Komponente
-für Konfiguration registrieren. Trigger/Events: `sw-flow-trigger`.
+Registration via the `flow.action` tag. `requirements()` declares the required aware interfaces (data from the trigger).
+Since "transactional flow actions", actions run after the business process (`sw-flow-transaction`). Register an admin
+component for configuration. Triggers/events: `sw-flow-trigger`.
 
-→ Flow-Builder-Details: [FLOW-ACTION-FLOW-BUILDER.md](FLOW-ACTION-FLOW-BUILDER.md) · Beispiel: [examples/FlowAction.php](examples/FlowAction.php)
+→ Flow Builder details: [FLOW-ACTION-FLOW-BUILDER.md](FLOW-ACTION-FLOW-BUILDER.md) · Example: [examples/FlowAction.php](examples/FlowAction.php)

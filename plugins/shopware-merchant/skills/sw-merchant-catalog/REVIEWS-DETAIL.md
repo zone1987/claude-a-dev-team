@@ -1,157 +1,157 @@
-# Shopware 6 – Produktbewertungen: Vollständige Referenz
+# Shopware 6 – product reviews: complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge/bewertungen  
-> Gilt ab: Shopware 6.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/kataloge/bewertungen  
+> Applies from: Shopware 6.0.0+
 
 ---
 
 ## Contents
 
-- [1. Überblick](#1-überblick)
-- [2. Bewertungsübersicht](#2-bewertungsübersicht)
-- [3. Bewertung moderieren](#3-bewertung-moderieren)
-- [4. Bewertungen deaktivieren (global)](#4-bewertungen-deaktivieren-global)
-- [5. Frontend-Darstellung für Kunden](#5-frontend-darstellung-für-kunden)
-- [6. AI-Features](#6-ai-features)
-- [7. Bewertungen im Produktkontext](#7-bewertungen-im-produktkontext)
-- [8. Tipps und Best Practices](#8-tipps-und-best-practices)
-- [9. Datenschutzhinweise](#9-datenschutzhinweise)
+- [1. Overview](#1-overview)
+- [2. Review overview](#2-review-overview)
+- [3. Moderating a review](#3-moderating-a-review)
+- [4. Deactivating reviews (globally)](#4-deactivating-reviews-globally)
+- [5. Frontend presentation for customers](#5-frontend-presentation-for-customers)
+- [6. AI features](#6-ai-features)
+- [7. Reviews in the product context](#7-reviews-in-the-product-context)
+- [8. Tips and best practices](#8-tips-and-best-practices)
+- [9. Data protection notes](#9-data-protection-notes)
 
-## 1. Überblick
+## 1. Overview
 
-Produktbewertungen ermöglichen Kunden, Rezensionen zu gekauften oder angesehenen Produkten zu hinterlassen. In der Administration können Betreiber Bewertungen moderieren, freigeben, kommentieren und mit KI-Unterstützung zusammenfassen oder übersetzen.
+Product reviews let customers leave reviews for products they have bought or viewed. In the administration, shop operators can moderate, approve and comment on reviews and have them summarised or translated with AI support.
 
-Verwaltung unter: **Kataloge > Bewertungen**
+Managed under: **Kataloge** (Catalogues) > **Bewertungen** (Reviews)
 
 ---
 
-## 2. Bewertungsübersicht
+## 2. Review overview
 
-### Spalten der Übersicht
+### Columns of the overview
 
-| Spalte | Beschreibung |
+| Column | Description |
 |---|---|
-| Titel | Titel der Bewertung (vom Kunden vergeben) |
-| Sterne | Anzahl der vergebenen Sterne (1–5) |
-| Produkt | Das bewertete Produkt |
-| Kunde | Name des bewertenden Kunden |
-| Status / Sichtbarkeit | Ob die Bewertung im Frontend sichtbar ist |
+| Titel (Title) | Title of the review (given by the customer) |
+| Sterne (Stars) | Number of stars awarded (1–5) |
+| Produkt (Product) | The reviewed product |
+| Kunde (Customer) | Name of the reviewing customer |
+| Status / Sichtbarkeit (Visibility) | Whether the review is visible in the frontend |
 
-### Ansichten
+### Views
 
-- **Übersicht**: Listenansicht mit den oben genannten Spalten
-- **Details**: Vollständiger Bewertungstext mit allen Verwaltungsoptionen
-
----
-
-## 3. Bewertung moderieren
-
-### 3.1 Bewertung freigeben (sichtbar schalten)
-
-1. Bewertung in der Übersicht öffnen (Klick auf Bewertung oder Bearbeiten im Kontextmenü)
-2. Tab **„Eigenschaften"** öffnen
-3. **„Sichtbar"** aktivieren
-4. **Sprache** der Bewertung festlegen (wichtig für Sprachfilterung im Frontend)
-5. Speichern
-
-> **Wichtig**: Bewertungen sind nach dem Einreichen durch den Kunden standardmäßig **nicht sichtbar** und müssen manuell freigegeben werden!
-
-### 3.2 Bewertung kommentieren
-
-Betreiber können eine Antwort auf Bewertungen hinterlassen:
-1. Bewertung öffnen
-2. Kommentarfeld ausfüllen
-3. Speichern
-
-Der Kommentar erscheint **unterhalb der Bewertung** im Frontend-Bereich.
-
-### 3.3 Bewertung ablehnen / unsichtbar schalten
-
-- „Sichtbar" deaktivieren → Bewertung verschwindet aus dem Frontend
-- Bewertung bleibt im System erhalten (nicht gelöscht)
+- **Übersicht** (Overview): list view with the columns named above
+- **Details**: full review text with all management options
 
 ---
 
-## 4. Bewertungen deaktivieren (global)
+## 3. Moderating a review
 
-Um das Bewertungssystem für einen Verkaufskanal komplett zu deaktivieren:
+### 3.1 Approving a review (making it visible)
 
-1. Einstellungen > Handel > **Produkte**
-2. Bereich **„Bewertungen"**
-3. Toggle **„Bewertungen anzeigen"** auf **Aus** stellen
-4. Verkaufskanal auswählen (kanalspezifische Einstellung)
-5. Speichern
+1. Open the review in the overview (click on the review or Bearbeiten (Edit) in the context menu)
+2. Open the tab **"Eigenschaften"** (Properties)
+3. Activate **"Sichtbar"** (Visible)
+4. Set the **Sprache** (Language) of the review (important for language filtering in the frontend)
+5. Save
+
+> **Important**: after being submitted by the customer, reviews are **not visible** by default and have to be approved manually!
+
+### 3.2 Commenting on a review
+
+Shop operators can leave a reply to reviews:
+1. Open the review
+2. Fill in the comment field
+3. Save
+
+The comment appears **below the review** in the frontend area.
+
+### 3.3 Rejecting a review / making it invisible
+
+- Deactivate "Sichtbar" → the review disappears from the frontend
+- The review is kept in the system (not deleted)
 
 ---
 
-## 5. Frontend-Darstellung für Kunden
+## 4. Deactivating reviews (globally)
 
-Auf der Produktdetailseite sehen Kunden:
+To deactivate the review system completely for a Verkaufskanal (Sales channel):
 
-| Element | Beschreibung |
+1. Einstellungen (Settings) > Handel (Commerce) > **Produkte** (Products)
+2. Area **"Bewertungen"**
+3. Set the toggle **"Bewertungen anzeigen"** (Show reviews) to **off**
+4. Select the Verkaufskanal (channel-specific setting)
+5. Save
+
+---
+
+## 5. Frontend presentation for customers
+
+On the product detail page, customers see:
+
+| Element | Description |
 |---|---|
-| Gesamtbewertung | Durchschnittliche Sternebewertung groß dargestellt |
-| Bewertungsverteilung | Prozentuale und absolute Anzahl je Sternanzahl |
-| Filterung | Kunden können nach Sternanzahl filtern (z. B. nur 5-Sterne) |
-| „Bewertung schreiben" Button | Öffnet das Bewertungsformular |
-| Andere Sprachbewertungen | Option zum Anzeigen von Bewertungen in anderen Sprachen |
+| Gesamtbewertung (Overall rating) | Average star rating shown in large form |
+| Bewertungsverteilung (Rating distribution) | Percentage and absolute count per number of stars |
+| Filterung (Filtering) | Customers can filter by number of stars (e.g. only 5 stars) |
+| "Bewertung schreiben" (Write review) button | Opens the review form |
+| Reviews in other languages | Option to display reviews in other languages |
 
-### Bewertungsformular (Kundensicht)
+### Review form (customer view)
 
-- Titelfeld
-- Sternebewertung (1–5)
-- Bewertungstext: **Mindestlänge 40 Zeichen**
-- Absenden-Button → Bewertung wartet auf Freigabe durch den Betreiber
-
----
-
-## 6. AI-Features
-
-### 6.1 KI-Übersetzung (ab Shopware Rise)
-
-- Aktivierung: Einstellungen > [Shopname] > Auswahl des Verkaufskanals
-- Übersetzt Bewertungen automatisch in die Sprache des Shops/Kanals
-- Kunden sehen Bewertungen in ihrer eigenen Sprache
-
-### 6.2 AI-Zusammenfassung (ab Shopware Rise)
-
-Der **AI Copilot** generiert automatisch eine Kurzzusammenfassung aus allen Bewertungen eines Produkts:
-
-- **Formulierungsstil wählbar**: Neutral oder positiv
-- **Bearbeitbar**: Die generierte Zusammenfassung kann manuell angepasst werden
-- **Im Frontend anzeigen**: Zusammenfassung erscheint prominent auf der Produktdetailseite
-
-Aktivierung in der Bewertungs-Verwaltung des jeweiligen Produkts.
+- Title field
+- Star rating (1–5)
+- Review text: **minimum length 40 characters**
+- Submit button → the review waits for approval by the shop operator
 
 ---
 
-## 7. Bewertungen im Produktkontext
+## 6. AI features
 
-Bewertungen können auch direkt aus der Produktmaske aufgerufen werden:
+### 6.1 KI-Übersetzung (AI translation) (from Shopware Rise)
 
-1. Kataloge > Produkte > Produkt öffnen
-2. Tab **„Bewertungen"**
-3. Übersicht aller Bewertungen für dieses Produkt
-4. Direkte Freigabe oder Verlinkung zur Bewertungs-Detailseite
+- Activation: Einstellungen > [shop name] > selection of the Verkaufskanal
+- Translates reviews automatically into the language of the shop/channel
+- Customers see reviews in their own language
 
----
+### 6.2 AI summary (from Shopware Rise)
 
-## 8. Tipps und Best Practices
+The **AI Copilot** automatically generates a short summary from all reviews of a product:
 
-- Bewertungsbenachrichtigungen einrichten: Neue Bewertungen per E-Mail an den Betreiber senden (über Trigger/Flows konfigurierbar)
-- **Antworten auf negative Bewertungen** sind öffentlich sichtbar und zeigen Kunden, dass der Betreiber aktiv ist
-- **Sprache korrekt setzen** bei der Freigabe – falsche Sprachzuordnung kann dazu führen, dass Bewertungen im falschen Sprachkontext erscheinen
-- Regelmäßige Moderation empfohlen (tägliches oder wöchentliches Review der neuen Bewertungen)
-- Für **Trustpilot-Integration** oder externe Bewertungstools: Shopware bietet Plugins für alle gängigen Plattformen
+- **Wording style selectable**: neutral or positive
+- **Editable**: the generated summary can be adjusted manually
+- **Show in the frontend**: the summary appears prominently on the product detail page
 
----
-
-## 9. Datenschutzhinweise
-
-- Kundendaten in Bewertungen unterliegen der DSGVO
-- Auf Anfrage von Kunden müssen Bewertungen gelöscht werden können
-- Die Löschung erfolgt direkt in der Bewertungsverwaltung über das Kontextmenü
+Activated in the review management of the respective product.
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge/bewertungen*
+## 7. Reviews in the product context
+
+Reviews can also be opened directly from the product screen:
+
+1. Kataloge > Produkte > open the product
+2. Tab **"Bewertungen"**
+3. Overview of all reviews for this product
+4. Direct approval or link to the review detail page
+
+---
+
+## 8. Tips and best practices
+
+- Set up review notifications: send new reviews by e-mail to the shop operator (configurable via triggers/flows)
+- **Replies to negative reviews** are publicly visible and show customers that the operator is active
+- **Set the language correctly** when approving – a wrong language assignment can cause reviews to appear in the wrong language context
+- Regular moderation is recommended (daily or weekly review of the new reviews)
+- For a **Trustpilot integration** or external review tools: Shopware offers plugins for all common platforms
+
+---
+
+## 9. Data protection notes
+
+- Customer data in reviews is subject to the GDPR
+- On customer request, it must be possible to delete reviews
+- Deletion happens directly in the review management via the context menu
+
+---
+
+*Source: https://docs.shopware.com/de/shopware-6-de/kataloge/bewertungen*

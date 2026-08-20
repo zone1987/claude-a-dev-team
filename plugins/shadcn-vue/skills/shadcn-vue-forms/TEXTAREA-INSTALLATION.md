@@ -1,12 +1,12 @@
 # Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add textarea
 ```
 
-## Manuell
+## Manual
 
 Copy source files from GitHub into `src/components/ui/textarea/`:
 https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/textarea

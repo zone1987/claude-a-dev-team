@@ -1,113 +1,113 @@
-# Shopware 6 – Benutzer & Rechte (vollständige Referenz)
+# Shopware 6 – Benutzer & Rechte (Users & permissions) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/System/benutzer
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/System/benutzer
 
 ---
 
 ## Contents
 
-- [Überblick](#überblick)
-- [1. Benutzerverwaltung](#1-benutzerverwaltung)
-- [2. Rollenverwaltung](#2-rollenverwaltung)
-- [3. Berechtigungssystem](#3-berechtigungssystem)
-- [4. Zusätzliche Berechtigungen (Allgemein)](#4-zusätzliche-berechtigungen-allgemein)
-- [5. Detaillierte Privilegien](#5-detaillierte-privilegien)
-- [6. Konfiguration der Admin-Suche](#6-konfiguration-der-admin-suche)
+- [Overview](#overview)
+- [1. User management](#1-user-management)
+- [2. Role management](#2-role-management)
+- [3. Permission system](#3-permission-system)
+- [4. Additional permissions (Allgemein)](#4-additional-permissions-allgemein)
+- [5. Detailed privileges](#5-detailed-privileges)
+- [6. Configuring the admin search](#6-configuring-the-admin-search)
 
-## Überblick
+## Overview
 
-**Pfad:** Einstellungen > System > Benutzer & Rechte  
-**Verfügbar ab:** 6.4.5.0
+**Path:** Einstellungen (Settings) > System > Benutzer & Rechte  
+**Available from:** 6.4.5.0
 
-Verwaltung von Administratoren und deren Zugriffsrechten in Shopware 6.
+Management of administrators and their access rights in Shopware 6.
 
 ---
 
-## 1. Benutzerverwaltung
+## 1. User management
 
-### Benutzerübersicht
-- Alle erstellten Administratoren mit Namen, Rollen, E-Mail-Adressen
-- Bearbeitung und Löschung via Kontextmenü
-- „Neuer Benutzer"-Button
+### User overview
+- All created administrators with names, roles, email addresses
+- Editing and deletion via the context menu
+- "Neuer Benutzer" (New user) button
 
-### Felder beim Anlegen eines Benutzers
+### Fields when creating a user
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Vorname / Nachname | Identifikation |
-| E-Mail-Adresse | Für Passwort-Zurücksetzen erforderlich |
-| Benutzername | Login-Anmeldedaten |
-| Passwort | Admin-Zugang (im Profil änderbar) |
-| Sprache der Benutzeroberfläche | Wählbare Sprache (im Profil änderbar) |
-| Jobtitel | Interne Berufsbezeichnung |
-| Profilbild | Zur Unterscheidung in Benutzerlisten |
-| Administrator-Status | Vollständige Rechte (selbst nicht zuweisbar) |
-| Zeitzone | Für einheitliche Zeitangaben |
-| Rollen | Zuweisung vordefinierter Rollen (nur wenn nicht Admin) |
+| Vorname / Nachname (First name / Last name) | Identification |
+| E-Mail-Adresse (Email address) | Required for password reset |
+| Benutzername (Username) | Login credentials |
+| Passwort (Password) | Admin access (changeable in the profile) |
+| Sprache der Benutzeroberfläche (Interface language) | Selectable language (changeable in the profile) |
+| Jobtitel (Job title) | Internal job designation |
+| Profilbild (Profile picture) | To distinguish users in user lists |
+| Administrator-Status | Full rights (cannot be assigned to yourself) |
+| Zeitzone (Time zone) | For consistent time information |
+| Rollen (Roles) | Assignment of predefined roles (only if not an admin) |
 
 ---
 
-## 2. Rollenverwaltung
+## 2. Role management
 
-### Rollenübersicht
-- Alle Rollen mit Name und Beschreibung
-- Bearbeitung/Löschung via Kontextmenü
-- „Neue Rolle"-Button
+### Role overview
+- All roles with name and description
+- Editing/deletion via the context menu
+- "Neue Rolle" (New role) button
 
-### Felder
-- **Name:** Aussagekräftige Bezeichnung
-- **Beschreibung:** Kurze Rollencharakterisierung
+### Fields
+- **Name:** meaningful label
+- **Beschreibung** (Description): short characterisation of the role
 
 ---
 
-## 3. Berechtigungssystem
+## 3. Permission system
 
-### Hierarchie der Hauptberechtigungen
+### Hierarchy of the main permissions
 
-| Berechtigung | Beschreibung |
+| Permission | Description |
 |---|---|
-| **Ansehen** | Nur Sichtbarkeit, keine Änderungen |
-| **Bearbeiten** | Bestehende Konfigurationen ändern |
-| **Erstellen** | Neue Entitäten hinzufügen |
-| **Löschen** | Entitäten entfernen (auto. mit Ansehen-Recht) |
-| **Alle** | Vollzugriff auf den Bereich |
+| **Ansehen** (View) | Visibility only, no changes |
+| **Bearbeiten** (Edit) | Change existing configurations |
+| **Erstellen** (Create) | Add new entities |
+| **Löschen** (Delete) | Remove entities (automatically with the view right) |
+| **Alle** (All) | Full access to the area |
 
-**Vererbungshierarchie:** Löschen → Ansehen; Erstellen → Bearbeiten → Ansehen
+**Inheritance hierarchy:** Löschen → Ansehen; Erstellen → Bearbeiten → Ansehen
 
 ---
 
-## 4. Zusätzliche Berechtigungen (Allgemein)
+## 4. Additional permissions (Allgemein)
 
-| Berechtigung | Umfang |
+| Permission | Scope |
 |---|---|
-| Grundlegende Einstellungen | Einstellungen > Shop (Adressen, Login/Reg., Produkte, SEO, Sitemap, Stammdaten, Warenkorb) + System (Mailer, Shopware-Account) |
-| Update starten | Shopware-Updates suchen und installieren |
-| Erweiterungen verwalten | Installation, Deinstallation, Aktivierung, Deaktivierung |
-| Erweiterung hochladen | ZIP-Datei-Upload in Meine Erweiterungen |
-| Ereignis-Logs | Zugriff auf Shopware- und Systemlogs |
-| Cache leeren | Caches & Indizes verwalten |
-| Import/Export | Datenimport/-export, Profil-Management |
-| Shopware Store | Store-Zugriff |
-| Eigenes Profil ändern | Persönliche Profileinstellungen |
-| Gutschriften erstellen | Gutscheinpositionen im Bestellungsmodul |
-| Apps | Gesamter Erweiterungsbereich |
+| Grundlegende Einstellungen (Basic settings) | Einstellungen > Shop (addresses, login/registration, products, SEO, sitemap, Stammdaten (Master data), cart) + System (mailer, Shopware account) |
+| Update starten (Start update) | Search for and install Shopware updates |
+| Erweiterungen verwalten (Manage extensions) | Installation, uninstallation, activation, deactivation |
+| Erweiterung hochladen (Upload extension) | ZIP file upload in Meine Erweiterungen (My extensions) |
+| Ereignis-Logs (Event logs) | Access to Shopware and system logs |
+| Cache leeren (Clear cache) | Manage Caches & Indizes (Caches & indexes) |
+| Import/Export | Data import/export, profile management |
+| Shopware Store | Store access |
+| Eigenes Profil ändern (Change own profile) | Personal profile settings |
+| Gutschriften erstellen (Create credit notes) | Voucher line items in the orders module |
+| Apps | The entire extensions area |
 
 ---
 
-## 5. Detaillierte Privilegien
+## 5. Detailed privileges
 
-Für Ausnahmefälle (z.B. Erweiterungen ohne korrektes ACL):
-- Technische Namen aller Berechtigungen
-- Granulare Lesen/Schreiben/Erstellen/Löschen-Rechte pro Funktion
-- Grau hinterlegte Checkboxen = bereits im Tab „Allgemein" vergeben
+For exceptional cases (e.g. extensions without correct ACL):
+- Technical names of all permissions
+- Granular read/write/create/delete rights per function
+- Greyed-out checkboxes = already granted in the "Allgemein" (General) tab
 
-### Fehlerbehandlung
-Fehlermeldungen zeigen fehlende Berechtigungen (z.B. `order`, `order_customer`, `order_delivery` — Bearbeiten-Recht) für manuelle Nachkonfiguration.
+### Error handling
+Error messages show the missing permissions (e.g. `order`, `order_customer`, `order_delivery` — edit right) for manual reconfiguration.
 
 ---
 
-## 6. Konfiguration der Admin-Suche
+## 6. Configuring the admin search
 
-Pro Benutzer konfigurierbar:
-- Selektive Bereichsfreigabe für Suchergebnisse
-- Beispiel: Promotions-Bereich aktiviert → Suche nach Rabatt-Codes möglich
+Configurable per user:
+- Selective release of areas for search results
+- Example: promotions area enabled → searching for discount codes becomes possible

@@ -1,20 +1,20 @@
 # NavigationMenu — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add navigation-menu
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install dependencies:
 
 ```bash
 npm install reka-ui @vueuse/core @lucide/vue class-variance-authority
 ```
 
-2. Folgende Dateien nach `src/components/ui/navigation-menu/` kopieren:
+2. Copy the following files to `src/components/ui/navigation-menu/`:
    - `NavigationMenu.vue`
    - `NavigationMenuContent.vue`
    - `NavigationMenuIndicator.vue`
@@ -41,5 +41,5 @@ import {
 } from "@/components/ui/navigation-menu"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/navigation-menu/index.ts`

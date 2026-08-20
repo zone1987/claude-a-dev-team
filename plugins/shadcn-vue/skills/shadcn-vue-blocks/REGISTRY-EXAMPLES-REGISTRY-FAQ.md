@@ -123,4 +123,4 @@ To add a new animation you add it to `tailwind.config.theme.extend.animation` an
 
 
 ---
-Quelle: `unovue/shadcn-vue` (dev) `apps/v4/content/docs/registry/faq.md`
+Source: `unovue/shadcn-vue` (dev) `apps/v4/content/docs/registry/faq.md`

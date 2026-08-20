@@ -1,14 +1,14 @@
-# Shopware 6 — Sales-Agent-API (Commercial)
+# Shopware 6 — Sales Agent API (Commercial)
 
-**SwagSalesAgent** ist eine Commercial-Extension: Vertriebsmitarbeiter (Sales Agents) werden in der Administration
-verwaltet, bekommen Kunden zugewiesen und können in deren Kontext agieren (Angebote/Bestellungen). Die Extension
-bringt eigene API-Endpunkte mit (zusätzlich zu Admin/Store API).
+**SwagSalesAgent** is a commercial extension: sales agents are managed in the Administration, get customers
+assigned to them and can act in their context (quotes/orders). The extension ships its own API endpoints
+(in addition to the Admin/Store API).
 
-- Nur verfügbar, wenn die Commercial-/Sales-Agent-Extension installiert ist.
-- Authentifizierung folgt dem jeweiligen Kontext (Admin-OAuth für Verwaltung; Sales-Agent-spezifische Auth/Token
-  für die Agent-App) — genaues Schema je installierter Version.
-- **Verbindliche, vollständige Endpunktliste**: die installierte Extension exponiert ihre Routen in der OpenAPI-Spec —
-  über den API-Katalog erfassen (`sw-api-catalog` / `/sw-api-map`); die offizielle Referenz liegt unter
-  `shopware.stoplight.io/docs/swag-sales-agent` (JS-Doku, im Browser).
+- Only available when the Commercial/Sales Agent extension is installed.
+- Authentication follows the respective context (admin OAuth for management; Sales-Agent-specific auth/token
+  for the agent app) — the exact scheme depends on the installed version.
+- **Authoritative, complete endpoint list**: the installed extension exposes its routes in the OpenAPI spec —
+  capture it via the API catalogue (`sw-api-catalog` / `/sw-api-map`); the official reference lives at
+  `shopware.stoplight.io/docs/swag-sales-agent` (JS docs, in the browser).
 
-Für Standard-Verkaufsprozesse die Store API (`sw-store-api-endpoints`); Sales-Agent nur bei installierter B2B-Extension.
+For standard sales processes use the Store API (`sw-store-api-endpoints`); Sales Agent only with the B2B extension installed.

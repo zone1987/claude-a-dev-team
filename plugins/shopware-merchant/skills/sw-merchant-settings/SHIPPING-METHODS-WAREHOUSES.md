@@ -1,65 +1,65 @@
-# Shopware 6 – Lagerhäuser (vollständige Referenz)
+# Shopware 6 – Lagerhäuser (Warehouses) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware6-de/einstellungen/lagerhaeuser
+Source: https://docs.shopware.com/de/shopware6-de/einstellungen/lagerhaeuser
 
 ---
 
-## Überblick
+## Overview
 
-**Pfad:** Einstellungen > Handel > Lagerhäuser  
-**Verfügbar ab:** 6.4.19.0  
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Lagerhäuser  
+**Available from:** 6.4.19.0  
 **Plan:** Commercial — Shopware Beyond
 
-Ermöglicht das Anlegen von Lagerhäusern und deren Zusammenfassung in Lagerhausgruppen.
+Allows warehouses to be created and grouped into warehouse groups.
 
 ---
 
-## Lagerhäuser
+## Warehouses
 
-### Anlage
+### Creation
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Lagerhaus-Name | Eindeutige Bezeichnung |
-| Interne Beschreibung | Zusatzinformationen (Adresse, Produktart) |
-| Lagerhausgruppen-Zuweisung | Dropdown zur Gruppen-Zuordnung |
+| Lagerhaus-Name (Warehouse name) | Unique label |
+| Interne Beschreibung (Internal description) | Additional information (address, product type) |
+| Lagerhausgruppen-Zuweisung (Warehouse group assignment) | Dropdown for assigning a group |
 
-### Bearbeitung & Löschung
-- `...`-Menü → „Bearbeiten" oder „Löschen"
-- Alternativ: In Bearbeitungsmaske „Lagerhaus löschen"
+### Editing & deletion
+- `...` menu → "Bearbeiten" (Edit) or "Löschen" (Delete)
+- Alternatively: in the edit form "Lagerhaus löschen" (Delete warehouse)
 
-### Produktzuweisung
-Im Produkt unter „Lagerbestand & Lieferbarkeit" → Lagerhausgruppe auswählen → detaillierte Lager-Einstellungen erscheinen.
+### Product assignment
+In the product under "Lagerbestand & Lieferbarkeit" (Stock & deliverability) → select a warehouse group → detailed stock settings appear.
 
 ---
 
-## Lagerhausgruppen
+## Warehouse groups
 
-### Anlage
+### Creation
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Name | Pflichtfeld |
-| Priorität | Numerische Priorisierung (bestimmt Leerungs-Reihenfolge) |
-| Interne Beschreibung | Zusatzinformationen |
-| Zugewiesene Regel | Rule-basierte Aktivierung für Bestellungen |
+| Name | Mandatory field |
+| Priorität (Priority) | Numeric prioritisation (determines the depletion order) |
+| Interne Beschreibung | Additional information |
+| Zugewiesene Regel (Assigned rule) | Rule-based activation for orders |
 
-### Lagerhäuser hinzufügen
-1. „Lagerhäuser hinzufügen" klicken
-2. Lagerhäuser per Checkbox auswählen
-3. Bestätigen
+### Adding warehouses
+1. Click "Lagerhäuser hinzufügen" (Add warehouses)
+2. Select warehouses via checkbox
+3. Confirm
 
-### Priorisierung
-Doppelklick auf Prioritätsspalte → Wert anpassen → Haken-Button speichern.
+### Prioritisation
+Double-click the priority column → adjust the value → save with the check-mark button.
 
-### Zuweisung aufheben
-- Via `...`-Button in der Gruppe → „Löschen"
-- Oder: X im Gruppeneintrag des Lagerhauses klicken
+### Removing an assignment
+- Via the `...` button in the group → "Löschen"
+- Or: click the X in the warehouse's group entry
 
 ---
 
-## Anwendungsfälle
+## Use cases
 
-- **Internationale Lieferoptimierung:** Regionale Lagergruppen für lokale Lieferung
-- **Regelgestützte Verfügbarkeit:** Rule Builder für Lageraktivierung
-- **Priorisierte Lagerung:** Lagerhaus-Reihenfolge steuert Bestandsentnahme
+- **International delivery optimisation:** regional warehouse groups for local delivery
+- **Rule-based availability:** Rule Builder for warehouse activation
+- **Prioritised storage:** warehouse order controls stock withdrawal

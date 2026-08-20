@@ -1,6 +1,6 @@
-# Shopware 6 — Storefront-Customization im Theme: Vollständige Referenz
+# Shopware 6 — Storefront customization in the theme: full reference
 
-Quellen: `guides/plugins/themes/styling/add-css-js-to-theme.md`,
+Sources: `guides/plugins/themes/styling/add-css-js-to-theme.md`,
 `guides/plugins/themes/styling/override-bootstrap-variables-in-a-theme.md`,
 `guides/plugins/themes/styling/override-theme-breakpoints.md`,
 `guides/plugins/themes/inheritance/add-theme-inheritance-without-resources.md`
@@ -9,17 +9,17 @@ Quellen: `guides/plugins/themes/styling/add-css-js-to-theme.md`,
 
 ## Contents
 
-- [SCSS in ein Theme einbinden](#scss-in-ein-theme-einbinden)
-- [Bootstrap-Variablen überschreiben](#bootstrap-variablen-überschreiben)
-- [Responsive Breakpoints anpassen](#responsive-breakpoints-anpassen)
-- [JavaScript in ein Theme einbinden](#javascript-in-ein-theme-einbinden)
-- [Theme ohne Shopware-Skin (nur Bootstrap)](#theme-ohne-shopware-skin-nur-bootstrap)
-- [Namespace-Referenzen in theme.json](#namespace-referenzen-in-themejson)
-- [Schnellreferenz: SCSS-Variablen von Shopware](#schnellreferenz-scss-variablen-von-shopware)
+- [Including SCSS in a theme](#including-scss-in-a-theme)
+- [Overriding Bootstrap variables](#overriding-bootstrap-variables)
+- [Adjusting responsive breakpoints](#adjusting-responsive-breakpoints)
+- [Including JavaScript in a theme](#including-javascript-in-a-theme)
+- [Theme without the Shopware skin (Bootstrap only)](#theme-without-the-shopware-skin-bootstrap-only)
+- [Namespace references in theme.json](#namespace-references-in-themejson)
+- [Quick reference: Shopware SCSS variables](#quick-reference-shopware-scss-variables)
 
-## SCSS in ein Theme einbinden
+## Including SCSS in a theme
 
-Der PHP SASS Compiler verarbeitet SCSS. Einstiegspunkte sind in `theme.json` definiert:
+The PHP SASS compiler processes SCSS. Entry points are defined in `theme.json`:
 
 ```json
 {
@@ -31,18 +31,18 @@ Der PHP SASS Compiler verarbeitet SCSS. Einstiegspunkte sind in `theme.json` def
 }
 ```
 
-**Reihenfolge ist entscheidend:**
-1. `overrides.scss` — **vor** `@Storefront` für Variable-Overrides
-2. `@Storefront` — das Default-Shopware-Theme
-3. `base.scss` — eigenes SCSS (nach Storefront → kann Klassen überschreiben)
+**The order is decisive:**
+1. `overrides.scss` — **before** `@Storefront` for variable overrides
+2. `@Storefront` — the default Shopware theme
+3. `base.scss` — your own SCSS (after Storefront → can override classes)
 
-### base.scss — Eigenes CSS/SCSS
+### base.scss — your own CSS/SCSS
 
 ```
 src/Resources/app/storefront/src/scss/base.scss
 ```
 
-Beispiel:
+Example:
 ```scss
 body {
     background-color: blue;
@@ -50,23 +50,23 @@ body {
 
 .custom-header {
     font-size: 2rem;
-    color: $sw-color-brand-primary; // Theme-Variable verwenden
+    color: $sw-color-brand-primary; // use a theme variable
 }
 ```
 
-Nach Änderungen: `bin/console theme:compile`
+After changes: `bin/console theme:compile`
 
 ---
 
-## Bootstrap-Variablen überschreiben
+## Overriding Bootstrap variables
 
-Bootstrap 4/5 verwendet `!default` für Variablen. Overrides müssen **vor** dem Import deklariert werden.
+Bootstrap 4/5 uses `!default` for variables. Overrides must be declared **before** the import.
 
-Der `overrides.scss`-Einstiegspunkt in `theme.json` steht bewusst **vor** `@Storefront`:
+The `overrides.scss` entry point in `theme.json` is deliberately placed **before** `@Storefront`:
 
 ```json
 "style": [
-    "app/storefront/src/scss/overrides.scss",  ← HIER: vor @Storefront
+    "app/storefront/src/scss/overrides.scss",  ← HERE: before @Storefront
     "@Storefront",
     "app/storefront/src/scss/base.scss"
 ]
@@ -86,7 +86,7 @@ https://getbootstrap.com/docs/4.0/getting-started/theming/#variable-defaults
 
 $border-radius: 0;
 
-// Weitere Override-Beispiele
+// Further override examples
 $icon-base-color: #f00;
 $modal-backdrop-bg: rgba(255, 0, 0, 0.5);
 $disabled-btn-bg: #f00;
@@ -94,18 +94,18 @@ $disabled-btn-border-color: #fc8;
 $font-weight-semibold: 300;
 ```
 
-> **Wichtig:** **Nur** Variablen-Overrides in `overrides.scss`. Kein CSS wie `.container { background: #f00 }`.
-> Beim Watch-Mode (`storefront-watch`) werden Variablen dynamisch injiziert — CSS-Selektoren
-> in `overrides.scss` können mehrfach im Build erscheinen.
+> **Important:** **Only** variable overrides in `overrides.scss`. No CSS like `.container { background: #f00 }`.
+> In watch mode (`storefront-watch`) variables are injected dynamically — CSS selectors
+> in `overrides.scss` may appear more than once in the build.
 
 ---
 
-## Responsive Breakpoints anpassen
+## Adjusting responsive breakpoints
 
-Seit Shopware **6.7.8.0** gibt es sechs Theme-Config-Felder für Breakpoints.
-Diese sind im Admin **versteckt** (nur Entwickler-Feature).
+As of Shopware **6.7.8.0** there are six theme config fields for breakpoints.
+They are **hidden** in the admin (a developer-only feature).
 
-### In theme.json definieren
+### Defining them in theme.json
 
 ```json
 {
@@ -123,12 +123,12 @@ Diese sind im Admin **versteckt** (nur Entwickler-Feature).
 }
 ```
 
-Diese Werte werden automatisch in **Twig** und **JavaScript** verfügbar gemacht.
+These values are made available automatically in **Twig** and **JavaScript**.
 
-### Bootstrap-Breakpoints in SCSS synchronisieren
+### Synchronizing Bootstrap breakpoints in SCSS
 
-Da Shopware Bootstrap-Defaults in CSS verwendet, müssen SCSS-Breakpoints separat überschrieben werden.
-Die Theme-Config-Werte stehen in SCSS als Variablen zur Verfügung:
+Because Shopware uses Bootstrap defaults in CSS, SCSS breakpoints have to be overridden separately.
+The theme config values are available in SCSS as variables:
 
 ```scss
 // src/Resources/app/storefront/src/scss/overrides.scss
@@ -142,15 +142,15 @@ $grid-breakpoints: (
 );
 ```
 
-**Single Source of Truth:** Breakpoints nur in `theme.json` definieren, in SCSS darauf referenzieren.
+**Single source of truth:** define breakpoints only in `theme.json` and reference them in SCSS.
 
 ---
 
-## JavaScript in ein Theme einbinden
+## Including JavaScript in a theme
 
-JavaScript wird mit **webpack** (via shopware-cli) kompiliert.
+JavaScript is compiled with **webpack** (via shopware-cli).
 
-### Einstiegspunkt
+### Entry point
 
 ```
 src/Resources/app/storefront/src/main.js
@@ -161,15 +161,15 @@ src/Resources/app/storefront/src/main.js
 console.log('SwagBasicExampleTheme JS loaded');
 ```
 
-### Kompilieren
+### Compiling
 
 ```bash
 shopware-cli project storefront-build
 ```
 
-Ausgabe: `src/Resources/app/storefront/dist/storefront/js/swag-basic-example-theme/swag-basic-example-theme.js`
+Output: `src/Resources/app/storefront/dist/storefront/js/swag-basic-example-theme/swag-basic-example-theme.js`
 
-### In theme.json referenzieren
+### Referencing it in theme.json
 
 ```json
 {
@@ -182,9 +182,9 @@ Ausgabe: `src/Resources/app/storefront/dist/storefront/js/swag-basic-example-the
 
 ---
 
-## Theme ohne Shopware-Skin (nur Bootstrap)
+## Theme without the Shopware skin (Bootstrap only)
 
-Wenn das Theme **ausschließlich** auf Bootstrap aufbauen soll (ohne das Shopware-Storefront-Skin):
+If the theme should build **exclusively** on Bootstrap (without the Shopware Storefront skin):
 
 ```json
 {
@@ -196,20 +196,20 @@ Wenn das Theme **ausschließlich** auf Bootstrap aufbauen soll (ohne das Shopwar
 }
 ```
 
-**Wichtige Einschränkungen für `@StorefrontBootstrap`:**
-- Nur in der `style`-Sektion verwendbar — **nicht** in `views` oder `script`
-- Alle Theme-Variablen (`$sw-color-brand-primary` etc.) sind weiterhin verfügbar
-- `@Storefront` und `@StorefrontBootstrap` **dürfen nicht gleichzeitig** verwendet werden
-- `@StorefrontBootstrap` enthält **kein** `@Plugins` — muss explizit hinzugefügt werden
-- Das gesamte SCSS aus `src/Storefront/Resources/app/storefront/src/scss/skin` entfällt
+**Important restrictions for `@StorefrontBootstrap`:**
+- Usable only in the `style` section — **not** in `views` or `script`
+- All theme variables (`$sw-color-brand-primary` etc.) remain available
+- `@Storefront` and `@StorefrontBootstrap` **must not** be used at the same time
+- `@StorefrontBootstrap` does **not** contain `@Plugins` — it must be added explicitly
+- All SCSS from `src/Storefront/Resources/app/storefront/src/scss/skin` is omitted
 
-**Anwendungsfall:** Vollständig eigenes Design ohne Shopware-Storefront-Styling als Basis.
+**Use case:** a completely custom design without Shopware Storefront styling as its basis.
 
 ---
 
-## Namespace-Referenzen in theme.json
+## Namespace references in theme.json
 
-Einzelne Dateien aus anderen Themes/Namespaces importieren:
+Importing individual files from other themes/namespaces:
 
 ```json
 {
@@ -230,17 +230,17 @@ Einzelne Dateien aus anderen Themes/Namespaces importieren:
 
 ---
 
-## Schnellreferenz: SCSS-Variablen von Shopware
+## Quick reference: Shopware SCSS variables
 
-Shopware injiziert alle `config.fields`-Einträge automatisch als SCSS-Variablen:
+Shopware injects all `config.fields` entries automatically as SCSS variables:
 
 ```scss
-// Aus theme.json config.fields automatisch verfügbar:
-color: $sw-color-brand-primary;      // Primärfarbe
+// automatically available from theme.json config.fields:
+color: $sw-color-brand-primary;      // primary color
 background: $sw-color-brand-secondary;
 border-radius: $sw-border-radius;
 font-family: $sw-font-family-base;
 
-// Breakpoints (ab 6.7.8.0):
+// breakpoints (as of 6.7.8.0):
 @media (min-width: $sw-breakpoint-lg) { ... }
 ```

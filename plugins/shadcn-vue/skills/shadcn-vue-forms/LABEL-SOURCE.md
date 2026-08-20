@@ -1,4 +1,4 @@
-# Label — Vollstandiger Quellcode
+# Label — Complete Source Code
 
 ## index.ts
 
@@ -37,5 +37,5 @@ const delegatedProps = reactiveOmit(props, "class")
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/label/`

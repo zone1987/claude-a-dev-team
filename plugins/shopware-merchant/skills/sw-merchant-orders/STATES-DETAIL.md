@@ -1,180 +1,180 @@
-# Shopware 6 – Status-Management: Vollständige Referenz
+# Shopware 6 – Status management: complete reference
 
 ## Contents
 
-- [Grundprinzip: Bestellung und Zahlung sind getrennt](#grundprinzip-bestellung-und-zahlung-sind-getrennt)
-- [Die drei Status-Dimensionen](#die-drei-status-dimensionen)
-- [Status ändern – So geht es](#status-ändern-so-geht-es)
-- [After-Order-Payment: Zahlung nach Bestellung abschließen](#after-order-payment-zahlung-nach-bestellung-abschließen)
-- [Flow-Builder: Automatisierungen auf Statusänderungen](#flow-builder-automatisierungen-auf-statusänderungen)
-- [Gastbestellungen: Statusanzeige](#gastbestellungen-statusanzeige)
-- [Quelle](#quelle)
+- [Basic principle: order and payment are separate](#basic-principle-order-and-payment-are-separate)
+- [The three status dimensions](#the-three-status-dimensions)
+- [Changing a status – how it works](#changing-a-status--how-it-works)
+- [After-order payment: completing payment after the order](#after-order-payment-completing-payment-after-the-order)
+- [Flow Builder: automations on status changes](#flow-builder-automations-on-status-changes)
+- [Guest orders: status display](#guest-orders-status-display)
+- [Source](#source)
 
-## Grundprinzip: Bestellung und Zahlung sind getrennt
+## Basic principle: order and payment are separate
 
-> **Wichtig:** In Shopware 6 sind Zahlung und Bestellung **komplett voneinander losgelöst**.  
-> Anders als in Shopware 5 wird eine Bestellung sofort angelegt, sobald der Kunde auf **„Zahlungspflichtig bestellen"** klickt – unabhängig davon, ob die Zahlung erfolgreich war.
+> **Important:** in Shopware 6, payment and order are **completely decoupled** from each other.  
+> Unlike in Shopware 5, an order is created immediately as soon as the customer clicks **"Zahlungspflichtig bestellen"** (Place binding order) – regardless of whether the payment succeeded.
 
 ---
 
-## Die drei Status-Dimensionen
+## The three status dimensions
 
-### 1. Bestellstatus
+### 1. Bestellstatus (Order status)
 
-![Statusübersicht](../../assets/status-uebersicht.jpg)
+![Status overview](assets/status-overview.jpg)
 
-| Status | Bedeutung |
+| Status | Meaning |
 |---|---|
-| **Offen** | Bestellung eingegangen, noch keine Bearbeitung |
-| **In Bearbeitung** | Bestellung wird aktiv bearbeitet |
-| **Abgeschlossen** | Bestellung vollständig abgewickelt |
-| **Storniert** | Bestellung storniert; Lagerbestand wird **freigegeben** |
-| **Abgelehnt** | Bestellung wurde abgelehnt |
-| **Ausstehende Freigabe** | Bestellung wartet auf manuelle Freigabe |
+| **Offen** (Open) | Order received, not yet processed |
+| **In Bearbeitung** (In progress) | Order is being actively processed |
+| **Abgeschlossen** (Done) | Order fully completed |
+| **Storniert** (Cancelled) | Order cancelled; stock is **released** |
+| **Abgelehnt** (Rejected) | Order was rejected |
+| **Ausstehende Freigabe** (Pending approval) | Order is waiting for manual approval |
 
-> **Stornierungslogik:** Nur das Setzen des **Bestellstatus** auf „Storniert" gibt reservierte Lagermengen wieder frei. Das Ändern von Zahlungs- oder Lieferstatus auf „Storniert" allein genügt **nicht**.
+> **Cancellation logic:** only setting the **Bestellstatus** to "Storniert" releases reserved stock quantities again. Changing the payment or delivery status to "Storniert" alone is **not** sufficient.
 
-#### Bestellstatus-Übergänge
+#### Bestellstatus transitions
 
-![Order Transitions](../../assets/order-transitions.png)
+![Order transitions](assets/order-transitions.png)
 
 ```
 Offen
   └─→ In Bearbeitung
         ├─→ Abgeschlossen
         └─→ Storniert
-  └─→ Storniert (direkt)
+  └─→ Storniert (directly)
 ```
 
 ---
 
-### 2. Zahlungsstatus
+### 2. Zahlungsstatus (Payment status)
 
-| Status | Bedeutung |
+| Status | Meaning |
 |---|---|
-| **Offen** | Zahlung noch nicht erfolgt (Initialstatus) |
-| **In Bearbeitung** | Zahlung wird verarbeitet |
-| **Fehlgeschlagen** | Zahlung abgebrochen oder fehlgeschlagen |
-| **Bezahlt** | Zahlung vollständig eingegangen |
-| **Teilweise bezahlt** | Nur ein Teil der Summe bezahlt |
-| **Erstattet** | Vollständige Rückerstattung |
-| **Teilweise erstattet** | Teilrückerstattung |
-| **Genehmigt** | Zahlung genehmigt (z. B. Vorkasse) |
-| **Erinnerung zugeschickt** | Zahlungserinnerung wurde gesendet |
-| **Beauftragt** | Zahlung beauftragt (z. B. Lastschrift) |
-| **Widerrufen** | Zahlung widerrufen |
-| **Storniert** | Zahlung storniert |
+| **Offen** | Payment not yet made (initial status) |
+| **In Bearbeitung** | Payment is being processed |
+| **Fehlgeschlagen** (Failed) | Payment aborted or failed |
+| **Bezahlt** (Paid) | Payment received in full |
+| **Teilweise bezahlt** (Partially paid) | Only part of the total has been paid |
+| **Erstattet** (Refunded) | Full refund |
+| **Teilweise erstattet** (Partially refunded) | Partial refund |
+| **Genehmigt** (Authorised) | Payment authorised (e.g. prepayment) |
+| **Erinnerung zugeschickt** (Reminded) | A payment reminder has been sent |
+| **Beauftragt** (In progress/ordered) | Payment instructed (e.g. direct debit) |
+| **Widerrufen** (Chargeback) | Payment revoked |
+| **Storniert** | Payment cancelled |
 
 ---
 
-### 3. Lieferstatus
+### 3. Lieferstatus (Delivery status)
 
-![Lieferstatus](../../assets/lieferstatus.png)
+![Lieferstatus](assets/delivery-status.png)
 
-| Status | Bedeutung |
+| Status | Meaning |
 |---|---|
-| **Offen** | Noch nicht versendet |
-| **Geliefert** | Vollständig geliefert |
-| **Teilweise geliefert** | Nur ein Teil der Bestellung geliefert |
-| **Retoure** | Vollständige Retoure |
-| **Teilretoure** | Teilweise zurückgesendet |
-| **Storniert** | Versand storniert |
+| **Offen** | Not yet shipped |
+| **Geliefert** (Shipped) | Delivered in full |
+| **Teilweise geliefert** (Partially shipped) | Only part of the order delivered |
+| **Retoure** (Returned) | Full return |
+| **Teilretoure** (Partially returned) | Partially sent back |
+| **Storniert** | Shipment cancelled |
 
 ---
 
-## Status ändern – So geht es
+## Changing a status – how it works
 
-### Einzelbestellung
+### Single order
 
-![Status aktualisieren](../../assets/status-aktualisieren.png)
+![Updating a status](assets/status-update.png)
 
-1. Bestellung öffnen
-2. Im Info-Bereich (Tab „Allgemein") das gewünschte Status-Dropdown anklicken
-3. Im Modal den Ziel-Status auswählen
-4. Optional: **E-Mail an Kunden senden** aktivieren
-5. Wenn E-Mail aktiv: Dokument als Anhang wählen (z. B. Rechnung)
-6. E-Mail-Template zuweisen
+1. Open the order
+2. In the info area ("Allgemein" (General) tab), click the desired status dropdown
+3. Select the target status in the modal
+4. Optional: enable **E-Mail an Kunden senden** (Send email to customer)
+5. If email is enabled: choose a document as an attachment (e.g. the invoice)
+6. Assign an email template
 
-![E-Mail Template zuweisen](../../assets/email-template-zuweisen.png)
+![Assigning an email template](assets/email-template-zuweisen.png)
 
-### Mehrere Bestellungen (Bulk)
+### Several orders (bulk)
 
-Über die Mehrfachauswahl in der Bestellliste können Bestellstatus, Zahlungsstatus und Lieferstatus für bis zu **1.000 Bestellungen** gleichzeitig geändert werden (siehe `sw-merchant-orders-overview`).
+Using the multi-selection in the order list, order status, payment status and delivery status can be changed for up to **1,000 orders** at once (see `sw-merchant-orders-overview`).
 
 ---
 
-## After-Order-Payment: Zahlung nach Bestellung abschließen
+## After-order payment: completing payment after the order
 
-### Prozessablauf
+### Process flow
 
-1. Bestellung wird angelegt (Klick auf „Zahlungspflichtig bestellen")
-2. Initialer Zahlungsstatus: **Offen**
-3. Wenn Zahlung abgeschlossen: Status wechselt auf **Bezahlt**
-4. Wenn Zahlung unterbrochen/fehlgeschlagen: Status wird **Fehlgeschlagen**
+1. The order is created (click on "Zahlungspflichtig bestellen")
+2. Initial payment status: **Offen**
+3. If the payment is completed: status changes to **Bezahlt**
+4. If the payment is interrupted/fails: status becomes **Fehlgeschlagen**
 
-### Kundenoptionen bei fehlgeschlagener Zahlung
+### Customer options after a failed payment
 
-Kunden können die Zahlung nachholen über:
+Customers can complete the payment later via:
 
-| Weg | Aktion |
+| Route | Action |
 |---|---|
-| Kundenkonto | Bestellungen > „Zahlung abschließen"-Button |
-| Kundenkonto | „..."-Menü > „Zahlungsart ändern" |
-| E-Mail | Link aus Bestätigungs-E-Mail nutzen |
+| Customer account | Bestellungen (Orders) > "Zahlung abschließen" (Complete payment) button |
+| Customer account | "..." menu > "Zahlungsart ändern" (Change payment method) |
+| Email | Use the link from the confirmation email |
 
-**Zahlungsänderungs-Link:**
-- Führt zurück in den Checkout
-- Kunde wählt neue oder bestehende Zahlungsart
-- Zahlung wird erneut ausgeführt
+**Payment change link:**
+- Leads back into the checkout
+- The customer selects a new or existing payment method
+- The payment is executed again
 
-> Sobald der Zahlungsstatus **„Bezahlt"** erreicht wurde, kann der Kunde die Bestellung nur noch stornieren (nicht mehr die Zahlungsart ändern).
+> Once the payment status has reached **"Bezahlt"**, the customer can only cancel the order (no longer change the payment method).
 
-### Einstellung: Stornierung erlauben
+### Setting: allow cancellation
 
-Um Kunden die Stornierung nach einem Zahlungsabbruch zu ermöglichen:
+To let customers cancel after an aborted payment:
 
-**Admin-Pfad:** Einstellungen > Warenkorb > **„Stornierungen erlauben"** aktivieren
+**Admin path:** Einstellungen (Settings) > Warenkorb (Cart) > enable **"Stornierungen erlauben"** (Allow cancellations)
 
 ---
 
-## Flow-Builder: Automatisierungen auf Statusänderungen
+## Flow Builder: automations on status changes
 
-Unter **Einstellungen > Flow-Builder** können Workflows konfiguriert werden, die auf Statusänderungen reagieren:
+Under **Einstellungen > Flow Builder** you can configure workflows that react to status changes:
 
-### Flow-Konfiguration
+### Flow configuration
 
-| Element | Beschreibung |
+| Element | Description |
 |---|---|
-| **Trigger** | Auslöser (z. B. Bestellstatus geändert, Zahlungsstatus geändert) |
-| **Bedingung** | Regel aus dem Rule-Builder (z. B. bestimmte Zahlungsart) |
-| **Aktion (wenn wahr)** | z. B. E-Mail senden, Dokument erstellen |
-| **Aktion (wenn falsch)** | Alternative Aktion |
+| **Trigger** | Trigger event (e.g. order status changed, payment status changed) |
+| **Bedingung** (Condition) | Rule from the Rule Builder (e.g. a specific payment method) |
+| **Aktion (wenn wahr)** (Action if true) | e.g. send email, create document |
+| **Aktion (wenn falsch)** (Action if false) | Alternative action |
 
-### E-Mail-Empfänger-Optionen
+### Email recipient options
 
-| Option | Empfänger |
+| Option | Recipient |
 |---|---|
-| Standard | Systemdefinierte Empfänger |
-| Administrator | Alle als Administrator markierten Benutzer |
-| Eigener Empfänger | Benutzerdefinierte E-Mail-Adressen |
+| Standard (Default) | System-defined recipients |
+| Administrator | All users flagged as administrators |
+| Eigener Empfänger (Custom recipient) | User-defined email addresses |
 
-### Flow-Tabellen-Spalten
+### Flow table columns
 
-1. Aktiv (An/Aus)
-2. Name (Pflichtfeld)
-3. Trigger (Pflichtfeld)
-4. Beschreibung (optional)
-5. Flow-Optionen (Bearbeiten / Löschen)
-6. „Flow hinzufügen"-Button
-
----
-
-## Gastbestellungen: Statusanzeige
-
-Gäste ohne Kundenkonto erhalten eine Bestätigungs-E-Mail mit einem Link. Nach Authentifizierung über **E-Mail + PLZ** können sie den Bestell- und Lieferstatus einsehen.
+1. Aktiv (Active) (on/off)
+2. Name (mandatory field)
+3. Trigger (mandatory field)
+4. Beschreibung (Description) (optional)
+5. Flow options (Bearbeiten (Edit) / Löschen (Delete))
+6. "Flow hinzufügen" (Add flow) button
 
 ---
 
-## Quelle
+## Guest orders: status display
+
+Guests without a customer account receive a confirmation email containing a link. After authenticating with **email + postcode** they can view the order and delivery status.
+
+---
+
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht
 https://docs.shopware.com/de/shopware-6-de/bestellungen/zahlungsvorgang-nach-bestellung

@@ -1,16 +1,16 @@
 # Shopware 6 – Scene Editor
 
-3D-Szenen erstellen, Produkte platzieren und Produktbilder exportieren.
-Pfad: **Inhalte > Scene Editor** — verfügbar ab **Rise Plan**, ab Version **6.6.8.1** (Beta).
+Create 3D scenes, place products and export product images.
+Path: **Inhalte > Scene Editor** (Content > Scene Editor) — available from the **Rise plan**, from version **6.6.8.1** (beta).
 
-## Schnelleinstieg
+## Quick start
 
-1. **Inhalte > Scene Editor** → **Neue Szene erstellen**
-2. Szenennamen vergeben → automatisch in die Bearbeitung
-3. 3D-Objekte hinzufügen, positionieren, beleuchten
-4. **Bild exportieren** → Kamera & Auflösung wählen → Speichern
+1. **Inhalte > Scene Editor** → **Neue Szene erstellen** (Create new scene)
+2. Assign a scene name → automatically into editing
+3. Add 3D objects, position them, light them
+4. **Bild exportieren** (Export image) → choose the camera & resolution → save
 
-Vollständige Referenz: `SCENE-EDITOR-DETAIL.md`
+Full reference: `SCENE-EDITOR-DETAIL.md`
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor

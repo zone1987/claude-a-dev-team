@@ -1,14 +1,14 @@
-# DropdownMenu — Beispiele
+# DropdownMenu — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dropdown-menu/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dropdown-menu/`
 
 ## Contents
 
 - [Basic (DropdownMenuBasic.vue)](#basic-dropdownmenubasicvue)
-- [Mit Checkboxen (DropdownMenuWithCheckboxes)](#mit-checkboxen-dropdownmenuwithcheckboxes)
-- [Mit Radio-Gruppe (DropdownMenuWithRadio)](#mit-radio-gruppe-dropdownmenuwithradio)
-- [Mit Shortcuts und Sub-Menu](#mit-shortcuts-und-sub-menu)
-- [In einem Dialog (DropdownMenuInDialog)](#in-einem-dialog-dropdownmenuindialog)
+- [With checkboxes (DropdownMenuWithCheckboxes)](#with-checkboxes-dropdownmenuwithcheckboxes)
+- [With radio group (DropdownMenuWithRadio)](#with-radio-group-dropdownmenuwithradio)
+- [With shortcuts and submenu](#with-shortcuts-and-submenu)
+- [In a dialog (DropdownMenuInDialog)](#in-a-dialog-dropdownmenuindialog)
 
 ## Basic (DropdownMenuBasic.vue)
 
@@ -53,7 +53,7 @@ import {
 </template>
 ```
 
-## Mit Checkboxen (DropdownMenuWithCheckboxes)
+## With checkboxes (DropdownMenuWithCheckboxes)
 
 ```vue
 <script setup lang="ts">
@@ -97,7 +97,7 @@ const notifications = ref({
 </template>
 ```
 
-## Mit Radio-Gruppe (DropdownMenuWithRadio)
+## With radio group (DropdownMenuWithRadio)
 
 ```vue
 <script setup lang="ts">
@@ -134,7 +134,7 @@ const theme = ref("light")
 </template>
 ```
 
-## Mit Shortcuts und Sub-Menu
+## With shortcuts and submenu
 
 ```vue
 <script setup lang="ts">
@@ -189,9 +189,9 @@ import {
 </template>
 ```
 
-## In einem Dialog (DropdownMenuInDialog)
+## In a dialog (DropdownMenuInDialog)
 
-Dialog muss das DropdownMenu ummanteln:
+The dialog must wrap the DropdownMenu:
 
 ```vue
 <template>
@@ -219,6 +219,6 @@ Dialog muss das DropdownMenu ummanteln:
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dropdown-menu/`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/dropdown-menu.md`

@@ -1,21 +1,21 @@
-# Shopware 6 – Produkte dem Verkaufskanal zuweisen
+# Shopware 6 – Assign products to the Verkaufskanal (Sales channel)
 
-Im Reiter **Produkte** eines Verkaufskanals können Produkte zugewiesen werden.
+Products can be assigned in the **Produkte** (Products) tab of a Verkaufskanal.
 
-## Zuweisungsmethoden
+## Assignment methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---|---|
-| **Einzelne Produkte** | Produkte direkt suchen und hinzufügen |
-| **Kategorien** | Alle Produkte einer Kategorie zuweisen |
-| **Dynamische Produktgruppen** | Regelbasierte Produktgruppen zuweisen |
+| **Einzelne Produkte** (Individual products) | Search for products directly and add them |
+| **Kategorien** (Categories) | Assign all products of a category |
+| **Dynamische Produktgruppen** (Dynamic product groups) | Assign rule-based product groups |
 
-## Aktionen
+## Actions
 
-- **Produkte hinzufügen** (Button oben rechts) → Produkt/Kategorie/Gruppe auswählen
-- **Produkte entfernen** → Checkbox links + Entfernen; oder Kontextmenü rechts
-- **Produktdetails aufrufen** → Kontextmenü rechts
+- **Produkte hinzufügen** (Add products) (button at the top right) → select product/category/group
+- **Produkte entfernen** (Remove products) → checkbox on the left + remove; or context menu on the right
+- **Open product details** → context menu on the right
 
-## Quelle
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele

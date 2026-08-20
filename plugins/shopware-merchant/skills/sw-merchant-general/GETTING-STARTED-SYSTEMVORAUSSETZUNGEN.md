@@ -1,99 +1,99 @@
-# Systemvoraussetzungen Shopware 6
+# System requirements Shopware 6
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/systemvoraussetzungen  
-**Detaillierte Technik-Doku**: https://developer.shopware.com/docs/guides/installation/system-requirements.html
+**Source**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/systemvoraussetzungen  
+**Detailed technical documentation**: https://developer.shopware.com/docs/guides/installation/system-requirements.html
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Unterstützte Betriebssysteme](#unterstützte-betriebssysteme)
-- [Software-Anforderungen](#software-anforderungen)
-- [Hardware-Empfehlungen](#hardware-empfehlungen)
-- [Shopware Cloud vs. Self-Hosted](#shopware-cloud-vs-self-hosted)
+- [Overview](#overview)
+- [Supported operating systems](#supported-operating-systems)
+- [Software requirements](#software-requirements)
+- [Hardware recommendations](#hardware-recommendations)
+- [Shopware Cloud vs. self-hosted](#shopware-cloud-vs-self-hosted)
 - [Installation](#installation)
-- [Weiterführende Links](#weiterführende-links)
+- [Further links](#further-links)
 
-## Überblick
+## Overview
 
-Vor der Installation von Shopware 6 müssen Server-Voraussetzungen erfüllt sein.
-Die folgende Übersicht gilt für **Shopware 6.7.x** (aktuell).
-
----
-
-## Unterstützte Betriebssysteme
-
-- Nur **Unix-basierte Systeme** werden unterstützt:
-  - Linux (64-bit Distributionen)
-  - macOS 13 oder neuer
-  - Windows 10/11 Pro mit WSL 2 oder Docker Desktop
+Server prerequisites have to be met before installing Shopware 6.
+The following overview applies to **Shopware 6.7.x** (current).
 
 ---
 
-## Software-Anforderungen
+## Supported operating systems
+
+- Only **Unix-based systems** are supported:
+  - Linux (64-bit distributions)
+  - macOS 13 or newer
+  - Windows 10/11 Pro with WSL 2 or Docker Desktop
+
+---
+
+## Software requirements
 
 ### PHP
-| Shopware Version | Minimale PHP-Version | Empfohlene PHP-Version |
+| Shopware version | Minimum PHP version | Recommended PHP version |
 |---|---|---|
 | 6.7.x | PHP 8.2 | PHP 8.3 |
 | 6.6.x | PHP 8.1 | PHP 8.2 |
 | 6.5.x | PHP 8.1 | PHP 8.2 |
 | 6.4.x | PHP 7.4 | PHP 8.1 |
 
-**PHP-Extensions (Pflicht)**:
+**PHP extensions (mandatory)**:
 - `curl`, `dom`, `fileinfo`, `gd`, `iconv`, `intl`, `json`
 - `libxml`, `mbstring`, `pdo`, `pdo_mysql`, `openssl`
 - `simplexml`, `xml`, `zip`, `zlib`
 
-### Datenbank
-| System | Mindestversion | Empfohlen |
+### Database
+| System | Minimum version | Recommended |
 |---|---|---|
 | MySQL | 8.0 | 8.0+ |
 | MariaDB | 10.11 | 10.11+ |
 | Percona | 8.0 | 8.0+ |
 
-### Webserver
-- **Nginx** (empfohlen) ab 1.20
-- **Apache** ab 2.4 (mit mod_rewrite)
-- Shopware benötigt: `public/` als Document Root
+### Web server
+- **Nginx** (recommended) from 1.20
+- **Apache** from 2.4 (with mod_rewrite)
+- Shopware requires: `public/` as the document root
 
-### Node.js (für Theme-Entwicklung)
-- Node.js 20+ (für Frontend-Kompilierung)
-- Nur relevant für Theme- und Plugin-Entwicklung
+### Node.js (for theme development)
+- Node.js 20+ (for frontend compilation)
+- Only relevant for theme and plugin development
 
 ---
 
-## Hardware-Empfehlungen
+## Hardware recommendations
 
-| Komponente | Minimum | Empfohlen |
+| Component | Minimum | Recommended |
 |---|---|---|
-| CPU | 2 Kerne | 4+ Kerne |
+| CPU | 2 cores | 4+ cores |
 | RAM | 4 GB | 8-16 GB |
-| Disk | 10 GB frei | 20+ GB SSD |
-| Netzwerk | Stabile Verbindung | — |
+| Disk | 10 GB free | 20+ GB SSD |
+| Network | Stable connection | — |
 
 ---
 
-## Shopware Cloud vs. Self-Hosted
+## Shopware Cloud vs. self-hosted
 
-| Aspekt | Shopware Cloud | Self-Hosted |
+| Aspect | Shopware Cloud | Self-hosted |
 |---|---|---|
-| Server-Setup | Nicht nötig | Eigenverantwortlich |
-| Systemvoraussetzungen | Automatisch erfüllt | Manuell einzurichten |
-| Updates | Automatisch | Manuell oder automatisiert |
-| Anpassbarkeit | Eingeschränkt | Vollständig |
+| Server setup | Not needed | Your own responsibility |
+| System requirements | Automatically met | To be set up manually |
+| Updates | Automatic | Manual or automated |
+| Customisability | Restricted | Complete |
 
 ---
 
 ## Installation
 
-### Über den Shopware Installer
-1. Shopware herunterladen: https://www.shopware.com/de/download/
-2. ZIP entpacken auf dem Server
-3. Verzeichnis-Berechtigungen setzen (write für `var/`, `public/`, `config/`)
-4. Browser: `https://meinshop.de/public/recovery/install/` aufrufen
-5. System-Check → Lizenz → Datenbank → Import → Shop-Konfiguration
+### Via the Shopware installer
+1. Download Shopware: https://www.shopware.com/de/download/
+2. Extract the ZIP on the server
+3. Set directory permissions (write for `var/`, `public/`, `config/`)
+4. Browser: open `https://meinshop.de/public/recovery/install/`
+5. System check → licence → database → import → shop configuration
 
-### Über Composer (Entwickler)
+### Via Composer (developers)
 ```bash
 composer create-project shopware/production:^6.7 meinshop
 cd meinshop
@@ -104,8 +104,8 @@ php bin/console user:create --admin admin
 
 ---
 
-## Weiterführende Links
+## Further links
 
-- Vollständige Entwickler-Systemanforderungen: https://developer.shopware.com/docs/guides/installation/system-requirements.html
-- Docker-Setup-Guide: https://developer.shopware.com/docs/guides/installation/docker.html
-- Hosting-Partner: https://www.shopware.com/de/hosting/
+- Full developer system requirements: https://developer.shopware.com/docs/guides/installation/system-requirements.html
+- Docker setup guide: https://developer.shopware.com/docs/guides/installation/docker.html
+- Hosting partners: https://www.shopware.com/de/hosting/

@@ -1,6 +1,6 @@
-# Shopware 6 – E-Mail-Templates & Mailer (vollständige Referenz)
+# Shopware 6 – Email templates & mailer – complete reference
 
-Quellen:
+Sources:
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/e-mail-templates
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/mailer
 
@@ -8,52 +8,52 @@ Quellen:
 
 ## Contents
 
-- [E-Mail-Templates](#e-mail-templates)
-- [Variablensystem](#variablensystem)
-- [Praktische Beispiele](#praktische-beispiele)
-- [Mailer-Konfiguration](#mailer-konfiguration)
+- [Email templates](#email-templates)
+- [Variable system](#variable-system)
+- [Practical examples](#practical-examples)
+- [Mailer configuration](#mailer-configuration)
 
-## E-Mail-Templates
+## Email templates
 
-**Pfad:** Einstellungen > Inhalte > E-Mail-Templates
+**Path:** Einstellungen (Settings) > Inhalte (Content) > E-Mail-Templates
 
-Templates für automatisch versendete Mails (Registrierung, Bestellbestätigung usw.) sowie zentrale Header/Footer.  
-Zuweisung erfolgt über den **Flow Builder**.
+Templates for automatically sent emails (registration, order confirmation etc.) as well as central header/footer.  
+Assignment happens via the **Flow Builder**.
 
 ---
 
-### Editor-Struktur
+### Editor structure
 
-| Bereich | Beschreibung |
+| Area | Description |
 |---|---|
-| **1. Sprache** | Sprachauswahl (nur aktivierte Sprachen) |
-| **2. Informationen** | Typ (vordefinierte Funktion), Beschreibung |
-| **3. Optionen** | Betreff, Absendername |
-| **4. Anhänge** | Dateiuploads (pro Sprache separat) |
-| **5. Mail-Text** | HTML-Version + Plaintext-Version |
-| **6. Tools (rechts)** | Papierflugzeug: Test-Mail; `</>`: Variablen-Library; Auge: Vorschau; Bild: Mediathek |
+| **1. Sprache** (Language) | Language selection (only activated languages) |
+| **2. Informationen** (Information) | Type (predefined function), description |
+| **3. Optionen** (Options) | Subject, sender name |
+| **4. Anhänge** (Attachments) | File uploads (separately per language) |
+| **5. Mail-Text** | HTML version + plain-text version |
+| **6. Tools (right)** | Paper plane: test email; `</>`: variable library; eye: preview; image: media library |
 
 ---
 
-### Vordefinierte Templates (Auswahl)
+### Predefined templates (selection)
 
-| Template | Zweck |
+| Template | Purpose |
 |---|---|
-| Bestellbestätigung | Bestätigung bei Bestelleingang |
-| Kunden-Registrierung | Willkommensmail nach Registrierung |
-| Passwort Änderungsanfrage | Recovery-Link zum Zurücksetzen |
-| Newsletter Double Opt-In | Bestätigungsmail für Newsletter |
-| Eintritt Lieferstatus: Versandt | Benachrichtigung bei Versand |
-| Eintritt Zahlungsstatus: Bezahlt | Zahlungsbestätigung |
-| Versand digitaler Produkte | Download-Link für digitale Artikel |
-| Kontaktformular | Benachrichtigung für Shop-Betreiber |
+| Bestellbestätigung (Order confirmation) | Confirmation when an order is received |
+| Kunden-Registrierung (Customer registration) | Welcome email after registration |
+| Passwort Änderungsanfrage (Password change request) | Recovery link for resetting |
+| Newsletter Double Opt-In | Confirmation email for the newsletter |
+| Eintritt Lieferstatus: Versandt (Delivery status reached: Shipped) | Notification when shipped |
+| Eintritt Zahlungsstatus: Bezahlt (Payment status reached: Paid) | Payment confirmation |
+| Versand digitaler Produkte (Delivery of digital products) | Download link for digital items |
+| Kontaktformular (Contact form) | Notification for the shop operator |
 
 ---
 
-### Header & Footer
+### Header & footer
 
 **1. Informationen:**
-- Name, Beschreibung, Verkaufskanal-Zuordnung
+- Name, description, sales channel assignment
 
 **3. Mail-Header:**
 ```html
@@ -61,114 +61,114 @@ Zuweisung erfolgt über den **Flow Builder**.
 ```
 
 **4. Mail-Footer:**
-HTML und Plaintext für Grußformeln, rechtliche Hinweise usw.
+HTML and plain text for closing formulas, legal notices etc.
 
 ---
 
-## Variablensystem
+## Variable system
 
 ### Syntax
 ```twig
 {{array.subelement.variable}}
 ```
 
-Beispiel: `{{order.orderCustomer.firstName}}`
+Example: `{{order.orderCustomer.firstName}}`
 
-Auto-Completion: `{{` tippen → verfügbare Arrays erscheinen.
+Auto-completion: type `{{` → the available arrays appear.
 
 ---
 
 ### Array: customer
-Verfügbar in: Kundenregistrierung, Double-Opt-In, Passwort-Recovery
+Available in: customer registration, double opt-in, password recovery
 
-| Variable | Bedeutung |
+| Variable | Meaning |
 |---|---|
-| `customerNumber` | Kundennummer |
-| `firstName` / `lastName` | Vor- und Nachname |
-| `email` | E-Mail-Adresse |
-| `company` | Unternehmensname |
-| `birthday` | Geburtsdatum |
-| `defaultPaymentMethod` | Standard-Zahlungsart |
-| `defaultBillingAddress` | Rechnungsadresse (street, zipcode, city, country, …) |
-| `defaultShippingAddress` | Lieferadresse |
-| `salutation.displayName` | Anrede |
-| `salutation.letterName` | Formale Briefanrede |
+| `customerNumber` | Customer number |
+| `firstName` / `lastName` | First and last name |
+| `email` | Email address |
+| `company` | Company name |
+| `birthday` | Date of birth |
+| `defaultPaymentMethod` | Default payment method |
+| `defaultBillingAddress` | Billing address (street, zipcode, city, country, …) |
+| `defaultShippingAddress` | Shipping address |
+| `salutation.displayName` | Salutation |
+| `salutation.letterName` | Formal letter salutation |
 
 ---
 
 ### Array: customerRecovery
-Verfügbar in: Passwort Änderungsanfrage
+Available in: Passwort Änderungsanfrage
 
-| Variable | Unterelemente |
+| Variable | Sub-elements |
 |---|---|
 | `customer` | firstName, lastName, email, company, title |
 
 ---
 
 ### Array: userRecovery
-Verfügbar in: Benutzer Passwort Wiederherstellung (Admin-Konten)
+Available in: Benutzer Passwort Wiederherstellung (User password recovery) (admin accounts)
 
-| Variable | Unterelemente |
+| Variable | Sub-elements |
 |---|---|
 | `user` | firstName, lastName, email, username, aclRoles |
 
 ---
 
 ### Array: newsletterRecipient
-Verfügbar in: Newsletter-Registrierung, Double-Opt-In
+Available in: newsletter registration, double opt-in
 
-| Variable | Bedeutung |
+| Variable | Meaning |
 |---|---|
-| `firstName` / `lastName` | Namen |
-| `email` | Newsletter-E-Mail |
-| `city` / `zipCode` / `street` | Adressdaten |
+| `firstName` / `lastName` | Names |
+| `email` | Newsletter email |
+| `city` / `zipCode` / `street` | Address data |
 
 ---
 
 ### Array: contactFormData
-Verfügbar in: Kontaktformular
+Available in: Kontaktformular
 
-| Variable | Bedeutung |
+| Variable | Meaning |
 |---|---|
-| `firstName` / `lastName` | Absenderdaten |
-| `email` | Kontakt-E-Mail |
-| `phone` | Telefonnummer |
-| `subject` / `comment` | Nachrichteninhalt |
+| `firstName` / `lastName` | Sender data |
+| `email` | Contact email |
+| `phone` | Phone number |
+| `subject` / `comment` | Message content |
 
 ---
 
 ### Array: order
-Verfügbar in: Bestellungs- und lieferbezogene Mails
+Available in: order and delivery related emails
 
-| Variable | Unterelemente | Zweck |
+| Variable | Sub-elements | Purpose |
 |---|---|---|
-| `orderNumber` | — | Bestellnummer |
-| `orderDateTime` | — | Zeitstempel |
-| `price` | netPrice, totalPrice, taxStatus | Preisdetails |
-| `shippingTotal` | — | Versandkosten |
-| `orderCustomer` | (siehe customer) | Käuferdaten |
-| `currency` | isoCode, symbol, shortName | Währungsinfo |
-| `addresses[0]` | firstName, lastName, street, zipcode, city, country, vatID, … | Adressen |
-| `deliveries[0]` | shippingOrderAddress, shippingMethod, trackingCodes | Versanddetails |
-| `transactions.first` | paymentMethod, stateMachineState | Zahlungsinfo |
-| `lineItems[0]` | quantity, unitPrice, totalPrice, label, payload.productNumber | Bestellpositionen |
-| `stateMachineState` | name | Aktueller Bestellstatus |
+| `orderNumber` | — | Order number |
+| `orderDateTime` | — | Timestamp |
+| `price` | netPrice, totalPrice, taxStatus | Price details |
+| `shippingTotal` | — | Shipping costs |
+| `orderCustomer` | (see customer) | Buyer data |
+| `currency` | isoCode, symbol, shortName | Currency information |
+| `addresses[0]` | firstName, lastName, street, zipcode, city, country, vatID, … | Addresses |
+| `deliveries[0]` | shippingOrderAddress, shippingMethod, trackingCodes | Shipping details |
+| `transactions.first` | paymentMethod, stateMachineState | Payment information |
+| `lineItems[0]` | quantity, unitPrice, totalPrice, label, payload.productNumber | Order line items |
+| `stateMachineState` | name | Current order status |
 
 ---
 
 ### Array: salesChannel
-Verfügbar in: Alle Standard-Templates
+Available in: all default templates
 
-| Variable | Unterelemente | Zweck |
+| Variable | Sub-elements | Purpose |
 |---|---|---|
-| `name` | — | Verkaufskanal-Name |
-| `domains.0` | url | Domain-URL |
+| `name` | — | Sales channel name |
+| `domains.0` | url | Domain URL |
 
 ---
 
-## Praktische Beispiele
+## Practical examples
 
-### Zahlungsart-spezifischer Inhalt
+### Payment-method-specific content
 ```twig
 {% for transactions in order.transactions %}
 {% if transactions.paymentMethodId == "ID-aus-der-URL" %}
@@ -179,67 +179,67 @@ Verfügbar in: Alle Standard-Templates
 {% endfor %}
 ```
 
-> Die Zahlungsart-ID ist in der URL beim Bearbeiten der Zahlungsart zu finden.
+> The payment method ID can be found in the URL while editing the payment method.
 
-### Zusatzfeld verwenden
+### Using a custom field
 ```twig
 {{customer.customFields.FeldName}}
 ```
 
 ---
 
-## Mailer-Konfiguration
+## Mailer configuration
 
-**Pfad:** Einstellungen > System > Mailer  
-**Nur für Self-Hosted** (nicht für SaaS)
+**Path:** Einstellungen > System > Mailer  
+**Self-hosted only** (not for SaaS)
 
 ---
 
-### 1. Lokaler E-Mail-Agent (sendmail)
-| Option | Beschreibung |
+### 1. Local email agent (sendmail)
+| Option | Description |
 |---|---|
-| Versandmodus | Synchron (-bs) oder Asynchron (-t) — Synchron empfohlen |
-| Versand deaktivieren | Kompletten E-Mail-Versand deaktivieren |
+| Versandmodus (Dispatch mode) | Synchronous (-bs) or asynchronous (-t) — synchronous recommended |
+| Versand deaktivieren (Disable dispatch) | Disable email dispatch completely |
 
 ---
 
-### 2. SMTP-Server (Basic Auth)
-| Feld | Beschreibung |
+### 2. SMTP server (basic auth)
+| Field | Description |
 |---|---|
-| Host | SMTP-Server-Adresse |
-| Port | Standard 25; AOL/Gmail: 587 |
-| Benutzername / Passwort | Login-Daten (oft E-Mail-Adresse) |
-| Verschlüsselung | SSL, TLS oder unverschlüsselt |
-| Absender-Adresse | Fallback-Adresse |
-| Empfänger-Adresse | Test-Adresse (erhält Kopie aller Mails) |
-| Versand deaktivieren | Kompletter Schalter |
+| Host | SMTP server address |
+| Port | Default 25; AOL/Gmail: 587 |
+| Benutzername / Passwort (Username / Password) | Login data (often the email address) |
+| Verschlüsselung (Encryption) | SSL, TLS or unencrypted |
+| Absender-Adresse (Sender address) | Fallback address |
+| Empfänger-Adresse (Recipient address) | Test address (receives a copy of all emails) |
+| Versand deaktivieren | Global switch |
 
 ---
 
-### 3. SMTP-Server mit OAuth 2 (z.B. Office 365)
-| Feld | Beschreibung |
+### 3. SMTP server with OAuth 2 (e.g. Office 365)
+| Field | Description |
 |---|---|
-| OAuth URL | Token-Abruf-URL |
-| OAuth Scope | Bereichsdefinition |
-| Client ID | Anwendungs-ID |
-| Client Secret | Authentifizierungstoken |
+| OAuth URL | Token retrieval URL |
+| OAuth Scope | Scope definition |
+| Client ID | Application ID |
+| Client Secret | Authentication token |
 
 ---
 
-### Provider-Verbindungsdaten
+### Provider connection data
 
-| Provider | Server | Port | Verschlüsselung |
+| Provider | Server | Port | Encryption |
 |---|---|---|---|
 | 1und1/IONOS | smtp.ionos.de | 465 | SSL |
 | Google Mail | smtp.gmail.com | 465 | SSL |
-| HostEurope | variabel | 25/587/465 | variabel |
-| Timme Hosting | — | 465 oder 587 | SSL/TLS |
+| HostEurope | variable | 25/587/465 | variable |
+| Timme Hosting | — | 465 or 587 | SSL/TLS |
 
 ---
 
-### Konfiguration via .env
+### Configuration via .env
 ```env
 MAILER_DSN=smtp://Benutzername:Password@mailserveradresse:port
 ```
 
-Vollständige Dokumentation: https://symfony.com/doc/current/mailer.html
+Complete documentation: https://symfony.com/doc/current/mailer.html

@@ -9,11 +9,11 @@ How Shopware models its business domains, independent of the code that implement
 
 ## Reference map
 
-- **[CATALOG.md](CATALOG.md)**: Vollständige Konzept-Doku: `CATALOG-DETAIL.md`. [CATALOG-DETAIL](CATALOG-DETAIL.md).
-- **[CHECKOUT.md](CHECKOUT.md)**: Vollständige Konzept-Doku: `CHECKOUT-DETAIL.md`. [CHECKOUT-DETAIL](CHECKOUT-DETAIL.md).
-- **[CONTENT-CMS.md](CONTENT-CMS.md)**: Vollständige Konzept-Doku: `CONTENT-CMS-DETAIL.md`. [CONTENT-CMS-DETAIL](CONTENT-CMS-DETAIL.md).
-- **[RULE-SYSTEM.md](RULE-SYSTEM.md)**: Vollständige Konzept-Doku: `RULE-SYSTEM-DETAIL.md`. [RULE-SYSTEM-DETAIL](RULE-SYSTEM-DETAIL.md).
-- **[TRANSLATIONS.md](TRANSLATIONS.md)**: Vollständige Konzept-Doku: `TRANSLATIONS-DETAIL.md`. [TRANSLATIONS-DETAIL](TRANSLATIONS-DETAIL.md).
+- **[CATALOG.md](CATALOG.md)**: Complete concept documentation: `CATALOG-DETAIL.md`. [CATALOG-DETAIL](CATALOG-DETAIL.md).
+- **[CHECKOUT.md](CHECKOUT.md)**: Complete concept documentation: `CHECKOUT-DETAIL.md`. [CHECKOUT-DETAIL](CHECKOUT-DETAIL.md).
+- **[CONTENT-CMS.md](CONTENT-CMS.md)**: Complete concept documentation: `CONTENT-CMS-DETAIL.md`. [CONTENT-CMS-DETAIL](CONTENT-CMS-DETAIL.md).
+- **[RULE-SYSTEM.md](RULE-SYSTEM.md)**: Complete concept documentation: `RULE-SYSTEM-DETAIL.md`. [RULE-SYSTEM-DETAIL](RULE-SYSTEM-DETAIL.md).
+- **[TRANSLATIONS.md](TRANSLATIONS.md)**: Complete concept documentation: `TRANSLATIONS-DETAIL.md`. [TRANSLATIONS-DETAIL](TRANSLATIONS-DETAIL.md).
 
 ## Source
 

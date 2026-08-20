@@ -1,15 +1,15 @@
-# flatpickr — Lokalisierung
+# flatpickr — Localization
 
-60+ Locales verfügbar. Locale per Instanz oder global setzen.
+60+ locales available. Set the locale per instance or globally.
 
 ```js
-// ES Modules — per Instanz
+// ES Modules — per instance
 import flatpickr from "flatpickr";
 import { German } from "flatpickr/dist/l10n/de.js";
 
 flatpickr("#date", { locale: German });
 
-// Globale Lokalisierung (alle Instanzen)
+// Global localization (all instances)
 flatpickr.localize(German);
 ```
 
@@ -20,11 +20,11 @@ flatpickr.localize(German);
 <script>flatpickr("#date", { locale: "de" });</script>
 ```
 
-Ersten Wochentag überschreiben:
+Override the first day of the week:
 
 ```js
-flatpickr("#date", { locale: { firstDayOfWeek: 1 } }); // Montag
+flatpickr("#date", { locale: { firstDayOfWeek: 1 } }); // Monday
 ```
 
-## Vertiefung
-- [LOCALIZATION-DETAIL.md](LOCALIZATION-DETAIL.md) — vollständige Locale-Liste, Custom Locale, Locale-Typ-Definition
+## Further reading
+- [LOCALIZATION-DETAIL.md](LOCALIZATION-DETAIL.md) — complete locale list, custom locale, locale type definition

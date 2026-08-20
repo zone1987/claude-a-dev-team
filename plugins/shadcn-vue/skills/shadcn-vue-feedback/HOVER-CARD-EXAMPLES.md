@@ -1,10 +1,10 @@
-# HoverCard — Beispiele
+# HoverCard — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/hover-card/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/hover-card/`
 
-## Alle Seiten (HoverCardSides.vue)
+## All Sides (HoverCardSides.vue)
 
-Hover Card auf allen vier Seiten.
+Hover card on all four sides.
 
 ```vue
 <script setup lang="ts">
@@ -44,9 +44,9 @@ const HOVER_CARD_SIDES = ["top", "right", "bottom", "left"] as const
 </template>
 ```
 
-## In einem Dialog (HoverCardInDialog.vue)
+## Inside a Dialog (HoverCardInDialog.vue)
 
-HoverCard innerhalb eines Dialogs.
+HoverCard inside a dialog.
 
 ```vue
 <script setup lang="ts">
@@ -96,7 +96,7 @@ import {
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/hover-card/HoverCardSides.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/hover-card/HoverCardInDialog.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/hover-card.md`

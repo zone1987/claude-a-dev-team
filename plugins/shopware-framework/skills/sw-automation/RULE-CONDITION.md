@@ -1,6 +1,6 @@
-# Shopware 6 — Rule-Bedingung (Admin)
+# Shopware 6 — Rule condition (admin)
 
-Jede Custom Rule (`sw-custom-rule`) braucht eine Admin-Komponente, die die Bedingung im Rule Builder darstellt.
+Every custom rule (`sw-custom-rule`) needs an admin component that renders the condition in the Rule Builder.
 
 ```js
 Shopware.Component.register('sw-condition-ff-min-age', {
@@ -13,6 +13,6 @@ Shopware.Component.register('sw-condition-ff-min-age', {
 });
 ```
 
-Registrierung der Bedingung beim `ruleConditionDataProviderService` (Name = `RULE_NAME` der PHP-Rule, Scopes,
-Komponente). `sw-condition-base`-Mixin liefert `condition`/`operators`. Felder an die PHP-`getConstraints()` koppeln.
-Operator-Sets (`number`/`string`/`bool`/`multiStore`) wiederverwenden.
+Register the condition with the `ruleConditionDataProviderService` (name = `RULE_NAME` of the PHP rule, scopes,
+component). The `sw-condition-base` mixin supplies `condition`/`operators`. Tie the fields to the PHP `getConstraints()`.
+Reuse the operator sets (`number`/`string`/`bool`/`multiStore`).

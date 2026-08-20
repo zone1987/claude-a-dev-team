@@ -1,22 +1,22 @@
-# Swiper Virtual Slides-Modul — Vollständige Referenz
+# Swiper Virtual Slides module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [renderSlide-Funktion](#renderslide-funktion)
-- [renderExternal für React](#renderexternal-für-react)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [renderSlide function](#renderslide-function)
+- [renderExternal for React](#renderexternal-for-react)
 - [Properties](#properties)
-- [Methoden](#methoden)
-- [Einschränkungen](#einschränkungen)
-- [Vollständiges Beispiel mit 1000 Slides](#vollständiges-beispiel-mit-1000-slides)
+- [Methods](#methods)
+- [Limitations](#limitations)
+- [Complete example with 1000 slides](#complete-example-with-1000-slides)
 
-## Konzept
+## Concept
 
-Virtual Slides hält nur die für die Anzeige erforderlichen Slides im DOM. Bei hunderten oder tausenden Slides drastisch bessere Performance gegenüber vollständigem DOM-Rendering.
+Virtual Slides keeps only the slides required for display in the DOM. With hundreds or thousands of slides this performs dramatically better than rendering the full DOM.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -30,27 +30,27 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `enabled` | `boolean` | `false` | Virtual Slides aktivieren |
-| `slides` | `array` | `[]` | Datenquelle — Array aus beliebigen Werten (String, Objekt, etc.) |
-| `cache` | `boolean` | `true` | Gerenderte Slide-HTML-Elemente im Cache halten |
-| `addSlidesBefore` | `number` | `0` | Zusätzliche Slides vor dem aktiven vorrendern |
-| `addSlidesAfter` | `number` | `0` | Zusätzliche Slides nach dem aktiven vorrendern |
-| `renderSlide` | `function(slide, index)` | `null` | Eigene Render-Funktion für einzelne Slides; muss HTML-String zurückgeben |
-| `renderExternal` | `function(data)` | `null` | Rendering an externe Bibliothek (React/Vue) delegieren |
-| `renderExternalUpdate` | `function(data)` | `null` | Callback nach Update bei `renderExternal` |
+| `enabled` | `boolean` | `false` | Enable Virtual Slides |
+| `slides` | `array` | `[]` | Data source — an array of arbitrary values (string, object, etc.) |
+| `cache` | `boolean` | `true` | Keep rendered slide HTML elements in the cache |
+| `addSlidesBefore` | `number` | `0` | Pre-render additional slides before the active one |
+| `addSlidesAfter` | `number` | `0` | Pre-render additional slides after the active one |
+| `renderSlide` | `function(slide, index)` | `null` | Custom render function for individual slides; must return an HTML string |
+| `renderExternal` | `function(data)` | `null` | Delegate rendering to an external library (React/Vue) |
+| `renderExternalUpdate` | `function(data)` | `null` | Callback after an update with `renderExternal` |
 
-## renderSlide-Funktion
+## renderSlide function
 
 ```js
 virtual: {
   slides: myDataArray,
   renderSlide: (slide, index) => {
-    // slide = Eintrag aus slides-Array
-    // index = Position im Array
+    // slide = entry from the slides array
+    // index = position in the array
     return `
       <div class="swiper-slide" data-index="${index}">
         <img src="${slide.image}" alt="${slide.title}" />
@@ -61,10 +61,10 @@ virtual: {
 }
 ```
 
-## renderExternal für React
+## renderExternal for React
 
 ```jsx
-// React-Integration mit renderExternal
+// React integration with renderExternal
 const [virtualData, setVirtualData] = useState({ slides: [], offset: 0 });
 
 const swiper = new Swiper('.swiper', {
@@ -87,26 +87,26 @@ const swiper = new Swiper('.swiper', {
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.virtual.slides` | `array` | Aktuell im DOM gerenderte Slides |
-| `swiper.virtual.cache` | `object` | Gecachte Slide-Elemente (key = Index) |
+| `swiper.virtual.slides` | `array` | Slides currently rendered in the DOM |
+| `swiper.virtual.cache` | `object` | Cached slide elements (key = index) |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|--------------|
-| `swiper.virtual.update(force?)` | Virtual Slides aktualisieren; `force: true` = Cache leeren |
-| `swiper.virtual.appendSlide(slides)` | Slides ans Ende anhängen |
-| `swiper.virtual.prependSlide(slides)` | Slides am Anfang einfügen |
+| `swiper.virtual.update(force?)` | Update the Virtual Slides; `force: true` = clear the cache |
+| `swiper.virtual.appendSlide(slides)` | Append slides at the end |
+| `swiper.virtual.prependSlide(slides)` | Insert slides at the beginning |
 
-## Einschränkungen
+## Limitations
 
-- **Nicht kompatibel** mit dem Grid-Modul
-- **Nicht kompatibel** mit `slidesPerView: 'auto'`
-- Für Loop-Modus müssen genügend Slides vorhanden sein
+- **Not compatible** with the Grid module
+- **Not compatible** with `slidesPerView: 'auto'`
+- Loop mode requires enough slides to be present
 
-## Vollständiges Beispiel mit 1000 Slides
+## Complete example with 1000 slides
 
 ```js
 import Swiper from 'swiper';
@@ -139,4 +139,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#virtual-slides
+Source: https://swiperjs.com/swiper-api#virtual-slides

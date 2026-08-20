@@ -296,7 +296,7 @@ def apply(plugin: str, p: dict, dry: bool) -> None:
                         if os.path.abspath(src_f) == os.path.abspath(out_f):
                             continue
                         # Two skills can ship different images under the same file name
-                        # (two "produkte-hinzufuegen.png"). Identical content is one file;
+                        # (two "products-add.png"). Identical content is one file;
                         # differing content gets the topic prefixed, so neither is lost.
                         if os.path.exists(out_f):
                             if filecmp.cmp(src_f, out_f, shallow=False):

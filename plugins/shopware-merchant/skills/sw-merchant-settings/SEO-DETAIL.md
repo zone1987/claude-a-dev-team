@@ -1,6 +1,6 @@
-# Shopware 6 – SEO-Einstellungen & Sitemap (vollständige Referenz)
+# Shopware 6 – SEO settings & sitemap – complete reference
 
-Quellen:
+Sources:
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/seo
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/sitemap
 
@@ -8,125 +8,125 @@ Quellen:
 
 ## Contents
 
-- [SEO-URL-Templates](#seo-url-templates)
-- [Weiterleitung (HTTP 301)](#weiterleitung-http-301)
-- [SEO-Index neu aufbauen](#seo-index-neu-aufbauen)
-- [Kanonische URLs](#kanonische-urls)
+- [SEO URL templates](#seo-url-templates)
+- [Redirect (HTTP 301)](#redirect-http-301)
+- [Rebuilding the SEO index](#rebuilding-the-seo-index)
+- [Canonical URLs](#canonical-urls)
 - [Sitemap](#sitemap)
 
-## SEO-URL-Templates
+## SEO URL templates
 
-**Pfad:** Einstellungen > Shop > SEO-Einstellungen
+**Path:** Einstellungen (Settings) > Shop > SEO-Einstellungen (SEO settings)
 
-### Verkaufskanal-Auswahl
-Konfigurationen können global für alle Kanäle oder kanalspezifisch erfolgen.
+### Sales channel selection
+Configurations can be made globally for all channels or per channel.
 
 ---
 
-### Produktdetailseite
-Twig-Syntax für URL-Templates: `{{ product.name }}`
+### Product detail page
+Twig syntax for URL templates: `{{ product.name }}`
 
-**Verfügbare Variablen:**
-| Variable | Bedeutung |
+**Available variables:**
+| Variable | Meaning |
 |---|---|
-| `{{ product.productNumber }}` | Bestellnummer |
-| `{{ product.name }}` | Produktname |
-| `{{ product.ean }}` | EAN-Code |
-| `{{ product.manufacturer.name }}` | Herstellername |
-| `{% for part in product.categories.sortByPosition().first.breadcrumb %}` | Kategorie-Breadcrumb |
+| `{{ product.productNumber }}` | Product number |
+| `{{ product.name }}` | Product name |
+| `{{ product.ean }}` | EAN code |
+| `{{ product.manufacturer.name }}` | Manufacturer name |
+| `{% for part in product.categories.sortByPosition().first.breadcrumb %}` | Category breadcrumb |
 
-**Besonderheiten:**
-- Mehrstufige Variablen erfordern manuelle Vervollständigung
-- Längenbeschränkung: `{{ product.translated.name[:50] }}`
-- Bedingte Logik: IF-Abfragen möglich
-- Validierungsindikator: Grünes Häkchen = korrekt, Rotes X = Fehler
+**Particularities:**
+- Multi-level variables require manual completion
+- Length restriction: `{{ product.translated.name[:50] }}`
+- Conditional logic: IF queries are possible
+- Validation indicator: green check mark = correct, red X = error
 
-**Twig-Filter (Pipe-Operator):**
+**Twig filters (pipe operator):**
 ```twig
 {{ product.translated.name|lower }}
 ```
 
 ---
 
-### Landingpage
-| Variable | Bedeutung |
+### Landing page
+| Variable | Meaning |
 |---|---|
-| `{{landingPage.name}}` | Name der Landingpage |
-| `{{landingPage.metaTitle}}` | Meta-Titel |
+| `{{landingPage.name}}` | Name of the landing page |
+| `{{landingPage.metaTitle}}` | Meta title |
 | `{{landingPage.url}}` | URL |
-| `{{landingPage.active}}` | Aktivstatus |
+| `{{landingPage.active}}` | Active status |
 
-> Voraussetzung: Mindestens eine Landingpage muss vorhanden sein.
+> Prerequisite: at least one landing page must exist.
 
 ---
 
-### Kategorieseite
-| Variable | Bedeutung |
+### Category page
+| Variable | Meaning |
 |---|---|
-| `{{ category.seoBreadcrumb }}` | Breadcrumb-Pfad |
-| `{{ category.translated.name }}` | Übersetzter Kategoriename |
-| `{{ category.translated.metaTitle }}` | Übersetzter Meta-Titel |
-| `{{ category.parentId }}` | Übergeordnete Kategorie |
+| `{{ category.seoBreadcrumb }}` | Breadcrumb path |
+| `{{ category.translated.name }}` | Translated category name |
+| `{{ category.translated.metaTitle }}` | Translated meta title |
+| `{{ category.parentId }}` | Parent category |
 
-**Beispiel mit Filter:**
+**Example with a filter:**
 ```twig
 {% for part in category.seoBreadcrumb %}{{ part|lower }}{% endfor %}
 ```
 
 ---
 
-## Weiterleitung (HTTP 301)
+## Redirect (HTTP 301)
 
-Option: Automatische Weiterleitungen bei URL-Änderungen aktivieren (statt nur Canonical Links).
+Option: activate automatic redirects when URLs change (instead of only canonical links).
 
 ---
 
-## SEO-Index neu aufbauen
+## Rebuilding the SEO index
 
-Nach Template-Änderungen ist ein Neuaufbau erforderlich:
+After template changes a rebuild is required:
 ```bash
 php bin/console dal:refresh:index
 ```
 
 ---
 
-## Kanonische URLs
+## Canonical URLs
 
-- Kennzeichnen die bevorzugte Seite bei duplizierten Inhalten für Suchmaschinen
-- Können unterschiedliche Domains verwenden
-- Kleinere Variationen (Sortierung, Filter) werden ignoriert
+- Identify the preferred page to search engines in the case of duplicated content
+- Can use different domains
+- Minor variations (sorting, filters) are ignored
 
 ---
 
 ## Sitemap
 
-**Pfad:** Einstellungen > Shop > Sitemap  
-**Verfügbar ab:** 6.1.0
+**Path:** Einstellungen > Shop > Sitemap  
+**Available from:** 6.1.0
 
-### Grundprinzip
-Shopware erstellt eine maschinell lesbare `sitemap.xml` für Suchmaschinen.  
-Abrufbar unter: `https://mydomain.com/sitemap.xml`
+### Basic principle
+Shopware creates a machine-readable `sitemap.xml` for search engines.  
+Available at: `https://mydomain.com/sitemap.xml`
 
-Die Datei wird bei großen Shops automatisch aufgeteilt (Index + Teilsitemaps).
+For large shops the file is split automatically (index + partial sitemaps).
 
-### Konfigurierbare Optionen
-- Refresh-Time für die Sitemap
-- Refresh-Strategie
+### Configurable options
+- Refresh time for the sitemap
+- Refresh strategy
 
-### Drei Refresh-Strategien
+### Three refresh strategies
 
-| Strategie | Beschreibung |
+| Strategy | Description |
 |---|---|
-| **Geplant** | Automatische Generierung per Scheduled Task |
-| **Live** | Neue Sitemap bei fehlendem oder abgelaufenem Cache |
-| **Manuell** | Automatisch deaktiviert; manuelle Generierung per CLI |
+| **Geplant** (Scheduled) | Automatic generation via a scheduled task |
+| **Live** | New sitemap when the cache is missing or expired |
+| **Manuell** (Manual) | Automatic generation disabled; manual generation via CLI |
 
-**Manueller Befehl:**
+**Manual command:**
 ```bash
 php bin/console sitemap:generate
 ```
-> Muss nach jeder URL-Änderung erneut ausgeführt werden.
+> Must be run again after every URL change.
 
-### Hinweise
-- Shopware kann nicht garantieren, dass jede URL indiziert wird
-- Für Custom-URLs: Developer-Dokumentation consulten
+### Notes
+- Shopware cannot guarantee that every URL is indexed
+- For custom URLs: consult the developer documentation

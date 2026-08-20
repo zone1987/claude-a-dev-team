@@ -1,27 +1,27 @@
-# Shopware 6 — Mail-Template Variablen-Referenz
+# Shopware 6 — Mail template variable reference
 
-Pro Mail-Template-Typ steht ein vollständiger verschachtelter Variablen-Baum zur Verfügung.
+Every mail template type has a complete nested variable tree available.
 
-## Wie Variables in Templates gelangen
+## How variables get into templates
 
 ```
-Flow-Trigger (Event) → FlowStorer (je Aware-Interface) → flow->data()
+Flow trigger (event) → FlowStorer (per aware interface) → flow->data()
 → SendMailAction::handleFlow() → templateData['order'] / ['customer'] / …
-→ MailService::createMail() fügt 'salesChannel' hinzu
-→ Twig-Rendering mit allen Schlüsseln als Top-Level-Variablen
+→ MailService::createMail() adds 'salesChannel'
+→ Twig rendering with all keys as top-level variables
 ```
 
-Immer verfügbar (jedes Mail-Template): `eventName`, `salesChannelId`, `salesChannel`.
+Always available (every mail template): `eventName`, `salesChannelId`, `salesChannel`.
 
-## Variablen-Baum abfragen
+## Querying the variable tree
 
-→ Alle Template-Typen + auslösende Events: [MAIL-VARIABLES-MAIL-TEMPLATES.md](MAIL-VARIABLES-MAIL-TEMPLATES.md)
-→ Vollständiger verschachtelter Variablen-Baum je Template: [MAIL-VARIABLES-VARIABLE-TREES.md](MAIL-VARIABLES-VARIABLE-TREES.md)
-→ Maschinenlesbarer JSON-Baum: [references/deep/variable-trees.json](references/deep/variable-trees.json)
+→ All template types + triggering events: [MAIL-VARIABLES-MAIL-TEMPLATES.md](MAIL-VARIABLES-MAIL-TEMPLATES.md)
+→ Complete nested variable tree per template: [MAIL-VARIABLES-VARIABLE-TREES.md](MAIL-VARIABLES-VARIABLE-TREES.md)
+→ Machine-readable JSON tree: [references/deep/variable-trees.json](references/deep/variable-trees.json)
 
-## Eigene Variablen ergänzen
+## Adding custom variables
 
-Via `MailBeforeValidateEvent` — Details: `sw-mail-data`.
+Via `MailBeforeValidateEvent` — details: `sw-mail-data`.
 
 ```php
 public function onBeforeValidate(MailBeforeValidateEvent $event): void

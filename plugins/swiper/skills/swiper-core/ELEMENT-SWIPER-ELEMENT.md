@@ -1,31 +1,31 @@
-# Swiper Element — Vollständige Referenz (Web Component)
+# Swiper Element — Complete reference (Web Component)
 
-Swiper Element sind native Custom Elements (registriert via `customElements.define`).
-Verfügbar seit Swiper v9. Ersetzt die entfernten Framework-Adapter für Angular, Svelte und Solid.
+Swiper Element are native custom elements (registered via `customElements.define`).
+Available since Swiper v9. Replaces the removed framework adapters for Angular, Svelte and Solid.
 
 ---
 
 ## Contents
 
-- [Installation & Registrierung](#installation-registrierung)
-- [Die zwei Custom Elements](#die-zwei-custom-elements)
-- [Parameter als HTML-Attribute (kebab-case)](#parameter-als-html-attribute-kebab-case)
-- [Komplexe Parameter via JavaScript-Properties](#komplexe-parameter-via-javascript-properties)
-- [Parameter nach Initialisierung aktualisieren](#parameter-nach-initialisierung-aktualisieren)
-- [Event System](#event-system)
-- [Swiper-Instanz & Methoden](#swiper-instanz-methoden)
+- [Installation & registration](#installation-registration)
+- [The two custom elements](#the-two-custom-elements)
+- [Parameters as HTML attributes (kebab-case)](#parameters-as-html-attributes-kebab-case)
+- [Complex parameters via JavaScript properties](#complex-parameters-via-javascript-properties)
+- [Updating parameters after initialization](#updating-parameters-after-initialization)
+- [Event system](#event-system)
+- [Swiper instance & methods](#swiper-instance-methods)
 - [Slots](#slots)
 - [CSS & Shadow DOM](#css-shadow-dom)
-- [Auto-Render Navigation/Pagination/Scrollbar](#auto-render-navigationpaginationscrollbar)
-- [Thumbs-Integration (CSS-Selektor)](#thumbs-integration-css-selektor)
+- [Auto-render Navigation/Pagination/Scrollbar](#auto-render-navigationpaginationscrollbar)
+- [Thumbs integration (CSS selector)](#thumbs-integration-css-selector)
 - [Virtual Slides](#virtual-slides)
 - [Lazy Loading](#lazy-loading)
 - [Core vs. Bundle](#core-vs-bundle)
-- [Custom Plugin-Parameter registrieren (v9.1.0+)](#custom-plugin-parameter-registrieren-v910)
-- [Framework-Integration Übersicht](#framework-integration-übersicht)
-- [Vergleich: Swiper Element vs. Swiper Core (Klasse)](#vergleich-swiper-element-vs-swiper-core-klasse)
+- [Registering custom plugin parameters (v9.1.0+)](#registering-custom-plugin-parameters-v910)
+- [Framework integration overview](#framework-integration-overview)
+- [Comparison: Swiper Element vs. Swiper Core (class)](#comparison-swiper-element-vs-swiper-core-class)
 
-## Installation & Registrierung
+## Installation & registration
 
 ### NPM
 ```bash
@@ -33,34 +33,34 @@ npm install swiper
 ```
 
 ```javascript
-// Bundle (alle Module enthalten, auto-styles)
+// Bundle (all modules included, auto-styles)
 import { register } from 'swiper/element/bundle';
 register();
 
-// Core only (leichtgewichtig, Module manuell einbinden)
+// Core only (lightweight, include modules manually)
 import { register } from 'swiper/element';
 register();
 ```
 
-### CDN (auto-registriert, kein `register()` nötig)
+### CDN (auto-registered, no `register()` needed)
 ```html
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-element-bundle.min.js"></script>
 ```
 
 ---
 
-## Die zwei Custom Elements
+## The two custom elements
 
-| Element | Zweck |
+| Element | Purpose |
 |---|---|
-| `<swiper-container>` | Haupt-Slider-Container mit allen Swiper-Parametern |
-| `<swiper-slide>` | Einzelne Folie |
+| `<swiper-container>` | Main slider container with all Swiper parameters |
+| `<swiper-slide>` | A single slide |
 
 ---
 
-## Parameter als HTML-Attribute (kebab-case)
+## Parameters as HTML attributes (kebab-case)
 
-Alle Swiper-API-Parameter können als kebab-case-Attribute auf `<swiper-container>` gesetzt werden.
+Every Swiper API parameter can be set as a kebab-case attribute on `<swiper-container>`.
 
 ```html
 <swiper-container
@@ -80,7 +80,7 @@ Alle Swiper-API-Parameter können als kebab-case-Attribute auf `<swiper-containe
 </swiper-container>
 ```
 
-### Verschachtelte Objekt-Parameter (Bracket-Notation im Attribut)
+### Nested object parameters (bracket notation in the attribute)
 
 ```html
 <swiper-container
@@ -94,18 +94,18 @@ Alle Swiper-API-Parameter können als kebab-case-Attribute auf `<swiper-containe
 >
 ```
 
-### Boolean-Attribute
+### Boolean attributes
 
-Boolean-Parameter als String `"true"` oder `"false"` übergeben:
+Pass boolean parameters as the string `"true"` or `"false"`:
 ```html
 <swiper-container loop="true" autoplay="true"></swiper-container>
 ```
 
 ---
 
-## Komplexe Parameter via JavaScript-Properties
+## Complex parameters via JavaScript properties
 
-Für Parameter wie `breakpoints`, `pagination.renderBullet`, Arrays etc. direkt als JS-Properties setzen:
+For parameters such as `breakpoints`, `pagination.renderBullet`, arrays etc., set them directly as JS properties:
 
 ```javascript
 const swiperEl = document.querySelector('swiper-container');
@@ -114,7 +114,7 @@ const params = {
   slidesPerView: 1,
   spaceBetween: 10,
   loop: true,
-  // Komplexe Parameter — nur via Property möglich
+  // Complex parameters — only possible via property
   breakpoints: {
     640: { slidesPerView: 2, spaceBetween: 20 },
     768: { slidesPerView: 3, spaceBetween: 30 },
@@ -134,7 +134,7 @@ Object.assign(swiperEl, params);
 swiperEl.initialize();
 ```
 
-**Wichtig:** Wenn `init="false"` nicht gesetzt ist, initialisiert sich `<swiper-container>` beim DOM-Ready automatisch. Für Property-Binding vor der Initialisierung:
+**Important:** unless `init="false"` is set, `<swiper-container>` initializes itself automatically on DOM ready. For property binding before initialization:
 
 ```html
 <swiper-container init="false">
@@ -145,34 +145,34 @@ swiperEl.initialize();
 ```javascript
 const swiperEl = document.querySelector('swiper-container');
 Object.assign(swiperEl, { slidesPerView: 3, breakpoints: { ... } });
-swiperEl.initialize(); // Manuell initialisieren
+swiperEl.initialize(); // Initialize manually
 ```
 
 ---
 
-## Parameter nach Initialisierung aktualisieren
+## Updating parameters after initialization
 
 ```javascript
 const swiperEl = document.querySelector('swiper-container');
 
-// Via Attribut (camelCase-Params → kebab-case-Attributname)
+// Via attribute (camelCase params → kebab-case attribute name)
 swiperEl.setAttribute('slides-per-view', '3');
 swiperEl.setAttribute('space-between', '20');
 
-// Via Property (camelCase direkt)
+// Via property (camelCase directly)
 swiperEl.slidesPerView = 3;
 swiperEl.spaceBetween = 20;
 ```
 
 ---
 
-## Event System
+## Event system
 
-### Standard-Events (v11+: Prefix `swiper` by default)
+### Standard events (v11+: prefix `swiper` by default)
 
-Alle Swiper-Events werden als DOM Custom Events gefeuert. Ab v11 sind Events standardmäßig mit dem Präfix `swiper` versehen:
+All Swiper events are fired as DOM custom events. As of v11, events carry the prefix `swiper` by default:
 
-| Swiper-API-Event | DOM-Event-Name (v11 default) |
+| Swiper API event | DOM event name (v11 default) |
 |---|---|
 | `slideChange` | `swiperslidechange` |
 | `progress` | `swiperprogress` |
@@ -186,18 +186,18 @@ Alle Swiper-Events werden als DOM Custom Events gefeuert. Ab v11 sind Events sta
 | `transitionEnd` | `swipetransitionend` |
 | `slideNextTransitionStart` | `swiperslideNextTransitionstart` |
 
-Event-Argumente werden via `event.detail` übergeben (Array):
+Event arguments are passed via `event.detail` (array):
 
 ```javascript
 const swiperEl = document.querySelector('swiper-container');
 
-// Einfaches Event
+// Simple event
 swiperEl.addEventListener('swiperslidechange', (event) => {
   console.log('Slide changed');
-  console.log(event.detail[0]); // Swiper-Instanz
+  console.log(event.detail[0]); // Swiper instance
 });
 
-// Event mit mehreren Parametern
+// Event with several parameters
 swiperEl.addEventListener('swiperprogress', (event) => {
   const [swiper, progress] = event.detail;
   console.log(`Progress: ${progress}`);
@@ -208,15 +208,15 @@ swiperEl.addEventListener('swipetap', (event) => {
 });
 ```
 
-### Event-Präfix anpassen
+### Customizing the event prefix
 
 ```html
-<!-- Kein Präfix (Verhalten vor v11) -->
+<!-- No prefix (behavior before v11) -->
 <swiper-container events-prefix="">
   <!-- Events: "slidechange", "progress", etc. -->
 </swiper-container>
 
-<!-- Benutzerdefinierter Präfix -->
+<!-- Custom prefix -->
 <swiper-container events-prefix="swiper-">
   <!-- Events: "swiper-slidechange", "swiper-progress", etc. -->
 </swiper-container>
@@ -224,15 +224,15 @@ swiperEl.addEventListener('swipetap', (event) => {
 
 ---
 
-## Swiper-Instanz & Methoden
+## Swiper instance & methods
 
 ```javascript
 const swiperEl = document.querySelector('swiper-container');
 
-// Nach Initialisierung: Swiper-Instanz via .swiper Property
+// After initialization: Swiper instance via the .swiper property
 const swiper = swiperEl.swiper;
 
-// Alle Swiper-Methoden verfügbar
+// All Swiper methods available
 swiper.slideNext();
 swiper.slidePrev();
 swiper.slideTo(3);
@@ -244,7 +244,7 @@ swiper.autoplay.stop();
 swiper.pagination.render();
 swiper.pagination.update();
 
-// Eigenschaften
+// Properties
 console.log(swiper.activeIndex);
 console.log(swiper.realIndex);
 console.log(swiper.slides);
@@ -256,25 +256,25 @@ console.log(swiper.isEnd);
 
 ## Slots
 
-Inhalt innerhalb `<swiper-container>` positionieren (außerhalb des `.swiper-wrapper`):
+Position content inside `<swiper-container>` (outside the `.swiper-wrapper`):
 
 ```html
 <swiper-container>
-  <!-- Vor dem swiper-wrapper -->
-  <div slot="container-start">Dieser Inhalt kommt vor den Slides</div>
+  <!-- Before the swiper-wrapper -->
+  <div slot="container-start">This content comes before the slides</div>
 
-  <!-- Normale Slides (kein slot-Attribut) -->
+  <!-- Normal slides (no slot attribute) -->
   <swiper-slide>Slide 1</swiper-slide>
   <swiper-slide>Slide 2</swiper-slide>
 
-  <!-- Nach dem swiper-wrapper -->
-  <div slot="container-end">Dieser Inhalt kommt nach den Slides</div>
+  <!-- After the swiper-wrapper -->
+  <div slot="container-end">This content comes after the slides</div>
 
-  <!-- Vor dem swiper-wrapper (innerhalb wrapper) -->
-  <div slot="wrapper-start">Im Wrapper, vor Slides</div>
+  <!-- Before the swiper-wrapper (inside the wrapper) -->
+  <div slot="wrapper-start">In the wrapper, before the slides</div>
 
-  <!-- Nach dem swiper-wrapper (innerhalb wrapper) -->
-  <div slot="wrapper-end">Im Wrapper, nach Slides</div>
+  <!-- After the swiper-wrapper (inside the wrapper) -->
+  <div slot="wrapper-end">In the wrapper, after the slides</div>
 </swiper-container>
 ```
 
@@ -282,7 +282,7 @@ Inhalt innerhalb `<swiper-container>` positionieren (außerhalb des `.swiper-wra
 
 ## CSS & Shadow DOM
 
-### CSS Parts (Shadow DOM Styling ohne `::slotted`)
+### CSS parts (shadow DOM styling without `::slotted`)
 
 ```css
 /* Container */
@@ -305,9 +305,9 @@ swiper-container::part(scrollbar) { }
 swiper-container::part(scrollbar-drag) { }
 ```
 
-### Styles in Shadow DOM injizieren (`injectStyles`)
+### Injecting styles into the shadow DOM (`injectStyles`)
 
-CSS-Strings direkt in den Shadow DOM scope injizieren:
+Inject CSS strings directly into the shadow DOM scope:
 
 ```javascript
 const swiperEl = document.querySelector('swiper-container');
@@ -336,10 +336,10 @@ swiperEl.initialize();
 
 ---
 
-## Auto-Render Navigation/Pagination/Scrollbar
+## Auto-render Navigation/Pagination/Scrollbar
 
 ```html
-<!-- Automatisch generierte UI-Elemente -->
+<!-- Automatically generated UI elements -->
 <swiper-container
   navigation="true"
   pagination="true"
@@ -351,10 +351,10 @@ swiperEl.initialize();
 
 ---
 
-## Thumbs-Integration (CSS-Selektor)
+## Thumbs integration (CSS selector)
 
 ```html
-<!-- Thumbs-Swiper (kein JS nötig bei einfacher Konfiguration) -->
+<!-- Thumbs Swiper (no JS needed for a simple configuration) -->
 <swiper-container
   thumbs-swiper=".my-thumbs"
   loop="true"
@@ -383,7 +383,7 @@ swiperEl.initialize();
 <swiper-container virtual="true" slides-per-view="3">
   <swiper-slide>Slide 1</swiper-slide>
   <swiper-slide>Slide 2</swiper-slide>
-  <!-- Weitere Slides -->
+  <!-- More slides -->
 </swiper-container>
 ```
 
@@ -403,14 +403,14 @@ swiperEl.initialize();
 
 ## Core vs. Bundle
 
-### Bundle (empfohlen für die meisten Fälle)
+### Bundle (recommended for most cases)
 ```javascript
 import { register } from 'swiper/element/bundle';
 register();
-// Alle Module + Styles enthalten
+// All modules + styles included
 ```
 
-### Core (minimales Bundle, Module manuell)
+### Core (minimal bundle, modules manual)
 ```javascript
 import { register } from 'swiper/element';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -431,43 +431,43 @@ swiperEl.initialize();
 
 ---
 
-## Custom Plugin-Parameter registrieren (v9.1.0+)
+## Registering custom plugin parameters (v9.1.0+)
 
 ```javascript
-// Eigene Plugin-Parameter bekannt machen, damit sie als Attribute erkannt werden
+// Make your own plugin parameters known so they are recognized as attributes
 window.SwiperElementRegisterParams(['myParam', 'anotherParam']);
 
 const swiperEl = document.querySelector('swiper-container');
-// Jetzt als Attribut nutzbar:
+// Now usable as an attribute:
 swiperEl.setAttribute('my-param', 'value');
 ```
 
 ---
 
-## Framework-Integration Übersicht
+## Framework integration overview
 
-| Framework | Empfehlung | Hinweis |
+| Framework | Recommendation | Note |
 |---|---|---|
-| Angular | Swiper Element | `CUSTOM_ELEMENTS_SCHEMA` im Modul/Component |
-| Svelte | Swiper Element | `bind:this`, Events mit `on:swiper*` |
+| Angular | Swiper Element | `CUSTOM_ELEMENTS_SCHEMA` in the module/component |
+| Svelte | Swiper Element | `bind:this`, events with `on:swiper*` |
 | Solid | Swiper Element | `ref`, `addEventListener` |
-| React | Swiper React-Komponenten ODER Element | Element in React mit `useRef` + `addEventListener` |
-| Vue | Swiper Vue-Komponenten ODER Element | Element in Vue mit `:` und `@` nativ |
+| React | Swiper React components OR Element | Element in React with `useRef` + `addEventListener` |
+| Vue | Swiper Vue components OR Element | Element in Vue with `:` and `@` natively |
 
 ---
 
-## Vergleich: Swiper Element vs. Swiper Core (Klasse)
+## Comparison: Swiper Element vs. Swiper Core (class)
 
-| Merkmal | Swiper Element | Swiper Core |
+| Feature | Swiper Element | Swiper Core |
 |---|---|---|
-| Initialisierung | HTML-Tag + auto/`initialize()` | `new Swiper('.selector', options)` |
-| Parameter | HTML-Attribute (kebab) + JS-Properties | JS-Objekt im Konstruktor |
-| Events | DOM Custom Events (lowercase + prefix) | `.on('eventName', fn)` |
-| Zugriff | `.swiper`-Property des Elements | Direkte Instanz-Variable |
-| Shadow DOM | Ja (CSS Parts, injectStyles) | Nein |
-| Framework-Neutral | Ja | Nein (JS-only) |
-| Bundle-Größe | Etwas größer | Kleiner (Core-only möglich) |
+| Initialization | HTML tag + auto/`initialize()` | `new Swiper('.selector', options)` |
+| Parameters | HTML attributes (kebab) + JS properties | JS object in the constructor |
+| Events | DOM custom events (lowercase + prefix) | `.on('eventName', fn)` |
+| Access | `.swiper` property of the element | Direct instance variable |
+| Shadow DOM | Yes (CSS parts, injectStyles) | No |
+| Framework-neutral | Yes | No (JS-only) |
+| Bundle size | Slightly larger | Smaller (core-only possible) |
 
 ---
 
-*Quelle: https://swiperjs.com/element — Swiper v12.2.0*
+*Source: https://swiperjs.com/element — Swiper v12.2.0*

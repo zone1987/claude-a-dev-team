@@ -1,38 +1,38 @@
-# Shopware Rule-System — Konzept
+# Shopware rule system — concept
 
-Vollständige Konzept-Doku: `RULE-SYSTEM-DETAIL.md`
+Complete concept documentation: `RULE-SYSTEM-DETAIL.md`
 
-## Kurzüberblick
+## Quick overview
 
-Das Rule-System beschreibt Business-Bedingungen als **komposable Regeln**, die gegen einen Kontext
-(Cart, Order, Customer) ausgewertet werden. Wird eingesetzt in: Checkout, Promotionen, Flow Builder.
+The rule system describes business conditions as **composable rules** that are evaluated against a
+context (cart, order, customer). Used in: checkout, promotions, Flow Builder.
 
 ### Rule
 
-- Einzelne Bedingung → `true` oder `false`
-- Keine Seiteneffekte, keine Datenbeschaffung (pure function)
-- Erhält alle Daten über **RuleScope**
+- Single condition → `true` or `false`
+- No side effects, no data fetching (pure function)
+- Receives all data via the **RuleScope**
 
-### RuleScope (Kontext-Träger)
+### RuleScope (context carrier)
 
-- `CheckoutRuleScope` — SalesChannelContext (Customer, Currency, etc.)
-- `CartRuleScope` — Checkout + Cart-Daten
-- `FlowRuleScope` — Checkout + Order-Daten
-- `LineItemScope` — einzelnes Line Item
+- `CheckoutRuleScope` — SalesChannelContext (customer, currency, etc.)
+- `CartRuleScope` — checkout + cart data
+- `FlowRuleScope` — checkout + order data
+- `LineItemScope` — a single line item
 
-### Container Rules (Baumstruktur)
+### Container rules (tree structure)
 
-- `AndRule` — alle Kinder müssen matchen
-- `OrRule` — mindestens ein Kind muss matchen
-- `NotRule` — Kind darf nicht matchen
-- Beliebig tief schachtelbar
+- `AndRule` — all children must match
+- `OrRule` — at least one child must match
+- `NotRule` — the child must not match
+- Nestable to any depth
 
-### Evaluation-Lifecycle
+### Evaluation lifecycle
 
-1. Rule Builder → visuelle Konfiguration
-2. Validierung via `RuleConstraints` und `RuleConfig`
-3. Persistenz in DB (`rule` + `rule_condition` mit `parent_id`)
-4. Laufzeit: `CartRuleLoader` baut Scope, filtert Kandidaten, iteriert bis stabil
-5. ID-basiert (Zahlungsart-Availability) oder Direkt-Evaluation (Flow Builder)
+1. Rule Builder → visual configuration
+2. Validation via `RuleConstraints` and `RuleConfig`
+3. Persistence in the DB (`rule` + `rule_condition` with `parent_id`)
+4. Runtime: `CartRuleLoader` builds the scope, filters candidates, iterates until stable
+5. ID-based (payment method availability) or direct evaluation (Flow Builder)
 
-Technische Umsetzung: `shopware-framework` (Dev-Plugin)
+Technical implementation: `shopware-framework` (dev plugin)

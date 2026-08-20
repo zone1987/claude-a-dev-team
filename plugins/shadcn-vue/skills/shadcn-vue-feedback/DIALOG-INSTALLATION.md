@@ -6,18 +6,18 @@
 npx shadcn-vue@latest add dialog
 ```
 
-## Manuell
+## Manual
 
-### Abhaengigkeiten
+### Dependencies
 
 ```bash
 npm install reka-ui
 ```
 
-### Manuelle Schritte
+### Manual Steps
 
-1. Quellcode kopieren (siehe `references/source.md`) nach `components/ui/dialog/`
-2. Importpfade an das eigene Projekt anpassen (`@/lib/utils`, `@/registry/...` ersetzen)
+1. Copy the source code (see `references/source.md`) into `components/ui/dialog/`
+2. Adjust the import paths to your own project (replace `@/lib/utils`, `@/registry/...`)
 
 ### Imports
 
@@ -38,6 +38,6 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://reka-ui.com/docs/components/dialog
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/dialog

@@ -1,391 +1,391 @@
-# Shopware 6 – Produkte: Vollständige Referenz
+# Shopware 6 – Produkte (Products): complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge/produkte  
-> Gilt ab: Shopware 6.7.9.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/kataloge/produkte  
+> Applies from: Shopware 6.7.9.0+
 
 ---
 
 ## Contents
 
-- [1. Produktübersicht (Listansicht)](#1-produktübersicht-listansicht)
-- [2. Neues Produkt anlegen – Pflichtfelder](#2-neues-produkt-anlegen-pflichtfelder)
-- [3. Bereich: Allgemein](#3-bereich-allgemein)
-- [4. Bereich: Zuweisung](#4-bereich-zuweisung)
-- [5. Tab: Spezifikationen](#5-tab-spezifikationen)
-- [6. Tab: Erweiterte Preise](#6-tab-erweiterte-preise)
-- [7. Tab: Varianten](#7-tab-varianten)
+- [1. Produktübersicht (Product overview, list view)](#1-produktübersicht-product-overview-list-view)
+- [2. Creating a new product – mandatory fields](#2-creating-a-new-product--mandatory-fields)
+- [3. Area: Allgemein (General)](#3-area-allgemein-general)
+- [4. Area: Zuweisung (Assignment)](#4-area-zuweisung-assignment)
+- [5. Tab: Spezifikationen (Specifications)](#5-tab-spezifikationen-specifications)
+- [6. Tab: Erweiterte Preise (Advanced prices)](#6-tab-erweiterte-preise-advanced-prices)
+- [7. Tab: Varianten (Variants)](#7-tab-varianten-variants)
 - [8. Tab: Layout](#8-tab-layout)
 - [9. Tab: SEO](#9-tab-seo)
 - [10. Tab: Cross Selling](#10-tab-cross-selling)
-- [11. Tab: Bundles (Shopware Services Feature)](#11-tab-bundles-shopware-services-feature)
-- [12. Tab: Bewertungen](#12-tab-bewertungen)
-- [13. Digitale Produkte](#13-digitale-produkte)
-- [14. Erweiterter Bearbeitungsmodus](#14-erweiterter-bearbeitungsmodus)
-- [15. Mehrfachänderung in der Produktübersicht](#15-mehrfachänderung-in-der-produktübersicht)
-- [16. Produktübersicht-Linksammlung](#16-produktübersicht-linksammlung)
+- [11. Tab: Bundles (Shopware Services feature)](#11-tab-bundles-shopware-services-feature)
+- [12. Tab: Bewertungen (Reviews)](#12-tab-bewertungen-reviews)
+- [13. Digital products](#13-digital-products)
+- [14. Advanced editing mode](#14-advanced-editing-mode)
+- [15. Mehrfachänderung (Bulk edit) in the product overview](#15-mehrfachänderung-bulk-edit-in-the-product-overview)
+- [16. Product overview link collection](#16-product-overview-link-collection)
 
-## 1. Produktübersicht (Listansicht)
+## 1. Produktübersicht (Product overview, list view)
 
-Pfad: **Kataloge > Produkte**
+Path: **Kataloge** (Catalogues) > **Produkte** (Products)
 
-### Spalten der Übersicht
+### Columns of the overview
 
-| Spalte | Beschreibung |
+| Column | Description |
 |---|---|
-| Aktiv | Verfügbarkeitsstatus im Shop (grüner/roter Punkt) |
-| Name | Produktbezeichnung, erscheint auf der Artikeldetailseite |
-| Produktnummer | Eindeutige Kennzeichnung des Produkts |
-| Preis | Preis für die Standardkundengruppe |
-| Lagerbestand | Aktueller Bestand (Farbcodierung: Rot=0, Gelb=1–25, Grün>25) |
-| Hersteller | Name des zugeordneten Herstellers |
+| Aktiv (Active) | Availability status in the shop (green/red dot) |
+| Name | Product name, appears on the product detail page |
+| Produktnummer (Product number) | Unique identifier of the product |
+| Preis (Price) | Price for the default customer group |
+| Lagerbestand (Stock) | Current stock (colour coding: red=0, yellow=1–25, green>25) |
+| Hersteller (Manufacturer) | Name of the assigned manufacturer |
 
-Spalten sind durch Klick auf den Spaltenkopf auf- und absteigend sortierbar.
-Nicht benötigte Spalten können über **Listeneinstellungen** ausgeblendet werden.
-Über Listeneinstellungen ist auch der **Kompaktmodus** aktivierbar.
+Columns can be sorted ascending and descending by clicking the column header.
+Columns that are not needed can be hidden via **Listeneinstellungen** (List settings).
+The **Kompaktmodus** (Compact mode) can also be activated via the list settings.
 
-### Kontextmenü pro Produkt
+### Context menu per product
 
-- **Bearbeiten**: Öffnet die Produktdetailmaske
-- **Duplizieren**: Erstellt eine Kopie des Produkts
-- **Löschen**: Löscht das Produkt dauerhaft
+- **Bearbeiten** (Edit): opens the product detail screen
+- **Duplizieren** (Duplicate): creates a copy of the product
+- **Löschen** (Delete): deletes the product permanently
 
-> **Hinweis**: Gelöschte Produkte bleiben in bestehenden Bestellungen als Position sichtbar. Empfehlung: Inaktiv schalten statt löschen.
+> **Note**: deleted products remain visible as line items in existing orders. Recommendation: set them to inactive instead of deleting them.
 
-Bei Variantenprodukten erscheint ein Symbol vor dem Produktnamen. Klick darauf öffnet ein Modal mit Variantendetails.
+For variant products an icon appears in front of the product name. Clicking it opens a modal with variant details.
 
 ---
 
-## 2. Neues Produkt anlegen – Pflichtfelder
+## 2. Creating a new product – mandatory fields
 
-1. Klick auf **„Produkt hinzufügen"**
-2. Mindestangaben vor dem ersten Speichern:
-   - **Titel** – Produktname
-   - **Produktnummer** – manuell oder auto-generiert
-   - **Steuersatz** – aus Dropdown wählen
-   - **Bruttopreis** und **Nettopreis**
-   - **Lagerbestand** – Zahl ≥ 0
-3. Auf **„Speichern"** klicken → Tabs werden freigeschaltet
-
----
-
-## 3. Bereich: Allgemein
-
-### 3.1 Informationen
-
-| Feld | Beschreibung |
-|---|---|
-| Titel | Produktname für Listing und Detailseite |
-| Hersteller | Auswahl aus bestehenden Herstellern oder Neuanlage direkt im Feld |
-| Produktnummer | Individuelle Zuweisung, muss eindeutig sein |
-| Beschreibung | WYSIWYG-Editor; Formatierungseinfügen ohne Formatierung: `Strg+Shift+V` (Mac: `Cmd+Shift+V`) |
-| Produkt hervorheben | Aktiviert ein Badge im Listing (z. B. „Neu", „Empfohlen") |
-| AI-Beschreibungsassistent | Verfügbar ab Rise-Plan; generiert Beschreibungen aus Produktdaten |
-
-### 3.2 Preise
-
-| Feld | Beschreibung |
-|---|---|
-| Steuersatz | Standard ist vorausgewählt, muss korrekt gesetzt sein |
-| Bruttopreis | Verkaufspreis inkl. MwSt. |
-| Nettopreis | Verkaufspreis exkl. MwSt.; beide Felder sind verknüpft (Kettensymbol) |
-| Einkaufspreis | Interner Kalkulationswert, nicht öffentlich |
-| Streichpreis | UVP / Originalpreis (wird durchgestrichen angezeigt) |
-| Günstigster Preis (30 Tage) | EU-Preisangabenrichtlinie: niedrigster Preis der letzten 30 Tage |
-| Währungspreise | Für jeden konfigurierten Währungskanal eigene Preise festlegbar |
-| Kettensymbol | Verknüpft Brutto und Netto – Änderung eines Feldes berechnet das andere automatisch |
-
-### 3.3 Lieferbarkeit
-
-| Feld | Beschreibung |
-|---|---|
-| Lagerbestand | Aktueller Bestand; kann jederzeit geändert werden |
-| Abverkauf | Wenn aktiviert: Verkauf nur bis Bestand = 0; danach nicht mehr kaufbar |
-| Lieferzeit | Überschreibt die Lieferzeit der zugeordneten Versandart |
-| Wiederauffüllzeit | Angabe in Tagen, wann der Artikel wieder verfügbar sein wird |
-| Versandkostenfrei | Ja/Nein – Produkt ist von Versandkosten befreit |
-| Mindestabnahme | Mindeststückzahl pro Bestellung |
-| Staffelung | In welchen Mengenvielfachen bestellt werden kann |
-| Maximalabnahme | Maximale Stückzahl pro Bestellung |
-
-### 3.4 Lagerhäuser und Lagerhausgruppen (ab 6.4.19.0, Beyond Plan)
-
-- Dropdown zur Auswahl der Lagerhausgruppe
-- Nach Auswahl erscheint: „Verfügbarkeit und Lieferzeit nach Lagern anzeigen"
-- Detailmaske zeigt Bestand pro einzelnem Lager
-- Priorität pro Lager einstellbar
-- Lieferzeit-Reiter mit vordefinierten Optionen: Sofort, 1–3 Tage, 2–5 Tage, 1–2 Wochen, 3–4 Wochen
+1. Click on **"Produkt hinzufügen"** (Add product)
+2. Minimum information before saving for the first time:
+   - **Titel** (Title) – product name
+   - **Produktnummer** – manual or auto-generated
+   - **Steuersatz** (Tax rate) – choose from the dropdown
+   - **Bruttopreis** (Gross price) and **Nettopreis** (Net price)
+   - **Lagerbestand** – number ≥ 0
+3. Click on **"Speichern"** (Save) → the tabs are unlocked
 
 ---
 
-## 4. Bereich: Zuweisung
+## 3. Area: Allgemein (General)
 
-### 4.1 Sichtbarkeit und Kategorien
+### 3.1 Informationen (Information)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Verkaufskanal | Dem Produkt zugeordnete Verkaufskanäle |
-| Aktiv | Steuert ob das Produkt in der Storefront erscheint |
-| Kategorien | Mehrfach-Zuweisung möglich; erscheint in der Kategorienavigation |
-| Erweiterte Sichtbarkeit | Optionen: Sichtbar (Listing + Suche) / In Produktlisten ausblenden / In Produktlisten und Suche ausblenden |
-| Tags | Schlagworte für Regel-Targeting und interne Sortierung |
-| Such-Schlagwörter | Erweitern den Suchindex um zusätzliche Begriffe |
+| Titel | Product name for the listing and detail page |
+| Hersteller | Selection from existing manufacturers or creation directly in the field |
+| Produktnummer | Individually assigned, must be unique |
+| Beschreibung (Description) | WYSIWYG editor; paste without formatting: `Ctrl+Shift+V` (Mac: `Cmd+Shift+V`) |
+| Produkt hervorheben (Highlight product) | Activates a badge in the listing (e.g. "Neu" (New), "Empfohlen" (Recommended)) |
+| AI description assistant | Available from the Rise plan; generates descriptions from product data |
 
-### 4.2 Medien
+### 3.2 Preise (Prices)
 
-- Produktfotos, Videos, 3D-Modelle hochladen
-- **Empfohlene Bildgröße**: Quadratisch, 600×600 px (optimal)
-- **Zoom-Qualität**: Bis 1920×1920 px möglich
-- **Video-Formate**: webm, mkv, flv, ogv, ogg, avi, mov, wmv, mp4 (Empfehlung: MP4)
-- **3D-Modelle**: Nur GLB-Format, wird mit ThreeJS-Bibliothek gerendert
-- **AR-Aktivierung**: Möglich für iOS 12+ und Android 8.0+ mit ARCore 1.9
-
-### 4.3 Auszeichnung
-
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Erscheinungsdatum | Informatives Datum für Kunden (kein Kaufstopp!) |
-| EAN | European Article Number / Barcode |
-| Herstellernummer | Interne Referenz, nicht öffentlich sichtbar |
+| Steuersatz | The default is preselected, must be set correctly |
+| Bruttopreis | Selling price incl. VAT |
+| Nettopreis | Selling price excl. VAT; both fields are linked (chain icon) |
+| Einkaufspreis (Purchase price) | Internal calculation value, not public |
+| Streichpreis (List price) | RRP / original price (shown with a strikethrough) |
+| Günstigster Preis (Lowest price) (30 days) | EU price indication directive: lowest price of the last 30 days |
+| Currency prices | Separate prices can be set for every configured currency channel |
+| Chain icon | Links gross and net – changing one field calculates the other automatically |
+
+### 3.3 Lieferbarkeit (Availability)
+
+| Field | Description |
+|---|---|
+| Lagerbestand | Current stock; can be changed at any time |
+| Abverkauf (Clearance sale) | When activated: sale only until stock = 0; not purchasable afterwards |
+| Lieferzeit (Delivery time) | Overrides the delivery time of the assigned shipping method |
+| Wiederauffüllzeit (Restock time) | Stated in days, when the item will be available again |
+| Versandkostenfrei (Free shipping) | Yes/no – the product is exempt from shipping costs |
+| Mindestabnahme (Minimum purchase) | Minimum quantity per order |
+| Staffelung (Purchase steps) | In which quantity multiples it can be ordered |
+| Maximalabnahme (Maximum purchase) | Maximum quantity per order |
+
+### 3.4 Lagerhäuser (Warehouses) and warehouse groups (from 6.4.19.0, Beyond plan)
+
+- Dropdown to select the warehouse group
+- After the selection appears: "Verfügbarkeit und Lieferzeit nach Lagern anzeigen" (Show availability and delivery time per warehouse)
+- The detail screen shows the stock per individual warehouse
+- Priority configurable per warehouse
+- Delivery time tab with predefined options: immediately, 1–3 days, 2–5 days, 1–2 weeks, 3–4 weeks
 
 ---
 
-## 5. Tab: Spezifikationen
+## 4. Area: Zuweisung (Assignment)
 
-### 5.1 Maße & Verpackung
+### 4.1 Visibility and categories
 
-**Produktmaße** (für Versandkostenberechnung nutzbar):
-
-| Feld | Einheit |
+| Field | Description |
 |---|---|
-| Breite | mm oder cm |
-| Höhe | mm oder cm |
-| Länge | mm oder cm |
-| Gewicht | kg oder g |
+| Verkaufskanal (Sales channel) | Sales channels assigned to the product |
+| Aktiv | Controls whether the product appears in the storefront |
+| Kategorien (Categories) | Multiple assignment possible; appears in the category navigation |
+| Erweiterte Sichtbarkeit (Advanced visibility) | Options: visible (listing + search) / hide in product lists / hide in product lists and search |
+| Tags | Keywords for rule targeting and internal sorting |
+| Such-Schlagwörter (Search keywords) | Extend the search index with additional terms |
 
-**Verkaufs- & Verpackungsinformationen** (für Grundpreisberechnung):
+### 4.2 Medien (Media)
 
-| Feld | Beschreibung |
+- Upload product photos, videos, 3D models
+- **Recommended image size**: square, 600×600 px (optimal)
+- **Zoom quality**: up to 1920×1920 px possible
+- **Video formats**: webm, mkv, flv, ogv, ogg, avi, mov, wmv, mp4 (recommendation: MP4)
+- **3D models**: GLB format only, rendered with the ThreeJS library
+- **AR activation**: possible for iOS 12+ and Android 8.0+ with ARCore 1.9
+
+### 4.3 Auszeichnung (Labelling)
+
+| Field | Description |
 |---|---|
-| Verkaufseinheit | Inhalt des Produkts (z. B. 0,25 oder 700) |
-| Produkteinheit | Einheit des Inhalts (z. B. Liter, Flasche, Stück) |
-| Grundeinheit | Referenzeinheit für Grundpreis (z. B. 1 kg, 1 L) – **verpflichtend** |
-| Verpackungseinheit | Anzahl der Einheiten in der Verpackung |
-| Verpackungseinheit-Mehrzahl | Mehrzahl der Verpackungseinheit |
-
-**Grundpreisberechnung** setzt voraus: Verkaufseinheit + Produkteinheit + Grundeinheit.  
-Beispiel: Flasche mit 0,25 L → Verkaufseinheit: 0,25, Produkteinheit: Liter, Grundeinheit: 1 Liter
-
-### 5.2 Eigenschaften
-
-- Filterbare Produktinformationen (z. B. Größe, Farbe, Material)
-- Auswahl aus vordefinierten Eigenschaften (Kataloge > Eigenschaften)
-- Mehrfach-Zuweisungen möglich
-- Suchfunktion im Auswahlfeld verfügbar
-- **AI Copilot**: Automatische Konfiguration aus Beschreibungstext (erfordert kommerziellen Plan)
-
-### 5.3 Wesentliche Merkmale
-
-- Vorlagen-basierte Auswahl
-- Zeigt die wichtigsten Produktmerkmale im Warenkorb und Checkout an
-- Kann enthalten: Eigenschaften, Zusatzfelder, Produktinfos, Grundpreisangaben
-
-### 5.4 Zusatzfelder
-
-- Zeigt zugewiesene Zusatzfeld-Sets (Custom Fields)
-- Mögliche Feldtypen: Checkbox, Bilder, Farbauswahl, Text, Zahl, Datum
-- Können in Templates via Variablen eingebunden werden
+| Erscheinungsdatum (Release date) | Informative date for customers (no purchase stop!) |
+| EAN | European Article Number / barcode |
+| Herstellernummer (Manufacturer number) | Internal reference, not publicly visible |
 
 ---
 
-## 6. Tab: Erweiterte Preise
+## 5. Tab: Spezifikationen (Specifications)
 
-Preisregeln basieren auf dem **Rule Builder**:
+### 5.1 Dimensions & packaging
 
-- Mengenabhängige Staffelpreise
-- Kunden- oder Kundengruppen-spezifische Preise
-- Zeitlich begrenzte Preisaktionen
-- Pro Regel: Brutto, Netto, Streichpreis, günstigster Preis (30 Tage) einstellbar
+**Product dimensions** (can be used for shipping cost calculation):
+
+| Field | Unit |
+|---|---|
+| Breite (Width) | mm or cm |
+| Höhe (Height) | mm or cm |
+| Länge (Length) | mm or cm |
+| Gewicht (Weight) | kg or g |
+
+**Sales & packaging information** (for the unit price calculation):
+
+| Field | Description |
+|---|---|
+| Verkaufseinheit (Packing unit) | Content of the product (e.g. 0.25 or 700) |
+| Produkteinheit (Product unit) | Unit of the content (e.g. litre, bottle, piece) |
+| Grundeinheit (Base unit) | Reference unit for the unit price (e.g. 1 kg, 1 L) – **mandatory** |
+| Verpackungseinheit (Packaging unit) | Number of units in the packaging |
+| Verpackungseinheit-Mehrzahl (Packaging unit plural) | Plural of the packaging unit |
+
+The **unit price calculation** requires: Verkaufseinheit + Produkteinheit + Grundeinheit.  
+Example: bottle with 0.25 L → Verkaufseinheit: 0.25, Produkteinheit: litre, Grundeinheit: 1 litre
+
+### 5.2 Eigenschaften (Properties)
+
+- Filterable product information (e.g. size, colour, material)
+- Selection from predefined properties (Kataloge > Eigenschaften)
+- Multiple assignments possible
+- A search function is available in the selection field
+- **AI Copilot**: automatic configuration from the description text (requires a commercial plan)
+
+### 5.3 Wesentliche Merkmale (Essential characteristics)
+
+- Template-based selection
+- Shows the most important product characteristics in the cart and checkout
+- Can contain: properties, custom fields, product information, unit price details
+
+### 5.4 Zusatzfelder (Custom fields)
+
+- Shows the assigned custom field sets
+- Possible field types: checkbox, images, colour picker, text, number, date
+- Can be included in templates via variables
 
 ---
 
-## 7. Tab: Varianten
+## 6. Tab: Erweiterte Preise (Advanced prices)
 
-### 7.1 Varianten generieren
+Price rules are based on the **Rule Builder**:
 
-1. Link **„Eigenschaften zuweisen"** klicken
-2. Eigenschaftsgruppe auswählen (muss unter Kataloge > Eigenschaften angelegt sein)
-3. Optionen aktivieren (Checkboxen je Ausprägung)
-4. Preis-Auf- und Abschläge je Option definieren (optional)
-5. Variantenausschlüsse konfigurieren (mehrere Bedingungen mit UND-Verknüpfung)
-6. **„Varianten generieren"** klicken
+- Quantity-dependent scaled prices
+- Customer or customer-group specific prices
+- Time-limited price campaigns
+- Per rule: gross, net, list price, lowest price (30 days) can be set
 
-### 7.2 Sortieroptionen in der Variantenliste
+---
+
+## 7. Tab: Varianten (Variants)
+
+### 7.1 Generating variants
+
+1. Click the link **"Eigenschaften zuweisen"** (Assign properties)
+2. Select the property group (must be created under Kataloge > Eigenschaften)
+3. Activate options (checkboxes per option value)
+4. Define price surcharges and discounts per option (optional)
+5. Configure variant exclusions (several conditions with an AND link)
+6. Click **"Varianten generieren"** (Generate variants)
+
+### 7.2 Sorting options in the variant list
 
 - Name, Preis, Lagerbestand, Produktnummer, Aktiv
 
-### 7.3 Storefront-Darstellung
+### 7.3 Storefront presentation
 
-**Anzeigereihenfolge der Eigenschaften und Optionen** in der Storefront konfigurierbar.  
-**Bildzuweisung** je Variante möglich.
+The **display order of properties and options** in the storefront is configurable.  
+An **image assignment** per variant is possible.
 
-**Produktlisten-Anzeigemodus:**
+**Product list display mode:**
 
-| Modus | Verhalten |
+| Mode | Behaviour |
 |---|---|
-| Einzelne Hauptvariante → Main product | Keine vorausgewählte Variante im Listing |
-| Einzelne Hauptvariante → Single Variant | Vordefinierte Variante vorausgewählt (Dropdown-Auswahl) |
-| Auffächern der Eigenschaften | Mehrere Varianten als separate Produkte im Listing |
+| Single main variant → Main product | No preselected variant in the listing |
+| Single main variant → Single Variant | Predefined variant preselected (dropdown selection) |
+| Expanding the properties | Several variants as separate products in the listing |
 
-### 7.4 Einzelne Variante bearbeiten
+### 7.4 Editing a single variant
 
-- Kettensymbol zeigt, ob ein Feld vom Hauptprodukt **geerbt** wird (lila Symbol)
-- Vererbung aufheben = Feld direkt bearbeitbar
-- Alle Bereiche der Hauptmaske sind varianten-individuell konfigurierbar
+- The chain icon shows whether a field is **inherited** from the main product (purple icon)
+- Removing the inheritance = the field becomes directly editable
+- All areas of the main screen can be configured individually per variant
 
-### 7.5 Schnelle Änderungen (Inline-Editing)
+### 7.5 Quick changes (inline editing)
 
-- **Doppelklick** auf eine Zeile aktiviert Schnellbearbeitung
-- Lila Kettensymbol = Vererbung aufhebbar
-- Felder: Preis, Lagerbestand, Produktnummer, Medien, Aktiv-Status
+- A **double click** on a row activates quick editing
+- Purple chain icon = the inheritance can be removed
+- Fields: Preis, Lagerbestand, Produktnummer, Medien, Aktiv status
 
-### 7.6 Mehrfachänderung bei Varianten
+### 7.6 Mehrfachänderung (Bulk edit) for variants
 
-- Bis zu **1000 Varianten** gleichzeitig auswählbar (auch seitenübergreifend)
-- Verfügbare Operationen: Überschreiben, Leeren, Hinzufügen, Entfernen
-- Fortschritt wird per Benachrichtigung angezeigt
+- Up to **1000 variants** can be selected at once (also across pages)
+- Available operations: Überschreiben (Overwrite), Leeren (Clear), Hinzufügen (Add), Entfernen (Remove)
+- Progress is shown via a notification
 
 ---
 
 ## 8. Tab: Layout
 
-- Erlebniswelt-Layout dem Produkt zuordnen
-- Bestehendes Layout zuweisen **oder** neues Layout erstellen
-- Blöcke können direkt im Produktkontext bearbeitet werden, ohne Erlebniswelten zu wechseln
+- Assign an Erlebniswelten (Shopping Experiences) layout to the product
+- Assign an existing layout **or** create a new layout
+- Blocks can be edited directly in the product context without switching to Erlebniswelten
 
 ---
 
 ## 9. Tab: SEO
 
-### 9.1 SEO-Einstellungen
+### 9.1 SEO settings
 
-| Feld | Empfehlung |
+| Field | Recommendation |
 |---|---|
-| Meta-Titel | Maximal ~70 Zeichen (Suchmaschinen kürzen ab) |
-| Meta-Beschreibung | Ideal 130–160 Zeichen |
-| Schlüsselwörter | Kein direkter Ranking-Einfluss, aber für interne Suche nutzbar |
-| Canonical-URL für alle Varianten | Definiert, welche Variante die kanonische URL hat |
+| Meta-Titel (Meta title) | A maximum of ~70 characters (search engines truncate) |
+| Meta-Beschreibung (Meta description) | Ideally 130–160 characters |
+| Schlüsselwörter (Keywords) | No direct ranking influence, but usable for the internal search |
+| Canonical URL for all variants | Defines which variant holds the canonical URL |
 
 ### 9.2 SEO URLs
 
-- Pro Verkaufskanal eigene URL definierbar
-- SEO-Pfad wird automatisch aus dem Produktnamen generiert
-- Bei Produkten in mehreren Kategorien: **Hauptkategorie** für die URL auswählen
+- A separate URL can be defined per Verkaufskanal
+- The SEO path is generated automatically from the product name
+- For products in several categories: select the **Hauptkategorie** (Main category) for the URL
 
 ---
 
 ## 10. Tab: Cross Selling
 
-### Typ: Dynamische Produktgruppe
+### Type: Dynamische Produktgruppe (Dynamic product group)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Titel | Bezeichnung des Cross-Selling-Blocks |
-| Aktiv | Ein-/Ausschalten |
-| Position | Reihenfolge (1, 2, 3, …) |
-| Produktgruppe | Auswahl der dynamischen Produktgruppe |
-| Sortierung | Name, Preis, Erscheinungsdatum |
-| Maximale Produktanzahl | Anzahl der angezeigten Produkte |
-| Vorschau | Zeigt aktuell zutreffende Produkte |
+| Titel | Name of the cross-selling block |
+| Aktiv | Switch on/off |
+| Position | Order (1, 2, 3, …) |
+| Produktgruppe (Product group) | Selection of the dynamic product group |
+| Sortierung (Sorting) | Name, price, release date |
+| Maximum number of products | Number of products shown |
+| Vorschau (Preview) | Shows the products that currently match |
 
-### Typ: Manuelle Zuweisung
+### Type: manual assignment
 
-Identische Felder wie oben, zusätzlich:
-- Manuelle Auswahl der zugeordneten Produkte (Ein- oder Mehrfachauswahl)
-
----
-
-## 11. Tab: Bundles (Shopware Services Feature)
-
-### Bundles hinzufügen
-
-1. **„Produkt zu Bundles hinzufügen"** klicken
-2. Suche nach vorhandenen Bundles
-3. Mehrfachauswahl möglich
-4. Bestätigen
-
-### Bundles bearbeiten
-
-- Übersicht: Produktanzahl, Verfügbarkeit, Aktivstatus
-- Kontextmenü:
-  - Bundle-Details öffnen
-  - Auf Produktdetailseite anzeigen / nicht anzeigen
-  - Bundle entfernen
-
-Synchronisierung ist **bidirektional** zwischen Produkt und Bundle-Verwaltung.
+Identical fields to the above, additionally:
+- Manual selection of the assigned products (single or multiple selection)
 
 ---
 
-## 12. Tab: Bewertungen
+## 11. Tab: Bundles (Shopware Services feature)
 
-- Übersicht aller Kundenbewertungen für dieses Produkt
-- **Sichtbar-Markierung** erforderlich damit Bewertung in der Storefront erscheint
-- Bearbeitung per Kontextmenü
-- Link auf die Bewertungs-Detailseite (Kataloge > Bewertungen)
+### Adding bundles
+
+1. Click **"Produkt zu Bundles hinzufügen"** (Add product to bundles)
+2. Search for existing bundles
+3. Multiple selection possible
+4. Confirm
+
+### Editing bundles
+
+- Overview: number of products, availability, active status
+- Context menu:
+  - Open the bundle details
+  - Show / do not show on the product detail page
+  - Remove the bundle
+
+Synchronisation is **bidirectional** between the product and the bundle management.
 
 ---
 
-## 13. Digitale Produkte
+## 12. Tab: Bewertungen (Reviews)
 
-Digitale Produkte haben dieselbe Maske, zusätzlich:
+- Overview of all customer reviews for this product
+- The **Sichtbar** (Visible) marking is required for a review to appear in the storefront
+- Editing via the context menu
+- Link to the review detail page (Kataloge > Bewertungen)
 
-| Merkmal | Detail |
+---
+
+## 13. Digital products
+
+Digital products use the same screen, additionally:
+
+| Characteristic | Detail |
 |---|---|
-| Datei-Upload | Im Medien-Bereich; alle gängigen digitalen Formate |
-| Backend-Erkennung | Badge zeigt an, dass es sich um ein digitales Produkt handelt |
-| Varianten | Auch bei digitalen Produkten möglich (z. B. physisch + digital) |
-| Bestellprozess | Checkbox für Rechtshinweis bei Bestellung |
-| Lieferung | E-Mail mit Datei-Anhang nach Zahlungseingang |
-| Kundenkonto | Kunden laden Datei unter „Mein Konto > Bestellungen" herunter |
+| File upload | In the Medien area; all common digital formats |
+| Backend recognition | A badge indicates that this is a digital product |
+| Varianten | Also possible for digital products (e.g. physical + digital) |
+| Order process | Checkbox for the legal notice when ordering |
+| Delivery | E-mail with the file attached after the payment is received |
+| Customer account | Customers download the file under "Mein Konto > Bestellungen" (My account > Orders) |
 
 ---
 
-## 14. Erweiterter Bearbeitungsmodus
+## 14. Advanced editing mode
 
-- Toggle oben rechts in der Produktmaske
-- Wenn deaktiviert: Checkboxen zum Ein-/Ausblenden von Abschnitten
-- Betrifft die Bereiche „Allgemein" und „Spezifikationen"
-- Ermöglicht vereinfachte Ansicht für Einsteiger
-
----
-
-## 15. Mehrfachänderung in der Produktübersicht
-
-1. Produkte in der Liste auswählen (max. 1000)
-2. **„Mehrfachänderung"** klicken
-3. Checkboxen der zu ändernden Felder setzen
-4. Werte eingeben
-5. Dropdown-Operationen:
-   - **Überschreiben**: Bestehende Werte ersetzen
-   - **Leeren**: Alle Einstellungen des Blocks entfernen
-   - **Hinzufügen**: Ergänzen ohne Bestehendes zu löschen
-   - **Entfernen**: Bestimmte Einstellungen gezielt löschen
-6. Speichern → Fortschrittsanzeige
+- Toggle at the top right of the product screen
+- When deactivated: checkboxes to show/hide sections
+- Affects the areas "Allgemein" and "Spezifikationen"
+- Enables a simplified view for beginners
 
 ---
 
-## 16. Produktübersicht-Linksammlung
+## 15. Mehrfachänderung (Bulk edit) in the product overview
 
-| Bereich | Admin-Pfad |
+1. Select products in the list (max. 1000)
+2. Click **"Mehrfachänderung"**
+3. Tick the checkboxes of the fields to be changed
+4. Enter values
+5. Dropdown operations:
+   - **Überschreiben**: replace existing values
+   - **Leeren**: remove all settings of the block
+   - **Hinzufügen**: add without deleting what exists
+   - **Entfernen**: delete specific settings selectively
+6. Save → progress display
+
+---
+
+## 16. Product overview link collection
+
+| Area | Admin path |
 |---|---|
 | Produktübersicht | Kataloge > Produkte |
 | Eigenschaften | Kataloge > Eigenschaften |
 | Kategorien | Kataloge > Kategorien |
 | Dynamische Produktgruppen | Kataloge > Dynamische Produktgruppen |
-| Steuern | Einstellungen > Handel > Steuern |
-| Versandarten | Einstellungen > Versand > Versandarten |
-| Lagerhäuser | Einstellungen > Lagerhäuser |
-| Erlebniswelten | Inhalte > Erlebniswelten |
+| Steuern (Taxes) | Einstellungen (Settings) > Handel (Commerce) > Steuern |
+| Versandarten (Shipping methods) | Einstellungen > Versand (Shipping) > Versandarten |
+| Lagerhäuser (Warehouses) | Einstellungen > Lagerhäuser |
+| Erlebniswelten | Inhalte (Content) > Erlebniswelten |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge/produkte*
+*Source: https://docs.shopware.com/de/shopware-6-de/kataloge/produkte*

@@ -1,24 +1,24 @@
-# Shopware B2B Components — Uberblick und Feature-Toggles
+# Shopware B2B Components — Overview and feature toggles
 
-![B2B Feature Toggles in Administration](../../assets/b2b-feature-toggles.png)
+![B2B Feature Toggles in Administration](assets/b2b-feature-toggles.png)
 
-## Uberblick
+## Overview
 
-B2B Components ist das moderne, modulare B2B-Framework im Commercial Plugin. Es erganzt Shopware
-um folgende Kernkomponenten:
+B2B Components is the modern, modular B2B framework in the Commercial plugin. It extends Shopware
+with the following core components:
 
-| Komponente              | Beschreibung                                              |
+| Component               | Description                                               |
 |-------------------------|-----------------------------------------------------------|
-| Employee Management     | Mitarbeiter, Rollen, Berechtigungen, Firmen-Login         |
-| Quote Management        | Angebotsanfragen, -verhandlung, -bestellungen             |
-| Order Approval          | Genehmigungsworkflow fuer Bestellungen                    |
-| Individual Pricing      | Firmenspezifische Rabatte, Volumenpreise (ab SW 6.7.8.0)  |
-| Shopping Lists          | Einkaufslisten fuer B2B-Kunden                            |
-| Organization Unit       | Organisationseinheiten innerhalb einer Firma              |
+| Employee Management     | Employees, roles, permissions, company login              |
+| Quote Management        | Quote requests, negotiation, quote orders                 |
+| Order Approval          | Approval workflow for orders                              |
+| Individual Pricing      | Company-specific discounts, volume prices (as of SW 6.7.8.0) |
+| Shopping Lists          | Shopping lists for B2B customers                          |
+| Organization Unit       | Organizational units within a company                     |
 
-## Verzeichnisstruktur im Commercial Plugin
+## Directory structure in the Commercial plugin
 
-Alle B2B Components liegen unter `src/B2B/`:
+All B2B Components live under `src/B2B/`:
 
 ```
 src/
@@ -28,8 +28,8 @@ src/
     CommercialB2BBundle.php
 ```
 
-Eigene B2B-Bundles sollten `CommercialB2BBundle` statt `CommercialBundle` erweitern und
-`type => self::TYPE_B2B` in `describeFeatures()` setzen:
+Your own B2B bundles should extend `CommercialB2BBundle` instead of `CommercialBundle` and set
+`type => self::TYPE_B2B` in `describeFeatures()`:
 
 ```php
 namespace Shopware\Commercial\B2B\YourB2BComponent;
@@ -43,12 +43,12 @@ class YourB2BComponent extends CommercialB2BBundle
 }
 ```
 
-## Customer-Specific Features (Feature-Toggles)
+## Customer-specific features (feature toggles)
 
-Der Merchant kann B2B-Features pro Kunde aktivieren/deaktivieren. Die Administration zeigt
-dafuer den Abschnitt "Customer-specific features" auf der Kunden-Detailseite.
+The merchant can enable/disable B2B features per customer. The Administration shows
+the "Customer-specific features" section on the customer detail page for this.
 
-### Pruefung im PHP-Controller/Route
+### Check in a PHP controller/route
 
 ```php
 use Shopware\Commercial\B2B\QuickOrder\Domain\CustomerSpecificFeature\CustomerSpecificFeatureService;
@@ -65,34 +65,34 @@ class ApiController
 }
 ```
 
-### Pruefung im Twig-Template
+### Check in a Twig template
 
 ```twig
 {% if customerHasFeature('QUICK_ORDER') %}
-    {# Feature-spezifischer Inhalt #}
+    {# Feature-specific content #}
 {% endif %}
 ```
 
-Die Twig-Extension `customerHasFeature()` liest den aktuellen Customer aus dem `context`.
+The Twig extension `customerHasFeature()` reads the current customer from the `context`.
 
-### Eigene Feature-Toggles registrieren
+### Registering your own feature toggles
 
-Eigene B2B-Komponenten muessen:
-1. `CommercialB2BBundle` erweitern
-2. In `describeFeatures()` `type => self::TYPE_B2B` setzen
-3. Den technischen Code als Konstante definieren (z.B. `'QUICK_ORDER'`)
+Your own B2B components must:
+1. Extend `CommercialB2BBundle`
+2. Set `type => self::TYPE_B2B` in `describeFeatures()`
+3. Define the technical code as a constant (e.g. `'QUICK_ORDER'`)
 
-## Abhangigkeiten zwischen Komponenten
+## Dependencies between components
 
-- Organization Unit benoetigt Employee Management
-- Order Approval benoetigt Employee Management
-- Individual Pricing benoetigt Employee Management + Organization Unit
-- Quote Management: eigenstaendig
-- Shopping Lists: eigenstaendig
+- Organization Unit requires Employee Management
+- Order Approval requires Employee Management
+- Individual Pricing requires Employee Management + Organization Unit
+- Quote Management: standalone
+- Shopping Lists: standalone
 
-## Sub-Skills
+## Sub-skills
 
-- Detailliertes Entwicklerwissen: siehe jeweilige Sub-Skills
+- Detailed developer knowledge: see the respective sub-skills
   - `sw-b2b-components-employee-management`
   - `sw-b2b-components-quotes`
   - `sw-b2b-order-approval`

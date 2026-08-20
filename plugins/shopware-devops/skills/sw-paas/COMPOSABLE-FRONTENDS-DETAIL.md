@@ -216,7 +216,7 @@ export default defineNitroPlugin(async () => {
 });
 ```
 
-![Blackfire Profile](../../assets/blackfire-profile.png)
+![Blackfire Profile](assets/blackfire-profile.png)
 
 ---
 

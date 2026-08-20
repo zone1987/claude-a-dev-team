@@ -1,134 +1,134 @@
 # Social Shopping – Facebook, Instagram, Google Shopping, Pinterest
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/social-shopping  
-**Plan**: Shopware Rise (oder höher)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/social-shopping  
+**Plan**: Shopware Rise (or higher)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Unterstützte Plattformen](#unterstützte-plattformen)
+- [Overview](#overview)
+- [Supported platforms](#supported-platforms)
 - [Installation](#installation)
-- [Einrichtung pro Plattform](#einrichtung-pro-plattform)
-- [Tracking & Statistiken](#tracking-statistiken)
-- [Produktvalidierung](#produktvalidierung)
-- [Feed-Verwaltung](#feed-verwaltung)
-- [Performance-Tipps](#performance-tipps)
+- [Setup per platform](#setup-per-platform)
+- [Tracking & statistics](#tracking-statistics)
+- [Product validation](#product-validation)
+- [Feed management](#feed-management)
+- [Performance tips](#performance-tips)
 
-## Überblick
+## Overview
 
-Die **Social Shopping Extension** integriert Shopware 6 mit großen Social-Commerce-Plattformen.
-Produkte werden als Feed exportiert und Conversions über Referral-Codes getrackt.
+The **Social Shopping Extension** integrates Shopware 6 with major social commerce platforms.
+Products are exported as a feed and conversions are tracked via referral codes.
 
 ---
 
-## Unterstützte Plattformen
+## Supported platforms
 
-| Plattform | Mechanismus | Feed-Format |
+| Platform | Mechanism | Feed format |
 |---|---|---|
-| **Facebook** | XML-Feed Export | RSS/Atom XML |
-| **Instagram** | XML-Feed Export | RSS/Atom XML |
-| **Google Shopping** | XML-Feed Export | Google Merchant XML |
-| **Pinterest** | Metadaten (Rich Pins) | Kein Feed-Upload nötig |
+| **Facebook** | XML feed export | RSS/Atom XML |
+| **Instagram** | XML feed export | RSS/Atom XML |
+| **Google Shopping** | XML feed export | Google Merchant XML |
+| **Pinterest** | Metadata (Rich Pins) | No feed upload required |
 
 ---
 
 ## Installation
 
-1. **Erweiterungen > Meine Erweiterungen**
-2. Social Shopping installieren + aktivieren
-3. Im Bereich **Verkaufskanäle** erscheinen neue Kanal-Typen
+1. **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions)
+2. Install and activate Social Shopping
+3. New channel types appear in the **Verkaufskanäle** (Sales channels) area
 
 ---
 
-## Einrichtung pro Plattform
+## Setup per platform
 
 ### Facebook & Instagram
 
-**Schritte**:
-1. **Verkaufskanäle** > Neuen Kanal hinzufügen → "Facebook" oder "Instagram" wählen
-2. Kanal benennen
-3. **Storefront und Domain** zuweisen
-4. **Währung** wählen
-5. **Produktgruppen** auswählen (welche Produkte exportiert werden)
-6. **Generierungsintervall** setzen: Live oder geplant (täglich/stündlich)
-7. Feed-URL aus Shopware kopieren
-8. In Facebook Business Manager / Catalog Manager hinterlegen
+**Steps**:
+1. **Verkaufskanäle** > add new channel → choose "Facebook" or "Instagram"
+2. Name the channel
+3. Assign **Storefront und Domain** (Storefront and domain)
+4. Choose the **Währung** (Currency)
+5. Select **Produktgruppen** (Product groups) – which products get exported
+6. Set the **Generierungsintervall** (Generation interval): live or scheduled (daily/hourly)
+7. Copy the feed URL from Shopware
+8. Enter it in Facebook Business Manager / Catalog Manager
 
 ### Google Shopping
 
-**Schritte**:
-1. Neuen Kanal → "Google Shopping" wählen
-2. **Domain-Verifizierung** über Google Merchant Center durchführen
-3. Google-Produktkategorie-IDs (numerisch) zuweisen
-4. Feed-URL in Google Merchant Center hinterlegen
+**Steps**:
+1. New channel → choose "Google Shopping"
+2. Perform **domain verification** via Google Merchant Center
+3. Assign Google product category IDs (numeric)
+4. Enter the feed URL in Google Merchant Center
 
-**Wichtig**: Google Produktkategorie-IDs müssen **numerisch** sein
-(aus der Google-Taxonomy: https://www.google.com/basepages/producttype/taxonomy-with-ids.de-DE.txt)
+**Important**: Google product category IDs must be **numeric**
+(from the Google taxonomy: https://www.google.com/basepages/producttype/taxonomy-with-ids.de-DE.txt)
 
 ### Pinterest
 
-**Mechanismus**: Keine Feed-Upload nötig – Pinterest liest Metadaten direkt aus dem Storefront.
+**Mechanism**: No feed upload required – Pinterest reads metadata directly from the storefront.
 
-**Schritte**:
-1. **Rich Pins Validierung** über Pinterest Entwicklertools:
+**Steps**:
+1. **Rich Pins validation** via the Pinterest developer tools:
    https://developers.pinterest.com/tools/url-debugger/
-2. Shop-URL für Pinterest verifizieren
-3. Shopware zieht Produktdaten automatisch aus dem Storefront-HTML
+2. Verify the shop URL for Pinterest
+3. Shopware pulls product data automatically from the storefront HTML
 
 ---
 
-## Tracking & Statistiken
+## Tracking & statistics
 
-### Referral-Code in Templates
-Für Conversion-Tracking muss jede Produktverknüpfung den Verkaufskanal-Parameter enthalten:
+### Referral code in templates
+For conversion tracking, every product link must contain the sales channel parameter:
 
 ```
 {{ socialShoppingSalesChannel.salesChannelId }}
 ```
 
-Ohne diesen Parameter: Keine Attribution in den Bestelldetails.
+Without this parameter: no attribution in the order details.
 
-### Tracking-Auswertung
-- **Kunden-Übersicht**: Spalte "Einstiegspunkt" zeigt, von welchem Social-Kanal der Kunde kam
-- **Bestellübersicht**: Spalte "Einstiegspunkt" für jede Bestellung
+### Tracking evaluation
+- **Customer overview**: the "Einstiegspunkt" (Entry point) column shows which social channel the customer came from
+- **Order overview**: the "Einstiegspunkt" column for each order
 
 ---
 
-## Produktvalidierung
+## Product validation
 
-Vor dem Export prüft Shopware automatisch die Datenvollständigkeit:
+Before the export, Shopware automatically checks data completeness:
 
-| Pflichtfeld | Beschreibung |
+| Mandatory field | Description |
 |---|---|
-| Produktname | Vorhanden und nicht leer |
-| Beschreibung | Vorhanden |
-| Hauptbild | Mindestens ein Bild |
-| Preis | Gültiger Preis |
-| GTIN/EAN | (Für Google Shopping empfohlen) |
+| Product name | Present and not empty |
+| Description | Present |
+| Main image | At least one image |
+| Price | Valid price |
+| GTIN/EAN | (Recommended for Google Shopping) |
 
-Produkte mit fehlenden Daten werden aus dem Feed ausgeschlossen.
+Products with missing data are excluded from the feed.
 
 ---
 
-## Feed-Verwaltung
+## Feed management
 
-### Generierungsintervalle
-| Option | Beschreibung |
+### Generation intervals
+| Option | Description |
 |---|---|
-| Live | Feed wird bei jedem Abruf neu generiert |
-| Stündlich | Stündliche Vorab-Generierung (Cache) |
-| Täglich | Einmal täglich |
+| Live | The feed is regenerated on every request |
+| Hourly | Hourly pre-generation (cache) |
+| Daily | Once per day |
 
-### Wichtige Hinweise
+### Important notes
 
-- **Verkaufskanal löschen**: Immer **vor** dem Deaktivieren der Extension löschen!
-  (Sonst verwaiste Kanal-Konfigurationen)
-- Feed-URL ist öffentlich zugänglich (kein Auth nötig für Plattform-Import)
+- **Deleting a sales channel**: always delete it **before** deactivating the extension!
+  (Otherwise orphaned channel configurations remain)
+- The feed URL is publicly accessible (no auth needed for the platform import)
 
 ---
 
-## Performance-Tipps
+## Performance tips
 
-- Für große Kataloge: Geplante Generierung (nicht Live) verwenden
-- Produktgruppen definieren, um nur relevante Produkte zu exportieren
-- Feed-URL direkt in Platform-Dashboard hinterlegen (nicht manuell herunterladen/hochladen)
+- For large catalogues: use scheduled generation (not live)
+- Define product groups so that only relevant products are exported
+- Enter the feed URL directly in the platform dashboard (do not download/upload manually)

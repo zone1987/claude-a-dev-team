@@ -1,8 +1,8 @@
-# NavigationMenu — Beispiele
+# NavigationMenu — Examples
 
-## Beispiel 1: Basic Navigation Menu (NavigationMenuBasic.vue)
+## Example 1: Basic Navigation Menu (NavigationMenuBasic.vue)
 
-Vollstandiges Navigationsmenu mit Trigger-Dropdown und direktem Link.
+Complete navigation menu with a trigger dropdown and a direct link.
 
 ```vue
 <script setup lang="ts">
@@ -167,6 +167,6 @@ import {
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/navigation-menu/NavigationMenuBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/navigation-menu/NavigationMenuExample.vue`

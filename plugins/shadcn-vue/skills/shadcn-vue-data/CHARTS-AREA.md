@@ -1,10 +1,10 @@
 # shadcn-vue Area Charts
 
-4 Varianten mit komplettem Vue-Quellcode.
+4 variants with complete Vue source code.
 
-## Referenzen
+## References
 
-- [CHARTS-AREA-AREA-CHARTS.md](CHARTS-AREA-AREA-CHARTS.md) — Vollstaendiger Code aller 4 Area-Charts:
+- [CHARTS-AREA-AREA-CHARTS.md](CHARTS-AREA-AREA-CHARTS.md) — Complete code of all 4 area charts:
   ChartAreaAxes, ChartAreaGradient, ChartAreaIcons, ChartAreaInteractive
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartArea*.vue`
+Source: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartArea*.vue`

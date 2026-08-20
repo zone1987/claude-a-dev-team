@@ -1,5 +1,5 @@
 # Swiper React
 
-`import { Swiper, SwiperSlide } from 'swiper/react'` — vollständig typisiert, React 18-kompatibel.
+`import { Swiper, SwiperSlide } from 'swiper/react'` — fully typed, React 18-compatible.
 
-Vollständige Referenz: `REACT-SWIPER-REACT.md`
+Complete reference: `REACT-SWIPER-REACT.md`

@@ -2,7 +2,7 @@
 
 reka-ui API: https://reka-ui.com/docs/components/tabs#api-reference
 
-## Sub-Komponenten
+## Sub-components
 
 | Component | Description |
 |-----------|-------------|

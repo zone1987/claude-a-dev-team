@@ -1,14 +1,14 @@
-# Shopware 6 — Theme Assets & Icons
+# Shopware 6 — Theme assets & icons
 
-Vollständige Referenz: [ASSETS-DETAIL.md](ASSETS-DETAIL.md)
+Full reference: [ASSETS-DETAIL.md](ASSETS-DETAIL.md)
 
-**Assets einbinden** via `theme.json`:
+**Include assets** via `theme.json`:
 ```json
 "asset": ["@Storefront", "app/storefront/src/assets"]
 ```
-Nach `theme:compile` landen Assets in `public/theme/<uuid>/asset/`.
+After `theme:compile` the assets end up in `public/theme/<uuid>/asset/`.
 
-**Verwenden:**
+**Usage:**
 ```twig
 {# Twig #}
 <img src="{{ asset('/assets/your-image.png', 'theme') }}">
@@ -18,4 +18,4 @@ Nach `theme:compile` landen Assets in `public/theme/<uuid>/asset/`.
 body { background-image: url('#{$app-css-relative-asset-path}/your-image.png'); }
 ```
 
-**Custom Icons** via `iconSets` in theme.json, dann `{% sw_icon 'name' style {'pack': 'custom-icons'} %}`.
+**Custom icons** via `iconSets` in theme.json, then `{% sw_icon 'name' style {'pack': 'custom-icons'} %}`.

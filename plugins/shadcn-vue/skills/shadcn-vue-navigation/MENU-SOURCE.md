@@ -1,4 +1,4 @@
-# NavigationMenu — Vollstandiger Quellcode
+# NavigationMenu — Complete source code
 
 ## Contents
 
@@ -11,7 +11,7 @@
 - [NavigationMenuList.vue](#navigationmenulistvue)
 - [NavigationMenuTrigger.vue](#navigationmenutriggervue)
 - [NavigationMenuViewport.vue](#navigationmenuviewportvue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -299,5 +299,5 @@ const forwardedProps = useForwardProps(delegatedProps)
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/navigation-menu/`

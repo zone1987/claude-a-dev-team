@@ -1,34 +1,34 @@
-# shadcn-vue Registry — Beispiele
+# shadcn-vue Registry — Examples
 
-Fertige Beispiele fuer alle Registry-Item-Typen.
+Ready-made examples for all registry item types.
 
 ---
 
 ## Contents
 
-- [registry:style — Style der shadcn-vue erweitert](#registrystyle-style-der-shadcn-vue-erweitert)
-- [registry:style — Style von Grund auf (extends: none)](#registrystyle-style-von-grund-auf-extends-none)
-- [registry:theme — Eigenes Theme](#registrytheme-eigenes-theme)
-- [registry:theme — Benutzerdefinierte Farbe](#registrytheme-benutzerdefinierte-farbe)
-- [registry:block — Einfacher Block](#registryblock-einfacher-block)
-- [registry:block — Block mit Override-Primitives](#registryblock-block-mit-override-primitives)
-- [CSS Variables — Theme-Variablen](#css-variables-theme-variablen)
-- [CSS Variables — Tailwind CSS-Variablen ueberschreiben](#css-variables-tailwind-css-variablen-ueberschreiben)
-- [CSS — Base-Styles](#css-base-styles)
-- [CSS — Component Styles](#css-component-styles)
-- [CSS — Einfaches Utility](#css-einfaches-utility)
-- [CSS — Komplexes Utility mit Nested Selector](#css-komplexes-utility-mit-nested-selector)
-- [CSS — Funktionales Utility](#css-funktionales-utility)
-- [CSS — Animation (keyframes + cssVars)](#css-animation-keyframes-cssvars)
+- [registry:style — style extending shadcn-vue](#registrystyle-style-extending-shadcn-vue)
+- [registry:style — style from scratch (extends: none)](#registrystyle-style-from-scratch-extends-none)
+- [registry:theme — custom theme](#registrytheme-custom-theme)
+- [registry:theme — custom color](#registrytheme-custom-color)
+- [registry:block — simple block](#registryblock-simple-block)
+- [registry:block — block with override primitives](#registryblock-block-with-override-primitives)
+- [CSS Variables — theme variables](#css-variables-theme-variables)
+- [CSS Variables — overriding Tailwind CSS variables](#css-variables-overriding-tailwind-css-variables)
+- [CSS — base styles](#css-base-styles)
+- [CSS — component styles](#css-component-styles)
+- [CSS — simple utility](#css-simple-utility)
+- [CSS — complex utility with nested selector](#css-complex-utility-with-nested-selector)
+- [CSS — functional utility](#css-functional-utility)
+- [CSS — animation (keyframes + cssVars)](#css-animation-keyframes-cssvars)
 
-## registry:style — Style der shadcn-vue erweitert
+## registry:style — style extending shadcn-vue
 
-Installiert bei `npx shadcn-vue init`:
-- `@iconify/vue` als Abhaengigkeit
-- `Login01` Block + `calendar` Komponente
-- `editor` aus Remote-Registry
-- `font-sans` Variable setzen
-- `brand` Farbe in Light und Dark Mode
+Installed by `npx shadcn-vue init`:
+- `@iconify/vue` as a dependency
+- `Login01` block + `calendar` component
+- `editor` from a remote registry
+- sets the `font-sans` variable
+- `brand` color in light and dark mode
 
 ```json
 {
@@ -57,13 +57,13 @@ Installiert bei `npx shadcn-vue init`:
 
 ---
 
-## registry:style — Style von Grund auf (extends: none)
+## registry:style — style from scratch (extends: none)
 
-Installiert bei `npx shadcn-vue add`:
-- `tailwind-merge` und `clsx` als Abhaengigkeiten
-- `utils` aus shadcn-vue Registry
-- `button`, `input`, `label`, `select` aus Remote-Registry
-- Neue CSS-Vars: `main`, `bg`, `border`, `text`, `ring`
+Installed by `npx shadcn-vue add`:
+- `tailwind-merge` and `clsx` as dependencies
+- `utils` from the shadcn-vue registry
+- `button`, `input`, `label`, `select` from a remote registry
+- New CSS vars: `main`, `bg`, `border`, `text`, `ring`
 
 ```json
 {
@@ -103,7 +103,7 @@ Installiert bei `npx shadcn-vue add`:
 
 ---
 
-## registry:theme — Eigenes Theme
+## registry:theme — custom theme
 
 ```json
 {
@@ -137,7 +137,7 @@ Installiert bei `npx shadcn-vue add`:
 
 ---
 
-## registry:theme — Benutzerdefinierte Farbe
+## registry:theme — custom color
 
 ```json
 {
@@ -153,7 +153,7 @@ Installiert bei `npx shadcn-vue add`:
 
 ---
 
-## registry:block — Einfacher Block
+## registry:block — simple block
 
 ```json
 {
@@ -180,9 +180,9 @@ Installiert bei `npx shadcn-vue add`:
 
 ---
 
-## registry:block — Block mit Override-Primitives
+## registry:block — block with override primitives
 
-Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
+Installs `Login01` and overrides `button`, `input`, `label` with your own.
 
 ```json
 {
@@ -200,7 +200,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS Variables — Theme-Variablen
+## CSS Variables — theme variables
 
 ```json
 {
@@ -218,7 +218,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS Variables — Tailwind CSS-Variablen ueberschreiben
+## CSS Variables — overriding Tailwind CSS variables
 
 ```json
 {
@@ -237,7 +237,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS — Base-Styles
+## CSS — base styles
 
 ```json
 {
@@ -255,7 +255,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS — Component Styles
+## CSS — component styles
 
 ```json
 {
@@ -274,7 +274,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS — Einfaches Utility
+## CSS — simple utility
 
 ```json
 {
@@ -288,7 +288,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS — Komplexes Utility mit Nested Selector
+## CSS — complex utility with nested selector
 
 ```json
 {
@@ -306,7 +306,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ---
 
-## CSS — Funktionales Utility
+## CSS — functional utility
 
 ```json
 {
@@ -322,7 +322,7 @@ Installiert `Login01` und ueberschreibt `button`, `input`, `label` mit eigenen.
 
 ## CSS — Animation (keyframes + cssVars)
 
-Beides zusammen noetig: `@keyframes` in `css` UND Theme-Variable in `cssVars`.
+Both are needed together: `@keyframes` in `css` AND the theme variable in `cssVars`.
 
 ```json
 {

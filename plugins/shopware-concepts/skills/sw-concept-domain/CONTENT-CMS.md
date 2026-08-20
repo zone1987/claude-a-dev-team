@@ -1,38 +1,38 @@
-# Shopware CMS / Shopping Experiences — Konzept
+# Shopware CMS / Shopping Experiences — concept
 
-Vollständige Konzept-Doku: `CONTENT-CMS-DETAIL.md`
+Complete concept documentation: `CONTENT-CMS-DETAIL.md`
 
-## Kurzüberblick
+## Quick overview
 
-### Hierarchische Struktur
+### Hierarchical structure
 
 ```
-Page → Section(en) → Block(s) → Slot(s) → Element
+Page → Section(s) → Block(s) → Slot(s) → Element
 ```
 
-- **Page** — Wrapper, Type: `page`, `landingpage`, `product_list`, `product_detail`
-- **Section** — horizontaler Container; Typ: `fullwidth` oder `sidebar`
-- **Block** — Zeile mit Slots; kategorisiert nach `text`, `image`, `commerce` etc.
-- **Slot** — benannter Container für genau ein Element
-- **Element** — Primitive wie `text`, `image`, `product-listing`, `buy-box` etc.
+- **Page** — wrapper, type: `page`, `landingpage`, `product_list`, `product_detail`
+- **Section** — horizontal container; type: `fullwidth` or `sidebar`
+- **Block** — row with slots; categorised by `text`, `image`, `commerce` etc.
+- **Slot** — named container for exactly one element
+- **Element** — primitives such as `text`, `image`, `product-listing`, `buy-box` etc.
 
-### Content-Hydration (Resolving)
+### Content hydration (resolving)
 
-1. CMS-Layout laden (inkl. Sections, Blocks, Slots)
-2. Resolver-Kontext aufbauen (SalesChannelContext + assoziierte Entity, z.B. Category)
-3. Slot-Konfiguration der Entity überschreiben (Category-spezifische Anpassungen)
-4. Collect → Optimize → Fetch → Enrich (2-Phasen-Resolver)
-5. `CmsPageLoadedEvent` feuern → Cache-Tags sammeln
+1. Load the CMS layout (incl. sections, blocks, slots)
+2. Build the resolver context (SalesChannelContext + associated entity, e.g. category)
+3. Override the entity's slot configuration (category-specific adjustments)
+4. Collect → Optimize → Fetch → Enrich (2-phase resolver)
+5. Fire `CmsPageLoadedEvent` → collect cache tags
 
-### Headless-Fähigkeit
+### Headless capability
 
-CMS ist **kanalunabhängig** — Storefront rendert HTML, Headless-Frontend konsumiert JSON via API.
-Gleiche Layouts für alle Präsentationskanäle.
+The CMS is **channel-independent** — the storefront renders HTML, a headless frontend consumes JSON via API.
+The same layouts for all presentation channels.
 
-### Cookie Consent Management (ab 6.7.3.0)
+### Cookie consent management (from 6.7.3.0)
 
-- 4 Kategorien: Required, Comfort, Marketing, Statistical
-- Hash-Mechanismus: Neueinwilligung bei Konfigurationsänderung (per Sprache)
+- 4 categories: Required, Comfort, Marketing, Statistical
+- Hash mechanism: re-consent on configuration change (per language)
 - Store API: `GET /store-api/cookie/groups`
 
-Technische Umsetzung: `shopware-cms` (Dev-Plugin)
+Technical implementation: `shopware-cms` (dev plugin)

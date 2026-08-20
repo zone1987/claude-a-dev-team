@@ -1,11 +1,11 @@
 # shadcn-vue Chart Tooltips
 
-7 Tooltip-Varianten mit komplettem Vue-Quellcode.
+7 tooltip variants with complete Vue source code.
 
-## Referenzen
+## References
 
-- [CHARTS-TOOLTIP-TOOLTIP-CHARTS.md](CHARTS-TOOLTIP-TOOLTIP-CHARTS.md) — Vollstaendiger Code aller 7 Tooltip-Beispiele:
+- [CHARTS-TOOLTIP-TOOLTIP-CHARTS.md](CHARTS-TOOLTIP-TOOLTIP-CHARTS.md) — Complete code of all 7 tooltip examples:
   ChartTooltipDefault, ChartTooltipIcons, ChartTooltipIndicatorLine, ChartTooltipIndicatorNone,
   ChartTooltipLabelCustom, ChartTooltipLabelFormatter, ChartTooltipLabelNone
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartTooltip*.vue`
+Source: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartTooltip*.vue`

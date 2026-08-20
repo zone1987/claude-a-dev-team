@@ -1,37 +1,37 @@
-# Shopware Elasticsearch Bundle — Erschöpfende Architektur-Referenz
+# Shopware Elasticsearch Bundle — Exhaustive architecture reference
 
 ## Contents
 
-- [Bundle-Einstieg](#bundle-einstieg)
-- [Konfigurationsbaum (`Configuration`)](#konfigurationsbaum-configuration)
-- [Kern-Services](#kern-services)
-- [Indexierungs-Flow im Detail](#indexierungs-flow-im-detail)
-- [Storefront-Suche-Integration](#storefront-suche-integration)
-- [Admin-Suche-Integration](#admin-suche-integration)
-- [Produkt-Indexierung](#produkt-indexierung)
+- [Bundle entry point](#bundle-entry-point)
+- [Configuration tree (`Configuration`)](#configuration-tree-configuration)
+- [Core services](#core-services)
+- [Indexing flow in detail](#indexing-flow-in-detail)
+- [Storefront search integration](#storefront-search-integration)
+- [Admin search integration](#admin-search-integration)
+- [Product indexing](#product-indexing)
 - [Custom Fields in ES](#custom-fields-in-es)
-- [Indexing-Events](#indexing-events)
-- [Analyzer-Konstanten (`ElasticsearchFieldBuilder`)](#analyzer-konstanten-elasticsearchfieldbuilder)
+- [Indexing events](#indexing-events)
+- [Analyzer constants (`ElasticsearchFieldBuilder`)](#analyzer-constants-elasticsearchfieldbuilder)
 - [ElasticsearchFieldMapper (static)](#elasticsearchfieldmapper-static)
 - [TokenQueryBuilder / FieldQueryBuilder](#tokenquerybuilder-fieldquerybuilder)
-- [Test-Hilfsklassen](#test-hilfsklassen)
-- [Datenbank-Tabellen](#datenbank-tabellen)
+- [Test helper classes](#test-helper-classes)
+- [Database tables](#database-tables)
 - [AWS OpenSearch / SigV4](#aws-opensearch-sigv4)
 - [Profiler](#profiler)
 
-## Bundle-Einstieg
+## Bundle entry point
 
-**Klasse:** `Shopware\Elasticsearch\Elasticsearch extends Bundle`
+**Class:** `Shopware\Elasticsearch\Elasticsearch extends Bundle`
 
-Registriert zwei Compiler-Passes:
-- `ElasticsearchMigrationCompilerPass` — integriert Bundle-Migrationen
-- `ElasticsearchProfileCompilerPass` — aktiviert Profiler im dev-Modus
+Registers two compiler passes:
+- `ElasticsearchMigrationCompilerPass` — integrates bundle migrations
+- `ElasticsearchProfileCompilerPass` — enables the profiler in dev mode
 
-**Extension:** `ElasticsearchExtension` lädt `Resources/config/services.xml` und trägt alle Config-Parameter als Container-Parameter ein (`elasticsearch.*`).
+**Extension:** `ElasticsearchExtension` loads `Resources/config/services.xml` and registers all config parameters as container parameters (`elasticsearch.*`).
 
 ---
 
-## Konfigurationsbaum (`Configuration`)
+## Configuration tree (`Configuration`)
 
 ```
 elasticsearch:
@@ -49,7 +49,7 @@ elasticsearch:
       credentials_provider: {key_id, secret_key}
   index_settings: array        ← custom index settings (shards, replicas etc.)
   analysis: array              ← custom analyzer/tokenizer config (no deep merge!)
-  language_analyzer_mapping: array  ← locale → analyzer name (z.B. de → sw_german_analyzer)
+  language_analyzer_mapping: array  ← locale → analyzer name (e.g. de → sw_german_analyzer)
   use_language_analyzer: bool (default true)
   dimension_normalize: bool (default false)
   dynamic_templates: array
@@ -68,13 +68,13 @@ elasticsearch:
 
 ---
 
-## Kern-Services
+## Core services
 
 ### ElasticsearchRegistry
 
-Service-ID: `Shopware\Elasticsearch\Framework\ElasticsearchRegistry`
+Service ID: `Shopware\Elasticsearch\Framework\ElasticsearchRegistry`
 
-Hält alle registrierten `AbstractElasticsearchDefinition`-Instanzen (tagged: `shopware.es.definition`).
+Holds all registered `AbstractElasticsearchDefinition` instances (tagged: `shopware.es.definition`).
 
 ```php
 $registry->getDefinitions(): iterable<AbstractElasticsearchDefinition>
@@ -85,10 +85,10 @@ $registry->getDefinitionNames(): iterable<string>
 
 ### ElasticsearchHelper
 
-Zentrale Helper-Klasse. Prüft ob Suche/Indizierung erlaubt ist, baut DSL-Elemente.
+Central helper class. Checks whether search/indexing is allowed, builds DSL elements.
 
 ```php
-$helper->allowIndexing(): bool              // prüft ES-Verbindung + indexing_enabled
+$helper->allowIndexing(): bool              // checks ES connection + indexing_enabled
 $helper->allowSearch(EntityDefinition, Context, Criteria): bool
 $helper->getIndexName(EntityDefinition): string  // = prefix_entityName
 $helper->isSupported(EntityDefinition): bool
@@ -101,11 +101,11 @@ $helper->addSortings(...)                   // criteria->sorting → sort
 $helper->addAggregations(...)               // criteria->aggregations → aggs
 ```
 
-`MAX_SIZE_VALUE = 10000` (OpenSearch Standard-Max ohne custom settings).
+`MAX_SIZE_VALUE = 10000` (OpenSearch default max without custom settings).
 
 ### ElasticsearchIndexer (`#[AsMessageHandler]`)
 
-Verarbeitet `ElasticsearchIndexingMessage`-Nachrichten.
+Processes `ElasticsearchIndexingMessage` messages.
 
 ```php
 $indexer->iterate(?IndexerOffset, array $entities = []): ?ElasticsearchIndexingMessage
@@ -113,78 +113,78 @@ $indexer->updateIds(EntityDefinition, array $ids): void
 $indexer->__invoke(ElasticsearchIndexingMessage): void
 ```
 
-Ablauf in `init()`:
+Sequence in `init()`:
 1. `DELETE FROM elasticsearch_index_task` (reset)
-2. `DateTime::now()` als Timestamp
-3. Für jede Definition: `IndexCreator::createIndex(definition, index, alias, context)`
-4. Eintrag in `elasticsearch_index_task` (id, entity, index, alias, doc_count)
+2. `DateTime::now()` as timestamp
+3. For each definition: `IndexCreator::createIndex(definition, index, alias, context)`
+4. Entry in `elasticsearch_index_task` (id, entity, index, alias, doc_count)
 
 ### IndexCreator
 
-Erstellt den ES-Index mit Mapping + Analysis-Config.
+Creates the ES index with mapping + analysis config.
 
 ```php
 $creator->createIndex(AbstractElasticsearchDefinition, string $index, string $alias, Context)
 $creator->aliasExists(string $alias): bool
 ```
 
-Config-Merge: `index_settings` + `analysis` + Mapping aus `IndexMappingProvider`.
+Config merge: `index_settings` + `analysis` + mapping from `IndexMappingProvider`.
 
-**`dimension_normalize`:** Wenn aktiviert, wird der `sw_dimension_normalize`-CharFilter in alle `TECHNICAL_TERM_ANALYZERS` injiziert.
+**`dimension_normalize`:** when enabled, the `sw_dimension_normalize` char filter is injected into all `TECHNICAL_TERM_ANALYZERS`.
 
 ### IndexMappingProvider
 
-Merged Base-Mapping (aus `elasticsearch.yaml` `index_settings`/`analysis`/`dynamic_templates`) mit dem Entity-spezifischen Mapping aus `AbstractElasticsearchDefinition::getMapping()`.
+Merges the base mapping (from `elasticsearch.yaml` `index_settings`/`analysis`/`dynamic_templates`) with the entity-specific mapping from `AbstractElasticsearchDefinition::getMapping()`.
 
 ### CreateAliasTaskHandler / CreateAliasTask
 
-Scheduled Task (läuft nach Indexierung). Wechselt Alias von altem auf neuen Index (blue-green).
+Scheduled task (runs after indexing). Switches the alias from the old to the new index (blue-green).
 
 ---
 
-## Indexierungs-Flow im Detail
+## Indexing flow in detail
 
 ```
-es:index-Command
+es:index command
   ↓ iterate(null, entities)
   ElasticsearchIndexer
     ↓ IndexerOffset(definitions, timestamp)
-    ↓ für jede Definition: createIterator(batchSize)
-    ↓ ElasticsearchIndexIteratorEvent (erweiterbar: custom Iterator)
+    ↓ for each definition: createIterator(batchSize)
+    ↓ ElasticsearchIndexIteratorEvent (extensible: custom iterator)
     ↓ ElasticsearchIndexingMessage(IndexingDto, IndexerOffset, Context)
-  ↓ dispatch via MessageBus (oder direkt __invoke)
+  ↓ dispatch via MessageBus (or directly __invoke)
   ↓ __invoke(message)
-    ↓ allowIndexing() prüfen
+    ↓ check allowIndexing()
     ↓ UPDATE elasticsearch_index_task SET doc_count = doc_count - idCount
     ↓ definition->fetch(hexIds, context) → array<id, document>
-    ↓ Bulk-Request: [{index: {_id: id}}, {document}]
+    ↓ bulk request: [{index: {_id: id}}, {document}]
     ↓ parseErrors()
-  ↓ letztes Batch: markAsLastMessage()
+  ↓ last batch: markAsLastMessage()
     ↓ ElasticsearchIndexingFinishedEvent
   CreateAliasTaskHandler::run()
-    ↓ Alias switchen
+    ↓ switch alias
     ↓ ElasticsearchIndexAliasSwitchedEvent
 ```
 
 ---
 
-## Storefront-Suche-Integration
+## Storefront search integration
 
-### ElasticsearchEntitySearcher (dekoriert EntitySearcher)
+### ElasticsearchEntitySearcher (decorates EntitySearcher)
 
 ```php
-// Prüft: allowSearch + Criteria::STATE_ELASTICSEARCH_AWARE
-// Baut: ids → Filter, postFilter, sorting, term, queries, aggs
-// Gibt: IdSearchResult zurück
+// Checks: allowSearch + Criteria::STATE_ELASTICSEARCH_AWARE
+// Builds: ids → filter, postFilter, sorting, term, queries, aggs
+// Returns: IdSearchResult
 ```
 
-### ElasticsearchEntityAggregator (dekoriert EntityAggregator)
+### ElasticsearchEntityAggregator (decorates EntityAggregator)
 
-Führt separate Aggregations-Query gegen ES aus, hydriert über `ElasticsearchEntityAggregatorHydrator`.
+Runs a separate aggregation query against ES, hydrates via `ElasticsearchEntityAggregatorHydrator`.
 
 ### CriteriaParser
 
-Übersetzt DAL-Filter/Sorting/Aggregations → OpenSearch-DSL:
+Translates DAL filters/sorting/aggregations → OpenSearch DSL:
 - `EqualsFilter` → `TermQuery`
 - `EqualsAnyFilter` → `TermsQuery`
 - `RangeFilter` → `RangeQuery`
@@ -193,19 +193,19 @@ Führt separate Aggregations-Query gegen ES aus, hydriert über `ElasticsearchEn
 - `NotFilter` → `BoolQuery::MUST_NOT`
 - `PrefixFilter` → `PrefixQuery`
 - `CountSorting` → via `CountSort` (nested agg-based)
-- Aggregationen: Terms, Avg, Min, Max, Sum, Stats, Filter, DateHistogram, Range, Entity
+- Aggregations: Terms, Avg, Min, Max, Sum, Stats, Filter, DateHistogram, Range, Entity
 
 ### ElasticsearchTokenizer
 
-Tokenisiert Suchbegriffe für Multi-Token-Suche.
+Tokenizes search terms for multi-token search.
 
 ---
 
-## Admin-Suche-Integration
+## Admin search integration
 
 ### AbstractAdminIndexer
 
-Basis für alle Admin-Indexer. Pflicht-Methoden:
+Base for all admin indexers. Required methods:
 ```php
 abstract public function getName(): string;          // unique name
 abstract public function getEntity(): string;        // entity name
@@ -214,17 +214,17 @@ abstract public function fetch(array $ids): array;   // returns {id, text, textB
 abstract public function globalData(array $result, Context $context): array; // {total, data}
 ```
 
-**Felder:**
-- `TEXT_FIELD`: `{type: text}` — für text/textBoosted
-- `COMPLETION_FIELD`: word_delimiter_graph Analyzer + ngram subfield — für Autocomplete
+**Fields:**
+- `TEXT_FIELD`: `{type: text}` — for text/textBoosted
+- `COMPLETION_FIELD`: word_delimiter_graph analyzer + ngram subfield — for autocomplete
 
 ```php
-public function mapping(array $mapping): array;              // Mapping erweitern
-public function globalCriteria(string $term, Search): Search; // Global-Search anpassen
-public function moduleCriteria(string $term, Search): Search; // Modul-Search anpassen
+public function mapping(array $mapping): array;              // extend mapping
+public function globalCriteria(string $term, Search): Search; // adjust global search
+public function moduleCriteria(string $term, Search): Search; // adjust module search
 ```
 
-**Helper-Methoden in AbstractAdminIndexer:**
+**Helper methods in AbstractAdminIndexer:**
 ```php
 protected function buildCompletion(array $values): array;         // dedupe + lowercase
 protected function decodeTranslatedValues(?string $encoded): array; // JSON → [langId => value]
@@ -234,28 +234,28 @@ protected function formatDateTime(array $row, string $key): ?string;
 
 ### AdminSearchRegistry
 
-Sammelt alle Admin-Indexer (tagged: `shopware.es.admin_definition`).
+Collects all admin indexers (tagged: `shopware.es.admin_definition`).
 
 ### AdminSearcher
 
-`search(string $term, Context): array` — Global-Suche über alle Admin-Indexer.
-`searchIds(string $term, string $entity, Context): IdSearchResult` — Modul-Suche.
+`search(string $term, Context): array` — global search across all admin indexers.
+`searchIds(string $term, string $entity, Context): IdSearchResult` — module search.
 
 ### AdminElasticsearchHelper
 
-Separate Helper-Instanz für Admin-ES (eigener Prefix, eigene Connection-Konfiguration).
+Separate helper instance for admin ES (own prefix, own connection configuration).
 
 ---
 
-## Produkt-Indexierung
+## Product indexing
 
 ### ElasticsearchProductDefinition
 
-Extends `AbstractElasticsearchDefinition`. Internes `@internal`.
+Extends `AbstractElasticsearchDefinition`. Internal `@internal`.
 
-**`getMapping(Context)`** baut das vollständige Produkt-Mapping:
+**`getMapping(Context)`** builds the complete product mapping:
 
-| Feld | ES-Typ | Besonderheit |
+| Field | ES type | Notes |
 |------|--------|-------------|
 | `id` | KEYWORD_FIELD | |
 | `name` | translated + withExact + technicalTerms | language-aware |
@@ -263,17 +263,17 @@ Extends `AbstractElasticsearchDefinition`. Internes `@internal`.
 | `metaTitle` | translated | |
 | `metaDescription` | translated + lengthNorm | |
 | `customSearchKeywords` | translated + withExact + technicalTerms + lengthNorm | |
-| `productNumber`, `ean`, `manufacturerNumber` | buildTextFieldConfig(withExact, technicalTerms) | SKU-Analyse |
-| `categories`, `manufacturer`, `deliveryTime`, `options`, `properties`, `tags`, `visibilities` | nested | mit `_count` |
+| `productNumber`, `ean`, `manufacturerNumber` | buildTextFieldConfig(withExact, technicalTerms) | SKU analysis |
+| `categories`, `manufacturer`, `deliveryTime`, `options`, `properties`, `tags`, `visibilities` | nested | with `_count` |
 | `active`, `available`, `isCloseout`, `shippingFree`, `markAsTopseller` | boolean | |
 | `stock`, `availableStock`, `sales`, `childCount`, `autoIncrement` | long | |
 | `ratingAverage`, `weight`, `width`, `length`, `height` | double | |
 | `releaseDate`, `createdAt` | date | |
-| `customFields` | object/dynamic | per Sprache |
+| `customFields` | object/dynamic | per language |
 | `visibility_{salesChannelId}` | integer | flattened per SalesChannel |
 | `cheapest_price_rule*` | dynamic template → double | |
 
-**`fetch(ids, Context)`** lädt Produkte via Raw-SQL (Joins über product, product_translation, category_translation, product_visibility, tag etc.). Führt mehrere SQL-Queries aus — eine Base-Query + eine Translation-Query pro Sprache.
+**`fetch(ids, Context)`** loads products via raw SQL (joins across product, product_translation, category_translation, product_visibility, tag etc.). Runs several SQL queries — one base query plus one translation query per language.
 
 **Dynamic templates:**
 - `cheapest_price_rule*` → `double`
@@ -286,24 +286,24 @@ Extends `AbstractElasticsearchDefinition`. Internes `@internal`.
 
 ### ElasticsearchFieldBuilder::customFields()
 
-Baut `{properties: {[languageId]: {type: object, dynamic: true, properties: {fieldName: esType}}}}`.
+Builds `{properties: {[languageId]: {type: object, dynamic: true, properties: {fieldName: esType}}}}`.
 
 ### ElasticsearchCustomFieldsMappingHelper
 
 **`getTypeFromCustomFieldType(string $type): array`**
 
-| CustomFieldType | ES-Typ |
+| CustomFieldType | ES type |
 |----------------|--------|
 | `int` | `{type: long}` |
 | `float` | `{type: double}` |
 | `bool` | `{type: boolean}` |
 | `datetime` | `{type: date, format: ...}` |
 | `price`, `json` | `{type: object, dynamic: true}` |
-| alle anderen | `KEYWORD_FIELD + SEARCH_FIELD` (keyword + text) |
+| all others | `KEYWORD_FIELD + SEARCH_FIELD` (keyword + text) |
 
 ### ElasticsearchCustomFieldsMappingEvent
 
-Erlaubt Plugins, das Custom-Fields-Mapping zu überschreiben:
+Allows plugins to override the custom fields mapping:
 
 ```php
 // EventListener
@@ -311,44 +311,44 @@ public function onMapping(ElasticsearchCustomFieldsMappingEvent $event): void {
     if ($event->getEntity() !== ProductDefinition::ENTITY_NAME) {
         return;
     }
-    // Feld auf integer umstellen
+    // switch field to integer
     $event->setMapping('custom_my_numeric', CustomFieldTypes::INT);
-    // Feld komplett entfernen
+    // remove field entirely
     $event->removeMapping('custom_unwanted');
 }
 ```
 
 ---
 
-## Indexing-Events
+## Indexing events
 
-| Event | Zeitpunkt |
+| Event | Timing |
 |-------|-----------|
-| `ElasticsearchIndexConfigEvent` | Vor Index-Erstellung (Mapping/Settings anpassen) |
-| `ElasticsearchIndexCreatedEvent` | Nach Index-Erstellung |
-| `ElasticsearchIndexAliasSwitchedEvent` | Nach Alias-Switch |
-| `ElasticsearchIndexingFinishedEvent` | Alle Batches verarbeitet |
-| `ElasticsearchIndexIteratorEvent` | Pro Definition beim Iterieren (Iterator austauschen) |
-| `ElasticsearchIndexerLanguageCriteriaEvent` | Sprachen-Kriterien anpassen |
-| `ElasticsearchEntitySearcherSearchEvent` | Vor ES-Search-Request |
-| `ElasticsearchEntitySearcherSearchedEvent` | Nach ES-Search-Request |
-| `ElasticsearchEntityAggregatorSearchEvent` | Vor ES-Aggregation-Request |
-| `ElasticsearchEntityAggregatorSearchedEvent` | Nach ES-Aggregation-Request |
+| `ElasticsearchIndexConfigEvent` | before index creation (adjust mapping/settings) |
+| `ElasticsearchIndexCreatedEvent` | after index creation |
+| `ElasticsearchIndexAliasSwitchedEvent` | after alias switch |
+| `ElasticsearchIndexingFinishedEvent` | all batches processed |
+| `ElasticsearchIndexIteratorEvent` | per definition while iterating (swap iterator) |
+| `ElasticsearchIndexerLanguageCriteriaEvent` | adjust language criteria |
+| `ElasticsearchEntitySearcherSearchEvent` | before the ES search request |
+| `ElasticsearchEntitySearcherSearchedEvent` | after the ES search request |
+| `ElasticsearchEntityAggregatorSearchEvent` | before the ES aggregation request |
+| `ElasticsearchEntityAggregatorSearchedEvent` | after the ES aggregation request |
 
 ---
 
-## Analyzer-Konstanten (`ElasticsearchFieldBuilder`)
+## Analyzer constants (`ElasticsearchFieldBuilder`)
 
-| Konstante | Wert | Verwendung |
+| Constant | Value | Usage |
 |-----------|------|------------|
-| `NORMALIZER_LOWERCASE` | `sw_lowercase_normalizer` | Alle keyword-Felder |
-| `SIMILARITY_LENGTH_NORM` | `sw_length_norm` | BM25 b=0.75 für Langtext |
-| `ANALYZER_WHITESPACE` | `sw_whitespace_analyzer` | Standard search/exact |
-| `ANALYZER_NGRAM` | `sw_ngram_analyzer` | ngram-Subfelder |
+| `NORMALIZER_LOWERCASE` | `sw_lowercase_normalizer` | all keyword fields |
+| `SIMILARITY_LENGTH_NORM` | `sw_length_norm` | BM25 b=0.75 for long text |
+| `ANALYZER_WHITESPACE` | `sw_whitespace_analyzer` | default search/exact |
+| `ANALYZER_NGRAM` | `sw_ngram_analyzer` | ngram subfields |
 | `ANALYZER_WHITESPACE_TECHNICAL_INDEX` | `sw_whitespace_technical_term_index_analyzer` | SKU index-side |
 | `ANALYZER_WHITESPACE_TECHNICAL_SEARCH` | `sw_whitespace_technical_term_search_analyzer` | SKU search-side |
 
-Sprach-spezifische Analyzer: `sw_german_analyzer`, `sw_english_analyzer`, `sw_german_technical_term_{index,search}_analyzer`, `sw_english_technical_term_{index,search}_analyzer`.
+Language-specific analyzers: `sw_german_analyzer`, `sw_english_analyzer`, `sw_german_technical_term_{index,search}_analyzer`, `sw_english_technical_term_{index,search}_analyzer`.
 
 ---
 
@@ -368,49 +368,49 @@ ElasticsearchFieldMapper::toManyAssociations(
 ): array
 ```
 
-`translated()` merged `fallbackItems + items`, sodass parent-Übersetzungen als Fallback dienen.
+`translated()` merges `fallbackItems + items`, so parent translations act as a fallback.
 
 ---
 
 ## TokenQueryBuilder / FieldQueryBuilder
 
-`TokenQueryBuilder` iteriert `SearchFieldConfig`-Configs, löst DAL-Felder auf,
-delegiert an `AbstractFieldQueryBuilder::build(ResolvedField, token, config, Context)`.
+`TokenQueryBuilder` iterates `SearchFieldConfig` configs, resolves DAL fields,
+delegates to `AbstractFieldQueryBuilder::build(ResolvedField, token, config, Context)`.
 
-`FieldQueryBuilder` und `ExplainFieldQueryBuilder` (Debug) implementieren die konkrete Query-Logik.
+`FieldQueryBuilder` and `ExplainFieldQueryBuilder` (debug) implement the concrete query logic.
 
-`TranslatedFieldQueryBuilder` / `NestedFieldQueryBuilder` — spezialisierte Implementierungen.
+`TranslatedFieldQueryBuilder` / `NestedFieldQueryBuilder` — specialised implementations.
 
-`SearchFieldConfig`: `{andLogic, field, tokenize, ranking}` — konfiguriert in Admin unter Produktsuche-Einstellungen.
-
----
-
-## Test-Hilfsklassen
-
-- `ElasticsearchTestTestBehaviour` — Trait für Storefront-ES-Tests (Indexierung etc.)
-- `AdminElasticsearchTestBehaviour` — Trait für Admin-ES-Tests
+`SearchFieldConfig`: `{andLogic, field, tokenize, ranking}` — configured in the admin under product search settings.
 
 ---
 
-## Datenbank-Tabellen
+## Test helper classes
 
-| Tabelle | Zweck |
+- `ElasticsearchTestTestBehaviour` — trait for storefront ES tests (indexing etc.)
+- `AdminElasticsearchTestBehaviour` — trait for admin ES tests
+
+---
+
+## Database tables
+
+| Table | Purpose |
 |---------|-------|
-| `elasticsearch_index_task` | Tracking laufender Indexierungen (id, entity, index, alias, doc_count) |
+| `elasticsearch_index_task` | tracking of running indexing runs (id, entity, index, alias, doc_count) |
 
-Migrationen in `Migration/V6_5/`:
-- `Migration1689083660ElasticsearchIndexTask` — Haupttabelle
-- `Migration1689084023AdminElasticsearchIndexTask` — Admin-Variante
+Migrations in `Migration/V6_5/`:
+- `Migration1689083660ElasticsearchIndexTask` — main table
+- `Migration1689084023AdminElasticsearchIndexTask` — admin variant
 
 ---
 
 ## AWS OpenSearch / SigV4
 
-Bei `elasticsearch.ssl.sigV4.enabled=true` wird `AsyncAwsSigner` für Request-Signing verwendet.
-Credentials über `key_id`/`secret_key` in Config oder IAM-Rolle (`credentials_provider` weglassen).
+With `elasticsearch.ssl.sigV4.enabled=true`, `AsyncAwsSigner` is used for request signing.
+Credentials via `key_id`/`secret_key` in the config or an IAM role (omit `credentials_provider`).
 
 ---
 
 ## Profiler
 
-In dev/test: `ClientProfiler` dekoriert den OpenSearch-Client, `DataCollector` sammelt Query-Zeiten für den Symfony Profiler.
+In dev/test: `ClientProfiler` decorates the OpenSearch client, `DataCollector` collects query times for the Symfony profiler.

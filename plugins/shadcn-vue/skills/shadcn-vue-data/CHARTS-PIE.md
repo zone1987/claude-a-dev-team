@@ -1,10 +1,10 @@
 # shadcn-vue Pie / Donut Charts
 
-4 Varianten mit komplettem Vue-Quellcode.
+4 variants with complete Vue source code.
 
-## Referenzen
+## References
 
-- [CHARTS-PIE-PIE-CHARTS.md](CHARTS-PIE-PIE-CHARTS.md) — Vollstaendiger Code aller 4 Pie/Donut-Charts:
+- [CHARTS-PIE-PIE-CHARTS.md](CHARTS-PIE-PIE-CHARTS.md) — Complete code of all 4 pie/donut charts:
   ChartPieSimple, ChartPieDonut, ChartPieDonutText, ChartPieStacked
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartPie*.vue`
+Source: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartPie*.vue`

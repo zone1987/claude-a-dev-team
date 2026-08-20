@@ -22,15 +22,15 @@ Since v9, Swiper uses native browser lazy loading (`loading="lazy"`). A separate
 
     <!-- Lazy image with preloader spinner -->
     <div class="swiper-slide">
-      <img src="bild-1.jpg" loading="lazy" />
+      <img src="image-1.jpg" loading="lazy" />
       <div class="swiper-lazy-preloader"></div>
     </div>
 
     <!-- With srcset for responsive images -->
     <div class="swiper-slide">
       <img
-        src="bild-small.jpg"
-        srcset="bild-large.jpg 2x"
+        src="image-small.jpg"
+        srcset="image-large.jpg 2x"
         loading="lazy"
       />
       <div class="swiper-lazy-preloader"></div>
@@ -38,7 +38,7 @@ Since v9, Swiper uses native browser lazy loading (`loading="lazy"`). A separate
 
     <!-- Light preloader for dark backgrounds -->
     <div class="swiper-slide">
-      <img src="bild-3.jpg" loading="lazy" />
+      <img src="image-3.jpg" loading="lazy" />
       <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
     </div>
 
@@ -165,7 +165,7 @@ const swiper = new Swiper('.swiper', {
 
 ```html
 <!-- Old: data-src instead of src -->
-<img data-src="bild.jpg" class="swiper-lazy" />
+<img data-src="image.jpg" class="swiper-lazy" />
 <div class="swiper-lazy-preloader"></div>
 ```
 
@@ -179,7 +179,7 @@ const swiper = new Swiper('.swiper', {
 
 ```html
 <!-- New: native loading attribute -->
-<img src="bild.jpg" loading="lazy" />
+<img src="image.jpg" loading="lazy" />
 <div class="swiper-lazy-preloader"></div>
 ```
 

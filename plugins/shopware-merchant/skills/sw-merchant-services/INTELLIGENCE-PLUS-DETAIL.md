@@ -6,7 +6,7 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/shopware-services/shopware-in
 
 ## Screenshots
 
-![Intelligence+ Abonnement-Button](../../assets/intelligence-plus-abonnement.png)
+![Intelligence+ Abonnement-Button](assets/intelligence-plus-subscription.png)
 
 ## Was ist Shopware Intelligence+?
 

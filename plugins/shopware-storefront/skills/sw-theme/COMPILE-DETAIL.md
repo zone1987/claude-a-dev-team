@@ -1,6 +1,6 @@
-# Shopware 6 — Theme kompilieren & Build: Vollständige Referenz
+# Shopware 6 — Compiling a theme & build: complete reference
 
-Quellen: `guides/plugins/themes/styling/add-css-js-to-theme.md`,
+Sources: `guides/plugins/themes/styling/add-css-js-to-theme.md`,
 `guides/plugins/themes/create-a-theme.md`,
 `guides/plugins/themes/configuration/theme-configuration.md`
 
@@ -8,27 +8,27 @@ Quellen: `guides/plugins/themes/styling/add-css-js-to-theme.md`,
 
 ## Contents
 
-- [Überblick: SCSS vs. JavaScript](#überblick-scss-vs-javascript)
-- [SCSS kompilieren](#scss-kompilieren)
-- [theme.json-Änderungen aktualisieren](#themejson-änderungen-aktualisieren)
-- [JavaScript bauen](#javascript-bauen)
-- [Dev-Server mit Live-Reload](#dev-server-mit-live-reload)
-- [Workflow: Vollständiger Build-Zyklus](#workflow-vollständiger-build-zyklus)
+- [Overview: SCSS vs. JavaScript](#overview-scss-vs-javascript)
+- [Compiling SCSS](#compiling-scss)
+- [Applying theme.json changes](#applying-themejson-changes)
+- [Building JavaScript](#building-javascript)
+- [Dev server with live reload](#dev-server-with-live-reload)
+- [Workflow: complete build cycle](#workflow-complete-build-cycle)
 - [Atomic Theme Compilation](#atomic-theme-compilation)
-- [Schnellreferenz: Alle Theme-CLI-Befehle](#schnellreferenz-alle-theme-cli-befehle)
+- [Quick reference: all theme CLI commands](#quick-reference-all-theme-cli-commands)
 
-## Überblick: SCSS vs. JavaScript
+## Overview: SCSS vs. JavaScript
 
-| Sprache | Compiler | Befehl |
+| Language | Compiler | Command |
 |---|---|---|
 | SCSS/CSS | PHP SASS Compiler | `bin/console theme:compile` |
 | JavaScript | Node.js / webpack | `shopware-cli project storefront-build` |
 
 ---
 
-## SCSS kompilieren
+## Compiling SCSS
 
-SCSS wird von einem **PHP SASS Compiler** verarbeitet. Der Einstiegspunkt ist in `theme.json` definiert:
+SCSS is processed by a **PHP SASS Compiler**. The entry point is defined in `theme.json`:
 
 ```json
 {
@@ -44,48 +44,48 @@ SCSS wird von einem **PHP SASS Compiler** verarbeitet. Der Einstiegspunkt ist in
 bin/console theme:compile
 ```
 
-Dieser Befehl:
-1. Liest die `style`-Einträge aus `theme.json`
-2. Kompiliert SCSS in CSS
-3. Kopiert Assets aus den `asset`-Pfaden nach `public/theme/<theme-asset-uuid>/`
+This command:
+1. Reads the `style` entries from `theme.json`
+2. Compiles SCSS into CSS
+3. Copies assets from the `asset` paths to `public/theme/<theme-asset-uuid>/`
 
 ---
 
-## theme.json-Änderungen aktualisieren
+## Applying theme.json changes
 
-Nach Änderungen an `theme.json` (neue Felder, Pfade, etc.):
+After changes to `theme.json` (new fields, paths, etc.):
 
 ```bash
 bin/console theme:refresh
 ```
 
-Aktualisiert die Config-Vererbungs-Beziehungen und liest neue Felder ein.
+Updates the config inheritance relationships and reads in new fields.
 
 ---
 
-## JavaScript bauen
+## Building JavaScript
 
-JavaScript kann **nicht** vom PHP-Compiler verarbeitet werden. Shopware verwendet
-[webpack](https://webpack.js.org/). Code wird in ES6 geschrieben.
+JavaScript **cannot** be processed by the PHP compiler. Shopware uses
+[webpack](https://webpack.js.org/). Code is written in ES6.
 
-**Einstiegspunkt:** `src/Resources/app/storefront/src/main.js`
+**Entry point:** `src/Resources/app/storefront/src/main.js`
 
 ```bash
-# Beispiel main.js
+# Example main.js
 console.log('SwagBasicExampleTheme JS loaded');
 ```
 
-**Build-Befehl** (shopware-cli):
+**Build command** (shopware-cli):
 ```bash
 shopware-cli project storefront-build
 ```
 
-Ausgabedatei (automatisch erkannt von Shopware):
+Output file (detected automatically by Shopware):
 ```
 src/Resources/app/storefront/dist/storefront/js/swag-basic-example-theme/swag-basic-example-theme.js
 ```
 
-Diese Datei muss in `theme.json` referenziert werden:
+This file must be referenced in `theme.json`:
 ```json
 {
   "script": [
@@ -97,43 +97,43 @@ Diese Datei muss in `theme.json` referenziert werden:
 
 ---
 
-## Dev-Server mit Live-Reload
+## Dev server with live reload
 
-Für effizientes Entwickeln: Dev-Server auf Port `9998` mit automatischem Reload.
+For efficient development: dev server on port `9998` with automatic reload.
 
 ```bash
-# shopware-cli (Template / Standard)
+# shopware-cli (template / standard)
 shopware-cli project storefront-watch
 
-# Contribution/Platform-Setup, ab Shopware 6.7.11.0
+# Contribution/platform setup, as of Shopware 6.7.11.0
 composer run storefront:dev-server
 
-# Vor Shopware 6.7.11.0 (platform only)
+# Before Shopware 6.7.11.0 (platform only)
 composer run watch:storefront
 ```
 
-Storefront unter `localhost:9998` öffnen — Seite aktualisiert sich bei Dateiänderungen automatisch.
+Open the storefront at `localhost:9998` — the page refreshes automatically on file changes.
 
-> **Hinweis:** Beim Verwenden von `storefront-watch` werden SCSS-Variablen dynamisch von webpack
-> injiziert. Selektoren und Properties in `overrides.scss` können daher **mehrfach** im kompilierten
-> CSS erscheinen. Nur Variablen-Overrides gehören in `overrides.scss`.
+> **Note:** When using `storefront-watch`, SCSS variables are injected dynamically by webpack.
+> Selectors and properties in `overrides.scss` can therefore appear **multiple times** in the
+> compiled CSS. Only variable overrides belong in `overrides.scss`.
 
 ---
 
-## Workflow: Vollständiger Build-Zyklus
+## Workflow: complete build cycle
 
 ```bash
-# 1. JS bauen (bei JS-Änderungen)
+# 1. Build JS (on JS changes)
 shopware-cli project storefront-build
 
-# 2. Theme kompilieren (SCSS + Assets)
+# 2. Compile the theme (SCSS + assets)
 bin/console theme:compile
 
-# 3. Cache leeren
+# 3. Clear the cache
 bin/console cache:clear
 ```
 
-Oder für theme.json-Änderungen:
+Or for theme.json changes:
 ```bash
 bin/console theme:refresh
 bin/console theme:compile
@@ -144,32 +144,32 @@ bin/console cache:clear
 
 ## Atomic Theme Compilation
 
-Shopware kompiliert Themes **atomar** — jeder SalesChannel bekommt eine eigene Theme-Version.
-Das ermöglicht, dass verschiedene SalesChannels unterschiedliche Themes oder Theme-Konfigurationen
-verwenden können, ohne sich gegenseitig zu beeinflussen.
+Shopware compiles themes **atomically** — each sales channel gets its own theme version.
+This makes it possible for different sales channels to use different themes or theme
+configurations without affecting each other.
 
-Kompilierte Themes landen in:
+Compiled themes end up in:
 ```
 public/theme/<theme-uuid>/
 ├── css/all.css
 └── js/all.js
 ```
 
-Assets (Bilder, Fonts):
+Assets (images, fonts):
 ```
 public/theme/<theme-asset-uuid>/asset/
 ```
 
 ---
 
-## Schnellreferenz: Alle Theme-CLI-Befehle
+## Quick reference: all theme CLI commands
 
 ```bash
-bin/console theme:create <ThemeName>      # Neues Theme-Gerüst erstellen
-bin/console theme:install <ThemeName>     # Theme installieren
-bin/console theme:change                  # Theme einem SalesChannel zuweisen (interaktiv)
-bin/console theme:compile                 # SCSS kompilieren + Assets kopieren
-bin/console theme:refresh                 # theme.json neu einlesen (nach Änderungen)
-bin/console theme:dump                    # Theme-Konfiguration ausgeben (Debugging)
-bin/console theme:list                    # Alle Themes auflisten
+bin/console theme:create <ThemeName>      # Create a new theme scaffold
+bin/console theme:install <ThemeName>     # Install a theme
+bin/console theme:change                  # Assign a theme to a sales channel (interactive)
+bin/console theme:compile                 # Compile SCSS + copy assets
+bin/console theme:refresh                 # Re-read theme.json (after changes)
+bin/console theme:dump                    # Output the theme configuration (debugging)
+bin/console theme:list                    # List all themes
 ```

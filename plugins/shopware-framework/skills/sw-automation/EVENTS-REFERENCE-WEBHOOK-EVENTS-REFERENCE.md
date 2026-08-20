@@ -1,51 +1,51 @@
-# Shopware 6 — Webhook-Events Referenz
+# Shopware 6 — Webhook events reference
 
-> Quelle: `resources/references/app-reference/webhook-events-reference.md`
+> Source: `resources/references/app-reference/webhook-events-reference.md`
 
-Alle verfügbaren Webhook-Events mit Event-Name, Beschreibung, benötigten Berechtigungen und Payload-Struktur.
+All available webhook events with event name, description, required permissions and payload structure.
 
 ---
 
 ## Contents
 
-- [Vollständige Event-Tabelle](#vollständige-event-tabelle)
-- [Order-State Events (`state_enter.*`)](#order-state-events-state_enter)
-- [Order-State Events (`state_leave.*`)](#order-state-events-state_leave)
-- [Entity-Written/Deleted Events](#entity-writtendeleted-events)
-- [App-Lifecycle-Events](#app-lifecycle-events)
+- [Complete event table](#complete-event-table)
+- [Order state events (`state_enter.*`)](#order-state-events-state_enter)
+- [Order state events (`state_leave.*`)](#order-state-events-state_leave)
+- [Entity written/deleted events](#entity-writtendeleted-events)
+- [App lifecycle events](#app-lifecycle-events)
 
-## Vollständige Event-Tabelle
+## Complete event table
 
-| Event | Beschreibung | Benötigte Permissions | Payload |
+| Event | Description | Required permissions | Payload |
 |:------|:-------------|:----------------------|:--------|
-| `checkout.customer.before.login` | Wird ausgelöst wenn sich ein Kunde einloggt | — | `{"email":"string"}` |
-| `checkout.customer.changed-payment-method` | Wird ausgelöst wenn ein Kunde die Zahlungsmethode im Checkout ändert | `customer:read` | `{"entity":"customer"}` |
-| `checkout.customer.deleted` | Wird ausgelöst wenn ein Kunde gelöscht wird | `customer:read` | `{"entity":"customer"}` |
-| `checkout.customer.double_opt_in_guest_order` | Wird ausgelöst wenn Double-Opt-In in einer Gastbestellung akzeptiert wird | `customer:read` | `{"entity":"customer","confirmUrl":"string"}` |
-| `checkout.customer.double_opt_in_registration` | Wird ausgelöst wenn ein Kunde seine Registrierung via Double-Opt-In bestätigt | `customer:read` | `{"entity":"customer","confirmUrl":"string"}` |
+| `checkout.customer.before.login` | Fired when a customer logs in | — | `{"email":"string"}` |
+| `checkout.customer.changed-payment-method` | Fired when a customer changes the payment method in the checkout | `customer:read` | `{"entity":"customer"}` |
+| `checkout.customer.deleted` | Fired when a customer is deleted | `customer:read` | `{"entity":"customer"}` |
+| `checkout.customer.double_opt_in_guest_order` | Fired when double opt-in is accepted in a guest order | `customer:read` | `{"entity":"customer","confirmUrl":"string"}` |
+| `checkout.customer.double_opt_in_registration` | Fired when a customer confirms their registration via double opt-in | `customer:read` | `{"entity":"customer","confirmUrl":"string"}` |
 | `checkout.customer.guest_register` | — | `customer:read` | `{"entity":"customer"}` |
-| `checkout.customer.login` | Wird ausgelöst wenn sich ein Kunde einloggt | `customer:read` | `{"entity":"customer","contextToken":"string"}` |
-| `checkout.customer.logout` | Wird ausgelöst wenn sich ein Kunde ausloggt | `customer:read` | `{"entity":"customer"}` |
-| `checkout.customer.register` | Wird ausgelöst wenn ein neuer Kunde registriert wurde | `customer:read` | `{"entity":"customer"}` |
+| `checkout.customer.login` | Fired when a customer logs in | `customer:read` | `{"entity":"customer","contextToken":"string"}` |
+| `checkout.customer.logout` | Fired when a customer logs out | `customer:read` | `{"entity":"customer"}` |
+| `checkout.customer.register` | Fired when a new customer has registered | `customer:read` | `{"entity":"customer"}` |
 | `checkout.order.payment_method.changed` | — | `order:read` `order_transaction:read` | `{"entity":"order_transaction"}` |
-| `checkout.order.placed` | Wird ausgelöst wenn eine Bestellung aufgegeben wird | `order:read` | `{"entity":"order"}` |
-| `contact_form.send` | Wird ausgelöst wenn ein Kontaktformular gesendet wird | — | `{"contactFormData":"object"}` |
+| `checkout.order.placed` | Fired when an order is placed | `order:read` | `{"entity":"order"}` |
+| `contact_form.send` | Fired when a contact form is submitted | — | `{"contactFormData":"object"}` |
 | `customer.group.registration.accepted` | — | `customer:read` `customer_group:read` | `{"entity":"customer_group"}` |
 | `customer.group.registration.declined` | — | `customer:read` `customer_group:read` | `{"entity":"customer_group"}` |
-| `customer.recovery.request` | Wird ausgelöst wenn ein Kunde sein Passwort wiederherstellt | `customer_recovery:read` `customer:read` | `{"entity":"customer","resetUrl":"string","shopName":"string"}` |
+| `customer.recovery.request` | Fired when a customer recovers their password | `customer_recovery:read` `customer:read` | `{"entity":"customer","resetUrl":"string","shopName":"string"}` |
 | `mail.after.create.message` | — | — | `{"data":"array","message":"object"}` |
-| `mail.before.send` | Wird ausgelöst bevor eine Mail gesendet wird | — | `{"data":"array","templateData":"array"}` |
-| `mail.sent` | Wird ausgelöst wenn eine Mail aus Shopware gesendet wird | — | `{"subject":"string","contents":"string","recipients":"array"}` |
+| `mail.before.send` | Fired before a mail is sent | — | `{"data":"array","templateData":"array"}` |
+| `mail.sent` | Fired when a mail is sent from Shopware | — | `{"subject":"string","contents":"string","recipients":"array"}` |
 | `newsletter.confirm` | — | `newsletter_recipient:read` | `{"entity":"newsletter_recipient"}` |
 | `newsletter.register` | — | `newsletter_recipient:read` | `{"entity":"newsletter_recipient","url":"string"}` |
 | `newsletter.unsubscribe` | — | `newsletter_recipient:read` | `{"entity":"newsletter_recipient"}` |
 | `product_export.log` | — | — | `{"name":"string"}` |
-| `review_form.send` | Wird ausgelöst wenn ein Produktbewertungsformular gesendet wird | `product:read` | `{"reviewFormData":"object","entity":"product"}` |
+| `review_form.send` | Fired when a product review form is submitted | `product:read` | `{"reviewFormData":"object","entity":"product"}` |
 | `user.recovery.request` | — | `user_recovery:read` | `{"entity":"user_recovery","resetUrl":"string"}` |
 
 ---
 
-## Order-State Events (`state_enter.*`)
+## Order state events (`state_enter.*`)
 
 | Event | Permissions | Payload |
 |:------|:------------|:--------|
@@ -82,11 +82,11 @@ Alle verfügbaren Webhook-Events mit Event-Name, Beschreibung, benötigten Berec
 
 ---
 
-## Order-State Events (`state_leave.*`)
+## Order state events (`state_leave.*`)
 
-Analog zu `state_enter.*` — gleiche States und Payloads, nur beim Verlassen eines Zustands.
+Analogous to `state_enter.*` — same states and payloads, only on leaving a state.
 
-| State-Leave-Events (vollständig) |
+| State leave events (complete)    |
 |:----------------------------------|
 | `state_leave.order.state.cancelled` |
 | `state_leave.order.state.completed` |
@@ -119,46 +119,46 @@ Analog zu `state_enter.*` — gleiche States und Payloads, nur beim Verlassen ei
 | `state_leave.order_transaction_capture_refund.state.in_progress` |
 | `state_leave.order_transaction_capture_refund.state.open` |
 
-Alle `state_leave.*`-Events haben `order:read` als Permission und `{"entity":"order"}` als Payload.
+All `state_leave.*` events have `order:read` as permission and `{"entity":"order"}` as payload.
 
 ---
 
-## Entity-Written/Deleted Events
+## Entity written/deleted events
 
-| Event | Beschreibung | Permissions | Payload |
+| Event | Description | Permissions | Payload |
 |:------|:-------------|:------------|:--------|
-| `product.written` | Produkt wurde geschrieben | `product:read` | `{"entity":"product","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `product.deleted` | Produkt wurde gelöscht | `product:read` | `{"entity":"product","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `product_price.written` | Produktpreis wurde geschrieben | `product_price:read` | `{"entity":"product_price","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `product_price.deleted` | Produktpreis wurde gelöscht | `product_price:read` | `{"entity":"product_price","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `category.written` | Kategorie wurde geschrieben | `category:read` | `{"entity":"category","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `category.deleted` | Kategorie wurde gelöscht | `category:read` | `{"entity":"category","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `sales_channel.written` | Sales Channel wurde geschrieben | `sales_channel:read` | `{"entity":"sales_channel","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `sales_channel.deleted` | Sales Channel wurde gelöscht | `sales_channel:read` | `{"entity":"sales_channel","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `sales_channel_domain.written` | Sales-Channel-Domain wurde geschrieben | `sales_channel_domain:read` | `{"entity":"sales_channel_domain","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `sales_channel_domain.deleted` | Sales-Channel-Domain wurde gelöscht | `sales_channel_domain:read` | `{"entity":"sales_channel_domain","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `customer.written` | Kunde wurde geschrieben | `customer:read` | `{"entity":"customer","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `customer.deleted` | Kunde wurde gelöscht | `customer:read` | `{"entity":"customer","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `customer_address.written` | Kundenadresse wurde geschrieben | `customer_address:read` | `{"entity":"customer_address","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `customer_address.deleted` | Kundenadresse wurde gelöscht | `customer_address:read` | `{"entity":"customer_address","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `order.written` | Bestellung wurde geschrieben | `order:read` | `{"entity":"order","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `order.deleted` | Bestellung wurde gelöscht | `order:read` | `{"entity":"order","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `order_address.written` | Bestelladresse wurde geschrieben | `order_address:read` | `{"entity":"order_address","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `order_address.deleted` | Bestelladresse wurde gelöscht | `order_address:read` | `{"entity":"order_address","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `document.written` | Dokument wurde geschrieben | `document:read` | `{"entity":"document","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `document.deleted` | Dokument wurde gelöscht | `document:read` | `{"entity":"document","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
-| `media.written` | Media wurde geschrieben | `media:read` | `{"entity":"media","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
-| `media.deleted` | Media wurde gelöscht | `media:read` | `{"entity":"media","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `product.written` | Product was written | `product:read` | `{"entity":"product","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `product.deleted` | Product was deleted | `product:read` | `{"entity":"product","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `product_price.written` | Product price was written | `product_price:read` | `{"entity":"product_price","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `product_price.deleted` | Product price was deleted | `product_price:read` | `{"entity":"product_price","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `category.written` | Category was written | `category:read` | `{"entity":"category","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `category.deleted` | Category was deleted | `category:read` | `{"entity":"category","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `sales_channel.written` | Sales channel was written | `sales_channel:read` | `{"entity":"sales_channel","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `sales_channel.deleted` | Sales channel was deleted | `sales_channel:read` | `{"entity":"sales_channel","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `sales_channel_domain.written` | Sales channel domain was written | `sales_channel_domain:read` | `{"entity":"sales_channel_domain","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `sales_channel_domain.deleted` | Sales channel domain was deleted | `sales_channel_domain:read` | `{"entity":"sales_channel_domain","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `customer.written` | Customer was written | `customer:read` | `{"entity":"customer","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `customer.deleted` | Customer was deleted | `customer:read` | `{"entity":"customer","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `customer_address.written` | Customer address was written | `customer_address:read` | `{"entity":"customer_address","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `customer_address.deleted` | Customer address was deleted | `customer_address:read` | `{"entity":"customer_address","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `order.written` | Order was written | `order:read` | `{"entity":"order","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `order.deleted` | Order was deleted | `order:read` | `{"entity":"order","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `order_address.written` | Order address was written | `order_address:read` | `{"entity":"order_address","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `order_address.deleted` | Order address was deleted | `order_address:read` | `{"entity":"order_address","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `document.written` | Document was written | `document:read` | `{"entity":"document","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `document.deleted` | Document was deleted | `document:read` | `{"entity":"document","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
+| `media.written` | Media was written | `media:read` | `{"entity":"media","operation":"update insert","primaryKey":"array\|string","payload":"array"}` |
+| `media.deleted` | Media was deleted | `media:read` | `{"entity":"media","operation":"deleted","primaryKey":"array\|string","payload":"array"}` |
 
 ---
 
-## App-Lifecycle-Events
+## App lifecycle events
 
-| Event | Beschreibung | Permissions | Payload |
+| Event | Description | Permissions | Payload |
 |:------|:-------------|:------------|:--------|
-| `app.activated` | App wurde aktiviert | — | — |
-| `app.deactivated` | App wurde deaktiviert | — | — |
-| `app.deleted` | App wurde gelöscht | — | — |
-| `app.installed` | App wurde installiert | — | — |
-| `app.updated` | App wurde aktualisiert | — | — |
-| `shopware.updated` | Shopware wurde aktualisiert | — | — |
+| `app.activated` | App was activated | — | — |
+| `app.deactivated` | App was deactivated | — | — |
+| `app.deleted` | App was deleted | — | — |
+| `app.installed` | App was installed | — | — |
+| `app.updated` | App was updated | — | — |
+| `shopware.updated` | Shopware was updated | — | — |

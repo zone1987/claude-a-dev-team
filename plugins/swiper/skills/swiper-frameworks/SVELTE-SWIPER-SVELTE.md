@@ -1,29 +1,29 @@
-# Swiper Svelte — Vollständige Referenz (via Swiper Element)
+# Swiper Svelte — Complete reference (via Swiper Element)
 
-**Wichtig:** Die separaten Svelte-Komponenten (`swiper/svelte`) wurden in Swiper v9 entfernt.
-Der offizielle Weg ist seither die Integration via **Swiper Element** (Web Component).
+**Important:** The separate Svelte components (`swiper/svelte`) were removed in Swiper v9.
+Since then, the official approach is integration via **Swiper Element** (Web Component).
 
-Archiv für v8 (alte Svelte-Komponenten): https://v8.swiperjs.com/svelte
+Archive for v8 (the old Svelte components): https://v8.swiperjs.com/svelte
 
 ---
 
 ## Contents
 
 - [Installation](#installation)
-- [Registrierung (einmalig)](#registrierung-einmalig)
-- [CSS importieren](#css-importieren)
-- [Minimales Beispiel](#minimales-beispiel)
-- [Parameter als Attribute](#parameter-als-attribute)
-- [Property-Binding via `bind:this` und `onMount`](#property-binding-via-bindthis-und-onmount)
+- [Registration (once)](#registration-once)
+- [Import the CSS](#import-the-css)
+- [Minimal example](#minimal-example)
+- [Parameters as attributes](#parameters-as-attributes)
+- [Property binding via `bind:this` and `onMount`](#property-binding-via-bindthis-and-onmount)
 - [Events](#events)
-- [Swiper-Methoden aufrufen](#swiper-methoden-aufrufen)
-- [Reaktive Parameter (Svelte Stores / Reactive)](#reaktive-parameter-svelte-stores-reactive)
+- [Calling Swiper methods](#calling-swiper-methods)
+- [Reactive parameters (Svelte stores / reactive)](#reactive-parameters-svelte-stores-reactive)
 - [Slots](#slots)
-- [#each-Loop mit Slides](#each-loop-mit-slides)
-- [Thumbs-Integration](#thumbs-integration)
-- [SvelteKit-Integration](#sveltekit-integration)
+- [#each loop with slides](#each-loop-with-slides)
+- [Thumbs integration](#thumbs-integration)
+- [SvelteKit integration](#sveltekit-integration)
 - [Svelte 5 (Runes)](#svelte-5-runes)
-- [Häufige Probleme & Lösungen](#häufige-probleme-lösungen)
+- [Common problems and solutions](#common-problems-and-solutions)
 
 ## Installation
 
@@ -33,15 +33,15 @@ npm install swiper
 
 ---
 
-## Registrierung (einmalig)
+## Registration (once)
 
 ```javascript
-// src/app.js, src/main.js oder src/routes/+layout.svelte
+// src/app.js, src/main.js or src/routes/+layout.svelte
 import { register } from 'swiper/element/bundle';
 register();
 ```
 
-Oder lazy im Component:
+Or lazily inside the component:
 ```svelte
 <script>
   import { onMount } from 'svelte';
@@ -55,21 +55,21 @@ Oder lazy im Component:
 
 ---
 
-## CSS importieren
+## Import the CSS
 
 ```javascript
-// In src/app.css oder global CSS:
+// In src/app.css or global CSS:
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Oder Bundle:
+// Or the bundle:
 import 'swiper/css/bundle';
 ```
 
 ---
 
-## Minimales Beispiel
+## Minimal example
 
 ```svelte
 <script>
@@ -92,7 +92,7 @@ import 'swiper/css/bundle';
 
 ---
 
-## Parameter als Attribute
+## Parameters as attributes
 
 ```svelte
 <swiper-container
@@ -114,9 +114,9 @@ import 'swiper/css/bundle';
 
 ---
 
-## Property-Binding via `bind:this` und `onMount`
+## Property binding via `bind:this` and `onMount`
 
-Für komplexe Parameter (Breakpoints, Render-Funktionen etc.):
+For complex parameters (breakpoints, render functions, etc.):
 
 ```svelte
 <script>
@@ -162,7 +162,7 @@ Für komplexe Parameter (Breakpoints, Render-Funktionen etc.):
 
 ## Events
 
-Ab Swiper v11: Events haben standardmäßig den Präfix `swiper`:
+As of Swiper v11, events carry the prefix `swiper` by default:
 
 ```svelte
 <script>
@@ -199,16 +199,16 @@ Ab Swiper v11: Events haben standardmäßig den Präfix `swiper`:
 </swiper-container>
 ```
 
-Präfix anpassen:
+Change the prefix:
 ```svelte
 <swiper-container events-prefix="">
-  <!-- Events: "slidechange", "progress" (kein Prefix) -->
+  <!-- Events: "slidechange", "progress" (no prefix) -->
 </swiper-container>
 ```
 
 ---
 
-## Swiper-Methoden aufrufen
+## Calling Swiper methods
 
 ```svelte
 <script>
@@ -241,13 +241,13 @@ Präfix anpassen:
   <swiper-slide>Slide 2</swiper-slide>
 </swiper-container>
 
-<button on:click={prev}>Zurück</button>
-<button on:click={next}>Vor</button>
+<button on:click={prev}>Back</button>
+<button on:click={next}>Forward</button>
 ```
 
 ---
 
-## Reaktive Parameter (Svelte Stores / Reactive)
+## Reactive parameters (Svelte stores / reactive)
 
 ```svelte
 <script>
@@ -281,18 +281,18 @@ Präfix anpassen:
 
 ```svelte
 <swiper-container>
-  <div slot="container-start">Vor den Slides</div>
+  <div slot="container-start">Before the slides</div>
 
   <swiper-slide>Slide 1</swiper-slide>
   <swiper-slide>Slide 2</swiper-slide>
 
-  <div slot="container-end">Nach den Slides</div>
+  <div slot="container-end">After the slides</div>
 </swiper-container>
 ```
 
 ---
 
-## #each-Loop mit Slides
+## #each loop with slides
 
 ```svelte
 <script>
@@ -315,7 +315,7 @@ Präfix anpassen:
 
 ---
 
-## Thumbs-Integration
+## Thumbs integration
 
 ```svelte
 <script>
@@ -327,7 +327,7 @@ Präfix anpassen:
   let thumbsSwiperEl;
 
   onMount(() => {
-    // Thumbs-Swiper zuerst initialisieren
+    // Initialize the thumbs Swiper first
     Object.assign(thumbsSwiperEl, {
       slidesPerView: 4,
       spaceBetween: 10,
@@ -336,7 +336,7 @@ Präfix anpassen:
     });
     thumbsSwiperEl.initialize();
 
-    // Dann Haupt-Swiper mit Thumbs-Referenz
+    // Then the main Swiper with the thumbs reference
     Object.assign(mainSwiperEl, {
       spaceBetween: 10,
       thumbs: { swiper: thumbsSwiperEl.swiper },
@@ -358,7 +358,7 @@ Präfix anpassen:
 
 ---
 
-## SvelteKit-Integration
+## SvelteKit integration
 
 ```svelte
 <!-- src/routes/+page.svelte -->
@@ -414,16 +414,16 @@ Präfix anpassen:
 
 ---
 
-## Häufige Probleme & Lösungen
+## Common problems and solutions
 
-| Problem | Lösung |
+| Problem | Solution |
 |---|---|
-| `swiper-container` wird nicht erkannt | `register()` aufrufen (und SSR-Check bei SvelteKit) |
-| Slides erscheinen nicht | CSS importieren: `import 'swiper/css'` |
-| Events werden nicht gefeuert | Event-Namen prüfen: v11+ Prefix `swiper` |
-| SSR-Fehler in SvelteKit | `if (browser)` prüfen oder `onMount` nutzen (client-only) |
-| Komplexe Parameter ignoriert | `init="false"` + `Object.assign` + `initialize()` verwenden |
+| `swiper-container` is not recognized | Call `register()` (and add an SSR check in SvelteKit) |
+| Slides do not appear | Import the CSS: `import 'swiper/css'` |
+| Events are not fired | Check the event names: v11+ prefix `swiper` |
+| SSR error in SvelteKit | Check `if (browser)` or use `onMount` (client-only) |
+| Complex parameters ignored | Use `init="false"` + `Object.assign` + `initialize()` |
 
 ---
 
-*Quelle: https://swiperjs.com/svelte + https://swiperjs.com/element — Swiper v12.2.0*
+*Source: https://swiperjs.com/svelte + https://swiperjs.com/element — Swiper v12.2.0*

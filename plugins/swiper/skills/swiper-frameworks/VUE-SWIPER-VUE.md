@@ -1,28 +1,28 @@
-# Swiper Vue — Vollständige Referenz
+# Swiper Vue — Complete reference
 
-Swiper Vue-Komponenten sind offiziell unterstützt und in `swiper/vue` enthalten.
-Kompatibel mit Vue 3 (Composition API).
+The Swiper Vue components are officially supported and shipped in `swiper/vue`.
+Compatible with Vue 3 (Composition API).
 
 ---
 
 ## Contents
 
 - [Installation](#installation)
-- [Basis-Import](#basis-import)
-- [Minimales Beispiel (Composition API)](#minimales-beispiel-composition-api)
-- [Options API Beispiel](#options-api-beispiel)
-- [`<Swiper>` — Props](#swiper-props)
+- [Base import](#base-import)
+- [Minimal example (Composition API)](#minimal-example-composition-api)
+- [Options API example](#options-api-example)
+- [`<Swiper>` — props](#swiper-props)
 - [Events](#events)
-- [`<SwiperSlide>` — Props](#swiperslide-props)
-- [`v-slot` — Slide-Render-Props](#v-slot-slide-render-props)
+- [`<SwiperSlide>` — props](#swiperslide-props)
+- [`v-slot` — slide render props](#v-slot-slide-render-props)
 - [Composables](#composables)
-- [Slots (Content-Injection)](#slots-content-injection)
-- [Module einbinden](#module-einbinden)
+- [Slots (content injection)](#slots-content-injection)
+- [Including modules](#including-modules)
 - [Virtual Slides](#virtual-slides)
-- [Controller (synchronisierte Swiper)](#controller-synchronisierte-swiper)
-- [Thumbs (Vorschaubilder)](#thumbs-vorschaubilder)
-- [Effekte](#effekte)
-- [CSS-Imports Referenz](#css-imports-referenz)
+- [Controller (synchronized Swipers)](#controller-synchronized-swipers)
+- [Thumbs (thumbnails)](#thumbs-thumbnails)
+- [Effects](#effects)
+- [CSS import reference](#css-import-reference)
 
 ## Installation
 
@@ -32,15 +32,15 @@ npm install swiper
 
 ---
 
-## Basis-Import
+## Base import
 
 ```javascript
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
-// Core-CSS (immer nötig)
+// Core CSS (always required)
 import 'swiper/css';
 
-// Modul-spezifische CSS
+// Module-specific CSS
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
@@ -55,13 +55,13 @@ import 'swiper/css/free-mode';
 import 'swiper/css/grid';
 import 'swiper/css/zoom';
 
-// Oder alles auf einmal
+// Or everything at once
 import 'swiper/css/bundle';
 ```
 
 ---
 
-## Minimales Beispiel (Composition API)
+## Minimal example (Composition API)
 
 ```vue
 <template>
@@ -92,7 +92,7 @@ const onSlideChange = () => {
 
 ---
 
-## Options API Beispiel
+## Options API example
 
 ```vue
 <template>
@@ -124,19 +124,19 @@ export default {
 
 ---
 
-## `<Swiper>` — Props
+## `<Swiper>` — props
 
-Alle [Swiper API-Parameter](https://swiperjs.com/swiper-api#parameters) sind als Props verfügbar (camelCase oder kebab-case in Templates).
+All [Swiper API parameters](https://swiperjs.com/swiper-api#parameters) are available as props (camelCase or kebab-case in templates).
 
-### Zusätzliche Vue-spezifische Props
+### Additional Vue-specific props
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `tag` | `string` | `'div'` | HTML-Element des Containers |
-| `wrapperTag` | `string` | `'div'` | HTML-Element des Wrappers |
-| `modules` | `SwiperModule[]` | — | Einzubindende Module |
+| `tag` | `string` | `'div'` | HTML element of the container |
+| `wrapperTag` | `string` | `'div'` | HTML element of the wrapper |
+| `modules` | `SwiperModule[]` | — | Modules to include |
 
-### Häufige Parameter-Beispiele
+### Common parameter examples
 
 ```vue
 <swiper
@@ -169,8 +169,8 @@ Alle [Swiper API-Parameter](https://swiperjs.com/swiper-api#parameters) sind als
 
 ## Events
 
-Der `@swiper`-Event liefert die Swiper-Instanz nach der Initialisierung.
-Alle weiteren Swiper-Events werden direkt als Vue-Events gefeuert:
+The `@swiper` event provides the Swiper instance after initialization.
+All other Swiper events are fired directly as Vue events:
 
 ```vue
 <swiper
@@ -197,56 +197,56 @@ Alle weiteren Swiper-Events werden direkt als Vue-Events gefeuert:
 
 ```javascript
 const onSwiper = (swiper) => {
-  console.log('Swiper-Instanz:', swiper);
+  console.log('Swiper instance:', swiper);
   // swiper.slideNext(), swiper.slidePrev(), etc.
 };
 
 const onSlideChange = (swiper) => {
-  console.log('Aktiver Index:', swiper.activeIndex);
-  console.log('Realer Index:', swiper.realIndex);
+  console.log('Active index:', swiper.activeIndex);
+  console.log('Real index:', swiper.realIndex);
 };
 
 const onProgress = (swiper, progress) => {
-  console.log('Fortschritt:', progress); // 0 bis 1
+  console.log('Progress:', progress); // 0 to 1
 };
 
 const onAutoplayTimeLeft = (swiper, time, progress) => {
-  // time: verbleibende Zeit in ms
-  // progress: 0 bis 1
+  // time: remaining time in ms
+  // progress: 0 to 1
 };
 ```
 
 ---
 
-## `<SwiperSlide>` — Props
+## `<SwiperSlide>` — props
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `tag` | `string` | `'div'` | HTML-Element des Slides |
-| `zoom` | `boolean` | `false` | Zoom-Wrapper aktivieren |
-| `virtualIndex` | `number` | — | Index für Virtual Slides (Pflicht bei virtual) |
+| `tag` | `string` | `'div'` | HTML element of the slide |
+| `zoom` | `boolean` | `false` | Enable the zoom wrapper |
+| `virtualIndex` | `number` | — | Index for Virtual Slides (required with virtual) |
 
 ---
 
-## `v-slot` — Slide-Render-Props
+## `v-slot` — slide render props
 
 ```vue
 <swiper-slide v-slot="{ isActive, isPrev, isNext, isVisible, isDuplicate }">
   <div :class="{ 'slide--active': isActive, 'slide--prev': isPrev }">
-    <span v-if="isActive">Dieser Slide ist aktiv</span>
-    <span v-if="isPrev">Vorheriger Slide</span>
-    <span v-if="isNext">Nächster Slide</span>
+    <span v-if="isActive">This slide is active</span>
+    <span v-if="isPrev">Previous slide</span>
+    <span v-if="isNext">Next slide</span>
   </div>
 </swiper-slide>
 ```
 
-| Variable | Bedeutung |
+| Variable | Meaning |
 |---|---|
-| `isActive` | Slide ist aktiv |
-| `isPrev` | Vorheriger Slide |
-| `isNext` | Nächster Slide |
-| `isVisible` | Slide ist sichtbar (benötigt `watchSlidesProgress`) |
-| `isDuplicate` | Duplikat im Loop-Modus |
+| `isActive` | The slide is active |
+| `isPrev` | Previous slide |
+| `isNext` | Next slide |
+| `isVisible` | The slide is visible (requires `watchSlidesProgress`) |
+| `isDuplicate` | Duplicate in loop mode |
 
 ---
 
@@ -254,7 +254,7 @@ const onAutoplayTimeLeft = (swiper, time, progress) => {
 
 ### `useSwiper`
 
-Zugriff auf Swiper-Instanz innerhalb von Kindkomponenten:
+Access the Swiper instance inside child components:
 
 ```vue
 <script setup>
@@ -275,17 +275,17 @@ function goTo(index) {
 
 <template>
   <div>
-    <button @click="goPrev">Zurück</button>
-    <button @click="goNext">Vor</button>
+    <button @click="goPrev">Back</button>
+    <button @click="goNext">Forward</button>
   </div>
 </template>
 ```
 
-Innerhalb von `<Swiper>` platzieren:
+Place inside `<Swiper>`:
 ```vue
 <swiper>
   <swiper-slide>Slide 1</swiper-slide>
-  <slide-navigation /> <!-- Komponente mit useSwiper -->
+  <slide-navigation /> <!-- Component using useSwiper -->
 </swiper>
 ```
 
@@ -305,41 +305,41 @@ const swiperSlide = useSwiperSlide();
 
 <template>
   <div :class="{ active: swiperSlide.isActive }">
-    Slide-Inhalt
+    Slide content
   </div>
 </template>
 ```
 
 ---
 
-## Slots (Content-Injection)
+## Slots (content injection)
 
 ```vue
 <swiper>
   <template #container-start>
-    <div>Vor dem swiper-wrapper</div>
+    <div>Before the swiper-wrapper</div>
   </template>
 
   <swiper-slide>Slide 1</swiper-slide>
   <swiper-slide>Slide 2</swiper-slide>
 
   <template #container-end>
-    <div>Nach dem swiper-wrapper</div>
+    <div>After the swiper-wrapper</div>
   </template>
 
   <template #wrapper-start>
-    <div>Im Wrapper, vor Slides</div>
+    <div>In the wrapper, before the slides</div>
   </template>
 
   <template #wrapper-end>
-    <div>Im Wrapper, nach Slides</div>
+    <div>In the wrapper, after the slides</div>
   </template>
 </swiper>
 ```
 
 ---
 
-## Module einbinden
+## Including modules
 
 ```vue
 <script setup>
@@ -408,7 +408,7 @@ const slides = Array.from({ length: 1000 }, (_, i) => `Slide ${i + 1}`);
 
 ---
 
-## Controller (synchronisierte Swiper)
+## Controller (synchronized Swipers)
 
 ```vue
 <script setup>
@@ -443,7 +443,7 @@ const secondSwiper = ref(null);
 
 ---
 
-## Thumbs (Vorschaubilder)
+## Thumbs (thumbnails)
 
 ```vue
 <script setup>
@@ -457,7 +457,7 @@ const thumbsSwiper = ref(null);
 </script>
 
 <template>
-  <!-- Haupt-Swiper -->
+  <!-- Main Swiper -->
   <swiper
     :modules="[Thumbs]"
     :thumbs="{ swiper: thumbsSwiper }"
@@ -467,7 +467,7 @@ const thumbsSwiper = ref(null);
     <swiper-slide><img src="img2.jpg" /></swiper-slide>
   </swiper>
 
-  <!-- Thumbs-Swiper -->
+  <!-- Thumbs Swiper -->
   <swiper
     :modules="[FreeMode, Thumbs]"
     :watch-slides-progress="true"
@@ -484,7 +484,7 @@ const thumbsSwiper = ref(null);
 
 ---
 
-## Effekte
+## Effects
 
 ```vue
 <script setup>
@@ -500,15 +500,15 @@ import 'swiper/css/effect-cards';
 </template>
 ```
 
-Alle Effekte: `"slide"` | `"fade"` | `"cube"` | `"coverflow"` | `"flip"` | `"cards"` | `"creative"`
+All effects: `"slide"` | `"fade"` | `"cube"` | `"coverflow"` | `"flip"` | `"cards"` | `"creative"`
 
 ---
 
-## CSS-Imports Referenz
+## CSS import reference
 
 ```javascript
-import 'swiper/css';                   // Core (immer)
-import 'swiper/css/bundle';            // Alles (alternativ zu einzelnen)
+import 'swiper/css';                   // Core (always)
+import 'swiper/css/bundle';            // Everything (alternative to individual)
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
@@ -529,4 +529,4 @@ import 'swiper/css/virtual';
 
 ---
 
-*Quelle: https://swiperjs.com/vue — Swiper v12.2.0*
+*Source: https://swiperjs.com/vue — Swiper v12.2.0*

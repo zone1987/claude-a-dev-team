@@ -1,121 +1,121 @@
-# Sales Agent – Außendienst-Frontend-App
+# Sales Agent – the field sales frontend app
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/sales-agent  
-**Plan**: Shopware Evolve (oder höher)  
-**Verfügbar ab**: Shopware 6.5.0.0  
-**Typ**: Separate Frontend-Anwendung (kein Admin-Plugin)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/sales-agent  
+**Plan**: Shopware Evolve (or higher)  
+**Available from**: Shopware 6.5.0.0  
+**Type**: A separate frontend application (not an admin plugin)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Technische Besonderheit](#technische-besonderheit)
-- [Administration (Shopware Admin)](#administration-shopware-admin)
-- [Sales Agent Frontend-App](#sales-agent-frontend-app)
-- [Angebotssystem](#angebotssystem)
-- [Persönliche Einstellungen (Sales Agent Portal)](#persönliche-einstellungen-sales-agent-portal)
-- [Anwendungsfälle](#anwendungsfälle)
+- [Overview](#overview)
+- [Technical particularity](#technical-particularity)
+- [Administration (Shopware admin)](#administration-shopware-admin)
+- [The Sales Agent frontend app](#the-sales-agent-frontend-app)
+- [Quote system](#quote-system)
+- [Personal settings (Sales Agent portal)](#personal-settings-sales-agent-portal)
+- [Use cases](#use-cases)
 
-## Überblick
+## Overview
 
-Der **Sales Agent** ist ein Benutzerverwaltungssystem für Vertriebsteams:
-- Außendienstmitarbeiter bekommen eigene Zugänge
-- Können zugewiesene Kunden und deren Bestellhistorie einsehen
-- Können Bestellungen im Namen von Kunden aufgeben
-- Angebots-/Quoten-System für individuelle Preisverhandlungen
+The **Sales Agent** is a user management system for sales teams:
+- Field sales staff get their own accounts
+- They can view the customers assigned to them and their order history
+- They can place orders on behalf of customers
+- A quote system for individual price negotiations
 
-> "Bei dem Sales Agent handelt es sich **nicht** um eine Erweiterung, die im Shopware Admin
-> installiert oder per Klick aktiviert werden kann, sondern um eine **separate Frontend-App**."
-
----
-
-## Technische Besonderheit
-
-Der Sales Agent wird als **Quellcode über ein GitLab-Repository** bereitgestellt:
-- Agenturen und Entwickler können die App anpassen und integrieren
-- Deployment durch technisches Team notwendig
-- Verbindung zum Shopware-Backend über API
+> "The Sales Agent is **not** an extension that can be installed in the Shopware admin
+> or activated with a click, but a **separate frontend app**."
 
 ---
 
-## Administration (Shopware Admin)
+## Technical particularity
 
-### Zugang
-**Einstellungen > System > Sales Agent**
-
-### Sales-User-Konten erstellen
-1. "Neuen Sales Agent anlegen" klicken
-2. Name, E-Mail-Adresse eingeben
-3. Kunden zuweisen (Mehrfachauswahl)
-4. Speichern → automatische **Einladungs-E-Mail** mit Link zur Passwort-Einrichtung
-
-### Kunden zuweisen
-- Einem Sales Agent können beliebig viele Kunden zugewiesen werden
-- Ein Kunde kann mehreren Sales Agents zugeordnet sein
-- Zuweisung jederzeit änderbar
+The Sales Agent is provided as **source code via a GitLab repository**:
+- Agencies and developers can adapt and integrate the app
+- Deployment by a technical team is necessary
+- The connection to the Shopware backend runs via the API
 
 ---
 
-## Sales Agent Frontend-App
+## Administration (Shopware admin)
 
-### Dashboard-Funktionen
+### Access
+**Einstellungen** (Settings) **> System > Sales Agent**
 
-| Funktion | Beschreibung |
+### Creating sales user accounts
+1. Click "Neuen Sales Agent anlegen" (Create new Sales Agent)
+2. Enter the name and email address
+3. Assign customers (multiple selection)
+4. Save → an automatic **invitation email** with a link to set the password
+
+### Assigning customers
+- Any number of customers can be assigned to a Sales Agent
+- A customer can be assigned to several Sales Agents
+- The assignment can be changed at any time
+
+---
+
+## The Sales Agent frontend app
+
+### Dashboard features
+
+| Feature | Description |
 |---|---|
-| Kundenliste | Alle zugewiesenen Kunden im Überblick |
-| Bestellhistorie | Bestellungen pro Kunde einsehen |
-| Neue Bestellung | Im Namen des Kunden bestellen |
-| Angebotserstellung | Angebote mit individuellen Preisen erstellen |
-| Angebotsverwaltung | Status verfolgen, Angebote versenden |
+| Customer list | An overview of all assigned customers |
+| Order history | View the orders per customer |
+| New order | Order on behalf of the customer |
+| Quote creation | Create quotes with individual prices |
+| Quote management | Track the status, send quotes |
 
-### Neue Bestellung im Namen eines Kunden
-1. Kunden in der Liste auswählen
-2. "Neue Bestellung" klicken
-3. Produkte auswählen und konfigurieren
-4. Menge und optionale Anpassungen
-5. Bestellen
+### A new order on behalf of a customer
+1. Select the customer in the list
+2. Click "Neue Bestellung" (New order)
+3. Select and configure the products
+4. Quantity and optional adjustments
+5. Place the order
 
 ---
 
-## Angebotssystem
+## Quote system
 
-### Angebot erstellen
-1. Kunden auswählen
-2. "Neues Angebot" erstellen
-3. Produkte hinzufügen
-4. **Individuelle Preise** und **Rabatte** festlegen
-5. Ablaufdatum setzen
-6. **Dokument auto-generieren** oder manuelles Dokument hochladen
-7. Angebot an Kunden senden (E-Mail mit Angebotslink)
+### Creating a quote
+1. Select the customer
+2. Create a "Neues Angebot" (New quote)
+3. Add the products
+4. Define **individual prices** and **discounts**
+5. Set an expiry date
+6. **Auto-generate the document** or upload a manual document
+7. Send the quote to the customer (an email with a quote link)
 
-### Angebots-Workflow
+### Quote workflow
 ```
-Sales Agent erstellt Angebot
-  → Kunde erhält E-Mail mit Angebotslink
-  → Kunde öffnet Angebot im Storefront
-  → Kunde akzeptiert → Bestellung wird erzeugt
-  → Oder: Kunde lehnt ab → Sales Agent informiert
+Sales Agent creates a quote
+  → Customer receives an email with the quote link
+  → Customer opens the quote in the storefront
+  → Customer accepts → an order is created
+  → Or: customer rejects → Sales Agent is notified
 ```
 
 ---
 
-## Persönliche Einstellungen (Sales Agent Portal)
+## Personal settings (Sales Agent portal)
 
-Sales Agent können selbst ändern:
-- Anzeigesprache
-- Zeitzone
-- Vorname / Nachname
-- Telefonnummer
-- Passwort
+Sales Agents can change the following themselves:
+- Display language
+- Time zone
+- First name / last name
+- Phone number
+- Password
 
-**Nicht änderbar durch Sales Agent**:
-- E-Mail-Adresse (nur Admin)
-- Kundenzuweisungen (nur Admin)
+**Not changeable by the Sales Agent**:
+- The email address (admin only)
+- The customer assignments (admin only)
 
 ---
 
-## Anwendungsfälle
+## Use cases
 
-- B2B-Außendienst: Vertriebsmitarbeiter vor Ort bestellen für Kunden
-- Key Account Management: Dedizierte Betreuer für Großkunden
-- Telefonverkauf: Sales-Mitarbeiter nehmen Bestellungen telefonisch auf
-- Angebotsprozesse: Preisverhandlungen mit nachverfolgbaren Angeboten
+- B2B field sales: sales staff order on site for customers
+- Key account management: dedicated representatives for major customers
+- Telephone sales: sales staff take orders over the phone
+- Quote processes: price negotiations with traceable quotes

@@ -1,56 +1,56 @@
-# B2B Suite — Entwickler-Referenz (Legacy)
+# B2B Suite — Developer reference (legacy)
 
-> **Wichtig:** B2B Suite wird ab Shopware 6.8 nicht mehr unterstuetzt.
-> Migration zu B2B Components erforderlich. Siehe `sw-b2b-suite-migration`.
+> **Important:** the B2B Suite is no longer supported as of Shopware 6.8.
+> Migration to B2B Components is required. See `sw-b2b-suite-migration`.
 
 ## Contents
 
-- [Architektur](#architektur)
-- [Konventionen (Codebase)](#konventionen-codebase)
-- [Entity-Benennung (UI vs. Codebase)](#entity-benennung-ui-vs-codebase)
+- [Architecture](#architecture)
+- [Conventions (codebase)](#conventions-codebase)
+- [Entity naming (UI vs. codebase)](#entity-naming-ui-vs-codebase)
 - [StoreFront Authentication](#storefront-authentication)
 - [REST API](#rest-api)
-- [Voraussetzungen und Installation](#voraussetzungen-und-installation)
+- [Prerequisites and installation](#prerequisites-and-installation)
 
-## Architektur
+## Architecture
 
-![B2B Suite System Architecture](../../assets/b2bSuite-concept-systemArchitectureWholePicture.svg)
+![B2B Suite System Architecture](assets/b2bSuite-concept-systemArchitectureWholePicture.svg)
 
-Die B2B Suite ist eine Sammlung locker gekoppelter, gleichartig strukturierter Komponenten.
+The B2B Suite is a collection of loosely coupled, uniformly structured components.
 
-### Component Layers (von unten nach oben)
+### Component layers (bottom to top)
 
-| Layer      | Verantwortung                                                          |
+| Layer      | Responsibility                                                         |
 |------------|------------------------------------------------------------------------|
-| Shop-Bridge| Bridgt Shopware-Interfaces, subscribt Events, ruft Framework-Services  |
-| Framework  | Domaenespezifische CRUD- und Workflow-Services                         |
-| REST-API   | REST-Zugriff auf Services                                              |
-| Frontend   | Controller-as-Service fuer Storefront-Zugriff                          |
-| B2B Plugin | Storefront-Zugriff auf Services                                        |
+| Shop-Bridge| Bridges Shopware interfaces, subscribes events, calls framework services |
+| Framework  | Domain-specific CRUD and workflow services                             |
+| REST-API   | REST access to services                                               |
+| Frontend   | Controller-as-service for storefront access                           |
+| B2B Plugin | Storefront access to services                                         |
 
-### Komponenten-Komplexe (39 Komponenten)
+### Component complexes (39 components)
 
-1. **Common** — Shared Library (Exception-Klassen, Repository-Helpers, DI-Manager, REST-Router)
+1. **Common** — shared library (exception classes, repository helpers, DI manager, REST router)
 2. **User Management** — StoreFrontAuthentication, Contact, Debtor, Address, Role
-3. **ACL** — Zugriffskontrolle, verbunden mit fast allen Entitaeten
-4. **Order & Contingent Management** — ContingentGroups, Orders, ACL-Settings
+3. **ACL** — access control, connected to almost all entities
+4. **Order & Contingent Management** — ContingentGroups, Orders, ACL settings
 
-## Konventionen (Codebase)
+## Conventions (codebase)
 
-| Bereich          | Konvention                                            |
+| Area             | Convention                                            |
 |------------------|-------------------------------------------------------|
-| DI Container     | IDs: `b2b_*.*` (Komponente.Klassen-Abkuerzung)        |
-| Datenbank        | Tabellen: `b2b_*`, snake_case, Singular               |
-| Attribute        | Prefix `swag_b2b_`                                    |
-| Subscriber       | Methoden nach Funktion benannt, nicht nach Event      |
-| Tests            | snake_case, Prefix `test_`                            |
-| Templates        | Wrapper: `b2b--*`; Blöcke: `{% block b2b_* %}`        |
-| JavaScript       | TypeScript; Plugin-Dateinamen enden auf `*.plugin.ts` |
-| Snippets         | Root-Key: `b2b`                                       |
+| DI Container     | IDs: `b2b_*.*` (component.class abbreviation)         |
+| Database         | Tables: `b2b_*`, snake_case, singular                 |
+| Attributes       | Prefix `swag_b2b_`                                    |
+| Subscriber       | Methods named after function, not after the event     |
+| Tests            | snake_case, prefix `test_`                            |
+| Templates        | Wrapper: `b2b--*`; blocks: `{% block b2b_* %}`        |
+| JavaScript       | TypeScript; plugin file names end in `*.plugin.ts`    |
+| Snippets         | Root key: `b2b`                                       |
 
-## Entity-Benennung (UI vs. Codebase)
+## Entity naming (UI vs. codebase)
 
-| English Display Name       | B2B Suite Entitaet  |
+| English Display Name       | B2B Suite entity    |
 |----------------------------|---------------------|
 | Company administrator      | Debtor              |
 | Employee                   | Contact             |
@@ -63,10 +63,10 @@ Die B2B Suite ist eine Sammlung locker gekoppelter, gleichartig strukturierter K
 
 ## StoreFront Authentication
 
-Einheitliche B2B-Schnittstelle fuer Login, Ownership und Authentifizierung.
-Mehrere Tabellen koennen als Authentifizierungsquelle dienen (Debtor, Contact).
+Unified B2B interface for login, ownership and authentication.
+Several tables can serve as the authentication source (Debtor, Contact).
 
-### Context Owner (Kontext-Zugriff)
+### Context owner (context access)
 
 ```php
 /** @var AuthenticationService $authenticationService */
@@ -80,10 +80,10 @@ $ownershipContext = $authenticationService->getIdentity()->getOwnershipContext()
 echo 'Context owner id: ' . $ownershipContext->contextOwnerId;
 ```
 
-### Tabellen-Design fuer neue Entitaeten
+### Table design for new entities
 
 ```sql
--- Kontext-Owner (gleicher Debtor)
+-- Context owner (same debtor)
 CREATE TABLE b2b_my (
   id INT(11) NOT NULL AUTO_INCREMENT,
   context_owner_id INT(11) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE b2b_my (
     REFERENCES b2b_store_front_auth (id) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
--- Eigentuemer (spezifischer Contact/Debtor)
+-- Owner (specific contact/debtor)
 CREATE TABLE b2b_my (
   id INT(11) NOT NULL AUTO_INCREMENT,
   auth_id INT(11) NULL DEFAULT NULL,
@@ -102,45 +102,45 @@ CREATE TABLE b2b_my (
 );
 ```
 
-### Typische Abfragen
+### Typical queries
 
 ```php
 $identity = $authenticationService->getIdentity();
 $ownershipContext = $identity->getOwnershipContext();
 
-// Alle Records des aktuellen Benutzers
+// All records of the current user
 'SELECT * FROM b2b_my WHERE auth_id = :authId'
-// Alle Records des Debtor-Kontexts
+// All records of the debtor context
 'SELECT * FROM b2b_my WHERE auth_id IN (SELECT auth_id FROM b2b_store_front_auth WHERE context_owner_id = :contextOwnerId)'
 ```
 
-### Eigene Identity implementieren
+### Implementing your own identity
 
-1. `Identity`-Interface implementieren (analog `DebtorIdentity`/`ContactIdentity`)
-2. `CredentialsBuilder` implementieren (erstellt `CredentialsEntity` fuer Login)
-3. `AuthenticationIdentityLoaderInterface` implementieren
-4. Als Tagged Service registrieren: `b2b_front_auth.authentication_repository`
+1. Implement the `Identity` interface (analogous to `DebtorIdentity`/`ContactIdentity`)
+2. Implement a `CredentialsBuilder` (creates the `CredentialsEntity` for login)
+3. Implement `AuthenticationIdentityLoaderInterface`
+4. Register as a tagged service: `b2b_front_auth.authentication_repository`
 
 ## REST API
 
-B2B Suite hat eigenes REST-API-System (kein Shopware-ORM).
+The B2B Suite has its own REST API system (no Shopware ORM).
 
-### Einfacher Controller
+### Simple controller
 
 ```php
 class MyApiController
 {
     public function helloAction(Request $request): array
     {
-        return ['message' => 'hello']; // automatisch zu JSON
+        return ['message' => 'hello']; // automatically converted to JSON
     }
 }
 ```
 
-### Route registrieren
+### Registering a route
 
 ```php
-// RouteProvider erstellen
+// Create a RouteProvider
 class MyApiRouteProvider implements RouteProvider
 {
     public function getRoutes(): array
@@ -152,23 +152,23 @@ class MyApiRouteProvider implements RouteProvider
     }
 }
 
-// Im DIC registrieren
+// Register in the DIC
 $services->set('my.controller', MyApiController::class);
 $services->set('my.api_route_provider', MyApiRouteProvider::class)
     ->tag('b2b_common.rest_route_provider');
 ```
 
-Alle Routen erreichbar unter: `http://my-shop.de/api/b2b`
+All routes are reachable under: `http://my-shop.de/api/b2b`
 
-Route-Parser: FastRoute (Parameter via `{name}` Placeholder).
+Route parser: FastRoute (parameters via `{name}` placeholder).
 
-## Voraussetzungen und Installation
+## Prerequisites and installation
 
 - B2B Suite 4.6.0–4.6.9: Shopware 6.4, PHP 7.4.3, MySQL 5.7.21
 - B2B Suite 4.7.0+: Shopware 6.5
-- Ab B2B Suite 4.9.3: Migration zu B2B Components moeglich
+- As of B2B Suite 4.9.3: migration to B2B Components possible
 
-Docker-Setup (Entwicklung):
+Docker setup (development):
 
 ```bash
 ./psh.phar docker:start

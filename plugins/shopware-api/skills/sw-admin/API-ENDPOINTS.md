@@ -1,42 +1,42 @@
-# Shopware Admin API — Endpunkt-Referenz
+# Shopware Admin API — endpoint reference
 
-**Version:** 6.7.9999999-dev | **Basis-URL:** `{shop}/api` | **Operationen:** 1093 in 143 Tags
+**Version:** 6.7.9999999-dev | **Base URL:** `{shop}/api` | **Operations:** 1093 across 143 tags
 
-## Authentifizierung
+## Authentication
 
-Security-Scheme: `oAuth` (OAuth 2.0)
+Security scheme: `oAuth` (OAuth 2.0)
 
-| Flow | Token-URL | Scopes |
+| Flow | Token URL | Scopes |
 |------|-----------|--------|
-| `password` | `/api/oauth/token` | `write` (Full write), `admin` (Admin-Ops) |
+| `password` | `/api/oauth/token` | `write` (Full write), `admin` (Admin ops) |
 | `clientCredentials` | `/api/oauth/token` | `write`, `admin` |
 
-Token holen:
+Fetch a token:
 ```bash
 curl -X POST "$SHOP/api/oauth/token" \
   -H "Content-Type: application/json" \
   -d '{"grant_type":"password","client_id":"administration","username":"admin","password":"shopware","scopes":"write"}'
 ```
 
-Alle folgenden Requests: `Authorization: Bearer {token}`
+All following requests: `Authorization: Bearer {token}`
 
-Auth-Details → `sw-admin-api-auth`. CRUD-Schema → `sw-admin-api-crud`. Search/Filter → `sw-admin-api-search`.
+Auth details → `sw-admin-api-auth`. CRUD schema → `sw-admin-api-crud`. Search/filter → `sw-admin-api-search`.
 
-## Generisches CRUD/Search-Muster
+## Generic CRUD/search pattern
 
-Jede DAL-Entity (z.B. `product`, `order`, `customer`) hat 7 Standard-Operationen:
+Every DAL entity (e.g. `product`, `order`, `customer`) has 7 standard operations:
 
 ```
-GET    /api/{entity}            Liste (basic info)
-POST   /api/{entity}            Neu anlegen
+GET    /api/{entity}            List (basic info)
+POST   /api/{entity}            Create new
 GET    /api/{entity}/{id}       Detail
-PATCH  /api/{entity}/{id}       Teilweise aktualisieren
-DELETE /api/{entity}/{id}       Löschen
-POST   /api/search/{entity}     Suche/Filter mit Criteria
+PATCH  /api/{entity}/{id}       Partial update
+DELETE /api/{entity}/{id}       Delete
+POST   /api/search/{entity}     Search/filter with Criteria
 POST   /api/aggregate/{entity}  Aggregation
 ```
 
-Aktions-Endpunkte: `POST/GET /api/_action/...`
-Bulk-Sync: `POST /api/_action/sync`
+Action endpoints: `POST/GET /api/_action/...`
+Bulk sync: `POST /api/_action/sync`
 
-Vollständige Tag-Gruppierung aller Endpunkte → `API-ENDPOINTS-DETAIL.md`
+Complete tag grouping of all endpoints → `API-ENDPOINTS-DETAIL.md`

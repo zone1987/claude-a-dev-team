@@ -1,6 +1,6 @@
 # API Reference
 
-## Sub-Komponenten
+## Sub-components
 
 | Component | HTML Element | Description |
 |-----------|-------------|-------------|

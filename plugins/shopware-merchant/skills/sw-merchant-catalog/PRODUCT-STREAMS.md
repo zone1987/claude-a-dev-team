@@ -1,41 +1,41 @@
-# Shopware 6 – Dynamische Produktgruppen
+# Shopware 6 – Dynamische Produktgruppen (Dynamic product groups)
 
-Dynamische Produktgruppen werden unter **Kataloge > Dynamische Produktgruppen** verwaltet.
-Sie gruppieren Produkte automatisch nach definierten Regeln.
+Dynamic product groups are managed under **Kataloge** (Catalogues) > **Dynamische Produktgruppen**.
+They group products automatically according to defined rules.
 
-## Produktgruppe anlegen
+## Creating a product group
 
-1. Kataloge > Dynamische Produktgruppen > **„Produktgruppe anlegen"**
-2. Name und Beschreibung eingeben
-3. Bedingungen definieren (Rule Builder)
-4. Vorschau prüfen
-5. Speichern
+1. Kataloge > Dynamische Produktgruppen > **"Produktgruppe anlegen"** (Create product group)
+2. Enter name and description
+3. Define Bedingungen (Conditions) (Rule Builder)
+4. Check the Vorschau (Preview)
+5. Save
 
-## Bedingungsoperatoren
+## Condition operators
 
-| Operator | Bedeutung |
+| Operator | Meaning |
 |---|---|
-| Gleich | Exakter Wert |
-| Ungleich | Nicht dieser Wert |
-| Eins von | Einer der Werte |
-| Keins von | Keiner der Werte |
-| Alle von | Alle Werte müssen zutreffen |
-| Alle außer | Alle außer diesen |
+| Gleich (Equals) | Exact value |
+| Ungleich (Not equal) | Not this value |
+| Eins von (One of) | One of the values |
+| Keins von (None of) | None of the values |
+| Alle von (All of) | All values must apply |
+| Alle außer (All except) | All except these |
 
-## Verknüpfungen
+## Links
 
-- **UND**: Alle Bedingungen müssen erfüllt sein
-- **ODER**: Eine der Bedingungen reicht
-- **Unterbedingungen**: Verschachtelung möglich
+- **UND** (AND): all conditions must be met
+- **ODER** (OR): one of the conditions is enough
+- **Unterbedingungen** (Sub-conditions): nesting is possible
 
-## Einsatzbereiche
+## Areas of use
 
-- Kategorien (dynamisch befüllen statt manuell)
-- Produktfeeds / Produktvergleiche
-- Erlebniswelten (Produkt-Slider Commerce-Block)
-- Cross-Selling auf Produktdetailseite
+- Kategorien (Categories) (fill dynamically instead of manually)
+- Product feeds / product comparisons
+- Erlebniswelten (Shopping Experiences) (product slider commerce block)
+- Cross-selling on the product detail page
 
-Siehe `PRODUCT-STREAMS-DETAIL.md` für vollständige Regeloptionen.
+See `PRODUCT-STREAMS-DETAIL.md` for the full set of rule options.
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/Kataloge/DynamischeProduktgruppen

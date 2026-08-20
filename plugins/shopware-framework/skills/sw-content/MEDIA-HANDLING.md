@@ -1,15 +1,15 @@
-# Shopware 6 — Media-Handling
+# Shopware 6 — Media handling
 
-Medien sind DAL-Entities (`media`) mit Datei im Filesystem (`shopware.filesystem.public`). Upload über den `MediaService`.
+Media are DAL entities (`media`) with the file in the filesystem (`shopware.filesystem.public`). Upload via the `MediaService`.
 
 ```php
 $mediaId = Uuid::randomHex();
 $this->mediaRepo->create([['id' => $mediaId, 'mediaFolderId' => $folderId]], $context);
 $this->mediaService->saveFile($contents, 'jpg', 'image/jpeg', $fileName, $context, 'product', $mediaId);
-// per URL: $this->mediaService->saveMediaFromUrl(...) bzw. DownloadResponseGenerator
+// by URL: $this->mediaService->saveMediaFromUrl(...) or DownloadResponseGenerator
 ```
 
-Medien organisieren über `media_folder` (mit Thumbnail-Konfiguration). An eine Entity hängen über deren Media-Association
-(z.B. `product_media`). Eigene Media-Felder in Custom-Entities via `sw-field-types` (Fk auf `media`). Thumbnails: `sw-media-thumbnail`.
+Organise media via `media_folder` (with thumbnail configuration). Attach to an entity via that entity's media association
+(e.g. `product_media`). Custom media fields in custom entities via `sw-field-types` (FK to `media`). Thumbnails: `sw-media-thumbnail`.
 
-→ Media-Details: [MEDIA.md](MEDIA.md)
+→ Media details: [MEDIA.md](MEDIA.md)

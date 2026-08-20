@@ -1,4 +1,4 @@
-# Item — API-Referenz
+# Item — API Reference
 
 ## Contents
 
@@ -12,28 +12,28 @@
 - [ItemHeader](#itemheader)
 - [ItemFooter](#itemfooter)
 - [ItemSeparator](#itemseparator)
-- [Exportierte Typen](#exportierte-typen)
-- [reka-ui Referenz](#reka-ui-referenz)
+- [Exported Types](#exported-types)
+- [reka-ui Reference](#reka-ui-reference)
 
 ## Item (Root)
 
-Basiert auf reka-ui `Primitive` — polymorphes Element.
+Based on the reka-ui `Primitive` — polymorphic element.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `as` | `string \| Component` | `"div"` | HTML-Tag oder Komponente |
-| `asChild` | `boolean` | `false` | Rendert als Kind-Element (Slot-basiert) |
-| `variant` | `"default" \| "outline" \| "muted"` | `"default"` | Visueller Stil |
-| `size` | `"default" \| "sm"` | `"default"` | Grosse/Abstande |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `as` | `string \| Component` | `"div"` | HTML tag or component |
+| `asChild` | `boolean` | `false` | Renders as child element (slot-based) |
+| `variant` | `"default" \| "outline" \| "muted"` | `"default"` | Visual style |
+| `size` | `"default" \| "sm"` | `"default"` | Size/spacing |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Beliebige Item-Sub-Komponenten |
+| default | Any Item sub-components |
 
 ---
 
@@ -45,21 +45,21 @@ Basiert auf reka-ui `Primitive` — polymorphes Element.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## ItemContent
 
-Flex-Spalte, wachst auf `flex-1`. Zweite `ItemContent` wird automatisch auf `flex-none` gesetzt.
+Flex column, grows to `flex-1`. A second `ItemContent` is automatically set to `flex-none`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
@@ -67,21 +67,21 @@ Flex-Spalte, wachst auf `flex-1`. Zweite `ItemContent` wird automatisch auf `fle
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## ItemDescription
 
-Rendert als `<p>`. Links werden automatisch unterstrichen.
+Renders as `<p>`. Links are underlined automatically.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
@@ -89,18 +89,18 @@ Rendert als `<p>`. Links werden automatisch unterstrichen.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `"default" \| "icon" \| "image"` | `"default"` | Layout-Typ |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `variant` | `"default" \| "icon" \| "image"` | `"default"` | Layout type |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ### itemMediaVariants Details
 
-| Variant | Grosse | Beschreibung |
+| Variant | Size | Description |
 |---|---|---|
-| `default` | — | Kein eigenes Layout |
-| `icon` | `size-8` | Quadrat mit Border + muted bg, SVG 4x4 |
-| `image` | `size-10` | Quadrat, overflow hidden, `img` fullt aus |
+| `default` | — | No layout of its own |
+| `icon` | `size-8` | Square with border + muted bg, SVG 4x4 |
+| `image` | `size-10` | Square, overflow hidden, `img` fills it |
 
 ---
 
@@ -108,54 +108,54 @@ Rendert als `<p>`. Links werden automatisch unterstrichen.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## ItemHeader
 
-Volle Breite (`basis-full`), `justify-between`.
+Full width (`basis-full`), `justify-between`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## ItemFooter
 
-Volle Breite (`basis-full`), `justify-between`.
+Full width (`basis-full`), `justify-between`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## ItemSeparator
 
-Basiert auf `Separator` (reka-ui), immer `orientation="horizontal"`.
+Based on `Separator` (reka-ui), always `orientation="horizontal"`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `SeparatorProps` | — | Werden weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `SeparatorProps` | — | Are forwarded |
 
 ---
 
-## Exportierte Typen
+## Exported Types
 
 ```ts
 import type { ItemVariants, ItemMediaVariants } from "@/components/ui/item"
 ```
 
-## reka-ui Referenz
+## reka-ui Reference
 - https://reka-ui.com/docs/utilities/primitive

@@ -1,12 +1,12 @@
 # Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add tags-input
 ```
 
-## Manuell
+## Manual
 
 ### Dependencies
 

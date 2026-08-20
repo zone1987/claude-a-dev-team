@@ -1,12 +1,12 @@
 # shadcn-vue Signup Blocks — signup-05
 
-Vollständiger Quellcode ohne Kürzungen.
+Complete source code, unabridged.
 
 ---
 
 ## Block: signup-05
 
-**Description:** Minimales Email-first-Registrierungsformular ohne Card, mit Logo-Link und Apple/Google Social-Auth-Buttons.
+**Description:** Minimal email-first signup form without a card, with a logo link and Apple/Google social auth buttons.
 
 **Installation:**
 ```bash

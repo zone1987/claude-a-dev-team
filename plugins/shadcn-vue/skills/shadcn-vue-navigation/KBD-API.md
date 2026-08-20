@@ -1,46 +1,46 @@
-# Kbd — API-Referenz
+# Kbd — API reference
 
 ## Kbd
 
-Rendert als natives `<kbd>` HTML-Element. Kein reka-ui-Primitiv.
+Renders as a native `<kbd>` HTML element. No reka-ui primitive.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Text oder SVG-Icon der Taste |
+| default | Text or SVG icon of the key |
 
 ### Styling
-- Hintergrund: `bg-muted`
+- Background: `bg-muted`
 - Text: `text-muted-foreground`
-- Grosse: `h-5 min-w-5 text-xs`
-- Innerhalb `[data-slot=tooltip-content]`: transparenter Hintergrund (automatisch)
+- Size: `h-5 min-w-5 text-xs`
+- Inside `[data-slot=tooltip-content]`: transparent background (automatic)
 
 ---
 
 ## KbdGroup
 
-Rendert ebenfalls als `<kbd>`, gruppiert mehrere `Kbd`-Elemente mit `gap-1`.
+Also renders as `<kbd>`, grouping multiple `Kbd` elements with `gap-1`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Mehrere `<Kbd>`-Komponenten |
+| default | Multiple `<Kbd>` components |
 
 ---
 
-## Hinweis
-`Kbd` und `KbdGroup` haben keine reka-ui-Basis — sie sind reine Tailwind-CSS-Wrapper.
+## Note
+`Kbd` and `KbdGroup` have no reka-ui base — they are pure Tailwind CSS wrappers.

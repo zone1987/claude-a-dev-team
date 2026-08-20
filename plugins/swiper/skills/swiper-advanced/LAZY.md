@@ -4,7 +4,7 @@ Images load only once they become visible (native browser lazy loading).
 
 ```html
 <div class="swiper-slide">
-  <img src="bild.jpg" loading="lazy" />
+  <img src="image.jpg" loading="lazy" />
   <div class="swiper-lazy-preloader"></div>
 </div>
 

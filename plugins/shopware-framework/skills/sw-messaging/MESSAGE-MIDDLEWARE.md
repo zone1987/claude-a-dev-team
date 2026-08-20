@@ -1,20 +1,20 @@
-# Shopware 6 — Messenger-Middleware
+# Shopware 6 — Messenger middleware
 
-Middleware umschließt jede Message auf dem Bus (Querschnitt: Logging, Auth-Kontext, Messung).
+Middleware wraps every message on the bus (cross-cutting: logging, auth context, measurement).
 
 ```php
 class FfLoggingMiddleware implements MiddlewareInterface
 {
     public function handle(Envelope $envelope, StackInterface $stack): Envelope
     {
-        // vor dem Handler
+        // before the handler
         $envelope = $stack->next()->handle($envelope, $stack);
-        // nach dem Handler
+        // after the handler
         return $envelope;
     }
 }
 ```
 
-Registrierung über die Messenger-Bus-Konfiguration (`framework.messenger.buses.*.middleware`) bzw. Service-Tag.
-Stamps (`->with(new SomeStamp())`) transportieren Metadaten. Sparsam einsetzen — die meisten Fälle lösen Handler/Events.
-Bus/Transports: `sw-message-queue`.
+Registration through the Messenger bus configuration (`framework.messenger.buses.*.middleware`) or a service tag.
+Stamps (`->with(new SomeStamp())`) carry metadata. Use sparingly — most cases are solved by handlers/events.
+Bus/transports: `sw-message-queue`.

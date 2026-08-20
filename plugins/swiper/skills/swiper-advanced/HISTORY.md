@@ -1,6 +1,6 @@
-# Swiper — History-Modul
+# Swiper — History module
 
-Jeder Slide bekommt eine eigene Browser-History-URL.
+Every slide gets its own browser history URL.
 
 ```js
 import Swiper from 'swiper';
@@ -19,9 +19,9 @@ const swiper = new Swiper('.swiper', {
 
 HTML:
 ```html
-<!-- erzeugt URL: /slides/produkt-detail -->
-<div class="swiper-slide" data-history="produkt-detail">...</div>
+<!-- produces URL: /slides/product-detail -->
+<div class="swiper-slide" data-history="product-detail">...</div>
 ```
 
-## Vertiefung
-- [HISTORY-DETAIL.md](HISTORY-DETAIL.md) — alle Parameter, data-history-Attribut, URL-Schema
+## Further reading
+- [HISTORY-DETAIL.md](HISTORY-DETAIL.md) — all parameters, the data-history attribute, URL scheme

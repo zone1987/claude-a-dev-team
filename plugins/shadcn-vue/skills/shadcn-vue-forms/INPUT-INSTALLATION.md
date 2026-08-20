@@ -6,14 +6,14 @@
 npx shadcn-vue@latest add input
 ```
 
-## Manuell
+## Manual
 
-Keine externen Abhaengigkeiten ausser `@vueuse/core` (useVModel).
+No external dependencies except `@vueuse/core` (useVModel).
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren (siehe `references/source.md`) nach `components/ui/input/`
-2. Importpfad `@/lib/utils` anpassen
+1. Copy source code (see `references/source.md`) to `components/ui/input/`
+2. Adjust the `@/lib/utils` import path
 
 ### Import
 
@@ -23,5 +23,5 @@ import { Input } from '@/components/ui/input'
 </script>
 ```
 
-Quellen:
+Sources:
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/input

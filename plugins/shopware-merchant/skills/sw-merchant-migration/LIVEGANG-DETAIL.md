@@ -1,73 +1,73 @@
-# Livegang nach der Migration
+# Going live after the migration
 
-**Quelle**: https://docs.shopware.com/de/migration-de/Livegang
+**Source**: https://docs.shopware.com/de/migration-de/Livegang
 
 ---
 
 ## Contents
 
-- [Überblick](#überblick)
-- [1. Änderungen im Shopware 6 Zielshop](#1-änderungen-im-shopware-6-zielshop)
-- [2. Änderungen im Quellshop](#2-änderungen-im-quellshop)
-- [3. Änderungen beim Hoster (DNS-Routing)](#3-änderungen-beim-hoster-dns-routing)
-- [4. Migrationsdaten aufräumen](#4-migrationsdaten-aufräumen)
-- [Magento-spezifischer Hinweis: Erweiterung nicht deinstallieren](#magento-spezifischer-hinweis-erweiterung-nicht-deinstallieren)
-- [Checkliste Livegang](#checkliste-livegang)
+- [Overview](#overview)
+- [1. Changes in the Shopware 6 target shop](#1-changes-in-the-shopware-6-target-shop)
+- [2. Changes in the source shop](#2-changes-in-the-source-shop)
+- [3. Changes at the hoster (DNS routing)](#3-changes-at-the-hoster-dns-routing)
+- [4. Cleaning up the migration data](#4-cleaning-up-the-migration-data)
+- [Magento-specific note: do not uninstall the extension](#magento-specific-note-do-not-uninstall-the-extension)
+- [Go-live checklist](#go-live-checklist)
 
-## Überblick
+## Overview
 
-Der Livegang erfolgt in drei Bereichen:
-1. Änderungen im **Shopware 6 Zielshop**
-2. Änderungen im **Quellshop** (SW5 / SW6 / Magento)
-3. Änderungen beim **Hoster** (DNS-Routing)
+The go-live takes place in three areas:
+1. Changes in the **Shopware 6 target shop**
+2. Changes in the **source shop** (SW5 / SW6 / Magento)
+3. Changes at the **hoster** (DNS routing)
 
-Danach: Migrationsdaten aufräumen.
-
----
-
-## 1. Änderungen im Shopware 6 Zielshop
-
-### 1.1 Lizenzierungshost umtragen
-
-**Pfad:** Einstellungen > System > Shopware Account
-
-- Hauptdomain eintragen, unter der der neue Shop erreichbar sein soll
-- Zweck: Shopware-Lizenz korrekt der Domain zuordnen
-
-### 1.2 Domain in Verkaufskanälen umtragen
-
-**Pfad:** Administration > Verkaufskanäle
-
-- Jeder Verkaufskanal hat ein URL-Feld
-- Neue Hauptdomain eintragen
-- Feld: **„URL"**
-
-> ⚠️ Dieser Schritt muss für **jeden Subshop / Verkaufskanal separat** durchgeführt werden!
+After that: clean up the migration data.
 
 ---
 
-## 2. Änderungen im Quellshop
+## 1. Changes in the Shopware 6 target shop
+
+### 1.1 Transferring the licensing host
+
+**Path:** **Einstellungen** (Settings) **> System > Shopware Account**
+
+- Enter the main domain under which the new shop should be reachable
+- Purpose: assign the Shopware licence to the domain correctly
+
+### 1.2 Transferring the domain in the sales channels
+
+**Path:** Administration **> Verkaufskanäle** (Sales channels)
+
+- Every sales channel has a URL field
+- Enter the new main domain
+- Field: **"URL"**
+
+> ⚠️ This step must be carried out **separately for every subshop / sales channel**!
+
+---
+
+## 2. Changes in the source shop
 
 ### Shopware 5
-- Shop in einen Unterordner legen
-- Unterordner in Einstellungen > Shopeinstellungen > Shops eintragen
-- Ziel: Hauptdomain wird für SW6 freigegeben
+- Move the shop into a subfolder
+- Enter the subfolder under Einstellungen > Shopeinstellungen > Shops (Settings > Shop settings > Shops)
+- Goal: the main domain is freed up for SW6
 
 ### Shopware 6
-- Domain im Verkaufskanal auf neue (Ausweich-)Domain umtragen
-- Hauptdomain wird für Zielshop freigegeben
+- Transfer the domain in the sales channel to a new (fallback) domain
+- The main domain is freed up for the target shop
 
 ### Magento
-- Magento so konfigurieren, dass es **nicht mehr unter Hauptdomain** erreichbar ist
-- Stattdessen neue/andere Domain für Magento einstellen
+- Configure Magento so that it is **no longer reachable under the main domain**
+- Set a new/different domain for Magento instead
 
 ---
 
-## 3. Änderungen beim Hoster (DNS-Routing)
+## 3. Changes at the hoster (DNS routing)
 
-Die **Shopdomain muss auf das Unterverzeichnis `/public/`** im Shopware-6-Installationsverzeichnis routen.
+The **shop domain must route to the subdirectory `/public/`** in the Shopware 6 installation directory.
 
-### Apache-Konfiguration (Beispiel)
+### Apache configuration (example)
 
 ```apache
 <VirtualHost *:80>
@@ -87,53 +87,53 @@ Die **Shopdomain muss auf das Unterverzeichnis `/public/`** im Shopware-6-Instal
 </VirtualHost>
 ```
 
-**Platzhalter ersetzen:**
-- `_HOST_NAME_` → eigene Domain (z.B. `www.meinshop.de`)
-- `_SHOPWARE_DIR_` → absoluter Pfad zur SW6-Installation (z.B. `/var/www/shopware6`)
+**Replace the placeholders:**
+- `_HOST_NAME_` → your own domain (e.g. `www.meinshop.de`)
+- `_SHOPWARE_DIR_` → absolute path to the SW6 installation (e.g. `/var/www/shopware6`)
 
-> **Wichtig:** `DocumentRoot` zeigt auf `/public/` — nicht auf das Hauptverzeichnis!
-
----
-
-## 4. Migrationsdaten aufräumen
-
-Nach erfolgreichem Livegang sollten die Migrationsdaten aus der Datenbank entfernt werden.
-
-**Pfad:** Einstellungen > Erweiterungen > Migrations-Assistent
-
-**Aktion:** Kontextmenü > **„Migrationsdaten aufräumen"**
-
-**Effekt:** Löscht alle für die Migration zwischengespeicherten Datensätze aus der Datenbank.
-
-> ⚠️ **Nach dem Aufräumen** können keine Daten-Updates mehr über den Migrationsassistenten
-> aus dem Quellshop übertragen werden!
-
-### Wichtiger Hinweis für SW5 mit Plugin-Migrationsassistent
-Falls während der Migration der **Plugin-Migrationsassistent** genutzt wurde, um Testlizenzen zu buchen:
-→ Dort zuerst die **Migration finalisieren**, bevor im Migrationsassistenten „Migration abschließen" geklickt wird!
+> **Important:** `DocumentRoot` points to `/public/` — not to the main directory!
 
 ---
 
-## Magento-spezifischer Hinweis: Erweiterung nicht deinstallieren
+## 4. Cleaning up the migration data
 
-> ⚠️ Bei einer Magento-Migration: Die **Migrationserweiterung NICHT deinstallieren!**
+After a successful go-live the migration data should be removed from the database.
+
+**Path:** **Einstellungen > Erweiterungen** (Extensions) **> Migrations-Assistent**
+
+**Action:** context menu > **"Migrationsdaten aufräumen"** (Clean up migration data)
+
+**Effect:** deletes all records cached for the migration from the database.
+
+> ⚠️ **After the cleanup** no further data updates can be transferred from the source shop
+> via the Migrationsassistent!
+
+### Important note for SW5 with the plugin migration assistant
+If the **plugin migration assistant** was used during the migration to book test licences:
+→ finalise the **migration there first**, before clicking "Migration abschließen" (Complete migration) in the Migrationsassistent!
+
+---
+
+## Magento-specific note: do not uninstall the extension
+
+> ⚠️ For a Magento migration: do **NOT uninstall the migration extension!**
 >
-> Begründung: Die von Magento verwendeten **Passwort-Algorithmen** sind in der Erweiterung
-> enthalten. Ohne die Erweiterung können sich migrierte Kunden **nicht mehr einloggen**.
+> Reason: the **password algorithms** used by Magento are contained in the
+> extension. Without the extension migrated customers **can no longer log in**.
 
 ---
 
-## Checkliste Livegang
+## Go-live checklist
 
-- [ ] Lizenzierungshost in SW6 auf neue Domain umgetragen (Einstellungen > System > Shopware Account)
-- [ ] Domain in **allen** Verkaufskanälen umgetragen
-- [ ] Quellshop auf Unterordner / alternative Domain umgestellt
-- [ ] Apache/Nginx: DocumentRoot zeigt auf `/public/`
-- [ ] DNS-Propagation abgewartet (kann einige Zeit dauern)
-- [ ] Shop unter neuer Domain erreichbar und funktionsfähig
-- [ ] Migrationsdaten aufgeräumt (Kontextmenü > „Migrationsdaten aufräumen")
-- [ ] Bei Magento: Migrationserweiterung NICHT deinstalliert
+- [ ] Licensing host in SW6 transferred to the new domain (Einstellungen > System > Shopware Account)
+- [ ] Domain transferred in **all** sales channels
+- [ ] Source shop switched to a subfolder / alternative domain
+- [ ] Apache/Nginx: DocumentRoot points to `/public/`
+- [ ] DNS propagation awaited (can take some time)
+- [ ] Shop reachable and functional under the new domain
+- [ ] Migration data cleaned up (context menu > "Migrationsdaten aufräumen")
+- [ ] For Magento: migration extension NOT uninstalled
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de/Livegang*
+*Source: https://docs.shopware.com/de/migration-de/Livegang*

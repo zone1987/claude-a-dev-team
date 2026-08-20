@@ -2,7 +2,7 @@
 
 ## Block: login-05
 
-**Description:** A simple email-only login page — minimalistisches Design ohne Card, Email-Feld, Login-Button und Social-Buttons (Apple + Google) nebeneinander.
+**Description:** A simple email-only login page — minimalist design without a card, email field, login button and social buttons (Apple + Google) side by side.
 
 **Installation:**
 ```bash

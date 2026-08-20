@@ -1,12 +1,12 @@
 # Skill: sw-advanced-search
 
-Entwickler-Wissen zu Shopware Advanced Search (Commercial Plugin, Evolve/Beyond Plan).
+Developer knowledge for Shopware Advanced Search (Commercial plugin, Evolve/Beyond plan).
 
-## Referenzen
+## References
 
 - [ADVANCED-SEARCH-DETAIL.md](ADVANCED-SEARCH-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-Betreiber-Konfiguration (Admin-UI): siehe `shopware-merchant`.
-Commercial Plugin Setup: siehe `sw-commercial-overview`.
+Merchant configuration (admin UI): see `shopware-merchant`.
+Commercial plugin setup: see `sw-commercial-overview`.

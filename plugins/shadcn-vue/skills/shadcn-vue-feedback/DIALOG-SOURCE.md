@@ -1,6 +1,6 @@
-# Dialog — Quellcode
+# Dialog — Source Code
 
-Alle Dateien aus `registry/new-york-v4/ui/dialog/`.
+All files from `registry/new-york-v4/ui/dialog/`.
 
 ## Contents
 
@@ -353,5 +353,5 @@ export { default as DialogTitle } from "./DialogTitle.vue"
 export { default as DialogTrigger } from "./DialogTrigger.vue"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/dialog/`

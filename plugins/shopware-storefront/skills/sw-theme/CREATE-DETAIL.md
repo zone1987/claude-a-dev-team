@@ -1,81 +1,81 @@
-# Shopware 6 — Theme erstellen: Vollständige Referenz
+# Shopware 6 — Creating a theme: complete reference
 
-Quelle: `guides/plugins/themes/create-a-theme.md`, `guides/plugins/themes/index.md`,
+Source: `guides/plugins/themes/create-a-theme.md`, `guides/plugins/themes/index.md`,
 `guides/plugins/themes/theme-base-guide.md`
 
 ---
 
 ## Contents
 
-- [Was ist ein Theme?](#was-ist-ein-theme)
-- [Schritt-für-Schritt: Theme erstellen](#schritt-für-schritt-theme-erstellen)
-- [Verzeichnisstruktur eines Theme-Plugins](#verzeichnisstruktur-eines-theme-plugins)
-- [theme.json — Vollständiges Gerüst](#themejson-vollständiges-gerüst)
-- [PHP-Klasse: ThemeInterface](#php-klasse-themeinterface)
+- [What is a theme?](#what-is-a-theme)
+- [Step by step: creating a theme](#step-by-step-creating-a-theme)
+- [Directory structure of a theme plugin](#directory-structure-of-a-theme-plugin)
+- [theme.json — complete scaffold](#themejson--complete-scaffold)
+- [PHP class: ThemeInterface](#php-class-themeinterface)
 - [Developer Workflow (theme-base-guide)](#developer-workflow-theme-base-guide)
 - [Troubleshooting](#troubleshooting)
 
-## Was ist ein Theme?
+## What is a theme?
 
-Ein Theme ist eine spezialisierte Art von Plugin (oder App), die ausschließlich das visuelle Erscheinungsbild
-des Storefronts verändert. Im Gegensatz zu regulären Plugins enthält ein Theme **keine Backend-Logik**.
+A theme is a specialized kind of plugin (or app) that changes only the visual appearance
+of the storefront. Unlike regular plugins, a theme contains **no backend logic**.
 
-**Unterschiede Plugin vs. Theme:**
+**Differences plugin vs. theme:**
 
-| Merkmal | Plugin/App | Theme |
+| Feature | Plugin/App | Theme |
 |---|---|---|
-| Backend-Logik | ja | nein |
-| Aktivierung | global | per SalesChannel im Theme Manager |
-| SCSS/JS | möglich | Kernfunktion |
-| Twig-Templates | möglich | möglich |
-| ThemeInterface | nein | **ja (Pflicht)** |
+| Backend logic | yes | no |
+| Activation | global | per sales channel in the Theme Manager |
+| SCSS/JS | possible | core function |
+| Twig templates | possible | possible |
+| ThemeInterface | no | **yes (mandatory)** |
 
 ```text
 Extensions
 ├── Plugin
-│   └── kann Theme enthalten (nicht für Cloud)
+│   └── can contain a theme (not for Cloud)
 └── App
-    └── kann Theme enthalten (Cloud-ready)
+    └── can contain a theme (Cloud-ready)
 ```
 
 ---
 
-## Schritt-für-Schritt: Theme erstellen
+## Step by step: creating a theme
 
-### 1. Naming-Konvention
+### 1. Naming convention
 
-**UpperCamelCase** mit Firmen-Prefix, z.B. `SwagBasicExampleTheme`.
+**UpperCamelCase** with a company prefix, e.g. `SwagBasicExampleTheme`.
 
-### 2. Theme-Gerüst generieren
+### 2. Generate the theme scaffold
 
 ```bash
 bin/console theme:create SwagBasicExampleTheme
 ```
 
-Ausgabe:
+Output:
 ```
 Creating theme structure under .../development/custom/plugins/SwagBasicExampleTheme
 ```
 
-### 3. Plugin-Liste aktualisieren
+### 3. Refresh the plugin list
 
 ```bash
 bin/console plugin:refresh
 ```
 
-### 4. Theme installieren und aktivieren
+### 4. Install and activate the theme
 
 ```bash
 bin/console plugin:install --activate SwagBasicExampleTheme
 ```
 
-### 5. Theme einem SalesChannel zuweisen
+### 5. Assign the theme to a sales channel
 
 ```bash
 bin/console theme:change
 ```
 
-Interaktiver Prompt:
+Interactive prompt:
 ```
 Please select a sales channel:
 [0] Storefront | 64bbbe810d824c339a6c191779b2c205
@@ -92,7 +92,7 @@ Compiling theme 13e0a4a46af547479b1347617926995b for sales channel SwagBasicExam
 
 ---
 
-## Verzeichnisstruktur eines Theme-Plugins
+## Directory structure of a theme plugin
 
 ```bash
 SwagBasicExampleTheme/
@@ -105,20 +105,20 @@ SwagBasicExampleTheme/
     │   │       │   └── storefront
     │   │       │       └── js
     │   │       │           └── swag-basic-example-theme
-    │   │       │               └── swag-basic-example-theme.js  # kompiliertes JS
+    │   │       │               └── swag-basic-example-theme.js  # compiled JS
     │   │       └── src
-    │   │           ├── assets              # Bilder, Fonts, etc.
-    │   │           ├── main.js             # JS-Einstiegspunkt
+    │   │           ├── assets              # images, fonts, etc.
+    │   │           ├── main.js             # JS entry point
     │   │           └── scss
-    │   │               ├── base.scss       # Haupt-SCSS
-    │   │               └── overrides.scss  # Bootstrap/Variable-Overrides (vor @Storefront)
-    │   └── theme.json                      # Kern-Konfigurationsdatei
-    └── SwagBasicExampleTheme.php           # PHP-Klasse: implements ThemeInterface
+    │   │               ├── base.scss       # main SCSS
+    │   │               └── overrides.scss  # Bootstrap/variable overrides (before @Storefront)
+    │   └── theme.json                      # core configuration file
+    └── SwagBasicExampleTheme.php           # PHP class: implements ThemeInterface
 ```
 
 ---
 
-## theme.json — Vollständiges Gerüst
+## theme.json — complete scaffold
 
 ```json
 {
@@ -153,21 +153,21 @@ SwagBasicExampleTheme/
 }
 ```
 
-**Felder:**
-- `name` — Technischer Name (UpperCamelCase, identisch mit PHP-Klassenname)
-- `author` — Autor-String
-- `description` — Übersetzt (en-GB/de-DE); optional
-- `previewMedia` — Pfad zum Vorschaubild (relativ zum Theme-Root)
-- `views` — Twig-Template-Auflösungsreihenfolge
-- `style` — SCSS/CSS-Kompilierungsreihenfolge; `overrides.scss` **muss vor** `@Storefront` stehen
-- `script` — JS-Dateien (kompilierte dist-Versionen)
-- `asset` — Pfade zu Asset-Ordnern (Bilder, Fonts, etc.)
-- `configInheritance` — Welche Themes für Config-Felder geerbt werden
-- `iconSets` — Custom Icon-Packs (ab Shopware 6.4.1.0)
+**Fields:**
+- `name` — technical name (UpperCamelCase, identical to the PHP class name)
+- `author` — author string
+- `description` — translated (en-GB/de-DE); optional
+- `previewMedia` — path to the preview image (relative to the theme root)
+- `views` — Twig template resolution order
+- `style` — SCSS/CSS compilation order; `overrides.scss` **must come before** `@Storefront`
+- `script` — JS files (compiled dist versions)
+- `asset` — paths to asset folders (images, fonts, etc.)
+- `configInheritance` — which themes are inherited for config fields
+- `iconSets` — custom icon packs (as of Shopware 6.4.1.0)
 
 ---
 
-## PHP-Klasse: ThemeInterface
+## PHP class: ThemeInterface
 
 ```php
 <?php declare(strict_types=1);
@@ -190,29 +190,29 @@ class SwagBasicExampleTheme extends Plugin implements ThemeInterface
 
 ## Developer Workflow (theme-base-guide)
 
-1. Theme erstellen: `theme:create`
-2. `theme.json` konfigurieren
-3. SCSS/JS hinzufügen (`sw-theme-compile`)
-4. Assets/Icons hinzufügen (`sw-theme-assets`)
-5. Bootstrap-Variablen/Breakpoints überschreiben (`sw-theme-storefront-customization`)
-6. Twig-Templates anpassen (`sw-twig-templates`)
-7. Theme-Vererbung einrichten wenn nötig (`sw-theme-inheritance`, `sw-theme-multiple`)
+1. Create the theme: `theme:create`
+2. Configure `theme.json`
+3. Add SCSS/JS (`sw-theme-compile`)
+4. Add assets/icons (`sw-theme-assets`)
+5. Override Bootstrap variables/breakpoints (`sw-theme-storefront-customization`)
+6. Adjust Twig templates (`sw-twig-templates`)
+7. Set up theme inheritance if needed (`sw-theme-inheritance`, `sw-theme-multiple`)
 
 ---
 
 ## Troubleshooting
 
 ```bash
-# Theme nicht sichtbar
+# Theme not visible
 bin/console plugin:refresh
 bin/console plugin:list
 
-# Theme nicht angewendet
+# Theme not applied
 bin/console theme:change
 bin/console theme:compile
 
-# Kein Update sichtbar
+# No update visible
 bin/console cache:clear
 ```
 
-Weitere Hilfe: `var/log/`, Dateiberechtigungen in `custom/plugins/` prüfen.
+Further help: check `var/log/` and the file permissions in `custom/plugins/`.

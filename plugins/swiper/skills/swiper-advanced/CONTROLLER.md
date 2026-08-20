@@ -1,6 +1,6 @@
-# Swiper — Controller-Modul
+# Swiper — Controller module
 
-Zwei oder mehr Swiper-Instanzen miteinander synchronisieren.
+Synchronize two or more Swiper instances with each other.
 
 ```js
 import Swiper from 'swiper';
@@ -16,10 +16,10 @@ const swiper2 = new Swiper('.swiper-2', {
   },
 });
 
-// Bidirektional
+// Bidirectional
 swiper1.controller.control = swiper2;
 swiper2.controller.control = swiper1;
 ```
 
-## Vertiefung
-- [CONTROLLER-DETAIL.md](CONTROLLER-DETAIL.md) — alle Parameter, Properties, Methoden, bidirektionale Sync-Pattern
+## Further reading
+- [CONTROLLER-DETAIL.md](CONTROLLER-DETAIL.md) — all parameters, properties, methods, bidirectional sync pattern

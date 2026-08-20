@@ -1,6 +1,6 @@
-# Shopware 6 — Store-API-Route überschreiben
+# Shopware 6 — Overriding a Store API route
 
-Core-Routen sind als `Abstract*Route` ausgelegt und werden per Decoration erweitert (nicht ersetzt).
+Core routes are designed as `Abstract*Route` and are extended through decoration (not replaced).
 
 ```php
 class FfProductRouteDecorator extends AbstractProductListingRoute
@@ -11,11 +11,11 @@ class FfProductRouteDecorator extends AbstractProductListingRoute
     public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse
     {
         $response = $this->decorated->load($categoryId, $request, $context, $criteria);
-        // Response anreichern / Criteria vorab anpassen
+        // Enrich response / adjust criteria beforehand
         return $response;
     }
 }
 ```
 
-In `services.xml` mit `decorates="..."` registrieren, `.inner` injizieren (`sw-service-decoration`). Oft reicht ein
-Event/Subscriber zum Anreichern (z.B. Criteria-/Result-Events) — erst prüfen. Eigene neue Route: `sw-store-api-route`.
+Register in `services.xml` with `decorates="..."`, inject `.inner` (`sw-service-decoration`). Often an
+event/subscriber is enough for enrichment (e.g. criteria/result events) — check that first. Own new route: `sw-store-api-route`.

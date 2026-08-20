@@ -1,20 +1,20 @@
 # PinInput — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add pin-input
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install dependencies:
 
 ```bash
 npm install reka-ui @vueuse/core @lucide/vue
 ```
 
-2. Folgende Dateien nach `src/components/ui/pin-input/` kopieren:
+2. Copy the following files to `src/components/ui/pin-input/`:
    - `PinInput.vue`
    - `PinInputGroup.vue`
    - `PinInputSeparator.vue`
@@ -32,5 +32,5 @@ import {
 } from "@/components/ui/pin-input"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/pin-input/index.ts`

@@ -1,5 +1,5 @@
 # Swiper Vue
 
-`import { Swiper, SwiperSlide } from 'swiper/vue'` — Composition API, Vue 3, alle Parameter als Props.
+`import { Swiper, SwiperSlide } from 'swiper/vue'` — Composition API, Vue 3, all parameters as props.
 
-Vollständige Referenz: `VUE-SWIPER-VUE.md`
+Complete reference: `VUE-SWIPER-VUE.md`

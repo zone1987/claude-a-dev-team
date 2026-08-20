@@ -1,25 +1,25 @@
-# Shopware Advanced Search — Entwickler-Referenz
+# Shopware Advanced Search — developer reference
 
 ## Contents
 
-- [Uberblick](#uberblick)
-- [Voraussetzungen](#voraussetzungen)
-- [Architektur](#architektur)
-- [Custom Elasticsearch Definition erstellen](#custom-elasticsearch-definition-erstellen)
-- [Eigene Felder zum Produkt-Index hinzufuegen](#eigene-felder-zum-produkt-index-hinzufuegen)
-- [SearchLogic dekorieren](#searchlogic-dekorieren)
-- [Language Analyzers anpassen](#language-analyzers-anpassen)
-- [Completion (Autovervollstaendigung)](#completion-autovervollstaendigung)
-- [Cross Search (experimentell)](#cross-search-experimentell)
-- [Storefront Templates erweitern](#storefront-templates-erweitern)
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Architecture](#architecture)
+- [Creating a custom Elasticsearch definition](#creating-a-custom-elasticsearch-definition)
+- [Adding own fields to the product index](#adding-own-fields-to-the-product-index)
+- [Decorating SearchLogic](#decorating-searchlogic)
+- [Customizing language analyzers](#customizing-language-analyzers)
+- [Completion (autocomplete)](#completion-autocomplete)
+- [Cross search (experimental)](#cross-search-experimental)
+- [Extending storefront templates](#extending-storefront-templates)
 
-## Uberblick
+## Overview
 
-Advanced Search ist Teil des Commercial Plugins (ab Version 5.5.0), verfuegbar im **Evolve** und
-**Beyond** Plan. Basiert auf Elasticsearch/OpenSearch und ersetzt/ergaenzt die Standard-Shopware-Suche
-um konfigurierbare Mehrfach-Entity-Suche (Produkte, Hersteller, Kategorien, eigene Entities).
+Advanced Search is part of the Commercial plugin (from version 5.5.0), available in the **Evolve** and
+**Beyond** plan. It is based on Elasticsearch/OpenSearch and replaces/extends the standard Shopware search
+with a configurable multi-entity search (products, manufacturers, categories, own entities).
 
-## Voraussetzungen
+## Prerequisites
 
 ```env
 OPENSEARCH_URL=http://localhost:9200
@@ -29,36 +29,36 @@ SHOPWARE_ES_INDEXING_ENABLED=1
 SHOPWARE_ES_INDEX_PREFIX=sw
 ```
 
-Elasticsearch-Bundle muss in `config/bundles.php` aktiviert sein:
+The Elasticsearch bundle must be enabled in `config/bundles.php`:
 `Shopware\Elasticsearch\Elasticsearch`
 
-## Architektur
+## Architecture
 
-### Such- und Suggest-Routes
+### Search and suggest routes
 
-`ProductSearchRoute` wird durch `ProductSearchRouteDecorator` dekoriert, der ein `multiSearchResult`
-Extension zum Suchergebnis hinzufuegt. Das `multiSearchResult` enthaelt Ergebnisse aller ES-Definitionen
-mit dem Tag `advanced_search.supported_definition`.
+`ProductSearchRoute` is decorated by `ProductSearchRouteDecorator`, which adds a `multiSearchResult`
+extension to the search result. The `multiSearchResult` contains results of all ES definitions
+carrying the tag `advanced_search.supported_definition`.
 
-`ProductSuggestRoute` analog — zusaetzlich `completionResult` Extension.
+`ProductSuggestRoute` works analogously — plus a `completionResult` extension.
 
-Events zum Anpassen der Criteria:
+Events for adjusting the criteria:
 - `MultiContentSearchCriteriaEvent`
 - `MultiContentSuggestCriteriaEvent`
 
-### Search Config
+### Search config
 
-Sucheigenschaften werden pro Sales Channel in `advanced_search_config` und
-`advanced_search_config_field` gespeichert (statt per Sprache wie im Core).
+Search properties are stored per sales channel in `advanced_search_config` and
+`advanced_search_config_field` (instead of per language as in the core).
 
-Relevante Klassen:
+Relevant classes:
 - `\Shopware\Commercial\AdvancedSearch\Entity\AdvancedSearchConfig\AdvancedSearchConfigDefinition`
 - `\Shopware\Commercial\AdvancedSearch\Entity\AdvancedSearchConfig\Aggregate\AdvancedSearchConfigFieldDefinition`
 
-## Custom Elasticsearch Definition erstellen
+## Creating a custom Elasticsearch definition
 
-Jede eigene ES-Definition muss `AbstractElasticsearchDefinition` erweitern und mit
-zwei Service-Tags registriert werden:
+Every own ES definition must extend `AbstractElasticsearchDefinition` and be registered
+with two service tags:
 
 ```php
 $services->set(YourCustomElasticsearchDefinition::class)
@@ -71,7 +71,7 @@ $services->set(YourCustomElasticsearchDefinition::class)
     ->tag('advanced_search.supported_definition');
 ```
 
-### Pflichtmethoden
+### Required methods
 
 ```php
 class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
@@ -83,26 +83,26 @@ class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
 }
 ```
 
-### Multilingual Mapping (ab neuem ADR)
+### Multilingual mapping (from the new ADR onwards)
 
-Felder mit Uebersetzungen verwenden sprachbasierte Properties:
+Fields with translations use language-based properties:
 
 ```php
 $languageFields = [];
 foreach ($languages as $languageId => $code) {
     $languageFields[$languageId] = self::getTextFieldConfig();
-    // optional: sprachspezifischen Analyzer setzen
+    // optional: set a language-specific analyzer
 }
 $properties = [
     'name' => ['properties' => $languageFields],
 ];
 ```
 
-## Eigene Felder zum Produkt-Index hinzufuegen
+## Adding own fields to the product index
 
-**3-Schritt-Prozess:**
+**3-step process:**
 
-### 1. ElasticsearchProductDefinition dekorieren
+### 1. Decorate ElasticsearchProductDefinition
 
 ```php
 $services->set(ElasticsearchProductDefinitionDecorator::class)
@@ -110,18 +110,18 @@ $services->set(ElasticsearchProductDefinitionDecorator::class)
     ->args([service('.inner'), service(SearchLogic::class)]);
 ```
 
-Decorator-Klasse implementiert `getMapping()` (Felder ergaenzen) und `fetch()` (Daten befuellen).
+The decorator class implements `getMapping()` (add fields) and `fetch()` (fill in data).
 
-### 2. Index aktualisieren
+### 2. Update the index
 
 ```bash
-bin/console es:mapping:update   # Mapping auf OpenSearch-Server pushen
-bin/console es:index --no-queue # Neu indizieren (wenn Daten schon vorhanden)
+bin/console es:mapping:update   # Push the mapping to the OpenSearch server
+bin/console es:index --no-queue # Reindex (if data already exists)
 ```
 
-### 3. Migration fuer `advanced_search_config_field`
+### 3. Migration for `advanced_search_config_field`
 
-Neues Feld pro Sales-Channel-Config einfuegen:
+Insert a new field per sales channel config:
 
 ```php
 $connection->insert('advanced_search_config_field', [
@@ -136,10 +136,10 @@ $connection->insert('advanced_search_config_field', [
 ]);
 ```
 
-## SearchLogic dekorieren
+## Decorating SearchLogic
 
-Zentraler Ort fuer den Aufbau der ES-Query. Wird mit `AND`/`OR` aus konfigurierbaren
-Suchfeldern zusammengesetzt.
+The central place for assembling the ES query. It is composed with `AND`/`OR` from
+configurable search fields.
 
 ```php
 $services->set(SearchLogicDecorator::class)
@@ -147,7 +147,7 @@ $services->set(SearchLogicDecorator::class)
     ->args([service('.inner'), service(ConfigurationLoader::class)]);
 ```
 
-Im Decorator:
+In the decorator:
 
 ```php
 public function build(EntityDefinition $definition, Criteria $criteria, Context $context): BoolQuery
@@ -155,12 +155,12 @@ public function build(EntityDefinition $definition, Criteria $criteria, Context 
     $salesChannelId = $context->getSource()->getSalesChannelId();
     $searchConfig = $this->configurationLoader->load($salesChannelId);
     $bool = $this->getDecorated()->build($definition, $criteria, $context);
-    // Eigene Logik ergaenzen
+    // Add own logic
     return $bool;
 }
 ```
 
-## Language Analyzers anpassen
+## Customizing language analyzers
 
 In `config/packages/advanced_search.yaml`:
 
@@ -183,10 +183,10 @@ advanced_search:
         custom_iso: sw_your_custom_language_analyzer
 ```
 
-## Completion (Autovervollstaendigung)
+## Completion (autocomplete)
 
-Advanced Search verwendet keine native ES-Completion (zu statisch/gross), sondern
-Aggregations. Eigene Definitionen koennen `CompletionDefinitionEnrichment` nutzen:
+Advanced Search does not use the native ES completion (too static/large), but
+aggregations instead. Own definitions can use `CompletionDefinitionEnrichment`:
 
 ```php
 // In getMapping():
@@ -199,7 +199,7 @@ return [
 return $this->completionDefinitionEnrichment->enrichData($this->getEntityDefinition(), $documents);
 ```
 
-Completion-Keywords konfigurieren:
+Configuring completion keywords:
 
 ```yaml
 advanced_search:
@@ -209,10 +209,10 @@ advanced_search:
             - company
 ```
 
-## Cross Search (experimentell)
+## Cross search (experimental)
 
-Ermoeglicht kategorienuebergreifende Suche (z.B. Kategorien ueber Produktnamen finden)
-ohne vollstaendige Daten-Denormalisierung:
+Enables searching across categories (e.g. finding categories via product names)
+without a full denormalization of the data:
 
 ```yaml
 advanced_search:
@@ -223,11 +223,11 @@ advanced_search:
         product_manufacturer.product: true
 ```
 
-Vorteil: Kein Aufblaehen des Index. Nachteil: Zusaetzliche aggregierte ES-Query.
+Advantage: no bloating of the index. Disadvantage: an additional aggregated ES query.
 
-## Storefront Templates erweitern
+## Extending storefront templates
 
-### Suchergebnisseite
+### Search result page
 
 ```twig
 {% set searchResult = page.listing.extensions.multiSearchResult %}
@@ -237,7 +237,7 @@ Vorteil: Kein Aufblaehen des Index. Nachteil: Zusaetzliche aggregierte ES-Query.
 {% set customEntities = searchResult.getResult('custom_entity') %}
 ```
 
-### Suggest-Dropdown
+### Suggest dropdown
 
 ```twig
 {% set suggestResult = page.searchResult.extensions.multiSuggestResult %}
@@ -247,6 +247,6 @@ Vorteil: Kein Aufblaehen des Index. Nachteil: Zusaetzliche aggregierte ES-Query.
 {% set categories = suggestResult.getResult('category') %}
 ```
 
-Templates ableiten von:
-- `search/index.html.twig` (Suche)
-- `storefront/layout/header/search-suggest.html.twig` (Suggest)
+Derive templates from:
+- `search/index.html.twig` (search)
+- `storefront/layout/header/search-suggest.html.twig` (suggest)

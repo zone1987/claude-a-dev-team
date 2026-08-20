@@ -41,8 +41,8 @@ Distilled from `docs.shopware.com/de/shopware-6-de/update-guides`. Merchant pers
 
 | Document | Content |
 |---|---|
-| `GUIDES-UEBERBLICK.md` | System requirements of all versions, process overview |
-| `GUIDES-BACKUP-UND-VORBEREITUNG.md` | Backup methods, checklists, screenshots |
+| `GUIDES-OVERVIEW.md` | System requirements of all versions, process overview |
+| `GUIDES-BACKUP-AND-PREPARATION.md` | Backup methods, checklists, screenshots |
 
 Screenshots: `assets/` (admin panel steps)
 

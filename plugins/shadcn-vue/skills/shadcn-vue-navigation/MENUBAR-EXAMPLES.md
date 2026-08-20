@@ -1,16 +1,16 @@
-# Menubar — Beispiele
+# Menubar — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Menubar (MenubarBasic.vue)](#beispiel-1-basic-menubar-menubarbasicvue)
-- [Beispiel 2: Menubar with Submenu (MenubarWithSubmenu.vue)](#beispiel-2-menubar-with-submenu-menubarwithsubmenuvue)
-- [Beispiel 3: Menubar with Checkboxes (MenubarWithCheckboxes.vue)](#beispiel-3-menubar-with-checkboxes-menubarwithcheckboxesvue)
-- [Beispiel 4: Menubar with Radio Groups (MenubarWithRadio.vue)](#beispiel-4-menubar-with-radio-groups-menubarwithradiovue)
-- [Quellen](#quellen)
+- [Example 1: Basic Menubar (MenubarBasic.vue)](#example-1-basic-menubar-menubarbasicvue)
+- [Example 2: Menubar with Submenu (MenubarWithSubmenu.vue)](#example-2-menubar-with-submenu-menubarwithsubmenuvue)
+- [Example 3: Menubar with Checkboxes (MenubarWithCheckboxes.vue)](#example-3-menubar-with-checkboxes-menubarwithcheckboxesvue)
+- [Example 4: Menubar with Radio Groups (MenubarWithRadio.vue)](#example-4-menubar-with-radio-groups-menubarwithradiovue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Menubar (MenubarBasic.vue)
+## Example 1: Basic Menubar (MenubarBasic.vue)
 
-File- und Edit-Menu mit Shortcuts und Separator.
+File and Edit menus with shortcuts and separator.
 
 ```vue
 <script setup lang="ts">
@@ -75,9 +75,9 @@ import {
 
 ---
 
-## Beispiel 2: Menubar with Submenu (MenubarWithSubmenu.vue)
+## Example 2: Menubar with Submenu (MenubarWithSubmenu.vue)
 
-Untermenus mit `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent`.
+Submenus with `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent`.
 
 ```vue
 <script setup lang="ts">
@@ -155,9 +155,9 @@ import {
 
 ---
 
-## Beispiel 3: Menubar with Checkboxes (MenubarWithCheckboxes.vue)
+## Example 3: Menubar with Checkboxes (MenubarWithCheckboxes.vue)
 
-`MenubarCheckboxItem` fur umschaltbare Optionen.
+`MenubarCheckboxItem` for toggleable options.
 
 ```vue
 <script setup lang="ts">
@@ -214,9 +214,9 @@ import {
 
 ---
 
-## Beispiel 4: Menubar with Radio Groups (MenubarWithRadio.vue)
+## Example 4: Menubar with Radio Groups (MenubarWithRadio.vue)
 
-`MenubarRadioGroup` + `MenubarRadioItem` mit `v-model`.
+`MenubarRadioGroup` + `MenubarRadioItem` with `v-model`.
 
 ```vue
 <script setup lang="ts">
@@ -270,7 +270,7 @@ const theme = ref("system")
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/menubar/MenubarBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/menubar/MenubarWithSubmenu.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/menubar/MenubarWithCheckboxes.vue`

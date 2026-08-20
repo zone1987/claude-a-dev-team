@@ -9,12 +9,12 @@ Everything under **Marketing** — promotions and their conditions, discount cod
 
 ## Reference map
 
-- **[CODES.md](CODES.md)**: Dieser Skill erklärt alle drei Arten von Aktionscodes in Shopware 6 Promotions: kein Code, festgelegter Code …. [CODES-AKTIONSCODES](CODES-AKTIONSCODES.md).
-- **[MARKETING-OVERVIEW.md](MARKETING-OVERVIEW.md)**: Der Bereich Marketing in der Shopware 6 Administration bietet alle Werkzeuge zur Durchführung von Rabattaktio….
-- **[NEWSLETTER.md](NEWSLETTER.md)**: Dieser Skill dokumentiert die Verwaltung von Newsletter-Empfängern in der Shopware 6 Administration. [NEWSLETTER-EMPFAENGER](NEWSLETTER-EMPFAENGER.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: Dieser Skill gibt einen Überblick über alle Marketing-Funktionen in der Shopware 6 Administration. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
-- **[PROMOTIONS.md](PROMOTIONS.md)**: Dieser Skill behandelt die vollständige Konfiguration von Rabatt- und Aktionsmodulen in Shopware 6. [PROMOTIONS-DETAIL](PROMOTIONS-DETAIL.md).
-- **[RULE-BUILDER.md](RULE-BUILDER.md)**: Dieser Skill dokumentiert den Rule Builder in Shopware 6. [RULE-BUILDER-DETAIL](RULE-BUILDER-DETAIL.md).
+- **[CODES.md](CODES.md)**: This skill explains all three kinds of promotion code in Shopware 6 promotions: no code, a fixed code …. [CODES-AKTIONSCODES](CODES-PROMOTION-CODES.md).
+- **[MARKETING-OVERVIEW.md](MARKETING-OVERVIEW.md)**: The Marketing area in the Shopware 6 administration offers all the tools for running discount promo….
+- **[NEWSLETTER.md](NEWSLETTER.md)**: This skill documents the management of newsletter recipients in the Shopware 6 administration. [NEWSLETTER-EMPFAENGER](NEWSLETTER-RECIPIENTS.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: This skill gives an overview of all marketing functions in the Shopware 6 administration. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
+- **[PROMOTIONS.md](PROMOTIONS.md)**: This skill covers the complete configuration of the discount and promotion modules in Shopware 6. [PROMOTIONS-DETAIL](PROMOTIONS-DETAIL.md).
+- **[RULE-BUILDER.md](RULE-BUILDER.md)**: This skill documents the Rule Builder in Shopware 6. [RULE-BUILDER-DETAIL](RULE-BUILDER-DETAIL.md).
 
 ## Source
 

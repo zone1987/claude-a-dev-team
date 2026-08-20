@@ -1,6 +1,6 @@
-# Swiper — Scrollbar-Modul
+# Swiper — Scrollbar module
 
-Scrollleiste mit optionalem Drag für die Swiper-Navigation.
+Scrollbar with optional drag for Swiper navigation.
 
 ```js
 import Swiper from 'swiper';
@@ -16,5 +16,5 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Vertiefung
-- [SCROLLBAR-DETAIL.md](SCROLLBAR-DETAIL.md) — alle Parameter, CSS-Variablen, Events, Methoden, Properties
+## Deep dive
+- [SCROLLBAR-DETAIL.md](SCROLLBAR-DETAIL.md) — all parameters, CSS variables, events, methods, properties

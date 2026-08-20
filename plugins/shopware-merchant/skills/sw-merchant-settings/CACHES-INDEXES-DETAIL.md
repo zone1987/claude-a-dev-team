@@ -34,7 +34,7 @@ The dashboard shows three main pieces of information:
 
 ### Configuration via .env
 ```env
-# HTTP-Cache aktivieren (1) oder deaktivieren (0)
+# Enable (1) or disable (0) the HTTP cache
 SHOPWARE_HTTP_CACHE_ENABLED=1
 ```
 

@@ -1,30 +1,30 @@
-# Custom Products – Konfigurierbare Produkte
+# Custom Products – configurable products
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/customproducts  
-**Plan**: Shopware Rise (oder höher)  
-**Pfad im Admin**: Katalog > Custom Products
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/customproducts  
+**Plan**: Shopware Rise (or higher)  
+**Path in the admin**: Katalog (Catalogue) > Custom Products
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Konzept](#konzept)
-- [Template erstellen](#template-erstellen)
-- [Optionstypen (12 verfügbar)](#optionstypen-12-verfügbar)
-- [Preiskonfiguration](#preiskonfiguration)
-- [Anzeigemodi im Storefront](#anzeigemodi-im-storefront)
-- [Erweiterte Funktionen](#erweiterte-funktionen)
-- [Template mit Produkt verknüpfen](#template-mit-produkt-verknüpfen)
-- [Häufige Anwendungsfälle](#häufige-anwendungsfälle)
+- [Overview](#overview)
+- [Concept](#concept)
+- [Creating a template](#creating-a-template)
+- [Option types (12 available)](#option-types-12-available)
+- [Price configuration](#price-configuration)
+- [Display modes in the storefront](#display-modes-in-the-storefront)
+- [Advanced features](#advanced-features)
+- [Linking a template to a product](#linking-a-template-to-a-product)
+- [Common use cases](#common-use-cases)
 
-## Überblick
+## Overview
 
-**Custom Products** ermöglicht es, Produkte mit individuell konfigurierbaren Optionen anzubieten.
-Kunden können Produkte auf der Produktdetailseite personalisieren (z. B. Gravuren, Drucke,
-Farben, Maßangaben).
+**Custom Products** makes it possible to offer products with individually configurable options.
+Customers can personalise products on the product detail page (for example engravings, prints,
+colours, measurements).
 
 ---
 
-## Konzept
+## Concept
 
 ```
 Custom Products Template
@@ -37,90 +37,90 @@ Custom Products Template
         └── Option: Metall (+15,00 €)
 ```
 
-Templates werden erstellt und dann mit **beliebig vielen Produkten** verknüpft.
+Templates are created and then linked to **any number of products**.
 
 ---
 
-## Template erstellen
+## Creating a template
 
-1. **Katalog > Custom Products** öffnen
-2. **Neues Template** anlegen
-3. Template-Namen vergeben (intern)
-4. Optionsgruppen und Optionen hinzufügen
+1. Open **Katalog** (Catalogue) **> Custom Products**
+2. Create a **Neues Template** (New template)
+3. Assign a template name (internal)
+4. Add option groups and options
 
 ---
 
-## Optionstypen (12 verfügbar)
+## Option types (12 available)
 
-| Typ | Beschreibung |
+| Type | Description |
 |---|---|
-| **Textfeld** | Einzeilige Texteingabe ("Mit dem Textfeld bietest Du dem Kunden die Möglichkeit, dem Artikel einen einzeiligen Text hinzuzufügen.") |
-| **Textarea** | Mehrzeilige Texteingabe |
-| **Datum** | Datumsauswahl |
-| **Zeit** | Zeitauswahl |
-| **Farbwähler** | Farbpalette zur Auswahl |
-| **Bildauswahl** | Kunden laden eigene Bilder hoch |
-| **Checkbox** | Ja/Nein-Option |
-| **Mehrfachauswahl** | Mehrere Optionen gleichzeitig wählbar |
-| **Einzelauswahl (Radio)** | Genau eine Option wählbar |
-| **Dropdown** | Auswahl aus Liste |
-| **Dateiupload** | Kunden laden Dateien hoch |
-| **HTML-Editor** | Rich-Text-Eingabe |
+| **Textfeld** (Text field) | Single-line text input ("Mit dem Textfeld bietest Du dem Kunden die Möglichkeit, dem Artikel einen einzeiligen Text hinzuzufügen.") |
+| **Textarea** | Multi-line text input |
+| **Datum** (Date) | Date selection |
+| **Zeit** (Time) | Time selection |
+| **Farbwähler** (Colour picker) | Colour palette to choose from |
+| **Bildauswahl** (Image selection) | Customers upload their own images |
+| **Checkbox** | Yes/no option |
+| **Mehrfachauswahl** (Multiple selection) | Several options selectable at the same time |
+| **Einzelauswahl (Radio)** (Single selection) | Exactly one option selectable |
+| **Dropdown** | Selection from a list |
+| **Dateiupload** (File upload) | Customers upload files |
+| **HTML-Editor** | Rich text input |
 
 ---
 
-## Preiskonfiguration
+## Price configuration
 
-### Aufpreise pro Option
-- **Absolut**: Fester Betrag (z. B. +5,00 €)
-- **Relativ (%)**: Prozentaufschlag auf Basispreis
-- **Währungsspezifisch**: Verschiedene Preise pro Währung
-- **Regelbasiert (Advanced)**: Rule-Builder-Aufpreise
+### Surcharges per option
+- **Absolut** (Absolute): Fixed amount (for example +5.00 €)
+- **Relativ (%)** (Relative): Percentage surcharge on the base price
+- **Währungsspezifisch** (Currency-specific): Different prices per currency
+- **Regelbasiert (Advanced)** (Rule-based): Rule Builder surcharges
 
-### Preisanzeige
-Der Endpreis = Basispreis + Summe aller gewählten Aufpreise.
-Die Konfiguration wird im Warenkorb und in der Bestellübersicht angezeigt.
-
----
-
-## Anzeigemodi im Storefront
-
-### Normal-Modus
-- Alle Optionen gleichzeitig sichtbar
-- Angezeigt **über** dem "In den Warenkorb"-Button
-
-### Schritt-für-Schritt-Modus (Step-by-Step)
-- Kunden werden durch Optionen geführt
-- Jeweils eine Gruppe auf einmal sichtbar
-- Weiter-Button zwischen Gruppen
+### Price display
+The final price = base price + the sum of all selected surcharges.
+The configuration is shown in the cart and in the order overview.
 
 ---
 
-## Erweiterte Funktionen
+## Display modes in the storefront
 
-| Funktion | Beschreibung |
+### Normal mode
+- All options visible at the same time
+- Displayed **above** the "In den Warenkorb" (Add to cart) button
+
+### Step-by-step mode
+- Customers are guided through the options
+- One group visible at a time
+- A "Weiter" (Next) button between the groups
+
+---
+
+## Advanced features
+
+| Feature | Description |
 |---|---|
-| **Inkompatible Optionen ausschließen** | Bestimmte Kombinationen verhindern |
-| **Konfiguration bestätigen** | Kunden müssen Konfiguration explizit bestätigen |
-| **Konfigurationslink teilen** | Kunden können ihre Konfiguration als Link teilen |
-| **Dateizugriff in Bestelldetails** | Hochgeladene Dateien im Admin abrufbar |
+| **Inkompatible Optionen ausschließen** (Exclude incompatible options) | Prevent certain combinations |
+| **Konfiguration bestätigen** (Confirm configuration) | Customers must explicitly confirm the configuration |
+| **Konfigurationslink teilen** (Share configuration link) | Customers can share their configuration as a link |
+| **Dateizugriff in Bestelldetails** (File access in order details) | Uploaded files can be retrieved in the admin |
 
 ---
 
-## Template mit Produkt verknüpfen
+## Linking a template to a product
 
-1. Produkt in **Katalog > Produkte** öffnen
-2. Tab **Custom Products** auswählen
-3. Vorhandenes Template auswählen oder neues erstellen
+1. Open the product in **Katalog** (Catalogue) **> Produkte** (Products)
+2. Select the **Custom Products** tab
+3. Select an existing template or create a new one
 
-Ein Template kann mit beliebig vielen Produkten verknüpft werden.
+A template can be linked to any number of products.
 
 ---
 
-## Häufige Anwendungsfälle
+## Common use cases
 
-- Druckereien: Text-/Bildaufdrucke auf T-Shirts, Tassen
-- Schmuck: Gravuren, Materialwahl
-- Tischlereien: Maßangaben, Holzart, Farbe
-- Backwaren: Beschriftungen, Dekoration
-- Fotodienstleistungen: Bildupload für Fotodrucke
+- Print shops: text/image prints on T-shirts, mugs
+- Jewellery: engravings, choice of material
+- Joineries: measurements, type of wood, colour
+- Baked goods: lettering, decoration
+- Photo services: image upload for photo prints

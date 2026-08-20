@@ -1,90 +1,90 @@
 # shadcn-vue Signup Blocks
 
-Diese Sammlung enthält 5 fertige Registrierungsseiten-Blöcke für shadcn-vue. Jeder Block kann direkt per CLI installiert werden und liefert eine vollständige `page.vue` + `SignupForm.vue`-Komponentenstruktur.
+This collection contains 5 ready-made signup page blocks for shadcn-vue. Each block can be installed directly via the CLI and delivers a complete `page.vue` + `SignupForm.vue` component structure.
 
-**Gemeinsame Merkmale aller Blöcke:**
-- Vue 3 Composition API mit `<script setup lang="ts">`
-- shadcn-vue UI-Komponenten: `Field`, `FieldGroup`, `FieldLabel`, `FieldDescription`, `Input`, `Button`
-- Vollständig typisiert (TypeScript)
-- Dark-Mode-kompatibel
+**Features shared by all blocks:**
+- Vue 3 Composition API with `<script setup lang="ts">`
+- shadcn-vue UI components: `Field`, `FieldGroup`, `FieldLabel`, `FieldDescription`, `Input`, `Button`
+- Fully typed (TypeScript)
+- Dark mode compatible
 - Responsive (mobile-first)
 
-**Referenzdateien:**
-- `SIGNUP-01-02.md` — Blocks signup-01 und signup-02 (vollständiger Code)
-- `SIGNUP-03-04.md` — Blocks signup-03 und signup-04 (vollständiger Code)
-- `SIGNUP-05.md` — Block signup-05 (vollständiger Code)
+**Reference files:**
+- `SIGNUP-01-02.md` — Blocks signup-01 and signup-02 (complete code)
+- `SIGNUP-03-04.md` — Blocks signup-03 and signup-04 (complete code)
+- `SIGNUP-05.md` — Block signup-05 (complete code)
 
 ---
 
-## signup-01: Einfaches Registrierungsformular mit Card-Layout
+## signup-01: simple signup form with card layout
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add signup-01
 ```
 
-**Dateien:**
-- `page.vue` — Zentriertes Layout, max-w-sm
-- `components/SignupForm.vue` — Card mit Name, Email, Passwort, Passwort-Bestätigung + Google-Button
+**Files:**
+- `page.vue` — Centered layout, max-w-sm
+- `components/SignupForm.vue` — Card with name, email, password, password confirmation + Google button
 
-**Beschreibung:** Klassisches Card-basiertes Registrierungsformular mit vollständigen Feldern (Full Name, Email, Passwort + Bestätigung) und einem "Sign up with Google"-Button. Einfachstes Layout ohne Cover-Image.
+**Description:** Classic card-based signup form with the full set of fields (full name, email, password + confirmation) and a "Sign up with Google" button. The simplest layout, without a cover image.
 
 ---
 
-## signup-02: Zwei-Spalten-Layout mit Cover-Image
+## signup-02: two-column layout with cover image
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add signup-02
 ```
 
-**Dateien:**
-- `page.vue` — Zwei-Spalten-Grid (Formular links, Bild rechts), Logo-Header
-- `components/SignupForm.vue` — Inline-Form (kein Card) mit Name, Email, Passwort, Bestätigung + GitHub-Button + Separator
+**Files:**
+- `page.vue` — Two-column grid (form left, image right), logo header
+- `components/SignupForm.vue` — Inline form (no card) with name, email, password, confirmation + GitHub button + separator
 
-**Beschreibung:** Zwei-Spalten-Layout mit Logo-Header links und einem Cover-Bild rechts (nur Desktop). Das Formular verwendet kein Card-Wrapper, sondern ein inline `<form>` mit `FieldGroup`. Social-Auth via GitHub mit SVG-Icon.
+**Description:** Two-column layout with a logo header on the left and a cover image on the right (desktop only). The form uses no card wrapper but an inline `<form>` with `FieldGroup`. Social auth via GitHub with an SVG icon.
 
 ---
 
-## signup-03: Muted Background mit Card und Social-Auth-Hinweis
+## signup-03: muted background with card and social auth note
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add signup-03
 ```
 
-**Dateien:**
-- `page.vue` — `bg-muted`-Hintergrund, zentriertes Layout mit Logo-Link
-- `components/SignupForm.vue` — Card mit zentriertem Header, Name, Email, Passwort-Grid (2 Spalten) + ToS-Hinweis unten
+**Files:**
+- `page.vue` — `bg-muted` background, centered layout with logo link
+- `components/SignupForm.vue` — Card with centered header, name, email, password grid (2 columns) + ToS note below
 
-**Beschreibung:** Muted-Background-Layout mit Logo oben. Das Formular ist in eine Card eingebettet mit zentriertem Header. Passwort und Passwort-Bestätigung liegen nebeneinander in einem 2-Spalten-Grid. Unten ein ToS/Privacy-Policy-Hinweis außerhalb der Card.
+**Description:** Muted background layout with the logo on top. The form is embedded in a card with a centered header. Password and password confirmation sit side by side in a 2-column grid. Below, a ToS/privacy policy note outside the card.
 
 ---
 
-## signup-04: Card mit Cover-Image und Multi-Provider Social-Auth
+## signup-04: card with cover image and multi-provider social auth
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add signup-04
 ```
 
-**Dateien:**
-- `page.vue` — `bg-muted`-Hintergrund, Card max-w-4xl
-- `components/SignupForm.vue` — Card mit 2-Spalten-Content (Form + Bild), Apple/Google/Meta Icon-Buttons (3er-Grid)
+**Files:**
+- `page.vue` — `bg-muted` background, card max-w-4xl
+- `components/SignupForm.vue` — Card with 2-column content (form + image), Apple/Google/Meta icon buttons (3-column grid)
 
-**Beschreibung:** Breite Card (max-w-4xl) mit Formular auf der linken Seite und einem Cover-Bild auf der rechten Seite (Desktop). Social-Auth mit drei Icon-only-Buttons (Apple, Google, Meta) in einem 3-Spalten-Grid. Passwort-Felder im 2-Spalten-Grid. ToS-Hinweis unterhalb der Card.
+**Description:** Wide card (max-w-4xl) with the form on the left side and a cover image on the right side (desktop). Social auth with three icon-only buttons (Apple, Google, Meta) in a 3-column grid. Password fields in a 2-column grid. ToS note below the card.
 
 ---
 
-## signup-05: Minimales Email-first-Layout mit Social-Auth
+## signup-05: minimal email-first layout with social auth
 
 **Installation:**
 ```bash
 npx shadcn-vue@latest add signup-05
 ```
 
-**Dateien:**
-- `page.vue` — `bg-background`, zentriertes Layout, max-w-sm
-- `components/SignupForm.vue` — Logo-Link oben, nur Email-Feld, dann Separator + Apple/Google-Buttons (2er-Grid)
+**Files:**
+- `page.vue` — `bg-background`, centered layout, max-w-sm
+- `components/SignupForm.vue` — Logo link on top, email field only, then separator + Apple/Google buttons (2-column grid)
 
-**Beschreibung:** Minimales Registrierungsformular ohne Card-Wrapper. Nur ein einzelnes Email-Feld, danach ein "Or"-Separator und zwei Social-Auth-Buttons (Apple, Google) nebeneinander. Logo als zentrierter Link ganz oben. Gleiche Struktur wie login-05, aber für die Registrierung.
+**Description:** Minimal signup form without a card wrapper. Only a single email field, then an "Or" separator and two social auth buttons (Apple, Google) side by side. The logo is a centered link at the very top. Same structure as login-05, but for signup.

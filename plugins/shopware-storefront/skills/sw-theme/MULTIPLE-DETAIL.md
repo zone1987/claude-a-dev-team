@@ -1,6 +1,6 @@
-# Shopware 6 — Mehrere Themes & SalesChannel-Zuweisung: Vollständige Referenz
+# Shopware 6 — Multiple themes & sales channel assignment: complete reference
 
-Quellen: `guides/plugins/themes/configuration/theme-inheritance-configuration.md`,
+Sources: `guides/plugins/themes/configuration/theme-inheritance-configuration.md`,
 `guides/plugins/themes/inheritance/add-theme-inheritance.md`,
 `guides/plugins/themes/configuration/theme-configuration.md`
 
@@ -8,37 +8,37 @@ Quellen: `guides/plugins/themes/configuration/theme-inheritance-configuration.md
 
 ## Contents
 
-- [Konzept: Basis-Theme + Channel-spezifische Themes](#konzept-basis-theme-channel-spezifische-themes)
-- [Theme einem SalesChannel zuweisen](#theme-einem-saleschannel-zuweisen)
-- [configInheritance: Konfiguration vererben](#configinheritance-konfiguration-vererben)
-- [Praxisbeispiel: Basis-Theme + Holiday-Theme](#praxisbeispiel-basis-theme-holiday-theme)
-- [Sections in theme.json erklärt (Vererbung)](#sections-in-themejson-erklärt-vererbung)
-- [Admin: Konfig-Tabs, Blocks, Sections](#admin-konfig-tabs-blocks-sections)
-- [Custom Select-Felder (Beispiele)](#custom-select-felder-beispiele)
-- [Alle Config-Feld-Typen](#alle-config-feld-typen)
+- [Concept: base theme + channel-specific themes](#concept-base-theme--channel-specific-themes)
+- [Assigning a theme to a sales channel](#assigning-a-theme-to-a-sales-channel)
+- [configInheritance: inheriting configuration](#configinheritance-inheriting-configuration)
+- [Practical example: base theme + holiday theme](#practical-example-base-theme--holiday-theme)
+- [Sections in theme.json explained (inheritance)](#sections-in-themejson-explained-inheritance)
+- [Admin: config tabs, blocks, sections](#admin-config-tabs-blocks-sections)
+- [Custom select fields (examples)](#custom-select-fields-examples)
+- [All config field types](#all-config-field-types)
 
-## Konzept: Basis-Theme + Channel-spezifische Themes
+## Concept: base theme + channel-specific themes
 
-**Anwendungsfall:** Ein Corporate-Design-Theme für alle SalesChannels, mit speziellen Themes für
-besondere Zeiträume oder Zielgruppen (z.B. Weihnachten, Sales-Wochen, verschiedene Länder).
+**Use case:** One corporate design theme for all sales channels, with special themes for
+particular periods or target groups (e.g. Christmas, sales weeks, different countries).
 
 ```
-SwagBasicExampleTheme  (Basis: Corporate Design)
-├── definiert Grundfarben, Logo, Typografie
-└── SwagHolidayTheme   (erbt von Basis, nur für Advent)
-    ├── überschreibt Primärfarbe
-    └── fügt neue Felder hinzu (Adventskalender-Farbe)
+SwagBasicExampleTheme  (base: corporate design)
+├── defines base colors, logo, typography
+└── SwagHolidayTheme   (inherits from base, only for Advent)
+    ├── overrides the primary color
+    └── adds new fields (Advent calendar color)
 ```
 
 ---
 
-## Theme einem SalesChannel zuweisen
+## Assigning a theme to a sales channel
 
 ```bash
 bin/console theme:change
 ```
 
-Interaktiver Ablauf:
+Interactive flow:
 ```
 Please select a sales channel:
 [0] Storefront | 64bbbe810d824c339a6c191779b2c205
@@ -52,14 +52,14 @@ Please select a theme:
 > 2
 ```
 
-Jeder SalesChannel kann ein **anderes** Theme verwenden. Themes sind nicht global aktiv
-(Unterschied zu normalen Plugins).
+Every sales channel can use a **different** theme. Themes are not active globally
+(a difference from normal plugins).
 
 ---
 
-## configInheritance: Konfiguration vererben
+## configInheritance: inheriting configuration
 
-`configInheritance` in `theme.json` legt fest, welche Themes als Konfigurations-Quellen genutzt werden.
+`configInheritance` in `theme.json` defines which themes are used as configuration sources.
 
 ```json
 {
@@ -70,22 +70,22 @@ Jeder SalesChannel kann ein **anderes** Theme verwenden. Themes sind nicht globa
 }
 ```
 
-**Funktionsweise:**
-- Alle Konfigurations-Felder der genannten Themes stehen im aktuellen Theme zur Verfügung
-- Werte werden vererbt (Eltern-Wert erscheint mit Vererbungs-Anker im Admin)
-- Felder können explizit überschrieben werden
-- Snippets werden ebenfalls vererbt
-- Beziehung wird bei `plugin:install` gesetzt; Update: `bin/console theme:refresh`
+**How it works:**
+- All configuration fields of the named themes are available in the current theme
+- Values are inherited (the parent value appears with an inheritance anchor in the admin)
+- Fields can be overridden explicitly
+- Snippets are inherited as well
+- The relationship is set on `plugin:install`; to update: `bin/console theme:refresh`
 
-> **Hinweis:** `@Storefront` wird **immer** vererbt, auch ohne explizite `configInheritance`.
+> **Note:** `@Storefront` is **always** inherited, even without an explicit `configInheritance`.
 
-> **Seit Shopware 6.4.8.0** verfügbar.
+> Available **since Shopware 6.4.8.0**.
 
 ---
 
-## Praxisbeispiel: Basis-Theme + Holiday-Theme
+## Practical example: base theme + holiday theme
 
-### Basis-Theme (`SwagBasicExampleTheme/src/Resources/theme.json`)
+### Base theme (`SwagBasicExampleTheme/src/Resources/theme.json`)
 
 ```json
 {
@@ -122,7 +122,7 @@ Jeder SalesChannel kann ein **anderes** Theme verwenden. Themes sind nicht globa
 }
 ```
 
-### Abgeleitetes Theme (`SwagHolidayTheme/src/Resources/theme.json`)
+### Derived theme (`SwagHolidayTheme/src/Resources/theme.json`)
 
 ```json
 {
@@ -170,46 +170,46 @@ Jeder SalesChannel kann ein **anderes** Theme verwenden. Themes sind nicht globa
 }
 ```
 
-**Was passiert hier:**
-- `sw-brand-icon` wird **überschrieben** (anderes Logo für Feiertage)
-- `sw-advent-calendar-background-color` ist ein **neues Feld** (nur für dieses Theme)
-- Alle anderen Felder aus `SwagBasicExampleTheme` und `@Storefront` werden **vererbt**
+**What happens here:**
+- `sw-brand-icon` is **overridden** (a different logo for the holidays)
+- `sw-advent-calendar-background-color` is a **new field** (only for this theme)
+- All other fields from `SwagBasicExampleTheme` and `@Storefront` are **inherited**
 
 ---
 
-## Sections in theme.json erklärt (Vererbung)
+## Sections in theme.json explained (inheritance)
 
-### `views` (Twig-Templates)
+### `views` (Twig templates)
 ```json
 "views": ["@Storefront", "@Plugins", "@SwagBasicExampleTheme", "@SwagBasicExampleThemeExtend"]
 ```
-Reihenfolge der Template-Auflösung: spätere Einträge überschreiben frühere.
+Order of template resolution: later entries override earlier ones.
 
 ### `style` (SCSS)
 ```json
 "style": ["overrides.scss", "@SwagBasicExampleTheme", "base.scss"]
 ```
-`overrides.scss` **muss zuerst** (Bootstrap-Variable-Overrides), dann Parent-Theme, dann eigenes SCSS.
+`overrides.scss` **must come first** (Bootstrap variable overrides), then the parent theme, then your own SCSS.
 
 ### `script` (JavaScript)
 ```json
 "script": ["@Storefront", "@SwagBasicExampleTheme", "dist/js/my-theme.js"]
 ```
-Basis → Parent → eigenes JS.
+Base → parent → your own JS.
 
-### `asset` (Assets/Bilder)
+### `asset` (assets/images)
 ```json
 "asset": ["@Storefront", "@SwagBasicExampleTheme", "app/storefront/src/assets"]
 ```
-Assets aus Parent-Themes einschließen wenn nötig.
+Include assets from parent themes if needed.
 
 ---
 
-## Admin: Konfig-Tabs, Blocks, Sections
+## Admin: config tabs, blocks, sections
 
-Konfigurationsfelder lassen sich strukturieren:
+Configuration fields can be structured:
 
-![Theme Config Tabs/Blocks/Sections](../../assets/theme-config.png)
+![Theme Config Tabs/Blocks/Sections](assets/theme-config.png)
 
 ```json
 "config": {
@@ -226,16 +226,16 @@ Konfigurationsfelder lassen sich strukturieren:
 }
 ```
 
-Snippets für Übersetzungen (ab Shopware 6.7.1.0):
+Snippets for translations (as of Shopware 6.7.1.0):
 - Tab: `sw-theme.<technicalName>.<tabName>.label`
 - Block: `sw-theme.<technicalName>.<tabName>.<blockName>.label`
-- Feld: `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.label`
+- Field: `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.label`
 
 ---
 
-## Custom Select-Felder (Beispiele)
+## Custom select fields (examples)
 
-### Single-Select
+### Single select
 
 ```json
 "my-single-select-field": {
@@ -249,9 +249,9 @@ Snippets für Übersetzungen (ab Shopware 6.7.1.0):
 }
 ```
 
-![Single-Select Config Beispiel](../../assets/example-single-select-config.png)
+![Single select config example](assets/example-single-select-config.png)
 
-### Multi-Select
+### Multi select
 
 ```json
 "my-multi-select-field": {
@@ -265,34 +265,34 @@ Snippets für Übersetzungen (ab Shopware 6.7.1.0):
 }
 ```
 
-![Multi-Select Config Beispiel](../../assets/example-multi-select-config.png)
+![Multi select config example](assets/example-multi-select-config.png)
 
 ---
 
-## Alle Config-Feld-Typen
+## All config field types
 
-| Typ | Beschreibung |
+| Type | Description |
 |---|---|
-| `color` | Farbwähler |
-| `text` | Texteingabe |
-| `number` | Zahleneingabe (mit `custom.numberType`, `min`, `max`) |
-| `fontFamily` | Schriftfamilien-Auswahl |
-| `media` | Medien-Auswahl |
-| `checkbox` | Boolean-Checkbox |
-| `switch` | Boolean-Switch |
-| `url` | URL-Eingabe |
+| `color` | Color picker |
+| `text` | Text input |
+| `number` | Number input (with `custom.numberType`, `min`, `max`) |
+| `fontFamily` | Font family selection |
+| `media` | Media selection |
+| `checkbox` | Boolean checkbox |
+| `switch` | Boolean switch |
+| `url` | URL input |
 
-**Config-Feld-Optionen:**
+**Config field options:**
 
-| Name | Bedeutung |
+| Name | Meaning |
 |---|---|
-| `label` | Übersetzungen (deprecated ab 6.8, jetzt via Snippets) |
-| `helpText` | Hilfetext (deprecated ab 6.8) |
-| `type` | Feld-Typ (siehe oben) |
-| `editable` | `false` = nicht im Admin anzeigen |
-| `tab` | Tab-Gruppenname |
-| `block` | Block-Gruppenname |
-| `section` | Sektion-Gruppenname |
-| `custom` | Freie Daten (nicht verarbeitet, via API verfügbar) |
-| `scss` | `false` = nicht als SCSS-Variable injizieren |
-| `fullWidth` | `true` = Admin-Komponente volle Breite |
+| `label` | Translations (deprecated as of 6.8, now via snippets) |
+| `helpText` | Help text (deprecated as of 6.8) |
+| `type` | Field type (see above) |
+| `editable` | `false` = do not show in the admin |
+| `tab` | Tab group name |
+| `block` | Block group name |
+| `section` | Section group name |
+| `custom` | Free-form data (not processed, available via API) |
+| `scss` | `false` = do not inject as an SCSS variable |
+| `fullWidth` | `true` = admin component at full width |

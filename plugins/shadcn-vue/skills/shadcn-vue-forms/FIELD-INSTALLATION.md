@@ -6,15 +6,15 @@
 npx shadcn-vue@latest add field
 ```
 
-## Manuell
+## Manual
 
-Keine externen Headless-Abhaengigkeiten (nur `class-variance-authority`).
-Interne Abhaengigkeiten: `ui/label` und `ui/separator`.
+No external headless dependencies (only `class-variance-authority`).
+Internal dependencies: `ui/label` and `ui/separator`.
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren nach `components/ui/field/`
-2. Importpfade anpassen
+1. Copy source code to `components/ui/field/`
+2. Adjust import paths
 
 ### Import
 
@@ -35,5 +35,5 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/field

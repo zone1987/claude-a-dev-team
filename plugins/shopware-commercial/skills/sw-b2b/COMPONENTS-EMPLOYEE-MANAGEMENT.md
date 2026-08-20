@@ -1,13 +1,13 @@
 # Skill: sw-b2b-components-employee-management
 
-Entwickler-Referenz fuer B2B Employee Management und Organization Unit.
+Developer reference for B2B Employee Management and Organization Unit.
 
-## Referenzen
+## References
 
 - [COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT.md](COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT.md)
 
-## Querverweise
+## Cross-references
 
-Order Approval (Genehmigungsworkflow): `sw-b2b-order-approval`.
-Quotes und Shopping Lists: `sw-b2b-components-quotes`.
-Overblick B2B Components: `sw-b2b-components`.
+Order Approval (approval workflow): `sw-b2b-order-approval`.
+Quotes and Shopping Lists: `sw-b2b-components-quotes`.
+Overview of B2B Components: `sw-b2b-components`.

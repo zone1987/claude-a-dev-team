@@ -1,11 +1,11 @@
 # shadcn-vue: Legacy Docs
 
-Die aktuelle shadcn-vue-Dokumentation richtet sich an Tailwind v4. Fuer Projekte mit
-Tailwind v3 (und Radix Vue) steht die Legacy-Dokumentation zur Verfuegung.
+The current shadcn-vue documentation targets Tailwind v4. For projects using
+Tailwind v3 (and Radix Vue), the legacy documentation is available.
 
-Legacy-Docs URL: https://v3.shadcn-vue.com
+Legacy docs URL: https://v3.shadcn-vue.com
 
 ## Reference Files
 
-- `LEGACY-DETAIL.md` — Hinweis auf v3.shadcn-vue.com, Abgrenzung der aktuellen
-  v4-Doku, Empfehlung zur Migration auf Tailwind v4
+- `LEGACY-DETAIL.md` — Pointer to v3.shadcn-vue.com, delineation from the current
+  v4 docs, recommendation to migrate to Tailwind v4

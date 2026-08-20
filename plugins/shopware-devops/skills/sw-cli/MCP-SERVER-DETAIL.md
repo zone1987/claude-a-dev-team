@@ -531,19 +531,19 @@ bin/console debug:mcp --integration=SWIA...   # From the perspective of an integ
 **Privilege overview in the admin:** The role detail page shows a banner for MCP-enabled integrations.
 Clicking **Show MCP tool requirements** opens the modal with the missing privileges per tool/entity:
 
-![MCP permissions privilege hint](../../assets/mcp-permissions-privilege-hint.png)
+![MCP permissions privilege hint](assets/mcp-permissions-privilege-hint.png)
 
 **Allowlist with privilege gaps:** The Edit MCP Allowlist modal shows coverage warnings for missing permissions:
 
-![MCP allowlist collapsed with warnings](../../assets/mcp-allowlist-collapsed.png)
+![MCP allowlist collapsed with warnings](assets/mcp-allowlist-collapsed.png)
 
 **Configuring the allowlist** (integration + capability selection):
 
-![MCP allowlist clean selection](../../assets/mcp-allowlist-clean.png)
+![MCP allowlist clean selection](assets/mcp-allowlist-clean.png)
 
 **Integration list with the Edit Allowlist action:**
 
-![MCP integrations edit allowlist](../../assets/mcp-integrations-edit-mcp-allowlist.png)
+![MCP integrations edit allowlist](assets/mcp-integrations-edit-mcp-allowlist.png)
 
 ---
 

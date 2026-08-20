@@ -24,7 +24,7 @@ Log in with user name and password. The language of the backend interface follow
 
 **Brute force protection**: after three wrong passwords the account is locked for 5 minutes.
 
-![Backend login screen](../../assets/backend-anmeldung.png)
+![Backend login screen](assets/backend-login.png)
 
 ---
 
@@ -143,9 +143,9 @@ Direct editing by clicking:
 
 Contao stores all website information in a database. The presentation varies depending on the module.
 
-![Structure of the backend](../../assets/aufbau-des-backends.png)
+![Structure of the backend](assets/aufbau-des-backends.png)
 
-![Navigation area](../../assets/navigationsbereich.png)
+![Navigation area](assets/navigationsbereich.png)
 
 ### Three views
 
@@ -153,19 +153,19 @@ Contao stores all website information in a database. The presentation varies dep
 
 Records from a single table, typically alphabetically with letter grouping.
 
-![List View](../../assets/list-view.png)
+![List View](assets/list-view.png)
 
 #### Parent view (Elternansicht)
 
 Records in parent-child relationships (e.g. articles with content elements). Shows only the child elements of the selected parent element.
 
-![Parent View](../../assets/parent-view.png)
+![Parent View](assets/parent-view.png)
 
 #### Tree view (Baumansicht)
 
 Hierarchical structures such as the file system or the Seitenstruktur (Page Structure). Presented as an expandable tree.
 
-![Tree View](../../assets/tree-view.png)
+![Tree View](assets/tree-view.png)
 
 ### Sorting and filtering
 

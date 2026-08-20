@@ -1,29 +1,29 @@
-# Shopware Checkout — Konzept
+# Shopware checkout — concept
 
-Vollständige Konzept-Doku: `CHECKOUT-DETAIL.md`
+Complete concept documentation: `CHECKOUT-DETAIL.md`
 
-## Kurzüberblick
+## Quick overview
 
 ### Cart
 
-- **Nicht über DAL** — Cart wird als Ganzes gespeichert/geladen (kein EntityRepository)
-- **Zustände**: Empty → Dirty (nach Änderung) → Calculated
-- **Berechnung** (4 Phasen): Enrich → Process → Validate → Persist
-- **Line Items** — stackable, removable; können andere Line Items enthalten (Bundles)
-- **Enrichment** — Produkte, Promotionen, Versandkosten werden lazy geladen
-- **Rule-Validierung** — iterativ bis stabil (z.B. Produkt kaufen → Sonnenbrille gratis → Rabatt)
-- **CartService** — zentrales Facade für alle Cart-Operationen
+- **Not via the DAL** — the cart is stored/loaded as a whole (no EntityRepository)
+- **States**: Empty → Dirty (after a change) → Calculated
+- **Calculation** (4 phases): Enrich → Process → Validate → Persist
+- **Line items** — stackable, removable; can contain other line items (bundles)
+- **Enrichment** — products, promotions, shipping costs are loaded lazily
+- **Rule validation** — iterative until stable (e.g. buy product → free sunglasses → discount)
+- **CartService** — central facade for all cart operations
 
 ### Orders
 
-- **Denormalisiert** — alle Daten werden zum Bestellzeitpunkt persistiert (kein Catalog-Abhängigkeit)
-- **Drei State Machines**: Order, Order Transaction (Zahlung), Order Delivery (Versand)
-- **Workflow-optimiert** — nur definierte Zustandsübergänge erlaubt
+- **Denormalised** — all data is persisted at the time of ordering (no catalogue dependency)
+- **Three state machines**: Order, Order Transaction (payment), Order Delivery (shipping)
+- **Workflow-optimised** — only defined state transitions are allowed
 
 ### Payments
 
-- **Synchron** — direktes Feedback vom Gateway
-- **Asynchron** — Redirect-Flow; Callback URL `/payment/finalize-transaction`
-- **Payment Handler** — zentraler Erweiterungspunkt; registriert in Datenbank
+- **Synchronous** — direct feedback from the gateway
+- **Asynchronous** — redirect flow; callback URL `/payment/finalize-transaction`
+- **Payment handler** — central extension point; registered in the database
 
-Technische Umsetzung: `shopware-checkout` (Dev-Plugin)
+Technical implementation: `shopware-checkout` (dev plugin)

@@ -1,36 +1,36 @@
-# Shopware Messaging — Vollständige Konzept-Doku
+# Shopware messaging — complete concept documentation
 
-Quelle: `concepts/framework/messaging.md`
+Source: `concepts/framework/messaging.md`
 
 ---
 
-## Messaging-Konzept
+## Messaging concept
 
-Shopware integriert **Symfony Messenger** + Enqueue für asynchrone Nachrichten-Verarbeitung.
+Shopware integrates **Symfony Messenger** + Enqueue for asynchronous message processing.
 
-### Komponenten
+### Components
 
-#### Message Bus
+#### Message bus
 
-- Service-Tag: `messenger.default_bus`
-- **Pflicht** für Shopware-interne Nachrichten
-- Verarbeitet Nachrichten durch konfigurierte Middleware
-- Für externe Systeme: eigener custom Message Bus konfigurierbar
+- Service tag: `messenger.default_bus`
+- **Mandatory** for Shopware-internal messages
+- Processes messages through the configured middleware
+- For external systems: a custom message bus of your own can be configured
 
 #### Middleware
 
-Wird beim Dispatch durch den Message Bus aufgerufen.
-Definiert was beim Dispatch passiert.
+Called by the message bus on dispatch.
+Defines what happens on dispatch.
 
-Wichtige Standard-Middleware:
-- `send_message` — sendet Nachricht an konfigurierten Transport
-- `handle_message` — ruft Handler für Nachricht auf
+Important standard middleware:
+- `send_message` — sends the message to the configured transport
+- `handle_message` — calls the handler for the message
 
-**Eigene Middleware**: `MiddlewareInterface` implementieren + in Message Bus-Konfiguration registrieren.
+**Custom middleware**: implement `MiddlewareInterface` + register it in the message bus configuration.
 
 #### Handler
 
-Wird aufgerufen, wenn `handle_messages` Middleware eine Nachricht verarbeitet.
+Called when the `handle_messages` middleware processes a message.
 
 ```php
 #[AsMessageHandler]
@@ -38,63 +38,63 @@ class MyMessageHandler
 {
     public function __invoke(MyMessage $message): void
     {
-        // Handler-Logik
+        // handler logic
     }
 }
 ```
 
-PHP-Callable; empfohlener Weg: Klasse mit `#[AsMessageHandler]` Attribut und `__invoke()` Methode
-mit typisierten Message-Parameter.
+A PHP callable; the recommended way: a class with the `#[AsMessageHandler]` attribute and an `__invoke()` method
+with a typed message parameter.
 
 #### Message
 
-Einfaches PHP-Objekt:
-- Muss serialisierbar sein
-- Enthält alle für den Handler notwendigen Informationen
+A plain PHP object:
+- Must be serialisable
+- Contains all the information the handler needs
 
 #### Envelope
 
-Message Bus wrapp Message in **Envelope** vor dem Dispatch.
+The message bus wraps the message in an **envelope** before dispatch.
 
 #### Stamps
 
-Middleware fügt **Stamps** zum Envelope hinzu — enthalten Metadaten über die Nachricht.
+Middleware adds **stamps** to the envelope — they contain metadata about the message.
 
-**Eigene Stamps**: Message in Envelope wrappen + Stamps vor Dispatch hinzufügen,
-oder eigene custom Middleware erstellen.
+**Custom stamps**: wrap the message in an envelope + add stamps before dispatch,
+or create custom middleware of your own.
 
 #### Transport
 
-Verbindung zum 3rd-Party-Message-Broker.
-Mehrere Transports konfigurierbar; Messages auf verschiedene Transports routbar.
+The connection to the 3rd-party message broker.
+Several transports can be configured; messages can be routed onto different transports.
 
-**Unterstützte Transports**:
-- Alle [Symfony-Transports](https://symfony.com/doc/current/messenger.html#transports) (AMQP, Redis, Doctrine, etc.)
-- Alle [Enqueue-Transports](https://github.com/php-enqueue/enqueue-dev/tree/master/docs/transport) (SQS, Kafka, etc.)
+**Supported transports**:
+- All [Symfony transports](https://symfony.com/doc/current/messenger.html#transports) (AMQP, Redis, Doctrine, etc.)
+- All [Enqueue transports](https://github.com/php-enqueue/enqueue-dev/tree/master/docs/transport) (SQS, Kafka, etc.)
 
-**Kein Transport konfiguriert**: synchrone Verarbeitung (wie Symfony Event System).
+**No transport configured**: synchronous processing (like the Symfony event system).
 
-### Nachrichten senden
+### Sending messages
 
 ```php
-// Injection des default message bus via DI
+// Injection of the default message bus via DI
 public function __construct(private MessageBusInterface $bus) {}
 
 // Dispatch
 $this->bus->dispatch(new MyMessage($data));
 ```
 
-Optionaler Bus für sensitive/verschlüsselte Daten verfügbar.
+An optional bus for sensitive/encrypted data is available.
 
-### Nachrichten konsumieren
+### Consuming messages
 
-**Via CLI (Worker)**:
+**Via CLI (worker)**:
 ```bash
 bin/console messenger:consume
 ```
-Startet persistenten Worker der eingehende Nachrichten vom Transport empfängt und dispatcht.
+Starts a persistent worker that receives incoming messages from the transport and dispatches them.
 
 **Via API**:
-- HTTP POST-Endpoint
-- Verarbeitet Nachrichten für 2 Sekunden
-- Response: Anzahl verarbeiteter Nachrichten
+- HTTP POST endpoint
+- Processes messages for 2 seconds
+- Response: the number of processed messages

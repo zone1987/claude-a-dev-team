@@ -1,12 +1,12 @@
 # Skill: sw-subscriptions
 
-Entwickler-Referenz fuer das Shopware Subscriptions Extension.
+Developer reference for the Shopware Subscriptions extension.
 
-## Referenzen
+## References
 
 - [SUBSCRIPTIONS-DETAIL.md](SUBSCRIPTIONS-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-B2B Employee + Subscription-Integration: `sw-b2b-components-employee-management`.
-Commercial Plugin Overview: `sw-commercial-overview`.
+B2B employee + subscription integration: `sw-b2b-components-employee-management`.
+Commercial plugin overview: `sw-commercial-overview`.

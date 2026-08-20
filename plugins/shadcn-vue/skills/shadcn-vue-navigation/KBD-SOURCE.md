@@ -1,4 +1,4 @@
-# Kbd — Vollstandiger Quellcode
+# Kbd — Complete source code
 
 ## index.ts
 
@@ -55,5 +55,5 @@ const props = defineProps<{
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/kbd/`

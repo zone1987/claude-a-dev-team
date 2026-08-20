@@ -1,303 +1,303 @@
-# Rabatte & Aktionen
+# Rabatte & Aktionen (Discounts & promotions)
 
-**Pfad:** Admin > Marketing > Rabatte & Aktionen
-**Version:** ab Shopware 6.0.0 (aktuell 6.7.0.0)
+**Path:** Admin > Marketing > **Rabatte & Aktionen**
+**Version:** from Shopware 6.0.0 (currently 6.7.0.0)
 
 ## Contents
 
-- [Beschreibung](#beschreibung)
-- [Übersicht](#übersicht)
-- [Neue Rabattaktion anlegen](#neue-rabattaktion-anlegen)
-- [Storefront-Anwendung](#storefront-anwendung)
-- [15 Praktische Anwendungsbeispiele](#15-praktische-anwendungsbeispiele)
-- [Weitere Hinweise](#weitere-hinweise)
+- [Description](#description)
+- [Overview](#overview)
+- [Creating a new discount promotion](#creating-a-new-discount-promotion)
+- [Storefront application](#storefront-application)
+- [15 practical application examples](#15-practical-application-examples)
+- [Further notes](#further-notes)
 
-## Beschreibung
+## Description
 
-Der Menüpunkt Rabatte & Aktionen bietet ein Modul, mit dem Rabattaktionen für Verkaufskanäle angelegt werden können. Aktionen können zeitlich begrenzt, mit Aktionscodes versehen und über den Rule Builder mit komplexen Bedingungen konfiguriert werden.
+The menu item Rabatte & Aktionen offers a module with which discount promotions can be created for sales channels. Promotions can be time-limited, given **Aktionscodes** (promotion codes) and configured with complex conditions via the Rule Builder.
 
-## Übersicht
+## Overview
 
-Die Übersichtsseite zeigt alle vorhandenen Aktionen in einer Liste. Über das Kontextmenü können Aktionen bearbeitet oder gelöscht werden.
+The overview page shows all existing promotions in a list. Promotions can be edited or deleted via the context menu.
 
-![Übersicht Rabatte & Aktionen](../../assets/rabatt_overviewpng.png)
+![Overview of Rabatte & Aktionen](assets/discount_overviewpng.png)
 
 ---
 
-## Neue Rabattaktion anlegen
+## Creating a new discount promotion
 
-### 1. Allgemein
+### 1. Allgemein (General)
 
-Reiter für grundlegende Einstellungen der Aktion.
+The tab for the basic settings of the promotion.
 
-#### Allgemeine Einstellungen
+#### General settings
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|--------------|
-| **Name** | Bezeichnung der Rabattaktion |
-| **Priorität** | Reihenfolge bei mehreren gleichzeitigen Aktionen (höherer Wert = höhere Priorität) |
-| **Gültig ab** | Startzeitpunkt (optional) |
-| **Gültig bis** | Endzeitpunkt (optional) |
-| **Gesamtnutzung** | Wie oft darf die Aktion insgesamt verwendet werden |
-| **Nutzung je Kunde** | Wie oft darf ein einzelner Kunde die Aktion nutzen |
-| **Aktiv** | Schalter zum Aktivieren/Deaktivieren der Aktion |
+| **Name** | Designation of the discount promotion |
+| **Priorität** (Priority) | Order when several promotions apply at the same time (higher value = higher priority) |
+| **Gültig ab** (Valid from) | Start time (optional) |
+| **Gültig bis** (Valid until) | End time (optional) |
+| **Gesamtnutzung** (Total usage) | How often the promotion may be used in total |
+| **Nutzung je Kunde** (Usage per customer) | How often an individual customer may use the promotion |
+| **Aktiv** (Active) | Toggle for activating/deactivating the promotion |
 
-![Allgemeine Einstellungen](../../assets/Promotions_AllgemeineEinstellungen_DE.png)
+![General settings](assets/Promotions_General-Settings_DE.png)
 
-> **Hinweis:** Das Feld "Priorität" entscheidet bei mehreren gleichzeitig gültigen Aktionen, welche zuerst angewendet wird.
-
----
-
-### 2. Aktionscodes
-
-Drei Varianten für die Aktivierung einer Aktion:
-
-#### Kein Aktionscode erforderlich
-Die Aktion wird automatisch auf alle zutreffenden Warenkörbe angewendet. Kein Code notwendig.
-
-#### Festgelegter Aktionscode
-Ein einheitlicher Code, den mehrere Kunden verwenden können.
-
-- Code wird vom Händler definiert (z. B. `SOMMER20`)
-- Kann mehrfach eingelöst werden (begrenzt durch Gesamtnutzung/Nutzung je Kunde)
-
-![Festgelegter Aktionscode](../../assets/Allgemein_Aktionscodes_Festgelegter-Code.png)
-
-#### Individuelle Aktionscodes
-Einmalige Codes für einzelne Kunden.
-
-- Codes werden manuell oder automatisch generiert
-- Jeder Code kann nur einmal eingelöst werden
-- Für Newsletter-Aktionen oder personalisierte Angebote geeignet
-
-![Individuelle Aktionscodes](../../assets/Allgemein_Aktionscodes_Individuelle-Codes.png)
-![Code erzeugen](../../assets/Allgemein_Aktionscodes_Individuellen-Code-erzeugen.png)
-
-> **Hinweis:** Es ist nicht möglich, mehrere unterschiedliche individuelle Codes aus einer einzigen Promotion gleichzeitig anzuwenden.
+> **Note:** with several simultaneously valid promotions, the field "Priorität" decides which is applied first.
 
 ---
 
-### 3. Bedingungen
+### 2. Aktionscodes (Promotion codes)
 
-Definiert, für wen und unter welchen Umständen die Aktion gilt.
+Three variants for activating a promotion:
 
-#### Voraussetzungen
+#### Kein Aktionscode erforderlich (No promotion code required)
+The promotion is applied automatically to all applicable carts. No code is necessary.
 
-Legt fest, ob Kunden bestimmte Voraussetzungen erfüllen müssen.
+#### Festgelegter Aktionscode (Fixed promotion code)
+One uniform code that several customers can use.
 
-![Voraussetzungen](../../assets/Marketing-Rabatte-Voraussetzungen.png)
+- The code is defined by the merchant (e.g. `SOMMER20`)
+- Can be redeemed multiple times (limited by the total usage/usage per customer)
 
-#### Regelbasierte Bedingungen
+![Fixed promotion code](assets/General_Promotion-Codes_Festgelegter-Code.png)
 
-Vier Regeltypen stehen zur Verfügung:
+#### Individuelle Aktionscodes (Individual promotion codes)
+Single-use codes for individual customers.
 
-| Regeltyp | Beschreibung |
+- Codes are generated manually or automatically
+- Every code can be redeemed only once
+- Suitable for newsletter promotions or personalised offers
+
+![Individual promotion codes](assets/General_Promotion-Codes_Individual-Codes.png)
+![Generate a code](assets/General_Promotion-Codes_Individual-Code-create.png)
+
+> **Note:** it is not possible to apply several different individual codes from one single promotion at the same time.
+
+---
+
+### 3. Bedingungen (Conditions)
+
+Defines for whom and under what circumstances the promotion applies.
+
+#### Voraussetzungen (Prerequisites)
+
+Determines whether customers have to meet certain prerequisites.
+
+![Prerequisites](assets/Marketing-Discounts-Prerequisites.png)
+
+#### Regelbasierte Bedingungen (Rule-based conditions)
+
+Four rule types are available:
+
+| Rule type | Description |
 |----------|--------------|
-| **Kunden-Regeln** | Zielgruppe eingrenzen (z. B. Kundengruppe, Newsletter-Status) |
-| **Warenkorb-Regeln** | Warenkorb-Bedingungen setzen (z. B. Mindestbestellwert) |
-| **Aktion auf Produkt-Sets** | Komplexe Produktkombinationen mit Set-Gruppen |
-| **Bestellungsregeln** | Zahlungs- oder Versandartbeschränkungen |
+| **Kunden-Regeln** (Customer rules) | Narrow down the target group (e.g. customer group, newsletter status) |
+| **Warenkorb-Regeln** (Cart rules) | Set cart conditions (e.g. a minimum order value) |
+| **Aktion auf Produkt-Sets** (Promotion on product sets) | Complex product combinations with set groups |
+| **Bestellungsregeln** (Order rules) | Payment or shipping method restrictions |
 
-![Regelbasierte Bedingungen](../../assets/Bedingungen_Regelbasierte-Bedingungen.png)
-![Produkt-Sets](../../assets/Bedingungen_Regelbasierte-Bedingungen_Produkt-Sets.png)
+![Rule-based conditions](assets/Bedingungen_Regelbasierte-Bedingungen.png)
+![Product sets](assets/Bedingungen_Regelbasierte-Bedingungen_Product-Sets.png)
 
-##### Set-Gruppen-Eigenschaften
+##### Set group properties
 
-| Eigenschaft | Beschreibung |
+| Property | Description |
 |-------------|--------------|
-| **Modus** | Anzahl, Bruttopreis oder Nettopreis |
-| **Wert** | Anzahl/Betrag zum Erfüllen der Bedingung |
-| **Sortierung** | Auf- oder absteigend nach Kaufpreis |
-| **Produktregeln** | Rule-Builder-Bedingungen für Produktauswahl |
+| **Modus** (Mode) | Quantity, gross price or net price |
+| **Wert** (Value) | Quantity/amount for meeting the condition |
+| **Sortierung** (Sorting) | Ascending or descending by purchase price |
+| **Produktregeln** (Product rules) | Rule Builder conditions for the product selection |
 
-#### Erweiterte Auswahl
+#### Erweiterte Auswahl (Advanced selection)
 
-Über die erweiterte Auswahl können weitere Regeln für Produkte innerhalb der Aktion definiert werden.
+Via the advanced selection, further rules for products within the promotion can be defined.
 
-![Erweiterte Auswahl](../../assets/Rabatte_ErweiterteAuswahl_DE.png)
-![Erweiterte Auswahl Regeln](../../assets/Rabatte_ErweiterteAuswahl-Regeln_DE.png)
+![Advanced selection](assets/Discounts_ErweiterteAuswahl_DE.png)
+![Advanced selection rules](assets/Discounts_ErweiterteAuswahl-Rules_DE.png)
 
 ---
 
-### 4. Rabatte
+### 4. Rabatte (Discounts)
 
-Konfiguration des eigentlichen Rabatts.
+Configuration of the actual discount.
 
-#### "Anwenden auf" Kategorien
+#### "Anwenden auf" (Apply to) categories
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|--------------|
-| Gesamter Warenkorb | Rabatt auf den gesamten Warenkorbwert |
-| Versandkosten | Rabatt nur auf die Versandkosten |
-| Gesamtes Produktset | Rabatt auf ein definiertes Produktset |
-| Spezifische Set-Gruppen | Rabatt nur auf ausgewählte Set-Gruppen |
+| **Gesamter Warenkorb** (Entire cart) | Discount on the entire cart value |
+| **Versandkosten** (Shipping costs) | Discount on the shipping costs only |
+| **Gesamtes Produktset** (Entire product set) | Discount on a defined product set |
+| **Spezifische Set-Gruppen** (Specific set groups) | Discount on selected set groups only |
 
-#### Rabattarten
+#### Discount types
 
-| Typ | Beschreibung |
+| Type | Description |
 |-----|--------------|
-| **Absolut** | Festbetrag (z. B. 10 € Rabatt) |
-| **Prozentual** | Prozentualer Abzug (mit optionaler Obergrenze in €) |
-| **Festpreis / Stückpreis** | Produkt wird auf einen festgelegten Preis gesetzt |
+| **Absolut** (Absolute) | Fixed amount (e.g. €10 discount) |
+| **Prozentual** (Percentage) | Percentage deduction (with an optional upper limit in €) |
+| **Festpreis / Stückpreis** (Fixed price / unit price) | The product is set to a defined price |
 
-![Rabatt Konfiguration](../../assets/Rabatte_Rabatt.png)
-
----
-
-## Storefront-Anwendung
-
-### Gutschein-Code eingeben
-
-Kunden können Aktionscodes im Warenkorb oder im Off-Canvas-Warenkorb eingeben:
-
-1. Feld "Gutschein-Code eingeben" aufrufen
-2. Code eingeben
-3. Bestätigung anklicken
-
-Rabatte werden nach Eingabe in der Artikelübersicht angezeigt.
-
-![Off-Canvas-Warenkorb](../../assets/OffCanvas-Warenkorb.png)
-![Warenkorb](../../assets/Warenkorb.png)
-![Off-Canvas-Warenkorb mit Rabatt](../../assets/OffCanvas-Warenkorb-Rabatt.png)
-![Warenkorb mit Rabatt](../../assets/Warenkorb-Rabatt.png)
-
-### Darstellung eingelöster Gutscheincodes
-
-**Individueller Code:**
-- Sichtbar in Marketing > Rabatte & Aktionen
-- Filter in der Bestellübersicht nach "Aktionscode" möglich
-
-**Festgelegter Code:**
-- Kann mehrfach verwendet werden
-- Filterbar in der Bestellübersicht nach Code
-
-![Individueller Code Übersicht](../../assets/1_Individuell_code_DE.png)
-![Übersicht eingelöste Codes](../../assets/2_Uebersicht_DE.png)
+![Discount configuration](assets/Discounts_Discount.png)
 
 ---
 
-## 15 Praktische Anwendungsbeispiele
+## Storefront application
 
-### Beispiel 1: Versandkostenfrei
+### Entering a voucher code
 
-**Ziel:** Alle Kunden erhalten kostenlosen Versand ohne Code.
+Customers can enter promotion codes in the cart or in the off-canvas cart:
 
-| Einstellung | Wert |
+1. Open the field "Gutschein-Code eingeben" (Enter voucher code)
+2. Enter the code
+3. Click the confirmation
+
+After entry, discounts are shown in the item overview.
+
+![Off-canvas cart](assets/OffCanvas-Cart.png)
+![Cart](assets/Cart.png)
+![Off-canvas cart with discount](assets/OffCanvas-Cart-Discount.png)
+![Cart with discount](assets/Cart-Discount.png)
+
+### Presentation of redeemed voucher codes
+
+**Individual code:**
+- Visible in Marketing > Rabatte & Aktionen
+- Filtering in the order overview by "Aktionscode" is possible
+
+**Fixed code:**
+- Can be used multiple times
+- Filterable in the order overview by code
+
+![Individual code overview](assets/1_Individual_code_DE.png)
+![Overview of redeemed codes](assets/2_Overview_DE.png)
+
+---
+
+## 15 practical application examples
+
+### Example 1: free shipping
+
+**Goal:** all customers get free shipping without a code.
+
+| Setting | Value |
 |-------------|------|
-| Aktionscode | Kein Code erforderlich |
+| Aktionscode | No code required |
 | Anwenden auf | Versandkosten |
-| Rabattart | Prozentual: 100% |
+| Discount type | Prozentual: 100% |
 
-### Beispiel 2: 25% Rabatt auf alle Artikel
+### Example 2: 25% discount on all items
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
-| Aktionscode | Festgelegt: `2022_25` |
+| Aktionscode | Fixed: `2022_25` |
 | Anwenden auf | Gesamter Warenkorb |
-| Rabattart | Prozentual: 25% |
+| Discount type | Prozentual: 25% |
 
-### Beispiel 3: Festpreis für bestimmte Artikel
+### Example 3: fixed price for certain items
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
 | Aktionscode | `ALLfor10` |
-| Produktregel | Rule Builder: gewünschte Produkte |
-| Rabattart | Festpreis: 10 € |
+| Product rule | Rule Builder: the desired products |
+| Discount type | Festpreis: €10 |
 
-### Beispiel 4: Mehrfach-Rabatte kombinieren
+### Example 4: combining multiple discounts
 
-Kombiniere in einer Aktion mehrere Rabatte, z. B.:
-- 100% Versandkostenrabatt
-- 25% Warenkorbrabatt
+Combine several discounts in one promotion, e.g.:
+- 100% shipping cost discount
+- 25% cart discount
 
-### Beispiel 5: VIP-Kunden-Rabatt
+### Example 5: VIP customer discount
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
-| Kunden-Regel | Mindestens 100 abgeschlossene Bestellungen |
-| Aktionscode | Kein Code erforderlich |
-| Rabattart | Prozentual: 5% |
+| Kunden-Regel | At least 100 completed orders |
+| Aktionscode | No code required |
+| Discount type | Prozentual: 5% |
 
-### Beispiel 6: Pakete / Packages
+### Example 6: packages
 
-Kaufe 3 bestimmte Artikel und erhalte jeden für 10 € statt 20 €:
-- Produktgruppe: 3 Artikel (Set-Gruppe)
-- Festpreis je Artikel: 10 €
+Buy 3 particular items and get each of them for €10 instead of €20:
+- Product group: 3 items (set group)
+- Fixed price per item: €10
 
-### Beispiel 7: Bundles
+### Example 7: bundles
 
-Kombiniere zwei Produktgruppen (z. B. Hose + T-Shirt) mit festem Paketpreis:
-- Set-Gruppe 1: Hose
-- Set-Gruppe 2: T-Shirt
-- Festpreis für das Bundle
+Combine two product groups (e.g. trousers + T-shirt) with a fixed package price:
+- Set group 1: trousers
+- Set group 2: T-shirt
+- Fixed price for the bundle
 
-### Beispiel 8: Kaufe 3, zahle 2
+### Example 8: buy 3, pay 2
 
-**Ziel:** Beim Kauf von 3 T-Shirts ist das günstigste gratis.
+**Goal:** when buying 3 T-shirts the cheapest one is free.
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
 | Aktionscode | `kauf3` |
-| Set-Gruppe | Modus: Anzahl, Wert: 3, Sortierung: aufsteigend nach Preis |
-| Anwenden auf | 1. Produkt der Set-Gruppe |
-| Rabattart | Prozentual: 100% |
+| Set group | Modus: quantity, Wert: 3, Sortierung: ascending by price |
+| Anwenden auf | 1st product of the set group |
+| Discount type | Prozentual: 100% |
 
-![Kaufe 3 zahle 2 Konfiguration](../../assets/Beispiel_Kaufe3Zahle2.PNG)
+![Buy 3 pay 2 configuration](assets/Example_Buy3pay2.PNG)
 
-### Beispiel 9: Newsletter-Empfänger-Rabatt
+### Example 9: newsletter recipient discount
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
-| Kunden-Regel | Kunde ist Newsletter-Empfänger |
-| Rabattart | Prozentual: 10%, max. 150 € |
+| Kunden-Regel | Kunde ist Newsletter-Empfänger (customer is a newsletter recipient) |
+| Discount type | Prozentual: 10%, max. €150 |
 
-### Beispiel 10: Kundengruppen-Rabatt
+### Example 10: customer group discount
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
-| Kunden-Regel | Bestimmte Kundengruppe |
-| Aktionscode | Kein Code erforderlich |
-| Rabattart | Prozentual: X% |
+| Kunden-Regel | A particular customer group |
+| Aktionscode | No code required |
+| Discount type | Prozentual: X% |
 
-### Beispiel 11: Versandkostenfrei ab Warenkorbwert
+### Example 11: free shipping above a cart value
 
-| Einstellung | Wert |
+| Setting | Value |
 |-------------|------|
-| Warenkorb-Regel | Summe aller Positionen ≥ 50 € |
+| Warenkorb-Regel | Sum of all line items ≥ €50 |
 | Anwenden auf | Versandkosten |
-| Rabattart | Prozentual: 100% |
+| Discount type | Prozentual: 100% |
 
-> **Tipp:** Staffelung möglich: 50% ab 25 €, 100% ab 100 € (separate Aktionen anlegen).
+> **Tip:** tiering is possible: 50% from €25, 100% from €100 (create separate promotions).
 
-### Beispiel 12: Kategorie-spezifische Rabatte
+### Example 12: category-specific discounts
 
-Rule Builder Bedingung:
+Rule Builder condition:
 ```
 Position in Kategorie | Mind. eine | ist eine von | [gewählte Kategorie]
 ```
 
-### Beispiel 13: Hersteller-spezifische Rabatte
+### Example 13: manufacturer-specific discounts
 
-Rule Builder Bedingung:
+Rule Builder condition:
 ```
 Position mit Hersteller | Mind. eine | ist eine von | [Hersteller]
 ```
 
-### Beispiel 14: Gratisartikel
+### Example 14: free items
 
-1. Artikel mit Tag "gratis" kennzeichnen
-2. Dynamische Produktgruppe für "gratis"-Tag erstellen
-3. Cross-Selling-Funktion zur Artikelanzeige nutzen
-4. Rabatt: 100% auf Artikel der Produktgruppe
+1. Mark the items with the tag "gratis"
+2. Create a dynamic product group for the "gratis" tag
+3. Use the cross-selling function to display the items
+4. Discount: 100% on the items of the product group
 
-### Beispiel 15: Einzelprodukt-Rabatte
+### Example 15: single product discounts
 
-Rule Builder: Einzelnes Produkt auswählen, dann prozentualen Rabatt auf Warenkorb mit Produktregel konfigurieren.
+Rule Builder: select a single product, then configure a percentage discount on the cart with a product rule.
 
 ---
 
-## Weitere Hinweise
+## Further notes
 
-- **Priorität:** Beim Einsatz mehrerer Aktionen gleichzeitig entscheidet die Priorität über die Reihenfolge der Anwendung.
-- **Verkaufskanäle:** Aktionen können auf bestimmte Verkaufskanäle beschränkt werden.
-- **Rule Builder:** Für komplexe Bedingungen den Rule Builder unter Einstellungen > Automatisierung > Rule Builder nutzen. Siehe `sw-merchant-marketing-rule-builder`.
+- **Priorität:** when using several promotions at the same time, the priority decides the order of application.
+- **Verkaufskanäle** (Sales channels)**:** promotions can be restricted to particular sales channels.
+- **Rule Builder:** for complex conditions use the Rule Builder under Einstellungen > Automatisierung > Rule Builder. See `sw-merchant-marketing-rule-builder`.

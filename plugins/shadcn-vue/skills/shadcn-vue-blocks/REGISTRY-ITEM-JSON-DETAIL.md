@@ -1,8 +1,8 @@
-# shadcn-vue registry-item.json — Vollstaendiges Schema
+# shadcn-vue registry-item.json — Complete Schema
 
 JSON-Schema-URL: `https://shadcn-vue.com/schema/registry-item.json`
 
-## Vollstaendiges Beispiel
+## Complete example
 
 ```json
 {
@@ -26,7 +26,7 @@ JSON-Schema-URL: `https://shadcn-vue.com/schema/registry-item.json`
 
 ---
 
-## Felder
+## Fields
 
 ### $schema
 
@@ -36,7 +36,7 @@ JSON-Schema-URL: `https://shadcn-vue.com/schema/registry-item.json`
 
 ### name
 
-Name des Registry-Items (kebab-case empfohlen).
+Name of the registry item (kebab-case recommended).
 
 ```json
 { "name": "hello-world" }
@@ -44,7 +44,7 @@ Name des Registry-Items (kebab-case empfohlen).
 
 ### title
 
-Menschenlesbarer Titel. Kurz und beschreibend.
+Human-readable title. Short and descriptive.
 
 ```json
 { "title": "Hello World" }
@@ -52,7 +52,7 @@ Menschenlesbarer Titel. Kurz und beschreibend.
 
 ### description
 
-Beschreibung des Items (ausfuehrlicher als `title`).
+Description of the item (more detailed than `title`).
 
 ```json
 { "description": "A simple hello world component." }
@@ -60,27 +60,27 @@ Beschreibung des Items (ausfuehrlicher als `title`).
 
 ### type
 
-Typ des Registry-Items.
+Type of the registry item.
 
 ```json
 { "type": "registry:block" }
 ```
 
-| Typ                  | Beschreibung                                          |
+| Type                 | Description                                           |
 |----------------------|-------------------------------------------------------|
-| `registry:block`     | Komplexe Komponenten mit mehreren Dateien             |
-| `registry:component` | Einfache Komponenten                                  |
-| `registry:lib`       | Lib- und Utils-Dateien                                |
-| `registry:hook`      | Composables (Hooks)                                   |
-| `registry:ui`        | UI-Komponenten und Single-File-Primitives             |
-| `registry:page`      | Seiten oder dateibasierte Routen                      |
-| `registry:file`      | Sonstige Dateien                                      |
-| `registry:style`     | Eigener Style der shadcn-vue erweitert oder ersetzt   |
-| `registry:theme`     | Eigenes Theme mit CSS-Variablen                       |
+| `registry:block`     | Complex components with multiple files                |
+| `registry:component` | Simple components                                     |
+| `registry:lib`       | Lib and utils files                                   |
+| `registry:hook`      | Composables (hooks)                                   |
+| `registry:ui`        | UI components and single-file primitives              |
+| `registry:page`      | Pages or file-based routes                            |
+| `registry:file`      | Miscellaneous files                                   |
+| `registry:style`     | Custom style extending or replacing shadcn-vue        |
+| `registry:theme`     | Custom theme with CSS variables                       |
 
 ### author
 
-Autor des Items.
+Author of the item.
 
 ```json
 { "author": "John Doe <john@doe.com>" }
@@ -88,7 +88,7 @@ Autor des Items.
 
 ### dependencies
 
-npm-Pakete als Abhaengigkeiten. Version mit `@` angeben.
+npm packages as dependencies. Specify the version with `@`.
 
 ```json
 {
@@ -103,7 +103,7 @@ npm-Pakete als Abhaengigkeiten. Version mit `@` angeben.
 
 ### registryDependencies
 
-Registry-Abhaengigkeiten (shadcn-Komponenten oder URLs).
+Registry dependencies (shadcn components or URLs).
 
 ```json
 {
@@ -116,13 +116,13 @@ Registry-Abhaengigkeiten (shadcn-Komponenten oder URLs).
 }
 ```
 
-Die CLI loest Remote-Registry-Abhaengigkeiten automatisch auf.
+The CLI resolves remote registry dependencies automatically.
 
 ### files
 
-Dateien des Items. Jede Datei hat `path`, `type` und optional `target`.
+Files of the item. Every file has `path`, `type` and optionally `target`.
 
-**`target` ist Pflicht fuer `registry:page` und `registry:file`.**
+**`target` is required for `registry:page` and `registry:file`.**
 
 ```json
 {
@@ -151,22 +151,22 @@ Dateien des Items. Jede Datei hat `path`, `type` und optional `target`.
 
 #### path
 
-Pfad zur Datei relativ zum Projekt-Root. Wird vom Build-Script geparst und transformiert.
+Path to the file relative to the project root. Parsed and transformed by the build script.
 
 #### type
 
-Typ der Datei (gleiche Typen wie Item-Typ).
+Type of the file (same types as the item type).
 
 #### target
 
-Ziel-Pfad im Projekt. Optional, nur Pflicht bei `registry:page` und `registry:file`.
-`~` referenziert das Projekt-Root (z.B. `~/foo.config.js`).
+Target path in the project. Optional, required only for `registry:page` and `registry:file`.
+`~` references the project root (e.g. `~/foo.config.js`).
 
 ### tailwind
 
-**VERALTET fuer Tailwind v4.** Fuer v4 `cssVars.theme` verwenden.
+**DEPRECATED for Tailwind v4.** For v4 use `cssVars.theme` instead.
 
-Fuer Tailwind-Konfiguration (theme, plugins, content):
+For Tailwind configuration (theme, plugins, content):
 
 ```json
 {
@@ -195,7 +195,7 @@ Fuer Tailwind-Konfiguration (theme, plugins, content):
 
 ### cssVars
 
-CSS-Variablen fuer das Item.
+CSS variables for the item.
 
 ```json
 {
@@ -215,16 +215,16 @@ CSS-Variablen fuer das Item.
 }
 ```
 
-| Schluessel | Beschreibung                                        |
+| Key        | Description                                         |
 |------------|-----------------------------------------------------|
-| `theme`    | Tailwind v4 CSS-Variablen (`:root { @theme { } }`)  |
-| `light`    | CSS-Variablen fuer den hellen Modus                 |
-| `dark`     | CSS-Variablen fuer den dunklen Modus                |
+| `theme`    | Tailwind v4 CSS variables (`:root { @theme { } }`)  |
+| `light`    | CSS variables for light mode                        |
+| `dark`     | CSS variables for dark mode                         |
 
 ### css
 
-CSS-Regeln fuer das Projekt hinzufuegen (`@layer base`, `@layer components`,
-`@utility`, `@keyframes` etc.).
+Add CSS rules to the project (`@layer base`, `@layer components`,
+`@utility`, `@keyframes`, etc.).
 
 ```json
 {
@@ -259,7 +259,7 @@ CSS-Regeln fuer das Projekt hinzufuegen (`@layer base`, `@layer components`,
 
 ### docs
 
-Angepasste Dokumentation oder Hinweis bei CLI-Installation.
+Custom documentation or a note shown on CLI installation.
 
 ```json
 {
@@ -269,7 +269,7 @@ Angepasste Dokumentation oder Hinweis bei CLI-Installation.
 
 ### categories
 
-Organisiere das Item in Kategorien.
+Organize the item into categories.
 
 ```json
 {
@@ -279,7 +279,7 @@ Organisiere das Item in Kategorien.
 
 ### meta
 
-Beliebige Zusatz-Metadaten.
+Arbitrary additional metadata.
 
 ```json
 {
@@ -287,9 +287,9 @@ Beliebige Zusatz-Metadaten.
 }
 ```
 
-### extends (nur fuer registry:style)
+### extends (registry:style only)
 
-`"extends": "none"` erstellt einen Style von Grund auf ohne shadcn-vue zu erweitern.
+`"extends": "none"` creates a style from scratch without extending shadcn-vue.
 
 ```json
 {

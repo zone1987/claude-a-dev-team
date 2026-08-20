@@ -1,20 +1,20 @@
 # Item — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add item
 ```
 
-## Manuell
+## Manual
 
-1. Abhangigkeiten installieren:
+1. Install dependencies:
 
 ```bash
 npm install reka-ui class-variance-authority
 ```
 
-2. Folgende Dateien nach `src/components/ui/item/` kopieren:
+2. Copy the following files into `src/components/ui/item/`:
    - `Item.vue`
    - `ItemActions.vue`
    - `ItemContent.vue`
@@ -27,7 +27,7 @@ npm install reka-ui class-variance-authority
    - `ItemTitle.vue`
    - `index.ts`
 
-3. `Separator`-Komponente muss vorhanden sein (wird von `ItemSeparator` importiert):
+3. The `Separator` component must be present (imported by `ItemSeparator`):
 
 ```bash
 npx shadcn-vue@latest add separator
@@ -50,5 +50,5 @@ import {
 } from "@/components/ui/item"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/item/index.ts`

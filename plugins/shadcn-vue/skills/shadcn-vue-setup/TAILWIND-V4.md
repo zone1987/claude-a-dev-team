@@ -1,24 +1,24 @@
 # shadcn-vue: Tailwind v4
 
-Tailwind v4 wird vollstaendig unterstuetzt. Neue Projekte starten automatisch mit v4.
-Bestehende v3-Projekte funktionieren weiterhin ohne Aenderungen.
+Tailwind v4 is fully supported. New projects start with v4 automatically.
+Existing v3 projects keep working without changes.
 
-## Wichtigste Neuerungen
+## Key changes
 
-- CLI initialisiert Projekte mit Tailwind v4
-- Vollstaendige Unterstuetzung fuer `@theme` und `@theme inline`
-- Alle Komponenten aktualisiert fuer Tailwind v4
-- Jedes Primitive hat ein `data-slot`-Attribut (fuer CSS-Targeting)
-- `toast`-Komponente deprecated zugunsten `sonner`
-- Buttons verwenden Standard-Cursor (kein `cursor-pointer` mehr per Default)
-- `default`-Style deprecated, neue Projekte verwenden `new-york`
-- HSL-Farben konvertiert zu OKLCH
+- CLI initializes projects with Tailwind v4
+- Full support for `@theme` and `@theme inline`
+- All components updated for Tailwind v4
+- Every primitive has a `data-slot` attribute (for CSS targeting)
+- `toast` component deprecated in favor of `sonner`
+- Buttons use the default cursor (no more `cursor-pointer` by default)
+- `default` style deprecated, new projects use `new-york`
+- HSL colors converted to OKLCH
 
 Demo: https://v4.shadcn-vue.com
 
 ## Reference Files
 
-- `TAILWIND-V4-DETAIL.md` — Vollstaendige What's New-Liste, Framework-Links,
-  Upgrade-Schritt-fuer-Schritt: Tailwind Upgrade Guide + Codemod, CSS-Variablen
-  von HSL zu OKLCH migrieren mit @theme inline, size-* Utility verwenden,
-  Abhaengigkeiten updaten (tw-animate-css, reka-ui, @lucide/vue, tailwind-merge, clsx)
+- `TAILWIND-V4-DETAIL.md` — Complete What's New list, framework links,
+  step-by-step upgrade: Tailwind upgrade guide + codemod, migrating CSS variables
+  from HSL to OKLCH with @theme inline, using the size-* utility,
+  updating dependencies (tw-animate-css, reka-ui, @lucide/vue, tailwind-merge, clsx)

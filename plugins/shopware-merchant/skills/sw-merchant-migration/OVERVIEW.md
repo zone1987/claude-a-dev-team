@@ -1,32 +1,32 @@
-# Shopware 6 — Migration (Betreiber-Überblick)
+# Shopware 6 — Migration (operator overview)
 
-Destilliert aus `docs.shopware.com/de/migration-de`. Drei Quellsysteme unterstützt:
+Distilled from `docs.shopware.com/de/migration-de`. Three source systems supported:
 
-## Unterstützte Migrationsquellen
+## Supported migration sources
 
-| Quelle | Ziel |
+| Source | Target |
 |---|---|
 | Shopware 5 | Shopware 6 (self-hosted) |
-| Shopware 6 (alt) | Shopware 6 (Cloud oder neuer Server) |
+| Shopware 6 (old) | Shopware 6 (cloud or new server) |
 | Magento | Shopware 6 |
 
-> **Wichtig (SW6→SW6):** Quell- und Zielsystem müssen dieselbe Shopware-Version haben.
+> **Important (SW6→SW6):** the source and target systems must be on the same Shopware version.
 
-## Drei Migrationsphasen
+## Three migration phases
 
-1. **Vorbereitungsphase** — Systemcheck, Lizenz, SW6-Installation
-2. **Migrationsphase** — Migrationsassistent + Datentransfer
-3. **Abschlussphase** — Livegang, DNS, Shopware Account
+1. **Preparation phase** — system check, licence, SW6 installation
+2. **Migration phase** — Migrationsassistent (Migration Assistant) + data transfer
+3. **Completion phase** — go-live, DNS, Shopware Account
 
-## Detailwissen je Thema
+## Detailed knowledge per topic
 
-| Thema | Skill |
+| Topic | Skill |
 |---|---|
-| Migrationsprozess (Assistent, Verbindung, Daten) | `sw-merchant-migration-prozess` |
-| Livegang (Domain, Hosting, Abschluss) | `sw-merchant-migration-livegang` |
+| Migration process (assistant, connection, data) | `sw-merchant-migration-prozess` |
+| Go-live (domain, hosting, completion) | `sw-merchant-migration-livegang` |
 
-Tiefes Referenzwissen: `references/deep/`
+Deep reference knowledge: `references/deep/`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de*
+*Source: https://docs.shopware.com/de/migration-de*

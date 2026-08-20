@@ -1,4 +1,4 @@
-# Item — Vollstandiger Quellcode
+# Item — Complete Source Code
 
 ## Contents
 
@@ -13,7 +13,7 @@
 - [ItemMedia.vue](#itemmediavue)
 - [ItemSeparator.vue](#itemseparatorvue)
 - [ItemTitle.vue](#itemtitlevue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -316,5 +316,5 @@ const props = defineProps<{
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/item/`

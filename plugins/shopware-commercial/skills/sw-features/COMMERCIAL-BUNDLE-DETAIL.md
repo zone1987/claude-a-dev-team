@@ -1,82 +1,82 @@
-# Shopware Commercial Plugin — Bundle-Struktur
+# Shopware Commercial plugin — bundle structure
 
 ## Contents
 
-- [Plugin-Aufbau](#plugin-aufbau)
-- [Bundle-Namen ermitteln](#bundle-namen-ermitteln)
-- [Selektives Bundle-Aktivieren](#selektives-bundle-aktivieren)
-- [Lizenzierung](#lizenzierung)
-- [CommercialBundle-Erweiterungsklassen](#commercialbundle-erweiterungsklassen)
-- [Feature-Toggles pro Kunde (CustomerSpecificFeatureService)](#feature-toggles-pro-kunde-customerspecificfeatureservice)
-- [Plugin ohne Commercial Plugin verwenden (optionale Abhaengigkeit)](#plugin-ohne-commercial-plugin-verwenden-optionale-abhaengigkeit)
-- [Betreiber-Sicht](#betreiber-sicht)
+- [Plugin layout](#plugin-layout)
+- [Determining bundle names](#determining-bundle-names)
+- [Enabling bundles selectively](#enabling-bundles-selectively)
+- [Licensing](#licensing)
+- [CommercialBundle extension classes](#commercialbundle-extension-classes)
+- [Per-customer feature toggles (CustomerSpecificFeatureService)](#per-customer-feature-toggles-customerspecificfeatureservice)
+- [Using a plugin without the Commercial plugin (optional dependency)](#using-a-plugin-without-the-commercial-plugin-optional-dependency)
+- [Merchant perspective](#merchant-perspective)
 
-## Plugin-Aufbau
+## Plugin layout
 
-Das Commercial Plugin ist als Gruppe verschachtelter Sub-Bundles strukturiert.
-Jede Funktion (z.B. Advanced Search, Subscriptions, B2B Components) ist ein eigenstaendiges Bundle
-innerhalb des Commercial Plugins.
+The Commercial plugin is structured as a group of nested sub-bundles.
+Every function (e.g. Advanced Search, Subscriptions, B2B Components) is a self-contained bundle
+inside the Commercial plugin.
 
 ```
-SwagCommercial (Root-Bundle)
+SwagCommercial (root bundle)
 ├── AdvancedSearch
 ├── B2BComponents
 ├── Subscriptions
 ├── CustomPricing
-└── ... (weitere Sub-Bundles)
+└── ... (further sub-bundles)
 ```
 
-## Bundle-Namen ermitteln
+## Determining bundle names
 
 ```bash
 ./bin/console debug:container --parameter kernel.bundles --format=json
 ```
 
-Listet alle registrierten Bundles einschliesslich aller Commercial-Sub-Bundles.
+Lists all registered bundles including all Commercial sub-bundles.
 
-## Selektives Bundle-Aktivieren
+## Enabling bundles selectively
 
-Seit Shopware 6.6.10.0 kann ueber eine Umgebungsvariable gesteuert werden,
-welche Commercial-Bundles aktiv sind:
+Since Shopware 6.6.10.0 an environment variable controls
+which Commercial bundles are active:
 
 ```bash
-# Nur bestimmte Bundles aktivieren
+# Enable only certain bundles
 SHOPWARE_COMMERCIAL_ENABLED_BUNDLES=CustomPricing,Subscription
 ```
 
-Nicht aufgefuehrte Bundles werden deaktiviert, auch wenn das Commercial Plugin installiert ist.
-Nuetzlich fuer Deployments, bei denen nur ein Subset der erworbenen Features benoetigt wird.
+Bundles that are not listed get disabled, even if the Commercial plugin is installed.
+Useful for deployments where only a subset of the purchased features is needed.
 
-## Lizenzierung
+## Licensing
 
-### Lizenz automatisch laden
+### Loading the license automatically
 
-Beim Installieren versucht das Plugin, den Lizenzschluessel ueber den eingeloggten
-Shopware Account zu laden. Schlaegt dies fehl, ist das Plugin installiert, aber alle
-Features sind deaktiviert.
+On installation the plugin tries to load the license key via the logged-in
+Shopware account. If that fails, the plugin is installed but all
+features are disabled.
 
-### Lizenz manuell aktualisieren
+### Updating the license manually
 
 ```bash
 bin/console commercial:license:update
 ```
 
-Laed den Lizenzschluessel erneut vom Shopware Account.
+Loads the license key from the Shopware account again.
 
-### Lizenzstatus pruefen
+### Checking the license status
 
 ```bash
 bin/console commercial:license:info
 ```
 
-Zeigt:
-- Aktuellen Lizenzschluessel (gesetzt/nicht gesetzt)
-- Ablaufdatum der Lizenz
-- Aktivierte Features
+Shows:
+- Current license key (set/not set)
+- Expiry date of the license
+- Enabled features
 
-## CommercialBundle-Erweiterungsklassen
+## CommercialBundle extension classes
 
-Sub-Bundles erben von der Basis-Bundle-Klasse des Commercial Plugins:
+Sub-bundles inherit from the base bundle class of the Commercial plugin:
 
 ```php
 class CommercialB2BBundle extends CommercialBundle
@@ -89,17 +89,17 @@ class CommercialB2BBundle extends CommercialBundle
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);
-        // Eigene DI-Container-Konfiguration
+        // Own DI container configuration
     }
 }
 ```
 
-## Feature-Toggles pro Kunde (CustomerSpecificFeatureService)
+## Per-customer feature toggles (CustomerSpecificFeatureService)
 
-Das Commercial Plugin bietet ein System fuer kunden-spezifische Feature-Freischaltungen,
-primär im Kontext von B2B Components:
+The Commercial plugin offers a system for customer-specific feature unlocks,
+primarily in the context of B2B Components:
 
-### PHP-Verwendung
+### PHP usage
 
 ```php
 class MyService
@@ -118,7 +118,7 @@ class MyService
 }
 ```
 
-### Twig-Verwendung
+### Twig usage
 
 ```twig
 {% if customerHasFeature('shopping_lists') %}
@@ -126,9 +126,9 @@ class MyService
 {% endif %}
 ```
 
-### Verbuegbare Feature-Bezeichner
+### Available feature identifiers
 
-| Feature-Key             | Komponente            |
+| Feature key             | Component             |
 |-------------------------|-----------------------|
 | `employee_management`   | Employee Management   |
 | `quote_management`      | Quote Management      |
@@ -138,9 +138,9 @@ class MyService
 | `budget_management`     | Budget Management     |
 | `organization`          | Organization Units    |
 
-## Plugin ohne Commercial Plugin verwenden (optionale Abhaengigkeit)
+## Using a plugin without the Commercial plugin (optional dependency)
 
-Wenn ein eigenes Plugin das Commercial Plugin optional abhaengig macht:
+If your own plugin makes the Commercial plugin an optional dependency:
 
 ```php
 // plugin base class
@@ -149,17 +149,17 @@ public function build(ContainerBuilder $container): void
     parent::build($container);
 
     if (!class_exists(CommercialBundle::class)) {
-        return; // Commercial nicht installiert, nichts tun
+        return; // Commercial not installed, do nothing
     }
 
-    // Commercial-spezifische Services laden
+    // Load Commercial-specific services
     $loader = new XmlFileLoader($container, new FileLocator($this->getPath() . '/Resources/config'));
     $loader->load('services_commercial.xml');
 }
 ```
 
-## Betreiber-Sicht
+## Merchant perspective
 
-Fuer Shopware-Betreiber (Pläne, welche Features in welchem Plan enthalten sind):
-Querverweis auf `shopware-merchant` Skill.
-Aktivierung und Lizenz-Management: `sw-commercial-overview`.
+For Shopware merchants (plans, which features are contained in which plan):
+cross-reference to the `shopware-merchant` skill.
+Activation and license management: `sw-commercial-overview`.

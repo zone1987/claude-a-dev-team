@@ -1,23 +1,23 @@
-# Shopware 6 — Scheduled Task
+# Shopware 6 — Scheduled task
 
-Zwei Klassen: ein `ScheduledTask` (Name + Default-Intervall) und ein `ScheduledTaskHandler` (Logik).
+Two classes: a `ScheduledTask` (name + default interval) and a `ScheduledTaskHandler` (logic).
 
 ```php
 class FfCleanupTask extends ScheduledTask
 {
     public static function getTaskName(): string { return 'ff.cleanup'; }
-    public static function getDefaultInterval(): int { return 86400; } // Sekunden
+    public static function getDefaultInterval(): int { return 86400; } // seconds
 }
 
 #[AsMessageHandler(handles: FfCleanupTask::class)]
 final class FfCleanupTaskHandler extends ScheduledTaskHandler
 {
-    public function run(): void { /* Aufräumen */ }
+    public function run(): void { /* clean up */ }
 }
 ```
 
-Registrierung: Task via `shopware.scheduled.task`-Tag, Handler als Message-Handler. Läuft über
-`bin/console scheduled-task:run` (per System-Cron getriggert) bzw. den Worker. Schwere Last in MessageQueue
-auslagern (`sw-message-queue`). Intervall im Admin (Einstellungen → System → Aufgaben) überschreibbar.
+Registration: the task via the `shopware.scheduled.task` tag, the handler as a message handler. Runs via
+`bin/console scheduled-task:run` (triggered by the system cron) or the worker. Move heavy load into the message queue
+(`sw-message-queue`). The interval can be overridden in the admin (Settings → System → Tasks).
 
-→ Details: [SCHEDULED-TASK-SCHEDULED-TASKS.md](SCHEDULED-TASK-SCHEDULED-TASKS.md) · Beispiele: [examples/ScheduledTask.php](examples/ScheduledTask.php), [examples/ScheduledTaskHandler.php](examples/ScheduledTaskHandler.php)
+→ Details: [SCHEDULED-TASK-SCHEDULED-TASKS.md](SCHEDULED-TASK-SCHEDULED-TASKS.md) · Examples: [examples/ScheduledTask.php](examples/ScheduledTask.php), [examples/ScheduledTaskHandler.php](examples/ScheduledTaskHandler.php)

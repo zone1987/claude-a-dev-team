@@ -1,11 +1,11 @@
-# Digital Sales Rooms — 3rd-Party Setup (vollständig)
+# Digital Sales Rooms — third-party setup (complete)
 
-DSR benötigt zwei externe Dienste:
+DSR requires two external services:
 
-| Dienst | Zweck |
+| Service | Purpose |
 |--------|-------|
-| **Daily.co** | Echtzeit-Video/Audio-Streaming zwischen Teilnehmern |
-| **Mercure** | Server-to-Client-Push (Realtime-Updates, Server-Sent Events) |
+| **Daily.co** | Realtime video/audio streaming between participants |
+| **Mercure** | Server-to-client push (realtime updates, server-sent events) |
 
 ---
 
@@ -13,63 +13,63 @@ DSR benötigt zwei externe Dienste:
 
 - [Daily.co Setup](#dailyco-setup)
 - [Mercure Hub Setup](#mercure-hub-setup)
-- [Mercure Hub absichern (CORS & Keys)](#mercure-hub-absichern-cors-keys)
-- [Entwicklungsmodus (unsecured Mercure)](#entwicklungsmodus-unsecured-mercure)
+- [Securing the Mercure hub (CORS & keys)](#securing-the-mercure-hub-cors--keys)
+- [Development mode (unsecured Mercure)](#development-mode-unsecured-mercure)
 
 ## Daily.co Setup
 
-### Schritt 1: Dashboard öffnen
+### Step 1: open the dashboard
 
-[https://dashboard.daily.co/](https://dashboard.daily.co/) — Login oder Account erstellen.
+[https://dashboard.daily.co/](https://dashboard.daily.co/) — log in or create an account.
 
-### Schritt 2: API Key ermitteln
+### Step 2: obtain the API key
 
-- Linke Navigation: **"Developers"**-Bereich öffnen
-- **API KEY** kopieren
+- Left-hand navigation: open the **"Developers"** area
+- Copy the **API KEY**
 
-![Daily.co API Key Config](../../assets/products-digitalSalesRooms-videoConfig.png)
+![Daily.co API Key Config](assets/products-digitalSalesRooms-videoConfig.png)
 
-### Schritt 3: In Plugin-Config eintragen
+### Step 3: enter it in the plugin config
 
 Navigation: Marketing › Digital Sales Rooms › Configuration → **Video and Audio**
 
-| Feld | Wert |
+| Field | Value |
 |------|------|
 | API base url | `https://api.daily.co/v1/` |
-| API key | Kopierter API KEY |
+| API key | The copied API KEY |
 
 ---
 
 ## Mercure Hub Setup
 
-Mercure ist ein offenes Protokoll für Server-to-Client-Updates. Es ist eine
-moderne Alternative zu Polling und WebSockets.
+Mercure is an open protocol for server-to-client updates. It is a
+modern alternative to polling and WebSockets.
 
-### Option A: Stackhero (empfohlen)
+### Option A: Stackhero (recommended)
 
-[StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing) bietet
-gehosteten Mercure als Service. Für kleine Demos reicht der "Hobby"-Plan.
+[StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing) offers
+hosted Mercure as a service. For small demos the "Hobby" plan is sufficient.
 
 **Setup:**
 
-1. Stackhero-Account erstellen
+1. Create a Stackhero account
 2. Dashboard → **Stacks** → **Create a new stack** → Service: **Mercure Hub**
-3. Stack konfigurieren → **Configure**-Button
-4. Folgende Werte notieren:
-   - **Hub url** — Hub-URL
-   - **Hub public url** — Öffentliche Hub-URL (meist identisch)
-   - **Hub subscriber secret** — JWT-Key für Subscriber
-   - **Hub publisher secret** — JWT-Key für Publisher
+3. Configure the stack → **Configure** button
+4. Note down the following values:
+   - **Hub url** — hub URL
+   - **Hub public url** — public hub URL (usually identical)
+   - **Hub subscriber secret** — JWT key for subscribers
+   - **Hub publisher secret** — JWT key for publishers
 
-![Mercure Konfigurationsbeispiel](../../assets/products-digitalSalesRooms-mercureConfigExample.png)
+![Mercure configuration example](assets/products-digitalSalesRooms-mercureConfigExample.png)
 
-5. Werte in DSR Plugin-Config eintragen:
+5. Enter the values in the DSR plugin config:
 
-![Mercure Config in DSR](../../assets/products-digitalSalesRooms-mercureConfig.png)
+![Mercure Config in DSR](assets/products-digitalSalesRooms-mercureConfig.png)
 
-### Option B: Docker (lokal/selbst gehostet)
+### Option B: Docker (local/self-hosted)
 
-> Für Produktion: unterschiedliche Publisher- und Subscriber-Keys verwenden!
+> For production: use different publisher and subscriber keys!
 
 ```bash
 git clone https://github.com/shopware/local-mercure-sample
@@ -79,44 +79,44 @@ docker-compose up
 
 ---
 
-## Mercure Hub absichern (CORS & Keys)
+## Securing the Mercure hub (CORS & keys)
 
-Nach der Hub-Initialisierung folgende Einstellungen vornehmen:
+After initializing the hub, apply the following settings:
 
 ### CORS allowed origins
 
-Domain(s), von denen der Browser auf den Hub zugreift:
+Domain(s) from which the browser accesses the hub:
 
 ```
-https://dsr.shopware.io    ← DSR-Frontend-Domain
+https://dsr.shopware.io    ← DSR frontend domain
 ```
 
 ### Publish allowed origins
 
-Domains, die Events an den Hub publizieren dürfen (ohne HTTP-Protokoll):
+Domains allowed to publish events to the hub (without the HTTP protocol):
 
 ```
-https://dsr.shopware.io      ← Frontend-Domain
-https://shopware.store       ← Backend/Admin-API-Domain
+https://dsr.shopware.io      ← frontend domain
+https://shopware.store       ← backend/admin API domain
 ```
 
-### Publisher (JWT) Key
+### Publisher (JWT) key
 
-Frei wählbarer JWT-Key für Publisher-Authentifizierung.
+A freely chosen JWT key for publisher authentication.
 
-### Subscriber (JWT) Key
+### Subscriber (JWT) key
 
-Frei wählbarer JWT-Key für Subscriber-Authentifizierung.
+A freely chosen JWT key for subscriber authentication.
 
 ---
 
-## Entwicklungsmodus (unsecured Mercure)
+## Development mode (unsecured Mercure)
 
-Für lokale Entwicklung ohne JWT-Authentifizierung:
+For local development without JWT authentication:
 
 ```shell
-# In .env der DSR-Frontend-App:
+# in the .env of the DSR frontend app:
 ALLOW_ANONYMOUS_MERCURE=1
 ```
 
-> Nur für Entwicklungszwecke — niemals in Produktion verwenden!
+> For development purposes only — never use in production!

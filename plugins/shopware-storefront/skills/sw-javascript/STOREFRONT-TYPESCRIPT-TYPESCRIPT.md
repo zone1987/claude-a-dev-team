@@ -1,6 +1,6 @@
-# TypeScript im Shopware-Storefront-Plugin — Referenz
+# TypeScript in the Shopware Storefront plugin — reference
 
-## Vollständige tsconfig.json (am Core orientiert)
+## Full tsconfig.json (modelled on the core)
 ```json
 {
   "compilerOptions": {
@@ -22,8 +22,8 @@
 }
 ```
 
-## Globale Typen für PluginManager/PluginBaseClass
-Falls die Storefront-Typen nicht über ein Paket bereitstehen, in einer `.d.ts` deklarieren:
+## Global types for PluginManager/PluginBaseClass
+If the Storefront types are not provided by a package, declare them in a `.d.ts`:
 ```ts
 // src/types/storefront.d.ts
 declare global {
@@ -47,7 +47,7 @@ declare global {
 export {};
 ```
 
-## Typisiertes JS-Plugin
+## Typed JS plugin
 ```ts
 interface FfExampleOptions { url: string; threshold: number; }
 
@@ -71,7 +71,7 @@ export default class FfExamplePlugin extends window.PluginBaseClass<FfExampleOpt
 }
 ```
 
-## AJAX/HttpClient typisieren
+## Typing AJAX/HttpClient
 ```ts
 import HttpClient from 'src/service/http-client.service';
 const client = new HttpClient();
@@ -81,6 +81,6 @@ client.get(this.options.url, (response: string) => {
 ```
 
 ## Build & Lint
-- Storefront-Build (Vite/Webpack) transpiliert `.ts` automatisch; Einstieg bleibt `main.js`/`main.ts`.
+- The Storefront build (Vite/webpack) transpiles `.ts` automatically; the entry point stays `main.js`/`main.ts`.
 - Typecheck: `tsc --noEmit`. Lint: `composer eslint:storefront`.
-- `.ts`-Plugins genauso in `main.(js|ts)` via `PluginManager.register(...)` registrieren wie JS-Plugins.
+- Register `.ts` plugins in `main.(js|ts)` via `PluginManager.register(...)` exactly like JS plugins.

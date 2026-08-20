@@ -71,17 +71,17 @@ Shopbetreiberbereich (1)
 
 ## Screenshots
 
-![Shopware Einstellungen Übersicht](../../assets/saas-einstellungen.png)
+![Shopware Einstellungen Übersicht](assets/saas-settings.png)
 
-![Admin PayPal verbinden](../../assets/saas-admin-paypal.png)
+![Admin PayPal verbinden](assets/saas-admin-paypal.png)
 
-![Gebuchte Edition](../../assets/saas-gebuchte-edition.png)
+![Gebuchte Edition](assets/saas-gebuchte-edition.png)
 
-![Account Plan buchen](../../assets/saas-account-plan-buchen.png)
+![Account Plan buchen](assets/saas-account-plan-buchen.png)
 
-![Account Zahlungsart](../../assets/saas-account-zahlungsart.png)
+![Account Zahlungsart](assets/saas-account-payment-method.png)
 
-![PayPal Account](../../assets/saas-paypal-account.png)
+![PayPal Account](assets/saas-paypal-account.png)
 
 ---
 

@@ -1,14 +1,14 @@
-# Item — Beispiele
+# Item — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Item (ItemBasic.vue)](#beispiel-1-basic-item-itembasicvue)
-- [Beispiel 2: Item with Actions (ItemWithActions.vue)](#beispiel-2-item-with-actions-itemwithactionsvue)
-- [Quellen](#quellen)
+- [Example 1: Basic Item (ItemBasic.vue)](#example-1-basic-item-itembasicvue)
+- [Example 2: Item with Actions (ItemWithActions.vue)](#example-2-item-with-actions-itemwithactionsvue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Item (ItemBasic.vue)
+## Example 1: Basic Item (ItemBasic.vue)
 
-Grundlegende Verwendung von `Item` mit `ItemMedia`, `ItemContent`, `ItemTitle` und `ItemDescription`.
+Basic usage of `Item` with `ItemMedia`, `ItemContent`, `ItemTitle` and `ItemDescription`.
 
 ```vue
 <script setup lang="ts">
@@ -60,9 +60,9 @@ import { UserIcon } from "@lucide/vue"
 
 ---
 
-## Beispiel 2: Item with Actions (ItemWithActions.vue)
+## Example 2: Item with Actions (ItemWithActions.vue)
 
-`ItemActions` mit Ghost-Buttons fur Datei-Aktionen (Download, Delete, Share).
+`ItemActions` with ghost buttons for file actions (Download, Delete, Share).
 
 ```vue
 <script setup lang="ts">
@@ -140,7 +140,7 @@ import { FileIcon, DownloadIcon, TrashIcon, ImageIcon, EyeIcon, Share2Icon, Vide
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/item/ItemBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/item/ItemWithActions.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/item/ItemExample.vue`

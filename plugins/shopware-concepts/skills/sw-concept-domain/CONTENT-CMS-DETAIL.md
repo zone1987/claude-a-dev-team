@@ -1,52 +1,52 @@
-# Shopware CMS / Shopping Experiences — Vollständige Konzept-Doku
+# Shopware CMS / Shopping Experiences — complete concept documentation
 
-Quellen: `concepts/commerce/content/index.md`, `shopping-experiences-cms.md`, `cookie-consent-management.md`
+Sources: `concepts/commerce/content/index.md`, `shopping-experiences-cms.md`, `cookie-consent-management.md`
 
 ---
 
 ## Contents
 
-- [Content-Überblick (index.md)](#content-überblick-indexmd)
+- [Content overview (index.md)](#content-overview-indexmd)
 - [Shopping Experiences / CMS (shopping-experiences-cms.md)](#shopping-experiences-cms-shopping-experiences-cmsmd)
 - [Cookie Consent Management (cookie-consent-management.md)](#cookie-consent-management-cookie-consent-managementmd)
 
-## Content-Überblick (index.md)
+## Content overview (index.md)
 
-Shopware 6 hat ein integriertes CMS-System namens **Shopping Experiences** basierend auf Layouts.
-Tool: **Page Builder** im Admin-Panel.
+Shopware 6 has an integrated CMS system called **Shopping Experiences** based on layouts.
+Tool: the **Page Builder** in the admin panel.
 
-Zusätzlich: **Cookie Consent Management** für DSGVO-Konformität.
+In addition: **cookie consent management** for GDPR compliance.
 
 ---
 
 ## Shopping Experiences / CMS (shopping-experiences-cms.md)
 
-### Struktur
+### Structure
 
-Hierarchische Struktur: **Page → Section(en) → Block(s) → Slot(s) → Element**
+Hierarchical structure: **Page → Section(s) → Block(s) → Slot(s) → Element**
 
 #### Page
 
-Wrapper mit `type`:
-- `page` — standard CMS-Seite (Shop-Seiten, Kategorieseiten)
-- `landingpage` — Landing-Page-Layouts
-- `product_list` — Produkt-Listing/Kategorie-Layouts
-- `product_detail` — Produktdetailseiten-Layouts
+Wrapper with a `type`:
+- `page` — standard CMS page (shop pages, category pages)
+- `landingpage` — landing page layouts
+- `product_list` — product listing/category layouts
+- `product_detail` — product detail page layouts
 
 #### Section
 
-Horizontaler Container. `type`:
-- `sidebar` — Zwei-Spalten-Layout (Sidebar + Content)
-- `fullwidth` — Einzelne volle Spalte
+Horizontal container. `type`:
+- `sidebar` — two-column layout (sidebar + content)
+- `fullwidth` — single full-width column
 
 #### Block
 
-Einheit, die üblicherweise eine ganze Zeile überspannt. Block-Kategorien:
+A unit that usually spans an entire row. Block categories:
 `text`, `image`, `video`, `text-image`, `commerce`, `sidebar`, `form`, `html`, `favorite`, `app`
 
-Jeder Block enthält null bis mehrere Slots. Ein Slot hat einen Namen und ist Container für genau ein Element.
+Each block contains zero or more slots. A slot has a name and is a container for exactly one element.
 
-Beispiel Block-JSON:
+Example block JSON:
 ```json
 {
     "type": "text-hero",
@@ -62,141 +62,141 @@ Beispiel Block-JSON:
 
 #### Slot
 
-Benannter Container für genau ein Element.
-- `source: "static"` — statischer Wert
-- `source: "mapped"` — zur Laufzeit dynamisch aufgelöst (z.B. `category.description`)
+Named container for exactly one element.
+- `source: "static"` — static value
+- `source: "mapped"` — resolved dynamically at runtime (e.g. `category.description`)
 
-#### Elements (Primitive)
+#### Elements (primitives)
 
-Built-in Element-Typen:
+Built-in element types:
 `text`, `html`, `form`, `image`, `image-slider`, `video`, `youtube-video`, `vimeo-video`,
 `product-listing`, `product-box`, `product-slider`, `product-name`, `manufacturer-logo`,
 `buy-box`, `cross-selling`, `product-description-reviews`, `category-navigation`
 
-Eigene Element-Typen via `CmsElementResolverInterface` registrieren.
+Register your own element types via `CmsElementResolverInterface`.
 
-### Hydration dynamischer Inhalte
+### Hydration of dynamic content
 
-Während CMS-Struktur statisch ist, kann Inhalt dynamisch und kontext-bewusst sein.
-Beispiel: Gleicher Layout für mehrere Kategorieseiten — Produktlisting, Header-Bild, Beschreibung
-werden je nach Kategorie-Konfiguration geladen.
+While the CMS structure is static, the content can be dynamic and context-aware.
+Example: the same layout for several category pages — product listing, header image, description
+are loaded depending on the category configuration.
 
-**Resolving-Prozess** (Orchestrator: `SalesChannelCmsPageLoader::load()`):
+**Resolving process** (orchestrator: `SalesChannelCmsPageLoader::load()`):
 
-1. `CmsPageLoaderCriteriaEvent` dispatchen (Kriterien anpassbar)
-2. CMS-Layout laden (Sections, Blocks, Slots, Background Media)
-3. Nach `position` sortieren
-4. Resolver-Kontext aufbauen (Request + SalesChannelContext + optionale Entity)
-5. Slot-Konfiguration der Entity überschreiben (z.B. kategorie-spezifische Anpassungen)
-6. Slot-Daten auflösen via `CmsSlotsDataResolver`:
-   - **Collect**: jeder Element-Resolver's `collect()` erstellt `CriteriaCollection`
-   - **Optimize**: einfache ID-Kriterien mergen, komplexe Suchen separieren (min. DB-Queries)
-   - **Fetch**: optimierte Kriterien gegen DAL ausführen
-   - **Enrich**: `enrich()` füllt Slot mit geholten Daten
-7. `CmsPageLoadedEvent` dispatchen (Post-Processing möglich)
-8. Cache-Tags sammeln (Produkt-IDs etc. für HTTP-Cache-Invalidierung)
-9. Vollständige Page-Daten zurückgeben
+1. Dispatch `CmsPageLoaderCriteriaEvent` (criteria adjustable)
+2. Load the CMS layout (sections, blocks, slots, background media)
+3. Sort by `position`
+4. Build the resolver context (request + SalesChannelContext + optional entity)
+5. Override the entity's slot configuration (e.g. category-specific adjustments)
+6. Resolve slot data via `CmsSlotsDataResolver`:
+   - **Collect**: each element resolver's `collect()` creates a `CriteriaCollection`
+   - **Optimize**: merge simple ID criteria, separate complex searches (min. DB queries)
+   - **Fetch**: execute the optimised criteria against the DAL
+   - **Enrich**: `enrich()` fills the slot with the fetched data
+7. Dispatch `CmsPageLoadedEvent` (post-processing possible)
+8. Collect cache tags (product IDs etc. for HTTP cache invalidation)
+9. Return the complete page data
 
-### Erweiterbarkeit
+### Extensibility
 
-**Custom Element Resolver** via `CmsElementResolverInterface`:
-- `getType()` — Element-Typ-Identifier
-- `collect()` — CriteriaCollection aufbauen
-- `enrich()` — Slot mit Daten befüllen
+**Custom element resolver** via `CmsElementResolverInterface`:
+- `getType()` — element type identifier
+- `collect()` — build the CriteriaCollection
+- `enrich()` — fill the slot with data
 
-**Event-basierte Extensions** (ab 6.6.7):
+**Event-based extensions** (from 6.6.7):
 - `CmsSlotsDataResolveExtension`
 - `CmsSlotsDataCollectExtension`
 - `CmsSlotsDataEnrichExtension`
 
-### Headless-Fähigkeit / Separation of Content and Presentation
+### Headless capability / separation of content and presentation
 
-CMS ist **kanalunabhängig**:
-- Browser: Shopware Storefront → HTML
-- SPA / Headless Frontend: API → JSON interpretieren
-- Native App: Nur relevante Blöcke anzeigen
-- Smart Speaker: Nur `voice`-Typ-Elemente vorlesen
+The CMS is **channel-independent**:
+- Browser: Shopware storefront → HTML
+- SPA / headless frontend: API → interpret JSON
+- Native app: show only the relevant blocks
+- Smart speaker: read out only `voice`-type elements
 
-**Wichtig für Headless**: Admin-Preview zeigt nur wie Storefront es darstellt — bei stark abweichenden
-Headless-Frontends ist die Preview nur begrenzt repräsentativ.
+**Important for headless**: the admin preview only shows how the storefront renders it — with strongly
+diverging headless frontends the preview is only of limited representativeness.
 
 ---
 
 ## Cookie Consent Management (cookie-consent-management.md)
 
-### Überblick
+### Overview
 
-DSGVO-unterstützendes Cookie-Consent-System. Verfügbar ab 6.7.3.0 für Store-API-Endpunkt und
-Hash-Mechanismus.
+A GDPR-supporting cookie consent system. Available from 6.7.3.0 for the Store API endpoint and the
+hash mechanism.
 
-### Systemkomponenten
+### System components
 
-1. **Cookie Provider Service** — sammelt alle Cookie-Definitionen (Core, Plugins, Apps)
-2. **Store API Endpoint** (`GET /store-api/cookie/groups`) — exponiert Cookie-Konfiguration + Hash
-3. **Storefront Component** — verwaltet Consent-UI und User-Präferenzen
-4. **Configuration Hash** — trackt Änderungen für Re-Consent
+1. **Cookie provider service** — collects all cookie definitions (core, plugins, apps)
+2. **Store API endpoint** (`GET /store-api/cookie/groups`) — exposes the cookie configuration + hash
+3. **Storefront component** — manages the consent UI and user preferences
+4. **Configuration hash** — tracks changes for re-consent
 
-### Cookie-Flow
+### Cookie flow
 
 ```
 User → Storefront → StoreAPI → CookieProvider
                              ↓ Cookie groups + hash
-Storefront vergleicht gespeicherten Hash (pro Sprache)
-→ Hash geändert: Consent-Banner anzeigen
-→ Hash identisch: gespeicherte Präferenzen anwenden
-User trifft Auswahl → Präferenzen + Hash speichern (mit Sprach-ID)
+Storefront compares the stored hash (per language)
+→ Hash changed: show the consent banner
+→ Hash identical: apply the stored preferences
+User makes a choice → store the preferences + hash (with the language ID)
 ```
 
-### Cookie-Kategorien (DSGVO-konform)
+### Cookie categories (GDPR-compliant)
 
-| Kategorie | Snippet-Key | Beispiele |
+| Category | Snippet key | Examples |
 |---|---|---|
-| Technisch erforderlich | `cookie.groupRequired` | Session, Warenkorb, Security Token |
-| Komfortfunktionen | `cookie.groupComfortFeatures` | YouTube, Social Media, Chat |
-| Marketing | `cookie.groupMarketing` | Facebook Pixel, Google Ads, Affiliate |
-| Statistik/Tracking | `cookie.groupStatistical` | Google Analytics, Hotjar, A/B Testing |
+| Technically required | `cookie.groupRequired` | Session, cart, security token |
+| Comfort features | `cookie.groupComfortFeatures` | YouTube, social media, chat |
+| Marketing | `cookie.groupMarketing` | Facebook Pixel, Google Ads, affiliate |
+| Statistics/tracking | `cookie.groupStatistical` | Google Analytics, Hotjar, A/B testing |
 
-Technisch erforderliche Cookies können **nicht** deaktiviert werden.
+Technically required cookies **cannot** be deactivated.
 
-### Hash-Mechanismus
+### Hash mechanism
 
-- Hash berechnet aus allen Cookie-Konfigurationen (Name, Beschreibung, Ablaufzeit)
-- Gespeichert als Cookie `cookie-config-hash`: `{"<sprach-id>": "<hash>"}` 
-- Bei Besuch: aktueller Hash vs. gespeicherter Hash für aktuelle Sprache vergleichen
-- Unterschied → alle nicht-essentiellen Cookies entfernen → Re-Consent
+- The hash is calculated from all cookie configurations (name, description, expiry)
+- Stored as the cookie `cookie-config-hash`: `{"<language-id>": "<hash>"}` 
+- On a visit: compare the current hash against the stored hash for the current language
+- Difference → remove all non-essential cookies → re-consent
 
-**Hash ändert sich bei**: neue Cookies (Plugins/Apps), modifizierte/entfernte Cookies, geänderte Cookie-Gruppen
+**The hash changes on**: new cookies (plugins/apps), modified/removed cookies, changed cookie groups
 
-**Warum Sprach-ID im Hash?** — Für Multi-Sprach-Shops auf derselben Domain (verschiedene Domains
-sind durch Browser-Cookie-Scoping bereits getrennt).
+**Why a language ID in the hash?** — For multi-language shops on the same domain (different domains
+are already separated by the browser's cookie scoping).
 
-### Cookie-Lifetime-Tracking
+### Cookie lifetime tracking
 
-| Cookie | Zweck | Lebensdauer |
+| Cookie | Purpose | Lifetime |
 |---|---|---|
-| `cookie-preference` | Gespeicherte Consent-Entscheidungen | 30 Tage |
-| `cookie-config-hash` | Konfigurationsänderungs-Tracking pro Sprache | 30 Tage |
+| `cookie-preference` | Stored consent decisions | 30 days |
+| `cookie-config-hash` | Configuration change tracking per language | 30 days |
 
-**Geschützte Cookies** (niemals entfernt): `session-*`, `timezone`
+**Protected cookies** (never removed): `session-*`, `timezone`
 
-### Store API Endpoint (ab 6.7.3.0)
+### Store API endpoint (from 6.7.3.0)
 
 `GET /store-api/cookie/groups`
 
-Liefert: Cookie-Gruppen, Konfiguration, Hash, Sprach-ID.
-Ermöglicht Headless-Implementierungen, Custom Frontends und Third-Party-Integrationen.
+Delivers: cookie groups, configuration, hash, language ID.
+Enables headless implementations, custom frontends and third-party integrations.
 
-### Erweiterbarkeit
+### Extensibility
 
-- **Plugins**: Event Listener zum Hinzufügen eigener Cookies
-- **Apps**: Cookies in `manifest.xml` definieren
-- **JavaScript**: Events für Consent-Änderungen (`reacting-to-cookie-consent-changes`)
+- **Plugins**: event listener for adding your own cookies
+- **Apps**: define cookies in `manifest.xml`
+- **JavaScript**: events for consent changes (`reacting-to-cookie-consent-changes`)
 
-### DSGVO-Features
+### GDPR features
 
-- Opt-in by default (keine vorausgefüllten Checkboxen)
-- Granulare Kontrolle (einzelne Kategorien accept/reject)
-- Re-Consent bei Konfigurationsänderungen
-- Klare Cookie-Beschreibungen
-- Einfaches Widerrufen (Präferenzen jederzeit änderbar)
-- Konfigurationsänderungs-Tracking via Hash
+- Opt-in by default (no pre-filled checkboxes)
+- Granular control (accept/reject individual categories)
+- Re-consent on configuration changes
+- Clear cookie descriptions
+- Easy revocation (preferences changeable at any time)
+- Configuration change tracking via a hash

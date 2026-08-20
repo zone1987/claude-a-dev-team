@@ -1,30 +1,30 @@
 # DropdownMenu — API
 
-Reka-UI API-Referenz: https://reka-ui.com/docs/components/dropdown-menu#api-reference
+Reka-UI API reference: https://reka-ui.com/docs/components/dropdown-menu#api-reference
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `DropdownMenu` | Root-Wrapper (DropdownMenuRoot) |
-| `DropdownMenuTrigger` | Trigger-Element |
-| `DropdownMenuPortal` | Portiert in `<body>` (re-export von reka-ui) |
-| `DropdownMenuContent` | Dropdown-Container, `sideOffset: 4` |
-| `DropdownMenuGroup` | Gruppiert verwandte Items |
-| `DropdownMenuLabel` | Nicht-interaktives Label |
-| `DropdownMenuItem` | Interaktives Item (default/destructive) |
-| `DropdownMenuSeparator` | Horizontaler Trenner |
-| `DropdownMenuShortcut` | Tastatur-Shortcut-Anzeige (rechts) |
-| `DropdownMenuCheckboxItem` | Item mit Check-Indikator |
-| `DropdownMenuRadioGroup` | Container fuer Radio-Items |
-| `DropdownMenuRadioItem` | Item mit Radio-Indikator |
-| `DropdownMenuSub` | Sub-Menu-Root |
-| `DropdownMenuSubTrigger` | Trigger fuer Sub-Menu (ChevronRight) |
-| `DropdownMenuSubContent` | Inhalt des Sub-Menus |
+| `DropdownMenu` | Root wrapper (DropdownMenuRoot) |
+| `DropdownMenuTrigger` | Trigger element |
+| `DropdownMenuPortal` | Ported into `<body>` (re-export from reka-ui) |
+| `DropdownMenuContent` | Dropdown container, `sideOffset: 4` |
+| `DropdownMenuGroup` | Groups related items |
+| `DropdownMenuLabel` | Non-interactive label |
+| `DropdownMenuItem` | Interactive item (default/destructive) |
+| `DropdownMenuSeparator` | Horizontal divider |
+| `DropdownMenuShortcut` | Keyboard shortcut display (right) |
+| `DropdownMenuCheckboxItem` | Item with check indicator |
+| `DropdownMenuRadioGroup` | Container for radio items |
+| `DropdownMenuRadioItem` | Item with radio indicator |
+| `DropdownMenuSub` | Submenu root |
+| `DropdownMenuSubTrigger` | Trigger for submenu (ChevronRight) |
+| `DropdownMenuSubContent` | Content of the submenu |
 
 ## DropdownMenu (Root)
 
-| Prop | Typ | Standard |
+| Prop | Type | Default |
 |---|---|---|
 | `open` | `boolean` | - |
 | `defaultOpen` | `boolean` | `false` |
@@ -33,27 +33,27 @@ Reka-UI API-Referenz: https://reka-ui.com/docs/components/dropdown-menu#api-refe
 
 ## DropdownMenuItem
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `"default" \| "destructive"` | `"default"` | Rot hervorgehoben bei destructive |
-| `inset` | `boolean` | `false` | Links-Einzug (pl-8) |
-| `disabled` | `boolean` | `false` | Item deaktiviert |
+| `variant` | `"default" \| "destructive"` | `"default"` | Highlighted in red when destructive |
+| `inset` | `boolean` | `false` | Left indent (pl-8) |
+| `disabled` | `boolean` | `false` | Item disabled |
 | `class` | `string` | - | - |
 
 ## DropdownMenuCheckboxItem
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `checked` | `boolean \| "indeterminate"` | Zustand |
+| `checked` | `boolean \| "indeterminate"` | State |
 | `class` | `string` | - |
 
 Emits: `update:checked`
 
-Named slot `indicator-icon`: eigenes Icon anstelle des Check-Icons.
+Named slot `indicator-icon`: custom icon instead of the check icon.
 
 ## DropdownMenuRadioGroup / RadioItem
 
 RadioGroup: `v-model` / `modelValue`, emit `update:modelValue`.
 RadioItem: `value` (required), `class`.
 
-Named slot `indicator-icon` auf RadioItem.
+Named slot `indicator-icon` on RadioItem.

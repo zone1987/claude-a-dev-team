@@ -1,12 +1,12 @@
 # Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add sonner
 ```
 
-## Manuell
+## Manual
 
 ### Dependencies
 
@@ -19,7 +19,7 @@ https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/so
 
 Update import paths to match your project (e.g. `@/lib/utils`).
 
-### Root-Layout einrichten
+### Set Up the Root Layout
 
 Add `<Toaster />` and the required CSS to your root layout:
 

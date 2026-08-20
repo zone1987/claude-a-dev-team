@@ -1,175 +1,175 @@
-# Shopware 6 – Kategorien: Vollständige Referenz
+# Shopware 6 – Kategorien (Categories): complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge/kategorien  
-> Gilt ab: Shopware 6.4.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/kataloge/kategorien  
+> Applies from: Shopware 6.4.0.0+
 
 ---
 
 ## Contents
 
-- [1. Kategorieübersicht](#1-kategorieübersicht)
-- [2. Kategorie anlegen](#2-kategorie-anlegen)
-- [3. Kategorietypen](#3-kategorietypen)
-- [4. Tab: Allgemein](#4-tab-allgemein)
-- [5. Tab: Produkte](#5-tab-produkte)
+- [1. Category overview](#1-category-overview)
+- [2. Creating a category](#2-creating-a-category)
+- [3. Category types](#3-category-types)
+- [4. Tab: Allgemein (General)](#4-tab-allgemein-general)
+- [5. Tab: Produkte (Products)](#5-tab-produkte-products)
 - [6. Tab: Layout](#6-tab-layout)
 - [7. Tab: SEO](#7-tab-seo)
-- [8. Kategoriestruktur-Beispiele](#8-kategoriestruktur-beispiele)
-- [9. Landingpages](#9-landingpages)
-- [10. Tipps und Hinweise](#10-tipps-und-hinweise)
+- [8. Category structure examples](#8-category-structure-examples)
+- [9. Landing pages](#9-landing-pages)
+- [10. Tips and notes](#10-tips-and-notes)
 
-## 1. Kategorieübersicht
+## 1. Category overview
 
-Pfad: **Kataloge > Kategorien**
+Path: **Kataloge** (Catalogues) > **Kategorien** (Categories)
 
-Die Kategorieverwaltung zeigt eine **Baumstruktur** (linke Seite) mit allen angelegten Kategorien.
+The category management shows a **tree structure** (left-hand side) with all categories that exist.
 
-### Baumstruktur-Funktionen
+### Tree structure features
 
-- **Drag & Drop**: Kategorien auf allen Ebenen verschiebbar
-- Kategorien können als Unterkategorien unter andere gezogen werden
-- Mehrere unabhängige Kategoriebäume möglich (z. B. für Footer, Service-Navigation)
-- Rechtsklick / Drei-Punkte-Menü öffnet Kontextmenü
+- **Drag & drop**: categories can be moved on all levels
+- Categories can be dragged under others to become subcategories
+- Several independent category trees are possible (e.g. for footer, service navigation)
+- Right-click / three-dot menu opens the context menu
 
 ---
 
-## 2. Kategorie anlegen
+## 2. Creating a category
 
-### Kontextmenü-Optionen
+### Context menu options
 
-| Option | Ergebnis |
+| Option | Result |
 |---|---|
-| Neue Kategorie davor | Neue Kategorie auf gleicher Ebene, vor der aktuellen |
-| Neue Kategorie danach | Neue Kategorie auf gleicher Ebene, nach der aktuellen |
-| Neue Subkategorie | Untergeordnete Kategorie unter der aktuellen |
-| Bearbeiten | Öffnet die Bearbeitungsansicht |
-| Löschen | Löscht Kategorie inkl. aller Unterkategorien |
+| Neue Kategorie davor (New category before) | New category on the same level, before the current one |
+| Neue Kategorie danach (New category after) | New category on the same level, after the current one |
+| Neue Subkategorie (New subcategory) | Subordinate category below the current one |
+| Bearbeiten (Edit) | Opens the editing view |
+| Löschen (Delete) | Deletes the category including all subcategories |
 
-### Schritt-für-Schritt
+### Step by step
 
-1. Kontextmenü der übergeordneten Kategorie öffnen
-2. Gewünschte Anlage-Option wählen
-3. Kategorienamen eingeben
-4. Mit Häkchen bestätigen
-5. Kategorie öffnen und **„Kategorie ist aktiv"** einschalten
-6. Verkaufskanal zuweisen (falls Einstiegspunkt)
+1. Open the context menu of the parent category
+2. Choose the desired creation option
+3. Enter the category name
+4. Confirm with the check mark
+5. Open the category and switch on **"Kategorie ist aktiv"** (Category is active)
+6. Assign a Verkaufskanal (Sales channel) (if it is an entry point)
 
-> **Wichtig**: Neu angelegte Kategorien sind initial **inaktiv**!
+> **Important**: newly created categories are **inactive** at first!
 
 ---
 
-## 3. Kategorietypen
+## 3. Category types
 
-| Typ | Verwendung | Tabs verfügbar |
+| Type | Use | Tabs available |
 |---|---|---|
-| Seite/Liste | Standard-Produktlisting, Shopseiten | Allgemein, Produkte, Layout, SEO |
-| Strukturierungselement/Einstiegspunkt | Nur Navigationsgruppeierung, kein Inhalt | Allgemein |
-| Link | Weiterleitung zu internen/externen Zielen | Allgemein |
+| Seite/Liste (Page/List) | Standard product listing, shop pages | Allgemein, Produkte, Layout, SEO |
+| Strukturierungselement/Einstiegspunkt (Structuring element/Entry point) | Navigation grouping only, no content | Allgemein |
+| Link | Redirect to internal/external targets | Allgemein |
 
 ---
 
-## 4. Tab: Allgemein
+## 4. Tab: Allgemein (General)
 
-### 4.1 Grundeinstellungen
+### 4.1 Basic settings
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Name (1) | Kategoriename; nachträglich änderbar; erscheint in Navigation |
-| Kategorie ist aktiv (2) | Schalter; bestimmt ob Kategorie im Frontend erscheint |
-| Tags (3) | Schlagworte für andere Programmbereiche (z. B. Rule Builder) |
-| Kategorietyp (4) | Auswahl: Seite/Liste, Strukturierungselement, Link |
+| Name (1) | Category name; can be changed later; appears in the navigation |
+| Kategorie ist aktiv (Category is active) (2) | Switch; determines whether the category appears in the frontend |
+| Tags (3) | Keywords for other program areas (e.g. Rule Builder) |
+| Kategorietyp (Category type) (4) | Selection: Seite/Liste, Strukturierungselement, Link |
 
-### 4.2 Benutzerdefinierter Link (nur bei Typ „Link")
+### 4.2 Benutzerdefinierter Link (Custom link) (only for type "Link")
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Linktyp (1) | Extern (URL) oder Intern (Shopware-Entity) |
-| Entität / Linkziel (2) | Bei extern: vollständige URL; bei intern: Entity-Auswahl |
-| In neuem Tab öffnen (3) | Öffnet den Link in einem neuen Browser-Tab |
+| Linktyp (Link type) (1) | External (URL) or internal (Shopware entity) |
+| Entität / Linkziel (Entity / Link target) (2) | External: full URL; internal: entity selection |
+| In neuem Tab öffnen (Open in new tab) (3) | Opens the link in a new browser tab |
 
-### 4.3 Einstiegspunkt (bei Seite/Liste und Strukturierungselement)
+### 4.3 Einstiegspunkt (Entry point) (for Seite/Liste and Strukturierungselement)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Einstiegspunkt (1) | Wo der Kategoriebaum im Shop verankert ist |
-| | **Hauptnavigation**: Klassischer Produktaufbau oben |
-| | **Footernavigation**: Unterer Seitenbereich (Impressum, Datenschutz) |
-| | **Servicenavigation**: Oben rechts (z. B. Login, Kontakt) |
-| Verkaufskanäle (2) | Mehrfachauswahl; welchen Kanälen dieser Baum zugeordnet ist |
-| Startseite konfigurieren (3) | Kanal-spezifische Startseiten-Einstellungen |
+| Einstiegspunkt (Entry point) (1) | Where the category tree is anchored in the shop |
+| | **Hauptnavigation** (Main navigation): classic product structure at the top |
+| | **Footernavigation** (Footer navigation): lower page area (imprint, privacy policy) |
+| | **Servicenavigation** (Service navigation): top right (e.g. login, contact) |
+| Verkaufskanäle (Sales channels) (2) | Multiple selection; which channels this tree is assigned to |
+| Startseite konfigurieren (Configure home page) (3) | Channel-specific home page settings |
 
-### 4.4 Menü-Einstellungen
+### 4.4 Menü-Einstellungen (Menu settings)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| In der Navigation ausblenden (1) | Entfernt Kategorie aus der Navigationsleiste (Seite bleibt erreichbar) |
-| Anzeigebild (2) | Bild das im Dropdown-Menü der Navigation angezeigt wird |
-| Beschreibung (3) | Kundeninformation zur Kategorie (z. B. im Hover-Menü) |
+| In der Navigation ausblenden (Hide in navigation) (1) | Removes the category from the navigation bar (the page stays reachable) |
+| Anzeigebild (Display image) (2) | Image shown in the navigation dropdown menu |
+| Beschreibung (Description) (3) | Customer information about the category (e.g. in the hover menu) |
 
 ---
 
-## 5. Tab: Produkte
+## 5. Tab: Produkte (Products)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Typ (1) | Manuelle Auswahl oder Dynamische Produktgruppe |
-| Produkte / Dynamische Produktgruppe (2) | Produkte manuell auswählen oder Produktgruppe verknüpfen |
-| Produktliste (3) | Übersicht der aktuell zugewiesenen Produkte |
+| Typ (Type) (1) | Manual selection or Dynamische Produktgruppe (Dynamic product group) |
+| Produkte / Dynamische Produktgruppe (2) | Select products manually or link a product group |
+| Produktliste (Product list) (3) | Overview of the currently assigned products |
 
-> **Hinweis**: Beim Wechsel zu dynamischer Zuordnung werden alle manuellen Zuweisungen in dieser Kategorie deaktiviert!
+> **Note**: when switching to dynamic assignment, all manual assignments in this category are deactivated!
 
 ---
 
 ## 6. Tab: Layout
 
-### 6.1 Layout zuweisen
+### 6.1 Assigning a layout
 
-- Erlebniswelt-Layout aus bestehenden Layouts auswählen
-- **„Neues Layout erstellen"**: Öffnet direkt den Erlebniswelten-Editor
-- Blöcke können direkt im Kategoriekontext angepasst werden (ohne Erlebniswelten zu wechseln)
+- Select an Erlebniswelten (Shopping Experiences) layout from the existing layouts
+- **"Neues Layout erstellen"** (Create new layout): opens the Shopping Experiences editor directly
+- Blocks can be adjusted directly in the category context (without switching to Erlebniswelten)
 
-### 6.2 Anpassungshierarchie (Mehrsprachigkeit)
+### 6.2 Customisation hierarchy (multi-language)
 
-Prioritätsreihenfolge bei Sprachauswahl (höchste Priorität zuerst):
+Priority order for language selection (highest priority first):
 
-1. Sprachspezifische Anpassungen in dieser Kategorie
-2. Eltern-Kind-Sprach-Fallback
-3. System-Standardsprache
-4. Layout-Einstellungen (niedrigste Priorität)
+1. Language-specific customisations in this category
+2. Parent-child language fallback
+3. System default language
+4. Layout settings (lowest priority)
 
-**Beispiele:**
+**Examples:**
 
-- Nur Englisch-Anpassung vorhanden → alle Storefronts zeigen die Englisch-Version
-- Österreichisch-Anpassung + Layout Englisch/Deutsch → Österreich bekommt eigene Anpassung
-- Deutsch + Englisch vorhanden → Österreich erbt automatisch von Deutsch
+- Only an English customisation exists → all storefronts show the English version
+- Austrian customisation + layout English/German → Austria gets its own customisation
+- German + English exist → Austria automatically inherits from German
 
-### 6.3 Sichtbarkeit und Sortierung
+### 6.3 Visibility and sorting
 
-| Funktion | Beschreibung |
+| Function | Description |
 |---|---|
-| Sichtbarkeit anzeigen | Zeigt Viewport-Sichtbarkeit des Layout-Blocks |
-| Block-Sichtbarkeit | Pro Block einstellbar (Desktop/Tablet/Mobil) |
-| Produkt-Sortierung anzeigen | Frontend-Dropdown für Kunden zum Sortieren |
-| Eigene Sortierung verwenden | Aktiviert erweiterte Sortieroptionen im Admin |
-| Standard-Sortierung | Fallback wenn keine eigene Sortierung gewählt |
-| Priorität | Reihenfolge bei mehreren Sortieroptionen |
+| Sichtbarkeit anzeigen (Show visibility) | Shows the viewport visibility of the layout block |
+| Block-Sichtbarkeit (Block visibility) | Configurable per block (desktop/tablet/mobile) |
+| Produkt-Sortierung anzeigen (Show product sorting) | Frontend dropdown for customers to sort |
+| Eigene Sortierung verwenden (Use own sorting) | Enables advanced sorting options in the admin |
+| Standard-Sortierung (Default sorting) | Fallback if no own sorting is chosen |
+| Priorität (Priority) | Order when several sorting options exist |
 
 ---
 
 ## 7. Tab: SEO
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| SEO-Titel | Titel für Suchmaschinen (erscheint im Browser-Tab) |
-| SEO-Beschreibung | Meta-Beschreibung für Suchmaschinen |
-| Keywords | Zusätzliche Suchbegriffe |
-| SEO URLs | Pro Verkaufskanal konfigurierbar; standardmäßig von SEO-Einstellungen abhängig |
+| SEO-Titel (SEO title) | Title for search engines (appears in the browser tab) |
+| SEO-Beschreibung (SEO description) | Meta description for search engines |
+| Keywords | Additional search terms |
+| SEO URLs | Configurable per Verkaufskanal; by default depends on the SEO settings |
 
 ---
 
-## 8. Kategoriestruktur-Beispiele
+## 8. Category structure examples
 
-### Beispiel 1: Shop mit Unterkategorien
+### Example 1: Shop with subcategories
 
 ```
 Katalog #1 (Einstiegspunkt: Hauptnavigation)
@@ -182,11 +182,11 @@ Katalog #1 (Einstiegspunkt: Hauptnavigation)
 └── Freizeit & Elektro
 ```
 
-Erstellung:
-1. „Katalog #1" → Kontextmenü → „Neue Subkategorien"
-2. Je Hauptkategorie: Kontextmenü → „Neue Subkategorie"
+Creation:
+1. "Katalog #1" → context menu → "Neue Subkategorien"
+2. Per main category: context menu → "Neue Subkategorie"
 
-### Beispiel 2: Mehrere Shops (Subshop-Setup)
+### Example 2: Several shops (subshop setup)
 
 ```
 Katalog #1 (Verkaufskanal A)
@@ -198,61 +198,61 @@ Katalog #2 (Verkaufskanal B)
 └── Kategorie B2
 ```
 
-Erstellung:
-1. „Katalog #1" → Kontextmenü → „Neue Kategorie danach" → „Katalog #2"
-2. Je Katalog den passenden Verkaufskanal zuweisen
+Creation:
+1. "Katalog #1" → context menu → "Neue Kategorie danach" → "Katalog #2"
+2. Assign the matching Verkaufskanal to each catalogue
 
 ---
 
-## 9. Landingpages
+## 9. Landing pages
 
-Landingpages sind **interne Seiten ohne Navigationseintrag**. Sie sind nur über eine direkte URL erreichbar.  
-Adresse: `[Verkaufskanal-URL]/[Landingpage-SEO-URL]`
+Landing pages are **internal pages without a navigation entry**. They can only be reached via a direct URL.  
+Address: `[Verkaufskanal-URL]/[Landingpage-SEO-URL]`
 
-### Verwaltung
+### Management
 
-- Unterhalb der Kategorieübersicht (eigener Bereich)
-- Reihenfolge der Landingpages ist irrelevant
-- Kontextmenü: Entfernen, Duplizieren, Bearbeiten
-- **„Landingpage hinzufügen"** Button
+- Below the category overview (separate area)
+- The order of landing pages is irrelevant
+- Context menu: remove, duplicate, edit
+- **"Landingpage hinzufügen"** (Add landing page) button
 
-### Tab: Allgemein (Landingpages)
+### Tab: Allgemein (Landing pages)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| Name (1) | Interner Name und Seitentitel |
-| Landingpage ist aktiv (2) | Steuert URL-Erreichbarkeit |
-| Verkaufskanäle (3) | Zuordnung zu einem oder mehreren Kanälen |
-| Tags (4) | Hilft bei der Admin-Suche |
+| Name (1) | Internal name and page title |
+| Landingpage ist aktiv (Landing page is active) (2) | Controls URL accessibility |
+| Verkaufskanäle (3) | Assignment to one or more channels |
+| Tags (4) | Helps with the admin search |
 
-### Tab: SEO (Landingpages)
+### Tab: SEO (Landing pages)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| SEO-Titel | Suchmaschinen-Titel |
-| SEO-Beschreibung | Meta-Beschreibung |
-| Keywords | Zusätzliche Suchbegriffe |
-| SEO URL (**Pflichtfeld**) | Eindeutiger Seiten-Identifier; z. B. „aktion-sommer" → URL: `www.shop.de/aktion-sommer` |
+| SEO-Titel | Search engine title |
+| SEO-Beschreibung | Meta description |
+| Keywords | Additional search terms |
+| SEO URL (**mandatory field**) | Unique page identifier; e.g. "aktion-sommer" → URL: `www.shop.de/aktion-sommer` |
 
-Die SEO-URL wird automatisch aus dem Namen generiert, ist aber manuell anpassbar.
+The SEO URL is generated automatically from the name, but can be adjusted manually.
 
-### Tab: Layout (Landingpages)
+### Tab: Layout (Landing pages)
 
-Identisch zu Kategorien-Layout:
-- Erlebniswelt zuweisen
-- Block-basierte Anpassung
-- Mehrsprachige Anpassungen möglich
-
----
-
-## 10. Tipps und Hinweise
-
-- Kategorien können mehreren Verkaufskanälen als Einstiegspunkt dienen
-- Eine Kategorie kann in mehreren Shops (verschiedene Verkaufskanäle) sichtbar sein
-- Beim Löschen einer Elternkategorie werden **alle Unterkategorien** mitgelöscht
-- Produkte bleiben nach dem Löschen einer Kategorie weiterhin im System, sind aber ggf. keiner Kategorie mehr zugeordnet
-- Die Kategoriesortierung im Baum entspricht der Sortierung im Frontend
+Identical to the category layout:
+- Assign an Erlebniswelt (Shopping Experience)
+- Block-based customisation
+- Multi-language customisations possible
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge/kategorien*
+## 10. Tips and notes
+
+- Categories can serve as an entry point for several Verkaufskanäle
+- One category can be visible in several shops (different Verkaufskanäle)
+- When a parent category is deleted, **all subcategories** are deleted with it
+- Products remain in the system after a category is deleted, but may no longer be assigned to any category
+- The category sorting in the tree matches the sorting in the frontend
+
+---
+
+*Source: https://docs.shopware.com/de/shopware-6-de/kataloge/kategorien*

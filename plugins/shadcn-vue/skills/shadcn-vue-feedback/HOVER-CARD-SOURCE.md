@@ -1,6 +1,6 @@
-# HoverCard — Quellcode
+# HoverCard — Source Code
 
-Alle Dateien aus `registry/new-york-v4/ui/hover-card/`.
+All files from `registry/new-york-v4/ui/hover-card/`.
 
 ## Contents
 
@@ -109,5 +109,5 @@ export { default as HoverCardContent } from "./HoverCardContent.vue"
 export { default as HoverCardTrigger } from "./HoverCardTrigger.vue"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/hover-card/`

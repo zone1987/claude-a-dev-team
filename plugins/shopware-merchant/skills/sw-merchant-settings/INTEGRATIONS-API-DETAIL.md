@@ -1,70 +1,70 @@
-# Shopware 6 – Integrationen & API-Zugänge (vollständige Referenz)
+# Shopware 6 – Integrationen (Integrations) & API access – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/system/integrationen
-
----
-
-## Überblick
-
-**Pfad:** Einstellungen > System > Integrationen  
-**Verfügbar ab:** 6.3.3.0
-
-Ermöglicht die Verbindung externer Anwendungen und Systeme über die Shopware API.
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/system/integrationen
 
 ---
 
-## Integration anlegen
+## Overview
 
-1. „Integration anlegen" klicken
-2. **Name** eingeben (Identifikation der Integration)
-3. **Berechtigungen** wählen: Administrator oder benutzerdefinierte Rollen
-4. **Zugangsdaten generieren**: Zugangs-ID + Sicherheitsschlüssel werden erstellt
+**Path:** Einstellungen (Settings) > System > Integrationen  
+**Available from:** 6.3.3.0
 
-> **Wichtig:** Der Sicherheitsschlüssel wird **nur einmalig angezeigt**. Sofort sicher speichern!
+Allows external applications and systems to be connected via the Shopware API.
 
 ---
 
-## Integrationen verwalten
+## Creating an integration
 
-Die Übersichtsseite zeigt:
-- Alle angelegten Integrationen mit Name und Berechtigungen
-- Bearbeitungsmöglichkeit durch Namensklick
-- Kontextmenü für Bearbeitung oder Löschung
+1. Click "Integration anlegen" (Create integration)
+2. Enter a **Name** (identifies the integration)
+3. Choose **Berechtigungen** (Permissions): administrator or custom roles
+4. **Zugangsdaten generieren** (Generate credentials): an access ID + secret key are created
 
----
-
-## Integration bearbeiten
-
-Bei nachträglicher Bearbeitung:
-- Sicherheitsschlüssel wird aus Sicherheitsgründen nicht angezeigt
-- Funktion **„API-Zugangsschlüssel neu generieren"** erneuert beide Credentials (ID und Schlüssel)
+> **Important:** The secret key is **shown only once**. Store it securely immediately!
 
 ---
 
-## API-Berechtigungen
+## Managing integrations
 
-| Option | Beschreibung |
+The overview page shows:
+- All created integrations with name and permissions
+- Editing by clicking the name
+- Context menu for editing or deletion
+
+---
+
+## Editing an integration
+
+When editing later on:
+- The secret key is not displayed for security reasons
+- The function **"API-Zugangsschlüssel neu generieren"** (Regenerate API access key) renews both credentials (ID and key)
+
+---
+
+## API permissions
+
+| Option | Description |
 |---|---|
-| Administrator | Vollständige Rechte (alle API-Endpunkte) |
-| Benutzerdefinierte Rollen | Granulare Rechtevergabe wie bei Benutzerrollen |
+| Administrator | Full rights (all API endpoints) |
+| Custom roles | Granular rights assignment as with user roles |
 
 ---
 
-## Verwendung der Credentials
+## Using the credentials
 
-Die generierten Zugangsdaten (Access Key + Secret Key) werden für:
-- OAuth 2.0 Client Credentials Flow
-- API-Anfragen mit Bearer-Token-Authentifizierung
+The generated credentials (Access Key + Secret Key) are used for:
+- OAuth 2.0 client credentials flow
+- API requests with bearer token authentication
 
-Vollständige API-Dokumentation: https://developer.shopware.com
+Complete API documentation: https://developer.shopware.com
 
 ---
 
-## API-Zugänge für einzelne Benutzer
+## API access for individual users
 
-Alternativ können API-Zugänge direkt an Benutzer geknüpft werden:
-**Pfad:** Einstellungen > System > Benutzer & Rechte > [Benutzer] > Integrationen (Reiter)
+Alternatively, API access can be tied directly to users:
+**Path:** Einstellungen > System > Benutzer & Rechte (Users & permissions) > [user] > Integrationen (tab)
 
-- „Neuer Zugangsschlüssel"-Button generiert API-ID + Sicherheitsschlüssel
-- Sicherheitsschlüssel sofort notieren (nur einmalig sichtbar)
-- Bearbeitung/Löschung via Kontextmenü
+- The "Neuer Zugangsschlüssel" (New access key) button generates an API ID + secret key
+- Note the secret key immediately (visible only once)
+- Editing/deletion via the context menu

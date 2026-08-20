@@ -1,9 +1,9 @@
-# Shopware 6 — Admin-API-Authentifizierung (OAuth2)
+# Shopware 6 — Admin API authentication (OAuth2)
 
-Token holen an `POST /api/oauth/token`, dann `Authorization: Bearer {access_token}` an allen Admin-API-Requests.
+Fetch a token at `POST /api/oauth/token`, then send `Authorization: Bearer {access_token}` on all Admin API requests.
 
-## client_credentials (Integrationen, produktiv)
-Aus einer **Integration** (Admin → Einstellungen → System → Integrationen) `client_id`/`client_secret`:
+## client_credentials (integrations, production)
+Take `client_id`/`client_secret` from an **integration** (Admin → Settings → System → Integrations):
 ```bash
 curl -X POST "$BASE/api/oauth/token" -H "Content-Type: application/json" -d '{
   "grant_type": "client_credentials",
@@ -12,7 +12,7 @@ curl -X POST "$BASE/api/oauth/token" -H "Content-Type: application/json" -d '{
 }'
 ```
 
-## password (nur lokale Entwicklung)
+## password (local development only)
 ```bash
 curl -X POST "$BASE/api/oauth/token" -H "Content-Type: application/json" -d '{
   "grant_type": "password", "client_id": "administration",
@@ -20,6 +20,6 @@ curl -X POST "$BASE/api/oauth/token" -H "Content-Type: application/json" -d '{
 }'
 ```
 
-Antwort: `access_token` (Bearer), `expires_in` (Default **600s**), `refresh_token` (nur password-Grant). Bei Ablauf
-neu holen bzw. via `grant_type: refresh_token` erneuern. Integrationen können Admin-Rechte/ACL bekommen.
-Requests danach: `sw-admin-api-crud`, `sw-admin-api-search`. OpenAPI-Schema (dev): `GET /api/_info/openapi3.json`.
+Response: `access_token` (bearer), `expires_in` (default **600s**), `refresh_token` (password grant only). On expiry
+fetch a new one or renew via `grant_type: refresh_token`. Integrations can be granted admin rights/ACL.
+Requests afterwards: `sw-admin-api-crud`, `sw-admin-api-search`. OpenAPI schema (dev): `GET /api/_info/openapi3.json`.

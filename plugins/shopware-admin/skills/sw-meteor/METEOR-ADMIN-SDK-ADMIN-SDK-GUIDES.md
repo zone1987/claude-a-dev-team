@@ -302,7 +302,7 @@ Apps using the CDN still require: an app server, an HTML file to serve, and `man
 
 ## Architecture — postMessage communication
 
-![postMessage communication](../assets/post-message-communication.png)
+*(Diagram in the upstream docs: postMessage communication between app and admin.)*
 
 ### Hybrid model
 
@@ -388,7 +388,7 @@ Avoid scrollbars: set `overflow: hidden` on `body` inside the iFrame.
 
 ### Discovering positions with Vue DevTools
 
-![DevTools usage](../assets/devtools-usage.png)
+*(Screenshot in the upstream docs: the Meteor Admin SDK DevTools panel.)*
 
 **Prerequisites:**
 - Vue DevTools (version 6+, beta channel)
@@ -407,7 +407,7 @@ Avoid scrollbars: set `overflow: hidden` on `body` inside the iFrame.
 
 Component sections allow injecting UI components into predefined extension points.
 
-![Component Sections](../assets/component-sections-example.png)
+*(Screenshot in the upstream docs: a component section rendered in the admin.)*
 
 ```js
 import { ui, location } from '@shopware-ag/meteor-admin-sdk';

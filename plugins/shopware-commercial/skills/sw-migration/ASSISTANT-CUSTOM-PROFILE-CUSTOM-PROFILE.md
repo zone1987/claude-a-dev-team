@@ -2,36 +2,36 @@
 
 ## Contents
 
-- [Szenario-Auswahl](#szenario-auswahl)
-- [A) Bestehendes Shopware-Profil erweitern (BundleExample)](#a-bestehendes-shopware-profil-erweitern-bundleexample)
-- [B) Converter dekorieren + Premapping-Reader (Converter-Extension)](#b-converter-dekorieren-premapping-reader-converter-extension)
-- [C) Neues Profil von Grund auf (Drittanbieter-System)](#c-neues-profil-von-grund-auf-drittanbieter-system)
-- [D) Migration Connector (SW5 API) erweitern](#d-migration-connector-sw5-api-erweitern)
+- [Scenario selection](#scenario-selection)
+- [A) Extend an existing Shopware profile (BundleExample)](#a-extend-an-existing-shopware-profile-bundleexample)
+- [B) Decorate a converter + premapping reader (converter extension)](#b-decorate-a-converter--premapping-reader-converter-extension)
+- [C) A new profile from scratch (third-party system)](#c-a-new-profile-from-scratch-third-party-system)
+- [D) Extend the Migration Connector (SW5 API)](#d-extend-the-migration-connector-sw5-api)
 
-## Szenario-Auswahl
+## Scenario selection
 
-| Ziel                                                  | Guide                              |
+| Goal                                                  | Guide                              |
 |-------------------------------------------------------|------------------------------------|
-| Plugin-Daten aus SW5 migrieren (lokales Gateway)      | Shopware-Profil erweitern          |
-| Plugin-Daten aus SW5 via API migrieren                | Migration Connector erweitern      |
-| Konverter eines bestehenden Profils anpassen          | Converter dekorieren + Premapping  |
-| Drittanbieter-System migrieren (nicht Shopware)       | Neues Profil von Grund auf         |
+| Migrate plugin data from SW5 (local gateway)          | Extend the Shopware profile        |
+| Migrate plugin data from SW5 via API                  | Extend the Migration Connector     |
+| Adjust the converter of an existing profile           | Decorate converter + premapping    |
+| Migrate a third-party system (not Shopware)           | New profile from scratch           |
 
-## A) Bestehendes Shopware-Profil erweitern (BundleExample)
+## A) Extend an existing Shopware profile (BundleExample)
 
-### 1. DataSet anlegen
+### 1. Create the DataSet
 
 ```php
 class BundleDataSet extends DataSet
 {
     public static function getEntity(): string
     {
-        return 'swag_bundle'; // Entitaets-Bezeichner (muss mit Writer-supports() uebereinstimmen)
+        return 'swag_bundle'; // Entity identifier (must match the writer's supports())
     }
 
     public function supports(MigrationContextInterface $migrationContext): bool
     {
-        // Alle Shopware-Profile-Versionen unterstuetzen
+        // Support all Shopware profile versions
         return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
     }
 
@@ -42,9 +42,9 @@ class BundleDataSet extends DataSet
 }
 ```
 
-**DIC-Tag:** `shopware.migration.data_set`
+**DIC tag:** `shopware.migration.data_set`
 
-### 2. DataSelection dekorieren (Entitaet zu bestehender Auswahl hinzufuegen)
+### 2. Decorate the DataSelection (add an entity to an existing selection)
 
 ```php
 class ProductDataSelection implements DataSelectionInterface
@@ -66,14 +66,14 @@ class ProductDataSelection implements DataSelectionInterface
             $dataSelection->getSnippet(),
             $dataSelection->getPosition(),
             $dataSelection->getProcessMediaFiles(),
-            DataSelectionStruct::PLUGIN_DATA_TYPE  // Typ: PLUGIN_DATA_TYPE statt BASIC_DATA_TYPE
+            DataSelectionStruct::PLUGIN_DATA_TYPE  // Type: PLUGIN_DATA_TYPE instead of BASIC_DATA_TYPE
         );
     }
 
     public function getDataSets(): array
     {
         $entities = $this->originalDataSelection->getDataSets();
-        $entities[] = new BundleDataSet(); // Neue Entitaet NACH Abhaengigkeiten einfuegen
+        $entities[] = new BundleDataSet(); // Insert the new entity AFTER its dependencies
         return $entities;
     }
 
@@ -84,7 +84,7 @@ class ProductDataSelection implements DataSelectionInterface
 }
 ```
 
-**DIC-Registrierung (dekorieren):**
+**DIC registration (decorate):**
 ```php
 $services->set(ProductDataSelection::class)
     ->decorate(OriginalProductDataSelection::class)
@@ -93,7 +93,7 @@ $services->set(ProductDataSelection::class)
 $services->set(BundleDataSet::class)->tag('shopware.migration.data_set');
 ```
 
-### 3. Administration-Snippet fuer Entitaetszaehler
+### 3. Administration snippet for the entity counter
 
 ```json
 {
@@ -109,7 +109,7 @@ $services->set(BundleDataSet::class)->tag('shopware.migration.data_set');
 }
 ```
 
-### 4. Lokalen Reader erstellen
+### 4. Create the local reader
 
 ```php
 class LocalBundleReader extends AbstractReader
@@ -138,13 +138,13 @@ class LocalBundleReader extends AbstractReader
     {
         $this->setConnection($migrationContext);
 
-        // IDs paginiert holen
+        // Fetch IDs page by page
         $ids = $this->fetchIdentifiers('s_bundles', $migrationContext->getOffset(), $migrationContext->getLimit());
 
-        // Hauptdaten mit Tabellen-Prefix
+        // Main data with table prefix
         $bundles = $this->mapData($this->fetchBundles($ids), [], ['bundles']);
 
-        // Assoziierte Daten nachladen und einbetten
+        // Load associated data afterwards and embed it
         $bundleProducts = $this->fetchBundleProducts($ids);
         foreach ($bundles as &$bundle) {
             if (isset($bundleProducts[$bundle['id']])) {
@@ -158,7 +158,7 @@ class LocalBundleReader extends AbstractReader
     {
         $query = $this->connection->createQueryBuilder();
         $query->from('s_bundles', 'bundles');
-        $this->addTableSelection($query, 's_bundles', 'bundles'); // Fuegt Prefix-Aliase hinzu
+        $this->addTableSelection($query, 's_bundles', 'bundles'); // Adds the prefixed aliases
         $query->where('bundles.id IN (:ids)');
         $query->setParameter('ids', $ids, Connection::PARAM_STR_ARRAY);
         $query->addOrderBy('bundles.id');
@@ -167,14 +167,14 @@ class LocalBundleReader extends AbstractReader
 }
 ```
 
-**DIC-Registrierung:**
+**DIC registration:**
 ```php
 $services->set(LocalBundleReader::class)
     ->parent(AbstractReader::class)
     ->tag('shopware.migration.reader');
 ```
 
-### 5. Converter erstellen
+### 5. Create the converter
 
 ```php
 class BundleConverter extends ShopwareConverter
@@ -203,7 +203,7 @@ class BundleConverter extends ShopwareConverter
         $converted['discountType'] = 'absolute';
         $converted['discount'] = 0;
 
-        // Relationen auflösen (Mapping bereits migrierter Entitaeten)
+        // Resolve relations (mapping of already migrated entities)
         if (isset($data['products'])) {
             $products = [];
             foreach ($data['products'] as $productId) {
@@ -235,9 +235,9 @@ class BundleConverter extends ShopwareConverter
 }
 ```
 
-**DIC-Tag:** `shopware.migration.converter`
+**DIC tag:** `shopware.migration.converter`
 
-### 6. Writer erstellen
+### 6. Create the writer
 
 ```php
 class BundleWriter extends AbstractWriter
@@ -246,22 +246,22 @@ class BundleWriter extends AbstractWriter
 }
 ```
 
-**DIC-Registrierung:**
+**DIC registration:**
 ```php
 $services->set(BundleWriter::class)
     ->parent(AbstractWriter::class)
     ->args([
         service(EntityWriter::class),
-        service(BundleDefinition::class), // EntityDefinition des Ziel-Entities
+        service(BundleDefinition::class), // EntityDefinition of the target entity
     ])
     ->tag('shopware.migration.writer');
 ```
 
-## B) Converter dekorieren + Premapping-Reader (Converter-Extension)
+## B) Decorate a converter + premapping reader (converter extension)
 
-### Premapping-Reader erstellen
+### Create the premapping reader
 
-Erlaubt Benutzern, SW5-Hersteller manuell SW6-Herstellern zuzuordnen:
+Lets users manually assign SW5 manufacturers to SW6 manufacturers:
 
 ```php
 class ManufacturerReader extends AbstractPremappingReader
@@ -278,10 +278,10 @@ class ManufacturerReader extends AbstractPremappingReader
 
     public function getPremapping(Context $context, MigrationContextInterface $migrationContext): PremappingStruct
     {
-        $this->fillConnectionPremappingDictionary($migrationContext); // Bestehende Zuordnungen laden
-        $mapping = $this->getMapping($migrationContext); // Quelldaten lesen
-        $choices = $this->getChoices($context);          // Ziel-Optionen lesen
-        $this->setPreselection($mapping);                // Automatisch vorausfuellen
+        $this->fillConnectionPremappingDictionary($migrationContext); // Load existing assignments
+        $mapping = $this->getMapping($migrationContext); // Read source data
+        $choices = $this->getChoices($context);          // Read target options
+        $this->setPreselection($mapping);                // Prefill automatically
 
         return new PremappingStruct(self::getMappingName(), $mapping, $choices);
     }
@@ -301,9 +301,9 @@ class ManufacturerReader extends AbstractPremappingReader
 }
 ```
 
-**DIC-Tag:** `shopware.migration.pre_mapping_reader`
+**DIC tag:** `shopware.migration.pre_mapping_reader`
 
-Administration-Snippet fuer Premapping-Karten-Titel:
+Administration snippet for the premapping card title:
 ```json
 {
     "swag-migration": {
@@ -318,7 +318,7 @@ Administration-Snippet fuer Premapping-Karten-Titel:
 }
 ```
 
-### Converter dekorieren
+### Decorate the converter
 
 ```php
 class Shopware55DecoratedProductConverter extends ProductConverter
@@ -346,7 +346,7 @@ class Shopware55DecoratedProductConverter extends ProductConverter
         $manufacturerId = $data['manufacturer']['id'];
         unset($data['manufacturer']);
 
-        // Premapping-Zuordnung lesen
+        // Read the premapping assignment
         $mapping = $this->mappingService->getMapping(
             $migrationContext->getConnection()->getId(),
             ManufacturerReader::getMappingName(),
@@ -354,14 +354,14 @@ class Shopware55DecoratedProductConverter extends ProductConverter
             $context
         );
 
-        // Original-Converter ausfuehren
+        // Run the original converter
         $convertedStruct = $this->originalProductConverter->convert($data, $context, $migrationContext);
 
         if ($mapping === null) {
             return $convertedStruct;
         }
 
-        // Premapping-Ergebnis in konvertierte Daten einbauen
+        // Merge the premapping result into the converted data
         $converted = $convertedStruct->getConverted();
         $converted['manufacturerId'] = $mapping['entityUuid'];
         return new ConvertStruct($converted, $convertedStruct->getUnmapped(), $convertedStruct->getMappingUuid());
@@ -369,10 +369,10 @@ class Shopware55DecoratedProductConverter extends ProductConverter
 }
 ```
 
-**DIC-Registrierung:**
+**DIC registration:**
 ```php
 $services->set(Shopware55DecoratedProductConverter::class)
-    ->decorate(Shopware55ProductConverter::class)  // Zu dekorierender Original-Converter
+    ->decorate(Shopware55ProductConverter::class)  // Original converter to be decorated
     ->args([
         service('.inner'),
         service(MappingService::class),
@@ -381,40 +381,40 @@ $services->set(Shopware55DecoratedProductConverter::class)
     ]);
 ```
 
-## C) Neues Profil von Grund auf (Drittanbieter-System)
+## C) A new profile from scratch (third-party system)
 
-### Mindest-Implementierung
+### Minimum implementation
 
-1. **Profile** implementiert `ProfileInterface` — `getName()`, `getSourceSystemName()`, `getVersion()`
-2. **Gateway** implementiert `GatewayInterface` — `read()`, `readEnvironmentInformation()`, `readTotals()`
-3. **Credentials-Seite** in Administration: Vue-Komponente `swag-migration-profile-{profileName}-{gatewayName}-credential-form`
-4. **DataSet + DataSelection** fuer jede zu migrierende Entitaet
-5. **Reader** liest Quelldaten paginiert
-6. **Converter** transformiert in SW6-Struktur
-7. **Writer** (oft `AbstractWriter` mit korrekter `EntityDefinition` ausreichend)
+1. **Profile** implements `ProfileInterface` — `getName()`, `getSourceSystemName()`, `getVersion()`
+2. **Gateway** implements `GatewayInterface` — `read()`, `readEnvironmentInformation()`, `readTotals()`
+3. **Credentials page** in the Administration: Vue component `swag-migration-profile-{profileName}-{gatewayName}-credential-form`
+4. **DataSet + DataSelection** for every entity to be migrated
+5. **Reader** reads the source data page by page
+6. **Converter** transforms it into the SW6 structure
+7. **Writer** (often `AbstractWriter` with the correct `EntityDefinition` is enough)
 
-### Komponentennamen-Konvention fuer Administration
+### Component naming convention for the Administration
 
 ```
 swag-migration-profile-{profileName}-{gatewayName}-credential-form
 ```
 
-Beispiel: `swag-migration-profile-ownProfile-local-credential-form`
+Example: `swag-migration-profile-ownProfile-local-credential-form`
 
-### Optionale Plugin-Konditionalitaet (wenn Migration Assistant optional ist)
+### Optional plugin conditionality (when the Migration Assistant is optional)
 
-In der Plugin-Basisklasse bedingt laden:
+Load conditionally in the plugin base class:
 ```php
 if (class_exists(MigrationAssistantPluginClass::class)) {
-    // Migration-Services laden
+    // Load the migration services
 }
 ```
 
-Getrennte DIC-Konfigurationsdatei: `migration_assistant_extension.php`
+Separate DIC configuration file: `migration_assistant_extension.php`
 
-## D) Migration Connector (SW5 API) erweitern
+## D) Extend the Migration Connector (SW5 API)
 
-### Repository (SW5-Seite)
+### Repository (SW5 side)
 
 ```php
 class BundleRepository extends AbstractRepository
@@ -422,14 +422,14 @@ class BundleRepository extends AbstractRepository
     public function fetch($offset = 0, $limit = 250): array
     {
         $ids = $this->fetchIdentifiers('s_bundles', $offset, $limit);
-        // ... Daten via Doctrine DBAL lesen
+        // ... read data via Doctrine DBAL
     }
 }
 ```
 
 **DIC:** `->parent(AbstractRepository::class)`
 
-### Service (SW5-Seite)
+### Service (SW5 side)
 
 ```php
 class BundleService extends AbstractApiService
@@ -442,7 +442,7 @@ class BundleService extends AbstractApiService
 }
 ```
 
-### API-Controller (SW5-Seite, Shopware 5 MVC)
+### API controller (SW5 side, Shopware 5 MVC)
 
 ```php
 class Shopware_Controllers_Api_SwagMigrationBundles extends Shopware_Controllers_Api_Rest
@@ -458,7 +458,7 @@ class Shopware_Controllers_Api_SwagMigrationBundles extends Shopware_Controllers
 }
 ```
 
-### API-Reader (SW6-Seite, erbt von ApiReader)
+### API reader (SW6 side, inherits from ApiReader)
 
 ```php
 class BundleReader extends ApiReader
@@ -472,9 +472,9 @@ class BundleReader extends ApiReader
 
     protected function getApiRoute(): string
     {
-        return 'SwagMigrationBundles'; // Entspricht SW5 API Controller-Name
+        return 'SwagMigrationBundles'; // Matches the SW5 API controller name
     }
 }
 ```
 
-**DIC-Tag:** `shopware.migration.reader`
+**DIC tag:** `shopware.migration.reader`

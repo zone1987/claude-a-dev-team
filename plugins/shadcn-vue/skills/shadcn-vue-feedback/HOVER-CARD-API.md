@@ -1,38 +1,38 @@
 # HoverCard — API
 
-Reka-UI API-Referenz: https://reka-ui.com/docs/components/hover-card#api-reference
+Reka-UI API reference: https://reka-ui.com/docs/components/hover-card#api-reference
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `HoverCard` | Root-Wrapper (HoverCardRoot) |
-| `HoverCardTrigger` | Element, das beim Hovern die Karte oeffnet |
-| `HoverCardContent` | Inhalt der Karte (w-64, p-4, rounded-md) |
+| `HoverCard` | Root wrapper (HoverCardRoot) |
+| `HoverCardTrigger` | Element that opens the card on hover |
+| `HoverCardContent` | Content of the card (w-64, p-4, rounded-md) |
 
 ## HoverCard (Root)
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `open` | `boolean` | - | Kontrollierter Zustand |
+| `open` | `boolean` | - | Controlled state |
 | `defaultOpen` | `boolean` | `false` | - |
-| `openDelay` | `number` | `700` | Verzoegerung beim Oeffnen (ms) |
-| `closeDelay` | `number` | `300` | Verzoegerung beim Schliessen (ms) |
+| `openDelay` | `number` | `700` | Delay before opening (ms) |
+| `closeDelay` | `number` | `300` | Delay before closing (ms) |
 
-| Emit | Payload | Beschreibung |
+| Emit | Payload | Description |
 |---|---|---|
-| `update:open` | `boolean` | Zustand geaendert |
+| `update:open` | `boolean` | State changed |
 
 ## HoverCardContent
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Anzeigeseite |
-| `sideOffset` | `number` | `4` | Abstand zum Trigger |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Ausrichtung |
-| `alignOffset` | `number` | `0` | Offset zur Ausrichtung |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Display side |
+| `sideOffset` | `number` | `4` | Distance from the trigger |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | Alignment |
+| `alignOffset` | `number` | `0` | Offset relative to the alignment |
 | `class` | `string` | - | - |
 
 ## Slots
 
-Alle Komponenten nutzen Default-Slots. `HoverCard` stellt slotProps bereit (open-Zustand).
+All components use default slots. `HoverCard` provides slotProps (open state).

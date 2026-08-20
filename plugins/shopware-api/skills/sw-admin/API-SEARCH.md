@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-API-Suche (Criteria)
+# Shopware 6 — Admin API search (Criteria)
 
-Für echte Abfragen `POST /api/search/{entity}` mit Criteria-JSON (gespiegelt von der PHP-DAL-Criteria).
+For real queries use `POST /api/search/{entity}` with Criteria JSON (mirrored from the PHP DAL Criteria).
 
 ```bash
 curl -X POST "$BASE/api/search/product" -H "Authorization: Bearer $T" -H "Content-Type: application/json" -d '{
@@ -13,7 +13,7 @@ curl -X POST "$BASE/api/search/product" -H "Authorization: Bearer $T" -H "Conten
 }'
 ```
 
-Filter-Typen: `equals`, `equalsAny`, `contains`, `prefix`, `suffix`, `range`, `multi` (operator AND/OR), `not`.
-`associations` lädt verschachtelt (rekursiv mit eigener Criteria). `aggregations` für Kennzahlen/Facetten.
-`total-count-mode`: 0 (keins), 1 (exact), 2 (next-pages). Antwort: `data`, `total`, `aggregations`.
-Identisch nutzbar auf der Store API für `product-listing`/`search` (`sw-store-api-endpoints`). DAL-Pendant: `shopware-data` (`sw-criteria`).
+Filter types: `equals`, `equalsAny`, `contains`, `prefix`, `suffix`, `range`, `multi` (operator AND/OR), `not`.
+`associations` loads nested data (recursively, with its own Criteria). `aggregations` for metrics/facets.
+`total-count-mode`: 0 (none), 1 (exact), 2 (next-pages). Response: `data`, `total`, `aggregations`.
+Usable identically on the Store API for `product-listing`/`search` (`sw-store-api-endpoints`). DAL counterpart: `shopware-data` (`sw-criteria`).

@@ -6,18 +6,18 @@
 npx shadcn-vue@latest add input-otp
 ```
 
-## Manuell
+## Manual
 
-### Abhaengigkeiten
+### Dependencies
 
 ```bash
 npm install vue-input-otp
 ```
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren (siehe `references/source.md`) nach `components/ui/input-otp/`
-2. Importpfade anpassen
+1. Copy source code (see `references/source.md`) to `components/ui/input-otp/`
+2. Adjust import paths
 
 ### Import
 
@@ -32,6 +32,6 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://vue-input-otp.vercel.app/
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/input-otp

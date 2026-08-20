@@ -1,34 +1,34 @@
-# Shopware Messaging — Konzept
+# Shopware messaging — concept
 
-Vollständige Konzept-Doku: `MESSAGING-DATA-STORES.md`
+Complete concept documentation: `MESSAGING-DATA-STORES.md`
 
-## Kurzüberblick
+## Brief overview
 
-Shopware integriert **Symfony Messenger** + Enqueue für asynchrone Nachrichten-Verarbeitung.
+Shopware integrates **Symfony Messenger** + Enqueue for asynchronous message processing.
 
-### Kernkomponenten
+### Core components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| **Message Bus** | `messenger.default_bus` — zentraler Dispatch-Punkt; pflichtgemäß für Shopware-interne Nachrichten |
-| **Message** | Serialisierbares PHP-Objekt mit allen Handler-notwendigen Daten |
-| **Handler** | Callable mit `#[AsMessageHandler]`; `__invoke()` mit typisierten Message-Parameter |
-| **Middleware** | Verarbeitet Nachricht beim Dispatch (z.B. `send_message`, `handle_message`) |
-| **Envelope** | Hülle um Message mit Stamps (Metadaten) |
-| **Transport** | Verbindung zu Message-Broker (AMQP, SQS, Redis, Doctrine, etc.) |
+| **Message bus** | `messenger.default_bus` — the central dispatch point; mandatory for Shopware-internal messages |
+| **Message** | Serialisable PHP object with all data the handler needs |
+| **Handler** | Callable with `#[AsMessageHandler]`; `__invoke()` with a typed message parameter |
+| **Middleware** | Processes the message on dispatch (e.g. `send_message`, `handle_message`) |
+| **Envelope** | Wrapper around the message with stamps (metadata) |
+| **Transport** | Connection to a message broker (AMQP, SQS, Redis, Doctrine, etc.) |
 
-### Synchron vs. Asynchron
+### Synchronous vs. asynchronous
 
-- Ohne konfigurierten Transport: **synchrone Verarbeitung** (wie Symfony Events)
-- Mit Transport: **asynchrone Verarbeitung** via Background-Worker
+- Without a configured transport: **synchronous processing** (like Symfony events)
+- With a transport: **asynchronous processing** via a background worker
 
-### Konsum
+### Consumption
 
-- CLI: `bin/console messenger:consume` — persistenter Worker
-- API: POST-Endpoint — verarbeitet 2 Sekunden lang, gibt Anzahl zurück
+- CLI: `bin/console messenger:consume` — persistent worker
+- API: POST endpoint — processes for 2 seconds, returns the count
 
-### Sensitiver Bus
+### Sensitive bus
 
-Zusätzlicher Message Bus für verschlüsselte/sensitive Daten verfügbar.
+An additional message bus for encrypted/sensitive data is available.
 
-Technische Umsetzung: `shopware-framework` (Dev-Plugin)
+Technical implementation: `shopware-framework` (dev plugin)

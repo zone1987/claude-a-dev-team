@@ -1,22 +1,22 @@
-# Popover — API-Referenz
+# Popover — API Reference
 
 ## Popover (Root)
 
-Basiert auf reka-ui `PopoverRoot`.
+Built on reka-ui `PopoverRoot`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `open` | `boolean` | — | Kontrollierter Offenzustand |
-| `defaultOpen` | `boolean` | `false` | Unkontrollierter Startzustand |
-| `modal` | `boolean` | `false` | Modal-Modus (Fokus-Trap) |
+| `open` | `boolean` | — | Controlled open state |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial state |
+| `modal` | `boolean` | `false` | Modal mode (focus trap) |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| `update:open` | `boolean` | Feuert beim Offnen/Schliessen |
+| `update:open` | `boolean` | Fires on open/close |
 
 ### Slot Props
 
@@ -28,37 +28,37 @@ Basiert auf reka-ui `PopoverRoot`.
 
 ## PopoverTrigger
 
-Basiert auf reka-ui `PopoverTrigger`. Kein eigenes Styling.
+Built on reka-ui `PopoverTrigger`. No styling of its own.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `asChild` | `boolean` | Rendert das Kind als Trigger |
-| Alle `PopoverTriggerProps` | — | Weitergeleitet |
+| `asChild` | `boolean` | Renders the child as the trigger |
+| All `PopoverTriggerProps` | — | Forwarded |
 
 ---
 
 ## PopoverContent
 
-Basiert auf reka-ui `PopoverContent`, gerendert in `PopoverPortal`.
+Built on reka-ui `PopoverContent`, rendered inside `PopoverPortal`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Horizontale Ausrichtung |
-| `sideOffset` | `number` | `4` | Abstand zum Trigger (px) |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Bevorzugte Seite |
-| `alignOffset` | `number` | — | Versatz entlang der Alignment-Achse |
-| `avoidCollisions` | `boolean` | `true` | Flippt bei Viewport-Kollision |
-| `collisionBoundary` | `Element \| null \| Array` | — | Kollisionsgrenzen |
-| `collisionPadding` | `number \| Partial<Record<Side, number>>` | `0` | Padding bei Kollisionspruferung |
-| `sticky` | `"partial" \| "always"` | `"partial"` | Klebrigkeit |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | Horizontal alignment |
+| `sideOffset` | `number` | `4` | Distance from the trigger (px) |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Preferred side |
+| `alignOffset` | `number` | — | Offset along the alignment axis |
+| `avoidCollisions` | `boolean` | `true` | Flips on viewport collision |
+| `collisionBoundary` | `Element \| null \| Array` | — | Collision boundaries |
+| `collisionPadding` | `number \| Partial<Record<Side, number>>` | `0` | Padding for the collision check |
+| `sticky` | `"partial" \| "always"` | `"partial"` | Stickiness |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
-### Animationen
-Werden via `data-[state]` und `data-[side]` gesteuert:
+### Animations
+Are controlled via `data-[state]` and `data-[side]`:
 - `data-[state=open]`: fade-in + zoom-in-95
 - `data-[state=closed]`: fade-out + zoom-out-95
 - `data-[side=*]`: slide-in-from-*
@@ -67,15 +67,15 @@ Werden via `data-[state]` und `data-[side]` gesteuert:
 
 ## PopoverAnchor
 
-Entkoppelt Anker vom Trigger. Ermoglicht das Positionieren des Popovers relativ zu einem anderen Element.
+Decouples the anchor from the trigger. Allows positioning the popover relative to another element.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| Alle `PopoverAnchorProps` | — | Weitergeleitet |
+| All `PopoverAnchorProps` | — | Forwarded |
 
 ---
 
-## reka-ui Referenz
+## reka-ui Reference
 - https://reka-ui.com/docs/components/popover

@@ -1,170 +1,170 @@
-# Shopware 6 – Bestellung manuell im Admin anlegen: Vollständige Referenz
+# Shopware 6 – Creating an order manually in the admin: complete reference
 
 ## Contents
 
-- [Einstieg](#einstieg)
-- [Schritt 1: Kunden auswählen](#schritt-1-kunden-auswählen)
-- [Schritt 2: Positionen hinzufügen](#schritt-2-positionen-hinzufügen)
-- [Schritt 3: Optionen konfigurieren](#schritt-3-optionen-konfigurieren)
-- [Schritt 4: Bestellung speichern](#schritt-4-bestellung-speichern)
-- [Neuen Kunden direkt anlegen](#neuen-kunden-direkt-anlegen)
-- [PayPal-Zahlung nach manueller Bestellung](#paypal-zahlung-nach-manueller-bestellung)
-- [Voraussetzungen](#voraussetzungen)
-- [Quelle](#quelle)
+- [Entry point](#entry-point)
+- [Step 1: Select a customer](#step-1-select-a-customer)
+- [Step 2: Add line items](#step-2-add-line-items)
+- [Step 3: Configure options](#step-3-configure-options)
+- [Step 4: Save the order](#step-4-save-the-order)
+- [Creating a new customer inline](#creating-a-new-customer-inline)
+- [PayPal payment after a manual order](#paypal-payment-after-a-manual-order)
+- [Prerequisites](#prerequisites)
+- [Source](#source)
 
-## Einstieg
+## Entry point
 
-![Bestellungen Übersicht Button](../../assets/bestellungen-uebersicht-btn.png)
+![Bestellungen overview button](assets/orders-overview-btn.png)
 
-Unter **Bestellungen** befindet sich der Button **„Bestellung anlegen"**. Darüber öffnet sich das Modul zur manuellen Bestellerfassung. Dieses Modul ist ab Shopware **6.5.0.0** verfügbar.
+Under **Bestellungen** (Orders) you will find the **"Bestellung anlegen"** (Create order) button. It opens the module for manual order entry. This module is available from Shopware **6.5.0.0** onwards.
 
 ---
 
-## Schritt 1: Kunden auswählen
+## Step 1: Select a customer
 
-![Kunden auswählen](../../assets/neue-bestellung-kunden.png)
+![Selecting a customer](assets/new-order-customers.png)
 
-In der Kundenliste werden angezeigt:
+The customer list shows:
 - Name
-- Kundennummer
-- Verkaufskanal
-- E-Mail-Adresse
+- Customer number
+- Sales channel
+- Email address
 
-**Alternativen:**
-- Bestehenden Kunden aus der Liste wählen
-- Neuen Kunden direkt über „Kunden anlegen" anlegen (ohne die Ansicht zu verlassen)
-- Bearbeiten-Icon öffnet den Kunden zur direkten Bearbeitung
-
----
-
-## Schritt 2: Positionen hinzufügen
-
-### Produkt aus Katalog hinzufügen
-
-![Produkte hinzufügen](../../assets/produkte-hinzufuegen.png)
-
-1. Button **„Produkt hinzufügen"** klicken
-2. Produkt im Suchdialog finden und auswählen
-3. Zeile per Doppelklick bearbeiten:
-   - **Preis**: wird automatisch aus dem Produktstamm übernommen, ist manuell überschreibbar
-   - **Steuersatz**: wird automatisch aus dem Produktstamm übernommen
-   - **Menge**: beeinflusst den Gesamtpreis
-4. Eingabe mit Häkchen-Button bestätigen
-
-> Das Suchfeld filtert nur Positionen der aktuellen Bestellung, **nicht** den gesamten Produktkatalog.
-
-### Leere Position hinzufügen
-
-![Leere Position](../../assets/leere-position.png)
-
-Zugang: Dropdown-Pfeil neben „Produkt hinzufügen" > **„Leere Position hinzufügen"**
-
-Verwendung für Nicht-Katalog-Produkte oder Dienstleistungen:
-
-| Feld | Pflicht | Hinweis |
-|---|---|---|
-| Name | Ja | Erscheint auf Dokumenten |
-| Bruttopreis | Ja | Erst nach Steuersatz-Eingabe korrekt angezeigt |
-| Steuersatz | Ja | Muss zuerst eingegeben werden |
-| Menge | Ja | Standard: 1 |
-
-Eingabe mit Häkchen-Button bestätigen.
-
-### Gutschrift / Rabatt hinzufügen
-
-![Gutschrift hinzufügen](../../assets/gutschrift-hinzufuegen.png)
-
-Zugang: Dropdown-Pfeil neben „Produkt hinzufügen" > **„Gutschrift hinzufügen"**
-
-| Feld | Pflicht | Hinweis |
-|---|---|---|
-| Name | Ja | Beschriftung auf Dokumenten |
-| Bruttopreis | Ja | Negativer Betrag = Abzug |
-
-> Steuersatz wird automatisch aus den Produktpositionen berechnet. Eine manuelle Anpassung des Steuersatzes ist bei Gutschriften **nicht** möglich.
-
-### Position löschen
-
-Checkbox neben einer Position aktivieren > Löschen-Button erscheint. Kopf-Checkbox selektiert alle Positionen auf einmal.
+**Alternatives:**
+- Pick an existing customer from the list
+- Create a new customer directly via "Kunden anlegen" (Create customer) without leaving the view
+- The edit icon opens the customer for direct editing
 
 ---
 
-## Schritt 3: Optionen konfigurieren
+## Step 2: Add line items
 
-![Optionen](../../assets/neue-bestellung-optionen.png)
+### Adding a product from the catalogue
 
-| Option | Beschreibung |
+![Adding products](assets/products-add.png)
+
+1. Click the **"Produkt hinzufügen"** (Add product) button
+2. Find and select the product in the search dialogue
+3. Edit the row by double-clicking:
+   - **Preis** (Price): taken automatically from the product master data, can be overwritten manually
+   - **Steuersatz** (Tax rate): taken automatically from the product master data
+   - **Menge** (Quantity): affects the total price
+4. Confirm the entry with the check-mark button
+
+> The search field only filters line items of the current order, **not** the entire product catalogue.
+
+### Adding an empty line item
+
+![Empty line item](assets/leere-position.png)
+
+Access: dropdown arrow next to "Produkt hinzufügen" > **"Leere Position hinzufügen"** (Add empty line item)
+
+Used for non-catalogue products or services:
+
+| Field | Required | Note |
+|---|---|---|
+| Name | Yes | Appears on documents |
+| Bruttopreis (Gross price) | Yes | Only displayed correctly after the tax rate has been entered |
+| Steuersatz | Yes | Must be entered first |
+| Menge | Yes | Default: 1 |
+
+Confirm the entry with the check-mark button.
+
+### Adding a credit note / discount
+
+![Adding a credit note](assets/credit-note-add.png)
+
+Access: dropdown arrow next to "Produkt hinzufügen" > **"Gutschrift hinzufügen"** (Add credit note)
+
+| Field | Required | Note |
+|---|---|---|
+| Name | Yes | Label on documents |
+| Bruttopreis | Yes | Negative amount = deduction |
+
+> The tax rate is calculated automatically from the product line items. Manually adjusting the tax rate is **not** possible for credit notes.
+
+### Deleting a line item
+
+Tick the checkbox next to a line item > the delete button appears. The header checkbox selects all line items at once.
+
+---
+
+## Step 3: Configure options
+
+![Options](assets/new-order-options.png)
+
+| Option | Description |
 |---|---|
-| **Automatische Rabattaktionen** | Vorhandene Rabattregeln aktivieren/deaktivieren |
-| **Bestellsprache** | Sprache für E-Mails und Dokumente |
-| **Rabatt** | Gutscheincode eingeben |
-| **Zahlungsart** | Nur Zahlungsarten auswählbar, die für den Verkaufskanal aktiv und als „nachträgliche Zahlart erlaubt" markiert sind |
-| **Rechnungsadresse** | Auswahl aus gespeicherten Kundenadressen |
-| **Währung** | Nur im Verkaufskanal aktivierte Währungen |
-| **Versandart** | Auswahl aus konfigurierten Versandarten |
-| **Versandkosten** | Manuelle Versandkosten eingeben |
-| **Lieferadresse gleich Rechnungsadresse** | Toggle; wenn deaktiviert, separate Lieferadresse wählen |
-| **Lieferadresse** | Separate Lieferadresse (wenn Toggle deaktiviert) |
-| **Vorschau** | Bestellung vorab anzeigen (noch nicht gespeichert) |
+| **Automatische Rabattaktionen** (Automatic discount promotions) | Enable/disable existing discount rules |
+| **Bestellsprache** (Order language) | Language for emails and documents |
+| **Rabatt** (Discount) | Enter a voucher code |
+| **Zahlungsart** (Payment method) | Only payment methods that are active for the sales channel and flagged as "subsequent payment method allowed" can be selected |
+| **Rechnungsadresse** (Billing address) | Selection from the customer's stored addresses |
+| **Währung** (Currency) | Only currencies activated in the sales channel |
+| **Versandart** (Shipping method) | Selection from the configured shipping methods |
+| **Versandkosten** (Shipping costs) | Enter shipping costs manually |
+| **Lieferadresse gleich Rechnungsadresse** (Shipping address same as billing address) | Toggle; when disabled, select a separate shipping address |
+| **Lieferadresse** (Shipping address) | Separate shipping address (when the toggle is disabled) |
+| **Vorschau** (Preview) | Show the order in advance (not yet saved) |
 
-### Versandkosten nachträglich ändern
+### Changing shipping costs afterwards
 
-Nach dem Speichern: Versandkosten-Zeile per Doppelklick bearbeiten und neuen Betrag eingeben.
-
----
-
-## Schritt 4: Bestellung speichern
-
-![Allgemein nach Speichern](../../assets/neue-bestellung-allgemein.png)
-
-Button **„Bestellung speichern"** klickt:
-- Bestellung wird angelegt
-- Bestätigungs-E-Mail wird **automatisch** an die hinterlegte Kunden-E-Mail-Adresse gesendet
-
-Nach dem Speichern stehen im Tab **„Details"** zur Verfügung:
-- Zahlungsinformationen
-- Versandinformationen
-- Allgemeine Bestelldetails
+After saving: edit the shipping costs row by double-clicking and enter the new amount.
 
 ---
 
-## Neuen Kunden direkt anlegen
+## Step 4: Save the order
 
-Button **„Kunden anlegen"** öffnet ein Modul mit folgenden Tabs:
+![Allgemein after saving](assets/new-order-general.png)
+
+Clicking the **"Bestellung speichern"** (Save order) button:
+- creates the order
+- **automatically** sends a confirmation email to the stored customer email address
+
+After saving, the **"Details"** tab provides:
+- Payment information
+- Shipping information
+- General order details
+
+---
+
+## Creating a new customer inline
+
+The **"Kunden anlegen"** button opens a module with the following tabs:
 
 ### Tab: Details
-- Allgemeine Kundendaten
-- Option: Gastkonto (kein Passwort erforderlich)
+- General customer data
+- Option: guest account (no password required)
 
 ### Tab: Rechnungsadresse
-- Vollständige Rechnungsadressdaten
+- Complete billing address data
 
 ### Tab: Lieferadresse
-- Lieferadresse; Toggle „entspricht Rechnungsadresse" übernimmt Rechnungsadresse
+- Shipping address; the "entspricht Rechnungsadresse" (same as billing address) toggle copies the billing address
 
 ---
 
-## PayPal-Zahlung nach manueller Bestellung
+## PayPal payment after a manual order
 
-Wenn PayPal als Zahlungsart ausgewählt wurde, schließt der Kunde die Zahlung nachträglich im Kundenkonto ab:
+If PayPal was selected as the payment method, the customer completes the payment afterwards in their customer account:
 
-1. Kundenkonto > Bestellungen
-2. „..."-Menü > **„Zahlungsart ändern"**
-3. Wenn PayPal bereits ausgewählt: AGB akzeptieren > **„Änderung bestätigen"**
-4. Wenn PayPal noch nicht ausgewählt: Zahlungsart auf PayPal wechseln
+1. Customer account > Bestellungen
+2. "..." menu > **"Zahlungsart ändern"** (Change payment method)
+3. If PayPal is already selected: accept the terms and conditions > **"Änderung bestätigen"** (Confirm change)
+4. If PayPal is not yet selected: switch the payment method to PayPal
 
-Alternativ: Zahlungsänderungs-Link aus der Auftragsbestätigungs-E-Mail nutzen.
+Alternatively: use the payment change link from the order confirmation email.
 
-> Menübeschriftung anpassbar über Textbaustein `account.orderContextMenuChangePayment`.
-
----
-
-## Voraussetzungen
-
-- Shopware **6.5.0.0** oder höher
-- Für ältere Versionen (6.2.0 – 6.4.20.0): separate Legacy-Dokumentation verfügbar
+> The menu label can be adjusted via the snippet `account.orderContextMenuChangePayment`.
 
 ---
 
-## Quelle
+## Prerequisites
+
+- Shopware **6.5.0.0** or higher
+- For older versions (6.2.0 – 6.4.20.0): separate legacy documentation is available
+
+---
+
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/bestellung-im-admin-anlegen

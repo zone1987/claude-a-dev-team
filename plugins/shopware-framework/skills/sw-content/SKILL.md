@@ -9,7 +9,7 @@ Services around content: transactional mail, media processing, and search indexi
 
 ## Reference map
 
-- **[ELASTICSEARCH.md](ELASTICSEARCH.md)**: Das `Shopware\Elasticsearch`-Bundle integriert OpenSearch/Elasticsearch als Such-/Aggregationsbackend. [ELASTICSEARCH-ARCHITECTURE](ELASTICSEARCH-ARCHITECTURE.md), [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md), [ELASTICSEARCH-EXTENSION](ELASTICSEARCH-EXTENSION.md).
+- **[ELASTICSEARCH.md](ELASTICSEARCH.md)**: The `Shopware\Elasticsearch` bundle integrates OpenSearch/Elasticsearch as the search/aggregation backend. [ELASTICSEARCH-ARCHITECTURE](ELASTICSEARCH-ARCHITECTURE.md), [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md), [ELASTICSEARCH-EXTENSION](ELASTICSEARCH-EXTENSION.md).
 - **[MAIL.md](MAIL.md)**: Plugins can create custom mail templates and add data to existing mail events. [MAIL-DATA](MAIL-DATA.md), [MAIL-TEMPLATE](MAIL-TEMPLATE.md), [MAIL-VARIABLES-MAIL-TEMPLATES](MAIL-VARIABLES-MAIL-TEMPLATES.md), [MAIL-VARIABLES-VARIABLE-TREES](MAIL-VARIABLES-VARIABLE-TREES.md), [MAIL-VARIABLES](MAIL-VARIABLES.md).
 - **[MEDIA.md](MEDIA.md)**: Plugins can add custom file extensions, prevent media deletion, handle thumbnails, and upload files programma…. [MEDIA-HANDLING](MEDIA-HANDLING.md), [MEDIA-THUMBNAIL](MEDIA-THUMBNAIL.md).
 

@@ -1,34 +1,34 @@
 # shadcn-vue: Installation
 
-Vollstaendige Installationsanleitungen fuer alle unterstuetzten Frameworks.
+Complete installation guides for all supported frameworks.
 
-Der gemeinsame Abschluss-Schritt in allen Frameworks:
+The shared final step across all frameworks:
 
 ```bash
 npx shadcn-vue@latest init
-# Frage: Which color would you like to use as base color? › Neutral
+# Question: Which color would you like to use as base color? › Neutral
 ```
 
-Danach Komponenten hinzufuegen:
+Then add components:
 
 ```bash
 npx shadcn-vue@latest add button
 ```
 
-VSCode Extension: shadcn-vue von @selemondev (Marketplace:
-`Selemondev.shadcn-vue`) — init CLI, Komponenten installieren, Doku oeffnen,
-Snippets.
+VSCode extension: shadcn-vue by @selemondev (Marketplace:
+`Selemondev.shadcn-vue`) — init CLI, install components, open docs,
+snippets.
 
 ## Reference Files
 
-- `INSTALLATION-VITE.md` — Vite-Projekt-Setup (npm create vite, Tailwind v4,
+- `INSTALLATION-VITE.md` — Vite project setup (npm create vite, Tailwind v4,
   tsconfig paths, vite.config.ts, init, add)
-- `INSTALLATION-NUXT.md` — Nuxt-Setup (create nuxt, Tailwind via @tailwindcss/vite
-  oder @nuxtjs/tailwindcss, shadcn-nuxt Modul, nuxt.config.ts, ssrWidth Plugin,
+- `INSTALLATION-NUXT.md` — Nuxt setup (create nuxt, Tailwind via @tailwindcss/vite
+  or @nuxtjs/tailwindcss, shadcn-nuxt module, nuxt.config.ts, ssrWidth plugin,
   npx nuxi prepare, init, add)
-- `INSTALLATION-ASTRO.md` — Astro-Setup (create-astro, tsconfig.json paths, init, add,
-  .astro Import-Syntax)
-- `INSTALLATION-LARAVEL.md` — Laravel + Inertia (laravel new --vue, sofort add,
-  resources/js Pfade)
-- `INSTALLATION-MANUAL.md` — Manuelle Installation (Abhaengigkeiten,
-  path aliases, globals.css mit allen CSS-Variablen, cn-Helper, components.json)
+- `INSTALLATION-ASTRO.md` — Astro setup (create-astro, tsconfig.json paths, init, add,
+  .astro import syntax)
+- `INSTALLATION-LARAVEL.md` — Laravel + Inertia (laravel new --vue, add right away,
+  resources/js paths)
+- `INSTALLATION-MANUAL.md` — Manual installation (dependencies,
+  path aliases, globals.css with all CSS variables, cn helper, components.json)

@@ -1,15 +1,15 @@
-# Pagination — Beispiele
+# Pagination — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Pagination (PaginationBasic.vue)](#beispiel-1-basic-pagination-paginationbasicvue)
-- [Beispiel 2: Simple Pagination (PaginationSimple.vue)](#beispiel-2-simple-pagination-paginationsimplevue)
-- [Beispiel 3: Pagination with Select (PaginationWithSelect.vue)](#beispiel-3-pagination-with-select-paginationwithselectvue)
-- [Quellen](#quellen)
+- [Example 1: Basic Pagination (PaginationBasic.vue)](#example-1-basic-pagination-paginationbasicvue)
+- [Example 2: Simple Pagination (PaginationSimple.vue)](#example-2-simple-pagination-paginationsimplevue)
+- [Example 3: Pagination with Select (PaginationWithSelect.vue)](#example-3-pagination-with-select-paginationwithselectvue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Pagination (PaginationBasic.vue)
+## Example 1: Basic Pagination (PaginationBasic.vue)
 
-Pagination mit Previous/Next, Seitennummern und Ellipsis.
+Pagination with Previous/Next, page numbers and ellipsis.
 
 ```vue
 <script setup lang="ts">
@@ -49,9 +49,9 @@ import {
 
 ---
 
-## Beispiel 2: Simple Pagination (PaginationSimple.vue)
+## Example 2: Simple Pagination (PaginationSimple.vue)
 
-Nur Seitennummern ohne Previous/Next-Buttons.
+Page numbers only, without Previous/Next buttons.
 
 ```vue
 <script setup lang="ts">
@@ -77,9 +77,9 @@ import {
 
 ---
 
-## Beispiel 3: Pagination with Select (PaginationWithSelect.vue)
+## Example 3: Pagination with Select (PaginationWithSelect.vue)
 
-Kombination mit einem Rows-per-Page-Select.
+Combined with a rows-per-page select.
 
 ```vue
 <script setup lang="ts">
@@ -134,7 +134,7 @@ import {
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/pagination/PaginationBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/pagination/PaginationSimple.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/pagination/PaginationWithSelect.vue`

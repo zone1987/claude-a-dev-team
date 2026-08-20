@@ -1,120 +1,120 @@
-# Shopware 6 – Commercial Features (vollständige Übersicht)
+# Shopware 6 – Commercial Features (complete overview)
 
 ## Contents
 
-- [Was ist Shopware Commercial?](#was-ist-shopware-commercial)
-- [Feature-Matrix nach Plan](#feature-matrix-nach-plan)
-- [Content Management & Design (alle Pläne)](#content-management-design-alle-pläne)
-- [Workflow & Automatisierung](#workflow-automatisierung)
+- [What is Shopware Commercial?](#what-is-shopware-commercial)
+- [Feature matrix by plan](#feature-matrix-by-plan)
+- [Content management & design (all plans)](#content-management--design-all-plans)
+- [Workflow & automation](#workflow--automation)
 - [AI Copilot (Rise+)](#ai-copilot-rise)
-- [Customer Experience & Marketing](#customer-experience-marketing)
-- [Inventar & Bestellverwaltung](#inventar-bestellverwaltung)
-- [B2B Funktionalitäten (Evolve+)](#b2b-funktionalitäten-evolve)
-- [Weiterführende Mikro-Skills](#weiterführende-mikro-skills)
+- [Customer experience & marketing](#customer-experience--marketing)
+- [Inventory & order management](#inventory--order-management)
+- [B2B functionality (Evolve+)](#b2b-functionality-evolve)
+- [Further micro-skills](#further-micro-skills)
 
-## Was ist Shopware Commercial?
+## What is Shopware Commercial?
 
-Die Extension „Shopware Commercial" ist die Haupterweiterung, die alle planabhängigen Premium-Features von Shopware 6 aktiviert. Sie ist die Voraussetzung für Rise-, Evolve- und Beyond-Funktionen.
+The "Shopware Commercial" extension is the main extension that activates all plan-dependent premium features of Shopware 6. It is the prerequisite for Rise, Evolve and Beyond functions.
 
 **Installation:**
-- Cloud-Instanzen: automatisch vorinstalliert und aktiv
-- Self-Hosted: Erweiterungen > Store → „Shopware Commercial" suchen und installieren
+- Cloud instances: pre-installed and active automatically
+- Self-hosted: Erweiterungen (Extensions) > Store → search for "Shopware Commercial" and install it
 
 ---
 
-## Feature-Matrix nach Plan
+## Feature matrix by plan
 
-### Rise-Plan (Commercial Features)
+### Rise plan (Commercial Features)
 
-| Feature | Skill | Mindestversion |
+| Feature | Skill | Minimum version |
 |---|---|---|
-| Flow Builder – Flows teilen | `sw-merchant-commercial-flow-builder` | 6.4.19.0 |
-| Custom Products | *(im Skill sw-merchant-commercial-b2b)* | — |
+| Flow Builder – sharing flows | `sw-merchant-commercial-flow-builder` | 6.4.19.0 |
+| Custom Products | *(in the skill sw-merchant-commercial-b2b)* | — |
 | Premium Themes | — | — |
-| Retouren-Management | `sw-merchant-commercial-returns` | 6.5.x |
-| Rule Builder – Vorschau | `sw-merchant-commercial-rule-builder` | Rise |
+| Retouren-Management (Returns management) | `sw-merchant-commercial-returns` | 6.5.x |
+| Rule Builder – preview | `sw-merchant-commercial-rule-builder` | Rise |
 | Social Commerce | — | — |
 | AI Copilot | `sw-merchant-commercial-ai-copilot` | Rise |
-| 3D-Viewer Block | `sw-merchant-commercial-spatial` | Rise |
+| 3D viewer block | `sw-merchant-commercial-spatial` | Rise |
 | Immersive Elements | `sw-merchant-commercial-spatial` | 16.05.2024 |
-| Scene Editor (Beta) | `sw-merchant-commercial-spatial` | Rise |
-| Rule Builder – Regeln teilen | `sw-merchant-commercial-rule-builder` | 6.7.1.0 |
+| Scene Editor (beta) | `sw-merchant-commercial-spatial` | Rise |
+| Rule Builder – sharing rules | `sw-merchant-commercial-rule-builder` | 6.7.1.0 |
 
-### Evolve-Plan (zusätzlich zu Rise)
+### Evolve plan (in addition to Rise)
 
-| Feature | Skill | Mindestversion |
+| Feature | Skill | Minimum version |
 |---|---|---|
 | Advanced Search 2.0 | `sw-merchant-commercial-advanced-search` | 6.5.6.0 |
 | B2B Components | `sw-merchant-commercial-b2b` | 6.5.6.0+ |
-| CMS Erweiterungen | — | Evolve |
-| CMS Regeln | — | Evolve |
+| CMS extensions | — | Evolve |
+| CMS rules | — | Evolve |
 | Dynamic Access | — | Evolve |
 | Publisher | — | Evolve |
-| Flow Builder – Webhook-Aktionen | `sw-merchant-commercial-flow-builder` | Evolve |
+| Flow Builder – webhook actions | `sw-merchant-commercial-flow-builder` | Evolve |
 | Sales Agent | `sw-merchant-commercial-sales-agent` | 6.5.0.0 |
 
-### Beyond-Plan (zusätzlich zu Evolve)
+### Beyond plan (in addition to Evolve)
 
-| Feature | Skill | Mindestversion |
+| Feature | Skill | Minimum version |
 |---|---|---|
 | Digital Sales Rooms | `sw-merchant-commercial-digital-sales-rooms` | 15.09.22 |
-| Kundenspezifische Preise | `sw-merchant-commercial-custom-pricing` | 1.0.0.0 |
+| Customer-specific prices | `sw-merchant-commercial-custom-pricing` | 1.0.0.0 |
 | Multi-Inventory | `sw-merchant-commercial-multi-inventory` | 15.09.22 |
-| Abonnements | `sw-merchant-commercial-subscriptions` | 6.5.4.0 |
-| Flow Builder – zeitverzögerte Aktionen | `sw-merchant-commercial-flow-builder` | Beyond |
+| Abonnements (Subscriptions) | `sw-merchant-commercial-subscriptions` | 6.5.4.0 |
+| Flow Builder – time-delayed actions | `sw-merchant-commercial-flow-builder` | Beyond |
 
 ---
 
-## Content Management & Design (alle Pläne)
+## Content management & design (all plans)
 
-- **Erlebniswelten**: Drag-&-Drop Content-Editor (CE-Basis, Commercial-Erweiterungen in Evolve+)
-- **3D-Viewer Block**: 3D-Modelle in Shopping Experiences einbinden (Rise+)
-- **Immersive Elements**: 5 3D-Elemente in Erlebniswelten (Rise+, ab 16.05.2024)
-- **Scene Editor**: 3D-Szenen erstellen, Produkte platzieren, Bilder generieren (Rise+, Beta)
+- **Erlebniswelten (Shopping Experiences)**: drag-and-drop content editor (CE basis, Commercial extensions in Evolve+)
+- **3D viewer block**: embed 3D models in Shopping Experiences (Rise+)
+- **Immersive Elements**: 5 3D elements in Erlebniswelten (Rise+, from 16.05.2024)
+- **Scene Editor**: create 3D scenes, place products, generate images (Rise+, beta)
 
-## Workflow & Automatisierung
+## Workflow & automation
 
-- **Rollen & Rechte**: Benutzerverwaltung, Zugriffsebenen (alle Pläne)
-- **Rule Builder**: Bedingungsbasierte Regeln (alle Pläne; Vorschau + Teilen ab Rise)
-- **Flow Builder**: Event-basierte Automatisierung (alle Pläne; Webhooks ab Evolve; Delays ab Beyond)
+- **Rollen & Rechte (Roles & permissions)**: user management, access levels (all plans)
+- **Rule Builder**: condition-based rules (all plans; preview + sharing from Rise)
+- **Flow Builder**: event-based automation (all plans; webhooks from Evolve; delays from Beyond)
 
 ## AI Copilot (Rise+)
 
-Vollumfänglicher KI-Assistent für:
-- Erlebniswelt-Inhalte
-- Produktbeschreibungen und -eigenschaften
-- Kundenklassifizierung
-- Bildkeywords und Bewertungszusammenfassungen
-- Export-Assistent
-- Intelligente Suche (kontextbasiert + bildbasiert)
+A comprehensive AI assistant for:
+- Erlebniswelten content
+- Product descriptions and properties
+- Customer classification
+- Image keywords and review summaries
+- Export assistant
+- Intelligent search (context-based + image-based)
 
-## Customer Experience & Marketing
+## Customer experience & marketing
 
-- **Advanced Search 2.0**: OpenSearch-basierte Suche (Evolve+)
-  - Boostings, Actions, Synonyme, AND/OR-Suche
+- **Advanced Search 2.0**: OpenSearch-based search (Evolve+)
+  - Boostings, actions, synonyms, AND/OR search
 
-## Inventar & Bestellverwaltung
+## Inventory & order management
 
-- **Retouren-Management**: Retourenabwicklung im Admin (Rise+)
-- **Multi-Inventory**: Mehrere Lagerhäuser und Standorte (Beyond)
-- **Abonnements**: Wiederkehrende Bestellungen mit Intervallen (Beyond; Mixed Cart ab 6.7.4.0)
+- **Retouren-Management**: returns processing in the admin (Rise+)
+- **Multi-Inventory**: multiple warehouses and locations (Beyond)
+- **Abonnements**: recurring orders with intervals (Beyond; mixed cart from 6.7.4.0)
 
-## B2B Funktionalitäten (Evolve+)
+## B2B functionality (Evolve+)
 
 - Angebots-Management (Quote Management)
-- Mitarbeiterverwaltung mit Rollen
-- Bestellgenehmigungen (ab 6.5.8.0)
-- Organisationseinheiten
-- Erweiterte Produktkataloge
-- Budgets (ab 6.7.4.0)
-- Kundenspezifische Preise für B2B (ab 6.7.8.0)
-- Schnell-Bestellungen (CSV-Upload)
-- Einkaufslisten
-- Sales Agent (Außendienst-App)
+- Mitarbeiterverwaltung (Employee management) with roles
+- Bestellgenehmigungen (Order approvals, from 6.5.8.0)
+- Organisationseinheiten (Organizational units)
+- Extended product catalogues
+- Budgets (from 6.7.4.0)
+- Customer-specific prices for B2B (from 6.7.8.0)
+- Schnell-Bestellungen (Quick orders, CSV upload)
+- Einkaufslisten (Shopping lists)
+- Sales Agent (field sales app)
 
 ---
 
-## Weiterführende Mikro-Skills
+## Further micro-skills
 
 | Feature | Skill |
 |---|---|
@@ -122,15 +122,15 @@ Vollumfänglicher KI-Assistent für:
 | Abonnements | `sw-merchant-commercial-subscriptions` |
 | Advanced Search | `sw-merchant-commercial-advanced-search` |
 | B2B Components | `sw-merchant-commercial-b2b` |
-| Retouren | `sw-merchant-commercial-returns` |
+| Retouren (Returns) | `sw-merchant-commercial-returns` |
 | Flow Builder | `sw-merchant-commercial-flow-builder` |
 | Rule Builder | `sw-merchant-commercial-rule-builder` |
 | Multi-Inventory | `sw-merchant-commercial-multi-inventory` |
 | Sales Agent | `sw-merchant-commercial-sales-agent` |
 | Digital Sales Rooms | `sw-merchant-commercial-digital-sales-rooms` |
-| Kundenspezifische Preise | `sw-merchant-commercial-custom-pricing` |
+| Customer-specific prices | `sw-merchant-commercial-custom-pricing` |
 | Spatial Commerce | `sw-merchant-commercial-spatial` |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/features/commercial (Stand: 2026-06)*
+*Source: https://docs.shopware.com/de/shopware-6-de/features/commercial (as of: 2026-06)*

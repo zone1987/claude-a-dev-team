@@ -1,7 +1,7 @@
-# Shopware 6 — Custom-Sorting (Listing)
+# Shopware 6 — Custom sorting (listing)
 
-Sortier-Optionen im Listing sind Daten (`product_sorting`), keine Code-Klassen. Neue Option per Migration/Repository
-anlegen.
+Sorting options in the listing are data (`product_sorting`), not code classes. Create a new option via
+migration/repository.
 
 ```php
 $this->productSortingRepo->upsert([[
@@ -9,9 +9,9 @@ $this->productSortingRepo->upsert([[
     'priority' => 5,
     'active' => true,
     'fields' => [['field' => 'product.ffPopularity', 'order' => 'desc', 'priority' => 1, 'naturalSorting' => 0]],
-    'label' => 'Beliebtheit',
+    'label' => 'Popularity',
 ]], $context);
 ```
 
-`fields` referenzieren DAL-Felder (auch eigene via Extension). Übersetzungen über `product_sorting_translation`.
-Die Option erscheint automatisch im Sortier-Dropdown. Filter dazu: `sw-listing-filter`.
+`fields` reference DAL fields (including your own via extension). Translations via `product_sorting_translation`.
+The option appears in the sorting dropdown automatically. Matching filters: `sw-listing-filter`.

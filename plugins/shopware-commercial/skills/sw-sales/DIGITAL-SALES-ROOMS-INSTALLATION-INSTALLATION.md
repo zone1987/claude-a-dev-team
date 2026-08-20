@@ -1,82 +1,82 @@
-# Digital Sales Rooms — Installation (vollständig)
+# Digital Sales Rooms — installation (complete)
 
-> Voraussetzung: Shopware läuft unter `https://shopware.store`, die DSR-Frontend-App
-> wird unter `https://dsr.shopware.io` erreichbar sein.
+> Prerequisite: Shopware runs at `https://shopware.store`, and the DSR frontend app
+> will be reachable at `https://dsr.shopware.io`.
 
 ## Contents
 
-- [Teil 1: Admin-seitige Plugin-Installation](#teil-1-admin-seitige-plugin-installation)
-- [Teil 2: Frontend-App-Installation](#teil-2-frontend-app-installation)
-- [Nächste Schritte](#nächste-schritte)
+- [Part 1: admin-side plugin installation](#part-1-admin-side-plugin-installation)
+- [Part 2: frontend app installation](#part-2-frontend-app-installation)
+- [Next steps](#next-steps)
 
-## Teil 1: Admin-seitige Plugin-Installation
+## Part 1: admin-side plugin installation
 
-### Plugin beziehen
+### Obtaining the plugin
 
-Digital Sales Rooms ist Teil des **Shopware Beyond**-Plans. Plugin-Bezug über
+Digital Sales Rooms is part of the **Shopware Beyond** plan. Obtain the plugin via
 [account.shopware.com](https://auth.shopware.com/login?return_to=https:%2F%2Faccount.shopware.com%2Fportal)
-via Wildcard Environment.
+using a wildcard environment.
 
-![Wildcard Environment](../../assets/products-digitalSalesRooms-wildcard.png)
+![Wildcard Environment](assets/products-digitalSalesRooms-wildcard.png)
 
 #### Via Composer
 
-1. Wildcard-Environment-Detailseite öffnen
-2. Plugin auswählen → "Install via composer" klicken
-3. Modal enthält alle nötigen Composer-Befehle
+1. Open the wildcard environment detail page
+2. Select the plugin → click "Install via composer"
+3. The modal contains all the required composer commands
 
 #### Via Download (ZIP)
 
-1. Wildcard-Environment-Detailseite → "Download"
-2. ZIP speichern und nach `custom/plugins/` entpacken
-3. Ordnername muss `SwagDigitalSalesRooms` sein
+1. Wildcard environment detail page → "Download"
+2. Save the ZIP and extract it into `custom/plugins/`
+3. The folder name must be `SwagDigitalSalesRooms`
 
-### Plugin aktivieren
+### Activating the plugin
 
 ```bash
-# Verfügbare Plugins aktualisieren
+# refresh the available plugins
 bin/console plugin:refresh
 
-# Plugin installieren und aktivieren (Name: SwagDigitalSalesRooms)
+# install and activate the plugin (name: SwagDigitalSalesRooms)
 bin/console plugin:install SwagDigitalSalesRooms --activate
 
-# Cache leeren
+# clear the cache
 bin/console cache:clear
 ```
 
 ---
 
-## Teil 2: Frontend-App-Installation
+## Part 2: frontend app installation
 
-Die DSR-Frontend-App basiert auf dem **Shopware Frontends Framework** (Nuxt 3).
-Sie befindet sich im Plugin-Paket unter `./templates/dsr-frontends/`.
+The DSR frontend app is based on the **Shopware Frontends framework** (Nuxt 3).
+It is located in the plugin package at `./templates/dsr-frontends/`.
 
-### Quellcode erhalten
+### Getting the source code
 
 ```shell
-# Im Plugin-Verzeichnis:
+# in the plugin directory:
 cd ./templates/dsr-frontends
 ```
 
-Den Quellcode empfiehlt Shopware in ein eigenes privates Repository zu kopieren,
-um Anpassungen versioniert zu verwalten.
+Shopware recommends copying the source code into your own private repository
+in order to manage customizations under version control.
 
-### Umgebungsvariablen konfigurieren
+### Configuring environment variables
 
 ```shell
 cp .env.template .env
 ```
 
-| Variable | Pflicht | Beschreibung |
+| Variable | Required | Description |
 |----------|---------|--------------|
-| `ORIGIN` | Ja | Domain der DSR-Frontend-App. Z.B. `https://dsr.shopware.io` |
-| `SHOPWARE_STOREFRONT_URL` | Ja | Shopware Storefront-Domain. Z.B. `https://shopware.store` |
-| `SHOPWARE_ADMIN_API` | Ja | Admin-API-Endpunkt. Z.B. `https://shopware.store/admin-api` |
-| `SHOPWARE_STORE_API` | Ja | Store-API-Endpunkt. Z.B. `https://shopware.store/store-api` |
-| `SHOPWARE_STORE_API_ACCESS_TOKEN` | Ja | API-Access-Key des Sales Channels (Einstellung: API access) |
-| `ALLOW_ANONYMOUS_MERCURE` | Nein | Nur Entwicklung: `1` erlaubt unsecured Mercure |
+| `ORIGIN` | Yes | Domain of the DSR frontend app. E.g. `https://dsr.shopware.io` |
+| `SHOPWARE_STOREFRONT_URL` | Yes | Shopware Storefront domain. E.g. `https://shopware.store` |
+| `SHOPWARE_ADMIN_API` | Yes | Admin API endpoint. E.g. `https://shopware.store/admin-api` |
+| `SHOPWARE_STORE_API` | Yes | Store API endpoint. E.g. `https://shopware.store/store-api` |
+| `SHOPWARE_STORE_API_ACCESS_TOKEN` | Yes | API access key of the sales channel (setting: API access) |
+| `ALLOW_ANONYMOUS_MERCURE` | No | Development only: `1` allows unsecured Mercure |
 
-**Beispiel `.env`:**
+**Example `.env`:**
 
 ```shell
 ORIGIN=https://dsr.shopware.io
@@ -86,15 +86,15 @@ SHOPWARE_STORE_API=https://shopware.store/store-api
 SHOPWARE_STORE_API_ACCESS_TOKEN=XXXXXXXXXXX
 ```
 
-### Entwicklungsmodus starten
+### Starting development mode
 
 ```shell
-npm install -g pnpm  # pnpm global installieren
-pnpm install         # Abhängigkeiten installieren
-pnpm dev             # Dev-Server starten (Standard: http://localhost:3000/)
+npm install -g pnpm  # install pnpm globally
+pnpm install         # install dependencies
+pnpm dev             # start the dev server (default: http://localhost:3000/)
 ```
 
-### Produktions-Build erstellen
+### Creating a production build
 
 ```shell
 npm install -g pnpm
@@ -102,13 +102,13 @@ pnpm install
 pnpm build
 ```
 
-Nach dem Build das Deployment durchführen — siehe Skill
+Perform the deployment after the build — see the skill
 `sw-digital-sales-rooms-deployment`.
 
-## Nächste Schritte
+## Next steps
 
-Nach erfolgreicher Installation:
+After a successful installation:
 
-1. **3rd-Party-Setup** (Daily.co + Mercure) → `sw-digital-sales-rooms-3rdparty`
-2. **Plugin-Konfiguration** (Domain, API-Keys) → `sw-digital-sales-rooms-config`
-3. Optional: **Anpassungen** → `sw-digital-sales-rooms-customization`
+1. **Third-party setup** (Daily.co + Mercure) → `sw-digital-sales-rooms-3rdparty`
+2. **Plugin configuration** (domain, API keys) → `sw-digital-sales-rooms-config`
+3. Optional: **customizations** → `sw-digital-sales-rooms-customization`

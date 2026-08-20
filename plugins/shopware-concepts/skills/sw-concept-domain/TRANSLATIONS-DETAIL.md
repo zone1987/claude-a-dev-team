@@ -1,160 +1,160 @@
-# Shopware Übersetzungssystem — Vollständige Konzept-Doku
+# Shopware translation system — complete concept documentation
 
-Quellen: `concepts/framework/translations/index.md`, `built-in-translation-system.md`, `fallback-language-selection.md`
+Sources: `concepts/framework/translations/index.md`, `built-in-translation-system.md`, `fallback-language-selection.md`
 
 ---
 
 ## Contents
 
-- [Übersetzungen — Überblick (index.md)](#übersetzungen-überblick-indexmd)
+- [Translations — overview (index.md)](#translations--overview-indexmd)
 - [Built-in Translation System (built-in-translation-system.md)](#built-in-translation-system-built-in-translation-systemmd)
 - [Fallback Language Selection (fallback-language-selection.md)](#fallback-language-selection-fallback-language-selectionmd)
 
-## Übersetzungen — Überblick (index.md)
+## Translations — overview (index.md)
 
-Shopware 6 ist eine mehrsprachige Plattform. Zwei Übersetzungssysteme:
+Shopware 6 is a multilingual platform. Two translation systems:
 
-1. **DAL-Übersetzungen** — Entity-Daten (Produktnamen, Kategorien, etc.)
-2. **Snippets** — UI-Texte (Storefront, Administration)
+1. **DAL translations** — entity data (product names, categories, etc.)
+2. **Snippets** — UI texts (storefront, administration)
 
 ---
 
 ## Built-in Translation System (built-in-translation-system.md)
 
-### Übersicht
+### Overview
 
-Erlaubt Installation und Update von Translations, die nicht im Standard-Shopware enthalten sind.
-Stellt dieselbe Auswahl wie das **Language Pack Plugin** bereit und wird dieses vollständig ersetzen.
+Allows the installation and update of translations that are not part of standard Shopware.
+Provides the same selection as the **Language Pack plugin** and will replace it completely.
 
-> **Wichtig**: Language Pack Plugin ist deprecated und wird mit **6.8.0.0 entfernt**.
+> **Important**: the Language Pack plugin is deprecated and will be **removed with 6.8.0.0**.
 
-### Translations-Quelle
+### Translations source
 
-GitHub-Repository: `shopware/translations` (Crowdin-verwaltet, täglicher Sync)
-Enthält Translations für Shopware-Core und offizielle Plugins.
+GitHub repository: `shopware/translations` (Crowdin-managed, daily sync)
+Contains translations for the Shopware core and official plugins.
 
-### CLI-Befehle
+### CLI commands
 
 **Installation:**
 ```bash
-# Bestimmte Locales installieren
+# Install specific locales
 php bin/console translation:install --locales=fr-FR,pl-PL
 
-# Alle verfügbaren Locales
+# All available locales
 php bin/console translation:install --all
 
-# Ohne Aktivierung installieren
+# Install without activation
 php bin/console translation:install --locales=fr-FR --skip-activation
 ```
 
-Re-Installation überschreibt bestehende Translations.
+Re-installation overwrites existing translations.
 
 **Update:**
 ```bash
 php bin/console translation:update
 ```
 
-### Sprach-Aktivierung
+### Language activation
 
-- Standard: installierte Translations werden automatisch aktiviert
-- `--skip-activation` verhindert sofortige Aktivierung
-- `active`-Flag in `language`-Tabelle steuert Verfügbarkeit im Storefront
+- Default: installed translations are activated automatically
+- `--skip-activation` prevents immediate activation
+- The `active` flag in the `language` table controls availability in the storefront
 
-### Änderungs-Erkennung (Metadata)
+### Change detection (metadata)
 
-- `crowdin-metadata.json` im translations-Repository: Locales, Last-Update-Timestamps, Completion %
-- `updatedAt`-Feld → Vergleich mit `crowdin-metadata.lock` (private filesystem) → Update-Entscheidung
+- `crowdin-metadata.json` in the translations repository: locales, last-update timestamps, completion %
+- The `updatedAt` field → comparison with `crowdin-metadata.lock` (private filesystem) → update decision
 
-### Ladereihenfolge (Priorität, höchste zuerst)
+### Load order (priority, highest first)
 
-1. **Datenbank-Translations** — höchste Priorität; überschreiben alles
-2. **Country-spezifische Translations** (z.B. `en-GB`, `de-DE`) — Patch-Dateien für regionale Unterschiede
-3. **Country-agnostische Translations** (`en`, `de`) — Fallback; zentrale gemeinsame Strings
-4. **Built-in Translation System** — installierte Translations (niedrigste Priorität)
+1. **Database translations** — highest priority; override everything
+2. **Country-specific translations** (e.g. `en-GB`, `de-DE`) — patch files for regional differences
+3. **Country-agnostic translations** (`en`, `de`) — fallback; central shared strings
+4. **Built-in translation system** — installed translations (lowest priority)
 
-### Flysystem-Integration
+### Flysystem integration
 
-Translations-Storage via Flysystem (Storage-Abstraktion):
-- Lokal (Standard)
+Translations storage via Flysystem (storage abstraction):
+- Local (default)
 - Cloud: Amazon S3, Google Cloud Storage, Azure Blob Storage
-- Custom Adapters
+- Custom adapters
 
-### Konfigurationsdatei
+### Configuration file
 
 `src/Core/System/Resources/translation.yaml`
 
-Felder:
-- `repository-url` — Base-URL des Translation-Repositories
-- `metadata-url` — URL zur metadata.json
-- `plugins` — Liste unterstützter Plugins (z.B. `['SwagB2bPlatform']`)
-- `excluded-locales` — von Verarbeitung ausgeschlossene Locales (Default: `['de-DE', 'en-GB']` — in Shopware enthalten)
-- `plugin-mapping` — Mapping interner Plugin-IDs auf Repository-Namen
-- `languages` — unterstützte Sprachen mit `name` (nativ) und `locale` (IETF BCP 47)
+Fields:
+- `repository-url` — base URL of the translation repository
+- `metadata-url` — URL to the metadata.json
+- `plugins` — list of supported plugins (e.g. `['SwagB2bPlatform']`)
+- `excluded-locales` — locales excluded from processing (default: `['de-DE', 'en-GB']` — included in Shopware)
+- `plugin-mapping` — mapping of internal plugin IDs to repository names
+- `languages` — supported languages with `name` (native) and `locale` (IETF BCP 47)
 
-### Erweiterbares Config-Loading
+### Extensible config loading
 
-- `AbstractTranslationConfigLoader` — abstrakte Klasse für Decoration Pattern
-- `TranslationConfig` — Daten-Objekt aus `translation.yaml`; via DI verfügbar
+- `AbstractTranslationConfigLoader` — abstract class for the decoration pattern
+- `TranslationConfig` — data object from `translation.yaml`; available via DI
 
 ---
 
 ## Fallback Language Selection (fallback-language-selection.md)
 
-### Motivation (ab 6.7)
+### Motivation (from 6.7)
 
-Vor 6.7: Nur country-spezifische Snippet-Dateien → Entwickler haben Dateien dupliziert
-(z.B. `en-GB` → `en-US`) und nur wenige Keys geändert → aufgeblähte Repositories, inkonsistente Fallbacks.
+Before 6.7: only country-specific snippet files → developers duplicated files
+(e.g. `en-GB` → `en-US`) and changed only a few keys → bloated repositories, inconsistent fallbacks.
 
-**Lösung**: Country-independent Layer — gemeinsame Strings in neutraler Fallback-Datei,
-regionale Unterschiede in kleinen Patch-Dateien.
+**Solution**: a country-independent layer — shared strings in a neutral fallback file,
+regional differences in small patch files.
 
-### Fallback-Sprachen
+### Fallback languages
 
-| Fallback-Code | Standard-Variante | Beispiel-Dialekte |
+| Fallback code | Default variant | Example dialects |
 |---|---|---|
 | `en` | `en-GB` (British English) | `en-US`, `en-CA`, `en-IN` |
-| `de` | `de-DE` (Deutschland) | `de-AT`, `de-CH` |
-| `es` | `es-ES` (Kastilisches Spanisch) | `es-AR`, `es-MX` |
-| `pt` | `pt-PT` (Europäisches Portugiesisch) | `pt-BR` |
-| `fr` | `fr-FR` (Frankreich) | `fr-CA`, `fr-CH` |
-| `nl` | `nl-NL` (Niederlande) | `nl-BE` |
+| `de` | `de-DE` (Germany) | `de-AT`, `de-CH` |
+| `es` | `es-ES` (Castilian Spanish) | `es-AR`, `es-MX` |
+| `pt` | `pt-PT` (European Portuguese) | `pt-BR` |
+| `fr` | `fr-FR` (France) | `fr-CA`, `fr-CH` |
+| `nl` | `nl-NL` (Netherlands) | `nl-BE` |
 
-Auflösungsreihenfolge: Country-spezifisch (`de-AT`) → Country-agnostisch (`de`) → `en` (universelles Fallback)
+Resolution order: country-specific (`de-AT`) → country-agnostic (`de`) → `en` (universal fallback)
 
-### CLI-Tool für Migration
+### CLI tool for migration
 
 ```bash
-# Dateinamen validieren
+# Validate file names
 bin/console translation:lint-filenames
 
-# Automatische Migration zu agnostischen Dateinamen
+# Automatic migration to agnostic file names
 bin/console translation:lint-filenames --fix
 
-# Alle Extensions einschließen
+# Include all extensions
 bin/console translation:lint-filenames --all
 
-# Nur bestimmte Extensions
+# Only specific extensions
 bin/console translation:lint-filenames --extensions=SwagCmsExtensions
 ```
 
-**Ausgabe-Spalten**: Filename, Path, Domain, Locale, Language, Script, Region
+**Output columns**: Filename, Path, Domain, Locale, Language, Script, Region
 
-### Implementierungsrichtlinien für Extension-Entwickler
+### Implementation guidelines for extension developers
 
-- **Vollständige Base-Datei erstellen** (`messages.<sprache>.base.json`) pro unterstützter Sprache
-- **Patch-Dateien nur bei Bedarf** — minimal halten
-- **Neutralität anstreben** — landespezifische Begriffe nur in Patch-Dateien
-- **Standard-Dialekt wählen** — für Spanisch: Kastilisch für maximale Verständlichkeit
-- **Namenskonventionen** — agnostisch: `storefront.nl.json`; Patch: `storefront.nl-BE.json`
-- **Validierung**: Cache leeren + `bin/console translation:validate` + `translation:lint-filenames`
+- **Create a complete base file** (`messages.<language>.base.json`) per supported language
+- **Patch files only where needed** — keep them minimal
+- **Aim for neutrality** — country-specific terms only in patch files
+- **Choose a default dialect** — for Spanish: Castilian for maximum comprehensibility
+- **Naming conventions** — agnostic: `storefront.nl.json`; patch: `storefront.nl-BE.json`
+- **Validation**: clear the cache + `bin/console translation:validate` + `translation:lint-filenames`
 
-### Dateinamen-Konventionen
+### File name conventions
 
 ```
-messages.<sprache>.base.json       — Basis-Datei (country-agnostic, definierender Dialekt)
-storefront.<sprache>.json          — Agnostische Storefront-Übersetzung
-storefront.<sprache>-<region>.json — Regionale Patch-Datei
-administration.<sprache>.json      — Admin-Übersetzungen
+messages.<language>.base.json       — base file (country-agnostic, defining dialect)
+storefront.<language>.json          — agnostic storefront translation
+storefront.<language>-<region>.json — regional patch file
+administration.<language>.json      — admin translations
 ```
 
-Basis-Dateien (`messages.*.base.json`) **müssen** immer `messages` als Domain verwenden.
+Base files (`messages.*.base.json`) **must** always use `messages` as the domain.

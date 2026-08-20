@@ -1,352 +1,352 @@
 # Rule Builder
 
-**Pfad:** Einstellungen > Automatisierung > Rule Builder
-**Version:** ab Shopware 6.0.0 (Regeln teilen ab v6.7.1.0 mit Rise-Plan)
+**Path:** **Einstellungen > Automatisierung** (Settings > Automation) **> Rule Builder**
+**Version:** from Shopware 6.0.0 (sharing rules from v6.7.1.0 with the Rise plan)
 
 ## Contents
 
-- [Beschreibung](#beschreibung)
-- [Übersicht](#übersicht)
-- [Komponenten einer Regel](#komponenten-einer-regel)
-- [Regel erstellen – Schritt-für-Schritt](#regel-erstellen-schritt-für-schritt)
-- [Regeln löschen](#regeln-löschen)
-- [Zuweisungsmöglichkeiten](#zuweisungsmöglichkeiten)
-- [Vorschaumodus](#vorschaumodus)
-- [Bedingungen mit optionalem Filter](#bedingungen-mit-optionalem-filter)
-- [Alle Operatoren](#alle-operatoren)
-- [Alle Bedingungskategorien](#alle-bedingungskategorien)
-- [Regeln teilen (ab v6.7.1.0, Rise-Plan)](#regeln-teilen-ab-v6710-rise-plan)
+- [Description](#description)
+- [Overview](#overview)
+- [Components of a rule](#components-of-a-rule)
+- [Creating a rule – step by step](#creating-a-rule-step-by-step)
+- [Deleting rules](#deleting-rules)
+- [Assignment options](#assignment-options)
+- [Preview mode](#preview-mode)
+- [Conditions with an optional filter](#conditions-with-an-optional-filter)
+- [All operators](#all-operators)
+- [All condition categories](#all-condition-categories)
+- [Sharing rules (from v6.7.1.0, Rise plan)](#sharing-rules-from-v6710-rise-plan)
 
-## Beschreibung
+## Description
 
-Der Rule Builder ermöglicht die Erstellung regelbasierter Bedingungen für verschiedene Shopware-Funktionen. Er wird besonders für die Konfiguration von Rabattaktionen unter Marketing > Rabatte & Aktionen verwendet.
-
----
-
-## Übersicht
-
-Die Übersichtsseite zeigt alle Regeln in einer Tabelle.
-
-### Standard-Spalten
-
-| Spalte | Beschreibung |
-|--------|--------------|
-| Regel | Name der Regel |
-| Priorität | Reihenfolge der Regelausführung |
-| Beschreibung | Erläuterung der Regel |
-| Zuletzt bearbeitet | Datum der letzten Änderung |
-| Erstelldatum | Datum der Erstellung |
-| Status | Aktiv / Inaktiv |
-
-### Erweiterte Spalten (einblendbar)
-
-| Spalte | Beschreibung |
-|--------|--------------|
-| Produktpreis-Zuweisung | Anzahl der Produktpreise die diese Regel nutzen |
-| Versandartenpreis-Zuweisung | Anzahl der Versandarten die diese Regel nutzen |
-| Flow-Zuweisung | Anzahl der Flows die diese Regel nutzen |
-| Rabatt-Zuweisung | Anzahl der Rabattaktionen die diese Regel nutzen |
-
-![Rule Builder Übersicht](../../assets/Uebersicht.jpg)
+The Rule Builder allows rule-based conditions to be created for various Shopware functions. It is used especially for configuring discount promotions under Marketing > **Rabatte & Aktionen** (Discounts & promotions).
 
 ---
 
-## Komponenten einer Regel
+## Overview
 
-### Allgemeine Informationen
+The overview page shows all rules in a table.
 
-| Feld | Beschreibung |
+### Standard columns
+
+| Column | Description |
+|--------|--------------|
+| **Regel** (Rule) | Name of the rule |
+| **Priorität** (Priority) | Order in which the rules are executed |
+| **Beschreibung** (Description) | Explanation of the rule |
+| **Zuletzt bearbeitet** (Last edited) | Date of the last change |
+| **Erstelldatum** (Creation date) | Date of creation |
+| **Status** | Aktiv / Inaktiv (active / inactive) |
+
+### Extended columns (can be shown)
+
+| Column | Description |
+|--------|--------------|
+| **Produktpreis-Zuweisung** (Product price assignment) | Number of product prices that use this rule |
+| **Versandartenpreis-Zuweisung** (Shipping method price assignment) | Number of shipping methods that use this rule |
+| **Flow-Zuweisung** (Flow assignment) | Number of flows that use this rule |
+| **Rabatt-Zuweisung** (Discount assignment) | Number of discount promotions that use this rule |
+
+![Rule Builder overview](assets/Overview.jpg)
+
+---
+
+## Components of a rule
+
+### General information
+
+| Field | Description |
 |------|--------------|
-| **Name** | Identifikation der Regel |
-| **Beschreibung** | Dokumentation des Anwendungsfalls |
-| **Priorität** | Höherer Wert = höhere Priorität bei gleichzeitiger Ausführung |
-| **Typ** | Einschränkung der Zuweisungsmöglichkeiten |
-| **Tags** | Organisationshilfe für die Übersicht |
+| **Name** | Identification of the rule |
+| **Beschreibung** | Documentation of the use case |
+| **Priorität** | Higher value = higher priority on simultaneous execution |
+| **Typ** (Type) | Restriction of the assignment options |
+| **Tags** | Organisational aid for the overview |
 
-### Bedingungsstruktur
+### Condition structure
 
-| Element | Beschreibung |
+| Element | Description |
 |---------|--------------|
-| **Bedingung** | Parameter-Abfrage (z. B. "Gesamtsumme") |
-| **Operator** | Vergleichsmethode (größer, kleiner, gleich) |
-| **Eingabewert** | Vergleichswert (z. B. 50 für 50 €) |
-| **UND-Verknüpfung** | Alle Bedingungen müssen erfüllt sein |
-| **ODER-Verknüpfung** | Mindestens eine Bedingung muss erfüllt sein |
-| **Unterbedingungen** | Automatisch erstellt bei Wechsel der Verknüpfungsart |
+| **Bedingung** (Condition) | Parameter query (e.g. "Gesamtsumme" – total sum) |
+| **Operator** | Comparison method (greater, less, equal) |
+| **Eingabewert** (Input value) | Comparison value (e.g. 50 for €50) |
+| **UND-Verknüpfung** (AND combination) | All conditions have to be met |
+| **ODER-Verknüpfung** (OR combination) | At least one condition has to be met |
+| **Unterbedingungen** (Sub-conditions) | Created automatically when the combination type is changed |
 
-![Beispielregel](../../assets/Beispielregel.jpg)
-
----
-
-## Regel erstellen – Schritt-für-Schritt
-
-1. Zu Einstellungen > Automatisierung > Rule Builder navigieren
-2. Schaltfläche "Regel erstellen" klicken
-3. **Name** und optional **Beschreibung** eingeben
-4. **Priorität** festlegen (Standard: 1)
-5. Schaltfläche "Bedingung hinzufügen" klicken
-6. Bedingungstyp aus Dropdown wählen
-7. **Operator** auswählen
-8. **Eingabewert** eingeben
-9. Weitere Bedingungen mit UND/ODER verknüpfen (optional)
-10. **Speichern** klicken
+![Example rule](assets/Example-Rule.jpg)
 
 ---
 
-## Regeln löschen
+## Creating a rule – step by step
 
-> **Wichtig:** Regeln können nicht gelöscht werden, solange sie einer Funktion zugewiesen sind. Zuerst alle Zuweisungen entfernen.
-
-- Löschung über das Kontextmenü (drei Punkte) in der Übersicht
-- Gelöschte Regeln sind nicht wiederherstellbar
+1. Navigate to Einstellungen > Automatisierung > Rule Builder
+2. Click the "**Regel erstellen**" (Create rule) button
+3. Enter a **Name** and optionally a **Beschreibung**
+4. Set the **Priorität** (default: 1)
+5. Click the "**Bedingung hinzufügen**" (Add condition) button
+6. Choose the condition type from the dropdown
+7. Select the **Operator**
+8. Enter the **Eingabewert**
+9. Combine further conditions with AND/OR (optional)
+10. Click **Speichern** (Save)
 
 ---
 
-## Zuweisungsmöglichkeiten
+## Deleting rules
 
-Regeln können folgenden Bereichen zugewiesen werden:
+> **Important:** rules cannot be deleted as long as they are assigned to a function. Remove all assignments first.
 
-| Bereich | Zweck |
+- Deletion via the context menu (three dots) in the overview
+- Deleted rules cannot be restored
+
+---
+
+## Assignment options
+
+Rules can be assigned to the following areas:
+
+| Area | Purpose |
 |---------|-------|
-| Zahlungsmethoden | Verfügbarkeit einschränken |
-| Versandmethoden | Verfügbarkeit einschränken |
-| Versandkosten | Berechnung steuern |
-| Promotions | Bedingungen für Rabattaktionen |
-| Erweiterte Preise | Produktpreisberechnung |
-| Flow Builder | Automatisierungsregeln |
-| Produktsichtbarkeit | Dynamic Access (kostenpflichtig) |
-| Kategoriesichtbarkeit | Dynamic Access (kostenpflichtig) |
-| Shopping Experience | Block-Sichtbarkeit steuern |
+| Payment methods | Restrict the availability |
+| Shipping methods | Restrict the availability |
+| Shipping costs | Control the calculation |
+| Promotions | Conditions for discount promotions |
+| Advanced prices | Product price calculation |
+| Flow Builder | Automation rules |
+| Product visibility | Dynamic Access (paid) |
+| Category visibility | Dynamic Access (paid) |
+| Shopping Experience | Control the block visibility |
 
 ---
 
-## Vorschaumodus
+## Preview mode
 
-> **Verfügbarkeit:** Rise-Plan und höher
+> **Availability:** Rise plan and higher
 
-Der Vorschaumodus ermöglicht die Echtzeit-Prüfung einer Regel:
+The preview mode allows a rule to be checked in real time:
 
-1. Regel öffnen
-2. Reiter "Vorschau" wählen
-3. Bestellung auswählen
-4. Optional: Zeitpunkt simulieren
-5. Ergebnis: WAHR/FALSCH für jede Bedingung
+1. Open the rule
+2. Choose the tab "**Vorschau**" (Preview)
+3. Select an order
+4. Optional: simulate a point in time
+5. Result: TRUE/FALSE for every condition
 
-![Vorschaumodus](../../assets/Vorschau.jpg)
+![Preview mode](assets/Preview.jpg)
 
 ---
 
-## Bedingungen mit optionalem Filter
+## Conditions with an optional filter
 
-Drei Bedingungen bieten ein Filter-Symbol zur weiteren Eingrenzung:
+Three conditions offer a filter icon for narrowing things down further:
 
-| Bedingung | Filter-Option |
+| Condition | Filter option |
 |-----------|---------------|
-| Zwischensumme aller Positionen | Nach Kategorie filtern |
-| Gesamtanzahl aller Produkte | Nach Tags filtern |
-| Gesamtanzahl unterschiedlicher Produkte | Nach Streichpreis filtern |
+| **Zwischensumme aller Positionen** (Subtotal of all line items) | Filter by category |
+| **Gesamtanzahl aller Produkte** (Total number of all products) | Filter by tags |
+| **Gesamtanzahl unterschiedlicher Produkte** (Total number of different products) | Filter by list price |
 
-![Filter Beispiel 1](../../assets/Zusatzfilter.jpg)
-![Rule Zwischensumme](../../assets/Rule_Zwischensumme_Positionen.jpg)
-![Rule Gesamtanzahl](../../assets/Rule_Gesamtanzahl.jpg)
+![Filter example 1](assets/Zusatzfilter.jpg)
+![Rule subtotal](assets/Rule_Subtotal_Positionen.jpg)
+![Rule total number](assets/Rule_Gesamtanzahl.jpg)
 
 ---
 
-## Alle Operatoren
+## All operators
 
-| Operator | Beschreibung |
+| Operator | Description |
 |----------|--------------|
-| **Mind. eine** | Mindestens ein Wert in der Liste muss passen |
-| **Alle** | Alle Werte in der Liste müssen passen |
-| **Gleich** | Exakte Übereinstimmung mit dem Wert |
-| **Ungleich** | Keine Übereinstimmung mit dem Wert |
-| **Ist eine von** | Übereinstimmung mit einem der angegebenen Werte |
-| **Ist keine von** | Keine Übereinstimmung mit den angegebenen Werten |
-| **Größer** | Größer als der Eingabewert |
-| **Größer gleich** | Größer oder gleich dem Eingabewert |
-| **Kleiner** | Kleiner als der Eingabewert |
-| **Kleiner gleich** | Kleiner oder gleich dem Eingabewert |
+| **Mind. eine** (At least one) | At least one value in the list has to match |
+| **Alle** (All) | All values in the list have to match |
+| **Gleich** (Equal) | Exact match with the value |
+| **Ungleich** (Not equal) | No match with the value |
+| **Ist eine von** (Is one of) | Match with one of the specified values |
+| **Ist keine von** (Is none of) | No match with the specified values |
+| **Größer** (Greater) | Greater than the input value |
+| **Größer gleich** (Greater or equal) | Greater than or equal to the input value |
+| **Kleiner** (Less) | Less than the input value |
+| **Kleiner gleich** (Less or equal) | Less than or equal to the input value |
 
 ---
 
-## Alle Bedingungskategorien
+## All condition categories
 
-### 1. Allgemein (8 Bedingungen)
+### 1. Allgemein (General) (8 conditions)
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Ausgelöst durch Admin-API | Prüft ob die Anfrage über die Admin-API kam |
-| Datumsbereich | Datum liegt zwischen zwei Werten |
-| Immer zutreffend | Bedingung ist immer erfüllt |
-| Sprache | Aktuelle Shop-Sprache |
-| Steuerdarstellung | Brutto- oder Netto-Darstellung |
-| Verkaufskanal | Welcher Verkaufskanal aktiv ist |
-| Währung | Aktuelle Währung |
-| Wochentag | Aktueller Wochentag |
-| Zeitraum | Aktueller Zeitpunkt liegt in einem Zeitraum |
+| Ausgelöst durch Admin-API (Triggered by the Admin API) | Checks whether the request came via the Admin API |
+| Datumsbereich (Date range) | The date lies between two values |
+| Immer zutreffend (Always applies) | The condition is always met |
+| Sprache (Language) | Current shop language |
+| Steuerdarstellung (Tax display) | Gross or net display |
+| Verkaufskanal (Sales channel) | Which sales channel is active |
+| Währung (Currency) | Current currency |
+| Wochentag (Day of the week) | Current day of the week |
+| Zeitraum (Period) | The current point in time lies within a period |
 
-### 2. Bestellungen (11 Bedingungen)
+### 2. Bestellungen (Orders) (11 conditions)
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Affiliate-Code | Bestellung enthält bestimmten Affiliate-Code |
-| Bestellstatus | Status der Bestellung |
-| Bestellung mit Dokument | Dokument einem Typ zugeordnet |
-| Bestellung mit gesendeter Dokumenten-Art | Dokument wurde versendet |
-| Bestellung mit Tag | Bestellung hat bestimmten Tag |
-| Bestellung mit Zusatzfeld | Benutzerdefiniertes Feld hat Wert |
-| Bestellung vom Administrator erstellt | Erstellt in der Administration |
-| Kampagnen-Code | Bestimmter Kampagnen-Code vorhanden |
-| Lieferstatus | Status der Lieferung |
-| Zahlungsstatus | Status der Zahlung |
-| In Administration verwendbar | Regel kann in der Administration genutzt werden |
+| Affiliate-Code | The order contains a particular affiliate code |
+| Bestellstatus (Order status) | Status of the order |
+| Bestellung mit Dokument (Order with document) | A document assigned to a type |
+| Bestellung mit gesendeter Dokumenten-Art (Order with a sent document type) | The document has been sent |
+| Bestellung mit Tag (Order with tag) | The order has a particular tag |
+| Bestellung mit Zusatzfeld (Order with custom field) | A custom field has a value |
+| Bestellung vom Administrator erstellt (Order created by the administrator) | Created in the administration |
+| Kampagnen-Code (Campaign code) | A particular campaign code is present |
+| Lieferstatus (Delivery status) | Status of the delivery |
+| Zahlungsstatus (Payment status) | Status of the payment |
+| In Administration verwendbar (Usable in the administration) | The rule can be used in the administration |
 
-### 3. Kunde (25 Bedingungen)
+### 3. Kunde (Customer) (25 conditions)
 
-#### Demografisch
+#### Demographic
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Kundenalter | Alter des Kunden |
-| Kunden-Geburtstag | Geburtstag des Kunden (Datum) |
-| Kundenanrede | Anrede des Kunden |
-| Kundennachname | Nachname des Kunden |
-| Kundennummer | Kundennummer |
+| Kundenalter (Customer age) | Age of the customer |
+| Kunden-Geburtstag (Customer birthday) | Birthday of the customer (date) |
+| Kundenanrede (Customer salutation) | Salutation of the customer |
+| Kundennachname (Customer last name) | Last name of the customer |
+| Kundennummer (Customer number) | Customer number |
 
-#### Verhalten
+#### Behaviour
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Angemeldeter Kunde | Kunde ist eingeloggt |
-| Anzahl abgeschlossener Bestellungen | Bestellhistorie des Kunden |
-| Firmenkunde | Ist ein B2B-Kunde |
-| Gastbesteller | Bestellung als Gast |
-| Gesamtwert aller abgeschlossenen Bestellungen | Summe aller Bestellungen |
-| Kunde ist aktiv | Kundenkonto ist aktiv |
-| Kunde ist Newsletter-Empfänger | Hat Newsletter abonniert |
-| Zeit seit der ersten Anmeldung | Wie lange ist der Kunde registriert |
-| Zeit seit der letzten Anmeldung | Letzter Login-Zeitpunkt |
-| Zeit seit letzter Bestellung | Letzte Bestellung |
+| Angemeldeter Kunde (Logged-in customer) | The customer is logged in |
+| Anzahl abgeschlossener Bestellungen (Number of completed orders) | Order history of the customer |
+| Firmenkunde (Business customer) | Is a B2B customer |
+| Gastbesteller (Guest orderer) | Order placed as a guest |
+| Gesamtwert aller abgeschlossenen Bestellungen (Total value of all completed orders) | Sum of all orders |
+| Kunde ist aktiv (Customer is active) | The customer account is active |
+| Kunde ist Newsletter-Empfänger (Customer is a newsletter recipient) | Has subscribed to the newsletter |
+| Zeit seit der ersten Anmeldung (Time since first registration) | How long the customer has been registered |
+| Zeit seit der letzten Anmeldung (Time since last login) | Time of the last login |
+| Zeit seit letzter Bestellung (Time since last order) | Last order |
 
-#### Adressdaten
+#### Address data
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Lieferadresse: Bundesland | Bundesland der Lieferadresse |
-| Lieferadresse: Land | Land der Lieferadresse |
-| Lieferadresse: Postleitzahl | PLZ der Lieferadresse |
-| Lieferadresse: Stadt | Stadt der Lieferadresse |
-| Lieferadresse: Straße | Straße der Lieferadresse |
-| Rechnungsadresse: Bundesland | Bundesland der Rechnungsadresse |
-| Rechnungsadresse: Land | Land der Rechnungsadresse |
-| Rechnungsadresse: Postleitzahl | PLZ der Rechnungsadresse |
-| Rechnungsadresse: Stadt | Stadt der Rechnungsadresse |
-| Rechnungsadresse: Straße | Straße der Rechnungsadresse |
+| Lieferadresse: Bundesland (Shipping address: state) | State of the shipping address |
+| Lieferadresse: Land (Shipping address: country) | Country of the shipping address |
+| Lieferadresse: Postleitzahl (Shipping address: postcode) | Postcode of the shipping address |
+| Lieferadresse: Stadt (Shipping address: city) | City of the shipping address |
+| Lieferadresse: Straße (Shipping address: street) | Street of the shipping address |
+| Rechnungsadresse: Bundesland (Billing address: state) | State of the billing address |
+| Rechnungsadresse: Land (Billing address: country) | Country of the billing address |
+| Rechnungsadresse: Postleitzahl (Billing address: postcode) | Postcode of the billing address |
+| Rechnungsadresse: Stadt (Billing address: city) | City of the billing address |
+| Rechnungsadresse: Straße (Billing address: street) | Street of the billing address |
 
-#### Konfiguration
+#### Configuration
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Kunden-E-Mail-Adresse | E-Mail-Adresse (Wildcard `*` unterstützt) |
-| Kunde mit abweichender Lieferadresse | Lieferadresse weicht von Rechnungsadresse ab |
-| Kunde mit Standardzahlungsart | Hinterlegte Standardzahlungsart |
-| Kunde mit Tag | Kunde hat bestimmten Tag |
-| Kunde mit Zusatzfeld | Benutzerdefiniertes Feld hat Wert |
-| Neukunde *(veraltet)* | Verwende stattdessen "Zeit seit erste Anmeldung" |
+| Kunden-E-Mail-Adresse (Customer email address) | Email address (wildcard `*` supported) |
+| Kunde mit abweichender Lieferadresse (Customer with a differing shipping address) | The shipping address differs from the billing address |
+| Kunde mit Standardzahlungsart (Customer with a default payment method) | The stored default payment method |
+| Kunde mit Tag (Customer with tag) | The customer has a particular tag |
+| Kunde mit Zusatzfeld (Customer with custom field) | A custom field has a value |
+| Neukunde *(deprecated)* (New customer) | Use "Zeit seit erste Anmeldung" instead |
 
-### 4. Marketing & Rabattaktionen (4 Bedingungen)
+### 4. Marketing & Rabattaktionen (Marketing & discount promotions) (4 conditions)
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Anzahl der Rabatte | Anzahl aktiver Rabattaktionen im Warenkorb |
-| Rabattaktion | Bestimmte Rabattaktion ist aktiv |
-| Rabattaktionen mit Aktionscodetyp | Typ des verwendeten Aktionscodes |
-| Zwischensumme aller Rabatte | Gesamtrabattsumme im Warenkorb |
+| Anzahl der Rabatte (Number of discounts) | Number of active discount promotions in the cart |
+| Rabattaktion (Discount promotion) | A particular discount promotion is active |
+| Rabattaktionen mit Aktionscodetyp (Discount promotions with promotion code type) | Type of the promotion code used |
+| Zwischensumme aller Rabatte (Subtotal of all discounts) | Total discount sum in the cart |
 
-### 5. Positionen im Warenkorb (30+ Bedingungen)
+### 5. Positionen im Warenkorb (Line items in the cart) (30+ conditions)
 
-#### Bestand
+#### Stock
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Position mit Lagerbestand | Lagerbestand des Artikels |
-| Position mit verfügbarem Bestand | Verfügbarer Bestand |
-| Artikel auf Lager | Artikel ist lagernd |
+| Position mit Lagerbestand (Line item with stock) | Stock level of the item |
+| Position mit verfügbarem Bestand (Line item with available stock) | Available stock |
+| Artikel auf Lager (Item in stock) | The item is in stock |
 
-#### Produkteigenschaften
+#### Product properties
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Position mit Breite/Höhe/Länge/Volumen | Maße des Produkts |
-| Position mit Einkaufspreis | EK-Preis |
-| Position mit Erscheinungsdatum | Erscheinungsdatum |
-| Position mit Erstellungsdatum | Erstelldatum |
-| Position mit Gewicht | Gewicht des Produkts |
-| Position mit Hersteller | Hersteller des Produkts |
-| Position mit prozentualen Preis/Streichpreis Verhältnis | Rabattverhältnis |
-| Position mit Steuersatz | Mehrwertsteuersatz |
-| Position mit Streichpreis | Streichpreis vorhanden |
-| Position mit Tag | Produkt hat bestimmten Tag |
-| Position mit Varianten- oder Eigenschaftsausprägung | Variante/Eigenschaft |
-| Position mit Zusatzfeld | Custom-Field-Wert |
+| Position mit Breite/Höhe/Länge/Volumen (Line item with width/height/length/volume) | Dimensions of the product |
+| Position mit Einkaufspreis (Line item with purchase price) | Purchase price |
+| Position mit Erscheinungsdatum (Line item with release date) | Release date |
+| Position mit Erstellungsdatum (Line item with creation date) | Creation date |
+| Position mit Gewicht (Line item with weight) | Weight of the product |
+| Position mit Hersteller (Line item with manufacturer) | Manufacturer of the product |
+| Position mit prozentualen Preis/Streichpreis Verhältnis (Line item with a percentage price/list price ratio) | Discount ratio |
+| Position mit Steuersatz (Line item with tax rate) | VAT rate |
+| Position mit Streichpreis (Line item with list price) | A list price is present |
+| Position mit Tag (Line item with tag) | The product has a particular tag |
+| Position mit Varianten- oder Eigenschaftsausprägung (Line item with a variant or property value) | Variant/property |
+| Position mit Zusatzfeld (Line item with custom field) | Custom field value |
 
-#### Status & Kategorisierung
+#### Status & categorisation
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Position als "neu" markiert | Produkt ist als neu markiert |
-| Position im Abverkauf | Clearance-Produkt |
-| Position in dynamischer Produktgruppe | Dynamische Gruppe |
-| Position in Kategorie | Kategorie des Produkts |
-| Position ist hervorgehoben | Featured-Produkt |
-| Position ist versandkostenfrei | Versandkostenfrei-Flag |
-| Position mit Durchschnittsbewertung | Kundenbewertung |
-| Position vom Typ | Produkt- oder Gutscheintyp |
+| Position als "neu" markiert (Line item marked as "new") | The product is marked as new |
+| Position im Abverkauf (Line item in clearance) | Clearance product |
+| Position in dynamischer Produktgruppe (Line item in a dynamic product group) | Dynamic group |
+| Position in Kategorie (Line item in category) | Category of the product |
+| Position ist hervorgehoben (Line item is highlighted) | Featured product |
+| Position ist versandkostenfrei (Line item is free of shipping costs) | Free shipping flag |
+| Position mit Durchschnittsbewertung (Line item with average rating) | Customer rating |
+| Position vom Typ (Line item of type) | Product or voucher type |
 
-#### Mengen & Preise
+#### Quantities & prices
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Anzahl unterschiedlicher Positionen | Anzahl verschiedener Artikel |
-| Positionsanzahl | Menge eines Artikels im Warenkorb |
-| Positionsstückpreis | Preis pro Stück |
-| Positionszwischensumme | Zwischensumme einer Position |
-| Zwischensumme aller Positionen | Gesamtwert aller Positionen (mit Filter) |
+| Anzahl unterschiedlicher Positionen (Number of different line items) | Number of different items |
+| Positionsanzahl (Line item count) | Quantity of one item in the cart |
+| Positionsstückpreis (Line item unit price) | Price per unit |
+| Positionszwischensumme (Line item subtotal) | Subtotal of one line item |
+| Zwischensumme aller Positionen (Subtotal of all line items) | Total value of all line items (with filter) |
 
-### 6. Warenkorb (10 Bedingungen)
+### 6. Warenkorb (Cart) (10 conditions)
 
-| Bedingung | Beschreibung |
+| Condition | Description |
 |-----------|--------------|
-| Gesamtanzahl aller Produkte | Gesamte Produktmenge (mit Filter) |
-| Gesamtanzahl unterschiedlicher Produkte | Anzahl verschiedener Produkte (mit Filter) |
-| Gesamtgewicht aller Produkte | Gesamtgewicht |
-| Gesamtsumme | Gesamtbetrag des Warenkorbs |
-| Gesamtvolumen aller Produkte | Gesamtvolumen |
-| Summe | Summe (ohne bestimmte Positionen) |
-| Versandkosten | Aktuelle Versandkosten |
-| Verwendete Versandart | Gewählte Versandmethode |
-| Verwendete Zahlungsart | Gewählte Zahlungsmethode |
+| Gesamtanzahl aller Produkte (Total number of all products) | Total product quantity (with filter) |
+| Gesamtanzahl unterschiedlicher Produkte (Total number of different products) | Number of different products (with filter) |
+| Gesamtgewicht aller Produkte (Total weight of all products) | Total weight |
+| Gesamtsumme (Total sum) | Total amount of the cart |
+| Gesamtvolumen aller Produkte (Total volume of all products) | Total volume |
+| Summe (Sum) | Sum (excluding certain line items) |
+| Versandkosten (Shipping costs) | Current shipping costs |
+| Verwendete Versandart (Shipping method used) | The chosen shipping method |
+| Verwendete Zahlungsart (Payment method used) | The chosen payment method |
 
 ---
 
-## Regeln teilen (ab v6.7.1.0, Rise-Plan)
+## Sharing rules (from v6.7.1.0, Rise plan)
 
-### Regel herunterladen (Export)
+### Downloading a rule (export)
 
-1. In der Übersicht Kontextmenü `[...]` der Regel öffnen
-2. Option "Herunterladen" wählen
-3. JSON-Datei wird heruntergeladen (enthält alle Bedingungen, Operatoren, Referenzen)
+1. In the overview open the context menu `[...]` of the rule
+2. Choose the option "**Herunterladen**" (Download)
+3. A JSON file is downloaded (contains all conditions, operators, references)
 
-![Download Kontextmenü](../../assets/RuleBuilder_RegelnTeilen-Kontextmenue_DE.png)
+![Download context menu](assets/RuleBuilder_Sharing-Rules-Context-Menu_DE.png)
 
-> **Hinweis:** Kunden, Kundengruppen und Verkaufskanäle aus der Regel können im Ziel-Shop fehlen.
+> **Note:** customers, customer groups and sales channels from the rule may be missing in the target shop.
 
-### Regel hochladen (Import)
+### Uploading a rule (import)
 
-1. In der Übersicht Schaltfläche "Regel hochladen" klicken
-2. JSON-Datei auswählen
-3. Validierung läuft automatisch
-4. Fehlende Referenzen können neu zugeordnet werden
+1. In the overview click the "**Regel hochladen**" (Upload rule) button
+2. Select the JSON file
+3. Validation runs automatically
+4. Missing references can be reassigned
 
-![Upload Button](../../assets/RuleBuilder_RegelnTeilen-Uebersicht_DE.png)
-![Upload Dialog](../../assets/RuleBuilder_RegelnTeilen-PopUpHochladen_DE.png)
+![Upload button](assets/RuleBuilder_Sharing-Rules-Overview_DE.png)
+![Upload dialog](assets/RuleBuilder_Sharing-Rules-PopUpHochladen_DE.png)

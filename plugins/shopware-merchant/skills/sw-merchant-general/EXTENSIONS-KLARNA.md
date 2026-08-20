@@ -1,72 +1,72 @@
-# Klarna Payments – Integration & Konfiguration
+# Klarna Payments – integration & configuration
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/klarna
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/klarna
 
-## Überblick
+## Overview
 
-**Klarna Payments** für Shopware 6 bietet ein einfaches Einkaufserlebnis:
-- Händler erhalten die **volle Zahlung sofort**
-- Kunden wählen ihren eigenen Zahlungszeitpunkt (Ratenzahlung, Rechnung, Sofort)
+**Klarna Payments** for Shopware 6 offers a simple shopping experience:
+- Merchants receive the **full payment immediately**
+- Customers choose their own payment date (instalments, invoice, direct payment)
 
 ---
 
-## Zahlungsoptionen
+## Payment options
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| **Rechnung (Invoice)** | Kauf jetzt, Zahlung innerhalb von 14 Tagen – kostenlos für Kunden |
-| **Ratenzahlung (Installments)** | Kosten auf monatliche Zahlungen aufteilen |
-| **Sofortzahlung (Direct)** | Banküberweisung, Lastschrift, Kreditkarte |
+| **Rechnung (Invoice)** | Buy now, pay within 14 days – free of charge for customers |
+| **Ratenzahlung (Installments)** | Split the cost into monthly payments |
+| **Sofortzahlung (Direct)** | Bank transfer, direct debit, credit card |
 
 ---
 
 ## Installation
 
-### Variante 1: Ersteinrichtungs-Assistent
-- Im Wizard-Schritt "Erweiterungen" nach Klarna suchen und installieren
+### Variant 1: First-run setup wizard
+- In the "Erweiterungen" (Extensions) wizard step, search for Klarna and install it
 
-### Variante 2: Shopware Store
-1. https://store.shopware.com → "Klarna" suchen
-2. Lizenz erwerben
-3. Im Admin: **Erweiterungen > Meine Erweiterungen** → Installieren + Aktivieren
+### Variant 2: Shopware Store
+1. https://store.shopware.com → search for "Klarna"
+2. Acquire a licence
+3. In the admin: **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions) → install + activate
 
-### Variante 3: Direkt im Admin
-1. **Erweiterungen > Store** im Admin
-2. "Klarna" suchen → Hinzufügen/Kaufen
-3. Aktivierung über Toggle in Meine Erweiterungen
+### Variant 3: Directly in the admin
+1. **Erweiterungen** (Extensions) **> Store** in the admin
+2. Search for "Klarna" → add/buy
+3. Activation via the toggle in Meine Erweiterungen
 
-**Voraussetzung**: Im Shopware Account eingeloggt sein (für Lizenzverifizierung).
-
----
-
-## Konfiguration
-
-Für die vollständige Einrichtung verweist die Shopware-Dokumentation auf die offizielle
-Klarna-Dokumentation: https://klarna-shopware.426-upgrade.com/de/index.html
-
-### Grundlegende Schritte
-1. Klarna-Händlerkonto erstellen: https://portal.klarna.com
-2. API-Credentials (API Key + Secret) in der Klarna-Konfiguration im Shopware Admin eintragen
-3. Zahlungsmethoden aktivieren (Rechnung, Ratenzahlung, Sofort)
-4. Zahlungsmethoden den Verkaufskanälen zuordnen (Einstellungen > Zahlungen)
-5. Regeln für Verfügbarkeit konfigurieren (z. B. nur für bestimmte Länder)
+**Prerequisite**: Being logged in to the Shopware Account (for licence verification).
 
 ---
 
-## Regionale Verfügbarkeit
+## Configuration
 
-Klarna Payments ist in folgenden Ländern verfügbar (Stand 2024):
-- Deutschland, Österreich, Schweiz
-- Schweden, Norwegen, Finnland, Dänemark
-- Niederlande, Belgien
-- Vereinigtes Königreich
-- USA, Kanada, Australien
-- und weitere Länder
+For the complete setup the Shopware documentation refers to the official
+Klarna documentation: https://klarna-shopware.426-upgrade.com/de/index.html
+
+### Basic steps
+1. Create a Klarna merchant account: https://portal.klarna.com
+2. Enter the API credentials (API key + secret) in the Klarna configuration in the Shopware admin
+3. Activate the payment methods (invoice, instalments, direct payment)
+4. Assign the payment methods to the sales channels (Einstellungen (Settings) > Zahlungen (Payments))
+5. Configure rules for availability (for example only for certain countries)
 
 ---
 
-## Hinweise für die Nutzung
+## Regional availability
 
-- Klarna prüft die Bonität der Kunden automatisch im Hintergrund
-- Nicht verfügbare Zahlmethoden werden im Checkout automatisch ausgeblendet
-- Streitfälle und Rückerstattungen über das Klarna-Portal verwalten
+Klarna Payments is available in the following countries (as of 2024):
+- Germany, Austria, Switzerland
+- Sweden, Norway, Finland, Denmark
+- Netherlands, Belgium
+- United Kingdom
+- USA, Canada, Australia
+- and further countries
+
+---
+
+## Notes on usage
+
+- Klarna checks the customers' creditworthiness automatically in the background
+- Unavailable payment methods are hidden automatically in the checkout
+- Manage disputes and refunds via the Klarna portal

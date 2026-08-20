@@ -8,6 +8,6 @@ shadcn-vue is a Vue/Nuxt port of the original shadcn/ui (React). It is maintaine
 
 ## Reference Files
 
-- `INTRODUCTION.md` — Vollstaendige Einleitung: Prinzipien, Open Code, Composition,
+- `INTRODUCTION.md` — Complete introduction: principles, Open Code, Composition,
   Distribution, Beautiful Defaults, AI-Ready
-- `ABOUT.md` — Credits, Lizenz, Abgrenzung zu shadcn/ui und Reka UI
+- `ABOUT.md` — Credits, license, delineation from shadcn/ui and Reka UI

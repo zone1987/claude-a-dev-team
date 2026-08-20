@@ -1,19 +1,19 @@
 # Digital Sales Rooms — Customization
 
-Vollständige Referenz: [DIGITAL-SALES-ROOMS-CUSTOMIZATION-CUSTOMIZATION.md](DIGITAL-SALES-ROOMS-CUSTOMIZATION-CUSTOMIZATION.md)
+Full reference: [DIGITAL-SALES-ROOMS-CUSTOMIZATION-CUSTOMIZATION.md](DIGITAL-SALES-ROOMS-CUSTOMIZATION-CUSTOMIZATION.md)
 
-## Kernprinzip: Nuxt Layer
+## Core principle: Nuxt layers
 
-DSR nutzt das **Nuxt Layer Konzept**. Der Default-Layer `dsr` bleibt unberührt.
-Anpassungen erfolgen in einem eigenen Layer, der in `nuxt.config.ts` importiert wird.
-Ein Beispiel-Layer `example` liegt im Quellcode bei.
+DSR uses the **Nuxt layer concept**. The default layer `dsr` remains untouched.
+Customizations are made in your own layer, which is imported in `nuxt.config.ts`.
+An example layer `example` ships with the source code.
 
-## Schnellübersicht
+## Quick overview
 
-| Thema | Datei im eigenen Layer |
+| Topic | File in your own layer |
 |-------|----------------------|
 | Favicon | `public/favicon.ico` |
-| App-Titel | `nuxt.config.ts` → `app.head.title` |
-| Primärfarbe | `uno.config.ts` → `theme.colors.primary` |
-| Komponente überschreiben | Datei aus `dsr/components/` in eigenen Layer kopieren |
-| i18n überschreiben | `nuxt.config.ts` + `i18n/src/langs/` im eigenen Layer |
+| App title | `nuxt.config.ts` → `app.head.title` |
+| Primary color | `uno.config.ts` → `theme.colors.primary` |
+| Override a component | copy the file from `dsr/components/` into your own layer |
+| Override i18n | `nuxt.config.ts` + `i18n/src/langs/` in your own layer |

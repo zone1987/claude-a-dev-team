@@ -1,37 +1,37 @@
-# Shopware Subscriptions — Entwickler-Referenz
+# Shopware Subscriptions — developer reference
 
 ## Contents
 
-- [Kernkonzepte](#kernkonzepte)
-- [Checkout-Prozesse](#checkout-prozesse)
-- [Cart Processors und Collectors erweitern](#cart-processors-und-collectors-erweitern)
-- [Template Scoping](#template-scoping)
-- [Extensibility-Pattern (Empfehlung)](#extensibility-pattern-empfehlung)
-- [Design-Entscheidungen (Hintergrund)](#design-entscheidungen-hintergrund)
+- [Core concepts](#core-concepts)
+- [Checkout processes](#checkout-processes)
+- [Extending cart processors and collectors](#extending-cart-processors-and-collectors)
+- [Template scoping](#template-scoping)
+- [Extensibility pattern (recommendation)](#extensibility-pattern-recommendation)
+- [Design decisions (background)](#design-decisions-background)
 
-## Kernkonzepte
+## Core concepts
 
 ### Subscription Plans
-Set von Regeln (Interval, Produkt). Mehrere Intervals pro Plan moeglich.
-Verwaltung in der Shopware Administration.
+A set of rules (interval, product). Several intervals per plan are possible.
+Managed in the Shopware Administration.
 
 ### Subscription Intervals
-Zeitabstand zwischen Lieferzyklen:
+The time span between delivery cycles:
 
-| Typ        | Beschreibung                                   | Implementierung  |
+| Type       | Description                                    | Implementation   |
 |------------|------------------------------------------------|------------------|
-| Relativ    | Basierend auf vorherigem Interval (z.B. +1M)   | PHP `DateInterval`|
-| Absolut    | Fester Termin (z.B. jeder 1. des Monats)       | Cron-Ausdruck    |
+| Relative   | Based on the previous interval (e.g. +1M)      | PHP `DateInterval`|
+| Absolute   | Fixed date (e.g. the 1st of every month)       | Cron expression  |
 
-Absolut-Intervals koennen relativen Anteil haben (z.B. alle 12 Wochen, aber nur freitags).
+Absolute intervals can have a relative portion (e.g. every 12 weeks, but only on Fridays).
 
 ### Subscription Cart
-Enthaelt nur Subscription-Produkte eines Plan+Interval-Kombination.
-Wird mit Subscription-Cart-Calculator berechnet (Subset von Cart-Processors/Collectors).
-Verknuepfung Main-Cart ↔ Subscription-Cart via `subscription_cart` Tabelle.
+Contains only subscription products of one plan+interval combination.
+Calculated with the subscription cart calculator (a subset of cart processors/collectors).
+Link between main cart ↔ subscription cart via the `subscription_cart` table.
 
 ### Subscription Context
-Sales-Channel-Context mit Extension `subscription`:
+Sales channel context with the `subscription` extension:
 ```json
 {
   "token": "<subscription-context-token>",
@@ -47,24 +47,24 @@ Sales-Channel-Context mit Extension `subscription`:
 }
 ```
 
-## Checkout-Prozesse
+## Checkout processes
 
-### Separate Subscription Checkout
+### Separate subscription checkout
 
-Jedes Subscription-Produkt wird einzeln ausgecheckt (Express-Checkout-artig):
-- Neuer Subscription-Cart mit NUR dem Subscription-Produkt
-- Neuer Subscription-Context (abgeleitet vom Main-Context)
-- Main-Cart bleibt unveraendert
+Every subscription product is checked out individually (express-checkout style):
+- A new subscription cart with ONLY the subscription product
+- A new subscription context (derived from the main context)
+- The main cart stays unchanged
 
-**Headless Request Scoping:**
+**Headless request scoping:**
 ```
 Header: sw-subscription-plan: <plan-id>
 Header: sw-subscription-interval: <interval-id>
 ```
 
-**Storefront URL-Parameter:** `/subscription/checkout/cart/{subscriptionToken}`
+**Storefront URL parameter:** `/subscription/checkout/cart/{subscriptionToken}`
 
-**Subscription-Produkt hinzufuegen (Store API):**
+**Adding a subscription product (Store API):**
 ```sh
 POST /store-api/subscription/checkout/cart/line-item
 {
@@ -74,26 +74,26 @@ POST /store-api/subscription/checkout/cart/line-item
 }
 ```
 
-**Events:** Alle Events im Subscription-Checkout haben `subscription.`-Prefix:
+**Events:** all events in the subscription checkout carry the `subscription.` prefix:
 ```php
 // Normal:
 'subscription.' . CheckoutOrderPlacedCriteriaEvent::class => 'handler'
 ```
-Vollstaendige Liste: `Subscription/Framework/Event/SubscriptionEventRegistry.php`
+Full list: `Subscription/Framework/Event/SubscriptionEventRegistry.php`
 
-### Mixed Cart Checkout (ab Shopware 6.7.4.0)
+### Mixed cart checkout (from Shopware 6.7.4.0)
 
-Subscription-Produkte und Einmalkauf-Produkte im gleichen Warenkorb:
-- Subscription-Produkte sind normale Line-Items mit Subscription-Payload
-- Pro Plan+Interval-Kombination: eigener verwalteter Subscription-Cart (abgeleitet)
-- Verwaltete Carts: `subscriptionManagedCarts` Extension am Main-Cart
+Subscription products and one-off purchase products in the same cart:
+- Subscription products are normal line items with a subscription payload
+- Per plan+interval combination: its own managed subscription cart (derived)
+- Managed carts: `subscriptionManagedCarts` extension on the main cart
 
-**Subscription-Metadaten in Line-Item-Payload:**
+**Subscription metadata in the line item payload:**
 ```json
 {"subscriptionPlan": "<plan-id>", "subscriptionInterval": "<interval-id>"}
 ```
 
-**Produkt als Subscription hinzufuegen (Store API):**
+**Adding a product as a subscription (Store API):**
 ```sh
 POST /store-api/checkout/cart/line-item
 {
@@ -105,36 +105,36 @@ POST /store-api/checkout/cart/line-item
 }
 ```
 
-**Managed Carts aus dem Cart lesen:**
+**Reading managed carts from the cart:**
 ```twig
 {% set managedCarts = page.cart.extensions.subscriptionManagedCarts %}
 {# Key: "<plan-id>-<interval-id>" #}
 ```
 
-## Cart Processors und Collectors erweitern
+## Extending cart processors and collectors
 
-Fuer Separate Checkout: `subscription.cart.processor` / `subscription.cart.collector`
-Fuer Mixed Cart: Gleiche Tags + `shopware.cart.processor` / `shopware.cart.collector`
+For the separate checkout: `subscription.cart.processor` / `subscription.cart.collector`
+For the mixed cart: the same tags + `shopware.cart.processor` / `shopware.cart.collector`
 
-Differenzierung im Code:
+Differentiating in code:
 ```php
-// Ist es ein Subscription-Cart?
+// Is it a subscription cart?
 $isSubscription = $salesChannelContext->hasExtension('subscription');
-// Ist es ein managed (mixed) Cart?
+// Is it a managed (mixed) cart?
 $isManaged = $salesChannelContext->getExtension('subscription')?->isManaged();
 ```
 
-**Wichtig beim Mixed Cart:** Line-Items NICHT nur zum Subscription-Cart hinzufuegen.
-Immer auch zum Main-Cart hinzufuegen. Fuer Subscription-only-Items:
-`SubscriptionOrderLineItemRestoredEvent` subscriben.
+**Important with the mixed cart:** do NOT add line items only to the subscription cart.
+Always add them to the main cart as well. For subscription-only items:
+subscribe to `SubscriptionOrderLineItemRestoredEvent`.
 
-### Subscription Line-Item im PHP erstellen (Processor/Collector)
+### Creating a subscription line item in PHP (processor/collector)
 
 ```php
 $planId = $salesChannelContext->getExtension('subscription')->getPlan()->getId();
 $intervalId = $salesChannelContext->getExtension('subscription')->getInterval()->getId();
 
-// Composite ID verhindert Merging mit existierenden Line-Items
+// The composite ID prevents merging with existing line items
 $lineItemId = sprintf('%s-%s-%s', $productId, $planId, $intervalId);
 $lineItem = new LineItem($lineItemId, LineItem::PRODUCT_LINE_ITEM_TYPE, $productId);
 $lineItem->setPayloadValue('subscriptionPlan', $planId);
@@ -142,16 +142,16 @@ $lineItem->setPayloadValue('subscriptionInterval', $intervalId);
 $cart->add($lineItem);
 ```
 
-## Template Scoping
+## Template scoping
 
-Verhindert, dass Standard-Storefront-Anpassungen im Subscription-Checkout sichtbar sind
-(z.B. Express-Checkout-Buttons, die keine Abonnements unterstuetzen).
+Prevents standard storefront customizations from being visible in the subscription checkout
+(e.g. express checkout buttons that do not support subscriptions).
 
 **Scopes:**
-- `subscription` — Separater Subscription-Checkout
-- `mixed-subscription` — Mixed Cart Checkout
+- `subscription` — separate subscription checkout
+- `mixed-subscription` — mixed cart checkout
 
-**Template mit Scope-Deklaration:**
+**Template with a scope declaration:**
 ```twig
 {% sw_extends {
     template: '@Storefront/storefront/base.html.twig',
@@ -159,20 +159,20 @@ Verhindert, dass Standard-Storefront-Anpassungen im Subscription-Checkout sichtb
 } %}
 ```
 
-**Betroffene Storefront-Seiten (beide Scopes):**
+**Affected storefront pages (both scopes):**
 - `frontend.checkout.cart.page`
 - `frontend.checkout.confirm.page`
 - `frontend.checkout.register.page`
 - `frontend.account.edit-order.page`
 - `frontend.account.login.page`
 - `frontend.account.register.page`
-- `frontend.cart.offcanvas` (nur mixed-subscription)
+- `frontend.cart.offcanvas` (mixed-subscription only)
 
-Anpassbare Route-Liste via Parameter: `subscription.routes.mixed-storefront-scope`
+Customizable route list via the parameter: `subscription.routes.mixed-storefront-scope`
 
-## Extensibility-Pattern (Empfehlung)
+## Extensibility pattern (recommendation)
 
-Decorator-Pattern fuer Subscription-Services:
+The decorator pattern for subscription services:
 
 ```php
 class CustomSubscriptionServiceDecorator extends AbstractSubscriptionService
@@ -192,11 +192,11 @@ class CustomSubscriptionServiceDecorator extends AbstractSubscriptionService
 }
 ```
 
-## Design-Entscheidungen (Hintergrund)
+## Design decisions (background)
 
-Subscriptions sind bewusst isoliert konzipiert, um bestehende Extensions nicht zu beeinflussen:
-- Promotions werden aus Subscription-Carts ausgeschlossen (Komplexitaet bei Folge-Orders)
-- Template Scopes verhindern inkompatible UI-Elemente
-- Scoped Events ermöglichen gezieltes Opt-in
+Subscriptions are deliberately designed in isolation so as not to affect existing extensions:
+- Promotions are excluded from subscription carts (complexity with follow-up orders)
+- Template scopes prevent incompatible UI elements
+- Scoped events enable a targeted opt-in
 
-B2B Employee Integration: siehe `sw-b2b-components-employee-management` (Subscription-Integration).
+B2B employee integration: see `sw-b2b-components-employee-management` (subscription integration).

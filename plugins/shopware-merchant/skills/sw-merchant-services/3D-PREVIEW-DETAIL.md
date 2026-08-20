@@ -6,7 +6,7 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/erweiterungen/3d-preview-gene
 
 ## Screenshots
 
-![3D Preview auf Produktdetailseite](../../assets/3d-preview-produktdetailseite.png)
+![3D Preview auf Produktdetailseite](assets/3d-preview-product-detail-page.png)
 
 ## Was ist der 3D Preview Generator?
 

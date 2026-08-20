@@ -1,96 +1,96 @@
-# B2B Order Approval — Entwickler-Referenz
+# B2B Order Approval — Developer reference
 
 ## Contents
 
-- [Voraussetzung](#voraussetzung)
-- [Konzept](#konzept)
-- [Entitaeten](#entitaeten)
-- [Berechtigungen](#berechtigungen)
-- [Payment-Prozess](#payment-prozess)
-- [Eigene Approval-Bedingungen](#eigene-approval-bedingungen)
+- [Prerequisite](#prerequisite)
+- [Concept](#concept)
+- [Entities](#entities)
+- [Permissions](#permissions)
+- [Payment process](#payment-process)
+- [Custom approval conditions](#custom-approval-conditions)
 
-## Voraussetzung
+## Prerequisite
 
-Employee Management muss installiert und aktiviert sein.
+Employee Management must be installed and activated.
 
-## Konzept
+## Concept
 
-Der Order-Approval-Workflow ermoeglicht es, Regeln zu definieren, welche Bestellungen
-eine Genehmigung benoetigen und wer genehmigen kann.
+The order approval workflow makes it possible to define rules for which orders
+require an approval and who can approve them.
 
-### Beispiel: App-basierte Approval-Bedingung im Admin
+### Example: app-based approval condition in the admin
 
-![Approval Rule Condition](../../assets/approval-rule-condition.png)
+![Approval Rule Condition](assets/approval-rule-condition.png)
 
-### Feldtypen fuer App-Bedingungen
+### Field types for app conditions
 
-![Text Field](../../assets/approval-rule-condition-text-field-example.png)
-![Single Select](../../assets/approval-rule-condition-single-select-example.png)
-![Multi Select](../../assets/approval-rule-condition-multi-select-example.png)
+![Text Field](assets/approval-rule-condition-text-field-example.png)
+![Single Select](assets/approval-rule-condition-single-select-example.png)
+![Multi Select](assets/approval-rule-condition-multi-select-example.png)
 
 ### Workflow
 
 ```
-Mitarbeiter platziert Bestellung
+Employee places order
     ↓
-Approval-Regel trifft zu?
-    Nein → Ereignis: Order Placed (normal)
-    Ja   → Ereignis: Order needs approval
+Approval rule matches?
+    No  → Event: Order Placed (normal)
+    Yes → Event: Order needs approval
               ↓
-         Genehmigung erteilt?
-             Ja  → Ereignis: Order Approved + Order Placed
-             Nein → Ereignis: Order declined
+         Approval granted?
+             Yes → Event: Order Approved + Order Placed
+             No  → Event: Order declined
 ```
 
-## Entitaeten
+## Entities
 
 ### Approval Rule
-Bedingungs-Set fuer Genehmigungspflicht:
-- `state_id`, `priority` (INT, steuert Reihenfolge der Regelauswertung)
-- Zugeordnete Reviewer-Rolle (nur Mitarbeiter mit dieser Rolle koennen genehmigen)
-- Zugeordnete Mitarbeiter-Rolle (diese Mitarbeiter benoetigen Genehmigung)
+Condition set for approval requirement:
+- `state_id`, `priority` (INT, controls the order of rule evaluation)
+- Assigned reviewer role (only employees with this role can approve)
+- Assigned employee role (these employees require approval)
 
 ### Pending Order
-Ausstehende Bestellung: enthaelt Bestelldaten, den anfragenden Mitarbeiter und die passende
-Approval-Regel.
+Pending order: contains the order data, the requesting employee and the matching
+approval rule.
 
-## Berechtigungen
+## Permissions
 
-### Approval Rule Berechtigungen
+### Approval rule permissions
 
-| Permission                  | Beschreibung                      |
+| Permission                  | Description                       |
 |-----------------------------|-----------------------------------|
-| `Can create approval rules` | Regeln erstellen                  |
-| `Can update approval rules` | Regeln bearbeiten                 |
-| `Can delete approval rules` | Regeln loeschen                   |
-| `Can read approval rules`   | Regeln lesen                      |
+| `Can create approval rules` | Create rules                      |
+| `Can update approval rules` | Edit rules                        |
+| `Can delete approval rules` | Delete rules                      |
+| `Can read approval rules`   | Read rules                        |
 
-### Pending Order Berechtigungen
+### Pending order permissions
 
-| Permission                               | Beschreibung                                   |
+| Permission                               | Description                                    |
 |------------------------------------------|------------------------------------------------|
-| `Can approve/decline all pending orders` | Alle ausstehenden Bestellungen genehmigen      |
-| `Can approve/decline pending orders`     | Zugewiesene Bestellungen genehmigen            |
-| `Can view all pending orders`            | Alle ausstehenden Bestellungen sehen           |
+| `Can approve/decline all pending orders` | Approve all pending orders                     |
+| `Can approve/decline pending orders`     | Approve assigned orders                        |
+| `Can view all pending orders`            | See all pending orders                         |
 
-### Sichtbarkeitsregeln
+### Visibility rules
 
-**Wer kann ausstehende Bestellungen sehen?**
-- Mitarbeiter mit `Can view all pending orders`
-- Mitarbeiter, die selbst Genehmigung angefragt haben (eigene Bestellungen)
-- Business Partner (alle Bestellungen ihrer Mitarbeiter)
+**Who can see pending orders?**
+- Employees with `Can view all pending orders`
+- Employees who requested the approval themselves (their own orders)
+- Business partners (all orders of their employees)
 
-**Wer kann genehmigen/ablehnen?**
-- Mitarbeiter mit `Can approve/decline all pending orders`
-- Mitarbeiter mit `Can approve/decline pending orders` (fuer zugewiesene Bestellungen)
-- Business Partner (alle Mitarbeiter-Bestellungen)
+**Who can approve/decline?**
+- Employees with `Can approve/decline all pending orders`
+- Employees with `Can approve/decline pending orders` (for assigned orders)
+- Business partners (all employee orders)
 
-## Payment-Prozess
+## Payment process
 
-Gleich wie Standard-Bestellprozess, aber bei Online-Zahlung (Visa, PayPal etc.):
-Zahlung wird erst nach Genehmigung ausgefuehrt.
+Same as the standard order process, but with online payment (Visa, PayPal etc.):
+the payment is only executed after approval.
 
-### Zahlung-Prozess deaktivieren (nach Genehmigung)
+### Disabling the payment process (after approval)
 
 ```php
 use Shopware\Commercial\B2B\OrderApproval\Event\PendingOrderApprovedEvent;
@@ -104,20 +104,20 @@ class MySubscriber implements EventSubscriberInterface
 
     public function onPendingOrderApproved(PendingOrderApprovedEvent $event): void
     {
-        // Zahlung-Prozess nach Genehmigung verhindern
+        // Prevent the payment process after approval
         $event->setShouldProceedPlaceOrder(false);
     }
 }
 ```
 
-Storefront-Template ueberschreiben:
+Override the storefront template:
 `@OrderApproval/storefront/pending-order/page/pending-approval/detail.html.twig`
 
-## Eigene Approval-Bedingungen
+## Custom approval conditions
 
-### Via Plugin
+### Via plugin
 
-Shopware Rule-System verwenden und mit Tag `shopware.approval_rule.definition` registrieren:
+Use the Shopware rule system and register it with the tag `shopware.approval_rule.definition`:
 
 ```php
 class CartAmountRule extends Rule
@@ -147,7 +147,7 @@ class CartAmountRule extends Rule
 }
 ```
 
-Registrierung:
+Registration:
 
 ```php
 $services->set(CartAmountRule::class)
@@ -155,20 +155,20 @@ $services->set(CartAmountRule::class)
     ->tag('shopware.approval_rule.definition');
 ```
 
-### Via App (ab Commercial 6.4.0)
+### Via app (as of Commercial 6.4.0)
 
-Verzeichnisstruktur:
+Directory structure:
 
 ```
 DemoApp/
     Resources/
         scripts/
-            approval-rule-conditions/    # Scripts fuer Approval-Bedingungen
+            approval-rule-conditions/    # Scripts for approval conditions
                 custom-condition.twig
     manifest.xml
 ```
 
-`manifest.xml` Bedingung definieren:
+Define the condition in `manifest.xml`:
 
 ```xml
 <rule-condition>
@@ -187,7 +187,7 @@ DemoApp/
 </rule-condition>
 ```
 
-Twig-Script:
+Twig script:
 
 ```twig
 {# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
@@ -197,6 +197,6 @@ Twig-Script:
 {% return compare(operator, scope.cart.price.totalPrice, amount) %}
 ```
 
-Unterstuetzte Feldtypen: `float`, `int`, `text`, `single-select`, `multi-select`
+Supported field types: `float`, `int`, `text`, `single-select`, `multi-select`
 
-Scope-Variablen: `scope.cart`, `scope.salesChannelContext.customer`, `scope.salesChannelContext.currency`
+Scope variables: `scope.cart`, `scope.salesChannelContext.customer`, `scope.salesChannelContext.currency`

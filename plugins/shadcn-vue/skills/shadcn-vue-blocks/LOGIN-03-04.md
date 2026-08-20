@@ -1,8 +1,8 @@
-# shadcn-vue Login Blocks: login-03 und login-04
+# shadcn-vue Login Blocks: login-03 and login-04
 
 ## Block: login-03
 
-**Description:** A login page with a muted background color — Card mit Social-Buttons (Apple + Google) vor dem Formular.
+**Description:** A login page with a muted background color — card with social buttons (Apple + Google) before the form.
 
 **Installation:**
 ```bash
@@ -155,7 +155,7 @@ const props = defineProps<{
 
 ## Block: login-04
 
-**Description:** A login page with form and image — Card mit internem zweispaltigem Layout (Formular + Bild), Social-Icons für Apple/Google/Meta.
+**Description:** A login page with form and image — card with an internal two-column layout (form + image), social icons for Apple/Google/Meta.
 
 **Installation:**
 ```bash

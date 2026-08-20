@@ -1,6 +1,6 @@
-# Shopware 6 — App Flow-Action XML-Referenz
+# Shopware 6 — App flow action XML reference
 
-Schema für `Resources/flow-action.xml` in Apps: `<flow-actions>` → `<flow-action>` mit
+Schema for `Resources/flow-action.xml` in apps: `<flow-actions>` → `<flow-action>` with
 `<meta>`, `<headers>`, `<parameters>`, `<config>`.
 
-Vollständige Referenz inkl. aller Variablen je Event: `FLOW-REFERENCE-FLOW-ACTION-REFERENCE.md`
+Complete reference including all variables per event: `FLOW-REFERENCE-FLOW-ACTION-REFERENCE.md`

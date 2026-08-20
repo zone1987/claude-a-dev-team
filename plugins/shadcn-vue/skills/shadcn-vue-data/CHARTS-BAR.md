@@ -1,10 +1,10 @@
 # shadcn-vue Bar Charts
 
-4 Varianten mit komplettem Vue-Quellcode.
+4 variants with complete Vue source code.
 
-## Referenzen
+## References
 
-- [CHARTS-BAR-BAR-CHARTS.md](CHARTS-BAR-BAR-CHARTS.md) — Vollstaendiger Code aller 4 Bar-Charts:
+- [CHARTS-BAR-BAR-CHARTS.md](CHARTS-BAR-BAR-CHARTS.md) — Complete code of all 4 bar charts:
   ChartBarDefault, ChartBarHorizontal, ChartBarMultiple, ChartBarInteractive
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartBar*.vue`
+Source: `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/charts/ChartBar*.vue`

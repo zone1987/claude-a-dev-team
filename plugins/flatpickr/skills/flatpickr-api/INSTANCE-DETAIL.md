@@ -1,6 +1,6 @@
-# flatpickr — Instanz-API (vollständige Referenz, v4.6.13)
+# flatpickr — Instance API (complete reference, v4.6.13)
 
-Quelle: `src/types/instance.ts` (autoritativ, Stand v4.6.13).
+Source: `src/types/instance.ts` (authoritative, as of v4.6.13).
 
 ```js
 const fp = flatpickr("#date", { enableTime: true });
@@ -10,23 +10,23 @@ const fp = flatpickr("#date", { enableTime: true });
 
 ## Contents
 
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Properties](#properties)
-- [DOM-Elemente](#dom-elemente)
-- [DayElement-Typ](#dayelement-typ)
-- [Statische Hilfsfunktionen](#statische-hilfsfunktionen)
-- [`fp_incr` — Datums-Hilfsfunktion](#fp_incr-datums-hilfsfunktion)
+- [DOM elements](#dom-elements)
+- [DayElement type](#dayelement-type)
+- [Static helper functions](#static-helper-functions)
+- [`fp_incr` — date helper function](#fp_incr--date-helper-function)
 
-## Methoden
+## Methods
 
 ### `open(e?, positionElement?)`
 
-Öffnet den Kalender.
+Opens the calendar.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `e` | `FocusEvent\|MouseEvent` | Optionales Event (wird meist weggelassen) |
-| `positionElement` | `HTMLElement` | Optionales Element für die Positionierung |
+| `e` | `FocusEvent\|MouseEvent` | Optional event (usually omitted) |
+| `positionElement` | `HTMLElement` | Optional element used for positioning |
 
 ```js
 fp.open();
@@ -36,7 +36,7 @@ fp.open();
 
 ### `close()`
 
-Schließt den Kalender.
+Closes the calendar.
 
 ```js
 fp.close();
@@ -46,7 +46,7 @@ fp.close();
 
 ### `toggle()`
 
-Öffnet den Kalender wenn geschlossen, schließt ihn wenn geöffnet.
+Opens the calendar when it is closed, closes it when it is open.
 
 ```js
 fp.toggle();
@@ -56,24 +56,24 @@ fp.toggle();
 
 ### `clear(emitChangeEvent?, toInitial?)`
 
-Setzt die Auswahl zurück und leert das Input-Feld.
+Resets the selection and clears the input field.
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |-----------|-----|---------|-------------|
-| `emitChangeEvent` | `Boolean` | `true` | Ob `onChange` ausgelöst werden soll |
-| `toInitial` | `Boolean` | `false` | Auf den Initialzustand zurücksetzen |
+| `emitChangeEvent` | `Boolean` | `true` | Whether `onChange` should be fired |
+| `toInitial` | `Boolean` | `false` | Reset to the initial state |
 
 ```js
 fp.clear();
-fp.clear(false); // kein onChange-Event
+fp.clear(false); // no onChange event
 ```
 
 ---
 
 ### `destroy()`
 
-Entfernt die flatpickr-Instanz vollständig: entfernt Event-Listener, stellt das Original-Input
-wieder her. Nach `destroy()` ist die Instanz nicht mehr verwendbar.
+Removes the flatpickr instance completely: removes event listeners and restores the original
+input. After `destroy()` the instance can no longer be used.
 
 ```js
 fp.destroy();
@@ -83,30 +83,30 @@ fp.destroy();
 
 ### `changeMonth(value, isOffset?, fromKeyboard?)`
 
-Wechselt den angezeigten Monat.
+Changes the displayed month.
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |-----------|-----|---------|-------------|
-| `value` | `Number` | — | Monatswert |
-| `isOffset` | `Boolean` | `true` | `true`: Monatszahl als Offset; `false`: absoluter Monat (0–11) |
-| `fromKeyboard` | `Boolean` | `false` | Gibt an ob die Aktion per Tastatur ausgelöst wurde |
+| `value` | `Number` | — | Month value |
+| `isOffset` | `Boolean` | `true` | `true`: month number as an offset; `false`: absolute month (0–11) |
+| `fromKeyboard` | `Boolean` | `false` | Indicates whether the action was triggered by the keyboard |
 
 ```js
-fp.changeMonth(1);         // einen Monat vorwärts
-fp.changeMonth(-2);        // zwei Monate rückwärts
-fp.changeMonth(0, false);  // zu Januar springen (absolut)
-fp.changeMonth(11, false); // zu Dezember springen (absolut)
+fp.changeMonth(1);         // one month forward
+fp.changeMonth(-2);        // two months back
+fp.changeMonth(0, false);  // jump to January (absolute)
+fp.changeMonth(11, false); // jump to December (absolute)
 ```
 
 ---
 
 ### `changeYear(year)`
 
-Wechselt das angezeigte Jahr direkt auf den angegebenen Wert.
+Changes the displayed year directly to the given value.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `year` | `Number` | Das Zieljahr (4-stellig) |
+| `year` | `Number` | The target year (4 digits) |
 
 ```js
 fp.changeYear(2025);
@@ -116,14 +116,14 @@ fp.changeYear(2025);
 
 ### `formatDate(dateObj, formatStr)`
 
-Gibt einen formatierten Datumsstring zurück.
+Returns a formatted date string.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `dateObj` | `Date` | Das zu formatierende Date-Objekt |
-| `formatStr` | `String` | Format-Pattern (gleiche Tokens wie `dateFormat`) |
+| `dateObj` | `Date` | The Date object to format |
+| `formatStr` | `String` | Format pattern (same tokens as `dateFormat`) |
 
-**Rückgabe:** `String`
+**Returns:** `String`
 
 ```js
 fp.formatDate(new Date(), "Y-m-d");       // "2024-12-31"
@@ -134,51 +134,51 @@ fp.formatDate(new Date(), "d.m.Y H:i");  // "31.12.2024 14:30"
 
 ### `isEnabled(date, timeless?)`
 
-Prüft ob ein bestimmtes Datum wählbar ist (nicht durch `disable`/`enable` oder `minDate`/`maxDate` gesperrt).
+Checks whether a given date is selectable (not blocked by `disable`/`enable` or `minDate`/`maxDate`).
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |-----------|-----|---------|-------------|
-| `date` | `String\|Date\|Number` | — | Das zu prüfende Datum |
-| `timeless` | `Boolean` | `true` | Uhrzeit bei der Prüfung ignorieren |
+| `date` | `String\|Date\|Number` | — | The date to check |
+| `timeless` | `Boolean` | `true` | Ignore the time when checking |
 
-**Rückgabe:** `Boolean`
+**Returns:** `Boolean`
 
 ```js
-fp.isEnabled("2024-12-25"); // false wenn gesperrt
-fp.isEnabled(new Date());   // true wenn heute wählbar
+fp.isEnabled("2024-12-25"); // false when blocked
+fp.isEnabled(new Date());   // true when today is selectable
 ```
 
 ---
 
 ### `jumpToDate(date?, triggerChange?)`
 
-Setzt die Kalenderansicht auf Jahr und Monat des angegebenen Datums. Wählt das Datum
-nicht aus — nur Navigation.
+Sets the calendar view to the year and month of the given date. Does not select the
+date — navigation only.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `date` | `String\|Date\|undefined` | Zieldatum; `undefined` → springt zum letzten gewählten Datum, `minDate` oder heute |
-| `triggerChange` | `Boolean` | Ob Monat/Jahr-Change-Hooks ausgelöst werden sollen |
+| `date` | `String\|Date\|undefined` | Target date; `undefined` → jumps to the last selected date, `minDate` or today |
+| `triggerChange` | `Boolean` | Whether month/year change hooks should be fired |
 
 ```js
 fp.jumpToDate("2025-06-01");
 fp.jumpToDate(new Date(), true);
-fp.jumpToDate(); // springt zum aktuell gewählten oder heutigem Datum
+fp.jumpToDate(); // jumps to the currently selected date or today
 ```
 
 ---
 
 ### `parseDate(date, givenFormat?, timeless?)`
 
-Konvertiert einen Datumsstring oder Timestamp in ein Date-Objekt.
+Converts a date string or timestamp into a Date object.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `date` | `Date\|String\|Number` | Datumsstring, Timestamp oder Date-Objekt |
-| `givenFormat` | `String` | Erwartetes Format (optional) |
-| `timeless` | `Boolean` | Zeit-Anteil ignorieren |
+| `date` | `Date\|String\|Number` | Date string, timestamp or Date object |
+| `givenFormat` | `String` | Expected format (optional) |
+| `timeless` | `Boolean` | Ignore the time part |
 
-**Rückgabe:** `Date | undefined`
+**Returns:** `Date | undefined`
 
 ```js
 fp.parseDate("31.12.2024", "d.m.Y"); // → Date Object
@@ -189,7 +189,7 @@ fp.parseDate("2024-12-31", "Y-m-d"); // → Date Object
 
 ### `redraw()`
 
-Zeichnet den Kalender neu. Notwendig z.B. nach DOM-Manipulation am Kalender.
+Redraws the calendar. Necessary e.g. after DOM manipulation on the calendar.
 
 ```js
 fp.redraw();
@@ -199,22 +199,22 @@ fp.redraw();
 
 ### `set(option, value?)`
 
-Aktualisiert eine Konfig-Option und zeichnet den Kalender bei Bedarf neu.
-Kann auch ein Objekt mit mehreren Optionen übergeben werden.
+Updates a config option and redraws the calendar when needed.
+An object holding several options can also be passed.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `option` | `String\|Object` | Name der Konfig-Property oder Objekt mit mehreren Optionen |
-| `value` | `*` | Neuer Wert (wenn `option` ein String ist) |
+| `option` | `String\|Object` | Name of the config property or an object with several options |
+| `value` | `*` | New value (when `option` is a string) |
 
 ```js
 fp.set("minDate", "today");
-fp.set("maxDate", new Date().fp_incr(14)); // 14 Tage ab heute
+fp.set("maxDate", new Date().fp_incr(14)); // 14 days from today
 fp.set("dateFormat", "d.m.Y");
 fp.set("disable", [function(date) { return date.getDay() === 0; }]);
 fp.set("onChange", newHandler);
 
-// Mehrere Optionen auf einmal
+// Several options at once
 fp.set({ minDate: "2024-01-01", maxDate: "2024-12-31" });
 ```
 
@@ -222,42 +222,42 @@ fp.set({ minDate: "2024-01-01", maxDate: "2024-12-31" });
 
 ### `setDate(date, triggerChange?, format?)`
 
-Setzt das ausgewählte Datum programmatisch.
+Sets the selected date programmatically.
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |-----------|-----|-------------|
-| `date` | `String\|Date\|Number\|Array` | Datum oder Daten-Array |
-| `triggerChange` | `Boolean` | Ob `onChange`-Hooks ausgelöst werden |
-| `format` | `String` | Format des Datumsstrings (wenn von `dateFormat` abweichend) |
+| `date` | `String\|Date\|Number\|Array` | Date or array of dates |
+| `triggerChange` | `Boolean` | Whether `onChange` hooks are fired |
+| `format` | `String` | Format of the date string (when it differs from `dateFormat`) |
 
 ```js
-fp.setDate("2024-06-15");                          // mit dateFormat
-fp.setDate(new Date());                            // heute
-fp.setDate("15.06.2024", true, "d.m.Y");          // anderes Format
-fp.setDate(["2024-06-01", "2024-06-30"]);          // Range oder Multiple
-fp.setDate(["2024-06-01", "2024-06-30"], true);    // mit onChange-Trigger
+fp.setDate("2024-06-15");                          // using dateFormat
+fp.setDate(new Date());                            // today
+fp.setDate("15.06.2024", true, "d.m.Y");          // a different format
+fp.setDate(["2024-06-01", "2024-06-30"]);          // range or multiple
+fp.setDate(["2024-06-01", "2024-06-30"], true);    // with an onChange trigger
 ```
 
 ---
 
 ### `updateValue(triggerChange?)`
 
-Aktualisiert den Wert des Input-Feldes basierend auf den aktuell gewählten Daten.
+Updates the value of the input field based on the currently selected dates.
 
-| Parameter | Typ | Default | Beschreibung |
+| Parameter | Type | Default | Description |
 |-----------|-----|---------|-------------|
-| `triggerChange` | `Boolean` | `true` | Ob `onChange`-Hooks ausgelöst werden sollen |
+| `triggerChange` | `Boolean` | `true` | Whether `onChange` hooks should be fired |
 
 ```js
 fp.updateValue();
-fp.updateValue(false); // ohne Event
+fp.updateValue(false); // without an event
 ```
 
 ---
 
 ### `pad(num)`
 
-Hilfsfunktion: gibt eine auf 2 Stellen aufgefüllte Zahl zurück.
+Helper function: returns a number padded to 2 digits.
 
 ```js
 fp.pad(5);  // "05"
@@ -270,41 +270,41 @@ fp.pad(12); // "12"
 
 ### `selectedDates`
 
-- **Typ:** `Date[]`
-- Array der aktuell ausgewählten Date-Objekte (leer wenn nichts ausgewählt)
+- **Type:** `Date[]`
+- Array of the currently selected Date objects (empty when nothing is selected)
 
 ```js
 const dates = fp.selectedDates;
 if (dates.length > 0) {
-  console.log("Erstes Datum:", dates[0]);
+  console.log("First date:", dates[0]);
 }
-// Range: dates[0] = Start, dates[1] = Ende
+// Range: dates[0] = start, dates[1] = end
 ```
 
 ### `currentYear`
 
-- **Typ:** `Number`
-- Das im Kalender angezeigte Jahr
+- **Type:** `Number`
+- The year displayed in the calendar
 
 ```js
-console.log(fp.currentYear); // z.B. 2024
+console.log(fp.currentYear); // e.g. 2024
 ```
 
 ### `currentMonth`
 
-- **Typ:** `Number` (0–11)
-- Der im Kalender angezeigte Monat (0 = Januar, 11 = Dezember)
+- **Type:** `Number` (0–11)
+- The month displayed in the calendar (0 = January, 11 = December)
 
 ```js
 console.log(fp.currentMonth); // 0–11
-const monthName = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"][fp.currentMonth];
+const monthName = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][fp.currentMonth];
 ```
 
 ### `config`
 
-- **Typ:** `ParsedOptions`
-- Die aktive Konfiguration (Defaults + User-Optionen, vollständig geparst)
-- Hooks sind als Arrays zugänglich und können manipuliert werden
+- **Type:** `ParsedOptions`
+- The active configuration (defaults + user options, fully parsed)
+- Hooks are accessible as arrays and can be manipulated
 
 ```js
 console.log(fp.config.dateFormat);
@@ -313,8 +313,8 @@ fp.config.onChange.push(additionalHandler);
 
 ### `isOpen`
 
-- **Typ:** `Boolean`
-- `true` wenn der Kalender aktuell geöffnet ist
+- **Type:** `Boolean`
+- `true` when the calendar is currently open
 
 ```js
 if (!fp.isOpen) fp.open();
@@ -322,8 +322,8 @@ if (!fp.isOpen) fp.open();
 
 ### `isMobile`
 
-- **Typ:** `Boolean`
-- `true` wenn flatpickr im mobilen Modus läuft (nativer Picker)
+- **Type:** `Boolean`
+- `true` when flatpickr is running in mobile mode (native picker)
 
 ```js
 if (!fp.isMobile) {
@@ -333,8 +333,8 @@ if (!fp.isMobile) {
 
 ### `latestSelectedDateObj`
 
-- **Typ:** `Date | undefined`
-- Das zuletzt gewählte Date-Objekt (auch bei Range-Auswahl: das zuletzt angeklickte Ende)
+- **Type:** `Date | undefined`
+- The most recently selected Date object (with a range selection too: the end clicked last)
 
 ```js
 console.log(fp.latestSelectedDateObj);
@@ -342,17 +342,17 @@ console.log(fp.latestSelectedDateObj);
 
 ### `now`
 
-- **Typ:** `Date`
-- Das "Heute"-Datum (kann mit Option `now` überschrieben sein)
+- **Type:** `Date`
+- The "today" date (can be overridden with the `now` option)
 
 ```js
-console.log(fp.now); // aktuelles Datum
+console.log(fp.now); // current date
 ```
 
 ### `l10n`
 
-- **Typ:** `Locale`
-- Das aktive Locale-Objekt
+- **Type:** `Locale`
+- The active locale object
 
 ```js
 console.log(fp.l10n.months.longhand[fp.currentMonth]);
@@ -360,40 +360,40 @@ console.log(fp.l10n.months.longhand[fp.currentMonth]);
 
 ### `loadedPlugins`
 
-- **Typ:** `string[]`
-- Namen der geladenen Plugins (Plugins fügen sich selbst per `fp.loadedPlugins.push("name")` ein)
+- **Type:** `string[]`
+- Names of the loaded plugins (plugins add themselves via `fp.loadedPlugins.push("name")`)
 
 ```js
-console.log(fp.loadedPlugins); // z.B. ["confirmDate", "scroll"]
+console.log(fp.loadedPlugins); // e.g. ["confirmDate", "scroll"]
 ```
 
 ---
 
-## DOM-Elemente
+## DOM elements
 
 ### `element`
 
-- **Typ:** `HTMLElement`
-- Das ursprüngliche Element auf dem flatpickr initialisiert wurde
+- **Type:** `HTMLElement`
+- The original element flatpickr was initialized on
 
 ### `input`
 
-- **Typ:** `HTMLInputElement`
-- Das aktive Input-Element (bei `altInput: true`: das altInput-Element intern; `_input` ist das Original)
+- **Type:** `HTMLInputElement`
+- The active input element (with `altInput: true`: the altInput element internally; `_input` is the original)
 
 ```js
-fp.input.setAttribute("placeholder", "Datum wählen");
+fp.input.setAttribute("placeholder", "Choose a date");
 ```
 
 ### `_input`
 
-- **Typ:** `HTMLInputElement`
-- Das originale Input-Element (vor altInput-Ersatz)
+- **Type:** `HTMLInputElement`
+- The original input element (before the altInput replacement)
 
 ### `altInput`
 
-- **Typ:** `HTMLInputElement | undefined`
-- Das durch `altInput: true` erzeugte sichtbare Input-Element
+- **Type:** `HTMLInputElement | undefined`
+- The visible input element created by `altInput: true`
 
 ```js
 if (fp.altInput) {
@@ -403,13 +403,13 @@ if (fp.altInput) {
 
 ### `mobileInput`
 
-- **Typ:** `HTMLInputElement | undefined`
-- Das native Input-Element im mobilen Modus
+- **Type:** `HTMLInputElement | undefined`
+- The native input element in mobile mode
 
 ### `calendarContainer`
 
-- **Typ:** `HTMLDivElement` (`div.flatpickr-calendar`)
-- Der Kalender-Container selbst
+- **Type:** `HTMLDivElement` (`div.flatpickr-calendar`)
+- The calendar container itself
 
 ```js
 fp.calendarContainer.classList.add("my-custom-class");
@@ -417,133 +417,133 @@ fp.calendarContainer.classList.add("my-custom-class");
 
 ### `days`
 
-- **Typ:** `HTMLDivElement`
-- Container-Element für alle Tages-Zellen im Kalender
+- **Type:** `HTMLDivElement`
+- Container element for all day cells in the calendar
 
 ### `daysContainer`
 
-- **Typ:** `HTMLDivElement | undefined`
-- Äußerer Container der Tages-Elemente
+- **Type:** `HTMLDivElement | undefined`
+- Outer container of the day elements
 
 ### `monthNav`
 
-- **Typ:** `HTMLDivElement`
-- Der Monatsnavigations-Container (enthält Pfeile, Monat, Jahr)
+- **Type:** `HTMLDivElement`
+- The month navigation container (holds arrows, month, year)
 
 ### `prevMonthNav`
 
-- **Typ:** `HTMLElement`
-- Der "Zurück"-Pfeil für die Monatsnavigation
+- **Type:** `HTMLElement`
+- The "back" arrow for the month navigation
 
 ### `nextMonthNav`
 
-- **Typ:** `HTMLElement`
-- Der "Vorwärts"-Pfeil für die Monatsnavigation
+- **Type:** `HTMLElement`
+- The "forward" arrow for the month navigation
 
 ### `currentMonthElement`
 
-- **Typ:** `HTMLSpanElement`
-- Das `<span>` mit dem aktuellen Monatsnamen (erstes Monat-Element)
+- **Type:** `HTMLSpanElement`
+- The `<span>` holding the current month name (first month element)
 
 ### `currentYearElement`
 
-- **Typ:** `HTMLInputElement`
-- Das `<input>` mit dem aktuellen Jahr (erstes Jahr-Element)
+- **Type:** `HTMLInputElement`
+- The `<input>` holding the current year (first year element)
 
 ### `monthElements`
 
-- **Typ:** `HTMLSpanElement[]`
-- Array aller Monats-Elemente (bei `showMonths > 1` mehrere)
+- **Type:** `HTMLSpanElement[]`
+- Array of all month elements (several with `showMonths > 1`)
 
 ### `yearElements`
 
-- **Typ:** `HTMLInputElement[]`
-- Array aller Jahr-Elemente (bei `showMonths > 1` mehrere)
+- **Type:** `HTMLInputElement[]`
+- Array of all year elements (several with `showMonths > 1`)
 
 ### `monthsDropdownContainer`
 
-- **Typ:** `HTMLSelectElement`
-- Das `<select>` Element für die Monats-Dropdown-Navigation (`monthSelectorType: "dropdown"`)
+- **Type:** `HTMLSelectElement`
+- The `<select>` element for the month dropdown navigation (`monthSelectorType: "dropdown"`)
 
 ### `weekdayContainer`
 
-- **Typ:** `HTMLDivElement`
-- Container für die Wochentags-Header (Mo, Di, Mi, ...)
+- **Type:** `HTMLDivElement`
+- Container for the weekday headers (Mon, Tue, Wed, ...)
 
 ### `weekWrapper`
 
-- **Typ:** `HTMLDivElement | undefined`
-- Äußerer Wrapper für Wochennummern-Anzeige (nur wenn `weekNumbers: true`)
+- **Type:** `HTMLDivElement | undefined`
+- Outer wrapper for the week number display (only when `weekNumbers: true`)
 
 ### `weekNumbers`
 
-- **Typ:** `HTMLDivElement | undefined`
-- Container für die Wochennummern-Spalte (nur wenn `weekNumbers: true`)
+- **Type:** `HTMLDivElement | undefined`
+- Container for the week number column (only when `weekNumbers: true`)
 
 ### `timeContainer`
 
-- **Typ:** `HTMLDivElement | undefined`
-- Container für den Zeitpicker (nur wenn `enableTime: true`)
+- **Type:** `HTMLDivElement | undefined`
+- Container for the time picker (only when `enableTime: true`)
 
 ### `hourElement`
 
-- **Typ:** `HTMLInputElement | undefined`
-- Das Stunden-Input im Zeitpicker
+- **Type:** `HTMLInputElement | undefined`
+- The hour input in the time picker
 
 ```js
 if (fp.hourElement) {
-  console.log("Aktuelle Stunde:", fp.hourElement.value);
+  console.log("Current hour:", fp.hourElement.value);
 }
 ```
 
 ### `minuteElement`
 
-- **Typ:** `HTMLInputElement | undefined`
-- Das Minuten-Input im Zeitpicker
+- **Type:** `HTMLInputElement | undefined`
+- The minute input in the time picker
 
 ### `secondElement`
 
-- **Typ:** `HTMLInputElement | undefined`
-- Das Sekunden-Input (nur wenn `enableSeconds: true`)
+- **Type:** `HTMLInputElement | undefined`
+- The second input (only when `enableSeconds: true`)
 
 ### `amPM`
 
-- **Typ:** `HTMLSpanElement | undefined`
-- Das AM/PM-Toggle-Element (nur wenn `time_24hr: false` und `enableTime: true`)
+- **Type:** `HTMLSpanElement | undefined`
+- The AM/PM toggle element (only when `time_24hr: false` and `enableTime: true`)
 
 ### `selectedDateElem`
 
-- **Typ:** `DayElement | undefined`
-- Das DOM-Element des zuletzt ausgewählten Tages
+- **Type:** `DayElement | undefined`
+- The DOM element of the most recently selected day
 
 ### `todayDateElem`
 
-- **Typ:** `DayElement | undefined`
-- Das DOM-Element des heutigen Tages im Kalender
+- **Type:** `DayElement | undefined`
+- The DOM element of today's day in the calendar
 
 ### `pluginElements`
 
-- **Typ:** `Node[]`
-- DOM-Elemente, die von Plugins hinzugefügt wurden
+- **Type:** `Node[]`
+- DOM elements that were added by plugins
 
 ---
 
-## DayElement-Typ
+## DayElement type
 
 ```typescript
 type DayElement = HTMLSpanElement & {
-  dateObj: Date;  // Das Datum des Tages
-  $i: number;     // Index im Kalender-Grid (0–41)
+  dateObj: Date;  // The date of the day
+  $i: number;     // Index in the calendar grid (0–41)
 };
 ```
 
-Wird in `onDayCreate` und `weekSelect`-Plugin verwendet.
+Used in `onDayCreate` and the `weekSelect` plugin.
 
 ---
 
-## Statische Hilfsfunktionen
+## Static helper functions
 
-Verfügbar direkt auf dem `flatpickr`-Objekt (nicht auf der Instanz):
+Available directly on the `flatpickr` object (not on the instance):
 
 ### `flatpickr.parseDate(date, format?, timeless?)`
 
@@ -561,7 +561,7 @@ const str = flatpickr.formatDate(new Date(), "Y-m-d h:i K");
 
 ### `flatpickr.compareDates(date1, date2, timeless?)`
 
-Vergleicht zwei Datumsangaben. Gibt negative Zahl, 0 oder positive Zahl zurück.
+Compares two dates. Returns a negative number, 0 or a positive number.
 
 ```js
 flatpickr.compareDates(new Date("2024-01-01"), new Date("2024-06-01")); // < 0
@@ -570,17 +570,17 @@ flatpickr.compareDates(new Date("2024-06-01"), new Date("2024-06-01")); // 0
 
 ### `flatpickr.localize(locale)`
 
-Globale Lokalisierung setzen:
+Set the global localization:
 
 ```js
 import { German } from "flatpickr/dist/l10n/de.js";
 flatpickr.localize(German);
-// Jetzt verwenden alle neuen flatpickr-Instanzen Deutsch
+// Now all new flatpickr instances use German
 ```
 
 ### `flatpickr.setDefaults(config)`
 
-Globale Standard-Optionen setzen (wirkt auf alle neu erstellten Instanzen):
+Set global default options (affects all newly created instances):
 
 ```js
 flatpickr.setDefaults({
@@ -591,8 +591,8 @@ flatpickr.setDefaults({
 
 ### `flatpickr.defaultConfig`
 
-- **Typ:** `Partial<ParsedOptions>`
-- Zugriff auf die globale Standard-Konfiguration
+- **Type:** `Partial<ParsedOptions>`
+- Access to the global default configuration
 
 ```js
 console.log(flatpickr.defaultConfig.dateFormat); // "Y-m-d"
@@ -600,27 +600,27 @@ console.log(flatpickr.defaultConfig.dateFormat); // "Y-m-d"
 
 ### `flatpickr.l10ns`
 
-- **Typ:** `{ [k in LocaleKey]?: CustomLocale } & { default: Locale }`
-- Alle geladenen Locale-Objekte
+- **Type:** `{ [k in LocaleKey]?: CustomLocale } & { default: Locale }`
+- All loaded locale objects
 
 ```js
-flatpickr.l10ns.default.firstDayOfWeek = 1; // Montag als erster Wochentag global
+flatpickr.l10ns.default.firstDayOfWeek = 1; // Monday as the first weekday globally
 ```
 
 ---
 
-## `fp_incr` — Datums-Hilfsfunktion
+## `fp_incr` — date helper function
 
-flatpickr ergänzt Date-Objekte um die Methode `fp_incr(n)`:
+flatpickr extends Date objects with the `fp_incr(n)` method:
 
 ```js
-new Date().fp_incr(7)   // heute + 7 Tage
-new Date().fp_incr(-3)  // heute - 3 Tage
+new Date().fp_incr(7)   // today + 7 days
+new Date().fp_incr(-3)  // today - 3 days
 
-// Typischer Anwendungsfall: maxDate auf 2 Wochen ab heute
+// Typical use case: maxDate two weeks from today
 fp.set("maxDate", new Date().fp_incr(14));
 ```
 
 ---
 
-Quelle: `src/types/instance.ts` (v4.6.13) | https://flatpickr.js.org/instance-methods-properties-elements/
+Source: `src/types/instance.ts` (v4.6.13) | https://flatpickr.js.org/instance-methods-properties-elements/

@@ -1,82 +1,82 @@
-# Was wird bei der Migration übernommen?
+# What is carried over during the migration?
 
-**Quelle**: https://docs.shopware.com/de/migration-de/Systemvoraussetzungen  
-(Detailseite war zum Crawl-Zeitpunkt via category-Parameter erreichbar)
+**Source**: https://docs.shopware.com/de/migration-de/Systemvoraussetzungen  
+(the detail page was reachable via the category parameter at the time of crawling)
 
-## Grundprinzip
+## Basic principle
 
-Der **Migrationsassistent** (SwagMigrationAssistent) überträgt Daten aus dem Quellsystem
-nach Shopware 6. Was genau migriert wird, hängt vom Quellsystem ab.
+The **Migrationsassistent** (Migration Assistant, SwagMigrationAssistent) transfers data from the source system
+to Shopware 6. What exactly is migrated depends on the source system.
 
 ---
 
 ## Shopware 5 → Shopware 6
 
-### Shopdaten (Standard, per Checkbox wählbar)
+### Shop data (standard, selectable via checkbox)
 
-| Datentyp | Hinweise |
+| Data type | Notes |
 |---|---|
-| Produkte | Inkl. Varianten, Eigenschaften, Preise |
-| Kategorien | Kategoriehierarchie und Zuordnungen |
-| Hersteller | Herstellerdaten |
-| Kunden | Konten und persönliche Daten |
-| Kundenadressen | Liefer- und Rechnungsadressen |
-| Bestellungen | Bestellungen und Positionen |
-| Medien | Bilder und Mediendateien (Download aus Quell-Shop) |
-| Steuerregeln | Steuerklassen |
-| Währungen | Währungskonfiguration |
-| Sprachen | Sprachkonfiguration |
+| Products | Incl. variants, properties, prices |
+| Categories | Category hierarchy and assignments |
+| Manufacturers | Manufacturer data |
+| Customers | Accounts and personal data |
+| Customer addresses | Shipping and billing addresses |
+| Orders | Orders and line items |
+| Media | Images and media files (downloaded from the source shop) |
+| Tax rules | Tax classes |
+| Currencies | Currency configuration |
+| Languages | Language configuration |
 
-### Plugindaten (Drittanbieter)
-Manche Drittanbieter-Erweiterungen stellen eigene Migrationsprofile bereit.
-Diese erscheinen in der Datenauswahl mit dem Typ **„Plugindaten"**.
+### Plugin data (third party)
+Some third-party extensions provide their own migration profiles.
+These appear in the data selection with the type **"Plugindaten"** (plugin data).
 
-### Nicht migriert (typisch)
-- Shop-Design / Theme (muss neu aufgebaut werden)
-- Eigene Plugin-Konfigurationen (nur wenn Plugin Migrationsprofil anbietet)
-- SEO-URLs (werden neu generiert)
-- CMS-Seiten / Erlebniswelten (müssen neu erstellt werden)
+### Not migrated (typically)
+- Shop design / theme (has to be rebuilt)
+- Custom plugin configurations (only if the plugin offers a migration profile)
+- SEO URLs (are regenerated)
+- CMS pages / **Erlebniswelten** (Shopping Experiences) (have to be recreated)
 
 ---
 
 ## Shopware 6 → Shopware 6
 
-Umfang analog zu SW5→SW6, da derselbe Migrationsassistent genutzt wird.
-Einschränkung: Quell- und Zielsystem müssen **identische Shopware-Version** haben.
+The scope is analogous to SW5→SW6, since the same Migrationsassistent is used.
+Limitation: the source and target systems must be on an **identical Shopware version**.
 
 ---
 
 ## Magento → Shopware 6
 
-Siehe Magento-Wörterbuch (Begriff-Mapping Magento ↔ Shopware):
+See the Magento dictionary (term mapping Magento ↔ Shopware):
 `docs.shopware.com/de/migration-de/magento`
 
-Typische Daten: Produkte, Kategorien, Kunden, Bestellungen, Medien.
+Typical data: products, categories, customers, orders, media.
 
 ---
 
-## Metadaten-Beschränkung (Shopware 5)
+## Metadata restriction (Shopware 5)
 
-Bei der Migration aus Shopware 5 werden einige Metadaten **auf 255 Zeichen gekürzt**:
+When migrating from Shopware 5, some metadata is **truncated to 255 characters**:
 
-| Tabelle | Spalten |
+| Table | Columns |
 |---|---|
 | s_articles | description |
 | s_categories | metadescription, metakeywords |
 
-**Hinweis:** Längere Texte werden nach 255 Zeichen abgeschnitten. Inhalte vorher prüfen.
+**Note:** longer texts are cut off after 255 characters. Check the content beforehand.
 
 ---
 
-## Systemvoraussetzungen prüfen (Shopware 5)
+## Checking the system requirements (Shopware 5)
 
-Plugin **SwagMigrationAssistent** im SW5-Backend installieren:
-1. Backend neu laden nach Installation und Aktivierung
-2. Fragezeichen-Symbol in der Menüleiste anklicken
-3. „Shopware 6 Update-Check" öffnen
-4. **Tab „Voraussetzungen"**: zeigt erfüllte/nicht erfüllte Serveranforderungen
-5. **Tab „Plugins"**: zeigt welche Plugins für SW6 verfügbar/konfigurierbar sind
+Install the **SwagMigrationAssistent** plugin in the SW5 backend:
+1. Reload the backend after installation and activation
+2. Click the question mark icon in the menu bar
+3. Open "Shopware 6 Update-Check"
+4. **Tab "Voraussetzungen"** (Requirements): shows fulfilled/unfulfilled server requirements
+5. **Tab "Plugins"**: shows which plugins are available/configurable for SW6
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de/Systemvoraussetzungen*
+*Source: https://docs.shopware.com/de/migration-de/Systemvoraussetzungen*

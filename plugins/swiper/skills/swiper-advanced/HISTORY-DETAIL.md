@@ -47,16 +47,16 @@ Every slide needs a `data-history` attribute holding the URL segment:
 ```html
 <div class="swiper">
   <div class="swiper-wrapper">
-    <!-- URL becomes: /slides/einfuehrung -->
-    <div class="swiper-slide" data-history="einfuehrung">
+    <!-- URL becomes: /slides/introduction -->
+    <div class="swiper-slide" data-history="introduction">
       Introduction
     </div>
-    <!-- URL becomes: /slides/kapitel-1 -->
-    <div class="swiper-slide" data-history="kapitel-1">
+    <!-- URL becomes: /slides/chapter-1 -->
+    <div class="swiper-slide" data-history="chapter-1">
       Chapter 1
     </div>
-    <!-- URL becomes: /slides/fazit -->
-    <div class="swiper-slide" data-history="fazit">
+    <!-- URL becomes: /slides/conclusion -->
+    <div class="swiper-slide" data-history="conclusion">
       Conclusion
     </div>
   </div>
@@ -86,10 +86,10 @@ const swiper = new Swiper('.presentation', {
   slidesPerView: 1,
   keyboard: { enabled: true },
   history: {
-    key: 'folie',
+    key: 'slide',
     replaceState: false,
     keepQuery: false,
-    root: '/praesentation',
+    root: '/presentation',
   },
   speed: 600,
 });
@@ -97,9 +97,9 @@ const swiper = new Swiper('.presentation', {
 
 HTML:
 ```html
-<div class="swiper-slide" data-history="einleitung">...</div>
-<div class="swiper-slide" data-history="hintergrund">...</div>
-<!-- produces: /praesentation/folie/einleitung -->
+<div class="swiper-slide" data-history="intro">...</div>
+<div class="swiper-slide" data-history="background">...</div>
+<!-- produces: /presentation/slide/intro -->
 ```
 
 ### With replaceState (no history entries, but the URL updates)

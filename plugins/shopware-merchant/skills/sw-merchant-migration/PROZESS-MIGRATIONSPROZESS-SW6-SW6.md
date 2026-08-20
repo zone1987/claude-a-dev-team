@@ -1,86 +1,86 @@
-# Migrationsprozess: Shopware 6 → Shopware 6
+# Migration process: Shopware 6 → Shopware 6
 
-**Quelle**: https://docs.shopware.com/de/migration-de/shopware6-Migrationsprozess
-
----
-
-## Anwendungsfälle
-
-- Umzug in die Shopware Cloud (SaaS)
-- Server-Wechsel / Hosting-Wechsel
-- Staging-Instanz → Live-Instanz übertragen
+**Source**: https://docs.shopware.com/de/migration-de/shopware6-Migrationsprozess
 
 ---
 
-## Kritische Voraussetzung
+## Use cases
 
-> ⚠️ **Quell- und Zielsystem müssen dieselbe Shopware-Version verwenden.**
-> Eine Migration zwischen unterschiedlichen Versionen ist **nicht möglich**.
-
----
-
-## Unterschiede zu SW5→SW6
-
-- **Kein SwagMigrationConnector** im Quellshop nötig (kein separater Connector)
-- Im Quellshop muss ebenfalls der **SwagMigrationAssistent** installiert und aktiv sein
-- Verbindungstyp ist **ausschließlich API** (kein Local-Modus)
-- Profil: **„Shopware 6"** im Assistenten wählen
+- Moving to the Shopware Cloud (SaaS)
+- Server change / hosting change
+- Transferring a staging instance → live instance
 
 ---
 
-## Schritt 1: Erweiterungen installieren
+## Critical prerequisite
 
-### Im Quellshop (SW6)
-- **SwagMigrationAssistent** installieren und aktivieren
-
-### Im Zielshop (SW6)
-- **SwagMigrationAssistent** installieren und aktivieren
-- Ab Version **16.0.0** des Assistenten
+> ⚠️ **The source and target systems must use the same Shopware version.**
+> A migration between different versions is **not possible**.
 
 ---
 
-## Schritt 2: Integration im Quellshop anlegen
+## Differences from SW5→SW6
 
-**Pfad:** Einstellungen > System > Integrationen > Integration anlegen
+- **No SwagMigrationConnector** needed in the source shop (no separate connector)
+- The **SwagMigrationAssistent** must also be installed and active in the source shop
+- The connection type is **API only** (no local mode)
+- Profile: choose **"Shopware 6"** in the assistant
 
-| Feld | Beschreibung |
+---
+
+## Step 1: install the extensions
+
+### In the source shop (SW6)
+- Install and activate **SwagMigrationAssistent**
+
+### In the target shop (SW6)
+- Install and activate **SwagMigrationAssistent**
+- From version **16.0.0** of the assistant
+
+---
+
+## Step 2: create an integration in the source shop
+
+**Path:** **Einstellungen** (Settings) **> System > Integrationen** (Integrations) **> Integration anlegen** (Create integration)
+
+| Field | Description |
 |---|---|
-| **Name** | z.B. „Migration" |
-| **Administrator** | Checkbox aktivieren (Pflicht!) |
-| **Zugangs-ID** | Automatisch generiert — zwischenspeichern! |
-| **Sicherheitsschlüssel** | Automatisch generiert — zwischenspeichern! |
+| **Name** | e.g. "Migration" |
+| **Administrator** | Enable the checkbox (mandatory!) |
+| **Zugangs-ID** (Access ID) | Generated automatically — store it temporarily! |
+| **Sicherheitsschlüssel** (Secret access key) | Generated automatically — store it temporarily! |
 
-Speichern mit: **„Integration speichern"**
+Save with: **"Integration speichern"** (Save integration)
 
 ---
 
-## Schritt 3: Verbindung im Zielshop herstellen
+## Step 3: establish the connection in the target shop
 
-**Pfad:** Einstellungen > Erweiterungen > Migrations-Assistent
+**Path:** **Einstellungen > Erweiterungen** (Extensions) **> Migrations-Assistent**
 
-1. **„Initiale Verbindung anlegen"** anklicken
-2. Profil: **„Shopware 6"** wählen
-3. **„Fortfahren"**
-4. Verbindung konfigurieren:
+1. Click **"Initiale Verbindung anlegen"** (Create initial connection)
+2. Profile: choose **"Shopware 6"**
+3. **"Fortfahren"** (Continue)
+4. Configure the connection:
 
-| Feld | Inhalt |
+| Field | Content |
 |---|---|
-| **Name** | Eindeutiger Verbindungsname |
-| **Profil** | Shopware 6 |
-| **Schnittstelle** | API (einzige Option) |
-| **Zugangs-ID** | Aus Schritt 2 |
-| **Sicherheitsschlüssel** | Aus Schritt 2 |
-| **Shopdomain** | URL des Quellshops |
+| **Name** | Unique connection name |
+| **Profil** (Profile) | Shopware 6 |
+| **Schnittstelle** (Interface) | API (the only option) |
+| **Zugangs-ID** | From step 2 |
+| **Sicherheitsschlüssel** | From step 2 |
+| **Shopdomain** (Shop domain) | URL of the source shop |
 
-> ⚠️ Keine Bindestriche im Verbindungsnamen!
-
----
-
-## Schritt 4–6: Daten prüfen, Migration starten, Livegang
-
-Der weitere Ablauf entspricht der SW5→SW6-Migration:
-→ Detaildoku: `references/deep/migrationsprozess-sw5-sw6.md`
+> ⚠️ No hyphens in the connection name!
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de/shopware6 | https://docs.shopware.com/de/migration-de/shopware6-Migrationsprozess*
+## Steps 4–6: check the data, start the migration, go live
+
+The remaining sequence corresponds to the SW5→SW6 migration:
+→ detailed docs: `references/deep/migrationsprozess-sw5-sw6.md`
+
+---
+
+*Source: https://docs.shopware.com/de/migration-de/shopware6 | https://docs.shopware.com/de/migration-de/shopware6-Migrationsprozess*

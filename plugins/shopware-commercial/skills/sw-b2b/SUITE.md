@@ -1,16 +1,16 @@
 # Skill: sw-b2b-suite
 
-Entwickler-Referenz fuer die B2B Suite (Legacy, bis Shopware 6.8 unterstuetzt).
+Developer reference for the B2B Suite (legacy, supported up to Shopware 6.8).
 
-## Referenzen
+## References
 
 - [SUITE-DETAIL.md](SUITE-DETAIL.md)
 
-## Wichtiger Hinweis
+## Important note
 
-Die B2B Suite wird ab Shopware 6.8 **nicht mehr unterstuetzt**. Migration zur modernen
-B2B Components ist erforderlich. Siehe `sw-b2b-suite-migration`.
+The B2B Suite is **no longer supported** as of Shopware 6.8. Migration to the modern
+B2B Components is required. See `sw-b2b-suite-migration`.
 
-## Querverweise
+## Cross-references
 
-Migration: `sw-b2b-suite-migration`. Modernes B2B-Framework: `sw-b2b-components`.
+Migration: `sw-b2b-suite-migration`. Modern B2B framework: `sw-b2b-components`.

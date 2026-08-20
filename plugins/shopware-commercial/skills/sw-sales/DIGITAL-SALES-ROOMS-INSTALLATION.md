@@ -1,10 +1,10 @@
 # Digital Sales Rooms — Installation
 
-Vollständige Referenz: [DIGITAL-SALES-ROOMS-INSTALLATION-INSTALLATION.md](DIGITAL-SALES-ROOMS-INSTALLATION-INSTALLATION.md)
+Full reference: [DIGITAL-SALES-ROOMS-INSTALLATION-INSTALLATION.md](DIGITAL-SALES-ROOMS-INSTALLATION-INSTALLATION.md)
 
-## Kurzanleitung
+## Quick guide
 
-### 1. Plugin installieren (Admin-Seite)
+### 1. Install the plugin (admin side)
 
 ```bash
 bin/console plugin:refresh
@@ -12,13 +12,13 @@ bin/console plugin:install SwagDigitalSalesRooms --activate
 bin/console cache:clear
 ```
 
-### 2. Frontend-App starten
+### 2. Start the frontend app
 
 ```bash
 cd ./templates/dsr-frontends
 cp .env.template .env
-# .env befüllen (ORIGIN, SHOPWARE_STOREFRONT_URL, SHOPWARE_STORE_API, ...)
+# fill in .env (ORIGIN, SHOPWARE_STOREFRONT_URL, SHOPWARE_STORE_API, ...)
 pnpm install
-pnpm dev        # Entwicklung
-pnpm build      # Produktion
+pnpm dev        # development
+pnpm build      # production
 ```

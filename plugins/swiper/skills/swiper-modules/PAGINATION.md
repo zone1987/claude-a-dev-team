@@ -1,6 +1,6 @@
-# Swiper — Pagination-Modul
+# Swiper — Pagination module
 
-Bullet-, Bruch-, Fortschrittsbalken- oder benutzerdefinierte Pagination.
+Bullet, fraction, progressbar or custom pagination.
 
 ```js
 import Swiper from 'swiper';
@@ -17,5 +17,5 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Vertiefung
-- [PAGINATION-DETAIL.md](PAGINATION-DETAIL.md) — alle Parameter mit Typ/Default/Beschreibung, alle Render-Funktions-Signaturen, CSS-Variablen, Events, Methoden
+## Deep dive
+- [PAGINATION-DETAIL.md](PAGINATION-DETAIL.md) — all parameters with type/default/description, all render function signatures, CSS variables, events, methods

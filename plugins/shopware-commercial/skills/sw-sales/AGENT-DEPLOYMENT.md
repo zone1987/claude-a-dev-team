@@ -1,13 +1,13 @@
 # Sales Agent — Deployment
 
-Vollständige Referenz: [AGENT-DEPLOYMENT-DEPLOYMENT.md](AGENT-DEPLOYMENT-DEPLOYMENT.md)
+Full reference: [AGENT-DEPLOYMENT-DEPLOYMENT.md](AGENT-DEPLOYMENT-DEPLOYMENT.md)
 
-## Deployment-Optionen
+## Deployment options
 
-| Option | Redis-Empfehlung |
+| Option | Redis recommendation |
 |--------|-----------------|
-| **AWS Amplify** | Amazon ElastiCache oder Upstash |
+| **AWS Amplify** | Amazon ElastiCache or Upstash |
 | **Cloudflare Pages** | Upstash (serverless Redis) |
-| **Ubuntu Server + PM2** | Lokal oder Upstash/Redis Cloud |
+| **Ubuntu Server + PM2** | local or Upstash/Redis Cloud |
 
-> Im Gegensatz zu DSR benötigt Sales Agent **immer Redis** als Cache-Layer.
+> Unlike DSR, Sales Agent **always requires Redis** as a cache layer.

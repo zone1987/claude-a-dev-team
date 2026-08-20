@@ -1,31 +1,31 @@
-# Shopware Extensions — App vs. Plugin
+# Shopware extensions — app vs. plugin
 
-Vollständige Konzept-Doku: `EXTENSIONS-DETAIL.md`
+Complete concept documentation: `EXTENSIONS-DETAIL.md`
 
-## Kurzüberblick
+## Brief overview
 
 ### Apps
 
-- **Außerhalb des Shopware-Prozesses** — eigener Server, eigene Technologie (kein PHP erforderlich)
-- Kommunikation: HTTP-Webhooks (Shopware → App) + Admin API (App → Shopware)
-- **Cloud-kompatibel** — funktioniert mit Self-hosted und Shopware SaaS
-- Registrierung via `manifest.xml`
-- Kann: Webhooks, Store-API-Erweiterungen, Storefront-Assets, App Scripts, Payment, Rule Conditions, CMS-Blöcke
+- **Outside the Shopware process** — own server, own technology (no PHP required)
+- Communication: HTTP webhooks (Shopware → app) + Admin API (app → Shopware)
+- **Cloud-compatible** — works with self-hosted and Shopware SaaS
+- Registration via `manifest.xml`
+- Can do: webhooks, Store API extensions, storefront assets, app scripts, payment, rule conditions, CMS blocks
 
 ### Plugins
 
-- **Im Shopware-Prozess ausgeführt** — direkter Zugriff auf DI-Container, Datenbank, Events
-- Basieren auf **Symfony Bundles** + Abstract Base Class
-- **Nicht Cloud-kompatibel** — nur Self-hosted
-- Maximale Erweiterbarkeit: neue User Provider, Custom Search Engine, etc.
+- **Executed inside the Shopware process** — direct access to the DI container, database, events
+- Built on **Symfony bundles** + an abstract base class
+- **Not cloud-compatible** — self-hosted only
+- Maximum extensibility: new user providers, custom search engine, etc.
 
-### Entscheidungskriterien
+### Decision criteria
 
-| Kriterium | App | Plugin |
+| Criterion | App | Plugin |
 |---|---|---|
-| Cloud-Hosting | Ja | Nein |
-| Technologie-Freiheit | Ja (beliebig) | Nein (PHP) |
-| Tiefer Zugriff auf Shopware-Internals | Eingeschränkt | Vollständig |
-| Sicherheitssensitivität | Hoch | Niedriger |
+| Cloud hosting | Yes | No |
+| Freedom of technology | Yes (any) | No (PHP) |
+| Deep access to Shopware internals | Limited | Complete |
+| Security sensitivity | High | Lower |
 
-Technische Umsetzung: `shopware-apps` (Apps), `shopware-core` (Plugins) — Dev-Plugins
+Technical implementation: `shopware-apps` (apps), `shopware-core` (plugins) — dev plugins

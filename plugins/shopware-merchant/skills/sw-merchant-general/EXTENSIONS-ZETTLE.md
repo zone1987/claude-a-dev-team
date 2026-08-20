@@ -1,96 +1,96 @@
-# Zettle by PayPal – Point-of-Sale-Integration
+# Zettle by PayPal – point-of-sale integration
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/zettle
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/zettle
 
-## Überblick
+## Overview
 
-**Zettle by PayPal** ermöglicht Kartenzahlungen am physischen Verkaufsort (POS) über ein
-Chip-Card-Reader-Gerät für Smartphones und Tablets. Die Integration mit Shopware 6 läuft
-als **eigener Verkaufskanal-Typ** und synchronisiert Produktdaten zwischen Online-Shop und POS.
+**Zettle by PayPal** enables card payments at the physical point of sale (POS) via a
+chip card reader device for smartphones and tablets. The integration with Shopware 6 runs
+as its **own sales channel type** and synchronises product data between the online shop and POS.
 
-**Wichtig**: Zettle ist eine **Komponente von PayPal** – keine eigenständige Extension.
-Keine separate Installation nötig (kommt mit PayPal).
-
----
-
-## Einrichtung
-
-### Voraussetzungen
-- PayPal Extension installiert und aktiv
-- Zettle-Konto: https://zettle.com (separates Konto erforderlich)
-- Zettle-Hardware (Kartenlesegerät)
-
-### Setup-Wizard
-1. **Verkaufskanäle** → Neuen Kanal hinzufügen → "Zettle" wählen
-2. Setup-Wizard führt durch alle Konfigurationsschritte
+**Important**: Zettle is a **component of PayPal** – not a standalone extension.
+No separate installation needed (it comes with PayPal).
 
 ---
 
-## Konfiguration im Detail
+## Setup
 
-### Schritt 1: Konto verknüpfen
-1. API-Key aus dem **Zettle-Admin-Panel** generieren:
-   - Zettle Portal: https://my.zettle.com/integrations
-   - "Add integration" → API-Key kopieren
-2. Im Shopware Admin: Zettle-Kanal → API-Key eintragen
+### Prerequisites
+- PayPal extension installed and active
+- Zettle account: https://zettle.com (a separate account is required)
+- Zettle hardware (card reader)
 
-### Schritt 2: Kanaleinstellungen
-| Feld | Beschreibung |
-|---|---|
-| Kanalname | Interner Name (z. B. "Marktstand Berlin") |
-| Shop-Domain | Domain, aus der Produktmedien geladen werden |
-
-### Schritt 3: Produktsynchronisierung
-Drei Optionen für die initiale Synchronisierung:
-
-| Option | Beschreibung |
-|---|---|
-| **Nur Shopware-Produkte nutzen** | Zettle-Katalog wird durch Shopware-Produkte ersetzt |
-| **Bestehenden Zettle-Katalog ersetzen** | Alle Zettle-Produkte werden durch Shopware-Produkte ersetzt |
-| **Shopware-Produkte hinzufügen** | Shopware-Produkte werden zum bestehenden Zettle-Katalog hinzugefügt |
-
-### Schritt 4: Preissynchronisierung
-| Option | Beschreibung |
-|---|---|
-| Preise mit MwSt. synchronisieren | Bruttopreise an Zettle übermitteln |
-| Preise ohne MwSt. synchronisieren | Nettopreise übermitteln (MwSt. in Zettle konfigurieren) |
-| Preise in Zettle separat verwalten | Keine Preissynchronisierung |
+### Setup wizard
+1. **Verkaufskanäle** (Sales channels) → add new channel → choose "Zettle"
+2. The setup wizard guides you through all configuration steps
 
 ---
 
-## Laufende Verwaltung
+## Configuration in detail
 
-Im Zettle-Verkaufskanal-Dashboard:
+### Step 1: link the account
+1. Generate an API key in the **Zettle admin panel**:
+   - Zettle portal: https://my.zettle.com/integrations
+   - "Add integration" → copy the API key
+2. In the Shopware admin: Zettle channel → enter the API key
 
-| Bereich | Inhalt |
+### Step 2: channel settings
+| Field | Description |
 |---|---|
-| **Kontostatus** | Verbindungsstatus zu Zettle |
-| **Synchronisationshistorie** | Protokoll aller Sync-Vorgänge |
-| **Synchronisierte Produkte** | Liste der übertragenen Produkte |
-| **Detaillierte Logs** | Technische Sync-Details und Fehler |
+| Channel name | Internal name (e.g. "Market stall Berlin") |
+| Shop domain | Domain from which product media are loaded |
 
-### Manuelle Synchronisierung
-Jederzeit manuell anstoßen:
-- Inventar synchronisieren
-- Produktbilder synchronisieren
-- Produktdetails synchronisieren
+### Step 3: product synchronisation
+Three options for the initial synchronisation:
+
+| Option | Description |
+|---|---|
+| **Use Shopware products only** | The Zettle catalogue is replaced by the Shopware products |
+| **Replace existing Zettle catalogue** | All Zettle products are replaced by Shopware products |
+| **Add Shopware products** | Shopware products are added to the existing Zettle catalogue |
+
+### Step 4: price synchronisation
+| Option | Description |
+|---|---|
+| Synchronise prices incl. VAT | Transmit gross prices to Zettle |
+| Synchronise prices excl. VAT | Transmit net prices (configure VAT in Zettle) |
+| Manage prices separately in Zettle | No price synchronisation |
 
 ---
 
-## Einschränkungen
+## Ongoing management
 
-| Einschränkung | Details |
+In the Zettle sales channel dashboard:
+
+| Area | Content |
 |---|---|
-| Custom Products | Konfigurierbare Produkte werden als Standard-Produkte ohne Optionen synchronisiert |
-| Produktbeschreibungen | Maximal **1.024 Zeichen** (längere Texte werden abgeschnitten) |
-| Varianten | Werden als separate Produkte in Zettle angelegt |
-| Digitale Produkte | Nicht für POS geeignet |
+| **Account status** | Connection status to Zettle |
+| **Synchronisation history** | Log of all sync operations |
+| **Synchronised products** | List of the transferred products |
+| **Detailed logs** | Technical sync details and errors |
+
+### Manual synchronisation
+Can be triggered manually at any time:
+- Synchronise inventory
+- Synchronise product images
+- Synchronise product details
 
 ---
 
-## Anwendungsszenarien
+## Limitations
 
-- **Händler mit Online-Shop + Marktstand**: Gleicher Produktkatalog für beide Kanäle
-- **Popup-Store**: Temporärer stationärer Verkauf mit Online-Shop-Produkten
-- **Event-Verkauf**: Merchandise auf Veranstaltungen
-- **Laden + Online**: Einheitliches Inventar-Management
+| Limitation | Details |
+|---|---|
+| Custom Products | Configurable products are synchronised as standard products without options |
+| Product descriptions | Maximum **1,024 characters** (longer texts are truncated) |
+| Variants | Are created as separate products in Zettle |
+| Digital products | Not suitable for POS |
+
+---
+
+## Use cases
+
+- **Merchants with an online shop + market stall**: the same product catalogue for both channels
+- **Pop-up store**: temporary bricks-and-mortar sales with online shop products
+- **Event sales**: merchandise at events
+- **Store + online**: unified inventory management

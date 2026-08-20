@@ -17,7 +17,7 @@
 
 ## 1. Übersicht (Overview) (account dashboard)
 
-![Customer account overview](../../assets/kundenaccount-uebersicht.png)
+![Customer account overview](assets/customer-account-overview.png)
 
 Dashboard-style view giving a quick overview of:
 - Current orders and their status
@@ -30,7 +30,7 @@ Customers can **subscribe to the newsletter** directly here.
 
 ## 2. Personal profile
 
-![Customer account profile](../../assets/kundenaccount-profil.png)
+![Customer account profile](assets/customer-account-profile.png)
 
 In the profile area, customers can adjust their **login credentials**:
 - Change the **email address**
@@ -42,7 +42,7 @@ Both changes require the current password as confirmation.
 
 ## 3. Adressen (Addresses)
 
-![Customer account addresses](../../assets/kundenaccount-adressen.png)
+![Customer account addresses](assets/customer-account-addresses.png)
 
 Customers manage saved addresses entirely on their own:
 
@@ -58,7 +58,7 @@ Customers manage saved addresses entirely on their own:
 
 ## 4. Bestellungen (Orders)
 
-![Customer account orders](../../assets/kundenaccount-bestellungen.png)
+![Customer account orders](assets/customer-account-orders.png)
 
 Customers see all orders they have placed, with:
 - Order number
@@ -74,7 +74,7 @@ The **three-dot menu** per order offers:
 
 ## 5. Abonnements (Subscriptions) (from v6.5.4.0, Beyond plan)
 
-![Customer account subscriptions](../../assets/kundenaccount-abonnements.png)
+![Customer account subscriptions](assets/customer-account-subscriptions.png)
 
 Enables **recurring orders** with configurable intervals.
 

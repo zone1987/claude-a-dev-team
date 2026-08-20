@@ -1,127 +1,127 @@
-# PayPal – Integration & Konfiguration
+# PayPal – integration & configuration
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/paypal
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/paypal
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Installation & Aktivierung](#installation-aktivierung)
-- [Onboarding (Konto verknüpfen)](#onboarding-konto-verknüpfen)
-- [Unterstützte Zahlungsmethoden](#unterstützte-zahlungsmethoden)
-- [Konfigurationsbereiche](#konfigurationsbereiche)
-- [Datenschutz & Datenweitergabe](#datenschutz-datenweitergabe)
-- [Storefront-Konfiguration](#storefront-konfiguration)
+- [Overview](#overview)
+- [Installation & activation](#installation-activation)
+- [Onboarding (linking the account)](#onboarding-linking-the-account)
+- [Supported payment methods](#supported-payment-methods)
+- [Configuration areas](#configuration-areas)
+- [Data protection & data transfer](#data-protection-data-transfer)
+- [Storefront configuration](#storefront-configuration)
 - [Troubleshooting](#troubleshooting)
 
-## Überblick
+## Overview
 
-Die **PayPal-Extension** ist eine All-in-One-Zahlungslösung für Shopware 6 und unterstützt
-neben klassischem PayPal auch Kreditkarte, Lastschrift und viele lokale Zahlungsmethoden.
-Händler erhalten die **volle Zahlung sofort** – Kunden wählen ihren eigenen Zahlungszeitpunkt.
+The **PayPal extension** is an all-in-one payment solution for Shopware 6 and, besides
+classic PayPal, also supports credit card, direct debit and many local payment methods.
+Merchants receive the **full payment immediately** – customers choose their own payment date.
 
-**Besonderheit**: PayPal ist in Shopware vorinstalliert (nur Aktivierung nötig).
-
----
-
-## Installation & Aktivierung
-
-### Variante 1: Während des Ersteinrichtungs-Assistenten
-- Im Wizard PayPal-Schritt: API-Zugangsdaten eingeben
-
-### Variante 2: Manuell
-1. **Erweiterungen > Meine Erweiterungen** öffnen
-2. PayPal-Eintrag finden → **Aktivieren**
-3. Alternativ: Erweiterungen > Store → "PayPal" suchen → Hinzufügen
-
-**Voraussetzung**: Im Shopware Account eingeloggt sein.
+**Special feature**: PayPal is pre-installed in Shopware (only the activation is needed).
 
 ---
 
-## Onboarding (Konto verknüpfen)
+## Installation & activation
 
-1. **Erweiterungen > Meine Erweiterungen > PayPal > Konfigurieren**
-2. Abschnitt **Onboarding**
-3. **Mit PayPal verbinden** klicken → Weiterleitung zu PayPal
-4. PayPal-Händlerkonto einloggen → Berechtigungen erteilen
-5. Automatische Credential-Generierung (keine manuelle API-Key-Eingabe nötig)
+### Variant 1: During the first-run setup wizard
+- In the PayPal wizard step: enter the API credentials
 
-> **Sandbox vs. Live**: Für Tests zunächst Sandbox-Modus aktivieren.
+### Variant 2: Manually
+1. Open **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions)
+2. Find the PayPal entry → **Aktivieren** (Activate)
+3. Alternatively: Erweiterungen > Store → search for "PayPal" → Hinzufügen (Add)
+
+**Prerequisite**: Being logged in to the Shopware Account.
 
 ---
 
-## Unterstützte Zahlungsmethoden
+## Onboarding (linking the account)
 
-| Methode | Beschreibung |
+1. **Erweiterungen > Meine Erweiterungen > PayPal > Konfigurieren** (Configure)
+2. **Onboarding** section
+3. Click **Mit PayPal verbinden** (Connect with PayPal) → you are redirected to PayPal
+4. Log in to the PayPal merchant account → grant the permissions
+5. Automatic credential generation (no manual API key entry needed)
+
+> **Sandbox vs. live**: For tests activate the sandbox mode first.
+
+---
+
+## Supported payment methods
+
+| Method | Description |
 |---|---|
-| PayPal (Wallet) | Zahlung aus dem PayPal-Konto |
-| Kreditkarte | Mastercard, Visa, Amex (ohne PayPal-Konto) |
-| Lastschrift (SEPA) | Direkte Bankabbuchung |
-| PayPal Ratenzahlung | Kosten auf monatliche Raten aufteilen |
-| PayPal Rechnungskauf | Kauf auf Rechnung (bis 14 Tage) |
-| Pay Later | "Jetzt kaufen, später bezahlen" |
-| Lokale Zahlarten | Abhängig von Ländereinstellung |
+| PayPal (wallet) | Payment from the PayPal account |
+| Credit card | Mastercard, Visa, Amex (without a PayPal account) |
+| Direct debit (SEPA) | Direct bank debit |
+| PayPal instalments | Split the cost into monthly instalments |
+| PayPal invoice purchase | Purchase on invoice (up to 14 days) |
+| Pay Later | "Buy now, pay later" |
+| Local payment methods | Depending on the country setting |
 
 ---
 
-## Konfigurationsbereiche
+## Configuration areas
 
 ### Onboarding
-- PayPal-Händlerkonto verknüpfen
-- Sandbox/Live-Modus wechseln
-- API-Credentials (automatisch oder manuell)
+- Link the PayPal merchant account
+- Switch between sandbox/live mode
+- API credentials (automatic or manual)
 
-### Shipping Tracking (ab Version 5.3.0)
-- Carrier-Integration: Versandverfolgung direkt an PayPal übermitteln
-- Reduziert Käuferschutz-Streitfälle
+### Shipping Tracking (from version 5.3.0)
+- Carrier integration: transmit shipment tracking directly to PayPal
+- Reduces buyer protection disputes
 
-### Vaulting (ab Version 8.0.0)
-- Wiederkehrende Zahlungen (Subscriptions)
-- Kunden können Zahlungsmethoden speichern
+### Vaulting (from version 8.0.0)
+- Recurring payments (subscriptions)
+- Customers can save payment methods
 
-### Invoice Purchase (Rechnungskauf)
-- Kauf auf Rechnung mit automatischen Zahlungsanweisungen in der Bestellbestätigungs-E-Mail
+### Invoice Purchase
+- Purchase on invoice with automatic payment instructions in the order confirmation email
 - Buy Now Pay Later (BNPL)
 
 ### Smart Payment Buttons
-- Anpassbare Checkout-Buttons (Farbe, Form, Größe)
-- Alternative Zahlungsmethoden direkt im Button-Bereich anzeigen
-- Platzierung: Produktseite, Warenkorb, Checkout
+- Customisable checkout buttons (colour, shape, size)
+- Show alternative payment methods directly in the button area
+- Placement: product page, cart, checkout
 
 ### Express Checkout
-- PayPal-Button direkt auf der Produktdetailseite
-- Kunden können sofort ohne Shopware-Konto kaufen
+- The PayPal button directly on the product detail page
+- Customers can buy immediately without a Shopware account
 
 ### Conflict Management
-- PayPal-Streitfälle direkt im Shopware-Admin überwachen
-- Transaktionsstatus und Eskalationen verfolgen
+- Monitor PayPal disputes directly in the Shopware admin
+- Track the transaction status and escalations
 
 ---
 
-## Datenschutz & Datenweitergabe
+## Data protection & data transfer
 
-Shopware übermittelt **ausschließlich aggregierte Tagesdaten** (Gesamttransaktionsvolumen) an Shopware:
-- Keine personenbezogenen Daten
-- Keine Bestellnummern
-- Keine Einzeltransaktionen
+Shopware transmits **exclusively aggregated daily data** (total transaction volume) to Shopware:
+- No personal data
+- No order numbers
+- No individual transactions
 
 ---
 
-## Storefront-Konfiguration
+## Storefront configuration
 
-| Element | Konfigurierbar |
+| Element | Configurable |
 |---|---|
-| Express Checkout Button | Position, Sichtbarkeit |
-| Pay Later Banner | Platzierung auf Produktseiten, Warenkorb |
-| Button-Styling | Farbe (Gold, Blau, Silber, Schwarz), Form (Rechteck, Pill) |
-| Zahlungsanweisungen | E-Mail-Template für Rechnungskauf |
+| Express Checkout button | Position, visibility |
+| Pay Later banner | Placement on product pages, cart |
+| Button styling | Colour (gold, blue, silver, black), shape (rectangle, pill) |
+| Payment instructions | Email template for the invoice purchase |
 
 ---
 
 ## Troubleshooting
 
-| Problem | Lösung |
+| Problem | Solution |
 |---|---|
-| Webhooks nicht aktiv | PayPal-Dashboard > Webhooks prüfen; oder Onboarding wiederholen |
-| Update-Fehler | Cache leeren (`php bin/console cache:clear`), dann erneut aktualisieren |
-| Sandbox-Zahlungen werden nicht verarbeitet | Sicherstellen, dass Sandbox-Modus aktiv und Sandbox-Credentials korrekt |
-| Express Checkout erscheint nicht | Button-Konfiguration in den PayPal-Settings prüfen |
+| Webhooks not active | Check the PayPal dashboard > Webhooks; or repeat the onboarding |
+| Update error | Clear the cache (`php bin/console cache:clear`), then update again |
+| Sandbox payments are not processed | Make sure the sandbox mode is active and the sandbox credentials are correct |
+| Express Checkout does not appear | Check the button configuration in the PayPal settings |

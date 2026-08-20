@@ -1,11 +1,11 @@
 # shadcn-vue: Changelog
 
-Aktuelle Updates und Ankuendigungen fuer shadcn-vue.
+Latest updates and announcements for shadcn-vue.
 
 ## Reference Files
 
-- `CHANGELOG-DETAIL.md` — Vollstaendiger Changelog: November 2025 (Nuxt v4/
-  Tailwind v4 Upgrade, Chart-Refactoring), Oktober 2025 (7 neue Komponenten:
-  Spinner, Kbd, ButtonGroup, InputGroup, Field, Item, Empty — je mit Code-Beispielen),
-  Februar 2025 (Reka UI v2 Umstellung, neuer CLI mit Remote-URLs, Registry-Schema,
-  Monorepo-Support)
+- `CHANGELOG-DETAIL.md` — Complete changelog: November 2025 (Nuxt v4/
+  Tailwind v4 upgrade, chart refactoring), October 2025 (7 new components:
+  Spinner, Kbd, ButtonGroup, InputGroup, Field, Item, Empty — each with code examples),
+  February 2025 (Reka UI v2 switch, new CLI with remote URLs, registry schema,
+  monorepo support)

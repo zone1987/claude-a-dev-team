@@ -19,11 +19,11 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/erweiterungen/bild-editor
 
 ## Screenshots
 
-![Bild-Editor Bedienung](../../assets/bild-editor-bedienung.png)
-![Bearbeitungswerkzeuge](../../assets/bild-editor-werkzeuge.png)
-![Werkzeuge mit Alpha-Kanal](../../assets/bild-editor-alpha-kanal.png)
-![Demo: Recolor vorher](../../assets/bild-editor-recolor-vorher.jpeg)
-![Demo: Recolor nachher](../../assets/bild-editor-recolor-nachher.png)
+![Bild-Editor Bedienung](assets/image-editor-usage.png)
+![Bearbeitungswerkzeuge](assets/image-editor-tools.png)
+![Werkzeuge mit Alpha-Kanal](assets/image-editor-alpha-channel.png)
+![Demo: Recolor vorher](assets/image-editor-recolor-before.jpeg)
+![Demo: Recolor nachher](assets/image-editor-recolor-after.png)
 
 ## Was ist der Bild-Editor?
 

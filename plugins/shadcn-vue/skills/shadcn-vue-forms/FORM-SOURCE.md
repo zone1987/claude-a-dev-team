@@ -1,6 +1,6 @@
 # Form — Quellcode
 
-Alle Dateien aus `registry/new-york-v4/ui/form/`.
+All files from `registry/new-york-v4/ui/form/`.
 
 ## Contents
 
@@ -203,5 +203,5 @@ export { FORM_ITEM_INJECTION_KEY } from "./injectionKeys"
 export { Form, Field as FormField, FieldArray as FormFieldArray } from "vee-validate"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/form/`

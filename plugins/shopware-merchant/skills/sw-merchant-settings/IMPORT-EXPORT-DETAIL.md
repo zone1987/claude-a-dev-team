@@ -1,97 +1,97 @@
-# Shopware 6 – Import / Export (vollständige Referenz)
+# Shopware 6 – Import / Export – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware6-de/einstellungen/importexport
-
----
-
-## Überblick
-
-**Pfad:** Einstellungen > Automatisierung > Import/Export
-
-Ermöglicht das Verwalten von Shop-Inhalten über CSV-Dateien.
+Source: https://docs.shopware.com/de/shopware6-de/einstellungen/importexport
 
 ---
 
-## CSV-Anforderungen
+## Overview
 
-| Anforderung | Wert |
+**Path:** Einstellungen (Settings) > Automatisierung (Automation) > Import/Export
+
+Allows shop content to be managed via CSV files.
+
+---
+
+## CSV requirements
+
+| Requirement | Value |
 |---|---|
-| Zeichenkodierung | UTF-8 |
-| Feldtrennzeichen | Semikolon (`;`) |
-| Textbegrenzer | Anführungszeichen (`"`) |
-| Dezimaltrennzeichen Preise | Punkt (5.00, nicht 5,00) |
+| Character encoding | UTF-8 |
+| Field separator | Semicolon (`;`) |
+| Text delimiter | Quotation marks (`"`) |
+| Decimal separator for prices | Full stop (5.00, not 5,00) |
 
 ---
 
 ## Import
 
-- CSV-Datei hochladen → Datensätze hinzufügen oder aktualisieren
-- Validierung bei fehlerhaften Einträgen → Fehlerbericht (Download-Option)
-- **Testmodus:** Validierung ohne Commit (keine Änderungen an der Datenbank)
-- Fehler-CSV enthält nur fehlerhafte Datensätze mit Fehlerbeschreibungen
+- Upload a CSV file → add or update records
+- Validation on faulty entries → error report (download option)
+- **Test mode:** validation without commit (no changes to the database)
+- The error CSV contains only the faulty records with error descriptions
 
 ---
 
 ## Export
 
-- Bestehendes Datenmaterial als CSV exportieren
-- Exporthistorie: Letzte 30 Tage
-- Für externe Verwendung oder Drittanbieter-Integrationen
+- Export existing data as CSV
+- Export history: last 30 days
+- For external use or third-party integrations
 
-### AI Copilot Export (ab Plan Rise)
-- Natürlichsprachliche Abfragen für spezifische Datensätze
-- Beispiel: „Exportiere alle Produkte ohne Beschreibung"
+### AI Copilot export (from plan Rise)
+- Natural-language queries for specific data sets
+- Example: "Export all products without a description"
 
 ---
 
-## Unterstützte Objekttypen & Pflichtfelder
+## Supported object types & mandatory fields
 
-| Objekttyp | Pflichtfelder |
+| Object type | Mandatory fields |
 |---|---|
-| Produkte | id, taxId, productNumber, stock, name |
-| Kunden | id, defaultBillingAddressId, defaultShippingAddressId, customerNumber, firstName, lastName, email |
-| Kategorien | id, type, name |
-| Bestellungen | id, salesChannelId, orderDateTime, stateId |
-| Medien | — |
-| Newsletter-Empfänger | — |
-| Eigenschaften | — |
-| Erweiterte Preise | — |
-| Variantenkonfigurationen | — |
-| Cross-Selling | — |
+| Produkte (Products) | id, taxId, productNumber, stock, name |
+| Kunden (Customers) | id, defaultBillingAddressId, defaultShippingAddressId, customerNumber, firstName, lastName, email |
+| Kategorien (Categories) | id, type, name |
+| Bestellungen (Orders) | id, salesChannelId, orderDateTime, stateId |
+| Medien (Media) | — |
+| Newsletter recipients | — |
+| Eigenschaften (Properties) | — |
+| Advanced prices | — |
+| Variant configurations | — |
+| Cross-selling | — |
 
 ---
 
-## Erweiterter Identifier
+## Extended identifier
 
-**Zweite eindeutige Kennung:** Ermöglicht Zuordnung über alternative Bezeichner anstelle von UUIDs.
+**Second unique identifier:** allows records to be matched via alternative identifiers instead of UUIDs.
 
-Beispiel: Produkt über `productNumber` statt UUID identifizieren.
-
----
-
-## Benutzerdefinierte Profile
-
-Eigene Import-/Export-Konfigurationen erstellen:
-- Datenbankfelder auf CSV-Spalten mappen
-- Optionale Standardwerte definieren
-- Positionsreihenfolge festlegen
+Example: identify a product via `productNumber` instead of a UUID.
 
 ---
 
-## Import-Workflows (Schritt-für-Schritt)
+## Custom profiles
 
-### Produkte importieren
-1. Profil auswählen (Standard: „Produkte")
-2. CSV-Datei auswählen
-3. Optional: Testmodus aktivieren
-4. Import starten
-5. Fehlerbericht prüfen (falls vorhanden)
+Create your own import/export configurations:
+- Map database fields to CSV columns
+- Define optional default values
+- Determine the position order
 
-### Varianten importieren
-Setzt vorhandene Elternartikel voraus; Produktnummer-Muster für Varianten definieren.
+---
 
-### Weitere Workflows
-- Newsletter-Empfänger importieren
-- Eigenschaften importieren
-- Erweiterte Preise importieren
-- Kategorien und Medien importieren
+## Import workflows (step by step)
+
+### Importing products
+1. Select a profile (default: "Produkte")
+2. Select the CSV file
+3. Optional: activate test mode
+4. Start the import
+5. Check the error report (if any)
+
+### Importing variants
+Requires existing parent products; define the product number pattern for variants.
+
+### Further workflows
+- Importing newsletter recipients
+- Importing properties
+- Importing advanced prices
+- Importing categories and media

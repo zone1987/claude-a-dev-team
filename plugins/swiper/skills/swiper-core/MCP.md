@@ -1,5 +1,5 @@
 # Swiper MCP Server
 
-HTTP-MCP-Server unter `https://swiperjs.com/mcp` — kein Auth, JSON-RPC 2.0, 8 Tools.
+HTTP MCP server at `https://swiperjs.com/mcp` — no auth, JSON-RPC 2.0, 8 tools.
 
-Vollständige Referenz: `MCP-SWIPER-MCP.md`
+Complete reference: `MCP-SWIPER-MCP.md`

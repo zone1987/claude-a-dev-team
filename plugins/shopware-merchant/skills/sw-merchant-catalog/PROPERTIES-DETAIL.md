@@ -1,181 +1,181 @@
-# Shopware 6 – Eigenschaften: Vollständige Referenz
+# Shopware 6 – Eigenschaften (Properties): complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/produkte/eigenschaften  
-> Gilt ab: Shopware 6.4.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/produkte/eigenschaften  
+> Applies from: Shopware 6.4.0.0+
 
 ---
 
 ## Contents
 
-- [1. Was sind Eigenschaften?](#1-was-sind-eigenschaften)
-- [2. Eigenschaftsübersicht](#2-eigenschaftsübersicht)
-- [3. Neue Eigenschaft anlegen](#3-neue-eigenschaft-anlegen)
-- [4. Ausprägungen (Werte) anlegen](#4-ausprägungen-werte-anlegen)
-- [5. Eigenschaften Produkten zuweisen](#5-eigenschaften-produkten-zuweisen)
-- [6. Eigenschaften als Varianten-Basis](#6-eigenschaften-als-varianten-basis)
-- [7. Eigenschaften im Produktfilter](#7-eigenschaften-im-produktfilter)
-- [8. Unterschied: Eigenschaften vs. Zusatzfelder vs. Wesentliche Merkmale](#8-unterschied-eigenschaften-vs-zusatzfelder-vs-wesentliche-merkmale)
-- [9. Tipps](#9-tipps)
+- [1. What are properties?](#1-what-are-properties)
+- [2. Property overview](#2-property-overview)
+- [3. Creating a new property](#3-creating-a-new-property)
+- [4. Creating Ausprägungen (options / values)](#4-creating-ausprägungen-options--values)
+- [5. Assigning properties to products](#5-assigning-properties-to-products)
+- [6. Properties as the basis for variants](#6-properties-as-the-basis-for-variants)
+- [7. Properties in the product filter](#7-properties-in-the-product-filter)
+- [8. Difference: properties vs. Zusatzfelder vs. Wesentliche Merkmale](#8-difference-properties-vs-zusatzfelder-vs-wesentliche-merkmale)
+- [9. Tips](#9-tips)
 
-## 1. Was sind Eigenschaften?
+## 1. What are properties?
 
-Eigenschaften (Properties) sind filterbare Produktinformationen in Shopware 6. Sie dienen zwei Hauptzwecken:
+Eigenschaften (Properties) are filterable product information in Shopware 6. They serve two main purposes:
 
-1. **Produktfilter**: Kunden können im Listing nach Eigenschaften filtern (z. B. Größe: M, Farbe: Rot)
-2. **Variantengenerierung**: Eigenschaften sind die Basis für Produktvarianten
+1. **Product filter**: customers can filter by properties in the listing (e.g. size: M, colour: red)
+2. **Variant generation**: properties are the basis for product variants
 
-Verwaltung unter: **Kataloge > Eigenschaften**
+Managed under: **Kataloge** (Catalogues) > **Eigenschaften** (Properties)
 
 ---
 
-## 2. Eigenschaftsübersicht
+## 2. Property overview
 
-### Spalten der Liste
+### Columns of the list
 
-| Spalte | Beschreibung |
+| Column | Description |
 |---|---|
-| Eigenschaftsname | Name der Eigenschaftsgruppe (z. B. „Größe", „Farbe") |
-| Ausprägungen | Zugeordnete Werte (z. B. „XS, S, M, L, XL, XXL") |
-| Beschreibung | Optionale Beschreibung der Eigenschaft |
-| Produktfilter-Sichtbarkeit | Zeigt ob die Eigenschaft im Filter erscheint |
-| Aktionsmenü („...") | Bearbeiten oder Löschen |
+| Eigenschaftsname (Property name) | Name of the property group (e.g. "Größe" (Size), "Farbe" (Colour)) |
+| Ausprägungen (Options) | Assigned values (e.g. "XS, S, M, L, XL, XXL") |
+| Beschreibung (Description) | Optional description of the property |
+| Produktfilter-Sichtbarkeit (Product filter visibility) | Shows whether the property appears in the filter |
+| Action menu ("...") | Bearbeiten (Edit) or Löschen (Delete) |
 
-> **WARNUNG**: Das Löschen einer Eigenschaft entfernt diese **von allen zugewiesenen Produkten** inkl. aller Ausprägungen!
+> **WARNING**: deleting a property removes it **from all assigned products** including all options!
 
 ---
 
-## 3. Neue Eigenschaft anlegen
+## 3. Creating a new property
 
-1. Klick auf **„Eigenschaft hinzufügen"**
-2. Grundinformationen ausfüllen (siehe Felder unten)
-3. Ausprägungen (Werte) hinzufügen
-4. Speichern
+1. Click on **"Eigenschaft hinzufügen"** (Add property)
+2. Fill in the basic information (see the fields below)
+3. Add Ausprägungen (options / values)
+4. Save
 
-### 3.1 Grundinformationsfelder
+### 3.1 Basic information fields
 
-| Feld | Beschreibung | Pflicht |
+| Field | Description | Mandatory |
 |---|---|---|
-| Name | Eigenschaftsname; erscheint auf Produktdetailseite und in Filtern | Ja |
-| Beschreibung | Optionale Erklärung der Eigenschaft | Nein |
-| Produktfilter-Sichtbarkeit | Toggle; bestimmt ob diese Eigenschaft im Listing-Filter erscheint | Nein |
-| Anzeigetyp | Art der Darstellung im Filter | Nein |
-| Sortierung | Sortierart für Ausprägungen | Nein |
-| Position | Reihenfolge auf der Produktdetailseite | Nein |
+| Name | Property name; appears on the product detail page and in filters | Yes |
+| Beschreibung | Optional explanation of the property | No |
+| Produktfilter-Sichtbarkeit | Toggle; determines whether this property appears in the listing filter | No |
+| Anzeigetyp (Display type) | Kind of presentation in the filter | No |
+| Sortierung (Sorting) | Sorting mode for the options | No |
+| Position | Order on the product detail page | No |
 
-### 3.2 Anzeigetypen
+### 3.2 Display types
 
-| Typ | Darstellung im Filter | Darstellung im Produkt |
+| Type | Presentation in the filter | Presentation on the product |
 |---|---|---|
-| **Text** | Textuell (Standard) | Textuell |
-| **Farbe** | Farbige Kreise/Kacheln (HEX-Wert) | Farbige Optionsfelder |
-| **Bild** | Benutzerdefinierte Bilder | Bilder als Auswahl |
-| **Dropdown** | Textbasiiert im Filter | Dropdown-Menü auf Detailseite |
+| **Text** | Textual (default) | Textual |
+| **Farbe** (Colour) | Coloured circles/tiles (HEX value) | Coloured option fields |
+| **Bild** (Image) | Custom images | Images as a selection |
+| **Dropdown** | Text-based in the filter | Dropdown menu on the detail page |
 
-### 3.3 Sortieroptionen
+### 3.3 Sorting options
 
-| Option | Verhalten |
+| Option | Behaviour |
 |---|---|
-| **Alphanumerisch** | Automatische Sortierung a–z, dann 1–10 |
-| **Benutzerdefiniert** | Manuell über das Positionsfeld der Ausprägungen steuerbar |
+| **Alphanumerisch** (Alphanumeric) | Automatic sorting a–z, then 1–10 |
+| **Benutzerdefiniert** (Custom) | Controllable manually via the position field of the options |
 
 ---
 
-## 4. Ausprägungen (Werte) anlegen
+## 4. Creating Ausprägungen (options / values)
 
-Ausprägungen sind die konkreten Werte einer Eigenschaft.  
-Beispiel: Eigenschaft „Größe" → Ausprägungen: XS, S, M, L, XL, XXL
+Options are the concrete values of a property.  
+Example: property "Größe" → options: XS, S, M, L, XL, XXL
 
-### 4.1 Felder je Ausprägung
+### 4.1 Fields per option
 
-| Feld | Beschreibung | Verfügbar bei Typ |
+| Field | Description | Available for type |
 |---|---|---|
-| Name | Bezeichnung der Ausprägung (z. B. „Rot", „XL") | Alle |
-| Position | Numerische Position für benutzerdefinierte Sortierung | Alle |
-| Farb-HEX | Hexadezimaler Farbwert (z. B. `#FF0000`) | Nur Typ: Farbe |
-| Bild | Bild-Upload oder URL | Nur Typ: Bild |
+| Name | Label of the option (e.g. "Rot" (Red), "XL") | All |
+| Position | Numeric position for custom sorting | All |
+| Farb-HEX (Colour HEX) | Hexadecimal colour value (e.g. `#FF0000`) | Only type: Farbe |
+| Bild | Image upload or URL | Only type: Bild |
 
-### 4.2 Bild-Upload für Ausprägungen (Typ: Bild)
+### 4.2 Image upload for options (type: Bild)
 
-Zwei Methoden:
-1. **Aus Medienverwaltung wählen**: Bestehende Medien aus Inhalte > Medien auswählen
-2. **Lokale Datei hochladen**: Datei vom Computer direkt hochladen
-3. **URL-Import**: Öffentlich erreichbare Bild-URL eingeben
-
----
-
-## 5. Eigenschaften Produkten zuweisen
-
-In der Produktmaske unter **Tab Spezifikationen > Eigenschaften**:
-
-1. Produktmaske öffnen (Kataloge > Produkte > Produkt)
-2. Tab **Spezifikationen** wählen
-3. Bereich **Eigenschaften** → **Eigenschaft hinzufügen** klicken
-4. Eigenschaftsgruppe aus Dropdown wählen
-5. Ausprägungen (Werte) auswählen
-6. Mehrfachzuweisungen von verschiedenen Eigenschaftsgruppen möglich
-
-### AI Copilot (kommerzieller Plan)
-
-Der **AI Copilot** kann Eigenschaften automatisch aus der Produktbeschreibung konfigurieren:
-- Beschreibung muss ausreichend detailliert sein
-- AI erkennt relevante Eigenschaften und schlägt Ausprägungen vor
-- Vorschläge können manuell angepasst werden
+Two methods:
+1. **Choose from the media management**: select existing media from Inhalte (Content) > Medien (Media)
+2. **Upload a local file**: upload a file from the computer directly
+3. **URL import**: enter a publicly reachable image URL
 
 ---
 
-## 6. Eigenschaften als Varianten-Basis
+## 5. Assigning properties to products
 
-Eigenschaften bilden die Grundlage für Produktvarianten:
+In the product screen under **tab Spezifikationen (Specifications) > Eigenschaften**:
 
-1. Produkt anlegen (Hauptprodukt)
-2. Tab **Varianten** öffnen
-3. Auf **„Eigenschaften zuweisen"** klicken
-4. Eigenschaftsgruppen mit gewünschten Ausprägungen auswählen
-5. Variantenausschlüsse konfigurieren (optional)
-6. **„Varianten generieren"** klicken
+1. Open the product screen (Kataloge > Produkte (Products) > product)
+2. Choose the tab **Spezifikationen**
+3. Area **Eigenschaften** → click **Eigenschaft hinzufügen**
+4. Choose the property group from the dropdown
+5. Select the options (values)
+6. Multiple assignments from different property groups are possible
 
-Shopware erstellt dann automatisch alle Kombinationen der ausgewählten Ausprägungen.
+### AI Copilot (commercial plan)
 
-**Beispiel:**
-- Eigenschaft „Größe": S, M, L
-- Eigenschaft „Farbe": Rot, Blau
-- Ergibt: 6 Varianten (S/Rot, S/Blau, M/Rot, M/Blau, L/Rot, L/Blau)
-
----
-
-## 7. Eigenschaften im Produktfilter
-
-Damit eine Eigenschaft im Listing-Filter erscheint:
-
-1. Eigenschaft bearbeiten
-2. **„Produktfilter-Sichtbarkeit"** aktivieren
-3. Speichern
-
-Die Eigenschaft erscheint dann automatisch in den Filtermöglichkeiten der zugehörigen Kategorieseiten.
+The **AI Copilot** can configure properties automatically from the product description:
+- The description must be sufficiently detailed
+- The AI recognises relevant properties and suggests options
+- Suggestions can be adjusted manually
 
 ---
 
-## 8. Unterschied: Eigenschaften vs. Zusatzfelder vs. Wesentliche Merkmale
+## 6. Properties as the basis for variants
 
-| Funktion | Eigenschaften | Zusatzfelder | Wesentliche Merkmale |
+Properties form the basis for product variants:
+
+1. Create the product (main product)
+2. Open the tab **Varianten** (Variants)
+3. Click on **"Eigenschaften zuweisen"** (Assign properties)
+4. Select the property groups with the desired options
+5. Configure variant exclusions (optional)
+6. Click **"Varianten generieren"** (Generate variants)
+
+Shopware then automatically creates all combinations of the selected options.
+
+**Example:**
+- Property "Größe": S, M, L
+- Property "Farbe": Rot, Blau
+- Results in: 6 variants (S/Rot, S/Blau, M/Rot, M/Blau, L/Rot, L/Blau)
+
+---
+
+## 7. Properties in the product filter
+
+For a property to appear in the listing filter:
+
+1. Edit the property
+2. Activate **"Produktfilter-Sichtbarkeit"**
+3. Save
+
+The property then appears automatically in the filter options of the associated category pages.
+
+---
+
+## 8. Difference: properties vs. Zusatzfelder vs. Wesentliche Merkmale
+
+| Function | Eigenschaften | Zusatzfelder (Custom fields) | Wesentliche Merkmale (Essential characteristics) |
 |---|---|---|---|
-| Filterbar | Ja | Nein | Nein |
-| Variantenbasis | Ja | Nein | Nein |
-| Storefront-Filter | Ja | Nein | Nein |
-| Warenkorb/Checkout | Nein | Möglich | Ja |
-| Freitext | Nein | Ja | Nein |
-| Template-Variable | Nein | Ja | Nein |
+| Filterable | Yes | No | No |
+| Variant basis | Yes | No | No |
+| Storefront filter | Yes | No | No |
+| Cart/checkout | No | Possible | Yes |
+| Free text | No | Yes | No |
+| Template variable | No | Yes | No |
 
 ---
 
-## 9. Tipps
+## 9. Tips
 
-- Eigenschaftsnamen sollten **konsistent** und **eindeutig** gewählt werden (z. B. immer „Größe" statt mal „Größe" mal „Size")
-- Ausprägungen können **nachträglich** ergänzt werden ohne bestehende Varianten zu beeinflussen
-- Bei Typ **Farbe**: Den HEX-Wert korrekt eingeben (#RRGGBB Format)
-- **Sortierung**: Bei alphanumerisch werden Zahlen korrekt sortiert (1, 2, 10 statt 1, 10, 2)
-- Eigenschaften aus einem Produkt entfernen löscht die Eigenschaft **nicht** systemweit
+- Property names should be chosen **consistently** and **unambiguously** (e.g. always "Größe" instead of "Größe" sometimes and "Size" other times)
+- Options can be added **later** without affecting existing variants
+- For type **Farbe**: enter the HEX value correctly (#RRGGBB format)
+- **Sorting**: with alphanumeric sorting, numbers are sorted correctly (1, 2, 10 instead of 1, 10, 2)
+- Removing properties from a product does **not** delete the property system-wide
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/produkte/eigenschaften*
+*Source: https://docs.shopware.com/de/shopware-6-de/produkte/eigenschaften*

@@ -8,12 +8,12 @@ This skill documents every topic of the "Erste Schritte" (First steps) chapter o
 |---|---|
 | Welcome & ecosystem | `GETTING-STARTED-WILLKOMMEN.md` |
 | Creating a Shopware Account | `GETTING-STARTED-SHOPWARE-ACCOUNT.md` |
-| Ersteinrichtungs-Assistent (First-run wizard) | `GETTING-STARTED-ERSTEINRICHTUNG.md` |
+| Ersteinrichtungs-Assistent (First-run wizard) | `GETTING-STARTED-INITIAL-SETUP.md` |
 | Administration at a glance | `GETTING-STARTED-ADMINISTRATION.md` |
 | Dashboard | `GETTING-STARTED-DASHBOARD.md` |
-| Profileinstellungen (Profile settings) | `GETTING-STARTED-PROFILEINSTELLUNGEN.md` |
-| Search in the administration | `GETTING-STARTED-SUCHE.md` |
-| Internationalisation | `GETTING-STARTED-INTERNATIONALISIERUNG.md` |
+| Profileinstellungen (Profile settings) | `GETTING-STARTED-PROFILE-SETTINGS.md` |
+| Search in the administration | `GETTING-STARTED-SEARCH.md` |
+| Internationalisation | `GETTING-STARTED-INTERNATIONALISATION.md` |
 | Help & support | `GETTING-STARTED-HILFE-SUPPORT.md` |
 | System requirements | `GETTING-STARTED-SYSTEMVORAUSSETZUNGEN.md` |
 
@@ -29,8 +29,8 @@ This skill documents every topic of the "Erste Schritte" (First steps) chapter o
 | File | Content |
 |---|---|
 | `assets/admin-login.png` | Admin login screen |
-| `assets/admin-uebersicht.png` | Overall admin overview |
-| `assets/admin-menueleiste.png` | Left-hand navigation bar |
+| `assets/admin-overview.png` | Overall admin overview |
+| `assets/admin-menu-bar.png` | Left-hand navigation bar |
 | `assets/dashboard-statistics.png` | Dashboard with statistics widgets |
 | `assets/dashboard-zeitraum.png` | Period dropdown in the dashboard |
 | `assets/wizard-willkommen.png` | Ersteinrichtungs-Assistent – welcome |

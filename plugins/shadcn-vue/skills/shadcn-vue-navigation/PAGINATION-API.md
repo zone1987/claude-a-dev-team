@@ -1,26 +1,26 @@
-# Pagination — API-Referenz
+# Pagination — API reference
 
 ## Pagination (Root)
 
-Basiert auf reka-ui `PaginationRoot`.
+Based on reka-ui `PaginationRoot`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `page` | `number` | — | Aktuelle Seite (kontrolliert) |
-| `defaultPage` | `number` | `1` | Startseite (unkontrolliert) |
-| `total` | `number` | — | Gesamtzahl der Eintrager |
-| `itemsPerPage` | `number` | `10` | Eintrager pro Seite |
-| `siblingCount` | `number` | `1` | Anzahl sichtbarer Seiten neben aktueller |
-| `showEdges` | `boolean` | `false` | Erste/letzte Seite immer anzeigen |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `page` | `number` | — | Current page (controlled) |
+| `defaultPage` | `number` | `1` | Start page (uncontrolled) |
+| `total` | `number` | — | Total number of entries |
+| `itemsPerPage` | `number` | `10` | Entries per page |
+| `siblingCount` | `number` | `1` | Number of visible pages next to the current one |
+| `showEdges` | `boolean` | `false` | Always show first/last page |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| `update:page` | `number` | Seitenänderung |
+| `update:page` | `number` | Page change |
 
 ### Slot Props
 
@@ -33,13 +33,13 @@ Basiert auf reka-ui `PaginationRoot`.
 
 ## PaginationContent
 
-Basiert auf reka-ui `PaginationList`.
+Based on reka-ui `PaginationList`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ### Slot Props
 
@@ -51,16 +51,16 @@ Basiert auf reka-ui `PaginationList`.
 
 ## PaginationItem
 
-Basiert auf reka-ui `PaginationListItem`.
+Based on reka-ui `PaginationListItem`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `number` | — | Seitennummer |
-| `isActive` | `boolean` | `false` | Aktive Seite (outline variant) |
-| `size` | `ButtonVariants["size"]` | `"icon"` | Buttongrosse |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `value` | `number` | — | Page number |
+| `isActive` | `boolean` | `false` | Active page (outline variant) |
+| `size` | `ButtonVariants["size"]` | `"icon"` | Button size |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ---
 
@@ -68,25 +68,25 @@ Basiert auf reka-ui `PaginationListItem`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `index` | `number` | Eindeutige Position (required) |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `index` | `number` | Unique position (required) |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## PaginationPrevious / PaginationNext / PaginationFirst / PaginationLast
 
-Alle basieren auf den entsprechenden reka-ui-Primitiven.
+All are based on the corresponding reka-ui primitives.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `ButtonVariants["size"]` | `"default"` | Buttongrosse |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `size` | `ButtonVariants["size"]` | `"default"` | Button size |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ---
 
-## reka-ui Referenz
+## reka-ui reference
 - https://reka-ui.com/docs/components/pagination

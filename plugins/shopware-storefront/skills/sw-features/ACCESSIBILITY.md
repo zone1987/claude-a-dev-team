@@ -1,22 +1,22 @@
-# Shopware 6 — Storefront Barrierefreiheit (a11y)
+# Shopware 6 — Storefront accessibility (a11y)
 
-WCAG 2.1 AA + BITV 2.0. Bootstrap-5-Basis mit ARIA-Rollen.
+WCAG 2.1 AA + BITV 2.0. Bootstrap 5 base with ARIA roles.
 
-## Feature-Flag ACCESSIBILITY_TWEAKS
+## Feature flag ACCESSIBILITY_TWEAKS
 
 ```dotenv
-# .env oder .env.local
+# .env or .env.local
 ACCESSIBILITY_TWEAKS=1
 ```
 
-Nach Aktivierung: `bin/console theme:compile` (Styling-Änderungen).
+After activation: `bin/console theme:compile` (styling changes).
 
-Breaking a11y-Changes sind hinter diesem Flag versteckt — sie werden in Minor Releases eingeführt, aber erst mit v6.7.0 zum Standard.
+Breaking a11y changes are hidden behind this flag — they are introduced in minor releases, but only become the default with v6.7.0.
 
-## Breaking-Change-Pattern in Twig
+## Breaking-change pattern in Twig
 
 ```twig
-{# @deprecated tag:v6.7.0 - Wird zu <ul>/<li> für korrekte Semantik #}
+{# @deprecated tag:v6.7.0 - Becomes <ul>/<li> for correct semantics #}
 {% if feature('ACCESSIBILITY_TWEAKS') %}
   <ul class="sidebar-list">
     {% block component_list_items_inner %}
@@ -32,31 +32,31 @@ Breaking a11y-Changes sind hinter diesem Flag versteckt — sie werden in Minor 
 {% endif %}
 ```
 
-Beim Erweitern: **beide Blöcke** anpassen bis v6.7.0.
+When extending: adjust **both blocks** until v6.7.0.
 
-## a11y-Checklist für Shopware-Extensions
+## a11y checklist for Shopware extensions
 
-| Bereich | Anforderung |
+| Area | Requirement |
 |---|---|
-| Semantisches HTML | `<button>`, `<a>`, `<nav>`, `<main>`, `<label for="...">` statt `<div>` |
-| Dokument-Sprache | `<html lang="de">` |
-| Fokus-Management | Sichtbare Fokus-Indikatoren; `focus()` nach Modal-Schließen |
-| Tastatur | Tab/Enter/Esc/Pfeiltasten; kein `onclick` auf nicht-fokussierbare Elemente |
-| ARIA | Sparsam; `role="alert"`, `aria-expanded`, `aria-hidden`, `aria-live` |
-| Bilder/Icons | `alt`-Texte; Icon-only Buttons mit `aria-label` |
-| Farben | Kontrastverhältnis ≥ 4.5:1 (Text) — nicht nur Farbe als Info-Träger |
-| Überschriften | Eine `<h1>`, korrekte Hierarchie `h2`→`h3`... |
-| Skip Links | `<a href="#main-content" class="skip-link">Zum Inhalt springen</a>` |
-| Modals | Fokus-Trap im Modal; Fokus-Rückgabe nach Schließen |
-| Formulare | `<label>`, `aria-describedby` für Fehlermeldungen |
-| `<title>` | Bei Seitenwechsel aktualisieren |
+| Semantic HTML | `<button>`, `<a>`, `<nav>`, `<main>`, `<label for="...">` instead of `<div>` |
+| Document language | `<html lang="de">` |
+| Focus management | Visible focus indicators; `focus()` after closing a modal |
+| Keyboard | Tab/Enter/Esc/arrow keys; no `onclick` on non-focusable elements |
+| ARIA | Sparingly; `role="alert"`, `aria-expanded`, `aria-hidden`, `aria-live` |
+| Images/icons | `alt` texts; icon-only buttons with `aria-label` |
+| Colors | Contrast ratio ≥ 4.5:1 (text) — color must not be the only carrier of information |
+| Headings | One `<h1>`, correct hierarchy `h2`→`h3`... |
+| Skip links | `<a href="#main-content" class="skip-link">Skip to content</a>` |
+| Modals | Focus trap inside the modal; return focus after closing |
+| Forms | `<label>`, `aria-describedby` for error messages |
+| `<title>` | Update on page change |
 
-## Testing-Tools
+## Testing tools
 
-- **Lighthouse** (Chrome DevTools): Accessibility Score
-- **axe DevTools**: Detaillierte ARIA/Struktur-Analyse
-- **WAVE (WebAIM)**: HTML-Struktur und ARIA-Fehler
-- **NVDA** (Windows) / **VoiceOver** (Mac/iOS): Screen-Reader-Tests
-- **Keyboard-Only**: Tab, Shift+Tab, Enter, Space, Esc
+- **Lighthouse** (Chrome DevTools): accessibility score
+- **axe DevTools**: detailed ARIA/structure analysis
+- **WAVE (WebAIM)**: HTML structure and ARIA errors
+- **NVDA** (Windows) / **VoiceOver** (Mac/iOS): screen reader tests
+- **Keyboard-only**: Tab, Shift+Tab, Enter, Space, Esc
 
-Vollständige Referenz + Changelog bekannter a11y-Fixes: `ACCESSIBILITY-DETAIL.md`.
+Full reference + changelog of known a11y fixes: `ACCESSIBILITY-DETAIL.md`.

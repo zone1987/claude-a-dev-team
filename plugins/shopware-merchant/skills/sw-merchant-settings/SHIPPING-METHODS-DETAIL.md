@@ -1,75 +1,75 @@
-# Shopware 6 – Versandarten (vollständige Referenz)
+# Shopware 6 – Versandarten (Shipping methods) – complete reference
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/versand
-
----
-
-## Überblick
-
-**Pfad:** Einstellungen > Handel > Versand
-
-Tabelle mit Name, Beschreibung, Aktivstatus und Position.
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/versand
 
 ---
 
-## Versandart erstellen – Basisinformationen
+## Overview
 
-| Feld | Beschreibung |
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Versand (Shipping)
+
+Table with name, description, active status and position.
+
+---
+
+## Creating a shipping method – basic information
+
+| Field | Description |
 |---|---|
-| Name | Intern und extern verwendeter Name |
-| Technischer Name | Eindeutiger Bezeichner für Admin und Erweiterungen |
-| Position | Anzeigereihenfolge im Checkout (1 = erste Stelle) |
-| Aktiv | Aktivierungsstatus |
-| Beschreibung | Erklärung (sichtbar in Übersicht und Frontend) |
-| Logo | Benutzerdefiniertes Logo (Mediathek oder Upload) |
-| Lieferzeit | Anzeigezeit bei Versandartauswahl (erfordert Aktivierung unter Warenkorb-Einstellungen) |
-| Tracking-URL | Verfolgungslink mit Platzhalter `%s` für automatische Tracking-Nummer-Einfügung |
-| Tags | Schlagwörter für bessere Auffindbarkeit |
+| Name | Name used internally and externally |
+| Technischer Name (Technical name) | Unique identifier for the admin and for extensions |
+| Position | Display order in the checkout (1 = first place) |
+| Aktiv (Active) | Activation status |
+| Beschreibung (Description) | Explanation (visible in the overview and the frontend) |
+| Logo | Custom logo (media library or upload) |
+| Lieferzeit (Delivery time) | Time shown when selecting the shipping method (requires activation under the cart settings) |
+| Tracking-URL | Tracking link with placeholder `%s` for automatic insertion of the tracking number |
+| Tags | Keywords for better findability |
 
 ---
 
-## Verfügbarkeitsregel
+## Availability rule
 
-Definiert anhand des Rule Builders, wann diese Versandart verfügbar ist.
-- Neue Regeln können direkt erstellt werden
-- Typische Bedingungen: Lieferland, Warenkorbwert, Gewicht
+Defines via the Rule Builder when this shipping method is available.
+- New rules can be created directly
+- Typical conditions: delivery country, cart value, weight
 
 ---
 
-## Steuerberechnung
+## Tax calculation
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| **Automatisch** | Proportionale Berechnung basierend auf Warenkorb-Steuersätzen |
-| **Höchste** | Berechnung mit dem höchsten Steuersatz im Warenkorb |
-| **Festgelegt** | Manuell gewählter Steuersatz |
+| **Automatisch** (Automatic) | Proportional calculation based on the cart's tax rates |
+| **Höchste** (Highest) | Calculation with the highest tax rate in the cart |
+| **Festgelegt** (Fixed) | Manually selected tax rate |
 
 ---
 
-## Preismatrix
+## Price matrix
 
-### Nach Eigenschaften
-Versandpreise abhängig von:
-| Eigenschaft | Einheit |
+### By properties
+Shipping prices depending on:
+| Property | Unit |
 |---|---|
-| Anzahl Positionen | Alle Positionen im Warenkorb |
-| Warenkorbwert | Gesamtsumme aller Positionen |
-| Gewicht | Standard: Kilogramm |
-| Volumen | Breite × Höhe × Länge (in Kubikmillimetern) |
+| Anzahl Positionen (Number of line items) | All line items in the cart |
+| Warenkorbwert (Cart value) | Total of all line items |
+| Gewicht (Weight) | Default: kilograms |
+| Volumen (Volume) | Width × height × length (in cubic millimetres) |
 
-**Aufbau der Matrix:**
-- Bis zu einem bestimmten Wert → Preis X
-- Über einem bestimmten Wert → Preis Y
-- Beliebig viele Staffeln möglich
+**Structure of the matrix:**
+- Up to a certain value → price X
+- Above a certain value → price Y
+- Any number of tiers is possible
 
-### Nach Rule Builder
-Alternativ: Benutzerdefinierte Regeln aus dem Rule Builder verwenden (z.B. nach Lieferland differenzieren).
+### By Rule Builder
+Alternatively: use custom rules from the Rule Builder (e.g. differentiate by delivery country).
 
 ---
 
-## Verkaufskanal-Zuordnung
+## Sales channel assignment
 
-Versandarten müssen den Verkaufskanälen zugewiesen werden:
-1. Verkaufskanäle > [Kanal auswählen] > Grundeinstellungen > Versandarten
-2. Versandart hinzufügen
-3. Optional: Standard-Versandart festlegen
+Shipping methods must be assigned to the sales channels:
+1. Verkaufskanäle (Sales channels) > [select channel] > Grundeinstellungen (Basic settings) > Versandarten
+2. Add shipping method
+3. Optional: define the default shipping method

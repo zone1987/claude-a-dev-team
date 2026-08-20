@@ -1,6 +1,6 @@
-# Shopware 6 — Webhook-Events Referenz
+# Shopware 6 — Webhook events reference
 
-Vollständige Tabelle aller Webhook-Events mit Event-Name, Beschreibung, benötigten Permissions
-und Payload-Struktur.
+Complete table of all webhook events with event name, description, required permissions
+and payload structure.
 
-Vollständige Referenz: `EVENTS-REFERENCE-WEBHOOK-EVENTS-REFERENCE.md`
+Complete reference: `EVENTS-REFERENCE-WEBHOOK-EVENTS-REFERENCE.md`

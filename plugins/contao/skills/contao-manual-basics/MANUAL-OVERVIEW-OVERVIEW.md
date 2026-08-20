@@ -53,9 +53,9 @@ Contao is divided into two areas:
 - **Backend** (`/contao`): administration area where articles are written and pages are managed
 - **Frontend**: the actual website for visitors
 
-![The page structure](../../assets/die-seitenstruktur.png)
+![The page structure](assets/die-page-structure.png)
 
-![Frontend modules](../../assets/die-frontend-module.png)
+![Frontend modules](assets/die-frontend-module.png)
 
 Backend access: URL of the website + `/contao` → log in with user name and password.
 
@@ -105,7 +105,7 @@ Finished designs can be exported and imported as **Themes**:
 
 **Exception**: dynamic content such as news or events is managed in separate modules.
 
-![Content element listing in the backend](../../assets/das-inhaltselement-auflistung.png)
+![Content element listing in the backend](assets/the-content-element-listing.png)
 
 ---
 

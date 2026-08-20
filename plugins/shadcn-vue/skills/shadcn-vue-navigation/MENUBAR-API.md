@@ -1,4 +1,4 @@
-# Menubar — API-Referenz
+# Menubar — API reference
 
 ## Contents
 
@@ -14,36 +14,36 @@
 - [MenubarSub / MenubarSubTrigger / MenubarSubContent](#menubarsub-menubarsubtrigger-menubarsubcontent)
 - [MenubarSeparator](#menubarseparator)
 - [MenubarShortcut](#menubarshortcut)
-- [reka-ui Referenz](#reka-ui-referenz)
+- [reka-ui reference](#reka-ui-reference)
 
 ## Menubar (Root)
 
-Basiert auf reka-ui `MenubarRoot`.
+Based on reka-ui `MenubarRoot`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `MenubarRootProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `MenubarRootProps` | — | Forwarded |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| Alle `MenubarRootEmits` | — | Weitergeleitet |
+| All `MenubarRootEmits` | — | Forwarded |
 
 ---
 
 ## MenubarMenu
 
-Kein eigenes Styling. Wrapper fur `MenubarTrigger` + `MenubarContent`.
+No styling of its own. Wrapper for `MenubarTrigger` + `MenubarContent`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| Alle `MenubarMenuProps` | — | Weitergeleitet (value etc.) |
+| All `MenubarMenuProps` | — | Forwarded (value etc.) |
 
 ---
 
@@ -51,25 +51,25 @@ Kein eigenes Styling. Wrapper fur `MenubarTrigger` + `MenubarContent`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `MenubarTriggerProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `MenubarTriggerProps` | — | Forwarded |
 
 ---
 
 ## MenubarContent
 
-Wird in `MenubarPortal` gerendert.
+Rendered inside `MenubarPortal`.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `align` | `"start" \| "center" \| "end"` | `"start"` | Ausrichtung |
-| `alignOffset` | `number` | `-4` | Versatz entlang der Alignment-Achse |
-| `sideOffset` | `number` | `8` | Abstand zum Trigger |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `align` | `"start" \| "center" \| "end"` | `"start"` | Alignment |
+| `alignOffset` | `number` | `-4` | Offset along the alignment axis |
+| `sideOffset` | `number` | `8` | Distance from the trigger |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ---
 
@@ -77,18 +77,18 @@ Wird in `MenubarPortal` gerendert.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `inset` | `boolean` | `false` | Linker Einzug (pl-8) fur Ausrichtung mit Icons |
-| `variant` | `"default" \| "destructive"` | `"default"` | Farbvariante |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `inset` | `boolean` | `false` | Left indent (pl-8) to align with icons |
+| `variant` | `"default" \| "destructive"` | `"default"` | Color variant |
+| `disabled` | `boolean` | `false` | Disabled |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ### Emits
 
-| Event | Beschreibung |
+| Event | Description |
 |---|---|
-| `select` | Wird bei Klick/Enter ausgelost |
+| `select` | Fired on click/Enter |
 
 ---
 
@@ -96,10 +96,10 @@ Wird in `MenubarPortal` gerendert.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `inset` | `boolean` | Linker Einzug (pl-8) |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `inset` | `boolean` | Left indent (pl-8) |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
@@ -107,17 +107,17 @@ Wird in `MenubarPortal` gerendert.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `checked` | `boolean` | Ausgewahlt-Zustand |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `checked` | `boolean` | Checked state |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Item-Inhalt |
-| `indicator-icon` | Benutzerdefiniertes Check-Icon (Standard: `<Check>`) |
+| default | Item content |
+| `indicator-icon` | Custom check icon (default: `<Check>`) |
 
 ---
 
@@ -125,15 +125,15 @@ Wird in `MenubarPortal` gerendert.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `modelValue` | `string` | Aktuell ausgewahlter Wert |
+| `modelValue` | `string` | Currently selected value |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| `update:modelValue` | `string` | Wert andert sich |
+| `update:modelValue` | `string` | Value changes |
 
 ---
 
@@ -141,38 +141,38 @@ Wird in `MenubarPortal` gerendert.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `value` | `string` | Wert dieses Radio-Items |
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `value` | `string` | Value of this radio item |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Item-Inhalt |
-| `indicator-icon` | Benutzerdefiniertes Radio-Icon (Standard: `<Circle>`) |
+| default | Item content |
+| `indicator-icon` | Custom radio icon (default: `<Circle>`) |
 
 ---
 
 ## MenubarSub / MenubarSubTrigger / MenubarSubContent
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `inset` (SubTrigger) | `boolean` | Linker Einzug |
-| `open` / `defaultOpen` (Sub) | `boolean` | Kontrolliert/unkontrolliert |
+| `inset` (SubTrigger) | `boolean` | Left indent |
+| `open` / `defaultOpen` (Sub) | `boolean` | Controlled/uncontrolled |
 
 ---
 
 ## MenubarSeparator
 
-Horizontale Trennlinie.
+Horizontal divider.
 
 ---
 
 ## MenubarShortcut
 
-Rein prasentierende `<span>`-Komponente fur Tastaturkurzel.
+Purely presentational `<span>` component for keyboard shortcuts.
 
-## reka-ui Referenz
+## reka-ui reference
 - https://reka-ui.com/docs/components/menubar

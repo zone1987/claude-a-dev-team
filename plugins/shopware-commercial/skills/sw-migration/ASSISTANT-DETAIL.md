@@ -1,66 +1,66 @@
-# Shopware Migration Assistant — Entwickler-Referenz
+# Shopware Migration Assistant — Developer reference
 
 GitHub: https://github.com/shopware/SwagMigrationAssistant
 
 ## Contents
 
-- [Architektur-Ueberblick](#architektur-ueberblick)
-- [Migrationsprozess (States)](#migrationsprozess-states)
+- [Architecture overview](#architecture-overview)
+- [Migration process (states)](#migration-process-states)
 - [Profile](#profile)
 - [Connection](#connection)
 - [Gateway](#gateway)
 - [Reader](#reader)
-- [DataSelection und DataSet](#dataselection-und-dataset)
+- [DataSelection and DataSet](#dataselection-and-dataset)
 - [Converter](#converter)
 - [MappingService](#mappingservice)
-- [Deltas (inkrementelle Migration)](#deltas-inkrementelle-migration)
+- [Deltas (incremental migration)](#deltas-incremental-migration)
 - [Writer](#writer)
 - [Premapping](#premapping)
 - [Media Processing](#media-processing)
 
-## Architektur-Ueberblick
+## Architecture overview
 
 ```
 Profile
   └─ Gateway (local | api)
-       └─ Reader (liest Quelldaten, paginiert)
-Converter (transformiert in SW6-Struktur)
-  └─ MappingService (old_id → new_uuid, Checksum)
+       └─ Reader (reads source data, paginated)
+Converter (transforms into SW6 structure)
+  └─ MappingService (old_id → new_uuid, checksum)
 DataSelection
-  └─ DataSet (je Entitaet eine Klasse)
-Writer (schreibt in SW6-DAL)
-MediaFileProcessor (HTTP-Download | Lokales Kopieren)
-PremappingReader (UI fuer manuelle Zuordnungen)
+  └─ DataSet (one class per entity)
+Writer (writes into the SW6 DAL)
+MediaFileProcessor (HTTP download | local copy)
+PremappingReader (UI for manual assignments)
 ```
 
-## Migrationsprozess (States)
+## Migration process (states)
 
 ```
 Fetching → ErrorResolution → Writing → MediaProcessing → Cleanup → Indexing → WaitingForApprove → Finished
 ```
 
-Jeder Schritt laeuft asynchron via Message Queue (`MigrationProcessMessage`).
+Every step runs asynchronously via the message queue (`MigrationProcessMessage`).
 
 ### Fetching
 
-Pro `DataSet` in den ausgewaehlten `DataSelections`:
-1. Reader liest Quelldaten (paginiert via `offset` + `limit`)
-2. Converter wandelt Daten um und speichert in `swag_migration_data`
-3. MappingService speichert `(old_id → new_uuid, checksum)` in `swag_migration_mapping`
+Per `DataSet` in the selected `DataSelections`:
+1. Reader reads the source data (paginated via `offset` + `limit`)
+2. Converter transforms the data and stores it in `swag_migration_data`
+3. MappingService stores `(old_id → new_uuid, checksum)` in `swag_migration_mapping`
 
 ### ErrorResolution
 
-Benutzer sieht Validierungsfehler (aus `MigrationEntityValidationService`), kann Korrekturen
-in `swag_migration_fix` speichern.
+The user sees validation errors (from `MigrationEntityValidationService`) and can store
+corrections in `swag_migration_fix`.
 
 ### Writing
 
-Writer schreibt konvertierte Daten aus `swag_migration_data` via DAL in Shopware 6.
+Writer writes the converted data from `swag_migration_data` into Shopware 6 via the DAL.
 
 ### MediaProcessing
 
-Prozessor liest Queue aus `swag_migration_media_file` (flag `written=true`) und
-laed/kopiert Dateien in Shopware-Medienspeicher.
+The processor reads the queue from `swag_migration_media_file` (flag `written=true`) and
+downloads/copies the files into the Shopware media storage.
 
 ## Profile
 
@@ -79,24 +79,24 @@ class OwnProfile implements ProfileInterface
 }
 ```
 
-**DIC-Registrierung:**
+**DIC registration:**
 ```php
 $services->set(OwnProfile::class)->tag('shopware.migration.profile');
 ```
 
 ## Connection
 
-Entity `swag_migration_connection`: Verbindet Profile, Gateway, Credentials und Premapping.
-Pro Verbindung werden alle Mappings gespeichert — ermoeglicht mehrere Migrationen ohne Datenverlust.
+Entity `swag_migration_connection`: connects profile, gateway, credentials and premapping.
+All mappings are stored per connection — this enables multiple migrations without data loss.
 
 ## Gateway
 
-Kommunikationsschicht zum Quellsystem:
+Communication layer to the source system:
 
-| Gateway | Beschreibung                                 |
+| Gateway | Description                                  |
 |---------|----------------------------------------------|
-| `local` | Direkter DB-Zugriff (beide Systeme gleicher Server) |
-| `api`   | HTTP-Kommunikation via SwagMigrationConnector |
+| `local` | Direct DB access (both systems on the same server) |
+| `api`   | HTTP communication via SwagMigrationConnector |
 
 ```php
 class OwnLocalGateway implements GatewayInterface
@@ -116,11 +116,11 @@ class OwnLocalGateway implements GatewayInterface
 }
 ```
 
-**DIC-Tag:** `shopware.migration.gateway`
+**DIC tag:** `shopware.migration.gateway`
 
 ## Reader
 
-Liest paginiert Quelldaten und zaehlt Gesamtmenge:
+Reads source data page by page and counts the total amount:
 
 ```php
 class ProductReader extends AbstractReader
@@ -156,17 +156,17 @@ class ProductReader extends AbstractReader
 }
 ```
 
-**DIC-Registrierung:**
+**DIC registration:**
 ```php
 $services->set(ProductReader::class)
     ->parent(AbstractReader::class)
     ->tag('shopware.migration.reader');
 ```
 
-## DataSelection und DataSet
+## DataSelection and DataSet
 
-`DataSet` = eine Entitaet (entspricht einer Tabelle).
-`DataSelection` = geordnete Gruppe von DataSets.
+`DataSet` = one entity (corresponds to one table).
+`DataSelection` = an ordered group of DataSets.
 
 ```php
 class ProductDataSet extends DataSet
@@ -190,22 +190,22 @@ class ProductDataSelection implements DataSelectionInterface
             $this->getDataSets(),
             $this->getDataSetsRequiredForCount(),
             'swag-migration.index.selectDataCard.dataSelection.products',
-            100,       // Position (kleiner = frueherer Start)
+            100,       // Position (lower = starts earlier)
             true,      // processMediaFiles
             DataSelectionStruct::BASIC_DATA_TYPE,
-            false      // required (Pflichtauswahl)
+            false      // required (mandatory selection)
         );
     }
 
     public function getDataSets(): array
     {
-        // REIHENFOLGE WICHTIG — Abhaengigkeiten beachten
+        // ORDER MATTERS — mind the dependencies
         return [new MediaFolderDataSet(), new ProductDataSet()];
     }
 }
 ```
 
-**DIC-Tags:**
+**DIC tags:**
 ```php
 $services->set(ProductDataSelection::class)->tag('shopware.migration.data_selection');
 $services->set(ProductDataSet::class)->tag('shopware.migration.data_set');
@@ -213,7 +213,7 @@ $services->set(ProductDataSet::class)->tag('shopware.migration.data_set');
 
 ## Converter
 
-Transformiert Quelldaten in Shopware-6-Format:
+Transforms source data into the Shopware 6 format:
 
 ```php
 class ProductConverter extends ShopwareConverter
@@ -226,36 +226,36 @@ class ProductConverter extends ShopwareConverter
 
     public function getSourceIdentifier(array $data): string
     {
-        return $data['id']; // Eindeutiger Key im Quellsystem (fuer Delta-Erkennung)
+        return $data['id']; // Unique key in the source system (for delta detection)
     }
 
     public function convert(array $data, Context $context, MigrationContextInterface $migrationContext): ConvertStruct
     {
-        // 1. Checksum fuer Delta-Erkennung
+        // 1. Checksum for delta detection
         $this->generateChecksum($data);
 
-        // 2. Mapping holen oder erstellen (old_id → new_uuid)
+        // 2. Get or create mapping (old_id → new_uuid)
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
             $migrationContext->getConnection()->getId(),
             ProductDataSet::getEntity(),
             $data['id'],
             $context,
-            $this->checksum  // Checksum zum Speichern
+            $this->checksum  // Checksum to store
         );
 
-        // 3. Daten konvertieren
+        // 3. Convert the data
         $converted = ['id' => $this->mainMapping['entityUuid']];
         $this->convertValue($converted, 'productNumber', $data, 'product_number');
         $this->convertValue($converted, 'name', $data, 'product_name');
         $this->convertValue($converted, 'stock', $data, 'stock', self::TYPE_INTEGER);
 
-        // 4. Unmapped-Data (unbearbeitete Felder) fuer Debugging entfernen
+        // 4. Remove unmapped data (unprocessed fields) for debugging
         unset($data['id'], $data['product_number'], $data['product_name'], $data['stock']);
         if (empty($data)) {
             $data = null;
         }
 
-        // 5. Mapping speichern und ConvertStruct zurueckgeben
+        // 5. Store the mapping and return the ConvertStruct
         $this->updateMainMapping($migrationContext, $context);
         return new ConvertStruct($converted, $data, $this->mainMapping['id']);
     }
@@ -267,14 +267,14 @@ class ProductConverter extends ShopwareConverter
 }
 ```
 
-**DIC-Tag:** `shopware.migration.converter`
+**DIC tag:** `shopware.migration.converter`
 
 ## MappingService
 
-Kern-Service fuer ID-Mapping zwischen Quell- und Zielsystem.
+Core service for ID mapping between source and target system.
 
 ```php
-// Mapping holen oder neu anlegen (mit Checksum)
+// Get or newly create a mapping (with checksum)
 $mapping = $this->mappingService->getOrCreateMapping(
     $connectionId,
     DefaultEntities::PRODUCT,
@@ -284,7 +284,7 @@ $mapping = $this->mappingService->getOrCreateMapping(
 );
 $newUuid = $mapping['entityUuid'];
 
-// Nur vorhandenes Mapping holen (kein Anlegen)
+// Only fetch an existing mapping (no creation)
 $mapping = $this->mappingService->getMapping(
     $connectionId,
     SalutationReader::getMappingName(),
@@ -292,31 +292,31 @@ $mapping = $this->mappingService->getMapping(
     $context
 );
 if ($mapping === null) {
-    // Logging: kein Mapping gefunden
+    // Logging: no mapping found
     return null;
 }
 
-// Waehrung und Steuer-Hilfsmethoden
+// Currency and tax helper methods
 $currencyUuid = $this->mappingService->getCurrencyUuid($connectionId, 'EUR', $context);
 $taxUuid = $this->mappingService->getTaxUuid($connectionId, 19.0, $context);
 ```
 
-**Wichtig:** Alle gesammelten `$this->mappingIds[]` am Ende per `updateMainMapping()` persistieren,
-damit bei der naechsten Migration alle Mapping-IDs auf einmal geladen werden (Performance).
+**Important:** persist all collected `$this->mappingIds[]` at the end via `updateMainMapping()`,
+so that the next migration loads all mapping IDs in one go (performance).
 
-## Deltas (inkrementelle Migration)
+## Deltas (incremental migration)
 
-Checksum wird aus rohen Quelldaten generiert:
+The checksum is generated from the raw source data:
 ```php
-$this->generateChecksum($data); // Intern: hash(serialize($data))
+$this->generateChecksum($data); // Internally: hash(serialize($data))
 ```
 
-Wenn beim naechsten Migrationslauf die Checksum gleich ist → Datensatz ueberspringen.
-Nur geaenderte Datensaetze werden neu migriert.
+If the checksum is identical on the next migration run → skip the record.
+Only changed records are migrated again.
 
 ## Writer
 
-Schreibt konvertierte Daten in SW6-DAL:
+Writes converted data into the SW6 DAL:
 
 ```php
 class ProductWriter extends AbstractWriter
@@ -325,7 +325,7 @@ class ProductWriter extends AbstractWriter
 }
 ```
 
-**DIC-Registrierung:**
+**DIC registration:**
 ```php
 $services->set(ProductWriter::class)
     ->parent(AbstractWriter::class)
@@ -336,12 +336,12 @@ $services->set(ProductWriter::class)
     ->tag('shopware.migration.writer');
 ```
 
-Bei `WriteException` wird versucht, fehlerhafte Eintraege auszuschliessen und Rest zu schreiben.
-Bei anderen Exceptions: Einzelverarbeitung zum Minimieren von Datenverlust.
+On a `WriteException` it tries to exclude the faulty entries and write the rest.
+On other exceptions: individual processing to minimize data loss.
 
 ## Premapping
 
-Ermoeglicht manuelle Zuordnung vor der Migration (z.B. Anreden, Zahlungsmethoden):
+Enables manual assignment before the migration (e.g. salutations, payment methods):
 
 ```php
 class SalutationReader extends AbstractPremappingReader
@@ -357,17 +357,17 @@ class SalutationReader extends AbstractPremappingReader
     public function getPremapping(Context $context, MigrationContextInterface $migrationContext): PremappingStruct
     {
         $this->fillConnectionPremappingDictionary($migrationContext);
-        $mapping = $this->getMapping();         // Quelldaten (Auswahl-Optionen im UI)
-        $choices = $this->getChoices($context); // Zieldaten (SW6-Aequivalente)
-        $this->setPreselection($mapping);       // Automatische Vorauswahl
+        $mapping = $this->getMapping();         // Source data (selection options in the UI)
+        $choices = $this->getChoices($context); // Target data (SW6 equivalents)
+        $this->setPreselection($mapping);       // Automatic preselection
         return new PremappingStruct(self::getMappingName(), $mapping, $choices);
     }
 }
 ```
 
-**DIC-Tag:** `shopware.migration.pre_mapping_reader`
+**DIC tag:** `shopware.migration.pre_mapping_reader`
 
-Im Converter wird Premapping verwendet:
+The premapping is used in the converter:
 ```php
 $mapping = $this->mappingService->getMapping(
     $this->connectionId,
@@ -380,7 +380,7 @@ $salutationUuid = $mapping['entityId'] ?? null;
 
 ## Media Processing
 
-### Phase 1 — Converter queued Media
+### Phase 1 — Converter queues media
 
 ```php
 $this->mediaFileService->saveMediaFile([
@@ -395,12 +395,12 @@ $this->mediaFileService->saveMediaFile([
 
 ### Phase 2 — MediaFileProcessor
 
-| Processor                  | Gateway | Verfahren                         |
+| Processor                  | Gateway | Method                            |
 |----------------------------|---------|-----------------------------------|
-| `HttpMediaDownloadService` | api     | HTTP-Download via `HttpSimpleClient` |
-| `LocalMediaProcessor`      | local   | Dateisystem-Kopie                 |
+| `HttpMediaDownloadService` | api     | HTTP download via `HttpSimpleClient` |
+| `LocalMediaProcessor`      | local   | File system copy                  |
 
-Status-Flags in `swag_migration_media_file`:
-- `written` — Entity-Write abgeschlossen
-- `processed` — Medien-Import erfolgreich
-- `process_failure` — Import fehlgeschlagen
+Status flags in `swag_migration_media_file`:
+- `written` — entity write completed
+- `processed` — media import succeeded
+- `process_failure` — import failed

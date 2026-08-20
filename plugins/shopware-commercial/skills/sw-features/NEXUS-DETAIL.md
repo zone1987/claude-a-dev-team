@@ -1,206 +1,206 @@
-# Shopware Nexus — Vollständige Referenz
+# Shopware Nexus — full reference
 
-> **Beta-Hinweis:** Shopware Nexus befindet sich in der Beta-Phase. Funktionen
-> sind eingeschränkt und können sich in zukünftigen Updates erweitern.
+> **Beta note:** Shopware Nexus is in its beta phase. Functionality
+> is limited and may be extended in future updates.
 
 ## Contents
 
-- [Was ist Shopware Nexus?](#was-ist-shopware-nexus)
+- [What is Shopware Nexus?](#what-is-shopware-nexus)
 - [Key Capabilities](#key-capabilities)
-- [Nicht verfügbar in Beta](#nicht-verfügbar-in-beta)
-- [Geplant nach Beta](#geplant-nach-beta)
+- [Not available in beta](#not-available-in-beta)
+- [Planned after beta](#planned-after-beta)
 - [Getting Started](#getting-started)
 - [Workflow Builder](#workflow-builder)
-- [Node-Typen](#node-typen)
-- [Expression-Syntax](#expression-syntax)
+- [Node types](#node-types)
+- [Expression syntax](#expression-syntax)
 - [Business Central Integration](#business-central-integration)
-- [Sicherheit & Datenschutz](#sicherheit-datenschutz)
+- [Security & privacy](#security--privacy)
 - [Troubleshooting](#troubleshooting)
 
-## Was ist Shopware Nexus?
+## What is Shopware Nexus?
 
-Nexus ist eine unified Platform für **event-getriebene Automatisierung und
-Integration**. Händler können Systeme visuell per Low-Code orchestrieren und
-skalierbare Workflows erstellen, die Shopware mit ERPs, CRMs und anderen
-Business-Systemen verbinden.
+Nexus is a unified platform for **event-driven automation and
+integration**. Merchants can orchestrate systems visually via low-code and create
+scalable workflows that connect Shopware with ERPs, CRMs and other
+business systems.
 
 ## Key Capabilities
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---------|-------------|
-| Visual Workflow Builder | Drag-and-Drop-Interface |
-| Shopware Event Triggers | Reagiert auf Entity-Events |
-| Schedule Triggers | Cron-basierte Ausführung |
-| Business Central Integration | CRUD für Items, Customers, Sales Orders |
-| Shopware API Actions | Beliebige Shopware-Endpunkte aufrufen |
-| API Requests | Generische HTTP-Calls |
-| Slack Notifications | Slack-Nachrichten senden |
-| Conditional Logic | If/else und Switch-Branching |
-| S3 Storage | Daten in S3 speichern |
-| Data Transformation | Daten mappen und filtern |
-| Expression Placeholders | `{{payload.field}}` für Daten-Interpolation |
-| Execution Monitoring | Runs und Metriken verfolgen |
-| Delay Node | Verzögerungen zwischen Schritten |
+| Visual Workflow Builder | Drag-and-drop interface |
+| Shopware Event Triggers | Reacts to entity events |
+| Schedule Triggers | Cron-based execution |
+| Business Central Integration | CRUD for items, customers, sales orders |
+| Shopware API Actions | Call arbitrary Shopware endpoints |
+| API Requests | Generic HTTP calls |
+| Slack Notifications | Send Slack messages |
+| Conditional Logic | If/else and switch branching |
+| S3 Storage | Store data in S3 |
+| Data Transformation | Map and filter data |
+| Expression Placeholders | `{{payload.field}}` for data interpolation |
+| Execution Monitoring | Track runs and metrics |
+| Delay Node | Delays between steps |
 
-## Nicht verfügbar in Beta
+## Not available in beta
 
-- SLA-Garantien
-- 24/7 Support
-- Multi-Region-Deployment (nur EU)
-- On-Premise/Self-Hosted
-- Workflow-Marketplace
+- SLA guarantees
+- 24/7 support
+- Multi-region deployment (EU only)
+- On-premise/self-hosted
+- Workflow marketplace
 
-## Geplant nach Beta
+## Planned after beta
 
-| Feature | Zeitrahmen |
+| Feature | Time frame |
 |---------|-----------|
 | AI-Assisted Authoring | GA |
 | Advanced Analytics | GA |
 | Per-Tenant Quotas | GA |
 | Workflow Versioning UI | GA |
-| SAP, Oracle Konnektoren | Post-GA |
+| SAP, Oracle connectors | Post-GA |
 | Custom Node Development | Post-GA |
 
 ---
 
 ## Getting Started
 
-### Voraussetzungen
+### Prerequisites
 
-- Shopware 6.7 oder neuer
-- Aktives Shopware-Abonnement
-- Beta-Zugang durch Shopware gewährt
-- Nexus-Service aktiviert
-- Shopware Services aktiv (T&Cs akzeptiert, Shop in SBP registriert)
+- Shopware 6.7 or newer
+- An active Shopware subscription
+- Beta access granted by Shopware
+- The Nexus service enabled
+- Shopware Services active (T&Cs accepted, shop registered in SBP)
 
-### Zugang
+### Access
 
 1. Login via Shopware SSO (Ory / OIDC)
-2. Nach Authentifizierung: Nexus leitet zu einem Demo-Workflow weiter
-3. Workflow wird funktional sobald der Shop verbunden ist
+2. After authentication: Nexus redirects to a demo workflow
+3. The workflow becomes functional as soon as the shop is connected
 
-### Shop verbinden
+### Connecting a shop
 
-Shops werden aus der Shopware Business Platform gezogen.
+Shops are pulled from the Shopware Business Platform.
 
-> **Beta-Limitation:** Nur das erste Unternehmen des User-Accounts wird
-> verwendet. Nur Shops dieses Unternehmens sind in Nexus verfügbar.
+> **Beta limitation:** only the first company of the user account is
+> used. Only shops of that company are available in Nexus.
 
-### Workflow erstellen
+### Creating a workflow
 
-Anleitung in der [User-Dokumentation](https://docs.shopware.com/en/shopware-6-en/shopware-services/shopware-nexus?category=shopware-6-en/insider-previews).
+Instructions in the [user documentation](https://docs.shopware.com/en/shopware-6-en/shopware-services/shopware-nexus?category=shopware-6-en/insider-previews).
 
-### Bekannte Beta-Limitierungen
+### Known beta limitations
 
 | Limitation | Workaround |
 |------------|------------|
-| Kein Test-Modus | Staging-Shops verwenden |
-| Begrenzte Fehlerdetails | Log-Nodes hinzufügen |
-| Kein Undo/Redo | Häufig speichern |
-| At-least-once delivery | Idempotente Workflows designen |
+| No test mode | Use staging shops |
+| Limited error details | Add log nodes |
+| No undo/redo | Save frequently |
+| At-least-once delivery | Design idempotent workflows |
 
 ---
 
 ## Workflow Builder
 
-### Workflow-Struktur
+### Workflow structure
 
-Ein Workflow besteht aus Nodes auf einem Canvas:
+A workflow consists of nodes on a canvas:
 
-1. **Trigger** — startet den Workflow
-2. **Actions** — tun etwas (API-Calls, ERP-Writes, Notifications)
-3. **Transforms** — Daten formen/filtern
-4. **Conditions** — Verzweigungslogik
-5. **Outputs** — Ergebnisse speichern
+1. **Triggers** — start the workflow
+2. **Actions** — do something (API calls, ERP writes, notifications)
+3. **Transforms** — shape/filter data
+4. **Conditions** — branching logic
+5. **Outputs** — store results
 
-### Workflow-Builder-Interface
+### Workflow builder interface
 
-| Element | Beschreibung |
+| Element | Description |
 |---------|-------------|
-| Canvas | Visueller Arbeitsbereich |
-| Node Palette | Verfügbare Nodes |
-| Node Configuration | Parameter, Credentials, Notes, Debug |
+| Canvas | Visual working area |
+| Node Palette | Available nodes |
+| Node Configuration | Parameters, credentials, notes, debug |
 | Toolbar | Save, Publish, Execute, Undeploy |
-| Execution Tab | Run-Historie und Metriken |
+| Execution Tab | Run history and metrics |
 
-### Workflow-Zustände
+### Workflow states
 
-| Zustand | Beschreibung | Verfügbare Aktionen |
+| State | Description | Available actions |
 |---------|-------------|---------------------|
-| Draft | Bearbeitung | Save, Publish |
-| Published | Bereit | Execute |
-| Deploying | Deployment wird erstellt | — |
-| Active | Läuft | Undeploy |
-| Inactive | Deployed aber gestoppt | Execute, Delete |
-| Undeploying | Deployment wird entfernt | — |
-| Failed | Deployment oder Ausführung fehlgeschlagen | Retry, Delete |
+| Draft | Being edited | Save, Publish |
+| Published | Ready | Execute |
+| Deploying | The deployment is being created | — |
+| Active | Running | Undeploy |
+| Inactive | Deployed but stopped | Execute, Delete |
+| Undeploying | The deployment is being removed | — |
+| Failed | Deployment or execution failed | Retry, Delete |
 
 ### Execution Metrics
 
 - Status (Success / Failed / Running)
-- Ausführungsdauer
-- Verarbeitete Messages pro Node
-- Fehler-Anzahl und Latenz
+- Execution duration
+- Messages processed per node
+- Error count and latency
 
-### Monitoring-Limitierungen (Beta)
+### Monitoring limitations (beta)
 
-- Keine per-Node Execution-Logs
-- Begrenzte Payload-Inspektion
-- Manuelles Refresh erforderlich
-
----
-
-## Node-Typen
-
-### Trigger-Nodes
-
-| Node | Beschreibung | Konfiguration |
-|------|-------------|--------------|
-| Shopware Event Trigger | Reagiert auf Entity-Events | Shop, Event |
-| Schedule Trigger | Zeitbasierte Ausführung | Cron, Timezone |
-
-### Action-Nodes
-
-| Node | Beschreibung | Konfiguration |
-|------|-------------|--------------|
-| Business Central | CRUD auf BC-Entities | Entity, Operation |
-| Shopware API Call | Beliebiger Shopware-API-Aufruf | Method, Endpoint |
-| Send Slack Message | Slack-Notification | Channel, Template |
-| API Request | Generischer HTTP-Call | URL, Headers |
-| Send Shopware Email | E-Mail via Shopware | Empfänger, Inhalt |
-
-### Transform-Nodes
-
-| Node | Beschreibung |
-|------|-------------|
-| Filter | Array-Items filtern |
-
-### Condition-Nodes
-
-| Node | Beschreibung |
-|------|-------------|
-| If | True/False Bedingung |
-| Switch | Komplexe Verzweigungslogik |
-
-### Control-Nodes
-
-| Node | Beschreibung |
-|------|-------------|
-| Delay | Verzögerung vor Fortfahren |
-
-### Output-Nodes
-
-| Node | Beschreibung |
-|------|-------------|
-| S3 Storage | Payload in S3 speichern |
+- No per-node execution logs
+- Limited payload inspection
+- Manual refresh required
 
 ---
 
-## Expression-Syntax
+## Node types
 
-Expressions verwenden `{{ }}`-Syntax in Templates und Mappings.
+### Trigger nodes
 
-### Beispiele
+| Node | Description | Configuration |
+|------|-------------|--------------|
+| Shopware Event Trigger | Reacts to entity events | Shop, event |
+| Schedule Trigger | Time-based execution | Cron, timezone |
+
+### Action nodes
+
+| Node | Description | Configuration |
+|------|-------------|--------------|
+| Business Central | CRUD on BC entities | Entity, operation |
+| Shopware API Call | Any Shopware API call | Method, endpoint |
+| Send Slack Message | Slack notification | Channel, template |
+| API Request | Generic HTTP call | URL, headers |
+| Send Shopware Email | Email via Shopware | Recipient, content |
+
+### Transform nodes
+
+| Node | Description |
+|------|-------------|
+| Filter | Filter array items |
+
+### Condition nodes
+
+| Node | Description |
+|------|-------------|
+| If | True/false condition |
+| Switch | Complex branching logic |
+
+### Control nodes
+
+| Node | Description |
+|------|-------------|
+| Delay | Delay before continuing |
+
+### Output nodes
+
+| Node | Description |
+|------|-------------|
+| S3 Storage | Store the payload in S3 |
+
+---
+
+## Expression syntax
+
+Expressions use the `{{ }}` syntax in templates and mappings.
+
+### Examples
 
 ```text
 {{payload.order.orderNumber}}
@@ -208,35 +208,35 @@ Expressions verwenden `{{ }}`-Syntax in Templates und Mappings.
 {{customer.firstName}} {{customer.lastName}}
 ```
 
-### Häufige Verwendung
+### Common usage
 
-- **Slack-Templates:** Lesbare Notification-Messages erstellen
-- **Daten-Mapping:** Werte aus Trigger-Payload an Action-Parameter übergeben
-- **Branching:** `If`-Bedingungen auf Basis von Payload-Werten
+- **Slack templates:** create readable notification messages
+- **Data mapping:** pass values from the trigger payload to action parameters
+- **Branching:** `If` conditions based on payload values
 
 ---
 
 ## Business Central Integration
 
-### Unterstützte Entities
+### Supported entities
 
 - Customers
 - Items
 - Sales Orders
 
-### Verfügbare Operationen (alle Entities)
+### Available operations (all entities)
 
-| Operation | Beschreibung |
+| Operation | Description |
 |-----------|-------------|
-| `getAll` | Alle Records abrufen |
-| `getOne` | Einzelnen Record per Identifier abrufen |
-| `createOrUpdate` | Record erstellen oder aktualisieren |
-| `delete` | Record entfernen |
-| `action` | Spezifische Aktion auf Entity ausführen |
+| `getAll` | Fetch all records |
+| `getOne` | Fetch a single record by identifier |
+| `createOrUpdate` | Create or update a record |
+| `delete` | Remove a record |
+| `action` | Execute a specific action on the entity |
 
-### OData Filter-Beispiele
+### OData filter examples
 
-Business Central unterstützt OData-Filtersyntax:
+Business Central supports the OData filter syntax:
 
 ```text
 email eq 'john@example.com'
@@ -247,23 +247,23 @@ externalDocumentNumber eq 'SW-10001'
 
 ---
 
-## Sicherheit & Datenschutz
+## Security & privacy
 
-| Aspekt | Detail |
+| Aspect | Detail |
 |--------|--------|
-| Authentifizierung | Shopware SSO |
-| Verschlüsselung | AES-256-GCM via AWS KMS |
-| Storage | Tenant-isoliert |
-| Infrastruktur | EU-basiert (eu-central-1) |
+| Authentication | Shopware SSO |
+| Encryption | AES-256-GCM via AWS KMS |
+| Storage | Tenant-isolated |
+| Infrastructure | EU-based (eu-central-1) |
 
 ---
 
 ## Troubleshooting
 
-| Problem | Lösung |
+| Problem | Solution |
 |---------|--------|
-| Workflow stuck deploying | Neu deployen (Redeploy) |
-| Unauthorized errors | Neu authentifizieren |
-| Fehlende Event-Daten | Payload mit Log-Node inspizieren |
-| BC-Filter gibt leeres Ergebnis | OData-Syntax validieren |
-| Slack-Nachricht wird nicht gesendet | Slack neu autorisieren |
+| Workflow stuck deploying | Redeploy |
+| Unauthorized errors | Re-authenticate |
+| Missing event data | Inspect the payload with a log node |
+| BC filter returns an empty result | Validate the OData syntax |
+| Slack message is not sent | Re-authorize Slack |

@@ -1,11 +1,11 @@
 # Skill: sw-commercial-overview
 
-Dieses Skill deckt den Ueberblick ueber das Shopware Commercial Plugin ab.
+This skill covers the overview of the Shopware Commercial plugin.
 
-## Referenzen
+## References
 
 - [COMMERCIAL-OVERVIEW-DETAIL.md](COMMERCIAL-OVERVIEW-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-Betreiber-Sicht (Administration, Konfiguration im Shop): siehe `shopware-merchant`.
+Merchant perspective (administration, configuration in the shop): see `shopware-merchant`.

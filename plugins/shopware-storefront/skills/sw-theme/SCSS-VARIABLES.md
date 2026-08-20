@@ -1,9 +1,9 @@
-# Shopware 6 — SCSS-Variablen
+# Shopware 6 — SCSS variables
 
-Konfigurierbare Werte (Farben, Maße) als SCSS-Variablen verfügbar machen. Zwei Wege:
+Make configurable values (colors, dimensions) available as SCSS variables. Two ways:
 
-1. **Theme-Config** (`theme.json` `fields`) → Variablen wie `$sw-color-brand-primary` automatisch verfügbar (`sw-theme-config`).
-2. **Dynamisch per Subscriber** auf `ThemeCompilerEnrichScssVariablesEvent` (Plugin ohne eigenes Theme):
+1. **Theme config** (`theme.json` `fields`) → variables like `$sw-color-brand-primary` available automatically (`sw-theme-config`).
+2. **Dynamically via subscriber** on `ThemeCompilerEnrichScssVariablesEvent` (plugin without its own theme):
 
 ```php
 public static function getSubscribedEvents(): array
@@ -16,4 +16,4 @@ public function enrich(ThemeCompilerEnrichScssVariablesEvent $event): void
 }
 ```
 
-Im SCSS dann `color: $ff-accent;`. Im Twig `{{ theme_config('ff-accent') }}`. Variablen-Namen kebab-case ohne `$`.
+In SCSS then `color: $ff-accent;`. In Twig `{{ theme_config('ff-accent') }}`. Variable names kebab-case without `$`.

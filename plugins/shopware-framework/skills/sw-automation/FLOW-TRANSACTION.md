@@ -1,11 +1,11 @@
-# Shopware 6 — Flow-Transaktionen
+# Shopware 6 — Flow transactions
 
-Seit ADR „transactional flow actions" / „move flow execution after business process" laufen Flow-Actions **nach**
-Abschluss des auslösenden Geschäftsprozesses, in einer eigenen Transaktion.
+Since the ADRs "transactional flow actions" / "move flow execution after business process", flow actions run **after**
+the triggering business process completes, in a transaction of their own.
 
-- Eine fehlschlagende Action rollt **nur ihre eigene** Transaktion zurück, nicht den Geschäftsprozess (z.B. die Bestellung
-  bleibt bestehen, auch wenn die Benachrichtigungs-Action scheitert).
-- In Actions DB-Writes über DAL ausführen (transaktionssicher); externe Calls idempotent/fehlertolerant gestalten.
-- Dauerhafte/teure Aktionen ggf. asynchron (MessageQueue, `sw-message-queue`) anstoßen.
+- A failing action rolls back **only its own** transaction, not the business process (for example the order
+  survives even if the notification action fails).
+- Perform DB writes inside actions through the DAL (transaction-safe); make external calls idempotent/fault-tolerant.
+- Move long-running or expensive work to an asynchronous path (message queue, `sw-message-queue`).
 
-Praktische Folge: keine Annahme, dass eine Action „atomar mit der Bestellung" ist. Action-Implementierung: `sw-flow-action`.
+Practical consequence: never assume an action is "atomic with the order". Action implementation: `sw-flow-action`.

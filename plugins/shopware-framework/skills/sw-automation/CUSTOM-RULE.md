@@ -1,6 +1,6 @@
 # Shopware 6 — Custom Rule (Rule Builder)
 
-Eine Rule kapselt eine Bedingung, die der Rule Builder (Versand/Zahlung/Promotion/…) auswertet.
+A rule encapsulates a condition that the Rule Builder (shipping/payment/promotion/…) evaluates.
 
 ```php
 class FfMinAgeRule extends Rule
@@ -11,15 +11,15 @@ class FfMinAgeRule extends Rule
     public function match(RuleScope $scope): bool
     {
         if (!$scope instanceof CartRuleScope) { return false; }
-        return /* Kundenalter */ >= $this->minAge;
+        return /* customer age */ >= $this->minAge;
     }
     public function getConstraints(): array { return ['minAge' => [new NotBlank(), new Type('int')]]; }
     public function getName(): string { return self::RULE_NAME; }
 }
 ```
 
-Registrierung via `shopware.rule.definition`-Tag. Der `RuleScope` liefert Kontext (Cart/LineItem/Checkout). Daten,
-die `match()` braucht, vorab über `CartRuleScope`/Data-Collector bereitstellen (ADR „preparing data for rule evaluation").
-Admin-UI: zugehörige Komponente registrieren (`shopware-admin`). Bedingungsfelder: `sw-rule-condition`.
+Registration via the `shopware.rule.definition` tag. The `RuleScope` supplies context (cart/line item/checkout). Data
+that `match()` needs must be provided up front via `CartRuleScope`/a data collector (ADR "preparing data for rule evaluation").
+Admin UI: register the matching component (`shopware-admin`). Condition fields: `sw-rule-condition`.
 
-→ Rule-Builder-Details: [CUSTOM-RULE-RULES.md](CUSTOM-RULE-RULES.md) · Beispiel: [examples/CustomRule.php](examples/CustomRule.php)
+→ Rule Builder details: [CUSTOM-RULE-RULES.md](CUSTOM-RULE-RULES.md) · Example: [examples/CustomRule.php](examples/CustomRule.php)

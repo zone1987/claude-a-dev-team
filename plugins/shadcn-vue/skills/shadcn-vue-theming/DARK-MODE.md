@@ -1,18 +1,18 @@
 # shadcn-vue: Dark Mode
 
-Dark Mode basiert auf der `.dark`-CSS-Klasse am `<html>`-Element. Die Theme-Tokens
-in `:root` werden durch `.dark`-Varianten ueberschrieben.
+Dark mode is based on the `.dark` CSS class on the `<html>` element. The theme tokens
+in `:root` are overridden by their `.dark` variants.
 
 ## Reference Files
 
-- `DARK-MODE-VITE.md` — Vite: @vueuse/core useColorMode, optionale Icons
-  (@iconify/vue @iconify-json/radix-icons), vollstaendige ModeToggle.vue
-  mit DropdownMenu (Light / Dark / System)
-- `DARK-MODE-NUXT.md` — Nuxt: @nuxtjs/color-mode Modul, nuxt.config.ts
-  (classSuffix: ''), useColorMode composable, vollstaendige ModeToggle.vue
-  mit colorMode.preference
+- `DARK-MODE-VITE.md` — Vite: @vueuse/core useColorMode, optional icons
+  (@iconify/vue @iconify-json/radix-icons), complete ModeToggle.vue
+  with DropdownMenu (Light / Dark / System)
+- `DARK-MODE-NUXT.md` — Nuxt: @nuxtjs/color-mode module, nuxt.config.ts
+  (classSuffix: ''), useColorMode composable, complete ModeToggle.vue
+  with colorMode.preference
 - `DARK-MODE-VITEPRESS.md` — Vitepress: @vueuse/core useToggle,
-  useData isDark, vollstaendige ModeToggle.vue
-- `DARK-MODE-ASTRO.md` — Astro: Inline-Script fuer localStorage/matchMedia,
-  useColorMode (@vueuse/core), vollstaendige ModeToggle.vue,
-  client:load Direktive
+  useData isDark, complete ModeToggle.vue
+- `DARK-MODE-ASTRO.md` — Astro: inline script for localStorage/matchMedia,
+  useColorMode (@vueuse/core), complete ModeToggle.vue,
+  client:load directive

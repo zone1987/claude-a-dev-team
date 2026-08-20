@@ -1,4 +1,4 @@
-# Popover — Vollstandiger Quellcode
+# Popover — Complete Source Code
 
 ## Contents
 
@@ -7,7 +7,7 @@
 - [PopoverAnchor.vue](#popoveranchorvue)
 - [PopoverContent.vue](#popovercontentvue)
 - [PopoverTrigger.vue](#popovertriggervue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -132,5 +132,5 @@ const props = defineProps<PopoverTriggerProps>()
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/popover/`

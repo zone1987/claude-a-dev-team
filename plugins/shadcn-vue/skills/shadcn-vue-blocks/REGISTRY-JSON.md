@@ -1,10 +1,10 @@
 # shadcn-vue registry.json Schema
 
-Vollstaendige Schema-Dokumentation fuer `registry.json`.
+Complete schema documentation for `registry.json`.
 
-## Referenzen
+## References
 
-- [REGISTRY-JSON-DETAIL.md](REGISTRY-JSON-DETAIL.md) — Alle Felder mit JSON-Beispielen:
+- [REGISTRY-JSON-DETAIL.md](REGISTRY-JSON-DETAIL.md) — All fields with JSON examples:
   $schema, name, homepage, items
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/content/docs/registry/registry-json.md`
+Source: `/tmp/shadcn-vue-repo/apps/v4/content/docs/registry/registry-json.md`

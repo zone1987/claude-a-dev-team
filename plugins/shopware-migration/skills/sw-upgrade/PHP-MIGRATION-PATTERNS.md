@@ -1,14 +1,14 @@
-# Shopware 6 — PHP-Migrationsmuster
+# Shopware 6 — PHP migration patterns
 
-Typische PHP-Anpassungen beim Major-Upgrade:
+Typical PHP adjustments for a major upgrade:
 
-- **Geänderte Interfaces/Signaturen**: z.B. Payment vom alten Sync/Async-Interface zum `AbstractPaymentHandler` (6.7);
-  geänderte Methodensignaturen in Core-Klassen (gegen `UPGRADE-6.7.md` prüfen).
-- **Entfernte/deprecierte APIs** ersetzen (Deprecation-Notices, `sw-deprecation-handling`).
-- **Moderne PHP-Features**: Constructor Property Promotion, `readonly`, Enums (ADR „php enums"), strikte Typen.
-- **composer.json**: `conflict`-Range auf Zielversion (6.7 → `<6.7 || >=6.8`), Abhängigkeiten/Packages auditieren.
+- **Changed interfaces/signatures**: e.g. payment from the old sync/async interface to `AbstractPaymentHandler` (6.7);
+  changed method signatures in core classes (check against `UPGRADE-6.7.md`).
+- Replace **removed/deprecated APIs** (deprecation notices, `sw-deprecation-handling`).
+- **Modern PHP features**: constructor property promotion, `readonly`, enums (ADR "php enums"), strict types.
+- **composer.json**: `conflict` range to the target version (6.7 → `<6.7 || >=6.8`), audit dependencies/packages.
 
-Vorgehen: `vendor/bin/rector process` (Shopware-Set) für automatisierbare Änderungen, Rest manuell; danach PHPStan/ECS.
-Details/Audit in den References des Skills `shopware-6.7-migration`.
+Approach: `vendor/bin/rector process` (Shopware set) for automatable changes, the rest manually; then PHPStan/ECS.
+Details/audit in the references of the `shopware-6.7-migration` skill.
 
 → [../shopware-6.7-migration/`PHP-MIGRATION.md`](../shopware-6.7-migration/`PHP-MIGRATION.md`), [../shopware-6.7-migration/`PHP-MIGRATION-PATTERNS-COMPOSER-PACKAGES-AUDIT.md`](../shopware-6.7-migration/`PHP-MIGRATION-PATTERNS-COMPOSER-PACKAGES-AUDIT.md`)

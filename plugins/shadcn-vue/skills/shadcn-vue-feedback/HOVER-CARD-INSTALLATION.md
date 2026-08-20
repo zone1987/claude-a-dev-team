@@ -6,18 +6,18 @@
 npx shadcn-vue@latest add hover-card
 ```
 
-## Manuell
+## Manual
 
-### Abhaengigkeiten
+### Dependencies
 
 ```bash
 npm install reka-ui
 ```
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren nach `components/ui/hover-card/`
-2. Importpfade anpassen
+1. Copy the source code into `components/ui/hover-card/`
+2. Adjust the import paths
 
 ### Import
 
@@ -31,7 +31,7 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://reka-ui.com/docs/components/hover-card
 - https://reka-ui.com/docs/components/hover-card#api-reference
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/hover-card

@@ -1,20 +1,20 @@
 # sw-elasticsearch-extension
 
-Eigene Entities/Felder in den Shopware-Elasticsearch-Index bringen.
+Getting custom entities/fields into the Shopware Elasticsearch index.
 
-## Eigene Entity (Storefront) indizieren
-`AbstractElasticsearchDefinition` implementieren (`getMapping()`, `fetch()`), via `shopware.es.definition`-Tag
-registrieren — definiert Mapping + Daten je Dokument.
+## Indexing a custom entity (storefront)
+Implement `AbstractElasticsearchDefinition` (`getMapping()`, `fetch()`), register it via the `shopware.es.definition`
+tag — it defines the mapping plus the data per document.
 
-## Felder zu bestehendem Index (z.B. product) hinzufügen
-- Mapping erweitern über den passenden Mapping-Event bzw. eine Definition-Extension.
-- **Custom Fields**: auf `ElasticsearchCustomFieldsMappingEvent` hören und Feld-Mapping ergänzen.
-- Übersetzte Felder über `ElasticsearchFieldBuilder::translated(...)`.
+## Adding fields to an existing index (e.g. product)
+- Extend the mapping via the matching mapping event or a definition extension.
+- **Custom fields**: listen to `ElasticsearchCustomFieldsMappingEvent` and add the field mapping.
+- Translated fields via `ElasticsearchFieldBuilder::translated(...)`.
 
-## Admin-Suche erweitern
-`AbstractAdminIndexer` implementieren (eigene Entity in der Admin-ES-Suche). Alle 18 Core-Admin-Entities haben
-bereits fertige Indexer.
+## Extending the admin search
+Implement `AbstractAdminIndexer` (custom entity in the admin ES search). All 18 core admin entities already have
+ready-made indexers.
 
-Nach Mapping-Änderungen Index neu aufbauen (`bin/console es:index`). Grundlagen/Aktivierung: `sw-elasticsearch`.
+Rebuild the index after mapping changes (`bin/console es:index`). Basics/activation: `sw-elasticsearch`.
 
-→ Vollständige Muster (Definition, FieldMapping, CustomFields, AdminIndexer, Beispiele): [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md)
+→ Complete patterns (definition, field mapping, custom fields, admin indexer, examples): [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md)

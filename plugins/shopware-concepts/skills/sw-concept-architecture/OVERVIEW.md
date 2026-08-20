@@ -1,22 +1,22 @@
-# Shopware 6 — Architektur-Konzept
+# Shopware 6 — architecture concept
 
-Vollständige Konzept-Doku: `OVERVIEW-DETAIL.md`
+Complete concept documentation: `OVERVIEW-DETAIL.md`
 
-## Kurzüberblick
+## Brief overview
 
-Shopware folgt einer modularen, API-first-Architektur auf Basis von Symfony mit drei primären Domänen:
+Shopware follows a modular, API-first architecture built on Symfony with three primary domains:
 
-- **Core** — Backend-Fundament: Business-Logik, DAL, APIs, Extension-Mechanismus
-- **Storefront** — PHP-Frontend: Twig-Templates, Pages/Pagelets, Themes, JS-Plugins
-- **Administration** — Vue.js-SPA: kommuniziert ausschließlich über Admin API
+- **Core** — backend foundation: business logic, DAL, APIs, extension mechanism
+- **Storefront** — PHP frontend: Twig templates, pages/pagelets, themes, JS plugins
+- **Administration** — Vue.js SPA: communicates exclusively via the Admin API
 
-Alle drei teilen eine gemeinsame API-Schicht. Storefront und Admin haben keine eigene Business-Logik.
+All three share a common API layer. Storefront and admin have no business logic of their own.
 
-## Kernprinzipien
+## Core principles
 
-- API-first: alle Funktionalität über APIs erreichbar (headless möglich)
-- Separation of Concerns: Presentation von Business-Logik getrennt
-- Erweiterbarkeit via Events, Services und Extension Points
-- Asynchrone Verarbeitung via Symfony Messenger
+- API-first: all functionality reachable via APIs (headless possible)
+- Separation of concerns: presentation separated from business logic
+- Extensibility via events, services and extension points
+- Asynchronous processing via Symfony Messenger
 
-Technische Umsetzung: `shopware-core`, `shopware-storefront`, `shopware-admin` (Dev-Plugins)
+Technical implementation: `shopware-core`, `shopware-storefront`, `shopware-admin` (dev plugins)

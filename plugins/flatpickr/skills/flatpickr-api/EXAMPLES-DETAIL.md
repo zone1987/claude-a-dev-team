@@ -1,37 +1,37 @@
-# flatpickr — Beispiele & Patterns (vollständige Referenz)
+# flatpickr — Examples & patterns (complete reference)
 
 ## Contents
 
-- [1. Basic (kein Config)](#1-basic-kein-config)
-- [2. DateTime-Picker](#2-datetime-picker)
-- [3. Menschenlesbares Datum (altInput)](#3-menschenlesbares-datum-altinput)
-- [4. Datumsformate für defaultDate](#4-datumsformate-für-defaultdate)
-- [5. Datum vorladen](#5-datum-vorladen)
+- [1. Basic (no config)](#1-basic-no-config)
+- [2. DateTime picker](#2-datetime-picker)
+- [3. Human-readable date (altInput)](#3-human-readable-date-altinput)
+- [4. Date formats for defaultDate](#4-date-formats-for-defaultdate)
+- [5. Preloading a date](#5-preloading-a-date)
 - [6. minDate / maxDate](#6-mindate-maxdate)
-- [7. Daten sperren (disable)](#7-daten-sperren-disable)
-- [8. Nur bestimmte Daten erlauben (enable)](#8-nur-bestimmte-daten-erlauben-enable)
-- [9. Mehrfachauswahl (multiple)](#9-mehrfachauswahl-multiple)
-- [10. Datumsbereich (range)](#10-datumsbereich-range)
-- [11. Zeit-Picker (ohne Kalender)](#11-zeit-picker-ohne-kalender)
-- [12. DateTime mit Zeitbegrenzung](#12-datetime-mit-zeitbegrenzung)
-- [13. Inline-Kalender (immer sichtbar)](#13-inline-kalender-immer-sichtbar)
-- [14. Wochennummern](#14-wochennummern)
-- [15. Input-Gruppe mit Buttons (wrap)](#15-input-gruppe-mit-buttons-wrap)
+- [7. Blocking dates (disable)](#7-blocking-dates-disable)
+- [8. Allowing only certain dates (enable)](#8-allowing-only-certain-dates-enable)
+- [9. Multiple selection (multiple)](#9-multiple-selection-multiple)
+- [10. Date range (range)](#10-date-range-range)
+- [11. Time picker (without calendar)](#11-time-picker-without-calendar)
+- [12. DateTime with time limits](#12-datetime-with-time-limits)
+- [13. Inline calendar (always visible)](#13-inline-calendar-always-visible)
+- [14. Week numbers](#14-week-numbers)
+- [15. Input group with buttons (wrap)](#15-input-group-with-buttons-wrap)
 - [16. Custom Parsing & Formatting (moment.js)](#16-custom-parsing-formatting-momentjs)
-- [17. Zwei verknüpfte Datepicker (Von/Bis)](#17-zwei-verknüpfte-datepicker-vonbis)
-- [18. Dynamische Datumsdeaktivierung via API](#18-dynamische-datumsdeaktivierung-via-api)
+- [17. Two linked datepickers (from/to)](#17-two-linked-datepickers-fromto)
+- [18. Dynamic date deactivation via the API](#18-dynamic-date-deactivation-via-the-api)
 
-## 1. Basic (kein Config)
+## 1. Basic (no config)
 
 ```js
 flatpickr("#date");
-// Oder:
+// Or:
 flatpickr("#date", {});
 ```
 
 ---
 
-## 2. DateTime-Picker
+## 2. DateTime picker
 
 ```js
 flatpickr("#datetime", {
@@ -42,19 +42,19 @@ flatpickr("#datetime", {
 
 ---
 
-## 3. Menschenlesbares Datum (altInput)
+## 3. Human-readable date (altInput)
 
-altInput versteckt das Original-Input und erzeugt ein neues sichtbares Feld.
-Der Backend-Wert bleibt in `dateFormat`, der Anzeige-Wert in `altFormat`.
+altInput hides the original input and creates a new visible field.
+The backend value stays in `dateFormat`, the display value in `altFormat`.
 
 ```js
 flatpickr("#date", {
   altInput: true,
-  altFormat: "F j, Y",       // "December 31, 2024" (für Nutzer)
-  dateFormat: "Y-m-d"        // "2024-12-31" (ans Backend)
+  altFormat: "F j, Y",       // "December 31, 2024" (for the user)
+  dateFormat: "Y-m-d"        // "2024-12-31" (to the backend)
 });
 
-// Deutsch
+// German
 flatpickr("#date", {
   altInput: true,
   altFormat: "j. F Y",       // "31. Dezember 2024"
@@ -65,19 +65,19 @@ flatpickr("#date", {
 
 ---
 
-## 4. Datumsformate für defaultDate
+## 4. Date formats for defaultDate
 
 ```js
-// Date-Objekt
+// Date object
 flatpickr("#date", { defaultDate: new Date(2024, 0, 15) });
 
-// Unix-Timestamp
+// Unix timestamp
 flatpickr("#date", { defaultDate: 1705276800000 });
 
-// ISO-String
+// ISO string
 flatpickr("#date", { defaultDate: "2024-01-15T00:00:00.000Z" });
 
-// Datumsstring (gemäß dateFormat)
+// Date string (per dateFormat)
 flatpickr("#date", { defaultDate: "2024-01-15" });
 
 // Shortcut
@@ -86,9 +86,9 @@ flatpickr("#date", { defaultDate: "today" });
 
 ---
 
-## 5. Datum vorladen
+## 5. Preloading a date
 
-Aus dem Input-Value:
+From the input value:
 
 ```html
 <input type="text" id="date" value="2024-01-15">
@@ -96,10 +96,10 @@ Aus dem Input-Value:
 
 ```js
 flatpickr("#date", { dateFormat: "Y-m-d" });
-// Wert wird automatisch gelesen und vorgeladen
+// The value is read and preloaded automatically
 ```
 
-Über `defaultDate`:
+Via `defaultDate`:
 
 ```js
 flatpickr("#date", {
@@ -113,19 +113,19 @@ flatpickr("#date", {
 ## 6. minDate / maxDate
 
 ```js
-// Nur zukünftige Daten
+// Future dates only
 flatpickr("#date", { minDate: "today" });
 
-// Fixer Bereich
+// Fixed range
 flatpickr("#date", { minDate: "2024-01-01", maxDate: "2024-12-31" });
 
-// 2 Wochen ab heute
+// 2 weeks from today
 flatpickr("#date", {
   minDate: "today",
   maxDate: new Date().fp_incr(14)
 });
 
-// Deutsches Format
+// German format
 flatpickr("#date", {
   dateFormat: "d.m.Y",
   maxDate: "31.12.2024"
@@ -134,9 +134,9 @@ flatpickr("#date", {
 
 ---
 
-## 7. Daten sperren (disable)
+## 7. Blocking dates (disable)
 
-### Einzelne Daten
+### Individual dates
 
 ```js
 flatpickr("#date", {
@@ -144,22 +144,22 @@ flatpickr("#date", {
 });
 ```
 
-### Datumsbereiche
+### Date ranges
 
 ```js
 flatpickr("#date", {
   dateFormat: "Y-m-d",
   disable: [
-    { from: "2024-04-01", to: "2024-04-30" },  // April gesperrt
-    { from: "2024-08-01", to: "2024-08-31" }   // August gesperrt
+    { from: "2024-04-01", to: "2024-04-30" },  // April blocked
+    { from: "2024-08-01", to: "2024-08-31" }   // August blocked
   ]
 });
 ```
 
-### Per Funktion (true = gesperrt)
+### By function (true = blocked)
 
 ```js
-// Wochenenden sperren
+// Block weekends
 flatpickr("#date", {
   disable: [
     function(date) {
@@ -169,13 +169,13 @@ flatpickr("#date", {
   locale: { firstDayOfWeek: 1 }
 });
 
-// Jeden 13. sperren
+// Block every 13th
 flatpickr("#date", {
   disable: [date => date.getDate() === 13]
 });
 ```
 
-### Kombiniert
+### Combined
 
 ```js
 flatpickr("#date", {
@@ -189,15 +189,15 @@ flatpickr("#date", {
 
 ---
 
-## 8. Nur bestimmte Daten erlauben (enable)
+## 8. Allowing only certain dates (enable)
 
 ```js
-// Nur diese Daten wählbar
+// Only these dates are selectable
 flatpickr("#date", {
   enable: ["2024-03-30", "2024-05-21", new Date(2024, 8, 9)]
 });
 
-// Nur bestimmte Bereiche
+// Only certain ranges
 flatpickr("#date", {
   enable: [
     { from: "2024-04-01", to: "2024-05-01" },
@@ -205,11 +205,11 @@ flatpickr("#date", {
   ]
 });
 
-// Per Funktion (true = erlaubt)
+// By function (true = allowed)
 flatpickr("#date", {
   enable: [
     function(date) {
-      // Nur gerade Monate, erste Monatshälfte
+      // Even months only, first half of the month
       return date.getMonth() % 2 === 0 && date.getDate() < 15;
     }
   ]
@@ -218,7 +218,7 @@ flatpickr("#date", {
 
 ---
 
-## 9. Mehrfachauswahl (multiple)
+## 9. Multiple selection (multiple)
 
 ```js
 flatpickr("#date", {
@@ -226,29 +226,29 @@ flatpickr("#date", {
   dateFormat: "Y-m-d"
 });
 
-// Vorladen
+// Preloading
 flatpickr("#date", {
   mode: "multiple",
   dateFormat: "Y-m-d",
   defaultDate: ["2024-06-01", "2024-06-15", "2024-06-30"]
 });
 
-// Trennzeichen anpassen
+// Customize the separator
 flatpickr("#date", {
   mode: "multiple",
-  conjunction: " :: "   // Standard: Komma
+  conjunction: " :: "   // default: comma
 });
 ```
 
 ---
 
-## 10. Datumsbereich (range)
+## 10. Date range (range)
 
 ```js
-// Einfach
+// Simple
 flatpickr("#date", { mode: "range" });
 
-// Mit Constraints
+// With constraints
 flatpickr("#date", {
   mode: "range",
   minDate: "today",
@@ -256,21 +256,21 @@ flatpickr("#date", {
   disable: [function(date) { return !(date.getDate() % 8); }]
 });
 
-// Vorladen
+// Preloading
 flatpickr("#date", {
   mode: "range",
   dateFormat: "Y-m-d",
   defaultDate: ["2024-06-01", "2024-06-30"]
 });
 
-// Auswertung
+// Evaluation
 flatpickr("#date", {
   mode: "range",
   onChange: function(selectedDates) {
     if (selectedDates.length === 2) {
       const [start, end] = selectedDates;
       const days = Math.round((end - start) / (1000 * 60 * 60 * 24));
-      console.log("Ausgewählt:", days, "Tage");
+      console.log("Selected:", days, "days");
     }
   }
 });
@@ -278,17 +278,17 @@ flatpickr("#date", {
 
 ---
 
-## 11. Zeit-Picker (ohne Kalender)
+## 11. Time picker (without calendar)
 
 ```js
-// 12-Stunden mit AM/PM
+// 12-hour with AM/PM
 flatpickr("#time", {
   enableTime: true,
   noCalendar: true,
   dateFormat: "h:i K"
 });
 
-// 24-Stunden
+// 24-hour
 flatpickr("#time", {
   enableTime: true,
   noCalendar: true,
@@ -296,7 +296,7 @@ flatpickr("#time", {
   time_24hr: true
 });
 
-// Mit Sekunden
+// With seconds
 flatpickr("#time", {
   enableTime: true,
   noCalendar: true,
@@ -305,7 +305,7 @@ flatpickr("#time", {
   time_24hr: true
 });
 
-// Mit Zeitgrenzen
+// With time limits
 flatpickr("#time", {
   enableTime: true,
   noCalendar: true,
@@ -314,7 +314,7 @@ flatpickr("#time", {
   maxTime: "17:00"
 });
 
-// Vorausfüllen
+// Prefilled
 flatpickr("#time", {
   enableTime: true,
   noCalendar: true,
@@ -325,7 +325,7 @@ flatpickr("#time", {
 
 ---
 
-## 12. DateTime mit Zeitbegrenzung
+## 12. DateTime with time limits
 
 ```js
 flatpickr("#date", {
@@ -337,7 +337,7 @@ flatpickr("#date", {
 
 ---
 
-## 13. Inline-Kalender (immer sichtbar)
+## 13. Inline calendar (always visible)
 
 ```html
 <div id="calendar"></div>
@@ -354,12 +354,12 @@ flatpickr("#calendar", {
 
 ---
 
-## 14. Wochennummern
+## 14. Week numbers
 
 ```js
 flatpickr("#date", {
   weekNumbers: true,
-  // Eigene Berechnung (optional)
+  // Your own calculation (optional)
   getWeek: function(dateObj) {
     const date = new Date(dateObj.valueOf());
     const dayNum = (date.getDay() + 6) % 7;
@@ -376,12 +376,12 @@ flatpickr("#date", {
 
 ---
 
-## 15. Input-Gruppe mit Buttons (wrap)
+## 15. Input group with buttons (wrap)
 
 ```html
-<!-- Bootstrap Input-Group Beispiel -->
+<!-- Bootstrap input-group example -->
 <div class="flatpickr input-group">
-  <input type="text" placeholder="Datum wählen" data-input class="form-control">
+  <input type="text" placeholder="Choose a date" data-input class="form-control">
   <button class="btn btn-outline-secondary" type="button" data-toggle>
     <i class="bi bi-calendar"></i>
   </button>
@@ -395,15 +395,15 @@ flatpickr("#date", {
 flatpickr(".flatpickr", { wrap: true });
 ```
 
-**Datenattribute:**
+**Data attributes:**
 
-| Attribut | Funktion |
+| Attribute | Function |
 |---------|---------|
-| `data-input` | Das eigentliche Input-Feld |
-| `data-toggle` | Klick öffnet/schließt Kalender |
-| `data-clear` | Klick leert Auswahl |
-| `data-open` | Klick öffnet Kalender |
-| `data-close` | Klick schließt Kalender |
+| `data-input` | The actual input field |
+| `data-toggle` | Click opens/closes the calendar |
+| `data-clear` | Click clears the selection |
+| `data-open` | Click opens the calendar |
+| `data-close` | Click closes the calendar |
 
 ---
 
@@ -426,7 +426,7 @@ flatpickr("#date", {
 
 ---
 
-## 17. Zwei verknüpfte Datepicker (Von/Bis)
+## 17. Two linked datepickers (from/to)
 
 ```js
 const fromPicker = flatpickr("#from", {
@@ -444,12 +444,12 @@ const toPicker = flatpickr("#to", {
 
 ---
 
-## 18. Dynamische Datumsdeaktivierung via API
+## 18. Dynamic date deactivation via the API
 
 ```js
 const fp = flatpickr("#date", {});
 
-// Daten aus Backend laden und sperren
+// Load dates from the backend and block them
 fetch("/api/blocked-dates")
   .then(r => r.json())
   .then(dates => {
@@ -459,4 +459,4 @@ fetch("/api/blocked-dates")
 
 ---
 
-Quelle: https://flatpickr.js.org/examples/
+Source: https://flatpickr.js.org/examples/

@@ -10,7 +10,7 @@ $this->customFieldSetRepo->upsert([[
     'relations' => [['entityName' => 'product']],
     'customFields' => [[
         'name' => 'ff_extra_hint', 'type' => CustomFieldTypes::TEXT,
-        'config' => ['label' => ['de-DE' => 'Hinweis']],
+        'config' => ['label' => ['de-DE' => 'Hint']],
     ]],
 ]], $context);
 ```

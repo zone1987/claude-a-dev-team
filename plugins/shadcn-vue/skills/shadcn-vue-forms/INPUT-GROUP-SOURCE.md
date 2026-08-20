@@ -1,6 +1,6 @@
 # InputGroup — Quellcode
 
-Alle Dateien aus `registry/new-york-v4/ui/input-group/`.
+All files from `registry/new-york-v4/ui/input-group/`.
 
 ## Contents
 
@@ -255,5 +255,5 @@ export const inputGroupButtonVariants = cva(
 export type InputGroupButtonVariants = VariantProps<typeof inputGroupButtonVariants>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/input-group/`

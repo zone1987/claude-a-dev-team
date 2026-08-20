@@ -1,120 +1,120 @@
-# Shopware 6 – Verkaufskanäle: Vollständige Dokumentation
+# Shopware 6 – Verkaufskanäle (Sales channels): complete documentation
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele
+> Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele
 > Version: 6.7.7.0+
 
 ---
 
 ## Contents
 
-- [1. Was sind Verkaufskanäle?](#1-was-sind-verkaufskanäle)
-- [2. Kanal-Typen im Überblick](#2-kanal-typen-im-überblick)
-- [3. Verkaufskanäle verwalten](#3-verkaufskanäle-verwalten)
-- [4. Kunden-Zuweisung](#4-kunden-zuweisung)
-- [5. Theme-Zuweisung](#5-theme-zuweisung)
-- [6. Analyse (Google Analytics)](#6-analyse-google-analytics)
-- [7. Headless-Kanal: Wichtige Hinweise](#7-headless-kanal-wichtige-hinweise)
-- [Quelle](#quelle)
+- [1. What are Verkaufskanäle?](#1-what-are-verkaufskanäle)
+- [2. Channel types at a glance](#2-channel-types-at-a-glance)
+- [3. Managing Verkaufskanäle](#3-managing-verkaufskanäle)
+- [4. Customer assignment](#4-customer-assignment)
+- [5. Theme assignment](#5-theme-assignment)
+- [6. Analyse (Analytics) (Google Analytics)](#6-analyse-analytics-google-analytics)
+- [7. Headless channel: important notes](#7-headless-channel-important-notes)
+- [Source](#source)
 
-## 1. Was sind Verkaufskanäle?
+## 1. What are Verkaufskanäle?
 
-Verkaufskanäle bieten die Möglichkeit, verschiedene Absatzwege über ein Shopsystem anzubinden. Sie stellen die Schnittstelle von der Administration zur Storefront dar. Mögliche Kanäle sind:
+Verkaufskanäle offer the possibility of connecting different sales routes through one shop system. They form the interface from the administration to the storefront. Possible channels are:
 
-- Klassische HTML-Storefronts
-- Headless-APIs für Fremdsysteme
-- Vergleichsportale wie billiger.de oder Google Shopping
-- Social-Shopping-Integrationen (Facebook, Instagram, Pinterest)
-- KI-Plattformen (Agentic Commerce)
+- Classic HTML storefronts
+- Headless APIs for third-party systems
+- Comparison portals such as billiger.de or Google Shopping
+- Social shopping integrations (Facebook, Instagram, Pinterest)
+- AI platforms (Agentic Commerce)
 
-**Admin-Pfad:** Hauptmenü > Verkaufskanäle
+**Admin path:** Main menu > Verkaufskanäle
 
 ---
 
-## 2. Kanal-Typen im Überblick
+## 2. Channel types at a glance
 
-| Typ | Beschreibung | Besonderheit |
+| Type | Description | Particularity |
 |---|---|---|
-| **Storefront (HTML)** | Vollständiger Online-Shop mit Frontend | Theme-Zuweisung möglich |
-| **Headless** | Nur API-Schnittstelle, kein Frontend | Vorinstalliert, nie löschen! |
-| **Produktvergleich** | XML/CSV-Feed für Preisportale | Template-basiert (Twig) |
-| **Social Shopping** | Feeds für Social-Media-Plattformen | Teil von Shopware Rise+ |
-| **Agentic Commerce** | JSONL-Feed für KI-Plattformen | Ab 6.7.10.0 |
+| **Storefront (HTML)** | Complete online shop with frontend | Theme assignment possible |
+| **Headless** | API interface only, no frontend | Pre-installed, never delete! |
+| **Produktvergleich** (Product comparison) | XML/CSV feed for price portals | Template-based (Twig) |
+| **Social Shopping** | Feeds for social media platforms | Part of Shopware Rise+ |
+| **Agentic Commerce** | JSONL feed for AI platforms | As of 6.7.10.0 |
 
 ---
 
-## 3. Verkaufskanäle verwalten
+## 3. Managing Verkaufskanäle
 
-### 3.1 Übersicht
+### 3.1 Übersicht (Overview)
 
-Im Admin-Menü werden alle Verkaufskanäle aufgelistet. Das **+** Symbol neben dem Menüpunkt öffnet den Dialog zum Anlegen neuer Kanäle. Bestehende Kanäle können durch Anklicken geöffnet und bearbeitet werden.
+All Verkaufskanäle are listed in the admin menu. The **+** icon next to the menu item opens the dialogue for creating new channels. Existing channels can be opened and edited by clicking on them.
 
-### 3.2 Favoriten
+### 3.2 Favourites
 
-Über **Verkaufskanäle verwalten** können Kanäle als Favoriten markiert werden:
+Channels can be marked as favourites via **Verkaufskanäle verwalten** (Manage sales channels):
 
-- Favorisierte Kanäle erscheinen direkt in der Sidebar
-- Nicht-favorisierte werden ausgeblendet (aber im dedizierten Menü erreichbar)
-- Mehrere Kanäle können gleichzeitig favorisiert werden
+- Favourited channels appear directly in the sidebar
+- Non-favourited ones are hidden (but reachable in the dedicated menu)
+- Several channels can be favourited at the same time
 
-![Verkaufskanäle verwalten](../../assets/vk-verwalten.png)
-![Favoriten in der Sidebar](../../assets/vk-favoriten.png)
-
----
-
-## 4. Kunden-Zuweisung
-
-Die Funktion **Kunden an Verkaufskanal binden** befindet sich unter:
-**Einstellungen > System > Anmeldung/Registrierung**
-
-### Verhalten bei aktivierter Bindung
-
-- Kunden können sich nur in dem Kanal anmelden, in dem sie sich registriert haben
-- Registriert sich ein Kunde mit derselben E-Mail-Adresse in zwei Kanälen → wird er als zwei verschiedene Kunden behandelt
-- Die Bindung bleibt auch nach Deaktivierung der Funktion für bestehende Kunden bestehen
-
-### Verhalten bei deaktivierter Bindung
-
-- Alle neu registrierten Kunden können sich in allen Kanälen anmelden
-
-### Verkaufskanal-Spalte in Kundenübersicht
-
-In **Kunden > Übersicht** kann die Verkaufskanal-Spalte via Listeneinstellungen aktiviert werden:
-
-1. Listeneinstellungen (Zahnrad-Symbol) öffnen
-2. Option "Verkaufskanal" aktivieren
-3. Spalte erscheint in der Tabelle
-
-![Kunden-Zuweisung Einstellungen](../../assets/kunden-zuweisung.png)
+![Manage Verkaufskanäle](assets/sales-channel-manage.png)
+![Favourites in the sidebar](assets/sales-channel-favoriten.png)
 
 ---
 
-## 5. Theme-Zuweisung
+## 4. Customer assignment
 
-Im Reiter **Theme** eines Storefront-Kanals:
+The function **Kunden an Verkaufskanal binden** (Bind customers to sales channel) is located under:
+**Einstellungen (Settings) > System > Anmeldung/Registrierung** (Login/registration)
 
-- Aktuell zugeordnetes Theme wird angezeigt
-- Klick auf Vorschaubild oder "Theme ändern" → Liste installierter Themes
-- "Themes bearbeiten" → Theme-Konfiguration
+### Behaviour when binding is enabled
 
-![Theme-Reiter](../../assets/theme-reiter.png)
+- Customers can only log in to the channel in which they registered
+- If a customer registers with the same email address in two channels → they are treated as two different customers
+- The binding persists for existing customers even after the function is deactivated
+
+### Behaviour when binding is disabled
+
+- All newly registered customers can log in to all channels
+
+### Verkaufskanal column in the customer overview
+
+In **Kunden** (Customers) **> Übersicht**, the Verkaufskanal column can be enabled via the list settings:
+
+1. Open the list settings (cog icon)
+2. Enable the "Verkaufskanal" option
+3. The column appears in the table
+
+![Customer assignment settings](assets/customers-assignment.png)
 
 ---
 
-## 6. Analyse (Google Analytics)
+## 5. Theme assignment
 
-Im Reiter **Analyse** kann ein Google-Analytics-Account verbunden werden.
+In the **Theme** tab of a storefront channel:
 
-### Konfigurationsfelder
+- The currently assigned theme is displayed
+- Click on the preview image or "Theme ändern" (Change theme) → list of installed themes
+- "Themes bearbeiten" (Edit themes) → theme configuration
 
-| Feld | Beschreibung |
+![Theme tab](assets/theme-tab.png)
+
+---
+
+## 6. Analyse (Analytics) (Google Analytics)
+
+A Google Analytics account can be connected in the **Analyse** tab.
+
+### Configuration fields
+
+| Field | Description |
 |---|---|
-| **Tracking-ID** | Aus Google Analytics: Verwaltung > Tracking-Informationen > Tracking-Code |
-| **Google Analytics aktivieren** | Aktivierungsschalter |
-| **Bestellungen verfolgen** | Bestellungen in Analysen einbeziehen |
-| **IP-Anonymisierung** | Letzte zwei Zifferngruppen der IP werden genullt (z.B. 94.31.0.0) – in EU gesetzlich empfohlen |
-| **Offcanvas-Warenkorb tracken** | `view_cart`-Event auch beim Offcanvas-Öffnen auslösen |
+| **Tracking-ID** (Tracking ID) | From Google Analytics: Administration > Tracking information > Tracking code |
+| **Google Analytics aktivieren** (Enable Google Analytics) | Activation switch |
+| **Bestellungen verfolgen** (Track orders) | Include orders in analytics |
+| **IP-Anonymisierung** (IP anonymisation) | The last two digit groups of the IP are zeroed (e.g. 94.31.0.0) – legally recommended in the EU |
+| **Offcanvas-Warenkorb tracken** (Track offcanvas cart) | Also trigger the `view_cart` event when the offcanvas opens |
 
-### Getrackte Events (Standard)
+### Tracked events (default)
 
 - add-to-cart, add-to-cart-by-number
 - begin-checkout, begin-checkout-on-cart
@@ -127,28 +127,28 @@ Im Reiter **Analyse** kann ein Google-Analytics-Account verbunden werden.
 
 ### Google Tag Manager
 
-Analytics läuft via Google Tag Manager. Benutzerdefinierte Events/Skripte erfordern Erweiterungen aus dem Shopware Store.
+Analytics runs via Google Tag Manager. Custom events/scripts require extensions from the Shopware Store.
 
-### Erweiterte E-Commerce-Daten (gtag.js)
+### Enhanced e-commerce data (gtag.js)
 
-Folgende Berichte via gtag.js verfügbar:
-- Impressionsdaten
-- Produktdaten
-- Angebotsdaten
-- Aktionsdaten
+The following reports are available via gtag.js:
+- Impression data
+- Product data
+- Offer data
+- Promotion data
 
-![Analyse Konfiguration](../../assets/analyse-konfiguration.png)
-
----
-
-## 7. Headless-Kanal: Wichtige Hinweise
-
-- Der vorinstallierte Headless-Verkaufskanal **darf nie gelöscht werden**
-- Viele Erweiterungen (z.B. B2B-Suite) nutzen diesen Kanal intern
-- Zum "Verstecken": Andere Kanäle als Favoriten markieren; Headless-Kanal wird dann aus der Sidebar ausgeblendet, bleibt aber im Menü erreichbar
+![Analytics configuration](assets/analyse-configuration.png)
 
 ---
 
-## Quelle
+## 7. Headless channel: important notes
+
+- The pre-installed headless Verkaufskanal **must never be deleted**
+- Many extensions (e.g. B2B Suite) use this channel internally
+- To "hide" it: mark other channels as favourites; the headless channel is then hidden from the sidebar but remains reachable in the menu
+
+---
+
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele

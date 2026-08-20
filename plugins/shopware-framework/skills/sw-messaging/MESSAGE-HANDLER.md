@@ -1,6 +1,6 @@
-# Shopware 6 — Message-Handler
+# Shopware 6 — Message handler
 
-Ein Handler verarbeitet eine Message asynchron (vom Worker aufgerufen).
+A handler processes a message asynchronously (invoked by the worker).
 
 ```php
 #[AsMessageHandler]
@@ -10,11 +10,11 @@ final class FfImportMessageHandler
 
     public function __invoke(FfImportMessage $message): void
     {
-        // Verarbeitung; bei Exception -> Retry gemäß Messenger-Config
+        // Processing; on exception -> retry according to the Messenger config
     }
 }
 ```
 
-`#[AsMessageHandler]` (oder Tag `messenger.message_handler`). **Idempotent** schreiben (Message kann erneut zugestellt
-werden). Fehler werfen → automatischer Retry; dauerhaft fehlerhaft → `failed`-Transport. Eine Message → genau ein Handler
-(in Shopware-Konvention). Dispatch/Transports: `sw-message-queue`. ScheduledTask-Handler sind ein Spezialfall (`sw-scheduled-task`).
+`#[AsMessageHandler]` (or the tag `messenger.message_handler`). Write it **idempotently** (a message can be delivered
+again). Throw errors → automatic retry; permanently failing → `failed` transport. One message → exactly one handler
+(by Shopware convention). Dispatch/transports: `sw-message-queue`. ScheduledTask handlers are a special case (`sw-scheduled-task`).

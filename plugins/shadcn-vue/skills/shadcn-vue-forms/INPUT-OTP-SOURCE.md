@@ -1,6 +1,6 @@
 # InputOTP — Quellcode
 
-Alle Dateien aus `registry/new-york-v4/ui/input-otp/`.
+All files from `registry/new-york-v4/ui/input-otp/`.
 
 ## Contents
 
@@ -142,5 +142,5 @@ export { default as InputOTPSeparator } from "./InputOTPSeparator.vue"
 export { default as InputOTPSlot } from "./InputOTPSlot.vue"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/input-otp/`

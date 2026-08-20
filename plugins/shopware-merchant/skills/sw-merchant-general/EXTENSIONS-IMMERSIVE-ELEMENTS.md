@@ -1,116 +1,116 @@
-# Immersive Elements – 3D/VR-Produktpräsentationen
+# Immersive Elements – 3D/VR product presentations
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/immersive-elements  
-**Plan**: Shopware Rise (oder höher) – alternativ €49/Monat für nicht-Plan-Nutzer  
-**Entwickelt mit**: Instorier
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/immersive-elements  
+**Plan**: Shopware Rise (or higher) – alternatively €49/month for non-plan users  
+**Developed with**: Instorier
 
 ## Contents
 
-- [Überblick](#überblick)
+- [Overview](#overview)
 - [Installation](#installation)
-- [Die 5 (6) Komponenten](#die-5-6-komponenten)
-- [Best Practices](#best-practices)
-- [Integration in Erlebniswelten](#integration-in-erlebniswelten)
+- [The 5 (6) components](#the-5-6-components)
+- [Best practices](#best-practices)
+- [Integration into Erlebniswelten](#integration-into-erlebniswelten)
 
-## Überblick
+## Overview
 
-**Immersive Elements** verwandelt Online-Shops in dynamische Markenerlebnisse mit
-fünf interaktiven Komponenten – optimiert für Mobile, Desktop und Spatial-Geräte (VR/AR).
+**Immersive Elements** turns online shops into dynamic brand experiences with
+five interactive components – optimised for mobile, desktop and spatial devices (VR/AR).
 
 ---
 
 ## Installation
 
-**Mit Shopware Rise Plan oder höher**:
-1. **Erweiterungen > Meine Erweiterungen** → Immersive Elements installieren + aktivieren
-2. Im Shopware Account Tab einloggen (Lizenzverifizierung)
+**With the Shopware Rise plan or higher**:
+1. **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions) → install and activate Immersive Elements
+2. Log in on the Shopware Account tab (licence verification)
 
-**Ohne Shopware Plan**:
-- Über den Shopware Store kaufen: **€49/Monat**
-- Gleiche Installationsschritte
-
----
-
-## Die 5 (6) Komponenten
-
-### 1. Cylinder Gallery (360°-Slider)
-**Was es ist**: Interaktiver 360°-Produktslider
-
-**Funktionen**:
-- Kunden drehen Produkt durch Wischen/Klicken
-- Einstellbar: Geschwindigkeit, Richtung
-- Ideal für: Schuhe, Uhren, Handtaschen
-
-**Best Practice**: Mehrere Hochauflösungsbilder des Produkts (mind. 8-12) von verschiedenen Winkeln
+**Without a Shopware plan**:
+- Buy it via the Shopware Store: **€49/month**
+- The same installation steps
 
 ---
 
-### 2. Depth Gallery (Parallax-Effekt)
-**Was es ist**: Tiefeneffekt durch Mausbewegung und Scroll
+## The 5 (6) components
 
-**Funktionen**:
-- Mehrere Bildebenen bewegen sich unterschiedlich schnell
-- Erzeugt 3D-Tiefengefühl ohne 3D-Modell
-- Ideal für: Lifestyle-Bilder, Kampagnen-Seiten
+### 1. Cylinder Gallery (360° slider)
+**What it is**: An interactive 360° product slider
 
----
+**Features**:
+- Customers rotate the product by swiping/clicking
+- Adjustable: speed, direction
+- Ideal for: shoes, watches, handbags
 
-### 3. Exploded View (Explosionszeichnung)
-**Was es ist**: Interaktive Produktzerlegung mit Komponenten auf verschiedenen Detailebenen  
-**Preismodell**: Kostenpflichtig (€49/Monat) auch für Plan-Nutzer
-
-**Funktionen**:
-- Kunden können einzelne Komponenten anklicken
-- Detailinfo zu jedem Bauteil
-- Ideal für: Technische Produkte, Maschinen, Fahrräder, Uhren
+**Best practice**: Several high-resolution images of the product (at least 8-12) from different angles
 
 ---
 
-### 4. 3D Model Journey (360°-Tour)
-**Was es ist**: Animierte 360°-Produktpräsentation mit optionalen Hotspots
+### 2. Depth Gallery (parallax effect)
+**What it is**: A depth effect created by mouse movement and scrolling
 
-**Funktionen**:
-- Automatisierte Rotation mit Animationsstops
-- **Hotspots**: Interaktive Punkte mit Zusatzinformationen und Texten
-- Unterstützt 3D-Modell-Formate (GLTF/GLB)
-- Ideal für: Möbel, Elektronik, Fahrzeuge
-
----
-
-### 5. Slide Behind Gallery (Horizontales Content-Sliding)
-**Was es ist**: Horizontaler Wechsel zwischen Inhalten für tiefere Layout-Ebenen
-
-**Funktionen**:
-- Produktvergleiche nebeneinander
-- Vorher/Nachher-Vergleiche
-- Ideal für: Produktvergleiche, Before/After-Präsentationen
+**Features**:
+- Several image layers move at different speeds
+- Creates a 3D sense of depth without a 3D model
+- Ideal for: lifestyle images, campaign pages
 
 ---
 
-### 6. VR Cinema (Immersives 3D/VR-Erlebnis)
-**Was es ist**: Immersive 360°- und Virtual-Reality-Viewing-Experience
+### 3. Exploded View
+**What it is**: An interactive product breakdown with components on different levels of detail  
+**Pricing model**: Chargeable (€49/month) even for plan users
 
-**Technische Anforderung**:
-- Video-Format: **WebP Video** (nicht MP4!)
-- VR-Headset für volle Immersion (aber auch ohne Headset nutzbar)
-- Ideal für: Reiseangebote, Immobilien, Events, Showrooms
+**Features**:
+- Customers can click on individual components
+- Detailed information for every part
+- Ideal for: technical products, machines, bicycles, watches
 
 ---
 
-## Best Practices
+### 4. 3D Model Journey (360° tour)
+**What it is**: An animated 360° product presentation with optional hotspots
 
-| Empfehlung | Beschreibung |
+**Features**:
+- Automated rotation with animation stops
+- **Hotspots**: interactive points with additional information and texts
+- Supports 3D model formats (GLTF/GLB)
+- Ideal for: furniture, electronics, vehicles
+
+---
+
+### 5. Slide Behind Gallery (horizontal content sliding)
+**What it is**: A horizontal switch between contents for deeper layout levels
+
+**Features**:
+- Product comparisons side by side
+- Before/after comparisons
+- Ideal for: product comparisons, before/after presentations
+
+---
+
+### 6. VR Cinema (immersive 3D/VR experience)
+**What it is**: An immersive 360° and virtual reality viewing experience
+
+**Technical requirement**:
+- Video format: **WebP video** (not MP4!)
+- A VR headset for full immersion (but usable without a headset too)
+- Ideal for: travel offers, real estate, events, showrooms
+
+---
+
+## Best practices
+
+| Recommendation | Description |
 |---|---|
-| **Full Width verwenden** | Immer "Full Width"-Anzeige für Immersive Elements nutzen |
-| **Konsekutiv platzieren** | Mehrere Immersive-Elemente direkt hintereinander ohne Unterbrechung |
-| **Performance optimieren** | Bilder und Videos komprimieren (WebP für Bilder, WebP Video für VR Cinema) |
-| **Mobile testen** | Alle Effekte auf Smartphone testen (Touch-Gestures sind anders als Maus) |
+| **Use full width** | Always use the "Full Width" display for Immersive Elements |
+| **Place them consecutively** | Several immersive elements directly one after another without interruption |
+| **Optimise performance** | Compress images and videos (WebP for images, WebP video for VR Cinema) |
+| **Test on mobile** | Test all effects on a smartphone (touch gestures behave differently from a mouse) |
 
 ---
 
-## Integration in Erlebniswelten
+## Integration into Erlebniswelten
 
-1. **Content > Erlebniswelten** → Seite im Editor öffnen
-2. Neuen Block hinzufügen → Kategorie "Immersive Elements"
-3. Gewünschte Komponente wählen
-4. Medien hochladen und konfigurieren
+1. **Content > Erlebniswelten** (Shopping Experiences) → open the page in the editor
+2. Add a new block → "Immersive Elements" category
+3. Select the desired component
+4. Upload and configure the media

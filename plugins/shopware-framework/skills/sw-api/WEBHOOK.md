@@ -1,17 +1,17 @@
 # Shopware 6 — Webhooks
 
-Shopware kann Business-Events an externe URLs senden — primär das **App-System** (Manifest `<webhooks>`), aber auch
-programmatisch über die `webhook`-Entity.
+Shopware can send business events to external URLs — primarily the **app system** (manifest `<webhooks>`), but also
+programmatically through the `webhook` entity.
 
 ```xml
-<!-- App-Manifest -->
+<!-- App manifest -->
 <webhooks>
     <webhook name="order-placed" url="https://app.example.com/hook/order" event="checkout.order.placed"/>
 </webhooks>
 ```
 
-- Payload wird mit dem App-Secret **HMAC-signiert** (Header `shopware-shop-signature`) — empfängerseitig verifizieren.
-- Zustellung asynchron mit Retry; Status im Webhook-Event-Log. Welche Events: `shopware-core` → `sw-event-catalog`.
-- Für reine Plugin-interne Reaktionen Subscriber nutzen (`sw-events-subscriber`), Webhooks für **externe** Empfänger.
+- The payload is **HMAC-signed** with the app secret (header `shopware-shop-signature`) — verify it on the receiving side.
+- Delivery is asynchronous with retry; status in the webhook event log. Which events: `shopware-core` → `sw-event-catalog`.
+- For purely plugin-internal reactions use subscribers (`sw-events-subscriber`), webhooks for **external** receivers.
 
-App-Entwicklung (Manifest, Signatur-Handling, SDKs): Plugin `shopware-apps` (`sw-app-php-sdk`/`sw-app-sdk-js`).
+App development (manifest, signature handling, SDKs): plugin `shopware-apps` (`sw-app-php-sdk`/`sw-app-sdk-js`).

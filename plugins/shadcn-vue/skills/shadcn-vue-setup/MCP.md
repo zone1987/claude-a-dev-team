@@ -1,13 +1,13 @@
 # shadcn-vue MCP Server & Skills
 
-MCP-Server fuer AI-Assistenten (Claude Code, Cursor, VS Code, Codex, Opencode) + Skills.
+MCP server for AI assistants (Claude Code, Cursor, VS Code, Codex, Opencode) + skills.
 
-## Referenzen
+## References
 
-- [MCP-DETAIL.md](MCP-DETAIL.md) — Vollstaendige MCP-Dokumentation: Quick Start, Konfiguration
-  fuer alle Clients, Registries, Auth, Prompts, Troubleshooting
-- [MCP-SKILLS.md](MCP-SKILLS.md) — Skills: Installation, Funktionsumfang, Projektkontext,
-  CLI-Referenz, Theming, Registry-Authoring, wie Skills funktionieren
+- [MCP-DETAIL.md](MCP-DETAIL.md) — Complete MCP documentation: quick start, configuration
+  for all clients, registries, auth, prompts, troubleshooting
+- [MCP-SKILLS.md](MCP-SKILLS.md) — Skills: installation, feature scope, project context,
+  CLI reference, theming, registry authoring, how skills work
 
-Quelle: `/tmp/shadcn-vue-repo/apps/v4/content/docs/mcp.md` +
+Source: `/tmp/shadcn-vue-repo/apps/v4/content/docs/mcp.md` +
 `/tmp/shadcn-vue-repo/apps/v4/content/docs/skills.md`

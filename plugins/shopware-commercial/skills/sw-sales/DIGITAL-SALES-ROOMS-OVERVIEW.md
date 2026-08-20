@@ -1,63 +1,63 @@
-# Digital Sales Rooms — Vollständige Referenz
+# Digital Sales Rooms — full reference
 
-## Was ist Digital Sales Rooms?
+## What is Digital Sales Rooms?
 
-Digital Sales Rooms (DSR) ist eine lizenzpflichtige Shopware-Erweiterung, die
-nahtlos in die Shopware-Systemlandschaft integriert wird. Sie ermöglicht
-interaktive Live-Video-Events für Kunden direkt aus der Shopware-Website,
-ohne zwischen Präsentationstool, Videokonferenzsystem und Shopsystem wechseln
-zu müssen.
+Digital Sales Rooms (DSR) is a licensed Shopware extension that integrates
+seamlessly into the Shopware system landscape. It enables interactive
+live video events for customers directly from the Shopware website,
+without having to switch between presentation tool, video conferencing system
+and shop system.
 
-![DSR Overview](../../assets/products-digitalSalesRooms.png)
+![DSR Overview](assets/products-digitalSalesRooms.png)
 
-> **Lizenzhinweis:** Digital Sales Rooms ist eine lizenzpflichtige Erweiterung
-> und nicht als Open Source verfügbar. Verfügbar im Shopware Beyond-Plan.
+> **License note:** Digital Sales Rooms is a licensed extension
+> and is not available as open source. Available in the Shopware Beyond plan.
 
-> **Architektur-Hinweis:** Die DSR-Anwendung gehört **nicht** zum Standard-
-> Storefront. Es ist eine eigenständige Frontend-App, die auf einer Nuxt-Instanz
-> läuft und auf einer separaten Domain mit eigenem Hostname gehostet wird.
+> **Architecture note:** The DSR application is **not** part of the standard
+> Storefront. It is a stand-alone frontend app that runs on a Nuxt instance
+> and is hosted on a separate domain with its own hostname.
 
-## Mindestanforderungen
+## Minimum requirements
 
-| Komponente | Version |
+| Component | Version |
 |-----------|---------|
 | Node.js | >= 18 |
 | pnpm | >= 8 |
-| Shopware Frontends | Nuxt 3-basiert |
-| Shopware 6 | beliebige aktuelle Version |
-| Daily.co | API-Key erforderlich |
-| Mercure | Hub-Instanz erforderlich |
+| Shopware Frontends | Nuxt 3 based |
+| Shopware 6 | any current version |
+| Daily.co | API key required |
+| Mercure | hub instance required |
 
-## Architektur-Überblick
+## Architecture overview
 
 ```
-Browser ─── DSR Frontend (Nuxt 3)          separater Hostname z.B. dsr.shopware.io
+Browser ─── DSR frontend (Nuxt 3)          separate hostname e.g. dsr.shopware.io
                 │
-                ├── Shopware Store API      z.B. shopware.store/store-api
-                ├── Shopware Admin API      z.B. shopware.store/admin-api
-                ├── Mercure Hub             Realtime-Updates (SSE)
-                └── Daily.co               Video/Audio-Streaming
+                ├── Shopware Store API      e.g. shopware.store/store-api
+                ├── Shopware Admin API      e.g. shopware.store/admin-api
+                ├── Mercure hub             realtime updates (SSE)
+                └── Daily.co               video/audio streaming
 ```
 
-Der Shopware-Admin enthält das SwagDigitalSalesRooms-Plugin, das die
-DSR-Funktionalität serverseitig bereitstellt.
+The Shopware admin contains the SwagDigitalSalesRooms plugin, which provides
+the DSR functionality server-side.
 
-## Pflicht-Setup-Schritte
+## Mandatory setup steps
 
-Um Digital Sales Rooms produktiv einzusetzen, müssen alle drei Schritte
-abgeschlossen werden:
+To run Digital Sales Rooms in production, all three steps must be
+completed:
 
-1. **Installation** — Plugin-Installation (Admin) + Frontend-App-Setup
-2. **3rd-Party-Setup** — Daily.co API-Key + Mercure Hub konfigurieren
-3. **Plugin-Konfiguration** — Domain, Video-API und Realtime-Service in der
-   Shopware-Konfigurationsseite eintragen
+1. **Installation** — plugin installation (admin) + frontend app setup
+2. **Third-party setup** — configure the Daily.co API key + Mercure hub
+3. **Plugin configuration** — enter domain, video API and realtime service on
+   the Shopware configuration page
 
-## Referenz-Übersicht
+## Reference overview
 
-Detailthemen sind in spezialisierten Skills abgelegt:
+Detailed topics are kept in specialized skills:
 
 - Installation → `sw-digital-sales-rooms-installation`
-- Konfiguration → `sw-digital-sales-rooms-config`
+- Configuration → `sw-digital-sales-rooms-config`
 - Customization → `sw-digital-sales-rooms-customization`
 - 3rd Party → `sw-digital-sales-rooms-3rdparty`
 - Deployment → `sw-digital-sales-rooms-deployment`

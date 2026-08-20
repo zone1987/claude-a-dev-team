@@ -1,27 +1,27 @@
-# Elasticsearch-Extension: Erschöpfende Referenz
+# Elasticsearch extension: exhaustive reference
 
 ## Contents
 
-- [Mapping-Konstanten im Detail](#mapping-konstanten-im-detail)
-- [buildTextFieldConfig() — Logik](#buildtextfieldconfig-logik)
-- [ElasticsearchFieldBuilder::translated() — Sprach-Mapping](#elasticsearchfieldbuildertranslated-sprach-mapping)
-- [Produkt-Mapping-Vollständigkeit](#produkt-mapping-vollständigkeit)
-- [Custom Fields — Vollständige Type-Mapping-Tabelle](#custom-fields-vollständige-type-mapping-tabelle)
-- [Admin-Suche: Fetch-Return-Format](#admin-suche-fetch-return-format)
-- [Admin-Indexer: built-in Felder](#admin-indexer-built-in-felder)
-- [IndexerOffset-Tracking](#indexeroffset-tracking)
-- [Elasticsearch-Exception Codes](#elasticsearch-exception-codes)
-- [Test-Verhalten](#test-verhalten)
-- [Sorting-Erweiterung: CountSort](#sorting-erweiterung-countsort)
+- [Mapping constants in detail](#mapping-constants-in-detail)
+- [buildTextFieldConfig() — logic](#buildtextfieldconfig-logic)
+- [ElasticsearchFieldBuilder::translated() — language mapping](#elasticsearchfieldbuildertranslated-language-mapping)
+- [Product mapping completeness](#product-mapping-completeness)
+- [Custom Fields — complete type mapping table](#custom-fields-complete-type-mapping-table)
+- [Admin search: fetch return format](#admin-search-fetch-return-format)
+- [Admin indexer: built-in fields](#admin-indexer-built-in-fields)
+- [IndexerOffset tracking](#indexeroffset-tracking)
+- [Elasticsearch exception codes](#elasticsearch-exception-codes)
+- [Test behaviour](#test-behaviour)
+- [Sorting extension: CountSort](#sorting-extension-countsort)
 - [MatchBoolPrefixQuery](#matchboolprefixquery)
 
-## Mapping-Konstanten im Detail
+## Mapping constants in detail
 
-### AbstractElasticsearchDefinition — Alle Mapping-Arrays
+### AbstractElasticsearchDefinition — all mapping arrays
 
 ```php
 // 1. KEYWORD_FIELD
-// Exakte Matches, case-insensitiv via lowercase normalizer
+// Exact matches, case-insensitive via lowercase normalizer
 // ignore_above: 10000 bytes
 [
     'type' => 'keyword',
@@ -38,14 +38,14 @@
 // 4. INT_FIELD
 ['type' => 'long']
 
-// 5. SEARCH_FIELD (subfields, wird mit KEYWORD_FIELD gemergt via +)
+// 5. SEARCH_FIELD (subfields, merged with KEYWORD_FIELD via +)
 [
     'fields' => [
         'search' => ['type' => 'text', 'analyzer' => 'sw_whitespace_analyzer'],
         'ngram'  => ['type' => 'text', 'analyzer' => 'sw_ngram_analyzer'],
     ],
 ]
-// Vollständig: KEYWORD_FIELD + SEARCH_FIELD:
+// Complete: KEYWORD_FIELD + SEARCH_FIELD:
 // → type: keyword, ignore_above: 10000, normalizer: sw_lowercase_normalizer
 //   fields.search: text/sw_whitespace_analyzer
 //   fields.ngram:  text/sw_ngram_analyzer
@@ -64,7 +64,7 @@
     ],
 ]
 
-// 7. SEARCH_FIELD_WITH_LENGTH_NORM (für description, metaDescription)
+// 7. SEARCH_FIELD_WITH_LENGTH_NORM (for description, metaDescription)
 [
     'fields' => [
         'search' => [
@@ -76,7 +76,7 @@
     ],
 ]
 
-// 8. TECHNICAL_TERM_SEARCH_FIELD (für productNumber, ean, manufacturerNumber)
+// 8. TECHNICAL_TERM_SEARCH_FIELD (for productNumber, ean, manufacturerNumber)
 [
     'fields' => [
         'search' => [
@@ -91,7 +91,7 @@
 
 ---
 
-## buildTextFieldConfig() — Logik
+## buildTextFieldConfig() — logic
 
 ```php
 protected static function buildTextFieldConfig(
@@ -100,27 +100,27 @@ protected static function buildTextFieldConfig(
     bool $lengthNorm = false
 ): array
 
-// Schritt 1: Basis-Felder wählen
+// Step 1: choose base fields
 $fieldConfig = $technicalTerms
-    ? self::TECHNICAL_TERM_SEARCH_FIELD   // word_delimiter_graph für SKUs
+    ? self::TECHNICAL_TERM_SEARCH_FIELD   // word_delimiter_graph for SKUs
     : self::SEARCH_FIELD;                  // whitespace + ngram
 
-// Schritt 2: lengthNorm → similarity überschreiben
+// Step 2: lengthNorm → override similarity
 if ($lengthNorm) {
     $fieldConfig['fields']['search']['similarity'] = 'sw_length_norm';
 }
 
-// Schritt 3: exact subfeld prependen
+// Step 3: prepend exact subfield
 if ($withExact) {
     $fieldConfig['fields'] = ['exact' => self::SEARCH_FIELD_WITH_EXACT['fields']['exact']]
                            + $fieldConfig['fields'];
 }
 
-// Schritt 4: KEYWORD_FIELD + fieldConfig mergen
+// Step 4: merge KEYWORD_FIELD + fieldConfig
 return self::KEYWORD_FIELD + $fieldConfig;
 ```
 
-Ergibt je nach Flags:
+Depending on the flags this yields:
 - `()` → keyword + search(whitespace) + ngram
 - `(withExact)` → keyword + exact(whitespace, no norms) + search(whitespace) + ngram
 - `(technicalTerms)` → keyword + search(word_delimiter_graph) + ngram
@@ -130,23 +130,23 @@ Ergibt je nach Flags:
 
 ---
 
-## ElasticsearchFieldBuilder::translated() — Sprach-Mapping
+## ElasticsearchFieldBuilder::translated() — language mapping
 
 ```php
 $this->fieldBuilder->translated(array $fieldConfig): array
 ```
 
-**Ablauf:**
-1. Lade alle Sprachen via `LanguageLoaderInterface::loadLanguages()`
-2. Für jede Sprache: prüfe Locale (aus `code` oder `parentCode`, z.B. `de-DE` → `de`)
-3. Wenn `languageAnalyzerMapping[locale]` vorhanden:
-   - Standard-Felder (`search.analyzer == sw_whitespace_analyzer`): ersetze durch `sw_german_analyzer` etc.
-   - Technical-Term-Felder (`search.analyzer == sw_whitespace_technical_term_index_analyzer`):
-     ersetze durch sprach-spezifisches `sw_german_technical_term_index_analyzer` / `_search_analyzer`
-     (nur wenn für die Sprache vorhanden, sonst fallback auf generic technical-term analyzer)
-4. `.exact` und `.ngram` bleiben immer sprach-agnostisch
+**Sequence:**
+1. Load all languages via `LanguageLoaderInterface::loadLanguages()`
+2. For each language: check the locale (from `code` or `parentCode`, e.g. `de-DE` → `de`)
+3. If `languageAnalyzerMapping[locale]` exists:
+   - Default fields (`search.analyzer == sw_whitespace_analyzer`): replace with `sw_german_analyzer` etc.
+   - Technical term fields (`search.analyzer == sw_whitespace_technical_term_index_analyzer`):
+     replace with the language-specific `sw_german_technical_term_index_analyzer` / `_search_analyzer`
+     (only if present for the language, otherwise fall back to the generic technical term analyzer)
+4. `.exact` and `.ngram` always stay language-agnostic
 
-**Rückgabe:**
+**Return value:**
 ```php
 [
     'properties' => [
@@ -157,29 +157,29 @@ $this->fieldBuilder->translated(array $fieldConfig): array
 ]
 ```
 
-Für Felder ohne Sprach-Analyzer (kein Matching in `languageAnalyzerMapping`):
-alle Sprachen bekommen denselben `fieldConfig` (generic analyzer).
+For fields without a language analyzer (no match in `languageAnalyzerMapping`):
+all languages get the same `fieldConfig` (generic analyzer).
 
 ---
 
-## Produkt-Mapping-Vollständigkeit
+## Product mapping completeness
 
-### Alle indizierten Produkt-Felder
+### All indexed product fields
 
 ```php
-// Textfelder (translated)
-'name'                → translated + withExact + technicalTerms (Exact-Match + SKU-Analyse + sprachspezifisch)
-'description'         → translated + lengthNorm (BM25 Längen-Normalisierung)
+// Text fields (translated)
+'name'                → translated + withExact + technicalTerms (exact match + SKU analysis + language-specific)
+'description'         → translated + lengthNorm (BM25 length normalization)
 'metaTitle'           → translated
 'metaDescription'     → translated + lengthNorm
-'customSearchKeywords'→ translated + withExact + technicalTerms + lengthNorm (alles)
+'customSearchKeywords'→ translated + withExact + technicalTerms + lengthNorm (everything)
 
-// SKU-Felder (nicht translated, da Sprach-unabhängig)
+// SKU fields (not translated, since language-independent)
 'productNumber'       → buildTextFieldConfig(withExact: true, technicalTerms: true)
 'ean'                 → buildTextFieldConfig(withExact: true, technicalTerms: true)
 'manufacturerNumber'  → buildTextFieldConfig(withExact: true, technicalTerms: true)
 
-// Nested-Assoziationen
+// Nested associations
 'categories'          → nested {id, _count, name: translated}
 'parent'              → nested {id, _count, name: translated + withExact + technicalTerms}
 'manufacturer'        → nested {id, _count, name: translated}
@@ -210,27 +210,27 @@ alle Sprachen bekommen denselben `fieldConfig` (generic analyzer).
 // Dynamic (Custom Fields)
 'customFields' → {properties: {[langId]: {type: object, dynamic: true, properties: {fieldName: esType}}}}
 
-// Dynamic Templates (aus Mapping-Array)
+// Dynamic templates (from the mapping array)
 'cheapest_price_rule*' → match → double
 'price.*.percentage.*' → path_match → double
 'long' type match → double
 ```
 
-### `_source` Optimierung
+### `_source` optimization
 
-Wenn `elasticsearch.product.exclude_source = false` (Standard) und nicht dev/test:
+If `elasticsearch.product.exclude_source = false` (default) and not dev/test:
 ```php
 $mapping['_source'] = ['includes' => ['id', 'autoIncrement']];
 ```
-Minimiert Speicher, da nur IDs aus `_source` gelesen werden (Daten kommen aus DB).
+Minimizes memory, since only IDs are read from `_source` (data comes from the DB).
 
 ---
 
-## Custom Fields — Vollständige Type-Mapping-Tabelle
+## Custom Fields — complete type mapping table
 
-Aus `ElasticsearchCustomFieldsMappingHelper::getTypeFromCustomFieldType()`:
+From `ElasticsearchCustomFieldsMappingHelper::getTypeFromCustomFieldType()`:
 
-| `CustomFieldTypes::*` | Wert | ES-Mapping |
+| `CustomFieldTypes::*` | Value | ES mapping |
 |----------------------|------|-----------|
 | `INT` | `'int'` | `{type: 'long'}` |
 | `FLOAT` | `'float'` | `{type: 'double'}` |
@@ -238,56 +238,56 @@ Aus `ElasticsearchCustomFieldsMappingHelper::getTypeFromCustomFieldType()`:
 | `DATETIME` | `'datetime'` | `{type: 'date', format: 'yyyy-MM-dd HH:mm:ss.SSS\|\|strict_date_optional_time\|\|epoch_millis', ignore_malformed: true}` |
 | `PRICE` | `'price'` | `{type: 'object', dynamic: true}` |
 | `JSON` | `'json'` | `{type: 'object', dynamic: true}` |
-| alle anderen (SELECT, MULTI_SELECT, TEXT, HTML, etc.) | diverse | `KEYWORD_FIELD + SEARCH_FIELD` |
+| all others (SELECT, MULTI_SELECT, TEXT, HTML, etc.) | various | `KEYWORD_FIELD + SEARCH_FIELD` |
 
-**Dynamisches Nachladen neuer Custom-Fields:**
-`ElasticsearchCustomFieldsMappingHelper::createFieldsInIndices()` → `putMapping()` auf allen aktiven Indizes, pro Sprache.
+**Dynamically loading new custom fields:**
+`ElasticsearchCustomFieldsMappingHelper::createFieldsInIndices()` → `putMapping()` on all active indices, per language.
 
 ---
 
-## Admin-Suche: Fetch-Return-Format
+## Admin search: fetch return format
 
 ```php
-// Pflicht-Felder je ID:
+// Required fields per ID:
 [
     'id'         => string,       // hex UUID
-    'text'       => string,       // Haupt-Suchtext (wird in TEXT_FIELD indiziert)
-    'textBoosted'=> string|null,  // boost-Suchtext (höherer Score)
-    'completion' => list<string>|null, // lowercase dedupe für COMPLETION_FIELD
+    'text'       => string,       // main search text (indexed into TEXT_FIELD)
+    'textBoosted'=> string|null,  // boosted search text (higher score)
+    'completion' => list<string>|null, // lowercase dedupe for COMPLETION_FIELD
 ]
 ```
 
 **`buildCompletion()` helper:**
 ```php
 $this->buildCompletion(['T-Shirt Basic', 'Shirt', null, ''])
-// → ['t-shirt basic', 'shirt']  (null/empty gefiltert, lowercase, dedupe)
+// → ['t-shirt basic', 'shirt']  (null/empty filtered, lowercase, dedupe)
 ```
 
 **`decodeTranslatedValues()` helper:**
 ```php
-// encoded = JSON-String aus SQL: '[{"languageId":"...","name":"..."}]'
+// encoded = JSON string from SQL: '[{"languageId":"...","name":"..."}]'
 $this->decodeTranslatedValues($encoded, 'name')
-// → ['2fbb...5b' => 'Produkt Name', ...]
+// → ['2fbb...5b' => 'Product Name', ...]
 ```
 
 ---
 
-## Admin-Indexer: built-in Felder
+## Admin indexer: built-in fields
 
-Alle konkreten Admin-Indexer erben die Standard-Felder aus `AbstractAdminIndexer::mapping()`:
-`id` (KEYWORD_FIELD) wird immer hinzugefügt.
+All concrete admin indexers inherit the default fields from `AbstractAdminIndexer::mapping()`:
+`id` (KEYWORD_FIELD) is always added.
 
-Typisches Muster für Texte:
+Typical pattern for texts:
 ```php
 public function mapping(array $mapping): array {
     $mapping['properties']['name']        = self::TEXT_FIELD;
     $mapping['properties']['email']       = self::TEXT_FIELD;
-    $mapping['properties']['completion']  = self::COMPLETION_FIELD; // für Autocomplete
+    $mapping['properties']['completion']  = self::COMPLETION_FIELD; // for autocomplete
     return $mapping;
 }
 ```
 
-### COMPLETION_FIELD im Detail
+### COMPLETION_FIELD in detail
 
 ```php
 [
@@ -298,7 +298,7 @@ public function mapping(array $mapping): array {
         'ngram' => [
             'type' => 'text',
             'analyzer' => 'sw_ngram_analyzer',
-            'search_analyzer' => 'sw_whitespace_analyzer', // kurze Queries → ngram-Pfad
+            'search_analyzer' => 'sw_whitespace_analyzer', // short queries → ngram path
         ],
     ],
 ]
@@ -306,12 +306,12 @@ public function mapping(array $mapping): array {
 
 ---
 
-## IndexerOffset-Tracking
+## IndexerOffset tracking
 
 ```php
 $offset = new IndexerOffset(
     definitions: iterable<string>,  // entity names
-    timestamp: int                  // Unix-Timestamp für Index-Suffix
+    timestamp: int                  // Unix timestamp for the index suffix
 );
 
 $offset->getDefinition(): ?string
@@ -322,11 +322,11 @@ $offset->setLastId(?array): void
 $offset->getTimestamp(): int
 ```
 
-`IndexerOffset` wird als Teil von `ElasticsearchIndexingMessage` serialisiert.
+`IndexerOffset` is serialized as part of `ElasticsearchIndexingMessage`.
 
 ---
 
-## Elasticsearch-Exception Codes
+## Elasticsearch exception codes
 
 ```php
 ElasticsearchException::serverNotAvailable()
@@ -338,28 +338,28 @@ ElasticsearchException::emptyIndexingRequest()
 
 ---
 
-## Test-Verhalten
+## Test behaviour
 
 ### ElasticsearchTestTestBehaviour
 
-Trait für PHPUnit-Tests, die gegen ES indizieren:
-- Schreibt Testdaten in ES-Index
-- Bereinigt nach Test
+Trait for PHPUnit tests that index against ES:
+- Writes test data into the ES index
+- Cleans up after the test
 
 ### AdminElasticsearchTestBehaviour
 
-Analoges Trait für Admin-Suche-Tests.
+Analogous trait for admin search tests.
 
 ---
 
-## Sorting-Erweiterung: CountSort
+## Sorting extension: CountSort
 
-`CountSort` implementiert `BuilderInterface` für sortieren nach Anzahl in Nested-Feldern
-(z.B. Produkte nach Anzahl Properties sortieren).
+`CountSort` implements `BuilderInterface` for sorting by the count in nested fields
+(e.g. sorting products by number of properties).
 
 ---
 
 ## MatchBoolPrefixQuery
 
-Eigene OpenSearchDSL-Query-Klasse für `match_bool_prefix` — wird in `ProductSearchQueryBuilder`
-für Prefix-Matching in Volltext-Suche verwendet.
+Custom OpenSearchDSL query class for `match_bool_prefix` — used in `ProductSearchQueryBuilder`
+for prefix matching in full-text search.

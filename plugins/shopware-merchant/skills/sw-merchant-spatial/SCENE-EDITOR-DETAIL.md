@@ -1,288 +1,288 @@
-# Shopware 6 – Scene Editor: Vollständige Referenz
+# Shopware 6 – Scene Editor: full reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor
-> Plan: Rise (oder höher)
-> Mindestversion: 6.6.8.1
+> Source: https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor
+> Plan: Rise (or higher)
+> Minimum version: 6.6.8.1
 > Status: Beta
 
 ---
 
 ## Contents
 
-- [1. Überblick](#1-überblick)
-- [2. Szenenübersicht](#2-szenenübersicht)
-- [3. Neue Szene erstellen](#3-neue-szene-erstellen)
-- [4. Bedienelemente im Scene Editor](#4-bedienelemente-im-scene-editor)
-- [5. Bereich: Szene (Szenenkonfiguration)](#5-bereich-szene-szenenkonfiguration)
-- [6. Bild exportieren – Detailansicht](#6-bild-exportieren-detailansicht)
-- [7. Formen (Primitive)](#7-formen-primitive)
-- [8. Workflow: Von der Szene zum Produktbild](#8-workflow-von-der-szene-zum-produktbild)
+- [1. Overview](#1-overview)
+- [2. Scene overview](#2-scene-overview)
+- [3. Creating a new scene](#3-creating-a-new-scene)
+- [4. Controls in the Scene Editor](#4-controls-in-the-scene-editor)
+- [5. Area: Szene (scene configuration)](#5-area-szene-scene-configuration)
+- [6. Exporting an image – detail view](#6-exporting-an-image-detail-view)
+- [7. Shapes (primitives)](#7-shapes-primitives)
+- [8. Workflow: from the scene to the product image](#8-workflow-from-the-scene-to-the-product-image)
 - [9. Screenshots](#9-screenshots)
-- [10. Weitere Ressourcen](#10-weitere-ressourcen)
-- [Quelle](#quelle)
+- [10. Further resources](#10-further-resources)
+- [Source](#source)
 
-## 1. Überblick
+## 1. Overview
 
-Der **Scene Editor** ermöglicht es, das volle Potenzial von 3D-Modellen für die Erstellung
-von Produktbildern zu nutzen. Händler können:
+The **Scene Editor** makes it possible to use the full potential of 3D models for creating
+product images. Merchants can:
 
-- Verschiedenste 3D-Szenen aufbauen
-- Produkte in der Szene platzieren und anordnen
-- Unbegrenzt Bilder aus den Szenen generieren
-- Exportierte Bilder direkt für Produktlisting und Marketing nutzen
+- Build a wide variety of 3D scenes
+- Place and arrange products in the scene
+- Generate unlimited images from the scenes
+- Use the exported images directly for the product listing and marketing
 
-**Pfad**: Inhalte > Scene Editor
+**Path**: **Inhalte > Scene Editor** (Content > Scene Editor)
 
-### Status und Verfügbarkeit
+### Status and availability
 
-| Eigenschaft | Detail |
+| Property | Detail |
 |---|---|
-| Status | **Beta** – eingeschränkter Funktionsumfang, wird erweitert |
-| Mindestplan | Rise oder höher |
-| Mindestversion | 6.6.8.1 |
-| Aktivierung (6.6.8.1–6.6.10.5) | Muss zunächst unter **Insider Previews** aktiviert werden |
-| Ab 6.6.10.6 | Direkt verfügbar ohne Aktivierungsschritt |
+| Status | **Beta** – limited feature scope, being expanded |
+| Minimum plan | Rise or higher |
+| Minimum version | 6.6.8.1 |
+| Activation (6.6.8.1–6.6.10.5) | Must first be enabled under **Insider Previews** |
+| From 6.6.10.6 | Available directly, without an activation step |
 
-> ⚠ Das Feature befindet sich im Beta-Status. Verhalten und Umfang können sich
-> in zukünftigen Updates ändern. Feedback ist erwünscht.
+> ⚠ The feature is in beta status. Its behaviour and scope can change
+> in future updates. Feedback is welcome.
 
 ---
 
-## 2. Szenenübersicht
+## 2. Scene overview
 
-Die Startseite des Scene Editors zeigt alle bereits angelegten Szenen.
+The Scene Editor start page shows all scenes that have already been created.
 
-### Bedienelemente der Übersicht
+### Controls of the overview
 
-| Element | Funktion |
+| Element | Function |
 |---|---|
-| **(1) Listenansicht** | Wechsel zwischen Kachelansicht und Listenansicht |
-| **(2) Sortieren nach** | Dropdown: Erstelldatum, Bearbeitungsdatum, Name |
-| **(3) Kontextmenü** | Pro Szene: Löschen, Duplizieren, Bearbeiten |
-| **(4) Neue Szene erstellen** | Öffnet den Erstellungsdialog |
+| **(1) Listenansicht** (List view) | Switch between tile view and list view |
+| **(2) Sortieren nach** (Sort by) | Dropdown: creation date, modification date, name |
+| **(3) Kontextmenü** (Context menu) | Per scene: delete, duplicate, edit |
+| **(4) Neue Szene erstellen** (Create new scene) | Opens the creation dialog |
 
-**Direkter Zugriff**: Klick auf einen Szenen-Eintrag öffnet die Bearbeitung direkt.
-
----
-
-## 3. Neue Szene erstellen
-
-1. Schaltfläche **„Neue Szene erstellen"** anklicken
-2. **Namen für die Szene** vergeben (Pflichtfeld)
-3. Nach der Namensvergabe wird automatisch in die **Bearbeitungsansicht** gewechselt
+**Direct access**: clicking a scene entry opens editing directly.
 
 ---
 
-## 4. Bedienelemente im Scene Editor
+## 3. Creating a new scene
 
-Der Scene Editor ist in verschiedene Werkzeugbereiche gegliedert.
+1. Click the **"Neue Szene erstellen"** button
+2. Assign a **name for the scene** (mandatory field)
+3. After the name has been assigned it switches automatically to the **editing view**
 
-### 4.1 Hauptbereich – 3D-Arbeitsbereich
+---
 
-| Element | Funktion |
+## 4. Controls in the Scene Editor
+
+The Scene Editor is divided into different tool areas.
+
+### 4.1 Main area – 3D workspace
+
+| Element | Function |
 |---|---|
-| **Objekt im Arbeitsbereich (1)** | Hauptfenster; zeigt das ausgewählte 3D-Objekt auf einem Gitternetz zur Orientierung. Das Gitternetz ist frei drehbar. |
+| **Object in the workspace (1)** | Main window; shows the selected 3D object on a grid for orientation. The grid can be rotated freely. |
 
 ---
 
-### 4.2 Werkzeuge für 3D-Objekte
+### 4.2 Tools for 3D objects
 
-#### 3D-Objekt hinzufügen (2)
+#### 3D-Objekt hinzufügen (Add 3D object) (2)
 
-- Über **„3D-Objekt hinzufügen"** → Dropdown-Menü öffnet sich
-- Verschiedene Objektarten zur Auswahl (eigene Modelle, Primitive)
+- Via **"3D-Objekt hinzufügen"** → a dropdown menu opens
+- Various object types to choose from (your own models, primitives)
 
-#### Gruppe hinzufügen (3)
+#### Gruppe hinzufügen (Add group) (3)
 
-- Mehrere Objekte zu einer **Gruppe** zusammenfassen
-- Gruppen lassen sich gemeinsam bewegen, transformieren und mit Effekten versehen
+- Combine several objects into one **group**
+- Groups can be moved, transformed and given effects together
 
-#### Ansichtsauswahl (4)
+#### Ansichtsauswahl (View selection) (4)
 
-- Wechsel zwischen verschiedenen **Kamera- und Ansichtseinstellungen**
-- Beispiel: „Freie Ansicht"
-- Schneller Wechsel zwischen vorgegebenen Perspektiven
+- Switch between different **camera and view settings**
+- Example: "Freie Ansicht" (free view)
+- Fast switching between predefined perspectives
 
 ---
 
-### 4.3 Verschieben-Werkzeug (5)
+### 4.3 Verschieben-Werkzeug (Move tool) (5)
 
-Aktiviert das **Move-Tool** zum Positionieren von Objekten im 3D-Raum.
+Activates the **move tool** for positioning objects in 3D space.
 
-| Achsensteuerung | Beschreibung |
+| Axis control | Description |
 |---|---|
-| **Blauer Pfeil** | Z-Achse (vorwärts/rückwärts) |
-| **Grüner Pfeil** | Y-Achse (aufwärts/abwärts) |
-| **Roter Pfeil** | X-Achse (links/rechts) |
-| **Farbige Quadrate** | Kombinierte Ebenen-Bewegung (z. B. XY-Ebene) |
-| **Mittleres Quadrat** | Freie Bewegung in alle Richtungen |
+| **Blue arrow** | Z axis (forward/backward) |
+| **Green arrow** | Y axis (up/down) |
+| **Red arrow** | X axis (left/right) |
+| **Coloured squares** | Combined plane movement (e.g. the XY plane) |
+| **Centre square** | Free movement in all directions |
 
 ---
 
-### 4.4 Drehen-Werkzeug (6)
+### 4.4 Drehen-Werkzeug (Rotate tool) (6)
 
-Aktiviert das **Rotate-Tool** zum Drehen von Objekten um die drei Raumachsen.
+Activates the **rotate tool** for rotating objects around the three spatial axes.
 
-| Ring | Achse | Bewegung |
+| Ring | Axis | Movement |
 |---|---|---|
-| **Roter Ring** | X-Achse | Nach vorne/nach hinten kippen |
-| **Blauer Ring** | Z-Achse | Nach links/nach rechts kippen |
-| **Grüner Ring** | Y-Achse | Um die eigene Achse drehen (Yaw) |
-| **Gelber Außenring** | Kamera | Drehung aus der Kameraperspektive |
+| **Red ring** | X axis | Tilt forward/backward |
+| **Blue ring** | Z axis | Tilt left/right |
+| **Green ring** | Y axis | Rotate around its own axis (yaw) |
+| **Yellow outer ring** | Camera | Rotation from the camera perspective |
 
 ---
 
-### 4.5 Skalieren-Werkzeug (7)
+### 4.5 Skalieren-Werkzeug (Scale tool) (7)
 
-Hiermit wird die **Größe von Objekten** verändert.
+This is used to change the **size of objects**.
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |---|---|
-| **Standard (gleichmäßig)** | Proportionen bleiben erhalten; alle Achsen skalieren gleichzeitig |
-| **Achsenspezifisch** | Option deaktivieren → einzelne Achse strecken oder stauchen |
-| **Grünes Quadrat** | Höhe (Y-Achse) |
-| **Rotes Quadrat** | Breite (X-Achse) |
-| **Blaues Quadrat** | Tiefe (Z-Achse) |
+| **Default (uniform)** | Proportions are preserved; all axes scale simultaneously |
+| **Axis-specific** | Disable the option → stretch or squash a single axis |
+| **Green square** | Height (Y axis) |
+| **Red square** | Width (X axis) |
+| **Blue square** | Depth (Z axis) |
 
 ---
 
-### 4.6 Light Settings – Lichteinstellungen (8)
+### 4.6 Light Settings – lighting settings (8)
 
-Konfiguration der Beleuchtung der Szene oder einzelner Objekte.
+Configuration of the lighting of the scene or of individual objects.
 
-| Parameter | Optionen |
+| Parameter | Options |
 |---|---|
-| **Typ** | Licht für die gesamte Szene **oder** nur für ein bestimmtes Objekt |
-| **Einstellungen** | Vordefinierte **Presets** oder vollständig benutzerdefiniert |
-| **Lichtfarbe** | Farbauswahl per Hex-Code (Beispiel: `#ffffff` für Weißlicht) |
-| **Light Intensity** | Stärke des Lichts: Schieberegler **0–100 %** |
+| **Typ** (Type) | Light for the entire scene **or** only for one particular object |
+| **Einstellungen** (Settings) | Predefined **presets** or fully custom |
+| **Lichtfarbe** (Light colour) | Colour selection via hex code (example: `#ffffff` for white light) |
+| **Light Intensity** | Strength of the light: slider **0–100 %** |
 
-> ⚠ Die Ansicht der Lichtoptionen kann sich je nach ausgewähltem Objekt unterscheiden.
-
----
-
-### 4.7 Bild exportieren (9)
-
-Exportiert die aktuelle Szene als Bilddatei.
-
-**Schritte**:
-1. Schaltfläche **„Bild exportieren"** oben rechts anklicken
-2. **Vorlage oder benutzerdefinierte Größe** auswählen
-3. **Kamera** auswählen (oder „Orbit-Ansicht" für dynamische Perspektive)
-4. Schaltfläche **„Bild speichern"** anklicken
-5. Das exportierte Bild wird im Medienordner **„Scene Editor Media"** gespeichert
+> ⚠ The view of the light options can differ depending on the selected object.
 
 ---
 
-### 4.8 Szene speichern (10)
+### 4.7 Bild exportieren (Export image) (9)
 
-- Speichert die **komplette 3D-Szene** inklusive:
-  - Aller platzierten Objekte und deren Positionen
-  - Alle Lichteinstellungen
-  - Alle konfigurierten Kameraperspektiven
-- Gespeicherte Szenen können jederzeit wieder geöffnet und bearbeitet werden
+Exports the current scene as an image file.
+
+**Steps**:
+1. Click the **"Bild exportieren"** button at the top right
+2. Select a **template or a custom size**
+3. Select the **camera** (or "Orbit-Ansicht" – orbit view – for a dynamic perspective)
+4. Click the **"Bild speichern"** (Save image) button
+5. The exported image is saved in the media folder **"Scene Editor Media"**
 
 ---
 
-## 5. Bereich: Szene (Szenenkonfiguration)
+### 4.8 Szene speichern (Save scene) (10)
 
-In diesem Bereich werden globale Einstellungen für die Szene vorgenommen.
+- Saves the **complete 3D scene** including:
+  - All placed objects and their positions
+  - All lighting settings
+  - All configured camera perspectives
+- Saved scenes can be reopened and edited at any time
 
-| Einstellung | Beschreibung |
+---
+
+## 5. Area: Szene (scene configuration)
+
+Global settings for the scene are made in this area.
+
+| Setting | Description |
 |---|---|
-| **(1) Szenenname** | Name der Szene bearbeiten (erscheint in der Übersicht) |
-| **(2) Hintergrundfarbe** | Farbe des Szenenhintergrundes konfigurieren |
-| **(3) Bodenfarbe** | Farbe des Szenenbodens konfigurieren |
+| **(1) Szenenname** (Scene name) | Edit the name of the scene (appears in the overview) |
+| **(2) Hintergrundfarbe** (Background colour) | Configure the colour of the scene background |
+| **(3) Bodenfarbe** (Floor colour) | Configure the colour of the scene floor |
 
 ---
 
-## 6. Bild exportieren – Detailansicht
+## 6. Exporting an image – detail view
 
-Die Export-Ansicht bietet folgende Konfigurationsoptionen:
+The export view offers the following configuration options:
 
-| Element | Beschreibung |
+| Element | Description |
 |---|---|
-| **(1) Kamera** | Auswahl der gewünschten Kamera für den Bildexport |
-| **(2) Auflösung** | Auswahl einer vordefinierten Vorlage oder benutzerdefinierte Eingabe |
-| **(3) Breite** | Bildbreite in Pixeln |
-| **(4) Höhe** | Bildhöhe in Pixeln |
-| **(5) Bild speichern** | Exportiert das Bild in den Medienordner „Scene Editor Media" |
+| **(1) Kamera** (Camera) | Selection of the desired camera for the image export |
+| **(2) Auflösung** (Resolution) | Selection of a predefined template or a custom entry |
+| **(3) Breite** (Width) | Image width in pixels |
+| **(4) Höhe** (Height) | Image height in pixels |
+| **(5) Bild speichern** (Save image) | Exports the image into the media folder "Scene Editor Media" |
 
 ---
 
-## 7. Formen (Primitive)
+## 7. Shapes (primitives)
 
-Neben eigenen 3D-Produktmodellen können auch geometrische **Grundformen** (Primitive)
-als Plattformen, Wände oder dekorative Elemente eingesetzt werden.
+Besides your own 3D product models, geometric **basic shapes** (primitives) can also be
+used as platforms, walls or decorative elements.
 
-### Formen hinzufügen
+### Adding shapes
 
-1. **„3D-Objekt hinzufügen"** anklicken
-2. In dem sich öffnenden Fenster **„Medien auswählen"** den Tab **„Primitive"** wählen
-3. Gewünschte Form auswählen und zur Szene hinzufügen
+1. Click **"3D-Objekt hinzufügen"**
+2. In the window that opens, **"Medien auswählen"** (Select media), choose the tab **"Primitive"**
+3. Select the desired shape and add it to the scene
 
-### Formen konfigurieren
+### Configuring shapes
 
-Nach dem Hinzufügen können folgende Eigenschaften angepasst werden:
-- **Materialbeschaffenheit** (Oberfläche, Reflexion etc.)
-- **Farbe** der Form
+After adding, the following properties can be adjusted:
+- **Material properties** (surface, reflection etc.)
+- **Colour** of the shape
 
-**Typische Einsatzfälle für Primitive**:
-- Podest/Plattform für das Produkt
-- Hintergrundwand
-- Dekorative geometrische Elemente in der Szene
+**Typical use cases for primitives**:
+- Pedestal/platform for the product
+- Background wall
+- Decorative geometric elements in the scene
 
 ---
 
-## 8. Workflow: Von der Szene zum Produktbild
+## 8. Workflow: from the scene to the product image
 
 ```
 1. Inhalte > Scene Editor → "Neue Szene erstellen"
-2. Szenenname vergeben → Bearbeitungsansicht öffnet sich
-3. "3D-Objekt hinzufügen" → Produkt-GLB hochladen oder auswählen
-4. Primitive als Podest/Hintergrund hinzufügen (optional)
-5. Produkt mit Verschieben/Drehen/Skalieren positionieren
-6. Beleuchtung über "Light Settings" konfigurieren
-7. Hintergrundfarbe und Bodenfarbe in "Szene" einstellen
-8. "Szene speichern" → Arbeit sichern
-9. "Bild exportieren" → Kamera & Auflösung wählen → "Bild speichern"
-10. Exportiertes Bild erscheint in "Scene Editor Media"
-11. Bild an Produkt zuweisen oder in Erlebniswelten nutzen
+2. Assign a scene name → the editing view opens
+3. "3D-Objekt hinzufügen" → upload or select the product GLB
+4. Add primitives as a pedestal/background (optional)
+5. Position the product with move/rotate/scale
+6. Configure the lighting via "Light Settings"
+7. Set the background colour and floor colour in "Szene"
+8. "Szene speichern" → secure your work
+9. "Bild exportieren" → choose the camera & resolution → "Bild speichern"
+10. The exported image appears in "Scene Editor Media"
+11. Assign the image to a product or use it in the Erlebniswelten
 ```
 
 ---
 
 ## 9. Screenshots
 
-![Scene Editor Übersicht](../../assets/scene-editor-uebersicht.jpg)
-*Übersicht aller angelegten Szenen mit Kontextmenü und Sortierfunktion*
+![Scene Editor overview](assets/scene-editor-overview.jpg)
+*Overview of all created scenes with the context menu and the sorting function*
 
-![Scene Editor Konfiguration](../../assets/scene-editor-konfiguration-szene.png)
-*Bearbeitungsansicht: 3D-Arbeitsbereich mit vollständiger Werkzeugpalette*
+![Scene Editor configuration](assets/scene-editor-configuration-scene.png)
+*Editing view: 3D workspace with the complete tool palette*
 
-![Scene Editor Objekt Rotation](../../assets/scene-editor-objekt-rotation.png)
-*Rotate-Tool mit farbkodierten Rotationsringen (rot/blau/grün/gelb)*
+![Scene Editor object rotation](assets/scene-editor-objekt-rotation.png)
+*Rotate tool with colour-coded rotation rings (red/blue/green/yellow)*
 
-![Scene Editor Bild exportieren](../../assets/scene-editor-exportieren.png)
-*Export-Dialog: Kamera auswählen, Auflösung festlegen, Bild speichern*
+![Scene Editor export image](assets/scene-editor-export.png)
+*Export dialog: select the camera, set the resolution, save the image*
 
-![Scene Editor Szene](../../assets/scene-editor-szene.png)
-*Szenenkonfiguration: Szenenname, Hintergrundfarbe, Bodenfarbe*
+![Scene Editor scene](assets/scene-editor-scene.png)
+*Scene configuration: scene name, background colour, floor colour*
 
-![Scene Editor Formen/Primitive](../../assets/scene-editor-formen.png)
-*Primitive-Tab mit verfügbaren geometrischen Grundformen*
-
----
-
-## 10. Weitere Ressourcen
-
-- **Community Hub Lernpfad**: Interaktiver Lernpfad zu diesem Thema verfügbar
-  https://hub.shopware.com (Suche nach "Scene Editor")
-- **Feedback-Portal**: Feedback zu fehlenden Funktionen und Verbesserungsvorschlägen
-  direkt über den in der Doku verlinkten Feedback-Forum
+![Scene Editor shapes/primitives](assets/scene-editor-formen.png)
+*Primitive tab with the available basic geometric shapes*
 
 ---
 
-## Quelle
+## 10. Further resources
+
+- **Community Hub learning path**: an interactive learning path on this topic is available
+  https://hub.shopware.com (search for "Scene Editor")
+- **Feedback portal**: feedback on missing functions and suggestions for improvement
+  directly via the feedback forum linked in the docs
+
+---
+
+## Source
 https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor
 https://docs.shopware.com/de/shopware-6-de/insider-previews

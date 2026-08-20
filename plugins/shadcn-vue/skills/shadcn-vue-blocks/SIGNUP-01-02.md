@@ -1,12 +1,12 @@
-# shadcn-vue Signup Blocks — signup-01 und signup-02
+# shadcn-vue Signup Blocks — signup-01 and signup-02
 
-Vollständiger Quellcode beider Blöcke ohne Kürzungen.
+Complete source code of both blocks, unabridged.
 
 ---
 
 ## Block: signup-01
 
-**Description:** Einfaches Card-basiertes Registrierungsformular mit Name, Email, Passwort, Passwort-Bestätigung und Google-Button.
+**Description:** Simple card-based signup form with name, email, password, password confirmation and a Google button.
 
 **Installation:**
 ```bash
@@ -122,7 +122,7 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 
 ## Block: signup-02
 
-**Description:** Zwei-Spalten-Layout mit Logo-Header, Cover-Image rechts (Desktop) und GitHub Social-Auth.
+**Description:** Two-column layout with a logo header, cover image on the right (desktop) and GitHub social auth.
 
 **Installation:**
 ```bash

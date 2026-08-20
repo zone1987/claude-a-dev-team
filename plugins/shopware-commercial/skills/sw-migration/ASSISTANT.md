@@ -1,11 +1,11 @@
 # Skill: sw-migration-assistant
 
-Entwickler-Referenz fuer das Shopware Migration Assistant Plugin.
+Developer reference for the Shopware Migration Assistant plugin.
 
-## Referenzen
+## References
 
 - [ASSISTANT-DETAIL.md](ASSISTANT-DETAIL.md)
 
-## Querverweise
+## Cross-references
 
-Eigene Profile / Erweiterungen bestehender Profile: `sw-migration-assistant-custom-profile`.
+Custom profiles / extensions of existing profiles: `sw-migration-assistant-custom-profile`.

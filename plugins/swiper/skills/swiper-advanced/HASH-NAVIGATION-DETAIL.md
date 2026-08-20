@@ -110,16 +110,16 @@ const swiper = new Swiper('.swiper', {
 HTML:
 ```html
 <div class="swiper-slide" data-hash="home">Home</div>
-<div class="swiper-slide" data-hash="ueber-uns">About us</div>
-<div class="swiper-slide" data-hash="leistungen">Services</div>
-<div class="swiper-slide" data-hash="kontakt">Contact</div>
+<div class="swiper-slide" data-hash="about-us">About us</div>
+<div class="swiper-slide" data-hash="services">Services</div>
+<div class="swiper-slide" data-hash="contact">Contact</div>
 ```
 
 ### External link to a slide
 
 ```html
 <!-- Direct link to the contact slide -->
-<a href="/page#kontakt">Open contact</a>
+<a href="/page#contact">Open contact</a>
 ```
 
 ## Difference from the History module

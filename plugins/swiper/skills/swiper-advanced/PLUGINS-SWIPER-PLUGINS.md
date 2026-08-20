@@ -1,65 +1,65 @@
-# Swiper Plugins & Custom Module — Vollständige Referenz
+# Swiper Plugins & Custom Module — Complete reference
 
 ---
 
 ## Contents
 
 - [Premium Plugins](#premium-plugins)
-- [Eigene Swiper-Module / Plugins schreiben](#eigene-swiper-module-plugins-schreiben)
-- [Alle Swiper Lifecycle-Events (für Plugin-Hooks)](#alle-swiper-lifecycle-events-für-plugin-hooks)
-- [Plugin mit externem State-Management](#plugin-mit-externem-state-management)
-- [Swiper-Instanz-Eigenschaften im Plugin-Kontext](#swiper-instanz-eigenschaften-im-plugin-kontext)
+- [Writing your own Swiper modules / plugins](#writing-your-own-swiper-modules--plugins)
+- [All Swiper lifecycle events (for plugin hooks)](#all-swiper-lifecycle-events-for-plugin-hooks)
+- [Plugin with external state management](#plugin-with-external-state-management)
+- [Swiper instance properties in the plugin context](#swiper-instance-properties-in-the-plugin-context)
 
 ## Premium Plugins
 
-Swiper bietet Premium-Plugins über zwei Anbieter an:
+Swiper offers premium plugins through two providers:
 
 ### UI Initiative (uiinitiative.com)
 
-Premium Swiper-Plugins als fertige, hochwertige Slider-Experiences:
+Premium Swiper plugins as ready-made, high-quality slider experiences:
 
-| Plugin-Name | Beschreibung |
+| Plugin name | Description |
 |---|---|
-| **Super Flow** | Fortgeschrittener Flow-Slider |
-| **Expo Slider** | Ausstellungs-/Galerie-Slider |
-| **Cards Stack Slider** | Gestapelte Karten-Animation |
-| **Material You Slider** | Material Design 3 Slider |
-| **Tinder Slider** | Swipe-left/right Interaction |
-| **Shaders Slider** | WebGL-Shader-Übergänge |
-| **Slicer Slider** | Slice/Split-Transitions |
-| **Shutters Slider** | Jalousie-artige Transitions |
-| **Stories Slider** | Social-Media-Stories-Format |
-| **Spring Slider** | Federbasierte Physik-Animationen |
-| **Panorama Slider** | 360°-Panorama-Darstellung |
-| **Fashion Slider** | Mode/Editorial-Slider |
-| **Carousel Slider** | Klassisches Karussell (erweitert) |
-| **Triple Slider** | Drei-Slide-Darstellung |
-| **Travel Slider** | Reise/Magazin-Slider |
-| **Expanding Collection** | Expanding Cards Collection |
-| **Posters Slider** | Poster/Fullscreen-Format |
-| **Paper Onboarding** | Onboarding-Flow mit Papier-Effekt |
+| **Super Flow** | Advanced flow slider |
+| **Expo Slider** | Exhibition/gallery slider |
+| **Cards Stack Slider** | Stacked cards animation |
+| **Material You Slider** | Material Design 3 slider |
+| **Tinder Slider** | Swipe-left/right interaction |
+| **Shaders Slider** | WebGL shader transitions |
+| **Slicer Slider** | Slice/split transitions |
+| **Shutters Slider** | Blind-style transitions |
+| **Stories Slider** | Social media stories format |
+| **Spring Slider** | Spring-based physics animations |
+| **Panorama Slider** | 360° panorama presentation |
+| **Fashion Slider** | Fashion/editorial slider |
+| **Carousel Slider** | Classic carousel (extended) |
+| **Triple Slider** | Three-slide presentation |
+| **Travel Slider** | Travel/magazine slider |
+| **Expanding Collection** | Expanding cards collection |
+| **Posters Slider** | Poster/fullscreen format |
+| **Paper Onboarding** | Onboarding flow with a paper effect |
 
 ### Swiper Studio (studio.swiperjs.com)
 
-| Plugin-Name | Beschreibung |
+| Plugin name | Description |
 |---|---|
-| **Swiper 3D Slicer** | 3D-Schnitt-Transition |
-| **Swiper 3D Pagination** | 3D-Pagination-Elemente |
+| **Swiper 3D Slicer** | 3D slice transition |
+| **Swiper 3D Pagination** | 3D pagination elements |
 
 ---
 
-## Eigene Swiper-Module / Plugins schreiben
+## Writing your own Swiper modules / plugins
 
-Swiper unterstützt eine Plugin-API für eigene Module. Module erweitern die Swiper-Funktionalität durch Hooks in den Swiper-Lifecycle.
+Swiper supports a plugin API for custom modules. Modules extend Swiper's functionality by hooking into the Swiper lifecycle.
 
-### Grundstruktur eines Swiper-Moduls
+### Basic structure of a Swiper module
 
 ```javascript
 const MyPlugin = {
-  // Name des Plugins (wird als Swiper-Property verfügbar)
+  // Name of the plugin (becomes available as a Swiper property)
   name: 'myPlugin',
 
-  // Params: Standard-Parameter des Plugins
+  // Params: default parameters of the plugin
   params: {
     myPlugin: {
       enabled: true,
@@ -68,9 +68,9 @@ const MyPlugin = {
     },
   },
 
-  // create: wird aufgerufen wenn eine neue Swiper-Instanz erstellt wird
+  // create: called when a new Swiper instance is created
   create(swiper) {
-    // Hier Swiper-Instanz erweitern
+    // Extend the Swiper instance here
     swiper.myPlugin = {
       doSomething() {
         console.log('Plugin action on', swiper.activeIndex);
@@ -79,68 +79,68 @@ const MyPlugin = {
     };
   },
 
-  // on: Lifecycle-Hook-Registrierungen
+  // on: lifecycle hook registrations
   on: {
-    // Beim Initialisieren
+    // On initialization
     init(swiper) {
       console.log('MyPlugin: Swiper initialized');
-      // Zugriff auf Plugin-Params:
+      // Access the plugin params:
       const { enabled, speed } = swiper.params.myPlugin;
       if (!enabled) return;
 
-      // Setup-Code hier
+      // Setup code here
     },
 
-    // Nach dem Löschen
+    // After destruction
     destroy(swiper) {
       console.log('MyPlugin: Swiper destroyed');
-      // Cleanup hier
+      // Cleanup here
     },
 
-    // Bei jedem Slide-Wechsel
+    // On every slide change
     slideChange(swiper) {
       console.log('MyPlugin: Slide changed to', swiper.activeIndex);
     },
 
-    // Bei Fortschritt (throttled)
+    // On progress (throttled)
     progress(swiper, progress) {
-      // progress: 0 bis 1
+      // progress: 0 to 1
     },
 
-    // Bei Transition-Start
+    // On transition start
     transitionStart(swiper) {},
 
-    // Bei Transition-Ende
+    // On transition end
     transitionEnd(swiper) {},
 
-    // Wenn Slides neu gesetzt werden
+    // When slides are set anew
     slidesUpdated(swiper) {},
 
-    // Bei Update
+    // On update
     update(swiper) {},
 
-    // Bei Resize
+    // On resize
     resize(swiper) {},
 
-    // Vor dem Zerstören
+    // Before destruction
     beforeDestroy(swiper) {},
 
-    // Bei Touch/Pointer-Down
+    // On touch/pointer down
     touchStart(swiper, event) {},
 
-    // Bei Touch/Pointer-Move
+    // On touch/pointer move
     touchMove(swiper, event) {},
 
-    // Bei Touch/Pointer-End
+    // On touch/pointer end
     touchEnd(swiper, event) {},
 
-    // Beim Click
+    // On click
     click(swiper, event) {},
   },
 };
 ```
 
-### Plugin mit Custom CSS (über injectStyles)
+### Plugin with custom CSS (via injectStyles)
 
 ```javascript
 const MyPlugin = {
@@ -154,10 +154,10 @@ const MyPlugin = {
   on: {
     init(swiper) {
       if (swiper.isElement) {
-        // Für Swiper Element: Styles in Shadow DOM injizieren
-        // (wird via injectStyles-Param des Elements übergeben)
+        // For Swiper Element: inject styles into the shadow DOM
+        // (passed via the element's injectStyles param)
       } else {
-        // Für Swiper Core: Styles ins Document injizieren
+        // For Swiper Core: inject styles into the document
         const style = document.createElement('style');
         style.textContent = `
           .swiper-my-plugin-active {
@@ -175,13 +175,13 @@ const MyPlugin = {
 };
 ```
 
-### Plugin registrieren und verwenden
+### Registering and using the plugin
 
 ```javascript
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 
-// Plugin einbinden
+// Include the plugin
 const swiper = new Swiper('.swiper', {
   modules: [Navigation, MyPlugin],
   navigation: true,
@@ -191,18 +191,18 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Plugin-Methoden nutzen
+// Use the plugin methods
 swiper.myPlugin.doSomething();
 ```
 
-### Plugin für Swiper Element
+### Plugin for Swiper Element
 
 ```javascript
 import { register } from 'swiper/element/bundle';
 
 register();
 
-// Custom Params für Element-Attribute registrieren
+// Register custom params for element attributes
 window.SwiperElementRegisterParams(['myPlugin', 'myPluginEnabled']);
 
 const swiperEl = document.querySelector('swiper-container');
@@ -217,60 +217,60 @@ swiperEl.initialize();
 
 ---
 
-## Alle Swiper Lifecycle-Events (für Plugin-Hooks)
+## All Swiper lifecycle events (for plugin hooks)
 
-| Event | Wann |
+| Event | When |
 |---|---|
-| `beforeInit` | Vor der Initialisierung |
-| `init` | Nach der Initialisierung |
-| `afterInit` | Nach `init` |
-| `beforeDestroy` | Vor dem Löschen |
-| `destroy` | Beim Löschen |
-| `slideChange` | Wenn aktiver Slide wechselt |
-| `slideChangeTransitionStart` | Start der Slide-Transition |
-| `slideChangeTransitionEnd` | Ende der Slide-Transition |
-| `slideNextTransitionStart` | Start bei Vorwärts-Navigation |
-| `slideNextTransitionEnd` | Ende bei Vorwärts-Navigation |
-| `slidePrevTransitionStart` | Start bei Rückwärts-Navigation |
-| `slidePrevTransitionEnd` | Ende bei Rückwärts-Navigation |
-| `transitionStart` | Transition-Start (allgemein) |
-| `transitionEnd` | Transition-Ende (allgemein) |
-| `touchStart` | Pointer/Touch gedrückt |
-| `touchMove` | Pointer/Touch bewegt |
-| `touchEnd` | Pointer/Touch losgelassen |
-| `click` | Click auf Slide |
-| `tap` | Tap auf Slide |
-| `doubleTap` | Doppel-Tap |
-| `progress` | Fortschritts-Update |
-| `reachBeginning` | Erster Slide erreicht |
-| `reachEnd` | Letzter Slide erreicht |
-| `fromEdge` | Von Anfang/Ende weggewechselt |
-| `setTranslate` | Translate gesetzt |
-| `setTransition` | Transition gesetzt |
-| `resize` | Resize-Event |
-| `observerUpdate` | DOM-Observer meldet Änderung |
-| `update` | Nach `swiper.update()` |
-| `lock` | Swiper gelockt |
-| `unlock` | Swiper entsperrt |
-| `slideResetTransitionStart` | Reset-Transition Start |
-| `slideResetTransitionEnd` | Reset-Transition Ende |
-| `slidesUpdated` | Slides DOM aktualisiert |
-| `snapGridLengthChange` | Snap-Grid-Änderung |
-| `slidesGridLengthChange` | Slides-Grid-Änderung |
-| `snapIndexChange` | Snap-Index geändert |
-| `activeIndexChange` | Aktiver Index geändert |
-| `realIndexChange` | Realer Index geändert |
+| `beforeInit` | Before initialization |
+| `init` | After initialization |
+| `afterInit` | After `init` |
+| `beforeDestroy` | Before destruction |
+| `destroy` | On destruction |
+| `slideChange` | When the active slide changes |
+| `slideChangeTransitionStart` | Start of the slide transition |
+| `slideChangeTransitionEnd` | End of the slide transition |
+| `slideNextTransitionStart` | Start on forward navigation |
+| `slideNextTransitionEnd` | End on forward navigation |
+| `slidePrevTransitionStart` | Start on backward navigation |
+| `slidePrevTransitionEnd` | End on backward navigation |
+| `transitionStart` | Transition start (general) |
+| `transitionEnd` | Transition end (general) |
+| `touchStart` | Pointer/touch pressed |
+| `touchMove` | Pointer/touch moved |
+| `touchEnd` | Pointer/touch released |
+| `click` | Click on a slide |
+| `tap` | Tap on a slide |
+| `doubleTap` | Double tap |
+| `progress` | Progress update |
+| `reachBeginning` | First slide reached |
+| `reachEnd` | Last slide reached |
+| `fromEdge` | Moved away from the beginning/end |
+| `setTranslate` | Translate was set |
+| `setTransition` | Transition was set |
+| `resize` | Resize event |
+| `observerUpdate` | The DOM observer reports a change |
+| `update` | After `swiper.update()` |
+| `lock` | Swiper locked |
+| `unlock` | Swiper unlocked |
+| `slideResetTransitionStart` | Reset transition start |
+| `slideResetTransitionEnd` | Reset transition end |
+| `slidesUpdated` | Slides DOM updated |
+| `snapGridLengthChange` | Snap grid change |
+| `slidesGridLengthChange` | Slides grid change |
+| `snapIndexChange` | Snap index changed |
+| `activeIndexChange` | Active index changed |
+| `realIndexChange` | Real index changed |
 
 ---
 
-## Plugin mit externem State-Management
+## Plugin with external state management
 
 ```javascript
 const StatePlugin = {
   name: 'statePlugin',
   params: {
     statePlugin: {
-      onStateChange: null, // Callback-Funktion
+      onStateChange: null, // callback function
     },
   },
   create(swiper) {
@@ -308,13 +308,13 @@ const StatePlugin = {
   },
 };
 
-// Verwendung:
+// Usage:
 const swiper = new Swiper('.swiper', {
   modules: [StatePlugin],
   statePlugin: {
     onStateChange: (state) => {
       console.log('State:', state);
-      // React, Vue, etc. State updaten
+      // Update React, Vue, etc. state
     },
   },
 });
@@ -322,38 +322,38 @@ const swiper = new Swiper('.swiper', {
 
 ---
 
-## Swiper-Instanz-Eigenschaften im Plugin-Kontext
+## Swiper instance properties in the plugin context
 
-Im Plugin `create(swiper)` und `on`-Hooks verfügbare Swiper-Properties:
+Swiper properties available in the plugin's `create(swiper)` and `on` hooks:
 
 ```javascript
 create(swiper) {
-  swiper.el           // Container DOM-Element
-  swiper.wrapperEl    // Wrapper DOM-Element
-  swiper.slides       // Array aller Slide-Elemente
-  swiper.activeIndex  // Aktueller Slide-Index
-  swiper.realIndex    // Realer Index (bei Loop)
-  swiper.isBeginning  // Am Anfang?
-  swiper.isEnd        // Am Ende?
-  swiper.params       // Alle Swiper-Parameter (inkl. Plugin-Params)
-  swiper.isElement    // Ist Swiper Element (Web Component)?
-  swiper.translate    // Aktueller Translate-Wert
-  swiper.progress     // Fortschritt (0-1)
+  swiper.el           // Container DOM element
+  swiper.wrapperEl    // Wrapper DOM element
+  swiper.slides       // Array of all slide elements
+  swiper.activeIndex  // Current slide index
+  swiper.realIndex    // Real index (with loop)
+  swiper.isBeginning  // At the beginning?
+  swiper.isEnd        // At the end?
+  swiper.params       // All Swiper parameters (incl. plugin params)
+  swiper.isElement    // Is it a Swiper Element (web component)?
+  swiper.translate    // Current translate value
+  swiper.progress     // Progress (0-1)
 
-  // Methoden:
+  // Methods:
   swiper.slideNext()
   swiper.slidePrev()
   swiper.slideTo(index)
   swiper.update()
-  swiper.emit('eventName', ...args)  // Eigene Events auslösen
-  swiper.on('eventName', handler)    // Event lauschen
-  swiper.off('eventName', handler)   // Event entfernen
+  swiper.emit('eventName', ...args)  // Emit your own events
+  swiper.on('eventName', handler)    // Listen to an event
+  swiper.off('eventName', handler)   // Remove an event
 }
 ```
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://swiperjs.com/plugins*
 - *https://swiperjs.com/swiper-api*
 - *Swiper v12.2.0*

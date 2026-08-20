@@ -1,16 +1,16 @@
 # Kbd — Installation
 
-## CLI (empfohlen)
+## CLI (recommended)
 
 ```bash
 npx shadcn-vue@latest add kbd
 ```
 
-## Manuell
+## Manual
 
-1. Keine externen Abhangigkeiten (keine reka-ui-Primitive benotigt)
+1. No external dependencies (no reka-ui primitives needed)
 
-2. Folgende Dateien nach `src/components/ui/kbd/` kopieren:
+2. Copy the following files to `src/components/ui/kbd/`:
    - `Kbd.vue`
    - `KbdGroup.vue`
    - `index.ts`
@@ -21,5 +21,5 @@ npx shadcn-vue@latest add kbd
 import { Kbd, KbdGroup } from "@/components/ui/kbd"
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/kbd/index.ts`

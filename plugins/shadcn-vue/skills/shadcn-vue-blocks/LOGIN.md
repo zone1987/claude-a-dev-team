@@ -1,20 +1,20 @@
 # shadcn-vue Login Blocks
 
-Diese Skill-Referenz enthält 5 fertige Login-Seiten-Blöcke aus der shadcn-vue Registry (new-york-v4). Jeder Block besteht aus einer `page.vue` und einer `components/LoginForm.vue` und kann per CLI direkt installiert werden.
+This skill reference contains 5 ready-made login page blocks from the shadcn-vue registry (new-york-v4). Each block consists of a `page.vue` and a `components/LoginForm.vue` and can be installed directly via the CLI.
 
-## Überblick
+## Overview
 
 | Block | Layout | Social-Auth |
 |-------|--------|-------------|
-| login-01 | Zentriertes Card-Formular | Google |
-| login-02 | Zwei Spalten mit Cover-Image | GitHub |
-| login-03 | Muted Background, Card mit Social-Buttons | Apple + Google |
-| login-04 | Muted Background, Card mit Side-Image | Apple + Google + Meta |
-| login-05 | Minimalistisch, Email-only mit Social | Apple + Google |
+| login-01 | Centered card form | Google |
+| login-02 | Two columns with cover image | GitHub |
+| login-03 | Muted background, card with social buttons | Apple + Google |
+| login-04 | Muted background, card with side image | Apple + Google + Meta |
+| login-05 | Minimalist, email-only with social | Apple + Google |
 
 ---
 
-## login-01: Einfaches Login-Formular (Card-Layout, zentriert)
+## login-01: simple login form (card layout, centered)
 
 **Installation:**
 ```bash
@@ -25,11 +25,11 @@ npx shadcn-vue@latest add login-01
 - `page.vue`
 - `components/LoginForm.vue`
 
-**Beschreibung:** Zentriertes Login-Formular in einer Card-Komponente. Email- und Passwort-Felder, "Forgot your password?"-Link, Login-Button, Google-OAuth-Button und Sign-up-Link. Verwendet `Card`, `Field`, `FieldGroup`, `Input`, `Button`.
+**Description:** Centered login form inside a card component. Email and password fields, "Forgot your password?" link, login button, Google OAuth button and sign-up link. Uses `Card`, `Field`, `FieldGroup`, `Input`, `Button`.
 
 ---
 
-## login-02: Zwei-Spalten-Layout mit Cover-Image
+## login-02: two-column layout with cover image
 
 **Installation:**
 ```bash
@@ -40,11 +40,11 @@ npx shadcn-vue@latest add login-02
 - `page.vue`
 - `components/LoginForm.vue`
 
-**Beschreibung:** Zweispaltiges Layout: links das Login-Formular mit Logo und Markenname, rechts ein Cover-Bild (bg-muted, hidden auf Mobile). Keine Card-Wrapper — das Formular steht direkt in einem `<form>`-Tag. GitHub-OAuth-Button. Verwendet `FieldSeparator`.
+**Description:** Two-column layout: the login form with logo and brand name on the left, a cover image on the right (bg-muted, hidden on mobile). No card wrapper — the form sits directly inside a `<form>` tag. GitHub OAuth button. Uses `FieldSeparator`.
 
 ---
 
-## login-03: Muted Background mit Card und Social-Auth oben
+## login-03: muted background with card and social auth on top
 
 **Installation:**
 ```bash
@@ -55,11 +55,11 @@ npx shadcn-vue@latest add login-03
 - `page.vue`
 - `components/LoginForm.vue`
 
-**Beschreibung:** Muted Background-Seite mit Logo-Link oben. Card mit zentriertem Header ("Welcome back"). Social-Buttons (Apple + Google) stehen vor dem Email/Passwort-Formular, getrennt durch einen `FieldSeparator`. Enthält Terms-of-Service-Hinweis unterhalb der Card.
+**Description:** Muted background page with a logo link at the top. Card with a centered header ("Welcome back"). The social buttons (Apple + Google) come before the email/password form, separated by a `FieldSeparator`. Includes a terms-of-service note below the card.
 
 ---
 
-## login-04: Muted Background mit Card und Seiten-Image (Apple + Google + Meta)
+## login-04: muted background with card and side image (Apple + Google + Meta)
 
 **Installation:**
 ```bash
@@ -70,11 +70,11 @@ npx shadcn-vue@latest add login-04
 - `page.vue`
 - `components/LoginForm.vue`
 
-**Beschreibung:** Muted Background mit einer Card, die intern zweispaltig (`md:grid-cols-2`) ist: links das Formular, rechts ein Placeholder-Bild (hidden auf Mobile). Social-Icons (Apple, Google, Meta) als Icon-only Buttons in einem 3-Spalten-Grid. Enthält Terms-Hinweis unter der Card.
+**Description:** Muted background with a card that is internally two-column (`md:grid-cols-2`): the form on the left, a placeholder image on the right (hidden on mobile). Social icons (Apple, Google, Meta) as icon-only buttons in a 3-column grid. Includes a terms note below the card.
 
 ---
 
-## login-05: Minimalistisches Email-only Login mit Social-Buttons
+## login-05: minimalist email-only login with social buttons
 
 **Installation:**
 ```bash
@@ -85,12 +85,12 @@ npx shadcn-vue@latest add login-05
 - `page.vue`
 - `components/LoginForm.vue`
 
-**Beschreibung:** Sehr schlankes Design ohne Card-Wrapper. Logo-Icon, Titel, Sign-up-Link, nur ein Email-Eingabefeld, Login-Button, Trenner und zwei Social-Buttons (Apple + Google) nebeneinander in einem responsiven 2-Spalten-Grid. Terms-Hinweis darunter.
+**Description:** Very lean design without a card wrapper. Logo icon, title, sign-up link, a single email input field, login button, separator and two social buttons (Apple + Google) side by side in a responsive 2-column grid. Terms note below.
 
 ---
 
-## Referenz-Dateien
+## Reference files
 
-- [LOGIN-01-02.md](LOGIN-01-02.md) — Vollständiger Code für login-01 und login-02
-- [LOGIN-03-04.md](LOGIN-03-04.md) — Vollständiger Code für login-03 und login-04
-- [LOGIN-05.md](LOGIN-05.md) — Vollständiger Code für login-05
+- [LOGIN-01-02.md](LOGIN-01-02.md) — Complete code for login-01 and login-02
+- [LOGIN-03-04.md](LOGIN-03-04.md) — Complete code for login-03 and login-04
+- [LOGIN-05.md](LOGIN-05.md) — Complete code for login-05

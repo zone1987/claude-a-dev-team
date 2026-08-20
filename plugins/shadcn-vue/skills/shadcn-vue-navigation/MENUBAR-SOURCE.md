@@ -1,4 +1,4 @@
-# Menubar — Vollstandiger Quellcode
+# Menubar — Complete source code
 
 ## Contents
 
@@ -18,7 +18,7 @@
 - [MenubarSubContent.vue](#menubarsubcontentvue)
 - [MenubarSubTrigger.vue](#menubarsubtriggervue)
 - [MenubarTrigger.vue](#menubartriggervue)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
 ## index.ts
 
@@ -535,5 +535,5 @@ const forwardedProps = useForwardProps(delegatedProps)
 </template>
 ```
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/menubar/`

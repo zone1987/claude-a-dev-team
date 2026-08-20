@@ -1,18 +1,18 @@
-# Shopware Migrationsprozess — Schritt für Schritt
+# Shopware migration process — step by step
 
-Destilliert aus `docs.shopware.com/de/migration-de`. Gilt für SW5→SW6, SW6→SW6 und Magento→SW6.
+Distilled from `docs.shopware.com/de/migration-de`. Applies to SW5→SW6, SW6→SW6 and Magento→SW6.
 
-## Kurzübersicht
+## Short overview
 
-1. Erweiterungen installieren (Quell- + Zielshop)
-2. Integration im Quellshop anlegen (Zugangsdaten)
-3. Verbindung im Migrationsassistenten herstellen
-4. Daten prüfen und auswählen
-5. Migration starten (6 Phasen)
-6. Livegang vorbereiten
+1. Install the extensions (source + target shop)
+2. Create an **Integration** in the source shop (access credentials)
+3. Establish the connection in the Migrationsassistent (Migration Assistant)
+4. Check and select the data
+5. Start the migration (6 phases)
+6. Prepare the go-live
 
-Tiefes Schritt-für-Schritt-Wissen: `references/deep/`
+Deep step-by-step knowledge: `references/deep/`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/migration-de*
+*Source: https://docs.shopware.com/de/migration-de*

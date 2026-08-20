@@ -1,23 +1,23 @@
-# Digital Sales Rooms — 3rd-Party Setup
+# Digital Sales Rooms — third-party setup
 
-Vollständige Referenz: [DIGITAL-SALES-ROOMS-3RDPARTY-3RDPARTY.md](DIGITAL-SALES-ROOMS-3RDPARTY-3RDPARTY.md)
+Full reference: [DIGITAL-SALES-ROOMS-3RDPARTY-3RDPARTY.md](DIGITAL-SALES-ROOMS-3RDPARTY-3RDPARTY.md)
 
 ## Daily.co (Video/Audio)
 
 1. Dashboard: [dashboard.daily.co](https://dashboard.daily.co/)
-2. Sektion "Developers" → API KEY kopieren
-3. In DSR Plugin-Config eintragen: Video and Audio → API key
+2. "Developers" section → copy the API KEY
+3. Enter it in the DSR plugin config: Video and Audio → API key
 
 ## Mercure (Realtime)
 
-**Schnellstart via Stackhero (empfohlen):**
+**Quick start via Stackhero (recommended):**
 
-1. [stackhero.io](https://www.stackhero.io) → Neuen Stack mit "Mercure Hub" erstellen
-2. Hub url, public url, subscriber secret + publisher secret kopieren
-3. CORS: Frontend-Domain und Backend-Domain in "publish allowed origins" eintragen
-4. Werte in DSR Plugin-Config → Realtime service eintragen
+1. [stackhero.io](https://www.stackhero.io) → create a new stack with "Mercure Hub"
+2. Copy hub url, public url, subscriber secret + publisher secret
+3. CORS: enter the frontend domain and backend domain in "publish allowed origins"
+4. Enter the values in the DSR plugin config → Realtime service
 
-**Alternativ: Docker**
+**Alternative: Docker**
 
 ```bash
 git clone https://github.com/shopware/local-mercure-sample
