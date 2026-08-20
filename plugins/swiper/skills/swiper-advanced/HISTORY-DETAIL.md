@@ -1,20 +1,20 @@
-# Swiper History-Modul — Vollständige Referenz
+# Swiper History module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [data-history-Attribut](#data-history-attribut)
-- [URL-Schema](#url-schema)
-- [Vollständige Konfigurationsbeispiele](#vollständige-konfigurationsbeispiele)
-- [Unterschied zu Hash Navigation](#unterschied-zu-hash-navigation)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [data-history attribute](#data-history-attribute)
+- [URL scheme](#url-scheme)
+- [Complete configuration examples](#complete-configuration-examples)
+- [Difference from Hash Navigation](#difference-from-hash-navigation)
 
-## Konzept
+## Concept
 
-Das History-Modul integriert Swiper in den Browser-Verlauf. Jeder Slide erhält eine eigene URL, sodass Nutzer mit den Browser-Back/Forward-Buttons navigieren können und direkte Links zu spezifischen Slides möglich sind.
+The History module integrates Swiper into the browser history. Every slide receives its own URL, so users can navigate with the browser back/forward buttons and direct links to specific slides become possible.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -30,52 +30,52 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `enabled` | `boolean` | `true` | History-Modul aktivieren |
-| `key` | `string` | `'slides'` | URL-Präfix; erzeugt URLs wie `/slides/slide-name` |
-| `replaceState` | `boolean` | `false` | `history.replaceState` statt `pushState` verwenden (kein Eintrag im Verlauf) |
-| `keepQuery` | `boolean` | `false` | Query-Parameter der aktuellen URL beibehalten |
-| `root` | `string` | `''` | Wurzelpfad für History-URLs |
+| `enabled` | `boolean` | `true` | Enable the History module |
+| `key` | `string` | `'slides'` | URL prefix; produces URLs such as `/slides/slide-name` |
+| `replaceState` | `boolean` | `false` | Use `history.replaceState` instead of `pushState` (no history entry) |
+| `keepQuery` | `boolean` | `false` | Keep the query parameters of the current URL |
+| `root` | `string` | `''` | Root path for History URLs |
 
-## data-history-Attribut
+## data-history attribute
 
-Jeder Slide braucht ein `data-history`-Attribut mit dem URL-Segment:
+Every slide needs a `data-history` attribute holding the URL segment:
 
 ```html
 <div class="swiper">
   <div class="swiper-wrapper">
-    <!-- URL wird zu: /slides/einfuehrung -->
+    <!-- URL becomes: /slides/einfuehrung -->
     <div class="swiper-slide" data-history="einfuehrung">
-      Einführung
+      Introduction
     </div>
-    <!-- URL wird zu: /slides/kapitel-1 -->
+    <!-- URL becomes: /slides/kapitel-1 -->
     <div class="swiper-slide" data-history="kapitel-1">
-      Kapitel 1
+      Chapter 1
     </div>
-    <!-- URL wird zu: /slides/fazit -->
+    <!-- URL becomes: /slides/fazit -->
     <div class="swiper-slide" data-history="fazit">
-      Fazit
+      Conclusion
     </div>
   </div>
 </div>
 ```
 
-## URL-Schema
+## URL scheme
 
-Mit `key: 'slides'` und `root: '/'`:
+With `key: 'slides'` and `root: '/'`:
 
-| Aktiver Slide | Resultierende URL |
+| Active slide | Resulting URL |
 |---------------|------------------|
 | `data-history="intro"` | `/slides/intro` |
 | `data-history="chapter-2"` | `/slides/chapter-2` |
 | `data-history="end"` | `/slides/end` |
 
-## Vollständige Konfigurationsbeispiele
+## Complete configuration examples
 
-### Präsentation mit sauberem URL-Schema
+### Presentation with a clean URL scheme
 
 ```js
 import Swiper from 'swiper';
@@ -99,31 +99,31 @@ HTML:
 ```html
 <div class="swiper-slide" data-history="einleitung">...</div>
 <div class="swiper-slide" data-history="hintergrund">...</div>
-<!-- erzeugt: /praesentation/folie/einleitung -->
+<!-- produces: /praesentation/folie/einleitung -->
 ```
 
-### Mit replaceState (kein Verlauf, aber URL aktualisiert)
+### With replaceState (no history entries, but the URL updates)
 
 ```js
 const swiper = new Swiper('.swiper', {
   modules: [History],
   history: {
     key: 'tab',
-    replaceState: true,  // Kein Verlaufseintrag
-    keepQuery: true,     // ?utm_source=... bleibt erhalten
+    replaceState: true,  // No history entry
+    keepQuery: true,     // ?utm_source=... is preserved
   },
 });
 ```
 
-## Unterschied zu Hash Navigation
+## Difference from Hash Navigation
 
-| Feature | History-Modul | Hash Navigation-Modul |
+| Feature | History module | Hash Navigation module |
 |---------|---------------|----------------------|
-| URL-Format | `/slides/slide-name` | `#slide-name` |
-| Browser-History | `pushState` / `replaceState` | Hash-Änderung |
-| Server-Konfiguration | Benötigt Rewrite-Regeln | Keine Serveränderung |
-| SEO | Besser (echte URLs) | Eingeschränkt |
-| Attribut auf Slide | `data-history` | `data-hash` |
+| URL format | `/slides/slide-name` | `#slide-name` |
+| Browser history | `pushState` / `replaceState` | Hash change |
+| Server configuration | Needs rewrite rules | No server change |
+| SEO | Better (real URLs) | Limited |
+| Attribute on the slide | `data-history` | `data-hash` |
 
 ---
-Quelle: https://swiperjs.com/swiper-api#history
+Source: https://swiperjs.com/swiper-api#history

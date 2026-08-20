@@ -1,34 +1,34 @@
-# Shopware 6 — Core Code Guidelines: Vollständige Referenz
+# Shopware 6 — Core Code Guidelines: Complete Reference
 
-Quellen: `resources/guidelines/code/core/` (alle .md-Dateien)
+Sources: `resources/guidelines/code/core/` (all .md files)
 
 ---
 
 ## Contents
 
-- [1. PHP-Sprachfeatures (ab PHP 8.1 / Shopware 6.5+)](#1-php-sprachfeatures-ab-php-81-shopware-65)
+- [1. PHP Language Features (PHP 8.1+ / Shopware 6.5+)](#1-php-language-features-php-81--shopware-65)
 - [2. Extendability Guidelines](#2-extendability-guidelines)
-- [3. Decorator Pattern — Regeln](#3-decorator-pattern-regeln)
+- [3. Decorator Pattern — Rules](#3-decorator-pattern--rules)
 - [4. Domain Exceptions](#4-domain-exceptions)
 - [5. Feature Flags](#5-feature-flags)
-- [6. @final und @internal Annotation](#6-final-und-internal-annotation)
-- [7. Datenbank-Migrationen](#7-datenbank-migrationen)
+- [6. @final and @internal Annotation](#6-final-and-internal-annotation)
+- [7. Database Migrations](#7-database-migrations)
 - [8. Unit Tests](#8-unit-tests)
 - [9. Writing Code for Static Analysis](#9-writing-code-for-static-analysis)
-- [10. ADR-Format](#10-adr-format)
-- [Referenzen](#referenzen)
+- [10. ADR Format](#10-adr-format)
+- [References](#references)
 
-## 1. PHP-Sprachfeatures (ab PHP 8.1 / Shopware 6.5+)
+## 1. PHP Language Features (PHP 8.1+ / Shopware 6.5+)
 
 ### Promoted Properties
 
 ```php
-// Statt:
+// Instead of:
 class Point {
     private int $x;
     public function __construct(int $x) { $this->x = $x; }
 }
-// Besser:
+// Better:
 class Point {
     public function __construct(private int $x) {}
 }
@@ -46,7 +46,7 @@ class ProductReindexCommand
 }
 ```
 
-### match statt switch
+### match instead of switch
 
 ```php
 $message = match ($statusCode) {
@@ -57,7 +57,7 @@ $message = match ($statusCode) {
 };
 ```
 
-Vorteile: strikte Gleichheit, kein Fall-through, exhaustiv, Expression (gibt Wert zurück).
+Advantages: strict comparison, no fall-through, exhaustive, expression (returns a value).
 
 ### Enums
 
@@ -74,31 +74,31 @@ class Indexer {
 }
 ```
 
-Enums statt Konstanten-Arrays; typisierbar; Singleton-Semantik; `from()`/`tryFrom()` für Serialisierung.
+Use enums instead of constant arrays; they are typable, have singleton semantics, and offer `from()`/`tryFrom()` for serialization.
 
-### Native Typen
+### Native Types
 
-- Union Types: `int|string`
-- Intersection Types: `MyService&MockObject`
-- `mixed` wenn wirklich beliebig
-- `never` für Methoden die nie zurückkehren (throw/exit)
-- `@var/@param/@return` nur noch für Generics, Array-Shapes, Klassen-Strings, Integer-Ranges etc.
+- Union types: `int|string`
+- Intersection types: `MyService&MockObject`
+- `mixed` when the value really can be anything
+- `never` for methods that never return (throw/exit)
+- `@var/@param/@return` only for generics, array shapes, class strings, integer ranges, etc.
 
 ### First-Class Callable Syntax
 
 ```php
-$longest = max(array_map(strlen(...), $strings)); // statt 'strlen'
+$longest = max(array_map(strlen(...), $strings)); // instead of 'strlen'
 $callable = $object->doCoolStuff(...);
 ```
 
-### Attribute statt Annotationen
+### Attributes instead of Annotations
 
 ```php
-// Statt Docblock-Annotation:
+// Instead of a docblock annotation:
 #[Route('/blog', name: 'blog_list')]
 public function list(): Response { /* ... */ }
 
-// Symfony DI ohne XML:
+// Symfony DI without XML:
 public function __construct(
     #[Autowire(service: 'email_adapter')]
     private Adapter $adapter,
@@ -109,7 +109,7 @@ public function __construct(
 
 ### Named Arguments
 
-Nur für PHP-eigene APIs (z.B. `htmlspecialchars`), NICHT für Shopware-APIs (Parameter-Namen sind KEIN BC-Versprechen).
+Only for PHP's own APIs (for example `htmlspecialchars`), NOT for Shopware APIs (parameter names are NOT a BC promise).
 
 ### Nullsafe Operator
 
@@ -117,34 +117,34 @@ Nur für PHP-eigene APIs (z.B. `htmlspecialchars`), NICHT für Shopware-APIs (Pa
 $addressLine2 = $user?->address?->addressLine2;
 ```
 
-### list<T> statt array<T>
+### list<T> instead of array<T>
 
 ```php
 /** @return list<string> */
 public function getChoices(): array { return ['a', 'b']; }
 ```
 
-`list<T>` für sequentielle Wert-Sammlungen ohne semantische Keys. Nach `array_merge()`/`array_unique()` mit `array_values()` normalisieren.
+Use `list<T>` for sequential value collections without semantic keys. Normalize with `array_values()` after `array_merge()`/`array_unique()`.
 
-### Neue String-Funktionen
+### New String Functions
 
-- `str_contains`, `str_starts_with`, `str_ends_with` statt `strpos`/`substr`
+- `str_contains`, `str_starts_with`, `str_ends_with` instead of `strpos`/`substr`
 
 ---
 
 ## 2. Extendability Guidelines
 
-Vollständig dokumentiert in `sw-extendability`. Hier Kurzfassung:
+Fully documented in `sw-extendability`. Short version:
 
-- **Events (Mediator)** — Erste Wahl; nur Primary Keys weitergeben
+- **Events (mediator)** — first choice; pass only primary keys
 - **Decorator** — AbstractClass + `getDecorated()` + `DecorationPatternException`
-- **Factory/Registry** — für neue User-Input-Typen via Tagged Services
-- **Visitor** — für Objekt-Verarbeitung
-- **Adapter** — für Technologietausch
+- **Factory/Registry** — for new user input types via tagged services
+- **Visitor** — for object processing
+- **Adapter** — for swapping technology
 
 ---
 
-## 3. Decorator Pattern — Regeln
+## 3. Decorator Pattern — Rules
 
 ```php
 abstract class AbstractRuleLoader
@@ -169,21 +169,21 @@ class PluginDecorator extends AbstractRuleLoader
     public function load(Context $context): RuleCollection
     {
         $rules = $this->inner->load($context);
-        // Erweiterung
+        // extension
         return $rules;
     }
 }
 ```
 
-**Regeln:**
-1. AbstractClass implementiert `getDecorated(): self`
-2. Core wirft `DecorationPatternException` in `getDecorated()`
-3. AbstractClass NICHT `@internal` oder `@final`
-4. Implementierungen: KEINE zusätzlichen public Methoden
-5. Implementierungen: KEIN `EventSubscriberInterface`
-6. PHPStan-Regel `DecorationPatternRule` erzwingt dies
+**Rules:**
+1. The AbstractClass implements `getDecorated(): self`
+2. The core throws `DecorationPatternException` in `getDecorated()`
+3. The AbstractClass is NOT `@internal` or `@final`
+4. Implementations: NO additional public methods
+5. Implementations: NO `EventSubscriberInterface`
+6. The PHPStan rule `DecorationPatternRule` enforces this
 
-Neue Methoden BC-safe hinzufügen: als non-abstract in der AbstractClass mit Delegation:
+Add new methods in a BC-safe way: as non-abstract methods in the AbstractClass that delegate:
 ```php
 public function create(Context $context): RuleCollection
 {
@@ -195,7 +195,7 @@ public function create(Context $context): RuleCollection
 
 ## 4. Domain Exceptions
 
-Pro Domäne eine Exception-Factory-Klasse, die `HttpException` extended.
+One exception factory class per domain, extending `HttpException`.
 
 ```php
 #[Package('customer-order')]
@@ -215,26 +215,26 @@ class CustomerException extends HttpException
 }
 ```
 
-**Regeln:**
-- `__construct` ist `private` — nur Factory-Methoden erstellen Instanzen
-- Error-Codes: eindeutig innerhalb der Domäne; stabil (keine Änderung nach Release)
-- Speicherort: direkt im Top-Level-Domain-Verzeichnis (`Checkout\Cart`, `Content\Product` etc.)
-- Catchable Exceptions: eigene Exception-Klasse die von DomainException erbt, in `Exception/`-Unterordner
+**Rules:**
+- `__construct` is `private` — only factory methods create instances
+- Error codes: unique within the domain; stable (no changes after a release)
+- Location: directly in the top-level domain directory (`Checkout\Cart`, `Content\Product`, etc.)
+- Catchable exceptions: a dedicated exception class inheriting from the DomainException, in an `Exception/` subfolder
 
 ```php
 class CustomerNotFoundException extends CustomerException {}
 ```
 
-- HTTP Status Codes: immer passenden offiziellen Code verwenden
+- HTTP status codes: always use the appropriate official code
 - ADR: https://github.com/shopware/shopware/blob/71ef1dffc97a131069cd4649f71ba35d04771e24/adr/2022-02-24-domain-exceptions.md
 
 ---
 
 ## 5. Feature Flags
 
-Feature Flags ermöglichen unfertige Änderungen in `trunk` zu mergen, ohne sie zu aktivieren.
+Feature flags let you merge unfinished changes into `trunk` without activating them.
 
-### .env Konfiguration
+### .env configuration
 ```
 V6_5_0_0=1
 ```
@@ -243,12 +243,12 @@ V6_5_0_0=1
 ```php
 use Shopware\Core\Framework\Feature;
 
-// Bedingte Ausführung:
+// Conditional execution:
 if (!Feature::isActive('v6.5.0.0')) {
-    // altes Verhalten
+    // old behavior
     return;
 }
-// neues Verhalten
+// new behavior
 
 // Callback:
 Feature::ifActive('v6.5.0.0', function() { /* ... */ });
@@ -267,10 +267,10 @@ Feature::skipTestIfActive('v6.5.0.0', $this);
 
 ### JavaScript (Admin)
 ```javascript
-// Modul verstecken:
+// Hide a module:
 Module.register('sw-awesome', { flag: 'v6.5.0.0', ... });
 
-// Inject Feature-Service:
+// Inject the feature service:
 inject: ['feature'],
 featureIsActive(flag) { return this.feature.isActive(flag); }
 ```
@@ -284,11 +284,11 @@ featureIsActive(flag) { return this.feature.isActive(flag); }
 
 ### Major Feature Flags
 
-Major-Flags (`v6.5.0.0`, `v6.6.0.0`) signalisieren Breaking Changes vor dem Release. Bleiben nach dem Release erhalten → nutzbar als Versions-Switch alternativ zu `version_compare`.
+Major flags (`v6.5.0.0`, `v6.6.0.0`) signal breaking changes before the release. They remain after the release, so you can use them as a version switch instead of `version_compare`.
 
-### Plugin-eigene Flags
+### Plugin-Owned Flags
 
-Interne Verwendung; Verhalten kann sich jederzeit ändern:
+For internal use; the behavior can change at any time:
 ```php
 private const FEATURE_FLAGS = ['paypal:v1.0.0.0'];
 
@@ -303,22 +303,22 @@ public function boot(): void
 
 ---
 
-## 6. @final und @internal Annotation
+## 6. @final and @internal Annotation
 
-→ Vollständig dokumentiert in `sw-extendability`.
+→ Fully documented in `sw-extendability`.
 
-Kurzfassung:
-- `@final`: Public API, nicht erweiterbar
-- `@internal`: Private API, keine Garantien, kein Einsatz in Plugins
+Short version:
+- `@final`: public API, not extendable
+- `@internal`: private API, no guarantees, do not use in plugins
 
 ---
 
-## 7. Datenbank-Migrationen
+## 7. Database Migrations
 
-### Struktur
+### Structure
 
 ```php
-// Namespace pro Major-Version:
+// One namespace per major version:
 namespace Shopware\Core\Migration\V6_7;
 
 class Migration1234567890MyFeature extends MigrationStep
@@ -333,7 +333,7 @@ class Migration1234567890MyFeature extends MigrationStep
 
     public function updateDestructive(Connection $connection): void
     {
-        // Irreversible (z.B. Spalte löschen) — nur in separatem Schritt
+        // Irreversible (for example dropping a column) — only in a separate step
         $connection->executeStatement('
             ALTER TABLE product DROP COLUMN old_field
         ');
@@ -343,125 +343,125 @@ class Migration1234567890MyFeature extends MigrationStep
 
 ### Mandatory Rules
 
-1. **NEVER eine bereits released Migration ändern** — neue Migration schreiben statt editieren
-2. **Idempotent** — Migration muss mehrfach ausführbar sein; `IF [NOT] EXISTS` nutzen
-3. **Keine Identifier vertrauen** — immer Identifier via Query ermitteln, nie hart coden
-4. **Keine Kundendaten überschreiben** — `updated_at IS NULL` prüfen vor Updates
-5. **Performance** — max. 10 Sekunden auf lokalem System; mit Produktionsdatenmengen testen
-6. **Keine Default-Sprache annehmen** — `ImportTranslationsTrait` nutzen
-7. **Table Naming** — snake_case, kein `swag_`-Präfix, beschreibende Namen
+1. **NEVER change an already released migration** — write a new migration instead of editing it
+2. **Idempotent** — a migration must be executable multiple times; use `IF [NOT] EXISTS`
+3. **Never trust identifiers** — always determine identifiers via a query, never hard-code them
+4. **Never overwrite customer data** — check `updated_at IS NULL` before updates
+5. **Performance** — max. 10 seconds on a local system; test with production data volumes
+6. **Never assume a default language** — use `ImportTranslationsTrait`
+7. **Table naming** — snake_case, no `swag_` prefix, descriptive names
 
 ### Expand-and-Contract Pattern
 
 ```
-1. Expand:    Neue Spalte hinzufügen (non-destructive, update())
-2. Migrate:   Daten von alter in neue Spalte kopieren (update())
-3. Contract:  Alte Spalte löschen (updateDestructive())
+1. Expand:    Add the new column (non-destructive, update())
+2. Migrate:   Copy data from the old column into the new one (update())
+3. Contract:  Drop the old column (updateDestructive())
 ```
 
-### Migration-Modes für Destructive Changes
+### Migration Modes for Destructive Changes
 
-| Mode | Führt Destructive aus bis |
+| Mode | Runs destructive up to |
 |------|--------------------------|
-| `mode=all` | Aktuelle Major-Version |
-| `mode=blue-green` | Vorherige Major-Version |
-| `mode=safe` (default) | Zwei Majors vor aktueller |
+| `mode=all` | Current major version |
+| `mode=blue-green` | Previous major version |
+| `mode=safe` (default) | Two majors before the current one |
 
-### Migration erstellen
+### Creating a Migration
 
 ```bash
 bin/console database:create-migration
-# Ausführen:
+# Execute:
 bin/console database:migrate --all core.V6_7
 ```
 
 ### Migration Tests
 
-- Tests in `tests/Migration/V6_*/`
-- KEIN `IntegrationTestBehaviour` / `KernelTestBehaviour` — Connection via `KernelLifecycleManager::getConnection()`
-- `update()` zweimal ausführen um Idempotenz zu verifizieren
-- DDL-Commands (CREATE/ALTER/DROP TABLE) laufen außerhalb von Transactions (Implicit Commit)
-- DDL-Tests müssen DDL-Änderungen manuell rückgängig machen (kein Rollback via `MigrationTestTrait`)
-- `MigrationTestTrait` für reine DML-Migrations nutzen
-- `MultiInsertQueryQueue` für Bulk-Fixture-Daten
+- Tests live in `tests/Migration/V6_*/`
+- NO `IntegrationTestBehaviour` / `KernelTestBehaviour` — get the connection via `KernelLifecycleManager::getConnection()`
+- Run `update()` twice to verify idempotency
+- DDL commands (CREATE/ALTER/DROP TABLE) run outside transactions (implicit commit)
+- DDL tests must revert DDL changes manually (no rollback via `MigrationTestTrait`)
+- Use `MigrationTestTrait` for pure DML migrations
+- Use `MultiInsertQueryQueue` for bulk fixture data
 
 ---
 
 ## 8. Unit Tests
 
-### Prinzipien
+### Principles
 
-- **100% Coverage** bedeutet: alle Use Cases getestet, nicht nur hohe Zeilenzahl
-- **Performance**: Tests schnell halten; mocks für DB-Zugriffe
-- **Behavior over Implementation**: Was tut der Code, nicht wie
-- **Modularity**: Tests dürfen keine Artefakte anderer Tests voraussetzen
-- **Cleanup**: EventListener in `teardown()` entfernen; DB rollbacken
-- **Failure Cases**: Nicht nur Happy-Path; auch Fehlerfälle testen
-- **Expected Exceptions**: `expectExceptionObject()` statt try/catch
+- **100% coverage** means: all use cases are tested, not just a high line count
+- **Performance**: keep tests fast; mock database access
+- **Behavior over implementation**: what the code does, not how
+- **Modularity**: tests must not depend on artifacts left by other tests
+- **Cleanup**: remove event listeners in `teardown()`; roll back the database
+- **Failure cases**: not only the happy path; test error cases too
+- **Expected exceptions**: `expectExceptionObject()` instead of try/catch
 
-### Mock-Strategie
+### Mock Strategy
 
-Mocks sparsam einsetzen:
-1. Echte Implementierung nutzen wenn möglich (kein DB-Zugriff, keine Side-Effects)
-2. Hand-crafted Stub/Dummy (z.B. `StaticEntityRepository`, `StaticSystemConfigService`)
-3. PHPUnit Mock Framework als letztes Mittel
+Use mocks sparingly:
+1. Use the real implementation when possible (no database access, no side effects)
+2. Hand-crafted stub/dummy (for example `StaticEntityRepository`, `StaticSystemConfigService`)
+3. The PHPUnit mock framework as a last resort
 
-**Mocks sind problematisch weil:**
-- Schlecht refactorierbar (IDEs erkennen Mock-Referenzen nicht)
-- Implementierungsdetails testen statt Verhalten
-- Können stale werden wenn sich Implementierung ändert
+**Mocks are problematic because they:**
+- Refactor badly (IDEs do not recognize mock references)
+- Test implementation details instead of behavior
+- Can go stale when the implementation changes
 
-### Gute Test-Beispiele
+### Good Test Examples
 
-- `CriteriaTest` — simple DTO-Tests
-- `CashRoundingTest` — Test-Matrix für Single-Service
-- `AddCustomerTagActionTest` — Mocks für Repositories
-- `ProductCartTest` — Integration-Test mit Helper-Functions
-- `CachedProductListingRouteTest` — Komplexe Test-Matrix
+- `CriteriaTest` — simple DTO tests
+- `CashRoundingTest` — test matrix for a single service
+- `AddCustomerTagActionTest` — mocks for repositories
+- `ProductCartTest` — integration test with helper functions
+- `CachedProductListingRouteTest` — complex test matrix
 
-### Para-Test-Kompatibilität
+### ParaTest Compatibility
 
-Tests müssen mit Parallel-Test-Setup kompatibel sein.
+Tests must be compatible with the parallel test setup.
 
 ---
 
 ## 9. Writing Code for Static Analysis
 
-PHPStan wird intensiv genutzt — Code muss statisch analysierbar sein.
+PHPStan is used heavily — code must be statically analyzable.
 
-### Typ-Sicherheit Prioritäten
+### Type Safety Priorities
 
-1. **Runtime-Checks** (bevorzugt):
+1. **Runtime checks** (preferred):
 ```php
 $foo = $bar->getFoo(); // Foo|null
 if ($foo === null) {
     throw new \InvalidArgumentException('Foo must not be null');
 }
-// PHPStan weiß jetzt: $foo ist Foo
+// PHPStan now knows: $foo is Foo
 ```
 
-2. **assert()** (Development/Test only):
+2. **assert()** (development/test only):
 ```php
-assert($foo !== null);         // Für Entwicklung/Test
+assert($foo !== null);         // For development/test
 assert(is_string($foo));
 assert($foo instanceof Foo);
 ```
 
-3. **@var Annotations** (letztes Mittel):
+3. **@var annotations** (last resort):
 ```php
 /** @var Foo $foo */
 $foo = $bar->getFoo();
 ```
 
-### Type Casts vermeiden
+### Avoid Type Casts
 
-Casts (`(string)`, `(int)`) verbergen Typ-Fehler; PHPStan erkennt unerwartete Cast-Effekte nicht.
+Casts (`(string)`, `(int)`) hide type errors; PHPStan does not detect unexpected cast effects.
 
-### @var/@param/@return nur für:
+### Use @var/@param/@return only for:
 
 - Generics: `@return Collection<int, Product>`
-- Array-Shapes: `@param array{id: string, name: string} $data`
-- Spezielle PHPStan-Typen: `class-string`, `positive-int`
+- Array shapes: `@param array{id: string, name: string} $data`
+- Special PHPStan types: `class-string`, `positive-int`
 
 ### list<T> vs array<T>
 
@@ -469,37 +469,37 @@ Casts (`(string)`, `(int)`) verbergen Typ-Fehler; PHPStan erkennt unerwartete Ca
 /** @return list<string> */
 public function getTags(): array
 {
-    return array_values(array_unique($tags)); // array_values() normalisiert zu list
+    return array_values(array_unique($tags)); // array_values() normalizes to a list
 }
 ```
 
 ---
 
-## 10. ADR-Format
+## 10. ADR Format
 
-Erwartungen an Architecture Decision Records:
+Expectations for Architecture Decision Records:
 
-- Vollständige Anforderungsbeschreibung
-- Alle betroffenen technischen Domänen auflisten
-- Alle betroffenen Logik-Bereiche auflisten
-- Pseudo-Code zur Visualisierung
-- Alle zu erstellenden/ändernden Public APIs definieren
-- Erweiterbarkeit und Business-Cases beschreiben
-- Begründung der Entscheidung
-- Alle Konsequenzen für Drittentwickler
+- A complete description of the requirements
+- List all affected technical domains
+- List all affected areas of logic
+- Pseudo code for visualization
+- Define all public APIs to be created or changed
+- Describe extendability and business cases
+- Rationale for the decision
+- All consequences for third-party developers
 
-### Empfohlener Ablauf
+### Recommended Procedure
 
-1. Liste der zu berührenden Domains erstellen
-2. Für jede Domain: Warum betroffen (2 Sätze)
-3. Pro Domain: "Problems" (Was muss geändert werden — noch nicht wie)
-4. Pro Domain: "Solution" (Wie die Problems gelöst werden)
-5. Section "Extendability": Wie können Entwickler das neue System erweitern
-6. Pseudo-Code am Ende
+1. Create a list of the domains you will touch
+2. For each domain: why it is affected (two sentences)
+3. Per domain: "Problems" (what has to change — not yet how)
+4. Per domain: "Solution" (how the problems are solved)
+5. Section "Extendability": how developers can extend the new system
+6. Pseudo code at the end
 
 ---
 
-## Referenzen
+## References
 
 - `resources/guidelines/code/core/6.5-new-php-language-features.md`
 - `resources/guidelines/code/core/extendability.md`

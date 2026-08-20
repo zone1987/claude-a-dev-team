@@ -1,23 +1,23 @@
-# Swiper Controller-Modul — Vollständige Referenz
+# Swiper Controller module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
 - [Properties](#properties)
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Events](#events)
-- [Bidirektionale Synchronisierung](#bidirektionale-synchronisierung)
-- [Mehrere gesteuerte Swipers](#mehrere-gesteuerte-swipers)
-- [Inverse-Steuerung](#inverse-steuerung)
-- [Vollständiges Beispiel (Linked Sliders)](#vollständiges-beispiel-linked-sliders)
+- [Bidirectional synchronization](#bidirectional-synchronization)
+- [Multiple controlled Swipers](#multiple-controlled-swipers)
+- [Inverse control](#inverse-control)
+- [Complete example (linked sliders)](#complete-example-linked-sliders)
 
-## Konzept
+## Concept
 
-Das Controller-Modul synchronisiert zwei oder mehr Swiper-Instanzen miteinander. Wenn einer navigiert wird, folgt der andere. Supports unidirektionale und bidirektionale Steuerung.
+The Controller module synchronizes two or more Swiper instances with each other. When one is navigated, the other follows. Supports unidirectional and bidirectional control.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -37,34 +37,34 @@ const swiper2 = new Swiper('.swiper-2', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `control` | `Swiper \| Swiper[] \| null` | `null` | Gesteuerte Swiper-Instanz(en) |
-| `inverse` | `boolean` | `false` | Gegenrichtung: wenn `true`, steuert vorwärts → rückwärts im anderen |
-| `by` | `'slide' \| 'container'` | `'slide'` | Sync per Slide-Index (`'slide'`) oder per Translate-Progress (`'container'`) |
+| `control` | `Swiper \| Swiper[] \| null` | `null` | Controlled Swiper instance(s) |
+| `inverse` | `boolean` | `false` | Opposite direction: with `true`, forward control moves the other one backward |
+| `by` | `'slide' \| 'container'` | `'slide'` | Sync by slide index (`'slide'`) or by translate progress (`'container'`) |
 
 ## Properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|--------------|
-| `swiper.controller.control` | `Swiper \| Swiper[]` | Referenz auf gesteuerte Instanz(en) — kann nachträglich gesetzt werden |
+| `swiper.controller.control` | `Swiper \| Swiper[]` | Reference to the controlled instance(s) — can be set afterwards |
 
-## Methoden
+## Methods
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---------|---------|--------------|
-| `swiper.controller.setTranslate(translate, byController)` | `(translate: number, byController: Swiper) => void` | Translate-Wert synchronisieren |
-| `swiper.controller.setTransition(transition, byController)` | `(transition: number, byController: Swiper) => void` | Transition-Dauer synchronisieren |
+| `swiper.controller.setTranslate(translate, byController)` | `(translate: number, byController: Swiper) => void` | Synchronize the translate value |
+| `swiper.controller.setTransition(transition, byController)` | `(transition: number, byController: Swiper) => void` | Synchronize the transition duration |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |-------|-----------|--------------|
-| `controllerUpdate` | `(swiper)` | Controller-Synchronisierung wurde aktualisiert |
+| `controllerUpdate` | `(swiper)` | Controller synchronization was updated |
 
-## Bidirektionale Synchronisierung
+## Bidirectional synchronization
 
 ```js
 import Swiper from 'swiper';
@@ -80,12 +80,12 @@ const swiperB = new Swiper('.swiper-b', {
   slidesPerView: 1,
 });
 
-// Nach Erstellung bidirektional verbinden
+// Connect bidirectionally after creation
 swiperA.controller.control = swiperB;
 swiperB.controller.control = swiperA;
 ```
 
-## Mehrere gesteuerte Swipers
+## Multiple controlled Swipers
 
 ```js
 const master = new Swiper('.master', {
@@ -95,14 +95,14 @@ const master = new Swiper('.master', {
 const slave1 = new Swiper('.slave-1', { modules: [Controller] });
 const slave2 = new Swiper('.slave-2', { modules: [Controller] });
 
-// Master steuert beide Slaves
+// Master controls both slaves
 master.controller.control = [slave1, slave2];
 ```
 
-## Inverse-Steuerung
+## Inverse control
 
 ```js
-// Galerie vorwärts → Thumbs rückwärts scrollen
+// Gallery forward -> thumbs scroll backward
 const gallery = new Swiper('.gallery', {
   modules: [Controller],
   controller: {
@@ -112,7 +112,7 @@ const gallery = new Swiper('.gallery', {
 });
 ```
 
-## Vollständiges Beispiel (Linked Sliders)
+## Complete example (linked sliders)
 
 ```js
 import Swiper from 'swiper';
@@ -128,7 +128,7 @@ const textSwiper = new Swiper('.text-swiper', {
   },
   on: {
     controllerUpdate: (swiper) => {
-      console.log('Sync aktualisiert');
+      console.log('Sync updated');
     },
   },
 });
@@ -140,10 +140,10 @@ const imageSwiper = new Swiper('.image-swiper', {
   speed: 800,
 });
 
-// Bidirektional verbinden
+// Connect bidirectionally
 textSwiper.controller.control = imageSwiper;
 imageSwiper.controller.control = textSwiper;
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#controller
+Source: https://swiperjs.com/swiper-api#controller

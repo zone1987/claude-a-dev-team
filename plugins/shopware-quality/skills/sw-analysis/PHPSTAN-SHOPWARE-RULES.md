@@ -1,7 +1,7 @@
-# PHPStan-Shopware: Vollständige Regelliste
+# PHPStan-Shopware: Complete Rule List
 
-Quelle: `shopwarelabs/phpstan-shopware`, Stand 2025.
-Alle Regeln sind in `rules.neon` aktiviert. Identifier folgen dem Schema `shopware.*`.
+Source: `shopwarelabs/phpstan-shopware`, as of 2025.
+All rules are enabled in `rules.neon`. Identifiers follow the `shopware.*` scheme.
 
 ---
 
@@ -34,22 +34,22 @@ Alle Regeln sind in `rules.neon` aktiviert. Identifier folgen dem Schema `shopwa
 - [25. ForbidInsecureSymfonyCookieRule (`ForbidInsecureSymfonyCookieRule`)](#25-forbidinsecuresymfonycookierule-forbidinsecuresymfonycookierule)
 - [26. ForbidDisabledSslVerificationRule (`ForbidDisabledSslVerificationRule`)](#26-forbiddisabledsslverificationrule-forbiddisabledsslverificationrule)
 - [27. NoEmptyResponseRule (`NoEmptyResponseRule`)](#27-noemptyresponserule-noemptyresponserule)
-- [Type-Extension](#type-extension)
+- [Type Extension](#type-extension)
 - [Collectors](#collectors)
 
 ## 1. DALDefinitionRule (`BestPractise\DALDefinitionRule`)
 
 **Identifier:** `shopware.bestPractise.dal.propertyMissing` / `.propertyReadonly` / `.propertyPrivate` / `.noGetter` / `.noSetter`
 
-**Prüft:** Konsistenz zwischen DAL `EntityDefinition` (Felder) und der zugehörigen `Entity`-Klasse (Properties).
+**Checks:** consistency between the DAL `EntityDefinition` (fields) and the corresponding `Entity` class (properties).
 
-- Feld in Definition, aber Property fehlt im Entity → `propertyMissing`
-- Property ist `readonly` → `propertyReadonly`
-- Property ist `private` (EntityHydrator kann private Properties nicht befüllen) → `propertyPrivate`
-- Property ist `protected` ohne passende Getter-Methode (`get…`, `is…`, `has…`) → `noGetter`
-- Property ist `protected` ohne Setter (außer bei `runtime`/`computed` Feldern) → `noSetter`
+- Field in the definition but property missing in the entity → `propertyMissing`
+- Property is `readonly` → `propertyReadonly`
+- Property is `private` (the EntityHydrator cannot populate private properties) → `propertyPrivate`
+- Property is `protected` without a matching getter method (`get…`, `is…`, `has…`) → `noGetter`
+- Property is `protected` without a setter (except for `runtime`/`computed` fields) → `noSetter`
 
-**Verstoß:**
+**Violation:**
 ```php
 class ProductEntity extends Entity {
     private string $name; // private → phpstan error
@@ -62,22 +62,22 @@ class ProductEntity extends Entity {
 
 **Identifier:** `shopware.bestPractise.preferRouteEventListener`
 
-**Prüft:** Event-Listener auf `kernel.request`, `kernel.response`, `kernel.controller`, die intern auf eine bestimmte Route filtern (`$request->attributes->get('_route') !== 'meine.route'`).
+**Checks:** event listeners on `kernel.request`, `kernel.response`, `kernel.controller` that internally filter for a specific route (`$request->attributes->get('_route') !== 'my.route'`).
 
-Empfiehlt stattdessen, den route-spezifischen Event (z.B. `meine.route.request`) zu verwenden, der nur bei Match aufgerufen wird.
+Recommends using the route-specific event instead (for example `my.route.request`), which is only dispatched on a match.
 
-**Verstoß:**
+**Violation:**
 ```php
 #[AsEventListener(event: 'kernel.request')]
 public function onRequest(RequestEvent $event): void {
     if ($event->getRequest()->attributes->get('_route') !== 'frontend.home.page') {
-        return; // ← Regel schlägt an
+        return; // ← the rule triggers here
     }
     // ...
 }
 ```
 
-**Fix:** Auf `frontend.home.page.request` lauschen.
+**Fix:** listen to `frontend.home.page.request`.
 
 ---
 
@@ -85,14 +85,14 @@ public function onRequest(RequestEvent $event): void {
 
 **Identifier:** `shopware.class.extends.abstract`
 
-**Prüft:** Wenn eine Klasse eine Shopware-Klasse extends, die eine `getDecorated()`-Methode besitzt (Decoration-Pattern), und in der Vererbungskette eine abstrakte Klasse existiert, muss diese abstrakte Klasse extended werden (nicht die konkrete Implementierung).
+**Checks:** if a class extends a Shopware class that has a `getDecorated()` method (decoration pattern) and an abstract class exists in the inheritance chain, that abstract class must be extended (not the concrete implementation).
 
-**Verstoß:**
+**Violation:**
 ```php
-// Falsch: Direkt konkrete Klasse extends
+// Wrong: extending the concrete class directly
 class MyProductRoute extends ProductRoute { ... }
 
-// Richtig:
+// Correct:
 class MyProductRoute extends AbstractProductRoute { ... }
 ```
 
@@ -102,16 +102,16 @@ class MyProductRoute extends AbstractProductRoute { ... }
 
 **Identifier:** `shopware.disallow.default.context.creation`
 
-**Prüft:** Aufruf von `Context::createDefaultContext()` wenn `Context::createCLIContext()` vorhanden ist.
+**Checks:** calls to `Context::createDefaultContext()` when `Context::createCLIContext()` is available.
 
-**Verstoß:**
+**Violation:**
 ```php
-$context = Context::createDefaultContext(); // ← Fehler
+$context = Context::createDefaultContext(); // ← error
 ```
 
 **Fix:**
 - CLI: `Context::createCLIContext()`
-- Web: Context aus Controller-Parameter durchreichen
+- Web: pass the context through from the controller parameter
 
 ---
 
@@ -119,14 +119,14 @@ $context = Context::createDefaultContext(); // ← Fehler
 
 **Identifier:** `shopware.disallowFunctions`
 
-**Prüft:** Verbotene Debug-/Terminierungsfunktionen im produktiven Code.
+**Checks:** forbidden debug/termination functions in production code.
 
-**Verbotene Funktionen:** `var_dump`, `exit`, `die`, `dd`, `dump`
+**Forbidden functions:** `var_dump`, `exit`, `die`, `dd`, `dump`
 
-**Verstoß:**
+**Violation:**
 ```php
-var_dump($data); // ← Fehler
-dd($product);   // ← Fehler
+var_dump($data); // ← error
+dd($product);   // ← error
 ```
 
 ---
@@ -135,16 +135,16 @@ dd($product);   // ← Fehler
 
 **Identifier:** `shopware.disallowSessionFunctions`
 
-**Prüft:** Direkte PHP-Session-Funktionen statt Symfony-Session-Komponente.
+**Checks:** direct PHP session functions instead of the Symfony session component.
 
-**Verbotene Funktionen:** `session_write_close`, `session_start`, `session_destroy`
+**Forbidden functions:** `session_write_close`, `session_start`, `session_destroy`
 
-**Verstoß:**
+**Violation:**
 ```php
-session_start(); // ← Fehler
+session_start(); // ← error
 ```
 
-**Fix:** `$request->getSession()` aus dem Symfony Request-Objekt verwenden.
+**Fix:** use `$request->getSession()` from the Symfony request object.
 
 ---
 
@@ -152,11 +152,11 @@ session_start(); // ← Fehler
 
 **Identifier:** `shopware.forbidGlobBrace`
 
-**Prüft:** Verwendung der Konstante `GLOB_BRACE`, die auf manchen Plattformen (Alpine Linux / musl libc) nicht unterstützt wird.
+**Checks:** use of the `GLOB_BRACE` constant, which is not supported on some platforms (Alpine Linux / musl libc).
 
-**Verstoß:**
+**Violation:**
 ```php
-glob('/path/**', GLOB_BRACE); // ← Fehler
+glob('/path/**', GLOB_BRACE); // ← error
 ```
 
 ---
@@ -165,12 +165,12 @@ glob('/path/**', GLOB_BRACE); // ← Fehler
 
 **Identifier:** `shopware.internalClassExtends`
 
-**Prüft:** Extends einer als `@internal` markierten Shopware-Klasse.
+**Checks:** extending a Shopware class marked as `@internal`.
 
-**Verstoß:**
+**Violation:**
 ```php
-// FooService ist @internal in Shopware
-class MyService extends FooService { } // ← Fehler
+// FooService is @internal in Shopware
+class MyService extends FooService { } // ← error
 ```
 
 ---
@@ -179,9 +179,9 @@ class MyService extends FooService { } // ← Fehler
 
 **Identifier:** `shopware.internalFunctionCall`
 
-**Prüft:** Aufruf einer als `@internal` markierten Shopware-Funktion aus einem anderen Package-Namespace heraus.
+**Checks:** calling a Shopware function marked as `@internal` from another package namespace.
 
-Namespace-Prüfung: Aufruf innerhalb desselben Shopware-Packages (`NamespaceChecker::arePartOfTheSamePackage`) ist erlaubt.
+Namespace check: calling from within the same Shopware package (`NamespaceChecker::arePartOfTheSamePackage`) is allowed.
 
 ---
 
@@ -189,12 +189,12 @@ Namespace-Prüfung: Aufruf innerhalb desselben Shopware-Packages (`NamespaceChec
 
 **Identifier:** `shopware.internalMethodCall`
 
-**Prüft:** Aufruf einer als `@internal` markierten Methode einer Shopware-Klasse aus einem fremden Namespace.
+**Checks:** calling a method of a Shopware class marked as `@internal` from a foreign namespace.
 
-**Verstoß:**
+**Violation:**
 ```php
-// Methode doInternalStuff() ist @internal
-$service->doInternalStuff(); // ← Fehler (wenn außerhalb des gleichen Packages)
+// The method doInternalStuff() is @internal
+$service->doInternalStuff(); // ← error (when outside the same package)
 ```
 
 ---
@@ -203,14 +203,14 @@ $service->doInternalStuff(); // ← Fehler (wenn außerhalb des gleichen Package
 
 **Identifier:** `shopware.method.becomes.abstract`
 
-**Prüft:** Methoden in Parent-Klassen, die mit `@abstract` im DocComment markiert sind (aber noch nicht PHP-abstract sind) und in der Kindklasse nicht implementiert wurden.
+**Checks:** methods in parent classes marked with `@abstract` in the doc comment (but not yet PHP-abstract) that the child class does not implement.
 
-Dient zur Vorbereitung von Breaking Changes: Eine Methode wird im nächsten Major als `abstract` deklariert, Plugins sollen sie bereits jetzt implementieren.
+This prepares breaking changes: a method will be declared `abstract` in the next major, so plugins should implement it already.
 
-**Verstoß:**
+**Violation:**
 ```php
 class MyRoute extends AbstractProductRoute {
-    // getDecorated() fehlt, aber Parent hat @abstract getDecorated()
+    // getDecorated() is missing, but the parent has @abstract getDecorated()
 }
 ```
 
@@ -220,22 +220,22 @@ class MyRoute extends AbstractProductRoute {
 
 **Identifier:** `shopware.dal.filterById`
 
-**Prüft:** Direkte Verwendung von `EqualsFilter('id', ...)` oder `EqualsAnyFilter('id', ...)`.
+**Checks:** direct use of `EqualsFilter('id', ...)` or `EqualsAnyFilter('id', ...)`.
 
-IDs sollen direkt über `Criteria`-Konstruktor oder `$criteria->setIds()` übergeben werden.
+Pass IDs directly via the `Criteria` constructor or `$criteria->setIds()`.
 
-Ausnahme: Innerhalb eines `MultiFilter` oder `NotFilter` ist es erlaubt.
+Exception: inside a `MultiFilter` or `NotFilter` it is allowed.
 
-**Verstoß:**
+**Violation:**
 ```php
-$criteria->addFilter(new EqualsFilter('id', $id));       // ← Fehler
-$criteria->addFilter(new EqualsAnyFilter('id', $ids));   // ← Fehler
+$criteria->addFilter(new EqualsFilter('id', $id));       // ← error
+$criteria->addFilter(new EqualsAnyFilter('id', $ids));   // ← error
 ```
 
 **Fix:**
 ```php
 $criteria = new Criteria([$id]);
-// oder
+// or
 $criteria->setIds($ids);
 ```
 
@@ -245,11 +245,11 @@ $criteria->setIds($ids);
 
 **Identifier:** `shopware.sessionUsageInPaymentHandler` / `shopware.sessionUsageInStoreApi`
 
-**Prüft:** Nutzung von `SessionInterface`-Methoden innerhalb von:
-- Klassen, die `AbstractPaymentHandler` erweitern
-- Store-API-Controllern (`_routeScope: store-api`)
+**Checks:** use of `SessionInterface` methods inside:
+- classes extending `AbstractPaymentHandler`
+- Store API controllers (`_routeScope: store-api`)
 
-Sessions sind in diesen Kontexten nicht erlaubt (headless/API-Kompatibilität).
+Sessions are not allowed in these contexts (headless/API compatibility).
 
 ---
 
@@ -257,14 +257,14 @@ Sessions sind in diesen Kontexten nicht erlaubt (headless/API-Kompatibilität).
 
 **Identifier:** `shopware.noSuperGlobals`
 
-**Prüft:** Direkter Zugriff auf Superglobals `$_GET`, `$_POST`, `$_FILES`, `$_REQUEST`.
+**Checks:** direct access to the superglobals `$_GET`, `$_POST`, `$_FILES`, `$_REQUEST`.
 
-**Verstoß:**
+**Violation:**
 ```php
-$data = $_POST['name']; // ← Fehler
+$data = $_POST['name']; // ← error
 ```
 
-**Fix:** Symfony `Request`-Objekt verwenden.
+**Fix:** use the Symfony `Request` object.
 
 ---
 
@@ -272,14 +272,14 @@ $data = $_POST['name']; // ← Fehler
 
 **Identifier:** `shopware.sessionUsageInConstructor`
 
-**Prüft:** Methodenaufrufe auf `SessionInterface` innerhalb des Konstruktors (`__construct`).
+**Checks:** method calls on `SessionInterface` inside the constructor (`__construct`).
 
-Die Session darf im Konstruktor nicht verwendet werden, da sie dort ggf. noch nicht initialisiert ist.
+The session must not be used in the constructor, because it may not be initialized at that point.
 
-**Verstoß:**
+**Violation:**
 ```php
 public function __construct(SessionInterface $session) {
-    $value = $session->get('key'); // ← Fehler
+    $value = $session->get('key'); // ← error
 }
 ```
 
@@ -289,13 +289,13 @@ public function __construct(SessionInterface $session) {
 
 **Identifier:** `shopware.noUserEntityGetStoreToken`
 
-**Prüft:** Aufruf von `UserEntity::getStoreToken()`.
+**Checks:** calls to `UserEntity::getStoreToken()`.
 
-Das Store-Token ist ein internes Sicherheitsmerkmal und darf in Plugins nicht ausgelesen werden.
+The store token is an internal security feature and must not be read in plugins.
 
-**Verstoß:**
+**Violation:**
 ```php
-$token = $userEntity->getStoreToken(); // ← Fehler
+$token = $userEntity->getStoreToken(); // ← error
 ```
 
 ---
@@ -304,13 +304,13 @@ $token = $userEntity->getStoreToken(); // ← Fehler
 
 **Identifier:** `shopware.scheduledTaskLowInterval`
 
-**Prüft:** `getDefaultInterval()` in Klassen, die `ScheduledTask` erweitern. Minimum-Intervall: **300 Sekunden** (5 Minuten).
+**Checks:** `getDefaultInterval()` in classes extending `ScheduledTask`. Minimum interval: **300 seconds** (5 minutes).
 
-**Verstoß:**
+**Violation:**
 ```php
 class MyTask extends ScheduledTask {
     public static function getDefaultInterval(): int {
-        return 60; // ← Fehler: unter 300 Sekunden
+        return 60; // ← error: below 300 seconds
     }
 }
 ```
@@ -321,13 +321,13 @@ class MyTask extends ScheduledTask {
 
 **Identifier:** `shopware.foreign.key.checks`
 
-**Prüft:** `FOREIGN_KEY_CHECKS`-Deaktivierung in SQL-Strings innerhalb von `update()`-Methoden von `MigrationStep` oder `Plugin`.
+**Checks:** disabling `FOREIGN_KEY_CHECKS` in SQL strings inside `update()` methods of `MigrationStep` or `Plugin`.
 
-Das Deaktivieren von Foreign-Key-Checks in Migrationen ist verboten. Stattdessen sollen Daten in der richtigen Reihenfolge gelöscht werden.
+Disabling foreign key checks in migrations is forbidden. Delete data in the correct order instead.
 
-**Verstoß:**
+**Violation:**
 ```php
-$connection->executeStatement('SET FOREIGN_KEY_CHECKS=0'); // ← Fehler
+$connection->executeStatement('SET FOREIGN_KEY_CHECKS=0'); // ← error
 ```
 
 ---
@@ -336,18 +336,18 @@ $connection->executeStatement('SET FOREIGN_KEY_CHECKS=0'); // ← Fehler
 
 **Identifier:** `shopware.noEntityRepositoryInLoop`
 
-**Prüft:** Methodenaufrufe auf `EntityRepository` innerhalb von `for`- oder `foreach`-Schleifen.
+**Checks:** method calls on an `EntityRepository` inside `for` or `foreach` loops.
 
-Verhindert N+1-Queries.
+Prevents N+1 queries.
 
-**Verstoß:**
+**Violation:**
 ```php
 foreach ($productIds as $id) {
-    $this->productRepository->search(new Criteria([$id]), $context); // ← Fehler
+    $this->productRepository->search(new Criteria([$id]), $context); // ← error
 }
 ```
 
-**Fix:** Alle IDs in einer `Criteria` sammeln und einmalig abfragen.
+**Fix:** collect all IDs in a single `Criteria` and query once.
 
 ---
 
@@ -355,21 +355,21 @@ foreach ($productIds as $id) {
 
 **Identifier:** `shopware.forbidLocalDiskWrite`
 
-**Prüft:** Direktes Schreiben auf die lokale Festplatte außerhalb des temp-Verzeichnisses.
+**Checks:** writing directly to the local disk outside the temp directory.
 
-**Überwachte Funktionen/Methoden:**
-- `file_put_contents`, `fopen` (Schreib-Modi), `symlink`, `mkdir`, `rmdir`, `unlink`, `rename`
-- `ZipArchive::open` mit `CREATE`/`OVERWRITE`-Flags
-- `Symfony\Component\Filesystem\Filesystem`-Methoden: `dumpFile`, `mkdir`, `touch`, `remove`, `chmod`, `chown`, `chgrp`, `rename`, `symlink`, `hardlink`, `mirror`, `copy`, `tempnam`, `appendToFile`
+**Monitored functions/methods:**
+- `file_put_contents`, `fopen` (write modes), `symlink`, `mkdir`, `rmdir`, `unlink`, `rename`
+- `ZipArchive::open` with the `CREATE`/`OVERWRITE` flags
+- `Symfony\Component\Filesystem\Filesystem` methods: `dumpFile`, `mkdir`, `touch`, `remove`, `chmod`, `chown`, `chgrp`, `rename`, `symlink`, `hardlink`, `mirror`, `copy`, `tempnam`, `appendToFile`
 
-Ausnahmen: Pfade unter `sys_get_temp_dir()`, `php://stdin/stdout/stderr`, `STDIN/STDOUT/STDERR`.
+Exceptions: paths under `sys_get_temp_dir()`, `php://stdin/stdout/stderr`, `STDIN/STDOUT/STDERR`.
 
-**Verstoß:**
+**Violation:**
 ```php
-file_put_contents('/var/www/html/data.txt', $content); // ← Fehler
+file_put_contents('/var/www/html/data.txt', $content); // ← error
 ```
 
-**Fix:** Flysystem verwenden: https://developer.shopware.com/docs/guides/plugins/plugins/framework/filesystem/filesystem.html
+**Fix:** use Flysystem: https://developer.shopware.com/docs/guides/plugins/plugins/framework/filesystem/filesystem.html
 
 ---
 
@@ -377,12 +377,12 @@ file_put_contents('/var/www/html/data.txt', $content); // ← Fehler
 
 **Identifier:** `shopware.forwardSalesChannelContext`
 
-**Prüft:** Aufrufe von `SystemConfigService::get()`, `getString()`, `getInt()`, `getFloat()`, `getBool()` wenn im Scope eine `SalesChannelContext`-Variable vorhanden ist, aber kein `salesChannelId`-Parameter übergeben wird.
+**Checks:** calls to `SystemConfigService::get()`, `getString()`, `getInt()`, `getFloat()`, `getBool()` when a `SalesChannelContext` variable is available in scope but no `salesChannelId` parameter is passed.
 
-**Verstoß:**
+**Violation:**
 ```php
 public function handle(SalesChannelContext $context): void {
-    $value = $this->systemConfig->get('MyPlugin.config.key'); // ← Fehler, salesChannelId fehlt
+    $value = $this->systemConfig->get('MyPlugin.config.key'); // ← error, salesChannelId missing
 }
 ```
 
@@ -397,14 +397,14 @@ $value = $this->systemConfig->get('MyPlugin.config.key', $context->getSalesChann
 
 **Identifier:** `shopware.forbidPredictableSalt`
 
-**Prüft:** Hardcodierte Salts bei Passwort-Hashing:
-- `crypt($password, $salt)` mit literal String als 2. Argument
-- `password_hash($password, $algo, ['salt' => '...'])` mit explizitem `salt`-Key
+**Checks:** hardcoded salts in password hashing:
+- `crypt($password, $salt)` with a literal string as the second argument
+- `password_hash($password, $algo, ['salt' => '...'])` with an explicit `salt` key
 
-**Verstoß:**
+**Violation:**
 ```php
-crypt($password, 'mysecret'); // ← Fehler
-password_hash($pw, PASSWORD_BCRYPT, ['salt' => 'abc']); // ← Fehler
+crypt($password, 'mysecret'); // ← error
+password_hash($pw, PASSWORD_BCRYPT, ['salt' => 'abc']); // ← error
 ```
 
 ---
@@ -413,11 +413,11 @@ password_hash($pw, PASSWORD_BCRYPT, ['salt' => 'abc']); // ← Fehler
 
 **Identifier:** `shopware.forbidWeakCryptoKey`
 
-**Prüft:** `openssl_pkey_new(['private_key_bits' => N])` mit N < 2048.
+**Checks:** `openssl_pkey_new(['private_key_bits' => N])` with N < 2048.
 
-**Verstoß:**
+**Violation:**
 ```php
-openssl_pkey_new(['private_key_bits' => 1024]); // ← Fehler
+openssl_pkey_new(['private_key_bits' => 1024]); // ← error
 ```
 
 ---
@@ -426,16 +426,16 @@ openssl_pkey_new(['private_key_bits' => 1024]); // ← Fehler
 
 **Identifier:** `shopware.forbidInsecureCookie`
 
-**Prüft:** `setcookie()` / `setrawcookie()` ohne `secure=true`.
+**Checks:** `setcookie()` / `setrawcookie()` without `secure=true`.
 
-Beide Signaturen werden geprüft:
-- Legacy: 6. Argument muss `true` sein
-- Array-Optionen: `['secure' => true]` muss gesetzt sein
+Both signatures are checked:
+- Legacy: the 6th argument must be `true`
+- Array options: `['secure' => true]` must be set
 
-**Verstoß:**
+**Violation:**
 ```php
-setcookie('session', $value, 0, '/', ''); // ← Fehler: kein secure
-setcookie('session', $value, ['httponly' => true]); // ← Fehler: secure fehlt
+setcookie('session', $value, 0, '/', ''); // ← error: no secure
+setcookie('session', $value, ['httponly' => true]); // ← error: secure missing
 ```
 
 ---
@@ -444,20 +444,20 @@ setcookie('session', $value, ['httponly' => true]); // ← Fehler: secure fehlt
 
 **Identifier:** `shopware.forbidInsecureSymfonyCookie`
 
-**Prüft:** `new Cookie(...)`, `Cookie::create(...)` und `->withSecure(...)` ohne explizites `secure=true`.
+**Checks:** `new Cookie(...)`, `Cookie::create(...)` and `->withSecure(...)` without an explicit `secure=true`.
 
-Alle drei Erstellungswege werden abgedeckt. `withSecure()` ohne Argument gilt als sicher (default true).
+All three creation paths are covered. `withSecure()` without an argument counts as secure (defaults to true).
 
-**Verstoß:**
+**Violation:**
 ```php
-new Cookie('name', 'value'); // ← Fehler: secure-Parameter fehlt
-Cookie::create('name')->withSecure(false); // ← Fehler
+new Cookie('name', 'value'); // ← error: secure parameter missing
+Cookie::create('name')->withSecure(false); // ← error
 ```
 
 **Fix:**
 ```php
 new Cookie('name', 'value', secure: true);
-Cookie::create('name')->withSecure(); // withSecure() ohne Arg = true
+Cookie::create('name')->withSecure(); // withSecure() without an arg = true
 ```
 
 ---
@@ -466,14 +466,14 @@ Cookie::create('name')->withSecure(); // withSecure() ohne Arg = true
 
 **Identifier:** `shopware.forbidDisabledSslVerification`
 
-**Prüft:** Deaktivierung der SSL/TLS-Zertifikatsprüfung:
-- `stream_context_create(['ssl' => ['verify_peer' => false]])` oder `verify_peer_name`
+**Checks:** disabling SSL/TLS certificate verification:
+- `stream_context_create(['ssl' => ['verify_peer' => false]])` or `verify_peer_name`
 - `curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false)`
-- `curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0)` oder `1` (< 2 gilt als deaktiviert)
+- `curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0)` or `1` (< 2 counts as disabled)
 
-**Verstoß:**
+**Violation:**
 ```php
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // ← Fehler (MITM-Risiko)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // ← error (MITM risk)
 ```
 
 ---
@@ -482,35 +482,35 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // ← Fehler (MITM-Risiko)
 
 **Identifier:** `shopware.noEmptyResponse`
 
-**Prüft:** `new Response('')` oder `new Response(null)` ohne angemessenen Status-Code.
+**Checks:** `new Response('')` or `new Response(null)` without an appropriate status code.
 
-Erlaubte Status-Codes für leere Body-Responses: `204`, `301`, `302`, `303`, `304`, `307`, `308`.
+Allowed status codes for empty body responses: `204`, `301`, `302`, `303`, `304`, `307`, `308`.
 
-**Verstoß:**
+**Violation:**
 ```php
-return new Response(''); // ← Fehler: kein Inhalt ohne entsprechenden Status
+return new Response(''); // ← error: no content without a matching status
 ```
 
 **Fix:**
 ```php
-return new Response('', Response::HTTP_NO_CONTENT); // 204 ist erlaubt
-// oder
-return new JsonResponse(['data' => $result]); // Inhalt angeben
+return new Response('', Response::HTTP_NO_CONTENT); // 204 is allowed
+// or
+return new JsonResponse(['data' => $result]); // provide content
 ```
 
 ---
 
-## Type-Extension
+## Type Extension
 
 ### CollectionHasSpecifyingExtension
 
 **Tag:** `phpstan.typeSpecifier.methodTypeSpecifyingExtension`
 
-Verbessert die Typinferenz bei `Collection::has($key)`. Nach einem erfolgreichen `has()`-Check narrowt PHPStan den Rückgabetyp von `Collection::get($key)` auf non-null.
+Improves type inference for `Collection::has($key)`. After a successful `has()` check, PHPStan narrows the return type of `Collection::get($key)` to non-null.
 
 ```php
 if ($collection->has($id)) {
-    $item = $collection->get($id); // PHPStan weiß: nicht null
+    $item = $collection->get($id); // PHPStan knows: not null
 }
 ```
 
@@ -518,7 +518,7 @@ if ($collection->has($id)) {
 
 ## Collectors
 
-- **DALDefinitionCollector:** Sammelt Felder aller `EntityDefinition`-Subklassen (Name, `runtime`, `computed`-Flags)
-- **DALEntityCollector:** Sammelt Properties und Methoden aller `Entity`-Subklassen (Sichtbarkeit, `readonly`, Getter/Setter)
+- **DALDefinitionCollector:** collects the fields of all `EntityDefinition` subclasses (name, `runtime`, `computed` flags)
+- **DALEntityCollector:** collects the properties and methods of all `Entity` subclasses (visibility, `readonly`, getters/setters)
 
-Beide Collectors arbeiten zusammen mit `DALDefinitionRule`.
+Both collectors work together with `DALDefinitionRule`.

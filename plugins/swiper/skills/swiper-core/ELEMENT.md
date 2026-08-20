@@ -1,6 +1,6 @@
 # Swiper Element (Web Component)
 
-`<swiper-container>` und `<swiper-slide>` sind native Custom Elements (v9+).
-Framework-Adapter für Angular, Svelte und Solid wurden in v9 entfernt — Swiper Element ersetzt sie alle.
+`<swiper-container>` and `<swiper-slide>` are native custom elements (v9+).
+The framework adapters for Angular, Svelte and Solid were removed in v9 — Swiper Element replaces them all.
 
-Vollständige Referenz: `ELEMENT-SWIPER-ELEMENT.md`
+Complete reference: `ELEMENT-SWIPER-ELEMENT.md`

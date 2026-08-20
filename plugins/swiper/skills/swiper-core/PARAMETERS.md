@@ -1,6 +1,6 @@
-# Swiper — Parameter-Referenz
+# Swiper — Parameter reference
 
-Alle Konfigurationsoptionen für `new Swiper(el, options)`.
+All configuration options for `new Swiper(el, options)`.
 
 ```js
 import Swiper from 'swiper';
@@ -17,5 +17,5 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Vertiefung
-- [PARAMETERS-DETAIL.md](PARAMETERS-DETAIL.md) — vollständige Tabellen aller Parameter mit Typ, Default und Beschreibung (Core, Navigation, Pagination, Scrollbar, Autoplay, FreeMode, Grid, alle Effekte, Thumbs, Zoom, Keyboard, Mousewheel, Virtual)
+## Further reading
+- [PARAMETERS-DETAIL.md](PARAMETERS-DETAIL.md) — complete tables of all parameters with type, default and description (Core, Navigation, Pagination, Scrollbar, Autoplay, FreeMode, Grid, all effects, Thumbs, Zoom, Keyboard, Mousewheel, Virtual)

@@ -1,6 +1,6 @@
-# Shopware 6 — Server-Konfigurationsreferenz
+# Shopware 6 — Server Configuration Reference
 
-Vollständige Webserver-Konfigurationen für Nginx, Apache und Caddy.
-Document Root zeigt immer auf den `public/`-Ordner.
+Complete webserver configurations for Nginx, Apache and Caddy.
+The document root always points at the `public/` folder.
 
-Ausführliche Configs: `CONFIG-REFERENCE-SERVER-CONFIGS.md`
+Detailed configs: `CONFIG-REFERENCE-SERVER-CONFIGS.md`

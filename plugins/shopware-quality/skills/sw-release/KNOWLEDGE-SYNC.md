@@ -1,25 +1,25 @@
-# Shopware-Library — Knowledge-Sync (Selbst-Update)
+# Shopware library — knowledge sync (self-update)
 
-Hält die `sw-*`-Skills aktuell gegen `shopware/shopware`. Ausführung über den Agent `shopware-librarian` (`/sw-sync`).
+Keeps the `sw-*` skills current against `shopware/shopware`. Run it through the `shopware-librarian` agent (`/sw-sync`).
 
-## Quellen
-- **Releases/Tags** (neue Versionen): `https://api.github.com/repos/shopware/shopware/releases`
-  und `https://api.github.com/repos/shopware/shopware/tags` → neueste Version vs. gespeicherter Stand.
-- **Trunk-Drift**: GitHub-Compare-API bzw. lokaler Trunk-Pull; zusätzlich `changelog/`, `CHANGELOG.md`,
-  `UPGRADE-*`, `RELEASE_INFO-*`, neue/geänderte `adr/`.
+## Sources
+- **Releases/tags** (new versions): `https://api.github.com/repos/shopware/shopware/releases`
+  and `https://api.github.com/repos/shopware/shopware/tags` → latest version vs. the stored state.
+- **Trunk drift**: GitHub compare API or a local trunk pull; additionally `changelog/`, `CHANGELOG.md`,
+  `UPGRADE-*`, `RELEASE_INFO-*`, new/changed `adr/`.
 
-## State-Datei (`plugins/shopware-quality/.sync-state.json`)
+## State file (`plugins/shopware-quality/.sync-state.json`)
 ```json
-{ "lastCommit": "<sha>", "lastRelease": "v6.7.x.x", "lastChecked": "<ISO-Datum>" }
+{ "lastCommit": "<sha>", "lastRelease": "v6.7.x.x", "lastChecked": "<ISO date>" }
 ```
 
-## Mapping Source → Skill (Beispiele)
+## Mapping source → skill (examples)
 `src/Core/Framework/DataAbstractionLayer/**` → shopware-data · `src/Storefront/**` → shopware-storefront ·
 `src/Administration/**` → shopware-admin · `src/Core/Checkout/**` → shopware-checkout · `adr/*` → sw-adr-knowledge ·
-neue Major → neues `shopware-migration`-Skill.
+new major → new `shopware-migration` skill.
 
-## Driftkriterien
-neue/entfernte Klassen/Methoden, geänderte Signaturen, neue ADRs, deprecations, neue Major/Minor. Bei Unklarheit:
-Bericht, kein Auto-Apply.
+## Drift criteria
+new/removed classes and methods, changed signatures, new ADRs, deprecations, new major/minor. When in doubt:
+report, no auto-apply.
 
-→ Mechanik/Modi: Command `/sw-sync` (`--check` Report / `--apply`); Agent `shopware-librarian`.
+→ Mechanics/modes: command `/sw-sync` (`--check` report / `--apply`); agent `shopware-librarian`.

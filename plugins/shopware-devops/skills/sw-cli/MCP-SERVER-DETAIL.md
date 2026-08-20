@@ -1,68 +1,68 @@
-# Shopware MCP-Server — Vollständige Referenz
+# Shopware MCP Server — Complete Reference
 
-Der Model Context Protocol (MCP) Server ist seit Shopware 6.7 Teil der Core-Platform.
-Er ermöglicht KI-Clients (Claude Desktop, Claude Code, Cursor, Codex) die direkte,
-strukturierte Kommunikation mit dem Shop über ein Tool-basiertes Interface.
+The Model Context Protocol (MCP) server has been part of the core platform since Shopware 6.7.
+It lets AI clients (Claude Desktop, Claude Code, Cursor, Codex) communicate directly and in a
+structured way with the shop through a tool-based interface.
 
-> **Experimentell:** Hinter Feature-Flag `MCP_SERVER`. APIs und Tool-Namen können
-> sich bis Shopware 6.8 noch ändern.
+> **Experimental:** Behind the feature flag `MCP_SERVER`. APIs and tool names may still
+> change up to Shopware 6.8.
 
 ---
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Schnellstart](#schnellstart)
-- [Authentifizierung](#authentifizierung)
-- [Sicherheits-Schichten](#sicherheits-schichten)
-- [Eingebaute Tools](#eingebaute-tools)
-- [Eingebaute Resources](#eingebaute-resources)
-- [Eingebaute Prompts](#eingebaute-prompts)
-- [Konfiguration](#konfiguration)
+- [Overview](#overview)
+- [Quick Start](#quick-start)
+- [Authentication](#authentication)
+- [Security Layers](#security-layers)
+- [Built-in Tools](#built-in-tools)
+- [Built-in Resources](#built-in-resources)
+- [Built-in Prompts](#built-in-prompts)
+- [Configuration](#configuration)
 - [MCP Concepts: Tools vs. Resources vs. Prompts](#mcp-concepts-tools-vs-resources-vs-prompts)
-- [Shopware MCP-Erweiterungen](#shopware-mcp-erweiterungen)
-- [MCP Server Erweitern](#mcp-server-erweitern)
-- [Typische Beispiel-Workflows](#typische-beispiel-workflows)
+- [Shopware MCP Extensions](#shopware-mcp-extensions)
+- [Extending the MCP Server](#extending-the-mcp-server)
+- [Typical Example Workflows](#typical-example-workflows)
 - [Troubleshooting](#troubleshooting)
-- [Bekannte Limitierungen (Spec-Coverage)](#bekannte-limitierungen-spec-coverage)
+- [Known Limitations (Spec Coverage)](#known-limitations-spec-coverage)
 
-## Überblick
+## Overview
 
-| Eigenschaft | Details |
-|-------------|---------|
-| Endpoint | `POST /api/_mcp` (Streamable HTTP Transport) |
-| Authentifizierung | Integration-Credentials oder OAuth Bearer-Token |
-| Autorisierung | Vollständige Admin API ACL-Prüfung pro Tool-Call |
-| Tool-Allowlist | Pro Integration und pro User; Schnittmenge bei `sw-app-user-id` |
-| Rate Limiting | Pro Integration |
-| Discovery | `bin/console debug:mcp` listet alle registrierten Capabilities |
-| Erweiterbarkeit | Plugins, Bundles und Apps können eigene Tools/Prompts/Resources beitragen |
+| Property | Details |
+|----------|---------|
+| Endpoint | `POST /api/_mcp` (streamable HTTP transport) |
+| Authentication | Integration credentials or OAuth bearer token |
+| Authorization | Full Admin API ACL check per tool call |
+| Tool allowlist | Per integration and per user; intersection with `sw-app-user-id` |
+| Rate limiting | Per integration |
+| Discovery | `bin/console debug:mcp` lists all registered capabilities |
+| Extensibility | Plugins, bundles and apps can contribute their own tools/prompts/resources |
 
 ---
 
-## Schnellstart
+## Quick Start
 
-### 1. Feature Flag aktivieren
+### 1. Enable the feature flag
 
 ```bash
 # .env
 MCP_SERVER=1
 ```
 
-### 2. Integration erstellen
+### 2. Create an integration
 
 ```bash
 bin/console integration:create "My MCP Client" --admin
-# Ausgabe:
+# Output:
 # SHOPWARE_ACCESS_KEY_ID=SWIA...
 # SHOPWARE_SECRET_ACCESS_KEY=...
 ```
 
-> Für Production: `--admin` weglassen, dedizierte ACL-Rolle mit minimalen Rechten erstellen.
+> For production: omit `--admin`, create a dedicated ACL role with minimal privileges.
 
-### 3. KI-Client konfigurieren
+### 3. Configure the AI client
 
-**Claude Desktop / Cursor** (`~/Library/Application Support/Claude/claude_desktop_config.json` oder `.cursor/mcp.json`):
+**Claude Desktop / Cursor** (`~/Library/Application Support/Claude/claude_desktop_config.json` or `.cursor/mcp.json`):
 ```json
 {
   "mcpServers": {
@@ -78,7 +78,7 @@ bin/console integration:create "My MCP Client" --admin
 }
 ```
 
-**Claude Code** (`.mcp.json` im Projekt-Root — `type` muss `http` sein, nicht `streamable-http`):
+**Claude Code** (`.mcp.json` in the project root — `type` must be `http`, not `streamable-http`):
 ```json
 {
   "mcpServers": {
@@ -94,7 +94,7 @@ bin/console integration:create "My MCP Client" --admin
 }
 ```
 
-Oder per CLI:
+Or via CLI:
 ```bash
 claude mcp add --transport http shopware http://localhost:8000/api/_mcp \
   --header "sw-access-key: SWIA..." \
@@ -113,7 +113,7 @@ export SHOPWARE_MCP_ACCESS_KEY='SWIA...'
 export SHOPWARE_MCP_SECRET_KEY='...'
 ```
 
-### 4. Verbindung testen
+### 4. Test the connection
 
 ```bash
 bin/console debug:mcp
@@ -121,68 +121,68 @@ bin/console debug:mcp
 
 ---
 
-## Authentifizierung
+## Authentication
 
-### Integration-Credentials (empfohlen)
+### Integration credentials (recommended)
 
-HTTP-Header `sw-access-key` und `sw-secret-access-key`. Kein Token-Ablauf, keine manuelle Erneuerung.
+HTTP headers `sw-access-key` and `sw-secret-access-key`. No token expiry, no manual renewal.
 
-### Bearer Token
+### Bearer token
 
-Standard Admin API OAuth Bearer-Token. Läuft ab (default: 10 Minuten) — für persistente Clients ungeeignet. Verwendet die Per-User-Allowlist.
-
----
-
-## Sicherheits-Schichten
-
-Jede Anfrage durchläuft drei unabhängige Schichten:
-
-```
-Anfrage → [1. Authentifizierung] → [2. MCP Allowlist] → [3. ACL] → Capability ausführen
-```
-
-**Schicht 1 — Authentifizierung:** `sw-access-key` + `sw-secret-access-key`.
-
-**Schicht 2 — MCP Allowlist:** Pro Principal. `null` = alle Capabilities; `[]` = keine.
-
-| Auth-Methode | Allowlist-Quelle |
-|--------------|------------------|
-| Integration-Key (`SWIA...`) | Pro-Integration unter Settings → Integrations → Edit MCP Allowlist |
-| User-Key (`SWUA...`) | Pro-User unter Settings → Users & Permissions → MCP Tool Allowlist |
-| Bearer JWT (Password/Refresh) | Pro-User-Allowlist |
-| Bearer JWT (Client-Credentials) | Pro-Integration-Allowlist |
-| Integration + `sw-app-user-id` (Copilot) | Schnittmenge von Integration und User |
-
-Admin-User (`admin = true`) umgehen die Allowlist vollständig.
-`--admin` bei Integration umgeht nur ACL (Schicht 3), nicht die Allowlist (Schicht 2).
-
-**Schicht 3 — ACL:** Integration-Rolle muss die erforderlichen Entity-Permissions haben.
+Standard Admin API OAuth bearer token. Expires (default: 10 minutes) — unsuitable for persistent clients. Uses the per-user allowlist.
 
 ---
 
-## Eingebaute Tools
+## Security Layers
 
-### Response-Format
+Every request passes through three independent layers:
 
-Alle Core-Tools antworten mit konsistenter Envelope:
+```
+Request → [1. Authentication] → [2. MCP allowlist] → [3. ACL] → execute capability
+```
+
+**Layer 1 — Authentication:** `sw-access-key` + `sw-secret-access-key`.
+
+**Layer 2 — MCP allowlist:** Per principal. `null` = all capabilities; `[]` = none.
+
+| Auth method | Allowlist source |
+|-------------|------------------|
+| Integration key (`SWIA...`) | Per integration under Settings → Integrations → Edit MCP Allowlist |
+| User key (`SWUA...`) | Per user under Settings → Users & Permissions → MCP Tool Allowlist |
+| Bearer JWT (password/refresh) | Per-user allowlist |
+| Bearer JWT (client credentials) | Per-integration allowlist |
+| Integration + `sw-app-user-id` (Copilot) | Intersection of integration and user |
+
+Admin users (`admin = true`) bypass the allowlist entirely.
+`--admin` on an integration bypasses only the ACL (layer 3), not the allowlist (layer 2).
+
+**Layer 3 — ACL:** The integration role must have the required entity permissions.
+
+---
+
+## Built-in Tools
+
+### Response format
+
+All core tools respond with a consistent envelope:
 
 ```json
-// Erfolg:
+// Success:
 {"success": true, "data": [], "_meta": {"total": 42, "page": 1, "limit": 25}}
 
-// Fehler:
+// Error:
 {"success": false, "error": "Actionable error message"}
 ```
 
-### Dry-Run-Verhalten
+### Dry-run behavior
 
-Alle Write-Tools defaulten zu `dryRun=true`:
-- Validierung und Vorschau, keine Persistierung
-- Transaktion öffnen → ausführen → rollback
-- Flow Builder Aktionen unterdrückt
-- `dryRun=false` explizit übergeben um zu committen
+All write tools default to `dryRun=true`:
+- Validation and preview, no persistence
+- Open transaction → execute → rollback
+- Flow Builder actions suppressed
+- Pass `dryRun=false` explicitly to commit
 
-### Tool-Dependency-Graph
+### Tool dependency graph
 
 | Tool | Depends On |
 |------|-----------|
@@ -195,35 +195,35 @@ Alle Write-Tools defaulten zu `dryRun=true`:
 
 ---
 
-### Read Tools
+### Read tools
 
 #### `shopware-entity-schema`
 
-Schema (Felder + Assoziationen) einer Entity abrufen. Vor Search/Upsert immer zuerst aufrufen.
+Retrieve the schema (fields + associations) of an entity. Always call this first, before search/upsert.
 
-| Parameter | Typ | Required | Beschreibung |
-|-----------|-----|----------|--------------|
-| `entity` | string | ja | Entity-Name (z.B. `product`, `order`, `customer`) |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `entity` | string | yes | Entity name (e.g. `product`, `order`, `customer`) |
 
 ```json
 {"entity": "product"}
 ```
 
-ACL: keine (nur Schema-Introspection).
+ACL: none (schema introspection only).
 
 ---
 
 #### `shopware-entity-search`
 
-Entity-Datensätze suchen. Unterstützt `filter`, `sort`, `limit`, `page`, `associations`, `includes`, `fields`, `ids`, `term`, `query`, `post-filter`, `grouping`, `total-count-mode`.
+Search entity records. Supports `filter`, `sort`, `limit`, `page`, `associations`, `includes`, `fields`, `ids`, `term`, `query`, `post-filter`, `grouping`, `total-count-mode`.
 
-| Parameter | Typ | Required | Default | Beschreibung |
-|-----------|-----|----------|---------|--------------|
-| `entity` | string | ja | — | Entity-Name |
-| `criteria` | string | nein | `{}` | JSON Criteria-Objekt |
-| `limit` | int | nein | `25` | Ergebnisse pro Seite |
-| `page` | int | nein | `1` | Seite |
-| `term` | string | nein | — | Volltextsuche |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `entity` | string | yes | — | Entity name |
+| `criteria` | string | no | `{}` | JSON criteria object |
+| `limit` | int | no | `25` | Results per page |
+| `page` | int | no | `1` | Page |
+| `term` | string | no | — | Full-text search |
 
 ```json
 {"entity": "product", "term": "shirt", "limit": 5}
@@ -236,9 +236,9 @@ Entity-Datensätze suchen. Unterstützt `filter`, `sort`, `limit`, `page`, `asso
 }
 ```
 
-Paginierung: `page * limit >= _meta.total` → letzte Seite erreicht.
+Pagination: `page * limit >= _meta.total` → last page reached.
 
-Ohne `includes`: Antwort wird automatisch auf Skalar-Felder trimmt (keine Thumbnails, Übersetzungs-Duplikate).
+Without `includes`: the response is automatically trimmed to scalar fields (no thumbnails, no translation duplicates).
 
 ACL: `{entity}:read`
 
@@ -246,15 +246,15 @@ ACL: `{entity}:read`
 
 #### `shopware-entity-aggregate`
 
-Aggregationen ausführen ohne Datensätze zu laden. Für Zählungen, Durchschnitte, Summen.
+Run aggregations without loading records. For counts, averages, sums.
 
-| Parameter | Typ | Required | Beschreibung |
-|-----------|-----|----------|--------------|
-| `entity` | string | ja | Entity-Name |
-| `aggregations` | string | ja | JSON-Array von Aggregations-Definitionen |
-| `filters` | string | nein | JSON-Array von Filtern |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `entity` | string | yes | Entity name |
+| `aggregations` | string | yes | JSON array of aggregation definitions |
+| `filters` | string | no | JSON array of filters |
 
-Aggregations-Typen: `avg`, `sum`, `min`, `max`, `count`, `terms`, `date-histogram`, `range`, `filter`, `entity`
+Aggregation types: `avg`, `sum`, `min`, `max`, `count`, `terms`, `date-histogram`, `range`, `filter`, `entity`
 
 ```json
 {
@@ -269,13 +269,13 @@ ACL: `{entity}:read`
 
 #### `shopware-entity-read`
 
-Einzelne Entity per UUID lesen.
+Read a single entity by UUID.
 
-| Parameter | Typ | Required | Beschreibung |
-|-----------|-----|----------|--------------|
-| `entity` | string | ja | Entity-Name |
-| `id` | string | ja | UUID |
-| `criteria` | string | nein | JSON Criteria für Assoziationen |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `entity` | string | yes | Entity name |
+| `id` | string | yes | UUID |
+| `criteria` | string | no | JSON criteria for associations |
 
 ACL: `{entity}:read`
 
@@ -283,42 +283,42 @@ ACL: `{entity}:read`
 
 #### `shopware-system-config-read`
 
-System-Konfigurationswerte lesen. Domain-Prefix für alle Schlüssel unter einer Domain.
+Read system configuration values. A domain prefix returns all keys under that domain.
 
-| Parameter | Typ | Required | Beschreibung |
-|-----------|-----|----------|--------------|
-| `key` | string | ja | Config-Key oder Domain-Prefix (z.B. `core.listing`) |
-| `salesChannelId` | string | nein | Sales Channel scopen |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `key` | string | yes | Config key or domain prefix (e.g. `core.listing`) |
+| `salesChannelId` | string | no | Scope to a sales channel |
 
 ACL: `system_config:read`
 
 ---
 
-### Write Tools
+### Write tools
 
 #### `shopware-entity-upsert`
 
-Entity erstellen oder aktualisieren. Ohne `id` → create; mit `id` → update.
+Create or update an entity. Without `id` → create; with `id` → update.
 
-| Parameter | Typ | Required | Default | Beschreibung |
-|-----------|-----|----------|---------|--------------|
-| `entity` | string | ja | — | Entity-Name |
-| `payload` | string | ja | — | JSON Objekt oder Array |
-| `dryRun` | bool | nein | `true` | Vorschau ohne Persistierung |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `entity` | string | yes | — | Entity name |
+| `payload` | string | yes | — | JSON object or array |
+| `dryRun` | bool | no | `true` | Preview without persistence |
 
-ACL: `{entity}:create` und/oder `{entity}:update`
+ACL: `{entity}:create` and/or `{entity}:update`
 
 ---
 
 #### `shopware-entity-delete`
 
-Entities per UUID löschen. Cascade-Impact-Vorschau in Dry-Run.
+Delete entities by UUID. Cascade impact preview in dry run.
 
-| Parameter | Typ | Required | Default | Beschreibung |
-|-----------|-----|----------|---------|--------------|
-| `entity` | string | ja | — | Entity-Name |
-| `ids` | string | ja | — | JSON-Array von UUIDs |
-| `dryRun` | bool | nein | `true` | Cascade-Vorschau |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `entity` | string | yes | — | Entity name |
+| `ids` | string | yes | — | JSON array of UUIDs |
+| `dryRun` | bool | no | `true` | Cascade preview |
 
 ACL: `{entity}:delete`
 
@@ -326,14 +326,14 @@ ACL: `{entity}:delete`
 
 #### `shopware-system-config-write`
 
-System-Konfiguration aktualisieren. Zeigt Before/After-Diff in Dry-Run.
+Update system configuration. Shows a before/after diff in dry run.
 
-| Parameter | Typ | Required | Default | Beschreibung |
-|-----------|-----|----------|---------|--------------|
-| `key` | string | ja | — | Vollständiger Config-Key |
-| `value` | string | ja | — | Neuer Wert (JSON-encoded für komplexe Typen) |
-| `salesChannelId` | string | nein | — | Sales Channel scopen |
-| `dryRun` | bool | nein | `true` | Diff-Vorschau |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `key` | string | yes | — | Full config key |
+| `value` | string | yes | — | New value (JSON-encoded for complex types) |
+| `salesChannelId` | string | no | — | Scope to a sales channel |
+| `dryRun` | bool | no | `true` | Diff preview |
 
 ACL: `system_config:update`
 
@@ -341,16 +341,16 @@ ACL: `system_config:update`
 
 #### `shopware-order-state`
 
-Order-, Transaction- und/oder Delivery-State in einem Aufruf ändern.
+Change the order, transaction and/or delivery state in a single call.
 
-| Parameter | Typ | Required | Default | Beschreibung |
-|-----------|-----|----------|---------|--------------|
-| `orderNumber` | string | eines von | — | Bestellnummer (z.B. `10001`) |
-| `orderId` | string | eines von | — | Bestellungs-UUID |
-| `orderAction` | string | nein | — | `cancel`, `process`, `complete`, `reopen` |
-| `transactionAction` | string | nein | — | `cancel`, `paid`, `refund` |
-| `deliveryAction` | string | nein | — | `cancel`, `ship`, `retour`, `reopen` |
-| `dryRun` | bool | nein | `true` | Vorschau ohne Ausführung |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `orderNumber` | string | one of | — | Order number (e.g. `10001`) |
+| `orderId` | string | one of | — | Order UUID |
+| `orderAction` | string | no | — | `cancel`, `process`, `complete`, `reopen` |
+| `transactionAction` | string | no | — | `cancel`, `paid`, `refund` |
+| `deliveryAction` | string | no | — | `cancel`, `ship`, `retour`, `reopen` |
+| `dryRun` | bool | no | `true` | Preview without execution |
 
 ```json
 {"orderNumber": "10001", "deliveryAction": "ship", "dryRun": true}
@@ -360,37 +360,37 @@ Order-, Transaction- und/oder Delivery-State in einem Aufruf ändern.
 {"orderNumber": "10001", "orderAction": "cancel", "transactionAction": "refund", "deliveryAction": "cancel", "dryRun": false}
 ```
 
-ACL: `order:read` immer; `order:update`, `order_transaction:update`, `order_delivery:update` je nach Action bei Commit.
+ACL: `order:read` always; `order:update`, `order_transaction:update`, `order_delivery:update` depending on the action when committing.
 
 ---
 
 #### `shopware-media-upload`
 
-Media-Datei von öffentlicher URL hochladen. Kein Dry-Run.
+Upload a media file from a public URL. No dry run.
 
-| Parameter | Typ | Required | Beschreibung |
-|-----------|-----|----------|--------------|
-| `url` | string | ja | Öffentliche URL |
-| `fileName` | string | nein | Dateiname (default: URL-Basename) |
-| `mediaFolderId` | string | nein | UUID des Media-Ordners |
-| `productId` | string | nein | Produkt-UUID — setzt das Bild als Cover |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `url` | string | yes | Public URL |
+| `fileName` | string | no | File name (default: URL basename) |
+| `mediaFolderId` | string | no | UUID of the media folder |
+| `productId` | string | no | Product UUID — sets the image as cover |
 
-ACL: `media:create`; zusätzlich `product:update` bei `productId`.
+ACL: `media:create`; additionally `product:update` when `productId` is given.
 
 ---
 
-### Storefront-Bundle Tools
+### Storefront bundle tools
 
 #### `shopware-theme-config`
 
-Theme-Konfiguration für Sales Channel lesen oder aktualisieren.
+Read or update the theme configuration for a sales channel.
 
-| Parameter | Typ | Required | Default | Beschreibung |
-|-----------|-----|----------|---------|--------------|
-| `salesChannelId` | string | ja* | `""` | Sales Channel UUID |
-| `action` | string | nein | `"get"` | `"get"` oder `"update"` |
-| `config` | string | nein | `"{}"` | JSON Key-Value (für update) |
-| `dryRun` | bool | nein | `true` | Vorschau (für update) |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `salesChannelId` | string | yes* | `""` | Sales channel UUID |
+| `action` | string | no | `"get"` | `"get"` or `"update"` |
+| `config` | string | no | `"{}"` | JSON key-value (for update) |
+| `dryRun` | bool | no | `true` | Preview (for update) |
 
 ```json
 {
@@ -405,57 +405,57 @@ ACL: `theme:read` (get), `theme:update` (update).
 
 ---
 
-## Eingebaute Resources
+## Built-in Resources
 
-Resources sind schreibgeschützte Referenzdaten ohne Tool-Call-Budget.
+Resources are read-only reference data without a tool call budget.
 
-| URI | Beschreibung |
-|-----|--------------|
-| `shopware://entities` | Alle registrierten Entity-Namen |
-| `shopware://sales-channels` | Alle Sales Channels mit IDs, Namen, Typen, Domains |
-| `shopware://currencies` | Alle Währungen mit ISO-Codes, Symbolen, Faktoren |
-| `shopware://languages` | Alle Sprachen mit Locale-Codes |
-| `shopware://state-machines` | Alle State Machines mit States und gültigen Transitionen |
-| `shopware://business-events` | Alle Events, die Flows triggern können |
-| `shopware://flow-actions` | Alle Flow-Builder-Aktionen |
-| `shopware://extensions` | Aktive Plugins/Bundles mit zusätzlichen MCP-Tools |
+| URI | Description |
+|-----|-------------|
+| `shopware://entities` | All registered entity names |
+| `shopware://sales-channels` | All sales channels with IDs, names, types, domains |
+| `shopware://currencies` | All currencies with ISO codes, symbols, factors |
+| `shopware://languages` | All languages with locale codes |
+| `shopware://state-machines` | All state machines with states and valid transitions |
+| `shopware://business-events` | All events that can trigger flows |
+| `shopware://flow-actions` | All Flow Builder actions |
+| `shopware://extensions` | Active plugins/bundles with additional MCP tools |
 
 ---
 
-## Eingebaute Prompts
+## Built-in Prompts
 
 ### `shopware-context`
 
-System-Prompt mit Shopware-Domain-Wissen:
-- Core Entity-Beziehungen (product, order, customer, category)
-- DAL Criteria-Format
-- Tools nach Zweck gruppiert
-- Häufige Multi-Step-Workflows als Recipes
-- Error-Recovery-Guidance
-- Best Practices (schema first, dryRun, includes)
+System prompt with Shopware domain knowledge:
+- Core entity relationships (product, order, customer, category)
+- DAL criteria format
+- Tools grouped by purpose
+- Common multi-step workflows as recipes
+- Error recovery guidance
+- Best practices (schema first, dryRun, includes)
 
 ---
 
-## Konfiguration
+## Configuration
 
-### Feature Flag
+### Feature flag
 
 ```bash
 # .env
 MCP_SERVER=1
 ```
 
-### Shopware MCP-Einstellungen
+### Shopware MCP settings
 
 ```yaml
 # config/packages/shopware.yaml
 shopware:
   mcp:
-    allowed_tools: []    # Leer = alle Tools. Liste = globale Einschränkung.
-    app_tool_timeout: 10 # Timeout in Sekunden für App-Webhook-Calls
+    allowed_tools: []    # Empty = all tools. A list = global restriction.
+    app_tool_timeout: 10 # Timeout in seconds for app webhook calls
 ```
 
-### Global Tool Allowlist
+### Global tool allowlist
 
 ```yaml
 shopware:
@@ -466,11 +466,11 @@ shopware:
       - shopware-system-config-read
 ```
 
-### Session Store
+### Session store
 
-Default: File-basiert in `%kernel.cache_dir%/mcp-sessions/` (nur Single-Server).
+Default: file-based in `%kernel.cache_dir%/mcp-sessions/` (single server only).
 
-**Redis für Multi-Server/Kubernetes:**
+**Redis for multi-server/Kubernetes:**
 
 ```yaml
 # config/services.yaml
@@ -496,9 +496,9 @@ framework:
         default_lifetime: 3600
 ```
 
-### Delegated User Calls (`sw-app-user-id`)
+### Delegated user calls (`sw-app-user-id`)
 
-Apps können im Namen eines eingeloggten Users handeln:
+Apps can act on behalf of a logged-in user:
 
 ```
 sw-access-key: SWIA...
@@ -506,42 +506,42 @@ sw-secret-access-key: ...
 sw-app-user-id: <user-uuid>
 ```
 
-User-UUID aus JavaScript: `Shopware.Store.get('session').currentUser.id`
-Oder via API: `GET /api/_info/me` → `data.id`
+User UUID from JavaScript: `Shopware.Store.get('session').currentUser.id`
+Or via API: `GET /api/_info/me` → `data.id`
 
-Shopware wendet **Schnittmenge** von Integration-Allowlist und User-Allowlist an.
+Shopware applies the **intersection** of the integration allowlist and the user allowlist.
 
 ### CLI: `debug:mcp`
 
 ```bash
-bin/console debug:mcp                         # Alle Capabilities
-bin/console debug:mcp --tools                 # Nur Tools
-bin/console debug:mcp --prompts               # Nur Prompts
-bin/console debug:mcp --resources             # Nur Resources
-bin/console debug:mcp shopware-entity-search  # Einzelne Capability
-bin/console debug:mcp --integration=SWIA...   # Aus Perspektive einer Integration
+bin/console debug:mcp                         # All capabilities
+bin/console debug:mcp --tools                 # Tools only
+bin/console debug:mcp --prompts               # Prompts only
+bin/console debug:mcp --resources             # Resources only
+bin/console debug:mcp shopware-entity-search  # A single capability
+bin/console debug:mcp --integration=SWIA...   # From the perspective of an integration
 ```
 
-### ACL konfigurieren
+### Configuring the ACL
 
-1. ACL-Rolle in Settings → Users & Permissions → Roles erstellen
-2. Integration ohne `--admin` erstellen und Rolle zuweisen
-3. Settings → Integrations → Edit MCP Allowlist → nur benötigte Tools aktivieren
+1. Create an ACL role in Settings → Users & Permissions → Roles
+2. Create the integration without `--admin` and assign the role
+3. Settings → Integrations → Edit MCP Allowlist → enable only the required tools
 
-**Privilege-Übersicht im Admin:** Die Role-Detail-Seite zeigt ein Banner bei MCP-aktivierten Integrations.
-Klick auf **Show MCP tool requirements** öffnet das Modal mit fehlenden Privileges per Tool/Entity:
+**Privilege overview in the admin:** The role detail page shows a banner for MCP-enabled integrations.
+Clicking **Show MCP tool requirements** opens the modal with the missing privileges per tool/entity:
 
 ![MCP permissions privilege hint](../../assets/mcp-permissions-privilege-hint.png)
 
-**Allowlist mit Privilege-Lücken:** Das Edit-MCP-Allowlist-Modal zeigt Coverage-Warnungen bei fehlenden Permissions:
+**Allowlist with privilege gaps:** The Edit MCP Allowlist modal shows coverage warnings for missing permissions:
 
 ![MCP allowlist collapsed with warnings](../../assets/mcp-allowlist-collapsed.png)
 
-**Allowlist konfigurieren** (Integration + Capability-Auswahl):
+**Configuring the allowlist** (integration + capability selection):
 
 ![MCP allowlist clean selection](../../assets/mcp-allowlist-clean.png)
 
-**Integration-Liste mit Edit-Allowlist-Aktion:**
+**Integration list with the Edit Allowlist action:**
 
 ![MCP integrations edit allowlist](../../assets/mcp-integrations-edit-mcp-allowlist.png)
 
@@ -551,61 +551,61 @@ Klick auf **Show MCP tool requirements** öffnet das Modal mit fehlenden Privile
 
 | | Tool | Resource | Prompt |
 |---|------|----------|--------|
-| Aufruf | Agent entscheidet | Client/Agent holt | User wählt aus |
-| Parameter | Ja, typisiert | Nur URI | Optional |
-| Schreiben | Ja | Nein | Nein |
-| Hat Description | Ja (Agent-Routing) | Nein | Ja |
-| Zählt als Tool-Call | Ja | Nein | Nein |
-| Best for | Actions, Abfragen | Referenzdaten | System-Instructions |
+| Invocation | Agent decides | Client/agent fetches | User selects |
+| Parameters | Yes, typed | URI only | Optional |
+| Writes | Yes | No | No |
+| Has description | Yes (agent routing) | No | Yes |
+| Counts as a tool call | Yes | No | No |
+| Best for | Actions, queries | Reference data | System instructions |
 
 ---
 
-## Shopware MCP-Erweiterungen
+## Shopware MCP Extensions
 
 ### Shopware Copilot
 
-KI-Assistent direkt in der Shopware Administration. Primärer Consumer des MCP-Servers. Aktiviert automatisch wenn MCP-Server läuft.
+AI assistant directly in the Shopware Administration. Primary consumer of the MCP server. Enabled automatically when the MCP server is running.
 
 ### SwagMcpMerchantAssistant
 
 **Prefix:** `merchant-*` | **Distribution:** Shopware Marketplace
 
-Höherwertige Merchant-Workflow-Tools:
+Higher-level merchant workflow tools:
 
-| Tool | Zweck |
-|------|-------|
-| `merchant-order-summary` | Bestellübersicht mit Kunde, Positionen, Totals, Status |
-| `merchant-customer-lookup` | Kunde per E-Mail, Kundennummer oder UUID finden |
-| `merchant-product-create` | Produkt mit natürlichen Parametern (Bruttopreis, Steuersatz) anlegen |
-| `merchant-revenue-report` | Umsatz-Breakdown nach Tag/Woche/Monat |
-| `merchant-bestseller-report` | Top-Produkte nach verkaufter Menge |
-| `merchant-storefront-search` | Kundenorientierte Produktsuche mit Preisen |
-| `merchant-cart-manage` | Warenkorb erstellen, inspizieren, ändern |
-| `merchant-cart-checkout` | Checkout abschließen |
-| `merchant-checkout-methods` | Zahlungs- und Versandmethoden auflisten |
+| Tool | Purpose |
+|------|---------|
+| `merchant-order-summary` | Order overview with customer, line items, totals, status |
+| `merchant-customer-lookup` | Find a customer by email, customer number or UUID |
+| `merchant-product-create` | Create a product with natural parameters (gross price, tax rate) |
+| `merchant-revenue-report` | Revenue breakdown by day/week/month |
+| `merchant-bestseller-report` | Top products by quantity sold |
+| `merchant-storefront-search` | Customer-facing product search with prices |
+| `merchant-cart-manage` | Create, inspect and modify a cart |
+| `merchant-cart-checkout` | Complete the checkout |
+| `merchant-checkout-methods` | List payment and shipping methods |
 
 ### SwagMcpDevTools
 
-**Prefix:** `swag-dev-tools-*` | **Distribution:** Symfony Bundle (nicht Plugin)
+**Prefix:** `swag-dev-tools-*` | **Distribution:** Symfony bundle (not a plugin)
 
-Developer-Diagnostik-Tools:
+Developer diagnostic tools:
 
-| Tool | Zweck |
-|------|-------|
-| `swag-dev-tools-log-stream` | Aktuelle Monolog-Einträge aus Disk lesen |
-| `swag-dev-tools-log-search` | Log-Dateien nach Substring durchsuchen |
+| Tool | Purpose |
+|------|---------|
+| `swag-dev-tools-log-stream` | Read recent Monolog entries from disk |
+| `swag-dev-tools-log-search` | Search log files for a substring |
 
-Sensible Felder (Passwörter, Tokens) werden automatisch redaktiert.
+Sensitive fields (passwords, tokens) are redacted automatically.
 
 ### ai-coding-tools
 
-Developer-facing lokale MCP-Tools (experimentell): Code-Generierung, Testing, Linting, Cache-Clearing. Separat von `/api/_mcp`.
+Developer-facing local MCP tools (experimental): code generation, testing, linting, cache clearing. Separate from `/api/_mcp`.
 
 ---
 
-## MCP Server Erweitern
+## Extending the MCP Server
 
-### Via Plugin
+### Via plugin
 
 ```php
 #[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders.')]
@@ -623,9 +623,9 @@ class OrdersTool extends McpToolResponse
 }
 ```
 
-Service-Tag in `services.xml`: `<tag name="shopware.mcp.tool"/>`.
+Service tag in `services.xml`: `<tag name="shopware.mcp.tool"/>`.
 
-### Via App (Remote Webhook)
+### Via app (remote webhook)
 
 ```xml
 <!-- Resources/mcp.xml -->
@@ -642,38 +642,38 @@ Service-Tag in `services.xml`: `<tag name="shopware.mcp.tool"/>`.
 </mcp-tools>
 ```
 
-### Via Bundle
+### Via bundle
 
-Identisch zu Plugin. Services in `build()` laden. MCP-Feature-Flag sperrt nur HTTP-Endpoint, nicht DI-Registrierung.
+Identical to a plugin. Load services in `build()`. The MCP feature flag only blocks the HTTP endpoint, not the DI registration.
 
 ---
 
-## Typische Beispiel-Workflows
+## Typical Example Workflows
 
-### Bestellung versenden
+### Ship an order
 
 ```json
-// 1. Gültige Delivery-Actions prüfen
+// 1. Check the valid delivery actions
 // Resource: shopware://state-machines
 
-// 2. Vorschau
+// 2. Preview
 {"tool": "shopware-order-state", "orderNumber": "10001", "deliveryAction": "ship", "dryRun": true}
 
-// 3. Ausführen
+// 3. Execute
 {"tool": "shopware-order-state", "orderNumber": "10001", "deliveryAction": "ship", "dryRun": false}
 ```
 
-### Produkt erstellen
+### Create a product
 
 ```json
-// 1. Schema prüfen
+// 1. Check the schema
 {"tool": "shopware-entity-schema", "entity": "product"}
 
-// 2. Währung + Tax ID holen
+// 2. Get currency + tax ID
 // Resource: shopware://currencies
 {"tool": "shopware-entity-search", "entity": "tax", "limit": 10}
 
-// 3. Erstellen (Vorschau)
+// 3. Create (preview)
 {
   "tool": "shopware-entity-upsert",
   "entity": "product",
@@ -685,14 +685,14 @@ Identisch zu Plugin. Services in `build()` laden. MCP-Feature-Flag sperrt nur HT
 ### Analytics
 
 ```json
-// Durchschnittlicher Bestellwert
+// Average order value
 {
   "tool": "shopware-entity-aggregate",
   "entity": "order",
   "aggregations": "[{\"type\": \"avg\", \"name\": \"avgOrderValue\", \"field\": \"amountTotal\"}]"
 }
 
-// Bestellungen pro Monat
+// Orders per month
 {
   "tool": "shopware-entity-aggregate",
   "entity": "order",
@@ -704,18 +704,18 @@ Identisch zu Plugin. Services in `build()` laden. MCP-Feature-Flag sperrt nur HT
 
 ## Troubleshooting
 
-| Symptom | Ursache | Fix |
-|---------|---------|-----|
-| `Authentication failed` | Falsche Credentials | `sw-access-key`/`sw-secret-access-key` prüfen |
-| `Tool "X" is not in the allowlist` | Tool nicht aktiviert | Settings → Integrations → Edit MCP Allowlist |
-| `Missing privilege: {entity}:read` | Fehlende ACL-Permission | ACL-Rolle mit Berechtigung zuweisen |
-| Tool fehlt in `tools/list` | Allowlist-Block | Tool unter Edit MCP Allowlist aktivieren |
-| Keine Tools in `tools/list` | Allowlist leer | "All tools" Toggle auf ON |
-| `ECONNREFUSED` | Server läuft nicht | Shopware starten, URL prüfen |
-| Claude Code: "Does not adhere to schema" | `type: streamable-http` statt `type: http` | In `.mcp.json` auf `"type": "http"` ändern |
-| Tool fehlt in `debug:mcp` | Plugin inaktiv, Tag fehlt, Attribute falsch | Plugin aktivieren, `bin/console cache:clear` |
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| `Authentication failed` | Wrong credentials | Check `sw-access-key`/`sw-secret-access-key` |
+| `Tool "X" is not in the allowlist` | Tool not enabled | Settings → Integrations → Edit MCP Allowlist |
+| `Missing privilege: {entity}:read` | Missing ACL permission | Assign an ACL role with the privilege |
+| Tool missing from `tools/list` | Allowlist block | Enable the tool under Edit MCP Allowlist |
+| No tools in `tools/list` | Allowlist empty | Set the "All tools" toggle to ON |
+| `ECONNREFUSED` | Server not running | Start Shopware, check the URL |
+| Claude Code: "Does not adhere to schema" | `type: streamable-http` instead of `type: http` | Change to `"type": "http"` in `.mcp.json` |
+| Tool missing from `debug:mcp` | Plugin inactive, tag missing, attribute wrong | Activate the plugin, `bin/console cache:clear` |
 
-**Verbindung debuggen:**
+**Debugging the connection:**
 ```bash
 bin/console debug:mcp
 bin/console debug:mcp --integration=SWIA...
@@ -723,13 +723,13 @@ bin/console debug:mcp --integration=SWIA...
 
 ---
 
-## Bekannte Limitierungen (Spec-Coverage)
+## Known Limitations (Spec Coverage)
 
-| Bereich | Status |
-|---------|--------|
-| `listChanged` Notifications | Nicht implementiert |
-| Resource Templates + Subscriptions | Nicht implementiert |
-| Protocol-level Pagination | Nicht implementiert (Shopware nutzt `limit`/`page`) |
-| Completion für Prompt/URI-Template-Argumente | Nicht implementiert |
-| `structuredContent` und `isError` | Nicht genutzt (eigene `{"success": bool}` Envelope) |
-| ACL-Checks auf Resources | Nicht implementiert |
+| Area | Status |
+|------|--------|
+| `listChanged` notifications | Not implemented |
+| Resource templates + subscriptions | Not implemented |
+| Protocol-level pagination | Not implemented (Shopware uses `limit`/`page`) |
+| Completion for prompt/URI template arguments | Not implemented |
+| `structuredContent` and `isError` | Not used (custom `{"success": bool}` envelope) |
+| ACL checks on resources | Not implemented |

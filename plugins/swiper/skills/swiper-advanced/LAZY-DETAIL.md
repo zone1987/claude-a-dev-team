@@ -1,32 +1,32 @@
-# Swiper Lazy Loading — Vollständige Referenz
+# Swiper lazy loading — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Grundlegende Implementierung](#grundlegende-implementierung)
-- [Parameter (Core-Parameter, kein Modul-Import)](#parameter-core-parameter-kein-modul-import)
-- [CSS-Preloader-Varianten](#css-preloader-varianten)
-- [Preloader-Verhalten](#preloader-verhalten)
-- [Vollständiges Beispiel](#vollständiges-beispiel)
-- [Migration von Swiper v8 (lazy-Modul) zu v9+](#migration-von-swiper-v8-lazy-modul-zu-v9)
+- [Concept](#concept)
+- [Basic implementation](#basic-implementation)
+- [Parameters (core parameters, no module import)](#parameters-core-parameters-no-module-import)
+- [CSS preloader variants](#css-preloader-variants)
+- [Preloader behavior](#preloader-behavior)
+- [Complete example](#complete-example)
+- [Migration from Swiper v8 (lazy module) to v9+](#migration-from-swiper-v8-lazy-module-to-v9)
 
-## Konzept
+## Concept
 
-Swiper nutzt seit v9 das native Browser-Lazy-Loading (`loading="lazy"`). Es ist kein separates Modul mehr nötig — Lazy Loading wird über HTML-Attribute und zwei Core-Parameter gesteuert.
+Since v9, Swiper uses native browser lazy loading (`loading="lazy"`). A separate module is no longer needed — lazy loading is driven by HTML attributes and two core parameters.
 
-## Grundlegende Implementierung
+## Basic implementation
 
 ```html
 <div class="swiper">
   <div class="swiper-wrapper">
 
-    <!-- Lazy-Bild mit Preloader-Spinner -->
+    <!-- Lazy image with preloader spinner -->
     <div class="swiper-slide">
       <img src="bild-1.jpg" loading="lazy" />
       <div class="swiper-lazy-preloader"></div>
     </div>
 
-    <!-- Mit srcset für responsive Bilder -->
+    <!-- With srcset for responsive images -->
     <div class="swiper-slide">
       <img
         src="bild-small.jpg"
@@ -36,7 +36,7 @@ Swiper nutzt seit v9 das native Browser-Lazy-Loading (`loading="lazy"`). Es ist 
       <div class="swiper-lazy-preloader"></div>
     </div>
 
-    <!-- Heller Preloader für dunkle Hintergründe -->
+    <!-- Light preloader for dark backgrounds -->
     <div class="swiper-slide">
       <img src="bild-3.jpg" loading="lazy" />
       <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
@@ -46,32 +46,32 @@ Swiper nutzt seit v9 das native Browser-Lazy-Loading (`loading="lazy"`). Es ist 
 </div>
 ```
 
-## Parameter (Core-Parameter, kein Modul-Import)
+## Parameters (core parameters, no module import)
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `lazyPreloadPrevNext` | `number` | `0` | Anzahl der Slides vor und nach dem aktiven Slide die vorab geladen werden (über `loading="lazy"` hinaus) |
-| `lazyPreloaderClass` | `string` | `'swiper-lazy-preloader'` | CSS-Klasse für den Preloader-Spinner |
+| `lazyPreloadPrevNext` | `number` | `0` | Number of slides before and after the active slide that are preloaded (beyond `loading="lazy"`) |
+| `lazyPreloaderClass` | `string` | `'swiper-lazy-preloader'` | CSS class for the preloader spinner |
 
 ```js
 import Swiper from 'swiper';
-// Kein Modul-Import nötig!
+// No module import needed!
 
 const swiper = new Swiper('.swiper', {
-  lazyPreloadPrevNext: 2,           // 2 Slides vor und nach aktiv vorladen
+  lazyPreloadPrevNext: 2,           // preload 2 slides before and after the active one
   lazyPreloaderClass: 'swiper-lazy-preloader',
 });
 ```
 
-## CSS-Preloader-Varianten
+## CSS preloader variants
 
-### Dunkler Preloader (Standard)
+### Dark preloader (default)
 
 ```html
 <div class="swiper-lazy-preloader"></div>
 ```
 
-CSS automatisch aus `swiper/css`:
+CSS comes automatically from `swiper/css`:
 ```css
 .swiper-lazy-preloader {
   width: 42px;
@@ -91,19 +91,19 @@ CSS automatisch aus `swiper/css`:
 }
 ```
 
-### Heller Preloader
+### Light preloader
 
 ```html
 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 ```
 
-## Preloader-Verhalten
+## Preloader behavior
 
-- Der Preloader-Spinner wird automatisch entfernt sobald das Bild geladen ist
-- Swiper hört auf das `load`-Event des `<img>`-Tags
-- Bei Fehler (404 etc.) bleibt der Preloader sichtbar
+- The preloader spinner is removed automatically as soon as the image has loaded
+- Swiper listens for the `load` event of the `<img>` tag
+- On failure (404 etc.) the preloader stays visible
 
-## Vollständiges Beispiel
+## Complete example
 
 ```js
 import Swiper from 'swiper';
@@ -113,7 +113,7 @@ const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   slidesPerView: 1,
   spaceBetween: 16,
-  // Lazy Loading — nur Core-Parameter, kein Modul
+  // Lazy loading — core parameters only, no module
   lazyPreloadPrevNext: 3,
   navigation: {
     nextEl: '.swiper-button-next',
@@ -130,7 +130,7 @@ const swiper = new Swiper('.swiper', {
 <div class="swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <!-- Erstes Bild: eager laden (above the fold) -->
+      <!-- First image: load eagerly (above the fold) -->
       <img src="hero.jpg" loading="eager" />
     </div>
     <div class="swiper-slide">
@@ -148,9 +148,9 @@ const swiper = new Swiper('.swiper', {
 </div>
 ```
 
-## Migration von Swiper v8 (lazy-Modul) zu v9+
+## Migration from Swiper v8 (lazy module) to v9+
 
-**Alt (v8):**
+**Old (v8):**
 ```js
 import { Lazy } from 'swiper/modules';
 
@@ -164,24 +164,24 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ```html
-<!-- Alt: data-src statt src -->
+<!-- Old: data-src instead of src -->
 <img data-src="bild.jpg" class="swiper-lazy" />
 <div class="swiper-lazy-preloader"></div>
 ```
 
-**Neu (v9+):**
+**New (v9+):**
 ```js
-// Kein Modul-Import!
+// No module import!
 const swiper = new Swiper('.swiper', {
   lazyPreloadPrevNext: 2,
 });
 ```
 
 ```html
-<!-- Neu: natives loading-Attribut -->
+<!-- New: native loading attribute -->
 <img src="bild.jpg" loading="lazy" />
 <div class="swiper-lazy-preloader"></div>
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#lazy-loading
+Source: https://swiperjs.com/swiper-api#lazy-loading

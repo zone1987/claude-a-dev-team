@@ -4,7 +4,7 @@
 composer require shopware/fixture-bundle:*
 ```
 
-## Basis-Fixture
+## Basic fixture
 
 ```php
 #[Fixture(name: 'category', priority: 100, groups: ['catalog', 'test-data'])]
@@ -24,39 +24,39 @@ class CategoryFixture implements FixtureInterface
 }
 ```
 
-## `#[Fixture]`-Attribut
+## `#[Fixture]` attribute
 
-| Parameter | Default | Beschreibung |
+| Parameter | Default | Description |
 |---|---|---|
-| `priority` | `0` | Höherer Wert = frühere Ausführung |
-| `dependsOn` | `[]` | Array von Fixture-Klassen, die zuerst laufen müssen |
-| `groups` | `['default']` | Gruppenzugehörigkeit |
+| `priority` | `0` | Higher value = earlier execution |
+| `dependsOn` | `[]` | Array of fixture classes that must run first |
+| `groups` | `['default']` | Group membership |
 
 ## Commands
 
 ```bash
-bin/console fixture:load                  # alle Fixtures laden
-bin/console fixture:load --group=test-data  # nur bestimmte Gruppe
-bin/console fixture:list                  # Übersicht (Reihenfolge, Priority, Dependencies)
+bin/console fixture:load                  # load all fixtures
+bin/console fixture:load --group=test-data  # only a specific group
+bin/console fixture:list                  # overview (order, priority, dependencies)
 ```
 
-## Spezialisierte Loader
+## Specialized loaders
 
-**ThemeFixtureLoader**: Theme-Einstellungen (Farben, Logo, Fonts) — automatisches Theme-Discovery und Recompilation.
-**CustomFieldSetFixtureLoader**: Custom Field Sets + Custom Fields für Entities.
-**CustomerFixtureLoader**: Kunden mit Adressen, Custom Fields (Email = unique identifier, upsert).
+**ThemeFixtureLoader**: theme settings (colors, logo, fonts) — automatic theme discovery and recompilation.
+**CustomFieldSetFixtureLoader**: custom field sets + custom fields for entities.
+**CustomerFixtureLoader**: customers with addresses, custom fields (email = unique identifier, upsert).
 
-## Ausführungsreihenfolge
+## Execution order
 
-1. Dependencies (dependsOn) → immer zuerst
-2. Priority (höher = früher)
-3. Kreisabhängigkeiten → Exception
+1. Dependencies (dependsOn) → always first
+2. Priority (higher = earlier)
+3. Circular dependencies → exception
 
-## Best Practices
+## Best practices
 
-- Idempotent gestalten (mehrfach ausführbar ohne Fehler/Duplikate)
-- Eine Verantwortung pro Fixture-Klasse
-- Dependency Injection statt Container-Fetch
-- Gruppen nutzen: `test-data`, `demo-data`, `performance-test`
+- Design them to be idempotent (repeatable without errors/duplicates)
+- One responsibility per fixture class
+- Dependency injection instead of a container fetch
+- Use groups: `test-data`, `demo-data`, `performance-test`
 
-Vollständige Loader-Beispiele: `FIXTURE-BUNDLE-DETAIL.md`.
+Complete loader examples: `FIXTURE-BUNDLE-DETAIL.md`.

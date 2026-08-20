@@ -1,7 +1,7 @@
 # sw-phpstan-shopware
 
-Shopware-spezifische PHPStan-Erweiterung (`shopwarelabs/phpstan-shopware`).
-Enthält ~27 Regeln für Sicherheit, DAL-Korrektheit, interne API-Schutz und Best Practices.
+Shopware-specific PHPStan extension (`shopwarelabs/phpstan-shopware`).
+Contains around 27 rules for security, DAL correctness, internal API protection and best practices.
 
 ## Installation
 
@@ -9,18 +9,18 @@ Enthält ~27 Regeln für Sicherheit, DAL-Korrektheit, interne API-Schutz und Bes
 composer require --dev shopwarelabs/phpstan-shopware
 ```
 
-Die Regeln werden via `phpstan/extension-installer` **automatisch** eingebunden (kein manueller Include nötig, wenn `extra.phpstan.includes` in composer.json greift).
+The rules are registered **automatically** via `phpstan/extension-installer` (no manual include needed as long as `extra.phpstan.includes` in composer.json applies).
 
-Ohne Extension-Installer manuell in `phpstan.neon` einbinden:
+Without the extension installer, include them manually in `phpstan.neon`:
 
 ```yaml
 includes:
     - vendor/shopwarelabs/phpstan-shopware/rules.neon
 ```
 
-## Empfohlenes Level
+## Recommended level
 
-Level **6–8** für Plugin-Entwicklung. Die Shopware-Regeln sind level-unabhängig und greifen auf allen Levels.
+Level **6–8** for plugin development. The Shopware rules are level-independent and apply on every level.
 
 ```yaml
 parameters:
@@ -29,10 +29,10 @@ parameters:
         - src
 ```
 
-## Was ist enthalten?
+## What is included?
 
-- 27 Regeln in `rules.neon` (automatisch geladen)
-- 1 Type-Extension: `CollectionHasSpecifyingExtension` (verbessert Typinferenz bei `Collection::has()`)
-- 2 Collectors: `DALDefinitionCollector`, `DALEntityCollector` (für DAL-Definition vs. Entity-Abgleich)
+- 27 rules in `rules.neon` (loaded automatically)
+- 1 type extension: `CollectionHasSpecifyingExtension` (improves type inference for `Collection::has()`)
+- 2 collectors: `DALDefinitionCollector`, `DALEntityCollector` (for reconciling DAL definitions against entities)
 
-Vollständige Regelliste mit Beschreibung und Beispielen: `PHPSTAN-SHOPWARE-RULES.md`
+Complete rule list with descriptions and examples: `PHPSTAN-SHOPWARE-RULES.md`

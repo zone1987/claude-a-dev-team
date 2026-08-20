@@ -9,19 +9,19 @@ Features ship as modules you register explicitly — an unregistered module's op
 
 ## Reference map
 
-- **[A11Y.md](A11Y.md)**: ARIA-Attribute und Screen-Reader-Nachrichten für barrierefreie Swiper. [A11Y-DETAIL](A11Y-DETAIL.md).
-- **[AUTOPLAY.md](AUTOPLAY.md)**: Automatische Slide-Transition mit konfigurierbarem Delay und Steuerung. [AUTOPLAY-DETAIL](AUTOPLAY-DETAIL.md).
-- **[EFFECTS.md](EFFECTS.md)**: Alle sechs Übergangseffekte mit vollständigen Parameterobjekten. [EFFECTS-DETAIL](EFFECTS-DETAIL.md).
-- **[FREE-MODE.md](FREE-MODE.md)**: Freies Scrollen ohne Slide-Snap, mit konfigurierbarer Momentum-Physik. [FREE-MODE-DETAIL](FREE-MODE-DETAIL.md).
-- **[GRID.md](GRID.md)**: Mehrzeilige Slide-Layouts mit konfigurierbarer Füllrichtung. [GRID-DETAIL](GRID-DETAIL.md).
-- **[KEYBOARD.md](KEYBOARD.md)**: Tastaturnavigation für Swiper-Instanzen. [KEYBOARD-DETAIL](KEYBOARD-DETAIL.md).
-- **[MOUSEWHEEL.md](MOUSEWHEEL.md)**: Mausrad-/Trackpad-Steuerung für Swiper mit konfigurierbarer Sensitivität. [MOUSEWHEEL-DETAIL](MOUSEWHEEL-DETAIL.md).
-- **[NAVIGATION.md](NAVIGATION.md)**: Prev/Next-Schaltflächen zum Navigieren zwischen Slides. [NAVIGATION-DETAIL](NAVIGATION-DETAIL.md).
-- **[PAGINATION.md](PAGINATION.md)**: Bullet-, Bruch-, Fortschrittsbalken- oder benutzerdefinierte Pagination. [PAGINATION-DETAIL](PAGINATION-DETAIL.md).
-- **[SCROLLBAR.md](SCROLLBAR.md)**: Scrollleiste mit optionalem Drag für die Swiper-Navigation. [SCROLLBAR-DETAIL](SCROLLBAR-DETAIL.md).
-- **[THUMBS.md](THUMBS.md)**: Thumbnail-Swiper mit Haupt-Swiper synchronisieren. [THUMBS-DETAIL](THUMBS-DETAIL.md).
-- **[VIRTUAL.md](VIRTUAL.md)**: Nur die im sichtbaren Bereich benötigten Slides im DOM halten — ideal für hunderte Slides. [VIRTUAL-DETAIL](VIRTUAL-DETAIL.md).
-- **[ZOOM.md](ZOOM.md)**: Pinch-to-Zoom und programmatisches Zoomen einzelner Slides. [ZOOM-DETAIL](ZOOM-DETAIL.md).
+- **[A11Y.md](A11Y.md)**: ARIA attributes and screen reader messages for accessible Swipers. [A11Y-DETAIL](A11Y-DETAIL.md).
+- **[AUTOPLAY.md](AUTOPLAY.md)**: Automatic slide transition with configurable delay and control. [AUTOPLAY-DETAIL](AUTOPLAY-DETAIL.md).
+- **[EFFECTS.md](EFFECTS.md)**: All six transition effects with complete parameter objects. [EFFECTS-DETAIL](EFFECTS-DETAIL.md).
+- **[FREE-MODE.md](FREE-MODE.md)**: Free scrolling without slide snapping, with configurable momentum physics. [FREE-MODE-DETAIL](FREE-MODE-DETAIL.md).
+- **[GRID.md](GRID.md)**: Multi-row slide layouts with configurable fill direction. [GRID-DETAIL](GRID-DETAIL.md).
+- **[KEYBOARD.md](KEYBOARD.md)**: Keyboard navigation for Swiper instances. [KEYBOARD-DETAIL](KEYBOARD-DETAIL.md).
+- **[MOUSEWHEEL.md](MOUSEWHEEL.md)**: Mouse wheel / trackpad control for Swiper with configurable sensitivity. [MOUSEWHEEL-DETAIL](MOUSEWHEEL-DETAIL.md).
+- **[NAVIGATION.md](NAVIGATION.md)**: Prev/next buttons for navigating between slides. [NAVIGATION-DETAIL](NAVIGATION-DETAIL.md).
+- **[PAGINATION.md](PAGINATION.md)**: Bullet, fraction, progressbar or custom pagination. [PAGINATION-DETAIL](PAGINATION-DETAIL.md).
+- **[SCROLLBAR.md](SCROLLBAR.md)**: Scrollbar with optional drag for Swiper navigation. [SCROLLBAR-DETAIL](SCROLLBAR-DETAIL.md).
+- **[THUMBS.md](THUMBS.md)**: Synchronize a thumbnail Swiper with the main Swiper. [THUMBS-DETAIL](THUMBS-DETAIL.md).
+- **[VIRTUAL.md](VIRTUAL.md)**: Keep only the slides needed in the visible area in the DOM — ideal for hundreds of slides. [VIRTUAL-DETAIL](VIRTUAL-DETAIL.md).
+- **[ZOOM.md](ZOOM.md)**: Pinch-to-zoom and programmatic zooming of individual slides. [ZOOM-DETAIL](ZOOM-DETAIL.md).
 
 ## Source
 

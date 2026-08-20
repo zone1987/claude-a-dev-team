@@ -1,7 +1,7 @@
-# Shopware 6 — Service-Decoration
+# Shopware 6 — Service Decoration
 
-**Erst Events prüfen** (`sw-events-subscriber`). Decoration nur, wenn das Verhalten eines bestehenden Service
-verändert werden muss und kein Event greift (z.B. Rückgabewert transformieren).
+**Check events first** (`sw-events-subscriber`). Decorate only when the behaviour of an existing service
+has to change and no event fits (e.g. transforming a return value).
 
 ```xml
 <service id="FfContentPlus\Service\MyDecorator"
@@ -10,8 +10,8 @@ verändert werden muss und kein Event greift (z.B. Rückgabewert transformieren)
 </service>
 ```
 
-Der Decorator implementiert dasselbe Interface, hält den `.inner`-Service und delegiert. Niemals Core-Logik
-duplizieren — nur ergänzen/transformieren. Optionale `decoration-priority` bei mehreren Decoratoren.
+The decorator implements the same interface, holds the `.inner` service and delegates. Never duplicate core
+logic — only extend or transform it. Optional `decoration-priority` when several decorators apply.
 
-ADR-Leitlinie: Decoration ist die Ausnahme; das Event-System ist der Standard-Erweiterungsweg. Reihenfolge/Timing
-über Event-Priorität lösen, bevor man dekoriert.
+ADR guidance: decoration is the exception; the event system is the default extension path. Solve ordering/timing
+through event priority before reaching for a decorator.

@@ -1,36 +1,36 @@
-# flatpickr — Themes (vollständige Referenz)
+# flatpickr — Themes (complete reference)
 
 ## Contents
 
-- [Verfügbare Themes](#verfügbare-themes)
-- [Theme einbinden](#theme-einbinden)
-- [Plugin-spezifische Themes](#plugin-spezifische-themes)
-- [Custom Styling / CSS-Klassen](#custom-styling-css-klassen)
-- [Eigenes Theme erstellen](#eigenes-theme-erstellen)
+- [Available themes](#available-themes)
+- [Including a theme](#including-a-theme)
+- [Plugin-specific themes](#plugin-specific-themes)
+- [Custom styling / CSS classes](#custom-styling--css-classes)
+- [Creating your own theme](#creating-your-own-theme)
 
-## Verfügbare Themes
+## Available themes
 
-| Theme-Name | CSS-Datei | Beschreibung |
+| Theme name | CSS file | Description |
 |-----------|-----------|-------------|
-| Default | `flatpickr.min.css` | Standardtheme (weiß/blau) |
-| Dark | `themes/dark.css` | Dunkles Theme |
-| Airbnb | `themes/airbnb.css` | Airbnb-Stil (rosa Akzente) |
-| Confetti | `themes/confetti.css` | Farbenfrohes Theme |
-| Material Blue | `themes/material_blue.css` | Material Design, blau |
-| Material Green | `themes/material_green.css` | Material Design, grün |
+| Default | `flatpickr.min.css` | default theme (white/blue) |
+| Dark | `themes/dark.css` | dark theme |
+| Airbnb | `themes/airbnb.css` | Airbnb style (pink accents) |
+| Confetti | `themes/confetti.css` | colorful theme |
+| Material Blue | `themes/material_blue.css` | Material Design, blue |
+| Material Green | `themes/material_green.css` | Material Design, green |
 | Material Orange | `themes/material_orange.css` | Material Design, orange |
-| Material Red | `themes/material_red.css` | Material Design, rot |
-| Light | `themes/light.css` | Helles Theme |
+| Material Red | `themes/material_red.css` | Material Design, red |
+| Light | `themes/light.css` | light theme |
 
-## Theme einbinden
+## Including a theme
 
-### Webpack / Bundler
+### Webpack / bundler
 
 ```js
-// Standard-Theme (wird oft bereits durch flatpickr-Import geladen)
+// default theme (often already loaded by the flatpickr import)
 import "flatpickr/dist/flatpickr.min.css";
 
-// Alternatives Theme (ersetzt das Standard-CSS)
+// alternative theme (replaces the default CSS)
 import "flatpickr/dist/themes/dark.css";
 import "flatpickr/dist/themes/airbnb.css";
 import "flatpickr/dist/themes/confetti.css";
@@ -47,16 +47,16 @@ require("flatpickr/dist/themes/dark.css");
 ### Browser / CDN
 
 ```html
-<!-- Standard -->
+<!-- default -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-<!-- Dark Theme -->
+<!-- Dark theme -->
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 
-<!-- Airbnb Theme -->
+<!-- Airbnb theme -->
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
 
-<!-- Confetti Theme -->
+<!-- Confetti theme -->
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/confetti.css">
 
 <!-- Material Blue -->
@@ -71,16 +71,16 @@ require("flatpickr/dist/themes/dark.css");
 <!-- Material Red -->
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_red.css">
 
-<!-- Light Theme -->
+<!-- Light theme -->
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/light.css">
 ```
 
-Hinweis: Nur **ein** Theme-CSS laden (nicht mehrere gleichzeitig).
+Note: Load only **one** theme CSS (not several at the same time).
 
-## Plugin-spezifische Themes
+## Plugin-specific themes
 
-Manche Plugins (z.B. `confirmDatePlugin`, `monthSelectPlugin`) unterstützen eine eigene
-`theme`-Option:
+Some plugins (e.g. `confirmDatePlugin`, `monthSelectPlugin`) support their own
+`theme` option:
 
 ```js
 flatpickr("#date", {
@@ -92,56 +92,56 @@ flatpickr("#month", {
 });
 ```
 
-## Custom Styling / CSS-Klassen
+## Custom styling / CSS classes
 
-Die wichtigsten CSS-Klassen für eigene Anpassungen:
+The most important CSS classes for your own adjustments:
 
 ```css
-/* Kalender-Container */
+/* calendar container */
 .flatpickr-calendar { }
 
-/* Header-Bereich */
+/* header area */
 .flatpickr-months { }
 .flatpickr-month { }
 .flatpickr-prev-month { }
 .flatpickr-next-month { }
-.cur-month { }          /* Monatsname */
-.cur-year { }           /* Jahres-Input */
+.cur-month { }          /* month name */
+.cur-year { }           /* year input */
 
-/* Wochentage-Zeile */
+/* weekday row */
 .flatpickr-weekdays { }
 .flatpickr-weekday { }
 
-/* Tage */
+/* days */
 .flatpickr-days { }
 .flatpickr-day { }
-.flatpickr-day.today { }        /* Heutiger Tag */
-.flatpickr-day.selected { }     /* Ausgewählter Tag */
-.flatpickr-day.inRange { }      /* Tag im Bereich */
-.flatpickr-day.startRange { }   /* Bereichs-Start */
-.flatpickr-day.endRange { }     /* Bereichs-Ende */
-.flatpickr-day.disabled { }     /* Gesperrter Tag */
-.flatpickr-day.prevMonthDay { } /* Tag des Vormonats */
-.flatpickr-day.nextMonthDay { } /* Tag des Folgemonats */
-.flatpickr-day.flatpickr-disabled { } /* Vollständig deaktiviert */
+.flatpickr-day.today { }        /* today */
+.flatpickr-day.selected { }     /* selected day */
+.flatpickr-day.inRange { }      /* day inside the range */
+.flatpickr-day.startRange { }   /* range start */
+.flatpickr-day.endRange { }     /* range end */
+.flatpickr-day.disabled { }     /* blocked day */
+.flatpickr-day.prevMonthDay { } /* day of the previous month */
+.flatpickr-day.nextMonthDay { } /* day of the next month */
+.flatpickr-day.flatpickr-disabled { } /* fully disabled */
 
-/* Zeitpicker */
+/* time picker */
 .flatpickr-time { }
 .flatpickr-hour { }
 .flatpickr-minute { }
 .flatpickr-second { }
 .flatpickr-am-pm { }
 
-/* Wochennummern */
+/* week numbers */
 .flatpickr-weeknumber { }
 ```
 
-## Eigenes Theme erstellen
+## Creating your own theme
 
-Eigene Styles nach dem Standard-CSS laden:
+Load your own styles after the default CSS:
 
 ```css
-/* my-theme.css — nach flatpickr.min.css laden */
+/* my-theme.css — load after flatpickr.min.css */
 .flatpickr-calendar {
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
@@ -151,7 +151,7 @@ Eigene Styles nach dem Standard-CSS laden:
 .flatpickr-day.selected,
 .flatpickr-day.startRange,
 .flatpickr-day.endRange {
-  background: #6366f1;   /* Indigo */
+  background: #6366f1;   /* indigo */
   border-color: #6366f1;
 }
 
@@ -178,4 +178,4 @@ Eigene Styles nach dem Standard-CSS laden:
 
 ---
 
-Quelle: https://flatpickr.js.org/themes/ | https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/
+Source: https://flatpickr.js.org/themes/ | https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/

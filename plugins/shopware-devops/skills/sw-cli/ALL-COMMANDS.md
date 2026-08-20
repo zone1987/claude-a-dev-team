@@ -1,351 +1,351 @@
-# shopware-cli — Alle Commands (erschöpfend)
+# shopware-cli — All Commands (exhaustive)
 
-Quelle: `github.com/shopware/shopware-cli` (Go, v0.6.x). Analysiert aus `cmd/` und `internal/`.
+Source: `github.com/shopware/shopware-cli` (Go, v0.6.x). Analyzed from `cmd/` and `internal/`.
 
 ## Contents
 
-- [Globale Flags (persistent, alle Commands)](#globale-flags-persistent-alle-commands)
+- [Global Flags (persistent, all commands)](#global-flags-persistent-all-commands)
 - [account](#account)
 - [extension](#extension)
 - [project](#project)
 
-## Globale Flags (persistent, alle Commands)
+## Global Flags (persistent, all commands)
 
-| Flag | Kurz | Default | Beschreibung |
-|------|------|---------|--------------|
-| `--verbose` | | false | Debug-Ausgabe aktivieren |
-| `--no-interaction` | `-n` | false | Alle interaktiven Fragen deaktivieren (CI-safe) |
-| `--version` | | | Version ausgeben und beenden |
+| Flag | Short | Default | Description |
+|------|-------|---------|-------------|
+| `--verbose` | | false | Enable debug output |
+| `--no-interaction` | `-n` | false | Disable all interactive questions (CI-safe) |
+| `--version` | | | Print version and exit |
 
 ---
 
 ## account
 
 ### `account login`
-OIDC/OAuth2 Browser-Flow gegen Shopware Account.
-Keine zusätzlichen Flags.
+OIDC/OAuth2 browser flow against Shopware Account.
+No additional flags.
 
 ### `account logout`
-Lokalen Token-Cache invalidieren.
-Keine Flags.
+Invalidate the local token cache.
+No flags.
 
 ### `account producer extension list`
-Alle eigenen Store-Extensions auflisten.
+List all of your own store extensions.
 
-| Flag | Beschreibung |
-|------|--------------|
-| `--search string` | Ergebnisse nach Name filtern |
+| Flag | Description |
+|------|-------------|
+| `--search string` | Filter results by name |
 
 ### `account producer extension info pull [path]`
-Store-Informationen (Beschreibung HTML, Installation Manual, Images, Icon) aus Shopware Account in lokales `.shopware-extension.yml` und `src/Resources/store/` ziehen.
+Pull store information (description HTML, installation manual, images, icon) from Shopware Account into the local `.shopware-extension.yml` and `src/Resources/store/`.
 
-Kein zusätzlicher Flag.
+No additional flag.
 
-### `account producer extension info push [zip-oder-path]`
-Lokale Store-Infos (`.shopware-extension.yml`, `src/Resources/store/`) in Shopware Account hochladen.
+### `account producer extension info push [zip-or-path]`
+Upload local store info (`.shopware-extension.yml`, `src/Resources/store/`) to Shopware Account.
 
-Kein zusätzlicher Flag.
+No additional flag.
 
 ### `account producer extension upload [zip]`
-Extension-Zip in Store hochladen, Code-Review triggern.
+Upload an extension zip to the store, trigger a code review.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--skip-for-review-result` | false | Nicht auf Code-Review-Ergebnis warten |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--skip-for-review-result` | false | Do not wait for the code review result |
 
 ---
 
 ## extension
 
 ### `extension admin-watch [path...] [host]`
-ESBuild Dev-Proxy für Shopware Administration. Compiliert Extensions live und proxied den Admin.
+ESBuild dev proxy for the Shopware Administration. Compiles extensions live and proxies the admin.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--listen string` | `:8080` | Listen-Adresse (host:port) |
-| `--external-url string` | | Externe URL (Reverse-Proxy-Setup) |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--listen string` | `:8080` | Listen address (host:port) |
+| `--external-url string` | | External URL (reverse proxy setup) |
 
 ### `extension build [path...]`
-Admin- und Storefront-JS/CSS-Assets für eine oder mehrere Extensions bauen.
-ESBuild/Webpack je nach Extension-Typ. Respektiert `SHOPWARE_PROJECT_ROOT` für Versionseinschränkungen.
-Keine Flags.
+Build admin and storefront JS/CSS assets for one or more extensions.
+ESBuild/Webpack depending on the extension type. Respects `SHOPWARE_PROJECT_ROOT` for version constraints.
+No flags.
 
 ### `extension get-changelog [path]`
-Extension-Changelog auf stdout ausgeben.
+Print the extension changelog to stdout.
 
-| Flag | Beschreibung |
-|------|--------------|
-| `--language string` | Sprachkey, kommagetrennte Fallback-Liste (z.B. `de_DE,en_GB`) |
+| Flag | Description |
+|------|-------------|
+| `--language string` | Language key, comma-separated fallback list (e.g. `de_DE,en_GB`) |
 
 ### `extension config-schema`
-JSON-Schema für `.shopware-extension.yml` auf stdout. Keine Flags.
+JSON schema for `.shopware-extension.yml` to stdout. No flags.
 
 ### `extension fix [path]`
-Code-Fixer ausführen: PHPCSFixer, ESLint autofix, etc. Benötigt git-Repository.
+Run code fixers: PHPCSFixer, ESLint autofix, etc. Requires a git repository.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--only string` | | Nur bestimmte Tools ausführen (kommagetrennt: `phpstan,eslint`) |
-| `--allow-non-git` | false | Auch ohne git-Repo ausführen |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--only string` | | Run only certain tools (comma-separated: `phpstan,eslint`) |
+| `--allow-non-git` | false | Also run without a git repo |
 
 ### `extension format [path]`
-Formatter ausführen: Prettier, PHP-CS-Fixer, etc.
+Run formatters: Prettier, PHP-CS-Fixer, etc.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--only string` | | Nur bestimmte Tools |
-| `--dry-run` | false | Nur melden, nicht anwenden |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--only string` | | Only certain tools |
+| `--dry-run` | false | Only report, do not apply |
 
 ### `extension get-name [path]`
-Technical Name der Extension ausgeben (aus Ordner oder Zip). Keine Flags.
+Print the technical name of the extension (from folder or zip). No flags.
 
 ### `extension get-version [path]`
-Version der Extension ausgeben (aus Ordner oder Zip). Keine Flags.
+Print the version of the extension (from folder or zip). No flags.
 
 ### `extension prepare [path]`
-Composer-Dependencies installieren + Aufräumen als Vorbereitung für Zip-Erstellung.
-Läuft dieselbe Pre-Zip-Pipeline wie `extension zip`. Keine Flags.
+Install composer dependencies + clean up in preparation for zip creation.
+Runs the same pre-zip pipeline as `extension zip`. No flags.
 
 ### `extension validate [path]`
-Extension validieren. Standard: nur schnelle shopware-cli-eigene Checks.
+Validate an extension. Default: only fast shopware-cli-native checks.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--full` | false | PHPStan, ESLint, Stylelint, PHP-CS-Fixer, Rector, Prettier, Twig mitausführen |
-| `--store-compliance` | false | Store-Compliance-Checks erzwingen (ignoriert custom ignore lists) |
-| `--reporter string` | auto | Ausgabeformat: `summary`, `json`, `github`, `gitlab`, `junit`, `markdown` |
-| `--check-against string` | `highest` | Shopware-Version: `highest` oder `lowest` |
-| `--only string` | | Nur bestimmte Tools |
-| `--exclude string` | | Tools ausschließen |
-| `--no-copy` | false | Extension nicht in tmp-Dir kopieren |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--full` | false | Also run PHPStan, ESLint, Stylelint, PHP-CS-Fixer, Rector, Prettier, Twig |
+| `--store-compliance` | false | Force store compliance checks (ignores custom ignore lists) |
+| `--reporter string` | auto | Output format: `summary`, `json`, `github`, `gitlab`, `junit`, `markdown` |
+| `--check-against string` | `highest` | Shopware version: `highest` or `lowest` |
+| `--only string` | | Only certain tools |
+| `--exclude string` | | Exclude tools |
+| `--no-copy` | false | Do not copy the extension into a tmp dir |
 
 ### `extension zip [path] [branch]`
-Release-Zip aus Extension-Ordner erstellen. Standardmäßig via git-Export.
+Create a release zip from an extension folder. By default via git export.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--disable-git` | false | Quellordner direkt verwenden (kein git-Export) |
-| `--release` | false | Release-Modus (entfernt App-Backend-Secret) |
-| `--overwrite-app-backend-url string` | | Backend-URL in `manifest.xml` ersetzen |
-| `--overwrite-app-backend-secret string` | | App-Secret in `manifest.xml` ersetzen |
-| `--overwrite-version string` | | Version in Zip überschreiben |
-| `--use-git-tag-as-version` | false | Erkannten git-Tag als Version verwenden |
-| `--output-directory string` | | Ausgabe-Verzeichnis für Zip |
-| `--git-commit string` | | Bestimmten Commit/Tag exportieren |
-| `--filename string` | | Expliziter Zip-Dateiname (Standard: `<name>-<tag>.zip`) |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--disable-git` | false | Use the source folder directly (no git export) |
+| `--release` | false | Release mode (removes the app backend secret) |
+| `--overwrite-app-backend-url string` | | Replace the backend URL in `manifest.xml` |
+| `--overwrite-app-backend-secret string` | | Replace the app secret in `manifest.xml` |
+| `--overwrite-version string` | | Override the version in the zip |
+| `--use-git-tag-as-version` | false | Use the detected git tag as version |
+| `--output-directory string` | | Output directory for the zip |
+| `--git-commit string` | | Export a specific commit/tag |
+| `--filename string` | | Explicit zip file name (default: `<name>-<tag>.zip`) |
 
 ---
 
 ## project
 
 ### `project admin-api [method] [path]`
-Authentifizierter Admin-REST-API-Wrapper. Liest Credentials aus `.shopware-project.yml`.
+Authenticated Admin REST API wrapper. Reads credentials from `.shopware-project.yml`.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--output-token` | false | Nur Bearer-Token ausgeben |
-| `--no-default-headers` | false | Kein `Content-Type`/`Accept: application/json` |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--output-token` | false | Only print the bearer token |
+| `--no-default-headers` | false | No `Content-Type`/`Accept: application/json` |
 
 ### `project admin-build [project-dir]` (alias: `build-admin`)
-Admin-JS/CSS für alle Extensions bauen.
+Build admin JS/CSS for all extensions.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--skip-assets-install` | false | `assets:install` danach nicht ausführen |
-| `--force-install-dependencies` | false | npm install erzwingen (auch wenn `node_modules` existiert) |
-| `--only-extensions string` | | Kommagetrennte Extension-Liste |
-| `--skip-extensions string` | | Kommagetrennte Ausschlussliste |
-| `--only-custom-static-extensions` | false | Nur `custom/static-plugins` |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--skip-assets-install` | false | Do not run `assets:install` afterwards |
+| `--force-install-dependencies` | false | Force npm install (even if `node_modules` exists) |
+| `--only-extensions string` | | Comma-separated extension list |
+| `--skip-extensions string` | | Comma-separated exclusion list |
+| `--only-custom-static-extensions` | false | Only `custom/static-plugins` |
 
 ### `project admin-watch [path]` (alias: `watch-admin`)
-Admin webpack Dev-Server starten.
+Start the admin webpack dev server.
 
-| Flag | Beschreibung |
-|------|--------------|
-| `--only-extensions string` | Extensions filtern |
-| `--skip-extensions string` | Extensions ausschließen |
-| `--only-custom-static-extensions bool` | Nur `custom/static-plugins` |
+| Flag | Description |
+|------|-------------|
+| `--only-extensions string` | Filter extensions |
+| `--skip-extensions string` | Exclude extensions |
+| `--only-custom-static-extensions bool` | Only `custom/static-plugins` |
 
 ### `project autofix composer-plugins`
-Generiert `composer require`-Kommandos, um Plugins aus `custom/plugins` zu Composer/Packagist zu migrieren. Interaktiv.
+Generates `composer require` commands to migrate plugins from `custom/plugins` to Composer/Packagist. Interactive.
 
 ### `project autofix flex`
-Migriert Projekt von manuellem Layout zu Symfony Flex. Ändert `composer.json` und `.env`. Interaktive Bestätigung.
+Migrates a project from a manual layout to Symfony Flex. Changes `composer.json` and `.env`. Interactive confirmation.
 
 ### `project ci [project-dir]`
-Vollständige CI-Build-Pipeline: composer install, Extension-Assets, Cache warmup, Assets install, MJML, Checksums.
+Full CI build pipeline: composer install, extension assets, cache warmup, assets install, MJML, checksums.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--with-dev-dependencies` | false | `require-dev` in composer install behalten |
-| `--force` | false | Auch außerhalb CI / dirty git tree ausführen |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--with-dev-dependencies` | false | Keep `require-dev` in composer install |
+| `--force` | false | Also run outside CI / with a dirty git tree |
 
 ### `project clear-cache`
-Shopware-Cache leeren. Nutzt Admin-API wenn konfiguriert, sonst `var/cache` löschen. Keine Flags.
+Clear the Shopware cache. Uses the Admin API if configured, otherwise deletes `var/cache`. No flags.
 
 ### `project config init`
-`.shopware-project.yml` interaktiv anlegen. Keine Flags (benötigt Interaction).
+Create `.shopware-project.yml` interactively. No flags (requires interaction).
 
 ### `project config-schema`
-JSON-Schema für `.shopware-project.yml` auf stdout. Keine Flags.
+JSON schema for `.shopware-project.yml` to stdout. No flags.
 
 ### `project console [args...]`
-`bin/console`-Passthrough. Flag-Parsing auf CLI-Seite deaktiviert. Tab-Completion für alle Console-Commands.
+`bin/console` passthrough. Flag parsing disabled on the CLI side. Tab completion for all console commands.
 
 ### `project create [name] [version]`
-Neues Shopware 6 Projekt erstellen.
+Create a new Shopware 6 project.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--docker` | false | Docker für composer install verwenden |
-| `--with-elasticsearch` | false | OpenSearch/ES-Support einschließen |
-| `--with-amqp` | false | AMQP Queue (symfony/amqp-messenger) einschließen |
-| `--no-audit` | false | `composer audit` nicht blockierend |
-| `--git` | false | git-Repository initialisieren |
-| `--version string` | | SW-Version: `6.6.0.0`, `latest`, etc. |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--docker` | false | Use Docker for composer install |
+| `--with-elasticsearch` | false | Include OpenSearch/ES support |
+| `--with-amqp` | false | Include AMQP queue (symfony/amqp-messenger) |
+| `--no-audit` | false | `composer audit` non-blocking |
+| `--git` | false | Initialize a git repository |
+| `--version string` | | SW version: `6.6.0.0`, `latest`, etc. |
 | `--deployment string` | | Deployment: `none`, `deployer`, `platformsh`, `shopware-paas` |
-| `--ci string` | | CI-System: `none`, `github`, `gitlab` |
+| `--ci string` | | CI system: `none`, `github`, `gitlab` |
 
 ### `project doctor [project-dir]`
-Projekt auf Probleme prüfen: Config lesen, SW-Version erkennen, Extensions/Bundles auflisten. Keine Flags.
+Check the project for problems: read config, detect SW version, list extensions/bundles. No flags.
 
 ### `project dump`
-MySQL-Datenbank dumpen. Auto-detect `DATABASE_URL` aus `.env`/`.env.local`.
+Dump the MySQL database. Auto-detects `DATABASE_URL` from `.env`/`.env.local`.
 
-| Flag | Kurz | Default | Beschreibung |
-|------|------|---------|--------------|
-| `--host` | | | MySQL-Host |
-| `--database` | | | Datenbankname |
-| `--username` | `-u` | | MySQL-User |
-| `--password` | `-p` | | MySQL-Passwort |
-| `--port` | | | MySQL-Port |
-| `--output` | | `dump.sql` | Ausgabedatei oder `-` für stdout |
-| `--clean` | | false | Cart, messenger_messages, etc. überspringen |
-| `--skip-lock-tables` | | false | `LOCK TABLES` überspringen |
-| `--anonymize` | | false | Kundendaten anonymisieren |
-| `--compression` | | | `gzip` (`.gz`) oder `zstd` (`.zst`) |
-| `--quick` | | false | Quick-Option (kein row-by-row buffer) |
-| `--parallel` | | 0 | Tabellen parallel dumpen (0=deaktiviert) |
-| `--insert-into-limit` | | 0 | Max. Rows pro INSERT |
+| Flag | Short | Default | Description |
+|------|-------|---------|-------------|
+| `--host` | | | MySQL host |
+| `--database` | | | Database name |
+| `--username` | `-u` | | MySQL user |
+| `--password` | `-p` | | MySQL password |
+| `--port` | | | MySQL port |
+| `--output` | | `dump.sql` | Output file or `-` for stdout |
+| `--clean` | | false | Skip cart, messenger_messages, etc. |
+| `--skip-lock-tables` | | false | Skip `LOCK TABLES` |
+| `--anonymize` | | false | Anonymize customer data |
+| `--compression` | | | `gzip` (`.gz`) or `zstd` (`.zst`) |
+| `--quick` | | false | Quick option (no row-by-row buffer) |
+| `--parallel` | | 0 | Dump tables in parallel (0=disabled) |
+| `--insert-into-limit` | | 0 | Max. rows per INSERT |
 
 ### `project extension activate [name...]`
-Extensions aktivieren (installiert erst wenn nötig). Keine Flags.
+Activate extensions (installs first if necessary). No flags.
 
 ### `project extension deactivate [name...]`
-Extensions deaktivieren. Keine Flags.
+Deactivate extensions. No flags.
 
 ### `project extension delete [name...]`
-Extensions deaktivieren, deinstallieren und entfernen. Keine Flags.
+Deactivate, uninstall and remove extensions. No flags.
 
 ### `project extension install [name...]`
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--activate` | false | Direkt nach Install aktivieren |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--activate` | false | Activate directly after install |
 
 ### `project extension list` (alias: `ls`)
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--json` | false | Als JSON-Array ausgeben |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--json` | false | Output as a JSON array |
 
 ### `project extension outdated`
-Extensions mit verfügbaren Updates auflisten. Exit-Code != 0 wenn veraltete Extensions vorhanden.
+List extensions with available updates. Exit code != 0 if outdated extensions exist.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--json` | false | Als JSON-Array ausgeben |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--json` | false | Output as a JSON array |
 
 ### `project extension uninstall [name...]`
-Deaktivieren + Deinstallieren (Dateien bleiben). Keine Flags.
+Deactivate + uninstall (files remain). No flags.
 
 ### `project extension update [name... | all]`
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--disable-store-update` | false | Kein Download von store.shopware.com |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--disable-store-update` | false | No download from store.shopware.com |
 
 ### `project extension upload [path]`
-Lokale Extension zippen und auf Remote-Shop hochladen.
+Zip a local extension and upload it to a remote shop.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--activate` | false | Nach Upload installieren + aktivieren + updaten |
-| `--increase-version` | false | Patch-Version vor Upload inkrementieren |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--activate` | false | Install + activate + update after upload |
+| `--increase-version` | false | Increment the patch version before upload |
 
 ### `project fix [project-dir]`
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--only string` | | Nur bestimmte Tools |
-| `--allow-non-git` | false | Ohne git-Repo erlauben |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--only string` | | Only certain tools |
+| `--allow-non-git` | false | Allow without a git repo |
 
 ### `project format [project-dir]`
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--only string` | | Nur bestimmte Tools |
-| `--dry-run` | false | Nur melden |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--only string` | | Only certain tools |
+| `--dry-run` | false | Only report |
 
 ### `project generate-jwt [project-dir]`
-2048-Bit RSA-Schlüsselpaar generieren.
+Generate a 2048-bit RSA key pair.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--env` | false | Als `JWT_PRIVATE_KEY`/`JWT_PUBLIC_KEY` env vars ausgeben statt Dateien schreiben |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--env` | false | Print as `JWT_PRIVATE_KEY`/`JWT_PUBLIC_KEY` env vars instead of writing files |
 
 ### `project image-proxy`
-Lokaler HTTP-Proxy: serviert Images aus `public/`, Misses werden upstream weitergeleitet und gecached.
+Local HTTP proxy: serves images from `public/`, misses are forwarded upstream and cached.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
+| Flag | Default | Description |
+|------|---------|-------------|
 | `--port string` | `8080` | Port |
-| `--url string` | | Upstream-URL |
-| `--clear` | false | Cache leeren vor Start |
-| `--external-url string` | | Externe URL für generierten SW-Config |
-| `--skip-config` | false | Kein Shopware-Filesystem-Config schreiben/entfernen |
+| `--url string` | | Upstream URL |
+| `--clear` | false | Clear the cache before start |
+| `--external-url string` | | External URL for the generated SW config |
+| `--skip-config` | false | Do not write/remove a Shopware filesystem config |
 
 ### `project storefront-build [path]` (alias: `build-storefront`)
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--skip-assets-install` | false | `assets:install` überspringen |
-| `--skip-theme-compile` | false | `theme:compile` überspringen |
-| `--force-install-dependencies` | false | npm install erzwingen |
-| `--only-extensions string` | | Extensions filtern |
-| `--skip-extensions string` | | Extensions ausschließen |
-| `--only-custom-static-extensions` | false | Nur `custom/static-plugins` |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--skip-assets-install` | false | Skip `assets:install` |
+| `--skip-theme-compile` | false | Skip `theme:compile` |
+| `--force-install-dependencies` | false | Force npm install |
+| `--only-extensions string` | | Filter extensions |
+| `--skip-extensions string` | | Exclude extensions |
+| `--only-custom-static-extensions` | false | Only `custom/static-plugins` |
 
 ### `project storefront-watch [path]` (alias: `watch-storefront`)
-Storefront webpack Hot-Proxy.
+Storefront webpack hot proxy.
 
-| Flag | Beschreibung |
-|------|--------------|
-| `--only-extensions string` | Extensions filtern |
-| `--skip-extensions string` | Extensions ausschließen |
-| `--only-custom-static-extensions bool` | Nur `custom/static-plugins` |
+| Flag | Description |
+|------|-------------|
+| `--only-extensions string` | Filter extensions |
+| `--skip-extensions string` | Exclude extensions |
+| `--only-custom-static-extensions bool` | Only `custom/static-plugins` |
 
 ### `project upgrade-check`
-Extensions auf Kompatibilität mit zukünftiger SW-Version prüfen (interaktiv, Versionsauswahl). Keine Flags.
+Check extensions for compatibility with a future SW version (interactive, version selection). No flags.
 
 ### `project validate [project-dir]`
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
+| Flag | Default | Description |
+|------|---------|-------------|
 | `--reporter string` | auto | `summary`, `json`, `github`, `gitlab`, `junit`, `markdown` |
-| `--only string` | | Nur bestimmte Tools |
-| `--exclude string` | | Tools ausschließen |
-| `--no-copy` | false | Kein tmp-Dir |
-| `--local-only` | false | Nur `custom/*`-Ordner scannen |
+| `--only string` | | Only certain tools |
+| `--exclude string` | | Exclude tools |
+| `--no-copy` | false | No tmp dir |
+| `--local-only` | false | Only scan `custom/*` folders |
 
 ### `project worker [amount]`
-Messenger-Consumer starten. Restart bei Fehler (rate-limited: 1x/10s). SIGTERM/SIGINT-safe.
+Start messenger consumers. Restart on error (rate-limited: 1x/10s). SIGTERM/SIGINT-safe.
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--verbose` | false | `-vvv` für worker |
-| `--queue string` | | Kommagetrennte Queue-Namen (Standard: `async,failed,low_priority` für SW >=6.5.7) |
-| `--memory-limit string` | `512M` | Memory-Limit pro Worker |
-| `--time-limit string` | `120` | Zeit-Limit pro Worker-Run (Sekunden) |
-| `--graceful-stop-limit uint` | 0 | Sekunden für Graceful SIGTERM vor SIGKILL |
-| `--limit uint` | 0 | Max. Messages pro Worker-Run |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--verbose` | false | `-vvv` for the worker |
+| `--queue string` | | Comma-separated queue names (default: `async,failed,low_priority` for SW >=6.5.7) |
+| `--memory-limit string` | `512M` | Memory limit per worker |
+| `--time-limit string` | `120` | Time limit per worker run (seconds) |
+| `--graceful-stop-limit uint` | 0 | Seconds for graceful SIGTERM before SIGKILL |
+| `--limit uint` | 0 | Max. messages per worker run |

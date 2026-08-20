@@ -1,7 +1,7 @@
-# Shopware 6 — Theme-Config
+# Shopware 6 — Theme config
 
-`theme.json` kann konfigurierbare Felder definieren (im Admin unter Themes editierbar), die als SCSS-Variablen und
-im Twig via `theme_config()` verfügbar sind.
+`theme.json` can define configurable fields (editable in the admin under Themes) that are available as SCSS variables and
+in Twig via `theme_config()`.
 
 ```json
 "config": {
@@ -12,5 +12,5 @@ im Twig via `theme_config()` verfügbar sind.
 }
 ```
 
-SCSS: `color: $sw-color-brand-primary;` · Twig: `{{ theme_config('ff-show-badge') }}`. Felder gruppierbar über
-`blocks`/`sections`/`tabs`. Plugin ohne eigenes Theme → Variablen per Subscriber (`sw-scss-variables`).
+SCSS: `color: $sw-color-brand-primary;` · Twig: `{{ theme_config('ff-show-badge') }}`. Group fields via
+`blocks`/`sections`/`tabs`. Plugin without its own theme → provide variables via a subscriber (`sw-scss-variables`).

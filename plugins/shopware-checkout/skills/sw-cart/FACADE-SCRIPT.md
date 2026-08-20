@@ -1,7 +1,7 @@
-# Shopware 6 — Cart-Facade (App-Script)
+# Shopware 6 — Cart Facade (App Script)
 
-Apps (und Plugins via Script) manipulieren den Warenkorb über die **Cart-Facade** im `cart`-Script-Hook — ohne eigenen
-PHP-Processor.
+Apps (and plugins via script) manipulate the cart through the **cart facade** in the `cart` script hook — without a
+PHP processor of their own.
 
 ```twig
 {# Resources/scripts/cart/my-cart.twig #}
@@ -10,6 +10,6 @@ PHP-Processor.
 {% do services.cart.products.add(productId) %}
 ```
 
-Facade-Services u.a. `products`, `items`, `discount`, `surcharge`, `price`, `errors`. Läuft im sandboxed Script-Kontext
-(`shopware-framework` → `sw-app-script`). Für komplexe/performancekritische Logik in einem PHP-Processor (`sw-cart-processor`).
-Ideal für App-basierte Promotions/Gebühren ohne eigenen App-Server.
+Facade services include `products`, `items`, `discount`, `surcharge`, `price`, `errors`. Runs in the sandboxed script
+context (`shopware-framework` → `sw-app-script`). Put complex or performance-critical logic in a PHP processor (`sw-cart-processor`).
+Ideal for app-based promotions/fees without an app server of your own.

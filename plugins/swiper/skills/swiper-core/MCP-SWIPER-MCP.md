@@ -1,36 +1,36 @@
-# Swiper MCP Server — Vollständige Referenz
+# Swiper MCP Server — Complete reference
 
-Der Swiper MCP Server bietet programmatischen Zugriff auf die Swiper-Dokumentation
-über das Model Context Protocol (MCP).
+The Swiper MCP server provides programmatic access to the Swiper documentation
+via the Model Context Protocol (MCP).
 
 **Endpoint:** `https://swiperjs.com/mcp`
-**Protokoll:** MCP 2024-11-05 / JSON-RPC 2.0
-**Authentifizierung:** Keine (öffentlich zugänglich)
-**Rate Limits:** Keine (aktuell)
+**Protocol:** MCP 2024-11-05 / JSON-RPC 2.0
+**Authentication:** None (publicly accessible)
+**Rate limits:** None (currently)
 
 ---
 
 ## Contents
 
-- [Was ist der Swiper MCP Server?](#was-ist-der-swiper-mcp-server)
-- [Die 8 Tools](#die-8-tools)
-- [Installation & Konfiguration](#installation-konfiguration)
-- [Technische Details](#technische-details)
-- [Unterstützte Module (für `get-module-options`)](#unterstützte-module-für-get-module-options)
+- [What is the Swiper MCP server?](#what-is-the-swiper-mcp-server)
+- [The 8 tools](#the-8-tools)
+- [Installation and configuration](#installation-and-configuration)
+- [Technical details](#technical-details)
+- [Supported modules (for `get-module-options`)](#supported-modules-for-get-module-options)
 
-## Was ist der Swiper MCP Server?
+## What is the Swiper MCP server?
 
-Ein HTTP-basierter MCP-Server, der KI-Assistenten (Claude, Cursor, Copilot, etc.) mit
-Echtzeit-Zugriff auf die Swiper-Dokumentation versorgt. Anstatt auf möglicherweise veraltete
-Trainingsdaten zurückzugreifen, können Modelle direkt aktuelle Swiper-Docs abfragen.
+An HTTP-based MCP server that gives AI assistants (Claude, Cursor, Copilot, etc.)
+real-time access to the Swiper documentation. Instead of relying on possibly outdated
+training data, models can query the current Swiper docs directly.
 
 ---
 
-## Die 8 Tools
+## The 8 tools
 
 ### 1. `search-api`
 
-Durchsucht Swiper-Dokumentation nach Optionen, Methoden oder Events.
+Searches the Swiper documentation for options, methods or events.
 
 ```json
 {
@@ -42,11 +42,11 @@ Durchsucht Swiper-Dokumentation nach Optionen, Methoden oder Events.
 }
 ```
 
-Parameter:
-- `query` (string): Suchbegriff
-- `type` (optional): `"option"` | `"method"` | `"event"` — filtert Ergebnistyp
+Parameters:
+- `query` (string): search term
+- `type` (optional): `"option"` | `"method"` | `"event"` — filters the result type
 
-Beispiele:
+Examples:
 ```json
 { "name": "search-api", "arguments": { "query": "autoplay" } }
 { "name": "search-api", "arguments": { "query": "pagination", "type": "option" } }
@@ -58,7 +58,7 @@ Beispiele:
 
 ### 2. `get-option`
 
-Ruft detaillierte Informationen zu einer spezifischen Konfigurations-Option ab.
+Retrieves detailed information about a specific configuration option.
 
 ```json
 {
@@ -69,9 +69,9 @@ Ruft detaillierte Informationen zu einer spezifischen Konfigurations-Option ab.
 }
 ```
 
-Liefert: Typ, Standardwert, Beschreibung, Beispiele.
+Returns: type, default value, description, examples.
 
-Weitere Beispiele:
+More examples:
 ```json
 { "name": "get-option", "arguments": { "name": "spaceBetween" } }
 { "name": "get-option", "arguments": { "name": "loop" } }
@@ -83,7 +83,7 @@ Weitere Beispiele:
 
 ### 3. `get-method`
 
-Ruft Methodensignaturen, Parameter und Beschreibungen ab.
+Retrieves method signatures, parameters and descriptions.
 
 ```json
 {
@@ -94,7 +94,7 @@ Ruft Methodensignaturen, Parameter und Beschreibungen ab.
 }
 ```
 
-Weitere Beispiele:
+More examples:
 ```json
 { "name": "get-method", "arguments": { "name": "slidePrev" } }
 { "name": "get-method", "arguments": { "name": "slideTo" } }
@@ -106,7 +106,7 @@ Weitere Beispiele:
 
 ### 4. `get-event`
 
-Ruft Event-Details inkl. Parameter und Verwendungsinformationen ab.
+Retrieves event details including parameters and usage information.
 
 ```json
 {
@@ -117,7 +117,7 @@ Ruft Event-Details inkl. Parameter und Verwendungsinformationen ab.
 }
 ```
 
-Weitere Beispiele:
+More examples:
 ```json
 { "name": "get-event", "arguments": { "name": "progress" } }
 { "name": "get-event", "arguments": { "name": "reachEnd" } }
@@ -129,7 +129,7 @@ Weitere Beispiele:
 
 ### 5. `get-module-options`
 
-Gibt alle Optionen, Methoden und Events eines bestimmten Swiper-Moduls zurück.
+Returns all options, methods and events of a given Swiper module.
 
 ```json
 {
@@ -140,14 +140,14 @@ Gibt alle Optionen, Methoden und Events eines bestimmten Swiper-Moduls zurück.
 }
 ```
 
-Verfügbare Module:
+Available modules:
 - `a11y` | `autoplay` | `controller` | `coverflow-effect`
 - `cube-effect` | `creative-effect` | `cards-effect` | `fade-effect` | `flip-effect`
 - `free-mode` | `grid` | `hash-navigation` | `history` | `keyboard`
 - `lazy` | `manipulation` | `mousewheel` | `navigation` | `pagination`
 - `parallax` | `scrollbar` | `thumbs` | `virtual` | `zoom`
 
-Weitere Beispiele:
+More examples:
 ```json
 { "name": "get-module-options", "arguments": { "module": "pagination" } }
 { "name": "get-module-options", "arguments": { "module": "autoplay" } }
@@ -160,7 +160,7 @@ Weitere Beispiele:
 
 ### 6. `list-demos`
 
-Listet alle verfügbaren Swiper-Demos mit Framework-Varianten auf.
+Lists all available Swiper demos with their framework variants.
 
 ```json
 {
@@ -169,13 +169,13 @@ Listet alle verfügbaren Swiper-Demos mit Framework-Varianten auf.
 }
 ```
 
-Gibt verfügbare Demo-Slugs zurück (z.B. `navigation`, `pagination`, `autoplay`, `effect-fade`, etc.).
+Returns the available demo slugs (e.g. `navigation`, `pagination`, `autoplay`, `effect-fade`, etc.).
 
 ---
 
 ### 7. `get-demo`
 
-Liefert vollständigen Demo-Code im gewünschten Framework.
+Returns the complete demo code for the requested framework.
 
 ```json
 {
@@ -187,11 +187,11 @@ Liefert vollständigen Demo-Code im gewünschten Framework.
 }
 ```
 
-Parameter:
-- `slug` (string): Demo-Identifier (von `list-demos`)
+Parameters:
+- `slug` (string): demo identifier (from `list-demos`)
 - `framework`: `"core"` | `"element"` | `"react"` | `"vue"`
 
-Weitere Beispiele:
+More examples:
 ```json
 { "name": "get-demo", "arguments": { "slug": "autoplay", "framework": "vue" } }
 { "name": "get-demo", "arguments": { "slug": "effect-cards", "framework": "element" } }
@@ -203,7 +203,7 @@ Weitere Beispiele:
 
 ### 8. `get-premium-recommendations`
 
-Schlägt Premium-Plugins basierend auf Effekten, Modulen, Keywords oder Anwendungsfällen vor.
+Suggests premium plugins based on effects, modules, keywords or use cases.
 
 ```json
 {
@@ -214,13 +214,13 @@ Schlägt Premium-Plugins basierend auf Effekten, Modulen, Keywords oder Anwendun
 }
 ```
 
-Parameter (alternativ verwendbar):
-- `effect` (string): z.B. `"cards"`, `"fade"`, `"3d"`
-- `module` (string): z.B. `"navigation"`, `"autoplay"`
-- `keyword` (string): z.B. `"tinder"`, `"stories"`, `"panorama"`
-- `useCase` (string): z.B. `"portfolio"`, `"onboarding"`, `"gallery"`
+Parameters (usable alternatively):
+- `effect` (string): e.g. `"cards"`, `"fade"`, `"3d"`
+- `module` (string): e.g. `"navigation"`, `"autoplay"`
+- `keyword` (string): e.g. `"tinder"`, `"stories"`, `"panorama"`
+- `useCase` (string): e.g. `"portfolio"`, `"onboarding"`, `"gallery"`
 
-Weitere Beispiele:
+More examples:
 ```json
 { "name": "get-premium-recommendations", "arguments": { "keyword": "tinder" } }
 { "name": "get-premium-recommendations", "arguments": { "useCase": "onboarding" } }
@@ -229,36 +229,36 @@ Weitere Beispiele:
 
 ---
 
-## Installation & Konfiguration
+## Installation and configuration
 
 ### Claude Code (CLI)
 
 ```bash
-# Hinzufügen (lokal, nur für aktuelle Session)
+# Add (local, current session only)
 claude mcp add --transport http swiper https://swiperjs.com/mcp
 
-# Mit Scope
+# With a scope
 claude mcp add --transport http swiper --scope project https://swiperjs.com/mcp
 claude mcp add --transport http swiper --scope user https://swiperjs.com/mcp
 
-# Status prüfen
+# Check status
 claude mcp list
 claude mcp get swiper
 
-# Entfernen
+# Remove
 claude mcp remove swiper
 ```
 
-Scope-Optionen:
-- `local` (default): Nur für aktuelle Claude-Code-Instanz
-- `project`: Für das gesamte Projekt (`.claude/mcp.json`)
-- `user`: Für alle Projekte des Users (`~/.claude/mcp.json`)
+Scope options:
+- `local` (default): current Claude Code instance only
+- `project`: for the whole project (`.claude/mcp.json`)
+- `user`: for all of the user's projects (`~/.claude/mcp.json`)
 
 ---
 
 ### Cursor
 
-Datei `.cursor/mcp.json` erstellen/erweitern:
+Create or extend the file `.cursor/mcp.json`:
 
 ```json
 {
@@ -272,9 +272,9 @@ Datei `.cursor/mcp.json` erstellen/erweitern:
 
 ---
 
-### VS Code (ab v1.102)
+### VS Code (v1.102 and later)
 
-Datei `.vscode/mcp.json` erstellen:
+Create the file `.vscode/mcp.json`:
 
 ```json
 {
@@ -287,9 +287,9 @@ Datei `.vscode/mcp.json` erstellen:
 }
 ```
 
-Alternativ via Command Palette:
+Alternatively via the command palette:
 1. `Ctrl/Cmd+Shift+P` → `MCP: Add Server`
-2. HTTP auswählen
+2. Select HTTP
 3. Name: `swiper`
 4. URL: `https://swiperjs.com/mcp`
 
@@ -301,7 +301,7 @@ Alternativ via Command Palette:
 # Via CLI
 codex mcp add swiper --url https://swiperjs.com/mcp
 
-# Oder manuell in ~/.codex/config.toml:
+# Or manually in ~/.codex/config.toml:
 ```
 
 ```toml
@@ -316,7 +316,7 @@ enabled = true
 
 ### OpenCode
 
-In `opencode.jsonc` oder `opencode.json`:
+In `opencode.jsonc` or `opencode.json`:
 
 ```json
 {
@@ -333,16 +333,16 @@ In `opencode.jsonc` oder `opencode.json`:
 
 ---
 
-## Technische Details
+## Technical details
 
-### Protokoll
+### Protocol
 
 - **Transport:** HTTP POST
-- **Protokoll-Version:** MCP 2024-11-05
+- **Protocol version:** MCP 2024-11-05
 - **Format:** JSON-RPC 2.0
 - **Endpoint:** `POST https://swiperjs.com/mcp`
 
-### Request-Format (JSON-RPC 2.0)
+### Request format (JSON-RPC 2.0)
 
 ```json
 {
@@ -358,7 +358,7 @@ In `opencode.jsonc` oder `opencode.json`:
 }
 ```
 
-### Response-Format
+### Response format
 
 ```json
 {
@@ -375,9 +375,9 @@ In `opencode.jsonc` oder `opencode.json`:
 }
 ```
 
-### Error-Codes (JSON-RPC 2.0)
+### Error codes (JSON-RPC 2.0)
 
-| Code | Bedeutung |
+| Code | Meaning |
 |---|---|
 | `-32700` | Parse Error |
 | `-32600` | Invalid Request |
@@ -387,9 +387,9 @@ In `opencode.jsonc` oder `opencode.json`:
 
 ---
 
-## Unterstützte Module (für `get-module-options`)
+## Supported modules (for `get-module-options`)
 
-| Modul-ID | Swiper-Modul |
+| Module ID | Swiper module |
 |---|---|
 | `a11y` | Accessibility |
 | `autoplay` | Autoplay |
@@ -418,4 +418,4 @@ In `opencode.jsonc` oder `opencode.json`:
 
 ---
 
-*Quelle: https://swiperjs.com/swiper-mcp — Swiper v12.2.0*
+*Source: https://swiperjs.com/swiper-mcp — Swiper v12.2.0*

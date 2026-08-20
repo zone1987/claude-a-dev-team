@@ -1,7 +1,7 @@
-# Shopware 6 — Custom Entity
+# Shopware 6 — Custom entity
 
-Deklarative Entities ohne PHP-Definition — beschrieben in `src/Resources/entities.xml` (bzw. `custom_entity.xml`).
-Tabellen-/Entityname mit Präfix `custom_entity_` bzw. `ce_`. Ideal für App-/Plugin-Stammdaten mit Admin-UI.
+Declarative entities without a PHP definition — described in `src/Resources/entities.xml` (or `custom_entity.xml`).
+Table and entity names carry the prefix `custom_entity_` or `ce_`. Ideal for app/plugin master data with an admin UI.
 
 ```xml
 <entity name="custom_entity_ff_blog">
@@ -13,7 +13,7 @@ Tabellen-/Entityname mit Präfix `custom_entity_` bzw. `ce_`. Ideal für App-/Pl
 </entity>
 ```
 
-Shopware generiert Definition/Entity/Repository (`custom_entity_ff_blog.repository`) automatisch. Mit `cms-aware`/
-`admin-ui`-Attributen entstehen CMS-Awareness und Admin-Listen/Detail-Module ohne Code (ADR „technical-concept-custom-entities").
+Shopware generates definition, entity and repository (`custom_entity_ff_blog.repository`) automatically. The `cms-aware`/
+`admin-ui` attributes add CMS awareness and admin list/detail modules without code (ADR "technical-concept-custom-entities").
 
-→ Felder, Flags, Admin-UI/CMS-Optionen: [CUSTOM-ENTITY-CUSTOM-ENTITIES.md](CUSTOM-ENTITY-CUSTOM-ENTITIES.md)
+→ Fields, flags, admin UI/CMS options: [CUSTOM-ENTITY-CUSTOM-ENTITIES.md](CUSTOM-ENTITY-CUSTOM-ENTITIES.md)

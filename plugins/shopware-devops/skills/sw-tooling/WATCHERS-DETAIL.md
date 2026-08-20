@@ -1,16 +1,16 @@
-# Shopware 6 — Watchers & Hot Module Replacement (vollständige Referenz)
+# Shopware 6 — Watchers & hot module replacement (complete reference)
 
-Quelle: `guides/development/tooling/using-watchers.md`
+Source: `guides/development/tooling/using-watchers.md`
 
-## Überblick
+## Overview
 
-Bei der Entwicklung mit Shopware erfordern JavaScript-Änderungen normalerweise Build-Befehle für Administration oder Storefront. HMR (Hot Module Replacement) ermöglicht es, Änderungen automatisch zu laden und vorauszuschauen.
+When developing with Shopware, JavaScript changes normally require build commands for the administration or the storefront. HMR (hot module replacement) makes it possible to load and preview changes automatically.
 
-**Wichtig**: HMR-Watcher ersetzen nicht den finalen Build-Prozess nach Abschluss der Entwicklung.
+**Important**: HMR watchers do not replace the final build process once development is finished.
 
-## JS/CSS bauen (regulärer Build)
+## Building JS/CSS (regular build)
 
-### Source Code (composer run)
+### Source code (composer run)
 
 ```bash
 # Administration:
@@ -20,7 +20,7 @@ composer run build:js:admin
 composer run build:js:storefront
 ```
 
-### Production Template (shopware-cli)
+### Production template (shopware-cli)
 
 ```bash
 # Administration:
@@ -30,22 +30,22 @@ shopware-cli project admin-build
 shopware-cli project storefront-build
 ```
 
-## Hot Module Replacement aktivieren
+## Enabling hot module replacement
 
-### Source Code (Shopware Source Code-Repository)
+### Source code (Shopware source code repository)
 
 ```bash
 # Administration:
 composer run watch:admin
 
-# Storefront (ab Shopware 6.7.11.0):
+# Storefront (from Shopware 6.7.11.0):
 composer run storefront:dev-server
 
-# Storefront (vor Shopware 6.7.11.0):
+# Storefront (before Shopware 6.7.11.0):
 composer run watch:storefront
 ```
 
-### Production Template (shopware-cli)
+### Production template (shopware-cli)
 
 ```bash
 # Administration:
@@ -55,36 +55,36 @@ shopware-cli project admin-watch
 shopware-cli project storefront-watch
 ```
 
-## Umgebungsvariablen
+## Environment variables
 
-Umgebungsvariablen beeinflussen Shopware und damit auch die Watcher. Unix-Präfix-Syntax setzt die Variable nur für diesen Befehl.
+Environment variables influence Shopware and therefore the watchers too. The Unix prefix syntax sets the variable for that command only.
 
 ### APP_ENV
 
 ```bash
-# Production Mode (kein Symfony-Toolbar, keine Debug-Features):
+# Production mode (no Symfony toolbar, no debug features):
 APP_ENV=prod composer run watch:storefront
 
-# Development Mode (Standard):
-# composer run watch:storefront  (APP_ENV=dev ist Default)
+# Development mode (default):
+# composer run watch:storefront  (APP_ENV=dev is the default)
 ```
 
-- `APP_ENV=dev`: Development Mode — Symfony Toolbar im Storefront, bessere Fehlermeldungen, Query-Logging
-- `APP_ENV=prod`: Production Mode — keine Debug-Tools, Caching aktiv
+- `APP_ENV=dev`: development mode — Symfony toolbar in the storefront, better error messages, query logging
+- `APP_ENV=prod`: production mode — no debug tools, caching active
 
 ### IPV4FIRST
 
-Ab NodeJS v17.0.0 wird IPv6 gegenüber IPv4 bevorzugt. In manchen Setups kann IPv6 bei Watchern Probleme verursachen.
+From NodeJS v17.0.0 on, IPv6 is preferred over IPv4. In some setups IPv6 can cause problems with watchers.
 
 ```bash
-# IPv4 erzwingen (NodeJS v17+):
+# Force IPv4 (NodeJS v17+):
 IPV4FIRST=1 composer run watch:storefront
 IPV4FIRST=1 composer run watch:admin
 ```
 
-## Hinweise
+## Notes
 
-1. Watcher eignen sich für **aktive Entwicklung** — schnelleres Feedback
-2. **Finaler Build** ist trotzdem nötig vor Deployment oder Plugin-Packaging
-3. Bei `APP_ENV=dev` werden mehr Ressourcen verbraucht
-4. Watcher-Prozesse laufen im Vordergrund — für Hintergrundausführung: `&` oder separate Terminals
+1. Watchers suit **active development** — faster feedback
+2. A **final build** is still required before deployment or plugin packaging
+3. With `APP_ENV=dev` more resources are consumed
+4. Watcher processes run in the foreground — for background execution: `&` or separate terminals

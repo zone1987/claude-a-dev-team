@@ -1,4 +1,4 @@
-# Shopware IDE-Tools
+# Shopware IDE tools
 
 ## PHPStorm: Shopware 6 Toolbox
 
@@ -6,34 +6,34 @@ JetBrains Marketplace: https://plugins.jetbrains.com/plugin/17632-shopware-6-too
 
 ### Installation
 
-PHPStorm → Settings → Plugins → "Shopware 6 Toolbox" suchen → Install → Restart
+PHPStorm → Settings → Plugins → search for "Shopware 6 Toolbox" → Install → Restart
 
 ### Features
 
-**Live Templates** (Cmd/Ctrl + J): Vorgefertigte Code-Snippets für häufige Shopware-Konstrukte.
+**Live templates** (Cmd/Ctrl + J): ready-made code snippets for common Shopware constructs.
 
-**Code-Generatoren:**
-- Vue.js Admin-Komponenten
-- `config.xml`-Gerüste
-- Storefront-Block-Erweiterungen (inkl. automatische Datei-Erstellung)
-- Vue-Module
-- Scheduled Tasks
+**Code generators:**
+- Vue.js admin components
+- `config.xml` scaffolds
+- Storefront block extensions (including automatic file creation)
+- Vue modules
+- Scheduled tasks
 - Changelogs
 
-**Static Code Checks:**
-- Inspection: Warnung bei falsch verwendeten abstrakten Klassen im Constructor (Guideline Check)
+**Static code checks:**
+- Inspection: warning about abstract classes used incorrectly in the constructor (guideline check)
 
-**Auto-Completion:**
-- Admin-Komponenten
-- Snippets in Administration und Storefront
-- Storefront-Funktionen: `theme_config`, `config`, `seoUrl`, `sw_include`, `sw_extends`
+**Auto-completion:**
+- Admin components
+- Snippets in administration and storefront
+- Storefront functions: `theme_config`, `config`, `seoUrl`, `sw_include`, `sw_extends`
 - Repository via `this.repositoryFactory.create`
-- `Module.register`-Labels
-- Context-aware Admin-Komponenten (Twig-Datei neben `index.js`)
-- Feature Flags
+- `Module.register` labels
+- Context-aware admin components (Twig file next to `index.js`)
+- Feature flags
 
-## VS Code Extension
+## VS Code extension
 
 Marketplace: https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp
 
-Language Server Protocol (LSP) für Shopware-spezifische Auto-Completion und Diagnosen in VS Code.
+Language Server Protocol (LSP) for Shopware-specific auto-completion and diagnostics in VS Code.

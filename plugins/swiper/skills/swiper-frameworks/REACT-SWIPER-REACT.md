@@ -1,27 +1,27 @@
-# Swiper React — Vollständige Referenz
+# Swiper React — Complete reference
 
-Swiper React-Komponenten sind offiziell unterstützt und in `swiper/react` enthalten.
-Kompatibel mit React 18+.
+The Swiper React components are officially supported and shipped in `swiper/react`.
+Compatible with React 18+.
 
 ---
 
 ## Contents
 
 - [Installation](#installation)
-- [Basis-Import](#basis-import)
-- [Minimales Beispiel](#minimales-beispiel)
-- [`<Swiper>` — Props](#swiper-props)
-- [Events als `onXxx`-Props](#events-als-onxxx-props)
-- [`<SwiperSlide>` — Props](#swiperslide-props)
-- [Render-Funktion (Slide State)](#render-funktion-slide-state)
+- [Base import](#base-import)
+- [Minimal example](#minimal-example)
+- [`<Swiper>` — props](#swiper-props)
+- [Events as `onXxx` props](#events-as-onxxx-props)
+- [`<SwiperSlide>` — props](#swiperslide-props)
+- [Render function (slide state)](#render-function-slide-state)
 - [Hooks](#hooks)
-- [Slots (Content-Injection)](#slots-content-injection)
-- [Module einbinden](#module-einbinden)
+- [Slots (content injection)](#slots-content-injection)
+- [Including modules](#including-modules)
 - [Virtual Slides](#virtual-slides)
-- [Controller (synchronisierte Swiper)](#controller-synchronisierte-swiper)
-- [Thumbs (Vorschaubilder)](#thumbs-vorschaubilder)
-- [Effekte](#effekte)
-- [Swiper-Instanz via Ref (alternative zu `onSwiper`)](#swiper-instanz-via-ref-alternative-zu-onswiper)
+- [Controller (synchronized Swipers)](#controller-synchronized-swipers)
+- [Thumbs (thumbnails)](#thumbs-thumbnails)
+- [Effects](#effects)
+- [Swiper instance via ref (alternative to `onSwiper`)](#swiper-instance-via-ref-alternative-to-onswiper)
 
 ## Installation
 
@@ -31,15 +31,15 @@ npm install swiper
 
 ---
 
-## Basis-Import
+## Base import
 
 ```jsx
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Core-CSS (immer nötig)
+// Core CSS (always required)
 import 'swiper/css';
 
-// Modul-spezifische CSS-Dateien
+// Module-specific CSS files
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
@@ -54,13 +54,13 @@ import 'swiper/css/free-mode';
 import 'swiper/css/grid';
 import 'swiper/css/zoom';
 
-// Oder alles auf einmal (Bundle)
+// Or everything at once (bundle)
 import 'swiper/css/bundle';
 ```
 
 ---
 
-## Minimales Beispiel
+## Minimal example
 
 ```jsx
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -84,30 +84,30 @@ export default function MySwiper() {
 
 ---
 
-## `<Swiper>` — Props
+## `<Swiper>` — props
 
-Alle [Swiper API-Parameter](https://swiperjs.com/swiper-api#parameters) sind als Props verfügbar (camelCase).
+All [Swiper API parameters](https://swiperjs.com/swiper-api#parameters) are available as props (camelCase).
 
-### Zusätzliche React-spezifische Props
+### Additional React-specific props
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `tag` | `string` | `'div'` | HTML-Element des Containers |
-| `wrapperTag` | `string` | `'div'` | HTML-Element des Wrappers |
-| `onSwiper` | `(swiper: Swiper) => void` | — | Callback mit Swiper-Instanz nach Init |
-| `modules` | `SwiperModule[]` | — | Array der einzubindenden Module |
+| `tag` | `string` | `'div'` | HTML element of the container |
+| `wrapperTag` | `string` | `'div'` | HTML element of the wrapper |
+| `onSwiper` | `(swiper: Swiper) => void` | — | Callback with the Swiper instance after init |
+| `modules` | `SwiperModule[]` | — | Array of the modules to include |
 
-### Häufige Parameter als Props
+### Common parameters as props
 
 ```jsx
 <Swiper
-  // Allgemein
+  // General
   slidesPerView={1}
   spaceBetween={10}
   speed={400}
   loop={true}
   centeredSlides={true}
-  direction="horizontal" // oder "vertical"
+  direction="horizontal" // or "vertical"
   
   // Breakpoints
   breakpoints={{
@@ -128,13 +128,13 @@ Alle [Swiper API-Parameter](https://swiperjs.com/swiper-api#parameters) sind als
   // Scrollbar
   scrollbar={{ draggable: true }}
   
-  // Freier Modus
+  // Free mode
   freeMode={true}
   
   // Grid
   grid={{ rows: 2 }}
   
-  // Effekte
+  // Effects
   effect="fade" // "slide"|"fade"|"cube"|"coverflow"|"flip"|"cards"|"creative"
   fadeEffect={{ crossFade: true }}
   
@@ -144,18 +144,18 @@ Alle [Swiper API-Parameter](https://swiperjs.com/swiper-api#parameters) sind als
   // Mousewheel
   mousewheel={true}
   
-  // Lazy Loading
+  // Lazy loading
   lazy={true}
 >
 ```
 
 ---
 
-## Events als `onXxx`-Props
+## Events as `onXxx` props
 
-Jeder Swiper-API-Event ist als Prop verfügbar (Format: `on` + EventName mit Großbuchstabe):
+Every Swiper API event is available as a prop (format: `on` + event name with a capital letter):
 
-| Swiper-Event | React-Prop |
+| Swiper event | React prop |
 |---|---|
 | `slideChange` | `onSlideChange` |
 | `progress` | `onProgress` |
@@ -201,39 +201,39 @@ Jeder Swiper-API-Event ist als Prop verfügbar (Format: `on` + EventName mit Gro
 
 ---
 
-## `<SwiperSlide>` — Props
+## `<SwiperSlide>` — props
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `tag` | `string` | `'div'` | HTML-Element des Slides |
-| `zoom` | `boolean` | `false` | Zoom-Wrapper aktivieren |
-| `virtualIndex` | `number` | — | Index für Virtual Slides (Pflicht) |
+| `tag` | `string` | `'div'` | HTML element of the slide |
+| `zoom` | `boolean` | `false` | Enable the zoom wrapper |
+| `virtualIndex` | `number` | — | Index for Virtual Slides (required) |
 
 ---
 
-## Render-Funktion (Slide State)
+## Render function (slide state)
 
-`SwiperSlide` akzeptiert eine Render-Funktion, die Zustandsvariablen bereitstellt:
+`SwiperSlide` accepts a render function that provides state variables:
 
 ```jsx
 <SwiperSlide>
   {({ isActive, isPrev, isNext, isVisible, isDuplicate }) => (
     <div className={isActive ? 'slide active' : 'slide'}>
-      {isActive && <span>Aktuell aktiv</span>}
-      {isNext && <span>Nächster Slide</span>}
-      {isPrev && <span>Vorheriger Slide</span>}
+      {isActive && <span>Currently active</span>}
+      {isNext && <span>Next slide</span>}
+      {isPrev && <span>Previous slide</span>}
     </div>
   )}
 </SwiperSlide>
 ```
 
-| Variable | Bedeutung |
+| Variable | Meaning |
 |---|---|
-| `isActive` | Dieser Slide ist aktiv |
-| `isPrev` | Vorheriger Slide |
-| `isNext` | Nächster Slide |
-| `isVisible` | Sichtbar (benötigt `watchSlidesProgress`) |
-| `isDuplicate` | Duplikat im Loop-Modus |
+| `isActive` | This slide is active |
+| `isPrev` | Previous slide |
+| `isNext` | Next slide |
+| `isVisible` | Visible (requires `watchSlidesProgress`) |
+| `isDuplicate` | Duplicate in loop mode |
 
 ---
 
@@ -241,7 +241,7 @@ Jeder Swiper-API-Event ist als Prop verfügbar (Format: `on` + EventName mit Gro
 
 ### `useSwiper`
 
-Zugriff auf Swiper-Instanz innerhalb von Kindkomponenten:
+Access the Swiper instance inside child components:
 
 ```jsx
 import { useSwiper } from 'swiper/react';
@@ -251,14 +251,14 @@ function SlideNavigation() {
 
   return (
     <div>
-      <button onClick={() => swiper.slidePrev()}>Zurück</button>
-      <button onClick={() => swiper.slideNext()}>Vor</button>
-      <button onClick={() => swiper.slideTo(0)}>Anfang</button>
+      <button onClick={() => swiper.slidePrev()}>Back</button>
+      <button onClick={() => swiper.slideNext()}>Forward</button>
+      <button onClick={() => swiper.slideTo(0)}>Beginning</button>
     </div>
   );
 }
 
-// Innerhalb von <Swiper> verwenden:
+// Use inside <Swiper>:
 <Swiper>
   <SwiperSlide>Slide 1</SwiperSlide>
   <SlideNavigation />
@@ -267,7 +267,7 @@ function SlideNavigation() {
 
 ### `useSwiperSlide`
 
-Slide-Zustand innerhalb einer Slide-Kindkomponente:
+Slide state inside a slide child component:
 
 ```jsx
 import { useSwiperSlide } from 'swiper/react';
@@ -278,7 +278,7 @@ function SlideContent() {
 
   return (
     <div>
-      {swiperSlide.isActive ? 'Aktiver Slide' : 'Inaktiver Slide'}
+      {swiperSlide.isActive ? 'Active slide' : 'Inactive slide'}
     </div>
   );
 }
@@ -292,22 +292,22 @@ function SlideContent() {
 
 ---
 
-## Slots (Content-Injection)
+## Slots (content injection)
 
-Spezielle Slots für Inhalt außerhalb des Wrappers:
+Special slots for content outside the wrapper:
 
 ```jsx
 <Swiper>
-  {/* container-start: vor dem swiper-wrapper */}
-  <div slot="container-start">Oben</div>
+  {/* container-start: before the swiper-wrapper */}
+  <div slot="container-start">Top</div>
 
   <SwiperSlide>Slide 1</SwiperSlide>
   <SwiperSlide>Slide 2</SwiperSlide>
 
-  {/* container-end: nach dem swiper-wrapper */}
-  <div slot="container-end">Unten</div>
+  {/* container-end: after the swiper-wrapper */}
+  <div slot="container-end">Bottom</div>
 
-  {/* wrapper-start / wrapper-end: innerhalb des Wrappers */}
+  {/* wrapper-start / wrapper-end: inside the wrapper */}
   <div slot="wrapper-start">Wrapper Start</div>
   <div slot="wrapper-end">Wrapper End</div>
 </Swiper>
@@ -315,7 +315,7 @@ Spezielle Slots für Inhalt außerhalb des Wrappers:
 
 ---
 
-## Module einbinden
+## Including modules
 
 ```jsx
 import { Navigation, Pagination, Scrollbar, Autoplay, EffectFade } from 'swiper/modules';
@@ -334,7 +334,7 @@ import 'swiper/css/effect-fade';
 >
 ```
 
-### Alle verfügbaren Module
+### All available modules
 
 ```javascript
 import {
@@ -388,7 +388,7 @@ const slides = Array.from({ length: 1000 }, (_, i) => `Slide ${i + 1}`);
 
 ---
 
-## Controller (synchronisierte Swiper)
+## Controller (synchronized Swipers)
 
 ```jsx
 import { Controller } from 'swiper/modules';
@@ -424,7 +424,7 @@ function ControlledSwiper() {
 
 ---
 
-## Thumbs (Vorschaubilder)
+## Thumbs (thumbnails)
 
 ```jsx
 import { Thumbs, FreeMode } from 'swiper/modules';
@@ -437,7 +437,7 @@ function ThumbsSwiper() {
 
   return (
     <>
-      {/* Haupt-Swiper */}
+      {/* Main Swiper */}
       <Swiper
         modules={[Thumbs]}
         thumbs={{ swiper: thumbsSwiper }}
@@ -447,7 +447,7 @@ function ThumbsSwiper() {
         <SwiperSlide><img src="img2.jpg" /></SwiperSlide>
       </Swiper>
 
-      {/* Thumbs-Swiper */}
+      {/* Thumbs Swiper */}
       <Swiper
         modules={[FreeMode, Thumbs]}
         onSwiper={setThumbsSwiper}
@@ -466,7 +466,7 @@ function ThumbsSwiper() {
 
 ---
 
-## Effekte
+## Effects
 
 ```jsx
 import { EffectCards } from 'swiper/modules';
@@ -478,11 +478,11 @@ import 'swiper/css/effect-cards';
 </Swiper>
 ```
 
-Alle Effekte: `"slide"` | `"fade"` | `"cube"` | `"coverflow"` | `"flip"` | `"cards"` | `"creative"`
+All effects: `"slide"` | `"fade"` | `"cube"` | `"coverflow"` | `"flip"` | `"cards"` | `"creative"`
 
 ---
 
-## Swiper-Instanz via Ref (alternative zu `onSwiper`)
+## Swiper instance via ref (alternative to `onSwiper`)
 
 ```jsx
 import { useRef } from 'react';
@@ -505,4 +505,4 @@ function MySwiper() {
 
 ---
 
-*Quelle: https://swiperjs.com/react — Swiper v12.2.0*
+*Source: https://swiperjs.com/react — Swiper v12.2.0*

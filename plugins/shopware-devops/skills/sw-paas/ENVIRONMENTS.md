@@ -1,11 +1,11 @@
-# Shopware PaaS Native — Umgebungen & Applications
+# Shopware PaaS Native — Environments & Applications
 
 ## Application Cloning
 
 ```bash
-sw-paas application clone            # Interaktiv
+sw-paas application clone            # Interactive
 
-# Manuell
+# Manual
 sw-paas application clone \
   --organization-id <org-id> \
   --project-id <source-project-id> \
@@ -14,35 +14,35 @@ sw-paas application clone \
   --target-project-id <target-project-id>
 ```
 
-**Voraussetzung:** Letztes Deployment muss `DEPLOYING_STORE_SUCCESS` sein.
+**Prerequisite:** The last deployment must be `DEPLOYING_STORE_SUCCESS`.
 
-Nach Clone:
-1. Admin-Passwort ändern (`sw-paas open admin`)
-2. OpenSearch reindexieren: `bin/console dal:refresh:index --use-queue`
-3. Domain in Sales Channel aktualisieren
+After the clone:
+1. Change the admin password (`sw-paas open admin`)
+2. Reindex OpenSearch: `bin/console dal:refresh:index --use-queue`
+3. Update the domain in the sales channel
 
-## Shopware-Version aktualisieren
+## Updating the Shopware version
 
 ```bash
-# 1. Snapshot erstellen
+# 1. Create a snapshot
 sw-paas snapshot create
 
-# 2. Neue Branch, composer.json updaten
+# 2. New branch, update composer.json
 git checkout -b update-shopware
-# shopware/core Version anpassen
+# adjust the shopware/core version
 composer update --no-scripts
 composer recipes:update
 git add . && git commit -m "Update Shopware X.Y.Z"
 git push
 
-# 3. Vorbereitung im laufenden System
+# 3. Preparation in the running system
 sw-paas exec --new
 bin/console system:update:prepare
 
 # 4. Deployment
 sw-paas application update
 
-# 5. Abschluss
+# 5. Completion
 sw-paas exec --new
 bin/console system:update:finish
 ```
@@ -51,16 +51,16 @@ bin/console system:update:finish
 
 | | `exec` | `command` |
 |---|---|---|
-| Container | Existierender | Neuer |
-| Modus | Interaktiv | Nicht-interaktiv |
-| Use Case | Debugging, Wartung | CI/CD, Automatisierung |
-| TTL | Session | 1 Stunde |
+| Container | Existing | New |
+| Mode | Interactive | Non-interactive |
+| Use case | Debugging, maintenance | CI/CD, automation |
+| TTL | Session | 1 hour |
 
 ```bash
-sw-paas exec --new           # Interaktive Shell
-sw-paas command create       # Einmaligen Befehl ausführen
+sw-paas exec --new           # Interactive shell
+sw-paas command create       # Run a one-off command
 ```
 
-## Vertiefung
+## Deep dive
 
 [ENVIRONMENTS-DETAIL.md](ENVIRONMENTS-DETAIL.md)

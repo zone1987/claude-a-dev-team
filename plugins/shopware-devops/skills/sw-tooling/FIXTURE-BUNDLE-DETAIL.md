@@ -1,17 +1,17 @@
-# Shopware Fixture Bundle (vollständige Referenz)
+# Shopware Fixture Bundle (complete reference)
 
-Quelle: `guides/development/tooling/fixture-bundle.md`
+Source: `guides/development/tooling/fixture-bundle.md`
 
 ## Contents
 
 - [Installation](#installation)
-- [Konzept](#konzept)
-- [Basis-Fixture anlegen](#basis-fixture-anlegen)
-- [`#[Fixture]`-Attribut — Parameter](#fixture-attribut-parameter)
+- [Concept](#concept)
+- [Creating a basic fixture](#creating-a-basic-fixture)
+- [`#[Fixture]` attribute — parameters](#fixture-attribute--parameters)
 - [Commands](#commands)
-- [Ausführungsreihenfolge](#ausführungsreihenfolge)
-- [Spezialisierte Loader](#spezialisierte-loader)
-- [Best Practices](#best-practices)
+- [Execution order](#execution-order)
+- [Specialized loaders](#specialized-loaders)
+- [Best practices](#best-practices)
 
 ## Installation
 
@@ -19,16 +19,16 @@ Quelle: `guides/development/tooling/fixture-bundle.md`
 composer require shopware/fixture-bundle:*
 ```
 
-## Konzept
+## Concept
 
-Das Fixture Bundle bietet einen flexiblen und organisierten Weg, Test- und Demo-Daten in Shopware 6 zu laden. Unterstützt:
-- Dependency-Management zwischen Fixtures
-- Priority-basierte Ausführungsreihenfolge
-- Group-Filtering für selektives Laden
+The Fixture Bundle offers a flexible and organized way to load test and demo data into Shopware 6. It supports:
+- Dependency management between fixtures
+- Priority-based execution order
+- Group filtering for selective loading
 
-## Basis-Fixture anlegen
+## Creating a basic fixture
 
-Klasse implementiert `FixtureInterface` und trägt das `#[Fixture]`-Attribut:
+The class implements `FixtureInterface` and carries the `#[Fixture]` attribute:
 
 ```php
 <?php declare(strict_types=1);
@@ -61,40 +61,40 @@ class CategoryFixture implements FixtureInterface
 }
 ```
 
-## `#[Fixture]`-Attribut — Parameter
+## `#[Fixture]` attribute — parameters
 
 ```php
 #[Fixture(
-    name: 'product',          // string: Name der Fixture
-    priority: 50,             // int, default 0: Höher = früher ausgeführt
-    dependsOn: [              // array: Klassen die zuerst laufen müssen
+    name: 'product',          // string: name of the fixture
+    priority: 50,             // int, default 0: higher = executed earlier
+    dependsOn: [              // array: classes that must run first
         CategoryFixture::class,
         ManufacturerFixture::class,
     ],
-    groups: ['catalog', 'test-data']  // array, default ['default']: Gruppen
+    groups: ['catalog', 'test-data']  // array, default ['default']: groups
 )]
 ```
 
 ## Commands
 
-### Fixtures laden
+### Loading fixtures
 
 ```bash
-# Alle Fixtures:
+# All fixtures:
 bin/console fixture:load
 
-# Spezifische Gruppe:
+# A specific group:
 bin/console fixture:load --group=test-data
 bin/console fixture:load --group=demo-data
 ```
 
-### Fixtures auflisten
+### Listing fixtures
 
 ```bash
 bin/console fixture:list
 ```
 
-Beispielausgabe:
+Example output:
 ```
 Available Fixtures
 ==================
@@ -112,17 +112,17 @@ Available Fixtures
 [OK] Found 4 fixture(s).
 ```
 
-## Ausführungsreihenfolge
+## Execution order
 
-1. **Dependencies**: Wenn `dependsOn` deklariert → immer nach den Dependencies
-2. **Priority**: Unter unabhängigen Fixtures höherer Wert = früher
-3. **Kreisabhängigkeiten**: System wirft Exception bei Erkennung
+1. **Dependencies**: when `dependsOn` is declared → always after the dependencies
+2. **Priority**: among independent fixtures, a higher value runs earlier
+3. **Circular dependencies**: the system throws an exception when it detects one
 
-## Spezialisierte Loader
+## Specialized loaders
 
 ### ThemeFixtureLoader
 
-Für Theme-Einstellungen (Farben, Logo, Fonts). Automatisches Theme-Discovery und Recompilation. Änderungen nur bei Bedarf.
+For theme settings (colors, logo, fonts). Automatic theme discovery and recompilation. Changes only when needed.
 
 ```php
 #[Fixture(name: 'theme', groups: ['theme-config', 'branding'])]
@@ -134,7 +134,7 @@ class ThemeFixture implements FixtureInterface
 
     public function load(): void
     {
-        // Logo hochladen (einmalig, wird via File-Content dedupliziert)
+        // Upload the logo (once, deduplicated via the file content)
         $logo = $this->mediaHelper->upload(
             __DIR__ . '/shop.png',
             $this->mediaHelper->getDefaultFolder(ThemeDefinition::ENTITY_NAME)->getId()
@@ -153,7 +153,7 @@ class ThemeFixture implements FixtureInterface
 
 ### CustomFieldSetFixtureLoader
 
-Custom Field Sets und ihre Custom Fields für Entities erstellen und verwalten:
+Create and manage custom field sets and their custom fields for entities:
 
 ```php
 #[Fixture(name: 'custom-field')]
@@ -184,8 +184,8 @@ class CustomFieldFixture implements FixtureInterface
 
 ### CustomerFixtureLoader
 
-Kunden mit Adressen, Custom Fields und anderen Eigenschaften erstellen.
-Email-Adresse als eindeutiger Identifier — bestehende Kunden werden aktualisiert (Upsert).
+Create customers with addresses, custom fields and other properties.
+The email address is the unique identifier — existing customers are updated (upsert).
 
 ```php
 #[Fixture(name: 'customer', groups: ['customers', 'addresses'])]
@@ -223,11 +223,11 @@ class CustomerFixture implements FixtureInterface
 }
 ```
 
-## Best Practices
+## Best practices
 
-- **Meaningful Names**: Klare, beschreibende Klassennamen
-- **Gruppen nutzen**: `test-data`, `demo-data`, `performance-test`
-- **Dependencies deklarieren**: Vorhersagbare Ausführungsreihenfolge
-- **Single Responsibility**: Jede Fixture hat eine klare Verantwortung
-- **Idempotentes Design**: Mehrfach ausführbar ohne Fehler oder Duplikate
-- **Dependency Injection**: Services per Constructor injizieren (nicht aus Container fetchen)
+- **Meaningful names**: clear, descriptive class names
+- **Use groups**: `test-data`, `demo-data`, `performance-test`
+- **Declare dependencies**: predictable execution order
+- **Single responsibility**: each fixture has one clear responsibility
+- **Idempotent design**: repeatable without errors or duplicates
+- **Dependency injection**: inject services via the constructor (do not fetch them from the container)

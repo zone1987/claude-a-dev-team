@@ -3,64 +3,64 @@
 ## Logs via CLI
 
 ```bash
-# Letzte 15 Minuten (Default)
+# Last 15 minutes (default)
 sw-paas application logs
 
-# Live-Stream
+# Live stream
 sw-paas application logs --follow
 
-# Nach Komponente filtern
+# Filter by component
 sw-paas application logs --component storefront
-# Komponenten: admin | command | cronjob | migration | scheduled-task | setup | storefront | worker
+# Components: admin | command | cronjob | migration | scheduled-task | setup | storefront | worker
 
-# Zeitfenster
+# Time window
 sw-paas application logs --time-range 09:00-10:00
 
-# Anzahl Zeilen
+# Number of lines
 sw-paas application logs --limit 500
 
-# Rohe Ausgabe / JSON
+# Raw output / JSON
 sw-paas application logs --raw
 sw-paas application logs --output json
 
-# LogQL-Query
+# LogQL query
 sw-paas application logs --query '{job="vector",component="storefront"} |= "error"'
 
-# Deployment-Logs
+# Deployment logs
 sw-paas application deploy logs
 sw-paas application deploy logs --follow
 
-# Cron-Logs
+# Cron logs
 sw-paas application cronjob logs
 sw-paas application cron logs --run-id <run-id>
 ```
 
-Jeder Befehl gibt am Ende eine **Grafana Explore URL** aus.
+Every command prints a **Grafana Explore URL** at the end.
 
-## Grafana (Browser)
+## Grafana (browser)
 
 ```bash
 sw-paas open grafana
-# → URL, Username, Passwort
+# → URL, username, password
 ```
 
-- **Logs**: Explore → Loki → Label `component` setzen
-- **Traces**: Explore → Tempo → Service Name: `shopware`
-- Dashboard: `Logs Dashboard` (vordefiniert)
+- **Logs**: Explore → Loki → set the `component` label
+- **Traces**: Explore → Tempo → service name: `shopware`
+- Dashboard: `Logs Dashboard` (predefined)
 
-Log-Retention: **45 Tage** | Trace-Retention: **14 Tage**
+Log retention: **45 days** | Trace retention: **14 days**
 
-## Events live verfolgen
+## Following events live
 
 ```bash
 sw-paas watch
 sw-paas watch --application-ids app1,app2
 sw-paas watch --event-types "EVENT_TYPE_DEPLOYMENT_STARTED,EVENT_TYPE_DEPLOYMENT_FINISHED"
-sw-paas application deploy get    # Event-History eines Deployments
+sw-paas application deploy get    # event history of a deployment
 ```
 
-![Log-Suche](assets/paas-monitoring-log-search.png) ![Log-Filter](assets/paas-monitoring-log-filter.png)
+![Log search](assets/paas-monitoring-log-search.png) ![Log filter](assets/paas-monitoring-log-filter.png)
 
-## Vertiefung
+## Deep dive
 
 [MONITORING-DETAIL.md](MONITORING-DETAIL.md)

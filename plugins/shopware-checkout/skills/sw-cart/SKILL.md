@@ -9,15 +9,15 @@ The cart is recalculated on every change through collector, processor and valida
 
 ## Reference map
 
-- **[COLLECTOR.md](COLLECTOR.md)**: Der Collector läuft **vor** den Processoren und lädt alle Daten, die zur Berechnung gebraucht werden, gebünde….
-- **[DISCOUNT.md](DISCOUNT.md)**: Rabatte sind eigene LineItems bzw.
-- **[FACADE-SCRIPT.md](FACADE-SCRIPT.md)**: Apps manipulieren den Warenkorb über die **Cart-Facade** im `cart`-Script-Hook — ohne eigenen PHP-Processor.
-- **[LINE-ITEM.md](LINE-ITEM.md)**: Eine Warenkorb-Position ist ein `LineItem`.
-- **[NESTED-LINE-ITEMS.md](NESTED-LINE-ITEMS.md)**: LineItems können `children` haben — z.B.
-- **[PRICE.md](PRICE.md)**: Preise im Cart werden über Calculator-Services berechnet, aus einer `PriceDefinition` → `CalculatedPrice`.
-- **[PROCESSOR.md](PROCESSOR.md)**: Der Warenkorb wird in zwei Phasen berechnet: **Collector** → **Processor**. [PROCESSOR-CHECKOUT](PROCESSOR-CHECKOUT.md).
-- **[PROMOTION.md](PROMOTION.md)**: Aktionen sind `promotion`-Entities mit Rabatten, optionalen Codes und Bedingungen über Rules.
-- **[VALIDATOR.md](VALIDATOR.md)**: Validatoren prüfen den berechneten Warenkorb und können **blockierende** oder informative Fehler anhängen.
+- **[COLLECTOR.md](COLLECTOR.md)**: The collector runs **before** the processors and loads all data needed for the calculation in a single batc….
+- **[DISCOUNT.md](DISCOUNT.md)**: Discounts are separate line items or promotion items.
+- **[FACADE-SCRIPT.md](FACADE-SCRIPT.md)**: Apps manipulate the cart through the **cart facade** in the `cart` script hook — without a PHP processor of their own.
+- **[LINE-ITEM.md](LINE-ITEM.md)**: A cart position is a `LineItem`.
+- **[NESTED-LINE-ITEMS.md](NESTED-LINE-ITEMS.md)**: Line items can have `children` — e.g. a bundle with sub-products.
+- **[PRICE.md](PRICE.md)**: Cart prices come from calculator services, turning a `PriceDefinition` into a `CalculatedPrice`.
+- **[PROCESSOR.md](PROCESSOR.md)**: The cart is calculated in two phases: **collector** → **processor**. [PROCESSOR-CHECKOUT](PROCESSOR-CHECKOUT.md).
+- **[PROMOTION.md](PROMOTION.md)**: Campaigns are `promotion` entities with discounts, optional codes and conditions via rules.
+- **[VALIDATOR.md](VALIDATOR.md)**: Validators inspect the calculated cart and can attach **blocking** or informational errors.
 
 ## Source
 

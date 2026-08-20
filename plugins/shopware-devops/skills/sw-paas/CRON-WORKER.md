@@ -1,43 +1,43 @@
 # Shopware PaaS Native — Cron Jobs & Worker
 
-> Cron Jobs ergänzen Shopware's Scheduled Tasks, ersetzen sie nicht.
+> Cron jobs complement Shopware's scheduled tasks, they do not replace them.
 
-## Cron Job in application.yaml definieren
+## Define a cron job in application.yaml
 
 ```yaml
 cronJobs:
   - name: guest-cleanup          # kebab-case, a-z 0-9 -
-    schedule: "0 3 * * *"        # Cron-Syntax (5-Felder)
+    schedule: "0 3 * * *"        # Cron syntax (5 fields)
     command: "bin/console customer:delete-unused-guests"
-    timezone: Europe/Berlin      # IANA-Timezone (Default: UTC)
+    timezone: Europe/Berlin      # IANA timezone (default: UTC)
 
   - name: es-index-cleanup
     schedule: "0 4 * * 0"
     command: "bin/console es:index:cleanup"
 ```
 
-**Wichtig:** Cron Jobs sind nach Deploy **deaktiviert** → explizit aktivieren!
+**Important:** cron jobs are **disabled** after a deploy → enable them explicitly!
 
-## CLI-Verwaltung
+## CLI management
 
 ```bash
-# Auflisten
+# List
 sw-paas application cronjob list
 sw-paas application cron list
 
 # Details
 sw-paas application cronjob get --id <id>
 
-# Aktivieren/Deaktivieren (Deployment nötig!)
+# Enable/disable (a deployment is required!)
 sw-paas application cronjob update --id <id> --enable
 sw-paas application cronjob update --id <id> --disable
 sw-paas application cronjob update --enable --all
 sw-paas application cronjob update --disable --all
 
-# Interaktiv (Menü: ↑↓ navigate, Space toggle, a alle, d keine, Enter bestätigen)
+# Interactive (menu: ↑↓ navigate, Space toggle, a all, d none, Enter confirm)
 sw-paas application cronjob update
 
-# History (61 Tage)
+# History (61 days)
 sw-paas application cronjob history list
 sw-paas application cronjob history list --date 2024-01-15
 sw-paas application cronjob history list --cronjob-id <id>
@@ -48,15 +48,15 @@ sw-paas application cron logs --run-id <run-id>
 sw-paas application cron logs --follow
 ```
 
-## Cron-Syntax Beispiele
+## Cron syntax examples
 
-| Schedule | Beschreibung |
+| Schedule | Description |
 |----------|-------------|
-| `0 3 * * *` | Täglich um 03:00 |
-| `*/15 * * * *` | Alle 15 Minuten |
-| `0 0 * * 0` | Sonntag um Mitternacht |
-| `30 8 1 * *` | 1. des Monats um 08:30 |
+| `0 3 * * *` | Daily at 03:00 |
+| `*/15 * * * *` | Every 15 minutes |
+| `0 0 * * 0` | Sunday at midnight |
+| `30 8 1 * *` | 1st of the month at 08:30 |
 
-## Vertiefung
+## Deep dive
 
 [CRON-WORKER-DETAIL.md](CRON-WORKER-DETAIL.md)

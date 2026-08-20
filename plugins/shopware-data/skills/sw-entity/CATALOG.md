@@ -1,17 +1,17 @@
-# Shopware 6 — Entity-Katalog (Projekt-Introspektion)
+# Shopware 6 — Entity catalog (project introspection)
 
-Anders als die Referenz-Skills („wie baut man X") beantwortet dieser Skill: **„welche Entities/Felder/Associations
-existieren in DIESEM Projekt?"** — aus einem gecachten Katalog.
+Unlike the reference skills ("how do I build X"), this skill answers: **"which entities/fields/associations
+exist in THIS project?"** — from a cached catalog.
 
-## Nutzung
-1. Katalog liegt unter `.shopware-catalog/entities.md` im Projekt-Root.
-2. **Fehlt er oder ist veraltet** → mit `/sw-entity-map` (Agent `shopware-entity-mapper`, haiku) neu erzeugen.
-3. Den Katalog lesen, um Entity-Namen (`product`, `order`, `ff_example`, `custom_entity_*`), Felder, Flags,
-   Associations, Translations und CustomFields nachzuschlagen — bevor man Code schreibt, der darauf zugreift.
+## Usage
+1. The catalog lives at `.shopware-catalog/entities.md` in the project root.
+2. **If it is missing or stale** → regenerate it with `/sw-entity-map` (agent `shopware-entity-mapper`, haiku).
+3. Read the catalog to look up entity names (`product`, `order`, `ff_example`, `custom_entity_*`), fields, flags,
+   associations, translations and custom fields — before writing code that accesses them.
 
-## Wann neu erzeugen
-- Nach `git pull` / Plugin-Install/-Update, nach Anlegen/Ändern einer `*Definition.php`, `EntityExtension`,
-  `entities.xml`/`custom_entity.xml` oder eines CustomFieldSets.
+## When to regenerate
+- After `git pull` / plugin install or update, after creating or changing a `*Definition.php`, an `EntityExtension`,
+  an `entities.xml`/`custom_entity.xml`, or a custom field set.
 
-Der Katalog ist die Quelle der Wahrheit über vorhandene Datenstrukturen; zum **Bauen** neuer Strukturen
-die Referenz-Skills (`sw-entity-definition`, `sw-field-types`, `sw-associations-*`, `sw-translations`) nutzen.
+The catalog is the source of truth for the data structures that exist; to **build** new structures,
+use the reference skills (`sw-entity-definition`, `sw-field-types`, `sw-associations-*`, `sw-translations`).

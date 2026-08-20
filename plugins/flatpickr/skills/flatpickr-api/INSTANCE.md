@@ -1,36 +1,36 @@
-# flatpickr — Instanz-API
+# flatpickr — Instance API
 
 ```js
 const fp = flatpickr("#date", { enableTime: true });
 
-fp.open();                        // Kalender öffnen
-fp.setDate("2024-06-15");         // Datum programmatisch setzen
-fp.set("minDate", "today");       // Option dynamisch ändern
-fp.destroy();                     // Instanz entfernen
+fp.open();                        // open the calendar
+fp.setDate("2024-06-15");         // set the date programmatically
+fp.set("minDate", "today");       // change an option dynamically
+fp.destroy();                     // remove the instance
 ```
 
-## Wichtigste Methoden
+## Most important methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|-------------|
-| `open()` | Kalender öffnen |
-| `close()` | Kalender schließen |
-| `toggle()` | Kalender öffnen/schließen |
-| `clear()` | Auswahl und Input leeren |
-| `destroy()` | Instanz komplett entfernen |
-| `setDate(date, triggerChange?)` | Datum setzen |
-| `set(option, value)` | Config-Option ändern |
-| `changeMonth(n, isOffset?)` | Monat wechseln |
-| `jumpToDate(date)` | Zu Datum springen |
+| `open()` | Open the calendar |
+| `close()` | Close the calendar |
+| `toggle()` | Open/close the calendar |
+| `clear()` | Clear the selection and the input |
+| `destroy()` | Remove the instance completely |
+| `setDate(date, triggerChange?)` | Set the date |
+| `set(option, value)` | Change a config option |
+| `changeMonth(n, isOffset?)` | Change the month |
+| `jumpToDate(date)` | Jump to a date |
 
-## Wichtigste Properties
+## Most important properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |----------|-----|-------------|
-| `selectedDates` | `Date[]` | Aktuell gewählte Daten |
-| `currentYear` | `number` | Angezeigtes Jahr |
-| `currentMonth` | `number` | Angezeigter Monat (0–11) |
-| `config` | `object` | Aktive Konfiguration |
+| `selectedDates` | `Date[]` | Currently selected dates |
+| `currentYear` | `number` | Displayed year |
+| `currentMonth` | `number` | Displayed month (0–11) |
+| `config` | `object` | Active configuration |
 
-## Vertiefung
-- [INSTANCE-DETAIL.md](INSTANCE-DETAIL.md) — vollständige Methoden, Properties, DOM-Elemente, statische Hilfsfunktionen
+## Further reading
+- [INSTANCE-DETAIL.md](INSTANCE-DETAIL.md) — complete methods, properties, DOM elements, static helpers

@@ -1,7 +1,7 @@
-# Shopware 6 — Entity-Indexer
+# Shopware 6 — Entity indexer
 
-Indexer berechnen abgeleitete Daten (z.B. Aggregate, Pfade) bei Writes — inkrementell und als Full-Index
-(`bin/console dal:refresh:index`). Erweitert `EntityIndexer`.
+Indexers compute derived data (aggregates, paths, and so on) on writes — incrementally and as a full index
+(`bin/console dal:refresh:index`). Extend `EntityIndexer`.
 
 ```php
 class FfStatsIndexer extends EntityIndexer
@@ -13,7 +13,7 @@ class FfStatsIndexer extends EntityIndexer
 }
 ```
 
-Registrierung via `shopware.entity_indexer`-Tag. Schwere Berechnung asynchron über MessageQueue (`sw-message-queue`).
-Für reine Reaktionen ohne Aggregat reicht oft ein Subscriber (`sw-events-subscriber`).
+Register it with the `shopware.entity_indexer` tag. Move heavy computation to the message queue (`sw-message-queue`).
+For plain reactions without an aggregate, a subscriber is often enough (`sw-events-subscriber`).
 
-→ Indexing-System, inkrementell vs. full: [INDEXER-INDEXING.md](INDEXER-INDEXING.md)
+→ Indexing system, incremental vs. full: [INDEXER-INDEXING.md](INDEXER-INDEXING.md)

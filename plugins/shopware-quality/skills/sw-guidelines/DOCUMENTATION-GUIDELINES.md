@@ -1,32 +1,32 @@
-# Shopware — Dokumentations-Guidelines
+# Shopware — documentation guidelines
 
-Vollständige Referenz: `DOCUMENTATION-GUIDELINES-DETAIL.md`
+Complete reference: `DOCUMENTATION-GUIDELINES-DETAIL.md`
 
-## Struktur
+## Structure
 
-- **Concepts**: Erklärt Konzepte (Was/Warum), kein Code, keine Schritt-für-Schritt-Anleitungen
-- **Guides**: How-tos, Tutorials, Code-Beispiele, konkrete Schritte
-- **Resources**: API-Referenzen, Code-Referenzen, Tooling, Contribution-Guidelines
+- **Concepts**: explain concepts (what/why), no code, no step-by-step instructions
+- **Guides**: how-tos, tutorials, code examples, concrete steps
+- **Resources**: API references, code references, tooling, contribution guidelines
 
-## Sprache & Ton
+## Language and tone
 
-- American English; freundlich, direkt, klar
-- Aktiv-Stimme bevorzugen; zweite Person ("you") statt erste Person ("we")
-- Einfaches Präsens; kein Zukunfts-/Vergangenheitstempus
-- Keine Slang, Buzzwords, Idiome, "please"/"request"
+- American English; friendly, direct, clear
+- Prefer active voice; second person ("you") instead of first person ("we")
+- Simple present tense; no future or past tense
+- No slang, buzzwords, idioms, "please"/"request"
 
-## Markdown-Konventionen
+## Markdown conventions
 
-- Fenced Code-Blocks mit Sprach-Identifier (`php`, `bash`, etc.)
-- Bulleted Lists mit `*`, keine Mischung mit `-`
-- H1 in Camel Case; Sub-Headings in Sentence Case
-- Inline Code mit Backticks für Klassen, Methoden, Dateipfade, CLI-Befehle
-- Keine Unterstriche/Unterstreichungen; Bold für UI-Elemente/Notices
-- Versionierte Hinweise: `:::info\nThis functionality is available starting with Shopware 6.4.3.0.\n:::`
+- Fenced code blocks with a language identifier (`php`, `bash`, etc.)
+- Bulleted lists with `*`, never mixed with `-`
+- H1 in camel case; sub-headings in sentence case
+- Inline code with backticks for classes, methods, file paths, CLI commands
+- No underscores or underlining; bold for UI elements and notices
+- Version notices: `:::info\nThis functionality is available starting with Shopware 6.4.3.0.\n:::`
 
-## Asset-Verwaltung
+## Asset management
 
-- Bilder: `.png` (Screenshots), `.svg` (Diagramme, Logos); max. 5 MB; max. 768×576px
+- Images: `.png` (screenshots), `.svg` (diagrams, logos); max. 5 MB; max. 768×576px
 - Naming: `<topicName>-<meaningfulImageName>.svg`
-- Diagramme: Mermaid (embedded) oder Meteor Diagram Kit (Figma)
-- Alt-Text für alle Bilder Pflicht
+- Diagrams: Mermaid (embedded) or the Meteor Diagram Kit (Figma)
+- Alt text is mandatory for all images

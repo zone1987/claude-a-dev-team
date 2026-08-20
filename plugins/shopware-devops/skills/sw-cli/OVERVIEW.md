@@ -1,7 +1,7 @@
-# shopware-cli — Überblick
+# shopware-cli — Overview
 
-`shopware-cli` ist ein in Go geschriebenes CLI für alle Shopware-DevOps-Aufgaben:
-Extension-Build, Projekt-Management, Account-Upload, CI-Pipelines.
+`shopware-cli` is a CLI written in Go for all Shopware DevOps tasks:
+extension build, project management, account upload, CI pipelines.
 
 ```bash
 # Installation
@@ -15,23 +15,23 @@ npm install -g @shopware-ag/shopware-cli            # npm
 # Docker: shopware/shopware-cli:latest
 ```
 
-## Globale Flags
+## Global flags
 
-| Flag | Kurz | Default | Beschreibung |
-|------|------|---------|--------------|
-| `--verbose` | | false | Debug-Ausgabe |
-| `--no-interaction` | `-n` | false | Kein interaktiver Input (CI-safe) |
-| `--version` | | | Version ausgeben |
+| Flag | Short | Default | Description |
+|------|-------|---------|-------------|
+| `--verbose` | | false | Debug output |
+| `--no-interaction` | `-n` | false | No interactive input (CI-safe) |
+| `--version` | | | Print version |
 
-## Command-Gruppen
+## Command groups
 
-| Gruppe | Beschreibung |
-|--------|--------------|
-| `account` | Shopware Account: Login, Logout, Producer/Store-Aktionen |
-| `extension` | Extension Build, Validate, Zip, Watch, Fix, Format |
-| `project` | Projekt-Management: Create, CI-Build, DB-Dump, Worker, Admin-API |
+| Group | Description |
+|-------|-------------|
+| `account` | Shopware Account: login, logout, producer/store actions |
+| `extension` | Extension build, validate, zip, watch, fix, format |
+| `project` | Project management: create, CI build, DB dump, worker, Admin API |
 
-## Vertiefung
+## Deep dive
 
-- [ALL-COMMANDS.md](ALL-COMMANDS.md) — Alle Commands mit Flags und Zweck (erschöpfend)
-- [INTERNAL-PACKAGES.md](INTERNAL-PACKAGES.md) — Wichtige interne Go-Packages
+- [ALL-COMMANDS.md](ALL-COMMANDS.md) — All commands with flags and purpose (exhaustive)
+- [INTERNAL-PACKAGES.md](INTERNAL-PACKAGES.md) — Important internal Go packages

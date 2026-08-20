@@ -1,11 +1,11 @@
-# Shopware 6 — Lieferungen (Cart)
+# Shopware 6 — Deliveries (Cart)
 
-Der `DeliveryProcessor` berechnet Lieferungen (`Delivery`) inkl. Versandkosten aus der gewählten Versandart und deren
-Preismatrix/Regeln.
+The `DeliveryProcessor` calculates deliveries (`Delivery`) including shipping costs from the selected shipping method and its
+price matrix/rules.
 
-- Eine `Delivery` bündelt Positionen mit Lieferdatum (`DeliveryDate` aus `DeliveryTime`) und Versandkosten (`ShippingCosts`).
-- Versandkosten kommen aus der `shipping_method`-Preismatrix (Gewicht/Preis/Menge) bzw. Rules (`shopware-framework` → `sw-custom-rule`).
-- Eigene Versandkostenlogik über einen Processor (`sw-cart-processor`) oder Anpassung der Versandart-Preise.
+- A `Delivery` groups positions with a delivery date (`DeliveryDate` derived from `DeliveryTime`) and shipping costs (`ShippingCosts`).
+- Shipping costs come from the `shipping_method` price matrix (weight/price/quantity) or from rules (`shopware-framework` → `sw-custom-rule`).
+- Implement custom shipping cost logic in a processor (`sw-cart-processor`) or by adjusting the shipping method prices.
 
-Versandarten/Preismatrix pflegen: `shopware-merchant` (`sw-merchant-settings-shipping-methods`). Eigene Versandart
-technisch: `sw-shipping-method`. Lieferzeiten: `sw-merchant-settings-delivery-times`.
+Maintaining shipping methods/price matrices: `shopware-merchant` (`sw-merchant-settings-shipping-methods`). Custom shipping method
+on the technical side: `sw-shipping-method`. Delivery times: `sw-merchant-settings-delivery-times`.

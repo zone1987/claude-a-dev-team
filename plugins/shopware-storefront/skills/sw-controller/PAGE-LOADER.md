@@ -1,7 +1,7 @@
 # Shopware 6 — PageLoader
 
-Der PageLoader erzeugt das Page-Struct: zuerst die generische Page (Header/Footer/Meta), dann eigene Daten,
-dann Event.
+The PageLoader builds the page struct: first the generic page (header/footer/meta), then its own data,
+then the event.
 
 ```php
 public function load(Request $request, SalesChannelContext $context): ExamplePage
@@ -13,5 +13,5 @@ public function load(Request $request, SalesChannelContext $context): ExamplePag
 }
 ```
 
-Immer `GenericPageLoader` als Basis (`createFrom`). Das `*PageLoadedEvent` ist der Erweiterungspunkt für andere
-Plugins (`sw-events-subscriber` / `sw-storefront-data`). Schwere Queries minimieren (Criteria gezielt).
+Always use `GenericPageLoader` as the base (`createFrom`). The `*PageLoadedEvent` is the extension point for other
+plugins (`sw-events-subscriber` / `sw-storefront-data`). Minimize heavy queries (use targeted criteria).

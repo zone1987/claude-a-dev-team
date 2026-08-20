@@ -1,7 +1,7 @@
-# Shopware 6 — Storefront-Templates
+# Shopware 6 — Storefront templates
 
-Templates liegen unter `src/Resources/views/storefront/...` und spiegeln die Core-Pfade. Mit `sw_extends` wird das
-Original geerbt und nur der gewünschte Block überschrieben.
+Templates live in `src/Resources/views/storefront/...` and mirror the core paths. With `sw_extends` you inherit
+the original and override only the block you need.
 
 ```twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
@@ -12,7 +12,7 @@ Original geerbt und nur der gewünschte Block überschrieben.
 {% endblock %}
 ```
 
-`{% sw_extends %}` statt Twig-`extends` (Mehrfach-Vererbung über Plugins hinweg). `{{ parent() }}` behält Core-Inhalt.
-Block-Namen aus dem Original übernehmen. Header/Footer über deren Blöcke. Eigene Funktionen: `sw-twig-functions`.
+Use `{% sw_extends %}` instead of Twig's `extends` (multiple inheritance across plugins). `{{ parent() }}` keeps the core content.
+Reuse the block names from the original. Header/footer via their respective blocks. Custom functions: `sw-twig-functions`.
 
-→ Template-Override-Details: [../sw-storefront-controller/`TEMPLATES-STOREFRONT.md`](../sw-storefront-controller/`TEMPLATES-STOREFRONT.md`)
+→ Template override details: [../sw-storefront-controller/`TEMPLATES-STOREFRONT.md`](../sw-storefront-controller/`TEMPLATES-STOREFRONT.md`)

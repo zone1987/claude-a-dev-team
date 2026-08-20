@@ -1,5 +1,5 @@
 # Swiper Migration Guide (v9 / v10 / v11)
 
-Alle Breaking Changes je Hauptversion mit konkreten Vorher/Nachher-Codebeispielen.
+All breaking changes per major version with concrete before/after code examples.
 
-Vollständige Referenz: `MIGRATION-SWIPER-MIGRATION.md`
+Complete reference: `MIGRATION-SWIPER-MIGRATION.md`

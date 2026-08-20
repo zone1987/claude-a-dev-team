@@ -1,6 +1,6 @@
 # Shopware 6 — Jest (Administration)
 
-Admin-JS/Vue-Tests laufen mit Jest. Ausführen über `composer admin:unit` (bzw. `admin:unit:watch`).
+Admin JS/Vue tests run with Jest. Execute them via `composer admin:unit` (or `admin:unit:watch`).
 
 ```js
 import { mount } from '@vue/test-utils';
@@ -14,5 +14,5 @@ describe('ff-example-card', () => {
 });
 ```
 
-`fail-on-console` ist aktiv (ADR) — keine Konsolen-Warnungen in Tests. Testdateien JS-only (ADR „jest test files should be
-javascript only"). Komponenten-Tests via `@vue/test-utils` (`sw-vue-test`). Repositories/Services mocken.
+`fail-on-console` is active (ADR) — no console warnings in tests. Test files are JS-only (ADR "jest test files should be
+javascript only"). Component tests via `@vue/test-utils` (`sw-vue-test`). Mock repositories/services.

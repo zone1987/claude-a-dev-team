@@ -1,7 +1,7 @@
 # Shopware 6 — Dependency Injection
 
-Services werden in `src/Resources/config/services.xml` registriert (Symfony DI). Shopware lädt sie automatisch,
-wenn die Plugin-Klasse die Standard-`build()`-Konvention nutzt bzw. der Pfad in `getServicesFilePath()` liegt.
+Register services in `src/Resources/config/services.xml` (Symfony DI). Shopware loads them automatically
+when the plugin class uses the default `build()` convention or the path matches `getServicesFilePath()`.
 
 ```xml
 <service id="FfContentPlus\Service\MyService">
@@ -10,8 +10,8 @@ wenn die Plugin-Klasse die Standard-`build()`-Konvention nutzt bzw. der Pfad in 
 </service>
 ```
 
-DAL-Repositories heißen `{entity}.repository` (z.B. `product.repository`). Constructor Property Promotion bevorzugen.
-Tagged Services / Service-Locator: `sw-service-tags`. Bestehende Services anpassen: `sw-service-decoration`.
+DAL repositories are named `{entity}.repository` (e.g. `product.repository`). Prefer constructor property promotion.
+Tagged services / service locator: `sw-service-tags`. Changing existing services: `sw-service-decoration`.
 
-→ Autowiring, public/private, Compiler-Pass, Beispiele: [DEPENDENCY-INJECTION-DI.md](DEPENDENCY-INJECTION-DI.md)
-→ Leeres Gerüst: [examples/services.xml](examples/services.xml)
+→ Autowiring, public/private, compiler pass, examples: [DEPENDENCY-INJECTION-DI.md](DEPENDENCY-INJECTION-DI.md)
+→ Empty skeleton: [examples/services.xml](examples/services.xml)

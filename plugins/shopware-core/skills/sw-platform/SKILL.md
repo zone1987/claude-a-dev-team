@@ -9,12 +9,12 @@ Infrastructure a plugin consumes rather than extends.
 
 ## Reference map
 
-- **[CONFIG-REFERENCE.md](CONFIG-REFERENCE.md)**: Vollständige Webserver-Konfigurationen für Nginx, Apache und Caddy. [CONFIG-REFERENCE-SERVER-CONFIGS](CONFIG-REFERENCE-SERVER-CONFIGS.md).
-- **[FILESYSTEM.md](FILESYSTEM.md)**: Shopware kapselt Storage über League\Flysystem. [FILESYSTEM-DETAIL](FILESYSTEM-DETAIL.md).
-- **[LOGGING.md](LOGGING.md)**: Plugins sollten in einen **eigenen Monolog-Channel** loggen, nicht in den Core-Channel.
-- **[NUMBER-RANGE.md](NUMBER-RANGE.md)**: Für fortlaufende, konfigurierbare Nummern den `NumberRangeValueGenerator` nutzen — nicht selbst hochzählen.
-- **[RATE-LIMITER.md](RATE-LIMITER.md)**: Shopware liefert Limiter. [RATE-LIMITER-DETAIL](RATE-LIMITER-DETAIL.md).
-- **[SYSTEM-CONFIG.md](SYSTEM-CONFIG.md)**: Zentraler Zugriff auf Konfiguration.
+- **[CONFIG-REFERENCE.md](CONFIG-REFERENCE.md)**: Complete webserver configurations for Nginx, Apache and Caddy. [CONFIG-REFERENCE-SERVER-CONFIGS](CONFIG-REFERENCE-SERVER-CONFIGS.md).
+- **[FILESYSTEM.md](FILESYSTEM.md)**: Shopware wraps storage in League\Flysystem. [FILESYSTEM-DETAIL](FILESYSTEM-DETAIL.md).
+- **[LOGGING.md](LOGGING.md)**: Plugins should log into their **own Monolog channel**, not into the core channel.
+- **[NUMBER-RANGE.md](NUMBER-RANGE.md)**: Use the `NumberRangeValueGenerator` for sequential, configurable numbers — never count up yourself.
+- **[RATE-LIMITER.md](RATE-LIMITER.md)**: Shopware ships limiters. [RATE-LIMITER-DETAIL](RATE-LIMITER-DETAIL.md).
+- **[SYSTEM-CONFIG.md](SYSTEM-CONFIG.md)**: Central access to configuration.
 
 ## Source
 

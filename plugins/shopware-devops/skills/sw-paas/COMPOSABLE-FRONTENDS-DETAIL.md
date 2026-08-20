@@ -1,52 +1,52 @@
 # Shopware PaaS — Composable Frontends (Deep Reference)
 
-Quellen: `products/paas/shopware-paas/composable-frontends/performance.md`,
+Sources: `products/paas/shopware-paas/composable-frontends/performance.md`,
 `products/paas/shopware-paas/composable-frontends/blackfire.md`,
 `products/paas/shopware-paas/blackfire.md`
 
-Bild: `assets/blackfire-profile.png`
+Image: `assets/blackfire-profile.png`
 
 ---
 
 ## Contents
 
-- [Problem: Store-API POST-Requests](#problem-store-api-post-requests)
-- [Lösung 1: SwagStoreApiCache Plugin](#lösung-1-swagstoreapicache-plugin)
-- [Lösung 2: Frontend-Caching mit Fastly](#lösung-2-frontend-caching-mit-fastly)
-- [CORS-Probleme vermeiden (OPTIONS-Requests)](#cors-probleme-vermeiden-options-requests)
-- [Cache-Hit-Ratio optimieren](#cache-hit-ratio-optimieren)
+- [Problem: Store API POST requests](#problem-store-api-post-requests)
+- [Solution 1: SwagStoreApiCache plugin](#solution-1-swagstoreapicache-plugin)
+- [Solution 2: frontend caching with Fastly](#solution-2-frontend-caching-with-fastly)
+- [Avoiding CORS problems (OPTIONS requests)](#avoiding-cors-problems-options-requests)
+- [Optimizing the cache hit ratio](#optimizing-the-cache-hit-ratio)
 - [Blackfire (PaaS/Upsun Enterprise)](#blackfire-paasupsun-enterprise)
-- [Blackfire Continuous Profiling für Nuxt.js](#blackfire-continuous-profiling-für-nuxtjs)
-- [Architektur-Zusammenfassung](#architektur-zusammenfassung)
+- [Blackfire Continuous Profiling for Nuxt.js](#blackfire-continuous-profiling-for-nuxtjs)
+- [Architecture summary](#architecture-summary)
 
-## Problem: Store-API POST-Requests
+## Problem: Store API POST requests
 
-Shopware nutzt `POST`-Requests für `/store-api/`. POST ist per Design nicht
-cachebar — Fastly leitet sie direkt an das Backend-Cluster weiter.
+Shopware uses `POST` requests for `/store-api/`. POST is by design not
+cacheable — Fastly forwards them straight to the backend cluster.
 
 ---
 
-## Lösung 1: SwagStoreApiCache Plugin
+## Solution 1: SwagStoreApiCache plugin
 
 ```bash
 composer require shopware-labs/swag-store-api-cache
 ```
 
 - Plugin: https://github.com/shopwareLabs/SwagStoreApiCache
-- Ermöglicht Fastly-Caching für ausgewählte POST `/store-api/`-Routen
-- Beinhaltet eigene Fastly-Snippets (statt Standard-Snippets verwenden!)
+- Enables Fastly caching for selected POST `/store-api/` routes
+- Ships its own Fastly snippets (use these instead of the standard snippets!)
 
-### Standard-cacheable Routen
+### Routes cacheable by default
 
-Automatisch gecached (definiert in
+Cached automatically (defined in
 [StoreAPIResponseListener.php](https://github.com/shopwareLabs/SwagStoreApiCache/blob/trunk/src/Listener/StoreAPIResponseListener.php#L57)).
 
-### Weitere Routen cachen
+### Caching additional routes
 
-In Shopware Admin-Config:
+In the Shopware admin config:
 `SwagStoreAPICache.config.additionalCacheableRoutes`
 
-### Wichtig: Soft-Purge aktivieren!
+### Important: enable soft purge!
 
 ```
 https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge
@@ -54,15 +54,15 @@ https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-c
 
 ---
 
-## Lösung 2: Frontend-Caching mit Fastly
+## Solution 2: frontend caching with Fastly
 
-### Architektur
+### Architecture
 
-- Eigener Fastly-Service pro Frontend (oder ein Service mit mehreren Domains/Hosts)
-- Frontend-Cache-Invalidierung: Nur Backend-Fastly-Service
-- Shopware "kennt" das Frontend nicht → keine automatische Invalidierung
+- A dedicated Fastly service per frontend (or one service with several domains/hosts)
+- Frontend cache invalidation: only the backend Fastly service
+- Shopware does not "know" the frontend → no automatic invalidation
 
-### nuxt.config.ts — ISR-Konfiguration
+### nuxt.config.ts — ISR configuration
 
 ```ts
 routeRules: {
@@ -81,51 +81,51 @@ routeRules: {
 }
 ```
 
-| Parameter | Beschreibung |
+| Parameter | Description |
 |-----------|-------------|
-| `isr` | Sekunden bis zur Revalidierung |
-| `s-maxage` | Cache-Dauer auf Fastly (Sekunden) |
-| `stale-while-revalidate` | Dauer für Stale-Content-Serving (Sekunden) |
+| `isr` | Seconds until revalidation |
+| `s-maxage` | Cache duration on Fastly (seconds) |
+| `stale-while-revalidate` | Duration for serving stale content (seconds) |
 
 ---
 
-## CORS-Probleme vermeiden (OPTIONS-Requests)
+## Avoiding CORS problems (OPTIONS requests)
 
 ### Problem
 
-Bei unterschiedlichen Domains für Frontend und Backend: Browser sendet `OPTIONS`
-(Preflight) vor jedem API-Request. Standard-Caching: Max. 5 Sekunden.
+With different domains for frontend and backend, the browser sends `OPTIONS`
+(preflight) before every API request. Default caching: max. 5 seconds.
 
-### Lösung: Proxy über Frontend-Fastly-Service
+### Solution: proxy through the frontend Fastly service
 
-Frontend und Backend über **eine Domain** — `OPTIONS`-Checks entfallen.
+Frontend and backend on **one domain** — the `OPTIONS` checks disappear.
 
 ```vcl
-# Fastly VCL für Frontend-Service
+# Fastly VCL for the frontend service
 if (req.url.path ~ "^/store-api/") {
   set req.http.host = "backend.mydomain.com";
   set req.backend = F_Backend__Shopware_instance_;
-  return (pass);  # WICHTIG: Kein Cache im Frontend-Service!
+  return (pass);  # IMPORTANT: no caching in the frontend service!
 }
 ```
 
-**Wichtig:** `return (pass)` ist zwingend — das Frontend-Fastly-Service darf
-Backend-Responses nicht cachen (Invalidierungs-Probleme).
-Der Backend-Fastly-Service bleibt für das Caching zuständig.
+**Important:** `return (pass)` is mandatory — the frontend Fastly service must not
+cache backend responses (invalidation problems).
+The backend Fastly service remains responsible for caching.
 
 ---
 
-## Cache-Hit-Ratio optimieren
+## Optimizing the cache hit ratio
 
-### Problem: sw-cache-hash Cookie
+### Problem: sw-cache-hash cookie
 
-Nach Warenkorbzusatz: `sw-cache-hash`-Cookie wird gesetzt.
-Standard-VCL nutzt diesen Cookie im Cache-Key → vorher gecachte Seiten werden
-nicht mehr gecacht.
+After adding to the cart, the `sw-cache-hash` cookie is set.
+The standard VCL uses this cookie in the cache key → pages cached earlier are
+no longer cached.
 
-### Lösung (nur ohne Regelbasiertes-Pricing)
+### Solution (only without rule-based pricing)
 
-Im VCL-Hash-Snippet auskommentieren:
+Comment it out in the VCL hash snippet:
 
 ```vcl
 # Standard VCL Hash Snippet
@@ -137,49 +137,49 @@ Im VCL-Hash-Snippet auskommentieren:
 #}
 ```
 
-### Validierung
+### Validation
 
-Developer Tools → `Age`-Header prüfen:
-- `Age > 0`: Response aus Cache
-- `Age: 0` / kein Age-Header: Cache-Miss
+Developer tools → check the `Age` header:
+- `Age > 0`: response from cache
+- `Age: 0` / no Age header: cache miss
 
 ---
 
 ## Blackfire (PaaS/Upsun Enterprise)
 
-Blackfire ist in jedem Enterprise-Shopware-PaaS-Projekt **ohne Aufpreis** enthalten.
-Alle eingeladenen Benutzer haben Zugriff auf alle Environments.
+Blackfire is included in every Enterprise Shopware PaaS project **at no extra cost**.
+All invited users have access to all environments.
 
 ### Features
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---------|-------------|
-| Monitoring | Live-Metriken (langsame Transaktionen, Background Jobs, Services) |
-| Deterministic Profiling | Tiefer Laufzeit-Code-Analyse, Funktionsaufruf-Metriken |
-| Continuous Profiling | Kombiniert Profiling + Monitoring mit minimalem Overhead |
-| Testing | Performance-Budget-Kontrolle |
-| Alerting | Warnungen bei abnormalem Verhalten |
-| Recommendations | KI-basierte Empfehlungen |
-| CI/CD Integration | Automatisiertes Testen in Pipelines |
+| Monitoring | Live metrics (slow transactions, background jobs, services) |
+| Deterministic Profiling | Deep runtime code analysis, function call metrics |
+| Continuous Profiling | Combines profiling + monitoring with minimal overhead |
+| Testing | Performance budget control |
+| Alerting | Warnings on abnormal behavior |
+| Recommendations | AI-based recommendations |
+| CI/CD Integration | Automated testing in pipelines |
 
-### Zugang (Enterprise PaaS)
+### Access (Enterprise PaaS)
 
-1. Shopware PaaS Console → Environment-Level → Blackfire-Link
-2. Upsun-Authentifizierung (gleiche E-Mail wie PaaS)
-3. Falls Erstnutzung: "Reset Password" für Upsun-Passwort nutzen
+1. Shopware PaaS Console → environment level → Blackfire link
+2. Upsun authentication (same email as PaaS)
+3. On first use: use "Reset Password" for the Upsun password
 
-### Browser-Extensions
+### Browser extensions
 
 - [Firefox Blackfire Extension](https://addons.mozilla.org/en-US/firefox/addon/blackfire/)
 - [Chrome Blackfire Extension](https://chromewebstore.google.com/detail/blackfire-profiler/miefikpgahefdbcgoiicnmpbeeomffld?hl=en)
 
-### Onboarding Guide
+### Onboarding guide
 
 https://docs.blackfire.io/onboarding/index
 
 ---
 
-## Blackfire Continuous Profiling für Nuxt.js
+## Blackfire Continuous Profiling for Nuxt.js
 
 ### Setup
 
@@ -187,7 +187,7 @@ https://docs.blackfire.io/onboarding/index
 npm install @blackfireio/node-tracing
 ```
 
-Umgebungsvariable: `BLACKFIRE_ENABLE=1`
+Environment variable: `BLACKFIRE_ENABLE=1`
 
 ### server/plugins/blackfire.ts
 
@@ -196,14 +196,14 @@ export default defineNitroPlugin(async () => {
   if (process.env.BLACKFIRE_ENABLE !== '1') return;
 
   try {
-    // ESM-kompatibel: dynamischer Import
+    // ESM-compatible: dynamic import
     const mod = await import('@blackfireio/node-tracing');
     const Blackfire: any = (mod as any).default || mod;
 
     Blackfire.start({
       appName:
         process.env.BLACKFIRE_APP_NAME || 'shopware-frontend',
-      // Optionale Konfiguration:
+      // Optional configuration:
       // durationMillis: 45000,
       // cpuProfileRate: 100,
       // labels: { service: 'frontend', framework: 'nuxt3' },
@@ -220,14 +220,14 @@ export default defineNitroPlugin(async () => {
 
 ---
 
-## Architektur-Zusammenfassung
+## Architecture summary
 
 ```
-Kunde → Frontend-Fastly (Nuxt ISR Cache)
-           ↓ (Cache-Miss oder store-api/*)
-       → Backend-Fastly (Shopware HTTP Cache)
-           ↓ (Cache-Miss)
-       → Shopware App Cluster
+Customer → Frontend Fastly (Nuxt ISR cache)
+           ↓ (cache miss or store-api/*)
+       → Backend Fastly (Shopware HTTP cache)
+           ↓ (cache miss)
+       → Shopware app cluster
            ↓
        → Redis / MySQL / OpenSearch
 ```

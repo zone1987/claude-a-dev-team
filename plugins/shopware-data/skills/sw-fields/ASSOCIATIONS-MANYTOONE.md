@@ -1,13 +1,13 @@
-# Shopware 6 — ManyToOne-Association
+# Shopware 6 — ManyToOne association
 
-Die Entity hält einen Fremdschlüssel auf das Ziel und die zugehörige Association.
+The entity holds a foreign key to the target plus the matching association.
 
 ```php
 (new FkField('category_id', 'categoryId', CategoryDefinition::class))->addFlags(new Required()),
 (new ManyToOneAssociationField('category', 'category_id', CategoryDefinition::class, 'id')),
 ```
 
-Self-referencing (parent/child) bildet **Tree**-Strukturen (z.B. Kategorien): `parent_id` + `ParentAssociationField`/
-`ChildrenAssociationField` + `TreeLevelField`/`TreePathField`. Lösch-Verhalten über Flags (`RestrictDelete`/`SetNullOnDelete`).
+Self-referencing (parent/child) forms **tree** structures (categories, for example): `parent_id` + `ParentAssociationField`/
+`ChildrenAssociationField` + `TreeLevelField`/`TreePathField`. Control delete behaviour through flags (`RestrictDelete`/`SetNullOnDelete`).
 
-→ Association-Typen: [ASSOCIATIONS.md](ASSOCIATIONS.md) · Tree-Beispiel: [ASSOCIATIONS-MANYTOONE-TREE-EXAMPLE.md](ASSOCIATIONS-MANYTOONE-TREE-EXAMPLE.md)
+→ Association types: [ASSOCIATIONS.md](ASSOCIATIONS.md) · Tree example: [ASSOCIATIONS-MANYTOONE-TREE-EXAMPLE.md](ASSOCIATIONS-MANYTOONE-TREE-EXAMPLE.md)

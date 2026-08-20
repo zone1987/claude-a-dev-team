@@ -9,8 +9,8 @@ Changing data and changing schema. Write events fire around every persist and ar
 
 ## Reference map
 
-- **[DATABASE-MIGRATION.md](DATABASE-MIGRATION.md)**: Schema-Änderungen laufen über `MigrationStep` in `src/Migration/`. [DATABASE-MIGRATION-MIGRATIONS](DATABASE-MIGRATION-MIGRATIONS.md).
-- **[EVENTS.md](EVENTS.md)**: Jeder Write durchläuft den `EntityWriter` und dispatcht Events — der saubere Weg, um auf Datenänderungen zu r…. [EVENTS-SYSTEM](EVENTS-SYSTEM.md).
+- **[DATABASE-MIGRATION.md](DATABASE-MIGRATION.md)**: Schema changes run through `MigrationStep` in `src/Migration/`. [DATABASE-MIGRATION-MIGRATIONS](DATABASE-MIGRATION-MIGRATIONS.md).
+- **[EVENTS.md](EVENTS.md)**: Every write passes through the `EntityWriter` and dispatches events — the clean way to react to data changes…. [EVENTS-SYSTEM](EVENTS-SYSTEM.md).
 
 ## Source
 

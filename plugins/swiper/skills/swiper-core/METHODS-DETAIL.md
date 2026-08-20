@@ -1,67 +1,67 @@
-# Swiper — Vollständige Methoden-Referenz (v11/12)
+# Swiper — Complete method reference (v11/12)
 
-Alle Methoden werden auf der Swiper-Instanz aufgerufen: `const swiper = new Swiper(...)`.
+Call all methods on the Swiper instance: `const swiper = new Swiper(...)`.
 
 ---
 
 ## Contents
 
-- [1. Core-Methoden](#1-core-methoden)
-- [2. Navigation-Methoden](#2-navigation-methoden)
-- [3. Pagination-Methoden](#3-pagination-methoden)
-- [4. Scrollbar-Methoden](#4-scrollbar-methoden)
-- [5. Autoplay-Methoden](#5-autoplay-methoden)
-- [6. Manipulation-Methoden (Modul: Manipulation)](#6-manipulation-methoden-modul-manipulation)
-- [7. Thumbs-Methoden](#7-thumbs-methoden)
-- [8. Zoom-Methoden](#8-zoom-methoden)
-- [9. Keyboard-Methoden](#9-keyboard-methoden)
-- [10. Mousewheel-Methoden](#10-mousewheel-methoden)
+- [1. Core methods](#1-core-methods)
+- [2. Navigation methods](#2-navigation-methods)
+- [3. Pagination methods](#3-pagination-methods)
+- [4. Scrollbar methods](#4-scrollbar-methods)
+- [5. Autoplay methods](#5-autoplay-methods)
+- [6. Manipulation methods (module: Manipulation)](#6-manipulation-methods-module-manipulation)
+- [7. Thumbs methods](#7-thumbs-methods)
+- [8. Zoom methods](#8-zoom-methods)
+- [9. Keyboard methods](#9-keyboard-methods)
+- [10. Mousewheel methods](#10-mousewheel-methods)
 
-## 1. Core-Methoden
+## 1. Core methods
 
-| Methode | Parameter | Rückgabe | Beschreibung |
+| Method | Parameters | Returns | Description |
 |---|---|---|---|
-| `attachEvents()` | — | `void` | Alle Event-Listener erneut hinzufügen. |
-| `changeDirection(direction?, needUpdate?)` | `direction: 'horizontal' \| 'vertical'` (optional), `needUpdate: boolean` (default `true`) | `Swiper` | Slider-Richtung von horizontal zu vertikal oder umgekehrt ändern. |
-| `changeLanguageDirection(direction)` | `direction: 'rtl' \| 'ltr'` | `void` | Sprachrichtung des Sliders ändern. |
-| `destroy(deleteInstance?, cleanStyles?)` | `deleteInstance: boolean` (default `true`), `cleanStyles: boolean` (default `true`) | `void` | Swiper-Instanz zerstören und alle Event-Listener entfernen. |
-| `detachEvents()` | — | `void` | Alle Event-Listener entfernen. |
-| `disable()` | — | `void` | Swiper deaktivieren (wenn er aktiviert war). |
-| `emit(event, ...args)` | `event: string`, `args: any` | `void` | Event auf der Instanz manuell auslösen. |
-| `enable()` | — | `void` | Swiper aktivieren (wenn er deaktiviert war). |
-| `extendDefaults(options)` | `options: SwiperOptions` | `void` | Globale Swiper-Standardwerte erweitern (statisch). |
-| `getTranslate()` | — | `number` | Aktuellen CSS3-Transform-Translate-Wert des Wrappers zurückgeben. |
-| `init(el?)` | `el: HTMLElement` | `Swiper` | Slider initialisieren (wenn `init: false` gesetzt). |
-| `maxTranslate()` | — | `number` | Maximalen Translate-Wert zurückgeben. |
-| `minTranslate()` | — | `number` | Minimalen Translate-Wert zurückgeben. |
-| `off(event, handler)` | `event: string`, `handler: function` | `Swiper` | Event-Handler entfernen. |
-| `offAny(handler)` | `handler: function` | `Swiper` | Listener für alle Events entfernen. |
-| `on(event, handler)` | `event: string`, `handler: function` | `Swiper` | Event-Handler hinzufügen. |
-| `onAny(handler)` | `handler: function` | `Swiper` | Listener der bei jedem Event feuert hinzufügen. |
-| `once(event, handler)` | `event: string`, `handler: function` | `Swiper` | Event-Handler hinzufügen der nach einmaligem Auslösen entfernt wird. |
-| `setGrabCursor()` | — | `void` | Grab-Cursor setzen. |
-| `setProgress(progress, speed?)` | `progress: number` (0–1), `speed: number` (ms) | `void` | Swiper-Translate-Fortschritt setzen. |
-| `setTranslate(translate)` | `translate: number` | `void` | Eigenen CSS3-Transform-Translate-Wert setzen. |
-| `slideNext(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Zur nächsten Folie wechseln. |
-| `slidePrev(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Zur vorherigen Folie wechseln. |
-| `slideReset(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Zur aktuell aktiven Folie zurücksetzen. |
-| `slideTo(index, speed?, runCallbacks?)` | `index: number`, `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Zu Folie mit dem angegebenen Index wechseln. |
-| `slideToClosest(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Zur nächstgelegenen Folie / zum nächsten Snap-Punkt. |
-| `slideToLoop(index, speed?, runCallbacks?)` | `index: number`, `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Im Loop-Modus zu `realIndex === index` wechseln. |
-| `slidesPerViewDynamic()` | — | `number` | Dynamisch berechnete Anzahl sichtbarer Folien zurückgeben. |
-| `translateTo(translate, speed, runCallbacks?, translateBounds?)` | `translate: number` (px), `speed: number` (ms), `runCallbacks: boolean` (default `true`), `translateBounds: boolean` (default `true`) | `void` | Eigenen CSS3-Transform-Translate-Wert animieren. |
-| `unsetGrabCursor()` | — | `void` | Grab-Cursor entfernen. |
-| `update()` | — | `void` | Nach Hinzufügen/Entfernen/Ausblenden von Folien aufrufen. Führt `updateSize`, `updateSlides`, `updateProgress`, `updateSlidesClasses` aus. |
-| `updateAutoHeight(speed?)` | `speed: number` (ms) | `void` | Höhe erzwingen aktualisieren wenn `autoHeight: true`. |
-| `updateProgress()` | — | `void` | Fortschritt des Wrappers neu berechnen. |
-| `updateSize()` | — | `void` | Container-Größe neu berechnen. |
-| `updateSlides()` | — | `void` | Anzahl der Folien und Offsets neu berechnen. |
-| `updateSlidesClasses()` | — | `void` | Aktive/Prev/Next-Klassen auf Folien und Bullets aktualisieren. |
-| `use(modules)` | `modules: SwiperModule[]` | `void` | Module zur Laufzeit installieren (statische Methode). |
+| `attachEvents()` | — | `void` | Attach all event listeners again. |
+| `changeDirection(direction?, needUpdate?)` | `direction: 'horizontal' \| 'vertical'` (optional), `needUpdate: boolean` (default `true`) | `Swiper` | Change the slider direction from horizontal to vertical or vice versa. |
+| `changeLanguageDirection(direction)` | `direction: 'rtl' \| 'ltr'` | `void` | Change the language direction of the slider. |
+| `destroy(deleteInstance?, cleanStyles?)` | `deleteInstance: boolean` (default `true`), `cleanStyles: boolean` (default `true`) | `void` | Destroy the Swiper instance and remove all event listeners. |
+| `detachEvents()` | — | `void` | Remove all event listeners. |
+| `disable()` | — | `void` | Disable Swiper (if it was enabled). |
+| `emit(event, ...args)` | `event: string`, `args: any` | `void` | Fire an event on the instance manually. |
+| `enable()` | — | `void` | Enable Swiper (if it was disabled). |
+| `extendDefaults(options)` | `options: SwiperOptions` | `void` | Extend the global Swiper defaults (static). |
+| `getTranslate()` | — | `number` | Return the current CSS3 transform translate value of the wrapper. |
+| `init(el?)` | `el: HTMLElement` | `Swiper` | Initialize the slider (when `init: false` is set). |
+| `maxTranslate()` | — | `number` | Return the maximum translate value. |
+| `minTranslate()` | — | `number` | Return the minimum translate value. |
+| `off(event, handler)` | `event: string`, `handler: function` | `Swiper` | Remove an event handler. |
+| `offAny(handler)` | `handler: function` | `Swiper` | Remove the listener for all events. |
+| `on(event, handler)` | `event: string`, `handler: function` | `Swiper` | Add an event handler. |
+| `onAny(handler)` | `handler: function` | `Swiper` | Add a listener that fires on every event. |
+| `once(event, handler)` | `event: string`, `handler: function` | `Swiper` | Add an event handler that is removed after firing once. |
+| `setGrabCursor()` | — | `void` | Set the grab cursor. |
+| `setProgress(progress, speed?)` | `progress: number` (0–1), `speed: number` (ms) | `void` | Set the Swiper translate progress. |
+| `setTranslate(translate)` | `translate: number` | `void` | Set a custom CSS3 transform translate value. |
+| `slideNext(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Move to the next slide. |
+| `slidePrev(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Move to the previous slide. |
+| `slideReset(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Reset to the currently active slide. |
+| `slideTo(index, speed?, runCallbacks?)` | `index: number`, `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Move to the slide with the given index. |
+| `slideToClosest(speed?, runCallbacks?)` | `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | Move to the closest slide / snap point. |
+| `slideToLoop(index, speed?, runCallbacks?)` | `index: number`, `speed: number` (ms, optional), `runCallbacks: boolean` (default `true`) | `void` | In loop mode, move to `realIndex === index`. |
+| `slidesPerViewDynamic()` | — | `number` | Return the dynamically calculated number of visible slides. |
+| `translateTo(translate, speed, runCallbacks?, translateBounds?)` | `translate: number` (px), `speed: number` (ms), `runCallbacks: boolean` (default `true`), `translateBounds: boolean` (default `true`) | `void` | Animate to a custom CSS3 transform translate value. |
+| `unsetGrabCursor()` | — | `void` | Remove the grab cursor. |
+| `update()` | — | `void` | Call after adding/removing/hiding slides. Runs `updateSize`, `updateSlides`, `updateProgress`, `updateSlidesClasses`. |
+| `updateAutoHeight(speed?)` | `speed: number` (ms) | `void` | Force a height update when `autoHeight: true`. |
+| `updateProgress()` | — | `void` | Recalculate the progress of the wrapper. |
+| `updateSize()` | — | `void` | Recalculate the container size. |
+| `updateSlides()` | — | `void` | Recalculate the number of slides and their offsets. |
+| `updateSlidesClasses()` | — | `void` | Update the active/prev/next classes on slides and bullets. |
+| `use(modules)` | `modules: SwiperModule[]` | `void` | Install modules at runtime (static method). |
 
 ---
 
-### Nutzungsbeispiele Core-Methoden
+### Core method usage examples
 
 ```js
 const swiper = new Swiper('.swiper', { loop: true });
@@ -69,114 +69,114 @@ const swiper = new Swiper('.swiper', { loop: true });
 // Navigation
 swiper.slideNext();
 swiper.slidePrev();
-swiper.slideTo(5);              // Index 5, Standard-Speed
-swiper.slideTo(5, 1000);        // Index 5, 1000 ms
-swiper.slideTo(5, 1000, false); // Kein Callback
+swiper.slideTo(5);              // index 5, default speed
+swiper.slideTo(5, 1000);        // index 5, 1000 ms
+swiper.slideTo(5, 1000, false); // no callback
 
-// Loop-Modus: realIndex ansprechen
+// Loop mode: address realIndex
 swiper.slideToLoop(3);
 
-// Fortschritt setzen (0 = Anfang, 1 = Ende)
+// Set progress (0 = beginning, 1 = end)
 swiper.setProgress(0.5, 300);
 
-// Event-Handling
+// Event handling
 const handler = (s) => console.log(s.activeIndex);
 swiper.on('slideChange', handler);
 swiper.off('slideChange', handler);
-swiper.once('transitionEnd', (s) => console.log('einmalig'));
+swiper.once('transitionEnd', (s) => console.log('only once'));
 swiper.onAny((name, ...args) => console.log('event:', name));
 
-// Richtung ändern
+// Change direction
 swiper.changeDirection('vertical');
 
-// Nach DOM-Manipulation
+// After DOM manipulation
 swiper.update();
 
-// Deaktivieren/Aktivieren
+// Disable/enable
 swiper.disable();
 swiper.enable();
 
 // Translate
-const t = swiper.getTranslate(); // aktueller Wert
-swiper.setTranslate(-300);        // direkt setzen
-swiper.translateTo(-300, 500);    // animiert
+const t = swiper.getTranslate(); // current value
+swiper.setTranslate(-300);        // set directly
+swiper.translateTo(-300, 500);    // animated
 
-// Zerstören
-swiper.destroy();       // Instanz löschen, Styles bereinigen
-swiper.destroy(false);  // Styles behalten
+// Destroy
+swiper.destroy();       // delete the instance, clean up styles
+swiper.destroy(false);  // keep styles
 ```
 
 ---
 
-## 2. Navigation-Methoden
+## 2. Navigation methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.navigation.destroy()` | — | Navigation zerstören. |
-| `swiper.navigation.init()` | — | Navigation initialisieren. |
-| `swiper.navigation.update()` | — | Navigations-Buttons-Zustand aktualisieren (aktiviert/deaktiviert). |
+| `swiper.navigation.destroy()` | — | Destroy the navigation. |
+| `swiper.navigation.init()` | — | Initialize the navigation. |
+| `swiper.navigation.update()` | — | Update the navigation button state (enabled/disabled). |
 
 ---
 
-## 3. Pagination-Methoden
+## 3. Pagination methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.pagination.destroy()` | — | Pagination zerstören. |
-| `swiper.pagination.init()` | — | Pagination initialisieren. |
-| `swiper.pagination.render()` | — | Pagination-Layout rendern. |
-| `swiper.pagination.update()` | — | Pagination-Zustand aktualisieren (aktiviert/deaktiviert/aktiv). |
+| `swiper.pagination.destroy()` | — | Destroy the pagination. |
+| `swiper.pagination.init()` | — | Initialize the pagination. |
+| `swiper.pagination.render()` | — | Render the pagination layout. |
+| `swiper.pagination.update()` | — | Update the pagination state (enabled/disabled/active). |
 
 ---
 
-## 4. Scrollbar-Methoden
+## 4. Scrollbar methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.scrollbar.destroy()` | — | Scrollbar zerstören. |
-| `swiper.scrollbar.init()` | — | Scrollbar initialisieren. |
-| `swiper.scrollbar.setTranslate()` | — | Scrollbar-Translate aktualisieren. |
-| `swiper.scrollbar.updateSize()` | — | Scrollbar-Track und Handler-Größen aktualisieren. |
+| `swiper.scrollbar.destroy()` | — | Destroy the scrollbar. |
+| `swiper.scrollbar.init()` | — | Initialize the scrollbar. |
+| `swiper.scrollbar.setTranslate()` | — | Update the scrollbar translate. |
+| `swiper.scrollbar.updateSize()` | — | Update the scrollbar track and handler sizes. |
 
 ---
 
-## 5. Autoplay-Methoden
+## 5. Autoplay methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.autoplay.pause()` | — | Autoplay pausieren. |
-| `swiper.autoplay.resume()` | — | Autoplay fortsetzen. |
-| `swiper.autoplay.start()` | — | Autoplay starten. |
-| `swiper.autoplay.stop()` | — | Autoplay stoppen. |
+| `swiper.autoplay.pause()` | — | Pause autoplay. |
+| `swiper.autoplay.resume()` | — | Resume autoplay. |
+| `swiper.autoplay.start()` | — | Start autoplay. |
+| `swiper.autoplay.stop()` | — | Stop autoplay. |
 
 ```js
-// Autoplay-Steuerung
+// Autoplay control
 document.querySelector('#pause').addEventListener('click', () => swiper.autoplay.pause());
 document.querySelector('#play').addEventListener('click', () => swiper.autoplay.resume());
 ```
 
 ---
 
-## 6. Manipulation-Methoden (Modul: Manipulation)
+## 6. Manipulation methods (module: Manipulation)
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.addSlide(index, slides)` | `index: number`, `slides: HTMLElement \| string \| array` | Neue Folie(n) an einem bestimmten Index einfügen. |
-| `swiper.appendSlide(slides)` | `slides: HTMLElement \| string \| array` | Neue Folie(n) am Ende hinzufügen. |
-| `swiper.prependSlide(slides)` | `slides: HTMLElement \| string \| array` | Neue Folie(n) am Anfang hinzufügen. |
-| `swiper.removeAllSlides()` | — | Alle Folien entfernen. |
-| `swiper.removeSlide(slideIndex)` | `slideIndex: number \| number[]` | Folie(n) am angegebenen Index entfernen. |
+| `swiper.addSlide(index, slides)` | `index: number`, `slides: HTMLElement \| string \| array` | Insert new slide(s) at a specific index. |
+| `swiper.appendSlide(slides)` | `slides: HTMLElement \| string \| array` | Append new slide(s) at the end. |
+| `swiper.prependSlide(slides)` | `slides: HTMLElement \| string \| array` | Prepend new slide(s) at the beginning. |
+| `swiper.removeAllSlides()` | — | Remove all slides. |
+| `swiper.removeSlide(slideIndex)` | `slideIndex: number \| number[]` | Remove the slide(s) at the given index. |
 
 ```js
 import { Manipulation } from 'swiper/modules';
 const swiper = new Swiper('.swiper', { modules: [Manipulation] });
 
-// Folie hinzufügen
-swiper.appendSlide('<div class="swiper-slide">Neue Folie</div>');
-swiper.prependSlide('<div class="swiper-slide">Erste Folie</div>');
-swiper.addSlide(2, '<div class="swiper-slide">Folie 3</div>');
+// Add slides
+swiper.appendSlide('<div class="swiper-slide">New slide</div>');
+swiper.prependSlide('<div class="swiper-slide">First slide</div>');
+swiper.addSlide(2, '<div class="swiper-slide">Slide 3</div>');
 
-// Folien entfernen
+// Remove slides
 swiper.removeSlide(0);
 swiper.removeSlide([0, 1, 2]);
 swiper.removeAllSlides();
@@ -184,43 +184,43 @@ swiper.removeAllSlides();
 
 ---
 
-## 7. Thumbs-Methoden
+## 7. Thumbs methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.thumbs.init()` | — | Thumbs initialisieren. |
-| `swiper.thumbs.update(initial, p)` | `initial: boolean`, `p: any` | Thumbs aktualisieren. |
+| `swiper.thumbs.init()` | — | Initialize thumbs. |
+| `swiper.thumbs.update(initial, p)` | `initial: boolean`, `p: any` | Update thumbs. |
 
 ---
 
-## 8. Zoom-Methoden
+## 8. Zoom methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.zoom.disable()` | — | Zoom-Modul deaktivieren. |
-| `swiper.zoom.enable()` | — | Zoom-Modul aktivieren. |
-| `swiper.zoom.in(ratio?)` | `ratio: number` (optional) | Aktive Folie einzoomen. |
-| `swiper.zoom.out()` | — | Aktive Folie auszoomen. |
-| `swiper.zoom.toggle(event)` | `event: PointerEvent` | Zoom der aktiven Folie umschalten. |
+| `swiper.zoom.disable()` | — | Disable the Zoom module. |
+| `swiper.zoom.enable()` | — | Enable the Zoom module. |
+| `swiper.zoom.in(ratio?)` | `ratio: number` (optional) | Zoom in on the active slide. |
+| `swiper.zoom.out()` | — | Zoom out on the active slide. |
+| `swiper.zoom.toggle(event)` | `event: PointerEvent` | Toggle the zoom of the active slide. |
 
 ---
 
-## 9. Keyboard-Methoden
+## 9. Keyboard methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.keyboard.disable()` | — | Tastatursteuerung deaktivieren. |
-| `swiper.keyboard.enable()` | — | Tastatursteuerung aktivieren. |
+| `swiper.keyboard.disable()` | — | Disable keyboard control. |
+| `swiper.keyboard.enable()` | — | Enable keyboard control. |
 
 ---
 
-## 10. Mousewheel-Methoden
+## 10. Mousewheel methods
 
-| Methode | Parameter | Beschreibung |
+| Method | Parameters | Description |
 |---|---|---|
-| `swiper.mousewheel.disable()` | — | Mausrad-Steuerung deaktivieren. |
-| `swiper.mousewheel.enable()` | — | Mausrad-Steuerung aktivieren. |
+| `swiper.mousewheel.disable()` | — | Disable mouse wheel control. |
+| `swiper.mousewheel.enable()` | — | Enable mouse wheel control. |
 
 ---
 
-*Quelle: https://swiperjs.com/swiper-api*
+*Source: https://swiperjs.com/swiper-api*

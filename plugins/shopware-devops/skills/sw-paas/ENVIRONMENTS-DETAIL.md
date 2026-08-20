@@ -1,6 +1,6 @@
-# Shopware PaaS Native — Umgebungen & Applications (Deep Reference)
+# Shopware PaaS Native — Environments & Applications (Deep Reference)
 
-Quellen: `products/paas/shopware/guides/clone-application.md`,
+Sources: `products/paas/shopware/guides/clone-application.md`,
 `products/paas/shopware/guides/update-shopware.md`,
 `products/paas/shopware/fundamentals/applications.md`,
 `products/paas/shopware/faq.md`, `products/paas/shopware/known-issues.md`
@@ -10,50 +10,50 @@ Quellen: `products/paas/shopware/guides/clone-application.md`,
 ## Contents
 
 - [Application Cloning](#application-cloning)
-- [Shopware aktualisieren](#shopware-aktualisieren)
-- [exec vs. command — Details](#exec-vs-command-details)
-- [Domain-Verwaltung](#domain-verwaltung)
-- [Deployment-Status Übersicht](#deployment-status-übersicht)
+- [Updating Shopware](#updating-shopware)
+- [exec vs. command — details](#exec-vs-command-details)
+- [Domain management](#domain-management)
+- [Deployment status overview](#deployment-status-overview)
 - [Known Issues](#known-issues)
 - [FAQ](#faq)
 
 ## Application Cloning
 
-### Einsatzzwecke
+### Use cases
 
-- **Feature-Testing**: Clone ohne Auswirkung auf Original
-- **Disaster Recovery**: Backups in andere Projekte
-- **Dev-Umgebungen**: Produktionsdaten für realistischen Test
+- **Feature testing**: clone without affecting the original
+- **Disaster recovery**: backups into other projects
+- **Dev environments**: production data for realistic testing
 
-### Voraussetzungen
+### Prerequisites
 
-- Quelle und Ziel in derselben **Organisation** (kein cross-org cloning)
-- Letztes Deployment der Quelle: Status `DEPLOYING_STORE_SUCCESS`
-- Ziel-Application muss bereits existieren
+- Source and target in the same **organization** (no cross-org cloning)
+- Last deployment of the source: status `DEPLOYING_STORE_SUCCESS`
+- The target application must already exist
 
 ```bash
-# Status prüfen
+# Check the status
 sw-paas app deploy list
 ```
 
-### Clone-Prozess
+### Clone process
 
-1. **Snapshot erstellen** der Quell-Application (DB + Filesystem)
-2. **Snapshot wiederherstellen** auf Ziel-Application (überschreibt vorhandene Daten)
+1. **Create a snapshot** of the source application (DB + filesystem)
+2. **Restore the snapshot** onto the target application (overwrites existing data)
 
-**Warnung:** Keine Anonymisierung der Daten! Vollständiger DB-Dump.
+**Warning:** No anonymization of the data! Full DB dump.
 
-### Interaktiver Modus
+### Interactive mode
 
 ```bash
 sw-paas application clone
 ```
 
-Auswahl:
-1. Quell-Organization → Quell-Projekt → Quell-Application → Deployment
-2. Ziel-Projekt → Ziel-Application
+Selection:
+1. Source organization → source project → source application → deployment
+2. Target project → target application
 
-### Manueller Modus
+### Manual mode
 
 ```bash
 sw-paas application clone \
@@ -64,123 +64,123 @@ sw-paas application clone \
   --target-project-id <target-project-id>
 ```
 
-### Fortschritt verfolgen
+### Tracking progress
 
 ```bash
 sw-paas app deploy list
 sw-paas app deploy get
-# Warten bis: DEPLOYING_STORE_SUCCESS
+# Wait until: DEPLOYING_STORE_SUCCESS
 ```
 
-### Post-Clone Tasks
+### Post-clone tasks
 
-#### Admin-Passwort aktualisieren
+#### Update the admin password
 
-App B hat identisches Passwort wie App A.
+App B has the same password as app A.
 
 ```bash
-# App B Admin-Zugang mit App A Credentials öffnen
-sw-paas open admin    # → App A auswählen für Credentials
+# Open app B admin access with app A credentials
+sw-paas open admin    # → select app A for the credentials
 
-# Im Shell von App B
+# In the shell of app B
 sw-paas exec --new
 bin/console user:change-password admin
 ```
 
-Oder via Shopware-Admin-UI:
-1. Login mit App-A-Credentials
-2. Profil → Passwort-Sektion
-3. Neues Passwort: App-B-Admin-Passwort (`sw-paas open admin` für App B)
+Or via the Shopware admin UI:
+1. Log in with the app A credentials
+2. Profile → password section
+3. New password: the app B admin password (`sw-paas open admin` for app B)
 
-#### OpenSearch Reindexieren (wenn aktiviert)
+#### Reindex OpenSearch (if enabled)
 
 ```bash
 sw-paas exec --new
 bin/console dal:refresh:index --use-queue
 ```
 
-#### Domain in Sales Channel aktualisieren
+#### Update the domain in the sales channel
 
-1. Shopware-Admin der geklonten Application öffnen
-2. Sales Channel → Domains
-3. Domain auf neues `shopware.shop`-Subdomain oder Custom-Domain ändern
+1. Open the Shopware admin of the cloned application
+2. Sales channel → domains
+3. Change the domain to the new `shopware.shop` subdomain or a custom domain
 
 ---
 
-## Shopware aktualisieren
+## Updating Shopware
 
-### Voraussetzung
+### Prerequisite
 
-Letztes Deployment muss `DEPLOYING_STORE_SUCCESS` sein:
+The last deployment must be `DEPLOYING_STORE_SUCCESS`:
 
 ```bash
 sw-paas app deploy list
 ```
 
-Bei `DEPLOYING_STORE_FAILED`: Erst Deployment-Problem beheben!
+On `DEPLOYING_STORE_FAILED`: fix the deployment problem first!
 
-### Schritt 1: Snapshot erstellen (Empfehlung)
+### Step 1: create a snapshot (recommended)
 
 ```bash
 sw-paas snapshot create
-# Warten bis Snapshot fertig ist
+# Wait until the snapshot is finished
 ```
 
-### Schritt 2: Code aktualisieren
+### Step 2: update the code
 
 ```bash
 git checkout -b my-update-branch
 
-# composer.json: shopware/core Version anpassen
+# composer.json: adjust the shopware/core version
 composer update --no-scripts
 composer recipes:update
-# ACHTUNG: Recipe-Updates sorgfältig prüfen — können Breaking Changes enthalten!
+# CAUTION: review recipe updates carefully — they can contain breaking changes!
 
 git add .
 git commit -m "Update Shopware to X.Y.Z"
 git push -u origin my-update-branch
 ```
 
-### Schritt 3: System vorbereiten
+### Step 3: prepare the system
 
 ```bash
 sw-paas exec --new
-# Im Container:
+# Inside the container:
 bin/console system:update:prepare
 ```
 
-### Schritt 4: Application deployen
+### Step 4: deploy the application
 
 ```bash
 sw-paas application update
-# Fortschritt:
+# Progress:
 sw-paas app deploy list
 sw-paas app deploy get
 ```
 
-### Schritt 5: Update abschließen
+### Step 5: finish the update
 
 ```bash
 sw-paas exec --new
-# Im Container:
+# Inside the container:
 bin/console system:update:finish
 ```
 
 ---
 
-## exec vs. command — Details
+## exec vs. command — details
 
-### `exec` (Interaktive Shell)
+### `exec` (interactive shell)
 
 ```bash
 sw-paas exec --new
 ```
 
-- Öffnet interaktive Shell im laufenden Container
-- Arbeitsverzeichnis: `/var/www/html`
-- Netzwerk-Hinweis: Nicht kompatibel mit NAT (VM/WSL → Host/Mirrored Mode)
+- Opens an interactive shell in the running container
+- Working directory: `/var/www/html`
+- Networking note: not compatible with NAT (VM/WSL → host/mirrored mode)
 
-### `command` (Nicht-interaktiver Befehl)
+### `command` (non-interactive command)
 
 ```bash
 sw-paas command create
@@ -188,28 +188,28 @@ sw-paas command logs
 sw-paas command logs --command-id <id>
 ```
 
-- Neuer, isolierter Container pro Befehl
-- TTL: 1 Stunde
-- Standardpfad: `/var/www/html`
-- Ideal für CI/CD und Automatisierung
+- A new, isolated container per command
+- TTL: 1 hour
+- Default path: `/var/www/html`
+- Ideal for CI/CD and automation
 
 ---
 
-## Domain-Verwaltung
+## Domain management
 
-### Automatische Domain
+### Automatic domain
 
-Beim ersten Deployment erhält jede Application eine `shopware.shop`-Subdomain.
+On the first deployment, every application receives a `shopware.shop` subdomain.
 
-### Custom Domain
+### Custom domain
 
-#### Nicht-Apex Domain (Subdomain, z.B. `shop.example.com`)
+#### Non-apex domain (subdomain, e.g. `shop.example.com`)
 
 ```dns
 CNAME: cdn.shopware.shop
 ```
 
-#### Apex Domain (z.B. `example.com`)
+#### Apex domain (e.g. `example.com`)
 
 ```dns
 # A Records (IPv4)
@@ -229,75 +229,75 @@ _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization-id>"
 ```
 
 ```bash
-# Organization-ID ermitteln
+# Determine the organization ID
 sw-paas org list
 
-# Domain anlegen (nach DNS-Propagation!)
+# Create the domain (after DNS propagation!)
 sw-paas domain create
 
-# Application redeployen
+# Redeploy the application
 sw-paas application deploy create
 ```
 
-DNS-Propagation: 15-30 Minuten, bis zu 48 Stunden.
+DNS propagation: 15-30 minutes, up to 48 hours.
 
 ---
 
-## Deployment-Status Übersicht
+## Deployment status overview
 
-| Status | Bedeutung |
+| Status | Meaning |
 |--------|-----------|
-| `PENDING` | Deployment wartet |
-| `BASE` | Basis-Infrastruktur wird deployed |
-| `BASE_FAILED` | Basis-Infrastruktur fehlgeschlagen |
-| `BASE_SUCCESS` | Basis-Infrastruktur erfolgreich |
-| `SHOP` | Shop-Infrastruktur wird deployed |
-| `SHOP_FAILED` | Shop-Infrastruktur fehlgeschlagen |
-| `SHOP_SUCCESS` | Shop-Infrastruktur erfolgreich |
-| `DEPLOYING_STORE` | Shopware Store wird deployed |
-| `DEPLOYING_STORE_FAILED` | Store-Deployment fehlgeschlagen |
-| `DEPLOYING_STORE_SUCCESS` | Store-Deployment erfolgreich |
-| `DEPLOYMENT_SUCCESS` | Vollständig erfolgreich |
-| `DEPLOYMENT_FAILED` | Deployment fehlgeschlagen |
+| `PENDING` | Deployment is waiting |
+| `BASE` | Base infrastructure is being deployed |
+| `BASE_FAILED` | Base infrastructure failed |
+| `BASE_SUCCESS` | Base infrastructure succeeded |
+| `SHOP` | Shop infrastructure is being deployed |
+| `SHOP_FAILED` | Shop infrastructure failed |
+| `SHOP_SUCCESS` | Shop infrastructure succeeded |
+| `DEPLOYING_STORE` | Shopware store is being deployed |
+| `DEPLOYING_STORE_FAILED` | Store deployment failed |
+| `DEPLOYING_STORE_SUCCESS` | Store deployment succeeded |
+| `DEPLOYMENT_SUCCESS` | Fully successful |
+| `DEPLOYMENT_FAILED` | Deployment failed |
 
 ---
 
 ## Known Issues
 
-### Message Queue Größe
+### Message queue size
 
-Shopware limitiert aktuell keine Nachrichtengröße (wird in 6.7 geändert).
-Lokale Log-Dateien auf kritische Log-Messages prüfen.
+Shopware currently does not limit the message size (this changes in 6.7).
+Check local log files for critical log messages.
 
-### Plugin S3-Kompatibilität
+### Plugin S3 compatibility
 
-Nicht alle Third-Party-Plugins unterstützen S3-Storage.
-Kompatibilität vor Einsatz beim Plugin-Anbieter prüfen.
+Not all third-party plugins support S3 storage.
+Check compatibility with the plugin vendor before use.
 
-### Netzwerk-Kompatibilität
+### Network compatibility
 
-`exec` und `service` nutzen mTLS-Tunnel — inkompatibel mit NAT.
-In VM/WSL: Netzwerk-Modus auf `Host` oder `Mirrored` stellen.
+`exec` and `service` use mTLS tunnels — incompatible with NAT.
+In a VM/WSL: set the network mode to `Host` or `Mirrored`.
 
 ---
 
 ## FAQ
 
-**Kann ich zu einem alten Stand zurückrollen, wenn ich Git-History verloren habe?**
-Nein, bei Force-Push ohne Git-History ist kein Rollback möglich.
+**Can I roll back to an older state if I lost the Git history?**
+No, with a force push without Git history no rollback is possible.
 
-**Kann ich in den lokalen Filesystem schreiben?**
-Nein, Container sind stateless. Persistenz via S3 oder externe Storage.
+**Can I write to the local filesystem?**
+No, containers are stateless. Persistence via S3 or external storage.
 
-**Application mit neuem Branch verbinden?**
-Application ist an Commit SHA gebunden, nicht an Branch.
-`sw-paas application update` mit neuem Commit SHA.
+**Connect an application to a new branch?**
+An application is bound to a commit SHA, not to a branch.
+Use `sw-paas application update` with the new commit SHA.
 
-**Wie oft läuft der Scheduler?**
-Alle 5 Minuten.
+**How often does the scheduler run?**
+Every 5 minutes.
 
-**Gibt es Zero-Downtime Deployments?**
-Ja, via Kubernetes Rolling Updates.
+**Are there zero-downtime deployments?**
+Yes, via Kubernetes rolling updates.
 
-**Kann ich zusätzliche Queues konfigurieren?**
-Nein, aktuell nicht unterstützt.
+**Can I configure additional queues?**
+No, currently not supported.

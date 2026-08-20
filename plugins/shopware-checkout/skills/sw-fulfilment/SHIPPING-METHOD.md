@@ -1,7 +1,7 @@
-# Shopware 6 — Versandart (technisch)
+# Shopware 6 — Shipping Method (technical)
 
-Eine Versandart ist eine `shipping_method`-Entity. Plugins legen sie per Migration/Lifecycle an (mit `technicalName`,
-Verfügbarkeitsregel, Preismatrix, Lieferzeit).
+A shipping method is a `shipping_method` entity. Plugins create it via migration/lifecycle (with `technicalName`,
+availability rule, price matrix, delivery time).
 
 ```php
 $this->shippingMethodRepo->upsert([[
@@ -11,5 +11,5 @@ $this->shippingMethodRepo->upsert([[
 ]], $context);
 ```
 
-Verfügbarkeit über eine Rule (`sw-custom-rule`); Zuordnung zum SalesChannel + Aktivierung. Versandkosten-Berechnung
-im Cart: `sw-delivery`. Aus Betreibersicht konfigurieren: `shopware-merchant` (`sw-merchant-settings-shipping-methods`).
+Availability comes from a rule (`sw-custom-rule`); assign it to the sales channel and activate it. Shipping cost calculation
+in the cart: `sw-delivery`. Configuring it from the merchant view: `shopware-merchant` (`sw-merchant-settings-shipping-methods`).

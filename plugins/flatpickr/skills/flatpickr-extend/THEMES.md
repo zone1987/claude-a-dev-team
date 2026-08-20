@@ -1,9 +1,9 @@
 # flatpickr — Themes
 
-7 fertige Themes. Nur das CSS laden — keine JS-Konfiguration nötig.
+7 ready-made themes. Just load the CSS — no JS configuration required.
 
 ```js
-// Webpack/Bundler
+// Webpack/bundler
 require("flatpickr/dist/themes/dark.css");
 import "flatpickr/dist/themes/airbnb.css";
 ```
@@ -14,9 +14,9 @@ import "flatpickr/dist/themes/airbnb.css";
   href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 ```
 
-## Verfügbare Themes
+## Available themes
 
-| Theme | CSS-Datei |
+| Theme | CSS file |
 |-------|-----------|
 | Default | `flatpickr.min.css` |
 | Dark | `themes/dark.css` |
@@ -28,5 +28,5 @@ import "flatpickr/dist/themes/airbnb.css";
 | Material Red | `themes/material_red.css` |
 | Light | `themes/light.css` |
 
-## Vertiefung
-- [THEMES-DETAIL.md](THEMES-DETAIL.md) — Theme-Details, Custom CSS Overrides, CSS-Klassen-Übersicht
+## Further reading
+- [THEMES-DETAIL.md](THEMES-DETAIL.md) — theme details, custom CSS overrides, CSS class overview

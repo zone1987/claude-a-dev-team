@@ -1,23 +1,23 @@
-# flatpickr — Migration & Kompatibilität
+# flatpickr — Migration and compatibility
 
 ## Updating from v2 → v3+
 
-Zwei Breaking Changes:
+Two breaking changes:
 
-1. **`utc`-Option entfernt** → ersetzen durch `dateFormat: "Z"` (ISO-Format mit Timezone)
-2. **`new Flatpickr()` → `flatpickr()`** → alle Großbuchstaben-`Flatpickr`-Referenzen ersetzen
+1. **`utc` option removed** → replace with `dateFormat: "Z"` (ISO format with timezone)
+2. **`new Flatpickr()` → `flatpickr()`** → replace all capitalized `Flatpickr` references
 
 ```js
-// v2 (veraltet)
+// v2 (obsolete)
 new Flatpickr(element, { utc: true });
 
-// v3+ (korrekt)
+// v3+ (correct)
 flatpickr(element, { dateFormat: "Z", altInput: true, altFormat: "F j, Y" });
 ```
 
-## IE9 Support
+## IE9 support
 
-flatpickr läuft out-of-the-box in IE10+. Für IE9:
+flatpickr runs out of the box in IE10+. For IE9:
 
 ```bash
 npm install classlist-polyfill
@@ -29,5 +29,5 @@ npm install classlist-polyfill
 <![endif]-->
 ```
 
-## Vertiefung
-- [MIGRATION-DETAIL.md](MIGRATION-DETAIL.md) — vollständige Migration und IE9-Details
+## Further reading
+- [MIGRATION-DETAIL.md](MIGRATION-DETAIL.md) — complete migration and IE9 details

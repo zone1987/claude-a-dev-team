@@ -1,114 +1,114 @@
 # Shopware PaaS Native — Monitoring (Deep Reference)
 
-Quellen: `products/paas/shopware/monitoring/index.md`,
+Sources: `products/paas/shopware/monitoring/index.md`,
 `products/paas/shopware/monitoring/logs.md`,
 `products/paas/shopware/monitoring/traces.md`,
 `products/paas/shopware/monitoring/watch.md`
 
-Bilder: `assets/paas-monitoring-log-search.png`, `assets/paas-monitoring-log-filter.png`
+Images: `assets/paas-monitoring-log-search.png`, `assets/paas-monitoring-log-filter.png`
 
 ---
 
 ## Contents
 
-- [Monitoring-Übersicht](#monitoring-übersicht)
+- [Monitoring overview](#monitoring-overview)
 - [Logs — CLI](#logs-cli)
 - [Logs — Grafana](#logs-grafana)
 - [Traces — Grafana](#traces-grafana)
-- [Events — Real-time Monitoring](#events-real-time-monitoring)
+- [Events — real-time monitoring](#events-real-time-monitoring)
 
-## Monitoring-Übersicht
+## Monitoring overview
 
-Shopware PaaS Native bietet drei Monitoring-Komponenten:
+Shopware PaaS Native provides three monitoring components:
 
-1. **Logs** (Loki) — Application-Logs, Deployment-Logs, Cron-Logs
-2. **Traces** (Tempo) — Request-Tracing via OpenTelemetry
-3. **Events** — Real-time Event-Stream via `sw-paas watch`
+1. **Logs** (Loki) — application logs, deployment logs, cron logs
+2. **Traces** (Tempo) — request tracing via OpenTelemetry
+3. **Events** — real-time event stream via `sw-paas watch`
 
-**Grafana-Zugang:** Via CLI-Credentials (kein SSO verfügbar):
+**Grafana access:** via CLI credentials (no SSO available):
 ```bash
 sw-paas open grafana
 ```
 
-**Nicht verfügbar:** Tideways, Blackfire, managed Load Testing.
+**Not available:** Tideways, Blackfire, managed load testing.
 
 ---
 
 ## Logs — CLI
 
-### Standard-Log-Abfrage
+### Standard log query
 
 ```bash
-# Letzte 15 Minuten (Default)
+# Last 15 minutes (default)
 sw-paas application logs
 
-# Mit expliziten IDs
+# With explicit IDs
 sw-paas application logs \
   --organization-id <org-id> \
   --project-id <project-id> \
   --application-id <app-id>
 ```
 
-Am Ende jeder Ausgabe: Grafana Explore URL für denselben Query.
+At the end of each output: a Grafana Explore URL for the same query.
 
-### Live-Streaming
+### Live streaming
 
 ```bash
-# Nur neue Zeilen
+# New lines only
 sw-paas application logs --follow
 
-# Mit Geschichte + Live-Stream
+# With history + live stream
 sw-paas application logs --follow --since 30m
 ```
 
-### Filtering nach Komponenten
+### Filtering by component
 
 ```bash
 sw-paas application logs --component storefront
 ```
 
-Verfügbare Komponenten:
+Available components:
 
-| Komponente | Beschreibung |
+| Component | Description |
 |------------|-------------|
-| `admin` | Shopware Admin-Backend |
-| `command` | Via `sw-paas command create` ausgeführte Befehle |
-| `cronjob` | Cron-Job-Ausführungen |
-| `migration` | DB-Migrations-Logs |
-| `scheduled-task` | Shopware Scheduled Tasks |
-| `setup` | Deployment-Setup-Phase |
-| `storefront` | Shopware Storefront |
-| `worker` | Message Queue Worker |
+| `admin` | Shopware admin backend |
+| `command` | Commands run via `sw-paas command create` |
+| `cronjob` | Cron job executions |
+| `migration` | DB migration logs |
+| `scheduled-task` | Shopware scheduled tasks |
+| `setup` | Deployment setup phase |
+| `storefront` | Shopware storefront |
+| `worker` | Message queue worker |
 
-### Zeitfenster
+### Time window
 
 ```bash
-# Heutiges Zeitfenster (HH:MM-HH:MM)
+# Today's time window (HH:MM-HH:MM)
 sw-paas application logs --time-range 09:00-10:00
 ```
 
-### Anzahl Zeilen
+### Number of lines
 
 ```bash
 sw-paas application logs --limit 500
 ```
 
-### Ausgabe-Formate
+### Output formats
 
 ```bash
-sw-paas application logs --raw           # Nur Nachrichten, keine Metadaten
-sw-paas application logs --output json   # Maschinenlesbar
+sw-paas application logs --raw           # messages only, no metadata
+sw-paas application logs --output json   # machine-readable
 ```
 
-### LogQL (Fortgeschritten)
+### LogQL (advanced)
 
 ```bash
 sw-paas application logs --query '{job="vector",component="storefront"} |= "error"'
 ```
 
-### Spezialisierte Log-Befehle
+### Specialized log commands
 
-#### Deployment-Logs
+#### Deployment logs
 
 ```bash
 sw-paas application deploy logs
@@ -116,9 +116,9 @@ sw-paas application deploy logs --deployment-id <id>
 sw-paas application deploy logs --follow
 ```
 
-Alias: `sw-paas application logs` → Laufzeit-Logs (ohne `deploy`)
+Alias: `sw-paas application logs` → runtime logs (without `deploy`)
 
-#### Cron-Job-Logs
+#### Cron job logs
 
 ```bash
 sw-paas application cronjob logs
@@ -132,7 +132,7 @@ sw-paas application cronjob logs --follow
 sw-paas application cron logs
 ```
 
-#### Command-Logs
+#### Command logs
 
 ```bash
 sw-paas command logs
@@ -146,35 +146,35 @@ sw-paas command logs --follow
 
 ```bash
 sw-paas open grafana
-# Gibt URL, Username, Passwort aus
+# Prints URL, username, password
 ```
 
 ### Logs in Grafana
 
-1. **Explore** → Datenquelle: **Loki**
-2. Label `component` auf gewünschten Wert setzen
-3. Query ausführen
+1. **Explore** → data source: **Loki**
+2. Set the `component` label to the desired value
+3. Run the query
 
-### Suchoperatoren (Explore-Ansicht)
+### Search operators (Explore view)
 
-- **Line contains**: Exakter String-Match
-- **Line contains case-insensitive**: Empfohlen (case-unabhängig)
+- **Line contains**: exact string match
+- **Line contains case-insensitive**: recommended (case-independent)
 
 ### Dashboard
 
-Vordefiniertes Dashboard: **`Logs Dashboard`**
-- Log-Ingestion-Volumen
-- Integrierte Case-Insensitive-Suchbox
+Predefined dashboard: **`Logs Dashboard`**
+- Log ingestion volume
+- Built-in case-insensitive search box
 
-### Log-Retention
+### Log retention
 
-Logs werden **45 Tage** aufbewahrt, danach automatisch gelöscht.
+Logs are kept for **45 days**, then deleted automatically.
 
 ---
 
 ## Traces — Grafana
 
-Traces via OpenTelemetry (konfiguriert durch k8s-meta → `opentelemetry.yaml`).
+Traces via OpenTelemetry (configured by k8s-meta → `opentelemetry.yaml`).
 
 ```bash
 sw-paas open grafana
@@ -182,53 +182,53 @@ sw-paas open grafana
 
 ### Traces in Grafana
 
-1. **Explore** → Datenquelle: **Tempo**
-2. Query-Typ: **Search**
-3. Service Name: `shopware`
-4. Query ausführen
+1. **Explore** → data source: **Tempo**
+2. Query type: **Search**
+3. Service name: `shopware`
+4. Run the query
 
-### Trace-Retention
+### Trace retention
 
-Traces werden **14 Tage** aufbewahrt.
+Traces are kept for **14 days**.
 
 ---
 
-## Events — Real-time Monitoring
+## Events — real-time monitoring
 
 ```bash
-# Alle Events im Projekt
+# All events in the project
 sw-paas watch
 
-# Spezifische Applications
+# Specific applications
 sw-paas watch --application-ids app1,app2
 
-# Nach Event-Typ filtern
+# Filter by event type
 sw-paas watch --event-types "EVENT_TYPE_DEPLOYMENT_STARTED,EVENT_TYPE_DEPLOYMENT_FINISHED"
 ```
 
-Beenden: `Ctrl+C`
+Quit with: `Ctrl+C`
 
-### Event-Typen
+### Event types
 
-| Event | Beschreibung |
+| Event | Description |
 |-------|-------------|
-| `UNSPECIFIED` | Standard/unspezifizierter Status |
-| `PENDING` | Deployment wartet |
-| `BASE` | Basis-Infrastruktur wird deployed |
-| `BASE_FAILED` | Basis-Infrastruktur fehlgeschlagen |
-| `BASE_SUCCESS` | Basis-Infrastruktur erfolgreich |
-| `SHOP` | Shop-Infrastruktur wird deployed |
-| `SHOP_FAILED` | Shop-Infrastruktur fehlgeschlagen |
-| `SHOP_SUCCESS` | Shop-Infrastruktur erfolgreich |
-| `DEPLOYING_STORE` | Shopware Store wird deployed |
-| `DEPLOYING_STORE_FAILED` | Store-Deployment fehlgeschlagen |
-| `DEPLOYING_STORE_SUCCESS` | Store-Deployment erfolgreich |
-| `DEPLOYMENT_SUCCESS` | Vollständig erfolgreich |
-| `DEPLOYMENT_FAILED` | Vollständiger Fehler |
+| `UNSPECIFIED` | Default/unspecified status |
+| `PENDING` | Deployment is waiting |
+| `BASE` | Base infrastructure is being deployed |
+| `BASE_FAILED` | Base infrastructure failed |
+| `BASE_SUCCESS` | Base infrastructure succeeded |
+| `SHOP` | Shop infrastructure is being deployed |
+| `SHOP_FAILED` | Shop infrastructure failed |
+| `SHOP_SUCCESS` | Shop infrastructure succeeded |
+| `DEPLOYING_STORE` | Shopware store is being deployed |
+| `DEPLOYING_STORE_FAILED` | Store deployment failed |
+| `DEPLOYING_STORE_SUCCESS` | Store deployment succeeded |
+| `DEPLOYMENT_SUCCESS` | Fully successful |
+| `DEPLOYMENT_FAILED` | Complete failure |
 
-### Deployment-Event-History
+### Deployment event history
 
 ```bash
 sw-paas application deploy get
-# → Zeigt DEPLOYMENT STATUS HISTORY mit allen Events
+# → shows DEPLOYMENT STATUS HISTORY with all events
 ```

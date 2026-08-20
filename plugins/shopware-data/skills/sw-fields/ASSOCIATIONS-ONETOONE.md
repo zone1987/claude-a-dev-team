@@ -1,15 +1,15 @@
-# Shopware 6 — OneToOne-Association
+# Shopware 6 — OneToOne association
 
-Eine Entity ist genau einer anderen zugeordnet. Die FK kann auf einer der beiden Seiten liegen.
+One entity maps to exactly one other. The foreign key can sit on either side.
 
 ```php
-// Seite mit FK
+// side holding the FK
 (new FkField('detail_id', 'detailId', FfDetailDefinition::class)),
 (new OneToOneAssociationField('detail', 'detail_id', 'id', FfDetailDefinition::class, false)),
-// Gegenseite (ohne eigene FK-Spalte)
+// inverse side (no FK column of its own)
 (new OneToOneAssociationField('example', 'id', 'detail_id', FfExampleDefinition::class, false)),
 ```
 
-Letzter Parameter `autoload` i.d.R. `false` lassen und gezielt laden. Für „gehört zu vielen" → `sw-associations-manytoone`.
+Leave the last parameter `autoload` at `false` as a rule and load explicitly. For "belongs to many" → `sw-associations-manytoone`.
 
-→ Association-Typen & Details: [ASSOCIATIONS.md](ASSOCIATIONS.md)
+→ Association types and details: [ASSOCIATIONS.md](ASSOCIATIONS.md)

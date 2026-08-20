@@ -1,37 +1,37 @@
-# Shopware 6 — Troubleshooting & Debugging (vollständige Referenz)
+# Shopware 6 — Troubleshooting & Debugging (complete reference)
 
-Quellen: `guides/development/troubleshooting/index.md`, `troubleshooting/phpstan.md`
+Sources: `guides/development/troubleshooting/index.md`, `troubleshooting/phpstan.md`
 
 ## Contents
 
-- [Datenbankverbindung von Host-Maschine](#datenbankverbindung-von-host-maschine)
-- [PHP Debugging mit Xdebug aktivieren](#php-debugging-mit-xdebug-aktivieren)
-- [Andere PHP-Profiler](#andere-php-profiler)
-- [Linux: File-Permissions](#linux-file-permissions)
-- [PHPStan: Häufige DAL-Fehler](#phpstan-häufige-dal-fehler)
-- [Nützliche `bin/console`-Befehle für Debugging](#nützliche-binconsole-befehle-für-debugging)
-- [Umgebungsvariablen für Debugging](#umgebungsvariablen-für-debugging)
+- [Database connection from the host machine](#database-connection-from-the-host-machine)
+- [Enabling PHP debugging with Xdebug](#enabling-php-debugging-with-xdebug)
+- [Other PHP profilers](#other-php-profilers)
+- [Linux: file permissions](#linux-file-permissions)
+- [PHPStan: common DAL errors](#phpstan-common-dal-errors)
+- [Useful `bin/console` commands for debugging](#useful-binconsole-commands-for-debugging)
+- [Environment variables for debugging](#environment-variables-for-debugging)
 
-## Datenbankverbindung von Host-Maschine
+## Database connection from the host machine
 
-Für DB-Clients (Adminer, DBeaver, lokaler MySQL-Client):
+For DB clients (Adminer, DBeaver, local MySQL client):
 
 ```bash
-# Exponierten DB-Port ermitteln:
+# Determine the exposed DB port:
 docker compose ps
 ```
 
-Verbindungsdaten:
-- Host: `127.0.0.1` oder `localhost`
-- Port: Aus `docker compose ps` (exponierter Port)
-- Credentials: aus `.env`/`docker-compose.yml`
+Connection details:
+- Host: `127.0.0.1` or `localhost`
+- Port: from `docker compose ps` (exposed port)
+- Credentials: from `.env`/`docker-compose.yml`
 
-## PHP Debugging mit Xdebug aktivieren
+## Enabling PHP debugging with Xdebug
 
-### Basis-Konfiguration
+### Base configuration
 
 ```yaml
-# compose.override.yaml (im Projektroot anlegen):
+# compose.override.yaml (create it in the project root):
 services:
   web:
     environment:
@@ -44,14 +44,14 @@ services:
 docker compose up -d
 ```
 
-PHPStorm: Settings → PHP → Servers → Server mit lokalem Port konfigurieren.
-VS Code: PHP Debug Extension installieren, launch.json konfigurieren.
+PHPStorm: Settings → PHP → Servers → configure a server with the local port.
+VS Code: install the PHP Debug extension, configure launch.json.
 
-Standard Xdebug-Port: `9003`
+Default Xdebug port: `9003`
 
-### Xdebug auf Linux
+### Xdebug on Linux
 
-Auf Linux-Hosts muss `host.docker.internal` manuell gemappt werden:
+On Linux hosts, `host.docker.internal` has to be mapped manually:
 
 ```yaml
 # compose.override.yaml:
@@ -65,7 +65,7 @@ services:
       - "host.docker.internal:host-gateway"
 ```
 
-## Andere PHP-Profiler
+## Other PHP profilers
 
 ### Blackfire
 
@@ -91,10 +91,10 @@ services:
       - PHP_PROFILER=tideways
   tideways:
     image: tideways/daemon
-    # ... Tideways-Container-Konfiguration
+    # ... Tideways container configuration
 ```
 
-### PCOV (Code Coverage)
+### PCOV (code coverage)
 
 ```yaml
 services:
@@ -103,27 +103,27 @@ services:
       - PHP_PROFILER=pcov
 ```
 
-PCOV benötigt keinen extra Container.
+PCOV needs no extra container.
 
-## Linux: File-Permissions
+## Linux: file permissions
 
-Auf Linux-Hosts muss die User-ID 1000 sein für korrekte Datei-Berechtigungen in Containern:
+On Linux hosts the user ID must be 1000 for correct file permissions inside containers:
 
 ```bash
 id -u
-# Gibt User-ID aus — muss 1000 sein
+# Prints the user ID — must be 1000
 
-# Falls nicht 1000: Permission-Errors bei:
+# If not 1000: permission errors on:
 # - make up
-# - Schreiben in Projektdateien
-# - Cache-Generierung
+# - writing to project files
+# - cache generation
 ```
 
-Lösung: Entweder User-ID in Docker-Konfiguration anpassen oder als User 1000 arbeiten.
+Solution: either adjust the user ID in the Docker configuration or work as user 1000.
 
-## PHPStan: Häufige DAL-Fehler
+## PHPStan: common DAL errors
 
-### EntityRepository Generic-Type fehlt
+### Missing EntityRepository generic type
 
 **Problem:**
 ```php
@@ -137,7 +137,7 @@ class ProductService
     {
         $products = $this->productRepository->search($criteria, $context)->getEntities();
         foreach ($products as $product) {
-            // PHPStan-Fehler: "Call to an undefined method
+            // PHPStan error: "Call to an undefined method
             // Shopware\Core\Framework\DataAbstractionLayer\Entity::getName()"
             $name = $product->getName();
         }
@@ -145,7 +145,7 @@ class ProductService
 }
 ```
 
-**Lösung:** Generic-Type im PHP-Doc hinzufügen:
+**Solution:** add the generic type in the PHP doc:
 ```php
 class ProductService
 {
@@ -160,15 +160,15 @@ class ProductService
     {
         $products = $this->productRepository->search($criteria, $context)->getEntities();
         foreach ($products as $product) {
-            $name = $product->getName(); // PHPStan identifiziert korrekt als ProductEntity
+            $name = $product->getName(); // PHPStan correctly identifies it as ProductEntity
         }
     }
 }
 ```
 
-**Hinweis:** `EntityRepository` nimmt `EntityCollection` (nicht `Entity`) als Generic-Typ.
+**Note:** `EntityRepository` takes `EntityCollection` (not `Entity`) as its generic type.
 
-### Null-Safety bei first() und Assoziationen
+### Null safety with first() and associations
 
 **Problem:**
 ```php
@@ -180,7 +180,7 @@ $manufacturerName = $manufacturer->getName();
 // PHPStan: "Cannot call method getName() on ...ProductManufacturerEntity|null"
 ```
 
-**Lösung 1 — Explizite Null-Checks (empfohlen für Services):**
+**Solution 1 — explicit null checks (recommended for services):**
 ```php
 $criteria = new Criteria();
 $criteria->addAssociation('manufacturer');
@@ -195,17 +195,17 @@ if ($manufacturer === null) {
     throw new ManufacturerNotLoadedException();
 }
 
-$manufacturerName = $manufacturer->getName(); // Kein Fehler
+$manufacturerName = $manufacturer->getName(); // No error
 ```
 
-**Lösung 2 — Null-Safe-Operator (für einfache Fälle):**
+**Solution 2 — null-safe operator (for simple cases):**
 ```php
 $manufacturerName = $product?->getManufacturer()?->getName() ?? 'Unknown';
 ```
 
-**Wichtig:** Assoziationen immer in Criteria hinzufügen, bevor auf sie zugegriffen wird.
+**Important:** always add associations to the Criteria before accessing them.
 
-### EntityCollection Generic-Type fehlt
+### Missing EntityCollection generic type
 
 **Problem:**
 ```php
@@ -222,7 +222,7 @@ if ($foo === null) { throw new FooNotFoundException(); }
 $foo->bar(); // PHPStan: "Cannot call method bar() on Entity"
 ```
 
-**Lösung:**
+**Solution:**
 ```php
 /**
  * @extends EntityCollection<FooEntity>
@@ -237,29 +237,29 @@ class FooCollection extends EntityCollection
 
 $foo = $fooCollection->first();
 if ($foo === null) { throw new FooNotFoundException(); }
-$foo->bar(); // Kein Fehler — PHPStan weiß, dass es FooEntity ist
+$foo->bar(); // No error — PHPStan knows it is a FooEntity
 ```
 
-## Nützliche `bin/console`-Befehle für Debugging
+## Useful `bin/console` commands for debugging
 
 ```bash
-# System-Status
+# System status
 bin/console system:check
 
-# Plugin-Informationen
+# Plugin information
 bin/console plugin:list
 bin/console plugin:refresh
 
-# Cache leeren
+# Clear the cache
 bin/console cache:clear
 
-# DAL Debug
+# DAL debug
 bin/console debug:container --show-private | grep repository
 
-# Schema validieren
+# Validate the schema
 bin/console doctrine:schema:validate
 
-# Scheduled Tasks
+# Scheduled tasks
 bin/console scheduled-task:list
 bin/console messenger:stats
 
@@ -267,11 +267,11 @@ bin/console messenger:stats
 tail -f var/log/dev.log
 ```
 
-## Umgebungsvariablen für Debugging
+## Environment variables for debugging
 
 ```dotenv
 # .env.local
-APP_ENV=dev              # Aktiviert Symfony Profiler, bessere Fehlerseiten
-APP_DEBUG=1              # Aktiviert Debug-Modus
-SHOPWARE_LOG_LEVEL=debug # Ausführliche Log-Ausgabe
+APP_ENV=dev              # Enables the Symfony profiler and better error pages
+APP_DEBUG=1              # Enables debug mode
+SHOPWARE_LOG_LEVEL=debug # Verbose log output
 ```

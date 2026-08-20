@@ -1,7 +1,7 @@
-# Shopware 6 — Verschachtelte LineItems
+# Shopware 6 — Nested LineItems
 
-LineItems können `children` haben (ADRs „nested line items"/„new nested line items") — z.B. ein Bundle mit
-Unterprodukten. Der Preis des Parent kann aus den Kindern aggregiert oder eigenständig sein.
+Line items can have `children` (ADRs "nested line items"/"new nested line items") — e.g. a bundle with
+sub-products. The parent price can be aggregated from the children or stand on its own.
 
 ```php
 $bundle = new LineItem($id, 'ff_bundle', $referencedId, 1);
@@ -9,6 +9,6 @@ $bundle->setChildren(new LineItemCollection([$childA, $childB]));
 $bundle->getChildren()->add($childC);
 ```
 
-Im Processor (`sw-cart-processor`) die Kinder berechnen und den Parent-Preis bilden. Im Storefront werden Kinder
-eingerückt dargestellt. Verfügbarkeit/Validierung berücksichtigt die Kinder (`sw-cart-validator`). Standard-Positionen:
+Calculate the children in the processor (`sw-cart-processor`) and derive the parent price. The storefront renders
+children indented. Availability/validation takes the children into account (`sw-cart-validator`). Standard positions:
 `sw-cart-line-item`.

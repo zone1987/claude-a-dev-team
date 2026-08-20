@@ -1,48 +1,48 @@
-# Shopware PaaS Native — Ressourcen & Skalierung
+# Shopware PaaS Native — Resources & scaling
 
-## Default-Ressourcen-Profil
+## Default resource profile
 
-| Komponente   | Replicas | CPU req | Memory req | Memory limit |
+| Component    | Replicas | CPU req | Memory req | Memory limit |
 |--------------|----------|---------|------------|--------------|
 | `storefront` | 2        | 50m     | 256Mi      | 2Gi          |
 | `admin`      | 1        | 25m     | 128Mi      | 2Gi          |
 | `worker`     | 1        | 50m     | 256Mi      | 1Gi          |
 
-Skalierung: primär **horizontal** (mehr Replicas).
-Limits abhängig vom gebuchten Plan.
+Scaling: primarily **horizontal** (more replicas).
+Limits depend on the booked plan.
 
-## Snapshots (Backups)
+## Snapshots (backups)
 
 ```bash
-# Snapshot erstellen (vor Updates/Cloning empfohlen)
+# Create a snapshot (recommended before updates/cloning)
 sw-paas snapshot create
 ```
 
-Snapshots enthalten: Datenbank + Shopware-Filesystem.
-Werden für Cloning als Quell-Snapshot genutzt.
+Snapshots contain: database + Shopware filesystem.
+They are used as the source snapshot for cloning.
 
-## Deployment-Typen
+## Deployment types
 
 ```bash
-# Neuester Build
+# Latest build
 sw-paas application deploy create
 
-# Spezifischen Build deployen (Rollback auf älteren Stand)
+# Deploy a specific build (rollback to an older state)
 sw-paas application deploy create
-# → Interaktive Build-Auswahl
+# → interactive build selection
 
-# Deployments anzeigen
+# Show deployments
 sw-paas application deploy list
 sw-paas application deploy get
 ```
 
-## Wichtige Limits
+## Important limits
 
-- **Anzahl Projekte/Applications**: Abhängig vom Plan
-- **Zusätzliche Queues**: Nicht konfigurierbar
-- **Nur Shopware**: Keine anderen Anwendungstypen (kein Node.js etc.)
-- **AWS only**: Kein Azure oder GCP
+- **Number of projects/applications**: depends on the plan
+- **Additional queues**: not configurable
+- **Shopware only**: no other application types (no Node.js etc.)
+- **AWS only**: no Azure or GCP
 
-## Vertiefung
+## Deep dive
 
 [RESOURCES-SCALING-DETAIL.md](RESOURCES-SCALING-DETAIL.md)

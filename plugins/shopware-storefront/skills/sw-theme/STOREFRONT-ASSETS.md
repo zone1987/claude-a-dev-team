@@ -1,12 +1,12 @@
-# Shopware 6 — Storefront-Assets
+# Shopware 6 — Storefront assets
 
-Statische Dateien eines Plugins liegen in `src/Resources/public/` und werden per `bin/console assets:install`
-nach `public/bundles/<plugin>/` veröffentlicht. Im Template über `asset()`:
+A plugin's static files live in `src/Resources/public/` and are published to `public/bundles/<plugin>/`
+by `bin/console assets:install`. In the template use `asset()`:
 
 ```twig
 <img src="{{ asset('bundles/ffplugin/img/logo.svg') }}">
 ```
 
-**Medien aus dem DAL** (Media-Entity) nicht als Asset, sondern via `searchMedia(ids, context)` / `sw_thumbnails`
-einbinden (responsive `srcset`). Eigene Icons als SVG-Set über `sw_icon` (`sw-storefront-icons`). JS/SCSS-Assets
-werden über den Theme-/Webpack-Build gebündelt (nicht in `public/`).
+**Media from the DAL** (media entity) are not included as assets but via `searchMedia(ids, context)` / `sw_thumbnails`
+(responsive `srcset`). Provide custom icons as an SVG set via `sw_icon` (`sw-storefront-icons`). JS/SCSS assets
+are bundled by the theme/webpack build (not placed in `public/`).

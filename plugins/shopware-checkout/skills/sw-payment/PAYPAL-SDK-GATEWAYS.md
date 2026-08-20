@@ -1,13 +1,13 @@
-# shopware/paypal-sdk — Erschöpfende Gateway- & Struct-Referenz
+# shopware/paypal-sdk — Exhaustive Gateway & Struct Reference
 
-Repo: `shopware/paypal-sdk` | Namespace-Root: `Shopware\PayPalSDK\` | PHP ≥ 8.1 | MIT
+Repo: `shopware/paypal-sdk` | Namespace root: `Shopware\PayPalSDK\` | PHP ≥ 8.1 | MIT
 
 ---
 
 ## Contents
 
-- [Konstanten](#konstanten)
-- [Context-Layer](#context-layer)
+- [Constants](#constants)
+- [Context layer](#context-layer)
 - [TokenGateway (`Shopware\PayPalSDK\Gateway\TokenGateway`)](#tokengateway-shopwarepaypalsdkgatewaytokengateway)
 - [AbstractGateway (`Shopware\PayPalSDK\Gateway\AbstractGateway`)](#abstractgateway-shopwarepaypalsdkgatewayabstractgateway)
 - [OrderGateway (`Shopware\PayPalSDK\Gateway\OrderGateway`)](#ordergateway-shopwarepaypalsdkgatewayordergateway)
@@ -16,14 +16,14 @@ Repo: `shopware/paypal-sdk` | Namespace-Root: `Shopware\PayPalSDK\` | PHP ≥ 8.
 - [WebhookGateway (`Shopware\PayPalSDK\Gateway\WebhookGateway`)](#webhookgateway-shopwarepaypalsdkgatewaywebhookgateway)
 - [CustomerGateway (`Shopware\PayPalSDK\Gateway\CustomerGateway`)](#customergateway-shopwarepaypalsdkgatewaycustomergateway)
 - [ReportingGateway (`Shopware\PayPalSDK\Gateway\ReportingGateway`)](#reportinggateway-shopwarepaypalsdkgatewayreportinggateway)
-- [Struct-Übersicht nach API-Bereich](#struct-übersicht-nach-api-bereich)
-- [Error-Structs](#error-structs)
+- [Struct overview by API area](#struct-overview-by-api-area)
+- [Error structs](#error-structs)
 - [Exceptions](#exceptions)
 - [RequestService](#requestservice)
-- [Vollständiges Third-Party-Beispiel](#vollständiges-third-party-beispiel)
-- [Util-Klassen](#util-klassen)
+- [Complete third-party example](#complete-third-party-example)
+- [Util classes](#util-classes)
 
-## Konstanten
+## Constants
 
 ```php
 // Shopware\PayPalSDK\Constants
@@ -33,11 +33,11 @@ Constants::BASEURL_LIVE    = 'https://api-m.paypal.com/'
 
 ---
 
-## Context-Layer
+## Context layer
 
 ### `ApiContext` (`Shopware\PayPalSDK\Context\ApiContext`)
 
-Immutabler Value-Object. Alle Wither geben neuen ApiContext zurück.
+Immutable value object. Every wither returns a new ApiContext.
 
 ```php
 new ApiContext(
@@ -50,49 +50,49 @@ new ApiContext(
 )
 ```
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|-------------|
-| `isSandbox(): bool` | Sandbox-Modus |
-| `getMerchantId(): ?string` | Merchant-ID für Third-Party |
-| `isThirdParty(): bool` | Third-Party-Flag |
-| `getHeaders(): array` | Alle gesetzten Header (lowercase keys) |
-| `getQueryParameters(): array` | URL-Query-Parameter |
-| `withSandbox(bool): static` | Neuer Ctx mit geändertem Sandbox-Flag |
-| `withMerchantId(?string): static` | Neuer Ctx mit Merchant-ID |
-| `withHeader(string, ?string): static` | Einzelnen Header setzen/entfernen |
-| `withQueryParameter(string, ?string): static` | Query-Parameter setzen |
-| `withThirdParty(bool): static` | Third-Party-Flag ändern |
-| `withPartnerAttributionId(?string): self` | `PayPal-Partner-Attribution-Id` Header |
-| `withPreferRepresentation(bool): self` | `Prefer: return=representation` Header |
-| `withRequestId(?string): self` | `PayPal-Request-Id` Header (Idempotency) |
-| `withClientMetadataId(?string): self` | `PayPal-Client-Metadata-Id` Header |
+| `isSandbox(): bool` | Sandbox mode |
+| `getMerchantId(): ?string` | Merchant ID for third-party calls |
+| `isThirdParty(): bool` | Third-party flag |
+| `getHeaders(): array` | All headers set (lowercase keys) |
+| `getQueryParameters(): array` | URL query parameters |
+| `withSandbox(bool): static` | New ctx with a changed sandbox flag |
+| `withMerchantId(?string): static` | New ctx with a merchant ID |
+| `withHeader(string, ?string): static` | Set/remove a single header |
+| `withQueryParameter(string, ?string): static` | Set a query parameter |
+| `withThirdParty(bool): static` | Change the third-party flag |
+| `withPartnerAttributionId(?string): self` | `PayPal-Partner-Attribution-Id` header |
+| `withPreferRepresentation(bool): self` | `Prefer: return=representation` header |
+| `withRequestId(?string): self` | `PayPal-Request-Id` header (idempotency) |
+| `withClientMetadataId(?string): self` | `PayPal-Client-Metadata-Id` header |
 
-### OAuthContext-Implementierungen
+### OAuthContext implementations
 
 #### `CredentialsOAuthContext`
-- Konstruktor: `(string $clientId, string $clientSecret)`
+- Constructor: `(string $clientId, string $clientSecret)`
 - `grant_type`: `client_credentials`
 - Header: `Authorization: Basic base64(clientId:clientSecret)`
-- Methoden: `getClientId()`, `intoUserIdContext(?string $targetCustomerId)`, `intoClientTokenContext()`
+- Methods: `getClientId()`, `intoUserIdContext(?string $targetCustomerId)`, `intoClientTokenContext()`
 
 #### `ClientTokenOAuthContext extends CredentialsOAuthContext`
-- Konstruktor: `(string $clientId, string $clientSecret, array $domains = [])`
+- Constructor: `(string $clientId, string $clientSecret, array $domains = [])`
 - `grant_type`: `client_credentials` + `response_type=client_token`
-- `withDomains(string ...$domains): self` — Domain-Filterung (validiert, keine IPs/keine TLD-losen)
+- `withDomains(string ...$domains): self` — domain filtering (validated, no IPs, no TLD-less names)
 
 #### `AuthorizationCodeOAuthContext`
-- Konstruktor: `(string $authCode, string $sharedId, string $nonce)`
+- Constructor: `(string $authCode, string $sharedId, string $nonce)`
 - `grant_type`: `authorization_code` + `code` + `code_verifier`
-- Für Onboarding-AuthCode-Exchange
+- For the onboarding auth-code exchange
 
 #### `UserIdOAuthContext` (via `CredentialsOAuthContext::intoUserIdContext()`)
-- User-ID-basierter Token-Fluss
+- User-ID-based token flow
 
 ---
 
 ## TokenGateway (`Shopware\PayPalSDK\Gateway\TokenGateway`)
 
-Endpunkt: `POST /v1/oauth2/token`
+Endpoint: `POST /v1/oauth2/token`
 
 ```php
 new TokenGateway(
@@ -102,19 +102,19 @@ new TokenGateway(
 )
 ```
 
-| Methode | Signatur |
+| Method | Signature |
 |---------|---------|
 | `getToken` | `getToken(ApiContextInterface $context): Token` |
 
-- Token wird automatisch gecacht (`TokenArrayCache` = In-Memory-PSR-16-Impl.)
-- Cache-Key: Hash aus ClientId + Secret + MerchantId + Sandbox-Flag
-- Token wird vor Ablauf (TTL-Threshold) invalidiert
+- The token is cached automatically (`TokenArrayCache` = in-memory PSR-16 implementation)
+- Cache key: hash of client ID + secret + merchant ID + sandbox flag
+- The token is invalidated before it expires (TTL threshold)
 
 ---
 
 ## AbstractGateway (`Shopware\PayPalSDK\Gateway\AbstractGateway`)
 
-Basis für alle fachlichen Gateways. Intern: Token holen → Request bauen → Response deserialisieren.
+Base class for all domain gateways. Internally: fetch token → build request → deserialize response.
 
 ```php
 new OrderGateway(
@@ -128,20 +128,20 @@ new OrderGateway(
 
 ## OrderGateway (`Shopware\PayPalSDK\Gateway\OrderGateway`)
 
-Basis-URL: `POST /v2/checkout/orders`
+Base URL: `POST /v2/checkout/orders`
 
-| Methode | HTTP | Pfad | Beschreibung |
+| Method | HTTP | Path | Description |
 |---------|------|------|-------------|
-| `createOrder(Order, ApiContextInterface): Order` | POST | `/v2/checkout/orders` | Order erstellen |
-| `getOrder(string $orderId, ApiContextInterface): Order` | GET | `/v2/checkout/orders/{id}` | Order abrufen |
-| `authorizeOrder(string $orderId, ApiContextInterface): Order` | POST | `/v2/checkout/orders/{id}/authorize` | Order autorisieren |
-| `captureOrder(string $orderId, ApiContextInterface): Order` | POST | `/v2/checkout/orders/{id}/capture` | Order capturen |
-| `patchOrder(string $orderId, PatchCollection, ApiContextInterface): void` | PATCH | `/v2/checkout/orders/{id}` | Order-Felder patchen |
-| `addTracker(Tracker, string $orderId, ApiContextInterface): Order` | POST | `/v2/checkout/orders/{id}/track` | Tracking hinzufügen |
-| `removeTracker(Tracker, string $orderId, ApiContextInterface): void` | PATCH | `/v2/checkout/orders/{id}/trackers/{captureId}-{trackingNumber}` | Tracking stornieren (status=CANCELLED) |
+| `createOrder(Order, ApiContextInterface): Order` | POST | `/v2/checkout/orders` | Create order |
+| `getOrder(string $orderId, ApiContextInterface): Order` | GET | `/v2/checkout/orders/{id}` | Fetch order |
+| `authorizeOrder(string $orderId, ApiContextInterface): Order` | POST | `/v2/checkout/orders/{id}/authorize` | Authorize order |
+| `captureOrder(string $orderId, ApiContextInterface): Order` | POST | `/v2/checkout/orders/{id}/capture` | Capture order |
+| `patchOrder(string $orderId, PatchCollection, ApiContextInterface): void` | PATCH | `/v2/checkout/orders/{id}` | Patch order fields |
+| `addTracker(Tracker, string $orderId, ApiContextInterface): Order` | POST | `/v2/checkout/orders/{id}/track` | Add tracking |
+| `removeTracker(Tracker, string $orderId, ApiContextInterface): void` | PATCH | `/v2/checkout/orders/{id}/trackers/{captureId}-{trackingNumber}` | Cancel tracking (status=CANCELLED) |
 
-Wichtige Structs:
-- `Shopware\PayPalSDK\Struct\V2\Order` — Haupt-Order-Objekt
+Important structs:
+- `Shopware\PayPalSDK\Struct\V2\Order` — main order object
 - `Shopware\PayPalSDK\Struct\V2\Order\Tracker`
 - `Shopware\PayPalSDK\Struct\V2\Patch` / `PatchCollection`
 - `Order::INTENT_CAPTURE` / `Order::INTENT_AUTHORIZE`
@@ -150,17 +150,17 @@ Wichtige Structs:
 
 ## PaymentGateway (`Shopware\PayPalSDK\Gateway\PaymentGateway`)
 
-Basis-URL: `/v2/payments`
+Base URL: `/v2/payments`
 
-| Methode | HTTP | Pfad | Rückgabe |
+| Method | HTTP | Path | Returns |
 |---------|------|------|---------|
-| `getCapture(string $captureId, ApiContextInterface): Capture` | GET | `/v2/payments/captures/{id}` | Capture-Details |
-| `getAuthorization(string $authorizationId, ApiContextInterface): Authorization` | GET | `/v2/payments/authorizations/{id}` | Authorization-Details |
-| `getRefund(string $refundId, ApiContextInterface): Refund` | GET | `/v2/payments/refunds/{id}` | Refund-Details |
-| `refundCapture(string $captureId, Refund, ApiContextInterface): Refund` | POST | `/v2/payments/captures/{id}/refund` | Refund auf Capture |
-| `captureAuthorization(string $authorizationId, Capture, ApiContextInterface): Capture` | POST | `/v2/payments/authorizations/{id}/capture` | Auth. capturen |
-| `voidAuthorization(string $authorizationId, ApiContextInterface): void` | POST | `/v2/payments/authorizations/{id}/void` | Auth. void |
-| `findEligibleMethods(FindEligibleMethods, ApiContextInterface): EligibleMethodsData` | POST | `/v2/payments/find-eligible-methods` | Zahlungsmethoden-Eligibility |
+| `getCapture(string $captureId, ApiContextInterface): Capture` | GET | `/v2/payments/captures/{id}` | Capture details |
+| `getAuthorization(string $authorizationId, ApiContextInterface): Authorization` | GET | `/v2/payments/authorizations/{id}` | Authorization details |
+| `getRefund(string $refundId, ApiContextInterface): Refund` | GET | `/v2/payments/refunds/{id}` | Refund details |
+| `refundCapture(string $captureId, Refund, ApiContextInterface): Refund` | POST | `/v2/payments/captures/{id}/refund` | Refund on a capture |
+| `captureAuthorization(string $authorizationId, Capture, ApiContextInterface): Capture` | POST | `/v2/payments/authorizations/{id}/capture` | Capture an authorization |
+| `voidAuthorization(string $authorizationId, ApiContextInterface): void` | POST | `/v2/payments/authorizations/{id}/void` | Void an authorization |
+| `findEligibleMethods(FindEligibleMethods, ApiContextInterface): EligibleMethodsData` | POST | `/v2/payments/find-eligible-methods` | Payment method eligibility |
 
 Structs: `Struct\V2\Order\PurchaseUnit\Payments\{Authorization, Capture, Refund}`, `Struct\V2\{EligibleMethodsData, FindEligibleMethods}`
 
@@ -168,9 +168,9 @@ Structs: `Struct\V2\Order\PurchaseUnit\Payments\{Authorization, Capture, Refund}
 
 ## PaymentV1Gateway (`Shopware\PayPalSDK\Gateway\PaymentV1Gateway`)
 
-Basis-URL: `/v1/payments` — Alte PayPal Payments API (Legacy)
+Base URL: `/v1/payments` — the old PayPal Payments API (legacy)
 
-| Methode | HTTP | Pfad |
+| Method | HTTP | Path |
 |---------|------|------|
 | `getAuthorization(string $authorizationId, ApiContextInterface): Authorization` | GET | `/v1/payments/authorization/{id}` |
 | `getCapture(string $captureId, ApiContextInterface): Capture` | GET | `/v1/payments/capture/{id}` |
@@ -184,15 +184,15 @@ Structs: `Struct\V1\{Capture, Payment}`, `Struct\V1\Payment\Transaction\RelatedR
 
 ## WebhookGateway (`Shopware\PayPalSDK\Gateway\WebhookGateway`)
 
-Basis-URL: `/v1/notifications/webhooks`
+Base URL: `/v1/notifications/webhooks`
 
-| Methode | HTTP | Pfad | Beschreibung |
+| Method | HTTP | Path | Description |
 |---------|------|------|-------------|
-| `createWebhook(Webhook, ApiContextInterface): Webhook` | POST | `/v1/notifications/webhooks` | Webhook anlegen |
-| `getWebhook(string $webhookId, ApiContextInterface): Webhook` | GET | `/v1/notifications/webhooks/{id}` | Webhook abrufen |
-| `getWebhookList(ApiContextInterface): WebhookList` | GET | `/v1/notifications/webhooks` | Alle Webhooks |
-| `updateWebhook(string $webhookId, PatchCollection, ApiContextInterface): void` | PATCH | `/v1/notifications/webhooks/{id}` | Webhook patchen |
-| `deleteWebhook(string $webhookId, ApiContextInterface): void` | DELETE | `/v1/notifications/webhooks/{id}` | Webhook löschen |
+| `createWebhook(Webhook, ApiContextInterface): Webhook` | POST | `/v1/notifications/webhooks` | Create webhook |
+| `getWebhook(string $webhookId, ApiContextInterface): Webhook` | GET | `/v1/notifications/webhooks/{id}` | Fetch webhook |
+| `getWebhookList(ApiContextInterface): WebhookList` | GET | `/v1/notifications/webhooks` | All webhooks |
+| `updateWebhook(string $webhookId, PatchCollection, ApiContextInterface): void` | PATCH | `/v1/notifications/webhooks/{id}` | Patch webhook |
+| `deleteWebhook(string $webhookId, ApiContextInterface): void` | DELETE | `/v1/notifications/webhooks/{id}` | Delete webhook |
 
 Structs: `Struct\V1\{Webhook, WebhookList}`, `Struct\V1\PatchCollection`
 
@@ -200,23 +200,23 @@ Structs: `Struct\V1\{Webhook, WebhookList}`, `Struct\V1\PatchCollection`
 
 ## CustomerGateway (`Shopware\PayPalSDK\Gateway\CustomerGateway`)
 
-Basis-URLs: `/v1/customer`, `/v2/customer`, `/v3/customer`
+Base URLs: `/v1/customer`, `/v2/customer`, `/v3/customer`
 
-| Methode | HTTP | Pfad | Beschreibung |
+| Method | HTTP | Path | Description |
 |---------|------|------|-------------|
-| `getMerchantIntegrations(string $partnerId, string $merchantId, ApiContextInterface): MerchantIntegrations` | GET | `/v1/customer/partners/{partnerId}/merchant-integrations/{merchantId}` | Merchant-Integration abrufen |
-| `getMerchantTracking(string $partnerId, string $trackingId, ApiContextInterface): MerchantTracking` | GET | `/v1/customer/partners/{partnerId}/merchant-integrations?tracking_id=` | Onboarding-Tracking |
-| `getCredentials(string $partnerId, ApiContextInterface): Credentials` | GET | `/v1/customer/partners/{partnerId}/merchant-integrations/credentials` | Credentials abrufen |
-| `createPartnerReferral(Referral, ApiContextInterface): Referral` | POST | `/v2/customer/partner-referrals` | Partner-Referral erstellen |
-| `getDisputes(ApiContextInterface): Disputes` | GET | `/v1/customer/disputes` | Alle Disputes |
-| `getDispute(string $disputeId, ApiContextInterface): DisputeItem` | GET | `/v1/customer/disputes/{id}` | Einzelner Dispute |
-| `getManagedAccounts(ApiContextInterface): ManagedAccounts` | GET | `/v3/customer/managed-accounts` | Managed Accounts (filter via queryParams) |
-| `getManagedAccount(string $merchantId, ApiContextInterface): ManagedAccount` | GET | `/v3/customer/managed-accounts/{merchantId}` | Einzelner Managed Account |
-| `createWalletDomain(WalletDomain, ApiContextInterface): WalletDomain` | POST | `/v1/customer/wallet-domains` | Apple-Pay-Domain registrieren |
-| `getWalletDomains(ApiContextInterface, int $page = 1, int $pageSize = 99): WalletDomains` | GET | `/v1/customer/wallet-domains?page=&page_size=` | Wallet-Domains auflisten |
-| `deleteWalletDomain(WalletDomain, ApiContextInterface): WalletDomain` | POST | `/v1/customer/unregister-wallet-domain` | Domain deregistrieren |
+| `getMerchantIntegrations(string $partnerId, string $merchantId, ApiContextInterface): MerchantIntegrations` | GET | `/v1/customer/partners/{partnerId}/merchant-integrations/{merchantId}` | Fetch merchant integration |
+| `getMerchantTracking(string $partnerId, string $trackingId, ApiContextInterface): MerchantTracking` | GET | `/v1/customer/partners/{partnerId}/merchant-integrations?tracking_id=` | Onboarding tracking |
+| `getCredentials(string $partnerId, ApiContextInterface): Credentials` | GET | `/v1/customer/partners/{partnerId}/merchant-integrations/credentials` | Fetch credentials |
+| `createPartnerReferral(Referral, ApiContextInterface): Referral` | POST | `/v2/customer/partner-referrals` | Create partner referral |
+| `getDisputes(ApiContextInterface): Disputes` | GET | `/v1/customer/disputes` | All disputes |
+| `getDispute(string $disputeId, ApiContextInterface): DisputeItem` | GET | `/v1/customer/disputes/{id}` | Single dispute |
+| `getManagedAccounts(ApiContextInterface): ManagedAccounts` | GET | `/v3/customer/managed-accounts` | Managed accounts (filter via queryParams) |
+| `getManagedAccount(string $merchantId, ApiContextInterface): ManagedAccount` | GET | `/v3/customer/managed-accounts/{merchantId}` | Single managed account |
+| `createWalletDomain(WalletDomain, ApiContextInterface): WalletDomain` | POST | `/v1/customer/wallet-domains` | Register an Apple Pay domain |
+| `getWalletDomains(ApiContextInterface, int $page = 1, int $pageSize = 99): WalletDomains` | GET | `/v1/customer/wallet-domains?page=&page_size=` | List wallet domains |
+| `deleteWalletDomain(WalletDomain, ApiContextInterface): WalletDomain` | POST | `/v1/customer/unregister-wallet-domain` | Unregister a domain |
 
-Anmerkung: `getMerchantIntegrations`, `getMerchantTracking`, `getCredentials`, `createPartnerReferral`, `getManagedAccounts`, `getManagedAccount` rufen intern `$context->withThirdParty(false)` auf.
+Note: `getMerchantIntegrations`, `getMerchantTracking`, `getCredentials`, `createPartnerReferral`, `getManagedAccounts`, `getManagedAccount` internally call `$context->withThirdParty(false)`.
 
 Structs: `Struct\V1\{MerchantIntegrations, MerchantTracking, Disputes, WalletDomain, WalletDomains}`, `Struct\V1\MerchantIntegrations\Credentials`, `Struct\V2\Referral`, `Struct\V3\{ManagedAccount, ManagedAccounts}`
 
@@ -224,162 +224,162 @@ Structs: `Struct\V1\{MerchantIntegrations, MerchantTracking, Disputes, WalletDom
 
 ## ReportingGateway (`Shopware\PayPalSDK\Gateway\ReportingGateway`)
 
-Basis-URL: `/v1/reporting`
+Base URL: `/v1/reporting`
 
-| Methode | HTTP | Pfad | Beschreibung |
+| Method | HTTP | Path | Description |
 |---------|------|------|-------------|
-| `listTransactions(TransactionSearch, ApiContextInterface): Transactions` | GET | `/v1/reporting/transactions` | Transaktionen abrufen (Parameter aus `TransactionSearch`-Struct) |
-| `listBalances(?BalanceSearch, ApiContextInterface): Balances` | GET | `/v1/reporting/balances` | Kontostände abrufen |
+| `listTransactions(TransactionSearch, ApiContextInterface): Transactions` | GET | `/v1/reporting/transactions` | Fetch transactions (parameters from the `TransactionSearch` struct) |
+| `listBalances(?BalanceSearch, ApiContextInterface): Balances` | GET | `/v1/reporting/balances` | Fetch balances |
 
 Structs: `Struct\V1\Reporting\{Transactions, TransactionSearch, Balances, BalanceSearch}`
 
 ---
 
-## Struct-Übersicht nach API-Bereich
+## Struct overview by API area
 
-### V1 — Legacy PayPal API
+### V1 — legacy PayPal API
 
-| Struct | Verwendung |
+| Struct | Usage |
 |--------|-----------|
-| `V1\Token` | OAuth-Token mit `getAccessToken()`, `getTokenType()`, `getExpiresIn()`, `getExpireDateTime()` |
-| `V1\ClientToken` | Client-Token für Browser |
-| `V1\Payment` | Legacy-Payment-Objekt |
-| `V1\Capture` | V1-Capture |
-| `V1\Refund` | V1-Refund |
-| `V1\Patch` / `V1\PatchCollection` | PATCH-Operationen |
-| `V1\Webhook` / `V1\WebhookList` | Webhook-Entitäten |
-| `V1\Disputes` / `V1\Disputes\Item` | Dispute-Entitäten (inkl. Evidence, Adjudication, Offer, Extensions) |
-| `V1\MerchantIntegrations` | Onboarding-Informationen |
-| `V1\MerchantTracking` | Onboarding-Tracking |
-| `V1\Shipping` | Versandinfo |
-| `V1\Plan` / `V1\Subscription` | Subscription-API (Billing-Plan, Subscriber, BillingInfo) |
-| `V1\WalletDomain` / `V1\WalletDomains` | Apple Pay Wallet-Domain |
-| `V1\Reporting\TransactionSearch` | Filter für Transaktions-Report |
-| `V1\Reporting\Transactions` | Transaktions-Response |
-| `V1\Reporting\BalanceSearch` | Filter für Balance-Report |
-| `V1\Reporting\Balances` | Balance-Response |
-| `V1\Common\{Address, Amount, Details, Money, Link, Value}` | Shared Value-Objects |
-| `ConstantsV1` | V1-String-Konstanten |
+| `V1\Token` | OAuth token with `getAccessToken()`, `getTokenType()`, `getExpiresIn()`, `getExpireDateTime()` |
+| `V1\ClientToken` | Client token for the browser |
+| `V1\Payment` | Legacy payment object |
+| `V1\Capture` | V1 capture |
+| `V1\Refund` | V1 refund |
+| `V1\Patch` / `V1\PatchCollection` | PATCH operations |
+| `V1\Webhook` / `V1\WebhookList` | Webhook entities |
+| `V1\Disputes` / `V1\Disputes\Item` | Dispute entities (including evidence, adjudication, offer, extensions) |
+| `V1\MerchantIntegrations` | Onboarding information |
+| `V1\MerchantTracking` | Onboarding tracking |
+| `V1\Shipping` | Shipping info |
+| `V1\Plan` / `V1\Subscription` | Subscription API (billing plan, subscriber, billing info) |
+| `V1\WalletDomain` / `V1\WalletDomains` | Apple Pay wallet domain |
+| `V1\Reporting\TransactionSearch` | Filter for the transaction report |
+| `V1\Reporting\Transactions` | Transaction response |
+| `V1\Reporting\BalanceSearch` | Filter for the balance report |
+| `V1\Reporting\Balances` | Balance response |
+| `V1\Common\{Address, Amount, Details, Money, Link, Value}` | Shared value objects |
+| `ConstantsV1` | V1 string constants |
 
-### V2 — Aktuelle PayPal Orders & Payments API
+### V2 — current PayPal Orders & Payments API
 
-| Struct | Verwendung |
+| Struct | Usage |
 |--------|-----------|
-| `V2\Order` | Haupt-Order (intent, purchaseUnits, paymentSource, status) |
-| `V2\Order\Tracker` | Shipment-Tracker |
-| `V2\Order\PurchaseUnit` | Purchase-Unit (amount, payee, items, shipping, payments) |
-| `V2\Order\PurchaseUnit\Amount` | Betrag mit Breakdown |
-| `V2\Order\PurchaseUnit\Amount\Breakdown` | Aufschlüsselung (item_total, shipping, etc.) |
+| `V2\Order` | Main order (intent, purchaseUnits, paymentSource, status) |
+| `V2\Order\Tracker` | Shipment tracker |
+| `V2\Order\PurchaseUnit` | Purchase unit (amount, payee, items, shipping, payments) |
+| `V2\Order\PurchaseUnit\Amount` | Amount with breakdown |
+| `V2\Order\PurchaseUnit\Amount\Breakdown` | Breakdown (item_total, shipping, etc.) |
 | `V2\Order\PurchaseUnit\Payee` | Payee (email, merchant_id) |
-| `V2\Order\PurchaseUnit\PaymentInstruction` | Plattform-Gebühren |
-| `V2\Order\PurchaseUnit\Payments\Authorization` | Autorisierungs-Objekt |
-| `V2\Order\PurchaseUnit\Payments\Authorization\*` | Seller-Protection, ExpirationTime etc. |
-| `V2\Order\PurchaseUnit\Payments\Capture` | Capture-Objekt |
+| `V2\Order\PurchaseUnit\PaymentInstruction` | Platform fees |
+| `V2\Order\PurchaseUnit\Payments\Authorization` | Authorization object |
+| `V2\Order\PurchaseUnit\Payments\Authorization\*` | Seller protection, expiration time, etc. |
+| `V2\Order\PurchaseUnit\Payments\Capture` | Capture object |
 | `V2\Order\PurchaseUnit\Payments\Capture\*` | SellerReceivableBreakdown, FinalCapture |
-| `V2\Order\PurchaseUnit\Payments\Refund` | Refund-Objekt |
-| `V2\Order\PurchaseUnit\Shipping` | Versand (address, trackers) |
-| `V2\Order\PurchaseUnit\Shipping\Tracker` | Tracker mit STATUS_CANCELLED |
-| `V2\Order\PurchaseUnit\SupplementaryData` | Card- / Risk-Daten |
-| `V2\Order\PaymentSource` | Zahlungsquelle (PayPal, Card, Klarna, SEPA, Vault etc.) |
-| `V2\Order\PaymentSource\Card` | Card-Zahlung inkl. AuthenticationResult |
-| `V2\Order\PaymentSource\Klarna` | Klarna-Zahlung |
-| `V2\Order\PaymentSource\PayUponInvoice` | Rechnungskauf |
-| `V2\Order\PaymentSource\Token` | Vault-Token |
-| `V2\Order\PaymentSource\Common\Attributes` | Vault-Attribut (customer, vault) |
-| `V2\Patch` / `V2\PatchCollection` | PATCH-Operationen (op: add/replace/remove/copy/move/test) |
-| `V2\Referral` | Partner-Referral (Onboarding-Link) |
-| `V2\Referral\BusinessEntity` | Business-Informationen |
-| `V2\Referral\Operation\ApiIntegrationPreference` | Integrations-Einstellungen |
-| `V2\FindEligibleMethods` | Eligibility-Query |
-| `V2\EligibleMethodsData` | Eligibility-Response |
-| `V2\EligibleMethodsData\EligibleMethods\AdvancedCards` | Advanced-Cards-Eligibility |
-| `V2\Common\*` | Shared V2-Value-Objects |
-| `ConstantsV2` | V2-String-Konstanten |
+| `V2\Order\PurchaseUnit\Payments\Refund` | Refund object |
+| `V2\Order\PurchaseUnit\Shipping` | Shipping (address, trackers) |
+| `V2\Order\PurchaseUnit\Shipping\Tracker` | Tracker with STATUS_CANCELLED |
+| `V2\Order\PurchaseUnit\SupplementaryData` | Card / risk data |
+| `V2\Order\PaymentSource` | Payment source (PayPal, card, Klarna, SEPA, vault, etc.) |
+| `V2\Order\PaymentSource\Card` | Card payment including AuthenticationResult |
+| `V2\Order\PaymentSource\Klarna` | Klarna payment |
+| `V2\Order\PaymentSource\PayUponInvoice` | Pay upon invoice |
+| `V2\Order\PaymentSource\Token` | Vault token |
+| `V2\Order\PaymentSource\Common\Attributes` | Vault attribute (customer, vault) |
+| `V2\Patch` / `V2\PatchCollection` | PATCH operations (op: add/replace/remove/copy/move/test) |
+| `V2\Referral` | Partner referral (onboarding link) |
+| `V2\Referral\BusinessEntity` | Business information |
+| `V2\Referral\Operation\ApiIntegrationPreference` | Integration settings |
+| `V2\FindEligibleMethods` | Eligibility query |
+| `V2\EligibleMethodsData` | Eligibility response |
+| `V2\EligibleMethodsData\EligibleMethods\AdvancedCards` | Advanced cards eligibility |
+| `V2\Common\*` | Shared V2 value objects |
+| `ConstantsV2` | V2 string constants |
 
-### V3 — Neue PayPal APIs
+### V3 — new PayPal APIs
 
-| Struct | Verwendung |
+| Struct | Usage |
 |--------|-----------|
-| `V3\ManagedAccount` | Managed-Account für Partner-Onboarding |
-| `V3\ManagedAccount\BusinessEntity` | Business-Entity-Infos |
-| `V3\ManagedAccount\IndividualOwner` | Einzelpersonen-Inhaber (BirthDetails, IdentificationDocument) |
-| `V3\ManagedAccounts` | Liste von Managed-Accounts |
-| `V3\PaymentToken` | Vault-Payment-Token |
-| `V3\PaymentToken\Metadata` | Token-Metadaten |
-| `V3\Common\{Email, Name, PhoneNumber}` | Shared V3-Value-Objects |
+| `V3\ManagedAccount` | Managed account for partner onboarding |
+| `V3\ManagedAccount\BusinessEntity` | Business entity info |
+| `V3\ManagedAccount\IndividualOwner` | Individual owner (BirthDetails, IdentificationDocument) |
+| `V3\ManagedAccounts` | List of managed accounts |
+| `V3\PaymentToken` | Vault payment token |
+| `V3\PaymentToken\Metadata` | Token metadata |
+| `V3\Common\{Email, Name, PhoneNumber}` | Shared V3 value objects |
 
 ### AgenticCommerce V1 — PayPal Agentic Commerce API
 
-Neue API für KI-gestützte Kaufabwicklung. Namespace: `Shopware\PayPalSDK\Struct\AgenticCommerce\V1\`
+A new API for AI-driven purchase flows. Namespace: `Shopware\PayPalSDK\Struct\AgenticCommerce\V1\`
 
-| Struct | Verwendung |
+| Struct | Usage |
 |--------|-----------|
-| `PayPalCart` | Warenkorb-Objekt |
-| `CartItem` / `CartItemCollection` | Warenkorb-Positionen |
-| `CartTotals` | Summen |
-| `Customer` | Kunden-Info |
-| `ShippingAddress` / `BillingAddress` | Adressen |
-| `ShippingOption` / `ShippingOptionCollection` | Versandoptionen |
-| `PaymentMethod` | Zahlungsmethode |
-| `CheckoutField` / `CheckoutFieldCollection` | Checkout-Felder |
-| `ValidationIssue` / `ValidationIssueCollection` | Validierungsfehler |
-| `ResolutionOption` / `ResolutionOptionCollection` | Lösungsoptionen |
-| `AgentError` / `AgentErrorDetail` | Agent-Fehler |
-| `AppliedCoupon` / `Coupon` | Gutschein-Objekte |
-| `GiftOptions` | Geschenk-Optionen |
-| `Value\*` | Typed-Value-Objekte (AgeVerification, GiftMessage, etc.) |
-| `Context\*` | Error-Contexts (BusinessRuleError, DataError, InventoryIssue, etc.) |
-| `Referral\*` | Referral-spezifische Structs |
-| `Builder\MetaDataBuilder` | Fluent Builder für MetaData |
-| `Builder\ResolutionBuilder` | Fluent Builder für Resolution |
-| `Builder\ValidationIssueBuilder` | Fluent Builder für ValidationIssue |
+| `PayPalCart` | Cart object |
+| `CartItem` / `CartItemCollection` | Cart positions |
+| `CartTotals` | Totals |
+| `Customer` | Customer info |
+| `ShippingAddress` / `BillingAddress` | Addresses |
+| `ShippingOption` / `ShippingOptionCollection` | Shipping options |
+| `PaymentMethod` | Payment method |
+| `CheckoutField` / `CheckoutFieldCollection` | Checkout fields |
+| `ValidationIssue` / `ValidationIssueCollection` | Validation errors |
+| `ResolutionOption` / `ResolutionOptionCollection` | Resolution options |
+| `AgentError` / `AgentErrorDetail` | Agent errors |
+| `AppliedCoupon` / `Coupon` | Coupon objects |
+| `GiftOptions` | Gift options |
+| `Value\*` | Typed value objects (AgeVerification, GiftMessage, etc.) |
+| `Context\*` | Error contexts (BusinessRuleError, DataError, InventoryIssue, etc.) |
+| `Referral\*` | Referral-specific structs |
+| `Builder\MetaDataBuilder` | Fluent builder for MetaData |
+| `Builder\ResolutionBuilder` | Fluent builder for Resolution |
+| `Builder\ValidationIssueBuilder` | Fluent builder for ValidationIssue |
 
 ---
 
-## Error-Structs
+## Error structs
 
-| Struct | Beschreibung |
+| Struct | Description |
 |--------|-------------|
-| `Struct\Error\Error` | PayPal-Error-Response |
-| `Struct\Error\Detail` / `DetailCollection` | Error-Detail-Einträge |
+| `Struct\Error\Error` | PayPal error response |
+| `Struct\Error\Detail` / `DetailCollection` | Error detail entries |
 
 ---
 
 ## Exceptions
 
-| Klasse | Wann |
+| Class | When |
 |--------|------|
-| `ApiException` | Allgemeine HTTP-Fehler ≥ 400 |
-| `OAuthApiException extends ApiException` | OAuth-Endpunkt liefert Fehler |
-| `ErrorApiException extends ApiException` | PayPal-Error-Response mit `name`/`details[]` |
+| `ApiException` | General HTTP errors ≥ 400 |
+| `OAuthApiException extends ApiException` | The OAuth endpoint returns an error |
+| `ErrorApiException extends ApiException` | PayPal error response with `name`/`details[]` |
 
-`ExceptionFactory::createFromResponse(ResponseInterface): ApiException` — erzeugt korrekte Subklasse.
+`ExceptionFactory::createFromResponse(ResponseInterface): ApiException` — creates the correct subclass.
 
 ---
 
 ## RequestService
 
-`Shopware\PayPalSDK\RequestService` implementiert `RequestServiceInterface`:
+`Shopware\PayPalSDK\RequestService` implements `RequestServiceInterface`:
 
 - `createRequest(string $method, string $path, ApiContextInterface): RequestInterface`
-  - Wählt Basis-URL nach `$ctx->isSandbox()`
-  - Setzt `Content-Type: application/json` für POST/PUT/PATCH
-  - Setzt `PayPal-Auth-Assertion`-Header bei Third-Party-Calls
+  - Picks the base URL based on `$ctx->isSandbox()`
+  - Sets `Content-Type: application/json` on POST/PUT/PATCH
+  - Sets the `PayPal-Auth-Assertion` header on third-party calls
 - `withBody(RequestInterface, array|\JsonSerializable): RequestInterface`
-- `handleResponse(ResponseInterface): ?array` — wirft `ApiException` bei ≥ 400
+- `handleResponse(ResponseInterface): ?array` — throws `ApiException` on ≥ 400
 
-Third-Party-Assertion: JWT-ähnlicher Header `base64({"alg":"none"}).base64({"iss":"clientId","payer_id":"merchantId"}).`
+Third-party assertion: a JWT-like header `base64({"alg":"none"}).base64({"iss":"clientId","payer_id":"merchantId"}).`
 
 ---
 
-## Vollständiges Third-Party-Beispiel
+## Complete third-party example
 
 ```php
 use Shopware\PayPalSDK\Context\ApiContext;
 use Shopware\PayPalSDK\Context\CredentialsOAuthContext;
 use Shopware\PayPalSDK\Gateway\OrderGateway;
 
-// Partner ruft im Namen eines Merchants:
+// Partner calls on behalf of a merchant:
 $ctx = new ApiContext(
     oauthContext: new CredentialsOAuthContext('PARTNER_CLIENT_ID', 'PARTNER_CLIENT_SECRET'),
     sandbox: true,
@@ -394,10 +394,10 @@ $order = $gateway->getOrder('ORDER_ID', $ctx);
 
 ---
 
-## Util-Klassen
+## Util classes
 
-| Klasse | Beschreibung |
+| Class | Description |
 |--------|-------------|
-| `Util\TokenArrayCache` | PSR-16-In-Memory-Cache für Tokens |
-| `Util\CaseConverter` | camelCase ↔ snake_case für JSON-Serialisierung |
-| `Util\QueryParameterFormatter` | Baut Query-Parameter aus Struct-Properties (`withStructQueryParameters()`) |
+| `Util\TokenArrayCache` | PSR-16 in-memory cache for tokens |
+| `Util\CaseConverter` | camelCase ↔ snake_case for JSON serialization |
+| `Util\QueryParameterFormatter` | Builds query parameters from struct properties (`withStructQueryParameters()`) |

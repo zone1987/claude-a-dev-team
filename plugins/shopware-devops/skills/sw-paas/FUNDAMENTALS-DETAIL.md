@@ -1,6 +1,6 @@
 # Shopware PaaS Native — Fundamentals (Deep Reference)
 
-Quellen: `products/paas/shopware/fundamentals/` (account.md, organization.md, project.md,
+Sources: `products/paas/shopware/fundamentals/` (account.md, organization.md, project.md,
 applications.md, application-yaml.md, environment-variables.md, secrets.md,
 php-settings.md, plugins-store-authentication.md, k8s-meta.md)
 
@@ -9,35 +9,35 @@ php-settings.md, plugins-store-authentication.md, k8s-meta.md)
 ## Contents
 
 - [1. Account & Identity](#1-account-identity)
-- [2. Organisationen](#2-organisationen)
-- [3. Projekte](#3-projekte)
+- [2. Organizations](#2-organizations)
+- [3. Projects](#3-projects)
 - [4. Applications](#4-applications)
-- [5. application.yaml — Vollständige Referenz](#5-applicationyaml-vollständige-referenz)
-- [6. Umgebungsvariablen — Priorität](#6-umgebungsvariablen-priorität)
+- [5. application.yaml — complete reference](#5-applicationyaml-complete-reference)
+- [6. Environment variables — priority](#6-environment-variables-priority)
 - [7. Vault Secrets](#7-vault-secrets)
-- [8. PHP-Einstellungen](#8-php-einstellungen)
+- [8. PHP settings](#8-php-settings)
 - [9. Plugin Store Authentication](#9-plugin-store-authentication)
-- [10. k8s-meta Package](#10-k8s-meta-package)
+- [10. k8s-meta package](#10-k8s-meta-package)
 
 ## 1. Account & Identity
 
 ```bash
-sw-paas account whoami                     # Aktueller User + Rollen
-sw-paas account whoami --output json | jq ".sub"  # Sub-ID ermitteln
-sw-paas account context set               # Org+Project speichern
+sw-paas account whoami                     # current user + roles
+sw-paas account whoami --output json | jq ".sub"  # determine the sub ID
+sw-paas account context set               # store org+project
 sw-paas account context show
 sw-paas account context delete
 ```
 
-Kontext gespeichert in `context-production.yaml`:
+The context is stored in `context-production.yaml`:
 
-| OS     | Pfad |
+| OS     | Path |
 |--------|------|
 | Unix   | `~/.config/sw-paas` |
 | macOS  | `~/Library/Application Support/sw-paas` |
 | Windows| `%LOCALAPPDATA%` |
 
-### Benutzer verwalten
+### Managing users
 
 ```bash
 sw-paas account user list
@@ -45,10 +45,10 @@ sw-paas account user add --sub "<sub-id>"
 sw-paas account user remove
 sw-paas account user request
 sw-paas account user requests list
-sw-paas account user requests resolve   # nur account-admin
+sw-paas account user requests resolve   # account-admin only
 ```
 
-### Service Accounts (CI/CD)
+### Service accounts (CI/CD)
 
 ```bash
 sw-paas account service-account create
@@ -64,13 +64,13 @@ sw-paas account service-account grant revoke
 ### Tokens
 
 ```bash
-# Persönlicher Token
+# Personal token
 sw-paas account token create --name "ci-token"
 export SW_PAAS_TOKEN=<token>
 sw-paas --token <token> account whoami
 sw-paas account token revoke --token-id abcd-1234
 
-# Service Account Token
+# Service account token
 sw-paas account token create --service-account-id <id>
 sw-paas account token list --service-account-id <id>
 sw-paas account token revoke --service-account-id <id>
@@ -78,11 +78,11 @@ sw-paas account token revoke --service-account-id <id>
 
 ---
 
-## 2. Organisationen
+## 2. Organizations
 
-- Top-Level-Einheit (Firma/Entität)
-- Langlebig, verfallen nicht automatisch
-- Rollen: `read-only`, `developer`, `project-admin`, `account-admin`
+- Top-level unit (company/entity)
+- Long-lived, do not expire automatically
+- Roles: `read-only`, `developer`, `project-admin`, `account-admin`
 
 ```bash
 sw-paas organization create
@@ -90,10 +90,10 @@ sw-paas organization create
 
 ---
 
-## 3. Projekte
+## 3. Projects
 
-- Repräsentieren ein Git-Repo (GitHub/GitLab/Bitbucket)
-- Können viele Applications enthalten
+- Represent a Git repo (GitHub/GitLab/Bitbucket)
+- Can contain many applications
 
 ```bash
 sw-paas project create
@@ -104,81 +104,81 @@ sw-paas project list
 
 ## 4. Applications
 
-### Ressourcen-Profil (Default)
+### Resource profile (default)
 
-| Komponente   | Replicas | CPU req | Memory req | Memory limit |
+| Component    | Replicas | CPU req | Memory req | Memory limit |
 |--------------|----------|---------|------------|--------------|
 | `storefront` | 2        | 50m     | 256Mi      | 2Gi          |
 | `admin`      | 1        | 25m     | 128Mi      | 2Gi          |
 | `worker`     | 1        | 50m     | 256Mi      | 1Gi          |
 
-Skalierung primär horizontal. Limits abhängig vom gebuchten Plan.
+Scaling is primarily horizontal. Limits depend on the booked plan.
 
-### Application-Lifecycle
+### Application lifecycle
 
 ```bash
 sw-paas application create
 sw-paas application build start
 sw-paas application build logs
-sw-paas application update           # Build + Deploy (mit commit SHA)
-sw-paas application deploy create    # Deploy eines spezifischen Builds
+sw-paas application update           # build + deploy (with commit SHA)
+sw-paas application deploy create    # deploy a specific build
 sw-paas application deploy list
 sw-paas application deploy get
 sw-paas application logs
 sw-paas application deploy logs
 ```
 
-### Deployment-Verhalten
+### Deployment behavior
 
-- Zero-Downtime via Kubernetes Rolling Updates
-- DB-Migrationen laufen **zuerst**
-- Danach: [Deployment Helper](https://developer.shopware.com/docs/guides/hosting/installation-updates/deployments/deployment-helper)
-- Pre/Post-Deployment Hooks über Deployment Helper konfigurierbar
+- Zero downtime via Kubernetes rolling updates
+- DB migrations run **first**
+- After that: [Deployment Helper](https://developer.shopware.com/docs/guides/hosting/installation-updates/deployments/deployment-helper)
+- Pre/post-deployment hooks are configurable through the Deployment Helper
 
-### Befehle ausführen
-
-```bash
-sw-paas exec --new      # Interaktive Shell im Container (TTL: 1h)
-sw-paas command create  # Nicht-interaktiv, eigener Container
-```
-
-### Domain-Verwaltung
-
-Automatische `shopware.shop`-Domain bei Erstzustellung.
+### Running commands
 
 ```bash
-sw-paas domain create               # Custom Domain anlegen
+sw-paas exec --new      # interactive shell in the container (TTL: 1h)
+sw-paas command create  # non-interactive, own container
 ```
 
-DNS-Ziel: `cdn.shopware.shop` (CNAME für Subdomains).
-Nach Domain-Anlage: `sw-paas application deploy create` nötig.
+### Domain management
 
-### Plugin-Management
+Automatic `shopware.shop` domain on first provisioning.
 
-**Nur via Composer** (kein UI-Plugin-Manager):
+```bash
+sw-paas domain create               # create a custom domain
+```
+
+DNS target: `cdn.shopware.shop` (CNAME for subdomains).
+After creating the domain, `sw-paas application deploy create` is required.
+
+### Plugin management
+
+**Only via Composer** (no UI plugin manager):
 ```bash
 composer require vendor/plugin
 ```
 
-Private Pakete via `COMPOSER_AUTH` Vault-Secret (`buildenv`).
+Private packages via the `COMPOSER_AUTH` vault secret (`buildenv`).
 
 ---
 
-## 5. application.yaml — Vollständige Referenz
+## 5. application.yaml — complete reference
 
 ```yaml
 app:
   php:
-    version: "8.3"              # PHP-Version
-    extensions:                 # PHP-Erweiterungen (mlocati/docker-php-extension-installer)
+    version: "8.3"              # PHP version
+    extensions:                 # PHP extensions (mlocati/docker-php-extension-installer)
       - imagick
   environment_variables:
     - name: MY_RUNTIME_VAR
       value: "runtime-value"
-      scope: RUN                # RUN = Laufzeit
+      scope: RUN                # RUN = runtime
     - name: MY_BUILD_VAR
       value: "build-value"
-      scope: BUILD              # BUILD = nur Build-Phase
+      scope: BUILD              # BUILD = build phase only
 services:
   mysql:
     version: "8.0"
@@ -193,49 +193,49 @@ cronJobs:
 
 ---
 
-## 6. Umgebungsvariablen — Priorität
+## 6. Environment variables — priority
 
-| Quelle             | Priorität  |
+| Source             | Priority   |
 |--------------------|------------|
-| `.env`-Datei       | Niedrigste |
-| `application.yaml` | Mittel     |
-| Vault Secrets      | Höchste    |
+| `.env` file        | Lowest     |
+| `application.yaml` | Medium     |
+| Vault secrets      | Highest    |
 
 ---
 
 ## 7. Vault Secrets
 
-Secrets sind organisationsweit gültig und wiederverwendbar.
+Secrets are valid organization-wide and reusable.
 
 ```bash
-sw-paas vault create                        # Interaktiv
-sw-paas vault create --type env --key NAME  # Runtime-Variable
-sw-paas vault create --type buildenv --key NAME  # Build-Variable
-sw-paas vault create --type ssh             # SSH-Schlüsselpaar generieren
+sw-paas vault create                        # interactive
+sw-paas vault create --type env --key NAME  # runtime variable
+sw-paas vault create --type buildenv --key NAME  # build variable
+sw-paas vault create --type ssh             # generate an SSH key pair
 sw-paas vault list
 sw-paas vault get --secret-id SECRET-ID
 sw-paas vault delete --secret-id SECRET-ID
-sw-paas vault edit                          # Existierenden Secret bearbeiten
+sw-paas vault edit                          # edit an existing secret
 ```
 
-### System-verwaltete Secrets (NICHT löschen!)
+### System-managed secrets (do NOT delete!)
 
-| Secret | Zweck |
+| Secret | Purpose |
 |--------|-------|
-| `STOREFRONT_CREDENTIALS` | Storefront-Authentifizierung |
-| `GRAFANA_CREDENTIALS` | Grafana-Zugang |
-| `NATS_USER_CREDENTIALS` | NATS-Messaging |
+| `STOREFRONT_CREDENTIALS` | Storefront authentication |
+| `GRAFANA_CREDENTIALS` | Grafana access |
+| `NATS_USER_CREDENTIALS` | NATS messaging |
 | `STOREFRONT_PROXY_KEY` | Routing |
 
-### User-verwaltete Secrets
+### User-managed secrets
 
-| Secret | Typ | Zweck |
+| Secret | Type | Purpose |
 |--------|-----|-------|
-| `SSH_PRIVATE_KEY` | ssh | Git-Deployment |
+| `SSH_PRIVATE_KEY` | ssh | Git deployment |
 | `SHOPWARE_PACKAGES_TOKEN` | buildenv | Shopware Plugin Store |
-| `COMPOSER_AUTH` | buildenv | Third-Party Repos |
+| `COMPOSER_AUTH` | buildenv | Third-party repos |
 
-### COMPOSER_AUTH Format
+### COMPOSER_AUTH format
 
 ```json
 {
@@ -256,52 +256,52 @@ sw-paas vault edit                          # Existierenden Secret bearbeiten
 }
 ```
 
-### Housekeeping / Best Practices
+### Housekeeping / best practices
 
 ```bash
-# Vor Löschung sichern
+# Back up before deleting
 sw-paas vault get --secret-id SECRET-ID > $(date +%Y%m%d)-backup.txt
 
 # Audit
 sw-paas vault list --application-id YOUR-APP-ID
 ```
 
-- Kein Versions-History — Änderungen sind permanent
-- Regelmäßige Rotation empfohlen (alle 90 Tage)
+- No version history — changes are permanent
+- Regular rotation recommended (every 90 days)
 
 ---
 
-## 8. PHP-Einstellungen
+## 8. PHP settings
 
-Via Umgebungsvariablen konfigurierbar:
+Configurable via environment variables:
 
-| Variable | PHP-Einstellung |
+| Variable | PHP setting |
 |----------|----------------|
 | `PHP_MAX_UPLOAD_SIZE` | `upload_max_filesize` + `post_max_size` |
 | `PHP_MAX_EXECUTION_TIME` | `max_execution_time` |
 
-Basis-Image: [shopware/docker](https://github.com/shopware/docker)
-Alle Parameter: [docker.ini](https://github.com/shopware/docker/blob/main/fpm/rootfs/usr/local/etc/php/conf.d/docker.ini)
+Base image: [shopware/docker](https://github.com/shopware/docker)
+All parameters: [docker.ini](https://github.com/shopware/docker/blob/main/fpm/rootfs/usr/local/etc/php/conf.d/docker.ini)
 
-**Nicht überschreiben:** `PHP_SESSION_HANDLER` (plattformseitig verwaltet)
+**Do not override:** `PHP_SESSION_HANDLER` (managed by the platform)
 
 ---
 
 ## 9. Plugin Store Authentication
 
 ```bash
-# Shopware Plugin Store (meist automatisch erstellt)
+# Shopware Plugin Store (usually created automatically)
 sw-paas vault create --type buildenv --key SHOPWARE_PACKAGES_TOKEN
 
-# Third-Party Store
+# Third-party store
 sw-paas vault create --type buildenv --key COMPOSER_AUTH
 ```
 
 ---
 
-## 10. k8s-meta Package
+## 10. k8s-meta package
 
-Bereitet Shopware für PaaS Native vor.
+Prepares Shopware for PaaS Native.
 
 | Shopware | k8s-meta |
 |----------|----------|
@@ -312,24 +312,24 @@ Bereitet Shopware für PaaS Native vor.
 composer require shopware/k8s-meta --ignore-platform-reqs
 ```
 
-### Installierte Konfiguration
+### Installed configuration
 
-`config/packages/operator.yaml` konfiguriert:
-- **S3 Object Storage** (public/private/theme/sitemap Filesysteme)
-- **Redis** (Application Cache + Session)
-- **Cluster Mode** (`cluster_setup: true`, `runtime_extension_management: false`)
-- **Admin Worker** deaktiviert (externe Queue-Verarbeitung)
-- **Elasticsearch/OpenSearch** Replica/Shard-Einstellungen
-- **Monolog** → stderr als JSON
+`config/packages/operator.yaml` configures:
+- **S3 object storage** (public/private/theme/sitemap filesystems)
+- **Redis** (application cache + session)
+- **Cluster mode** (`cluster_setup: true`, `runtime_extension_management: false`)
+- **Admin worker** disabled (external queue processing)
+- **Elasticsearch/OpenSearch** replica/shard settings
+- **Monolog** → stderr as JSON
 
 `config/packages/prod/`:
-| Datei | Zweck |
+| File | Purpose |
 |-------|-------|
-| `fastly.yaml` | Fastly CDN Reverse Proxy + Cache Purging |
-| `monolog.yaml` | Error-Level Logging → stderr JSON |
-| `opentelemetry.yaml` | OpenTelemetry Profiler |
+| `fastly.yaml` | Fastly CDN reverse proxy + cache purging |
+| `monolog.yaml` | Error-level logging → stderr JSON |
+| `opentelemetry.yaml` | OpenTelemetry profiler |
 
-### Konfiguration überschreiben
+### Overriding the configuration
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -339,4 +339,4 @@ shopware:
         stale_if_error: 3600
 ```
 
-**Warnung:** Default-Config ist für PaaS-Infra optimiert — nur mit Bedacht ändern.
+**Warning:** The default config is optimized for the PaaS infra — change it only with care.

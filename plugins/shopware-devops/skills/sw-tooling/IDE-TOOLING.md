@@ -1,98 +1,98 @@
-# Shopware IDE-Tools (vollständige Referenz)
+# Shopware IDE tools (complete reference)
 
-Quelle: `guides/development/tooling/shopware-toolbox.md`, `guides/development/tooling/index.md`
+Source: `guides/development/tooling/shopware-toolbox.md`, `guides/development/tooling/index.md`
 
 ## PHPStorm: Shopware 6 Toolbox
 
 Plugin URL: https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox
 
-Shopware Toolbox ist kein eigenständiges Tool — es läuft innerhalb von PHPStorm (und anderen JetBrains IDEs) und bietet Shopware-spezifische Entwicklungshelfer.
+Shopware Toolbox is not a standalone tool — it runs inside PHPStorm (and other JetBrains IDEs) and provides Shopware-specific development helpers.
 
 ### Installation
 
-1. PHPStorm öffnen
+1. Open PHPStorm
 2. Settings → Plugins
-3. "Shopware 6 Toolbox" suchen
-4. Install → IDE neu starten
+3. Search for "Shopware 6 Toolbox"
+4. Install → restart the IDE
 
-### Live Templates
+### Live templates
 
-Vorgefertigte Code-Snippets für häufige Shopware-Muster.
+Ready-made code snippets for common Shopware patterns.
 
-Zugriff: `Cmd/Ctrl + J` → Liste aller verfügbaren Live Templates
+Access: `Cmd/Ctrl + J` → list of all available live templates
 
-### Code-Generatoren
+### Code generators
 
-- **Vue.js Admin-Komponente**: Gerüst für neue Admin-Komponenten
-- **config.xml**: Plugin-Konfigurationsdatei-Vorlage
-- **Storefront-Blöcke erweitern**: Automatische Datei-Erstellung für Block-Overrides
-- **Vue-Module**: Admin-Modul-Gerüst
-- **Scheduled Task**: Task-Klasse + Service-Definition
-- **Changelog**: Changelog-Datei nach Shopware-Standard
+- **Vue.js admin component**: scaffold for new admin components
+- **config.xml**: plugin configuration file template
+- **Extend storefront blocks**: automatic file creation for block overrides
+- **Vue modules**: admin module scaffold
+- **Scheduled task**: task class + service definition
+- **Changelog**: changelog file following the Shopware standard
 
-### Static Code Checks
+### Static code checks
 
-**Inspection**: Zeigt Fehler an, wenn eine abstrakte Klasse falsch im Constructor verwendet wird (Shopware Coding Guideline).
+**Inspection**: reports an error when an abstract class is used incorrectly in the constructor (Shopware coding guideline).
 
-### Auto-Completion
+### Auto-completion
 
-| Bereich | Was wird vervollständigt |
+| Area | What gets completed |
 |---|---|
-| Admin-Komponenten | Alle registrierten Admin-Komponenten |
-| Snippets Administration | Snippet-Keys der Administration |
-| Snippets Storefront | Snippet-Keys des Storefronts |
-| Storefront-Funktionen | `theme_config`, `config`, `seoUrl`, `sw_include`, `sw_extends` |
-| Repository | `this.repositoryFactory.create` mit Entity-Namen |
-| Module-Labels | `Module.register`-Label-Keys |
-| Context-aware | Admin-Komponenten-Completion (nur wenn Twig-Datei neben `index.js`) |
-| Feature Flags | Alle registrierten Feature Flags |
+| Admin components | All registered admin components |
+| Administration snippets | Snippet keys of the administration |
+| Storefront snippets | Snippet keys of the storefront |
+| Storefront functions | `theme_config`, `config`, `seoUrl`, `sw_include`, `sw_extends` |
+| Repository | `this.repositoryFactory.create` with entity names |
+| Module labels | `Module.register` label keys |
+| Context-aware | Admin component completion (only when a Twig file sits next to `index.js`) |
+| Feature flags | All registered feature flags |
 
-## VS Code Extension
+## VS Code extension
 
 Marketplace: https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp
 
-Shopware Language Server Protocol (LSP) Extension für VS Code:
-- Shopware-spezifische Auto-Completion
-- Code-Diagnosen
-- Navigation in Shopware-Projekten
+Shopware Language Server Protocol (LSP) extension for VS Code:
+- Shopware-specific auto-completion
+- Code diagnostics
+- Navigation in Shopware projects
 
-## Weitere Entwicklungstools
+## Further development tools
 
-Aus `guides/development/tooling/index.md`:
+From `guides/development/tooling/index.md`:
 
 ### Admin Extension SDK
 
-NPM-Bibliothek für Shopware 6 Apps und Plugins, die die Administration erweitern oder anpassen:
+NPM library for Shopware 6 apps and plugins that extend or customize the administration:
 https://developer.shopware.com/resources/admin-extension-sdk/
 
 ### `bin/console`
 
-Shopware's built-in CLI für:
-- Plugins installieren/aktivieren
-- Datenbank-Migrationen
-- Caches leeren
-- Scheduled Tasks ausführen
-- System-Status inspizieren
+Shopware's built-in CLI for:
+- Installing/activating plugins
+- Database migrations
+- Clearing caches
+- Running scheduled tasks
+- Inspecting the system status
 
-Befehlsreferenz: Commands Reference
+Command reference: Commands Reference
 
 ### Deployment Helper
 
-Unterstützt Datenbank- und Wartungsoperationen für Deployments (Migrationen, Cache-Handling).
+Supports database and maintenance operations for deployments (migrations, cache handling).
 
 ### Shopware CLI
 
-Das zentrale Command-Line-Tool für Shopware-Projekte und -Erweiterungen:
+The central command-line tool for Shopware projects and extensions:
 - Scaffolding
 - Builds
-- Validierung
+- Validation
 - Packaging
-- Store-Interaktion
-- CI-Support
-- Watcher und Formatter
+- Store interaction
+- CI support
+- Watchers and formatters
 
 ### MCP Server
 
-Nativer Model Context Protocol Server für AI-Clients (Claude Desktop, Cursor, Claude Code):
-- Tools, Resources und Prompts für Shop-Interaktion
-- Erweiterbar via Plugins und Apps
+Native Model Context Protocol server for AI clients (Claude Desktop, Cursor, Claude Code):
+- Tools, resources and prompts for shop interaction
+- Extensible via plugins and apps

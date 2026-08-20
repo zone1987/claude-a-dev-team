@@ -1,21 +1,21 @@
-# Shopware 6 — Event-Katalog (Projekt-Introspektion)
+# Shopware 6 — Event Catalogue (Project Introspection)
 
-Beantwortet: **„welche Events existieren in DIESEM Projekt und was tragen sie?"** — aus einem gecachten Katalog.
-Grundlage für jeden Subscriber (`sw-events-subscriber`).
+Answers: **"which events exist in THIS project and what do they carry?"** — from a cached catalogue.
+The basis for every subscriber (`sw-events-subscriber`).
 
-## Nutzung
-1. Katalog liegt unter `.shopware-catalog/events.md` im Projekt-Root.
-2. **Fehlt/veraltet** → mit `/sw-event-map` (Agent `shopware-event-mapper`, haiku) neu erzeugen.
-3. Nachschlagen: Event-Name/Konstante → Event-Klasse, Dispatch-Ort, **Argumente/Payload** (Getter) → passenden
-   Subscriber bauen.
+## Usage
+1. The catalogue lives at `.shopware-catalog/events.md` in the project root.
+2. **Missing/outdated** → regenerate it with `/sw-event-map` (agent `shopware-event-mapper`, haiku).
+3. Look up: event name/constant → event class, dispatch location, **arguments/payload** (getters) → then build the
+   matching subscriber.
 
-## Event-Arten im Katalog
-- **Business-Events** (Klassen, oft `implements ShopwareEvent`/`FlowEventAware`), inkl. `*Events`-Konstantenklassen.
-- **Entity-Events** (`{entity}.written/.deleted/.loaded` etc.) je Entity.
-- **Page-/Pagelet-LoadedEvents** (Storefront), **Kernel-/Symfony-Events**, **Flow-Events**.
+## Event kinds in the catalogue
+- **Business events** (classes, often `implements ShopwareEvent`/`FlowEventAware`), including `*Events` constant classes.
+- **Entity events** (`{entity}.written/.deleted/.loaded` etc.) per entity.
+- **Page/pagelet loaded events** (storefront), **kernel/Symfony events**, **flow events**.
 
-## Wann neu erzeugen
-- Nach `git pull` / Plugin-Install/-Update, nach Anlegen eigener Events.
+## When to regenerate
+- After `git pull` / plugin install or update, and after adding your own events.
 
-Zum **Erstellen** eines Subscribers/Events: `sw-events-subscriber`, `sw-extension-points`. Der Katalog ist die
-Quelle der Wahrheit über vorhandene Events.
+To **create** a subscriber/event: `sw-events-subscriber`, `sw-extension-points`. The catalogue is the
+source of truth about existing events.

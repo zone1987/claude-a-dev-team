@@ -1,13 +1,13 @@
 # Shopware PaaS — Services
 
-## PaaS Native: Managed MySQL
+## PaaS Native: managed MySQL
 
-- Automatische Backups, High Availability, Encryption at rest/transit
-- Kein direkter öffentlicher Zugang — nur via CLI-Tunnel
+- Automatic backups, high availability, encryption at rest/in transit
+- No direct public access — only via the CLI tunnel
 
 ```bash
 sw-paas open service --service database --port 3306
-# Hinweis: NAT-inkompatibel (VM/WSL → Host/Mirrored Modus)
+# Note: incompatible with NAT (VM/WSL → Host/Mirrored mode)
 ```
 
 ## PaaS Native: OpenSearch
@@ -25,12 +25,12 @@ sw-paas exec --new
 bin/console dal:refresh:index --use-queue
 ```
 
-## PaaS Native: Object Storage (S3)
+## PaaS Native: object storage (S3)
 
-- 2 Buckets per Application: public + private
-- Konfiguriert in `config/packages/operator.yaml` (via k8s-meta)
-- Kein direkter externer Zugriff — nur via Container, Admin, API, exec-Session
-- Build-Phase hat keinen Zugriff auf Filesystem
+- 2 buckets per application: public + private
+- Configured in `config/packages/operator.yaml` (via k8s-meta)
+- No direct external access — only via container, admin, API, exec session
+- The build phase has no filesystem access
 
 ## PaaS (Platform.sh): Elasticsearch/OpenSearch
 
@@ -40,19 +40,19 @@ elasticsearch:
   type: opensearch:2
   disk: 256
 ```
-In `applications.yaml` Relationship hinzufügen, dann `SHOPWARE_ES_ENABLED=1` setzen.
+Add the relationship in `applications.yaml`, then set `SHOPWARE_ES_ENABLED=1`.
 
 ## PaaS (Platform.sh): RabbitMQ
 
-Standard aktiviert — deaktivieren:
+Enabled by default — to disable:
 ```yaml
 # .platform/services.yaml
 #rabbitmq:
 #  type: rabbitmq:3.8
 #  disk: 1024
 ```
-Relationship in `applications.yaml` ebenfalls auskommentieren.
+Comment out the relationship in `applications.yaml` as well.
 
-## Vertiefung
+## Deep dive
 
 [SERVICES-DETAIL.md](SERVICES-DETAIL.md)

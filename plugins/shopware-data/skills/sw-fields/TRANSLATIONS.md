@@ -1,11 +1,11 @@
 # Shopware 6 — Translations
 
-Übersetzbare Werte liegen in einer separaten `*_translation`-Tabelle. Drei Teile:
+Translatable values live in a separate `*_translation` table. Three parts:
 
-1. **Haupt-Definition**: `(new TranslatedField('name'))` + `(new TranslationsAssociationField(FfExampleTranslationDefinition::class, 'ff_example_id'))->addFlags(new Required())`.
-2. **Translation-Definition** erweitert `EntityTranslationDefinition`, `getParentDefinitionClass()` zeigt auf die Haupt-Definition; enthält die realen `StringField`/`LongTextField`.
-3. **Schreiben**: pro `languageId` im `translations`-Payload, oder vereinfacht `['name' => 'Wert']` für die Kontext-Sprache.
+1. **Main definition**: `(new TranslatedField('name'))` + `(new TranslationsAssociationField(FfExampleTranslationDefinition::class, 'ff_example_id'))->addFlags(new Required())`.
+2. **Translation definition** extends `EntityTranslationDefinition`, `getParentDefinitionClass()` points to the main definition; it contains the actual `StringField`/`LongTextField`.
+3. **Writing**: one entry per `languageId` in the `translations` payload, or the simplified `['name' => 'value']` for the context language.
 
-Beim Lesen mappt DAL die Werte auf die Entity-Properties bzw. ins `translated`-Array (Sprach-Fallback/-Inheritance automatisch).
+On read, the DAL maps the values onto the entity properties and into the `translated` array (language fallback/inheritance applied automatically).
 
-→ Vollständiges Beispiel (Definition + Translation): [TRANSLATIONS-EXAMPLE.md](TRANSLATIONS-EXAMPLE.md)
+→ Full example (definition + translation): [TRANSLATIONS-EXAMPLE.md](TRANSLATIONS-EXAMPLE.md)

@@ -1,6 +1,6 @@
-# Shopware 6 — Storefront-Page
+# Shopware 6 — Storefront page
 
-Eine Page bündelt alle Daten einer vollständigen Seite. Pattern: **Page-Struct** (Daten) + **PageLoader** (befüllt).
+A page bundles all data of a complete page. Pattern: **page struct** (data) + **PageLoader** (populates it).
 
 ```php
 class ExamplePage extends Page
@@ -11,6 +11,6 @@ class ExamplePage extends Page
 }
 ```
 
-Die Page erweitert `Page` (enthält bereits Header/Footer/Meta via `GenericPageLoader`). Der PageLoader (`sw-page-loader`)
-lädt zuerst die generische Page, ergänzt eigene Daten und feuert ein `ExamplePageLoadedEvent` (Erweiterbarkeit).
-Teilbereiche (z.B. AJAX-Nachladung) als **Pagelet** (`sw-storefront-pagelet`).
+The page extends `Page` (which already contains header/footer/meta via `GenericPageLoader`). The PageLoader (`sw-page-loader`)
+first loads the generic page, adds its own data and dispatches an `ExamplePageLoadedEvent` (extensibility).
+Build partial sections (e.g. AJAX reloading) as a **pagelet** (`sw-storefront-pagelet`).

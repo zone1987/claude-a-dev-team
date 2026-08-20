@@ -1,8 +1,8 @@
-# Symfony Flex Recipes für Shopware
+# Symfony Flex recipes for Shopware
 
-Recipes automatisieren die Konfiguration beim `composer require`. Das offizielle
-Shopware-Flex-Repository ergänzt den Symfony-Standard-Server um Shopware-spezifische
-Packages.
+Recipes automate configuration during `composer require`. The official Shopware Flex
+repository extends the Symfony standard server with Shopware-specific
+packages.
 
 ```json
 // composer.json
@@ -14,27 +14,27 @@ Packages.
 ```
 
 ```bash
-composer require shopware/core          # installiert + wendet Recipe an
-composer recipes                        # alle angewandten Recipes zeigen
-composer recipes:update shopware/core   # Recipe re-applyen (nach Update)
+composer require shopware/core          # installs + applies the recipe
+composer recipes                        # show all applied recipes
+composer recipes:update shopware/core   # re-apply a recipe (after an update)
 ```
 
-## Manifest-Keys (Kurzübersicht)
+## Manifest keys (quick overview)
 
-| Key | Zweck |
+| Key | Purpose |
 |-----|-------|
-| `copy-from-recipe` | Dateien aus Recipe-Dir ins Projekt kopieren |
-| `bundles` | Bundles in `config/bundles.php` registrieren |
-| `env` | `.env`-Einträge hinzufügen (`%generate(secret)%`) |
-| `gitignore` | `.gitignore`-Zeilen anhängen |
-| `container` | Container-Parameter / `env(...)`-Defaults setzen |
-| `docker-compose` | Services in `docker-compose.yml` injizieren |
-| `makefile` | Makefile-Targets einfügen |
-| `aliases` | `composer require`-Kurzaliase (`paas`, `fastly`) |
-| `conflict` | Inkompatible Paket-Versionen deklarieren |
-| `composer-scripts` | `composer.json`-Scripts registrieren |
+| `copy-from-recipe` | Copy files from the recipe dir into the project |
+| `bundles` | Register bundles in `config/bundles.php` |
+| `env` | Add `.env` entries (`%generate(secret)%`) |
+| `gitignore` | Append `.gitignore` lines |
+| `container` | Set container parameters / `env(...)` defaults |
+| `docker-compose` | Inject services into `docker-compose.yml` |
+| `makefile` | Insert Makefile targets |
+| `aliases` | `composer require` short aliases (`paas`, `fastly`) |
+| `conflict` | Declare incompatible package versions |
+| `composer-scripts` | Register `composer.json` scripts |
 
-## Vertiefung
+## Deep dive
 
-- [RECIPES-MANIFEST.md](RECIPES-MANIFEST.md) — Alle Keys mit Vollbeispielen und Shopware-Besonderheiten
-- [RECIPES-PACKAGES.md](RECIPES-PACKAGES.md) — Alle verfügbaren Recipe-Packages mit Versionen
+- [RECIPES-MANIFEST.md](RECIPES-MANIFEST.md) — all keys with full examples and Shopware specifics
+- [RECIPES-PACKAGES.md](RECIPES-PACKAGES.md) — all available recipe packages with versions

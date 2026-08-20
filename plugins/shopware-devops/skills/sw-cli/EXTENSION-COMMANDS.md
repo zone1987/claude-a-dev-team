@@ -1,4 +1,4 @@
-# shopware-cli extension — Vollständige Referenz
+# shopware-cli extension — Complete reference
 
 ## Contents
 
@@ -12,12 +12,12 @@
 - [extension get-name / get-version](#extension-get-name-get-version)
 - [extension get-changelog](#extension-get-changelog)
 - [extension config-schema](#extension-config-schema)
-- [Typischer Release-Workflow](#typischer-release-workflow)
-- [Typischer Dev-Workflow](#typischer-dev-workflow)
+- [Typical release workflow](#typical-release-workflow)
+- [Typical dev workflow](#typical-dev-workflow)
 
 ## extension build
 
-Baut Admin- und Storefront-Assets für eine oder mehrere Extensions.
+Builds admin and storefront assets for one or more extensions.
 
 ```bash
 shopware-cli extension build path/to/MyPlugin
@@ -25,14 +25,14 @@ shopware-cli extension build plugin-a/ plugin-b/ plugin-c/
 SHOPWARE_PROJECT_ROOT=/var/www/shop shopware-cli extension build path/to/MyPlugin
 ```
 
-- Nutzt ESBuild für moderne Extensions, Webpack für Legacy
-- `SHOPWARE_PROJECT_ROOT` setzt den Shopware-Kontext für Versionsbestimmung
-- Erzeugt Assets unter `src/Resources/public/`
+- Uses ESBuild for modern extensions, Webpack for legacy ones
+- `SHOPWARE_PROJECT_ROOT` sets the Shopware context for version detection
+- Produces assets under `src/Resources/public/`
 
 ## extension admin-watch
 
-ESBuild-basierter Dev-Proxy für die Shopware Administration. Compiliert Extension-Assets live
-und proxied den Shopware Admin zum Browser.
+ESBuild-based dev proxy for the Shopware Administration. Compiles extension assets live
+and proxies the Shopware admin to the browser.
 
 ```bash
 shopware-cli extension admin-watch path/to/MyPlugin http://localhost
@@ -40,94 +40,94 @@ shopware-cli extension admin-watch path/to/MyPlugin http://localhost --listen :9
 shopware-cli extension admin-watch path/to/MyPlugin http://localhost --external-url https://my-tunnel.example.com
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--listen string` | `:8080` | Listen-Adresse (host:port) |
-| `--external-url string` | | Externe URL (z.B. für ngrok/Reverse-Proxy) |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--listen string` | `:8080` | Listen address (host:port) |
+| `--external-url string` | | External URL (e.g. for ngrok/reverse proxy) |
 
 ## extension validate
 
 ```bash
-# Schnelle Basis-Prüfung
+# Fast basic check
 shopware-cli extension validate path/to/MyPlugin
 
-# Vollständige Prüfung (PHPStan Level 8, ESLint, Stylelint, Prettier, Rector, Twig)
+# Full check (PHPStan level 8, ESLint, Stylelint, Prettier, Rector, Twig)
 shopware-cli extension validate --full path/to/MyPlugin
 
-# Store-Compliance (ignoriert custom ignore lists)
+# Store compliance (ignores custom ignore lists)
 shopware-cli extension validate --full --store-compliance path/to/MyPlugin
 
-# CI-Ausgabe für GitHub Actions
+# CI output for GitHub Actions
 shopware-cli extension validate --full --reporter github path/to/MyPlugin
 
-# Nur gegen niedrigste unterstützte SW-Version prüfen
+# Check only against the lowest supported SW version
 shopware-cli extension validate --full --check-against lowest path/to/MyPlugin
 
-# Nur PHPStan und ESLint
+# Only PHPStan and ESLint
 shopware-cli extension validate --full --only phpstan,eslint path/to/MyPlugin
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
+| Flag | Default | Description |
+|------|---------|-------------|
 | `--full` | false | PHPStan, ESLint, Stylelint, PHP-CS-Fixer, Rector, Prettier, Twig |
-| `--store-compliance` | false | Store-Compliance-Checks erzwingen |
+| `--store-compliance` | false | Force store compliance checks |
 | `--reporter string` | auto | `summary` \| `json` \| `github` \| `gitlab` \| `junit` \| `markdown` |
-| `--check-against string` | `highest` | SW-Version: `highest` \| `lowest` |
-| `--only string` | | Kommagetrennte Tool-Liste |
-| `--exclude string` | | Tools ausschließen |
-| `--no-copy` | false | Extension nicht in tmp-Dir kopieren |
+| `--check-against string` | `highest` | SW version: `highest` \| `lowest` |
+| `--only string` | | Comma-separated tool list |
+| `--exclude string` | | Exclude tools |
+| `--no-copy` | false | Do not copy the extension into a tmp dir |
 
-**Reporter-Auswahl:**
-- `auto`: Terminal → `summary`, CI (GitHub Actions) → `github`, CI (GitLab) → `gitlab`
-- `github`: Annotations in GitHub Actions
-- `gitlab`: Code-Quality-Report für GitLab
-- `junit`: JUnit XML für Test-Reports
-- `markdown`: Markdown-Tabelle
+**Reporter selection:**
+- `auto`: terminal → `summary`, CI (GitHub Actions) → `github`, CI (GitLab) → `gitlab`
+- `github`: annotations in GitHub Actions
+- `gitlab`: code quality report for GitLab
+- `junit`: JUnit XML for test reports
+- `markdown`: Markdown table
 
 ## extension zip
 
-Erstellt Release-Zip via git-Export (Standard) oder direkt aus dem Quellordner.
+Creates a release zip via git export (default) or directly from the source folder.
 
 ```bash
-# Standard: git HEAD exportieren
+# Default: export git HEAD
 shopware-cli extension zip path/to/MyPlugin
 
-# Ohne git (z.B. für dirty working tree)
+# Without git (e.g. for a dirty working tree)
 shopware-cli extension zip path/to/MyPlugin --disable-git
 
-# Release-Modus (entfernt App-Backend-Secret)
+# Release mode (removes the app backend secret)
 shopware-cli extension zip path/to/MyPlugin --release
 
-# Spezifischen Branch/Tag exportieren
+# Export a specific branch/tag
 shopware-cli extension zip path/to/MyPlugin v1.2.3
 
-# Git-Tag automatisch als Version verwenden
+# Use the git tag as the version automatically
 shopware-cli extension zip path/to/MyPlugin --use-git-tag-as-version
 
-# In bestimmtes Verzeichnis ausgeben
+# Write output into a specific directory
 shopware-cli extension zip path/to/MyPlugin --output-directory ./dist/
 
-# App-Backend-URL überschreiben (für Multi-Environment)
+# Override the app backend URL (for multi-environment setups)
 shopware-cli extension zip path/to/MyPlugin --overwrite-app-backend-url https://prod.example.com
 
-# Version überschreiben
+# Override the version
 shopware-cli extension zip path/to/MyPlugin --overwrite-version 2.0.0
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--disable-git` | false | Quellordner direkt nutzen, kein git-Export |
-| `--release` | false | App-Backend-Secret aus `manifest.xml` entfernen |
-| `--overwrite-app-backend-url string` | | Backend-URL in `manifest.xml` ersetzen |
-| `--overwrite-app-backend-secret string` | | App-Secret in `manifest.xml` ersetzen |
-| `--overwrite-version string` | | Version in Zip überschreiben |
-| `--use-git-tag-as-version` | false | Erkannten git-Tag als Version verwenden (inkompatibel mit `--disable-git` und `--overwrite-version`) |
-| `--output-directory string` | | Ausgabe-Verzeichnis |
-| `--git-commit string` | | Bestimmten Commit-Hash oder Tag exportieren |
-| `--filename string` | | Expliziter Dateiname (Standard: `<Name>-<tag>.zip`) |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--disable-git` | false | Use the source folder directly, no git export |
+| `--release` | false | Remove the app backend secret from `manifest.xml` |
+| `--overwrite-app-backend-url string` | | Replace the backend URL in `manifest.xml` |
+| `--overwrite-app-backend-secret string` | | Replace the app secret in `manifest.xml` |
+| `--overwrite-version string` | | Override the version in the zip |
+| `--use-git-tag-as-version` | false | Use the detected git tag as the version (incompatible with `--disable-git` and `--overwrite-version`) |
+| `--output-directory string` | | Output directory |
+| `--git-commit string` | | Export a specific commit hash or tag |
+| `--filename string` | | Explicit file name (default: `<Name>-<tag>.zip`) |
 
-**Zip-Inhalt-Kontrolle:**
-Die Dateien die in den Zip kommen werden durch `.gitignore` und `.shopware-extension.yml` `excluded_paths` gesteuert.
+**Controlling zip contents:**
+The files that end up in the zip are controlled by `.gitignore` and the `excluded_paths` key in `.shopware-extension.yml`.
 
 ## extension fix
 
@@ -137,12 +137,12 @@ shopware-cli extension fix --only phpcs,eslint path/to/MyPlugin
 shopware-cli extension fix --allow-non-git path/to/MyPlugin
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--only string` | | Kommagetrennte Tool-Liste (`phpstan`, `eslint`, `phpcs`, etc.) |
-| `--allow-non-git` | false | Auch ohne git-Repo ausführen |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--only string` | | Comma-separated tool list (`phpstan`, `eslint`, `phpcs`, etc.) |
+| `--allow-non-git` | false | Also run without a git repo |
 
-Benötigt git-Repository (prüft auf staged/unstaged Changes für Safety).
+Requires a git repository (checks for staged/unstaged changes for safety).
 
 ## extension format
 
@@ -152,20 +152,20 @@ shopware-cli extension format --dry-run path/to/MyPlugin
 shopware-cli extension format --only prettier path/to/MyPlugin
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--only string` | | Kommagetrennte Tool-Liste |
-| `--dry-run` | false | Nur Diff anzeigen, nicht anwenden |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--only string` | | Comma-separated tool list |
+| `--dry-run` | false | Only show the diff, do not apply |
 
 ## extension prepare
 
-Pre-Zip-Pipeline ohne Zip-Erstellung: Composer-Deps installieren, Dev-Files entfernen.
+Pre-zip pipeline without creating the zip: install Composer deps, remove dev files.
 
 ```bash
 shopware-cli extension prepare path/to/MyPlugin
 ```
 
-Keine Flags. Nützlich für Custom-Zip-Pipelines.
+No flags. Useful for custom zip pipelines.
 
 ## extension get-name / get-version
 
@@ -176,7 +176,7 @@ shopware-cli extension get-name MyPlugin-1.2.3.zip
 shopware-cli extension get-version MyPlugin-1.2.3.zip
 ```
 
-Liest aus Ordnername oder Zip-Inhalt. Keine Flags.
+Reads from the folder name or the zip contents. No flags.
 
 ## extension get-changelog
 
@@ -186,9 +186,9 @@ shopware-cli extension get-changelog --language de_DE path/to/MyPlugin
 shopware-cli extension get-changelog --language de_DE,en_GB path/to/MyPlugin  # Fallback
 ```
 
-| Flag | Beschreibung |
-|------|--------------|
-| `--language string` | Sprachkey, kommagetrennte Fallback-Liste |
+| Flag | Description |
+|------|-------------|
+| `--language string` | Language key, comma-separated fallback list |
 
 ## extension config-schema
 
@@ -196,32 +196,32 @@ shopware-cli extension get-changelog --language de_DE,en_GB path/to/MyPlugin  # 
 shopware-cli extension config-schema > shopware-extension-schema.json
 ```
 
-JSON-Schema für `.shopware-extension.yml`. Kein Flag.
+JSON schema for `.shopware-extension.yml`. No flags.
 
 ---
 
-## Typischer Release-Workflow
+## Typical release workflow
 
 ```bash
-# 1. Assets bauen
+# 1. Build assets
 shopware-cli extension build path/to/MyPlugin
 
-# 2. Validieren (lokal: ohne --full; CI: mit --full)
+# 2. Validate (locally: without --full; CI: with --full)
 shopware-cli extension validate --full path/to/MyPlugin
 
-# 3. Zip erstellen
+# 3. Create the zip
 shopware-cli extension zip path/to/MyPlugin --use-git-tag-as-version --release
 
-# 4. In Store hochladen
+# 4. Upload to the store
 shopware-cli account login
 shopware-cli account producer extension upload MyPlugin-1.2.3.zip
 ```
 
-## Typischer Dev-Workflow
+## Typical dev workflow
 
 ```bash
-# Admin-Dev-Proxy (ESBuild, hot reload)
+# Admin dev proxy (ESBuild, hot reload)
 shopware-cli extension admin-watch path/to/MyPlugin http://localhost
 
-# Storefront: shopware-cli project storefront-watch . statt extension-Pendant
+# Storefront: use shopware-cli project storefront-watch . instead of the extension counterpart
 ```

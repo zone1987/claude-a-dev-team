@@ -1,6 +1,6 @@
-# Shopware PaaS Native — Ressourcen & Skalierung (Deep Reference)
+# Shopware PaaS Native — Resources & scaling (Deep Reference)
 
-Quellen: `products/paas/shopware/fundamentals/applications.md`,
+Sources: `products/paas/shopware/fundamentals/applications.md`,
 `products/paas/shopware/resources/databases.md`,
 `products/paas/shopware/resources/object-storage.md`,
 `products/paas/shopware/resources/index.md`,
@@ -11,181 +11,181 @@ Quellen: `products/paas/shopware/fundamentals/applications.md`,
 
 ## Contents
 
-- [Ressourcen-Profil](#ressourcen-profil)
-- [Managed MySQL Cluster](#managed-mysql-cluster)
-- [S3 Object Storage](#s3-object-storage)
+- [Resource profile](#resource-profile)
+- [Managed MySQL cluster](#managed-mysql-cluster)
+- [S3 object storage](#s3-object-storage)
 - [Snapshots](#snapshots)
-- [Deployment-Management](#deployment-management)
-- [Plattform-Grenzen](#plattform-grenzen)
-- [Häufige Ressourcen-Fragen](#häufige-ressourcen-fragen)
+- [Deployment management](#deployment-management)
+- [Platform limits](#platform-limits)
+- [Common resource questions](#common-resource-questions)
 
-## Ressourcen-Profil
+## Resource profile
 
-### Default-Zuteilung
+### Default allocation
 
-| Komponente   | Default Replicas | CPU request | Memory request | Memory limit |
+| Component    | Default replicas | CPU request | Memory request | Memory limit |
 |--------------|-----------------|-------------|----------------|--------------|
 | `storefront` | 2               | 50m         | 256Mi          | 2Gi          |
 | `admin`      | 1               | 25m         | 128Mi          | 2Gi          |
 | `worker`     | 1               | 50m         | 256Mi          | 1Gi          |
 
-### Skalierungs-Prinzip
+### Scaling principle
 
-- **Primär horizontal**: Mehr Replicas des gleichen Pods
-- Limits über dem Default-Profil: Abhängig vom gebuchten Plan
-- Skalierung innerhalb des Plans mit gewisser Flexibilität möglich
+- **Primarily horizontal**: more replicas of the same pod
+- Limits above the default profile: depend on the booked plan
+- Scaling within the plan is possible with some flexibility
 
-### Plan-Abhängigkeiten
+### Plan dependencies
 
-| Ressource | Abhängig vom Plan |
+| Resource | Depends on the plan |
 |-----------|------------------|
-| Max. Projekte/Applications | Ja |
-| CPU/Memory Limits | Ja |
-| Anzahl Replicas | Ja |
-| Disk-Größe | Ja (DB, Storage) |
+| Max. projects/applications | Yes |
+| CPU/memory limits | Yes |
+| Number of replicas | Yes |
+| Disk size | Yes (DB, storage) |
 
-Infrastruktur-Änderungsanfragen: Standard-Ticketing-Prozess oder dedizierter Slack-Channel.
+Infrastructure change requests: standard ticketing process or a dedicated Slack channel.
 
 ---
 
-## Managed MySQL Cluster
+## Managed MySQL cluster
 
-### Features (automatisch)
+### Features (automatic)
 
-- Automatische Backups und Recovery
-- High Availability (HA)
-- Performance Monitoring und Metriken
-- Ressourcen-Skalierung (CPU, RAM, Storage)
-- Encryption at rest und in transit
+- Automatic backups and recovery
+- High availability (HA)
+- Performance monitoring and metrics
+- Resource scaling (CPU, RAM, storage)
+- Encryption at rest and in transit
 
-### Datenbankzugriff
+### Database access
 
 ```bash
-# CLI-Tunnel (Port-Forwarding)
+# CLI tunnel (port forwarding)
 sw-paas open service --service database --port 3306
 ```
 
-- Kein direkter öffentlicher DB-Zugang
-- mTLS-Tunnel: Inkompatibel mit NAT
-- In VM/WSL: `Host` oder `Mirrored` Netzwerk-Modus
+- No direct public DB access
+- mTLS tunnel: incompatible with NAT
+- In a VM/WSL: `Host` or `Mirrored` network mode
 
 ---
 
-## S3 Object Storage
+## S3 object storage
 
-### Standard-Setup
+### Standard setup
 
-Jede Application bekommt **2 S3-kompatible Buckets**:
+Every application gets **2 S3-compatible buckets**:
 
-| Bucket | Zweck |
+| Bucket | Purpose |
 |--------|-------|
-| Public Bucket | Öffentlich zugängliche Medien, Assets |
-| Private Bucket | Nicht-öffentliche Dateien |
+| Public bucket | Publicly accessible media, assets |
+| Private bucket | Non-public files |
 
-Konfiguration via `operator.yaml` (k8s-meta):
-- public, private, theme, sitemap Filesysteme → S3
+Configuration via `operator.yaml` (k8s-meta):
+- public, private, theme, sitemap filesystems → S3
 
-### Filesystem-Zugriff
+### Filesystem access
 
-| Kontext | Filesystem |
+| Context | Filesystem |
 |---------|-----------|
-| `storefront` | Ja |
-| `admin` | Ja |
-| `worker` | Ja |
-| `exec` | Ja |
-| `migration` | Ja |
-| `setup` | Ja |
-| **`build`** | **Nein** |
+| `storefront` | Yes |
+| `admin` | Yes |
+| `worker` | Yes |
+| `exec` | Yes |
+| `migration` | Yes |
+| `setup` | Yes |
+| **`build`** | **No** |
 
-### Externe Zugriff-Limitierungen
+### External access limitations
 
-Kein direkter externer Zugriff auf S3.
-Medien hinzufügen via:
+No direct external access to S3.
+Add media via:
 - Shopware Admin Media Manager
 - Shopware API
-- PHP-Script in exec-Session
+- PHP script in an exec session
 
 ---
 
 ## Snapshots
 
-Snapshots sichern: Datenbank + Shopware-Filesystem
+Snapshots back up: database + Shopware filesystem
 
 ```bash
 sw-paas snapshot create
-# Auf Fertigstellung warten
+# Wait for completion
 ```
 
-**Verwendung:**
-- Vor Shopware-Updates (Empfehlung)
-- Als Quelle für Clone-Operationen
-- Disaster Recovery
+**Usage:**
+- Before Shopware updates (recommended)
+- As the source for clone operations
+- Disaster recovery
 
 ---
 
-## Deployment-Management
+## Deployment management
 
-### Build-Auswahl
+### Build selection
 
 ```bash
-# Neuester Build deployen
+# Deploy the latest build
 sw-paas application deploy create
 
-# Spezifischen Build auswählen (z.B. für Rollback)
+# Select a specific build (e.g. for a rollback)
 sw-paas application deploy create
-# → Interaktive Liste aller erfolgreichen Builds
+# → interactive list of all successful builds
 ```
 
-### Deployment-Status prüfen
+### Check deployment status
 
 ```bash
 sw-paas application deploy list
 sw-paas application deploy get
 
-# Deployment-Logs
+# Deployment logs
 sw-paas application deploy logs
 sw-paas application deploy logs --deployment-id <id>
 sw-paas application deploy logs --follow
 ```
 
-### Zero-Downtime
+### Zero downtime
 
-Alle Deployments: Kubernetes Rolling Updates = Zero Downtime.
-DB-Migrationen laufen zuerst, danach Deployment Helper.
+All deployments: Kubernetes rolling updates = zero downtime.
+DB migrations run first, then the deployment helper.
 
 ---
 
-## Plattform-Grenzen
+## Platform limits
 
 | Feature | Status |
 |---------|--------|
-| Zusätzliche Queues | Nicht konfigurierbar |
-| Andere Anwendungstypen (Node.js) | Nicht unterstützt |
-| Cloud Provider | Nur AWS |
-| Blackfire / Tideways APM | Nicht unterstützt |
-| Managed Load Testing | Nicht unterstützt |
-| SSO für Grafana/OpenSearch | Nicht verfügbar |
-| CDN-Customization | In Entwicklung |
-| DB-Customization | In Entwicklung |
+| Additional queues | Not configurable |
+| Other application types (Node.js) | Not supported |
+| Cloud provider | AWS only |
+| Blackfire / Tideways APM | Not supported |
+| Managed load testing | Not supported |
+| SSO for Grafana/OpenSearch | Not available |
+| CDN customization | In development |
+| DB customization | In development |
 
 ---
 
-## Häufige Ressourcen-Fragen
+## Common resource questions
 
-**Q: Wie viele Projekte/Applications kann ich erstellen?**
-Abhängig vom gebuchten Plan der Organisation.
+**Q: How many projects/applications can I create?**
+Depends on the organization's booked plan.
 
-**Q: Kann ich Infrastruktur anpassen (Webserver-Konfiguration)?**
-Nein, Infrastruktur ist opinionated und pre-konfiguriert.
+**Q: Can I customize the infrastructure (webserver configuration)?**
+No, the infrastructure is opinionated and pre-configured.
 
-**Q: Gibt es Managed Load Testing?**
-Nein, nicht als Plattform-Bestandteil.
+**Q: Is there managed load testing?**
+No, not as part of the platform.
 
-**Q: Kann ich Application Performance Monitoring (Tideways/Blackfire) nutzen?**
-Aktuell nicht unterstützt, in Planung.
+**Q: Can I use application performance monitoring (Tideways/Blackfire)?**
+Not supported at the moment, planned.
 
-**Q: Läuft PaaS auf Azure oder GCP?**
-Nein, aktuell nur AWS.
+**Q: Does PaaS run on Azure or GCP?**
+No, currently AWS only.
 
-**Q: Wie oft läuft der Scheduler?**
-Alle 5 Minuten.
+**Q: How often does the scheduler run?**
+Every 5 minutes.

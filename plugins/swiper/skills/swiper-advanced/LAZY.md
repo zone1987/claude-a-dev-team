@@ -1,6 +1,6 @@
-# Swiper — Lazy Loading
+# Swiper — Lazy loading
 
-Bilder werden erst beim Sichtbarwerden geladen (natives Browser-Lazy-Loading).
+Images load only once they become visible (native browser lazy loading).
 
 ```html
 <div class="swiper-slide">
@@ -8,7 +8,7 @@ Bilder werden erst beim Sichtbarwerden geladen (natives Browser-Lazy-Loading).
   <div class="swiper-lazy-preloader"></div>
 </div>
 
-<!-- Helle Variante für dunkle Hintergründe -->
+<!-- Light variant for dark backgrounds -->
 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 ```
 
@@ -16,11 +16,11 @@ Bilder werden erst beim Sichtbarwerden geladen (natives Browser-Lazy-Loading).
 import Swiper from 'swiper';
 
 const swiper = new Swiper('.swiper', {
-  lazyPreloadPrevNext: 2,   // 2 Slides vor/nach aktiv vorladen
+  lazyPreloadPrevNext: 2,   // preload 2 slides before/after the active one
 });
 ```
 
-**Hinweis:** Kein separates Modul-Import notwendig — `lazyPreloadPrevNext` ist ein Core-Parameter.
+**Note:** No separate module import required — `lazyPreloadPrevNext` is a core parameter.
 
-## Vertiefung
-- [LAZY-DETAIL.md](LAZY-DETAIL.md) — Parameter lazyPreloadPrevNext/lazyPreloaderClass, Preloader-CSS, srcset-Support
+## Further reading
+- [LAZY-DETAIL.md](LAZY-DETAIL.md) — lazyPreloadPrevNext/lazyPreloaderClass parameters, preloader CSS, srcset support

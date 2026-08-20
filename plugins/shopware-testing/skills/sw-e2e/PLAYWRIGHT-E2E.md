@@ -1,7 +1,7 @@
 # Shopware 6 — E2E (Playwright)
 
-Shopware nutzt **Playwright** für E2E/Acceptance-Tests (ADR „acceptance test suite", löst Cypress ab) — gegen eine
-laufende Shop-Instanz, kleinste Stufe der Test-Pyramide (wenige, kritische Flows).
+Shopware uses **Playwright** for E2E/acceptance tests (ADR "acceptance test suite", replacing Cypress) — against a
+running shop instance, the smallest tier of the test pyramid (few, critical flows).
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -13,5 +13,5 @@ test('add to cart', async ({ page }) => {
 });
 ```
 
-Page-Objects/Fixtures für wiederkehrende Flows; Testdaten über API/Fixtures vorbereiten. Sparsam einsetzen
-(langsam/teuer) — Logik in Unit/Integration abdecken. Storefront- und Admin-Flows möglich.
+Use page objects/fixtures for recurring flows; prepare test data through the API or fixtures. Apply sparingly
+(slow/expensive) — cover logic in unit/integration tests. Both storefront and admin flows are possible.

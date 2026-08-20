@@ -9,12 +9,12 @@ The platform's own rules for platform-shaped code. Domain exceptions and extenda
 
 ## Reference map
 
-- **[ADR-KNOWLEDGE.md](ADR-KNOWLEDGE.md)**: Die ADRs dokumentieren bindende Architekturentscheidungen des Cores. [ADR-KNOWLEDGE-ADR-INDEX](ADR-KNOWLEDGE-ADR-INDEX.md).
-- **[CODE-STRUCTURE.md](CODE-STRUCTURE.md)**: Vollständige Referenz: `CODE-STRUCTURE-DETAIL.md`. [CODE-STRUCTURE-DETAIL](CODE-STRUCTURE-DETAIL.md).
-- **[CODING-GUIDELINES.md](CODING-GUIDELINES.md)**: Verbindliche Leitlinien aus dem Core. [CODING-GUIDELINES-CODE-GUIDELINES-FULL](CODING-GUIDELINES-CODE-GUIDELINES-FULL.md).
-- **[DOCUMENTATION-GUIDELINES.md](DOCUMENTATION-GUIDELINES.md)**: Vollständige Referenz: `DOCUMENTATION-GUIDELINES-DETAIL.md`. [DOCUMENTATION-GUIDELINES-DETAIL](DOCUMENTATION-GUIDELINES-DETAIL.md).
-- **[DOMAIN-EXCEPTIONS.md](DOMAIN-EXCEPTIONS.md)**: Statt vieler einzelner Exception-Klassen: **eine Factory pro Domäne** mit statischen Methoden, die typisierte….
-- **[EXTENDABILITY.md](EXTENDABILITY.md)**: Vollständige Referenz: `EXTENDABILITY-DETAIL.md`. [EXTENDABILITY-DETAIL](EXTENDABILITY-DETAIL.md).
+- **[ADR-KNOWLEDGE.md](ADR-KNOWLEDGE.md)**: The ADRs document binding architecture decisions of the core. [ADR-KNOWLEDGE-ADR-INDEX](ADR-KNOWLEDGE-ADR-INDEX.md).
+- **[CODE-STRUCTURE.md](CODE-STRUCTURE.md)**: Complete reference: `CODE-STRUCTURE-DETAIL.md`. [CODE-STRUCTURE-DETAIL](CODE-STRUCTURE-DETAIL.md).
+- **[CODING-GUIDELINES.md](CODING-GUIDELINES.md)**: Binding guidelines from the core. [CODING-GUIDELINES-CODE-GUIDELINES-FULL](CODING-GUIDELINES-CODE-GUIDELINES-FULL.md).
+- **[DOCUMENTATION-GUIDELINES.md](DOCUMENTATION-GUIDELINES.md)**: Complete reference: `DOCUMENTATION-GUIDELINES-DETAIL.md`. [DOCUMENTATION-GUIDELINES-DETAIL](DOCUMENTATION-GUIDELINES-DETAIL.md).
+- **[DOMAIN-EXCEPTIONS.md](DOMAIN-EXCEPTIONS.md)**: Instead of many individual exception classes: **one factory per domain** with static methods that return typed….
+- **[EXTENDABILITY.md](EXTENDABILITY.md)**: Complete reference: `EXTENDABILITY-DETAIL.md`. [EXTENDABILITY-DETAIL](EXTENDABILITY-DETAIL.md).
 
 ## Source
 

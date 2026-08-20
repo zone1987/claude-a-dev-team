@@ -1,21 +1,21 @@
-# Swiper Hash Navigation-Modul — Vollständige Referenz
+# Swiper Hash Navigation module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [data-hash-Attribut](#data-hash-attribut)
-- [URL-Format](#url-format)
-- [watchState — Externe Hash-Navigierung](#watchstate-externe-hash-navigierung)
-- [Vollständige Beispiele](#vollständige-beispiele)
-- [Unterschied zu History-Modul](#unterschied-zu-history-modul)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [data-hash attribute](#data-hash-attribute)
+- [URL format](#url-format)
+- [watchState — external hash navigation](#watchstate--external-hash-navigation)
+- [Complete examples](#complete-examples)
+- [Difference from the History module](#difference-from-the-history-module)
 
-## Konzept
+## Concept
 
-Das Hash Navigation-Modul aktualisiert den URL-Hash beim Slide-Wechsel und navigiert umgekehrt bei Hash-Änderungen (z.B. Browser-Back, direkter Link mit Hash). Einfacher als History-Modul — erfordert keine Server-Konfiguration.
+The Hash Navigation module updates the URL hash on slide change and, conversely, navigates on hash changes (for example browser back, or a direct link containing a hash). Simpler than the History module — it requires no server configuration.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -31,47 +31,47 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
+| Name | Type | Default | Description |
 |------|-----|---------|--------------|
-| `enabled` | `boolean` | `true` | Hash Navigation aktivieren |
-| `replaceState` | `boolean` | `false` | `history.replaceState` für Hash-Updates verwenden (kein Verlaufseintrag) |
-| `watchState` | `boolean` | `false` | Externe Hash-Änderungen (Browser-Back, direkte URL) beobachten und reagieren |
+| `enabled` | `boolean` | `true` | Enable hash navigation |
+| `replaceState` | `boolean` | `false` | Use `history.replaceState` for hash updates (no history entry) |
+| `watchState` | `boolean` | `false` | Watch and react to external hash changes (browser back, direct URL) |
 
-## data-hash-Attribut
+## data-hash attribute
 
-Jeder Slide bekommt ein `data-hash`-Attribut:
+Every slide gets a `data-hash` attribute:
 
 ```html
 <div class="swiper">
   <div class="swiper-wrapper">
-    <!-- URL-Hash wird zu: #slide-1 -->
+    <!-- URL hash becomes: #slide-1 -->
     <div class="swiper-slide" data-hash="slide-1">Slide 1</div>
-    <!-- URL-Hash wird zu: #slide-2 -->
+    <!-- URL hash becomes: #slide-2 -->
     <div class="swiper-slide" data-hash="slide-2">Slide 2</div>
-    <!-- URL-Hash wird zu: #slide-3 -->
+    <!-- URL hash becomes: #slide-3 -->
     <div class="swiper-slide" data-hash="slide-3">Slide 3</div>
   </div>
 </div>
 ```
 
-## URL-Format
+## URL format
 
-| Aktiver Slide | URL |
+| Active slide | URL |
 |---------------|-----|
 | `data-hash="intro"` | `https://example.com/#intro` |
 | `data-hash="gallery"` | `https://example.com/#gallery` |
 | `data-hash="contact"` | `https://example.com/#contact` |
 
-## watchState — Externe Hash-Navigierung
+## watchState — external hash navigation
 
-Mit `watchState: true` reagiert Swiper auf externe Hash-Änderungen:
+With `watchState: true`, Swiper reacts to external hash changes:
 
 ```js
-// Nutzer navigiert mit Browser-Back/Forward
-// oder öffnet https://example.com/#slide-3 direkt
-// → Swiper springt zum Slide mit data-hash="slide-3"
+// The user navigates with browser back/forward
+// or opens https://example.com/#slide-3 directly
+// -> Swiper jumps to the slide with data-hash="slide-3"
 const swiper = new Swiper('.swiper', {
   modules: [HashNavigation],
   hashNavigation: {
@@ -80,9 +80,9 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Vollständige Beispiele
+## Complete examples
 
-### Einzel-Seite mit verankerbaren Sektionen
+### Single page with anchorable sections
 
 ```js
 import Swiper from 'swiper';
@@ -110,26 +110,26 @@ const swiper = new Swiper('.swiper', {
 HTML:
 ```html
 <div class="swiper-slide" data-hash="home">Home</div>
-<div class="swiper-slide" data-hash="ueber-uns">Über uns</div>
-<div class="swiper-slide" data-hash="leistungen">Leistungen</div>
-<div class="swiper-slide" data-hash="kontakt">Kontakt</div>
+<div class="swiper-slide" data-hash="ueber-uns">About us</div>
+<div class="swiper-slide" data-hash="leistungen">Services</div>
+<div class="swiper-slide" data-hash="kontakt">Contact</div>
 ```
 
-### Externer Link zum Slide
+### External link to a slide
 
 ```html
-<!-- Direkter Link zum Kontakt-Slide -->
-<a href="/page#kontakt">Kontakt öffnen</a>
+<!-- Direct link to the contact slide -->
+<a href="/page#kontakt">Open contact</a>
 ```
 
-## Unterschied zu History-Modul
+## Difference from the History module
 
-| Feature | Hash Navigation | History-Modul |
+| Feature | Hash Navigation | History module |
 |---------|-----------------|---------------|
-| URL-Format | `/#slide-name` | `/slides/slide-name` |
-| Server-Rewrite | Nicht nötig | Erforderlich für direkte Links |
-| Attribut | `data-hash` | `data-history` |
-| Parameter-Key | — | `key` (URL-Präfix) |
+| URL format | `/#slide-name` | `/slides/slide-name` |
+| Server rewrite | Not needed | Required for direct links |
+| Attribute | `data-hash` | `data-history` |
+| Parameter key | — | `key` (URL prefix) |
 
 ---
-Quelle: https://swiperjs.com/swiper-api#hash-navigation
+Source: https://swiperjs.com/swiper-api#hash-navigation

@@ -1,19 +1,19 @@
-# Shopware 6 — Cart-Collector
+# Shopware 6 — Cart Collector
 
-Der Collector läuft **vor** den Processoren und lädt alle Daten, die zur Berechnung gebraucht werden (z.B. Produkte,
-Preise), gebündelt — damit Processoren keine eigenen DB-Queries machen.
+The collector runs **before** the processors and loads all data needed for the calculation (e.g. products,
+prices) in a single batch — so processors never issue their own DB queries.
 
 ```php
 class FfDataCollector implements CartDataCollectorInterface
 {
     public function collect(CartDataCollection $data, Cart $original, SalesChannelContext $context, CartBehavior $behavior): void
     {
-        $ids = /* LineItem-Referenzen */;
-        if ($data->has($key)) { return; }       // nicht doppelt laden
+        $ids = /* LineItem references */;
+        if ($data->has($key)) { return; }       // do not load twice
         $data->set($key, $this->loadOnce($ids, $context));
     }
 }
 ```
 
-Registrierung via `shopware.cart.collector`-Tag. In die `CartDataCollection` schreiben; der Processor (`sw-cart-processor`)
-liest sie. Performance: nur fehlende Daten laden (`$data->has(...)`). Reihenfolge über Priorität.
+Register via the `shopware.cart.collector` tag. Write into the `CartDataCollection`; the processor (`sw-cart-processor`)
+reads it. Performance: load only missing data (`$data->has(...)`). Order via priority.

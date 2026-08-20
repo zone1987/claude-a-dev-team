@@ -1,72 +1,72 @@
-# flatpickr — Vollständige Formatierungs-Referenz (v4.6.13)
+# flatpickr — Complete formatting reference (v4.6.13)
 
-Tokens werden in `dateFormat`, `altFormat`, `ariaDateFormat` verwendet.
-Quelle: `src/utils/formatting.ts` (autoritativ, Stand v4.6.13).
+Tokens are used in `dateFormat`, `altFormat`, `ariaDateFormat`.
+Source: `src/utils/formatting.ts` (authoritative, as of v4.6.13).
 
 ## Contents
 
-- [Alle Tokens](#alle-tokens)
-- [Vollständige Token-Liste (Typ `token`)](#vollständige-token-liste-typ-token)
-- [Häufige Format-Kombinationen](#häufige-format-kombinationen)
-- [altInput Pattern](#altinput-pattern)
-- [Sonderzeichen escapen](#sonderzeichen-escapen)
-- [Benutzerdefiniertes Parsen/Formatieren](#benutzerdefiniertes-parsenformatieren)
-- [Statische Hilfsfunktionen](#statische-hilfsfunktionen)
-- [Token-Regex-Muster (für eigene Parser)](#token-regex-muster-für-eigene-parser)
+- [All tokens](#all-tokens)
+- [Complete token list (type `token`)](#complete-token-list-type-token)
+- [Common format combinations](#common-format-combinations)
+- [altInput pattern](#altinput-pattern)
+- [Escaping special characters](#escaping-special-characters)
+- [Custom parsing/formatting](#custom-parsingformatting)
+- [Static helpers](#static-helpers)
+- [Token regex patterns (for your own parsers)](#token-regex-patterns-for-your-own-parsers)
 
-## Alle Tokens
+## All tokens
 
-### Tag
+### Day
 
-| Token | Beschreibung | Beispiel | Quelle |
+| Token | Description | Example | Source |
 |-------|-------------|---------|--------|
-| `d` | Tag des Monats, 2-stellig mit führender Null | `01` bis `31` | `formats.d` |
-| `D` | Wochentag, Kurzform (lokalisiert) | `Mon` bis `Sun` | `formats.D` |
-| `l` | Wochentag, Langform (lokalisiert) | `Monday` bis `Sunday` | `formats.l` |
-| `j` | Tag des Monats, ohne führende Null | `1` bis `31` | `formats.j` |
-| `J` | Tag des Monats ohne führende Null + Ordinalzahl | `1st`, `2nd`, ..., `31st` | `formats.J` |
-| `w` | Numerischer Wochentag | `0` (So) bis `6` (Sa) | `formats.w` |
-| `W` | ISO-Wochennummer des Jahres | `0` bis `52` | `formats.W` |
+| `d` | Day of the month, 2-digit with leading zero | `01` to `31` | `formats.d` |
+| `D` | Weekday, short form (localized) | `Mon` to `Sun` | `formats.D` |
+| `l` | Weekday, long form (localized) | `Monday` to `Sunday` | `formats.l` |
+| `j` | Day of the month, without leading zero | `1` to `31` | `formats.j` |
+| `J` | Day of the month without leading zero + ordinal suffix | `1st`, `2nd`, ..., `31st` | `formats.J` |
+| `w` | Numeric weekday | `0` (Sun) to `6` (Sat) | `formats.w` |
+| `W` | ISO week number of the year | `0` to `52` | `formats.W` |
 
-### Monat
+### Month
 
-| Token | Beschreibung | Beispiel | Quelle |
+| Token | Description | Example | Source |
 |-------|-------------|---------|--------|
-| `F` | Monatsname, Langform (lokalisiert) | `January` bis `December` | `formats.F` |
-| `m` | Monatsnummer, 2-stellig mit führender Null | `01` bis `12` | `formats.m` |
-| `n` | Monatsnummer, ohne führende Null | `1` bis `12` | `formats.n` |
-| `M` | Monatsname, Kurzform (lokalisiert) | `Jan` bis `Dec` | `formats.M` |
+| `F` | Month name, long form (localized) | `January` to `December` | `formats.F` |
+| `m` | Month number, 2-digit with leading zero | `01` to `12` | `formats.m` |
+| `n` | Month number, without leading zero | `1` to `12` | `formats.n` |
+| `M` | Month name, short form (localized) | `Jan` to `Dec` | `formats.M` |
 
-### Jahr
+### Year
 
-| Token | Beschreibung | Beispiel | Quelle |
+| Token | Description | Example | Source |
 |-------|-------------|---------|--------|
-| `Y` | Jahr, 4-stellig | `1999`, `2024` | `formats.Y` |
-| `y` | Jahr, 2-stellig | `99`, `24` | `formats.y` |
+| `Y` | Year, 4-digit | `1999`, `2024` | `formats.Y` |
+| `y` | Year, 2-digit | `99`, `24` | `formats.y` |
 
-### Zeit
+### Time
 
-| Token | Beschreibung | Beispiel | Quelle |
+| Token | Description | Example | Source |
 |-------|-------------|---------|--------|
-| `H` | Stunden, 24-Stunden-Format, 2-stellig | `00` bis `23` | `formats.H` |
-| `h` | Stunden, 12-Stunden-Format, ohne führende Null | `1` bis `12` | `formats.h` |
-| `G` | Stunden, 12-Stunden-Format, 2-stellig mit führender Null | `01` bis `12` | `formats.G` |
-| `i` | Minuten, 2-stellig mit führender Null | `00` bis `59` | `formats.i` |
-| `S` | Sekunden, 2-stellig mit führender Null | `00` bis `59` | `formats.S` |
-| `s` | Sekunden, ohne führende Null | `0` bis `59` | `formats.s` |
-| `K` | AM/PM (lokalisiert) | `AM` oder `PM` | `formats.K` |
+| `H` | Hours, 24-hour format, 2-digit | `00` to `23` | `formats.H` |
+| `h` | Hours, 12-hour format, without leading zero | `1` to `12` | `formats.h` |
+| `G` | Hours, 12-hour format, 2-digit with leading zero | `01` to `12` | `formats.G` |
+| `i` | Minutes, 2-digit with leading zero | `00` to `59` | `formats.i` |
+| `S` | Seconds, 2-digit with leading zero | `00` to `59` | `formats.S` |
+| `s` | Seconds, without leading zero | `0` to `59` | `formats.s` |
+| `K` | AM/PM (localized) | `AM` or `PM` | `formats.K` |
 
-### Sonstige
+### Miscellaneous
 
-| Token | Beschreibung | Beispiel | Quelle |
+| Token | Description | Example | Source |
 |-------|-------------|---------|--------|
-| `U` | Unix-Timestamp in Sekunden (seit Epoch) | `1413704993` | `formats.U` |
-| `u` | Unix-Timestamp in Millisekunden | `1413704993000` | `formats.u` |
-| `Z` | ISO 8601 Datum mit UTC-Zeitzone (`.toISOString()`) | `2017-03-04T01:23:43.000Z` | `formats.Z` |
+| `U` | Unix timestamp in seconds (since epoch) | `1413704993` | `formats.U` |
+| `u` | Unix timestamp in milliseconds | `1413704993000` | `formats.u` |
+| `Z` | ISO 8601 date with UTC timezone (`.toISOString()`) | `2017-03-04T01:23:43.000Z` | `formats.Z` |
 
-**Hinweis:** `u` (Millisekunden) ist nur in `formats` vorhanden und wird von `revFormat` korrekt geparst (`new Date(parseFloat(unixMillSeconds))`). Oft wird `U` (Sekunden) bevorzugt.
+**Note:** `u` (milliseconds) only exists in `formats` and is parsed correctly by `revFormat` (`new Date(parseFloat(unixMillSeconds))`). `U` (seconds) is often preferred.
 
-## Vollständige Token-Liste (Typ `token`)
+## Complete token list (type `token`)
 
 ```typescript
 type token =
@@ -74,101 +74,101 @@ type token =
   | "d" | "h" | "i" | "j" | "l" | "m" | "n" | "s" | "u" | "w" | "y";
 ```
 
-## Häufige Format-Kombinationen
+## Common format combinations
 
 ```js
-// Deutsches Format
+// German format
 dateFormat: "d.m.Y"            // 31.12.2024
 
-// ISO-Format (API/Backend)
+// ISO format (API/backend)
 dateFormat: "Y-m-d"            // 2024-12-31
 
-// Mit Uhrzeit (24h)
+// With time (24h)
 dateFormat: "Y-m-d H:i"        // 2024-12-31 14:30
 dateFormat: "Y-m-d H:i:S"      // 2024-12-31 14:30:45
 
-// 12-Stunden mit AM/PM
+// 12-hour with AM/PM
 dateFormat: "Y-m-d h:i K"      // 2024-12-31 02:30 PM
 
-// Menschenlesbar (Englisch)
+// Human-readable (English)
 altFormat: "F j, Y"            // December 31, 2024
 altFormat: "j. F Y"            // 31. December 2024
 
-// Unix-Timestamp (Sekunden)
+// Unix timestamp (seconds)
 dateFormat: "U"                // 1735689000
 
-// Unix-Timestamp (Millisekunden)
+// Unix timestamp (milliseconds)
 dateFormat: "u"                // 1735689000000
 
-// ISO mit Timezone (empfohlen für UTC-Übertragung)
+// ISO with timezone (recommended for UTC transfer)
 dateFormat: "Z"                // 2024-12-31T14:30:00.000Z
 
-// Wochennummer
+// Week number
 dateFormat: "\\Woche W, Y"    // "Woche 52, 2024"
 ```
 
-## altInput Pattern
+## altInput pattern
 
-Mit `altInput: true` werden zwei Felder verwendet:
-- `dateFormat` → Wert der tatsächlich an den Server gesendet wird (z.B. `"Y-m-d"`)
-- `altFormat` → Für den Nutzer sichtbares Format (z.B. `"F j, Y"`)
+With `altInput: true` two fields are used:
+- `dateFormat` → the value actually sent to the server (e.g. `"Y-m-d"`)
+- `altFormat` → the format visible to the user (e.g. `"F j, Y"`)
 
 ```js
 flatpickr("#date", {
   altInput: true,
-  altFormat: "F j, Y",       // "December 31, 2024" (sichtbar)
-  dateFormat: "Y-m-d",       // "2024-12-31" (im versteckten Input)
+  altFormat: "F j, Y",       // "December 31, 2024" (visible)
+  dateFormat: "Y-m-d",       // "2024-12-31" (in the hidden input)
 });
 ```
 
-## Sonderzeichen escapen
+## Escaping special characters
 
-Wenn ein Token-Zeichen literell verwendet werden soll, mit `\\` escapen:
+To use a token character literally, escape it with `\\`:
 
 ```js
-dateFormat: "\\W\\e\\e\\k #W, Y"   // "Week #52, 2024" (W als Token, rest literal)
-dateFormat: "Y-m-d\\TH:i:S"        // "2024-12-31T14:30:45" (T literal, kein Token)
+dateFormat: "\\W\\e\\e\\k #W, Y"   // "Week #52, 2024" (W as token, rest literal)
+dateFormat: "Y-m-d\\TH:i:S"        // "2024-12-31T14:30:45" (T literal, not a token)
 dateFormat: "d.m.Y \\u\\h\\r H:i"  // "31.12.2024 uhr 14:30" (uhr literal)
 ```
 
-## Benutzerdefiniertes Parsen/Formatieren
+## Custom parsing/formatting
 
 ```js
 flatpickr("#date", {
   parseDate: (datestr, format) => {
-    // Eigene Parse-Logik, gibt Date zurück
-    // Beispiel: deutsches Format dd.mm.yyyy
+    // Custom parse logic, returns a Date
+    // Example: German format dd.mm.yyyy
     const parts = datestr.split(".");
     return new Date(+parts[2], +parts[1] - 1, +parts[0]);
   },
   formatDate: (date, format, locale) => {
-    // Eigene Format-Logik, gibt String zurück
+    // Custom format logic, returns a string
     return date.toLocaleDateString("de-DE");
   }
 });
 ```
 
-## Statische Hilfsfunktionen
+## Static helpers
 
 ```js
-// Formatieren ohne Instanz
+// Format without an instance
 flatpickr.formatDate(new Date(), "Y-m-d H:i");  // "2024-12-31 14:30"
 
-// Parsen ohne Instanz
+// Parse without an instance
 flatpickr.parseDate("2024-12-31", "Y-m-d");     // Date Object
 ```
 
-## Token-Regex-Muster (für eigene Parser)
+## Token regex patterns (for your own parsers)
 
-Einige Tokens sind locale-abhängig und werden zur Laufzeit gesetzt:
+Some tokens are locale-dependent and are set at runtime:
 
-| Token | Regex-Pattern |
+| Token | Regex pattern |
 |-------|--------------|
-| `D` | Wochentag-Kurzformen (locale) |
-| `F` | Monatslangformen (locale) |
-| `K` | AM/PM-Werte (locale) |
-| `M` | Monats-Kurzformen (locale) |
-| `l` | Wochentag-Langformen (locale) |
+| `D` | Weekday short forms (locale) |
+| `F` | Month long forms (locale) |
+| `K` | AM/PM values (locale) |
+| `M` | Month short forms (locale) |
+| `l` | Weekday long forms (locale) |
 | `G`, `H`, `h` | `(\d\d|\d)` |
 | `Y` | `(\d{4})` |
 | `y` | `(\d{2})` |
@@ -176,4 +176,4 @@ Einige Tokens sind locale-abhängig und werden zur Laufzeit gesetzt:
 
 ---
 
-Quelle: `src/utils/formatting.ts` (v4.6.13) | https://flatpickr.js.org/formatting/
+Source: `src/utils/formatting.ts` (v4.6.13) | https://flatpickr.js.org/formatting/

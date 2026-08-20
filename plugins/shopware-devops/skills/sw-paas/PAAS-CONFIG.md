@@ -1,21 +1,21 @@
-# Shopware PaaS — Vollständige Konfigurations-Referenz
+# Shopware PaaS — Complete configuration reference
 
-Quelle: `shopware/recipes` — `shopware/paas-meta/6.7/`-Recipe (Platform.sh-basiert).
+Source: `shopware/recipes` — the `shopware/paas-meta/6.7/` recipe (Platform.sh based).
 
 ---
 
 ## Contents
 
-- [`.platform/applications.yaml` (vollständig, 6.7)](#platformapplicationsyaml-vollständig-67)
-- [`.platform/services.yaml` (vollständig, 6.7)](#platformservicesyaml-vollständig-67)
-- [`.platform/routes.yaml` (vollständig, 6.7)](#platformroutesyaml-vollständig-67)
-- [`config/packages/paas.yaml` (vollständig, 6.7)](#configpackagespaasyaml-vollständig-67)
-- [`.environment` (Projekt-Root)](#environment-projekt-root)
-- [`.shopware-project.yaml` (Projekt-Root)](#shopware-projectyaml-projekt-root)
-- [Platform.sh Umgebungsvariablen](#platformsh-umgebungsvariablen)
-- [Mounts-Übersicht](#mounts-übersicht)
+- [`.platform/applications.yaml` (complete, 6.7)](#platformapplicationsyaml-complete-67)
+- [`.platform/services.yaml` (complete, 6.7)](#platformservicesyaml-complete-67)
+- [`.platform/routes.yaml` (complete, 6.7)](#platformroutesyaml-complete-67)
+- [`config/packages/paas.yaml` (complete, 6.7)](#configpackagespaasyaml-complete-67)
+- [`.environment` (project root)](#environment-project-root)
+- [`.shopware-project.yaml` (project root)](#shopware-projectyaml-project-root)
+- [Platform.sh environment variables](#platformsh-environment-variables)
+- [Mounts overview](#mounts-overview)
 
-## `.platform/applications.yaml` (vollständig, 6.7)
+## `.platform/applications.yaml` (complete, 6.7)
 
 ```yaml
 -   name: app
@@ -73,23 +73,23 @@ Quelle: `shopware/recipes` — `shopware/paas-meta/6.7/`-Recipe (Platform.sh-bas
             export APP_CACHE_DIR=$PLATFORM_APP_DIR/localCache
             export SHOPWARE_SKIP_ASSET_INSTALL_CACHE_INVALIDATION=1
             shopware-cli project ci .
-            # Files aus Mounts sichern (Build-Phase hat keinen Zugriff auf Mounts)
+            # Preserve files from mounts (the build phase has no access to mounts)
             mv $APP_CACHE_DIR ./RO-localCache
             mv ./var ./RO-var
         deploy: |
             set -e
-            # Build-Artefakte in Mounts synchronisieren
+            # Sync build artifacts into the mounts
             rsync -av --delete "${PLATFORM_APP_DIR}/RO-localCache/" "${APP_CACHE_DIR}/"
             rsync -av "${PLATFORM_APP_DIR}/RO-var/" "${PLATFORM_APP_DIR}/var/"
-            # Dompdf-Verzeichnisse anlegen
+            # Create the Dompdf directories
             mkdir -p "${PLATFORM_APP_DIR}/var/dompdf/tempDir"
             mkdir -p "${PLATFORM_APP_DIR}/var/dompdf/fontCache"
             rsync -av "${PLATFORM_APP_DIR}/vendor/dompdf/dompdf/lib/fonts" \
               "${PLATFORM_APP_DIR}/var/dompdf/fontDir"
-            # Deployment-Helper ausführen
+            # Run the deployment helper
             php vendor/bin/shopware-deployment-helper run \
               --skip-asset-install --skip-theme-compile
-            # Nicht-Produktions-Umgebungen: Sales-Channel-Domain aktualisieren
+            # Non-production environments: update the sales channel domain
             if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ]; then
                 export FRONTEND_URL=$(echo $PLATFORM_ROUTES | base64 --decode | \
                   jq -r 'to_entries[] | select(.value.id=="shopware") | .key')
@@ -167,7 +167,7 @@ Quelle: `shopware/recipes` — `shopware/paas-meta/6.7/`-Recipe (Platform.sh-bas
 
 ---
 
-## `.platform/services.yaml` (vollständig, 6.7)
+## `.platform/services.yaml` (complete, 6.7)
 
 ```yaml
 db:
@@ -177,36 +177,36 @@ db:
 cacheredis:
     type: redis:7.2
     configuration:
-        maxmemory_policy: volatile-lfu     # Cache: LFU für volatile keys
+        maxmemory_policy: volatile-lfu     # Cache: LFU for volatile keys
 
 sessionredis:
     type: redis-persistent:7.2
     disk: 1024
     configuration:
-        maxmemory_policy: allkeys-lru      # Sessions: LRU über alle keys
+        maxmemory_policy: allkeys-lru      # Sessions: LRU across all keys
 
 rabbitmq:
     type: rabbitmq:3.13
     disk: 1024
 
-# Optional (auskommentiert):
+# Optional (commented out):
 # opensearch:
 #     type: opensearch:2
 #     disk: 256
 
 fileshare:
     type: network-storage:2.0
-    disk: 4096                             # Shared Mounts für Media, Themes, etc.
+    disk: 4096                             # Shared mounts for media, themes, etc.
 ```
 
-**Service-Typen:**
-- `redis` — In-Memory (kein Persist, nur Cache)
-- `redis-persistent` — Persistenter Redis (für Sessions)
-- `network-storage` — NFS-Mount, shared zwischen App und Worker
+**Service types:**
+- `redis` — in-memory (no persistence, cache only)
+- `redis-persistent` — persistent Redis (for sessions)
+- `network-storage` — NFS mount, shared between app and worker
 
 ---
 
-## `.platform/routes.yaml` (vollständig, 6.7)
+## `.platform/routes.yaml` (complete, 6.7)
 
 ```yaml
 "https://{default}/":
@@ -215,17 +215,17 @@ fileshare:
     upstream: "app:http"
     cache:
         enabled: true
-        cookies: ["/^ss?ess/"]     # Session-Cookies: sses, ssess
+        cookies: ["/^ss?ess/"]     # Session cookies: sses, ssess
 ```
 
-**`id: shopware`** — wird im Deploy-Hook genutzt um die Frontend-URL zu ermitteln:
+**`id: shopware`** — used in the deploy hook to determine the frontend URL:
 ```bash
 FRONTEND_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id=="shopware") | .key')
 ```
 
 ---
 
-## `config/packages/paas.yaml` (vollständig, 6.7)
+## `config/packages/paas.yaml` (complete, 6.7)
 
 ```yaml
 framework:
@@ -238,10 +238,10 @@ framework:
 
 shopware:
     admin_worker:
-        enable_admin_worker: false        # Admin Worker deaktiviert (eigener Worker-Container)
+        enable_admin_worker: false        # Admin worker disabled (dedicated worker container)
         enable_queue_stats_worker: false
     deployment:
-        cluster_setup: true               # Cluster-Modus für Multi-Container
+        cluster_setup: true               # Cluster mode for multi-container
     dompdf:
         options:
             tempDir: "%kernel.project_dir%/var/dompdf/tempDir"
@@ -258,7 +258,7 @@ monolog:
             buffer_size: 50
         nested:
             type: stream
-            path: php://stderr            # Logs nach stderr (Platform.sh sammelt stderr)
+            path: php://stderr            # Logs to stderr (Platform.sh collects stderr)
             level: debug
             formatter: monolog.formatter.json
         console:
@@ -268,23 +268,23 @@ monolog:
 
 elasticsearch:
     index_settings:
-        number_of_replicas: null          # Platform.sh verwaltet Replikation
+        number_of_replicas: null          # Platform.sh manages replication
         number_of_shards: null
 ```
 
 ---
 
-## `.environment` (Projekt-Root)
+## `.environment` (project root)
 
 ```bash
 export APP_CACHE_DIR=$PLATFORM_APP_DIR/localCache
 ```
 
-Wird bei jedem Request und Worker-Start sourced. Setzt den Cache-Pfad auf lokalen (nicht geteilten) Mount für bessere Performance.
+Sourced on every request and worker start. Points the cache path at the local (not shared) mount for better performance.
 
 ---
 
-## `.shopware-project.yaml` (Projekt-Root)
+## `.shopware-project.yaml` (project root)
 
 ```yaml
 deployment:
@@ -292,44 +292,44 @@ deployment:
         always_clear: true
 ```
 
-Konfiguriert `shopware-cli project ci` so dass der Cache immer geleert wird (nötig für Cluster-Deployments).
+Configures `shopware-cli project ci` so the cache is always cleared (required for cluster deployments).
 
 ---
 
-## Platform.sh Umgebungsvariablen
+## Platform.sh environment variables
 
-| Variable | Beschreibung |
+| Variable | Description |
 |----------|--------------|
-| `PLATFORM_APP_DIR` | Absoluter Pfad zum App-Root (`/app`) |
-| `PLATFORM_ENVIRONMENT_TYPE` | `production` oder `development` |
-| `PLATFORM_ROUTES` | JSON aller Routes, base64-encoded |
-| `PLATFORM_RELATIONSHIPS` | JSON aller Service-Connections, base64-encoded |
+| `PLATFORM_APP_DIR` | Absolute path to the app root (`/app`) |
+| `PLATFORM_ENVIRONMENT_TYPE` | `production` or `development` |
+| `PLATFORM_ROUTES` | JSON of all routes, base64 encoded |
+| `PLATFORM_RELATIONSHIPS` | JSON of all service connections, base64 encoded |
 
-**Relationship-URLs werden via:** `PLATFORM_RELATIONSHIPS | base64 --decode | jq` extrahiert.
-Shopware versteht `DATABASE_URL`, `CACHE_URL`, `SESSION_REDIS_URL` — diese werden automatisch aus `PLATFORM_RELATIONSHIPS` befüllt via Platform.sh-Magic.
+**Relationship URLs are extracted via:** `PLATFORM_RELATIONSHIPS | base64 --decode | jq`.
+Shopware understands `DATABASE_URL`, `CACHE_URL`, `SESSION_REDIS_URL` — these are filled automatically from `PLATFORM_RELATIONSHIPS` by Platform.sh magic.
 
 ---
 
-## Mounts-Übersicht
+## Mounts overview
 
-| Mount | Typ | Beschreibung |
+| Mount | Type | Description |
 |-------|-----|--------------|
-| `/files` | network-storage (fileshare) | Dokumente, Theme-Config |
-| `/public/media` | network-storage (fileshare) | Produkt-Bilder |
-| `/public/thumbnail` | network-storage (fileshare) | Generierte Thumbnails |
-| `/public/theme` | network-storage (fileshare) | Kompilierte Theme-Assets |
-| `/public/sitemap` | network-storage (fileshare) | Sitemap-XML-Dateien |
-| `/var` | network-storage (fileshare) | Symfony var/ (shared, für Cluster) |
-| `/localCache` | local | Opcache/PHP-Cache (pro Container, schnell) |
-| `/localLog` | local | Lokale Logs (nicht shared) |
+| `/files` | network-storage (fileshare) | Documents, theme config |
+| `/public/media` | network-storage (fileshare) | Product images |
+| `/public/thumbnail` | network-storage (fileshare) | Generated thumbnails |
+| `/public/theme` | network-storage (fileshare) | Compiled theme assets |
+| `/public/sitemap` | network-storage (fileshare) | Sitemap XML files |
+| `/var` | network-storage (fileshare) | Symfony var/ (shared, for clusters) |
+| `/localCache` | local | Opcache/PHP cache (per container, fast) |
+| `/localLog` | local | Local logs (not shared) |
 
-**Kritisch:** Build-Phase hat keinen Zugriff auf Mounts! Deshalb:
+**Critical:** the build phase has no access to mounts! Therefore:
 ```bash
-# Am Ende des Build-Hooks: Artefakte nach RO-* verschieben
+# At the end of the build hook: move artifacts to RO-*
 mv $APP_CACHE_DIR ./RO-localCache
 mv ./var ./RO-var
 
-# Am Anfang des Deploy-Hooks: Mit rsync in Mounts kopieren
+# At the start of the deploy hook: copy them into the mounts with rsync
 rsync -av --delete "${PLATFORM_APP_DIR}/RO-localCache/" "${APP_CACHE_DIR}/"
 rsync -av "${PLATFORM_APP_DIR}/RO-var/" "${PLATFORM_APP_DIR}/var/"
 ```

@@ -1,12 +1,12 @@
-# Shopware 6 — Promotions (technisch)
+# Shopware 6 — Promotions (technical)
 
-Aktionen sind `promotion`-Entities mit Rabatten (`promotion_discount`), optionalen Codes (`promotion_individual_code`)
-und Bedingungen über Rules (`shopware-framework` → `sw-custom-rule`). Berechnung übernimmt der `PromotionProcessor`/-Collector.
+Campaigns are `promotion` entities with discounts (`promotion_discount`), optional codes (`promotion_individual_code`)
+and conditions via rules (`shopware-framework` → `sw-custom-rule`). The `PromotionProcessor`/collector handles the calculation.
 
-- Rabattarten: prozentual, absolut, Festpreis, Versandkostenrabatt; Scope (Cart/Delivery/Set).
-- Codes: kein Code, fester Code, individuelle Codes (generiert).
-- Bedingungen (Vorbedingung/Rabatt-Regel) über den Rule Builder.
-- Programmatisch per `promotion.repository` anlegen (Migration/Service).
-
-Eigene, von Promotions nicht abgedeckte Rabattlogik → eigener Processor (`sw-cart-discount`/`sw-cart-processor`).
-Betreibersicht (Aktion/Code anlegen): `shopware-merchant` (`sw-merchant-marketing-promotions`/`-codes`).
+- Discount types: percentage, absolute, fixed price, shipping cost discount; scope (cart/delivery/set).
+- Codes: no code, fixed code, individual codes (generated).
+- Conditions (precondition/discount rule) through the Rule Builder.
+- Create programmatically via `promotion.repository` (migration/service).
+ 
+Custom discount logic that promotions do not cover → your own processor (`sw-cart-discount`/`sw-cart-processor`).
+Merchant view (creating a campaign/code): `shopware-merchant` (`sw-merchant-marketing-promotions`/`-codes`).

@@ -1,7 +1,7 @@
 # shopware/paypal-sdk — PayPal REST API SDK
 
-PSR-18-basiertes PHP-SDK der Shopware AG für direkte Kommunikation mit den **PayPal REST APIs** —
-**nicht** der Shopware-Payment-Handler selbst (keine Shopware-Framework-Dependency).
+A PSR-18 based PHP SDK by Shopware AG for talking directly to the **PayPal REST APIs** —
+**not** the Shopware payment handler itself (no Shopware framework dependency).
 
 ```php
 $context = new CredentialsOAuthContext($clientId, $clientSecret, sandbox: true);
@@ -9,11 +9,11 @@ $client  = new Client($context); // PSR-18 HttpClient + PSR-16 Token-Cache
 $order   = $client->getOrderGateway()->create($orderStruct);
 ```
 
-- **Auth**: `CredentialsOAuthContext` (Client-ID/Secret) oder `AuthorizationCodeOAuthContext` (Onboarding);
-  OAuth2-Token per PSR-16 gecacht. Sandbox vs. Live über den Context. Marketplace via `PayPal-Auth-Assertion`.
-- **Gateways** (API-Bereiche): Orders (V2), Payments (V1/V2), Webhooks, Customer/Disputes/Managed-Accounts, Reporting, Token.
-- Struct-Namespaces V1/V2/V3/AgenticCommerce; eigene Exception-Hierarchie.
+- **Auth**: `CredentialsOAuthContext` (client ID/secret) or `AuthorizationCodeOAuthContext` (onboarding);
+  the OAuth2 token is cached via PSR-16. Sandbox vs. live is chosen through the context. Marketplace via `PayPal-Auth-Assertion`.
+- **Gateways** (API areas): Orders (V2), Payments (V1/V2), Webhooks, Customer/Disputes/Managed Accounts, Reporting, Token.
+- Struct namespaces V1/V2/V3/AgenticCommerce; a dedicated exception hierarchy.
 
-Für einen Shopware-**Payment-Handler** (Checkout-Integration) → `sw-payment-handler`/`sw-payment-app`.
+For a Shopware **payment handler** (checkout integration) → `sw-payment-handler`/`sw-payment-app`.
 
-→ Vollständige Referenz (alle Gateways/Methoden, HTTP-Pfade, Structs, Exceptions): [PAYPAL-SDK-GATEWAYS.md](PAYPAL-SDK-GATEWAYS.md)
+→ Full reference (all gateways/methods, HTTP paths, structs, exceptions): [PAYPAL-SDK-GATEWAYS.md](PAYPAL-SDK-GATEWAYS.md)

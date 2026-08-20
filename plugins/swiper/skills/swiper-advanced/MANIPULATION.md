@@ -1,6 +1,6 @@
-# Swiper — Manipulation-Modul
+# Swiper — Manipulation module
 
-Slides dynamisch im DOM hinzufügen, einfügen und entfernen.
+Add, insert, and remove slides dynamically in the DOM.
 
 ```js
 import Swiper from 'swiper';
@@ -8,24 +8,24 @@ import { Manipulation } from 'swiper/modules';
 
 const swiper = new Swiper('.swiper', { modules: [Manipulation] });
 
-// Hinzufügen
-swiper.appendSlide('<div class="swiper-slide">Neu am Ende</div>');
-swiper.prependSlide('<div class="swiper-slide">Neu am Anfang</div>');
-swiper.addSlide(2, '<div class="swiper-slide">An Position 2</div>');
+// Adding
+swiper.appendSlide('<div class="swiper-slide">New at the end</div>');
+swiper.prependSlide('<div class="swiper-slide">New at the beginning</div>');
+swiper.addSlide(2, '<div class="swiper-slide">At position 2</div>');
 
-// Mehrere auf einmal
+// Several at once
 swiper.appendSlide([
   '<div class="swiper-slide">A</div>',
   '<div class="swiper-slide">B</div>',
 ]);
 
-// Entfernen
-swiper.removeSlide(0);           // einzeln
-swiper.removeSlide([0, 1, 2]);   // mehrere
-swiper.removeAllSlides();        // alle
+// Removing
+swiper.removeSlide(0);           // single
+swiper.removeSlide([0, 1, 2]);   // several
+swiper.removeAllSlides();        // all
 ```
 
-**Hinweis:** Dieses Modul ist für Swiper Core gedacht, nicht für React/Vue-Integrationen.
+**Note:** This module is intended for Swiper Core, not for the React/Vue integrations.
 
-## Vertiefung
-- [MANIPULATION-DETAIL.md](MANIPULATION-DETAIL.md) — alle Methoden-Signaturen, Parametertypen, Framework-Hinweise
+## Further reading
+- [MANIPULATION-DETAIL.md](MANIPULATION-DETAIL.md) — all method signatures, parameter types, framework notes

@@ -1,18 +1,18 @@
-# Swiper — Instanz-Methoden
+# Swiper — Instance methods
 
-Alle Methoden werden auf der Swiper-Instanz aufgerufen.
+Call all methods on the Swiper instance.
 
 ```js
 const swiper = new Swiper('.swiper', { ... });
 
-swiper.slideNext();           // Nächste Folie
-swiper.slidePrev();           // Vorherige Folie
-swiper.slideTo(3, 500);       // Zu Index 3 in 500 ms
-swiper.update();              // Nach DOM-Änderungen neu berechnen
-swiper.destroy();             // Instanz zerstören
+swiper.slideNext();           // Next slide
+swiper.slidePrev();           // Previous slide
+swiper.slideTo(3, 500);       // To index 3 in 500 ms
+swiper.update();              // Recalculate after DOM changes
+swiper.destroy();             // Destroy the instance
 
 swiper.on('slideChange', (s) => console.log(s.activeIndex));
 ```
 
-## Vertiefung
-- [METHODS-DETAIL.md](METHODS-DETAIL.md) — vollständige Tabelle aller Methoden (Core, Navigation, Pagination, Scrollbar, Autoplay, Manipulation, Thumbs, Zoom, Keyboard, Mousewheel) mit Signaturen und Beschreibungen
+## Further reading
+- [METHODS-DETAIL.md](METHODS-DETAIL.md) — complete table of all methods (core, Navigation, Pagination, Scrollbar, Autoplay, Manipulation, Thumbs, Zoom, Keyboard, Mousewheel) with signatures and descriptions

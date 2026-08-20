@@ -1,16 +1,16 @@
-# Shopware 6 — Eigener Dokumenttyp
+# Shopware 6 — Custom Document Type
 
-Neuer Belegtyp = `document_type`-Entity + ein Renderer + Twig-Template.
+A new document type = a `document_type` entity + a renderer + a Twig template.
 
 ```php
 class FfPackingListRenderer extends AbstractDocumentRenderer
 {
     public function supports(): string { return 'ff_packing_list'; }
     public function render(array $operations, Context $context, RendererConfig $rendererConfig): RendererResult
-    { /* Order laden, Twig rendern, RenderedDocument zurückgeben */ }
+    { /* load order, render Twig, return RenderedDocument */ }
 }
 ```
 
-Registrierung via `document.renderer`-Tag; `document_type`+`document_base_config` per Migration anlegen. Template unter
-`Resources/views/documents/<type>.html.twig`. Erzeugung dann wie Standard über den `DocumentGenerator` (`sw-document`).
-Nummernkreis für Belegnummern: `shopware-core` (`sw-number-range`).
+Register via the `document.renderer` tag; create `document_type` and `document_base_config` in a migration. Place the template at
+`Resources/views/documents/<type>.html.twig`. Generation then works like the standard types through the `DocumentGenerator` (`sw-document`).
+Number range for document numbers: `shopware-core` (`sw-number-range`).

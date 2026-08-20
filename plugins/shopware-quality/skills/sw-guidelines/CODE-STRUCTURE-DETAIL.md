@@ -1,53 +1,53 @@
-# Shopware 6 — Code-Struktur: Vollständige Referenz
+# Shopware 6 — code structure: complete reference
 
-Quellen: `guides/development/extensions/code-structure.md`, `guides/development/extensions/index.md`
+Sources: `guides/development/extensions/code-structure.md`, `guides/development/extensions/index.md`
 
 ---
 
 ## Contents
 
-- [Extension-Typen im Vergleich](#extension-typen-im-vergleich)
-- [Shared Patterns (alle Extension-Typen)](#shared-patterns-alle-extension-typen)
-- [Project/Bundle-Struktur](#projectbundle-struktur)
-- [Plugin-Struktur (Static/Custom + Managed/Store)](#plugin-struktur-staticcustom-managedstore)
-- [App-Struktur](#app-struktur)
-- [Upgrade-orientierte Struktur](#upgrade-orientierte-struktur)
-- [MCP-Server Erweiterbarkeit](#mcp-server-erweiterbarkeit)
-- [Referenzen](#referenzen)
+- [Extension types compared](#extension-types-compared)
+- [Shared patterns (all extension types)](#shared-patterns-all-extension-types)
+- [Project/bundle structure](#projectbundle-structure)
+- [Plugin structure (static/custom + managed/store)](#plugin-structure-staticcustom-managedstore)
+- [App structure](#app-structure)
+- [Upgrade-oriented structure](#upgrade-oriented-structure)
+- [MCP server extendability](#mcp-server-extendability)
+- [References](#references)
 
-## Extension-Typen im Vergleich
+## Extension types compared
 
-Shopware bietet zwei primäre Extension-Typen:
+Shopware offers two primary extension types:
 
-- **Plugins**: Vollständiger System-Zugriff, nur Self-hosted
-- **Apps**: API-basiert, Cloud-kompatibel
+- **Plugins**: full system access, self-hosted only
+- **Apps**: API-based, cloud-compatible
 
-Themes sind kein eigener Extension-Typ, sondern reduzierte Plugins (nur Storefront-UI); in Cloud-Umgebungen via Apps geliefert.
+Themes are not a separate extension type but reduced plugins (storefront UI only); in cloud environments they ship via apps.
 
-### Entscheidungs-Tabelle
+### Decision table
 
-| Task | Plugin (inkl. Theme) | App | Hinweis |
+| Task | Plugin (incl. theme) | App | Note |
 |------|---------------------|-----|---------|
-| Storefront-Optik ändern | ✅ | ✅ | Themes sind Storefront-Plugins; in Cloud via Apps |
-| Admin-Module hinzufügen | ✅ | ✅ | Themes können keine Admin-Module |
-| Webhooks ausführen | ✅ | ✅ | Apps sind webhook-first |
-| Custom Entities | ✅ | ✅ | |
-| Datenbankstruktur ändern | ✅ | ❌ | Apps können kein DB-Schema ändern |
-| Payment-Provider integrieren | ✅ | ✅ | |
-| Im Shopware Store publizieren | ✅ | ✅ | |
-| In Shopware Cloud installieren | ❌ | ✅ | Plugins laufen nicht in Cloud |
-| In Self-hosted installieren | ✅ | ✅ | Apps seit 6.4.0.0 auch Self-hosted |
-| Custom Logic/Routes/Commands | ✅ | ⚠️ | Apps implementieren Logik extern via Webhooks |
-| Style/Template-Vererbung | ✅ | ✅ | Nur Theme-Plugins |
+| Change storefront appearance | ✅ | ✅ | Themes are storefront plugins; in the cloud via apps |
+| Add admin modules | ✅ | ✅ | Themes cannot provide admin modules |
+| Execute webhooks | ✅ | ✅ | Apps are webhook-first |
+| Custom entities | ✅ | ✅ | |
+| Change the database structure | ✅ | ❌ | Apps cannot change the DB schema |
+| Integrate a payment provider | ✅ | ✅ | |
+| Publish in the Shopware Store | ✅ | ✅ | |
+| Install in Shopware Cloud | ❌ | ✅ | Plugins do not run in the cloud |
+| Install self-hosted | ✅ | ✅ | Apps also run self-hosted since 6.4.0.0 |
+| Custom logic/routes/commands | ✅ | ⚠️ | Apps implement logic externally via webhooks |
+| Style/template inheritance | ✅ | ✅ | Theme plugins only |
 
 ---
 
-## Shared Patterns (alle Extension-Typen)
+## Shared patterns (all extension types)
 
-### Namespaces und Autoloading
+### Namespaces and autoloading
 
-- PSR-4 zu Ordnernamen mappen; tiefes Nesting vermeiden, das Ownership verbirgt
-- Namespace-Stamm muss zum Bundle-Namen passen
+- Map PSR-4 to folder names; avoid deep nesting that hides ownership
+- The namespace root must match the bundle name
 
 ```json
 {
@@ -59,27 +59,27 @@ Themes sind kein eigener Extension-Typ, sondern reduzierte Plugins (nur Storefro
 }
 ```
 
-### Konfiguration
+### Configuration
 
-- Defaults zentralisieren und Override-Points dokumentieren
-- Environment-Variablen nur in der Projekt-Schicht verwenden — NICHT in Store-Plugins
+- Centralize defaults and document override points
+- Use environment variables only in the project layer — NOT in store plugins
 
-### Dokumentation
+### Documentation
 
-- Jede Extension sollte ein README mit: Zweck, Install/Update-Schritten, bekannten Einschränkungen
+- Every extension should have a README covering purpose, install/update steps and known limitations
 
 ---
 
-## Project/Bundle-Struktur
+## Project/bundle structure
 
-Bundles für bespoke Installationen mit vollem Kontrollanspruch.
+Bundles are for bespoke installations where you claim full control.
 
 ```
 src/
 ├── Bundle/
-│   └── MyFeatureBundle.php     # Symfony Bundle Klasse
+│   └── MyFeatureBundle.php     # Symfony bundle class
 ├── Service/
-│   └── MyFeatureService.php    # Domain-Logik
+│   └── MyFeatureService.php    # domain logic
 ├── Event/
 │   └── MyFeatureEvent.php
 ├── Migration/
@@ -90,47 +90,47 @@ src/
         └── services.xml
 ```
 
-**Konventionen:**
-- Domain-Logik in Bundles, NICHT in Templates oder Controllern
-- Services via Dependency Injection exponieren
+**Conventions:**
+- Domain logic in bundles, NOT in templates or controllers
+- Expose services via dependency injection
 - `composer.json` type: `shopware-bundle`
-- Namespaces mit Bundle-Namen ausrichten
-- Integration-Points (Events, DAL Extensions) hinter Service-Klassen kapseln
+- Align namespaces with the bundle name
+- Encapsulate integration points (events, DAL extensions) behind service classes
 
 ---
 
-## Plugin-Struktur (Static/Custom + Managed/Store)
+## Plugin structure (static/custom + managed/store)
 
-### Pflicht-Verzeichnisstruktur
+### Required directory structure
 
 ```
 MyPlugin/
 ├── composer.json
 ├── src/
-│   ├── MyPlugin.php              # Plugin-Klasse (extends Plugin)
+│   ├── MyPlugin.php              # plugin class (extends Plugin)
 │   ├── Migration/
 │   │   └── V6_7/
 │   │       └── Migration*.php
 │   ├── Resources/
 │   │   ├── config/
 │   │   │   ├── services.xml
-│   │   │   └── config.xml       # Plugin-Konfiguration
-│   │   ├── views/               # Twig-Templates (Overrides)
-│   │   ├── storefront/          # Storefront JS/SCSS Assets
-│   │   └── administration/      # Admin-Module (wenn vorhanden)
-│   └── [Domain]/               # Domain-spezifische Klassen
+│   │   │   └── config.xml       # plugin configuration
+│   │   ├── views/               # Twig templates (overrides)
+│   │   ├── storefront/          # storefront JS/SCSS assets
+│   │   └── administration/      # admin modules (if any)
+│   └── [Domain]/               # domain-specific classes
 └── tests/
 ```
 
-### Regeln
+### Rules
 
-- Standard-Plugin-Skeleton verwenden — keine eigenen Auto-Loader oder Custom-Entrypoints
-- Konfiguration, Migrations, Administration, Storefront-Assets in Default-Ordnern lassen
-- Kein Cross-Wiring zwischen Plugins
-- DB-Schema-Änderungen ausschließlich via Migrations; install/update-Code idempotent
-- Für Store-Plugins: Keine Projekt-Annahmen (Hostnamen, Queues, Cron-Timing, Dateizugriff); Requirements dokumentieren + sichere Fallbacks
+- Use the standard plugin skeleton — no custom autoloaders or custom entry points
+- Keep configuration, migrations, administration and storefront assets in the default folders
+- No cross-wiring between plugins
+- DB schema changes exclusively via migrations; install/update code must be idempotent
+- For store plugins: no project assumptions (host names, queues, cron timing, file access); document requirements and provide safe fallbacks
 
-### composer.json Pflicht-Felder
+### Required composer.json fields
 
 ```json
 {
@@ -147,57 +147,57 @@ MyPlugin/
 
 ---
 
-## App-Struktur
+## App structure
 
-Apps implementieren Logik auf einem externen Server; Shopware kommuniziert via Webhooks/HTTP.
+Apps implement logic on an external server; Shopware communicates via webhooks/HTTP.
 
 ```
 my-app/
-├── manifest.xml           # App-Manifest (Pflicht)
+├── manifest.xml           # app manifest (required)
 ├── Resources/
-│   ├── views/             # Twig-Templates (Admin-Module)
+│   ├── views/             # Twig templates (admin modules)
 │   └── app/
 │       └── storefront/
-│           └── src/       # Storefront-Overrides
+│           └── src/       # storefront overrides
 └── src/
-    └── (App-Backend-Code — separat gehostet)
+    └── (app backend code — hosted separately)
 ```
 
-**Regeln:**
-- Manifest minimal und explizit: Permissions, Webhooks, Actions exakt dokumentieren
-- App-Backend (API/Webhook-Handler) von UI-Assets trennen
-- Kein stateful Coupling an Shop-Runtime; multi-tenant-tauglich designen
-- Keine direkten PHP-Erweiterungen möglich (kein Schema-Änderung via DB-Migrations)
+**Rules:**
+- Keep the manifest minimal and explicit: document permissions, webhooks and actions exactly
+- Separate the app backend (API/webhook handlers) from UI assets
+- No stateful coupling to the shop runtime; design for multi-tenancy
+- Direct PHP extensions are not possible (no schema changes via DB migrations)
 
 ---
 
-## Upgrade-orientierte Struktur
+## Upgrade-oriented structure
 
-Je weniger Surface Area dem Platform-Core ausgesetzt wird, desto weniger Upgrade-Aufwand.
+The less surface area you expose to the platform core, the less upgrade effort you incur.
 
 **Dos:**
-- Integration-Points (Events, Decorators, DAL Extensions) hinter Service-Klassen isolieren
-- Zusammengehörige Logik in einem Repository
-- Konsistentes Tooling im gesamten Repository
-- Minimale Cross-Plugin-Abhängigkeiten
+- Isolate integration points (events, decorators, DAL extensions) behind service classes
+- Keep related logic in one repository
+- Consistent tooling across the whole repository
+- Minimal cross-plugin dependencies
 
 **Don'ts:**
-- Verwandte Logik auf mehrere unabhängige Plugins aufteilen
-- Direkte Abhängigkeiten auf andere Plugins (ohne klare API-Verträge)
-- Core-Klassen ohne Decoration-Pattern erweitern
+- Split related logic across several independent plugins
+- Direct dependencies on other plugins (without clear API contracts)
+- Extend core classes without the decoration pattern
 
 ---
 
-## MCP-Server Erweiterbarkeit
+## MCP server extendability
 
-Sowohl Plugins als auch Apps können dem Shopware Built-in MCP-Server eigene Tools, Prompts und Resources hinzufügen:
+Both plugins and apps can add their own tools, prompts and resources to the Shopware built-in MCP server:
 
 - Plugins: `guides/plugins/plugins/mcp-server.md`
 - Apps: `guides/plugins/apps/mcp-server.md`
 
 ---
 
-## Referenzen
+## References
 
 - `guides/development/extensions/code-structure.md`
 - `guides/development/extensions/index.md`

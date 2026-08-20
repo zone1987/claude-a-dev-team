@@ -1,41 +1,41 @@
-# Symfony Flex Recipes — manifest.json vollständige Referenz
+# Symfony Flex recipes — complete manifest.json reference
 
-Quelle: `github.com/shopware/recipes` — analysiert aus allen `manifest.json`-Dateien.
+Source: `github.com/shopware/recipes` — analyzed from all `manifest.json` files.
 
 ## Contents
 
-- [Verzeichnisstruktur eines Recipe](#verzeichnisstruktur-eines-recipe)
-- [Alle manifest.json Keys](#alle-manifestjson-keys)
+- [Directory structure of a recipe](#directory-structure-of-a-recipe)
+- [All manifest.json keys](#all-manifestjson-keys)
 - [`post-install.txt`](#post-installtxt)
-- [Shopware-spezifische Besonderheiten](#shopware-spezifische-besonderheiten)
-- [Recipe erstellen (Checkliste)](#recipe-erstellen-checkliste)
+- [Shopware-specific characteristics](#shopware-specific-characteristics)
+- [Creating a recipe (checklist)](#creating-a-recipe-checklist)
 
-## Verzeichnisstruktur eines Recipe
+## Directory structure of a recipe
 
 ```
 recipes/
 └── <vendor>/
     └── <package>/
         └── <min-version>/
-            ├── manifest.json       # Pflicht
-            ├── post-install.txt    # Optional: Nachricht nach Installation
-            ├── root/               # Optional: Kopiert nach Projekt-Root (leerer string als Ziel)
-            ├── config/             # Optional: Kopiert nach %CONFIG_DIR%/
-            ├── bin/                # Optional: Shell-Skripte
-            ├── src/                # Optional: PHP-Stubs
-            ├── .platform/          # Optional: Platform.sh-Konfig
-            └── vendor-bin/         # Optional: bamarni/composer-bin-plugin Setup
+            ├── manifest.json       # Required
+            ├── post-install.txt    # Optional: message shown after installation
+            ├── root/               # Optional: copied to the project root (empty string as target)
+            ├── config/             # Optional: copied to %CONFIG_DIR%/
+            ├── bin/                # Optional: shell scripts
+            ├── src/                # Optional: PHP stubs
+            ├── .platform/          # Optional: Platform.sh config
+            └── vendor-bin/         # Optional: bamarni/composer-bin-plugin setup
 ```
 
-**Versions-Matching:** `<min-version>` ist die Minimum-Paket-Version. Flex wählt die höchste Recipe-Version die zur installierten Version passt (z.B. Recipe `6.6` gilt für `6.6.0` bis `6.6.x`).
+**Version matching:** `<min-version>` is the minimum package version. Flex picks the highest recipe version matching the installed version (e.g. recipe `6.6` applies to `6.6.0` through `6.6.x`).
 
 ---
 
-## Alle manifest.json Keys
+## All manifest.json keys
 
 ### `copy-from-recipe` (object)
 
-Kopiert Dateien/Verzeichnisse aus dem Recipe-Verzeichnis ins Projekt.
+Copies files/directories from the recipe directory into the project.
 
 ```json
 "copy-from-recipe": {
@@ -53,23 +53,23 @@ Kopiert Dateien/Verzeichnisse aus dem Recipe-Verzeichnis ins Projekt.
 }
 ```
 
-**Verzeichnis-Variablen:**
+**Directory variables:**
 
-| Variable | Typischer Wert |
+| Variable | Typical value |
 |----------|----------------|
 | `%BIN_DIR%` | `bin/` |
 | `%CONFIG_DIR%` | `config/` |
 | `%PUBLIC_DIR%` | `public/` |
 | `%SRC_DIR%` | `src/` |
 
-**Spezialfall `"root/": ""`:** Alles in `root/`-Unterverzeichnis des Recipe wird direkt ins Projekt-Root kopiert.
-Beispiel: `root/.environment` → `.environment` im Projektverzeichnis.
+**Special case `"root/": ""`:** everything in the recipe's `root/` subdirectory is copied directly into the project root.
+Example: `root/.environment` → `.environment` in the project directory.
 
 ---
 
 ### `bundles` (object)
 
-Registriert Symfony Bundles in `config/bundles.php`.
+Registers Symfony bundles in `config/bundles.php`.
 
 ```json
 "bundles": {
@@ -82,13 +82,13 @@ Registriert Symfony Bundles in `config/bundles.php`.
 }
 ```
 
-**Environments:** `"all"`, `"dev"`, `"prod"`, `"test"`, `"e2e"` (Shopware-spezifisch), beliebig erweiterbar.
+**Environments:** `"all"`, `"dev"`, `"prod"`, `"test"`, `"e2e"` (Shopware-specific), extensible at will.
 
 ---
 
 ### `env` (object)
 
-Fügt Einträge zur `.env` hinzu.
+Adds entries to `.env`.
 
 ```json
 "env": {
@@ -98,20 +98,20 @@ Fügt Einträge zur `.env` hinzu.
     "INSTANCE_ID": "%generate(secret)%",
     "DATABASE_URL": "mysql://root:root@localhost/shopware",
     "COMPOSER_ROOT_VERSION": "1.0.0",
-    "#1": "### Messaging — wähle einen Transport:",
+    "#1": "### Messaging — pick a transport:",
     "#2": "# MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages"
 }
 ```
 
-**Besonderheiten:**
-- `%generate(secret)%` — Flex generiert einen zufälligen Secret-Wert bei Installationszeit
-- `#N`-Keys (Nummern als Suffix) — werden als Kommentarzeilen in `.env` eingefügt
+**Characteristics:**
+- `%generate(secret)%` — Flex generates a random secret value at installation time
+- `#N` keys (numbers as suffix) — inserted as comment lines into `.env`
 
 ---
 
 ### `gitignore` (array)
 
-Fügt Einträge zur `.gitignore` hinzu.
+Adds entries to `.gitignore`.
 
 ```json
 "gitignore": [
@@ -130,13 +130,13 @@ Fügt Einträge zur `.gitignore` hinzu.
 ]
 ```
 
-**Negation:** `!`-Präfix negiert (Ausnahme aus einer vorher ignorierten Regel).
+**Negation:** the `!` prefix negates (an exception to a previously ignored rule).
 
 ---
 
 ### `container` (object)
 
-Setzt Container-Parameter und `env(...)`-Defaults im Symfony DI-Container.
+Sets container parameters and `env(...)` defaults in the Symfony DI container.
 
 ```json
 "container": {
@@ -153,14 +153,14 @@ Setzt Container-Parameter und `env(...)`-Defaults im Symfony DI-Container.
 }
 ```
 
-**`env(...)`-Keys** setzen Default-Werte für env-Variablen im Container (Fallback wenn env-Var nicht in `.env` gesetzt).
-**Verschachtelte Default-Kette:** `%env(default:default_cdn_strategy:SHOPWARE_CDN_STRATEGY_DEFAULT)%` — nutzt Container-Parameter als Fallback.
+**`env(...)` keys** set default values for env variables in the container (a fallback when the env var is not set in `.env`).
+**Nested default chain:** `%env(default:default_cdn_strategy:SHOPWARE_CDN_STRATEGY_DEFAULT)%` — uses a container parameter as the fallback.
 
 ---
 
 ### `docker-compose` (object)
 
-Injiziert Services/Volumes in `docker-compose.yml` und/oder `docker-compose.override.yml`.
+Injects services/volumes into `docker-compose.yml` and/or `docker-compose.override.yml`.
 
 ```json
 "docker-compose": {
@@ -186,13 +186,13 @@ Injiziert Services/Volumes in `docker-compose.yml` und/oder `docker-compose.over
 }
 ```
 
-Werte sind Arrays von YAML-Zeilen (zeilenbasiertes Merging).
+Values are arrays of YAML lines (line-based merging).
 
 ---
 
 ### `makefile` (array)
 
-Fügt Targets in ein `Makefile` im Projekt-Root ein.
+Inserts targets into a `Makefile` in the project root.
 
 ```json
 "makefile": [
@@ -205,13 +205,13 @@ Fügt Targets in ein `Makefile` im Projekt-Root ein.
 ]
 ```
 
-`\n\t` trennt mehrere Befehle innerhalb eines Targets.
+`\n\t` separates several commands inside one target.
 
 ---
 
 ### `aliases` (array)
 
-Kurzaliase für `composer require`.
+Short aliases for `composer require`.
 
 ```json
 "aliases": ["paas", "fastly", "k8s", "devenv", "code-quality", "messenger", "mailer"]
@@ -226,7 +226,7 @@ composer require fastly  # → shopware/fastly-meta
 
 ### `conflict` (object)
 
-Deklariert inkompatible Paket-Versionen.
+Declares incompatible package versions.
 
 ```json
 "conflict": {
@@ -239,7 +239,7 @@ Deklariert inkompatible Paket-Versionen.
 
 ### `composer-scripts` (object)
 
-Registriert Composer-Scripts.
+Registers Composer scripts.
 
 ```json
 "composer-scripts": {
@@ -247,35 +247,35 @@ Registriert Composer-Scripts.
 }
 ```
 
-`"symfony-cmd"` macht es zu einem Symfony Console-Command-Shortcut in `composer.json`.
-Leeres Objekt `{}` ist valide — registriert das Package ohne neue Scripts.
+`"symfony-cmd"` turns it into a Symfony console command shortcut in `composer.json`.
+An empty object `{}` is valid — it registers the package without new scripts.
 
 ---
 
 ## `post-install.txt`
 
-Text der nach Recipe-Installation angezeigt wird. Unterstützt Symfony Console Farbtags.
+Text shown after the recipe is installed. Supports Symfony Console color tags.
 
 ```
-* Nach der ersten Installation fehlen im Storefront CSS-Dateien.
+* After the first installation, CSS files are missing in the storefront.
   * Fix: <comment>platform mount:download --mount 'files' --target 'files' -A app</comment>
-  * Diese Dateien zum git-Repository hinzufügen und pushen.
+  * Add these files to the git repository and push.
 ```
 
 ---
 
-## Shopware-spezifische Besonderheiten
+## Shopware-specific characteristics
 
-### Version-Nummerierung
+### Version numbering
 
-Shopware-Recipes nutzen Major.Minor-Versionen die den Shopware Release-Lines entsprechen:
-`6.4`, `6.5`, `6.6`, `6.7`, `6.8` — keine SemVer.
+Shopware recipes use major.minor versions matching the Shopware release lines:
+`6.4`, `6.5`, `6.6`, `6.7`, `6.8` — no SemVer.
 
-Infrastruktur-Packages (`docker`, `paas-meta`, `fastly-meta`, `k8s-meta`) nutzen `0.x`/`1.x`/`2.x`.
+Infrastructure packages (`docker`, `paas-meta`, `fastly-meta`, `k8s-meta`) use `0.x`/`1.x`/`2.x`.
 
-### `e2e`-Environment
+### The `e2e` environment
 
-Shopware nutzt ein eigenes `e2e`-Environment für End-to-End-Tests.
+Shopware uses its own `e2e` environment for end-to-end tests.
 
 ```json
 "bundles": {
@@ -283,11 +283,11 @@ Shopware nutzt ein eigenes `e2e`-Environment für End-to-End-Tests.
 }
 ```
 
-### `shopware/platform` Auto-Merge
+### `shopware/platform` auto-merge
 
-CI (`sync-platform.php`) merged automatisch `core` + `administration` + `storefront` + `elasticsearch` in ein `shopware/platform`-Recipe für Legacy-Monorepo-Nutzer.
+CI (`sync-platform.php`) automatically merges `core` + `administration` + `storefront` + `elasticsearch` into one `shopware/platform` recipe for legacy monorepo users.
 
-### CDN-Strategy-Kette
+### CDN strategy chain
 
 ```json
 "container": {
@@ -296,9 +296,9 @@ CI (`sync-platform.php`) merged automatisch `core` + `administration` + `storefr
 }
 ```
 
-Fallback-Kette: `SHOPWARE_CDN_STRATEGY_DEFAULT` env var → `default_cdn_strategy` Container-Parameter → `"physical_filename"`.
+Fallback chain: `SHOPWARE_CDN_STRATEGY_DEFAULT` env var → `default_cdn_strategy` container parameter → `"physical_filename"`.
 
-### `frosh/code-quality-meta` — vendor-bin Pattern
+### `frosh/code-quality-meta` — the vendor-bin pattern
 
 ```json
 "copy-from-recipe": {
@@ -306,23 +306,23 @@ Fallback-Kette: `SHOPWARE_CDN_STRATEGY_DEFAULT` env var → `default_cdn_strateg
 }
 ```
 
-Kopiert `composer.json`-Dateien für `bamarni/composer-bin-plugin` Sub-Vendors:
+Copies `composer.json` files for `bamarni/composer-bin-plugin` sub-vendors:
 - `vendor-bin/cs-fixer/composer.json`
 - `vendor-bin/phpstan/composer.json`
 - `vendor-bin/rector/composer.json`
 
 ---
 
-## Recipe erstellen (Checkliste)
+## Creating a recipe (checklist)
 
-1. **Verzeichnis:** `<vendor>/<package>/<min-version>/manifest.json`
-2. **JSON:** 4-Leerzeichen-Einrückung, Datei mit Newline beenden
-3. **YAML-Dateien:** `.yaml` (nicht `.yml`), `null` (nicht `~`)
-4. **Placeholder-Dateien:** `.gitignore` (nicht `.gitkeep`)
-5. **Shell-Skripte:** `shellcheck`-kompatibel
-6. **Symfony-Commands:** Nicht in Makefile-Targets wrappen
-7. **Config-Pfade:** Underscore-Notation
-8. **Flex-Endpoint** in `composer.json` des Projekts setzen:
+1. **Directory:** `<vendor>/<package>/<min-version>/manifest.json`
+2. **JSON:** four-space indentation, end the file with a newline
+3. **YAML files:** `.yaml` (not `.yml`), `null` (not `~`)
+4. **Placeholder files:** `.gitignore` (not `.gitkeep`)
+5. **Shell scripts:** `shellcheck`-compatible
+6. **Symfony commands:** do not wrap them in Makefile targets
+7. **Config paths:** underscore notation
+8. **Set the Flex endpoint** in the project's `composer.json`:
 
 ```json
 "extra": {

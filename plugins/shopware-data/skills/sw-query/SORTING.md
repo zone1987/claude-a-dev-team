@@ -1,13 +1,13 @@
-# Shopware 6 — Criteria-Sorting
+# Shopware 6 — Criteria sorting
 
 ```php
 $criteria->addSorting(new FieldSorting('createdAt', FieldSorting::DESCENDING));
 $criteria->addSorting(new FieldSorting('name', FieldSorting::ASCENDING, true)); // naturalSorting
-// nach Aggregat/Count sortieren:
+// sort by aggregate/count:
 $criteria->addSorting(new CountSorting('lines.id', CountSorting::DESCENDING));
 ```
 
-Mehrere Sortierungen werden in Reihenfolge angewendet. Felder über Associations per Punktnotation. Für die
-Sortierung innerhalb einer nachgeladenen Association `$criteria->getAssociation('lines')->addSorting(...)`.
+Multiple sortings apply in the order they are added. Reach fields across associations with dot notation. To sort
+within a loaded association, use `$criteria->getAssociation('lines')->addSorting(...)`.
 
-→ Sorting-Referenz: [SORTING-SEARCH-CRITERIA.md](SORTING-SEARCH-CRITERIA.md)
+→ Sorting reference: [SORTING-SEARCH-CRITERIA.md](SORTING-SEARCH-CRITERIA.md)

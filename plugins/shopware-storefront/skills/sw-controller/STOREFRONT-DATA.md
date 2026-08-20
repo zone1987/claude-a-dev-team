@@ -1,7 +1,7 @@
-# Shopware 6 — Daten an bestehende Pages hängen
+# Shopware 6 — Attaching data to existing pages
 
-Um Core-Seiten (Produkt, Listing, Checkout …) anzureichern, auf ihr `*PageLoadedEvent` hören und das Ergebnis als
-**Extension** an die Page hängen — kein eigener Controller nötig.
+To enrich core pages (product, listing, checkout …), listen to their `*PageLoadedEvent` and attach the result as an
+**extension** to the page — no custom controller needed.
 
 ```php
 public static function getSubscribedEvents(): array
@@ -15,5 +15,5 @@ public function onProductPage(ProductPageLoadedEvent $event): void
 }
 ```
 
-Im Template via `page.extensions.ffRelated` zugreifen. Für ganz eigene Seiten → Controller + PageLoader
-(`sw-storefront-controller`, `sw-page-loader`). Performance: nur laden, was gebraucht wird.
+Access it in the template via `page.extensions.ffRelated`. For entirely custom pages → controller + PageLoader
+(`sw-storefront-controller`, `sw-page-loader`). Performance: load only what is needed.

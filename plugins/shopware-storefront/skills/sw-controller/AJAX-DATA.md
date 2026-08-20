@@ -1,17 +1,17 @@
-# Shopware 6 — Daten per JavaScript laden
+# Shopware 6 — Loading data via JavaScript
 
-Im JS-Plugin Daten über den eingebauten `HttpClient` (interne `frontend.*`-Routen) bzw. `StoreApiClient`
-(Store-API) nachladen.
+In a JS plugin, load data through the built-in `HttpClient` (internal `frontend.*` routes) or `StoreApiClient`
+(Store API).
 
 ```js
 import HttpClient from 'src/service/http-client.service';
 const client = new HttpClient();
 client.get(this.options.url, (response) => {
     const data = JSON.parse(response);
-    // DOM aktualisieren
+    // update the DOM
 });
 ```
 
-Server-seitig eine `frontend.*`-Route, die `JsonResponse`/`renderStorefront` liefert (`sw-storefront-controller`).
-Initiale Daten möglichst via `data-*`-Attribute aus dem Twig übergeben (spart Roundtrips). CSRF/Caching beachten
+On the server side, provide a `frontend.*` route that returns `JsonResponse`/`renderStorefront` (`sw-storefront-controller`).
+Pass initial data via `data-*` attributes from Twig where possible (saves roundtrips). Mind CSRF and caching
 (`sw-storefront-caching`).

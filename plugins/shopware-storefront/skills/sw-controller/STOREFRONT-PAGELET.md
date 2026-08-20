@@ -1,7 +1,7 @@
-# Shopware 6 — Storefront-Pagelet
+# Shopware 6 — Storefront pagelet
 
-Ein Pagelet ist ein eigenständig ladbarer Teilbereich (z.B. Offcanvas-Cart, Listing-Block) — nutzbar in mehreren
-Pages und per AJAX nachladbar.
+A pagelet is an independently loadable section (e.g. offcanvas cart, listing block) — usable in multiple
+pages and reloadable via AJAX.
 
 ```php
 class ExamplePagelet extends Pagelet
@@ -12,5 +12,5 @@ class ExamplePagelet extends Pagelet
 }
 ```
 
-Eigener `PageletLoader` befüllt das Struct und dispatcht ein `ExamplePageletLoadedEvent`. Ein Pagelet kennt
-**keinen** Header/Footer (das ist Sache der Page). Für komplette Seiten → `sw-storefront-page`.
+A dedicated `PageletLoader` populates the struct and dispatches an `ExamplePageletLoadedEvent`. A pagelet knows
+**no** header/footer (that is the page's responsibility). For complete pages → `sw-storefront-page`.

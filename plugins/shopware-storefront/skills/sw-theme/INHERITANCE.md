@@ -1,14 +1,14 @@
-# Shopware 6 — Theme-Inheritance
+# Shopware 6 — Theme inheritance
 
-Themes erben über `@`-Referenzen in `theme.json`. Die Reihenfolge der Arrays bestimmt Override-Priorität
-(spätere Einträge überschreiben frühere).
+Themes inherit via `@` references in `theme.json`. The array order determines override priority
+(later entries override earlier ones).
 
 ```json
 "style": ["@Storefront", "@ParentTheme", "app/storefront/src/scss/base.scss"]
 ```
 
-- `@Storefront` = Default-Theme-Basis (immer zuerst), dann ggf. ein Eltern-Theme, zuletzt eigenes SCSS/JS.
-- Nur **Bootstrap-Utilities/Variablen** importieren (kein kompiliertes CSS doppelt) — Performance/ADR „atomic theme compilation".
-- `views` steuert Twig-Template-Auflösung (Inheritance der Templates, `sw-twig-templates`).
+- `@Storefront` = default theme base (always first), then optionally a parent theme, and finally your own SCSS/JS.
+- Import only **Bootstrap utilities/variables** (do not duplicate compiled CSS) — performance/ADR "atomic theme compilation".
+- `views` controls Twig template resolution (template inheritance, `sw-twig-templates`).
 
-Bei reinem Erweitern eines bestehenden Shops oft besser: Plugin-SCSS/Template-Override statt eigenes Theme.
+When only extending an existing shop, plugin SCSS/template overrides are often the better choice than a separate theme.

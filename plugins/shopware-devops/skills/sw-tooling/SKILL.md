@@ -9,11 +9,11 @@ What makes local development bearable: watchers, IDE integration and fixtures.
 
 ## Reference map
 
-- **[DAL-REFERENCE.md](DAL-REFERENCE.md)**: Vollständige Filter- und Aggregations-Beispiele: `DAL-REFERENCE-DETAIL.md`. [DAL-REFERENCE-DETAIL](DAL-REFERENCE-DETAIL.md).
+- **[DAL-REFERENCE.md](DAL-REFERENCE.md)**: Complete filter and aggregation examples: `DAL-REFERENCE-DETAIL.md`. [DAL-REFERENCE-DETAIL](DAL-REFERENCE-DETAIL.md).
 - **[FIXTURE-BUNDLE.md](FIXTURE-BUNDLE.md)**: 1. [FIXTURE-BUNDLE-DETAIL](FIXTURE-BUNDLE-DETAIL.md).
 - **[IDE.md](IDE.md)**: JetBrains Marketplace: https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox. [IDE-TOOLING](IDE-TOOLING.md).
-- **[RECIPES.md](RECIPES.md)**: Recipes automatisieren die Konfiguration beim `composer require`. [RECIPES-MANIFEST](RECIPES-MANIFEST.md), [RECIPES-PACKAGES](RECIPES-PACKAGES.md).
-- **[WATCHERS.md](WATCHERS.md)**: Watcher **ersetzen nicht** den finalen Build-Schritt!. [WATCHERS-DETAIL](WATCHERS-DETAIL.md).
+- **[RECIPES.md](RECIPES.md)**: Recipes automate configuration during `composer require`. [RECIPES-MANIFEST](RECIPES-MANIFEST.md), [RECIPES-PACKAGES](RECIPES-PACKAGES.md).
+- **[WATCHERS.md](WATCHERS.md)**: Watchers **do not replace** the final build step!. [WATCHERS-DETAIL](WATCHERS-DETAIL.md).
 
 ## Source
 

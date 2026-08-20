@@ -1,5 +1,5 @@
 # Swiper Svelte (via Swiper Element)
 
-Ab Swiper v9: keine separaten Svelte-Komponenten. Integration über das Swiper Web Component.
+As of Swiper v9: no separate Svelte components. Integration happens through the Swiper Web Component.
 
-Vollständige Referenz: `SVELTE-SWIPER-SVELTE.md`
+Complete reference: `SVELTE-SWIPER-SVELTE.md`

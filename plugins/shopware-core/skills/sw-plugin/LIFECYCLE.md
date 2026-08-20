@@ -1,20 +1,20 @@
-# Shopware 6 — Plugin-Lifecycle
+# Shopware 6 — Plugin Lifecycle
 
-Die Plugin-Klasse kann Lifecycle-Hooks überschreiben. Jeder bekommt einen Context mit `getContext()`,
-`getPlugin()` und (bei uninstall) `keepUserData()`.
+The plugin class can override lifecycle hooks. Each one receives a context with `getContext()`,
+`getPlugin()` and (on uninstall) `keepUserData()`.
 
 ```php
 public function uninstall(UninstallContext $uninstallContext): void
 {
     parent::uninstall($uninstallContext);
     if ($uninstallContext->keepUserData()) {
-        return; // Tabellen/Daten NICHT löschen
+        return; // do NOT drop tables/data
     }
-    // Aufräumen: eigene Tabellen droppen etc.
+    // clean up: drop your own tables etc.
 }
 ```
 
-Faustregeln: Schema-Änderungen über **Migrations** (`sw-migration` / `shopware-data`), nicht im Lifecycle.
-Bei `uninstall` immer `keepUserData()` respektieren. `activate`/`deactivate` für Daten, die nur bei aktivem Plugin gelten.
+Rules of thumb: apply schema changes through **migrations** (`sw-migration` / `shopware-data`), not in the lifecycle.
+On `uninstall` always respect `keepUserData()`. Use `activate`/`deactivate` for data that only applies while the plugin is active.
 
-→ Alle Hooks, Reihenfolge & Beispiele: [LIFECYCLE-DETAIL.md](LIFECYCLE-DETAIL.md)
+→ All hooks, order & examples: [LIFECYCLE-DETAIL.md](LIFECYCLE-DETAIL.md)

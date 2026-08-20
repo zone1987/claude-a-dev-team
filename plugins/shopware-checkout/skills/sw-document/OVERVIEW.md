@@ -1,13 +1,13 @@
-# Shopware 6 — Dokumente erzeugen
+# Shopware 6 — Generating Documents
 
-Dokumente (Invoice, Delivery Note, Credit Note, Storno) werden über den `DocumentGenerator` aus einer Bestellung erzeugt.
+Documents (invoice, delivery note, credit note, cancellation) are generated from an order via the `DocumentGenerator`.
 
 ```php
 $operation = new DocumentGenerateOperation($orderId, FileTypes::PDF, ['documentNumber' => '1001']);
 $result = $this->documentGenerator->generate('invoice', [$orderId => $operation], $context)->getSuccess()->first();
 ```
 
-Typen: `invoice`, `delivery_note`, `credit_note`, `storno` (+ eigene, `sw-document-type`). Rendering über Twig-Templates
-+ FileGenerator (PDF; HTML-Alternative seit ADR „offer html alternative"). **ZUGFeRD/E-Rechnung** (XML im PDF) für
-gesetzeskonforme Rechnungen. Über Admin-API: `shopware-api` (`sw-admin-api-actions`). Betreibersicht: `shopware-merchant`
+Types: `invoice`, `delivery_note`, `credit_note`, `storno` (plus custom ones, `sw-document-type`). Rendering via Twig templates
+plus a file generator (PDF; HTML alternative since the ADR "offer html alternative"). **ZUGFeRD/e-invoicing** (XML inside the PDF) for
+legally compliant invoices. Through the Admin API: `shopware-api` (`sw-admin-api-actions`). Merchant view: `shopware-merchant`
 (`sw-merchant-orders-documents`).

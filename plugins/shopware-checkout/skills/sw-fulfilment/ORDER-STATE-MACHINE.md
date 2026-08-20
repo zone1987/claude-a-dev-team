@@ -1,7 +1,7 @@
 # Shopware 6 — StateMachine (Order/Payment/Delivery)
 
-Bestellungen haben drei State-Machines: `order.state`, `order_transaction.state` (Zahlung), `order_delivery.state` (Versand).
-Übergänge laufen über die `StateMachineRegistry` (nicht direktes Setzen des Status).
+Orders have three state machines: `order.state`, `order_transaction.state` (payment), `order_delivery.state` (shipping).
+Transitions run through the `StateMachineRegistry` (never set the state directly).
 
 ```php
 $this->stateMachineRegistry->transition(
@@ -10,6 +10,6 @@ $this->stateMachineRegistry->transition(
 );
 ```
 
-Verfügbare Transitions ergeben sich aus der State-Machine-Definition (z.B. `open → in_progress → completed`).
-Eigene States/Transitions per Migration in `state_machine_state`/`state_machine_transition`. Statuswechsel feuern Events
-(→ Flow Builder, Mail). Über die Admin-API: `shopware-api` (`sw-admin-api-actions`). Lifecycle-Events: `sw-order-events`.
+Available transitions follow from the state machine definition (e.g. `open → in_progress → completed`).
+Add custom states/transitions via migration into `state_machine_state`/`state_machine_transition`. State changes fire events
+(→ Flow Builder, mail). Through the Admin API: `shopware-api` (`sw-admin-api-actions`). Lifecycle events: `sw-order-events`.

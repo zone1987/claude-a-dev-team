@@ -1,19 +1,19 @@
-# Swiper Grid-Modul — Vollständige Referenz
+# Swiper Grid module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [Fill-Richtungen erklärt](#fill-richtungen-erklärt)
-- [Kompatibilitätshinweise](#kompatibilitätshinweise)
-- [Vollständige Beispiele](#vollständige-beispiele)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [Fill directions explained](#fill-directions-explained)
+- [Compatibility notes](#compatibility-notes)
+- [Complete examples](#complete-examples)
 
-## Konzept
+## Concept
 
-Das Grid-Modul ermöglicht mehrzeilige Slide-Layouts. Slides werden in einem Raster angeordnet, wobei die Füllrichtung (zeilenweise oder spaltenweise) konfigurierbar ist.
+The Grid module enables multi-row slide layouts. Slides are arranged in a grid, and the fill direction (row by row or column by column) is configurable.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -31,17 +31,17 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
-|------|-----|---------|--------------|
-| `rows` | `number` | `1` | Anzahl der Slide-Zeilen im mehrzeiligen Layout |
-| `fill` | `'row' \| 'column'` | `'column'` | Füllrichtung: `'column'` = spaltenweise, `'row'` = zeilenweise |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `rows` | `number` | `1` | Number of slide rows in the multi-row layout |
+| `fill` | `'row' \| 'column'` | `'column'` | Fill direction: `'column'` = column by column, `'row'` = row by row |
 
-## Fill-Richtungen erklärt
+## Fill directions explained
 
-### `fill: 'column'` (Standard)
-Slides füllen spaltenweise: erst alle Zeilen einer Spalte, dann die nächste Spalte.
+### `fill: 'column'` (default)
+Slides fill column by column: first all rows of one column, then the next column.
 
 ```
 Slide 1 | Slide 3 | Slide 5
@@ -49,22 +49,22 @@ Slide 2 | Slide 4 | Slide 6
 ```
 
 ### `fill: 'row'`
-Slides füllen zeilenweise: erst alle Spalten einer Zeile, dann die nächste Zeile.
+Slides fill row by row: first all columns of one row, then the next row.
 
 ```
 Slide 1 | Slide 2 | Slide 3
 Slide 4 | Slide 5 | Slide 6
 ```
 
-## Kompatibilitätshinweise
+## Compatibility notes
 
-- **Nicht kompatibel** mit Virtual Slides-Modul
-- **Loop-Modus:** Erfordert genügend Slides oder `loopAddBlankSlides: true`
-- **`slidesPerView: 'auto'`:** Eingeschränkt kompatibel
+- **Not compatible** with the Virtual Slides module
+- **Loop mode:** requires enough slides or `loopAddBlankSlides: true`
+- **`slidesPerView: 'auto'`:** only partially compatible
 
-## Vollständige Beispiele
+## Complete examples
 
-### 2x3 Raster (2 Zeilen, 3 sichtbare Spalten)
+### 2x3 grid (2 rows, 3 visible columns)
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -78,7 +78,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-### Responsive Grid mit Breakpoints
+### Responsive grid with breakpoints
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -105,7 +105,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-### Mit Navigation und Loop
+### With navigation and loop
 
 ```js
 import Swiper from 'swiper';
@@ -130,4 +130,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#grid
+Source: https://swiperjs.com/swiper-api#grid

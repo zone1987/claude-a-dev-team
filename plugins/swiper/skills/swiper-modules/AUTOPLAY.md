@@ -1,6 +1,6 @@
-# Swiper — Autoplay-Modul
+# Swiper — Autoplay module
 
-Automatische Slide-Transition mit konfigurierbarem Delay und Steuerung.
+Automatic slide transition with configurable delay and control.
 
 ```js
 import Swiper from 'swiper';
@@ -15,10 +15,10 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Programmatisch steuern
+// Control programmatically
 swiper.autoplay.pause();
 swiper.autoplay.resume();
 ```
 
-## Vertiefung
-- [AUTOPLAY-DETAIL.md](AUTOPLAY-DETAIL.md) — alle Parameter, Properties, Methoden, Events inkl. autoplayTimeLeft
+## Further reading
+- [AUTOPLAY-DETAIL.md](AUTOPLAY-DETAIL.md) — all parameters, properties, methods, events including autoplayTimeLeft

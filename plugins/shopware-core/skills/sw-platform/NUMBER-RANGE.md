@@ -1,15 +1,15 @@
 # Shopware 6 — NumberRange
 
-Für fortlaufende, konfigurierbare Nummern (z.B. eigene Belegnummern) den `NumberRangeValueGenerator` nutzen —
-nicht selbst hochzählen (Race-Conditions, Cluster-sicher gelöst).
+Use the `NumberRangeValueGenerator` for sequential, configurable numbers (e.g. your own document numbers) —
+never count up yourself (it solves race conditions and is cluster-safe).
 
 ```php
 $number = $this->valueGenerator->getValue(
-    'ff_content_export',   // technischer Name des NumberRange-Typs
+    'ff_content_export',   // technical name of the NumberRange type
     $context,
-    $salesChannelId        // optional je Sales Channel
+    $salesChannelId        // optional, per sales channel
 );
 ```
 
-Einen eigenen Nummernkreis-Typ über eine Migration/Fixture in `number_range_type` + `number_range` anlegen
-(Pattern z.B. `EXP{n}`). Der Generator ist transaktions-/clustersicher. Sales-Channel-spezifische Ranges möglich.
+Create your own number range type via a migration/fixture in `number_range_type` + `number_range`
+(pattern e.g. `EXP{n}`). The generator is transaction- and cluster-safe. Sales-channel-specific ranges are possible.

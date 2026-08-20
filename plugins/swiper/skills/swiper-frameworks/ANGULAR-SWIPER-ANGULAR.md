@@ -1,38 +1,38 @@
-# Swiper Angular — Vollständige Referenz (via Swiper Element)
+# Swiper Angular — Complete reference (via Swiper Element)
 
-**Wichtig:** Die separaten Angular-Komponenten (`swiper/angular`) wurden in Swiper v9 entfernt.
-Der offizielle Weg ist seither die Integration via **Swiper Element** (Web Component).
+**Important:** The separate Angular components (`swiper/angular`) were removed in Swiper v9.
+Since then, the official approach is integration via **Swiper Element** (Web Component).
 
 ---
 
 ## Contents
 
-- [Migration von alten Angular-Komponenten (< v9)](#migration-von-alten-angular-komponenten-v9)
+- [Migration from the old Angular components (< v9)](#migration-from-the-old-angular-components-v9)
 - [Installation](#installation)
-- [Schritt 1: CUSTOM_ELEMENTS_SCHEMA registrieren](#schritt-1-custom_elements_schema-registrieren)
-- [Schritt 2: Swiper Element registrieren](#schritt-2-swiper-element-registrieren)
-- [Schritt 3: CSS importieren](#schritt-3-css-importieren)
-- [Template — Attribute-Binding (einfache Werte)](#template-attribute-binding-einfache-werte)
-- [Template — Property-Binding (Angular `[property]="value"`)](#template-property-binding-angular-propertyvalue)
-- [Swiper-Instanz via ViewChild](#swiper-instanz-via-viewchild)
-- [Events (DOM Custom Events)](#events-dom-custom-events)
-- [NgFor mit Slides](#ngfor-mit-slides)
-- [Thumbs-Integration](#thumbs-integration)
-- [Signals-basierter Ansatz (Angular 17+)](#signals-basierter-ansatz-angular-17)
-- [TypeScript-Typen](#typescript-typen)
-- [Häufige Probleme & Lösungen](#häufige-probleme-lösungen)
+- [Step 1: Register CUSTOM_ELEMENTS_SCHEMA](#step-1-register-custom_elements_schema)
+- [Step 2: Register Swiper Element](#step-2-register-swiper-element)
+- [Step 3: Import the CSS](#step-3-import-the-css)
+- [Template — attribute binding (simple values)](#template-attribute-binding-simple-values)
+- [Template — property binding (Angular `[property]="value"`)](#template-property-binding-angular-propertyvalue)
+- [Swiper instance via ViewChild](#swiper-instance-via-viewchild)
+- [Events (DOM custom events)](#events-dom-custom-events)
+- [NgFor with slides](#ngfor-with-slides)
+- [Thumbs integration](#thumbs-integration)
+- [Signals-based approach (Angular 17+)](#signals-based-approach-angular-17)
+- [TypeScript types](#typescript-types)
+- [Common problems and solutions](#common-problems-and-solutions)
 
-## Migration von alten Angular-Komponenten (< v9)
+## Migration from the old Angular components (< v9)
 
-Alte Imports entfernen:
+Remove the old imports:
 ```typescript
-// ALT (v8, nicht mehr verfügbar):
+// OLD (v8, no longer available):
 import { SwiperModule } from 'swiper/angular';
 // imports: [SwiperModule]
 // <swiper [slidesPerView]="3">...</swiper>
 ```
 
-Archiv für v8: https://v8.swiperjs.com/angular
+Archive for v8: https://v8.swiperjs.com/angular
 
 ---
 
@@ -44,9 +44,9 @@ npm install swiper
 
 ---
 
-## Schritt 1: CUSTOM_ELEMENTS_SCHEMA registrieren
+## Step 1: Register CUSTOM_ELEMENTS_SCHEMA
 
-### In einem NgModule (Angular < 19 ohne Standalone)
+### In an NgModule (Angular < 19 without standalone)
 
 ```typescript
 // app.module.ts
@@ -63,7 +63,7 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-### In einer Standalone-Komponente (Angular 17+)
+### In a standalone component (Angular 17+)
 
 ```typescript
 // my.component.ts
@@ -85,15 +85,15 @@ export class MyComponent {}
 
 ---
 
-## Schritt 2: Swiper Element registrieren
+## Step 2: Register Swiper Element
 
 ```typescript
-// main.ts (oder app.component.ts)
+// main.ts (or app.component.ts)
 import { register } from 'swiper/element/bundle';
 register();
 ```
 
-Alternativ in `app.config.ts` (Angular 17+ Application Builder):
+Alternatively in `app.config.ts` (Angular 17+ Application Builder):
 ```typescript
 import { ApplicationConfig } from '@angular/core';
 import { register } from 'swiper/element/bundle';
@@ -107,13 +107,13 @@ export const appConfig: ApplicationConfig = {
 
 ---
 
-## Schritt 3: CSS importieren
+## Step 3: Import the CSS
 
 ```typescript
-// angular.json — styles Array:
+// angular.json — styles array:
 // "styles": ["node_modules/swiper/swiper-bundle.min.css"]
 
-// Oder in styles.scss / styles.css:
+// Or in styles.scss / styles.css:
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
@@ -121,10 +121,10 @@ export const appConfig: ApplicationConfig = {
 
 ---
 
-## Template — Attribute-Binding (einfache Werte)
+## Template — attribute binding (simple values)
 
 ```html
-<!-- In der Component-Template -->
+<!-- In the component template -->
 <swiper-container
   slides-per-view="3"
   space-between="30"
@@ -144,9 +144,9 @@ export const appConfig: ApplicationConfig = {
 
 ---
 
-## Template — Property-Binding (Angular `[property]="value"`)
+## Template — property binding (Angular `[property]="value"`)
 
-Für komplexe Parameter (Objekte, Arrays, Expressions):
+For complex parameters (objects, arrays, expressions):
 
 ```html
 <swiper-container
@@ -190,7 +190,7 @@ export class MyComponent {
 
 ---
 
-## Swiper-Instanz via ViewChild
+## Swiper instance via ViewChild
 
 ```typescript
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
@@ -214,7 +214,7 @@ export class SwiperComponent implements AfterViewInit {
   ngAfterViewInit() {
     const swiperEl = this.swiperRef.nativeElement;
 
-    // Komplexe Parameter vor initialize() setzen
+    // Set complex parameters before initialize()
     Object.assign(swiperEl, {
       slidesPerView: 3,
       spaceBetween: 30,
@@ -243,12 +243,12 @@ export class SwiperComponent implements AfterViewInit {
 
 ---
 
-## Events (DOM Custom Events)
+## Events (DOM custom events)
 
-Ab Swiper v11 haben alle Events standardmäßig den Präfix `swiper`:
+As of Swiper v11, all events carry the prefix `swiper` by default:
 
 ```html
-<!-- v11+ Events (Präfix "swiper") -->
+<!-- v11+ events (prefix "swiper") -->
 <swiper-container
   (swiperslidechange)="onSlideChange($event)"
   (swiperprogress)="onProgress($event)"
@@ -276,16 +276,16 @@ onAutoplayTimeLeft(event: CustomEvent) {
 }
 ```
 
-Präfix anpassen (leerer String = kein Präfix, wie vor v11):
+Change the prefix (empty string = no prefix, as before v11):
 ```html
 <swiper-container events-prefix="">
-  <!-- Events ohne Präfix: "slidechange", "progress", etc. -->
+  <!-- Events without prefix: "slidechange", "progress", etc. -->
 </swiper-container>
 ```
 
 ---
 
-## NgFor mit Slides
+## NgFor with slides
 
 ```html
 <swiper-container [slidesPerView]="3">
@@ -298,12 +298,12 @@ Präfix anpassen (leerer String = kein Präfix, wie vor v11):
 
 ---
 
-## Thumbs-Integration
+## Thumbs integration
 
 ```typescript
 @Component({
   template: `
-    <!-- Haupt-Swiper -->
+    <!-- Main Swiper -->
     <swiper-container
       #mainSwiper
       init="false"
@@ -314,7 +314,7 @@ Präfix anpassen (leerer String = kein Präfix, wie vor v11):
       </swiper-slide>
     </swiper-container>
 
-    <!-- Thumbs-Swiper -->
+    <!-- Thumbs Swiper -->
     <swiper-container
       class="thumbs-swiper"
       slides-per-view="4"
@@ -333,7 +333,7 @@ export class ThumbsComponent {}
 
 ---
 
-## Signals-basierter Ansatz (Angular 17+)
+## Signals-based approach (Angular 17+)
 
 ```typescript
 import { Component, signal, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -360,12 +360,12 @@ export class ReactiveComponent {
 
 ---
 
-## TypeScript-Typen
+## TypeScript types
 
-Für TypeScript-Unterstützung können Typ-Deklarationen für Custom Elements genutzt werden:
+For TypeScript support you can add type declarations for the custom elements:
 
 ```typescript
-// Eigene Type-Declaration wenn nötig
+// Your own type declaration where needed
 declare global {
   interface HTMLElementTagNameMap {
     'swiper-container': HTMLElement & {
@@ -374,7 +374,7 @@ declare global {
       slidesPerView: number | 'auto';
       spaceBetween: number;
       loop: boolean;
-      // weitere Parameter...
+      // further parameters...
     };
     'swiper-slide': HTMLElement;
   }
@@ -383,16 +383,16 @@ declare global {
 
 ---
 
-## Häufige Probleme & Lösungen
+## Common problems and solutions
 
-| Problem | Lösung |
+| Problem | Solution |
 |---|---|
-| `'swiper-container' is not a known element` | `CUSTOM_ELEMENTS_SCHEMA` im Modul/Component hinzufügen |
-| Styles werden nicht angewendet | `@import 'swiper/css'` in `styles.scss` oder `angular.json` |
-| Komplexe Parameter funktionieren nicht als Attribut | Via `Object.assign` + `initialize()` oder `[property]`-Binding |
-| Events werden nicht gefeuert | Event-Namen prüfen: v11+ Prefix `swiper` (z.B. `swiperslidechange`) |
-| Swiper initialisiert sich vor Property-Binding | `init="false"` Attribut setzen, dann `swiperEl.initialize()` manuell aufrufen |
+| `'swiper-container' is not a known element` | Add `CUSTOM_ELEMENTS_SCHEMA` to the module/component |
+| Styles are not applied | `@import 'swiper/css'` in `styles.scss` or `angular.json` |
+| Complex parameters do not work as an attribute | Use `Object.assign` + `initialize()` or `[property]` binding |
+| Events are not fired | Check the event names: v11+ prefix `swiper` (e.g. `swiperslidechange`) |
+| Swiper initializes before the property binding | Set the `init="false"` attribute, then call `swiperEl.initialize()` manually |
 
 ---
 
-*Quelle: https://swiperjs.com/angular + https://swiperjs.com/element — Swiper v12.2.0*
+*Source: https://swiperjs.com/angular + https://swiperjs.com/element — Swiper v12.2.0*

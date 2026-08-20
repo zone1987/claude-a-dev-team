@@ -1,7 +1,7 @@
-# Shopware 6 — Cart-Processor
+# Shopware 6 — Cart Processor
 
-Der Warenkorb wird in zwei Phasen berechnet: **Collector** (Daten sammeln, `sw-cart-collector`) → **Processor**
-(Preise/Struktur berechnen). Ein Processor implementiert `CartProcessorInterface`.
+The cart is calculated in two phases: **collector** (gather data, `sw-cart-collector`) → **processor**
+(calculate prices/structure). A processor implements `CartProcessorInterface`.
 
 ```php
 class FfFeeProcessor implements CartProcessorInterface
@@ -9,13 +9,13 @@ class FfFeeProcessor implements CartProcessorInterface
     public function process(CartDataCollection $data, Cart $original, Cart $toCalculate,
                             SalesChannelContext $context, CartBehavior $behavior): void
     {
-        // LineItems/Gebühren zu $toCalculate hinzufügen, Preise via Calculator berechnen
+        // add line items/fees to $toCalculate, calculate prices via calculator
     }
 }
 ```
 
-Registrierung via `shopware.cart.processor`-Tag (Priorität beachtet die Reihenfolge). Arbeite immer auf `$toCalculate`
-(nicht `$original`). Preisberechnung über die Price-Services (`sw-cart-price`). Rabatte → `sw-cart-discount`,
-Lieferkosten → `sw-delivery`. Für App-basierte Manipulation: `sw-cart-facade-script`.
+Register via the `shopware.cart.processor` tag (priority controls the order). Always work on `$toCalculate`
+(not `$original`). Calculate prices through the price services (`sw-cart-price`). Discounts → `sw-cart-discount`,
+delivery costs → `sw-delivery`. For app-based manipulation: `sw-cart-facade-script`.
 
-→ Cart-Details: [PROCESSOR-CHECKOUT.md](PROCESSOR-CHECKOUT.md)
+→ Cart details: [PROCESSOR-CHECKOUT.md](PROCESSOR-CHECKOUT.md)

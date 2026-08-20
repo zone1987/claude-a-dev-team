@@ -1,8 +1,8 @@
-# Shopware 6 — Vollständige Webserver-Konfigurationsreferenz
+# Shopware 6 — Complete Webserver Configuration Reference
 
-> Quelle: `resources/references/config-reference/server/`
+> Source: `resources/references/config-reference/server/`
 
-Das Document Root muss immer auf den `public/`-Ordner zeigen.
+The document root must always point at the `public/` folder.
 
 ---
 

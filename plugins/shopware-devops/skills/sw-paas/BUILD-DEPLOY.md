@@ -1,40 +1,40 @@
 # Shopware PaaS (Platform.sh/Upsun) — Build & Deploy
 
-> Dieser Skill bezieht sich auf das **klassische Shopware PaaS** (Platform.sh/Upsun),
-> nicht auf PaaS Native. Für PaaS Native → `sw-paas-fundamentals`.
+> This skill covers **classic Shopware PaaS** (Platform.sh/Upsun),
+> not PaaS Native. For PaaS Native → `sw-paas-fundamentals`.
 
 ## Setup
 
 ```bash
-# PaaS CLI installieren
+# Install the PaaS CLI
 curl -sfS https://cli.shopware.com/installer | php
-shopware     # Erster Start → Browser-Login
+shopware     # First start → browser login
 
-# paas-meta Recipe installieren
+# Install the paas-meta recipe
 composer require shopware/paas-meta
 
-# PaaS Remote hinzufügen
+# Add the PaaS remote
 shopware project:set-remote <PROJECT_ID>
 git push shopware main
 ```
 
-## .platform/-Konfiguration
+## .platform/ configuration
 
-| Datei | Zweck |
+| File | Purpose |
 |-------|-------|
-| `applications.yaml` | App: PHP-Version, Hooks, Mounts, Worker, Vars |
-| `services.yaml` | DB, Redis, RabbitMQ, Network-Storage |
-| `routes.yaml` | HTTP-Routing |
+| `applications.yaml` | App: PHP version, hooks, mounts, workers, vars |
+| `services.yaml` | DB, Redis, RabbitMQ, network storage |
+| `routes.yaml` | HTTP routing |
 
-## Build → Deploy Ablauf
+## Build → Deploy sequence
 
 ```
-BUILD:        Konfiguration validieren → Docker-Image → Dependencies → Build-Hook
-DEPLOY:       App-Requests halten → Filesysteme mounten → Deploy-Hook → Requests freigeben
-POST_DEPLOY:  Nach Verbindungsaufnahme ausgeführt
+BUILD:        Validate configuration → Docker image → dependencies → build hook
+DEPLOY:       Hold app requests → mount filesystems → deploy hook → release requests
+POST_DEPLOY:  Runs after connections are accepted
 ```
 
-## Automatische Umgebungsvariablen
+## Automatic environment variables
 
 ```bash
 DATABASE_URL=mysql://user:pass@database.internal:3306/main
@@ -44,7 +44,7 @@ OPENSEARCH_URL=http://opensearch.internal:9200
 APP_URL=https://main-abc123.eu-5.platformsh.site
 ```
 
-## Rebuild erzwingen (ohne Code-Änderung)
+## Force a rebuild (without a code change)
 
 ```bash
 shopware variable:create --environment main --level environment \
@@ -52,6 +52,6 @@ shopware variable:create --environment main --level environment \
 shopware variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
-## Vertiefung
+## Deep dive
 
 [BUILD-DEPLOY-DETAIL.md](BUILD-DEPLOY-DETAIL.md)

@@ -1,17 +1,17 @@
-# Shopware 6 — OneToMany-Association
+# Shopware 6 — OneToMany association
 
-Eltern-Entity referenziert mehrere Kinder; die FK liegt in der **Kind**-Tabelle.
+The parent entity references multiple children; the foreign key sits in the **child** table.
 
 ```php
-// in der Eltern-Definition
+// in the parent definition
 (new OneToManyAssociationField('lines', FfLineDefinition::class, 'example_id'))
     ->addFlags(new CascadeDelete()),
-// in der Kind-Definition
+// in the child definition
 (new FkField('example_id', 'exampleId', FfExampleDefinition::class))->addFlags(new Required()),
 (new ManyToOneAssociationField('example', 'example_id', FfExampleDefinition::class, 'id')),
 ```
 
-`CascadeDelete` löscht Kinder mit dem Elternteil. `autoload(true)` vermeiden (Performance, ADR
-„deprecate autoload true") — Associations gezielt per Criteria laden (`sw-criteria`).
+`CascadeDelete` removes the children together with the parent. Avoid `autoload(true)` (performance, ADR
+"deprecate autoload true") — load associations explicitly via Criteria (`sw-criteria`).
 
-→ Alle 7 Association-Typen & Details: [ASSOCIATIONS.md](ASSOCIATIONS.md)
+→ All 7 association types and details: [ASSOCIATIONS.md](ASSOCIATIONS.md)

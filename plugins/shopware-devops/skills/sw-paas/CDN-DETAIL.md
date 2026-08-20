@@ -1,6 +1,6 @@
 # Shopware PaaS Native — CDN & Custom Domains (Deep Reference)
 
-Quellen: `products/paas/shopware/cdn/index.md`,
+Sources: `products/paas/shopware/cdn/index.md`,
 `products/paas/shopware/cdn/fastly-snippets.md`,
 `products/paas/shopware/cdn/security-features.md`,
 `products/paas/shopware-paas/fastly.md`
@@ -9,74 +9,74 @@ Quellen: `products/paas/shopware/cdn/index.md`,
 
 ## Contents
 
-- [Fastly CDN — Überblick](#fastly-cdn-überblick)
+- [Fastly CDN — overview](#fastly-cdn-overview)
 - [Web Application Firewall (WAF)](#web-application-firewall-waf)
 - [Custom Domains](#custom-domains)
 - [Fastly Snippets (PaaS Native)](#fastly-snippets-paas-native)
-- [Fastly (klassisches Shopware PaaS / Platform.sh)](#fastly-klassisches-shopware-paas-platformsh)
+- [Fastly (classic Shopware PaaS / Platform.sh)](#fastly-classic-shopware-paas-platformsh)
 
-## Fastly CDN — Überblick
+## Fastly CDN — overview
 
-Fastly ist das primäre CDN für Shopware PaaS Native. Vorteile:
+Fastly is the primary CDN for Shopware PaaS Native. Benefits:
 
-- **Globale Performance**: Responses aus weltweiten Edge-Locations
-- **Ressourcen-Optimierung**: Weniger Last auf Application-Servern
-- **Redis-Entlastung**: HTTP Cache am Edge statt Redis
-- **Auto-Scaling**: Traffic-Spitzen ohne App-Auswirkung
+- **Global performance**: responses from edge locations worldwide
+- **Resource optimization**: less load on application servers
+- **Redis relief**: HTTP cache at the edge instead of Redis
+- **Auto-scaling**: traffic spikes without impact on the app
 
-### Zwei Fastly-Services
+### Two Fastly services
 
-| Service | Zweck |
+| Service | Purpose |
 |---------|-------|
-| `storefront` | Proxy für Storefront und Admin |
-| `cdn` | Proxy für alle S3-CDN-Assets (Public Bucket) |
+| `storefront` | Proxy for storefront and admin |
+| `cdn` | Proxy for all S3 CDN assets (public bucket) |
 
-### Konfiguration
+### Configuration
 
-Vollständig automatisch — kein zusätzliches Setup nötig.
-Konfiguriert durch `config/packages/prod/fastly.yaml` (via k8s-meta).
+Fully automatic — no additional setup required.
+Configured through `config/packages/prod/fastly.yaml` (via k8s-meta).
 
 ---
 
 ## Web Application Firewall (WAF)
 
-Standardmäßig aktiviert via Fastly NGWAF — kein User-Action erforderlich.
+Enabled by default via Fastly NGWAF — no user action required.
 
-- Feature Set: NGWAF `Core`
-- Schutz gegen: OWASP Top 10 Kategorien
-- Weitere Add-ons in Roadmap (kein konkreter Zeitplan)
+- Feature set: NGWAF `Core`
+- Protects against: OWASP Top 10 categories
+- Further add-ons on the roadmap (no concrete schedule)
 
 ---
 
 ## Custom Domains
 
-### Voraussetzungen
+### Requirements
 
-- `sw-paas` CLI installiert und konfiguriert
-- Organization-ID bekannt: `sw-paas org list`
-- Domain registriert mit DNS-Verwaltungszugang
-- Deployment-Berechtigungen vorhanden
+- `sw-paas` CLI installed and configured
+- Organization ID known: `sw-paas org list`
+- Domain registered with access to DNS management
+- Deployment permissions available
 
-### Wichtig: DNS vor Domain-Anlage konfigurieren!
+### Important: configure DNS before creating the domain!
 
-Die Plattform validiert DNS in Echtzeit bei `sw-paas domain create`.
-Bei Fehler: Domain-Anlage schlägt fehl.
+The platform validates DNS in real time during `sw-paas domain create`.
+On error: creating the domain fails.
 
 ---
 
-### DNS-Konfiguration: Subdomain (nicht-Apex)
+### DNS configuration: subdomain (non-apex)
 
-Beispiel: `shop.example.com`, `www.example.com`
+Example: `shop.example.com`, `www.example.com`
 
 ```dns
 shop.example.com.  IN  CNAME  cdn.shopware.shop.
 ```
 
-### DNS-Konfiguration: Apex Domain
+### DNS configuration: apex domain
 
-Beispiel: `example.com`
+Example: `example.com`
 
-#### A Records (IPv4, alle 4 anlegen!)
+#### A records (IPv4, create all 4!)
 
 ```dns
 example.com.  IN  A  151.101.3.52
@@ -85,7 +85,7 @@ example.com.  IN  A  151.101.131.52
 example.com.  IN  A  151.101.195.52
 ```
 
-#### AAAA Records (IPv6, alle 4 anlegen!)
+#### AAAA records (IPv6, create all 4!)
 
 ```dns
 example.com.  IN  AAAA  2a04:4e42::820
@@ -94,148 +94,148 @@ example.com.  IN  AAAA  2a04:4e42:400::820
 example.com.  IN  AAAA  2a04:4e42:600::820
 ```
 
-#### TXT Record (Domain Ownership Verification)
+#### TXT record (domain ownership verification)
 
 ```dns
 _shopware-challenge.example.com.  IN  TXT  "shopware-challenge=<organization-id>"
 ```
 
-Organization-ID ermitteln:
+Determine the organization ID:
 ```bash
 sw-paas org list
 ```
 
 ---
 
-### DNS-Konfiguration Übersicht
+### DNS configuration overview
 
-| Record-Typ | Apex | Subdomain | Ziel | Anzahl | Zweck |
+| Record type | Apex | Subdomain | Target | Count | Purpose |
 |------------|:----:|:---------:|------|:------:|-------|
-| `CNAME` | Nein | Ja | `cdn.shopware.shop` | 1 | Traffic-Routing |
-| `A` | Ja | Nein | Fastly IPv4 | 4 | IPv4-Routing |
-| `AAAA` | Ja | Nein | Fastly IPv6 | 4 | IPv6-Routing |
-| `TXT` | Ja | Nein | Ownership-Proof | 1 | Domain-Validierung |
+| `CNAME` | No | Yes | `cdn.shopware.shop` | 1 | Traffic routing |
+| `A` | Yes | No | Fastly IPv4 | 4 | IPv4 routing |
+| `AAAA` | Yes | No | Fastly IPv6 | 4 | IPv6 routing |
+| `TXT` | Yes | No | Ownership proof | 1 | Domain validation |
 
 ---
 
-### Schritt-für-Schritt: Domain einrichten
+### Step by step: set up a domain
 
-#### Schritt 1: DNS konfigurieren
+#### Step 1: configure DNS
 
-Beim DNS-Provider/Registrar Records anlegen (siehe oben).
+Create the records at your DNS provider/registrar (see above).
 
-#### Schritt 2: DNS-Propagation prüfen
+#### Step 2: check DNS propagation
 
 ```bash
 # Subdomain
 dig shop.example.com CNAME
 
-# Apex Domain
+# Apex domain
 dig example.com A
 dig example.com AAAA
 dig _shopware-challenge.example.com TXT
 
-# Mit öffentlichem DNS-Server testen
+# Test with a public DNS server
 dig @8.8.8.8 example.com A
 ```
 
-Online-Tool: https://www.whatsmydns.net
+Online tool: https://www.whatsmydns.net
 
-**DNS-Propagation**: Normal 15-30 Min, max. 48 Stunden.
+**DNS propagation**: normally 15-30 min, up to 48 hours.
 
-#### Schritt 3: Domain in PaaS anlegen
+#### Step 3: create the domain in PaaS
 
 ```bash
 sw-paas domain create
 ```
 
-Mehrere Domains möglich: Befehl für jede Domain wiederholen.
+Multiple domains are possible: repeat the command for each domain.
 
-#### Schritt 4: Application redeployen
+#### Step 4: redeploy the application
 
 ```bash
 sw-paas application deploy create
-# Alternativ:
-sw-paas application update  # (gleicher Commit nutzbar)
+# Alternatively:
+sw-paas application update  # (the same commit can be used)
 ```
 
-#### Schritt 5: Shopware konfigurieren
+#### Step 5: configure Shopware
 
 1. Shopware Admin → Sales Channel
-2. Domain konfigurieren
-3. Storefront zuweisen
+2. Configure the domain
+3. Assign the storefront
 
 ---
 
-### Troubleshooting: DNS-Validierung schlägt fehl
+### Troubleshooting: DNS validation fails
 
-**Symptome:** Fehler bei `sw-paas domain create`
+**Symptoms:** error during `sw-paas domain create`
 
-**Lösungen:**
+**Solutions:**
 
-1. **DNS-Records prüfen:**
-   - Apex: Alle 4 A-Records, alle 4 AAAA-Records, TXT-Record vorhanden?
-   - Subdomain: CNAME auf `cdn.shopware.shop`?
+1. **Check the DNS records:**
+   - Apex: are all 4 A records, all 4 AAAA records and the TXT record present?
+   - Subdomain: CNAME pointing to `cdn.shopware.shop`?
 
-2. **Propagation abwarten:**
-   - `dig` Befehle ausführen
-   - Online-Tool für globale Propagation nutzen
+2. **Wait for propagation:**
+   - Run the `dig` commands
+   - Use an online tool for global propagation
 
-3. **Organization-ID prüfen:**
+3. **Check the organization ID:**
    - `sw-paas org list`
-   - TXT-Record: `shopware-challenge=<exakte-org-id>`
+   - TXT record: `shopware-challenge=<exact-org-id>`
 
-4. **Tippfehler ausschließen:**
-   - Domain-Name korrekt?
-   - Keine Leerzeichen in DNS-Records?
+4. **Rule out typos:**
+   - Is the domain name correct?
+   - No whitespace in the DNS records?
 
-### Troubleshooting: Domain erstellt, keine Traffic-Antwort
+### Troubleshooting: domain created, no traffic response
 
-**Symptome:** Domain erstellt, aber Site nicht erreichbar
+**Symptoms:** domain created, but the site is unreachable
 
-**Lösungen:**
+**Solutions:**
 
-1. Deployment erfolgreich? → `sw-paas application deploy get`
-2. Domain in Shopware-Admin Sales Channel eingetragen?
-3. Cache leeren (Browser Incognito-Test)
-4. DNS-Propagation noch im Gange? Weitere Zeit abwarten
+1. Was the deployment successful? → `sw-paas application deploy get`
+2. Is the domain entered in the sales channel in the Shopware admin?
+3. Clear the cache (test in a browser incognito window)
+4. Is DNS propagation still in progress? Allow more time
 
 ---
 
 ## Fastly Snippets (PaaS Native)
 
-### Storefront-Service Snippets
+### Storefront service snippets
 
 ```bash
 composer require shopware/fastly-meta
 ```
 
-- `FASTLY_API_KEY` und `FASTLY_SERVICE_ID`: Automatisch bereitgestellt
-- Snippets werden automatisch beim Deployment installiert/aktualisiert
-- Kein weiterer Handlungsbedarf
+- `FASTLY_API_KEY` and `FASTLY_SERVICE_ID`: provided automatically
+- Snippets are installed/updated automatically during deployment
+- No further action required
 
-### Einschränkungen
+### Limitations
 
-Aktuell nur Snippets für `storefront`-Service konfigurierbar.
-Support für `cdn`-Service in Entwicklung.
+Currently snippets can only be configured for the `storefront` service.
+Support for the `cdn` service is in development.
 
 ---
 
-## Fastly (klassisches Shopware PaaS / Platform.sh)
+## Fastly (classic Shopware PaaS / Platform.sh)
 
-Shopware 6.4.11+ erforderlich.
+Shopware 6.4.11+ required.
 
 ### Setup
 
-1. `FASTLY_API_TOKEN` und `FASTLY_SERVICE_ID` in Environment setzen / Support kontaktieren
-2. Fastly-Package installieren:
+1. Set `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` in the environment / contact support
+2. Install the Fastly package:
    ```bash
    composer require fastly
    ```
-3. Caching in `.platform/routes.yaml` deaktivieren
-4. Pushen → Fastly wird aktiviert
+3. Disable caching in `.platform/routes.yaml`
+4. Push → Fastly is activated
 
-### Soft Purge empfohlen
+### Soft purge recommended
 
-Verhindert Auswirkungen bei großen Cache-Invalidierungen.
+Prevents impact from large cache invalidations.
 [Fastly Soft Purge Docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge)

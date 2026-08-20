@@ -1,7 +1,7 @@
-# Shopware 6 — Payment-Handler
+# Shopware 6 — Payment Handler
 
-Seit 6.7 ein vereinheitlichter `AbstractPaymentHandler` (löst die alten Sync/Async-Interfaces ab). `pay()` startet die
-Zahlung (optional Redirect), `finalize()` schließt nach Rückkehr ab.
+Since 6.7 there is one unified `AbstractPaymentHandler` (replacing the old sync/async interfaces). `pay()` starts the
+payment (optionally with a redirect), `finalize()` completes it after the return.
 
 ```php
 class FfPaymentHandler extends AbstractPaymentHandler
@@ -10,15 +10,15 @@ class FfPaymentHandler extends AbstractPaymentHandler
     { return $type === PaymentHandlerType::REFUND; }
 
     public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
-    { /* Zahlung initiieren; bei Redirect RedirectResponse zurückgeben, sonst null */ }
+    { /* initiate payment; return a RedirectResponse for a redirect, otherwise null */ }
 
     public function finalize(Request $request, PaymentTransactionStruct $transaction, Context $context): void
-    { /* Rückkehr verarbeiten; bei Abbruch PaymentException::customerCanceled(...) */ }
+    { /* handle the return; on cancellation PaymentException::customerCanceled(...) */ }
 }
 ```
 
-`payment_method`-Entity per Migration/Lifecycle anlegen und dem Handler zuordnen; Transaktions-Status über die
-StateMachine setzen (`sw-order-state-machine`). Fehler über `PaymentException`. App-basierte Zahlung: `sw-payment-app`.
-PayPal-Beispiel-SDK: `sw-paypal-sdk`.
+Create the `payment_method` entity via migration/lifecycle and assign it to the handler; set the transaction state through the
+state machine (`sw-order-state-machine`). Report errors via `PaymentException`. App-based payment: `sw-payment-app`.
+PayPal example SDK: `sw-paypal-sdk`.
 
-→ Payment-Details: [HANDLER-OVERVIEW.md](HANDLER-OVERVIEW.md) · Beispiel: [examples/PaymentHandler.php](examples/PaymentHandler.php)
+→ Payment details: [HANDLER-OVERVIEW.md](HANDLER-OVERVIEW.md) · Example: [examples/PaymentHandler.php](examples/PaymentHandler.php)

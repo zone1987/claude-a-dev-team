@@ -9,13 +9,13 @@ The whole API surface. Options configure, the instance controls, hooks react.
 
 ## Reference map
 
-- **[EVENTS.md](EVENTS.md)**: Hooks werden als Optionen übergeben. [EVENTS-DETAIL](EVENTS-DETAIL.md).
+- **[EVENTS.md](EVENTS.md)**: Hooks are passed as options. [EVENTS-DETAIL](EVENTS-DETAIL.md).
 - **[EXAMPLES.md](EXAMPLES.md)** [EXAMPLES-DETAIL](EXAMPLES-DETAIL.md).
-- **[FORMATTING.md](FORMATTING.md)**: `dateFormat` und `altFormat` werden mit diesen Tokens zusammengesetzt. [FORMATTING-DETAIL](FORMATTING-DETAIL.md).
-- **[GETTING-STARTED.md](GETTING-STARTED.md)**: Leichtgewichtiger Datetime-Picker ohne externe Abhängigkeiten. [GETTING-STARTED-DETAIL](GETTING-STARTED-DETAIL.md).
+- **[FORMATTING.md](FORMATTING.md)**: `dateFormat` and `altFormat` are composed from these tokens. [FORMATTING-DETAIL](FORMATTING-DETAIL.md).
+- **[GETTING-STARTED.md](GETTING-STARTED.md)**: Lightweight datetime picker with no external dependencies. [GETTING-STARTED-DETAIL](GETTING-STARTED-DETAIL.md).
 - **[INSTANCE.md](INSTANCE.md)** [INSTANCE-DETAIL](INSTANCE-DETAIL.md).
 - **[MIGRATION.md](MIGRATION.md)**: 1. [MIGRATION-DETAIL](MIGRATION-DETAIL.md).
-- **[OPTIONS.md](OPTIONS.md)**: Alle Optionen werden als zweites Argument an `flatpickr` übergeben. [OPTIONS-DETAIL](OPTIONS-DETAIL.md).
+- **[OPTIONS.md](OPTIONS.md)**: All options are passed as the second argument to `flatpickr`. [OPTIONS-DETAIL](OPTIONS-DETAIL.md).
 
 ## Source
 

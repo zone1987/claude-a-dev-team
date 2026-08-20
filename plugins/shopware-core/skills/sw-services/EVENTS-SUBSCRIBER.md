@@ -1,7 +1,7 @@
-# Shopware 6 — Events & Subscriber
+# Shopware 6 — Events & Subscribers
 
-Der **bevorzugte** Erweiterungsweg. Subscriber implementiert `EventSubscriberInterface`, wird via
-`kernel.event_subscriber`-Tag (oder Autoconfigure) registriert.
+The **preferred** extension path. A subscriber implements `EventSubscriberInterface` and is registered via
+the `kernel.event_subscriber` tag (or autoconfiguration).
 
 ```php
 public static function getSubscribedEvents(): array
@@ -13,11 +13,11 @@ public static function getSubscribedEvents(): array
 }
 ```
 
-Event-Arten: **Entity-Events** (`{entity}.written/.deleted/.loaded`), **Business-Events** (Checkout, Order, Mail …),
-**Page-Loaded-Events** (Storefront, → `sw-storefront-data`), **Kernel-Events**. Prioritäten: `[ 'method', 100 ]`.
+Event kinds: **entity events** (`{entity}.written/.deleted/.loaded`), **business events** (checkout, order, mail …),
+**page loaded events** (storefront, → `sw-storefront-data`), **kernel events**. Priorities: `[ 'method', 100 ]`.
 
-**Welches Event?** Projekt-Event-Katalog nutzen (`sw-event-catalog` / `/sw-event-map`) — listet alle Events mit
-Klasse, Dispatch-Ort und Argumenten/Payload.
+**Which event?** Use the project event catalogue (`sw-event-catalog` / `/sw-event-map`) — it lists every event with its
+class, dispatch location and arguments/payload.
 
-→ Events finden, alle Event-Typen, Datenmanipulation, Beispiele: [EVENTS-SUBSCRIBER-SUBSCRIBERS.md](EVENTS-SUBSCRIBER-SUBSCRIBERS.md)
-→ Gerüst: [examples/EventSubscriber.php](examples/EventSubscriber.php)
+→ Finding events, all event types, data manipulation, examples: [EVENTS-SUBSCRIBER-SUBSCRIBERS.md](EVENTS-SUBSCRIBER-SUBSCRIBERS.md)
+→ Skeleton: [examples/EventSubscriber.php](examples/EventSubscriber.php)

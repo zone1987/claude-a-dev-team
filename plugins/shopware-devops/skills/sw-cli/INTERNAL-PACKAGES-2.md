@@ -1,56 +1,56 @@
-# shopware-cli — Interne Go-Packages
+# shopware-cli — Internal Go packages
 
-Quelle: `github.com/shopware/shopware-cli/internal/`
+Source: `github.com/shopware/shopware-cli/internal/`
 
-| Package | Pfad | Zweck |
-|---------|------|-------|
-| `account-api` | `internal/account-api/` | Shopware Account REST API Client: Login/OIDC/OAuth2, Producer-Endpoints, Extension-Binaries |
-| `admin-api` | `internal/admin-api/` | Shopware Admin API Client: Extension-Manager, Cache-Manager, Info-Endpoint |
-| `extension` | `internal/extension/` | Kern-Extension-Handling: Asset-Build (ESBuild/Webpack), Configs, Zip, Cleanup, Changelog, Checksums, Manifest, Icon-Resizing |
-| `esbuild` | `internal/esbuild/` | ESBuild-Wrapper mit Sass-Plugin und Vite-Config-Support |
-| `verifier` | `internal/verifier/` | Validation/Fix/Format-Toolchain: PHPStan, PHP-CS-Fixer, ESLint, Stylelint, Prettier, Rector, Twig-Linter |
-| `shop` | `internal/shop/` | Projekt-Config (`.shopware-project.yml`) lesen, SW-Version erkennen, Shop-Client |
-| `packagist` | `internal/packagist/` | Shopware Packagist API, composer.json/auth.json-Helpers, Deployment-Recipe-Generierung |
-| `phpexec` | `internal/phpexec/` | PHP/composer/bin-console Ausführungs-Helpers |
-| `envfile` | `internal/envfile/` | Symfony `.env`/`.env.local` Loader |
-| `mysqldump` | `internal/mysqldump/` | Pure-Go MySQL-Dumper: parallel, Anonymisierung, Kompression (gzip/zstd) |
-| `ci` | `internal/ci/` | CI-Section-Output für GitHub Actions und GitLab CI |
-| `flexmigrator` | `internal/flexmigrator/` | Symfony Flex Migrations-Helpers |
-| `mjml` | `internal/mjml/` | MJML-Template-Compiler |
-| `validation` | `internal/validation/` | Reporter-Typen und Ausgabe-Formatierung |
-| `tui` | `internal/tui/` | Terminal UI (lipgloss Styles, huh Forms, Banner) |
-| `tracking` | `internal/tracking/` | Anonyme Telemetrie (Command, Ergebnis, Dauer, OS, Version) |
+| Package | Path | Purpose |
+|---------|------|---------|
+| `account-api` | `internal/account-api/` | Shopware Account REST API client: login/OIDC/OAuth2, producer endpoints, extension binaries |
+| `admin-api` | `internal/admin-api/` | Shopware Admin API client: extension manager, cache manager, info endpoint |
+| `extension` | `internal/extension/` | Core extension handling: asset build (ESBuild/Webpack), configs, zip, cleanup, changelog, checksums, manifest, icon resizing |
+| `esbuild` | `internal/esbuild/` | ESBuild wrapper with Sass plugin and Vite config support |
+| `verifier` | `internal/verifier/` | Validation/fix/format toolchain: PHPStan, PHP-CS-Fixer, ESLint, Stylelint, Prettier, Rector, Twig linter |
+| `shop` | `internal/shop/` | Read project config (`.shopware-project.yml`), detect SW version, shop client |
+| `packagist` | `internal/packagist/` | Shopware Packagist API, composer.json/auth.json helpers, deployment recipe generation |
+| `phpexec` | `internal/phpexec/` | PHP/composer/bin-console execution helpers |
+| `envfile` | `internal/envfile/` | Symfony `.env`/`.env.local` loader |
+| `mysqldump` | `internal/mysqldump/` | Pure Go MySQL dumper: parallel, anonymization, compression (gzip/zstd) |
+| `ci` | `internal/ci/` | CI section output for GitHub Actions and GitLab CI |
+| `flexmigrator` | `internal/flexmigrator/` | Symfony Flex migration helpers |
+| `mjml` | `internal/mjml/` | MJML template compiler |
+| `validation` | `internal/validation/` | Reporter types and output formatting |
+| `tui` | `internal/tui/` | Terminal UI (lipgloss styles, huh forms, banner) |
+| `tracking` | `internal/tracking/` | Anonymous telemetry (command, result, duration, OS, version) |
 
-## Telemetrie
+## Telemetry
 
-shopware-cli sendet anonyme Nutzungstelemetrie (Command-Name, Erfolg/Fehler, Dauer, OS/Arch, CLI-Version).
-Deaktivieren: `SHOPWARE_CLI_DISABLE_TRACKING=1` als Umgebungsvariable setzen.
+shopware-cli sends anonymous usage telemetry (command name, success/failure, duration, OS/arch, CLI version).
+To disable: set `SHOPWARE_CLI_DISABLE_TRACKING=1` as an environment variable.
 
-## `.shopware-project.yml` — Wichtige Felder
+## `.shopware-project.yml` — Important fields
 
 ```yaml
-# Shopware-URL und Admin-Credentials (für Admin-API-Calls)
+# Shopware URL and admin credentials (for Admin API calls)
 url: "https://my-shop.example.com"
 admin_api:
   client_id: "SWIATEST..."
   client_secret: "..."
 
-# Extension-Build-Konfiguration
+# Extension build configuration
 build:
   disable_asset_copy: false
   keep_extension_source: false
 
-# Deployment-Konfiguration
+# Deployment configuration
 deployment:
   cache:
     always_clear: true
 
-# Extensions: welche beim Build einbeziehen
+# Extensions: which ones to include in the build
 extensions:
   - name: MyPlugin
 ```
 
-## `.shopware-extension.yml` — Store-Metadaten
+## `.shopware-extension.yml` — Store metadata
 
 ```yaml
 store:

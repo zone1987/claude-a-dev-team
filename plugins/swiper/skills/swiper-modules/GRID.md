@@ -1,6 +1,6 @@
-# Swiper — Grid-Modul
+# Swiper — Grid module
 
-Mehrzeilige Slide-Layouts (Raster) mit konfigurierbarer Füllrichtung.
+Multi-row slide layouts (grids) with configurable fill direction.
 
 ```js
 import Swiper from 'swiper';
@@ -17,7 +17,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-**Hinweis:** Funktioniert mit Loop-Modus, wenn genügend Slides vorhanden oder `loopAddBlankSlides: true` gesetzt.
+**Note:** Works with loop mode when there are enough slides or `loopAddBlankSlides: true` is set.
 
-## Vertiefung
-- [GRID-DETAIL.md](GRID-DETAIL.md) — Parameter rows/fill mit Typ/Default/Beschreibung, Kompatibilitätshinweise
+## Further reading
+- [GRID-DETAIL.md](GRID-DETAIL.md) — rows/fill parameters with type/default/description, compatibility notes

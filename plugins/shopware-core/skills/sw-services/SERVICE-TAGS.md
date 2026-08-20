@@ -1,16 +1,16 @@
-# Shopware 6 — Service-Tags
+# Shopware 6 — Service Tags
 
-Tags machen Services für Shopware/Symfony auffindbar. Wichtige Tags:
+Tags make services discoverable for Shopware/Symfony. Important tags:
 
-| Tag | Zweck |
+| Tag | Purpose |
 |---|---|
-| `kernel.event_subscriber` | EventSubscriber registrieren |
-| `shopware.entity.definition` | EntityDefinition registrieren |
-| `console.command` | CLI-Command |
+| `kernel.event_subscriber` | register an event subscriber |
+| `shopware.entity.definition` | register an EntityDefinition |
+| `console.command` | CLI command |
 | `shopware.scheduled.task` | ScheduledTask |
-| `messenger.message_handler` | Message-Handler |
+| `messenger.message_handler` | message handler |
 
-Mehrere getaggte Services sammeln (Strategie-Pattern) per Tagged-Iterator:
+Collect several tagged services (strategy pattern) with a tagged iterator:
 
 ```xml
 <service id="FfContentPlus\Registry">
@@ -18,4 +18,4 @@ Mehrere getaggte Services sammeln (Strategie-Pattern) per Tagged-Iterator:
 </service>
 ```
 
-→ Service-Locator, Prioritäten, Compiler-Pass, alle relevanten Tags: [SERVICE-TAGS-TAGS.md](SERVICE-TAGS-TAGS.md)
+→ Service locator, priorities, compiler pass, all relevant tags: [SERVICE-TAGS-TAGS.md](SERVICE-TAGS-TAGS.md)

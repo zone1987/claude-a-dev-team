@@ -1,23 +1,23 @@
-# flatpickr — Beispiele & Patterns
+# flatpickr — Examples and patterns
 
 ```js
-// DateTime-Picker
+// DateTime picker
 flatpickr("#dt", { enableTime: true, dateFormat: "Y-m-d H:i" });
 
-// Datumsbereich (Range)
+// Date range
 flatpickr("#range", { mode: "range" });
 
-// Zeitauswahl ohne Kalender
+// Time selection without a calendar
 flatpickr("#time", { enableTime: true, noCalendar: true, dateFormat: "H:i" });
 
-// Menschenlesbar anzeigen, Maschinenformat senden
+// Display human-readable, submit machine format
 flatpickr("#alt", { altInput: true, altFormat: "F j, Y", dateFormat: "Y-m-d" });
 
-// Wochenenden sperren
+// Block weekends
 flatpickr("#wd", {
   disable: [d => d.getDay() === 0 || d.getDay() === 6]
 });
 ```
 
-## Vertiefung
-- [EXAMPLES-DETAIL.md](EXAMPLES-DETAIL.md) — alle dokumentierten Beispiele mit vollständigen Configs und HTML
+## Further reading
+- [EXAMPLES-DETAIL.md](EXAMPLES-DETAIL.md) — all documented examples with complete configs and HTML

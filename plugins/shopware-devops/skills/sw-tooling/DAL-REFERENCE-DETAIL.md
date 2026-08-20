@@ -1,22 +1,22 @@
-# Shopware 6 DAL Referenz (vollständige Referenz)
+# Shopware 6 DAL reference (complete reference)
 
-Quellen: `troubleshooting/dal-reference/filters-reference.md`, `aggregations-reference.md`, `flags-reference.md`, `fields-reference/index.md`, `enum-field.md`
+Sources: `troubleshooting/dal-reference/filters-reference.md`, `aggregations-reference.md`, `flags-reference.md`, `fields-reference/index.md`, `enum-field.md`
 
 ## Contents
 
-- [Filter-Referenz](#filter-referenz)
-- [Aggregations-Referenz](#aggregations-referenz)
-- [Flags-Referenz](#flags-referenz)
-- [Fields-Referenz (Übersicht aller Field-Klassen)](#fields-referenz-übersicht-aller-field-klassen)
-- [EnumField — Verwendung](#enumfield-verwendung)
+- [Filter reference](#filter-reference)
+- [Aggregation reference](#aggregation-reference)
+- [Flags reference](#flags-reference)
+- [Fields reference (overview of all field classes)](#fields-reference-overview-of-all-field-classes)
+- [EnumField — usage](#enumfield--usage)
 
-## Filter-Referenz
+## Filter reference
 
-Alle Filter sind case-insensitiv für String-Felder (Storage-System).
+All filters are case-insensitive for string fields (storage system).
 
 ### equals
 
-Exakter Match. SQL: `WHERE stock = 10`
+Exact match. SQL: `WHERE stock = 10`
 
 ```php
 $criteria->addFilter(new EqualsFilter('stock', 10));
@@ -28,7 +28,7 @@ $criteria->addFilter(new EqualsFilter('stock', 10));
 
 ### equalsAny
 
-Mindestens ein exakter Match. SQL: `WHERE productNumber IN ('...', '...')`
+At least one exact match. SQL: `WHERE productNumber IN ('...', '...')`
 
 ```php
 $criteria->addFilter(new EqualsAnyFilter('productNumber', ['AAA', 'BBB']));
@@ -40,7 +40,7 @@ $criteria->addFilter(new EqualsAnyFilter('productNumber', ['AAA', 'BBB']));
 
 ### contains
 
-Vor- und Nachher-Wildcard. SQL: `WHERE name LIKE '%Lightweight%'`
+Wildcard before and after. SQL: `WHERE name LIKE '%Lightweight%'`
 
 ```php
 $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
@@ -52,7 +52,7 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 
 ### prefix
 
-Nur Anfang-Wildcard. SQL: `WHERE name LIKE 'Lightweight%'`
+Wildcard at the start only. SQL: `WHERE name LIKE 'Lightweight%'`
 
 ```php
 $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
@@ -64,7 +64,7 @@ $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
 
 ### suffix
 
-Nur Ende-Wildcard. SQL: `WHERE name LIKE '%Lightweight'`
+Wildcard at the end only. SQL: `WHERE name LIKE '%Lightweight'`
 
 ```php
 $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
@@ -76,7 +76,7 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 
 ### range
 
-Wertebereich für Zahlen oder Datum. Parameter: `gte`, `lte`, `gt`, `lt`.
+Value range for numbers or dates. Parameters: `gte`, `lte`, `gt`, `lt`.
 SQL: `WHERE stock >= 20 AND stock <= 30`
 
 ```php
@@ -92,7 +92,7 @@ $criteria->addFilter(new RangeFilter('stock', [
 
 ### not
 
-Container, der beliebige Filter negiert. `operator`: `or`, `and`.
+A container that negates any filter. `operator`: `or`, `and`.
 SQL: `WHERE !(stock = 1 OR availableStock = 1) AND active = 1`
 
 ```php
@@ -115,7 +115,7 @@ $criteria->addFilter(new NotFilter(NotFilter::CONNECTION_OR, [
 
 ### multi
 
-Logische Verknüpfung mehrerer Filter. `operator`: `or`, `and`.
+Logical combination of several filters. `operator`: `or`, `and`.
 SQL: `WHERE (stock = 1 OR availableStock = 1) AND active = 1`
 
 ```php
@@ -138,9 +138,9 @@ $criteria->addFilter(new EqualsFilter('active', true));
 
 ---
 
-## Aggregations-Referenz
+## Aggregation reference
 
-### avg — Durchschnitt
+### avg — average
 
 ```php
 $criteria->addAggregation(new AvgAggregation('avg-price', 'price'));
@@ -152,35 +152,35 @@ $aggregation->getAvg();
 {"aggregations": [{"name": "avg-price", "type": "avg", "field": "price"}]}
 ```
 
-### count — Anzahl DISTINCT
+### count — DISTINCT count
 
 ```php
 $criteria->addAggregation(new CountAggregation('count-manufacturers', 'manufacturerId'));
 $aggregation->getCount();
 ```
 
-### max — Maximum
+### max — maximum
 
 ```php
 $criteria->addAggregation(new MaxAggregation('max-price', 'price'));
 $aggregation->getMax();
 ```
 
-### min — Minimum
+### min — minimum
 
 ```php
 $criteria->addAggregation(new MinAggregation('min-price', 'price'));
 $aggregation->getMin();
 ```
 
-### sum — Summe
+### sum — sum
 
 ```php
 $criteria->addAggregation(new SumAggregation('sum-price', 'price'));
 $aggregation->getSum();
 ```
 
-### stats — Mehrere Metriken
+### stats — several metrics
 
 ```php
 $criteria->addAggregation(new StatsAggregation('stats-price', 'price'));
@@ -190,9 +190,9 @@ $aggregation->getAvg();
 $aggregation->getMin();
 ```
 
-### terms — Gruppen + Count (Bucket)
+### terms — groups + count (bucket)
 
-Unterstützt: `limit`, `sort`, verschachtelte `aggregation`.
+Supports: `limit`, `sort`, a nested `aggregation`.
 
 ```php
 $criteria->addAggregation(new TermsAggregation(
@@ -217,9 +217,9 @@ foreach ($aggregation->getBuckets() as $bucket) {
 }]}
 ```
 
-### entity — Entities laden (Bucket)
+### entity — load entities (bucket)
 
-Wie `terms`, lädt aber die zugehörigen Entities via Keys als IDs:
+Like `terms`, but loads the corresponding entities using the keys as IDs:
 
 ```php
 $criteria->addAggregation(new EntityAggregation('manufacturers', 'manufacturerId', 'product_manufacturer'));
@@ -237,9 +237,9 @@ foreach ($aggregation->getEntities() as $entity) {
 }]}
 ```
 
-### filter — Aggregation filtern (Bucket)
+### filter — filter the aggregation (bucket)
 
-Filtert nur die Aggregation, nicht das Suchergebnis:
+Filters only the aggregation, not the search result:
 
 ```php
 $criteria->addAggregation(new FilterAggregation(
@@ -258,9 +258,9 @@ $criteria->addAggregation(new FilterAggregation(
 }]}
 ```
 
-### histogram — Datum-Gruppierung (Bucket)
+### histogram — date grouping (bucket)
 
-Intervalle: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`
+Intervals: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`
 
 ```php
 $criteria->addAggregation(new DateHistogramAggregation(
@@ -269,7 +269,7 @@ $criteria->addAggregation(new DateHistogramAggregation(
     DateHistogramAggregation::PER_MONTH
 ));
 foreach ($aggregation->getBuckets() as $bucket) {
-    $bucket->getKey(); // z.B. "2020-04-01 00:00:00"
+    $bucket->getKey(); // e.g. "2020-04-01 00:00:00"
     $bucket->getCount();
 }
 ```
@@ -283,7 +283,7 @@ foreach ($aggregation->getBuckets() as $bucket) {
 }]}
 ```
 
-### range — Wertebereiche (Bucket)
+### range — value ranges (bucket)
 
 `from`: >=, `to`: <
 
@@ -296,10 +296,10 @@ $criteria->addAggregation(new RangeAggregation('price_ranges', 'products.price',
 foreach ($aggregation->getRanges() as $key => $docCount) { ... }
 ```
 
-### Verschachtelte Aggregations
+### Nested aggregations
 
 ```php
-// Anzahl Hersteller pro Kategorie für Produkte > 500 €
+// Number of manufacturers per category for products > 500 €
 $criteria->addAggregation(new FilterAggregation('my-filter',
     new TermsAggregation('per-category', 'categories.id', null, null,
         new TermsAggregation('manufacturer-ids', 'manufacturerId')
@@ -310,92 +310,92 @@ $criteria->addAggregation(new FilterAggregation('my-filter',
 
 ---
 
-## Flags-Referenz
+## Flags reference
 
-| Flag | Beschreibung |
+| Flag | Description |
 |---|---|
-| `ApiAware` | Feld in Store- oder Admin-API verfügbar. Default: beide APIs. Kann auf `AdminApiSource`/`SalesChannelApiSource` eingeschränkt werden. |
-| `Required` | Pflichtfeld beim Erstellen (Create-Request). Nur beim Schreiben relevant. |
-| `PrimaryKey` | Definiert das Feld als Teil des Primary Keys. Normalerweise das ID-Feld. |
-| `Runtime` | Wert wird zur Laufzeit berechnet (Event Subscriber o.ä.). Nicht direkt in DB gespeichert. |
-| `Computed` | Indexer oder externe Systeme berechnen den Wert. Kein direkter DAL-Write möglich. |
-| `WriteProtected` | API-Schreibzugriff eingeschränkt. Schützt indexierte Daten vor direkten API-Writes. |
-| `Inherited` | Parent-Record kann den Wert dieses Felds vererben. |
-| `ReverseInherited` | Gegenstück zu Inherited. |
-| `CascadeDelete` | Wenn referenzierte Daten gelöscht werden, werden diese Daten auch gelöscht. |
-| `RestrictDelete` | Verhindert Löschung der Entity, wenn ein Record mit diesem FK existiert. |
-| `SetNullOnDelete` | FK wird auf NULL gesetzt wenn referenzierte Daten gelöscht werden. Written-Event wird ausgelöst. |
-| `Immutable` | Write-once: kann beim Erstellen gesetzt werden, danach Read-only. |
-| `Extension` | Daten werden in `Entity::$extension` gespeichert, nicht im Struct selbst. |
-| `SearchRanking` | Gewichtung für Volltext-Suchquery auf dieser Entity für dieses Feld. |
-| `Deprecated` | Feld als deprecated markiert. Wird mit nächster Major-Version entfernt. |
-| `Since` | Ab welcher Shopware-Version das Feld verfügbar ist. |
-| `AllowHtml` | HTML-escaped Daten in der Spalte erlaubt. Achtung: Injection-Risiko. |
-| `AllowEmptyString` | Leerer String soll nicht als NULL behandelt werden. |
+| `ApiAware` | Field available in the Store or Admin API. Default: both APIs. Can be restricted to `AdminApiSource`/`SalesChannelApiSource`. |
+| `Required` | Mandatory field on creation (create request). Only relevant when writing. |
+| `PrimaryKey` | Defines the field as part of the primary key. Usually the ID field. |
+| `Runtime` | The value is computed at runtime (event subscriber or similar). Not stored in the DB directly. |
+| `Computed` | Indexers or external systems compute the value. No direct DAL write possible. |
+| `WriteProtected` | API write access restricted. Protects indexed data from direct API writes. |
+| `Inherited` | The parent record can pass on the value of this field. |
+| `ReverseInherited` | Counterpart to Inherited. |
+| `CascadeDelete` | When the referenced data is deleted, this data is deleted too. |
+| `RestrictDelete` | Prevents deletion of the entity while a record with this FK exists. |
+| `SetNullOnDelete` | The FK is set to NULL when the referenced data is deleted. A written event is dispatched. |
+| `Immutable` | Write-once: can be set on creation, read-only afterwards. |
+| `Extension` | Data is stored in `Entity::$extension`, not in the struct itself. |
+| `SearchRanking` | Weighting for the full-text search query on this entity for this field. |
+| `Deprecated` | Field marked as deprecated. Will be removed with the next major version. |
+| `Since` | From which Shopware version the field is available. |
+| `AllowHtml` | HTML-escaped data allowed in the column. Caution: injection risk. |
+| `AllowEmptyString` | An empty string should not be treated as NULL. |
 
 ---
 
-## Fields-Referenz (Übersicht aller Field-Klassen)
+## Fields reference (overview of all field classes)
 
-| Field-Klasse | Beschreibung | Extends | StorageAware |
+| Field class | Description | Extends | StorageAware |
 |---|---|---|---|
-| `IdField` | UUID-Primärschlüssel | Field | x |
-| `FkField` | Foreign Key | Field | x |
-| `StringField` | String-Wert | Field | x |
+| `IdField` | UUID primary key | Field | x |
+| `FkField` | Foreign key | Field | x |
+| `StringField` | String value | Field | x |
 | `LongTextField` | Longtext | Field | x |
-| `EmailField` | E-Mail (extends String) | StringField | - |
+| `EmailField` | Email (extends String) | StringField | - |
 | `IntField` | Integer | Field | x |
 | `FloatField` | Float | Field | x |
 | `BoolField` | Boolean | Field | x |
-| `DateField` | Datum | Field | x |
+| `DateField` | Date | Field | x |
 | `DateTimeField` | DateTime | Field | x |
-| `JsonField` | JSON-Wert | Field | x |
-| `ListField` | JSON-Array | JsonField | - |
-| `ObjectField` | JSON-Objekt | JsonField | - |
-| `PriceField` | Preis-Struct (JSON) | JsonField | - |
+| `JsonField` | JSON value | Field | x |
+| `ListField` | JSON array | JsonField | - |
+| `ObjectField` | JSON object | JsonField | - |
+| `PriceField` | Price struct (JSON) | JsonField | - |
 | `BlobField` | Blob | Field | x |
-| `SerializedField` | Serialisierter Wert | Field | x |
-| `PasswordField` | Passwort | Field | x |
-| `EnumField` | BackedEnum-Wert | Field | x |
-| `TranslatedField` | Übersetzter Wert | Field | - |
-| `CreatedAtField` | Erstellt-Timestamp | DateTimeField | - |
-| `UpdatedAtField` | Aktualisiert-Timestamp | DateTimeField | - |
-| `ParentFkField` | Parent-FK | FkField | - |
-| `VersionField` | Versions-FK | FkField | - |
-| `StateMachineStateField` | State Machine FK | FkField | - |
+| `SerializedField` | Serialized value | Field | x |
+| `PasswordField` | Password | Field | x |
+| `EnumField` | BackedEnum value | Field | x |
+| `TranslatedField` | Translated value | Field | - |
+| `CreatedAtField` | Created timestamp | DateTimeField | - |
+| `UpdatedAtField` | Updated timestamp | DateTimeField | - |
+| `ParentFkField` | Parent FK | FkField | - |
+| `VersionField` | Version FK | FkField | - |
+| `StateMachineStateField` | State machine FK | FkField | - |
 | `ManyToOneAssociationField` | n:1 | AssociationField | - |
 | `OneToManyAssociationField` | 1:n | AssociationField | - |
 | `ManyToManyAssociationField` | n:m | AssociationField | - |
 | `OneToOneAssociationField` | 1:1 | AssociationField | - |
-| `ParentAssociationField` | Parent-Verknüpfung | ManyToOneAssociationField | - |
-| `ChildrenAssociationField` | Kinder-Verknüpfung | OneToManyAssociationField | - |
-| `TranslationsAssociationField` | Übersetzungs-Assoziaton | OneToManyAssociationField | - |
-| `TreeLevelField` | Baum-Level | IntField | - |
-| `TreePathField` | Baum-Pfad | LongTextField | - |
-| `ChildCountField` | Kinder-Anzahl | IntField | - |
-| `AutoIncrementField` | Auto-Increment | IntField | - |
+| `ParentAssociationField` | Parent link | ManyToOneAssociationField | - |
+| `ChildrenAssociationField` | Children link | OneToManyAssociationField | - |
+| `TranslationsAssociationField` | Translation association | OneToManyAssociationField | - |
+| `TreeLevelField` | Tree level | IntField | - |
+| `TreePathField` | Tree path | LongTextField | - |
+| `ChildCountField` | Children count | IntField | - |
+| `AutoIncrementField` | Auto increment | IntField | - |
 
-## EnumField — Verwendung
+## EnumField — usage
 
 ```php
-// BackedEnum definieren:
+// Define the BackedEnum:
 enum PaymentMethod: string {
     case PAYPAL = 'paypal';
     case CREDIT_CARD = 'credit_card';
 }
 
-// In Entity:
+// In the entity:
 #[Field(type: FieldType::ENUM, column: 'payment_method')]
 protected PaymentMethod $paymentMethod;
 
-// Validierung:
+// Validation:
 $validMethod = PaymentMethod::tryFrom($userInput);
-if ($validMethod === null) { /* Ungültiger Wert */ }
+if ($validMethod === null) { /* Invalid value */ }
 
-// DB: ENUM-Typ für Strings; INT-Spalte für Integer-Enums empfohlen
+// DB: ENUM type for strings; an INT column is recommended for integer enums
 ```
 
-Twig-Beispiel:
+Twig example:
 ```twig
 <select name="payment_method">
     {% for method in PaymentMethod::cases() %}

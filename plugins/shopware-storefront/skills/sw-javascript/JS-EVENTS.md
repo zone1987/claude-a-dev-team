@@ -1,17 +1,17 @@
-# Shopware 6 — JS-Events
+# Shopware 6 — JS events
 
-Storefront-JS nutzt einen globalen Event-Emitter und native DOM-Events zur Kommunikation zwischen Plugins.
+Storefront JS uses a global event emitter and native DOM events for communication between plugins.
 
 ```js
-// senden
+// publish
 this.$emitter.publish('ffExample/done', { id });
-// empfangen (auch plugin-übergreifend)
+// subscribe (also across plugins)
 document.$emitter.subscribe('ffExample/done', (event) => { const { id } = event.detail; });
 ```
 
-**Welche JS-Events gibt es?** Projekt-Katalog nutzen (`sw-js-event-catalog` / `/sw-js-plugin-map`) — listet alle
-JS-Events mit Publish-/Subscribe-Orten und Argumenten.
+**Which JS events exist?** Use the project catalog (`sw-js-event-catalog` / `/sw-js-plugin-map`) — it lists all
+JS events with their publish/subscribe locations and arguments.
 
-Eigene Plugins emittieren Lifecycle-Events automatisch; zusätzlich kann man via `window.PluginManager` auf
-Initialisierung reagieren. Für Core-Interaktionen (z.B. Cart-Update) auf die jeweiligen Core-Events hören. DOM-Updates
-nach AJAX → betroffene Plugins re-initialisieren (`window.PluginManager.initializePlugins()`).
+Your own plugins emit lifecycle events automatically; in addition you can react to initialization via
+`window.PluginManager`. For core interactions (e.g. cart update), listen to the respective core events. After DOM updates
+following AJAX → re-initialize the affected plugins (`window.PluginManager.initializePlugins()`).

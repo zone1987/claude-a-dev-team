@@ -1,6 +1,6 @@
-# Shopware MCP-Server
+# Shopware MCP server
 
-Shopware 6.7+ liefert einen nativen MCP-Server (`/api/_mcp`) — verbindet
-KI-Clients (Claude Desktop, Claude Code, Cursor, Codex) direkt mit dem Shop.
+Shopware 6.7+ ships a native MCP server (`/api/_mcp`) — it connects
+AI clients (Claude Desktop, Claude Code, Cursor, Codex) directly to the shop.
 
-Ausführliche Referenz: `MCP-SERVER-DETAIL.md`
+Detailed reference: `MCP-SERVER-DETAIL.md`

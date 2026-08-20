@@ -1,62 +1,58 @@
 # Translation status — German skill content to English
 
-Working document. Delete it when the last row is done.
+Working document. Delete it when the table below is empty.
 
 `CLAUDE.md` requires English for everything shipped. The structural rebuild is finished and
-committed; the skill *prose* is still German in the plugins listed below, because the knowledge was
-distilled from German sources (`docs.shopware.com/de`, the Contao manual) or written in German.
+committed; the skill *prose* is still German where the knowledge was distilled from German sources
+(`docs.shopware.com/de`, the Contao manual) or authored in German.
 
-## What is finished
+## Finished and committed
 
-| Step | State |
+| Step | Commit |
 |---|---|
-| All 26 plugins restructured to domain skills | done, committed `0517ac6` |
-| 831 → 117 skills, listing cost 387,742 → 33,575 characters | done |
-| Loss-free verified against a backup, all 26 | done |
-| `CLAUDE.md` written, `CONVENTIONS.md` rewritten in English | done, committed `8bb5fa2` |
-| Repository `README.md` in English | done |
-| All 25 German plugin READMEs translated, stale skill tables rebuilt | done, committed `8bb5fa2` |
-| `octo-api` fully English, generated and verified | done |
-| `shadcn` skills already English | done |
-| Tooling in `scripts/` | done, committed |
-| Git author switched to a handle | done |
+| All 26 plugins restructured to domain skills — 831 → 117 skills, listing cost 387 742 → 33 575 characters | `0517ac6` |
+| Loss-free verified against a backup for all 26 plugins | `0517ac6` |
+| `CLAUDE.md` written; `CONVENTIONS.md` rewritten in English | `8bb5fa2` |
+| Repository `README.md` and all 25 German plugin READMEs translated; stale skill tables rebuilt from the real `SKILL.md` frontmatter | `8bb5fa2` |
+| Tooling in `scripts/` that enforces the rules | `0517ac6` |
+| Git author switched to a handle; private address removed from every file | `0517ac6` |
+| `octo-api` — generated from the Ventrata OpenAPI document, verified both directions, all 39 upstream pages covered | earlier |
+| `shadcn`, `shopware-core`, `shopware-checkout` skills — English | done |
 
-## What is outstanding
+## Outstanding
 
-**1,076 skill files, 135,916 lines of German prose.** One row per plugin, largest first. A plugin is
-finished when its file count reaches zero.
+**934 skill files, 122,728 lines of German prose.** A plugin is finished when its row disappears.
+Largest first, because that is the order in which agents should be dispatched.
 
-| Plugin | German files | German lines | Note |
-|---|--:|--:|---|
-| `playwright` | 100 | 28,474 | largest single job |
-| `shopware-merchant` | 268 | 26,001 | German admin menu items must stay, with an English gloss |
-| `contao` | 86 | 16,565 | the `contao-manual-*` skills are the German end-user manual |
-| `shopware-devops` | 41 | 8,918 | agent running |
-| `swiper` | 59 | 7,393 | |
-| `shopware-frontends` | 26 | 5,774 | |
-| `shopware-admin` | 37 | 5,051 | |
-| `gotenberg` | 52 | 4,791 | |
-| `panther` | 22 | 4,672 | |
-| `shadcn-vue` | 71 | 4,608 | mostly the German-authored blocks and charts files |
-| `shopware-commercial` | 46 | 4,164 | |
-| `flatpickr` | 21 | 3,617 | |
-| `shopware-quality` | 21 | 3,183 | |
-| `shopware-storefront` | 51 | 2,790 | |
-| `shopware-concepts` | 24 | 2,412 | |
-| `shopware-migration` | 11 | 1,862 | 1,063 files total, only 11 German |
-| `shopware-framework` | 30 | 1,462 | |
-| `shopware-data` | 33 | 1,286 | |
-| `shopware-api` | 20 | 1,083 | |
-| `shopware-apps` | 7 | 864 | |
-| `shopware-core` | 20 | 373 | agent running |
-| `shopware-testing` | 16 | 288 | agent running |
-| `shopware-cms` | 9 | 185 | agent running |
-| `shopware-checkout` | 5 | 100 | agent running, nearly done |
+| Plugin | German files | German lines |
+|---|--:|--:|
+| `playwright` | 100 | 28 474 |
+| `shopware-merchant` | 268 | 26 001 |
+| `contao` | 86 | 16 565 |
+| `shopware-frontends` | 26 | 5 774 |
+| `shopware-admin` | 37 | 5 051 |
+| `gotenberg` | 52 | 4 791 |
+| `panther` | 22 | 4 672 |
+| `swiper` | 29 | 4 620 |
+| `shadcn-vue` | 71 | 4 608 |
+| `shopware-commercial` | 46 | 4 164 |
+| `flatpickr` | 7 | 2 764 |
+| `shopware-storefront` | 41 | 2 649 |
+| `shopware-concepts` | 24 | 2 412 |
+| `shopware-quality` | 5 | 2 320 |
+| `shopware-migration` | 11 | 1 862 |
+| `shopware-framework` | 30 | 1 462 |
+| `shopware-data` | 25 | 1 173 |
+| `shopware-api` | 20 | 1 083 |
+| `shopware-devops` | 2 | 946 |
+| `shopware-apps` | 7 | 864 |
+| `shopware-testing` | 16 | 288 |
+| `shopware-cms` | 9 | 185 |
 
-Measure the remaining work at any time:
+Re-measure at any time:
 
 ```bash
-python3 - <<'PY'
+python3 - <<'PYEOF'
 import glob, re, os
 DE = re.compile(r'\b(der|die|das|und|nicht|werden|müssen|wird|für|mit|auf|kann|sich|von|dem|den|des|im|zum|zur|beim|über|unter|nach|durch|wenn|dann|aber|oder|auch|noch|nur|schon|siehe|sowie|ein|eine|einen|einer)\b', re.I)
 for p in sorted(os.path.basename(d) for d in glob.glob('plugins/*') if os.path.isdir(d+'/skills')):
@@ -64,26 +60,27 @@ for p in sorted(os.path.basename(d) for d in glob.glob('plugins/*') if os.path.i
         if (lambda t: len(DE.findall(t)) > len(t)/400)(open(f,encoding='utf-8',errors='replace').read())]
     if de: print(f"{p:24} {len(de):4} files, "
                  f"{sum(sum(1 for _ in open(f,encoding='utf-8',errors='replace')) for f in de):6} lines")
-PY
+PYEOF
 ```
 
 ## How to translate a plugin
 
-Dispatch one agent per plugin, or per group of small plugins totalling under ~10,000 lines. The
-brief that worked:
+One agent per plugin, or per group of small plugins totalling under ~10 000 lines. The brief that
+produced good results:
 
 - **Nothing omitted, nothing summarised.** A 200-line German file becomes a ~200-line English file.
-  This is the rule that matters: the plugins are complete by design, and a translation that
+  This is the rule that matters: these plugins are complete by design, and a translation that
   condenses breaks that.
 - **Technical identifiers stay**: class names, file names, paths, commands, environment variables,
-  skill / command / agent names. Translate the prose around them, and translate comments inside
-  code blocks, but not the code.
+  API names, skill / command / agent names. Translate the prose around them, and comments inside
+  code blocks, but never the code.
 - **Markdown structure exactly**: heading levels, table column counts, fenced blocks with their
-  language tag, links, block quotes.
+  language tag, links, block quotes, image embeds (leave `assets/` paths alone).
 - **`## Contents` tables of contents**: translating a heading means translating its anchor too.
-  `- [Überschrift](#überschrift)` → `- [Heading](#heading)`, anchor lower-cased, spaces to hyphens,
+  `- [Überschrift](#überschrift)` → `- [Heading](#heading)`; anchor lower-cased, spaces to hyphens,
   punctuation dropped.
-- **`## Source` sections**: URLs untouched, prose translated.
+- **`## Source`**: URLs untouched — a `docs.shopware.com/de/...` link stays as it is, because that
+  is where the knowledge came from. Translate the prose and rename a `## Quelle` heading.
 - German quotes „…" become "…".
 
 Then verify:
@@ -91,17 +88,24 @@ Then verify:
 ```bash
 grep -rlE '\b(der|die|das|und|werden|müssen|wird|für|mit|kann|sich)\b' plugins/<name>/skills | wc -l
 find plugins/<name>/skills -mindepth 3 -name '*.md' | wc -l     # must stay 0
-python3 scripts/measure-skill-budget.py . | grep <name>          # listing cost unchanged
+python3 scripts/measure-skill-budget.py . | grep <name>          # listing cost must not move
 ```
 
-Translation touches reference files only, so the listing cost must not move: descriptions live in
+Translation touches reference files only, so the listing cost cannot change: descriptions live in
 `scripts/domain-skills/<plugin>.json` and are already English.
 
 ## Where German is the subject, not the medium
 
-Keep it, and gloss it:
+Two plugins document a **German-language user interface**. Removing the labels would make the text
+useless — nobody could find the menu item being described. Keep the label, add an English gloss on
+first use:
 
-- **`shopware-merchant`** — Shopware's German admin labels are what a user sees on screen.
-  "under **Bestellungen** (Orders)" rather than "under Orders".
-- **`contao` `contao-manual-*`** — the German end-user manual. Same treatment: German UI label,
-  English explanation.
+- **`shopware-merchant`** — the Shopware administration. "Kataloge > Produkte > **Produkt
+  hinzufügen** (Add product)", "The **Bestellungen** (Orders) area", "Click **Speichern** (Save)".
+  Field names too: **Produktnummer**, **Steuersatz**, **Lagerbestand**.
+- **`contao`**, the `contao-manual-*` domains — the German end-user manual. Same treatment:
+  "under **Seitenstruktur** (Page Structure)".
+
+The surrounding prose becomes fully English. The result is an English text that operates a German
+interface. Do not run the German-word grep as a pass/fail check on these two — sample the prose
+instead.

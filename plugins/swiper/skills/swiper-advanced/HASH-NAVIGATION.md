@@ -1,6 +1,6 @@
-# Swiper — Hash Navigation-Modul
+# Swiper — Hash Navigation module
 
-URL-Hash wird beim Slide-Wechsel aktualisiert; Hash-Änderungen navigieren Slides.
+The URL hash updates on slide change; hash changes navigate slides.
 
 ```js
 import Swiper from 'swiper';
@@ -18,10 +18,10 @@ const swiper = new Swiper('.swiper', {
 
 HTML:
 ```html
-<!-- URL wird zu #slide-2 beim Wechsel -->
+<!-- URL becomes #slide-2 on change -->
 <div class="swiper-slide" data-hash="slide-1">Slide 1</div>
 <div class="swiper-slide" data-hash="slide-2">Slide 2</div>
 ```
 
-## Vertiefung
-- [HASH-NAVIGATION-DETAIL.md](HASH-NAVIGATION-DETAIL.md) — alle Parameter, data-hash-Attribut, Unterschied zu History-Modul
+## Further reading
+- [HASH-NAVIGATION-DETAIL.md](HASH-NAVIGATION-DETAIL.md) — all parameters, the data-hash attribute, difference from the History module

@@ -1,28 +1,28 @@
 # Shopware PaaS Native — Fundamentals
 
-PaaS Native = Kubernetes/AWS-Managed Hosting exklusiv für Shopware, fully managed Infra.
+PaaS Native = Kubernetes/AWS-managed hosting exclusively for Shopware, fully managed infra.
 
-## Hierarchie
+## Hierarchy
 
 ```
 Organization → Project → Application(s)
 ```
 
-- **Organization**: Top-Level, Rollen: `read-only`, `developer`, `project-admin`, `account-admin`
-- **Project**: Linked zu Git-Repo (GitHub/GitLab/Bitbucket)
-- **Application**: Eigene Ressourcen, Skalierung, Domain
+- **Organization**: top level, roles: `read-only`, `developer`, `project-admin`, `account-admin`
+- **Project**: linked to a Git repo (GitHub/GitLab/Bitbucket)
+- **Application**: own resources, scaling, domain
 
-## Kernkommandos
+## Core commands
 
 ```bash
 sw-paas organization create
 sw-paas project create --name "shop" --repository "git@github.com:..."
 sw-paas application create
-sw-paas account context set   # Org+Project-ID speichern
+sw-paas account context set   # store org+project ID
 sw-paas account whoami
 ```
 
-## application.yaml (Minimal)
+## application.yaml (minimal)
 
 ```yaml
 app:
@@ -41,27 +41,27 @@ services:
 cronJobs: []
 ```
 
-Scope: `RUN` = Laufzeit, `BUILD` = nur Build-Phase.
+Scope: `RUN` = runtime, `BUILD` = build phase only.
 
-## Vault-Secrets (höchste Priorität)
+## Vault secrets (highest priority)
 
 ```bash
 sw-paas vault create --type buildenv --key SHOPWARE_PACKAGES_TOKEN
-sw-paas vault create --type ssh  # SSH-Key generieren
+sw-paas vault create --type ssh  # generate SSH key
 sw-paas vault list / get --secret-id ID / delete --secret-id ID
 ```
 
-Typen: `env` (Runtime), `buildenv` (Build), `ssh` (Git).
+Types: `env` (runtime), `buildenv` (build), `ssh` (Git).
 
-## k8s-meta Package
+## k8s-meta package
 
 ```bash
 # 6.6 → ^1.0 | 6.7 → ^2.0
 composer require shopware/k8s-meta --ignore-platform-reqs
 ```
 
-Installiert `operator.yaml` (S3, Redis, Cluster-Mode, OpenSearch).
+Installs `operator.yaml` (S3, Redis, cluster mode, OpenSearch).
 
-## Vertiefung
+## Deep dive
 
 [FUNDAMENTALS-DETAIL.md](FUNDAMENTALS-DETAIL.md)

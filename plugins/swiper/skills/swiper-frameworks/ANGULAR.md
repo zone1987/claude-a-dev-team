@@ -1,5 +1,5 @@
 # Swiper Angular (via Swiper Element)
 
-Ab Swiper v9: keine separaten Angular-Komponenten mehr. Integration über das Swiper Web Component (`<swiper-container>`).
+As of Swiper v9: no separate Angular components anymore. Integration happens through the Swiper Web Component (`<swiper-container>`).
 
-Vollständige Referenz: `ANGULAR-SWIPER-ANGULAR.md`
+Complete reference: `ANGULAR-SWIPER-ANGULAR.md`

@@ -1,25 +1,25 @@
 # Shopware PaaS (Platform.sh/Upsun) — Build & Deploy (Deep Reference)
 
-Quellen: `products/paas/shopware-paas/build-deploy.md`,
+Sources: `products/paas/shopware-paas/build-deploy.md`,
 `products/paas/shopware-paas/repository.md`,
 `products/paas/shopware-paas/setup-template.md`,
 `products/paas/shopware-paas/cli-setup.md`
 
-> **Hinweis:** Platform.sh ist jetzt **Upsun**. Referenzen auf Platform.sh sind äquivalent.
+> **Note:** Platform.sh is now **Upsun**. References to Platform.sh are equivalent.
 
 ---
 
 ## Contents
 
 - [CLI Setup](#cli-setup)
-- [Repository-Einrichtung](#repository-einrichtung)
-- [Build & Deploy Prozess](#build-deploy-prozess)
+- [Repository setup](#repository-setup)
+- [Build & Deploy process](#build-deploy-process)
 - [Setup Template — .platform/applications.yaml](#setup-template-platformapplicationsyaml)
 - [.platform/services.yaml](#platformservicesyaml)
-- [Automatische Umgebungsvariablen](#automatische-umgebungsvariablen)
+- [Automatic environment variables](#automatic-environment-variables)
 - [Composer Authentication](#composer-authentication)
-- [Rebuild ohne Code-Änderung](#rebuild-ohne-code-änderung)
-- [Migration von altem Template](#migration-von-altem-template)
+- [Rebuild without a code change](#rebuild-without-a-code-change)
+- [Migration from the old template](#migration-from-the-old-template)
 - [files/theme-config](#filestheme-config)
 
 ## CLI Setup
@@ -28,15 +28,15 @@ Quellen: `products/paas/shopware-paas/build-deploy.md`,
 # Installation
 curl -sfS https://cli.shopware.com/installer | php
 
-# SSH-Key (alternativ manuell in PaaS Console: My Profile → SSH Keys)
-shopware     # Erster Start → Browser-Authentifizierung
+# SSH key (alternatively add it manually in the PaaS Console: My Profile → SSH Keys)
+shopware     # First start → browser authentication
 ```
 
 ---
 
-## Repository-Einrichtung
+## Repository setup
 
-### Neues Projekt
+### New project
 
 ```bash
 composer create-project shopware/production <folder-name>
@@ -44,25 +44,25 @@ cd <folder-name>
 composer require shopware/paas-meta
 ```
 
-### paas-meta Recipe aktualisieren
+### Update the paas-meta recipe
 
 ```bash
 composer recipes:update
 ```
 
-**Warnung:** Jedes Recipe-Update kann Breaking Changes enthalten! Manuell prüfen,
-besonders bei `.platform`-Datei-Änderungen (z.B. local → service mount).
+**Warning:** Every recipe update can contain breaking changes! Review manually,
+especially with `.platform` file changes (e.g. local → service mount).
 
-### Git-Remotes konfigurieren
+### Configure Git remotes
 
 ```bash
-# Projekt-ID ermitteln
+# Determine the project ID
 shopware projects
 
-# Remote hinzufügen
+# Add the remote
 shopware project:set-remote <PROJECT_ID>
 
-# Ergebnis: zwei Remotes
+# Result: two remotes
 git remote -v
 # origin   git@github.com:company/repo.git (fetch/push)
 # shopware <paas-url>.git (fetch/push)
@@ -70,9 +70,9 @@ git remote -v
 
 ---
 
-## Build & Deploy Prozess
+## Build & Deploy process
 
-### Deployment triggern
+### Trigger a deployment
 
 ```bash
 git add .
@@ -80,30 +80,30 @@ git commit -m "Applied new configuration"
 git push -u shopware main
 ```
 
-### Build-Schritte
+### Build steps
 
-| Phase | Aktion |
+| Phase | Action |
 |-------|--------|
-| Build | Konfiguration validieren |
-| Build | Container-Image erstellen |
-| Build | Dependencies installieren (Composer + Assets) |
-| Build | Build-Hook ausführen |
-| Deploy | App-Requests halten |
-| Deploy | Laufende Container unmounten |
-| Deploy | Filesysteme mounten |
-| Deploy | Deploy-Hook ausführen |
-| Deploy | Requests freigeben |
+| Build | Validate configuration |
+| Build | Create container image |
+| Build | Install dependencies (Composer + assets) |
+| Build | Run build hook |
+| Deploy | Hold app requests |
+| Deploy | Unmount running containers |
+| Deploy | Mount filesystems |
+| Deploy | Run deploy hook |
+| Deploy | Release requests |
 
-### Erstes Deployment
+### First deployment
 
-Shopware-CLI-Installer läuft automatisch, erstellt Admin-Account:
+The Shopware CLI installer runs automatically and creates an admin account:
 
 | Username | Password |
 |----------|----------|
 | `admin`  | `shopware` |
 
-**Sofort nach Deployment Passwort ändern!**
-`install.lock` nicht löschen — sonst läuft Installer erneut.
+**Change the password immediately after deployment!**
+Do not delete `install.lock` — otherwise the installer runs again.
 
 ---
 
@@ -113,44 +113,44 @@ Shopware-CLI-Installer läuft automatisch, erstellt Admin-Account:
 name: app
 type: php:8.3
 
-# Umgebungsvariablen und Server-Settings
+# Environment variables and server settings
 variables:
   env:
     N_PREFIX: /app/.global
     APP_ENV: prod
-    # Custom Variables hier
+    # Custom variables go here
 
-# Lifecycle Hooks
+# Lifecycle hooks
 hooks:
   build: |
-    # Build-Phase: Filesystem ist schreibbar, keine Services verfügbar
-    # Composer + shopware-cli + Assets bauen
+    # Build phase: filesystem is writable, no services available
+    # Composer + shopware-cli + build assets
   deploy: |
-    # Deploy-Phase: Traffic ist gehalten, Services verfügbar
-    # DB-Migrationen, Theme-Config, Cache leeren
-    # MINIMIEREN — jede Sekunde = Downtime
+    # Deploy phase: traffic is held, services available
+    # DB migrations, theme config, clear cache
+    # MINIMIZE — every second = downtime
   post_deploy: |
-    # Nach Verbindungsaufnahme: Theme kompilieren etc.
+    # After connections are accepted: compile theme etc.
 
-# Service-Mapping
+# Service mapping
 relationships:
   database: "db:mysql"
   cacheredis: "cacheredis:redis"
   rabbitmqqueue: "rabbitmq:rabbitmq"
   redissession: "redissession:redis"
 
-# Schreibbare Verzeichnisse
+# Writable directories
 mounts:
-  # Local Mounts (pro Instanz)
+  # Local mounts (per instance)
   "/var/cache": { source: local, source_path: cache }
   "/var/log": { source: local, source_path: log }
-  # Service Mounts (geteilt zwischen Instanzen)
+  # Service mounts (shared between instances)
   "/public/media": { source: service, service: fileshare, source_path: media }
   "/public/thumbnail": { source: service, service: fileshare, source_path: thumbnail }
   "/public/bundles": { source: service, service: fileshare, source_path: bundles }
   "/public/sitemap": { source: service, service: fileshare, source_path: sitemap }
 
-# HTTP-Routing
+# HTTP routing
 web:
   locations:
     "/":
@@ -158,7 +158,7 @@ web:
       expires: 1h
       passthru: "/index.php"
 
-# Worker-Konfiguration
+# Worker configuration
 workers:
   queue:
     commands:
@@ -204,13 +204,13 @@ opensearch:
 
 ---
 
-## Automatische Umgebungsvariablen
+## Automatic environment variables
 
-Werden automatisch von Platform.sh gesetzt basierend auf `relationships`:
+Set automatically by Platform.sh based on `relationships`:
 
 ### Global
 
-| Variable | Beispielwert |
+| Variable | Example value |
 |----------|-------------|
 | `APP_SECRET` | `a3c45d78e91f2b3c4d5e...` |
 | `APP_ENV` | `prod` |
@@ -219,28 +219,28 @@ Werden automatisch von Platform.sh gesetzt basierend auf `relationships`:
 
 ### Database
 
-| Variable | Beispielwert |
+| Variable | Example value |
 |----------|-------------|
 | `DATABASE_URL` | `mysql://user:password@database.internal:3306/main` |
 | `DATABASE_REPLICA_0_URL` | `mysql://user:password@database-replica.internal:3306/main` |
 
 ### RabbitMQ
 
-| Variable | Beispielwert |
+| Variable | Example value |
 |----------|-------------|
 | `MESSENGER_TRANSPORT_DSN` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/messages` |
 | `MESSENGER_TRANSPORT_DSN_PREFIX` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/` |
 
 ### Redis Cache
 
-| Variable | Beispielwert |
+| Variable | Example value |
 |----------|-------------|
 | `CACHE_DSN` | `redis://rediscache.internal:6379` |
 | `CACHE_URL` | `redis://rediscache.internal:6379` |
 
 ### Redis Session
 
-| Variable | Beispielwert |
+| Variable | Example value |
 |----------|-------------|
 | `SESSION_REDIS_HOST` | `redissession.internal` |
 | `SESSION_REDIS_PORT` | `6379` |
@@ -248,7 +248,7 @@ Werden automatisch von Platform.sh gesetzt basierend auf `relationships`:
 
 ### OpenSearch/Elasticsearch
 
-| Variable | Beispielwert |
+| Variable | Example value |
 |----------|-------------|
 | `OPENSEARCH_URL` | `http://opensearch.internal:9200` |
 | `ADMIN_OPENSEARCH_URL` | `http://opensearch.internal:9200` |
@@ -261,7 +261,7 @@ Werden automatisch von Platform.sh gesetzt basierend auf `relationships`:
 ## Composer Authentication
 
 ```bash
-# Shopware Plugin Store Auth für CI
+# Shopware Plugin Store auth for CI
 shopware variable:create \
   --level project \
   --name env:COMPOSER_AUTH \
@@ -272,14 +272,14 @@ shopware variable:create \
   --value '{"bearer": {"packages.shopware.com": "<YOUR_TOKEN>"}}'
 ```
 
-Token aus Shopware Account → "Install with Composer".
+Token from the Shopware Account → "Install with Composer".
 
 ---
 
-## Rebuild ohne Code-Änderung
+## Rebuild without a code change
 
 ```bash
-# Variable erstellen (triggert sofortigen Build)
+# Create a variable (triggers an immediate build)
 shopware variable:create \
   --environment main \
   --level environment \
@@ -288,39 +288,39 @@ shopware variable:create \
   --value "$(date)" \
   --visible-build true
 
-# Variable updaten (triggert erneuten Build)
+# Update the variable (triggers another build)
 shopware variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 ---
 
-## Migration von altem Template
+## Migration from the old template
 
-Von `shopwareArchive/paas` auf neues Flex-Template:
+From `shopwareArchive/paas` to the new Flex template:
 
 ```bash
-# Flex-Migration durchführen
+# Perform the Flex migration
 # .platform.app.yml → .platform/applications.yaml
-# Services umbenannt:
+# Services renamed:
 # queuerabbit → rabbitmq
 # searchelastic → opensearch
 ```
 
-Optionen bei Service-Umbenennung:
-1. Services zurückbenennen
-2. Neuen Service starten + ES reindexieren
-3. Paralleler Betrieb beider Services während Übergangszeit
+Options when a service is renamed:
+1. Rename the services back
+2. Start a new service + reindex ES
+3. Run both services in parallel during the transition period
 
 ---
 
 ## files/theme-config
 
-Theme-Konfiguration in Git committen (Empfehlung):
+Commit the theme configuration to Git (recommended):
 ```text
 files/
 └─ theme-config/
    └─ ...
 ```
 
-Ermöglicht Builds ohne Datenbank-Zugriff auf Theme-Konfiguration.
+Enables builds without database access to the theme configuration.
 Details: [Build without Database](https://developer.shopware.com/docs/guides/hosting/installation-updates/deployments/build-w-o-db)

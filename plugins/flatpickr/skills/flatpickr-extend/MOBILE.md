@@ -1,26 +1,26 @@
 # flatpickr — Mobile Support
 
-flatpickr erkennt automatisch mobile Browser und schaltet auf den nativen Datetime-Picker um.
-Das gibt Nutzern die gewohnte OS-Erfahrung.
+flatpickr detects mobile browsers automatically and switches to the native datetime picker.
+This gives users the OS experience they are used to.
 
 ```js
-// Standard: automatische Erkennung (empfohlen)
+// default: automatic detection (recommended)
 flatpickr("#date", {});
 
-// Nativen Picker erzwingen deaktivieren (nicht empfohlen)
+// disable the forced native picker (not recommended)
 flatpickr("#date", { disableMobile: true });
 ```
 
-## Nativ unterstützte Features
+## Natively supported features
 
-- Vorausfüllen (`defaultDate`)
+- Prefilling (`defaultDate`)
 - `minDate` / `maxDate`
-- `onChange`-Callbacks
+- `onChange` callbacks
 
-## Einschränkungen
+## Limitations
 
-Wenn Features wie `disable`-Funktionen verwendet werden, die nativ nicht funktionieren,
-fällt flatpickr automatisch auf den eigenen Picker zurück.
+When features such as `disable` functions are used that do not work natively,
+flatpickr automatically falls back to its own picker.
 
-## Vertiefung
-- [MOBILE-DETAIL.md](MOBILE-DETAIL.md) — vollständige Details, Fallback-Verhalten, Kompatibilitätstabelle
+## Further reading
+- [MOBILE-DETAIL.md](MOBILE-DETAIL.md) — complete details, fallback behavior, compatibility table

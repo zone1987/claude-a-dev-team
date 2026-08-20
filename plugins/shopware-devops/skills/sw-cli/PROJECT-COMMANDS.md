@@ -1,4 +1,4 @@
-# shopware-cli project — Vollständige Referenz
+# shopware-cli project — Complete reference
 
 ## Contents
 
@@ -21,13 +21,13 @@
 
 ## project create
 
-Neues Shopware 6 Projekt anlegen. Interaktiv wenn ohne Flags aufgerufen.
+Create a new Shopware 6 project. Interactive when called without flags.
 
 ```bash
-# Interaktiv
+# Interactive
 shopware-cli project create
 
-# Mit allen Flags
+# With all flags
 shopware-cli project create my-shop latest \
   --git \
   --docker \
@@ -37,154 +37,154 @@ shopware-cli project create my-shop latest \
   --ci github
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--docker` | false | Docker für composer install verwenden |
-| `--with-elasticsearch` | false | OpenSearch/Elasticsearch-Support einschließen |
-| `--with-amqp` | false | AMQP Queue (symfony/amqp-messenger) einschließen |
-| `--no-audit` | false | `composer audit` nicht blockierend |
-| `--git` | false | git-Repository initialisieren |
-| `--version string` | | SW-Version: `6.6.0.0`, `6.7.0.0`, `latest` |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--docker` | false | Use Docker for composer install |
+| `--with-elasticsearch` | false | Include OpenSearch/Elasticsearch support |
+| `--with-amqp` | false | Include the AMQP queue (symfony/amqp-messenger) |
+| `--no-audit` | false | Make `composer audit` non-blocking |
+| `--git` | false | Initialize a git repository |
+| `--version string` | | SW version: `6.6.0.0`, `6.7.0.0`, `latest` |
 | `--deployment string` | | `none` \| `deployer` \| `platformsh` \| `shopware-paas` |
 | `--ci string` | | `none` \| `github` \| `gitlab` |
 
-**Deployment-Optionen:**
-- `shopware-paas` → installiert `shopware/paas-meta` Recipe (Platform.sh-Konfig)
-- `platformsh` → allgemeine Platform.sh-Konfig
-- `deployer` → Deployer PHP-Konfiguration
-- `none` → keine Deployment-Konfig
+**Deployment options:**
+- `shopware-paas` → installs the `shopware/paas-meta` recipe (Platform.sh config)
+- `platformsh` → generic Platform.sh config
+- `deployer` → Deployer PHP configuration
+- `none` → no deployment config
 
 ## project ci
 
-Vollständige CI/CD-Build-Pipeline für Produktions-Deployments:
+Complete CI/CD build pipeline for production deployments:
 1. `composer install --no-dev --optimize-autoloader`
-2. Extension-Assets bauen (Admin + Storefront)
-3. Symfony-Cache warmup
+2. Build extension assets (admin + storefront)
+3. Symfony cache warmup
 4. `assets:install`
-5. MJML kompilieren (falls vorhanden)
-6. Checksums generieren
+5. Compile MJML (if present)
+6. Generate checksums
 
 ```bash
 shopware-cli project ci .
 shopware-cli project ci . --with-dev-dependencies
-shopware-cli project ci . --force   # außerhalb CI
+shopware-cli project ci . --force   # outside CI
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--with-dev-dependencies` | false | `require-dev` behalten |
-| `--force` | false | Auch außerhalb CI / bei dirty git tree ausführen |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--with-dev-dependencies` | false | Keep `require-dev` |
+| `--force` | false | Also run outside CI / with a dirty git tree |
 
-**Umgebungsvariablen die `project ci` liest:**
-- `APP_CACHE_DIR` — Cache-Verzeichnis (Standard: `var/cache`)
-- `SHOPWARE_SKIP_ASSET_INSTALL_CACHE_INVALIDATION=1` — Cache-Invalidierung beim Build überspringen (PaaS-Optimierung)
-- `CI` — Muss gesetzt sein (oder `--force` nutzen)
+**Environment variables `project ci` reads:**
+- `APP_CACHE_DIR` — cache directory (default: `var/cache`)
+- `SHOPWARE_SKIP_ASSET_INSTALL_CACHE_INVALIDATION=1` — skip cache invalidation during the build (PaaS optimization)
+- `CI` — must be set (or use `--force`)
 
 ## project admin-build / storefront-build
 
 ```bash
-# Nur Admin
+# Admin only
 shopware-cli project admin-build .
 shopware-cli project admin-build . --only-extensions MyPlugin,OtherPlugin
 shopware-cli project admin-build . --skip-extensions LegacyPlugin
 
-# Nur Storefront + theme:compile
+# Storefront only + theme:compile
 shopware-cli project storefront-build .
 shopware-cli project storefront-build . --skip-theme-compile
 shopware-cli project storefront-build . --force-install-dependencies
 ```
 
-**admin-build Flags:**
+**admin-build flags:**
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--skip-assets-install` | false | `assets:install` danach nicht ausführen |
-| `--force-install-dependencies` | false | npm install erzwingen |
-| `--only-extensions string` | | Kommagetrennte Extension-Liste |
-| `--skip-extensions string` | | Ausschlussliste |
-| `--only-custom-static-extensions` | false | Nur `custom/static-plugins` |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--skip-assets-install` | false | Do not run `assets:install` afterwards |
+| `--force-install-dependencies` | false | Force npm install |
+| `--only-extensions string` | | Comma-separated extension list |
+| `--skip-extensions string` | | Exclusion list |
+| `--only-custom-static-extensions` | false | Only `custom/static-plugins` |
 
-**storefront-build zusätzliche Flags:**
+**Additional storefront-build flags:**
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--skip-theme-compile` | false | `theme:compile` überspringen |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--skip-theme-compile` | false | Skip `theme:compile` |
 
 ## project worker
 
-Messenger-Consumer starten. Auto-Restart bei Absturz (rate-limited: 1 Neustart/10s).
-SIGTERM/SIGINT führen zu Graceful Stop.
+Start messenger consumers. Auto-restart on crash (rate-limited: 1 restart per 10s).
+SIGTERM/SIGINT lead to a graceful stop.
 
 ```bash
-# 1 Worker
+# 1 worker
 shopware-cli project worker
 
-# 3 Worker parallel
+# 3 workers in parallel
 shopware-cli project worker 3
 
-# Custom Queues
+# Custom queues
 shopware-cli project worker --queue async,low_priority 2
 
-# Mit Graceful Stop (60s warten vor SIGKILL)
+# With graceful stop (wait 60s before SIGKILL)
 shopware-cli project worker --graceful-stop-limit 60
 
-# Verboses Logging
+# Verbose logging
 shopware-cli project worker --verbose
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--verbose` | false | `-vvv` für alle Worker |
-| `--queue string` | `async,failed,low_priority` (SW>=6.5.7) | Kommagetrennte Queue-Namen |
-| `--memory-limit string` | `512M` | Memory-Limit pro Worker-Run |
-| `--time-limit string` | `120` | Zeit-Limit pro Worker-Run (Sekunden) |
-| `--graceful-stop-limit uint` | 0 | Sekunden für Graceful SIGTERM vor SIGKILL (0=sofort) |
-| `--limit uint` | 0 | Max. Messages pro Worker-Run (0=unbegrenzt) |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--verbose` | false | `-vvv` for all workers |
+| `--queue string` | `async,failed,low_priority` (SW>=6.5.7) | Comma-separated queue names |
+| `--memory-limit string` | `512M` | Memory limit per worker run |
+| `--time-limit string` | `120` | Time limit per worker run (seconds) |
+| `--graceful-stop-limit uint` | 0 | Seconds for a graceful SIGTERM before SIGKILL (0=immediately) |
+| `--limit uint` | 0 | Max. messages per worker run (0=unlimited) |
 
 ## project dump
 
-Pure-Go MySQL-Dumper ohne externe `mysqldump`-Binary.
+Pure Go MySQL dumper without an external `mysqldump` binary.
 
 ```bash
-# Einfach (DATABASE_URL aus .env)
+# Simple (DATABASE_URL from .env)
 shopware-cli project dump
 
-# Mit Anonymisierung und Kompression
+# With anonymization and compression
 shopware-cli project dump --clean --anonymize --compression gzip
 
-# Auf stdout (Pipeline)
+# To stdout (pipeline)
 shopware-cli project dump --output -
 
-# Explizite Verbindungsdaten
+# Explicit connection data
 shopware-cli project dump -u shopware -p shopware --host localhost --database shopware
 
-# Parallel (5 Tabellen gleichzeitig)
+# Parallel (5 tables at a time)
 shopware-cli project dump --parallel 5
 
-# Komprimiert mit zstd
+# Compressed with zstd
 shopware-cli project dump --compression zstd --output dump.sql.zst
 ```
 
-| Flag | Kurz | Default | Beschreibung |
-|------|------|---------|--------------|
-| `--host` | | (aus DATABASE_URL) | MySQL-Host |
-| `--database` | | (aus DATABASE_URL) | Datenbankname |
-| `--username` | `-u` | (aus DATABASE_URL) | MySQL-User |
-| `--password` | `-p` | (aus DATABASE_URL) | MySQL-Passwort |
-| `--port` | | (aus DATABASE_URL) | MySQL-Port |
-| `--output` | | `dump.sql` | Ausgabedatei oder `-` für stdout |
-| `--clean` | | false | Tabellen überspringen: `cart`, `messenger_messages`, `message_queue_stats`, `dead_message`, `increment`, `log_entry`, `sales_channel_api_context` |
-| `--skip-lock-tables` | | false | `LOCK TABLES` überspringen (nötig für limitierte Berechtigungen) |
-| `--anonymize` | | false | Kundendaten anonymisieren: E-Mail, Name, Adresse, etc. |
-| `--compression` | | | `gzip` (Datei bekommt `.gz`) \| `zstd` (Datei bekommt `.zst`) |
-| `--quick` | | false | Quick-Option (deaktiviert row-by-row Buffer) |
-| `--parallel` | | 0 | Tabellen parallel dumpen (0=sequentiell) |
-| `--insert-into-limit` | | 0 | Max. Rows pro INSERT-Statement (0=kein Limit) |
+| Flag | Short | Default | Description |
+|------|-------|---------|-------------|
+| `--host` | | (from DATABASE_URL) | MySQL host |
+| `--database` | | (from DATABASE_URL) | Database name |
+| `--username` | `-u` | (from DATABASE_URL) | MySQL user |
+| `--password` | `-p` | (from DATABASE_URL) | MySQL password |
+| `--port` | | (from DATABASE_URL) | MySQL port |
+| `--output` | | `dump.sql` | Output file or `-` for stdout |
+| `--clean` | | false | Skip tables: `cart`, `messenger_messages`, `message_queue_stats`, `dead_message`, `increment`, `log_entry`, `sales_channel_api_context` |
+| `--skip-lock-tables` | | false | Skip `LOCK TABLES` (needed for limited permissions) |
+| `--anonymize` | | false | Anonymize customer data: email, name, address, etc. |
+| `--compression` | | | `gzip` (file gets `.gz`) \| `zstd` (file gets `.zst`) |
+| `--quick` | | false | Quick option (disables the row-by-row buffer) |
+| `--parallel` | | 0 | Dump tables in parallel (0=sequential) |
+| `--insert-into-limit` | | 0 | Max. rows per INSERT statement (0=no limit) |
 
 ## project console
 
-Passthrough zu `bin/console`. Flag-Parsing deaktiviert (alle Argumente werden direkt übergeben).
-Tab-Completion für alle Symfony Console-Commands verfügbar.
+Passthrough to `bin/console`. Flag parsing is disabled (all arguments are passed through directly).
+Tab completion is available for all Symfony Console commands.
 
 ```bash
 shopware-cli project console cache:clear
@@ -194,10 +194,10 @@ shopware-cli project console system:install --shop-name "My Shop" --shop-email i
 
 ## project extension (via Admin API)
 
-Erfordern konfigurierte Admin-API in `.shopware-project.yml`.
+These require a configured Admin API in `.shopware-project.yml`.
 
 ```bash
-# Extensions listen
+# List extensions
 shopware-cli project extension list
 shopware-cli project extension list --json
 
@@ -215,7 +215,7 @@ shopware-cli project extension update all
 shopware-cli project extension outdated
 shopware-cli project extension outdated --json
 
-# Lokale Extension hochladen
+# Upload a local extension
 shopware-cli project extension upload path/to/MyPlugin --activate
 shopware-cli project extension upload path/to/MyPlugin --increase-version
 ```
@@ -223,24 +223,24 @@ shopware-cli project extension upload path/to/MyPlugin --increase-version
 ## project admin-api
 
 ```bash
-# GET-Request
+# GET request
 shopware-cli project admin-api GET /api/product?limit=5
 
-# POST-Request
+# POST request
 shopware-cli project admin-api POST /api/product \
   '{"name": "Test", "productNumber": "TEST-001", "stock": 10}'
 
-# Nur Token ausgeben (für curl-Pipelines)
+# Print the token only (for curl pipelines)
 shopware-cli project admin-api GET /api/product --output-token
 ```
 
 ## project doctor
 
-Diagnose ohne Side-Effects:
-- `.shopware-project.yml` lesen und validieren
-- Shopware-Version erkennen
-- Alle Extensions und Bundles auflisten
-- Potenzielle Probleme berichten
+Diagnostics without side effects:
+- Read and validate `.shopware-project.yml`
+- Detect the Shopware version
+- List all extensions and bundles
+- Report potential problems
 
 ```bash
 shopware-cli project doctor .
@@ -252,39 +252,39 @@ shopware-cli project doctor .
 shopware-cli project validate .
 shopware-cli project validate . --reporter github
 shopware-cli project validate . --only phpstan
-shopware-cli project validate . --local-only   # nur custom/*
+shopware-cli project validate . --local-only   # custom/* only
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
+| Flag | Default | Description |
+|------|---------|-------------|
 | `--reporter string` | auto | `summary` \| `json` \| `github` \| `gitlab` \| `junit` \| `markdown` |
-| `--only string` | | Kommagetrennte Tool-Liste |
-| `--exclude string` | | Tools ausschließen |
-| `--no-copy` | false | Kein tmp-Dir |
-| `--local-only` | false | Nur `custom/*`-Ordner scannen |
+| `--only string` | | Comma-separated tool list |
+| `--exclude string` | | Exclude tools |
+| `--no-copy` | false | No tmp dir |
+| `--local-only` | false | Scan only the `custom/*` folders |
 
 ## project autofix
 
 ```bash
-# composer-based Plugins zu Composer/Packagist migrieren
+# Migrate composer-based plugins to Composer/Packagist
 shopware-cli project autofix composer-plugins
 
-# Zu Symfony Flex migrieren
+# Migrate to Symfony Flex
 shopware-cli project autofix flex
 ```
 
-`autofix flex` modifiziert:
-- `composer.json`: Flex-Endpoint hinzufügen, Scripts anpassen
-- `.env`: Flex-kompatible Struktur
-- `config/`: Aufräumen nach Recipe-Pattern
+`autofix flex` modifies:
+- `composer.json`: add the Flex endpoint, adjust scripts
+- `.env`: Flex-compatible structure
+- `config/`: clean up according to the recipe pattern
 
 ## project generate-jwt
 
 ```bash
-# Dateien schreiben: config/jwt/private.pem + config/jwt/public.pem
+# Write files: config/jwt/private.pem + config/jwt/public.pem
 shopware-cli project generate-jwt .
 
-# Als Env-Vars ausgeben (für CI/Secrets)
+# Print as env vars (for CI/secrets)
 shopware-cli project generate-jwt . --env
 # → JWT_PRIVATE_KEY=<base64>
 # → JWT_PUBLIC_KEY=<base64>
@@ -292,8 +292,8 @@ shopware-cli project generate-jwt . --env
 
 ## project image-proxy
 
-Lokaler Proxy für Entwicklung mit Produktions-Medien. Serviert Images aus lokalem `public/`,
-leitet Misses an Upstream weiter und cached Responses.
+Local proxy for development with production media. Serves images from the local `public/`,
+forwards misses to the upstream and caches responses.
 
 ```bash
 shopware-cli project image-proxy --url https://production.example.com
@@ -301,17 +301,17 @@ shopware-cli project image-proxy --url https://production.example.com --port 808
 shopware-cli project image-proxy --url https://production.example.com --clear
 ```
 
-Erstellt beim Start eine temporäre Shopware-Filesystem-Konfig und entfernt sie beim Beenden.
+On startup it creates a temporary Shopware filesystem config and removes it on exit.
 
 ## project upgrade-check
 
 ```bash
 shopware-cli project upgrade-check .
-# → Interaktive Versionsauswahl
-# → Listet inkompatible Extensions mit Details
+# → Interactive version selection
+# → Lists incompatible extensions with details
 ```
 
-Nutzt Admin-API wenn konfiguriert, sonst `composer.lock` für Versionsanalyse.
+Uses the Admin API when configured, otherwise `composer.lock` for the version analysis.
 
 ## project config-schema
 
@@ -323,6 +323,6 @@ shopware-cli project config-schema > shopware-project-schema.json
 
 ```bash
 shopware-cli project clear-cache
-# → Nutzt Admin-API wenn konfiguriert
-# → Fallback: var/cache löschen
+# → Uses the Admin API when configured
+# → Fallback: delete var/cache
 ```

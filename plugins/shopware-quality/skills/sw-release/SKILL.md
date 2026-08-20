@@ -9,9 +9,9 @@ What ships alongside the code, and how this library keeps itself current.
 
 ## Reference map
 
-- **[CHANGELOG.md](CHANGELOG.md)**: Plugin-`CHANGELOG.md` nach „Keep a Changelog", pro Release Abschnitt mit Added/Changed/Fixed/Removed.
-- **[KNOWLEDGE-SYNC.md](KNOWLEDGE-SYNC.md)**: Hält die `sw-*`-Skills aktuell gegen `shopware/shopware`.
-- **[SHOPWARE-README.md](SHOPWARE-README.md)**: Du generierst und aktualisierst README.md-Dateien für Shopware 6 Plugins.
+- **[CHANGELOG.md](CHANGELOG.md)**: Plugin `CHANGELOG.md` following "Keep a Changelog", one section per release with Added/Changed/Fixed/Removed.
+- **[KNOWLEDGE-SYNC.md](KNOWLEDGE-SYNC.md)**: Keeps the `sw-*` skills current against `shopware/shopware`.
+- **[SHOPWARE-README.md](SHOPWARE-README.md)**: Generate and update README.md files for Shopware 6 plugins.
 
 ## Source
 

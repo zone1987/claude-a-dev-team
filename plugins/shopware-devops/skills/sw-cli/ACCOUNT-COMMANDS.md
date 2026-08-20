@@ -1,4 +1,4 @@
-# shopware-cli account — Vollständige Referenz
+# shopware-cli account — Complete reference
 
 ## Contents
 
@@ -8,148 +8,148 @@
 - [account producer extension info pull](#account-producer-extension-info-pull)
 - [account producer extension info push](#account-producer-extension-info-push)
 - [account producer extension upload](#account-producer-extension-upload)
-- [`.shopware-extension.yml` — Vollständiges Format](#shopware-extensionyml-vollständiges-format)
-- [Typischer Store-Publishing-Workflow](#typischer-store-publishing-workflow)
-- [CI-Pipeline für automatischen Store-Upload](#ci-pipeline-für-automatischen-store-upload)
+- [`.shopware-extension.yml` — Complete format](#shopware-extensionyml-complete-format)
+- [Typical store publishing workflow](#typical-store-publishing-workflow)
+- [CI pipeline for automatic store upload](#ci-pipeline-for-automatic-store-upload)
 
 ## account login
 
-OIDC/OAuth2 Browser-basierter Login gegen Shopware Account.
+OIDC/OAuth2 browser-based login against the Shopware Account.
 
 ```bash
 shopware-cli account login
-# → Öffnet Browser für OIDC-Flow
-# → Token wird lokal gecached (~/.config/shopware-cli/ oder XDG_CONFIG_HOME)
+# → Opens the browser for the OIDC flow
+# → Token is cached locally (~/.config/shopware-cli/ or XDG_CONFIG_HOME)
 ```
 
-Kein zusätzlicher Flag außer globalen (`--no-interaction`, `--verbose`).
+No additional flags beyond the global ones (`--no-interaction`, `--verbose`).
 
-Bei `--no-interaction`: Login schlägt fehl (benötigt Browser-Flow).
-Für CI: `ACCOUNT_EMAIL` und `ACCOUNT_PASSWORD` Umgebungsvariablen setzen.
+With `--no-interaction`: login fails (it requires the browser flow).
+For CI: set the `ACCOUNT_EMAIL` and `ACCOUNT_PASSWORD` environment variables.
 
 ```bash
-# CI-Login via Umgebungsvariablen
+# CI login via environment variables
 ACCOUNT_EMAIL=user@example.com ACCOUNT_PASSWORD=secret shopware-cli account login
 ```
 
 ## account logout
 
-Lokalen Token-Cache invalidieren.
+Invalidate the local token cache.
 
 ```bash
 shopware-cli account logout
 ```
 
-Keine Flags.
+No flags.
 
 ## account producer extension list
 
-Alle eigenen Store-Extensions auflisten.
+List all of your own store extensions.
 
 ```bash
 shopware-cli account producer extension list
 shopware-cli account producer extension list --search "My"
 ```
 
-| Flag | Beschreibung |
-|------|--------------|
-| `--search string` | Ergebnisse nach Name filtern |
+| Flag | Description |
+|------|-------------|
+| `--search string` | Filter results by name |
 
-**Ausgabe:**
-- Extension-Name (technical)
-- Anzeigename
-- Status (aktiv/inaktiv)
-- Aktuelle Version im Store
+**Output:**
+- Extension name (technical)
+- Display name
+- Status (active/inactive)
+- Current version in the store
 
 ## account producer extension info pull
 
-Store-Informationen aus Shopware Account in lokale Dateien ziehen.
+Pull store information from the Shopware Account into local files.
 
 ```bash
 shopware-cli account producer extension info pull path/to/MyPlugin
 ```
 
-**Lädt herunter nach:**
-- `.shopware-extension.yml` — Metadaten (Name, Beschreibungen, Kategorien, Einstellungen)
-- `src/Resources/store/` — Store-Assets:
-  - `icon.png` — Extension-Icon (256x256px)
-  - `images/` — Store-Screenshots
-  - `description_de.html`, `description_en.html` — Beschreibungen
-  - `installation_manual_de.html`, `installation_manual_en.html` — Installationsanleitungen
+**Downloads into:**
+- `.shopware-extension.yml` — metadata (name, descriptions, categories, settings)
+- `src/Resources/store/` — store assets:
+  - `icon.png` — extension icon (256x256px)
+  - `images/` — store screenshots
+  - `description_de.html`, `description_en.html` — descriptions
+  - `installation_manual_de.html`, `installation_manual_en.html` — installation manuals
 
-Kein zusätzlicher Flag.
+No additional flags.
 
 ## account producer extension info push
 
-Lokale Store-Infos aus `.shopware-extension.yml` und `src/Resources/store/` in Shopware Account hochladen.
+Upload local store info from `.shopware-extension.yml` and `src/Resources/store/` to the Shopware Account.
 
 ```bash
 shopware-cli account producer extension info push path/to/MyPlugin
-# oder Zip-Datei
+# or a zip file
 shopware-cli account producer extension info push MyPlugin-1.2.3.zip
 ```
 
-**Aktualisiert:**
-- Beschreibungen (alle Sprachen)
-- Installationsanleitung
-- Store-Screenshots
+**Updates:**
+- Descriptions (all languages)
+- Installation manual
+- Store screenshots
 - Icon
-- Kategorien
-- Kompatibilitäts-Flags
+- Categories
+- Compatibility flags
 
-Kein zusätzlicher Flag.
+No additional flags.
 
 ## account producer extension upload
 
-Extension-Zip in Shopware Store hochladen und Code-Review triggern.
+Upload an extension zip to the Shopware Store and trigger the code review.
 
 ```bash
 shopware-cli account producer extension upload MyPlugin-1.2.3.zip
 
-# Ohne auf Code-Review warten
+# Without waiting for the code review
 shopware-cli account producer extension upload MyPlugin-1.2.3.zip --skip-for-review-result
 ```
 
-| Flag | Default | Beschreibung |
-|------|---------|--------------|
-| `--skip-for-review-result` | false | Nicht auf automatischen Code-Review warten (schnelleres CI) |
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--skip-for-review-result` | false | Do not wait for the automatic code review (faster CI) |
 
-**Upload-Ablauf:**
-1. Zip hochladen via Shopware Account API
-2. Automatischen Code-Review triggern
-3. (Standard) Auf Review-Ergebnis warten und ausgeben
-4. Exit-Code != 0 wenn Code-Review Fehler meldet
+**Upload sequence:**
+1. Upload the zip via the Shopware Account API
+2. Trigger the automatic code review
+3. (Default) Wait for the review result and print it
+4. Exit code != 0 if the code review reports errors
 
-**Code-Review prüft u.a.:**
-- PHP-Syntax
-- Verbotene Funktionen (`eval`, `exec`, etc.)
-- Shopware-API-Nutzung
-- Performance-Probleme
-- Sicherheitsprobleme
+**The code review checks, among other things:**
+- PHP syntax
+- Forbidden functions (`eval`, `exec`, etc.)
+- Shopware API usage
+- Performance problems
+- Security problems
 
 ---
 
-## `.shopware-extension.yml` — Vollständiges Format
+## `.shopware-extension.yml` — Complete format
 
 ```yaml
 store:
-  # Store-Icon (256x256px PNG)
+  # Store icon (256x256px PNG)
   icon: src/Resources/store/icon.png
 
-  # Unterstützte Shopware-Sprachregionen
+  # Supported Shopware language regions
   localizations:
     - de_DE
     - en_GB
 
-  # Store-Kategorien
+  # Store categories
   categories:
     - Storefront
     - Administration
 
-  # Automatische Bugfix-Version-Kompatibilität
+  # Automatic bugfix version compatibility
   automatic_bugfix_version_compatibility: true
 
-  # Store-Texte pro Sprache
+  # Store texts per language
   info:
     de:
       name: "Mein Plugin"
@@ -173,15 +173,15 @@ store:
       description: "Long description"
       installation_manual: "Installation instructions"
 
-# Build-Konfiguration
+# Build configuration
 build:
-  # Dateien/Ordner vom Zip ausschließen
+  # Exclude files/folders from the zip
   zip:
     assets:
       enable: true
     pack:
       excludes:
-        # Muster zum Ausschließen
+        # Patterns to exclude
         - "node_modules"
         - "src/Resources/app/*/node_modules"
         - ".git"
@@ -192,33 +192,33 @@ build:
 
 ---
 
-## Typischer Store-Publishing-Workflow
+## Typical store publishing workflow
 
 ```bash
-# 1. Extension bauen und validieren
+# 1. Build and validate the extension
 shopware-cli extension build path/to/MyPlugin
 shopware-cli extension validate --full --store-compliance path/to/MyPlugin
 
-# 2. Release-Zip erstellen
+# 2. Create the release zip
 shopware-cli extension zip path/to/MyPlugin --use-git-tag-as-version --release
 
-# 3. Store-Infos aktuell halten
+# 3. Keep store info up to date
 shopware-cli account login
 shopware-cli account producer extension info push path/to/MyPlugin
 
-# 4. Extension hochladen
+# 4. Upload the extension
 shopware-cli account producer extension upload MyPlugin-1.2.3.zip
 
-# 5. Nach dem Upload: Status prüfen
+# 5. After the upload: check the status
 shopware-cli account producer extension list --search MyPlugin
 ```
 
 ---
 
-## CI-Pipeline für automatischen Store-Upload
+## CI pipeline for automatic store upload
 
 ```yaml
-# GitHub Actions Beispiel
+# GitHub Actions example
 - name: Build and upload extension
   env:
     ACCOUNT_EMAIL: ${{ secrets.SHOPWARE_ACCOUNT_EMAIL }}

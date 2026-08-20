@@ -1,6 +1,6 @@
 # Shopware PaaS — Services (Deep Reference)
 
-Quellen: `products/paas/shopware/resources/databases.md`,
+Sources: `products/paas/shopware/resources/databases.md`,
 `products/paas/shopware/resources/object-storage.md`,
 `products/paas/shopware/guides/opensearch.md`,
 `products/paas/shopware-paas/elasticsearch.md`,
@@ -20,30 +20,30 @@ Quellen: `products/paas/shopware/resources/databases.md`,
 
 ## PaaS Native: Managed MySQL
 
-### Features (Plattformseitig verwaltet)
+### Features (managed by the platform)
 
-- Automatische Backups und Recovery
-- High Availability
-- Performance Monitoring und Metriken
-- Ressourcen-Skalierung (CPU, RAM, Storage)
-- Automatische Encryption (at rest und in transit)
+- Automatic backups and recovery
+- High availability
+- Performance monitoring and metrics
+- Resource scaling (CPU, RAM, storage)
+- Automatic encryption (at rest and in transit)
 
-### Verbindung via CLI-Tunnel
+### Connecting via the CLI tunnel
 
 ```bash
 sw-paas open service --service database --port 3306
 ```
 
-**Bekannte Einschränkung:** mTLS-Tunnel ist inkompatibel mit NAT.
-In VM oder WSL: Netzwerk-Modus auf `Host` oder `Mirrored` stellen.
+**Known limitation:** the mTLS tunnel is incompatible with NAT.
+In a VM or WSL: set the network mode to `Host` or `Mirrored`.
 
-Kein direkter öffentlicher Datenbankzugriff möglich.
+No direct public database access is possible.
 
 ---
 
 ## PaaS Native: OpenSearch
 
-### Aktivierung
+### Activation
 
 In `application.yaml`:
 
@@ -61,26 +61,26 @@ git push
 sw-paas application update
 ```
 
-### Indexierung nach Aktivierung
+### Indexing after activation
 
 ```bash
 sw-paas exec --new
-# Im Container:
+# Inside the container:
 bin/console dal:refresh:index --use-queue
 ```
 
-### OpenSearch und Cloning
+### OpenSearch and cloning
 
-Nach Cloning einer Application mit OpenSearch muss reindexiert werden:
+After cloning an application with OpenSearch, a reindex is required:
 
 ```bash
 sw-paas exec --new
 bin/console dal:refresh:index --use-queue
 ```
 
-### OpenSearch im Grafana
+### OpenSearch in Grafana
 
-SSO ist nicht verfügbar. Zugang über:
+SSO is not available. Access via:
 ```bash
 sw-paas open grafana
 ```
@@ -89,46 +89,46 @@ sw-paas open grafana
 
 ## PaaS Native: S3 Object Storage
 
-### Konfiguration
+### Configuration
 
-Jede Application erhält automatisch **2 S3-kompatible Buckets**:
-- **Public Bucket**: Öffentlich zugängliche Medien
-- **Private Bucket**: Nicht-öffentliche Dateien
+Every application automatically receives **2 S3-compatible buckets**:
+- **Public bucket**: publicly accessible media
+- **Private bucket**: non-public files
 
-Konfiguration via `config/packages/operator.yaml` (durch k8s-meta installiert):
-- Filesystem: public, private, theme, sitemap → alle S3-backed
+Configuration via `config/packages/operator.yaml` (installed by k8s-meta):
+- Filesystem: public, private, theme, sitemap → all S3-backed
 
-### Zugriff
+### Access
 
-Object Storage ist **nicht direkt von außen** erreichbar.
-Zugriff nur möglich über:
+Object storage is **not reachable directly from outside**.
+Access is only possible through:
 
 - Shopware Admin (Media Manager)
 - Shopware API
-- PHP-Script in einem Container mit Filesystem-Zugriff
+- PHP script in a container with filesystem access
 
-### Kontexte mit Filesystem-Zugriff
+### Contexts with filesystem access
 
-| Kontext | Filesystem verfügbar |
+| Context | Filesystem available |
 |---------|---------------------|
-| `storefront` | Ja |
-| `admin` | Ja |
-| `worker` | Ja |
-| `exec`-Sessions | Ja |
-| `migration`-Schritt | Ja |
-| `setup`-Schritt | Ja |
-| `build`-Schritt | **Nein** |
+| `storefront` | Yes |
+| `admin` | Yes |
+| `worker` | Yes |
+| `exec` sessions | Yes |
+| `migration` step | Yes |
+| `setup` step | Yes |
+| `build` step | **No** |
 
-### Plugin-Kompatibilität
+### Plugin compatibility
 
-Third-Party-Plugins müssen S3-kompatiblen Storage unterstützen.
-Bei Inkompatibilität: Plugin-Anbieter kontaktieren.
+Third-party plugins must support S3-compatible storage.
+In case of incompatibility: contact the plugin vendor.
 
 ---
 
 ## PaaS (Platform.sh): Elasticsearch / OpenSearch
 
-### Aktivierung in services.yaml
+### Activation in services.yaml
 
 ```yaml
 # .platform/services.yaml
@@ -137,7 +137,7 @@ elasticsearch:
   disk: 256
 ```
 
-### Relationship in applications.yaml hinzufügen
+### Add the relationship in applications.yaml
 
 ```yaml
 # .platform/applications.yaml
@@ -145,34 +145,34 @@ relationships:
   elasticsearch: "elasticsearch:opensearch"
 ```
 
-### Umgebungsvariablen (automatisch gesetzt)
+### Environment variables (set automatically)
 
-Nach Aktivierung stehen bereit:
-- `SHOPWARE_ES_HOSTS` (via paas-meta Package)
+After activation the following are available:
+- `SHOPWARE_ES_HOSTS` (via the paas-meta package)
 - `ELASTICSEARCH_URL`
 - `ELASTICSEARCH_HOST`
 - `ELASTICSEARCH_PORT`
 - `OPENSEARCH_URL`
 - `ADMIN_OPENSEARCH_URL`
 
-### Elasticsearch aktivieren
+### Enabling Elasticsearch
 
 ```bash
-# In platformsh-env.php auskommentieren ODER in variables-Sektion setzen:
+# Uncomment in platformsh-env.php OR set in the variables section:
 SHOPWARE_ES_ENABLED=1
 ```
 
-### Shopware für Elasticsearch vorbereiten
+### Preparing Shopware for Elasticsearch
 
-Siehe: [Elasticsearch Setup](https://developer.shopware.com/docs/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup#prepare-shopware-for-elasticsearch)
+See: [Elasticsearch Setup](https://developer.shopware.com/docs/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup#prepare-shopware-for-elasticsearch)
 
 ---
 
 ## PaaS (Platform.sh): RabbitMQ
 
-Standard in Template **aktiviert**.
+**Enabled** by default in the template.
 
-### Deaktivieren (Fallback auf SQL-Queue)
+### Disabling (fallback to the SQL queue)
 
 ```yaml
 # .platform/services.yaml
@@ -193,9 +193,9 @@ git commit -m "Disable RabbitMQ, use SQL queue"
 git push shopware main
 ```
 
-### Umgebungsvariablen (wenn aktiviert)
+### Environment variables (when enabled)
 
-| Variable | Wert |
+| Variable | Value |
 |----------|------|
 | `MESSENGER_TRANSPORT_DSN` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/messages` |
 | `MESSENGER_TRANSPORT_DSN_PREFIX` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/` |
@@ -204,7 +204,7 @@ git push shopware main
 
 ## PaaS (Platform.sh): Redis
 
-Typisch zwei Redis-Instanzen:
+Typically two Redis instances:
 
 ### Cache Redis
 
@@ -214,7 +214,7 @@ cacheredis:
   type: redis:7.0
 ```
 
-Umgebungsvariablen: `CACHE_DSN`, `CACHE_URL` = `redis://rediscache.internal:6379`
+Environment variables: `CACHE_DSN`, `CACHE_URL` = `redis://rediscache.internal:6379`
 
 ### Session Redis
 
@@ -223,7 +223,7 @@ redissession:
   type: redis:7.0
 ```
 
-Umgebungsvariablen: `SESSION_REDIS_HOST`, `SESSION_REDIS_PORT`, `SESSION_REDIS_URL`
+Environment variables: `SESSION_REDIS_HOST`, `SESSION_REDIS_PORT`, `SESSION_REDIS_URL`
 
 ---
 
@@ -236,12 +236,12 @@ fileshare:
   disk: 5000
 ```
 
-Geteilt zwischen allen App-Instanzen. Verwendet für:
+Shared between all app instances. Used for:
 - `/public/media`
 - `/public/thumbnail`
 - `/public/bundles`
 - `/public/sitemap`
 
-Local Mounts (nicht geteilt):
-- `/var/cache` (Symfony-Cache)
+Local mounts (not shared):
+- `/var/cache` (Symfony cache)
 - `/var/log`

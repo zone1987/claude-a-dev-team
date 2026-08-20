@@ -1,6 +1,6 @@
-# Shopware 6 — Criteria-Filter
+# Shopware 6 — Criteria filters
 
-Filter schränken Ergebnisse ein, via `$criteria->addFilter(...)`.
+Filters narrow the result set, via `$criteria->addFilter(...)`.
 
 ```php
 $criteria->addFilter(new EqualsFilter('active', true));
@@ -13,7 +13,7 @@ $criteria->addFilter(new MultiFilter(MultiFilter::CONNECTION_OR, [
 $criteria->addFilter(new NotFilter(NotFilter::CONNECTION_AND, [new EqualsFilter('stock', 0)]));
 ```
 
-`addFilter` filtert vor Aggregationen, `addPostFilter` danach (für Aggregations-unabhängige Anzeige).
-Verschachtelte Felder per Punktnotation (`lines.product.active`).
+`addFilter` filters before aggregations, `addPostFilter` after them (for display independent of the aggregations).
+Reach nested fields with dot notation (`lines.product.active`).
 
-→ Alle Filter-Typen: [FILTERS-SEARCH-CRITERIA.md](FILTERS-SEARCH-CRITERIA.md)
+→ All filter types: [FILTERS-SEARCH-CRITERIA.md](FILTERS-SEARCH-CRITERIA.md)

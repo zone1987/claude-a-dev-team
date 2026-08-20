@@ -1,15 +1,15 @@
-# Shopware 6 — Feature-Flags
+# Shopware 6 — Feature Flags
 
-Flags erlauben es, neuen Code hinter einem Schalter auszuliefern (Major-Vorbereitung, Experimente).
+Flags let you ship new code behind a switch (major preparation, experiments).
 
 ```php
 if (Feature::isActive('FEATURE_FF_NEXT_1')) {
-    // neuer Pfad
+    // new path
 }
 ```
 
-Registrierung über `config/packages/feature.yaml` bzw. `Feature::registerFeature()`. Code in Tests gezielt aktivieren
-mit `Feature::skipTestIfActive`/`Feature::skipTestIfInActive`. Major-Flags steuern BC-brechende Änderungen bis zum
-nächsten Major (vgl. ADRs „feature flags for major versions", „toggle feature flag on demand", „experimental features").
+Register them via `config/packages/feature.yaml` or `Feature::registerFeature()`. Activate code selectively in tests
+with `Feature::skipTestIfActive`/`Feature::skipTestIfInActive`. Major flags gate BC-breaking changes until the
+next major (see the ADRs "feature flags for major versions", "toggle feature flag on demand", "experimental features").
 
-Plugin-eigene Flags sparsam einsetzen und nach Stabilisierung entfernen, damit kein toter Pfad bleibt.
+Use plugin-owned flags sparingly and remove them once stabilized, so no dead path remains.

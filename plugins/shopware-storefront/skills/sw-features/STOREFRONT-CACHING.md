@@ -1,14 +1,14 @@
-# Shopware 6 — Storefront-Caching
+# Shopware 6 — Storefront caching
 
-Storefront-Seiten werden http-gecacht. Eigene Controller-Routen markieren und Cache korrekt invalidieren.
+Storefront pages are HTTP-cached. Mark your own controller routes and invalidate the cache correctly.
 
 ```php
 #[Route(path: '/ff/example', name: 'frontend.ff.example', defaults: ['_httpCache' => true])]
 ```
 
-- `_httpCache` aktiviert Caching der Route; ohne → dynamisch (z.B. Warenkorb).
-- **Cache-Tags** für gezielte Invalidierung (`CacheTagCollection` / Tags am Entity-Cache) bei Datenänderung.
-- **ESI/Pagelets** für dynamische Teilbereiche in gecachten Seiten (`sw-storefront-pagelet`).
-- Kundenspezifische Inhalte nie in den geteilten Cache (no-store / Pagelet).
+- `_httpCache` enables caching for the route; without it the route is dynamic (e.g. cart).
+- **Cache tags** for targeted invalidation (`CacheTagCollection` / tags on the entity cache) when data changes.
+- **ESI/pagelets** for dynamic sections within cached pages (`sw-storefront-pagelet`).
+- Never put customer-specific content into the shared cache (no-store / pagelet).
 
-Verhalten hängt vom konfigurierten Cache/Reverse-Proxy ab. Bei AJAX-Endpunkten Cache bewusst setzen (`sw-ajax-data`).
+Behavior depends on the configured cache/reverse proxy. Set caching deliberately on AJAX endpoints (`sw-ajax-data`).

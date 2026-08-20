@@ -1,7 +1,7 @@
-# Shopware 6 — Cart-LineItem
+# Shopware 6 — Cart LineItem
 
-Eine Warenkorb-Position ist ein `LineItem` (Typ z.B. `product`, `promotion`, `custom`/eigener Typ). Hinzufügen über
-den `CartService` bzw. die Store-API.
+A cart position is a `LineItem` (type e.g. `product`, `promotion`, `custom`/your own type). Add it through
+the `CartService` or the Store API.
 
 ```php
 $lineItem = $this->lineItemFactory->create([
@@ -10,6 +10,6 @@ $lineItem = $this->lineItemFactory->create([
 $this->cartService->add($cart, $lineItem, $context);
 ```
 
-Eigene Typen über einen `LineItemFactoryHandler` registrieren. Payload trägt eigene Daten; Preis wird vom Processor
-berechnet (nie hart setzen). Verschachtelte Positionen (Bundles/Sets): `sw-nested-line-items`. Add/Remove im
-Storefront/Headless über die Store-API (`shopware-api` → `sw-store-api-endpoints`).
+Register custom types through a `LineItemFactoryHandler`. The payload carries your own data; the processor calculates
+the price (never set it directly). Nested positions (bundles/sets): `sw-nested-line-items`. Add/remove in the
+storefront or headless through the Store API (`shopware-api` → `sw-store-api-endpoints`).

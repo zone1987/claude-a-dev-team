@@ -1,57 +1,57 @@
 # Shopware PaaS Native — CDN & Custom Domains
 
-## Fastly CDN (automatisch aktiv)
+## Fastly CDN (active automatically)
 
-- Standard CDN für alle PaaS-Native-Umgebungen
-- Zwei Services: `storefront` + `cdn` (für S3-Assets)
-- Automatische Cache-Invalidierung via Deployment Helper
-- HTTP Cache am Edge = weniger Redis-Last, geringere Latenz global
-- WAF (Next-Gen WAF, OWASP Top 10) standardmäßig aktiv — kein Setup nötig
+- Default CDN for all PaaS Native environments
+- Two services: `storefront` + `cdn` (for S3 assets)
+- Automatic cache invalidation via the Deployment Helper
+- HTTP cache at the edge = less Redis load, lower latency globally
+- WAF (Next-Gen WAF, OWASP Top 10) active by default — no setup required
 
-## Custom Domain einrichten
+## Set up a custom domain
 
-### Subdomain (nicht-Apex, z.B. `shop.example.com`)
+### Subdomain (non-apex, e.g. `shop.example.com`)
 
 ```dns
 CNAME: cdn.shopware.shop
 ```
 
-### Apex Domain (z.B. `example.com`)
+### Apex domain (e.g. `example.com`)
 
 ```dns
-# A Records
+# A records
 151.101.3.52
 151.101.67.52
 151.101.131.52
 151.101.195.52
 
-# AAAA Records
+# AAAA records
 2a04:4e42::820
 2a04:4e42:200::820
 2a04:4e42:400::820
 2a04:4e42:600::820
 
-# TXT Record (Ownership)
+# TXT record (ownership)
 _shopware-challenge.example.com. TXT "shopware-challenge=<org-id>"
 ```
 
-### Ablauf
+### Procedure
 
 ```bash
-# 1. DNS konfigurieren (Provider)
-# 2. Propagation abwarten (15-30 Min bis 48h)
-# 3. DNS prüfen
+# 1. Configure DNS (provider)
+# 2. Wait for propagation (15-30 min up to 48h)
+# 3. Check DNS
 dig shop.example.com CNAME        # Subdomain
 dig example.com A                  # Apex
 dig _shopware-challenge.example.com TXT
 
-# 4. Domain anlegen (validiert DNS live!)
+# 4. Create the domain (validates DNS live!)
 sw-paas domain create
 
-# 5. Application redeployen
+# 5. Redeploy the application
 sw-paas application deploy create
 
-# 6. Domain in Shopware-Admin Sales Channel konfigurieren
+# 6. Configure the domain in the sales channel in the Shopware admin
 ```
 
 ## Fastly Snippets (PaaS Native)
@@ -60,9 +60,9 @@ sw-paas application deploy create
 composer require shopware/fastly-meta
 ```
 
-FASTLY_API_KEY und FASTLY_SERVICE_ID werden automatisch bereitgestellt.
-Snippets werden automatisch beim Deployment installiert.
+FASTLY_API_KEY and FASTLY_SERVICE_ID are provided automatically.
+Snippets are installed automatically during deployment.
 
-## Vertiefung
+## Deep dive
 
 [CDN-DETAIL.md](CDN-DETAIL.md)

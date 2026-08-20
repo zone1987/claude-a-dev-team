@@ -1,46 +1,46 @@
 # Shopware PaaS Native — Cron Jobs & Worker (Deep Reference)
 
-Quellen: `products/paas/shopware/guides/cronjobs.md`,
-`products/paas/shopware-paas/setup-template.md` (Worker-Sektion)
+Sources: `products/paas/shopware/guides/cronjobs.md`,
+`products/paas/shopware-paas/setup-template.md` (worker section)
 
 ---
 
 ## Contents
 
-- [Cron Jobs in PaaS Native](#cron-jobs-in-paas-native)
-- [Konfiguration in application.yaml](#konfiguration-in-applicationyaml)
-- [Feld-Referenz](#feld-referenz)
-- [Name-Format](#name-format)
-- [Cron-Syntax](#cron-syntax)
+- [Cron jobs in PaaS Native](#cron-jobs-in-paas-native)
+- [Configuration in application.yaml](#configuration-in-applicationyaml)
+- [Field reference](#field-reference)
+- [Name format](#name-format)
+- [Cron syntax](#cron-syntax)
 - [Timezones](#timezones)
-- [CLI-Verwaltung](#cli-verwaltung)
+- [CLI management](#cli-management)
 - [Execution History](#execution-history)
 - [Logs](#logs)
-- [Worker in klassischem Shopware PaaS (Platform.sh)](#worker-in-klassischem-shopware-paas-platformsh)
-- [Vollständiges application.yaml mit Cron Jobs](#vollständiges-applicationyaml-mit-cron-jobs)
+- [Worker in classic Shopware PaaS (Platform.sh)](#worker-in-classic-shopware-paas-platformsh)
+- [Complete application.yaml with cron jobs](#complete-applicationyaml-with-cron-jobs)
 
-## Cron Jobs in PaaS Native
+## Cron jobs in PaaS Native
 
-### Wichtiger Hinweis
+### Important note
 
-PaaS-Native Cron Jobs ersetzen **nicht** Shopware's Scheduled Tasks.
-Sie sind eine Ergänzung und interagieren nicht mit dem Scheduled-Task-System.
+PaaS Native cron jobs do **not** replace Shopware's scheduled tasks.
+They are an addition and do not interact with the scheduled task system.
 
 ---
 
-## Konfiguration in application.yaml
+## Configuration in application.yaml
 
 ```yaml
 cronJobs:
   - name: guest-cleanup
     schedule: "0 3 * * *"
     command: "bin/console customer:delete-unused-guests"
-    timezone: Europe/Berlin      # Optional, Default: UTC
+    timezone: Europe/Berlin      # Optional, default: UTC
 
   - name: es-index-cleanup
     schedule: "0 4 * * 0"
     command: "bin/console es:index:cleanup"
-    # timezone: UTC (Default)
+    # timezone: UTC (default)
 
   - name: midnight-report
     schedule: "0 0 * * *"
@@ -48,150 +48,150 @@ cronJobs:
     timezone: America/New_York
 ```
 
-Cron Jobs werden automatisch erstellt, aktualisiert oder entfernt beim Deploy.
+Cron jobs are created, updated or removed automatically on deploy.
 
 ---
 
-## Feld-Referenz
+## Field reference
 
-| Feld | Erforderlich | Default | Beschreibung |
+| Field | Required | Default | Description |
 |------|-------------|---------|-------------|
-| `name` | Ja | — | Eindeutiger Bezeichner |
-| `schedule` | Ja | — | Cron-Ausdruck (5-Felder) |
-| `command` | Ja | — | Auszuführender Shell-Befehl |
-| `timezone` | Nein | `UTC` | IANA-Timezone |
+| `name` | Yes | — | Unique identifier |
+| `schedule` | Yes | — | Cron expression (5 fields) |
+| `command` | Yes | — | Shell command to run |
+| `timezone` | No | `UTC` | IANA timezone |
 
 ---
 
-## Name-Format
+## Name format
 
-Erlaubt:
-- Kleinbuchstaben (`a-z`), Ziffern (`0-9`), Bindestriche (`-`)
-- Muss mit Buchstabe oder Ziffer beginnen und enden
-- Mindestlänge: 2 Zeichen
+Allowed:
+- Lowercase letters (`a-z`), digits (`0-9`), hyphens (`-`)
+- Must begin and end with a letter or digit
+- Minimum length: 2 characters
 
-Gültig: `guest-cleanup`, `daily-cleanup`, `es-index-cleanup`
-Ungültig: `My-Job` (Großbuchstabe), `-my-job` (Bindestrich am Anfang), `my_job` (Unterstrich)
+Valid: `guest-cleanup`, `daily-cleanup`, `es-index-cleanup`
+Invalid: `My-Job` (uppercase letter), `-my-job` (leading hyphen), `my_job` (underscore)
 
 ---
 
-## Cron-Syntax
+## Cron syntax
 
 ```
 ┌─────────── Minute (0–59)
-│ ┌───────── Stunde (0–23)
-│ │ ┌─────── Tag (1–31)
-│ │ │ ┌───── Monat (1–12)
-│ │ │ │ ┌─── Wochentag (0–6, Sonntag=0)
+│ ┌───────── Hour (0–23)
+│ │ ┌─────── Day (1–31)
+│ │ │ ┌───── Month (1–12)
+│ │ │ │ ┌─── Weekday (0–6, Sunday=0)
 │ │ │ │ │
 * * * * *
 ```
 
-| Schedule | Beschreibung |
+| Schedule | Description |
 |----------|-------------|
-| `0 3 * * *` | Täglich um 03:00 |
-| `*/15 * * * *` | Alle 15 Minuten |
-| `0 0 * * 0` | Jeden Sonntag um Mitternacht |
-| `30 8 1 * *` | 1. des Monats um 08:30 |
-| `0 9-17 * * 1-5` | Stündlich Mo-Fr 9-17 Uhr |
+| `0 3 * * *` | Daily at 03:00 |
+| `*/15 * * * *` | Every 15 minutes |
+| `0 0 * * 0` | Every Sunday at midnight |
+| `30 8 1 * *` | 1st of the month at 08:30 |
+| `0 9-17 * * 1-5` | Hourly Mon-Fri 9-17 |
 
 ---
 
 ## Timezones
 
-Standard: `UTC`. Beliebige [IANA-Timezone](https://www.iana.org/time-zones) erlaubt.
+Default: `UTC`. Any [IANA timezone](https://www.iana.org/time-zones) is allowed.
 
-**Nicht erlaubt:** `Local` — immer spezifische Identifier verwenden.
+**Not allowed:** `Local` — always use a specific identifier.
 
-Beispiele: `Europe/Berlin`, `America/New_York`, `Asia/Tokyo`
+Examples: `Europe/Berlin`, `America/New_York`, `Asia/Tokyo`
 
 ---
 
-## CLI-Verwaltung
+## CLI management
 
-### Auflisten
+### List
 
 ```bash
 sw-paas application cronjob list
 sw-paas application cron list           # Alias
 
-# JSON-Ausgabe
+# JSON output
 sw-paas application cronjob list -o json
 
-# Mit spezifischen IDs
+# With specific IDs
 sw-paas application cronjob list \
   --organization-id <org-id> \
   --project-id <project-id> \
   --application-id <app-id>
 ```
 
-Ausgabe enthält: ID, Name, Schedule, Command, Timezone, Enabled-Status, Last Run, Last Status.
+The output contains: ID, name, schedule, command, timezone, enabled status, last run, last status.
 
-### Details eines Cron Jobs
+### Details of a cron job
 
 ```bash
 sw-paas application cronjob get --id <cronjob-id>
-# Ohne --id: Interaktive Auswahl
+# Without --id: interactive selection
 ```
 
-### Aktivieren / Deaktivieren
+### Enable / disable
 
-**Wichtig:** Cron Jobs sind nach Deploy **standardmäßig deaktiviert**.
-Nach Änderungen via CLI: Neues Deployment erforderlich!
+**Important:** cron jobs are **disabled by default** after a deploy.
+After changes via the CLI: a new deployment is required!
 
 ```bash
-# Interaktiver Modus (Menü)
+# Interactive mode (menu)
 sw-paas application cronjob update
-# Navigation: ↑/↓ | Toggle: Space | Alle an: a | Alle aus: d | Bestätigen: Enter | Abbruch: q/Esc
+# Navigation: ↑/↓ | Toggle: Space | Enable all: a | Disable all: d | Confirm: Enter | Cancel: q/Esc
 
-# Spezifischer Job
+# Specific job
 sw-paas application cronjob update --id <cronjob-id> --enable
 sw-paas application cronjob update --id <cronjob-id> --disable
 
-# Alle Jobs
+# All jobs
 sw-paas application cronjob update --enable --all
 sw-paas application cronjob update --disable --all
 ```
 
-**Hinweis:** `--enable` und `--disable` schließen sich gegenseitig aus. `--all` und `--id` ebenso.
+**Note:** `--enable` and `--disable` are mutually exclusive. So are `--all` and `--id`.
 
 ---
 
 ## Execution History
 
-History wird **61 Tage** aufbewahrt.
+History is retained for **61 days**.
 
 ```bash
-# Alle Ausführungen
+# All executions
 sw-paas application cronjob history list
 
-# Nach Datum filtern
+# Filter by date
 sw-paas application cronjob history list --date 2024-01-15
 
-# Zeitbereich
+# Time range
 sw-paas application cronjob history list --from "2024-01-15 08:00" --to "2024-01-15 18:00"
 
-# Für spezifischen Job
+# For a specific job
 sw-paas application cronjob history list --cronjob-id <cronjob-id>
 
-# Spezifischen Run
+# A specific run
 sw-paas application cronjob history list --run-id <run-id>
 
 # Pagination
 sw-paas application cronjob history list --limit 100 --offset 50
 ```
 
-**Hinweis:** `--date` kann nicht mit `--from`/`--to` kombiniert werden.
+**Note:** `--date` cannot be combined with `--from`/`--to`.
 
-### History-Ausgabe
+### History output
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| Run ID | Eindeutige Run-Kennung |
+| Run ID | Unique run identifier |
 | Status | `RUNNING`, `SUCCEEDED`, `FAILED` |
-| Timestamp | Zeitstempel in gewählter Timezone |
-| Timezone | Verwendete Timezone |
-| Failure Reason | Fehlerursache (nur bei `FAILED`) |
+| Timestamp | Timestamp in the selected timezone |
+| Timezone | Timezone used |
+| Failure Reason | Cause of failure (only with `FAILED`) |
 
 ---
 
@@ -201,24 +201,24 @@ sw-paas application cronjob history list --limit 100 --offset 50
 sw-paas application cronjob logs
 sw-paas application cron logs          # Alias
 
-# Spezifischen Run
+# A specific run
 sw-paas application cronjob logs --run-id <run-id>
 
-# Mit Job-Filter und History-Limit
+# With a job filter and history limit
 sw-paas application cronjob logs \
   --cronjob-id <cronjob-id> \
   --history-limit 100
 
-# Live-Stream
+# Live stream
 sw-paas application cronjob logs --follow
 sw-paas application cron logs --follow
 ```
 
-Am Ende jeder Ausgabe: Grafana Explore URL für Weiteruntersuchung.
+At the end of every output: a Grafana Explore URL for further investigation.
 
 ---
 
-## Worker in klassischem Shopware PaaS (Platform.sh)
+## Worker in classic Shopware PaaS (Platform.sh)
 
 In `.platform/applications.yaml`:
 
@@ -232,12 +232,12 @@ workers:
       start: php bin/console scheduled-task:run --memory-limit=256M --time-limit=60
 ```
 
-Worker sind Kopien der App-Instanz nach dem Build-Hook.
-Standard: Message-Queue-Worker + Scheduled-Task-Worker.
+Workers are copies of the app instance after the build hook.
+Default: message queue worker + scheduled task worker.
 
 ---
 
-## Vollständiges application.yaml mit Cron Jobs
+## Complete application.yaml with cron jobs
 
 ```yaml
 app:

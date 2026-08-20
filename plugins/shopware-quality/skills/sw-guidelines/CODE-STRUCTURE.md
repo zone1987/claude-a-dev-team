@@ -1,30 +1,30 @@
-# Shopware 6 — Code-Struktur und Extension-Typen
+# Shopware 6 — code structure and extension types
 
-Vollständige Referenz: `CODE-STRUCTURE-DETAIL.md`
+Complete reference: `CODE-STRUCTURE-DETAIL.md`
 
-## Extension-Typ wählen
+## Choosing an extension type
 
-| Typ | Wann | Besonderheit |
+| Type | When | Characteristic |
 |-----|------|-------------|
-| **Custom Bundle** | Projekt-eigene Installation, volle Kontrolle | Kein Plugin-Lifecycle, nur Symfony Bundle |
-| **Static Plugin** | Projektspezifisch, wenige Projekte | Standard-Skeleton, Overrides dünn halten |
-| **Managed Plugin** | Shopware Store-Veröffentlichung | Strenge Metadaten, BC-Garantien, keine Projekt-Hacks |
-| **App** | Kein PHP im Shop / SaaS / Cloud | Manifest + App-Server, multi-tenant |
-| **Theme** | Nur Storefront-Optik anpassen | Stripped-down Plugin; in Cloud via App |
+| **Custom bundle** | Project-owned installation, full control | No plugin lifecycle, plain Symfony bundle |
+| **Static plugin** | Project-specific, few projects | Standard skeleton, keep overrides thin |
+| **Managed plugin** | Shopware Store release | Strict metadata, BC guarantees, no project hacks |
+| **App** | No PHP in the shop / SaaS / cloud | Manifest plus app server, multi-tenant |
+| **Theme** | Adjust storefront appearance only | Stripped-down plugin; in the cloud via an app |
 
-## Kern-Konventionen
+## Core conventions
 
-- PSR-4 Autoloading: Namespaces exakt zu Ordnernamen mappen
-- `composer.json` type: `shopware-platform-plugin` oder `shopware-bundle`
-- DB-Änderungen: immer via Migrations (idempotent, non-destructive in `update()`)
-- Integration-Points (Events, DAL Extensions, Decorators) hinter Service-Klassen kapseln
+- PSR-4 autoloading: map namespaces exactly to folder names
+- `composer.json` type: `shopware-platform-plugin` or `shopware-bundle`
+- DB changes: always via migrations (idempotent, non-destructive in `update()`)
+- Encapsulate integration points (events, DAL extensions, decorators) behind service classes
 
-## Upgrade-Orientierung
+## Upgrade orientation
 
-- Wenige Cross-Plugin-Abhängigkeiten
-- Zusammengehörige Logik NICHT auf mehrere Plugins aufteilen
-- Ein Repository mit konsistentem Tooling bevorzugen
-- Je mehr Surface Area dem Platform-Core ausgesetzt ist, desto mehr Upgrade-Aufwand entsteht
+- Few cross-plugin dependencies
+- Do NOT split related logic across several plugins
+- Prefer one repository with consistent tooling
+- The more surface area is exposed to the platform core, the more upgrade effort it creates
 
-Abgrenzung: Dieser Skill behandelt Struktur und Layout. Erweiterungs-Patterns (Events/Decorator)
-→ `sw-extendability`. Coding-Style und Static Analysis → `sw-coding-guidelines`.
+Boundary: this skill covers structure and layout. Extension patterns (events/decorator)
+→ `sw-extendability`. Coding style and static analysis → `sw-coding-guidelines`.

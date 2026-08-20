@@ -1,6 +1,6 @@
-# flatpickr — Konfigurationsoptionen
+# flatpickr — Configuration options
 
-Alle Optionen werden als zweites Argument an `flatpickr(el, { ... })` übergeben.
+All options are passed as the second argument to `flatpickr(el, { ... })`.
 
 ```js
 flatpickr("#date", {
@@ -11,18 +11,18 @@ flatpickr("#date", {
 });
 ```
 
-Wichtigste Optionen auf einen Blick:
+The most important options at a glance:
 
-| Option | Default | Beschreibung |
+| Option | Default | Description |
 |--------|---------|--------------|
-| `dateFormat` | `"Y-m-d"` | Format des Werts im Input |
-| `altInput` | `false` | Zeigt lesbares Datum, sendet Maschinenformat |
-| `enableTime` | `false` | Zeitauswahl aktivieren |
+| `dateFormat` | `"Y-m-d"` | Format of the value in the input |
+| `altInput` | `false` | Shows a readable date, submits the machine format |
+| `enableTime` | `false` | Enable time selection |
 | `mode` | `"single"` | `"single"`, `"multiple"`, `"range"` |
-| `inline` | `false` | Kalender immer offen |
-| `minDate`/`maxDate` | `null` | Datum-Grenzen |
-| `disable`/`enable` | `[]` | Tage sperren/freigeben |
-| `locale` | `"default"` | Sprache/Lokalisierung |
+| `inline` | `false` | Calendar always open |
+| `minDate`/`maxDate` | `null` | Date boundaries |
+| `disable`/`enable` | `[]` | Block/allow days |
+| `locale` | `"default"` | Language/localization |
 
-## Vertiefung
-- [OPTIONS-DETAIL.md](OPTIONS-DETAIL.md) — erschöpfende Tabelle aller Optionen mit Typ, Default und Beschreibung
+## Further reading
+- [OPTIONS-DETAIL.md](OPTIONS-DETAIL.md) — exhaustive table of all options with type, default and description

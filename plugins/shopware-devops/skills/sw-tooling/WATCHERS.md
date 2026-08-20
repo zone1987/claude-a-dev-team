@@ -1,36 +1,36 @@
-# Shopware 6 — Watchers & Hot Module Replacement
+# Shopware 6 — Watchers & hot module replacement
 
-## JS/CSS bauen (ohne Watcher)
+## Building JS/CSS (without a watcher)
 
-| Befehl | Zweck |
+| Command | Purpose |
 |---|---|
-| `composer run build:js:admin` | Admin (Source-Code) |
-| `shopware-cli project admin-build` | Admin (Production Template) |
-| `composer run build:js:storefront` | Storefront (Source-Code) |
-| `shopware-cli project storefront-build` | Storefront (Production Template) |
+| `composer run build:js:admin` | Admin (source code) |
+| `shopware-cli project admin-build` | Admin (production template) |
+| `composer run build:js:storefront` | Storefront (source code) |
+| `shopware-cli project storefront-build` | Storefront (production template) |
 
-## Watchers (HMR) starten
+## Starting the watchers (HMR)
 
-| Befehl | Zweck |
+| Command | Purpose |
 |---|---|
-| `composer run watch:admin` | Admin-Watcher (Source-Code) |
-| `composer run storefront:dev-server` | Storefront-Watcher ≥ 6.7.11.0 |
-| `composer run watch:storefront` | Storefront-Watcher < 6.7.11.0 |
-| `shopware-cli project admin-watch` | Admin-Watcher (Production Template) |
-| `shopware-cli project storefront-watch` | Storefront-Watcher (Production Template) |
+| `composer run watch:admin` | Admin watcher (source code) |
+| `composer run storefront:dev-server` | Storefront watcher ≥ 6.7.11.0 |
+| `composer run watch:storefront` | Storefront watcher < 6.7.11.0 |
+| `shopware-cli project admin-watch` | Admin watcher (production template) |
+| `shopware-cli project storefront-watch` | Storefront watcher (production template) |
 
-Watcher **ersetzen nicht** den finalen Build-Schritt!
+Watchers **do not replace** the final build step!
 
-## Umgebungsvariablen
+## Environment variables
 
 ```bash
-# Production-Mode (kein Symfony-Toolbar im Storefront):
+# Production mode (no Symfony toolbar in the storefront):
 APP_ENV=prod composer run watch:storefront
 
-# IPv6-Probleme mit NodeJS >= 17 beheben:
+# Fix IPv6 problems with NodeJS >= 17:
 IPV4FIRST=1 composer run watch:storefront
 ```
 
-- `APP_ENV=dev` → Development Mode: Symfony Toolbar im Storefront, bessere Fehlermeldungen
-- `APP_ENV=prod` → Production Mode: Kein Debugging-Toolbar
-- `IPV4FIRST=1` → NodeJS v17+ bevorzugt IPv6; dieses Flag erzwingt IPv4
+- `APP_ENV=dev` → development mode: Symfony toolbar in the storefront, better error messages
+- `APP_ENV=prod` → production mode: no debugging toolbar
+- `IPV4FIRST=1` → NodeJS v17+ prefers IPv6; this flag forces IPv4

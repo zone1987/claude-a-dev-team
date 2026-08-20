@@ -1,6 +1,6 @@
 # flatpickr — Plugins
 
-Plugins werden via `plugins: [new PluginName(config)]` aktiviert.
+Plugins are activated via `plugins: [new PluginName(config)]`.
 
 ```js
 flatpickr("#date", {
@@ -9,17 +9,17 @@ flatpickr("#date", {
 });
 ```
 
-## Offizielle Plugins
+## Official plugins
 
-| Plugin | Funktion |
+| Plugin | Function |
 |--------|---------|
-| `confirmDatePlugin` | Bestätigungs-Button nach Auswahl |
-| `rangePlugin` | Datumsbereich mit zwei separaten Inputs |
-| `weekSelect` | Ganze Woche auswählen |
-| `monthSelectPlugin` | Nur Monat auswählen (kein Tag) |
-| `minMaxTimePlugin` | Zeitgrenzen je einzelnem Datum |
-| `scrollPlugin` | Mausrad-Navigation |
-| `momentPlugin` | moment.js Integration |
+| `confirmDatePlugin` | Confirmation button after selection |
+| `rangePlugin` | Date range with two separate inputs |
+| `weekSelect` | Select a whole week |
+| `monthSelectPlugin` | Select a month only (no day) |
+| `minMaxTimePlugin` | Time limits per individual date |
+| `scrollPlugin` | Mouse wheel navigation |
+| `momentPlugin` | moment.js integration |
 
-## Vertiefung
-- [PLUGINS-DETAIL.md](PLUGINS-DETAIL.md) — vollständige Plugin-Referenz mit allen Optionen, Signaturen und Codebeispielen
+## Further reading
+- [PLUGINS-DETAIL.md](PLUGINS-DETAIL.md) — complete plugin reference with all options, signatures and code examples

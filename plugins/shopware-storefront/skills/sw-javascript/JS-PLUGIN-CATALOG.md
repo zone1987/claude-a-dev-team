@@ -1,15 +1,15 @@
-# Shopware 6 — JS-Plugin-Katalog (Projekt-Introspektion)
+# Shopware 6 — JS plugin catalog (project introspection)
 
-Beantwortet: **„welche JS-Storefront-Plugins existieren in DIESEM Projekt?"** — aus einem gecachten Katalog.
+Answers: **"which Storefront JS plugins exist in THIS project?"** — from a cached catalog.
 
-## Nutzung
-1. Katalog liegt unter `.shopware-catalog/js-plugins.md` im Projekt-Root.
-2. **Fehlt/veraltet** → mit `/sw-js-plugin-map` (Agent `shopware-js-plugin-mapper`, haiku) neu erzeugen.
-3. Nachschlagen: Plugin-Name → Datei, Aufgabe, Selector, Optionen, Override-Punkte — bevor man ein Core-Plugin
-   überschreibt (`sw-js-plugin-override`) oder erweitert (`sw-js-plugin-extend`).
+## Usage
+1. The catalog lives at `.shopware-catalog/js-plugins.md` in the project root.
+2. **Missing/outdated** → regenerate with `/sw-js-plugin-map` (agent `shopware-js-plugin-mapper`, haiku).
+3. Look up: plugin name → file, purpose, selector, options, override points — before overriding a core plugin
+   (`sw-js-plugin-override`) or extending it (`sw-js-plugin-extend`).
 
-## Wann neu erzeugen
-- Nach `git pull` / Plugin-Install/-Update, nach Anlegen/Ändern eigener JS-Plugins oder der `main.js`-Registry.
+## When to regenerate
+- After `git pull` / plugin install/update, after creating or changing your own JS plugins or the `main.js` registry.
 
-Zum **Bauen** neuer JS-Plugins die Referenz-Skills (`sw-storefront-js-plugin`, `sw-js-plugin-override`,
-`sw-js-plugin-extend`) nutzen; der Katalog ist die Quelle der Wahrheit über vorhandene Plugins.
+To **build** new JS plugins, use the reference skills (`sw-storefront-js-plugin`, `sw-js-plugin-override`,
+`sw-js-plugin-extend`); the catalog is the source of truth about existing plugins.

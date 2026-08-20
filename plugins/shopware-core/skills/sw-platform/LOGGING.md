@@ -1,10 +1,10 @@
 # Shopware 6 — Logging
 
-Plugins sollten in einen **eigenen Monolog-Channel** loggen (eigene Datei unter `var/log/`), nicht in den
-Core-Channel. A-Dev-Team-Muster: `PluginLoggerTrait` registriert in `build()` einen plugin-spezifischen Logger.
+Plugins should log into their **own Monolog channel** (a dedicated file under `var/log/`), not into the
+core channel. A-Dev-Team pattern: `PluginLoggerTrait` registers a plugin-specific logger in `build()`.
 
 ```php
-// in der Plugin-Klasse
+// in the plugin class
 use PluginLoggerTrait;
 public function build(ContainerBuilder $container): void
 {
@@ -13,8 +13,8 @@ public function build(ContainerBuilder $container): void
 }
 ```
 
-Alternativ deklarativ via `monolog.yaml` (Channel + Handler). Logger dann als `Psr\Log\LoggerInterface` mit
-passendem Channel-Binding injizieren. Log-Levels gemäß ADR „exception log levels" (kein Debug-Spam in Prod).
+Alternatively declare it in `monolog.yaml` (channel + handler). Then inject the logger as `Psr\Log\LoggerInterface` with
+the matching channel binding. Log levels follow the ADR "exception log levels" (no debug spam in production).
 
 → Trait: [examples/PluginLoggerTrait.php](examples/PluginLoggerTrait.php)
-→ Channel-Konfig: [examples/monolog.yaml](examples/monolog.yaml)
+→ Channel config: [examples/monolog.yaml](examples/monolog.yaml)

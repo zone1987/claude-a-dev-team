@@ -1,15 +1,15 @@
-# Shopware 6 — Storefront-Snippets
+# Shopware 6 — Storefront snippets
 
-Übersetzungen liegen als JSON unter `src/Resources/snippet/<locale>/<name>.<locale>.json` (z.B.
-`storefront.de-DE.json`) und werden automatisch geladen. Verschachtelte Keys per Punktnotation.
+Translations live as JSON in `src/Resources/snippet/<locale>/<name>.<locale>.json` (e.g.
+`storefront.de-DE.json`) and are loaded automatically. Nested keys use dot notation.
 
 ```json
 { "ff": { "hint": "Hinweis", "greeting": "Hallo {{ name }}" } }
 ```
 ```twig
 {{ "ff.hint"|trans }}
-{{ "ff.greeting"|trans({'%name%': customer.firstName}) }}  {# bzw. {{ name }}-Platzhalter je Konvention #}
+{{ "ff.greeting"|trans({'%name%': customer.firstName}) }}  {# or {{ name }} placeholders, depending on convention #}
 ```
 
-Pro Sprache eine Datei; Keys mit Owner-Präfix (`ff.*`) gegen Kollisionen. Admin-Snippets sind getrennt
-(`shopware-admin` → `sw-admin-snippets`). Umlaute korrekt als UTF-8.
+One file per language; prefix keys with an owner namespace (`ff.*`) to avoid collisions. Admin snippets are separate
+(`shopware-admin` → `sw-admin-snippets`). Encode special characters correctly as UTF-8.

@@ -1,6 +1,6 @@
 # shopware-cli extension
 
-Commands zum Bauen, Validieren und Paketieren von Shopware Extensions.
+Commands for building, validating and packaging Shopware extensions.
 
 ```bash
 shopware-cli extension build path/to/MyPlugin
@@ -9,22 +9,22 @@ shopware-cli extension zip path/to/MyPlugin --disable-git
 shopware-cli extension admin-watch path/to/MyPlugin http://localhost
 ```
 
-## Command-Übersicht
+## Command overview
 
-| Command | Kurzfassung |
-|---------|-------------|
-| `build` | Admin/Storefront-Assets bauen (ESBuild/Webpack) |
-| `validate` | Extension prüfen (schnell oder `--full` mit PHPStan/ESLint) |
-| `zip` | Release-Zip erstellen (git-export oder `--disable-git`) |
-| `admin-watch` | ESBuild Dev-Proxy starten |
-| `fix` | Code-Fixer ausführen (PHPCSFixer, ESLint) |
-| `format` | Formatter ausführen (Prettier, PHP-CS-Fixer) |
-| `get-name` | Technical Name ausgeben |
-| `get-version` | Version ausgeben |
-| `get-changelog` | Changelog ausgeben |
-| `prepare` | Composer-Deps installieren, Clean-up vor Zip |
-| `config-schema` | JSON-Schema für `.shopware-extension.yml` |
+| Command | Summary |
+|---------|---------|
+| `build` | Build admin/storefront assets (ESBuild/Webpack) |
+| `validate` | Check the extension (fast or `--full` with PHPStan/ESLint) |
+| `zip` | Create a release zip (git export or `--disable-git`) |
+| `admin-watch` | Start the ESBuild dev proxy |
+| `fix` | Run code fixers (PHPCSFixer, ESLint) |
+| `format` | Run formatters (Prettier, PHP-CS-Fixer) |
+| `get-name` | Print the technical name |
+| `get-version` | Print the version |
+| `get-changelog` | Print the changelog |
+| `prepare` | Install Composer deps, clean up before zipping |
+| `config-schema` | JSON schema for `.shopware-extension.yml` |
 
-## Vertiefung
+## Deep dive
 
-- [EXTENSION-COMMANDS.md](EXTENSION-COMMANDS.md) — Alle Flags, Beispiele, Edge-Cases
+- [EXTENSION-COMMANDS.md](EXTENSION-COMMANDS.md) — All flags, examples, edge cases

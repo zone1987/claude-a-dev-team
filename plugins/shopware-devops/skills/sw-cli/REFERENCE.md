@@ -1,9 +1,9 @@
-# Shopware 6 — CLI-Befehlsreferenz
+# Shopware 6 — CLI command reference
 
-Vollständige Tabelle aller `bin/console`-Befehle nach Gruppe sowie Composer-Dev-Commands.
+Complete table of all `bin/console` commands by group plus Composer dev commands.
 
 ```bash
 bin/console [command] [parameter]
 ```
 
-Ausführliche Referenz: `REFERENCE-CONSOLE-COMMANDS.md` und `REFERENCE-COMPOSER-COMMANDS.md`
+Detailed reference: `REFERENCE-CONSOLE-COMMANDS.md` and `REFERENCE-COMPOSER-COMMANDS.md`

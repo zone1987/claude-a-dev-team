@@ -1,18 +1,18 @@
-# Swiper Free Mode-Modul — Vollständige Referenz
+# Swiper Free Mode module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [Verhältnis zu anderen Parametern](#verhältnis-zu-anderen-parametern)
-- [Konfigurationsbeispiele](#konfigurationsbeispiele)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [Relationship to other parameters](#relationship-to-other-parameters)
+- [Configuration examples](#configuration-examples)
 
-## Konzept
+## Concept
 
-Free Mode deaktiviert das Snapping zu festen Slide-Positionen. Der Slider scrollt frei und kann — je nach Konfiguration — mit physikalischem Momentum (Trägheit) weiterrollen.
+Free Mode disables snapping to fixed slide positions. The slider scrolls freely and — depending on the configuration — can keep rolling with physical momentum (inertia).
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -27,7 +27,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-**Kurzform** (Standard-Konfiguration):
+**Shorthand** (default configuration):
 ```js
 const swiper = new Swiper('.swiper', {
   modules: [FreeMode],
@@ -35,39 +35,39 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
-|------|-----|---------|--------------|
-| `enabled` | `boolean` | `false` | Free Mode aktivieren |
-| `momentum` | `boolean` | `true` | Slides rollen nach dem Loslassen noch weiter |
-| `momentumRatio` | `number` | `1` | Multiplikator für die Momentum-Entfernung (> 1 = weiter) |
-| `momentumVelocityRatio` | `number` | `1` | Multiplikator für die Momentum-Geschwindigkeit |
-| `momentumBounce` | `boolean` | `true` | Bounce-Effekt an den Rändern aktivieren |
-| `momentumBounceRatio` | `number` | `1` | Stärke des Bounce-Effekts (> 1 = stärker) |
-| `minimumVelocity` | `number` | `0.02` | Mindest-Swipe-Geschwindigkeit um Momentum auszulösen |
-| `sticky` | `boolean` | `false` | Nach dem Loslassen zum nächsten Slide snappen |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `enabled` | `boolean` | `false` | Enable Free Mode |
+| `momentum` | `boolean` | `true` | Slides keep rolling after release |
+| `momentumRatio` | `number` | `1` | Multiplier for the momentum distance (> 1 = further) |
+| `momentumVelocityRatio` | `number` | `1` | Multiplier for the momentum velocity |
+| `momentumBounce` | `boolean` | `true` | Enable the bounce effect at the edges |
+| `momentumBounceRatio` | `number` | `1` | Strength of the bounce effect (> 1 = stronger) |
+| `minimumVelocity` | `number` | `0.02` | Minimum swipe velocity required to trigger momentum |
+| `sticky` | `boolean` | `false` | Snap to the nearest slide after release |
 
-## Verhältnis zu anderen Parametern
+## Relationship to other parameters
 
-Free Mode kann mit folgenden Core-Parametern kombiniert werden:
+Free Mode can be combined with the following core parameters:
 
 ```js
 const swiper = new Swiper('.swiper', {
   modules: [FreeMode],
-  slidesPerView: 'auto',    // Slides in Originalgröße
+  slidesPerView: 'auto',    // slides at their original size
   spaceBetween: 16,
   freeMode: {
     enabled: true,
     momentum: true,
-    momentumRatio: 0.5,     // langsameres Auslaufen
+    momentumRatio: 0.5,     // slower coast-out
   },
 });
 ```
 
-## Konfigurationsbeispiele
+## Configuration examples
 
-### Einfacher Tag-Cloud-Slider (horizontal, kein Momentum)
+### Simple tag cloud slider (horizontal, no momentum)
 
 ```js
 const swiper = new Swiper('.tags-swiper', {
@@ -81,7 +81,7 @@ const swiper = new Swiper('.tags-swiper', {
 });
 ```
 
-### Momentum-Scroll mit Sticky-Snap
+### Momentum scrolling with sticky snap
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -90,7 +90,7 @@ const swiper = new Swiper('.swiper', {
   spaceBetween: 20,
   freeMode: {
     enabled: true,
-    sticky: true,         // snapped nach dem Loslassen
+    sticky: true,         // snaps after release
     momentum: true,
     momentumRatio: 0.8,
     momentumBounce: true,
@@ -99,7 +99,7 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-### Hohe Sensitivität ohne Bounce
+### High sensitivity without bounce
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -116,4 +116,4 @@ const swiper = new Swiper('.swiper', {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#free-mode
+Source: https://swiperjs.com/swiper-api#free-mode

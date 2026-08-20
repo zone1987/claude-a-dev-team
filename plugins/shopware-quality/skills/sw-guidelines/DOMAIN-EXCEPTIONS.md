@@ -1,7 +1,7 @@
-# Shopware 6 — Domain-Exceptions
+# Shopware 6 — domain exceptions
 
-Statt vieler einzelner Exception-Klassen: **eine Factory pro Domäne** mit statischen Methoden, die typisierte
-Exceptions mit stabilem `errorCode` liefern (ADR „domain-exceptions").
+Instead of many individual exception classes: **one factory per domain** with static methods that return typed
+exceptions with a stable `errorCode` (ADR "domain-exceptions").
 
 ```php
 class FfExampleException extends HttpException
@@ -18,6 +18,6 @@ class FfExampleException extends HttpException
 throw FfExampleException::notFound($id);
 ```
 
-`errorCode` ist stabil (Clients/Tests matchen darauf, nicht auf die Message). HTTP-Status pro Methode passend.
-Log-Level steuerbar (ADR „exception log levels"). In API-Antworten erscheint `code`/`detail` (`shopware-api` → `sw-api-errors`).
-Erweitert `HttpException`/`ShopwareHttpException`.
+`errorCode` is stable (clients and tests match on it, not on the message). Pick a fitting HTTP status per method.
+The log level is configurable (ADR "exception log levels"). API responses expose `code`/`detail` (`shopware-api` → `sw-api-errors`).
+Extends `HttpException`/`ShopwareHttpException`.

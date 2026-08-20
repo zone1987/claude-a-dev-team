@@ -1,85 +1,85 @@
-# flatpickr — Mobile Support (vollständige Referenz)
+# flatpickr — Mobile Support (complete reference)
 
-## Automatische Erkennung
+## Automatic detection
 
-flatpickr erkennt automatisch mobile Browser und schaltet auf den **nativen Datetime-Picker**
-des Betriebssystems um. Dies bietet dem Nutzer die vertraute OS-Erfahrung.
+flatpickr detects mobile browsers automatically and switches to the **native datetime picker**
+of the operating system. This gives the user the familiar OS experience.
 
-Die Erkennung erfolgt über den Browser-User-Agent. Bei mobilen Geräten (iOS, Android)
-wird ein natives `<input type="date">`, `<input type="datetime-local">` oder
-`<input type="time">` verwendet.
+Detection is based on the browser user agent. On mobile devices (iOS, Android) a native
+`<input type="date">`, `<input type="datetime-local">` or
+`<input type="time">` is used.
 
-## Nativ unterstützte Features
+## Natively supported features
 
-Folgende flatpickr-Features werden an den nativen Picker weitergeleitet:
+The following flatpickr features are forwarded to the native picker:
 
-| Feature | Unterstützt |
+| Feature | Supported |
 |---------|------------|
-| `defaultDate` | ja |
-| `minDate` | ja |
-| `maxDate` | ja |
-| `onChange`-Callback | ja |
-| `disable` (Array/Funktion) | nein* |
-| `enableTime` | ja (natives datetime-local) |
-| `noCalendar` | ja (natives time) |
-| Plugins | nein |
+| `defaultDate` | yes |
+| `minDate` | yes |
+| `maxDate` | yes |
+| `onChange` callback | yes |
+| `disable` (array/function) | no* |
+| `enableTime` | yes (native datetime-local) |
+| `noCalendar` | yes (native time) |
+| Plugins | no |
 
-*Wenn Features verwendet werden, die nativ nicht verfügbar sind (z.B. `disable`-Funktionen),
-fällt flatpickr automatisch auf den eigenen Picker zurück.
+*When features are used that are not available natively (e.g. `disable` functions),
+flatpickr automatically falls back to its own picker.
 
-## Fallback-Verhalten
+## Fallback behavior
 
-Wenn eine nicht-nativ-unterstützbare Konfiguration erkannt wird, wird der flatpickr-Picker
-auch auf Mobilgeräten gezeigt:
+When a configuration that cannot be supported natively is detected, the flatpickr picker
+is shown on mobile devices as well:
 
 ```js
-// Fällt automatisch auf flatpickr-Picker zurück (kein nativer Picker)
+// automatically falls back to the flatpickr picker (no native picker)
 flatpickr("#date", {
   disable: [function(date) { return date.getDay() === 0; }]
 });
 ```
 
-## Nativen Picker deaktivieren
+## Disabling the native picker
 
 ```js
 flatpickr("#date", {
-  disableMobile: true   // Immer flatpickr-Picker, nie nativer
+  disableMobile: true   // always the flatpickr picker, never the native one
 });
 ```
 
-**Empfehlung:** Nur verwenden wenn flatpickr-spezifische Features (z.B. Themes, Plugins,
-`onDayCreate`) auf Mobilgeräten zwingend benötigt werden. Der native Picker bietet
-generell bessere UX auf Mobilgeräten.
+**Recommendation:** Use only when flatpickr-specific features (e.g. themes, plugins,
+`onDayCreate`) are strictly required on mobile devices. The native picker generally offers
+better UX on mobile devices.
 
-## Globale Mobile-Konfiguration
+## Global mobile configuration
 
 ```js
-// Alle Instanzen auf nativen Picker verzichten
+// make all instances skip the native picker
 flatpickr(".datepicker", {
   disableMobile: true
 });
 ```
 
-## Typ-Mapping
+## Type mapping
 
-| flatpickr-Konfiguration | Nativer Input-Typ |
+| flatpickr configuration | Native input type |
 |------------------------|-------------------|
-| Standard (nur Datum) | `type="date"` |
+| default (date only) | `type="date"` |
 | `enableTime: true` | `type="datetime-local"` |
 | `noCalendar: true`, `enableTime: true` | `type="time"` |
 
-## Browser-Kompatibilität
+## Browser compatibility
 
-| Browser/OS | Nativer Picker |
+| Browser/OS | Native picker |
 |-----------|---------------|
-| iOS Safari | ja (nativ) |
-| iOS Chrome | ja (nativ) |
-| Android Chrome | ja (nativ) |
-| Android Firefox | ja (nativ) |
+| iOS Safari | yes (native) |
+| iOS Chrome | yes (native) |
+| Android Chrome | yes (native) |
+| Android Firefox | yes (native) |
 | Desktop Chrome | flatpickr |
 | Desktop Firefox | flatpickr |
 | Desktop Safari | flatpickr |
 
 ---
 
-Quelle: https://flatpickr.js.org/mobile-support/
+Source: https://flatpickr.js.org/mobile-support/

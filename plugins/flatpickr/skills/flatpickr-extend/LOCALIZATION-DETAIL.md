@@ -1,18 +1,18 @@
-# flatpickr — Lokalisierung (vollständige Referenz, v4.6.13)
+# flatpickr — Localization (complete reference, v4.6.13)
 
-Quelle: `src/types/locale.ts` + `src/l10n/*.ts` (67 Locale-Dateien, Stand v4.6.13).
+Source: `src/types/locale.ts` + `src/l10n/*.ts` (67 locale files, as of v4.6.13).
 
 ## Contents
 
-- [Locale per Instanz setzen](#locale-per-instanz-setzen)
-- [Globale Lokalisierung](#globale-lokalisierung)
-- [Einzelne Locale-Werte überschreiben](#einzelne-locale-werte-überschreiben)
-- [Vollständige Locale-Typ-Definition](#vollständige-locale-typ-definition)
-- [CustomLocale-Typ (für partielle Locale-Überschreibung)](#customlocale-typ-für-partielle-locale-überschreibung)
-- [Benutzerdefinierte Locale (Custom Locale) — vollständiges Beispiel](#benutzerdefinierte-locale-custom-locale-vollständiges-beispiel)
-- [Alle verfügbaren Locales (67 Dateien)](#alle-verfügbaren-locales-67-dateien)
+- [Setting the locale per instance](#setting-the-locale-per-instance)
+- [Global localization](#global-localization)
+- [Overriding individual locale values](#overriding-individual-locale-values)
+- [Complete locale type definition](#complete-locale-type-definition)
+- [CustomLocale type (for partial locale overrides)](#customlocale-type-for-partial-locale-overrides)
+- [Custom locale — complete example](#custom-locale--complete-example)
+- [All available locales (67 files)](#all-available-locales-67-files)
 
-## Locale per Instanz setzen
+## Setting the locale per instance
 
 ### ES Modules / TypeScript
 
@@ -34,7 +34,7 @@ const German = require("flatpickr/dist/l10n/de.js").default.de;
 flatpickr("#date", { locale: German });
 ```
 
-### Browser / CDN (Script-Tags)
+### Browser / CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -43,12 +43,12 @@ flatpickr("#date", { locale: German });
 
 ```js
 flatpickr("#date", { locale: "de" });
-// oder: flatpickr.l10ns.de nach Script-Load direkt verfügbar
+// or: flatpickr.l10ns.de is directly available once the script has loaded
 ```
 
-## Globale Lokalisierung
+## Global localization
 
-Alle flatpickr-Instanzen auf einmal lokalisieren:
+Localize all flatpickr instances at once:
 
 ### ES Modules
 
@@ -56,53 +56,53 @@ Alle flatpickr-Instanzen auf einmal lokalisieren:
 import { German } from "flatpickr/dist/l10n/de.js";
 flatpickr.localize(German);
 
-flatpickr("#date"); // Verwendet automatisch Deutsch
-flatpickr("#date2", { locale: "ru" }); // Überschreibt nur für diese Instanz
+flatpickr("#date"); // uses German automatically
+flatpickr("#date2", { locale: "ru" }); // overrides it for this instance only
 ```
 
 ### Browser
 
 ```js
 flatpickr.localize(flatpickr.l10ns.de);
-flatpickr("#date"); // Deutsch
+flatpickr("#date"); // German
 ```
 
-## Einzelne Locale-Werte überschreiben
+## Overriding individual locale values
 
 ```js
-// Ersten Wochentag global auf Montag setzen
+// set the first weekday globally to Monday
 flatpickr.l10ns.default.firstDayOfWeek = 1;
 
-// Per Instanz ohne vollständige Locale
+// per instance without a full locale
 flatpickr("#date", {
   locale: {
-    firstDayOfWeek: 1  // 0 = Sonntag, 1 = Montag, 6 = Samstag
+    firstDayOfWeek: 1  // 0 = Sunday, 1 = Monday, 6 = Saturday
   }
 });
 ```
 
-## Vollständige Locale-Typ-Definition
+## Complete locale type definition
 
-Aus `src/types/locale.ts`:
+From `src/types/locale.ts`:
 
 ```typescript
 type Locale = {
   weekdays: {
-    shorthand: [string, string, string, string, string, string, string]; // 7 Wochentage
+    shorthand: [string, string, string, string, string, string, string]; // 7 weekdays
     longhand:  [string, string, string, string, string, string, string];
   };
   months: {
-    shorthand: [string, string, string, string, string, string, string, string, string, string, string, string]; // 12 Monate
+    shorthand: [string, string, string, string, string, string, string, string, string, string, string, string]; // 12 months
     longhand:  [string, string, string, string, string, string, string, string, string, string, string, string];
   };
   daysInMonth: [number, number, number, number, number, number, number, number, number, number, number, number];
-  firstDayOfWeek: number;       // 0 = Sonntag, 1 = Montag, ..., 6 = Samstag
+  firstDayOfWeek: number;       // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
   ordinal: (nth: number) => string;
-  rangeSeparator: string;       // Standard: " to "
-  weekAbbreviation: string;     // Standard: "Wk"
-  scrollTitle: string;          // Tooltip für Scroll-Aktion
-  toggleTitle: string;          // Tooltip für AM/PM-Toggle
-  amPM: [string, string];       // Standard: ["AM", "PM"]
+  rangeSeparator: string;       // default: " to "
+  weekAbbreviation: string;     // default: "Wk"
+  scrollTitle: string;          // tooltip for the scroll action
+  toggleTitle: string;          // tooltip for the AM/PM toggle
+  amPM: [string, string];       // default: ["AM", "PM"]
   yearAriaLabel: string;
   monthAriaLabel: string;
   hourAriaLabel: string;
@@ -111,19 +111,19 @@ type Locale = {
 };
 ```
 
-## CustomLocale-Typ (für partielle Locale-Überschreibung)
+## CustomLocale type (for partial locale overrides)
 
 ```typescript
 type CustomLocale = {
   weekdays: {
-    shorthand: [string, string, string, string, string, string, string]; // Pflichtfeld
-    longhand:  [string, string, string, string, string, string, string]; // Pflichtfeld
+    shorthand: [string, string, string, string, string, string, string]; // required
+    longhand:  [string, string, string, string, string, string, string]; // required
   };
   months: {
-    shorthand: [string, string, string, string, string, string, string, string, string, string, string, string]; // Pflichtfeld
-    longhand:  [string, string, string, string, string, string, string, string, string, string, string, string]; // Pflichtfeld
+    shorthand: [string, string, string, string, string, string, string, string, string, string, string, string]; // required
+    longhand:  [string, string, string, string, string, string, string, string, string, string, string, string]; // required
   };
-  // Alle folgenden Felder sind optional:
+  // all of the following fields are optional:
   daysInMonth?: [number, number, number, number, number, number, number, number, number, number, number, number];
   firstDayOfWeek?: number;
   ordinal?: (nth: number) => string;
@@ -140,7 +140,7 @@ type CustomLocale = {
 };
 ```
 
-## Benutzerdefinierte Locale (Custom Locale) — vollständiges Beispiel
+## Custom locale — complete example
 
 ```js
 flatpickr("#date", {
@@ -170,84 +170,84 @@ flatpickr("#date", {
 });
 ```
 
-## Alle verfügbaren Locales (67 Dateien)
+## All available locales (67 files)
 
-Locale-Dateien liegen unter `flatpickr/dist/l10n/<code>.js`.
-Locale-Keys laut `src/types/locale.ts` (`type key`):
+Locale files live under `flatpickr/dist/l10n/<code>.js`.
+Locale keys according to `src/types/locale.ts` (`type key`):
 
-| Code | Sprache | Datei |
+| Code | Language | File |
 |------|---------|-------|
-| `ar` | Arabisch | `ar.js` |
-| `ar-dz` | Arabisch (Algerien) | `ar-dz.js` |
-| `at` | Österreichisches Deutsch | `at.js` |
-| `az` | Aserbaidschanisch | `az.js` |
-| `be` | Belarussisch | `be.js` |
-| `bg` | Bulgarisch | `bg.js` |
+| `ar` | Arabic | `ar.js` |
+| `ar-dz` | Arabic (Algeria) | `ar-dz.js` |
+| `at` | Austrian German | `at.js` |
+| `az` | Azerbaijani | `az.js` |
+| `be` | Belarusian | `be.js` |
+| `bg` | Bulgarian | `bg.js` |
 | `bn` | Bangla / Bengali | `bn.js` |
-| `bs` | Bosnisch | `bs.js` |
-| `ca` / `cat` | Katalanisch | `cat.js` |
-| `ckb` | Kurdisch (Sorani) | `ckb.js` |
-| `cs` | Tschechisch | `cs.js` |
-| `cy` | Walisisch | `cy.js` |
-| `da` | Dänisch | `da.js` |
-| `de` | Deutsch | `de.js` |
-| `default` / `en` | Englisch (Standard) | `default.js` |
+| `bs` | Bosnian | `bs.js` |
+| `ca` / `cat` | Catalan | `cat.js` |
+| `ckb` | Kurdish (Sorani) | `ckb.js` |
+| `cs` | Czech | `cs.js` |
+| `cy` | Welsh | `cy.js` |
+| `da` | Danish | `da.js` |
+| `de` | German | `de.js` |
+| `default` / `en` | English (default) | `default.js` |
 | `eo` | Esperanto | `eo.js` |
-| `es` | Spanisch | `es.js` |
-| `et` | Estnisch | `et.js` |
-| `fa` | Persisch / Farsi | `fa.js` |
-| `fi` | Finnisch | `fi.js` |
-| `fo` | Färöisch | `fo.js` |
-| `fr` | Französisch | `fr.js` |
-| `ga` | Irisch / Gälisch | `ga.js` |
-| `gr` | Griechisch | `gr.js` |
-| `he` | Hebräisch | `he.js` |
+| `es` | Spanish | `es.js` |
+| `et` | Estonian | `et.js` |
+| `fa` | Persian / Farsi | `fa.js` |
+| `fi` | Finnish | `fi.js` |
+| `fo` | Faroese | `fo.js` |
+| `fr` | French | `fr.js` |
+| `ga` | Irish / Gaelic | `ga.js` |
+| `gr` | Greek | `gr.js` |
+| `he` | Hebrew | `he.js` |
 | `hi` | Hindi | `hi.js` |
-| `hr` | Kroatisch | `hr.js` |
-| `hu` | Ungarisch | `hu.js` |
-| `hy` | Armenisch | `hy.js` |
-| `id` | Indonesisch | `id.js` |
-| `is` | Isländisch | `is.js` |
-| `it` | Italienisch | `it.js` |
-| `ja` | Japanisch | `ja.js` |
-| `ka` | Georgisch | `ka.js` |
+| `hr` | Croatian | `hr.js` |
+| `hu` | Hungarian | `hu.js` |
+| `hy` | Armenian | `hy.js` |
+| `id` | Indonesian | `id.js` |
+| `is` | Icelandic | `is.js` |
+| `it` | Italian | `it.js` |
+| `ja` | Japanese | `ja.js` |
+| `ka` | Georgian | `ka.js` |
 | `km` | Khmer | `km.js` |
-| `ko` | Koreanisch | `ko.js` |
-| `kz` | Kasachisch | `kz.js` |
-| `lt` | Litauisch | `lt.js` |
-| `lv` | Lettisch | `lv.js` |
-| `mk` | Mazedonisch | `mk.js` |
-| `mn` | Mongolisch | `mn.js` |
-| `ms` | Malaiisch | `ms.js` |
-| `my` | Burmesisch | `my.js` |
-| `nl` | Niederländisch | `nl.js` |
-| `nn` | Norwegisch Nynorsk | `nn.js` |
-| `no` | Norwegisch Bokmål | `no.js` |
+| `ko` | Korean | `ko.js` |
+| `kz` | Kazakh | `kz.js` |
+| `lt` | Lithuanian | `lt.js` |
+| `lv` | Latvian | `lv.js` |
+| `mk` | Macedonian | `mk.js` |
+| `mn` | Mongolian | `mn.js` |
+| `ms` | Malay | `ms.js` |
+| `my` | Burmese | `my.js` |
+| `nl` | Dutch | `nl.js` |
+| `nn` | Norwegian Nynorsk | `nn.js` |
+| `no` | Norwegian Bokmål | `no.js` |
 | `pa` | Punjabi | `pa.js` |
-| `pl` | Polnisch | `pl.js` |
-| `pt` | Portugiesisch | `pt.js` |
-| `ro` | Rumänisch | `ro.js` |
-| `ru` | Russisch | `ru.js` |
-| `si` | Singhalesisch | `si.js` |
-| `sk` | Slowakisch | `sk.js` |
-| `sl` | Slowenisch | `sl.js` |
-| `sq` | Albanisch | `sq.js` |
-| `sr` | Serbisch (Lateinisch) | `sr.js` |
-| `sr-cyr` | Serbisch (Kyrillisch) | `sr-cyr.js` |
-| `sv` | Schwedisch | `sv.js` |
-| `th` | Thailändisch | `th.js` |
-| `tr` | Türkisch | `tr.js` |
-| `uk` | Ukrainisch | `uk.js` |
-| `uz` | Usbekisch (Kyrillisch) | `uz.js` |
-| `uz_latn` | Usbekisch (Lateinisch) | `uz_latn.js` |
-| `vn` | Vietnamesisch | `vn.js` |
-| `zh` | Chinesisch (Vereinfacht) | `zh.js` |
-| `zh_tw` | Chinesisch (Traditionell) | `zh_tw.js` |
+| `pl` | Polish | `pl.js` |
+| `pt` | Portuguese | `pt.js` |
+| `ro` | Romanian | `ro.js` |
+| `ru` | Russian | `ru.js` |
+| `si` | Sinhala | `si.js` |
+| `sk` | Slovak | `sk.js` |
+| `sl` | Slovenian | `sl.js` |
+| `sq` | Albanian | `sq.js` |
+| `sr` | Serbian (Latin) | `sr.js` |
+| `sr-cyr` | Serbian (Cyrillic) | `sr-cyr.js` |
+| `sv` | Swedish | `sv.js` |
+| `th` | Thai | `th.js` |
+| `tr` | Turkish | `tr.js` |
+| `uk` | Ukrainian | `uk.js` |
+| `uz` | Uzbek (Cyrillic) | `uz.js` |
+| `uz_latn` | Uzbek (Latin) | `uz_latn.js` |
+| `vn` | Vietnamese | `vn.js` |
+| `zh` | Chinese (Simplified) | `zh.js` |
+| `zh_tw` | Chinese (Traditional) | `zh_tw.js` |
 
-**Hinweis:** Der Locale-Key `"ca"` ist ein Alias für `"cat"` (Katalanisch).
-Der Key `"en"` ist ein Alias für `"default"` (Englisch).
-Die Datei `ar-dz.js` muss mit dem String-Key `"ar-dz"` referenziert werden (kein Punkt-Zugriff).
+**Note:** The locale key `"ca"` is an alias for `"cat"` (Catalan).
+The key `"en"` is an alias for `"default"` (English).
+The file `ar-dz.js` must be referenced with the string key `"ar-dz"` (no dot access).
 
 ---
 
-Quelle: `src/types/locale.ts` + `src/l10n/index.ts` (v4.6.13) | https://flatpickr.js.org/localization/
+Source: `src/types/locale.ts` + `src/l10n/index.ts` (v4.6.13) | https://flatpickr.js.org/localization/

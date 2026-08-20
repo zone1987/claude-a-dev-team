@@ -1,6 +1,6 @@
-# Shopware 6 — Cart-Rabatte/Abschläge
+# Shopware 6 — Cart Discounts/Surcharges
 
-Rabatte sind eigene LineItems (negativer Preis) bzw. Promotion-Items, berechnet in einem Processor.
+Discounts are separate line items (negative price) or promotion items, calculated in a processor.
 
 ```php
 $discount = new LineItem($id, LineItem::DISCOUNT_LINE_ITEM, null, 1);
@@ -10,6 +10,6 @@ $discount->setPrice($price);
 $toCalculate->add($discount);
 ```
 
-Prozentual über `PercentagePriceCalculator` (auf eine Preis-Collection), absolut über `AbsolutePriceCalculator`.
-Für regelbasierte Aktionen/Gutscheine das **Promotion**-System nutzen (`sw-promotion`) statt eigener Logik, wenn möglich.
-Im eigenen Processor (`sw-cart-processor`) anhängen; Steuerverteilung erfolgt automatisch.
+Percentage discounts via `PercentagePriceCalculator` (on a price collection), absolute ones via `AbsolutePriceCalculator`.
+For rule-based campaigns/vouchers use the **promotion** system (`sw-promotion`) instead of custom logic where possible.
+Attach them in your own processor (`sw-cart-processor`); tax distribution happens automatically.

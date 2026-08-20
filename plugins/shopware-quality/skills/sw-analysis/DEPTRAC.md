@@ -1,6 +1,6 @@
 # Shopware 6 — Deptrac
 
-Erzwingt Schichten-/Abhängigkeitsregeln (z.B. Core darf nicht auf Storefront zugreifen; Domänen entkoppelt).
+Enforces layer and dependency rules (for example: Core must not access Storefront; domains stay decoupled).
 
 ```yaml
 # deptrac.yaml
@@ -13,12 +13,12 @@ deptrac:
       collectors: [{ type: directory, value: src/Storefront/.* }]
   ruleset:
     Storefront: [Core]
-    Core: []        # Core darf NICHT auf Storefront
+    Core: []        # Core must NOT access Storefront
 ```
 
 ```bash
 vendor/bin/deptrac analyse
 ```
 
-Hält Plugin-interne Architektur sauber (Domänentrennung, keine Zyklen). Ergänzt PHPStan (`sw-phpstan`, Typen) und
-ECS (`sw-ecs-cs-fixer`, Style). Im CI als Gate (`shopware-devops`).
+Keeps the plugin-internal architecture clean (domain separation, no cycles). Complements PHPStan (`sw-phpstan`, types) and
+ECS (`sw-ecs-cs-fixer`, style). Use it as a gate in CI (`shopware-devops`).

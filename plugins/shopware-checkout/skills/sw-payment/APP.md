@@ -1,7 +1,7 @@
-# Shopware 6 — App-Payment
+# Shopware 6 — App Payment
 
-Apps stellen Zahlungsarten über das Manifest bereit (kein PHP-Handler im Shop). Shopware ruft die App-URLs auf
-(signiert), die App antwortet mit Status/Redirect.
+Apps provide payment methods through the manifest (no PHP handler in the shop). Shopware calls the app URLs
+(signed), and the app responds with a status or a redirect.
 
 ```xml
 <payments>
@@ -15,6 +15,6 @@ Apps stellen Zahlungsarten über das Manifest bereit (kein PHP-Handler im Shop).
 </payments>
 ```
 
-Varianten: synchron, asynchron (Redirect via `pay-url` → Rückkehr → `finalize-url`), vorbereitet, recurring, refund.
-Requests sind HMAC-signiert (App-Secret verifizieren). App-Server/SDK: `shopware-apps` (`sw-app-php-sdk`/`sw-app-sdk-js`).
-Plugin-Variante (PHP): `sw-payment-handler`.
+Variants: synchronous, asynchronous (redirect via `pay-url` → return → `finalize-url`), prepared, recurring, refund.
+Requests are HMAC-signed (verify the app secret). App server/SDK: `shopware-apps` (`sw-app-php-sdk`/`sw-app-sdk-js`).
+Plugin variant (PHP): `sw-payment-handler`.

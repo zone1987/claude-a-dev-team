@@ -1,20 +1,20 @@
-# Swiper A11y (Accessibility)-Modul — Vollständige Referenz
+# Swiper A11y (accessibility) module — Complete reference
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [Automatisch gesetzte ARIA-Attribute](#automatisch-gesetzte-aria-attribute)
-- [Lokalisierungsbeispiel (Deutsch)](#lokalisierungsbeispiel-deutsch)
-- [Fokus-Management](#fokus-management)
-- [Interaktion mit Navigation-Modul](#interaktion-mit-navigation-modul)
+- [Concept](#concept)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [Automatically set ARIA attributes](#automatically-set-aria-attributes)
+- [Localization example (German)](#localization-example-german)
+- [Focus management](#focus-management)
+- [Interaction with the Navigation module](#interaction-with-the-navigation-module)
 
-## Konzept
+## Concept
 
-Das A11y-Modul fügt ARIA-Attribute und Screen-Reader-Nachrichten zum Swiper hinzu, um die Barrierefreiheit zu verbessern. Es setzt Rollen, Labels und Live-Region-Ankündigungen.
+The A11y module adds ARIA attributes and screen reader messages to the Swiper to improve accessibility. It sets roles, labels and live region announcements.
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -23,11 +23,11 @@ import { A11y, Navigation, Pagination } from 'swiper/modules';
 const swiper = new Swiper('.swiper', {
   modules: [A11y, Navigation, Pagination],
   a11y: {
-    prevSlideMessage: 'Vorheriger Slide',
-    nextSlideMessage: 'Nächster Slide',
-    firstSlideMessage: 'Dies ist der erste Slide',
-    lastSlideMessage: 'Dies ist der letzte Slide',
-    paginationBulletMessage: 'Gehe zu Slide {{index}}',
+    prevSlideMessage: 'Previous slide',
+    nextSlideMessage: 'Next slide',
+    firstSlideMessage: 'This is the first slide',
+    lastSlideMessage: 'This is the last slide',
+    paginationBulletMessage: 'Go to slide {{index}}',
   },
   navigation: {
     nextEl: '.swiper-button-next',
@@ -36,32 +36,32 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
-|------|-----|---------|--------------|
-| `enabled` | `boolean` | `true` | A11y-Modul aktivieren |
-| `prevSlideMessage` | `string` | `'Previous slide'` | Screen-Reader-Text für den Prev-Button |
-| `nextSlideMessage` | `string` | `'Next slide'` | Screen-Reader-Text für den Next-Button |
-| `firstSlideMessage` | `string` | `'This is the first slide'` | Ankündigung wenn erster Slide aktiv (kein Loop) |
-| `lastSlideMessage` | `string` | `'This is the last slide'` | Ankündigung wenn letzter Slide aktiv (kein Loop) |
-| `paginationBulletMessage` | `string` | `'Go to slide {{index}}'` | Text für Pagination-Bullets; `{{index}}` = 1-basierter Index |
-| `notificationClass` | `string` | `'swiper-notification'` | CSS-Klasse für Screen-Reader-Live-Region |
-| `id` | `string \| number` | `null` | Benutzerdefinierte ID für den Swiper-Wrapper |
-| `containerMessage` | `string` | `null` | `aria-label` für den Swiper-Container |
-| `containerRoleDescriptionMessage` | `string` | `null` | `aria-roledescription` für den Container |
-| `itemRoleDescriptionMessage` | `string` | `null` | `aria-roledescription` für einzelne Slides |
-| `slideLabelMessage` | `string` | `'{{index}} / {{slidesLength}}'` | `aria-label` Template für jeden Slide |
-| `slideRole` | `string` | `'group'` | ARIA-Rolle für Slides (`'group'` oder `'listitem'`) |
-| `slidesRole` | `string` | `'group'` | ARIA-Rolle für den Swiper-Wrapper |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `enabled` | `boolean` | `true` | Enable the A11y module |
+| `prevSlideMessage` | `string` | `'Previous slide'` | Screen reader text for the prev button |
+| `nextSlideMessage` | `string` | `'Next slide'` | Screen reader text for the next button |
+| `firstSlideMessage` | `string` | `'This is the first slide'` | Announcement when the first slide is active (no loop) |
+| `lastSlideMessage` | `string` | `'This is the last slide'` | Announcement when the last slide is active (no loop) |
+| `paginationBulletMessage` | `string` | `'Go to slide {{index}}'` | Text for pagination bullets; `{{index}}` = 1-based index |
+| `notificationClass` | `string` | `'swiper-notification'` | CSS class for the screen reader live region |
+| `id` | `string \| number` | `null` | Custom ID for the Swiper wrapper |
+| `containerMessage` | `string` | `null` | `aria-label` for the Swiper container |
+| `containerRoleDescriptionMessage` | `string` | `null` | `aria-roledescription` for the container |
+| `itemRoleDescriptionMessage` | `string` | `null` | `aria-roledescription` for individual slides |
+| `slideLabelMessage` | `string` | `'{{index}} / {{slidesLength}}'` | `aria-label` template for each slide |
+| `slideRole` | `string` | `'group'` | ARIA role for slides (`'group'` or `'listitem'`) |
+| `slidesRole` | `string` | `'group'` | ARIA role for the Swiper wrapper |
 
-## Automatisch gesetzte ARIA-Attribute
+## Automatically set ARIA attributes
 
-Das Modul setzt folgende Attribute automatisch:
+The module sets the following attributes automatically:
 
 ```html
-<!-- Swiper-Container -->
-<div class="swiper" role="group" aria-label="Bildergalerie">
+<!-- Swiper container -->
+<div class="swiper" role="group" aria-label="Image gallery">
   <!-- Wrapper -->
   <div class="swiper-wrapper" role="group" aria-label="Slides">
     <!-- Slides -->
@@ -69,16 +69,16 @@ Das Modul setzt folgende Attribute automatisch:
     <div class="swiper-slide" role="group" aria-label="2 / 5" aria-hidden="true">...</div>
   </div>
   
-  <!-- Navigation-Buttons -->
-  <div class="swiper-button-prev" aria-label="Vorheriger Slide" role="button" tabindex="0"></div>
-  <div class="swiper-button-next" aria-label="Nächster Slide" role="button" tabindex="0"></div>
+  <!-- Navigation buttons -->
+  <div class="swiper-button-prev" aria-label="Previous slide" role="button" tabindex="0"></div>
+  <div class="swiper-button-next" aria-label="Next slide" role="button" tabindex="0"></div>
 </div>
 
-<!-- Live-Region für Ankündigungen -->
+<!-- Live region for announcements -->
 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
 ```
 
-## Lokalisierungsbeispiel (Deutsch)
+## Localization example (German)
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -98,16 +98,16 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Fokus-Management
+## Focus management
 
-Das Modul stellt sicher dass:
-- Navigation-Buttons per Tastatur erreichbar sind (`tabindex="0"`)
-- Der aktive Slide fokussierbar ist
-- Nicht sichtbare Slides `aria-hidden="true"` erhalten
+The module makes sure that:
+- Navigation buttons are reachable by keyboard (`tabindex="0"`)
+- The active slide is focusable
+- Slides that are not visible receive `aria-hidden="true"`
 
-## Interaktion mit Navigation-Modul
+## Interaction with the Navigation module
 
-Wenn Navigation aktiv ist, werden Buttons automatisch mit korrekten ARIA-Attributen versehen:
+When Navigation is active, the buttons automatically receive the correct ARIA attributes:
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -117,13 +117,13 @@ const swiper = new Swiper('.swiper', {
     prevEl: '.swiper-button-prev',
   },
   a11y: {
-    nextSlideMessage: 'Weiter',
-    prevSlideMessage: 'Zurück',
-    // Buttons erhalten automatisch:
+    nextSlideMessage: 'Next',
+    prevSlideMessage: 'Back',
+    // Buttons automatically receive:
     // role="button", tabindex="0", aria-label="..."
   },
 });
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#accessibility-a11y
+Source: https://swiperjs.com/swiper-api#accessibility-a11y

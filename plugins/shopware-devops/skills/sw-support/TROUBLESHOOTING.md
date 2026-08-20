@@ -2,18 +2,18 @@
 
 ## Contents
 
-- [Xdebug aktivieren (Docker)](#xdebug-aktivieren-docker)
-- [Andere Profiler](#andere-profiler)
-- [DB-Verbindung von Host](#db-verbindung-von-host)
-- [Linux File-Permissions](#linux-file-permissions)
-- [PHPStan: EntityRepository Generic-Type](#phpstan-entityrepository-generic-type)
-- [PHPStan: Null-Safety bei first() + Assoziationen](#phpstan-null-safety-bei-first-assoziationen)
-- [PHPStan: EntityCollection Generic-Type](#phpstan-entitycollection-generic-type)
+- [Enabling Xdebug (Docker)](#enabling-xdebug-docker)
+- [Other profilers](#other-profilers)
+- [DB connection from the host](#db-connection-from-the-host)
+- [Linux file permissions](#linux-file-permissions)
+- [PHPStan: EntityRepository generic type](#phpstan-entityrepository-generic-type)
+- [PHPStan: null safety with first() + associations](#phpstan-null-safety-with-first-associations)
+- [PHPStan: EntityCollection generic type](#phpstan-entitycollection-generic-type)
 
-## Xdebug aktivieren (Docker)
+## Enabling Xdebug (Docker)
 
 ```yaml
-# compose.override.yaml im Projektroot:
+# compose.override.yaml in the project root:
 services:
   web:
     environment:
@@ -24,10 +24,10 @@ services:
 
 ```bash
 docker compose up -d
-# IDE (PHPStorm/VSCode): Remote-Debugger auf Port 9003 anbinden
+# IDE (PHPStorm/VSCode): attach the remote debugger on port 9003
 ```
 
-### Xdebug auf Linux
+### Xdebug on Linux
 
 ```yaml
 # compose.override.yaml:
@@ -37,7 +37,7 @@ services:
       - "host.docker.internal:host-gateway"
 ```
 
-## Andere Profiler
+## Other profilers
 
 ```yaml
 # Blackfire:
@@ -52,31 +52,31 @@ services:
       BLACKFIRE_SERVER_TOKEN: XXXX
 ```
 
-Weitere unterstützte Profiler: `tideways`, `pcov`.
+Other supported profilers: `tideways`, `pcov`.
 
-## DB-Verbindung von Host
-
-```bash
-docker compose ps   # → exponierten DB-Port ermitteln
-# Client verbinden: Host=127.0.0.1, Port=<aus ps>
-```
-
-## Linux File-Permissions
+## DB connection from the host
 
 ```bash
-id -u   # muss 1000 sein → sonst Permission-Errors bei make up / Datei-Schreiben
+docker compose ps   # → determine the exposed DB port
+# Connect the client: Host=127.0.0.1, Port=<from ps>
 ```
 
-## PHPStan: EntityRepository Generic-Type
+## Linux file permissions
+
+```bash
+id -u   # must be 1000 → otherwise permission errors on make up / file writes
+```
+
+## PHPStan: EntityRepository generic type
 
 ```php
-// Problem: PHPStan kennt Typ nicht
+// Problem: PHPStan does not know the type
 $products = $this->productRepository->search($criteria, $context)->getEntities();
 foreach ($products as $product) {
-    $product->getName(); // Fehler: undefined method on Entity
+    $product->getName(); // Error: undefined method on Entity
 }
 
-// Fix: Generic-Type im PHP-Doc
+// Fix: generic type in the PHP doc
 class MyService
 {
     /** @param EntityRepository<ProductCollection> $productRepository */
@@ -86,28 +86,28 @@ class MyService
 }
 ```
 
-## PHPStan: Null-Safety bei first() + Assoziationen
+## PHPStan: null safety with first() + associations
 
 ```php
-// Problem: first() und Assoziationen können null sein
+// Problem: first() and associations can be null
 $product = $this->productRepository->search($criteria, $context)->first();
-$manufacturer = $product->getManufacturer(); // null-Fehler möglich
+$manufacturer = $product->getManufacturer(); // null error possible
 
-// Fix 1: Explizite Null-Checks
+// Fix 1: explicit null checks
 $criteria->addAssociation('manufacturer');
 $product = $this->productRepository->search($criteria, $context)->first();
 if ($product === null) { throw new ProductNotFoundException(); }
 $manufacturer = $product->getManufacturer();
 if ($manufacturer === null) { throw new ManufacturerNotLoadedException(); }
 
-// Fix 2: Null-Safe-Operator
+// Fix 2: null-safe operator
 $manufacturerName = $product?->getManufacturer()?->getName() ?? 'Unknown';
 ```
 
-## PHPStan: EntityCollection Generic-Type
+## PHPStan: EntityCollection generic type
 
 ```php
-// Fix: Generic-Type zu Custom Collection hinzufügen
+// Fix: add a generic type to the custom collection
 /** @extends EntityCollection<FooEntity> */
 class FooCollection extends EntityCollection
 {
@@ -115,4 +115,4 @@ class FooCollection extends EntityCollection
 }
 ```
 
-DAL-Filter/Aggregations-Referenz: `sw-dal-reference`.
+DAL filter/aggregation reference: `sw-dal-reference`.

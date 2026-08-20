@@ -1,6 +1,6 @@
 # Shopware 6 — Jest (Storefront)
 
-Storefront-JS-Plugins mit Jest testen (`composer storefront:unit`). DOM via jsdom, Plugin instanziieren und Verhalten prüfen.
+Test storefront JS plugins with Jest (`composer storefront:unit`). DOM via jsdom, instantiate the plugin and assert its behaviour.
 
 ```js
 import FfExamplePlugin from 'src/ff-example/ff-example.plugin';
@@ -10,10 +10,10 @@ describe('FfExamplePlugin', () => {
         document.body.innerHTML = '<div data-ff-example><button data-ff-trigger></button></div>';
         const el = document.querySelector('[data-ff-example]');
         const plugin = new FfExamplePlugin(el);
-        // init() ggf. manuell aufrufen; Events/Optionen prüfen
+        // call init() manually if needed; assert events/options
     });
 });
 ```
 
-`window.PluginManager`/`$emitter` bei Bedarf mocken. AJAX (`HttpClient`) stubben. Für TS-Plugins gilt dasselbe
-(`shopware-storefront` → `sw-storefront-typescript`). E2E stattdessen: `sw-playwright-e2e`.
+Mock `window.PluginManager`/`$emitter` where needed. Stub AJAX (`HttpClient`). The same applies to TS plugins
+(`shopware-storefront` → `sw-storefront-typescript`). For E2E instead: `sw-playwright-e2e`.

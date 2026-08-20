@@ -1,59 +1,59 @@
 # Shopware PaaS Native — Get Started (Deep Reference)
 
-Quellen: `products/paas/shopware/get-started/` (index.md, quickstart.md, cli.md,
+Sources: `products/paas/shopware/get-started/` (index.md, quickstart.md, cli.md,
 prepare-codebase.md) + `products/paas/shopware/guides/setting-up-repository-access.md`
 
 ---
 
 ## Contents
 
-- [CLI Installation](#cli-installation)
-- [Codebase vorbereiten](#codebase-vorbereiten)
-- [Repository-Zugang einrichten](#repository-zugang-einrichten)
-- [Quickstart — Vollständig](#quickstart-vollständig)
-- [Berechtigungen & Rollen](#berechtigungen-rollen)
-- [Häufige Fragen beim Start](#häufige-fragen-beim-start)
+- [CLI installation](#cli-installation)
+- [Preparing the codebase](#preparing-the-codebase)
+- [Setting up repository access](#setting-up-repository-access)
+- [Quickstart — complete](#quickstart-complete)
+- [Permissions & roles](#permissions-roles)
+- [Common questions when starting out](#common-questions-when-starting-out)
 
-## CLI Installation
+## CLI installation
 
 ```bash
 # Standard
 curl -L https://install.sw-paas-cli.shopware.systems | sh
 
-# Spezifische Version
+# Specific version
 curl -L https://install.sw-paas-cli.shopware.systems | sh -s 0.0.30
 ```
 
-Installiert nach `~/.sw-paas/bin/sw-paas`. Verzeichnis via `SW_PAAS_DIR` anpassbar.
-PATH wird automatisch ergänzt.
+Installs to `~/.sw-paas/bin/sw-paas`. The directory can be changed via `SW_PAAS_DIR`.
+PATH is extended automatically.
 
 ```bash
-sw-paas version     # Installation prüfen
-sw-paas auth        # Browser-Login, Token wird gespeichert
-sw-paas             # Alle verfügbaren Befehle anzeigen
+sw-paas version     # verify the installation
+sw-paas auth        # browser login, the token is stored
+sw-paas             # show all available commands
 ```
 
-Bugs/Feedback: https://github.com/shopware/sw-paas/issues
+Bugs/feedback: https://github.com/shopware/sw-paas/issues
 
 ---
 
-## Codebase vorbereiten
+## Preparing the codebase
 
-### Voraussetzungen
+### Requirements
 
-- macOS oder Linux empfohlen für lokale Entwicklung
-- Windows: Docker oder WSL2 verwenden
-- Plugin-Management **NUR via Composer** (HA/Cluster-Setup = stateless)
-- S3-Kompatibilität jedes Plugins prüfen!
+- macOS or Linux recommended for local development
+- Windows: use Docker or WSL2
+- Plugin management **ONLY via Composer** (HA/cluster setup = stateless)
+- Check the S3 compatibility of every plugin!
 
-### Neues Projekt
+### New project
 
 ```bash
 composer create-project shopware/production <folder-name>
 cd <folder-name>
 ```
 
-### Existierendes Projekt
+### Existing project
 
 ```bash
 cd <your-project-folder>
@@ -65,14 +65,14 @@ composer require shopware/k8s-meta:^2.0 --ignore-platform-reqs
 composer require shopware/k8s-meta:^1.0 --ignore-platform-reqs
 ```
 
-### Was k8s-meta konfiguriert
+### What k8s-meta configures
 
-`config/packages/operator.yaml` muss nach Installation existieren.
-Enthält: S3-Storage, Redis Cache+Session, Cluster-Mode, Admin-Worker deaktiviert.
+`config/packages/operator.yaml` must exist after the installation.
+It contains: S3 storage, Redis cache+session, cluster mode, admin worker disabled.
 
-### application.yaml erstellen
+### Creating application.yaml
 
-Am Projektroot anlegen:
+Create it at the project root:
 
 ```yaml
 app:
@@ -86,108 +86,108 @@ services:
     enabled: false
 ```
 
-### Plugins deinstallieren
+### Uninstalling plugins
 
-Über Deployment Helper mit `.shopware-project.yml`:
-1. Extension auf `remove` setzen → Deployen (Deinstallation)
-2. Extension aus Source-Code entfernen → Erneut deployen
+Through the Deployment Helper with `.shopware-project.yml`:
+1. Set the extension to `remove` → deploy (uninstallation)
+2. Remove the extension from the source code → deploy again
 
 ---
 
-## Repository-Zugang einrichten
+## Setting up repository access
 
-### Option 1: Automatisch via CLI (empfohlen)
+### Option 1: automatically via the CLI (recommended)
 
 ```bash
-# Auf Organization-Ebene (alle Projekte)
+# At organization level (all projects)
 sw-paas vault create --type ssh
 
-# Auf Projekt-Ebene (nur ein Projekt)
+# At project level (a single project only)
 sw-paas vault create --type ssh --project <project-id>
 ```
 
-Public Key aus CLI-Output kopieren und in Git-Provider eintragen.
+Copy the public key from the CLI output and add it to the Git provider.
 
-### Option 2: Manuell
+### Option 2: manually
 
 ```bash
-# RSA 4096 (PEM-Format, passwordless)
+# RSA 4096 (PEM format, passwordless)
 ssh-keygen -t rsa -b 4096 -m PEM -f ./sw-paas
-# Alternativ: ED25519 oder ECDSA (ebenfalls PEM, passwordless)
+# Alternatively: ED25519 or ECDSA (also PEM, passwordless)
 
-# Public Key (sw-paas.pub) in Git-Provider eintragen (Read-Only)
+# Add the public key (sw-paas.pub) to the Git provider (read-only)
 # GitHub: Settings → Deploy Keys
 # GitLab/Bitbucket: Deploy Keys
 
-# Private Key in Vault speichern
+# Store the private key in the vault
 cat sw-paas | sw-paas vault create --type ssh --password-stdin
 ```
 
-**Wichtig:** Pro Level (org/project) nur ein SSH-Key möglich.
-Projekt-Level überschreibt Org-Level.
+**Important:** Only one SSH key per level (org/project) is possible.
+The project level overrides the org level.
 
 ---
 
-## Quickstart — Vollständig
+## Quickstart — complete
 
-### Schritt 1: CLI installieren
+### Step 1: install the CLI
 
 ```bash
 curl -L https://install.sw-paas-cli.shopware.systems | sh
 sw-paas version
 ```
 
-### Schritt 2: SSH-Key für Git-Repo
+### Step 2: SSH key for the Git repo
 
 ```bash
 sw-paas vault create --type ssh
-# Public Key → Repository Deploy Keys
+# Public key → repository deploy keys
 ```
 
-### Schritt 3: Projekt erstellen
+### Step 3: create the project
 
 ```bash
 sw-paas project create --name "my-shopware-app" --repository "git@github.com:username/repo.git"
 ```
 
-### Schritt 4: Application erstellen & deployen
+### Step 4: create & deploy the application
 
 ```bash
 sw-paas application create
 sw-paas application deploy create
-sw-paas watch          # Live-Monitoring
+sw-paas watch          # live monitoring
 ```
 
 ---
 
-## Berechtigungen & Rollen
+## Permissions & roles
 
-| Rolle | Beschreibung |
+| Role | Description |
 |-------|-------------|
-| `read-only` | Nur `get` und `list` |
-| `developer` | Alle Aktionen auf Projekten/Applications |
-| `project-admin` | Alle Aktionen auf Projekten/Applications |
-| `account-admin` | User-Management |
+| `read-only` | Only `get` and `list` |
+| `developer` | All actions on projects/applications |
+| `project-admin` | All actions on projects/applications |
+| `account-admin` | User management |
 
-Neuen User hinzufügen (als account-admin):
+Adding a new user (as account-admin):
 ```bash
-# User gibt Sub-ID bekannt:
+# The user reports their sub ID:
 sw-paas account whoami --output json | jq ".sub"
 
-# Admin fügt User hinzu:
+# The admin adds the user:
 sw-paas account user add --sub "<sub-id>"
 ```
 
 ---
 
-## Häufige Fragen beim Start
+## Common questions when starting out
 
-**Q: Kann ich verschiedene Anwendungen (z.B. Node.js) betreiben?**
-Nein, PaaS Native unterstützt nur Shopware-Projekte.
+**Q: Can I run other kinds of applications (e.g. Node.js)?**
+No, PaaS Native supports Shopware projects only.
 
-**Q: Kann ich zur Basis-Auth eine Application schützen?**
-Nicht empfohlen — unerwartetes Verhalten im Platform-Setup.
-Stattdessen: Shopware Maintenance Mode nutzen.
+**Q: Can I protect an application with basic auth?**
+Not recommended — unexpected behavior in the platform setup.
+Use the Shopware maintenance mode instead.
 
-**Q: Welche Cloud-Provider werden unterstützt?**
-Aktuell nur AWS.
+**Q: Which cloud providers are supported?**
+Currently AWS only.

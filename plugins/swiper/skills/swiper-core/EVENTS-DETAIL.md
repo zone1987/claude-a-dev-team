@@ -1,9 +1,9 @@
-# Swiper — Vollständige Event-Referenz (v11/12)
+# Swiper — Complete event reference (v11/12)
 
-Events werden per `swiper.on(event, handler)`, `swiper.once(event, handler)`, oder direkt im Konstruktor via `on: { eventName: handler }` registriert.
+Register events with `swiper.on(event, handler)`, `swiper.once(event, handler)`, or directly in the constructor via `on: { eventName: handler }`.
 
 ```js
-// Im Konstruktor
+// In the constructor
 const swiper = new Swiper('.swiper', {
   on: {
     init(swiper) { /* ... */ },
@@ -11,9 +11,9 @@ const swiper = new Swiper('.swiper', {
   }
 });
 
-// Nach der Initialisierung
+// After initialization
 swiper.on('slideChange', (swiper) => console.log(swiper.activeIndex));
-swiper.once('transitionEnd', (swiper) => console.log('einmalig'));
+swiper.once('transitionEnd', (swiper) => console.log('only once'));
 swiper.onAny((eventName, ...args) => console.log(eventName, args));
 ```
 
@@ -21,122 +21,122 @@ swiper.onAny((eventName, ...args) => console.log(eventName, args));
 
 ## Contents
 
-- [1. Core-Events](#1-core-events)
-- [2. Navigation-Events](#2-navigation-events)
-- [3. Pagination-Events](#3-pagination-events)
-- [4. Scrollbar-Events](#4-scrollbar-events)
-- [5. Autoplay-Events](#5-autoplay-events)
-- [6. Keyboard-Events](#6-keyboard-events)
-- [7. Mousewheel-Events](#7-mousewheel-events)
-- [8. Zoom-Events](#8-zoom-events)
-- [Event-Nutzungs-Beispiele](#event-nutzungs-beispiele)
+- [1. Core events](#1-core-events)
+- [2. Navigation events](#2-navigation-events)
+- [3. Pagination events](#3-pagination-events)
+- [4. Scrollbar events](#4-scrollbar-events)
+- [5. Autoplay events](#5-autoplay-events)
+- [6. Keyboard events](#6-keyboard-events)
+- [7. Mousewheel events](#7-mousewheel-events)
+- [8. Zoom events](#8-zoom-events)
+- [Event usage examples](#event-usage-examples)
 
-## 1. Core-Events
+## 1. Core events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `activeIndexChange` | `(swiper)` | Aktiver Index hat sich geändert. |
-| `afterInit` | `(swiper)` | Direkt nach der Initialisierung. |
-| `beforeDestroy` | `(swiper)` | Direkt bevor Swiper zerstört wird. |
-| `beforeInit` | `(swiper)` | Direkt vor der Initialisierung. |
-| `beforeLoopFix` | `(swiper)` | Direkt vor dem Loop-Fix. |
-| `beforeResize` | `(swiper)` | Vor dem Resize-Handler. |
-| `beforeSlideChangeStart` | `(swiper)` | Vor dem Start der Folien-Wechsel-Transition. |
-| `beforeTransitionStart` | `(swiper, speed, internal)` | Vor dem Start einer Transition. `speed`: Transitions-Dauer, `internal`: interner Aufruf. |
-| `breakpoint` | `(swiper, breakpointParams)` | Breakpoint hat sich geändert. `breakpointParams`: neue Parameter. |
-| `changeDirection` | `(swiper)` | Richtung hat sich geändert. |
-| `click` | `(swiper, event)` | Benutzer klickt/tippt auf Swiper. `event`: PointerEvent. |
-| `destroy` | `(swiper)` | Swiper wird zerstört. |
-| `doubleClick` | `(swiper, event)` | Doppelklick auf Swiper. `event`: PointerEvent. |
-| `doubleTap` | `(swiper, event)` | Doppeltippen auf Container. `event`: PointerEvent. |
-| `fromEdge` | `(swiper)` | Swiper verlässt eine Randposition. |
-| `init` | `(swiper)` | Direkt nach der Initialisierung (nach `afterInit`). |
-| `lock` | `(swiper)` | Swiper wird gesperrt (zu wenige Folien). |
-| `loopFix` | `(swiper)` | Nach dem Loop-Fix. |
-| `momentumBounce` | `(swiper)` | Momentum-Bounce ausgelöst. |
-| `observerUpdate` | `(swiper)` | Observer hat DOM-Mutationen erkannt. |
-| `orientationchange` | `(swiper)` | Geräteausrichtung hat sich geändert. |
-| `progress` | `(swiper, progress)` | Wrapper-Fortschritt hat sich geändert. `progress`: aktueller Fortschritt (0–1). |
-| `reachBeginning` | `(swiper)` | Swiper hat den Anfang erreicht. |
-| `reachEnd` | `(swiper)` | Swiper hat die letzte Folie erreicht. |
-| `realIndexChange` | `(swiper)` | Realer Index hat sich geändert. |
-| `resize` | `(swiper)` | Fenster-Größe hat sich geändert. |
-| `setTransition` | `(swiper, transition)` | Swiper-Animation startet. `transition`: Transitions-Dauer. |
-| `setTranslate` | `(swiper, translate)` | Wrapper ändert seine Position. `translate`: aktueller Translate-Wert. |
-| `slideChange` | `(swiper)` | Aktive Folie hat sich geändert. |
-| `slideChangeTransitionEnd` | `(swiper)` | Animation nach Folienwechsel abgeschlossen. |
-| `slideChangeTransitionStart` | `(swiper)` | Animation für Folienwechsel beginnt. |
-| `slideNextTransitionEnd` | `(swiper)` | Wie `slideChangeTransitionEnd`, nur Vorwärts-Richtung. |
-| `slideNextTransitionStart` | `(swiper)` | Wie `slideChangeTransitionStart`, nur Vorwärts-Richtung. |
-| `slidePrevTransitionEnd` | `(swiper)` | Wie `slideChangeTransitionEnd`, nur Rückwärts-Richtung. |
-| `slidePrevTransitionStart` | `(swiper)` | Wie `slideChangeTransitionStart`, nur Rückwärts-Richtung. |
-| `slideResetTransitionEnd` | `(swiper)` | Reset-Animation abgeschlossen. |
-| `slideResetTransitionStart` | `(swiper)` | Reset-Animation beginnt. |
-| `sliderFirstMove` | `(swiper, event)` | Erste Touch-/Drag-Bewegung. `event`: PointerEvent. |
-| `sliderMove` | `(swiper, event)` | Benutzer berührt und bewegt Finger. `event`: PointerEvent. |
-| `slidesGridLengthChange` | `(swiper)` | Slides-Grid hat sich geändert. |
-| `slidesLengthChange` | `(swiper)` | Anzahl der Folien hat sich geändert. |
-| `slidesUpdated` | `(swiper)` | Folien wurden berechnet und aktualisiert. |
-| `snapGridLengthChange` | `(swiper)` | Snap-Grid hat sich geändert. |
-| `snapIndexChange` | `(swiper)` | Snap-Index hat sich geändert. |
-| `tap` | `(swiper, event)` | Benutzer tippt auf Swiper (kein Doppeltippen). `event`: PointerEvent. |
-| `toEdge` | `(swiper)` | Swiper erreicht eine Randposition. |
-| `touchEnd` | `(swiper, event)` | Benutzer lässt Swiper los. `event`: PointerEvent. |
-| `touchMove` | `(swiper, event)` | Benutzer berührt und bewegt Finger. `event`: PointerEvent. |
-| `touchMoveOpposite` | `(swiper, event)` | Bewegung entgegen der Slider-Richtung. `event`: PointerEvent. |
-| `touchStart` | `(swiper, event)` | Benutzer berührt Swiper. `event`: PointerEvent. |
-| `transitionEnd` | `(swiper)` | Transition abgeschlossen. |
-| `transitionStart` | `(swiper)` | Transition beginnt. |
-| `unlock` | `(swiper)` | Swiper wird entsperrt. |
-| `update` | `(swiper)` | `swiper.update()` wurde aufgerufen. |
+| `activeIndexChange` | `(swiper)` | The active index changed. |
+| `afterInit` | `(swiper)` | Right after initialization. |
+| `beforeDestroy` | `(swiper)` | Right before Swiper is destroyed. |
+| `beforeInit` | `(swiper)` | Right before initialization. |
+| `beforeLoopFix` | `(swiper)` | Right before the loop fix. |
+| `beforeResize` | `(swiper)` | Before the resize handler. |
+| `beforeSlideChangeStart` | `(swiper)` | Before the slide-change transition starts. |
+| `beforeTransitionStart` | `(swiper, speed, internal)` | Before a transition starts. `speed`: transition duration, `internal`: internal call. |
+| `breakpoint` | `(swiper, breakpointParams)` | The breakpoint changed. `breakpointParams`: new parameters. |
+| `changeDirection` | `(swiper)` | The direction changed. |
+| `click` | `(swiper, event)` | The user clicks/taps Swiper. `event`: PointerEvent. |
+| `destroy` | `(swiper)` | Swiper is destroyed. |
+| `doubleClick` | `(swiper, event)` | Double click on Swiper. `event`: PointerEvent. |
+| `doubleTap` | `(swiper, event)` | Double tap on the container. `event`: PointerEvent. |
+| `fromEdge` | `(swiper)` | Swiper leaves an edge position. |
+| `init` | `(swiper)` | Right after initialization (after `afterInit`). |
+| `lock` | `(swiper)` | Swiper is locked (too few slides). |
+| `loopFix` | `(swiper)` | After the loop fix. |
+| `momentumBounce` | `(swiper)` | Momentum bounce triggered. |
+| `observerUpdate` | `(swiper)` | The observer detected DOM mutations. |
+| `orientationchange` | `(swiper)` | The device orientation changed. |
+| `progress` | `(swiper, progress)` | The wrapper progress changed. `progress`: current progress (0–1). |
+| `reachBeginning` | `(swiper)` | Swiper reached the beginning. |
+| `reachEnd` | `(swiper)` | Swiper reached the last slide. |
+| `realIndexChange` | `(swiper)` | The real index changed. |
+| `resize` | `(swiper)` | The window size changed. |
+| `setTransition` | `(swiper, transition)` | A Swiper animation starts. `transition`: transition duration. |
+| `setTranslate` | `(swiper, translate)` | The wrapper changes its position. `translate`: current translate value. |
+| `slideChange` | `(swiper)` | The active slide changed. |
+| `slideChangeTransitionEnd` | `(swiper)` | The animation after a slide change finished. |
+| `slideChangeTransitionStart` | `(swiper)` | The animation for a slide change begins. |
+| `slideNextTransitionEnd` | `(swiper)` | Like `slideChangeTransitionEnd`, forward direction only. |
+| `slideNextTransitionStart` | `(swiper)` | Like `slideChangeTransitionStart`, forward direction only. |
+| `slidePrevTransitionEnd` | `(swiper)` | Like `slideChangeTransitionEnd`, backward direction only. |
+| `slidePrevTransitionStart` | `(swiper)` | Like `slideChangeTransitionStart`, backward direction only. |
+| `slideResetTransitionEnd` | `(swiper)` | The reset animation finished. |
+| `slideResetTransitionStart` | `(swiper)` | The reset animation begins. |
+| `sliderFirstMove` | `(swiper, event)` | First touch/drag movement. `event`: PointerEvent. |
+| `sliderMove` | `(swiper, event)` | The user touches and moves the finger. `event`: PointerEvent. |
+| `slidesGridLengthChange` | `(swiper)` | The slides grid changed. |
+| `slidesLengthChange` | `(swiper)` | The number of slides changed. |
+| `slidesUpdated` | `(swiper)` | Slides were calculated and updated. |
+| `snapGridLengthChange` | `(swiper)` | The snap grid changed. |
+| `snapIndexChange` | `(swiper)` | The snap index changed. |
+| `tap` | `(swiper, event)` | The user taps Swiper (not a double tap). `event`: PointerEvent. |
+| `toEdge` | `(swiper)` | Swiper reaches an edge position. |
+| `touchEnd` | `(swiper, event)` | The user releases Swiper. `event`: PointerEvent. |
+| `touchMove` | `(swiper, event)` | The user touches and moves the finger. `event`: PointerEvent. |
+| `touchMoveOpposite` | `(swiper, event)` | Movement against the slider direction. `event`: PointerEvent. |
+| `touchStart` | `(swiper, event)` | The user touches Swiper. `event`: PointerEvent. |
+| `transitionEnd` | `(swiper)` | The transition finished. |
+| `transitionStart` | `(swiper)` | The transition begins. |
+| `unlock` | `(swiper)` | Swiper is unlocked. |
+| `update` | `(swiper)` | `swiper.update()` was called. |
 
 ---
 
-## 2. Navigation-Events
+## 2. Navigation events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `navigationHide` | `(swiper)` | Navigation wird ausgeblendet. |
-| `navigationNext` | `(swiper)` | Weiter-Button wurde geklickt. |
-| `navigationPrev` | `(swiper)` | Zurück-Button wurde geklickt. |
-| `navigationShow` | `(swiper)` | Navigation wird eingeblendet. |
+| `navigationHide` | `(swiper)` | The navigation is hidden. |
+| `navigationNext` | `(swiper)` | The next button was clicked. |
+| `navigationPrev` | `(swiper)` | The previous button was clicked. |
+| `navigationShow` | `(swiper)` | The navigation is shown. |
 
 ---
 
-## 3. Pagination-Events
+## 3. Pagination events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `paginationHide` | `(swiper)` | Pagination wird ausgeblendet. |
-| `paginationRender` | `(swiper, paginationEl)` | Pagination wurde gerendert. `paginationEl`: HTMLElement. |
-| `paginationShow` | `(swiper)` | Pagination wird eingeblendet. |
-| `paginationUpdate` | `(swiper, paginationEl)` | Pagination wurde aktualisiert. `paginationEl`: HTMLElement. |
+| `paginationHide` | `(swiper)` | The pagination is hidden. |
+| `paginationRender` | `(swiper, paginationEl)` | The pagination was rendered. `paginationEl`: HTMLElement. |
+| `paginationShow` | `(swiper)` | The pagination is shown. |
+| `paginationUpdate` | `(swiper, paginationEl)` | The pagination was updated. `paginationEl`: HTMLElement. |
 
 ---
 
-## 4. Scrollbar-Events
+## 4. Scrollbar events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `scrollbarDragEnd` | `(swiper, event)` | Scrollbar-Drag beendet. `event`: PointerEvent. |
-| `scrollbarDragMove` | `(swiper, event)` | Scrollbar wird gezogen. `event`: PointerEvent. |
-| `scrollbarDragStart` | `(swiper, event)` | Scrollbar-Drag gestartet. `event`: PointerEvent. |
+| `scrollbarDragEnd` | `(swiper, event)` | Scrollbar drag ended. `event`: PointerEvent. |
+| `scrollbarDragMove` | `(swiper, event)` | The scrollbar is being dragged. `event`: PointerEvent. |
+| `scrollbarDragStart` | `(swiper, event)` | Scrollbar drag started. `event`: PointerEvent. |
 
 ---
 
-## 5. Autoplay-Events
+## 5. Autoplay events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `autoplay` | `(swiper)` | Folie wurde durch Autoplay gewechselt. |
-| `autoplayPause` | `(swiper)` | Autoplay wurde pausiert. |
-| `autoplayResume` | `(swiper)` | Autoplay wurde fortgesetzt. |
-| `autoplayStart` | `(swiper)` | Autoplay wurde gestartet. |
-| `autoplayStop` | `(swiper)` | Autoplay wurde gestoppt. |
-| `autoplayTimeLeft` | `(swiper, timeLeft, percentage)` | Wird während des Autoplay-Countdowns ausgelöst. `timeLeft`: ms bis nächste Folie, `percentage`: 0–1 Fortschritt. |
+| `autoplay` | `(swiper)` | Autoplay changed the slide. |
+| `autoplayPause` | `(swiper)` | Autoplay was paused. |
+| `autoplayResume` | `(swiper)` | Autoplay was resumed. |
+| `autoplayStart` | `(swiper)` | Autoplay was started. |
+| `autoplayStop` | `(swiper)` | Autoplay was stopped. |
+| `autoplayTimeLeft` | `(swiper, timeLeft, percentage)` | Fires during the autoplay countdown. `timeLeft`: ms until the next slide, `percentage`: 0–1 progress. |
 
 ```js
-// Autoplay-Progress-Anzeige
+// Autoplay progress indicator
 swiper.on('autoplayTimeLeft', (s, timeLeft, percentage) => {
   progressCircle.style.setProperty('--progress', 1 - percentage);
   progressContent.textContent = `${Math.ceil(timeLeft / 1000)}s`;
@@ -145,60 +145,60 @@ swiper.on('autoplayTimeLeft', (s, timeLeft, percentage) => {
 
 ---
 
-## 6. Keyboard-Events
+## 6. Keyboard events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `keyPress` | `(swiper, keyCode)` | Taste wurde gedrückt. `keyCode`: KeyboardEvent.keyCode. |
+| `keyPress` | `(swiper, keyCode)` | A key was pressed. `keyCode`: KeyboardEvent.keyCode. |
 
 ---
 
-## 7. Mousewheel-Events
+## 7. Mousewheel events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `scroll` | `(swiper, event)` | Mausrad-Scroll-Event ausgelöst. `event`: WheelEvent. |
+| `scroll` | `(swiper, event)` | A mouse wheel scroll event fired. `event`: WheelEvent. |
 
 ---
 
-## 8. Zoom-Events
+## 8. Zoom events
 
-| Event | Argumente | Beschreibung |
+| Event | Arguments | Description |
 |---|---|---|
-| `zoomChange` | `(swiper, scale, imageEl, slideEl)` | Zoom-Level hat sich geändert. `scale`: aktueller Zoom-Faktor, `imageEl`: Bild-Element, `slideEl`: Folien-Element. |
+| `zoomChange` | `(swiper, scale, imageEl, slideEl)` | The zoom level changed. `scale`: current zoom factor, `imageEl`: image element, `slideEl`: slide element. |
 
 ---
 
-## Event-Nutzungs-Beispiele
+## Event usage examples
 
 ```js
-// Lifecycle-Tracking
+// Lifecycle tracking
 const swiper = new Swiper('.swiper', {
   on: {
     beforeInit(s) {
-      console.log('vor Init');
+      console.log('before init');
     },
     init(s) {
-      console.log('initialisiert, activeIndex:', s.activeIndex);
+      console.log('initialized, activeIndex:', s.activeIndex);
     },
     afterInit(s) {
-      console.log('nach Init');
+      console.log('after init');
     },
   }
 });
 
-// Slide-Wechsel
+// Slide change
 swiper.on('slideChange', (s) => {
-  console.log('aktive Folie:', s.activeIndex, 'realIndex:', s.realIndex);
+  console.log('active slide:', s.activeIndex, 'realIndex:', s.realIndex);
 });
 
-// Rand-Erkennung
-swiper.on('reachBeginning', () => console.log('erste Folie'));
-swiper.on('reachEnd', () => console.log('letzte Folie'));
-swiper.on('toEdge', () => console.log('Rand erreicht'));
-swiper.on('fromEdge', () => console.log('Rand verlassen'));
+// Edge detection
+swiper.on('reachBeginning', () => console.log('first slide'));
+swiper.on('reachEnd', () => console.log('last slide'));
+swiper.on('toEdge', () => console.log('edge reached'));
+swiper.on('fromEdge', () => console.log('edge left'));
 
-// Touch-Events
+// Touch events
 swiper.on('touchStart', (s, event) => console.log('touch start', event.touches[0]));
 swiper.on('touchMove', (s, event) => console.log('touch move'));
 swiper.on('touchEnd', (s, event) => console.log('touch end'));
@@ -209,32 +209,32 @@ swiper.on('transitionEnd', () => console.log('transition end'));
 swiper.on('slideChangeTransitionStart', () => console.log('slide change start'));
 swiper.on('slideChangeTransitionEnd', () => console.log('slide change end'));
 
-// Fortschritt
+// Progress
 swiper.on('progress', (s, progress) => {
-  console.log('Fortschritt:', Math.round(progress * 100), '%');
+  console.log('progress:', Math.round(progress * 100), '%');
 });
 
 // Breakpoint
 swiper.on('breakpoint', (s, params) => {
-  console.log('neuer Breakpoint, params:', params);
+  console.log('new breakpoint, params:', params);
 });
 
-// Lazy Loading
+// Lazy loading
 swiper.on('lazyImageReady', (s, slideEl, imageEl) => {
-  console.log('Bild geladen:', imageEl.src);
+  console.log('image loaded:', imageEl.src);
 });
 
 // Resize
 swiper.on('resize', (s) => {
-  console.log('Container-Größe geändert, Breite:', s.width);
+  console.log('container size changed, width:', s.width);
 });
 
 // Observer
 swiper.on('observerUpdate', (s) => {
-  console.log('DOM-Mutation erkannt');
+  console.log('DOM mutation detected');
 });
 ```
 
 ---
 
-*Quelle: https://swiperjs.com/swiper-api*
+*Source: https://swiperjs.com/swiper-api*

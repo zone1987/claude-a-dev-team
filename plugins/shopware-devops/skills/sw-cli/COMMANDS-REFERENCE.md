@@ -1,6 +1,6 @@
-# shopware-cli — Vollständige Befehls-Referenz
+# shopware-cli — Complete command reference
 
-Alle Subcommands mit Flags. Quelle: offizielle Shopware-Dokumentation (2026).
+All subcommands with flags. Source: official Shopware documentation (2026).
 
-Ausführliche Referenz aller Befehle mit Beispielen und Konfigurationsoptionen:
+Detailed reference of all commands with examples and configuration options:
 → `COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS.md`

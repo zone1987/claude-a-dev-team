@@ -1,6 +1,6 @@
-# Shopware 6 — Pricing-Field
+# Shopware 6 — Pricing field
 
-Preise werden als `PriceField` gespeichert (JSON je Währung mit netto/brutto + Currency).
+Prices are stored in a `PriceField` (JSON per currency with net/gross + currency).
 
 ```php
 (new PriceField('price', 'price'))->addFlags(new Required()),
@@ -10,10 +10,10 @@ $payload = ['price' => [[
     'currencyId' => Defaults::CURRENCY,
     'gross' => 19.99, 'net' => 16.80, 'linked' => true,
 ]]];
-$price = $entity->getPrice()->getCurrencyPrice($currencyId); // Lesen
+$price = $entity->getPrice()->getCurrencyPrice($currencyId); // reading
 ```
 
-`linked` koppelt brutto/netto über die Steuer. Mehrere Währungen als Einträge im Array. Cart-Preisberechnung
-(Steuer, Rabatte, Rundung) gehört in den Checkout (`shopware-checkout` → `sw-cart-price`), nicht in die Entity.
+`linked` couples gross and net through the tax rate. Multiple currencies become multiple array entries. Cart price
+calculation (tax, discounts, rounding) belongs in the checkout (`shopware-checkout` → `sw-cart-price`), not in the entity.
 
-→ Pricing-Details: [PRICING.md](PRICING.md)
+→ Pricing details: [PRICING.md](PRICING.md)

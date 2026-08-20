@@ -1,18 +1,18 @@
-# Shopware 6 — Listing-Filter (Facette)
+# Shopware 6 — Listing filter (facet)
 
-Eigene Filter ins Produkt-Listing einhängen über zwei Events (Subscriber):
+Hook custom filters into the product listing through two events (subscriber):
 
-1. `ProductListingCriteriaEvent` → Aggregation + (bei aktivem Request-Param) Filter zur Criteria hinzufügen.
-2. `ProductListingResultEvent` → aktuelle Auswahl/verfügbare Werte aus dem Aggregations-Ergebnis ans Result hängen.
+1. `ProductListingCriteriaEvent` → add the aggregation and (when the request parameter is active) the filter to the criteria.
+2. `ProductListingResultEvent` → attach the current selection/available values from the aggregation result to the result.
 
 ```php
 public function onCriteria(ProductListingCriteriaEvent $event): void
 {
     $criteria = $event->getCriteria();
     $criteria->addAggregation(new EntityAggregation('manufacturer', 'manufacturerId', 'product_manufacturer'));
-    // aktiven Filter aus Request anwenden ...
+    // apply the active filter from the request ...
 }
 ```
 
-Im Storefront den Filter über das `filter-panel`-Template + ein JS-Plugin (`FilterBasePlugin`) rendern/aktivieren.
-Aggregationen: `sw-aggregations`. Eigene Sortierungen: `sw-custom-sorting`.
+In the storefront, render/activate the filter via the `filter-panel` template plus a JS plugin (`FilterBasePlugin`).
+Aggregations: `sw-aggregations`. Custom sortings: `sw-custom-sorting`.

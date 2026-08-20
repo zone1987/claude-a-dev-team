@@ -1,13 +1,13 @@
-# Shopware 6 — Field-Inheritance
+# Shopware 6 — Field inheritance
 
-Erlaubt, dass ein Child (z.B. Produkt-Variante) Feldwerte vom Parent erbt, wenn es selbst keinen Wert hat.
+Lets a child (a product variant, for example) inherit field values from its parent when it has no value of its own.
 
-- Feld mit `->addFlags(new Inherited())` markieren.
-- Die Definition macht Inheritance bekannt (`getParentDefinitionClass()` / `isInheritanceAware()` je nach Setup) und
-  besitzt `parent_id` + Parent/Children-Associations.
-- Beim Lesen liefert DAL den effektiven (geerbten) Wert; `translated`/`extensions` berücksichtigen das.
+- Mark the field with `->addFlags(new Inherited())`.
+- The definition declares inheritance (`getParentDefinitionClass()` / `isInheritanceAware()`, depending on the setup) and
+  owns `parent_id` plus parent/children associations.
+- On read, the DAL returns the effective (inherited) value; `translated`/`extensions` take it into account.
 
-Klassischer Fall: `product` (Hauptprodukt) ↔ Varianten. Inheritance nur dort einsetzen, wo Varianten-Semantik
-wirklich gebraucht wird — sonst normales Feld.
+The classic case: `product` (main product) ↔ variants. Use inheritance only where variant semantics are
+genuinely needed — otherwise use a plain field.
 
-→ Hintergrund zu Flags: `sw-field-flags` · Associations: `sw-associations-manytoone`
+→ Background on flags: `sw-field-flags` · Associations: `sw-associations-manytoone`

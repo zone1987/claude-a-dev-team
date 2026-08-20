@@ -1,33 +1,33 @@
-# Symfony Flex Recipes — Verfügbare Packages
+# Symfony Flex recipes — available packages
 
-Quelle: `github.com/shopware/recipes` (alle `manifest.json`-Dateien analysiert).
+Source: `github.com/shopware/recipes` (all `manifest.json` files analyzed).
 
 ## Contents
 
-- [Shopware-Packages](#shopware-packages)
-- [Symfony-Packages](#symfony-packages)
-- [Drittanbieter-Packages](#drittanbieter-packages)
-- [Flex-Endpoint konfigurieren](#flex-endpoint-konfigurieren)
+- [Shopware packages](#shopware-packages)
+- [Symfony packages](#symfony-packages)
+- [Third-party packages](#third-party-packages)
+- [Configuring the Flex endpoint](#configuring-the-flex-endpoint)
 
-## Shopware-Packages
+## Shopware packages
 
-| Package | Versionen | Alias | Beschreibung |
+| Package | Versions | Alias | Description |
 |---------|-----------|-------|--------------|
-| `shopware/core` | 6.4, 6.6, 6.7 | — | Kern-Scaffolding: bin/, config/, custom/, files/, public/, var/ |
-| `shopware/administration` | 6.4, 6.6, 6.7 | — | Admin-Build-Skripte |
-| `shopware/storefront` | 6.4, 6.6, 6.7 | — | Storefront-Build-Skripte |
-| `shopware/elasticsearch` | 6.4, 6.6, 6.7 | — | OpenSearch/ES-Konfiguration |
-| `shopware/platform` | 6.4, 6.6, 6.7 | — | Auto-Merge von core+admin+storefront+es (Legacy) |
-| `shopware/docker` | 0.1, 0.2, 0.3 | — | Docker-Compose-Setup für Produktion |
-| `shopware/docker-dev` | 0.1 | — | Docker-Compose + Makefile für Entwicklung |
-| `shopware/dev-tools` | 1.0 | — | Aliases für Entwicklungs-Tools |
-| `shopware/fastly-meta` | 6.4, 6.5, 6.6, 6.7, 6.8 | `fastly` | Fastly CDN: VCL-Snippets + Shopware-Konfiguration |
-| `shopware/k8s-meta` | 1.0, 2.0 | `k8s` | Kubernetes-Konfiguration |
+| `shopware/core` | 6.4, 6.6, 6.7 | — | Core scaffolding: bin/, config/, custom/, files/, public/, var/ |
+| `shopware/administration` | 6.4, 6.6, 6.7 | — | Admin build scripts |
+| `shopware/storefront` | 6.4, 6.6, 6.7 | — | Storefront build scripts |
+| `shopware/elasticsearch` | 6.4, 6.6, 6.7 | — | OpenSearch/ES configuration |
+| `shopware/platform` | 6.4, 6.6, 6.7 | — | Auto-merge of core+admin+storefront+es (legacy) |
+| `shopware/docker` | 0.1, 0.2, 0.3 | — | Docker Compose setup for production |
+| `shopware/docker-dev` | 0.1 | — | Docker Compose + Makefile for development |
+| `shopware/dev-tools` | 1.0 | — | Aliases for development tools |
+| `shopware/fastly-meta` | 6.4, 6.5, 6.6, 6.7, 6.8 | `fastly` | Fastly CDN: VCL snippets + Shopware configuration |
+| `shopware/k8s-meta` | 1.0, 2.0 | `k8s` | Kubernetes configuration |
 | `shopware/paas-meta` | 6.4, 6.5, 6.6, 6.7 | `paas` | Shopware PaaS (Platform.sh): .platform/, config/packages/paas.yaml |
-| `shopware/opentelemetry` | 0.1 | — | OpenTelemetry-Konfiguration |
-| `shopware/fixture-bundle` | 0.1 | — | Fixture-Bundle-Registrierung |
+| `shopware/opentelemetry` | 0.1 | — | OpenTelemetry configuration |
+| `shopware/fixture-bundle` | 0.1 | — | Fixture bundle registration |
 
-### shopware/core — Kopierte Dateien (6.7)
+### shopware/core — copied files (6.7)
 
 ```
 bin/console          → bin/console
@@ -49,7 +49,7 @@ var/.gitignore       → var/.gitignore
 - `Symfony\Bundle\FrameworkBundle\FrameworkBundle` — all
 - `Symfony\Bundle\MonologBundle\MonologBundle` — all
 - `Symfony\Bundle\TwigBundle\TwigBundle` — all
-- u.v.m.
+- and many more
 
 **env (6.7):**
 ```
@@ -60,7 +60,7 @@ INSTANCE_ID=%generate(secret)%
 DATABASE_URL=mysql://root:root@localhost/shopware
 ```
 
-### shopware/paas-meta — Kopierte Dateien (6.7)
+### shopware/paas-meta — copied files (6.7)
 
 ```
 .platform/applications.yaml  → .platform/applications.yaml
@@ -84,46 +84,46 @@ env(MESSENGER_TRANSPORT_LOW_PRIORITY_DSN): "%env(MESSENGER_TRANSPORT_DSN_PREFIX)
 
 ---
 
-## Symfony-Packages
+## Symfony packages
 
-| Package | Versionen | Alias | Beschreibung |
+| Package | Versions | Alias | Description |
 |---------|-----------|-------|--------------|
-| `symfony/framework-bundle` | 5.4, 6.4, 7.4 | — | Symfony Framework Basis-Konfiguration |
-| `symfony/console` | 5.4 | — | Console-Component-Registrierung |
-| `symfony/routing` | 5.4, 6.4, 7.4 | — | Routing-Konfiguration |
+| `symfony/framework-bundle` | 5.4, 6.4, 7.4 | — | Symfony framework base configuration |
+| `symfony/console` | 5.4 | — | Console component registration |
+| `symfony/routing` | 5.4, 6.4, 7.4 | — | Routing configuration |
 | `symfony/messenger` | 5.4, 6.0 | `messenger` | Messenger: config/packages/messenger.yaml |
-| `symfony/amqp-messenger` | 5.4 | — | AMQP Messenger: docker-compose LavinMQ-Service |
-| `symfony/monolog-bundle` | 3.3 | — | Monolog Logging-Konfiguration |
-| `symfony/debug-bundle` | 5.3 | — | Debug-Bundle (nur dev-Env) |
-| `symfony/mailer` | 4.3 | `mail`, `mailer` | Mailer: docker-compose.override Mailpit-Service |
-| `symfony/twig-bundle` | 5.4 | — | Twig-Konfiguration |
-| `symfony/translation` | 5.4 | — | Translation-Konfiguration |
-| `symfony/validator` | 5.3 | — | Validator-Konfiguration |
-| `symfony/lock` | 5.3 | — | Lock-Component |
-| `symfony/scheduler` | 7.2 | — | Scheduler: src/Scheduler/ Stub |
-| `symfony/property-info` | 7.3 | — | PropertyInfo-Konfiguration |
+| `symfony/amqp-messenger` | 5.4 | — | AMQP Messenger: docker-compose LavinMQ service |
+| `symfony/monolog-bundle` | 3.3 | — | Monolog logging configuration |
+| `symfony/debug-bundle` | 5.3 | — | Debug bundle (dev env only) |
+| `symfony/mailer` | 4.3 | `mail`, `mailer` | Mailer: docker-compose.override Mailpit service |
+| `symfony/twig-bundle` | 5.4 | — | Twig configuration |
+| `symfony/translation` | 5.4 | — | Translation configuration |
+| `symfony/validator` | 5.3 | — | Validator configuration |
+| `symfony/lock` | 5.3 | — | Lock component |
+| `symfony/scheduler` | 7.2 | — | Scheduler: src/Scheduler/ stub |
+| `symfony/property-info` | 7.3 | — | PropertyInfo configuration |
 | `symfony/ux-twig-component` | 2.13 | — | Twig Components |
 
 ---
 
-## Drittanbieter-Packages
+## Third-party packages
 
-| Package | Versionen | Alias | Beschreibung |
+| Package | Versions | Alias | Description |
 |---------|-----------|-------|--------------|
-| `doctrine/annotations` | 1.0 | — | Annotations-Registrierung |
-| `enqueue/dbal` | 0.10 | — | DBAL Enqueue Transport |
-| `enqueue/enqueue-bundle` | 0.10 | — | Enqueue Bundle |
-| `enqueue/redis` | 0.10 | — | Redis Enqueue Transport |
-| `sroze/messenger-enqueue-transport` | 0.4 | — | Messenger Enqueue Transport-Adapter |
-| `nyholm/psr7` | 1.0 | — | PSR-7 HTTP Message Implementierung |
-| `open-telemetry/opentelemetry-logger-monolog` | 1.0 | — | OpenTelemetry Monolog Handler |
-| `pentatrion/vite-bundle` | 6.5 | — | Vite Bundle Konfiguration |
+| `doctrine/annotations` | 1.0 | — | Annotations registration |
+| `enqueue/dbal` | 0.10 | — | DBAL Enqueue transport |
+| `enqueue/enqueue-bundle` | 0.10 | — | Enqueue bundle |
+| `enqueue/redis` | 0.10 | — | Redis Enqueue transport |
+| `sroze/messenger-enqueue-transport` | 0.4 | — | Messenger Enqueue transport adapter |
+| `nyholm/psr7` | 1.0 | — | PSR-7 HTTP message implementation |
+| `open-telemetry/opentelemetry-logger-monolog` | 1.0 | — | OpenTelemetry Monolog handler |
+| `pentatrion/vite-bundle` | 6.5 | — | Vite bundle configuration |
 | `frosh/code-quality-meta` | 0.1–0.5 | `code-quality` | vendor-bin: cs-fixer, phpstan, rector |
 | `frosh/devenv-meta` | 0.1–0.3 | `devenv` | Nix/devenv.sh: .envrc, devenv.nix, devenv.yaml |
 
 ---
 
-## Flex-Endpoint konfigurieren
+## Configuring the Flex endpoint
 
 ```json
 {
@@ -138,4 +138,4 @@ env(MESSENGER_TRANSPORT_LOW_PRIORITY_DSN): "%env(MESSENGER_TRANSPORT_DSN_PREFIX)
 }
 ```
 
-Reihenfolge: Shopware-Recipes zuerst, dann Symfony-Standard-Server.
+Order: Shopware recipes first, then the Symfony standard server.

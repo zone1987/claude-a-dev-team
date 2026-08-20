@@ -1,13 +1,13 @@
-# Shopware 6 — Order-Events
+# Shopware 6 — Order Events
 
-Wichtige Events rund um Bestellungen (Subscriber, `shopware-core` → `sw-events-subscriber`):
+Key order-related events (subscribers, `shopware-core` → `sw-events-subscriber`):
 
-| Event | Wann |
+| Event | When |
 |---|---|
-| `CheckoutOrderPlacedEvent` | Bestellung abgeschlossen (Order existiert) |
-| `StateMachineStateChangeEvent` / `*StateMachineStateChangeEvent` | Status-Übergang (vor/nach) |
-| `order.written` / `order_transaction.written` | DAL-Write |
-| `CheckoutOrderPlacedCriteriaEvent` | Criteria beim Laden der platzierten Bestellung |
+| `CheckoutOrderPlacedEvent` | Order completed (order exists) |
+| `StateMachineStateChangeEvent` / `*StateMachineStateChangeEvent` | State transition (before/after) |
+| `order.written` / `order_transaction.written` | DAL write |
+| `CheckoutOrderPlacedCriteriaEvent` | Criteria used when loading the placed order |
 
 ```php
 public static function getSubscribedEvents(): array {
@@ -15,5 +15,5 @@ public static function getSubscribedEvents(): array {
 }
 ```
 
-Für reaktive Geschäftsabläufe oft besser der **Flow Builder** (`shopware-framework` → `sw-flow-action`/`sw-flow-trigger`),
-da konfigurierbar. Statuswechsel auslösen: `sw-order-state-machine`. Alle Events im Projekt: `sw-event-catalog`.
+For reactive business processes the **Flow Builder** is often the better choice (`shopware-framework` → `sw-flow-action`/`sw-flow-trigger`),
+because it stays configurable. Triggering state changes: `sw-order-state-machine`. All events in the project: `sw-event-catalog`.

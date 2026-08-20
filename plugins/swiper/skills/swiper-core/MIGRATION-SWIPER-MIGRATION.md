@@ -1,119 +1,119 @@
 # Swiper Migration Guide — v9, v10, v11
 
-Alle Breaking Changes je Hauptversion mit Vorher/Nachher-Codebeispielen.
+All breaking changes per major version with before/after code examples.
 
 ---
 
 ## Contents
 
-- [Migration auf Swiper v11](#migration-auf-swiper-v11)
-- [Migration auf Swiper v10](#migration-auf-swiper-v10)
-- [Migration auf Swiper v9](#migration-auf-swiper-v9)
-- [Gesamtübersicht Breaking Changes](#gesamtübersicht-breaking-changes)
-- [Schnell-Checkliste für Upgrade auf v11](#schnell-checkliste-für-upgrade-auf-v11)
-- [Schnell-Checkliste für Upgrade auf v10](#schnell-checkliste-für-upgrade-auf-v10)
-- [Schnell-Checkliste für Upgrade auf v9](#schnell-checkliste-für-upgrade-auf-v9)
+- [Migrating to Swiper v11](#migrating-to-swiper-v11)
+- [Migrating to Swiper v10](#migrating-to-swiper-v10)
+- [Migrating to Swiper v9](#migrating-to-swiper-v9)
+- [Breaking changes overview](#breaking-changes-overview)
+- [Quick checklist for upgrading to v11](#quick-checklist-for-upgrading-to-v11)
+- [Quick checklist for upgrading to v10](#quick-checklist-for-upgrading-to-v10)
+- [Quick checklist for upgrading to v9](#quick-checklist-for-upgrading-to-v9)
 
-## Migration auf Swiper v11
+## Migrating to Swiper v11
 
-Offizielle Seite: https://swiperjs.com/migration-guide-v11
+Official page: https://swiperjs.com/migration-guide-v11
 
-### 1. `loopedSlides`-Parameter entfernt
+### 1. `loopedSlides` parameter removed
 
-Der Parameter `loopedSlides` wurde entfernt.
+The `loopedSlides` parameter has been removed.
 
 ```javascript
-// ALT (v10):
+// OLD (v10):
 const swiper = new Swiper('.swiper', {
   loop: true,
-  loopedSlides: 5, // ENTFERNT
+  loopedSlides: 5, // REMOVED
 });
 
-// NEU (v11):
+// NEW (v11):
 const swiper = new Swiper('.swiper', {
   loop: true,
-  loopAdditionalSlides: 5, // Neuer Parameter (wenn nötig)
+  loopAdditionalSlides: 5, // New parameter (if needed)
 });
 ```
 
-### 2. Element Events Präfix (BREAKING: Standard geändert)
+### 2. Element events prefix (BREAKING: default changed)
 
-Ab v11 haben alle Swiper-Element-Events standardmäßig den Präfix `swiper`.
+As of v11, all Swiper element events carry the prefix `swiper` by default.
 
 ```javascript
-// ALT (v10 — kein Präfix):
+// OLD (v10 — no prefix):
 swiperEl.addEventListener('slidechange', handler);
 swiperEl.addEventListener('progress', handler);
 swiperEl.addEventListener('reachend', handler);
 
-// NEU (v11 — Präfix "swiper" by default):
+// NEW (v11 — prefix "swiper" by default):
 swiperEl.addEventListener('swiperslidechange', handler);
 swiperEl.addEventListener('swiperprogress', handler);
 swiperEl.addEventListener('swiperreachend', handler);
 ```
 
-Altes Verhalten beibehalten (kein Präfix):
+Keep the old behavior (no prefix):
 ```html
 <swiper-container events-prefix="">
-  <!-- Events: "slidechange", "progress" wie in v10 -->
+  <!-- Events: "slidechange", "progress" as in v10 -->
 </swiper-container>
 ```
 
 ```javascript
 Object.assign(swiperEl, {
-  eventsPrefix: '', // Kein Präfix
+  eventsPrefix: '', // No prefix
 });
 ```
 
-### 3. Container `overflow` CSS-Standard
+### 3. Container `overflow` CSS default
 
-Der Container hat jetzt `overflow: hidden` als Standard.
+The container now defaults to `overflow: hidden`.
 
 ```css
-/* Falls alte Layouts brechen — eigene Überschreibung: */
+/* If old layouts break — override it yourself: */
 .swiper {
-  overflow: clip; /* oder: overflow: visible */
+  overflow: clip; /* or: overflow: visible */
 }
 ```
 
 ---
 
-## Migration auf Swiper v10
+## Migrating to Swiper v10
 
-Offizielle Seite: https://swiperjs.com/migration-guide-v10
+Official page: https://swiperjs.com/migration-guide-v10
 
-### 1. Modul-Imports (MAJOR BREAKING CHANGE)
+### 1. Module imports (MAJOR BREAKING CHANGE)
 
 ```javascript
-// ALT (v9):
+// OLD (v9):
 import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// NEU (v10):
+// NEW (v10):
 import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules'; // NEUER PFAD
-import { Swiper, SwiperSlide } from 'swiper/react'; // Gleich
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'; // NEW PATH
+import { Swiper, SwiperSlide } from 'swiper/react'; // Unchanged
 ```
 
-### 2. Swiper Element DOM-Struktur geändert
+### 2. Swiper element DOM structure changed
 
-v10 fügte eine zusätzliche `.swiper`-Wrapper-Div ein:
+v10 added an extra `.swiper` wrapper div:
 
-**v9 Shadow DOM-Struktur:**
+**v9 shadow DOM structure:**
 ```html
 <swiper-container>
   #shadow-root
     <div class="swiper-wrapper">
-      <slot />   ← Slides landen hier direkt
+      <slot />   ← slides land here directly
     </div>
 </swiper-container>
 ```
 
-**v10 Shadow DOM-Struktur:**
+**v10 shadow DOM structure:**
 ```html
 <swiper-container>
   #shadow-root
-    <div class="swiper">          ← NEU: Extra Wrapper
+    <div class="swiper">          ← NEW: extra wrapper
       <div class="swiper-wrapper">
         <slot />
       </div>
@@ -121,53 +121,53 @@ v10 fügte eine zusätzliche `.swiper`-Wrapper-Div ein:
 </swiper-container>
 ```
 
-Code, der direkt auf Shadow-DOM-Internals zugreift, muss angepasst werden.
+Code that accesses shadow DOM internals directly must be adjusted.
 
-### 3. Swiper Element injiziert keine globalen Styles mehr
+### 3. Swiper element no longer injects global styles
 
 ```javascript
-// ALT (v9 — Swiper Element injizierte Styles global):
-// Keine zusätzliche Aktion nötig
+// OLD (v9 — Swiper element injected styles globally):
+// No extra action needed
 
-// NEU (v10 — Styles nur noch im Shadow DOM):
-// Eigene Navigation/Pagination/Scrollbar-Elemente brauchen eigene Styles:
+// NEW (v10 — styles live in the shadow DOM only):
+// Custom navigation/pagination/scrollbar elements need their own styles:
 Object.assign(swiperEl, {
   injectStyles: [`
     .swiper-button-next,
     .swiper-button-prev {
-      /* Eigene Styles */
+      /* Your own styles */
     }
   `],
 });
 ```
 
-### 4. Paketstruktur geändert
+### 4. Package structure changed
 
 ```javascript
-// ALT (v9 — direkte Dateipfade):
+// OLD (v9 — direct file paths):
 import Swiper from 'swiper/swiper.esm.js';
 import 'swiper/swiper.min.css';
 
-// NEU (v10 — neue Pfade):
-import Swiper from 'swiper';                    // Paket-Root
+// NEW (v10 — new paths):
+import Swiper from 'swiper';                    // Package root
 import 'swiper/css';                            // Core CSS
-import { Navigation } from 'swiper/modules';   // Module
+import { Navigation } from 'swiper/modules';   // Modules
 ```
 
-- `.esm.js` → `.mjs` (Extension geändert)
-- `.browser.esm.js` → `.mjs` (vereinheitlicht)
-- Alle Module-Dateien wurden verschoben
+- `.esm.js` → `.mjs` (extension changed)
+- `.browser.esm.js` → `.mjs` (unified)
+- All module files were moved
 
-### 5. CSS-Import-Pfade
+### 5. CSS import paths
 
 ```javascript
-// ALT (v9):
+// OLD (v9):
 import 'swiper/css/swiper.css';
 import 'swiper/swiper-bundle.css';
 
-// NEU (v10):
+// NEW (v10):
 import 'swiper/css';
-import 'swiper/css/bundle';     // Bundle (alle Module)
+import 'swiper/css/bundle';     // Bundle (all modules)
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
@@ -177,82 +177,82 @@ import 'swiper/css/effect-fade';
 
 ---
 
-## Migration auf Swiper v9
+## Migrating to Swiper v9
 
-Offizielle Seite: https://swiperjs.com/migration-guide-v9
+Official page: https://swiperjs.com/migration-guide-v9
 
-### 1. Touch Events entfernt — nur noch Pointer Events
+### 1. Touch events removed — pointer events only
 
 ```javascript
-// ALT (v8 — Touch Events):
+// OLD (v8 — touch events):
 swiper.on('touchStart', handler);
 swiper.on('touchMove', handler);
 swiper.on('touchEnd', handler);
 
-// NEU (v9 — Pointer Events):
-swiper.on('pointerDown', handler);   // statt touchStart
-swiper.on('pointerMove', handler);   // statt touchMove
-swiper.on('pointerUp', handler);     // statt touchEnd
-// Oder auf nativen DOM-Events lauschen statt Swiper-Events
+// NEW (v9 — pointer events):
+swiper.on('pointerDown', handler);   // instead of touchStart
+swiper.on('pointerMove', handler);   // instead of touchMove
+swiper.on('pointerUp', handler);     // instead of touchEnd
+// Or listen to native DOM events instead of Swiper events
 ```
 
-### 2. Autoplay-Modul komplett überarbeitet
+### 2. Autoplay module fully reworked
 
 ```javascript
-// ALT (v8):
+// OLD (v8):
 const swiper = new Swiper('.swiper', {
   autoplay: {
     delay: 3000,
-    stopOnLastSlide: true,      // UMBENANNT
+    stopOnLastSlide: true,      // RENAMED
     disableOnInteraction: false,
-    reverseDirection: false,    // NEU in v9
+    reverseDirection: false,    // NEW in v9
     waitForTransition: true,
   },
 });
 
-// v8 Events:
+// v8 events:
 swiper.on('autoplayStart', () => {});
 swiper.on('autoplayStop', () => {});
 
-// NEU (v9):
+// NEW (v9):
 const swiper = new Swiper('.swiper', {
   autoplay: {
     delay: 3000,
-    stopOnLastSlide: false,      // Gleich
-    disableOnInteraction: false, // Gleich
+    stopOnLastSlide: false,      // Unchanged
+    disableOnInteraction: false, // Unchanged
     reverseDirection: false,
     waitForTransition: true,
   },
 });
 
-// v9 Events (neue Namen):
-swiper.on('autoplayStart', () => {});     // Gleich
-swiper.on('autoplayStop', () => {});      // Gleich
-swiper.on('autoplayTimeLeft', (s, time, progress) => {}); // NEU
+// v9 events (new names):
+swiper.on('autoplayStart', () => {});     // Unchanged
+swiper.on('autoplayStop', () => {});      // Unchanged
+swiper.on('autoplayTimeLeft', (s, time, progress) => {}); // NEW
 ```
 
-### 3. Loop-Modus neu implementiert
+### 3. Loop mode reimplemented
 
 ```javascript
-// ALT (v8 — Loop via Slide-Duplikate):
+// OLD (v8 — loop via duplicated slides):
 const swiper = new Swiper('.swiper', {
   loop: true,
-  loopedSlides: 3,     // Anzahl zu duplizierender Slides
+  loopedSlides: 3,     // Number of slides to duplicate
   loopAdditionalSlides: 0,
 });
 
-// NEU (v9 — Loop ohne Duplikate, dynamische Umsortierung):
+// NEW (v9 — loop without duplicates, dynamic reordering):
 const swiper = new Swiper('.swiper', {
   loop: true,
-  // loopedSlides: 3,  // Andere Semantik jetzt!
-  // Bedingung: slides.length >= slidesPerView * 2
+  // loopedSlides: 3,  // Different semantics now!
+  // Requirement: slides.length >= slidesPerView * 2
 });
 ```
 
-### 4. Lazy Loading ins Core integriert
+### 4. Lazy loading moved into the core
 
 ```javascript
-// ALT (v8 — eigenes Lazy-Modul):
+// OLD (v8 — separate Lazy module):
 import Swiper, { Lazy } from 'swiper';
 const swiper = new Swiper('.swiper', {
   modules: [Lazy],
@@ -262,10 +262,10 @@ const swiper = new Swiper('.swiper', {
   preloadImages: false,
 });
 
-// NEU (v9 — Lazy im Core, kein Modul-Import):
+// NEW (v9 — lazy in the core, no module import):
 const swiper = new Swiper('.swiper', {
   lazy: true,
-  // ODER:
+  // OR:
   lazy: {
     loadPrevNext: true,
     loadPrevNextAmount: 2,
@@ -273,99 +273,99 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-HTML-Attribut für Lazy-Bilder bleibt gleich:
+The HTML attribute for lazy images stays the same:
 ```html
-<!-- Lazy-Loading-Bild: -->
+<!-- Lazy-loaded image: -->
 <img data-src="path/to/image.jpg" class="swiper-lazy" />
 ```
 
-### 5. Dom7 entfernt
+### 5. Dom7 removed
 
 ```javascript
-// ALT (v8 — Dom7 verfügbar):
+// OLD (v8 — Dom7 available):
 import { $ } from 'swiper/dom7';
 import { $ } from 'swiper/utils/dom7';
 
-// NEU (v9 — Dom7 entfernt, Vanilla JS verwenden):
-// Kein Import mehr möglich
-// Statt: swiper.$el.addClass('active')
-// Jetzt: swiper.el.classList.add('active')
+// NEW (v9 — Dom7 removed, use vanilla JS):
+// The import is no longer possible
+// Instead of: swiper.$el.addClass('active')
+// Now: swiper.el.classList.add('active')
 ```
 
-### 6. Framework-Adapter entfernt
+### 6. Framework adapters removed
 
 ```javascript
-// ALT (v8):
+// OLD (v8):
 import { SwiperModule } from 'swiper/angular';
 import { Swiper, SwiperSlide } from 'swiper/svelte';
 import { Swiper, SwiperSlide } from 'swiper/solid';
 
-// NEU (v9): Framework-Adapter ENTFERNT
-// Lösung: Swiper Element (Web Component) verwenden
+// NEW (v9): framework adapters REMOVED
+// Solution: use the Swiper element (web component)
 import { register } from 'swiper/element/bundle';
 register();
-// <swiper-container>/<swiper-slide> als Custom Elements
+// <swiper-container>/<swiper-slide> as custom elements
 
-// React und Vue bleiben erhalten:
-import { Swiper, SwiperSlide } from 'swiper/react'; // Weiterhin OK
-import { Swiper, SwiperSlide } from 'swiper/vue';   // Weiterhin OK
+// React and Vue are retained:
+import { Swiper, SwiperSlide } from 'swiper/react'; // Still fine
+import { Swiper, SwiperSlide } from 'swiper/vue';   // Still fine
 ```
 
-### 7. Entfernte Parameter (v9)
+### 7. Removed parameters (v9)
 
-| Entfernter Parameter | Alternative |
+| Removed parameter | Alternative |
 |---|---|
-| `swipeHandler` | Entfernt, kein Ersatz |
-| `iOSEdgeSwipeDetection` | Entfernt |
-| `iOSEdgeSwipeThreshold` | Entfernt |
-| `passiveListeners` | Immer passiv in v9 |
-| `uniqueNavElements` | Entfernt |
-| `preloadImages` | Entfernt (Lazy im Core) |
-| `watchSlidesVisibility` | Umbenannt zu `watchSlidesProgress` |
+| `swipeHandler` | Removed, no replacement |
+| `iOSEdgeSwipeDetection` | Removed |
+| `iOSEdgeSwipeThreshold` | Removed |
+| `passiveListeners` | Always passive in v9 |
+| `uniqueNavElements` | Removed |
+| `preloadImages` | Removed (lazy in the core) |
+| `watchSlidesVisibility` | Renamed to `watchSlidesProgress` |
 
 ---
 
-## Gesamtübersicht Breaking Changes
+## Breaking changes overview
 
-| Version | Größte Änderungen |
+| Version | Biggest changes |
 |---|---|
-| v11 | `loopedSlides` entfernt, Element-Events Präfix `swiper` als Standard |
-| v10 | Module-Imports auf `swiper/modules`, Element DOM-Struktur, CSS-Pfade |
-| v9 | Touch→Pointer Events, Lazy ins Core, Dom7 entfernt, Angular/Svelte/Solid Adapter entfernt, Loop neu |
+| v11 | `loopedSlides` removed, element events prefixed with `swiper` by default |
+| v10 | Module imports move to `swiper/modules`, element DOM structure, CSS paths |
+| v9 | Touch→pointer events, lazy in the core, Dom7 removed, Angular/Svelte/Solid adapters removed, new loop |
 
 ---
 
-## Schnell-Checkliste für Upgrade auf v11
+## Quick checklist for upgrading to v11
 
 ```text
 [ ] loopedSlides → loopAdditionalSlides
-[ ] Swiper Element Events: "slidechange" → "swiperslidechange"
-[ ] Container-Overflow prüfen (falls clip-Verhalten nötig)
+[ ] Swiper element events: "slidechange" → "swiperslidechange"
+[ ] Check container overflow (if clip behavior is required)
 ```
 
-## Schnell-Checkliste für Upgrade auf v10
+## Quick checklist for upgrading to v10
 
 ```text
 [ ] import { Navigation } from 'swiper' → from 'swiper/modules'
-[ ] CSS-Imports anpassen: 'swiper/css/swiper.css' → 'swiper/css'
-[ ] Swiper Element Shadow DOM Anpassungen (falls direkte DOM-Zugriffe)
-[ ] Swiper Element globale Styles → injectStyles
+[ ] Adjust CSS imports: 'swiper/css/swiper.css' → 'swiper/css'
+[ ] Swiper element shadow DOM adjustments (if you access the DOM directly)
+[ ] Swiper element global styles → injectStyles
 ```
 
-## Schnell-Checkliste für Upgrade auf v9
+## Quick checklist for upgrading to v9
 
 ```text
-[ ] Angular/Svelte/Solid Adapter → Swiper Element
-[ ] Touch Events → Pointer Events
-[ ] Lazy Modul → Kein Modul-Import mehr
-[ ] Dom7 → Vanilla JS
-[ ] Loop: slides.length >= slidesPerView * 2 sicherstellen
-[ ] Autoplay API prüfen (neue Parameter/Events)
+[ ] Angular/Svelte/Solid adapters → Swiper element
+[ ] Touch events → pointer events
+[ ] Lazy module → no module import anymore
+[ ] Dom7 → vanilla JS
+[ ] Loop: make sure slides.length >= slidesPerView * 2
+[ ] Review the autoplay API (new parameters/events)
 ```
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://swiperjs.com/migration-guide-v11*
 - *https://swiperjs.com/migration-guide-v10*
 - *https://swiperjs.com/migration-guide-v9*

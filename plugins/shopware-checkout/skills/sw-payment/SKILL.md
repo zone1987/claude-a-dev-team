@@ -9,10 +9,10 @@ description: Shopware payment: the 6.7 AbstractPaymentHandler, app payment, the 
 
 ## Reference map
 
-- **[APP.md](APP.md)**: Apps stellen Zahlungsarten über das Manifest bereit.
-- **[HANDLER.md](HANDLER.md)**: Seit 6.7 ein vereinheitlichter `AbstractPaymentHandler`. [HANDLER-OVERVIEW](HANDLER-OVERVIEW.md).
-- **[PAYPAL-SDK.md](PAYPAL-SDK.md)**: PSR-18-basiertes PHP-SDK der Shopware AG für direkte Kommunikation mit den **PayPal REST APIs** — **nicht** d…. [PAYPAL-SDK-GATEWAYS](PAYPAL-SDK-GATEWAYS.md).
-- **[TAX-PROVIDER.md](TAX-PROVIDER.md)**: Tax-Provider überschreiben die Steuerermittlung des Warenkorbs.
+- **[APP.md](APP.md)**: Apps provide payment methods through the manifest.
+- **[HANDLER.md](HANDLER.md)**: Since 6.7 there is one unified `AbstractPaymentHandler`. [HANDLER-OVERVIEW](HANDLER-OVERVIEW.md).
+- **[PAYPAL-SDK.md](PAYPAL-SDK.md)**: A PSR-18 based PHP SDK by Shopware AG for talking directly to the **PayPal REST APIs** — **not** t…. [PAYPAL-SDK-GATEWAYS](PAYPAL-SDK-GATEWAYS.md).
+- **[TAX-PROVIDER.md](TAX-PROVIDER.md)**: Tax providers override the cart tax determination.
 
 ## Source
 

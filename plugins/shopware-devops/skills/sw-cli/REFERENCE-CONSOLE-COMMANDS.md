@@ -1,6 +1,6 @@
-# Shopware 6 — bin/console Befehlsreferenz
+# Shopware 6 — bin/console Command Reference
 
-> Quelle: `resources/references/core-reference/commands-reference.md`
+> Source: `resources/references/core-reference/commands-reference.md`
 
 ```bash
 bin/console [command] [parameter]
@@ -33,7 +33,7 @@ bin/console [command] [parameter]
 - [Integration](#integration)
 - [Lint](#lint)
 - [Mailer](#mailer)
-- [make:plugin — Plugin-Scaffolding](#makeplugin-plugin-scaffolding)
+- [make:plugin — Plugin Scaffolding](#makeplugin-plugin-scaffolding)
 - [Media](#media)
 - [Messenger](#messenger)
 - [Number Range](#number-range)
@@ -57,485 +57,485 @@ bin/console [command] [parameter]
 
 ## General
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `about` | Zeigt Projektinformationen |
-| `completion` | Gibt das Shell-Completion-Skript aus |
-| `help` | Zeigt Hilfe zu einem Befehl |
-| `list` | Listet alle Befehle auf |
+| Command | Description |
+|:--------|:------------|
+| `about` | Shows project information |
+| `completion` | Prints the shell completion script |
+| `help` | Shows help for a command |
+| `list` | Lists all commands |
 
 ---
 
 ## Administration
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `administration:delete-extension-local-public-files` | Löscht alle lokalen öffentlichen Dateien einer Extension (nach `assets:install` ausführen) |
-| `administration:delete-files-after-build` | Löscht unnötige Administration-Dateien nach dem Build |
+| Command | Description |
+|:--------|:------------|
+| `administration:delete-extension-local-public-files` | Deletes all local public files of an extension (run after `assets:install`) |
+| `administration:delete-files-after-build` | Deletes unnecessary administration files after the build |
 
 ---
 
 ## App
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `app:activate` | Aktiviert die App im Ordner mit dem angegebenen Namen |
-| `app:create` | Erstellt ein App-Skeleton |
-| `app:deactivate` | Deaktiviert die App |
-| `app:install` | Installiert die App |
-| `app:list` | Listet alle Apps auf |
-| `app:refresh` | `[app:update]` Aktualisiert installierte Apps |
-| `app:uninstall` | Deinstalliert die App |
-| `app:url-change:resolve` | Löst App-URL-Änderungen auf |
-| `app:validate` | Prüft Manifests auf Fehler |
+| Command | Description |
+|:--------|:------------|
+| `app:activate` | Activates the app in the folder with the given name |
+| `app:create` | Creates an app skeleton |
+| `app:deactivate` | Deactivates the app |
+| `app:install` | Installs the app |
+| `app:list` | Lists all apps |
+| `app:refresh` | `[app:update]` Refreshes installed apps |
+| `app:uninstall` | Uninstalls the app |
+| `app:url-change:resolve` | Resolves app URL changes |
+| `app:validate` | Checks manifests for errors |
 
 ---
 
 ## Assets
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `assets:install` | Installiert Bundle-Web-Assets im öffentlichen Verzeichnis |
+| Command | Description |
+|:--------|:------------|
+| `assets:install` | Installs bundle web assets into the public directory |
 
 ---
 
 ## Bundle
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `bundle:dump` | `[administration:dump:plugins|administration:dump:bundles]` Erstellt JSON-Datei mit Bundle-Konfiguration |
+| Command | Description |
+|:--------|:------------|
+| `bundle:dump` | `[administration:dump:plugins|administration:dump:bundles]` Creates a JSON file with the bundle configuration |
 
 ---
 
 ## Cache
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `cache:clear` | Leert den Cache |
-| `cache:clear:all` | Leert alle Caches/Pools, invalidiert Tags, entfernt alte Kernel-Cache-Verzeichnisse |
-| `cache:clear:delayed` | Invalidiert verzögerte Cache-Keys/Tags |
-| `cache:clear:http` | Leert nur den HTTP-Cache |
-| `cache:pool:clear` | Leert Cache-Pools |
-| `cache:pool:delete` | Löscht ein Item aus einem Cache-Pool |
-| `cache:pool:invalidate-tags` | Invalidiert Cache-Tags für alle oder bestimmte Pools |
-| `cache:pool:list` | Listet verfügbare Cache-Pools auf |
-| `cache:pool:prune` | Bereinigt Cache-Pools |
-| `cache:warmup` | Wärmt einen leeren Cache auf |
-| `cache:watch:delayed` | Überwacht verzögerte Cache-Keys/Tags |
+| Command | Description |
+|:--------|:------------|
+| `cache:clear` | Clears the cache |
+| `cache:clear:all` | Clears all caches/pools, invalidates tags, removes old kernel cache directories |
+| `cache:clear:delayed` | Invalidates delayed cache keys/tags |
+| `cache:clear:http` | Clears the HTTP cache only |
+| `cache:pool:clear` | Clears cache pools |
+| `cache:pool:delete` | Deletes an item from a cache pool |
+| `cache:pool:invalidate-tags` | Invalidates cache tags for all or specific pools |
+| `cache:pool:list` | Lists available cache pools |
+| `cache:pool:prune` | Prunes cache pools |
+| `cache:warmup` | Warms up an empty cache |
+| `cache:watch:delayed` | Watches delayed cache keys/tags |
 
 ---
 
 ## Cart
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `cart:migrate` | Migriert Warenkörbe von Redis zur Datenbank |
+| Command | Description |
+|:--------|:------------|
+| `cart:migrate` | Migrates carts from Redis to the database |
 
 ---
 
 ## Changelog
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `changelog:change` | Gibt alle Änderungen einer spezifischen / unveröffentlichten Version aus |
-| `changelog:check` | Validiert Changelog-Datei(en) im `changelog/_unreleased`-Ordner |
-| `changelog:create` | Erstellt eine Changelog-Markdown-Datei in `/changelog/_unreleased` |
-| `changelog:release` | Erstellt oder aktualisiert das finale Changelog für ein neues Release |
+| Command | Description |
+|:--------|:------------|
+| `changelog:change` | Prints all changes of a specific / unreleased version |
+| `changelog:check` | Validates changelog file(s) in the `changelog/_unreleased` folder |
+| `changelog:create` | Creates a changelog markdown file in `/changelog/_unreleased` |
+| `changelog:release` | Creates or updates the final changelog for a new release |
 
 ---
 
 ## Config
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `config:dump-reference` | Gibt die Standardkonfiguration für eine Extension aus |
+| Command | Description |
+|:--------|:------------|
+| `config:dump-reference` | Prints the default configuration for an extension |
 
 ---
 
 ## Customer
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `customer:delete-unused-guests` | Löscht nicht genutzte Gastkunden |
+| Command | Description |
+|:--------|:------------|
+| `customer:delete-unused-guests` | Deletes unused guest customers |
 
 ---
 
 ## DAL
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `dal:create:entities` | Erstellt Entity-Klassen |
-| `dal:create:hydrators` | Erstellt Hydrator-Klassen |
-| `dal:migration:create` | Erstellt Migration für das Entity-Schema |
-| `dal:create:schema` | Erstellt das Datenbankschema |
-| `dal:refresh:index` | Aktualisiert den Index für ein Entity |
-| `dal:validate` | Validiert DAL-Definitionen |
+| Command | Description |
+|:--------|:------------|
+| `dal:create:entities` | Creates entity classes |
+| `dal:create:hydrators` | Creates hydrator classes |
+| `dal:migration:create` | Creates a migration for the entity schema |
+| `dal:create:schema` | Creates the database schema |
+| `dal:refresh:index` | Refreshes the index for an entity |
+| `dal:validate` | Validates DAL definitions |
 
 ---
 
 ## Database
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `database:clean-personal-data` | Bereinigt personenbezogene Daten aus der Datenbank |
-| `database:create-migration` | Erstellt eine neue Migrationsdatei |
-| `database:migrate` | Führt alle Migrationen aus |
-| `database:migrate-destructive` | Führt alle destruktiven Migrationen aus |
-| `database:refresh-migration` | Aktualisiert den Migrationsstatus |
+| Command | Description |
+|:--------|:------------|
+| `database:clean-personal-data` | Cleans personal data from the database |
+| `database:create-migration` | Creates a new migration file |
+| `database:migrate` | Runs all migrations |
+| `database:migrate-destructive` | Runs all destructive migrations |
+| `database:refresh-migration` | Refreshes the migration status |
 
 ---
 
 ## Debug
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `debug:autowiring` | Listet Klassen/Interfaces für Autowiring auf |
-| `debug:business-events` | Gibt alle Business Events aus |
-| `debug:config` | Gibt die aktuelle Konfiguration einer Extension aus |
-| `debug:container` | Zeigt aktuelle Services der Anwendung |
-| `debug:dotenv` | Listet alle dotenv-Dateien mit Variablen und Werten auf |
-| `debug:event-dispatcher` | Zeigt konfigurierte Listener |
-| `debug:messenger` | Listet Nachrichten für Message Buses auf |
-| `debug:router` | Zeigt aktuelle Routen |
-| `debug:scheduler` | Listet Schedules und wiederkehrende Nachrichten auf |
-| `debug:serializer` | Zeigt Serialisierungsinformationen für Klassen |
-| `debug:translation` | Zeigt Übersetzungsnachrichten-Informationen |
-| `debug:twig` | Zeigt Twig-Funktionen, -Filter, -Globals und -Tests |
-| `debug:validator` | Zeigt Validierungsconstraints für Klassen |
+| Command | Description |
+|:--------|:------------|
+| `debug:autowiring` | Lists classes/interfaces for autowiring |
+| `debug:business-events` | Prints all business events |
+| `debug:config` | Prints the current configuration of an extension |
+| `debug:container` | Shows the current services of the application |
+| `debug:dotenv` | Lists all dotenv files with variables and values |
+| `debug:event-dispatcher` | Shows configured listeners |
+| `debug:messenger` | Lists messages for message buses |
+| `debug:router` | Shows the current routes |
+| `debug:scheduler` | Lists schedules and recurring messages |
+| `debug:serializer` | Shows serialization information for classes |
+| `debug:translation` | Shows translation message information |
+| `debug:twig` | Shows Twig functions, filters, globals and tests |
+| `debug:validator` | Shows validation constraints for classes |
 
 ---
 
 ## Dotenv
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `dotenv:dump` | Kompiliert .env-Dateien zu .env.local.php |
+| Command | Description |
+|:--------|:------------|
+| `dotenv:dump` | Compiles .env files into .env.local.php |
 
 ---
 
 ## Error
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `error:dump` | Gibt Fehlerseiten als statische HTML-Dateien aus |
+| Command | Description |
+|:--------|:------------|
+| `error:dump` | Dumps error pages as static HTML files |
 
 ---
 
 ## Elasticsearch / OpenSearch (es)
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `es:admin:index` | Indiziert Elasticsearch für die Admin-Suche |
-| `es:admin:mapping:update` | Aktualisiert Elasticsearch-Index-Mapping für Admin |
-| `es:admin:reset` | Setzt Admin-Elasticsearch-Indizierung zurück |
-| `es:admin:test` | Testet den Admin-Suchindex |
-| `es:create:alias` | Erstellt den Elasticsearch-Alias |
-| `es:index` | Re-indiziert alle Entities in Elasticsearch |
-| `es:index:cleanup` | Bereinigt veraltete Indizes |
-| `es:mapping:update` | Aktualisiert Elasticsearch-Index-Mapping |
-| `es:reset` | Setzt den Elasticsearch-Index zurück |
-| `es:status` | Zeigt den Status des Elasticsearch-Index |
-| `es:test:analyzer` | Testet einen Elasticsearch-Analyzer |
+| Command | Description |
+|:--------|:------------|
+| `es:admin:index` | Indexes Elasticsearch for the admin search |
+| `es:admin:mapping:update` | Updates the Elasticsearch index mapping for the admin |
+| `es:admin:reset` | Resets the admin Elasticsearch indexing |
+| `es:admin:test` | Tests the admin search index |
+| `es:create:alias` | Creates the Elasticsearch alias |
+| `es:index` | Re-indexes all entities in Elasticsearch |
+| `es:index:cleanup` | Cleans up outdated indices |
+| `es:mapping:update` | Updates the Elasticsearch index mapping |
+| `es:reset` | Resets the Elasticsearch index |
+| `es:status` | Shows the status of the Elasticsearch index |
+| `es:test:analyzer` | Tests an Elasticsearch analyzer |
 
 ---
 
 ## Feature Flags
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `feature:disable` | Deaktiviert Feature-Flags |
-| `feature:dump` | `[administration:dump:features]` Erstellt JSON-Datei mit Feature-Config |
-| `feature:enable` | Aktiviert Feature-Flags |
-| `feature:list` | Listet alle registrierten Features auf |
+| Command | Description |
+|:--------|:------------|
+| `feature:disable` | Disables feature flags |
+| `feature:dump` | `[administration:dump:features]` Creates a JSON file with the feature config |
+| `feature:enable` | Enables feature flags |
+| `feature:list` | Lists all registered features |
 
 ---
 
 ## Framework
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `framework:demodata` | Generiert Demo-Daten |
-| `framework:dump:class:schema` | Gibt das Schema des angegebenen Entities aus |
-| `framework:schema` | Gibt die API-Definition als JSON aus |
+| Command | Description |
+|:--------|:------------|
+| `framework:demodata` | Generates demo data |
+| `framework:dump:class:schema` | Prints the schema of the given entity |
+| `framework:schema` | Prints the API definition as JSON |
 
 ---
 
 ## HTTP
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `http:cache:warm:up` | Wärmt den HTTP-Cache auf |
+| Command | Description |
+|:--------|:------------|
+| `http:cache:warm:up` | Warms up the HTTP cache |
 
 ---
 
 ## Import
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `import:entity` | Importiert Entities aus einer CSV-Datei |
-| `import-export:delete-expired` | Löscht alle abgelaufenen Import/Export-Dateien |
+| Command | Description |
+|:--------|:------------|
+| `import:entity` | Imports entities from a CSV file |
+| `import-export:delete-expired` | Deletes all expired import/export files |
 
 ---
 
 ## Integration
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `integration:create` | Erstellt eine Integration und gibt Key und Secret aus |
+| Command | Description |
+|:--------|:------------|
+| `integration:create` | Creates an integration and prints key and secret |
 
 ---
 
 ## Lint
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `lint:container` | Prüft injizierte Service-Argumente gegen Typen |
-| `lint:translations` | Validiert Übersetzungsdateien |
-| `lint:twig` | Validiert Twig-Templates |
-| `lint:xliff` | Validiert XLIFF-Dateien |
-| `lint:yaml` | Validiert YAML-Dateien |
+| Command | Description |
+|:--------|:------------|
+| `lint:container` | Checks injected service arguments against types |
+| `lint:translations` | Validates translation files |
+| `lint:twig` | Validates Twig templates |
+| `lint:xliff` | Validates XLIFF files |
+| `lint:yaml` | Validates YAML files |
 
 ---
 
 ## Mailer
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `mailer:test` | Testet Mailer-Transporte durch Senden einer Test-Mail |
+| Command | Description |
+|:--------|:------------|
+| `mailer:test` | Tests mailer transports by sending a test mail |
 
 ---
 
-## make:plugin — Plugin-Scaffolding
+## make:plugin — Plugin Scaffolding
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `make:plugin:admin-module` | Generiert ein Administration-Module-Skeleton |
-| `make:plugin:command` | Generiert ein Plugin-CLI-Command-Skeleton |
-| `make:plugin:composer` | Generiert Composer-Konfiguration für ein Plugin |
-| `make:plugin:config` | Generiert ein Plugin-System-Config-Skeleton |
-| `make:plugin:custom-fieldset` | Generiert ein Custom Field Set für ein Plugin |
-| `make:plugin:entity` | Generiert Entity-Scaffolding für ein Plugin |
-| `make:plugin:event-subscriber` | Generiert ein Event-Subscriber-Skeleton |
-| `make:plugin:javascript-plugin` | Generiert ein JavaScript-Plugin-Skeleton |
-| `make:plugin:plugin-class` | Generiert die Basis-Plugin-Klasse |
-| `make:plugin:scheduled-task` | Generiert ein Scheduled-Task-Skeleton |
-| `make:plugin:store-api-route` | Generiert ein Store-API-Route-Skeleton |
-| `make:plugin:storefront-controller` | Generiert einen Storefront-Controller |
-| `make:plugin:tests` | Generiert ein Plugin-Test-Skeleton |
+| Command | Description |
+|:--------|:------------|
+| `make:plugin:admin-module` | Generates an administration module skeleton |
+| `make:plugin:command` | Generates a plugin CLI command skeleton |
+| `make:plugin:composer` | Generates the Composer configuration for a plugin |
+| `make:plugin:config` | Generates a plugin system config skeleton |
+| `make:plugin:custom-fieldset` | Generates a custom field set for a plugin |
+| `make:plugin:entity` | Generates entity scaffolding for a plugin |
+| `make:plugin:event-subscriber` | Generates an event subscriber skeleton |
+| `make:plugin:javascript-plugin` | Generates a JavaScript plugin skeleton |
+| `make:plugin:plugin-class` | Generates the base plugin class |
+| `make:plugin:scheduled-task` | Generates a scheduled task skeleton |
+| `make:plugin:store-api-route` | Generates a Store API route skeleton |
+| `make:plugin:storefront-controller` | Generates a storefront controller |
+| `make:plugin:tests` | Generates a plugin test skeleton |
 
 ---
 
 ## Media
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `media:delete-local-thumbnails` | Löscht physische Thumbnails wenn Remote-Thumbnails aktiviert |
-| `media:delete-unused` | Löscht nie verwendete Mediendateien. Flags: `--dry-run`, `--grace-period-days=N`, `--folder-entity=PRODUCT` |
-| `media:generate-media-types` | Generiert Medientypen für alle Media-Entities |
-| `media:generate-thumbnails` | Generiert Thumbnails für alle Media-Entities |
-| `media:update-path` | Aktualisiert die `path`-Spalte aller Media-Einträge |
+| Command | Description |
+|:--------|:------------|
+| `media:delete-local-thumbnails` | Deletes physical thumbnails when remote thumbnails are enabled |
+| `media:delete-unused` | Deletes media files that were never used. Flags: `--dry-run`, `--grace-period-days=N`, `--folder-entity=PRODUCT` |
+| `media:generate-media-types` | Generates media types for all media entities |
+| `media:generate-thumbnails` | Generates thumbnails for all media entities |
+| `media:update-path` | Updates the `path` column of all media entries |
 
 ---
 
 ## Messenger
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `messenger:consume` | Verarbeitet Nachrichten |
-| `messenger:failed:remove` | Entfernt Nachrichten aus dem Fehler-Transport |
-| `messenger:failed:retry` | Wiederholt Nachrichten aus dem Fehler-Transport |
-| `messenger:failed:show` | Zeigt Nachrichten aus dem Fehler-Transport |
-| `messenger:setup-transports` | Bereitet die Infrastruktur für den Transport vor |
-| `messenger:stats` | Zeigt die Nachrichtenanzahl für Transporte |
-| `messenger:stop-workers` | Stoppt Worker nach der aktuellen Nachricht |
+| Command | Description |
+|:--------|:------------|
+| `messenger:consume` | Consumes messages |
+| `messenger:failed:remove` | Removes messages from the failure transport |
+| `messenger:failed:retry` | Retries messages from the failure transport |
+| `messenger:failed:show` | Shows messages from the failure transport |
+| `messenger:setup-transports` | Prepares the infrastructure for the transport |
+| `messenger:stats` | Shows the message count for transports |
+| `messenger:stop-workers` | Stops workers after the current message |
 
 ---
 
 ## Number Range
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `number-range:migrate` | Migriert den Increment-Speicher eines Nummernkreises |
+| Command | Description |
+|:--------|:------------|
+| `number-range:migrate` | Migrates the increment storage of a number range |
 
 ---
 
 ## Plugin
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `plugin:activate` | Aktiviert angegebene Plugins |
-| `plugin:create` | Erstellt ein Plugin-Skeleton |
-| `plugin:deactivate` | Deaktiviert angegebene Plugins |
-| `plugin:install` | Installiert angegebene Plugins |
-| `plugin:list` | Listet alle Plugins auf |
-| `plugin:refresh` | Aktualisiert die Plugin-Liste aus dem Dateisystem |
-| `plugin:uninstall` | Deinstalliert angegebene Plugins |
-| `plugin:update` | Aktualisiert angegebene Plugins |
-| `plugin:update:all` | Installiert alle verfügbaren Plugin-Updates |
-| `plugin:zip-import` | Importiert ein Plugin aus einer ZIP-Datei |
+| Command | Description |
+|:--------|:------------|
+| `plugin:activate` | Activates the given plugins |
+| `plugin:create` | Creates a plugin skeleton |
+| `plugin:deactivate` | Deactivates the given plugins |
+| `plugin:install` | Installs the given plugins |
+| `plugin:list` | Lists all plugins |
+| `plugin:refresh` | Refreshes the plugin list from the file system |
+| `plugin:uninstall` | Uninstalls the given plugins |
+| `plugin:update` | Updates the given plugins |
+| `plugin:update:all` | Installs all available plugin updates |
+| `plugin:zip-import` | Imports a plugin from a ZIP file |
 
 ---
 
 ## Product Export
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `product-export:generate` | Generiert eine Produktexportdatei |
+| Command | Description |
+|:--------|:------------|
+| `product-export:generate` | Generates a product export file |
 
 ---
 
 ## Router
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `router:match` | Debuggt Routen durch Simulieren eines Pfad-Matches |
+| Command | Description |
+|:--------|:------------|
+| `router:match` | Debugs routes by simulating a path match |
 
 ---
 
 ## S3
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `s3:set-visibility` | Setzt alle Dateien im S3-Filesystem auf öffentlich |
+| Command | Description |
+|:--------|:------------|
+| `s3:set-visibility` | Sets all files in the S3 filesystem to public |
 
 ---
 
 ## Sales Channel
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `sales-channel:create` | Erstellt einen neuen Sales Channel |
-| `sales-channel:create:storefront` | Erstellt einen neuen Storefront-Sales-Channel |
-| `sales-channel:list` | Listet alle Sales Channels auf |
-| `sales-channel:maintenance:disable` | Deaktiviert den Wartungsmodus |
-| `sales-channel:maintenance:enable` | Aktiviert den Wartungsmodus |
-| `sales-channel:update:domain` | Aktualisiert eine Sales-Channel-Domain |
+| Command | Description |
+|:--------|:------------|
+| `sales-channel:create` | Creates a new sales channel |
+| `sales-channel:create:storefront` | Creates a new storefront sales channel |
+| `sales-channel:list` | Lists all sales channels |
+| `sales-channel:maintenance:disable` | Disables maintenance mode |
+| `sales-channel:maintenance:enable` | Enables maintenance mode |
+| `sales-channel:update:domain` | Updates a sales channel domain |
 
 ---
 
 ## Scheduled Task
 
-| Befehl | Beschreibung | Version |
-|:-------|:-------------|:--------|
-| `scheduled-task:deactivate` | Deaktiviert einen Scheduled Task | 6.7.2.0 |
-| `scheduled-task:register` | Registriert alle Scheduled Tasks | |
-| `scheduled-task:run` | Führt Scheduled Tasks aus | |
-| `scheduled-task:run-single` | Führt einen einzelnen Scheduled Task aus | 6.5.5.0 |
-| `scheduled-task:list` | Listet alle Scheduled Tasks auf | 6.5.5.0 |
-| `scheduled-task:schedule` | Schedulet einen Scheduled Task | 6.7.2.0 |
+| Command | Description | Version |
+|:--------|:------------|:--------|
+| `scheduled-task:deactivate` | Deactivates a scheduled task | 6.7.2.0 |
+| `scheduled-task:register` | Registers all scheduled tasks | |
+| `scheduled-task:run` | Runs scheduled tasks | |
+| `scheduled-task:run-single` | Runs a single scheduled task | 6.5.5.0 |
+| `scheduled-task:list` | Lists all scheduled tasks | 6.5.5.0 |
+| `scheduled-task:schedule` | Schedules a scheduled task | 6.7.2.0 |
 
 ---
 
 ## Secrets
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `secrets:decrypt-to-local` | Entschlüsselt alle Secrets in den lokalen Vault |
-| `secrets:encrypt-from-local` | Verschlüsselt lokale Secrets in den Vault |
-| `secrets:generate-keys` | Generiert neue Verschlüsselungsschlüssel |
-| `secrets:list` | Listet alle Secrets auf |
-| `secrets:remove` | Entfernt ein Secret aus dem Vault |
-| `secrets:reveal` | Zeigt den Wert eines Secrets |
-| `secrets:set` | Setzt ein Secret im Vault |
+| Command | Description |
+|:--------|:------------|
+| `secrets:decrypt-to-local` | Decrypts all secrets into the local vault |
+| `secrets:encrypt-from-local` | Encrypts local secrets into the vault |
+| `secrets:generate-keys` | Generates new encryption keys |
+| `secrets:list` | Lists all secrets |
+| `secrets:remove` | Removes a secret from the vault |
+| `secrets:reveal` | Shows the value of a secret |
+| `secrets:set` | Sets a secret in the vault |
 
 ---
 
 ## Server
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `server:dump` | Startet einen Dump-Server (sammelt und zeigt Dumps) |
-| `server:log` | Startet einen Log-Server (zeigt Logs in Echtzeit) |
+| Command | Description |
+|:--------|:------------|
+| `server:dump` | Starts a dump server (collects and shows dumps) |
+| `server:log` | Starts a log server (shows logs in real time) |
 
 ---
 
 ## Services
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `services:install` | Installiert alle Services |
+| Command | Description |
+|:--------|:------------|
+| `services:install` | Installs all services |
 
 ---
 
 ## Sitemap
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `sitemap:generate` | Generiert Sitemaps für einen oder alle aktiven Shops |
+| Command | Description |
+|:--------|:------------|
+| `sitemap:generate` | Generates sitemaps for one or all active shops |
 
 ---
 
 ## Snippets
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `snippets:validate` | Validiert Snippets |
+| Command | Description |
+|:--------|:------------|
+| `snippets:validate` | Validates snippets |
 
 ---
 
 ## State Machine
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `state-machine:dump` | Gibt eine State Machine als Graphviz-Datei aus |
+| Command | Description |
+|:--------|:------------|
+| `state-machine:dump` | Dumps a state machine as a Graphviz file |
 
 ---
 
 ## Store
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `store:download` | Lädt ein Plugin aus dem Store herunter |
-| `store:login` | Login im Store |
+| Command | Description |
+|:--------|:------------|
+| `store:download` | Downloads a plugin from the store |
+| `store:login` | Logs in to the store |
 
 ---
 
 ## System
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `system:check` | Prüft die System-Health der Shopware-Applikation |
-| `system:config:get` | Liest einen Config-Wert |
-| `system:config:set` | Setzt einen Config-Wert |
-| `system:configure-shop` | Konfiguriert den Shop |
-| `system:generate-app-secret` | Generiert ein neues App-Secret |
-| `system:install` | Installiert das Shopware-6-System |
-| `system:is-installed` | Prüft ob das System installiert ist (Exit-Code 0 = installiert) |
-| `system:setup` | Startet die System-Einrichtung |
-| `system:setup:staging` | Installiert Shopware 6 im Staging-Modus |
-| `system:update:finish` | Schließt den Update-Prozess ab |
-| `system:update:prepare` | Bereitet den Update-Prozess vor |
+| Command | Description |
+|:--------|:------------|
+| `system:check` | Checks the system health of the Shopware application |
+| `system:config:get` | Reads a config value |
+| `system:config:set` | Sets a config value |
+| `system:configure-shop` | Configures the shop |
+| `system:generate-app-secret` | Generates a new app secret |
+| `system:install` | Installs the Shopware 6 system |
+| `system:is-installed` | Checks whether the system is installed (exit code 0 = installed) |
+| `system:setup` | Starts the system setup |
+| `system:setup:staging` | Installs Shopware 6 in staging mode |
+| `system:update:finish` | Finishes the update process |
+| `system:update:prepare` | Prepares the update process |
 
 ---
 
 ## Theme
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `theme:change` | Ändert das aktive Theme für einen Sales Channel |
-| `theme:compile` | Kompiliert das Theme |
-| `theme:create` | Erstellt ein Theme-Skeleton |
-| `theme:dump` | Gibt die Theme-Konfiguration aus |
-| `theme:prepare-icons` | Bereitet Theme-Icons vor |
-| `theme:refresh` | Aktualisiert die Theme-Konfiguration |
+| Command | Description |
+|:--------|:------------|
+| `theme:change` | Changes the active theme for a sales channel |
+| `theme:compile` | Compiles the theme |
+| `theme:create` | Creates a theme skeleton |
+| `theme:dump` | Dumps the theme configuration |
+| `theme:prepare-icons` | Prepares theme icons |
+| `theme:refresh` | Refreshes the theme configuration |
 
 ---
 
 ## Translation
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `translation:extract` | Extrahiert fehlende Übersetzungskeys aus dem Code |
-| `translation:install` | Lädt und installiert Übersetzungen von GitHub |
-| `translation:pull` | Lädt Übersetzungen von einem Provider |
-| `translation:push` | Pusht Übersetzungen zu einem Provider |
+| Command | Description |
+|:--------|:------------|
+| `translation:extract` | Extracts missing translation keys from the code |
+| `translation:install` | Downloads and installs translations from GitHub |
+| `translation:pull` | Pulls translations from a provider |
+| `translation:push` | Pushes translations to a provider |
 
 ---
 
 ## User
 
-| Befehl | Beschreibung |
-|:-------|:-------------|
-| `user:change-password` | Ändert das Passwort eines Benutzers |
-| `user:create` | Erstellt einen neuen Benutzer |
-| `user:list` | Listet aktuelle Benutzer auf |
+| Command | Description |
+|:--------|:------------|
+| `user:change-password` | Changes the password of a user |
+| `user:create` | Creates a new user |
+| `user:list` | Lists current users |

@@ -1,20 +1,20 @@
-# flatpickr — Getting Started (vollständige Referenz, v4.6.13)
+# flatpickr — Getting Started (complete reference, v4.6.13)
 
 ## Contents
 
 - [Version](#version)
 - [Installation](#installation)
-- [Modul-Import](#modul-import)
-- [Initialisierung — alle Varianten](#initialisierung-alle-varianten)
-- [Konfigurationsparameter](#konfigurationsparameter)
-- [Unterstützte Input-Typen](#unterstützte-input-typen)
-- [Rückgabewert](#rückgabewert)
+- [Module import](#module-import)
+- [Initialization — all variants](#initialization--all-variants)
+- [Configuration parameters](#configuration-parameters)
+- [Supported input types](#supported-input-types)
+- [Return value](#return-value)
 - [TypeScript](#typescript)
-- [Browser-Kompatibilität](#browser-kompatibilität)
+- [Browser compatibility](#browser-compatibility)
 
 ## Version
 
-**flatpickr v4.6.13** (aktuelle stabile Version)
+**flatpickr v4.6.13** (current stable version)
 
 ## Installation
 
@@ -22,7 +22,7 @@
 
 ```bash
 npm i flatpickr --save
-# Installiert v4.6.13 (aktuelle Stable)
+# Installs v4.6.13 (current stable)
 ```
 
 ### CDN (jsDelivr)
@@ -39,40 +39,40 @@ npm i flatpickr --save
 <script src="https://npmcdn.com/flatpickr"></script>
 ```
 
-## Modul-Import
+## Module import
 
 ```js
-// ES Modules (empfohlen für TypeScript / Webpack / Vite)
+// ES Modules (recommended for TypeScript / Webpack / Vite)
 import flatpickr from "flatpickr";
 
 // CommonJS (Node / older bundlers)
 const flatpickr = require("flatpickr");
 ```
 
-**CSS in Webpack/Bundler:**
+**CSS in Webpack/bundlers:**
 
 ```js
 import "flatpickr/dist/flatpickr.min.css";
-// oder für ein Theme:
+// or for a theme:
 import "flatpickr/dist/themes/dark.css";
 ```
 
-## Initialisierung — alle Varianten
+## Initialization — all variants
 
-### 1. ID-Selektor (String)
+### 1. ID selector (string)
 
 ```js
 flatpickr("#myID", {});
 ```
 
-### 2. CSS-Klassen-Selektor — mehrere Instanzen auf einmal
+### 2. CSS class selector — several instances at once
 
 ```js
 flatpickr(".datepicker", {});
-// Gibt ein Array von flatpickr-Instanzen zurück
+// Returns an array of flatpickr instances
 ```
 
-### 3. DOM-Element direkt übergeben (empfohlen für Frameworks)
+### 3. Pass a DOM element directly (recommended for frameworks)
 
 ```js
 const el = document.getElementById("myDate");
@@ -86,37 +86,37 @@ const inputs = document.querySelectorAll(".date-input");
 flatpickr(inputs, { dateFormat: "d.m.Y" });
 ```
 
-### 5. jQuery Plugin
+### 5. jQuery plugin
 
 ```js
-$(".selector").flatpickr({ /* optionen */ });
+$(".selector").flatpickr({ /* options */ });
 ```
 
-> Hinweis: Bei Framework-Integrationen (React, Vue, Angular) sollte immer das DOM-Element direkt übergeben werden, nicht ein String-Selektor.
+> Note: with framework integrations (React, Vue, Angular) always pass the DOM element directly, not a string selector.
 
-## Konfigurationsparameter
+## Configuration parameters
 
-Alle Optionen sind optional. Das zweite Argument `{}` kann vollständig weggelassen werden:
+All options are optional. The second argument `{}` can be omitted entirely:
 
 ```js
-flatpickr("#date");                      // keine Optionen
-flatpickr("#date", { inline: true });   // mit Optionen
+flatpickr("#date");                      // no options
+flatpickr("#date", { inline: true });   // with options
 ```
 
-Die vollständige Options-Referenz: siehe [flatpickr-options](../../flatpickr-options/SKILL.md).
+The complete options reference: see [flatpickr-options](../../flatpickr-options/SKILL.md).
 
-## Unterstützte Input-Typen
+## Supported input types
 
-flatpickr funktioniert mit allen Standard-HTML-Inputs und auch mit nicht-input-Elementen:
+flatpickr works with all standard HTML inputs and also with non-input elements:
 
 ```html
 <!-- Standard text input -->
-<input type="text" id="date1" placeholder="Datum wählen">
+<input type="text" id="date1" placeholder="Choose a date">
 
-<!-- Bereits vorausgefüllter Wert -->
+<!-- Value already prefilled -->
 <input type="text" id="date2" value="2024-01-15">
 
-<!-- Inline auf einem div -->
+<!-- Inline on a div -->
 <div id="inline-calendar"></div>
 ```
 
@@ -126,14 +126,14 @@ flatpickr("#date2", { dateFormat: "Y-m-d" });
 flatpickr("#inline-calendar", { inline: true });
 ```
 
-## Rückgabewert
+## Return value
 
-`flatpickr()` gibt eine flatpickr-Instanz (oder ein Array davon bei Mehrfachselektion) zurück:
+`flatpickr()` returns a flatpickr instance (or an array of them for a multi-element selection):
 
 ```js
 const fp = flatpickr("#myDate", { enableTime: true });
 
-// Später:
+// Later:
 fp.open();
 fp.setDate("2024-06-15");
 fp.destroy();
@@ -141,7 +141,7 @@ fp.destroy();
 
 ## TypeScript
 
-flatpickr enthält eigene Typdeklarationen (`@types` nicht nötig):
+flatpickr ships its own type declarations (no `@types` needed):
 
 ```ts
 import flatpickr from "flatpickr";
@@ -156,18 +156,18 @@ const opts: Options = {
 const fp: Instance = flatpickr("#myDate", opts) as Instance;
 ```
 
-## Browser-Kompatibilität
+## Browser compatibility
 
-| Browser | Unterstützt |
+| Browser | Supported |
 |---------|------------|
-| Chrome | ja |
-| Firefox | ja |
-| Safari 6+ | ja |
-| IE 10+ | ja |
-| IE 9 | mit Polyfill (classList) |
+| Chrome | yes |
+| Firefox | yes |
+| Safari 6+ | yes |
+| IE 10+ | yes |
+| IE 9 | with polyfill (classList) |
 
-Für IE9-Details: siehe [flatpickr-migration](../../flatpickr-migration/SKILL.md).
+For IE9 details: see [flatpickr-migration](../../flatpickr-migration/SKILL.md).
 
 ---
 
-Quelle: `package.json` v4.6.13 | https://flatpickr.js.org/getting-started/ | https://flatpickr.js.org/
+Source: `package.json` v4.6.13 | https://flatpickr.js.org/getting-started/ | https://flatpickr.js.org/

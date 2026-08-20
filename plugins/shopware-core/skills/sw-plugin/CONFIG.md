@@ -1,16 +1,16 @@
-# Shopware 6 — Plugin-Konfiguration
+# Shopware 6 — Plugin Configuration
 
-`src/Resources/config/config.xml` definiert die Einstellungsmaske (Admin → Erweiterungen → Konfiguration).
-Aufbau: `<card>` → `<input-field type="...">` mit `<name>`, `<label>`, `<defaultValue>`.
-Feldtypen u.a.: `text`, `bool`, `int`, `float`, `single-select`, `multi-select`, `password`, `colorpicker`, `datetime`.
+`src/Resources/config/config.xml` defines the settings form (Admin → Extensions → Configuration).
+Structure: `<card>` → `<input-field type="...">` with `<name>`, `<label>`, `<defaultValue>`.
+Field types include `text`, `bool`, `int`, `float`, `single-select`, `multi-select`, `password`, `colorpicker`, `datetime`.
 
-Auslesen im Code über `SystemConfigService` (Key = `{PluginName}.config.{feldName}`):
+Read values in code through the `SystemConfigService` (key = `{PluginName}.config.{fieldName}`):
 
 ```php
 $value = $this->systemConfigService->get('FfContentPlus.config.apiKey', $salesChannelId);
 ```
 
-`$salesChannelId` ist optional (Sales-Channel-spezifischer Override). Details zum SystemConfigService und Scopes: `sw-system-config`.
+`$salesChannelId` is optional (sales-channel-specific override). Details on the SystemConfigService and scopes: `sw-system-config`.
 
-→ Vollständige Feldtypen, Optionen, Bundles: [CONFIG-CONFIGURATION.md](CONFIG-CONFIGURATION.md)
-→ Beispiel: [examples/config.xml](examples/config.xml)
+→ All field types, options, bundles: [CONFIG-CONFIGURATION.md](CONFIG-CONFIGURATION.md)
+→ Example: [examples/config.xml](examples/config.xml)

@@ -1,6 +1,6 @@
-# Swiper — Übergangseffekte
+# Swiper — Transition effects
 
-Alle sechs Übergangseffekte mit vollständigen Parameterobjekten.
+All six transition effects with complete parameter objects.
 
 ```js
 import Swiper from 'swiper';
@@ -13,7 +13,7 @@ const swiper = new Swiper('.swiper', {
   fadeEffect: { crossFade: true },
 });
 
-// Creative (eigene Transforms)
+// Creative (custom transforms)
 const swiper2 = new Swiper('.swiper', {
   modules: [EffectCreative],
   effect: 'creative',
@@ -24,5 +24,5 @@ const swiper2 = new Swiper('.swiper', {
 });
 ```
 
-## Vertiefung
-- [EFFECTS-DETAIL.md](EFFECTS-DETAIL.md) — alle Effekte mit vollständigen Parameter-Tabellen, Transform-Objekt-Schema, Import-Namen
+## Further reading
+- [EFFECTS-DETAIL.md](EFFECTS-DETAIL.md) — all effects with complete parameter tables, transform object schema, import names

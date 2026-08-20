@@ -1,14 +1,14 @@
-# Shopware 6 — Rate-Limiter
+# Shopware 6 — Rate Limiter
 
-Shopware liefert Limiter (z.B. Login, Reset-Password, Contact-Form). Eigene Limits werden unter
-`shopware.api.rate_limiter` / `config/packages` definiert und im Controller über den `RateLimiter` geprüft.
+Shopware ships limiters (e.g. login, reset password, contact form). Define your own limits under
+`shopware.api.rate_limiter` / `config/packages` and check them in the controller through the `RateLimiter`.
 
 ```php
 $this->rateLimiter->ensureAccepted('ff_content_import', $cacheKey);
-// wirft RateLimitExceededException bei Überschreitung
+// throws RateLimitExceededException once the limit is exceeded
 ```
 
-Policy-Typen: `time_backoff` (steigende Wartezeit) und `system_config`. Limiter zurücksetzen nach Erfolg via
-`reset($key)`. Für öffentliche Store-API-Endpunkte sinnvoll gegen Missbrauch.
+Policy types: `time_backoff` (increasing wait time) and `system_config`. Reset the limiter after success via
+`reset($key)`. Worth applying to public Store API endpoints to prevent abuse.
 
-→ Policies, Konfig-Beispiele, Integration: [RATE-LIMITER-DETAIL.md](RATE-LIMITER-DETAIL.md)
+→ Policies, config examples, integration: [RATE-LIMITER-DETAIL.md](RATE-LIMITER-DETAIL.md)

@@ -1,7 +1,7 @@
-# Shopware 6 — CLI-Command
+# Shopware 6 — CLI Command
 
-Ein Plugin-Command ist ein normaler Symfony-Command, registriert via `#[AsCommand]` (oder `console.command`-Tag).
-Namens-Konvention `vendor:domain:action`, z.B. `ff:content:import`.
+A plugin command is a plain Symfony command, registered via `#[AsCommand]` (or the `console.command` tag).
+Naming convention `vendor:domain:action`, e.g. `ff:content:import`.
 
 ```php
 #[AsCommand(name: 'ff:content:import', description: 'Importiert Inhalte')]
@@ -16,8 +16,8 @@ class ImportCommand extends Command
 }
 ```
 
-Dependencies (Repositories/Services) per Constructor-Injection. Lang laufende Imports ggf. in MessageQueue (`sw-message-queue`)
-oder als ScheduledTask (`sw-scheduled-task`, in `shopware-framework`).
+Inject dependencies (repositories/services) through the constructor. Move long-running imports into the message queue (`sw-message-queue`)
+or a scheduled task (`sw-scheduled-task`, in `shopware-framework`) where appropriate.
 
-→ Argumente/Optionen, Progress, Beispiele: [CLI-COMMAND-COMMANDS.md](CLI-COMMAND-COMMANDS.md)
-→ Gerüst: [examples/CustomCommand.php](examples/CustomCommand.php)
+→ Arguments/options, progress, examples: [CLI-COMMAND-COMMANDS.md](CLI-COMMAND-COMMANDS.md)
+→ Skeleton: [examples/CustomCommand.php](examples/CustomCommand.php)

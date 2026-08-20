@@ -1,19 +1,19 @@
 # Shopware PaaS — Composable Frontends (Nuxt.js)
 
-## Store-API Caching (Backend)
+## Store API caching (backend)
 
 ```bash
 composer require shopware-labs/swag-store-api-cache
 ```
 
-- Cached ausgewählte POST `/store-api/`-Anfragen via Fastly
-- Eigene Fastly-Snippets (ersetzen Standard-Snippets)
-- Weitere Routen konfigurierbar via `SwagStoreAPICache.config.additionalCacheableRoutes`
-- Soft-Purge aktivieren!
+- Caches selected POST `/store-api/` requests via Fastly
+- Ships its own Fastly snippets (they replace the standard snippets)
+- Additional routes configurable via `SwagStoreAPICache.config.additionalCacheableRoutes`
+- Enable soft purge!
 
-## Frontend-Caching (Nuxt.js)
+## Frontend caching (Nuxt.js)
 
-In `nuxt.config.ts` mit ISR (Incremental Static Regeneration):
+In `nuxt.config.ts` with ISR (Incremental Static Regeneration):
 
 ```ts
 routeRules: {
@@ -32,22 +32,22 @@ routeRules: {
 }
 ```
 
-Frontend-Cache-Invalidierung: Nur Fastly-Backend-Service.
-Shopware triggert keine Frontend-Cache-Invalidierung.
+Frontend cache invalidation: only the Fastly backend service.
+Shopware does not trigger frontend cache invalidation.
 
-## CORS vermeiden (OPTIONS-Requests)
+## Avoiding CORS (OPTIONS requests)
 
-Fastly-Frontend-Service als Proxy für Backend-Requests:
+The Fastly frontend service as a proxy for backend requests:
 
 ```vcl
 if (req.url.path ~ "^/store-api/") {
   set req.http.host = "backend.mydomain.com";
   set req.backend = F_Backend__Shopware_instance_;
-  return (pass);  # WICHTIG: kein Cache auf Frontend-Fastly-Service
+  return (pass);  # IMPORTANT: no caching on the frontend Fastly service
 }
 ```
 
-## Blackfire Node.js Profiling
+## Blackfire Node.js profiling
 
 ```bash
 npm install @blackfireio/node-tracing
@@ -55,8 +55,8 @@ npm install @blackfireio/node-tracing
 
 Env: `BLACKFIRE_ENABLE=1`
 
-Datei `server/plugins/blackfire.ts` anlegen (Details → Deep Reference).
+Create the file `server/plugins/blackfire.ts` (details → Deep Reference).
 
-## Vertiefung
+## Deep dive
 
 [COMPOSABLE-FRONTENDS-DETAIL.md](COMPOSABLE-FRONTENDS-DETAIL.md)

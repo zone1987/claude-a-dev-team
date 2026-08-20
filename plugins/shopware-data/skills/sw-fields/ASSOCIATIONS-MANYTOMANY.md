@@ -1,18 +1,18 @@
-# Shopware 6 — ManyToMany-Association
+# Shopware 6 — ManyToMany association
 
-Benötigt eine **Mapping-Entity** (Zwischentabelle mit zwei FkFields), die `MappingEntityDefinition` erweitert.
+Requires a **mapping entity** (join table with two FkFields) that extends `MappingEntityDefinition`.
 
 ```php
-// in beiden Haupt-Definitionen
+// in both main definitions
 (new ManyToManyAssociationField('tags', TagDefinition::class,
     FfExampleTagDefinition::class, 'example_id', 'tag_id')),
 
-// Mapping-Definition (MappingEntityDefinition)
+// mapping definition (MappingEntityDefinition)
 (new FkField('example_id', 'exampleId', FfExampleDefinition::class))->addFlags(new PrimaryKey(), new Required()),
 (new FkField('tag_id', 'tagId', TagDefinition::class))->addFlags(new PrimaryKey(), new Required()),
 ```
 
-Die Mapping-Entity hat einen kombinierten PK aus beiden FkFields, keine eigene Id. Schreiben über verschachteltes
-Payload (`['tags' => [['id' => $tagId]]]`).
+The mapping entity has a composite PK built from both FkFields and no id of its own. Write through a nested
+payload (`['tags' => [['id' => $tagId]]]`).
 
-→ Association-Typen: [ASSOCIATIONS.md](ASSOCIATIONS.md) · Mapping-Beispiel: [ASSOCIATIONS-MANYTOMANY-MAPPING-EXAMPLE.md](ASSOCIATIONS-MANYTOMANY-MAPPING-EXAMPLE.md)
+→ Association types: [ASSOCIATIONS.md](ASSOCIATIONS.md) · Mapping example: [ASSOCIATIONS-MANYTOMANY-MAPPING-EXAMPLE.md](ASSOCIATIONS-MANYTOMANY-MAPPING-EXAMPLE.md)

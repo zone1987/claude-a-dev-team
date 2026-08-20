@@ -1,16 +1,16 @@
-# Shopware 6 — Entity-/Field-Protection
+# Shopware 6 — Entity/field protection
 
-Steuert, welche Felder/Entities über welche API-Quelle (Admin/Store) les- oder schreibbar sind.
+Controls which fields and entities are readable or writable through which API source (Admin/Store).
 
-- `ApiAware` (ohne Flag = nicht über API): markiert API-Sichtbarkeit, optional je Quelle
+- `ApiAware` (no flag = not exposed via API): marks API visibility, optionally per source
   `new ApiAware(SalesChannelApiSource::class)`.
-- `WriteProtected` / `ReadProtected`: Schreib-/Leseschutz je Scope (z.B. nur System darf schreiben).
-- Sensible interne Felder (Tokens, Flags) bewusst **ohne** `ApiAware` lassen.
+- `WriteProtected` / `ReadProtected`: write/read protection per scope (only the system may write, for example).
+- Deliberately leave sensitive internal fields (tokens, flags) **without** `ApiAware`.
 
 ```php
 (new StringField('secret', 'secret'))->addFlags(new WriteProtected(Context::SYSTEM_SCOPE)),
 ```
 
-So bleiben interne Daten aus Admin-/Store-API heraus, ohne separate Entity. Ergänzend ACL für Admin-Rechte (`shopware-framework` → `sw-api-acl`).
+This keeps internal data out of the Admin and Store API without a separate entity. Complement it with ACL for admin permissions (`shopware-framework` → `sw-api-acl`).
 
-→ Protection-Details: [PROTECTION-DETAIL.md](PROTECTION-DETAIL.md)
+→ Protection details: [PROTECTION-DETAIL.md](PROTECTION-DETAIL.md)

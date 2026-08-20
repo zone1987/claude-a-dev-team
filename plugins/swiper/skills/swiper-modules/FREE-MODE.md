@@ -1,6 +1,6 @@
-# Swiper — Free Mode-Modul
+# Swiper — Free Mode module
 
-Freies Scrollen ohne Slide-Snap, mit konfigurierbarer Momentum-Physik.
+Free scrolling without slide snapping, with configurable momentum physics.
 
 ```js
 import Swiper from 'swiper';
@@ -17,5 +17,5 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Vertiefung
-- [FREE-MODE-DETAIL.md](FREE-MODE-DETAIL.md) — alle Parameter mit Typ/Default/Beschreibung
+## Further reading
+- [FREE-MODE-DETAIL.md](FREE-MODE-DETAIL.md) — all parameters with type/default/description

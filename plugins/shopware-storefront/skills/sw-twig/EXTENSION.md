@@ -1,6 +1,6 @@
-# Shopware 6 — Twig-Extension
+# Shopware 6 — Twig extension
 
-Eigene Twig-Funktionen/-Filter über eine `AbstractExtension`-Klasse, registriert mit `twig.extension`-Tag.
+Add custom Twig functions/filters through an `AbstractExtension` class, registered with the `twig.extension` tag.
 
 ```php
 class FfTwigExtension extends AbstractExtension
@@ -13,5 +13,5 @@ class FfTwigExtension extends AbstractExtension
 }
 ```
 
-Nutzung im Template: `{{ price|ff_money }}`. Services per Constructor injizieren. Für eingebaute Storefront-Funktionen
-(`sw_icon`, `seoUrl`, `searchMedia` …) siehe `sw-twig-functions`. Keine schwere Logik im Filter — in Service auslagern.
+Usage in the template: `{{ price|ff_money }}`. Inject services via the constructor. For the built-in Storefront functions
+(`sw_icon`, `seoUrl`, `searchMedia` …) see `sw-twig-functions`. Keep heavy logic out of the filter — move it into a service.

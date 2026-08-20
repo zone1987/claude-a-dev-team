@@ -1,5 +1,5 @@
 # Swiper SolidJS (via Swiper Element)
 
-Ab Swiper v9: keine separaten SolidJS-Komponenten. Integration über das Swiper Web Component.
+As of Swiper v9: no separate SolidJS components. Integration happens through the Swiper Web Component.
 
-Vollständige Referenz: `SOLID-SWIPER-SOLID.md`
+Complete reference: `SOLID-SWIPER-SOLID.md`

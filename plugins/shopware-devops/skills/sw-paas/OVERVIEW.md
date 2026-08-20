@@ -1,40 +1,40 @@
 # Shopware PaaS
 
-Shopware PaaS basiert auf **Platform.sh**. Die Konfiguration wird via Symfony Flex
-Recipe (`shopware/paas-meta`) ins Projekt eingespielt und besteht aus drei
-`.platform/`-Dateien sowie Hilfsskripten.
+Shopware PaaS is based on **Platform.sh**. The configuration is applied to the project via a
+Symfony Flex recipe (`shopware/paas-meta`) and consists of three
+`.platform/` files plus helper scripts.
 
 ```bash
-# sw-paas CLI installieren
+# Install the sw-paas CLI
 curl -L https://install.sw-paas-cli.shopware.systems | sh
 sw-paas auth
 ```
 
 ```bash
-# Recipe installieren
+# Install the recipe
 composer require shopware/paas-meta
 ```
 
-## Konfigurations-Dateien
+## Configuration files
 
-| Datei | Zweck |
+| File | Purpose |
 |-------|-------|
-| `.platform/applications.yaml` | App-Definition: PHP-Version, Hooks, Mounts, Worker, Crons |
-| `.platform/services.yaml` | Services: MariaDB, Redis (Cache+Session), RabbitMQ, Network-Storage |
-| `.platform/routes.yaml` | HTTP-Routing mit Cache-Policy |
-| `config/packages/paas.yaml` | Symfony-Konfiguration: Redis-Session/Cache, Cluster-Mode |
-| `.environment` | Shell-Env-Vars bei jedem Request (`APP_CACHE_DIR`) |
-| `.shopware-project.yaml` | shopware-cli Projekt-Config: `deployment.cache.always_clear: true` |
+| `.platform/applications.yaml` | App definition: PHP version, hooks, mounts, worker, crons |
+| `.platform/services.yaml` | Services: MariaDB, Redis (cache+session), RabbitMQ, network storage |
+| `.platform/routes.yaml` | HTTP routing with cache policy |
+| `config/packages/paas.yaml` | Symfony configuration: Redis session/cache, cluster mode |
+| `.environment` | Shell env vars on every request (`APP_CACHE_DIR`) |
+| `.shopware-project.yaml` | shopware-cli project config: `deployment.cache.always_clear: true` |
 
 ## Build → Deploy → Post-Deploy
 
 ```
-BUILD:    Node + shopware-cli installieren → shopware-cli project ci .
-DEPLOY:   rsync cache/var aus Build → shopware-deployment-helper run → domain update
+BUILD:    install Node + shopware-cli → shopware-cli project ci .
+DEPLOY:   rsync cache/var from build → shopware-deployment-helper run → domain update
 POST_DEPLOY: bin/console theme:compile --sync
 ```
 
-## Vertiefung
+## Deep dive
 
-- [CONFIG.md](CONFIG.md) — Vollständige applications.yaml, services.yaml, routes.yaml mit Erklärungen
-- [WORKFLOW.md](WORKFLOW.md) — Deploy-Workflow, sw-paas CLI, Umgebungsvariablen
+- [CONFIG.md](CONFIG.md) — Complete applications.yaml, services.yaml, routes.yaml with explanations
+- [WORKFLOW.md](WORKFLOW.md) — Deploy workflow, sw-paas CLI, environment variables

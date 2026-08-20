@@ -1,15 +1,15 @@
-# Shopware 6 — Entity-Versioning
+# Shopware 6 — Entity versioning
 
-DAL kann Entities versionieren (z.B. Order-Drafts). Eine Version ist ein isolierter Stand, der gemerged wird.
+The DAL can version entities (order drafts, for example). A version is an isolated state that gets merged back.
 
 ```php
-$versionId = $this->repo->createVersion($id, $context);          // neue Version
-$versionContext = $context->createWithVersionId($versionId);     // darin arbeiten
+$versionId = $this->repo->createVersion($id, $context);          // new version
+$versionContext = $context->createWithVersionId($versionId);     // work inside it
 $this->repo->update([...], $versionContext);
-$this->repo->merge($versionId, $context);                        // in LIVE übernehmen
+$this->repo->merge($versionId, $context);                        // apply to LIVE
 ```
 
-Versionierbare Entities brauchen ein `VersionField` (PK-Teil) bzw. Beziehungen ein `ReferenceVersionField`.
-Standard ist die Live-Version (`Defaults::LIVE_VERSION`). Typisch für Bestellungen und komplexe Bearbeitungs-Flows.
+Versionable entities need a `VersionField` (part of the PK); relations to them need a `ReferenceVersionField`.
+The default is the live version (`Defaults::LIVE_VERSION`). Typical for orders and complex editing flows.
 
-→ Mechanik, merge/clone Details: [VERSIONING-DETAIL.md](VERSIONING-DETAIL.md)
+→ Mechanics, merge/clone details: [VERSIONING-DETAIL.md](VERSIONING-DETAIL.md)

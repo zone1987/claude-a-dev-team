@@ -1,16 +1,16 @@
-# Swiper Autoplay-Modul — Vollständige Referenz
+# Swiper Autoplay module — Complete reference
 
 ## Contents
 
-- [Import & Aktivierung](#import-aktivierung)
-- [Parameter](#parameter)
-- [Per-Slide-Override](#per-slide-override)
+- [Import and activation](#import-and-activation)
+- [Parameters](#parameters)
+- [Per-slide override](#per-slide-override)
 - [Properties](#properties)
-- [Methoden](#methoden)
+- [Methods](#methods)
 - [Events](#events)
-- [Vollständiges Beispiel](#vollständiges-beispiel)
+- [Complete example](#complete-example)
 
-## Import & Aktivierung
+## Import and activation
 
 ```js
 import Swiper from 'swiper';
@@ -26,66 +26,66 @@ const swiper = new Swiper('.swiper', {
 });
 ```
 
-## Parameter
+## Parameters
 
-| Name | Typ | Default | Beschreibung |
-|------|-----|---------|--------------|
-| `delay` | `number` | `3000` | Pause zwischen Slide-Transitionen in Millisekunden |
-| `disableOnInteraction` | `boolean` | `true` | `false` = Autoplay nach Benutzerinteraktion neu starten (nicht stoppen) |
-| `pauseOnMouseEnter` | `boolean` | `false` | Autoplay pausieren wenn Zeiger den Container betritt |
-| `reverseDirection` | `boolean` | `false` | Autoplay in umgekehrter Richtung abspielen |
-| `stopOnLastSlide` | `boolean` | `false` | Autoplay am letzten Slide stoppen (kein Effekt im Loop-Modus) |
-| `waitForTransition` | `boolean` | `true` | Warten bis die Wrapper-Transition abgeschlossen ist |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `delay` | `number` | `3000` | Pause between slide transitions in milliseconds |
+| `disableOnInteraction` | `boolean` | `true` | `false` = restart autoplay after user interaction instead of stopping it |
+| `pauseOnMouseEnter` | `boolean` | `false` | Pause autoplay when the pointer enters the container |
+| `reverseDirection` | `boolean` | `false` | Run autoplay in the reverse direction |
+| `stopOnLastSlide` | `boolean` | `false` | Stop autoplay on the last slide (no effect in loop mode) |
+| `waitForTransition` | `boolean` | `true` | Wait until the wrapper transition has finished |
 
-## Per-Slide-Override
+## Per-slide override
 
-Einzelner Slide kann eigenes Delay erhalten:
+An individual slide can define its own delay:
 
 ```html
 <div class="swiper-slide" data-swiper-autoplay="5000">
-  Dieser Slide bleibt 5 Sekunden stehen
+  This slide stays for 5 seconds
 </div>
 ```
 
 ## Properties
 
-| Property | Typ | Beschreibung |
-|----------|-----|--------------|
-| `swiper.autoplay.running` | `boolean` | Autoplay läuft gerade |
-| `swiper.autoplay.paused` | `boolean` | Autoplay ist pausiert |
-| `swiper.autoplay.timeLeft` | `number` | Verbleibende Zeit in ms bis zur nächsten Transition |
+| Property | Type | Description |
+|----------|------|-------------|
+| `swiper.autoplay.running` | `boolean` | Autoplay is currently running |
+| `swiper.autoplay.paused` | `boolean` | Autoplay is paused |
+| `swiper.autoplay.timeLeft` | `number` | Remaining time in ms until the next transition |
 
-## Methoden
+## Methods
 
-| Methode | Beschreibung |
-|---------|--------------|
-| `swiper.autoplay.start()` | Autoplay starten |
-| `swiper.autoplay.stop()` | Autoplay vollständig stoppen |
-| `swiper.autoplay.pause()` | Autoplay pausieren (kann fortgesetzt werden) |
-| `swiper.autoplay.resume()` | Pausiertes Autoplay fortsetzen |
+| Method | Description |
+|--------|-------------|
+| `swiper.autoplay.start()` | Start autoplay |
+| `swiper.autoplay.stop()` | Stop autoplay completely |
+| `swiper.autoplay.pause()` | Pause autoplay (can be resumed) |
+| `swiper.autoplay.resume()` | Resume paused autoplay |
 
 ## Events
 
-| Event | Argumente | Beschreibung |
-|-------|-----------|--------------|
-| `autoplay` | `(swiper)` | Wird ausgelöst wenn Autoplay einen Slide-Wechsel triggert |
-| `autoplayStart` | `(swiper)` | Autoplay wurde gestartet |
-| `autoplayStop` | `(swiper)` | Autoplay wurde gestoppt |
-| `autoplayPause` | `(swiper)` | Autoplay wurde pausiert |
-| `autoplayResume` | `(swiper)` | Autoplay wurde fortgesetzt |
-| `autoplayTimeLeft` | `(swiper, timeLeft, percentage)` | Kontinuierliches Event mit verbleibender Zeit und Prozent (0..1) |
+| Event | Arguments | Description |
+|-------|-----------|-------------|
+| `autoplay` | `(swiper)` | Fires when autoplay triggers a slide change |
+| `autoplayStart` | `(swiper)` | Autoplay was started |
+| `autoplayStop` | `(swiper)` | Autoplay was stopped |
+| `autoplayPause` | `(swiper)` | Autoplay was paused |
+| `autoplayResume` | `(swiper)` | Autoplay was resumed |
+| `autoplayTimeLeft` | `(swiper, timeLeft, percentage)` | Continuous event with the remaining time and percentage (0..1) |
 
-### autoplayTimeLeft für Fortschrittsanzeige
+### autoplayTimeLeft for a progress indicator
 
 ```js
 swiper.on('autoplayTimeLeft', (swiper, timeLeft, percentage) => {
-  // timeLeft: ms bis zur nächsten Transition
-  // percentage: 0 = Anfang, 1 = Ende des Delays
+  // timeLeft: ms until the next transition
+  // percentage: 0 = start, 1 = end of the delay
   progressBar.style.setProperty('--progress', 1 - percentage);
 });
 ```
 
-## Vollständiges Beispiel
+## Complete example
 
 ```js
 const swiper = new Swiper('.swiper', {
@@ -99,8 +99,8 @@ const swiper = new Swiper('.swiper', {
     waitForTransition: true,
   },
   on: {
-    autoplayStart: () => console.log('gestartet'),
-    autoplayStop: () => console.log('gestoppt'),
+    autoplayStart: () => console.log('started'),
+    autoplayStop: () => console.log('stopped'),
     autoplayTimeLeft: (s, time, progress) => {
       document.querySelector('.timer').textContent =
         Math.ceil(time / 1000) + 's';
@@ -108,7 +108,7 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// Externe Steuerung
+// External control
 document.querySelector('#pause-btn').addEventListener('click', () => {
   swiper.autoplay.pause();
 });
@@ -118,4 +118,4 @@ document.querySelector('#play-btn').addEventListener('click', () => {
 ```
 
 ---
-Quelle: https://swiperjs.com/swiper-api#autoplay
+Source: https://swiperjs.com/swiper-api#autoplay

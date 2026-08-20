@@ -1,17 +1,17 @@
 # Shopware 6 — Criteria
 
-`Criteria` ist der Query-Builder der DAL (statt Doctrine QueryBuilder). Sie bündelt Filter, Sortierung,
-Aggregationen, Associations und Paginierung und geht in `repository->search($criteria, $context)`.
+`Criteria` is the DAL's query builder (instead of the Doctrine QueryBuilder). It bundles filters, sorting,
+aggregations, associations and pagination, and goes into `repository->search($criteria, $context)`.
 
 ```php
-$criteria = new Criteria();                  // oder new Criteria([$id1, $id2]) für gezielte IDs
+$criteria = new Criteria();                  // or new Criteria([$id1, $id2]) for specific IDs
 $criteria->setLimit(25)->setOffset(0);
-$criteria->addAssociation('lines.product');  // verschachtelt nachladen
+$criteria->addAssociation('lines.product');  // load nested
 $criteria->getAssociation('lines')->addSorting(new FieldSorting('position'));
 $criteria->setTotalCountMode(Criteria::TOTAL_COUNT_MODE_EXACT);
 ```
 
-Bausteine: **Filter** (`sw-filters`), **Sorting** (`sw-sorting`), **Aggregations** (`sw-aggregations`).
-Associations gezielt laden (kein `autoload`). `addAssociation('a.b.c')` lädt verschachtelt.
+Building blocks: **filters** (`sw-filters`), **sorting** (`sw-sorting`), **aggregations** (`sw-aggregations`).
+Load associations explicitly (no `autoload`). `addAssociation('a.b.c')` loads nested.
 
-→ Vollständige Criteria-Referenz: [CRITERIA-SEARCH-CRITERIA.md](CRITERIA-SEARCH-CRITERIA.md)
+→ Full Criteria reference: [CRITERIA-SEARCH-CRITERIA.md](CRITERIA-SEARCH-CRITERIA.md)
