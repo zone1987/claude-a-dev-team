@@ -1,6 +1,6 @@
-# Playwright API — Eingabe-, IO- und Hilfsklassen
+# Playwright API — input, IO and helper classes
 
-| Klasse | Methoden | Events | Deep-Referenz |
+| Class | Methods | Events | Deep reference |
 |--------|----------|--------|---------------|
 | `Keyboard` | 5 | 0 | [class-keyboard.md](`API-IO-CLASS-KEYBOARD.md`) |
 | `Mouse` | 6 | 0 | [class-mouse.md](`API-IO-CLASS-MOUSE.md`) |
@@ -21,4 +21,4 @@
 | `Location` | 0 | 0 | [class-location.md](`API-IO-CLASS-LOCATION.md`) |
 | `Debugger` | 5 | 1 | [class-debugger.md](`API-IO-CLASS-DEBUGGER.md`) |
 | `Accessibility` | deprecated | — | [class-accessibility.md](`API-IO-CLASS-ACCESSIBILITY.md`) |
-| `Credentials` | Interface | — | [class-credentials.md](`API-IO-CLASS-CREDENTIALS.md`) |
+| `Credentials` | interface | — | [class-credentials.md](`API-IO-CLASS-CREDENTIALS.md`) |

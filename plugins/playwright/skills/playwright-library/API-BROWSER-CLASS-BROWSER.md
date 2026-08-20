@@ -330,7 +330,7 @@ browser.on('context', (context) => {
 | Methods | 12 |
 | Events | 2 |
 
-**Fazit:** `Browser` ist der Einstiegspunkt fuer alle Kontexte und Seiten. Die wichtigsten Methoden sind `newContext()` (mit umfangreichen Emulations-Optionen), `newPage()` (Convenience-Wrapper) und `close()`. CDP-Zugriff und Chromium-Tracing sind als Low-Level-Erweiterungen verfuegbar.
+**Summary:** `Browser` is the entry point for all contexts and pages. The most important methods are `newContext()` (with extensive emulation options), `newPage()` (convenience wrapper) and `close()`. CDP access and Chromium tracing are available as low-level extensions.
 
 ---
 
