@@ -279,11 +279,50 @@ recalled:
   plugin this is not optional: the citation plus the state file is what lets anyone confirm the
   plugin still matches upstream.
 
+## Every file is written in English
+
+This is absolute and admits no exception. The marketplace is public and international, so the
+language of the repository is English — not the language the knowledge was distilled from, and not
+the language of the conversation in which a plugin was built.
+
+**Every file in every plugin, without exception:** `SKILL.md` bodies and their frontmatter,
+every reference file, agents, commands, hooks, scripts, `README.md`, `CHANGELOG.md`, JSON
+descriptions, and the comments inside code blocks and source files. Repository-level files too:
+this document, `CONVENTIONS.md`, `README.md`, `marketplace.json`.
+
+- **The source language is irrelevant.** Knowledge distilled from `docs.shopware.com/de`, from a
+  German manual, or from a German-language conversation is written up in English. Keep the source
+  URL as it is — that is where the knowledge came from — and translate the prose around it.
+- **Translating never condenses.** A 200-line German file becomes a ~200-line English file. These
+  plugins are complete by design; a translation that summarises destroys the property the plugin
+  exists for. Verify by line count, file by file.
+- **Technical identifiers are not prose.** Class names, method names, paths, commands, environment
+  variables, API field names, URLs and CSS classes stay exactly as they are. Translate the prose
+  around them and the comments inside code blocks — never the code.
+- **The one exception is German as the subject, not the medium.** Two plugins document a
+  German-language user interface (`shopware-merchant` describes the Shopware administration,
+  `contao`'s manual domains the German Contao backend). Removing a menu label would make the text
+  useless — nobody could find the item being described. Keep the label and gloss it on first use:
+  "Click **Speichern** (Save)", "under **Seitenstruktur** (Page Structure)". The surrounding prose
+  is still fully English. The same holds for German string literals inside a code example that
+  demonstrates German data — an Austrian month-name array, a German translation payload: the data
+  stays, the explanation around it is English.
+
+Check a plugin before shipping it:
+
+```bash
+# German prose left anywhere in the plugin — must be empty
+grep -rlE '\b(der|die|das|und|werden|müssen|wird|für|mit|kann|sich)\b' plugins/<name>
+# German written without umlauts is still German — must also be empty
+grep -rliE '\b(fuer|ueber|koennen|muessen|vollstaendig|zusaetzlich|groesse)\b' plugins/<name>
+```
+
+The second check matters: transliterated German passes the first one. Treat both as blocking.
+
 ## Public repository
 
 This marketplace is public and international.
 
-- **English** for everything shipped: skills, references, agents, commands, READMEs, code comments.
 - **No personal, client or agency data** — no private e-mail addresses, no internal project names,
   no agency prefixes in identifiers. Author fields carry a GitHub handle.
 - **`license` must match reality.** `proprietary` in a public repository is a contradiction.

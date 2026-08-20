@@ -258,9 +258,12 @@ When a plugin claims authority over an API or a standard, facts are **generated,
 
 This repository is public and international.
 
-- **English for everything**: skills, reference files, agents, commands, READMEs, code comments, and
-  the repository-level documents. Where a knowledge source is German — `docs.shopware.com/de`, the
-  Contao manual — the distilled text is still written in English.
+- **English for every file, without exception**: skills and their frontmatter, reference files,
+  agents, commands, hooks, scripts, READMEs, changelogs, JSON descriptions, comments inside code,
+  and the repository-level documents. Where a knowledge source is German — `docs.shopware.com/de`,
+  the Contao manual — the distilled text is still written in English; only the source URL stays.
+  `CLAUDE.md` states the full rule, including the two plugins where a German user interface is the
+  subject rather than the medium, and the greps that prove a plugin is clean.
 - **No personal, client or agency data**: no private e-mail addresses, no internal project names, no
   agency prefixes. `author` carries a GitHub handle.
 - **`license` must match reality.** `proprietary` in a public repository is a contradiction. Where
