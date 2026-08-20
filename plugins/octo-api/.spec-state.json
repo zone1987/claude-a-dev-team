@@ -1,0 +1,28 @@
+{
+  "source": "Ventrata OCTO API",
+  "documentation": "https://docs.ventrata.com",
+  "specUrl": "https://221588849-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-M7bgGIyO7QYNOfUMfxh%2Fuploads%2Fgit-blob-fa2d8cb1d7297d352c2639e6c4c6a990f2add6d7%2Fopenapi.yaml?alt=media",
+  "blobHash": "fa2d8cb1d7297d352c2639e6c4c6a990f2add6d7",
+  "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38",
+  "specVersion": "1.0.0",
+  "openapiVersion": "3.0.3",
+  "server": "https://api.ventrata.com/octo",
+  "counts": {
+    "paths": 46,
+    "operations": 65,
+    "schemas": 139,
+    "capabilityFields": 254
+  },
+  "extractedDomains": [
+    "products",
+    "availability",
+    "bookings"
+  ],
+  "extractedGroups": [
+    "commerce",
+    "fulfilment",
+    "platform"
+  ],
+  "lastChecked": "2026-08-20",
+  "note": "The spec URL is content-addressed: resolve it with scripts/resolve_blob.py, never hardcode it. Check drift with /octo-spec-sync --check."
+}

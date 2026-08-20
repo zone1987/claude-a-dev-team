@@ -1,0 +1,228 @@
+{
+ "capabilities": {
+  "octo/campaigns": {
+   "endpoints": [
+    "GET /campaigns"
+   ],
+   "ownSchemas": [
+    "Campaign",
+    "CampaignList"
+   ],
+   "schemas": {
+    "NotifyRequest": [
+     "campaignId"
+    ]
+   }
+  },
+  "octo/content": {
+   "endpoints": [],
+   "ownSchemas": [],
+   "schemas": {
+    "Booking": [
+     "termsAccepted"
+    ],
+    "BookingWriteRequest": [
+     "termsAccepted"
+    ],
+    "Extra": [
+     "coverImageUrl",
+     "duration",
+     "durationAmount",
+     "durationUnit",
+     "shortDescription",
+     "title"
+    ],
+    "Gift": [
+     "termsAccepted"
+    ],
+    "GiftCreateRequest": [
+     "termsAccepted"
+    ],
+    "Option": [
+     "itinerary"
+    ],
+    "Order": [
+     "termsAccepted"
+    ],
+    "OrderCreateRequest": [
+     "termsAccepted"
+    ],
+    "OrderUpdateRequest": [
+     "termsAccepted"
+    ]
+   }
+  },
+  "octo/identities": {
+   "endpoints": [
+    "DELETE /identities/{identityId}",
+    "PATCH /identities/{identityId}",
+    "POST /identities"
+   ],
+   "ownSchemas": [
+    "Identity",
+    "IdentitySummary",
+    "IdentityUpsertRequest"
+   ],
+   "schemas": {
+    "Booking": [
+     "identity",
+     "identityId"
+    ],
+    "BookingWriteRequest": [
+     "identityId"
+    ],
+    "Gift": [
+     "identity",
+     "identityId"
+    ],
+    "GiftCreateRequest": [
+     "identityId"
+    ],
+    "Order": [
+     "identity",
+     "identityId"
+    ],
+    "OrderCreateRequest": [
+     "identityId"
+    ],
+    "OrderUpdateRequest": [
+     "identityId"
+    ]
+   }
+  },
+  "octo/mappings": {
+   "endpoints": [
+    "GET /mappings",
+    "PUT /mappings"
+   ],
+   "ownSchemas": [
+    "Mapping",
+    "MappingList"
+   ],
+   "schemas": {
+    "Availability": [
+     "mappings"
+    ],
+    "AvailabilityBatchRow": [
+     "mappings"
+    ],
+    "Booking": [
+     "mappings"
+    ],
+    "MappingUpsertRequest": [
+     "mappings"
+    ],
+    "PackageAvailability": [
+     "mappings"
+    ]
+   }
+  },
+  "octo/memberships": {
+   "endpoints": [
+    "GET /memberships/bookings",
+    "POST /memberships/lookup"
+   ],
+   "ownSchemas": [
+    "Membership",
+    "MembershipBenefit",
+    "MembershipContext",
+    "MembershipLookupRequest",
+    "MembershipLookupResponse"
+   ],
+   "schemas": {
+    "AvailabilityBatchRequest": [
+     "membership"
+    ],
+    "AvailabilityCalendarBatchRequest": [
+     "membership"
+    ],
+    "AvailabilityCalendarRequest": [
+     "membership"
+    ],
+    "AvailabilityRequest": [
+     "membership"
+    ],
+    "Booking": [
+     "appendMembershipValidity",
+     "membership"
+    ],
+    "BookingWriteRequest": [
+     "appendMembershipValidity",
+     "membership"
+    ],
+    "Gift": [
+     "membership"
+    ],
+    "GiftCreateRequest": [
+     "membership"
+    ],
+    "Offer": [
+     "membershipBenefit"
+    ],
+    "Order": [
+     "membership"
+    ],
+    "OrderCreateRequest": [
+     "membership"
+    ],
+    "OrderUpdateRequest": [
+     "membership"
+    ],
+    "Product": [
+     "isMembership",
+     "membershipAutoRenew"
+    ],
+    "Unit": [
+     "isMembership",
+     "membershipBenefit"
+    ]
+   }
+  },
+  "octo/notifications": {
+   "endpoints": [
+    "DELETE /notifications/subscriptions/{subscriptionId}",
+    "GET /notifications/subscriptions",
+    "GET /notifications/subscriptions/{subscriptionId}",
+    "PATCH /notifications/subscriptions/{subscriptionId}",
+    "POST /notifications/subscriptions"
+   ],
+   "ownSchemas": [
+    "NotificationSubscription",
+    "NotificationSubscriptionList",
+    "NotificationSubscriptionRequest"
+   ],
+   "schemas": {}
+  },
+  "octo/waitlists": {
+   "endpoints": [
+    "POST /waitlists"
+   ],
+   "ownSchemas": [
+    "Waitlist",
+    "WaitlistRequest",
+    "WaitlistUnit"
+   ],
+   "schemas": {}
+  },
+  "octo/webhooks": {
+   "endpoints": [
+    "DELETE /webhooks",
+    "DELETE /webhooks/{webhookId}",
+    "GET /webhooks",
+    "PATCH /webhooks/{webhookId}",
+    "POST /webhooks"
+   ],
+   "ownSchemas": [
+    "Webhook",
+    "WebhookDeleteByUrlRequest",
+    "WebhookDiffOperation",
+    "WebhookEventPayload",
+    "WebhookList",
+    "WebhookRequest"
+   ],
+   "schemas": {}
+  }
+ },
+ "group": "platform",
+ "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38"
+}

@@ -1,8 +1,8 @@
 {
   "name": "claude-a-dev-team",
   "owner": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
   "metadata": {
     "description": "Development toolkit for Claude Code — themed plugins (skills, agents, commands, hooks) for multiple web platforms: Shopware 6.7 (comprehensive) and Contao 5.x, more to come.",
@@ -16,8 +16,8 @@
       "description": "Shopware 6 plugin fundamentals: DI, services, decoration, events/subscribers, CLI, config, logging, filesystem, rate limiter, feature flags.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -52,8 +52,8 @@
       "description": "Shopware 6 Data Abstraction Layer (DAL) + project entity introspection.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -103,8 +103,8 @@
       "description": "Shopware 6 framework features: scheduled tasks, message queue, rules, flow builder, store/admin API routes, webhooks, app scripts, mail, media.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -146,8 +146,8 @@
       "description": "Shopware 6 storefront: controllers, pages, page loaders, Twig, SCSS, themes, JavaScript storefront plugins + JS plugin introspection.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -203,8 +203,8 @@
       "description": "Shopware 6 administration (Meteor/Vue 3): modules, components, routing, data handling, Pinia, services, ACL, Vite.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -250,8 +250,8 @@
       "description": "Shopware 6 CMS: custom blocks, elements and data resolvers (admin + storefront).",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -275,8 +275,8 @@
       "description": "Shopware 6 checkout: cart processors, line items, prices, tax, payment handlers, shipping, order state machine, documents, promotions.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -313,8 +313,8 @@
       "description": "Shopware 6 testing: PHPUnit (unit/integration/API), Jest (admin/storefront), Playwright E2E.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -345,8 +345,8 @@
       "description": "Shopware 6 app development: manifest, webhooks, auth, app scripts, payment/tax/CMS/flow gateways, IAP, JS/PHP SDK.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -368,8 +368,8 @@
       "description": "Shopware 6 version migrations: 6.6->6.7->6.8, Meteor/Vite/Pinia migration, deprecation handling, upgrade guides.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -394,8 +394,8 @@
       "description": "Shopware 6 quality: coding guidelines, ADR knowledge, domain exceptions, static analysis, README generator + self-updating knowledge sync.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -424,61 +424,32 @@
     {
       "name": "octo-api",
       "source": "./plugins/octo-api",
-      "description": "Vollständig dokumentierte OCTO-API (Open Connection for Tourism): Ventrata-OCTO (Core products/availability/bookings + alle Capabilities pricing/content/offers/extras/redemption/cart/webhooks/…, Header, Errors, alle Endpunkte mit Requests/Responses/Parametern) sowie die Go-City-Trade-API und der Vergleich Ventrata ↔ Go-City.",
-      "version": "1.0.0",
+      "description": "Source of truth for the OCTO tourism ticketing API: all 65 operations, 139 schemas and 254 capability fields, generated from the Ventrata OpenAPI specification and machine-verified.",
+      "version": "2.1.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
-        "ticketing",
         "octo",
         "ventrata",
         "gocity",
+        "ticketing",
         "tourism",
-        "api"
+        "api",
+        "openapi"
       ],
       "category": "development",
       "skills": [
-        "./skills/octo-overview",
-        "./skills/octo-headers",
-        "./skills/octo-errors",
-        "./skills/octo-endpoints",
+        "./skills/octo-protocol",
         "./skills/octo-products",
         "./skills/octo-availability",
         "./skills/octo-bookings",
-        "./skills/octo-pricing",
-        "./skills/octo-adjustments",
-        "./skills/octo-campaigns",
-        "./skills/octo-card-payments",
-        "./skills/octo-cart",
-        "./skills/octo-clients-implementations",
-        "./skills/octo-content",
-        "./skills/octo-extras",
-        "./skills/octo-gift-vouchers",
-        "./skills/octo-gocity-availability",
-        "./skills/octo-gocity-bookings",
-        "./skills/octo-gocity-overview",
-        "./skills/octo-gocity-products",
-        "./skills/octo-gocity-supplier",
-        "./skills/octo-identities",
-        "./skills/octo-localization",
-        "./skills/octo-mappings",
-        "./skills/octo-memberships",
-        "./skills/octo-notifications",
-        "./skills/octo-offers",
-        "./skills/octo-online-check-in",
-        "./skills/octo-packages",
-        "./skills/octo-pickups",
-        "./skills/octo-questions",
-        "./skills/octo-redemption",
-        "./skills/octo-rentals",
-        "./skills/octo-resources",
-        "./skills/octo-ventrata-vs-gocity",
-        "./skills/octo-waitlists",
-        "./skills/octo-waivers",
-        "./skills/octo-webhooks"
+        "./skills/octo-capabilities-commerce",
+        "./skills/octo-capabilities-fulfilment",
+        "./skills/octo-capabilities-platform",
+        "./skills/octo-gocity"
       ]
     },
     {
@@ -487,8 +458,8 @@
       "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -522,8 +493,8 @@
       "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, composables, api-gen, cms-base, helpers, Vue 3 / Nuxt.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -560,8 +531,8 @@
       "description": "Contao 5.x developer library: DCA, models, content elements & modules (fragment controllers), page-/fragment controllers, routing, Twig templates, insert tags, widgets, all hooks, security/filesystem/image-processing, bundles/extensions, manager-plugin.",
       "version": "1.0.1",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -634,8 +605,8 @@
       "description": "Shopware DevOps: shopware-cli commands, Symfony Flex recipes and PaaS deployment (Platform.sh).",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -689,8 +660,8 @@
       "description": "Shopware 6 Merchant/Operator knowledge — how to run the shop from the Administration: catalog, orders, customers, content, marketing, settings, sales channels (from docs.shopware.com).",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -818,8 +789,8 @@
       "description": "Konzept-Wissen für Shopware 6: Architektur, DAL, APIs, Catalog, Checkout, CMS, Rule-System, Translations, Extensions, App-System, Messaging. Beantwortet 'Wie funktioniert X architektonisch in Shopware?'",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -848,8 +819,8 @@
       "description": "Shopware 6 commercial extensions & products (developer view): B2B, Subscriptions, Advanced Search, Migration Assistant, Digital Sales Rooms, Sales Agent, Nexus.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -890,8 +861,8 @@
       "description": "flatpickr — the lightweight, dependency-free JavaScript datetime picker: getting started, all options, formatting tokens, events/hooks, instance API, localization, themes, official plugins, examples, mobile, migration.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -920,8 +891,8 @@
       "description": "Swiper — the most modern mobile touch slider: full API (all parameters, methods, events, properties), all modules (navigation, pagination, effects, autoplay, virtual, zoom, thumbs, grid, a11y, …), Swiper Element (web component) and React/Vue/Angular/Svelte/Solid integrations, migration & plugins.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -973,8 +944,8 @@
       "description": "Gotenberg — Docker-based stateless API for PDF generation & manipulation: convert HTML/Markdown/URL (Chromium) and Office (LibreOffice) to PDF, screenshots, merge/split/convert (PDF/A, PDF/UA)/flatten/encrypt/metadata/bookmarks/attachments/stamp/watermark/rotate, full configuration, routes, webhook, system & clients.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -1022,8 +993,8 @@
       "description": "Playwright — End-to-End-Testing & Browser-Automation: Test-Runner (@playwright/test), Library-API (Browser/Context/Page/Locator/Network/…), komplette API-Referenz aller Klassen, Assertions, Fixtures, Reporter, Parallelität, Trace Viewer, Codegen, CI/Docker, Emulation, Auth, Accessibility, Komponenten-Tests, Migration (Puppeteer/Selenium/Protractor), Playwright MCP & Agent-CLI.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -1079,8 +1050,8 @@
       "description": "Symfony Panther — End-to-End- & Browser-Testing für PHP: echte Browser via WebDriver (Chrome/Firefox) und headless HTTP via BrowserKit, PantherTestCase/Client/Crawler-API, Formulare & Interaktionen, Mouse/Keyboard, waitFor*-Mechanik, JavaScript-Ausführung, Screenshots, alle PANTHER_*-Umgebungsvariablen, Selenium/Proxy/SSL, Real-Time-Tests, Docker & CI.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -1113,8 +1084,8 @@
       "description": "shadcn/ui — die vollständige Bibliothek: alle ~60 Komponenten (Base-UI & Radix-UI-Variante, kompletter Quellcode, Props/Anatomy, alle Examples), 100+ Blocks, 70+ Charts, Theming/Colors/Tailwind-v4, Dark-Mode, Installation (Next/Vite/Astro/Remix/Laravel/TanStack/React-Router), CLI, components.json, eigene Registry bauen, MCP-Server, Forms, RTL, monorepo. Liefert den shadcn-MCP-Server mit.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [
@@ -1233,8 +1204,8 @@
       "description": "shadcn-vue — der Vue-Port von shadcn/ui (auf Basis von reka-ui, Tailwind v4): alle 64 Komponenten mit komplettem Vue-Quellcode, Props/Slots/Emits, allen Demos und Reka-UI-API, dazu Blocks, Charts, Theming/Colors/Dark-Mode, Installation (Vite/Nuxt/Astro/Laravel/SvelteKit u.a.), CLI, components.json, eigene Registry, Forms (vee-validate/Zod), MCP-Server. Liefert den shadcn-vue-MCP-Server mit.",
       "version": "1.0.0",
       "author": {
-        "name": "Andreas Gerhardt",
-        "email": "a.gerhardt1987@gmail.com"
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
       },
       "license": "proprietary",
       "keywords": [

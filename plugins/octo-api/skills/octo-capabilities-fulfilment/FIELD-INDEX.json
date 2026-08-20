@@ -1,0 +1,278 @@
+{
+ "capabilities": {
+  "octo/checkin": {
+   "endpoints": [
+    "POST /checkin/lookup"
+   ],
+   "ownSchemas": [],
+   "schemas": {
+    "Booking": [
+     "checkedIn",
+     "checkinAvailable",
+     "checkinUrl"
+    ]
+   }
+  },
+  "octo/extras": {
+   "endpoints": [],
+   "ownSchemas": [
+    "ExtraItem",
+    "ExtraItemRequest"
+   ],
+   "schemas": {
+    "AvailabilityCalendarBatchRequest": [
+     "extras"
+    ],
+    "Booking": [
+     "extraItems"
+    ],
+    "BookingUnitItem": [
+     "extraItems"
+    ],
+    "BookingUnitItemWriteRequest": [
+     "extraItems"
+    ],
+    "BookingWriteRequest": [
+     "extraItems"
+    ],
+    "Extra": [
+     "customRetail",
+     "customRetailOptions",
+     "restrictions"
+    ],
+    "Option": [
+     "extras"
+    ],
+    "Unit": [
+     "extras"
+    ]
+   }
+  },
+  "octo/pickups": {
+   "endpoints": [],
+   "ownSchemas": [
+    "Dispatch",
+    "PickupPoint"
+   ],
+   "schemas": {
+    "Availability": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ],
+    "AvailabilityBatchRow": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ],
+    "AvailabilityResourcesRequest": [
+     "dropoffPointId",
+     "pickupPointId"
+    ],
+    "Booking": [
+     "dropoffDispatch",
+     "dropoffHotel",
+     "dropoffNotes",
+     "dropoffPoint",
+     "dropoffPointId",
+     "dropoffRequested",
+     "pickupDispatch",
+     "pickupHotel",
+     "pickupHotelRoom",
+     "pickupNotes",
+     "pickupPoint",
+     "pickupPointId",
+     "pickupRequested"
+    ],
+    "BookingWriteRequest": [
+     "dropoffAddress",
+     "dropoffHotel",
+     "dropoffNotes",
+     "dropoffPointId",
+     "dropoffRequested",
+     "pickupAddress",
+     "pickupHotel",
+     "pickupHotelRoom",
+     "pickupNotes",
+     "pickupPointId",
+     "pickupRequested"
+    ],
+    "Option": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ],
+    "PackageAvailability": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ]
+   }
+  },
+  "octo/questions": {
+   "endpoints": [],
+   "ownSchemas": [
+    "Question",
+    "QuestionAnswer",
+    "QuestionSelectOption"
+   ],
+   "schemas": {
+    "Booking": [
+     "questionAnswers"
+    ],
+    "BookingUnitItem": [
+     "questionAnswers"
+    ],
+    "BookingUnitItemWriteRequest": [
+     "questionAnswers"
+    ],
+    "BookingWriteRequest": [
+     "questionAnswers"
+    ],
+    "Option": [
+     "questions"
+    ],
+    "Order": [
+     "questionAnswers"
+    ],
+    "OrderCreateRequest": [
+     "questionAnswers"
+    ],
+    "OrderUpdateRequest": [
+     "questionAnswers"
+    ],
+    "Unit": [
+     "questions"
+    ]
+   }
+  },
+  "octo/redemption": {
+   "endpoints": [
+    "DELETE /redemption/noshow",
+    "DELETE /redemption/redeem",
+    "GET /redemption/lookup",
+    "POST /redemption/credentials",
+    "POST /redemption/noshow",
+    "POST /redemption/redeem"
+   ],
+   "ownSchemas": [
+    "Redemption",
+    "RedemptionScan"
+   ],
+   "schemas": {
+    "BookingUnitItem": [
+     "scans"
+    ]
+   }
+  },
+  "octo/rentals": {
+   "endpoints": [],
+   "ownSchemas": [
+    "RentalDuration"
+   ],
+   "schemas": {
+    "AvailabilityCalendarBatchRequest": [
+     "rentalDurationId"
+    ],
+    "Booking": [
+     "rentalDuration",
+     "rentalDurationId"
+    ],
+    "BookingWriteRequest": [
+     "rentalDurationId"
+    ],
+    "Option": [
+     "rentalDurations"
+    ],
+    "Product": [
+     "isRental"
+    ]
+   }
+  },
+  "octo/resources": {
+   "endpoints": [
+    "GET /availability/resources",
+    "POST /availability/resources"
+   ],
+   "ownSchemas": [
+    "ResourceAllocation",
+    "ResourceAvailability",
+    "ResourceAvailabilityList",
+    "ResourceGroupSummary",
+    "ResourceSeat",
+    "ResourceSummary"
+   ],
+   "schemas": {
+    "Availability": [
+     "hasResources"
+    ],
+    "AvailabilityBatchRow": [
+     "hasResources"
+    ],
+    "AvailabilityResourcesRequest": [
+     "resourceAllocations"
+    ],
+    "Booking": [
+     "resourceAllocations"
+    ],
+    "BookingWriteRequest": [
+     "resourceAllocations"
+    ],
+    "PackageAvailability": [
+     "hasResources"
+    ]
+   }
+  },
+  "octo/waivers": {
+   "endpoints": [],
+   "ownSchemas": [
+    "Waiver",
+    "WaiverField",
+    "WaiverFieldValue"
+   ],
+   "schemas": {
+    "Booking": [
+     "waiverFieldValues",
+     "waiverFileUrl",
+     "waiverId",
+     "waiversComplete"
+    ],
+    "BookingUnitItem": [
+     "waiverFieldValues",
+     "waiverFileUrl",
+     "waiverId",
+     "waiversComplete"
+    ],
+    "BookingUnitItemWriteRequest": [
+     "waiverFieldValues",
+     "waiverFile",
+     "waiverId"
+    ],
+    "BookingWriteRequest": [
+     "waiverFieldValues",
+     "waiverFile",
+     "waiverId"
+    ],
+    "Product": [
+     "waiverPer",
+     "waiverRequired",
+     "waivers"
+    ]
+   }
+  }
+ },
+ "group": "fulfilment",
+ "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38"
+}

@@ -1,19 +1,33 @@
 {
   "name": "octo-api",
-  "version": "1.0.0",
-  "description": "Vollständig dokumentierte OCTO-API (Open Connection for Tourism): Ventrata-OCTO (Core products/availability/bookings + alle Capabilities pricing/content/offers/extras/redemption/cart/webhooks/…, Header, Errors, alle Endpunkte mit Requests/Responses/Parametern) sowie die Go-City-Trade-API und der Vergleich Ventrata ↔ Go-City.",
+  "displayName": "OCTO API",
+  "version": "2.1.0",
+  "description": "Source of truth for the OCTO tourism ticketing API: all 65 operations, 139 schemas and 254 capability fields, generated from the Ventrata OpenAPI specification and machine-verified.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
+  "homepage": "https://github.com/zone1987/claude-a-dev-team",
+  "repository": "https://github.com/zone1987/claude-a-dev-team",
+  "license": "MIT",
   "keywords": [
-    "ticketing",
     "octo",
     "ventrata",
     "gocity",
+    "ticketing",
     "tourism",
-    "api"
+    "api",
+    "openapi"
   ],
-  "category": "development"
+  "category": "development",
+  "skills": [
+    "./skills/octo-protocol",
+    "./skills/octo-products",
+    "./skills/octo-availability",
+    "./skills/octo-bookings",
+    "./skills/octo-capabilities-commerce",
+    "./skills/octo-capabilities-fulfilment",
+    "./skills/octo-capabilities-platform",
+    "./skills/octo-gocity"
+  ]
 }

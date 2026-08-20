@@ -1,0 +1,302 @@
+{
+ "capabilities": {
+  "octo/adjustments": {
+   "endpoints": [],
+   "ownSchemas": [
+    "Adjustment"
+   ],
+   "schemas": {
+    "Booking": [
+     "adjustments"
+    ]
+   }
+  },
+  "octo/cardPayments": {
+   "endpoints": [
+    "GET /card_payments/{cardPaymentId}"
+   ],
+   "ownSchemas": [],
+   "schemas": {}
+  },
+  "octo/cart": {
+   "endpoints": [
+    "DELETE /orders/{orderId}",
+    "GET /orders",
+    "GET /orders/{orderId}",
+    "PATCH /orders/{orderId}",
+    "PATCH /orders/{orderId}/preview",
+    "POST /orders",
+    "POST /orders/{orderId}/cancel",
+    "POST /orders/{orderId}/confirm",
+    "POST /orders/{orderId}/extend",
+    "POST /orders/{orderId}/notify"
+   ],
+   "ownSchemas": [
+    "Order",
+    "OrderList"
+   ],
+   "schemas": {
+    "Booking": [
+     "orderId",
+     "orderInvoicePdfUrl",
+     "orderReference",
+     "primary"
+    ],
+    "BookingWriteRequest": [
+     "orderId"
+    ],
+    "Error": [
+     "orderId"
+    ],
+    "Gift": [
+     "orderId",
+     "orderInvoicePdfUrl",
+     "orderReference",
+     "primary"
+    ],
+    "GiftCreateRequest": [
+     "orderId"
+    ]
+   }
+  },
+  "octo/gifts": {
+   "endpoints": [
+    "DELETE /gifts/{uuid}",
+    "GET /gifts",
+    "GET /gifts/{uuid}",
+    "PATCH /gifts/{uuid}",
+    "PATCH /gifts/{uuid}/preview",
+    "POST /gifts",
+    "POST /gifts/{uuid}/cancel",
+    "POST /gifts/{uuid}/confirm",
+    "POST /gifts/{uuid}/extend",
+    "POST /gifts/{uuid}/notify"
+   ],
+   "ownSchemas": [
+    "GiftPayment",
+    "GiftPaymentRequest"
+   ],
+   "schemas": {
+    "Booking": [
+     "giftPayment"
+    ],
+    "BookingWriteRequest": [
+     "giftPayment"
+    ],
+    "Gift": [
+     "giftPayment"
+    ],
+    "GiftCreateRequest": [
+     "giftPayment"
+    ],
+    "Order": [
+     "giftPayment",
+     "gifts"
+    ],
+    "OrderCreateRequest": [
+     "gifts"
+    ],
+    "OrderUpdateRequest": [
+     "gifts"
+    ]
+   }
+  },
+  "octo/offers": {
+   "endpoints": [
+    "GET /offers"
+   ],
+   "ownSchemas": [
+    "Offer",
+    "OfferCombination",
+    "OfferCombinationUnit",
+    "OfferComparison",
+    "OfferDiscount",
+    "OfferDiscountIncludedTax",
+    "OfferList",
+    "OfferRestrictions"
+   ],
+   "schemas": {
+    "Availability": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "AvailabilityBatchRow": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "AvailabilityCalendar": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "AvailabilityCalendarBatchRequest": [
+     "offerCode"
+    ],
+    "AvailabilityCalendarBatchRow": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "Booking": [
+     "offerCode",
+     "offerComparisons",
+     "offerIsCombination",
+     "offerTitle"
+    ],
+    "BookingUnitItem": [
+     "offerCode",
+     "offerComparisons",
+     "offerIsCombination",
+     "offerTitle"
+    ],
+    "BookingWriteRequest": [
+     "offerCode"
+    ],
+    "ExtraPricing": [
+     "offerDiscount"
+    ],
+    "Gift": [
+     "offer",
+     "offerCode",
+     "offerComparisons",
+     "offerIsCombination",
+     "offerTitle",
+     "offers"
+    ],
+    "GiftCreateRequest": [
+     "offerCode"
+    ],
+    "Order": [
+     "offerCombinations"
+    ],
+    "OrderUpdateRequest": [
+     "offers"
+    ],
+    "PackageAvailability": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "Pricing": [
+     "offerDiscount"
+    ],
+    "UnitPricing": [
+     "offerDiscount"
+    ]
+   }
+  },
+  "octo/packages": {
+   "endpoints": [],
+   "ownSchemas": [
+    "PackageBooking",
+    "PackageInclude",
+    "PackageIncludeItem"
+   ],
+   "schemas": {
+    "Availability": [
+     "packageAvailabilities"
+    ],
+    "AvailabilityBatchRow": [
+     "packageAvailabilities"
+    ],
+    "Booking": [
+     "packageIncludeId",
+     "packageUnitItemUuid",
+     "packageUuid"
+    ],
+    "BookingUnitItem": [
+     "packageIncludeId",
+     "packageUnitItemUuid"
+    ],
+    "Option": [
+     "packageIncludes"
+    ],
+    "PackageAvailability": [
+     "packageAvailabilities"
+    ],
+    "Product": [
+     "isPackage",
+     "isPackagePass",
+     "packageProduct"
+    ]
+   }
+  },
+  "octo/pricing": {
+   "endpoints": [],
+   "ownSchemas": [],
+   "schemas": {
+    "Availability": [
+     "extraPricing",
+     "pricing",
+     "unitPricing"
+    ],
+    "AvailabilityBatchRow": [
+     "extraPricing",
+     "pricing",
+     "unitPricing"
+    ],
+    "AvailabilityCalendar": [
+     "extraPricingFrom",
+     "pricingFrom",
+     "unitPricingFrom"
+    ],
+    "AvailabilityCalendarBatchRow": [
+     "extraPricingFrom",
+     "pricingFrom",
+     "unitPricingFrom"
+    ],
+    "Booking": [
+     "pricing"
+    ],
+    "BookingUnitItem": [
+     "pricing"
+    ],
+    "Error": [
+     "availableCurrencies",
+     "pricing"
+    ],
+    "ExtraPricing": [
+     "includedTaxes"
+    ],
+    "Gift": [
+     "pricing"
+    ],
+    "Option": [
+     "pricing",
+     "pricingFrom"
+    ],
+    "Order": [
+     "pricing"
+    ],
+    "PackageAvailability": [
+     "extraPricing",
+     "pricing",
+     "unitPricing"
+    ],
+    "Pricing": [
+     "includedTaxes"
+    ],
+    "Product": [
+     "availableCurrencies",
+     "defaultCurrency",
+     "hidePricingFrom",
+     "includeTax",
+     "includedTaxes",
+     "pricingMultiplier",
+     "pricingPer"
+    ],
+    "Unit": [
+     "pricing",
+     "pricingFrom"
+    ],
+    "UnitPricing": [
+     "includedTaxes"
+    ]
+   }
+  }
+ },
+ "group": "commerce",
+ "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38"
+}

@@ -1,0 +1,830 @@
+{
+ "domain": "bookings",
+ "endpoints": {
+  "GET /bookings": {
+   "enums": [],
+   "params": [
+    "availabilityId",
+    "contactEmailAddress",
+    "contactLastName",
+    "contactPhoneNumber",
+    "localDate",
+    "localDateEnd",
+    "localDateStart",
+    "optionId",
+    "page",
+    "perPage",
+    "productId",
+    "resellerReference",
+    "status",
+    "statuses",
+    "supplierReference",
+    "tag",
+    "utcCancelledAtEnd",
+    "utcCancelledAtStart",
+    "utcCreatedAtEnd",
+    "utcCreatedAtStart",
+    "utcNoshowedAtEnd",
+    "utcNoshowedAtStart",
+    "utcRebookedAtEnd",
+    "utcRebookedAtStart",
+    "utcRedeemedAtEnd",
+    "utcRedeemedAtStart",
+    "utcUpdatedAtEnd",
+    "utcUpdatedAtStart"
+   ]
+  },
+  "GET /bookings/{uuid}": {
+   "enums": [],
+   "params": [
+    "uuid"
+   ]
+  },
+  "PATCH /bookings/{uuid}": {
+   "enums": [],
+   "params": [
+    "uuid"
+   ]
+  },
+  "POST /bookings": {
+   "enums": [],
+   "params": []
+  },
+  "POST /bookings/{uuid}/cancel": {
+   "enums": [],
+   "params": [
+    "uuid"
+   ]
+  },
+  "POST /bookings/{uuid}/confirm": {
+   "enums": [],
+   "params": [
+    "uuid"
+   ]
+  },
+  "POST /bookings/{uuid}/extend": {
+   "enums": [],
+   "params": [
+    "uuid"
+   ]
+  }
+ },
+ "schemas": {
+  "Adjustment": {
+   "base": [
+    "amount",
+    "netDiscount",
+    "notes",
+    "per",
+    "quantity"
+   ],
+   "capabilities": {},
+   "enums": [
+    "BOOKING",
+    "FULL",
+    "MANUAL",
+    "NONE",
+    "PERCENTAGE",
+    "PRORATED",
+    "SPLIT",
+    "UNIT"
+   ],
+   "required": []
+  },
+  "Booking": {
+   "base": [
+    "active",
+    "agent",
+    "alias",
+    "availabilityId",
+    "availabilityLocalDateEnd",
+    "availabilityLocalDateStart",
+    "cancellable",
+    "cancellation",
+    "cardPayment",
+    "confirmable",
+    "contact",
+    "currency",
+    "deliveryMethods",
+    "driver",
+    "emailReceipt",
+    "freesale",
+    "guide",
+    "id",
+    "invoicePdfUrl",
+    "label",
+    "localDateTimeEnd",
+    "localDateTimeStart",
+    "metadata",
+    "notes",
+    "optionId",
+    "originalRebookingUuid",
+    "productId",
+    "quote",
+    "rebookingUuid",
+    "rejection",
+    "requiredContactFields",
+    "reseller",
+    "resellerReference",
+    "returnUrl",
+    "seller",
+    "settlementMethod",
+    "status",
+    "supplierReference",
+    "tags",
+    "testMode",
+    "tickets",
+    "unitItems",
+    "updatable",
+    "user",
+    "utcConfirmedAt",
+    "utcCreatedAt",
+    "utcExpiresAt",
+    "utcNoshowedAt",
+    "utcRebookedAt",
+    "utcRedeemedAt",
+    "utcUpdatedAt",
+    "uuid",
+    "visibleContactFields",
+    "voucher"
+   ],
+   "capabilities": {
+    "octo/adjustments": [
+     "adjustments"
+    ],
+    "octo/cart": [
+     "orderId",
+     "orderInvoicePdfUrl",
+     "orderReference",
+     "primary"
+    ],
+    "octo/checkin": [
+     "checkedIn",
+     "checkinAvailable",
+     "checkinUrl"
+    ],
+    "octo/content": [
+     "termsAccepted"
+    ],
+    "octo/extras": [
+     "extraItems"
+    ],
+    "octo/gifts": [
+     "giftPayment"
+    ],
+    "octo/identities": [
+     "identity",
+     "identityId"
+    ],
+    "octo/mappings": [
+     "mappings"
+    ],
+    "octo/memberships": [
+     "appendMembershipValidity",
+     "membership"
+    ],
+    "octo/offers": [
+     "offerCode",
+     "offerComparisons",
+     "offerIsCombination",
+     "offerTitle"
+    ],
+    "octo/packages": [
+     "packageIncludeId",
+     "packageUnitItemUuid",
+     "packageUuid"
+    ],
+    "octo/pickups": [
+     "dropoffDispatch",
+     "dropoffHotel",
+     "dropoffNotes",
+     "dropoffPoint",
+     "dropoffPointId",
+     "dropoffRequested",
+     "pickupDispatch",
+     "pickupHotel",
+     "pickupHotelRoom",
+     "pickupNotes",
+     "pickupPoint",
+     "pickupPointId",
+     "pickupRequested"
+    ],
+    "octo/pricing": [
+     "pricing"
+    ],
+    "octo/questions": [
+     "questionAnswers"
+    ],
+    "octo/rentals": [
+     "rentalDuration",
+     "rentalDurationId"
+    ],
+    "octo/resources": [
+     "resourceAllocations"
+    ],
+    "octo/waivers": [
+     "waiverFieldValues",
+     "waiverFileUrl",
+     "waiverId",
+     "waiversComplete"
+    ]
+   },
+   "enums": [
+    "CANCELLED",
+    "CONFIRMED",
+    "EXPIRED",
+    "NO_SHOW",
+    "ON_HOLD",
+    "PENDING",
+    "QUOTE",
+    "REBOOKED",
+    "REDEEMED",
+    "REJECTED"
+   ],
+   "required": [
+    "optionId",
+    "status",
+    "uuid"
+   ]
+  },
+  "BookingActor": {
+   "base": [
+    "emailAddress",
+    "id",
+    "name",
+    "phoneNumber",
+    "reference",
+    "tags"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "BookingCancellation": {
+   "base": [
+    "reason",
+    "refund",
+    "utcCancelledAt"
+   ],
+   "capabilities": {},
+   "enums": [
+    "FULL",
+    "NONE",
+    "PARTIAL"
+   ],
+   "required": []
+  },
+  "BookingLabel": {
+   "base": [
+    "id",
+    "name"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "BookingRejection": {
+   "base": [
+    "reason",
+    "utcRejectedAt"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "BookingUnitItem": {
+   "base": [
+    "alias",
+    "contact",
+    "id",
+    "localDateTimeEnd",
+    "localDateTimeStart",
+    "originalRebookingUnitItemUuid",
+    "originalRebookingUuid",
+    "rebookingUnitItemUuid",
+    "rebookingUuid",
+    "requiredContactFields",
+    "resellerReference",
+    "status",
+    "supplierReference",
+    "ticket",
+    "unitId",
+    "unitType",
+    "utcNoshowedAt",
+    "utcRebookedAt",
+    "utcRedeemedAt",
+    "uuid",
+    "visibleContactFields",
+    "weightUnit",
+    "weightValue"
+   ],
+   "capabilities": {
+    "octo/extras": [
+     "extraItems"
+    ],
+    "octo/offers": [
+     "offerCode",
+     "offerComparisons",
+     "offerIsCombination",
+     "offerTitle"
+    ],
+    "octo/packages": [
+     "packageIncludeId",
+     "packageUnitItemUuid"
+    ],
+    "octo/pricing": [
+     "pricing"
+    ],
+    "octo/questions": [
+     "questionAnswers"
+    ],
+    "octo/redemption": [
+     "scans"
+    ],
+    "octo/waivers": [
+     "waiverFieldValues",
+     "waiverFileUrl",
+     "waiverId",
+     "waiversComplete"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "status",
+    "uuid"
+   ]
+  },
+  "CardPayment": {
+   "base": [
+    "adyen",
+    "amount",
+    "balance",
+    "cardPaymentId",
+    "createdAt",
+    "currency",
+    "currencyPrecision",
+    "external",
+    "gateway",
+    "id",
+    "outstandingBalance",
+    "paid",
+    "paidSurcharge",
+    "provider",
+    "providerReference",
+    "reusableCards",
+    "source",
+    "status",
+    "surcharge",
+    "totalPaid",
+    "totalRefunded"
+   ],
+   "capabilities": {},
+   "enums": [
+    "ECOM",
+    "MOTO",
+    "POS",
+    "adyen",
+    "external"
+   ],
+   "required": [
+    "status"
+   ]
+  },
+  "CardPaymentAdyen": {
+   "base": [
+    "clientKey",
+    "countryCode",
+    "environment",
+    "paymentMethodsConfiguration",
+    "session"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "CardPaymentAdyenSession": {
+   "base": [
+    "id",
+    "sessionData"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "CardPaymentExternal": {
+   "base": [],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Contact": {
+   "base": [
+    "age",
+    "allowMarketing",
+    "birthdate",
+    "city",
+    "company",
+    "country",
+    "emailAddress",
+    "firstName",
+    "fullName",
+    "id",
+    "lastName",
+    "locales",
+    "notes",
+    "phoneNumber",
+    "photoUrl",
+    "postalCode",
+    "state",
+    "streetAddress",
+    "tags",
+    "taxId",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Dispatch": {
+   "base": [
+    "area",
+    "driver",
+    "guide",
+    "id",
+    "notes",
+    "vehicle"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "ExtraItem": {
+   "base": [
+    "contact",
+    "extraId",
+    "id",
+    "offerCode",
+    "offerComparisons",
+    "offerIsCombination",
+    "offerTitle",
+    "pricing",
+    "requiredContactFields",
+    "resellerReference",
+    "retail",
+    "status",
+    "supplierReference",
+    "ticket",
+    "utcRedeemedAt",
+    "uuid",
+    "visibleContactFields"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "GiftPayment": {
+   "base": [
+    "amount",
+    "code",
+    "currency",
+    "giftCode"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "IdentitySummary": {
+   "base": [
+    "id",
+    "key"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "IncludedTax": {
+   "base": [
+    "name",
+    "net",
+    "original",
+    "retail",
+    "shortDescription"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "name",
+    "original",
+    "retail"
+   ]
+  },
+  "Mapping": {
+   "base": [
+    "optionId",
+    "optionRequired",
+    "productId",
+    "resellerProduct",
+    "resellerReference",
+    "resellerStatus",
+    "unitId",
+    "unitRequired",
+    "validityDays",
+    "webhookUrl"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "optionId",
+    "resellerReference"
+   ]
+  },
+  "Membership": {
+   "base": [
+    "availabilityLocalDateEnd",
+    "availabilityLocalDateStart",
+    "contact",
+    "id",
+    "reference",
+    "resellerReference",
+    "supplierReference",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "availabilityLocalDateEnd",
+    "availabilityLocalDateStart",
+    "id",
+    "title"
+   ]
+  },
+  "MembershipBenefit": {
+   "base": [
+    "description",
+    "id",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Metadata": {
+   "base": [],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Offer": {
+   "base": [
+    "code",
+    "description",
+    "id",
+    "label",
+    "netDiscount",
+    "restrictions",
+    "tags",
+    "title",
+    "unusableReason",
+    "usable"
+   ],
+   "capabilities": {
+    "octo/memberships": [
+     "membershipBenefit"
+    ]
+   },
+   "enums": [
+    "FULL",
+    "NONE",
+    "PRORATED",
+    "SPLIT"
+   ],
+   "required": [
+    "id"
+   ]
+  },
+  "OfferComparison": {
+   "base": [
+    "offer",
+    "offerCode",
+    "offerTitle",
+    "pricing"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "OfferDiscount": {
+   "base": [
+    "includedTaxes",
+    "net",
+    "retail"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "includedTaxes",
+    "retail"
+   ]
+  },
+  "OfferDiscountIncludedTax": {
+   "base": [
+    "name",
+    "net",
+    "retail",
+    "shortDescription"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "name",
+    "retail"
+   ]
+  },
+  "OfferRestrictions": {
+   "base": [
+    "maxTotal",
+    "maxUnits",
+    "minTotal",
+    "minUnits",
+    "unitIds"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "PickupPoint": {
+   "base": [
+    "address",
+    "country",
+    "directions",
+    "googlePlaceId",
+    "id",
+    "latitude",
+    "localDateTime",
+    "localDateTimeTo",
+    "locality",
+    "longitude",
+    "name",
+    "postalCode",
+    "region",
+    "state",
+    "street"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Pricing": {
+   "base": [
+    "currency",
+    "currencyPrecision",
+    "net",
+    "original",
+    "retail"
+   ],
+   "capabilities": {
+    "octo/offers": [
+     "offerDiscount"
+    ],
+    "octo/pricing": [
+     "includedTaxes"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "currency",
+    "currencyPrecision",
+    "original",
+    "retail"
+   ]
+  },
+  "QuestionAnswer": {
+   "base": [
+    "questionId",
+    "value"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "questionId"
+   ]
+  },
+  "RedemptionScan": {
+   "base": [
+    "id",
+    "seller",
+    "status",
+    "utcScannedAt"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "RentalDuration": {
+   "base": [
+    "description",
+    "duration",
+    "durationAmount",
+    "durationUnit",
+    "id",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "ResourceAllocation": {
+   "base": [
+    "paxCount",
+    "resource",
+    "resourceGroup",
+    "resourceGroupId",
+    "resourceId",
+    "seatIds",
+    "seats"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "ResourceGroupSummary": {
+   "base": [
+    "id",
+    "required",
+    "split",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "ResourceSeat": {
+   "base": [
+    "column",
+    "id",
+    "row",
+    "status"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "ResourceSummary": {
+   "base": [
+    "capacity",
+    "id",
+    "seating",
+    "seats",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "ReusableCard": {
+   "base": [
+    "bin",
+    "brand",
+    "expMonth",
+    "expYear",
+    "id",
+    "last4"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Ticket": {
+   "base": [
+    "deliveryOptions",
+    "redemptionMethod",
+    "utcNoshowedAt",
+    "utcRedeemedAt"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "TicketDeliveryOption": {
+   "base": [
+    "deliveryFormat",
+    "deliveryValue"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "WaiverFieldValue": {
+   "base": [
+    "fieldId",
+    "value"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "fieldId"
+   ]
+  }
+ },
+ "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38"
+}

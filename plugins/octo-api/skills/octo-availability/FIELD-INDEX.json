@@ -1,0 +1,438 @@
+{
+ "domain": "availability",
+ "endpoints": {
+  "GET /availability/resources": {
+   "enums": [],
+   "params": []
+  },
+  "POST /availability": {
+   "enums": [],
+   "params": []
+  },
+  "POST /availability/batch": {
+   "enums": [],
+   "params": []
+  },
+  "POST /availability/calendar": {
+   "enums": [],
+   "params": []
+  },
+  "POST /availability/calendar/batch": {
+   "enums": [],
+   "params": []
+  },
+  "POST /availability/resources": {
+   "enums": [],
+   "params": []
+  }
+ },
+ "schemas": {
+  "Availability": {
+   "base": [
+    "allDay",
+    "available",
+    "capacity",
+    "id",
+    "localDateTimeEnd",
+    "localDateTimeStart",
+    "maxPaxCount",
+    "maxUnits",
+    "openingHours",
+    "paxCount",
+    "reference",
+    "status",
+    "statusMessage",
+    "utcCutoffAt",
+    "utcOnsaleAt",
+    "vacancies"
+   ],
+   "capabilities": {
+    "octo/mappings": [
+     "mappings"
+    ],
+    "octo/offers": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "octo/packages": [
+     "packageAvailabilities"
+    ],
+    "octo/pickups": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ],
+    "octo/pricing": [
+     "extraPricing",
+     "pricing",
+     "unitPricing"
+    ],
+    "octo/resources": [
+     "hasResources"
+    ]
+   },
+   "enums": [
+    "AVAILABLE",
+    "CLOSED",
+    "FREESALE",
+    "LIMITED",
+    "SOLD_OUT"
+   ],
+   "required": [
+    "allDay",
+    "available",
+    "id",
+    "localDateTimeEnd",
+    "localDateTimeStart",
+    "openingHours",
+    "status",
+    "statusMessage",
+    "utcCutoffAt"
+   ]
+  },
+  "AvailabilityCalendar": {
+   "base": [
+    "availabilityLocalStartTimes",
+    "available",
+    "availableWeight",
+    "capacity",
+    "localDate",
+    "maxPaxCount",
+    "maxUnits",
+    "maxWeight",
+    "openingHours",
+    "paxCount",
+    "paxWeight",
+    "status",
+    "statusMessage",
+    "utcCutoffAt",
+    "utcOnsaleAt",
+    "vacancies",
+    "weightUnit"
+   ],
+   "capabilities": {
+    "octo/offers": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "octo/pricing": [
+     "extraPricingFrom",
+     "pricingFrom",
+     "unitPricingFrom"
+    ]
+   },
+   "enums": [
+    "AVAILABLE",
+    "CLOSED",
+    "FREESALE",
+    "LIMITED",
+    "SOLD_OUT"
+   ],
+   "required": [
+    "availabilityLocalStartTimes",
+    "available",
+    "localDate",
+    "openingHours",
+    "status",
+    "statusMessage",
+    "utcCutoffAt"
+   ]
+  },
+  "ExtraPricing": {
+   "base": [
+    "currency",
+    "currencyPrecision",
+    "extraId",
+    "net",
+    "original",
+    "retail"
+   ],
+   "capabilities": {
+    "octo/offers": [
+     "offerDiscount"
+    ],
+    "octo/pricing": [
+     "includedTaxes"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "currency",
+    "currencyPrecision",
+    "extraId",
+    "original",
+    "retail"
+   ]
+  },
+  "IncludedTax": {
+   "base": [
+    "name",
+    "net",
+    "original",
+    "retail",
+    "shortDescription"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "name",
+    "original",
+    "retail"
+   ]
+  },
+  "Mapping": {
+   "base": [
+    "optionId",
+    "optionRequired",
+    "productId",
+    "resellerProduct",
+    "resellerReference",
+    "resellerStatus",
+    "unitId",
+    "unitRequired",
+    "validityDays",
+    "webhookUrl"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "optionId",
+    "resellerReference"
+   ]
+  },
+  "MembershipBenefit": {
+   "base": [
+    "description",
+    "id",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Offer": {
+   "base": [
+    "code",
+    "description",
+    "id",
+    "label",
+    "netDiscount",
+    "restrictions",
+    "tags",
+    "title",
+    "unusableReason",
+    "usable"
+   ],
+   "capabilities": {
+    "octo/memberships": [
+     "membershipBenefit"
+    ]
+   },
+   "enums": [
+    "FULL",
+    "NONE",
+    "PRORATED",
+    "SPLIT"
+   ],
+   "required": [
+    "id"
+   ]
+  },
+  "OfferDiscount": {
+   "base": [
+    "includedTaxes",
+    "net",
+    "retail"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "includedTaxes",
+    "retail"
+   ]
+  },
+  "OfferDiscountIncludedTax": {
+   "base": [
+    "name",
+    "net",
+    "retail",
+    "shortDescription"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "name",
+    "retail"
+   ]
+  },
+  "OfferRestrictions": {
+   "base": [
+    "maxTotal",
+    "maxUnits",
+    "minTotal",
+    "minUnits",
+    "unitIds"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "OpeningHoursRange": {
+   "base": [
+    "from",
+    "to"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "PackageAvailability": {
+   "base": [
+    "allDay",
+    "available",
+    "capacity",
+    "id",
+    "localDateTimeEnd",
+    "localDateTimeStart",
+    "maxPaxCount",
+    "maxUnits",
+    "openingHours",
+    "packageIncludeId",
+    "paxCount",
+    "reference",
+    "status",
+    "statusMessage",
+    "utcCutoffAt",
+    "utcOnsaleAt",
+    "vacancies"
+   ],
+   "capabilities": {
+    "octo/mappings": [
+     "mappings"
+    ],
+    "octo/offers": [
+     "offer",
+     "offerCode",
+     "offers"
+    ],
+    "octo/packages": [
+     "packageAvailabilities"
+    ],
+    "octo/pickups": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ],
+    "octo/pricing": [
+     "extraPricing",
+     "pricing",
+     "unitPricing"
+    ],
+    "octo/resources": [
+     "hasResources"
+    ]
+   },
+   "enums": [
+    "AVAILABLE",
+    "CLOSED",
+    "FREESALE",
+    "LIMITED",
+    "SOLD_OUT"
+   ],
+   "required": [
+    "allDay",
+    "available",
+    "id",
+    "localDateTimeEnd",
+    "localDateTimeStart",
+    "openingHours",
+    "status",
+    "statusMessage",
+    "utcCutoffAt"
+   ]
+  },
+  "PickupPoint": {
+   "base": [
+    "address",
+    "country",
+    "directions",
+    "googlePlaceId",
+    "id",
+    "latitude",
+    "localDateTime",
+    "localDateTimeTo",
+    "locality",
+    "longitude",
+    "name",
+    "postalCode",
+    "region",
+    "state",
+    "street"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Pricing": {
+   "base": [
+    "currency",
+    "currencyPrecision",
+    "net",
+    "original",
+    "retail"
+   ],
+   "capabilities": {
+    "octo/offers": [
+     "offerDiscount"
+    ],
+    "octo/pricing": [
+     "includedTaxes"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "currency",
+    "currencyPrecision",
+    "original",
+    "retail"
+   ]
+  },
+  "UnitPricing": {
+   "base": [
+    "currency",
+    "currencyPrecision",
+    "net",
+    "original",
+    "retail",
+    "unitId",
+    "unitType"
+   ],
+   "capabilities": {
+    "octo/offers": [
+     "offerDiscount"
+    ],
+    "octo/pricing": [
+     "includedTaxes"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "currency",
+    "currencyPrecision",
+    "original",
+    "retail",
+    "unitId",
+    "unitType"
+   ]
+  }
+ },
+ "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38"
+}

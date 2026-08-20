@@ -1,0 +1,504 @@
+{
+ "domain": "products",
+ "endpoints": {
+  "GET /products": {
+   "enums": [],
+   "params": [
+    "categoryId",
+    "currency",
+    "destinationId",
+    "featured",
+    "membership[country]",
+    "membership[email]",
+    "membership[id]",
+    "membership[mobile]",
+    "membership[reference]",
+    "membership[verification]",
+    "offerCode",
+    "productIds[]"
+   ]
+  },
+  "GET /products/{productId}": {
+   "enums": [],
+   "params": [
+    "Accept-Language",
+    "Octo-Capabilities",
+    "currency",
+    "membership[country]",
+    "membership[email]",
+    "membership[id]",
+    "membership[mobile]",
+    "membership[reference]",
+    "membership[verification]",
+    "offerCode",
+    "productId"
+   ]
+  }
+ },
+ "schemas": {
+  "Extra": {
+   "base": [
+    "id",
+    "internalName",
+    "pricing",
+    "pricingFrom",
+    "reference",
+    "tags"
+   ],
+   "capabilities": {
+    "octo/content": [
+     "coverImageUrl",
+     "duration",
+     "durationAmount",
+     "durationUnit",
+     "shortDescription",
+     "title"
+    ],
+    "octo/extras": [
+     "customRetail",
+     "customRetailOptions",
+     "restrictions"
+    ]
+   },
+   "enums": [],
+   "required": []
+  },
+  "ExtraRestrictions": {
+   "base": [
+    "accompaniedBy",
+    "accompaniedByRatio",
+    "accompaniedByRatioDenominator",
+    "default",
+    "idRequired",
+    "maxCustomRetail",
+    "maxQuantity",
+    "minCustomRetail",
+    "minQuantity",
+    "notAccompaniedBy",
+    "paxCount",
+    "required"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "IncludedTax": {
+   "base": [
+    "name",
+    "net",
+    "original",
+    "retail",
+    "shortDescription"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "name",
+    "original",
+    "retail"
+   ]
+  },
+  "ItineraryItem": {
+   "base": [
+    "address",
+    "description",
+    "duration",
+    "durationAmount",
+    "durationUnit",
+    "googlePlaceId",
+    "latitude",
+    "longitude",
+    "name",
+    "travelTime",
+    "travelTimeAmount",
+    "travelTimeUnit",
+    "type"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "MembershipBenefit": {
+   "base": [
+    "description",
+    "id",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "OfferDiscount": {
+   "base": [
+    "includedTaxes",
+    "net",
+    "retail"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "includedTaxes",
+    "retail"
+   ]
+  },
+  "OfferDiscountIncludedTax": {
+   "base": [
+    "name",
+    "net",
+    "retail",
+    "shortDescription"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "name",
+    "retail"
+   ]
+  },
+  "OperatorSummary": {
+   "base": [
+    "id",
+    "name"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Option": {
+   "base": [
+    "availabilityCutoff",
+    "availabilityCutoffAmount",
+    "availabilityCutoffUnit",
+    "availabilityLocalDateEnd",
+    "availabilityLocalDateStart",
+    "availabilityLocalStartTimes",
+    "availabilityNotice",
+    "availabilityNoticeAmount",
+    "availabilityNoticeUnit",
+    "cancellationCutoff",
+    "cancellationCutoffAmount",
+    "cancellationCutoffUnit",
+    "default",
+    "id",
+    "internalName",
+    "reference",
+    "requiredContactFields",
+    "restrictions",
+    "tags",
+    "units",
+    "visibleContactFields"
+   ],
+   "capabilities": {
+    "octo/content": [
+     "itinerary"
+    ],
+    "octo/extras": [
+     "extras"
+    ],
+    "octo/packages": [
+     "packageIncludes"
+    ],
+    "octo/pickups": [
+     "dropoffAvailable",
+     "dropoffPoints",
+     "dropoffRequired",
+     "pickupAvailable",
+     "pickupPoints",
+     "pickupRequired"
+    ],
+    "octo/pricing": [
+     "pricing",
+     "pricingFrom"
+    ],
+    "octo/questions": [
+     "questions"
+    ],
+    "octo/rentals": [
+     "rentalDurations"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "id"
+   ]
+  },
+  "OptionRestrictions": {
+   "base": [
+    "maxPaxCount",
+    "maxTotal",
+    "maxUnits",
+    "minPaxCount",
+    "minTotal",
+    "minUnits",
+    "unitIds"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "PackageInclude": {
+   "base": [
+    "description",
+    "id",
+    "includes",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "PackageIncludeItem": {
+   "base": [
+    "availabilityRequired",
+    "id",
+    "limit",
+    "option",
+    "optionId",
+    "product",
+    "productId",
+    "required",
+    "validityDays"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "PickupPoint": {
+   "base": [
+    "address",
+    "country",
+    "directions",
+    "googlePlaceId",
+    "id",
+    "latitude",
+    "localDateTime",
+    "localDateTimeTo",
+    "locality",
+    "longitude",
+    "name",
+    "postalCode",
+    "region",
+    "state",
+    "street"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Pricing": {
+   "base": [
+    "currency",
+    "currencyPrecision",
+    "net",
+    "original",
+    "retail"
+   ],
+   "capabilities": {
+    "octo/offers": [
+     "offerDiscount"
+    ],
+    "octo/pricing": [
+     "includedTaxes"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "currency",
+    "currencyPrecision",
+    "original",
+    "retail"
+   ]
+  },
+  "Product": {
+   "base": [
+    "allowFreesale",
+    "availabilityRequired",
+    "availabilityType",
+    "deliveryFormats",
+    "deliveryMethods",
+    "fixedWeight",
+    "freesaleDurationAmount",
+    "freesaleDurationRoundup",
+    "freesaleDurationRoundupUnit",
+    "freesaleDurationUnit",
+    "id",
+    "instantConfirmation",
+    "instantDelivery",
+    "internalName",
+    "locale",
+    "operator",
+    "options",
+    "redemptionMethod",
+    "reference",
+    "settlementMethods",
+    "tags",
+    "timeZone",
+    "weightUnit"
+   ],
+   "capabilities": {
+    "octo/memberships": [
+     "isMembership",
+     "membershipAutoRenew"
+    ],
+    "octo/packages": [
+     "isPackage",
+     "isPackagePass",
+     "packageProduct"
+    ],
+    "octo/pricing": [
+     "availableCurrencies",
+     "defaultCurrency",
+     "hidePricingFrom",
+     "includeTax",
+     "includedTaxes",
+     "pricingMultiplier",
+     "pricingPer"
+    ],
+    "octo/rentals": [
+     "isRental"
+    ],
+    "octo/waivers": [
+     "waiverPer",
+     "waiverRequired",
+     "waivers"
+    ]
+   },
+   "enums": [
+    "OPENING_HOURS",
+    "START_TIME"
+   ],
+   "required": [
+    "id",
+    "internalName"
+   ]
+  },
+  "Question": {
+   "base": [
+    "id",
+    "inputType",
+    "maxLength",
+    "required",
+    "selectOptions",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [
+    "checkbox",
+    "date",
+    "number",
+    "radio",
+    "select",
+    "text",
+    "textarea"
+   ],
+   "required": []
+  },
+  "QuestionSelectOption": {
+   "base": [
+    "label",
+    "value"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "RentalDuration": {
+   "base": [
+    "description",
+    "duration",
+    "durationAmount",
+    "durationUnit",
+    "id",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Unit": {
+   "base": [
+    "id",
+    "internalName",
+    "reference",
+    "requiredContactFields",
+    "restrictions",
+    "tags",
+    "type",
+    "visibleContactFields"
+   ],
+   "capabilities": {
+    "octo/extras": [
+     "extras"
+    ],
+    "octo/memberships": [
+     "isMembership",
+     "membershipBenefit"
+    ],
+    "octo/pricing": [
+     "pricing",
+     "pricingFrom"
+    ],
+    "octo/questions": [
+     "questions"
+    ]
+   },
+   "enums": [],
+   "required": [
+    "id"
+   ]
+  },
+  "UnitRestrictions": {
+   "base": [
+    "accompaniedBy",
+    "accompaniedByRatio",
+    "accompaniedByRatioDenominator",
+    "default",
+    "idRequired",
+    "maxAge",
+    "maxQuantity",
+    "minAge",
+    "minQuantity",
+    "notAccompaniedBy",
+    "paxCount",
+    "required"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": []
+  },
+  "Waiver": {
+   "base": [
+    "content",
+    "fields",
+    "id",
+    "shortDescription",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "id",
+    "title"
+   ]
+  },
+  "WaiverField": {
+   "base": [
+    "id",
+    "inputType",
+    "internalName",
+    "maxLength",
+    "required",
+    "selectOptions",
+    "shortDescription",
+    "title"
+   ],
+   "capabilities": {},
+   "enums": [],
+   "required": [
+    "id",
+    "title"
+   ]
+  }
+ },
+ "specSha256": "d7bec97a0a90927782559758929a0734c785c3054eacd76b3425acad972efa38"
+}

@@ -1,99 +1,136 @@
 # octo-api
 
-> Die OCTO-API für Tourismus-Ticketing: Ventrata OCTO und Go-City — vollständig dokumentiert.
+Source of truth for the **OCTO API** (Open Connection for Tourism) — the open standard for tourism
+ticketing maintained by [OCTO Standards NP Inc.](https://octo.travel), in the reference
+implementation published by [Ventrata](https://docs.ventrata.com).
 
-`octo-api` ist das umfassende Wissenspaket zur **OCTO-API** (Open Connection for Tourism) für **Tourismus-Ticketing**
-— in zwei Teilen:
+Every endpoint, parameter, schema field, enum value and capability attribution in this plugin is
+**generated from the upstream OpenAPI document and machine-verified** — not written from memory.
 
-1. **Ventrata OCTO API** (generisch): der **Core** (Products, Availability, Bookings) und **alle 23 Capabilities**
-   (pricing, content, offers, extras, packages, pickups, questions, waivers, resources, rentals, redemption, mappings,
-   cart, gift-vouchers, online-check-in, card-payments, memberships, adjustments, webhooks, waitlists, identities,
-   campaigns, notifications) — je mit Capability-Identifier, **Requests** (Pfad/Query/Body, required vs. optional),
-   **Responses/Schemas**, **Auth/Header**, **Errors** und Beispielen. Eine konsolidierte **Endpunkt-Übersicht** listet alles an einem Ort.
-2. **Go City Trade API** (OCTO-basiert): aus der offiziellen OpenAPI generiert (Products/Availability/Bookings/Supplier),
-   plus ein **Vergleich Ventrata ↔ Go-City** (Unterschiede, Fallstricke, Adapter-Empfehlung) — z. B. dass Go-City nur
-   `octo/pricing` unterstützt, Availability stets `FREESALE` ist und Stornofristen invertiert sind.
+## Coverage
 
-Berater: **`octo-api-expert`** (Ventrata + Go-City); Lookup-Command **`/octo-lookup`**. **Hinweis:** Das Repo ist
-öffentlich — es sind **keine echten Credentials** enthalten (nur Platzhalter/offizielle Test-Keys). **Wann nutzen:**
-für jede Integration gegen Ventrata-/Go-City-OCTO.
+| | Count |
+|---|---:|
+| Documentation pages covered | 39 of 39 |
+| Operations | 65 of 65 |
+| Paths | 46 |
+| Schemas | 139 of 139 |
+| Properties | 412 of 412 |
+| Response schemas | 42 of 42 |
+| Capability-gated fields | 254 |
+| Capabilities | 23 of 23 |
+| Enumerated values | 43 declared + 32 observed fields |
+| Capability error codes | 21 |
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Every field carries its type, whether it is **required or optional**, whether it is nullable, its
+possible values where the specification declares them, and an example where one exists. Every
+operation names the schema it returns per status code.
 
-## Installation
+Three scripts hold that claim up:
 
+- **`verify_spec.py`** — 22 checks in both directions: every specified schema, property, response
+  body and operation is documented, and every documented field exists in the specification. The
+  second direction is what prevents plausible-sounding invention.
+- **`audit_pages.py`** — walks all 39 pages of Ventrata's documentation and reports any term the
+  plugin does not mention. Currently 1,162 of 1,162.
+- **`check_sitemap.py`** — maps every sitemap entry to the file covering it, so a page Ventrata adds
+  later surfaces as a gap instead of going unnoticed. Output: `skills/octo-protocol/DOCUMENTATION-MAP.md`.
+
+Every field carries its type, whether it is **required or optional**, whether it is nullable, its
+possible values where they are known, and an example where the specification gives one. Every
+operation names the schema it returns per status code.
+
+## Skills
+
+Eight skills, costing 2,376 characters of the skill listing budget — about 30 % of the 8,000
+available at a 200k context.
+
+| Skill | Covers |
+|---|---|
+| `octo-protocol` | Auth, the mandatory `Octo-Capabilities` header, all 10 error codes, capability discovery, localization |
+| `octo-products` | `GET /products`, Product / Option / Unit schemas, every field and enum |
+| `octo-availability` | The six availability endpoints, `availabilityId`, capacity, opening hours |
+| `octo-bookings` | reserve → confirm → cancel, plus update and extend; `Booking` and `BookingUnitItem` |
+| `octo-capabilities-commerce` | `octo/pricing`, `offers`, `cart`, `packages`, `cardPayments`, `gifts`, `adjustments` |
+| `octo-capabilities-fulfilment` | `octo/redemption`, `extras`, `pickups`, `rentals`, `resources`, `waivers`, `questions`, `checkin` |
+| `octo-capabilities-platform` | `octo/webhooks`, `notifications`, `content`, `mappings`, `memberships`, `campaigns`, `waitlists`, `identities` |
+| `octo-gocity` | Go City Trade API as a delta overlay: what it omits, changes or inverts |
+
+Each skill's `SKILL.md` is a map; the detail sits in flat sibling files (`ENDPOINTS.md`,
+`PRODUCT-SCHEMA.md`, `CAPABILITY-EXTENSIONS.md`, …) loaded only when needed.
+
+## Agent and commands
+
+- **`octo-integrator`** (sonnet) — integration specialist. Preloads `octo-protocol` and
+  `octo-products`, reaches the rest on demand, and has no write access.
+- **`/octo-lookup <endpoint|schema|field|capability>`** (haiku) — prints parameters, required flags
+  and a `curl` example. Add `--vendor gocity` for the overlay.
+- **`/octo-spec-sync --check | --apply`** (sonnet) — detects upstream drift and regenerates.
+
+## Automatic activation
+
+A `UserPromptSubmit` hook points Claude at these skills, but **only on brand anchors**: `octo`,
+`octo/*`, `Octo-Capabilities`, `Octo-Env`, `ventrata`, `go city`, `/octo/`, `availabilityId`,
+`X-Capabilities`.
+
+It deliberately ignores generic commerce vocabulary — `product`, `booking`, `availability`,
+`pricing`, `cart`, `unit`, `option` — because those are everyday words in e-commerce work. A prompt
+about a Shopware product entity does not load this plugin.
+
+## Keeping it current
+
+The specification URL is content-addressed: its hash changes whenever Ventrata publishes. Never
+hardcode it.
+
+```bash
+python3 scripts/resolve_blob.py --download /tmp/octo-openapi.yaml
+python3 scripts/verify_spec.py --spec /tmp/octo-openapi.yaml --all
 ```
-/plugin marketplace add https://github.com/zone1987/claude-a-dev-team
-/plugin install octo-api@claude-a-dev-team
+
+`/octo-spec-sync --check` does both and reports drift by category. `--apply` regenerates the
+references, preserving hand-written prose below each file's prose marker. State lives in
+`.spec-state.json`.
+
+## Regenerating by hand
+
+```bash
+# facts, from the specification
+python3 scripts/extract_spec.py      --spec /tmp/octo-openapi.yaml --domain products
+python3 scripts/extract_caps.py      --spec /tmp/octo-openapi.yaml --all
+python3 scripts/extract_remaining.py --spec /tmp/octo-openapi.yaml   # run after the two above
+python3 scripts/extract_enums.py     --spec /tmp/octo-openapi.yaml
+python3 scripts/extract_gocity.py                                    # Go City's own spec
+
+# prose, from the documentation pages (fetch them with curl first)
+python3 scripts/extract_cap_errors.py --pages /tmp/caps
+python3 scripts/extract_cap_prose.py  --pages /tmp/caps
+
+# verify
+python3 scripts/verify_spec.py   --spec /tmp/octo-openapi.yaml --all
+python3 scripts/audit_pages.py   --pages /tmp/pages
+python3 scripts/check_sitemap.py --write
 ```
 
-## Skills (38)
+Requires Python 3 with PyYAML. Content above a generated file's prose marker is overwritten on every
+run — never edit it by hand.
 
-### Ventrata OCTO — Core & Grundlagen
+## Other OCTO implementations
 
-| Skill | Beschreibung |
-|---|---|
-| `octo-overview` | Überblick über OCTO (Open Connectivity for Tourism) und Ventrata: Was ist OCTO, Capabilities-Konzept, Integrationsschritte, Glossar |
-| `octo-headers` | Vollständige HTTP-Header-Referenz: Authorization Bearer, Octo-Capabilities (Pflichtfeld!), Octo-Env, Accept-Language, Content-Type und Response-Header |
-| `octo-errors` | Fehlercodes und Error-Response-Format: alle error codes, HTTP-Statuscodes, Fehlerschema mit Feldern, Beispiele |
-| `octo-endpoints` | Konsolidierte Übersicht ALLER Ventrata-OCTO-Endpunkte: Core (products, availability, availability-calendar, bookings reserve/confirm/cancel/update/extend/delete/get/list, supplier, capabilities) plus alle optionalen Capabilities |
-| `octo-products` | Vollständiges Product/Option/Unit-Schema: alle Felder, Typen, Enums, GET /products und GET /products/{id}, Capabilities-Erweiterungen |
-| `octo-availability` | Availability- und AvailabilityCalendar-Schema: POST /availability, POST /availability/calendar, alle Felder, Status-Enums, Request/Response-Beispiele |
-| `octo-bookings` | Vollständiger Booking-Lifecycle: Reserve→Confirm→Cancel, komplettes Booking-Schema, alle Status-Werte, UnitItem, Contact, Voucher/Ticket-Schema, alle Endpunkte |
-| `octo-localization` | Lokalisierung: Accept-Language Header, mehrsprachige Inhalte, Caching-Strategie, Content-Language Response Header |
+OCTO is an open standard, not a Ventrata product. Other implementers include **Peek Pro**, **Zaui**,
+**Xola** and **Anchor**; **Go City** is covered here as an overlay. The standard itself lives at
+[docs.octo.travel](https://docs.octo.travel) and
+[github.com/octotravel](https://github.com/octotravel).
 
-### Ventrata OCTO — Capabilities
+This plugin documents the generic OCTO specification as Ventrata implements it. Where another
+provider deviates, expect the same pattern as `octo-gocity`: a delta overlay rather than a fork of
+the base.
 
-| Skill | Beschreibung |
-|---|---|
-| `octo-pricing` | octo/pricing: dynamische Preisgestaltung, Pricing-Objekte, currency, tax, unitPricing, extraPricing auf Products/Availability/Bookings |
-| `octo-content` | octo/content: erweiterte Inhaltsfelder für Supplier/Product/Option/Unit/Availability/Booking — itinerary, media, notices, tourGroups |
-| `octo-offers` | octo/offers: Promotions, Rabattcodes, offerCode auf Availability/Booking/Gift, GET /offers, offerComparisons, offerCombinations |
-| `octo-extras` | octo/extras: Upsell-Items auf Booking- und Unit-Ebene, extraItems, Restrictions, Custom-Retail, Fehler-Codes |
-| `octo-packages` | octo/packages: Paketprodukte mit Sub-Produkten, packageIncludes, packageAvailabilities, packageBookings, packageUuid |
-| `octo-pickups` | octo/pickups: Abholung/Rückgabe, pickupPoints, dropoffPoints, pickupHotel, pickupDispatch auf Option/Availability/Booking |
-| `octo-questions` | octo/questions: benutzerdefinierte Fragen auf Option/Unit-Ebene, questionAnswers im Booking, inputTypes radio/select/textarea |
-| `octo-waivers` | octo/waivers: Waiver-Definitionen auf Products, Felder/Signatur/waiverFieldValues auf Bookings, waiverPer BOOKING\|UNIT, PDF-Upload |
-| `octo-resources` | octo/resources: Ressourcenzuweisung, GET/POST /availability/resources, resourceAllocations, Sitzpläne, hasResources |
-| `octo-rentals` | octo/rentals: Mietprodukte mit Dauerwahl, rentalDurations auf Option, rentalDurationId auf Availability/Booking, durationUnit HOUR |
-| `octo-redemption` | octo/redemption: Ticket-Einlösung per Code/Email, GET /redemption/lookup, POST /redemption/redeem, noshow, unredeem, scans auf UnitItems |
-| `octo-mappings` | octo/mappings: Produkt-Mapping-Sheets per PUT/GET /mappings, resellerReference, webhookUrl, Supplier-UI-Zuordnung, Upsert-Logik |
-| `octo-cart` | octo/cart: Multi-Booking-Cart, Orders-Endpunkte, Schema-Erweiterungen, Buchungen in Orders gruppieren, bestätigen und stornieren |
-| `octo-gift-vouchers` | octo/gifts: Geschenk-Gutscheine erstellen, bestätigen, einlösen und stornieren |
-| `octo-online-check-in` | octo/checkin: Gäste per E-Mail/Mobilnummer/Referenz nachschlagen, Buchungsstatus prüfen, checkedIn-Felder |
-| `octo-card-payments` | octo/cardPayments: Adyen- und External-Gateway-Integration, cardPayment-Schema, Reusable Cards, Fehler-Codes, Session-Flow |
-| `octo-memberships` | octo/memberships: Mitglieder-Lookup, Mitgliedschafts-Buchungen, membershipBenefit auf Units, isMembership auf Produkten |
-| `octo-adjustments` | octo/adjustments: Preisanpassungen auf Buchungsebene, adjustments-Array, Commission-Logik, Fehler-Codes |
-| `octo-webhooks` | octo/webhooks: Webhook-Endpunkte, Event-Typen (booking_update, order_update, availability_update, product_update), Payload-Schema, Retry-Logik |
-| `octo-waitlists` | octo/waitlists: Wartelisten-Einträge erstellen, WaitlistUnit-Schema, Kontaktfelder, supplierReference |
-| `octo-identities` | octo/identities: Identitäten anlegen/aktualisieren/löschen, identityId an Bookings/Orders/Gifts hängen, Check-in-Filter |
-| `octo-campaigns` | octo/campaigns: Kampagnen-Katalog abrufen, campaignId in Benachrichtigungen nutzen, NotifyRequest-Erweiterung |
-| `octo-notifications` | octo/notifications: Subscriptions für BOOKING_UPDATE/AVAILABILITY_UPDATE/PRODUCT_UPDATE anlegen und verwalten, Payload-Schema |
-| `octo-clients-implementations` | Ventrata-Clients (Operatoren), andere OCTO-Implementierungen (Peek Pro, Zaui, Xola, Anchor), Support-Kontakt, FAQ |
+## Source
 
-### Go-City Trade API & Vergleich
+Generated from the Ventrata OCTO `openapi.yaml` (OpenAPI 3.0.3, version 1.0.0, server
+`https://api.ventrata.com/octo`), sha256 `d7bec97a0a909277…`, retrieved 2026-08-20. Narrative
+distilled from the 40 pages of [docs.ventrata.com](https://docs.ventrata.com).
 
-| Skill | Beschreibung |
-|---|---|
-| `octo-gocity-overview` | Go City Trade API V2 (OCTO-kompatibel): Auth (Bearer), Server-Umgebungen (Staging/Prod), unterstützte Capabilities (nur octo/pricing), Produktkonzept (Passes), Availability-Modell (immer FREESALE), OpenAPI-Spec-Referenz |
-| `octo-gocity-products` | Go City Trade API: GET /octo/products und GET /octo/products/{id} |
-| `octo-gocity-availability` | Go City Trade API: POST /octo/availability, OctoAvailabilityRequest (required: productId, optionId), Response (status FREESALE, vacancies null), Pricing-Felder, priceDistributionModel |
-| `octo-gocity-bookings` | Go City Trade API: vollständiger Booking-Lifecycle — GET/POST /octo/bookings (Reserve ON_HOLD), GET/confirm/cancel /octo/bookings/{id} |
-| `octo-gocity-supplier` | Go City Trade API: GET /octo/supplier, OctoSupplier- und OctoSupplierContact-Schema mit allen Feldern |
-| `octo-ventrata-vs-gocity` | Vergleich Ventrata-OCTO vs. Go City Trade API V2: Base-URL, Auth, Capabilities, Availability-Semantik, Produktkonzept, Header, Fallstricke bei gleichzeitiger Integration beider Supplier |
-
-## Agents (1)
-
-| Agent | Beschreibung |
-|---|---|
-| `octo-api-expert` | Spezialist für die OCTO-API — sowohl die Ventrata-OCTO-API als auch die Go-City-Trade-API (OCTO-basiert): Auth/Header, Core-Endpunkte, alle Capabilities, Requests/Responses/Parameter und die Unterschiede beider. |
-
-## Commands (1)
-
-| Command | Beschreibung |
-|---|---|
-| `/octo-lookup` | Schlägt eine OCTO-API-Capability oder einen Endpunkt nach (Ventrata oder Go-City) und gibt Request/Response/Parameter/Required/Auth aus |
-
-## Lizenz & Autor
-
-proprietary — Andreas Gerhardt, A-Dev-Team. Quellen: offizielle Ventrata-OCTO- und Go-City-Trade-API-Dokumentation.
+Rights to the original documentation remain with Ventrata; the OCTO standard is maintained by OCTO
+Standards NP Inc. The Go City OpenAPI document bundled in `skills/octo-gocity/` is published by
+Go City in their Trade Partner Portal.
