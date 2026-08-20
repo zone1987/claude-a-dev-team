@@ -13,131 +13,66 @@
     {
       "name": "shopware-core",
       "source": "./plugins/shopware-core",
-      "description": "Shopware 6 plugin fundamentals: DI, services, decoration, events/subscribers, CLI, config, logging, filesystem, rate limiter, feature flags.",
-      "version": "1.0.0",
+      "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "core"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-architecture-overview",
-        "./skills/sw-cli-command",
-        "./skills/sw-config-reference",
-        "./skills/sw-dependency-injection",
-        "./skills/sw-event-catalog",
-        "./skills/sw-events-subscriber",
-        "./skills/sw-extension-points",
-        "./skills/sw-feature-flags",
-        "./skills/sw-filesystem",
-        "./skills/sw-logging",
-        "./skills/sw-number-range",
-        "./skills/sw-plugin-base",
-        "./skills/sw-plugin-config",
-        "./skills/sw-plugin-lifecycle",
-        "./skills/sw-rate-limiter",
-        "./skills/sw-service-decoration",
-        "./skills/sw-service-tags",
-        "./skills/sw-system-config"
+        "./skills/sw-platform",
+        "./skills/sw-plugin",
+        "./skills/sw-services"
       ]
     },
     {
       "name": "shopware-data",
       "source": "./plugins/shopware-data",
-      "description": "Shopware 6 Data Abstraction Layer (DAL) + project entity introspection.",
-      "version": "1.0.0",
+      "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference — 4 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "dal"
       ],
       "category": "development",
       "skills": [
-        "./skills/adt-shopware-dal",
-        "./skills/sw-aggregations",
-        "./skills/sw-associations-manytomany",
-        "./skills/sw-associations-manytoone",
-        "./skills/sw-associations-onetomany",
-        "./skills/sw-associations-onetoone",
-        "./skills/sw-attribute-entities",
-        "./skills/sw-core-entity-reference",
-        "./skills/sw-criteria",
-        "./skills/sw-custom-entity",
-        "./skills/sw-custom-fields",
-        "./skills/sw-database-migration",
-        "./skills/sw-entity-aliases",
-        "./skills/sw-entity-catalog",
-        "./skills/sw-entity-class",
-        "./skills/sw-entity-collection",
-        "./skills/sw-entity-definition",
-        "./skills/sw-entity-extension",
-        "./skills/sw-entity-hydration",
-        "./skills/sw-entity-indexer",
-        "./skills/sw-entity-protection",
-        "./skills/sw-entity-repository",
-        "./skills/sw-entity-versioning",
-        "./skills/sw-field-flags",
-        "./skills/sw-field-inheritance",
-        "./skills/sw-field-serializer",
-        "./skills/sw-field-types",
-        "./skills/sw-filters",
-        "./skills/sw-plain-sql-vs-dal",
-        "./skills/sw-pricing-field",
-        "./skills/sw-sorting",
-        "./skills/sw-translations",
-        "./skills/sw-write-events"
+        "./skills/sw-entity",
+        "./skills/sw-fields",
+        "./skills/sw-query",
+        "./skills/sw-write"
       ]
     },
     {
       "name": "shopware-framework",
       "source": "./plugins/shopware-framework",
-      "description": "Shopware 6 framework features: scheduled tasks, message queue, rules, flow builder, store/admin API routes, webhooks, app scripts, mail, media.",
-      "version": "1.0.0",
+      "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch — 4 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "framework"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-admin-api-controller",
-        "./skills/sw-api-acl",
-        "./skills/sw-app-script",
-        "./skills/sw-custom-rule",
-        "./skills/sw-elasticsearch",
-        "./skills/sw-elasticsearch-extension",
-        "./skills/sw-events-reference",
-        "./skills/sw-flow-action",
-        "./skills/sw-flow-reference",
-        "./skills/sw-flow-transaction",
-        "./skills/sw-flow-trigger",
-        "./skills/sw-mail-data",
-        "./skills/sw-mail-template",
-        "./skills/sw-mail-variables",
-        "./skills/sw-media-handling",
-        "./skills/sw-media-thumbnail",
-        "./skills/sw-message-handler",
-        "./skills/sw-message-middleware",
-        "./skills/sw-message-queue",
-        "./skills/sw-redis",
-        "./skills/sw-rule-condition",
-        "./skills/sw-scheduled-task",
-        "./skills/sw-store-api-override",
-        "./skills/sw-store-api-route",
-        "./skills/sw-webhook"
+        "./skills/sw-api",
+        "./skills/sw-automation",
+        "./skills/sw-content",
+        "./skills/sw-messaging"
       ]
     },
     {
@@ -166,48 +101,23 @@
     {
       "name": "shopware-admin",
       "source": "./plugins/shopware-admin",
-      "description": "Shopware 6 administration (Meteor/Vue 3): modules, components, routing, data handling, Pinia, services, ACL, Vite.",
-      "version": "1.0.0",
+      "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK — 4 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "admin"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-admin-acl-permissions",
-        "./skills/sw-admin-api-requests",
-        "./skills/sw-admin-assets",
-        "./skills/sw-admin-catalog",
-        "./skills/sw-admin-component",
-        "./skills/sw-admin-component-override",
-        "./skills/sw-admin-data-grid",
-        "./skills/sw-admin-data-handling",
-        "./skills/sw-admin-directives",
-        "./skills/sw-admin-error-handling",
-        "./skills/sw-admin-menu",
-        "./skills/sw-admin-mixins",
-        "./skills/sw-admin-module",
-        "./skills/sw-admin-pinia-store",
-        "./skills/sw-admin-repository-js",
-        "./skills/sw-admin-routing",
-        "./skills/sw-admin-sdk",
-        "./skills/sw-admin-services",
-        "./skills/sw-admin-snippets",
-        "./skills/sw-admin-styles",
-        "./skills/sw-admin-typescript",
-        "./skills/sw-admin-utils-filters",
-        "./skills/sw-admin-vite",
-        "./skills/sw-admin-vuex-store",
-        "./skills/sw-meteor-admin-sdk",
-        "./skills/sw-meteor-components",
-        "./skills/sw-meteor-composables",
-        "./skills/sw-meteor-getting-started",
-        "./skills/sw-meteor-usage-guidelines"
+        "./skills/sw-build",
+        "./skills/sw-components",
+        "./skills/sw-data",
+        "./skills/sw-meteor"
       ]
     },
     {
@@ -238,39 +148,23 @@
     {
       "name": "shopware-checkout",
       "source": "./plugins/shopware-checkout",
-      "description": "Shopware 6 checkout: cart processors, line items, prices, tax, payment handlers, shipping, order state machine, documents, promotions.",
-      "version": "1.0.0",
+      "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents — 4 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "checkout"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-cart-collector",
-        "./skills/sw-cart-discount",
-        "./skills/sw-cart-facade-script",
-        "./skills/sw-cart-line-item",
-        "./skills/sw-cart-price",
-        "./skills/sw-cart-processor",
-        "./skills/sw-cart-validator",
-        "./skills/sw-customer",
-        "./skills/sw-delivery",
+        "./skills/sw-cart",
         "./skills/sw-document",
-        "./skills/sw-document-type",
-        "./skills/sw-nested-line-items",
-        "./skills/sw-order-events",
-        "./skills/sw-order-state-machine",
-        "./skills/sw-payment-app",
-        "./skills/sw-payment-handler",
-        "./skills/sw-paypal-sdk",
-        "./skills/sw-promotion",
-        "./skills/sw-shipping-method",
-        "./skills/sw-tax-provider"
+        "./skills/sw-fulfilment",
+        "./skills/sw-payment"
       ]
     },
     {
@@ -357,34 +251,22 @@
     {
       "name": "shopware-quality",
       "source": "./plugins/shopware-quality",
-      "description": "Shopware 6 quality: coding guidelines, ADR knowledge, domain exceptions, static analysis, README generator + self-updating knowledge sync.",
-      "version": "1.0.0",
+      "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration — 3 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "quality"
       ],
       "category": "development",
       "skills": [
-        "./skills/shopware-readme",
-        "./skills/sw-adr-knowledge",
-        "./skills/sw-changelog",
-        "./skills/sw-code-structure",
-        "./skills/sw-coding-guidelines",
-        "./skills/sw-deptrac",
-        "./skills/sw-documentation-guidelines",
-        "./skills/sw-domain-exceptions",
-        "./skills/sw-ecs-cs-fixer",
-        "./skills/sw-extendability",
-        "./skills/sw-knowledge-sync",
-        "./skills/sw-phpstan",
-        "./skills/sw-phpstan-shopware",
-        "./skills/sw-rector",
-        "./skills/sw-static-analysis"
+        "./skills/sw-analysis",
+        "./skills/sw-guidelines",
+        "./skills/sw-release"
       ]
     },
     {
@@ -421,48 +303,34 @@
     {
       "name": "shopware-api",
       "source": "./plugins/shopware-api",
-      "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
-      "version": "1.0.0",
+      "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading — 3 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "api"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-api-overview",
-        "./skills/sw-admin-api-actions",
-        "./skills/sw-admin-api-auth",
-        "./skills/sw-admin-api-crud",
-        "./skills/sw-admin-api-endpoints",
-        "./skills/sw-admin-api-search",
-        "./skills/sw-api-catalog",
-        "./skills/sw-api-errors",
-        "./skills/sw-api-flows",
-        "./skills/sw-api-headers",
-        "./skills/sw-api-integration",
-        "./skills/sw-api-partial-loading",
-        "./skills/sw-api-versioning",
-        "./skills/sw-sales-agent-api",
-        "./skills/sw-store-api-auth",
-        "./skills/sw-store-api-endpoints",
-        "./skills/sw-sync-api"
+        "./skills/sw-admin",
+        "./skills/sw-shared",
+        "./skills/sw-store"
       ]
     },
     {
       "name": "shopware-frontends",
       "source": "./plugins/shopware-frontends",
-      "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, composables, api-gen, cms-base, helpers, Vue 3 / Nuxt.",
-      "version": "1.0.0",
+      "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "frontends",
@@ -470,25 +338,9 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-frontends-overview",
-        "./skills/sw-api-client-js",
-        "./skills/sw-api-gen-types",
-        "./skills/sw-composables",
-        "./skills/sw-frontends-b2b",
-        "./skills/sw-frontends-best-practices",
-        "./skills/sw-frontends-cms",
-        "./skills/sw-frontends-customization",
-        "./skills/sw-frontends-deployment",
-        "./skills/sw-frontends-examples",
-        "./skills/sw-frontends-features",
-        "./skills/sw-frontends-framework",
-        "./skills/sw-frontends-getting-started",
-        "./skills/sw-frontends-helpers",
-        "./skills/sw-frontends-i18n",
-        "./skills/sw-frontends-integrations",
-        "./skills/sw-frontends-nuxt",
-        "./skills/sw-frontends-routing",
-        "./skills/sw-frontends-session-context"
+        "./skills/sw-building",
+        "./skills/sw-client",
+        "./skills/sw-practice"
       ]
     },
     {
@@ -608,13 +460,13 @@
     {
       "name": "shopware-commercial",
       "source": "./plugins/shopware-commercial",
-      "description": "Shopware 6 commercial extensions & products (developer view): B2B, Subscriptions, Advanced Search, Migration Assistant, Digital Sales Rooms, Sales Agent, Nexus.",
-      "version": "1.0.0",
+      "description": "Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, Migration Assistant — 4 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "commercial",
@@ -622,29 +474,10 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-commercial-overview",
-        "./skills/sw-advanced-search",
-        "./skills/sw-b2b-components",
-        "./skills/sw-b2b-components-employee-management",
-        "./skills/sw-b2b-components-quotes",
-        "./skills/sw-b2b-order-approval",
-        "./skills/sw-b2b-suite",
-        "./skills/sw-b2b-suite-migration",
-        "./skills/sw-commercial-bundle",
-        "./skills/sw-digital-sales-rooms",
-        "./skills/sw-digital-sales-rooms-3rdparty",
-        "./skills/sw-digital-sales-rooms-config",
-        "./skills/sw-digital-sales-rooms-customization",
-        "./skills/sw-digital-sales-rooms-deployment",
-        "./skills/sw-digital-sales-rooms-installation",
-        "./skills/sw-migration-assistant",
-        "./skills/sw-migration-assistant-custom-profile",
-        "./skills/sw-nexus",
-        "./skills/sw-sales-agent",
-        "./skills/sw-sales-agent-customization",
-        "./skills/sw-sales-agent-deployment",
-        "./skills/sw-sales-agent-setup",
-        "./skills/sw-subscriptions"
+        "./skills/sw-b2b",
+        "./skills/sw-features",
+        "./skills/sw-migration",
+        "./skills/sw-sales"
       ]
     },
     {
@@ -704,13 +537,13 @@
     {
       "name": "gotenberg",
       "source": "./plugins/gotenberg",
-      "description": "Gotenberg — Docker-based stateless API for PDF generation & manipulation: convert HTML/Markdown/URL (Chromium) and Office (LibreOffice) to PDF, screenshots, merge/split/convert (PDF/A, PDF/UA)/flatten/encrypt/metadata/bookmarks/attachments/stamp/watermark/rotate, full configuration, routes, webhook, system & clients.",
-      "version": "1.0.0",
+      "description": "Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, watermark), plus installation, configuration and clients — 3 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "gotenberg",
         "pdf",
@@ -721,33 +554,9 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/gotenberg-introduction",
-        "./skills/gotenberg-installation",
-        "./skills/gotenberg-routes",
-        "./skills/gotenberg-clients",
-        "./skills/gotenberg-configuration",
-        "./skills/gotenberg-chromium-html",
-        "./skills/gotenberg-chromium-markdown",
-        "./skills/gotenberg-chromium-screenshots",
-        "./skills/gotenberg-chromium-url",
-        "./skills/gotenberg-libreoffice",
-        "./skills/gotenberg-outbound-filtering",
-        "./skills/gotenberg-pdf-attachments",
-        "./skills/gotenberg-pdf-bookmarks",
-        "./skills/gotenberg-pdf-convert",
-        "./skills/gotenberg-pdf-encrypt",
-        "./skills/gotenberg-pdf-facturx",
-        "./skills/gotenberg-pdf-flatten",
-        "./skills/gotenberg-pdf-merge",
-        "./skills/gotenberg-pdf-metadata",
-        "./skills/gotenberg-pdf-rotate",
-        "./skills/gotenberg-pdf-split",
-        "./skills/gotenberg-pdf-stamp",
-        "./skills/gotenberg-pdf-watermark",
-        "./skills/gotenberg-system",
-        "./skills/gotenberg-telemetry",
-        "./skills/gotenberg-troubleshooting",
-        "./skills/gotenberg-webhook"
+        "./skills/gotenberg-convert",
+        "./skills/gotenberg-operations",
+        "./skills/gotenberg-pdf"
       ]
     },
     {
@@ -780,13 +589,13 @@
     {
       "name": "panther",
       "source": "./plugins/panther",
-      "description": "Symfony Panther — End-to-End- & Browser-Testing für PHP: echte Browser via WebDriver (Chrome/Firefox) und headless HTTP via BrowserKit, PantherTestCase/Client/Crawler-API, Formulare & Interaktionen, Mouse/Keyboard, waitFor*-Mechanik, JavaScript-Ausführung, Screenshots, alle PANTHER_*-Umgebungsvariablen, Selenium/Proxy/SSL, Real-Time-Tests, Docker & CI.",
-      "version": "1.0.0",
+      "description": "Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installation, PANTHER_* configuration, Selenium and CI — 2 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "symfony",
         "panther",
@@ -798,17 +607,8 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/panther-overview",
-        "./skills/panther-installation",
-        "./skills/panther-testcase",
-        "./skills/panther-client",
-        "./skills/panther-crawler",
-        "./skills/panther-interactions",
-        "./skills/panther-javascript-screenshots",
-        "./skills/panther-config-env",
-        "./skills/panther-browserkit-clients",
-        "./skills/panther-selenium-remote",
-        "./skills/panther-docker-ci"
+        "./skills/panther-setup",
+        "./skills/panther-testing"
       ]
     },
     {

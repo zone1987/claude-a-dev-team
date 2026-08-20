@@ -1,32 +1,25 @@
 ---
 name: sw-merchant-services
-description: >
-  Shopware Services Überblick, SaaS-Dienste von Shopware, cloudbasierte Erweiterungen,
-  Shopware Intelligence Plus Abo, Shopware Nexus Automatisierung, Shopware Payments PayPal,
-  Copilot KI-Assistent, Bild-Editor KI, 3D Preview Generator, CAD zu 3D Konvertierung,
-  Empfehlungs-Vorschau, Shopware Services aktivieren einrichten. Shopware 6.7.
+description: Operating Shopware Services: AI copilot, image editor, 3D preview, Nexus, Intelligence Plus. Use when the request names a Shopware Service or Shopware Payments.
 ---
 
-# Shopware Services — Überblick
+# Shopware Services
 
-Shopware Services sind cloudbasierte Dienste (SaaS), die exklusiv von Shopware entwickelt werden
-und über APIs und Webhooks spezifische Funktionen bereitstellen.
+Cloud services booked on top of a Shopware installation, billed and enabled separately from Commercial features.
 
-## Verfügbare Services
+## Reference map
 
-| Service | Skill |
-|---|---|
-| Shopware Intelligence+ (Abo) | `sw-merchant-services-intelligence-plus` |
-| Shopware Nexus (Workflow-Automatisierung) | `sw-merchant-services-nexus` |
-| Shopware Payments (PayPal-basiert) | `sw-merchant-services-payments` |
-| Copilot (KI-Assistent) | `sw-merchant-services-copilot` |
-| Bild-Editor (KI-Bildbearbeitung) | `sw-merchant-services-image-editor` |
-| 3D Preview Generator | `sw-merchant-services-3d-preview` |
-| CAD to 3D File Conversion | `sw-merchant-services-cad-3d` |
-| Empfehlungs-Vorschau | `sw-merchant-services-recommendation-preview` |
+- **[3D-PREVIEW.md](3D-PREVIEW.md)**: Erstellt automatisch Vorschaubilder für 3D-Dateien im GLB-Format. [3D-PREVIEW-DETAIL](3D-PREVIEW-DETAIL.md).
+- **[CAD-3D.md](CAD-3D.md)**: Konvertiert CAD-Dateien im STEP-Format in webfähige GLB-3D-Modelle direkt im Media Manager. [CAD-3D-DETAIL](CAD-3D-DETAIL.md).
+- **[COPILOT.md](COPILOT.md)**: Chat-basierter KI-Assistent direkt in der Shopware-Administration für Konfigurationsunterstützung, Datenabfra…. [COPILOT-DETAIL](COPILOT-DETAIL.md).
+- **[IMAGE-EDITOR.md](IMAGE-EDITOR.md)**: Verwandelt Produktbilder mit KI: Freistellen, Hintergrundaustausch, Schatten, Neufärbung, Objektentfernung un…. [IMAGE-EDITOR-DETAIL](IMAGE-EDITOR-DETAIL.md).
+- **[INTELLIGENCE-PLUS.md](INTELLIGENCE-PLUS.md)**: Schaltet erweiterte KI-Funktionen und erhöhte Nutzungskontingente für alle Shopware AI-Services frei. [INTELLIGENCE-PLUS-DETAIL](INTELLIGENCE-PLUS-DETAIL.md).
+- **[NEXUS.md](NEXUS.md)**: Nexus ist ein visuelles Automatisierungstool, das Shopware-Shops mit externen Systemen verbindet. [NEXUS-DETAIL](NEXUS-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: Shopware Services sind cloudbasierte Dienste, die exklusiv von Shopware entwickelt werden und über APIs und W…. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
+- **[PAYMENTS.md](PAYMENTS.md)**: Integriertes Zahlungssystem auf Basis der **PayPal-Infrastruktur**. [PAYMENTS-DETAIL](PAYMENTS-DETAIL.md).
+- **[RECOMMENDATION-PREVIEW.md](RECOMMENDATION-PREVIEW.md)**: Zeigt intelligente, kontextbezogene Empfehlungen für Features und Erweiterungen direkt in der Administration …. [RECOMMENDATION-PREVIEW-DETAIL](RECOMMENDATION-PREVIEW-DETAIL.md).
+- **[SERVICES-OVERVIEW.md](SERVICES-OVERVIEW.md)**: Quelle: https://docs.shopware.com/de/shopware-6-de/shopware-services.
 
-## Aktivierung
+## Source
 
-**Einstellungen > System > Shopware Services** — Services einzeln aktivieren.
-
-Detaillierte Referenz: [references/deep/services-overview.md](references/deep/services-overview.md)
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

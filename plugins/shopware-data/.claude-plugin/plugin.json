@@ -1,12 +1,21 @@
 {
   "name": "shopware-data",
-  "version": "1.0.0",
-  "description": "Shopware 6 Data Abstraction Layer (DAL): Entities, Definitions, Collections, Fields, Flags, Associations, Translations, Criteria — plus Projekt-Entity-Introspektion.",
+  "version": "2.0.0",
+  "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference — 4 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "dal"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "dal"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-entity",
+    "./skills/sw-fields",
+    "./skills/sw-query",
+    "./skills/sw-write"
+  ]
 }

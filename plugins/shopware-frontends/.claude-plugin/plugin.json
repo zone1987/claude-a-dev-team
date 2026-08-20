@@ -1,9 +1,21 @@
 {
   "name": "shopware-frontends",
-  "version": "1.0.0",
-  "description": "Shopware Frontends — headless/composable storefronts: @shopware/api-client, @shopware/composables, @shopware/api-gen, cms-base, helpers, Vue 3 / Nuxt.",
-  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
-  "license": "proprietary",
-  "keywords": ["shopware", "frontends", "headless"],
-  "category": "development"
+  "version": "2.0.0",
+  "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 domain skills.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "frontends",
+    "headless"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-building",
+    "./skills/sw-client",
+    "./skills/sw-practice"
+  ]
 }

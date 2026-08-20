@@ -1,21 +1,18 @@
 ---
 name: sw-document
-description: >
-  Dokumente in Shopware 6 erzeugen (Rechnung, Lieferschein, Storno, Gutschrift): DocumentGenerator.generate,
-  DocumentGenerateOperation, Rendering, Speicherung, ZUGFeRD/E-Rechnung. Trigger: "Dokument erzeugen", "DocumentGenerator",
-  "Rechnung generieren", "Lieferschein", "DocumentGenerateOperation", "ZUGFeRD", "document api". Shopware 6.7.
+description: Shopware documents: document generation, custom document types, ZUGFeRD, and the customer entity in checkout. Use when the request names a Shopware document type or invoice.
 ---
 
-# Shopware 6 — Dokumente erzeugen
+# Shopware documents and customers
 
-Dokumente (Invoice, Delivery Note, Credit Note, Storno) werden über den `DocumentGenerator` aus einer Bestellung erzeugt.
+Documents are generated from templates per order. A custom type needs a renderer and a config.
 
-```php
-$operation = new DocumentGenerateOperation($orderId, FileTypes::PDF, ['documentNumber' => '1001']);
-$result = $this->documentGenerator->generate('invoice', [$orderId => $operation], $context)->getSuccess()->first();
-```
+## Reference map
 
-Typen: `invoice`, `delivery_note`, `credit_note`, `storno` (+ eigene, `sw-document-type`). Rendering über Twig-Templates
-+ FileGenerator (PDF; HTML-Alternative seit ADR „offer html alternative"). **ZUGFeRD/E-Rechnung** (XML im PDF) für
-gesetzeskonforme Rechnungen. Über Admin-API: `shopware-api` (`sw-admin-api-actions`). Betreibersicht: `shopware-merchant`
-(`sw-merchant-orders-documents`).
+- **[CUSTOMER.md](CUSTOMER.md)**: Kunden sind `customer`-Entities.
+- **[OVERVIEW.md](OVERVIEW.md)**: Dokumente werden über den `DocumentGenerator` aus einer Bestellung erzeugt.
+- **[TYPE.md](TYPE.md)**: Neuer Belegtyp = `document_type`-Entity + ein Renderer + Twig-Template.
+
+## Source
+
+Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.

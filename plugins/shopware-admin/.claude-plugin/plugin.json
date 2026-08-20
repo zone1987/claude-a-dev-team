@@ -1,12 +1,21 @@
 {
   "name": "shopware-admin",
-  "version": "1.0.0",
-  "description": "Shopware 6 Administration (Meteor/Vue 3): Module, Components, Routing, Data-Handling, Pinia, Services, ACL, Vite.",
+  "version": "2.0.0",
+  "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK — 4 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "admin"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "admin"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-build",
+    "./skills/sw-components",
+    "./skills/sw-data",
+    "./skills/sw-meteor"
+  ]
 }

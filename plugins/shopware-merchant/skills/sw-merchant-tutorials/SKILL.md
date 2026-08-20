@@ -1,25 +1,23 @@
 ---
 name: sw-merchant-tutorials
-description: >
-  Shopware 6 Tutorials & FAQs — Überblick über alle How-To-Tutorials und häufige Fragen
-  zum Shop-Betrieb: Allgemeines, Beispielkonfigurationen, Bestellungen, EU-Regelungen,
-  Gewusst-wie-Anleitungen, mehrsprachige Shops und Troubleshooting.
-  Trigger: "Shopware Tutorial", "FAQ Shopware", "Shopware Anleitung", "wie mache ich X in Shopware",
-  "Shopware Troubleshooting", "Shopware Fehler beheben", "Shopware How-to", "Shopware Tipp". Shopware 6.
+description: Shopware how-to guides: worked examples, multilingual shops, EU regulations, troubleshooting recipes. Use when the request asks how to accomplish a concrete task in the Shopware admin.
 ---
 
-# Shopware 6 — Tutorials & FAQs (Überblick)
+# Shopware how-to guides
 
-Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.
+Task-oriented recipes from the documentation — the answers to "how do I actually do X" rather than what a screen contains.
 
-## Themengruppen (Sub-Skills)
+## Reference map
 
-| Bereich | Skill | Inhalt |
-|---|---|---|
-| Allgemeines | `sw-merchant-tutorials-allgemeines` | Warenkorb-Berechnung, APP_URL, Flooding, Message Queue, Performance, Onboarding, PayPal Checkout, Sicherheit |
-| Beispiele | `sw-merchant-tutorials-beispiele` | Dynamic Access, Rabatte/Aktionen, Rule Builder, Flow Builder, Tags, Advanced Search |
-| Bestellungen | `sw-merchant-tutorials-bestellungen` | Bestellung im Admin anlegen, exportieren, PayPal-Besonderheiten |
-| EU-Regelungen | `sw-merchant-tutorials-eu-regelungen` | DSGVO, One-Stop-Shop (OSS) |
-| Gewusst-wie | `sw-merchant-tutorials-gewusst-wie` | Go-Live, Template, Footer, robots.txt, MwSt., Sendungsverfolgung, Zahlungsarten, Testumgebung |
-| Mehrsprachige Shops | `sw-merchant-tutorials-mehrsprachig` | Schweiz, UK, Irland, Niederlande, Polen, USA-Verkauf, Versand nach GB |
-| Troubleshooting | `sw-merchant-tutorials-troubleshooting` | Passwort-Reset, Erweiterung entfernen, Debuggen, SQL-Tipps, Migration |
+- **[ALLGEMEINES.md](ALLGEMEINES.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/allgemeines`. [ALLGEMEINES-DETAIL](ALLGEMEINES-DETAIL.md).
+- **[BEISPIELE.md](BEISPIELE.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/beispiele`. [BEISPIELE-DETAIL](BEISPIELE-DETAIL.md).
+- **[BESTELLUNGEN.md](BESTELLUNGEN.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`. [BESTELLUNGEN-DETAIL](BESTELLUNGEN-DETAIL.md).
+- **[EU-REGELUNGEN.md](EU-REGELUNGEN.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`. [EU-REGELUNGEN-DETAIL](EU-REGELUNGEN-DETAIL.md).
+- **[GEWUSST-WIE.md](GEWUSST-WIE.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/gewusst-wie`. [GEWUSST-WIE-DETAIL](GEWUSST-WIE-DETAIL.md).
+- **[MEHRSPRACHIG.md](MEHRSPRACHIG.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/shops-in-anderen-sprachen`. [MEHRSPRACHIG-DETAIL](MEHRSPRACHIG-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/troubleshooting`. [TROUBLESHOOTING-DETAIL](TROUBLESHOOTING-DETAIL.md).
+
+## Source
+
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

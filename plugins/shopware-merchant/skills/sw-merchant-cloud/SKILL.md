@@ -10,6 +10,10 @@ Setting up and running a Shopware Cloud tenant, and the limits that distinguish 
 ## Reference map
 
 - **[CLOUD-UEBERBLICK.md](CLOUD-UEBERBLICK.md)**: > „eine cloud-basierte Lösung, bei der Shopware die gesamte Infrastruktur verwaltet.".
+- **[OVERVIEW.md](OVERVIEW.md)**: Destilliert aus `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
+- **[SAAS-BETRIEB.md](SAAS-BETRIEB.md)**: Destilliert aus `docs.shopware.com/de/shopware-6-de/saas`. [SAAS-BETRIEB-ERWEITERUNGEN-SAAS](SAAS-BETRIEB-ERWEITERUNGEN-SAAS.md), [SAAS-BETRIEB-FAQ-SAAS](SAAS-BETRIEB-FAQ-SAAS.md), [SAAS-BETRIEB-KOSTEN-SAAS](SAAS-BETRIEB-KOSTEN-SAAS.md), [SAAS-BETRIEB-RATE-LIMITS-SAAS](SAAS-BETRIEB-RATE-LIMITS-SAAS.md), [SAAS-BETRIEB-STAMMDATEN-FIRMA-SAAS](SAAS-BETRIEB-STAMMDATEN-FIRMA-SAAS.md), [SAAS-BETRIEB-VERSANDARTEN-SAAS](SAAS-BETRIEB-VERSANDARTEN-SAAS.md), [SAAS-BETRIEB-ZAHLUNGSARTEN-SAAS](SAAS-BETRIEB-ZAHLUNGSARTEN-SAAS.md).
+- **[SAAS-SETUP.md](SAAS-SETUP.md)**: Destilliert aus `docs.shopware.com/de/shopware-6-de/saas`. [SAAS-SETUP-DOMAINS-SAAS](SAAS-SETUP-DOMAINS-SAAS.md), [SAAS-SETUP-EINSTIEG-SAAS](SAAS-SETUP-EINSTIEG-SAAS.md), [SAAS-SETUP-LIVEGANG-SAAS](SAAS-SETUP-LIVEGANG-SAAS.md), [SAAS-SETUP-PLAENE-SAAS](SAAS-SETUP-PLAENE-SAAS.md).
+- **[UEBERBLICK.md](UEBERBLICK.md)**: > „eine cloud-basierte Lösung, bei der Shopware die gesamte Infrastruktur verwaltet.".
 
 ## Source
 

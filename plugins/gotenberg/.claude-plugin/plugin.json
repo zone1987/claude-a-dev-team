@@ -1,9 +1,24 @@
 {
   "name": "gotenberg",
-  "version": "1.0.0",
-  "description": "Gotenberg — Docker-based stateless API for PDF generation & manipulation: convert HTML/Markdown/URL (Chromium) and Office (LibreOffice) to PDF, screenshots, merge/split/convert (PDF/A, PDF/UA)/flatten/encrypt/metadata/bookmarks/attachments/stamp/watermark/rotate, full configuration, routes, webhook, system & clients.",
-  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
-  "license": "proprietary",
-  "keywords": ["gotenberg", "pdf", "docker", "api", "chromium", "libreoffice"],
-  "category": "development"
+  "version": "2.0.0",
+  "description": "Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, watermark), plus installation, configuration and clients — 3 domain skills.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "gotenberg",
+    "pdf",
+    "docker",
+    "api",
+    "chromium",
+    "libreoffice"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/gotenberg-convert",
+    "./skills/gotenberg-operations",
+    "./skills/gotenberg-pdf"
+  ]
 }

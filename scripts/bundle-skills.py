@@ -162,12 +162,12 @@ def plan(plugin: str, min_size: int) -> dict:
         candidates.append(parts[0])
         if len(parts) > 1:
             candidates.append("-".join(parts[:2]))
-    best, cover = "", 0
-    for c in candidates:
-        n = sum(1 for s in skills if s.startswith(c + "-"))
-        if n > cover:
-            best, cover = c, n
-    prefix = best if cover >= len(skills) * 0.6 else (
+    # Prefer the LONGEST candidate that still covers most skills. Taking the widest-covering
+    # one instead picks "sw" over "sw-merchant" — and then every sw-merchant-* skill lands in
+    # a single domain, which is a silent collapse rather than a grouping.
+    viable = [c for c in set(candidates)
+              if sum(1 for s in skills if s.startswith(c + "-")) >= len(skills) * 0.6]
+    prefix = max(viable, key=len) if viable else (
         os.path.commonprefix(skills).rstrip("-") if skills else "")
     mapping = load_mapping(plugin)
     groups: dict[str, list[str]] = {}

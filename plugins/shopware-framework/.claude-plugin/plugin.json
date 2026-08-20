@@ -1,12 +1,21 @@
 {
   "name": "shopware-framework",
-  "version": "1.0.0",
-  "description": "Shopware 6 Framework-Features: ScheduledTasks, MessageQueue, Rules, Flow-Builder, Store-/Admin-API-Routes, Webhooks, App-Scripts, Mail, Media.",
+  "version": "2.0.0",
+  "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch — 4 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "framework"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "framework"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-api",
+    "./skills/sw-automation",
+    "./skills/sw-content",
+    "./skills/sw-messaging"
+  ]
 }

@@ -1,32 +1,22 @@
 ---
 name: sw-merchant-orders
-description: >
-  Shopware Bestellungen Überblick, Bestellverwaltung, Bestellungen verwalten, Bestellliste,
-  Shopware Order Management, Bestellungen im Admin, Bestellübersicht, Bestellkapitel
+description: Operating Shopware orders: order list, creating and editing orders, state machine transitions, documents, refunds. Use when the request is about the Shopware admin under Bestellungen.
 ---
 
-# Shopware 6 – Bestellungen (Kapitel-Überblick)
+# Shopware order administration
 
-Der Bereich **Bestellungen** in der Shopware-6-Administration umfasst die komplette Verwaltung aller Kundenbestellungen.
+Everything under **Bestellungen**. An order's three state machines — order, payment, delivery — and the documents and refunds that hang off them.
 
-## Enthaltene Sub-Skills
+## Reference map
 
-| Thema | Admin-Pfad | Skill |
-|---|---|---|
-| Bestellübersicht, Filter, Bulk-Aktionen | Bestellungen | `sw-merchant-orders-overview` |
-| Bestellung manuell anlegen | Bestellungen > Bestellung anlegen | `sw-merchant-orders-create` |
-| Bestellung bearbeiten (Positionen, Adressen, Details) | Bestellungen > [Bestellung] | `sw-merchant-orders-edit` |
-| Status-Management (Bestell-/Zahlungs-/Versandstatus) | Bestellungen > [Bestellung] > Status | `sw-merchant-orders-states` |
-| Dokumente (Rechnung, Lieferschein, ZUGFeRD) | Bestellungen > [Bestellung] > Dokumente | `sw-merchant-orders-documents` |
-| Retouren & Rückerstattungen | Bestellungen > [Bestellung] > Retouren | `sw-merchant-orders-refunds` |
+- **[CREATE.md](CREATE.md)**: Anleitung zum Erstellen manueller Bestellungen über die Shopware-Administration. [CREATE-DETAIL](CREATE-DETAIL.md).
+- **[DOCUMENTS.md](DOCUMENTS.md)**: Vollständige Referenz für die Dokumentenverwaltung in Bestellungen. [DOCUMENTS-DETAIL](DOCUMENTS-DETAIL.md).
+- **[EDIT.md](EDIT.md)**: Vollständige Referenz für alle Bearbeitungsmöglichkeiten einer geöffneten Bestellung. [EDIT-DETAIL](EDIT-DETAIL.md).
+- **[ORDERS.md](ORDERS.md)**: Der Bereich **Bestellungen** in der Shopware-6-Administration umfasst die komplette Verwaltung aller Kundenbe….
+- **[OVERVIEW.md](OVERVIEW.md)**: Vollständige Referenz für die Bestellliste, alle Filter-Kriterien und Massenbearbeitungsfunktionen. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
+- **[REFUNDS.md](REFUNDS.md)**: Vollständige Referenz für das Retouren-Management und Zahlungsabbruch-Handling. [REFUNDS-DETAIL](REFUNDS-DETAIL.md).
+- **[STATES.md](STATES.md)**: Vollständige Referenz aller Status, Übergänge und der Zahlungslogik nach der Bestellung. [STATES-DETAIL](STATES-DETAIL.md).
 
-## Schnelleinstieg
+## Source
 
-- **Bestellung anlegen**: Bestellungen > „Bestellung anlegen" → Kunde wählen → Produkte → Optionen → Speichern
-- **Status ändern**: Bestellung öffnen > Info-Bereich oben > Status-Dropdown
-- **Rechnung erstellen**: Bestellung > Tab „Allgemein" > Dokumente > „Dokument hinzufügen"
-- **Retoure erstellen**: Bestellung > Tab „Allgemein" > Positionen auswählen > „Artikel zurückgeben"
-- **Bulk-Statusänderung**: Bestellungen auswählen > „Mehrfachänderung"
-
-## Quelle
-https://docs.shopware.com/de/shopware-6-de/bestellungen
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.

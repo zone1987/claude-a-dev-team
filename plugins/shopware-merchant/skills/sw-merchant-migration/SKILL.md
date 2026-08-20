@@ -1,43 +1,20 @@
 ---
 name: sw-merchant-migration
-description: >
-  Migration zu Shopware 6 — Betreibersicht: Shopware 5 nach 6 migrieren, Magento nach Shopware 6 migrieren,
-  Shopware 6 auf 6 umziehen (Cloud/Server-Wechsel). Migrationsassistent, Profile, Verbindung herstellen,
-  Datenübernahme, Livegang. Trigger: "Shopware 5 auf 6 migrieren", "Migration Shopware", "Migrationsprozess
-  Shopware", "Daten aus Shopware 5 übernehmen", "Magento zu Shopware migrieren", "Migrationsassistent
-  installieren", "Verbindung für Migration einrichten", "was wird bei Migration übernommen", "Migration
-  Shopware Voraussetzungen". Shopware 6.7.
+description: Migrating to Shopware: the migration process, data mapping, going live. Use when the request is about migrating a shop to Shopware or the Migration Assistant.
 ---
 
-# Shopware 6 — Migration (Betreiber-Überblick)
+# Shopware migration
 
-Destilliert aus `docs.shopware.com/de/migration-de`. Drei Quellsysteme unterstützt:
+Moving an existing shop to Shopware: what the Migration Assistant transfers, and the go-live sequence.
 
-## Unterstützte Migrationsquellen
+## Reference map
 
-| Quelle | Ziel |
-|---|---|
-| Shopware 5 | Shopware 6 (self-hosted) |
-| Shopware 6 (alt) | Shopware 6 (Cloud oder neuer Server) |
-| Magento | Shopware 6 |
+- **[LIVEGANG.md](LIVEGANG.md)**: Destilliert aus `docs.shopware.com/de/migration-de/Livegang`. [LIVEGANG-DETAIL](LIVEGANG-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: Destilliert aus `docs.shopware.com/de/migration-de`.
+- **[PROZESS.md](PROZESS.md)**: Destilliert aus `docs.shopware.com/de/migration-de`. [PROZESS-MIGRATIONSPROZESS-SW5-SW6](PROZESS-MIGRATIONSPROZESS-SW5-SW6.md), [PROZESS-MIGRATIONSPROZESS-SW6-SW6](PROZESS-MIGRATIONSPROZESS-SW6-SW6.md).
+- **[UEBERBLICK.md](UEBERBLICK.md)**: Migration bedeutet **Neuanfang auf grüner Wiese** — ein komplett neuer Shop wird aufgebaut und Daten aus dem …. [UEBERBLICK-2](UEBERBLICK-2.md).
+- **[WAS-WIRD-MIGRIERT.md](WAS-WIRD-MIGRIERT.md)**: Der **Migrationsassistent** überträgt Daten aus dem Quellsystem nach Shopware 6. [WAS-WIRD-MIGRIERT-2](WAS-WIRD-MIGRIERT-2.md).
 
-> **Wichtig (SW6→SW6):** Quell- und Zielsystem müssen dieselbe Shopware-Version haben.
+## Source
 
-## Drei Migrationsphasen
-
-1. **Vorbereitungsphase** — Systemcheck, Lizenz, SW6-Installation
-2. **Migrationsphase** — Migrationsassistent + Datentransfer
-3. **Abschlussphase** — Livegang, DNS, Shopware Account
-
-## Detailwissen je Thema
-
-| Thema | Skill |
-|---|---|
-| Migrationsprozess (Assistent, Verbindung, Daten) | `sw-merchant-migration-prozess` |
-| Livegang (Domain, Hosting, Abschluss) | `sw-merchant-migration-livegang` |
-
-Tiefes Referenzwissen: `references/deep/`
-
----
-
-*Quelle: https://docs.shopware.com/de/migration-de*
+Distilled from [docs.shopware.com](https://docs.shopware.com/de/shopware-6-de) (German merchant documentation), retrieved 2026-08-20. Operating the administration, not developing against it — for code, use the `shopware-*` developer plugins.
