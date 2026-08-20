@@ -20,39 +20,48 @@ committed; the skill *prose* is still German where the knowledge was distilled f
 | `shadcn`, `shopware-core`, `shopware-checkout` skills — English | done |
 | `shopware-devops`, `shopware-testing` skills — English | `e975ee4` |
 | Batches that landed before the translation agents were stopped: `shadcn-vue` forms, `contao` platform topics, `shopware-storefront`, single files elsewhere | `bc6528c` |
+| `playwright` API reference — 48 files; German demo strings in example code unified plugin-wide | `5feea5d`, `9f9c6b9` |
+| `contao` fully English — five developer domains + three manual domains (87 files) | `c8195bb` |
+| `shopware-frontends`, `shopware-admin` fully English (65 files) | `c8195bb` |
+| 326 backtick-wrapped link targets repaired in 86 files; 25 links into deleted directories resolved; 0 dead relative links remain | `c8195bb` |
+| Every platform claim in `CLAUDE.md` sourced; four inaccuracies corrected | `e239c45`, `654750d`, `04262ed` |
+| English-only rule anchored as its own `CLAUDE.md` section | `580971c` |
 
 ## Outstanding
 
-**805 skill files, 112 872 lines of German prose.** A plugin is finished when its row disappears.
+**557 skill files, 57 894 lines of German prose.** A plugin is finished when its row disappears.
 Largest first, because that is the order in which agents should be dispatched.
 
 | Plugin | German files | German lines |
 |---|--:|--:|
-| `playwright` | 96 | 28 203 |
 | `shopware-merchant` | 268 | 26 001 |
-| `contao` | 66 | 14 367 |
-| `shopware-frontends` | 26 | 5 774 |
-| `shopware-admin` | 37 | 5 051 |
-| `panther` | 22 | 4 672 |
-| `gotenberg` | 44 | 4 499 |
-| `shopware-commercial` | 46 | 4 164 |
-| `shadcn-vue` | 58 | 3 881 |
-| `swiper` | 16 | 2 715 |
+| `shadcn-vue` | 68 | 5 549 |
+| `shopware-commercial` | 48 | 4 660 |
+| `swiper` | 19 | 3 511 |
+| `playwright` | 8 | 2 622 |
+| `shopware-storefront` | 17 | 2 433 |
 | `shopware-concepts` | 24 | 2 412 |
-| `shopware-storefront` | 16 | 2 144 |
 | `shopware-migration` | 11 | 1 862 |
-| `shopware-framework` | 30 | 1 462 |
+| `shopware-framework` | 31 | 1 639 |
 | `flatpickr` | 3 | 1 455 |
 | `shopware-quality` | 2 | 1 335 |
 | `shopware-api` | 20 | 1 083 |
-| `shopware-apps` | 7 | 864 |
-| `shopware-data` | 4 | 743 |
+| `shopware-apps` | 8 | 1 041 |
+| `shopware-data` | 5 | 769 |
+| `panther` | 2 | 530 |
+| `shopware-devops` | 3 | 389 |
+| `contao` | 1 | 308 |
 | `shopware-cms` | 9 | 185 |
+| `gotenberg` | 10 | 110 |
 
-Measured with the snippet below at commit `bc6528c`. `playwright` and `contao` read higher than in
-the previous revision of this table: the figures there were taken before the bundling pass moved
-further reference files into those two plugins, so the totals were incomplete rather than the
-translation having regressed.
+Measured at commit `c8195bb` with the snippet below, **widened** to also flag transliterated German
+(`fuer`, `ueber`, `koennen`, `vollstaendig`, `Fazit`, `Beschreibung`). That is why some rows moved up
+rather than down: agents repeatedly found files the stopword-only pattern had missed — short stubs
+whose sole German was a heading plus `Vollständige Referenz:`, and whole files written without
+umlauts. Treat both patterns as blocking, per `CLAUDE.md`.
+
+`playwright`'s 8 remaining files are the Android/Electron device classes and `API-TESTING-DETAIL.md`;
+they were skipped by a prefix-based work split and are almost entirely umlaut-free German.
 
 Re-measure at any time:
 
