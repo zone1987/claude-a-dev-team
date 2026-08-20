@@ -26,19 +26,21 @@ committed; the skill *prose* is still German where the knowledge was distilled f
 | 326 backtick-wrapped link targets repaired in 86 files; 25 links into deleted directories resolved; 0 dead relative links remain | `c8195bb` |
 | Every platform claim in `CLAUDE.md` sourced; four inaccuracies corrected | `e239c45`, `654750d`, `04262ed` |
 | English-only rule anchored as its own `CLAUDE.md` section | `580971c` |
+| `gotenberg`, `panther` fully English — incl. commands, agents, hooks, utils templates | `6072fe2`, `ed48b84` |
+| `playwright` fully English (the device classes a prefix split had skipped) | `ed48b84` |
+| `shopware-merchant` partial — 100 of 268 files | `6072fe2` |
 
 ## Outstanding
 
-**557 skill files, 57 894 lines of German prose.** A plugin is finished when its row disappears.
+**437 skill files, 49 478 lines of German prose.** A plugin is finished when its row disappears.
 Largest first, because that is the order in which agents should be dispatched.
 
 | Plugin | German files | German lines |
 |---|--:|--:|
-| `shopware-merchant` | 268 | 26 001 |
+| `shopware-merchant` | 168 | 20 847 |
 | `shadcn-vue` | 68 | 5 549 |
 | `shopware-commercial` | 48 | 4 660 |
 | `swiper` | 19 | 3 511 |
-| `playwright` | 8 | 2 622 |
 | `shopware-storefront` | 17 | 2 433 |
 | `shopware-concepts` | 24 | 2 412 |
 | `shopware-migration` | 11 | 1 862 |
@@ -48,20 +50,36 @@ Largest first, because that is the order in which agents should be dispatched.
 | `shopware-api` | 20 | 1 083 |
 | `shopware-apps` | 8 | 1 041 |
 | `shopware-data` | 5 | 769 |
-| `panther` | 2 | 530 |
 | `shopware-devops` | 3 | 389 |
 | `contao` | 1 | 308 |
 | `shopware-cms` | 9 | 185 |
-| `gotenberg` | 10 | 110 |
 
-Measured at commit `c8195bb` with the snippet below, **widened** to also flag transliterated German
-(`fuer`, `ueber`, `koennen`, `vollstaendig`, `Fazit`, `Beschreibung`). That is why some rows moved up
-rather than down: agents repeatedly found files the stopword-only pattern had missed — short stubs
-whose sole German was a heading plus `Vollständige Referenz:`, and whole files written without
-umlauts. Treat both patterns as blocking, per `CLAUDE.md`.
+Measured at commit `ed48b84`. `contao`'s single row is a false positive: a German `TL_LANG`
+payload inside an example that demonstrates adding a German translation. It stays.
 
-`playwright`'s 8 remaining files are the Android/Electron device classes and `API-TESTING-DETAIL.md`;
-they were skipped by a prefix-based work split and are almost entirely umlaut-free German.
+## A grep is a floor, never a ceiling
+
+This is the one lesson worth carrying into the remaining work, because it cost several passes.
+
+Both patterns in `CLAUDE.md` are necessary and neither is sufficient. Three classes of German
+survive them:
+
+1. **Transliterated German** — `zuruck`, `fur`, `verfugbar`, `drucken`, `Kontextmenu`. Not just
+   missing umlauts but missing the `ue`/`ae` substitution too, so even the widened pattern misses it.
+2. **Single German words on otherwise English lines** — a table header cell `Beschreibung`, a code
+   comment `// Mit Offset`, a heading suffix `(niedrigstufig)`, a demo value `'Wert A'`. Too few
+   stopwords per line to clear a density threshold.
+3. **Short stub files** whose only German is a heading plus `Vollständige Referenz:` — no stopwords
+   at all.
+
+`panther/skills/panther-testing/INTERACTIONS-DETAIL.md` showed all three: a grep found 4 lines,
+reading the file found roughly 60. So **the instruction to an agent must be to read each assigned
+file in full**, with the greps used only as a final gate.
+
+The inverse also happened, and is worth stating so the next pass does not over-correct: for
+`playwright`'s `API-DEVICES-CLASS-ANDROIDDEVICE.md` the grep was right — 2 lines reported, 4 lines
+of German present. A brief that insists the grep must be understating the problem invites an agent
+to churn correct text. Tell it to read and report what it finds, not what it should expect to find.
 
 Re-measure at any time:
 
