@@ -75,7 +75,7 @@ Shopbetreiberbereich (1)
 
 ![Admin PayPal verbinden](assets/saas-admin-paypal.png)
 
-![Gebuchte Edition](assets/saas-gebuchte-edition.png)
+![Gebuchte Edition](assets/saas-booked-edition.png)
 
 ![Account Plan buchen](assets/saas-account-plan-buchen.png)
 

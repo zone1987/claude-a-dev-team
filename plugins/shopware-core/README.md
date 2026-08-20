@@ -6,7 +6,7 @@
 practically every plugin. It starts with **architectural orientation** (Shopware is *not* standard
 Symfony/Doctrine: its own DAL instead of an ORM, `Criteria` instead of a QueryBuilder, **events before
 decorators**, three APIs) and extends from the **plugin foundation** (bootstrap class, `composer.json`, PSR-4,
-the A-Dev-Team owner conventions `Ff`/`Adt`/`Ag`/`Pb`) to every cross-cutting concern.
+the vendor-prefix naming convention) to every cross-cutting concern.
 
 Covered: **dependency injection** (`services.xml`, autowiring, argument binding), **service decoration**
 (when to use it instead of an event) and **service tags**, the **event/subscriber system** and **extension

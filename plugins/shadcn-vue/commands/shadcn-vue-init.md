@@ -8,15 +8,15 @@ model: sonnet
 
 # /shadcn-vue-init
 
-Richte shadcn-vue ein. Skills: `shadcn-vue-installation`, `shadcn-vue-components-json`, `shadcn-vue-cli`,
-`shadcn-vue-tailwind-v4`, bei `--dark-mode` `shadcn-vue-dark-mode`.
+Richte shadcn-vue ein. Skills: `shadcn-vue-setup`, `shadcn-vue-setup`, `shadcn-vue-setup`,
+`shadcn-vue-setup`, bei `--dark-mode` `shadcn-vue-theming`.
 
 ## Ablauf
 1. Framework aus `$ARGUMENTS`/Projekt erkennen → passende Schritte (`shadcn-vue-installation/references/<fw>.md`).
 2. `npx shadcn-vue@latest init` vorschlagen (oder manuelle Schritte) inkl. Tailwind-v4-Setup.
-3. **components.json** erzeugen/prüfen — nur dokumentierte Felder (`shadcn-vue-components-json`): `style`, `typescript`,
+3. **components.json** erzeugen/prüfen — nur dokumentierte Felder (`shadcn-vue-setup`): `style`, `typescript`,
    `tailwind.{css,baseColor,cssVariables}`, `aliases.{components,utils,ui,lib,composables}`, `iconLibrary`, `framework`.
 4. **cn-Util** (`@/lib/utils`) + **globals.css** mit Theme-Tokens (`:root`/`.dark`, `@theme inline`, oklch) sicherstellen (Vorlagen in `utils/`).
-5. `--dark-mode` → `useColorMode` (@vueuse) bzw. `@nuxtjs/color-mode` einrichten (`shadcn-vue-dark-mode`).
+5. `--dark-mode` → `useColorMode` (@vueuse) bzw. `@nuxtjs/color-mode` einrichten (`shadcn-vue-theming`).
 
-Nur dokumentierte Felder/Befehle (Quelle: `shadcn-vue-components-json`/`shadcn-vue-cli`). Keine Secrets.
+Nur dokumentierte Felder/Befehle (Quelle: `shadcn-vue-setup`/`shadcn-vue-setup`). Keine Secrets.

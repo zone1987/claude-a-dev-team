@@ -8,7 +8,7 @@ model: sonnet
 
 # /swiper-init
 
-Erzeuge eine einsatzfertige Swiper-Einbindung. Skills: `swiper-getting-started`, `swiper-parameters`, gewünschte Modul-Skills, `swiper-element`/`swiper-react`/`swiper-vue`.
+Erzeuge eine einsatzfertige Swiper-Einbindung. Skills: `swiper-core`, `swiper-core`, gewünschte Modul-Skills, `swiper-core`/`swiper-frameworks`/`swiper-frameworks`.
 
 ## Ablauf
 1. Variante + Selector + Module + Effekt aus `$ARGUMENTS`.
@@ -18,4 +18,4 @@ Erzeuge eine einsatzfertige Swiper-Einbindung. Skills: `swiper-getting-started`,
    loop, breakpoints, autoplay, pagination/navigation, effect-Optionen …) + ggf. Events (`on: { slideChange }`).
 5. Variante-spezifisch: Core-Klasse, Swiper Element (`register()` + Attribute), React/Vue-Komponente.
 
-Nur dokumentierte Parameter/Module (Quelle: `swiper-parameters` + Modul-Skills). CSS-Imports nie vergessen; Module ab v9 explizit registrieren.
+Nur dokumentierte Parameter/Module (Quelle: `swiper-core` + Modul-Skills). CSS-Imports nie vergessen; Module ab v9 explizit registrieren.

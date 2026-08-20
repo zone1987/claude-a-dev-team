@@ -1,22 +1,22 @@
 ---
 name: sw-migration
-description: Scaffold einer Shopware-6 Datenbank-Migration (MigrationStep) mit korrektem Timestamp, update()/updateDestructive() und Shopware-Konventionen (BINARY(16) id, DATETIME(3)).
-argument-hint: <Beschreibung> [--plugin <PluginName>]
+description: Scaffold a Shopware 6 database migration (MigrationStep) with the correct timestamp, update()/updateDestructive() and Shopware conventions (BINARY(16) id, DATETIME(3)).
+argument-hint: <Description> [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /sw-migration
 
-Erzeuge eine Migration im Ziel-Plugin. Skill: `sw-database-migration`.
+Create a migration in the target plugin. Skill: `sw-write`.
 
-## Ablauf
-1. Beschreibung (PascalCase) + Ziel-Plugin bestimmen. Timestamp = aktuelle Unix-Zeit (eindeutig, größer als bestehende).
-2. Zielordner `src/Migration/` (bzw. `src/Migration/V6_7/`), Klasse `Migration{ts}{Beschreibung}` extends `MigrationStep`.
-3. `getCreationTimestamp()`, `update(Connection)` (non-destructive, `CREATE TABLE IF NOT EXISTS` / additive `ALTER`),
-   `updateDestructive(Connection)` (löschende Änderungen) implementieren.
-4. Konventionen: `id BINARY(16)`, `created_at DATETIME(3) NOT NULL`, `updated_at DATETIME(3) NULL`, InnoDB/utf8mb4,
-   FKs mit passenden ON DELETE-Regeln.
-5. Hinweis: `bin/console database:migrate --all <PluginName>` (destructive separat via `--all` nach Deprecation-Frist).
+## Steps
+1. Determine the description (PascalCase) and the target plugin. Timestamp = the current Unix time (unique, higher than existing ones).
+2. Target directory `src/Migration/` (or `src/Migration/V6_7/`), class `Migration{ts}{Description}` extends `MigrationStep`.
+3. Implement `getCreationTimestamp()`, `update(Connection)` (non-destructive, `CREATE TABLE IF NOT EXISTS` / additive `ALTER`),
+   and `updateDestructive(Connection)` (the deleting changes).
+4. Conventions: `id BINARY(16)`, `created_at DATETIME(3) NOT NULL`, `updated_at DATETIME(3) NULL`, InnoDB/utf8mb4,
+   foreign keys with suitable ON DELETE rules.
+5. Point out `bin/console database:migrate --all <PluginName>` (destructive runs separately, after the deprecation period).
 
-Niemals bestehende Migrationen ändern — immer neue anlegen. SQL parametrisiert/idempotent halten.
+Never change an existing migration — always add a new one. Keep SQL parameterised and idempotent.

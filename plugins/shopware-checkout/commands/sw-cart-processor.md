@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-cart-processor
 
-Erzeuge einen Cart-Processor (optional + Collector). Skills: `sw-cart-processor`, `sw-cart-collector`, `sw-cart-price`.
+Erzeuge einen Cart-Processor (optional + Collector). Skills: `sw-cart-processor`, `sw-cart`, `sw-cart`.
 
 ## Ablauf
 1. Name + Ziel-Plugin; bei `--with-collector` zusätzlich einen Collector.
@@ -17,4 +17,4 @@ Erzeuge einen Cart-Processor (optional + Collector). Skills: `sw-cart-processor`
 3. Registrierung via `shopware.cart.processor` / `shopware.cart.collector`-Tag (Priorität bedenken).
 4. Hinweis: auf `$toCalculate` arbeiten, Preise über Calculator-Services; Collector lädt Daten gebündelt.
 
-Validierung/Blocker stattdessen über einen Validator (`sw-cart-validator`). Rabatte: `sw-cart-discount`.
+Validierung/Blocker stattdessen über einen Validator (`sw-cart`). Rabatte: `sw-cart`.

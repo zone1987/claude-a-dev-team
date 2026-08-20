@@ -8,7 +8,7 @@ model: sonnet
 
 # /contao-module
 
-Erzeuge ein Front-End-Modul (Fragment-Controller). Skills: `contao-frontend-modules`, `contao-fragment-controllers`, `contao-templates`.
+Erzeuge ein Front-End-Modul (Fragment-Controller). Skills: `contao-frontend`, `contao-frontend`, `contao-frontend`.
 
 ## Ablauf
 1. Name (z.B. `my_module`) + Ziel-Bundle + Kategorie.
@@ -17,4 +17,4 @@ Erzeuge ein Front-End-Modul (Fragment-Controller). Skills: `contao-frontend-modu
 4. DCA/Palette (`tl_module`) + Übersetzungen.
 5. Hinweis: Cache leeren.
 
-Content-Element stattdessen → `/contao-content-element`. Backend-Modul → DCA + `contao-backend-modules`.
+Content-Element stattdessen → `/contao-content-element`. Backend-Modul → DCA + `contao-backend`.

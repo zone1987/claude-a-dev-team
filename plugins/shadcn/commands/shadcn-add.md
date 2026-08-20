@@ -8,7 +8,7 @@ model: sonnet
 
 # /shadcn-add
 
-Komponente(n) hinzufügen und einsetzen. Skills: das jeweilige `shadcn-<komponente>` + `shadcn-cli`.
+Komponente(n) hinzufügen und einsetzen. Skills: das jeweilige `shadcn-<komponente>` + `shadcn-setup`.
 
 ## Ablauf
 1. Komponenten + Variante aus `$ARGUMENTS` (Default: vorhandene Projekt-Variante / sonst Radix).

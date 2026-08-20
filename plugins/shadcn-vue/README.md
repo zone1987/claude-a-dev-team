@@ -90,4 +90,4 @@ accordion · alert · alert-dialog · aspect-ratio · avatar · badge · breadcr
 
 ## License & author
 
-proprietary — Andreas Gerhardt, A-Dev-Team. Source: the official shadcn-vue documentation and `unovue/shadcn-vue` (apps/v4, reka-ui).
+MIT. Source: the official shadcn-vue documentation and `unovue/shadcn-vue` (apps/v4, reka-ui).

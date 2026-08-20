@@ -1,4 +1,4 @@
-# A-Dev-Team — Claude Code plugin marketplace
+# Claude Code plugin marketplace
 
 A Claude Code **marketplace** of **26 plugins**, **117 skills**, **3,294** reference files and
 **367,948 lines** of distilled documentation, covering Shopware 6.7, Contao 5, the OCTO

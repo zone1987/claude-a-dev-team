@@ -1,6 +1,6 @@
 ---
 name: sw-entity-map
-description: Scannt das aktuelle Shopware-Projekt (Core + custom/plugins) und erzeugt/aktualisiert den Entity-Katalog .shopware-catalog/entities.md (Entities, Felder, Flags, Associations, Translations, CustomFields, CustomEntities).
+description: Scans the current Shopware project (core + custom/plugins) and writes or updates the entity catalogue .shopware-catalog/entities.md (entities, fields, flags, associations, translations, CustomFields, custom entities).
 argument-hint: [--custom-only]
 allowed-tools: Read, Glob, Grep, Bash, Write, Task
 model: haiku
@@ -8,16 +8,16 @@ model: haiku
 
 # /sw-entity-map
 
-Erzeuge/aktualisiere den Entity-Katalog des Projekts. Delegiere an den Agent `shopware-entity-mapper`
-(Skill `sw-entity-catalog`).
+Create or update the project's entity catalogue. Delegate to the `shopware-entity-mapper` agent
+(skill `sw-entity`).
 
-## Ablauf
-1. Projekt-Root + Scan-Bereich bestimmen: `vendor/shopware/**` (Core) + `custom/plugins/*`, `custom/static-plugins/*`.
-   Bei `--custom-only` nur Custom-Code scannen.
-2. Scanne `*Definition.php` (defineFields), `EntityExtension`, Attribut-Entities (`#[Entity]`),
-   `entities.xml`/`custom_entity.xml`, CustomFieldSets, Translation-Definitions.
-3. Schreibe `.shopware-catalog/entities.md` im Format aus `sw-entity-catalog`/`shopware-entity-mapper`
-   (pro Entity: Felder-Tabelle, Associations, Translations, CustomFields, Extensions).
-4. Kopfzeile mit Scan-Datum, Scan-Bereich und Entity-Anzahl. Abschließend Kurzzusammenfassung ausgeben.
+## Steps
+1. Determine the project root and the scan area: `vendor/shopware/**` (core) plus `custom/plugins/*`, `custom/static-plugins/*`.
+   With `--custom-only`, scan custom code only.
+2. Scan `*Definition.php` (defineFields), `EntityExtension`, attribute entities (`#[Entity]`),
+   `entities.xml`/`custom_entity.xml`, CustomFieldSets, translation definitions.
+3. Write `.shopware-catalog/entities.md` in the format described by `sw-entity` and `shopware-entity-mapper`
+   (per entity: field table, associations, translations, CustomFields, extensions).
+4. Add a header with the scan date, the scan area and the entity count. Print a short summary at the end.
 
-Effizient scannen (gezieltes glob/grep, nicht ganze Dateien lesen). Nur real vorhandene Strukturen — nichts erfinden.
+Scan efficiently (targeted glob/grep, do not read whole files). Only structures that really exist — invent nothing.

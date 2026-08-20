@@ -17,4 +17,4 @@ Erzeuge eine Store-API-Route. Skill: `sw-store-api-route`.
 3. services.xml-Registrierung.
 4. Hinweis: Auth via `sw-access-key`; für Frontends Typen neu generieren (`@shopware/api-gen`).
 
-Für das Ändern einer bestehenden Core-Route stattdessen Decoration (`sw-store-api-override`). Admin-API-Aktion → `sw-admin-api-controller`.
+Für das Ändern einer bestehenden Core-Route stattdessen Decoration (`sw-api`). Admin-API-Aktion → `sw-api`.

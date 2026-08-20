@@ -8,7 +8,7 @@ model: sonnet
 
 # /contao-dca
 
-Erzeuge eine DCA-Datei `contao/dca/<tl_table>.php`. Skills: `contao-dca-reference`, `contao-dca-framework`, `contao-models`.
+Erzeuge eine DCA-Datei `contao/dca/<tl_table>.php`. Skills: `contao-data`, `contao-data`, `contao-data`.
 
 ## Ablauf
 1. Tabellenname (`tl_<name>`) + Ziel-Bundle bestimmen.
@@ -16,6 +16,6 @@ Erzeuge eine DCA-Datei `contao/dca/<tl_table>.php`. Skills: `contao-dca-referenc
 3. DCA erzeugen: `config` (dataContainer Table, ctable/ptable falls nötig, sql.keys), `list` (sorting mode/fields,
    label, global_operations, operations), `fields` (je Feld label/exclude/inputType/eval/sql), `palettes` (+ `__selector__`/subpalettes).
 4. Optional: `callbacks` (z.B. onload/onsubmit/save) und ein zugehöriges **Model** (`contao/../Model/<Name>Model.php` bzw. via Annotation).
-5. Hinweis: `contao/dca/<tl_table>.php` korrekt platzieren; Migration für die DB-Tabelle (`contao-migrations`).
+5. Hinweis: `contao/dca/<tl_table>.php` korrekt platzieren; Migration für die DB-Tabelle (`contao-data`).
 
-Feld-Typen/eval-Optionen aus `contao-dca-reference`. Bestehende DCA nicht überschreiben — ergänzen.
+Feld-Typen/eval-Optionen aus `contao-data`. Bestehende DCA nicht überschreiben — ergänzen.

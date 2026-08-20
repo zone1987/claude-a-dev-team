@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-flow-action
 
-Erzeuge eine Flow-Action. Skills: `sw-flow-action`, `sw-flow-trigger`, `sw-flow-transaction`.
+Erzeuge eine Flow-Action. Skills: `sw-flow-action`, `sw-automation`, `sw-automation`.
 
 ## Ablauf
 1. Action-Name (`action.<owner>.<verb>`, z.B. `action.ff.notify`) + Ziel-Plugin + benötigte Aware-Daten (z.B. OrderAware).
@@ -17,4 +17,4 @@ Erzeuge eine Flow-Action. Skills: `sw-flow-action`, `sw-flow-trigger`, `sw-flow-
 3. Admin-Komponente (`sw-flow-action-...`) für Konfiguration + Registrierung beim Flow-Action-Service.
 4. Hinweis: transaktional nach Business-Prozess; externe Calls fehlertolerant/idempotent.
 
-Eigener Trigger nötig? → `sw-flow-trigger`. Bestehende Actions nicht überschreiben.
+Eigener Trigger nötig? → `sw-automation`. Bestehende Actions nicht überschreiben.

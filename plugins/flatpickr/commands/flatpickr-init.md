@@ -8,8 +8,8 @@ model: sonnet
 
 # /flatpickr-init
 
-Erzeuge eine einsatzfertige flatpickr-Einbindung. Skills: `flatpickr-getting-started`, `flatpickr-options`,
-`flatpickr-events`, `flatpickr-localization`, `flatpickr-plugins`.
+Erzeuge eine einsatzfertige flatpickr-Einbindung. Skills: `flatpickr-api`, `flatpickr-api`,
+`flatpickr-api`, `flatpickr-extend`, `flatpickr-extend`.
 
 ## Ablauf
 1. Selector + Modus (single/multiple/range/time) + Locale + Framework aus `$ARGUMENTS`.
@@ -19,4 +19,4 @@ Erzeuge eine einsatzfertige flatpickr-Einbindung. Skills: `flatpickr-getting-sta
 4. Bei Bedarf ein offizielles Plugin einbinden (z.B. `rangePlugin`, `confirmDatePlugin`, `monthSelectPlugin`).
 5. Framework-Variante: Vanilla, `react-flatpickr` oder Vue-Wrapper.
 
-Nur dokumentierte Optionen/Tokens (Quelle: `flatpickr-options`/`-formatting`). CSS/Locale-Import nicht vergessen.
+Nur dokumentierte Optionen/Tokens (Quelle: `flatpickr-api`/`-formatting`). CSS/Locale-Import nicht vergessen.

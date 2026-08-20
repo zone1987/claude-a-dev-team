@@ -8,7 +8,7 @@ model: sonnet
 
 # /shadcn-vue-add
 
-Komponente(n) hinzufügen und einsetzen. Skills: das jeweilige `shadcn-vue-<komponente>` + `shadcn-vue-cli`.
+Komponente(n) hinzufügen und einsetzen. Skills: das jeweilige `shadcn-vue-<komponente>` + `shadcn-vue-setup`.
 
 ## Ablauf
 1. Komponenten aus `$ARGUMENTS`.

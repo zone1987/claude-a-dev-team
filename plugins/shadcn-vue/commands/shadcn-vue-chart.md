@@ -8,7 +8,7 @@ model: sonnet
 
 # /shadcn-vue-chart
 
-Chart erstellen. Skills: `shadcn-vue-charts-overview` + `shadcn-vue-charts-<typ>`.
+Chart erstellen. Skills: `shadcn-vue-data` + `shadcn-vue-charts-<typ>`.
 
 ## Ablauf
 1. Diagrammtyp + Variante aus `$ARGUMENTS`.
@@ -17,4 +17,4 @@ Chart erstellen. Skills: `shadcn-vue-charts-overview` + `shadcn-vue-charts-<typ>
 4. Datenstruktur + Config anpassen; Tooltip/Legend/Achsen konfigurieren.
 5. **Farben:** `--chart-1..5`-Tokens in `globals.css` (Light/Dark) setzen/prüfen — ggf. `/shadcn-vue-theme`.
 
-Chart-Props/Config gegen `shadcn-vue-charts-overview`/`shadcn-vue-chart` prüfen — nicht raten.
+Chart-Props/Config gegen `shadcn-vue-data`/`shadcn-vue-chart` prüfen — nicht raten.

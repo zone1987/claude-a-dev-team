@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-rule
 
-Erzeuge eine Custom Rule. Skills: `sw-custom-rule`, `sw-rule-condition`.
+Erzeuge eine Custom Rule. Skills: `sw-automation`, `sw-automation`.
 
 ## Ablauf
 1. Rule-Name (camelCase, z.B. `ffMinAge`) + Ziel-Plugin + Scope (Cart/Checkout/LineItem).

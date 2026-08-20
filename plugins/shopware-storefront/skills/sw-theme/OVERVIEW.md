@@ -6,7 +6,7 @@ A theme is a plugin whose class implements `ThemeInterface`; its core is the `th
 ```json
 {
   "name": "FfTheme",
-  "author": "A-Dev-Team",
+  "author": "your-vendor",
   "views": ["@Storefront", "@Plugins", "@FfTheme"],
   "style": ["@Storefront", "app/storefront/src/scss/base.scss"],
   "script": ["@Storefront", "app/storefront/dist/storefront/js/ff-theme.js"],

@@ -9,7 +9,7 @@ model: haiku
 # /sw-js-plugin-map
 
 Erzeuge/aktualisiere den JS-Plugin-Katalog. Delegiere an den Agent `shopware-js-plugin-mapper`
-(Skill `sw-js-plugin-catalog`).
+(Skill `sw-javascript`).
 
 ## Ablauf
 1. Scan-Bereich: Core-Storefront (`vendor/shopware/storefront/Resources/app/storefront/src/plugin/**`) + custom
@@ -17,7 +17,7 @@ Erzeuge/aktualisiere den JS-Plugin-Katalog. Delegiere an den Agent `shopware-js-
 2. Erfasse Plugin-Klassen (`*.plugin.js`), `static options`/Optionen und die `PluginManager.register/override/extend`-
    Einträge (Name ↔ Selector ↔ Klasse).
 3. Schreibe `.shopware-catalog/js-plugins.md` (Plugins) **und** `.shopware-catalog/js-events.md` (JS-Events:
-   Publish-/Subscribe-Orte, Argumente/`detail`, Typ) — Formate aus `sw-js-plugin-catalog`/`sw-js-event-catalog`.
+   Publish-/Subscribe-Orte, Argumente/`detail`, Typ) — Formate aus `sw-javascript`/`sw-javascript`.
 4. Kopf mit Scan-Datum/Bereich/Anzahl; Kurzzusammenfassung ausgeben.
 
 Effizient via grep (`PluginManager.register|override|extend`, `class .*Plugin`, `\$emitter\.(publish|subscribe)`,

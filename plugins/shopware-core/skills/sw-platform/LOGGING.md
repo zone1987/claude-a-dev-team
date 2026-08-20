@@ -1,7 +1,7 @@
 # Shopware 6 — Logging
 
 Plugins should log into their **own Monolog channel** (a dedicated file under `var/log/`), not into the
-core channel. A-Dev-Team pattern: `PluginLoggerTrait` registers a plugin-specific logger in `build()`.
+core channel. A common pattern: a `PluginLoggerTrait` registering a plugin-specific logger in `build()`.
 
 ```php
 // in the plugin class

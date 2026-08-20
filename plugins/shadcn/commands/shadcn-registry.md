@@ -8,16 +8,16 @@ model: sonnet
 
 # /shadcn-registry
 
-Eigene Registry aufsetzen. Skills: `shadcn-registry`, `shadcn-registry-json`, `shadcn-registry-item-json`,
-`shadcn-registry-api`, bei `--mcp` `shadcn-mcp`.
+Eigene Registry aufsetzen. Skills: `shadcn-registry`, `shadcn-blocks`, `shadcn-blocks`,
+`shadcn-blocks`, bei `--mcp` `shadcn-setup`.
 
 ## Ablauf
-1. **`registry.json`** erstellen (name, homepage, items[]) — Schema aus `shadcn-registry-json`.
+1. **`registry.json`** erstellen (name, homepage, items[]) — Schema aus `shadcn-blocks`.
 2. **`registry-item.json`** je Item nach `$ARGUMENTS` — alle nötigen Felder (`name`, `type` registry:<…>, `title`,
    `description`, `files[]` mit path/type, `dependencies`, `registryDependencies`, `cssVars`, `tailwind`, `envVars`,
-   `meta`, `docs`) — Schema aus `shadcn-registry-item-json`. Nur dokumentierte Felder.
+   `meta`, `docs`) — Schema aus `shadcn-blocks`. Nur dokumentierte Felder.
 3. **Build:** `npx shadcn@latest build` → statische `/r/<name>.json`; unter `public/r` hosten.
 4. **Consumer:** Eintrag in `components.json` `registries` (`@namespace`) + `npx shadcn@latest add @namespace/<item>`.
-5. `--mcp` → `registry.json` an der Wurzel für MCP-Kompatibilität (`shadcn-mcp`).
+5. `--mcp` → `registry.json` an der Wurzel für MCP-Kompatibilität (`shadcn-setup`).
 
 Schema-Felder/`type`-Werte gegen die Registry-Skills prüfen — nicht raten. Keine echten Secrets in `envVars` (nur Platzhalter).

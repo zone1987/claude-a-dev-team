@@ -8,8 +8,8 @@ model: sonnet
 
 # /sw-admin-module
 
-Erzeuge ein Admin-Modul. Skills: `sw-admin-module`, `sw-admin-component`, `sw-admin-routing`, `sw-admin-menu`,
-`sw-admin-data-handling`, `sw-admin-acl-permissions`, `sw-meteor-components`.
+Erzeuge ein Admin-Modul. Skills: `sw-admin-module`, `sw-admin-component`, `sw-components`, `sw-components`,
+`sw-data`, `sw-data`, `sw-meteor`.
 
 ## Ablauf
 1. Modulname (kebab, mit Owner-Präfix z.B. `ff-example`) + Ziel-Plugin (+ optional gebundene Entity) bestimmen.

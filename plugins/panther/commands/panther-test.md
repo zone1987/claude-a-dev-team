@@ -8,8 +8,8 @@ model: sonnet
 
 # /panther-test
 
-Produce a runnable Panther test. Skills: `panther-testcase`, `panther-client`, `panther-crawler`,
-`panther-interactions`, `panther-javascript-screenshots`; with `--browserkit` also `panther-browserkit-clients`.
+Produce a runnable Panther test. Skills: `panther-testing`, `panther-testing`, `panther-testing`,
+`panther-testing`, `panther-testing`; with `--browserkit` also `panther-testing`.
 
 ## Procedure
 1. Interpret the scenario from `$ARGUMENTS`; choose the client:
@@ -17,7 +17,7 @@ Produce a runnable Panther test. Skills: `panther-testcase`, `panther-client`, `
    - pure server/HTML checks → `createClient()` (KernelBrowser) or `--browserkit` `createHttpBrowserClient()`
 2. **Navigation/interaction:** `$client->request('GET', …)`, `$crawler->filter(...)`/`selectButton(...)`, `submitForm(...)`/`click(...)`.
 3. **Waiting (WebDriver/JS only):** `waitForVisibility`/`waitForElementToContain`/`waitFor` with the correct signature instead of `sleep()`.
-4. **Assertions:** `assertSelectorTextContains`/`assertPageTitleSame`/`assertSelectorIsVisible`/… (`panther-testcase`).
+4. **Assertions:** `assertSelectorTextContains`/`assertPageTitleSame`/`assertSelectorIsVisible`/… (`panther-testing`).
 5. `--pom` → encapsulate locators/actions in a page object class.
 
 Check methods/signatures against the (source-verified) `panther-*` skills — Panther's crawler does NOT support all DomCrawler methods. No `sleep()` hacks.

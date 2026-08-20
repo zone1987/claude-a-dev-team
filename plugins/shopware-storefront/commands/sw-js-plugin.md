@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-js-plugin
 
-Erzeuge ein Storefront-JS-Plugin. Skill: `sw-storefront-js-plugin`.
+Erzeuge ein Storefront-JS-Plugin. Skill: `sw-javascript`.
 
 ## Ablauf
 1. Name (PascalCase, ohne Suffix) + Ziel-Plugin + Selector (`data-...`) bestimmen.
@@ -19,5 +19,5 @@ Erzeuge ein Storefront-JS-Plugin. Skill: `sw-storefront-js-plugin`.
    - Optional Template-Hook (`<div data-...>`).
 3. Hinweis: Storefront-Build (`bin/build-storefront.sh`) + `composer eslint:storefront`.
 
-Für das Ändern eines bestehenden Plugins stattdessen override/extend (Skills `sw-js-plugin-override`/`-extend`);
+Für das Ändern eines bestehenden Plugins stattdessen override/extend (Skills `sw-javascript`/`-extend`);
 vorhandene Plugins via `/sw-js-plugin-map` prüfen.

@@ -1,6 +1,6 @@
 ---
 name: sw-entity-extension
-description: Scaffold einer EntityExtension, um einer bestehenden Core-Entity (product, order, customer, ...) Felder/Associations hinzuzufügen — inkl. Migration und Registrierung.
+description: Scaffold an EntityExtension to add fields or associations to an existing core entity (product, order, customer, ...) — including the migration and its registration.
 argument-hint: <CoreEntity> [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,13 +8,13 @@ model: sonnet
 
 # /sw-entity-extension
 
-Erweitere eine bestehende Entity ohne Core-Änderung. Skill: `sw-entity-extension` (+ `sw-field-types`, `sw-associations-*`, `sw-database-migration`).
+Extend an existing entity without changing the core. Skill: `sw-entity` (plus `sw-fields`, `sw-write`).
 
-## Ablauf
-1. Ziel-Core-Entity (z.B. `product`) + zugehörige `*Definition`-Klasse bestimmen (ggf. Entity-Katalog `/sw-entity-map`).
-2. Hinzuzufügende Felder/Associations erfragen (Association zu eigener Entity, Zusatzfeld, …).
-3. Bei einfachen Zusatzdaten **CustomFields** vorschlagen (`/sw-custom-field`) — Extension für echte Associations/Spalten.
-4. Erzeugen: `src/Extension/<CoreEntity>Extension.php` (`extends EntityExtension`, `getDefinitionClass`, `extendFields`),
-   Registrierung in `services.xml` mit Tag `shopware.entity.extension`, bei eigenen Spalten eine Migration.
+## Steps
+1. Determine the target core entity (e.g. `product`) and its `*Definition` class (use the entity catalogue `/sw-entity-map` if needed).
+2. Ask which fields or associations to add (an association to your own entity, an extra field, …).
+3. For simple extra data suggest **CustomFields** instead (`/sw-custom-field`) — an extension is for real associations and columns.
+4. Create: `src/Extension/<CoreEntity>Extension.php` (`extends EntityExtension`, `getDefinitionClass`, `extendFields`),
+   register it in `services.xml` with the tag `shopware.entity.extension`, and add a migration for your own columns.
 
-Felder mit `ApiAware()` versehen, wenn über API nötig; Lösch-Verhalten der Association bewusst (`CascadeDelete`/`SetNullOnDelete`).
+Mark fields `ApiAware()` when they must be reachable through the API; choose the association's delete behaviour deliberately (`CascadeDelete`/`SetNullOnDelete`).

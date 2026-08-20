@@ -8,14 +8,14 @@ model: sonnet
 
 # /panther-init
 
-Produce a ready-to-run Panther setup. Skills: `panther-installation`, `panther-testcase`, `panther-config-env`,
-plus `panther-docker-ci` with `--ci`/`--docker`.
+Produce a ready-to-run Panther setup. Skills: `panther-setup`, `panther-testing`, `panther-setup`,
+plus `panther-setup` with `--ci`/`--docker`.
 
 ## Procedure
 1. Options from `$ARGUMENTS` (default Chrome, headless).
 2. **Suggest the installation**: `composer require --dev symfony/panther dbrekelmans/bdi` + `vendor/bin/bdi detect drivers`.
-3. **`phpunit.xml.dist`**: register the Panther extension (PHPUnit 10+: `<extensions><bootstrap class="Symfony\\Component\\Panther\\ServerExtension"/>`; PHPUnit 9: listener) + sensible `PANTHER_*` `<env>` entries (`panther-config-env`).
+3. **`phpunit.xml.dist`**: register the Panther extension (PHPUnit 10+: `<extensions><bootstrap class="Symfony\\Component\\Panther\\ServerExtension"/>`; PHPUnit 9: listener) + sensible `PANTHER_*` `<env>` entries (`panther-setup`).
 4. **Base test** (`tests/E2ETest.php`) with `PantherTestCase`, `createPantherClient()`, `filter()` + `assertSelectorTextContains()`, `waitForVisibility()` for JS.
-5. `--ci`/`--docker` → CI workflow or Dockerfile (headless + no-sandbox + `--disable-dev-shm-usage`) from `panther-docker-ci`; templates in `utils/`.
+5. `--ci`/`--docker` → CI workflow or Dockerfile (headless + no-sandbox + `--disable-dev-shm-usage`) from `panther-setup`; templates in `utils/`.
 
-Only documented env vars/options (source: `panther-config-env`/`panther-installation`). No real credentials — use CI secrets/`.env.test`.
+Only documented env vars/options (source: `panther-setup`/`panther-setup`). No real credentials — use CI secrets/`.env.test`.

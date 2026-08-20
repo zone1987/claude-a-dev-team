@@ -8,13 +8,13 @@ model: sonnet
 
 # /shadcn-vue-block
 
-Block einsetzen. Skills: `shadcn-vue-blocks-overview` + `shadcn-vue-blocks-sidebar`/`-login`/`-signup`/`-otp`/`-dashboard`.
+Block einsetzen. Skills: `shadcn-vue-blocks` + `shadcn-vue-blocks`/`-login`/`-signup`/`-otp`/`-dashboard`.
 
 ## Ablauf
-1. Block aus `$ARGUMENTS` (Liste in `shadcn-vue-blocks-overview`).
+1. Block aus `$ARGUMENTS` (Liste in `shadcn-vue-blocks`).
 2. **CLI:** `npx shadcn-vue@latest add <block>` — installiert alle .vue-Dateien + abhängige Komponenten.
 3. Aus dem passenden `shadcn-vue-blocks-*`-Skill den kompletten Dateibaum + Code zeigen; Einstiegspunkt erklären.
-4. `--customize` → Branding/Navigation/Daten anpassen, ohne die Struktur zu brechen; Sidebar-Mechanik via `shadcn-vue-sidebar`.
+4. `--customize` → Branding/Navigation/Daten anpassen, ohne die Struktur zu brechen; Sidebar-Mechanik via `shadcn-vue-layout`.
 5. Abhängige Komponenten/Provider sicherstellen.
 
 Block-Dateien/Code gegen das Block-Skill prüfen — nicht raten.

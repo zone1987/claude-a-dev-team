@@ -8,7 +8,7 @@ model: sonnet
 
 # /shadcn-chart
 
-Chart erstellen. Skills: `shadcn-charts-overview` + `shadcn-charts-<typ>`.
+Chart erstellen. Skills: `shadcn-data` + `shadcn-charts-<typ>`.
 
 ## Ablauf
 1. Diagrammtyp + Variante aus `$ARGUMENTS`.
@@ -17,4 +17,4 @@ Chart erstellen. Skills: `shadcn-charts-overview` + `shadcn-charts-<typ>`.
 4. **`ChartConfig`** (label/icon/color je Reihe) + Datenstruktur an den Use-Case anpassen; Achsen/Tooltip/Legend konfigurieren.
 5. **Farben:** `--chart-1..5`-Tokens in `globals.css` (Light/Dark) setzen/prüfen — ggf. `/shadcn-theme`.
 
-Recharts-Props/ChartConfig-Felder gegen `shadcn-charts-overview`/`shadcn-chart` prüfen — nicht raten.
+Recharts-Props/ChartConfig-Felder gegen `shadcn-data`/`shadcn-chart` prüfen — nicht raten.

@@ -8,17 +8,17 @@ model: sonnet
 
 # /playwright-test
 
-Erzeuge einen lauffähigen Playwright-Test. Skills: `playwright-writing-tests`, `playwright-locators`,
-`playwright-actions`, `playwright-test-assertions`; bei `--api` `playwright-api-testing`; bei `--auth-setup` `playwright-auth`;
-bei `--pom` `playwright-pom`.
+Erzeuge einen lauffähigen Playwright-Test. Skills: `playwright-writing`, `playwright-writing`,
+`playwright-writing`, `playwright-writing`; bei `--api` `playwright-library`; bei `--auth-setup` `playwright-writing`;
+bei `--pom` `playwright-runner`.
 
 ## Ablauf
 1. Szenario aus `$ARGUMENTS` interpretieren (UI-Flow / API / Auth-Setup).
 2. **UI:** `test('...', async ({ page }) => {...})` mit role-/label-basierten Locators, Aktionen (Auto-Waiting,
    keine Sleeps) und Web-First-`expect(locator)`-Assertions.
 3. **`--api`:** `test('...', async ({ request }) => {...})` mit `APIRequestContext` (get/post/…), `expect(response).toBeOK()`,
-   Body-/Header-Prüfungen (`playwright-api-testing`).
-4. **`--auth-setup`:** Setup-Projekt, das einmalig einloggt und `storageState` speichert; Tests verwenden ihn (`playwright-auth`).
-5. **`--pom`:** Locators/Aktionen in eine Page-Object-Klasse kapseln, per Fixture bereitstellen (`playwright-pom`).
+   Body-/Header-Prüfungen (`playwright-library`).
+4. **`--auth-setup`:** Setup-Projekt, das einmalig einloggt und `storageState` speichert; Tests verwenden ihn (`playwright-writing`).
+5. **`--pom`:** Locators/Aktionen in eine Page-Object-Klasse kapseln, per Fixture bereitstellen (`playwright-runner`).
 
-Nur dokumentierte API/Matcher (Quelle: `playwright-api-*`/`playwright-test-assertions`) — nichts raten. Selektoren stabil/role-first wählen.
+Nur dokumentierte API/Matcher (Quelle: `playwright-api-*`/`playwright-writing`) — nichts raten. Selektoren stabil/role-first wählen.

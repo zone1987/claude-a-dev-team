@@ -8,8 +8,8 @@ model: sonnet
 
 # /sw-admin-component
 
-Erzeuge eine Admin-Komponente (oder ein Override). Skills: `sw-admin-component`, `sw-admin-component-override`,
-`sw-meteor-components`, `sw-admin-styles`.
+Erzeuge eine Admin-Komponente (oder ein Override). Skills: `sw-admin-component`, `sw-components`,
+`sw-meteor`, `sw-build`.
 
 ## Ablauf
 1. Komponentenname (kebab, mit Owner-Präfix) + Ziel-Plugin. Bei `--override <coreComponent>` ein Override erzeugen.

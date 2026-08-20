@@ -8,14 +8,14 @@ model: sonnet
 
 # /shadcn-theme
 
-Theme bauen/anpassen. Skills: `shadcn-theming`, `shadcn-colors`, `shadcn-tailwind-v4`, bei `--dark` `shadcn-dark-mode`.
+Theme bauen/anpassen. Skills: `shadcn-theming`, `shadcn-theming`, `shadcn-setup`, bei `--dark` `shadcn-theming`.
 
 ## Ablauf
 1. Basisfarbe/Primary/Radius aus `$ARGUMENTS`.
 2. **Tokens setzen:** in `globals.css` `:root` UND `.dark` alle Theme-Variablen konsistent (`--background`,
    `--foreground`, `--primary`(+`-foreground`), `--secondary`, `--muted`, `--accent`, `--destructive`, `--border`,
-   `--input`, `--ring`, `--card`, `--popover`, `--sidebar*`, `--chart-1..5`, `--radius`) — Werte aus `shadcn-colors`.
+   `--input`, `--ring`, `--card`, `--popover`, `--sidebar*`, `--chart-1..5`, `--radius`) — Werte aus `shadcn-theming`.
 3. **Tailwind v4:** `@theme inline`-Mapping der Variablen; Farbraum oklch.
 4. Kontrast/A11y prüfen (Light + Dark); fehlende Tokens ergänzen.
 
-Token-Namen/Werte gegen `shadcn-theming`/`shadcn-colors` prüfen — keine festen Farben in Komponenten. Vorlage: `utils/globals.css`.
+Token-Namen/Werte gegen `shadcn-theming`/`shadcn-theming` prüfen — keine festen Farben in Komponenten. Vorlage: `utils/globals.css`.

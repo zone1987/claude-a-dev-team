@@ -1,28 +1,28 @@
 ---
 name: sw-plugin-create
-description: Scaffold eines neuen Shopware-6-Plugins mit korrekten Owner-/Namens-/Namespace-Konventionen, composer.json, Plugin-Klasse und Grundstruktur.
-argument-hint: <PluginName> [--owner Ff|Adt|Ag|Pb] [--sw 6.7|6.8|6.9|7.0]
+description: Scaffold a new Shopware 6 plugin with correct naming and namespace conventions, composer.json, the plugin class and the base structure.
+argument-hint: <PluginName> [--vendor <Prefix>] [--sw 6.7|6.8|6.9|7.0]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /sw-plugin-create
 
-Lege ein neues Shopware-6-Plugin an. Nutze das Skill `sw-plugin-base` für die Detailregeln.
+Create a new Shopware 6 plugin. Use the `sw-plugin` skill for the detailed rules.
 
-## Ablauf (eine Frage pro Schritt, überspringe Beantwortetes)
-1. **Plugin-Name** (PascalCase, kein Theme). Aus `$ARGUMENTS` falls vorhanden.
-2. **Owner** aus Präfix ableiten (`Ff`→A-Dev-Team, `Adt`→A-Dev-Team, `Ag`→Andreas Gerhardt, `Pb`→Pfötchenbuddies);
-   sonst fragen und Präfix voranstellen.
-3. **Zweck** ("Was soll das Plugin machen?") → DE- + EN-`label` für composer.json.
-4. **Lizenz** (MIT oder proprietary).
-5. **Ziel-Version** → `conflict`-Range (6.7 → `<6.7 || >=6.8`, 6.8 → `<6.8 || >=6.9`, …).
+## Steps (one question at a time, skip what is already answered)
+1. **Plugin name** (PascalCase, not a theme). From `$ARGUMENTS` if given.
+2. **Vendor prefix** — the short prefix that identifies the author, prepended to the plugin name so it cannot
+   collide with another vendor's. Take it from `--vendor`, otherwise ask for it.
+3. **Purpose** ("what should the plugin do?") → the German and English `label` for composer.json.
+4. **Licence** (MIT or proprietary).
+5. **Target version** → the `conflict` range (6.7 → `<6.7 || >=6.8`, 6.8 → `<6.8 || >=6.9`, …).
 
-## Erzeugte Struktur
+## The structure it creates
 ```
 <PluginName>/
 ├── composer.json          # type: shopware-platform-plugin, extra.shopware-plugin-class, extra.label (de/en),
-│                          # autoload psr-4 "{PluginName}\\": "src/", conflict-Range
+│                          # autoload psr-4 "{PluginName}\\": "src/", the conflict range
 ├── src/
 │   ├── <PluginName>.php    # extends Shopware\Core\Framework\Plugin
 │   └── Resources/config/services.xml
@@ -30,6 +30,6 @@ Lege ein neues Shopware-6-Plugin an. Nutze das Skill `sw-plugin-base` für die D
 └── CHANGELOG.md
 ```
 
-Namespace = `{PluginName}\{PluginName}`, PSR-4-Root `src/`. Plugin-Klasse minimal (Logik via DI).
-Nach dem Anlegen: Hinweis auf `bin/console plugin:refresh && plugin:install --activate <PluginName>` und auf
-`/sw-entity`, `/sw-controller`, `/sw-admin-module` für nächste Bausteine. Keine erfundenen composer-Felder.
+Namespace = `{PluginName}\{PluginName}`, PSR-4 root `src/`. Keep the plugin class minimal — logic goes through DI.
+Afterwards point out `bin/console plugin:refresh && plugin:install --activate <PluginName>`, and
+`/sw-entity`, `/sw-controller`, `/sw-admin-module` for the next building blocks. No invented composer fields.

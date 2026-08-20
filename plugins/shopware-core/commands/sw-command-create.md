@@ -1,6 +1,6 @@
 ---
 name: sw-command-create
-description: Scaffold eines CLI-Commands (bin/console) in einem Shopware-6-Plugin inkl. services.xml-Registrierung.
+description: Scaffold a CLI command (bin/console) in a Shopware 6 plugin, including its services.xml registration.
 argument-hint: <command:name> [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: haiku
@@ -8,13 +8,13 @@ model: haiku
 
 # /sw-command-create
 
-Erzeuge einen Symfony-Command im Ziel-Plugin. Details siehe Skill `sw-cli-command`.
+Create a Symfony command in the target plugin. For the details, see the `sw-services` skill.
 
-1. Command-Name `vendor:domain:action` (z.B. `ff:content:import`) aus `$ARGUMENTS`.
-2. Ziel-Plugin bestimmen (aus `--plugin` oder erkanntem `custom/plugins/*`).
-3. Datei `src/Command/<ClassName>.php` mit `#[AsCommand(name, description)]`, `execute()` mit `SymfonyStyle`,
-   Rückgabe `Command::SUCCESS`.
-4. Falls keine Attribut-Autoconfiguration: in `services.xml` mit Tag `console.command` registrieren.
-5. Benötigte Repositories/Services als Constructor-Argumente ergänzen.
+1. Command name `vendor:domain:action` (e.g. `ff:content:import`) from `$ARGUMENTS`.
+2. Determine the target plugin (from `--plugin` or the detected `custom/plugins/*`).
+3. File `src/Command/<ClassName>.php` with `#[AsCommand(name, description)]`, an `execute()` using `SymfonyStyle`,
+   returning `Command::SUCCESS`.
+4. If attribute autoconfiguration is off, register it in `services.xml` with the `console.command` tag.
+5. Add the repositories and services it needs as constructor arguments.
 
-Klassenname = PascalCase aus dem Action-Teil + `Command`. Keine Geschäftslogik im Command bündeln, die in einen Service gehört.
+The class name is the action part in PascalCase plus `Command`. Keep out of the command any business logic that belongs in a service.

@@ -8,16 +8,16 @@ model: sonnet
 
 # /shadcn-init
 
-Richte shadcn/ui ein. Skills: `shadcn-installation`, `shadcn-components-json`, `shadcn-cli`, `shadcn-tailwind-v4`,
-bei `--dark-mode` `shadcn-dark-mode`.
+Richte shadcn/ui ein. Skills: `shadcn-setup`, `shadcn-setup`, `shadcn-setup`, `shadcn-setup`,
+bei `--dark-mode` `shadcn-theming`.
 
 ## Ablauf
 1. Framework aus `$ARGUMENTS`/Projekt erkennen → passende Schritte (`shadcn-installation/references/<framework>.md`).
 2. `npx shadcn@latest init` vorschlagen (oder manuelle Schritte) inkl. Tailwind-v4-Setup.
-3. **components.json** erzeugen/prüfen — nur dokumentierte Felder (`shadcn-components-json`): `style`, `rsc`,
+3. **components.json** erzeugen/prüfen — nur dokumentierte Felder (`shadcn-setup`): `style`, `rsc`,
    `tsx`, `tailwind.{css,baseColor,cssVariables}`, `aliases.{components,utils,ui,lib,hooks}`, `iconLibrary`.
 4. **cn-Util** (`@/lib/utils`: clsx + tailwind-merge) + **globals.css** mit Theme-Tokens (`:root`/`.dark`, `@theme inline`,
    oklch) sicherstellen (Vorlagen in `utils/`).
-5. `--dark-mode` → Provider je Framework ergänzen (`shadcn-dark-mode`).
+5. `--dark-mode` → Provider je Framework ergänzen (`shadcn-theming`).
 
-Nur dokumentierte Felder/Befehle (Quelle: `shadcn-components-json`/`shadcn-cli`). Keine Secrets. Variante (Radix/Base) festhalten.
+Nur dokumentierte Felder/Befehle (Quelle: `shadcn-setup`/`shadcn-setup`). Keine Secrets. Variante (Radix/Base) festhalten.

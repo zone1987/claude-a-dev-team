@@ -1,6 +1,6 @@
 ---
 name: sw-custom-field
-description: Scaffold eines CustomFieldSet inkl. CustomFields für eine Shopware-6-Entity (Migration oder Lifecycle), mit Typen und Entity-Relation.
+description: Scaffold a CustomFieldSet including its CustomFields for a Shopware 6 entity (migration or lifecycle), with types and an entity relation.
 argument-hint: <entityName> [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: haiku
@@ -8,14 +8,14 @@ model: haiku
 
 # /sw-custom-field
 
-Lege ein CustomFieldSet mit Feldern an. Skill: `sw-custom-fields`.
+Create a CustomFieldSet with fields. Skill: `sw-fields`.
 
-## Ablauf
-1. Ziel-Entity (z.B. `product`, `order`, `customer`) + Ziel-Plugin bestimmen.
-2. Felder erfragen (Name mit Owner-Präfix z.B. `ff_*`, Typ, Label DE/EN). Typen: `text`, `bool`, `int`, `float`,
-   `datetime`, `select`, `entity` (Entity-Selection), `media`.
-3. Erzeugen: CustomFieldSet-Upsert in einer Migration (oder Plugin-`install()`), mit `relations: [{entityName: ...}]`
-   und `customFields: [...]`.
-4. Hinweis auf Auslesen via `$entity->getCustomFields()['ff_...']` und Storefront-Zugriff.
+## Steps
+1. Determine the target entity (e.g. `product`, `order`, `customer`) and the target plugin.
+2. Ask for the fields (name with an owner prefix e.g. `ff_*`, type, label DE/EN). Types: `text`, `bool`, `int`, `float`,
+   `datetime`, `select`, `entity` (entity selection), `media`.
+3. Create: a CustomFieldSet upsert in a migration (or the plugin's `install()`), with `relations: [{entityName: ...}]`
+   and `customFields: [...]`.
+4. Point out how to read it via `$entity->getCustomFields()['ff_...']` and how to access it in the storefront.
 
-Set-Name mit Owner-Präfix (`ff_...`). Bestehende Sets/Felder nicht überschreiben — nur ergänzen.
+Give the set name an owner prefix (`ff_...`). Never overwrite existing sets or fields — only add to them.

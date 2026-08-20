@@ -8,8 +8,8 @@ model: sonnet
 
 # /contao-content-element
 
-Erzeuge ein Content-Element (modernes Fragment-Controller-Muster). Skills: `contao-content-elements`,
-`contao-fragment-controllers`, `contao-templates`.
+Erzeuge ein Content-Element (modernes Fragment-Controller-Muster). Skills: `contao-frontend`,
+`contao-frontend`, `contao-frontend`.
 
 ## Ablauf
 1. Name (z.B. `my_element`) + Ziel-Bundle + Kategorie.

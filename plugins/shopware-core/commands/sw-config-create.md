@@ -1,6 +1,6 @@
 ---
 name: sw-config-create
-description: Scaffold/Erweiterung der Plugin-Konfiguration (config.xml) eines Shopware-6-Plugins mit Cards und Input-Feldern.
+description: Scaffold or extend a Shopware 6 plugin's configuration (config.xml) with cards and input fields.
 argument-hint: [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: haiku
@@ -8,12 +8,12 @@ model: haiku
 
 # /sw-config-create
 
-Erzeuge oder erweitere `src/Resources/config/config.xml`. Details siehe Skill `sw-plugin-config`.
+Create or extend `src/Resources/config/config.xml`. For the details, see the `sw-plugin` skill.
 
-1. Ziel-Plugin bestimmen.
-2. Fragen, welche Einstellungen gebraucht werden (Name, Label DE/EN, Typ, Default).
-3. `<card>` mit `<title>` und `<input-field type="...">`-Einträgen erzeugen
-   (Typen: `text`, `bool`, `int`, `float`, `single-select`, `multi-select`, `password`, `colorpicker`, `datetime`).
-4. Hinweis auf Auslesen per `SystemConfigService` mit Key `{PluginName}.config.{feldName}` (Skill `sw-system-config`).
+1. Determine the target plugin.
+2. Ask which settings are needed (name, label DE/EN, type, default).
+3. Create the `<card>` with a `<title>` and its `<input-field type="...">` entries
+   (types: `text`, `bool`, `int`, `float`, `single-select`, `multi-select`, `password`, `colorpicker`, `datetime`).
+4. Point out reading them through `SystemConfigService` with the key `{PluginName}.config.{fieldName}` (skill `sw-platform`).
 
-Bestehende `config.xml` nicht überschreiben — vorhandene Cards/Felder beibehalten und nur ergänzen.
+Never overwrite an existing `config.xml` — keep the cards and fields that are there and only add to them.

@@ -8,9 +8,9 @@ model: sonnet
 
 # /gotenberg-convert
 
-Produce a ready-to-run Gotenberg call. Skills: `gotenberg-routes` plus the matching topic skill(s)
-(`gotenberg-chromium-*`, `gotenberg-libreoffice`, `gotenberg-pdf-*`), client examples from `gotenberg-clients`,
-async from `gotenberg-webhook`.
+Produce a ready-to-run Gotenberg call. Skills: `gotenberg-convert` plus the matching topic skill(s)
+(`gotenberg-chromium-*`, `gotenberg-convert`, `gotenberg-pdf-*`), client examples from `gotenberg-operations`,
+async from `gotenberg-operations`.
 
 ## Procedure
 1. **Determine target + route** from `$ARGUMENTS`:

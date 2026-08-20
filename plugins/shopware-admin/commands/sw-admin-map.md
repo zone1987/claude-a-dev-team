@@ -8,7 +8,7 @@ model: haiku
 
 # /sw-admin-map
 
-Erzeuge/aktualisiere den Admin-Katalog. Delegiere an den Agent `shopware-admin-mapper` (Skill `sw-admin-catalog`).
+Erzeuge/aktualisiere den Admin-Katalog. Delegiere an den Agent `shopware-admin-mapper` (Skill `sw-data`).
 
 ## Ablauf
 1. Scan-Bereich: Core `vendor/shopware/administration/Resources/app/administration/src/**` + custom

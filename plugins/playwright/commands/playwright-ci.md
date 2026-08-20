@@ -8,7 +8,7 @@ model: sonnet
 
 # /playwright-ci
 
-Erzeuge eine einsatzfertige CI-Konfiguration für Playwright. Skills: `playwright-ci`, `playwright-test-execution`.
+Erzeuge eine einsatzfertige CI-Konfiguration für Playwright. Skills: `playwright-ci`, `playwright-runner`.
 
 ## Ablauf
 1. Provider/Optionen aus `$ARGUMENTS` (Default GitHub Actions).
@@ -21,4 +21,4 @@ Erzeuge eine einsatzfertige CI-Konfiguration für Playwright. Skills: `playwrigh
 4. **`--docker`:** offizielles Image statt manueller Browser-Installation.
 5. Caching-/Worker-Hinweise (CI-typisch `workers: 1`/`retries: 2` via Config oder Flags).
 
-Nur dokumentierte Flags/Images (Quelle: `playwright-ci`/`playwright-test-execution`). Keine Secrets im YAML — als CI-Secrets/Variablen referenzieren.
+Nur dokumentierte Flags/Images (Quelle: `playwright-ci`/`playwright-runner`). Keine Secrets im YAML — als CI-Secrets/Variablen referenzieren.

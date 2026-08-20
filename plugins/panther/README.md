@@ -62,4 +62,4 @@ Ready-to-use templates under `utils/` (copy and adapt — no real credentials):
 
 ## License & author
 
-proprietary — Andreas Gerhardt, A-Dev-Team. Sources: the official Symfony documentation and the source code of `symfony/panther`.
+MIT. Sources: the official Symfony documentation and the source code of `symfony/panther`.

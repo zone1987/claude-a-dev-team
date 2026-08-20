@@ -22,8 +22,8 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/shopware-services/shopware-ne
 ## Screenshots
 
 ![Beispiel-Workflow](assets/nexus-example-workflow.png)
-![Shop mit Nexus verbinden](assets/nexus-shop-verbinden.png)
-![Shop ist verknüpft](assets/nexus-shop-verknuepft.png)
+![Shop mit Nexus verbinden](assets/nexus-shop-connect.png)
+![Shop ist verknüpft](assets/nexus-shop-linked.png)
 ![Slack Integration](assets/nexus-integrationen-slack.png)
 
 ## Was ist Shopware Nexus?

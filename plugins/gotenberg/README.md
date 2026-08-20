@@ -50,4 +50,4 @@ Part of the marketplace **[claude-a-dev-team](../../README.md)**.
 
 ## License & author
 
-proprietary — Andreas Gerhardt, A-Dev-Team. Source: the official Gotenberg documentation (https://gotenberg.dev).
+MIT. Source: the official Gotenberg documentation (https://gotenberg.dev).

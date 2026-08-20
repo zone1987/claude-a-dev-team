@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-migrate-component
 
-Migriere Admin-Komponente(n) von `sw-*` zu Meteor `mt-*`. Skill: `sw-meteor-component-map`.
+Migriere Admin-Komponente(n) von `sw-*` zu Meteor `mt-*`. Skill: `sw-admin`.
 
 ## Ablauf
 1. Ziel-Datei/Komponente lesen; alle `sw-*`-Komponenten im Template finden.
@@ -17,4 +17,4 @@ Migriere Admin-Komponente(n) von `sw-*` zu Meteor `mt-*`. Skill: `sw-meteor-comp
 3. Deprecation-Warnungen auflösen; `composer eslint:admin:fix` empfehlen.
 4. Hinweis: visuell/funktional prüfen (Admin-Watcher), ggf. Tests anpassen.
 
-Mapping-Tabelle/Beispiele im Skill `sw-meteor-component-map`. Bei breitem Umbau an `shopware-migrator` übergeben.
+Mapping-Tabelle/Beispiele im Skill `sw-admin`. Bei breitem Umbau an `shopware-migrator` übergeben.

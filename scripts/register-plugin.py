@@ -20,6 +20,22 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+HANDLE = "zone1987"
+HANDLE_URL = "https://github.com/zone1987"
+
+
+def normalise_author(author):
+    """Reduce an author block to the publishing handle.
+
+    A public marketplace must not carry a real name, an e-mail address or an
+    agency name, so anything that is not the handle is replaced rather than
+    matched against a list — a list only catches the names someone thought of.
+    """
+    if author.get("name") == HANDLE and author.get("url") == HANDLE_URL:
+        return author
+    return collections.OrderedDict([("name", HANDLE), ("url", HANDLE_URL)])
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--plugin", required=True)
@@ -52,12 +68,9 @@ def main() -> int:
         d["version"] = args.version
     if args.description:
         d["description"] = args.description
-    # The repository is public: no private contact details, handle only.
+    # The repository is public: a GitHub handle, never a real name or address.
     if isinstance(d.get("author"), dict):
-        d["author"].pop("email", None)
-        if d["author"].get("name") == "Andreas Gerhardt":
-            d["author"] = collections.OrderedDict(
-                [("name", "zone1987"), ("url", "https://github.com/zone1987")])
+        d["author"] = normalise_author(d["author"])
     with open(pj, "w", encoding="utf-8") as fh:
         json.dump(d, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
@@ -75,10 +88,7 @@ def main() -> int:
             if args.description:
                 x["description"] = args.description
             if isinstance(x.get("author"), dict):
-                x["author"].pop("email", None)
-                if x["author"].get("name") == "Andreas Gerhardt":
-                    x["author"] = collections.OrderedDict(
-                        [("name", "zone1987"), ("url", "https://github.com/zone1987")])
+                x["author"] = normalise_author(x["author"])
     if not hit:
         print(f"error: {args.plugin} is not in marketplace.json", file=sys.stderr)
         return 1

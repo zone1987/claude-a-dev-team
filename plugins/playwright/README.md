@@ -70,4 +70,4 @@ Customization (headed mode, browser choice, capabilities, isolated/persistent pr
 
 ## License & author
 
-proprietary — Andreas Gerhardt, A-Dev-Team. Source: the official Playwright documentation (https://playwright.dev).
+MIT. Source: the official Playwright documentation (https://playwright.dev).

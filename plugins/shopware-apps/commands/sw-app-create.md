@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-app-create
 
-Lege eine Shopware-App an. Skills: `shopware-apps`, `sw-app-php-sdk`/`sw-app-sdk-js`.
+Lege eine Shopware-App an. Skills: `shopware-apps`, `sw-app-sdk`/`sw-app-sdk`.
 
 ## Ablauf
 1. App-Name (PascalCase, Owner-Präfix) + Zweck + Auslieferungsart (`--sdk`): `scripts` (nur App-Scripts, kein Server),

@@ -8,8 +8,8 @@ model: sonnet
 
 # /sw-controller
 
-Erzeuge einen Storefront-Controller mit Page/PageLoader/Template. Skills: `sw-storefront-controller`,
-`sw-page-loader`, `sw-storefront-page`, `sw-twig-templates`.
+Erzeuge einen Storefront-Controller mit Page/PageLoader/Template. Skills: `sw-controller`,
+`sw-controller`, `sw-controller`, `sw-twig`.
 
 ## Ablauf
 1. Name + Ziel-Plugin + Route-Pfad bestimmen; Route-Name `frontend.<owner>.<name>`.
@@ -18,6 +18,6 @@ Erzeuge einen Storefront-Controller mit Page/PageLoader/Template. Skills: `sw-st
    - `src/Storefront/Page/<Name>/<Name>Page.php` + `<Name>PageLoader.php` (+ `<Name>PageLoadedEvent`).
    - Template `src/Resources/views/storefront/page/<name>/index.html.twig` (`sw_extends` Base-Layout).
    - Route-Registrierung (`routes.xml` oder `#[Route]`), services.xml für Controller/Loader.
-3. Hinweis: ggf. `_httpCache` setzen (`sw-storefront-caching`), Snippets ergänzen.
+3. Hinweis: ggf. `_httpCache` setzen (`sw-features`), Snippets ergänzen.
 
 Daten im PageLoader laden (nicht im Controller). Bestehende Dateien nicht überschreiben.

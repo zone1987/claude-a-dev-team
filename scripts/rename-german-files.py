@@ -80,6 +80,8 @@ WORDS = {
     'zwischensumme': 'subtotal', 'schuhe': 'shoes', 'typografie': 'typography',
     'seite': 'page', 'zeile': 'row', 'spalte': 'column', 'liste': 'list',
     'gruppe': 'group', 'datei': 'file', 'wert': 'value',
+    'gebuchte': 'booked', 'edition': 'edition', 'verbinden': 'connect',
+    'verknuepft': 'linked', 'verknuepfen': 'link', 'aktionen': 'actions',
     'individuell': 'individual', 'testkonto': 'test-account',
     'manuelle': 'manual', 'aktionen': 'actions', 'abonnement': 'subscription',
     'beispiel1': 'example1', 'beispiel2': 'example2', 'beispiel3': 'example3',

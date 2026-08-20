@@ -17,4 +17,4 @@ Erzeuge einen Payment-Handler (Shopware 6.7). Skill: `sw-payment-handler`.
 3. `payment_method`-Entity per Migration/Lifecycle anlegen und dem Handler zuordnen (handlerIdentifier).
 4. Status-Übergänge über die StateMachine; Fehler via `PaymentException`. Hinweis: Aktivierung je SalesChannel.
 
-App-basierte Zahlung stattdessen → `sw-payment-app`. Externe PayPal-API → `sw-paypal-sdk`. Bestehende nicht überschreiben.
+App-basierte Zahlung stattdessen → `sw-payment`. Externe PayPal-API → `sw-payment`. Bestehende nicht überschreiben.

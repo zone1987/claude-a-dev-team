@@ -8,7 +8,7 @@ model: haiku
 
 # /sw-api-map
 
-Erzeuge/aktualisiere die API-Kataloge. Delegiere an den Agent `shopware-api-mapper` (Skill `sw-api-catalog`).
+Erzeuge/aktualisiere die API-Kataloge. Delegiere an den Agent `shopware-api-mapper` (Skill `sw-shared`).
 
 ## Ablauf
 1. OpenAPI-Spec beschaffen (in Reihenfolge): lokale Spec-Datei im Projekt → laufender Shop
@@ -20,4 +20,4 @@ Erzeuge/aktualisiere die API-Kataloge. Delegiere an den Agent `shopware-api-mapp
    mit Auth-Hinweis je Endpoint. `--store-only`/`--admin-only` begrenzt.
 4. Kopf mit Quelle/API-Version/Server/Anzahl; Kurzzusammenfassung ausgeben.
 
-Keine Spec erreichbar → vermerken und auf statische Liste (`sw-store-api-endpoints`) verweisen. Nichts erfinden.
+Keine Spec erreichbar → vermerken und auf statische Liste (`sw-store`) verweisen. Nichts erfinden.

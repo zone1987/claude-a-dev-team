@@ -8,7 +8,7 @@ model: sonnet
 
 # /sw-theme
 
-Erzeuge ein Theme-Plugin. Skills: `sw-theme`, `sw-theme-config`, `sw-theme-inheritance`.
+Erzeuge ein Theme-Plugin. Skills: `sw-theme`, `sw-theme`, `sw-theme`.
 
 ## Ablauf
 1. ThemeName (PascalCase mit Owner-Präfix) bestimmen.

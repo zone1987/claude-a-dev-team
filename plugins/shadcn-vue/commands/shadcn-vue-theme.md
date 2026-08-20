@@ -8,7 +8,7 @@ model: sonnet
 
 # /shadcn-vue-theme
 
-Theme bauen/anpassen. Skills: `shadcn-vue-theming`, `shadcn-vue-tailwind-v4`, bei `--dark` `shadcn-vue-dark-mode`.
+Theme bauen/anpassen. Skills: `shadcn-vue-theming`, `shadcn-vue-setup`, bei `--dark` `shadcn-vue-theming`.
 
 ## Ablauf
 1. Basisfarbe/Primary/Radius aus `$ARGUMENTS`.
