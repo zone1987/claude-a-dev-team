@@ -1,4 +1,4 @@
 # contao-templates
 
-Lies `TEMPLATES-DETAIL.md` für das vollständige Twig-Template-System
-von Contao 5 inklusive Architektur, Erstellung, Debugging und Legacy-Interop.
+Read `TEMPLATES-DETAIL.md` for the complete Twig template system
+of Contao 5 including architecture, creation, debugging and legacy interop.

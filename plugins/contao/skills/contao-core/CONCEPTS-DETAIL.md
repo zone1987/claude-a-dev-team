@@ -2,115 +2,115 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
+- [Overview](#overview)
 - [1. Data Container Arrays (DCA) & Models](#1-data-container-arrays-dca-models)
-- [2. Front-End-Module](#2-front-end-module)
+- [2. Front End Modules](#2-front-end-modules)
 - [3. Content Elements](#3-content-elements)
 - [4. Templating](#4-templating)
 - [5. Assets & Images](#5-assets-images)
 - [6. Hooks](#6-hooks)
 - [7. Extensions (Bundles)](#7-extensions-bundles)
 - [8. Insert Tags](#8-insert-tags)
-- [Framework-Übersicht (weitere Konzepte)](#framework-übersicht-weitere-konzepte)
+- [Framework overview (further concepts)](#framework-overview-further-concepts)
 
-## Übersicht
+## Overview
 
-Contao bietet ein breites Set an Erweiterungs- und Anpassungsmechanismen. Die acht
-zentralen Konzepte bilden das Fundament jeder Contao-Entwicklung.
+Contao offers a broad set of extension and customisation mechanisms. The eight
+central concepts form the foundation of any Contao development.
 
 ---
 
 ## 1. Data Container Arrays (DCA) & Models
 
-**DCA** (Data Container Arrays) sind ein Kernkonzept des Contao Frameworks. Sie
-beschreiben, wie Datensätze verwaltet werden — Felder, Paletten, Listenansichten,
-Operationen und Datenbankschema.
+**DCA** (Data Container Arrays) are a core concept of the Contao framework. They
+describe how records are managed — fields, palettes, list views,
+operations and the database schema.
 
-**Models** sind objektorientierte Repräsentationen von DCA-Datensätzen. Sie ermöglichen
-das Erstellen, Laden und Verändern von Daten über eine saubere API.
+**Models** are object-oriented representations of DCA records. They allow
+creating, loading and modifying data through a clean API.
 
-Beispiel: `NewsModel::findByPk(5)` — lädt einen News-Datensatz als Model-Objekt.
+Example: `NewsModel::findByPk(5)` — loads a news record as a model object.
 
-**Schlüsselpunkte:**
-- Eine DCA-Datei pro Tabelle in `contao/dca/<tabellenname>.php`
-- Felder definieren: `inputType`, `eval`, `sql`
-- Paletten steuern die Backend-Formularansicht
-- `PaletteManipulator` für nicht-destruktive Erweiterungen bestehender Paletten
+**Key points:**
+- One DCA file per table in `contao/dca/<tablename>.php`
+- Define fields: `inputType`, `eval`, `sql`
+- Palettes control the back end form view
+- `PaletteManipulator` for non-destructive extensions of existing palettes
 
 ---
 
-## 2. Front-End-Module
+## 2. Front End Modules
 
-Front-End-Module behandeln komplexe Funktionalitäten auf bestimmten Seiten oder
-an bestimmten Stellen der Website. Beispiele: Navigationslisten, News-Listen,
-Mitglieder-Formulare.
+Front end modules handle complex functionality on specific pages or
+at specific places on the website. Examples: navigation lists, news lists,
+member forms.
 
-- Implementiert als Fragment-Controller (`AbstractFrontendModuleController`)
-- Registrierung via `#[AsFrontendModule]`-Attribut
-- DCA-Konfiguration in `tl_module`
+- Implemented as fragment controllers (`AbstractFrontendModuleController`)
+- Registration via the `#[AsFrontendModule]` attribute
+- DCA configuration in `tl_module`
 - Template: `frontend_module/<type>.html.twig`
 
 ---
 
 ## 3. Content Elements
 
-Content Elements verwalten beliebige und komplexe Inhalte innerhalb der
-Seitenstruktur — statische Seiteninhalte, News-Detailansichten etc.
+Content elements manage arbitrary and complex content within the
+page structure — static page content, news detail views, etc.
 
-- Implementiert als Fragment-Controller (`AbstractContentElementController`)
-- Registrierung via `#[AsContentElement]`-Attribut
-- DCA-Konfiguration in `tl_content` (Paletten)
+- Implemented as fragment controllers (`AbstractContentElementController`)
+- Registration via the `#[AsContentElement]` attribute
+- DCA configuration in `tl_content` (palettes)
 - Template: `content_element/<type>.html.twig`
-- Ab Contao 5.3: Nested Fragments (verschachtelte Kind-Elemente)
+- As of Contao 5.3: nested fragments (nested child elements)
 
 ---
 
 ## 4. Templating
 
-Contao verwendet seit Version 4.12 nativ das **Twig-Template-System** von Symfony.
-Ab Contao 5 sind die meisten Content Elements ausschließlich Twig-basiert.
-PHP-Templates (Legacy) werden bis Contao 5 noch unterstützt, ab Contao 6 entfallen.
+Since version 4.12 Contao natively uses Symfony's **Twig template system**.
+As of Contao 5 most content elements are exclusively Twig-based.
+PHP templates (legacy) are still supported up to Contao 5 and will be dropped as of Contao 6.
 
-**Kernmechanismus:** Managed Namespace `@Contao` ermöglicht Template-Vererbung ohne
-gegenseitiges Wissen der beteiligten Bundles. Mehrere Bundles können dasselbe Template
-unabhängig voneinander erweitern.
+**Core mechanism:** the managed namespace `@Contao` enables template inheritance without
+the participating bundles knowing about each other. Several bundles can extend the same
+template independently of one another.
 
 ---
 
 ## 5. Assets & Images
 
-Contao unterstützt responsive Bildverarbeitung via GD lib, Imagick und Gmagick.
+Contao supports responsive image processing via GD lib, Imagick and Gmagick.
 
-Assets werden über globale Arrays (`$GLOBALS['TL_CSS']`, `$GLOBALS['TL_JAVASCRIPT']`)
-oder im Twig-Template via `{% use %}` und den `add`-Tag eingebunden.
+Assets are included through global arrays (`$GLOBALS['TL_CSS']`, `$GLOBALS['TL_JAVASCRIPT']`)
+or in the Twig template via `{% use %}` and the `add` tag.
 
 ---
 
 ## 6. Hooks
 
-Hooks erlauben die Modifikation interner Prozesse an definierten Ausführungspunkten.
+Hooks allow the modification of internal processes at defined execution points.
 
-**Registrierung** via PHP-Attribut `#[AsHook('hookName')]` — bei aktiviertem Autowiring
-und Autoconfigure reicht eine einzige PHP-Datei.
+**Registration** via the PHP attribute `#[AsHook('hookName')]` — with autowiring
+and autoconfigure enabled, a single PHP file is sufficient.
 
-Beispiel-Hooks: `parseArticles`, `updatePersonalData`, `loadDataContainer`,
-`replaceInsertTags`, `generatePage`, `initializeFrontend` etc.
+Example hooks: `parseArticles`, `updatePersonalData`, `loadDataContainer`,
+`replaceInsertTags`, `generatePage`, `initializeFrontend`, etc.
 
 ---
 
 ## 7. Extensions (Bundles)
 
-Erweiterungen sind Symfony-Bundles, die sich automatisch (via Manager Plugin) oder
-manuell in Contao-Anwendungen integrieren.
+Extensions are Symfony bundles that integrate into Contao applications automatically
+(via the Manager Plugin) or manually.
 
-**Verzeichnisstruktur eines Bundles:**
+**Directory structure of a bundle:**
 ```
 src/
-├── ContaoExampleBundle.php       # Bundle-Klasse
+├── ContaoExampleBundle.php       # Bundle class
 ├── ContaoManager/
 │   └── Plugin.php                # Manager Plugin
-├── Controller/                   # Controller-Klassen
-├── EventListener/                # Hook- und Event-Listener
+├── Controller/                   # Controller classes
+├── EventListener/                # Hook and event listeners
 config/
 ├── services.yaml
 └── routes.yaml
@@ -135,36 +135,36 @@ contao/
 
 ## 8. Insert Tags
 
-Insert Tags sind spezielle Token im Format `{{TAG_NAME}}` oder `{{TAG_NAME::PARAMETER}}`,
-die vor der Frontend-Auslieferung durch dynamische Inhalte ersetzt werden.
+Insert tags are special tokens in the format `{{TAG_NAME}}` or `{{TAG_NAME::PARAMETER}}`
+that are replaced with dynamic content before the front end delivery.
 
-- Eingebaut: `{{link::*}}`, `{{env::*}}`, `{{date::*}}`, `{{asset::*::*}}` etc.
-- Eigene Tags: `#[AsInsertTag('name')]`-Attribut
-- Block-Tags: `#[AsBlockInsertTag('name', endTag: 'endname')]`
-- Flags für Ausgabe-Transformation: `#[AsInsertTagFlag('flag')]`
+- Built in: `{{link::*}}`, `{{env::*}}`, `{{date::*}}`, `{{asset::*::*}}`, etc.
+- Custom tags: `#[AsInsertTag('name')]` attribute
+- Block tags: `#[AsBlockInsertTag('name', endTag: 'endname')]`
+- Flags for output transformation: `#[AsInsertTagFlag('flag')]`
 
 ---
 
-## Framework-Übersicht (weitere Konzepte)
+## Framework overview (further concepts)
 
-Das Contao Framework enthält darüber hinaus:
+Beyond that, the Contao framework contains:
 
-| Bereich | Beschreibung |
+| Area | Description |
 |---------|-------------|
-| Caching | HTTP-Caching-Integration |
-| Cron | Contao-Cron-Funktionalität |
-| Data Container Array | Vollständige DCA-Konfiguration |
-| Filesystem | Dateiarbeit in Contao |
-| Form Widgets | Eigene Input-Widgets |
-| Image Processing | Bildverarbeitung und responsive Images |
-| Models | ORM-ähnliche Datenbankabstraktion |
-| Page Controllers | Seitentypen in der Seitenstruktur |
-| Routing | Custom Routes und Request-Attribute |
-| Search Indexing | Suchindex-Integration |
-| Security | Symfony Security Integration |
-| Translations | Übersetzungssystem |
+| Caching | HTTP caching integration |
+| Cron | Contao cron functionality |
+| Data Container Array | Complete DCA configuration |
+| Filesystem | Working with files in Contao |
+| Form Widgets | Custom input widgets |
+| Image Processing | Image processing and responsive images |
+| Models | ORM-like database abstraction |
+| Page Controllers | Page types in the page structure |
+| Routing | Custom routes and request attributes |
+| Search Indexing | Search index integration |
+| Security | Symfony Security integration |
+| Translations | Translation system |
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/getting-started/core-concepts/*  
+*Source: https://docs.contao.org/5.x/dev/getting-started/core-concepts/*  
 *https://docs.contao.org/5.x/dev/framework/*

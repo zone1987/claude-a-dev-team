@@ -4,10 +4,10 @@ A custom scrollable container built on reka-ui's ScrollArea primitives with a st
 
 ## References
 
-- [installation.md](`SCROLL-AREA-INSTALLATION.md`) — CLI and manual install
-- [source.md](`SCROLL-AREA-SOURCE.md`) — Full component source (ScrollArea.vue, ScrollBar.vue, index.ts)
-- [api.md](`SCROLL-AREA-API.md`) — Props and reka-ui API links
-- [examples.md](`SCROLL-AREA-EXAMPLES.md`) — Vertical and horizontal scroll examples
+- [SCROLL-AREA-INSTALLATION.md](SCROLL-AREA-INSTALLATION.md) — CLI and manual install
+- [SCROLL-AREA-SOURCE.md](SCROLL-AREA-SOURCE.md) — Full component source (ScrollArea.vue, ScrollBar.vue, index.ts)
+- [SCROLL-AREA-API.md](SCROLL-AREA-API.md) — Props and reka-ui API links
+- [SCROLL-AREA-EXAMPLES.md](SCROLL-AREA-EXAMPLES.md) — Vertical and horizontal scroll examples
 
 ## Key Facts
 

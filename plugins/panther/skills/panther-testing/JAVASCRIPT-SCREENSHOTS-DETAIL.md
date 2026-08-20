@@ -1,56 +1,56 @@
-# Panther — JavaScript, Console-Logs und Screenshots
+# Panther — JavaScript, console logs and screenshots
 
 ## Contents
 
-- [JavaScript ausfuehren](#javascript-ausfuehren)
-- [Browser-Console-Logs auslesen](#browser-console-logs-auslesen)
-- [Screenshots erstellen](#screenshots-erstellen)
-- [Real-Time-Applikationen testen (Mercure, WebSocket)](#real-time-applikationen-testen-mercure-websocket)
-- [Quellen](#quellen)
+- [Executing JavaScript](#executing-javascript)
+- [Reading browser console logs](#reading-browser-console-logs)
+- [Creating screenshots](#creating-screenshots)
+- [Testing real-time applications (Mercure, WebSocket)](#testing-real-time-applications-mercure-websocket)
+- [Sources](#sources)
 
-## JavaScript ausfuehren
+## Executing JavaScript
 
-Panther implementiert das `JavaScriptExecutor`-Interface von php-webdriver.
+Panther implements the `JavaScriptExecutor` interface from php-webdriver.
 
-### executeScript — synchrones JavaScript
+### executeScript — synchronous JavaScript
 
 ```php
-// Rueckgabewert: primitiv, Array oder null
+// Return value: primitive, array or null
 $result = $client->executeScript('return document.title;');
 // => string
 
-// DOM-Element uebergeben und zurueck bekommen
+// Pass in a DOM element and get it back
 $element = $client->getCrawler()->filter('.my-class')->getElement(0);
 $result = $client->executeScript('arguments[0].style.border = "2px solid red"; return arguments[0];', [$element]);
 
-// Seiteneffekte ohne Rueckgabewert
+// Side effects without a return value
 $client->executeScript('window.scrollTo(0, document.body.scrollHeight);');
 
-// Mehrere Argumente
+// Multiple arguments
 $client->executeScript(
     'arguments[0].setAttribute(arguments[1], arguments[2]);',
     [$element, 'data-testid', 'my-element']
 );
 ```
 
-### executeAsyncScript — asynchrones JavaScript
+### executeAsyncScript — asynchronous JavaScript
 
-Das Skript erhaelt als letztes Argument einen Callback, den es aufrufen muss.
-Panther wartet bis der Callback aufgerufen wird (Timeout: WebDriver-Standard = 0ms,
-daher `manage()->timeouts()->setScriptTimeout()` vorher setzen).
+The script receives a callback as its last argument, which it must invoke.
+Panther waits until the callback is invoked (timeout: WebDriver default = 0ms,
+so set `manage()->timeouts()->setScriptTimeout()` beforehand).
 
 ```php
-// Timeout fuer async Scripts setzen
-$client->manage()->timeouts()->setScriptTimeout(5); // Sekunden
+// Set the timeout for async scripts
+$client->manage()->timeouts()->setScriptTimeout(5); // seconds
 
-// Warten auf asynchronen Vorgang
+// Wait for an asynchronous operation
 $result = $client->executeAsyncScript(
     'var callback = arguments[arguments.length - 1];
      setTimeout(function() { callback("done"); }, 1000);'
 );
 // => "done"
 
-// Fetch-Request innerhalb des Browsers ausfuehren
+// Perform a fetch request inside the browser
 $data = $client->executeAsyncScript(
     'var cb = arguments[arguments.length - 1];
      fetch("/api/data").then(r => r.json()).then(data => cb(data));'
@@ -59,12 +59,12 @@ $data = $client->executeAsyncScript(
 
 ---
 
-## Browser-Console-Logs auslesen
+## Reading browser console logs
 
-Chrome unterstuetzt strukturierte Performance- und Browser-Logs via
-`goog:loggingPrefs`-Capability. Firefox unterstuetzt dies nicht native.
+Chrome supports structured performance and browser logs via the
+`goog:loggingPrefs` capability. Firefox does not support this natively.
 
-### Konfiguration
+### Configuration
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -80,8 +80,8 @@ class LogTest extends PantherTestCase
                 'capabilities' => [
                     'goog:loggingPrefs' => [
                         'browser'     => 'ALL',   // console.log, console.warn, console.error etc.
-                        'performance' => 'ALL',   // Netzwerk-Timing, Paint-Ereignisse etc.
-                        // Weitere gueltige Kategorien: 'driver', 'client', 'server'
+                        'performance' => 'ALL',   // network timing, paint events etc.
+                        // Further valid categories: 'driver', 'client', 'server'
                     ],
                 ],
             ]
@@ -89,7 +89,7 @@ class LogTest extends PantherTestCase
 
         $client->request('GET', '/');
 
-        // Browser-Console-Logs lesen
+        // Read browser console logs
         $consoleLogs = $client->getWebDriver()->manage()->getLog('browser');
         // Format: [['level' => 'WARNING', 'message' => '...', 'source' => 'javascript', 'timestamp' => 1234567890000], ...]
 
@@ -97,44 +97,44 @@ class LogTest extends PantherTestCase
             echo $log['level'] . ': ' . $log['message'] . "\n";
         }
 
-        // Performance-Logs lesen
+        // Read performance logs
         $performanceLogs = $client->getWebDriver()->manage()->getLog('performance');
-        // Enthaelt Chrome DevTools Protocol Events als JSON in 'message'
+        // Contains Chrome DevTools Protocol events as JSON in 'message'
     }
 }
 ```
 
-### Log-Level-Konstanten
+### Log level constants
 
-| Level | Bedeutung |
+| Level | Meaning |
 |---|---|
-| `'OFF'` | Keine Logs |
-| `'SEVERE'` | Nur Fehler (console.error, JS-Exceptions) |
-| `'WARNING'` | Fehler und Warnungen |
-| `'INFO'` | Allgemeine Infos |
-| `'DEBUG'` | Debug-Informationen |
-| `'ALL'` | Alle Logs |
+| `'OFF'` | No logs |
+| `'SEVERE'` | Errors only (console.error, JS exceptions) |
+| `'WARNING'` | Errors and warnings |
+| `'INFO'` | General information |
+| `'DEBUG'` | Debug information |
+| `'ALL'` | All logs |
 
 ---
 
-## Screenshots erstellen
+## Creating screenshots
 
-### Manueller Screenshot
+### Manual screenshot
 
 ```php
-// PNG-Datei schreiben
+// Write a PNG file
 $client->takeScreenshot('/var/screenshots/my-test.png');
 
-// Rueckgabewert: Pfad zur Datei (string)
+// Return value: path to the file (string)
 $path = $client->takeScreenshot('/tmp/screenshot.png');
 
-// Mit dynamischem Dateinamen
+// With a dynamic file name
 $client->takeScreenshot(sprintf('/var/screenshots/%s.png', date('Y-m-d_H-i-s')));
 ```
 
-### Automatische Fehler-Screenshots
+### Automatic error screenshots
 
-Erfordert `ServerExtension` in `phpunit.dist.xml` und `PANTHER_ERROR_SCREENSHOT_DIR`:
+Requires `ServerExtension` in `phpunit.dist.xml` and `PANTHER_ERROR_SCREENSHOT_DIR`:
 
 ```xml
 <!-- phpunit.dist.xml -->
@@ -147,20 +147,20 @@ Erfordert `ServerExtension` in `phpunit.dist.xml` und `PANTHER_ERROR_SCREENSHOT_
 </php>
 ```
 
-Dateiname-Format bei Fehler:
+File name format on error:
 ```
 {DIR}/{YYYY-MM-DD_HH-II-SS}_{error|failure}_{Namespace-ClassName_methodName}-{clientIndex}.png
 ```
 
-Beispiel:
+Example:
 ```
 var/screenshots/2024-01-15_14-30-00_failure_App-Tests-HomepageTest_testMyApp-0.png
 ```
 
-`PANTHER_ERROR_SCREENSHOT_ATTACH=1` gibt ausserdem `[[ATTACHMENT|/pfad]]` auf
-stdout aus (GitLab-CI-Artifact-Format).
+`PANTHER_ERROR_SCREENSHOT_ATTACH=1` additionally prints `[[ATTACHMENT|/path]]` to
+stdout (GitLab CI artifact format).
 
-### Screenshot im Test manuell mit Namen speichern
+### Saving a screenshot manually with a name inside the test
 
 ```php
 public function testWithScreenshot(): void
@@ -168,13 +168,13 @@ public function testWithScreenshot(): void
     $client = static::createPantherClient();
     $client->request('GET', '/dashboard');
 
-    // Zustand vor Aktion festhalten
+    // Capture the state before the action
     $client->takeScreenshot('/var/screenshots/before_click.png');
 
     $client->clickLink('Submit');
     $client->waitFor('.success-message');
 
-    // Zustand nach Aktion festhalten
+    // Capture the state after the action
     $client->takeScreenshot('/var/screenshots/after_click.png');
 
     $this->assertSelectorTextContains('.success-message', 'Done');
@@ -183,11 +183,11 @@ public function testWithScreenshot(): void
 
 ---
 
-## Real-Time-Applikationen testen (Mercure, WebSocket)
+## Testing real-time applications (Mercure, WebSocket)
 
-Fuer Real-Time-Features benoetigt man mehrere unabhaengige Browser-Sessions.
+For real-time features you need several independent browser sessions.
 
-### Einen zweiten Panther-Client erstellen
+### Creating a second Panther client
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -196,36 +196,36 @@ class ChatTest extends PantherTestCase
 {
     public function testRealTimeChat(): void
     {
-        // Erster Client (primaer, wird auch in self::$pantherClient gespeichert)
+        // First client (primary, also stored in self::$pantherClient)
         $client1 = self::createPantherClient();
         $client1->request('GET', '/chat');
 
-        // Zweiter Client (teilt denselben ChromeDriver/GeckoDriver-Prozess,
-        // erstellt aber eine neue WebDriver-Session => neues Browser-Fenster/Tab)
+        // Second client (shares the same ChromeDriver/GeckoDriver process,
+        // but creates a new WebDriver session => new browser window/tab)
         $client2 = self::createAdditionalPantherClient();
         $client2->request('GET', '/chat');
 
-        // Client2 postet eine Nachricht
+        // Client2 posts a message
         $client2->submitForm('Post message', ['message' => 'Hallo Welt!']);
 
-        // Client1 wartet auf die Nachricht via Mercure/WebSocket
+        // Client1 waits for the message via Mercure/WebSocket
         $client1->waitFor('.message');
         $this->assertSelectorTextContains('.message', 'Hallo Welt!');
     }
 }
 ```
 
-Hinweis: `createAdditionalPantherClient()` gibt einen neuen `Client` zurueck,
-der denselben `BrowserManager` (ChromeDriver-Prozess) nutzt, aber eine eigene
-WebDriver-Session hat. Beide Clients werden automatisch von `ServerExtension`
-registriert und bei Fehler bekommt man einen Screenshot von jedem.
+Note: `createAdditionalPantherClient()` returns a new `Client`
+that uses the same `BrowserManager` (ChromeDriver process) but has its own
+WebDriver session. Both clients are registered automatically by `ServerExtension`
+and on failure you get a screenshot of each one.
 
-### Drei oder mehr Clients
+### Three or more clients
 
 ```php
 $client1 = self::createPantherClient();
 $client2 = self::createAdditionalPantherClient();
-$client3 = self::createAdditionalPantherClient(); // noch ein weiterer Client
+$client3 = self::createAdditionalPantherClient(); // yet another client
 
 $client1->request('GET', '/board');
 $client2->request('GET', '/board');
@@ -238,19 +238,19 @@ $client3->waitFor('.game-started');
 $this->assertSelectorIsVisible('.game-started');
 ```
 
-### Warten auf asynchrone Updates
+### Waiting for asynchronous updates
 
 ```php
-// Standard-Wait (DOM-Aenderung)
+// Standard wait (DOM change)
 $client1->waitFor('.new-message');
 
-// Auf Sichtbarkeit warten
+// Wait for visibility
 $client1->waitForVisibility('.notification-badge');
 
-// Auf Text-Inhalt warten
+// Wait for text content
 $client1->waitForElementToContain('.message-count', '3');
 
-// Expliziter Timeout (Sekunden, Default ist durch WebDriverWait bestimmt)
+// Explicit timeout (seconds, the default is determined by WebDriverWait)
 use Facebook\WebDriver\WebDriverExpectedCondition;
 $client1->getWebDriver()->wait(10)->until(
     WebDriverExpectedCondition::presenceOfElementLocated(
@@ -261,10 +261,10 @@ $client1->getWebDriver()->wait(10)->until(
 
 ---
 
-## Quellen
+## Sources
 
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther/blob/main/src/Client.php
 - https://github.com/symfony/panther/blob/main/src/PantherTestCaseTrait.php
 - https://github.com/symfony/panther/blob/main/src/ServerExtensionLegacy.php
-- https://github.com/php-webdriver/php-webdriver (JavaScriptExecutor Interface)
+- https://github.com/php-webdriver/php-webdriver (JavaScriptExecutor interface)

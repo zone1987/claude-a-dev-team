@@ -208,9 +208,9 @@ export const test = base.extend<{ todoPage: TodoPage }>({
 | Built-in fixtures | 5 (`browser`, `browserName`, `context`, `page`, `request`) |
 | Fixture scopes | 3 (test, worker, auto) |
 
-**Fazit:** Fixtures sind das Herzstuck der Testarchitektur. Die fuenf Built-ins decken Browser-,
-Kontext-, Seiten- und API-Zugang ab. Mit `test.extend()` lassen sich saubere,
-wiederverwendbare Setup/Teardown-Bausteine mit beliebiger Scope erstellen.
+**Summary:** Fixtures are the heart of the test architecture. The five built-ins cover browser,
+context, page and API access. With `test.extend()` you can create clean,
+reusable setup/teardown building blocks with any scope.
 
 ---
 

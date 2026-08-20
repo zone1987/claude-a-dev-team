@@ -133,7 +133,7 @@ await server.close();
 | Properties | 0 |
 | Events | 1 |
 
-**Conclusion:** `BrowserServer` is a lightweight handle for remote browser instances. `wsEndpoint()` is the crucial method for passing the connection point to clients. For production setups, `wsPath` should contain an unpredictable token to prevent unauthorized access.
+**Summary:** `BrowserServer` is a lightweight handle for remote browser instances. `wsEndpoint()` is the crucial method for passing the connection point to clients. For production setups, `wsPath` should contain an unpredictable token to prevent unauthorized access.
 
 ---
 

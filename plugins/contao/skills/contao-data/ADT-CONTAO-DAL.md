@@ -1,3 +1,3 @@
 # adt-contao-dal
 
-Detaillierte Referenz: siehe `ADT-CONTAO-DAL-CONTAO-MODELS.md`
+Detailed reference: see `ADT-CONTAO-DAL-CONTAO-MODELS.md`

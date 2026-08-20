@@ -167,7 +167,7 @@ The complete CDP API documentation (all domains and methods):
 | Properties | 0 |
 | Events | 2 |
 
-**Conclusion:** `CDPSession` is a low-level escape hatch for Chromium-specific features that Playwright does not cover natively. `send()` is the only relevant method; the CDP method names come from the Chrome DevTools Protocol specification. For standard tests, the higher-level Playwright abstractions should always be preferred.
+**Summary:** `CDPSession` is a low-level escape hatch for Chromium-specific features that Playwright does not cover natively. `send()` is the only relevant method; the CDP method names come from the Chrome DevTools Protocol specification. For standard tests, the higher-level Playwright abstractions should always be preferred.
 
 ---
 

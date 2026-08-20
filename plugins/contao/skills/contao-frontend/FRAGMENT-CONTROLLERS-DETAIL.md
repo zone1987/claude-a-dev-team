@@ -2,26 +2,26 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Konzept](#konzept)
-- [Eingebaute Fragment-Typen](#eingebaute-fragment-typen)
-- [Legacy-Klassen erweitern](#legacy-klassen-erweitern)
-- [Sub-Requests und Caching](#sub-requests-und-caching)
-- [Custom Fragment-Typen](#custom-fragment-typen)
-- [Unterschied Fragment-Controller vs. Page-Controller](#unterschied-fragment-controller-vs-page-controller)
+- [Overview](#overview)
+- [Concept](#concept)
+- [Built-in fragment types](#built-in-fragment-types)
+- [Extending legacy classes](#extending-legacy-classes)
+- [Sub-requests and caching](#sub-requests-and-caching)
+- [Custom fragment types](#custom-fragment-types)
+- [Difference between fragment controller and page controller](#difference-between-fragment-controller-and-page-controller)
 
-## Übersicht
+## Overview
 
-Fragment Controllers ermöglichen das Bauen flexibler Seiten-Komponenten mit
-Symfony's Controller-Architektur. Contao-Seiten bestehen aus hierarchischen
-Komponenten: Layouts → Sektionen → Module/Artikel → Content Elements.
+Fragment controllers make it possible to build flexible page components with
+Symfony's controller architecture. Contao pages consist of hierarchical
+components: layouts → sections → modules/articles → content elements.
 
-Ein **Fragment** ist ein Seitenteil, der als Symfony-Sub-Request verarbeitet wird.
-Jedes Fragment hat eigene Parameter und HTTP-Header, aber keine eigene URL.
+A **fragment** is a part of a page that is processed as a Symfony sub-request.
+Each fragment has its own parameters and HTTP headers, but no URL of its own.
 
 ---
 
-## Konzept
+## Concept
 
 ```
 Page
@@ -32,29 +32,29 @@ Page
 │           └── Front End Module ← Fragment
 ```
 
-Jeder Fragment-Controller ist ein PHP-Controller, der aus dem `Request`-Objekt
-liest und eine `Response` zurückgibt — ohne eigene Route.
+Every fragment controller is a PHP controller that reads from the `Request` object
+and returns a `Response` — without a route of its own.
 
 ---
 
-## Eingebaute Fragment-Typen
+## Built-in fragment types
 
-Contao stellt zwei eingebaute Fragment-Typen bereit:
+Contao provides two built-in fragment types:
 
-| Typ | Registry-Global | Basis-Klasse |
+| Type | Registry global | Base class |
 |-----|-----------------|-------------|
-| Front-End-Module | `$GLOBALS['FE_MOD']` | `AbstractFrontendModuleController` |
-| Content Elements | `$GLOBALS['TL_CTE']` | `AbstractContentElementController` |
+| Frontend modules | `$GLOBALS['FE_MOD']` | `AbstractFrontendModuleController` |
+| Content elements | `$GLOBALS['TL_CTE']` | `AbstractContentElementController` |
 
-Beide Basis-Klassen übernehmen: Template-Vorbereitung, Response-Generierung,
-Caching-Header.
+Both base classes handle: template preparation, response generation,
+caching headers.
 
 ---
 
-## Legacy-Klassen erweitern
+## Extending legacy classes
 
-Bestehende Contao-Framework-Klassen können erweitert werden. Dabei muss die
-`__invoke`-Methode implementiert werden:
+Existing Contao framework classes can be extended. In doing so, the
+`__invoke` method must be implemented:
 
 ```php
 // src/Controller/FrontendModule/CustomNewsListController.php
@@ -70,7 +70,7 @@ class CustomNewsListController extends ModuleNewsList
 {
     public function __invoke(Request $request): Response
     {
-        // Eigene Logik vor/nach dem Standard-Verhalten
+        // Custom logic before/after the default behavior
         $this->customizeOutput();
 
         return new Response($this->generate());
@@ -78,14 +78,14 @@ class CustomNewsListController extends ModuleNewsList
 
     private function customizeOutput(): void
     {
-        // Anpassungen
+        // Customizations
     }
 }
 ```
 
-**Wichtig:** Klassen, die Legacy-Contao-Framework-Klassen erweitern, benötigen
-**manuelle Service-Registrierung** in `config/services.yaml` — sie werden nicht
-automatisch über Autoconfigure entdeckt.
+**Important:** classes that extend legacy Contao framework classes require
+**manual service registration** in `config/services.yaml` — they are not
+discovered automatically via autoconfigure.
 
 ```yaml
 # config/services.yaml
@@ -99,39 +99,39 @@ App\Controller\FrontendModule\CustomNewsListController:
 
 ---
 
-## Sub-Requests und Caching
+## Sub-requests and caching
 
-- Jedes Fragment verarbeitet sich als eigenständiger Symfony-Sub-Request
-- Sub-Requests können die Cache-Zeit der Eltern-Response beeinflussen
-- ESI-Renderer ermöglicht separate Caching-Entscheidungen pro Fragment
+- Each fragment is processed as an independent Symfony sub-request
+- Sub-requests can influence the cache lifetime of the parent response
+- The ESI renderer allows separate caching decisions per fragment
 
-**Renderer-Optionen:**
-- `forward` (Standard): Sub-Request im selben PHP-Prozess
-- `inline`: Inline-Rendering ohne Sub-Request-Overhead
-- `esi`: Edge Side Includes für unabhängiges CDN-Caching
-
----
-
-## Custom Fragment-Typen
-
-Das Contao-Fragment-Registry unterstützt beliebige eigene Fragment-Typen
-über `FragmentRegistry` und `RegisterFragmentsPass`. Dies erfordert fortgeschrittene
-Symfony-Kenntnisse.
-
-**Verfügbar seit:** Contao 4.5
+**Renderer options:**
+- `forward` (default): sub-request in the same PHP process
+- `inline`: inline rendering without sub-request overhead
+- `esi`: edge side includes for independent CDN caching
 
 ---
 
-## Unterschied Fragment-Controller vs. Page-Controller
+## Custom fragment types
 
-| Aspekt | Fragment Controller | Page Controller |
+The Contao fragment registry supports arbitrary custom fragment types
+via `FragmentRegistry` and `RegisterFragmentsPass`. This requires advanced
+Symfony knowledge.
+
+**Available since:** Contao 4.5
+
+---
+
+## Difference between fragment controller and page controller
+
+| Aspect | Fragment controller | Page controller |
 |--------|---------------------|----------------|
-| Eigene URL | Nein | Ja (via Seitenstruktur) |
-| Einbettung | In Artikel/Layout | Eigenständige Seite |
-| Sub-Request | Ja | Nein (Haupt-Request) |
+| Own URL | No | Yes (via the page structure) |
+| Embedding | In an article/layout | Standalone page |
+| Sub-request | Yes | No (main request) |
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/guides/fragment-controllers/*  
+*Source: https://docs.contao.org/5.x/dev/guides/fragment-controllers/*  
 *https://docs.contao.org/5.x/dev/framework/content-elements/*  
 *https://docs.contao.org/5.x/dev/framework/front-end-modules/*

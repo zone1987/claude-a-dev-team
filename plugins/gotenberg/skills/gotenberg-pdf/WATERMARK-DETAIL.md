@@ -1,14 +1,14 @@
-# Gotenberg — PDF Wasserzeichen (Vollreferenz)
+# Gotenberg — PDF Watermark (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [watermarkOptions-JSON](#watermarkoptions-json)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Vergleich Wasserzeichen vs. Stempel](#vergleich-wasserzeichen-vs-stempel)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [watermarkOptions JSON](#watermarkoptions-json)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Watermark vs. Stamp Comparison](#watermark-vs-stamp-comparison)
 
 ## Route
 
@@ -16,57 +16,57 @@
 POST /forms/pdfengines/watermark
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content-Type of the request:** `multipart/form-data`
 
-Unterschied zum Stempel: Ein **Wasserzeichen** wird **hinter** dem Seiteninhalt gerendert (Hintergrund). Ein Stempel wird **ueber** dem Inhalt gerendert (Vordergrund).
-
----
-
-## Request-Header
-
-| Header | Typ | Pflicht | Standard | Beschreibung |
-|--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+Difference from a stamp: a **watermark** is rendered **behind** the page content (background). A stamp is rendered **on top of** the content (foreground).
 
 ---
 
-## Form-Felder
+## Request Headers
 
-### Kern
-
-| Feld | Typ | Pflicht | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------------|--------------|
-| `files` | file[] | Ja | — | PDF-Dateien, die ein Wasserzeichen erhalten |
-| `watermarkSource` | enum | Ja | `text`, `image`, `pdf` | Art des Wasserzeichens |
-| `watermarkExpression` | string | Ja | — | Text-String (bei source=text) oder Dateiname der hochgeladenen Wasserzeichen-Datei |
-| `watermark` | file | Bedingt | — | Bild- oder PDF-Datei als Wasserzeichen (erforderlich wenn source=image oder source=pdf) |
-| `watermarkPages` | string | Nein | Seitenbereiche | Seiten, auf die das Wasserzeichen angewendet wird; leer = alle |
-| `watermarkOptions` | JSON-string | Nein | — | Engine-spezifische Optionen |
+| Header | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `Gotenberg-Output-Filename` | string | No | random UUID | Filename of the output |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## watermarkOptions-JSON
+## Form Fields
 
-Die verfuegbaren Optionen haengen von der konfigurierten PDF-Engine ab. Standard-Engine: **pdfcpu**.
+### Core
 
-### pdfcpu (Standard)
+| Field | Type | Required | Allowed values | Description |
+|-------|------|----------|----------------|-------------|
+| `files` | file[] | Yes | — | PDF files that receive a watermark |
+| `watermarkSource` | enum | Yes | `text`, `image`, `pdf` | Kind of watermark |
+| `watermarkExpression` | string | Yes | — | Text string (with source=text) or filename of the uploaded watermark file |
+| `watermark` | file | Conditional | — | Image or PDF file used as the watermark (required when source=image or source=pdf) |
+| `watermarkPages` | string | No | Page ranges | Pages the watermark is applied to; empty = all |
+| `watermarkOptions` | JSON string | No | — | Engine-specific options |
 
-Vollstaendige Dokumentation: https://pdfcpu.io/core/watermark
+---
 
-| Option | Typ | Beispiel | Beschreibung |
-|--------|-----|---------|--------------|
-| `font` | string | `"Helvetica"` | Schriftfamilie fuer Text-Wasserzeichen |
-| `points` | integer | `48` | Schriftgroesse in Punkten |
-| `color` | string | `"#808080"` | Hex-Farbe (Grau empfohlen fuer Wasserzeichen) |
-| `rotation` | float | `45` | Drehwinkel in Grad |
-| `opacity` | float 0-1 | `0.15` | Transparenz (typisch: 0.1-0.3 fuer Wasserzeichen) |
-| `scale` | float | `0.5` | Groessenskalierung |
-| `offset` | string | `"0 0"` | Versatz X Y in Punkten |
-| `pos` | string | `"c"` | Position: `c`=Mitte, `tl`, `tr`, `bl`, `br` |
-| `margin` | string | `"20 20"` | Randabstand |
+## watermarkOptions JSON
 
-### Beispiel watermarkOptions (klassisches Wasserzeichen)
+The available options depend on the configured PDF engine. Default engine: **pdfcpu**.
+
+### pdfcpu (default)
+
+Full documentation: https://pdfcpu.io/core/watermark
+
+| Option | Type | Example | Description |
+|--------|------|---------|-------------|
+| `font` | string | `"Helvetica"` | Font family for text watermarks |
+| `points` | integer | `48` | Font size in points |
+| `color` | string | `"#808080"` | Hex color (gray recommended for watermarks) |
+| `rotation` | float | `45` | Rotation angle in degrees |
+| `opacity` | float 0-1 | `0.15` | Transparency (typical: 0.1-0.3 for watermarks) |
+| `scale` | float | `0.5` | Size scaling |
+| `offset` | string | `"0 0"` | Offset X Y in points |
+| `pos` | string | `"c"` | Position: `c`=center, `tl`, `tr`, `bl`, `br` |
+| `margin` | string | `"20 20"` | Margin |
+
+### Example watermarkOptions (classic watermark)
 
 ```json
 {
@@ -80,15 +80,15 @@ Vollstaendige Dokumentation: https://pdfcpu.io/core/watermark
 
 ---
 
-## Antwort-Codes
+## Response Codes
 
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | variabel | PDF mit Wasserzeichen; mehrere Inputs → ZIP |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | variable | PDF with the watermark; multiple inputs → ZIP |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### Antwort-Header bei Erfolg
+### Response headers on success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -99,9 +99,9 @@ Gotenberg-Trace: {trace}
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### Text-Wasserzeichen "VERTRAULICH" (klassisch diagonal)
+### Text watermark "VERTRAULICH" (classic diagonal)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
@@ -112,7 +112,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   -o mit-wasserzeichen.pdf
 ```
 
-### Text-Wasserzeichen grau-transparent
+### Text watermark, gray and transparent
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
@@ -123,7 +123,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   -o entwurf.pdf
 ```
 
-### Bild-Wasserzeichen (Logo als Hintergrund)
+### Image watermark (logo as background)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
@@ -135,7 +135,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   -o mit-logo-wm.pdf
 ```
 
-### PDF-Wasserzeichen (PDF als Overlay-Hintergrund)
+### PDF watermark (PDF as an overlay background)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
@@ -146,7 +146,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   -o mit-hintergrund.pdf
 ```
 
-### Nur bestimmte Seiten mit Wasserzeichen
+### Watermark on selected pages only
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
@@ -160,15 +160,15 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
 
 ---
 
-## Vergleich Wasserzeichen vs. Stempel
+## Watermark vs. Stamp Comparison
 
-| Eigenschaft | Wasserzeichen (watermark) | Stempel (stamp) |
-|------------|--------------------------|-----------------|
-| Position im PDF | Hinter dem Inhalt (Hintergrund) | Ueber dem Inhalt (Vordergrund) |
-| Typische Opazitaet | 0.1 - 0.3 | 0.5 - 1.0 |
-| Typischer Einsatz | VERTRAULICH-Hinweis, Entwurfsmarkierung | GENEHMIGT-Stempel, Logo |
+| Property | Watermark (watermark) | Stamp (stamp) |
+|----------|----------------------|---------------|
+| Position in the PDF | Behind the content (background) | On top of the content (foreground) |
+| Typical opacity | 0.1 - 0.3 | 0.5 - 1.0 |
+| Typical use | VERTRAULICH notice, draft marking | GENEHMIGT stamp, logo |
 | Route | `/forms/pdfengines/watermark` | `/forms/pdfengines/stamp` |
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/watermark-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/watermark-pdfs

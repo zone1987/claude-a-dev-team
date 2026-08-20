@@ -12,8 +12,8 @@ Available in Radix UI and Base UI variants.
 
 ## References
 
-- [installation.md](`SELECT-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SELECT-SOURCE.md`) — Complete component source (new-york-v4 / radix)
-- [api.md](`SELECT-API.md`) — All sub-component props as tables
-- [examples.md](`SELECT-EXAMPLES.md`) — All examples (demo, scrollable)
-- [base-vs-radix.md](`SELECT-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [SELECT-INSTALLATION.md](SELECT-INSTALLATION.md) — CLI & manual setup
+- [SELECT-SOURCE.md](SELECT-SOURCE.md) — Complete component source (new-york-v4 / radix)
+- [SELECT-API.md](SELECT-API.md) — All sub-component props as tables
+- [SELECT-EXAMPLES.md](SELECT-EXAMPLES.md) — All examples (demo, scrollable)
+- [SELECT-BASE-VS-RADIX.md](SELECT-BASE-VS-RADIX.md) — Differences between base and radix variants

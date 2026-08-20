@@ -1,19 +1,19 @@
-# Gotenberg — PDF Split (Vollreferenz)
+# Gotenberg — PDF Split (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder (Kern)](#form-felder-kern)
-- [Form-Felder (Metadaten & Struktur)](#form-felder-metadaten-struktur)
-- [Form-Felder (Wasserzeichen)](#form-felder-wasserzeichen)
-- [Form-Felder (Stempel)](#form-felder-stempel)
-- [Form-Felder (Rotation)](#form-felder-rotation)
-- [Form-Felder (Konformitaet)](#form-felder-konformitaet)
-- [Form-Felder (Verschluesselung)](#form-felder-verschluesselung)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields (Core)](#form-fields-core)
+- [Form Fields (Metadata & Structure)](#form-fields-metadata-structure)
+- [Form Fields (Watermark)](#form-fields-watermark)
+- [Form Fields (Stamp)](#form-fields-stamp)
+- [Form Fields (Rotation)](#form-fields-rotation)
+- [Form Fields (Conformance)](#form-fields-conformance)
+- [Form Fields (Encryption)](#form-fields-encryption)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -21,128 +21,128 @@
 POST /forms/pdfengines/split
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content-Type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
-|--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe; Erweiterung wird automatisch angehaengt |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
-
----
-
-## Form-Felder (Kern)
-
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `files` | file[] | Ja | — | — | PDF-Dateien zum Aufteilen |
-| `splitMode` | enum | Ja | — | `intervals`, `pages` | Aktiviert den Split-Engine und legt den Modus fest |
-| `splitSpan` | string | Ja | — | — | Regel: Chunk-Groesse fuer `intervals` (z.B. `2`) oder Seitenbereiche fuer `pages` (z.B. `1-3`) |
-| `splitUnify` | boolean | Nein | `false` | `true`, `false` | Nur `pages`-Modus: kombiniert extrahierte Seiten zu einer einzigen PDF |
-
-### splitMode-Details
-
-**`intervals`-Modus:**
-- `splitSpan=1` → jede Seite wird einzelne PDF
-- `splitSpan=2` → je 2 Seiten zusammen
-- `splitSpan=3` → je 3 Seiten zusammen
-- Ergebnis immer ZIP-Archiv
-
-**`pages`-Modus:**
-- `splitSpan=1-3` → Seiten 1-3 extrahieren
-- `splitSpan=2,4,6` → einzelne Seiten extrahieren
-- Mit `splitUnify=true` → eine einzelne PDF; ohne → ZIP mit einzelnen PDFs pro Bereich
+| Header | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `Gotenberg-Output-Filename` | string | No | random UUID | Filename of the output; the extension is appended automatically |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Form-Felder (Metadaten & Struktur)
+## Form Fields (Core)
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `metadata` | JSON-string | Nein | — | XMP-Metadaten fuer die Ausgabe-PDFs |
-| `embeds` | file[] | Nein | — | Dateien, die als Anhaenge eingebettet werden |
-| `embedsMetadata` | JSON-string | Nein | — | Pro-Anhang-Metadaten: `mimeType`, `relationship` |
-| `facturxXml` | file | Nein | — | CII-Rechnungs-XML (als `factur-x.xml` eingebettet) |
-| `facturxConformanceLevel` | enum | Bedingt | — | `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` |
-| `facturxDocumentType` | enum | Nein | `INVOICE` | `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` |
-| `facturxVersion` | string | Nein | `1.0` | Factur-X-Version |
-| `flatten` | boolean | Nein | `false` | Formularfelder in Seiteninhalt umwandeln |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `files` | file[] | Yes | — | — | PDF files to split |
+| `splitMode` | enum | Yes | — | `intervals`, `pages` | Activates the split engine and determines the mode |
+| `splitSpan` | string | Yes | — | — | Rule: chunk size for `intervals` (e.g. `2`) or page ranges for `pages` (e.g. `1-3`) |
+| `splitUnify` | boolean | No | `false` | `true`, `false` | `pages` mode only: combines the extracted pages into a single PDF |
 
----
+### splitMode details
 
-## Form-Felder (Wasserzeichen)
+**`intervals` mode:**
+- `splitSpan=1` → every page becomes its own PDF
+- `splitSpan=2` → 2 pages each together
+- `splitSpan=3` → 3 pages each together
+- Result is always a ZIP archive
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `watermarkSource` | enum | Bedingt | — | `text`, `image`, `pdf` | Art des Wasserzeichens |
-| `watermarkExpression` | string | Bedingt | — | — | Text-String oder hochgeladener Dateiname |
-| `watermarkPages` | string | Nein | — (alle) | Seitenbereiche | Zielseiten |
-| `watermarkOptions` | JSON-string | Nein | — | — | Engine-Optionen: `font`, `points`, `color`, `rotation`, `opacity`, `scale`, `offset` |
-| `watermark` | file | Bedingt | — | — | Bild/PDF fuer source=image/pdf |
+**`pages` mode:**
+- `splitSpan=1-3` → extract pages 1-3
+- `splitSpan=2,4,6` → extract individual pages
+- With `splitUnify=true` → a single PDF; without it → ZIP with one PDF per range
 
 ---
 
-## Form-Felder (Stempel)
+## Form Fields (Metadata & Structure)
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `stampSource` | enum | Bedingt | — | `text`, `image`, `pdf` | Art des Stempels |
-| `stampExpression` | string | Bedingt | — | — | Text-String oder hochgeladener Dateiname |
-| `stampPages` | string | Nein | — (alle) | Seitenbereiche | Zielseiten |
-| `stampOptions` | JSON-string | Nein | — | — | Engine-Optionen: `font`, `points`, `color`, `rotation`, `opacity`, `scale`, `offset` |
-| `stamp` | file | Bedingt | — | — | Bild/PDF fuer source=image/pdf |
-
----
-
-## Form-Felder (Rotation)
-
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `rotateAngle` | enum | Bedingt | — | `90`, `180`, `270` | Rotationswinkel |
-| `rotatePages` | string | Nein | — (alle) | Seitenbereiche | Zu rotierende Seiten |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `metadata` | JSON string | No | — | XMP metadata for the output PDFs |
+| `embeds` | file[] | No | — | Files that are embedded as attachments |
+| `embedsMetadata` | JSON string | No | — | Per-attachment metadata: `mimeType`, `relationship` |
+| `facturxXml` | file | No | — | CII invoice XML (embedded as `factur-x.xml`) |
+| `facturxConformanceLevel` | enum | Conditional | — | `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` |
+| `facturxDocumentType` | enum | No | `INVOICE` | `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` |
+| `facturxVersion` | string | No | `1.0` | Factur-X version |
+| `flatten` | boolean | No | `false` | Convert form fields into page content |
 
 ---
 
-## Form-Felder (Konformitaet)
+## Form Fields (Watermark)
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `pdfa` | enum | Nein | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` | Archivstandard-Konvertierung |
-| `pdfua` | boolean | Nein | `false` | — | PDF/UA-Barrierefreiheit aktivieren |
-
----
-
-## Form-Felder (Verschluesselung)
-
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `userPassword` | string | Nein | — | Passwort zum Oeffnen |
-| `ownerPassword` | string | Nein | = userPassword | Vollzugriff-Passwort |
-| `allowPrinting` | boolean | Nein | `true` | Drucken erlauben |
-| `allowCopying` | boolean | Nein | `true` | Kopieren erlauben |
-| `allowModifying` | boolean | Nein | `true` | Bearbeiten erlauben |
-| `allowAnnotating` | boolean | Nein | `true` | Annotieren erlauben |
-| `allowFillingForms` | boolean | Nein | `true` | Formulare ausfuellen erlauben |
-| `allowAssembling` | boolean | Nein | `true` | Seitenverwaltung erlauben |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `watermarkSource` | enum | Conditional | — | `text`, `image`, `pdf` | Kind of watermark |
+| `watermarkExpression` | string | Conditional | — | — | Text string or name of an uploaded file |
+| `watermarkPages` | string | No | — (all) | Page ranges | Target pages |
+| `watermarkOptions` | JSON string | No | — | — | Engine options: `font`, `points`, `color`, `rotation`, `opacity`, `scale`, `offset` |
+| `watermark` | file | Conditional | — | — | Image/PDF for source=image/pdf |
 
 ---
 
-## Antwort-Codes
+## Form Fields (Stamp)
 
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | `application/zip` oder `application/pdf` | ZIP bei mehreren Outputs; einzelne PDF wenn `pages`+`splitUnify=true` |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
-| `503` | `text/plain; charset=UTF-8` | Maximale Bearbeitungsdauer ueberschritten |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `stampSource` | enum | Conditional | — | `text`, `image`, `pdf` | Kind of stamp |
+| `stampExpression` | string | Conditional | — | — | Text string or name of an uploaded file |
+| `stampPages` | string | No | — (all) | Page ranges | Target pages |
+| `stampOptions` | JSON string | No | — | — | Engine options: `font`, `points`, `color`, `rotation`, `opacity`, `scale`, `offset` |
+| `stamp` | file | Conditional | — | — | Image/PDF for source=image/pdf |
 
 ---
 
-## curl-Beispiele
+## Form Fields (Rotation)
 
-### Jede Seite als eigene PDF (intervals=1)
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `rotateAngle` | enum | Conditional | — | `90`, `180`, `270` | Rotation angle |
+| `rotatePages` | string | No | — (all) | Page ranges | Pages to rotate |
+
+---
+
+## Form Fields (Conformance)
+
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `pdfa` | enum | No | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` | Archival standard conversion |
+| `pdfua` | boolean | No | `false` | — | Enable PDF/UA accessibility |
+
+---
+
+## Form Fields (Encryption)
+
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `userPassword` | string | No | — | Password for opening |
+| `ownerPassword` | string | No | = userPassword | Full-access password |
+| `allowPrinting` | boolean | No | `true` | Allow printing |
+| `allowCopying` | boolean | No | `true` | Allow copying |
+| `allowModifying` | boolean | No | `true` | Allow editing |
+| `allowAnnotating` | boolean | No | `true` | Allow annotating |
+| `allowFillingForms` | boolean | No | `true` | Allow filling in forms |
+| `allowAssembling` | boolean | No | `true` | Allow page management |
+
+---
+
+## Response Codes
+
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | `application/zip` or `application/pdf` | ZIP for multiple outputs; a single PDF when `pages`+`splitUnify=true` |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
+| `503` | `text/plain; charset=UTF-8` | Maximum processing time exceeded |
+
+---
+
+## curl Examples
+
+### Every page as its own PDF (intervals=1)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
@@ -152,7 +152,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
   -o seiten.zip
 ```
 
-### Je 3 Seiten zusammen
+### 3 pages each together
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
@@ -162,7 +162,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
   -o chunks.zip
 ```
 
-### Seiten 1-3 extrahieren (als einzelne PDF)
+### Extract pages 1-3 (as a single PDF)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
@@ -173,7 +173,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
   -o auszug.pdf
 ```
 
-### Seiten 2, 5 und 7 extrahieren (separate PDFs im ZIP)
+### Extract pages 2, 5 and 7 (separate PDFs in a ZIP)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
@@ -183,7 +183,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
   -o auswahl.zip
 ```
 
-### Split mit Verschluesselung
+### Split with encryption
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/split \
@@ -197,14 +197,14 @@ curl --request POST http://localhost:3000/forms/pdfengines/split \
 
 ---
 
-## Hinweise
+## Notes
 
-- Engine-Syntax fuer `splitSpan` abhaengig von der konfigurierten PDF-Engine (pdfcpu, QPDF, PDFtk)
-- PDF/A und Verschluesselung schliessen sich gegenseitig aus
-- PDF/A-1b und PDF/A-2b unterstuetzen keine Dateianhaenge; fuer Anhaenge PDF/A-3b verwenden
-- Wasserzeichen = hinter dem Inhalt; Stempel = ueber dem Inhalt
-- `splitUnify=true` funktioniert nur im `pages`-Modus
+- The engine syntax for `splitSpan` depends on the configured PDF engine (pdfcpu, QPDF, PDFtk)
+- PDF/A and encryption are mutually exclusive
+- PDF/A-1b and PDF/A-2b do not support file attachments; use PDF/A-3b for attachments
+- Watermark = behind the content; stamp = on top of the content
+- `splitUnify=true` works only in `pages` mode
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/split-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/split-pdfs

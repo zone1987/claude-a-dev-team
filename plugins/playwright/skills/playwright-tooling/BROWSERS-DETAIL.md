@@ -1,120 +1,120 @@
-# Playwright: Browser, Contexts, Pages, Extensions, WebView2
+# Playwright: Browsers, contexts, pages, extensions, WebView2
 
 ## Contents
 
-- [Browser-Engines](#browser-engines)
-- [Browser-Installation](#browser-installation)
-- [Browser-Konfiguration (playwright.config.ts)](#browser-konfiguration-playwrightconfigts)
-- [BrowserContext: Isolierte Browser-Sitzungen](#browsercontext-isolierte-browser-sitzungen)
-- [Pages: Mehrere Seiten und Tabs](#pages-mehrere-seiten-und-tabs)
-- [Chrome-Extensions testen](#chrome-extensions-testen)
-- [WebView2 testen (Windows)](#webview2-testen-windows)
+- [Browser engines](#browser-engines)
+- [Browser installation](#browser-installation)
+- [Browser configuration (playwright.config.ts)](#browser-configuration-playwrightconfigts)
+- [BrowserContext: isolated browser sessions](#browsercontext-isolated-browser-sessions)
+- [Pages: multiple pages and tabs](#pages-multiple-pages-and-tabs)
+- [Testing Chrome extensions](#testing-chrome-extensions)
+- [Testing WebView2 (Windows)](#testing-webview2-windows)
 
-## Browser-Engines
+## Browser engines
 
-| Engine | Beschreibung |
+| Engine | Description |
 |---|---|
-| `chromium` | Open-Source-Build, laeuft der aktuellen Chrome-Version voraus |
-| `firefox` | Entspricht Firefox Stable; funktioniert NICHT mit dem installierten Firefox |
-| `webkit` | Basiert auf dem aktuellen WebKit-Main-Branch; nicht kompatibel mit Safari |
+| `chromium` | Open-source build, runs ahead of the current Chrome version |
+| `firefox` | Matches Firefox Stable; does NOT work with the installed Firefox |
+| `webkit` | Based on the current WebKit main branch; not compatible with Safari |
 
-### Chromium-Varianten
+### Chromium variants
 
-| Variante | Channel | Beschreibung |
+| Variant | Channel | Description |
 |---|---|---|
-| Headless Shell | — | Leichtgewichtiger Build fuer reinen Headless-Betrieb |
-| New Headless (echter Chrome) | `'chromium'` | Vollstaendiger Chrome-Browser im Headless-Modus |
-| Google Chrome | `'chrome'`, `'chrome-beta'`, `'chrome-dev'`, `'chrome-canary'` | Echte Chrome-Kanaele |
-| Microsoft Edge | `'msedge'`, `'msedge-beta'`, `'msedge-dev'`, `'msedge-canary'` | Echte Edge-Kanaele |
+| Headless Shell | — | Lightweight build for pure headless operation |
+| New Headless (real Chrome) | `'chromium'` | Full Chrome browser in headless mode |
+| Google Chrome | `'chrome'`, `'chrome-beta'`, `'chrome-dev'`, `'chrome-canary'` | Real Chrome channels |
+| Microsoft Edge | `'msedge'`, `'msedge-beta'`, `'msedge-dev'`, `'msedge-canary'` | Real Edge channels |
 
 ---
 
-## Browser-Installation
+## Browser installation
 
-### Installationsbefehle
+### Installation commands
 
 ```bash
-# Alle Standard-Browser
+# All default browsers
 npx playwright install
 
-# Bestimmten Browser
+# A specific browser
 npx playwright install webkit
 npx playwright install chromium firefox
 
-# Mit OS-Abhaengigkeiten (empfohlen fuer CI)
+# With OS dependencies (recommended for CI)
 npx playwright install --with-deps
 npx playwright install --with-deps chromium
 
-# Nur Headless Shell (kompakter fuer CI)
+# Headless Shell only (more compact for CI)
 npx playwright install --with-deps --only-shell
 
-# New Headless (ohne Shell, echter Chrome)
+# New Headless (without shell, real Chrome)
 npx playwright install --with-deps --no-shell
 
-# Alle installierbaren Browser auflisten
+# List all installable browsers
 npx playwright install --help
 ```
 
-### Verwaltungsbefehle
+### Management commands
 
 ```bash
-npx playwright install --list          # Installierte Browser anzeigen
-npx playwright uninstall               # Aktuelle Version entfernen
-npx playwright uninstall --all         # Alle Playwright-Versionen entfernen
-npx playwright --version               # Playwright-Version anzeigen
+npx playwright install --list          # Show installed browsers
+npx playwright uninstall               # Remove the current version
+npx playwright uninstall --all         # Remove all Playwright versions
+npx playwright --version               # Show the Playwright version
 ```
 
-### Speicherpfade (Standard)
+### Storage paths (default)
 
-| OS | Pfad |
+| OS | Path |
 |---|---|
 | Windows | `%USERPROFILE%\AppData\Local\ms-playwright` |
 | macOS | `~/Library/Caches/ms-playwright` |
 | Linux | `~/.cache/ms-playwright` |
 
-Typische Groesse: ~650 MB (Chromium 281 MB, Firefox 187 MB, WebKit 180 MB)
+Typical size: ~650 MB (Chromium 281 MB, Firefox 187 MB, WebKit 180 MB)
 
-### Benutzerdefinierten Installationspfad setzen
+### Setting a custom installation path
 
 ```bash
-# Browser an benutzerdefiniertem Ort installieren
+# Install browsers in a custom location
 PLAYWRIGHT_BROWSERS_PATH=$HOME/pw-browsers npx playwright install
 
-# Tests mit benutzerdefiniertem Pfad ausfuehren
+# Run tests with the custom path
 PLAYWRIGHT_BROWSERS_PATH=$HOME/pw-browsers npx playwright test
 
-# Hermetic Install: lokal in node_modules
+# Hermetic install: locally in node_modules
 PLAYWRIGHT_BROWSERS_PATH=0 npx playwright install
 ```
 
-### Garbage Collection deaktivieren
+### Disabling garbage collection
 
 ```bash
 PLAYWRIGHT_SKIP_BROWSER_GC=1 npx playwright test
 ```
 
-### Proxy und Download-Konfiguration (Umgebungsvariablen)
+### Proxy and download configuration (environment variables)
 
-| Variable | Beschreibung | Beispiel |
+| Variable | Description | Example |
 |---|---|---|
-| `HTTPS_PROXY` | Proxy-Server | `https://192.0.2.1` |
-| `NODE_EXTRA_CA_CERTS` | Benutzerdefiniertes CA-Zertifikat | `/pfad/zum/cert.pem` |
+| `HTTPS_PROXY` | Proxy server | `https://192.0.2.1` |
+| `NODE_EXTRA_CA_CERTS` | Custom CA certificate | `/pfad/zum/cert.pem` |
 | `PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT` | Timeout in ms | `120000` |
-| `PLAYWRIGHT_DOWNLOAD_HOST` | Benutzerdefiniertes Artefakt-Repository | `http://192.0.2.1` |
-| `PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST` | Chromium-spezifisch | `http://203.0.113.3` |
-| `PLAYWRIGHT_FIREFOX_DOWNLOAD_HOST` | Firefox-spezifisch | `http://203.0.113.3` |
-| `PLAYWRIGHT_WEBKIT_DOWNLOAD_HOST` | WebKit-spezifisch | `http://203.0.113.3` |
+| `PLAYWRIGHT_DOWNLOAD_HOST` | Custom artifact repository | `http://192.0.2.1` |
+| `PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST` | Chromium-specific | `http://203.0.113.3` |
+| `PLAYWRIGHT_FIREFOX_DOWNLOAD_HOST` | Firefox-specific | `http://203.0.113.3` |
+| `PLAYWRIGHT_WEBKIT_DOWNLOAD_HOST` | WebKit-specific | `http://203.0.113.3` |
 
 ---
 
-## Browser-Konfiguration (playwright.config.ts)
+## Browser configuration (playwright.config.ts)
 
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   projects: [
-    // Desktop-Browser
+    // Desktop browsers
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
@@ -127,7 +127,7 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    // Mobile-Emulation
+    // Mobile emulation
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
@@ -136,7 +136,7 @@ export default defineConfig({
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
     },
-    // Echte Browser
+    // Real browsers
     {
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
@@ -149,7 +149,7 @@ export default defineConfig({
 });
 ```
 
-### Bestimmtes Projekt ausfuehren
+### Running a specific project
 
 ```bash
 npx playwright test --project=firefox
@@ -158,93 +158,93 @@ npx playwright test --project=webkit --project=firefox
 
 ---
 
-## BrowserContext: Isolierte Browser-Sitzungen
+## BrowserContext: isolated browser sessions
 
-Ein `BrowserContext` entspricht einer vollstaendig isolierten Browser-Sitzung (eigene Cookies,
-localStorage, Sitzung). Mehrere Contexts koennen in einem Browser parallel laufen.
+A `BrowserContext` corresponds to a fully isolated browser session (its own cookies,
+localStorage, session). Several contexts can run in parallel within one browser.
 
-### Context erstellen
+### Creating a context
 
 ```typescript
 const context = await browser.newContext(options);
 ```
 
-### Alle newContext()-Optionen
+### All newContext() options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `viewport` | `{ width: number; height: number } \| null` | `1280x720` | Viewport-Groesse; `null` = kein fester Viewport |
+| `viewport` | `{ width: number; height: number } \| null` | `1280x720` | Viewport size; `null` = no fixed viewport |
 | `colorScheme` | `'light' \| 'dark' \| 'no-preference'` | `'light'` | CSS `prefers-color-scheme` |
-| `locale` | `string` | — | Browser-Locale, z.B. `'de-DE'` |
-| `timezoneId` | `string` | — | ICU-Timezone-ID |
-| `geolocation` | `{ latitude: number; longitude: number; accuracy?: number }` | — | GPS-Koordinaten |
-| `offline` | `boolean` | `false` | Offline-Modus |
+| `locale` | `string` | — | Browser locale, e.g. `'de-DE'` |
+| `timezoneId` | `string` | — | ICU timezone ID |
+| `geolocation` | `{ latitude: number; longitude: number; accuracy?: number }` | — | GPS coordinates |
+| `offline` | `boolean` | `false` | Offline mode |
 | `proxy` | `{ server: string; bypass?: string; username?: string; password?: string }` | — | Proxy |
-| `httpCredentials` | `{ username: string; password: string; origin?: string; send?: 'always' \| 'unauthorized' }` | — | HTTP-Auth |
-| `extraHTTPHeaders` | `Record<string, string>` | — | Zus. HTTP-Header |
-| `userAgent` | `string` | — | User-Agent |
+| `httpCredentials` | `{ username: string; password: string; origin?: string; send?: 'always' \| 'unauthorized' }` | — | HTTP auth |
+| `extraHTTPHeaders` | `Record<string, string>` | — | Additional HTTP headers |
+| `userAgent` | `string` | — | User agent |
 | `deviceScaleFactor` | `number` | `1` | DPR |
-| `isMobile` | `boolean` | `false` | Mobile-Emulation |
-| `hasTouch` | `boolean` | `false` | Touch-Events |
-| `javaScriptEnabled` | `boolean` | `true` | JavaScript an/aus |
-| `bypassCSP` | `boolean` | `false` | CSP umgehen |
-| `ignoreHTTPSErrors` | `boolean` | `false` | SSL-Fehler ignorieren |
-| `acceptDownloads` | `boolean` | `true` | Downloads annehmen |
-| `baseURL` | `string` | — | Basis-URL fuer `goto()` |
-| `storageState` | `string \| object` | — | Gespeicherter Auth-Zustand |
-| `recordHar` | `object` | — | HAR-Aufnahme |
-| `recordVideo` | `object` | — | Video-Aufnahme |
-| `permissions` | `string[]` | — | Vorab erteilte Permissions |
-| `serviceWorkers` | `'allow' \| 'block'` | `'allow'` | Service Worker |
-| `strictSelectors` | `boolean` | `false` | Strikte Selektor-Pruefung |
+| `isMobile` | `boolean` | `false` | Mobile emulation |
+| `hasTouch` | `boolean` | `false` | Touch events |
+| `javaScriptEnabled` | `boolean` | `true` | JavaScript on/off |
+| `bypassCSP` | `boolean` | `false` | Bypass CSP |
+| `ignoreHTTPSErrors` | `boolean` | `false` | Ignore SSL errors |
+| `acceptDownloads` | `boolean` | `true` | Accept downloads |
+| `baseURL` | `string` | — | Base URL for `goto()` |
+| `storageState` | `string \| object` | — | Saved auth state |
+| `recordHar` | `object` | — | HAR recording |
+| `recordVideo` | `object` | — | Video recording |
+| `permissions` | `string[]` | — | Permissions granted upfront |
+| `serviceWorkers` | `'allow' \| 'block'` | `'allow'` | Service workers |
+| `strictSelectors` | `boolean` | `false` | Strict selector checking |
 | `contrast` | `'no-preference' \| 'more' \| 'null'` | — | `prefers-contrast` |
 | `forcedColors` | `'active' \| 'none' \| 'null'` | — | `forced-colors` |
 | `reducedMotion` | `'reduce' \| 'no-preference' \| 'null'` | — | `prefers-reduced-motion` |
-| `screen` | `{ width: number; height: number }` | — | Bildschirmgroesse |
-| `clientCertificates` | `object[]` | — | Client-Zertifikate fuer mTLS |
+| `screen` | `{ width: number; height: number }` | — | Screen size |
+| `clientCertificates` | `object[]` | — | Client certificates for mTLS |
 
-### BrowserContext-Methoden
+### BrowserContext methods
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---|---|---|
-| `addCookies` | `(cookies: Cookie[]) => Promise<void>` | Cookies hinzufuegen |
-| `addInitScript` | `(script, arg?) => Promise<Disposable>` | Script vor Seiten-Laden einfuegen |
-| `browser` | `() => Browser \| null` | Zugehoeriger Browser |
-| `clearCookies` | `(options?) => Promise<void>` | Cookies loeschen (nach domain/name/path filterbar) |
-| `clearPermissions` | `() => Promise<void>` | Alle Permissions entfernen |
-| `close` | `(options?) => Promise<void>` | Context schliessen (`reason?: string`) |
-| `cookies` | `(urls?) => Promise<Cookie[]>` | Cookies abrufen |
-| `exposeBinding` | `(name, callback) => Promise<Disposable>` | JS-Funktion mit Source-Zugang |
-| `exposeFunction` | `(name, callback) => Promise<Disposable>` | JS-Funktion exponieren |
-| `grantPermissions` | `(permissions, options?) => Promise<void>` | Permissions erteilen |
-| `newPage` | `() => Promise<Page>` | Neue Seite im Context |
-| `pages` | `() => Page[]` | Alle offenen Seiten |
-| `route` | `(url, handler, options?) => Promise<Disposable>` | Netzwerk-Route |
-| `setDefaultNavigationTimeout` | `(timeout: number) => void` | Navigation-Timeout in ms |
-| `setDefaultTimeout` | `(timeout: number) => void` | Default-Timeout fuer alle Operationen |
-| `setExtraHTTPHeaders` | `(headers: Record<string, string>) => Promise<void>` | Extra-Header setzen |
-| `setGeolocation` | `(geolocation: \| null) => Promise<void>` | GPS aendern |
-| `setOffline` | `(offline: boolean) => Promise<void>` | Offline-Modus aendern |
-| `setStorageState` | `(storageState) => Promise<void>` | Auth-Zustand laden |
-| `storageState` | `(options?) => Promise<object>` | Auth-Zustand exportieren |
-| `unroute` | `(url, handler?) => Promise<void>` | Route entfernen |
-| `waitForEvent` | `(event, predicate?) => Promise<object>` | Auf Context-Event warten |
+| `addCookies` | `(cookies: Cookie[]) => Promise<void>` | Add cookies |
+| `addInitScript` | `(script, arg?) => Promise<Disposable>` | Inject a script before the page loads |
+| `browser` | `() => Browser \| null` | The associated browser |
+| `clearCookies` | `(options?) => Promise<void>` | Delete cookies (filterable by domain/name/path) |
+| `clearPermissions` | `() => Promise<void>` | Remove all permissions |
+| `close` | `(options?) => Promise<void>` | Close the context (`reason?: string`) |
+| `cookies` | `(urls?) => Promise<Cookie[]>` | Retrieve cookies |
+| `exposeBinding` | `(name, callback) => Promise<Disposable>` | JS function with source access |
+| `exposeFunction` | `(name, callback) => Promise<Disposable>` | Expose a JS function |
+| `grantPermissions` | `(permissions, options?) => Promise<void>` | Grant permissions |
+| `newPage` | `() => Promise<Page>` | New page in the context |
+| `pages` | `() => Page[]` | All open pages |
+| `route` | `(url, handler, options?) => Promise<Disposable>` | Network route |
+| `setDefaultNavigationTimeout` | `(timeout: number) => void` | Navigation timeout in ms |
+| `setDefaultTimeout` | `(timeout: number) => void` | Default timeout for all operations |
+| `setExtraHTTPHeaders` | `(headers: Record<string, string>) => Promise<void>` | Set extra headers |
+| `setGeolocation` | `(geolocation: \| null) => Promise<void>` | Change GPS |
+| `setOffline` | `(offline: boolean) => Promise<void>` | Change offline mode |
+| `setStorageState` | `(storageState) => Promise<void>` | Load auth state |
+| `storageState` | `(options?) => Promise<object>` | Export auth state |
+| `unroute` | `(url, handler?) => Promise<void>` | Remove a route |
+| `waitForEvent` | `(event, predicate?) => Promise<object>` | Wait for a context event |
 
-#### Context-Events
+#### Context events
 
 `'close'`, `'console'`, `'dialog'`, `'page'`, `'request'`, `'response'`,
 `'requestfailed'`, `'requestfinished'`, `'serviceworker'`, `'weberror'`
 
-### Cookie-Struktur
+### Cookie structure
 
 ```typescript
 interface Cookie {
   name: string;
   value: string;
-  url?: string;           // entweder url oder domain+path
+  url?: string;           // either url or domain+path
   domain?: string;
   path?: string;
-  expires?: number;       // Unix-Timestamp in Sekunden
+  expires?: number;       // Unix timestamp in seconds
   httpOnly?: boolean;
   secure?: boolean;
   sameSite?: 'Strict' | 'Lax' | 'None';
@@ -252,7 +252,7 @@ interface Cookie {
 }
 ```
 
-### Mehrere Contexts (Multi-User-Test)
+### Multiple contexts (multi-user test)
 
 ```typescript
 test('Admin and user at the same time', async ({ browser }) => {
@@ -265,7 +265,7 @@ test('Admin and user at the same time', async ({ browser }) => {
   await adminPage.goto('/admin/chat');
   await userPage.goto('/chat');
 
-  // Beide Seiten gleichzeitig bedienen
+  // Operate both pages at the same time
   await adminPage.getByRole('textbox').fill('Hallo User!');
   await adminPage.keyboard.press('Enter');
 
@@ -278,75 +278,75 @@ test('Admin and user at the same time', async ({ browser }) => {
 
 ---
 
-## Pages: Mehrere Seiten und Tabs
+## Pages: multiple pages and tabs
 
-### Seite erstellen
+### Creating a page
 
 ```typescript
 const page = await context.newPage();
 await page.goto('https://example.com');
 ```
 
-### Alle offenen Seiten
+### All open pages
 
 ```typescript
 const allPages = context.pages();
 ```
 
-### Neuen Tab abfangen (target="_blank")
+### Intercepting a new tab (target="_blank")
 
 ```typescript
-// Variante 1: Erwartetes Ereignis
+// Variant 1: expected event
 const pagePromise = context.waitForEvent('page');
 await page.getByText('Neuen Tab oeffnen').click();
 const newPage = await pagePromise;
 await newPage.waitForLoadState();
 
-// Variante 2: Alle neuen Seiten ueberwachen
+// Variant 2: monitor all new pages
 context.on('page', async (newPage) => {
   await newPage.waitForLoadState();
   console.log(await newPage.title());
 });
 ```
 
-### Popups abfangen
+### Intercepting popups
 
 ```typescript
-// Variante 1: Erwartet
+// Variant 1: expected
 const popupPromise = page.waitForEvent('popup');
 await page.getByText('Popup oeffnen').click();
 const popup = await popupPromise;
 
-// Variante 2: Listener
+// Variant 2: listener
 page.on('popup', async (popup) => {
   await popup.waitForLoadState();
   console.log(popup.url());
 });
 ```
 
-### Browser-Methoden fuer Pages
+### Browser methods for pages
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---|---|---|
-| `newPage` | `(options?) => Promise<Page>` | Neue Seite in neuem Context |
-| `contexts` | `() => BrowserContext[]` | Alle offenen Contexts |
-| `close` | `(options?) => Promise<void>` | Browser schliessen (`reason?: string`) |
-| `isConnected` | `() => boolean` | Verbindungsstatus |
-| `version` | `() => string` | Browser-Version |
+| `newPage` | `(options?) => Promise<Page>` | New page in a new context |
+| `contexts` | `() => BrowserContext[]` | All open contexts |
+| `close` | `(options?) => Promise<void>` | Close the browser (`reason?: string`) |
+| `isConnected` | `() => boolean` | Connection status |
+| `version` | `() => string` | Browser version |
 | `browserType` | `() => BrowserType` | Chromium / Firefox / WebKit |
 
-### Browser-Events
+### Browser events
 
-- `on('disconnected')` — Browser-Verbindung getrennt
-- `on('context')` — Neuer Context erstellt
+- `on('disconnected')` — the browser connection was closed
+- `on('context')` — a new context was created
 
 ---
 
-## Chrome-Extensions testen
+## Testing Chrome extensions
 
-Extensions funktionieren nur mit Chromium im Persistent-Context.
+Extensions only work with Chromium in a persistent context.
 
-### Extension laden
+### Loading an extension
 
 ```typescript
 import { chromium } from '@playwright/test';
@@ -360,29 +360,29 @@ const context = await chromium.launchPersistentContext('', {
     `--disable-extensions-except=${pathToExtension}`,
     `--load-extension=${pathToExtension}`,
   ],
-  headless: false, // Extensions benoetigen headed-Modus oder neuen Headless
+  headless: false, // Extensions require headed mode or new headless
 });
 ```
 
-### Extension-ID und Service Worker (Manifest V3)
+### Extension ID and service worker (Manifest V3)
 
 ```typescript
-// Service Worker abrufen
+// Retrieve the service worker
 let [serviceWorker] = context.serviceWorkers();
 if (!serviceWorker) {
   serviceWorker = await context.waitForEvent('serviceworker');
 }
 
-// Extension-ID aus der Service-Worker-URL extrahieren
+// Extract the extension ID from the service worker URL
 const extensionId = serviceWorker.url().split('/')[2];
 // Format: chrome-extension://<id>/service-worker.js
 
-// Extension-Popup testen
+// Test the extension popup
 const popupPage = await context.newPage();
 await popupPage.goto(`chrome-extension://${extensionId}/popup.html`);
 ```
 
-### Test-Fixture fuer Extensions
+### Test fixture for extensions
 
 ```typescript
 // fixtures.ts
@@ -418,19 +418,19 @@ export const test = base.extend<{
 export const expect = test.expect;
 ```
 
-### Hinweis: MV3 Service Worker Suspension
+### Note: MV3 service worker suspension
 
-Chrome suspendiert MV3 Service Worker nach ~30 Sekunden Inaktivitaet.
-Playwright haelt dasselbe Worker-Objekt waehrend Neustarts — `evaluate()`-Aufrufe
-bleiben transparent. Bereits laufende Calls zum Suspension-Zeitpunkt werfen einen Fehler.
+Chrome suspends MV3 service workers after ~30 seconds of inactivity.
+Playwright keeps the same worker object across restarts — `evaluate()` calls
+remain transparent. Calls already running at the moment of suspension throw an error.
 
 ---
 
-## WebView2 testen (Windows)
+## Testing WebView2 (Windows)
 
-WebView2 ist ein WinForms-Steuerelement, das Microsoft Edge zur Darstellung verwendet.
+WebView2 is a WinForms control that uses Microsoft Edge for rendering.
 
-### Remote-Debugging aktivieren (C#)
+### Enabling remote debugging (C#)
 
 ```csharp
 await this.webView.EnsureCoreWebView2Async(
@@ -441,9 +441,9 @@ await this.webView.EnsureCoreWebView2Async(
 ).ConfigureAwait(false);
 ```
 
-Oder als Umgebungsvariable: `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222`
+Or as an environment variable: `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222`
 
-### Playwright verbinden
+### Connecting Playwright
 
 ```typescript
 import { chromium } from '@playwright/test';
@@ -453,7 +453,7 @@ const context = browser.contexts()[0];
 const page = context.pages()[0];
 ```
 
-### Test-Fixture (vollstaendig)
+### Test fixture (complete)
 
 ```typescript
 import { test as base } from '@playwright/test';
@@ -487,12 +487,12 @@ const test = base.extend<{ page: Page }, { appProcess: ChildProcess }>({
 });
 ```
 
-### Wichtiger Hinweis: User-Data-Directory
+### Important note: user data directory
 
-WebView2 teilt standardmaessig dasselbe Verzeichnis fuer alle Instanzen.
-Fuer parallele Tests muss `WEBVIEW2_USER_DATA_FOLDER` pro Worker eindeutig sein.
+By default WebView2 shares the same directory for all instances.
+For parallel tests `WEBVIEW2_USER_DATA_FOLDER` must be unique per worker.
 
-<!-- Quellen:
+<!-- Sources:
 https://playwright.dev/docs/browsers
 https://playwright.dev/docs/browser-contexts
 https://playwright.dev/docs/pages

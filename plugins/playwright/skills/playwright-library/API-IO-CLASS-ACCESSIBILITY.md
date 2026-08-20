@@ -122,7 +122,7 @@ await expect(page.getByRole('heading', { level: 1 })).toHaveText('Welcome');
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** The separate `Accessibility` class no longer exists in the current
+**Summary:** The separate `Accessibility` class no longer exists in the current
 Playwright API as a documentation page of its own. `page.ariaSnapshot()`
 is the modern replacement for structural accessibility checks. For
 comprehensive WCAG compliance tests, `@axe-core/playwright` is recommended.

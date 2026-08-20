@@ -1,37 +1,37 @@
-# Contao 5.x – Anleitungen (Tutorials)
+# Contao 5.x – Guides (tutorials)
 
-Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
+Complete reference from the Contao 5.x manual (German).
 
 ---
 
 ## Contents
 
-- [1. Testversionen installieren](#1-testversionen-installieren)
-- [2. Die erste Startseite erstellen](#2-die-erste-startseite-erstellen)
-- [3. Wartungstemplate anpassen](#3-wartungstemplate-anpassen)
-- [4. Die Contao Demo anpassen](#4-die-contao-demo-anpassen)
-- [5. DCA-Anpassungen](#5-dca-anpassungen)
-- [6. Sass/Less Integration](#6-sassless-integration)
-- [7. TinyMCE-Editor Konfiguration](#7-tinymce-editor-konfiguration)
-- [8. Grid-System Einführung](#8-grid-system-einführung)
-- [9. SVG-Dateien einsetzen](#9-svg-dateien-einsetzen)
-- [10. Formulardaten speichern](#10-formulardaten-speichern)
-- [11. Lokale Installation](#11-lokale-installation)
+- [1. Installing test versions](#1-installing-test-versions)
+- [2. Creating the first start page](#2-creating-the-first-start-page)
+- [3. Customising the maintenance template](#3-customising-the-maintenance-template)
+- [4. Customising the Contao demo](#4-customising-the-contao-demo)
+- [5. DCA adjustments](#5-dca-adjustments)
+- [6. Sass/Less integration](#6-sassless-integration)
+- [7. TinyMCE editor configuration](#7-tinymce-editor-configuration)
+- [8. Introduction to grid systems](#8-introduction-to-grid-systems)
+- [9. Using SVG files](#9-using-svg-files)
+- [10. Storing form data](#10-storing-form-data)
+- [11. Local installation](#11-local-installation)
 
-## 1. Testversionen installieren
+## 1. Installing test versions
 
-### Release Candidates
+### Release candidates
 
-RC-Tags wie `5.7.0-RC1` erfordern Anpassungen in `composer.json`:
+RC tags such as `5.7.0-RC1` require adjustments in `composer.json`:
 
-**Option A: `minimum-stability` setzen:**
+**Option A: set `minimum-stability`:**
 ```json
 {
   "minimum-stability": "RC"
 }
 ```
 
-**Option B: Stability-Flags pro Paket:**
+**Option B: stability flags per package:**
 ```json
 {
   "require": {
@@ -42,7 +42,7 @@ RC-Tags wie `5.7.0-RC1` erfordern Anpassungen in `composer.json`:
 }
 ```
 
-### Entwicklerversionen
+### Developer versions
 
 ```json
 {
@@ -54,65 +54,65 @@ RC-Tags wie `5.7.0-RC1` erfordern Anpassungen in `composer.json`:
 }
 ```
 
-**Wichtig:** `contao/core-bundle` muss explizit eingetragen werden.
+**Important:** `contao/core-bundle` must be entered explicitly.
 
-### Via Contao Manager
+### Via the Contao Manager
 
-1. Bei "Contao Open Source CMS" → Versionsangabe bearbeiten
-2. RC: `5.7.*@RC`, Dev: `5.7.x-dev`
-3. "Änderungen anwenden"
-
----
-
-## 2. Die erste Startseite erstellen
-
-Schritt-für-Schritt-Anleitung für eine neue Contao-Installation:
-
-**Schritt 1: Neues Theme erstellen**
-- Theme-Manager → Neu → Titel "Demo", Autor eingeben
-
-**Schritt 2: Seitenlayout im Theme anlegen**
-- Seitenlayout-Icon im Theme → Neu
-- Titel: "Standard"
-- Zeilen: "Nur Hauptzeile", Spalten: "Nur Hauptspalte"
-
-**Schritt 3: Website-Startpunkt anlegen**
-| Einstellung | Wert |
-|-------------|------|
-| Seitenname | z.B. "Meine Demo-Website" |
-| Seitentyp | Website-Startpunkt |
-| Sprache | de |
-| Sprach-Fallback | Aktivieren |
-| Layout zuweisen | Aktivieren + "Standard" aus "Demo" wählen |
-| Seite veröffentlichen | Aktivieren |
-
-**Schritt 4: Startseite anlegen** (unterhalb des Startpunkts)
-| Einstellung | Wert |
-|-------------|------|
-| Seitenname | "Willkommen" |
-| Seiten-Alias | "index" |
-| Seite veröffentlichen | Aktivieren |
-
-**Schritt 5: Artikel bearbeiten**
-Contao erstellt automatisch einen Artikel für die Startseite. Artikel bearbeiten → Inhaltselemente hinzufügen.
-
-**Schritt 6: Inhaltselement hinzufügen**
-- Typ "Text" wählen, Überschrift und Text eingeben, speichern
-
-**Schritt 7: Artikel veröffentlichen**
-Auge-Icon neben dem Artikel anklicken → grün = veröffentlicht.
+1. At "Contao Open Source CMS" → edit the version specification
+2. RC: `5.7.*@RC`, dev: `5.7.x-dev`
+3. "Änderungen anwenden" (Apply changes)
 
 ---
 
-## 3. Wartungstemplate anpassen
+## 2. Creating the first start page
 
-**Wartungsmodus aktivieren:** Backend → Systemwartung.
+Step-by-step guide for a new Contao installation:
 
-### Texte anpassen (Sprachdateien)
+**Step 1: create a new theme**
+- Theme-Manager → Neu (New) → enter the title "Demo" and the author
 
-Sprachvariablen: `XPT.unavailable`, `XPT.maintenance`
+**Step 2: create a Seitenlayout (page layout) in the theme**
+- Seitenlayout icon in the theme → Neu (New)
+- Titel (Title): "Standard"
+- Zeilen (Rows): "Nur Hauptzeile" (Main row only), Spalten (Columns): "Nur Hauptspalte" (Main column only)
 
-Neue Datei `contao/languages/de/exception.xlf`:
+**Step 3: create the website starting point**
+| Setting | Value |
+|-------------|------|
+| Seitenname (Page name) | e.g. "Meine Demo-Website" |
+| Seitentyp (Page type) | Website-Startpunkt (Website starting point) |
+| Sprache (Language) | de |
+| Sprach-Fallback (Language fallback) | Enable |
+| Layout zuweisen (Assign layout) | Enable + choose "Standard" from "Demo" |
+| Seite veröffentlichen (Publish page) | Enable |
+
+**Step 4: create the start page** (below the starting point)
+| Setting | Value |
+|-------------|------|
+| Seitenname (Page name) | "Willkommen" |
+| Seiten-Alias (Page alias) | "index" |
+| Seite veröffentlichen (Publish page) | Enable |
+
+**Step 5: edit the article**
+Contao automatically creates an article for the start page. Edit the article → add content elements.
+
+**Step 6: add a content element**
+- Choose the type "Text", enter a headline and text, save
+
+**Step 7: publish the article**
+Click the eye icon next to the article → green = published.
+
+---
+
+## 3. Customising the maintenance template
+
+**Enabling maintenance mode:** backend → Systemwartung (System maintenance).
+
+### Adjusting the texts (language files)
+
+Language variables: `XPT.unavailable`, `XPT.maintenance`
+
+New file `contao/languages/de/exception.xlf`:
 ```xml
 <?xml version="1.0" ?><xliff version="1.1">
   <file>
@@ -133,60 +133,60 @@ Neue Datei `contao/languages/de/exception.xlf`:
 $GLOBALS['TL_LANG']['XPT']['unavailable'] = 'Wartungsmodus';
 ```
 
-### Logo anpassen
+### Adjusting the logo
 
-Template aus Vendor kopieren nach `/templates/bundles/ContaoCoreBundle/Error/layout.html.twig`:
+Copy the template from the vendor directory to `/templates/bundles/ContaoCoreBundle/Error/layout.html.twig`:
 ```html
 <div class="header-logo">
     <img src="files/layout/images/logo.png" alt="Mein Logo">
 </div>
 ```
 
-### Komplettes Template ersetzen
+### Replacing the entire template
 
-`/templates/bundles/ContaoCoreBundle/Error/service_unavailable.html.twig` mit eigenem HTML/CSS überschreiben.
+Override `/templates/bundles/ContaoCoreBundle/Error/service_unavailable.html.twig` with your own HTML/CSS.
 
-**Nach jeder Änderung:** Produktions-Cache leeren.
+**After every change:** clear the production cache.
 
 ---
 
-## 4. Die Contao Demo anpassen
+## 4. Customising the Contao demo
 
-**Installation:** Via Contao-Manager oder Konsole (`composer require contao/contao-demo`).
+**Installation:** via the Contao Manager or the console (`composer require contao/contao-demo`).
 
-### Layout anpassen (SCSS)
+### Adjusting the layout (SCSS)
 
-Farbvariablen in `contaodemo/theme/src/scss/variables/_colors.scss`.
+Colour variables in `contaodemo/theme/src/scss/variables/_colors.scss`.
 
-**Eigene Partial-Datei `_custom.scss` anlegen:**
+**Create your own partial file `_custom.scss`:**
 ```scss
 $c-primary--500: hsla(212, 100%, 48%, 1);
 ```
 
-**In `_colors.scss` `!default`-Flag hinzufügen:**
+**Add the `!default` flag in `_colors.scss`:**
 ```scss
 $c-primary--500: hsla(30, 100%, 48%, 1) !default;
 ```
 
-**In `app.scss` als ersten Import einbinden:**
+**Include it in `app.scss` as the first import:**
 ```scss
 @import 'custom';
 @import 'variables/_colors.scss';
 ```
 
-**Wichtig:** Nach Änderungen an Partial-Dateien muss `app.scss` einmal gespeichert werden.
+**Important:** after changes to partial files, `app.scss` must be saved once.
 
-### Dart Sass lokal verwenden
+### Using Dart Sass locally
 
-Contao nutzt `scssphp/scssphp` (PHP-Bibliothek), die moderne Dart-Sass-Features wie `@use`/`@forward` nicht unterstützt. Für lokalen Workflow: Dart Sass installieren und `--watch` nutzen.
+Contao uses `scssphp/scssphp` (a PHP library), which does not support modern Dart Sass features such as `@use`/`@forward`. For a local workflow: install Dart Sass and use `--watch`.
 
 ---
 
-## 5. DCA-Anpassungen
+## 5. DCA adjustments
 
-DCA-Dateien in `contao/dca/` ablegen (ab Contao 4.9):
+Place DCA files in `contao/dca/` (as of Contao 4.9):
 
-### HTML in Feldern erlauben
+### Allowing HTML in fields
 
 ```php
 // Überschriften in Inhaltselementen
@@ -203,100 +203,100 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['pageTitle']['eval']['allowHtml'] = true
 $GLOBALS['TL_DCA']['tl_content']['fields']['caption']['eval']['allowHtml'] = true;
 ```
 
-### Pflichtfeld setzen
+### Making a field mandatory
 
 ```php
 $GLOBALS['TL_DCA']['tl_member']['fields']['company']['eval']['mandatory'] = true;
 ```
 
-**Nach Änderungen:** Anwendungs-Cache leeren.
+**After changes:** clear the application cache.
 
 ---
 
-## 6. Sass/Less Integration
+## 6. Sass/Less integration
 
-### Direkt in Contao (einfach)
+### Directly in Contao (simple)
 
-`.scss`- oder `.less`-Dateien im `files`-Ordner. Contao kompiliert automatisch.
+`.scss` or `.less` files in the `files` folder. Contao compiles them automatically.
 
-Beispiel (`theme.scss`):
+Example (`theme.scss`):
 ```scss
 $mainCol: rgb(255, 0, 0) !default;
 @import '_elements';
 ```
 
-**Achtung Partials:** Änderungen an Partial-Dateien (Präfix `_`) werden nicht automatisch übernommen. Hauptdatei manuell speichern oder Script-Cache leeren.
+**Caution with partials:** changes to partial files (prefix `_`) are not applied automatically. Save the main file manually or clear the script cache.
 
-**Einschränkung:** Contao nutzt PHP-Bibliotheken statt des offiziellen Sass — nicht alle Features unterstützt.
+**Limitation:** Contao uses PHP libraries instead of the official Sass — not all features are supported.
 
-### Lokale Vorverarbeitung (empfohlen)
+### Local preprocessing (recommended)
 
-- Unabhängig von Contao-Bibliotheksversionen
-- Zugang zu allen aktuellen Preprocessor-Features
-- Einfacheres Debugging
-- Fertige CSS-Dateien in Contao-Layouts einbinden
+- Independent of the Contao library versions
+- Access to all current preprocessor features
+- Easier debugging
+- Include the finished CSS files in Contao layouts
 
 ---
 
-## 7. TinyMCE-Editor Konfiguration
+## 7. TinyMCE editor configuration
 
-### Benutzerdefinierte Konfiguration
+### Custom configuration
 
-Template `be_tinyMCE.html5` im Hauptverzeichnis (`templates/`) anlegen oder anpassen.
+Create or adjust the template `be_tinyMCE.html5` in the main directory (`templates/`).
 
-**Wichtig:** Alle Zeilen innerhalb von `<script>…</script>` bis auf die letzte müssen mit Komma abgeschlossen werden.
+**Important:** all lines inside `<script>…</script>` except the last one must end with a comma.
 
-### Verschiedene Editor-Konfigurationen
+### Different editor configurations
 
-Template umbenennen (z.B. `be_myTinyMCE.html5`), dann in DCA-Datei:
+Rename the template (e.g. `be_myTinyMCE.html5`), then in a DCA file:
 ```php
 $GLOBALS['TL_DCA']['tl_content']['fields']['text']['eval']['rte'] = 'myTinyMCE';
 ```
 
-**Nach Änderungen:** Anwendungs-Cache leeren.
+**After changes:** clear the application cache.
 
-### Praktische Konfigurationsbeispiele
+### Practical configuration examples
 
-**Extended Valid Elements (HTML-Tags freischalten):**
+**Extended valid elements (enabling HTML tags):**
 ```
 extended_valid_elements: 'q[cite|class|title],article,section,hgroup,figure,figcaption'
 ```
 
-**Einfügen ohne Formatierung aktivieren:**
+**Enabling paste without formatting:**
 ```
 paste_as_text: true
 ```
 
-**Toolbar anpassen:**
-Ausrichtungsbuttons entfernen: `alignleft aligncenter alignright alignjustify` aus Toolbar entfernen.
+**Adjusting the toolbar:**
+Removing the alignment buttons: remove `alignleft aligncenter alignright alignjustify` from the toolbar.
 
-**Menü konfigurieren:**
+**Configuring the menu:**
 ```
 menubar: 'edit insert view format table tools',
 removed_menuitems: 'tableprops deletetable'
 ```
 
-**Eigene Format-Definitionen:**
+**Custom format definitions:**
 ```
 style_formats: [{ title: 'Eigener Stil', inline: 'span', classes: 'mein-stil' }]
 ```
 
-**Eigene CSS-Datei für Editor-Vorschau:**
+**Custom CSS file for the editor preview:**
 ```
 content_css: '/files/css/editor.css'
 ```
 
 ---
 
-## 8. Grid-System Einführung
+## 8. Introduction to grid systems
 
-### Contao-eigenes Grid (veraltet, 960px-basiert)
+### Contao's own grid (deprecated, 960px-based)
 
-- 12 Spalten mit 10px-Abständen
-- CSS-Klassen: `grid1` – `grid12`
-- Aktivierung in Seitenlayout → CSS-Framework → "12-Spalten Grid"
+- 12 columns with 10px gaps
+- CSS classes: `grid1` – `grid12`
+- Activation in the Seitenlayout → CSS-Framework → "12-Spalten Grid" (12-column grid)
 
-### CSS Grid Layout (modern, ohne Erweiterung)
+### CSS Grid Layout (modern, without an extension)
 
 ```css
 .container {
@@ -306,79 +306,79 @@ content_css: '/files/css/editor.css'
 }
 ```
 
-### Erweiterungsbasiert
+### Extension-based
 
-`contao-grid-bundle`: Backend-integrierte Grid-Funktionalität mit 12-Spalten-Layout und visueller Spaltenauswahl für verschiedene Viewports.
+`contao-grid-bundle`: backend-integrated grid functionality with a 12-column layout and visual column selection for various viewports.
 
 ---
 
-## 9. SVG-Dateien einsetzen
+## 9. Using SVG files
 
-### Als normale Bild-Datei
+### As a normal image file
 
-SVG in öffentliches `files`-Verzeichnis kopieren → Im Inhaltselement "Bild" auswählen. Contao generiert Standard-`<img>`-Element mit responsiven Bildgrößen.
+Copy the SVG into a public `files` directory → select it in the "Bild" (Image) content element. Contao generates a standard `<img>` element with responsive image sizes.
 
-### Inline SVG (mehr CSS-Kontrolle)
+### Inline SVG (more CSS control)
 
-Template `mysvgicon.html5` in `templates/` erstellen, SVG-Code einfügen, dann:
+Create the template `mysvgicon.html5` in `templates/`, insert the SVG code, then:
 ```
 {{file::mysvgfolder/mysvgicon.html5}}
 ```
-Vorteil: SVG-Code direkt im HTML, CSS kann SVG-Elemente steuern.
+Advantage: the SVG code is directly in the HTML, CSS can control the SVG elements.
 
-### SVG per CSS kolorieren
+### Colouring an SVG via CSS
 
-`currentColor`-Schlüsselwort in der `fill`-Eigenschaft:
+The `currentColor` keyword in the `fill` property:
 ```css
 .ce_text svg { color: #f47c00; }
 ```
 
-### Dynamische Farbübergabe per Insert-Tag
+### Dynamic colour passing via insert tag
 
 ```
 {{file::mysvgfolder/mysvgicon.html5?color=#ff0000}}
 ```
 
-Template-Implementierung:
+Template implementation:
 ```php
 fill="<?= \Contao\Input::get('color') ?: 'currentColor' ?>"
 ```
 
 ---
 
-## 10. Formulardaten speichern
+## 10. Storing form data
 
-### Methode I: Hook `prepareFormData`
+### Method I: the `prepareFormData` hook
 
-Speichert Daten in bestehender Tabelle (z.B. `tl_calendar_events`).
+Stores data in an existing table (e.g. `tl_calendar_events`).
 
-1. Formular erstellen; "Eingaben speichern" aktivieren; `tl_calendar_events` als Zieltabelle
-2. `PrepareFormDataListener` implementiert:
-   - Setzt `tstamp`, `pid`, `author`, `published` automatisch
-   - Generiert eindeutige Aliases
-   - Konvertiert Datumswerte via `strtotime()`
+1. Create a form; enable "Eingaben speichern" (Store submissions); `tl_calendar_events` as the target table
+2. The `PrepareFormDataListener` implements:
+   - Setting `tstamp`, `pid`, `author`, `published` automatically
+   - Generating unique aliases
+   - Converting date values via `strtotime()`
 
-**Anpassung:** `FORM_ID`, `CALENDAR_ID`, `AUTHOR_ID` setzen.
-**Cache leeren** nach Implementierung.
+**Adjustment:** set `FORM_ID`, `CALENDAR_ID`, `AUTHOR_ID`.
+**Clear the cache** after the implementation.
 
-### Methode II: Leads-Erweiterung (einfacher)
+### Method II: the Leads extension (simpler)
 
-1. "Anfragen speichern" in Formular-Einstellungen aktivieren
-2. Master-Formular: Ja; Navigations-Bezeichnung; Datensatz-Bezeichnung mit Simple Tokens
-3. Pro Formularfeld: "In Anfrage speichern" aktivieren
-4. Daten werden in `tl_lead` und `tl_lead_data` gespeichert
-5. Datenverwaltung im Backend unter "Anfragen"
-6. Darstellung via Core-Modul "Auflistung" mit Tabelle `tl_lead`
+1. Enable "Anfragen speichern" (Store enquiries) in the form settings
+2. Master form: yes; navigation label; record label with Simple Tokens
+3. Per form field: enable "In Anfrage speichern" (Store in enquiry)
+4. Data is stored in `tl_lead` and `tl_lead_data`
+5. Data management in the backend under "Anfragen" (Enquiries)
+6. Presentation via the core module "Auflistung" (Listing) with the table `tl_lead`
 
 ---
 
-## 11. Lokale Installation
+## 11. Local installation
 
 ### DDEV
 
-Docker-basiertes Tool für lokale PHP-Entwicklungsumgebungen.
+Docker-based tool for local PHP development environments.
 
-**Schnellstart:**
+**Quick start:**
 ```bash
 mkdir contao && cd contao
 ddev config --project-type=php --docroot=public --webserver-type=apache-fpm --php-version=8.2
@@ -394,14 +394,14 @@ ddev exec contao-console contao:user:create \
 ddev launch contao
 ```
 
-**Wichtige Befehle:**
-| Befehl | Funktion |
+**Important commands:**
+| Command | Function |
 |--------|---------|
-| `ddev start` / `ddev stop` | Projekt starten/stoppen |
-| `ddev poweroff` | Alle Projekte stoppen |
-| `ddev ssh` | Container-Shell |
-| `ddev describe` | Dienste und Zugangs-URLs |
-| `ddev xdebug on` | XDebug aktivieren |
+| `ddev start` / `ddev stop` | Start/stop the project |
+| `ddev poweroff` | Stop all projects |
+| `ddev ssh` | Container shell |
+| `ddev describe` | Services and access URLs |
+| `ddev xdebug on` | Enable XDebug |
 
 **Adminer:** `ddev add-on get ddev/ddev-adminer && ddev restart`
 
@@ -416,9 +416,9 @@ ddev add-on get ddev/ddev-cron
 
 ### Devilbox (Docker)
 
-Vorgefertigter LAMP-Stack für Docker.
+Prebuilt LAMP stack for Docker.
 
-**Konfiguration in `.env`:**
+**Configuration in `.env`:**
 ```
 HTTPD_DOCROOT_DIR=public
 HTTPD_SERVER=apache-2.4
@@ -430,11 +430,11 @@ MYSQL_SERVER=mariadb-10.3
 
 **Dashboard:** http://127.0.0.1
 
-**Projektverzeichnis:** `data/www/projektname/public/`
+**Project directory:** `data/www/projektname/public/`
 
-**Hosts-Datei:** `127.0.0.1 projektname.loc` (oder `.dvl.to` für automatische DNS-Auflösung).
+**Hosts file:** `127.0.0.1 projektname.loc` (or `.dvl.to` for automatic DNS resolution).
 
-**Xdebug-Konfiguration** in `cfg/php-ini-x.y/xdebug.ini`:
+**Xdebug configuration** in `cfg/php-ini-x.y/xdebug.ini`:
 ```ini
 xdebug.mode = debug
 xdebug.client_host = host.docker.internal
@@ -443,34 +443,34 @@ xdebug.idekey = VSCODE
 
 ### Laragon (Windows)
 
-WAMP-Stack-Installer für Windows mit automatischen virtuellen Hosts.
+WAMP stack installer for Windows with automatic virtual hosts.
 
-**Voraussetzungen:**
+**Prerequisites:**
 - Windows 7/8/10
-- Symlink-Berechtigung: Mit Polsedit "Create symbolic links" für normalen Benutzer einrichten
+- Symlink permission: set up "Create symbolic links" for a normal user with Polsedit
 
-**Konfiguration:**
-- `laragon.ini` anpassen: `memory_limit = -1` oder `2G`
-- Virtuelle Hosts: `{name}.local`
-- PATH-Variable: Menu → Tools → Environment Variables → Add Laragon to Path
+**Configuration:**
+- Adjust `laragon.ini`: `memory_limit = -1` or `2G`
+- Virtual hosts: `{name}.local`
+- PATH variable: Menu → Tools → Environment Variables → Add Laragon to Path
 
-**Contao-Installation via Laragon:**
+**Contao installation via Laragon:**
 1. Menu → New Website → "Contao 4.9 Website"
-2. Projektname eingeben → Composer installiert automatisch
-3. Datenbank wird automatisch erstellt
+2. Enter the project name → Composer installs automatically
+3. The database is created automatically
 
-**Zugangs-URLs nach Installation:**
+**Access URLs after the installation:**
 - Frontend: `http://projektname.local/`
 - Backend: `http://projektname.local/contao`
-- Installation Tool: `http://projektname.local/contao/install`
+- Installation tool: `http://projektname.local/contao/install`
 - Contao Manager: `http://projektname.local/contao-manager.phar.php`
 
-**Datenbank-Zugangsdaten** (Installation Tool):
-- Benutzer: `root`, Passwort: (leer), Datenbank: Projektname
+**Database credentials** (installation tool):
+- User: `root`, password: (empty), database: the project name
 
 ---
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/anleitungen/
 - https://docs.contao.org/5.x/manual/de/anleitungen/testversionen-installieren/
 - https://docs.contao.org/5.x/manual/de/anleitungen/die-erste-startseite/

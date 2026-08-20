@@ -2,20 +2,20 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [CspHandler zugreifen](#csphandler-zugreifen)
-- [Quellen hinzufügen (`addSource`)](#quellen-hinzufügen-addsource)
-- [Nonces abrufen (`getNonce`)](#nonces-abrufen-getnonce)
-- [Hashes hinzufügen (`addHash`)](#hashes-hinzufügen-addhash)
+- [Overview](#overview)
+- [Accessing the CspHandler](#accessing-the-csphandler)
+- [Adding sources (`addSource`)](#adding-sources-addsource)
+- [Retrieving nonces (`getNonce`)](#retrieving-nonces-getnonce)
+- [Adding hashes (`addHash`)](#adding-hashes-addhash)
 - [WysiwygStyleProcessor](#wysiwygstyleprocessor)
 
-## Überblick
+## Overview
 
-Contao 5.3 führte CSP-Support für das Frontend ein. Die `CspHandler`-Klasse integriert sich in den Response Context.
+Contao 5.3 introduced CSP support for the front end. The `CspHandler` class integrates into the response context.
 
 ---
 
-## CspHandler zugreifen
+## Accessing the CspHandler
 
 ```php
 use Contao\CoreBundle\Routing\ResponseContext\Csp\CspHandler;
@@ -40,9 +40,9 @@ class ExampleService
 
 ---
 
-## Quellen hinzufügen (`addSource`)
+## Adding sources (`addSource`)
 
-Erlaubt externe Ressourcen für eine CSP-Direktive:
+Allows external resources for a CSP directive:
 
 **PHP:**
 ```php
@@ -54,16 +54,16 @@ $cspHandler->addSource('frame-src', 'https://www.youtube.com/embed/foobar123');
 {% do csp_source('frame-src', 'https://www.youtube.com/embed/foobar123') %}
 ```
 
-**PHP-Template:**
+**PHP template:**
 ```php
 <?php $this->addCspSource('frame-src', 'https://...') ?>
 ```
 
 ---
 
-## Nonces abrufen (`getNonce`)
+## Retrieving nonces (`getNonce`)
 
-Nonces ermöglichen sichere Inline-Skripte/-Styles ohne `'unsafe-inline'`:
+Nonces enable secure inline scripts/styles without `'unsafe-inline'`:
 
 **PHP:**
 ```php
@@ -75,16 +75,16 @@ $nonce = $cspHandler->getNonce('script-src');
 <script{{ attrs().setIfExists('nonce', csp_nonce('script-src')) }}>
 ```
 
-**PHP-Template:**
+**PHP template:**
 ```php
 <script<?= $this->attr()->setIfExists('nonce', $this->nonce('script-src')) ?>>
 ```
 
 ---
 
-## Hashes hinzufügen (`addHash`)
+## Adding hashes (`addHash`)
 
-Erlaubt spezifische Inline-Styles/-Scripts per Hash:
+Allows specific inline styles/scripts by hash:
 
 **PHP:**
 ```php
@@ -96,28 +96,28 @@ $cspHandler->addHash('style-src', 'display:none');
 {% do csp_hash('style-src', 'display:none') %}
 ```
 
-**PHP-Template:**
+**PHP template:**
 ```php
 <div style="<?= $this->cspInlineStyle('display:none') ?>">
 ```
 
-> **Hinweis:** Für Browser mit CSP Level 3 muss zusätzlich `'unsafe-hashes'` in der Direktiv-Quellenliste stehen.
+> **Note:** For browsers with CSP Level 3, `'unsafe-hashes'` must additionally be present in the directive's source list.
 
 ---
 
 ## WysiwygStyleProcessor
 
-Verarbeitet automatisch Inline-Styles aus dem TinyMCE WYSIWYG-Editor.
+Automatically processes inline styles coming from the TinyMCE WYSIWYG editor.
 
-**Konfiguration erlaubter Styles:**
+**Configuring allowed styles:**
 ```yaml
-# config/config.yaml (oder Bundle-Config)
+# config/config.yaml (or bundle config)
 contao:
     csp:
         allowed_inline_styles: ['color', 'font-size', 'text-align']
 ```
 
-**Nutzung im Service:**
+**Usage in a service:**
 ```php
 use Contao\CoreBundle\Csp\WysiwygStyleProcessor;
 
@@ -139,16 +139,16 @@ class ExampleService
 }
 ```
 
-**Twig-Template:**
+**Twig template:**
 ```twig
 {{ text|csp_inline_styles|insert_tag|encode_email|raw }}
 ```
 
-**PHP-Template:**
+**PHP template:**
 ```php
 <?= $this->cspInlineStyles($this->text) ?>
 ```
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/csp/*
+*Source: https://docs.contao.org/5.x/dev/framework/csp/*

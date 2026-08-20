@@ -1,75 +1,75 @@
-# Meteor Tokens — Design-Token-Referenz
+# Meteor Tokens — design token reference
 
-Paket: `@shopware-ag/meteor-tokens`
+Package: `@shopware-ag/meteor-tokens`
 
-Ergänzende Quellen: `packages/component-library/src/docs/foundations/tokens/` (Storybook),
+Additional sources: `packages/component-library/src/docs/foundations/tokens/` (Storybook),
 `packages/tokens/README.md`
 
 ## Contents
 
-- [Was sind Design Tokens](#was-sind-design-tokens)
-- [Token-Namensstruktur](#token-namensstruktur)
-- [Farb-Palette (primitives)](#farb-palette-primitives)
-- [Token-Anpassung (Customization)](#token-anpassung-customization)
-- [Neuen Token vorschlagen](#neuen-token-vorschlagen)
-- [Einbindung](#einbindung)
-- [Token-Kategorien](#token-kategorien)
-- [Spacing-Richtlinien](#spacing-richtlinien)
-- [Border-Radius-Richtlinien](#border-radius-richtlinien)
-- [Elevation Surface — Semantische Verwendung](#elevation-surface-semantische-verwendung)
-- [Typografie-Richtlinien](#typografie-richtlinien)
-- [Tailwind-Integration](#tailwind-integration)
+- [What design tokens are](#what-design-tokens-are)
+- [Token naming structure](#token-naming-structure)
+- [Color palette (primitives)](#color-palette-primitives)
+- [Token customization](#token-customization)
+- [Proposing a new token](#proposing-a-new-token)
+- [Inclusion](#inclusion)
+- [Token categories](#token-categories)
+- [Spacing guidelines](#spacing-guidelines)
+- [Border radius guidelines](#border-radius-guidelines)
+- [Elevation surface — semantic usage](#elevation-surface--semantic-usage)
+- [Typography guidelines](#typography-guidelines)
+- [Tailwind integration](#tailwind-integration)
 
-## Was sind Design Tokens
+## What design tokens are
 
-Design Tokens sind standardisierte Name-Wert-Paare, die Design-Entscheidungen (Farben, Typografie,
-Abstände, Motion) kodieren. Sie sind die Brücke zwischen Design und Entwicklung und sichern
-Konsistenz über Plattformen und Tools hinweg.
+Design tokens are standardized name-value pairs that encode design decisions (colors, typography,
+spacing, motion). They are the bridge between design and development and ensure
+consistency across platforms and tools.
 
-## Token-Namensstruktur
+## Token naming structure
 
-Semantische Farb-Tokens folgen der 4-teiligen Struktur:
+Semantic color tokens follow the 4-part structure:
 
 ```
 [type]-[category]-[instance]-[variant]
 ```
 
-| Teil | Beschreibung | Beispiele |
+| Part | Description | Examples |
 |---|---|---|
-| **Type** | Breiteste Klassifikation | `color`, `font`, `scale`, `border-radius` |
-| **Category** | Funktionale Gruppe innerhalb des Typs | `icon`, `text`, `background`, `elevation` |
-| **Instance** | Konkrete Verwendung | `primary`, `positive`, `critical` |
-| **Variant** | Zustand oder Modifikation | `default`, `hover`, `pressed`, `disabled` |
+| **Type** | Broadest classification | `color`, `font`, `scale`, `border-radius` |
+| **Category** | Functional group within the type | `icon`, `text`, `background`, `elevation` |
+| **Instance** | Concrete usage | `primary`, `positive`, `critical` |
+| **Variant** | State or modification | `default`, `hover`, `pressed`, `disabled` |
 
-Beispiele:
-- `--color-text-primary-default` → Farbe / Text / primär / Standard-Zustand
-- `--color-interaction-primary-hover` → Farbe / Interaktion / primär / Hover-Zustand
-- `--color-icon-critical-default` → Farbe / Icon / kritisch / Standard
+Examples:
+- `--color-text-primary-default` → color / text / primary / default state
+- `--color-interaction-primary-hover` → color / interaction / primary / hover state
+- `--color-icon-critical-default` → color / icon / critical / default
 
-Einfachere Tokens wie `--font-size-s` oder `--scale-size-8` haben weniger Teile da sie keinen Zustand tragen.
+Simpler tokens such as `--font-size-s` or `--scale-size-8` have fewer parts because they carry no state.
 
-## Farb-Palette (primitives)
+## Color palette (primitives)
 
-Palette-Werte haben keine semantische Bedeutung. Sie sind der Werkzeugkasten für semantische Tokens und Themes.
-**In Produktcode immer Tokens statt primitiven Palette-Werten verwenden.** Palette-Werte umgehen
-die Abstraktionsebene und brechen das Theming.
+Palette values carry no semantic meaning. They are the toolbox for semantic tokens and themes.
+**In product code always use tokens instead of primitive palette values.** Palette values bypass
+the abstraction layer and break theming.
 
-Jeder Palette-Farbton hat einen Nummern-Shade (50 = hellstes bis 950 = dunklstes):
-- `--color-blue-50` = nahzu weiß; `--color-blue-950` = nahzu schwarz
-- Höhere Zahl = immer dunkler, unabhängig vom Farbton
+Every palette hue has a numeric shade (50 = lightest through 950 = darkest):
+- `--color-blue-50` = nearly white; `--color-blue-950` = nearly black
+- Higher number = always darker, independent of the hue
 
-## Token-Anpassung (Customization)
+## Token customization
 
-**Empfehlung**: Bestehende Meteor-Tokens NICHT überschreiben. Überschreibungen können zu unerwartetem
-visuellen Divergenz führen und brechen wenn Token-Werte in zukünftigen Releases geändert werden.
+**Recommendation**: do NOT override existing Meteor tokens. Overrides can lead to unexpected
+visual divergence and break when token values change in future releases.
 
-**Stattdessen**: Eigene Tokens mit eigenem Präfix definieren:
+**Instead**: define your own tokens with your own prefix:
 
 ```css
 @import "@shopware-ag/meteor-tokens/administration/light.css";
 @import "@shopware-ag/meteor-tokens/administration/dark.css";
 
-/* Eigene Tokens mit benutzerdefiniertem Präfix */
+/* Own tokens with a custom prefix */
 :root {
   --myapp-color-brand-default: #7c3aed;
   --myapp-color-brand-hover: #6d28d9;
@@ -81,41 +81,41 @@ visuellen Divergenz führen und brechen wenn Token-Werte in zukünftigen Release
 }
 ```
 
-## Neuen Token vorschlagen
+## Proposing a new token
 
-Neue Tokens erfordern Zustimmung von Design und Engineering. Prozess:
+New tokens require approval from design and engineering. Process:
 
-1. **Initiierung**: Design oder Engineering erkennen Lücke (GitHub-Issue, Figma-Kommentar, Meteor-Slack)
-2. **Proposal-Inhalt**:
-   - Was der Token repräsentiert und wo er verwendet wird
-   - Vorgeschlagener Name nach `type-category-instance-variant`-Struktur
-   - Beabsichtigter Wert in allen verfügbaren Themes
-   - Ob ein bestehender Token den Bedarf abdecken könnte
-3. **Review**: Design-Team + Meteor-Engineering prüfen Namen, Notwendigkeit, Theme-Kompatibilität
-4. **Figma → Code**: Token zuerst in Figma Variables Library, dann per Sync-Workflow ins Paket
+1. **Initiation**: design or engineering identify a gap (GitHub issue, Figma comment, Meteor Slack)
+2. **Proposal content**:
+   - What the token represents and where it is used
+   - Proposed name following the `type-category-instance-variant` structure
+   - Intended value in all available themes
+   - Whether an existing token could cover the need
+3. **Review**: design team + Meteor engineering check name, necessity, theme compatibility
+4. **Figma → code**: token first into the Figma Variables Library, then into the package via the sync workflow
 
-## Einbindung
+## Inclusion
 
 ```css
-/* Primitive Farb-Palette (reine Farben, nicht semantisch) */
+/* Primitive color palette (pure colors, not semantic) */
 @import '@shopware-ag/meteor-tokens/deliverables/foundation/primitives.css';
 
-/* Semantische Admin-Tokens — Light-Theme */
+/* Semantic admin tokens — light theme */
 @import '@shopware-ag/meteor-tokens/deliverables/administration/light.css';
 
-/* Semantische Admin-Tokens — Dark-Theme */
+/* Semantic admin tokens — dark theme */
 @import '@shopware-ag/meteor-tokens/deliverables/administration/dark.css';
 ```
 
-Das Light-Theme gilt für `:root`, das Dark-Theme für `[data-theme='dark']`.
+The light theme applies to `:root`, the dark theme to `[data-theme='dark']`.
 
-## Token-Kategorien
+## Token categories
 
-### Farb-Primitive (`foundation/primitives.css`)
+### Color primitives (`foundation/primitives.css`)
 
-Basis-Farbpaletten als CSS-Custom-Properties, nicht direkt verwenden (werden von semantischen Tokens referenziert):
+Base color palettes as CSS custom properties, not to be used directly (they are referenced by semantic tokens):
 
-| Palette | Stufen | Beispiel |
+| Palette | Steps | Example |
 |---|---|---|
 | `--color-slate-*` | 50–950 | `--color-slate-900: #2b2e3a` |
 | `--color-blue-*` | 50–900 | `--color-blue-500: #189eff` |
@@ -125,81 +125,81 @@ Basis-Farbpaletten als CSS-Custom-Properties, nicht direkt verwenden (werden von
 | `--color-purple-*` | 50–900 | |
 | `--color-emerald-*` | 50–900 | |
 | `--color-zinc-*` | 0–950 | `--color-zinc-0: #ffffff` |
-| `--color-scale-size-*` | 0–640 (in 4px-Schritten) | `--scale-size-16: 1rem` |
+| `--color-scale-size-*` | 0–640 (in 4px steps) | `--scale-size-16: 1rem` |
 
-### Interaktion (`--color-interaction-*`)
+### Interaction (`--color-interaction-*`)
 
-Für interaktive Elemente (Buttons etc.):
+For interactive elements (buttons etc.):
 
 ```css
---color-interaction-primary-default    /* Primär-Button Hintergrund */
+--color-interaction-primary-default    /* Primary button background */
 --color-interaction-primary-hover
 --color-interaction-primary-pressed
 --color-interaction-primary-disabled
---color-interaction-secondary-default  /* Sekundär-Button */
+--color-interaction-secondary-default  /* Secondary button */
 --color-interaction-secondary-hover
 --color-interaction-secondary-pressed
 --color-interaction-secondary-disabled
 --color-interaction-secondary-dark
---color-interaction-critical-default   /* Kritische Aktion */
+--color-interaction-critical-default   /* Critical action */
 --color-interaction-critical-hover
 --color-interaction-critical-pressed
 --color-interaction-critical-disabled
 ```
 
-### Elevation / Oberflächen (`--color-elevation-*`)
+### Elevation / surfaces (`--color-elevation-*`)
 
-Für Hintergründe von Cards, Modals, Overlays:
+For backgrounds of cards, modals, overlays:
 
 ```css
---color-elevation-surface-sunken      /* Abgesenkte Bereiche */
---color-elevation-surface-default     /* Standard-Oberfläche */
---color-elevation-surface-selected    /* Ausgewählter Zustand */
---color-elevation-surface-hover       /* Hover-Zustand */
---color-elevation-surface-raised      /* Erhöhte Elemente */
---color-elevation-surface-overlay     /* Overlay-Hintergrund */
---color-elevation-surface-frame       /* Frame-Hintergrund */
---color-elevation-surface-backdrop    /* Modal-Backdrop */
---color-elevation-surface-floating    /* Floating UI (Tooltips, Dropdowns) */
---color-elevation-backdrop-default    /* Backdrop-Farbe mit Opacity */
---color-elevation-floating-default    /* Floating-Elemente */
---color-elevation-shadow-default      /* Box-Shadow */
+--color-elevation-surface-sunken      /* Sunken areas */
+--color-elevation-surface-default     /* Default surface */
+--color-elevation-surface-selected    /* Selected state */
+--color-elevation-surface-hover       /* Hover state */
+--color-elevation-surface-raised      /* Raised elements */
+--color-elevation-surface-overlay     /* Overlay background */
+--color-elevation-surface-frame       /* Frame background */
+--color-elevation-surface-backdrop    /* Modal backdrop */
+--color-elevation-surface-floating    /* Floating UI (tooltips, dropdowns) */
+--color-elevation-backdrop-default    /* Backdrop color with opacity */
+--color-elevation-floating-default    /* Floating elements */
+--color-elevation-shadow-default      /* Box shadow */
 ```
 
-### Hintergrundfarben (`--color-background-*`)
+### Background colors (`--color-background-*`)
 
-Für semantische Hintergründe:
+For semantic backgrounds:
 
 ```css
 --color-background-primary-default
 --color-background-primary-disabled
 --color-background-secondary-default
 --color-background-tertiary-default
---color-background-brand-default     /* Brand-Blau-Hintergrund */
---color-background-critical-default  /* Rot-Hintergrund */
+--color-background-brand-default     /* Brand blue background */
+--color-background-critical-default  /* Red background */
 --color-background-critical-dark
---color-background-attention-default /* Gelb/Orange-Hintergrund */
---color-background-positive-default  /* Grün-Hintergrund */
---color-background-accent-default    /* Lila-Hintergrund */
+--color-background-attention-default /* Yellow/orange background */
+--color-background-positive-default  /* Green background */
+--color-background-accent-default    /* Purple background */
 ```
 
-### Icon-Farben (`--color-icon-*`)
+### Icon colors (`--color-icon-*`)
 
 ```css
---color-icon-primary-default         /* Standard-Icons */
+--color-icon-primary-default         /* Default icons */
 --color-icon-primary-disabled
 --color-icon-primary-inverse
---color-icon-secondary-default       /* Sekundäre Icons */
---color-icon-brand-default           /* Brand-Icons */
---color-icon-critical-default        /* Fehler-Icons */
---color-icon-attention-default       /* Warn-Icons */
---color-icon-positive-default        /* Erfolgs-Icons */
---color-icon-accent-default          /* Akzent-Icons */
---color-icon-static-default          /* Immer weiß */
---color-icon-static-dark             /* Immer schwarz */
+--color-icon-secondary-default       /* Secondary icons */
+--color-icon-brand-default           /* Brand icons */
+--color-icon-critical-default        /* Error icons */
+--color-icon-attention-default       /* Warning icons */
+--color-icon-positive-default        /* Success icons */
+--color-icon-accent-default          /* Accent icons */
+--color-icon-static-default          /* Always white */
+--color-icon-static-dark             /* Always black */
 ```
 
-### Rahmenfarben (`--color-border-*`)
+### Border colors (`--color-border-*`)
 
 ```css
 --color-border-primary-default
@@ -215,38 +215,38 @@ Für semantische Hintergründe:
 --color-border-accent-default
 ```
 
-### Textfarben (`--color-text-*`)
+### Text colors (`--color-text-*`)
 
 ```css
---color-text-primary-default         /* Haupt-Text */
+--color-text-primary-default         /* Main text */
 --color-text-primary-disabled
---color-text-primary-inverse         /* Text auf dunklem Hintergrund */
---color-text-secondary-default       /* Sekundärer Text */
+--color-text-primary-inverse         /* Text on a dark background */
+--color-text-secondary-default       /* Secondary text */
 --color-text-secondary-disabled
---color-text-brand-default           /* Brand-farbener Text */
+--color-text-brand-default           /* Brand colored text */
 --color-text-brand-hover
 --color-text-brand-pressed
 --color-text-brand-disabled
 --color-text-brand-inverse
---color-text-critical-default        /* Fehler-Text */
+--color-text-critical-default        /* Error text */
 --color-text-critical-hover
---color-text-attention-default       /* Warn-Text */
---color-text-positive-default        /* Erfolgs-Text */
---color-text-accent-default          /* Akzent-Text */
---color-text-static-default          /* Immer weiß */
---color-text-static-dark             /* Immer schwarz */
+--color-text-attention-default       /* Warning text */
+--color-text-positive-default        /* Success text */
+--color-text-accent-default          /* Accent text */
+--color-text-static-default          /* Always white */
+--color-text-static-dark             /* Always black */
 --color-text-inverse-default
 --color-static-white: #ffffff
 --color-static-black: #09090b
 ```
 
-### Typografie
+### Typography
 
 ```css
 --font-family-headings: 'Inter'
 --font-family-body: 'Inter'
 
-/* Schriftgrößen */
+/* Font sizes */
 --font-size-2xs: 0.75rem    /* 12px */
 --font-size-xs: 0.875rem    /* 14px */
 --font-size-s: 1rem          /* 16px */
@@ -256,13 +256,13 @@ Für semantische Hintergründe:
 --font-size-2xl: 1.75rem    /* 28px */
 --font-size-3xl: 2rem        /* 32px */
 
-/* Schriftstärken */
+/* Font weights */
 --font-weight-regular: 400
 --font-weight-medium: 500
 --font-weight-semibold: 600
 --font-weight-bold: 700
 
-/* Zeilenhöhen */
+/* Line heights */
 --font-line-height-2xs: 1.125rem
 --font-line-height-xs: 1.375rem
 --font-line-height-s: 1.625rem
@@ -273,12 +273,12 @@ Für semantische Hintergründe:
 --font-line-height-3xl: 2.5rem
 ```
 
-### Border-Radius
+### Border radius
 
 ```css
---border-radius-card: 0.5rem      /* 8px — Karten */
---border-radius-overlay: 0.25rem  /* 4px — Modals, Dropdowns */
---border-radius-button: 0.25rem   /* 4px — Buttons */
+--border-radius-card: 0.5rem      /* 8px — cards */
+--border-radius-overlay: 0.25rem  /* 4px — modals, dropdowns */
+--border-radius-button: 0.25rem   /* 4px — buttons */
 --border-radius-checkbox: 0.25rem
 --border-radius-none: 0
 --border-radius-2xs: 0.125rem    /* 2px */
@@ -290,12 +290,12 @@ Für semantische Hintergründe:
 --border-radius-2xl: 1.25rem     /* 20px */
 --border-radius-3xl: 1.5rem      /* 24px */
 --border-radius-4xl: 2rem        /* 32px */
---border-radius-round: 624.9375rem  /* Vollständig rund */
+--border-radius-round: 624.9375rem  /* Fully round */
 ```
 
-### Skalierungsgrößen (`--scale-size-*`)
+### Scale sizes (`--scale-size-*`)
 
-Abstände und Größen in 4px-Schritten (Grundlage 0.25rem = 4px):
+Spacing and sizes in 4px steps (base 0.25rem = 4px):
 
 ```css
 --scale-size-0: 0
@@ -309,66 +309,66 @@ Abstände und Größen in 4px-Schritten (Grundlage 0.25rem = 4px):
 --scale-size-32: 2rem      /* 32px */
 --scale-size-40: 2.5rem    /* 40px */
 --scale-size-48: 3rem      /* 48px */
-/* ... bis --scale-size-640 */
+/* ... up to --scale-size-640 */
 ```
 
-## Spacing-Richtlinien
+## Spacing guidelines
 
-Die Spacing-Scale ist numerisch: `--scale-size-8` = 8px. Keine semantische Zwischenschicht.
+The spacing scale is numeric: `--scale-size-8` = 8px. No semantic intermediate layer.
 
-Empfehlungen:
-- **4–8px**: Enger interner Abstand (Icon-zu-Label-Gap, Badge-Padding)
-- **12–16px**: Standard-Komponent-Padding und Item-Spacing
-- **24–40px**: Zwischen Formularelementen, Abschnitte innerhalb einer View
-- **48–64px**: Zwischen Haupt-Layout-Regionen
+Recommendations:
+- **4–8px**: tight internal spacing (icon-to-label gap, badge padding)
+- **12–16px**: default component padding and item spacing
+- **24–40px**: between form elements, sections within a view
+- **48–64px**: between main layout regions
 
-Negierung: `calc(var(--scale-size-8) * -1)` statt `-8px`.
+Negation: `calc(var(--scale-size-8) * -1)` instead of `-8px`.
 
-**Nicht** `--scale-size-*` für `border-radius` verwenden — eigener Token-Typ.
+Do **not** use `--scale-size-*` for `border-radius` — that is its own token type.
 
-## Border-Radius-Richtlinien
+## Border radius guidelines
 
-Reihenfolge der Präferenz:
-1. **Element-spezifische Tokens** (wenn vorhanden): `--border-radius-card`, `--border-radius-button`, `--border-radius-checkbox`
-2. **Semantische Tokens** als Fallback: `--border-radius-xs` bis `--border-radius-round`
-3. **Nie**: Arbiträre px-Werte oder `50%`
+Order of preference:
+1. **Element-specific tokens** (where available): `--border-radius-card`, `--border-radius-button`, `--border-radius-checkbox`
+2. **Semantic tokens** as a fallback: `--border-radius-xs` through `--border-radius-round`
+3. **Never**: arbitrary px values or `50%`
 
-Für Pills/Avatar-Kreise/vollständig abgerundete Tags: `--border-radius-round`.
+For pills/avatar circles/fully rounded tags: `--border-radius-round`.
 
-## Elevation Surface — Semantische Verwendung
+## Elevation surface — semantic usage
 
-| Token | Verwendung |
+| Token | Usage |
 |---|---|
-| `--color-elevation-surface-sunken` | Sidebar-Sektionen, Zebra-Tabellenzeilen, Code-Blocks, große Seiten-Hintergründe (wenn default für Hauptfläche) |
-| `--color-elevation-surface-default` | Haupt-Anwendungshintergrund / Seite |
-| `--color-elevation-surface-raised` | Cards, Panels, Container über dem Hintergrund |
-| `--color-elevation-floating-default` | Tooltips — benötigen hohen Kontrast zur Seite |
-| `--color-elevation-backdrop-default` | Semi-transparenter Scrim hinter Modals/Drawers |
-| `--color-elevation-shadow-default` | Box-Shadow-Farbe für erhobene Elemente wie Popovers |
+| `--color-elevation-surface-sunken` | Sidebar sections, zebra table rows, code blocks, large page backgrounds (when default is used for the main area) |
+| `--color-elevation-surface-default` | Main application background / page |
+| `--color-elevation-surface-raised` | Cards, panels, containers above the background |
+| `--color-elevation-floating-default` | Tooltips — need high contrast against the page |
+| `--color-elevation-backdrop-default` | Semi-transparent scrim behind modals/drawers |
+| `--color-elevation-shadow-default` | Box shadow color for raised elements such as popovers |
 
-Token-Werte wechseln automatisch bei `data-theme="dark"`.
+Token values switch automatically under `data-theme="dark"`.
 
-## Typografie-Richtlinien
+## Typography guidelines
 
-`--font-size-*` immer mit passendem `--font-line-height-*` kombinieren.
+Always combine `--font-size-*` with a matching `--font-line-height-*`.
 
-Hierarchie-Empfehlung:
-- `3xl`, `2xl`: Seitentitel, Haupt-Section-Header
-- `xl`, `l`: Sub-Sektionen
-- `m`, `s`: Card- und Abschnitts-Überschriften
-- `xs`: Body-Text, Support-Labels, Metadaten
+Hierarchy recommendation:
+- `3xl`, `2xl`: page titles, main section headers
+- `xl`, `l`: sub-sections
+- `m`, `s`: card and section headings
+- `xs`: body text, support labels, metadata
 
-Sekundäre Informationen: `--color-text-secondary-default` statt kleinerer Schriftgröße.
-Body-Text-Zeilenlänge: `max-width: 65ch` für optimale Lesbarkeit.
+Secondary information: `--color-text-secondary-default` instead of a smaller font size.
+Body text line length: `max-width: 65ch` for optimal readability.
 
-## Tailwind-Integration
+## Tailwind integration
 
 ```css
-/* Standard */
+/* Default */
 @import '@shopware-ag/meteor-tokens/deliverables/tailwind.css';
 
-/* Administration-spezifisch */
+/* Administration specific */
 @import '@shopware-ag/meteor-tokens/deliverables/tailwind-administration.css';
 ```
 
-Die Tailwind-Dateien mappen die CSS-Custom-Properties auf Tailwind-Utility-Klassen.
+The Tailwind files map the CSS custom properties onto Tailwind utility classes.

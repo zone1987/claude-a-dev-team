@@ -1,24 +1,24 @@
-# Gotenberg — Konfiguration
+# Gotenberg — Configuration
 
-Konfiguration via CLI-Flags oder Umgebungsvariablen.
-Flag-Format: `--modul-eigenschaft=wert` / Env: `MODUL_EIGENSCHAFT=wert`
+Configuration via CLI flags or environment variables.
+Flag format: `--module-property=value` / Env: `MODULE_PROPERTY=value`
 
 ```bash
-# CLI-Flag
+# CLI flag
 docker run --rm -p "3000:3000" gotenberg/gotenberg:8 gotenberg --api-timeout=60s
 
-# Umgebungsvariable
+# Environment variable
 docker run --rm -p "3000:3000" -e API_TIMEOUT=60s gotenberg/gotenberg:8
 ```
 
-## Wichtigste Parameter (Auszug)
+## Most important parameters (excerpt)
 
-| Flag | Env | Default | Beschreibung |
+| Flag | Env | Default | Description |
 |------|-----|---------|-------------|
-| `--api-port` | `API_PORT` | `3000` | Lausch-Port der API |
-| `--api-timeout` | `API_TIMEOUT` | `30s` | Maximale Request-Dauer |
-| `--api-enable-basic-auth` | `API_ENABLE_BASIC_AUTH` | `false` | Basic Auth aktivieren |
-| `--chromium-max-concurrency` | `CHROMIUM_MAX_CONCURRENCY` | `6` | Max. parallele Chromium-Konvertierungen |
-| `--libreoffice-restart-after` | `LIBREOFFICE_RESTART_AFTER` | `10` | LibreOffice nach N Konvertierungen neu starten |
+| `--api-port` | `API_PORT` | `3000` | Listening port of the API |
+| `--api-timeout` | `API_TIMEOUT` | `30s` | Maximum request duration |
+| `--api-enable-basic-auth` | `API_ENABLE_BASIC_AUTH` | `false` | Enable basic auth |
+| `--chromium-max-concurrency` | `CHROMIUM_MAX_CONCURRENCY` | `6` | Max. parallel Chromium conversions |
+| `--libreoffice-restart-after` | `LIBREOFFICE_RESTART_AFTER` | `10` | Restart LibreOffice after N conversions |
 
-Vollstaendige Parametertabellen: `CONFIGURATION-DETAIL.md`
+Complete parameter tables: `CONFIGURATION-DETAIL.md`

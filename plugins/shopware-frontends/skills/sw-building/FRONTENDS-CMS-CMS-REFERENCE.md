@@ -1,54 +1,54 @@
-# @shopware/cms-base-layer — Vollständige CMS-Referenz
+# @shopware/cms-base-layer — Complete CMS reference
 
 Version: **3.0.0**
 
-Nuxt-Layer mit Vue-3-Komponenten für das Rendering aller Shopware-CMS-Typen (Sections, Blocks, Elemente).
+Nuxt layer with Vue 3 components for rendering all Shopware CMS types (sections, blocks, elements).
 
 ---
 
 ## Contents
 
-- [Integration als Nuxt-Layer](#integration-als-nuxt-layer)
-- [Kern-Rendering-Komponenten](#kern-rendering-komponenten)
-- [Komponenten-Resolver: `resolveCmsComponent`](#komponenten-resolver-resolvecmscomponent)
-- [Eigene CMS-Komponenten registrieren](#eigene-cms-komponenten-registrieren)
-- [Vollständige Komponenten-Liste](#vollständige-komponenten-liste)
-- [Listing-Filter-Komponenten](#listing-filter-komponenten)
-- [Sw*-Komponenten (Wiederverwendbare UI)](#sw-komponenten-wiederverwendbare-ui)
-- [UI-Basiskomponenten](#ui-basiskomponenten)
-- [CMS-Composables in Komponenten](#cms-composables-in-komponenten)
-- [HTML-zu-Vue-Renderer (`CmsElementText`)](#html-zu-vue-renderer-cmselementtext)
-- [3D-Inhalte (`CmsBlockSpatialViewer`)](#3d-inhalte-cmsblockspatialviewer)
-- [Layout-Konfiguration](#layout-konfiguration)
+- [Integration as a Nuxt layer](#integration-as-a-nuxt-layer)
+- [Core rendering components](#core-rendering-components)
+- [Component resolver: `resolveCmsComponent`](#component-resolver-resolvecmscomponent)
+- [Registering custom CMS components](#registering-custom-cms-components)
+- [Complete component list](#complete-component-list)
+- [Listing filter components](#listing-filter-components)
+- [Sw* components (reusable UI)](#sw-components-reusable-ui)
+- [Base UI components](#base-ui-components)
+- [CMS composables in components](#cms-composables-in-components)
+- [HTML-to-Vue renderer (`CmsElementText`)](#html-to-vue-renderer-cmselementtext)
+- [3D content (`CmsBlockSpatialViewer`)](#3d-content-cmsblockspatialviewer)
+- [Layout configuration](#layout-configuration)
 
-## Integration als Nuxt-Layer
+## Integration as a Nuxt layer
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   extends: ['@shopware/cms-base-layer'],
-  // Voraussetzung: @shopware/nuxt-module ist als Modul registriert
+  // Prerequisite: @shopware/nuxt-module is registered as a module
 })
 ```
 
-Der Layer:
-- Registriert alle CMS-Komponenten **global** (auto-import aus `app/components/public/`)
-- Aktiviert Auto-Import der Nuxt-Composables in cms-base-Dateien (Fix für Nitro-Import-Transformationen)
-- Nutzt `@nuxt/image` für optimierte Bilder, `@tresjs/nuxt` für 3D-Inhalte
+The layer:
+- Registers all CMS components **globally** (auto-import from `app/components/public/`)
+- Enables auto-import of the Nuxt composables in cms-base files (fix for Nitro import transformations)
+- Uses `@nuxt/image` for optimized images, `@tresjs/nuxt` for 3D content
 
 ---
 
-## Kern-Rendering-Komponenten
+## Core rendering components
 
 ### `<CmsPage :content="cmsPage" />`
 
-Eintrittspunkt für das Rendering einer vollständigen CMS-Page. Rendert alle Sections dynamisch.
+Entry point for rendering a complete CMS page. Renders all sections dynamically.
 
 ```vue
 <script setup>
 import type { Schemas } from '#shopware'
 const { page } = useListing()
-// oder: via useProductSearch / useCategorySearch / useLandingSearch mit withCmsAssociations: true
+// or: via useProductSearch / useCategorySearch / useLandingSearch with withCmsAssociations: true
 </script>
 <template>
   <CmsPage v-if="page?.cmsPage" :content="page.cmsPage" />
@@ -60,13 +60,13 @@ const { page } = useListing()
 defineProps<{ content: Schemas["CmsPage"] }>()
 ```
 
-**Intern:** Iteriert `content.sections[]`, löst pro Section den Komponenten-Namen auf (`CmsSection${pascalCase(section.type)}`), rendert via `h()`. Wendet `getCmsLayoutConfiguration` für Styles und CSS-Klassen an. Ruft `createCategoryListingContext` auf wenn `routeName === 'frontend.navigation.page'`.
+**Internals:** Iterates `content.sections[]`, resolves the component name per section (`CmsSection${pascalCase(section.type)}`), renders via `h()`. Applies `getCmsLayoutConfiguration` for styles and CSS classes. Calls `createCategoryListingContext` when `routeName === 'frontend.navigation.page'`.
 
 ---
 
 ### `<CmsGenericBlock :content="block" />`
 
-Rendert einen CMS-Block dynamisch anhand von `block.type`.
+Renders a CMS block dynamically based on `block.type`.
 
 ```vue
 <template>
@@ -79,37 +79,37 @@ Rendert einen CMS-Block dynamisch anhand von `block.type`.
 defineProps<{ content: Schemas["CmsBlock"] }>()
 ```
 
-**Intern:**
-1. `resolveCmsComponent(block)` → löst `CmsBlock${pascalCase(block.type)}` auf
-2. Wendet Hintergrundstyles und CSS-Klassen an (`getCmsLayoutConfiguration`)
-3. Stellt `slotCount` und `imageSizes` via `provide` bereit
-4. In `import.meta.dev`: Konsolenwarnung mit Docs-Link wenn Komponente fehlt
+**Internals:**
+1. `resolveCmsComponent(block)` → resolves `CmsBlock${pascalCase(block.type)}`
+2. Applies background styles and CSS classes (`getCmsLayoutConfiguration`)
+3. Provides `slotCount` and `imageSizes` via `provide`
+4. In `import.meta.dev`: console warning with a docs link when the component is missing
 
 ---
 
 ### `<CmsGenericElement :content="slot" />`
 
-Rendert ein CMS-Element (Slot) dynamisch anhand von `slot.type`.
+Renders a CMS element (slot) dynamically based on `slot.type`.
 
 **Props:**
 ```ts
 defineProps<{ content: Schemas["CmsSlot"] }>()
 ```
 
-**Intern:**
-1. `resolveCmsComponent(slot)` → löst `CmsElement${pascalCase(slot.type)}` auf
-2. Wendet CSS-Klassen/Styles an
-3. In `import.meta.dev`: Konsolenwarnung wenn Element fehlt
+**Internals:**
+1. `resolveCmsComponent(slot)` → resolves `CmsElement${pascalCase(slot.type)}`
+2. Applies CSS classes/styles
+3. In `import.meta.dev`: console warning when the element is missing
 
 ---
 
 ### `<CmsNoComponent :content="..." />`
 
-Fallback-Komponente die in Dev-Mode angezeigt wird wenn ein Block/Element-Typ nicht implementiert ist. Zeigt den fehlenden Komponenten-Namen an.
+Fallback component shown in dev mode when a block/element type is not implemented. Displays the missing component name.
 
 ---
 
-## Komponenten-Resolver: `resolveCmsComponent`
+## Component resolver: `resolveCmsComponent`
 
 ```ts
 import { resolveCmsComponent } from '@shopware/composables'
@@ -118,16 +118,16 @@ const { resolvedComponent, componentName, isResolved, componentNameToResolve } =
   resolveCmsComponent(content)
 ```
 
-| Rückgabe | Typ | Beschreibung |
+| Returns | Type | Description |
 |---|---|---|
-| `resolvedComponent` | `Component \| string` | Aufgelöste Vue-Komponente, oder String wenn nicht gefunden |
-| `componentName` | `string` | z.B. `"CmsElementText"` |
-| `isResolved` | `boolean` | `true` wenn als echte Komponente aufgelöst |
-| `componentNameToResolve` | `string` | Erwarteter Komponentenname |
+| `resolvedComponent` | `Component \| string` | Resolved Vue component, or a string when not found |
+| `componentName` | `string` | e.g. `"CmsElementText"` |
+| `isResolved` | `boolean` | `true` when resolved to a real component |
+| `componentNameToResolve` | `string` | Expected component name |
 
-**Namenskonvention:** Shopware CMS-Typ-String → `CmsElement` / `CmsBlock` / `CmsSection` + PascalCase des Typs.
+**Naming convention:** Shopware CMS type string → `CmsElement` / `CmsBlock` / `CmsSection` + PascalCase of the type.
 
-Beispiele:
+Examples:
 - Slot `type: "text"` → `CmsElementText`
 - Block `type: "image-text"` → `CmsBlockImageText`
 - Section `type: "default"` → `CmsSectionDefault`
@@ -135,11 +135,11 @@ Beispiele:
 
 ---
 
-## Eigene CMS-Komponenten registrieren
+## Registering custom CMS components
 
-### Eigenes CMS-Element
+### Custom CMS element
 
-Für einen CMS-Slot-Typ der noch nicht in `cms-base-layer` existiert oder überschrieben werden soll:
+For a CMS slot type that does not exist in `cms-base-layer` yet or that should be overridden:
 
 ```vue
 <!-- components/CmsElementMyCustomType.vue -->
@@ -157,11 +157,11 @@ const myOption = getConfigValue('myCustomOption')
 </template>
 ```
 
-Nuxt auto-importiert Komponenten aus `components/` — da `CmsGenericElement` via `resolveComponent()` sucht, wird die eigene Komponente automatisch gefunden.
+Nuxt auto-imports components from `components/` — since `CmsGenericElement` looks them up via `resolveComponent()`, the custom component is found automatically.
 
 ---
 
-### Eigenen CMS-Block registrieren
+### Registering a custom CMS block
 
 ```vue
 <!-- components/CmsBlockMyCustomBlock.vue -->
@@ -182,169 +182,169 @@ const mainSlot = getSlotContent('main')
 
 ---
 
-### Standard-Komponente überschreiben
+### Overriding a default component
 
-Eine eigene `CmsElementText.vue` in `components/` überschreibt die aus dem Layer. Nuxt gibt Projekt-Komponenten Vorrang gegenüber Layer-Komponenten.
+Your own `CmsElementText.vue` in `components/` overrides the one from the layer. Nuxt gives project components precedence over layer components.
 
 ---
 
-## Vollständige Komponenten-Liste
+## Complete component list
 
 ### Sections (2)
 
-| Komponentenname | Shopware-Typ | Beschreibung |
+| Component name | Shopware type | Description |
 |---|---|---|
-| `CmsSectionDefault` | `default` | Standard-Section (nur `main`-Position) |
-| `CmsSectionSidebar` | `sidebar` | Zwei-Spalten-Layout: `main` + `sidebar` |
+| `CmsSectionDefault` | `default` | Default section (only the `main` position) |
+| `CmsSectionSidebar` | `sidebar` | Two-column layout: `main` + `sidebar` |
 
 ---
 
 ### Blocks (44)
 
-| Komponentenname | Shopware-Typ | Layout/Inhalt |
+| Component name | Shopware type | Layout/content |
 |---|---|---|
-| `CmsBlockCategoryNavigation` | `category-navigation` | Kategorie-Navigation |
-| `CmsBlockCenterText` | `center-text` | Zentrierter Text |
-| `CmsBlockCrossSelling` | `cross-selling` | Cross-Selling-Produkte |
-| `CmsBlockCustomForm` | `custom-form` | Eigenes Formular |
-| `CmsBlockDefault` | (fallback) | Fallback-Block |
-| `CmsBlockForm` | `form` | Standardformular |
-| `CmsBlockGalleryBuybox` | `gallery-buybox` | Galerie + Kaufbox |
-| `CmsBlockHtml` | `html` | Roher HTML-Inhalt |
-| `CmsBlockImage` | `image` | Einzelbild |
-| `CmsBlockImageBubbleRow` | `image-bubble-row` | Bilder in Bubble-Form |
-| `CmsBlockImageCover` | `image-cover` | Vollbild-Bild |
-| `CmsBlockImageFourColumn` | `image-four-column` | 4-Spalten-Bilder |
-| `CmsBlockImageGallery` | `image-gallery` | Bildergalerie |
-| `CmsBlockImageGalleryBig` | `image-gallery-big` | Große Bildergalerie |
-| `CmsBlockImageHighlightRow` | `image-highlight-row` | Highlight-Bilder-Zeile |
-| `CmsBlockImageSimpleGrid` | `image-simple-grid` | Simples Bild-Grid |
-| `CmsBlockImageSlider` | `image-slider` | Bild-Slider |
-| `CmsBlockImageText` | `image-text` | Bild + Text |
-| `CmsBlockImageTextBubble` | `image-text-bubble` | Bild + Text (Bubble-Stil) |
-| `CmsBlockImageTextCover` | `image-text-cover` | Bild-Cover + Text |
-| `CmsBlockImageTextGallery` | `image-text-gallery` | Galerie + Text |
-| `CmsBlockImageTextRow` | `image-text-row` | Bilder-Text-Zeile |
-| `CmsBlockImageThreeColumn` | `image-three-column` | 3-Spalten-Bilder |
-| `CmsBlockImageThreeCover` | `image-three-cover` | 3 Cover-Bilder |
-| `CmsBlockImageTwoColumn` | `image-two-column` | 2-Spalten-Bilder |
-| `CmsBlockProductDescriptionReviews` | `product-description-reviews` | Beschreibung + Bewertungen |
-| `CmsBlockProductHeading` | `product-heading` | Produkt-Überschrift |
-| `CmsBlockProductListing` | `product-listing` | Produkt-Listing |
-| `CmsBlockProductSlider` | `product-slider` | Produkt-Slider |
-| `CmsBlockProductThreeColumn` | `product-three-column` | 3-Spalten-Produkte |
-| `CmsBlockSidebarFilter` | `sidebar-filter` | Sidebar-Filter |
-| `CmsBlockText` | `text` | Text-Block |
-| `CmsBlockTextHero` | `text-hero` | Text-Hero |
-| `CmsBlockTextOnImage` | `text-on-image` | Text auf Bild |
-| `CmsBlockTextTeaser` | `text-teaser` | Text-Teaser |
-| `CmsBlockTextTeaserSection` | `text-teaser-section` | Text-Teaser-Sektion |
-| `CmsBlockTextThreeColumn` | `text-three-column` | 3-Spalten-Text |
-| `CmsBlockTextTwoColumn` | `text-two-column` | 2-Spalten-Text |
-| `CmsBlockVimeoVideo` | `vimeo-video` | Vimeo-Video |
-| `CmsBlockYoutubeVideo` | `youtube-video` | YouTube-Video |
+| `CmsBlockCategoryNavigation` | `category-navigation` | Category navigation |
+| `CmsBlockCenterText` | `center-text` | Centered text |
+| `CmsBlockCrossSelling` | `cross-selling` | Cross-selling products |
+| `CmsBlockCustomForm` | `custom-form` | Custom form |
+| `CmsBlockDefault` | (fallback) | Fallback block |
+| `CmsBlockForm` | `form` | Default form |
+| `CmsBlockGalleryBuybox` | `gallery-buybox` | Gallery + buy box |
+| `CmsBlockHtml` | `html` | Raw HTML content |
+| `CmsBlockImage` | `image` | Single image |
+| `CmsBlockImageBubbleRow` | `image-bubble-row` | Images in bubble form |
+| `CmsBlockImageCover` | `image-cover` | Full-width image |
+| `CmsBlockImageFourColumn` | `image-four-column` | Four-column images |
+| `CmsBlockImageGallery` | `image-gallery` | Image gallery |
+| `CmsBlockImageGalleryBig` | `image-gallery-big` | Large image gallery |
+| `CmsBlockImageHighlightRow` | `image-highlight-row` | Highlight image row |
+| `CmsBlockImageSimpleGrid` | `image-simple-grid` | Simple image grid |
+| `CmsBlockImageSlider` | `image-slider` | Image slider |
+| `CmsBlockImageText` | `image-text` | Image + text |
+| `CmsBlockImageTextBubble` | `image-text-bubble` | Image + text (bubble style) |
+| `CmsBlockImageTextCover` | `image-text-cover` | Image cover + text |
+| `CmsBlockImageTextGallery` | `image-text-gallery` | Gallery + text |
+| `CmsBlockImageTextRow` | `image-text-row` | Image and text row |
+| `CmsBlockImageThreeColumn` | `image-three-column` | Three-column images |
+| `CmsBlockImageThreeCover` | `image-three-cover` | Three cover images |
+| `CmsBlockImageTwoColumn` | `image-two-column` | Two-column images |
+| `CmsBlockProductDescriptionReviews` | `product-description-reviews` | Description + reviews |
+| `CmsBlockProductHeading` | `product-heading` | Product heading |
+| `CmsBlockProductListing` | `product-listing` | Product listing |
+| `CmsBlockProductSlider` | `product-slider` | Product slider |
+| `CmsBlockProductThreeColumn` | `product-three-column` | Three-column products |
+| `CmsBlockSidebarFilter` | `sidebar-filter` | Sidebar filter |
+| `CmsBlockText` | `text` | Text block |
+| `CmsBlockTextHero` | `text-hero` | Text hero |
+| `CmsBlockTextOnImage` | `text-on-image` | Text on image |
+| `CmsBlockTextTeaser` | `text-teaser` | Text teaser |
+| `CmsBlockTextTeaserSection` | `text-teaser-section` | Text teaser section |
+| `CmsBlockTextThreeColumn` | `text-three-column` | Three-column text |
+| `CmsBlockTextTwoColumn` | `text-two-column` | Two-column text |
+| `CmsBlockVimeoVideo` | `vimeo-video` | Vimeo video |
+| `CmsBlockYoutubeVideo` | `youtube-video` | YouTube video |
 
 ---
 
-### Elemente (21)
+### Elements (21)
 
-| Komponentenname | Shopware-Typ | Beschreibung |
+| Component name | Shopware type | Description |
 |---|---|---|
-| `CmsElementBuyBox` | `buy-box` | Kaufbox (Produkt + In-den-Warenkorb) |
-| `CmsElementCategoryNavigation` | `category-navigation` | Kategorie-Navleiste |
-| `CmsElementCrossSelling` | `cross-selling` | Cross-Selling-Produkte |
-| `CmsElementCustomForm` | `custom-form` | Eigenes Formular |
-| `CmsElementForm` | `form` | Standardformular |
-| `CmsElementHtml` | `html` | XSS-sanitierter HTML-Inhalt |
-| `CmsElementImage` | `image` | Bild mit Link, Display-Mode, Thumbnails |
-| `CmsElementImageGallery` | `image-gallery` | Bildergalerie mit Zoom |
-| `CmsElementImageGallery3dPlaceholder` | (intern) | 3D-Platzhalter in Galerie |
-| `CmsElementImageSlider` | `image-slider` | Bild-Slider |
-| `CmsElementManufacturerLogo` | `manufacturer-logo` | Hersteller-Logo |
-| `CmsElementProductBox` | `product-box` | Produkt-Karte |
-| `CmsElementProductDescriptionReviews` | `product-description-reviews` | Tabs: Beschreibung/Bewertungen |
-| `CmsElementProductListing` | `product-listing` | Vollständiges Produkt-Listing |
-| `CmsElementProductName` | `product-name` | Produktname als Überschrift |
-| `CmsElementProductSlider` | `product-slider` | Horizontal scrollbarer Produkt-Slider |
-| `CmsElementSidebarFilter` | `sidebar-filter` | Filter-Sidebar |
-| `CmsElementText` | `text` | Rich-Text (HTML via html-to-vue-Renderer) |
-| `CmsElementVimeoVideo` | `vimeo-video` | Eingebettetes Vimeo-Video |
-| `CmsElementYoutubeVideo` | `youtube-video` | Eingebettetes YouTube-Video |
-| `SwProductListingPagination` | (intern) | Pagination für Produkt-Listings |
+| `CmsElementBuyBox` | `buy-box` | Buy box (product + add to cart) |
+| `CmsElementCategoryNavigation` | `category-navigation` | Category nav bar |
+| `CmsElementCrossSelling` | `cross-selling` | Cross-selling products |
+| `CmsElementCustomForm` | `custom-form` | Custom form |
+| `CmsElementForm` | `form` | Default form |
+| `CmsElementHtml` | `html` | XSS-sanitized HTML content |
+| `CmsElementImage` | `image` | Image with link, display mode, thumbnails |
+| `CmsElementImageGallery` | `image-gallery` | Image gallery with zoom |
+| `CmsElementImageGallery3dPlaceholder` | (internal) | 3D placeholder in the gallery |
+| `CmsElementImageSlider` | `image-slider` | Image slider |
+| `CmsElementManufacturerLogo` | `manufacturer-logo` | Manufacturer logo |
+| `CmsElementProductBox` | `product-box` | Product card |
+| `CmsElementProductDescriptionReviews` | `product-description-reviews` | Tabs: description/reviews |
+| `CmsElementProductListing` | `product-listing` | Complete product listing |
+| `CmsElementProductName` | `product-name` | Product name as a heading |
+| `CmsElementProductSlider` | `product-slider` | Horizontally scrollable product slider |
+| `CmsElementSidebarFilter` | `sidebar-filter` | Filter sidebar |
+| `CmsElementText` | `text` | Rich text (HTML via the html-to-vue renderer) |
+| `CmsElementVimeoVideo` | `vimeo-video` | Embedded Vimeo video |
+| `CmsElementYoutubeVideo` | `youtube-video` | Embedded YouTube video |
+| `SwProductListingPagination` | (internal) | Pagination for product listings |
 
 ---
 
-## Listing-Filter-Komponenten
+## Listing filter components
 
-| Komponentenname | Beschreibung |
+| Component name | Description |
 |---|---|
-| `SwFilterPrice` | Preis-Schieberegler mit Dual-Input |
-| `SwFilterProperties` | Checkbox-Liste für Property-Gruppen/Hersteller |
-| `SwFilterRating` | 5-Sterne-Bewertungsfilter |
-| `SwFilterShippingFree` | Gratis-Versand-Toggle |
+| `SwFilterPrice` | Price slider with dual input |
+| `SwFilterProperties` | Checkbox list for property groups/manufacturers |
+| `SwFilterRating` | Five-star rating filter |
+| `SwFilterShippingFree` | Free-shipping toggle |
 
 ---
 
-## Sw*-Komponenten (Wiederverwendbare UI)
+## Sw* components (reusable UI)
 
-Zusätzlich zu den CMS-Komponenten exportiert der Layer allgemeine Storefront-Komponenten:
+In addition to the CMS components, the layer exports general storefront components:
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `SwCategoryNavigation` | Kategorie-Navigationsleiste |
-| `SwCategoryNavigationLink` | Einzelner Navigationslink |
-| `SwContactForm` | Kontaktformular |
-| `SwFilterChips` | Aktive Filter als Chips |
-| `SwFilterDropdown` | Filter-Dropdown-Container |
-| `SwListingProductPrice` | Preis im Listing |
-| `SwMedia3D` | 3D-Medien (via @tresjs) |
-| `SwNewsletterForm` | Newsletter-Anmeldeformular |
-| `SwPagination` | Allgemeine Pagination |
-| `SwProductAddToCart` | In-den-Warenkorb-Button |
-| `SwProductCard` | Produktkarte (Bild + Name + Preis) |
-| `SwProductCardDetails` | Produktkarten-Details |
-| `SwProductCardImage` | Produktkarten-Bild |
-| `SwProductCardSkeleton` | Skeleton-Loader für Produktkarte |
-| `SwProductGallery` | Produktbild-Galerie |
-| `SwProductListingFilter` | Einzelner Listing-Filter |
-| `SwProductListingFilters` | Listing-Filter-Panel (vertikal) |
-| `SwProductListingFiltersHorizontal` | Listing-Filter-Panel (horizontal) |
-| `SwProductPrice` | Produkt-Preisanzeige |
-| `SwProductRating` | Sternebewertungs-Anzeige |
-| `SwProductReviews` | Bewertungsliste |
-| `SwProductReviewsForm` | Bewertung-Eingabeformular |
-| `SwProductUnits` | Produkteinheiten |
-| `SwQuantitySelect` | Mengenauswahl |
-| `SwSharedPrice` | Preis-Formatierung |
-| `SwSlider` | Allgemeiner Slider |
-| `SwSortDropdown` | Sortierungs-Dropdown |
-| `SwStockInfo` | Lagerbestand-Anzeige |
-| `SwVariantConfigurator` | Varianten-Auswahl |
+| `SwCategoryNavigation` | Category navigation bar |
+| `SwCategoryNavigationLink` | Single navigation link |
+| `SwContactForm` | Contact form |
+| `SwFilterChips` | Active filters as chips |
+| `SwFilterDropdown` | Filter dropdown container |
+| `SwListingProductPrice` | Price in the listing |
+| `SwMedia3D` | 3D media (via @tresjs) |
+| `SwNewsletterForm` | Newsletter sign-up form |
+| `SwPagination` | General pagination |
+| `SwProductAddToCart` | Add-to-cart button |
+| `SwProductCard` | Product card (image + name + price) |
+| `SwProductCardDetails` | Product card details |
+| `SwProductCardImage` | Product card image |
+| `SwProductCardSkeleton` | Skeleton loader for the product card |
+| `SwProductGallery` | Product image gallery |
+| `SwProductListingFilter` | Single listing filter |
+| `SwProductListingFilters` | Listing filter panel (vertical) |
+| `SwProductListingFiltersHorizontal` | Listing filter panel (horizontal) |
+| `SwProductPrice` | Product price display |
+| `SwProductRating` | Star rating display |
+| `SwProductReviews` | Review list |
+| `SwProductReviewsForm` | Review input form |
+| `SwProductUnits` | Product units |
+| `SwQuantitySelect` | Quantity selection |
+| `SwSharedPrice` | Price formatting |
+| `SwSlider` | General slider |
+| `SwSortDropdown` | Sorting dropdown |
+| `SwStockInfo` | Stock level display |
+| `SwVariantConfigurator` | Variant selection |
 
 ---
 
-## UI-Basiskomponenten
+## Base UI components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `BaseButton` | Basisschaltfläche (verschiedene Varianten) |
-| `BaseIcon` | Icon-Wrapper |
-| `Checkbox` | Checkbox mit Custom-Styling |
-| `CheckmarkIcon` | Häkchen-Icon |
-| `ChevronIcon` | Pfeil-Icon (chevron) |
-| `ExclamationIcon` | Ausrufezeichen-Icon |
-| `IconButton` | Icon-Schaltfläche |
-| `RadioButton` | Radio-Button (`defineModel<string\|null>`) |
-| `StarIcon` | Stern-Icon (`filled` Prop) |
-| `SwitchButton` | Toggle-Switch (`defineModel<boolean\|null>`) |
-| `UserIcon` | Nutzer-Icon |
-| `WishlistIcon` | Wunschliste-Icon (gefüllt/leer) |
+| `BaseButton` | Base button (various variants) |
+| `BaseIcon` | Icon wrapper |
+| `Checkbox` | Checkbox with custom styling |
+| `CheckmarkIcon` | Checkmark icon |
+| `ChevronIcon` | Arrow icon (chevron) |
+| `ExclamationIcon` | Exclamation mark icon |
+| `IconButton` | Icon button |
+| `RadioButton` | Radio button (`defineModel<string\|null>`) |
+| `StarIcon` | Star icon (`filled` prop) |
+| `SwitchButton` | Toggle switch (`defineModel<boolean\|null>`) |
+| `UserIcon` | User icon |
+| `WishlistIcon` | Wishlist icon (filled/empty) |
 
 ---
 
-## CMS-Composables in Komponenten
+## CMS composables in components
 
-### `useCmsBlock` — in Block-Komponenten
+### `useCmsBlock` — in block components
 
 ```vue
 <!-- CmsBlockImageText.vue -->
@@ -355,7 +355,7 @@ import type { CmsBlock } from '#shopware'
 const props = defineProps<{ content: CmsBlock }>()
 const { block, getSlotContent } = useCmsBlock(props.content)
 
-const imageSlot = getSlotContent('left')    // Slot nach Position/Name
+const imageSlot = getSlotContent('left')    // slot by position/name
 const textSlot = getSlotContent('right')
 </script>
 <template>
@@ -368,7 +368,7 @@ const textSlot = getSlotContent('right')
 
 ---
 
-### `useCmsSection` — in Section-Komponenten
+### `useCmsSection` — in section components
 
 ```vue
 <!-- CmsSectionSidebar.vue -->
@@ -396,7 +396,7 @@ const sidebarBlocks = getPositionContent('sidebar')
 
 ---
 
-### `useCmsElementConfig` — Element-Konfiguration lesen
+### `useCmsElementConfig` — reading the element configuration
 
 ```vue
 <!-- CmsElementImage.vue -->
@@ -407,49 +407,49 @@ const props = defineProps<{ content: CmsSlot }>()
 const { getConfigValue } = useCmsElementConfig(props.content)
 const { imageAttrs, anchorAttrs, displayMode, isVideoElement } = useCmsElementImage(props.content)
 
-const minHeight = getConfigValue('minHeight')  // z.B. "200px"
+const minHeight = getConfigValue('minHeight')  // e.g. "200px"
 const displayMode = getConfigValue('displayMode')  // "cover", "contain", "standard"
 </script>
 ```
 
 ---
 
-## HTML-zu-Vue-Renderer (`CmsElementText`)
+## HTML-to-Vue renderer (`CmsElementText`)
 
-`CmsElementText` verwendet einen eigenen AST-basierten HTML-Renderer (aus `helpers/html-to-vue/`):
+`CmsElementText` uses its own AST-based HTML renderer (from `helpers/html-to-vue/`):
 
-1. **`generateAST(html)`**: Parsed HTML-String in einen AST (via `html-to-ast`)
-2. **`rectifyAST(ast)`**: Umbenennt Tags zu Vue-Komponenten-Namen
-3. **`renderer(ast, config)`**: Konvertiert AST in VNodes via `h()`; nutzt `extraComponentsMap` für Custom-Tag-Handler
-4. **`renderToHtml(html, config)`**: Einstiegspunkt; konfigurierbar mit:
-   - `container.type` — Wrapper-Element
-   - `extraComponentsMap` — Custom-Tag-Handler
-   - `textTransformer` — Text-Transformation
+1. **`generateAST(html)`**: parses the HTML string into an AST (via `html-to-ast`)
+2. **`rectifyAST(ast)`**: renames tags to Vue component names
+3. **`renderer(ast, config)`**: converts the AST into VNodes via `h()`; uses `extraComponentsMap` for custom tag handlers
+4. **`renderToHtml(html, config)`**: entry point; configurable with:
+   - `container.type` — wrapper element
+   - `extraComponentsMap` — custom tag handlers
+   - `textTransformer` — text transformation
 
-**XSS-Schutz**: HTML wird via `xss`-Bibliothek sanitiert bevor es gerendert wird.
-
----
-
-## 3D-Inhalte (`CmsBlockSpatialViewer`)
-
-Rendert `.glb`-3D-Modelle via `@tresjs/cientos` (Three.js). Wird durch `isSpatial(media)` (prüft `.glb`-Extension) aktiviert.
+**XSS protection**: HTML is sanitized via the `xss` library before it is rendered.
 
 ---
 
-## Layout-Konfiguration
+## 3D content (`CmsBlockSpatialViewer`)
 
-`getCmsLayoutConfiguration(element)` extrahiert aus jedem CMS-Element:
+Renders `.glb` 3D models via `@tresjs/cientos` (Three.js). Activated by `isSpatial(media)` (checks for the `.glb` extension).
+
+---
+
+## Layout configuration
+
+`getCmsLayoutConfiguration(element)` extracts from every CMS element:
 
 ```ts
 {
   cssClasses: {
-    // Sichtbarkeitsklassen (Tailwind):
-    'max-md:hidden': boolean,      // nur Desktop
-    'md:max-lg:hidden': boolean,   // nur Mobile + Desktop (kein Tablet)
-    'lg:hidden': boolean,          // nur Mobile
+    // Visibility classes (Tailwind):
+    'max-md:hidden': boolean,      // desktop only
+    'md:max-lg:hidden': boolean,   // mobile + desktop only (no tablet)
+    'lg:hidden': boolean,          // mobile only
   },
   layoutStyles: {
-    backgroundColor?: string,      // CSS Hintergrundfarbe
+    backgroundColor?: string,      // CSS background color
     backgroundImage?: string,      // CSS url(...)
     backgroundSize?: string,       // "cover", "contain", "auto"
     sizingMode?: string,           // "boxed" | "full_width"
@@ -457,6 +457,6 @@ Rendert `.glb`-3D-Modelle via `@tresjs/cientos` (Three.js). Wird durch `isSpatia
 }
 ```
 
-`CmsPage` wandelt `sizingMode` in Tailwind-Klassen um:
+`CmsPage` converts `sizingMode` into Tailwind classes:
 - `"boxed"` → `"max-w-screen-2xl w-full mx-auto"`
 - `"full_width"` → `"w-full"`

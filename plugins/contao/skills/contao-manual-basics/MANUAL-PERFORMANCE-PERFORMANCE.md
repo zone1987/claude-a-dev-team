@@ -1,6 +1,6 @@
 # Contao 5.x — Performance
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/performance/
 - https://docs.contao.org/5.x/manual/de/performance/cronjobs/
 - https://docs.contao.org/5.x/manual/de/performance/http-caching/
@@ -10,199 +10,199 @@ Quellen:
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [1. Cronjob-Framework](#1-cronjob-framework)
-- [2. HTTP-Caching](#2-http-caching)
-- [3. PHP-Setup](#3-php-setup)
-- [Zusammenfassung: Optimierungsschritte](#zusammenfassung-optimierungsschritte)
+- [Overview](#overview)
+- [1. Cronjob framework](#1-cronjob-framework)
+- [2. HTTP caching](#2-http-caching)
+- [3. PHP setup](#3-php-setup)
+- [Summary: optimisation steps](#summary-optimisation-steps)
 
-## Übersicht
+## Overview
 
-Performance hängt von mehreren Infrastrukturfaktoren ab: Webserver (Apache, Nginx, LiteSpeed), Betriebssystem und Speicherlösung (HDD vs. SSD). Es gibt keine universell perfekte Konfiguration für Contao. Dieses Kapitel ist eine Sammlung bewährter Praktiken.
+Performance depends on several infrastructure factors: web server (Apache, Nginx, LiteSpeed), operating system and storage solution (HDD vs. SSD). There is no universally perfect configuration for Contao. This chapter is a collection of proven practices.
 
 ---
 
-## 1. Cronjob-Framework
+## 1. Cronjob framework
 
-### Grundprinzip
+### Basic principle
 
-Contao enthält ein integriertes Cronjob-Framework, das Entwicklern eine einheitliche Registrierung von Cronjobs für Erweiterungen ermöglicht.
+Contao contains an integrated cronjob framework that allows developers to register cronjobs for extensions in a uniform way.
 
-**Standardverhalten**: Cronjobs werden bei jedem Websitebesuch ausgeführt → kann Performance beeinträchtigen.
+**Default behaviour**: cronjobs are executed on every website visit → this can impair performance.
 
-**Empfehlung**: Echte Server-Cronjobs einrichten.
+**Recommendation**: set up real server cronjobs.
 
-**Wichtig**: Nicht alle registrierten Jobs laufen bei Websitebesuchen. Die Backend-Suchindexierung erfolgt **ausschließlich über einen echten CLI-Cronjob**.
+**Important**: not all registered jobs run on website visits. Backend search indexing happens **exclusively via a real CLI cronjob**.
 
-### Konfiguration
+### Configuration
 
-Das Framework benötigt nur **einen minütlich ausgeführten Cronjob**, der alle registrierten Aufgaben verwaltet:
+The framework needs only **one cronjob executed every minute**, which manages all registered tasks:
 
 ```cron
 * * * * * <php-binary> <contao-verzeichnis>/vendor/bin/contao-console contao:cron
 ```
 
-**Praktisches Beispiel (Plesk)**:
+**Practical example (Plesk)**:
 ```cron
 * * * * * /opt/plesk/php/8.2/bin/php /var/www/vhosts/my.host.com/vendor/bin/contao-console contao:cron
 ```
 
 ---
 
-## 2. HTTP-Caching
+## 2. HTTP caching
 
-### Grundprinzip
+### Basic principle
 
-Contao nutzt HTTP-Standards für Caching. Das System arbeitet mit einem **integrierten Cache-Proxy**, der Antworten basierend auf HTTP-Headern zwischenspeichert. Das System funktioniert „out-of-the-box" mit guten Standardwerten.
+Contao uses HTTP standards for caching. The system works with an **integrated cache proxy** that caches responses based on HTTP headers. The system works "out of the box" with good default values.
 
-### Wichtige Cache-Control-Header
+### Important Cache-Control headers
 
-| Header | Beschreibung |
+| Header | Description |
 |--------|-------------|
-| `private` | Nur Browser darf cachen |
-| `public` | Browser und Proxies dürfen cachen |
-| `max-age` | Cache-Dauer in Sekunden (private Clients) |
-| `s-maxage` | Cache-Dauer für öffentliche Caches |
+| `private` | Only the browser may cache |
+| `public` | Browsers and proxies may cache |
+| `max-age` | Cache duration in seconds (private clients) |
+| `s-maxage` | Cache duration for public caches |
 
-**Beispiel**:
+**Example**:
 ```
 Cache-Control: max-age=3600, s-maxage=7200, public
 ```
-→ Private Clients: 1 Stunde, öffentliche Caches: 2 Stunden
+→ Private clients: 1 hour, public caches: 2 hours
 
-### Cache-Status-Indikatoren
+### Cache status indicators
 
-Der `Contao-Cache`-Header zeigt den Cache-Status:
+The `Contao-Cache` header shows the cache status:
 
-| Wert | Bedeutung |
+| Value | Meaning |
 |------|-----------|
-| `miss` | Kein Cache-Eintrag; Contao wird ausgeführt |
-| `miss/store` | Neuer Cache-Eintrag wird gespeichert |
-| `fresh` | Antwort kommt aus dem Cache |
+| `miss` | No cache entry; Contao is executed |
+| `miss/store` | A new cache entry is being stored |
+| `fresh` | The response comes from the cache |
 
-### Wann wird Caching deaktiviert (private)?
+### When is caching disabled (private)?
 
-Das System erzwingt `Cache-Control: private`, wenn:
-- `Authorization`-Header vorhanden (Authentifizierung)
-- PHP-Session aktiv
-- Response-Cookies gesetzt werden
-- Relevante Request-Cookies vorhanden sind
+The system forces `Cache-Control: private` when:
+- An `Authorization` header is present (authentication)
+- A PHP session is active
+- Response cookies are set
+- Relevant request cookies are present
 
-### Cookie-Management
+### Cookie management
 
-Contao ignoriert standardmäßig irrelevante Cookies (z.B. `_ga_*`, `_pk_*`) und ermöglicht so bessere Cache-Quoten.
+By default Contao ignores irrelevant cookies (e.g. `_ga_*`, `_pk_*`) and thereby enables better cache ratios.
 
-Konfiguration via Umgebungsvariablen:
+Configuration via environment variables:
 ```env
 COOKIE_ALLOW_LIST=PHPSESSID,csrf_https-contao_csrf_token,csrf_contao_csrf_token,trusted_device,REMEMBERME
 COOKIE_REMOVE_FROM_DENY_LIST=__utm.+,AMP_TOKEN
 ```
 
-### Cache-Tagging
+### Cache tagging
 
-Antworten erhalten intern `X-Cache-Tags` mit Referenzen zu Datenbankeinträgen. Bei Änderungen invalidiert Contao automatisch alle betroffenen Cache-Einträge — präzise Invalidierung statt komplettes Cache-Leeren.
+Internally, responses receive `X-Cache-Tags` with references to database entries. When changes occur, Contao automatically invalidates all affected cache entries — precise invalidation instead of clearing the entire cache.
 
-### Query-Parameter optimieren
+### Optimising query parameters
 
-Tracking-Parameter wie `utm_*` deaktivieren das Caching. Lösung:
+Tracking parameters such as `utm_*` disable caching. Solution:
 ```env
 QUERY_PARAMS_REMOVE_FROM_DENY_LIST=fbclid
 ```
 
-⚠️ **Warnung**: Cache-Control deaktivieren, wenn Parameter aktiv genutzt werden.
+⚠️ **Warning**: disable Cache-Control if the parameters are actively used.
 
-### Konfigurationsempfehlungen
+### Configuration recommendations
 
-- Shared-Cache-Dauer ≥ Private-Cache-Dauer setzen
-- Häufig geänderte Inhalte: niedrigere Werte
-- Statische Inhalte: höhere Werte möglich
+- Set the shared cache duration ≥ the private cache duration
+- Frequently changed content: lower values
+- Static content: higher values possible
 
 ---
 
-## 3. PHP-Setup
+## 3. PHP setup
 
-### PHP-Version
+### PHP version
 
-Stets die neueste von Contao unterstützte PHP-Version verwenden — jede Version bringt Leistungsverbesserungen.
+Always use the latest PHP version supported by Contao — every version brings performance improvements.
 
-| Contao-Version | Mindest-PHP |
+| Contao version | Minimum PHP |
 |----------------|-------------|
 | 5.7+ | PHP 8.3 |
 | 5.5+ | PHP 8.2 |
 | 5.0+ | PHP 8.1 |
 
-### SAPI (Server API)
+### SAPI (server API)
 
-Die Server-API bestimmt, wie PHP mit dem Webserver kommuniziert.
+The server API determines how PHP communicates with the web server.
 
-**Empfehlung**: `fpm (php-fpm)` — einzige SAPI mit Unterstützung für `fastcgi_finish_request()`. Dies ermöglicht Contao, Aufräumarbeiten **nach** dem Senden der Antwort zu erledigen → verkürzte Antwortzeit für Besucher.
+**Recommendation**: `fpm (php-fpm)` — the only SAPI with support for `fastcgi_finish_request()`. This allows Contao to do cleanup work **after** the response has been sent → shorter response time for visitors.
 
-| SAPI | Empfehlung |
+| SAPI | Recommendation |
 |------|-----------|
-| `fpm` (php-fpm) | ✅ Empfohlen |
-| `litespeed` | ✅ Gut |
-| `mod_php` | ⚠️ Akzeptabel |
-| `cgi` | ❌ Nicht empfohlen |
+| `fpm` (php-fpm) | ✅ Recommended |
+| `litespeed` | ✅ Good |
+| `mod_php` | ⚠️ Acceptable |
+| `cgi` | ❌ Not recommended |
 
 ### OPcache
 
-OPcache ist der **größte einzelne Leistungsgewinn** für PHP-Anwendungen.
+OPcache is the **single biggest performance gain** for PHP applications.
 
-**Wie PHP ohne OPcache arbeitet**:
-1. Lexing: Quellcode in Tokens zerlegen
-2. Parsing: Token-Mengen verstehen
-3. Compilation: PHP-Code in Bytecode übersetzen
-4. Execution: Bytecode ausführen
+**How PHP works without OPcache**:
+1. Lexing: breaking the source code into tokens
+2. Parsing: making sense of the token sets
+3. Compilation: translating PHP code into bytecode
+4. Execution: executing the bytecode
 
-OPcache speichert den Bytecode nach Schritt 3 im RAM oder Dateisystem. Bei weiteren Requests wird Schritt 4 direkt ausgeführt — Schritte 1–3 entfallen.
+OPcache stores the bytecode after step 3 in RAM or on the file system. On subsequent requests step 4 is executed directly — steps 1–3 are skipped.
 
-**Empfohlene php.ini-Konfiguration:**
+**Recommended php.ini configuration:**
 
 ```ini
-; Maximaler RAM für OPcache (in MB)
+; Maximum RAM for OPcache (in MB)
 opcache.memory_consumption = 128
 
-; Maximale Anzahl gecachter Dateien
+; Maximum number of cached files
 opcache.max_accelerated_files = 20000
 
-; Interne String-Tabelle (für Frameworks wie Symfony empfohlen: 32–64 MB)
+; Internal string table (recommended for frameworks such as Symfony: 32–64 MB)
 opcache.interned_strings_buffer = 32
 
-; Dateiänderungen NICHT automatisch prüfen (bessere Performance)
-; Manuelles Leeren bei Deployment erforderlich!
+; Do NOT check file changes automatically (better performance)
+; Manual clearing on deployment required!
 opcache.validate_timestamps = 0
 ```
 
-**OPcache leeren:**
-- Contao Manager → Systemwartung
-- Deployment-Tools (cachetool, smart-core/accelerator-cache-bundle)
+**Clearing OPcache:**
+- Contao Manager → system maintenance
+- Deployment tools (cachetool, smart-core/accelerator-cache-bundle)
 
-**Hinweis**: CLI- und Web-Prozesse teilen keinen Bytecode-Cache — CLI-seitiges Leeren reicht nicht.
+**Note**: CLI and web processes do not share a bytecode cache — clearing on the CLI side is not sufficient.
 
-### Realpath Cache
+### Realpath cache
 
-PHP cached Dateisystem-Informationen (`stat()`-Aufrufe) innerhalb eines Prozesses. Diese Aufrufe sind relativ kostspielig.
+PHP caches file system information (`stat()` calls) within a process. These calls are relatively expensive.
 
-**Empfohlene Konfiguration:**
+**Recommended configuration:**
 
 ```ini
 realpath_cache_size = 4096K
 realpath_cache_ttl = 600
 ```
 
-⚠️ **Warnung**: Wenn `open_basedir` aktiviert ist, deaktiviert PHP den Realpath Cache zur Laufzeit! Viele Hoster nutzen `open_basedir` als Sicherheitsmaßnahme — dies wirkt sich negativ auf die Performance aus.
+⚠️ **Warning**: if `open_basedir` is enabled, PHP disables the realpath cache at runtime! Many hosters use `open_basedir` as a security measure — this has a negative effect on performance.
 
 ---
 
-## Zusammenfassung: Optimierungsschritte
+## Summary: optimisation steps
 
-| Maßnahme | Aufwand | Wirkung |
+| Measure | Effort | Effect |
 |---------|---------|---------|
-| Echten Cronjob einrichten | Niedrig | Mittel |
-| PHP-Version aktualisieren | Mittel | Hoch |
-| `php-fpm` verwenden | Mittel | Mittel |
-| OPcache konfigurieren | Niedrig | Sehr hoch |
-| `opcache.validate_timestamps=0` | Niedrig | Hoch |
-| Realpath Cache erhöhen | Niedrig | Mittel |
-| Cookie-Management | Mittel | Hoch (Cache-Trefferquote) |
-| SSD statt HDD | Hoch | Hoch |
+| Set up a real cronjob | Low | Medium |
+| Update the PHP version | Medium | High |
+| Use `php-fpm` | Medium | Medium |
+| Configure OPcache | Low | Very high |
+| `opcache.validate_timestamps=0` | Low | High |
+| Increase the realpath cache | Low | Medium |
+| Cookie management | Medium | High (cache hit rate) |
+| SSD instead of HDD | High | High |

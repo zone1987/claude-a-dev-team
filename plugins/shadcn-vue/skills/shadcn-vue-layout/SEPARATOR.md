@@ -4,10 +4,10 @@ A thin visual divider built on reka-ui's Separator primitive, supporting horizon
 
 ## References
 
-- [installation.md](`SEPARATOR-INSTALLATION.md`) — CLI and manual install
-- [source.md](`SEPARATOR-SOURCE.md`) — Full component source (Separator.vue, index.ts)
-- [api.md](`SEPARATOR-API.md`) — Props and reka-ui API link
-- [examples.md](`SEPARATOR-EXAMPLES.md`) — Horizontal, vertical, vertical menu, in-list examples
+- [SEPARATOR-INSTALLATION.md](SEPARATOR-INSTALLATION.md) — CLI and manual install
+- [SEPARATOR-SOURCE.md](SEPARATOR-SOURCE.md) — Full component source (Separator.vue, index.ts)
+- [SEPARATOR-API.md](SEPARATOR-API.md) — Props and reka-ui API link
+- [SEPARATOR-EXAMPLES.md](SEPARATOR-EXAMPLES.md) — Horizontal, vertical, vertical menu, in-list examples
 
 ## Key Facts
 

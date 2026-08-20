@@ -1,33 +1,33 @@
-# Playwright Fixtures — Vollstaendige Referenz
+# Playwright Fixtures — Complete Reference
 
 ## Contents
 
-- [Eingebaute Fixtures](#eingebaute-fixtures)
-- [Eigene Fixtures mit `test.extend()`](#eigene-fixtures-mit-testextend)
-- [Fixture-Scopes](#fixture-scopes)
-- [Automatische Fixtures (auto)](#automatische-fixtures-auto)
-- [Option-Fixtures (konfigurierbar)](#option-fixtures-konfigurierbar)
-- [Eingebaute Fixtures ueberschreiben](#eingebaute-fixtures-ueberschreiben)
-- [Fixture-Komposition (Abhaengigkeiten)](#fixture-komposition-abhaengigkeiten)
-- [Fixtures zusammenfuehren](#fixtures-zusammenfuehren)
-- [Fixture-Optionen](#fixture-optionen)
-- [Fixture-Signatur vollstaendig](#fixture-signatur-vollstaendig)
+- [Built-in fixtures](#built-in-fixtures)
+- [Custom fixtures with `test.extend()`](#custom-fixtures-with-testextend)
+- [Fixture scopes](#fixture-scopes)
+- [Automatic fixtures (auto)](#automatic-fixtures-auto)
+- [Option fixtures (configurable)](#option-fixtures-configurable)
+- [Overriding built-in fixtures](#overriding-built-in-fixtures)
+- [Fixture composition (dependencies)](#fixture-composition-dependencies)
+- [Merging fixtures](#merging-fixtures)
+- [Fixture options](#fixture-options)
+- [Complete fixture signature](#complete-fixture-signature)
 - [Global Setup/Teardown](#global-setupteardown)
-- [Parametrisierung](#parametrisierung)
+- [Parametrization](#parametrization)
 
-## Eingebaute Fixtures
+## Built-in fixtures
 
-| Fixture | Typ | Scope | Beschreibung |
+| Fixture | Type | Scope | Description |
 |---|---|---|---|
-| `page` | `Page` | test | Isolierte Seite fuer jeden Test |
-| `context` | `BrowserContext` | test | Isolierter Browser-Kontext; `page` gehoert dazu |
-| `browser` | `Browser` | worker | Gemeinsame Browser-Instanz (ressourceneffizient) |
-| `browserName` | `string` | worker | Aktueller Browser: `'chromium'`, `'firefox'`, `'webkit'` |
-| `request` | `APIRequestContext` | test | Isolierte API-Request-Instanz |
+| `page` | `Page` | test | Isolated page for each test |
+| `context` | `BrowserContext` | test | Isolated browser context; `page` belongs to it |
+| `browser` | `Browser` | worker | Shared browser instance (resource-efficient) |
+| `browserName` | `string` | worker | Current browser: `'chromium'`, `'firefox'`, `'webkit'` |
+| `request` | `APIRequestContext` | test | Isolated API request instance |
 
 ---
 
-## Eigene Fixtures mit `test.extend()`
+## Custom fixtures with `test.extend()`
 
 ```typescript
 import { test as base } from '@playwright/test';
@@ -43,7 +43,7 @@ export const test = base.extend<MyFixtures>({
     await todoPage.goto();
     await todoPage.addToDo('item1');
 
-    await use(todoPage);           // <-- Teardown beginnt nach use()
+    await use(todoPage);           // <-- Teardown begins after use()
 
     await todoPage.removeAll();
   },
@@ -56,26 +56,26 @@ export const test = base.extend<MyFixtures>({
 export { expect } from '@playwright/test';
 ```
 
-**Muster:** Setup → `await use(value)` → Teardown
+**Pattern:** setup → `await use(value)` → teardown
 
 ---
 
-## Fixture-Scopes
+## Fixture scopes
 
-### Test-Scope (Standard)
+### Test scope (default)
 
 ```typescript
 export const test = base.extend<{ myFixture: string }>({
   myFixture: async ({}, use) => {
     await use('hello');
   },
-  // Implizit: { scope: 'test' }
+  // Implicitly: { scope: 'test' }
 });
 ```
 
-Wird fuer jeden Test neu aufgebaut und abgebaut.
+Is set up and torn down anew for every test.
 
-### Worker-Scope
+### Worker scope
 
 ```typescript
 type WorkerFixtures = { sharedDB: Database };
@@ -89,21 +89,21 @@ export const test = base.extend<{}, WorkerFixtures>({
 });
 ```
 
-Laeuft einmal pro Worker-Prozess; wird ueber alle Tests geteilt.
-`workerInfo.workerIndex` ermoeglicht Datenisolation.
+Runs once per worker process; shared across all tests.
+`workerInfo.workerIndex` enables data isolation.
 
 ---
 
-## Automatische Fixtures (auto)
+## Automatic fixtures (auto)
 
-Werden fuer jeden Test ausgefuehrt, ohne dass der Test sie explizit anfordert:
+Are executed for every test without the test requesting them explicitly:
 
 ```typescript
-// Verhalt sich wie beforeEach/afterEach
+// Behaves like beforeEach/afterEach
 forEachTest: [async ({ page }, use, testInfo) => {
   await page.goto('http://localhost:8000');
   await use();
-  // Immer ausgefuehrt, auch bei Fehlschlag:
+  // Always executed, even on failure:
   if (testInfo.status !== testInfo.expectedStatus) {
     console.log('Test failed, saving logs...');
     testInfo.attachments.push({
@@ -114,19 +114,19 @@ forEachTest: [async ({ page }, use, testInfo) => {
   }
 }, { auto: true }],
 
-// Verhalt sich wie beforeAll/afterAll (worker-scoped auto)
+// Behaves like beforeAll/afterAll (worker-scoped auto)
 forEachWorker: [async ({}, use, workerInfo) => {
-  console.log(`Worker ${workerInfo.workerIndex} startet`);
+  console.log(`Worker ${workerInfo.workerIndex} starting`);
   await use();
-  console.log('Worker beendet');
+  console.log('Worker finished');
 }, { scope: 'worker', auto: true }],
 ```
 
 ---
 
-## Option-Fixtures (konfigurierbar)
+## Option fixtures (configurable)
 
-Erlauben Konfiguration ueber `playwright.config.ts` / `use`:
+Allow configuration via `playwright.config.ts` / `use`:
 
 ```typescript
 // fixtures.ts
@@ -136,11 +136,11 @@ type MyOptions = {
 };
 
 export const test = base.extend<MyOptions & MyFixtures>({
-  // Option-Fixture mit Default
+  // Option fixture with a default
   defaultItem: ['Something nice', { option: true }],
   apiUrl: ['http://localhost:3000', { option: true }],
 
-  // Abhaengig von Option-Fixture
+  // Depends on an option fixture
   todoPage: async ({ page, defaultItem }, use) => {
     const p = new TodoPage(page);
     await p.goto();
@@ -165,32 +165,32 @@ export default defineConfig<MyOptions>({
 
 ---
 
-## Eingebaute Fixtures ueberschreiben
+## Overriding built-in fixtures
 
 ```typescript
 export const test = base.extend({
-  // Alle Tests starten auf baseURL
+  // All tests start on baseURL
   page: async ({ baseURL, page }, use) => {
     await page.goto(baseURL!);
     await use(page);
   },
 });
 
-// Einzelne Option zuruecksetzen:
+// Reset an individual option:
 test.use({ baseURL: undefined });
 ```
 
 ---
 
-## Fixture-Komposition (Abhaengigkeiten)
+## Fixture composition (dependencies)
 
 ```typescript
 export const test = base.extend({
-  // userFixture haengt von dbFixture ab
+  // userFixture depends on dbFixture
   dbFixture: async ({}, use) => {
     const db = await openDB();
     await use(db);
-    await db.close();               // teardown nach userFixture
+    await db.close();               // teardown after userFixture
   },
 
   userFixture: async ({ dbFixture }, use) => {
@@ -201,12 +201,12 @@ export const test = base.extend({
 });
 ```
 
-Setup-Reihenfolge: `dbFixture` → `userFixture`
-Teardown-Reihenfolge: `userFixture` → `dbFixture` (umgekehrt)
+Setup order: `dbFixture` → `userFixture`
+Teardown order: `userFixture` → `dbFixture` (reversed)
 
 ---
 
-## Fixtures zusammenfuehren
+## Merging fixtures
 
 ```typescript
 import { mergeTests } from '@playwright/test';
@@ -218,25 +218,25 @@ export const test = mergeTests(dbTest, a11yTest);
 
 ---
 
-## Fixture-Optionen
+## Fixture options
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `scope` | `'test' \| 'worker'` | `'test'` | Lebensdauer des Fixtures |
-| `auto` | `boolean` | `false` | Automatisch fuer jeden Test ausfuehren |
-| `option` | `boolean` | `false` | Per Konfig/use ueberschreibbar |
-| `timeout` | `number` | (test timeout) | Eigener Timeout fuer dieses Fixture in ms |
-| `box` | `boolean` | `false` | Aus Test-Berichten ausblenden |
-| `title` | `string` | (Fixture-Name) | Angezeigter Name in Reports |
+| `scope` | `'test' \| 'worker'` | `'test'` | Lifetime of the fixture |
+| `auto` | `boolean` | `false` | Execute automatically for every test |
+| `option` | `boolean` | `false` | Overridable via config/use |
+| `timeout` | `number` | (test timeout) | Dedicated timeout for this fixture in ms |
+| `box` | `boolean` | `false` | Hide from test reports |
+| `title` | `string` | (fixture name) | Displayed name in reports |
 
 ```typescript
-// Fixture mit eigenem Timeout (fuer langsame Operationen)
+// Fixture with its own timeout (for slow operations)
 slowFixture: [async ({}, use) => {
   await someSlowOperation();
   await use('result');
 }, { timeout: 120_000, scope: 'worker' }],
 
-// Fixture aus Reports ausblenden
+// Hide a fixture from reports
 helperFixture: [async ({}, use) => {
   await use('helper');
 }, { box: true }],
@@ -244,42 +244,42 @@ helperFixture: [async ({}, use) => {
 
 ---
 
-## Fixture-Signatur vollstaendig
+## Complete fixture signature
 
 ```typescript
 fixtureFunction: async (
-  fixtures: BuiltInFixtures & MyFixtures,  // alle verfuegbaren Fixtures
-  use: (value: T) => Promise<void>,        // Wert bereitstellen
-  testInfo: TestInfo,                      // Testinfos (Status, Title, …)
+  fixtures: BuiltInFixtures & MyFixtures,  // all available fixtures
+  use: (value: T) => Promise<void>,        // provide the value
+  testInfo: TestInfo,                      // test info (status, title, …)
 ) => Promise<void>
 ```
 
-`TestInfo`-Properties (Auswahl):
+`TestInfo` properties (selection):
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `title` | `string` | Test-Titel |
-| `file` | `string` | Dateipfad |
-| `line` | `number` | Zeilennummer |
-| `status` | `'passed' \| 'failed' \| 'timedOut' \| 'skipped' \| 'interrupted'` | Test-Ergebnis |
-| `expectedStatus` | `'passed' \| 'failed' \| 'skipped'` | Erwartetes Ergebnis |
-| `retry` | `number` | Aktueller Wiederholungsversuch (0 = erster) |
-| `workerIndex` | `number` | Worker-Index |
-| `parallelIndex` | `number` | Paralleler Index |
-| `timeout` | `number` | Test-Timeout in ms |
-| `attachments` | `Attachment[]` | Test-Anhaenge |
-| `annotations` | `Annotation[]` | Test-Annotationen |
-| `snapshotDir` | `string` | Snapshot-Verzeichnis |
-| `outputDir` | `string` | Ausgabeverzeichnis fuer diesen Test |
-| `outputPath(...pathSegments)` | `string` | Ausgabepfad-Helper |
-| `snapshotPath(...pathSegments)` | `string` | Snapshot-Pfad-Helper |
-| `setTimeout(timeout)` | `void` | Test-Timeout aendern |
+| `title` | `string` | Test title |
+| `file` | `string` | File path |
+| `line` | `number` | Line number |
+| `status` | `'passed' \| 'failed' \| 'timedOut' \| 'skipped' \| 'interrupted'` | Test result |
+| `expectedStatus` | `'passed' \| 'failed' \| 'skipped'` | Expected result |
+| `retry` | `number` | Current retry attempt (0 = first) |
+| `workerIndex` | `number` | Worker index |
+| `parallelIndex` | `number` | Parallel index |
+| `timeout` | `number` | Test timeout in ms |
+| `attachments` | `Attachment[]` | Test attachments |
+| `annotations` | `Annotation[]` | Test annotations |
+| `snapshotDir` | `string` | Snapshot directory |
+| `outputDir` | `string` | Output directory for this test |
+| `outputPath(...pathSegments)` | `string` | Output path helper |
+| `snapshotPath(...pathSegments)` | `string` | Snapshot path helper |
+| `setTimeout(timeout)` | `void` | Change the test timeout |
 
 ---
 
 ## Global Setup/Teardown
 
-### Empfohlener Weg: Project Dependencies
+### Recommended approach: project dependencies
 
 ```typescript
 // playwright.config.ts
@@ -306,18 +306,18 @@ projects: [
 import { test as setup } from '@playwright/test';
 
 setup('create new database', async ({ request }) => {
-  // Playwright-Fixtures sind hier verfuegbar
+  // Playwright fixtures are available here
   await request.post('/api/create-db');
 });
 ```
 
-**Vorteile gegenueber `globalSetup`:**
-- Erscheint im HTML-Report
-- Trace-Aufnahme unterstuetzt
-- Playwright-Fixtures verfuegbar
-- Retry/Parallelismus respektiert
+**Advantages over `globalSetup`:**
+- Appears in the HTML report
+- Trace recording supported
+- Playwright fixtures available
+- Retries/parallelism respected
 
-### globalSetup/globalTeardown (Legacy)
+### globalSetup/globalTeardown (legacy)
 
 ```typescript
 // playwright.config.ts
@@ -346,14 +346,14 @@ async function globalSetup(config: FullConfig) {
 export default globalSetup;
 ```
 
-**Daten an Tests weitergeben:**
+**Passing data to tests:**
 
 ```typescript
 // In globalSetup:
 process.env.DB_URL = 'postgres://localhost/test';
 process.env.API_TOKEN = JSON.stringify({ token: 'secret' });
 
-// In Tests:
+// In tests:
 test('example', async ({ page }) => {
   const { token } = JSON.parse(process.env.API_TOKEN!);
 });
@@ -361,9 +361,9 @@ test('example', async ({ page }) => {
 
 ---
 
-## Parametrisierung
+## Parametrization
 
-### Einfache Parametrisierung mit forEach
+### Simple parametrization with forEach
 
 ```typescript
 const datasets = [
@@ -379,9 +379,9 @@ datasets.forEach(({ name, expected }) => {
 });
 ```
 
-Hooks ausserhalb der Schleife, damit sie nur einmal aufgerufen werden.
+Keep hooks outside the loop so they are only called once.
 
-### Parametrisierte Projekte (Option-Fixtures)
+### Parametrized projects (option fixtures)
 
 ```typescript
 // my-test.ts
@@ -404,7 +404,7 @@ projects: [
 ],
 ```
 
-### CSV-basierte Tests
+### CSV-based tests
 
 ```typescript
 import { parse } from 'csv-parse/sync';

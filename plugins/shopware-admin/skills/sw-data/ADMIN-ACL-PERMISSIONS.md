@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-ACL/Berechtigungen
+# Shopware 6 — Admin ACL/permissions
 
-Privilegien registrieren und an Modul/Route/Navigation/Buttons binden.
+Register privileges and bind them to module/route/navigation/buttons.
 
 ```js
 Shopware.Service('privileges').addPrivilegeMappingEntry({
@@ -14,5 +14,5 @@ Shopware.Service('privileges').addPrivilegeMappingEntry({
 });
 ```
 
-Im Modul `navigation`/`routes` `privilege: 'ff_example.viewer'`; im Template `v-if="acl.can('ff_example.editor')"`.
-Server-seitig korrespondiert die Admin-API-ACL (`shopware-framework` → `sw-api-acl`). Privilege-Keys = `entity:action`.
+In the module's `navigation`/`routes` use `privilege: 'ff_example.viewer'`; in the template `v-if="acl.can('ff_example.editor')"`.
+On the server side this corresponds to the Admin API ACL (`shopware-framework` → `sw-api-acl`). Privilege keys = `entity:action`.

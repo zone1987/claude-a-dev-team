@@ -4,7 +4,7 @@ A versatile flex container for displaying content with media, title, description
 
 ## References
 
-- [installation.md](`ITEM-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`ITEM-SOURCE.md`) — Complete component source code
-- [api.md](`ITEM-API.md`) — Sub-components and props
-- [examples.md](`ITEM-EXAMPLES.md`) — All usage examples
+- [ITEM-INSTALLATION.md](ITEM-INSTALLATION.md) — CLI and manual setup
+- [ITEM-SOURCE.md](ITEM-SOURCE.md) — Complete component source code
+- [ITEM-API.md](ITEM-API.md) — Sub-components and props
+- [ITEM-EXAMPLES.md](ITEM-EXAMPLES.md) — All usage examples

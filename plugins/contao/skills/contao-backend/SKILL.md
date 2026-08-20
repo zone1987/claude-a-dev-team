@@ -9,12 +9,12 @@ Extending the administration area, and the routing and CSRF machinery behind it.
 
 ## Reference map
 
-- **[MODULES.md](MODULES.md)**: Lies `MODULES-DETAIL.md` für vollständige Details zu Backend-Modul-Registrierung, Assets und Callbacks in Con…. [MODULES-DETAIL](MODULES-DETAIL.md).
-- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: Lies `PAGE-CONTROLLERS-DETAIL.md` für vollständige Dokumentation zu Page Controllern und deren Integration in…. [PAGE-CONTROLLERS-DETAIL](PAGE-CONTROLLERS-DETAIL.md).
-- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: Vollständige Referenz: `REQUEST-TOKENS-CONTAO-REQUEST-TOKENS.md`. [REQUEST-TOKENS-CONTAO-REQUEST-TOKENS](REQUEST-TOKENS-CONTAO-REQUEST-TOKENS.md).
-- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: Vollständige Referenz: `RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT.md`. [RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT](RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT.md).
-- **[ROUTES.md](ROUTES.md)**: Lies `ROUTES-DETAIL.md` für vollständige Implementierungsdetails zu eigenen Backend-Routen und Backend-Asset-…. [ROUTES-DETAIL](ROUTES-DETAIL.md).
-- **[ROUTING.md](ROUTING.md)**: Lies `ROUTING-DETAIL.md` für vollständige Routing-Dokumentation inklusive Content Routing und Legacy-Paramete…. [ROUTING-DETAIL](ROUTING-DETAIL.md).
+- **[MODULES.md](MODULES.md)**: Read `MODULES-DETAIL.md` for complete details on backend module registration, assets and callbacks in Con…. [MODULES-DETAIL](MODULES-DETAIL.md).
+- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: Read `PAGE-CONTROLLERS-DETAIL.md` for complete documentation on page controllers and their integration into…. [PAGE-CONTROLLERS-DETAIL](PAGE-CONTROLLERS-DETAIL.md).
+- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: Complete reference: `REQUEST-TOKENS-CONTAO-REQUEST-TOKENS.md`. [REQUEST-TOKENS-CONTAO-REQUEST-TOKENS](REQUEST-TOKENS-CONTAO-REQUEST-TOKENS.md).
+- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: Complete reference: `RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT.md`. [RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT](RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT.md).
+- **[ROUTES.md](ROUTES.md)**: Read `ROUTES-DETAIL.md` for complete implementation details on custom backend routes and backend asset in…. [ROUTES-DETAIL](ROUTES-DETAIL.md).
+- **[ROUTING.md](ROUTING.md)**: Read `ROUTING-DETAIL.md` for complete routing documentation including content routing and legacy parameter…. [ROUTING-DETAIL](ROUTING-DETAIL.md).
 
 ## Source
 

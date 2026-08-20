@@ -2,36 +2,36 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [composer.json Konfiguration](#composerjson-konfiguration)
-- [Verfügbare Interfaces](#verfügbare-interfaces)
+- [Overview](#overview)
+- [composer.json configuration](#composerjson-configuration)
+- [Available interfaces](#available-interfaces)
 - [BundlePluginInterface](#bundleplugininterface)
 - [ConfigPluginInterface](#configplugininterface)
 - [ExtensionPluginInterface](#extensionplugininterface)
 - [DependentPluginInterface](#dependentplugininterface)
 - [RoutingPluginInterface](#routingplugininterface)
 - [HttpCacheSubscriberPluginInterface](#httpcachesubscriberplugininterface)
-- [Container zur Compile-Zeit modifizieren](#container-zur-compile-zeit-modifizieren)
+- [Modifying the container at compile time](#modifying-the-container-at-compile-time)
 
-## Übersicht
+## Overview
 
-Das Manager Plugin konfiguriert die Contao Managed Edition. Bei jedem
-`composer update`/`install` werden diese Plugins verarbeitet.
+The Manager Plugin configures the Contao Managed Edition. These plugins are processed
+on every `composer update`/`install`.
 
-**Zwei Einsatzbereiche:**
-1. **Paket-spezifischer Manager Plugin:** Drittanbieter-Bundle-Entwickler
-2. **Anwendungs-spezifischer Manager Plugin:** Lokale Managed Edition konfigurieren
+**Two areas of use:**
+1. **Package-specific Manager Plugin:** third-party bundle developers
+2. **Application-specific Manager Plugin:** configure the local Managed Edition
 
-Plugins werden in definierter Reihenfolge geladen; der anwendungsspezifische Plugin
-lädt zuletzt für maximale Kontrolle.
+Plugins are loaded in a defined order; the application-specific plugin
+loads last for maximum control.
 
 ---
 
-## composer.json Konfiguration
+## composer.json configuration
 
-### Für Pakete
+### For packages
 
-Korrekte Abhängigkeits-Konfiguration:
+Correct dependency configuration:
 
 ```json
 {
@@ -47,7 +47,7 @@ Korrekte Abhängigkeits-Konfiguration:
 }
 ```
 
-### Monorepo: Mehrere Plugins
+### Monorepo: multiple plugins
 
 ```json
 {
@@ -60,24 +60,24 @@ Korrekte Abhängigkeits-Konfiguration:
 }
 ```
 
-### Anwendungs-spezifischer Plugin
+### Application-specific plugin
 
-Kein `extra`-Schlüssel nötig. Der Manager Plugin lädt automatisch:
-- `\App\ContaoManager\Plugin` (empfohlen)
-- `\ContaoManagerPlugin` (nicht empfohlen)
+No `extra` key needed. The Manager Plugin loads automatically:
+- `\App\ContaoManager\Plugin` (recommended)
+- `\ContaoManagerPlugin` (not recommended)
 
 ---
 
-## Verfügbare Interfaces
+## Available interfaces
 
-| Interface | Zweck |
+| Interface | Purpose |
 |-----------|-------|
-| `BundlePluginInterface` | Bundles im Kernel registrieren |
-| `ConfigPluginInterface` | Bundle-Konfiguration laden |
-| `ExtensionPluginInterface` | Andere Bundle-Konfigurationen modifizieren |
-| `DependentPluginInterface` | Plugin-Ladereihenfolge sicherstellen |
-| `RoutingPluginInterface` | Anwendungsrouten hinzufügen |
-| `HttpCacheSubscriberPluginInterface` | HttpCache-Verhalten modifizieren |
+| `BundlePluginInterface` | Register bundles in the kernel |
+| `ConfigPluginInterface` | Load bundle configuration |
+| `ExtensionPluginInterface` | Modify other bundle configurations |
+| `DependentPluginInterface` | Ensure the plugin load order |
+| `RoutingPluginInterface` | Add application routes |
+| `HttpCacheSubscriberPluginInterface` | Modify HttpCache behaviour |
 
 ---
 
@@ -103,14 +103,14 @@ class Plugin implements BundlePluginInterface
 }
 ```
 
-### setLoadAfter — Abhängigkeiten definieren
+### setLoadAfter — defining dependencies
 
 ```php
 BundleConfig::create(MyBundle::class)
     ->setLoadAfter([ContaoCoreBundle::class]),
 ```
 
-### Legacy-Module unterstützen
+### Supporting legacy modules
 
 ```php
 BundleConfig::create(SomeBundle::class)
@@ -122,7 +122,7 @@ BundleConfig::create(SomeBundle::class)
 
 ## ConfigPluginInterface
 
-Bundles über den Container-Konfigurations-Loader konfigurieren:
+Configure bundles through the container configuration loader:
 
 ```php
 namespace Vendor\SomeBundle\ContaoManager;
@@ -143,8 +143,8 @@ class Plugin implements ConfigPluginInterface
 
 ## ExtensionPluginInterface
 
-Für komplexe Konfigurationsszenarien, bei denen Merge-Reihenfolge entscheidend ist
-(z.B. `security.firewalls`, `monolog.handlers`):
+For complex configuration scenarios in which the merge order is decisive
+(e.g. `security.firewalls`, `monolog.handlers`):
 
 ```php
 namespace Vendor\MyBundle\ContaoManager;
@@ -191,7 +191,7 @@ class Plugin implements ExtensionPluginInterface
 }
 ```
 
-### Monolog Handler hinzufügen
+### Adding a Monolog handler
 
 ```php
 public function getExtensionConfig($extensionName, array $extensionConfigs, ContainerBuilder $container)
@@ -232,7 +232,7 @@ public function getExtensionConfig($extensionName, array $extensionConfigs, Cont
 
 ## DependentPluginInterface
 
-Sicherstellen, dass andere Package-Plugins zuerst geladen werden:
+Ensure that other package plugins are loaded first:
 
 ```php
 namespace Vendor\SomeBundle\ContaoManager;
@@ -270,7 +270,7 @@ class Plugin implements RoutingPluginInterface
 }
 ```
 
-### Attributbasierte Routen
+### Attribute-based routes
 
 ```php
 public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel)
@@ -301,14 +301,14 @@ class Plugin implements HttpCacheSubscriberPluginInterface
 }
 ```
 
-Ermöglicht: Request-Modifikation (z.B. Cookies entfernen) oder Response-Manipulation
-(z.B. Header hinzufügen) vor Cache- oder Contao-Verarbeitung.
+Enables: request modification (e.g. removing cookies) or response manipulation
+(e.g. adding headers) before cache or Contao processing.
 
 ---
 
-## Container zur Compile-Zeit modifizieren
+## Modifying the container at compile time
 
-Compiler Passes in der Managed Edition (ohne Kernel/Bundle-Klasse) via
+Compiler passes in the Managed Edition (without a kernel/bundle class) via
 `ConfigPluginInterface`:
 
 ```php
@@ -334,5 +334,5 @@ class Plugin implements ConfigPluginInterface
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/manager-plugin/*  
+*Source: https://docs.contao.org/5.x/dev/framework/manager-plugin/*  
 *https://docs.contao.org/5.x/dev/guides/modify-container-at-compile-time/*

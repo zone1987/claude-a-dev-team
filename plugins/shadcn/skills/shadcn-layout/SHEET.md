@@ -12,8 +12,8 @@ the screen. Slides in from any edge (`top`, `right`, `bottom`, `left`).
 
 ## References
 
-- [installation.md](`SHEET-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SHEET-SOURCE.md`) — Complete component source (new-york-v4 / radix)
-- [api.md](`SHEET-API.md`) — All sub-component props as tables
-- [examples.md](`SHEET-EXAMPLES.md`) — All examples (demo, sides)
-- [base-vs-radix.md](`SHEET-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [SHEET-INSTALLATION.md](SHEET-INSTALLATION.md) — CLI & manual setup
+- [SHEET-SOURCE.md](SHEET-SOURCE.md) — Complete component source (new-york-v4 / radix)
+- [SHEET-API.md](SHEET-API.md) — All sub-component props as tables
+- [SHEET-EXAMPLES.md](SHEET-EXAMPLES.md) — All examples (demo, sides)
+- [SHEET-BASE-VS-RADIX.md](SHEET-BASE-VS-RADIX.md) — Differences between base and radix variants

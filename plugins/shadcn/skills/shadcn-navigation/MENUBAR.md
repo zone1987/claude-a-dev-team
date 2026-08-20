@@ -4,7 +4,7 @@ A visually persistent menu bar common in desktop applications. Provides quick ac
 
 ## References
 
-- [installation.md](`MENUBAR-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`MENUBAR-SOURCE.md`) — Complete component source code
-- [api.md](`MENUBAR-API.md`) — All sub-components and props
-- [examples.md](`MENUBAR-EXAMPLES.md`) — Full usage examples
+- [MENUBAR-INSTALLATION.md](MENUBAR-INSTALLATION.md) — CLI and manual setup
+- [MENUBAR-SOURCE.md](MENUBAR-SOURCE.md) — Complete component source code
+- [MENUBAR-API.md](MENUBAR-API.md) — All sub-components and props
+- [MENUBAR-EXAMPLES.md](MENUBAR-EXAMPLES.md) — Full usage examples

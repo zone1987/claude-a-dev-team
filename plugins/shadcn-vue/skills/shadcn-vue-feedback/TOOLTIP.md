@@ -36,7 +36,7 @@ Disabled HTML elements don't fire pointer events. Wrap the disabled element in a
 
 ## References
 
-- [Installation](`TOOLTIP-INSTALLATION.md`)
-- [Source code](`TOOLTIP-SOURCE.md`)
-- [API / Props](`TOOLTIP-API.md`)
-- [Examples](`TOOLTIP-EXAMPLES.md`)
+- [TOOLTIP-INSTALLATION.md](TOOLTIP-INSTALLATION.md)
+- [TOOLTIP-SOURCE.md](TOOLTIP-SOURCE.md)
+- [TOOLTIP-API.md](TOOLTIP-API.md)
+- [TOOLTIP-EXAMPLES.md](TOOLTIP-EXAMPLES.md)

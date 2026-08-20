@@ -2,53 +2,53 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Globale Arrays](#globale-arrays)
-- [CSS & JavaScript Assets hinzufügen](#css-javascript-assets-hinzufügen)
-- [Template-Hilfsfunktionen (generateStyleTag etc.)](#template-hilfsfunktionen-generatestyletag-etc)
-- [Twig: Assets einbinden](#twig-assets-einbinden)
+- [Overview](#overview)
+- [Global arrays](#global-arrays)
+- [Adding CSS & JavaScript assets](#adding-css-javascript-assets)
+- [Template helper functions (generateStyleTag etc.)](#template-helper-functions-generatestyletag-etc)
+- [Twig: including assets](#twig-including-assets)
 - [Symfony Asset Component](#symfony-asset-component)
 
-## Übersicht
+## Overview
 
-Contao verwendet globale Arrays zum Speichern von Asset-Referenzen während des
-Seitenlayout-Aufbaus. Zusätzlich steht die Symfony Asset Component zur Verfügung.
+Contao uses global arrays to store asset references while the
+page layout is being assembled. In addition, the Symfony Asset Component is available.
 
 ---
 
-## Globale Arrays
+## Global arrays
 
-| Array | Beschreibung |
+| Array | Description |
 |-------|-------------|
-| `$GLOBALS['TL_BODY']` | HTML-Code vor `</body>` |
-| `$GLOBALS['TL_CSS']` | CSS-Asset-Pfade für `<head>` |
-| `$GLOBALS['TL_HEAD']` | HTML-Code für `<head>` |
-| `$GLOBALS['TL_JAVASCRIPT']` | JavaScript-Asset-Pfade für `<head>` |
-| `$GLOBALS['TL_MOOTOOLS']` | HTML-Code vor `</body>` |
+| `$GLOBALS['TL_BODY']` | HTML code before `</body>` |
+| `$GLOBALS['TL_CSS']` | CSS asset paths for `<head>` |
+| `$GLOBALS['TL_HEAD']` | HTML code for `<head>` |
+| `$GLOBALS['TL_JAVASCRIPT']` | JavaScript asset paths for `<head>` |
+| `$GLOBALS['TL_MOOTOOLS']` | HTML code before `</body>` |
 
-**Hinweis:** Im Backend funktionieren nur `TL_CSS`, `TL_JAVASCRIPT` und `TL_MOOTOOLS`.
+**Note:** in the backend, only `TL_CSS`, `TL_JAVASCRIPT` and `TL_MOOTOOLS` work.
 
 ---
 
-## CSS & JavaScript Assets hinzufügen
+## Adding CSS & JavaScript assets
 
 ```php
 $GLOBALS['TL_CSS'][] = 'bundles/myextension/frontend.css';
 $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/myextension/scripts.js';
 ```
 
-### Pipe-Optionen
+### Pipe options
 
-Optionen werden mit `|` (Pipe) an den Dateipfad angehängt:
+Options are appended to the file path with `|` (pipe):
 
-| Option | Beispiel | Beschreibung |
+| Option | Example | Description |
 |--------|---------|-------------|
-| Static | `\|static` | Asset kann mit anderen statischen Assets kombiniert werden |
-| Media | `\|print` | CSS `media`-Attribut |
-| Async | `\|async` | JavaScript `async`-Attribut |
-| Version | `\|1` | Hängt `?v=…` Parameter an |
+| Static | `\|static` | The asset can be combined with other static assets |
+| Media | `\|print` | CSS `media` attribute |
+| Async | `\|async` | JavaScript `async` attribute |
+| Version | `\|1` | Appends a `?v=…` parameter |
 
-**Kombinations-Beispiele:**
+**Combination examples:**
 ```php
 $GLOBALS['TL_CSS'][] = 'files/theme/css/print.css|print|static|1';
 $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/myextension/scripts.js|2|async|static';
@@ -56,7 +56,7 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/myextension/scripts.js|2|async|static';
 
 ### Static
 
-Ermöglicht Kombination mit anderen statischen Assets (wenn im Seitenlayout aktiviert):
+Enables combination with other static assets (if activated in the page layout):
 
 ```php
 $GLOBALS['TL_CSS'][] = 'bundles/myextension/frontend.css|static';
@@ -64,7 +64,7 @@ $GLOBALS['TL_CSS'][] = 'bundles/myextension/frontend.css|static';
 
 ### Media
 
-CSS-Media-Attribut setzen:
+Setting the CSS media attribute:
 
 ```php
 $GLOBALS['TL_CSS'][] = 'files/theme/css/print.css|print';
@@ -73,13 +73,13 @@ $GLOBALS['TL_CSS'][] = 'files/theme/css/print.css|print';
 
 ### Async
 
-JavaScript asynchron laden:
+Loading JavaScript asynchronously:
 
 ```php
 $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/myextension/scripts.js|async';
 ```
 
-### Version (Cache-Busting)
+### Version (cache busting)
 
 ```php
 $cssTimestamp = filemtime($this->rootDir.'/bundles/myextension/frontend.css');
@@ -88,9 +88,9 @@ $GLOBALS['TL_CSS'][] = 'bundles/myextension/frontend.css|'.$cssTimestamp;
 
 ---
 
-## Template-Hilfsfunktionen (generateStyleTag etc.)
+## Template helper functions (generateStyleTag etc.)
 
-Die `\Contao\Template`-Klasse bietet statische Hilfsfunktionen:
+The `\Contao\Template` class provides static helper functions:
 
 ### generateStyleTag
 
@@ -98,7 +98,7 @@ Die `\Contao\Template`-Klasse bietet statische Hilfsfunktionen:
 $GLOBALS['TL_HEAD'][] = \Contao\Template::generateStyleTag(
     'bundles/myextension/print.css',
     'print',
-    null // mtime für Cache-Busting
+    null // mtime for cache busting
 );
 // → <link rel="stylesheet" href="…" media="print">
 ```
@@ -142,9 +142,9 @@ $GLOBALS['TL_HEAD'][] = \Contao\Template::generateFeedTag(
 
 ---
 
-## Twig: Assets einbinden
+## Twig: including assets
 
-### `add`-Tag
+### The `add` tag
 
 ```twig
 {# Stylesheet #}
@@ -155,7 +155,7 @@ $GLOBALS['TL_HEAD'][] = \Contao\Template::generateFeedTag(
 {% endwith %}
 ```
 
-### Lazy Loading
+### Lazy loading
 
 ```twig
 {% use "@Contao/component/_stylesheet.html.twig" %}
@@ -165,7 +165,7 @@ $GLOBALS['TL_HEAD'][] = \Contao\Template::generateFeedTag(
 {% endwith %}
 ```
 
-Rendert:
+Renders:
 ```html
 <link rel="preload" as="style" href="…" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="…"></noscript>
@@ -175,7 +175,7 @@ Rendert:
 
 ## Symfony Asset Component
 
-### Zugriff in Templates
+### Access in templates
 
 **Twig:**
 ```twig
@@ -183,28 +183,28 @@ Rendert:
 <script src="{{ asset('js/tablesort.min.js', 'contao-components/tablesort') }}"></script>
 ```
 
-**PHP-Templates:**
+**PHP templates:**
 ```php
 <script src="<?= $this->asset('foobar.js', 'fooexample') ?>"></script>
 ```
 
-**Insert Tags:**
+**Insert tags:**
 ```
 <script src="{{asset::jquery.js::contao-components/jquery}}"></script>
 ```
 
-### Asset-Auflösung
+### Asset resolution
 
-**contao-components-Pakete** verwenden Paket-Versionen für Cache-Busting:
-- Pfad: `assets/jquery/jquery.js`
-- Zugriff: `{{asset::jquery.js::contao-components/jquery}}`
-- Generiert: `jquery.js?v=1.1.0`
+**contao-components packages** use package versions for cache busting:
+- Path: `assets/jquery/jquery.js`
+- Access: `{{asset::jquery.js::contao-components/jquery}}`
+- Generates: `jquery.js?v=1.1.0`
 
-**Bundle-Assets** aus `public/` oder `src/Resources/public/`:
-- Registriert unter Kleinschreibungs-Bundle-Kurzname
+**Bundle assets** from `public/` or `src/Resources/public/`:
+- Registered under the lower-cased short bundle name
 - `FooExampleBundle` → `web/bundles/fooexample/`
-- Mit `manifest.json`: Verwendet Manifest-Version-Strategie (Webpack Encore)
+- With `manifest.json`: uses the manifest version strategy (Webpack Encore)
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/asset-management/*
+*Source: https://docs.contao.org/5.x/dev/framework/asset-management/*

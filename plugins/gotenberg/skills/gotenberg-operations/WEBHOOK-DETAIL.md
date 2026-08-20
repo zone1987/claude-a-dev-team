@@ -1,66 +1,66 @@
-# Gotenberg — Webhook & Remote-Download (Vollreferenz)
+# Gotenberg — Webhook & Remote Download (Full Reference)
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Webhook-Header](#webhook-header)
-- [Antwort-Codes beim initialen Request](#antwort-codes-beim-initialen-request)
-- [Callback-Payloads](#callback-payloads)
-- [Events-URL Payloads (Gotenberg-Webhook-Events-Url)](#events-url-payloads-gotenberg-webhook-events-url)
-- [downloadFrom — Remote-Dateien laden](#downloadfrom-remote-dateien-laden)
-- [curl-Beispiele](#curl-beispiele)
-- [Konfiguration (Env-Variablen)](#konfiguration-env-variablen)
-- [Hinweise](#hinweise)
+- [Concept](#concept)
+- [Webhook headers](#webhook-headers)
+- [Response codes for the initial request](#response-codes-for-the-initial-request)
+- [Callback payloads](#callback-payloads)
+- [Events URL payloads (Gotenberg-Webhook-Events-Url)](#events-url-payloads-gotenberg-webhook-events-url)
+- [downloadFrom — loading remote files](#downloadfrom-loading-remote-files)
+- [curl examples](#curl-examples)
+- [Configuration (env variables)](#configuration-env-variables)
+- [Notes](#notes)
 
-## Konzept
+## Concept
 
-Gotenberg unterstuetzt **asynchrone Verarbeitung**: Statt synchron auf das Ergebnis zu warten, gibt Gotenberg sofort `204 No Content` zurueck und sendet das Ergebnis (oder einen Fehler) nach der Verarbeitung an eine konfigurierte Callback-URL.
+Gotenberg supports **asynchronous processing**: instead of waiting synchronously for the result, Gotenberg returns `204 No Content` immediately and sends the result (or an error) to a configured callback URL after processing.
 
-Webhook-Header koennen bei **jedem** Gotenberg-Endpunkt verwendet werden.
+Webhook headers can be used with **every** Gotenberg endpoint.
 
 ---
 
-## Webhook-Header
+## Webhook headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
+| Header | Type | Required | Default | Description |
 |--------|-----|---------|----------|--------------|
-| `Gotenberg-Webhook-Url` | string | Bedingt* | — | Callback-URL fuer erfolgreiche Ergebnisse (POST, ausser ueberschrieben) |
-| `Gotenberg-Webhook-Method` | string | Nein | `POST` | HTTP-Methode fuer Erfolgs-Callback; erlaubt: `POST`, `PUT`, `PATCH` |
-| `Gotenberg-Webhook-Error-Url` | string | Nein | — | **Deprecated** — stattdessen `Gotenberg-Webhook-Events-Url` verwenden |
-| `Gotenberg-Webhook-Error-Method` | string | Nein | `POST` | HTTP-Methode fuer Fehler-Callback; erlaubt: `POST`, `PUT`, `PATCH` |
-| `Gotenberg-Webhook-Extra-Http-Headers` | JSON-string | Nein | — | Zusaetzliche HTTP-Header als JSON-Objekt fuer Callback-Requests |
-| `Gotenberg-Webhook-Events-Url` | string | Bedingt* | — | URL fuer strukturierte JSON-Events (Erfolg + Fehler) |
+| `Gotenberg-Webhook-Url` | string | Conditional* | — | Callback URL for successful results (POST, unless overridden) |
+| `Gotenberg-Webhook-Method` | string | No | `POST` | HTTP method for the success callback; allowed: `POST`, `PUT`, `PATCH` |
+| `Gotenberg-Webhook-Error-Url` | string | No | — | **Deprecated** — use `Gotenberg-Webhook-Events-Url` instead |
+| `Gotenberg-Webhook-Error-Method` | string | No | `POST` | HTTP method for the error callback; allowed: `POST`, `PUT`, `PATCH` |
+| `Gotenberg-Webhook-Extra-Http-Headers` | JSON string | No | — | Additional HTTP headers as a JSON object for callback requests |
+| `Gotenberg-Webhook-Events-Url` | string | Conditional* | — | URL for structured JSON events (success + error) |
 
-*Mindestens `Gotenberg-Webhook-Url` oder `Gotenberg-Webhook-Events-Url` muss angegeben sein, sonst → 400.
+*At least one of `Gotenberg-Webhook-Url` or `Gotenberg-Webhook-Events-Url` must be provided, otherwise → 400.
 
 ---
 
-## Antwort-Codes beim initialen Request
+## Response codes for the initial request
 
-| Code | Beschreibung |
+| Code | Description |
 |------|-------------|
-| `204 No Content` | Anfrage valide, asynchrone Verarbeitung gestartet |
-| `400 Bad Request` | Ungueltige oder fehlende Header/Felder |
-| `403 Forbidden` | Webhook-URL durch Outbound-Filter geblockt |
+| `204 No Content` | Request valid, asynchronous processing started |
+| `400 Bad Request` | Invalid or missing headers/fields |
+| `403 Forbidden` | Webhook URL blocked by the outbound filter |
 
 ---
 
-## Callback-Payloads
+## Callback payloads
 
-### Erfolgs-Callback (an Gotenberg-Webhook-Url)
+### Success callback (to Gotenberg-Webhook-Url)
 
 ```
-Content-Disposition: attachment; filename={dateiname.ext}
+Content-Disposition: attachment; filename={filename.ext}
 Content-Type: {content-type}
-Content-Length: {laenge}
+Content-Length: {length}
 Gotenberg-Trace: {trace}
 traceparent: {w3c-traceparent}
 User-Agent: Gotenberg
 
-[Datei-Inhalt als Binary]
+[File content as binary]
 ```
 
-### Fehler-Callback (an Gotenberg-Webhook-Error-Url, deprecated)
+### Error callback (to Gotenberg-Webhook-Error-Url, deprecated)
 
 ```json
 {
@@ -71,9 +71,9 @@ User-Agent: Gotenberg
 
 ---
 
-## Events-URL Payloads (Gotenberg-Webhook-Events-Url)
+## Events URL payloads (Gotenberg-Webhook-Events-Url)
 
-### Erfolgs-Event
+### Success event
 
 ```json
 {
@@ -83,7 +83,7 @@ User-Agent: Gotenberg
 }
 ```
 
-### Fehler-Event
+### Error event
 
 ```json
 {
@@ -99,30 +99,30 @@ User-Agent: Gotenberg
 
 ---
 
-## downloadFrom — Remote-Dateien laden
+## downloadFrom — loading remote files
 
-Ermoeglicht das Laden von Quelldateien aus externen URLs, anstatt sie hochzuladen.
+Allows source files to be fetched from external URLs instead of being uploaded.
 
-### Form-Feld
+### Form field
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|--------------|
-| `downloadFrom` | JSON-Array | Nein | Liste von Remote-Datei-Objekten |
+| `downloadFrom` | JSON array | No | List of remote file objects |
 
-### downloadFrom-Objekt-Struktur
+### downloadFrom object structure
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
+| Field | Type | Required | Default | Description |
 |------|-----|---------|----------|--------------|
-| `url` | string | Ja | — | Remote-URL; der Server **muss** einen `Content-Disposition`-Header mit `filename`-Parameter zurueckgeben |
-| `extraHttpHeaders` | JSON-Objekt | Nein | — | Zusaetzliche HTTP-Header fuer diesen Fetch |
-| `embedded` | boolean | Nein | `false` | Legacy-Option fuer Anhaenge |
-| `field` | string | Nein | `""` | Ziel-Feld: `""` (Hauptdatei), `"watermark"`, `"stamp"` |
+| `url` | string | Yes | — | Remote URL; the server **must** return a `Content-Disposition` header with a `filename` parameter |
+| `extraHttpHeaders` | JSON object | No | — | Additional HTTP headers for this fetch |
+| `embedded` | boolean | No | `false` | Legacy option for attachments |
+| `field` | string | No | `""` | Target field: `""` (main file), `"watermark"`, `"stamp"` |
 
 ---
 
-## curl-Beispiele
+## curl examples
 
-### Asynchrone Konvertierung mit Webhook
+### Asynchronous conversion with webhook
 
 ```bash
 curl --request POST http://localhost:3000/forms/chromium/convert/url \
@@ -131,7 +131,7 @@ curl --request POST http://localhost:3000/forms/chromium/convert/url \
   --form url=https://example.com
 ```
 
-### Webhook mit Events-URL (empfohlen)
+### Webhook with events URL (recommended)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -142,7 +142,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form files=@/path/to/2.pdf
 ```
 
-### Webhook mit PUT-Methode
+### Webhook with the PUT method
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -151,7 +151,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form files=@/path/to/1.pdf
 ```
 
-### Remote-Datei laden (downloadFrom)
+### Load a remote file (downloadFrom)
 
 ```bash
 curl --request POST http://localhost:3000/forms/libreoffice/convert \
@@ -159,7 +159,7 @@ curl --request POST http://localhost:3000/forms/libreoffice/convert \
   -o konvertiert.pdf
 ```
 
-### Remote-Datei als Wasserzeichen laden
+### Load a remote file as a watermark
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/watermark \
@@ -172,25 +172,25 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
 
 ---
 
-## Konfiguration (Env-Variablen)
+## Configuration (env variables)
 
-| Variable | Beschreibung | Standard |
+| Variable | Description | Default |
 |----------|-------------|---------|
-| `WEBHOOK_ALLOW_LIST` | Regex fuer erlaubte Webhook-URLs | — |
-| `WEBHOOK_DENY_PRIVATE_IPS` | Private IPs fuer Webhooks sperren | `false` |
-| `WEBHOOK_DENY_PUBLIC_IPS` | Oeffentliche IPs fuer Webhooks sperren | `false` |
-| `API_DOWNLOAD_FROM_DENY_PRIVATE_IPS` | Private IPs fuer downloadFrom sperren | `false` |
-| `API_DOWNLOAD_FROM_DENY_PUBLIC_IPS` | Oeffentliche IPs fuer downloadFrom sperren | `false` |
+| `WEBHOOK_ALLOW_LIST` | Regex for allowed webhook URLs | — |
+| `WEBHOOK_DENY_PRIVATE_IPS` | Block private IPs for webhooks | `false` |
+| `WEBHOOK_DENY_PUBLIC_IPS` | Block public IPs for webhooks | `false` |
+| `API_DOWNLOAD_FROM_DENY_PRIVATE_IPS` | Block private IPs for downloadFrom | `false` |
+| `API_DOWNLOAD_FROM_DENY_PUBLIC_IPS` | Block public IPs for downloadFrom | `false` |
 
 ---
 
-## Hinweise
+## Notes
 
-- W3C `traceparent`-Header wird ab v8.34.0 im Callback-Request mitgesendet (Distributed Tracing)
-- Webhook-Callbacks und `downloadFrom`-Fetches durchlaufen Gotenbergs Outbound-Filter-Pipeline
-- `Gotenberg-Webhook-Error-Url` ist deprecated — `Gotenberg-Webhook-Events-Url` verwenden
-- Der Remote-Server bei `downloadFrom` **muss** `Content-Disposition: attachment; filename=datei.ext` zurueckgeben
+- The W3C `traceparent` header is sent along in the callback request as of v8.34.0 (distributed tracing)
+- Webhook callbacks and `downloadFrom` fetches pass through Gotenberg's outbound filter pipeline
+- `Gotenberg-Webhook-Error-Url` is deprecated — use `Gotenberg-Webhook-Events-Url`
+- The remote server for `downloadFrom` **must** return `Content-Disposition: attachment; filename=datei.ext`
 
 ---
 
-Quelle: https://gotenberg.dev/docs/webhook-download
+Source: https://gotenberg.dev/docs/webhook-download

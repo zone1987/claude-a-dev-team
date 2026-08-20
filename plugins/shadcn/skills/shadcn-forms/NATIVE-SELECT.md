@@ -4,7 +4,7 @@ A styled native HTML `<select>` element. Use for native browser behavior, better
 
 ## References
 
-- [installation.md](`NATIVE-SELECT-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`NATIVE-SELECT-SOURCE.md`) — Complete component source code
-- [api.md](`NATIVE-SELECT-API.md`) — Sub-components and props
-- [examples.md](`NATIVE-SELECT-EXAMPLES.md`) — All usage examples
+- [NATIVE-SELECT-INSTALLATION.md](NATIVE-SELECT-INSTALLATION.md) — CLI and manual setup
+- [NATIVE-SELECT-SOURCE.md](NATIVE-SELECT-SOURCE.md) — Complete component source code
+- [NATIVE-SELECT-API.md](NATIVE-SELECT-API.md) — Sub-components and props
+- [NATIVE-SELECT-EXAMPLES.md](NATIVE-SELECT-EXAMPLES.md) — All usage examples

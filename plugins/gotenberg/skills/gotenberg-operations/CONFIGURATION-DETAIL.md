@@ -1,10 +1,10 @@
-# Gotenberg — Vollstaendige Konfigurationsreferenz
+# Gotenberg — Complete configuration reference
 
-Konfiguration via CLI-Flags oder Umgebungsvariablen. **Immer den Befehl ueberschreiben,
-nicht den Entrypoint.**
+Configuration via CLI flags or environment variables. **Always override the command,
+not the entrypoint.**
 
 ```yaml
-# Docker Compose Beispiel
+# Docker Compose example
 services:
   gotenberg:
     image: gotenberg/gotenberg:8
@@ -13,7 +13,7 @@ services:
       - "--api-timeout=60s"
       - "--chromium-auto-start=true"
 
-# Oder per Env-Var:
+# Or via env var:
   gotenberg:
     image: gotenberg/gotenberg:8
     environment:
@@ -23,101 +23,101 @@ services:
 
 ## Contents
 
-- [API-Modul](#api-modul)
-- [Chromium-Modul](#chromium-modul)
-- [LibreOffice-Modul](#libreoffice-modul)
-- [PDF-Engines-Modul](#pdf-engines-modul)
-- [Webhook-Modul](#webhook-modul)
+- [API module](#api-module)
+- [Chromium module](#chromium-module)
+- [LibreOffice module](#libreoffice-module)
+- [PDF Engines module](#pdf-engines-module)
+- [Webhook module](#webhook-module)
 
-## API-Modul
+## API module
 
-HTTP/1 und HTTP/2 (H2C) Server.
+HTTP/1 and HTTP/2 (H2C) server.
 
-| Flag | Env | Default | Beschreibung |
+| Flag | Env | Default | Description |
 |------|-----|---------|-------------|
-| `--api-port` | `API_PORT` | `3000` | Port der API |
-| `--api-port-from-env` | `API_PORT_FROM_ENV` | — | Env-Variable die den Port enthaelt (ueberschreibt `--api-port`) |
-| `--api-bind-ip` | `API_BIND_IP` | `0.0.0.0` | IP-Adresse fuer eingehende Verbindungen |
-| `--api-tls-cert-file` | `API_TLS_CERT_FILE` | — | Pfad zum TLS/SSL-Zertifikat (HTTPS) |
-| `--api-tls-key-file` | `API_TLS_KEY_FILE` | — | Pfad zum TLS/SSL-Schluessel (HTTPS) |
-| `--api-start-timeout` | `API_START_TIMEOUT` | `30s` | Max. Startzeit der API |
-| `--api-timeout` | `API_TIMEOUT` | `30s` | Max. Dauer pro Request |
-| `--api-body-limit` | `API_BODY_LIMIT` | — | Body-Limit fuer multipart/form-data (z.B. `5MB`, `1GB`) |
-| `--api-root-path` | `API_ROOT_PATH` | `/` | Root-Pfad der API (fuer Service-Discovery per URL-Pfad) |
-| `--api-correlation-id-header` | `API_CORRELATION_ID_HEADER` | `Gotenberg-Trace` | Header-Name fuer Request-Identifikation |
-| `--api-enable-basic-auth` | `API_ENABLE_BASIC_AUTH` | `false` | Basic Auth aktivieren. Credentials per `GOTENBERG_API_BASIC_AUTH_USERNAME` / `GOTENBERG_API_BASIC_AUTH_PASSWORD` |
-| `--api-download-from-allow-list` | `API_DOWNLOAD_FROM_ALLOW_LIST` | Alle | Erlaubte URLs fuer "Download From" (Regex, kommagetrennt oder wiederholtes Flag). Match umgeht IP-Klassen-Checks. |
-| `--api-download-from-deny-list` | `API_DOWNLOAD_FROM_DENY_LIST` | — | Verbotene URLs fuer "Download From" (Regex). Match lehnt immer ab. |
-| `--api-download-from-deny-private-ips` | `API_DOWNLOAD_FROM_DENY_PRIVATE_IPS` | `false` | "Download From"-URLs mit privater IP (Loopback, RFC1918, Link-Local, IPv6 ULA) ablehnen |
-| `--api-download-from-deny-public-ips` | `API_DOWNLOAD_FROM_DENY_PUBLIC_IPS` | `false` | "Download From"-URLs mit oeffentlicher IP ablehnen |
-| `--api-download-from-max-retry` | `API_DOWNLOAD_FROM_MAX_RETRY` | `4` | Max. Wiederholungsversuche fuer "Download From" |
-| `--api-disable-download-from` | `API_DISABLE_DOWNLOAD_FROM` | `false` | "Download From"-Funktion komplett deaktivieren |
-| `--api-disable-health-check-route-telemetry` | `API_DISABLE_HEALTH_CHECK_ROUTE_TELEMETRY` | `true` | Telemetrie fuer `/health` deaktivieren |
-| `--api-disable-root-route-telemetry` | `API_DISABLE_ROOT_ROUTE_TELEMETRY` | `true` | Telemetrie fuer Root-Route deaktivieren |
-| `--api-disable-debug-route-telemetry` | `API_DISABLE_DEBUG_ROUTE_TELEMETRY` | `true` | Telemetrie fuer `/debug` deaktivieren |
-| `--api-disable-version-route-telemetry` | `API_DISABLE_VERSION_ROUTE_TELEMETRY` | `true` | Telemetrie fuer `/version` deaktivieren |
-| `--api-enable-debug-route` | `API_ENABLE_DEBUG_ROUTE` | `false` | Debug-Route `/debug` aktivieren |
+| `--api-port` | `API_PORT` | `3000` | Port of the API |
+| `--api-port-from-env` | `API_PORT_FROM_ENV` | — | Env variable containing the port (overrides `--api-port`) |
+| `--api-bind-ip` | `API_BIND_IP` | `0.0.0.0` | IP address for incoming connections |
+| `--api-tls-cert-file` | `API_TLS_CERT_FILE` | — | Path to the TLS/SSL certificate (HTTPS) |
+| `--api-tls-key-file` | `API_TLS_KEY_FILE` | — | Path to the TLS/SSL key (HTTPS) |
+| `--api-start-timeout` | `API_START_TIMEOUT` | `30s` | Max. startup time of the API |
+| `--api-timeout` | `API_TIMEOUT` | `30s` | Max. duration per request |
+| `--api-body-limit` | `API_BODY_LIMIT` | — | Body limit for multipart/form-data (e.g. `5MB`, `1GB`) |
+| `--api-root-path` | `API_ROOT_PATH` | `/` | Root path of the API (for service discovery via URL path) |
+| `--api-correlation-id-header` | `API_CORRELATION_ID_HEADER` | `Gotenberg-Trace` | Header name for request identification |
+| `--api-enable-basic-auth` | `API_ENABLE_BASIC_AUTH` | `false` | Enable basic auth. Credentials via `GOTENBERG_API_BASIC_AUTH_USERNAME` / `GOTENBERG_API_BASIC_AUTH_PASSWORD` |
+| `--api-download-from-allow-list` | `API_DOWNLOAD_FROM_ALLOW_LIST` | All | Allowed URLs for "Download From" (regex, comma-separated or repeated flag). A match bypasses IP class checks. |
+| `--api-download-from-deny-list` | `API_DOWNLOAD_FROM_DENY_LIST` | — | Forbidden URLs for "Download From" (regex). A match always rejects. |
+| `--api-download-from-deny-private-ips` | `API_DOWNLOAD_FROM_DENY_PRIVATE_IPS` | `false` | Reject "Download From" URLs with a private IP (loopback, RFC1918, link-local, IPv6 ULA) |
+| `--api-download-from-deny-public-ips` | `API_DOWNLOAD_FROM_DENY_PUBLIC_IPS` | `false` | Reject "Download From" URLs with a public IP |
+| `--api-download-from-max-retry` | `API_DOWNLOAD_FROM_MAX_RETRY` | `4` | Max. retry attempts for "Download From" |
+| `--api-disable-download-from` | `API_DISABLE_DOWNLOAD_FROM` | `false` | Disable the "Download From" feature entirely |
+| `--api-disable-health-check-route-telemetry` | `API_DISABLE_HEALTH_CHECK_ROUTE_TELEMETRY` | `true` | Disable telemetry for `/health` |
+| `--api-disable-root-route-telemetry` | `API_DISABLE_ROOT_ROUTE_TELEMETRY` | `true` | Disable telemetry for the root route |
+| `--api-disable-debug-route-telemetry` | `API_DISABLE_DEBUG_ROUTE_TELEMETRY` | `true` | Disable telemetry for `/debug` |
+| `--api-disable-version-route-telemetry` | `API_DISABLE_VERSION_ROUTE_TELEMETRY` | `true` | Disable telemetry for `/version` |
+| `--api-enable-debug-route` | `API_ENABLE_DEBUG_ROUTE` | `false` | Enable the debug route `/debug` |
 
-**Hinweis (8.29.0):** `--api-trace-header` ist veraltet; `--api-correlation-id-header` verwenden.
-**Hinweis (8.32.0):** `--api-download-from-deny-list` Default-Regex aus 8.31.0 entfernt. Outbound-Filtering ist jetzt standardmaessig permissiv.
+**Note (8.29.0):** `--api-trace-header` is deprecated; use `--api-correlation-id-header`.
+**Note (8.32.0):** the `--api-download-from-deny-list` default regex from 8.31.0 was removed. Outbound filtering is now permissive by default.
 
-## Chromium-Modul
+## Chromium module
 
-Ein einzelner Chromium-Browser verwaltet alle Konvertierungen (Stateful-Modus).
-Chromium kann bis zu **6 parallele Operationen** ausfuehren.
+A single Chromium browser handles all conversions (stateful mode).
+Chromium can run up to **6 parallel operations**.
 
-| Flag | Env | Default | Beschreibung |
+| Flag | Env | Default | Description |
 |------|-----|---------|-------------|
-| `--chromium-restart-after` | `CHROMIUM_RESTART_AFTER` | `100` | Chromium nach N Konvertierungen neu starten. `0` = deaktiviert |
-| `--chromium-max-queue-size` | `CHROMIUM_MAX_QUEUE_SIZE` | `0` | Max. Warteschlangen-Groesse. `0` = unbegrenzt |
-| `--chromium-max-concurrency` | `CHROMIUM_MAX_CONCURRENCY` | `6` | Max. parallele Konvertierungen (max. 6) |
-| `--chromium-auto-start` | `CHROMIUM_AUTO_START` | `false` | Chromium beim Start automatisch initialisieren |
-| `--chromium-start-timeout` | `CHROMIUM_START_TIMEOUT` | `20s` | Max. Wartezeit beim Chromium-Start/-Neustart |
-| `--chromium-idle-shutdown-timeout` | `CHROMIUM_IDLE_SHUTDOWN_TIMEOUT` | `0s` | Chromium nach Idle-Dauer beenden. `0` = deaktiviert |
-| `--chromium-allow-file-access-from-files` | `CHROMIUM_ALLOW_FILE_ACCESS_FROM_FILES` | `false` | `file://`-URIs erlauben, andere `file://`-URIs zu lesen |
-| `--chromium-allow-insecure-localhost` | `CHROMIUM_ALLOW_INSECURE_LOCALHOST` | `false` | TLS/SSL-Fehler auf localhost ignorieren |
-| `--chromium-allow-list` | `CHROMIUM_ALLOW_LIST` | Alle | Erlaubte URLs fuer Chromium-Navigation (Regex). Match umgeht IP-Klassen-Checks. |
-| `--chromium-deny-list` | `CHROMIUM_DENY_LIST` | `^file:(?!//\/tmp/).*` | Verbotene URLs fuer Chromium (Regex). Match lehnt immer ab. |
-| `--chromium-deny-private-ips` | `CHROMIUM_DENY_PRIVATE_IPS` | `false` | Navigation zu privaten IPs ablehnen |
-| `--chromium-deny-public-ips` | `CHROMIUM_DENY_PUBLIC_IPS` | `false` | Navigation zu oeffentlichen IPs ablehnen |
-| `--chromium-ignore-certificate-errors` | `CHROMIUM_IGNORE_CERTIFICATE_ERRORS` | `false` | Zertifikatsfehler ignorieren |
-| `--chromium-disable-web-security` | `CHROMIUM_DISABLE_WEB_SECURITY` | `false` | Same-Origin-Policy deaktivieren |
-| `--chromium-incognito` | `CHROMIUM_INCOGNITO` | `false` | **Veraltet seit 8.29.0** — wird ignoriert |
-| `--chromium-host-resolver-rules` | `CHROMIUM_HOST_RESOLVER_RULES` | — | Benutzerdefinierte Host-Resolver-Regeln. Umgeht DNS-Rebind-Proxy. |
-| `--chromium-proxy-server` | `CHROMIUM_PROXY_SERVER` | — | Ausgehender Proxy-Server (nur HTTP/HTTPS). Umgeht DNS-Rebind-Proxy. |
-| `--chromium-clear-cache` | `CHROMIUM_CLEAR_CACHE` | `false` | Chromium-Cache nach jeder Konvertierung leeren |
-| `--chromium-clear-cookies` | `CHROMIUM_CLEAR_COOKIES` | `false` | Chromium-Cookies nach jeder Konvertierung leeren |
-| `--chromium-disable-javascript` | `CHROMIUM_DISABLE_JAVASCRIPT` | `false` | JavaScript deaktivieren |
-| `--chromium-disable-routes` | `CHROMIUM_DISABLE_ROUTES` | `false` | Alle Chromium-Routen deaktivieren |
+| `--chromium-restart-after` | `CHROMIUM_RESTART_AFTER` | `100` | Restart Chromium after N conversions. `0` = disabled |
+| `--chromium-max-queue-size` | `CHROMIUM_MAX_QUEUE_SIZE` | `0` | Max. queue size. `0` = unlimited |
+| `--chromium-max-concurrency` | `CHROMIUM_MAX_CONCURRENCY` | `6` | Max. parallel conversions (max. 6) |
+| `--chromium-auto-start` | `CHROMIUM_AUTO_START` | `false` | Initialize Chromium automatically at startup |
+| `--chromium-start-timeout` | `CHROMIUM_START_TIMEOUT` | `20s` | Max. wait time for Chromium start/restart |
+| `--chromium-idle-shutdown-timeout` | `CHROMIUM_IDLE_SHUTDOWN_TIMEOUT` | `0s` | Shut down Chromium after an idle period. `0` = disabled |
+| `--chromium-allow-file-access-from-files` | `CHROMIUM_ALLOW_FILE_ACCESS_FROM_FILES` | `false` | Allow `file://` URIs to read other `file://` URIs |
+| `--chromium-allow-insecure-localhost` | `CHROMIUM_ALLOW_INSECURE_LOCALHOST` | `false` | Ignore TLS/SSL errors on localhost |
+| `--chromium-allow-list` | `CHROMIUM_ALLOW_LIST` | All | Allowed URLs for Chromium navigation (regex). A match bypasses IP class checks. |
+| `--chromium-deny-list` | `CHROMIUM_DENY_LIST` | `^file:(?!//\/tmp/).*` | Forbidden URLs for Chromium (regex). A match always rejects. |
+| `--chromium-deny-private-ips` | `CHROMIUM_DENY_PRIVATE_IPS` | `false` | Reject navigation to private IPs |
+| `--chromium-deny-public-ips` | `CHROMIUM_DENY_PUBLIC_IPS` | `false` | Reject navigation to public IPs |
+| `--chromium-ignore-certificate-errors` | `CHROMIUM_IGNORE_CERTIFICATE_ERRORS` | `false` | Ignore certificate errors |
+| `--chromium-disable-web-security` | `CHROMIUM_DISABLE_WEB_SECURITY` | `false` | Disable the same-origin policy |
+| `--chromium-incognito` | `CHROMIUM_INCOGNITO` | `false` | **Deprecated since 8.29.0** — is ignored |
+| `--chromium-host-resolver-rules` | `CHROMIUM_HOST_RESOLVER_RULES` | — | Custom host resolver rules. Bypasses the DNS rebind proxy. |
+| `--chromium-proxy-server` | `CHROMIUM_PROXY_SERVER` | — | Outbound proxy server (HTTP/HTTPS only). Bypasses the DNS rebind proxy. |
+| `--chromium-clear-cache` | `CHROMIUM_CLEAR_CACHE` | `false` | Clear the Chromium cache after each conversion |
+| `--chromium-clear-cookies` | `CHROMIUM_CLEAR_COOKIES` | `false` | Clear the Chromium cookies after each conversion |
+| `--chromium-disable-javascript` | `CHROMIUM_DISABLE_JAVASCRIPT` | `false` | Disable JavaScript |
+| `--chromium-disable-routes` | `CHROMIUM_DISABLE_ROUTES` | `false` | Disable all Chromium routes |
 
-**Hinweis (8.32.0):** Jeder Chromium HTTP/HTTPS-Request laeuft durch einen internen Pinning-Proxy
-(DNS einmal aufloesen, validierte IP waehlen). `--chromium-proxy-server` oder `--chromium-host-resolver-rules`
-umgehen diesen Proxy.
+**Note (8.32.0):** every Chromium HTTP/HTTPS request goes through an internal pinning proxy
+(resolve DNS once, pick the validated IP). `--chromium-proxy-server` or `--chromium-host-resolver-rules`
+bypass this proxy.
 
-## LibreOffice-Modul
+## LibreOffice module
 
-Eine einzelne LibreOffice-Instanz verwaltet alle Konvertierungen.
-**Keine parallelen Operationen** moeglich (Lock-Mechanismus).
+A single LibreOffice instance handles all conversions.
+**No parallel operations** possible (lock mechanism).
 
-| Flag | Env | Default | Beschreibung |
+| Flag | Env | Default | Description |
 |------|-----|---------|-------------|
-| `--libreoffice-restart-after` | `LIBREOFFICE_RESTART_AFTER` | `10` | LibreOffice nach N Konvertierungen neu starten. `0` = deaktiviert |
-| `--libreoffice-max-queue-size` | `LIBREOFFICE_MAX_QUEUE_SIZE` | `0` | Max. Warteschlangen-Groesse. `0` = unbegrenzt |
-| `--libreoffice-auto-start` | `LIBREOFFICE_AUTO_START` | `false` | LibreOffice beim Start automatisch initialisieren |
-| `--libreoffice-start-timeout` | `LIBREOFFICE_START_TIMEOUT` | `20s` | Max. Wartezeit beim Start/-Neustart |
-| `--libreoffice-idle-shutdown-timeout` | `LIBREOFFICE_IDLE_SHUTDOWN_TIMEOUT` | `0s` | LibreOffice nach Idle-Dauer beenden. `0` = deaktiviert |
-| `--libreoffice-allow-list` | `LIBREOFFICE_ALLOW_LIST` | Alle | Erlaubte URLs fuer LibreOffice-Outbound-Fetches (Regex) |
-| `--libreoffice-deny-list` | `LIBREOFFICE_DENY_LIST` | — | Verbotene URLs fuer LibreOffice-Outbound-Fetches (Regex) |
-| `--libreoffice-deny-private-ips` | `LIBREOFFICE_DENY_PRIVATE_IPS` | `false` | Outbound-Fetches zu privaten IPs ablehnen |
-| `--libreoffice-deny-public-ips` | `LIBREOFFICE_DENY_PUBLIC_IPS` | `false` | Outbound-Fetches zu oeffentlichen IPs ablehnen |
-| `--libreoffice-disable-routes` | `LIBREOFFICE_DISABLE_ROUTES` | `false` | Alle LibreOffice-Routen deaktivieren |
+| `--libreoffice-restart-after` | `LIBREOFFICE_RESTART_AFTER` | `10` | Restart LibreOffice after N conversions. `0` = disabled |
+| `--libreoffice-max-queue-size` | `LIBREOFFICE_MAX_QUEUE_SIZE` | `0` | Max. queue size. `0` = unlimited |
+| `--libreoffice-auto-start` | `LIBREOFFICE_AUTO_START` | `false` | Initialize LibreOffice automatically at startup |
+| `--libreoffice-start-timeout` | `LIBREOFFICE_START_TIMEOUT` | `20s` | Max. wait time for start/restart |
+| `--libreoffice-idle-shutdown-timeout` | `LIBREOFFICE_IDLE_SHUTDOWN_TIMEOUT` | `0s` | Shut down LibreOffice after an idle period. `0` = disabled |
+| `--libreoffice-allow-list` | `LIBREOFFICE_ALLOW_LIST` | All | Allowed URLs for LibreOffice outbound fetches (regex) |
+| `--libreoffice-deny-list` | `LIBREOFFICE_DENY_LIST` | — | Forbidden URLs for LibreOffice outbound fetches (regex) |
+| `--libreoffice-deny-private-ips` | `LIBREOFFICE_DENY_PRIVATE_IPS` | `false` | Reject outbound fetches to private IPs |
+| `--libreoffice-deny-public-ips` | `LIBREOFFICE_DENY_PUBLIC_IPS` | `false` | Reject outbound fetches to public IPs |
+| `--libreoffice-disable-routes` | `LIBREOFFICE_DISABLE_ROUTES` | `false` | Disable all LibreOffice routes |
 
-### LibreOffice-Sprache aendern
+### Changing the LibreOffice language
 
-Standard: Englisch. Eigenes Docker-Image mit anderer Sprache bauen:
+Default: English. Build your own Docker image with a different language:
 
 ```dockerfile
-# Ab Gotenberg 8.23.1 (Debian Trixie)
+# From Gotenberg 8.23.1 onwards (Debian Trixie)
 FROM gotenberg/gotenberg:8
 USER root
 RUN apt-get update -qq && \
@@ -132,56 +132,56 @@ ENV LC_ALL de_DE.UTF-8
 USER gotenberg
 ```
 
-## PDF-Engines-Modul
+## PDF Engines module
 
-Gotenberg unterstuetzt folgende PDF Engines:
+Gotenberg supports the following PDF engines:
 
 | Feature | ExifTool | PDFtk | pdfcpu | QPDF | UNO |
 |---------|----------|-------|--------|------|-----|
-| Merge | - | Ja | Ja | Ja | - |
-| Split | - | Ja | Ja | Ja | - |
-| Flatten | - | - | - | Ja | - |
-| PDF/A & PDF/UA | - | - | - | - | Ja |
-| Metadaten lesen | Ja | - | - | - | - |
-| Metadaten schreiben | Ja | - | - | - | - |
-| Encrypt | - | Ja | Ja | Ja | - |
-| Dateien einbetten | - | - | Ja | - | - |
-| Factur-X (XMP) | - | - | - | Ja | - |
-| Wasserzeichen | - | Ja | Ja | - | - |
-| Stempel | - | Ja | Ja | - | - |
-| Lesezeichen lesen | - | - | Ja | - | - |
-| Lesezeichen schreiben | - | - | Ja | - | - |
-| Drehen | - | Ja | Ja | - | - |
+| Merge | - | Yes | Yes | Yes | - |
+| Split | - | Yes | Yes | Yes | - |
+| Flatten | - | - | - | Yes | - |
+| PDF/A & PDF/UA | - | - | - | - | Yes |
+| Read metadata | Yes | - | - | - | - |
+| Write metadata | Yes | - | - | - | - |
+| Encrypt | - | Yes | Yes | Yes | - |
+| Embed files | - | - | Yes | - | - |
+| Factur-X (XMP) | - | - | - | Yes | - |
+| Watermark | - | Yes | Yes | - | - |
+| Stamp | - | Yes | Yes | - | - |
+| Read bookmarks | - | - | Yes | - | - |
+| Write bookmarks | - | - | Yes | - | - |
+| Rotate | - | Yes | Yes | - | - |
 
-| Flag | Env | Default | Beschreibung |
+| Flag | Env | Default | Description |
 |------|-----|---------|-------------|
-| `--pdfengines-merge-engines` | `PDFENGINES_MERGE_ENGINES` | `qpdf,pdfcpu,pdftk` | Engines und Reihenfolge fuer Merge |
-| `--pdfengines-split-engines` | `PDFENGINES_SPLIT_ENGINES` | `pdfcpu,qpdf,pdftk` | Engines fuer Split |
-| `--pdfengines-flatten-engines` | `PDFENGINES_FLATTEN_ENGINES` | `qpdf` | Engines fuer Flatten |
-| `--pdfengines-convert-engines` | `PDFENGINES_CONVERT_ENGINES` | `libreoffice-pdfengine` | Engines fuer PDF/A-Konvertierung |
-| `--pdfengines-read-metadata-engines` | `PDFENGINES_READ_METADATA_ENGINES` | `exiftool` | Engines zum Metadaten-Lesen |
-| `--pdfengines-write-metadata-engines` | `PDFENGINES_WRITE_METADATA_ENGINES` | `exiftool` | Engines zum Metadaten-Schreiben |
-| `--pdfengines-encrypt-engines` | `PDFENGINES_ENCRYPT_ENGINES` | `qpdf,pdftk,pdfcpu` | Engines fuer Verschluesselung |
-| `--pdfengines-embed-engines` | `PDFENGINES_EMBED_ENGINES` | `pdfcpu` | Engines fuer Datei-Einbettung |
-| `--pdfengines-embed-metadata-engines` | `PDFENGINES_EMBED_METADATA_ENGINES` | `qpdf` | Engines fuer Embed-Metadaten |
-| `--pdfengines-watermark-engines` | `PDFENGINES_WATERMARK_ENGINES` | `pdfcpu,pdftk` | Engines fuer Wasserzeichen |
-| `--pdfengines-stamp-engines` | `PDFENGINES_STAMP_ENGINES` | `pdfcpu,pdftk` | Engines fuer Stempel |
-| `--pdfengines-write-bookmarks-engines` | `PDFENGINES_WRITE_BOOKMARKS_ENGINES` | `pdfcpu` | Engines fuer Lesezeichen-Schreiben |
-| `--pdfengines-read-bookmarks-engines` | `PDFENGINES_READ_BOOKMARKS_ENGINES` | `pdfcpu` | Engines fuer Lesezeichen-Lesen |
-| `--pdfengines-rotate-engines` | `PDFENGINES_ROTATE_ENGINES` | `pdfcpu,pdftk` | Engines fuer Drehen |
-| `--pdfengines-factur-x-engines` | `PDFENGINES_FACTUR_X_ENGINES` | `qpdf` | Engines fuer Factur-X XMP |
-| `--pdfengines-disable-routes` | `PDFENGINES_DISABLE_ROUTES` | `false` | Alle PDF-Engine-Routen deaktivieren |
+| `--pdfengines-merge-engines` | `PDFENGINES_MERGE_ENGINES` | `qpdf,pdfcpu,pdftk` | Engines and order for merge |
+| `--pdfengines-split-engines` | `PDFENGINES_SPLIT_ENGINES` | `pdfcpu,qpdf,pdftk` | Engines for split |
+| `--pdfengines-flatten-engines` | `PDFENGINES_FLATTEN_ENGINES` | `qpdf` | Engines for flatten |
+| `--pdfengines-convert-engines` | `PDFENGINES_CONVERT_ENGINES` | `libreoffice-pdfengine` | Engines for PDF/A conversion |
+| `--pdfengines-read-metadata-engines` | `PDFENGINES_READ_METADATA_ENGINES` | `exiftool` | Engines for reading metadata |
+| `--pdfengines-write-metadata-engines` | `PDFENGINES_WRITE_METADATA_ENGINES` | `exiftool` | Engines for writing metadata |
+| `--pdfengines-encrypt-engines` | `PDFENGINES_ENCRYPT_ENGINES` | `qpdf,pdftk,pdfcpu` | Engines for encryption |
+| `--pdfengines-embed-engines` | `PDFENGINES_EMBED_ENGINES` | `pdfcpu` | Engines for file embedding |
+| `--pdfengines-embed-metadata-engines` | `PDFENGINES_EMBED_METADATA_ENGINES` | `qpdf` | Engines for embedded metadata |
+| `--pdfengines-watermark-engines` | `PDFENGINES_WATERMARK_ENGINES` | `pdfcpu,pdftk` | Engines for watermarks |
+| `--pdfengines-stamp-engines` | `PDFENGINES_STAMP_ENGINES` | `pdfcpu,pdftk` | Engines for stamps |
+| `--pdfengines-write-bookmarks-engines` | `PDFENGINES_WRITE_BOOKMARKS_ENGINES` | `pdfcpu` | Engines for writing bookmarks |
+| `--pdfengines-read-bookmarks-engines` | `PDFENGINES_READ_BOOKMARKS_ENGINES` | `pdfcpu` | Engines for reading bookmarks |
+| `--pdfengines-rotate-engines` | `PDFENGINES_ROTATE_ENGINES` | `pdfcpu,pdftk` | Engines for rotate |
+| `--pdfengines-factur-x-engines` | `PDFENGINES_FACTUR_X_ENGINES` | `qpdf` | Engines for Factur-X XMP |
+| `--pdfengines-disable-routes` | `PDFENGINES_DISABLE_ROUTES` | `false` | Disable all PDF engine routes |
 
-## Webhook-Modul
+## Webhook module
 
-| Flag | Env | Default | Beschreibung |
+| Flag | Env | Default | Description |
 |------|-----|---------|-------------|
-| `--webhook-enable-sync-mode` | `WEBHOOK_ENABLE_SYNC_MODE` | `false` | Synchronen Webhook-Modus aktivieren |
-| `--webhook-allow-list` | `WEBHOOK_ALLOW_LIST` | Alle | Erlaubte Callback-URLs (Regex) |
-| `--webhook-deny-list` | `WEBHOOK_DENY_LIST` | — | Verbotene Callback-URLs (Regex) |
-| `--webhook-deny-private-ips` | `WEBHOOK_DENY_PRIVATE_IPS` | `false` | Callbacks zu privaten IPs ablehnen |
-| `--webhook-deny-public-ips` | `WEBHOOK_DENY_PUBLIC_IPS` | `false` | Callbacks zu oeffentlichen IPs ablehnen |
-| `--webhook-disable` | `WEBHOOK_DISABLE` | `false` | Webhook-Feature komplett deaktivieren |
+| `--webhook-enable-sync-mode` | `WEBHOOK_ENABLE_SYNC_MODE` | `false` | Enable synchronous webhook mode |
+| `--webhook-allow-list` | `WEBHOOK_ALLOW_LIST` | All | Allowed callback URLs (regex) |
+| `--webhook-deny-list` | `WEBHOOK_DENY_LIST` | — | Forbidden callback URLs (regex) |
+| `--webhook-deny-private-ips` | `WEBHOOK_DENY_PRIVATE_IPS` | `false` | Reject callbacks to private IPs |
+| `--webhook-deny-public-ips` | `WEBHOOK_DENY_PUBLIC_IPS` | `false` | Reject callbacks to public IPs |
+| `--webhook-disable` | `WEBHOOK_DISABLE` | `false` | Disable the webhook feature entirely |
 
 ---
-Quelle: https://gotenberg.dev/docs/configuration
+Source: https://gotenberg.dev/docs/configuration

@@ -291,7 +291,7 @@ No own events.
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `start()` with `path` offers an alternative to the `recordVideo`
+**Summary:** `start()` with `path` offers an alternative to the `recordVideo`
 context option with fine-grained control. `showChapter()` and
 `showOverlay()` are especially valuable for demo videos and tutorial
 recordings. `showActions()` makes clicks and inputs visible to

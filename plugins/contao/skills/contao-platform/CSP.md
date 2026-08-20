@@ -1,3 +1,3 @@
 # contao-csp
 
-Vollständige Referenz: `CSP-CONTAO-CSP.md`
+Complete reference: `CSP-CONTAO-CSP.md`

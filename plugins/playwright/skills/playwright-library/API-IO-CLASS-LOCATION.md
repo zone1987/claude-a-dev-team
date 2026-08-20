@@ -126,7 +126,7 @@ await context.tracing.group('My step', {
 | Properties | 3 (file, line, column) |
 | Events    | 0      |
 
-**Conclusion:** `Location` is a pure data transfer object without logic.
+**Summary:** `Location` is a pure data transfer object without logic.
 It links runtime information with source code positions and is
 central to reporter, tracing and debugger integrations. The indexing
 (0- vs. 1-based) varies with the API context — always check the

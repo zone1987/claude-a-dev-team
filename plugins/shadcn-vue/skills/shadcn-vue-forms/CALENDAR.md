@@ -66,7 +66,7 @@ For date range selection (start date + end date), use the separate `RangeCalenda
 
 ## References
 
-- [Installation](`CALENDAR-INSTALLATION.md`)
-- [Source code](`CALENDAR-SOURCE.md`)
-- [API / Props](`CALENDAR-API.md`)
-- [Examples](`CALENDAR-EXAMPLES.md`)
+- [CALENDAR-INSTALLATION.md](CALENDAR-INSTALLATION.md)
+- [CALENDAR-SOURCE.md](CALENDAR-SOURCE.md)
+- [CALENDAR-API.md](CALENDAR-API.md)
+- [CALENDAR-EXAMPLES.md](CALENDAR-EXAMPLES.md)

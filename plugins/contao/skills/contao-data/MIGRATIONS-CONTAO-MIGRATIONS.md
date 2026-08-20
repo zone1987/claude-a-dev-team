@@ -1,23 +1,23 @@
-# Contao Migrations-Framework (5.x)
+# Contao migrations framework (5.x)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Service-Registrierung](#service-registrierung)
-- [MigrationInterface – 3 Pflichtmethoden](#migrationinterface-3-pflichtmethoden)
-- [AbstractMigration (empfohlen)](#abstractmigration-empfohlen)
-- [Vollständiges Beispiel](#vollständiges-beispiel)
+- [Overview](#overview)
+- [Service registration](#service-registration)
+- [MigrationInterface – 3 mandatory methods](#migrationinterface-3-mandatory-methods)
+- [AbstractMigration (recommended)](#abstractmigration-recommended)
+- [Complete example](#complete-example)
 - [Best Practices](#best-practices)
 
-## Überblick
+## Overview
 
-Das Migration-Framework ermöglicht Datenkompatibilität bei Updates. Migrationen werden ausgeführt via:
-- Install Tool → Datenbankaktualisierung
+The migration framework enables data compatibility during updates. Migrations are executed via:
+- Install tool → database update
 - `vendor/bin/contao-console contao:migrate`
 
 ---
 
-## Service-Registrierung
+## Service registration
 
 ```yaml
 # config/services.yaml
@@ -29,25 +29,25 @@ services:
 
 ---
 
-## MigrationInterface – 3 Pflichtmethoden
+## MigrationInterface – 3 mandatory methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|-------------|
-| `getName(): string` | Beschreibender Name (wird dem Benutzer angezeigt) |
-| `shouldRun(): bool` | Prüft ob Voraussetzungen erfüllt und Migration nötig ist |
-| `run(): MigrationResult` | Führt Migration aus, gibt Ergebnis zurück |
+| `getName(): string` | Descriptive name (shown to the user) |
+| `shouldRun(): bool` | Checks whether the prerequisites are met and the migration is necessary |
+| `run(): MigrationResult` | Runs the migration, returns the result |
 
 ---
 
-## AbstractMigration (empfohlen)
+## AbstractMigration (recommended)
 
-Implementiert `MigrationInterface` und stellt bereit:
-- `getName()` (automatisch aus Klassenname)
+Implements `MigrationInterface` and provides:
+- `getName()` (automatically from the class name)
 - `createResult(bool $successful, string $message = ''): MigrationResult`
 
 ---
 
-## Vollständiges Beispiel
+## Complete example
 
 ```php
 namespace App\Migration;
@@ -64,14 +64,14 @@ class CustomerNameMigration extends AbstractMigration
     {
         $schemaManager = $this->connection->createSchemaManager();
 
-        // Tabelle existiert?
+        // Does the table exist?
         if (!$schemaManager->tablesExist(['tl_customers'])) {
             return false;
         }
 
         $columns = $schemaManager->listTableColumns('tl_customers');
 
-        // Nur ausführen wenn Quellspalten vorhanden und Zielspalte fehlt
+        // Only run if the source columns exist and the target column is missing
         return isset($columns['firstname'])
             && isset($columns['lastname'])
             && !isset($columns['name']);
@@ -79,13 +79,13 @@ class CustomerNameMigration extends AbstractMigration
 
     public function run(): MigrationResult
     {
-        // Zielspalte anlegen
+        // Create the target column
         $this->connection->executeQuery("
             ALTER TABLE tl_customers
             ADD name varchar(255) NOT NULL DEFAULT ''
         ");
 
-        // Daten migrieren
+        // Migrate the data
         $stmt = $this->connection->prepare("
             UPDATE tl_customers
             SET name = CONCAT(firstName, ' ', lastName)
@@ -104,11 +104,11 @@ class CustomerNameMigration extends AbstractMigration
 
 ## Best Practices
 
-- In `shouldRun()` immer auf Tabellenexistenz und Spaltenstruktur prüfen (defensiv)
-- `shouldRun()` muss nach Ausführung `false` zurückgeben (Idempotenz)
-- Für Schema-Änderungen Doctrine DBAL nutzen, nicht rohe SQL-Strings hardcoden
-- Fehler mit `$this->createResult(false, 'Fehlerbeschreibung')` kommunizieren
+- Always check for table existence and column structure in `shouldRun()` (defensively)
+- `shouldRun()` must return `false` after execution (idempotence)
+- Use Doctrine DBAL for schema changes, do not hardcode raw SQL strings
+- Communicate errors with `$this->createResult(false, 'Error description')`
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/migrations/*
+*Source: https://docs.contao.org/5.x/dev/framework/migrations/*

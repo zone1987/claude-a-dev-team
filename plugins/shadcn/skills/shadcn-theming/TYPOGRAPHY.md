@@ -26,5 +26,5 @@ No installation needed — these are plain Tailwind classes.
 
 ## Reference files
 
-- [classes.md](`TYPOGRAPHY-CLASSES.md`) — All element classes with full documentation
-- [examples.md](`TYPOGRAPHY-EXAMPLES.md`) — All individual examples + full demo
+- [TYPOGRAPHY-CLASSES.md](TYPOGRAPHY-CLASSES.md) — All element classes with full documentation
+- [TYPOGRAPHY-EXAMPLES.md](TYPOGRAPHY-EXAMPLES.md) — All individual examples + full demo

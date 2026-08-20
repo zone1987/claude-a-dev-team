@@ -6,9 +6,9 @@ the instructions below.
 
 ## References
 
-- [setup.md](`MCP-OVERVIEW.md`) — Init commands for all clients, .mcp.json config
-- [registries.md](`MCP-REGISTRIES.md`) — Configuring additional registries in components.json
-- [registry-dev.md](`MCP-REGISTRY-DEV.md`) — Making your own registry MCP-compatible
+- [MCP-OVERVIEW.md](MCP-OVERVIEW.md) — Init commands for all clients, .mcp.json config
+- [MCP-REGISTRIES.md](MCP-REGISTRIES.md) — Configuring additional registries in components.json
+- [MCP-REGISTRY-DEV.md](MCP-REGISTRY-DEV.md) — Making your own registry MCP-compatible
 
 ## Quick setup (Claude Code)
 

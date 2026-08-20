@@ -1,25 +1,25 @@
-# Shopware Frontends – Code-Rezepte & Beispiele
+# Shopware Frontends – Code recipes & examples
 
-Quelle: `apps/docs/src/getting-started/`
+Source: `apps/docs/src/getting-started/`
 
 ---
 
 ## Contents
 
-- [1. Login-Formular](#1-login-formular)
-- [2. Warenkorb (Cart)](#2-warenkorb-cart)
+- [1. Login form](#1-login-form)
+- [2. Cart](#2-cart)
 - [3. Checkout](#3-checkout)
-- [4. Produktlisting](#4-produktlisting)
-- [5. Produktdetailseite (PDP)](#5-produktdetailseite-pdp)
-- [6. Preisanzeige](#6-preisanzeige)
-- [7. Wunschliste (Wishlist)](#7-wunschliste-wishlist)
+- [4. Product listing](#4-product-listing)
+- [5. Product detail page (PDP)](#5-product-detail-page-pdp)
+- [6. Price display](#6-price-display)
+- [7. Wishlist](#7-wishlist)
 - [8. JSON-LD (SEO)](#8-json-ld-seo)
-- [9. Payment-Flow (allgemein)](#9-payment-flow-allgemein)
+- [9. Payment flow (general)](#9-payment-flow-general)
 - [10. B2B Quote Management](#10-b2b-quote-management)
-- [11. Broadcasting (Tab-Synchronisation)](#11-broadcasting-tab-synchronisation)
-- [Navigation (Breadcrumbs, Navigation-Baum)](#navigation-breadcrumbs-navigation-baum)
+- [11. Broadcasting (tab synchronisation)](#11-broadcasting-tab-synchronisation)
+- [Navigation (breadcrumbs, navigation tree)](#navigation-breadcrumbs-navigation-tree)
 
-## 1. Login-Formular
+## 1. Login form
 
 ```vue
 <script setup lang="ts">
@@ -37,7 +37,7 @@ const invokeLogin = () => login(loginCredentials);
     <input type="text" v-model="loginCredentials.username" />
     <input type="password" v-model="loginCredentials.password" />
     <button @click="invokeLogin">Sign in</button>
-    <!-- Fehleranzeige -->
+    <!-- error display -->
     <div v-if="errors.login.length">
       {{ errors.login[0].detail }}
     </div>
@@ -49,29 +49,29 @@ const invokeLogin = () => login(loginCredentials);
 </template>
 ```
 
-**Composable `useUser` – wichtige Felder:**
-- `login(credentials)` – Login
-- `logout()` – Logout
-- `errors.login` – Array mit API-Fehlern
-- `isLoggedIn` – Boolean (computed)
-- `user` – Customer-Objekt
+**Composable `useUser` – important fields:**
+- `login(credentials)` – login
+- `logout()` – logout
+- `errors.login` – array of API errors
+- `isLoggedIn` – boolean (computed)
+- `user` – customer object
 
-StackBlitz-Demo: https://stackblitz.com/github/shopware/frontends/tree/main/examples/login-form
+StackBlitz demo: https://stackblitz.com/github/shopware/frontends/tree/main/examples/login-form
 
 ---
 
-## 2. Warenkorb (Cart)
+## 2. Cart
 
-### Warenkorb initialisieren
+### Initialising the cart
 
 ```ts
 const { refreshCart } = useCart();
 await refreshCart();
-// Erstellt automatisch neuen Cart, falls keiner existiert
-// Intern: sw-context-token im Header
+// Automatically creates a new cart if none exists
+// Internally: sw-context-token in the header
 ```
 
-### Produkt zum Warenkorb hinzufügen
+### Adding a product to the cart
 
 ```vue
 <script setup lang="ts">
@@ -85,7 +85,7 @@ const { addProduct, quantity, getAvailableStock } = useAddToCart({ product });
 </template>
 ```
 
-### Promotion-Code hinzufügen
+### Adding a promotion code
 
 ```vue
 <script setup lang="ts">
@@ -98,7 +98,7 @@ const { addPromotionCode, appliedPromotionCodes } = useCart();
 </template>
 ```
 
-### Warenkorb anzeigen
+### Displaying the cart
 
 ```vue
 <script setup lang="ts">
@@ -114,34 +114,34 @@ const { cartItems, totalPrice, count } = useCart();
 </template>
 ```
 
-**CartItem-Eigenschaften:**
+**CartItem properties:**
 
-| Property | Beschreibung |
+| Property | Description |
 |---|---|
-| `id` | Unique Identifier |
-| `referencedId` | Produkt-ID oder Promotion-Code |
-| `label` | Bezeichnung |
-| `price.totalPrice` | Gesamtpreis (kann negativ sein) |
-| `price.unitPrice` | Stückpreis |
-| `quantity` | Menge |
-| `type` | `"product"` oder `"promotion"` |
-| `cover` | Cover-Bild |
+| `id` | Unique identifier |
+| `referencedId` | Product ID or promotion code |
+| `label` | Label |
+| `price.totalPrice` | Total price (can be negative) |
+| `price.unitPrice` | Unit price |
+| `quantity` | Quantity |
+| `type` | `"product"` or `"promotion"` |
+| `cover` | Cover image |
 
-### Menge ändern
+### Changing the quantity
 
 ```ts
 const { changeProductQuantity } = useCart();
 changeProductQuantity({ id: "...", quantity: 2 });
 ```
 
-### Artikel entfernen
+### Removing an item
 
 ```ts
 // Via useCart
 const { removeItem } = useCart();
 await removeItem({ id: "..." });
 
-// Via useCartItem (item wird im Composable gesetzt)
+// Via useCartItem (the item is set in the composable)
 const { cartItem } = toRefs(props);
 const { removeItem } = useCartItem(cartItem);
 await removeItem();
@@ -151,7 +151,7 @@ await removeItem();
 
 ## 3. Checkout
 
-### Versandmethoden laden und anzeigen
+### Loading and displaying shipping methods
 
 ```vue
 <script setup lang="ts">
@@ -183,7 +183,7 @@ const selectedShippingMethod = computed({
 </template>
 ```
 
-### Zahlungsmethoden laden und anzeigen
+### Loading and displaying payment methods
 
 ```vue
 <script setup lang="ts">
@@ -203,7 +203,7 @@ const selectedPaymentMethod = computed({
 </script>
 ```
 
-### Persönliche Daten (Gastbestellung)
+### Personal data (guest order)
 
 ```vue
 <script setup lang="ts">
@@ -228,7 +228,7 @@ const invokeSubmit = () => register(state);
 </script>
 ```
 
-### Bestellzusammenfassung
+### Order summary
 
 ```vue
 <script setup lang="ts">
@@ -245,9 +245,9 @@ await refreshCart();
 </template>
 ```
 
-**Wichtig:** Preisberechnungen immer Backend-seitig, nie im Frontend!
+**Important:** always calculate prices on the backend, never in the frontend!
 
-### Bestellung aufgeben
+### Placing the order
 
 ```ts
 const { createOrder } = useCheckout();
@@ -256,7 +256,7 @@ const { refreshCart } = useCart();
 const order = await createOrder();
 refreshCart();
 
-// Orderdetails laden
+// load the order details
 const { loadOrderDetails, personalDetails, billingAddress, order } =
   useOrderDetails({ order: { id: order.id } as any });
 await loadOrderDetails();
@@ -264,14 +264,14 @@ await loadOrderDetails();
 
 ---
 
-## 4. Produktlisting
+## 4. Product listing
 
-### Grundsetup
+### Basic setup
 
 ```ts
 const { search, getElements } = useListing({
-  listingType: "categoryListing",  // oder "productSearchListing"
-  categoryId: "dfd52ab937f840fd87e9d24ebf6bd245",  // nur bei categoryListing
+  listingType: "categoryListing",  // or "productSearchListing"
+  categoryId: "dfd52ab937f840fd87e9d24ebf6bd245",  // only for categoryListing
   defaultSearchCriteria: {
     limit: 3,
     p: 1,
@@ -287,7 +287,7 @@ await search({
 });
 ```
 
-### Produkte anzeigen
+### Displaying products
 
 ```vue
 <template>
@@ -302,7 +302,7 @@ await search({
 </template>
 ```
 
-### Sortierung
+### Sorting
 
 ```ts
 const { getCurrentSortingOrder, getSortingOrders, changeCurrentSortingOrder } = useListing(/**...*/);
@@ -326,16 +326,16 @@ const { getCurrentPage, changeCurrentPage, getTotalPagesCount } = useListing(/**
 <button v-if="getCurrentPage < getTotalPagesCount" @click="changeCurrentPage(getCurrentPage + 1)">Next</button>
 ```
 
-### Filter
+### Filters
 
-**Verfügbare Filter-Codes:**
-- `manufacturer` – Hersteller-Filter
-- `price` – Preis-Bereich `{ min, max }`
-- `rating` – Bewertungs-Filter (Zahl)
-- `shipping-free` – Boolean
-- `properties` – Eigenschaft-IDs (Array)
+**Available filter codes:**
+- `manufacturer` – manufacturer filter
+- `price` – price range `{ min, max }`
+- `rating` – rating filter (number)
+- `shipping-free` – boolean
+- `properties` – property IDs (array)
 
-**Filter setzen:**
+**Setting filters:**
 ```ts
 const { setCurrentFilters, getCurrentFilters, getAvailableFilters } = useListing(/**...*/);
 
@@ -344,18 +344,18 @@ setCurrentFilters({ code: "rating", value: 5 });
 setCurrentFilters({ code: "properties", value: "property-option-id" });
 ```
 
-**Aktive Filter auslesen:**
+**Reading the active filters:**
 ```vue
 <template>
   {{ getCurrentFilters.manufacturer }}        <!-- ["id1", "id2"] -->
   {{ getCurrentFilters.price }}               <!-- { min: 0, max: 299 } -->
-  {{ getCurrentFilters.rating }}              <!-- null oder Zahl -->
+  {{ getCurrentFilters.rating }}              <!-- null or number -->
   {{ getCurrentFilters["shipping-free"] }}    <!-- boolean -->
   {{ getCurrentFilters.properties }}          <!-- ["id1", "id2"] -->
 </template>
 ```
 
-**Hersteller-Filter anzeigen:**
+**Displaying the manufacturer filter:**
 ```vue
 <template>
   <h3>{{ manufacturerFilter.label }}</h3>
@@ -371,19 +371,19 @@ setCurrentFilters({ code: "properties", value: "property-option-id" });
 </template>
 ```
 
-### Varianten-Präsentation
+### Variant presentation
 
-Im Admin: Produkt → Varianten → Storefront-Darstellung → Produktlisten:
+In the admin: product → variants → storefront presentation → product listings:
 
-| Konfiguration | API-Output |
+| Configuration | API output |
 |---|---|
-| Einzelprodukt (Main) | 1 Element, Eltern-Produktdaten |
-| Einzelprodukt (Variante) | 1 Element, Variant-Daten, parentId gesetzt |
-| Eigenschaften expandieren | Mehrere Elemente (je Eigenschaft) |
+| Single product (main) | 1 element, parent product data |
+| Single product (variant) | 1 element, variant data, parentId set |
+| Expand properties | Several elements (one per property) |
 
 ---
 
-## 5. Produktdetailseite (PDP)
+## 5. Product detail page (PDP)
 
 ```ts
 import type { Schemas } from "#shopware";
@@ -392,7 +392,7 @@ import { useProductSearch } from "@shopware/composables";
 const { search } = useProductSearch();
 
 const productResponse = await search("some-product-id", {
-  // withCmsAssociations: true  // für CMS-Seiten
+  // withCmsAssociations: true  // for CMS pages
 });
 
 const product: Schemas["Product"] = productResponse.product;
@@ -403,7 +403,7 @@ const manufacturer = computed(() => product.value?.manufacturer?.name);
 const description = computed(() => product.value?.translated.description);
 ```
 
-### Cross-Sells laden
+### Loading cross-sells
 
 ```ts
 const { loadAssociations, isLoading, productAssociations } =
@@ -412,25 +412,25 @@ const { loadAssociations, isLoading, productAssociations } =
   });
 ```
 
-Beispiel-Repo: https://github.com/shopware/frontends/tree/main/examples/product-detail-page
+Example repo: https://github.com/shopware/frontends/tree/main/examples/product-detail-page
 
 ---
 
-## 6. Preisanzeige
+## 6. Price display
 
-### Preis-Struktur (`CalculatedPrice`)
+### Price structure (`CalculatedPrice`)
 
-| Feld | Beschreibung |
+| Field | Description |
 |---|---|
-| `unitPrice` | Stückpreis |
-| `quantity` | Menge |
-| `totalPrice` | Gesamtpreis |
-| `calculatedTaxes` | Steuern |
-| `referencePrice` | Preis pro Einheit (z.B. 1,99€/100g) |
-| `listPrice` | Streichpreis (`price`, `discount`, `percentage`) |
-| `regulationPrice` | Günstigster Preis der letzten 30 Tage |
+| `unitPrice` | Unit price |
+| `quantity` | Quantity |
+| `totalPrice` | Total price |
+| `calculatedTaxes` | Taxes |
+| `referencePrice` | Price per unit (e.g. 1.99€/100g) |
+| `listPrice` | Strike-through price (`price`, `discount`, `percentage`) |
+| `regulationPrice` | Lowest price of the last 30 days |
 
-### Standardpreis anzeigen
+### Displaying the standard price
 
 ```vue
 <script setup>
@@ -456,7 +456,7 @@ const { unitPrice, price, tierPrices, hasListPrice } = useProductPrice(ref(produ
 </template>
 ```
 
-### Tier-Preise anzeigen
+### Displaying tier prices
 
 ```vue
 <template>
@@ -470,7 +470,7 @@ const { unitPrice, price, tierPrices, hasListPrice } = useProductPrice(ref(produ
 </template>
 ```
 
-### Preis-Entscheidungslogik
+### Price decision logic
 
 ```vue
 <script setup>
@@ -483,16 +483,16 @@ const defaultPrice = computed(() => {
 </script>
 <template>
   <ul v-if="product.calculatedPrices.length > 1">
-    <!-- Tier-Preise -->
+    <!-- tier prices -->
   </ul>
   <div v-else>
-    <!-- Standardpreis -->
+    <!-- standard price -->
     {{ getFormattedPrice(defaultPrice.totalPrice) }}
   </div>
 </template>
 ```
 
-### useProductPrice – Produktlisting
+### useProductPrice – product listing
 
 ```vue
 <script setup lang="ts">
@@ -506,20 +506,20 @@ const { totalPrice, displayFrom, displayVariantsFrom } = useProductPrice(product
 
 ---
 
-## 7. Wunschliste (Wishlist)
+## 7. Wishlist
 
-### Composables-Übersicht
+### Composables overview
 
-| Composable | Beschreibung |
+| Composable | Description |
 |---|---|
-| `useLocalWishlist` | Lokale (in-memory) Wunschliste |
-| `useSyncWishlist` | Remote (Server) Wunschliste |
-| `useWishlist` | View-Helper für Wunschlisten-Seite |
-| `useProductWishlist` | View-Helper für einzelnes Produkt |
+| `useLocalWishlist` | Local (in-memory) wishlist |
+| `useSyncWishlist` | Remote (server) wishlist |
+| `useWishlist` | View helper for the wishlist page |
+| `useProductWishlist` | View helper for a single product |
 
-`useWishlist` und `useProductWishlist` wählen automatisch lokal/remote je nach Login-Status.
+`useWishlist` and `useProductWishlist` automatically choose local/remote depending on the login state.
 
-### Wunschliste laden
+### Loading the wishlist
 
 ```vue
 <script>
@@ -548,7 +548,7 @@ onMounted(async () => {
 </script>
 ```
 
-### Produkt zur Wunschliste hinzufügen/entfernen
+### Adding/removing a product to/from the wishlist
 
 ```vue
 <script setup lang="ts">
@@ -561,14 +561,14 @@ const { addToWishlist, removeFromWishlist, isInWishlist } = useProductWishlist(p
 </template>
 ```
 
-### Wunschlisten zusammenführen (nach Login)
+### Merging wishlists (after login)
 
 ```ts
 const { mergeWishlistProducts } = useSyncWishlist();
 
 const invokeLogin = async () => {
   await login(formData.value);
-  mergeWishlistProducts();  // Lokale → Remote-Wishlist
+  mergeWishlistProducts();  // local → remote wishlist
 };
 ```
 
@@ -577,10 +577,10 @@ const invokeLogin = async () => {
 ## 8. JSON-LD (SEO)
 
 ```ts
-// Produktseite
+// product page
 useProductJsonLD(productResponse.value.product);
 
-// Mit Erweiterungen
+// with extensions
 useProductJsonLD(productResponse.value.product, {
   brand: {
     "@type": "Brand",
@@ -589,55 +589,55 @@ useProductJsonLD(productResponse.value.product, {
 });
 ```
 
-JSON-LD verbessert Rich Snippets in Suchergebnissen (Preis, Verfügbarkeit, Bewertungen).
+JSON-LD improves rich snippets in search results (price, availability, ratings).
 
 ---
 
-## 9. Payment-Flow (allgemein)
+## 9. Payment flow (general)
 
-### Synchrones Payment
+### Synchronous payment
 
 ```js
 const { createOrder } = useCheckout();
 const order = await createOrder();
-// Backend verarbeitet Payment direkt
+// the backend processes the payment directly
 ```
 
-### Asynchrones Payment (externe Gateway)
+### Asynchronous payment (external gateway)
 
 ```js
-// 1. Order erstellen
+// 1. create the order
 const { createOrder } = useCheckout();
 const order = await createOrder();
 
-// 2. Payment-Handler initialisieren
+// 2. initialise the payment handler
 const { paymentUrl, handlePayment, isAsynchronous } = useOrderPayment(ref(order));
 
-// 3. Payment verarbeiten
+// 3. process the payment
 const SUCCESS_URL = `${window.location.origin}/checkout/success/${order.id}/paid`;
 const FAILURE_URL = `${window.location.origin}/checkout/success/${order.id}/unpaid`;
 
 const handlePaymentResponse = await handlePayment(SUCCESS_URL, FAILURE_URL, {
-  /* payment-provider-spezifische Daten */
+  /* payment-provider-specific data */
 });
 
-// 4. Weiterleitung
+// 4. redirect
 const redirectUrl = handlePaymentResponse?.redirectUrl;
 ```
 
-### App Server Integration (Payment Apps)
+### App server integration (payment apps)
 
 ```ts
 const { apiClient } = useShopwareContext();
 
-// JWT-Token für App-Server holen (nur für eingeloggte Kunden)
+// fetch a JWT token for the app server (only for logged-in customers)
 const tokenResponse = await apiClient.invoke(
   "generateJWTAppSystemAppServer post /app-system/{name}/generate-token",
   { pathParams: { name: "MyPaymentApp" } }
 );
 // { token, expires, shopId }
 
-// Token für Requests an den App-Server nutzen
+// use the token for requests to the app server
 await fetch("https://payment-gateway.com/api/card", {
   method: "POST",
   headers: {
@@ -651,7 +651,7 @@ await fetch("https://payment-gateway.com/api/card", {
 ## 10. B2B Quote Management
 
 ```vue
-<!-- Angebot anfordern -->
+<!-- request a quote -->
 <script setup lang="ts">
 import { useCart, useB2bQuoteManagement } from "@shopware/composables";
 const { cartItems } = useCart();
@@ -666,20 +666,20 @@ const comment = ref("");
 </template>
 ```
 
-**Weitere Methoden:**
-- `getQuoteList()` – Alle Angebote laden
-- `declineQuote(id, comment)` – Angebot ablehnen
-- `requestChangeQuote(id, changeRequest)` – Änderung anfragen
-- `changeShippingMethod(id, shippingId)` – Versandmethode ändern
-- `changePaymentMethod(id, paymentId)` – Zahlungsmethode ändern
-- `createOrderFromQuote(id, comment)` – Bestellung aus Angebot erstellen
+**Further methods:**
+- `getQuoteList()` – load all quotes
+- `declineQuote(id, comment)` – decline a quote
+- `requestChangeQuote(id, changeRequest)` – request a change
+- `changeShippingMethod(id, shippingId)` – change the shipping method
+- `changePaymentMethod(id, paymentId)` – change the payment method
+- `createOrderFromQuote(id, comment)` – create an order from a quote
 
 ---
 
-## 11. Broadcasting (Tab-Synchronisation)
+## 11. Broadcasting (tab synchronisation)
 
 ```ts
-// useBroadcastChannelSync – synchronisiert Cart & Session zwischen Tabs
+// useBroadcastChannelSync – synchronises cart & session between tabs
 import type { Schemas } from "#shopware";
 
 export const useBroadcastChannelSync = createSharedComposable(() => {
@@ -703,16 +703,16 @@ export const useBroadcastChannelSync = createSharedComposable(() => {
 });
 ```
 
-**Aktivieren in nuxt.config.ts:**
+**Enabling it in nuxt.config.ts:**
 ```ts
 runtimeConfig: {
-  broadcasting: true,  // default: false (BFCache-Konflikt!)
+  broadcasting: true,  // default: false (BFCache conflict!)
 }
 ```
 
 ---
 
-## Navigation (Breadcrumbs, Navigation-Baum)
+## Navigation (breadcrumbs, navigation tree)
 
-Die Navigations-Komponenten verwenden `useNavigation` und `useNavigationSearch`.
-Details in Skill `sw-frontends-customization` (Routing).
+The navigation components use `useNavigation` and `useNavigationSearch`.
+Details in the skill `sw-frontends-customization` (routing).

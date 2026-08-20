@@ -4,10 +4,10 @@ A fully accessible dropdown select built on reka-ui's Select primitives, compose
 
 ## References
 
-- [installation.md](`SELECT-INSTALLATION.md`) — CLI and manual install
-- [source.md](`SELECT-SOURCE.md`) — Full source for all 11 components + index.ts
-- [api.md](`SELECT-API.md`) — Props, emits and reka-ui API links for all sub-components
-- [examples.md](`SELECT-EXAMPLES.md`) — Basic, grouped, sizes, with field, disabled examples
+- [SELECT-INSTALLATION.md](SELECT-INSTALLATION.md) — CLI and manual install
+- [SELECT-SOURCE.md](SELECT-SOURCE.md) — Full source for all 11 components + index.ts
+- [SELECT-API.md](SELECT-API.md) — Props, emits and reka-ui API links for all sub-components
+- [SELECT-EXAMPLES.md](SELECT-EXAMPLES.md) — Basic, grouped, sizes, with field, disabled examples
 
 ## Key Facts
 

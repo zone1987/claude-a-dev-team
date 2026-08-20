@@ -1,6 +1,6 @@
-# TypeScript im Shopware-Admin-Plugin — Referenz
+# TypeScript in the Shopware admin plugin — reference
 
-## Vollständige tsconfig.json (am Core orientiert)
+## Complete tsconfig.json (modelled on the core)
 ```json
 {
   "compilerOptions": {
@@ -24,9 +24,9 @@
   "exclude": ["node_modules"]
 }
 ```
-`allowJs: true` erlaubt schrittweise Migration (JS + TS gemischt). `noEmit: true` — Vite transpiliert.
+`allowJs: true` allows a step-by-step migration (JS + TS mixed). `noEmit: true` — Vite does the transpiling.
 
-## Entity-Typen & Repository
+## Entity types & repository
 ```ts
 export interface FfExampleEntity {
   id: string;
@@ -41,7 +41,7 @@ const criteria = new Shopware.Data.Criteria(1, 25);
 const result = await repo.search(criteria, Shopware.Context.api); // EntityCollection<FfExampleEntity>
 ```
 
-## Komponente (Options-API mit Typen)
+## Component (Options API with types)
 ```ts
 import template from './ff-example-card.html.twig';
 import type { PropType } from 'vue';
@@ -57,8 +57,8 @@ Shopware.Component.register('ff-example-card', {
 });
 ```
 
-## Module-Augmentation / globale Typen
-Eigene `.d.ts` (z.B. `src/types/ff.d.ts`), via tsconfig `include` erfasst:
+## Module augmentation / global types
+Your own `.d.ts` (e.g. `src/types/ff.d.ts`), picked up via the tsconfig `include`:
 ```ts
 declare global {
   interface Window { ffExampleConfig?: { apiKey: string }; }
@@ -66,12 +66,12 @@ declare global {
 export {};
 ```
 
-## Services / Composables typisieren
-- Konstruktor-Argumente und Rückgaben annotieren.
-- Für injizierte Services Interfaces definieren und im Service-Provider zurückgeben.
-- Meteor-Admin-SDK-Aufrufe sind bereits typisiert (siehe Skill `sw-meteor-admin-sdk`).
+## Typing services / composables
+- Annotate constructor arguments and return values.
+- Define interfaces for injected services and return them in the service provider.
+- Meteor Admin SDK calls are already typed (see skill `sw-meteor-admin-sdk`).
 
-## Hinweise
-- Vue 3 Composition API: `defineComponent`-Muster bzw. `<script setup lang="ts">` in SFCs (sofern Build unterstützt).
-- Lint/Typecheck: `composer eslint:admin` + projektweiter `tsc --noEmit` (über die tsconfig).
-- `strict` aktiv halten; `noUncheckedIndexedAccess` optional für mehr Sicherheit.
+## Notes
+- Vue 3 Composition API: `defineComponent` pattern or `<script setup lang="ts">` in SFCs (where the build supports it).
+- Lint/typecheck: `composer eslint:admin` + a project-wide `tsc --noEmit` (via the tsconfig).
+- Keep `strict` enabled; `noUncheckedIndexedAccess` optional for extra safety.

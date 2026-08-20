@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Routing
+# Shopware 6 — Admin routing
 
-Routen werden im Modul unter `routes` deklariert (Vue Router). Navigation per `this.$router.push({ name: 'ff.example.detail', params: { id } })`.
+Routes are declared in the module under `routes` (Vue Router). Navigate via `this.$router.push({ name: 'ff.example.detail', params: { id } })`.
 
 ```js
 routes: {
@@ -10,8 +10,8 @@ routes: {
 }
 ```
 
-Bestehende Routen erweitern (z.B. neuen Tab/Child) über `routeMiddleware` in der Modul-Registrierung der
-Ziel-Komponente:
+Extend existing routes (e.g. a new tab/child) via `routeMiddleware` in the module registration of the
+target component:
 
 ```js
 Shopware.Module.register('ff-product-tab', {
@@ -24,4 +24,4 @@ Shopware.Module.register('ff-product-tab', {
 });
 ```
 
-Menüeinträge: `sw-admin-menu`. Tab-UI per `sw-tabs`/`mt-tabs` im Detail-Template.
+Menu entries: `sw-admin-menu`. Tab UI via `sw-tabs`/`mt-tabs` in the detail template.

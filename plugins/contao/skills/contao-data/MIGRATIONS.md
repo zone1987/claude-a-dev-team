@@ -1,3 +1,3 @@
 # contao-migrations
 
-Vollständige Referenz: `MIGRATIONS-CONTAO-MIGRATIONS.md`
+Complete reference: `MIGRATIONS-CONTAO-MIGRATIONS.md`

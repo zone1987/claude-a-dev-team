@@ -1,27 +1,27 @@
 # Shopware Frontends – B2B Features
 
-Quelle: `apps/docs/src/getting-started/b2b/`, `apps/docs/src/resources/integrations/commercial/`
+Source: `apps/docs/src/getting-started/b2b/`, `apps/docs/src/resources/integrations/commercial/`
 
-> Alle B2B-Features erfordern den **Shopware Rise Plan** oder höher.
+> All B2B features require the **Shopware Rise Plan** or higher.
 
 ---
 
 ## Contents
 
-- [B2B Quote Management (Angebotsverwaltung)](#b2b-quote-management-angebotsverwaltung)
+- [B2B Quote Management](#b2b-quote-management)
 - [B2B Quick Order](#b2b-quick-order)
-- [useB2bQuoteManagement – API-Übersicht](#useb2bquotemanagement-api-übersicht)
-- [Composable-Referenz](#composable-referenz)
+- [useB2bQuoteManagement – API overview](#useb2bquotemanagement-api-overview)
+- [Composable reference](#composable-reference)
 
-## B2B Quote Management (Angebotsverwaltung)
+## B2B Quote Management
 
-Composable: `useB2bQuoteManagement` aus `@shopware/composables`
+Composable: `useB2bQuoteManagement` from `@shopware/composables`
 
-### 1. Neues Angebot anfragen
+### 1. Request a new quote
 
-Nutzer kann für aktuellen Warenkorb ein individuelles Angebot anfordern.
+The user can request an individual quote for the current cart.
 
-> Warenkorb darf nicht leer sein!
+> The cart must not be empty!
 
 ```vue
 <script setup lang="ts">
@@ -44,7 +44,7 @@ const handleRequestQuote = async () => {
 </template>
 ```
 
-### 2. Angebotsliste laden und anzeigen
+### 2. Load and display the quote list
 
 ```vue
 <script setup lang="ts">
@@ -82,7 +82,7 @@ onBeforeMount(async () => {
 </template>
 ```
 
-### 3. Angebot ablehnen (Decline)
+### 3. Decline a quote
 
 ```vue
 <script setup lang="ts">
@@ -106,7 +106,7 @@ const handleDecline = async () => {
 </template>
 ```
 
-### 4. Änderung im Angebot anfragen
+### 4. Request a change to the quote
 
 ```vue
 <script setup lang="ts">
@@ -127,19 +127,19 @@ const handleChangeRequest = async () => {
 </template>
 ```
 
-### 5. Zahlungs- oder Versandmethode im Angebot ändern
+### 5. Change the payment or shipping method on the quote
 
 ```ts
 const { changeShippingMethod, changePaymentMethod } = useB2bQuoteManagement();
 
-// Versandmethode ändern
+// Change the shipping method
 changeShippingMethod(quoteId, "example-shipping-id");
 
-// Zahlungsmethode ändern
+// Change the payment method
 changePaymentMethod(quoteId, "example-payment-id");
 ```
 
-### 6. Bestellung aus Angebot erstellen
+### 6. Create an order from a quote
 
 ```vue
 <script setup lang="ts">
@@ -163,27 +163,27 @@ const handleCreateOrder = async () => {
 
 ## B2B Quick Order
 
-Das Quick-Order-Feature ermöglicht es B2B-Nutzern, schnell mehrere Produkte per SKU/Artikelnummer zum Warenkorb hinzuzufügen.
+The quick order feature lets B2B users quickly add several products to the cart by SKU/product number.
 
-**Referenz-Implementierung:**  
+**Reference implementation:**  
 https://github.com/shopware/frontends/tree/main/examples/commercial-quick-order
 
 ---
 
-## useB2bQuoteManagement – API-Übersicht
+## useB2bQuoteManagement – API overview
 
-| Methode | Signatur | Beschreibung |
+| Method | Signature | Description |
 |---------|----------|-------------|
-| `requestQuote` | `(comment: string)` | Neues Angebot für aktuellen Cart anfragen |
-| `getQuoteList` | `()` | Liste aller Angebote laden |
-| `declineQuote` | `(id: string, comment: string)` | Angebot ablehnen |
-| `requestChangeQuote` | `(id: string, comment: string)` | Änderung anfragen |
-| `changeShippingMethod` | `(id: string, shippingMethodId: string)` | Versandmethode ändern |
-| `changePaymentMethod` | `(id: string, paymentMethodId: string)` | Zahlungsmethode ändern |
-| `createOrderFromQuote` | `(id: string, comment: string)` | Bestellung aus Angebot erstellen |
+| `requestQuote` | `(comment: string)` | Request a new quote for the current cart |
+| `getQuoteList` | `()` | Load the list of all quotes |
+| `declineQuote` | `(id: string, comment: string)` | Decline a quote |
+| `requestChangeQuote` | `(id: string, comment: string)` | Request a change |
+| `changeShippingMethod` | `(id: string, shippingMethodId: string)` | Change the shipping method |
+| `changePaymentMethod` | `(id: string, paymentMethodId: string)` | Change the payment method |
+| `createOrderFromQuote` | `(id: string, comment: string)` | Create an order from a quote |
 
 ---
 
-## Composable-Referenz
+## Composable reference
 
-- [`useB2bQuoteManagement`](https://frontends.shopware.com/packages/composables/useB2bQuoteManagement) – offizielle Composable-Dokumentation
+- [`useB2bQuoteManagement`](https://frontends.shopware.com/packages/composables/useB2bQuoteManagement) – official composable documentation

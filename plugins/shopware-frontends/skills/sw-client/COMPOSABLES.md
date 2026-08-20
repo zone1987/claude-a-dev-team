@@ -1,23 +1,23 @@
 # Shopware Frontends — @shopware/composables
 
-Opinionierte Vue-Composables, die Geschäftslogik + State über dem `api-client` kapseln.
+Opinionated Vue composables that encapsulate business logic + state on top of the `api-client`.
 
-| Composable | Zweck |
+| Composable | Purpose |
 |---|---|
-| `useSessionContext` | aktueller Kontext (Sprache/Währung/Kunde), Context-Token |
-| `useCart` | Warenkorb laden/ändern (`addProduct`, `removeItem`, `cart`, `count`) |
-| `useCheckout` | Zahl-/Versandarten, Bestellung anlegen |
-| `useProductSearch` / `useProduct` | Produkt(e) laden |
-| `useListing` / `useCategoryListing` | Listing inkl. Filter/Sorting/Pagination |
-| `useCustomer` / `useUser` | Login/Register/Konto |
-| `useNavigation` / `useCms` | Menüs / CMS-Seiten |
+| `useSessionContext` | current context (language/currency/customer), context token |
+| `useCart` | load/modify the cart (`addProduct`, `removeItem`, `cart`, `count`) |
+| `useCheckout` | payment/shipping methods, place an order |
+| `useProductSearch` / `useProduct` | load product(s) |
+| `useListing` / `useCategoryListing` | listing incl. filter/sorting/pagination |
+| `useCustomer` / `useUser` | login/register/account |
+| `useNavigation` / `useCms` | menus / CMS pages |
 
 ```ts
 const { cart, addProduct, count } = useCart();
 await addProduct({ id: productId, quantity: 1 });
 ```
 
-Composables benötigen den bereitgestellten `apiClient`-Kontext (Setup im App-Plugin/Nuxt-Layer). CMS-Rendering der
-geladenen Seiten: `sw-frontends-cms`. Kontext-/Token-Lebenszyklus: `sw-frontends-session-context`.
+Composables require the provided `apiClient` context (setup in the app plugin/Nuxt layer). CMS rendering of the
+loaded pages: `sw-frontends-cms`. Context/token lifecycle: `sw-frontends-session-context`.
 
-→ Vollständige Referenz: [COMPOSABLES-REFERENCE.md](COMPOSABLES-REFERENCE.md)
+→ Complete reference: [COMPOSABLES-REFERENCE.md](COMPOSABLES-REFERENCE.md)

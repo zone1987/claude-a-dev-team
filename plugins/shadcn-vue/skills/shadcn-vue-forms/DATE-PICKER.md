@@ -7,9 +7,9 @@ Uses `@internationalized/date` for date value types.
 
 ## References
 
-- [installation.md](`DATE-PICKER-INSTALLATION.md`) — Popover + Calendar
+- [DATE-PICKER-INSTALLATION.md](DATE-PICKER-INSTALLATION.md) — Popover + Calendar
   deps, @internationalized/date
-- [source.md](`DATE-PICKER-SOURCE.md`) — Usage snippets from docs + examples
-- [api.md](`DATE-PICKER-API.md`) — CalendarDate, DateRange, DateFormatter,
+- [DATE-PICKER-SOURCE.md](DATE-PICKER-SOURCE.md) — Usage snippets from docs + examples
+- [DATE-PICKER-API.md](DATE-PICKER-API.md) — CalendarDate, DateRange, DateFormatter,
   Popover/Calendar props
-- [examples.md](`DATE-PICKER-EXAMPLES.md`) — Simple, Range, With Dropdowns
+- [DATE-PICKER-EXAMPLES.md](DATE-PICKER-EXAMPLES.md) — Simple, Range, With Dropdowns

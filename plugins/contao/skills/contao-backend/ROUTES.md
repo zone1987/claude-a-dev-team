@@ -1,4 +1,4 @@
 # contao-backend-routes
 
-Lies `ROUTES-DETAIL.md` für vollständige Implementierungsdetails
-zu eigenen Backend-Routen und Backend-Asset-Integration in Contao 5.
+Read `ROUTES-DETAIL.md` for complete implementation details
+on custom backend routes and backend asset integration in Contao 5.

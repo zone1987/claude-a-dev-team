@@ -1,272 +1,272 @@
-# Contao 5.x – Insert-Tags & Simple Tokens
+# Contao 5.x – Insert tags & Simple Tokens
 
-Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
+Complete reference from the Contao 5.x manual (German).
 
 ---
 
 ## Contents
 
-- [Insert-Tags](#insert-tags)
-- [1. Link-Tags](#1-link-tags)
-- [2. Mitglieder-Eigenschaften](#2-mitglieder-eigenschaften)
-- [3. Seiteneigenschaften](#3-seiteneigenschaften)
-- [4. Umgebungsvariablen](#4-umgebungsvariablen)
-- [5. Include-Tags](#5-include-tags)
-- [6. Diverses](#6-diverses)
-- [7. Verschachtelte Insert-Tags](#7-verschachtelte-insert-tags)
-- [8. Insert-Tag-Flags](#8-insert-tag-flags)
-- [9. Basis-Entities](#9-basis-entities)
+- [Insert tags](#insert-tags)
+- [1. Link tags](#1-link-tags)
+- [2. Member properties](#2-member-properties)
+- [3. Page properties](#3-page-properties)
+- [4. Environment variables](#4-environment-variables)
+- [5. Include tags](#5-include-tags)
+- [6. Miscellaneous](#6-miscellaneous)
+- [7. Nested insert tags](#7-nested-insert-tags)
+- [8. Insert tag flags](#8-insert-tag-flags)
+- [9. Basic entities](#9-basic-entities)
 - [Simple Tokens](#simple-tokens)
 
-## Insert-Tags
+## Insert tags
 
-Insert-Tags sind Platzhalter der Form `{{keyword}}` oder `{{keyword::parameter}}`, die beim Rendern einer Seite durch ihre Werte ersetzt werden. Sie können überall in Contao verwendet werden.
+Insert tags are placeholders of the form `{{keyword}}` or `{{keyword::parameter}}` that are replaced by their values when a page is rendered. They can be used anywhere in Contao.
 
 ---
 
-## 1. Link-Tags
+## 1. Link tags
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{link::*}}` | HTML-Link; Parameter: Seiten-ID, Alias oder absolute URL |
-| `{{link::login}}` | Link zur Login-Seite des aktuellen Frontend-Benutzers |
-| `{{link_open::*}}` / `{{link_close}}` | Öffnendes und schließendes Link-Tag |
-| `{{link_url::*}}` | Nur die URL |
-| `{{link_title::*}}` | Title-Attribut der Seite |
-| `{{link_name::*}}` | Name der Seite |
-| `{{article::*}}` | Link zu Artikel (ID oder Alias) |
-| `{{article_open::*}}` / `{{article_url::*}}` / `{{article_title::*}}` | Artikel-Varianten |
-| `{{news::*}}` | Link zu einem News-Eintrag |
-| `{{news_open::*}}` / `{{news_url::*}}` / `{{news_title::*}}` / `{{news_feed::*}}` | News-Varianten |
-| `{{event::*}}` | Link zu einem Event |
-| `{{event_open::*}}` / `{{event_url::*}}` / `{{event_title::*}}` / `{{calendar_feed::*}}` | Event-Varianten |
-| `{{faq::*}}` | Link zu einer FAQ-Frage |
-| `{{faq_open::*}}` / `{{faq_url::*}}` / `{{faq_title::*}}` | FAQ-Varianten |
+| `{{link::*}}` | HTML link; parameter: page ID, alias or absolute URL |
+| `{{link::login}}` | Link to the login page of the current frontend user |
+| `{{link_open::*}}` / `{{link_close}}` | Opening and closing link tag |
+| `{{link_url::*}}` | The URL only |
+| `{{link_title::*}}` | Title attribute of the page |
+| `{{link_name::*}}` | Name of the page |
+| `{{article::*}}` | Link to an article (ID or alias) |
+| `{{article_open::*}}` / `{{article_url::*}}` / `{{article_title::*}}` | Article variants |
+| `{{news::*}}` | Link to a news item |
+| `{{news_open::*}}` / `{{news_url::*}}` / `{{news_title::*}}` / `{{news_feed::*}}` | News variants |
+| `{{event::*}}` | Link to an event |
+| `{{event_open::*}}` / `{{event_url::*}}` / `{{event_title::*}}` / `{{calendar_feed::*}}` | Event variants |
+| `{{faq::*}}` | Link to an FAQ question |
+| `{{faq_open::*}}` / `{{faq_url::*}}` / `{{faq_title::*}}` | FAQ variants |
 
-### Link-Parameter
-- `::absolute` – Ausgabe als absolute URL
-- `::blank` – Öffnet in neuem Fenster mit `target="_blank" rel="noreferrer noopener"`
+### Link parameters
+- `::absolute` – output as an absolute URL
+- `::blank` – opens in a new window with `target="_blank" rel="noreferrer noopener"`
 
 ---
 
-## 2. Mitglieder-Eigenschaften
+## 2. Member properties
 
-Greifen auf Felder der `tl_member`-Tabelle des eingeloggten Frontend-Benutzers zu.
+Access fields of the `tl_member` table of the logged-in frontend user.
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{user::*}}` | Beliebiges Feld aus `tl_member` |
-| `{{user::firstname}}` | Vorname |
-| `{{user::lastname}}` | Nachname |
-| `{{user::company}}` | Firma |
-| `{{user::phone}}` / `{{user::mobile}}` / `{{user::fax}}` | Telefonnummern |
-| `{{user::email}}` | E-Mail-Adresse |
-| `{{user::website}}` | Website-URL |
-| `{{user::street}}` | Straße |
-| `{{user::postal}}` | PLZ |
-| `{{user::city}}` | Stadt |
-| `{{user::country}}` | Land |
-| `{{user::username}}` | Benutzername |
+| `{{user::*}}` | Any field from `tl_member` |
+| `{{user::firstname}}` | First name |
+| `{{user::lastname}}` | Last name |
+| `{{user::company}}` | Company |
+| `{{user::phone}}` / `{{user::mobile}}` / `{{user::fax}}` | Phone numbers |
+| `{{user::email}}` | E-mail address |
+| `{{user::website}}` | Website URL |
+| `{{user::street}}` | Street |
+| `{{user::postal}}` | Postcode |
+| `{{user::city}}` | City |
+| `{{user::country}}` | Country |
+| `{{user::username}}` | User name |
 
 ---
 
-## 3. Seiteneigenschaften
+## 3. Page properties
 
-Greifen auf Felder der `tl_page`-Tabelle der aktuellen Seite zu.
+Access fields of the `tl_page` table of the current page.
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{page::*}}` | Beliebiges Feld aus `tl_page` |
-| `{{page::id}}` | Aktuelle Seiten-ID |
-| `{{page::alias}}` | Aktueller Seiten-Alias |
-| `{{page::title}}` | Seitenname |
-| `{{page::pageTitle}}` | Seitentitel |
-| `{{page::description}}` | Seitenbeschreibung |
-| `{{page::language}}` | Seitensprache |
-| `{{page::parentAlias}}` / `{{page::parentTitle}}` / `{{page::parentPageTitle}}` | Übergeordnete Seite |
-| `{{page::mainAlias}}` / `{{page::mainTitle}}` / `{{page::mainPageTitle}}` | Hauptübergeordnete Seite |
-| `{{page::rootTitle}}` / `{{page::rootPageTitle}}` | Webseitenname und -titel |
+| `{{page::*}}` | Any field from `tl_page` |
+| `{{page::id}}` | Current page ID |
+| `{{page::alias}}` | Current page alias |
+| `{{page::title}}` | Seitenname (Page name) |
+| `{{page::pageTitle}}` | Seitentitel (Page title) |
+| `{{page::description}}` | Page description |
+| `{{page::language}}` | Page language |
+| `{{page::parentAlias}}` / `{{page::parentTitle}}` / `{{page::parentPageTitle}}` | Parent page |
+| `{{page::mainAlias}}` / `{{page::mainTitle}}` / `{{page::mainPageTitle}}` | Main parent page |
+| `{{page::rootTitle}}` / `{{page::rootPageTitle}}` | Website name and title |
 
 ---
 
-## 4. Umgebungsvariablen
+## 4. Environment variables
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{env::host}}` | Aktueller Hostname (z.B. example.com) |
-| `{{env::url}}` | Hostname mit Protokoll (z.B. https://www.example.com) |
-| `{{env::path}}` | Basis-URL mit Pfad zum Contao-Verzeichnis |
-| `{{env::request}}` | Aktueller Request-String (z.B. news/items/welcome.html) |
-| `{{env::ip}}` | IP-Adresse des Besuchers |
-| `{{env::referer}}` | URL der zuvor besuchten Seite |
-| `{{env::files_url}}` | Statische URL für das Upload-Verzeichnis |
-| `{{env::assets_url}}` | Statische URL für das Assets-Verzeichnis |
+| `{{env::host}}` | Current host name (e.g. example.com) |
+| `{{env::url}}` | Host name with protocol (e.g. https://www.example.com) |
+| `{{env::path}}` | Base URL with the path to the Contao directory |
+| `{{env::request}}` | Current request string (e.g. news/items/welcome.html) |
+| `{{env::ip}}` | IP address of the visitor |
+| `{{env::referer}}` | URL of the previously visited page |
+| `{{env::files_url}}` | Static URL for the upload directory |
+| `{{env::assets_url}}` | Static URL for the assets directory |
 
 ---
 
-## 5. Include-Tags
+## 5. Include tags
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{insert_article::*}}` | Artikel per ID oder Alias einbinden |
-| `{{insert_content::*}}` | Inhaltselement per ID einbinden |
-| `{{insert_module::*}}` | Modul per ID einbinden |
-| `{{insert_form::*}}` | Formular per ID einbinden |
-| `{{article_teaser::*}}` | Teaser-Text eines Artikels |
-| `{{news_teaser::*}}` | Teaser eines News-Eintrags |
-| `{{event_teaser::*}}` | Teaser eines Events |
-| `{{file::*}}` | Einbinden von .php- oder .html5-Dateien aus templates/; UUID-Referenz möglich |
+| `{{insert_article::*}}` | Embed an article by ID or alias |
+| `{{insert_content::*}}` | Embed a content element by ID |
+| `{{insert_module::*}}` | Embed a module by ID |
+| `{{insert_form::*}}` | Embed a form by ID |
+| `{{article_teaser::*}}` | Teaser text of an article |
+| `{{news_teaser::*}}` | Teaser of a news item |
+| `{{event_teaser::*}}` | Teaser of an event |
+| `{{file::*}}` | Embedding of .php or .html5 files from templates/; UUID reference possible |
 
 ---
 
-## 6. Diverses
+## 6. Miscellaneous
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{fragment::*}}` | Wird als ESI-Fragment gerendert |
-| `{{date}}` | Aktuelles Datum (globales Format) |
-| `{{date::*}}` | Datum mit eigenem Format (PHP-Datumsfunktion) |
-| `{{format_date::*::*}}` | UNIX-Timestamp oder standardisiertes Datum formatieren |
-| `{{convert_date::*::*::*}}` | Datum von einem in ein anderes Format umwandeln |
-| `{{last_update}}` / `{{last_update::*}}` | Letzter Aktualisierungs-Timestamp |
-| `{{email::*}}` | Kodierter E-Mail-Link |
-| `{{email_open::*}}` / `{{email_close}}` | Kodierter E-Mail-Link-Teile |
-| `{{email_url::*}}` | Nur kodierte E-Mail-Adresse |
-| `{{form_session_data::*}}` | Zugiff auf übermittelte Formularfeldwerte |
-| `{{lang::*}}...{{lang}}` | Fremdsprachigen Text auszeichnen |
-| `{{abbr::*}}...{{abbr}}` | Abkürzungen auszeichnen |
-| `{{acronym::*}}...{{acronym}}` | Akronyme auszeichnen |
-| `{{iflng::*}}` | Inhalt nur für bestimmte Sprache(n) anzeigen |
-| `{{ifnlng::*}}` | Inhalt für andere Sprachen als die angegebene anzeigen |
-| `{{image::*}}` | Bildvorschau mit Breite, Höhe, Alt, Klasse, Rel, Modus |
-| `{{picture::*}}` | Responsives `<picture>`-Element mit Größenkonfiguration |
-| `{{figure::*}}` | `<figure>`-Element mit `<picture>` und `<figcaption>` |
-| `{{label::*}}` | Übersetzung aus Sprachdateien |
-| `{{trans::*::*::*}}` | Symfony-Übersetzungssystem |
-| `{{version}}` | Aktuelle Contao-Version |
-| `{{toggle_view}}` | Wechselt zwischen Mobil- und Desktop-Layout |
-| `{{br}}` | HTML-Zeilenumbruch `<br>` |
-| `{{asset::*::*}}` | CSS/JavaScript-Pfade aus Packages einbinden |
-| `{{empty}}` | Leerer String |
+| `{{fragment::*}}` | Is rendered as an ESI fragment |
+| `{{date}}` | Current date (global format) |
+| `{{date::*}}` | Date with a custom format (PHP date function) |
+| `{{format_date::*::*}}` | Format a UNIX timestamp or a standardised date |
+| `{{convert_date::*::*::*}}` | Convert a date from one format into another |
+| `{{last_update}}` / `{{last_update::*}}` | Last update timestamp |
+| `{{email::*}}` | Encoded e-mail link |
+| `{{email_open::*}}` / `{{email_close}}` | Encoded e-mail link parts |
+| `{{email_url::*}}` | Encoded e-mail address only |
+| `{{form_session_data::*}}` | Access to submitted form field values |
+| `{{lang::*}}...{{lang}}` | Mark up text in a foreign language |
+| `{{abbr::*}}...{{abbr}}` | Mark up abbreviations |
+| `{{acronym::*}}...{{acronym}}` | Mark up acronyms |
+| `{{iflng::*}}` | Show content only for certain language(s) |
+| `{{ifnlng::*}}` | Show content for languages other than the one specified |
+| `{{image::*}}` | Image preview with width, height, alt, class, rel, mode |
+| `{{picture::*}}` | Responsive `<picture>` element with size configuration |
+| `{{figure::*}}` | `<figure>` element with `<picture>` and `<figcaption>` |
+| `{{label::*}}` | Translation from the language files |
+| `{{trans::*::*::*}}` | Symfony translation system |
+| `{{version}}` | Current Contao version |
+| `{{toggle_view}}` | Switches between the mobile and desktop layout |
+| `{{br}}` | HTML line break `<br>` |
+| `{{asset::*::*}}` | Embed CSS/JavaScript paths from packages |
+| `{{empty}}` | Empty string |
 
 ---
 
-## 7. Verschachtelte Insert-Tags
+## 7. Nested insert tags
 
-Tags, die IDs oder Aliases ausgeben, können verschachtelt werden:
+Tags that output IDs or aliases can be nested:
 
 ```
 {{link::{{page::id}}::absolute}}   → Link zur aktuellen Seite (absolut)
 {{link_url::{{page::id}}}}#anker  → Relativer Link mit Anker
 ```
 
-**Achtung:** Endlosschleifen vermeiden (z.B. `{{insert_article::{{page::alias}}}}`) — Seitenabsturz möglich.
+**Caution:** avoid endless loops (e.g. `{{insert_article::{{page::alias}}}}`) — a page crash is possible.
 
 ---
 
-## 8. Insert-Tag-Flags
+## 8. Insert tag flags
 
-Flags verarbeiten die Tag-Ausgabe weiter. Mehrere Flags kombinierbar:
+Flags process the tag output further. Several flags can be combined:
 
 ```
 {{ua::browser|uncached}}
 {{page::title|standardize|strtoupper}}
 ```
 
-| Flag | Beschreibung |
+| Flag | Description |
 |------|-------------|
-| `refresh` | Ausgabe bei jedem Request neu generieren |
-| `attr` | Sonderzeichen als HTML-Entities (für Attribute) |
-| `urlattr` | Wie `attr`, zusätzlich Doppelpunkte URL-kodieren (verhindert `javascript:`-Protokolle) |
-| `addslashes` | Backslash vor bestimmten Zeichen |
-| `standardize` | Ausgabe standardisieren (z.B. Seiten-Aliases) |
-| `ampersand` | & in Entities umwandeln |
-| `specialchars` | Sonderzeichen in Entities umwandeln |
-| `nl2br` | HTML-Zeilenumbrüche vor Zeilenenden einfügen |
-| `strtolower` | Kleinbuchstaben |
-| `utf8_strtolower` | Unicode-bewusste Kleinbuchstaben |
-| `strtoupper` | Großbuchstaben |
-| `utf8_strtoupper` | Unicode-bewusste Großbuchstaben |
-| `ucfirst` | Ersten Buchstaben großschreiben |
-| `lcfirst` | Ersten Buchstaben kleinschreiben |
-| `ucwords` | Ersten Buchstaben jedes Worts großschreiben |
-| `trim` | Leerzeichen an beiden Enden entfernen |
-| `ltrim` | Leerzeichen am Anfang entfernen |
-| `rtrim` | Leerzeichen am Ende entfernen |
-| `utf8_romanize` | In römische Zeichen umwandeln |
-| `encodeEmail` | E-Mail-Adressen kodieren |
-| `number_format` | Zahl formatieren (keine Dezimalstellen) |
-| `currency_format` | Währung formatieren (zwei Dezimalstellen) |
-| `readable_size` | In lesbares Format umwandeln |
-| `urlencode` | URL-kodieren |
-| `rawurlencode` | RFC 3986-Kodierung |
-| `flatten` | Array in kommagetrennte Schlüssel:Wert-Liste |
+| `refresh` | Regenerate the output on every request |
+| `attr` | Special characters as HTML entities (for attributes) |
+| `urlattr` | Like `attr`, additionally URL-encodes colons (prevents `javascript:` protocols) |
+| `addslashes` | Backslash before certain characters |
+| `standardize` | Standardise the output (e.g. page aliases) |
+| `ampersand` | Convert & into entities |
+| `specialchars` | Convert special characters into entities |
+| `nl2br` | Insert HTML line breaks before line endings |
+| `strtolower` | Lower case |
+| `utf8_strtolower` | Unicode-aware lower case |
+| `strtoupper` | Upper case |
+| `utf8_strtoupper` | Unicode-aware upper case |
+| `ucfirst` | Capitalise the first letter |
+| `lcfirst` | Lower-case the first letter |
+| `ucwords` | Capitalise the first letter of every word |
+| `trim` | Remove whitespace at both ends |
+| `ltrim` | Remove whitespace at the beginning |
+| `rtrim` | Remove whitespace at the end |
+| `utf8_romanize` | Convert into Roman characters |
+| `encodeEmail` | Encode e-mail addresses |
+| `number_format` | Format a number (no decimal places) |
+| `currency_format` | Format a currency (two decimal places) |
+| `readable_size` | Convert into a readable format |
+| `urlencode` | URL-encode |
+| `rawurlencode` | RFC 3986 encoding |
+| `flatten` | Array into a comma-separated key:value list |
 
 ---
 
-## 9. Basis-Entities
+## 9. Basic entities
 
-Spezielle Syntax für HTML-Entities (wenn per DCA `basicEntities` aktiviert):
+Special syntax for HTML entities (when `basicEntities` is enabled via the DCA):
 
-| Syntax | Entity | Zweck |
+| Syntax | Entity | Purpose |
 |--------|--------|-------|
 | `[&]` | `&amp;` | Ampersand |
-| `[lt]` | `&lt;` | Kleiner-als |
-| `[gt]` | `&gt;` | Größer-als |
-| `[nbsp]` | `&nbsp;` | Geschütztes Leerzeichen |
-| `[-]` | `&shy;` | Weiches Trennzeichen |
-| `[zwsp]` | `&ZeroWidthSpace;` | Nullbreites Leerzeichen |
-| `[lsqb]` | `&lsqb;` | Öffnende eckige Klammer |
-| `[rsqb]` | `&rsqb;` | Schließende eckige Klammer |
-| `[{]` / `[}]` | `{{` / `}}` | Insert-Tag-Syntax im Frontend anzeigen |
+| `[lt]` | `&lt;` | Less-than |
+| `[gt]` | `&gt;` | Greater-than |
+| `[nbsp]` | `&nbsp;` | Non-breaking space |
+| `[-]` | `&shy;` | Soft hyphen |
+| `[zwsp]` | `&ZeroWidthSpace;` | Zero-width space |
+| `[lsqb]` | `&lsqb;` | Opening square bracket |
+| `[rsqb]` | `&rsqb;` | Closing square bracket |
+| `[{]` / `[}]` | `{{` / `}}` | Display insert tag syntax in the frontend |
 
 ---
 
 ## Simple Tokens
 
-Simple Tokens sind Platzhalter ähnlich wie Insert-Tags, aber der Einsatzbereich wird von der jeweiligen Funktion (Entwickler) festgelegt. Ab Contao 4.10 basieren sie auf der Symfony Expression Language.
+Simple Tokens are placeholders similar to insert tags, but the area of use is determined by the respective function (developer). As of Contao 4.10 they are based on the Symfony Expression Language.
 
 ### Syntax
 
-- **Ausgabe:** `##tokenname##`
-- **Bedingung:** `{if tokenname=="wert"}…{endif}` (keine Hashes in Bedingungen, geschweifte Klammern stattdessen)
+- **Output:** `##tokenname##`
+- **Condition:** `{if tokenname=="wert"}…{endif}` (no hashes in conditions, curly braces instead)
 
-### Verfügbare Standard-Tokens
+### Available standard tokens
 
-| Token | Beschreibung | Modul |
+| Token | Description | Module |
 |-------|-------------|-------|
-| `##tstamp##` | Aktueller Timestamp | Allgemein |
-| `##flang##` | Aktuelle Sprache | Allgemein |
-| `##domain##` | Aktueller Domain | Newsletter |
-| `##link##` | Newsletter-Link | Newsletter |
-| `##channels##` | Abonnierte Kanäle | Newsletter |
+| `##tstamp##` | Current timestamp | General |
+| `##flang##` | Current language | General |
+| `##domain##` | Current domain | Newsletter |
+| `##link##` | Newsletter link | Newsletter |
+| `##channels##` | Subscribed channels | Newsletter |
 
-### Einsatzbereiche
+### Areas of use
 
-- Benutzerregistrierungs- und Passwortwiederherstellungs-Module
-- Newsletter-Verwaltung (Leser, Abonnements, Kündigungen)
-- Erweiterungen: Notification Center, Isotope eCommerce, Leads, MetaModels
-- Insert-Tag-Platzhalter
+- User registration and password recovery modules
+- Newsletter management (readers, subscriptions, cancellations)
+- Extensions: Notification Center, Isotope eCommerce, Leads, MetaModels
+- Insert tag placeholders
 
-### Praktische Anwendung
+### Practical application
 
-Dynamische Dateinamen: `datei_von_##tstamp##.pdf`
-Dateipfade: `files/data/##form_broschuere##.pdf`
+Dynamic file names: `datei_von_##tstamp##.pdf`
+File paths: `files/data/##form_broschuere##.pdf`
 
-### Bedingungsoperatoren
+### Condition operators
 
-| Operator | Funktion |
+| Operator | Function |
 |----------|---------|
-| `==` / `!=` | Gleichheitsvergleich |
-| `===` / `!==` | Strikter Typvergleich |
-| `<` / `>` / `<=` / `>=` | Vergleichsoperatoren |
-| `&&` / `\|\|` | Logisches UND/ODER (ab 4.10) |
-| `in` / `not in` | Array-Operationen (ab 4.10) |
-| `contains` / `starts with` / `ends with` | String-Vergleich (ab 4.10) |
-| `matches` | Regex-Muster (ab 4.10) |
+| `==` / `!=` | Equality comparison |
+| `===` / `!==` | Strict type comparison |
+| `<` / `>` / `<=` / `>=` | Comparison operators |
+| `&&` / `\|\|` | Logical AND/OR (as of 4.10) |
+| `in` / `not in` | Array operations (as of 4.10) |
+| `contains` / `starts with` / `ends with` | String comparison (as of 4.10) |
+| `matches` | Regex pattern (as of 4.10) |
 
 ---
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/artikelverwaltung/insert-tags/
 - https://docs.contao.org/5.x/manual/de/artikelverwaltung/simple-tokens/

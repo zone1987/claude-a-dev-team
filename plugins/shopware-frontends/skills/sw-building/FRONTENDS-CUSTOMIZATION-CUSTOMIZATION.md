@@ -1,6 +1,6 @@
 # Shopware Frontends – Customization
 
-Quelle: `apps/docs/src/getting-started/routing.md`, `src/getting-started/languages.md`,
+Source: `apps/docs/src/getting-started/routing.md`, `src/getting-started/languages.md`,
 `src/getting-started/features/`, `src/framework/composables/overwriting-composables.md`,
 `src/getting-started/cms/`
 
@@ -9,18 +9,18 @@ Quelle: `apps/docs/src/getting-started/routing.md`, `src/getting-started/languag
 ## Contents
 
 - [Routing](#routing)
-- [Mehrsprachigkeit (i18n)](#mehrsprachigkeit-i18n)
-- [Composables überschreiben/erweitern](#composables-überschreibenerweitern)
-- [CMS-Komponenten anpassen](#cms-komponenten-anpassen)
+- [Multi-language support (i18n)](#multi-language-support-i18n)
+- [Overriding/extending composables](#overridingextending-composables)
+- [Customizing CMS components](#customizing-cms-components)
 - [Sitemap](#sitemap)
-- [Nuxt Layers (Multi-Brand / Customization-Pattern)](#nuxt-layers-multi-brand-customization-pattern)
+- [Nuxt layers (multi-brand / customization pattern)](#nuxt-layers-multi-brand--customization-pattern)
 - [Features](#features)
 
 ## Routing
 
-### URL-Pfad zu Route auflösen
+### Resolving a URL path to a route
 
-Shopware nutzt `SeoUrl`-Konzept. URL-Pfad → Route-Konfiguration.
+Shopware uses the `SeoUrl` concept. URL path → route configuration.
 
 ```ts
 import { useNavigationContext, useNavigationSearch } from "@shopware/composables";
@@ -31,15 +31,15 @@ const { routeName, foreignKey } = useNavigationContext(ref(seoResult));
 // { routeName: "frontend.detail.page", foreignKey: "f2f6b..." }
 ```
 
-### Routen-Typen
+### Route types
 
-| routeName | Seiten-Typ |
+| routeName | Page type |
 |---|---|
-| `frontend.detail.page` | Produktdetailseite |
-| `frontend.navigation.page` | Kategorie-/Navigationsseite |
-| `frontend.landing.page` | Landing Page |
+| `frontend.detail.page` | Product detail page |
+| `frontend.navigation.page` | Category/navigation page |
+| `frontend.landing.page` | Landing page |
 
-### Catch-All Route (`[...all].vue`)
+### Catch-all route (`[...all].vue`)
 
 ```ts
 import type { Schemas } from "#shopware";
@@ -76,13 +76,13 @@ switch (routeName.value) {
 }
 ```
 
-### SEO-URLs ohne doppelten API-Call
+### SEO URLs without a duplicate API call
 
-Beim ersten Server-Request wird die SeoUrl aufgelöst. Danach sind die SEO-Daten bereits bekannt und können über die History State API weitergegeben werden → kein zweiter API-Call.
+On the first server request the SeoUrl is resolved. After that the SEO data is already known and can be passed on through the History State API → no second API call.
 
-**Helpers für direkte Links:**
+**Helpers for direct links:**
 ```vue
-<!-- NuxtLink mit getCategoryRoute -->
+<!-- NuxtLink with getCategoryRoute -->
 <script setup lang="ts">
 import { getCategoryRoute } from "@shopware/helpers";
 </script>
@@ -94,7 +94,7 @@ import { getCategoryRoute } from "@shopware/helpers";
 ```
 
 ```vue
-<!-- RouterLink mit getProductRoute -->
+<!-- RouterLink with getProductRoute -->
 <script setup lang="ts">
 import { getProductRoute } from "@shopware/helpers";
 </script>
@@ -107,21 +107,21 @@ import { getProductRoute } from "@shopware/helpers";
 
 ---
 
-## Mehrsprachigkeit (i18n)
+## Multi-language support (i18n)
 
-### Quellen für Übersetzungen
+### Sources of translations
 
 **Backend:**
-- CMS-Übersetzungen
-- Produkte und Kategorien
-- Routing-Pfade
+- CMS translations
+- Products and categories
+- Routing paths
 
 **Frontend:**
-- Statische Inhalte der App
+- Static content of the app
 
-**Wichtig:** Backend-Sprachcodes und Frontend-Sprachcodes müssen identisch sein!
+**Important:** backend language codes and frontend language codes must be identical!
 
-### Same-Domain Konfiguration
+### Same-domain configuration
 
 ```
 www.example.com         // GB site
@@ -142,7 +142,7 @@ i18n: {
 },
 ```
 
-### Multi-Domain Konfiguration
+### Multi-domain configuration
 
 ```
 www.example1.com     // GB site
@@ -156,7 +156,7 @@ locales: [
 ],
 ```
 
-### Routing mit Sprachprefix
+### Routing with a language prefix
 
 ```vue
 <script setup lang="ts">
@@ -168,16 +168,16 @@ const { formatLink } = useInternationalization(localePath);
 </template>
 ```
 
-### Sprachentausch (lokal testen)
+### Switching languages (testing locally)
 
-**Problem:** Nach Sprachwechsel leitet Backend auf seine Domain um.
+**Problem:** after a language switch the backend redirects to its own domain.
 
-**Lösung 1: hosts-Datei**
+**Solution 1: hosts file**
 ```
 127.0.0.1       yourDomainFromBackend.com
 ```
 
-**Lösung 2: Dev-Resolver**
+**Solution 2: dev resolver**
 ```ts
 const onChangeHandler = async (option: Event) => {
   const data = await changeLanguage((option.target as HTMLSelectElement).value);
@@ -196,42 +196,42 @@ const onChangeHandler = async (option: Event) => {
 };
 ```
 
-### localeId (abweichende Codes Backend/Frontend)
+### localeId (differing backend/frontend codes)
 
 ```ts
 locales: [
   { code: "en-GB", iso: "en-GB", file: "en-GB.ts" },
   {
-    code: "testde",           // Frontend-Code
-    iso: "de-DE",             // ISO-Code
+    code: "testde",           // frontend code
+    iso: "de-DE",             // ISO code
     file: "de-DE.ts",
-    localeId: "c19b753b5f2c4bea8ad15e00027802d4",  // Backend-Sprach-ID
+    localeId: "c19b753b5f2c4bea8ad15e00027802d4",  // backend language ID
   },
 ],
 ```
 
-Backend-Sprach-IDs: Shopware Admin → Einstellungen → Sprachen.
+Backend language IDs: Shopware Admin → Settings → Languages.
 
-### Lokales Testen
+### Testing locally
 
 ```
 NUXT_PUBLIC_SHOPWARE_DEV_STOREFRONT_URL=http://127.0.0.1:3000
 ```
 
-### Reverse Proxy & Caching
+### Reverse proxy & caching
 
-- i18n-Modul liest `x-forwarded-host`-Header (wichtig hinter Proxies)
-- Strategie-Optionen: `prefix_except_default` oder `prefix_and_default`
-- Browser-Erkennung deaktivieren: `detectBrowserLanguage: false`
-- Cache muss sprach-spezifisch konfiguriert sein
+- The i18n module reads the `x-forwarded-host` header (important behind proxies)
+- Strategy options: `prefix_except_default` or `prefix_and_default`
+- Disable browser detection: `detectBrowserLanguage: false`
+- The cache must be configured per language
 
 ---
 
-## Composables überschreiben/erweitern
+## Overriding/extending composables
 
-Datei mit gleichem Namen in `composables/`-Verzeichnis erstellt überschreibt automatisch.
+A file with the same name in the `composables/` directory overrides automatically.
 
-### Methode erweitern (Analytics)
+### Extending a method (analytics)
 
 ```ts
 // composables/useAddToCart.ts
@@ -242,7 +242,7 @@ export function useAddToCart(product: Ref<Product>) {
 
   const addToCart = async (quantity: number) => {
     const result = await coreFunctionality.addToCart(quantity);
-    // Analytics hier
+    // analytics here
     return result;
   };
 
@@ -250,7 +250,7 @@ export function useAddToCart(product: Ref<Product>) {
 }
 ```
 
-### Neue Eigenschaft hinzufügen
+### Adding a new property
 
 ```ts
 export function useAddToCart(product: Ref<Product>) {
@@ -267,31 +267,31 @@ export function useAddToCart(product: Ref<Product>) {
 }
 ```
 
-### Methode komplett ersetzen
+### Replacing a method entirely
 
 ```ts
 export function useAddToCart(product: Ref<Product>) {
   const coreFunctionality = coreUseAddToCart(product);
 
   const addToCart = async (quantity: number) => {
-    // Eigene Implementierung
+    // your own implementation
   };
 
   return { ...coreFunctionality, addToCart };
 }
 ```
 
-### Ganzes Composable ersetzen
+### Replacing an entire composable
 
 ```ts
 // composables/useAddToCart.ts
 export function useAddToCart(product: Ref<Product>) {
-  // Komplett eigene Implementierung (kein Core-Aufruf)
-  // Selbes Interface zurückgeben!
+  // completely custom implementation (no core call)
+  // return the same interface!
 }
 ```
 
-### Shared Composables erweitern
+### Extending shared composables
 
 ```ts
 import { useCartFunction } from "@shopware/composables";
@@ -299,7 +299,7 @@ import { createSharedComposable } from "@vueuse/core";
 
 function myUseCart() {
   const coreCartFunctions = useCartFunction();
-  const myCustomFunction = () => { /* eigene Logik */ };
+  const myCustomFunction = () => { /* your own logic */ };
   return { ...coreCartFunctions, myCustomFunction };
 }
 
@@ -308,89 +308,89 @@ export const useCart = createSharedComposable(myUseCart);
 
 ---
 
-## CMS-Komponenten anpassen
+## Customizing CMS components
 
-### Fehlende Komponente implementieren
+### Implementing a missing component
 
-Dev-Mode zeigt Placeholder mit:
-- Komponentenname (z.B. `CmsElementMyCustomSlider`)
-- Docs-Link
-- "Copy AI Prompt" Button (mit vollständigem API-JSON)
+Dev mode shows a placeholder with:
+- Component name (e.g. `CmsElementMyCustomSlider`)
+- Docs link
+- A "Copy AI Prompt" button (with the complete API JSON)
 
 ```vue
 <!-- app/components/CmsElementMyCustomSlider.vue -->
 <script setup lang="ts">
 import type { Schemas } from "#shopware";
 const props = defineProps<{ content: Schemas["CmsSlot"] }>();
-// props.content.data – Daten aus der API
-// props.content.config – Konfiguration
+// props.content.data – data from the API
+// props.content.config – configuration
 </script>
 <template>
-  <!-- eigene Implementierung -->
+  <!-- your own implementation -->
 </template>
 ```
 
-Nuxt auto-importiert die Komponente → Placeholder verschwindet.
+Nuxt auto-imports the component → the placeholder disappears.
 
-### Bestehende Komponente überschreiben
+### Overriding an existing component
 
 ```
 app/components/
-  SwProductCard.vue      # überschreibt Base-Layer SwProductCard
-  CmsBlockImageText.vue  # überschreibt Base-Layer CmsBlockImageText
+  SwProductCard.vue      # overrides the base-layer SwProductCard
+  CmsBlockImageText.vue  # overrides the base-layer CmsBlockImageText
 ```
 
-Nuxt priorisiert projekt-eigene Komponenten vor Layer-Komponenten.
+Nuxt prioritizes project-owned components over layer components.
 
-### CMS-Komponenten-Namen Konvention
+### CMS component naming convention
 
-| Typ | Namensschema | Beispiel |
+| Type | Naming scheme | Example |
 |---|---|---|
 | Section | `CmsSection{Type}` | `CmsSectionDefault` |
 | Block | `CmsBlock{type-in-pascal}` | `CmsBlockImageText` |
-| Element/Slot | `CmsElement{Type}` | `CmsElementImage` |
+| Element/slot | `CmsElement{Type}` | `CmsElementImage` |
 
 ---
 
 ## Sitemap
 
-Sitemap kombiniert zwei Quellen:
+The sitemap combines two sources:
 ```
 http://your-domain/sitemap.xml
 ```
 
-**Admin-Sitemap** (`/server/routes/sitemap.xml.ts`):
-- Produktseiten
-- Kategorieseiten
-- CMS-Seiten
+**Admin sitemap** (`/server/routes/sitemap.xml.ts`):
+- Product pages
+- Category pages
+- CMS pages
 
-Konfiguration: Shopware Admin → Einstellungen → Sitemap
+Configuration: Shopware Admin → Settings → Sitemap
 
-**Frontend-Sitemap** (`/server/routes/sitemap-local.xml.ts`):
-- Statische App-Seiten
-- Manuell zu `/server/sitemap.ts` hinzufügen
+**Frontend sitemap** (`/server/routes/sitemap-local.xml.ts`):
+- Static app pages
+- Add manually to `/server/sitemap.ts`
 
 ---
 
-## Nuxt Layers (Multi-Brand / Customization-Pattern)
+## Nuxt layers (multi-brand / customization pattern)
 
-Ermöglicht markenspezifische Storefronts ohne Code-Duplizierung.
+Enables brand-specific storefronts without code duplication.
 
-**Basis-Template als Dependency:**
+**Base template as a dependency:**
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   extends: ["../vue-starter-template"],
-  // Marken-spezifische Konfiguration
+  // brand-specific configuration
 })
 ```
 
-**Oder als npm-Paket:**
+**Or as an npm package:**
 ```ts
 extends: ["@your-company/store-base"],
 ```
 
-**Mehrere Layers:**
+**Multiple layers:**
 ```ts
 extends: [
   "@your-company/store-base",
@@ -398,7 +398,7 @@ extends: [
 ],
 ```
 
-Komponenten in der Layer-Hierarchie: Projekt-Komponenten haben höchste Priorität.
+Components in the layer hierarchy: project components have the highest priority.
 
 ---
 
@@ -406,18 +406,18 @@ Komponenten in der Layer-Hierarchie: Projekt-Komponenten haben höchste Priorit�
 
 ### Maintenance Mode
 
-Shopware kann einen Wartungsmodus aktivieren. Die Frontends-App muss diesen korrekt behandeln.
+Shopware can activate a maintenance mode. The Frontends app must handle it correctly.
 
 ### Custom Products
 
-Für konfigurierbare Produkte (Personalisierung). Nicht zu verwechseln mit Varianten.
-Dokumentation: https://docs.shopware.com/en/shopware-6-en/extensions/customproducts
+For configurable products (personalization). Not to be confused with variants.
+Documentation: https://docs.shopware.com/en/shopware-6-en/extensions/customproducts
 
 ### Sitemap
 
-Automatisch aus Backend + Frontend kombiniert (siehe oben).
+Automatically combined from backend + frontend (see above).
 
 ### Broadcasting
 
-Synchronisiert Cart & Session zwischen Browser-Tabs via BroadcastChannel API.
-**Standard: deaktiviert** (BFCache-Inkompatibilität).
+Synchronizes cart & session between browser tabs via the BroadcastChannel API.
+**Default: disabled** (BFCache incompatibility).

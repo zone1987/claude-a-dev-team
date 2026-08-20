@@ -4,7 +4,7 @@ Ueberblick und Architektur der Shopware B2B Components (Commercial Plugin, moder
 
 ## Referenzen
 
-- [B2B Components Uberblick und Feature-Toggles](`COMPONENTS-OVERVIEW.md`)
+- [COMPONENTS-OVERVIEW.md](COMPONENTS-OVERVIEW.md)
 
 ## Sub-Skills (Detailwissen)
 

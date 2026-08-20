@@ -1,28 +1,28 @@
-# Shopware Frontends – Integrationen
+# Shopware Frontends – Integrations
 
-Quelle: `apps/docs/src/resources/integrations/`
+Source: `apps/docs/src/resources/integrations/`
 
 ---
 
 ## Contents
 
-- [Payment-Integrationen](#payment-integrationen)
-- [CMS-Integrationen](#cms-integrationen)
-- [Commercial Integrationen (Rise/Evolve/Beyond)](#commercial-integrationen-riseevolvebeyond)
+- [Payment integrations](#payment-integrations)
+- [CMS integrations](#cms-integrations)
+- [Commercial integrations (Rise/Evolve/Beyond)](#commercial-integrations-riseevolvebeyond)
 - [Community Modules](#community-modules)
 
-## Payment-Integrationen
+## Payment integrations
 
-### PayPal Integration
+### PayPal integration
 
-**Voraussetzung:** [SwagPayPal](https://github.com/shopware/SwagPayPal) Extension im Shopware-Backend.
+**Prerequisite:** the [SwagPayPal](https://github.com/shopware/SwagPayPal) extension in the Shopware backend.
 
-**PayPal-spezifische Endpoints:**
-- `POST /store-api/paypal/create-order` – Order erstellen
-- `POST /store-api/paypal/express/create-order` – Express Checkout Order
-- `POST /store-api/paypal/express/prepare-checkout` – Express: Checkout vorbereiten
+**PayPal-specific endpoints:**
+- `POST /store-api/paypal/create-order` – create an order
+- `POST /store-api/paypal/express/create-order` – Express Checkout order
+- `POST /store-api/paypal/express/prepare-checkout` – Express: prepare checkout
 
-#### PayPal SDK laden
+#### Loading the PayPal SDK
 
 ```ts
 import { loadScript } from "@paypal/paypal-js";
@@ -34,7 +34,7 @@ loadScript({
 });
 ```
 
-#### Standard Checkout – createOrder
+#### Standard checkout – createOrder
 
 ```ts
 const divContainer = ref();
@@ -64,7 +64,7 @@ window.paypal.Buttons({
 }).render(divContainer);
 ```
 
-#### Express Checkout – createOrder
+#### Express checkout – createOrder
 
 ```ts
 window.paypal.Buttons({
@@ -98,9 +98,9 @@ window.paypal.Buttons({
 }).render(divContainer);
 ```
 
-#### Weitere PayPal-Methoden
+#### Further PayPal methods
 
-**SDK laden (mit zusätzlichen Methoden):**
+**Loading the SDK (with additional methods):**
 ```ts
 loadScript({
   "enable-funding": "paylater,venmo",
@@ -118,7 +118,7 @@ window.paypal.Buttons({
 }).render(divContainer);
 ```
 
-**Kreditkarte (ACDC):**
+**Credit card (ACDC):**
 ```ts
 const cardFields = paypal.CardFields({ createOrder, onApprove, style: {} });
 cardFields.NameField().render("#acdc-name-field-container");
@@ -132,53 +132,53 @@ async function onFormSubmit() {
 }
 ```
 
-**Google Pay:** Erfordert `<script src="https://pay.google.com/gp/p/js/pay.js">` im Head.
+**Google Pay:** requires `<script src="https://pay.google.com/gp/p/js/pay.js">` in the head.
 
-**Apple Pay:** Erfordert `<script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js">` im Head.
+**Apple Pay:** requires `<script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js">` in the head.
 
-StackBlitz-Demo: https://stackblitz.com/github/shopware/frontends/tree/main/examples/express-checkout
-
----
-
-### Adyen Integration
-
-Basiert auf dem Adyen Drop-in Component-Beispiel.
-Repository-Beispiel: `examples/adyen-dropin-component/`
+StackBlitz demo: https://stackblitz.com/github/shopware/frontends/tree/main/examples/express-checkout
 
 ---
 
-### Amazon Pay Integration
+### Adyen integration
 
-Basiert auf dem Amazon Pay Button-Beispiel.
-Repository-Beispiel: `examples/amazon-pay-button-example/`
+Based on the Adyen drop-in component example.
+Repository example: `examples/adyen-dropin-component/`
 
 ---
 
-### Braintree Integration
+### Amazon Pay integration
 
-**Voraussetzung:** [Shopware Braintree App](https://github.com/shopware/braintree-app) installiert und konfiguriert.
+Based on the Amazon Pay button example.
+Repository example: `examples/amazon-pay-button-example/`
 
-**Ablauf in 3 Schritten:**
+---
 
-**Schritt 1: Client Token holen**
+### Braintree integration
+
+**Prerequisite:** the [Shopware Braintree App](https://github.com/shopware/braintree-app) installed and configured.
+
+**Procedure in 3 steps:**
+
+**Step 1: fetch the client token**
 ```ts
 const { apiClient } = useShopwareContext();
 const { sessionContext } = useSessionContext();
 
-// App-Token von Shopware holen
+// fetch the app token from Shopware
 const tokenResponse = await apiClient.invoke(
   "generateJWTAppSystemAppServer post /app-system/{name}/generate-token",
   { pathParams: { name: "SwagBraintreeApp" } }
 );
 const { token, shopId } = tokenResponse.data;
 
-// Braintree Client Config holen
+// fetch the Braintree client config
 const configResponse = await fetch(
   `https://braintree.shopware.com/api/client/config?shop-id=${shopId}&...`,
   {
     method: "POST",
     headers: {
-      "shopware-app-token": token,  // WICHTIG: nicht Authorization: Bearer!
+      "shopware-app-token": token,  // IMPORTANT: not Authorization: Bearer!
       "shopware-app-shop-id": shopId,
     },
   }
@@ -186,54 +186,54 @@ const configResponse = await fetch(
 const { clientToken } = await configResponse.json();
 ```
 
-**Schritt 2: Braintree Drop-in initialisieren**
+**Step 2: initialise the Braintree drop-in**
 ```ts
 import dropin from "braintree-web-drop-in";
 
 const instance = await dropin.create({
   authorization: clientToken,
   container: "#dropin-container",
-  dataCollector: true,  // Required für deviceData
+  dataCollector: true,  // Required for deviceData
   card: { cardholderName: { required: true } },
 });
 ```
 
-**Schritt 3: Order erstellen und Payment abwickeln**
+**Step 3: create the order and handle the payment**
 ```ts
 const { createOrder } = useCheckout();
 const { apiClient } = useShopwareContext();
 
 async function onPaymentSubmit() {
   const { nonce, deviceData } = await instance.requestPaymentMethod();
-  const order = await createOrder();  // OHNE Braintree-Params!
+  const order = await createOrder();  // WITHOUT Braintree params!
 
   await apiClient.invoke("handlePaymentMethod post /handle-payment", {
     body: {
       orderId: order.id,
       finishUrl: `${window.location.origin}/checkout/finish`,
       errorUrl: `${window.location.origin}/checkout/error`,
-      braintreeNonce: nonce,           // Params an /handle-payment
-      braintreeDeviceData: deviceData, // NICHT an /checkout/order
+      braintreeNonce: nonce,           // params go to /handle-payment
+      braintreeDeviceData: deviceData, // NOT to /checkout/order
     },
   });
 }
 ```
 
-**Test-Karte:** 4111 1111 1111 1111 (Visa, any future expiry, any CVV)
+**Test card:** 4111 1111 1111 1111 (Visa, any future expiry, any CVV)
 
-Beispiel-Repo: https://github.com/shopware/frontends/tree/main/examples/braintree-credit-card
-
----
-
-### Mollie Integration
-
-Externes Projekt: https://github.com/mollie/Shopware6Composables
+Example repo: https://github.com/shopware/frontends/tree/main/examples/braintree-credit-card
 
 ---
 
-## CMS-Integrationen
+### Mollie integration
 
-### Storyblok Integration
+External project: https://github.com/mollie/Shopware6Composables
+
+---
+
+## CMS integrations
+
+### Storyblok integration
 
 **Setup:**
 ```bash
@@ -252,7 +252,7 @@ storyblok: {
 },
 ```
 
-**Storyblok-Komponenten (storyblok/):**
+**Storyblok components (storyblok/):**
 ```vue
 <!-- storyblok/Feature.vue -->
 <script setup>
@@ -279,7 +279,7 @@ const story = await useAsyncStoryblok(slug, { version: "draft" });
 
 ---
 
-### Strapi Integration
+### Strapi integration
 
 **Installation:**
 ```bash
@@ -291,7 +291,7 @@ pnpm add -D @nuxtjs/strapi
 export default { modules: ["@nuxtjs/strapi"] }
 ```
 
-**Einzelelement laden (Global Banner):**
+**Loading a single item (global banner):**
 ```vue
 <script setup lang="ts">
 interface GlobalBanner { text: string; color: string; }
@@ -308,7 +308,7 @@ const bgColor = computed(() => data.attributes?.color || "#fff");
 </template>
 ```
 
-**Seiten laden:**
+**Loading pages:**
 ```ts
 export function useSWStrapi() {
   const getPage = async (route: string) => {
@@ -330,40 +330,40 @@ export function useSWStrapi() {
 
 ---
 
-## Commercial Integrationen (Rise/Evolve/Beyond)
+## Commercial integrations (Rise/Evolve/Beyond)
 
-### B2B Quick-Order
+### B2B quick order
 
-Beispiel-Repo: `examples/commercial-quick-order/`
+Example repo: `examples/commercial-quick-order/`
 
-Erlaubt das schnelle Hinzufügen von Produkten via Produktnummer/CSV.
+Allows products to be added quickly via product number/CSV.
 
-### B2B Quote Management
+### B2B quote management
 
 Composable: `useB2bQuoteManagement`
 
-Vollständige Beispiele siehe `sw-frontends-examples`.
+For complete examples see `sw-frontends-examples`.
 
 ### Custom Products
 
-Beispiel-Repo: `examples/commercial-customized-products/`
+Example repo: `examples/commercial-customized-products/`
 
-Ermöglicht Produktkonfiguration (Personalisierung).
+Enables product configuration (personalisation).
 
 ### Digital Sales Rooms
 
-Ermöglicht virtuelle Verkaufsräume.
-Admin-Dokumentation: https://docs.shopware.com/en/shopware-6-en/extensions/digital-sales-rooms
+Enables virtual sales rooms.
+Admin documentation: https://docs.shopware.com/en/shopware-6-en/extensions/digital-sales-rooms
 
 ---
 
 ## Community Modules
 
-> Nicht offiziell von Shopware unterstützt.
+> Not officially supported by Shopware.
 
-| Modul | Maintainer | Beschreibung |
+| Module | Maintainer | Description |
 |---|---|---|
-| [store-api-proxy](https://github.com/KoRoHandelsGmbH/store-api-proxy) | KoRoHandelsGmbH | Dünne Schicht über Store-API mit Nitropack + Vercel Data Cache |
-| [Middleware Proxy Module](https://github.com/meeshoogendoorn/shopware-frontends-proxy) | meeshoogendoorn | Nuxt Middleware Proxy, entfernt CORS-Preflight-Requests |
-| [Nuxt Cache Tags](https://github.com/mothership-gmbh/nuxt-shopware-caching) | niklaswolf | Shopware Cache-Tags für Full-Page-Cache |
-| [Headless CMS POC](https://github.com/meeshoogendoorn/shopware-frontends-headless-cms-integration) | meeshoogendoorn | Prototype Storyblok Integration |
+| [store-api-proxy](https://github.com/KoRoHandelsGmbH/store-api-proxy) | KoRoHandelsGmbH | Thin layer over the Store API with Nitropack + Vercel Data Cache |
+| [Middleware Proxy Module](https://github.com/meeshoogendoorn/shopware-frontends-proxy) | meeshoogendoorn | Nuxt middleware proxy, removes CORS preflight requests |
+| [Nuxt Cache Tags](https://github.com/mothership-gmbh/nuxt-shopware-caching) | niklaswolf | Shopware cache tags for the full-page cache |
+| [Headless CMS POC](https://github.com/meeshoogendoorn/shopware-frontends-headless-cms-integration) | meeshoogendoorn | Prototype Storyblok integration |

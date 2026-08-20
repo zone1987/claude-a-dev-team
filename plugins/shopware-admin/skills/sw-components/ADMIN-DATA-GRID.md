@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Data-Grid
+# Shopware 6 — Admin data grid
 
-Listen mit `sw-entity-listing` (an Repository gekoppelt) bzw. `sw-data-grid` (eigene Daten).
+Lists with `sw-entity-listing` (coupled to a repository) or `sw-data-grid` (your own data).
 
 ```twig
 {% block ff_example_list %}
@@ -20,5 +20,5 @@ computed: {
 },
 ```
 
-Das `listing`-Mixin liefert `page`/`limit`/`sortBy`/`getList()`. Spalten mit `routerLink` für Detail-Navigation,
-`inlineEdit` für direktes Bearbeiten, Selektion für Bulk-Aktionen. Daten via Repository (`sw-admin-data-handling`).
+The `listing` mixin provides `page`/`limit`/`sortBy`/`getList()`. Columns with `routerLink` for detail navigation,
+`inlineEdit` for editing in place, selection for bulk actions. Data via repository (`sw-admin-data-handling`).

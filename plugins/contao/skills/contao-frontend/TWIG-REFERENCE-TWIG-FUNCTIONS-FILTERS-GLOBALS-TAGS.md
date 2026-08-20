@@ -1,22 +1,22 @@
-# Contao 5.x Twig-Referenz — Funktionen, Filter, Globals, Tags
+# Contao 5.x Twig Reference — Functions, Filters, Globals, Tags
 
-Contao erweitert Twig um eigene Funktionen, Filter, Globals und Tags zusätzlich zu [Twigs eigenen](https://twig.symfony.com/doc/3.x/#reference).
+Contao extends Twig with its own functions, filters, globals and tags in addition to [Twig's own](https://twig.symfony.com/doc/3.x/#reference).
 
 ---
 
 ## Contents
 
-- [1. Twig-Funktionen](#1-twig-funktionen)
-- [2. Twig-Filter](#2-twig-filter)
-- [3. Twig-Globals](#3-twig-globals)
-- [4. Twig-Tags](#4-twig-tags)
-- [5. Contao Twig-Komponenten](#5-contao-twig-komponenten)
+- [1. Twig Functions](#1-twig-functions)
+- [2. Twig Filters](#2-twig-filters)
+- [3. Twig Globals](#3-twig-globals)
+- [4. Twig Tags](#4-twig-tags)
+- [5. Contao Twig Components](#5-contao-twig-components)
 
-## 1. Twig-Funktionen
+## 1. Twig Functions
 
 ### add_schema_org
 
-Fügt JSON-LD-Metadaten zur aktuellen Seite hinzu.
+Adds JSON-LD metadata to the current page.
 
 ```twig
 {% do add_schema_org({
@@ -26,50 +26,50 @@ Fügt JSON-LD-Metadaten zur aktuellen Seite hinzu.
     'startDate': startTime|date('Y-m-d\TH:i:sP'),
 }) %}
 
-{# Metadaten aus FilesystemItem #}
+{# Metadata from a FilesystemItem #}
 {% do add_schema_org(file.schemaOrgData|default) %}
 
-{# Metadaten aus Figure #}
+{# Metadata from a Figure #}
 {% do add_schema_org(figure.schemaOrgData|default) %}
 ```
 
-**Parameter:** `array $jsonLd` — Array mit JSON-LD-Metadaten  
-**Rückgabe:** `void` (via `{% do %}`)
+**Parameters:** `array $jsonLd` — Array with JSON-LD metadata  
+**Returns:** `void` (via `{% do %}`)
 
 ---
 
 ### attrs()
 
-Fluente Verwaltung von HTML-Attributen über die `HtmlAttributes`-Klasse.
+Fluent management of HTML attributes through the `HtmlAttributes` class.
 
 ```twig
-{# CSS-Klassen #}
+{# CSS classes #}
 {% set el = attrs().addClass('my-div').addClass(cssClasses|default([])) %}
 <div{{ el }}>…</div>
 
-{# Klassen entfernen #}
+{# Remove classes #}
 {{ attrs().removeClass('foo') }}
 
-{# Bedingt hinzufügen #}
+{# Add conditionally #}
 {{ attrs().addClass('admin', isAdmin) }}
 
-{# Stile #}
+{# Styles #}
 {{ attrs().addStyle('color: red') }}
 {{ attrs().addStyle({'color': 'red', 'margin': '1em'}) }}
 {{ attrs().removeStyle('color') }}
 
-{# Attribute setzen #}
+{# Set attributes #}
 {{ attrs().set('id', 'my-id') }}
 {{ attrs().unset('id') }}
 {{ attrs().set('disabled', true, isDisabled) }}
 {{ attrs().setIfExists('title', maybeTitle) }}
 
-{# Zusammenführen #}
+{# Merge #}
 {{ attrs().mergeWith('disabled hidden') }}
 {{ attrs().mergeWith({'aria-label': 'Close'}) }}
 ```
 
-**Komplettes Beispiel:**
+**Complete example:**
 ```twig
 <button{{ attrs()
     .addClass(['btn', 'btn-primary'])
@@ -81,124 +81,124 @@ Fluente Verwaltung von HTML-Attributen über die `HtmlAttributes`-Klasse.
 
 ---
 
-### backend_icon() (ab 5.5)
+### backend_icon() (as of 5.5)
 
-Rendert ein Icon im Backend.
+Renders an icon in the back end.
 
 ```twig
 {{ backend_icon('edit.svg', 'Datensatz bearbeiten') }}
 {{ backend_icon('edit.svg', 'Edit', attrs().addClass('icon-sm')) }}
 ```
 
-**Parameter:**
-1. `string $icon` — Icon-Dateiname
-2. `string $alt` — Alt-Text für `<img>`
-3. `HtmlAttributes $attributes` (optional) — Zusätzliche HTML-Attribute auf `<img>`
+**Parameters:**
+1. `string $icon` — Icon file name
+2. `string $alt` — Alt text for `<img>`
+3. `HtmlAttributes $attributes` (optional) — Additional HTML attributes on `<img>`
 
 ---
 
 ### contao_figure() [DEPRECATED]
 
-Rendert eine Abbildung für Bildverarbeitung. **Veraltet — wird in Contao 6 entfernt.** Stattdessen `figure()` mit `component/_figure.html.twig` verwenden.
+Renders a figure for image processing. **Deprecated — will be removed in Contao 6.** Use `figure()` with `component/_figure.html.twig` instead.
 
-**Parameter:**
-1. `mixed $from` — `FilesModel`, `FilesystemItem`, `ImageInterface`, UUID/ID/Pfad
-2. `mixed $size` — Bildgrößenkonfiguration
-3. `array $configuration` — Zusätzliche `FigureBuilder`-Einstellungen
-4. `string $template` (optional) — Eigenes Template
+**Parameters:**
+1. `mixed $from` — `FilesModel`, `FilesystemItem`, `ImageInterface`, UUID/ID/path
+2. `mixed $size` — Image size configuration
+3. `array $configuration` — Additional `FigureBuilder` settings
+4. `string $template` (optional) — Custom template
 
 ---
 
 ### contao_section()
 
-Rendert einen Layout-Abschnitt.
+Renders a layout section.
 
 ```twig
 {{ contao_section('main') }}
 {{ contao_section('left', 'block_section_custom') }}
 ```
 
-**Parameter:**
-1. `string $key` — Layout-Abschnitts-ID
-2. `string $template` (optional) — Eigenes Template (Standard: `block_section`)
+**Parameters:**
+1. `string $key` — Layout section ID
+2. `string $template` (optional) — Custom template (default: `block_section`)
 
 ---
 
 ### contao_sections()
 
-Rendert benutzerdefinierte Layout-Abschnitte einer bestimmten Position.
+Renders the custom layout sections of a given position.
 
 ```twig
 {{ contao_sections('top') }}
 {{ contao_sections('bottom', 'block_sections_custom') }}
 ```
 
-**Parameter:**
-1. `string $key` — Position des benutzerdefinierten Abschnitts
-2. `string $template` (optional) — Eigenes Template (Standard: `block_sections`)
+**Parameters:**
+1. `string $key` — Position of the custom section
+2. `string $template` (optional) — Custom template (default: `block_sections`)
 
 ---
 
-### content_element() (ab 5.2)
+### content_element() (as of 5.2)
 
-Rendert ein Inhaltselement per Datenbankreferenz oder dynamisch.
+Renders a content element by database reference or dynamically.
 
 ```twig
-{# Nach ID #}
+{# By ID #}
 {{ content_element(8472) }}
 
-{# Konfiguration überschreiben #}
+{# Override the configuration #}
 {{ content_element(5618, { perRow: 4 }) }}
 
-{# Dynamisch erstellen #}
+{# Create dynamically #}
 {{ content_element('text', { text: '<p>Hello World!</p>' }) }}
 
-{# Via Fragment-Referenz #}
+{# Via fragment reference #}
 {{ content_element(fragment_reference) }}
 ```
 
-**Parameter:**
-- `int|string|FragmentReference $typeOrId` — Typ, Datenbank-ID oder Fragment-Referenz
-- `array $data` (optional) — Daten/Konfigurationsüberschreibungen
+**Parameters:**
+- `int|string|FragmentReference $typeOrId` — Type, database ID or fragment reference
+- `array $data` (optional) — Data/configuration overrides
 
 ---
 
-### content_url() (ab 5.3)
+### content_url() (as of 5.3)
 
-Generiert die URL für ein Model-Objekt (wie Symfonys `path()`).
+Generates the URL for a model object (like Symfony's `path()`).
 
 ```twig
 {% for item in items %}
     <a href="{{ content_url(item) }}">{{ item.title }}</a>
 {% endfor %}
 
-{# Mit Parametern #}
+{# With parameters #}
 {{ content_url(pageModel, {foo: 'bar'}) }}
 
-{# Relativer Pfad statt absoluter URL #}
+{# Relative path instead of absolute URL #}
 {{ content_url(item, [], true) }}
 ```
 
-**Parameter:**
-- `Model $content` — Contao-Model
-- `array $parameters` (optional) — URL-Parameter
-- `bool $relative` (optional) — `true` für absoluten Pfad statt absoluter URL
+**Parameters:**
+- `Model $content` — Contao model
+- `array $parameters` (optional) — URL parameters
+- `bool $relative` (optional) — `true` for an absolute path instead of an absolute URL
 
 ---
 
-### csp_hash() (ab 5.3)
+### csp_hash() (as of 5.3)
 
-Fügt CSP-Hashes für Inline-Styles und -Skripte hinzu.
+Adds CSP hashes for inline styles and scripts.
 
 ```twig
-{# Inline-JavaScript absichern #}
+{# Secure inline JavaScript #}
 {% set script %}
     alert('foo');
 {% endset %}
 <script>{{ script }}</script>
 {% do csp_hash('script-src', script) %}
 
-{# Inline-Style absichern #}
+{# Secure an inline style #}
 {% set style %}
     body { background-color: magenta; }
 {% endset %}
@@ -206,16 +206,16 @@ Fügt CSP-Hashes für Inline-Styles und -Skripte hinzu.
 {% do csp_hash('style-src', style) %}
 ```
 
-**Parameter:**
-1. `string $directive` — CSP-Direktive
-2. `string $source` — Zu hashender Inhalt
-3. `string $algorithm` (optional) — Hash-Algorithmus (Standard: `sha256`)
+**Parameters:**
+1. `string $directive` — CSP directive
+2. `string $source` — Content to be hashed
+3. `string $algorithm` (optional) — Hash algorithm (default: `sha256`)
 
 ---
 
-### csp_nonce() (ab 5.3)
+### csp_nonce() (as of 5.3)
 
-Fügt CSP-Nonces für Inline-Styles und -Skripte hinzu.
+Adds CSP nonces for inline styles and scripts.
 
 ```twig
 <script{{ attrs().setIfExists('nonce', csp_nonce('script-src')) }}>
@@ -227,39 +227,39 @@ Fügt CSP-Nonces für Inline-Styles und -Skripte hinzu.
 </style>
 ```
 
-**Parameter:** `string $directive` — CSP-Direktive  
-**Rückgabe:** `string|null` (Nonce-Wert)
+**Parameters:** `string $directive` — CSP directive  
+**Returns:** `string|null` (nonce value)
 
 ---
 
-### csp_source() (ab 5.3)
+### csp_source() (as of 5.3)
 
-Fügt eine Quelle für eine CSP-Direktive hinzu. Nützlich für iframes und externe Medien.
+Adds a source for a CSP directive. Useful for iframes and external media.
 
 ```twig
-{# Für iframes #}
+{# For iframes #}
 {% set source = 'https://example.com/foobar' %}
 {% do csp_source('frame-src', source) %}
 <iframe src="{{ source }}">
 
-{# Für Video-Elemente #}
+{# For video elements #}
 {% set source = 'https://example.com/foobar.mp4' %}
 {% do csp_source('media-src', source) %}
 <video controls><source src="{{ source }}"></video>
 
-{# Mehrere Direktiven #}
+{# Multiple directives #}
 {% do csp_source(['frame-src', 'media-src'], source) %}
 ```
 
-**Parameter:**
-- `string|array $directive` — CSP-Direktive(n)
-- `string $source` — Quell-URL
+**Parameters:**
+- `string|array $directive` — CSP directive(s)
+- `string $source` — Source URL
 
 ---
 
 ### figure()
 
-Erstellt ein Figure-Objekt für Bildverarbeitung via Contao Image Studio.
+Creates a Figure object for image processing via the Contao Image Studio.
 
 ```twig
 {% use "@Contao/component/_figure.html.twig" %}
@@ -271,7 +271,7 @@ Erstellt ein Figure-Objekt für Bildverarbeitung via Contao Image Studio.
 {% endif %}
 ```
 
-**Erweiterte Konfiguration:**
+**Advanced configuration:**
 ```twig
 {% set fig = figure(id, [200, 200, 'proportional'], {
     metadata: { alt: 'Bildbeschreibung', caption: 'Bildunterschrift' },
@@ -283,48 +283,48 @@ Erstellt ein Figure-Objekt für Bildverarbeitung via Contao Image Studio.
 }) %}
 ```
 
-**Auf Bilddaten zugreifen:**
+**Access the image data:**
 ```twig
 {% set resizedPath = figure(id, '_my_size').image.img.src %}
 {% set originalPath = figure(id, '_my_size').image.filePath %}
 ```
 
-**Parameter:**
-- `mixed $from` — `FilesModel`, `FilesystemItem`, `ImageInterface`, UUID/ID/Pfad
-- `mixed $size` — Bildgrößenkonfiguration, Referenz oder Size-Array
-- `array $configuration` (optional) — `FigureBuilder`-Einstellungen
+**Parameters:**
+- `mixed $from` — `FilesModel`, `FilesystemItem`, `ImageInterface`, UUID/ID/path
+- `mixed $size` — Image size configuration, reference or size array
+- `array $configuration` (optional) — `FigureBuilder` settings
 
-**Rückgabe:** `Figure|null`
+**Returns:** `Figure|null`
 
 ---
 
-### file_icon() (ab 5.7)
+### file_icon() (as of 5.7)
 
-Rendert ein Icon basierend auf dem Dateityp im Backend.
+Renders an icon based on the file type in the back end.
 
 ```twig
 {{ file_icon(download.file, 'Download', attrs().addClass('file-icon')) }}
 ```
 
-**Parameter:**
-1. `FilesystemItem $item` — Dateisystem-Element
-2. `string $alt` (optional) — Alt-Text
-3. `HtmlAttributes $attributes` (optional) — Zusätzliche HTML-Attribute
+**Parameters:**
+1. `FilesystemItem $item` — Filesystem item
+2. `string $alt` (optional) — Alt text
+3. `HtmlAttributes $attributes` (optional) — Additional HTML attributes
 
 ---
 
-### frontend_module() (ab 5.2)
+### frontend_module() (as of 5.2)
 
-Rendert ein Frontend-Modul per Datenbankreferenz oder dynamisch.
+Renders a front end module by database reference or dynamically.
 
 ```twig
-{# Nach ID #}
+{# By ID #}
 {{ frontend_module(1701) }}
 
-{# Konfiguration überschreiben #}
+{# Override the configuration #}
 {{ frontend_module(1864, { hardLimit: 0 }) }}
 
-{# Dynamisch #}
+{# Dynamically #}
 {{ frontend_module('newslist', {
     news_archives: [1, 2],
     news_template: 'news_latest',
@@ -333,39 +333,39 @@ Rendert ein Frontend-Modul per Datenbankreferenz oder dynamisch.
     imgSize: [0, 0, '_news_list'],
 }) }}
 
-{# Via Fragment-Referenz #}
+{# Via fragment reference #}
 {{ frontend_module(fragment_reference) }}
 ```
 
-**Parameter:**
-- `int|string|FragmentReference $typeOrId` — Typ, Datenbank-ID oder Fragment-Referenz
-- `array $data` (optional) — Konfiguration/Überschreibungen
+**Parameters:**
+- `int|string|FragmentReference $typeOrId` — Type, database ID or fragment reference
+- `array $data` (optional) — Configuration/overrides
 
 ---
 
 ### include()
 
-Contao überschreibt Twigs Standard-Include-Funktion um die Contao-Template-Hierarchie zu unterstützen.
+Contao overrides Twig's default include function in order to support the Contao template hierarchy.
 
 ---
 
 ### insert_tag()
 
-Rendert ein Insert-Tag direkt.
+Renders an insert tag directly.
 
 ```twig
 <a href="{{ insert_tag('link_url::10') }}">{{ insert_tag('link_title::10') }}</a>
 <p>{{ insert_tag('insert_article::123')|raw }}</p>
 ```
 
-**Parameter:** `string $insertTag` — Insert-Tag ohne geschweifte Klammern  
-**Rückgabe:** `string`
+**Parameters:** `string $insertTag` — Insert tag without curly braces  
+**Returns:** `string`
 
 ---
 
 ### picture_config()
 
-Erstellt eine Bildkonfiguration zur Laufzeit (ohne `contao.image.sizes` in config).
+Creates an image configuration at runtime (without `contao.image.sizes` in the config).
 
 ```twig
 {% use "@Contao/component/_figure.html.twig" %}
@@ -386,43 +386,43 @@ Erstellt eine Bildkonfiguration zur Laufzeit (ohne `contao.image.sizes` in confi
 {% with {figure: image} %}{{ block('figure_component') }}{% endwith %}
 ```
 
-**Parameter:** `array $config` — Konfiguration entspricht `contao.image.sizes` Bundle-Konfiguration  
-**Rückgabe:** `PictureConfiguration`
+**Parameters:** `array $config` — The configuration matches the `contao.image.sizes` bundle configuration  
+**Returns:** `PictureConfiguration`
 
 ---
 
 ### prefix_url()
 
-Prefixiert relative URLs mit dem Basispfad (Ersatz für `<base href="…">`).
+Prefixes relative URLs with the base path (a replacement for `<base href="…">`).
 
 ```twig
 <a href="{{ prefix_url(userGeneratedUrl|insert_tag) }}">Link</a>
 ```
 
-**Parameter:** `string $url` — Relative URL  
-**Rückgabe:** `string` (pfad-absolute URL)
+**Parameters:** `string $url` — Relative URL  
+**Returns:** `string` (path-absolute URL)
 
 ---
 
-## 2. Twig-Filter
+## 2. Twig Filters
 
-### csp_inline_styles (ab 5.3)
+### csp_inline_styles (as of 5.3)
 
-Extrahiert alle Inline-CSS-Style-Attribute eines HTML-Strings und fügt automatisch CSP-Hashes hinzu.
+Extracts all inline CSS style attributes of an HTML string and adds CSP hashes automatically.
 
 ```twig
 {{ some_html|csp_inline_styles|raw }}
 ```
 
-Konfiguration erlaubter Stile: `contao.csp.allowed_inline_styles`.
+Configuration of the allowed styles: `contao.csp.allowed_inline_styles`.
 
 ---
 
-### csp_unsafe_inline_style (ab 5.3.2)
+### csp_unsafe_inline_style (as of 5.3.2)
 
-Fügt CSP-Hash für einen Inline-Style hinzu und fügt automatisch `'unsafe-hashes'` zur Direktive hinzu.
+Adds a CSP hash for an inline style and automatically adds `'unsafe-hashes'` to the directive.
 
-**Warnung:** Nur vertrauenswürdige Stile übergeben!
+**Warning:** Only pass trusted styles!
 
 ```twig
 <div style="{{ 'color: red'|csp_unsafe_inline_style }}">
@@ -432,9 +432,9 @@ Fügt CSP-Hash für einen Inline-Style hinzu und fügt automatisch `'unsafe-hash
 
 ---
 
-### deserialize (ab 5.3.8)
+### deserialize (as of 5.3.8)
 
-Deserialisiert einen String mit serialisierten Daten in ein Array. Intern: `Contao\StringUtil::deserialize()`.
+Deserializes a string containing serialized data into an array. Internally: `Contao\StringUtil::deserialize()`.
 
 ```twig
 {% set data = 'a:2:{i:0;s:3:"Foo";i:1;s:3:"Bar";}'|deserialize %}
@@ -445,9 +445,9 @@ Deserialisiert einen String mit serialisierten Daten in ein Array. Intern: `Cont
 
 ---
 
-### encode_email (ab 5.2)
+### encode_email (as of 5.2)
 
-Kodiert eine E-Mail-Adresse mit HTML-Entities. Intern: `Contao\StringUtil::encodeEmail()`.
+Encodes an e-mail address with HTML entities. Internally: `Contao\StringUtil::encodeEmail()`.
 
 ```twig
 {{ 'foobar@example.com'|encode_email }}
@@ -457,18 +457,18 @@ Kodiert eine E-Mail-Adresse mit HTML-Entities. Intern: `Contao\StringUtil::encod
 
 ### escape
 
-Contao überschreibt Twigs Standard-Escape-Filter um `ChunkedText` aus Insert-Tags zu unterstützen und verhindert Doppel-Kodierung.
+Contao overrides Twig's default escape filter in order to support `ChunkedText` from insert tags and prevents double encoding.
 
 ```twig
-{# Standard — kein Doppel-Encoding #}
-{{ '&gt;'|e }}  {# Ausgabe: &gt; #}
+{# Default — no double encoding #}
+{{ '&gt;'|e }}  {# Output: &gt; #}
 
-{# Doppel-Encoding erzwingen #}
+{# Force double encoding #}
 {{ '&gt;'|e('html', double_encode = true) }}
 ```
 
 ```twig
-{# Selektives Escaping: Nur Text außerhalb von Insert-Tags #}
+{# Selective escaping: only text outside of insert tags #}
 {{ text|insert_tag_raw|escape('html') }}
 ```
 
@@ -476,7 +476,7 @@ Contao überschreibt Twigs Standard-Escape-Filter um `ChunkedText` aus Insert-Ta
 
 ### format_bytes
 
-Konvertiert Bytes in ein lesbares Format.
+Converts bytes into a readable format.
 
 ```twig
 {{ 134217728|format_bytes }}         {# "128.0 MiB" #}
@@ -485,13 +485,13 @@ Konvertiert Bytes in ein lesbares Format.
 {{ 135000000|format_bytes(3) }}      {# "128.746 MiB" #}
 ```
 
-**Parameter:** `int $decimalPlaces` (optional, Standard: `1`)
+**Parameters:** `int $decimalPlaces` (optional, default: `1`)
 
 ---
 
 ### highlight
 
-Syntax-Highlighting via highlight.php.
+Syntax highlighting via highlight.php.
 
 ```twig
 {% set highlighted = code|highlight('php') %}
@@ -502,18 +502,18 @@ Syntax-Highlighting via highlight.php.
     {{- highlighted.value|raw -}}
 </code></pre>
 
-{# Kurzform via __toString() #}
+{# Short form via __toString() #}
 <pre><code>{{ code|highlight('php')|raw }}</code></pre>
 ```
 
-**Parameter:** `string $language` (optional, Standard: `plaintext`)  
-**Rückgabe:** `HighlightResult` mit `.language` und `.value`
+**Parameters:** `string $language` (optional, default: `plaintext`)  
+**Returns:** `HighlightResult` with `.language` and `.value`
 
 ---
 
 ### highlight_auto
 
-Automatisches Syntax-Highlighting via highlight.php (Sprache wird auto-erkannt).
+Automatic syntax highlighting via highlight.php (the language is auto-detected).
 
 ```twig
 {% set highlighted = code|highlight_auto %}
@@ -521,114 +521,114 @@ Automatisches Syntax-Highlighting via highlight.php (Sprache wird auto-erkannt).
     {{- highlighted.value|raw -}}
 </code></pre>
 
-{# Sprachen einschränken #}
+{# Restrict the languages #}
 <pre><code>{{ code|highlight_auto(['C', 'C#', 'C++']) }}</code></pre>
 ```
 
-**Rückgabe:** `HighlightResult` (wie `highlight`)
+**Returns:** `HighlightResult` (as with `highlight`)
 
 ---
 
 ### insert_tag
 
-Ersetzt Insert-Tags für Text-Ausgabe (nicht-HTML, z. B. in HTML-Attributen).
+Replaces insert tags for text output (non-HTML, e.g. in HTML attributes).
 
 ```twig
 {{ '{{date::Y}}'|insert_tag }}           {# "1970" #}
-{{ '{{fragment::{{date::Y}}}}'|insert_tag }}  {# "1970" (kein ESI-Tag) #}
+{{ '{{fragment::{{date::Y}}}}'|insert_tag }}  {# "1970" (no ESI tag) #}
 ```
 
 ---
 
 ### insert_tag_raw
 
-Ersetzt Insert-Tags für HTML-Ausgabe.
+Replaces insert tags for HTML output.
 
 ```twig
 {{ '{{date::Y}}'|insert_tag_raw }}           {# "1970" #}
 {{ '{{fragment::{{date::Y}}}}'|insert_tag_raw }}  {# <esi:include ...></esi:include> #}
 
-{# Escaping: HTML-Tags außerhalb = escaped, Insert-Tag-Output = nicht escaped #}
+{# Escaping: HTML tags outside = escaped, insert tag output = not escaped #}
 {{ '<span> foo {{br}} bar </span>'|insert_tag_raw }}
-{# Ausgabe: &lt;span&gt; foo <br> bar &lt;/span&gt; #}
+{# Output: &lt;span&gt; foo <br> bar &lt;/span&gt; #}
 ```
 
 ---
 
-### sanitize_html (ab 5.1)
+### sanitize_html (as of 5.1)
 
-Bereinigt HTML-Code mit einem konfigurierten Symfony-Sanitizer.
+Sanitizes HTML code with a configured Symfony sanitizer.
 
 ```twig
-{# Standard-Sanitizer — für externen HTML-Code #}
+{# Default sanitizer — for external HTML code #}
 {{ '<div title=test style=color:red onclick=alert(1)><script>alert(2)</script>{{date::Y}}'|sanitize_html }}
-{# Ausgabe: <div title="test">&#123;&#123;date::Y&#125;&#125;</div> #}
+{# Output: <div title="test">&#123;&#123;date::Y&#125;&#125;</div> #}
 
-{# Contao-Sanitizer (ab 5.7) — für HTML aus dem Contao-Backend (TinyMCE) #}
+{# Contao sanitizer (as of 5.7) — for HTML from the Contao back end (TinyMCE) #}
 {{ html_from_backend|sanitize_html('contao') }}
 ```
 
 ---
 
-## 3. Twig-Globals
+## 3. Twig Globals
 
-### contao (ab 5.3)
+### contao (as of 5.3)
 
-Das `contao` Twig-Global bietet Zugang zu nützlichen Funktionen und Eigenschaften.
+The `contao` Twig global provides access to useful functions and properties.
 
 ```twig
-{# Aktuelle Seite (PageModel) #}
+{# Current page (PageModel) #}
 {{ contao.page.title }}
 {% set page = contao.page %}
 
-{# Backend-Benutzer in Frontend-Session vorhanden? #}
+{# Is a back end user present in the front end session? #}
 {% if contao.has_backend_user %}…{% endif %}
 
-{# Vorschau-Modus (versteckte Elemente anzeigen) aktiv? #}
+{# Is preview mode (show hidden elements) active? #}
 {% if contao.is_preview_mode %}…{% endif %}
 
-{# Request-Token für Formulare #}
+{# Request token for forms #}
 {{ contao.request_token }}
 
-{# Backend-Benutzer im Frontend (falls vorhanden) #}
+{# Back end user in the front end (if present) #}
 {% set user = contao.backend_user.username|default %}
 ```
 
-**Eigenschaften:**
+**Properties:**
 
-| Eigenschaft | Typ | Beschreibung |
+| Property | Type | Description |
 |-------------|-----|--------------|
-| `contao.page` | `PageModel\|null` | Aktuelles PageModel |
-| `contao.has_backend_user` | `bool` | Backend-Benutzer in Session vorhanden |
-| `contao.is_preview_mode` | `bool` | Vorschau-Modus aktiv |
-| `contao.request_token` | `string` | CSRF-Request-Token |
-| `contao.backend_user` | `BackendUser\|null` | Backend-Benutzer (falls vorhanden) |
+| `contao.page` | `PageModel\|null` | Current PageModel |
+| `contao.has_backend_user` | `bool` | Back end user present in the session |
+| `contao.is_preview_mode` | `bool` | Preview mode active |
+| `contao.request_token` | `string` | CSRF request token |
+| `contao.backend_user` | `BackendUser\|null` | Back end user (if present) |
 
 ---
 
-## 4. Twig-Tags
+## 4. Twig Tags
 
 ### {% add %}
 
-Fügt Ausgabe zu verschiedenen Abschnitten des Dokuments hinzu.
+Adds output to various sections of the document.
 
-**Unterstützte Positionen:**
-- `head` — Ende des `<head>`-Bereichs
-- `stylesheets` — Mit anderen Stylesheets gruppiert
-- `body` — Ende des `<body>`-Bereichs
+**Supported positions:**
+- `head` — End of the `<head>` area
+- `stylesheets` — Grouped with the other stylesheets
+- `body` — End of the `<body>` area
 
 ```twig
-{# Skript zum head hinzufügen #}
+{# Add a script to the head #}
 {% add "my-analytics" to head %}
-    <script>/* Analytics Code */</script>
+    <script>/* Analytics code */</script>
 {% endadd %}
 
-{# Stylesheet hinzufügen #}
+{# Add a stylesheet #}
 {% add "my-styles" to stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 {% endadd %}
 
-{# Body-Skript mit benanntem Node (überschreibbar) #}
+{# Body script with a named node (can be overridden) #}
 {% add "tracking-script" to body %}
     <script src="{{ asset('js/tracking.js') }}"></script>
 {% endadd %}
@@ -636,41 +636,41 @@ Fügt Ausgabe zu verschiedenen Abschnitten des Dokuments hinzu.
 
 ---
 
-### {% slot %} (ab 5.6)
+### {% slot %} (as of 5.6)
 
-Definiert Layout-Abschnitte für zusammengesetzten Content. Slots können in Seiten-Layouts Inhaltselemente oder Module aufnehmen.
+Defines layout sections for composed content. In page layouts, slots can take up content elements or modules.
 
 ```twig
-{# Einfacher Slot #}
+{# Simple slot #}
 {% slot main %}{% endslot %}
 
-{# Slot mit Wrapper (nur wenn nicht leer) #}
+{# Slot with a wrapper (only when not empty) #}
 {% slot main %}
     <main>{{ slot() }}</main>
 {% endslot %}
 
-{# Slot mit Fallback-Inhalt #}
+{# Slot with fallback content #}
 {% slot main %}
     […]
 {% else %}
-    Dieser Inhalt wird angezeigt wenn der Slot leer ist.
+    This content is displayed when the slot is empty.
 {% endslot %}
 ```
 
-**Slot-Inhalt setzen (PHP):**
+**Setting the slot content (PHP):**
 ```php
 /** @var \Contao\CoreBundle\Twig\LayoutTemplate $template */
-$template->setSlot('main', 'Vertrauenswürdiger Inhalt für den <b>main</b>-Block.');
+$template->setSlot('main', 'Trusted content for the <b>main</b> block.');
 ```
 
 ---
 
-## 5. Contao Twig-Komponenten
+## 5. Contao Twig Components
 
-Komponenten sind wiederverwendbare Template-Blöcke, die per `{% use %}` importiert und mit `block()` gerendert werden.
+Components are reusable template blocks that are imported with `{% use %}` and rendered with `block()`.
 
 ```twig
-{# _figure.html.twig Komponente verwenden #}
+{# Use the _figure.html.twig component #}
 {% use "@Contao/component/_figure.html.twig" %}
 
 {% set image = figure('files/foo/bar.jpg', [800, 600, 'crop']) %}
@@ -679,7 +679,7 @@ Komponenten sind wiederverwendbare Template-Blöcke, die per `{% use %}` importi
 {% endif %}
 ```
 
-**Komponente anpassen:**
+**Customizing a component:**
 ```twig
 {% use "@Contao/component/_picture.html.twig" %}
 {% block image %}
@@ -688,14 +688,14 @@ Komponenten sind wiederverwendbare Template-Blöcke, die per `{% use %}` importi
 {% endblock %}
 ```
 
-**Verfügbare Kernkomponenten** (unter `@Contao/component/`):
-- `_figure.html.twig` — Abbildung mit Bild + Bildunterschrift
-- `_picture.html.twig` — Responsives Bild
-- `_image.html.twig` — Einfaches Bild
+**Available core components** (under `@Contao/component/`):
+- `_figure.html.twig` — Figure with image + caption
+- `_picture.html.twig` — Responsive image
+- `_image.html.twig` — Simple image
 
 ---
 
-*Quellen:*
+*Sources:*
 - https://docs.contao.org/5.x/dev/reference/twig/
 - https://docs.contao.org/5.x/dev/reference/twig/functions/
 - https://docs.contao.org/5.x/dev/reference/twig/filters/

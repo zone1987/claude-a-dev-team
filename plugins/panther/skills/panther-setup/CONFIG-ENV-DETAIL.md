@@ -1,144 +1,144 @@
-# Panther — Konfiguration und Umgebungsvariablen
+# Panther — configuration and environment variables
 
 ## Contents
 
-- [Alle PANTHER_*-Umgebungsvariablen](#alle-panther_-umgebungsvariablen)
-- [Programmatische Optionen fuer createPantherClient()](#programmatische-optionen-fuer-createpantherclient)
-- [Standardmaessig gesetzte Chrome-Argumente](#standardmaessig-gesetzte-chrome-argumente)
-- [Hostname und Port des Webservers aendern](#hostname-und-port-des-webservers-aendern)
-- [Konfiguration in phpunit.dist.xml](#konfiguration-in-phpunitdistxml)
-- [Quellen](#quellen)
+- [All PANTHER_* environment variables](#all-panther_-environment-variables)
+- [Programmatic options for createPantherClient()](#programmatic-options-for-createpantherclient)
+- [Chrome arguments set by default](#chrome-arguments-set-by-default)
+- [Changing the hostname and port of the web server](#changing-the-hostname-and-port-of-the-web-server)
+- [Configuration in phpunit.dist.xml](#configuration-in-phpunitdistxml)
+- [Sources](#sources)
 
-## Alle PANTHER_*-Umgebungsvariablen
+## All PANTHER_* environment variables
 
-Alle Variablen werden aus `$_SERVER` gelesen (nicht `$_ENV`). Sie koennen in
-`.env.test`, `phpunit.dist.xml` (`<server name="..."/>`) oder direkt als
-Shell-Export gesetzt werden.
+All variables are read from `$_SERVER` (not `$_ENV`). They can be set in
+`.env.test`, `phpunit.dist.xml` (`<server name="..."/>`) or directly as a
+shell export.
 
-### Browser-Darstellung und Debugging
+### Browser rendering and debugging
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_NO_HEADLESS` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` (Headless) | `true`: startet Chrome/Firefox mit sichtbarem Fenster. Chrome: `--headless` wird weggelassen. Firefox: `-headless`-Argument wird nicht gesetzt. Voraussetzung fuer Interactive Mode. |
-| `PANTHER_DEVTOOLS` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` | `true`: Chrome oeffnet DevTools automatisch (`--auto-open-devtools-for-tabs`). Firefox: `--devtools`-Argument. Nur relevant mit `PANTHER_NO_HEADLESS=1`. |
-| `PANTHER_NO_REDUCED_MOTION` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` (reduced motion aktiv) | `false` (Default): Chrome setzt `--force-prefers-reduced-motion`, Firefox setzt `ui.prefersReducedMotion=1`. `true`: `--force-prefers-no-reduced-motion` (Chrome) / `ui.prefersReducedMotion=0` (Firefox). Seit Panther 2.2.0. |
+| `PANTHER_NO_HEADLESS` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` (headless) | `true`: starts Chrome/Firefox with a visible window. Chrome: `--headless` is omitted. Firefox: the `-headless` argument is not set. Prerequisite for interactive mode. |
+| `PANTHER_DEVTOOLS` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` | `true`: Chrome opens DevTools automatically (`--auto-open-devtools-for-tabs`). Firefox: `--devtools` argument. Only relevant with `PANTHER_NO_HEADLESS=1`. |
+| `PANTHER_NO_REDUCED_MOTION` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` (reduced motion active) | `false` (default): Chrome sets `--force-prefers-reduced-motion`, Firefox sets `ui.prefersReducedMotion=1`. `true`: `--force-prefers-no-reduced-motion` (Chrome) / `ui.prefersReducedMotion=0` (Firefox). Since Panther 2.2.0. |
 
-### Sandbox und Sicherheit
+### Sandbox and security
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_NO_SANDBOX` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` | `true`: fuegt `--no-sandbox` zu Chrome-Argumenten hinzu. Notwendig in Docker-Containern und CI-Umgebungen ohne User-Namespace. Unsicher auf Desktop-Systemen. Wird auch aktiviert durch `HAS_JOSH_K_SEAL_OF_APPROVAL` (Travis-CI-Legacy-Flag). Nur Chrome. |
+| `PANTHER_NO_SANDBOX` | bool (`FILTER_VALIDATE_BOOLEAN`) | `false` | `true`: adds `--no-sandbox` to the Chrome arguments. Necessary in Docker containers and CI environments without a user namespace. Insecure on desktop systems. Also enabled by `HAS_JOSH_K_SEAL_OF_APPROVAL` (legacy Travis CI flag). Chrome only. |
 
-### Webserver-Konfiguration (PHP Built-In Server)
+### Web server configuration (PHP built-in server)
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_WEB_SERVER_DIR` | string (Pfad) | `./public` (Flex-Struktur, relativ zu Vendor) | Document-Root des PHP Built-In-Servers. Relative Pfade mit `./`-Praefix werden zu `getcwd()` aufgeloest. Absolute Pfade direkt uebernommen. Ueberschrieben durch `$options['webServerDir']` in `createPantherClient()` oder statisches `$webServerDir`. |
-| `PANTHER_WEB_SERVER_PORT` | int | `9080` | TCP-Port des PHP Built-In-Servers. `createPantherClient(['port' => 8080])` hat Vorrang. |
-| `PANTHER_WEB_SERVER_ROUTER` | string (Pfad) | `''` (kein Router) | Pfad zum PHP-Router-Skript fuer den Built-In-Server. Relativ zum Document-Root oder absolut. Notwendig damit Assets (`css`, `js`, `png` etc.) korrekt ausgeliefert werden. |
-| `PANTHER_READINESS_PATH` | string (URL-Pfad) | `''` | HTTP-Pfad der vom Webserver-Readiness-Probe angefragt wird, z.B. `/health`. Ohne diesen Wert wird der Basis-URL geprueft. |
-| `PANTHER_APP_ENV` | string | nicht gesetzt | Setzt `APP_ENV` fuer den gestarteten PHP Built-In-Server (wird als Prozess-Umgebungsvariable weitergegeben). Beeinflusst nicht den PHPUnit-Prozess selbst. |
+| `PANTHER_WEB_SERVER_DIR` | string (path) | `./public` (Flex structure, relative to vendor) | Document root of the PHP built-in server. Relative paths with a `./` prefix are resolved against `getcwd()`. Absolute paths are used as-is. Overridden by `$options['webServerDir']` in `createPantherClient()` or by the static `$webServerDir`. |
+| `PANTHER_WEB_SERVER_PORT` | int | `9080` | TCP port of the PHP built-in server. `createPantherClient(['port' => 8080])` takes precedence. |
+| `PANTHER_WEB_SERVER_ROUTER` | string (path) | `''` (no router) | Path to the PHP router script for the built-in server. Relative to the document root or absolute. Necessary so that assets (`css`, `js`, `png` etc.) are served correctly. |
+| `PANTHER_READINESS_PATH` | string (URL path) | `''` | HTTP path requested by the web server readiness probe, e.g. `/health`. Without this value the base URL is checked. |
+| `PANTHER_APP_ENV` | string | not set | Sets `APP_ENV` for the started PHP built-in server (passed on as a process environment variable). Does not affect the PHPUnit process itself. |
 
-### Externer Server / Hostname
+### External server / hostname
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_EXTERNAL_BASE_URI` | string (URL) | nicht gesetzt | Vollstaendige Basis-URL eines extern gestarteten Webservers, z.B. `https://localhost:8443`. Verhindert den Start des Built-In-Servers. Alias: `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (niedrigere Prioritaet). `$options['external_base_uri']` hat Vorrang. |
-| `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` | string (URL) | nicht gesetzt | Fallback fuer `PANTHER_EXTERNAL_BASE_URI`. Wird von SymfonyCloud/Platform.sh gesetzt. |
+| `PANTHER_EXTERNAL_BASE_URI` | string (URL) | not set | Complete base URL of an externally started web server, e.g. `https://localhost:8443`. Prevents the built-in server from starting. Alias: `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (lower priority). `$options['external_base_uri']` takes precedence. |
+| `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` | string (URL) | not set | Fallback for `PANTHER_EXTERNAL_BASE_URI`. Set by SymfonyCloud/Platform.sh. |
 
-### Chrome-spezifische Variablen
+### Chrome-specific variables
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_CHROME_BINARY` | string (Pfad) | nicht gesetzt | Pfad zur Chrome/Chromium-Executable, z.B. `/usr/bin/chromium-browser`. Wird via `ChromeOptions::setBinary()` gesetzt. |
-| `PANTHER_CHROME_ARGUMENTS` | string (Leerzeichen-getrennt) | nicht gesetzt | Zusaetzliche Argumente fuer den Chrome-Browser-Prozess (nicht ChromeDriver). Wird per `explode(' ', ...)` aufgeteilt und an die Arguments-Liste angehaengt. Beispiel: `--proxy-server=socks://127.0.0.1:9050 --ignore-certificate-errors`. |
+| `PANTHER_CHROME_BINARY` | string (path) | not set | Path to the Chrome/Chromium executable, e.g. `/usr/bin/chromium-browser`. Set via `ChromeOptions::setBinary()`. |
+| `PANTHER_CHROME_ARGUMENTS` | string (space-separated) | not set | Additional arguments for the Chrome browser process (not ChromeDriver). Split with `explode(' ', ...)` and appended to the arguments list. Example: `--proxy-server=socks://127.0.0.1:9050 --ignore-certificate-errors`. |
 
-### Firefox-spezifische Variablen
+### Firefox-specific variables
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_FIREFOX_BINARY` | string (Pfad) | nicht gesetzt | Pfad zur Firefox-Executable. Wird als `binary`-Feld in `moz:firefoxOptions` gesetzt. |
-| `PANTHER_FIREFOX_ARGUMENTS` | string (Leerzeichen-getrennt) | nicht gesetzt | Zusaetzliche Argumente fuer den Firefox-Prozess. Wird per `explode(' ', ...)` aufgeteilt und zu den Firefox-Argumenten hinzugefuegt. |
+| `PANTHER_FIREFOX_BINARY` | string (path) | not set | Path to the Firefox executable. Set as the `binary` field in `moz:firefoxOptions`. |
+| `PANTHER_FIREFOX_ARGUMENTS` | string (space-separated) | not set | Additional arguments for the Firefox process. Split with `explode(' ', ...)` and added to the Firefox arguments. |
 
-### Error-Screenshots
+### Error screenshots
 
-| Variable | Typ | Default | Wirkung |
+| Variable | Type | Default | Effect |
 |---|---|---|---|
-| `PANTHER_ERROR_SCREENSHOT_DIR` | string (Verzeichnispfad) | nicht gesetzt | Wenn gesetzt: Bei Test-Fehler oder Test-Error wird automatisch ein Screenshot in dieses Verzeichnis geschrieben. Dateiname-Format: `YYYY-MM-DD_HH-II-SS_{error|failure}_{TestClass-MethodName}-{clientIndex}.png`. Erfordert `ServerExtension` in `phpunit.dist.xml`. |
-| `PANTHER_ERROR_SCREENSHOT_ATTACH` | bool | `false` | `true`: Gibt nach jedem Fehler-Screenshot `[[ATTACHMENT|/pfad/zum/screenshot.png]]` auf stdout aus (GitLab-CI-Attachment-Format). Nur wirksam wenn `PANTHER_ERROR_SCREENSHOT_DIR` gesetzt ist. |
+| `PANTHER_ERROR_SCREENSHOT_DIR` | string (directory path) | not set | When set: on a test failure or test error a screenshot is written to this directory automatically. File name format: `YYYY-MM-DD_HH-II-SS_{error|failure}_{TestClass-MethodName}-{clientIndex}.png`. Requires `ServerExtension` in `phpunit.dist.xml`. |
+| `PANTHER_ERROR_SCREENSHOT_ATTACH` | bool | `false` | `true`: after each error screenshot, prints `[[ATTACHMENT|/path/to/screenshot.png]]` on stdout (GitLab CI attachment format). Only effective when `PANTHER_ERROR_SCREENSHOT_DIR` is set. |
 
 ---
 
-## Programmatische Optionen fuer createPantherClient()
+## Programmatic options for createPantherClient()
 
 ```php
 static::createPantherClient(
-    array $options = [],        // Web-Server- und Browser-Optionen
-    array $kernelOptions = [],  // Symfony-Kernel-Optionen (nur bei KernelTestCase)
-    array $managerOptions = []  // ChromeManager/FirefoxManager/SeleniumManager-Optionen
+    array $options = [],        // Web server and browser options
+    array $kernelOptions = [],  // Symfony kernel options (only with KernelTestCase)
+    array $managerOptions = []  // ChromeManager/FirefoxManager/SeleniumManager options
 ): PantherClient
 ```
 
-### $options (erster Parameter)
+### $options (first parameter)
 
-| Schluessel | Typ | Default | Wirkung |
+| Key | Type | Default | Effect |
 |---|---|---|---|
-| `webServerDir` | string | `./public` | Document-Root; ueberschreibt `PANTHER_WEB_SERVER_DIR` |
-| `hostname` | string | `127.0.0.1` | Hostname des Built-In-Webservers und Basis-URI |
-| `port` | int | `9080` | Port des Built-In-Webservers; ueberschreibt `PANTHER_WEB_SERVER_PORT` |
-| `router` | string | `''` | Router-Skript; ueberschreibt `PANTHER_WEB_SERVER_ROUTER` |
-| `readinessPath` | string | `''` | Readiness-Probe-Pfad; ueberschreibt `PANTHER_READINESS_PATH` |
-| `external_base_uri` | string\|null | `null` | Externer Server; ueberschreibt `PANTHER_EXTERNAL_BASE_URI` |
-| `env` | array | `[]` | Zusaetzliche Umgebungsvariablen fuer den Webserver-Prozess |
-| `browser` | string | `PantherTestCase::CHROME` | `PantherTestCase::CHROME`, `::FIREFOX` oder `::SELENIUM` |
-| `browser_arguments` | array\|null | `null` | Browser-Argumente; ueberschreibt automatisch ermittelte Argumente |
+| `webServerDir` | string | `./public` | Document root; overrides `PANTHER_WEB_SERVER_DIR` |
+| `hostname` | string | `127.0.0.1` | Hostname of the built-in web server and base URI |
+| `port` | int | `9080` | Port of the built-in web server; overrides `PANTHER_WEB_SERVER_PORT` |
+| `router` | string | `''` | Router script; overrides `PANTHER_WEB_SERVER_ROUTER` |
+| `readinessPath` | string | `''` | Readiness probe path; overrides `PANTHER_READINESS_PATH` |
+| `external_base_uri` | string\|null | `null` | External server; overrides `PANTHER_EXTERNAL_BASE_URI` |
+| `env` | array | `[]` | Additional environment variables for the web server process |
+| `browser` | string | `PantherTestCase::CHROME` | `PantherTestCase::CHROME`, `::FIREFOX` or `::SELENIUM` |
+| `browser_arguments` | array\|null | `null` | Browser arguments; overrides the automatically determined arguments |
 
-### $managerOptions (dritter Parameter) — Chrome
+### $managerOptions (third parameter) — Chrome
 
-| Schluessel | Typ | Default | Wirkung |
+| Key | Type | Default | Effect |
 |---|---|---|---|
-| `scheme` | string | `'http'` | Protokoll fuer ChromeDriver-Verbindung |
-| `host` | string | `'127.0.0.1'` | Host des ChromeDriver-Prozesses |
-| `port` | int | `9515` | Port des ChromeDriver-Prozesses |
-| `path` | string | `'/status'` | Readiness-Probe-Pfad des ChromeDrivers |
-| `chromedriver_arguments` | array | `[]` | Kommandozeilen-Argumente fuer den ChromeDriver-Prozess (nicht Browser), z.B. `['--log-path=myfile.log', '--log-level=DEBUG']` |
-| `capabilities` | array | `[]` | WebDriver-Capabilities als assoziatives Array; werden via `setCapability()` gesetzt |
-| `connection_timeout_in_ms` | int\|null | `null` (WebDriver-Default) | Timeout fuer die Verbindung zum ChromeDriver in Millisekunden |
-| `request_timeout_in_ms` | int\|null | `null` (WebDriver-Default) | Timeout fuer einzelne WebDriver-Anfragen in Millisekunden |
+| `scheme` | string | `'http'` | Protocol for the ChromeDriver connection |
+| `host` | string | `'127.0.0.1'` | Host of the ChromeDriver process |
+| `port` | int | `9515` | Port of the ChromeDriver process |
+| `path` | string | `'/status'` | Readiness probe path of ChromeDriver |
+| `chromedriver_arguments` | array | `[]` | Command line arguments for the ChromeDriver process (not the browser), e.g. `['--log-path=myfile.log', '--log-level=DEBUG']` |
+| `capabilities` | array | `[]` | WebDriver capabilities as an associative array; set via `setCapability()` |
+| `connection_timeout_in_ms` | int\|null | `null` (WebDriver default) | Timeout for the connection to ChromeDriver in milliseconds |
+| `request_timeout_in_ms` | int\|null | `null` (WebDriver default) | Timeout for individual WebDriver requests in milliseconds |
 
-### $managerOptions (dritter Parameter) — Firefox
+### $managerOptions (third parameter) — Firefox
 
-| Schluessel | Typ | Default | Wirkung |
+| Key | Type | Default | Effect |
 |---|---|---|---|
-| `scheme` | string | `'http'` | Protokoll fuer GeckoDriver-Verbindung |
-| `host` | string | `'127.0.0.1'` | Host des GeckoDriver-Prozesses |
-| `port` | int | `4444` | Port des GeckoDriver-Prozesses |
-| `path` | string | `'/status'` | Readiness-Probe-Pfad des GeckoDrivers |
-| `capabilities` | array | `[]` | WebDriver-Capabilities als assoziatives Array |
-| `connection_timeout_in_ms` | int\|null | `null` | Verbindungs-Timeout in Millisekunden |
-| `request_timeout_in_ms` | int\|null | `null` | Request-Timeout in Millisekunden |
+| `scheme` | string | `'http'` | Protocol for the GeckoDriver connection |
+| `host` | string | `'127.0.0.1'` | Host of the GeckoDriver process |
+| `port` | int | `4444` | Port of the GeckoDriver process |
+| `path` | string | `'/status'` | Readiness probe path of GeckoDriver |
+| `capabilities` | array | `[]` | WebDriver capabilities as an associative array |
+| `connection_timeout_in_ms` | int\|null | `null` | Connection timeout in milliseconds |
+| `request_timeout_in_ms` | int\|null | `null` | Request timeout in milliseconds |
 
 ---
 
-## Standardmaessig gesetzte Chrome-Argumente
+## Chrome arguments set by default
 
-Diese Argumente setzt Panther automatisch (sofern nicht durch `browser_arguments` vollstaendig ersetzt):
+Panther sets these arguments automatically (unless they are completely replaced by `browser_arguments`):
 
-| Argument | Bedingung |
+| Argument | Condition |
 |---|---|
-| `--headless` | `PANTHER_NO_HEADLESS` ist falsy |
-| `--window-size=1200,1100` | `PANTHER_NO_HEADLESS` ist falsy |
-| `--disable-gpu` | `PANTHER_NO_HEADLESS` ist falsy |
-| `--auto-open-devtools-for-tabs` | `PANTHER_DEVTOOLS` ist truthy |
-| `--no-sandbox` | `PANTHER_NO_SANDBOX` oder `HAS_JOSH_K_SEAL_OF_APPROVAL` ist truthy |
-| `--force-prefers-reduced-motion` | `PANTHER_NO_REDUCED_MOTION` ist falsy (Default) |
-| `--force-prefers-no-reduced-motion` | `PANTHER_NO_REDUCED_MOTION` ist truthy |
-| Werte aus `PANTHER_CHROME_ARGUMENTS` | immer wenn Variable gesetzt |
+| `--headless` | `PANTHER_NO_HEADLESS` is falsy |
+| `--window-size=1200,1100` | `PANTHER_NO_HEADLESS` is falsy |
+| `--disable-gpu` | `PANTHER_NO_HEADLESS` is falsy |
+| `--auto-open-devtools-for-tabs` | `PANTHER_DEVTOOLS` is truthy |
+| `--no-sandbox` | `PANTHER_NO_SANDBOX` or `HAS_JOSH_K_SEAL_OF_APPROVAL` is truthy |
+| `--force-prefers-reduced-motion` | `PANTHER_NO_REDUCED_MOTION` is falsy (default) |
+| `--force-prefers-no-reduced-motion` | `PANTHER_NO_REDUCED_MOTION` is truthy |
+| Values from `PANTHER_CHROME_ARGUMENTS` | whenever the variable is set |
 
-### Fenstergrösse manuell setzen
+### Setting the window size manually
 
 ```php
-// Chrome: via Argument (ueberschreibt --window-size=1200,1100 aus Headless-Default)
+// Chrome: via argument (overrides --window-size=1200,1100 from the headless default)
 $client = Client::createChromeClient(null, ['--window-size=1920,1080']);
 
 // Firefox: via WebDriverDimension
@@ -149,22 +149,22 @@ $client->manage()->window()->setSize(new WebDriverDimension(1920, 1080));
 
 ---
 
-## Hostname und Port des Webservers aendern
+## Changing the hostname and port of the web server
 
 ```php
 // In phpunit.dist.xml:
 // <server name="PANTHER_WEB_SERVER_PORT" value="8080"/>
 
-// Oder programmatisch:
+// Or programmatically:
 $client = static::createPantherClient([
-    'hostname' => '0.0.0.0',  // Lauscht auf allen Interfaces
+    'hostname' => '0.0.0.0',  // Listens on all interfaces
     'port'     => 8080,
 ]);
 ```
 
 ---
 
-## Konfiguration in phpunit.dist.xml
+## Configuration in phpunit.dist.xml
 
 ```xml
 <phpunit>
@@ -198,7 +198,7 @@ $client = static::createPantherClient([
 
 ---
 
-## Quellen
+## Sources
 
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther/blob/main/src/ProcessManager/ChromeManager.php

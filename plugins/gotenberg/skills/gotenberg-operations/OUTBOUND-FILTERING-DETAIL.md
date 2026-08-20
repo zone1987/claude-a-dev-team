@@ -1,107 +1,107 @@
-# Gotenberg — Outbound URL Filtering (Vollreferenz)
+# Gotenberg — Outbound URL Filtering (full reference)
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Immer aktive Schutzmechanismen](#immer-aktive-schutzmechanismen)
-- [Umgebungsvariablen](#umgebungsvariablen)
-- [Filter-Pipeline und Praezedenz](#filter-pipeline-und-praezedenz)
-- [Definition von "nicht-oeffentlichen IPs"](#definition-von-nicht-oeffentlichen-ips)
-- [Antwort-Codes](#antwort-codes)
-- [Konfigurationsbeispiele](#konfigurationsbeispiele)
-- [Hinweise](#hinweise)
+- [Concept](#concept)
+- [Always-active protection mechanisms](#always-active-protection-mechanisms)
+- [Environment variables](#environment-variables)
+- [Filter pipeline and precedence](#filter-pipeline-and-precedence)
+- [Definition of "non-public IPs"](#definition-of-non-public-ips)
+- [Response codes](#response-codes)
+- [Configuration examples](#configuration-examples)
+- [Notes](#notes)
 
-## Konzept
+## Concept
 
-Gotenberg sichert alle ausgehenden Verbindungen gegen SSRF (Server-Side Request Forgery) und ungewollten Netzwerkzugriff. Der Filter-Pipeline greift bei:
+Gotenberg secures all outbound connections against SSRF (server-side request forgery) and unwanted network access. The filter pipeline applies to:
 
-1. **Chromium-Navigationen und Sub-Ressourcen** (CSS, Bilder, iframes)
-2. **Webhook-Callbacks** (Erfolgs- und Fehler-URLs)
-3. **`downloadFrom`-Fetches** (Remote-Dateien)
-4. **LibreOffice-Referenzen** (verlinkte Bilder, externe Inhalte)
+1. **Chromium navigations and sub-resources** (CSS, images, iframes)
+2. **Webhook callbacks** (success and error URLs)
+3. **`downloadFrom` fetches** (remote files)
+4. **LibreOffice references** (linked images, external content)
 
 ---
 
-## Immer aktive Schutzmechanismen
+## Always-active protection mechanisms
 
-| Mechanismus | Beschreibung |
+| Mechanism | Description |
 |-------------|-------------|
-| **DNS-Rebind-Pinning-Proxy** | Alle ausgehenden HTTP/HTTPS-Requests laufen ueber einen In-Process-Proxy mit gepinnten IPs |
-| **`file://`-URL-Blocking** | `file://`-URLs werden auf URL-Konvertierungs- und Screenshot-Routen immer abgelehnt → 400 |
-| **Per-Request-Asset-Isolation** | Lokale HTML-Assets sind auf das per-Request-Arbeitsverzeichnis beschraenkt |
-| **LibreOffice Linked Content Blocking** | Inhalte aus nicht vertrauenswuerdigen Quellen werden vor dem Fetch gesperrt (ab v8.34.0) |
+| **DNS rebind pinning proxy** | All outbound HTTP/HTTPS requests go through an in-process proxy with pinned IPs |
+| **`file://` URL blocking** | `file://` URLs are always rejected on URL conversion and screenshot routes → 400 |
+| **Per-request asset isolation** | Local HTML assets are restricted to the per-request working directory |
+| **LibreOffice linked content blocking** | Content from untrusted sources is blocked before the fetch (from v8.34.0) |
 
 ---
 
-## Umgebungsvariablen
+## Environment variables
 
-### Chromium-Modul
+### Chromium module
 
-| Variable | Typ | Standard | Beschreibung |
+| Variable | Type | Default | Description |
 |----------|-----|---------|--------------|
-| `CHROMIUM_DENY_PRIVATE_IPS` | boolean | `false` | Chromium-Navigationen und Sub-Ressourcen auf nicht-oeffentliche IPs ablehnen |
-| `CHROMIUM_DENY_PUBLIC_IPS` | boolean | `false` | Chromium-Navigationen auf oeffentliche IPs ablehnen |
-| `CHROMIUM_ALLOW_LIST` | Regex | — | URL-Regex, der IP-Klassen-Checks umgeht |
-| `CHROMIUM_PROXY_SERVER` | string | — | Proxy-Server; deaktiviert DNS-Rebind-Pinning-Proxy wenn gesetzt |
-| `CHROMIUM_HOST_RESOLVER_RULES` | string | — | Host-Resolver-Regeln; deaktiviert DNS-Rebind-Pinning-Proxy wenn gesetzt |
+| `CHROMIUM_DENY_PRIVATE_IPS` | boolean | `false` | Reject Chromium navigations and sub-resources to non-public IPs |
+| `CHROMIUM_DENY_PUBLIC_IPS` | boolean | `false` | Reject Chromium navigations to public IPs |
+| `CHROMIUM_ALLOW_LIST` | Regex | — | URL regex that bypasses IP class checks |
+| `CHROMIUM_PROXY_SERVER` | string | — | Proxy server; disables the DNS rebind pinning proxy when set |
+| `CHROMIUM_HOST_RESOLVER_RULES` | string | — | Host resolver rules; disables the DNS rebind pinning proxy when set |
 
-### Webhook-Modul
+### Webhook module
 
-| Variable | Typ | Standard | Beschreibung |
+| Variable | Type | Default | Description |
 |----------|-----|---------|--------------|
-| `WEBHOOK_DENY_PRIVATE_IPS` | boolean | `false` | Webhook-URLs auf nicht-oeffentliche IPs ablehnen |
-| `WEBHOOK_DENY_PUBLIC_IPS` | boolean | `false` | Webhook-URLs auf oeffentliche IPs ablehnen |
-| `WEBHOOK_ALLOW_LIST` | Regex | — | URL-Regex, der IP-Klassen-Checks fuer Webhooks umgeht |
+| `WEBHOOK_DENY_PRIVATE_IPS` | boolean | `false` | Reject webhook URLs to non-public IPs |
+| `WEBHOOK_DENY_PUBLIC_IPS` | boolean | `false` | Reject webhook URLs to public IPs |
+| `WEBHOOK_ALLOW_LIST` | Regex | — | URL regex that bypasses IP class checks for webhooks |
 
-### API Download-Modul
+### API download module
 
-| Variable | Typ | Standard | Beschreibung |
+| Variable | Type | Default | Description |
 |----------|-----|---------|--------------|
-| `API_DOWNLOAD_FROM_DENY_PRIVATE_IPS` | boolean | `false` | `downloadFrom`-URLs auf nicht-oeffentliche IPs ablehnen |
-| `API_DOWNLOAD_FROM_DENY_PUBLIC_IPS` | boolean | `false` | `downloadFrom`-URLs auf oeffentliche IPs ablehnen |
+| `API_DOWNLOAD_FROM_DENY_PRIVATE_IPS` | boolean | `false` | Reject `downloadFrom` URLs to non-public IPs |
+| `API_DOWNLOAD_FROM_DENY_PUBLIC_IPS` | boolean | `false` | Reject `downloadFrom` URLs to public IPs |
 
-### LibreOffice-Modul
+### LibreOffice module
 
-| Variable | Typ | Standard | Beschreibung |
+| Variable | Type | Default | Description |
 |----------|-----|---------|--------------|
-| `LIBREOFFICE_DENY_PRIVATE_IPS` | boolean | `false` | LibreOffice ausgehende Fetches auf nicht-oeffentliche IPs ablehnen |
-| `LIBREOFFICE_DENY_PUBLIC_IPS` | boolean | `false` | LibreOffice ausgehende Fetches auf oeffentliche IPs ablehnen |
-| `LIBREOFFICE_ALLOW_LIST` | Regex | — | URL-Regex, der IP-Klassen-Checks fuer LibreOffice umgeht |
-| `LIBREOFFICE_DENY_LIST` | Regex | — | URLs bedingungslos blockieren (unabhaengig von anderen Regeln) |
+| `LIBREOFFICE_DENY_PRIVATE_IPS` | boolean | `false` | Reject LibreOffice outbound fetches to non-public IPs |
+| `LIBREOFFICE_DENY_PUBLIC_IPS` | boolean | `false` | Reject LibreOffice outbound fetches to public IPs |
+| `LIBREOFFICE_ALLOW_LIST` | Regex | — | URL regex that bypasses IP class checks for LibreOffice |
+| `LIBREOFFICE_DENY_LIST` | Regex | — | Block URLs unconditionally (independent of other rules) |
 
 ---
 
-## Filter-Pipeline und Praezedenz
+## Filter pipeline and precedence
 
-1. **Deny-List-Auswertung** → blockiert unabhaengig von anderen Regeln
-2. **Allow-List-Abgleich** → umgeht IP-Klassen-Checks bei Treffer
-3. **IP-Klassen-Variablen** → werden angewendet wenn kein Allow-List-Treffer
+1. **Deny list evaluation** → blocks independently of other rules
+2. **Allow list matching** → bypasses IP class checks on a match
+3. **IP class variables** → applied when there is no allow list match
 
 ---
 
-## Definition von "nicht-oeffentlichen IPs"
+## Definition of "non-public IPs"
 
-Folgende Adressbereiche gelten als nicht-oeffentlich:
+The following address ranges count as non-public:
 - Loopback (127.0.0.0/8, ::1)
 - RFC1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
-- Link-Local (169.254.0.0/16, fe80::/10)
-- IPv6 Unique-Local (fc00::/7)
-- IPv6-Wrapper um nicht-oeffentliche IPv4: IPv4-mapped, IPv4-translated, 6to4, Teredo
+- Link-local (169.254.0.0/16, fe80::/10)
+- IPv6 unique-local (fc00::/7)
+- IPv6 wrappers around non-public IPv4: IPv4-mapped, IPv4-translated, 6to4, Teredo
 
 ---
 
-## Antwort-Codes
+## Response codes
 
-| Code | Szenario |
+| Code | Scenario |
 |------|---------|
-| `400 Bad Request` | `file://`-URLs bei URL-Konvertierung / Screenshots |
-| `403 Forbidden` | URL durch Deny-List oder IP-Klassen-Variablen abgelehnt |
+| `400 Bad Request` | `file://` URLs on URL conversion / screenshots |
+| `403 Forbidden` | URL rejected by the deny list or IP class variables |
 
 ---
 
-## Konfigurationsbeispiele
+## Configuration examples
 
-### Alle internen Zugriffe sperren (maximale Sicherheit)
+### Block all internal access (maximum security)
 
 ```bash
 docker run --rm \
@@ -113,7 +113,7 @@ docker run --rm \
   gotenberg/gotenberg:8
 ```
 
-### Nur bestimmte interne URLs erlauben (Allow-List)
+### Allow only specific internal URLs (allow list)
 
 ```bash
 docker run --rm \
@@ -123,7 +123,7 @@ docker run --rm \
   gotenberg/gotenberg:8
 ```
 
-### LibreOffice bestimmte URLs blockieren
+### Block specific URLs for LibreOffice
 
 ```bash
 docker run --rm \
@@ -132,7 +132,7 @@ docker run --rm \
   gotenberg/gotenberg:8
 ```
 
-### Docker-Compose-Konfiguration
+### Docker Compose configuration
 
 ```yaml
 services:
@@ -149,12 +149,12 @@ services:
 
 ---
 
-## Hinweise
+## Notes
 
-- Ab **v8.31.0** wurden private IP-Sperren fuer Chromium aktiviert (revertiert in v8.32.0 zurueck zu `false` als Standard)
-- Wenn `CHROMIUM_PROXY_SERVER` oder `CHROMIUM_HOST_RESOLVER_RULES` gesetzt sind, wird der DNS-Rebind-Pinning-Proxy deaktiviert
-- LibreOffice Linked Content Blocking (ab v8.34.0) kann **nicht deaktiviert** werden
+- From **v8.31.0** private IP blocking was enabled for Chromium (reverted in v8.32.0 back to `false` as the default)
+- When `CHROMIUM_PROXY_SERVER` or `CHROMIUM_HOST_RESOLVER_RULES` are set, the DNS rebind pinning proxy is disabled
+- LibreOffice linked content blocking (from v8.34.0) **cannot be disabled**
 
 ---
 
-Quelle: https://gotenberg.dev/docs/outbound-url-filtering
+Source: https://gotenberg.dev/docs/outbound-url-filtering

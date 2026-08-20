@@ -2,31 +2,31 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Unterstützte Sprachen](#unterstützte-sprachen)
-- [Translation-Struktur](#translation-struktur)
-- [Implementierungsmethoden](#implementierungsmethoden)
-- [Symfony-Integration (ab Contao 5.3)](#symfony-integration-ab-contao-53)
-- [Übersetzungen abrufen](#übersetzungen-abrufen)
-- [Übersetzungsschlüssel finden](#übersetzungsschlüssel-finden)
-- [Eigene Translations in Bundles](#eigene-translations-in-bundles)
-- [Häufige Übersetzungsschlüssel](#häufige-übersetzungsschlüssel)
+- [Overview](#overview)
+- [Supported languages](#supported-languages)
+- [Translation structure](#translation-structure)
+- [Implementation methods](#implementation-methods)
+- [Symfony integration (Contao 5.3 and later)](#symfony-integration-contao-53-and-later)
+- [Retrieving translations](#retrieving-translations)
+- [Finding translation keys](#finding-translation-keys)
+- [Custom translations in bundles](#custom-translations-in-bundles)
+- [Common translation keys](#common-translation-keys)
 
-## Übersicht
+## Overview
 
-Contao stellt ein eigenes Translations-Framework bereit, das parallel zu Symfonys
-Translation-Komponente betrieben werden kann. Übersetzungen werden in
-`contao/languages/` oder `Resources/contao/languages/` gespeichert.
+Contao provides its own translations framework, which can be operated alongside Symfony's
+Translation component. Translations are stored in
+`contao/languages/` or `Resources/contao/languages/`.
 
-**Unterstützte Formate:** XLIFF (`.xlf`) und PHP-Arrays (`.php`)
+**Supported formats:** XLIFF (`.xlf`) and PHP arrays (`.php`)
 
 ---
 
-## Unterstützte Sprachen
+## Supported languages
 
-**Frontend:** ISO 639 Sprachcodes (z.B. `de`) oder ISO 15897 POSIX Locales (z.B. `de_AT`)
+**Front end:** ISO 639 language codes (e.g. `de`) or ISO 15897 POSIX locales (e.g. `de_AT`)
 
-**Backend:** Beschränkt auf konfigurierte Sprachen:
+**Back end:** limited to the configured languages:
 
 ```yaml
 # config/config.yaml
@@ -37,15 +37,15 @@ contao:
             - de_AT
 ```
 
-Englisch (`en`) dient als Fallback-Sprache in allen Kontexten.
+English (`en`) serves as the fallback language in all contexts.
 
 ---
 
-## Translation-Struktur
+## Translation structure
 
-Hierarchie: **Sprache → Domain → Kategorie → Schlüssel → Label/Beschreibung**
+Hierarchy: **language → domain → category → key → label/description**
 
-Alle Übersetzungen befüllen das `$GLOBALS['TL_LANG']`-Array:
+All translations populate the `$GLOBALS['TL_LANG']` array:
 
 ```php
 $GLOBALS['TL_LANG']['MSC']['goBack'] = 'Go back';
@@ -53,38 +53,38 @@ $GLOBALS['TL_LANG']['MSC']['goBack'] = 'Go back';
 
 ### Domains
 
-| Domain | Zweck |
+| Domain | Purpose |
 |--------|-------|
-| `default` | Allgemeine Frontend-/Backend-Übersetzungen |
-| `tl_content` | Content-Element-Felder |
-| `tl_module` | Frontend-Modul-Felder |
-| `modules` | Backend-Modul-Namen |
-| `countries` | Ländernamen |
-| `languages` | Sprachnamen |
-| `exception` | Fehlermeldungen |
-| `explain` | Erklärungstexte |
+| `default` | General front end/back end translations |
+| `tl_content` | Content element fields |
+| `tl_module` | Front end module fields |
+| `modules` | Back end module names |
+| `countries` | Country names |
+| `languages` | Language names |
+| `exception` | Error messages |
+| `explain` | Explanatory texts |
 
-Für jede DCA-Tabelle gibt es eine eigene Domain (z.B. `tl_news`).
+Every DCA table has its own domain (e.g. `tl_news`).
 
-### Kategorien (Auswahl)
+### Categories (selection)
 
-| Kategorie | Bedeutung |
+| Category | Meaning |
 |-----------|-----------|
-| `MSC` | Verschiedene allgemeine Labels |
-| `ERR` | Fehlermeldungen |
-| `CTE` | Content-Element-Typen |
-| `FMD` | Frontend-Modul-Typen |
-| `PTY` | Seitentypen |
-| `MOD` | Backend-Modul-Typen |
-| `CNT` | Ländernamen |
-| `DAYS` | Wochentage |
-| `MONTHS` | Monatsnamen |
+| `MSC` | Various general labels |
+| `ERR` | Error messages |
+| `CTE` | Content element types |
+| `FMD` | Front end module types |
+| `PTY` | Page types |
+| `MOD` | Back end module types |
+| `CNT` | Country names |
+| `DAYS` | Weekdays |
+| `MONTHS` | Month names |
 
 ---
 
-## Implementierungsmethoden
+## Implementation methods
 
-### PHP-Format
+### PHP format
 
 ```php
 // contao/languages/en/default.php
@@ -92,7 +92,7 @@ $GLOBALS['TL_LANG']['MSC']['goBack'] = 'Back';
 $GLOBALS['TL_LANG']['MSC']['readMore'] = ['Read more …', 'Read the full article.'];
 ```
 
-### XLIFF-Format
+### XLIFF format
 
 ```xml
 <!-- contao/languages/en/default.xlf -->
@@ -116,11 +116,11 @@ $GLOBALS['TL_LANG']['MSC']['readMore'] = ['Read more …', 'Read the full articl
 
 ---
 
-## Symfony-Integration (ab Contao 5.3)
+## Symfony integration (Contao 5.3 and later)
 
-Ab Version 5.3 können Symfony-Übersetzungsformate mit `contao_`-Präfix verwendet werden:
+From version 5.3 onwards, Symfony translation formats can be used with the `contao_` prefix:
 
-### YAML-Format
+### YAML format
 
 ```yaml
 # translations/contao_default.en.yaml
@@ -131,7 +131,7 @@ MSC:
         - Read the full article.
 ```
 
-### Andere Domains
+### Other domains
 
 ```yaml
 # translations/contao_tl_content.en.yaml
@@ -149,9 +149,9 @@ MOD:
 
 ---
 
-## Übersetzungen abrufen
+## Retrieving translations
 
-### Symfony Translator (empfohlen)
+### Symfony Translator (recommended)
 
 ```php
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -167,44 +167,44 @@ class MyService
 }
 ```
 
-### In PHP-Templates
+### In PHP templates
 
 ```php
 <?= $this->trans('MSC.goBack') ?>
 <?= $this->trans('MSC.readMore', [], 'contao_default') ?>
 ```
 
-### In Twig-Templates
+### In Twig templates
 
 ```twig
 {{ 'MSC.goBack'|trans({}, 'contao_default') }}
 
-{# Mit Default-Domain #}
+{# With a default domain #}
 {% trans_default_domain 'contao_default' %}
 {{ 'MSC.goBack'|trans }}
 ```
 
 ---
 
-## Übersetzungsschlüssel finden
+## Finding translation keys
 
-Da Schlüssel und Domains oft nur im Quellcode zu finden sind:
+Because keys and domains can often only be found in the source code:
 
-1. Symfony-Debug-Tools nutzen (`debug:translation`)
-2. `$GLOBALS['TL_LANG']` debuggen
-3. Contao-Kerncode in `vendor/contao/*/contao/languages/en/` durchsuchen
+1. Use the Symfony debug tools (`debug:translation`)
+2. Debug `$GLOBALS['TL_LANG']`
+3. Search the Contao core code in `vendor/contao/*/contao/languages/en/`
 
 ---
 
-## Eigene Translations in Bundles
+## Custom translations in bundles
 
-Verzeichnisstruktur:
+Directory structure:
 
 ```
 contao/
 └── languages/
     ├── en/
-    │   ├── default.php (oder .xlf)
+    │   ├── default.php (or .xlf)
     │   ├── tl_my_table.php
     │   └── modules.php
     └── de/
@@ -212,7 +212,7 @@ contao/
         └── tl_my_table.php
 ```
 
-Ab Contao 5.3 alternativ:
+From Contao 5.3 onwards, alternatively:
 
 ```
 translations/
@@ -224,16 +224,16 @@ translations/
 
 ---
 
-## Häufige Übersetzungsschlüssel
+## Common translation keys
 
-### Backend-Modul-Labels
+### Back end module labels
 
 ```php
 // contao/languages/en/modules.php
 $GLOBALS['TL_LANG']['MOD']['my_module'] = ['My Module', 'Manage my records.'];
 ```
 
-### DCA-Felder
+### DCA fields
 
 ```php
 // contao/languages/en/tl_my_table.php
@@ -241,7 +241,7 @@ $GLOBALS['TL_LANG']['tl_my_table']['name'] = ['Name', 'Enter the name here.'];
 $GLOBALS['TL_LANG']['tl_my_table']['edit'] = ['Edit record ID %s', ''];
 ```
 
-### Content Element Typen
+### Content element types
 
 ```php
 // contao/languages/en/default.php
@@ -250,5 +250,5 @@ $GLOBALS['TL_LANG']['CTE']['my_element'] = ['My Element', 'A custom content elem
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/translations/*  
+*Source: https://docs.contao.org/5.x/dev/framework/translations/*  
 *https://docs.contao.org/5.x/dev/getting-started/translations/*

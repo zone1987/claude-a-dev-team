@@ -1,13 +1,13 @@
-# Gotenberg — PDF Seiten drehen (Vollreferenz)
+# Gotenberg — Rotating PDF Pages (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -15,48 +15,48 @@
 POST /forms/pdfengines/rotate
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content-Type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
-|--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
-
----
-
-## Form-Felder
-
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `files` | file[] | Ja | — | — | PDF-Dateien, die rotiert werden sollen |
-| `rotateAngle` | enum | Ja | — | `90`, `180`, `270` | Rotationswinkel im Uhrzeigersinn (Grad) |
-| `rotatePages` | string | Nein | — (alle Seiten) | Seitenbereiche z.B. `1-3`, `5`, `2,4,6` | Zu rotierende Seiten; leer = alle Seiten |
-
-### rotatePages-Syntax
-
-| Beispiel | Bedeutung |
-|---------|-----------|
-| leer / nicht angegeben | Alle Seiten rotieren |
-| `1` | Nur Seite 1 |
-| `1-3` | Seiten 1 bis 3 |
-| `2,4,6` | Einzelne Seiten 2, 4 und 6 |
-| `1-3,5,7-9` | Kombination aus Bereichen und Einzelseiten |
+| Header | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `Gotenberg-Output-Filename` | string | No | random UUID | Filename of the output |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Antwort-Codes
+## Form Fields
 
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | variabel | Rotierte PDF; mehrere Inputs → ZIP-Archiv |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder (z.B. ungueltige rotateAngle) |
-| `503` | `text/plain; charset=UTF-8` | Maximale Bearbeitungsdauer ueberschritten |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `files` | file[] | Yes | — | — | PDF files to be rotated |
+| `rotateAngle` | enum | Yes | — | `90`, `180`, `270` | Rotation angle clockwise (degrees) |
+| `rotatePages` | string | No | — (all pages) | Page ranges, e.g. `1-3`, `5`, `2,4,6` | Pages to rotate; empty = all pages |
 
-### Antwort-Header bei Erfolg
+### rotatePages syntax
+
+| Example | Meaning |
+|---------|---------|
+| empty / not provided | Rotate all pages |
+| `1` | Page 1 only |
+| `1-3` | Pages 1 through 3 |
+| `2,4,6` | Individual pages 2, 4 and 6 |
+| `1-3,5,7-9` | Combination of ranges and individual pages |
+
+---
+
+## Response Codes
+
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | variable | Rotated PDF; multiple inputs → ZIP archive |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields (e.g. invalid rotateAngle) |
+| `503` | `text/plain; charset=UTF-8` | Maximum processing time exceeded |
+
+### Response headers on success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -67,9 +67,9 @@ Gotenberg-Trace: {trace}
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### Alle Seiten um 90 Grad drehen
+### Rotate all pages by 90 degrees
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
@@ -78,7 +78,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
   -o rotiert.pdf
 ```
 
-### Alle Seiten um 180 Grad drehen (umkehren)
+### Rotate all pages by 180 degrees (turn upside down)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
@@ -87,7 +87,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
   -o umgekehrt.pdf
 ```
 
-### Nur erste Seite drehen
+### Rotate the first page only
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
@@ -97,7 +97,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
   -o teilrotiert.pdf
 ```
 
-### Seiten 2-4 um 270 Grad drehen
+### Rotate pages 2-4 by 270 degrees
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
@@ -107,7 +107,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
   -o teilrotiert.pdf
 ```
 
-### Querformat-Seiten korrigieren (Seiten 3, 5, 7)
+### Fix landscape pages (pages 3, 5, 7)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
@@ -117,7 +117,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
   -o korrigiert.pdf
 ```
 
-### Mehrere PDFs rotieren (→ ZIP)
+### Rotate several PDFs (→ ZIP)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/rotate \
@@ -129,12 +129,12 @@ curl --request POST http://localhost:3000/forms/pdfengines/rotate \
 
 ---
 
-## Hinweise
+## Notes
 
-- Rotation erfolgt im Uhrzeigersinn
-- 270 Grad im Uhrzeigersinn = 90 Grad gegen den Uhrzeigersinn
-- Typischer Anwendungsfall: Scan-Korrekturen, Landscape-Seiten-Ausrichtung korrigieren
+- Rotation is performed clockwise
+- 270 degrees clockwise = 90 degrees counter-clockwise
+- Typical use case: scan corrections, fixing the orientation of landscape pages
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/rotate-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/rotate-pdfs

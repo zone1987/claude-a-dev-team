@@ -1,8 +1,8 @@
-# Gotenberg — PDF Metadaten (Lesen & Schreiben)
+# Gotenberg — PDF Metadata (Reading & Writing)
 
-Liest XMP/Exif-Metadaten via ExifTool (JSON-Antwort) und schreibt neue XMP-Tags.
-Referenz: `METADATA-DETAIL.md`
+Reads XMP/Exif metadata via ExifTool (JSON response) and writes new XMP tags.
+Reference: `METADATA-DETAIL.md`
 
-Routen:
-- `POST /forms/pdfengines/metadata/read` → JSON-Antwort
+Routes:
+- `POST /forms/pdfengines/metadata/read` → JSON response
 - `POST /forms/pdfengines/metadata/write` → PDF/ZIP

@@ -56,7 +56,7 @@ npx shadcn-vue@latest init --pointer
 
 ## References
 
-- [Installation](`BUTTON-INSTALLATION.md`)
-- [Source code](`BUTTON-SOURCE.md`)
-- [API / Props](`BUTTON-API.md`)
-- [Examples](`BUTTON-EXAMPLES.md`)
+- [BUTTON-INSTALLATION.md](BUTTON-INSTALLATION.md)
+- [BUTTON-SOURCE.md](BUTTON-SOURCE.md)
+- [BUTTON-API.md](BUTTON-API.md)
+- [BUTTON-EXAMPLES.md](BUTTON-EXAMPLES.md)

@@ -1005,7 +1005,7 @@ const json = await handle?.jsonValue(); // {}
 
 **Total: ~42 methods**
 
-**Conclusion:** `ElementHandle` is the legacy API for DOM element interactions in Playwright.
+**Summary:** `ElementHandle` is the legacy API for DOM element interactions in Playwright.
 All interaction methods are officially marked "discouraged". New tests should
 use locator-based methods exclusively. The three non-deprecated methods
 (`boundingBox`, `contentFrame`, `waitForElementState`) are useful when an ElementHandle

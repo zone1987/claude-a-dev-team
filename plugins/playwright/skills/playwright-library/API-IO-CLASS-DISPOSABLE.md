@@ -130,7 +130,7 @@ No events.
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `Disposable` follows the resource management pattern. The class is
+**Summary:** `Disposable` follows the resource management pattern. The class is
 kept minimal — there is only one method. It is important to call `dispose()` in the
 `finally` block in order to ensure that resources are released even on
 errors. In TypeScript, `await using` can be used from TS 5.2 onwards as an

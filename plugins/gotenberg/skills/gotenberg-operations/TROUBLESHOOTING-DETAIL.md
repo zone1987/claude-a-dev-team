@@ -1,212 +1,212 @@
-# Gotenberg — Troubleshooting (Vollreferenz)
+# Gotenberg — Troubleshooting (Full Reference)
 
 ## Contents
 
-- [API-Probleme](#api-probleme)
-- [Chromium-Probleme](#chromium-probleme)
-- [LibreOffice-Probleme](#libreoffice-probleme)
-- [Webhook-Probleme](#webhook-probleme)
-- [Allgemeine Debugging-Strategie](#allgemeine-debugging-strategie)
-- [Versions-Upgrade-Checkliste](#versions-upgrade-checkliste)
+- [API problems](#api-problems)
+- [Chromium problems](#chromium-problems)
+- [LibreOffice problems](#libreoffice-problems)
+- [Webhook problems](#webhook-problems)
+- [General debugging strategy](#general-debugging-strategy)
+- [Version upgrade checklist](#version-upgrade-checklist)
 
-## API-Probleme
+## API problems
 
 ### 400 Bad Request
 
-**Ursachen:**
-- Pflichtfelder fehlen
-- Fehlerhaft formatiertes JSON in Form-Feldern
-- Nicht unterstuetzte Dateiendungen
-- Ungueltige Feldwerte
+**Causes:**
+- Required fields are missing
+- Malformed JSON in form fields
+- Unsupported file extensions
+- Invalid field values
 
-**Loesung:** `Gotenberg-Trace`-Header aus der Antwort mit den Logs abgleichen fuer Details zum fehlenden/unguelltigen Feld.
+**Solution:** Match the `Gotenberg-Trace` header from the response against the logs for details about the missing/invalid field.
 
 ---
 
-## Chromium-Probleme
+## Chromium problems
 
-### Leere / fehlende Inhalte
+### Empty / missing content
 
-| Ursache | Loesung |
+| Cause | Solution |
 |---------|---------|
-| JavaScript-Rendering noch nicht abgeschlossen | `waitDelay` oder `waitForExpression` verwenden |
-| Hintergrundelemente fehlen | `printBackground=true` oder CSS `-webkit-print-color-adjust: exact` |
-| Inhalt laedt nach dem Network-Idle-Event | `skipNetworkIdleEvent=false` setzen |
+| JavaScript rendering not finished yet | Use `waitDelay` or `waitForExpression` |
+| Background elements missing | `printBackground=true` or CSS `-webkit-print-color-adjust: exact` |
+| Content loads after the network idle event | Set `skipNetworkIdleEvent=false` |
 
-### Leere Charts / Google Maps (Versionen 8.29.0 - 8.31.0)
+### Empty charts / Google Maps (versions 8.29.0 - 8.31.0)
 
-**Ursache:** chromedp 0.15.0 hat `requestAnimationFrame`, `ResizeObserver`, `IntersectionObserver` und CSS-Transitions/Animationen zwischen Seitenlade und PDF-Generierung gesperrt — verhinderte Rendering von Chart-Bibliotheken.
+**Cause:** chromedp 0.15.0 blocked `requestAnimationFrame`, `ResizeObserver`, `IntersectionObserver` and CSS transitions/animations between page load and PDF generation — this prevented chart libraries from rendering.
 
-**Loesung:** Upgrade auf **v8.32.0+** (revertiert zu chromedp v0.14.2).
+**Solution:** Upgrade to **v8.32.0+** (reverted to chromedp v0.14.2).
 
-Betroffene Issues: #1531, #1534, #1535
+Affected issues: #1531, #1534, #1535
 
-### Sub-Ressourcen laden nicht mehr (nach v8.31.0)
+### Sub-resources no longer load (after v8.31.0)
 
-**Ursache:** v8.31.0 blockierte private IP-Sub-Ressourcen standardmaessig, was CSS/Bilder/iframes auf internen Hostnames blockierte.
+**Cause:** v8.31.0 blocked private-IP sub-resources by default, which blocked CSS/images/iframes on internal hostnames.
 
-**Loesung:** v8.32.0 hat permissive Standards wiederhergestellt. Fuer strikten Modus: `CHROMIUM_DENY_PRIVATE_IPS=true` setzen.
+**Solution:** v8.32.0 restored the permissive defaults. For strict mode: set `CHROMIUM_DENY_PRIVATE_IPS=true`.
 
-### Localhost / fehlende Assets
+### Localhost / missing assets
 
-| Problem | Loesung |
+| Problem | Solution |
 |---------|---------|
-| Container findet `localhost` nicht | Echte Netzwerk-IP des Hosts verwenden oder `host.docker.internal` (Docker) |
-| CSS/Schriften/Bilder fehlen | Dateien als zusaetzliche Files im Multipart-Request mitsenden ODER als Base64-Data-URIs einbetten ODER Assets oeffentlich zugaenglich machen |
+| Container cannot find `localhost` | Use the host's real network IP or `host.docker.internal` (Docker) |
+| CSS/fonts/images missing | Send the files as additional files in the multipart request OR embed them as Base64 data URIs OR make the assets publicly accessible |
 
-### Grosse PDFs
+### Large PDFs
 
-| Ursache | Loesung |
+| Cause | Solution |
 |---------|---------|
-| Webfonts | Eigene Schriften konfigurieren (Fonts-Konfiguration, Issue #521) |
-| Duplizierte Bilder | Bekannter Chromium-Bug (#1077) — aktuell kein Fix |
+| Web fonts | Configure your own fonts (fonts configuration, issue #521) |
+| Duplicated images | Known Chromium bug (#1077) — currently no fix |
 
-### Start-Fehler
+### Startup errors
 
-- Startup-Timeout in Chromium-Modul-Konfiguration erhoehen
-- macOS Docker Desktop: "Use Virtualization Framework" deaktivieren (Issue #792)
+- Increase the startup timeout in the Chromium module configuration
+- macOS Docker Desktop: disable "Use Virtualization Framework" (issue #792)
 
-### Liveness-Probe-Fehler unter Last (vor v8.33.0)
+### Liveness probe failures under load (before v8.33.0)
 
-**Problem:** Einzelne langsame Health-Probe unter hoher Last loeste "unhealthy"-Status aus, ließ Kubernetes gesunde Pods neu starten.
+**Problem:** A single slow health probe under high load triggered an "unhealthy" status, causing Kubernetes to restart healthy pods.
 
-**Behoben in v8.33.0:**
-- Toleriert eine transiente Fehler-Probe
-- Cacht kurz erfolgreiche Probe-Ergebnisse
-- Verhindert Probe-Spam beim Ueberlasten von Prozessen
-- Tote Prozesse werden beim naechsten Check erkannt
+**Fixed in v8.33.0:**
+- Tolerates a transient failing probe
+- Briefly caches successful probe results
+- Prevents probe spam from overloading processes
+- Dead processes are detected on the next check
 
 Issue: #1561
 
 ### Print Error -32000
 
-**Ursachen:**
-1. Sehr grosse Dokumente konvertieren (bekannter Chromium-Bug)
-2. Ungewoehnlich grosse Header/Footer
+**Causes:**
+1. Converting very large documents (known Chromium bug)
+2. Unusually large headers/footers
 
-**Loesungen:**
-- Container-Speicher erhoehen
-- Header/Footer-Groesse reduzieren
-- Dokumentgroe-e pruefen (Issue #788)
+**Solutions:**
+- Increase container memory
+- Reduce header/footer size
+- Check the document size (issue #788)
 
-### Abgeschnittene Screenshots
+### Truncated screenshots
 
-**Problem:** Screenshots wiederholen sich oder erscheinen abgeschnitten.
+**Problem:** Screenshots repeat themselves or appear truncated.
 
-**Loesung:** `skipNetworkIdleEvent=false` setzen (Issue #1065).
+**Solution:** Set `skipNetworkIdleEvent=false` (issue #1065).
 
 ### Timeouts (503)
 
-**Diagnose:**
-1. Ist die Gotenberg-Instanz ueberlastet?
-2. Reagieren Zielseiten-Ressourcen langsam?
-3. Ist die Zielseite erreichbar?
+**Diagnosis:**
+1. Is the Gotenberg instance overloaded?
+2. Are the target page's resources responding slowly?
+3. Is the target page reachable?
 
-**Loesungen:**
-- Horizontal skalieren (mehr Gotenberg-Instanzen)
-- API-Timeout in API-Modul-Konfiguration erhoehen
-- Maximale Queue-Groesse definieren (schnelleres Abbrechen)
+**Solutions:**
+- Scale horizontally (more Gotenberg instances)
+- Increase the API timeout in the API module configuration
+- Define a maximum queue size (faster abort)
 
 ---
 
-## LibreOffice-Probleme
+## LibreOffice problems
 
-### Layout & Schrift-Verschiebungen
+### Layout & font shifts
 
-**Ursache:** Fehlende System-Schriften zwingen zu Ersatzschriften — verschiebt Seitenumbrueche und Layout.
+**Cause:** Missing system fonts force substitute fonts — this shifts page breaks and layout.
 
-**Loesungen:**
-- Erforderliche Schriften per eigenem Dockerfile installieren
-- Fonts-Konfiguration konsultieren
+**Solutions:**
+- Install the required fonts via your own Dockerfile
+- Consult the fonts configuration
 
-**Aenderung ab v8.30.0:** Schrift-Stack von 30+ auf 8 Pakete reduziert. Microsoft Core Fonts (Arial, Times New Roman, Calibri) verwenden jetzt Metrik-kompatible Ersatzschriften.
+**Change as of v8.30.0:** Font stack reduced from 30+ to 8 packages. Microsoft Core Fonts (Arial, Times New Roman, Calibri) now use metric-compatible substitute fonts.
 
-**Nach Upgrade:** `ttf-mscorefonts-installer` oder spezifische Skript-Schriften installieren.
+**After upgrading:** Install `ttf-mscorefonts-installer` or specific script fonts.
 
-### Verlinkte Bilder fehlen (nach v8.34.0)
+### Linked images missing (after v8.34.0)
 
-**Aenderung:** Inhalte von nicht-vertrauenswuerdigen Quellen werden blockiert; hochgeladene Dokumente gelten als nicht vertrauenswuerdig.
+**Change:** Content from untrusted sources is blocked; uploaded documents are considered untrusted.
 
-**Verhalten:** Konvertierung gibt `200 OK` zurueck, aber Bilder/verlinkter Inhalt fehlt.
+**Behavior:** The conversion returns `200 OK`, but images/linked content are missing.
 
-**Workaround:** Inhalte direkt in Dokumente einbetten statt verlinken.
+**Workaround:** Embed content directly in documents instead of linking it.
 
-**Hinweis:** Kein Opt-out moeglich — blockiert Sicherheitsschwachstellen (local-file-read und SSRF).
+**Note:** No opt-out possible — this blocks security vulnerabilities (local file read and SSRF).
 
-### Server-Fehler (500)
+### Server error (500)
 
-**Ursache:** Dokumentkonvertierung ist ressourcenintensiv.
+**Cause:** Document conversion is resource-intensive.
 
-**Loesung:** Speicher- und CPU-Zuweisung erhoehen (Issue #465).
+**Solution:** Increase memory and CPU allocation (issue #465).
 
-### UUID in CSV-Seitenheadern (vor v8.34.0)
+### UUID in CSV page headers (before v8.34.0)
 
-**Problem:** Zufaellige UUID erschien als zentrierter Header bei CSV-Konvertierungen.
+**Problem:** A random UUID appeared as a centered header in CSV conversions.
 
-**Ursache:** LibreOffice benannte Calc-Tabelle nach dem Eingabedateinamen; Gotenberg speicherte Dateien mit UUID-basierten Namen, was den Standard-Seiten-Header ausloeste.
+**Cause:** LibreOffice named the Calc sheet after the input file name; Gotenberg stored files with UUID-based names, which triggered the default page header.
 
-**Behoben in v8.34.0:** Auto-generierter Header fuer CSV-Eingaben unterdrueckt.
+**Fixed in v8.34.0:** The auto-generated header is suppressed for CSV inputs.
 
-**Hinweis:** XLSX/ODS mit eigenen Seitenstilen sind nicht betroffen (Issue #1568).
+**Note:** XLSX/ODS with their own page styles are not affected (issue #1568).
 
-### Start-Fehler
+### Startup errors
 
-**Loesungen:**
-1. Startup-Timeout erhoehen (LibreOffice-Modul-Konfiguration)
-2. Debian-Nutzer: aktuelle Distribution sicherstellen
-3. Synology/Paperless-ngx: spezifischen Konfigurationskommentar konsultieren (Issue #763)
+**Solutions:**
+1. Increase the startup timeout (LibreOffice module configuration)
+2. Debian users: make sure the distribution is up to date
+3. Synology/Paperless-ngx: consult the specific configuration comment (issue #763)
 
 Issue: #794
 
-### Erster Request Timeout, folgende Requests schlagen fehl (vor v8.32.0)
+### First request times out, subsequent requests fail (before v8.32.0)
 
-**Problem:** Supervisor cachete anfaenglichen Start-Fehler, gab identischen Fehler an alle folgenden Requests zurueck wenn `LIBREOFFICE_START_TIMEOUT` kuuerzer als soffice-Kaltstart-Dauer.
+**Problem:** The supervisor cached the initial startup error and returned the identical error to all subsequent requests when `LIBREOFFICE_START_TIMEOUT` was shorter than the soffice cold-start duration.
 
-**Behoben in v8.32.0:** Fehlgeschlagene Starts setzen den Zustand zurueck; naechster Request startet von vorne.
+**Fixed in v8.32.0:** Failed starts reset the state; the next request starts over.
 
-**Temporaere Loesung (aeltere Versionen):** `LIBREOFFICE_START_TIMEOUT` (Standard: 20s) auf mehr als soffice-Kaltstart-Zeit erhoehen (Issue #1538).
+**Temporary solution (older versions):** Increase `LIBREOFFICE_START_TIMEOUT` (default: 20s) beyond the soffice cold-start time (issue #1538).
 
-### PDF/A-1a-Unterstuetzung
+### PDF/A-1a support
 
-**Seit LibreOffice 7.6:** PDF/A-1a wird nicht mehr unterstuetzt. Frueheres Verhalten: generierte PDF/A-1b-Dateien (manchmal von Validatoren falsch identifiziert).
-
----
-
-## Webhook-Probleme
-
-### HTTPS-Webhooks schlagen fehl (Chromium-Variante vor v8.34.0)
-
-**Problem:** `gotenberg/gotenberg:8-chromium` Image enthielt kein `ca-certificates` — TLS-Verifizierungsfehler bei HTTPS-Webhook-Endpunkten.
-
-**Hinweis:** Konvertierungen selbst sind nicht betroffen (Chromium buendelt eigene Zertifikate).
-
-**Behoben in v8.34.0:** ca-certificates jetzt enthalten.
-
-**Fuer aeltere Versionen:** `ca-certificates` per eigenem Dockerfile installieren.
-
-**Andere Varianten:** Full- und LibreOffice-Varianten waren nie betroffen.
+**Since LibreOffice 7.6:** PDF/A-1a is no longer supported. Previous behavior: generated PDF/A-1b files (sometimes misidentified by validators).
 
 ---
 
-## Allgemeine Debugging-Strategie
+## Webhook problems
 
-1. **Trace-ID verwenden:** `Gotenberg-Trace`-Header in Logs suchen fuer detaillierte Fehlermeldungen
-2. **Debug-Route aktivieren:** `API_ENABLE_DEBUG_ROUTE=true` → `GET /debug` fuer Konfigurationsinfo
-3. **Version pruefen:** `GET /version` — viele Fehler sind in neueren Versionen behoben
-4. **Health-Check:** `GET /health` fuer Modulstatus
-5. **Ressourcen pruefen:** Viele Timeouts und Fehler sind Speicher-/CPU-Probleme
+### HTTPS webhooks fail (Chromium variant before v8.34.0)
+
+**Problem:** The `gotenberg/gotenberg:8-chromium` image did not include `ca-certificates` — TLS verification errors with HTTPS webhook endpoints.
+
+**Note:** The conversions themselves are not affected (Chromium bundles its own certificates).
+
+**Fixed in v8.34.0:** ca-certificates is now included.
+
+**For older versions:** Install `ca-certificates` via your own Dockerfile.
+
+**Other variants:** The full and LibreOffice variants were never affected.
 
 ---
 
-## Versions-Upgrade-Checkliste
+## General debugging strategy
 
-| Von → Nach | Was zu pruefen |
+1. **Use the trace ID:** search the logs for the `Gotenberg-Trace` header to get detailed error messages
+2. **Enable the debug route:** `API_ENABLE_DEBUG_ROUTE=true` → `GET /debug` for configuration info
+3. **Check the version:** `GET /version` — many bugs are fixed in newer versions
+4. **Health check:** `GET /health` for module status
+5. **Check resources:** many timeouts and errors are memory/CPU problems
+
+---
+
+## Version upgrade checklist
+
+| From → To | What to check |
 |-----------|---------------|
-| < 8.30.0 → 8.30.0+ | Schriftart-Pakete pruefen (ttf-mscorefonts, Skript-Schriften) |
-| < 8.32.0 → 8.32.0+ | LibreOffice-Start-Timeout pruefen |
-| < 8.33.0 → 8.33.0+ | Kubernetes-Liveness-Probe-Konfiguration pruefen |
-| < 8.34.0 → 8.34.0+ | Verlinkte Bilder in LibreOffice-Dokumenten → einbetten; Webhook-TLS-Konfiguration pruefen |
+| < 8.30.0 → 8.30.0+ | Check font packages (ttf-mscorefonts, script fonts) |
+| < 8.32.0 → 8.32.0+ | Check the LibreOffice start timeout |
+| < 8.33.0 → 8.33.0+ | Check the Kubernetes liveness probe configuration |
+| < 8.34.0 → 8.34.0+ | Linked images in LibreOffice documents → embed them; check the webhook TLS configuration |
 
 ---
 
-Quelle: https://gotenberg.dev/docs/troubleshooting
+Source: https://gotenberg.dev/docs/troubleshooting

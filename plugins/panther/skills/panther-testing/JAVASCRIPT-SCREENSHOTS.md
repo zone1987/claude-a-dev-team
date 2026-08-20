@@ -1,6 +1,6 @@
 # panther-javascript-screenshots
 
-JavaScript ausfuehren, Browser-Logs auslesen, Screenshots erstellen und Real-Time-
-Applikationen mit mehreren Browser-Clients testen.
+Execute JavaScript, read browser logs, create screenshots and test real-time
+applications with multiple browser clients.
 
-Siehe `JAVASCRIPT-SCREENSHOTS-DETAIL.md` fuer vollstaendige Beispiele.
+See `JAVASCRIPT-SCREENSHOTS-DETAIL.md` for complete examples.

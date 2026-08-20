@@ -1,3 +1,3 @@
 # contao-logging
 
-Vollständige Referenz: `LOGGING-CONTAO-LOGGING.md`
+Complete reference: `LOGGING-CONTAO-LOGGING.md`

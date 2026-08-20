@@ -2,7 +2,7 @@
 
 Complete migration reference for all deprecated `sw-*` administration components to their `mt-*` Meteor replacements in Shopware 6.7. All `sw-*` components are tagged for removal in v6.8.0.
 
-> **Detaillierter Guide:** Für vollständige Props/Events/Slots-Tabellen und echte Vorher/Nachher-Beispiele aus `src/module/` siehe [`component-migration-guide.md`](./component-migration-guide.md).
+> **Detaillierter Guide:** Für vollständige Props/Events/Slots-Tabellen und echte Vorher/Nachher-Beispiele aus `src/module/` siehe [`component-migration-guide.md`](SHOPWARE-6.7-MIGRATION-COMPONENT-MIGRATION-GUIDE.md).
 
 ---
 

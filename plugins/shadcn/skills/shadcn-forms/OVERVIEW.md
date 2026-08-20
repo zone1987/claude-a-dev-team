@@ -7,10 +7,10 @@ choice of form library.
 
 | Library            | Validation | Reference                             |
 |--------------------|------------|---------------------------------------|
-| React Hook Form    | Zod        | [react-hook-form.md](`REACT-HOOK-FORM.md`) |
-| TanStack Form      | Zod        | [tanstack-form.md](`TANSTACK-FORM.md`)     |
-| Formisch           | Valibot    | [formisch.md](`FORMISCH.md`)               |
-| Next.js Server Actions | Zod   | [next-server-actions.md](`NEXT-SERVER-ACTIONS.md`) |
+| React Hook Form    | Zod        | [REACT-HOOK-FORM.md](REACT-HOOK-FORM.md) |
+| TanStack Form      | Zod        | [TANSTACK-FORM.md](TANSTACK-FORM.md)     |
+| Formisch           | Valibot    | [FORMISCH.md](FORMISCH.md)               |
+| Next.js Server Actions | Zod   | [NEXT-SERVER-ACTIONS.md](NEXT-SERVER-ACTIONS.md) |
 
 ## Key `<Field />` props
 

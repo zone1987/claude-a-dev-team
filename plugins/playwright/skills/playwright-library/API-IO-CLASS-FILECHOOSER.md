@@ -196,7 +196,7 @@ await fileChooser.setFiles('/path/to/file.jpg');
 | Properties | 0     |
 | Events    | 0 (1 page event: 'filechooser') |
 
-**Conclusion:** `setFiles()` is the only relevant action method. `isMultiple()`
+**Summary:** `setFiles()` is the only relevant action method. `isMultiple()`
 should be checked before setting several files. The buffer variant
 of `setFiles()` is particularly useful in CI environments where no real
 filesystem fixture is needed.

@@ -115,7 +115,7 @@ const profile = await response.json();
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `APIRequest` is a lean factory object with a single method. `newContext()` creates isolated HTTP clients with full configuration for base URL, auth, TLS, proxies and timeouts. In the `@playwright/test` framework, the `request` fixture is provided automatically.
+**Summary:** `APIRequest` is a lean factory object with a single method. `newContext()` creates isolated HTTP clients with full configuration for base URL, auth, TLS, proxies and timeouts. In the `@playwright/test` framework, the `request` fixture is provided automatically.
 
 ---
 

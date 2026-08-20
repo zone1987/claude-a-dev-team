@@ -1,6 +1,6 @@
-# Contao 5.x — Einleitung (Überblick)
+# Contao 5.x — Introduction (Overview)
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/einleitung/
 - https://docs.contao.org/5.x/manual/de/einleitung/contao-open-source-cms/
 - https://docs.contao.org/5.x/manual/de/einleitung/das-contao-netzwerk/
@@ -10,140 +10,140 @@ Quellen:
 
 ## Contents
 
-- [Was ist Contao?](#was-ist-contao)
-- [Contao im Schnelldurchlauf](#contao-im-schnelldurchlauf)
-- [Das Contao-Netzwerk](#das-contao-netzwerk)
+- [What is Contao?](#what-is-contao)
+- [Contao at a glance](#contao-at-a-glance)
+- [The Contao network](#the-contao-network)
 
-## Was ist Contao?
+## What is Contao?
 
-Contao ist ein **Web-Content-Management-System (WCMS)**, das unter der **LGPL** (Lesser General Public License) als Open-Source-Software veröffentlicht wird. Es ist für die Verwaltung von Online-Inhalten konzipiert und ermöglicht Benutzern ohne HTML-Kenntnisse die Pflege professioneller Websites.
+Contao is a **web content management system (WCMS)** published as open source software under the **LGPL** (Lesser General Public License). It is designed for managing online content and enables users without HTML knowledge to maintain professional websites.
 
-### Einordnung als CMS
+### Classification as a CMS
 
-Ein Content Management System (CMS) verwaltet Inhalte und bietet:
-- Kollaboratives Arbeiten mehrerer Benutzer
-- Versionsverwaltung mit Rückgängig-Funktion
-- Präzise Zugriffsrechte pro Benutzer
-- Workflows (z. B. Redakteur erstellt, Chefredakteur veröffentlicht)
-- Abstraktion komplexer Aufgaben (Formulare, Karten)
-- 24/7-Zugriff über Webbrowser
+A content management system (CMS) manages content and offers:
+- Collaborative work by multiple users
+- Version management with an undo function
+- Precise access rights per user
+- Workflows (e.g. an editor creates, the editor-in-chief publishes)
+- Abstraction of complex tasks (forms, maps)
+- 24/7 access via web browser
 
-### Open Source und Lizenz
+### Open source and licence
 
-Contao wird unter der **LGPL** lizenziert (ursprünglich GPL). Der wesentliche Unterschied:
-- GPL: Erweiterungen müssten auch als Open Source veröffentlicht werden
-- LGPL: Drittentwickler dürfen proprietäre Erweiterungen für Contao entwickeln
+Contao is licensed under the **LGPL** (originally GPL). The essential difference:
+- GPL: extensions would also have to be published as open source
+- LGPL: third-party developers may develop proprietary extensions for Contao
 
-Grundrechte unter der LGPL/GPL:
-1. Das Programm verwenden
-2. Es frei verändern
-3. Es vervielfältigen
-4. Es verbreiten
-5. Es öffentlich zugänglich machen
+Basic rights under the LGPL/GPL:
+1. Use the program
+2. Modify it freely
+3. Duplicate it
+4. Distribute it
+5. Make it publicly accessible
 
-Pflichten: Urheberrechtshinweise müssen erhalten bleiben; keine Weitergabe unter anderen Lizenzen.
+Obligations: copyright notices must be preserved; no redistribution under other licences.
 
 ---
 
-## Contao im Schnelldurchlauf
+## Contao at a glance
 
-### Backend und Frontend
+### Backend and frontend
 
-Contao gliedert sich in zwei Bereiche:
-- **Backend** (`/contao`): Administrationsbereich, in dem Artikel geschrieben und Seiten verwaltet werden
-- **Frontend**: Die eigentliche Website für Besucher
+Contao is divided into two areas:
+- **Backend** (`/contao`): administration area where articles are written and pages are managed
+- **Frontend**: the actual website for visitors
 
-![Die Seitenstruktur](../../assets/die-seitenstruktur.png)
+![The page structure](../../assets/die-seitenstruktur.png)
 
-![Frontend-Module](../../assets/die-frontend-module.png)
+![Frontend modules](../../assets/die-frontend-module.png)
 
-Backend-Zugang: URL der Website + `/contao` → Login mit Benutzername und Passwort.
+Backend access: URL of the website + `/contao` → log in with user name and password.
 
-### Benutzer vs. Mitglieder
+### Benutzer (users) vs. Mitglieder (members)
 
-| Begriff | Beschreibung |
+| Term | Description |
 |---------|-------------|
-| **Benutzer** | Personen mit Backend-Zugang (Redakteure, Administratoren) |
-| **Mitglieder** | Personen mit Frontend-Zugang (nur bei geschützten Bereichen nötig) |
+| **Benutzer** (Users) | People with backend access (editors, administrators) |
+| **Mitglieder** (Members) | People with frontend access (only needed for protected areas) |
 
-### Die Seitenstruktur als zentrales Element
+### Seitenstruktur (Page Structure) as the central element
 
-Contao ist **seitenbasiert**. Die Seitenstruktur ist das zentrale Element:
-- Besucher rufen Seiten auf, keine einzelnen Beiträge
-- Seiten sind hierarchisch organisiert (Eltern-/Kindseiten)
-- Navigationsmenüs werden automatisch aus der Struktur generiert
-- Eigenschaften (Layout, Zugriffsrechte) werden an Unterseiten vererbt
+Contao is **page-based**. The Seitenstruktur (Page Structure) is the central element:
+- Visitors call up pages, not individual posts
+- Pages are organised hierarchically (parent/child pages)
+- Navigation menus are generated automatically from the structure
+- Properties (layout, access rights) are inherited by subpages
 
-### Seitenlayouts
+### Seitenlayouts (Page layouts)
 
-Jede Seite ist mit einem **Seitenlayout** verknüpft, das:
-- Die Seite in Layoutbereiche aufteilt (Kopfzeile, Hauptspalte, Fußzeile etc.)
-- Ein virtuelles Template dynamisch erzeugt
-- CSS-Formatierung einbettet
+Every page is linked to a **Seitenlayout** (Page layout), which:
+- Divides the page into layout sections (header, main column, footer etc.)
+- Dynamically generates a virtual template
+- Embeds the CSS formatting
 
-Standard-Layoutbereiche: Kopfzeile, linke Spalte, Hauptspalte, rechte Spalte, Fußzeile.
+Standard layout sections: header, left column, main column, right column, footer.
 
-### Frontend-Module
+### Frontend modules
 
-Innerhalb der aktivierten Layoutbereiche werden **Frontend-Module** platziert:
-- Module werden der Reihe nach ausgeführt und erzeugen HTML
-- Contao enthält Modultypen für Navigation, Benutzerverwaltung, Formulare etc.
-- Weitere Module via Erweiterungen
+**Frontend modules** are placed inside the activated layout sections:
+- Modules are executed in order and generate HTML
+- Contao contains module types for navigation, user management, forms etc.
+- Further modules via extensions
 
 ### Themes
 
-Fertige Designs können als **Themes** exportiert und importiert werden:
-- Enthält Stylesheets, Frontend-Module, Seitenlayouts und Dateien
-- Portierbar zwischen Contao-Installationen
+Finished designs can be exported and imported as **Themes**:
+- Contains stylesheets, frontend modules, page layouts and files
+- Portable between Contao installations
 
-### Artikel und Inhaltselemente
+### Articles and content elements
 
-- **Artikel**: Container für Seiteninhalt, jeweils einer Seite zugeordnet
-- **Inhaltselemente**: Typen innerhalb eines Artikels (Text, Bilder, Tabellen, Links etc.)
-- Pro Seite sind mehrere Artikel möglich, die verschiedenen Layoutbereichen zugeordnet werden
-- Drag & Drop für Neupositionierung von Elementen
+- **Article**: container for page content, each assigned to one page
+- **Content elements**: types within an article (text, images, tables, links etc.)
+- Several articles are possible per page, assigned to different layout sections
+- Drag & drop for repositioning elements
 
-**Ausnahme**: Dynamische Inhalte wie Nachrichten oder Events werden in separaten Modulen verwaltet.
+**Exception**: dynamic content such as news or events is managed in separate modules.
 
-![Inhaltselement-Auflistung im Backend](../../assets/das-inhaltselement-auflistung.png)
+![Content element listing in the backend](../../assets/das-inhaltselement-auflistung.png)
 
 ---
 
-## Das Contao-Netzwerk
+## The Contao network
 
-### Offizielle Ressourcen
+### Official resources
 
-| Ressource | URL |
+| Resource | URL |
 |-----------|-----|
-| Projektwebseite | contao.org |
-| Erweiterungen | extensions.contao.org |
-| Entwicklung (Monorepo) | github.com/contao/contao |
-| Handbuch | docs.contao.org |
-| Veranstaltungen | contao.org/de/veranstaltungen.html |
-| Netzwerk-Übersicht | contao.org/de/netzwerk.html |
+| Project website | contao.org |
+| Extensions | extensions.contao.org |
+| Development (monorepo) | github.com/contao/contao |
+| Manual | docs.contao.org |
+| Events | contao.org/de/veranstaltungen.html |
+| Network overview | contao.org/de/netzwerk.html |
 
-### Projektwebseite contao.org — Bereiche
+### Project website contao.org — areas
 
-- **Entdecken**: Features, News, Demo, Events, Fallstudien, Team (alle wichtigen Infos an einem Ort)
-- **Download**: Programm-Downloads, Logos, Veröffentlichungsplan
-- **Partner**: Agenturen und Dienstleister
-- **Support**: FAQ, Fehlermeldung, Netzwerk
-- **Verein**: Der 2012 in der Schweiz gegründete Contao-Verein fördert das Projekt durch Events, Kommunikation und Finanzierung
+- **Entdecken** (Discover): features, news, demo, events, case studies, team (all important information in one place)
+- **Download**: program downloads, logos, release plan
+- **Partner**: agencies and service providers
+- **Support**: FAQ, bug reporting, network
+- **Verein** (Association): the Contao association, founded in Switzerland in 2012, promotes the project through events, communication and funding
 
 ### Community
 
-- **Deutschsprachiges Forum**: community.contao.org/de/
-- **Slack**: Contao-Slack-Workspace
-- **Social Media**: Facebook, Instagram, LinkedIn, Pinterest, Twitter/X, YouTube
+- **German-language forum**: community.contao.org/de/
+- **Slack**: Contao Slack workspace
+- **Social media**: Facebook, Instagram, LinkedIn, Pinterest, Twitter/X, YouTube
 
-### Entwicklung
+### Development
 
-- **GitHub Monorepo**: github.com/contao/contao — transparente Entwicklung mit monatlichen öffentlichen Calls
-- **Issues melden**: Erst prüfen ob der Fehler bereits gemeldet wurde, ob die neueste stabile Version verwendet wird, und wie er reproduzierbar ist
+- **GitHub monorepo**: github.com/contao/contao — transparent development with monthly public calls
+- **Reporting issues**: first check whether the bug has already been reported, whether the latest stable version is being used, and how it can be reproduced
 
-### Fehlermeldung — Checkliste
+### Bug reporting — checklist
 
-1. Wurde der Fehler bereits gemeldet? (Issues durchsuchen)
-2. Wird die neueste stabile Contao-Version verwendet?
-3. Wie kann der Fehler in einer frischen Installation reproduziert werden?
-4. Wie kann er in der Online-Demo reproduziert werden?
+1. Has the bug already been reported? (search the issues)
+2. Is the latest stable Contao version being used?
+3. How can the bug be reproduced in a fresh installation?
+4. How can it be reproduced in the online demo?

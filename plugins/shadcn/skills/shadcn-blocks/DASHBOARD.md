@@ -49,5 +49,5 @@ style={
 
 ## Reference Files
 
-- [dashboard-01-core.md](`DASHBOARD-01-CORE.md`) — page.tsx, app-sidebar.tsx, nav-main.tsx, nav-documents.tsx, nav-secondary.tsx, nav-user.tsx, site-header.tsx, section-cards.tsx
-- [dashboard-01-chart-table.md](`DASHBOARD-01-CHART-TABLE.md`) — chart-area-interactive.tsx, data-table.tsx, data.json
+- [DASHBOARD-01-CORE.md](DASHBOARD-01-CORE.md) — page.tsx, app-sidebar.tsx, nav-main.tsx, nav-documents.tsx, nav-secondary.tsx, nav-user.tsx, site-header.tsx, section-cards.tsx
+- [DASHBOARD-01-CHART-TABLE.md](DASHBOARD-01-CHART-TABLE.md) — chart-area-interactive.tsx, data-table.tsx, data.json

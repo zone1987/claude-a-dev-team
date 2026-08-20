@@ -1,7 +1,7 @@
-# Shopware 6 — Admin-Styling
+# Shopware 6 — Admin styling
 
-Pro Komponente eine `.scss` neben `index.js`/`.twig`, importiert im Komponenten-`index.js`. BEM-Namensschema mit
-Komponenten-Präfix.
+One `.scss` per component next to `index.js`/`.twig`, imported in the component's `index.js`. BEM naming scheme with
+a component prefix.
 
 ```scss
 // ff-example-card.scss
@@ -11,5 +11,5 @@ Komponenten-Präfix.
 }
 ```
 
-Meteor/Admin-Design-Tokens als CSS-Custom-Properties (`--color-*`, Spacing) nutzen — keine Hardcodes. Lint:
-`composer stylelint` / `eslint:admin`. Build via Vite (`sw-admin-vite`). UI-Bausteine: Meteor-Komponenten (`sw-meteor-components`).
+Use Meteor/admin design tokens as CSS custom properties (`--color-*`, spacing) — no hardcoded values. Lint:
+`composer stylelint` / `eslint:admin`. Build via Vite (`sw-admin-vite`). UI building blocks: Meteor components (`sw-meteor-components`).

@@ -1,7 +1,7 @@
-# Shopware 6 — Admin-Komponente
+# Shopware 6 — Admin component
 
-Komponenten werden über `Shopware.Component.register(name, config)` registriert. Template als `.html.twig`
-(Twig-basiertes Vue-Templating der Admin).
+Components are registered via `Shopware.Component.register(name, config)`. The template is a `.html.twig`
+(the admin's Twig-based Vue templating).
 
 ```js
 import template from './ff-example-card.html.twig';
@@ -19,5 +19,5 @@ Shopware.Component.register('ff-example-card', {
 {% endblock %}
 ```
 
-UI mit **Meteor-Komponenten** (`mt-*`, `sw-meteor-components`) aufbauen. Bestehende Komponente anpassen statt neu:
-`sw-admin-component-override`. Daten via Repository (`sw-admin-repository-js`).
+Build the UI with **Meteor components** (`mt-*`, `sw-meteor-components`). Adapt an existing component instead of writing a new one:
+`sw-admin-component-override`. Data via repository (`sw-admin-repository-js`).

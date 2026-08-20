@@ -1,30 +1,30 @@
 # Shopware Frontends – Features
 
-Quelle: `apps/docs/src/getting-started/features/`, `apps/docs/src/getting-started/page-elements/`
+Source: `apps/docs/src/getting-started/features/`, `apps/docs/src/getting-started/page-elements/`
 
 ---
 
 ## Contents
 
-- [1. Wishlist (Wunschliste)](#1-wishlist-wunschliste)
-- [2. Broadcasting (Tab-Synchronisation)](#2-broadcasting-tab-synchronisation)
-- [3. Maintenance Mode (Wartungsmodus)](#3-maintenance-mode-wartungsmodus)
+- [1. Wishlist](#1-wishlist)
+- [2. Broadcasting (tab synchronization)](#2-broadcasting-tab-synchronization)
+- [3. Maintenance Mode](#3-maintenance-mode)
 - [4. Sitemap](#4-sitemap)
 - [5. Custom Products Extension](#5-custom-products-extension)
-- [6. Navigation & Breadcrumbs](#6-navigation-breadcrumbs)
+- [6. Navigation & breadcrumbs](#6-navigation--breadcrumbs)
 
-## 1. Wishlist (Wunschliste)
+## 1. Wishlist
 
-### Composables-Übersicht
+### Composables overview
 
-| Composable | Beschreibung |
+| Composable | Description |
 |------------|-------------|
-| `useLocalWishlist` | Lokale (In-Memory) Wunschliste für nicht eingeloggte Nutzer |
-| `useSyncWishlist` | Remote-Wunschliste (Server, nur für eingeloggte Nutzer) |
-| `useWishlist` | View-Helper für Wishlist-Seite (erkennt Login-Status automatisch) |
-| `useProductWishlist` | View-Helper für einzelnes Produkt |
+| `useLocalWishlist` | Local (in-memory) wishlist for users who are not logged in |
+| `useSyncWishlist` | Remote wishlist (server, only for logged-in users) |
+| `useWishlist` | View helper for the wishlist page (detects the login state automatically) |
+| `useProductWishlist` | View helper for a single product |
 
-### Wunschliste laden und anzeigen
+### Loading and displaying the wishlist
 
 ```vue
 <script setup lang="ts">
@@ -66,7 +66,7 @@ onMounted(async () => {
 </template>
 ```
 
-### Produkt zur Wunschliste hinzufügen
+### Adding a product to the wishlist
 
 ```vue
 <script setup lang="ts">
@@ -80,9 +80,9 @@ const { addToWishlist, isInWishlist } = useProductWishlist(product);
 </template>
 ```
 
-> `addToWishlist` erkennt automatisch, ob der Nutzer eingeloggt ist.
+> `addToWishlist` automatically detects whether the user is logged in.
 
-### Produkt aus Wunschliste entfernen
+### Removing a product from the wishlist
 
 ```vue
 <script setup lang="ts">
@@ -95,37 +95,37 @@ const { removeFromWishlist, isInWishlist } = useProductWishlist(product);
 </template>
 ```
 
-### Lokale und Remote-Wunschliste zusammenführen
+### Merging the local and remote wishlist
 
-Nach dem Login lokale Wunschliste mit der Server-Wunschliste synchronisieren:
+After login, synchronize the local wishlist with the server wishlist:
 
 ```ts
 const invokeLogin = async () => {
   await login(formData.value);
-  mergeWishlistProducts(); // <-- direkt nach Login aufrufen
+  mergeWishlistProducts(); // <-- call right after login
 };
 ```
 
 ---
 
-## 2. Broadcasting (Tab-Synchronisation)
+## 2. Broadcasting (tab synchronization)
 
-Synchronisierung von Cart- und Session-Daten zwischen Browser-Tabs über die [Broadcast Channel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API).
+Synchronization of cart and session data between browser tabs via the [Broadcast Channel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API).
 
-### Aktivieren (vue-demo Template)
+### Enabling it (vue-demo template)
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   runtimeConfig: {
-    broadcasting: true,  // Standard: false
+    broadcasting: true,  // default: false
   },
 });
 ```
 
-> **Hinweis:** Broadcasting und BFCache (Back-Forward-Cache) sind inkompatibel. Bei aktiviertem Broadcasting ist BFCache deaktiviert.
+> **Note:** broadcasting and BFCache (back-forward cache) are incompatible. With broadcasting enabled, BFCache is disabled.
 
-### Implementierung (`useBroadcastChannelSync`)
+### Implementation (`useBroadcastChannelSync`)
 
 ```ts
 import type { Schemas } from "#shopware";
@@ -140,7 +140,7 @@ export function useSyncChannel<Entity>(
 export const useBroadcastChannelSync = createSharedComposable(() => {
   const { apiClient } = useShopwareContext();
 
-  // CART synchronisieren
+  // synchronize the CART
   const { refreshCart } = useCart();
   const [cartData, notifyCartDataChanged] =
     useSyncChannel<Schemas["Cart"]>("shopware-cart");
@@ -148,7 +148,7 @@ export const useBroadcastChannelSync = createSharedComposable(() => {
     refreshCart(cartData.value);
   });
 
-  // SESSION synchronisieren
+  // synchronize the SESSION
   const { setContext } = useSessionContext();
   const [sessionData, notifySessionDataChanged] =
     useSyncChannel<Schemas["SalesChannelContext"]>("shopware-session-data");
@@ -156,7 +156,7 @@ export const useBroadcastChannelSync = createSharedComposable(() => {
     if (sessionData.value) setContext(sessionData.value);
   });
 
-  // API-Responses abfangen und in Channels posten
+  // intercept API responses and post them into the channels
   apiClient.hook("onSuccessResponse", (response) => {
     if (response._data?.apiAlias === "cart") {
       notifyCartDataChanged(response._data);
@@ -169,23 +169,23 @@ export const useBroadcastChannelSync = createSharedComposable(() => {
 
 ---
 
-## 3. Maintenance Mode (Wartungsmodus)
+## 3. Maintenance Mode
 
-### Erkennung via API
+### Detection via the API
 
 ```ts
 import { isMaintenanceMode } from "@shopware/helpers";
 
 apiClient.hook("onResponseError", (response) => {
   const error = isMaintenanceMode(response._data?.errors ?? []);
-  // Reaktion implementieren
+  // implement the reaction
 });
 ```
 
-### Nuxt 3: 503-Fehler werfen und Seite anzeigen
+### Nuxt 3: throw a 503 error and show a page
 
 ```ts
-// In apiClient Setup / Plugin:
+// In the apiClient setup / plugin:
 import { isMaintenanceMode } from "@shopware/helpers";
 
 apiClient.hook("onResponseError", (response) => {
@@ -215,9 +215,9 @@ const isMaintenanceMode = computed(() =>
 </template>
 ```
 
-### IP-Allowlisting (Server-Middleware)
+### IP allowlisting (server middleware)
 
-SSR bei aktivem Wartungsmodus deaktivieren – damit die Backend-IP nicht blockiert wird:
+Disable SSR while maintenance mode is active – so the backend IP is not blocked:
 
 ```ts
 // server/middleware/maintenance.ts
@@ -243,49 +243,49 @@ export default defineEventHandler(async (event) => {
 
 ## 4. Sitemap
 
-### Aufbau
+### Structure
 
-Die Sitemap kombiniert zwei Quellen:
+The sitemap combines two sources:
 
 ```
 http://<domain>/sitemap.xml
 ```
 
-| Quelle | Datei | Inhalt |
+| Source | File | Content |
 |--------|-------|--------|
-| Admin-Sitemap | `/server/routes/sitemap.xml.ts` | Produkt-, Kategorie-, CMS-Seiten (via Shopware) |
-| Frontends-Sitemap | `/server/routes/sitemap-local.xml.ts` | Statische Seiten des Frontends |
+| Admin sitemap | `/server/routes/sitemap.xml.ts` | Product, category and CMS pages (via Shopware) |
+| Frontends sitemap | `/server/routes/sitemap-local.xml.ts` | Static pages of the frontend |
 
-**Statische Seiten manuell eintragen:**
+**Registering static pages manually:**
 
 ```ts
 // server/sitemap.ts
-// Jede statische Seite aus dem Frontends-App muss hier manuell eingetragen werden
+// Every static page of the Frontends app must be registered here manually
 ```
 
-Weitere Informationen zur Admin-Sitemap: https://docs.shopware.com/en/shopware-6-en/settings/sitemap
+More information about the admin sitemap: https://docs.shopware.com/en/shopware-6-en/settings/sitemap
 
 ---
 
 ## 5. Custom Products Extension
 
-> Nur verfügbar mit Shopware Rise Plan.
+> Only available with the Shopware Rise Plan.
 
 ### Composable `useProductCustomizedProductConfigurator`
 
-Zentraler Baustein für Custom Products Logik:
+The central building block for Custom Products logic:
 
 ```ts
 const {
-  isActive,        // boolean: Produkt hat aktives Custom-Product-Template
-  customizedProduct, // Template-Daten
-  state,           // Zustand für Formular-Binding
-  addToCart,       // Zum Warenkorb hinzufügen (mit Custom-Options)
-  handleFileUpload, // Bild hochladen → mediaId zurückbekommen
+  isActive,        // boolean: the product has an active custom product template
+  customizedProduct, // template data
+  state,           // state for form binding
+  addToCart,       // add to the cart (with custom options)
+  handleFileUpload, // upload an image → get a mediaId back
 } = useProductCustomizedProductConfigurator();
 ```
 
-### In ProductAddToCart integrieren
+### Integrating it into ProductAddToCart
 
 ```ts
 const {
@@ -302,25 +302,25 @@ const addToCartProxy = async () => {
 };
 ```
 
-### Template-Einbindung
+### Wiring it into the template
 
 ```html
-<!-- In ProductStatic.vue oder ähnlichem -->
+<!-- In ProductStatic.vue or similar -->
 <ProductVariantConfigurator @change="handleVariantChange" />
-<ProductCustomizedProductConfigurator />  <!-- Hinzufügen -->
+<ProductCustomizedProductConfigurator />  <!-- add this -->
 <ProductAddToCart :product="product" />
 ```
 
-**Bekannte Einschränkungen:**
-- Fehlende Bilder beim "Image select"-Options-Typ
-- Fehlendes Cover-Bild für Custom Product im Warenkorb
-- Ausgewählte Optionen werden im Warenkorb-Item nicht angezeigt
+**Known limitations:**
+- Missing images for the "Image select" option type
+- Missing cover image for a custom product in the cart
+- Selected options are not shown on the cart item
 
 ---
 
-## 6. Navigation & Breadcrumbs
+## 6. Navigation & breadcrumbs
 
-### Navigation laden und rendern
+### Loading and rendering the navigation
 
 ```vue
 <script setup lang="ts">
@@ -345,25 +345,25 @@ await loadNavigationElements({ depth: 2 });
 
 ### Breadcrumbs
 
-**Statische Seite:**
+**Static page:**
 ```ts
 useBreadcrumbs([{ name: "Shopware", path: "/shopware" }]);
 ```
 
-**Dynamische Seite (Kategorie/Produkt):**
+**Dynamic page (category/product):**
 ```ts
 const { buildDynamicBreadcrumbs } = useBreadcrumbs();
 buildDynamicBreadcrumbs(props.navigationId);
 ```
 
-**CMS-Seite ohne zusätzlichen Request:**
+**CMS page without an additional request:**
 ```ts
 import { getCategoryBreadcrumbs } from "@shopware/helpers";
 const breadcrumbs = getCategoryBreadcrumbs(productResponse.value?.product?.seoCategory);
 useBreadcrumbs(breadcrumbs);
 ```
 
-**Breadcrumbs beim Seitenwechsel leeren:**
+**Clearing breadcrumbs on page change:**
 ```ts
 const { clearBreadcrumbs } = useBreadcrumbs();
 onBeforeRouteLeave(() => {
@@ -371,7 +371,7 @@ onBeforeRouteLeave(() => {
 });
 ```
 
-**Breadcrumbs anzeigen:**
+**Displaying breadcrumbs:**
 ```vue
 <script setup lang="ts">
 const { breadcrumbs } = useBreadcrumbs();

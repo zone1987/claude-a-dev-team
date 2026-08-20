@@ -1,3 +1,3 @@
-# Meteor Design System — Installation & Getting Started
+# Meteor Design System — Installation & getting started
 
-Vollständige Referenz: `GETTING-STARTED-DETAIL.md`
+Full reference: `GETTING-STARTED-DETAIL.md`

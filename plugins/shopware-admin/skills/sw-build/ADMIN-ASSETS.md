@@ -1,12 +1,12 @@
-# Shopware 6 — Admin-Assets
+# Shopware 6 — Admin assets
 
-Statische Plugin-Assets liegen unter `src/Resources/app/administration/src/assets/` und werden vom Vite-Build
-gebündelt; Import direkt im JS/SCSS.
+Static plugin assets live under `src/Resources/app/administration/src/assets/` and are bundled by the Vite
+build; import them directly in JS/SCSS.
 
 ```js
 import logoUrl from '../../assets/ff-logo.svg';
 ```
 
-Icons über die Icon-Komponente (`<mt-icon name="regular-cog"/>` bzw. Legacy `<sw-icon>`); eigene SVGs als Asset
-importieren. Medien aus dem DAL (Media-Entity) über `sw-media-field`/Media-Upload-Komponenten, nicht als statisches
-Asset. Build-Details: `sw-admin-vite`.
+Icons via the icon component (`<mt-icon name="regular-cog"/>` or legacy `<sw-icon>`); import your own SVGs as an
+asset. Media from the DAL (media entity) via `sw-media-field`/media upload components, not as a static
+asset. Build details: `sw-admin-vite`.

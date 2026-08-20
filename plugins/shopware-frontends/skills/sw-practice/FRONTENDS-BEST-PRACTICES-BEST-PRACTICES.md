@@ -1,56 +1,56 @@
 # Shopware Frontends – Best Practices
 
-Quelle: `apps/docs/src/best-practices/`
+Source: `apps/docs/src/best-practices/`
 
 ---
 
 ## Contents
 
 - [Performance](#performance)
-- [Bilder (Images)](#bilder-images)
+- [Images](#images)
 - [Error Handling](#error-handling)
 - [Testing](#testing)
 - [Deployment](#deployment)
 
 ## Performance
 
-### Lighthouse-Checkliste (nur auf Production Build prüfen!)
+### Lighthouse checklist (only check against a production build!)
 
 **Performance:**
-- Bilder haben angemessene Auflösung
-- Bilder im WebP-Format
-- Third-Party-Code wird asynchron geladen
-- Bilder werden lazy geladen
-- Alle Custom-Event-Listener werden beim Unmount zerstört
+- Images have an appropriate resolution
+- Images in WebP format
+- Third-party code is loaded asynchronously
+- Images are lazy-loaded
+- All custom event listeners are destroyed on unmount
 
 **Accessibility:**
-- Alle Bilder haben `alt`-Attribut
-- Kontrast stimmt
-- `aria-label` bei HTML-Tags
+- All images have an `alt` attribute
+- Contrast is correct
+- `aria-label` on HTML tags
 
 **Best Practices:**
-- `https`-Verbindung
-- Semantische HTML-Struktur
+- `https` connection
+- Semantic HTML structure
 
 **SEO:**
-- `robots.txt` vorhanden
-- Alle Seiten haben Metadata (title, description)
+- `robots.txt` present
+- All pages have metadata (title, description)
 
 ---
 
-## Bilder (Images)
+## Images
 
-### Format & Kompression
+### Format & compression
 
-**WebP** als erste Wahl für Rasterbilder (vollständige Browser-Unterstützung).
+**WebP** as the first choice for raster images (full browser support).
 Tools: [Squoosh](https://squoosh.app/), [Thumbor](http://thumborize.globo.com/)
 
-**Open-Source Image Processors:**
+**Open-source image processors:**
 - [thumbor](https://www.thumbor.org/)
 - [lovell/sharp](https://github.com/lovell/sharp)
 - [imgproxy](https://github.com/imgproxy/imgproxy)
 
-### CDN + Image Processor
+### CDN + image processor
 
 ```html
 <img
@@ -62,7 +62,7 @@ Tools: [Squoosh](https://squoosh.app/), [Thumbor](http://thumborize.globo.com/)
 />
 ```
 
-### Responsive Images mit srcset
+### Responsive images with srcset
 
 ```html
 <img
@@ -77,7 +77,7 @@ Tools: [Squoosh](https://squoosh.app/), [Thumbor](http://thumborize.globo.com/)
 />
 ```
 
-### Picture-Element (Multi-Format-Fallback)
+### Picture element (multi-format fallback)
 
 ```html
 <picture>
@@ -87,60 +87,60 @@ Tools: [Squoosh](https://squoosh.app/), [Thumbor](http://thumborize.globo.com/)
 </picture>
 ```
 
-### Cumulative Layout Shift (CLS) vermeiden
+### Avoiding Cumulative Layout Shift (CLS)
 
-- Immer `width` und `height` auf `<img>` setzen
-- CSS-Override:
+- Always set `width` and `height` on `<img>`
+- CSS override:
   ```css
   img { max-width: 100%; height: auto; }
   ```
-- Low-Quality Placeholder (z.B. SVG) verwenden
+- Use a low-quality placeholder (e.g. SVG)
 
-### Largest Contentful Paint (LCP) optimieren
+### Optimising Largest Contentful Paint (LCP)
 
-- **NIE** `loading="lazy"` auf Above-the-Fold-Bilder
-- `fetchpriority="high"` für LCP-Bild setzen
+- **NEVER** use `loading="lazy"` on above-the-fold images
+- Set `fetchpriority="high"` for the LCP image
 
 ---
 
 ## Error Handling
 
-Hinweis: Die ältere Error-Handling-Dokumentation basiert auf dem alten API-Client.
-Aktuell: Neuen `@shopware/api-client` verwenden (typesafe, via `invoke`).
+Note: The older error-handling documentation is based on the old API client.
+Current: use the new `@shopware/api-client` (typesafe, via `invoke`).
 
 ---
 
 ## Testing
 
-### E2E Testing mit Playwright
+### E2E testing with Playwright
 
-**Page Object Pattern (Best Practices):**
-- `data-testid`-Selektoren verwenden
-- Unzweideutige Klassen-Namen für Page Objects
-- Klassen enthalten nur Methoden für UI-Interaktion
-- Keine Assertions auf Page-Object-Ebene
-- Page Objects können auch kleine Komponenten sein
+**Page object pattern (best practices):**
+- Use `data-testid` selectors
+- Unambiguous class names for page objects
+- Classes contain only methods for UI interaction
+- No assertions at the page-object level
+- Page objects can also be small components
 
-**Verzeichnisstruktur:**
+**Directory structure:**
 ```
 e2e-tests/
-├─ page-objects/   # Page-Klassen
-├─ tests/          # Testdateien
-└─ utils/          # Helpers und Factories
+├─ page-objects/   # Page classes
+├─ tests/          # Test files
+└─ utils/          # Helpers and factories
 ```
 
-**Keine Hard Waits:**
+**No hard waits:**
 ```js
-// FALSCH
+// WRONG
 await page.waitFor(1000);
 
-// RICHTIG
+// RIGHT
 await page.waitForNavigation();
 await page.waitForLoadState();
 await page.waitForSelector();
 ```
 
-**data-testid Konvention:**
+**data-testid convention:**
 ```
 data-testid="{scope}-{name}-{type}"
 data-testid="header-search-input"
@@ -148,7 +148,7 @@ data-testid="login-email-input"
 data-testid="login-submit-button"
 ```
 
-**Beispiel LoginForm Page Object:**
+**Example LoginForm page object:**
 ```js
 import { expect, Locator, Page } from "@playwright/test";
 
@@ -173,7 +173,7 @@ export class LoginForm {
 }
 ```
 
-**E2E-Test Beispiel:**
+**E2E test example:**
 ```js
 import { test, expect } from "@playwright/test";
 
@@ -200,19 +200,19 @@ test("failed login", async ({ page }) => {
 
 ### A/B Testing
 
-**Anbieter:**
+**Providers:**
 - [AB Tasty](https://www.abtasty.com/)
 - [Optimizely](https://www.optimizely.com/)
 - [VWO](https://vwo.com/)
 - [Split.io](https://www.split.io/)
 - [Kameleoon](https://www.kameleoon.com/)
-- [PostHog](https://posthog.com/) (kostenloses Free-Tier)
+- [PostHog](https://posthog.com/) (free tier available at no cost)
 
 **Best Practices:**
 
-1. Mit klarer Hypothese beginnen
+1. Start with a clear hypothesis
 
-2. Dynamisches Splitting (Bundle-Size):
+2. Dynamic splitting (bundle size):
 ```ts
 const myExperimentFlag = useABTesting("myExperimentFlag");
 const MyComponent = myExperimentFlag
@@ -220,7 +220,7 @@ const MyComponent = myExperimentFlag
   : import("./MyComponentVariantB");
 ```
 
-3. Kleine Komponenten: Inline-Varianten
+3. Small components: inline variants
 ```ts
 <button :class="{
   'bg-color-red': myExperimentFlag,
@@ -228,18 +228,18 @@ const MyComponent = myExperimentFlag
 }">Click me</button>
 ```
 
-4. Nach dem Test: **Code aufräumen!** – Ungenutzte Varianten entfernen.
+4. After the test: **clean up the code!** – Remove unused variants.
 
 ---
 
-### Accessibility Testing mit axe-core
+### Accessibility testing with axe-core
 
-**Integration mit Playwright:**
+**Integration with Playwright:**
 ```bash
 npm install @axe-core/playwright
 ```
 
-**Ganzseitiger Scan:**
+**Full-page scan:**
 ```js
 import { test, expect } from '@playwright/test';
 import AxeBuilder from "@axe-core/playwright";
@@ -255,7 +255,7 @@ test('Check accessibility violations', async ({ page }) => {
 });
 ```
 
-**Partieller Scan (Navigation Menu):**
+**Partial scan (navigation menu):**
 ```js
 test('navigation menu accessibility', async ({ page }) => {
   await page.goto('https://your-site.com/');
@@ -270,44 +270,44 @@ test('navigation menu accessibility', async ({ page }) => {
 });
 ```
 
-Tipp: axe-core ist auch als Chrome/Firefox-Extension verfügbar.
+Tip: axe-core is also available as a Chrome/Firefox extension.
 
 ---
 
 ## Deployment
 
-Quelle: `apps/docs/src/best-practices/deployment.md`
+Source: `apps/docs/src/best-practices/deployment.md`
 
-### Hosting-Optionen
+### Hosting options
 
-#### Static Hosting (SPA / SSG)
+#### Static hosting (SPA / SSG)
 
-| Modus | Beschreibung | Vorteile | Nachteile |
+| Mode | Description | Advantages | Disadvantages |
 |-------|-------------|----------|-----------|
-| **SPA** | Server liefert HTML+JS, Browser rendert | Kein Node-Server nötig | Langsamer Initial-Load, API-abhängig |
-| **SSG** | Seiten werden einmalig beim Build generiert | Maximale Performance, API unabhängig | Jede Produktänderung erfordert Rebuild |
+| **SPA** | Server delivers HTML+JS, browser renders | No Node server required | Slower initial load, API-dependent |
+| **SSG** | Pages are generated once at build time | Maximum performance, independent of the API | Every product change requires a rebuild |
 
-**Populäre Static-Hosting-Dienste:**
+**Popular static hosting services:**
 - [Vercel](https://vercel.com/)
 - [Netlify](https://www.netlify.com/)
 - [Amazon S3](https://aws.amazon.com/s3/)
 
-#### Dynamic Hosting (SSR)
+#### Dynamic hosting (SSR)
 
-SSR (Server-Side Rendering) rendert Seiten bei jedem Request auf dem Server.
-- Besseres SEO (sofort sichtbarer Inhalt)
-- Kein Cache-Invalidierungsproblem
-- Erfordert Node.js-Server
-- Zusätzlicher Round-Trip: Browser → Node → API → Node → Browser
+SSR (server-side rendering) renders pages on the server on every request.
+- Better SEO (immediately visible content)
+- No cache-invalidation problem
+- Requires a Node.js server
+- Additional round trip: browser → Node → API → Node → browser
 
-**Populäre SSR-Hosting-Dienste:**
+**Popular SSR hosting services:**
 - [Vercel](https://vercel.com/)
 - [Heroku](https://www.heroku.com/)
 
-### Nitro (Nuxt Server-Engine)
+### Nitro (Nuxt server engine)
 
-[Nitro](https://github.com/unjs/nitro) ist die Standard-Server-Engine von Nuxt 3.
-Fertige Deployment-Presets (fast zero-config):
+[Nitro](https://github.com/unjs/nitro) is the default server engine of Nuxt 3.
+Ready-made deployment presets (almost zero-config):
 
 ```
 azure          – Azure Static Web Apps / Functions
@@ -317,37 +317,37 @@ stormkit       – Stormkit
 vercel         – Vercel
 ```
 
-Vollständige Liste: https://nitro.unjs.io/deploy
+Full list: https://nitro.unjs.io/deploy
 
-### Deployment Best Practices
+### Deployment best practices
 
-1. **Automatisierung:** Build, Tests, Releases automatisieren → weniger menschliche Fehler
-2. **CI/CD einsetzen:** Tests, Build-Prüfung und Static-Analysis vor jedem Deployment
-3. **Multiple Environments:** Verschiedene Node-Versionen und Dependency-Stände testen
-4. **Deployment-Checklist:** Klarer Ablauf vor jedem Roll-out
+1. **Automation:** automate build, tests and releases → fewer human errors
+2. **Use CI/CD:** tests, build verification and static analysis before every deployment
+3. **Multiple environments:** test different Node versions and dependency states
+4. **Deployment checklist:** a clear procedure before every roll-out
 
 ### Troubleshooting
 
-#### CORS-Probleme
+#### CORS problems
 
-Shopware Store-API erlaubt standardmäßig Cross-Origin-Requests. Konfiguration:
+The Shopware Store API allows cross-origin requests by default. Configuration:
 
-| Header | Default | Beschreibung |
+| Header | Default | Description |
 |--------|---------|-------------|
-| `Access-Control-Allow-Origin` | `*` | Erlaubte Origins |
-| `Access-Control-Allow-Methods` | `GET,POST,PUT,PATCH,DELETE` | Erlaubte HTTP-Methoden |
-| `Access-Control-Allow-Headers` | `Content-Type,sw-context-token,...` | Erlaubte Header |
+| `Access-Control-Allow-Origin` | `*` | Allowed origins |
+| `Access-Control-Allow-Methods` | `GET,POST,PUT,PATCH,DELETE` | Allowed HTTP methods |
+| `Access-Control-Allow-Headers` | `Content-Type,sw-context-token,...` | Allowed headers |
 
-**Lösungsoptionen bei CORS-Problemen:**
+**Solution options for CORS problems:**
 
-| Lösung | CORS-frei | Performance | Setup |
+| Solution | CORS-free | Performance | Setup |
 |--------|-----------|-------------|-------|
-| Reverse Proxy (NGINX) | Ja | Schnell | Mittel |
-| Nuxt SSR Mode | Ja | Schnell | Einfach |
-| Shopware API-CORS anpassen | Nein | Schnell | Einfach |
-| Custom API Middleware | Ja | Langsamer | Aufwendig |
+| Reverse proxy (NGINX) | Yes | Fast | Medium |
+| Nuxt SSR mode | Yes | Fast | Easy |
+| Adjust Shopware API CORS | No | Fast | Easy |
+| Custom API middleware | Yes | Slower | Laborious |
 
-**Vite-Proxy für lokale Entwicklung:**
+**Vite proxy for local development:**
 ```ts
 // nuxt.config.ts
 vite: {
@@ -363,25 +363,25 @@ vite: {
 },
 ```
 
-#### devStorefrontUrl (Kundenregistrierung lokal)
+#### devStorefrontUrl (customer registration locally)
 
-Shopwares Registrierungsendpunkt benötigt eine `storefrontUrl`, die mit einer konfigurierten Sales-Channel-Domain übereinstimmt. Bei lokalem Dev schlägt das fehl.
+Shopware's registration endpoint requires a `storefrontUrl` that matches a configured sales channel domain. In local dev this fails.
 
 ```ts
 // nuxt.config.ts
 shopware: {
   endpoint: "https://your-shop.shopware.store/store-api",
   accessToken: "your-access-token",
-  devStorefrontUrl: "https://your-shop.shopware.store",  // muss in Sales-Channel-Domains konfiguriert sein
+  devStorefrontUrl: "https://your-shop.shopware.store",  // must be configured in the sales channel domains
 },
 ```
 
-Oder per Environment-Variable:
+Or via an environment variable:
 ```bash
 NUXT_PUBLIC_SHOPWARE_DEV_STOREFRONT_URL=https://your-shop.shopware.store
 ```
 
-#### HTTPS für localhost
+#### HTTPS for localhost
 
 **Option A: mkcert**
 ```bash
@@ -390,7 +390,7 @@ mkcert localhost
 NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem
 ```
 
-**Option B: Vite Plugin**
+**Option B: Vite plugin**
 ```bash
 pnpm add -D @vitejs/plugin-basic-ssl
 ```

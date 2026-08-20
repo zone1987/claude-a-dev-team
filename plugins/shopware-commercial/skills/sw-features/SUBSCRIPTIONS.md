@@ -4,7 +4,7 @@ Entwickler-Referenz fuer das Shopware Subscriptions Extension.
 
 ## Referenzen
 
-- [Subscriptions Konzepte und Checkout-Flows](`SUBSCRIPTIONS-DETAIL.md`)
+- [SUBSCRIPTIONS-DETAIL.md](SUBSCRIPTIONS-DETAIL.md)
 
 ## Querverweise
 

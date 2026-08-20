@@ -1,3 +1,3 @@
-# Meteor Design System — Nutzungsrichtlinien & Best Practices
+# Meteor Design System — Usage guidelines & best practices
 
-Vollständige Referenz: `USAGE-GUIDELINES-DETAIL.md`
+Full reference: `USAGE-GUIDELINES-DETAIL.md`

@@ -1,175 +1,175 @@
-# Contao 5.x – Formulargenerator
+# Contao 5.x – Formulargenerator (Form Generator)
 
-Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
+Complete reference from the Contao 5.x manual (German).
 
 ---
 
 ## Contents
 
-- [1. Formulare konfigurieren](#1-formulare-konfigurieren)
-- [2. Formularfelder](#2-formularfelder)
-- [3. Suchformular erstellen (Tutorial)](#3-suchformular-erstellen-tutorial)
+- [1. Configuring forms](#1-configuring-forms)
+- [2. Form fields](#2-form-fields)
+- [3. Creating a search form (tutorial)](#3-creating-a-search-form-tutorial)
 
-## 1. Formulare konfigurieren
+## 1. Configuring forms
 
-Der Formulargenerator befindet sich im Backend unter **Inhalte**. Formulare können Daten per E-Mail versenden oder in der Datenbank speichern. Validierung erfolgt automatisch anhand vorgegebener Regeln.
+The Formulargenerator (Form Generator) is located in the backend under **Inhalte** (Content). Forms can send data by e-mail or store it in the database. Validation is performed automatically based on predefined rules.
 
-### Titel und Weiterleitung
+### Title and redirect
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| **Titel** | Nur im Backend sichtbar |
-| **Formular-Alias** | Eindeutige Referenz als Alternative zur numerischen Formular-ID |
-| **Weiterleitungsseite** | Zielseite nach Absendung (Bestätigungsseite) |
+| **Titel** (Title) | Visible in the backend only |
+| **Formular-Alias** (Form alias) | Unique reference as an alternative to the numeric form ID |
+| **Weiterleitungsseite** (Redirect page) | Target page after submission (confirmation page) |
 
-### Formular-Konfiguration
+### Form configuration
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| **HTML-Tags erlauben** | Erlaubt HTML-Eingaben in Feldern mit konfigurierbaren Tags |
-| **Per Ajax senden** | Kein Redirect; Bestätigungsmeldung; nutzt Simple Tokens (ab Contao 5.1) |
+| **HTML-Tags erlauben** (Allow HTML tags) | Allows HTML input in fields with configurable tags |
+| **Per Ajax senden** (Send via Ajax) | No redirect; confirmation message; uses Simple Tokens (as of Contao 5.1) |
 
-### Formulardaten versenden (E-Mail)
+### Sending form data (e-mail)
 
-Daten werden per E-Mail an einen oder mehrere Empfänger gesendet. Dateifelder werden automatisch als Anhang beigefügt.
+Data is sent by e-mail to one or more recipients. File fields are automatically attached.
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| **Per E-Mail versenden** | Aktiviert E-Mail-Versand |
-| **Empfänger-Adresse** | Kommagetrennte Liste von E-Mail-Adressen |
-| **Betreff** | E-Mail-Betreffzeile |
-| **Datenformat** | Rohdaten, XML, CSV, CSV (Excel) oder E-Mail-Format |
-| **Leere Felder auslassen** | Nur ausgefüllte Felder senden |
+| **Per E-Mail versenden** (Send via e-mail) | Enables e-mail dispatch |
+| **Empfänger-Adresse** (Recipient address) | Comma-separated list of e-mail addresses |
+| **Betreff** (Subject) | E-mail subject line |
+| **Datenformat** (Data format) | Raw data, XML, CSV, CSV (Excel) or e-mail format |
+| **Leere Felder auslassen** (Skip empty fields) | Send only fields that were filled in |
 
-**Datenformate:**
+**Data formats:**
 | Format | Details |
 |--------|---------|
-| Rohdaten | Unbearbeitete Feldinhalte untereinander |
-| XML-Datei | XML-Anhang mit Formulardaten |
-| CSV-Datei | CSV mit Formulardaten |
-| CSV-Datei (Excel) | CSV im Microsoft-Excel-Format |
-| E-Mail | Formatiert wie manuelle Nachricht; verarbeitet `name`, `email`, `subject`, `message` |
+| Raw data | Unprocessed field contents one below the other |
+| XML file | XML attachment with the form data |
+| CSV file | CSV with the form data |
+| CSV file (Excel) | CSV in Microsoft Excel format |
+| E-mail | Formatted like a manual message; processes `name`, `email`, `subject`, `message` |
 
-**Spezielle Feldnamen:**
-| Feldname | Auswirkung |
+**Special field names:**
+| Field name | Effect |
 |----------|-----------|
-| `email` | Wird als Reply-To-Adresse verwendet |
-| `name` | Name für Reply-To-Adresse |
-| `firstname` + `lastname` | Name für Reply-To (ohne `name`-Feld) |
-| `cc` | E-Mail-Adresse erhält Kopie |
+| `email` | Is used as the reply-to address |
+| `name` | Name for the reply-to address |
+| `firstname` + `lastname` | Name for the reply-to (without a `name` field) |
+| `cc` | This e-mail address receives a copy |
 
-**Empfehlung SMTP:** Ohne benutzerdefinierten SMTP-Server erfolgt der Versand über Sendmail, was zu Problemen führen kann. Nutzung des E-Mail-Transportprotokolls (SMTP) wird empfohlen.
+**SMTP recommendation:** without a custom SMTP server, dispatch happens via Sendmail, which can cause problems. Using the e-mail transport protocol (SMTP) is recommended.
 
-### Formulardaten speichern (Datenbank)
+### Storing form data (database)
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| **Eingaben speichern** | Aktiviert Datenbankspeicherung |
-| **Zieltabelle** | Vorher erstellte Tabelle mit gleichnamigen Spalten |
+| **Eingaben speichern** (Store submissions) | Enables database storage |
+| **Zieltabelle** (Target table) | Previously created table with identically named columns |
 
-**Wichtig:** Feldnamen müssen exakt mit Datenbankspalten übereinstimmen. Sonderzeichen wie Bindestriche können Probleme verursachen.
+**Important:** field names must match the database columns exactly. Special characters such as hyphens can cause problems.
 
-### Experten-Einstellungen
+### Expert settings
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| **Übertragungsmethode** | POST (Standard) oder GET |
-| **HTML5-Validierung deaktivieren** | Fügt `novalidate`-Attribut hinzu |
-| **CSS-ID/-Klasse** | Gezielte CSS-Formatierung |
-| **Formular-ID** | Identifiziert das Formular für Frontend-Module |
+| **Übertragungsmethode** (Transmission method) | POST (default) or GET |
+| **HTML5-Validierung deaktivieren** (Disable HTML5 validation) | Adds the `novalidate` attribute |
+| **CSS-ID/-Klasse** (CSS ID/class) | Targeted CSS formatting |
+| **Formular-ID** (Form ID) | Identifies the form for frontend modules |
 
 ---
 
-## 2. Formularfelder
+## 2. Form fields
 
-Alle Felder benötigen mindestens **Feldname** und **Feldbezeichnung**. Alle unterstützen CSS-Klassen, Tastaturkürzel und Tab-Index.
+All fields require at least a **Feldname** (Field name) and **Feldbezeichnung** (Field label). All support CSS classes, keyboard shortcuts and a tab index.
 
-### Erklärung
-Rich-Text-Block zur Information. Erzeugt Wrapper-Div mit Klasse `widget-explanation`.
+### Erklärung (Explanation)
+Rich text block for information. Generates a wrapper div with the class `widget-explanation`.
 
 ### HTML-Code
-Benutzerdefinierter HTML-Inhalt ohne umschließendes Markup.
+Custom HTML content without enclosing markup.
 
-### Fieldset Anfang/Ende
-Logische Gruppierung von Steuerelementen. Semantisches `<fieldset>`-Element mit `<legend>`.
+### Fieldset Anfang/Ende (Fieldset start/end)
+Logical grouping of controls. Semantic `<fieldset>` element with `<legend>`.
 
-### Textfeld
-Einzeiliges Eingabefeld.
+### Textfeld (Text field)
+Single-line input field.
 
-**Validierungsregeln:**
-- Numerisch, alphabetisch, alphanumerisch
-- Datum/Uhrzeit-Formate
-- Telefonnummer, E-Mail-Validierung
-- URL (relativ und absolut)
-- Benutzerdefinierte Regex
+**Validation rules:**
+- Numeric, alphabetic, alphanumeric
+- Date/time formats
+- Phone number, e-mail validation
+- URL (relative and absolute)
+- Custom regex
 
-**Zusätzliche Optionen:**
-- Platzhalter-Text
-- Hilfetext (ab Contao 5.6)
-- Min./Max-Eingabelänge
-- Standardwert
+**Additional options:**
+- Placeholder text
+- Help text (as of Contao 5.6)
+- Min./max. input length
+- Default value
 
-### Passwortfeld
-Zwei-Felder-System (Passwort + Bestätigung), maskierte Eingabe.
+### Passwortfeld (Password field)
+Two-field system (password + confirmation), masked input.
 
 ### Textarea
-Mehrzeiliges Feld. Konfigurierbare Reihen und Spalten. Identische Validierung wie Textfeld.
+Multi-line field. Configurable rows and columns. Identical validation to the Textfeld.
 
-### Select-Menü (Dropdown)
-- Mehrfachauswahl optional
-- Konfigurierbare Listengröße mit Scroll
-- JavaScript-gestützter Optionseditor mit Gruppierungsmöglichkeit
-- CSS-Klasse `multiselect` bei aktivierter Mehrfachauswahl
+### Select-Menü (Select menu / dropdown)
+- Multiple selection optional
+- Configurable list size with scrolling
+- JavaScript-based option editor with grouping capability
+- CSS class `multiselect` when multiple selection is enabled
 
-### Radio-Button-Menü
-Einzelauswahl aus mehreren Optionen.
+### Radio-Button-Menü (Radio button menu)
+Single selection from several options.
 
-### Checkbox-Menü
-Mehrfachauswahl ohne Beschränkung. Verstecktes Eingabefeld verhindert leere Array-Übertragung.
+### Checkbox-Menü (Checkbox menu)
+Multiple selection without restriction. A hidden input field prevents an empty array being transmitted.
 
-### Datei-Upload
-- Dateityp-Whitelist (kommagetrennte Endungen)
-- Dateigröße-Limit (Standard: 2 MB)
-- Bild-Dimensionsprüfung (Breite/Höhe)
-- Speicherort-Konfiguration
-- Home-Verzeichnis-Option für eingeloggte Mitglieder
-- Duplikat-Handling mit numerischen Suffixen
+### Datei-Upload (File upload)
+- File type whitelist (comma-separated extensions)
+- File size limit (default: 2 MB)
+- Image dimension check (width/height)
+- Storage location configuration
+- Home directory option for logged-in members
+- Duplicate handling with numeric suffixes
 
 ### Range-Slider
-- Minimalwert und Maximalwert
-- Schrittgröße
-- Standardwert
+- Minimum and maximum value
+- Step size
+- Default value
 
-### Verstecktes Feld
-Unsichtbares Feld für Datenübertragung ohne Benutzerinteraktion.
+### Verstecktes Feld (Hidden field)
+Invisible field for transmitting data without user interaction.
 
-### Sicherheitsfrage (CAPTCHA)
-- "Honeypot"-Technik mit versteckten Köder-Feldern
-- Automatische Spambot-Erkennung
-- Mathematische Fallback-Aufgabe bei Fehlalarmen
-- Datenverlust-Sicherheit garantiert
+### Sicherheitsfrage (Security question / CAPTCHA)
+- "Honeypot" technique with hidden bait fields
+- Automatic spambot detection
+- Mathematical fallback task in case of false positives
+- Protection against data loss guaranteed
 
-### Absendefeld
-Schaltfläche zum Formularversand.
-- **Textschaltfläche** (Standard)
-- **Bildschaltfläche** mit Bildauswahl
-
----
-
-## 3. Suchformular erstellen (Tutorial)
-
-Ein benutzerdefiniertes Suchformular kann mit dem Formulargenerator erstellt und in der Kopfzeile eingebunden werden.
-
-**Schritte:**
-1. Neues Formular erstellen; Übertragungsmethode: **GET**; Weiterleitungsseite: die Suchseite
-2. Textfeld hinzufügen; Feldname: `keywords`; optional als Pflichtfeld markieren
-3. Optional: Radio-Button-Menü; Feldname: `query_type`; Optionswerte: `and` und `or`
-4. Absendefeld hinzufügen
-5. Formular als Frontend-Modul in das Seitenlayout (z.B. Kopfzeile) einbinden
+### Absendefeld (Submit field)
+Button for submitting the form.
+- **Textschaltfläche** (Text button, default)
+- **Bildschaltfläche** (Image button) with image selection
 
 ---
 
-Quellen:
+## 3. Creating a search form (tutorial)
+
+A custom search form can be created with the Formulargenerator and embedded in the header.
+
+**Steps:**
+1. Create a new form; Übertragungsmethode: **GET**; Weiterleitungsseite: the search page
+2. Add a Textfeld; Feldname: `keywords`; optionally mark it as a mandatory field
+3. Optional: Radio-Button-Menü; Feldname: `query_type`; option values: `and` and `or`
+4. Add an Absendefeld
+5. Embed the form as a frontend module in the Seitenlayout (e.g. the header)
+
+---
+
+Sources:
 - https://docs.contao.org/5.x/manual/de/formulargenerator/
 - https://docs.contao.org/5.x/manual/de/formulargenerator/formulare/
 - https://docs.contao.org/5.x/manual/de/formulargenerator/formularfelder/

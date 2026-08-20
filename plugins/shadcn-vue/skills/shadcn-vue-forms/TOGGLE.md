@@ -29,7 +29,7 @@ The `Toggle` component is a two-state button (on/off) built on reka-ui's `Toggle
 
 ## References
 
-- [Installation](`TOGGLE-INSTALLATION.md`)
-- [Source code](`TOGGLE-SOURCE.md`)
-- [API / Props](`TOGGLE-API.md`)
-- [Examples](`TOGGLE-EXAMPLES.md`)
+- [TOGGLE-INSTALLATION.md](TOGGLE-INSTALLATION.md)
+- [TOGGLE-SOURCE.md](TOGGLE-SOURCE.md)
+- [TOGGLE-API.md](TOGGLE-API.md)
+- [TOGGLE-EXAMPLES.md](TOGGLE-EXAMPLES.md)

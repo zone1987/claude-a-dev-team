@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Modul
+# Shopware 6 — Admin module
 
-Ein Modul bündelt Routen, Komponenten und Navigation eines Backend-Bereichs. Registrierung via `Shopware.Module.register`.
+A module bundles the routes, components and navigation of a backend area. Registration via `Shopware.Module.register`.
 
 ```js
 Shopware.Module.register('ff-example', {
@@ -16,8 +16,8 @@ Shopware.Module.register('ff-example', {
 });
 ```
 
-Struktur: `src/Resources/app/administration/src/module/ff-example/` mit `index.js`, `page/`, `component/`,
-`snippet/`. Komponenten separat registrieren (`sw-admin-component`), Daten via Repository (`sw-admin-data-handling`),
-Rechte via ACL (`sw-admin-acl-permissions`).
+Structure: `src/Resources/app/administration/src/module/ff-example/` with `index.js`, `page/`, `component/`,
+`snippet/`. Register components separately (`sw-admin-component`), data via repository (`sw-admin-data-handling`),
+permissions via ACL (`sw-admin-acl-permissions`).
 
-→ Modul-Aufbau & Routing: [ADMIN-MODULE-ADMINISTRATION.md](ADMIN-MODULE-ADMINISTRATION.md) · Beispiel: [examples/index.js](examples/index.js)
+→ Module structure & routing: [ADMIN-MODULE-ADMINISTRATION.md](ADMIN-MODULE-ADMINISTRATION.md) · Example: [examples/index.js](examples/index.js)

@@ -2,34 +2,34 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Datensätze abrufen](#datensätze-abrufen)
-- [Datensätze modifizieren](#datensätze-modifizieren)
-- [Options-Parameter](#options-parameter)
-- [Eager Loading / Relationen](#eager-loading-relationen)
+- [Overview](#overview)
+- [Retrieving records](#retrieving-records)
+- [Modifying records](#modifying-records)
+- [Options parameter](#options-parameter)
+- [Eager Loading / Relations](#eager-loading--relations)
 - [Collections](#collections)
-- [Custom Models (3 Schritte)](#custom-models-3-schritte)
-- [Enumerations (ab Contao 5.3)](#enumerations-ab-contao-53)
-- [Rückgabewerte im Überblick](#rückgabewerte-im-überblick)
+- [Custom Models (3 steps)](#custom-models-3-steps)
+- [Enumerations (Contao 5.3 and later)](#enumerations-contao-53-and-later)
+- [Return values at a glance](#return-values-at-a-glance)
 
-## Überblick
+## Overview
 
-Models sind Objekte zum Erstellen neuer Datensätze sowie zum Lesen und Modifizieren bestehender Datensätze aus der Datenbank – vergleichbar mit Doctrine Entities. Jede Datenbanktabelle entspricht einer Model-Klasse (`tl_article` → `ArticleModel`, `tl_news` → `NewsModel`).
+Models are objects for creating new records as well as for reading and modifying existing records from the database – comparable to Doctrine entities. Every database table corresponds to a model class (`tl_article` → `ArticleModel`, `tl_news` → `NewsModel`).
 
 ---
 
-## Datensätze abrufen
+## Retrieving records
 
-Statische Methoden für Datenbankabfragen:
+Static methods for database queries:
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|-------------|
-| `findById($id)` | Datensatz per ID |
-| `findByIdOrAlias($value)` | ID oder Alias-Feld |
-| `findOneBy($field, $value)` | Einzelner Datensatz |
-| `findBy($field, $value, $options)` | Collection von Datensätzen |
-| `findAll()` | Alle Datensätze |
-| `countBy($field, $value)` | Anzahl Treffer |
+| `findById($id)` | Record by ID |
+| `findByIdOrAlias($value)` | ID or alias field |
+| `findOneBy($field, $value)` | Single record |
+| `findBy($field, $value, $options)` | Collection of records |
+| `findAll()` | All records |
+| `countBy($field, $value)` | Number of matches |
 
 ### Late Static Binding (`__callStatic`)
 
@@ -40,11 +40,11 @@ $pages = PageModel::findByLanguage('de');
 $count = PageModel::countByLanguage('de');
 ```
 
-Gibt `null` zurück wenn kein Treffer.
+Returns `null` if there is no match.
 
 ---
 
-## Datensätze modifizieren
+## Modifying records
 
 ```php
 $page = PageModel::findById(5);
@@ -55,16 +55,16 @@ $page->save();
 
 ---
 
-## Options-Parameter
+## Options parameter
 
-| Option | Zweck | SQL-Äquivalent | Beispiel |
+| Option | Purpose | SQL equivalent | Example |
 |--------|-------|----------------|---------|
-| `limit` | Anzahl begrenzen | `LIMIT` | `3` |
-| `offset` | Anfang überspringen | `OFFSET` | `10` |
-| `order` | Sortierung | `ORDER BY` | `'id DESC'` |
-| `return` | Ausgabetyp | — | `'Model'`, `'Collection'`, `'Array'` |
-| `eager` | Eager Loading | `LEFT JOIN` | `true` |
-| `having` | Join-Filter | `HAVING` | `"author__username = 'k.jones'"` |
+| `limit` | Limit the number | `LIMIT` | `3` |
+| `offset` | Skip the beginning | `OFFSET` | `10` |
+| `order` | Sorting | `ORDER BY` | `'id DESC'` |
+| `return` | Output type | — | `'Model'`, `'Collection'`, `'Array'` |
+| `eager` | Eager loading | `LEFT JOIN` | `true` |
+| `having` | Join filter | `HAVING` | `"author__username = 'k.jones'"` |
 
 ```php
 $options = ['limit' => 5, 'offset' => 10, 'order' => 'title ASC'];
@@ -74,9 +74,9 @@ $pages   = PageModel::findByPid(1, $options);
 
 ---
 
-## Eager Loading / Relationen
+## Eager Loading / Relations
 
-`'eager' => true` lädt verwandte `hasOne`/`belongsTo`-Datensätze per JOIN. Spalten der Fremdtabelle erhalten das Präfix `<foreignKey>__`.
+`'eager' => true` loads related `hasOne`/`belongsTo` records via JOIN. Columns of the foreign table receive the prefix `<foreignKey>__`.
 
 ```php
 $articles = ArticleModel::findBy('tl_article.published = ?', true, [
@@ -92,7 +92,7 @@ $author = $articles[0]->getRelated('author');
 
 ## Collections
 
-Eine `Collection` enthält immer mindestens ein Model. Kein Treffer → `null` (keine leere Collection).
+A `Collection` always contains at least one model. No match → `null` (not an empty collection).
 
 ### findAll / findMultipleByIds
 
@@ -101,7 +101,7 @@ $pages = PageModel::findAll();
 $pages = PageModel::findMultipleByIds([1, 2, 3]);
 ```
 
-### Komplexe Bedingungen
+### Complex conditions
 
 ```php
 $pages = PageModel::findBy(
@@ -109,7 +109,7 @@ $pages = PageModel::findBy(
     ['de', 1]
 );
 
-// IN-Klausel (IDs immer als intval!)
+// IN clause (IDs always as intval!)
 $items = FoobarModel::findBy(
     ['type = ?', 'id IN (' . implode(',', array_map('\intval', $ids)) . ')'],
     ['store']
@@ -120,31 +120,31 @@ $items = FoobarModel::findBy(
 
 ```php
 foreach (PageModel::findAll() as $page) {
-    // $page ist eine Model-Instanz
+    // $page is a model instance
 }
 ```
 
-### Spalten extrahieren
+### Extracting columns
 
 ```php
-$titles = $pages->fetchEach('title');   // Eine Spalte aller Zeilen
-$rows   = $pages->fetchAll();           // Alle Spalten aller Zeilen
+$titles = $pages->fetchEach('title');   // One column of all rows
+$rows   = $pages->fetchAll();           // All columns of all rows
 ```
 
 ---
 
-## Custom Models (3 Schritte)
+## Custom Models (3 steps)
 
-### 1. DCA anlegen
+### 1. Create the DCA
 
 ```php
 // contao/dca/tl_example.php
 $GLOBALS['TL_DCA']['tl_example'] = [ /* … */ ];
 ```
 
-### 2. Model-Klasse erstellen
+### 2. Create the model class
 
-Namenskonvention: `tl_` entfernen, snake_case → PascalCase, „Model" anhängen.
+Naming convention: remove `tl_`, snake_case → PascalCase, append "Model".
 
 ```php
 // src/Model/ExampleModel.php
@@ -153,7 +153,7 @@ namespace App\Model;
 use Contao\Model;
 
 /**
- * @property string $hash  IDE-Unterstützung
+ * @property string $hash  IDE support
  */
 class ExampleModel extends Model
 {
@@ -166,7 +166,7 @@ class ExampleModel extends Model
 }
 ```
 
-### 3. Model registrieren
+### 3. Register the model
 
 ```php
 // contao/config/config.php
@@ -177,9 +177,9 @@ $GLOBALS['TL_MODELS']['tl_example'] = ExampleModel::class;
 
 ---
 
-## Enumerations (ab Contao 5.3)
+## Enumerations (Contao 5.3 and later)
 
-### DCA-Konfiguration
+### DCA configuration
 
 ```php
 // contao/dca/tl_member.php
@@ -189,16 +189,16 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['salutation'] = [
 ];
 ```
 
-### Auflösung
+### Resolution
 
 ```php
 $member = MemberModel::findById(42);
 
-$member->salutation;                // Gibt String zurück, z.B. 'ms'
-$member->getEnum('salutation');     // Gibt App\Data\Salutation-Instanz oder null zurück
+$member->salutation;                // Returns a string, e.g. 'ms'
+$member->getEnum('salutation');     // Returns an App\Data\Salutation instance or null
 ```
 
-### Type-Safe Getter mit Fallback
+### Type-safe getter with fallback
 
 ```php
 use App\Data\Salutation;
@@ -215,14 +215,14 @@ class SalutableMember extends MemberModel
 
 ---
 
-## Rückgabewerte im Überblick
+## Return values at a glance
 
-| Methode | Rückgabe |
+| Method | Returns |
 |---------|----------|
 | `findOneBy()` | `Model|null` |
 | `findBy()` | `Collection|null` |
-| `findByPk()`, `findById()`, `findByIdOrAlias()` | immer `Model|null` |
+| `findByPk()`, `findById()`, `findByIdOrAlias()` | always `Model|null` |
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/models/ (+ /collections/, /customization/, /enumerations/)*
+*Source: https://docs.contao.org/5.x/dev/framework/models/ (+ /collections/, /customization/, /enumerations/)*

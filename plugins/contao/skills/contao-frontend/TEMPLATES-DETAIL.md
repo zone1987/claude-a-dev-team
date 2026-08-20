@@ -1,52 +1,52 @@
-# Contao 5 — Twig-Template-System
+# Contao 5 — Twig Template System
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Getting Started: Twig-Grundlagen](#getting-started-twig-grundlagen)
-- [Architektur: ContaoFilesystemLoader](#architektur-contaofilesystemloader)
-- [Naming & Struktur](#naming-struktur)
+- [Overview](#overview)
+- [Getting Started: Twig Basics](#getting-started-twig-basics)
+- [Architecture: ContaoFilesystemLoader](#architecture-contaofilesystemloader)
+- [Naming & Structure](#naming-structure)
 - [Variant Templates](#variant-templates)
-- [Templates erstellen](#templates-erstellen)
+- [Creating Templates](#creating-templates)
 - [Output Encoding](#output-encoding)
 - [Debugging](#debugging)
-- [Legacy PHP-Templates](#legacy-php-templates)
-- [Quick Reference: Häufige Aufgaben](#quick-reference-häufige-aufgaben)
-- [Versions-Kompatibilität](#versions-kompatibilität)
+- [Legacy PHP Templates](#legacy-php-templates)
+- [Quick Reference: Common Tasks](#quick-reference-common-tasks)
+- [Version Compatibility](#version-compatibility)
 
-## Übersicht
+## Overview
 
-Contao verwendet seit Version 4.12 nativ das **Twig-Template-System** von Symfony.
-In Contao 5 sind die meisten Content Elements ausschließlich Twig-basiert.
-PHP-Templates (Legacy) werden in Contao 5 noch unterstützt, ab Contao 6 entfallen sie.
+Since version 4.12, Contao natively uses Symfony's **Twig template system**.
+In Contao 5, most content elements are exclusively Twig-based.
+PHP templates (legacy) are still supported in Contao 5; they are dropped as of Contao 6.
 
 ---
 
-## Getting Started: Twig-Grundlagen
+## Getting Started: Twig Basics
 
-### Kernsyntax
+### Core syntax
 
 ```twig
-{# Variablenausgabe #}
+{# Variable output #}
 {{ name }}
 
-{# Kontrollstrukturen #}
+{# Control structures #}
 {% for item in items %}
     <li>{{ item }}</li>
 {% endfor %}
 
-{# Filter #}
+{# Filters #}
 {{ age|round }}
 {{ text|capitalize }}
 
-{# String-Verkettung #}
+{# String concatenation #}
 {{ firstName ~ ' ' ~ lastName }}
 
-{# Kommentare #}
-{# Dies ist ein Kommentar #}
+{# Comments #}
+{# This is a comment #}
 ```
 
-### Twig-Extensions installieren
+### Installing Twig extensions
 
 ```bash
 composer require twig/intl-extra
@@ -57,7 +57,7 @@ composer require twig/intl-extra
 {# €1,000,000.00 #}
 ```
 
-### Custom Twig-Filter erstellen
+### Creating a custom Twig filter
 
 ```php
 // src/Twig/AppExtension.php
@@ -84,57 +84,57 @@ class AppExtension extends AbstractExtension
 
 ---
 
-## Architektur: ContaoFilesystemLoader
+## Architecture: ContaoFilesystemLoader
 
 ### Namespaces
 
-Twig-Templates werden über **Namespaces** (mit `@`-Präfix) identifiziert:
+Twig templates are identified through **namespaces** (with an `@` prefix):
 
 ```
 $twig->render("@Foo/bar/baz.html.twig", $params);
 ```
 
-### Managed Namespace `@Contao`
+### Managed namespace `@Contao`
 
-Der **Managed Namespace** ist Contaos Kernmechanismus: Mehrere Bundles können
-dasselbe Template unabhängig voneinander erweitern, ohne sich gegenseitig zu kennen.
+The **managed namespace** is Contao's core mechanism: several bundles can extend
+the same template independently of each other without knowing about each other.
 
-Der `ContaoFilesystemLoader` ordnet Templates diesen Namespaces zu:
+The `ContaoFilesystemLoader` assigns templates to these namespaces:
 
-| Verzeichnis | Namespace | Priorität |
+| Directory | Namespace | Priority |
 |-------------|-----------|-----------|
-| Bundle-Template-Verzeichnis: `/vendor/foo/bar/src/Resources/contao/templates` | `@Contao_FooBarBundle` | 1 |
-| App-Template-Verzeichnis: `/contao/templates`, `/src/Resources/contao/templates` | `@Contao_App` | 2 |
-| Globales Template-Verzeichnis: `/templates` | `@Contao_Global` | 3 |
-| Theme-Verzeichnisse: `/templates/<theme>` | `@Contao_Theme_<theme>` | 4 |
+| Bundle template directory: `/vendor/foo/bar/src/Resources/contao/templates` | `@Contao_FooBarBundle` | 1 |
+| App template directory: `/contao/templates`, `/src/Resources/contao/templates` | `@Contao_App` | 2 |
+| Global template directory: `/templates` | `@Contao_Global` | 3 |
+| Theme directories: `/templates/<theme>` | `@Contao_Theme_<theme>` | 4 |
 
-### Template-Vererbungshierarchie
+### Template inheritance hierarchy
 
-Beim Kompilieren ersetzt Contao `@Contao`-Referenzen in `extends`, `include`, `embed`
-und `use`-Tags durch den jeweiligen Bundle-Namespace:
+While compiling, Contao replaces `@Contao` references in `extends`, `include`, `embed`
+and `use` tags with the respective bundle namespace:
 
 ```twig
 {% extends "@Contao/content_element/text.html.twig" %}
-{# wird zu: #}
+{# becomes: #}
 {% extends "@Contao_ContaoCoreBundle/content_element/text.html.twig" %}
 ```
 
-Dadurch entsteht eine Vererbungskette, in der alle Bundles unabhängig voneinander
-denselben Template-Slot belegen können.
+This creates an inheritance chain in which all bundles can occupy the same
+template slot independently of each other.
 
-**Debug-Befehl:** `debug:contao-twig` zeigt die gesamte Hierarchie an.
+**Debug command:** `debug:contao-twig` shows the entire hierarchy.
 
-### Bundle-Template-Pfad konfigurieren
+### Configuring the bundle template path
 
-Ab Symfony 6.1 (AbstractBundle):
+As of Symfony 6.1 (AbstractBundle):
 ```php
 class FooBarBundle extends AbstractBundle
 {
-    // Pfad wird automatisch erkannt
+    // path is detected automatically
 }
 ```
 
-Für ältere Versionen (Bundle-Klasse):
+For older versions (bundle class):
 ```php
 class FooBarBundle extends Bundle
 {
@@ -147,12 +147,12 @@ class FooBarBundle extends Bundle
 
 ---
 
-## Naming & Struktur
+## Naming & Structure
 
-### Twig Root
+### Twig root
 
-Das oberste Template-Verzeichnis ist der **Twig-Root** — alle Unterverzeichnisse
-gehören zum Template-Namen.
+The topmost template directory is the **Twig root** — all subdirectories
+are part of the template name.
 
 ```
 templates/          ← Twig root
@@ -163,44 +163,44 @@ templates/          ← Twig root
     └── news_list.html.twig   → "frontend_module/news_list"
 ```
 
-### `.twig-root` Marker (für Bundles)
+### `.twig-root` marker (for bundles)
 
-In Bundles wird der Twig-Root via `.twig-root`-Datei markiert:
+In bundles, the Twig root is marked with a `.twig-root` file:
 
 ```
 vendor/…/FooBundle/contao/templates/
 ├── bar/
-│   └── baz.html.twig          → "@Contao/baz.html.twig" (legacy ohne Verzeichnis)
+│   └── baz.html.twig          → "@Contao/baz.html.twig" (legacy without directory)
 └── my_root/
-    ├── .twig-root             ← Marker
+    ├── .twig-root             ← marker
     └── content_element/
         └── foobar.html.twig   → "@Contao/content_element/foobar.html.twig"
 ```
 
-### Standard-Verzeichnisse
+### Standard directories
 
-| Kategorie | Verzeichnis | Beispiel |
+| Category | Directory | Example |
 |-----------|-------------|---------|
-| Wiederverwendbare Komponenten | `component/` | `component/_list.html.twig` |
-| Content Elements | `content_element/` | `content_element/gallery.html.twig` |
-| Frontend-Module | `frontend_module/` | `frontend_module/feed_reader.html.twig` |
-| Backend-Elemente | `backend/` | `backend/module_wildcard.html.twig` |
+| Reusable components | `component/` | `component/_list.html.twig` |
+| Content elements | `content_element/` | `content_element/gallery.html.twig` |
+| Frontend modules | `frontend_module/` | `frontend_module/feed_reader.html.twig` |
+| Backend elements | `backend/` | `backend/module_wildcard.html.twig` |
 
-### Namenskonventionen
+### Naming conventions
 
-- `snake_case` für alle Namen
-- Dateiendung inkludieren: `name.html.twig` oder `name.svg.twig`
-- Keine doppelten Verzeichnisnamen in Dateinamen
-- Partielle Templates mit `_`-Präfix (nur intern verwenden)
+- `snake_case` for all names
+- Include the file extension: `name.html.twig` or `name.svg.twig`
+- No duplicate directory names in file names
+- Partial templates with a `_` prefix (use internally only)
 
 ---
 
 ## Variant Templates
 
-Variant-Templates sind spezialisierte Versionen eines Basis-Templates, die
-Redakteure pro Element auswählen können.
+Variant templates are specialised versions of a base template that
+editors can select per element.
 
-**Beispiel:** Highlight-Variante für `content_element/text.html.twig`:
+**Example:** highlight variant for `content_element/text.html.twig`:
 
 ```twig
 {# templates/content_element/text/highlight.html.twig #}
@@ -211,13 +211,13 @@ Redakteure pro Element auswählen können.
 {% endblock %}
 ```
 
-Variants liegen in einem Unterverzeichnis, das nach dem Basis-Template benannt ist
-(ohne Dateiendung). Sie erscheinen automatisch im Backend-Dropdown.
+Variants live in a subdirectory named after the base template
+(without the file extension). They appear in the backend dropdown automatically.
 
-### Template Finder
+### Template finder
 
 ```php
-// Factory via DI injizieren
+// inject the factory via DI
 $finder = $this->finderFactory->create();
 
 $finder = $finder
@@ -226,15 +226,15 @@ $finder = $finder
     ->withVariants()
 ;
 
-// Für DCA-Listener:
+// For DCA listeners:
 $options = $finder->asTemplateOptions();
 ```
 
 ---
 
-## Templates erstellen
+## Creating Templates
 
-### Extends (Vererbung)
+### Extends (inheritance)
 
 ```twig
 {# templates/content_element/my_element.html.twig #}
@@ -256,12 +256,12 @@ $options = $finder->asTemplateOptions();
 ```twig
 {% embed "@Contao/component/_card.html.twig" %}
     {% block card_body %}
-        Angepasster Inhalt
+        Customised content
     {% endblock %}
 {% endembed %}
 ```
 
-### Horizontal Reuse (`use`)
+### Horizontal reuse (`use`)
 
 ```twig
 {% use "@Contao/component/_stylesheet.html.twig" %}
@@ -281,46 +281,46 @@ $options = $finder->asTemplateOptions();
 {{ _self.input('username', user.name) }}
 ```
 
-### Contao Components
+### Contao components
 
-Komponenten sind wiederverwendbare Template-Logik für den `{% use %}`-Import.
-Konventionen:
-- In einem einzelnen Block namens `<name>_component` eingehüllt
-- Im `component/`-Verzeichnis gespeichert
+Components are reusable template logic for the `{% use %}` import.
+Conventions:
+- Wrapped in a single block named `<name>_component`
+- Stored in the `component/` directory
 
 ---
 
 ## Output Encoding
 
-Twig implementiert **Output-Encoding** (sicherer als Contaos historisches Input-Encoding):
+Twig implements **output encoding** (safer than Contao's historic input encoding):
 
 ```twig
-{# HTML-Kontext (automatisch) #}
+{# HTML context (automatic) #}
 {{ color }}
 
-{# Explizite CSS-Kodierung #}
+{# Explicit CSS encoding #}
 <style>.box { background: {{ color|e('css') }} }</style>
 
-{# HTML-Kontext #}
+{# HTML context #}
 <div class="box">{{ color|e('html') }}</div>
 ```
 
-### Rohausgabe (Vorsicht!)
+### Raw output (careful!)
 
 ```twig
-{# NUR für vertrauenswürdige HTML-Inhalte (z.B. TinyMCE-Ausgabe) #}
+{# ONLY for trusted HTML content (e.g. TinyMCE output) #}
 {{ my_content|raw }}
 ```
 
-**Warnung:** `|raw` auf unvertrauenswürdige Daten führt zu schwerwiegenden
-XSS-Sicherheitslücken!
+**Warning:** `|raw` on untrusted data leads to severe
+XSS security holes!
 
-### Double-Encoding verhindern
+### Preventing double encoding
 
-Contao verwendet eigene `contao_html`- und `contao_html_attr`-Escaper, die
-`htmlspecialchars(double_encode: false)` nutzen. Gelten nur für `@Contao`-Namespaces.
+Contao uses its own `contao_html` and `contao_html_attr` escapers, which use
+`htmlspecialchars(double_encode: false)`. They apply to `@Contao` namespaces only.
 
-Ab Contao 5.3.19/5.4.7: Double-Encoding explizit einschalten wenn nötig:
+As of Contao 5.3.19/5.4.7, enable double encoding explicitly when needed:
 ```twig
 {{ my_data|e('html', double_encode = true) }}
 ```
@@ -331,10 +331,10 @@ Ab Contao 5.3.19/5.4.7: Double-Encoding explizit einschalten wenn nötig:
 
 ### PhpStorm: ide-twig.json
 
-In Entwicklungsumgebungen erstellt `ContaoFilesystemLoaderWarmer` eine `var/ide-twig.json`
-für Template-Autocompletion und Navigation.
+In development environments, the `ContaoFilesystemLoaderWarmer` creates a `var/ide-twig.json`
+for template autocompletion and navigation.
 
-### debug:contao-twig Befehl
+### debug:contao-twig command
 
 ```bash
 bin/console debug:contao-twig
@@ -343,33 +343,33 @@ bin/console debug:contao-twig content_element/te
 bin/console debug:contao-twig content_element/text --tree
 ```
 
-`--tree` zeigt Ergebnisse hierarchisch an. `--theme <slug>` inkludiert Theme-Templates.
+`--tree` shows the results hierarchically. `--theme <slug>` includes theme templates.
 
-### Dump in Templates
+### Dump in templates
 
 ```twig
-{# Alles dumpen #}
+{# Dump everything #}
 {{ dump() }}
 
-{# Bestimmte Variablen #}
+{# Specific variables #}
 {{ dump(a, b) }}
 
-{# Via Tag (in Symfony Web Debug Toolbar) #}
+{# Via tag (in the Symfony Web Debug Toolbar) #}
 {% dump a, b %}
 ```
 
-**Sicherheitshinweis:** Nur in Entwicklungsumgebungen verwenden!
+**Security note:** use in development environments only!
 
-### Twig-Cache-Dateien
+### Twig cache files
 
-Kompilierte Templates in `var/cache/dev/twig/`. XDebug-Breakpoints setzbar.
-Dateien via Kommentar `/* @Contao/<name>.html.twig */` finden.
+Compiled templates live in `var/cache/dev/twig/`. XDebug breakpoints can be set.
+Find the files via the comment `/* @Contao/<name>.html.twig */`.
 
 ---
 
-## Legacy PHP-Templates
+## Legacy PHP Templates
 
-### Instanziierung
+### Instantiation
 
 ```php
 use Contao\FrontendTemplate;
@@ -379,14 +379,14 @@ $template->someData = 'foobar';
 $buffer = $template->parse();
 ```
 
-### Template-Ordner (Suchreihenfolge)
+### Template folders (search order)
 
-1. `templates/<THEME>/` — Theme-spezifische Überschreibungen
-2. `templates/` — Eigene Überschreibungen
-3. `contao/templates/` — Anwendungs-spezifische Templates
-4. `<BUNDLE>/contao/templates/` — Bundle-Templates
+1. `templates/<THEME>/` — theme-specific overrides
+2. `templates/` — own overrides
+3. `contao/templates/` — application-specific templates
+4. `<BUNDLE>/contao/templates/` — bundle templates
 
-### Template-Vererbung (Legacy PHP)
+### Template inheritance (legacy PHP)
 
 ```php
 <?php $this->block('head'); ?>
@@ -395,7 +395,7 @@ $buffer = $template->parse();
 <?php $this->endblock(); ?>
 ```
 
-Child-Template:
+Child template:
 ```php
 <?php $this->extend('fe_page'); ?>
 
@@ -405,34 +405,34 @@ Child-Template:
 <?php $this->endblock(); ?>
 ```
 
-### Template-Daten setzen
+### Setting template data
 
 ```php
 $template->foobar = 'foobar';
-// oder:
+// or:
 $template->setData([
     'myVariable' => 'foobar',
     'myOtherVariable' => 'Lorem Ipsum',
 ]);
 ```
 
-### Lazy-Variablen (Performance)
+### Lazy variables (performance)
 
 ```php
-// Wird nur ausgeführt wenn $template->foo in template benutzt wird:
+// Executed only when $template->foo is used in the template:
 $template->foo = function(): string {
     return expensiveOperation();
 };
 
-// Einmalig ausführen und cachen:
+// Execute once and cache:
 $template->foo = Template::once(function(): string {
     return expensiveOperation();
 });
 ```
 
-### Legacy-Templates in Twig überschreiben/erweitern
+### Overriding/extending legacy templates in Twig
 
-Twig-Template mit gleichem Namen erstellen (`.html.twig` statt `.html5`):
+Create a Twig template with the same name (`.html.twig` instead of `.html5`):
 
 ```twig
 {# templates/fe_page.html.twig #}
@@ -446,9 +446,9 @@ Twig-Template mit gleichem Namen erstellen (`.html.twig` statt `.html5`):
 
 ---
 
-## Quick Reference: Häufige Aufgaben
+## Quick Reference: Common Tasks
 
-### Dynamischer Template-Name
+### Dynamic template name
 
 ```php
 protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
@@ -458,10 +458,10 @@ protected function getResponse(FragmentTemplate $template, ContentModel $model, 
 }
 ```
 
-### Base Template mit Custom Attributen
+### Base template with custom attributes
 
 ```twig
-{# content_element/_base.html.twig erweitern #}
+{# extending content_element/_base.html.twig #}
 {% extends "@Contao/content_element/_base.html.twig" %}
 
 {% block attributes %}
@@ -470,7 +470,7 @@ protected function getResponse(FragmentTemplate $template, ContentModel $model, 
 {% endblock %}
 ```
 
-### HTML-Attribute via attrs()
+### HTML attributes via attrs()
 
 ```twig
 <div {{ attrs()
@@ -480,7 +480,7 @@ protected function getResponse(FragmentTemplate $template, ContentModel $model, 
 }}>
 ```
 
-### Bild/Figure rendern
+### Rendering an image/figure
 
 ```twig
 {% set figure = figure(model.singleSRC, {width: 800}) %}
@@ -494,32 +494,32 @@ protected function getResponse(FragmentTemplate $template, ContentModel $model, 
 ```twig
 {{ 'MSC.goBack'|trans({}, 'contao_default') }}
 
-{# Trans-Tag mit Default-Domain #}
+{# Trans tag with a default domain #}
 {% trans_default_domain 'contao_default' %}
 {{ 'MSC.goBack'|trans }}
 ```
 
 ---
 
-## Versions-Kompatibilität
+## Version Compatibility
 
-| Contao-Version | Status |
+| Contao version | Status |
 |----------------|--------|
-| 5.x | Twig Standard, PHP-Templates noch supportet |
-| 4.13 LTS | Twig nativ seit 4.12; Directory-Struktur supported |
-| 4.9 LTS | Kein natives Twig; nicht mehr unterstützt |
+| 5.x | Twig is the standard, PHP templates still supported |
+| 4.13 LTS | Twig native since 4.12; directory structure supported |
+| 4.9 LTS | No native Twig; no longer supported |
 
-**Für Contao 4.13 + 5 gleichzeitig:**
+**For Contao 4.13 and 5 at the same time:**
 
 ```php
-// Template explizit angeben für neue Verzeichnisstruktur:
+// Specify the template explicitly for the new directory structure:
 #[AsContentElement(category: 'bar', template: 'content_element/foo')]
 class FooController extends AbstractContentElement { ... }
 ```
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/templates/*  
+*Source: https://docs.contao.org/5.x/dev/framework/templates/*  
 *https://docs.contao.org/5.x/dev/framework/templates/getting-started/*  
 *https://docs.contao.org/5.x/dev/framework/templates/architecture/*  
 *https://docs.contao.org/5.x/dev/framework/templates/creating-templates/*  

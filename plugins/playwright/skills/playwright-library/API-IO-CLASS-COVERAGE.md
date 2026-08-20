@@ -209,7 +209,7 @@ const v8toIstanbul = require('v8-to-istanbul');
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** The coverage API delivers V8-native coverage data suitable for modern
+**Summary:** The coverage API delivers V8-native coverage data suitable for modern
 code-coverage reports. For CSS optimizations (removing unused CSS)
 `stopCSSCoverage()` is particularly valuable. The data must be
 converted externally (e.g. via `v8-to-istanbul`), since Playwright itself

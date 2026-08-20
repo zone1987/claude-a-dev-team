@@ -1,30 +1,30 @@
-# Gotenberg — HTML zu PDF (Vollreferenz)
+# Gotenberg — HTML to PDF (full reference)
 
 **Route:** `POST /forms/chromium/convert/html`
-**Beschreibung:** Konvertiert eine `index.html` (mit optionalen Assets) zu PDF via Headless Chromium.
+**Description:** Converts an `index.html` (with optional assets) to PDF via headless Chromium.
 
 ## Contents
 
-- [Request-Grundstruktur](#request-grundstruktur)
-- [Pflicht-Files](#pflicht-files)
-- [Optionale Assets](#optionale-assets)
-- [Request-Header](#request-header)
-- [Seitenlayout (Page Layout)](#seitenlayout-page-layout)
-- [Hintergrund (Background Logic)](#hintergrund-background-logic)
-- [Druckmedien (Print Media)](#druckmedien-print-media)
-- [JavaScript & Dynamischer Inhalt](#javascript-dynamischer-inhalt)
-- [Netzwerk & Cookies](#netzwerk-cookies)
-- [HTTP-Statuscodes & Netzwerkfehler](#http-statuscodes-netzwerkfehler)
-- [Header & Footer](#header-footer)
-- [Struktur & Metadaten](#struktur-metadaten)
-- [Seitenauswahl & Split](#seitenauswahl-split)
-- [Wasserzeichen & Stempel](#wasserzeichen-stempel)
-- [PDF/A & PDF/UA](#pdfa-pdfua)
-- [Verschluesselung (PDF Engines)](#verschluesselung-pdf-engines)
-- [Response-Codes](#response-codes)
-- [Gesamtzahl Form-Felder: ~44](#gesamtzahl-form-felder-44)
+- [Basic request structure](#basic-request-structure)
+- [Mandatory files](#mandatory-files)
+- [Optional assets](#optional-assets)
+- [Request headers](#request-headers)
+- [Page layout](#page-layout)
+- [Background logic](#background-logic)
+- [Print media](#print-media)
+- [JavaScript & dynamic content](#javascript--dynamic-content)
+- [Network & cookies](#network--cookies)
+- [HTTP status codes & network errors](#http-status-codes--network-errors)
+- [Header & footer](#header--footer)
+- [Structure & metadata](#structure--metadata)
+- [Page selection & split](#page-selection--split)
+- [Watermark & stamp](#watermark--stamp)
+- [PDF/A & PDF/UA](#pdfa--pdfua)
+- [Encryption (PDF Engines)](#encryption-pdf-engines)
+- [Response codes](#response-codes)
+- [Total number of form fields: ~44](#total-number-of-form-fields-44)
 
-## Request-Grundstruktur
+## Basic request structure
 
 ```bash
 curl \
@@ -33,50 +33,50 @@ curl \
   -o my.pdf
 ```
 
-## Pflicht-Files
+## Mandatory files
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|-------------|
-| `files` (index.html) | file | Ja | HTML-Datei. Muss exakt `index.html` heissen. |
+| `files` (index.html) | file | Yes | HTML file. Must be named exactly `index.html`. |
 
-## Optionale Assets
+## Optional assets
 
-Bilder, Schriften, Stylesheets als weitere `files`-Parameter:
+Images, fonts, stylesheets as further `files` parameters:
 ```bash
 --form files=@/path/to/img.png \
 --form files=@/path/to/style.css
 ```
 
-**Wichtig:** Alle Dateien landen in einem **flachen Verzeichnis**. Assets nur per Dateiname
-referenzieren (z.B. `src="logo.png"`, nicht `src="/images/logo.png"`).
+**Important:** All files land in a **flat directory**. Reference assets by file name only
+(e.g. `src="logo.png"`, not `src="/images/logo.png"`).
 
-## Request-Header
+## Request headers
 
-| Header | Typ | Default | Beschreibung |
+| Header | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `Gotenberg-Output-Filename` | string | Random UUID | Dateiname der Ausgabe (ohne Extension) |
-| `Gotenberg-Trace` | string | Random UUID | Eigene Request-ID fuer Logs |
+| `Gotenberg-Output-Filename` | string | Random UUID | File name of the output (without extension) |
+| `Gotenberg-Trace` | string | Random UUID | Custom request ID for logs |
 
-## Seitenlayout (Page Layout)
+## Page layout
 
-| Feld | Typ | Default | Einheit | Beschreibung |
+| Field | Type | Default | Unit | Description |
 |------|-----|---------|---------|-------------|
-| `paperWidth` | string | `8.5` | Zoll | Papierbreite. Einheiten: in, pt, cm |
-| `paperHeight` | string | `11` | Zoll | Papierhoehe. Einheiten: in, pt, cm |
-| `marginTop` | string | `0.39` | Zoll | Oberer Rand |
-| `marginBottom` | string | `0.39` | Zoll | Unterer Rand |
-| `marginLeft` | string | `0.39` | Zoll | Linker Rand |
-| `marginRight` | string | `0.39` | Zoll | Rechter Rand |
-| `landscape` | boolean | `false` | — | Querformat aktivieren |
-| `scale` | number | `1.0` | — | Zoom-Faktor |
-| `singlePage` | boolean | `false` | — | Gesamten Inhalt auf eine sehr lange Seite zwingen. Ueberschreibt `paperHeight` und `nativePageRanges`. |
-| `preferCssPageSize` | boolean | `false` | — | CSS `@page`-Groessen statt API-Parametern verwenden |
+| `paperWidth` | string | `8.5` | inches | Paper width. Units: in, pt, cm |
+| `paperHeight` | string | `11` | inches | Paper height. Units: in, pt, cm |
+| `marginTop` | string | `0.39` | inches | Top margin |
+| `marginBottom` | string | `0.39` | inches | Bottom margin |
+| `marginLeft` | string | `0.39` | inches | Left margin |
+| `marginRight` | string | `0.39` | inches | Right margin |
+| `landscape` | boolean | `false` | — | Enable landscape orientation |
+| `scale` | number | `1.0` | — | Zoom factor |
+| `singlePage` | boolean | `false` | — | Force all content onto one very long page. Overrides `paperHeight` and `nativePageRanges`. |
+| `preferCssPageSize` | boolean | `false` | — | Use CSS `@page` sizes instead of the API parameters |
 
-### Standardpapierformate (Zoll, Breite x Hoehe)
+### Standard paper formats (inches, width x height)
 
-| Format | Masse | US-Format | Masse |
+| Format | Dimensions | US format | Dimensions |
 |--------|-------|-----------|-------|
-| A6 | 4.13 x 5.83 | Letter | 8.5 x 11 (Default) |
+| A6 | 4.13 x 5.83 | Letter | 8.5 x 11 (default) |
 | A5 | 5.83 x 8.27 | Legal | 8.5 x 14 |
 | A4 | 8.27 x 11.7 | Tabloid | 11 x 17 |
 | A3 | 11.7 x 16.54 | Ledger | 17 x 11 |
@@ -98,122 +98,122 @@ curl --request POST http://localhost:3000/forms/chromium/convert/html \
   -o my.pdf
 ```
 
-## Hintergrund (Background Logic)
+## Background logic
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `printBackground` | boolean | `false` | Hintergrundgrafiken/-farben aus HTML einschliessen |
-| `omitBackground` | boolean | `false` | Standard-Weisshintergrund ausblenden (erlaubt Transparenz) |
+| `printBackground` | boolean | `false` | Include background graphics/colors from the HTML |
+| `omitBackground` | boolean | `false` | Hide the default white background (allows transparency) |
 
-| printBackground | omitBackground | HTML hat BG | Ergebnis |
+| printBackground | omitBackground | HTML has BG | Result |
 |----------------|----------------|-------------|---------|
-| false | (beliebig) | (beliebig) | Kein Hintergrund |
-| true | (beliebig) | Ja | CSS-Hintergrund |
-| true | true | Nein | Transparent |
-| true | false | Nein | Weiss (Standard) |
+| false | (any) | (any) | No background |
+| true | (any) | Yes | CSS background |
+| true | true | No | Transparent |
+| true | false | No | White (default) |
 
-## Druckmedien (Print Media)
+## Print media
 
-Chromium verwendet standardmaessig `print`-Medientyp (kein Hintergrund, optimiert fuer Tinte).
+Chromium uses the `print` media type by default (no background, optimized for ink).
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `emulatedMediaType` | enum | `print` | Medientyp emulieren: `screen` oder `print` |
-| `emulatedMediaFeatures` | json | — | JSON-Array mit CSS-Media-Feature-Overrides |
+| `emulatedMediaType` | enum | `print` | Emulate media type: `screen` or `print` |
+| `emulatedMediaFeatures` | json | — | JSON array of CSS media feature overrides |
 
-### emulatedMediaFeatures — Haeufige Features
+### emulatedMediaFeatures — common features
 
-| Feature | Werte | Beschreibung |
+| Feature | Values | Description |
 |---------|-------|-------------|
-| `prefers-color-scheme` | `light`, `dark` | OS-Farbthema emulieren |
-| `prefers-reduced-motion` | `no-preference`, `reduce` | Reduzierte Animation |
-| `color-gamut` | `srgb`, `p3`, `rec2020` | Farbraum emulieren |
-| `forced-colors` | `none`, `active` | Hoher Kontrast |
+| `prefers-color-scheme` | `light`, `dark` | Emulate the OS color theme |
+| `prefers-reduced-motion` | `no-preference`, `reduce` | Reduced animation |
+| `color-gamut` | `srgb`, `p3`, `rec2020` | Emulate color space |
+| `forced-colors` | `none`, `active` | High contrast |
 
 ```bash
 --form 'emulatedMediaFeatures=[{"name": "prefers-color-scheme", "value": "dark"}]'
 ```
 
-## JavaScript & Dynamischer Inhalt
+## JavaScript & dynamic content
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `waitDelay` | duration | — | Feste Wartezeit vor Konvertierung (z.B. `5s`, `500ms`). Fallback-Methode. |
-| `waitForExpression` | string | — | JavaScript-Ausdruck; Konvertierung startet wenn `true` |
-| `waitForSelector` | string | — | CSS-Selektor; Konvertierung startet wenn Element im DOM erscheint |
+| `waitDelay` | duration | — | Fixed wait time before conversion (e.g. `5s`, `500ms`). Fallback method. |
+| `waitForExpression` | string | — | JavaScript expression; conversion starts when it is `true` |
+| `waitForSelector` | string | — | CSS selector; conversion starts when the element appears in the DOM |
 
 ```bash
-# Warten bis JS-Signal
+# Wait for a JS signal
 --form 'waitForExpression=window.status === '"'"'ready'"'"''
 
-# Warten auf DOM-Element
+# Wait for a DOM element
 --form 'waitForSelector=#app-ready'
 ```
 
-## Netzwerk & Cookies
+## Network & cookies
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `cookies` | json | — | JSON-Array von Cookie-Objekten fuer Auth/Session |
-| `extraHttpHeaders` | json | — | JSON-Objekt mit zusaetzlichen HTTP-Headern fuer alle Browser-Requests |
-| `userAgent` | string | — | User-Agent-Header ueberschreiben |
+| `cookies` | json | — | JSON array of cookie objects for auth/session |
+| `extraHttpHeaders` | json | — | JSON object with additional HTTP headers for all browser requests |
+| `userAgent` | string | — | Override the User-Agent header |
 
-### Cookie-Felder
+### Cookie fields
 
-| Key | Pflicht | Beschreibung |
+| Key | Required | Description |
 |-----|---------|-------------|
-| `name` | Ja | Cookie-Name |
-| `value` | Ja | Cookie-Wert |
-| `domain` | Ja | Domain (z.B. `example.com`) |
-| `path` | Nein | URL-Pfad |
-| `secure` | Nein | Nur HTTPS senden |
-| `httpOnly` | Nein | Nicht per JS zugreifbar |
-| `sameSite` | Nein | `Strict`, `Lax` oder `None` |
+| `name` | Yes | Cookie name |
+| `value` | Yes | Cookie value |
+| `domain` | Yes | Domain (e.g. `example.com`) |
+| `path` | No | URL path |
+| `secure` | No | Send over HTTPS only |
+| `httpOnly` | No | Not accessible via JS |
+| `sameSite` | No | `Strict`, `Lax` or `None` |
 
 ```bash
 --form 'cookies=[{"name":"session","value":"abc123","domain":"example.com"}]'
 ```
 
-### Header-Scoping
+### Header scoping
 
-Header koennen auf bestimmte URLs beschraenkt werden (`;scope=<Regex>`):
+Headers can be restricted to specific URLs (`;scope=<regex>`):
 ```bash
 --form-string 'extraHttpHeaders={"X-Token":"secret;scope=.*\\.internal\\.api"}'
 ```
 
-## HTTP-Statuscodes & Netzwerkfehler
+## HTTP status codes & network errors
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `failOnHttpStatusCodes` | json | `[499,599]` | 409 Conflict wenn Haupt-URL diesen Code zurueckgibt. `X99`-Notation fuer Bereiche (z.B. `499` = 400-499). |
-| `failOnResourceHttpStatusCodes` | json | — | 409 Conflict wenn ein Asset diesen Code zurueckgibt |
-| `ignoreResourceHttpStatusDomains` | json | — | Domains von `failOnResourceHttpStatusCodes` ausschliessen |
-| `skipNetworkIdleEvent` | boolean | `true` | Nicht auf Netzwerk-Idle warten (0 offene Verbindungen fuer 500ms) |
-| `skipNetworkAlmostIdleEvent` | boolean | `true` | Nicht auf Fast-Idle warten (max. 2 offene Verbindungen fuer 500ms) |
-| `failOnResourceLoadingFailed` | boolean | `false` | 400 wenn Assets wegen Netzwerkfehler nicht laden |
-| `failOnConsoleExceptions` | boolean | `false` | 409 bei JavaScript-Exceptions in der Chromium-Console |
+| `failOnHttpStatusCodes` | json | `[499,599]` | 409 Conflict when the main URL returns this code. `X99` notation for ranges (e.g. `499` = 400-499). |
+| `failOnResourceHttpStatusCodes` | json | — | 409 Conflict when an asset returns this code |
+| `ignoreResourceHttpStatusDomains` | json | — | Exclude domains from `failOnResourceHttpStatusCodes` |
+| `skipNetworkIdleEvent` | boolean | `true` | Do not wait for network idle (0 open connections for 500ms) |
+| `skipNetworkAlmostIdleEvent` | boolean | `true` | Do not wait for almost-idle (max. 2 open connections for 500ms) |
+| `failOnResourceLoadingFailed` | boolean | `false` | 400 when assets fail to load because of a network error |
+| `failOnConsoleExceptions` | boolean | `false` | 409 on JavaScript exceptions in the Chromium console |
 
-## Header & Footer
+## Header & footer
 
-| Dateiname | Pflicht | Beschreibung |
+| File name | Required | Description |
 |-----------|---------|-------------|
-| `header.html` | Nein | Vollstaendiges HTML-Dokument fuer Seitenkopf |
-| `footer.html` | Nein | Vollstaendiges HTML-Dokument fuer Seitenfuss |
+| `header.html` | No | Complete HTML document for the page header |
+| `footer.html` | No | Complete HTML document for the page footer |
 
-Header/Footer werden in separatem Chromium-Kontext gerendert (kein Zugriff auf Haupt-CSS,
-kein JavaScript, keine externen Ressourcen).
+Header/footer are rendered in a separate Chromium context (no access to the main CSS,
+no JavaScript, no external resources).
 
-Automatisch injizierte CSS-Klassen:
+Automatically injected CSS classes:
 
-| Klasse | Injizierter Wert |
+| Class | Injected value |
 |--------|-----------------|
-| `date` | Formatiertes Druckdatum |
-| `title` | Dokumenttitel |
-| `url` | Dokument-URL |
-| `pageNumber` | Aktuelle Seitennummer |
-| `totalPages` | Gesamtanzahl Seiten |
+| `date` | Formatted print date |
+| `title` | Document title |
+| `url` | Document URL |
+| `pageNumber` | Current page number |
+| `totalPages` | Total number of pages |
 
-Timezone-Override: Env-Var `TZ` setzen.
+Timezone override: set the `TZ` env var.
 
 ```bash
 curl --request POST http://localhost:3000/forms/chromium/convert/html \
@@ -223,36 +223,36 @@ curl --request POST http://localhost:3000/forms/chromium/convert/html \
   -o my.pdf
 ```
 
-## Struktur & Metadaten
+## Structure & metadata
 
-### Dokument-Outline (Chromium-nativ)
+### Document outline (Chromium-native)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `generateDocumentOutline` | boolean | `false` | PDF-Lesezeichen aus HTML-Ueberschriften (h1-h6) generieren |
+| `generateDocumentOutline` | boolean | `false` | Generate PDF bookmarks from HTML headings (h1-h6) |
 
-### Tagged PDF / Barrierefreiheit (Chromium-nativ)
+### Tagged PDF / accessibility (Chromium-native)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `generateTaggedPdf` | boolean | `false` | Logische Strukturtags fuer Barrierefreiheit einbetten (waehrend Konvertierung) |
+| `generateTaggedPdf` | boolean | `false` | Embed logical structure tags for accessibility (during conversion) |
 
-### Metadaten (PDF Engines)
+### Metadata (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `metadata` | json | — | XMP-Metadaten als JSON-Objekt (Author, Title, Copyright, Keywords, ...) |
+| `metadata` | json | — | XMP metadata as a JSON object (Author, Title, Copyright, Keywords, ...) |
 
 ```bash
---form 'metadata={"Author":"Max Mustermann","Title":"Mein Dokument","Keywords":["pdf","api"]}'
+--form 'metadata={"Author":"Max Mustermann","Title":"My document","Keywords":["pdf","api"]}'
 ```
 
-### Dateianhange (PDF Engines)
+### File attachments (PDF Engines)
 
-| Feld/Datei | Typ | Default | Beschreibung |
+| Field/file | Type | Default | Description |
 |------------|-----|---------|-------------|
-| `embeds` | file[] | — | Dateien die in das PDF eingebettet werden |
-| `embedsMetadata` | json | — | Pro-Anhang-Metadaten: `mimeType` und `relationship` |
+| `embeds` | file[] | — | Files that get embedded into the PDF |
+| `embedsMetadata` | json | — | Per-attachment metadata: `mimeType` and `relationship` |
 
 ```bash
 --form embeds=@factur-x.xml \
@@ -261,91 +261,91 @@ curl --request POST http://localhost:3000/forms/chromium/convert/html \
 
 ### Factur-X / ZUGFeRD (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `facturxXml` | file | — | CII-Rechnungs-XML; wird als `factur-x.xml` eingebettet |
-| `facturxConformanceLevel` | enum | — | Konformitaetsstufe: `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` |
-| `facturxDocumentType` | enum | `INVOICE` | Dokumenttyp: `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` |
-| `facturxVersion` | string | `1.0` | Factur-X-Version fuer XMP-Metadaten |
+| `facturxXml` | file | — | CII invoice XML; embedded as `factur-x.xml` |
+| `facturxConformanceLevel` | enum | — | Conformance level: `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` |
+| `facturxDocumentType` | enum | `INVOICE` | Document type: `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` |
+| `facturxVersion` | string | `1.0` | Factur-X version for the XMP metadata |
 
 ### Flatten (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `flatten` | boolean | `false` | Interaktive Formularfelder in statischen Inhalt umwandeln |
+| `flatten` | boolean | `false` | Convert interactive form fields into static content |
 
-## Seitenauswahl & Split
+## Page selection & split
 
-### Native Seitenauswahl (Chromium)
+### Native page selection (Chromium)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `nativePageRanges` | string | — | Zu druckende Seitenbereiche (z.B. `1-5, 8, 11-13`) |
+| `nativePageRanges` | string | — | Page ranges to print (e.g. `1-5, 8, 11-13`) |
 
-### Split nach Konvertierung (PDF Engines)
+### Split after conversion (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `splitMode` | enum | — | Split aktivieren: `intervals` oder `pages` |
-| `splitSpan` | string | — | Split-Regel. Bei `intervals`: Chunk-Groesse (z.B. `2`). Bei `pages`: Seitenbereiche. |
-| `splitUnify` | boolean | `false` | Nur bei `pages`: alle extrahierten Seiten in eine Datei |
+| `splitMode` | enum | — | Enable split: `intervals` or `pages` |
+| `splitSpan` | string | — | Split rule. With `intervals`: chunk size (e.g. `2`). With `pages`: page ranges. |
+| `splitUnify` | boolean | `false` | Only with `pages`: put all extracted pages into one file |
 
-Mehrere Dateien bei Split -> ZIP-Archiv als Antwort (ausser `splitUnify=true`).
+Multiple files on split -> ZIP archive as the response (except with `splitUnify=true`).
 
-## Wasserzeichen & Stempel
+## Watermark & stamp
 
 ### Native (HTML/CSS)
-Wasserzeichen per CSS `::before`/`::after` direkt im HTML setzen — kein Post-Processing.
+Set watermarks via CSS `::before`/`::after` directly in the HTML — no post-processing.
 
-### Wasserzeichen (PDF Engines)
+### Watermark (PDF Engines)
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `watermarkSource` | enum | Quelle: `text`, `image`, `pdf` |
-| `watermarkExpression` | string | Inhalt: Text-String oder Dateiname |
-| `watermarkPages` | string | Seitenbereiche (leer = alle) |
-| `watermarkOptions` | json | Engine-spezifische Optionen (font, color, rotation, opacity, ...) |
-| `watermark` (file) | file | Bild/PDF als Wasserzeichen-Quelle |
+| `watermarkSource` | enum | Source: `text`, `image`, `pdf` |
+| `watermarkExpression` | string | Content: text string or file name |
+| `watermarkPages` | string | Page ranges (empty = all) |
+| `watermarkOptions` | json | Engine-specific options (font, color, rotation, opacity, ...) |
+| `watermark` (file) | file | Image/PDF as the watermark source |
 
-### Stempel (PDF Engines)
+### Stamp (PDF Engines)
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `stampSource` | enum | Quelle: `text`, `image`, `pdf` |
-| `stampExpression` | string | Inhalt: Text-String oder Dateiname |
-| `stampPages` | string | Seitenbereiche (leer = alle) |
-| `stampOptions` | json | Engine-spezifische Optionen |
-| `stamp` (file) | file | Bild/PDF als Stempel-Quelle |
+| `stampSource` | enum | Source: `text`, `image`, `pdf` |
+| `stampExpression` | string | Content: text string or file name |
+| `stampPages` | string | Page ranges (empty = all) |
+| `stampOptions` | json | Engine-specific options |
+| `stamp` (file) | file | Image/PDF as the stamp source |
 
 ### Rotation (PDF Engines)
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
-| `rotateAngle` | enum | Rotationswinkel: `90`, `180`, `270` |
-| `rotatePages` | string | Seitenbereiche (leer = alle) |
+| `rotateAngle` | enum | Rotation angle: `90`, `180`, `270` |
+| `rotatePages` | string | Page ranges (empty = all) |
 
 ## PDF/A & PDF/UA
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `pdfa` | enum | — | PDF/A-Standard: `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` |
-| `pdfua` | boolean | `false` | PDF/UA (Universal Accessibility) aktivieren |
-| `generateTaggedPdf` | boolean | `false` | Struktur-Tags waehrend Chromium-Konvertierung einbetten |
+| `pdfa` | enum | — | PDF/A standard: `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` |
+| `pdfua` | boolean | `false` | Enable PDF/UA (Universal Accessibility) |
+| `generateTaggedPdf` | boolean | `false` | Embed structure tags during the Chromium conversion |
 
-Hinweis: PDF/A und Verschluesselung schliessen sich gegenseitig aus.
+Note: PDF/A and encryption are mutually exclusive.
 
-## Verschluesselung (PDF Engines)
+## Encryption (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `userPassword` | string | — | Passwort zum Oeffnen des PDF |
-| `ownerPassword` | string | — | Passwort fuer vollen Zugriff (hebt Beschraenkungen auf) |
-| `allowPrinting` | boolean | `true` | Drucken erlauben |
-| `allowCopying` | boolean | `true` | Text/Grafik-Extraktion erlauben |
-| `allowModifying` | boolean | `true` | Inhaltsbearbeitung erlauben |
-| `allowAnnotating` | boolean | `true` | Annotationen erlauben |
-| `allowFillingForms` | boolean | `true` | Formularfelder ausfullen erlauben |
-| `allowAssembling` | boolean | `true` | Seiten einfuegen/loeschen/drehen erlauben |
+| `userPassword` | string | — | Password to open the PDF |
+| `ownerPassword` | string | — | Password for full access (lifts restrictions) |
+| `allowPrinting` | boolean | `true` | Allow printing |
+| `allowCopying` | boolean | `true` | Allow text/graphics extraction |
+| `allowModifying` | boolean | `true` | Allow content editing |
+| `allowAnnotating` | boolean | `true` | Allow annotations |
+| `allowFillingForms` | boolean | `true` | Allow filling in form fields |
+| `allowAssembling` | boolean | `true` | Allow inserting/deleting/rotating pages |
 
 ```bash
 curl --request POST http://localhost:3000/forms/chromium/convert/html \
@@ -355,20 +355,20 @@ curl --request POST http://localhost:3000/forms/chromium/convert/html \
   -o my.pdf
 ```
 
-## Response-Codes
+## Response codes
 
-| Code | Bedeutung |
+| Code | Meaning |
 |------|-----------|
-| 200 | Erfolg — PDF im Body |
-| 400 | Ungueltige Felder oder kritischer Netzwerkfehler |
-| 409 | HTTP-Statuscode-Fehler oder Chromium-Exception |
+| 200 | Success — PDF in the body |
+| 400 | Invalid fields or critical network error |
+| 409 | HTTP status code error or Chromium exception |
 | 503 | Timeout |
 
-## Gesamtzahl Form-Felder: ~44
+## Total number of form fields: ~44
 
-Seitenlayout (10) + Hintergrund (2) + Medien (2) + JS/Warten (3) + Netzwerk (7) +
-Header/Footer-Files (2) + Struktur/Metadaten (8) + Split (3) + Wasserzeichen (5) +
-Stempel (5) + Rotation (2) + PDF/A (3) + Verschluesselung (8) = ~44 Felder + Datei-Inputs
+Page layout (10) + background (2) + media (2) + JS/waiting (3) + network (7) +
+header/footer files (2) + structure/metadata (8) + split (3) + watermark (5) +
+stamp (5) + rotation (2) + PDF/A (3) + encryption (8) = ~44 fields + file inputs
 
 ---
-Quelle: https://gotenberg.dev/docs/convert-with-chromium/convert-html-to-pdf
+Source: https://gotenberg.dev/docs/convert-with-chromium/convert-html-to-pdf

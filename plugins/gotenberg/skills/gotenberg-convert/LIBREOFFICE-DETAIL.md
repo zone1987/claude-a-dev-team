@@ -1,23 +1,23 @@
-# Gotenberg — LibreOffice-Konvertierung (Vollreferenz)
+# Gotenberg — LibreOffice conversion (full reference)
 
 **Route:** `POST /forms/libreoffice/convert`
-**Beschreibung:** Konvertiert Dokumente zu PDF via LibreOffice (unoconv).
-Akzeptiert Microsoft Office, OpenDocument, Plaintext und viele weitere Formate.
+**Description:** Converts documents to PDF via LibreOffice (unoconv).
+Accepts Microsoft Office, OpenDocument, plaintext and many further formats.
 
 ## Contents
 
-- [Basisbeispiel](#basisbeispiel)
-- [Request-Header](#request-header)
-- [Pflichtfeld](#pflichtfeld)
-- [Layout-Felder (LibreOffice-Phase)](#layout-felder-libreoffice-phase)
-- [Unterstuetzte Dateiformate](#unterstuetzte-dateiformate)
-- [PDF-Engine-Felder (Post-Processing)](#pdf-engine-felder-post-processing)
-- [Hinweis: LibreOffice vs. Microsoft Office](#hinweis-libreoffice-vs-microsoft-office)
-- [Sprache aendern](#sprache-aendern)
-- [Response-Codes](#response-codes)
-- [Gesamtzahl Form-Felder: ~38](#gesamtzahl-form-felder-38)
+- [Basic example](#basic-example)
+- [Request headers](#request-headers)
+- [Mandatory field](#mandatory-field)
+- [Layout fields (LibreOffice phase)](#layout-fields-libreoffice-phase)
+- [Supported file formats](#supported-file-formats)
+- [PDF engine fields (post-processing)](#pdf-engine-fields-post-processing)
+- [Note: LibreOffice vs. Microsoft Office](#note-libreoffice-vs-microsoft-office)
+- [Changing the language](#changing-the-language)
+- [Response codes](#response-codes)
+- [Total number of form fields: ~38](#total-number-of-form-fields-38)
 
-## Basisbeispiel
+## Basic example
 
 ```bash
 curl \
@@ -26,7 +26,7 @@ curl \
   -o my.pdf
 ```
 
-Mehrere Dateien: Antwort ist ein **ZIP-Archiv**.
+Multiple files: the response is a **ZIP archive**.
 
 ```bash
 curl \
@@ -36,27 +36,27 @@ curl \
   -o archive.zip
 ```
 
-## Request-Header
+## Request headers
 
-| Header | Typ | Default | Beschreibung |
+| Header | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `Gotenberg-Output-Filename` | string | Random UUID | Ausgabe-Dateiname (ohne Extension) |
-| `Gotenberg-Trace` | string | Random UUID | Request-ID fuer Logs |
+| `Gotenberg-Output-Filename` | string | Random UUID | Output file name (without extension) |
+| `Gotenberg-Trace` | string | Random UUID | Request ID for logs |
 
-## Pflichtfeld
+## Mandatory field
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|-------------|
-| `files` | file[] | Ja | Eine oder mehrere Dateien. Mehrere Dateien -> ZIP-Archiv. |
+| `files` | file[] | Yes | One or more files. Multiple files -> ZIP archive. |
 
-## Layout-Felder (LibreOffice-Phase)
+## Layout fields (LibreOffice phase)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `landscape` | boolean | `false` | Querformat aktivieren |
-| `singlePageSheets` | boolean | `false` | Jedes Tabellenblatt (auch versteckte) auf genau eine Seite. Ignoriert individuelle Blatt-Groessen und Druckbereiche. |
-| `skipEmptyPages` | boolean | `false` | Automatisch eingefuegte Leerseiten unterdruecken (nur Writer-Dokumente) |
-| `exportPlaceholders` | boolean | `false` | Platzhalterfelder als visuelle Markierungen exportieren (nicht funktional) |
+| `landscape` | boolean | `false` | Enable landscape orientation |
+| `singlePageSheets` | boolean | `false` | Put every sheet (including hidden ones) on exactly one page. Ignores individual sheet sizes and print ranges. |
+| `skipEmptyPages` | boolean | `false` | Suppress automatically inserted blank pages (Writer documents only) |
+| `exportPlaceholders` | boolean | `false` | Export placeholder fields as visual markers (not functional) |
 
 ```bash
 curl \
@@ -66,140 +66,140 @@ curl \
   -o my.pdf
 ```
 
-## Unterstuetzte Dateiformate
+## Supported file formats
 
-### Word Processing (Textverarbeitung)
+### Word processing
 
 `.doc`, `.docx`, `.docm`, `.dot`, `.dotm`, `.dotx`, `.odt`, `.fodt`, `.ott`,
 `.rtf`, `.txt`, `.wps`, `.wpd`, `.pages`, `.abw`, `.zabw`, `.lwp`, `.mw`, `.mcw`,
 `.hwp`, `.sxw`, `.stw`, `.sgl`, `.vor`, `.602`, `.bib`, `.xml`, `.cwk`, `.psw`, `.uof`
 
-### Tabellenkalkulation (Spreadsheets)
+### Spreadsheets
 
 `.xls`, `.xlsx`, `.xlsm`, `.xlsb`, `.xlt`, `.xltm`, `.xltx`, `.xlw`, `.ods`, `.fods`,
 `.ots`, `.csv`, `.numbers`, `.123`, `.wk1`, `.wks`, `.wb2`, `.dbf`, `.dif`, `.slk`,
 `.sxc`, `.stc`, `.uos`, `.pxl`, `.sdc`
 
-### Praesentationen
+### Presentations
 
 `.ppt`, `.pptx`, `.pptm`, `.pot`, `.potm`, `.potx`, `.pps`, `.odp`, `.fodp`, `.otp`,
 `.key`, `.sxi`, `.sti`, `.uop`, `.sdd`, `.sdp`, `.fopd`
 
-### Grafik & Zeichnung
+### Graphics & drawing
 
 `.odg`, `.fodg`, `.otg`, `.vsd`, `.vsdx`, `.vsdm`, `.vdx`, `.cdr`, `.svg`, `.svm`,
 `.wmf`, `.emf`, `.cgm`, `.dxf`, `.std`, `.sxd`, `.pub`, `.wpg`, `.sda`, `.odd`,
 `.met`, `.cmx`, `.eps`
 
-### Bilder
+### Images
 
 `.jpg`, `.jpeg`, `.png`, `.bmp`, `.gif`, `.tif`, `.tiff`, `.pbm`, `.pgm`, `.ppm`,
 `.xbm`, `.xpm`, `.pcx`, `.pcd`, `.pct`, `.psd`, `.tga`, `.ras`, `.pwp`
 
-### Web & Sonstiges
+### Web & miscellaneous
 
 `.html`, `.htm`, `.xhtml`, `.epub`, `.pdf`, `.pdb`, `.ltx`, `.mml`, `.smf`, `.sxm`,
 `.sxg`, `.oth`, `.odm`, `.swf`
 
-## PDF-Engine-Felder (Post-Processing)
+## PDF engine fields (post-processing)
 
-Identisch mit Chromium-Konvertierungsrouten. Alle unten genannten Felder koennen
-im selben Request mit den LibreOffice-Feldern kombiniert werden.
+Identical to the Chromium conversion routes. All fields listed below can be
+combined with the LibreOffice fields in the same request.
 
-### Metadaten (PDF Engines)
+### Metadata (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `metadata` | json | — | XMP-Metadaten (Author, Title, Keywords, ...) |
+| `metadata` | json | — | XMP metadata (Author, Title, Keywords, ...) |
 
-### Dateianhange (PDF Engines)
+### File attachments (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `embeds` (files) | file[] | — | Einzubettende Dateien |
-| `embedsMetadata` | json | — | Pro-Anhang-Metadaten: `mimeType` und `relationship` |
+| `embeds` (files) | file[] | — | Files to embed |
+| `embedsMetadata` | json | — | Per-attachment metadata: `mimeType` and `relationship` |
 
 ### Factur-X / ZUGFeRD (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `facturxXml` (file) | file | — | Factur-X CII-XML |
+| `facturxXml` (file) | file | — | Factur-X CII XML |
 | `facturxConformanceLevel` | enum | — | `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` |
 | `facturxDocumentType` | enum | `INVOICE` | `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` |
-| `facturxVersion` | string | `1.0` | Factur-X-Version |
+| `facturxVersion` | string | `1.0` | Factur-X version |
 
 ### Flatten (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `flatten` | boolean | `false` | Formularfelder in statischen Inhalt |
+| `flatten` | boolean | `false` | Form fields into static content |
 
 ### Split (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `splitMode` | enum | — | `intervals` oder `pages` |
-| `splitSpan` | string | — | Split-Regel |
-| `splitUnify` | boolean | `false` | Alle extrahierten Seiten in eine Datei |
+| `splitMode` | enum | — | `intervals` or `pages` |
+| `splitSpan` | string | — | Split rule |
+| `splitUnify` | boolean | `false` | All extracted pages into one file |
 
-### Wasserzeichen (PDF Engines)
+### Watermark (PDF Engines)
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
 | `watermarkSource` | enum | `text`, `image`, `pdf` |
-| `watermarkExpression` | string | Inhalt oder Dateiname |
-| `watermarkPages` | string | Seitenbereiche |
-| `watermarkOptions` | json | Engine-Optionen |
-| `watermark` (file) | file | Wasserzeichen-Datei |
+| `watermarkExpression` | string | Content or file name |
+| `watermarkPages` | string | Page ranges |
+| `watermarkOptions` | json | Engine options |
+| `watermark` (file) | file | Watermark file |
 
-### Stempel (PDF Engines)
+### Stamp (PDF Engines)
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
 | `stampSource` | enum | `text`, `image`, `pdf` |
-| `stampExpression` | string | Inhalt oder Dateiname |
-| `stampPages` | string | Seitenbereiche |
-| `stampOptions` | json | Engine-Optionen |
-| `stamp` (file) | file | Stempel-Datei |
+| `stampExpression` | string | Content or file name |
+| `stampPages` | string | Page ranges |
+| `stampOptions` | json | Engine options |
+| `stamp` (file) | file | Stamp file |
 
 ### Rotation (PDF Engines)
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
 | `rotateAngle` | enum | `90`, `180`, `270` |
-| `rotatePages` | string | Seitenbereiche |
+| `rotatePages` | string | Page ranges |
 
 ### PDF/A & PDF/UA (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
 | `pdfa` | enum | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` |
-| `pdfua` | boolean | `false` | PDF/UA aktivieren |
+| `pdfua` | boolean | `false` | Enable PDF/UA |
 
-### Verschluesselung (PDF Engines)
+### Encryption (PDF Engines)
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `userPassword` | string | — | Oeffnungs-Passwort |
-| `ownerPassword` | string | — | Voll-Zugriff-Passwort |
-| `allowPrinting` | boolean | `true` | Drucken |
-| `allowCopying` | boolean | `true` | Kopieren |
-| `allowModifying` | boolean | `true` | Bearbeiten |
-| `allowAnnotating` | boolean | `true` | Annotieren |
-| `allowFillingForms` | boolean | `true` | Formulare ausfullen |
-| `allowAssembling` | boolean | `true` | Seiten-Assembly |
+| `userPassword` | string | — | Open password |
+| `ownerPassword` | string | — | Full-access password |
+| `allowPrinting` | boolean | `true` | Printing |
+| `allowCopying` | boolean | `true` | Copying |
+| `allowModifying` | boolean | `true` | Editing |
+| `allowAnnotating` | boolean | `true` | Annotating |
+| `allowFillingForms` | boolean | `true` | Filling in forms |
+| `allowAssembling` | boolean | `true` | Page assembly |
 
-## Hinweis: LibreOffice vs. Microsoft Office
+## Note: LibreOffice vs. Microsoft Office
 
-LibreOffice ist kein 1:1-Klon von Microsoft Office. Dokumente mit komplexem Styling,
-SmartArt oder sehr spezifischer Formatierung koennen leicht anders gerendert werden.
+LibreOffice is not a 1:1 clone of Microsoft Office. Documents with complex styling,
+SmartArt or very specific formatting may render slightly differently.
 
-**Schriften**: Fehlende Schriften sind die haeufigste Ursache fuer Layout-Probleme.
-Die im Docker-Image enthaltenen Schriften verwenden oder eigene Schriften einbinden.
+**Fonts**: Missing fonts are the most common cause of layout problems.
+Use the fonts included in the Docker image or bundle your own fonts.
 
-## Sprache aendern
+## Changing the language
 
-Standardmaessig verwendet LibreOffice Englisch. Eigenes Image bauen:
+By default LibreOffice uses English. Build your own image:
 
 ```dockerfile
 FROM gotenberg/gotenberg:8
@@ -216,19 +216,19 @@ ENV LC_ALL de_DE.UTF-8
 USER gotenberg
 ```
 
-## Response-Codes
+## Response codes
 
-| Code | Bedeutung |
+| Code | Meaning |
 |------|-----------|
-| 200 | Erfolg — PDF oder ZIP im Body |
-| 400 | Ungueltige Felder |
+| 200 | Success — PDF or ZIP in the body |
+| 400 | Invalid fields |
 | 503 | Timeout |
 
-## Gesamtzahl Form-Felder: ~38
+## Total number of form fields: ~38
 
-LibreOffice-spezifisch (4) + Metadaten (1) + Anhange (2) + Factur-X (4) +
-Flatten (1) + Split (3) + Wasserzeichen (5) + Stempel (5) + Rotation (2) +
-PDF/A (2) + Verschluesselung (8) = ~37 Felder + Datei-Inputs
+LibreOffice-specific (4) + metadata (1) + attachments (2) + Factur-X (4) +
+flatten (1) + split (3) + watermark (5) + stamp (5) + rotation (2) +
+PDF/A (2) + encryption (8) = ~37 fields + file inputs
 
 ---
-Quelle: https://gotenberg.dev/docs/convert-with-libreoffice/convert-to-pdf
+Source: https://gotenberg.dev/docs/convert-with-libreoffice/convert-to-pdf

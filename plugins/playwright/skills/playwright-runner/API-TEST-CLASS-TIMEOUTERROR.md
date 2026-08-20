@@ -121,9 +121,9 @@ onTestEnd(test, result) {
 | Custom properties | 0 (inherits `message`, `name`, `stack` from `Error`) |
 | Custom methods | 0 |
 
-**Fazit:** `TimeoutError` ist ein reiner Typ-Marker ohne eigene Properties. Sein Hauptzweck
-ist `instanceof`-Pruefung, um Timeouts von anderen Fehlern zu unterscheiden und gezielt
-abzufangen, ohne alle Fehler zu verschlucken.
+**Summary:** `TimeoutError` is a pure type marker without its own properties. Its main purpose
+is the `instanceof` check, to distinguish timeouts from other errors and catch them
+selectively without swallowing all errors.
 
 ---
 

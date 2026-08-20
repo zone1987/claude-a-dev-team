@@ -2,47 +2,47 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Registrierungsmethoden](#registrierungsmethoden)
-- [Konfigurationsparameter](#konfigurationsparameter)
-- [Minimales Beispiel](#minimales-beispiel)
-- [URL-Generierung](#url-generierung)
+- [Overview](#overview)
+- [Registration methods](#registration-methods)
+- [Configuration parameters](#configuration-parameters)
+- [Minimal example](#minimal-example)
+- [URL generation](#url-generation)
 - [contentComposition](#contentcomposition)
-- [Seitentypen im Backend](#seitentypen-im-backend)
-- [Unterschied: Page Controller vs. normaler Controller](#unterschied-page-controller-vs-normaler-controller)
+- [Page types in the backend](#page-types-in-the-backend)
+- [Difference: page controller vs. regular controller](#difference-page-controller-vs-regular-controller)
 
-## Übersicht
+## Overview
 
-Page Controllers sind spezialisierte Controller-Implementierungen in Contao, die
-Anfragen für spezifische Seitentypen innerhalb der Seitenstruktur verarbeiten.
-Sie vereinen die Möglichkeit, eine Seite in Contaos Seitenstruktur zu definieren,
-mit vollständiger Routing-Kontrolle.
+Page controllers are specialized controller implementations in Contao that handle
+requests for specific page types within the page structure.
+They combine the ability to define a page in Contao's page structure
+with full routing control.
 
-**Typischer Use-Case:** RSS-Feed-Seite, bei der die URL-Struktur (z.B. `/feed/records.xml`)
-frei im Backend konfigurierbar ist, unabhängig vom globalen URL-Suffix der Site.
+**Typical use case:** an RSS feed page whose URL structure (e.g. `/feed/records.xml`)
+is freely configurable in the backend, independent of the site's global URL suffix.
 
 ---
 
-## Registrierungsmethoden
+## Registration methods
 
-1. **PHP-Attribut** `#[AsPage]` (empfohlen)
+1. **PHP attribute** `#[AsPage]` (recommended)
 2. **Annotation** `@Page`
-3. **YAML-Konfiguration** via `config/services.yaml`
+3. **YAML configuration** via `config/services.yaml`
 
 ---
 
-## Konfigurationsparameter
+## Configuration parameters
 
-| Parameter | Zweck |
+| Parameter | Purpose |
 |-----------|-------|
-| `type` | Wird automatisch aus dem Klassenname abgeleitet; anpassbar |
-| `path` | URL-Struktur (absolut oder relativ zum Alias) |
-| `urlSuffix` | Überschreibt site-weites Suffix (z.B. `.csv` statt `.html`) |
-| `contentComposition` | Boolean: Backend-Inhaltsbearbeitung aktivieren/deaktivieren |
+| `type` | Derived automatically from the class name; customizable |
+| `path` | URL structure (absolute or relative to the alias) |
+| `urlSuffix` | Overrides the site-wide suffix (e.g. `.csv` instead of `.html`) |
+| `contentComposition` | Boolean: enable/disable backend content editing |
 
 ---
 
-## Minimales Beispiel
+## Minimal example
 
 ```php
 // src/Controller/Page/RssFeedPageController.php
@@ -58,7 +58,7 @@ class RssFeedPageController
 {
     public function __invoke(Request $request, PageModel $pageModel): Response
     {
-        // $pageModel enthält die Contao-Seiten-Konfiguration
+        // $pageModel contains the Contao page configuration
         $xml = $this->generateFeed($pageModel);
 
         return new Response($xml, 200, ['Content-Type' => 'application/rss+xml']);
@@ -74,10 +74,10 @@ class RssFeedPageController
 
 ---
 
-## URL-Generierung
+## URL generation
 
-Für moderne Page Controller mit Pflicht-Pfad-Parametern empfiehlt die Dokumentation
-Symfonys `UrlGeneratorInterface`:
+For modern page controllers with mandatory path parameters, the documentation
+recommends Symfony's `UrlGeneratorInterface`:
 
 ```php
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -97,10 +97,10 @@ class MyService
 }
 ```
 
-### Ab Contao 5.3: Array-Parameter-Übergabe
+### As of Contao 5.3: passing parameters as an array
 
-Ab Version 5.3 können statt direkter UrlGenerator-Aufrufe Arrays mit Parametern
-an `getFrontendUrl()`-Methoden übergeben werden:
+As of version 5.3, arrays of parameters can be passed to `getFrontendUrl()` methods
+instead of calling the UrlGenerator directly:
 
 ```php
 $url = $pageModel->getFrontendUrl(['foobarId' => 42]);
@@ -110,9 +110,9 @@ $url = $pageModel->getFrontendUrl(['foobarId' => 42]);
 
 ## contentComposition
 
-Wenn `contentComposition: true` gesetzt ist, können Redakteure im Backend Inhalte
-auf dieser Seite bearbeiten (Artikel/Content Elements hinzufügen). Standard ist `false`
-für vollständig controller-gesteuerte Seiten.
+When `contentComposition: true` is set, editors can edit content on this page
+in the backend (adding articles/content elements). The default is `false`
+for fully controller-driven pages.
 
 ```php
 #[AsPage(type: 'special', contentComposition: true)]
@@ -124,9 +124,9 @@ class SpecialPageController
 
 ---
 
-## Seitentypen im Backend
+## Page types in the backend
 
-Damit der Seitentyp im Backend auswählbar ist, müssen Translations vorhanden sein:
+For the page type to be selectable in the backend, translations must exist:
 
 ```yaml
 # translations/contao_default.en.yaml
@@ -138,15 +138,15 @@ PTY:
 
 ---
 
-## Unterschied: Page Controller vs. normaler Controller
+## Difference: page controller vs. regular controller
 
-| Aspekt | Page Controller | Normaler Controller |
+| Aspect | Page controller | Regular controller |
 |--------|----------------|---------------------|
-| URL | Über Contao-Seitenstruktur konfiguriert | Route fest im Code |
-| Seitenstruktur | Erscheint als Seitentyp | Nicht sichtbar |
-| PageModel | Automatisch verfügbar | Über PageFinder |
-| Locale | Aus Seiten-Konfiguration | Symfony-Standard |
+| URL | Configured via the Contao page structure | Route fixed in code |
+| Page structure | Appears as a page type | Not visible |
+| PageModel | Available automatically | Via PageFinder |
+| Locale | From the page configuration | Symfony default |
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/page-controllers/*
+*Source: https://docs.contao.org/5.x/dev/framework/page-controllers/*

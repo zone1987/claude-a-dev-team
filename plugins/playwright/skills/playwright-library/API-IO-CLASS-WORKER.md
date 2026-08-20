@@ -218,7 +218,7 @@ const serviceWorkers = context.serviceWorkers();
 | Properties | 0     |
 | Events    | 2 ('close', 'console') |
 
-**Conclusion:** `evaluate()` is the primary method for executing code in the
+**Summary:** `evaluate()` is the primary method for executing code in the
 worker context and retrieving results. `url()` identifies workers uniquely.
 The `console` event enables complete logging of worker activity as
 well, which is particularly important for debugging in Service-Worker

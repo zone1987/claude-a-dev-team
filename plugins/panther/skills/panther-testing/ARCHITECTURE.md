@@ -1,133 +1,133 @@
-# Symfony Panther — Architektur & Entscheidungsbaum
+# Symfony Panther — Architecture & Decision Tree
 
 ## Contents
 
-- [Was ist Panther?](#was-ist-panther)
-- [Architektur-Diagramm (vereinfacht)](#architektur-diagramm-vereinfacht)
-- [Client-Vergleich (vollstandig)](#client-vergleich-vollstandig)
-- [Entscheidungsbaum: Welchen Client verwenden?](#entscheidungsbaum-welchen-client-verwenden)
-- [Typische Einsatzfalle](#typische-einsatzfalle)
-- [Abgrenzung zu anderen Tools](#abgrenzung-zu-anderen-tools)
-- [Dependency-Graph (Composer)](#dependency-graph-composer)
+- [What is Panther?](#what-is-panther)
+- [Architecture diagram (simplified)](#architecture-diagram-simplified)
+- [Client comparison (complete)](#client-comparison-complete)
+- [Decision tree: which client to use?](#decision-tree-which-client-to-use)
+- [Typical use cases](#typical-use-cases)
+- [Differentiation from other tools](#differentiation-from-other-tools)
+- [Dependency graph (Composer)](#dependency-graph-composer)
 - [PantherCrawler vs. DomCrawler](#panthercrawler-vs-domcrawler)
-- [Versionierung](#versionierung)
+- [Versioning](#versioning)
 
-## Was ist Panther?
+## What is Panther?
 
-Symfony Panther ist eine Browser-Testing- und Web-Crawling-Bibliothek fur PHP. Sie steuert
-echte Browser (Chrome, Firefox) uber das W3C-WebDriver-Protokoll (via `php-webdriver/webdriver`)
-und kann alternativ uber `BrowserKit/HttpBrowser` rein HTTP-basiert ohne Browser arbeiten.
-Panther implementiert `Symfony\Component\BrowserKit\AbstractBrowser` und liefert stets einen
-`Symfony\Component\DomCrawler\Crawler` (bzw. `PantherCrawler`), sodass Tests nahtlos zwischen
-den Client-Typen wechseln konnen.
+Symfony Panther is a browser-testing and web-crawling library for PHP. It drives
+real browsers (Chrome, Firefox) via the W3C WebDriver protocol (through `php-webdriver/webdriver`)
+and can alternatively work purely HTTP-based without a browser via `BrowserKit/HttpBrowser`.
+Panther implements `Symfony\Component\BrowserKit\AbstractBrowser` and always returns a
+`Symfony\Component\DomCrawler\Crawler` (or `PantherCrawler`), so tests can switch seamlessly
+between the client types.
 
-## Architektur-Diagramm (vereinfacht)
+## Architecture diagram (simplified)
 
 ```
 PantherTestCase / PantherTestCaseTrait
         |
-        |-- createPantherClient()      --> WebDriver-Client (Chrome/Firefox/Selenium)
+        |-- createPantherClient()      --> WebDriver client (Chrome/Firefox/Selenium)
         |       \--> php-webdriver/webdriver --> ChromeDriver/GeckoDriver --> Browser
         |
         |-- createHttpBrowserClient()  --> BrowserKit/HttpBrowser (cURL)
-        |       \--> symfony/http-client --> HTTP-Stack (kein Browser)
+        |       \--> symfony/http-client --> HTTP stack (no browser)
         |
-        \-- createClient()             --> Symfony KernelBrowser (nur Symfony-Apps)
+        \-- createClient()             --> Symfony KernelBrowser (Symfony apps only)
                 \--> Symfony Kernel (in-process)
 ```
 
-## Client-Vergleich (vollstandig)
+## Client comparison (complete)
 
-| Kriterium               | PantherClient (WebDriver) | HttpBrowserClient     | KernelBrowserClient      |
+| Criterion               | PantherClient (WebDriver) | HttpBrowserClient     | KernelBrowserClient      |
 |-------------------------|---------------------------|-----------------------|--------------------------|
-| Basistechnologie        | W3C WebDriver             | BrowserKit + cURL     | Symfony Kernel           |
-| JavaScript-Unterstutzung | Ja                       | Nein                  | Nein                     |
-| Echter Browser          | Ja (Chrome / Firefox)     | Nein                  | Nein                     |
-| Geschwindigkeit         | Langsam                   | Mittel                | Sehr schnell             |
-| Screenshots             | Ja (`takeScreenshot`)     | Nein                  | Nein                     |
-| waitFor-Methoden        | Ja                        | Nein                  | Nein                     |
-| PHP-Kernel-Zugriff      | Nein                      | Nein                  | Ja                       |
-| Symfony-Requirement     | Nein (jede PHP-App)       | Nein (jede PHP-App)   | Ja                       |
-| Cookies                 | Ja (WebDriver CookieJar)  | Ja (BrowserKit)       | Ja (BrowserKit)          |
-| HTTP-Redirects          | Ja (automatisch)          | Ja (konfigurierbar)   | Ja (konfigurierbar)      |
-| SSL-Probleme umgehen    | Ja (via Capabilities)     | Ja (via HttpClient)   | N/A                      |
-| Multi-Browser-Instanzen | Ja                        | Nein                  | Nein                     |
-| Headless-Modus          | Ja (Standard)             | N/A                   | N/A                      |
+| Base technology         | W3C WebDriver             | BrowserKit + cURL     | Symfony Kernel           |
+| JavaScript support      | Yes                       | No                    | No                       |
+| Real browser            | Yes (Chrome / Firefox)    | No                    | No                       |
+| Speed                   | Slow                      | Medium                | Very fast                |
+| Screenshots             | Yes (`takeScreenshot`)    | No                    | No                       |
+| waitFor methods         | Yes                       | No                    | No                       |
+| PHP kernel access       | No                        | No                    | Yes                      |
+| Symfony requirement     | No (any PHP app)          | No (any PHP app)      | Yes                      |
+| Cookies                 | Yes (WebDriver CookieJar) | Yes (BrowserKit)      | Yes (BrowserKit)         |
+| HTTP redirects          | Yes (automatic)           | Yes (configurable)    | Yes (configurable)       |
+| Bypass SSL problems     | Yes (via Capabilities)    | Yes (via HttpClient)  | N/A                      |
+| Multi-browser instances | Yes                       | No                    | No                       |
+| Headless mode           | Yes (default)             | N/A                   | N/A                      |
 
-## Entscheidungsbaum: Welchen Client verwenden?
+## Decision tree: which client to use?
 
 ```
-Brauche ich JavaScript-Rendering oder echte Browser-Interaktionen?
-  JA  --> PantherClient (createPantherClient)
-  NEIN
+Do I need JavaScript rendering or real browser interactions?
+  YES --> PantherClient (createPantherClient)
+  NO
     |
-    Ist es eine Symfony-App und brauche ich Kernel/Service-Zugriff?
-      JA  --> KernelBrowserClient (createClient)
-      NEIN --> HttpBrowserClient (createHttpBrowserClient)
+    Is it a Symfony app and do I need kernel/service access?
+      YES --> KernelBrowserClient (createClient)
+      NO   --> HttpBrowserClient (createHttpBrowserClient)
 ```
 
-## Typische Einsatzfalle
+## Typical use cases
 
 ### PantherClient (WebDriver)
-- Single-Page Applications (SPA) mit Vue/React/Svelte
-- Formulare mit JavaScript-Validierung
-- Infinite Scroll, dynamisches Laden
-- WebSocket / SSE / Real-Time-Tests
-- Drag & Drop, Hover-Effekte
-- Screenshot-Vergleiche
-- Tests, die mehrere Browser-Instanzen erfordern (Chat-Tests)
+- Single-page applications (SPA) with Vue/React/Svelte
+- Forms with JavaScript validation
+- Infinite scroll, dynamic loading
+- WebSocket / SSE / real-time tests
+- Drag & drop, hover effects
+- Screenshot comparisons
+- Tests that require multiple browser instances (chat tests)
 
 ### HttpBrowserClient
-- REST-API-Endpunkte (JSON-Responses)
-- Server-Side-Rendered-Seiten ohne JS
-- Performance-Tests (viele Requests)
-- Web-Crawling / Scraping
+- REST API endpoints (JSON responses)
+- Server-side-rendered pages without JS
+- Performance tests (many requests)
+- Web crawling / scraping
 
 ### KernelBrowserClient
-- Unit-nahe Funktionaltests (schnell)
-- Tests mit Datenbank-Reset
-- Tests die Services, Repositories etc. direkt mocken
+- Near-unit functional tests (fast)
+- Tests with database reset
+- Tests that mock services, repositories etc. directly
 
-## Abgrenzung zu anderen Tools
+## Differentiation from other tools
 
-| Tool               | Verhaltnis zu Panther                                              |
+| Tool               | Relationship to Panther                                            |
 |--------------------|--------------------------------------------------------------------|
-| **Goutte**         | Veraltet. Nachfolger ist `HttpBrowserClient` via `BrowserKit`.    |
-| **WebTestCase**    | Symfony-intern, nur `KernelBrowser`, kein JS. Panther erweitert es.|
-| **Playwright**     | Node.js-basiert, kein PHP. Fur PHP-Apps: Panther bevorzugen.      |
-| **Selenium IDE**   | Grafisches Werkzeug, Panther nutzt Selenium-Grid-Protokoll.       |
-| **Cypress**        | JavaScript-only, kein PHP. Fur PHP-Apps: Panther bevorzugen.      |
-| **Behat/Mink**     | BDD-Framework, kann Panther als Treiber nutzen.                   |
+| **Goutte**         | Obsolete. Its successor is `HttpBrowserClient` via `BrowserKit`.   |
+| **WebTestCase**    | Symfony-internal, only `KernelBrowser`, no JS. Panther extends it. |
+| **Playwright**     | Node.js-based, no PHP. For PHP apps: prefer Panther.               |
+| **Selenium IDE**   | Graphical tool, Panther uses the Selenium Grid protocol.          |
+| **Cypress**        | JavaScript-only, no PHP. For PHP apps: prefer Panther.             |
+| **Behat/Mink**     | BDD framework, can use Panther as a driver.                       |
 
-## Dependency-Graph (Composer)
+## Dependency graph (Composer)
 
 ```
 symfony/panther
-  ├── php-webdriver/webdriver        # W3C WebDriver-Protokoll
+  ├── php-webdriver/webdriver        # W3C WebDriver protocol
   ├── symfony/browser-kit            # AbstractBrowser, CookieJar, History
   ├── symfony/dom-crawler            # Crawler, Form, FormFields
-  ├── symfony/http-client            # fur HttpBrowserClient
-  ├── symfony/process                # PHP-Built-in-Server starten
-  └── dbrekelmans/bdi (optional)     # automatische Treiber-Installation
+  ├── symfony/http-client            # for HttpBrowserClient
+  ├── symfony/process                # start the PHP built-in server
+  └── dbrekelmans/bdi (optional)     # automatic driver installation
 ```
 
 ## PantherCrawler vs. DomCrawler
 
-`PantherCrawler` ist eine Erweiterung von `DomCrawler\Crawler` mit WebDriver-spezifischen
-Methoden:
-- `getElement()` gibt ein `WebDriverElement` zuruck (kein `\DOMElement`)
-- Keine XML-Unterstutzung (nur HTML)
-- `text()` gibt sichtbaren Text zuruck (wie `innerText` im Browser)
-- `html()` gibt das aktuelle (evtl. JS-modifizierte) HTML zuruck
+`PantherCrawler` is an extension of `DomCrawler\Crawler` with WebDriver-specific
+methods:
+- `getElement()` returns a `WebDriverElement` (not a `\DOMElement`)
+- No XML support (HTML only)
+- `text()` returns visible text (like `innerText` in the browser)
+- `html()` returns the current (possibly JS-modified) HTML
 
-## Versionierung
+## Versioning
 
-Panther folgt dem Symfony-Release-Zyklus. Ab v2.0 ist PHP 8.1+ Minimum.
-Aktuelle stable: v2.4.x (Stand 2026-01).
+Panther follows the Symfony release cycle. From v2.0 on, PHP 8.1+ is the minimum.
+Current stable: v2.4.x (as of 2026-01).
 
 ---
 
-Quellen:
+Sources:
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther
 - https://symfony.com/doc/current/components/browser_kit.html

@@ -6,14 +6,14 @@ FAQ, and Open-in-v0 integration.
 
 ## References
 
-- [api-reference.md](`REGISTRY-API-API-REFERENCE.md`) — `shadcn/registry`, `shadcn/schema`, `shadcn/preset` APIs
-- [registry-index.md](`REGISTRY-API-REGISTRY-INDEX.md`) — Open-source registry directory, submission requirements
-- [namespace.md](`REGISTRY-API-NAMESPACE.md`) — Decentralised namespace system, components.json config
-- [github.md](`REGISTRY-API-GITHUB.md`) — GitHub registry: add registry.json, distribute any file, refs
-- [authentication.md](`REGISTRY-API-AUTHENTICATION.md`) — Bearer token, API key, query param, server-side patterns
-- [examples.md](`REGISTRY-API-EXAMPLES.md`) — Full registry-item examples by type
-- [faq.md](`REGISTRY-API-FAQ.md`) — FAQ: complex components, colors, GitHub deps, theme vars
-- [open-in-v0.md](`REGISTRY-API-OPEN-IN-V0.md`) — Open-in-v0 button and query-param auth
+- [REGISTRY-API-API-REFERENCE.md](REGISTRY-API-API-REFERENCE.md) — `shadcn/registry`, `shadcn/schema`, `shadcn/preset` APIs
+- [REGISTRY-API-REGISTRY-INDEX.md](REGISTRY-API-REGISTRY-INDEX.md) — Open-source registry directory, submission requirements
+- [REGISTRY-API-NAMESPACE.md](REGISTRY-API-NAMESPACE.md) — Decentralised namespace system, components.json config
+- [REGISTRY-API-GITHUB.md](REGISTRY-API-GITHUB.md) — GitHub registry: add registry.json, distribute any file, refs
+- [REGISTRY-API-AUTHENTICATION.md](REGISTRY-API-AUTHENTICATION.md) — Bearer token, API key, query param, server-side patterns
+- [REGISTRY-API-EXAMPLES.md](REGISTRY-API-EXAMPLES.md) — Full registry-item examples by type
+- [REGISTRY-API-FAQ.md](REGISTRY-API-FAQ.md) — FAQ: complex components, colors, GitHub deps, theme vars
+- [REGISTRY-API-OPEN-IN-V0.md](REGISTRY-API-OPEN-IN-V0.md) — Open-in-v0 button and query-param auth
 
 ## Install
 

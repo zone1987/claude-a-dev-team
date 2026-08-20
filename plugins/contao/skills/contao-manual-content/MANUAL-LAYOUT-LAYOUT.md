@@ -1,254 +1,254 @@
-# Contao 5.x – Layout: Theme-Manager, Module & Templates
+# Contao 5.x – Layout: Theme-Manager, modules & templates
 
-Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
+Complete reference from the Contao 5.x manual (German).
 
 ---
 
 ## Contents
 
 - [1. Theme-Manager](#1-theme-manager)
-- [2. Modulverwaltung](#2-modulverwaltung)
+- [2. Module management](#2-module-management)
 - [3. Templates](#3-templates)
 
 ## 1. Theme-Manager
 
-### Themes verwalten
+### Managing themes
 
-Ein Theme fasst alle designrelevanten Elemente einer Webseite zusammen.
+A theme brings together all design-relevant elements of a website.
 
-**Bestandteile eines Themes:**
-- Das Theme selbst
+**Components of a theme:**
+- The theme itself
 - Stylesheets
-- Frontend-Module
-- Seitenlayouts
-- Bildgrößen
-- Dateien (Upload-Verzeichnis)
-- Angepasste Templates (optional)
+- Frontend modules
+- Seitenlayouts (Page layouts)
+- Image sizes
+- Files (upload directory)
+- Customised templates (optional)
 
-Hinweis: Stylesheets, Module, Layouts und Bildgrößen liegen in der Datenbank. Dateien und Templates liegen in Unterverzeichnissen.
+Note: stylesheets, modules, layouts and image sizes are stored in the database. Files and templates are stored in subdirectories.
 
-**Konfigurationsfelder:**
+**Configuration fields:**
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| **Theme-Titel** | Name in Backend-Übersicht und Export-Dateiname |
-| **Autor** | Name des Theme-Designers |
-| **Ordner** | Zugehörige Ordner aus dem Upload-Verzeichnis |
-| **Bildschirmfoto** | Screenshot für die Theme-Übersicht |
-| **Templates-Ordner** | Unterordner mit angepassten Templates |
+| **Theme-Titel** (Theme title) | Name in the backend overview and export file name |
+| **Autor** (Author) | Name of the theme designer |
+| **Ordner** (Folders) | Associated folders from the upload directory |
+| **Bildschirmfoto** (Screenshot) | Screenshot for the theme overview |
+| **Templates-Ordner** (Templates folder) | Subfolder with customised templates |
 
-**Export:** `.cto`-Datei (ZIP-Archiv) mit `theme.xml`, `files/` und `templates/`.
+**Export:** `.cto` file (ZIP archive) with `theme.xml`, `files/` and `templates/`.
 
-**Import:** Prüft fehlende Felder in Tabellen, nicht vorhandene Layoutbereiche und bereits existierende Templates. Nach dem Import muss das Theme durch Zuweisung eines Seitenlayouts zu einer Seite aktiviert werden.
+**Import:** checks for missing fields in tables, non-existent layout sections and templates that already exist. After the import the theme must be activated by assigning a Seitenlayout to a page.
 
-**Sicherheitswarnung:** Nur Themes von vertrauenswürdigen Herstellern installieren.
+**Security warning:** only install themes from trustworthy vendors.
 
 ---
 
-### Stylesheets verwalten
+### Managing stylesheets
 
-Der interne CSS-Editor ist **veraltet** und wird in einer zukünftigen Contao-Version entfernt. Bestehende Stylesheets exportieren und als externe Stylesheets in Seitenlayouts einbinden.
+The internal CSS editor is **deprecated** and will be removed in a future Contao version. Export existing stylesheets and include them as external stylesheets in Seitenlayouts.
 
-**Medientypen:**
+**Media types:**
 - `all`, `screen`, `print`, `handheld`, `projection`, `aural`, `braille`, `embossed`, `tty`, `tv`
-- Relevanteste für Webseiten: `screen` und `print`
+- Most relevant for websites: `screen` and `print`
 
-**Bedingungskommentare:** Internet Explorer-spezifische Direktiven (`if IE`, `if lt IE 6`, `if gte IE 6`).
+**Conditional comments:** Internet Explorer-specific directives (`if IE`, `if lt IE 6`, `if gte IE 6`).
 
-**Formatdefinitions-Reihenfolge:** Wichtig! Spätere Definitionen überschreiben frühere. Neuordnung per Drag-and-Drop.
+**Order of format definitions:** important! Later definitions override earlier ones. Reordering via drag and drop.
 
-**Import/Export:** CSS-Dateien importieren oder exportieren über Navigationssymbole.
+**Import/export:** import or export CSS files via the navigation icons.
 
 ---
 
-### Seitenlayouts verwalten
+### Managing Seitenlayouts (page layouts)
 
-Das Seitenlayout strukturiert die Webseite und teilt sie in Layoutbereiche für Frontend-Module ein.
+The Seitenlayout structures the website and divides it into layout sections for frontend modules.
 
-**Kopf-/Fußzeile:**
-- Konfigurierbare Zeilenhöhen
-- Typisch: Firmenlogo oben, Copyright unten
+**Header/footer:**
+- Configurable row heights
+- Typical: company logo at the top, copyright at the bottom
 
-**Spaltenkonfiguration:**
-- Bis zu drei Spalten (links, Haupt, rechts)
-- Anpassbare Breiten für linke und rechte Spalte
-- Hauptspalte passt sich automatisch an
+**Column configuration:**
+- Up to three columns (left, main, right)
+- Adjustable widths for the left and right column
+- The main column adapts automatically
 
-**Eigene Layoutbereiche:**
-Fünf Standard-Bereiche plus benutzerdefinierte Bereiche. Positionen: `top`, `before`, `main`, `after`, `bottom`, `manual`.
+**Custom layout sections:**
+Five standard sections plus user-defined sections. Positions: `top`, `before`, `main`, `after`, `bottom`, `manual`.
 
-**CSS-Framework-Komponenten:**
-- Layout-Builder (für Seitengenerator erforderlich)
-- Responsives Layout
-- 12-Spalten-Grid
-- CSS-Reset
-- Formularunterstützung
-- Icon-Ressourcen
+**CSS framework components:**
+- Layout builder (required for the page generator)
+- Responsive layout
+- 12-column grid
+- CSS reset
+- Form support
+- Icon resources
 
 **Stylesheets:**
-- Interne und externe CSS-Dateien
-- SCSS- und LESS-Unterstützung (Achtung: interne Bibliothek unterstützt ggf. nicht alle modernen Dart-Sass-Features)
-- Konfigurierbare Ladereihenfolge
-- Optionale Komprimierung
+- Internal and external CSS files
+- SCSS and LESS support (caution: the internal library may not support all modern Dart Sass features)
+- Configurable loading order
+- Optional compression
 
-**Webfonts:** Google Fonts-Integration; manuelle Einbindung empfohlen.
+**Web fonts:** Google Fonts integration; manual inclusion recommended.
 
-**JavaScript-Templates:**
-| Template | Funktion |
+**JavaScript templates:**
+| Template | Function |
 |----------|---------|
-| `js_autofocus` | Fokus-Navigation bei Formularfehlern |
-| `js_highlight` | Syntax-Highlighter |
-| `js_nocookie` | CSRF-Schutz-Benachrichtigung |
-| `js_slider` | Content-Slider-Funktionalität (Legacy) |
-| `js_accordion` | Akkordeon (Legacy) |
+| `js_autofocus` | Focus navigation on form errors |
+| `js_highlight` | Syntax highlighter |
+| `js_nocookie` | CSRF protection notification |
+| `js_slider` | Content slider functionality (legacy) |
+| `js_accordion` | Accordion (legacy) |
 
-**jQuery und MooTools:** Optional ladenbar. Quelle: lokal, CDN oder CDN mit Fallback.
+**jQuery and MooTools:** can be loaded optionally. Source: local, CDN or CDN with fallback.
 
-**Analytics:** Google Analytics und Matomo (Piwik) über Template.
+**Analytics:** Google Analytics and Matomo (Piwik) via template.
 
-**Bildgrößen:** Lightbox-Dimensionen mit responsiven Pixeldichten (1x, 1.5x, 2x).
+**Image sizes:** lightbox dimensions with responsive pixel densities (1x, 1.5x, 2x).
 
-**RSS/Atom-Feeds:** Verknüpfung mit News- und Kalender-Feeds im `<head>`.
+**RSS/Atom feeds:** linking with news and calendar feeds in the `<head>`.
 
-**Statisches Layout:** Konvertiert Liquid Layout in feste Breite (links/rechts/zentriert).
+**Static layout:** converts a liquid layout into a fixed width (left/right/centred).
 
-**Experten-Einstellungen:**
-- Benutzerdefinierte Seitentemplates
-- Markup-Komprimierung
-- Viewport-Tag-Anpassung
-- Title-Tag-Überschreibung
-- Body-Klassen und -Events
-- Zusätzliche `<head>`-Tags
-
----
-
-## 2. Modulverwaltung
-
-Module werden innerhalb von Themes erstellt und in Seitenlayouts eingebunden. Sie generieren HTML-Code für die Frontend-Ausgabe.
-
-**Zugriffsschutz:** Einschränkung auf Mitgliedergruppen; Option "Nur Gästen anzeigen" in Experten-Einstellungen.
+**Expert settings:**
+- Custom page templates
+- Markup compression
+- Viewport tag adjustment
+- Title tag override
+- Body classes and events
+- Additional `<head>` tags
 
 ---
 
-### 2.1 Navigationsmodule
+## 2. Module management
 
-#### Navigationsmenü
-Hierarchische Navigation aus allen veröffentlichten, nicht versteckten Seiten.
+Modules are created within themes and embedded in Seitenlayouts. They generate HTML code for the frontend output.
 
-| Einstellung | Beschreibung |
+**Access protection:** restriction to Mitgliedergruppen (member groups); option "Nur Gästen anzeigen" (Show to guests only) in the expert settings.
+
+---
+
+### 2.1 Navigation modules
+
+#### Navigationsmenü (Navigation menu)
+Hierarchical navigation from all published, non-hidden pages.
+
+| Setting | Description |
 |-------------|-------------|
-| **Startlevel** | Einstiegspunkt (z.B. Level 2 für Untermenüs) |
-| **Stoplevel** | Maximale Verschachtelungstiefe |
-| **Harter Grenzwert** | Keine Elemente jenseits des Stoplevels |
-| **Geschützte Seiten anzeigen** | Eingeloggt-beschränkte Seiten einbeziehen |
-| **Versteckte Seiten anzeigen** | Aus Navigation ausgeblendete Seiten einbeziehen |
-| **Referenzseite** | Eigener Startpunkt statt Wurzel |
-| **Navigationstemplate** | Template-Auswahl |
+| **Startlevel** (Start level) | Entry point (e.g. level 2 for submenus) |
+| **Stoplevel** (Stop level) | Maximum nesting depth |
+| **Harter Grenzwert** (Hard limit) | No elements beyond the stop level |
+| **Geschützte Seiten anzeigen** (Show protected pages) | Include pages restricted to logged-in users |
+| **Versteckte Seiten anzeigen** (Show hidden pages) | Include pages hidden from the navigation |
+| **Referenzseite** (Reference page) | Custom starting point instead of the root |
+| **Navigationstemplate** (Navigation template) | Template selection |
 
 Template: `mod_navigation`
 
-#### Individuelle Navigation
-Menü aus frei wählbaren Seiten (ohne Hierarchie-Abhängigkeit).
+#### Individuelle Navigation (Custom navigation)
+Menu made of freely selectable pages (without hierarchy dependency).
 Template: `mod_customnav`
 
 #### Navigationspfad (Breadcrumb)
-Zeigt den Pfad zur aktuellen Seite.
+Shows the path to the current page.
 Template: `mod_breadcrumb`
 
-#### Quicknavigation (Dropdown)
-Dropdown-Menü zum direkten Seitensprung.
-- Custom Label, Stoplevel, harter Grenzwert, Referenzseite
+#### Quicknavigation (dropdown)
+Dropdown menu for jumping directly to a page.
+- Custom label, stop level, hard limit, reference page
 - Template: `mod_quicknav`
 
 #### Quicklink
-Dropdown aus frei wählbaren Seiten.
+Dropdown made of freely selectable pages.
 Template: `mod_quicklink`
 
-#### Buchnavigation
-Vor-/zurück-/aufwärts-Navigation durch Seiten ("Blättern").
+#### Buchnavigation (Book navigation)
+Forward/back/up navigation through pages ("page turning").
 Template: `mod_booknav`
 
-#### Artikelnavigation
-Vor-/zurück-Navigation durch Artikel einer Seite.
-- **Erstes Element laden**: Ersten Artikel automatisch laden
+#### Artikelnavigation (Article navigation)
+Forward/back navigation through the articles of a page.
+- **Erstes Element laden** (Load first element): load the first article automatically
 - Template: `mod_articlenav`
 
 #### HTML-Sitemap
-Übersicht aller veröffentlichten, nicht versteckten Seiten.
+Overview of all published, non-hidden pages.
 Template: `mod_sitemap`
 
-**HTML-Ausgabe:** Alle Navigationsmodule nutzen `<!-- indexer::stop -->` und `<!-- indexer::continue -->` Kommentare sowie schema.org-Markup.
+**HTML output:** all navigation modules use `<!-- indexer::stop -->` and `<!-- indexer::continue -->` comments as well as schema.org markup.
 
 ---
 
-### 2.2 Benutzermodule
+### 2.2 User modules
 
-#### Login-Formular
-Authentifizierung für registrierte Mitglieder.
-- Auto-Login, Passwort-Reset-Seite (ab 5.3), Weiterleitungsseite
-- Option: Zur zuletzt besuchten Seite weiterleiten
+#### Login-Formular (Login form)
+Authentication for registered members.
+- Auto login, password reset page (as of 5.3), redirect page
+- Option: redirect to the last visited page
 - Template: `ce_login`
 
-#### Personendaten
-Mitglieder können persönliche Daten bearbeiten.
-- Editierbare Felder konfigurierbar
-- Newsletter-Abonnement (wenn Erweiterung aktiv)
-- Templates: `member_default` (linear) oder `member_grouped` (Fieldsets)
+#### Personendaten (Personal data)
+Members can edit their personal data.
+- Editable fields configurable
+- Newsletter subscription (if the extension is active)
+- Templates: `member_default` (linear) or `member_grouped` (fieldsets)
 
-#### Registrierung
-Neuanmeldung für Besucher.
-- Pflichtfelder, Mitgliedergruppen, Home-Verzeichnis, Spam-Schutz
-- E-Mail-basierte Aktivierung (24-Stunden-Link)
-- Platzhalter: `##firstname##`, `##domain##`, `##link##`
+#### Registrierung (Registration)
+New registration for visitors.
+- Mandatory fields, Mitgliedergruppen, home directory, spam protection
+- E-mail-based activation (24-hour link)
+- Placeholders: `##firstname##`, `##domain##`, `##link##`
 - Templates: `member_default`, `member_grouped`
 
-#### Passwort ändern
-Für eingeloggte Mitglieder. Altes Passwort wird verifiziert.
+#### Passwort ändern (Change password)
+For logged-in members. The old password is verified.
 Template: `ce_changePassword`
 
-#### Passwort vergessen
-Wiederherstellung via E-Mail. Spam-Schutz, Bestätigungsseite, E-Mail-Template.
+#### Passwort vergessen (Forgot password)
+Recovery via e-mail. Spam protection, confirmation page, e-mail template.
 Template: `ce_lostPassword`
 
-#### Konto schließen
-Konto deaktivieren oder dauerhaft löschen, optional Home-Verzeichnis entfernen.
+#### Konto schließen (Close account)
+Deactivate or permanently delete the account, optionally remove the home directory.
 Template: `ce_closeAccount`
 
-#### Zwei-Faktor-Authentifizierung
-TOTP/2FA-Setup mit QR-Code für Authenticator-Apps, Backup-Key-Anzeige.
+#### Zwei-Faktor-Authentifizierung (Two-factor authentication)
+TOTP/2FA setup with a QR code for authenticator apps, backup key display.
 Template: `ce_two_factor`
 
 ---
 
-### 2.3 Website-Suche
+### 2.3 Website search
 
-#### Suchmodul
+#### Suchmodul (Search module)
 
-| Einstellung | Funktion |
+| Setting | Function |
 |-------------|---------|
-| **Standard-Abfragetyp** | UND oder ODER |
-| **Ungenaue Suche** | Platzhalter-ähnliche Ergebnisse |
-| **Kontext-Spannweite** | Zeichenanzahl um gefundene Begriffe |
-| **Minimale Suchwort-Länge** | Mindestzeichenzahl (0 = deaktiviert) |
-| **Elemente pro Seite** | Paginierung |
-| **Suchformular-Layout** | Einfach oder erweitert (mit UND/ODER-Optionen) |
-| **Weiterleitungsseite** | Ziel nach Formularabsendung |
-| **Referenzseite** | Einschränkung auf Seitenbereich |
+| **Standard-Abfragetyp** (Default query type) | AND or OR |
+| **Ungenaue Suche** (Fuzzy search) | Wildcard-like results |
+| **Kontext-Spannweite** (Context range) | Number of characters around the found terms |
+| **Minimale Suchwort-Länge** (Minimum keyword length) | Minimum number of characters (0 = disabled) |
+| **Elemente pro Seite** (Items per page) | Pagination |
+| **Suchformular-Layout** (Search form layout) | Simple or extended (with AND/OR options) |
+| **Weiterleitungsseite** (Redirect page) | Target after form submission |
+| **Referenzseite** (Reference page) | Restriction to a page area |
 
-**Suchsyntax:**
-- `"web design"` – Phrasensuche (exakte Reihenfolge)
-- `web*` – Platzhalter-Suche
-- `+web` – Begriff erzwingen
-- `-web` – Begriff ausschließen
+**Search syntax:**
+- `"web design"` – phrase search (exact order)
+- `web*` – wildcard search
+- `+web` – force a term
+- `-web` – exclude a term
 
-**Indexierungssteuerung:**
+**Indexing control:**
 ```html
 <!-- indexer::stop -->
 [Inhalt wird nicht indiziert]
 <!-- indexer::continue -->
 ```
 
-**Geschützte Seiten indexieren** (in `config/config.yaml`):
+**Indexing protected pages** (in `config/config.yaml`):
 ```yaml
 contao:
   search:
@@ -257,68 +257,68 @@ contao:
 
 ---
 
-### 2.4 Anwendungsmodule
+### 2.4 Application modules
 
-#### Formular
-Bindet ein Formular aus dem Formulargenerator ein.
-Einstellung: **Formular** — Auswahl des einzufügenden Formulars.
+#### Formular (Form)
+Embeds a form from the Formulargenerator (Form Generator).
+Setting: **Formular** — selection of the form to insert.
 
-#### Auflistung
-Listet Datenbankdatensätze auf — sortierbar, filterbar, durchsuchbar.
+#### Auflistung (Listing)
+Lists database records — sortable, filterable, searchable.
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| **Tabelle** | Datenbankquelle |
-| **Felder** | Kommagetrennte Feldliste |
-| **Bedingung** | SQL-Filter oder Insert-Tags |
-| **Durchsuchbare Felder** | Erzeugt Suchformular |
-| **Sortieren nach** | Standard-Sortierung |
-| **Elemente pro Seite** | Paginierung |
-| **Felder der Detailseite** | Detail-Ansicht aktivieren |
+| **Tabelle** (Table) | Database source |
+| **Felder** (Fields) | Comma-separated field list |
+| **Bedingung** (Condition) | SQL filter or insert tags |
+| **Durchsuchbare Felder** (Searchable fields) | Generates a search form |
+| **Sortieren nach** (Sort by) | Default sorting |
+| **Elemente pro Seite** (Items per page) | Pagination |
+| **Felder der Detailseite** (Fields of the detail page) | Activate the detail view |
 
 ---
 
-### 2.5 Verschiedenes
+### 2.5 Miscellaneous
 
-#### Artikelliste
-Zeigt alle Artikel einer ausgewählten Spalte.
-- Überspringen von Elementen, Spaltenwahl, Referenzseite
+#### Artikelliste (Article list)
+Shows all articles of a selected column.
+- Skipping elements, column selection, reference page
 - Template: `mod_articlelist`
 
-#### Zufallsbild
-Zufälliges Bild aus Ordner/Auswahl.
-- Skalierungsmodi, Lightbox, Bildunterschrift
+#### Zufallsbild (Random image)
+Random image from a folder/selection.
+- Scaling modes, lightbox, image caption
 - Template: `mod_randomImage`
 
-#### Eigener HTML-Code
-Beliebiger HTML-Code (Backend-Sicherheitsregeln).
+#### Eigener HTML-Code (Custom HTML code)
+Any HTML code (backend security rules apply).
 Template: `mod_html`
 
 #### RSS-Reader
-Abonniert und zeigt RSS-Feeds.
-- Feed-URLs, Gesamtbeiträge, Elemente pro Seite, Cache-Dauer
-- Templates: `rss_default` (Header + Posts) oder `rss_items_only`
+Subscribes to and displays RSS feeds.
+- Feed URLs, total items, items per page, cache duration
+- Templates: `rss_default` (header + posts) or `rss_items_only`
 
-#### Startpunktabhängige Module
-Wählt unterschiedliche Module je Startpunkt — verhindert mehrere Layout-Varianten.
+#### Startpunktabhängige Module (Start point-dependent modules)
+Selects different modules per starting point — avoids several layout variants.
 
-#### Individuelles Template
-Template mit eigenen Schlüssel/Wert-Paaren.
+#### Individuelles Template (Custom template)
+Template with custom key/value pairs.
 Template: `mod_template`
 
 ---
 
 ## 3. Templates
 
-Templates steuern die HTML-Ausgabe von Modulen, Inhaltselementen, Formularen und anderen Komponenten. Im Backend unter Layout > Templates können sie ohne Update-Risiko angepasst werden.
+Templates control the HTML output of modules, content elements, forms and other components. In the backend under Layout > Templates they can be customised without any update risk.
 
-**Typen:** PHP-Templates und Twig-Templates.
+**Types:** PHP templates and Twig templates.
 
-**Wichtig:** Für CSS-Anpassungen ist ein Template-Override oft nicht nötig — CSS-ID und -Klasse können direkt in den Experten-Einstellungen gesetzt werden.
+**Important:** for CSS adjustments a template override is often not necessary — the CSS ID and class can be set directly in the expert settings.
 
 ---
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/layout/
 - https://docs.contao.org/5.x/manual/de/layout/theme-manager/
 - https://docs.contao.org/5.x/manual/de/layout/theme-manager/themes-verwalten/

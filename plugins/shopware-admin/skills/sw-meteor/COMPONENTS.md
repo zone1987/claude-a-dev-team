@@ -1,25 +1,25 @@
-# Shopware 6 — Meteor-Komponenten (mt-*)
+# Shopware 6 — Meteor components (mt-*)
 
-In 6.7 ist die **Meteor Component Library** (`mt-*`) der Standard-Baukasten (löst Legacy `sw-*` ab,
-ADR „implementation of meteor component library").
+In 6.7 the **Meteor Component Library** (`mt-*`) is the standard toolkit (replaces legacy `sw-*`,
+ADR "implementation of meteor component library").
 
-| Meteor | Zweck (Legacy sw-*) |
+| Meteor | Purpose (legacy sw-*) |
 |---|---|
 | `mt-card` | Container (`sw-card`) |
 | `mt-button` | Button (`sw-button`) |
-| `mt-text-field` / `mt-textarea` / `mt-number-field` | Eingaben (`sw-text-field` …) |
-| `mt-select` / `mt-entity-single-select` | Auswahl |
-| `mt-switch` / `mt-checkbox` | Bool |
-| `mt-banner` | Hinweise (`sw-alert`) |
+| `mt-text-field` / `mt-textarea` / `mt-number-field` | Inputs (`sw-text-field` …) |
+| `mt-select` / `mt-entity-single-select` | Selection |
+| `mt-switch` / `mt-checkbox` | Boolean |
+| `mt-banner` | Notices (`sw-alert`) |
 | `mt-modal` | Dialog (`sw-modal`) |
 | `mt-tabs` | Tabs |
-| `mt-data-table` | Tabelle |
+| `mt-data-table` | Table |
 | `mt-icon` | Icon |
 
-Props/Events teils anders als bei `sw-*` (z.B. `v-model:value`, Event-Namen). Bei Migration bestehender Plugins
-Mapping beachten (Plugin `shopware-migration` → `sw-meteor-component-map`). Neue UIs immer mit `mt-*` bauen.
+Props/events partly differ from `sw-*` (e.g. `v-model:value`, event names). When migrating existing plugins
+observe the mapping (plugin `shopware-migration` → `sw-meteor-component-map`). Always build new UIs with `mt-*`.
 
-**Tiefe Referenz-Dokumentation:**
-- Alle mt-*-Komponenten (Props/Events/Slots): `COMPONENTS-DETAIL.md`
-- Meteor Icon Kit (Namensschema, Icon-Liste): `COMPONENTS-ICON-KIT.md`
-- Design-Tokens (CSS-Custom-Properties): `COMPONENTS-TOKENS.md`
+**Deep reference documentation:**
+- All mt-* components (props/events/slots): `COMPONENTS-DETAIL.md`
+- Meteor Icon Kit (naming scheme, icon list): `COMPONENTS-ICON-KIT.md`
+- Design tokens (CSS custom properties): `COMPONENTS-TOKENS.md`

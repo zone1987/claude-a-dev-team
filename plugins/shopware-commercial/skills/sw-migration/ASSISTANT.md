@@ -4,7 +4,7 @@ Entwickler-Referenz fuer das Shopware Migration Assistant Plugin.
 
 ## Referenzen
 
-- [Migration Assistant Vollreferenz](`ASSISTANT-DETAIL.md`)
+- [ASSISTANT-DETAIL.md](ASSISTANT-DETAIL.md)
 
 ## Querverweise
 

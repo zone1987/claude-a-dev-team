@@ -1,22 +1,22 @@
-# Gotenberg — Markdown zu PDF (Vollreferenz)
+# Gotenberg — Markdown to PDF (full reference)
 
 **Route:** `POST /forms/chromium/convert/markdown`
-**Beschreibung:** Konvertiert Markdown (inkl. MathJax) zu PDF via Headless Chromium.
-Gotenberg wandelt Markdown zu HTML um und injiziert es in das bereitgestellte Template.
+**Description:** Converts Markdown (incl. MathJax) to PDF via headless Chromium.
+Gotenberg converts the Markdown to HTML and injects it into the supplied template.
 
 ## Contents
 
-- [Besonderheit: Template-Mechanismus](#besonderheit-template-mechanismus)
-- [Pflicht-Files](#pflicht-files)
-- [Optionale Assets](#optionale-assets)
-- [Request-Header](#request-header)
-- [Alle weiteren Form-Felder](#alle-weiteren-form-felder)
-- [Vollbeispiel](#vollbeispiel)
-- [Gesamtzahl Form-Felder: ~46](#gesamtzahl-form-felder-46)
+- [Special feature: template mechanism](#special-feature-template-mechanism)
+- [Mandatory files](#mandatory-files)
+- [Optional assets](#optional-assets)
+- [Request headers](#request-headers)
+- [All further form fields](#all-further-form-fields)
+- [Full example](#full-example)
+- [Total number of form fields: ~46](#total-number-of-form-fields-46)
 
-## Besonderheit: Template-Mechanismus
+## Special feature: template mechanism
 
-Die `index.html` muss eine Go-Template-Direktive enthalten:
+The `index.html` must contain a Go template directive:
 
 ```html
 <!DOCTYPE html>
@@ -31,19 +31,19 @@ Die `index.html` muss eine Go-Template-Direktive enthalten:
 </html>
 ```
 
-Mehrere Markdown-Dateien koennen referenziert werden:
+Multiple Markdown files can be referenced:
 ```html
 {{ toHTML "intro.md" }}
 {{ toHTML "chapter1.md" }}
 {{ toHTML "chapter2.md" }}
 ```
 
-## Pflicht-Files
+## Mandatory files
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|-------------|
-| `files` (index.html) | file | Ja | HTML-Template-Datei (muss `index.html` heissen) |
-| `files` (*.md) | file[] | Ja | Mindestens eine Markdown-Datei |
+| `files` (index.html) | file | Yes | HTML template file (must be named `index.html`) |
+| `files` (*.md) | file[] | Yes | At least one Markdown file |
 
 ```bash
 curl \
@@ -53,142 +53,142 @@ curl \
   -o my.pdf
 ```
 
-## Optionale Assets
+## Optional assets
 
 ```bash
 --form files=@/path/to/img.png \
 --form files=@/path/to/style.css
 ```
 
-Alle Dateien landen in einem **flachen Verzeichnis** — nur Dateinamen verwenden.
+All files land in a **flat directory** — use file names only.
 
-## Request-Header
+## Request headers
 
-| Header | Typ | Default | Beschreibung |
+| Header | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `Gotenberg-Output-Filename` | string | Random UUID | Ausgabe-Dateiname |
-| `Gotenberg-Trace` | string | Random UUID | Request-ID |
+| `Gotenberg-Output-Filename` | string | Random UUID | Output file name |
+| `Gotenberg-Trace` | string | Random UUID | Request ID |
 
-## Alle weiteren Form-Felder
+## All further form fields
 
-Identisch mit `/forms/chromium/convert/html`. Hier die Uebersicht:
+Identical to `/forms/chromium/convert/html`. Overview:
 
-### Seitenlayout
+### Page layout
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `paperWidth` | string | `8.5` | Papierbreite in Zoll |
-| `paperHeight` | string | `11` | Papierhoehe in Zoll |
-| `marginTop` | string | `0.39` | Oberer Rand |
-| `marginBottom` | string | `0.39` | Unterer Rand |
-| `marginLeft` | string | `0.39` | Linker Rand |
-| `marginRight` | string | `0.39` | Rechter Rand |
-| `landscape` | boolean | `false` | Querformat |
-| `scale` | number | `1.0` | Zoom-Faktor |
-| `singlePage` | boolean | `false` | Gesamten Inhalt auf eine Seite |
-| `preferCssPageSize` | boolean | `false` | CSS `@page` bevorzugen |
+| `paperWidth` | string | `8.5` | Paper width in inches |
+| `paperHeight` | string | `11` | Paper height in inches |
+| `marginTop` | string | `0.39` | Top margin |
+| `marginBottom` | string | `0.39` | Bottom margin |
+| `marginLeft` | string | `0.39` | Left margin |
+| `marginRight` | string | `0.39` | Right margin |
+| `landscape` | boolean | `false` | Landscape orientation |
+| `scale` | number | `1.0` | Zoom factor |
+| `singlePage` | boolean | `false` | All content on one page |
+| `preferCssPageSize` | boolean | `false` | Prefer CSS `@page` |
 
-### Hintergrund
+### Background
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `printBackground` | boolean | `false` | Hintergrundgrafiken/-farben einschliessen |
-| `omitBackground` | boolean | `false` | Weisshintergrund ausblenden |
+| `printBackground` | boolean | `false` | Include background graphics/colors |
+| `omitBackground` | boolean | `false` | Hide the white background |
 
-### Druckmedien
+### Print media
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `emulatedMediaType` | enum | `print` | `screen` oder `print` |
-| `emulatedMediaFeatures` | json | — | CSS-Media-Feature-Overrides |
+| `emulatedMediaType` | enum | `print` | `screen` or `print` |
+| `emulatedMediaFeatures` | json | — | CSS media feature overrides |
 
-### JavaScript & Warten
+### JavaScript & waiting
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `waitDelay` | duration | — | Feste Wartezeit |
-| `waitForExpression` | string | — | JS-Ausdruck |
-| `waitForSelector` | string | — | CSS-Selektor |
+| `waitDelay` | duration | — | Fixed wait time |
+| `waitForExpression` | string | — | JS expression |
+| `waitForSelector` | string | — | CSS selector |
 
-### Netzwerk
+### Network
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `cookies` | json | — | Cookie-Array |
-| `extraHttpHeaders` | json | — | Zusaetzliche HTTP-Header |
-| `userAgent` | string | — | User-Agent |
-| `failOnHttpStatusCodes` | json | `[499,599]` | 409 bei Status-Codes |
-| `failOnResourceHttpStatusCodes` | json | — | 409 bei Asset-Status-Codes |
-| `ignoreResourceHttpStatusDomains` | json | — | Ausnahme-Domains |
-| `skipNetworkIdleEvent` | boolean | `true` | Nicht auf Netzwerk-Idle warten |
-| `skipNetworkAlmostIdleEvent` | boolean | `true` | Nicht auf Fast-Idle warten |
-| `failOnResourceLoadingFailed` | boolean | `false` | 400 bei Ladefehler |
-| `failOnConsoleExceptions` | boolean | `false` | 409 bei JS-Exceptions |
+| `cookies` | json | — | Cookie array |
+| `extraHttpHeaders` | json | — | Additional HTTP headers |
+| `userAgent` | string | — | User agent |
+| `failOnHttpStatusCodes` | json | `[499,599]` | 409 on status codes |
+| `failOnResourceHttpStatusCodes` | json | — | 409 on asset status codes |
+| `ignoreResourceHttpStatusDomains` | json | — | Exempt domains |
+| `skipNetworkIdleEvent` | boolean | `true` | Do not wait for network idle |
+| `skipNetworkAlmostIdleEvent` | boolean | `true` | Do not wait for almost-idle |
+| `failOnResourceLoadingFailed` | boolean | `false` | 400 on loading error |
+| `failOnConsoleExceptions` | boolean | `false` | 409 on JS exceptions |
 
-### Header & Footer
+### Header & footer
 
-| Datei | Beschreibung |
+| File | Description |
 |-------|-------------|
-| `header.html` | Seitenkopf-Template |
-| `footer.html` | Seitenfuss-Template |
+| `header.html` | Page header template |
+| `footer.html` | Page footer template |
 
-### Metadaten & Anhange
+### Metadata & attachments
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `generateDocumentOutline` | boolean | `false` | Lesezeichen aus Ueberschriften |
-| `generateTaggedPdf` | boolean | `false` | Barrierefreiheits-Tags |
-| `metadata` | json | — | XMP-Metadaten |
-| `embeds` (files) | file[] | — | Einzubettende Dateien |
-| `embedsMetadata` | json | — | Embed-Metadaten |
+| `generateDocumentOutline` | boolean | `false` | Bookmarks from headings |
+| `generateTaggedPdf` | boolean | `false` | Accessibility tags |
+| `metadata` | json | — | XMP metadata |
+| `embeds` (files) | file[] | — | Files to embed |
+| `embedsMetadata` | json | — | Embed metadata |
 | `facturxXml` (file) | file | — | Factur-X XML |
-| `facturxConformanceLevel` | enum | — | Konformitaetsstufe |
-| `facturxDocumentType` | enum | `INVOICE` | Dokumenttyp |
+| `facturxConformanceLevel` | enum | — | Conformance level |
+| `facturxDocumentType` | enum | `INVOICE` | Document type |
 | `facturxVersion` | string | `1.0` | Version |
-| `flatten` | boolean | `false` | Formularfelder glaetten |
+| `flatten` | boolean | `false` | Flatten form fields |
 
-### Split & Seitenauswahl
+### Split & page selection
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `nativePageRanges` | string | — | Seitenauswahl (z.B. `1-5`) |
-| `splitMode` | enum | — | `intervals` oder `pages` |
-| `splitSpan` | string | — | Split-Regel |
-| `splitUnify` | boolean | `false` | In eine Datei zusammenfuehren |
+| `nativePageRanges` | string | — | Page selection (e.g. `1-5`) |
+| `splitMode` | enum | — | `intervals` or `pages` |
+| `splitSpan` | string | — | Split rule |
+| `splitUnify` | boolean | `false` | Merge into one file |
 
-### Wasserzeichen & Stempel
+### Watermark & stamp
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|-------------|
 | `watermarkSource` | enum | `text`, `image`, `pdf` |
-| `watermarkExpression` | string | Inhalt/Dateiname |
-| `watermarkPages` | string | Seitenbereiche |
-| `watermarkOptions` | json | Engine-Optionen |
-| `watermark` (file) | file | Wasserzeichen-Datei |
+| `watermarkExpression` | string | Content/file name |
+| `watermarkPages` | string | Page ranges |
+| `watermarkOptions` | json | Engine options |
+| `watermark` (file) | file | Watermark file |
 | `stampSource` | enum | `text`, `image`, `pdf` |
-| `stampExpression` | string | Inhalt/Dateiname |
-| `stampPages` | string | Seitenbereiche |
-| `stampOptions` | json | Engine-Optionen |
-| `stamp` (file) | file | Stempel-Datei |
+| `stampExpression` | string | Content/file name |
+| `stampPages` | string | Page ranges |
+| `stampOptions` | json | Engine options |
+| `stamp` (file) | file | Stamp file |
 | `rotateAngle` | enum | `90`, `180`, `270` |
-| `rotatePages` | string | Seitenbereiche |
+| `rotatePages` | string | Page ranges |
 
-### PDF/A, PDF/UA, Verschluesselung
+### PDF/A, PDF/UA, encryption
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
 | `pdfa` | enum | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` |
-| `pdfua` | boolean | `false` | PDF/UA aktivieren |
-| `userPassword` | string | — | Oeffnungs-Passwort |
-| `ownerPassword` | string | — | Voll-Zugriff-Passwort |
-| `allowPrinting` | boolean | `true` | Drucken |
-| `allowCopying` | boolean | `true` | Kopieren |
-| `allowModifying` | boolean | `true` | Bearbeiten |
-| `allowAnnotating` | boolean | `true` | Annotieren |
-| `allowFillingForms` | boolean | `true` | Formulare ausfullen |
-| `allowAssembling` | boolean | `true` | Seiten-Assembly |
+| `pdfua` | boolean | `false` | Enable PDF/UA |
+| `userPassword` | string | — | Open password |
+| `ownerPassword` | string | — | Full-access password |
+| `allowPrinting` | boolean | `true` | Printing |
+| `allowCopying` | boolean | `true` | Copying |
+| `allowModifying` | boolean | `true` | Editing |
+| `allowAnnotating` | boolean | `true` | Annotating |
+| `allowFillingForms` | boolean | `true` | Filling in forms |
+| `allowAssembling` | boolean | `true` | Page assembly |
 
-## Vollbeispiel
+## Full example
 
 ```bash
 curl \
@@ -204,11 +204,11 @@ curl \
   -o my.pdf
 ```
 
-## Gesamtzahl Form-Felder: ~46
+## Total number of form fields: ~46
 
-Pflicht-Files (2+) + Seitenlayout (10) + Hintergrund (2) + Medien (2) + JS/Warten (3) +
-Netzwerk (10) + Header/Footer-Files (2) + Metadaten/Anhange (10) + Split (4) +
-Wasserzeichen (12) + PDF/A (2) + Verschluesselung (8) = ~46 Felder + Datei-Inputs
+Mandatory files (2+) + page layout (10) + background (2) + media (2) + JS/waiting (3) +
+network (10) + header/footer files (2) + metadata/attachments (10) + split (4) +
+watermark (12) + PDF/A (2) + encryption (8) = ~46 fields + file inputs
 
 ---
-Quelle: https://gotenberg.dev/docs/convert-with-chromium/convert-markdown-to-pdf
+Source: https://gotenberg.dev/docs/convert-with-chromium/convert-markdown-to-pdf

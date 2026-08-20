@@ -2,9 +2,9 @@
 
 ## 4. palettes
 
-Eine Palette ist eine Gruppe von Formfeldern zum Bearbeiten eines Datensatzes. Paletten müssen nicht alle Tabellenspalten enthalten.
+A palette is a group of form fields for editing a record. Palettes do not have to contain all table columns.
 
-### 4.1 Haupt-Paletten
+### 4.1 Main palettes
 
 ```php
 $GLOBALS['TL_DCA']['tl_example'] = [
@@ -14,11 +14,11 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-Mindestens eine `default`-Palette sollte definiert sein.
+At least one `default` palette should be defined.
 
-### 4.2 __selector__ und Subpaletten
+### 4.2 __selector__ and subpalettes
 
-Subpaletten werden in `subpalettes` definiert und erscheinen dynamisch per Ajax, wenn ein Hauptpalettenfeld aktiv ist.
+Subpalettes are defined in `subpalettes` and appear dynamically via Ajax when a main palette field is active.
 
 ```php
 $GLOBALS['TL_DCA']['tl_example'] = [
@@ -32,11 +32,11 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-**Empfehlung:** `submitOnChange` in eval setzen, damit die Subpalette sofort erscheint/verschwindet.
+**Recommendation:** set `submitOnChange` in eval so the subpalette appears/disappears immediately.
 
-### 4.3 Subpaletten mit Select-Feldern
+### 4.3 Subpalettes with select fields
 
-Verschiedene Subpaletten je nach Select-Feldwert über das Format `feldName_feldWert`:
+Different subpalettes depending on the select field value, via the format `fieldName_fieldValue`:
 
 ```php
 $GLOBALS['TL_DCA']['tl_example'] = [
@@ -51,9 +51,9 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-### 4.4 Mehrere Haupt-Paletten
+### 4.4 Multiple main palettes
 
-Ein Selektor wechselt zwischen mehreren Hauptpaletten — der Schlüssel entspricht dem Selektor-Wert:
+A selector switches between multiple main palettes — the key corresponds to the selector value:
 
 ```php
 $GLOBALS['TL_DCA']['tl_example'] = [
@@ -66,16 +66,16 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-### 4.5 Legendengruppen
+### 4.5 Legend groups
 
-Kommas trennen Felder, Semikolons erzeugen neue Fieldsets. Jede Gruppe hat eine _legend_:
+Commas separate fields, semicolons create new fieldsets. Every group has a _legend_:
 
 ```
 {title_legend},headline,alias,author;{date_legend},date,time;{teaser_legend:collapsed},subheadline,teaser
 ```
 
-- Legendenbezeichnungen aus `$GLOBALS['TL_LANG']['tl_news']['title_legend']`
-- `:collapsed` = Gruppe standardmäßig eingeklappt
+- Legend captions come from `$GLOBALS['TL_LANG']['tl_news']['title_legend']`
+- `:collapsed` = group collapsed by default
 
 ### 4.6 Palette Manipulator
 
@@ -89,32 +89,32 @@ PaletteManipulator::create()
 ;
 ```
 
-### 4.7 CSS-Klassen für Feldanordnung (tl_class)
+### 4.7 CSS classes for field arrangement (tl_class)
 
-| Klasse | Beschreibung |
+| Class | Description |
 |--------|--------------|
-| `w25` | 25% Breite, links (ab 5.1) |
-| `w33` | 33,33% Breite, links (ab 5.1) |
-| `w50` | 50% Breite, links |
-| `w66` | 66,67% Breite, links (ab 5.1) |
-| `w75` | 75% Breite, links (ab 5.1) |
-| `clr` | Floats löschen |
-| `wizard` | Verkürzt für Wizard-Schaltflächen |
-| `long` | Volle verfügbare Breite |
-| `cbx` | Mindesthöhe 46px |
-| `m12` | 17px Ober-/Unterabstand |
+| `w25` | 25% width, left (as of 5.1) |
+| `w33` | 33.33% width, left (as of 5.1) |
+| `w50` | 50% width, left |
+| `w66` | 66.67% width, left (as of 5.1) |
+| `w75` | 75% width, left (as of 5.1) |
+| `clr` | Clear floats |
+| `wizard` | Shortened for wizard buttons |
+| `long` | Full available width |
+| `cbx` | Minimum height 46px |
+| `m12` | 17px top/bottom spacing |
 
 ---
 
 ## 5. callbacks
 
-Callbacks sind Einstiegspunkte für eigenen Code im DCA. Sie folgen einem Event-Dispatcher-Muster und sind immer an eine bestimmte DCA-Tabelle gebunden.
+Callbacks are entry points for custom code in the DCA. They follow an event dispatcher pattern and are always bound to a specific DCA table.
 
-### 5.1 Globale Callbacks (config.*)
+### 5.1 Global callbacks (config.*)
 
 #### config.onload
 
-Wird ausgeführt wenn das DataContainer-Objekt initialisiert wird. Nützlich für Berechtigungsprüfungen oder Laufzeit-DCA-Änderungen.
+Executed when the DataContainer object is initialised. Useful for permission checks or runtime DCA modifications.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
@@ -125,166 +125,166 @@ class OnLoadListener
 {
     public function __invoke(?DataContainer $dc): void
     {
-        // Berechtigungen prüfen oder DCA anpassen
+        // Check permissions or adjust the DCA
     }
 }
 ```
 
-**Parameter:** `DataContainer|null`  
-**Rückgabe:** `void`
+**Parameters:** `DataContainer|null`  
+**Returns:** `void`
 
 #### config.oncreate
 
-Wird ausgeführt wenn ein neuer Datensatz erstellt wird.
+Executed when a new record is created.
 
-**Parameter:** `string $table`, `int $insertId`, `array $fields`, `DataContainer $dc`  
-**Rückgabe:** `void`
+**Parameters:** `string $table`, `int $insertId`, `array $fields`, `DataContainer $dc`  
+**Returns:** `void`
 
 #### config.onbeforesubmit
 
-Wird vor dem Speichern des Backend-Formulars ausgeführt. Ermöglicht Wertänderungen und Multi-Feld-Validierung.
+Executed before the backend form is saved. Allows value changes and multi-field validation.
 
-**Parameter:** `array $values`, `DataContainer $dc`  
-**Rückgabe:** `array` (Datensatzwerte)
+**Parameters:** `array $values`, `DataContainer $dc`  
+**Returns:** `array` (record values)
 
 #### config.onsubmit
 
-Wird nach dem Speichern des Backend-Formulars ausgeführt.
+Executed after the backend form has been saved.
 
-**Parameter (Backend):** `DataContainer $dc`  
-**Parameter (Frontend "Persönliche Daten"):** `FrontendUser $user`, `ModulePersonalData $module`  
-**Rückgabe:** `void`
+**Parameters (backend):** `DataContainer $dc`  
+**Parameters (front end "personal data"):** `FrontendUser $user`, `ModulePersonalData $module`  
+**Returns:** `void`
 
 #### config.ondelete
 
-Wird vor dem Löschen eines Datensatzes ausgeführt.
+Executed before a record is deleted.
 
-**Parameter (DC_Folder):** `string $filePath`, `DataContainer $dc`  
-**Parameter (andere):** `DataContainer $dc`, `int $undoId`  
-**Rückgabe:** `void`
+**Parameters (DC_Folder):** `string $filePath`, `DataContainer $dc`  
+**Parameters (others):** `DataContainer $dc`, `int $undoId`  
+**Returns:** `void`
 
 #### config.oncut
 
-Wird nach dem Verschieben eines Datensatzes ausgeführt.
+Executed after a record has been moved.
 
-**Parameter:** `DataContainer $dc`  
-**Rückgabe:** `void`
+**Parameters:** `DataContainer $dc`  
+**Returns:** `void`
 
 #### config.oncopy
 
-Wird nach dem Duplizieren eines Datensatzes ausgeführt.
+Executed after a record has been duplicated.
 
-**Parameter:** `int $insertId`, `DataContainer $dc`  
-**Rückgabe:** `void`
+**Parameters:** `int $insertId`, `DataContainer $dc`  
+**Returns:** `void`
 
 #### config.oncreate_version
 
-Wird nach dem Hinzufügen einer alten Datensatzversion zu `tl_version` ausgeführt.
+Executed after an old record version has been added to `tl_version`.
 
-**Parameter:** `string $table`, `int $parentId`, `int $version`, `array $data`  
-**Rückgabe:** `void`
+**Parameters:** `string $table`, `int $parentId`, `int $version`, `array $data`  
+**Returns:** `void`
 
 #### config.onrestore_version
 
-Wird nach dem Wiederherstellen einer Datensatzversion ausgeführt.
+Executed after a record version has been restored.
 
-**Parameter:** `string $table`, `int $parentId`, `int $version`, `array $data`  
-**Rückgabe:** `void`
+**Parameters:** `string $table`, `int $parentId`, `int $version`, `array $data`  
+**Returns:** `void`
 
 #### config.onundo
 
-Wird nach dem Wiederherstellen eines gelöschten Datensatzes ausgeführt.
+Executed after a deleted record has been restored.
 
-**Parameter:** `string $table`, `array $data`, `DataContainer $dc`  
-**Rückgabe:** `void`
+**Parameters:** `string $table`, `array $data`, `DataContainer $dc`  
+**Returns:** `void`
 
 #### config.oninvalidate_cache_tags
 
-Wird ausgeführt wenn ein Datensatz über das Backend geändert wird. Erlaubt das Hinzufügen zusätzlicher Cache-Tags zur Invalidierung.
+Executed when a record is changed via the backend. Allows additional cache tags to be added for invalidation.
 
-**Parameter:** `DataContainer $dc`, `array $tags`  
-**Rückgabe:** `array` (Cache-Tags zum Invalidieren)
+**Parameters:** `DataContainer $dc`, `array $tags`  
+**Returns:** `array` (cache tags to invalidate)
 
 #### config.onshow
 
-Passt das Info-Modal-Fenster eines Datensatzes an.
+Adjusts the info modal window of a record.
 
-**Parameter:** `array $existingData`, `array $recordData`, `DataContainer $dc`  
-**Rückgabe:** `array` (Tabellenzeilen und -spalten für Modal)
+**Parameters:** `array $existingData`, `array $recordData`, `DataContainer $dc`  
+**Returns:** `array` (table rows and columns for the modal)
 
-#### config.onpalette (ab 5.3)
+#### config.onpalette (as of 5.3)
 
-Passt die Palette dynamisch basierend auf Objektwerten an.
+Adjusts the palette dynamically based on object values.
 
-**Parameter:** `string $palette`, `DataContainer $dc`  
-**Rückgabe:** `string` (angepasste Palette)
+**Parameters:** `string $palette`, `DataContainer $dc`  
+**Returns:** `string` (adjusted palette)
 
 ---
 
-### 5.2 Listing Callbacks (list.*)
+### 5.2 Listing callbacks (list.*)
 
-**Hinweis:** Alle Listing-Callbacks sind singular — nur ein Callback pro Ereignis erlaubt.
+**Note:** all listing callbacks are singular — only one callback per event is allowed.
 
 #### list.sorting.paste_button
 
-Generiert individuelle Einfüge-Schaltflächen. Nur in Baum- oder erweitertem Baummodus (Modi 5 und 6).
+Generates custom paste buttons. Only in tree or extended tree mode (modes 5 and 6).
 
-**Parameter:** `DataContainer $dc`, `array $row`, `string $table`, `bool $cr`, `array $clipboard`, `array|null $children`, `string|null $previous`, `string|null $next`  
-**Rückgabe:** `string` (HTML für zusätzliche Schaltflächen)
+**Parameters:** `DataContainer $dc`, `array $row`, `string $table`, `bool $cr`, `array $clipboard`, `array|null $children`, `string|null $previous`, `string|null $next`  
+**Returns:** `string` (HTML for additional buttons)
 
 #### list.sorting.child_record
 
-Definiert wie Kindeinträge in der "Elternansicht" gerendert werden.
+Defines how child entries are rendered in the "parent view".
 
-**Parameter:** `array $row`  
-**Rückgabe:** `string` (HTML)
+**Parameters:** `array $row`  
+**Returns:** `string` (HTML)
 
 #### list.sorting.header
 
-Erlaubt individuelle Labels im "Elternansicht"-Header.
+Allows custom labels in the "parent view" header.
 
-**Parameter:** `array $currentLabels`, `DataContainer $dc`  
-**Rückgabe:** `array` (Header-Labels)
+**Parameters:** `array $currentLabels`, `DataContainer $dc`  
+**Returns:** `array` (header labels)
 
 #### list.sorting.panel_callback.subpanel
 
-Fügt HTML für eigene Panels ein. `subpanel` durch eigenen Panel-Namen ersetzen.
+Inserts HTML for custom panels. Replace `subpanel` with your own panel name.
 
-**Parameter:** `DataContainer $dc`  
-**Rückgabe:** `string` (HTML)
+**Parameters:** `DataContainer $dc`  
+**Returns:** `string` (HTML)
 
 #### list.label.group
 
-Erlaubt individuelle Gruppenköpfe in Listenansichten.
+Allows custom group headers in list views.
 
-**Parameter:** `string $group`, `string $mode`, `string $field`, `array $row`, `DataContainer $dc`  
-**Rückgabe:** `string`
+**Parameters:** `string $group`, `string $mode`, `string $field`, `array $row`, `DataContainer $dc`  
+**Returns:** `string`
 
 #### list.label.label
 
-Erlaubt individuelle Labels in Listenansichten.
+Allows custom labels in list views.
 
-**Parameter (Baumansicht):** `array $row`, `string $label`, `DataContainer $dc`, `string $imageAttr`, `bool $returnImage`, `bool $protected`  
-**Parameter (Listenansicht):** `array $row`, `string $label`, `DataContainer $dc`, `array $columns`  
-**Parameter (Elternansicht):** `array $row`, `string $label`, `DataContainer $dc`  
-**Rückgabe:** `string` (Baum-/Elternansicht) oder `array` (Listenansicht mit showColumns)
+**Parameters (tree view):** `array $row`, `string $label`, `DataContainer $dc`, `string $imageAttr`, `bool $returnImage`, `bool $protected`  
+**Parameters (list view):** `array $row`, `string $label`, `DataContainer $dc`, `array $columns`  
+**Parameters (parent view):** `array $row`, `string $label`, `DataContainer $dc`  
+**Returns:** `string` (tree/parent view) or `array` (list view with showColumns)
 
 ---
 
-### 5.3 Operations Callbacks (list.operations.*)
+### 5.3 Operations callbacks (list.operations.*)
 
-**Hinweis:** Alle Operations-Callbacks sind singular.
+**Note:** all operations callbacks are singular.
 
 #### list.global_operations.\<OPERATION\>.button
 
-Generiert eigene Schaltflächen für globale Operationen.
+Generates custom buttons for global operations.
 
-**Parameter:** `string|null $href`, `string $label`, `string $title`, `string $class`, `string $attributes`, `string $table`, `array $rootIds`  
-**Rückgabe:** `string` (HTML)
+**Parameters:** `string|null $href`, `string $label`, `string $title`, `string $class`, `string $attributes`, `string $table`, `array $rootIds`  
+**Returns:** `string` (HTML)
 
 #### list.operations.\<OPERATION\>.button
 
-Konfiguriert oder ersetzt Schaltflächen für spezifische Operationen.
+Configures or replaces buttons for specific operations.
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
@@ -302,23 +302,23 @@ class EditButtonListener
 }
 ```
 
-**Parameter:** `DataContainerOperation $operation`  
-**Rückgabe:** `void`
+**Parameters:** `DataContainerOperation $operation`  
+**Returns:** `void`
 
 ---
 
-### 5.4 Field Callbacks (fields.\<FIELD\>.*)
+### 5.4 Field callbacks (fields.\<FIELD\>.*)
 
-#### fields.\<FIELD\>.attributes (ab 5.1)
+#### fields.\<FIELD\>.attributes (as of 5.1)
 
-Passt Feld-Attribute dynamisch vor der Widget-Generierung an.
+Adjusts field attributes dynamically before the widget is generated.
 
-**Parameter:** `array $attributes`, `DataContainer|null $dc`  
-**Rückgabe:** `array` (angepasste Attribute)
+**Parameters:** `array $attributes`, `DataContainer|null $dc`  
+**Returns:** `array` (adjusted attributes)
 
 #### fields.\<FIELD\>.options
 
-Singular-Callback. Lädt Daten in Dropdown-Menüs oder Checkbox-Listen.
+Singular callback. Loads data into dropdown menus or checkbox lists.
 
 ```php
 #[AsCallback(table: 'tl_example', target: 'fields.myfield.options')]
@@ -331,27 +331,27 @@ class MyFieldOptionsListener
 }
 ```
 
-**Parameter:** `DataContainer|null $dc`  
-**Rückgabe:** `array`
+**Parameters:** `DataContainer|null $dc`  
+**Returns:** `array`
 
 #### fields.\<FIELD\>.input_field
 
-Singular-Callback. Erstellt individuelle Formfelder. Feld wird nicht automatisch gespeichert.
+Singular callback. Creates custom form fields. The field is not saved automatically.
 
-**Parameter:** `DataContainer $dc`, `string $extendedLabel`  
-**Rückgabe:** `string` (HTML)
+**Parameters:** `DataContainer $dc`, `string $extendedLabel`  
+**Returns:** `string` (HTML)
 
 #### fields.\<FIELD\>.load
 
-Wird ausgeführt wenn ein Formularfeld initialisiert wird. Lädt Standardwerte.
+Executed when a form field is initialised. Loads default values.
 
-**Parameter (Backend):** `mixed $value`, `DataContainer $dc`  
-**Parameter (Frontend):** `mixed $value`, `FrontendUser $user`, `ModulePersonalData $module`  
-**Rückgabe:** `mixed` (neuer Wert)
+**Parameters (backend):** `mixed $value`, `DataContainer $dc`  
+**Parameters (front end):** `mixed $value`, `FrontendUser $user`, `ModulePersonalData $module`  
+**Returns:** `mixed` (new value)
 
 #### fields.\<FIELD\>.save
 
-Wird beim Absenden eines Feldes ausgeführt. Individuelle Validierung — Exception mit Fehlermeldung verhindert das Speichern.
+Executed when a field is submitted. Custom validation — throwing an exception with an error message prevents saving.
 
 ```php
 #[AsCallback(table: 'tl_example', target: 'fields.myfield.save')]
@@ -360,73 +360,73 @@ class MyFieldSaveListener
     public function __invoke(mixed $value, DataContainer $dc): mixed
     {
         if (!$this->isValid($value)) {
-            throw new \Exception('Ungültiger Wert!');
+            throw new \Exception('Invalid value!');
         }
         return $value;
     }
 }
 ```
 
-**Parameter (Backend):** `mixed $value`, `DataContainer $dc`  
-**Parameter (Frontend Persönliche Daten):** `mixed $value`, `FrontendUser $user`, `ModulePersonalData $module`  
-**Parameter (Frontend Registrierung):** `mixed $value`  
-**Rückgabe:** `mixed` (neuer Wert)
+**Parameters (backend):** `mixed $value`, `DataContainer $dc`  
+**Parameters (front end personal data):** `mixed $value`, `FrontendUser $user`, `ModulePersonalData $module`  
+**Parameters (front end registration):** `mixed $value`  
+**Returns:** `mixed` (new value)
 
 #### fields.\<FIELD\>.wizard
 
-Fügt HTML nach dem Eingabefeld hinzu (typischerweise Wizard-Schaltfläche).
+Adds HTML after the input field (typically a wizard button).
 
-**Parameter:** `DataContainer $dc`  
-**Rückgabe:** `string` (HTML)
+**Parameters:** `DataContainer $dc`  
+**Returns:** `string` (HTML)
 
 #### fields.\<FIELD\>.xlabel
 
-Fügt HTML nach dem Feld-Label hinzu (typischerweise Import-Wizard-Schaltfläche).
+Adds HTML after the field label (typically an import wizard button).
 
-**Parameter:** `DataContainer $dc`  
-**Rückgabe:** `string` (HTML)
+**Parameters:** `DataContainer $dc`  
+**Returns:** `string` (HTML)
 
 #### fields.\<FIELD\>.eval.url (serpPreview)
 
-Fügt URL zum serpPreview-Feld hinzu.
+Adds a URL to the serpPreview field.
 
-**Parameter:** `Model $model`  
-**Rückgabe:** `string` (URL)
+**Parameters:** `Model $model`  
+**Returns:** `string` (URL)
 
 #### fields.\<FIELD\>.eval.title_tag (serpPreview)
 
-Modifiziert den Title-Tag des serpPreview-Feldes.
+Modifies the title tag of the serpPreview field.
 
-**Parameter:** `Model $model`  
-**Rückgabe:** `string` (Title-Tag)
+**Parameters:** `Model $model`  
+**Returns:** `string` (title tag)
 
 ---
 
-### 5.5 Edit Callbacks
+### 5.5 Edit callbacks
 
 #### edit.buttons
 
-Modifiziert Aktionsschaltflächen am unteren Ende des Bearbeitungsformulars.
+Modifies the action buttons at the bottom of the edit form.
 
-**Parameter:** `array $buttons`, `DataContainer $dc`  
-**Rückgabe:** `array` (Schaltflächen-Markup)
+**Parameters:** `array $buttons`, `DataContainer $dc`  
+**Returns:** `array` (button markup)
 
 ---
 
-### 5.6 Select Callbacks
+### 5.6 Select callbacks
 
 #### select.buttons
 
-Modifiziert Aktionsschaltflächen nach dem Auswählen von Zeilen.
+Modifies the action buttons after rows have been selected.
 
-**Parameter:** `array $buttons`, `DataContainer $dc`  
-**Rückgabe:** `array` (Schaltflächen-Markup)
+**Parameters:** `array $buttons`, `DataContainer $dc`  
+**Returns:** `array` (button markup)
 
 ---
 
-### 5.7 Callbacks registrieren (Übersicht)
+### 5.7 Registering callbacks (overview)
 
-**Via Attribut (empfohlen):**
+**Via attribute (recommended):**
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 
@@ -437,7 +437,7 @@ class MyListener
 }
 ```
 
-**Via DCA (Legacy):**
+**Via DCA (legacy):**
 ```php
 $GLOBALS['TL_DCA']['tl_example']['config']['onload_callback'][] = [
     MyClass::class, 'onLoad'
@@ -446,6 +446,6 @@ $GLOBALS['TL_DCA']['tl_example']['config']['onload_callback'][] = [
 
 ---
 
-*Quellen:*
+*Sources:*
 - https://docs.contao.org/5.x/dev/reference/dca/palettes/
 - https://docs.contao.org/5.x/dev/reference/dca/callbacks/

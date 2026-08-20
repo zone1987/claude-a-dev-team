@@ -1,6 +1,6 @@
-# Contao 5.x — Update und Migration
+# Contao 5.x — Update and migration
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/migration/
 - https://docs.contao.org/5.x/manual/de/installation/contao-aktualisieren/
 - https://docs.contao.org/5.x/manual/de/faq/
@@ -9,48 +9,48 @@ Quellen:
 
 ## Contents
 
-- [Semantic Versioning](#semantic-versioning)
-- [Contao aktualisieren (Minor/Bugfix)](#contao-aktualisieren-minorbugfix)
-- [Migration Contao 3.5 → 4.x](#migration-contao-35-4x)
-- [Migration Contao 4.13 → 5.x](#migration-contao-413-5x)
-- [Häufige Migrationsprobleme](#häufige-migrationsprobleme)
-- [FAQ — Häufige Fragen](#faq-häufige-fragen)
+- [Semantic versioning](#semantic-versioning)
+- [Updating Contao (minor/bugfix)](#updating-contao-minorbugfix)
+- [Migration Contao 3.5 → 4.x](#migration-contao-35--4x)
+- [Migration Contao 4.13 → 5.x](#migration-contao-413--5x)
+- [Common migration problems](#common-migration-problems)
+- [FAQ — frequently asked questions](#faq--frequently-asked-questions)
 
-## Semantic Versioning
+## Semantic versioning
 
-Contao folgt dem Semantic Versioning:
+Contao follows semantic versioning:
 
-| Typ | Beschreibung | Beispiel |
+| Type | Description | Example |
 |-----|-------------|---------|
-| **Major** | Umfassende Neuversion | 4 → 5 |
-| **Minor** | Meilenstein mit neuen Funktionen | 5.6 → 5.7 |
-| **Bugfix** | Wartungsupdate | 5.7.0 → 5.7.1 |
+| **Major** | Comprehensive new version | 4 → 5 |
+| **Minor** | Milestone with new functions | 5.6 → 5.7 |
+| **Bugfix** | Maintenance update | 5.7.0 → 5.7.1 |
 
-### Long-Term-Support (LTS)
+### Long-term support (LTS)
 
-LTS-Versionen erhalten:
-- 3 Jahre Bugfix-Support
-- 1 Jahr Sicherheits-Support
+LTS versions receive:
+- 3 years of bugfix support
+- 1 year of security support
 
 ---
 
-## Contao aktualisieren (Minor/Bugfix)
+## Updating Contao (minor/bugfix)
 
-### Via Contao Manager
+### Via the Contao Manager
 
-**Bugfix-Update:**
-1. Contao Manager öffnen
-2. „Pakete aktualisieren" klicken
-3. Nach Abschluss: Datenbanktabellen prüfen (Installtool oder `contao:migrate`)
+**Bugfix update:**
+1. Open the Contao Manager
+2. Click "Pakete aktualisieren" (Update packages)
+3. When finished: check the database tables (install tool or `contao:migrate`)
 
-**Minor-Update** (z.B. 5.6 → 5.7):
-1. Contao Manager öffnen
-2. Beim Contao Manager-Bundle auf Zahnrad-Icon klicken
-3. Gewünschte Version eintragen (z.B. `5.7.*`)
-4. „Änderungen anwenden" klicken
-5. Datenbankmigrationen ausführen
+**Minor update** (e.g. 5.6 → 5.7):
+1. Open the Contao Manager
+2. Click the cog icon on the Contao Manager bundle
+3. Enter the desired version (e.g. `5.7.*`)
+4. Click "Änderungen anwenden" (Apply changes)
+5. Run the database migrations
 
-### Via Kommandozeile
+### Via the command line
 
 ```bash
 # Bugfix-Update
@@ -64,57 +64,57 @@ composer update
 vendor/bin/contao-console contao:migrate
 ```
 
-### Lokale Updates ohne Cloud (bei Speicherlimitationen beim Hoster)
+### Local updates without the cloud (in case of memory limitations at the host)
 
-1. Update lokal auf eigenem Computer durchführen
-2. `vendor/`, `composer.lock` auf den Server synchronisieren
-3. Datenbankmigrationen via CLI auf Server ausführen
+1. Carry out the update locally on your own computer
+2. Synchronise `vendor/` and `composer.lock` to the server
+3. Run the database migrations via CLI on the server
 
-### Nach jedem Update
+### After every update
 
-Immer Datenbanktabellen synchronisieren:
+Always synchronise the database tables:
 ```bash
 php vendor/bin/contao-console contao:migrate
 ```
 
-Template-Dateien in `templates/` prüfen — können sich bei Updates ändern!
+Check the template files in `templates/` — they can change with updates!
 
 ---
 
 ## Migration Contao 3.5 → 4.x
 
-### Allgemeines Prinzip
+### General principle
 
-**Major-Versionen können nicht übersprungen werden!**
+**Major versions cannot be skipped!**
 
-Beispiel: Von 3.2.10 muss zunächst auf 3.5.40 aktualisiert werden, bevor 4.13.x möglich ist.
+Example: from 3.2.10 you must first update to 3.5.40 before 4.13.x is possible.
 
-### Schritt-für-Schritt
+### Step by step
 
-1. **Datenbank-Backup erstellen** (vor allen Änderungen!)
-2. **Frische Contao-4-Installation** auf dem Server anlegen
-3. **Dateien kopieren** (in die neue Installation):
+1. **Create a database backup** (before any changes!)
+2. Set up a **fresh Contao 4 installation** on the server
+3. **Copy the files** (into the new installation):
    - `files/` → `files/`
    - `templates/` → `templates/`
    - `system/config/localconfig.php` → `system/config/`
-4. **Webserver** auf den `public/`-Unterordner der neuen Installation ausrichten
-5. **Datenbankmigrationen** ausführen:
+4. Point the **web server** at the `public/` subfolder of the new installation
+5. Run the **database migrations**:
    ```bash
    php vendor/bin/contao-console contao:migrate
    ```
-6. **Erweiterungen** prüfen: Gibt es für Contao 4 aktualisierte Versionen?
+6. Check the **extensions**: are there versions updated for Contao 4?
 
-### Templates prüfen
+### Checking templates
 
-Bei jeder Major-Version-Migration besonders wichtig: Überschriebene Templates in `templates/` auf Kompatibilität prüfen.
+Especially important with every major version migration: check the overridden templates in `templates/` for compatibility.
 
 ---
 
 ## Migration Contao 4.13 → 5.x
 
-### Versionsanforderungen
+### Version requirements
 
-**composer.json** anpassen:
+Adjust **composer.json**:
 
 ```json
 {
@@ -124,14 +124,14 @@ Bei jeder Major-Version-Migration besonders wichtig: Überschriebene Templates i
 }
 ```
 
-Caret-Notation für Minor-Updates erlauben:
+Allow caret notation for minor updates:
 ```json
 "contao/manager-bundle": "^5.0"
 ```
 
-### Composer-Scripts aktualisieren
+### Updating the Composer scripts
 
-Alt (Contao 4):
+Old (Contao 4):
 ```json
 "scripts": {
     "post-install-cmd": [
@@ -140,7 +140,7 @@ Alt (Contao 4):
 }
 ```
 
-Neu (Contao 5):
+New (Contao 5):
 ```json
 "scripts": {
     "post-install-cmd": [
@@ -149,14 +149,14 @@ Neu (Contao 5):
 }
 ```
 
-### Verzeichnisstruktur anpassen
+### Adjusting the directory structure
 
-Der `web/`-Ordner muss zu `public/` umbenannt werden:
+The `web/` folder must be renamed to `public/`:
 ```bash
 mv web public
 ```
 
-**Composer.json** anpassen (falls vorhanden):
+Adjust **composer.json** (if present):
 ```json
 {
     "extra": {
@@ -165,43 +165,43 @@ mv web public
 }
 ```
 
-Document Root im Webserver auf `public/` setzen.
+Set the document root in the web server to `public/`.
 
-### Ordner-Verlagerungen
+### Folder relocations
 
-| Alt | Neu |
+| Old | New |
 |-----|-----|
 | `app/config/` | `config/` |
 | `app/Resources/contao/` | `contao/` |
 | `app/Resources/public/` | `public/` |
 | `app/Resources/translations/` | `translations/` |
 
-### Entfernte Konfigurationen
+### Removed configurations
 
-Folgende Konfigurationen aus `config.yaml` entfernen (in Contao 5 nicht mehr unterstützt):
+Remove the following configurations from `config.yaml` (no longer supported in Contao 5):
 - `contao.prepend_locale`
 - `contao.url_suffix`
 - `contao.legacy_routing`
 - `contao.encryption_key`
 
-### Interne Stylesheets exportieren
+### Exporting internal stylesheets
 
-**In Contao 5 entfällt der interne CSS-Editor.** Bestehende Stylesheets müssen migriert werden:
+**In Contao 5 the internal CSS editor is gone.** Existing stylesheets must be migrated:
 
-1. Alle internen Stylesheets im Backend exportieren
-2. Als externe `.css`-Dateien speichern
-3. In Seitenlayouts als externe Stylesheets einbinden
+1. Export all internal stylesheets in the backend
+2. Save them as external `.css` files
+3. Include them in Seitenlayouts (page layouts) as external stylesheets
 
-### Templates migrieren
+### Migrating templates
 
-**Alle Inhaltselemente** sind in Contao 5 neu implementiert mit **Twig-Templates**. Alte HTML5-Templates greifen nicht mehr automatisch.
+**All content elements** are newly implemented in Contao 5 with **Twig templates**. Old HTML5 templates no longer take effect automatically.
 
-**Migrations-Schritte:**
-1. Vorhandene PHP-Templates in `templates/` identifizieren
-2. Entsprechende Twig-Äquivalente erstellen
-3. In Seitenlayouts überprüfen
+**Migration steps:**
+1. Identify the existing PHP templates in `templates/`
+2. Create the corresponding Twig equivalents
+3. Check them in the Seitenlayouts
 
-### Migration starten
+### Starting the migration
 
 ```bash
 vendor/bin/contao-console contao:migrate
@@ -209,29 +209,29 @@ vendor/bin/contao-console contao:migrate
 
 ---
 
-## Häufige Migrationsprobleme
+## Common migration problems
 
-### Datenbank-Server nicht im Strict Mode
+### Database server not in strict mode
 
-Contao empfiehlt den MySQL Strict Mode. Aktivierung:
+Contao recommends MySQL strict mode. Activation:
 ```sql
 SET GLOBAL sql_mode = 'TRADITIONAL';
 ```
 
-Oder in `my.cnf`:
+Or in `my.cnf`:
 ```ini
 sql_mode = TRADITIONAL
 ```
 
-### web/ zu public/ umbenennen (FAQ)
+### Renaming web/ to public/ (FAQ)
 
-Wenn noch in Contao-Version mit `web/`:
-1. Ordner umbenennen: `mv web public`
-2. Composer-Eintrag anpassen oder entfernen
-3. Document Root im Webserver neu setzen
-4. `composer install` ausführen
+If you are still on a Contao version with `web/`:
+1. Rename the folder: `mv web public`
+2. Adjust or remove the Composer entry
+3. Set the document root in the web server anew
+4. Run `composer install`
 
-### Backend-Pfad ändern
+### Changing the backend path
 
 In `config/config.yaml`:
 ```yaml
@@ -240,13 +240,13 @@ contao:
         route_prefix: '/admin'
 ```
 
-Cache leeren:
+Clear the cache:
 ```bash
 php vendor/bin/contao-console cache:clear --env=prod --no-warmup
 php vendor/bin/contao-console cache:warmup --env=prod
 ```
 
-### Anwendungs-Cache erneuern
+### Renewing the application cache
 
 ```bash
 vendor/bin/contao-console cache:clear --no-warmup
@@ -255,80 +255,80 @@ vendor/bin/contao-console cache:warmup
 
 ---
 
-## FAQ — Häufige Fragen
+## FAQ — frequently asked questions
 
-### Allgemein
+### General
 
-**Administrator-Passwort vergessen?**
-- Mehrere Admin-Flags in `tl_user` zurücksetzen, dann im Install-Tool neuen Admin anlegen
+**Forgotten the administrator password?**
+- Reset several admin flags in `tl_user`, then create a new admin in the install tool
 - Via CLI: `php vendor/bin/contao-console contao:user:create --admin`
 
-**Mehrere Webseiten verwalten?**
-- Multidomain-Betrieb: Mehrere Website-Startseiten in einer Installation
-- Mehrsprachig: Separate Startseiten pro Sprache
+**Manage several websites?**
+- Multi-domain operation: several Website-Startseiten (website start pages) in one installation
+- Multilingual: separate start pages per language
 
-**Kommerzielle Nutzung?**
-- Ja! Die LGPL erlaubt kommerzielle Projekte
+**Commercial use?**
+- Yes! The LGPL permits commercial projects
 
-**Debug-Modus aktivieren?**
-- Backend: Käfer-Icon klicken
-- Oder: `APP_ENV=dev` in `.env.local`
+**Enable debug mode?**
+- Backend: click the bug icon
+- Or: `APP_ENV=dev` in `.env.local`
 
-**Weiße Seite beim Bearbeiten?**
-- Häufig von Browser-Extensions verursacht (z.B. LanguageTool)
-- Lösung: Inkognito-Modus testen
+**White page while editing?**
+- Frequently caused by browser extensions (e.g. LanguageTool)
+- Solution: test in incognito mode
 
 ### Template
 
-**Template-Variablen anzeigen?**
-- Dokumentation: „Template-Daten anzeigen"
+**Show template variables?**
+- Documentation: "Template-Daten anzeigen" (Show template data)
 
-**TinyMCE konfigurieren?**
-- Eigene `config.js` unter `contao/config/tinymce.js` anlegen
+**Configure TinyMCE?**
+- Create your own `config.js` under `contao/config/tinymce.js`
 
-**CSS-Klasse zu Überschriften hinzufügen?**
-- Über `_headline` Twig-Komponente (nicht bei alten PHP-Templates)
+**Add a CSS class to headlines?**
+- Via the `_headline` Twig component (not with old PHP templates)
 
-### Konfiguration
+### Configuration
 
-**Backend-Pfad ändern?**
-- `route_prefix` in `config.yaml` + Cache leeren
+**Change the backend path?**
+- `route_prefix` in `config.yaml` + clear the cache
 
-**E-Mail über Formulare?**
-- SMTP in `parameters.yaml` oder `.env.local` konfigurieren
+**E-mail via forms?**
+- Configure SMTP in `parameters.yaml` or `.env.local`
 
-**URL-Präfix für Sprachen?**
-- Im Startpunkt: URL-Präfix eintragen (z.B. `de`)
+**URL prefix for languages?**
+- In the starting point: enter the URL-Präfix (URL prefix, e.g. `de`)
 
-**HTML-Suffix `.html` hinzufügen?**
-- Im Startpunkt: URL-Suffix eintragen
+**Add the HTML suffix `.html`?**
+- In the starting point: enter the URL suffix
 
-### Dateiverwaltung
+### Dateiverwaltung (File Management)
 
-**Bilder nicht sichtbar im Frontend?**
-- Bildverzeichnis als „Öffentlich" markieren
-- Alte `.htaccess`-Dateien prüfen
+**Images not visible in the frontend?**
+- Mark the image directory as "Öffentlich" (Public)
+- Check old `.htaccess` files
 
 ### Theme
 
-**SCSS-Änderungen werden nicht übernommen?**
-- Scriptcache leeren: System → Systemwartung → Daten bereinigen
+**SCSS changes are not applied?**
+- Clear the script cache: System → Systemwartung (System maintenance) → Daten bereinigen (Purge data)
 
 ### Contao Manager
 
-**Manager hängt/reagiert nicht?**
-- Datei `contao-manager/task.json` löschen
+**Manager hangs/does not respond?**
+- Delete the file `contao-manager/task.json`
 
-**Manager aktualisieren?**
-- Automatisch im Hintergrund; oder neue `.phar` per FTP hochladen
+**Update the Manager?**
+- Automatically in the background; or upload a new `.phar` via FTP
 
-**`.phar`-Datei umbenennen?**
-- Möglich; in `config.yaml` anpassen:
+**Rename the `.phar` file?**
+- Possible; adjust it in `config.yaml`:
   ```yaml
   contao_manager:
       manager_path: dein-name.phar.php
   ```
-  Dann Cache leeren.
+  Then clear the cache.
 
-**Spezifische Contao-Version installieren?**
-- Im Contao Manager: Experten-Modus verwenden, Version manuell eingeben
+**Install a specific Contao version?**
+- In the Contao Manager: use expert mode, enter the version manually

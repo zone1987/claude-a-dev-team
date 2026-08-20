@@ -2,43 +2,43 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Registrierung (ab Contao 5.2)](#registrierung-ab-contao-52)
-- [Einfacher Insert Tag](#einfacher-insert-tag)
-- [Block Insert Tags](#block-insert-tags)
-- [Insert-Tag-Flags](#insert-tag-flags)
-- [Legacy-Implementierung (vor Contao 5.2)](#legacy-implementierung-vor-contao-52)
-- [Formale Syntax (EBNF)](#formale-syntax-ebnf)
-- [Caching-Verhalten](#caching-verhalten)
-- [Eingebaute Insert Tags (Auswahl)](#eingebaute-insert-tags-auswahl)
+- [Overview](#overview)
+- [Registration (as of Contao 5.2)](#registration-as-of-contao-52)
+- [Simple insert tag](#simple-insert-tag)
+- [Block insert tags](#block-insert-tags)
+- [Insert tag flags](#insert-tag-flags)
+- [Legacy implementation (before Contao 5.2)](#legacy-implementation-before-contao-52)
+- [Formal syntax (EBNF)](#formal-syntax-ebnf)
+- [Caching behavior](#caching-behavior)
+- [Built-in insert tags (selection)](#built-in-insert-tags-selection)
 
-## Übersicht
+## Overview
 
-Insert Tags sind Contaos Mechanismus, um Token in Templates und Datenbankfeldern
-durch dynamische Inhalte zu ersetzen. Format: `{{TAG_NAME}}` oder
+Insert tags are Contao's mechanism for replacing tokens in templates and database fields
+with dynamic content. Format: `{{TAG_NAME}}` or
 `{{TAG_NAME::PARAMETER}}`.
 
 ---
 
-## Registrierung (ab Contao 5.2)
+## Registration (as of Contao 5.2)
 
-Seit Version 5.2 können eigene Insert Tags über PHP-Attribute oder Service-Tags
-registriert werden.
+Since version 5.2, custom insert tags can be registered via PHP attributes or
+service tags.
 
-### Konfigurationsoptionen
+### Configuration options
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `name` | Insert-Tag-Name (muss Kleinschreibung sein) |
-| `resolveNestedTags` | Verschachtelte Tags vor der Verarbeitung auflösen |
-| `priority` | Ausführungspriorität bei gleichem Namen |
-| `method` | Methoden-Name (Standard: `__invoke`) |
-| `asFragment` | Veraltet ab 5.3; rendert via ESI-Tag |
-| `endTag` | End-Tag-Name für Block-Insert-Tags |
+| `name` | Insert tag name (must be lower case) |
+| `resolveNestedTags` | Resolve nested tags before processing |
+| `priority` | Execution priority when names are identical |
+| `method` | Method name (default: `__invoke`) |
+| `asFragment` | Deprecated as of 5.3; renders via an ESI tag |
+| `endTag` | End tag name for block insert tags |
 
 ---
 
-## Einfacher Insert Tag
+## Simple insert tag
 
 ```php
 // src/InsertTag/Rot13InsertTag.php
@@ -68,14 +68,14 @@ class Rot13InsertTag implements InsertTagResolverNestedResolvedInterface
 }
 ```
 
-**Verwendung:** `{{rot13::Contao}}` → `Pbagnb`
+**Usage:** `{{rot13::Contao}}` → `Pbagnb`
 
 ---
 
-## Block Insert Tags
+## Block insert tags
 
-Block-Insert-Tags umschließen Inhalt. Sie empfangen den eingeschlossenen Inhalt
-als `ParsedSequence`-Objekt und geben eine modifizierte Sequenz zurück:
+Block insert tags wrap content. They receive the enclosed content
+as a `ParsedSequence` object and return a modified sequence:
 
 ```php
 // src/InsertTag/IfMemberGroupInsertTag.php
@@ -110,18 +110,18 @@ class IfMemberGroupInsertTag implements BlockInsertTagResolverNestedResolvedInte
 }
 ```
 
-**Verwendung:**
+**Usage:**
 ```
 {{ifmembergroup::1}}
-    Nur für Mitglieder der Gruppe 1 sichtbar.
+    Only visible to members of group 1.
 {{endifmembergroup}}
 ```
 
 ---
 
-## Insert-Tag-Flags
+## Insert tag flags
 
-Flags verarbeiten die Ausgabe eines Insert Tags:
+Flags post-process the output of an insert tag:
 
 ```php
 // src/InsertTag/Rot13InsertTagFlag.php
@@ -145,13 +145,13 @@ class Rot13InsertTagFlag implements InsertTagFlagInterface
 }
 ```
 
-**Verwendung:** `{{label::MSC:reset|rot13}}` → `Erfrg`
+**Usage:** `{{label::MSC:reset|rot13}}` → `Erfrg`
 
 ---
 
-## Legacy-Implementierung (vor Contao 5.2)
+## Legacy implementation (before Contao 5.2)
 
-Für ältere Versionen den `replaceInsertTags`-Hook nutzen:
+For older versions, use the `replaceInsertTags` hook:
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
@@ -166,7 +166,7 @@ class Rot13InsertTagListener
         $chunks = explode('::', $tag);
 
         if (self::TAG !== $chunks[0]) {
-            return false; // nicht behandelt → nächsten Listener probieren
+            return false; // not handled → try the next listener
         }
 
         return str_rot13($chunks[1]);
@@ -176,7 +176,7 @@ class Rot13InsertTagListener
 
 ---
 
-## Formale Syntax (EBNF)
+## Formal syntax (EBNF)
 
 ```
 InsertTag  ::= "{{" Name Parameter* Flag* "}}"
@@ -190,10 +190,10 @@ Value      ::= ( [^{}|] | InsertTag )*
 
 ---
 
-## Caching-Verhalten
+## Caching behavior
 
-Tags, die mit `cache_` beginnen oder das `uncached`-Flag haben, umgehen den
-öffentlichen Cache:
+Tags beginning with `cache_` or carrying the `uncached` flag bypass the
+public cache:
 
 ```
 {{rot13::Payload|uncached}}
@@ -201,18 +201,18 @@ Tags, die mit `cache_` beginnen oder das `uncached`-Flag haben, umgehen den
 
 ---
 
-## Eingebaute Insert Tags (Auswahl)
+## Built-in insert tags (selection)
 
-| Tag | Beschreibung |
+| Tag | Description |
 |-----|-------------|
-| `{{link::*}}` | Link zu Contao-Seiten |
-| `{{env::host}}` | Hostname |
-| `{{env::url}}` | Aktuelle URL |
-| `{{date::*}}` | Datum formatiert |
-| `{{asset::*::*}}` | Asset-URL (Datei, Paket) |
-| `{{request_token}}` | CSRF-Token |
-| `{{user::*}}` | Aktueller Benutzer-Attribute |
+| `{{link::*}}` | Link to Contao pages |
+| `{{env::host}}` | Host name |
+| `{{env::url}}` | Current URL |
+| `{{date::*}}` | Formatted date |
+| `{{asset::*::*}}` | Asset URL (file, package) |
+| `{{request_token}}` | CSRF token |
+| `{{user::*}}` | Attributes of the current user |
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/insert-tags/*
+*Source: https://docs.contao.org/5.x/dev/framework/insert-tags/*

@@ -1,4 +1,4 @@
 # contao-routing
 
-Lies `ROUTING-DETAIL.md` für vollständige Routing-Dokumentation
-inklusive Content Routing und Legacy-Parameter in Contao 5.
+Read `ROUTING-DETAIL.md` for complete routing documentation
+including content routing and legacy parameters in Contao 5.

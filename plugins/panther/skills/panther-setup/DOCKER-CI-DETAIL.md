@@ -1,25 +1,25 @@
-# Panther — Docker, Interactive Mode und CI-Konfigurationen
+# Panther — Docker, interactive mode and CI configurations
 
 ## Contents
 
-- [Docker-Integration](#docker-integration)
+- [Docker integration](#docker-integration)
 - [Interactive Mode](#interactive-mode)
-- [CI-Konfigurationen](#ci-konfigurationen)
+- [CI configurations](#ci-configurations)
 - [Known Limitations](#known-limitations)
 - [Troubleshooting](#troubleshooting)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
-## Docker-Integration
+## Docker integration
 
-### Minimales Dockerfile (Chromium)
+### Minimal Dockerfile (Chromium)
 
 ```dockerfile
 FROM php:8.3-cli-alpine
 
-# Chromium und ChromeDriver installieren
+# Install Chromium and ChromeDriver
 RUN apk add --no-cache chromium chromium-chromedriver
 
-# Panther-Konfiguration fuer Container-Umgebung
+# Panther configuration for the container environment
 ENV PANTHER_NO_SANDBOX=1
 ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
 
@@ -33,23 +33,23 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 CMD ["vendor/bin/phpunit"]
 ```
 
-Erklaerung der notwendigen Einstellungen:
-- `PANTHER_NO_SANDBOX=1`: Chrome-Sandbox erfordert User-Namespaces; in Docker ohne
-  privilegierten Modus nicht verfuegbar => `--no-sandbox` notwendig.
-- `--disable-dev-shm-usage`: `/dev/shm` ist in Docker oft zu klein (Standard: 64MB);
-  diese Option weist Chrome an, das regulaere `/tmp` zu nutzen.
+Explanation of the necessary settings:
+- `PANTHER_NO_SANDBOX=1`: the Chrome sandbox requires user namespaces; in Docker without
+  privileged mode these are not available => `--no-sandbox` is necessary.
+- `--disable-dev-shm-usage`: `/dev/shm` is often too small in Docker (default: 64MB);
+  this option tells Chrome to use the regular `/tmp` instead.
 
-### Dockerfile mit Chrome und Firefox
+### Dockerfile with Chrome and Firefox
 
 ```dockerfile
 FROM php:8.3-cli-alpine
 
 ARG GECKODRIVER_VERSION=0.34.0
 
-# Chromium und ChromeDriver
+# Chromium and ChromeDriver
 RUN apk add --no-cache chromium chromium-chromedriver
 
-# Firefox und GeckoDriver
+# Firefox and GeckoDriver
 RUN apk add --no-cache firefox libzip-dev wget tar && \
     docker-php-ext-install zip
 
@@ -67,20 +67,20 @@ COPY . .
 RUN composer install --no-interaction --prefer-dist
 ```
 
-### Docker-Build und -Run
+### Docker build and run
 
 ```bash
-# Image bauen
+# Build the image
 docker build -t myproject:test .
 
-# Tests ausfuehren (Volume-Mount fuer Code, Arbeitsverzeichnis setzen)
+# Run the tests (volume mount for the code, set the working directory)
 docker run --rm \
   -v "$PWD":/srv/app \
   -w /srv/app \
   myproject:test \
   vendor/bin/phpunit
 
-# Mit zusaetzlichen Umgebungsvariablen
+# With additional environment variables
 docker run --rm \
   -v "$PWD":/srv/app \
   -w /srv/app \
@@ -89,9 +89,9 @@ docker run --rm \
   vendor/bin/phpunit
 ```
 
-### Shared Memory fuer Chrome in Docker
+### Shared memory for Chrome in Docker
 
-Standard `/dev/shm` ist 64MB — kann zu Chrome-Crashes fuehren:
+The default `/dev/shm` is 64MB — this can lead to Chrome crashes:
 
 ```yaml
 # docker-compose.yml
@@ -103,7 +103,7 @@ services:
       PANTHER_CHROME_ARGUMENTS: "--disable-dev-shm-usage"
     volumes:
       - .:/srv/app
-    # Alternative: /dev/shm vergroessern statt --disable-dev-shm-usage:
+    # Alternative: enlarge /dev/shm instead of --disable-dev-shm-usage:
     shm_size: '2gb'
 ```
 
@@ -111,33 +111,33 @@ services:
 
 ## Interactive Mode
 
-Der Interactive Mode pausiert den Test nach einem Fehler, sodass man den Browserzustand
-inspizieren kann. Erfordert zwei Bedingungen gleichzeitig:
+Interactive mode pauses the test after a failure so that the browser state can be
+inspected. It requires two conditions at the same time:
 
-1. `PANTHER_NO_HEADLESS=1` — Browser wird mit sichtbarem Fenster gestartet
-2. PHPUnit wird mit `--debug` ausgefuehrt
+1. `PANTHER_NO_HEADLESS=1` — the browser is started with a visible window
+2. PHPUnit is run with `--debug`
 
 ```bash
-# Interactive Mode aktivieren
+# Enable interactive mode
 PANTHER_NO_HEADLESS=1 vendor/bin/phpunit --debug tests/MyTest.php
 ```
 
-Was passiert: Nach einem Test-Failure oder Test-Error gibt Panther die Meldung aus:
+What happens: after a test failure or test error, Panther prints the message:
 ```
 Failure: Expected selector ".success" to be visible
 
 Press enter to continue...
 ```
 
-Der Browser bleibt geoeffnet und der Test wartet auf Enter-Eingabe. Man kann dann
-im Browser die DevTools oeffnen und den DOM-Zustand untersuchen.
+The browser stays open and the test waits for the Enter key. You can then
+open the DevTools in the browser and examine the DOM state.
 
-Zusaetzlich mit DevTools automatisch oeffnen:
+Additionally, with DevTools opened automatically:
 ```bash
 PANTHER_NO_HEADLESS=1 PANTHER_DEVTOOLS=1 vendor/bin/phpunit --debug tests/MyTest.php
 ```
 
-Technischer Hintergrund (`ServerTrait::pause()`):
+Technical background (`ServerTrait::pause()`):
 ```php
 private function pause($message): void
 {
@@ -152,9 +152,9 @@ private function pause($message): void
 
 ---
 
-## CI-Konfigurationen
+## CI configurations
 
-### GitHub Actions (vollstaendig)
+### GitHub Actions (complete)
 
 ```yaml
 # .github/workflows/panther.yml
@@ -197,9 +197,9 @@ jobs:
 
       - name: Run Panther tests
         run: vendor/bin/phpunit tests/E2E/
-        # Chrome und ChromeDriver sind auf ubuntu-latest vorinstalliert.
-        # PANTHER_NO_SANDBOX wird automatisch erkannt wenn noetig.
-        # Alternativ explizit:
+        # Chrome and ChromeDriver are preinstalled on ubuntu-latest.
+        # PANTHER_NO_SANDBOX is detected automatically when needed.
+        # Alternatively, explicitly:
         env:
           PANTHER_NO_SANDBOX: "1"
           PANTHER_CHROME_ARGUMENTS: "--disable-dev-shm-usage"
@@ -212,7 +212,7 @@ jobs:
           path: var/screenshots/
 ```
 
-### Travis CI (vollstaendig)
+### Travis CI (complete)
 
 ```yaml
 # .travis.yml
@@ -237,11 +237,11 @@ install:
 script:
   - vendor/bin/phpunit
 
-# Travis setzt HAS_JOSH_K_SEAL_OF_APPROVAL=true, Panther erkennt das automatisch
-# und aktiviert --no-sandbox. Keine manuelle PANTHER_NO_SANDBOX-Konfiguration noetig.
+# Travis sets HAS_JOSH_K_SEAL_OF_APPROVAL=true, which Panther detects automatically
+# and enables --no-sandbox. No manual PANTHER_NO_SANDBOX configuration needed.
 ```
 
-### GitLab CI (vollstaendig)
+### GitLab CI (complete)
 
 ```yaml
 # .gitlab-ci.yml
@@ -275,7 +275,7 @@ panther_tests:
     expire_in: 1 week
 ```
 
-### AppVeyor (vollstaendig, Windows)
+### AppVeyor (complete, Windows)
 
 ```yaml
 # appveyor.yml
@@ -312,32 +312,32 @@ test_script:
 
 ## Known Limitations
 
-Panther unterstuetzt folgende BrowserKit/DomCrawler-Features **nicht**:
+Panther does **not** support the following BrowserKit/DomCrawler features:
 
-| Einschraenkung | Details |
+| Limitation | Details |
 |---|---|
-| XML-Dokumente crawlen | Nur HTML wird unterstuetzt |
-| Bestehende Dokumente aktualisieren | `request()` laedt immer neu |
-| Multidimensionale PHP-Array-Syntax fuer Formulare | `foo[bar][baz]` unterstuetzt |
-| Methoden die `\DOMElement` zurueckgeben | Panther gibt `WebDriverElement` zurueck |
-| Ungueltige `<select>`-Optionen auswaehlen | Nur existierende Optionen waehlbar |
-| Redirects nicht folgen | WebDriver folgt immer Redirects |
+| Crawling XML documents | Only HTML is supported |
+| Updating existing documents | `request()` always reloads |
+| Multidimensional PHP array syntax for forms | `foo[bar][baz]` supported |
+| Methods returning `\DOMElement` | Panther returns `WebDriverElement` |
+| Selecting invalid `<select>` options | Only existing options can be selected |
+| Not following redirects | WebDriver always follows redirects |
 
 ---
 
 ## Troubleshooting
 
-### Assets werden nicht geladen (CSS, JS, Bilder)
+### Assets are not loaded (CSS, JS, images)
 
-Der PHP Built-In-Server liefert nur `index.php` aus, keine statischen Dateien.
-Loesung: Router-Skript erstellen.
+The PHP built-in server only serves `index.php`, no static files.
+Solution: create a router script.
 
 ```php
 // tests/router.php
 <?php
 
 if (is_file($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $_SERVER['SCRIPT_NAME'])) {
-    // Statische Datei direkt ausliefern
+    // Serve the static file directly
     return false;
 }
 
@@ -351,7 +351,7 @@ $_SERVER['PHP_SELF']        = DIRECTORY_SEPARATOR . $script;
 require $script;
 ```
 
-Router in `phpunit.dist.xml` registrieren:
+Register the router in `phpunit.dist.xml`:
 
 ```xml
 <phpunit>
@@ -361,10 +361,10 @@ Router in `phpunit.dist.xml` registrieren:
 </phpunit>
 ```
 
-### Bootstrap 5 Smooth-Scroll-Probleme
+### Bootstrap 5 smooth-scroll problems
 
-Bootstrap 5 aktiviert standardmaessig Smooth-Scrolling, das Tests verlangsamt
-oder Elemente ausserhalb des Viewports laesst. Deaktivieren:
+Bootstrap 5 enables smooth scrolling by default, which slows tests down
+or leaves elements outside the viewport. Disable it:
 
 ```scss
 // assets/styles/app.scss
@@ -372,49 +372,49 @@ $enable-smooth-scroll: false;
 @import "bootstrap/scss/bootstrap";
 ```
 
-Oder via PANTHER_NO_REDUCED_MOTION (Panther 2.2.0+):
+Or via PANTHER_NO_REDUCED_MOTION (Panther 2.2.0+):
 ```
 # .env.test
-PANTHER_NO_REDUCED_MOTION=0   # (default) setzt --force-prefers-reduced-motion
+PANTHER_NO_REDUCED_MOTION=0   # (default) sets --force-prefers-reduced-motion
 ```
 
-### Port bereits belegt
+### Port already in use
 
 ```bash
-# Port pruefen
+# Check the port
 lsof -i :9080
-# Anderen Port verwenden
+# Use a different port
 PANTHER_WEB_SERVER_PORT=9090 vendor/bin/phpunit
 ```
 
-### ChromeDriver nicht gefunden
+### ChromeDriver not found
 
 ```bash
-# Via dbrekelmans/bdi installieren
+# Install via dbrekelmans/bdi
 composer require --dev dbrekelmans/bdi
 vendor/bin/bdi detect drivers
-# Legt chromedriver in ./drivers/ ab, das Panther automatisch durchsucht
+# Places chromedriver in ./drivers/, which Panther searches automatically
 
-# Oder manuell: $PATH, ./drivers/ oder ./vendor/bin/ werden durchsucht
+# Or manually: $PATH, ./drivers/ or ./vendor/bin/ are searched
 ```
 
 ### "DevToolsActivePort file doesn't exist" in Docker
 
 ```bash
-# Loesung 1: /dev/shm vergroessern
+# Solution 1: enlarge /dev/shm
 docker run --shm-size=2g ...
 
-# Loesung 2: --disable-dev-shm-usage
+# Solution 2: --disable-dev-shm-usage
 PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
 
-# Loesung 3: Kein Sandbox
+# Solution 3: no sandbox
 PANTHER_NO_SANDBOX=1
 ```
 
-### Tests laufen im Headless-Modus, aber nicht in GUI-Umgebung
+### Tests run in headless mode, but not in a GUI environment
 
 ```bash
-# Wenn kein Display verfuegbar: Xvfb verwenden
+# If no display is available: use Xvfb
 Xvfb :99 -screen 0 1280x1024x24 &
 export DISPLAY=:99
 PANTHER_NO_HEADLESS=1 vendor/bin/phpunit
@@ -422,7 +422,7 @@ PANTHER_NO_HEADLESS=1 vendor/bin/phpunit
 
 ---
 
-## Quellen
+## Sources
 
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther/blob/main/src/ServerTrait.php

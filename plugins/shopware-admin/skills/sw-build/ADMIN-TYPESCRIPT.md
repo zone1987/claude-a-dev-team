@@ -1,27 +1,27 @@
-# Shopware 6 — TypeScript im Admin-Plugin
+# Shopware 6 — TypeScript in the admin plugin
 
-Die Administration ist TypeScript-fähig (Vite). Eigener Plugin-Admin-Code kann schrittweise `.ts`/`.vue<script lang="ts">` nutzen.
+The administration is TypeScript-capable (Vite). Your own plugin admin code can adopt `.ts`/`.vue<script lang="ts">` step by step.
 
-## tsconfig.json (Plugin)
-Im Admin-Source-Root (`src/Resources/app/administration/`) eine `tsconfig.json` mit `strict: true`,
+## tsconfig.json (plugin)
+In the admin source root (`src/Resources/app/administration/`) a `tsconfig.json` with `strict: true`,
 `baseUrl`, `paths` (`"src": ["src"]`), `types: ["vite/client", "jest"]`, `noEmit: true`, `allowJs: true`
-(JS+TS mischbar). Am Core-tsconfig orientieren.
+(JS+TS can be mixed). Take the core tsconfig as your reference.
 
-## Globale Shopware-Typen
-Das `Shopware`-Objekt und viele Bausteine sind getypt. Eigene globale Ergänzungen/Module-Augmentation per `.d.ts`:
+## Global Shopware types
+The `Shopware` object and many building blocks are typed. Add your own global additions/module augmentation via `.d.ts`:
 
 ```ts
 // types/shopware.d.ts
 import 'src/core/shopware';
 declare global {
-  interface CustomEntityTypes { ff_example: FfExampleEntity; } // Entity-Typ registrieren
+  interface CustomEntityTypes { ff_example: FfExampleEntity; } // register entity type
 }
 export interface FfExampleEntity { id: string; name: string; active: boolean; }
 ```
 
-## Komponenten/Services typisieren
-- Components: `Shopware.Component.register('ff-x', { /* defineComponent-ähnlich, props mit PropType<T> */ })`.
-- Services/Composables: Parameter & Rückgaben typisieren; `repositoryFactory.create<FfExampleEntity>('ff_example')`.
-- Meteor-Admin-SDK ist vollständig getypt (`sw-meteor-admin-sdk`).
+## Typing components/services
+- Components: `Shopware.Component.register('ff-x', { /* defineComponent-like, props with PropType<T> */ })`.
+- Services/composables: type parameters and return values; `repositoryFactory.create<FfExampleEntity>('ff_example')`.
+- The Meteor Admin SDK is fully typed (`sw-meteor-admin-sdk`).
 
-→ tsconfig-Vollvorlage, Entity-/Repository-Typing, Module-Augmentation, Vue-PropType-Muster: [ADMIN-TYPESCRIPT-TYPESCRIPT.md](ADMIN-TYPESCRIPT-TYPESCRIPT.md)
+→ Full tsconfig template, entity/repository typing, module augmentation, Vue PropType patterns: [ADMIN-TYPESCRIPT-TYPESCRIPT.md](ADMIN-TYPESCRIPT-TYPESCRIPT.md)

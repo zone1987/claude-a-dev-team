@@ -227,7 +227,7 @@ No own events on the Dialog object. Dialog instances are received via
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `type()` and `message()` read the dialog out; `accept()`/`dismiss()`
+**Summary:** `type()` and `message()` read the dialog out; `accept()`/`dismiss()`
 close it. `defaultValue()` is only relevant for prompts. `page()` helps
 in multi-page scenarios to map the dialog to its source.
 

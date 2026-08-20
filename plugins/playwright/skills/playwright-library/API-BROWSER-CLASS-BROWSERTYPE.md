@@ -231,7 +231,7 @@ console.log(chromium.name()); // "chromium"
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `BrowserType` is the factory entry point for all browser instances. `launch()` and `launchPersistentContext()` are the most frequently used methods in test code. `launchServer()` + `connect()` enable remote browser setups for distributed test infrastructures.
+**Summary:** `BrowserType` is the factory entry point for all browser instances. `launch()` and `launchPersistentContext()` are the most frequently used methods in test code. `launchServer()` + `connect()` enable remote browser setups for distributed test infrastructures.
 
 ---
 

@@ -1,4 +1,4 @@
-# Meteor Admin SDK — Referenz
+# Meteor Admin SDK — Reference
 
-API-Referenz: `METEOR-ADMIN-SDK-ADMIN-SDK.md`
-Konzepte, Setup, Guides: `METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES.md`
+API reference: `METEOR-ADMIN-SDK-ADMIN-SDK.md`
+Concepts, setup, guides: `METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES.md`

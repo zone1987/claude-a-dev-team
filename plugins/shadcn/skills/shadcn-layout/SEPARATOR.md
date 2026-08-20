@@ -11,8 +11,8 @@ Visually or semantically separates content. Available in Radix UI and Base UI va
 
 ## References
 
-- [installation.md](`SEPARATOR-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SEPARATOR-SOURCE.md`) — Complete component source (new-york-v4 / radix)
-- [api.md](`SEPARATOR-API.md`) — Props table
-- [examples.md](`SEPARATOR-EXAMPLES.md`) — Demo example
-- [base-vs-radix.md](`SEPARATOR-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [SEPARATOR-INSTALLATION.md](SEPARATOR-INSTALLATION.md) — CLI & manual setup
+- [SEPARATOR-SOURCE.md](SEPARATOR-SOURCE.md) — Complete component source (new-york-v4 / radix)
+- [SEPARATOR-API.md](SEPARATOR-API.md) — Props table
+- [SEPARATOR-EXAMPLES.md](SEPARATOR-EXAMPLES.md) — Demo example
+- [SEPARATOR-BASE-VS-RADIX.md](SEPARATOR-BASE-VS-RADIX.md) — Differences between base and radix variants

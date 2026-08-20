@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Mixins
+# Shopware 6 — Admin mixins
 
-Mixins kapseln wiederverwendbares Komponentenverhalten. Eingebaute über `Shopware.Mixin.getByName`.
+Mixins encapsulate reusable component behaviour. Built-in ones via `Shopware.Mixin.getByName`.
 
 ```js
 Shopware.Component.register('ff-example-list', {
@@ -11,6 +11,6 @@ Shopware.Component.register('ff-example-list', {
 });
 ```
 
-Häufig: `notification` (Toast-Meldungen), `listing` (Paginierung/Sorting für Listen), `placeholder`.
-Eigenes Mixin: `Shopware.Mixin.register('ff-shared', { ... })`. In Vue-3-Composition-API zunehmend durch
-Composables/Services ersetzbar (`sw-admin-services`).
+Common ones: `notification` (toast messages), `listing` (pagination/sorting for lists), `placeholder`.
+Your own mixin: `Shopware.Mixin.register('ff-shared', { ... })`. In the Vue 3 Composition API increasingly replaceable by
+composables/services (`sw-admin-services`).

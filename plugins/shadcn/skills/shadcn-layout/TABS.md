@@ -25,8 +25,8 @@ Tabs
 
 ## Reference files
 
-- [installation.md](`TABS-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`TABS-SOURCE.md`) — Complete component source (new-york-v4 + radix base)
-- [api.md](`TABS-API.md`) — Props tables
-- [examples.md](`TABS-EXAMPLES.md`) — All examples
-- [base-vs-radix.md](`TABS-BASE-VS-RADIX.md`) — Base vs Radix differences
+- [TABS-INSTALLATION.md](TABS-INSTALLATION.md) — CLI & manual setup
+- [TABS-SOURCE.md](TABS-SOURCE.md) — Complete component source (new-york-v4 + radix base)
+- [TABS-API.md](TABS-API.md) — Props tables
+- [TABS-EXAMPLES.md](TABS-EXAMPLES.md) — All examples
+- [TABS-BASE-VS-RADIX.md](TABS-BASE-VS-RADIX.md) — Base vs Radix differences

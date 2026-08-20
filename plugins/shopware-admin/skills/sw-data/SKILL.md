@@ -9,15 +9,15 @@ Data comes through repositoryFactory, not fetch. Pinia is current, Vuex is legac
 
 ## Reference map
 
-- **[ADMIN-ACL-PERMISSIONS.md](ADMIN-ACL-PERMISSIONS.md)**: Privilegien registrieren und an Modul/Route/Navigation/Buttons binden.
-- **[ADMIN-API-REQUESTS.md](ADMIN-API-REQUESTS.md)**: Für Nicht-CRUD-Aufrufe einen `ApiService` registrieren bzw.
-- **[ADMIN-CATALOG.md](ADMIN-CATALOG.md)**: Beantwortet: **„welche Admin-Bausteine existieren in DIESEM Projekt?"** — Module, Komponenten, Services, Mixi….
-- **[ADMIN-DATA-HANDLING.md](ADMIN-DATA-HANDLING.md)**: Daten laufen über `repositoryFactory`.
-- **[ADMIN-ERROR-HANDLING.md](ADMIN-ERROR-HANDLING.md)**: API-/Save-Fehler abfangen und als Notification zeigen; Validierungsfehler werden von Meteor-Feldern automatis….
-- **[ADMIN-PINIA-STORE.md](ADMIN-PINIA-STORE.md)**: Seit 6.6/6.7 ist **Pinia** der Standard.
-- **[ADMIN-REPOSITORY-JS.md](ADMIN-REPOSITORY-JS.md)**: `create` erzeugt eine Entity mit generierter ID.
-- **[ADMIN-SERVICES.md](ADMIN-SERVICES.md)**: Services über `addServiceProvider` registrieren, in Komponenten via `inject` nutzen.
-- **[ADMIN-VUEX-STORE.md](ADMIN-VUEX-STORE.md)**: Vuex ist **deprecated**.
+- **[ADMIN-ACL-PERMISSIONS.md](ADMIN-ACL-PERMISSIONS.md)**: Register privileges and bind them to module/route/navigation/buttons.
+- **[ADMIN-API-REQUESTS.md](ADMIN-API-REQUESTS.md)**: For non-CRUD calls register an `ApiService` or.
+- **[ADMIN-CATALOG.md](ADMIN-CATALOG.md)**: Answers: **"which admin building blocks exist in THIS project?"** — modules, components, services, mixi….
+- **[ADMIN-DATA-HANDLING.md](ADMIN-DATA-HANDLING.md)**: Data goes through `repositoryFactory`.
+- **[ADMIN-ERROR-HANDLING.md](ADMIN-ERROR-HANDLING.md)**: Catch API/save errors and show them as a notification; validation errors are bound to the entity automatic….
+- **[ADMIN-PINIA-STORE.md](ADMIN-PINIA-STORE.md)**: Since 6.6/6.7 **Pinia** is the standard.
+- **[ADMIN-REPOSITORY-JS.md](ADMIN-REPOSITORY-JS.md)**: `create` produces an entity with a generated ID.
+- **[ADMIN-SERVICES.md](ADMIN-SERVICES.md)**: Register services via `addServiceProvider` and use them in components via `inject`.
+- **[ADMIN-VUEX-STORE.md](ADMIN-VUEX-STORE.md)**: Vuex is **deprecated**.
 
 ## Source
 

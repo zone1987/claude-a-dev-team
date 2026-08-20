@@ -4,7 +4,7 @@ Dieses Skill deckt den Ueberblick ueber das Shopware Commercial Plugin ab.
 
 ## Referenzen
 
-- [Commercial Bundle Uberblick](`COMMERCIAL-OVERVIEW-DETAIL.md`)
+- [COMMERCIAL-OVERVIEW-DETAIL.md](COMMERCIAL-OVERVIEW-DETAIL.md)
 
 ## Querverweise
 

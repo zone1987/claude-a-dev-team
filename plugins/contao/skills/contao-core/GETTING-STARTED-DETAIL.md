@@ -2,84 +2,84 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Verzeichnisstruktur (Managed Edition)](#verzeichnisstruktur-managed-edition)
-- [Konfigurationsdateien](#konfigurationsdateien)
-- [Autoloading und Services](#autoloading-und-services)
-- [DCA-Basics (Einstieg)](#dca-basics-einstieg)
-- [Hooks-Überblick (Einstieg)](#hooks-überblick-einstieg)
-- [Translations im Einstieg](#translations-im-einstieg)
-- [Content Elements & Module (Einstieg)](#content-elements-module-einstieg)
-- [Weiterführende Skills](#weiterführende-skills)
+- [Overview](#overview)
+- [Directory structure (Managed Edition)](#directory-structure-managed-edition)
+- [Configuration files](#configuration-files)
+- [Autoloading and services](#autoloading-and-services)
+- [DCA basics (getting started)](#dca-basics-getting-started)
+- [Hooks overview (getting started)](#hooks-overview-getting-started)
+- [Translations when getting started](#translations-when-getting-started)
+- [Content elements & modules (getting started)](#content-elements-modules-getting-started)
+- [Further skills](#further-skills)
 
-## Übersicht
+## Overview
 
-Contao ist ein Open-Source-CMS, das als Symfony-Bundle implementiert ist und sich in
-bestehende Symfony-Anwendungen integrieren oder als eigenständige Managed Edition
-betrieben werden kann. Dieser Abschnitt deckt den Einstieg für neue Entwickler ab.
-
----
-
-## Verzeichnisstruktur (Managed Edition)
-
-Nach der Installation via `composer create-project contao/managed-edition` enthält
-das Projekt folgende Kernverzeichnisse:
-
-| Verzeichnis | Zweck |
-|-------------|-------|
-| `assets/` | Framework- und Drittanbieter-JS/CSS |
-| `config/` | Anwendungskonfiguration |
-| `files/` | Vom Contao-Dateimanager verwaltete Dateien |
-| `public/` | Öffentliche Einstiegspunkte, Symlinks zu Ressourcen |
-| `system/` | Legacy-Kompatibilitätsordner (Contao 3) |
-| `templates/` | Eigene Contao- und Twig-Templates |
-| `var/` | Transiente Dateien (Cache, Logs) |
-| `vendor/` | Composer-Abhängigkeiten inklusive Contao |
-
-### Verzeichnisse für die eigene Entwicklung
-
-| Verzeichnis | Zweck |
-|-------------|-------|
-| `config/` | Anwendungskonfiguration |
-| `contao/` | Contao-spezifische Konfiguration, DCAs, Translations |
-| `src/` | Eigener PHP-Code (Controller, Event Listener, Services) |
-| `templates/` | Eigene und überschriebene Templates |
-| `translations/` | Symfony Translations (ab Version 5.3) |
+Contao is an open source CMS implemented as a Symfony bundle that can either be integrated
+into existing Symfony applications or run as a standalone Managed Edition.
+This section covers getting started for new developers.
 
 ---
 
-## Konfigurationsdateien
+## Directory structure (Managed Edition)
 
-### `config/`-Verzeichnis
+After installation via `composer create-project contao/managed-edition`, the project
+contains the following core directories:
 
-| Datei | Zweck |
+| Directory | Purpose |
+|-------------|-------|
+| `assets/` | Framework and third-party JS/CSS |
+| `config/` | Application configuration |
+| `files/` | Files managed by the Contao file manager |
+| `public/` | Public entry points, symlinks to resources |
+| `system/` | Legacy compatibility folder (Contao 3) |
+| `templates/` | Custom Contao and Twig templates |
+| `var/` | Transient files (cache, logs) |
+| `vendor/` | Composer dependencies including Contao |
+
+### Directories for your own development
+
+| Directory | Purpose |
+|-------------|-------|
+| `config/` | Application configuration |
+| `contao/` | Contao-specific configuration, DCAs, translations |
+| `src/` | Your own PHP code (controllers, event listeners, services) |
+| `templates/` | Custom and overridden templates |
+| `translations/` | Symfony translations (as of version 5.3) |
+
+---
+
+## Configuration files
+
+### `config/` directory
+
+| File | Purpose |
 |-------|-------|
-| `.env` | Standard-Umgebungsvariablen (wird committet) |
-| `.env.local` | Umgebungs-spezifische Überschreibungen (in `.gitignore`) |
-| `config.yaml` | Bundle- und Extension-Konfiguration |
-| `config_dev.yaml` | Entwicklungsumgebungs-Einstellungen |
-| `config_prod.yaml` | Produktionsumgebungs-Einstellungen |
-| `parameters.yaml` | Datenbank- und SMTP-Zugangsdaten |
-| `routes.yaml` | Anwendungs-spezifische Routen |
-| `services.yaml` | Service-Definitionen |
+| `.env` | Default environment variables (is committed) |
+| `.env.local` | Environment-specific overrides (in `.gitignore`) |
+| `config.yaml` | Bundle and extension configuration |
+| `config_dev.yaml` | Development environment settings |
+| `config_prod.yaml` | Production environment settings |
+| `parameters.yaml` | Database and SMTP credentials |
+| `routes.yaml` | Application-specific routes |
+| `services.yaml` | Service definitions |
 
-### `contao/`-Verzeichnis
+### `contao/` directory
 
-| Datei/Verzeichnis | Zweck |
+| File/directory | Purpose |
 |-------------------|-------|
-| `contao/config/config.php` | Registriert Module, Content Elements, Models, Hooks, Crons |
-| `contao/dca/` | Data Container Array Anpassungen |
-| `contao/languages/` | Übersetzungsdateien nach Sprache |
-| `contao/languages/de/` | Deutsche Übersetzungen |
-| `contao/languages/en/` | Englische Übersetzungen (Fallback) |
+| `contao/config/config.php` | Registers modules, content elements, models, hooks, crons |
+| `contao/dca/` | Data Container Array customisations |
+| `contao/languages/` | Translation files by language |
+| `contao/languages/de/` | German translations |
+| `contao/languages/en/` | English translations (fallback) |
 
 ---
 
-## Autoloading und Services
+## Autoloading and services
 
-### PSR-4 Autoloading
+### PSR-4 autoloading
 
-In `composer.json` ist standardmäßig konfiguriert:
+Configured by default in `composer.json`:
 
 ```json
 {
@@ -91,7 +91,7 @@ In `composer.json` ist standardmäßig konfiguriert:
 }
 ```
 
-### Service-Konfiguration (`config/services.yaml`)
+### Service configuration (`config/services.yaml`)
 
 ```yaml
 services:
@@ -103,13 +103,13 @@ services:
         resource: ../src
 ```
 
-Mit `autowire: true` und `autoconfigure: true` werden Hooks, Callbacks und Content
-Elements automatisch erkannt und registriert – kein manueller Tag-Eintrag notwendig.
+With `autowire: true` and `autoconfigure: true`, hooks, callbacks and content
+elements are detected and registered automatically – no manual tag entry is necessary.
 
-**Achtung:** Klassen, die Legacy-Contao-Framework-Klassen erweitern, benötigen manuelle
-Service-Registrierung, da sie nicht über Autoconfigure entdeckt werden.
+**Caution:** classes that extend legacy Contao framework classes require manual
+service registration, because they are not discovered through autoconfigure.
 
-### Routen-Konfiguration (`config/routes.yaml`)
+### Route configuration (`config/routes.yaml`)
 
 ```yaml
 app.controller:
@@ -119,10 +119,10 @@ app.controller:
 
 ---
 
-## DCA-Basics (Einstieg)
+## DCA basics (getting started)
 
-DCA-Anpassungen gehören in `contao/dca/<tabellenname>.php`. Beispiel: Feld `location`
-zu News-Einträgen hinzufügen:
+DCA customisations belong in `contao/dca/<tablename>.php`. Example: adding a `location`
+field to news entries:
 
 ```php
 // contao/dca/tl_news.php
@@ -142,16 +142,16 @@ PaletteManipulator::create()
 ;
 ```
 
-**Wichtig:** Nach Änderungen an Contao-Konfigurationen muss der Symfony Application
-Cache für die Produktionsumgebung neu gebaut werden. In der Entwicklungsumgebung
-werden Änderungen sofort wirksam.
+**Important:** after changes to Contao configurations, the Symfony application
+cache must be rebuilt for the production environment. In the development environment
+changes take effect immediately.
 
 ---
 
-## Hooks-Überblick (Einstieg)
+## Hooks overview (getting started)
 
-Hooks erlauben das Einschleusen eigener Logik in bestimmte Ausführungspunkte des Frameworks.
-Registrierung über das `#[AsHook]`-Attribut:
+Hooks allow injecting your own logic at specific execution points of the framework.
+Registration via the `#[AsHook]` attribute:
 
 ```php
 // src/EventListener/ParseArticlesListener.php
@@ -173,7 +173,7 @@ class ParseArticlesListener
 }
 ```
 
-Dependency Injection funktioniert in Hooks über den Constructor:
+Dependency injection works in hooks through the constructor:
 
 ```php
 #[AsHook('updatePersonalData')]
@@ -192,17 +192,17 @@ class UpdatePersonalDataListener
 
 ---
 
-## Translations im Einstieg
+## Translations when getting started
 
-Übersetzungen werden in `contao/languages/<sprache>/` abgelegt. Beispiel für
-Änderung eines bestehenden Labels:
+Translations are placed in `contao/languages/<language>/`. Example for
+changing an existing label:
 
 ```php
 // contao/languages/en/default.php
 $GLOBALS['TL_LANG']['MSC']['more'] = 'more';
 ```
 
-Ab Contao 5.3 ist auch das Symfony-Translations-Format mit `contao_`-Präfix möglich:
+As of Contao 5.3 the Symfony translations format with the `contao_` prefix is also possible:
 
 ```yaml
 # translations/contao_default.en.yaml
@@ -212,14 +212,14 @@ MSC:
 
 ---
 
-## Content Elements & Module (Einstieg)
+## Content elements & modules (getting started)
 
-Für ein einfaches Content Element werden benötigt:
-1. Controller-Klasse (PHP)
-2. DCA-Palette
-3. Twig-Template
+A simple content element requires:
+1. Controller class (PHP)
+2. DCA palette
+3. Twig template
 
-Kurzbeispiel:
+Short example:
 
 ```php
 // src/Controller/ContentElement/MyContentElementController.php
@@ -249,22 +249,22 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['my_content_element'] = '
 {% endblock %}
 ```
 
-Das `contao/maker-bundle` kann Dateien automatisch über `make:contao:content-element`
-bzw. `make:contao:frontend-module` generieren.
+The `contao/maker-bundle` can generate files automatically via `make:contao:content-element`
+or `make:contao:frontend-module`.
 
 ---
 
-## Weiterführende Skills
+## Further skills
 
-- `contao-initial-setup` — Managed Edition vs. Symfony Application, Installation
-- `contao-core-concepts` — Alle Kernkonzepte im Überblick
-- `contao-extension-bundle` — Bundle erstellen und veröffentlichen
-- `contao-content-elements` — Vollständige Content-Element-Dokumentation
-- `contao-templates` — Twig-Template-System
+- `contao-initial-setup` — Managed Edition vs. Symfony application, installation
+- `contao-core-concepts` — all core concepts at a glance
+- `contao-extension-bundle` — creating and publishing a bundle
+- `contao-content-elements` — complete content element documentation
+- `contao-templates` — Twig template system
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/getting-started/*  
+*Source: https://docs.contao.org/5.x/dev/getting-started/*  
 *https://docs.contao.org/5.x/dev/getting-started/starting-development/*  
 *https://docs.contao.org/5.x/dev/getting-started/dca/*  
 *https://docs.contao.org/5.x/dev/getting-started/hooks/*  

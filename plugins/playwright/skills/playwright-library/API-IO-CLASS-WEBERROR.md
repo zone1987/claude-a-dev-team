@@ -175,7 +175,7 @@ if (errors.length > 0) {
 | Properties | 0     |
 | Events    | 0 (1 context event: 'weberror') |
 
-**Conclusion:** `error()` provides the actual error including the stack trace.
+**Summary:** `error()` provides the actual error including the stack trace.
 `location()` (from v1.60) is essential for source location mapping in
 source map scenarios. `page()` helps to attribute errors in a multi-page context
 to the correct page.

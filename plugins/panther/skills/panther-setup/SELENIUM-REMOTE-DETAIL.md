@@ -1,22 +1,22 @@
-# Panther — Selenium, Remote WebDriver und fortgeschrittene Client-Konfiguration
+# Panther — Selenium, remote WebDriver and advanced client configuration
 
 ## Contents
 
-- [Selenium Grid mit Built-In-Webserver](#selenium-grid-mit-built-in-webserver)
-- [Externer Webserver](#externer-webserver)
-- [Multi-Domain-Applikationen](#multi-domain-applikationen)
-- [Proxy-Konfiguration](#proxy-konfiguration)
-- [Self-Signed-SSL-Zertifikate akzeptieren](#self-signed-ssl-zertifikate-akzeptieren)
-- [ChromeDriver-Argumente (nicht Browser-Argumente)](#chromedriver-argumente-nicht-browser-argumente)
-- [Timeouts konfigurieren](#timeouts-konfigurieren)
-- [DesiredCapabilities — Referenz](#desiredcapabilities-referenz)
+- [Selenium Grid with the built-in web server](#selenium-grid-with-the-built-in-web-server)
+- [External web server](#external-web-server)
+- [Multi-domain applications](#multi-domain-applications)
+- [Proxy configuration](#proxy-configuration)
+- [Accepting self-signed SSL certificates](#accepting-self-signed-ssl-certificates)
+- [ChromeDriver arguments (not browser arguments)](#chromedriver-arguments-not-browser-arguments)
+- [Configuring timeouts](#configuring-timeouts)
+- [DesiredCapabilities — reference](#desiredcapabilities--reference)
 - [Selenium Grid docker-compose](#selenium-grid-docker-compose)
-- [Quellen](#quellen)
+- [Sources](#sources)
 
-## Selenium Grid mit Built-In-Webserver
+## Selenium Grid with the built-in web server
 
-Panther kann seinen eigenen PHP Built-In-Webserver starten und gleichzeitig einen
-Remote-WebDriver (Selenium Grid) als Browser verwenden.
+Panther can start its own PHP built-in web server and at the same time use a
+remote WebDriver (Selenium Grid) as the browser.
 
 ```php
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -27,20 +27,20 @@ class SeleniumGridTest extends PantherTestCase
     public function testWithSeleniumGrid(): void
     {
         $client = static::createPantherClient(
-            [],   // Web-Server-Optionen (Built-In-Server wird normal gestartet)
-            [],   // Kernel-Optionen
+            [],   // Web server options (the built-in server is started as usual)
+            [],   // Kernel options
             [
                 'host'         => 'http://selenium-hub:4444',
                 'capabilities' => DesiredCapabilities::firefox(),
             ]
         );
-        // browser => SELENIUM muss in $options gesetzt werden:
+        // browser => SELENIUM must be set in $options:
         // static::createPantherClient(['browser' => static::SELENIUM], [], [...])
     }
 }
 ```
 
-Korrektes Beispiel mit `browser => SELENIUM`:
+Correct example with `browser => SELENIUM`:
 
 ```php
 $client = static::createPantherClient(
@@ -55,69 +55,69 @@ $client = static::createPantherClient(
 );
 ```
 
-### Direkte Client-Erstellung ohne TestCase
+### Creating the client directly without a TestCase
 
 ```php
 use Symfony\Component\Panther\Client;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-// Einfachste Form
+// Simplest form
 $client = Client::createSeleniumClient('http://127.0.0.1:4444/wd/hub');
 
-// Mit Capabilities
+// With capabilities
 $client = Client::createSeleniumClient(
     host: 'http://selenium-hub:4444/wd/hub',
     capabilities: DesiredCapabilities::firefox(),
     baseUri: 'http://myapp.test'
 );
 
-// Mit zusaetzlichen Optionen
+// With additional options
 $client = Client::createSeleniumClient(
     host: 'http://selenium-hub:4444/wd/hub',
     capabilities: DesiredCapabilities::chrome(),
     baseUri: null,
     options: [
-        // Optionen fuer SeleniumManager
+        // Options for SeleniumManager
     ]
 );
 ```
 
 ---
 
-## Externer Webserver
+## External web server
 
-Wenn die Applikation auf einem externen Server laeuft (z.B. nginx, Apache, oder
-Symfony CLI), wird der Built-In-Server nicht gestartet.
+If the application runs on an external server (e.g. nginx, Apache, or the
+Symfony CLI), the built-in server is not started.
 
 ```php
-// Programmatisch
+// Programmatically
 $client = static::createPantherClient([
     'external_base_uri' => 'https://localhost:8000',
 ]);
 
-// Via Umgebungsvariable in .env.test:
+// Via environment variable in .env.test:
 // PANTHER_EXTERNAL_BASE_URI=https://localhost:8000
 
 // Via phpunit.dist.xml:
 // <server name="PANTHER_EXTERNAL_BASE_URI" value="https://localhost:8000"/>
 ```
 
-Symfony CLI (Development-Server) als externer Server:
+Symfony CLI (development server) as the external server:
 
 ```bash
-# Terminal 1: Symfony-Server starten
+# Terminal 1: start the Symfony server
 symfony serve --port=8000
 
-# Terminal 2: Tests laufen lassen
+# Terminal 2: run the tests
 PANTHER_EXTERNAL_BASE_URI=https://localhost:8000 ./vendor/bin/phpunit
 ```
 
 ---
 
-## Multi-Domain-Applikationen
+## Multi-domain applications
 
-Wenn der Test eine bestimmte Domain braucht, muss er im eigenen Prozess laufen,
-da Panther nur eine Basis-URI pro Prozess unterstuetzt.
+If a test needs a specific domain, it must run in its own process,
+because Panther supports only one base URI per process.
 
 ```php
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -152,28 +152,28 @@ class TenantBTest extends PantherTestCase
 
 ---
 
-## Proxy-Konfiguration
+## Proxy configuration
 
-### SOCKS-Proxy (Chrome)
+### SOCKS proxy (Chrome)
 
 ```bash
 # .env.test
 PANTHER_CHROME_ARGUMENTS='--proxy-server=socks://127.0.0.1:9050'
 ```
 
-### HTTP/HTTPS-Proxy (Chrome)
+### HTTP/HTTPS proxy (Chrome)
 
 ```bash
 PANTHER_CHROME_ARGUMENTS='--proxy-server=http://proxy.example.com:8080'
 ```
 
-### Proxy-Bypass fuer lokale Adressen
+### Proxy bypass for local addresses
 
 ```bash
 PANTHER_CHROME_ARGUMENTS='--proxy-server=http://proxy:8080 --proxy-bypass-list=localhost,127.0.0.1'
 ```
 
-### Firefox-Proxy (programmatisch)
+### Firefox proxy (programmatically)
 
 ```php
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -192,7 +192,7 @@ $client = Client::createFirefoxClient(null, null, [
 
 ---
 
-## Self-Signed-SSL-Zertifikate akzeptieren
+## Accepting self-signed SSL certificates
 
 ### Chrome
 
@@ -201,7 +201,7 @@ $client = Client::createFirefoxClient(null, null, [
 PANTHER_CHROME_ARGUMENTS='--ignore-certificate-errors'
 ```
 
-### Firefox (programmatisch)
+### Firefox (programmatically)
 
 ```php
 $client = Client::createFirefoxClient(null, null, [
@@ -211,7 +211,7 @@ $client = Client::createFirefoxClient(null, null, [
 ]);
 ```
 
-### Firefox im TestCase
+### Firefox inside the TestCase
 
 ```php
 $client = static::createPantherClient(
@@ -227,11 +227,11 @@ $client = static::createPantherClient(
 
 ---
 
-## ChromeDriver-Argumente (nicht Browser-Argumente)
+## ChromeDriver arguments (not browser arguments)
 
-ChromeDriver selbst akzeptiert eigene Kommandozeilen-Argumente (verschieden von
-Browser-Argumenten). Diese werden ueber `chromedriver_arguments` in `$managerOptions`
-uebergeben.
+ChromeDriver itself accepts its own command line arguments (different from
+browser arguments). They are passed via `chromedriver_arguments` in
+`$managerOptions`.
 
 ```php
 $client = static::createPantherClient(
@@ -240,12 +240,12 @@ $client = static::createPantherClient(
     [
         'chromedriver_arguments' => [
             '--log-path=/var/log/chromedriver.log',
-            '--log-level=DEBUG',         // Wertebereich: ALL, DEBUG, INFO, WARNING, SEVERE, OFF
-            '--verbose',                 // Ausfuehrliche Ausgabe (entspricht --log-level=ALL)
-            '--silent',                  // Keine Ausgaben (entspricht --log-level=OFF)
-            '--port=9516',               // Alternativer Port (normalerweise automatisch gesetzt)
-            '--whitelisted-ips=',        // Leer = alle IPs erlaubt (fuer Docker-Setups)
-            '--allowed-ips=',            // Neueres Alias fuer --whitelisted-ips
+            '--log-level=DEBUG',         // Value range: ALL, DEBUG, INFO, WARNING, SEVERE, OFF
+            '--verbose',                 // Verbose output (equivalent to --log-level=ALL)
+            '--silent',                  // No output (equivalent to --log-level=OFF)
+            '--port=9516',               // Alternative port (normally set automatically)
+            '--whitelisted-ips=',        // Empty = all IPs allowed (for Docker setups)
+            '--allowed-ips=',            // Newer alias for --whitelisted-ips
         ],
     ]
 );
@@ -253,52 +253,52 @@ $client = static::createPantherClient(
 
 ---
 
-## Timeouts konfigurieren
+## Configuring timeouts
 
-### Verbindungs- und Request-Timeouts (WebDriver-Ebene)
+### Connection and request timeouts (WebDriver level)
 
 ```php
 $client = Client::createChromeClient(
     chromeDriverBinary: null,
     arguments: null,
     options: [
-        'connection_timeout_in_ms' => 30000,  // 30 Sekunden
-        'request_timeout_in_ms'    => 60000,  // 60 Sekunden
+        'connection_timeout_in_ms' => 30000,  // 30 seconds
+        'request_timeout_in_ms'    => 60000,  // 60 seconds
     ]
 );
 
-// Entsprechend im TestCase:
+// Equivalent inside the TestCase:
 $client = static::createPantherClient([], [], [
     'connection_timeout_in_ms' => 30000,
     'request_timeout_in_ms'    => 60000,
 ]);
 ```
 
-### WebDriver-Wait-Timeouts (Test-Ebene)
+### WebDriver wait timeouts (test level)
 
 ```php
-// Script-Timeout fuer executeAsyncScript
-$client->manage()->timeouts()->setScriptTimeout(10); // Sekunden
+// Script timeout for executeAsyncScript
+$client->manage()->timeouts()->setScriptTimeout(10); // seconds
 
-// Impliziter Wait (nicht empfohlen, kann mit explizitem waitFor() kollidieren)
+// Implicit wait (not recommended, can collide with an explicit waitFor())
 $client->manage()->timeouts()->implicitlyWait(0);
 
-// Seiten-Lade-Timeout
+// Page load timeout
 $client->manage()->timeouts()->pageLoadTimeout(30);
 ```
 
 ---
 
-## DesiredCapabilities — Referenz
+## DesiredCapabilities — reference
 
 ```php
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 
-// Chrome mit erweiterten Capabilities
+// Chrome with extended capabilities
 $capabilities = DesiredCapabilities::chrome();
 
-// Accessibility-Features deaktivieren (fuer stabile Tests)
+// Disable accessibility features (for stable tests)
 $chromeOptions = new ChromeOptions();
 $chromeOptions->addArguments([
     '--disable-extensions',
@@ -307,13 +307,13 @@ $chromeOptions->addArguments([
 ]);
 $capabilities->setCapability(ChromeOptions::CAPABILITY, $chromeOptions);
 
-// Logging aktivieren
+// Enable logging
 $capabilities->setCapability('goog:loggingPrefs', [
     'browser'     => 'ALL',
     'performance' => 'ALL',
 ]);
 
-// Im TestCase verwenden
+// Use inside the TestCase
 $client = static::createPantherClient([], [], [
     'capabilities' => $capabilities->toArray(),
 ]);
@@ -364,14 +364,14 @@ services:
       - selenium-hub
 ```
 
-Tests dann ausfuehren:
+Then run the tests:
 ```bash
 docker compose -f docker-compose.selenium.yml run app vendor/bin/phpunit
 ```
 
 ---
 
-## Quellen
+## Sources
 
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther/blob/main/src/Client.php

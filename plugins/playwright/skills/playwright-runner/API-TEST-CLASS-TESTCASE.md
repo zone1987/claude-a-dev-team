@@ -197,9 +197,9 @@ for (const entry of suite.entries()) {
 | Methods | 3 (`ok`, `outcome`, `titlePath`) |
 | Properties | 12 (`annotations`, `expectedStatus`, `id`, `location`, `parent`, `repeatEachIndex`, `results`, `retries`, `tags`, `timeout`, `title`, `type`) |
 
-**Fazit:** `TestCase` ist die Reporter-Sicht auf einen einzelnen Test. `outcome()` ist die
-wichtigste Methode fuer CI-Entscheidungen. `results` enthaelt alle Ausfuehrungs-Instanzen
-inklusive Retries mit vollstaendigen Timing- und Fehlerinformationen.
+**Summary:** `TestCase` is the reporter's view of a single test. `outcome()` is the
+most important method for CI decisions. `results` contains all execution instances
+including retries, with complete timing and error information.
 
 ---
 

@@ -1,6 +1,6 @@
 # panther-selenium-remote
 
-Selenium Grid, Remote-WebDriver, externer Webserver, Proxy, SSL und Multi-Domain-
-Konfiguration mit Panther.
+Selenium Grid, remote WebDriver, external web server, proxy, SSL and multi-domain
+configuration with Panther.
 
-Siehe `SELENIUM-REMOTE-DETAIL.md` fuer vollstaendige Beispiele.
+See `SELENIUM-REMOTE-DETAIL.md` for complete examples.

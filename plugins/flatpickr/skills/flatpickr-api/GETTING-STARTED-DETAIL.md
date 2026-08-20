@@ -103,7 +103,7 @@ flatpickr("#date");                      // no options
 flatpickr("#date", { inline: true });   // with options
 ```
 
-The complete options reference: see [flatpickr-options](../../flatpickr-options/SKILL.md).
+The complete options reference: see [flatpickr-options](OPTIONS.md).
 
 ## Supported input types
 
@@ -166,7 +166,7 @@ const fp: Instance = flatpickr("#myDate", opts) as Instance;
 | IE 10+ | yes |
 | IE 9 | with polyfill (classList) |
 
-For IE9 details: see [flatpickr-migration](../../flatpickr-migration/SKILL.md).
+For IE9 details: see [flatpickr-migration](MIGRATION.md).
 
 ---
 

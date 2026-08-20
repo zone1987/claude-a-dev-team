@@ -13,7 +13,7 @@ Can be customized with any SVG icon.
 
 ## References
 
-- [installation.md](`SPINNER-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SPINNER-SOURCE.md`) — Complete component source + custom variant
-- [api.md](`SPINNER-API.md`) — Props table
-- [examples.md](`SPINNER-EXAMPLES.md`) — All examples (demo, size, button, badge, color, input-group, empty, item)
+- [SPINNER-INSTALLATION.md](SPINNER-INSTALLATION.md) — CLI & manual setup
+- [SPINNER-SOURCE.md](SPINNER-SOURCE.md) — Complete component source + custom variant
+- [SPINNER-API.md](SPINNER-API.md) — Props table
+- [SPINNER-EXAMPLES.md](SPINNER-EXAMPLES.md) — All examples (demo, size, button, badge, color, input-group, empty, item)

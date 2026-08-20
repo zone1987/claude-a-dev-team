@@ -1,9 +1,9 @@
-# Gotenberg — PDF Lesezeichen (Lesen & Schreiben)
+# Gotenberg — PDF Bookmarks (Reading & Writing)
 
-Extrahiert die Dokumentgliederung (hierarchische Bookmarks) als JSON
-oder schreibt neue Lesezeichen in PDFs.
-Referenz: `BOOKMARKS-DETAIL.md`
+Extracts the document outline (hierarchical bookmarks) as JSON
+or writes new bookmarks into PDFs.
+Reference: `BOOKMARKS-DETAIL.md`
 
-Routen:
-- `POST /forms/pdfengines/bookmarks/read` → JSON-Antwort
+Routes:
+- `POST /forms/pdfengines/bookmarks/read` → JSON response
 - `POST /forms/pdfengines/bookmarks/write` → PDF/ZIP

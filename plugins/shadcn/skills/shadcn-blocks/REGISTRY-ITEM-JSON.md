@@ -9,11 +9,11 @@ installable item in any shadcn registry.
 
 ## References
 
-- [fields.md](`REGISTRY-ITEM-JSON-FIELDS.md`) — Every top-level field documented
-- [types.md](`REGISTRY-ITEM-JSON-TYPES.md`) — All `registry:*` type values
-- [files.md](`REGISTRY-ITEM-JSON-FILES.md`) — `files[]` object: path, type, target, placeholders
-- [cssvars-css.md](`REGISTRY-ITEM-JSON-CSSVARS-CSS.md`) — `cssVars`, `css`, animations
-- [advanced.md](`REGISTRY-ITEM-JSON-ADVANCED.md`) — `font`, `envVars`, `tailwind`, `meta`, `categories`, `docs`, `extends`, `config`
+- [REGISTRY-ITEM-JSON-FIELDS.md](REGISTRY-ITEM-JSON-FIELDS.md) — Every top-level field documented
+- [REGISTRY-ITEM-JSON-TYPES.md](REGISTRY-ITEM-JSON-TYPES.md) — All `registry:*` type values
+- [REGISTRY-ITEM-JSON-FILES.md](REGISTRY-ITEM-JSON-FILES.md) — `files[]` object: path, type, target, placeholders
+- [REGISTRY-ITEM-JSON-CSSVARS-CSS.md](REGISTRY-ITEM-JSON-CSSVARS-CSS.md) — `cssVars`, `css`, animations
+- [REGISTRY-ITEM-JSON-ADVANCED.md](REGISTRY-ITEM-JSON-ADVANCED.md) — `font`, `envVars`, `tailwind`, `meta`, `categories`, `docs`, `extends`, `config`
 
 ## Minimal example
 

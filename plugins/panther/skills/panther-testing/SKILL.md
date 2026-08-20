@@ -9,14 +9,14 @@ Panther drives a real browser through the familiar BrowserKit API. waitFor* is w
 
 ## Reference map
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Symfony Panther ist eine Browser-Testing- und Web-Crawling-Bibliothek fur PHP.
-- **[BROWSERKIT-CLIENTS.md](BROWSERKIT-CLIENTS.md)**: BrowserKit-Clients als schnelle Alternative zum WebDriver fuer Tests ohne JavaScript- Bedarf. [BROWSERKIT-CLIENTS-DETAIL](BROWSERKIT-CLIENTS-DETAIL.md).
-- **[CLIENT.md](CLIENT.md)**: Alle waitFor-Methoden: `timeoutInSecond = 30`, `intervalInMillisecond = 250`. [CLIENT-DETAIL](CLIENT-DETAIL.md), [CLIENT-EXPECTED-CONDITIONS](CLIENT-EXPECTED-CONDITIONS.md), [CLIENT-WEBDRIVER-CHECKBOX](CLIENT-WEBDRIVER-CHECKBOX.md).
+- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Symfony Panther is a browser-testing and web-crawling library for PHP.
+- **[BROWSERKIT-CLIENTS.md](BROWSERKIT-CLIENTS.md)**: BrowserKit clients as a fast alternative to the WebDriver for tests that do not need JavaScript. [BROWSERKIT-CLIENTS-DETAIL](BROWSERKIT-CLIENTS-DETAIL.md).
+- **[CLIENT.md](CLIENT.md)**: All waitFor methods: `timeoutInSecond = 30`, `intervalInMillisecond = 250`. [CLIENT-DETAIL](CLIENT-DETAIL.md), [CLIENT-EXPECTED-CONDITIONS](CLIENT-EXPECTED-CONDITIONS.md), [CLIENT-WEBDRIVER-CHECKBOX](CLIENT-WEBDRIVER-CHECKBOX.md).
 - **[CRAWLER.md](CRAWLER.md)** [CRAWLER-DETAIL](CRAWLER-DETAIL.md).
 - **[INTERACTIONS.md](INTERACTIONS.md)** [INTERACTIONS-DETAIL](INTERACTIONS-DETAIL.md).
-- **[JAVASCRIPT-SCREENSHOTS.md](JAVASCRIPT-SCREENSHOTS.md)**: JavaScript ausfuehren, Browser-Logs auslesen, Screenshots erstellen und Real-Time- Applikationen mit mehreren…. [JAVASCRIPT-SCREENSHOTS-DETAIL](JAVASCRIPT-SCREENSHOTS-DETAIL.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: Panther ist eine Browser-Testing- und Web-Crawling-Bibliothek fur PHP, die echte Browser uber das W3C-WebDriv….
-- **[TESTCASE.md](TESTCASE.md)**: Direkte: `assertPageTitleSame`, `assertPageTitleContains`, `assertSelectorExists`, `assertSelectorNotExists`,…. [TESTCASE-DETAIL](TESTCASE-DETAIL.md).
+- **[JAVASCRIPT-SCREENSHOTS.md](JAVASCRIPT-SCREENSHOTS.md)**: Execute JavaScript, read browser logs, create screenshots and test real-time applications with multiple…. [JAVASCRIPT-SCREENSHOTS-DETAIL](JAVASCRIPT-SCREENSHOTS-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: Panther is a browser-testing and web-crawling library for PHP that drives real browsers via the W3C WebDriv….
+- **[TESTCASE.md](TESTCASE.md)**: Direct: `assertPageTitleSame`, `assertPageTitleContains`, `assertSelectorExists`, `assertSelectorNotExists`,…. [TESTCASE-DETAIL](TESTCASE-DETAIL.md).
 
 ## Source
 

@@ -1,7 +1,7 @@
 # panther-browserkit-clients
 
-BrowserKit-Clients als schnelle Alternative zum WebDriver fuer Tests ohne JavaScript-
-Bedarf.
+BrowserKit clients as a fast alternative to the WebDriver for tests that do not need
+JavaScript.
 
-Siehe `BROWSERKIT-CLIENTS-DETAIL.md` fuer vollstaendige Beispiele und
-Abwaegungen.
+See `BROWSERKIT-CLIENTS-DETAIL.md` for complete examples and
+trade-offs.

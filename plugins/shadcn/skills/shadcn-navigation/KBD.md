@@ -4,7 +4,7 @@ Displays textual user input from the keyboard. Use `Kbd` for single keys and `Kb
 
 ## References
 
-- [installation.md](`KBD-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`KBD-SOURCE.md`) — Complete component source code
-- [api.md](`KBD-API.md`) — Props reference
-- [examples.md](`KBD-EXAMPLES.md`) — All usage examples
+- [KBD-INSTALLATION.md](KBD-INSTALLATION.md) — CLI and manual setup
+- [KBD-SOURCE.md](KBD-SOURCE.md) — Complete component source code
+- [KBD-API.md](KBD-API.md) — Props reference
+- [KBD-EXAMPLES.md](KBD-EXAMPLES.md) — All usage examples

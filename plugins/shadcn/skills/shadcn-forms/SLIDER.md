@@ -12,8 +12,8 @@ Supports single value, range (two thumbs), multiple thumbs, and vertical orienta
 
 ## References
 
-- [installation.md](`SLIDER-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SLIDER-SOURCE.md`) — Complete component source (new-york-v4 / radix)
-- [api.md](`SLIDER-API.md`) — Props table
-- [examples.md](`SLIDER-EXAMPLES.md`) — Demo example
-- [base-vs-radix.md](`SLIDER-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [SLIDER-INSTALLATION.md](SLIDER-INSTALLATION.md) — CLI & manual setup
+- [SLIDER-SOURCE.md](SLIDER-SOURCE.md) — Complete component source (new-york-v4 / radix)
+- [SLIDER-API.md](SLIDER-API.md) — Props table
+- [SLIDER-EXAMPLES.md](SLIDER-EXAMPLES.md) — Demo example
+- [SLIDER-BASE-VS-RADIX.md](SLIDER-BASE-VS-RADIX.md) — Differences between base and radix variants

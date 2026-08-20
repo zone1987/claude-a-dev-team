@@ -1,11 +1,11 @@
-# @shopware-ag/meteor-admin-sdk — Erschöpfende Referenz
+# @shopware-ag/meteor-admin-sdk — Exhaustive reference
 
-Quelle: `packages/admin-sdk/src/` im Meteor-Monorepo.
+Source: `packages/admin-sdk/src/` in the Meteor monorepo.
 
 ## Contents
 
-- [Installation & Initialisierung](#installation-initialisierung)
-- [Namespace-Übersicht](#namespace-übersicht)
+- [Installation & initialization](#installation-initialization)
+- [Namespace overview](#namespace-overview)
 - [`ui.menu`](#uimenu)
 - [`ui.mainModule`](#uimainmodule)
 - [`ui.modal`](#uimodal)
@@ -21,76 +21,76 @@ Quelle: `packages/admin-sdk/src/` im Meteor-Monorepo.
 - [`context`](#context)
 - [`location`](#location)
 - [`window`](#window)
-- [`data` — Dataset-API](#data-dataset-api)
+- [`data` — dataset API](#data-dataset-api)
 - [`data.repository`](#datarepository)
-- [`Criteria`-Klasse](#criteria-klasse)
+- [`Criteria` class](#criteria-class)
 - [`composables`](#composables)
 - [`app.webhook`](#appwebhook)
 - [`iap`](#iap)
 - [`telemetry`](#telemetry)
 - [`consent`](#consent)
-- [`EntitySchema`-Namespace](#entityschema-namespace)
+- [`EntitySchema` namespace](#entityschema-namespace)
 
-## Installation & Initialisierung
+## Installation & initialization
 
 ```bash
 npm install @shopware-ag/meteor-admin-sdk
 ```
 
-### iFrame-App (Shopware App)
+### iFrame app (Shopware app)
 
-Eine iFrame-App ruft die SDK-Funktionen direkt auf — das SDK kommuniziert per `postMessage`
-mit dem Admin-Parent-Fenster. Kein separater Init-Aufruf nötig; jeder `send`-Aufruf registriert
-die App automatisch.
+An iFrame app calls the SDK functions directly — the SDK communicates via `postMessage`
+with the admin parent window. No separate init call needed; every `send` call registers
+the app automatically.
 
 ```js
 import { location, notification, ui } from '@shopware-ag/meteor-admin-sdk';
 
-// Höhe des iFrames automatisch anpassen
+// adjust the iFrame height automatically
 location.startAutoResizer();
 
-// Menüeintrag hinzufügen
+// add a menu item
 await ui.menu.addMenuItem({
-  label: 'Mein Modul',
+  label: 'My module',
   locationId: 'my-plugin-main',
   parent: 'sw-extension',
 });
 ```
 
-### Plugin (Shopware Plugin, kein iFrame)
+### Plugin (Shopware plugin, no iFrame)
 
-Plugins, die im selben Fenster wie der Admin laufen, können dieselben Funktionen nutzen.
-`location.isIframe()` gibt `false` zurück; `location.is(id)` vergleicht die locationId
-aus dem URL-Parameter `?locationId=...`.
+Plugins that run in the same window as the admin can use the same functions.
+`location.isIframe()` returns `false`; `location.is(id)` compares the locationId
+from the URL parameter `?locationId=...`.
 
 ---
 
-## Namespace-Übersicht
+## Namespace overview
 
-| Import | Namespace | Beschreibung |
+| Import | Namespace | Description |
 |---|---|---|
-| `ui.menu` | `ui/menu` | Menüeinträge |
-| `ui.mainModule` | `ui/main-module` | Hauptmodul-Registration |
-| `ui.module.payment` | `ui/module/payment` | Zahlungs-Übersichtskarten |
-| `ui.modal` | `ui/modal` | Modals öffnen/schließen/updaten |
-| `ui.sidebar` | `ui/sidebar` | Seitenleisten |
-| `ui.actionButton` | `ui/action-button` | Aktionsbuttons in Entity-Listen/-Detailseiten |
-| `ui.tabs` | `ui/tabs` | Tabs an bestehenden Tab-Positionen hinzufügen |
-| `ui.settings` | `ui/settings` | Einträge in Einstellungen |
-| `ui.componentSection` | `ui/component-section` | Card/Div-Abschnitte in bestehende Seiten einfügen |
-| `ui.mediaModal` | `ui/media-modal` | Media-Picker-Modal öffnen |
-| `cms` | `ui/cms` | CMS-Elemente und -Blöcke registrieren |
-| `notification` | `notification` | Benachrichtigungen |
-| `toast` | `toast` | Toast-Nachrichten |
-| `context` | `context` | Kontext-Daten (Sprache, Locale, User, …) |
-| `location` | `location` | iFrame-Location-Hilfsmethoden |
-| `window` | `window` | Redirect, Router-Push, Reload |
-| `data` | `data` | Dataset-API (subscribe/get/update) + repository |
-| `composables` | `data/composables` | Vue-Composables |
-| `app.webhook` | `app/action` | Webhook-Actions ausführen |
-| `iap` | `iap` | In-App-Purchase Checkout |
-| `telemetry` | `telemetry` | Telemetrie-Events |
-| `consent` | `consent` | Consent-Management |
+| `ui.menu` | `ui/menu` | Menu items |
+| `ui.mainModule` | `ui/main-module` | Main module registration |
+| `ui.module.payment` | `ui/module/payment` | Payment overview cards |
+| `ui.modal` | `ui/modal` | Open/close/update modals |
+| `ui.sidebar` | `ui/sidebar` | Sidebars |
+| `ui.actionButton` | `ui/action-button` | Action buttons in entity lists/detail pages |
+| `ui.tabs` | `ui/tabs` | Add tabs at existing tab positions |
+| `ui.settings` | `ui/settings` | Entries in the settings |
+| `ui.componentSection` | `ui/component-section` | Insert card/div sections into existing pages |
+| `ui.mediaModal` | `ui/media-modal` | Open the media picker modal |
+| `cms` | `ui/cms` | Register CMS elements and blocks |
+| `notification` | `notification` | Notifications |
+| `toast` | `toast` | Toast messages |
+| `context` | `context` | Context data (language, locale, user, …) |
+| `location` | `location` | iFrame location helper methods |
+| `window` | `window` | Redirect, router push, reload |
+| `data` | `data` | Dataset API (subscribe/get/update) + repository |
+| `composables` | `data/composables` | Vue composables |
+| `app.webhook` | `app/action` | Execute webhook actions |
+| `iap` | `iap` | In-app purchase checkout |
+| `telemetry` | `telemetry` | Telemetry events |
+| `consent` | `consent` | Consent management |
 
 ---
 
@@ -98,24 +98,24 @@ aus dem URL-Parameter `?locationId=...`.
 
 ### `ui.menu.addMenuItem(options)`
 
-Fügt einen Menüeintrag in die Shopware-Administration ein.
+Inserts a menu item into the Shopware Administration.
 
-**Parameter:**
+**Parameters:**
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `label` | `string` | ja | — | Anzeigetext |
-| `locationId` | `string` | ja | — | ID der anzuzeigenden Location |
-| `displaySearchBar` | `boolean` | nein | `true` | Suchleiste anzeigen |
-| `displaySmartBar` | `boolean` | nein | `true` | Smart-Bar anzeigen |
-| `parent` | `string` | nein | `'sw-extension'` | Übergeordneter Menüpunkt |
-| `position` | `number` | nein | `110` | Sortierposition |
+| `label` | `string` | yes | — | Display text |
+| `locationId` | `string` | yes | — | ID of the location to display |
+| `displaySearchBar` | `boolean` | no | `true` | Show the search bar |
+| `displaySmartBar` | `boolean` | no | `true` | Show the smart bar |
+| `parent` | `string` | no | `'sw-extension'` | Parent menu entry |
+| `position` | `number` | no | `110` | Sort position |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```js
 await ui.menu.addMenuItem({
-  label: 'Mein Plugin',
+  label: 'My plugin',
   locationId: 'my-plugin-main',
   parent: 'sw-catalogue',
   position: 50,
@@ -124,11 +124,11 @@ await ui.menu.addMenuItem({
 
 ### `ui.menu.collapseMenu()`
 
-Klappt das Seitenmenü ein. **Rückgabe:** `Promise<void>`
+Collapses the side menu. **Returns:** `Promise<void>`
 
 ### `ui.menu.expandMenu()`
 
-Klappt das Seitenmenü aus. **Rückgabe:** `Promise<void>`
+Expands the side menu. **Returns:** `Promise<void>`
 
 ---
 
@@ -136,41 +136,41 @@ Klappt das Seitenmenü aus. **Rückgabe:** `Promise<void>`
 
 ### `ui.mainModule.addMainModule(options)`
 
-Registriert ein Hauptmodul (eigener Admin-Bereich mit LocationId).
+Registers a main module (a dedicated admin area with a locationId).
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `heading` | `string` | ja | — | Titel des Moduls |
-| `locationId` | `string` | ja | — | LocationId |
-| `displaySearchBar` | `boolean` | nein | `true` | Suchleiste anzeigen |
-| `displayLanguageSwitch` | `boolean` | nein | `false` | Sprachschalter anzeigen |
+| `heading` | `string` | yes | — | Title of the module |
+| `locationId` | `string` | yes | — | LocationId |
+| `displaySearchBar` | `boolean` | no | `true` | Show the search bar |
+| `displayLanguageSwitch` | `boolean` | no | `false` | Show the language switch |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `ui.mainModule.addSmartBarButton(options)`
 
-Fügt einen Button in die SmartBar des Hauptmoduls ein.
+Inserts a button into the SmartBar of the main module.
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `locationId` | `string` | ja | — | LocationId |
-| `buttonId` | `string` | ja | — | Eindeutige Button-ID |
-| `label` | `string` | ja | — | Button-Text |
-| `variant` | `'primary'\|'ghost'\|'danger'\|'ghost-danger'\|'contrast'\|'context'` | ja | — | Variante |
-| `disabled` | `boolean` | nein | `false` | Deaktiviert |
-| `onClickCallback` | `() => void` | ja | — | Click-Handler |
+| `locationId` | `string` | yes | — | LocationId |
+| `buttonId` | `string` | yes | — | Unique button ID |
+| `label` | `string` | yes | — | Button text |
+| `variant` | `'primary'\|'ghost'\|'danger'\|'ghost-danger'\|'contrast'\|'context'` | yes | — | Variant |
+| `disabled` | `boolean` | no | `false` | Disabled |
+| `onClickCallback` | `() => void` | yes | — | Click handler |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `ui.mainModule.hideSmartBar(options)`
 
-Versteckt die SmartBar für eine LocationId.
+Hides the SmartBar for a locationId.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `locationId` | `string` | ja | LocationId |
+| `locationId` | `string` | yes | LocationId |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -178,18 +178,18 @@ Versteckt die SmartBar für eine LocationId.
 
 ### `ui.modal.open(options)`
 
-Öffnet ein Modal.
+Opens a modal.
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `title` | `string` | nein | — | Titel |
-| `locationId` | `string` | nein | — | LocationId für iFrame-Inhalt |
-| `textContent` | `string` | nein | — | Textinhalt (wenn kein locationId) |
-| `variant` | `'default'\|'small'\|'large'\|'full'` | nein | `'default'` | Größe |
-| `showHeader` | `boolean` | nein | `true` | Header anzeigen |
-| `showFooter` | `boolean` | nein | `true` | Footer anzeigen |
-| `closable` | `boolean` | nein | `true` | Schließbar |
-| `buttons` | `buttonProps[]` | nein | `[]` | Footer-Buttons |
+| `title` | `string` | no | — | Title |
+| `locationId` | `string` | no | — | LocationId for the iFrame content |
+| `textContent` | `string` | no | — | Text content (when no locationId is given) |
+| `variant` | `'default'\|'small'\|'large'\|'full'` | no | `'default'` | Size |
+| `showHeader` | `boolean` | no | `true` | Show the header |
+| `showFooter` | `boolean` | no | `true` | Show the footer |
+| `closable` | `boolean` | no | `true` | Closable |
+| `buttons` | `buttonProps[]` | no | `[]` | Footer buttons |
 
 **buttonProps:**
 
@@ -203,15 +203,15 @@ Versteckt die SmartBar für eine LocationId.
 }
 ```
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```js
 await ui.modal.open({
-  title: 'Bestätigung',
+  title: 'Confirmation',
   locationId: 'my-modal',
   variant: 'small',
   buttons: [
-    { label: 'Abbrechen', method: () => ui.modal.close({ locationId: 'my-modal' }), variant: 'ghost' },
+    { label: 'Cancel', method: () => ui.modal.close({ locationId: 'my-modal' }), variant: 'ghost' },
     { label: 'OK', method: () => doSomething(), variant: 'primary' },
   ],
 });
@@ -219,28 +219,28 @@ await ui.modal.open({
 
 ### `ui.modal.close(options)`
 
-Schließt ein Modal.
+Closes a modal.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `locationId` | `string` | nein | LocationId des zu schließenden Modals |
+| `locationId` | `string` | no | LocationId of the modal to close |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `ui.modal.update(options)`
 
-Aktualisiert ein geöffnetes Modal.
+Updates an open modal.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `locationId` | `string` | ja | LocationId des Modals |
-| `title` | `string` | nein | Neuer Titel |
-| `showHeader` | `boolean` | nein | Header-Sichtbarkeit |
-| `showFooter` | `boolean` | nein | Footer-Sichtbarkeit |
-| `closable` | `boolean` | nein | Schließbarkeit |
-| `buttons` | `buttonProps[]` | nein | Neue Buttons |
+| `locationId` | `string` | yes | LocationId of the modal |
+| `title` | `string` | no | New title |
+| `showHeader` | `boolean` | no | Header visibility |
+| `showFooter` | `boolean` | no | Footer visibility |
+| `closable` | `boolean` | no | Closability |
+| `buttons` | `buttonProps[]` | no | New buttons |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -248,20 +248,20 @@ Aktualisiert ein geöffnetes Modal.
 
 ### `ui.sidebar.add(options)`
 
-Fügt eine Sidebar hinzu.
+Adds a sidebar.
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `title` | `string` | ja | — | Titel |
-| `locationId` | `string` | ja | — | LocationId |
-| `icon` | `string` | ja | — | Icon-Name |
-| `resizable` | `boolean` | nein | `false` | Größenänderung erlauben |
+| `title` | `string` | yes | — | Title |
+| `locationId` | `string` | yes | — | LocationId |
+| `icon` | `string` | yes | — | Icon name |
+| `resizable` | `boolean` | no | `false` | Allow resizing |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `ui.sidebar.close(options)` / `ui.sidebar.remove(options)` / `ui.sidebar.setActive(options)`
 
-Alle nehmen `{ locationId: string }`. **Rückgabe:** `Promise<void>`
+All take `{ locationId: string }`. **Returns:** `Promise<void>`
 
 ---
 
@@ -269,26 +269,26 @@ Alle nehmen `{ locationId: string }`. **Rückgabe:** `Promise<void>`
 
 ### `ui.actionButton.add(options)`
 
-Fügt einen Aktionsbutton in Entity-Listen oder -Detailseiten ein.
+Inserts an action button into entity lists or detail pages.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | ja | Eindeutige ID |
-| `entity` | `'product'\|'order'\|'category'\|'promotion'\|'customer'\|'media'` | ja | Entity-Typ |
-| `view` | `'detail'\|'list'\|'item'` | ja | Anzeige in Detail-/Listen-/Item-Ansicht |
-| `label` | `string` | ja | Beschriftung |
-| `meteorIcon` | `string` | nein | Meteor-Icon-Name |
-| `fileTypes` | `string[]` | nein | Nur bei Media: erlaubte Dateitypen |
-| `callback` | `(entity: string, entityIdList: string[]) => void` | ja | Click-Handler |
+| `name` | `string` | yes | Unique ID |
+| `entity` | `'product'\|'order'\|'category'\|'promotion'\|'customer'\|'media'` | yes | Entity type |
+| `view` | `'detail'\|'list'\|'item'` | yes | Display in detail/list/item view |
+| `label` | `string` | yes | Caption |
+| `meteorIcon` | `string` | no | Meteor icon name |
+| `fileTypes` | `string[]` | no | Media only: allowed file types |
+| `callback` | `(entity: string, entityIdList: string[]) => void` | yes | Click handler |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```js
 await ui.actionButton.add({
   name: 'my-export-button',
   entity: 'product',
   view: 'list',
-  label: 'Exportieren',
+  label: 'Export',
   meteorIcon: 'solid-download',
   callback: (entity, ids) => console.log(entity, ids),
 });
@@ -300,22 +300,22 @@ await ui.actionButton.add({
 
 ### `ui.tabs(tabPositionId).addTabItem(options)`
 
-Fügt einen Tab-Eintrag an einer bestehenden Tab-Position ein.
+Inserts a tab item at an existing tab position.
 
 ```js
 const tabs = ui.tabs('sw-product-detail__tabs');
 await tabs.addTabItem({
-  label: 'Mein Tab',
+  label: 'My tab',
   componentSectionId: 'my-tab-content',
 });
 ```
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ja | Tab-Beschriftung |
-| `componentSectionId` | `string` | ja | ID der ComponentSection für den Inhalt |
+| `label` | `string` | yes | Tab caption |
+| `componentSectionId` | `string` | yes | ID of the component section for the content |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -323,18 +323,18 @@ await tabs.addTabItem({
 
 ### `ui.settings.addSettingsItem(options)`
 
-Fügt einen Eintrag in den Systemeinstellungen hinzu.
+Adds an entry to the system settings.
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `label` | `string` | ja | — | Beschriftung |
-| `locationId` | `string` | ja | — | LocationId |
-| `icon` | `icons` (Meteor-Icon-Name) | ja | — | Icon |
-| `tab` | `'shop'\|'system'\|'plugins'` | nein | `'plugins'` | Einstellungs-Tab |
-| `displaySearchBar` | `boolean` | nein | `true` | Suchleiste |
-| `displaySmartBar` | `boolean` | nein | `true` | SmartBar |
+| `label` | `string` | yes | — | Caption |
+| `locationId` | `string` | yes | — | LocationId |
+| `icon` | `icons` (Meteor icon name) | yes | — | Icon |
+| `tab` | `'shop'\|'system'\|'plugins'` | no | `'plugins'` | Settings tab |
+| `displaySearchBar` | `boolean` | no | `true` | Search bar |
+| `displaySmartBar` | `boolean` | no | `true` | SmartBar |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -342,20 +342,20 @@ Fügt einen Eintrag in den Systemeinstellungen hinzu.
 
 ### `ui.componentSection.add(options)`
 
-Rendert eine Card oder ein Div an einer bestehenden Positions-ID.
+Renders a card or a div at an existing position ID.
 
 ```ts
-// Card-Komponente
+// card component
 await ui.componentSection.add({
   component: 'card',
   positionId: 'sw-product-detail-base__before-price',
   props: {
-    title: 'Meine Erweiterung',
+    title: 'My extension',
     locationId: 'my-card-content',
   },
 });
 
-// Div-Komponente
+// div component
 await ui.componentSection.add({
   component: 'div',
   positionId: 'sw-product-detail-base__before-price',
@@ -363,7 +363,7 @@ await ui.componentSection.add({
 });
 ```
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -371,32 +371,32 @@ await ui.componentSection.add({
 
 ### `ui.mediaModal.open(options)`
 
-Öffnet den Media-Picker.
+Opens the media picker.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `initialFolderId` | `string` | nein | Startordner |
-| `entityContext` | `string` | nein | Entity-Kontext |
-| `allowMultiSelect` | `boolean` | nein | Mehrfachauswahl |
-| `defaultTab` | `'upload'\|'library'` | nein | Standard-Tab |
-| `fileAccept` | `string` | nein | MIME-Typen (z.B. `'image/png,image/jpeg'`) |
-| `selectors` | `string[]` | nein | Zurückzugebende Properties |
-| `callback` | `(mediaSelections: unknown[]) => void` | ja | Auswahl-Handler |
+| `initialFolderId` | `string` | no | Start folder |
+| `entityContext` | `string` | no | Entity context |
+| `allowMultiSelect` | `boolean` | no | Multi-selection |
+| `defaultTab` | `'upload'\|'library'` | no | Default tab |
+| `fileAccept` | `string` | no | MIME types (e.g. `'image/png,image/jpeg'`) |
+| `selectors` | `string[]` | no | Properties to return |
+| `callback` | `(mediaSelections: unknown[]) => void` | yes | Selection handler |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `ui.mediaModal.openSaveMedia(options)`
 
-Öffnet den Media-Speichern-Dialog.
+Opens the save-media dialog.
 
-| Name | Typ | Beschreibung |
+| Name | Type | Description |
 |---|---|---|
-| `initialFolderId` | `string` | Startordner |
-| `initialFileName` | `string` | Vorgeschlagener Dateiname |
-| `fileType` | `string` | Dateityp |
+| `initialFolderId` | `string` | Start folder |
+| `initialFileName` | `string` | Suggested file name |
+| `fileType` | `string` | File type |
 | `callback` | `(params: { fileName, folderId, mediaId? }) => void` | Callback |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -404,30 +404,30 @@ await ui.componentSection.add({
 
 ### `cms.registerCmsElement(options)`
 
-Registriert ein CMS-Element.
+Registers a CMS element.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | ja | Technischer Name (mit Vendor-Präfix); generiert LocationIds `{name}-element`, `{name}-preview`, `{name}-config` |
-| `label` | `string` | ja | Snippet-Key für die Anzeige |
-| `defaultConfig` | `{ [key: string]: unknown }` | ja | Standard-Konfiguration |
+| `name` | `string` | yes | Technical name (with vendor prefix); generates the locationIds `{name}-element`, `{name}-preview`, `{name}-config` |
+| `label` | `string` | yes | Snippet key for the display |
+| `defaultConfig` | `{ [key: string]: unknown }` | yes | Default configuration |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `cms.registerCmsBlock(options)`
 
-Registriert einen CMS-Block.
+Registers a CMS block.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | ja | Technischer Name |
-| `label` | `string` | ja | Snippet-Key |
-| `category` | `'commerce'\|'form'\|'image'\|'sidebar'\|'text-image'\|'text'\|'video'\|string` | nein | Kategorie |
-| `slots` | `Array<{ element: string }>` | ja | Slot-Definitionen |
-| `slotLayout` | `{ grid?: string }` | nein | CSS-Grid-Layout |
-| `previewImage` | `string` | nein | Vorschaubild-URL (min. 350px breit) |
+| `name` | `string` | yes | Technical name |
+| `label` | `string` | yes | Snippet key |
+| `category` | `'commerce'\|'form'\|'image'\|'sidebar'\|'text-image'\|'text'\|'video'\|string` | no | Category |
+| `slots` | `Array<{ element: string }>` | yes | Slot definitions |
+| `slotLayout` | `{ grid?: string }` | no | CSS grid layout |
+| `previewImage` | `string` | no | Preview image URL (at least 350px wide) |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -435,23 +435,23 @@ Registriert einen CMS-Block.
 
 ### `notification.dispatch(options)`
 
-Zeigt eine Benachrichtigung.
+Shows a notification.
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `message` | `string` | ja | — | Text (HTML erlaubt, wird sanitiert) |
-| `title` | `string` | ja | — | Titel |
-| `growl` | `boolean` | nein | `true` | Als Growl anzeigen |
-| `variant` | `'success'\|'info'\|'warning'\|'error'` | nein | — | Variante |
-| `appearance` | `'system'\|'notification'` | nein | `'notification'` | Stil |
-| `actions` | `Array<{ label, method?, route?, disabled? }>` | nein | `[]` | Aktions-Buttons |
+| `message` | `string` | yes | — | Text (HTML allowed, is sanitized) |
+| `title` | `string` | yes | — | Title |
+| `growl` | `boolean` | no | `true` | Show as a growl |
+| `variant` | `'success'\|'info'\|'warning'\|'error'` | no | — | Variant |
+| `appearance` | `'system'\|'notification'` | no | `'notification'` | Style |
+| `actions` | `Array<{ label, method?, route?, disabled? }>` | no | `[]` | Action buttons |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ```js
 await notification.dispatch({
-  title: 'Gespeichert',
-  message: 'Daten wurden erfolgreich gespeichert.',
+  title: 'Saved',
+  message: 'The data was saved successfully.',
   variant: 'success',
 });
 ```
@@ -462,17 +462,17 @@ await notification.dispatch({
 
 ### `toast.dispatch(options)`
 
-Zeigt eine kurze Toast-Nachricht (max. 3 Wörter).
+Shows a short toast message (max. 3 words).
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `msg` | `string` | ja | Nachricht (max. 3 Wörter) |
-| `type` | `'informal'\|'critical'\|'positive'` | ja | Typ |
-| `dismissible` | `boolean` | ja | Manuell schließbar |
-| `icon` | `string` | nein | Icon vor der Nachricht |
-| `action` | `{ label: string, callback: () => void }` | nein | Aktionsbutton |
+| `msg` | `string` | yes | Message (max. 3 words) |
+| `type` | `'informal'\|'critical'\|'positive'` | yes | Type |
+| `dismissible` | `boolean` | yes | Manually closable |
+| `icon` | `string` | no | Icon in front of the message |
+| `action` | `{ label: string, callback: () => void }` | no | Action button |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -480,35 +480,35 @@ Zeigt eine kurze Toast-Nachricht (max. 3 Wörter).
 
 ### `context.getLanguage()`
 
-**Rückgabe:** `Promise<{ systemLanguageId: string, languageId: string }>`
+**Returns:** `Promise<{ systemLanguageId: string, languageId: string }>`
 
 ### `context.subscribeLanguage(callback)`
 
-Abonniert Sprachänderungen. **Rückgabe:** Unsubscribe-Funktion.
+Subscribes to language changes. **Returns:** unsubscribe function.
 
 ### `context.getLocale()`
 
-**Rückgabe:** `Promise<{ locale: string, fallbackLocale: string }>`
+**Returns:** `Promise<{ locale: string, fallbackLocale: string }>`
 
 ### `context.subscribeLocale(callback)`
 
-Abonniert Locale-Änderungen.
+Subscribes to locale changes.
 
 ### `context.getEnvironment()`
 
-**Rückgabe:** `Promise<'development' | 'production' | 'testing'>`
+**Returns:** `Promise<'development' | 'production' | 'testing'>`
 
 ### `context.getCurrency()`
 
-**Rückgabe:** `Promise<{ systemCurrencyISOCode: string, systemCurrencyId: string }>`
+**Returns:** `Promise<{ systemCurrencyISOCode: string, systemCurrencyId: string }>`
 
 ### `context.getShopwareVersion()`
 
-**Rückgabe:** `Promise<string>` (z.B. `'6.7.0.0'`)
+**Returns:** `Promise<string>` (e.g. `'6.7.0.0'`)
 
 ### `context.compareIsShopwareVersion(operator, version)`
 
-Vergleicht die aktuelle Shopware-Version.
+Compares the current Shopware version.
 
 ```js
 const isNewer = await context.compareIsShopwareVersion('>=', '6.6.0.0');
@@ -516,33 +516,33 @@ const isNewer = await context.compareIsShopwareVersion('>=', '6.6.0.0');
 
 ### `context.getUserInformation()`
 
-**Rückgabe:** `Promise<{ id, email, firstName, lastName, username, admin, active, aclRoles, ... }>`
+**Returns:** `Promise<{ id, email, firstName, lastName, username, admin, active, aclRoles, ... }>`
 
 ### `context.getUserTimezone()`
 
-**Rückgabe:** `Promise<string>` (IANA-Timezone)
+**Returns:** `Promise<string>` (IANA timezone)
 
 ### `context.getAppInformation()`
 
-**Rückgabe:** `Promise<{ name: string, version: string, type: 'app'|'plugin', privileges }>`
+**Returns:** `Promise<{ name: string, version: string, type: 'app'|'plugin', privileges }>`
 
 ### `context.can(privilege)`
 
-Prüft ACL-Privilege der Extension.
+Checks an ACL privilege of the extension.
 
 ```js
 const canWrite = await context.can('product:write');
 ```
 
-**Rückgabe:** `Promise<boolean>`
+**Returns:** `Promise<boolean>`
 
 ### `context.getModuleInformation()`
 
-**Rückgabe:** `Promise<{ modules: Array<{ displaySearchBar, heading, id, locationId }> }>`
+**Returns:** `Promise<{ modules: Array<{ displaySearchBar, heading, id, locationId }> }>`
 
 ### `context.getShopId()`
 
-**Rückgabe:** `Promise<string | null>`
+**Returns:** `Promise<string | null>`
 
 ---
 
@@ -550,7 +550,7 @@ const canWrite = await context.can('product:write');
 
 ### `location.is(locationId: string): boolean`
 
-Prüft ob die aktuelle Location-ID mit der übergebenen übereinstimmt.
+Checks whether the current location ID matches the given one.
 
 ```js
 if (location.is('sw-product-detail')) { /* … */ }
@@ -558,41 +558,41 @@ if (location.is('sw-product-detail')) { /* … */ }
 
 ### `location.get(): string`
 
-Gibt die aktuelle Location-ID zurück.
+Returns the current location ID.
 
 ### `location.isIframe(): boolean`
 
-Gibt `true` zurück wenn der Code in einem iFrame ausgeführt wird.
+Returns `true` when the code is executed inside an iFrame.
 
 ### `location.updateHeight(height?: number): Promise<void>`
 
-Aktualisiert die iFrame-Höhe. Ohne Parameter: aktuelle `document.documentElement.offsetHeight`.
+Updates the iFrame height. Without a parameter: the current `document.documentElement.offsetHeight`.
 
 ### `location.startAutoResizer(): void`
 
-Startet einen `ResizeObserver` der die iFrame-Höhe automatisch aktualisiert.
+Starts a `ResizeObserver` that updates the iFrame height automatically.
 
-> Hinweis: `body { overflow: hidden; }` im iFrame empfehlenswert um Scroll-Konflikte zu vermeiden.
+> Note: `body { overflow: hidden; }` inside the iFrame is recommended to avoid scroll conflicts.
 
 ### `location.stopAutoResizer(): void`
 
-Stoppt den Auto-Resizer.
+Stops the auto resizer.
 
 ### `location.updateUrl(url: URL): Promise<void>`
 
-Aktualisiert die angezeigte URL (Hash, Pathname, SearchParams) im Admin.
+Updates the displayed URL (hash, pathname, search params) in the admin.
 
 ### `location.startAutoUrlUpdater(): void`
 
-Startet einen 50ms-Intervall-Check der URL-Änderungen an den Admin sendet.
+Starts a 50ms interval check that sends URL changes to the admin.
 
 ### `location.stopAutoUrlUpdater(): void`
 
-Stoppt den URL-Updater.
+Stops the URL updater.
 
 ### `location.MAIN_HIDDEN: string`
 
-Konstante `'sw-main-hidden'` — LocationId für versteckte Hauptmodule.
+Constant `'sw-main-hidden'` — locationId for hidden main modules.
 
 ---
 
@@ -600,54 +600,54 @@ Konstante `'sw-main-hidden'` — LocationId für versteckte Hauptmodule.
 
 ### `window.redirect(options)`
 
-| Name | Typ | Pflicht | Default | Beschreibung |
+| Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `url` | `string` | ja | — | Ziel-URL |
-| `newTab` | `boolean` | nein | `false` | In neuem Tab öffnen |
+| `url` | `string` | yes | — | Target URL |
+| `newTab` | `boolean` | no | `false` | Open in a new tab |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `window.routerPush(options)`
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | nein | Routen-Name |
-| `path` | `string` | nein | Routen-Pfad |
-| `params` | `Record<string, string>` | nein | Routen-Parameter |
-| `replace` | `boolean` | nein | History-Replace statt Push |
+| `name` | `string` | no | Route name |
+| `path` | `string` | no | Route path |
+| `params` | `Record<string, string>` | no | Route parameters |
+| `replace` | `boolean` | no | History replace instead of push |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `window.reload()`
 
-Lädt den Admin neu. **Rückgabe:** `Promise<void>`
+Reloads the admin. **Returns:** `Promise<void>`
 
 ### `window.getId()`
 
-**Rückgabe:** `Promise<string>` — Eindeutige Fenster-ID.
+**Returns:** `Promise<string>` — unique window ID.
 
 ### `window.getPath()`
 
-**Rückgabe:** `Promise<string>` — Aktueller Router-Pfad.
+**Returns:** `Promise<string>` — current router path.
 
 ---
 
-## `data` — Dataset-API
+## `data` — dataset API
 
 ### `data.get(options)`
 
-Holt ein Dataset einmalig.
+Fetches a dataset once.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `id` | `string` | ja | Dataset-ID |
-| `selectors` | `string[]` | nein | Nur bestimmte Properties zurückgeben |
+| `id` | `string` | yes | Dataset ID |
+| `selectors` | `string[]` | no | Return only certain properties |
 
-**Rückgabe:** `Promise<unknown>`
+**Returns:** `Promise<unknown>`
 
 ### `data.subscribe(id, callback, options?)`
 
-Abonniert ein Dataset. Callback wird bei jeder Änderung aufgerufen.
+Subscribes to a dataset. The callback is invoked on every change.
 
 ```js
 const unsubscribe = data.subscribe('sw-product-detail', ({ data }) => {
@@ -655,24 +655,24 @@ const unsubscribe = data.subscribe('sw-product-detail', ({ data }) => {
 }, { selectors: ['id', 'name'] });
 ```
 
-**Rückgabe:** Unsubscribe-Funktion.
+**Returns:** unsubscribe function.
 
 ### `data.update(options)`
 
-Aktualisiert ein Dataset.
+Updates a dataset.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `id` | `string` | ja | Dataset-ID |
-| `data` | `unknown` | ja | Neue Daten |
+| `id` | `string` | yes | Dataset ID |
+| `data` | `unknown` | yes | New data |
 
-**Rückgabe:** `Promise<unknown>`
+**Returns:** `Promise<unknown>`
 
 ---
 
 ## `data.repository`
 
-Zugriff auf das Shopware-Repository-System über den Admin.
+Access to the Shopware repository system through the admin.
 
 ```js
 import { data } from '@shopware-ag/meteor-admin-sdk';
@@ -680,18 +680,18 @@ import { data } from '@shopware-ag/meteor-admin-sdk';
 const repo = data.repository('product');
 ```
 
-### Repository-Methoden
+### Repository methods
 
-| Methode | Signatur | Rückgabe |
+| Method | Signature | Returns |
 |---|---|---|
-| `search` | `(criteria, context?) => Promise<EntityCollection \| null>` | Suche nach Entities |
-| `get` | `(id, context?, criteria?) => Promise<Entity \| null>` | Entity per ID laden |
-| `save` | `(entity, context?) => Promise<void \| null>` | Entity speichern |
-| `saveAll` | `(entities, context?) => Promise<unknown \| null>` | Mehrere Entities speichern |
-| `delete` | `(entityId, context?) => Promise<void \| null>` | Entity löschen |
-| `create` | `(context?, entityId?) => Promise<Entity \| null>` | Neue Entity erstellen |
-| `clone` | `(entityId, context?, behavior?) => Promise<unknown \| null>` | Entity klonen |
-| `hasChanges` | `(entity) => Promise<boolean \| null>` | Änderungen vorhanden? |
+| `search` | `(criteria, context?) => Promise<EntityCollection \| null>` | Search for entities |
+| `get` | `(id, context?, criteria?) => Promise<Entity \| null>` | Load an entity by ID |
+| `save` | `(entity, context?) => Promise<void \| null>` | Save an entity |
+| `saveAll` | `(entities, context?) => Promise<unknown \| null>` | Save multiple entities |
+| `delete` | `(entityId, context?) => Promise<void \| null>` | Delete an entity |
+| `create` | `(context?, entityId?) => Promise<Entity \| null>` | Create a new entity |
+| `clone` | `(entityId, context?, behavior?) => Promise<unknown \| null>` | Clone an entity |
+| `hasChanges` | `(entity) => Promise<boolean \| null>` | Are there changes? |
 
 ```js
 const criteria = new data.Classes.Criteria(1, 25);
@@ -703,39 +703,39 @@ const result = await repo.search(criteria);
 
 ---
 
-## `Criteria`-Klasse
+## `Criteria` class
 
-`data.Classes.Criteria` — Vollständige Suchkriterien für die DAL.
+`data.Classes.Criteria` — complete search criteria for the DAL.
 
-### Konstruktor
+### Constructor
 
 ```ts
 new Criteria(page?: number | null, limit?: number | null)
 ```
 
-### Instanzmethoden (alle chainbar)
+### Instance methods (all chainable)
 
-| Methode | Beschreibung |
+| Method | Description |
 |---|---|
-| `setPage(page)` | Seite setzen |
-| `setLimit(limit)` | Limit setzen |
-| `setTerm(term)` | Suchbegriff |
-| `setIds(ids[])` | ID-Filter |
-| `setTitle(title)` | Debug-Titel für Netzwerk-Tab |
-| `setTotalCountMode(mode)` | 0=keine, 1=exakt, 2=Pagination |
-| `addFilter(filter)` | Filter hinzufügen |
-| `addPostFilter(filter)` | Post-Filter |
-| `addSorting(sorting)` | Sortierung |
-| `addAssociation(path)` | Assoziation laden (dot-notation) |
-| `getAssociation(path)` | Kriterium einer Assoziation |
+| `setPage(page)` | Set the page |
+| `setLimit(limit)` | Set the limit |
+| `setTerm(term)` | Search term |
+| `setIds(ids[])` | ID filter |
+| `setTitle(title)` | Debug title for the network tab |
+| `setTotalCountMode(mode)` | 0=none, 1=exact, 2=pagination |
+| `addFilter(filter)` | Add a filter |
+| `addPostFilter(filter)` | Post filter |
+| `addSorting(sorting)` | Sorting |
+| `addAssociation(path)` | Load an association (dot notation) |
+| `getAssociation(path)` | Criteria of an association |
 | `addAggregation(agg)` | Aggregation |
-| `addIncludes(include)` | Partial-Fields-Response |
-| `addGrouping(field)` | Gruppierung |
-| `addFields(...fields)` | Partielle Felder |
-| `addQuery(filter, score, scoreField?)` | Scored Query |
-| `resetSorting()` | Sortierungen zurücksetzen |
+| `addIncludes(include)` | Partial fields response |
+| `addGrouping(field)` | Grouping |
+| `addFields(...fields)` | Partial fields |
+| `addQuery(filter, score, scoreField?)` | Scored query |
+| `resetSorting()` | Reset the sortings |
 
-### Statische Filter-Methoden
+### Static filter methods
 
 ```js
 Criteria.equals('field', value)
@@ -748,7 +748,7 @@ Criteria.not('and', [Criteria.equals('active', false)])
 Criteria.multi('or', [filter1, filter2])
 ```
 
-### Statische Sortier-Methoden
+### Static sorting methods
 
 ```js
 Criteria.sort('name', 'ASC', false)
@@ -756,7 +756,7 @@ Criteria.naturalSorting('name', 'ASC')
 Criteria.countSorting('lineItems', 'DESC')
 ```
 
-### Statische Aggregations-Methoden
+### Static aggregation methods
 
 ```js
 Criteria.avg('avg-price', 'price')
@@ -775,11 +775,11 @@ Criteria.entityAggregation('categories-agg', 'categoryIds', 'category')
 
 ## `composables`
 
-Vue 3 Composables für reaktiven Datenzugriff.
+Vue 3 composables for reactive data access.
 
 ### `composables.useRepository(entityNameRef, repositoryFactoryRef?)`
 
-Reaktiver Wrapper um `getRepository`. Aktualisiert bei Ref-Änderungen.
+Reactive wrapper around `getRepository`. Updates when the refs change.
 
 ```ts
 import { composables } from '@shopware-ag/meteor-admin-sdk';
@@ -791,11 +791,11 @@ const repo = composables.useRepository(entityName);
 // repo.value.search(criteria)
 ```
 
-**Rückgabe:** `ComputedRef<SDKRepository<EntityName>>`
+**Returns:** `ComputedRef<SDKRepository<EntityName>>`
 
 ### `composables.getRepository(entityName, repositoryFactory?)`
 
-Nicht-reaktive Version. Gibt direkt ein Repository-Objekt zurück.
+Non-reactive version. Returns a repository object directly.
 
 ```ts
 const repo = composables.getRepository('product');
@@ -804,18 +804,18 @@ const entity = await repo.get('entity-id');
 
 ### `composables.useSharedState(key, initialValue)`
 
-Persistenter, reaktiver, fensterübergreifender State (IndexedDB + BroadcastChannel).
+Persistent, reactive, cross-window state (IndexedDB + BroadcastChannel).
 
 ```ts
 const state = composables.useSharedState('my-plugin-state', { count: 0 });
-// state.value.count = 1  →  wird automatisch persistiert & synchronisiert
+// state.value.count = 1  →  is persisted & synchronized automatically
 ```
 
-**Rückgabe:** `{ value: UnwrapRef<T> }`
+**Returns:** `{ value: UnwrapRef<T> }`
 
 ### `composables.useDataset(id, options?)`
 
-Reaktiver Zugriff auf ein Admin-Dataset.
+Reactive access to an admin dataset.
 
 ```ts
 const { data, isReady, ready } = composables.useDataset('sw-product-detail', {
@@ -823,10 +823,10 @@ const { data, isReady, ready } = composables.useDataset('sw-product-detail', {
 });
 
 await ready;
-// data.value enthält die Produkt-Daten
+// data.value contains the product data
 ```
 
-**Rückgabe:** `{ data: Ref<T | null>, isReady: Ref<boolean>, ready: Promise<void> }`
+**Returns:** `{ data: Ref<T | null>, isReady: Ref<boolean>, ready: Promise<void> }`
 
 ---
 
@@ -834,15 +834,15 @@ await ready;
 
 ### `app.webhook.actionExecute(options)`
 
-Führt eine Webhook-Action aus (für Shopware Apps).
+Executes a webhook action (for Shopware apps).
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `url` | `string` | ja | Webhook-URL |
-| `entityIds` | `string[]` | ja | Betroffene Entity-IDs |
-| `entity` | `string` | ja | Entity-Typ |
+| `url` | `string` | yes | Webhook URL |
+| `entityIds` | `string[]` | yes | Affected entity IDs |
+| `entity` | `string` | yes | Entity type |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ---
 
@@ -850,13 +850,13 @@ Führt eine Webhook-Action aus (für Shopware Apps).
 
 ### `iap.purchase(options)`
 
-Öffnet den In-App-Purchase Checkout.
+Opens the in-app purchase checkout.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `identifier` | `string` | ja | IAP-Identifier |
+| `identifier` | `string` | yes | IAP identifier |
 
-**Rückgabe:** `Promise<unknown>`
+**Returns:** `Promise<unknown>`
 
 ---
 
@@ -864,18 +864,18 @@ Führt eine Webhook-Action aus (für Shopware Apps).
 
 ### `telemetry.dispatch(options)`
 
-Sendet ein Telemetrie-Event. Die `source` (Extension-Name) wird automatisch injiziert.
+Sends a telemetry event. The `source` (extension name) is injected automatically.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `event` | `string` | ja | Event-Name |
-| `data` | `Record<string, unknown>` | nein | Event-Daten |
+| `event` | `string` | yes | Event name |
+| `data` | `Record<string, unknown>` | no | Event data |
 
-**Rückgabe:** `Promise<void>`
+**Returns:** `Promise<void>`
 
 ### `telemetry.trackPageView(properties)`
 
-Sendet ein `page_viewed`-Event mit standardisierten Properties:
+Sends a `page_viewed` event with standardized properties:
 
 ```ts
 { sw_route_from_href, sw_route_from_name, sw_route_to_href, sw_route_to_name, sw_route_to_query?, ...custom }
@@ -883,7 +883,7 @@ Sendet ein `page_viewed`-Event mit standardisierten Properties:
 
 ### `telemetry.trackLinkVisited(properties)`
 
-Sendet ein `link_visited`-Event:
+Sends a `link_visited` event:
 
 ```ts
 { sw_link_href, sw_link_type: 'internal'|'external', ...custom }
@@ -895,48 +895,48 @@ Sendet ein `link_visited`-Event:
 
 ### `consent.status(options)`
 
-Fragt den aktuellen Consent-Status ab.
+Queries the current consent status.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `consent` | `string` | ja | Consent-Name |
+| `consent` | `string` | yes | Consent name |
 
-**Rückgabe:** `Promise<Consent>` mit Properties:
+**Returns:** `Promise<Consent>` with the properties:
 - `name: string`
 - `status: 'unset' | 'declined' | 'revoked' | 'accepted'`
 - `updatedAt: string | null`
 - `acceptedRevision: string | null`
 - `lastRevision: string | null`
 - `isAccepted: boolean` (getter)
-- `isStale: boolean` (getter — accepted aber veraltete Revision)
+- `isStale: boolean` (getter — accepted but the revision is outdated)
 
 ### `consent.request(options)`
 
-Fordert Consent an und wartet auf die Antwort.
+Requests consent and waits for the response.
 
-| Name | Typ | Pflicht | Beschreibung |
+| Name | Type | Required | Description |
 |---|---|---|---|
-| `consent` | `string` | ja | Consent-Name |
-| `requestMessage` | `string` | nein | Nachricht an den Nutzer |
-| `privacyLink` | `string` | nein | Link zur Datenschutzerklärung |
+| `consent` | `string` | yes | Consent name |
+| `requestMessage` | `string` | no | Message to the user |
+| `privacyLink` | `string` | no | Link to the privacy policy |
 
-**Rückgabe:** `{ requestPromise: Promise<Consent>, abort: (reason?) => void }`
+**Returns:** `{ requestPromise: Promise<Consent>, abort: (reason?) => void }`
 
 ```js
 const { requestPromise, abort } = consent.request({
   consent: 'my-analytics-consent',
-  requestMessage: 'Wir benötigen Ihre Zustimmung.',
+  requestMessage: 'We need your consent.',
 });
 
 const result = await requestPromise;
-if (result.isAccepted) { /* Tracking aktivieren */ }
+if (result.isAccepted) { /* enable tracking */ }
 ```
 
 ---
 
-## `EntitySchema`-Namespace
+## `EntitySchema` namespace
 
-Ermöglicht das Erweitern der Entity-Typen in TypeScript:
+Allows extending the entity types in TypeScript:
 
 ```ts
 declare global {
@@ -951,8 +951,8 @@ declare global {
   }
 }
 
-// Dann typsicher:
+// Then type-safe:
 const repo = data.repository('my_custom_entity');
 const entity = await repo.get('some-id');
-entity?.name; // TypeScript kennt den Typ
+entity?.name; // TypeScript knows the type
 ```

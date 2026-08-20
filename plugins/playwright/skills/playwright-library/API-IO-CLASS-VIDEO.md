@@ -181,7 +181,7 @@ test('my test', async ({ page }, testInfo) => {
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `saveAs()` is the most important method — it allows videos
+**Summary:** `saveAs()` is the most important method — it allows videos
 to be stored deliberately and independently of the default location. `path()` returns
 the automatically chosen path. `delete()` enables explicit
 cleanup, e.g. for passed tests, in order to save disk space.

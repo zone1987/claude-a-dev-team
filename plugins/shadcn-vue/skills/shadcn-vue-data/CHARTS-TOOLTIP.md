@@ -4,7 +4,7 @@
 
 ## Referenzen
 
-- [tooltip-charts.md](`CHARTS-TOOLTIP-TOOLTIP-CHARTS.md`) — Vollstaendiger Code aller 7 Tooltip-Beispiele:
+- [CHARTS-TOOLTIP-TOOLTIP-CHARTS.md](CHARTS-TOOLTIP-TOOLTIP-CHARTS.md) — Vollstaendiger Code aller 7 Tooltip-Beispiele:
   ChartTooltipDefault, ChartTooltipIcons, ChartTooltipIndicatorLine, ChartTooltipIndicatorNone,
   ChartTooltipLabelCustom, ChartTooltipLabelFormatter, ChartTooltipLabelNone
 

@@ -234,9 +234,9 @@ use: {
 | Top-level project fields | 20 |
 | expect sub-fields | 14 |
 
-**Fazit:** `TestProject` ermoeglicht Matrix-Konfigurationen (Browser, Geraete, Umgebungen) mit
-gemeinsamen oder ueberschriebenen Optionen. `dependencies` und `teardown` erlauben geordnete
-Setup/Teardown-Projekte (z.B. Authentifizierung vor E2E-Tests).
+**Summary:** `TestProject` enables matrix configurations (browsers, devices, environments) with
+shared or overridden options. `dependencies` and `teardown` allow ordered
+setup/teardown projects (e.g. authentication before E2E tests).
 
 ---
 

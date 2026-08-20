@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-API-Requests
+# Shopware 6 — Admin API requests
 
-Für Nicht-CRUD-Aufrufe (eigene Aktionen) einen `ApiService` registrieren bzw. den `httpClient` nutzen.
+For non-CRUD calls (your own actions) register an `ApiService` or use the `httpClient`.
 
 ```js
 const { Application } = Shopware;
@@ -16,5 +16,5 @@ Application.addServiceProvider('ffExampleApiService', (container) =>
     new FfExampleApiService(Shopware.Application.getContainer('init').httpClient, container.loginService));
 ```
 
-Server-seitig dazu eine Admin-API-Route `api/_action/...` (`shopware-framework` → `sw-admin-api-controller`).
-Für reine Entity-CRUD das Repository nutzen (`sw-admin-data-handling`). Eigene Services allgemein: `sw-admin-services`.
+On the server side this needs a matching Admin API route `api/_action/...` (`shopware-framework` → `sw-admin-api-controller`).
+For plain entity CRUD use the repository (`sw-admin-data-handling`). Custom services in general: `sw-admin-services`.

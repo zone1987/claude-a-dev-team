@@ -1,30 +1,30 @@
 # Shopware Frontends – Routing
 
-Quelle: `apps/docs/src/getting-started/routing.md`
+Source: `apps/docs/src/getting-started/routing.md`
 
 ---
 
 ## Contents
 
-- [Konzept: SeoUrl-basiertes Routing](#konzept-seourl-basiertes-routing)
-- [Schritt 1: URL-Pfad zu Route auflösen](#schritt-1-url-pfad-zu-route-auflösen)
-- [Schritt 2: Route zu Seitendaten auflösen](#schritt-2-route-zu-seitendaten-auflösen)
-- [SEO-API-Calls einsparen (History State Optimization)](#seo-api-calls-einsparen-history-state-optimization)
-- [Weiterlesen](#weiterlesen)
+- [Concept: SeoUrl-based routing](#concept-seourl-based-routing)
+- [Step 1: resolve URL path to route](#step-1-resolve-url-path-to-route)
+- [Step 2: resolve route to page data](#step-2-resolve-route-to-page-data)
+- [Saving SEO API calls (History State Optimization)](#saving-seo-api-calls-history-state-optimization)
+- [Further reading](#further-reading)
 
-## Konzept: SeoUrl-basiertes Routing
+## Concept: SeoUrl-based routing
 
-Shopware verwendet `SeoUrl`-Objekte, um URL-Pfade auf Seiten-Typen und Entitäten zu mappen.
-Ein SeoUrl enthält `routeName` und `foreignKey`.
+Shopware uses `SeoUrl` objects to map URL paths to page types and entities.
+A SeoUrl contains `routeName` and `foreignKey`.
 
-**Drei native Route-Typen:**
-- `frontend.detail.page` → Produktdetailseite
-- `frontend.navigation.page` → Kategorieseite
-- `frontend.landing.page` → Landing Page
+**Three native route types:**
+- `frontend.detail.page` → product detail page
+- `frontend.navigation.page` → category page
+- `frontend.landing.page` → landing page
 
 ---
 
-## Schritt 1: URL-Pfad zu Route auflösen
+## Step 1: resolve URL path to route
 
 ```ts
 import {
@@ -42,9 +42,9 @@ const { routeName, foreignKey } = useNavigationContext(ref(seoResult));
 
 ---
 
-## Schritt 2: Route zu Seitendaten auflösen
+## Step 2: resolve route to page data
 
-Catch-all-Komponente `[...all].vue` – Standardmuster in allen Templates:
+Catch-all component `[...all].vue` – the standard pattern in all templates:
 
 ```ts
 import type { Schemas } from "#shopware";
@@ -89,24 +89,24 @@ switch (routeName.value) {
 }
 ```
 
-> Tipp: Mit `@shopware/nuxt-module` werden alle Composables automatisch importiert.
+> Tip: with `@shopware/nuxt-module` all composables are imported automatically.
 
 ---
 
-## SEO-API-Calls einsparen (History State Optimization)
+## Saving SEO API calls (History State Optimization)
 
-**Problem:** Standardmäßig sind für jede Navigation 2 API-Calls nötig:
-1. SeoURL-Lookup → Seiten-Typ + Entitäts-ID
-2. Entitätsdaten laden
+**Problem:** by default, 2 API calls are required for every navigation:
+1. SeoURL lookup → page type + entity ID
+2. Load entity data
 
-**Lösung:** Nach dem ersten SSR-Rendering sind SeoURL-Daten bereits in den Links enthalten (History State API). Der Browser-seitige Seitenübergang braucht dann keinen SeoURL-Lookup mehr.
+**Solution:** after the first SSR rendering, SeoURL data is already contained in the links (History State API). The browser-side page transition then no longer needs a SeoURL lookup.
 
-### getCategoryRoute und getProductRoute
+### getCategoryRoute and getProductRoute
 
-Helper-Funktionen, die SeoURL-Metadaten direkt in den Link einbetten:
+Helper functions that embed SeoURL metadata directly into the link:
 
 ```vue
-<!-- Kategorie-Link mit NuxtLink -->
+<!-- Category link with NuxtLink -->
 <script setup lang="ts">
 import { getCategoryRoute } from "@shopware/helpers";
 </script>
@@ -118,7 +118,7 @@ import { getCategoryRoute } from "@shopware/helpers";
 ```
 
 ```vue
-<!-- Produkt-Link mit RouterLink -->
+<!-- Product link with RouterLink -->
 <script setup lang="ts">
 import { getProductRoute } from "@shopware/helpers";
 </script>
@@ -129,19 +129,19 @@ import { getProductRoute } from "@shopware/helpers";
 </template>
 ```
 
-**Funktionsweise (vereinfacht):**
-1. Server-Rendering: SeoURL wird über Store-API aufgelöst, CMS-Daten inkl. SeoURL werden geladen
-2. Links erhalten automatisch SEO-Pfad-Metadaten
-3. Bei Client-Navigation: Metadaten aus History State → kein SeoURL-API-Call nötig
-4. Direktzugriff auf URL: SeoURL-API-Call auf Server notwendig (cached via `useAsyncData`)
+**How it works (simplified):**
+1. Server rendering: the SeoURL is resolved via the Store API, CMS data including the SeoURL is loaded
+2. Links automatically receive SEO path metadata
+3. On client navigation: metadata from the History State → no SeoURL API call needed
+4. Direct access to a URL: a SeoURL API call on the server is required (cached via `useAsyncData`)
 
-### Wann ist SeoURL-Auflösung trotzdem nötig?
+### When is SeoURL resolution still necessary?
 
-Nur beim **ersten Seitenaufruf** (Server-Side-Rendering), da noch kein History State vorhanden ist.
+Only on the **first page request** (server-side rendering), because no History State exists yet.
 
 ---
 
-## Weiterlesen
+## Further reading
 
-- [Produktlisting erstellen](../../sw-frontends-examples/references/deep/examples.md)
-- [CMS-Content-Pages](../../sw-frontends-cms/references/deep/)
+- Creating a product listing: call the Skill tool with `sw-practice`, then see `FRONTENDS-EXAMPLES-EXAMPLES.md`
+- [CMS content pages](../../sw-frontends-cms/references/deep/)

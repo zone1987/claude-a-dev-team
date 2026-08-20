@@ -1,6 +1,6 @@
-# Contao 5.x — Kommandozeilenbefehle (CLI)
+# Contao 5.x — Command line commands (CLI)
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/cli/
 - https://docs.contao.org/5.x/manual/de/cli/automator/
 - https://docs.contao.org/5.x/manual/de/cli/datenbank-backups/
@@ -15,9 +15,9 @@ Quellen:
 
 ## Contents
 
-- [Übersicht](#übersicht)
+- [Overview](#overview)
 - [1. contao:automator](#1-contaoautomator)
-- [2. contao:backup (Datenbank-Backups)](#2-contaobackup-datenbank-backups)
+- [2. contao:backup (database backups)](#2-contaobackup-database-backups)
 - [3. contao:crawl](#3-contaocrawl)
 - [4. contao:maintenance-mode](#4-contaomaintenance-mode)
 - [5. contao:migrate](#5-contaomigrate)
@@ -25,16 +25,16 @@ Quellen:
 - [7. contao:user](#7-contaouser)
 - [8. debug:dca](#8-debugdca)
 
-## Übersicht
+## Overview
 
-Die Kommandozeile bietet zahlreiche Möglichkeiten zur Produktivitätssteigerung. Der Contao Manager stellt eine grafische Oberfläche für einige CLI-Funktionen bereit, deckt aber nur einen Bruchteil ab.
+The command line offers numerous ways to increase productivity. The Contao Manager provides a graphical interface for some CLI functions, but covers only a fraction of them.
 
-**Alle verfügbaren Befehle anzeigen:**
+**Show all available commands:**
 ```bash
 php vendor/bin/contao-console list
 ```
 
-**Hilfe zu einem Befehl:**
+**Help for a command:**
 ```bash
 php vendor/bin/contao-console <befehl> --help
 ```
@@ -43,42 +43,42 @@ php vendor/bin/contao-console <befehl> --help
 
 ## 1. contao:automator
 
-Schnittstelle zur Contao-Klasse `Automator` für allgemeine Wartungsaufgaben.
+Interface to the Contao class `Automator` for general maintenance tasks.
 
 **Syntax:**
 ```bash
 php vendor/bin/contao-console contao:automator [<task>]
 ```
 
-Ohne `<task>` erscheint eine interaktive Auswahl.
+Without `<task>` an interactive selection appears.
 
-**Verfügbare Aufgaben:**
+**Available tasks:**
 
-| Aufgabe | Funktion |
+| Task | Function |
 |---------|----------|
-| `purgeSearchTables` | Suchindex löschen (`tl_search`, `tl_search_index`) |
-| `purgeUndoTable` | Papierkorb leeren (`tl_undo`) — **nicht rückgängig machbar!** |
-| `purgeVersionTable` | Versionsverlauf löschen (`tl_version`) |
-| `purgeSystemLog` | Systemprotokoll löschen |
-| `purgeImageCache` | Bildercache leeren (verarbeitete/skalierte Bilder) |
-| `purgeScriptCache` | JavaScript und CSS-Cache leeren |
-| `purgePageCache` | HTML-Seitencache leeren |
-| `purgeSearchCache` | Suchergebniscache leeren |
-| `purgeInternalCache` | Internen Contao-Cache leeren |
-| `purgeTempFolder` | Temporären Ordner leeren (`system/tmp`) |
-| `purgeRegistrations` | Nicht aktivierte Mitgliederregistrierungen löschen |
-| `purgeOptInTokens` | Abgelaufene Double-Opt-In-Tokens löschen |
-| `purgeXmlFiles` | XML-Dateien aus `generateXmlFiles` löschen |
-| `generateSitemap` | `sitemap.xml` aus Seitenbaum erstellen |
-| `generateXmlFiles` | XML-Dateien erstellen + Hook aufrufen |
-| `generateSymlinks` | Symlinks zum Web-Verzeichnis erstellen |
-| `generateInternalCache` | Internen Cache aufwärmen |
+| `purgeSearchTables` | Delete the search index (`tl_search`, `tl_search_index`) |
+| `purgeUndoTable` | Empty the recycle bin (`tl_undo`) — **cannot be undone!** |
+| `purgeVersionTable` | Delete the version history (`tl_version`) |
+| `purgeSystemLog` | Delete the system log |
+| `purgeImageCache` | Clear the image cache (processed/scaled images) |
+| `purgeScriptCache` | Clear the JavaScript and CSS cache |
+| `purgePageCache` | Clear the HTML page cache |
+| `purgeSearchCache` | Clear the search result cache |
+| `purgeInternalCache` | Clear the internal Contao cache |
+| `purgeTempFolder` | Empty the temporary folder (`system/tmp`) |
+| `purgeRegistrations` | Delete member registrations that were not activated |
+| `purgeOptInTokens` | Delete expired double opt-in tokens |
+| `purgeXmlFiles` | Delete XML files from `generateXmlFiles` |
+| `generateSitemap` | Create `sitemap.xml` from the page tree |
+| `generateXmlFiles` | Create XML files + call the hook |
+| `generateSymlinks` | Create symlinks to the web directory |
+| `generateInternalCache` | Warm up the internal cache |
 
 ---
 
-## 2. contao:backup (Datenbank-Backups)
+## 2. contao:backup (database backups)
 
-Umfassendes Backup-System für Contao-Datenbanken. Backups werden standardmäßig in `var/backups/` gespeichert.
+Comprehensive backup system for Contao databases. Backups are stored in `var/backups/` by default.
 
 ### contao:backup:create
 
@@ -86,19 +86,19 @@ Umfassendes Backup-System für Contao-Datenbanken. Backups werden standardmäßi
 php vendor/bin/contao-console contao:backup:create
 ```
 
-Backup-Dateiname: `backup__20220126153243.sql.gz` (automatisch mit Zeitstempel).
+Backup file name: `backup__20220126153243.sql.gz` (automatically with a timestamp).
 
-**Benutzerdefinierter Name:**
+**Custom name:**
 ```bash
 php vendor/bin/contao-console contao:backup:create mein_backup__20220101000000.sql
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--ignore-tables` / `-i` | Kommagetrennte Tabellen ausschließen |
-| `--format` | Ausgabeformat: `txt` oder `json` |
+| `--ignore-tables` / `-i` | Exclude comma-separated tables |
+| `--format` | Output format: `txt` or `json` |
 
 ### contao:backup:list
 
@@ -106,7 +106,7 @@ php vendor/bin/contao-console contao:backup:create mein_backup__20220101000000.s
 php vendor/bin/contao-console contao:backup:list
 ```
 
-Zeigt vorhandene Backups mit Erstellungsdatum und Größe.
+Shows the existing backups with their creation date and size.
 
 ### contao:backup:restore
 
@@ -118,14 +118,14 @@ php vendor/bin/contao-console contao:backup:restore
 php vendor/bin/contao-console contao:backup:restore backup__20220126153243.sql.gz
 ```
 
-### Automatisierte Backups
+### Automated backups
 
-**Cronjob (täglich 23:10 Uhr):**
+**Cronjob (daily at 23:10):**
 ```cron
 10 23 * * * /pfad/zum/system/vendor/bin/contao-console contao:backup:create
 ```
 
-### Konfiguration
+### Configuration
 
 ```yaml
 # config/config.yaml
@@ -148,46 +148,46 @@ contao:
             - '1M'   # 1 Monat
 ```
 
-**Zeitbezeichner:**
-- `Y` Jahre, `M` Monate, `D` Tage, `W` Wochen
-- `T`-Präfix für: `H` Stunden, `M` Minuten, `S` Sekunden
-- Kombinierbar: `1Y2MT5H`
+**Time specifiers:**
+- `Y` years, `M` months, `D` days, `W` weeks
+- `T` prefix for: `H` hours, `M` minutes, `S` seconds
+- Can be combined: `1Y2MT5H`
 
-**Hinweis:** `keep_max` sollte mindestens um 1 größer sein als Anzahl der `keep_intervals`.
+**Note:** `keep_max` should be at least 1 greater than the number of `keep_intervals`.
 
 ---
 
 ## 3. contao:crawl
 
-HTTP-Crawler basierend auf der Escargot-Bibliothek. Crawlt systematisch alle URLs.
+HTTP crawler based on the Escargot library. Systematically crawls all URLs.
 
 **Syntax:**
 ```bash
 php vendor/bin/contao-console contao:crawl [options] [<job>]
 ```
 
-Das optionale `job`-Argument ermöglicht das Fortsetzen unterbrochener Crawling-Prozesse.
+The optional `job` argument allows interrupted crawling processes to be resumed.
 
-### Subscriber
+### Subscribers
 
-| Subscriber | Funktion |
+| Subscriber | Function |
 |------------|---------|
-| `search-index` | Suchindex aktualisieren (nur bei aktivierter Suche) |
-| `broken-link-checker` | Fehlerhafte Links prüfen |
+| `search-index` | Update the search index (only when the search is enabled) |
+| `broken-link-checker` | Check for broken links |
 
-### Optionen
+### Options
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--subscribers` / `-s` | Kommagetrennte Liste aktivierter Subscriber |
-| `--concurrency` / `-c` | Anzahl gleichzeitiger Anfragen (Standard: 5) |
-| `--delay` | Verzögerung zwischen Anfragen (in Mikrosekunden) |
-| `--max-requests` | Maximale Anfragen pro Durchlauf |
-| `--max-depth` | Crawl-Tiefe (Standard: 3) |
-| `--enable-debug-csv` | CSV-Datei aktivieren (als `crawl_debug_log.csv`) |
-| `--debug-csv-path` | Eigenen CSV-Pfad angeben |
+| `--subscribers` / `-s` | Comma-separated list of enabled subscribers |
+| `--concurrency` / `-c` | Number of simultaneous requests (default: 5) |
+| `--delay` | Delay between requests (in microseconds) |
+| `--max-requests` | Maximum requests per run |
+| `--max-depth` | Crawl depth (default: 3) |
+| `--enable-debug-csv` | Enable a CSV file (as `crawl_debug_log.csv`) |
+| `--debug-csv-path` | Specify a custom CSV path |
 
-### Beispiele
+### Examples
 
 ```bash
 # Nur Suchindex aktualisieren
@@ -200,9 +200,9 @@ vendor/bin/contao-console contao:crawl --concurrency=10 --max-depth=2
 vendor/bin/contao-console contao:crawl --enable-debug-csv
 ```
 
-### Voraussetzungen
+### Prerequisites
 
-Domain muss im Startpunkt konfiguriert sein. Für CLI ohne HTTP-Kontext:
+The domain must be configured in the starting point. For the CLI without an HTTP context:
 ```yaml
 # config/parameters.yaml
 parameters:
@@ -214,7 +214,7 @@ parameters:
 
 ## 4. contao:maintenance-mode
 
-Versetzt die gesamte Installation (Back- und Frontend) in den Wartungsmodus.
+Puts the entire installation (backend and frontend) into maintenance mode.
 
 **Syntax:**
 ```bash
@@ -223,70 +223,70 @@ php vendor/bin/contao-console contao:maintenance-mode [options] [<state>]
 
 **States:**
 
-| State | Beschreibung |
+| State | Description |
 |-------|-------------|
-| `enable` / `on` | Wartungsmodus aktivieren |
-| `disable` / `off` | Wartungsmodus deaktivieren |
+| `enable` / `on` | Enable maintenance mode |
+| `disable` / `off` | Disable maintenance mode |
 
-**Optionen:**
+**Options:**
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--template` | Alternatives Twig-Template (Standard: `@ContaoCore/Error/service_unavailable.html.twig`) |
-| `--templateVars` | Zusätzliche Template-Variablen als JSON |
+| `--template` | Alternative Twig template (default: `@ContaoCore/Error/service_unavailable.html.twig`) |
+| `--templateVars` | Additional template variables as JSON |
 
-**Manuell deaktivieren:** Datei `var/maintenance.html` löschen.
+**Disabling manually:** delete the file `var/maintenance.html`.
 
 ---
 
 ## 5. contao:migrate
 
-Führt Datenbankmigrationen durch — nach Neuinstallationen, Contao-Updates oder Erweiterungsinstallationen.
+Carries out database migrations — after new installations, Contao updates or extension installations.
 
-Umfasst:
-- Update-Skripte
-- Registrierte Migrationen von Erweiterungen
-- Legacy-Dateien
-- Datenbankschema-Updates
+Comprises:
+- Update scripts
+- Registered migrations from extensions
+- Legacy files
+- Database schema updates
 
 **Syntax:**
 ```bash
 php vendor/bin/contao-console contao:migrate [options]
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--with-deletes` | Migrationen mit `DROP`-Befehlen ausführen |
-| `--schema-only` | Nur Datenbankschema migrieren (keine Update-Skripte) |
-| `--migrations-only` | Nur Migrationen, keine Tabellenaktualisierungen |
-| `--dry-run` | Anstehende Änderungen anzeigen ohne Ausführung |
-| `--no-interaction` | Bestätigungsfragen automatisch mit „Ja" beantworten |
-| `--no-backup` | Standardmäßiges Datenbank-Backup deaktivieren |
+| `--with-deletes` | Run migrations with `DROP` commands |
+| `--schema-only` | Migrate the database schema only (no update scripts) |
+| `--migrations-only` | Migrations only, no table updates |
+| `--dry-run` | Show pending changes without executing them |
+| `--no-interaction` | Answer confirmation questions automatically with "yes" |
+| `--no-backup` | Disable the default database backup |
 
 ---
 
 ## 6. contao:resize-images
 
-Erstellt fehlende, verzögert erzeugte Bilder.
+Creates missing, lazily generated images.
 
 **Syntax:**
 ```bash
 php vendor/bin/contao-console contao:resize-images [options]
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--concurrent` | Gleichzeitige Prozesse oder CPU-Begrenzung. Wert < 0.5 = max. 50% CPU |
-| `--time-limit` | Zeitlimit in Sekunden |
-| `--image` | Spezifisches Bild (ohne `assets/images`-Präfix, z.B. `1/foobar-f6eac395d.jpg`) |
-| `--no-sub-process` | Keine Unterprozesse (Vorsicht: extremer Speicherverbrauch möglich) |
-| `--preserve-missing` | Latente Bildreferenzen auf nicht existierende Bilder behalten |
+| `--concurrent` | Simultaneous processes or CPU limit. A value < 0.5 = max. 50% CPU |
+| `--time-limit` | Time limit in seconds |
+| `--image` | A specific image (without the `assets/images` prefix, e.g. `1/foobar-f6eac395d.jpg`) |
+| `--no-sub-process` | No subprocesses (careful: extreme memory consumption possible) |
+| `--preserve-missing` | Keep deferred image references to images that do not exist |
 
-**Beispiel für Hosting mit CPU-Begrenzung:**
+**Example for hosting with a CPU limit:**
 ```bash
 php vendor/bin/contao-console contao:resize-images --concurrent=0.3 --time-limit=300
 ```
@@ -295,7 +295,7 @@ php vendor/bin/contao-console contao:resize-images --concurrent=0.3 --time-limit
 
 ## 7. contao:user
 
-Verwaltung von Backend-Benutzern.
+Management of backend users.
 
 ### contao:user:list
 
@@ -303,11 +303,11 @@ Verwaltung von Backend-Benutzern.
 php vendor/bin/contao-console contao:user:list [options]
 ```
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--admins` | Nur Administratoren anzeigen |
-| `--column` | Anzuzeigende Spalten (mehrfach verwendbar) |
-| `--format` | Ausgabeformat: `txt` oder `json` |
+| `--admins` | Show administrators only |
+| `--column` | Columns to display (can be used multiple times) |
+| `--format` | Output format: `txt` or `json` |
 
 ### contao:user:create
 
@@ -315,17 +315,17 @@ php vendor/bin/contao-console contao:user:list [options]
 php vendor/bin/contao-console contao:user:create [options]
 ```
 
-Interaktive Abfrage aller Angaben wenn ohne Optionen ausgeführt.
+Interactive prompting for all details when run without options.
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| `--username` | Benutzername |
-| `--name` | Vollständiger Name |
-| `--email` | E-Mail-Adresse |
-| `--password` | Passwort |
-| `--admin` | Als Administrator anlegen |
-| `--groups` | Gruppen-IDs (kommagetrennt) |
-| `--change-password` | Passwortänderung beim ersten Login erzwingen |
+| `--username` | User name |
+| `--name` | Full name |
+| `--email` | E-mail address |
+| `--password` | Password |
+| `--admin` | Create as an administrator |
+| `--groups` | Group IDs (comma-separated) |
+| `--change-password` | Force a password change at the first login |
 
 ### contao:user:password
 
@@ -333,24 +333,24 @@ Interaktive Abfrage aller Angaben wenn ohne Optionen ausgeführt.
 php vendor/bin/contao-console contao:user:password <benutzername>
 ```
 
-⚠️ **Sicherheit**: Passwort nicht direkt als Argument übergeben — wird in Bash-History gespeichert!
+⚠️ **Security**: do not pass the password directly as an argument — it is stored in the bash history!
 
 ---
 
 ## 8. debug:dca
 
-Entwicklungstool zur Analyse von Data Container Array (DCA) Konfigurationen.
+Development tool for analysing Data Container Array (DCA) configurations.
 
 **Syntax:**
 ```bash
 php vendor/bin/contao-console debug:dca <container>
 ```
 
-**Beispiel:**
+**Example:**
 ```bash
 php vendor/bin/contao-console debug:dca tl_page
 ```
 
-Gibt die **finale, zusammengesetzte** Konfiguration des Containers aus — nach allen Modifikationen durch Anwendung und Erweiterungen.
+Outputs the **final, assembled** configuration of the container — after all modifications by the application and extensions.
 
-Nützlich um zu verstehen, welche Felder, Callbacks und Konfigurationen aktiv sind.
+Useful for understanding which fields, callbacks and configurations are active.

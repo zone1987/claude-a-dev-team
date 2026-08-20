@@ -1,19 +1,19 @@
-# Playwright Reporter & Annotationen — Vollstaendige Referenz
+# Playwright Reporters & Annotations — Complete Reference
 
 ## Contents
 
-- [Reporter konfigurieren](#reporter-konfigurieren)
-- [Eingebaute Reporter](#eingebaute-reporter)
+- [Configuring reporters](#configuring-reporters)
+- [Built-in reporters](#built-in-reporters)
 - [Custom Reporter API](#custom-reporter-api)
-- [Annotationen](#annotationen)
+- [Annotations](#annotations)
 
-## Reporter konfigurieren
+## Configuring reporters
 
 ```typescript
-// playwright.config.ts — einzeln
+// playwright.config.ts — single
 export default defineConfig({ reporter: 'html' });
 
-// Mehrere Reporter
+// Multiple reporters
 export default defineConfig({
   reporter: [
     ['list'],
@@ -22,56 +22,56 @@ export default defineConfig({
   ],
 });
 
-// Umgebungsabhaengig
+// Environment-dependent
 export default defineConfig({
   reporter: process.env.CI ? 'dot' : 'list',
 });
 ```
 
-CLI-Override: `npx playwright test --reporter=html`
+CLI override: `npx playwright test --reporter=html`
 
 ---
 
-## Eingebaute Reporter
+## Built-in reporters
 
-### list (Standard lokal)
+### list (default locally)
 
-Eine Zeile pro Test.
+One line per test.
 
 ```typescript
 reporter: [['list', { printSteps: true }]]
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `printSteps` | `boolean` | `false` | Einzelne `test.step()`-Schritte ausgeben |
+| `printSteps` | `boolean` | `false` | Print individual `test.step()` steps |
 
-Umgebungsvariablen: `PLAYWRIGHT_LIST_PRINT_STEPS=1`, `PLAYWRIGHT_FORCE_TTY=1`, `FORCE_COLOR=1`
+Environment variables: `PLAYWRIGHT_LIST_PRINT_STEPS=1`, `PLAYWRIGHT_FORCE_TTY=1`, `FORCE_COLOR=1`
 
 ### line
 
-Kompakter als list; eine Zeile zeigt den letzten fertigen Test.
+More compact than list; a single line shows the most recently finished test.
 
-Umgebungsvariablen: `PLAYWRIGHT_FORCE_TTY=1`, `FORCE_COLOR=1`
+Environment variables: `PLAYWRIGHT_FORCE_TTY=1`, `FORCE_COLOR=1`
 
-### dot (Standard CI)
+### dot (default in CI)
 
-Eines Zeichen pro Test.
+One character per test.
 
-| Zeichen | Bedeutung |
+| Character | Meaning |
 |---|---|
-| `.` | bestanden |
-| `F` | fehlgeschlagen |
-| `x` | fehlgeschlagen/Timeout, wird wiederholt |
-| `+` | flaky (erst fehlgeschlagen, dann bestanden) |
-| `T` | Timeout |
-| `o` | uebersprungen |
+| `.` | passed |
+| `F` | failed |
+| `x` | failed/timed out, will be retried |
+| `+` | flaky (failed first, then passed) |
+| `T` | timeout |
+| `o` | skipped |
 
-Umgebungsvariablen: `PLAYWRIGHT_FORCE_TTY=1`, `FORCE_COLOR=1`
+Environment variables: `PLAYWRIGHT_FORCE_TTY=1`, `FORCE_COLOR=1`
 
 ### html
 
-Eigenstaendige HTML-Report-Seite.
+Self-contained HTML report page.
 
 ```typescript
 reporter: [['html', {
@@ -87,17 +87,17 @@ reporter: [['html', {
 }]]
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `open` | `'always' \| 'never' \| 'on-failure'` | `'on-failure'` | Wann Report oeffnen |
-| `outputFolder` | `string` | `'playwright-report'` | Report-Verzeichnis |
-| `title` | `string` | — | Benutzerdefinierter Titel |
-| `attachmentsBaseURL` | `string` | — | Externe Storage-URL |
-| `host` | `string` | `'localhost'` | Server-Host |
-| `port` | `number` | zufaellig | Server-Port |
-| `noCopyPrompt` | `boolean` | `false` | Fehler-Copy-Prompt deaktivieren |
-| `noSnippets` | `boolean` | `false` | Code-Snippets ausblenden |
-| `doNotInlineAssets` | `boolean` | `false` | Assets separat (CSP-Konformitaet) |
+| `open` | `'always' \| 'never' \| 'on-failure'` | `'on-failure'` | When to open the report |
+| `outputFolder` | `string` | `'playwright-report'` | Report directory |
+| `title` | `string` | — | Custom title |
+| `attachmentsBaseURL` | `string` | — | External storage URL |
+| `host` | `string` | `'localhost'` | Server host |
+| `port` | `number` | random | Server port |
+| `noCopyPrompt` | `boolean` | `false` | Disable the error copy prompt |
+| `noSnippets` | `boolean` | `false` | Hide code snippets |
+| `doNotInlineAssets` | `boolean` | `false` | Assets separately (CSP compliance) |
 
 ```bash
 npx playwright show-report
@@ -107,17 +107,17 @@ npx playwright show-report report.zip
 
 ### json
 
-JSON-Ergebnisdatei.
+JSON result file.
 
 ```typescript
 reporter: [['json', { outputFile: 'test-results.json' }]]
 ```
 
-Umgebungsvariablen: `PLAYWRIGHT_JSON_OUTPUT_NAME`, `PLAYWRIGHT_JSON_OUTPUT_DIR`, `PLAYWRIGHT_JSON_OUTPUT_FILE`
+Environment variables: `PLAYWRIGHT_JSON_OUTPUT_NAME`, `PLAYWRIGHT_JSON_OUTPUT_DIR`, `PLAYWRIGHT_JSON_OUTPUT_FILE`
 
 ### junit
 
-JUnit-kompatibles XML.
+JUnit-compatible XML.
 
 ```typescript
 reporter: [['junit', {
@@ -129,19 +129,19 @@ reporter: [['junit', {
 }]]
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `outputFile` | `string` | — | XML-Ausgabedatei |
-| `stripANSIControlSequences` | `boolean` | `false` | ANSI-Sequenzen entfernen |
-| `includeProjectInTestName` | `boolean` | `false` | Projektname als Praefix |
-| `suiteId` | `string` | — | id-Attribut von testsuites |
-| `suiteName` | `string` | — | name-Attribut von testsuites |
+| `outputFile` | `string` | — | XML output file |
+| `stripANSIControlSequences` | `boolean` | `false` | Strip ANSI sequences |
+| `includeProjectInTestName` | `boolean` | `false` | Project name as a prefix |
+| `suiteId` | `string` | — | id attribute of testsuites |
+| `suiteName` | `string` | — | name attribute of testsuites |
 
-Umgebungsvariablen: `PLAYWRIGHT_JUNIT_OUTPUT_NAME`, `PLAYWRIGHT_JUNIT_OUTPUT_DIR`, `PLAYWRIGHT_JUNIT_STRIP_ANSI`, `PLAYWRIGHT_JUNIT_INCLUDE_PROJECT_IN_TEST_NAME`
+Environment variables: `PLAYWRIGHT_JUNIT_OUTPUT_NAME`, `PLAYWRIGHT_JUNIT_OUTPUT_DIR`, `PLAYWRIGHT_JUNIT_STRIP_ANSI`, `PLAYWRIGHT_JUNIT_INCLUDE_PROJECT_IN_TEST_NAME`
 
 ### blob
 
-Vollstaendige Rohdaten fuer Sharding-Zusammenfuehrung.
+Complete raw data for merging shards.
 
 ```typescript
 reporter: [['blob', {
@@ -150,11 +150,11 @@ reporter: [['blob', {
 }]]
 ```
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |---|---|---|---|
-| `outputDir` | `string` | `'blob-report'` | Ausgabeverzeichnis |
-| `fileName` | `string` | `'report-<hash>.zip'` | Dateiname |
-| `outputFile` | `string` | — | Voller Pfad (alternativ zu outputDir+fileName) |
+| `outputDir` | `string` | `'blob-report'` | Output directory |
+| `fileName` | `string` | `'report-<hash>.zip'` | File name |
+| `outputFile` | `string` | — | Full path (alternative to outputDir+fileName) |
 
 ```bash
 npx playwright merge-reports --reporter html ./all-blob-reports
@@ -163,13 +163,13 @@ npx playwright merge-reports --reporter=html,github ./blob-reports
 
 ### github
 
-GitHub Actions Fehler-Annotationen.
+GitHub Actions error annotations.
 
 ```typescript
 reporter: 'github'
 ```
 
-Nicht empfohlen bei Matrix-Strategien (duplizierte Stack-Traces).
+Not recommended with matrix strategies (duplicated stack traces).
 
 ---
 
@@ -194,14 +194,14 @@ class MyReporter implements Reporter {
   }
 
   onTestBegin(test: TestCase, result: TestResult): void {
-    console.log(`Starte: ${test.title}`);
+    console.log(`Starting: ${test.title}`);
   }
 
   onStepBegin(test: TestCase, result: TestResult, step: TestStep): void {}
   onStepEnd(test: TestCase, result: TestResult, step: TestStep): void {}
 
   onTestEnd(test: TestCase, result: TestResult): void {
-    console.log(`Ergebnis: ${result.status} (${result.duration}ms)`);
+    console.log(`Result: ${result.status} (${result.duration}ms)`);
   }
 
   onError(error: TestError): void {
@@ -225,39 +225,39 @@ export default MyReporter;
 reporter: [['./my-reporter.ts', { myOption: 'value' }]]
 ```
 
-### TestCase-Properties
+### TestCase properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
-| `title` | `string` | Test-Titel |
-| `titlePath()` | `string[]` | Pfad vom Root |
-| `location` | `{ file, line, column }` | Quellort |
-| `annotations` | `{ type, description? }[]` | Annotationen |
+| `title` | `string` | Test title |
+| `titlePath()` | `string[]` | Path from the root |
+| `location` | `{ file, line, column }` | Source location |
+| `annotations` | `{ type, description? }[]` | Annotations |
 | `tags` | `string[]` | Tags |
 | `timeout` | `number` | Timeout in ms |
-| `results` | `TestResult[]` | Alle Versuche |
-| `outcome()` | `'skipped' \| 'expected' \| 'unexpected' \| 'flaky'` | Gesamtergebnis |
-| `ok()` | `boolean` | Bestanden (incl. flaky) |
+| `results` | `TestResult[]` | All attempts |
+| `outcome()` | `'skipped' \| 'expected' \| 'unexpected' \| 'flaky'` | Overall result |
+| `ok()` | `boolean` | Passed (including flaky) |
 
-### TestResult-Properties
+### TestResult properties
 
-| Property | Typ | Beschreibung |
+| Property | Type | Description |
 |---|---|---|
 | `status` | `'passed' \| 'failed' \| 'timedOut' \| 'skipped' \| 'interrupted'` | Status |
-| `duration` | `number` | Dauer in ms |
-| `startTime` | `Date` | Startzeit |
-| `retry` | `number` | Retry-Nummer |
-| `errors` | `TestError[]` | Fehlermeldungen |
-| `attachments` | `Attachment[]` | Anhaenge |
-| `stdout` | `string[]` | Stdout-Zeilen |
-| `stderr` | `string[]` | Stderr-Zeilen |
-| `steps` | `TestStep[]` | test.step()-Schritte |
+| `duration` | `number` | Duration in ms |
+| `startTime` | `Date` | Start time |
+| `retry` | `number` | Retry number |
+| `errors` | `TestError[]` | Error messages |
+| `attachments` | `Attachment[]` | Attachments |
+| `stdout` | `string[]` | Stdout lines |
+| `stderr` | `string[]` | Stderr lines |
+| `steps` | `TestStep[]` | test.step() steps |
 
 ---
 
-## Annotationen
+## Annotations
 
-### Eingebaute Annotationen
+### Built-in annotations
 
 ```typescript
 // test.skip
@@ -272,7 +272,7 @@ test.fail(browserName === 'webkit', 'reason');
 test.fixme();
 test.fixme(isDesktop, 'desktop only');
 
-// test.slow (dreifacher Timeout)
+// test.slow (triple the timeout)
 test.slow();
 test.slow(isMobile, 'mobile is slow');
 ```
@@ -280,16 +280,16 @@ test.slow(isMobile, 'mobile is slow');
 ### test.only
 
 ```typescript
-test.only('nur dieser Test laeuft im Projekt', async ({ page }) => {});
-// Mit --forbid-only bricht CI ab
+test('only this test runs in the project', async ({ page }) => {});
+// With --forbid-only, CI aborts
 ```
 
 ### Tags
 
 ```typescript
-test('schnell', { tag: '@fast' }, async ({ page }) => {});
-test('komplex', { tag: ['@slow', '@smoke'] }, async ({ page }) => {});
-// Im Titel (Legacy):
+test('fast', { tag: '@fast' }, async ({ page }) => {});
+test('complex', { tag: ['@slow', '@smoke'] }, async ({ page }) => {});
+// In the title (legacy):
 test('example @smoke', async ({ page }) => {});
 ```
 
@@ -299,14 +299,14 @@ npx playwright test --grep "@smoke"
 npx playwright test --grep-invert @slow
 ```
 
-### Strukturierte Annotationen
+### Structured annotations
 
 ```typescript
-test('mit Issue', {
+test('with issue', {
   annotation: { type: 'issue', description: 'https://github.com/org/repo/issues/123' },
 }, async ({ page }) => {});
 
-// Zur Laufzeit
+// At runtime
 test.info().annotations.push({ type: 'env', description: 'staging' });
 ```
 
@@ -328,13 +328,13 @@ test('checkout', async ({ page }) => {
 });
 ```
 
-Steps erscheinen in HTML-Report und Trace Viewer.
+Steps appear in the HTML report and the Trace Viewer.
 
-### test.info() und Anhaenge
+### test.info() and attachments
 
 ```typescript
 test('example', async ({ page }, testInfo) => {
-  const info = test.info();   // oder testInfo aus Parameter
+  const info = test.info();   // or testInfo from the parameter
 
   await info.attach('screenshot', {
     body: await page.screenshot(),

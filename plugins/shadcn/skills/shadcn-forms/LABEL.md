@@ -4,8 +4,8 @@ Renders an accessible label associated with form controls. Built on Radix UI Lab
 
 ## References
 
-- [installation.md](`LABEL-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`LABEL-SOURCE.md`) — Complete component source code
-- [api.md](`LABEL-API.md`) — Props reference
-- [examples.md](`LABEL-EXAMPLES.md`) — Usage examples
-- [base-vs-radix.md](`LABEL-BASE-VS-RADIX.md`) — Difference between base and radix variants
+- [LABEL-INSTALLATION.md](LABEL-INSTALLATION.md) — CLI and manual setup
+- [LABEL-SOURCE.md](LABEL-SOURCE.md) — Complete component source code
+- [LABEL-API.md](LABEL-API.md) — Props reference
+- [LABEL-EXAMPLES.md](LABEL-EXAMPLES.md) — Usage examples
+- [LABEL-BASE-VS-RADIX.md](LABEL-BASE-VS-RADIX.md) — Difference between base and radix variants

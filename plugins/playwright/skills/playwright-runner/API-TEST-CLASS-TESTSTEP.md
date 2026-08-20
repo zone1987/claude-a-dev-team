@@ -156,9 +156,9 @@ export default StepLogger;
 | Methods | 1 (`titlePath`) |
 | Properties | 10 (`annotations`, `attachments`, `category`, `duration`, `error`, `location`, `parent`, `startTime`, `steps`, `title`) |
 
-**Fazit:** `TestStep` bildet die Baumstruktur von Test-Aktionen ab. Die `category`-Property
-erlaubt Reporter das Filtern nach Abstraktion (API-Calls vs. fachliche Schritte). Ueber
-`steps` koennen Reporter die komplette Step-Hierarchie rekursiv traversieren.
+**Summary:** `TestStep` represents the tree structure of test actions. The `category` property
+allows reporters to filter by abstraction (API calls vs. domain-level steps). Through
+`steps`, reporters can recursively traverse the complete step hierarchy.
 
 ---
 

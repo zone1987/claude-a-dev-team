@@ -1,30 +1,30 @@
-# PantherTestCase — Vollstandige Referenz
+# PantherTestCase — Complete reference
 
 ## Contents
 
-- [Klassen-Hierarchie](#klassen-hierarchie)
-- [Konstanten](#konstanten)
-- [Client-Factory-Methoden](#client-factory-methoden)
-- [Alle Assertions — Vollstandige Referenz](#alle-assertions-vollstandige-referenz)
-- [PantherTestCaseTrait (ohne Symfony)](#panthertestcasetrait-ohne-symfony)
-- [Multi-Domain-Tests](#multi-domain-tests)
-- [Interaktiver Debug-Modus](#interaktiver-debug-modus)
+- [Class hierarchy](#class-hierarchy)
+- [Constants](#constants)
+- [Client factory methods](#client-factory-methods)
+- [All assertions — complete reference](#all-assertions-complete-reference)
+- [PantherTestCaseTrait (without Symfony)](#panthertestcasetrait-without-symfony)
+- [Multi-domain tests](#multi-domain-tests)
+- [Interactive debug mode](#interactive-debug-mode)
 
-## Klassen-Hierarchie
+## Class hierarchy
 
 ```
 PHPUnit\Framework\TestCase
-  └── Symfony\Bundle\FrameworkBundle\Test\WebTestCase  (nur bei Symfony-Apps)
+  └── Symfony\Bundle\FrameworkBundle\Test\WebTestCase  (only for Symfony apps)
         └── Symfony\Component\Panther\PantherTestCase
 ```
 
-Ohne Symfony-App direkt:
+Without a Symfony app, directly:
 ```
 PHPUnit\Framework\TestCase
-  + Symfony\Component\Panther\PantherTestCaseTrait (als Trait)
+  + Symfony\Component\Panther\PantherTestCaseTrait (as a trait)
 ```
 
-## Konstanten
+## Constants
 
 ```php
 PantherTestCase::CHROME   = 'chrome'
@@ -32,7 +32,7 @@ PantherTestCase::FIREFOX  = 'firefox'
 PantherTestCase::SELENIUM = 'selenium'
 ```
 
-## Client-Factory-Methoden
+## Client factory methods
 
 ### createPantherClient
 
@@ -44,37 +44,37 @@ protected static function createPantherClient(
 ): \Symfony\Component\Panther\Client
 ```
 
-**$options — Schlussel-Referenz:**
+**$options — key reference:**
 
-| Schlussel             | Typ       | Default     | Beschreibung                                         |
+| Key                   | Type      | Default     | Description                                          |
 |-----------------------|-----------|-------------|------------------------------------------------------|
-| `webServerDir`        | string    | `./public/` | Document-Root des integrierten PHP-Servers           |
-| `hostname`            | string    | `127.0.0.1` | Hostname des Testservers                             |
-| `port`                | int       | `9080`      | Port des Testservers                                 |
-| `router`              | string    | —           | Pfad zum PHP-Router-Script                           |
-| `external_base_uri`   | string\|null | null    | URI eines externen Servers (verhindert internen Start)|
-| `readinessPath`       | string    | `''`        | Pfad fur Health-Check vor Teststart; leer = Basis-URL wird gepruft |
-| `env`                 | array     | `[]`        | Zusatzliche Umgebungsvariablen fur den Server        |
+| `webServerDir`        | string    | `./public/` | Document root of the integrated PHP server           |
+| `hostname`            | string    | `127.0.0.1` | Hostname of the test server                          |
+| `port`                | int       | `9080`      | Port of the test server                              |
+| `router`              | string    | —           | Path to the PHP router script                        |
+| `external_base_uri`   | string\|null | null    | URI of an external server (prevents the internal start)|
+| `readinessPath`       | string    | `''`        | Path for the health check before the test starts; empty = the base URL is checked |
+| `env`                 | array     | `[]`        | Additional environment variables for the server      |
 | `browser`             | string    | `chrome`    | `'chrome'`, `'firefox'`, `'selenium'`                |
 
-**$managerOptions — Wichtige Schlussel:**
+**$managerOptions — important keys:**
 
-| Schlussel                 | Beschreibung                                                   |
+| Key                       | Description                                                    |
 |---------------------------|----------------------------------------------------------------|
-| `capabilities`            | `WebDriverCapabilities`-Objekt oder Array mit Browser-Caps     |
-| `chromedriver_arguments`  | `array` — z. B. `['--log-path=...', '--log-level=DEBUG']`      |
-| `host`                    | Selenium-Hub-URL (nur bei `browser = 'selenium'`)              |
+| `capabilities`            | `WebDriverCapabilities` object or array with browser caps      |
+| `chromedriver_arguments`  | `array` — e.g. `['--log-path=...', '--log-level=DEBUG']`       |
+| `host`                    | Selenium hub URL (only when `browser = 'selenium'`)            |
 
-**Beispiele:**
+**Examples:**
 
 ```php
-// Standard (Chrome, headless)
+// Default (Chrome, headless)
 $client = static::createPantherClient();
 
 // Firefox
 $client = static::createPantherClient(['browser' => static::FIREFOX]);
 
-// Externer Server (kein integrierter PHP-Server)
+// External server (no integrated PHP server)
 $client = static::createPantherClient([
     'external_base_uri' => 'https://my-staging.example.com',
 ]);
@@ -89,14 +89,14 @@ $client = static::createPantherClient(
     ]
 );
 
-// Benutzerdefinierter Port und WebRoot
+// Custom port and web root
 $client = static::createPantherClient([
     'hostname'      => '127.0.0.1',
     'port'          => 8080,
     'webServerDir'  => './public',
 ]);
 
-// Browser-Console-Logging
+// Browser console logging
 $client = static::createPantherClient(
     [],
     [],
@@ -119,8 +119,8 @@ $logs = $client->getWebDriver()->manage()->getLog('browser');
 protected static function createAdditionalPantherClient(): \Symfony\Component\Panther\Client
 ```
 
-Erzeugt eine zweite, isolierte Browser-Instanz. Beide Instanzen teilen denselben Test-Server.
-Assertions werden immer auf dem **primaren** Client ausgefuhrt.
+Creates a second, isolated browser instance. Both instances share the same test server.
+Assertions are always executed on the **primary** client.
 
 ```php
 public function testRealTimeChat(): void
@@ -132,10 +132,10 @@ public function testRealTimeChat(): void
     $client2->request('GET', '/chat');
     $client2->submitForm('Senden', ['message' => 'Hallo!']);
 
-    // Warten bis Nachricht in Client 1 sichtbar
+    // Wait until the message is visible in client 1
     $client1->waitFor('.message');
 
-    // Assertion lauft auf $client1 (primarerer Browser)
+    // The assertion runs on $client1 (the primary browser)
     $this->assertSelectorTextContains('.message', 'Hallo!');
 }
 ```
@@ -149,11 +149,11 @@ protected static function createHttpBrowserClient(
 ): \Symfony\Component\BrowserKit\HttpBrowser
 ```
 
-Optionen: dieselbe Schlussel-Tabelle wie `createPantherClient`, plus:
+Options: the same key table as `createPantherClient`, plus:
 
-| Schlussel             | Beschreibung                              |
+| Key                   | Description                               |
 |-----------------------|-------------------------------------------|
-| `http_client_options` | Array fur `HttpClient::create()` Optionen |
+| `http_client_options` | Array for `HttpClient::create()` options  |
 
 ### createClient (Symfony WebTestCase)
 
@@ -164,7 +164,7 @@ protected static function createClient(
 ): \Symfony\Bundle\FrameworkBundle\KernelBrowser
 ```
 
-Nur verfugbar wenn Symfony `WebTestCase` erweitert wird.
+Only available when Symfony's `WebTestCase` is extended.
 
 ### startWebServer / stopWebServer
 
@@ -174,71 +174,71 @@ public static function stopWebServer(): void
 public static function isWebServerStarted(): bool
 ```
 
-## Alle Assertions — Vollstandige Referenz
+## All assertions — complete reference
 
-### Page-Title-Assertions
+### Page title assertions
 
 ```php
 assertPageTitleSame(string $expectedTitle, string $message = ''): void
 ```
-Pruft, ob der Seitentitel exakt ubereinstimmt.
+Checks whether the page title matches exactly.
 
 ```php
 assertPageTitleContains(string $expectedTitle, string $message = ''): void
 ```
-Pruft, ob der Seitentitel den Wert enthalt.
+Checks whether the page title contains the value.
 
 ---
 
-### Selector-Existenz
+### Selector existence
 
 ```php
 assertSelectorExists(string $selector, string $message = ''): void
 ```
-Schlagt fehl wenn kein Element mit CSS-Selektor gefunden wird.
+Fails when no element is found with the CSS selector.
 
 ```php
 assertSelectorNotExists(string $selector, string $message = ''): void
 ```
-Schlagt fehl wenn mindestens ein Element gefunden wird.
+Fails when at least one element is found.
 
 ---
 
-### Selector-Text
+### Selector text
 
 ```php
 assertSelectorTextContains(string $selector, string $text, string $message = ''): void
 ```
-Pruft ob `.textContent` des ersten passenden Elements `$text` enthalt.
+Checks whether the `.textContent` of the first matching element contains `$text`.
 
 ```php
 assertSelectorTextNotContains(string $selector, string $text, string $message = ''): void
 ```
-Pruft dass `.textContent` `$text` NICHT enthalt.
+Checks that `.textContent` does NOT contain `$text`.
 
 ---
 
-### Sichtbarkeit
+### Visibility
 
 ```php
 assertSelectorIsVisible(string $locator): void
 ```
-Pruft ob das Element angezeigt wird (nicht `display:none`, `visibility:hidden`).
+Checks whether the element is displayed (not `display:none`, `visibility:hidden`).
 
 ```php
 assertSelectorIsNotVisible(string $locator): void
 ```
-Pruft ob das Element versteckt ist.
+Checks whether the element is hidden.
 
 ```php
 assertSelectorWillBeVisible(string $locator): void
 ```
-Wartet (max. 30s, 250ms Intervall) bis das Element sichtbar wird, dann Assertion.
+Waits (max. 30s, 250ms interval) until the element becomes visible, then asserts.
 
 ```php
 assertSelectorWillNotBeVisible(string $locator): void
 ```
-Wartet bis das Element verschwindet.
+Waits until the element disappears.
 
 ---
 
@@ -247,78 +247,78 @@ Wartet bis das Element verschwindet.
 ```php
 assertSelectorIsEnabled(string $locator): void
 ```
-Pruft ob Element (Button, Input, etc.) nicht disabled ist.
+Checks whether the element (button, input, etc.) is not disabled.
 
 ```php
 assertSelectorIsDisabled(string $locator): void
 ```
-Pruft ob Element disabled ist.
+Checks whether the element is disabled.
 
 ```php
 assertSelectorWillBeEnabled(string $locator): void
 ```
-Wartet bis Element enabled wird.
+Waits until the element becomes enabled.
 
 ```php
 assertSelectorWillBeDisabled(string $locator): void
 ```
-Wartet bis Element disabled wird.
+Waits until the element becomes disabled.
 
 ---
 
-### Existenz (waitFor-Varianten)
+### Existence (waitFor variants)
 
 ```php
 assertSelectorWillExist(string $locator): void
 ```
-Wartet bis der CSS-Selektor mindestens ein Element im DOM findet.
+Waits until the CSS selector finds at least one element in the DOM.
 
 ```php
 assertSelectorWillNotExist(string $locator): void
 ```
-Wartet bis das Element aus dem DOM entfernt wird (Staleness).
+Waits until the element is removed from the DOM (staleness).
 
 ---
 
-### Text (waitFor-Varianten)
+### Text (waitFor variants)
 
 ```php
 assertSelectorWillContain(string $locator, string $text): void
 ```
-Wartet bis das Element den Text enthalt.
+Waits until the element contains the text.
 
 ```php
 assertSelectorWillNotContain(string $locator, string $text): void
 ```
-Wartet bis das Element den Text NICHT mehr enthalt.
+Waits until the element no longer contains the text.
 
 ---
 
-### Attribute
+### Attributes
 
 ```php
 assertSelectorAttributeContains(string $locator, string $attribute, ?string $text = null): void
 ```
-Pruft ob das Attribut `$attribute` des Elements `$text` enthalt (oder vorhanden ist wenn `$text = null`).
+Checks whether the element's `$attribute` attribute contains `$text` (or is present when `$text = null`).
 
 ```php
 assertSelectorAttributeNotContains(string $locator, string $attribute, string $text): void
 ```
-Pruft dass das Attribut `$text` NICHT enthalt.
+Checks that the attribute does NOT contain `$text`.
 
 ```php
 assertSelectorAttributeWillContain(string $locator, string $attribute, string $text): void
 ```
-Wartet bis das Attribut `$text` enthalt.
+Waits until the attribute contains `$text`.
 
 ```php
 assertSelectorAttributeWillNotContain(string $locator, string $attribute, string $text): void
 ```
-Wartet bis das Attribut `$text` NICHT mehr enthalt.
+Waits until the attribute no longer contains `$text`.
 
 ---
 
-## PantherTestCaseTrait (ohne Symfony)
+## PantherTestCaseTrait (without Symfony)
 
 ```php
 use Symfony\Component\Panther\PantherTestCaseTrait;
@@ -337,7 +337,7 @@ class MyTest extends WebTestCase
 }
 ```
 
-## Multi-Domain-Tests
+## Multi-domain tests
 
 ```php
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -355,20 +355,20 @@ class MultiDomainTest extends PantherTestCase
 }
 ```
 
-## Interaktiver Debug-Modus
+## Interactive debug mode
 
 ```bash
 PANTHER_NO_HEADLESS=1 vendor/bin/phpunit --debug
 ```
 
-Wenn ein Test fehlschlagt, wird der Browser geoffnet und pausiert, bis Enter gedruckt wird.
-Erfordert die PHPUnit-Extension in `phpunit.dist.xml`.
+When a test fails, the browser is opened and pauses until Enter is pressed.
+Requires the PHPUnit extension in `phpunit.dist.xml`.
 
 ---
 
-Quellen:
+Sources:
 - https://symfony.com/doc/current/testing/end_to_end.html
 - `src/PantherTestCaseTrait.php` (`$defaultOptions`, `createPantherClient`, `createAdditionalPantherClient`, `createHttpBrowserClient`, `startWebServer`)
-- `src/WebTestAssertionsTrait.php` (alle assert*-Methoden)
-- `src/PantherTestCase.php` (Konstanten CHROME/FIREFOX/SELENIUM)
-- `src/WebDriver/PantherWebDriverExpectedCondition.php` (wait-Conditions)
+- `src/WebTestAssertionsTrait.php` (all assert* methods)
+- `src/PantherTestCase.php` (constants CHROME/FIREFOX/SELENIUM)
+- `src/WebDriver/PantherWebDriverExpectedCondition.php` (wait conditions)

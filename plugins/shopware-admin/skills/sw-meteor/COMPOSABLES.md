@@ -1,3 +1,3 @@
-# Meteor Component Library — Composables & Direktiven
+# Meteor Component Library — Composables & directives
 
-Vollständige Referenz: `COMPOSABLES-DETAIL.md`
+Full reference: `COMPOSABLES-DETAIL.md`

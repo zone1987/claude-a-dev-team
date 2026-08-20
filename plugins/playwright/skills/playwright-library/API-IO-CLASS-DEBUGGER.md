@@ -253,7 +253,7 @@ test('checkout flow', async ({ page, debugger: dbg }) => {
 | Properties | 0     |
 | Events    | 1 ('pausedstatechanged') |
 
-**Conclusion:** The `Debugger` is a programmatic breakpoint mechanism at the
+**Summary:** The `Debugger` is a programmatic breakpoint mechanism at the
 Playwright action level. `requestPause()` + `next()` enables step debugging.
 `runTo()` is the equivalent of "Run to Cursor" in IDEs. The
 `pausedstatechanged` event enables reactive debug UIs or reporter

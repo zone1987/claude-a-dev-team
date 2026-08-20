@@ -1,8 +1,8 @@
-# Gotenberg — PDF Verschluesselung
+# Gotenberg — PDF Encryption
 
-Schuetzt PDFs mit Benutzer-/Eigentuemerpasswort und Berechtigungsrestriktionen
-(Drucken, Kopieren, Bearbeiten, Annotieren, Formulare, Seitenverwaltung).
-Referenz: `ENCRYPT-DETAIL.md`
+Protects PDFs with a user/owner password and permission restrictions
+(printing, copying, editing, annotating, forms, page management).
+Reference: `ENCRYPT-DETAIL.md`
 
 Route: `POST /forms/pdfengines/encrypt`
-Rueckgabe: PDF (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF (200) | ZIP (multiple inputs) | 400 | 503

@@ -50,7 +50,7 @@ Nested `ButtonGroup` elements are supported. The outer wrapper applies a `gap-2`
 
 ## References
 
-- [Installation](`BUTTON-GROUP-INSTALLATION.md`)
-- [Source code](`BUTTON-GROUP-SOURCE.md`)
-- [API / Props](`BUTTON-GROUP-API.md`)
-- [Examples](`BUTTON-GROUP-EXAMPLES.md`)
+- [BUTTON-GROUP-INSTALLATION.md](BUTTON-GROUP-INSTALLATION.md)
+- [BUTTON-GROUP-SOURCE.md](BUTTON-GROUP-SOURCE.md)
+- [BUTTON-GROUP-API.md](BUTTON-GROUP-API.md)
+- [BUTTON-GROUP-EXAMPLES.md](BUTTON-GROUP-EXAMPLES.md)

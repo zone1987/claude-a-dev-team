@@ -1,51 +1,51 @@
 # Shopware Frontends – Deployment
 
-Quelle: `apps/docs/src/best-practices/deployment.md`, `src/resources/troubleshooting.md`, `src/resources/troubleshooting/CORS.md`
+Source: `apps/docs/src/best-practices/deployment.md`, `src/resources/troubleshooting.md`, `src/resources/troubleshooting/CORS.md`
 
 ---
 
 ## Contents
 
-- [Deployment-Strategien](#deployment-strategien)
+- [Deployment strategies](#deployment-strategies)
 - [Nitro Presets (Zero-Config Deployment)](#nitro-presets-zero-config-deployment)
-- [Deployment-Checkliste (Best Practices)](#deployment-checkliste-best-practices)
-- [Lokale Entwicklung: HTTPS](#lokale-entwicklung-https)
+- [Deployment checklist (best practices)](#deployment-checklist-best-practices)
+- [Local development: HTTPS](#local-development-https)
 - [Troubleshooting](#troubleshooting)
 - [CORS (Cross-Origin Resource Sharing)](#cors-cross-origin-resource-sharing)
-- [SSR-Endpunkt-Trennung (SSR vs. CSR)](#ssr-endpunkt-trennung-ssr-vs-csr)
+- [SSR endpoint separation (SSR vs. CSR)](#ssr-endpoint-separation-ssr-vs-csr)
 
-## Deployment-Strategien
+## Deployment strategies
 
 ### 1. Static Hosting (SPA / SSG)
 
 #### SPA (Single Page Application)
-- Server liefert statisches HTML + JavaScript
-- Browser parst JS → Seite wird interaktiv
-- API zur Laufzeit für Produkte/Kategorien nötig
-- **Nachteile:** Langsame erste Seitenladung, schlechter für SEO
+- Server delivers static HTML + JavaScript
+- Browser parses JS → page becomes interactive
+- API required at runtime for products/categories
+- **Disadvantages:** slow first page load, worse for SEO
 
 #### SSG (Server-Side Generation)
-- Seiten werden einmalig zur Build-Zeit generiert
-- Gesamte Site als statisches HTML + JS ausgeliefert
-- Dynamische Operationen (Cart, Account) rufen API weiterhin auf
-- **Vorteile:** Beste Performance, kein Server nötig
-- **Nachteile:** Seiten müssen bei Produktänderungen neu generiert werden
+- Pages are generated once at build time
+- The entire site is delivered as static HTML + JS
+- Dynamic operations (cart, account) still call the API
+- **Advantages:** best performance, no server required
+- **Disadvantages:** pages must be regenerated when products change
 
-**Beliebte Anbieter:**
+**Popular providers:**
 - Vercel
 - Netlify
 - Amazon S3
 
 ### 2. Dynamic Hosting (SSR)
 
-- Node.js-Server rendert jede Seite on-demand (SSR)
-- Seite wird als HTML + JS geliefert → Browser hydratisiert (SPA)
-- **Vorteile:** Immer aktuelle Daten, bestes SEO, kein Re-Build bei Änderungen
-- **Nachteile:** Zusätzlicher Round-Trip Node→API→Node
+- A Node.js server renders every page on demand (SSR)
+- The page is delivered as HTML + JS → browser hydrates (SPA)
+- **Advantages:** always up-to-date data, best SEO, no rebuild on changes
+- **Disadvantages:** additional round trip Node→API→Node
 
-**Netzwerk-Optimierung:** Node-Server sollte nah an der Shopware-API gehostet werden.
+**Network optimisation:** the Node server should be hosted close to the Shopware API.
 
-**Beliebte Anbieter:**
+**Popular providers:**
 - Vercel (SSR + Node)
 - Heroku
 
@@ -53,29 +53,29 @@ Quelle: `apps/docs/src/best-practices/deployment.md`, `src/resources/troubleshoo
 
 ## Nitro Presets (Zero-Config Deployment)
 
-Nuxt 3 verwendet [Nitro](https://nitro.unjs.io/) als Server-Engine.
+Nuxt 3 uses [Nitro](https://nitro.unjs.io/) as its server engine.
 
-**Built-in Presets:**
+**Built-in presets:**
 - `azure`
 - `cloudflare_pages`
 - `netlify`
 - `stormkit`
 - `vercel`
 
-**Alle Presets:** https://nitro.unjs.io/deploy
+**All presets:** https://nitro.unjs.io/deploy
 
 ---
 
-## Deployment-Checkliste (Best Practices)
+## Deployment checklist (best practices)
 
-1. **Prozesse automatisieren** – CI/CD nutzen (GitHub Actions, GitLab CI)
-2. **Continuous Integration** – Tests, Builds, statische Analyse automatisch ausführen
-3. **Mehrere Environments** – Staging, Production, ggf. verschiedene Node-Versionen
-4. **Deployment-Checkliste** – Klarer Roll-out-Flow dokumentieren
+1. **Automate processes** – use CI/CD (GitHub Actions, GitLab CI)
+2. **Continuous integration** – run tests, builds and static analysis automatically
+3. **Multiple environments** – staging, production, possibly different Node versions
+4. **Deployment checklist** – document a clear roll-out flow
 
 ---
 
-## Lokale Entwicklung: HTTPS
+## Local development: HTTPS
 
 ### Option 1: mkcert
 ```bash
@@ -84,7 +84,7 @@ mkcert localhost
 "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem"
 ```
 
-### Option 2: Vite Plugin
+### Option 2: Vite plugin
 ```bash
 pnpm add -D @vitejs/plugin-basic-ssl
 ```
@@ -103,10 +103,10 @@ export default defineNuxtConfig({
 
 ### 412 Precondition Failed
 
-**Ursache:** `accessToken` ist falsch oder passt nicht zum `endpoint`.
+**Cause:** the `accessToken` is wrong or does not match the `endpoint`.
 
 ```ts
-// nuxt.config.ts prüfen:
+// check nuxt.config.ts:
 shopware: {
   accessToken: "SWSCBHFSNTVMAWNZDNFKSHLAYW",
   endpoint: "https://demo-frontends.shopware.store/store-api/",
@@ -116,65 +116,65 @@ shopware: {
 
 ---
 
-### devStorefrontUrl – Wann und warum?
+### devStorefrontUrl – when and why?
 
-**Zweck:** Für Kunden-Registrierung im lokalen Umfeld.
+**Purpose:** for customer registration in a local environment.
 
-**Problem:** `window.location.origin` (z.B. `http://localhost:3000`) stimmt nicht mit der konfigurierten Sales-Channel-Domain überein.
+**Problem:** `window.location.origin` (e.g. `http://localhost:3000`) does not match the configured sales channel domain.
 
-**Lösung:**
+**Solution:**
 ```ts
 // nuxt.config.ts
 shopware: {
   endpoint: "https://your-shop.shopware.store/store-api",
   accessToken: "your-access-token",
-  devStorefrontUrl: "https://your-shop.shopware.store",  // Sales-Channel-Domain
+  devStorefrontUrl: "https://your-shop.shopware.store",  // sales channel domain
 }
 ```
 
-Oder per `.env`:
+Or via `.env`:
 ```bash
 NUXT_PUBLIC_SHOPWARE_DEV_STOREFRONT_URL=https://your-shop.shopware.store
 ```
 
 ---
 
-### SSR + DDEV + 500-Fehler
+### SSR + DDEV + 500 errors
 
-**Problem:** 500-Fehler mit DDEV + SSR=true  
-**Lösung:** SSL-Zertifikats-Problem – `.env` setzen:
+**Problem:** 500 errors with DDEV + SSR=true  
+**Solution:** SSL certificate problem – set in `.env`:
 ```
 NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
 ---
 
-### SalesChannel-Typ für Composable Frontends
+### SalesChannel type for Composable Frontends
 
-**Richtig:** **Storefront SalesChannel** (nicht Headless)  
-Grund: SEO-URLs werden nur für Storefront-SalesChannels generiert.
+**Correct:** **Storefront SalesChannel** (not Headless)  
+Reason: SEO URLs are only generated for storefront sales channels.
 
 ---
 
-### Access Token in Production sichern
+### Securing the access token in production
 
-Default: öffentliches Token im Frontend sichtbar.
-Optionen:
-1. Proxy-Requests nutzen (Community Module `store-api-proxy`)
-2. Nuxt-Server-Middleware als Proxy konfigurieren
+Default: the public token is visible in the frontend.
+Options:
+1. Use proxy requests (community module `store-api-proxy`)
+2. Configure Nuxt server middleware as a proxy
 
 ---
 
 ### `[unimport] failed to find "createShopwareContext"`
 
-**Problem:** `@shopware/composables/nuxt-layer` fehlt in `extends`.
+**Problem:** `@shopware/composables/nuxt-layer` is missing from `extends`.
 
-**Lösung:**
+**Solution:**
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   extends: [
-    "@shopware/composables/nuxt-layer",  // PFLICHT
+    "@shopware/composables/nuxt-layer",  // MANDATORY
     "@shopware/cms-base-layer",
     "@shopware/unocss-design-tokens-layer"
   ],
@@ -186,26 +186,26 @@ export default defineNuxtConfig({
 
 ## CORS (Cross-Origin Resource Sharing)
 
-### Shopware 6 Standard-CORS-Konfiguration
+### Shopware 6 default CORS configuration
 
-| Header | Default | Beschreibung |
+| Header | Default | Description |
 |---|---|---|
-| `Access-Control-Allow-Origin` | `*` | Alle Origins erlaubt |
+| `Access-Control-Allow-Origin` | `*` | All origins allowed |
 | `Access-Control-Allow-Methods` | `GET,POST,PUT,PATCH,DELETE` | |
 | `Access-Control-Allow-Headers` | `Content-Type,Authorization,sw-context-token,sw-access-key,...` | |
 
-Shopware 6 erlaubt standardmäßig Cross-Origin-Requests.
+Shopware 6 allows cross-origin requests by default.
 
-### CORS-Probleme lösen
+### Solving CORS problems
 
-| Lösung | CORS-frei? | Performance | Aufwand | Wann? |
+| Solution | CORS-free? | Performance | Effort | When? |
 |---|---|---|---|---|
-| **Reverse Proxy (NGINX)** | Ja | Sehr schnell | Mittel | Self-hosted, beste Performance |
-| **Nuxt SSR Mode** | Ja | Schnell | Einfach | APIs ohne CORS-Einstellungen |
-| **Shopware CORS modifizieren** | Nein | Schnell | Einfach | Wenn API-Kontrolle vorhanden |
-| **Custom API Middleware** | Ja | Langsamer | Schwer | Wenn CORS nicht geändert werden kann |
+| **Reverse proxy (NGINX)** | Yes | Very fast | Medium | Self-hosted, best performance |
+| **Nuxt SSR mode** | Yes | Fast | Easy | APIs without CORS settings |
+| **Modify Shopware CORS** | No | Fast | Easy | When you control the API |
+| **Custom API middleware** | Yes | Slower | Hard | When CORS cannot be changed |
 
-### Nuxt Proxy-Konfiguration
+### Nuxt proxy configuration
 
 ```ts
 // nuxt.config.ts
@@ -222,32 +222,32 @@ vite: {
 },
 ```
 
-Dann Shopware-Endpoint auf lokales Frontend zeigen:
+Then point the Shopware endpoint at the local frontend:
 ```ts
 shopware: {
   endpoint: "<frontends-url>/store-api/",
 }
 ```
 
-### Broadcasting & BFCache-Inkompatibilität
+### Broadcasting & BFCache incompatibility
 
-Broadcasting und BFCache (Back-Forward Cache) sind inkompatibel.
-Default: Broadcasting **deaktiviert**.
+Broadcasting and BFCache (back-forward cache) are incompatible.
+Default: broadcasting **disabled**.
 
 ```ts
 // nuxt.config.ts
 runtimeConfig: {
-  broadcasting: true,  // BFCache dann nicht mehr aktiv!
+  broadcasting: true,  // BFCache is then no longer active!
 }
 ```
 
 ---
 
-## SSR-Endpunkt-Trennung (SSR vs. CSR)
+## SSR endpoint separation (SSR vs. CSR)
 
-Wenn Frontend intern (SSR) einen anderen Endpoint nutzt als extern (CSR):
+When the frontend uses a different endpoint internally (SSR) than externally (CSR):
 
 ```bash
-NUXT_SHOPWARE_ENDPOINT=http://shopware              # intern/SSR
-NUXT_PUBLIC_SHOPWARE_ENDPOINT=https://demo.shop.com # extern/CSR
+NUXT_SHOPWARE_ENDPOINT=http://shopware              # internal/SSR
+NUXT_PUBLIC_SHOPWARE_ENDPOINT=https://demo.shop.com # external/CSR
 ```

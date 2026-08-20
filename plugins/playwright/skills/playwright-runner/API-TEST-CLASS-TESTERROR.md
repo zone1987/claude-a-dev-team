@@ -129,9 +129,9 @@ export default ErrorReporter;
 | Properties | 6 (`cause`, `location`, `message`, `snippet`, `stack`, `value`) |
 | Methods | 0 |
 
-**Fazit:** `TestError` erweitert `TestInfoError` um `location` und `snippet` — die
-reporter-spezifischen Properties fuer Quelltextanzeige. `snippet` ist besonders nuetzlich
-fuer angereicherte Fehlerausgaben in CI-Logs oder Notification-Systemen.
+**Summary:** `TestError` extends `TestInfoError` with `location` and `snippet` — the
+reporter-specific properties for source code display. `snippet` is especially useful
+for enriched error output in CI logs or notification systems.
 
 ---
 

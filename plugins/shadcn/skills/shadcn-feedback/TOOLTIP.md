@@ -22,8 +22,8 @@ Tooltip
 
 ## Reference files
 
-- [installation.md](`TOOLTIP-INSTALLATION.md`) — CLI & manual setup incl. Provider setup
-- [source.md](`TOOLTIP-SOURCE.md`) — Complete component source (new-york-v4 + radix base)
-- [api.md](`TOOLTIP-API.md`) — Props tables
-- [examples.md](`TOOLTIP-EXAMPLES.md`) — All examples
-- [base-vs-radix.md](`TOOLTIP-BASE-VS-RADIX.md`) — Styled vs base differences
+- [TOOLTIP-INSTALLATION.md](TOOLTIP-INSTALLATION.md) — CLI & manual setup incl. Provider setup
+- [TOOLTIP-SOURCE.md](TOOLTIP-SOURCE.md) — Complete component source (new-york-v4 + radix base)
+- [TOOLTIP-API.md](TOOLTIP-API.md) — Props tables
+- [TOOLTIP-EXAMPLES.md](TOOLTIP-EXAMPLES.md) — All examples
+- [TOOLTIP-BASE-VS-RADIX.md](TOOLTIP-BASE-VS-RADIX.md) — Styled vs base differences

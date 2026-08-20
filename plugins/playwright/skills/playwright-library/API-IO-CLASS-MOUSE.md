@@ -244,7 +244,7 @@ elements, not on the Mouse object itself.
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `click()` and `dblclick()` cover the majority of use cases.
+**Summary:** `click()` and `dblclick()` cover the majority of use cases.
 `down()` / `move()` / `up()` are needed for drag-and-drop or complex
 mouse gestures. `wheel()` is the only scroll method at the mouse level.
 

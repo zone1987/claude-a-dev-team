@@ -2341,7 +2341,7 @@ page.on('worker', worker => {
 
 **Total: ~102 methods/properties + 17 events**
 
-**Conclusion:** the `Page` class is the heart of the Playwright API. It combines navigation, element interaction
+**Summary:** the `Page` class is the heart of the Playwright API. It combines navigation, element interaction
 (via selector and locator), JavaScript evaluation, network interception, configuration and event handling
 in a single class. For new tests, locator-based methods (`page.locator()`, `getBy*()`) should be
 preferred over the outdated direct selector methods.

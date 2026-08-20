@@ -107,7 +107,7 @@ No events of its own.
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** the class is deliberately kept minimal. For simple touch tests
+**Summary:** the class is deliberately kept minimal. For simple touch tests
 `tap()` is sufficient. For realistic mobile emulation, the combination with
 `page.emulate({ device: playwright.devices['iPhone 14'] })` and
 `hasTouch: true` in the context is recommended. Complex gestures require manual

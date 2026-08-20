@@ -2,25 +2,25 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [3 Caching-Methoden](#3-caching-methoden)
-- [Cache-Tag-System](#cache-tag-system)
-- [Fragment-Rendering](#fragment-rendering)
-- [Vollständiges Beispiel](#vollständiges-beispiel)
+- [Overview](#overview)
+- [3 caching methods](#3-caching-methods)
+- [Cache tag system](#cache-tag-system)
+- [Fragment rendering](#fragment-rendering)
+- [Complete example](#complete-example)
 - [Best Practices](#best-practices)
 
-## Überblick
+## Overview
 
-Contao implementiert HTTP-Caching via **FOSHttpCacheBundle** mit Symfonys HttpCache Reverse Proxy.
+Contao implements HTTP caching via **FOSHttpCacheBundle** with Symfony's HttpCache reverse proxy.
 
-| Cache-Typ | Zielgruppe | Header |
+| Cache type | Audience | Header |
 |-----------|-----------|--------|
-| Private Cache | Einzelnutzer | `Cache-Control: private` |
-| Shared Cache | Mehrere Nutzer über Reverse Proxy | `Cache-Control: public` |
+| Private cache | Single user | `Cache-Control: private` |
+| Shared cache | Multiple users via reverse proxy | `Cache-Control: public` |
 
 ---
 
-## 3 Caching-Methoden
+## 3 caching methods
 
 ### 1. Cache Expiration
 
@@ -31,73 +31,73 @@ $response->headers->addCacheControlDirective('max-age', 60);
 
 ### 2. Cache Validation
 
-- Datumsbasiert: `Last-Modified` / `If-Not-Modified-Since` → `304 Not Modified`
-- Schlüsselbasiert: `ETag` / `If-None-Match` → `304 Not Modified`
+- Date-based: `Last-Modified` / `If-Not-Modified-Since` → `304 Not Modified`
+- Key-based: `ETag` / `If-None-Match` → `304 Not Modified`
 
-### 3. Cache Invalidation (Tag-basiert)
+### 3. Cache Invalidation (tag-based)
 
-Für Shared Caches. Maximum: 1 Jahr Cache-Lebensdauer.
+For shared caches. Maximum: 1 year cache lifetime.
 
 ---
 
-## Cache-Tag-System
+## Cache tag system
 
-### Response taggen
+### Tagging a response
 
 ```php
-// In beliebigen Services (inject fos_http_cache.http.symfony_response_tagger)
+// In any service (inject fos_http_cache.http.symfony_response_tagger)
 $this->responseTagger->addTags(['news-42']);
 ```
 
-In Fragment-Controllern (erben von `AbstractFragmentController`):
+In fragment controllers (extending `AbstractFragmentController`):
 
 ```php
 $this->tagResponse(['news-42']);
 ```
 
-### Tags invalidieren
+### Invalidating tags
 
 ```php
 // Inject fos_http_cache.cache_manager
 $this->cacheManager->invalidateTags(['news-42']);
 ```
 
-### Automatische Backend-Invalidierung
+### Automatic back end invalidation
 
-Beim Bearbeiten von DB-Datensätzen invalidiert Contao automatisch:
+When editing DB records, Contao automatically invalidates:
 
-| Tag | Wann |
+| Tag | When |
 |-----|------|
-| `contao.db.<table>.<id>` | Einzelnen Datensatz |
-| `contao.db.<table>` | Gesamte Tabelle (wenn kein Parent) |
-| Parent- und Child-Table-Tags | Hierarchische Beziehungen |
+| `contao.db.<table>.<id>` | A single record |
+| `contao.db.<table>` | The entire table (if there is no parent) |
+| Parent and child table tags | Hierarchical relationships |
 
 ---
 
-## Fragment-Rendering
+## Fragment rendering
 
-### Inline-Fragments (Standard)
+### Inline fragments (default)
 
-Content wird innerhalb des Haupt-Requests gerendert. Cache-Zeit = Minimum aus Seite + Fragment.
+Content is rendered within the main request. Cache time = minimum of page and fragment.
 
-Template-Responses inkludieren automatisch `Contao-Merge-Cache-Control` für korrektes Cache-Merging.
+Template responses automatically include `Contao-Merge-Cache-Control` for correct cache merging.
 
 ### Edge Side Includes (ESI)
 
-Separate Cache-Zeiten für Fragment und Seite:
+Separate cache times for fragment and page:
 
 ```
-Seite: 24h Cache
-Fragment: 1 Woche Cache
+Page: 24h cache
+Fragment: 1 week cache
 ```
 
-Unterstützt von Symfony Reverse Proxy, Varnish, und großen CDNs. Fallback auf Inline wenn nicht unterstützt.
+Supported by the Symfony reverse proxy, Varnish, and major CDNs. Falls back to inline when not supported.
 
-> **Warnung:** ESI nur sinnvoll wenn Fragment cacheable ist. Unkachebare Fragmente per ESI verschlechtern die Performance.
+> **Warning:** ESI is only useful when the fragment is cacheable. Uncacheable fragments served via ESI degrade performance.
 
 ---
 
-## Vollständiges Beispiel
+## Complete example
 
 ```php
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
@@ -123,11 +123,11 @@ class MyContentElementController extends AbstractContentElementController
 
 ## Best Practices
 
-- Fragment-Caching lohnt nur bei teuren, cacheable Fragmenten
-- ESI vermeiden für einfache Fragmente
-- Für einfache Updates lieber Client-seitiges JavaScript nutzen
-- DB-Tag-Namenskonvention im Frontend einhalten für automatische Koordination
+- Fragment caching only pays off for expensive, cacheable fragments
+- Avoid ESI for simple fragments
+- For simple updates, prefer client-side JavaScript
+- Follow the DB tag naming convention in the front end for automatic coordination
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/caching/*
+*Source: https://docs.contao.org/5.x/dev/framework/caching/*

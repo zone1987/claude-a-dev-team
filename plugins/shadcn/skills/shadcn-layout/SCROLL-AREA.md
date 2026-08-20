@@ -11,8 +11,8 @@ Available in Radix UI and Base UI variants.
 
 ## References
 
-- [installation.md](`SCROLL-AREA-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SCROLL-AREA-SOURCE.md`) — Complete component source (new-york-v4 / radix)
-- [api.md](`SCROLL-AREA-API.md`) — Props / API table
-- [examples.md](`SCROLL-AREA-EXAMPLES.md`) — All examples (vertical, horizontal)
-- [base-vs-radix.md](`SCROLL-AREA-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [SCROLL-AREA-INSTALLATION.md](SCROLL-AREA-INSTALLATION.md) — CLI & manual setup
+- [SCROLL-AREA-SOURCE.md](SCROLL-AREA-SOURCE.md) — Complete component source (new-york-v4 / radix)
+- [SCROLL-AREA-API.md](SCROLL-AREA-API.md) — Props / API table
+- [SCROLL-AREA-EXAMPLES.md](SCROLL-AREA-EXAMPLES.md) — All examples (vertical, horizontal)
+- [SCROLL-AREA-BASE-VS-RADIX.md](SCROLL-AREA-BASE-VS-RADIX.md) — Differences between base and radix variants

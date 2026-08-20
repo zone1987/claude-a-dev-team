@@ -11,9 +11,9 @@ a root `registry.json`. Works with React and non-React frameworks.
 
 ## References
 
-- [structure.md](`REGISTRY-STRUCTURE.md`) — Single vs. `include`-based layout, add an item, guidelines
-- [serve.md](`REGISTRY-SERVE.md`) — Static JSON build vs. dynamic route handlers, content negotiation
-- [test-publish.md](`REGISTRY-TEST-PUBLISH.md`) — CLI test commands (URL and namespace), publishing
+- [REGISTRY-STRUCTURE.md](REGISTRY-STRUCTURE.md) — Single vs. `include`-based layout, add an item, guidelines
+- [REGISTRY-SERVE.md](REGISTRY-SERVE.md) — Static JSON build vs. dynamic route handlers, content negotiation
+- [REGISTRY-TEST-PUBLISH.md](REGISTRY-TEST-PUBLISH.md) — CLI test commands (URL and namespace), publishing
 
 ## Quick-start
 

@@ -4,7 +4,7 @@ A collection of links for navigating websites. Built on Radix UI NavigationMenu 
 
 ## References
 
-- [installation.md](`MENU-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`MENU-SOURCE.md`) — Complete component source code
-- [api.md](`MENU-API.md`) — Sub-components and props
-- [examples.md](`MENU-EXAMPLES.md`) — Full usage example with Next.js Link
+- [MENU-INSTALLATION.md](MENU-INSTALLATION.md) — CLI and manual setup
+- [MENU-SOURCE.md](MENU-SOURCE.md) — Complete component source code
+- [MENU-API.md](MENU-API.md) — Sub-components and props
+- [MENU-EXAMPLES.md](MENU-EXAMPLES.md) — Full usage example with Next.js Link

@@ -1,44 +1,44 @@
-# @shopware/composables — Vollständige API-Referenz
+# @shopware/composables — Complete API reference
 
 Version: **1.11.1**
 
-Alle Composables setzen einen via `createShopwareContext()` bereitgestellten `apiClient` voraus.
+All composables require an `apiClient` provided via `createShopwareContext()`.
 
 ---
 
 ## Contents
 
-- [Setup & Kontext-Bereitstellung](#setup-kontext-bereitstellung)
-- [Cart & Warenkorb](#cart-warenkorb)
+- [Setup & context provisioning](#setup-context-provisioning)
+- [Cart & shopping cart](#cart-shopping-cart)
 - [Checkout](#checkout)
-- [Session & Kontext](#session-kontext)
-- [Nutzer & Account](#nutzer-account)
-- [Produkte](#produkte)
-- [Listing & Suche](#listing-suche)
-- [Navigation & Routing](#navigation-routing)
+- [Session & context](#session-context)
+- [User & account](#user-account)
+- [Products](#products)
+- [Listing & search](#listing-search)
+- [Navigation & routing](#navigation-routing)
 - [Wishlist](#wishlist)
 - [Notifications](#notifications)
 - [Newsletter](#newsletter)
-- [CMS-Composables](#cms-composables)
+- [CMS composables](#cms-composables)
 - [B2B](#b2b)
-- [CMS-Assoziationen](#cms-assoziationen)
-- [Vollständige Export-Liste](#vollständige-export-liste)
+- [CMS associations](#cms-associations)
+- [Complete export list](#complete-export-list)
 
-## Setup & Kontext-Bereitstellung
+## Setup & context provisioning
 
 ### `createShopwareContext(app, options)`
 
-Installiert das Shopware Vue-Plugin in der App-Instanz.
+Installs the Shopware Vue plugin into the app instance.
 
 ```ts
 import { createShopwareContext } from '@shopware/composables'
 
 createShopwareContext(app, {
-  apiClient,              // createAPIClient<operations>(...) Instanz — Pflicht
-  devStorefrontUrl?: string,  // URL des Twig-Storefronts für Dev-Links
-  enableDevtools?: boolean,   // Vue-Devtools-Integration
-  browserLocale?: string,     // z.B. "de-DE" für Preisformatierung
-  cacheableReads?: boolean,   // GET-Anfragen cachen (default: false)
+  apiClient,              // createAPIClient<operations>(...) instance — mandatory
+  devStorefrontUrl?: string,  // URL of the Twig storefront for dev links
+  enableDevtools?: boolean,   // Vue devtools integration
+  browserLocale?: string,     // e.g. "de-DE" for price formatting
+  cacheableReads?: boolean,   // cache GET requests (default: false)
 })
 ```
 
@@ -50,15 +50,15 @@ const { apiClient, devStorefrontUrl, browserLocale, cacheableReads } = useShopwa
 
 ### `useContext<T>(injectionName, params?)`
 
-Interner shared-State-Helper. Erstellt (mit `params.context`) oder liest ein shared reactive `Ref<T>`.
+Internal shared-state helper. Creates (with `params.context`) or reads a shared reactive `Ref<T>`.
 
 ---
 
-## Cart & Warenkorb
+## Cart & shopping cart
 
-### `useCart` — Shared Composable
+### `useCart` — shared composable
 
-`useCart` ist ein `createSharedComposable` — alle Komponenten teilen denselben State.
+`useCart` is a `createSharedComposable` — all components share the same state.
 
 ```ts
 const {
@@ -70,7 +70,7 @@ const {
   totalPrice,
   subtotal,
   shippingCosts,
-  shippingTotal,         // DEPRECATED → shippingCosts verwenden
+  shippingTotal,         // DEPRECATED → use shippingCosts
   appliedPromotionCodes,
   refreshCart,
   addProduct,
@@ -83,27 +83,27 @@ const {
 } = useCart()
 ```
 
-| Member | Typ | Beschreibung |
+| Member | Type | Description |
 |---|---|---|
-| `cart` | `ComputedRef<Schemas["Cart"] \| undefined>` | Warenkorb-Objekt |
-| `cartItems` | `ComputedRef<Schemas["LineItem"][]>` | Alle Positionen |
-| `count` | `ComputedRef<number>` | Gesamtanzahl (ohne Promotions) |
+| `cart` | `ComputedRef<Schemas["Cart"] \| undefined>` | Cart object |
+| `cartItems` | `ComputedRef<Schemas["LineItem"][]>` | All line items |
+| `count` | `ComputedRef<number>` | Total quantity (excluding promotions) |
 | `isEmpty` | `ComputedRef<boolean>` | `count <= 0` |
-| `isVirtualCart` | `ComputedRef<boolean>` | Alle nicht-Promotion-Items sind Downloads |
-| `totalPrice` | `ComputedRef<number>` | Gesamtpreis inkl. Versand |
-| `subtotal` | `ComputedRef<number>` | Positionspreise ohne Versand |
-| `shippingCosts` | `ComputedRef<Schemas["CartDelivery"][]>` | Lieferungen mit Versandkosten |
-| `appliedPromotionCodes` | `ComputedRef<Schemas["LineItem"][]>` | Aktive Gutscheine |
-| `refreshCart(newCart?)` | `Promise<Schemas["Cart"]>` | Cart laden oder direkt setzen |
-| `addProduct({ id, quantity? })` | `Promise<Schemas["Cart"]>` | Produkt hinzufügen |
-| `addProducts(items)` | `Promise<Schemas["Cart"]>` | Mehrere Produkte auf einmal |
-| `addPromotionCode(code)` | `Promise<Schemas["Cart"]>` | Promotion-Code einlösen |
-| `removeItem(lineItem)` | `Promise<Schemas["Cart"]>` | Position entfernen |
-| `removeItemById(id)` | `Promise<Schemas["Cart"]>` | Per ID entfernen |
-| `changeProductQuantity({ id, quantity })` | `Promise<Schemas["Cart"]>` | Menge ändern |
-| `consumeCartErrors()` | `Schemas["Cart"]["errors"]` | Fehler lesen & löschen |
+| `isVirtualCart` | `ComputedRef<boolean>` | All non-promotion items are downloads |
+| `totalPrice` | `ComputedRef<number>` | Total price including shipping |
+| `subtotal` | `ComputedRef<number>` | Line item prices without shipping |
+| `shippingCosts` | `ComputedRef<Schemas["CartDelivery"][]>` | Deliveries with shipping costs |
+| `appliedPromotionCodes` | `ComputedRef<Schemas["LineItem"][]>` | Active vouchers |
+| `refreshCart(newCart?)` | `Promise<Schemas["Cart"]>` | Load the cart or set it directly |
+| `addProduct({ id, quantity? })` | `Promise<Schemas["Cart"]>` | Add a product |
+| `addProducts(items)` | `Promise<Schemas["Cart"]>` | Several products at once |
+| `addPromotionCode(code)` | `Promise<Schemas["Cart"]>` | Redeem a promotion code |
+| `removeItem(lineItem)` | `Promise<Schemas["Cart"]>` | Remove a line item |
+| `removeItemById(id)` | `Promise<Schemas["Cart"]>` | Remove by ID |
+| `changeProductQuantity({ id, quantity })` | `Promise<Schemas["Cart"]>` | Change the quantity |
+| `consumeCartErrors()` | `Schemas["Cart"]["errors"]` | Read & clear the errors |
 
-**Beispiel:**
+**Example:**
 ```ts
 const { addProduct, count, totalPrice } = useCart()
 await addProduct({ id: '550e8400-...', quantity: 2 })
@@ -114,9 +114,9 @@ console.log(count.value, totalPrice.value)
 
 ### `useCartItem(cartItem: Ref<Schemas["LineItem"]>)`
 
-Composable für eine einzelne Warenkorb-Position.
+Composable for a single cart line item.
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `itemRegularPrice` | `ComputedRef<number \| undefined>` |
 | `itemSpecialPrice` | `ComputedRef<number \| undefined>` |
@@ -138,9 +138,9 @@ Composable für eine einzelne Warenkorb-Position.
 
 ### `useAddToCart(product: Ref<Schemas["Product"] | undefined>)`
 
-UI-State für einen "In den Warenkorb"-Button.
+UI state for an "add to cart" button.
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `quantity` | `Ref<number>` |
 | `getStock` | `ComputedRef<number \| undefined>` |
@@ -153,16 +153,16 @@ UI-State für einen "In den Warenkorb"-Button.
 
 ### `useCartNotification()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
-| `codeErrorsNotification()` | `void` — pusht Notifications für Cart-Fehler |
+| `codeErrorsNotification()` | `void` — pushes notifications for cart errors |
 | `getErrorsCodes()` | `Schemas["CartError"][]` |
 
 ---
 
 ### `useCartErrorParamsResolver()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `resolveCartError(error)` | `{ params, messageKey }` |
 
@@ -188,7 +188,7 @@ const {
 } = useCheckout()
 ```
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `shippingMethods` | `ComputedRef<Schemas["ShippingMethod"][]>` |
 | `paymentMethods` | `ComputedRef<Schemas["PaymentMethod"][]>` |
@@ -204,11 +204,11 @@ const {
 
 ---
 
-## Session & Kontext
+## Session & context
 
 ### `useSessionContext(newContext?)`
 
-Liest und schreibt den `SalesChannelContext`.
+Reads and writes the `SalesChannelContext`.
 
 ```ts
 const {
@@ -239,31 +239,31 @@ const {
 } = useSessionContext()
 ```
 
-| Member | Typ | Hinweis |
+| Member | Type | Note |
 |---|---|---|
 | `sessionContext` | `ComputedRef<Schemas["SalesChannelContext"] \| undefined>` | |
 | `userFromContext` | `ComputedRef<Schemas["Customer"] \| undefined \| null>` | |
 | `currency` | `ComputedRef<Schemas["Currency"] \| null>` | |
-| `taxState` | `ComputedRef<string \| undefined>` | `"gross"` oder `"net"` |
-| `countryId` | `ComputedRef<string \| undefined>` | Land des Kunden |
-| `salesChannelCountryId` | `ComputedRef<string \| undefined>` | Standard-Land des Sales-Channel |
-| `salesChannelLanguageId` | `ComputedRef<string \| undefined>` | Aktuelle Sprache |
-| `currentLanguageId` | `ComputedRef<string \| undefined>` | Alias für `salesChannelLanguageId` |
+| `taxState` | `ComputedRef<string \| undefined>` | `"gross"` or `"net"` |
+| `countryId` | `ComputedRef<string \| undefined>` | Country of the customer |
+| `salesChannelCountryId` | `ComputedRef<string \| undefined>` | Default country of the sales channel |
+| `salesChannelLanguageId` | `ComputedRef<string \| undefined>` | Current language |
+| `currentLanguageId` | `ComputedRef<string \| undefined>` | Alias for `salesChannelLanguageId` |
 | `languageId` | `ComputedRef<string \| undefined>` | **DEPRECATED** |
 | `languageIdChain` | `ComputedRef<string>` | **DEPRECATED** |
-| `refreshSessionContext()` | `Promise<void>` | Context neu laden |
-| `setCurrency(currency)` | `Promise<void>` | Währung wechseln |
-| `setLanguage(language)` | `Promise<void>` | Sprache wechseln |
+| `refreshSessionContext()` | `Promise<void>` | Reload the context |
+| `setCurrency(currency)` | `Promise<void>` | Switch the currency |
+| `setLanguage(language)` | `Promise<void>` | Switch the language |
 | `setCountry(countryId)` | `Promise<void>` | |
 | `setShippingMethod(method)` | `Promise<void>` | |
 | `setPaymentMethod(method)` | `Promise<void>` | |
 | `setActiveShippingAddress(address)` | `Promise<void>` | |
 | `setActiveBillingAddress(address)` | `Promise<void>` | |
-| `setContext(context)` | `void` | Lokaler State-Update ohne API-Call |
+| `setContext(context)` | `void` | Local state update without an API call |
 
 ---
 
-## Nutzer & Account
+## User & account
 
 ### `useUser()`
 
@@ -292,7 +292,7 @@ const {
 } = useUser()
 ```
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `user` | `ComputedRef<Schemas["Customer"] \| undefined>` |
 | `isLoggedIn` | `ComputedRef<boolean>` |
@@ -309,7 +309,7 @@ const {
 
 ### `useAddress()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `customerAddresses` | `ComputedRef<Schemas["CustomerAddress"][]>` |
 | `loadCustomerAddresses()` | `Promise<Schemas["CustomerAddress"][]>` |
@@ -324,7 +324,7 @@ const {
 
 ### `useCustomerOrders()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `orders` | `Ref<Schemas["Order"][]>` |
 | `currentPage` | `ComputedRef<number>` |
@@ -337,7 +337,7 @@ const {
 
 ### `useCustomerPassword()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `updatePassword(data)` | `Promise<response>` |
 | `resetPassword(data)` | `Promise<response>` |
@@ -365,7 +365,7 @@ const {
 } = useOrderDetails(orderId)
 ```
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `order` | `ComputedRef<Schemas["Order"] \| undefined \| null>` |
 | `status` | `ComputedRef<string \| undefined>` |
@@ -380,7 +380,7 @@ const {
 
 ### `useOrderPayment(order: ComputedRef<...>)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `isAsynchronous` | `ComputedRef<boolean \| undefined>` |
 | `activeTransaction` | `ComputedRef<Schemas["OrderTransaction"] \| undefined>` |
@@ -394,10 +394,10 @@ const {
 
 ### `useDefaultOrderAssociations()`
 
-Gibt ein Standard-Associations-Objekt für Order-Abfragen zurück:
+Returns a default associations object for order queries:
 
 ```ts
-// Enthält: stateMachineState, lineItems.cover, lineItems.downloads,
+// Contains: stateMachineState, lineItems.cover, lineItems.downloads,
 //           addresses, deliveries, transactions.paymentMethod
 const associations = useDefaultOrderAssociations()
 ```
@@ -406,7 +406,7 @@ const associations = useDefaultOrderAssociations()
 
 ### `useSalutations()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `getSalutations` | `ComputedRef<Schemas["Salutation"][]>` |
 | `fetchSalutations()` | `Promise<response>` |
@@ -415,7 +415,7 @@ const associations = useDefaultOrderAssociations()
 
 ### `useCountries()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `getCountries` | `ComputedRef<Schemas["Country"][]>` |
 | `getCountriesOptions` | `ComputedRef<{ label: string; value: string }[]>` |
@@ -425,13 +425,13 @@ const associations = useDefaultOrderAssociations()
 
 ---
 
-## Produkte
+## Products
 
 ### `useProduct(product?, configurator?)`
 
-Wirft `ContextError` wenn kein Produkt im Context.
+Throws `ContextError` when there is no product in the context.
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `product` | `ComputedRef<Schemas["Product"]>` |
 | `configurator` | `ComputedRef<Schemas["PropertyGroup"][]>` |
@@ -445,7 +445,7 @@ Wirft `ContextError` wenn kein Produkt im Context.
 const { search } = useProductSearch()
 
 const result = await search(productId, {
-  withCmsAssociations: true,     // lädt CMS-Assoziationen mit
+  withCmsAssociations: true,     // also loads the CMS associations
   criteria: { includes: { product: ['id', 'name'] } },
   associations: { manufacturer: {} }
 })
@@ -456,30 +456,30 @@ const result = await search(productId, {
 
 ### `useProductPrice(product: Ref<Schemas["Product"] | undefined>)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `price` | `ComputedRef<Schemas["CalculatedPrice"] \| undefined>` |
 | `totalPrice` | `ComputedRef<number \| undefined>` |
 | `unitPrice` | `ComputedRef<number \| undefined>` |
 | `referencePrice` | `ComputedRef<CalculatedPrice["referencePrice"] \| undefined>` |
-| `displayFrom` | `ComputedRef<boolean>` — true wenn mehrere Tier-Preise |
+| `displayFrom` | `ComputedRef<boolean>` — true when there are several tier prices |
 | `displayFromVariants` | `ComputedRef<number \| false \| undefined>` |
 | `tierPrices` | `ComputedRef<TierPrice[]>` |
 | `hasListPrice` | `ComputedRef<boolean>` |
-| `isListPrice` | `ComputedRef<boolean>` — **DEPRECATED**, `hasListPrice` nutzen |
+| `isListPrice` | `ComputedRef<boolean>` — **DEPRECATED**, use `hasListPrice` |
 | `regulationPrice` | `ComputedRef<number \| undefined>` |
 
 ---
 
-### `usePrice` — Shared Composable
+### `usePrice` — shared composable
 
 ```ts
 const { currencyCode, currencyLocale, getFormattedPrice, update } = usePrice()
 
-// Preis formatieren:
-const formatted = getFormattedPrice(19.99)  // → "19,99 €" (je nach Locale)
+// Format a price:
+const formatted = getFormattedPrice(19.99)  // → "19,99 €" (depending on the locale)
 
-// Währung/Locale aktualisieren:
+// Update the currency/locale:
 update({ currencyCode: 'USD', localeCode: 'en-US' })
 ```
 
@@ -487,7 +487,7 @@ update({ currencyCode: 'USD', localeCode: 'en-US' })
 
 ### `useProductConfigurator()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `isLoadingOptions` | `Ref<boolean>` |
 | `getSelectedOptions` | `ComputedRef<{ [groupId: string]: string }>` |
@@ -501,7 +501,7 @@ update({ currencyCode: 'USD', localeCode: 'en-US' })
 
 ```ts
 const { isLoading, productAssociations, loadAssociations } = useProductAssociations(product, {
-  associationContext: 'cross-selling',  // oder 'reviews'
+  associationContext: 'cross-selling',  // or 'reviews'
   includeSeoUrls: true
 })
 await loadAssociations({ params: { limit: 5 } })
@@ -511,7 +511,7 @@ await loadAssociations({ params: { limit: 5 } })
 
 ### `useProductReviews(product: Ref<Schemas["Product"]>)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `productReviews` | `ComputedRef<Schemas["ProductReview"][]>` |
 | `loadProductReviews(parameters?)` | `Promise<response>` |
@@ -521,7 +521,7 @@ await loadAssociations({ params: { limit: 5 } })
 
 ### `useProductSearchSuggest()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `searchTerm` | `Ref<string>` |
 | `loading` | `ComputedRef<boolean>` |
@@ -532,19 +532,19 @@ await loadAssociations({ params: { limit: 5 } })
 
 ---
 
-## Listing & Suche
+## Listing & search
 
 ### `useListing(params?)`
 
 ```ts
 const listing = useListing({
-  listingType: 'categoryListing',   // oder 'productSearchListing'
+  listingType: 'categoryListing',   // or 'productSearchListing'
   categoryId: 'uuid...',
   initialListing: serverSideFetchedListing,
 })
 ```
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `getInitialListing` | `ComputedRef<ProductListingResult \| null>` |
 | `getCurrentListing` | `ComputedRef<ProductListingResult \| null>` |
@@ -573,22 +573,22 @@ const listing = useListing({
 ### `createCategoryListingContext` + `useCategoryListing()`
 
 ```ts
-// Im Parent (z.B. CmsPage.vue — wird dort intern aufgerufen):
+// In the parent (e.g. CmsPage.vue — called there internally):
 import { createCategoryListingContext } from '@shopware/composables'
 createCategoryListingContext(initialListing)
 
-// Im Kind-Composable:
+// In the child composable:
 const listing = useCategoryListing()
 ```
 
-### `useProductSearchListing` — Shared
+### `useProductSearchListing` — shared
 
 ```ts
-// Geteilter State für Suchergebnis-Listing
+// Shared state for the search result listing
 const listing = useProductSearchListing()
 ```
 
-### `createListingComposable(options)` — Factory
+### `createListingComposable(options)` — factory
 
 ```ts
 const myListing = createListingComposable({
@@ -601,13 +601,13 @@ const myListing = createListingComposable({
 
 ---
 
-## Navigation & Routing
+## Navigation & routing
 
 ### `useNavigation(params?)`
 
 ```ts
 const { navigationElements, loadNavigationElements } = useNavigation({
-  type: 'main-navigation'   // Standard; auch: 'footer-navigation', 'service-navigation'
+  type: 'main-navigation'   // default; also: 'footer-navigation', 'service-navigation'
 })
 
 const elements = await loadNavigationElements({ depth: 2 })
@@ -617,7 +617,7 @@ const elements = await loadNavigationElements({ depth: 2 })
 
 ### `useNavigationContext(context?)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `navigationContext` | `ComputedRef<Schemas["SeoUrl"] \| null>` |
 | `routeName` | `ComputedRef<SeoUrl["routeName"] \| undefined>` |
@@ -629,7 +629,7 @@ const elements = await loadNavigationElements({ depth: 2 })
 
 ```ts
 const { resolvePath } = useNavigationSearch()
-const seoUrl = await resolvePath('/meine-kategorie/produkt-slug')
+const seoUrl = await resolvePath('/my-category/product-slug')
 // → Schemas["SeoUrl"] | null
 ```
 
@@ -640,10 +640,10 @@ const seoUrl = await resolvePath('/meine-kategorie/produkt-slug')
 ```ts
 const { search, advancedSearch } = useCategorySearch()
 
-// Einzelne Kategorie laden:
+// Load a single category:
 const category = await search(categoryId, { withCmsAssociations: true })
 
-// Mehrere Kategorien laden:
+// Load several categories:
 const categories = await advancedSearch({ criteria: { filter: [...] } })
 ```
 
@@ -660,17 +660,17 @@ const landing = await search(navigationId, { withCmsAssociations: true })
 
 ### `useCategory(category?)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `category` | `ComputedRef<Schemas["Category"]>` |
 
-Wirft `ContextError` wenn kein Produkt im Context.
+Throws `ContextError` when there is no product in the context.
 
 ---
 
 ### `useBreadcrumbs(newBreadcrumbs?)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `breadcrumbs` | `ComputedRef<Breadcrumb[]>` |
 | `clearBreadcrumbs()` | `void` |
@@ -681,16 +681,16 @@ Wirft `ContextError` wenn kein Produkt im Context.
 
 ### `useUrlResolver()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
-| `getUrlPrefix()` | `string` — aktuelles Sprachpräfix |
-| `resolveUrl(url)` | `string` — URL mit Sprachpräfix |
+| `getUrlPrefix()` | `string` — current language prefix |
+| `resolveUrl(url)` | `string` — URL with the language prefix |
 
 ---
 
 ### `useInternationalization(pathResolver?)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `languages` | `Ref<Schemas["Language"][]>` |
 | `currentLanguage` | `Ref<string>` |
@@ -709,11 +709,11 @@ Wirft `ContextError` wenn kein Produkt im Context.
 
 ### `useWishlist()`
 
-Kombiniert lokale Wishlist und API-Wishlist (wenn eingeloggt).
+Combines the local wishlist and the API wishlist (when logged in).
 
-| Member | Typ |
+| Member | Type |
 |---|---|
-| `items` | `ComputedRef<string[]>` — Produkt-IDs |
+| `items` | `ComputedRef<string[]>` — product IDs |
 | `products` | `ComputedRef<Schemas["Product"][]>` |
 | `count` | `ComputedRef<number>` |
 | `currentPage` | `ComputedRef<number>` |
@@ -728,7 +728,7 @@ Kombiniert lokale Wishlist und API-Wishlist (wenn eingeloggt).
 
 ### `useProductWishlist(productId: string)`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `isInWishlist` | `ComputedRef<boolean>` |
 | `addToWishlist()` | `Promise<void>` |
@@ -738,11 +738,11 @@ Kombiniert lokale Wishlist und API-Wishlist (wenn eingeloggt).
 
 ### `useLocalWishlist()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `items` | `ComputedRef<string[]>` |
 | `count` | `ComputedRef<number>` |
-| `getWishlistProducts()` | `void` — aus localStorage |
+| `getWishlistProducts()` | `void` — from localStorage |
 | `addToWishlist(id)` | `Promise<void>` |
 | `removeFromWishlist(id)` | `Promise<void>` |
 | `clearWishlist()` | `Promise<void>` |
@@ -751,7 +751,7 @@ Kombiniert lokale Wishlist und API-Wishlist (wenn eingeloggt).
 
 ### `useSyncWishlist()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `items` | `ComputedRef<string[]>` |
 | `products` | `ComputedRef<Schemas["Product"][]>` |
@@ -771,8 +771,8 @@ Kombiniert lokale Wishlist und API-Wishlist (wenn eingeloggt).
 ```ts
 const { notifications, pushInfo, pushSuccess, pushWarning, pushError, removeOne, removeAll } = useNotifications()
 
-pushError('Fehler beim Laden', { timeout: 3000 })
-pushSuccess('Produkt hinzugefügt!')
+pushError('Error while loading', { timeout: 3000 })
+pushSuccess('Product added!')
 ```
 
 ```ts
@@ -784,8 +784,8 @@ type Notification = {
 
 type NotificationOptions = {
   type?: Notification['type']
-  timeout?: number       // ms, nach denen die Notification automatisch verschwindet
-  persistent?: boolean   // nicht auto-entfernen
+  timeout?: number       // ms after which the notification disappears automatically
+  persistent?: boolean   // do not auto-remove
 }
 ```
 
@@ -795,7 +795,7 @@ type NotificationOptions = {
 
 ### `useNewsletter()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `newsletterStatus` | `Ref<Schemas["AccountNewsletterRecipient"]["status"]>` |
 | `isNewsletterSubscriber` | `ComputedRef<boolean>` |
@@ -808,7 +808,7 @@ type NotificationOptions = {
 
 ---
 
-## CMS-Composables
+## CMS composables
 
 ### `useCmsBlock<BLOCK_TYPE>(content)`
 
@@ -833,7 +833,7 @@ const sidebarBlocks = getPositionContent('sidebar')
 
 ```ts
 const { title, meta } = useCmsMeta(category)
-// title: "Kategoriename | Shop"
+// title: "Category name | Shop"
 // meta: [{ name: 'description', content: '...' }]
 ```
 
@@ -841,7 +841,7 @@ const { title, meta } = useCmsMeta(category)
 
 ### `useCmsTranslations()`
 
-Gibt das injizierte `cmsTranslations`-Objekt zurück (Standard: `{}`).
+Returns the injected `cmsTranslations` object (default: `{}`).
 
 ---
 
@@ -886,8 +886,8 @@ import { resolveCmsComponent } from '@shopware/composables'
 
 const { resolvedComponent, componentName, isResolved, componentNameToResolve } =
   resolveCmsComponent(cmsSlot)
-// → componentName z.B. "CmsElementText"
-// → resolvedComponent: aufgelöste Vue-Komponente oder string wenn nicht gefunden
+// → componentName e.g. "CmsElementText"
+// → resolvedComponent: the resolved Vue component, or a string when not found
 ```
 
 ---
@@ -896,7 +896,7 @@ const { resolvedComponent, componentName, isResolved, componentNameToResolve } =
 
 ### `useB2bQuoteManagement()`
 
-| Member | Typ |
+| Member | Type |
 |---|---|
 | `getQuoteList()` | `Promise<Schemas["Quote"][]>` |
 | `getQuote(quoteId)` | `Promise<Schemas["Quote"]>` |
@@ -909,23 +909,23 @@ const { resolvedComponent, componentName, isResolved, componentNameToResolve } =
 
 ---
 
-## CMS-Assoziationen
+## CMS associations
 
-Das Objekt `cmsAssociations` (aus `@shopware/composables`) enthält tiefe Assoziationsdefinitionen für die CMS-Page-Abfrage:
+The `cmsAssociations` object (from `@shopware/composables`) contains deep association definitions for the CMS page query:
 
 ```ts
 import { cmsAssociations } from '@shopware/composables'
 
-// Verwendung mit useProductSearch:
+// Usage with useProductSearch:
 await search(productId, { withCmsAssociations: true })
-// Intern: criteria.associations = cmsAssociations
+// Internally: criteria.associations = cmsAssociations
 ```
 
 ---
 
-## Vollständige Export-Liste
+## Complete export list
 
-Alle öffentlichen Exports von `@shopware/composables`:
+All public exports of `@shopware/composables`:
 
 ```ts
 // Context
@@ -970,7 +970,7 @@ export { useCmsBlock, useCmsSection, useCmsMeta, useCmsTranslations }
 export { useCmsElementConfig, useCmsElementImage, useCmsElementProductBox }
 export { resolveCmsComponent, cmsAssociations }
 
-// Types (re-exports aus @shopware/api-client)
+// Types (re-exports from @shopware/api-client)
 export type { Schemas, operations }
-// + alle CmsElement*, CmsBlock*, CmsSection* Typen
+// + all CmsElement*, CmsBlock*, CmsSection* types
 ```

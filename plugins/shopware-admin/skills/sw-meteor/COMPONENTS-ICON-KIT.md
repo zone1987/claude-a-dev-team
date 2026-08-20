@@ -1,86 +1,86 @@
-# Meteor Icon Kit — Referenz
+# Meteor Icon Kit — reference
 
-Paket: `@shopware-ag/meteor-icon-kit`
+Package: `@shopware-ag/meteor-icon-kit`
 
-## Icon-Namens-Schema
+## Icon naming scheme
 
 ### Format
 
-Icons folgen dem Schema: `{mode}-{basename}[-{size}]`
+Icons follow the scheme: `{mode}-{basename}[-{size}]`
 
-| Teil | Werte | Beschreibung |
+| Part | Values | Description |
 |---|---|---|
-| `mode` | `regular`, `solid` | Linienstil oder gefüllt |
-| `basename` | z.B. `home`, `save`, `shopping-cart` | Icon-Name (Kebab-Case) |
-| `size` | `s`, `xs` (optional) | Kleinere Variante |
+| `mode` | `regular`, `solid` | Line style or filled |
+| `basename` | e.g. `home`, `save`, `shopping-cart` | Icon name (kebab case) |
+| `size` | `s`, `xs` (optional) | Smaller variant |
 
-**Beispiele:**
-- `regular-home` — Home-Icon, Linienstil
-- `solid-save` — Speichern-Icon, gefüllt
-- `solid-filter-s` — Filter-Icon gefüllt, kleine Variante
-- `regular-search-xs` — Such-Icon, extra-klein
+**Examples:**
+- `regular-home` — home icon, line style
+- `solid-save` — save icon, filled
+- `solid-filter-s` — filter icon filled, small variant
+- `regular-search-xs` — search icon, extra small
 
-### Bestand
+### Inventory
 
-- **regular**: 471 Icons
-- **solid**: 435 Icons
+- **regular**: 471 icons
+- **solid**: 435 icons
 
-### Verwendung in `mt-icon`
+### Usage in `mt-icon`
 
 ```html
 <mt-icon name="solid-save" size="24px" />
 <mt-icon name="regular-shopping-cart" size="16" />
 ```
 
-Das Präfix `solid-` oder `regular-` im Namen überschreibt den `mode`-Prop.
+The prefix `solid-` or `regular-` in the name overrides the `mode` prop.
 
-### Verwendung als CSS-Klasse / Font
+### Usage as CSS class / font
 
-Das Icon-Kit liefert eine CSS-Datei:
+The icon kit ships a CSS file:
 
 ```css
-/* Einbinden */
+/* Include */
 @import '@shopware-ag/meteor-icon-kit/icons/meteor-icon-kit.scss';
-/* oder */
+/* or */
 @import '@shopware-ag/meteor-icon-kit/icons/meteor-icon-kit-aa7f6c2f67a2943b68c63f61fb088f50.css';
 ```
 
-### Häufig genutzte Icons (Auswahl)
+### Frequently used icons (selection)
 
-| Name | Beschreibung |
+| Name | Description |
 |---|---|
-| `solid-home` / `regular-home` | Startseite |
-| `solid-save` / `regular-save` | Speichern |
-| `solid-search` / `regular-search` | Suche |
+| `solid-home` / `regular-home` | Home page |
+| `solid-save` / `regular-save` | Save |
+| `solid-search` / `regular-search` | Search |
 | `solid-filter-s` | Filter |
-| `solid-plus-s` | Hinzufügen |
-| `solid-trash` | Löschen |
-| `solid-pencil-s` | Bearbeiten |
-| `solid-times` | Schließen |
-| `solid-check` | Bestätigen |
+| `solid-plus-s` | Add |
+| `solid-trash` | Delete |
+| `solid-pencil-s` | Edit |
+| `solid-times` | Close |
+| `solid-check` | Confirm |
 | `solid-info-circle` | Info |
-| `solid-exclamation-triangle` | Warnung |
-| `solid-exclamation-circle` | Fehler |
-| `solid-chevron-right-xs` | Pfeil rechts |
-| `solid-chevron-down-xs` | Pfeil unten |
-| `solid-ellipsis-h-s` | Mehr-Menü (3 Punkte) |
-| `solid-eye` | Sichtbar |
-| `solid-eye-slash` | Ausgeblendet |
+| `solid-exclamation-triangle` | Warning |
+| `solid-exclamation-circle` | Error |
+| `solid-chevron-right-xs` | Arrow right |
+| `solid-chevron-down-xs` | Arrow down |
+| `solid-ellipsis-h-s` | More menu (3 dots) |
+| `solid-eye` | Visible |
+| `solid-eye-slash` | Hidden |
 | `solid-download` | Download |
 | `solid-upload` | Upload |
-| `solid-shopping-cart` | Warenkorb |
-| `solid-tag` | Tag/Label |
-| `solid-user` | Benutzer |
-| `solid-users` | Benutzergruppe |
-| `solid-cog` | Einstellungen |
-| `regular-analytics` | Statistiken |
-| `solid-bell` | Benachrichtigung |
-| `regular-calendar` | Kalender |
-| `solid-image` | Bild |
-| `solid-list` | Liste |
-| `regular-table` | Tabelle |
+| `solid-shopping-cart` | Shopping cart |
+| `solid-tag` | Tag/label |
+| `solid-user` | User |
+| `solid-users` | User group |
+| `solid-cog` | Settings |
+| `regular-analytics` | Statistics |
+| `solid-bell` | Notification |
+| `regular-calendar` | Calendar |
+| `solid-image` | Image |
+| `solid-list` | List |
+| `regular-table` | Table |
 
-### Meta-Datei
+### Meta file
 
-Die vollständige Icon-Metadaten-Datei liegt unter:
-`icons/meta.json` — enthält für jedes Icon: `name`, `basename`, `mode`, `size`, `tags`, `sizes`, `modes`, `related`.
+The complete icon metadata file is located at:
+`icons/meta.json` — contains for every icon: `name`, `basename`, `mode`, `size`, `tags`, `sizes`, `modes`, `related`.

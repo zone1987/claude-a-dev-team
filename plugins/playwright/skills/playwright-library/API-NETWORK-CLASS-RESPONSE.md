@@ -336,7 +336,7 @@ Returns the URL of the response (may differ from the original request URL after 
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `Response` is a read-only data object for HTTP responses. For API tests, `status()`, `ok()`, `json()` and `text()` are the most frequently used methods. `headerValues()` is important for `Set-Cookie` analysis. `securityDetails()` and `serverAddr()` cover TLS and infrastructure checks.
+**Summary:** `Response` is a read-only data object for HTTP responses. For API tests, `status()`, `ok()`, `json()` and `text()` are the most frequently used methods. `headerValues()` is important for `Set-Cookie` analysis. `securityDetails()` and `serverAddr()` cover TLS and infrastructure checks.
 
 ---
 

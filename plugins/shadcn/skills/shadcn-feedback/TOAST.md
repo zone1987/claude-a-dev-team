@@ -15,6 +15,6 @@ opinionated toast component by emilkowalski built on the `sonner` library.
 
 ## Reference files
 
-- [migration.md](`TOAST-MIGRATION.md`) — Deprecation notice and migration guidance
-- [sonner-source.md](`TOAST-SONNER-SOURCE.md`) — Complete Sonner component source
-- [sonner-examples.md](`TOAST-SONNER-EXAMPLES.md`) — All Sonner examples
+- [TOAST-MIGRATION.md](TOAST-MIGRATION.md) — Deprecation notice and migration guidance
+- [TOAST-SONNER-SOURCE.md](TOAST-SONNER-SOURCE.md) — Complete Sonner component source
+- [TOAST-SONNER-EXAMPLES.md](TOAST-SONNER-EXAMPLES.md) — All Sonner examples

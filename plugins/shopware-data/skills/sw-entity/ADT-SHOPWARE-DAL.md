@@ -128,11 +128,11 @@ Real-world examples extracted from Shopware Core Content entities:
 
 | Example | Description |
 |---------|-------------|
-| [examples/entity-definition.md](examples/entity-definition.md) | ProductDefinition - complex entity with inheritance, versioning, all association types |
-| [examples/entity-class.md](examples/entity-class.md) | ProductEntity and CategoryEntity - typed entity classes with traits |
-| [examples/entity-collection.md](examples/entity-collection.md) | ProductCollection, CategoryCollection, MediaCollection patterns |
-| [examples/translation-definition.md](examples/translation-definition.md) | ProductTranslationDefinition and CategoryTranslationDefinition |
-| [examples/mapping-definition.md](examples/mapping-definition.md) | ProductCategoryDefinition - ManyToMany pivot table |
-| [examples/tree-entity.md](examples/tree-entity.md) | CategoryDefinition - tree structure with path, level, breadcrumb |
-| [examples/media-definition.md](examples/media-definition.md) | MediaDefinition - Computed, RestrictDelete, SetNullOnDelete, Runtime fields |
-| [examples/property-group.md](examples/property-group.md) | PropertyGroupDefinition + PropertyGroupOptionDefinition - parent/child with ReverseInherited |
+| [EXAMPLES-ADT-SHOPWARE-DAL-ENTITY-DEFINITION.md](EXAMPLES-ADT-SHOPWARE-DAL-ENTITY-DEFINITION.md) | ProductDefinition - complex entity with inheritance, versioning, all association types |
+| [EXAMPLES-ADT-SHOPWARE-DAL-ENTITY-CLASS.md](EXAMPLES-ADT-SHOPWARE-DAL-ENTITY-CLASS.md) | ProductEntity and CategoryEntity - typed entity classes with traits |
+| [EXAMPLES-ADT-SHOPWARE-DAL-ENTITY-COLLECTION.md](EXAMPLES-ADT-SHOPWARE-DAL-ENTITY-COLLECTION.md) | ProductCollection, CategoryCollection, MediaCollection patterns |
+| [EXAMPLES-ADT-SHOPWARE-DAL-TRANSLATION-DEFINITION.md](EXAMPLES-ADT-SHOPWARE-DAL-TRANSLATION-DEFINITION.md) | ProductTranslationDefinition and CategoryTranslationDefinition |
+| [EXAMPLES-ADT-SHOPWARE-DAL-MAPPING-DEFINITION.md](EXAMPLES-ADT-SHOPWARE-DAL-MAPPING-DEFINITION.md) | ProductCategoryDefinition - ManyToMany pivot table |
+| [EXAMPLES-ADT-SHOPWARE-DAL-TREE-ENTITY.md](EXAMPLES-ADT-SHOPWARE-DAL-TREE-ENTITY.md) | CategoryDefinition - tree structure with path, level, breadcrumb |
+| [EXAMPLES-ADT-SHOPWARE-DAL-MEDIA-DEFINITION.md](EXAMPLES-ADT-SHOPWARE-DAL-MEDIA-DEFINITION.md) | MediaDefinition - Computed, RestrictDelete, SetNullOnDelete, Runtime fields |
+| [EXAMPLES-ADT-SHOPWARE-DAL-PROPERTY-GROUP.md](EXAMPLES-ADT-SHOPWARE-DAL-PROPERTY-GROUP.md) | PropertyGroupDefinition + PropertyGroupOptionDefinition - parent/child with ReverseInherited |

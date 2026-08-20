@@ -1,14 +1,14 @@
-# Gotenberg — PDF Stempel (Vollreferenz)
+# Gotenberg — PDF Stamp (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [stampOptions-JSON](#stampoptions-json)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [stampOptions JSON](#stampoptions-json)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -16,58 +16,58 @@
 POST /forms/pdfengines/stamp
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content-Type of the request:** `multipart/form-data`
 
-Unterschied zu Wasserzeichen: Ein **Stempel** wird **ueber** dem Seiteninhalt gerendert (Vordergrund). Ein Wasserzeichen wird **hinter** dem Inhalt gerendert (Hintergrund).
-
----
-
-## Request-Header
-
-| Header | Typ | Pflicht | Standard | Beschreibung |
-|--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+Difference from a watermark: a **stamp** is rendered **on top of** the page content (foreground). A watermark is rendered **behind** the content (background).
 
 ---
 
-## Form-Felder
+## Request Headers
 
-### Kern
-
-| Feld | Typ | Pflicht | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------------|--------------|
-| `files` | file[] | Ja | — | PDF-Dateien, die gestempelt werden sollen |
-| `stampSource` | enum | Ja | `text`, `image`, `pdf` | Art des Stempels |
-| `stampExpression` | string | Ja | — | Text-String (bei source=text) oder Dateiname der hochgeladenen Stempel-Datei |
-| `stamp` | file | Bedingt | — | Bild- oder PDF-Datei als Stempel (erforderlich wenn source=image oder source=pdf) |
-| `stampPages` | string | Nein | Seitenbereiche | Seiten, auf die der Stempel angewendet wird; leer = alle |
-| `stampOptions` | JSON-string | Nein | — | Engine-spezifische Optionen |
+| Header | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `Gotenberg-Output-Filename` | string | No | random UUID | Filename of the output |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## stampOptions-JSON
+## Form Fields
 
-Die verfuegbaren Optionen haengen von der konfigurierten PDF-Engine ab. Standard-Engine: **pdfcpu**.
+### Core
 
-### pdfcpu (Standard)
+| Field | Type | Required | Allowed values | Description |
+|-------|------|----------|----------------|-------------|
+| `files` | file[] | Yes | — | PDF files to be stamped |
+| `stampSource` | enum | Yes | `text`, `image`, `pdf` | Kind of stamp |
+| `stampExpression` | string | Yes | — | Text string (with source=text) or filename of the uploaded stamp file |
+| `stamp` | file | Conditional | — | Image or PDF file used as the stamp (required when source=image or source=pdf) |
+| `stampPages` | string | No | Page ranges | Pages the stamp is applied to; empty = all |
+| `stampOptions` | JSON string | No | — | Engine-specific options |
 
-Vollstaendige Dokumentation: https://pdfcpu.io/core/stamp
+---
 
-| Option | Typ | Beispiel | Beschreibung |
-|--------|-----|---------|--------------|
-| `font` | string | `"Helvetica"` | Schriftfamilie fuer Text-Stempel |
-| `points` | integer | `48` | Schriftgroesse in Punkten |
-| `color` | string | `"#008000"` | Hex-Farbe oder CSS-Farbname |
-| `rotation` | float | `45` | Drehwinkel in Grad |
-| `opacity` | float 0-1 | `0.5` | Transparenz (0=unsichtbar, 1=vollstaendig) |
-| `scale` | float | `0.5` | Groessenskalierung |
-| `offset` | string | `"10 20"` | Versatz X Y in Punkten |
-| `pos` | string | `"c"` | Position: `c`=Mitte, `tl`=oben-links, `tr`=oben-rechts, `bl`=unten-links, `br`=unten-rechts |
-| `margin` | string | `"20 20"` | Randabstand |
-| `mode` | integer | `0` | Stempel-Modus (engine-spezifisch) |
+## stampOptions JSON
 
-### Beispiel stampOptions
+The available options depend on the configured PDF engine. Default engine: **pdfcpu**.
+
+### pdfcpu (default)
+
+Full documentation: https://pdfcpu.io/core/stamp
+
+| Option | Type | Example | Description |
+|--------|------|---------|-------------|
+| `font` | string | `"Helvetica"` | Font family for text stamps |
+| `points` | integer | `48` | Font size in points |
+| `color` | string | `"#008000"` | Hex color or CSS color name |
+| `rotation` | float | `45` | Rotation angle in degrees |
+| `opacity` | float 0-1 | `0.5` | Transparency (0=invisible, 1=fully opaque) |
+| `scale` | float | `0.5` | Size scaling |
+| `offset` | string | `"10 20"` | Offset X Y in points |
+| `pos` | string | `"c"` | Position: `c`=center, `tl`=top-left, `tr`=top-right, `bl`=bottom-left, `br`=bottom-right |
+| `margin` | string | `"20 20"` | Margin |
+| `mode` | integer | `0` | Stamp mode (engine-specific) |
+
+### Example stampOptions
 
 ```json
 {
@@ -83,15 +83,15 @@ Vollstaendige Dokumentation: https://pdfcpu.io/core/stamp
 
 ---
 
-## Antwort-Codes
+## Response Codes
 
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | variabel | PDF mit Stempel; mehrere Inputs → ZIP |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | variable | PDF with the stamp; multiple inputs → ZIP |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### Antwort-Header bei Erfolg
+### Response headers on success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -102,9 +102,9 @@ Gotenberg-Trace: {trace}
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### Text-Stempel "GENEHMIGT" (oben rechts)
+### Text stamp "GENEHMIGT" (top right)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
@@ -115,7 +115,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
   -o genehmigt.pdf
 ```
 
-### Text-Stempel "VERTRAULICH" (diagonal, halbopak)
+### Text stamp "VERTRAULICH" (diagonal, semi-opaque)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
@@ -126,7 +126,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
   -o vertraulich.pdf
 ```
 
-### Bild-Stempel (z.B. Logo)
+### Image stamp (e.g. a logo)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
@@ -138,7 +138,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
   -o mit-logo.pdf
 ```
 
-### PDF-Stempel
+### PDF stamp
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
@@ -149,7 +149,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
   -o gestempelt.pdf
 ```
 
-### Nur erste Seite stempeln
+### Stamp the first page only
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/stamp \
@@ -162,13 +162,13 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
 
 ---
 
-## Hinweise
+## Notes
 
-- Stempel rendert im **Vordergrund** (ueber dem Inhalt) — anders als Wasserzeichen
-- Bei `stampSource=image` oder `stampSource=pdf` muss die Datei auch als `stamp`-Feld hochgeladen werden
-- `stampExpression` muss beim image/pdf-Modus dem Dateinamen des `stamp`-Feldes entsprechen
-- Engine-Optionen sind Engine-spezifisch; bei Wechsel der PDF-Engine (pdfcpu → PDFtk etc.) koennen Optionen abweichen
+- A stamp renders in the **foreground** (on top of the content) — unlike a watermark
+- With `stampSource=image` or `stampSource=pdf` the file must also be uploaded in the `stamp` field
+- In image/pdf mode, `stampExpression` must match the filename of the `stamp` field
+- Engine options are engine-specific; when switching the PDF engine (pdfcpu → PDFtk etc.) the options may differ
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/stamp-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/stamp-pdfs

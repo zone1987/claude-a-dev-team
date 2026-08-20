@@ -1,6 +1,6 @@
-# Contao 5.x – Drittanbieter-Erweiterungen
+# Contao 5.x – Third-party extensions
 
-Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
+Complete reference from the Contao 5.x manual (German).
 
 ---
 
@@ -9,126 +9,126 @@ Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
 - [1. Animated Timeline (`pdir/animated-timeline-bundle`)](#1-animated-timeline-pdiranimated-timeline-bundle)
 - [2. EasyThemes (`terminal42/contao-easy_themes`)](#2-easythemes-terminal42contao-easy_themes)
 - [3. Isotope eCommerce (`isotope/isotope-core`)](#3-isotope-ecommerce-isotopeisotope-core)
-- [4. Maklermodul für Immobilienmakler (`pdir/maklermodul-bundle`)](#4-maklermodul-für-immobilienmakler-pdirmaklermodul-bundle)
+- [4. Maklermodul for estate agents (`pdir/maklermodul-bundle`)](#4-maklermodul-for-estate-agents-pdirmaklermodul-bundle)
 - [5. Merger² (`contao-community-alliance/merger2`)](#5-merger²-contao-community-alliancemerger2)
 - [6. MetaModels](#6-metamodels)
 - [7. News Facebook Sync (`inspiredminds/contao-news-facebook`)](#7-news-facebook-sync-inspiredmindscontao-news-facebook)
-- [8. Weitere erwähnte Erweiterungen](#8-weitere-erwähnte-erweiterungen)
+- [8. Further extensions mentioned](#8-further-extensions-mentioned)
 
 ## 1. Animated Timeline (`pdir/animated-timeline-bundle`)
 
-**Hersteller:** pdir GmbH
+**Vendor:** pdir GmbH
 
-**Beschreibung:** jQuery-Erweiterung für Contao 4 zur Darstellung von Inhalten in einer dynamischen Timeline mit Einblend-Animationen.
+**Description:** jQuery extension for Contao 4 for presenting content in a dynamic timeline with fade-in animations.
 
-**Hauptfeatures:**
-- Horizontale und vertikale Timeline-Orientierungen
-- Responsive Design: Horizontal auf Desktop, vertikal auf Mobilgeräten
-- Einblendanimationen (Fade-In)
+**Main features:**
+- Horizontal and vertical timeline orientations
+- Responsive design: horizontal on the desktop, vertical on mobile devices
+- Fade-in animations
 
-**Dokumentation:** https://docs.pdir.de/#/animated-timeline/index
+**Documentation:** https://docs.pdir.de/#/animated-timeline/index
 
 ---
 
 ## 2. EasyThemes (`terminal42/contao-easy_themes`)
 
-**Hersteller:** terminal42 gmbh
+**Vendor:** terminal42 gmbh
 
-**Beschreibung:** Direktzugriff auf Stylesheets, Module, Seitenlayouts und Bildgrößen mit weniger Klicks – besonders nützlich bei mehreren Themes.
+**Description:** direct access to stylesheets, modules, page layouts and image sizes with fewer clicks – especially useful with several themes.
 
-**Installation und Aktivierung:**
-1. Backend → Benutzerverwaltung → Benutzer bearbeiten
-2. Im letzten Abschnitt: "EasyTheme aktivieren" ankreuzen
+**Installation and activation:**
+1. Backend → Benutzerverwaltung (User Management) → edit a Benutzer (user)
+2. In the last section: tick "EasyTheme aktivieren" (Activate EasyTheme)
 
-**Konfiguration — Aktive Module:**
-- Theme bearbeiten
+**Configuration — active modules:**
+- Edit theme
 - Stylesheets
-- Frontend-Module
-- Seitenlayouts
-- Bildgrößen
+- Frontend modules
+- Seitenlayouts (Page layouts)
+- Image sizes
 
-**Hinweis:** Der interne CSS-Editor ist veraltet und wird in einer zukünftigen Contao-Version entfernt.
+**Note:** the internal CSS editor is deprecated and will be removed in a future Contao version.
 
-**Anzeigemodi:**
-| Modus | Beschreibung |
+**Display modes:**
+| Mode | Description |
 |-------|-------------|
-| Kontextmenü | Erscheint beim Rechtsklick auf Themes |
-| Mouseover | Erscheint beim Überfahren der Themes |
-| DOM-Inject | Wird direkt unterhalb der Themes angezeigt |
-| Backend-Modul | Erstellt zusätzliches Backend-Modul (optionale Referenzgruppe) |
+| Context menu | Appears on right-clicking themes |
+| Mouseover | Appears when hovering over the themes |
+| DOM inject | Displayed directly below the themes |
+| Backend module | Creates an additional backend module (optional reference group) |
 
 ---
 
 ## 3. Isotope eCommerce (`isotope/isotope-core`)
 
-**Hersteller:** terminal42 gmbh
+**Vendor:** terminal42 gmbh
 
-**Beschreibung:** Kostenlose eCommerce-Lösung für das Contao CMS.
+**Description:** free eCommerce solution for the Contao CMS.
 
-**Eigenes Benutzerhandbuch:** https://docs.isotopeecommerce.org/manual/de/
+**Its own user manual:** https://docs.isotopeecommerce.org/manual/de/
 
 ---
 
-## 4. Maklermodul für Immobilienmakler (`pdir/maklermodul-bundle`)
+## 4. Maklermodul for estate agents (`pdir/maklermodul-bundle`)
 
-**Hersteller:** pdir GmbH (kostenpflichtig)
+**Vendor:** pdir GmbH (paid)
 
-**Beschreibung:** Spezialisiertes Modul für Immobilienmakler zur Verwaltung von Objektlisten und Kundeninteraktionen in Contao.
+**Description:** specialised module for estate agents for managing property listings and customer interactions in Contao.
 
-**Projekt-Website:** https://maklermodul.de
-**Dokumentation:** https://docs.pdir.de/#/maklermodul/index
+**Project website:** https://maklermodul.de
+**Documentation:** https://docs.pdir.de/#/maklermodul/index
 
 ---
 
 ## 5. Merger² (`contao-community-alliance/merger2`)
 
-**Hersteller:** Contao Community Alliance (CCA)
+**Vendor:** Contao Community Alliance (CCA)
 
-**Beschreibung:** Frontend-Modul für bedingungsbasierte Inhaltsanzeige und -zusammenführung. Unterstützt Artikel, Seiten und andere Frontend-Module.
+**Description:** frontend module for condition-based content display and merging. Supports articles, pages and other frontend modules.
 
-**Hauptanwendungsfälle:**
-- **Inhaltskonsolidierung:** Sprachspezifische Module bedingt anzeigen (z.B. nach Browser-Sprache) — reduziert Layout-Varianten
-- **Bedingte Anzeige:** Module/Artikel nur bei bestimmten Kriterien zeigen (Seitentiefe, Mobilansicht, Browser-Sprache)
-- **Artikelvererbung:** Automatische Weitergabe von Artikeln von Elternseiten an Kindseiten im Seitenbaum
+**Main use cases:**
+- **Content consolidation:** display language-specific modules conditionally (e.g. by browser language) — reduces layout variants
+- **Conditional display:** show modules/articles only under certain criteria (page depth, mobile view, browser language)
+- **Article inheritance:** automatic passing of articles from parent pages to child pages in the page tree
 
-**Detaillierte Konfiguration:** https://github.com/contao-community-alliance/merger2/wiki
+**Detailed configuration:** https://github.com/contao-community-alliance/merger2/wiki
 
 ---
 
 ## 6. MetaModels
 
-**Hersteller:** MetaModels Team
+**Vendor:** MetaModels team
 
-**Beschreibung:** Erweiterung für strukturierte Dateneingabe und -ausgabe in verschiedenen Formaten. Keine Programmierkenntnisse erforderlich.
+**Description:** extension for structured data entry and output in various formats. No programming knowledge required.
 
-**Anwendungsfelder:**
-- Produktkataloge
-- Veranstaltungen
-- Menü- und Speisepläne
-- Adressen- und Mitarbeiterverzeichnisse
-- Immobilienlisten
-- Bildgalerien
-- Mehrsprachige Inhaltsverwaltung
+**Fields of application:**
+- Product catalogues
+- Events
+- Menus and meal plans
+- Address and staff directories
+- Property listings
+- Image galleries
+- Multilingual content management
 
 **Features:**
-- Listen- und Detailansicht
-- Filterungen, Sortierungen, Paginierungen
-- Mehrsprachige Unterstützung
+- List and detail view
+- Filtering, sorting, pagination
+- Multilingual support
 
-**Paket:** https://packagist.org/packages/metamodels/
-**Handbuch:** https://metamodels.readthedocs.io/de/latest/
+**Package:** https://packagist.org/packages/metamodels/
+**Manual:** https://metamodels.readthedocs.io/de/latest/
 
 ---
 
 ## 7. News Facebook Sync (`inspiredminds/contao-news-facebook`)
 
-**Hersteller:** INSPIRED MINDS (kostenpflichtig, ab v9.0)
+**Vendor:** INSPIRED MINDS (paid, from v9.0)
 
-**Beschreibung:** Automatische Synchronisierung zwischen Facebook-Seiten/-Gruppen und Contao-Newsarchiven. Import von Facebook-Posts als Nachrichtenbeiträge und Veröffentlichung von Contao-News auf Facebook.
+**Description:** automatic synchronisation between Facebook pages/groups and Contao news archives. Import of Facebook posts as news items and publication of Contao news on Facebook.
 
 ### Installation
 
-`composer.json` anpassen:
+Adjust `composer.json`:
 ```json
 {
   "repositories": [
@@ -143,14 +143,14 @@ Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
 }
 ```
 
-### Facebook-App erstellen (optional)
+### Creating a Facebook app (optional)
 
-1. developers.facebook.com → App erstellen
-2. Anwendungsfall: "Other", Typ: "Business"
-3. "Facebook Login for Business" hinzufügen
-4. Redirect-URI: `https://example.org/_facebook/callback`
+1. developers.facebook.com → create an app
+2. Use case: "Other", type: "Business"
+3. Add "Facebook Login for Business"
+4. Redirect URI: `https://example.org/_facebook/callback`
 
-### App-Credentials konfigurieren (optional, falls keine integrierte App)
+### Configuring the app credentials (optional, if there is no integrated app)
 
 `config/config.yaml`:
 ```yaml
@@ -165,36 +165,36 @@ FACEBOOK_APP_ID=123456789123456
 FACEBOOK_APP_SECRET=abc123...
 ```
 
-### Newsarchiv konfigurieren
+### Configuring the news archive
 
-1. Nachrichtenarchiv öffnen
-2. "Facebook-Sync" aktivieren
-3. Numerische Facebook-Seiten-ID eingeben
-4. "Seitenbeiträge abrufen" aktivieren (optional: Datumsgrenzen)
-5. "Facebook verbinden" für Token-Autorisierung
-6. Bilder-Download-Ordner konfigurieren (Standard: `files/facebook_images`)
+1. Open the news archive
+2. Enable "Facebook-Sync"
+3. Enter the numeric Facebook page ID
+4. Enable "Seitenbeiträge abrufen" (Retrieve page posts) (optional: date limits)
+5. "Facebook verbinden" (Connect Facebook) for token authorisation
+6. Configure the image download folder (default: `files/facebook_images`)
 
-### Zusätzliche Systemeinstellungen
-- **OpenGraph-Metatags deaktivieren**: Verhindert automatische `og:image`-Tags bei geteilten Artikeln
-- **Als Fotos posten**: Erneut aktivieren, wenn Artikel mit Teaser-Bild als Foto gepostet werden sollen
+### Additional system settings
+- **Disable OpenGraph metatags**: prevents automatic `og:image` tags on shared articles
+- **Post as photos**: re-enable if articles with a teaser image should be posted as a photo
 
-**Headline-Länge konfigurieren:**
+**Configuring the headline length:**
 ```yaml
 contao_news_facebook:
     headline_length: 64
 ```
 
-### Verwendung
+### Usage
 
-- **Facebook-Posts abrufen**: Stündlich via Contao-Cronjob
-- **Nach Facebook veröffentlichen**: Wenn "Auf Facebook-Seite posten" im Artikel aktiviert; minutlich geprüft
-- **Manuell synchronisieren**: Button in globalen Operationen der Nachrichtenarchive
+- **Retrieving Facebook posts**: hourly via the Contao cronjob
+- **Publishing to Facebook**: when "Auf Facebook-Seite posten" (Post to Facebook page) is enabled in the article; checked every minute
+- **Synchronising manually**: button in the global operations of the news archives
 
 ### Hooks
 
-**`processFacebookPost`:** Anpasst Konvertierung von Facebook-Posts zu Contao-Beiträgen.
+**`processFacebookPost`:** adjusts the conversion of Facebook posts into Contao items.
 
-**`changeFacebookMessage`:** Ändert den Nachrichtentext vor dem Facebook-Post.
+**`changeFacebookMessage`:** changes the message text before the Facebook post.
 
 ```php
 #[AsHook('changeFacebookMessage')]
@@ -210,24 +210,24 @@ class ChangeFacebookMessageListener
 }
 ```
 
-### Template-Daten
+### Template data
 
-Templates erhalten zusätzliche Variablen:
-- `fbData` – Originaldaten des Facebook-Posts
-- `fbPostId` – Zugehörige Facebook-Post-ID
-- `fromFb` – Boolean: Facebook-Herkunft
-
----
-
-## 8. Weitere erwähnte Erweiterungen
-
-**News Sync** (`inspiredminds/contao-news-sync`): Kostenpflichtige Erweiterung zur Synchronisierung von Nachrichtenartikeln zwischen Contao-Installationen.
-
-**Social Feed**: Zeigt Feeds von Facebook und Instagram an.
+Templates receive additional variables:
+- `fbData` – original data of the Facebook post
+- `fbPostId` – associated Facebook post ID
+- `fromFb` – boolean: Facebook origin
 
 ---
 
-Quellen:
+## 8. Further extensions mentioned
+
+**News Sync** (`inspiredminds/contao-news-sync`): paid extension for synchronising news articles between Contao installations.
+
+**Social Feed**: displays feeds from Facebook and Instagram.
+
+---
+
+Sources:
 - https://docs.contao.org/5.x/manual/de/erweiterungen/
 - https://docs.contao.org/5.x/manual/de/erweiterungen/animated-timeline/
 - https://docs.contao.org/5.x/manual/de/erweiterungen/contao-easy_themes/

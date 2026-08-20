@@ -1,37 +1,37 @@
-# Contao 5 — Front-End-Module
+# Contao 5 — Frontend modules
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Grundbestandteile](#grundbestandteile)
-- [Implementierungsbeispiel](#implementierungsbeispiel)
-- [Service-Tag-Optionen](#service-tag-optionen)
-- [Registrierungsmethoden](#registrierungsmethoden)
-- [PageModel-Zugriff](#pagemodel-zugriff)
-- [Unterschied: Front-End-Modul vs. Content Element](#unterschied-front-end-modul-vs-content-element)
+- [Overview](#overview)
+- [Basic components](#basic-components)
+- [Implementation example](#implementation-example)
+- [Service tag options](#service-tag-options)
+- [Registration methods](#registration-methods)
+- [PageModel access](#pagemodel-access)
+- [Difference: frontend module vs. content element](#difference-frontend-module-vs-content-element)
 
-## Übersicht
+## Overview
 
-Front-End-Module generieren dynamischen Inhalt für komplexe Funktionalitäten, die
-auf mehreren Seiten geteilt werden. Beispiele: News-Listen, Navigationselemente,
-Mitgliederformulare.
+Frontend modules generate dynamic content for complex functionality that is
+shared across multiple pages. Examples: news lists, navigation elements,
+member forms.
 
-Sie funktionieren als Fragment-Controller, die in den Hauptinhalt rendern, und
-werden ähnlich wie Content Elements erstellt.
-
----
-
-## Grundbestandteile
-
-1. **Fragment-Controller** — Klasse, die `AbstractFrontendModuleController` erweitert
-2. **Service-Tag** `contao.frontend_module`
-3. **DCA-Konfiguration** in `tl_module` (Palette)
-4. **Twig-Template** — Namenskonvention: `frontend_module/<type>.html.twig`
-5. **Translations** für Backend-Labels
+They work as fragment controllers that render into the main content, and
+are created in much the same way as content elements.
 
 ---
 
-## Implementierungsbeispiel
+## Basic components
+
+1. **Fragment controller** — a class extending `AbstractFrontendModuleController`
+2. **Service tag** `contao.frontend_module`
+3. **DCA configuration** in `tl_module` (palette)
+4. **Twig template** — naming convention: `frontend_module/<type>.html.twig`
+5. **Translations** for backend labels
+
+---
+
+## Implementation example
 
 ### Controller
 
@@ -57,13 +57,13 @@ class MyNewsListController extends AbstractFrontendModuleController
 
     private function loadNews(ModuleModel $model): array
     {
-        // Datenbankabfrage o. Ä.
+        // Database query or similar
         return [];
     }
 }
 ```
 
-### DCA-Palette
+### DCA palette
 
 ```php
 // contao/dca/tl_module.php
@@ -103,26 +103,26 @@ FMD:
 
 ---
 
-## Service-Tag-Optionen
+## Service tag options
 
-| Option | Typ | Zweck |
+| Option | Type | Purpose |
 |--------|-----|-------|
-| `type` | string | Identifiziert Template und DCA-Palette (optional) |
-| `category` | string | Gruppiert das Modul im Typ-Dropdown |
-| `template` | string | Überschreibt generierten Template-Namen |
-| `renderer` | string | Standard: `forward`; auch `inline` oder `esi` möglich |
-| `method` | string | Gibt die aufzurufende Controller-Methode an |
+| `type` | string | Identifies the template and DCA palette (optional) |
+| `category` | string | Groups the module in the type dropdown |
+| `template` | string | Overrides the generated template name |
+| `renderer` | string | Default: `forward`; `inline` or `esi` are also possible |
+| `method` | string | Specifies the controller method to call |
 
 ---
 
-## Registrierungsmethoden
+## Registration methods
 
-**Via PHP-Attribut (empfohlen):**
+**Via PHP attribute (recommended):**
 ```php
 #[AsFrontendModule(category: 'news', type: 'my_news_list')]
 ```
 
-**Via YAML-Service-Tag:**
+**Via YAML service tag:**
 ```yaml
 App\Controller\FrontendModule\MyNewsListController:
     tags:
@@ -133,9 +133,9 @@ App\Controller\FrontendModule\MyNewsListController:
 
 ---
 
-## PageModel-Zugriff
+## PageModel access
 
-Wie bei Content Elements steht die aktuelle Seite über `$this->getPageModel()` bereit:
+As with content elements, the current page is available via `$this->getPageModel()`:
 
 ```php
 protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
@@ -148,18 +148,18 @@ protected function getResponse(FragmentTemplate $template, ModuleModel $model, R
 
 ---
 
-## Unterschied: Front-End-Modul vs. Content Element
+## Difference: frontend module vs. content element
 
-| Aspekt | Front-End-Modul | Content Element |
+| Aspect | Frontend module | Content element |
 |--------|----------------|-----------------|
-| Tabelle | `tl_module` | `tl_content` |
-| Basis-Klasse | `AbstractFrontendModuleController` | `AbstractContentElementController` |
-| Model-Typ | `ModuleModel` | `ContentModel` |
-| Attribut | `#[AsFrontendModule]` | `#[AsContentElement]` |
-| Template-Pfad | `frontend_module/<type>` | `content_element/<type>` |
-| Platzierung | Seitenlayout/Artikel-Module | Artikel (Inhaltsbereich) |
+| Table | `tl_module` | `tl_content` |
+| Base class | `AbstractFrontendModuleController` | `AbstractContentElementController` |
+| Model type | `ModuleModel` | `ContentModel` |
+| Attribute | `#[AsFrontendModule]` | `#[AsContentElement]` |
+| Template path | `frontend_module/<type>` | `content_element/<type>` |
+| Placement | Page layout/article modules | Article (content area) |
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/front-end-modules/*  
+*Source: https://docs.contao.org/5.x/dev/framework/front-end-modules/*  
 *https://docs.contao.org/5.x/dev/getting-started/content-elements-modules/*

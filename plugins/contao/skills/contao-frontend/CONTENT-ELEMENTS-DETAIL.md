@@ -2,41 +2,41 @@
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Grundbestandteile](#grundbestandteile)
-- [Minimale Implementierung](#minimale-implementierung)
-- [Service-Tag-Optionen](#service-tag-optionen)
-- [Registrierungsmethoden](#registrierungsmethoden)
-- [PageModel-Zugriff](#pagemodel-zugriff)
-- [Nested Fragments (ab Contao 5.3)](#nested-fragments-ab-contao-53)
-- [Wrapper-Elemente (Legacy)](#wrapper-elemente-legacy)
-- [Content Elements für eigene Tabellen](#content-elements-für-eigene-tabellen)
+- [Overview](#overview)
+- [Basic components](#basic-components)
+- [Minimal implementation](#minimal-implementation)
+- [Service tag options](#service-tag-options)
+- [Registration methods](#registration-methods)
+- [PageModel access](#pagemodel-access)
+- [Nested fragments (as of Contao 5.3)](#nested-fragments-as-of-contao-53)
+- [Wrapper elements (legacy)](#wrapper-elements-legacy)
+- [Content elements for custom tables](#content-elements-for-custom-tables)
 - [Maker Bundle](#maker-bundle)
 
-## Übersicht
+## Overview
 
-Content Elements sind die fundamentalen Inhaltsbausteine in Contao. Sie sind als
-Fragment-Controller implementiert, empfangen Daten über ein Content Model und
-geben eine Response zurück, die in den Hauptinhalt gerendert wird.
-
----
-
-## Grundbestandteile
-
-Jedes Content Element besteht aus:
-
-1. **Fragment-Controller** — Klasse, die `AbstractContentElementController` erweitert
-2. **Service-Tag** `contao.content_element` mit:
-   - **type**: Identifiziert das Template und die DCA-Palette (wird aus Klassenname abgeleitet)
-   - **category**: Gruppiert Elemente in Dropdowns (Default: `miscellaneous`)
-   - **template**: Optionaler Custom-Template-Pfad
-3. **DCA-Palette** in `tl_content`
-4. **Twig-Template** (`content_element/<type>.html.twig`)
-5. **Translations** für Backend-Labels
+Content elements are the fundamental content building blocks in Contao. They are
+implemented as fragment controllers, receive data via a content model and
+return a response that is rendered into the main content.
 
 ---
 
-## Minimale Implementierung
+## Basic components
+
+Every content element consists of:
+
+1. **Fragment controller** — a class extending `AbstractContentElementController`
+2. **Service tag** `contao.content_element` with:
+   - **type**: identifies the template and the DCA palette (derived from the class name)
+   - **category**: groups elements in dropdowns (default: `miscellaneous`)
+   - **template**: optional custom template path
+3. **DCA palette** in `tl_content`
+4. **Twig template** (`content_element/<type>.html.twig`)
+5. **Translations** for backend labels
+
+---
+
+## Minimal implementation
 
 ### Controller
 
@@ -63,7 +63,7 @@ class ExampleElementController extends AbstractContentElementController
 }
 ```
 
-### DCA-Palette
+### DCA palette
 
 ```php
 // contao/dca/tl_content.php
@@ -99,33 +99,33 @@ CTE:
 
 ---
 
-## Service-Tag-Optionen
+## Service tag options
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |--------|-----|-------------|
-| `name` | string | Muss `contao.content_element` sein |
-| `type` | string | Eigener Typ-Bezeichner (Pflicht bei Überschreibung) |
-| `category` | string | Gruppiert das Element im Selektor |
-| `template` | string | Überschreibt Standard-Template-Pfad |
-| `renderer` | string | `inline`, `esi` oder `forward` (Standard) |
-| `method` | string | Aufzurufende Controller-Methode |
-| `nestedFragments` | bool/array | Aktiviert verschachtelte Kind-Elemente |
+| `name` | string | Must be `contao.content_element` |
+| `type` | string | Custom type identifier (mandatory when overriding) |
+| `category` | string | Groups the element in the selector |
+| `template` | string | Overrides the default template path |
+| `renderer` | string | `inline`, `esi` or `forward` (default) |
+| `method` | string | Controller method to call |
+| `nestedFragments` | bool/array | Enables nested child elements |
 
 ---
 
-## Registrierungsmethoden
+## Registration methods
 
-**Via PHP-Attribut (empfohlen):**
+**Via PHP attribute (recommended):**
 ```php
 #[AsContentElement(category: 'texts', template: 'content_element/my_element')]
 ```
 
-**Via Annotation:**
+**Via annotation:**
 ```php
 /** @ContentElement("my_element", category="texts") */
 ```
 
-**Via YAML-Service-Tag:**
+**Via YAML service tag:**
 ```yaml
 # config/services.yaml
 App\Controller\ContentElement\ExampleElementController:
@@ -137,16 +137,16 @@ App\Controller\ContentElement\ExampleElementController:
 
 ---
 
-## PageModel-Zugriff
+## PageModel access
 
-Innerhalb des Controllers steht die aktuelle Seite über `$this->getPageModel()`
-zur Verfügung:
+Inside the controller, the current page is available via `$this->getPageModel()`
+as follows:
 
 ```php
 protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
 {
     $page = $this->getPageModel();
-    // $page ist ein \Contao\PageModel-Objekt
+    // $page is a \Contao\PageModel object
     $template->set('pageTitle', $page->pageTitle);
     return $template->getResponse();
 }
@@ -154,9 +154,9 @@ protected function getResponse(FragmentTemplate $template, ContentModel $model, 
 
 ---
 
-## Nested Fragments (ab Contao 5.3)
+## Nested fragments (as of Contao 5.3)
 
-Nested Fragments erlauben es einem Parent-Element, Kind-Content-Elements zu enthalten.
+Nested fragments allow a parent element to contain child content elements.
 
 **Controller:**
 ```php
@@ -176,10 +176,10 @@ class GalleryController extends AbstractContentElementController
 
 ---
 
-## Wrapper-Elemente (Legacy)
+## Wrapper elements (legacy)
 
-Legacy-Wrapper-Elemente (start/stop/single/separator) werden in `$GLOBALS['TL_WRAPPERS']`
-registriert:
+Legacy wrapper elements (start/stop/single/separator) are registered in `$GLOBALS['TL_WRAPPERS']`
+as follows:
 
 ```php
 // contao/config/config.php
@@ -188,14 +188,14 @@ $GLOBALS['TL_WRAPPERS']['stop'][] = 'my_stop_element';
 $GLOBALS['TL_WRAPPERS']['single'][] = 'my_single_element';
 ```
 
-**Wichtig:** Backend-Ausgabe sollte sich von der Frontend-Ausgabe unterscheiden, um
-Darstellungsprobleme zu vermeiden.
+**Important:** the backend output should differ from the frontend output in order to
+avoid rendering problems.
 
 ---
 
-## Content Elements für eigene Tabellen
+## Content elements for custom tables
 
-Content Elements lassen sich auch als Kind-Datensätze eigener Tabellen nutzen:
+Content elements can also be used as child records of custom tables:
 
 ```php
 // contao/dca/tl_example.php
@@ -214,14 +214,14 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-Backend-Modul:
+Backend module:
 ```php
 $GLOBALS['BE_MOD']['content']['example'] = [
     'tables' => ['tl_example', 'tl_content'],
 ];
 ```
 
-Rendering im Frontend:
+Rendering in the frontend:
 ```php
 use Contao\ContentModel;
 use Contao\Controller;
@@ -232,14 +232,14 @@ foreach ($models as $model) {
 }
 ```
 
-**Performance-Tipp:** Anonyme Funktionen für Lazy-Evaluation nutzen — Content wird nur
-bei tatsächlichem Zugriff aus der Datenbank geladen.
+**Performance tip:** use anonymous functions for lazy evaluation — content is only
+loaded from the database when it is actually accessed.
 
 ---
 
 ## Maker Bundle
 
-Das `contao/maker-bundle` kann Dateien automatisch generieren:
+The `contao/maker-bundle` can generate files automatically:
 
 ```bash
 bin/console make:contao:content-element
@@ -247,6 +247,6 @@ bin/console make:contao:content-element
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/content-elements/*  
+*Source: https://docs.contao.org/5.x/dev/framework/content-elements/*  
 *https://docs.contao.org/5.x/dev/getting-started/content-elements-modules/*  
 *https://docs.contao.org/5.x/dev/guides/using-content-elements/*

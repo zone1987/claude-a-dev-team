@@ -177,7 +177,7 @@ import { test, expect } from '@playwright/test';
 | Properties | 6 |
 | Events | 0 |
 
-**Conclusion:** The `Playwright` object is a pure namespace without methods of its own. The three BrowserType properties (`chromium`, `firefox`, `webkit`) are the starting point of every browser interaction. `devices` and `request` are global helper objects for device emulation and standalone API tests respectively.
+**Summary:** The `Playwright` object is a pure namespace without methods of its own. The three BrowserType properties (`chromium`, `firefox`, `webkit`) are the starting point of every browser interaction. `devices` and `request` are global helper objects for device emulation and standalone API tests respectively.
 
 ---
 

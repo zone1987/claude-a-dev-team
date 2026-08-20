@@ -12,8 +12,8 @@ A control that allows the user to toggle between checked and not checked. Built 
 
 ## Reference files
 
-- [installation.md](`SWITCH-INSTALLATION.md`) — CLI & manual setup, Radix vs Base
-- [source.md](`SWITCH-SOURCE.md`) — Complete component source (new-york-v4, base, radix)
-- [api.md](`SWITCH-API.md`) — Props table
-- [examples.md](`SWITCH-EXAMPLES.md`) — All examples
-- [base-vs-radix.md](`SWITCH-BASE-VS-RADIX.md`) — Primitive differences
+- [SWITCH-INSTALLATION.md](SWITCH-INSTALLATION.md) — CLI & manual setup, Radix vs Base
+- [SWITCH-SOURCE.md](SWITCH-SOURCE.md) — Complete component source (new-york-v4, base, radix)
+- [SWITCH-API.md](SWITCH-API.md) — Props table
+- [SWITCH-EXAMPLES.md](SWITCH-EXAMPLES.md) — All examples
+- [SWITCH-BASE-VS-RADIX.md](SWITCH-BASE-VS-RADIX.md) — Primitive differences

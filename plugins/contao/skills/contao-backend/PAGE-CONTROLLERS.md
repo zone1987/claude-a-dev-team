@@ -1,4 +1,4 @@
 # contao-page-controllers
 
-Lies `PAGE-CONTROLLERS-DETAIL.md` für vollständige Dokumentation
-zu Page Controllern und deren Integration in die Contao-Seitenstruktur.
+Read `PAGE-CONTROLLERS-DETAIL.md` for complete documentation
+on page controllers and their integration into the Contao page structure.

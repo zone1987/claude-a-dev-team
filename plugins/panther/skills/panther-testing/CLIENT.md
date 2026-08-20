@@ -1,4 +1,4 @@
-# Panther Client — Vollstandige API
+# Panther Client — Complete API
 
 ```php
 use Symfony\Component\Panther\Client;
@@ -9,20 +9,20 @@ $crawler = $client->waitFor('.app-loaded');
 $client->takeScreenshot('/tmp/screen.png');
 ```
 
-## Wichtigste Methoden-Gruppen
+## Most Important Method Groups
 
 - **Navigation**: `request`, `get`, `back`, `forward`, `reload`, `restart`
-- **Warten**: `waitFor`, `waitForStaleness`, `waitForVisibility`, `waitForInvisibility`, `waitForElementToContain`, `waitForElementToNotContain`, `waitForAttributeToContain`, `waitForAttributeToNotContain`, `waitForEnabled`, `waitForDisabled`, `wait`
+- **Waiting**: `waitFor`, `waitForStaleness`, `waitForVisibility`, `waitForInvisibility`, `waitForElementToContain`, `waitForElementToNotContain`, `waitForAttributeToContain`, `waitForAttributeToNotContain`, `waitForEnabled`, `waitForDisabled`, `wait`
 - **JavaScript**: `executeScript`, `executeAsyncScript`
-- **Zustand**: `getPageSource`, `getCurrentURL`, `getTitle`, `refreshCrawler`, `ping`
-- **WebDriver-Zugriff**: `getWebDriver`, `manage`, `navigate`, `switchTo`
-- **Eingabe**: `getKeyboard`, `getMouse`
-- **Formulare/Links**: `click`, `clickLink`, `submit`, `submitForm`
+- **State**: `getPageSource`, `getCurrentURL`, `getTitle`, `refreshCrawler`, `ping`
+- **WebDriver access**: `getWebDriver`, `manage`, `navigate`, `switchTo`
+- **Input**: `getKeyboard`, `getMouse`
+- **Forms/Links**: `click`, `clickLink`, `submit`, `submitForm`
 
-Alle waitFor-Methoden: `timeoutInSecond = 30`, `intervalInMillisecond = 250`.
+All waitFor methods: `timeoutInSecond = 30`, `intervalInMillisecond = 250`.
 
-## Vertiefung
+## In Depth
 
-- [CLIENT-DETAIL.md](CLIENT-DETAIL.md) — Jede Methode mit vollstandiger Signatur, Parameterbeschreibung, Ruckgabetyp und Beispiel
-- [CLIENT-EXPECTED-CONDITIONS.md](CLIENT-EXPECTED-CONDITIONS.md) — PantherWebDriverExpectedCondition: alle 5 statischen Methoden + Vergleich mit Standard-WebDriverExpectedCondition
-- [CLIENT-WEBDRIVER-CHECKBOX.md](CLIENT-WEBDRIVER-CHECKBOX.md) — WebDriverCheckbox: interne Klasse fur Checkbox/Radio-Interaktion
+- [CLIENT-DETAIL.md](CLIENT-DETAIL.md) — Every method with complete signature, parameter description, return type and example
+- [CLIENT-EXPECTED-CONDITIONS.md](CLIENT-EXPECTED-CONDITIONS.md) — PantherWebDriverExpectedCondition: all 5 static methods + comparison with the standard WebDriverExpectedCondition
+- [CLIENT-WEBDRIVER-CHECKBOX.md](CLIENT-WEBDRIVER-CHECKBOX.md) — WebDriverCheckbox: internal class for checkbox/radio interaction

@@ -4,7 +4,7 @@ Entwickler-Referenz fuer B2B Employee Management und Organization Unit.
 
 ## Referenzen
 
-- [Employee Management Vollreferenz](`COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT.md`)
+- [COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT.md](COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT.md)
 
 ## Querverweise
 

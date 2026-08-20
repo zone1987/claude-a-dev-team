@@ -1,7 +1,7 @@
 # panther-config-env
 
-Vollstaendige Referenz aller PANTHER_*-Umgebungsvariablen sowie der programmatischen
-Konfigurationsoptionen fuer `createPantherClient()`.
+Complete reference of all PANTHER_* environment variables as well as the programmatic
+configuration options for `createPantherClient()`.
 
-Siehe `CONFIG-ENV-DETAIL.md` fuer die komplette Tabelle mit Typ, Default und
-Quellenangabe.
+See `CONFIG-ENV-DETAIL.md` for the complete table with type, default and
+source reference.

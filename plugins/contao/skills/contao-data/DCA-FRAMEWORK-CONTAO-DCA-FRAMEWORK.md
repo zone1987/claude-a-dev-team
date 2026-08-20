@@ -1,28 +1,28 @@
-# Contao DCA – Framework-Infrastruktur (5.x)
+# Contao DCA – framework infrastructure (5.x)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [DCA anlegen](#dca-anlegen)
-- [Callbacks registrieren](#callbacks-registrieren)
+- [Overview](#overview)
+- [Creating a DCA](#creating-a-dca)
+- [Registering callbacks](#registering-callbacks)
 - [PaletteManipulator](#palettemanipulator)
 - [Custom Drivers](#custom-drivers)
 
-## Überblick
+## Overview
 
-Data Container Arrays (DCAs) beschreiben einen **Data Container** für beliebige Datensätze. Die Metadaten steuern Listenansicht, Backend-Formulare und Speicheroperationen.
+Data Container Arrays (DCAs) describe a **data container** for arbitrary records. The metadata controls the list view, the back end forms and the save operations.
 
-### Verfügbare Treiber
+### Available drivers
 
-| Treiber | Zweck |
+| Driver | Purpose |
 |---------|-------|
-| `DC_Table` | Datenbankdatensätze (häufigster Fall) |
-| `DC_File` | Systemkonfiguration |
-| `DC_Folder` | Dateilisten |
+| `DC_Table` | Database records (most common case) |
+| `DC_File` | System configuration |
+| `DC_Folder` | File lists |
 
 ---
 
-## DCA anlegen
+## Creating a DCA
 
 ```php
 // contao/dca/tl_example.php
@@ -34,13 +34,13 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-Alle aktiven Module laden ihre DCAs sequenziell – spätere Module können frühere überschreiben.
+All active modules load their DCAs sequentially – later modules can override earlier ones.
 
 ---
 
-## Callbacks registrieren
+## Registering callbacks
 
-### 1. PHP-Attribute (empfohlen)
+### 1. PHP attributes (recommended)
 
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
@@ -54,7 +54,7 @@ public function onGroupCallback(
 }
 ```
 
-### 2. Service-Annotations
+### 2. Service annotations
 
 ```php
 /**
@@ -62,7 +62,7 @@ public function onGroupCallback(
  */
 ```
 
-### 3. YAML-Service-Tags
+### 3. YAML service tags
 
 ```yaml
 services:
@@ -76,17 +76,17 @@ services:
                 priority: 100
 ```
 
-### Service-Tag-Optionen
+### Service tag options
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |--------|-----|--------------|
-| `name` | string | Muss `contao.callback` sein |
-| `table` | string | Name des Data Containers |
-| `target` | string | Callback-Typ |
-| `method` | string | Optionaler Methodenname |
-| `priority` | integer | Ausführungsreihenfolge (Standard: 0) |
+| `name` | string | Must be `contao.callback` |
+| `table` | string | Name of the data container |
+| `target` | string | Callback type |
+| `method` | string | Optional method name |
+| `priority` | integer | Execution order (default: 0) |
 
-### Invokable Services
+### Invokable services
 
 ```php
 #[AsCallback(table: 'tl_module', target: 'list.label.group')]
@@ -105,9 +105,9 @@ class ModuleCallbackListener
 
 ## PaletteManipulator
 
-Der bevorzugte Weg, Paletten programmatisch zu bearbeiten – statt Stringoperationen oder `str_replace()`.
+The preferred way to edit palettes programmatically – instead of string operations or `str_replace()`.
 
-### Felder hinzufügen
+### Adding fields
 
 ```php
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
@@ -117,7 +117,7 @@ PaletteManipulator::create()
     ->applyToPalette('admin', 'tl_user');
 ```
 
-### Legenden hinzufügen
+### Adding legends
 
 ```php
 PaletteManipulator::create()
@@ -126,7 +126,7 @@ PaletteManipulator::create()
     ->applyToPalette('default', 'tl_news');
 ```
 
-### Felder entfernen
+### Removing fields
 
 ```php
 PaletteManipulator::create()
@@ -134,7 +134,7 @@ PaletteManipulator::create()
     ->applyToPalette('admin', 'tl_user');
 ```
 
-### Subpaletten bearbeiten
+### Editing subpalettes
 
 ```php
 PaletteManipulator::create()
@@ -143,16 +143,16 @@ PaletteManipulator::create()
     ->applyToSubpalette('addImage', 'tl_content');
 ```
 
-### Positionskonstanten
+### Position constants
 
-| Konstante | Wirkung |
+| Constant | Effect |
 |-----------|---------|
-| `POSITION_BEFORE` | Vor dem Eltern-Feld |
-| `POSITION_AFTER` | Hinter dem Eltern-Feld (Standard) |
-| `POSITION_PREPEND` | Vor der Eltern-Legende |
-| `POSITION_APPEND` | Hinter der Eltern-Legende |
+| `POSITION_BEFORE` | Before the parent field |
+| `POSITION_AFTER` | After the parent field (default) |
+| `POSITION_PREPEND` | Before the parent legend |
+| `POSITION_APPEND` | After the parent legend |
 
-> Wichtig: Jede `PaletteManipulator`-Instanz behält ihre Änderungen. Neue Instanz anlegen um ungewollte Akkumulation zu vermeiden.
+> Important: every `PaletteManipulator` instance keeps its changes. Create a new instance to avoid unwanted accumulation.
 
 ---
 
@@ -168,8 +168,8 @@ $GLOBALS['TL_DCA']['tl_example'] = [
 ];
 ```
 
-Eigene Treiber erweitern `\Contao\DataContainer` und implementieren `\listable` und/oder `\editable`. Referenz-Implementierungen: `DC_File`, `DC_Folder`, `DC_Table`.
+Custom drivers extend `\Contao\DataContainer` and implement `\listable` and/or `\editable`. Reference implementations: `DC_File`, `DC_Folder`, `DC_Table`.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/dca/ (+ /palettemanipulator/)*
+*Source: https://docs.contao.org/5.x/dev/framework/dca/ (+ /palettemanipulator/)*

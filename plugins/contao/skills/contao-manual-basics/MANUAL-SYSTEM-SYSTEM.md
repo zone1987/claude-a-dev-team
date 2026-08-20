@@ -1,6 +1,6 @@
 # Contao 5.x — System
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/system/
 - https://docs.contao.org/5.x/manual/de/system/einstellungen/
 - https://docs.contao.org/5.x/manual/de/system/systemwartung/
@@ -11,52 +11,52 @@ Quellen:
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [1. Einstellungen](#1-einstellungen)
-- [2. Konfigurationsdateien](#2-konfigurationsdateien)
-- [3. Umgebungsvariablen (.env)](#3-umgebungsvariablen-env)
-- [4. E-Mail-Versand konfigurieren](#4-e-mail-versand-konfigurieren)
-- [5. Systemwartung](#5-systemwartung)
-- [6. Vorschau-Links](#6-vorschau-links)
-- [7. Debug-Modus](#7-debug-modus)
+- [Overview](#overview)
+- [1. Einstellungen (Settings)](#1-einstellungen-settings)
+- [2. Configuration files](#2-configuration-files)
+- [3. Environment variables (.env)](#3-environment-variables-env)
+- [4. Configuring e-mail dispatch](#4-configuring-e-mail-dispatch)
+- [5. Systemwartung (System maintenance)](#5-systemwartung-system-maintenance)
+- [6. Preview links](#6-preview-links)
+- [7. Debug mode](#7-debug-mode)
 
-## Übersicht
+## Overview
 
-Der Bereich „System" im Contao-Backend umfasst systemweite Einstellungen und Werkzeuge. Grundlegende Systemeinstellungen beeinflussen Contao als Applikation — fehlerhafte Konfiguration kann zu Fehlfunktionen führen.
+The "System" area in the Contao backend comprises system-wide settings and tools. Basic system settings affect Contao as an application — an incorrect configuration can lead to malfunctions.
 
 ---
 
-## 1. Einstellungen
+## 1. Einstellungen (Settings)
 
-### Globale Einstellungen
+### Global settings
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| **Admin-E-Mail** | Empfängt Benachrichtigungen über gesperrte Konten und neue Registrierungen. Format: `Name <email@example.com>` |
+| **Admin-E-Mail** (Admin e-mail) | Receives notifications about locked accounts and new registrations. Format: `Name <email@example.com>` |
 
-### Datum und Zeit
+### Date and time
 
-Formate folgen der PHP `date()`-Funktion. Im Backend nur numerische Formate erlaubt.
+Formats follow the PHP `date()` function. In the backend only numeric formats are permitted.
 
-| Formatbeispiel | Ausgabe |
+| Format example | Output |
 |----------------|---------|
 | `Y-m-d` | 2025-01-28 (ISO-8601) |
-| `d.m.Y` | 28.01.2025 (Deutsch) |
-| `d.m.y` | 28.01.25 (Kurzform) |
+| `d.m.Y` | 28.01.2025 (German) |
+| `d.m.y` | 28.01.25 (short form) |
 | `H:i:s` | 20:36:59 (24h) |
 | `g:i A` | 8:36 PM (12h) |
 
-**Zeitzone**: Vor Websiteerstellung einrichten! Contao speichert alle Zeitangaben als Unix-Timestamp — spätere Änderungen gelten nur für neu erstellte Einträge.
+**Time zone**: set this up before creating the website! Contao stores all time information as a Unix timestamp — later changes only apply to newly created entries.
 
-### Backend-Einstellungen
+### Backend settings
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Elemente nicht verkürzen | Deaktiviert Parent-View-Verkürzung |
-| Elemente pro Seite | Standard: 30 Datensätze |
-| Max. Datensätze pro Seite | Schutz vor PHP Memory Limit Überschreitungen |
+| Do not shorten elements | Disables the parent view shortening |
+| Items per page | Default: 30 records |
+| Max. records per page | Protection against exceeding the PHP memory limit |
 
-#### Weitere Backend-Optionen via `config/config.yaml`
+#### Further backend options via `config/config.yaml`
 
 ```yaml
 contao:
@@ -73,49 +73,49 @@ contao:
         crawl_concurrency: 10   # ab 5.3
 ```
 
-| Key | Beschreibung |
+| Key | Description |
 |-----|-------------|
-| `attributes` | HTML-Attribute für `<body>`-Tag |
-| `custom_css` | Eigene Stylesheets (URL-erreichbar) |
-| `custom_js` | Eigene JavaScript-Dateien |
-| `badge_title` | Badge-Titel (z.B. „STAGING") |
-| `route_prefix` | Backend-Pfad (Standard: `/contao`) |
+| `attributes` | HTML attributes for the `<body>` tag |
+| `custom_css` | Custom stylesheets (URL-reachable) |
+| `custom_js` | Custom JavaScript files |
+| `badge_title` | Badge title (e.g. "STAGING") |
+| `route_prefix` | Backend path (default: `/contao`) |
 
-### Sicherheitseinstellungen
+### Security settings
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Anfrage-Token | CSRF-Schutz; Deaktivierung unsicher! |
-| Erlaubte HTML-Tags | Standardmäßig werden alle Tags gefiltert |
-| Erlaubte HTML-Attribute | `data-*` als Wildcard möglich |
-| Passwort-Hash | Hashing-Algorithmus (Standard: PHP-Default) |
+| Request token | CSRF protection; disabling it is insecure! |
+| Permitted HTML tags | By default all tags are filtered |
+| Permitted HTML attributes | `data-*` possible as a wildcard |
+| Password hash | Hashing algorithm (default: PHP default) |
 
-Erlaubte Tags/Attribute: `*` als Platzhalter für alle.
+Permitted tags/attributes: `*` as a placeholder for all.
 
-### Datei-Einstellungen
+### File settings
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Erlaubte Download-Dateitypen | Bestimmt herunterladbare Formate |
-| Erlaubte Upload-Dateitypen | Bestimmt hochladbare Formate |
-| Max. Upload-Dateigröße | In Bytes (1 MiB = 1.048.576 Bytes) |
-| Max. Bildbreite/-höhe | Automatische Verkleinerung bei Überschreitung |
+| Permitted download file types | Determines the downloadable formats |
+| Permitted upload file types | Determines the uploadable formats |
+| Max. upload file size | In bytes (1 MiB = 1,048,576 bytes) |
+| Max. image width/height | Automatic downscaling when exceeded |
 
-### Standard-Zugriffsrechte
+### Default access rights
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Standardbesitzer | Benutzer für Seiten ohne definierte Rechte |
-| Standardgruppe | Gruppe für Seiten ohne definierte Rechte |
-| Standardzugriffsrechte | Default-Permissions |
+| Default owner | User for pages without defined rights |
+| Default group | Group for pages without defined rights |
+| Default access rights | Default permissions |
 
 ---
 
-## 2. Konfigurationsdateien
+## 2. Configuration files
 
 ### parameters.yaml
 
-Umgebungsspezifische Parameter (Datenbankzugänge, SMTP):
+Environment-specific parameters (database credentials, SMTP):
 
 ```yaml
 # config/parameters.yaml
@@ -133,11 +133,11 @@ parameters:
     mailer_encryption: tls
 ```
 
-**Hinweis**: Passwörter aus nur Ziffern oder mit Sonderzeichen in Hochkommata setzen.
+**Note**: put passwords consisting only of digits or containing special characters in single quotes.
 
 ### config.yaml
 
-Anwendungskonfiguration:
+Application configuration:
 
 ```yaml
 # config/config.yaml
@@ -149,73 +149,73 @@ contao:
         undoPeriod: 2592000
 ```
 
-Contao lädt automatisch `config_prod.yaml` oder `config_dev.yaml`, andernfalls `config.yaml`.
+Contao automatically loads `config_prod.yaml` or `config_dev.yaml`, otherwise `config.yaml`.
 
-**CLI-Hilfe:**
+**CLI help:**
 ```bash
 php vendor/bin/contao-console config:dump-reference contao
 php vendor/bin/contao-console debug:config contao
 ```
 
-### localconfig-Referenz (häufige Keys)
+### localconfig reference (common keys)
 
-| Key | Standard | Beschreibung |
+| Key | Default | Description |
 |-----|----------|-------------|
-| `adminEmail` | – | Admin-E-Mail-Adresse |
-| `dateFormat` | `d.m.Y` | Datumsformat |
-| `timeFormat` | `H:i` | Zeitformat |
-| `datimFormat` | `d.m.Y H:i` | Datums-/Zeitformat |
-| `timeZone` | – | Zeitzone |
-| `logPeriod` | 604800 (7 Tage) | Log-Aufbewahrung in Sekunden |
-| `undoPeriod` | 2592000 (30 Tage) | Wiederherstellungsperiode |
-| `versionPeriod` | 7776000 (90 Tage) | Versions-Aufbewahrung |
-| `maxResultsPerPage` | – | Max. Datensätze pro Seite |
-| `resultsPerPage` | 30 | Elemente pro Seite |
-| `minPasswordLength` | 8 | Min. Passwortlänge |
-| `maxPaginationLinks` | 7 | Blätter-Links |
-| `imageWidth` | – | Max. Bildbreite beim Upload |
-| `imageHeight` | – | Max. Bildhöhe beim Upload |
-| `maxFileSize` | – | Max. Upload-Größe |
+| `adminEmail` | – | Admin e-mail address |
+| `dateFormat` | `d.m.Y` | Date format |
+| `timeFormat` | `H:i` | Time format |
+| `datimFormat` | `d.m.Y H:i` | Date/time format |
+| `timeZone` | – | Time zone |
+| `logPeriod` | 604800 (7 days) | Log retention in seconds |
+| `undoPeriod` | 2592000 (30 days) | Restore period |
+| `versionPeriod` | 7776000 (90 days) | Version retention |
+| `maxResultsPerPage` | – | Max. records per page |
+| `resultsPerPage` | 30 | Items per page |
+| `minPasswordLength` | 8 | Min. password length |
+| `maxPaginationLinks` | 7 | Pagination links |
+| `imageWidth` | – | Max. image width on upload |
+| `imageHeight` | – | Max. image height on upload |
+| `maxFileSize` | – | Max. upload size |
 
 ---
 
-## 3. Umgebungsvariablen (.env)
+## 3. Environment variables (.env)
 
-Variablen werden in `.env` definiert. `.env.local` überschreibt `.env` automatisch.
+Variables are defined in `.env`. `.env.local` overrides `.env` automatically.
 
-### Wichtige Variablen
+### Important variables
 
-| Variable | Beschreibung |
+| Variable | Description |
 |----------|-------------|
-| `APP_ENV` | `prod` (Standard) oder `dev` (Debug-Modus) |
-| `APP_SECRET` | CSRF-Token-Basis (32 Zeichen, zufällig) |
+| `APP_ENV` | `prod` (default) or `dev` (debug mode) |
+| `APP_SECRET` | Basis for the CSRF token (32 characters, random) |
 | `DATABASE_URL` | `mysql://user:pass@host:port/dbname` |
 | `MAILER_DSN` | `smtp://user:pass@smtp.example.com:587` |
 
-### Cache-relevante Variablen
+### Cache-relevant variables
 
-| Variable | Beschreibung |
+| Variable | Description |
 |----------|-------------|
-| `COOKIE_ALLOW_LIST` | Cookies, die für Caching relevant sind |
-| `COOKIE_REMOVE_FROM_DENY_LIST` | Ausnahmen aus der Standard-Deny-Liste |
-| `QUERY_PARAMS_ALLOW_LIST` | Query-Parameter für Cache-Handling |
-| `QUERY_PARAMS_REMOVE_FROM_DENY_LIST` | Ausnahmen aus der Parameter-Deny-Liste |
+| `COOKIE_ALLOW_LIST` | Cookies that are relevant for caching |
+| `COOKIE_REMOVE_FROM_DENY_LIST` | Exceptions from the default deny list |
+| `QUERY_PARAMS_ALLOW_LIST` | Query parameters for cache handling |
+| `QUERY_PARAMS_REMOVE_FROM_DENY_LIST` | Exceptions from the parameter deny list |
 
-Standard `COOKIE_ALLOW_LIST`:
+Default `COOKIE_ALLOW_LIST`:
 ```
 COOKIE_ALLOW_LIST=PHPSESSID,csrf_https-contao_csrf_token,csrf_contao_csrf_token,trusted_device,REMEMBERME
 ```
 
-### Proxy-Konfiguration
+### Proxy configuration
 
 ```env
 TRUSTED_PROXIES=192.0.2.1
 TRUSTED_HOSTS=my.proxy.com
 ```
 
-### DNS-Mapping (ab Contao 5.3)
+### DNS mapping (as of Contao 5.3)
 
-Automatisiert Domain-Änderungen beim Kopieren zwischen Umgebungen:
+Automates domain changes when copying between environments:
 
 ```env
 DNS_MAPPING='{
@@ -226,19 +226,19 @@ DNS_MAPPING='{
 
 ---
 
-## 4. E-Mail-Versand konfigurieren
+## 4. Configuring e-mail dispatch
 
-### Via .env.local (empfohlen)
+### Via .env.local (recommended)
 
 ```env
 MAILER_DSN=smtp://benutzername:passwort@smtp.example.com:587
 ```
 
-**Hinweis**: Benutzername und Passwort müssen URL-kodiert sein (`@` → `%40`).
+**Note**: user name and password must be URL-encoded (`@` → `%40`).
 
-### Mehrere E-Mail-Konfigurationen
+### Several e-mail configurations
 
-**Schritt 1**: Transports definieren:
+**Step 1**: define the transports:
 ```yaml
 # config/config.yaml
 framework:
@@ -248,7 +248,7 @@ framework:
             website2: smtps://user%%40example.de:passwort@example.de
 ```
 
-**Schritt 2**: In Contao Framework verfügbar machen:
+**Step 2**: make them available in the Contao framework:
 ```yaml
 contao:
     mailer:
@@ -259,14 +259,14 @@ contao:
                 from: Lorem Ipsum <email@example.de>
 ```
 
-**Schritt 3**: Übersetzungen (optional):
+**Step 3**: translations (optional):
 ```yaml
 # translations/mailer_transports.de.yaml
 website1: 'SMTP für Webseite 1'
 website2: 'SMTP für Webseite 2'
 ```
 
-### E-Mail testen
+### Testing e-mail
 
 ```bash
 php vendor/bin/contao-console mailer:test \
@@ -276,7 +276,7 @@ php vendor/bin/contao-console mailer:test \
     recipient@example.com
 ```
 
-### Cache nach Konfigurationsänderungen leeren
+### Clearing the cache after configuration changes
 
 ```bash
 php vendor/bin/contao-console cache:clear --env=prod --no-warmup
@@ -285,17 +285,17 @@ php vendor/bin/contao-console cache:warmup --env=prod
 
 ---
 
-## 5. Systemwartung
+## 5. Systemwartung (System maintenance)
 
-### Wartungsmodus
+### Maintenance mode
 
-Versetzt die Contao-Installation in den Wartungsmodus:
-- Frontend für reguläre Besucher **nicht erreichbar**
-- Backend bleibt zugänglich
-- Angemeldete Benutzer können den Modus über Frontend-Vorschau umgehen
-- Jeder Startpunkt kann einzeln in den Wartungsmodus versetzt werden
+Puts the Contao installation into maintenance mode:
+- The frontend is **not reachable** for regular visitors
+- The backend remains accessible
+- Logged-in users can bypass the mode via the frontend preview
+- Every starting point can be put into maintenance mode individually
 
-**Einsatzzweck**: Größere Backend-Umbauarbeiten, wenn Frontend-Änderungen noch nicht sichtbar sein sollen.
+**Purpose**: larger backend rebuilding work, when frontend changes should not yet be visible.
 
 Via CLI:
 ```bash
@@ -303,17 +303,17 @@ php vendor/bin/contao-console contao:maintenance-mode enable
 php vendor/bin/contao-console contao:maintenance-mode disable
 ```
 
-Manuell deaktivieren: Datei `var/maintenance.html` löschen.
+Disabling manually: delete the file `var/maintenance.html`.
 
-### Crawler (Suchindex)
+### Crawler (search index)
 
-Seiten werden beim Frontend-Aufruf automatisch indiziert. Für manuelle Neuerstellung:
+Pages are indexed automatically when called up in the frontend. For a manual rebuild:
 
 ```bash
 vendor/bin/contao-console contao:crawl
 ```
 
-**Domain-Konfiguration für CLI-Aufruf** (da kein HTTP-Kontext vorhanden):
+**Domain configuration for the CLI call** (since no HTTP context is present):
 ```yaml
 # config/parameters.yaml
 parameters:
@@ -321,7 +321,7 @@ parameters:
     router.request_context.scheme: 'https'
 ```
 
-#### Geschützte Seiten indizieren
+#### Indexing protected pages
 
 ```yaml
 # config/config.yaml
@@ -330,9 +330,9 @@ contao:
         index_protected: true
 ```
 
-Ein Frontend-Benutzer mit Zugriff auf geschützte Seiten wird beim Indexaufbau automatisch angemeldet.
+A frontend user with access to protected pages is logged in automatically when the index is built.
 
-#### Crawler beschleunigen
+#### Speeding up the crawler
 
 ```bash
 # Debug-CSV aktivieren
@@ -345,12 +345,12 @@ vendor/bin/contao-console contao:crawl --concurrency=10
 vendor/bin/contao-console contao:crawl --max-depth=3
 ```
 
-**Seiten ausschließen**:
-- Via `robots.txt` mit `User-Agent: contao/crawler`
-- HTML-Attribut: `<a href="..." data-escargot-ignore>` (alle Crawler)
-- HTML-Attribut: `<a href="..." data-skip-search-index>` (nur Suchindex)
+**Excluding pages**:
+- Via `robots.txt` with `User-Agent: contao/crawler`
+- HTML attribute: `<a href="..." data-escargot-ignore>` (all crawlers)
+- HTML attribute: `<a href="..." data-skip-search-index>` (search index only)
 
-#### Basic Authentication für Crawler
+#### Basic authentication for the crawler
 
 ```yaml
 # config/config.yaml
@@ -360,70 +360,70 @@ contao:
             auth_basic: 'benutzername:passwort'
 ```
 
-### Daten bereinigen
+### Daten bereinigen (Purge data)
 
-Unter „Daten bereinigen" können manuell bereinigt werden:
-- Alte Vorschaubilder
-- XML-Sitemaps nach Seitenstruktur-Änderungen
-- Suchindex
-- Versionsverlauf
-- Systemlogs
+Under "Daten bereinigen" the following can be purged manually:
+- Old thumbnails
+- XML sitemaps after Seitenstruktur (Page Structure) changes
+- The search index
+- The version history
+- System logs
 
 ---
 
-## 6. Vorschau-Links
+## 6. Preview links
 
-Vorschau-Links ermöglichen es, Frontend-Vorschauen mit externen Personen zu teilen.
+Preview links make it possible to share frontend previews with external people.
 
-**Erstellung**: In der Frontend-Vorschau auf „URL teilen" klicken.
+**Creation**: click "URL teilen" (Share URL) in the frontend preview.
 
-**Konfigurierbare Optionen:**
+**Configurable options:**
 
-| Option | Beschreibung |
+| Option | Description |
 |--------|-------------|
-| Ziel-URL | Die zu teilende Frontend-Seite |
-| Läuft ab nach | 1 Tag, 7 Tage oder 30 Tage |
-| Unveröffentlichtes anzeigen | Ob unveröffentlichte Elemente sichtbar sind |
-| Aktivieren | Link freischalten/sperren |
+| Target URL | The frontend page to be shared |
+| Expires after | 1 day, 7 days or 30 days |
+| Show unpublished | Whether unpublished elements are visible |
+| Activate | Enable/block the link |
 
-Angelegte Links werden unter **System → Vorschau-Links** verwaltet.
+Links that have been created are managed under **System → Vorschau-Links** (Preview links).
 
 ---
 
-## 7. Debug-Modus
+## 7. Debug mode
 
-### Aktivierungsmöglichkeiten
+### Ways to enable it
 
-**1. Via Umgebungsvariable** (dauerhaft):
+**1. Via an environment variable** (permanent):
 ```env
 APP_ENV=dev
 ```
-⚠️ **Nie auf Live-Servern verwenden!**
+⚠️ **Never use this on live servers!**
 
-**2. Via Backend** (für aktuellen Benutzer):
-- Im Backend auf das Käfer-Icon klicken → setzt Cookie
+**2. Via the backend** (for the current user):
+- Click the bug icon in the backend → sets a cookie
 
-**3. Via Contao Manager**:
-- Systemwartung → Debug-Modus-Schaltfläche
+**3. Via the Contao Manager**:
+- Systemwartung (System maintenance) → debug mode button
 
-### Vorteile des Debug-Modus
+### Advantages of debug mode
 
-| Feature | Beschreibung |
+| Feature | Description |
 |---------|-------------|
-| Stack Trace | Fehler werden mit vollständigem Stacktrace angezeigt |
-| Kein Cache | Seitencache ist deaktiviert |
-| Symfony Profiler | Toolbar und Profiler verfügbar |
-| Keine Kombinierung | CSS/JS werden einzeln geladen |
-| Template-Namen | Als HTML-Kommentare im Quellcode sichtbar |
+| Stack trace | Errors are shown with a complete stack trace |
+| No cache | The page cache is disabled |
+| Symfony profiler | Toolbar and profiler available |
+| No combining | CSS/JS are loaded individually |
+| Template names | Visible as HTML comments in the source code |
 
-### Symfony Profiler
+### Symfony profiler
 
-Toolbar erscheint am unteren Browser-Rand. Zeigt:
-- PHP/Symfony/Contao-Versionen
-- VarDumper-Ausgaben
-- Speicherauslastung
-- Datenbankabfragen und -zeiten
-- Benutzerinformationen
-- Fehler, Warnungen, Deprecations
+The toolbar appears at the bottom edge of the browser. It shows:
+- PHP/Symfony/Contao versions
+- VarDumper output
+- Memory usage
+- Database queries and their times
+- User information
+- Errors, warnings, deprecations
 
 Logs: `var/logs/`

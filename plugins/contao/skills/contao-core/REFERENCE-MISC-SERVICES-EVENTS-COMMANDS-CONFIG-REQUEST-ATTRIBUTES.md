@@ -1,4 +1,4 @@
-# Contao 5.x — Services, Events, Commands, Config, Request-Attributes
+# Contao 5.x — Services, Events, Commands, Config, Request Attributes
 
 ---
 
@@ -7,15 +7,15 @@
 - [1. Core Services](#1-core-services)
 - [2. Events](#2-events)
 - [3. Commands](#3-commands)
-- [4. Bundle-Konfiguration (contao.yaml)](#4-bundle-konfiguration-contaoyaml)
-- [5. Umgebungsvariablen](#5-umgebungsvariablen)
-- [6. Request-Attributes](#6-request-attributes)
+- [4. Bundle Configuration (contao.yaml)](#4-bundle-configuration-contaoyaml)
+- [5. Environment Variables](#5-environment-variables)
+- [6. Request Attributes](#6-request-attributes)
 
 ## 1. Core Services
 
 ### ContaoFramework
 
-Initialisiert das Legacy-Contao-Framework und stellt Adapter für statische Klassen bereit.
+Initializes the legacy Contao framework and provides adapters for static classes.
 
 ```php
 use Contao\CoreBundle\Framework\ContaoFramework;
@@ -37,10 +37,10 @@ class MyService
 
 ### CsrfTokenManager
 
-Generiert und validiert Request-Tokens für eigene Formulare (notwendig für POST-Requests auf Contao-Routen).
+Generates and validates request tokens for your own forms (required for POST requests on Contao routes).
 
 **Service-ID:** `@contao.csrf.token_manager`  
-**Token-Name:** aus `contao.csrf_token_name` (Standard: `contao_csrf_token`)
+**Token name:** from `contao.csrf_token_name` (default: `contao_csrf_token`)
 
 ```php
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -54,7 +54,7 @@ class MyController
     public function form(): Response
     {
         $token = $this->csrfTokenManager->getToken('contao_csrf_token')->getValue();
-        // In Formular einbetten: <input type="hidden" name="REQUEST_TOKEN" value="{{ token }}">
+        // Embed in the form: <input type="hidden" name="REQUEST_TOKEN" value="{{ token }}">
     }
 }
 ```
@@ -63,10 +63,10 @@ class MyController
 
 ### Database Connection
 
-Zugriff auf konfigurierte Datenbankverbindungen via Doctrine DBAL.
+Access to configured database connections via Doctrine DBAL.
 
 **Service:** `database_connection`  
-**Typ:** `Doctrine\DBAL\Connection`
+**Type:** `Doctrine\DBAL\Connection`
 
 ```php
 use Doctrine\DBAL\Connection;
@@ -86,7 +86,7 @@ class MyRepository
 
 ### EntityCacheTags
 
-Ermöglicht Cache-Tagging und -Invalidierung basierend auf Entity-/Model-Klassen nach der Namenskonvention `contao.db.tl_content.5`.
+Enables cache tagging and invalidation based on entity/model classes following the naming convention `contao.db.tl_content.5`.
 
 ```php
 use Contao\CoreBundle\Cache\EntityCacheTags;
@@ -99,7 +99,7 @@ class MyController
     {
         $response = new Response(…);
         $this->cacheTags->tagWith('tl_example');
-        // oder: $this->cacheTags->tagWith($model);
+        // or: $this->cacheTags->tagWith($model);
         return $response;
     }
 }
@@ -109,9 +109,9 @@ class MyController
 
 ### OptIn
 
-Zentrales Opt-In-Tracking mit automatischer Bereinigung nach der gesetzlich erforderlichen Dauer.
+Central opt-in tracking with automatic cleanup after the legally required period.
 
-**Präfix-Beschränkung:** 6 Zeichen vor dem Bindestrich.
+**Prefix restriction:** 6 characters before the hyphen.
 
 ```php
 use Contao\CoreBundle\OptIn\OptIn;
@@ -132,7 +132,7 @@ class RegistrationService
 
 ### Router
 
-Symfony-Routing-Service für URL-Generierung zu Routen innerhalb von Services.
+Symfony routing service for URL generation to routes inside services.
 
 ```php
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -152,7 +152,7 @@ class MyService
 
 ### ScopeMatcher
 
-Erkennt ob ein Request zum Contao Backend oder Frontend gehört.
+Detects whether a request belongs to the Contao back end or front end.
 
 **Service:** `contao.routing.scope_matcher`
 
@@ -172,11 +172,11 @@ class MyEventListener
         $request = $this->requestStack->getCurrentRequest();
         
         if ($this->scopeMatcher->isBackendRequest($request)) {
-            // Backend-Logik
+            // Back end logic
         }
         
         if ($this->scopeMatcher->isFrontendRequest($request)) {
-            // Frontend-Logik
+            // Front end logic
         }
     }
 }
@@ -186,7 +186,7 @@ class MyEventListener
 
 ### Security Helper
 
-Ruft aktuellen Backend- oder Frontend-Benutzer ab und prüft Autorisierungs-Rollen.
+Retrieves the current back end or front end user and checks authorization roles.
 
 ```php
 use Symfony\Bundle\SecurityBundle\Security;
@@ -200,15 +200,15 @@ class MyService
         $user = $this->security->getUser(); // BackendUser | FrontendUser | null
 
         if ($this->security->isGranted('ROLE_ADMIN')) {
-            // Admin-Logik
+            // Admin logic
         }
 
         if ($this->security->isGranted('ROLE_USER')) {
-            // Backend-Benutzer
+            // Back end user
         }
 
         if ($this->security->isGranted('ROLE_MEMBER')) {
-            // Frontend-Mitglied
+            // Front end member
         }
     }
 }
@@ -218,7 +218,7 @@ class MyService
 
 ### SimpleTokenParser
 
-Parst einfache Tokens mit Ersetzung und bedingten Ausdrücken, erweiterbar über `contao.simple_token_extension`-Tags.
+Parses simple tokens with replacement and conditional expressions, extensible via `contao.simple_token_extension` tags.
 
 ```php
 use Contao\CoreBundle\String\SimpleTokenParser;
@@ -230,9 +230,9 @@ class MyService
     public function parse(string $text, array $tokens): string
     {
         return $this->parser->parse($text, $tokens);
-        // Beispiel: $text = 'Hallo ##firstname##!'
+        // Example: $text = 'Hallo ##firstname##!'
         // $tokens = ['firstname' => 'Max']
-        // Ergebnis: 'Hallo Max!'
+        // Result: 'Hallo Max!'
     }
 }
 ```
@@ -241,7 +241,7 @@ class MyService
 
 ### Slug
 
-Generiert menschenlesbare eindeutige Identifikatoren aus Strings.
+Generates human-readable unique identifiers from strings.
 
 ```php
 use Contao\CoreBundle\Slug\Slug;
@@ -265,7 +265,7 @@ class AliasGenerator
 
 ### TokenChecker
 
-Fragt Contao-Sicherheitstoken-Informationen ab.
+Queries Contao security token information.
 
 ```php
 use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
@@ -289,7 +289,7 @@ class MyService
 
 ### InsertTagParser
 
-Ersetzt Insert-Tags in Strings.
+Replaces insert tags in strings.
 
 ```php
 use Contao\CoreBundle\InsertTag\InsertTagParser;
@@ -300,13 +300,13 @@ class MyService
 
     public function process(string $text): string
     {
-        // Für Text-Kontext (HTML-sicher)
+        // For text context (HTML-safe)
         $plain = $this->parser->replace($text);
 
-        // Für inline-Text (kein vollständiges HTML)
+        // For inline text (not full HTML)
         $inline = $this->parser->replaceInline($text);
 
-        // Chunked für selektives Escaping
+        // Chunked for selective escaping
         $chunked = $this->parser->replaceChunked($text); // ChunkedText
         
         return $plain;
@@ -318,7 +318,7 @@ class MyService
 
 ### RequestStack
 
-Zugriff auf den aktuellen HTTP-Request aus dem Service-Container.
+Access to the current HTTP request from the service container.
 
 ```php
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -338,7 +338,7 @@ class MyService
 
 ### ResponseContextAccessor
 
-Zugriff auf oder Setzen des Response-Kontexts für Contao-Requests.
+Access to or setting of the response context for Contao requests.
 
 ```php
 use Contao\CoreBundle\Routing\ResponseContext\ResponseContextAccessor;
@@ -352,7 +352,7 @@ class MyContentElement
     public function generate(): string
     {
         $context = $this->responseContextAccessor->getResponseContext();
-        // z. B. für CSP-Tags, JSON-LD, etc.
+        // e.g. for CSP tags, JSON-LD, etc.
         return '';
     }
 }
@@ -362,7 +362,7 @@ class MyContentElement
 
 ### Locales
 
-Locale-/Sprachinformationen mit Übersetzungen.
+Locale/language information with translations.
 
 ```php
 use Contao\CoreBundle\Intl\Locales;
@@ -373,25 +373,25 @@ class LocaleService
 
     public function getAll(): array
     {
-        // Alle konfigurierten Locales ['de' => 'Deutsch', 'en' => 'English', …]
+        // All configured locales ['de' => 'Deutsch', 'en' => 'English', …]
         return $this->locales->getLocales();
     }
 
     public function getEnabled(): array
     {
-        // Backend-aktivierte Locales
+        // Locales enabled in the back end
         return $this->locales->getEnabledLocales();
     }
 }
 ```
 
-Konfiguration: `contao.intl.locales`, `contao.intl.enabled_locales`
+Configuration: `contao.intl.locales`, `contao.intl.enabled_locales`
 
 ---
 
 ### Countries
 
-Ländercodes und übersetzte Ländernamen.
+Country codes and translated country names.
 
 ```php
 use Contao\CoreBundle\Intl\Countries;
@@ -408,13 +408,13 @@ class CountryService
 }
 ```
 
-Konfiguration: `contao.intl.countries`
+Configuration: `contao.intl.countries`
 
 ---
 
 ### Mailer
 
-Symfony-Mailer-Service für E-Mail-Versand.
+Symfony mailer service for sending e-mail.
 
 ```php
 use Symfony\Component\Mailer\MailerInterface;
@@ -439,9 +439,9 @@ class NotificationService
 
 ---
 
-### PageFinder (ab 5.3)
+### PageFinder (as of 5.3)
 
-Findet Seiten aus der Seitenstruktur nach Hostname oder Request.
+Finds pages from the page structure by hostname or request.
 
 ```php
 use Contao\CoreBundle\Routing\PageFinder;
@@ -455,7 +455,7 @@ class MyService
         return $this->pageFinder->findRootPageForHostAndLanguage($host, 'de');
     }
 
-    // Ab 5.4:
+    // As of 5.4:
     public function getCurrent(): ?\Contao\PageModel
     {
         return $this->pageFinder->getCurrentPage();
@@ -465,9 +465,9 @@ class MyService
 
 ---
 
-### ContentUrlGenerator (ab 5.3)
+### ContentUrlGenerator (as of 5.3)
 
-Generiert URLs für Content-Objekte wie Seiten und News-Einträge.
+Generates URLs for content objects such as pages and news entries.
 
 ```php
 use Contao\CoreBundle\Routing\ContentUrlGenerator;
@@ -487,13 +487,13 @@ class MyService
 
 ## 2. Events
 
-Contao implementiert Events über den Symfony Event Dispatcher.
+Contao implements events via the Symfony event dispatcher.
 
 ### contao.backend_menu_build
 
-Wird beim Aufbau des Backend-Menüs ausgeführt. Ermöglicht die Änderung der Menüstruktur.
+Executed while the back end menu is being built. Allows modification of the menu structure.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\MenuEvent`
+**Event class:** `\Contao\CoreBundle\Event\MenuEvent`
 
 ```php
 use Contao\CoreBundle\Event\MenuEvent;
@@ -512,7 +512,7 @@ class BackendMenuListener
         }
 
         $item = $factory->createItem('my_item')
-            ->setLabel('Mein Menüpunkt')
+            ->setLabel('My menu item')
             ->setUri('/contao?do=my_module');
 
         $tree->addChild($item);
@@ -524,15 +524,15 @@ class BackendMenuListener
 
 ### contao.generate_symlinks
 
-Ausgelöst nach Contaos Symlink-Generierung. Erlaubt Registrierung eigener Symlinks.
+Dispatched after Contao's symlink generation. Allows registration of your own symlinks.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\GenerateSymlinksEvent`
+**Event class:** `\Contao\CoreBundle\Event\GenerateSymlinksEvent`
 
 ---
 
 ### contao.image_sizes_all
 
-Ausgelöst beim Sammeln verfügbarer Bildgrößen für Backend-Auswahl. Erlaubt eigene Definitionen.
+Dispatched while collecting available image sizes for the back end selection. Allows your own definitions.
 
 **Event-Klasse:** `\Contao\CoreBundle\Event\ImageSizesEvent`
 
@@ -556,7 +556,7 @@ class ImageSizesListener
 
 ### contao.image_sizes_user
 
-Wie `contao.image_sizes_all`, aber gefiltert nach Berechtigungen des aktuellen Backend-Benutzers.
+Like `contao.image_sizes_all`, but filtered by the permissions of the current back end user.
 
 **Event-Klasse:** `\Contao\CoreBundle\Event\ImageSizesEvent`
 
@@ -564,25 +564,25 @@ Wie `contao.image_sizes_all`, aber gefiltert nach Berechtigungen des aktuellen B
 
 ### contao.preview_url_create
 
-Ausgelöst beim Generieren von Vorschau-URLs für Frontend-Zugriff im Backend.
+Dispatched when generating preview URLs for front end access from the back end.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\PreviewUrlCreateEvent`
+**Event class:** `\Contao\CoreBundle\Event\PreviewUrlCreateEvent`
 
 ---
 
 ### contao.preview_url_convert
 
-Konvertiert Preview-Controller-Anfragen zu spezifischen Frontend-URLs im Vorschau-Modus.
+Converts preview controller requests into specific front end URLs in preview mode.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\PreviewUrlConvertEvent`
+**Event class:** `\Contao\CoreBundle\Event\PreviewUrlConvertEvent`
 
 ---
 
 ### contao.robots_txt
 
-Aktiviert bei Zugriff auf `/robots.txt`. Erlaubt programmatisches Hinzufügen eigener Einträge.
+Activated when `/robots.txt` is accessed. Allows programmatic addition of your own entries.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\RobotsTxtEvent`
+**Event class:** `\Contao\CoreBundle\Event\RobotsTxtEvent`
 
 ```php
 use Contao\CoreBundle\Event\RobotsTxtEvent;
@@ -602,25 +602,25 @@ class RobotsTxtListener
 
 ### contao.slug_valid_characters
 
-Ausgelöst beim Generieren gültiger Slug-Zeichen-Optionen im Backend.
+Dispatched when generating valid slug character options in the back end.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\SlugValidCharactersEvent`
+**Event class:** `\Contao\CoreBundle\Event\SlugValidCharactersEvent`
 
 ---
 
 ### FilterPageTypeEvent
 
-Wird ausgelöst wenn verfügbare Seitentypen für den `tl_page`-Typ-Select gesammelt werden.
+Dispatched when the available page types for the `tl_page` type select are collected.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\FilterPageTypeEvent`
+**Event class:** `\Contao\CoreBundle\Event\FilterPageTypeEvent`
 
 ---
 
 ### contao.sitemap
 
-Ausgelöst im `SitemapController` während der Sitemap-Konstruktion.
+Dispatched in the `SitemapController` while the sitemap is being constructed.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\SitemapEvent`
+**Event class:** `\Contao\CoreBundle\Event\SitemapEvent`
 
 ```php
 use Contao\CoreBundle\Event\SitemapEvent;
@@ -644,77 +644,77 @@ class SitemapListener
 
 ---
 
-### SendNewsletterEvent (Newsletter-Bundle)
+### SendNewsletterEvent (Newsletter bundle)
 
-Ausgelöst für jede Newsletter-Übertragung. Erlaubt Inhalts-Anpassung, Verhinderung des Versands oder Logging.
+Dispatched for every newsletter transmission. Allows content adjustment, prevention of sending, or logging.
 
-**Event-Klasse:** `\Contao\NewsletterBundle\Event\SendNewsletterEvent`
-
----
-
-### FetchArticlesForFeedEvent (News-Bundle)
-
-Ausgelöst bei News-Feed-Erstellung zum Sammeln von Artikeln.
-
-**Event-Klasse:** `\Contao\NewsBundle\Event\FetchArticlesForFeedEvent`
+**Event class:** `\Contao\NewsletterBundle\Event\SendNewsletterEvent`
 
 ---
 
-### TransformArticleForFeedEvent (News-Bundle)
+### FetchArticlesForFeedEvent (News bundle)
 
-Ausgelöst beim Konvertieren von News-Artikeln zu Feed-Item-Knoten.
+Dispatched during news feed creation to collect articles.
 
-**Event-Klasse:** `\Contao\NewsBundle\Event\TransformArticleForFeedEvent`
+**Event class:** `\Contao\NewsBundle\Event\FetchArticlesForFeedEvent`
 
 ---
 
-### LayoutEvent (ab 5.7.1)
+### TransformArticleForFeedEvent (News bundle)
 
-Ausgelöst beim Layout-Aufbau für moderne Twig-Layouts mit Slots.
+Dispatched when converting news articles into feed item nodes.
 
-**Event-Klasse:** `\Contao\CoreBundle\Event\LayoutEvent`
+**Event class:** `\Contao\NewsBundle\Event\TransformArticleForFeedEvent`
+
+---
+
+### LayoutEvent (as of 5.7.1)
+
+Dispatched during layout construction for modern Twig layouts with slots.
+
+**Event class:** `\Contao\CoreBundle\Event\LayoutEvent`
 
 ---
 
 ## 3. Commands
 
-Contao-Konsole: `php vendor/bin/contao-console <befehl>`
+Contao console: `php vendor/bin/contao-console <command>`
 
 ```bash
-# Alle verfügbaren Befehle auflisten
+# List all available commands
 php vendor/bin/contao-console list
 
-# Hilfe zu einem Befehl anzeigen
+# Show help for a command
 php vendor/bin/contao-console contao:user:password --help
 ```
 
-### Wichtige Contao-Befehle
+### Important Contao commands
 
-| Befehl | Beschreibung |
+| Command | Description |
 |--------|--------------|
-| `contao:migrate` | Datenbankmigrationen ausführen |
-| `contao:user:create` | Backend-Benutzer anlegen |
-| `contao:user:password` | Passwort eines Backend-Benutzers ändern |
-| `contao:user:list` | Backend-Benutzer auflisten |
-| `contao:cache:warmup` | Cache aufwärmen |
-| `contao:generate-symlinks` | Symlinks generieren |
-| `contao:crawl` | Seiten crawlen (für Suche/Sitemap) |
-| `contao:backup:create` | Datenbank-Backup erstellen |
-| `contao:backup:restore` | Datenbank-Backup wiederherstellen |
-| `contao:backup:list` | Verfügbare Backups auflisten |
-| `contao:install` | Contao-Installationsroutine ausführen |
-| `contao:version` | Installierte Contao-Version anzeigen |
+| `contao:migrate` | Run database migrations |
+| `contao:user:create` | Create a back end user |
+| `contao:user:password` | Change the password of a back end user |
+| `contao:user:list` | List back end users |
+| `contao:cache:warmup` | Warm up the cache |
+| `contao:generate-symlinks` | Generate symlinks |
+| `contao:crawl` | Crawl pages (for search/sitemap) |
+| `contao:backup:create` | Create a database backup |
+| `contao:backup:restore` | Restore a database backup |
+| `contao:backup:list` | List available backups |
+| `contao:install` | Run the Contao installation routine |
+| `contao:version` | Show the installed Contao version |
 
 ---
 
-## 4. Bundle-Konfiguration (contao.yaml)
+## 4. Bundle Configuration (contao.yaml)
 
-Vollständige Konfigurationsübersicht via:
+Full configuration overview via:
 ```bash
 vendor/bin/contao-console config:dump-reference contao
 ```
 
-### Kern-Einstellungen
+### Core settings
 
 ```yaml
 # config/packages/contao.yaml
@@ -727,20 +727,20 @@ contao:
     upload_path: files
     editable_files: 'css,csv,html,ini,js,json,less,md,scss,svg,svgz,ts,txt,xliff,xml,yml,yaml'
     console_path: '%kernel.project_dir%/bin/console'
-    localconfig: ~                  # TL_CONFIG-Variablen überschreiben
+    localconfig: ~                  # Override TL_CONFIG variables
 ```
 
-### Internationalisierung
+### Internationalization
 
 ```yaml
 contao:
     intl:
-        locales: []                 # ICU Locale-IDs Liste
-        enabled_locales: []        # Backend-Locale-IDs
-        countries: []              # ISO 3166-1 alpha-2 Codes
+        locales: []                 # List of ICU locale IDs
+        enabled_locales: []        # Back end locale IDs
+        countries: []              # ISO 3166-1 alpha-2 codes
 ```
 
-### Messenger-Konfiguration
+### Messenger configuration
 
 ```yaml
 contao:
@@ -754,10 +754,10 @@ contao:
               autoscale:
                   enabled: false
                   min: 1
-                  max: 5           # required wenn autoscale aktiviert
+                  max: 5           # required when autoscale is enabled
 ```
 
-### Bildverarbeitung
+### Image processing
 
 ```yaml
 contao:
@@ -781,7 +781,7 @@ contao:
             enable_fallback_images: true
 ```
 
-### Bildgrößen-Definition
+### Image size definition
 
 ```yaml
 contao:
@@ -798,7 +798,7 @@ contao:
                 sizes: '(max-width: 768px) 100vw, 800px'
                 skip_if_dimensions_match: false
                 formats:
-                    jpg: [webp, jpg]      # Konvertierungsspezifikationen
+                    jpg: [webp, jpg]      # Conversion specifications
                 items:
                     -
                         width: 400
@@ -806,7 +806,7 @@ contao:
                         media: '(max-width: 768px)'
 ```
 
-### Sicherheit
+### Security
 
 ```yaml
 contao:
@@ -818,7 +818,7 @@ contao:
             ttl: 31536000
 ```
 
-### Suche
+### Search
 
 ```yaml
 contao:
@@ -835,12 +835,12 @@ contao:
             index_name: contao_backend
 ```
 
-### Backend
+### Back end
 
 ```yaml
 contao:
     backend:
-        attributes: {}            # HTML body-Tag-Attribute
+        attributes: {}            # HTML body tag attributes
         custom_css: []
         custom_js: []
         badge_title: ''
@@ -868,13 +868,13 @@ contao:
 
 ---
 
-## 5. Umgebungsvariablen
+## 5. Environment Variables
 
 ### APP_ENV
-`prod` (Standard) oder `dev`. Entwicklungsmodus aktiviert zusätzliches Logging.
+`prod` (default) or `dev`. Development mode enables additional logging.
 
 ### APP_SECRET
-Für CSRF-Token-Generierung (~32 zufällige Zeichen).
+For CSRF token generation (~32 random characters).
 
 ### DATABASE_URL
 ```
@@ -885,28 +885,28 @@ DATABASE_URL="mysql://user:password@127.0.0.1:3306/dbname"
 ```
 MAILER_DSN=smtp://username:password@smtp.example.com:587
 ```
-(ab Contao 5.0; `MAILER_URL` nicht mehr unterstützt)
+(as of Contao 5.0; `MAILER_URL` is no longer supported)
 
 ### DISABLE_HTTP_CACHE
-`true` deaktiviert Standard-Caching-Proxy.
+`true` disables the default caching proxy.
 
 ### COOKIE_ALLOW_LIST
-Cookies die als authentifizierungsrelevant gelten (Cache-Bypass).
+Cookies that count as authentication-relevant (cache bypass).
 ```
 PHPSESSID,csrf_https-contao_csrf_token,csrf_contao_csrf_token,trusted_device,REMEMBERME
 ```
 
 ### COOKIE_REMOVE_FROM_DENY_LIST
-Einträge aus Standard-Deny-Liste entfernen:
+Remove entries from the default deny list:
 ```
 COOKIE_REMOVE_FROM_DENY_LIST=__utm.+,AMP_TOKEN
 ```
 
 ### QUERY_PARAMS_ALLOW_LIST
-Query-Parameter die erhalten bleiben; alle anderen werden entfernt.
+Query parameters that are retained; all others are removed.
 
 ### QUERY_PARAMS_REMOVE_FROM_DENY_LIST
-Parameter aus Standard-Deny-Liste entfernen.
+Remove parameters from the default deny list.
 
 ### TRUSTED_PROXIES
 ```
@@ -914,8 +914,8 @@ TRUSTED_PROXIES=192.0.2.1
 TRUSTED_PROXIES=192.0.2.0/24
 ```
 
-### DNS_MAPPING (ab 5.3)
-Domänen automatisch über Umgebungen hinweg umleiten:
+### DNS_MAPPING (as of 5.3)
+Automatically redirect domains across environments:
 ```json
 DNS_MAPPING='{"www.example.com": "example.local", "www.foobar.org": "foobar.local"}'
 ```
@@ -927,24 +927,24 @@ parameters:
         www.example.com: http://example.local
         www.foobar.org: http://foobar.local
 ```
-Nach Konfiguration `contao:migrate` ausführen.
+Run `contao:migrate` after configuring this.
 
 ---
 
-## 6. Request-Attributes
+## 6. Request Attributes
 
-Request-Attribute die in Contao-Controllern gesetzt oder abgefragt werden können.
+Request attributes that can be set or queried in Contao controllers.
 
-| Attribut | Typ | Beschreibung |
+| Attribute | Type | Description |
 |----------|-----|--------------|
-| `_contao_referer_id` | `string` | Aktueller Referer-ID für Backend-Request-URLs (nur Backend-Scope) |
-| `_locale` | `string` | Locale des aktuellen Requests; gesetzt durch Contao im Frontend/Backend-Scope |
-| `_scope` | `string` | Contao-Request-Scope: `frontend` oder `backend` |
-| `_token_check` | `bool` | CSRF-Schutz für POST-Requests aktivieren/deaktivieren; Standard: aktiviert für Routen mit Contao-Scope |
-| `_store_referrer` | `bool` | URL in Backend-Session-History als Referrer speichern (ab 5.7 nicht mehr verwendet) |
-| `pageModel` | `\Contao\PageModel\|int` | PageModel-Instanz oder ID in Contao-Requests; nicht direkt verwenden — stattdessen Argument-Value-Resolving in Page-Controllern oder `$this->getPageModel()` in Inhaltselementen/Frontend-Modulen nutzen |
+| `_contao_referer_id` | `string` | Current referer ID for back end request URLs (back end scope only) |
+| `_locale` | `string` | Locale of the current request; set by Contao in front end/back end scope |
+| `_scope` | `string` | Contao request scope: `frontend` or `backend` |
+| `_token_check` | `bool` | Enable/disable CSRF protection for POST requests; default: enabled for routes with Contao scope |
+| `_store_referrer` | `bool` | Store the URL as referrer in the back end session history (no longer used as of 5.7) |
+| `pageModel` | `\Contao\PageModel\|int` | PageModel instance or ID in Contao requests; do not use directly — use argument value resolving in page controllers or `$this->getPageModel()` in content elements/front end modules instead |
 
-### Scope in Services prüfen
+### Checking the scope in services
 
 ```php
 use Contao\CoreBundle\Routing\ScopeMatcher;
@@ -971,16 +971,16 @@ class MyListener
 }
 ```
 
-### Locale aus Request
+### Locale from the request
 
 ```php
-$locale = $request->attributes->get('_locale');    // z. B. 'de', 'de_CH'
-$locale = $request->getLocale();                    // Symfony-Standard
+$locale = $request->attributes->get('_locale');    // e.g. 'de', 'de_CH'
+$locale = $request->getLocale();                    // Symfony default
 ```
 
 ---
 
-*Quellen:*
+*Sources:*
 - https://docs.contao.org/5.x/dev/reference/services/
 - https://docs.contao.org/5.x/dev/reference/events/
 - https://docs.contao.org/5.x/dev/reference/commands/

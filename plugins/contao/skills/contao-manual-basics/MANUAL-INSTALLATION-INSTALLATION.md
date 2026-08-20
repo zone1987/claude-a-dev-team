@@ -1,6 +1,6 @@
 # Contao 5.x — Installation
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/installation/systemvoraussetzungen/
 - https://docs.contao.org/5.x/manual/de/installation/contao-installieren/
 - https://docs.contao.org/5.x/manual/de/installation/contao-aktualisieren/
@@ -15,84 +15,84 @@ Quellen:
 
 ## Contents
 
-- [Systemvoraussetzungen](#systemvoraussetzungen)
+- [System requirements](#system-requirements)
 - [Installation](#installation)
-- [Contao aktualisieren](#contao-aktualisieren)
-- [Der Contao Manager](#der-contao-manager)
-- [Erweiterungen](#erweiterungen)
-- [Lokale Entwicklungsumgebungen](#lokale-entwicklungsumgebungen)
+- [Updating Contao](#updating-contao)
+- [The Contao Manager](#the-contao-manager)
+- [Extensions](#extensions)
+- [Local development environments](#local-development-environments)
 
-## Systemvoraussetzungen
+## System requirements
 
-### Empfohlene Versionen
+### Recommended versions
 
-| Software | Mindestversion | Empfohlen |
+| Software | Minimum version | Recommended |
 |----------|---------------|-----------|
-| PHP | 8.1 | 8.4+ (neueste Patch-Version) |
+| PHP | 8.1 | 8.4+ (latest patch version) |
 | MySQL | 5.7.6 / MariaDB 10.4.3 | 8.0+ |
 
-### Erforderliche PHP-Erweiterungen
+### Required PHP extensions
 
 DOM, PCRE, Intl, PDO, ZLIB, JSON, Curl, Mbstring, GD, File Information.
-Ab PHP 8.3: zusätzlich **Sodium**.
+As of PHP 8.3: additionally **Sodium**.
 
-### Bildverarbeitung
+### Image processing
 
-Contao wählt automatisch eine Bildverarbeitungsbibliothek:
-- GD: erforderlich (Standard)
-- ImageMagick oder GraphicsMagick: bessere Leistung
+Contao automatically chooses an image processing library:
+- GD: required (default)
+- ImageMagick or GraphicsMagick: better performance
 
-### MySQL-Anforderungen
+### MySQL requirements
 
-- Tabellenformat: **InnoDB**
-- Zeichensatz: **UTF8mb4**
-- Mindestversion ab Contao 5.6: MySQL 5.7.6 oder MariaDB 10.4.3
+- Table format: **InnoDB**
+- Character set: **UTF8mb4**
+- Minimum version as of Contao 5.6: MySQL 5.7.6 or MariaDB 10.4.3
 
-### Webserver-Konfiguration
+### Web server configuration
 
-- **Document Root** muss auf den `public/`-Unterordner zeigen
-- URL-Rewriting muss aktiviert sein (alle Anfragen durch `index.php`)
-- Pro Contao-Installation wird eine eigene (Sub)Domain benötigt
+- The **document root** must point to the `public/` subfolder
+- URL rewriting must be enabled (all requests through `index.php`)
+- Each Contao installation requires its own (sub)domain
 
 ---
 
 ## Installation
 
-### Weg 1: Contao Manager (empfohlen für Einsteiger)
+### Route 1: Contao Manager (recommended for beginners)
 
-#### Schritt 1 — Contao Manager installieren
+#### Step 1 — install the Contao Manager
 
-1. `contao-manager.phar` von contao.org herunterladen
-2. Datei in `public/` umbenennen zu `contao-manager.phar.php`
-3. Per FTP/SFTP auf den Server hochladen
+1. Download `contao-manager.phar` from contao.org
+2. Rename the file in `public/` to `contao-manager.phar.php`
+3. Upload it to the server via FTP/SFTP
 
-#### Schritt 2 — Manager aufrufen und konfigurieren
+#### Step 2 — call up and configure the Manager
 
 URL: `https://www.example.com/contao-manager.phar.php`
 
-![Contao Manager Willkommensseite](../../assets/contao-manager-willkommen.png)
+![Contao Manager welcome page](../../assets/contao-manager-willkommen.png)
 
-Grundkonfiguration:
-- Neuen Manager-Benutzer anlegen (unabhängig vom späteren Contao-Benutzer)
-- PHP-Binary-Pfad wird automatisch erkannt
-- **Composer Resolver Cloud** aktivieren (wenn Server wenig RAM hat): Abhängigkeiten werden in der Cloud der Contao Association aufgelöst
+Basic configuration:
+- Create a new Manager user (independent of the later Contao user)
+- The PHP binary path is detected automatically
+- Enable the **Composer Resolver Cloud** (if the server has little RAM): dependencies are resolved in the Contao Association's cloud
 
-#### Schritt 3 — Contao installieren
+#### Step 3 — install Contao
 
-Im Manager: Gewünschte Version wählen → Initiale Konfiguration → „Installieren" klicken.
-Installation dauert mehrere Minuten. Konsolenausgabe über Icon einsehbar.
+In the Manager: choose the desired version → initial configuration → click "Installieren" (Install).
+The installation takes several minutes. The console output can be viewed via the icon.
 
-#### Schritt 4 — Datenbank aktualisieren
+#### Step 4 — update the database
 
-Contao Installtool öffnen → Datenbankänderungen prüfen und ausführen.
+Open the Contao install tool → check and apply the database changes.
 
 ---
 
-### Weg 2: Kommandozeile (Composer)
+### Route 2: command line (Composer)
 
-#### Voraussetzungen
+#### Prerequisites
 
-SSH-Zugang zum Server, Composer installiert.
+SSH access to the server, Composer installed.
 
 #### Installation
 
@@ -105,11 +105,11 @@ cd www
 php composer.phar create-project contao/managed-edition example 5.7
 ```
 
-#### Hosting konfigurieren
+#### Configure the hosting
 
-Document Root auf `/www/example/public` zeigen lassen.
+Point the document root to `/www/example/public`.
 
-#### Datenbank aktualisieren
+#### Update the database
 
 ```bash
 php vendor/bin/contao-console contao:migrate
@@ -118,7 +118,7 @@ php vendor/bin/contao-console contao:migrate
 php vendor/bin/contao-console doctrine:database:create
 ```
 
-Datenbankverbindung in `config/parameters.yaml` oder `.env`:
+Database connection in `config/parameters.yaml` or `.env`:
 ```yaml
 parameters:
     database_host: localhost
@@ -128,7 +128,7 @@ parameters:
     database_name: contao
 ```
 
-#### Backend-Benutzer anlegen
+#### Create a backend user
 
 ```bash
 php vendor/bin/contao-console contao:user:create
@@ -136,35 +136,35 @@ php vendor/bin/contao-console contao:user:create
 
 ---
 
-## Contao aktualisieren
+## Updating Contao
 
-### Update-Zyklus (Semantic Versioning)
+### Update cycle (semantic versioning)
 
-| Typ | Beispiel | Bedeutung |
+| Type | Example | Meaning |
 |-----|---------|-----------|
-| **Major-Release** | 5.x | Vollständig neue Version, Breaking Changes möglich |
-| **Minor-Release** | 5.7 | Neue Funktionen, kleinere Anpassungen nötig |
-| **Bugfix-Release** | 5.7.1 | Fehlerbehebung, problemlos |
-| **LTS** | 4.13, 5.3 | 3 Jahre Bugfixes + 1 Jahr Sicherheitsupdates |
+| **Major release** | 5.x | Completely new version, breaking changes possible |
+| **Minor release** | 5.7 | New functions, minor adjustments necessary |
+| **Bugfix release** | 5.7.1 | Bug fixing, unproblematic |
+| **LTS** | 4.13, 5.3 | 3 years of bugfixes + 1 year of security updates |
 
-**Vor jedem Update:** Backups von `composer.json`, `composer.lock` und der Datenbank erstellen!
+**Before every update:** create backups of `composer.json`, `composer.lock` and the database!
 
-### Update per Contao Manager
+### Update via the Contao Manager
 
-**Bugfix-Update**: Im Manager „Pakete aktualisieren" klicken.
+**Bugfix update**: click "Pakete aktualisieren" (Update packages) in the Manager.
 
-**Minor-Update**: Zahnrad-Symbol neben „Contao Open Source CMS" → gewünschte Version eingeben → „Pakete aktualisieren" → „Änderungen anwenden".
+**Minor update**: cog icon next to "Contao Open Source CMS" → enter the desired version → "Pakete aktualisieren" → "Änderungen anwenden" (Apply changes).
 
-Danach Installtool öffnen und Datenbankänderungen ausführen.
+Then open the install tool and apply the database changes.
 
-### Update per Kommandozeile
+### Update via the command line
 
-**Bugfix-Update**:
+**Bugfix update**:
 ```bash
 composer update
 ```
 
-**Minor-Update** — zuerst `composer.json` anpassen:
+**Minor update** — first adjust `composer.json`:
 ```json
 {
     "require": {
@@ -172,23 +172,23 @@ composer update
     }
 }
 ```
-Dann:
+Then:
 ```bash
 composer update
 vendor/bin/contao-console contao:migrate
 ```
 
-### Lokales Update (ohne Composer Resolver Cloud)
+### Local update (without the Composer Resolver Cloud)
 
-Nützlich wenn der Hosting-Server zu wenig RAM für `composer update` hat:
+Useful when the hosting server has too little RAM for `composer update`:
 
-1. `composer.json` und `composer.lock` vom Server lokal kopieren
-2. Lokal `composer update` ausführen (spart Server-Ressourcen)
-3. Aktualisierte `composer.lock` zurück auf Server kopieren
-4. Auf Server: `composer install` (nur installieren, nicht auflösen)
-5. Datenbank aktualisieren
+1. Copy `composer.json` and `composer.lock` from the server locally
+2. Run `composer update` locally (saves server resources)
+3. Copy the updated `composer.lock` back to the server
+4. On the server: `composer install` (install only, do not resolve)
+5. Update the database
 
-Für abweichende PHP-Versionen in `composer.json`:
+For differing PHP versions in `composer.json`:
 ```json
 "config": {
     "platform": {
@@ -199,64 +199,64 @@ Für abweichende PHP-Versionen in `composer.json`:
 
 ---
 
-## Der Contao Manager
+## The Contao Manager
 
-### Funktionen
+### Functions
 
-- Contao installieren und aktualisieren
-- Erweiterungen suchen, installieren und entfernen
-- Cache leeren (Systemwartung)
-- Benutzer einladen (ab Manager 1.9)
+- Install and update Contao
+- Search for, install and remove extensions
+- Clear the cache (Systemwartung / system maintenance)
+- Invite users (as of Manager 1.9)
 
-### Häufige Probleme
+### Common problems
 
-#### Passwort vergessen
+#### Forgotten password
 
-1. Per FTP `contao-manager/users.json` löschen
-2. Manager URL aufrufen → neuen Admin-Benutzer anlegen
-3. Falls Login-Maske trotzdem erscheint: Cookies löschen oder Inkognito-Modus verwenden
+1. Delete `contao-manager/users.json` via FTP
+2. Call up the Manager URL → create a new admin user
+3. If the login screen still appears: delete the cookies or use incognito mode
 
-#### Manager hängt
+#### The Manager hangs
 
-Datei `contao-manager/task.json` löschen → Manager sollte wieder funktionieren.
+Delete the file `contao-manager/task.json` → the Manager should work again.
 
-#### Manager umbenennen (`.phar`-Datei)
+#### Renaming the Manager (`.phar` file)
 
-Beliebiger Dateiname möglich. In `config/config.yaml` eintragen:
+Any file name is possible. Enter it in `config/config.yaml`:
 ```yaml
 contao_manager:
     manager_path: dein-name.phar.php
 ```
-Danach App-Cache leeren.
+Then clear the app cache.
 
-### Manager-Benutzerrollen (ab Version 1.9)
+### Manager user roles (as of version 1.9)
 
-| Rolle | Berechtigungen |
+| Role | Permissions |
 |-------|---------------|
-| READ | Pakete anzeigen, Logs lesen |
-| UPDATE | Pakete aktualisieren, Wartungsaufgaben |
-| INSTALL | Pakete installieren, Systemeinstellungen |
-| ADMIN | Vollzugriff inkl. Benutzerverwaltung |
+| READ | View packages, read logs |
+| UPDATE | Update packages, maintenance tasks |
+| INSTALL | Install packages, system settings |
+| ADMIN | Full access including user management |
 
 ---
 
-## Erweiterungen
+## Extensions
 
-### Suchen
+### Searching
 
 - Website: extensions.contao.org
-- Im Contao Manager: Suchfeld in bestehender Installation
-- Kommandozeile: `php composer.phar search <suchbegriff>`
+- In the Contao Manager: search field in an existing installation
+- Command line: `php composer.phar search <suchbegriff>`
 
-### Installation per Contao Manager
+### Installation via the Contao Manager
 
-1. Im Manager einloggen
-2. Erweiterung suchen (z. B. „EasyThemes")
-3. „Hinzufügen" klicken (für weitere Erweiterungen wiederholen)
-4. „Pakete" Tab → „Änderungen anwenden"
-5. Nach Abschluss: Installtool für Datenbank-Update
+1. Log in to the Manager
+2. Search for the extension (e.g. "EasyThemes")
+3. Click "Hinzufügen" (Add) (repeat for further extensions)
+4. "Pakete" (Packages) tab → "Änderungen anwenden" (Apply changes)
+5. When finished: install tool for the database update
 
-### Installation per Kommandozeile
+### Installation via the command line
 
 ```bash
 # Einzelne Erweiterung
@@ -271,13 +271,13 @@ php vendor/bin/contao-console contao:migrate
 
 ---
 
-## Lokale Entwicklungsumgebungen
+## Local development environments
 
-### DDEV (empfohlen, plattformübergreifend)
+### DDEV (recommended, cross-platform)
 
-**Voraussetzung**: Docker installiert.
+**Prerequisite**: Docker installed.
 
-#### Setup per Composer
+#### Setup via Composer
 
 ```bash
 mkdir contao && cd contao
@@ -304,30 +304,30 @@ ddev exec contao-console contao:user:create \
 ddev launch contao
 ```
 
-#### Nützliche DDEV-Befehle
+#### Useful DDEV commands
 
-| Befehl | Funktion |
+| Command | Function |
 |--------|---------|
-| `ddev start` / `ddev stop` | Projekt starten/stoppen |
-| `ddev poweroff` | Alle Container stoppen |
-| `ddev ssh` | Container-Shell öffnen |
-| `ddev describe` | Services und Zugangsdaten anzeigen |
-| `ddev xdebug on` | XDebug aktivieren |
+| `ddev start` / `ddev stop` | Start/stop the project |
+| `ddev poweroff` | Stop all containers |
+| `ddev ssh` | Open the container shell |
+| `ddev describe` | Show services and credentials |
+| `ddev xdebug on` | Enable XDebug |
 
-#### DDEV-Cronjob einrichten (ab Contao 5.5)
+#### Setting up a DDEV cronjob (as of Contao 5.5)
 
 ```bash
 ddev add-on get ddev/ddev-cron
 ```
 
-Datei `/.ddev/web-build/contao.cron` anlegen:
+Create the file `/.ddev/web-build/contao.cron`:
 ```
 * * * * * php /var/www/html/vendor/bin/contao-console contao:cron
 ```
 
-Dann: `ddev restart`
+Then: `ddev restart`
 
-#### Datenbank-Tools
+#### Database tools
 
 ```bash
 # Adminer
@@ -341,9 +341,9 @@ ddev add-on get ddev/ddev-phpmyadmin && ddev restart
 
 ### Docker Devilbox
 
-**Voraussetzung**: Docker und Docker Compose installiert.
+**Prerequisite**: Docker and Docker Compose installed.
 
-#### Konfiguration (`.env`-Datei)
+#### Configuration (`.env` file)
 
 ```
 HTTPD_DOCROOT_DIR=public
@@ -352,9 +352,9 @@ PHP_SERVER=8.2
 MYSQL_SERVER=mariadb-10.3
 ```
 
-**Wichtig**: Einträge nicht löschen, nur kommentieren/auskommentieren.
+**Important**: do not delete the entries, only comment/uncomment them.
 
-#### Devilbox starten
+#### Starting Devilbox
 
 ```bash
 # Erstmaliger Start (Vordergrund für Fehlererkennung)
@@ -364,72 +364,72 @@ docker-compose up httpd php mysql
 docker-compose up -d httpd php mysql
 ```
 
-#### Devilbox stoppen
+#### Stopping Devilbox
 
 ```bash
 docker-compose stop
 docker-compose rm -f
 ```
 
-#### Contao installieren
+#### Installing Contao
 
-1. Verzeichnis in `data/www/contao4/` anlegen
-2. Unterordner `public/` erstellen
-3. Contao Manager (`contao-manager.phar.php`) hineinkopieren
-4. In `/etc/hosts`: `127.0.0.1 contao4.loc` eintragen
-5. Im Browser: `http://contao4.loc/contao-manager.phar.php`
+1. Create a directory in `data/www/contao4/`
+2. Create the subfolder `public/`
+3. Copy the Contao Manager (`contao-manager.phar.php`) into it
+4. In `/etc/hosts`: enter `127.0.0.1 contao4.loc`
+5. In the browser: `http://contao4.loc/contao-manager.phar.php`
 
-#### Datenbank-Zugangsdaten (Devilbox)
+#### Database credentials (Devilbox)
 
-| Eintrag | Wert |
+| Entry | Value |
 |---------|------|
 | Host | mysql |
-| Benutzername | root |
-| Passwort | (leer) |
+| User name | root |
+| Password | (empty) |
 
 ---
 
 ### Laragon (Windows)
 
-#### Voraussetzungen
+#### Prerequisites
 
-Windows 7–10, Symlink-Berechtigung für normalen Benutzer einrichten (via Polsedit: Richtlinie „Create symbolic links").
+Windows 7–10, set up symlink permission for a normal user (via Polsedit: policy "Create symbolic links").
 
 #### Installation
 
-1. `laragon-wamp.exe` von github.com/leokhoa/laragon herunterladen
-2. Installieren, Services starten
-3. Composer global installieren
-4. `laragon\usr\laragon.ini` anpassen: `QuickSettings` um `sys_temp_dir` erweitern
-5. PHP Memory Limit auf `-1` setzen
+1. Download `laragon-wamp.exe` from github.com/leokhoa/laragon
+2. Install it, start the services
+3. Install Composer globally
+4. Adjust `laragon\usr\laragon.ini`: extend `QuickSettings` with `sys_temp_dir`
+5. Set the PHP memory limit to `-1`
 
-#### Contao über Laragon installieren
+#### Installing Contao via Laragon
 
-Menü → Neue Website → „Contao 4.9 Website…" (oder entsprechende Version) → Projektname eingeben.
+Menu → new website → "Contao 4.9 Website…" (or the corresponding version) → enter the project name.
 
-Laragon erstellt automatisch:
-- Datenbank mit dem Projektnamen
-- Virtuellen Host `projektname.local`
+Laragon automatically creates:
+- A database with the project name
+- A virtual host `projektname.local`
 
-#### URLs nach Installation
+#### URLs after the installation
 
-| Ziel | URL |
+| Target | URL |
 |------|-----|
 | Frontend | http://mycompany.local/ |
 | Backend | http://mycompany.local/contao |
-| Installtool | http://mycompany.local/contao/install |
+| Install tool | http://mycompany.local/contao/install |
 | Manager | http://mycompany.local/contao-manager.phar.php |
 
 ---
 
 ### XAMPP (Windows)
 
-#### Konfiguration
+#### Configuration
 
-1. XAMPP Portable entpacken, `setup_xampp.bat` ausführen
-2. `xampp-control.exe` als Administrator starten
-3. In `apache\php.ini`: `memory_limit = -1` und `extension=intl` aktivieren
-4. In `httpd.conf` am Ende hinzufügen (ThreadStackSize erhöhen):
+1. Unpack XAMPP Portable, run `setup_xampp.bat`
+2. Start `xampp-control.exe` as administrator
+3. In `apache\php.ini`: enable `memory_limit = -1` and `extension=intl`
+4. Add at the end of `httpd.conf` (increase the ThreadStackSize):
 
 ```apache
 <IfModule mpm_winnt_module>
@@ -437,22 +437,22 @@ Laragon erstellt automatisch:
 </IfModule>
 ```
 
-#### Composer installieren
+#### Installing Composer
 
-In XAMPP-Shell:
+In the XAMPP shell:
 ```bash
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
 
-#### Contao installieren
+#### Installing Contao
 
 ```bash
 php ../composer.phar create-project contao/managed-edition demo 5.7
 ```
 
-#### vHost konfigurieren (empfohlen)
+#### Configuring a vHost (recommended)
 
 In `\apache\conf\extra\httpd-vhosts.conf`:
 ```apache

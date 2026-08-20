@@ -9,14 +9,14 @@ The Vue layer. A module registers routes and menu entries; components are regist
 
 ## Reference map
 
-- **[ADMIN-COMPONENT.md](ADMIN-COMPONENT.md)**: Komponenten werden über `Shopware.Component.register` registriert. [ADMIN-COMPONENT-OVERRIDE](ADMIN-COMPONENT-OVERRIDE.md).
-- **[ADMIN-DATA-GRID.md](ADMIN-DATA-GRID.md)**: Listen mit `sw-entity-listing` bzw.
-- **[ADMIN-DIRECTIVES.md](ADMIN-DIRECTIVES.md)**: Eingebaute Vue-Direktiven der Admin im Template nutzen:.
-- **[ADMIN-MENU.md](ADMIN-MENU.md)**: Menüeinträge werden im Modul über `navigation` bzw.
-- **[ADMIN-MIXINS.md](ADMIN-MIXINS.md)**: Mixins kapseln wiederverwendbares Komponentenverhalten.
-- **[ADMIN-MODULE.md](ADMIN-MODULE.md)**: Ein Modul bündelt Routen, Komponenten und Navigation eines Backend-Bereichs. [ADMIN-MODULE-ADMINISTRATION](ADMIN-MODULE-ADMINISTRATION.md).
-- **[ADMIN-ROUTING.md](ADMIN-ROUTING.md)**: Routen werden im Modul unter `routes` deklariert.
-- **[ADMIN-UTILS-FILTERS.md](ADMIN-UTILS-FILTERS.md)**: Die Admin bietet viele Helfer am `Shopware`-Objekt — vor eigenem Code prüfen, ob es schon existiert.
+- **[ADMIN-COMPONENT.md](ADMIN-COMPONENT.md)**: Components are registered via `Shopware.Component.register`. [ADMIN-COMPONENT-OVERRIDE](ADMIN-COMPONENT-OVERRIDE.md).
+- **[ADMIN-DATA-GRID.md](ADMIN-DATA-GRID.md)**: Lists with `sw-entity-listing` or.
+- **[ADMIN-DIRECTIVES.md](ADMIN-DIRECTIVES.md)**: Use the admin's built-in Vue directives in the template:.
+- **[ADMIN-MENU.md](ADMIN-MENU.md)**: Menu entries are defined in the module via `navigation` or.
+- **[ADMIN-MIXINS.md](ADMIN-MIXINS.md)**: Mixins encapsulate reusable component behaviour.
+- **[ADMIN-MODULE.md](ADMIN-MODULE.md)**: A module bundles the routes, components and navigation of a backend area. [ADMIN-MODULE-ADMINISTRATION](ADMIN-MODULE-ADMINISTRATION.md).
+- **[ADMIN-ROUTING.md](ADMIN-ROUTING.md)**: Routes are declared in the module under `routes`.
+- **[ADMIN-UTILS-FILTERS.md](ADMIN-UTILS-FILTERS.md)**: The admin offers many helpers on the `Shopware` object — before writing your own code, check whether one already exists.
 
 ## Source
 

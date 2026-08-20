@@ -1,11 +1,11 @@
 # Shopware Frontends — @shopware/api-client
 
-Typisierter Client gegen die **Store API**. `createAPIClient` erzeugt die Instanz, `invoke` ruft eine typisierte
-Operation auf.
+Typed client against the **Store API**. `createAPIClient` creates the instance, `invoke` calls a typed
+operation.
 
 ```ts
 import { createAPIClient } from '@shopware/api-client';
-import type { operations } from '#shopware'; // generierte Typen (sw-api-gen-types)
+import type { operations } from '#shopware'; // generated types (sw-api-gen-types)
 
 const apiClient = createAPIClient<operations>({
   baseURL: 'https://shop.example.com/store-api',
@@ -15,8 +15,8 @@ const apiClient = createAPIClient<operations>({
 const { data } = await apiClient.invoke('readProduct post /product', { body: { limit: 10 } });
 ```
 
-Der Client verwaltet den `sw-context-token` automatisch (Warenkorb/Login-State, `sw-frontends-session-context`).
-Request-/Response-Hooks (`apiClient.hook`) für Token-Persistenz/Fehler. Typen kommen aus `@shopware/api-gen`.
-Für reine API-Fakten (Endpunkte/Header) → Plugin `shopware-api`.
+The client manages the `sw-context-token` automatically (cart/login state, `sw-frontends-session-context`).
+Request/response hooks (`apiClient.hook`) for token persistence/errors. Types come from `@shopware/api-gen`.
+For pure API facts (endpoints/headers) → plugin `shopware-api`.
 
-→ Vollständige Referenz: [API-CLIENT-JS-API-CLIENT-REFERENCE.md](API-CLIENT-JS-API-CLIENT-REFERENCE.md)
+→ Complete reference: [API-CLIENT-JS-API-CLIENT-REFERENCE.md](API-CLIENT-JS-API-CLIENT-REFERENCE.md)

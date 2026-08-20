@@ -1,5 +1,5 @@
 # Gotenberg — Troubleshooting
 
-Loesungen fuer haeufige Probleme: leere PDFs (JS-Rendering, Hintergrunde),
-Schriftartprobleme, LibreOffice-Abstuerze, Webhook-TLS-Fehler, Timeouts/503.
-Referenz: `TROUBLESHOOTING-DETAIL.md`
+Solutions for common problems: empty PDFs (JS rendering, backgrounds),
+font issues, LibreOffice crashes, webhook TLS errors, timeouts/503.
+Reference: `TROUBLESHOOTING-DETAIL.md`

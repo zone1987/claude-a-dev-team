@@ -307,7 +307,7 @@ await browser.close();
 | Properties | 0     |
 | Events    | 0 (1 page event: 'download') |
 
-**Conclusion:** `saveAs()` + `suggestedFilename()` are the core methods for
+**Summary:** `saveAs()` + `suggestedFilename()` are the core methods for
 typical download tests. `failure()` should always be checked before
 `path()` is called. `createReadStream()` allows in-memory processing
 without intermediate storage.

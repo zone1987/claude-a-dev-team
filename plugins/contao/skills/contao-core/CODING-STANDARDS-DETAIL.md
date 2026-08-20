@@ -1,36 +1,36 @@
-# Contao 5 — Coding Standards & Namenskonventionen
+# Contao 5 — Coding Standards & Naming Conventions
 
 ## Contents
 
 - [Coding Standards](#coding-standards)
-- [Automatisierte Einhaltung](#automatisierte-einhaltung)
-- [Empfohlene Namespace-Struktur](#empfohlene-namespace-struktur)
-- [Klassen-Suffix-Konventionen](#klassen-suffix-konventionen)
-- [Bundle-Verzeichnisstruktur](#bundle-verzeichnisstruktur)
-- [Namespaces für Bundles (vs. Apps)](#namespaces-für-bundles-vs-apps)
-- [composer.json Konventionen](#composerjson-konventionen)
-- [Publishing-Checkliste](#publishing-checkliste)
+- [Automated Compliance](#automated-compliance)
+- [Recommended Namespace Structure](#recommended-namespace-structure)
+- [Class Suffix Conventions](#class-suffix-conventions)
+- [Bundle Directory Structure](#bundle-directory-structure)
+- [Namespaces for Bundles (vs. Apps)](#namespaces-for-bundles-vs-apps)
+- [composer.json Conventions](#composerjson-conventions)
+- [Publishing Checklist](#publishing-checklist)
 
 ## Coding Standards
 
-Contao folgt eng den [Symfony Coding Standards](https://symfony.com/doc/current/contributing/code/standards.html).
-Maintainer öffentlicher Bundles werden ermutigt, denselben Ansatz zu verfolgen.
+Contao closely follows the [Symfony Coding Standards](https://symfony.com/doc/current/contributing/code/standards.html).
+Maintainers of public bundles are encouraged to pursue the same approach.
 
-### Ausnahme: Service-Namen
+### Exception: Service Names
 
-**Contao-Regel:** Service-Namen müssen dem FQCN (Fully Qualified Class Name) der Klasse entsprechen.
+**Contao rule:** Service names must match the FQCN (Fully Qualified Class Name) of the class.
 
-**Gilt nicht für** wiederverwendbare Bundles (Symfony-Best-Practice: Bundle-Alias als Präfix).
-Contao behandelt Controller jedoch als Projekt-Services — FQCN als Service-Name ist oft
-für korrekte Funktionalität erforderlich.
+**Does not apply to** reusable bundles (Symfony best practice: bundle alias as prefix).
+However, Contao treats controllers as project services — the FQCN as the service name is often
+required for correct functionality.
 
 ---
 
-## Automatisierte Einhaltung
+## Automated Compliance
 
-Das Paket [`contao/easy-coding-standard`](https://github.com/contao/easy-coding-standard)
-vereinfacht die Standards-Durchsetzung. Es kombiniert Sniffs und Fixers, die Code-Syntax
-automatisch anpassen.
+The package [`contao/easy-coding-standard`](https://github.com/contao/easy-coding-standard)
+simplifies enforcing the standards. It combines sniffs and fixers that adjust code syntax
+automatically.
 
 ```bash
 composer require --dev contao/easy-coding-standard
@@ -38,45 +38,45 @@ vendor/bin/ecs check src/
 vendor/bin/ecs check src/ --fix
 ```
 
-Die Contao-CI-Pipeline führt diese Prüfungen bei allen Pull Requests aus.
+The Contao CI pipeline runs these checks on all pull requests.
 
 ---
 
-## Empfohlene Namespace-Struktur
+## Recommended Namespace Structure
 
-| Namespace | Zweck |
+| Namespace | Purpose |
 |-----------|-------|
-| `App\ContaoManager` | Contao Manager Plugin und zugehörige Klassen |
-| `App\Controller\ContentElement` | Content Element Fragment-Controller |
-| `App\Controller\FrontendModule` | Front-End-Modul Fragment-Controller |
-| `App\Controller\Page` | Page-Controller |
-| `App\Cron` | Cron-Job-Implementierungen |
-| `App\EventListener` | Symfony-Event-Listener, Contao-Hooks & Callbacks |
-| `App\Model` | Datenbank-Models |
-| `App\Widget` | Formular-Widgets |
-| `App\DependencyInjection` | DI-Extensions und Compiler-Passes |
+| `App\ContaoManager` | Contao Manager Plugin and related classes |
+| `App\Controller\ContentElement` | Content element fragment controllers |
+| `App\Controller\FrontendModule` | Front end module fragment controllers |
+| `App\Controller\Page` | Page controllers |
+| `App\Cron` | Cron job implementations |
+| `App\EventListener` | Symfony event listeners, Contao hooks & callbacks |
+| `App\Model` | Database models |
+| `App\Widget` | Form widgets |
+| `App\DependencyInjection` | DI extensions and compiler passes |
 
 ---
 
-## Klassen-Suffix-Konventionen
+## Class Suffix Conventions
 
-| Namespace | Suffix | Beispiel |
+| Namespace | Suffix | Example |
 |-----------|--------|---------|
 | `App\Controller` | `Controller` | `App\Controller\ExampleController` |
 | `App\Cron` | `Cron` | `App\Cron\ExampleCron` |
 | `App\EventListener` | `Listener` | `App\EventListener\ExampleListener` |
 | `App\Model` | `Model` | `App\Model\ExampleModel` |
 
-Diese Benennung entspricht Symfony-üblichen Konventionen.
+This naming matches the conventions common in Symfony.
 
 ---
 
-## Bundle-Verzeichnisstruktur
+## Bundle Directory Structure
 
 ```
 vendor/somevendor/contao-example-bundle/
 ├── src/
-│   ├── ContaoExampleBundle.php        # Bundle-Klasse
+│   ├── ContaoExampleBundle.php        # Bundle class
 │   ├── ContaoManager/
 │   │   └── Plugin.php                 # Manager Plugin
 │   ├── Controller/
@@ -111,31 +111,31 @@ vendor/somevendor/contao-example-bundle/
 
 ---
 
-## Namespaces für Bundles (vs. Apps)
+## Namespaces for Bundles (vs. Apps)
 
-| Typ | Namespace-Pattern | Beispiel |
+| Type | Namespace pattern | Example |
 |-----|-------------------|---------|
 | App | `App\...` | `App\Controller\HomeController` |
 | Bundle | `Vendor\BundleName\...` | `Acme\NewsBundleExtras\Controller\NewsController` |
 
-Bundle-Namespace immer aus `composer.json` PSR-4-Autoloading ableiten.
+Always derive the bundle namespace from the PSR-4 autoloading in `composer.json`.
 
 ---
 
-## composer.json Konventionen
+## composer.json Conventions
 
-### Paketname
+### Package name
 
 ```
 <vendorname>/contao-<extensionname>
 ```
 
-Beispiele:
+Examples:
 - `contao/news-bundle`
 - `acme/contao-blog-bundle`
 - `mycompany/contao-shop-integration`
 
-### Pflichtfelder für Contao-Bundles
+### Required fields for Contao bundles
 
 ```json
 {
@@ -157,17 +157,17 @@ Beispiele:
 
 ---
 
-## Publishing-Checkliste
+## Publishing Checklist
 
 - [ ] `type: "contao-bundle"` in `composer.json`
-- [ ] Manager Plugin implementiert und referenziert
-- [ ] Semantic Versioning (SemVer) für Tags
-- [ ] Auf [packagist.org](https://packagist.org) veröffentlicht
-- [ ] Packagist-Webhook für automatische Updates konfiguriert
-- [ ] Optionale Metadaten in `contao/package-metadata` eingereicht
+- [ ] Manager Plugin implemented and referenced
+- [ ] Semantic Versioning (SemVer) for tags
+- [ ] Published on [packagist.org](https://packagist.org)
+- [ ] Packagist webhook configured for automatic updates
+- [ ] Optional metadata submitted to `contao/package-metadata`
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/guides/coding-standards/*  
+*Source: https://docs.contao.org/5.x/dev/guides/coding-standards/*  
 *https://docs.contao.org/5.x/dev/guides/namespaces/*  
 *https://docs.contao.org/5.x/dev/guides/publishing-bundles/*

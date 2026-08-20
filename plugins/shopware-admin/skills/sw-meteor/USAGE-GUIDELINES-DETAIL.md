@@ -1,6 +1,6 @@
-# Meteor Design System — Nutzungsrichtlinien & Best Practices
+# Meteor design system — usage guidelines & best practices
 
-Quellen: `packages/component-library/src/docs/foundations/`,
+Sources: `packages/component-library/src/docs/foundations/`,
 `packages/component-library/LIFECYCLE.md`,
 `packages/component-library/STORYBOOK_DOCS_STANDARD.md`
 
@@ -8,11 +8,11 @@ Quellen: `packages/component-library/src/docs/foundations/`,
 
 ## Contents
 
-- [1. Design-Prinzipien](#1-design-prinzipien)
-- [2. Komponent-Lifecycle](#2-komponent-lifecycle)
-- [3. Accessibility Guidelines](#3-accessibility-guidelines)
-- [4. Content & Wording Guidelines](#4-content-wording-guidelines)
-- [5. Storybook Docs Standard](#5-storybook-docs-standard)
+- [1. Design principles](#1-design-principles)
+- [2. Component lifecycle](#2-component-lifecycle)
+- [3. Accessibility guidelines](#3-accessibility-guidelines)
+- [4. Content & wording guidelines](#4-content-wording-guidelines)
+- [5. Storybook docs standard](#5-storybook-docs-standard)
 - [When to use](#when-to-use)
 - [Examples](#examples)
 - [Anatomy](#anatomy)
@@ -22,208 +22,208 @@ Quellen: `packages/component-library/src/docs/foundations/`,
 - [Behavior notes](#behavior-notes)
 - [Accessibility notes](#accessibility-notes)
 - [Comparisons](#comparisons)
-- [6. Token-Nutzung — Do & Don't](#6-token-nutzung-do-dont)
-- [7. Wichtige Token-Referenz-Übersicht](#7-wichtige-token-referenz-übersicht)
+- [6. Token usage — do & don't](#6-token-usage-do-dont)
+- [7. Key token reference overview](#7-key-token-reference-overview)
 
-## 1. Design-Prinzipien
+## 1. Design principles
 
-Aus dem offiziellen Meteor Storybook, Seite `Foundations/Design Principles`:
+From the official Meteor Storybook, page `Foundations/Design Principles`:
 
-### Accessibility und Inklusivität
+### Accessibility and inclusivity
 
-Design-Erfahrungen, die für alle Nutzer zugänglich sind. Accessibility ist keine nachträgliche Überlegung — sie prägt Interaktionsmuster, Farbkontrast, Tastaturverhalten und Texte von Anfang an. Basis ist WCAG 2.1 AA.
+Design experiences that are accessible to all users. Accessibility is not an afterthought — it shapes interaction patterns, colour contrast, keyboard behaviour and copy from the start. The basis is WCAG 2.1 AA.
 
-### Datengestützte Entscheidungen
+### Data-informed decisions
 
-Annahmen werden mit echten Nutzungsdaten, Usability-Sitzungen und Feedback validiert. Neue Erkenntnisse gehen vor früheren Entscheidungen.
+Assumptions are validated with real usage data, usability sessions and feedback. New insights take precedence over earlier decisions.
 
-### Sticky Merchant und Shopper Experience
+### Sticky merchant and shopper experience
 
-Merchants arbeiten unter kommerziellem Druck und brauchen schnelle, sichere Entscheidungswege. Design reduziert den Abstand zwischen Nutzerziel und Erreichbarkeit.
+Merchants work under commercial pressure and need fast, safe decision paths. Design reduces the distance between a user's goal and reaching it.
 
-### Reibung reduzieren, Einfachheit anstreben
+### Reduce friction, aim for simplicity
 
-Einfachheit bedeutet nicht Fehlende Features, sondern Fehlen unnötiger Hindernisse. Jedes Formularfeld, jedes Label, jeder Modal und jede Bestätigung hat einen Preis.
+Simplicity does not mean missing features, but the absence of unnecessary obstacles. Every form field, every label, every modal and every confirmation has a price.
 
-### Konsistente Erfahrungen
+### Consistent experiences
 
-Konsistenz reduziert Lernaufwand. Wenn dasselbe Interaktionsmuster an verschiedenen Stellen erscheint, muss es nur einmal gelernt werden.
+Consistency reduces the learning effort. When the same interaction pattern appears in different places, it only has to be learned once.
 
-### Ethisches Design
+### Ethical design
 
-Kein Dark-Pattern, keine täuschenden Defaults. Transparenz über gesammelte Daten und irreversible Aktionen.
+No dark patterns, no deceptive defaults. Transparency about the data collected and about irreversible actions.
 
 ---
 
-## 2. Komponent-Lifecycle
+## 2. Component lifecycle
 
-Aus `packages/component-library/LIFECYCLE.md`:
+From `packages/component-library/LIFECYCLE.md`:
 
-Jede Komponente hat einen von drei Stadien:
+Every component is in one of three stages:
 
-### Future (Experimentell)
+### Future (experimental)
 
-- Neue Ideen werden getestet, Feedback gesammelt
-- Breaking Changes möglich ohne Vorankündigung
-- Nicht produktiv einsetzen
+- New ideas are being tested, feedback is being collected
+- Breaking changes are possible without prior notice
+- Do not use in production
 
-### Stable (Produktionsreif)
+### Stable (production ready)
 
-Anforderungen für Stable:
-- Automatisierte Tests vorhanden
-- Meteor Design Tokens verwendet
-- WCAG 2.1 AA Level erfüllt
-- Storybook Stories als Dokumentation vorhanden
+Requirements for stable:
+- Automated tests present
+- Meteor design tokens used
+- WCAG 2.1 AA level met
+- Storybook stories present as documentation
 
-Breaking Changes werden mindestens eine Patch-Version vor einem Major-Release dokumentiert.
+Breaking changes are documented at least one patch version before a major release.
 
 ### Deprecated
 
-- Nutzung wird abgeraten
-- Wenn vorhanden, wird ein Upgrade-Leitfaden bereitgestellt
-- Komponente wird in der nächsten Major-Version entfernt
+- Usage is discouraged
+- Where one exists, an upgrade guide is provided
+- The component is removed in the next major version
 
 ---
 
-## 3. Accessibility Guidelines
+## 3. Accessibility guidelines
 
-Aus `packages/component-library/src/docs/foundations/accessibility.mdx`:
+From `packages/component-library/src/docs/foundations/accessibility.mdx`:
 
-### Was Meteor automatisch bietet
+### What Meteor provides automatically
 
-- **Tastaturnavigation**: Alle interaktiven Komponenten sind vollständig per Tastatur bedienbar
-- **ARIA-Attribute**: Komponenten enthalten passende Roles, States und Properties
-- **Fokus-Management**: In Modals, Dropdowns und Overlays wird der Fokus korrekt verwaltet
-- **Farbkontrast**: Design Tokens erfüllen WCAG 2.1 AA für Text und UI-Elemente
-- **Dark Mode**: Beide Themes behalten zugängliche Kontrastverhältnisse
-- **Screen Reader**: Komponenten werden mit gängigen Assistive Technologies getestet
+- **Keyboard navigation**: all interactive components are fully operable by keyboard
+- **ARIA attributes**: components carry the matching roles, states and properties
+- **Focus management**: in modals, dropdowns and overlays the focus is managed correctly
+- **Colour contrast**: design tokens meet WCAG 2.1 AA for text and UI elements
+- **Dark mode**: both themes keep accessible contrast ratios
+- **Screen readers**: components are tested with common assistive technologies
 
-### Was zusätzlich beachtet werden muss
+### What you have to take care of yourself
 
-**Einfachheit wahren**
-- Komplexe Flows vermeiden wo einfachere Alternativen existieren
-- Konsistente Patterns über Seiten hinweg verwenden
-- Prägnante, klare Sprache — passendes Leserlevel für die Zielgruppe
+**Keep it simple**
+- Avoid complex flows where simpler alternatives exist
+- Use consistent patterns across pages
+- Concise, clear language — a reading level appropriate for the audience
 
-**Inklusiv sein**
-- Inklusive Sprache durchgehend verwenden
-- Keine Annahmen über Fähigkeiten der Nutzer
-- Fachjargon, Metaphern und nicht-wörtliche Phrasen vermeiden
+**Be inclusive**
+- Use inclusive language throughout
+- Make no assumptions about users' abilities
+- Avoid jargon, metaphors and non-literal phrases
 
-**Textalternativen bereitstellen**
-- Klare, prägnante Labels und Alt-Text für alle bedeutsamen Bilder und Icons
-- `decorative` Prop bei `mt-icon` für rein visuelle Icons setzen (bleiben aus dem Accessibility-Tree)
-- Transkripte oder Untertitel für Video-Inhalte
+**Provide text alternatives**
+- Clear, concise labels and alt text for all meaningful images and icons
+- Set the `decorative` prop on `mt-icon` for purely visual icons (they stay out of the accessibility tree)
+- Transcripts or captions for video content
 
-**Niemals nur auf Farbe verlassen**
-- Farbe immer mit sekundärem Indikator kombinieren (Icon, Label, Pattern)
-- Semantische Icon-Tokens (`critical`, `positive`, `attention`) zur Verstärkung der Bedeutung nutzen
+**Never rely on colour alone**
+- Always combine colour with a secondary indicator (icon, label, pattern)
+- Use semantic icon tokens (`critical`, `positive`, `attention`) to reinforce the meaning
 
-**Semantisches HTML**
-- Landmark-Elemente (`header`, `nav`, `main`, `footer`) für Seitenstruktur
-- `div` und `span` nicht als interaktive Elemente verwenden
-- Überschriften-Hierarchie logisch einhalten
+**Semantic HTML**
+- Landmark elements (`header`, `nav`, `main`, `footer`) for the page structure
+- Do not use `div` and `span` as interactive elements
+- Keep the heading hierarchy logical
 
-**Nutzerkontrolle geben**
-- Layouts passen sich allen Bildschirmgrößen an (Reflow)
-- `prefers-reduced-motion` respektieren
-- Ausreichend Zeit für zeitkritische Interaktionen
+**Give users control**
+- Layouts adapt to every screen size (reflow)
+- Respect `prefers-reduced-motion`
+- Enough time for time-critical interactions
 
-**Breit testen**
-- Tastatur-only Navigation testen
-- Screen Reader testen (VoiceOver, NVDA oder JAWS)
-- Möglichst Tests mit echten Nutzern mit Behinderungen
+**Test broadly**
+- Test keyboard-only navigation
+- Test with screen readers (VoiceOver, NVDA or JAWS)
+- Where possible, test with real users with disabilities
 
-### Pre-Ship Checkliste
+### Pre-ship checklist
 
-- Alle interaktiven Elemente per Tastatur allein erreichbar und bedienbar
-- Keine Tastatur-Fokus-Traps außerhalb von Modals/Overlays
-- Alle Bilder und bedeutsame Icons haben beschreibende Labels oder Alt-Text
-- Farbe ist niemals der einzige Indikator für Zustand oder Bedeutung
-- Text und UI-Elemente erfüllen WCAG 2.1 AA Kontrastverhältnisse
-- Überschriften-Level folgen logischer Hierarchie ohne Sprünge
-- Formularfelder haben sichtbare Labels via `for`/`id` oder `aria-labelledby`
-- Animationen und Übergänge respektieren `prefers-reduced-motion`
+- All interactive elements reachable and operable by keyboard alone
+- No keyboard focus traps outside modals/overlays
+- All images and meaningful icons have descriptive labels or alt text
+- Colour is never the only indicator of state or meaning
+- Text and UI elements meet WCAG 2.1 AA contrast ratios
+- Heading levels follow a logical hierarchy without skips
+- Form fields have visible labels via `for`/`id` or `aria-labelledby`
+- Animations and transitions respect `prefers-reduced-motion`
 
-### Empfohlene Tools
+### Recommended tools
 
-- **[WAVE](https://wave.webaim.org/)**: Visuelles Feedback-Tool für Barrierefreiheits-Check
-- **[Lighthouse](https://developer.chrome.com/docs/lighthouse/accessibility/)**: Eingebaut in Chrome DevTools, bietet Accessibility-Score
+- **[WAVE](https://wave.webaim.org/)**: visual feedback tool for an accessibility check
+- **[Lighthouse](https://developer.chrome.com/docs/lighthouse/accessibility/)**: built into Chrome DevTools, provides an accessibility score
 
 ---
 
-## 4. Content & Wording Guidelines
+## 4. Content & wording guidelines
 
-Aus `packages/component-library/src/docs/foundations/content/wording.mdx`:
+From `packages/component-library/src/docs/foundations/content/wording.mdx`:
 
-### Schreibziele
+### Writing goals
 
-- **Befähigen (Empower)**: Sprache, die informiert und ermutigt
-- **Respektieren**: Nicht herablassend, inklusiv und rücksichtsvoll
-- **Lehren (Educate)**: Genau die nötigen Informationen, keine Marketing-Sprache
-- **Einbinden (Engage)**: Relevanter Inhalt, konversationaler Ton
+- **Empower**: language that informs and encourages
+- **Respect**: not condescending, inclusive and considerate
+- **Educate**: exactly the information needed, no marketing speak
+- **Engage**: relevant content, conversational tone
 
-### Unsere Schreibweise
+### How we write
 
-- **Klar**: Einfache Wörter und Sätze
-- **Nützlich**: Immer fragen: Welchen Zweck erfüllt das? Wer liest es? Was müssen sie wissen?
-- **Freundlich**: Wie ein Mensch schreiben — alle Inhalte sollen warm und menschlich sein
-- **Angemessen**: Ton je nach Zielgruppe und Thema anpassen
+- **Clear**: simple words and sentences
+- **Useful**: always ask: what purpose does this serve? Who reads it? What do they need to know?
+- **Friendly**: write like a human — all content should feel warm and human
+- **Appropriate**: adjust the tone to the audience and the topic
 
-### Aktive Stimme
+### Active voice
 
-Fast immer aktiv schreiben. Aktiv: Subjekt macht die Aktion. Passiv: Aktion wird am Subjekt vollzogen.
+Write in the active voice almost always. Active: the subject performs the action. Passive: the action is performed on the subject.
 
 ```
 ✓ Jennifer logged into the account
 ✗ The account was logged into by Jennifer
 ```
 
-Passiv nur wenn: Shopware/ich als Subjekt vermieden werden soll; die Aktion nicht persönlich ausgeführt wurde; das Objekt wichtiger als das Subjekt ist.
+Use the passive only when: Shopware/I as the subject should be avoided; the action was not performed personally; the object matters more than the subject.
 
-### Inklusive Sprache
+### Inclusive language
 
-Menschen-zuerst-Sprache. Nie auf Charakteristika wie Geschlecht, sexuelle Orientierung, Religion oder Fähigkeiten konzentrieren, außer es ist relevant.
+People-first language. Never focus on characteristics such as gender, sexual orientation, religion or abilities unless they are relevant.
 
-| Thema | Richtig | Falsch |
+| Topic | Right | Wrong |
 |---|---|---|
-| Technik | `allowlist`, `blocklist` | `whitelist`, `blacklist` |
-| Technik | `main`, `primary` | `master` |
-| Geschlecht | `they` | `him/her`, `he/she` |
-| Gruppen | `people`, `folks`, `teammates` | `guys` |
-| Rollen | Neutrale Titel | `ninja`, `rockstar`, `wizard` |
-| Ressourcen | `workforce` | `manpower` |
-| Beziehungen | `spouse`, `partner` | `wife/husband` |
+| Technology | `allowlist`, `blocklist` | `whitelist`, `blacklist` |
+| Technology | `main`, `primary` | `master` |
+| Gender | `they` | `him/her`, `he/she` |
+| Groups | `people`, `folks`, `teammates` | `guys` |
+| Roles | neutral titles | `ninja`, `rockstar`, `wizard` |
+| Resources | `workforce` | `manpower` |
+| Relationships | `spouse`, `partner` | `wife/husband` |
 
-### Abkürzungen und Akronyme
+### Abbreviations and acronyms
 
-Beim ersten Vorkommen ausschreiben, dann Kurzform verwenden. Bekannte Abkürzungen (API, HTML) direkt nutzen.
+Spell them out on first occurrence, then use the short form. Use well-known abbreviations (API, HTML) directly.
 
-### Groß-/Kleinschreibung
+### Capitalisation
 
-Shopware-Feature-Namen werden immer großgeschrieben: Rule Builder, Sales Channel, Flow Builder, B2B Components.
+Shopware feature names are always capitalised: Rule Builder, Sales Channel, Flow Builder, B2B Components.
 
 ### Buttons
 
-- Button-Labels so kurz wie möglich
-- Verb, das die Aktion beschreibt: `Save`, `Delete`, `Continue to checkout`
-- Kein Artikel: `Save product` nicht `Save the product`
+- Keep button labels as short as possible
+- A verb that describes the action: `Save`, `Delete`, `Continue to checkout`
+- No article: `Save product`, not `Save the product`
 
-### Nutzer ansprechen
+### Addressing the user
 
-Im Englischen: `you` und `your` für alle Zielgruppen.
+In English: `you` and `your` for every audience.
 
-Im Deutschen: Informelle Anrede (Du). In der Shopware-Administration sind Du, Dich, Dir und Dein großgeschrieben (als Zeichen des Respekts).
+In German: the informal address (Du). In the Shopware administration, Du, Dich, Dir and Dein are capitalised (as a sign of respect).
 
-Beispiel: *Speichere das Produkt, bevor Du die Seite verlässt.*
+Example (German): *Speichere das Produkt, bevor Du die Seite verlässt.* ("Save the product before you leave the page.")
 
 ---
 
-## 5. Storybook Docs Standard
+## 5. Storybook docs standard
 
-Aus `packages/component-library/STORYBOOK_DOCS_STANDARD.md`:
+From `packages/component-library/STORYBOOK_DOCS_STANDARD.md`:
 
-### Seitenstruktur für Komponent-Dokumentation
+### Page structure for component documentation
 
 ```mdx
 <StorybookPageHeader
@@ -232,7 +232,7 @@ Aus `packages/component-library/STORYBOOK_DOCS_STANDARD.md`:
   packageImports="MtComponentName"
   sourcePath="packages/component-library/src/components/group/mt-component-name"
 >
-  Kurzbeschreibung
+  Short description
 </StorybookPageHeader>
 
 ## When to use
@@ -241,9 +241,9 @@ Aus `packages/component-library/STORYBOOK_DOCS_STANDARD.md`:
 
 ### Basic
 
-Hauptbeispiel
+Main example
 
-### Weiteres Beispiel
+### Another example
 
 ## Anatomy
 
@@ -260,45 +260,45 @@ Hauptbeispiel
 ## Comparisons
 ```
 
-### Regeln
+### Rules
 
-- `StorybookPageHeader` startet jede Seite — enthält H1
+- `StorybookPageHeader` starts every page — it contains the H1
 - Format: `Component name (mt-component-name)`
-- `sourcePath`: Repo-relativer Pfad zum Komponent-Ordner (für GitHub-Link)
-- Kurzebeschreibung als Kinder von `StorybookPageHeader` (MDX-Richtext)
-- Standard-Status: `Available`; `Experimental` oder `Deprecated` wenn stärker signalisiert werden muss
-- `Examples` ist Pflicht
-- `Anatomy`, `Behavior notes`, `Comparisons` optional, nur wenn echter Mehrwert
+- `sourcePath`: repo-relative path to the component folder (for the GitHub link)
+- Short description as children of `StorybookPageHeader` (MDX rich text)
+- Default status: `Available`; `Experimental` or `Deprecated` when a stronger signal is needed
+- `Examples` is mandatory
+- `Anatomy`, `Behavior notes`, `Comparisons` are optional, only when they add real value
 
-### Optionale Sektionen
+### Optional sections
 
-- **Anatomy**: Wenn Struktur, Komposition oder interne Teile erklärt werden müssen
-- **Behavior notes**: Wenn Verhalten nicht-offensichtlich, stateful oder leicht misszuverstehen ist
-- **Comparisons**: Wenn Nutzer wahrscheinlich zwischen dieser und einer anderen Komponente wählen
+- **Anatomy**: when structure, composition or internal parts have to be explained
+- **Behavior notes**: when the behaviour is non-obvious, stateful or easy to misunderstand
+- **Comparisons**: when users are likely to choose between this and another component
 
 ### Stories
 
-- Jede Komponente hat eine `Default`-Story (häufigster Zustand)
-- Weitere Stories: menschenlesbare, nutzerseitige Namen, erster Buchstabe groß: `Variants`, `Sizes`, `Inline edit`
-- Mindestens ein `Canvas`-Beispiel das empfohlene Verwendung zeigt
-- Statische, kopierfähige Story-Code für Doku-Beispiele bevorzugen
+- Every component has a `Default` story (the most common state)
+- Further stories: human-readable, user-facing names, first letter capitalised: `Variants`, `Sizes`, `Inline edit`
+- At least one `Canvas` example that shows the recommended usage
+- Prefer static, copyable story code for documentation examples
 
-### In Prose
+### In prose
 
-- Komponent-Namen in **fett** und groß: **Button**, **Badge**, **Promo Badge**
-- Keine `mt-*`-Tagnamen in Fließtext außer wenn der Tagname selbst erklärt wird
+- Component names in **bold** and capitalised: **Button**, **Badge**, **Promo Badge**
+- No `mt-*` tag names in running text, except when the tag name itself is being explained
 
-### API Reference
+### API reference
 
-- Storybook API-Tabellen für Props, Slots und Events wo möglich
-- Tabelle direkt unter `API reference` ohne Untersektion
-- Eigener Abschnitt für `exposed methods` nur wenn Komponente tatsächlich öffentliche Methoden exponiert
+- Storybook API tables for props, slots and events wherever possible
+- The table goes directly below `API reference`, without a sub-section
+- A separate section for `exposed methods` only when the component actually exposes public methods
 
-### Companion Exports
+### Companion exports
 
-Wenn Komponenten zusammengehörige Teile ohne eigene Seite haben (z.B. `mt-action-menu-item`, `mt-modal-root`), werden diese auf der Elternseite dokumentiert. Erklären: was jeder Teil macht, wann er verwendet wird, wie Teile zusammenpassen, Reihenfolge-/Verschachtelungsanforderungen.
+When components have related parts without their own page (e.g. `mt-action-menu-item`, `mt-modal-root`), those are documented on the parent page. Explain: what each part does, when it is used, how the parts fit together, ordering/nesting requirements.
 
-Wichtige Vergleiche für Storybook:
+Important comparisons for Storybook:
 - tooltip vs help text
 - floating ui vs action menu
 - select vs radio group
@@ -306,79 +306,79 @@ Wichtige Vergleiche für Storybook:
 
 ---
 
-## 6. Token-Nutzung — Do & Don't
+## 6. Token usage — do & don't
 
 ### Spacing
 
 ```css
-/* ✓ Richtig */
+/* ✓ Right */
 a { margin: var(--scale-size-10); }
 .grid { row-gap: var(--scale-size-8); }
 
-/* ✗ Falsch */
+/* ✗ Wrong */
 a { margin: 10px; }
 .grid { row-gap: 0.5rem; }
 ```
 
-Negierung: `calc(var(--scale-size-8) * -1)` statt `-8px`.
+Negation: `calc(var(--scale-size-8) * -1)` instead of `-8px`.
 
-### Border-Radius
+### Border radius
 
 ```css
-/* ✓ Richtig */
+/* ✓ Right */
 .card { border-radius: var(--border-radius-card); }
 .badge { border-radius: var(--border-radius-round); }
 
-/* ✗ Falsch */
+/* ✗ Wrong */
 .badge { border-radius: 999px; }
 .badge { border-radius: 50%; }
 ```
 
-**Nicht** `--scale-size-*` für `border-radius` verwenden — das umgeht den semantischen Layer.
+Do **not** use `--scale-size-*` for `border-radius` — that bypasses the semantic layer.
 
-### Elevation Surfaces
+### Elevation surfaces
 
 ```css
-/* ✓ Richtig */
+/* ✓ Right */
 .page-bg { background: var(--color-elevation-surface-default); }
 .card { background: var(--color-elevation-surface-raised); }
 .sidebar { background: var(--color-elevation-surface-sunken); }
 
-/* ✗ Falsch */
+/* ✗ Wrong */
 .page-bg { background: #f5f5f5; }
 ```
 
-### Farben
+### Colours
 
 ```css
-/* ✓ Richtig */
+/* ✓ Right */
 a { color: var(--color-text-primary-default); }
 button { background-color: var(--color-interaction-primary-default); }
 div { background-color: var(--color-elevation-surface-default); }
 
-/* ✗ Falsch */
-a { color: var(--gray-800); }         /* primitiver Token */
-a { color: #1a1a1a; }                 /* Hardcode */
-button { background-color: #189eff; } /* Hardcode */
+/* ✗ Wrong */
+a { color: var(--gray-800); }         /* primitive token */
+a { color: #1a1a1a; }                 /* hardcoded */
+button { background-color: #189eff; } /* hardcoded */
 ```
 
-### Typografie
+### Typography
 
 ```css
-/* ✓ Richtig */
+/* ✓ Right */
 a { font-size: var(--font-size-s); }
 a { font-family: var(--font-family-body); }
 
-/* ✗ Falsch */
+/* ✗ Wrong */
 a { font-size: 16px; }
 a { font-family: Inter; }
 ```
 
-### Token-Anpassung (Customization)
+### Token customization
 
-Bestehende Meteor-Tokens NICHT überschreiben (kann zu unerwartetem Divergenz führen und bricht bei Token-Renames).
+Do NOT override existing Meteor tokens (it can lead to unexpected divergence and breaks on token renames).
 
-Eigene Tokens mit eigenem Präfix definieren:
+Define your own tokens with your own prefix:
 
 ```css
 @import "@shopware-ag/meteor-tokens/administration/light.css";
@@ -397,22 +397,22 @@ Eigene Tokens mit eigenem Präfix definieren:
 
 ---
 
-## 7. Wichtige Token-Referenz-Übersicht
+## 7. Key token reference overview
 
-### Token-Namensstruktur
+### Token naming structure
 
 ```
 [type]-[category]-[instance]-[variant]
 ```
 
 - **Type**: `color`, `font`, `scale`, `border-radius`
-- **Category**: `icon`, `text`, `background`, `elevation` (innerhalb von `color`)
+- **Category**: `icon`, `text`, `background`, `elevation` (within `color`)
 - **Instance**: `primary`, `positive`, `critical`
 - **Variant**: `default`, `hover`, `pressed`, `disabled`
 
-### Spacing Scale (--scale-size-*)
+### Spacing scale (--scale-size-*)
 
-| Token | Wert |
+| Token | Value |
 |---|---|
 | `--scale-size-0` | 0px |
 | `--scale-size-1` | 1px |
@@ -429,23 +429,23 @@ Eigene Tokens mit eigenem Präfix definieren:
 | `--scale-size-96` | 96px |
 | `--scale-size-128` | 128px |
 
-Richtlinie:
-- **4–8px**: Enger interner Abstand (Icon-zu-Label-Gap, Badge-Padding)
-- **12–16px**: Standard Komponent-Padding und Item-Spacing
-- **24–40px**: Zwischen Formularelementen, Abschnitte innerhalb einer View
-- **48–64px**: Zwischen Haupt-Layout-Regionen
+Guideline:
+- **4–8px**: tight internal spacing (icon-to-label gap, badge padding)
+- **12–16px**: standard component padding and item spacing
+- **24–40px**: between form elements, sections within a view
+- **48–64px**: between main layout regions
 
-### Border-Radius Tokens
+### Border radius tokens
 
-**Element-spezifische Tokens (bevorzugen):**
-| Token | Wert | Verwendung |
+**Element-specific tokens (prefer these):**
+| Token | Value | Usage |
 |---|---|---|
-| `--border-radius-card` | 8px | Cards und Container-Flächen |
-| `--border-radius-button` | 4px | Buttons und Button-ähnliche Controls |
-| `--border-radius-checkbox` | 4px | Checkboxen und ähnliche Input-Toggles |
+| `--border-radius-card` | 8px | cards and container surfaces |
+| `--border-radius-button` | 4px | buttons and button-like controls |
+| `--border-radius-checkbox` | 4px | checkboxes and similar input toggles |
 
-**Semantische Tokens (Fallback):**
-| Token | Wert |
+**Semantic tokens (fallback):**
+| Token | Value |
 |---|---|
 | `--border-radius-none` | 0px |
 | `--border-radius-xs` | 4px |
@@ -454,46 +454,46 @@ Richtlinie:
 | `--border-radius-l` | 12px |
 | `--border-radius-round` | 9999px |
 
-### Elevation Surface Tokens
+### Elevation surface tokens
 
-| Token | Verwendung |
+| Token | Usage |
 |---|---|
-| `--color-elevation-surface-sunken` | Eingebettete Bereiche: Sidebar-Sektionen, Tabellen-Zebra-Streifen, Code-Blocks |
-| `--color-elevation-surface-default` | Hauptseite / Anwendungshintergrund |
-| `--color-elevation-surface-raised` | Cards, Panels, Container über dem Hintergrund |
-| `--color-elevation-floating-default` | Tooltips und schwebende Elemente |
-| `--color-elevation-backdrop-default` | Halbtransparenter Scrim hinter Modals/Drawers |
-| `--color-elevation-shadow-default` | Box-Shadow-Farbe für erhobene Elemente wie Popovers |
+| `--color-elevation-surface-sunken` | inset areas: sidebar sections, table zebra stripes, code blocks |
+| `--color-elevation-surface-default` | main page / application background |
+| `--color-elevation-surface-raised` | cards, panels, containers above the background |
+| `--color-elevation-floating-default` | tooltips and floating elements |
+| `--color-elevation-backdrop-default` | semi-transparent scrim behind modals/drawers |
+| `--color-elevation-shadow-default` | box-shadow colour for raised elements such as popovers |
 
-### Typografie Tokens
+### Typography tokens
 
 ```css
 --font-family-headings: "Inter";
 --font-family-body: "Inter";
 
-/* Gewichte */
+/* Weights */
 --font-weight-regular: 400;
 --font-weight-semibold: 600;
 --font-weight-bold: 700;
 ```
 
-**Scale (Name → Verwendung):**
-- `3xl`, `2xl`: Seitentitel, Haupt-Section-Header
-- `xl`, `l`: Sub-Sektionen
-- `m`, `s`: Card- und Abschnitts-Überschriften
-- `xs`: Body-Text, Support-Labels, Metadaten
+**Scale (name → usage):**
+- `3xl`, `2xl`: page titles, main section headers
+- `xl`, `l`: sub-sections
+- `m`, `s`: card and section headings
+- `xs`: body text, supporting labels, metadata
 
-**Regel**: `--font-size-*` immer mit passendem `--font-line-height-*` kombinieren.
+**Rule**: always combine `--font-size-*` with the matching `--font-line-height-*`.
 
-Maximale Zeilenlänge für Body-Text: `max-width: 65ch`
+Maximum line length for body text: `max-width: 65ch`
 
-### Verwendung von mt-text
+### Using mt-text
 
 ```html
-<mt-text size="2xl" weight="semibold">Seitentitel</mt-text>
-<mt-text size="s">Body-Text</mt-text>
-<mt-text size="xs" color="color-text-secondary-default">Unterstützendes Label</mt-text>
-<mt-text size="s" as="span">Inline-Text</mt-text>
+<mt-text size="2xl" weight="semibold">Page title</mt-text>
+<mt-text size="s">Body text</mt-text>
+<mt-text size="xs" color="color-text-secondary-default">Supporting label</mt-text>
+<mt-text size="s" as="span">Inline text</mt-text>
 ```
 
-Das `as`-Prop steuert das HTML-Element (Standard: `p`).
+The `as` prop controls the HTML element (default: `p`).

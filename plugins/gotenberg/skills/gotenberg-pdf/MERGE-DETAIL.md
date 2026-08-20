@@ -1,13 +1,13 @@
-# Gotenberg — PDF Merge (Vollreferenz)
+# Gotenberg — PDF Merge (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -15,124 +15,124 @@
 POST /forms/pdfengines/merge
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content-Type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
-|--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe; Erweiterung wird automatisch angehaengt |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+| Header | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `Gotenberg-Output-Filename` | string | No | random UUID | Filename of the output; the extension is appended automatically |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Form-Felder
+## Form Fields
 
-### Kern
+### Core
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `files` | file[] | Ja | — | PDF-Dateien zum Zusammenfuehren; werden in alphanumerischer Reihenfolge der Dateinamen zusammengefuegt |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `files` | file[] | Yes | — | PDF files to merge; they are merged in alphanumeric order of their filenames |
 
-### Metadaten
+### Metadata
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `metadata` | JSON-string | Nein | — | XMP-Metadaten als JSON-Objekt (z.B. `{"Author":"Max","Title":"Rechnung"}`) |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `metadata` | JSON string | No | — | XMP metadata as a JSON object (e.g. `{"Author":"Max","Title":"Rechnung"}`) |
 
-### Lesezeichen
+### Bookmarks
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `bookmarks` | JSON-string | Nein | — | Lesezeichen als Liste oder Dateiname-Map |
-| `autoIndexBookmarks` | boolean | Nein | `false` | Extrahiert vorhandene Lesezeichen und verschiebt ihre Seiten-Offsets automatisch |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `bookmarks` | JSON string | No | — | Bookmarks as a list or filename map |
+| `autoIndexBookmarks` | boolean | No | `false` | Extracts existing bookmarks and shifts their page offsets automatically |
 
-### Anhaenge (Embeds)
+### Attachments (Embeds)
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `embeds` | file[] | Nein | — | Dateien, die als Anhaenge in den PDF-Container eingebettet werden |
-| `embedsMetadata` | JSON-string | Nein | — | Pro-Anhang-Metadaten, Schluessel = Dateiname; Felder: `mimeType`, `relationship` (`Source`, `Data`, `Alternative`, `Supplement`, `Unspecified`) |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `embeds` | file[] | No | — | Files that are embedded as attachments in the PDF container |
+| `embedsMetadata` | JSON string | No | — | Per-attachment metadata, key = filename; fields: `mimeType`, `relationship` (`Source`, `Data`, `Alternative`, `Supplement`, `Unspecified`) |
 
 ### Factur-X
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `facturxXml` | file | Nein | — | — | CII-Rechnungs-XML; wird als `factur-x.xml` eingebettet |
-| `facturxConformanceLevel` | enum | Bedingt* | — | `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` | Konformitaetsstufe in XMP-Metadaten (*wenn facturxXml angegeben) |
-| `facturxDocumentType` | enum | Nein | `INVOICE` | `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` | Dokumenttyp in XMP-Metadaten |
-| `facturxVersion` | string | Nein | `1.0` | — | Factur-X-Version in XMP-Metadaten |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `facturxXml` | file | No | — | — | CII invoice XML; is embedded as `factur-x.xml` |
+| `facturxConformanceLevel` | enum | Conditional* | — | `MINIMUM`, `BASIC WL`, `BASIC`, `EN 16931`, `EXTENDED`, `XRECHNUNG` | Conformance level in the XMP metadata (*if facturxXml is provided) |
+| `facturxDocumentType` | enum | No | `INVOICE` | `INVOICE`, `ORDER`, `ORDER_RESPONSE`, `ORDER_CHANGE` | Document type in the XMP metadata |
+| `facturxVersion` | string | No | `1.0` | — | Factur-X version in the XMP metadata |
 
 ### Flatten
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `flatten` | boolean | Nein | `false` | Wandelt Formularfelder in statischen Seiteninhalt um |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `flatten` | boolean | No | `false` | Converts form fields into static page content |
 
-### Wasserzeichen
+### Watermark
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `watermarkSource` | enum | Bedingt | — | `text`, `image`, `pdf` | Art des Wasserzeichens |
-| `watermarkExpression` | string | Bedingt | — | — | Text-String oder hochgeladener Dateiname |
-| `watermarkPages` | string | Nein | — (alle) | Seitenbereiche z.B. `1-3,5` | Seiten, auf die das Wasserzeichen angewendet wird |
-| `watermarkOptions` | JSON-string | Nein | — | — | Engine-Optionen (font, color, rotation, opacity, scale, offset) |
-| `watermark` | file | Bedingt | — | — | Bild/PDF-Datei (fuer source=image oder pdf) |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `watermarkSource` | enum | Conditional | — | `text`, `image`, `pdf` | Kind of watermark |
+| `watermarkExpression` | string | Conditional | — | — | Text string or name of an uploaded file |
+| `watermarkPages` | string | No | — (all) | Page ranges, e.g. `1-3,5` | Pages the watermark is applied to |
+| `watermarkOptions` | JSON string | No | — | — | Engine options (font, color, rotation, opacity, scale, offset) |
+| `watermark` | file | Conditional | — | — | Image/PDF file (for source=image or pdf) |
 
-### Stempel
+### Stamp
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `stampSource` | enum | Bedingt | — | `text`, `image`, `pdf` | Art des Stempels |
-| `stampExpression` | string | Bedingt | — | — | Text-String oder hochgeladener Dateiname |
-| `stampPages` | string | Nein | — (alle) | Seitenbereiche z.B. `1-3,5` | Seiten, auf die der Stempel angewendet wird |
-| `stampOptions` | JSON-string | Nein | — | — | Engine-Optionen (font, color, rotation, opacity, scale, offset) |
-| `stamp` | file | Bedingt | — | — | Bild/PDF-Datei (fuer source=image oder pdf) |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `stampSource` | enum | Conditional | — | `text`, `image`, `pdf` | Kind of stamp |
+| `stampExpression` | string | Conditional | — | — | Text string or name of an uploaded file |
+| `stampPages` | string | No | — (all) | Page ranges, e.g. `1-3,5` | Pages the stamp is applied to |
+| `stampOptions` | JSON string | No | — | — | Engine options (font, color, rotation, opacity, scale, offset) |
+| `stamp` | file | Conditional | — | — | Image/PDF file (for source=image or pdf) |
 
 ### Rotation
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `rotateAngle` | enum | Bedingt | — | `90`, `180`, `270` | Rotationswinkel in Grad |
-| `rotatePages` | string | Nein | — (alle) | Seitenbereiche | Seiten, die rotiert werden |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `rotateAngle` | enum | Conditional | — | `90`, `180`, `270` | Rotation angle in degrees |
+| `rotatePages` | string | No | — (all) | Page ranges | Pages that are rotated |
 
 ### PDF/A & PDF/UA
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
-|------|-----|---------|----------|----------------|--------------|
-| `pdfa` | enum | Nein | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` | Konvertierung in Archivstandard |
-| `pdfua` | boolean | Nein | `false` | — | Barrierefreiheit (Universal Accessibility) aktivieren |
+| Field | Type | Required | Default | Allowed values | Description |
+|-------|------|----------|---------|----------------|-------------|
+| `pdfa` | enum | No | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` | Conversion to an archival standard |
+| `pdfua` | boolean | No | `false` | — | Enable accessibility (Universal Accessibility) |
 
-### Verschluesselung
+### Encryption
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
-|------|-----|---------|----------|--------------|
-| `userPassword` | string | Nein | — | Passwort zum Oeffnen der PDF |
-| `ownerPassword` | string | Nein | = userPassword | Vollzugriff-Passwort; hebt Berechtigungseinschraenkungen auf |
-| `allowPrinting` | boolean | Nein | `true` | Drucken erlauben |
-| `allowCopying` | boolean | Nein | `true` | Text- und Grafikextraktion erlauben |
-| `allowModifying` | boolean | Nein | `true` | Inhaltsaenderungen erlauben |
-| `allowAnnotating` | boolean | Nein | `true` | Annotationen erlauben |
-| `allowFillingForms` | boolean | Nein | `true` | Formularausfuellung erlauben |
-| `allowAssembling` | boolean | Nein | `true` | Seiten einfuegen/loeschen/rotieren erlauben |
-
----
-
-## Antwort-Codes
-
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | `application/pdf` | Zusammengefuehrte PDF; Headers: `Content-Disposition`, `Content-Type`, `Content-Length`, `Gotenberg-Trace` |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder; Detail im Body + `Gotenberg-Trace` |
-| `503` | `text/plain; charset=UTF-8` | Maximale Bearbeitungsdauer ueberschritten |
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `userPassword` | string | No | — | Password for opening the PDF |
+| `ownerPassword` | string | No | = userPassword | Full-access password; lifts permission restrictions |
+| `allowPrinting` | boolean | No | `true` | Allow printing |
+| `allowCopying` | boolean | No | `true` | Allow text and graphics extraction |
+| `allowModifying` | boolean | No | `true` | Allow content changes |
+| `allowAnnotating` | boolean | No | `true` | Allow annotations |
+| `allowFillingForms` | boolean | No | `true` | Allow form filling |
+| `allowAssembling` | boolean | No | `true` | Allow inserting/deleting/rotating pages |
 
 ---
 
-## curl-Beispiele
+## Response Codes
 
-### Einfaches Zusammenfuehren (alphanumerische Reihenfolge)
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | `application/pdf` | Merged PDF; headers: `Content-Disposition`, `Content-Type`, `Content-Length`, `Gotenberg-Trace` |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields; detail in the body + `Gotenberg-Trace` |
+| `503` | `text/plain; charset=UTF-8` | Maximum processing time exceeded |
+
+---
+
+## curl Examples
+
+### Simple merge (alphanumeric order)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -142,7 +142,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   -o zusammengefuehrt.pdf
 ```
 
-### Mit Metadaten
+### With metadata
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -152,7 +152,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   -o mein.pdf
 ```
 
-### Mit Verschluesselung
+### With encryption
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -165,7 +165,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   -o verschluesselt.pdf
 ```
 
-### Mit Wasserzeichen (Text)
+### With a watermark (text)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -176,7 +176,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   -o mit-wasserzeichen.pdf
 ```
 
-### Mit Factur-X
+### With Factur-X
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -186,7 +186,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   -o e-rechnung.pdf
 ```
 
-### Mit PDF/A-Konvertierung + auto-Lesezeichen
+### With PDF/A conversion + auto bookmarks
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -197,7 +197,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   -o archiv.pdf
 ```
 
-### Mit eigenem Output-Dateinamen und Trace
+### With a custom output filename and trace
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/merge \
@@ -210,14 +210,14 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
 
 ---
 
-## Hinweise
+## Notes
 
-- Die Dateien werden in **alphanumerischer Reihenfolge** ihrer Dateinamen zusammengefuehrt — Dateinamen entsprechend benennen (01_, 02_, ...)
-- `autoIndexBookmarks=true` extrahiert vorhandene Lesezeichen und passt die Seiten-Offsets an
-- PDF/A und Verschluesselung schliessen sich gegenseitig aus
-- PDF/A-1b und PDF/A-2b unterstuetzen keine Dateianhaenge; fuer Anhaenge PDF/A-3b verwenden
-- Wasserzeichen = hinter dem Inhalt; Stempel = ueber dem Inhalt
+- The files are merged in **alphanumeric order** of their filenames — name the files accordingly (01_, 02_, ...)
+- `autoIndexBookmarks=true` extracts existing bookmarks and adjusts the page offsets
+- PDF/A and encryption are mutually exclusive
+- PDF/A-1b and PDF/A-2b do not support file attachments; use PDF/A-3b for attachments
+- Watermark = behind the content; stamp = on top of the content
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/merge-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/merge-pdfs

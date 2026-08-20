@@ -441,9 +441,9 @@ workers: process.env.CI ? 1 : '50%'
 | Top-level fields | 38 (including deprecated `snapshotDir`) |
 | Deprecated fields | 1 |
 
-**Fazit:** `TestConfig` ist die vollstaendige Beschreibung der `playwright.config.ts`. Die
-wichtigsten Felder fuer CI-Setups sind `projects`, `workers`, `retries`, `reporter` und
-`webServer`. Mit `use` koennen globale Browser-/Netzwerk-Einstellungen gesetzt werden.
+**Summary:** `TestConfig` is the complete description of `playwright.config.ts`. The
+most important fields for CI setups are `projects`, `workers`, `retries`, `reporter` and
+`webServer`. With `use` you can set global browser/network settings.
 
 ---
 

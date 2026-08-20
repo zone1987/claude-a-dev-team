@@ -285,7 +285,7 @@ await page.route('**/prices', async route => {
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `Route` is the central object for network interception and mocking. `fulfill()` is for complete mocking, `continue()` for passthrough with optional modification, `fetch()` for response transformation and `abort()` for blocking requests. Every route handler function MUST handle the route exactly once.
+**Summary:** `Route` is the central object for network interception and mocking. `fulfill()` is for complete mocking, `continue()` for passthrough with optional modification, `fetch()` for response transformation and `abort()` for blocking requests. Every route handler function MUST handle the route exactly once.
 
 ---
 

@@ -1,41 +1,41 @@
-# Meteor Design System — Installation & Getting Started
+# Meteor design system — installation & getting started
 
-Quelle: `packages/component-library/README.md`, `packages/component-library/src/docs/getting-started/`,
+Source: `packages/component-library/README.md`, `packages/component-library/src/docs/getting-started/`,
 `packages/create-meteor-extension/readme.md`, `packages/component-library/src/docs/getting-started/migration.mdx`
 
 ## Contents
 
-- [Überblick](#überblick)
-- [1. Komponentenbibliothek installieren](#1-komponentenbibliothek-installieren)
-- [2. Tokens standalone installieren](#2-tokens-standalone-installieren)
-- [3. Icon Kit installieren](#3-icon-kit-installieren)
-- [4. Shopware Extension scaffolden (create-meteor-extension)](#4-shopware-extension-scaffolden-create-meteor-extension)
-- [5. Migration von sw-* auf mt-* (Meteor)](#5-migration-von-sw--auf-mt--meteor)
-- [6. Browser-Support](#6-browser-support)
-- [7. Stylelint Plugin für Meteor](#7-stylelint-plugin-für-meteor)
-- [8. Prettier Config](#8-prettier-config)
-- [Weiterführende Dokumentation](#weiterführende-dokumentation)
+- [Overview](#overview)
+- [1. Installing the component library](#1-installing-the-component-library)
+- [2. Installing the tokens standalone](#2-installing-the-tokens-standalone)
+- [3. Installing the icon kit](#3-installing-the-icon-kit)
+- [4. Scaffolding a Shopware extension (create-meteor-extension)](#4-scaffolding-a-shopware-extension-create-meteor-extension)
+- [5. Migrating from sw-* to mt-* (Meteor)](#5-migrating-from-sw--to-mt--meteor)
+- [6. Browser support](#6-browser-support)
+- [7. Stylelint plugin for Meteor](#7-stylelint-plugin-for-meteor)
+- [8. Prettier config](#8-prettier-config)
+- [Further documentation](#further-documentation)
 
-## Überblick
+## Overview
 
-Meteor ist Shopwares Open-Source-Design-System und wird als drei unabhängige npm-Pakete veröffentlicht:
+Meteor is Shopware's open source design system and is published as three independent npm packages:
 
-| Paket | Beschreibung |
+| Package | Description |
 |---|---|
-| `@shopware-ag/meteor-component-library` | Vue 3 Komponentensatz mit integrierten Tokens, Icons und Inter-Font |
-| `@shopware-ag/meteor-tokens` | Design Tokens als CSS Custom Properties, framework-agnostisch |
-| `@shopware-ag/meteor-icon-kit` | SVG-Iconset, nutzbar standalone oder als Vue-Komponenten via `mt-icon` |
+| `@shopware-ag/meteor-component-library` | Vue 3 component set with integrated tokens, icons and the Inter font |
+| `@shopware-ag/meteor-tokens` | Design tokens as CSS custom properties, framework-agnostic |
+| `@shopware-ag/meteor-icon-kit` | SVG icon set, usable standalone or as Vue components via `mt-icon` |
 
-Die drei Pakete können zusammen oder einzeln installiert werden.
+The three packages can be installed together or individually.
 
 ---
 
-## 1. Komponentenbibliothek installieren
+## 1. Installing the component library
 
-### Voraussetzungen
+### Prerequisites
 
-- Vue 3 Anwendung
-- `vue-i18n` Plugin (für Übersetzungen)
+- Vue 3 application
+- `vue-i18n` plugin (for translations)
 
 ### Installation
 
@@ -43,20 +43,20 @@ Die drei Pakete können zusammen oder einzeln installiert werden.
 npm install @shopware-ag/meteor-component-library @shopware-ag/meteor-icon-kit
 ```
 
-### CSS-Importe
+### CSS imports
 
-Beide Imports in den Anwendungs-Entry-Point eintragen:
+Add both imports to the application entry point:
 
 ```ts
 import "@shopware-ag/meteor-component-library/styles.css";
 import "@shopware-ag/meteor-component-library/font.css";
 ```
 
-`styles.css` enthält allgemeine Komponentenstyles. `font.css` lädt die Inter-Schriftart.
+`styles.css` contains the general component styles. `font.css` loads the Inter typeface.
 
-### i18n konfigurieren
+### Configuring i18n
 
-Englisch und Deutsch sind gebündelt. `vue-i18n` muss vor dem App-Mount registriert werden:
+English and German are bundled. `vue-i18n` must be registered before the app is mounted:
 
 ```ts
 import { createApp } from "vue";
@@ -70,11 +70,11 @@ createApp(App).use(i18n).mount("#app");
 
 ### TypeScript
 
-Komponenten sind vollständig in TypeScript gebaut. Keine zusätzliche Konfiguration nötig. Typen werden automatisch aufgelöst beim Import von `@shopware-ag/meteor-component-library`.
+Components are built entirely in TypeScript. No additional configuration is needed. Types are resolved automatically when importing `@shopware-ag/meteor-component-library`.
 
-### Komponenten verwenden (tree-shakable)
+### Using components (tree-shakable)
 
-Nur was importiert wird, landet im Bundle:
+Only what is imported ends up in the bundle:
 
 ```vue
 <script setup>
@@ -87,7 +87,7 @@ import { MtButton, MtBanner } from "@shopware-ag/meteor-component-library";
 </template>
 ```
 
-Jede Komponente kann auch direkt aus dem Root importiert werden:
+Every component can also be imported directly from the root:
 
 ```html
 <script>
@@ -103,9 +103,9 @@ export default {
 
 ---
 
-## 2. Tokens standalone installieren
+## 2. Installing the tokens standalone
 
-Das Token-Paket ist framework-agnostisch und kann unabhängig installiert werden:
+The token package is framework-agnostic and can be installed independently:
 
 ```sh
 npm install @shopware-ag/meteor-tokens
@@ -115,19 +115,19 @@ npm install @shopware-ag/meteor-tokens
 
 ```ts
 import "@shopware-ag/meteor-tokens/administration/light.css";
-// Optional für Dark Mode:
+// Optional for dark mode:
 import "@shopware-ag/meteor-tokens/administration/dark.css";
 ```
 
-Das Light-Theme setzt Tokens auf `:root`. Das Dark-Theme wird bei `data-theme="dark"` auf einem DOM-Element aktiv:
+The light theme sets the tokens on `:root`. The dark theme becomes active on a DOM element carrying `data-theme="dark"`:
 
 ```html
 <body data-theme="dark">
-  <!-- Anwendung -->
+  <!-- application -->
 </body>
 ```
 
-### Verwendung
+### Usage
 
 ```css
 .my-component {
@@ -139,40 +139,40 @@ Das Light-Theme setzt Tokens auf `:root`. Das Dark-Theme wird bei `data-theme="d
 
 ---
 
-## 3. Icon Kit installieren
+## 3. Installing the icon kit
 
 ```sh
 npm install @shopware-ag/meteor-icon-kit
 ```
 
-### Als SVG importieren
+### Importing as SVG
 
 ```ts
 import PlusIcon from "@shopware-ag/meteor-icon-kit/icons/regular/plus.svg";
 ```
 
-### Mit mt-icon (Vue)
+### With mt-icon (Vue)
 
-`mt-icon` ist in der Komponentenbibliothek enthalten und rendert beliebige Icons per Name:
+`mt-icon` is contained in the component library and renders any icon by name:
 
 ```html
 <mt-icon name="regular-plus" />
 <mt-icon name="solid-checkmark" size="20px" />
 ```
 
-### SCSS/CSS einbinden
+### Including SCSS/CSS
 
 ```scss
 @import "@shopware-ag/meteor-icon-kit/icons/meteor-icon-kit.scss";
 ```
 
-oder klassisch via CSS:
+or classically via CSS:
 
 ```html
 <link rel="stylesheet" href="your-asset-folder/meteor-icon-kit.css" />
 ```
 
-### Dynamische Farben (SVG direkt)
+### Dynamic colours (SVG directly)
 
 ```css
 .icon-example {
@@ -190,7 +190,7 @@ oder klassisch via CSS:
 }
 ```
 
-### Vite-Beispiel (vite-svg-loader)
+### Vite example (vite-svg-loader)
 
 ```js
 // vite.config.js
@@ -213,94 +213,94 @@ import ActivityIcon from "@shopware-ag/meteor-icon-kit/icons/regular/activity.sv
 
 ---
 
-## 4. Shopware Extension scaffolden (create-meteor-extension)
+## 4. Scaffolding a Shopware extension (create-meteor-extension)
 
-Für neue Shopware Admin Extensions gibt es ein CLI-Tool:
+There is a CLI tool for new Shopware admin extensions:
 
 ```bash
-# Empfohlen: immer aktuelle Version
+# Recommended: always the current version
 npx @shopware-ag/create-meteor-extension
 
-# Oder global installieren
+# Or install globally
 npm install -g @shopware-ag/create-meteor-extension
 create-meteor-extension
 ```
 
-Das CLI fragt interaktiv nach:
-- **Extension name**: nur Kleinbuchstaben, Zahlen und Bindestriche (z.B. `my-awesome-extension`)
+The CLI asks interactively for:
+- **Extension name**: lower-case letters, digits and hyphens only (e.g. `my-awesome-extension`)
 
-**Hinweis**: Das CLI erstellt immer einen Ordner `meteor-app` (wie von Shopware 6.7+ Plugin-Struktur gefordert). Der angegebene Name wird in `package.json`, README und Konfigurationsdateien verwendet.
+**Note**: The CLI always creates a folder `meteor-app` (as required by the Shopware 6.7+ plugin structure). The name you give is used in `package.json`, the README and the configuration files.
 
-### Non-Interactive Mode (CI/CD)
+### Non-interactive mode (CI/CD)
 
 ```bash
 npx @shopware-ag/create-meteor-extension --name my-extension --output-dir meteor-app
 ```
 
-**Optionen:**
-- `--name`: Extension-Name (erforderlich im Non-Interactive Mode)
-- `--output-dir`: Ausgabe-Verzeichnisname (optional, Standard: `meteor-app`)
+**Options:**
+- `--name`: extension name (required in non-interactive mode)
+- `--output-dir`: output directory name (optional, default: `meteor-app`)
 
-### Generierte Struktur
+### Generated structure
 
 ```
 meteor-app/
 ├── src/
-│   ├── locations/           # Vue-Komponenten für Admin-Locations
+│   ├── locations/           # Vue components for admin locations
 │   │   ├── exampleDashboard.vue
 │   │   └── exampleProductTab.vue
-│   ├── assets/              # Styles und statische Assets
-│   ├── app.ts               # Anwendungs-Einstiegspunkt
-│   ├── bootstrap.ts         # SDK-Initialisierung
-│   ├── locations.ts         # Location-Konfiguration
-│   └── main.ts              # Haupt-Einstiegspunkt
-├── snippet/                 # Übersetzungsdateien
+│   ├── assets/              # styles and static assets
+│   ├── app.ts               # application entry point
+│   ├── bootstrap.ts         # SDK initialisation
+│   ├── locations.ts         # location configuration
+│   └── main.ts              # main entry point
+├── snippet/                 # translation files
 │   ├── de-DE.json
 │   └── en-GB.json
-├── public/                  # Statische Assets
+├── public/                  # static assets
 ├── package.json
 ├── vite.config.ts
 ├── tsconfig.json
 └── eslint.config.ts
 ```
 
-Für Shopware 6.7+ Plugins gehört dies nach:
+For Shopware 6.7+ plugins this belongs in:
 `custom/plugins/yourPlugin/src/Resources/app/meteor-app`
 
-### Wichtigste Dependencies des Scaffolds
+### The scaffold's most important dependencies
 
-| Package | Zweck |
+| Package | Purpose |
 |---|---|
-| `@shopware-ag/meteor-admin-sdk` | Core SDK für Admin-Extensions |
-| `@shopware-ag/meteor-component-library` | UI-Komponentenbibliothek |
-| Vue 3 + Vue Router | Framework |
-| Vite | Build-Tool |
+| `@shopware-ag/meteor-admin-sdk` | core SDK for admin extensions |
+| `@shopware-ag/meteor-component-library` | UI component library |
+| Vue 3 + Vue Router | framework |
+| Vite | build tool |
 
-### Verfügbare Example Locations im Template
+### Example locations available in the template
 
-1. **Dashboard Card** (`example-dashboard-before-content`): Erscheint auf dem Shopware-Dashboard
-2. **Product Tab** (`example-product-tab`): Fügt einen Tab zur Produktdetailseite hinzu
+1. **Dashboard Card** (`example-dashboard-before-content`): appears on the Shopware dashboard
+2. **Product Tab** (`example-product-tab`): adds a tab to the product detail page
 
-### Nach dem Scaffolding
+### After scaffolding
 
 ```bash
 cd meteor-app
 npm install
-# Extension in Shopware installieren und aktivieren
+# install and activate the extension in Shopware
 ```
 
-**Verfügbare Scripts:**
-- `npm run type-check` — TypeScript-Compiler-Check
-- `npm run lint` — Linting und Autofixing mit ESLint
-- `npm run format` — Code-Formatierung mit Prettier
+**Available scripts:**
+- `npm run type-check` — TypeScript compiler check
+- `npm run lint` — linting and autofixing with ESLint
+- `npm run format` — code formatting with Prettier
 
 ---
 
-## 5. Migration von sw-* auf mt-* (Meteor)
+## 5. Migrating from sw-* to mt-* (Meteor)
 
-### Komponent-Mapping
+### Component mapping
 
-| Alte sw-* Komponente | Neue mt-* Komponente |
+| Old sw-* component | New mt-* component |
 |---|---|
 | `sw-button` | `mt-button` |
 | `sw-text-field` | `mt-text-field` |
@@ -312,59 +312,59 @@ npm install
 | `sw-datepicker` | `mt-datepicker` |
 | `sw-icon` | `mt-icon` |
 
-### Design Tokens migrieren
+### Migrating design tokens
 
-Hardcodierte CSS-Werte durch Meteor-Tokens ersetzen:
+Replace hardcoded CSS values with Meteor tokens:
 
 ```css
-/* Vorher */
+/* Before */
 color: #1a1a1a;
 
-/* Nachher */
+/* After */
 color: var(--color-text-primary-default);
 ```
 
 ### admin-extension-sdk → meteor-admin-sdk
 
-Das Paket `@shopware-ag/admin-extension-sdk` wurde im März 2024 archiviert und durch `@shopware-ag/meteor-admin-sdk` ersetzt:
+The package `@shopware-ag/admin-extension-sdk` was archived in March 2024 and replaced by `@shopware-ag/meteor-admin-sdk`:
 
 ```sh
 npm uninstall @shopware-ag/admin-extension-sdk
 npm install @shopware-ag/meteor-admin-sdk
 ```
 
-Imports anpassen:
+Adjust the imports:
 
 ```js
-// Vorher
+// Before
 import { notification } from "@shopware-ag/admin-extension-sdk";
 
-// Nachher
+// After
 import { notification } from "@shopware-ag/meteor-admin-sdk";
 ```
 
-### Schrittweise Migration
+### Step-by-step migration
 
-Meteor funktioniert parallel zu bestehenden Komponenten. Seitenweise migrieren:
+Meteor works alongside existing components. Migrate page by page:
 
-1. Meteor neben der bestehenden Konfiguration installieren
-2. Komponenten einzeln ersetzen
-3. Styling schrittweise auf Design Tokens umstellen
-4. Jeden Schritt testen vor dem nächsten
-
----
-
-## 6. Browser-Support
-
-Meteor zielt auf alle modernen Evergreen-Browser ab. Genutzte Features sind auf den [Baseline Widely Available](https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility) Standard beschränkt — unterstützt in den aktuellen stabilen Releases von Chrome, Edge, Firefox und Safari, ohne Polyfills.
-
-Legacy-Browser und Nicht-Evergreen-Umgebungen werden nicht unterstützt.
+1. Install Meteor next to the existing configuration
+2. Replace components one at a time
+3. Move the styling over to design tokens gradually
+4. Test every step before the next one
 
 ---
 
-## 7. Stylelint Plugin für Meteor
+## 6. Browser support
 
-Das Stylelint-Plugin erzwingt die Verwendung von Meteor-Tokens in CSS:
+Meteor targets all modern evergreen browsers. The features it uses are limited to the [Baseline Widely Available](https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility) standard — supported in the current stable releases of Chrome, Edge, Firefox and Safari, without polyfills.
+
+Legacy browsers and non-evergreen environments are not supported.
+
+---
+
+## 7. Stylelint plugin for Meteor
+
+The stylelint plugin enforces the use of Meteor tokens in CSS:
 
 ```sh
 npm i -D @shopware-ag/stylelint-plugin-meteor
@@ -379,42 +379,42 @@ npm i -D @shopware-ag/stylelint-plugin-meteor
 }
 ```
 
-**Verfügbare Regeln:**
+**Available rules:**
 
-| Regel | Beschreibung |
+| Rule | Description |
 |---|---|
-| `meteor/no-primitive-token` | Verbietet primitive Tokens (z.B. `--gray-800`); nur semantische Tokens erlaubt |
-| `meteor/prefer-background-token` | Nur semantische Tokens für Hintergrundfarben |
-| `meteor/prefer-border-token` | Nur Border-Tokens für Border-Farben |
-| `meteor/prefer-color-token` | Nur Color-Tokens für `color`-Properties |
-| `meteor/prefer-font-token` | Nur Font-Tokens für Typografie-Properties |
-| `meteor/prefer-sizing-token` | Nur Sizing-Tokens für Spacing (margin, padding, gap, …) |
+| `meteor/no-primitive-token` | Forbids primitive tokens (e.g. `--gray-800`); only semantic tokens are allowed |
+| `meteor/prefer-background-token` | Semantic tokens only for background colours |
+| `meteor/prefer-border-token` | Border tokens only for border colours |
+| `meteor/prefer-color-token` | Color tokens only for `color` properties |
+| `meteor/prefer-font-token` | Font tokens only for typography properties |
+| `meteor/prefer-sizing-token` | Sizing tokens only for spacing (margin, padding, gap, …) |
 
-**Beispiel prefer-sizing-token:**
+**Example prefer-sizing-token:**
 
 ```css
-/* Falsch */
+/* Wrong */
 a { margin: 10px; }
 
-/* Richtig */
+/* Right */
 a { margin: var(--scale-size-10); }
 ```
 
-**Beispiel no-primitive-token:**
+**Example no-primitive-token:**
 
 ```css
-/* Falsch */
+/* Wrong */
 a { color: var(--gray-800); }
 
-/* Richtig */
+/* Right */
 a { color: var(--color-text-primary-default); }
 ```
 
 ---
 
-## 8. Prettier Config
+## 8. Prettier config
 
-Das Prettier-Konfigurationspaket kann für konsistente Code-Formatierung genutzt werden:
+The Prettier configuration package can be used for consistent code formatting:
 
 ```sh
 npm install --save-dev @shopware-ag/prettier-config
@@ -422,10 +422,10 @@ npm install --save-dev @shopware-ag/prettier-config
 
 ---
 
-## Weiterführende Dokumentation
+## Further documentation
 
-- Alle mt-*-Komponenten (Props/Events/Slots): Skill `sw-meteor-components` → `references/deep/components.md`
-- Design Tokens vollständig: Skill `sw-meteor-components` → `references/deep/tokens.md`; erweitert in `sw-meteor-design-tokens`
-- Composables & Direktiven: Skill `sw-meteor-composables`
-- Admin SDK Komplettdoku: Skill `sw-meteor-admin-sdk`
-- Nutzungsrichtlinien & Accessibility: Skill `sw-meteor-usage-guidelines`
+- All mt-* components (props/events/slots): skill `sw-meteor-components` → `references/deep/components.md`
+- Design tokens in full: skill `sw-meteor-components` → `references/deep/tokens.md`; extended in `sw-meteor-design-tokens`
+- Composables & directives: skill `sw-meteor-composables`
+- Complete Admin SDK documentation: skill `sw-meteor-admin-sdk`
+- Usage guidelines & accessibility: skill `sw-meteor-usage-guidelines`

@@ -1,3 +1,3 @@
 # contao-security
 
-Vollständige Referenz: `SECURITY-CONTAO-SECURITY.md`
+Complete reference: `SECURITY-CONTAO-SECURITY.md`

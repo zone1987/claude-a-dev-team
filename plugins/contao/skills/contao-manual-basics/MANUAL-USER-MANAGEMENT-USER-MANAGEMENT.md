@@ -1,6 +1,6 @@
-# Contao 5.x — Benutzerverwaltung
+# Contao 5.x — Benutzerverwaltung (User Management)
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/benutzerverwaltung/
 - https://docs.contao.org/5.x/manual/de/benutzerverwaltung/benutzer/
 - https://docs.contao.org/5.x/manual/de/benutzerverwaltung/mitglieder/
@@ -9,168 +9,168 @@ Quellen:
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [1. Backend-Benutzer](#1-backend-benutzer)
-- [2. Frontend-Mitglieder](#2-frontend-mitglieder)
-- [3. Praxis-Tipps](#3-praxis-tipps)
+- [Overview](#overview)
+- [1. Backend users](#1-backend-users)
+- [2. Frontend members](#2-frontend-members)
+- [3. Practical tips](#3-practical-tips)
 
-## Übersicht
+## Overview
 
-Die Benutzerverwaltung ist eine eigene Kategorie in der Backend-Navigation mit vier Modulen:
+The Benutzerverwaltung (User Management) is its own category in the backend navigation with four modules:
 
-| Modul | Zweck |
+| Module | Purpose |
 |-------|-------|
-| **Benutzer** | Backend-Benutzer (Redakteure, Administratoren) |
-| **Benutzergruppen** | Berechtigungspakete für Backend-Benutzer |
-| **Mitglieder** | Frontend-Benutzer (Besucher mit Login) |
-| **Mitgliedergruppen** | Zugriffsgruppen für Frontend-Mitglieder |
+| **Benutzer** (Users) | Backend users (editors, administrators) |
+| **Benutzergruppen** (User groups) | Permission packages for backend users |
+| **Mitglieder** (Members) | Frontend users (visitors with a login) |
+| **Mitgliedergruppen** (Member groups) | Access groups for frontend members |
 
 ---
 
-## 1. Backend-Benutzer
+## 1. Backend users
 
-### Unterschied Benutzer vs. Administratoren
+### Difference between users and administrators
 
-| Merkmal | Normale Benutzer | Administratoren |
+| Characteristic | Normal users | Administrators |
 |---------|-----------------|-----------------|
-| Zugriffsrechte | Nur explizit freigegebene Module | Voller Zugriff auf alles |
-| Konfiguration | Über Benutzergruppen | Keine Einschränkungen |
-| Standardrechte | Keine (muss alles freischalten) | Alle |
+| Access rights | Only explicitly granted modules | Full access to everything |
+| Configuration | Via Benutzergruppen | No restrictions |
+| Default rights | None (everything must be granted) | All |
 
-**Wichtig**: Normale Benutzer haben standardmäßig **überhaupt keine Rechte**. Alles muss explizit durch Administratoren freigeschaltet werden.
+**Important**: normal users have **no rights at all** by default. Everything must be granted explicitly by administrators.
 
-### Benutzergruppen
+### Benutzergruppen (User groups)
 
-Benutzergruppen sind Sammlungen von Berechtigungen. Einzelne Benutzer erben die Berechtigungen ihrer Gruppen.
+Benutzergruppen are collections of permissions. Individual users inherit the permissions of their groups.
 
-**Konfigurierbare Bereiche in Benutzergruppen:**
+**Configurable areas in Benutzergruppen:**
 
-#### Backend-Module freischalten
+#### Granting backend modules
 
-| Bereich | Konfiguration |
+| Area | Configuration |
 |---------|--------------|
-| Backend-Module | Welche Menüpunkte sichtbar sind |
-| Inhaltselemente | Welche Element-Typen verwendet werden dürfen |
-| Formularfelder | Welche Feldtypen im Formulargenerator nutzbar sind |
-| Pagemounts | Auf welche Seiten/Seitenbäume Zugriff besteht |
-| Filemounts | Auf welche Ordner in der Dateiverwaltung Zugriff besteht |
-| Bildgrößen | Welche Bildgrößen im Editor wählbar sind |
-| Mitgliedergruppen | Welche Frontend-Gruppen zugewiesen werden dürfen |
+| Backend modules | Which menu items are visible |
+| Content elements | Which element types may be used |
+| Form fields | Which field types can be used in the Formulargenerator (Form Generator) |
+| Pagemounts | Which pages/page trees can be accessed |
+| Filemounts | Which folders in the Dateiverwaltung (File Management) can be accessed |
+| Image sizes | Which image sizes can be selected in the editor |
+| Mitgliedergruppen | Which frontend groups may be assigned |
 
-#### Spezielle Rechte
+#### Special rights
 
-| Bereich | Beschreibung |
+| Area | Description |
 |---------|-------------|
-| FAQ | Kategorien freischalten |
-| Archive | Nachrichtenarchive, Kalender, Newsletter-Kanäle |
-| Events | Kalender-Zugriff |
-| Newsletter | Verteilerlisten verwalten |
+| FAQ | Grant categories |
+| Archives | News archives, calendars, newsletter channels |
+| Events | Calendar access |
+| Newsletter | Manage distribution lists |
 
-#### Felder-Rechte pro Modul
+#### Field rights per module
 
-Für jedes freigeschaltete Modul kann festgelegt werden, welche **einzelnen Eingabefelder** bearbeitet werden dürfen. Felder ohne Berechtigung erscheinen gesperrt oder gar nicht.
+For every granted module it can be defined which **individual input fields** may be edited. Fields without permission appear locked or not at all.
 
-### Freischalten an zwei Stellen
+### Granting in two places
 
-Benutzerrechte müssen an **zwei Orten** konfiguriert werden:
-1. In der **Benutzerverwaltung**: Module, Pagemounts, Feldrechte
-2. In der **Seitenstruktur**: Zugriffsrechte pro Seite (welche Gruppe darf Artikel bearbeiten)
+User rights must be configured in **two places**:
+1. In the **Benutzerverwaltung**: modules, pagemounts, field rights
+2. In the **Seitenstruktur** (Page Structure): access rights per page (which group may edit articles)
 
-### Benutzerkonten — Konfigurierbare Einstellungen
+### User accounts — configurable settings
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Benutzername | Eindeutiger Loginname |
-| E-Mail-Adresse | Kontakt und Benachrichtigungen |
-| Backend-Sprache | Sprache der Backend-Oberfläche |
-| UI-Optionen | Theme (Hell/Dunkel), Shortcuts |
-| Gruppen | Zugehörigkeit zu Benutzergruppen |
-| Administrator | Vollzugriff ohne Gruppeneinschränkungen |
-| Zwei-Faktor-Authentifizierung | TOTP (Google Authenticator, etc.) |
-| Aktivierung | Zeitgesteuert aktivieren/deaktivieren |
+| Benutzername (User name) | Unique login name |
+| E-Mail-Adresse (E-mail address) | Contact and notifications |
+| Backend-Sprache (Backend language) | Language of the backend interface |
+| UI options | Theme (light/dark), shortcuts |
+| Gruppen (Groups) | Membership of Benutzergruppen |
+| Administrator | Full access without group restrictions |
+| Two-factor authentication | TOTP (Google Authenticator, etc.) |
+| Activation | Activate/deactivate on a schedule |
 
-### Zwei-Faktor-Authentifizierung (2FA)
+### Two-factor authentication (2FA)
 
-Benutzer können 2FA über ihr Profil aktivieren:
-1. Im Benutzermenü auf **„Sicherheit"** klicken
-2. QR-Code mit TOTP-App scannen (z.B. Google Authenticator, Aegis)
-3. Code bestätigen
-4. Ab sofort ist beim Login ein TOTP-Code erforderlich
+Users can enable 2FA via their profile:
+1. Click **"Sicherheit"** (Security) in the user menu
+2. Scan the QR code with a TOTP app (e.g. Google Authenticator, Aegis)
+3. Confirm the code
+4. From now on a TOTP code is required at login
 
-Administratoren können 2FA für alle Benutzer **verpflichtend** machen.
-
----
-
-## 2. Frontend-Mitglieder
-
-Frontend-Mitglieder sind Besucher, die sich im Frontend anmelden können. Diese Funktion ist **optional** — nur nötig, wenn geschützte Bereiche existieren.
-
-### Mitgliedergruppen
-
-Mitglieder werden in Gruppen organisiert. Gruppen steuern:
-- Zugriff auf **geschützte Seiten**
-- Weiterleitung nach Login (wenn im Login-Modul aktiviert)
-- Zeitgesteuerte Aktivierung/Deaktivierung
-
-### Mitglieder-Datenverwaltung
-
-#### Personendaten
-- Vorname, Nachname
-- Geburtsdatum
-- Geschlecht
-
-#### Adressdaten
-- Firma
-- Straße, PLZ, Ort
-- Staat, Land
-
-#### Kontaktdaten
-- Telefon, Handy, Fax
-- E-Mail-Adresse *(muss eindeutig sein)*
-- Webseite
-- Sprache (für mehrsprachige Projekte)
-
-#### Zugangsdaten
-- Benutzername *(muss eindeutig sein)*
-- Passwort (verschlüsselt gespeichert)
-
-#### Weitere Einstellungen
-- **Home-Verzeichnis**: Optionales persönliches Dateiverzeichnis
-- **Mitgliedergruppen**: Gruppenzugehörigkeit
-- **Abonnements**: Newsletter-Verwaltung
-- **Kontoeinstellungen**: Aktivierung/Deaktivierung, zeitgesteuert möglich
-
-### Geschützte Bereiche einrichten
-
-**Schritt-für-Schritt:**
-
-1. **Mitgliedergruppe** anlegen (Benutzerverwaltung → Mitgliedergruppen)
-2. **Mitglied** anlegen und Gruppe zuweisen
-3. **Seite schützen** in der Seitenstruktur:
-   - Seite bearbeiten → Zugriffsschutz aktivieren
-   - Erlaubte Mitgliedergruppen auswählen
-4. **Login-Modul** erstellen und in Seitenlayout einbinden:
-   - Layout → Module → Neu → Typ: „Login-Formular"
-   - Weiterleitung nach Login konfigurieren
-5. **Fehlerseiten** anlegen:
-   - Typ „401 Nicht authentifiziert" für nicht eingeloggte Besucher
-   - Typ „403 Zugriff verweigert" für eingeloggte Besucher ohne Rechte
-
-### Passwort-Reset für Frontend-Mitglieder
-
-Mitglieder können ihr Passwort über ein **Passwort-Vergessen-Modul** zurücksetzen:
-- Modul-Typ: „Passwort vergessen"
-- Link per E-Mail mit Token (Double-Opt-In)
+Administrators can make 2FA **mandatory** for all users.
 
 ---
 
-## 3. Praxis-Tipps
+## 2. Frontend members
 
-### Administrator-Passwort vergessen
+Frontend Mitglieder (members) are visitors who can log in on the frontend. This function is **optional** — only needed if protected areas exist.
 
-Falls kein Admin-Zugang möglich ist:
-1. Direkt in der Datenbanktabelle `tl_user` den `admin`-Wert auf `1` setzen, oder
-2. Alle Admin-Flags zurücksetzen und im Contao Install-Tool neuen Admin anlegen:
+### Mitgliedergruppen (Member groups)
+
+Members are organised into groups. Groups control:
+- Access to **protected pages**
+- Redirect after login (if enabled in the login module)
+- Scheduled activation/deactivation
+
+### Member data management
+
+#### Personal data
+- First name, last name
+- Date of birth
+- Gender
+
+#### Address data
+- Company
+- Street, postcode, town
+- State, country
+
+#### Contact data
+- Phone, mobile, fax
+- E-mail address *(must be unique)*
+- Website
+- Language (for multilingual projects)
+
+#### Login data
+- User name *(must be unique)*
+- Password (stored encrypted)
+
+#### Further settings
+- **Home-Verzeichnis** (Home directory): optional personal file directory
+- **Mitgliedergruppen**: group membership
+- **Abonnements** (Subscriptions): newsletter management
+- **Kontoeinstellungen** (Account settings): activation/deactivation, can be scheduled
+
+### Setting up protected areas
+
+**Step by step:**
+
+1. Create a **Mitgliedergruppe** (Benutzerverwaltung → Mitgliedergruppen)
+2. Create a **Mitglied** and assign the group
+3. **Protect the page** in the Seitenstruktur:
+   - Edit the page → enable access protection
+   - Select the permitted Mitgliedergruppen
+4. Create a **login module** and embed it in the Seitenlayout (Page layout):
+   - Layout → Module → New → type: "Login-Formular" (Login form)
+   - Configure the redirect after login
+5. Create **error pages**:
+   - Type "401 Nicht authentifiziert" (401 Not authenticated) for visitors who are not logged in
+   - Type "403 Zugriff verweigert" (403 Access denied) for logged-in visitors without rights
+
+### Password reset for frontend members
+
+Members can reset their password via a **password-forgotten module**:
+- Module type: "Passwort vergessen" (Forgot password)
+- Link by e-mail with a token (double opt-in)
+
+---
+
+## 3. Practical tips
+
+### Administrator password forgotten
+
+If no admin access is possible:
+1. Set the `admin` value to `1` directly in the database table `tl_user`, or
+2. Reset all admin flags and create a new admin in the Contao install tool:
    - URL: `https://example.com/contao/install`
 
 Via CLI:
@@ -178,13 +178,13 @@ Via CLI:
 php vendor/bin/contao-console contao:user:create --admin
 ```
 
-### Benutzer-Passwort zurücksetzen
+### Resetting a user password
 
 ```bash
 php vendor/bin/contao-console contao:user:password benutzername
 ```
 
-### Alle Benutzer auflisten
+### Listing all users
 
 ```bash
 php vendor/bin/contao-console contao:user:list

@@ -1173,7 +1173,7 @@ const count = await frame.$$eval('.item', els => els.length);
 
 **Total: ~56 methods/properties**
 
-**Conclusion:** `Frame` largely mirrors the `Page` API, but applies specifically to a single
+**Summary:** `Frame` largely mirrors the `Page` API, but applies specifically to a single
 iframe context. Modern Playwright tests should prefer `page.frameLocator()` with locator-based
 methods. Working with `Frame` directly is mainly relevant for complex multi-frame scenarios and
 `evaluate()` executions in the iframe context.

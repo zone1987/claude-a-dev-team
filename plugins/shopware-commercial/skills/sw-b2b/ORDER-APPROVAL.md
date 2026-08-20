@@ -4,7 +4,7 @@ Entwickler-Referenz fuer den B2B Order Approval Workflow.
 
 ## Referenzen
 
-- [Order Approval Vollreferenz](`ORDER-APPROVAL-DETAIL.md`)
+- [ORDER-APPROVAL-DETAIL.md](ORDER-APPROVAL-DETAIL.md)
 
 ## Querverweise
 

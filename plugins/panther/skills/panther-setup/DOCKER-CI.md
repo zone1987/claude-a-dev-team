@@ -1,5 +1,5 @@
 # panther-docker-ci
 
-Docker-Integration, Interactive Mode und vollstaendige CI-Konfigurationen.
+Docker integration, interactive mode and complete CI configurations.
 
-Siehe `DOCKER-CI-DETAIL.md` fuer lauffaehige Dockerfiles und CI-YAMLs.
+See `DOCKER-CI-DETAIL.md` for runnable Dockerfiles and CI YAMLs.

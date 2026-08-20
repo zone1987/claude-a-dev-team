@@ -1,24 +1,24 @@
-# Gotenberg — PDF Metadaten Lesen & Schreiben (Vollreferenz)
+# Gotenberg — Reading & Writing PDF Metadata (Full Reference)
 
 ## Contents
 
-- [Routen](#routen)
-- [1. Metadaten Lesen](#1-metadaten-lesen)
-- [2. Metadaten Schreiben](#2-metadaten-schreiben)
-- [Hinweise](#hinweise)
+- [Routes](#routes)
+- [1. Reading Metadata](#1-reading-metadata)
+- [2. Writing Metadata](#2-writing-metadata)
+- [Notes](#notes)
 
-## Routen
+## Routes
 
 ```
 POST /forms/pdfengines/metadata/read
 POST /forms/pdfengines/metadata/write
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content-Type of the request:** `multipart/form-data`
 
 ---
 
-## 1. Metadaten Lesen
+## 1. Reading Metadata
 
 ### Route
 
@@ -26,27 +26,27 @@ POST /forms/pdfengines/metadata/write
 POST /forms/pdfengines/metadata/read
 ```
 
-### Request-Header
+### Request Headers
 
-| Header | Typ | Pflicht | Beschreibung |
-|--------|-----|---------|--------------|
-| `Gotenberg-Trace` | string | Nein | Eigene Request-ID fuer Log-Identifizierung |
+| Header | Type | Required | Description |
+|--------|------|----------|-------------|
+| `Gotenberg-Trace` | string | No | Custom request ID for log identification |
 
-### Form-Felder
+### Form Fields
 
-| Feld | Typ | Pflicht | Beschreibung |
-|------|-----|---------|--------------|
-| `files` | file[] | Ja | PDF-Dateien, deren Metadaten gelesen werden sollen (mehrere erlaubt) |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `files` | file[] | Yes | PDF files whose metadata is to be read (multiple allowed) |
 
-### Antwort
+### Response
 
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | `application/json; charset=UTF-8` | JSON-Objekt mit Dateiname als Schluessel und Metadaten als Wert |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | `application/json; charset=UTF-8` | JSON object with the filename as key and the metadata as value |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### Antwort-Format (Beispiel)
+### Response format (example)
 
 ```json
 {
@@ -70,10 +70,10 @@ POST /forms/pdfengines/metadata/read
 }
 ```
 
-Rueckgegebene Schluessel entsprechen ExifTool-Tag-Namen.
-Referenz: https://exiftool.org/TagNames/PDF.html
+The returned keys correspond to ExifTool tag names.
+Reference: https://exiftool.org/TagNames/PDF.html
 
-### curl-Beispiel
+### curl example
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/read \
@@ -83,7 +83,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/metadata/read \
 
 ---
 
-## 2. Metadaten Schreiben
+## 2. Writing Metadata
 
 ### Route
 
@@ -91,21 +91,21 @@ curl --request POST http://localhost:3000/forms/pdfengines/metadata/read \
 POST /forms/pdfengines/metadata/write
 ```
 
-### Request-Header
+### Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
-|--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+| Header | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `Gotenberg-Output-Filename` | string | No | random UUID | Filename of the output |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
-### Form-Felder
+### Form Fields
 
-| Feld | Typ | Pflicht | Beschreibung |
-|------|-----|---------|--------------|
-| `metadata` | JSON-string | Ja | XMP-Metadaten als JSON-Objekt |
-| `files` | file[] | Ja | PDF-Dateien, die aktualisiert werden sollen; mehrere Inputs → ZIP |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `metadata` | JSON string | Yes | XMP metadata as a JSON object |
+| `files` | file[] | Yes | PDF files to be updated; multiple inputs → ZIP |
 
-### Metadata-JSON-Format
+### Metadata JSON format
 
 ```json
 {
@@ -120,19 +120,19 @@ POST /forms/pdfengines/metadata/write
 }
 ```
 
-Unterstuetzte XMP-Tags: https://exiftool.org/TagNames/XMP.html#pdf
+Supported XMP tags: https://exiftool.org/TagNames/XMP.html#pdf
 
-### Antwort
+### Response
 
-| Code | Content-Type | Beschreibung |
-|------|-------------|--------------|
-| `200` | variabel | Aktualisierte PDF; mehrere Inputs → ZIP-Archiv |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| Code | Content-Type | Description |
+|------|-------------|-------------|
+| `200` | variable | Updated PDF; multiple inputs → ZIP archive |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### curl-Beispiele
+### curl examples
 
-#### Einfache Metadaten setzen
+#### Setting simple metadata
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
@@ -141,7 +141,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
   -o aktualisiert.pdf
 ```
 
-#### Vollstaendige Metadaten mit Keywords (Array)
+#### Complete metadata with keywords (array)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
@@ -150,7 +150,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
   -o mein.pdf
 ```
 
-#### Mehrere PDFs gleichzeitig aktualisieren (→ ZIP)
+#### Updating several PDFs at once (→ ZIP)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
@@ -162,14 +162,14 @@ curl --request POST http://localhost:3000/forms/pdfengines/metadata/write \
 
 ---
 
-## Hinweise
+## Notes
 
-- Metadaten schreiben bricht typischerweise PDF/A-Konformitaet
-- Rueckgegebene Schluessel beim Lesen entsprechen ExifTool-Tag-Namen (nicht immer identisch mit PDF-internen Namen)
-- Verwendet ExifTool intern fuer beide Operationen
+- Writing metadata typically breaks PDF/A conformance
+- The keys returned when reading correspond to ExifTool tag names (not always identical to the PDF-internal names)
+- Uses ExifTool internally for both operations
 
 ---
 
-Quelle:
+Source:
 - https://gotenberg.dev/docs/manipulate-pdfs/read-metadata
 - https://gotenberg.dev/docs/manipulate-pdfs/write-metadata

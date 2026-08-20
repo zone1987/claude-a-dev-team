@@ -1,57 +1,57 @@
 # Shopware Frontends – Getting Started
 
-Quelle: offizielle Dokumentation `apps/docs/src/getting-started/` + `src/installation.md` + `src/framework/requirements.md`
+Source: official documentation `apps/docs/src/getting-started/` + `src/installation.md` + `src/framework/requirements.md`
 
 ---
 
 ## Contents
 
-- [Anforderungen (Requirements)](#anforderungen-requirements)
-- [Templates-Übersicht](#templates-übersicht)
+- [Requirements](#requirements)
+- [Templates overview](#templates-overview)
 - [Try It Out](#try-it-out)
-- [Nächste Schritte nach Setup](#nächste-schritte-nach-setup)
+- [Next steps after setup](#next-steps-after-setup)
 
-## Anforderungen (Requirements)
+## Requirements
 
 ### Node.js
-- **v22.x** LTS (empfohlen)
+- **v22.x** LTS (recommended)
 - v20.x – maintenance
 - v18.x – maintenance
 
-Tipp: `nvm` (Node Version Manager) verwenden.
+Tip: use `nvm` (Node Version Manager).
 
-### Package Manager
-- **pnpm** – empfohlen
-- npm (out of the box mit Node)
+### Package manager
+- **pnpm** – recommended
+- npm (out of the box with Node)
 - yarn
 
 ### Shopware API
-Sowohl Cloud-Instanzen als auch self-managed Shopware 6 werden unterstützt.
-Alle Templates sind mit einer öffentlichen Demo-API vorkonfiguriert.
+Both cloud instances and self-managed Shopware 6 are supported.
+All templates are preconfigured with a public demo API.
 
 ### IDE
-- VSCode mit:
+- VSCode with:
   - `Vue.volar` (Vue Language Features)
-  - `biomejs.biome` (Code Formatter)
+  - `biomejs.biome` (code formatter)
   - `vscode.typescript-language-features`
-  - `antfu.unocss` (für Demo Store Template)
+  - `antfu.unocss` (for the Demo Store template)
 
 ---
 
-## Templates-Übersicht
+## Templates overview
 
-### 1. Vue Starter Template (EMPFOHLEN)
+### 1. Vue Starter Template (RECOMMENDED)
 
-Produktionsreifes Nuxt-4.x-Fundament ohne Demo-Boilerplate.
+Production-ready Nuxt 4.x foundation without demo boilerplate.
 
-**Enthält:**
-- Nuxt 4.x mit SSR
+**Contains:**
+- Nuxt 4.x with SSR
 - `@shopware/api-client`, `@shopware/composables`, `@shopware/helpers`
 - `@shopware/cms-base-layer`, `@shopware/unocss-design-tokens-layer`
 - `@shopware/nuxt-module`
-- UnoCSS (Tailwind-kompatibel)
-- i18n-Support
-- TypeScript + Type-Generation
+- UnoCSS (Tailwind-compatible)
+- i18n support
+- TypeScript + type generation
 
 **Setup:**
 ```bash
@@ -59,9 +59,9 @@ npx tiged shopware/frontends/templates/vue-starter-template my-store && cd my-st
 npm i && npm run dev
 ```
 
-**Live Demo:** https://frontends-starter-template.vercel.app/
+**Live demo:** https://frontends-starter-template.vercel.app/
 
-**Verzeichnisstruktur (Nuxt 4.x mit app/ Directory):**
+**Directory structure (Nuxt 4.x with the app/ directory):**
 ```
 my-store/
 ├─ app/
@@ -79,7 +79,7 @@ my-store/
 │  ├─ pages/
 │  │  ├─ checkout/
 │  │  ├─ account/
-│  │  ├─ [...all].vue  # catch-all für CMS-Seiten
+│  │  ├─ [...all].vue  # catch-all for CMS pages
 │  ├─ utils/
 │  ├─ app.config.ts
 │  ├─ app.vue
@@ -91,7 +91,7 @@ my-store/
 ├─ tsconfig.json
 ```
 
-**Konfiguration (nuxt.config.ts):**
+**Configuration (nuxt.config.ts):**
 ```ts
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -99,7 +99,7 @@ export default defineNuxtConfig({
       shopware: {
         endpoint: "https://your-shop.shopware.store/store-api",
         accessToken: "your-access-token",
-        // Optional: für customer registration in local dev:
+        // Optional: for customer registration in local dev:
         // devStorefrontUrl: "https://your-shop.shopware.store",
       },
     },
@@ -107,23 +107,23 @@ export default defineNuxtConfig({
 });
 ```
 
-**Per .env-Datei:**
+**Via a .env file:**
 ```bash
 NUXT_PUBLIC_SHOPWARE_ENDPOINT=https://your-shop.shopware.store/store-api
 NUXT_PUBLIC_SHOPWARE_ACCESS_TOKEN=your-access-token
 ```
 
-**Type Generation:**
+**Type generation:**
 ```bash
 npm run generate-types
 ```
 
-**CMS-Komponenten überschreiben:**
+**Overriding CMS components:**
 ```
-app/components/SwProductCard.vue  # überschreibt Base-Layer-Komponente
+app/components/SwProductCard.vue  # overrides the base layer component
 ```
 
-**UnoCSS lokale Anpassung (uno.config.ts):**
+**Local UnoCSS customisation (uno.config.ts):**
 ```ts
 import { mergeConfigs } from '@unocss/core'
 import baseConfig from './.nuxt/uno.config.mjs'
@@ -139,46 +139,46 @@ export default mergeConfigs([baseConfig, {
 
 ---
 
-### 2. Vue Starter Template Extended (Nuxt Layers – Multi-Brand)
+### 2. Vue Starter Template Extended (Nuxt layers – multi-brand)
 
-Demonstriert das **Nuxt-Layer-Pattern** für markenspezifische Storefronts.
-Beispiel: "Lumora" – fiktive Heimdüfte-Marke.
+Demonstrates the **Nuxt layer pattern** for brand-specific storefronts.
+Example: "Lumora" – a fictional home fragrance brand.
 
 **Setup:**
 ```bash
 npx tiged shopware/frontends/templates/vue-starter-template vue-starter-template
 npx tiged shopware/frontends/templates/vue-starter-template-extended lumora-store
 cd lumora-store
-# package.json anpassen: workspace:* → file:../vue-starter-template
+# adjust package.json: workspace:* → file:../vue-starter-template
 npm i && npm run dev
 ```
 
-**nuxt.config.ts des Extended-Templates:**
+**nuxt.config.ts of the extended template:**
 ```ts
 export default defineNuxtConfig({
-  extends: ["../vue-starter-template"],  // Base-Template
-  // Lumora-spezifische Config
+  extends: ["../vue-starter-template"],  // base template
+  // Lumora-specific config
 })
 ```
 
-**Was geerbt wird:**
-- Alle Seiten (Navigation, Produkt, Checkout, ...)
-- Alle Layout-Komponenten
-- Composables und Business Logic
-- CMS-Integration, i18n, Type-Generation
+**What is inherited:**
+- All pages (navigation, product, checkout, ...)
+- All layout components
+- Composables and business logic
+- CMS integration, i18n, type generation
 
-**Was angepasst wird (minimal):**
+**What is customised (minimal):**
 ```
 lumora-store/
 ├─ app/
-│  └─ app.config.ts        # Brand-Farben, Settings
-├─ public/                  # Logo, Favicon
+│  └─ app.config.ts        # brand colors, settings
+├─ public/                  # logo, favicon
 ├─ nuxt.config.ts
 ├─ uno.config.ts
 └─ package.json
 ```
 
-**Brand-Farbe per app.config.ts:**
+**Brand color via app.config.ts:**
 ```ts
 export default defineAppConfig({
   imagePlaceholder: {
@@ -187,58 +187,58 @@ export default defineAppConfig({
 });
 ```
 
-**Vorteile:**
-- Minimale Code-Duplizierung
-- Automatische Updates vom Base-Template
-- Mehrere Marken aus einer Basis
-- Saubere Trennung Custom vs. Framework
+**Advantages:**
+- Minimal code duplication
+- Automatic updates from the base template
+- Multiple brands from a single base
+- Clean separation of custom vs. framework
 
-**Update Base-Template:**
+**Update the base template:**
 ```bash
 npm update vue-starter-template
 ```
 
-**Multi-Brand Monorepo:**
+**Multi-brand monorepo:**
 ```
 my-monorepo/
-├─ vue-starter-template/      # Base
-├─ lumora-store/              # Brand A
-├─ another-brand/             # Brand B
-└─ premium-brand/             # Brand C
+├─ vue-starter-template/      # base
+├─ lumora-store/              # brand A
+├─ another-brand/             # brand B
+└─ premium-brand/             # brand C
 ```
 
-**Live Demo:** https://frontends-extended-starter-template.vercel.app/
+**Live demo:** https://frontends-extended-starter-template.vercel.app/
 
 ---
 
 ### 3. Blank Template
 
-Leeres Nuxt-3-Projekt mit vorinstallierten Paketen, kein UI/CSS.
+An empty Nuxt 3 project with the packages preinstalled, no UI/CSS.
 
 ```bash
 npx tiged shopware/frontends/templates/vue-blank vue-blank && cd vue-blank
 npm i && npm run dev
 ```
 
-Ideal wenn: eigenes CSS-Framework, komplett neues Frontend.
+Ideal when: you bring your own CSS framework, or build a completely new frontend.
 
 ---
 
 ### 4. Demo Store Template (DEPRECATED)
 
-**Nicht mehr empfohlen.** Nur als Referenzimplementierung. Verwendet die alten Patterns ohne Nuxt-Layers.
+**No longer recommended.** Only as a reference implementation. Uses the old patterns without Nuxt layers.
 
-Empfehlung: Vue Starter Template verwenden.
+Recommendation: use the Vue Starter Template.
 
 ---
 
-### 5. Custom Vue.js Project (bestehende App)
+### 5. Custom Vue.js project (existing app)
 
 ```bash
 pnpm add @shopware/composables @shopware/api-client js-cookie
 ```
 
-**Plugin erstellen:**
+**Create the plugin:**
 ```ts
 // plugins/vue-shopware-frontends.ts
 import { ref } from "vue";
@@ -290,7 +290,7 @@ export default {
 };
 ```
 
-**Plugin registrieren (main.ts):**
+**Register the plugin (main.ts):**
 ```ts
 import ShopwareFrontends from "./plugins/vue-shopware-frontends";
 app.use(ShopwareFrontends, {
@@ -299,34 +299,34 @@ app.use(ShopwareFrontends, {
 });
 ```
 
-**SSR vs. CSR Endpoints:**
+**SSR vs. CSR endpoints:**
 ```
-NUXT_SHOPWARE_ENDPOINT=http://shopware        # intern/SSR
-NUXT_PUBLIC_SHOPWARE_ENDPOINT=https://...     # extern/CSR
+NUXT_SHOPWARE_ENDPOINT=http://shopware        # internal/SSR
+NUXT_PUBLIC_SHOPWARE_ENDPOINT=https://...     # external/CSR
 ```
 
 ---
 
-### 6. Custom React Project
+### 6. Custom React project
 
-Prototyp basierend auf Vercel Commerce Template:
+Prototype based on the Vercel Commerce template:
 - React + Next.js (App Router)
 - `@shopware/api-client`
-- Kein headless Checkout (in Entwicklung)
-- Seiten werden zur Build-Zeit pre-generated
+- No headless checkout (in development)
+- Pages are pre-generated at build time
 
 ---
 
 ### 7. Astro Template
 
-Blank Astro mit Shopware-Kompatibilität für Vue-Komponenten.
+Blank Astro with Shopware compatibility for Vue components.
 
 ```bash
 npx tiged shopware/frontends/templates/astro astro-blank && cd astro-blank
 npm i && npm run dev
 ```
 
-**Konfiguration:**
+**Configuration:**
 ```bash
 # .env.development
 API_URL="https://demo-frontends.shopware.store"
@@ -337,17 +337,17 @@ API_ACCESS_TOKEN="SWSCBHFSNTVMAWNZDNFKSHLAYW"
 
 ## Try It Out
 
-Templates können direkt im Browser gestartet werden:
-- StackBlitz (alle Templates)
+Templates can be launched directly in the browser:
+- StackBlitz (all templates)
 - GitHub Codespaces
 
-Dev-Server läuft standardmäßig auf Port `3000`.
+The dev server runs on port `3000` by default.
 
 ---
 
-## Nächste Schritte nach Setup
+## Next steps after setup
 
-1. CMS-Komponenten erkunden (Shopping Experiences)
-2. Routing aufbauen (SeoUrl-Auflösung)
-3. Page-Elements implementieren (Navigation, Produktlisting)
-4. E-Commerce-Features (Cart, Checkout)
+1. Explore CMS components (Shopping Experiences)
+2. Build the routing (SeoUrl resolution)
+3. Implement page elements (navigation, product listing)
+4. E-commerce features (cart, checkout)

@@ -1,48 +1,48 @@
-# Contao Cron-Framework (5.x)
+# Contao Cron framework (5.x)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Cron-Ausführung konfigurieren](#cron-ausführung-konfigurieren)
-- [Cron-Jobs registrieren](#cron-jobs-registrieren)
-- [Scope-aware Cron-Jobs](#scope-aware-cron-jobs)
-- [Asynchrone Cron-Jobs (ab Contao 5.1)](#asynchrone-cron-jobs-ab-contao-51)
-- [Interna](#interna)
+- [Overview](#overview)
+- [Configuring cron execution](#configuring-cron-execution)
+- [Registering cron jobs](#registering-cron-jobs)
+- [Scope-aware cron jobs](#scope-aware-cron-jobs)
+- [Asynchronous cron jobs (Contao 5.1 and later)](#asynchronous-cron-jobs-contao-51-and-later)
+- [Internals](#internals)
 
-## Überblick
+## Overview
 
-Contao führt periodische Aufgaben via Cron aus (z.B. abgelaufene Subscriptions, Token-Bereinigung). Alle Cron-Jobs sind Services mit dem Tag `contao.cronjob`.
+Contao runs periodic tasks via cron (e.g. expired subscriptions, token cleanup). All cron jobs are services carrying the `contao.cronjob` tag.
 
 ---
 
-## Cron-Ausführung konfigurieren
+## Configuring cron execution
 
-### Standard-Verhalten (Web-Listener)
+### Default behavior (web listener)
 
-Standardmäßig werden Cron-Jobs nach dem Response an den Besucher ausgeführt. Ab Contao 5.1 deaktiviert sich der Frontend-Cron automatisch wenn ein echtes Cron-System erkannt wird.
+By default, cron jobs run after the response has been sent to the visitor. From Contao 5.1 onwards, the front end cron disables itself automatically when a real cron system is detected.
 
 ```yaml
 # config/config.yaml
 contao:
     cron:
-        web_listener: false   # Standard: 'auto'
+        web_listener: false   # Default: 'auto'
 ```
 
-### CLI-Ausführung
+### CLI execution
 
 ```bash
 vendor/bin/contao-console contao:cron
 
-# Spezifischen Job erzwingen
+# Force a specific job
 vendor/bin/contao-console contao:cron "App\Cron\ExampleCron" --force
 ```
 
-**Empfohlener Crontab-Eintrag:**
+**Recommended crontab entry:**
 ```
 * * * * * /usr/bin/php /path/to/contao/vendor/bin/contao-console contao:cron
 ```
 
-**Domain-Konfiguration für CLI:**
+**Domain configuration for the CLI:**
 ```yaml
 # config/parameters.yaml
 parameters:
@@ -50,19 +50,19 @@ parameters:
     router.request_context.scheme: 'https'
 ```
 
-### Via Web-URL
+### Via web URL
 
 ```bash
 * * * * * wget -q -O /dev/null https://example.org/_contao/cron
 ```
 
-> **Wichtig:** CLI-scoped Cron-Jobs werden nicht über die Web-Route ausgelöst.
+> **Important:** CLI-scoped cron jobs are not triggered through the web route.
 
 ---
 
-## Cron-Jobs registrieren
+## Registering cron jobs
 
-### Methode 1: PHP-Attribute (empfohlen)
+### Method 1: PHP attributes (recommended)
 
 ```php
 namespace App\Cron;
@@ -74,12 +74,12 @@ class ExampleCron
 {
     public function __invoke(): void
     {
-        // Implementierung
+        // Implementation
     }
 }
 ```
 
-### Methode 2: Annotations
+### Method 2: Annotations
 
 ```php
 use Contao\CoreBundle\ServiceAnnotation\CronJob;
@@ -91,7 +91,7 @@ class ExampleCron
 }
 ```
 
-### Methode 3: YAML-Service-Tags
+### Method 3: YAML service tags
 
 ```yaml
 services:
@@ -100,21 +100,21 @@ services:
             - { name: contao.cronjob, interval: hourly }
 ```
 
-### Intervalle
+### Intervals
 
-| Wert | Beschreibung |
+| Value | Description |
 |------|-------------|
-| `minutely` | Jede Minute |
-| `hourly` | Stündlich |
-| `daily` | Täglich |
-| `weekly` | Wöchentlich |
-| `monthly` | Monatlich |
-| `yearly` | Jährlich |
-| `*/5 * * * *` | CRON-Ausdruck (beliebig) |
+| `minutely` | Every minute |
+| `hourly` | Hourly |
+| `daily` | Daily |
+| `weekly` | Weekly |
+| `monthly` | Monthly |
+| `yearly` | Yearly |
+| `*/5 * * * *` | CRON expression (arbitrary) |
 
 ---
 
-## Scope-aware Cron-Jobs
+## Scope-aware cron jobs
 
 ```php
 use Contao\CoreBundle\Cron\Cron;
@@ -126,19 +126,19 @@ class HourlyCron
     public function __invoke(string $scope): void
     {
         if (Cron::SCOPE_WEB === $scope) {
-            // Überspringen – verhindert Aktualisierung der letzten Ausführungszeit
+            // Skip – prevents updating the last execution time
             throw new CronExecutionSkippedException();
         }
-        // Nur CLI-Ausführung
+        // CLI execution only
     }
 }
 ```
 
 ---
 
-## Asynchrone Cron-Jobs (ab Contao 5.1)
+## Asynchronous cron jobs (Contao 5.1 and later)
 
-Gibt ein `PromiseInterface` zurück für nicht-blockierende Ausführung:
+Return a `PromiseInterface` for non-blocking execution:
 
 ```php
 use GuzzleHttp\Promise\Promise;
@@ -154,14 +154,14 @@ class HourlyCron
         }
 
         return new Promise(static function () use (&$promise): void {
-            // Asynchrone Logik
+            // Asynchronous logic
             $promise->resolve('Completed');
         });
     }
 }
 ```
 
-### ProcessUtil-Helper
+### ProcessUtil helper
 
 ```php
 use Contao\CoreBundle\Util\ProcessUtil;
@@ -177,12 +177,12 @@ class HourlyCron
             throw new CronExecutionSkippedException();
         }
 
-        // Beliebiger Prozess
+        // Any process
         $promise = $this->processUtil->createPromise(
             new Process(['command', 'args'])
         );
 
-        // Symfony-Console-Kommando
+        // Symfony console command
         $promise = $this->processUtil->createPromise(
             $this->processUtil->createSymfonyConsoleProcess('app:command', '--option', 'argument')
         );
@@ -194,10 +194,10 @@ class HourlyCron
 
 ---
 
-## Interna
+## Internals
 
-Contao speichert die letzte Ausführung in der Tabelle `tl_cron_job`.
+Contao stores the last execution in the `tl_cron_job` table.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/cron/*
+*Source: https://docs.contao.org/5.x/dev/framework/cron/*

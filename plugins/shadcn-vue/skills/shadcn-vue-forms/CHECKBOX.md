@@ -9,7 +9,7 @@ Skill for the shadcn-vue Checkbox component built on reka-ui.
 
 ## References
 
-- [Installation](`CHECKBOX-INSTALLATION.md`) — CLI and manual setup
-- [Source](`CHECKBOX-SOURCE.md`) — Complete component source (Checkbox.vue, index.ts)
-- [API](`CHECKBOX-API.md`) — Props, emits, slots
-- [Examples](`CHECKBOX-EXAMPLES.md`) — 7 usage demos
+- [CHECKBOX-INSTALLATION.md](CHECKBOX-INSTALLATION.md) — CLI and manual setup
+- [CHECKBOX-SOURCE.md](CHECKBOX-SOURCE.md) — Complete component source (Checkbox.vue, index.ts)
+- [CHECKBOX-API.md](CHECKBOX-API.md) — Props, emits, slots
+- [CHECKBOX-EXAMPLES.md](CHECKBOX-EXAMPLES.md) — 7 usage demos

@@ -1,25 +1,25 @@
-# Panther Client — Vollstandige API-Referenz
+# Panther Client — Complete API Reference
 
 `Symfony\Component\Panther\Client`
 
-Implementiert `Symfony\Component\BrowserKit\AbstractBrowser` und daruber hinaus das
-`Facebook\WebDriver\WebDriver`-Interface.
+Implements `Symfony\Component\BrowserKit\AbstractBrowser` and, beyond that, the
+`Facebook\WebDriver\WebDriver` interface.
 
 ## Contents
 
 - [Static Factory Methods](#static-factory-methods)
-- [Lebenszyklus](#lebenszyklus)
+- [Lifecycle](#lifecycle)
 - [Navigation](#navigation)
-- [Warte-Methoden (alle mit Timeout/Interval)](#warte-methoden-alle-mit-timeoutinterval)
-- [JavaScript-Ausfuhrung](#javascript-ausfuhrung)
-- [Zustandsabfragen](#zustandsabfragen)
-- [WebDriver-Zugriff](#webdriver-zugriff)
-- [Eingabegerate](#eingabegerate)
-- [Formulare und Links](#formulare-und-links)
-- [Fenster-Management](#fenster-management)
-- [Element-Suche (niedrigstufig)](#element-suche-niedrigstufig)
+- [Waiting Methods (all with timeout/interval)](#waiting-methods-all-with-timeoutinterval)
+- [JavaScript Execution](#javascript-execution)
+- [State Queries](#state-queries)
+- [WebDriver Access](#webdriver-access)
+- [Input Devices](#input-devices)
+- [Forms and Links](#forms-and-links)
+- [Window Management](#window-management)
+- [Element Lookup (low-level)](#element-lookup-low-level)
 - [CookieJar](#cookiejar)
-- [Vollstandiges Beispiel](#vollstandiges-beispiel)
+- [Complete Example](#complete-example)
 
 ## Static Factory Methods
 
@@ -27,14 +27,14 @@ Implementiert `Symfony\Component\BrowserKit\AbstractBrowser` und daruber hinaus 
 
 ```php
 public static function createChromeClient(
-    ?string $chromeDriverBinary = null,   // Pfad zu chromedriver-Binary; null = auto-detect
-    ?array  $arguments          = null,   // Chrome-Browser-Argumente, z. B. ['--window-size=1920,1080']
-    array   $options            = [],     // Manager-Optionen (capabilities, chromedriver_arguments)
-    ?string $baseUri            = null    // Basis-URI (z. B. 'http://localhost:9080')
+    ?string $chromeDriverBinary = null,   // path to chromedriver binary; null = auto-detect
+    ?array  $arguments          = null,   // Chrome browser arguments, e.g. ['--window-size=1920,1080']
+    array   $options            = [],     // manager options (capabilities, chromedriver_arguments)
+    ?string $baseUri            = null    // base URI (e.g. 'http://localhost:9080')
 ): self
 ```
 
-Beispiel:
+Example:
 ```php
 $client = Client::createChromeClient(
     null,
@@ -48,14 +48,14 @@ $client = Client::createChromeClient(
 
 ```php
 public static function createFirefoxClient(
-    ?string $geckodriverBinary = null,    // Pfad zu geckodriver; null = auto-detect
-    ?array  $arguments         = null,   // Firefox-Argumente
-    array   $options           = [],     // Manager-Optionen (capabilities)
+    ?string $geckodriverBinary = null,    // path to geckodriver; null = auto-detect
+    ?array  $arguments         = null,   // Firefox arguments
+    array   $options           = [],     // manager options (capabilities)
     ?string $baseUri           = null
 ): self
 ```
 
-Beispiel:
+Example:
 ```php
 use Facebook\WebDriver\WebDriverDimension;
 $client = Client::createFirefoxClient();
@@ -66,8 +66,8 @@ $client->manage()->window()->setSize(new WebDriverDimension(1500, 4000));
 
 ```php
 public static function createSeleniumClient(
-    ?string                    $host         = null,  // Selenium Hub URL, z. B. 'http://127.0.0.1:4444/wd/hub'
-    ?WebDriverCapabilities     $capabilities = null,  // Gewunschte Capabilities
+    ?string                    $host         = null,  // Selenium Hub URL, e.g. 'http://127.0.0.1:4444/wd/hub'
+    ?WebDriverCapabilities     $capabilities = null,  // desired capabilities
     ?string                    $baseUri      = null,
     array                      $options      = []
 ): self
@@ -75,7 +75,7 @@ public static function createSeleniumClient(
 
 ---
 
-## Lebenszyklus
+## Lifecycle
 
 ### start
 
@@ -83,8 +83,8 @@ public static function createSeleniumClient(
 public function start(): void
 ```
 
-Startet den WebDriver-Prozess (ChromeDriver/GeckoDriver) und offnet den Browser.
-Wird automatisch aufgerufen wenn notig.
+Starts the WebDriver process (ChromeDriver/GeckoDriver) and opens the browser.
+Called automatically when needed.
 
 ### quit
 
@@ -92,8 +92,8 @@ Wird automatisch aufgerufen wenn notig.
 public function quit(bool $quitBrowserManager = true): void
 ```
 
-Beendet den Browser. Mit `$quitBrowserManager = false` wird nur die Session geschlossen,
-der ChromeDriver-Prozess lauft weiter.
+Terminates the browser. With `$quitBrowserManager = false`, only the session is closed,
+the ChromeDriver process keeps running.
 
 ### restart
 
@@ -101,7 +101,7 @@ der ChromeDriver-Prozess lauft weiter.
 public function restart(): void
 ```
 
-Beendet und startet den Browser neu. Loscht History und Cookies.
+Terminates the browser and starts it again. Clears history and cookies.
 
 ### close
 
@@ -109,7 +109,7 @@ Beendet und startet den Browser neu. Loscht History und Cookies.
 public function close(): WebDriver
 ```
 
-Schliesst den aktuellen Browser-Tab (nicht den gesamten Browser).
+Closes the current browser tab (not the entire browser).
 
 ### ping
 
@@ -117,10 +117,10 @@ Schliesst den aktuellen Browser-Tab (nicht den gesamten Browser).
 public function ping(int $timeout = 1000): bool
 ```
 
-Pruft ob die WebDriver-Verbindung noch aktiv ist.
-- `$timeout`: Timeout in Millisekunden (Default: 1000)
-- Ruckgabe: `true` wenn verbunden, `false` sonst
-- Nutzlich bei langen Tests um Session-Timeout zu erkennen
+Checks whether the WebDriver connection is still active.
+- `$timeout`: timeout in milliseconds (default: 1000)
+- Returns: `true` if connected, `false` otherwise
+- Useful in long tests to detect a session timeout
 
 ---
 
@@ -130,13 +130,13 @@ Pruft ob die WebDriver-Verbindung noch aktiv ist.
 
 ```php
 public function request(
-    string  $method,                  // HTTP-Methode: 'GET', 'POST', etc.
-    string  $uri,                     // URL oder Pfad (relativ zur baseUri)
-    array   $parameters    = [],      // Query-/POST-Parameter
-    array   $files         = [],      // Datei-Uploads
-    array   $server        = [],      // Server-Parameter / HTTP-Header
-    ?string $content       = null,    // Request-Body als String
-    bool    $changeHistory = true     // History aktualisieren
+    string  $method,                  // HTTP method: 'GET', 'POST', etc.
+    string  $uri,                     // URL or path (relative to baseUri)
+    array   $parameters    = [],      // query/POST parameters
+    array   $files         = [],      // file uploads
+    array   $server        = [],      // server parameters / HTTP headers
+    ?string $content       = null,    // request body as string
+    bool    $changeHistory = true     // update history
 ): PantherCrawler
 ```
 
@@ -146,7 +146,7 @@ public function request(
 public function get(string $url): self
 ```
 
-Kurze Variante fur GET-Requests. Gibt den Client selbst zuruck (Fluent Interface).
+Short variant for GET requests. Returns the client itself (fluent interface).
 
 ### back
 
@@ -154,7 +154,7 @@ Kurze Variante fur GET-Requests. Gibt den Client selbst zuruck (Fluent Interface
 public function back(): PantherCrawler
 ```
 
-Navigiert eine Seite zuruck (Browser-History). Gibt Crawler der neuen Seite zuruck.
+Navigates one page back (browser history). Returns the crawler of the new page.
 
 ### forward
 
@@ -162,7 +162,7 @@ Navigiert eine Seite zuruck (Browser-History). Gibt Crawler der neuen Seite zuru
 public function forward(): PantherCrawler
 ```
 
-Navigiert eine Seite vor.
+Navigates one page forward.
 
 ### reload
 
@@ -170,7 +170,7 @@ Navigiert eine Seite vor.
 public function reload(): PantherCrawler
 ```
 
-Ladt die aktuelle Seite neu. Entspricht F5.
+Reloads the current page. Equivalent to F5.
 
 ### navigate
 
@@ -178,18 +178,18 @@ Ladt die aktuelle Seite neu. Entspricht F5.
 public function navigate(): WebDriverNavigationInterface
 ```
 
-Gibt das WebDriver-`navigate()`-Objekt zuruck fur Methoden wie `navigateTo($url)`,
+Returns the WebDriver `navigate()` object for methods such as `navigateTo($url)`,
 `back()`, `forward()`, `refresh()`.
 
 ---
 
-## Warte-Methoden (alle mit Timeout/Interval)
+## Waiting Methods (all with timeout/interval)
 
-Alle waitFor-Methoden haben dieselbe Signatur-Struktur:
-- `$locator`: CSS-Selektor (z. B. `'#my-id'`, `'.my-class'`, `'button[type=submit]'`)
-- `$timeoutInSecond`: Max. Wartezeit in Sekunden (Default: `30`)
-- `$intervalInMillisecond`: Polling-Intervall in ms (Default: `250`)
-- Ruckgabe: `PantherCrawler` mit dem gefundenen Element
+All waitFor methods share the same signature structure:
+- `$locator`: CSS selector (e.g. `'#my-id'`, `'.my-class'`, `'button[type=submit]'`)
+- `$timeoutInSecond`: max. wait time in seconds (default: `30`)
+- `$intervalInMillisecond`: polling interval in ms (default: `250`)
+- Returns: `PantherCrawler` with the element that was found
 
 ### waitFor
 
@@ -201,7 +201,7 @@ public function waitFor(
 ): PantherCrawler
 ```
 
-Wartet bis mindestens ein Element mit dem Selektor im DOM vorhanden ist.
+Waits until at least one element matching the selector is present in the DOM.
 
 ### waitForStaleness
 
@@ -213,7 +213,7 @@ public function waitForStaleness(
 ): PantherCrawler
 ```
 
-Wartet bis das Element aus dem DOM entfernt wird (stale).
+Waits until the element is removed from the DOM (stale).
 
 ### waitForVisibility
 
@@ -225,7 +225,7 @@ public function waitForVisibility(
 ): PantherCrawler
 ```
 
-Wartet bis das Element sichtbar ist (nicht `display:none`/`visibility:hidden`).
+Waits until the element is visible (not `display:none`/`visibility:hidden`).
 
 ### waitForInvisibility
 
@@ -237,7 +237,7 @@ public function waitForInvisibility(
 ): PantherCrawler
 ```
 
-Wartet bis das Element unsichtbar oder aus dem DOM entfernt wird.
+Waits until the element becomes invisible or is removed from the DOM.
 
 ### waitForElementToContain
 
@@ -250,7 +250,7 @@ public function waitForElementToContain(
 ): PantherCrawler
 ```
 
-Wartet bis das Element `$text` als Textinhalt enthalt.
+Waits until the element contains `$text` as its text content.
 
 ### waitForElementToNotContain
 
@@ -263,7 +263,7 @@ public function waitForElementToNotContain(
 ): PantherCrawler
 ```
 
-Wartet bis das Element `$text` NICHT mehr enthalt.
+Waits until the element NO LONGER contains `$text`.
 
 ### waitForAttributeToContain
 
@@ -277,7 +277,7 @@ public function waitForAttributeToContain(
 ): PantherCrawler
 ```
 
-Wartet bis das Attribut `$attribute` des Elements `$text` enthalt.
+Waits until the element's `$attribute` attribute contains `$text`.
 
 ```php
 $client->waitForAttributeToContain('.price', 'data-old-price', '25');
@@ -305,7 +305,7 @@ public function waitForEnabled(
 ): PantherCrawler
 ```
 
-Wartet bis ein Button/Input-Element den `disabled`-Status verliert.
+Waits until a button/input element loses its `disabled` state.
 
 ### waitForDisabled
 
@@ -317,9 +317,9 @@ public function waitForDisabled(
 ): PantherCrawler
 ```
 
-Wartet bis ein Element `disabled` wird.
+Waits until an element becomes `disabled`.
 
-### wait (niedrigstufig)
+### wait (low-level)
 
 ```php
 public function wait(
@@ -328,7 +328,7 @@ public function wait(
 ): \Facebook\WebDriver\WebDriverWait
 ```
 
-Gibt ein `WebDriverWait`-Objekt zuruck fur benutzerdefinierte Bedingungen:
+Returns a `WebDriverWait` object for custom conditions:
 
 ```php
 use Facebook\WebDriver\WebDriverExpectedCondition;
@@ -340,27 +340,27 @@ $client->wait(10, 500)->until(
 
 ---
 
-## JavaScript-Ausfuhrung
+## JavaScript Execution
 
 ### executeScript
 
 ```php
 public function executeScript(
-    string $script,       // JS-Code als String
-    array  $arguments = [] // An JS ubergebene Argumente (als `arguments[0]`, etc.)
+    string $script,       // JS code as string
+    array  $arguments = [] // arguments passed to JS (as `arguments[0]`, etc.)
 ): mixed
 ```
 
-Synchrones JS. Ruckgabewert des JS-`return`-Statements.
+Synchronous JS. Returns the value of the JS `return` statement.
 
 ```php
 // Scroll to top
 $client->executeScript('window.scrollTo(0, 0);');
 
-// Element-Wert lesen
+// Read element value
 $value = $client->executeScript('return arguments[0].value;', [$element]);
 
-// localStorage lesen
+// Read localStorage
 $token = $client->executeScript('return localStorage.getItem("token");');
 ```
 
@@ -373,7 +373,7 @@ public function executeAsyncScript(
 ): mixed
 ```
 
-Asynchrones JS. Das Script muss `arguments[arguments.length - 1]` als Callback aufrufen.
+Asynchronous JS. The script must call `arguments[arguments.length - 1]` as the callback.
 
 ```php
 $result = $client->executeAsyncScript(
@@ -383,7 +383,7 @@ $result = $client->executeAsyncScript(
 
 ---
 
-## Zustandsabfragen
+## State Queries
 
 ### getPageSource
 
@@ -391,7 +391,7 @@ $result = $client->executeAsyncScript(
 public function getPageSource(): string
 ```
 
-Gibt den vollstandigen HTML-Quelltext der aktuellen Seite zuruck (nach JS-Rendering).
+Returns the complete HTML source of the current page (after JS rendering).
 
 ### getCurrentURL
 
@@ -399,7 +399,7 @@ Gibt den vollstandigen HTML-Quelltext der aktuellen Seite zuruck (nach JS-Render
 public function getCurrentURL(): string
 ```
 
-Gibt die aktuelle URL des Browsers zuruck (nach Redirects).
+Returns the browser's current URL (after redirects).
 
 ### getTitle
 
@@ -407,7 +407,7 @@ Gibt die aktuelle URL des Browsers zuruck (nach Redirects).
 public function getTitle(): string
 ```
 
-Gibt den `<title>`-Tag-Inhalt der aktuellen Seite zuruck.
+Returns the content of the current page's `<title>` tag.
 
 ### refreshCrawler
 
@@ -415,8 +415,8 @@ Gibt den `<title>`-Tag-Inhalt der aktuellen Seite zuruck.
 public function refreshCrawler(): PantherCrawler
 ```
 
-Aktualisiert den Crawler auf Basis des aktuellen DOM-Zustands (nach JS-Anderungen).
-Gibt neuen `PantherCrawler` zuruck.
+Refreshes the crawler based on the current DOM state (after JS changes).
+Returns a new `PantherCrawler`.
 
 ### getCrawler
 
@@ -424,7 +424,7 @@ Gibt neuen `PantherCrawler` zuruck.
 public function getCrawler(): PantherCrawler
 ```
 
-Gibt den zuletzt erzeugten Crawler zuruck (ohne DOM-Refresh).
+Returns the most recently created crawler (without a DOM refresh).
 
 ### takeScreenshot
 
@@ -432,9 +432,9 @@ Gibt den zuletzt erzeugten Crawler zuruck (ohne DOM-Refresh).
 public function takeScreenshot(?string $saveAs = null): string
 ```
 
-Erstellt einen Screenshot des Browserfensters.
-- `$saveAs`: Dateipfad zum Speichern (PNG). Wenn `null`, wird kein File gespeichert.
-- Ruckgabe: PNG-Daten als Base64-kodierter String.
+Creates a screenshot of the browser window.
+- `$saveAs`: file path to save to (PNG). If `null`, no file is saved.
+- Returns: PNG data as a Base64-encoded string.
 
 ```php
 $client->takeScreenshot('/tmp/before-click.png');
@@ -444,7 +444,7 @@ $client->takeScreenshot('/tmp/after-click.png');
 
 ---
 
-## WebDriver-Zugriff
+## WebDriver Access
 
 ### getWebDriver
 
@@ -452,8 +452,8 @@ $client->takeScreenshot('/tmp/after-click.png');
 public function getWebDriver(): \Facebook\WebDriver\WebDriver
 ```
 
-Gibt die rohe `WebDriver`-Instanz zuruck fur alle nicht direkt in Panther exponierten
-WebDriver-Methoden.
+Returns the raw `WebDriver` instance for all WebDriver methods that are not exposed
+directly in Panther.
 
 ```php
 $driver = $client->getWebDriver();
@@ -467,7 +467,7 @@ $logs = $driver->manage()->getLog('browser');
 public function manage(): \Facebook\WebDriver\WebDriverOptions
 ```
 
-Zugriff auf Browser-Management (Cookies, Logs, Window, Timeouts):
+Access to browser management (cookies, logs, window, timeouts):
 
 ```php
 $options = $client->manage();
@@ -487,13 +487,13 @@ $options->deleteAllCookies();
 public function switchTo(): \Facebook\WebDriver\WebDriverTargetLocator
 ```
 
-Wechselt den Kontext (Frame, Window, Alert):
+Switches the context (frame, window, alert):
 
 ```php
-$client->switchTo()->frame(0);          // in Frame wechseln
-$client->switchTo()->defaultContent();  // zuruck zum Hauptdokument
-$client->switchTo()->alert()->accept(); // Alert bestatigen
-$client->switchTo()->window($handle);   // anderen Tab/Window
+$client->switchTo()->frame(0);          // switch into frame
+$client->switchTo()->defaultContent();  // back to the main document
+$client->switchTo()->alert()->accept(); // confirm alert
+$client->switchTo()->window($handle);   // another tab/window
 ```
 
 ### navigate
@@ -511,7 +511,7 @@ $client->navigate()->refresh();
 
 ---
 
-## Eingabegerate
+## Input Devices
 
 ### getMouse
 
@@ -519,11 +519,11 @@ $client->navigate()->refresh();
 public function getMouse(): \Symfony\Component\Panther\WebDriver\WebDriverMouse
 ```
 
-Gibt Panthers eigenes `WebDriverMouse`-Objekt zuruck (wrappt `BaseWebDriverMouse` und fugt
-CSS-Selektor-Methoden wie `clickTo`, `doubleClickTo`, `contextClickTo`, `mouseMoveTo`,
-`mouseDownTo`, `mouseUpTo` hinzu). Siehe `panther-interactions` Skill fur Details.
+Returns Panther's own `WebDriverMouse` object (wraps `BaseWebDriverMouse` and adds
+CSS selector methods such as `clickTo`, `doubleClickTo`, `contextClickTo`, `mouseMoveTo`,
+`mouseDownTo`, `mouseUpTo`). See the `panther-interactions` skill for details.
 
-Quelle: `src/Client.php:getMouse()` + `src/WebDriver/WebDriverMouse.php`
+Source: `src/Client.php:getMouse()` + `src/WebDriver/WebDriverMouse.php`
 
 ### getKeyboard
 
@@ -531,11 +531,11 @@ Quelle: `src/Client.php:getMouse()` + `src/WebDriver/WebDriverMouse.php`
 public function getKeyboard(): \Facebook\WebDriver\WebDriverKeyboard
 ```
 
-Gibt das `WebDriverKeyboard`-Objekt zuruck. Siehe `panther-interactions` Skill fur Details.
+Returns the `WebDriverKeyboard` object. See the `panther-interactions` skill for details.
 
 ---
 
-## Formulare und Links
+## Forms and Links
 
 ### click
 
@@ -546,16 +546,16 @@ public function click(
 ): \Symfony\Component\DomCrawler\Crawler
 ```
 
-Klickt auf ein `Link`-Objekt (aus `$crawler->selectLink(...)->link()`).
+Clicks a `Link` object (from `$crawler->selectLink(...)->link()`).
 
 ### clickLink
 
 ```php
-// Vererbt von BrowserKit AbstractBrowser
+// inherited from BrowserKit AbstractBrowser
 public function clickLink(string $linkText): Crawler
 ```
 
-Klickt auf einen Link anhand seines Textes.
+Clicks a link by its text.
 
 ```php
 $client->clickLink('Zur Startseite');
@@ -574,7 +574,7 @@ public function submit(
 ### submitForm
 
 ```php
-// Vererbt von BrowserKit AbstractBrowser
+// inherited from BrowserKit AbstractBrowser
 public function submitForm(
     string $buttonText,
     array  $fieldValues = [],
@@ -592,7 +592,7 @@ $client->submitForm('Anmelden', [
 
 ---
 
-## Fenster-Management
+## Window Management
 
 ### getWindowHandle
 
@@ -600,7 +600,7 @@ $client->submitForm('Anmelden', [
 public function getWindowHandle(): string
 ```
 
-Gibt den Handle des aktuellen Browser-Fensters/Tabs zuruck.
+Returns the handle of the current browser window/tab.
 
 ### getWindowHandles
 
@@ -608,11 +608,11 @@ Gibt den Handle des aktuellen Browser-Fensters/Tabs zuruck.
 public function getWindowHandles(): array
 ```
 
-Gibt alle offenen Fenster/Tab-Handles zuruck.
+Returns all open window/tab handles.
 
 ---
 
-## Element-Suche (niedrigstufig)
+## Element Lookup (low-level)
 
 ### findElement
 
@@ -643,9 +643,9 @@ $items = $client->findElements(WebDriverBy::cssSelector('li'));
 public function getCookieJar(): \Symfony\Component\Panther\Cookie\CookieJar
 ```
 
-Panthers eigene `CookieJar`-Klasse (wrappt WebDriver-Cookies). Methoden:
+Panther's own `CookieJar` class (wraps WebDriver cookies). Methods:
 
-Quelle: `src/Client.php:getCookieJar()` + `src/Cookie/CookieJar.php`
+Source: `src/Client.php:getCookieJar()` + `src/Cookie/CookieJar.php`
 
 ```php
 $jar = $client->getCookieJar();
@@ -660,7 +660,7 @@ $jar->clear(): void
 
 ---
 
-## Vollstandiges Beispiel
+## Complete Example
 
 ```php
 use Symfony\Component\Panther\Client;
@@ -674,19 +674,19 @@ class CheckoutTest extends PantherTestCase
             'port' => 9080,
         ]);
 
-        // Seite laden
+        // Load page
         $client->request('GET', '/shop/cart');
 
-        // Auf dynamisch geladenes Element warten
+        // Wait for a dynamically loaded element
         $crawler = $client->waitFor('.cart-items', 10, 500);
 
-        // Screenshot vor Kauf
+        // Screenshot before purchase
         $client->takeScreenshot('/tmp/cart-before.png');
 
-        // Formular ausfüllen und abschicken
+        // Fill in the form and submit it
         $client->submitForm('Zur Kasse', ['coupon' => 'SAVE10']);
 
-        // Warten bis Weiterleitung abgeschlossen
+        // Wait until the redirect has completed
         $client->waitFor('.payment-form');
 
         // Assertions
@@ -698,12 +698,12 @@ class CheckoutTest extends PantherTestCase
         $token = $client->executeScript('return window.__CSRF_TOKEN__;');
         $this->assertNotEmpty($token);
 
-        // Browser-Logs prufen
+        // Check browser logs
         $logs = $client->getWebDriver()->manage()->getLog('browser');
         $errors = array_filter($logs, fn($log) => $log['level'] === 'SEVERE');
         $this->assertEmpty($errors, 'Keine JS-Fehler erwartet');
 
-        // Verbindung prufen
+        // Check connection
         $this->assertTrue($client->ping());
 
         $client->quit();
@@ -713,7 +713,7 @@ class CheckoutTest extends PantherTestCase
 
 ---
 
-Quellen:
+Sources:
 - https://raw.githubusercontent.com/symfony/panther/main/src/Client.php
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/php-webdriver/php-webdriver

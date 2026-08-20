@@ -9,7 +9,7 @@ shadcn-compatible registry.
 
 ## Fields
 
-See [schema-fields.md](`REGISTRY-JSON-SCHEMA-FIELDS.md`) for a full per-field
+See [REGISTRY-JSON-SCHEMA-FIELDS.md](REGISTRY-JSON-SCHEMA-FIELDS.md) for a full per-field
 reference with examples.
 
 ## Minimal example

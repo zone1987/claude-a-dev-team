@@ -1,5 +1,5 @@
 # contao-models
 
-Vollständige Referenz: `MODELS-CONTAO-MODELS.md`
+Complete reference: `MODELS-CONTAO-MODELS.md`
 
-> Hinweis: Das Skill `adt-contao-dal` enthält dieselbe Referenz und ist der ältere Einstiegspunkt.
+> Note: The `adt-contao-dal` skill contains the same reference and is the older entry point.

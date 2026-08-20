@@ -9,7 +9,7 @@ Skill for the shadcn-vue Collapsible component built on reka-ui.
 
 ## References
 
-- [Installation](`COLLAPSIBLE-INSTALLATION.md`) — CLI and manual setup
-- [Source](`COLLAPSIBLE-SOURCE.md`) — Complete component source (Collapsible.vue, CollapsibleContent.vue, CollapsibleTrigger.vue, index.ts)
-- [API](`COLLAPSIBLE-API.md`) — Props, emits, v-model
-- [Examples](`COLLAPSIBLE-EXAMPLES.md`) — 2 usage demos
+- [COLLAPSIBLE-INSTALLATION.md](COLLAPSIBLE-INSTALLATION.md) — CLI and manual setup
+- [COLLAPSIBLE-SOURCE.md](COLLAPSIBLE-SOURCE.md) — Complete component source (Collapsible.vue, CollapsibleContent.vue, CollapsibleTrigger.vue, index.ts)
+- [COLLAPSIBLE-API.md](COLLAPSIBLE-API.md) — Props, emits, v-model
+- [COLLAPSIBLE-EXAMPLES.md](COLLAPSIBLE-EXAMPLES.md) — 2 usage demos

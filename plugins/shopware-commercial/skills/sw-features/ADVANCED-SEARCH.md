@@ -4,7 +4,7 @@ Entwickler-Wissen zu Shopware Advanced Search (Commercial Plugin, Evolve/Beyond 
 
 ## Referenzen
 
-- [Advanced Search Vollreferenz](`ADVANCED-SEARCH-DETAIL.md`)
+- [ADVANCED-SEARCH-DETAIL.md](ADVANCED-SEARCH-DETAIL.md)
 
 ## Querverweise
 

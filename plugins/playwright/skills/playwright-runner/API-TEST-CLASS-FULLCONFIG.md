@@ -212,9 +212,9 @@ export default async function globalSetup(config: FullConfig) {
 | Properties | 24 |
 | Methods | 0 |
 
-**Fazit:** `FullConfig` ist die aufgeloeste, read-only Laufzeit-Variante von `TestConfig`.
-Besonders nuetzlich sind `rootDir` (fuer pfad-relative Operationen in Reportern), `version`
-(fuer Kompatibilitaetspruefungen) und `projects` (fuer den Zugriff auf alle Projekt-Configs).
+**Summary:** `FullConfig` is the resolved, read-only runtime variant of `TestConfig`.
+Particularly useful are `rootDir` (for path-relative operations in reporters), `version`
+(for compatibility checks) and `projects` (for access to all project configs).
 
 ---
 

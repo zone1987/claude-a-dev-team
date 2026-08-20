@@ -1,12 +1,12 @@
-# Shopware 6 — Admin-State (Vuex, Legacy)
+# Shopware 6 — Admin state (Vuex, legacy)
 
-Vuex ist **deprecated** (durch Pinia ersetzt). Relevant nur noch für bestehende Core-Stores, die über
-`Shopware.State` erreichbar sind.
+Vuex is **deprecated** (replaced by Pinia). Relevant only for existing core stores that are
+reachable via `Shopware.State`.
 
 ```js
-const context = Shopware.State.get('context');     // Lesen eines Core-Vuex-Stores
+const context = Shopware.State.get('context');     // Reading a core Vuex store
 ```
 
-Für **neuen** Code Pinia nutzen (`sw-admin-pinia-store`). Bestehende eigene Vuex-Stores nach `Shopware.Store`
-migrieren: `state` als Funktion, Mutations → direkt in Actions, `mapState`/`mapGetters` → `Shopware.Store.get`.
-Die 6.6→6.7-Migration ist im Plugin `shopware-migration` beschrieben.
+For **new** code use Pinia (`sw-admin-pinia-store`). Migrate your own existing Vuex stores to `Shopware.Store`:
+`state` as a function, mutations → directly into actions, `mapState`/`mapGetters` → `Shopware.Store.get`.
+The 6.6→6.7 migration is described in the `shopware-migration` plugin.

@@ -2,30 +2,30 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Workflow (4 Schritte)](#workflow-4-schritte)
-- [ResponseContext erstellen (Page Controller)](#responsecontext-erstellen-page-controller)
-- [Core-Fähigkeiten](#core-fähigkeiten)
-- [Geplante Erweiterungen](#geplante-erweiterungen)
+- [Overview](#overview)
+- [Workflow (4 steps)](#workflow-4-steps)
+- [Creating a ResponseContext (page controller)](#creating-a-responsecontext-page-controller)
+- [Core capabilities](#core-capabilities)
+- [Planned extensions](#planned-extensions)
 
-## Überblick
+## Overview
 
-Der Response Context löst ein fundamentales Problem von CMS vs. Standard-Symfony: In Symfony verwalten Controller das komplette Response-Objekt. In Contao müssen Fragmente (Frontend-Module, News-Reader etc.) Seitenelemente modifizieren ohne den Gesamtkontext zu kennen.
+The response context solves a fundamental problem of a CMS versus standard Symfony: in Symfony, controllers manage the entire response object. In Contao, fragments (frontend modules, news readers etc.) have to modify page elements without knowing the overall context.
 
-**Kernidee:** Fragmente können über den Response Context Fähigkeiten wie Seitentitel modifizieren – ohne direkte Kenntnis ihrer Ausführungsumgebung (HTML-Seite, ESI-Fragment, AJAX, E-Mail).
-
----
-
-## Workflow (4 Schritte)
-
-1. Page Controller ermittelt Kontext anhand der URL
-2. Controller definiert `ResponseContext` mit Fähigkeiten und rendert Fragmente
-3. Fragmente greifen auf `ResponseContext` zu und modifizieren Fähigkeiten
-4. Page Controller wendet Änderungen an und finalisiert die Response
+**Core idea:** through the response context, fragments can modify capabilities such as the page title – without direct knowledge of their execution environment (HTML page, ESI fragment, AJAX, e-mail).
 
 ---
 
-## ResponseContext erstellen (Page Controller)
+## Workflow (4 steps)
+
+1. The page controller determines the context based on the URL
+2. The controller defines a `ResponseContext` with capabilities and renders fragments
+3. Fragments access the `ResponseContext` and modify capabilities
+4. The page controller applies the changes and finalizes the response
+
+---
+
+## Creating a ResponseContext (page controller)
 
 ```php
 namespace App\Controller\Page;
@@ -46,7 +46,7 @@ class ExamplePageController
         $responseContext->add(new HtmlHeadBag());
         $this->responseContextAccessor->setResponseContext($responseContext);
 
-        // Fragmente rendern …
+        // Render fragments …
 
         $myHtmlContent = sprintf(
             '<html><head><title>%s</title></head><body>Content</body></html>',
@@ -60,28 +60,28 @@ class ExamplePageController
 }
 ```
 
-> **Tipp:** `addLazy()` statt `add()` verwenden um ungenutzte Services nicht zu instanziieren.
+> **Tip:** use `addLazy()` instead of `add()` to avoid instantiating unused services.
 
 ---
 
-## Core-Fähigkeiten
+## Core capabilities
 
 ### HtmlHeadBag
 
-Verwaltet dynamischen `<head>`-Bereich:
+Manages the dynamic `<head>` area:
 
-| Methode | Zweck |
+| Method | Purpose |
 |---------|-------|
-| `setTitle($title)` | Seitentitel überschreiben |
-| `setMetaDescription($desc)` | Meta-Description setzen |
-| `setMetaRobots($robots)` | Robot-Direktiven konfigurieren |
-| `setCanonicalUri($uri)` | Kanonische URL setzen |
-| `setKeepParamsForCanonical($params)` | Query-Parameter für Canonical überschreiben |
-| `addKeepParamsForCanonical($params)` | Parameter zum Canonical hinzufügen |
+| `setTitle($title)` | Override the page title |
+| `setMetaDescription($desc)` | Set the meta description |
+| `setMetaRobots($robots)` | Configure robot directives |
+| `setCanonicalUri($uri)` | Set the canonical URL |
+| `setKeepParamsForCanonical($params)` | Override query parameters for the canonical URL |
+| `addKeepParamsForCanonical($params)` | Add parameters to the canonical URL |
 
 ### JsonLdManager
 
-Verwaltet JSON-LD Schema-Daten:
+Manages JSON-LD schema data:
 
 ```php
 use Contao\CoreBundle\Routing\ResponseContext\JsonLd\JsonLdManager;
@@ -97,15 +97,15 @@ $schemaManager->collectFinalScriptFromGraphs();
 
 ### CspHandler
 
-Modifiziert Content Security Policies für den aktuellen Request wenn CSP aktiviert ist.
-Vollständige Dokumentation: Contao-CSP-Skill (`contao-csp`).
+Modifies content security policies for the current request when CSP is enabled.
+Complete documentation: the Contao CSP skill (`contao-csp`).
 
 ---
 
-## Geplante Erweiterungen
+## Planned extensions
 
-Zukünftige Fähigkeiten: `<script>`-Tags, `<link>`-Tags, `<meta>`-Tags, erweitertes HTML-Head-Management.
+Future capabilities: `<script>` tags, `<link>` tags, `<meta>` tags, extended HTML head management.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/response-context/*
+*Source: https://docs.contao.org/5.x/dev/framework/response-context/*

@@ -1,6 +1,6 @@
-# Contao 5.x — Dateiverwaltung
+# Contao 5.x — Dateiverwaltung (File Management)
 
-Quellen:
+Sources:
 - https://docs.contao.org/5.x/manual/de/dateiverwaltung/
 - https://docs.contao.org/5.x/manual/de/dateiverwaltung/dateien-und-ordner-verwalten/
 - https://docs.contao.org/5.x/manual/de/dateiverwaltung/metadaten/
@@ -10,94 +10,94 @@ Quellen:
 
 ## Contents
 
-- [Überblick](#überblick)
-- [1. Dateien und Ordner verwalten](#1-dateien-und-ordner-verwalten)
-- [2. Metadaten](#2-metadaten)
-- [3. Downloads kontrollieren](#3-downloads-kontrollieren)
-- [Praxis-Tipps](#praxis-tipps)
+- [Overview](#overview)
+- [1. Managing files and folders](#1-managing-files-and-folders)
+- [2. Metadata](#2-metadata)
+- [3. Controlling downloads](#3-controlling-downloads)
+- [Practical tips](#practical-tips)
 
-## Überblick
+## Overview
 
-Mit der Dateiverwaltung (auch "Dateimanager") kannst du Dateien und Ordner auf dem Server verwalten. Alle Benutzerdateien werden standardmäßig im Verzeichnis `files/` gespeichert.
+With the Dateiverwaltung (File Management, also "file manager") you can manage files and folders on the server. All user files are stored in the `files/` directory by default.
 
-Contao speichert alle Dateiinformationen in der Datenbank und vergibt jedem Eintrag eine eindeutige **UUID** (Universally Unique Identifier). Diese ID ist systemweit einzigartig und ermöglicht die Zuordnung von Dateien in Inhaltselementen auch nach Umbenennung oder Verschiebung.
+Contao stores all file information in the database and assigns every entry a unique **UUID** (universally unique identifier). This ID is unique system-wide and allows files to be referenced in content elements even after being renamed or moved.
 
-Die Dateiverwaltung stellt die Verzeichnisstruktur als **hierarchischen Baum** dar. Ordner können per Plus-/Minus-Icon auf- und zugeklappt werden.
+The Dateiverwaltung presents the directory structure as a **hierarchical tree**. Folders can be expanded and collapsed via the plus/minus icon.
 
 ---
 
-## 1. Dateien und Ordner verwalten
+## 1. Managing files and folders
 
-### Navigationssymbole
+### Navigation icons
 
-| Icon | Funktion | Beschreibung |
+| Icon | Function | Description |
 |------|----------|-------------|
-| Stift | Bearbeiten | Umbenennen + Metadaten verwalten |
-| Kopieren | Duplizieren | Datei oder Ordner kopieren |
-| Pfeil | Verschieben | An andere Position verlagern |
-| Mülleimer | Löschen | Dauerhaft entfernen |
-| i | Informationen | Detailansicht (UUID, Größe, Pfad) |
-| Pfeil hoch | Hochladen | Dateien in diesen Ordner laden |
-| Bleistift | Datei bearbeiten | Texteditor für kompatible Dateitypen |
-| Griff | Drag & Drop | Intuitive Verschiebung per Maus |
+| Pen | Edit | Rename + manage metadata |
+| Copy | Duplicate | Copy a file or folder |
+| Arrow | Move | Relocate to another position |
+| Bin | Delete | Remove permanently |
+| i | Information | Detail view (UUID, size, path) |
+| Arrow up | Upload | Load files into this folder |
+| Pencil | Edit file | Text editor for compatible file types |
+| Handle | Drag & drop | Intuitive moving with the mouse |
 
-### Neue Ordner erstellen
+### Creating new folders
 
-Über die Schaltfläche **„Neuer Ordner"** mit zwei Optionen:
-- **Öffentlich**: Ordner über HTTP erreichbar (Symlink in `web/files/`)
-- **Nicht synchronisieren**: Verhindert Datenbankabgleich
+Via the **"Neuer Ordner"** (New folder) button with two options:
+- **Öffentlich** (Public): folder reachable via HTTP (symlink in `web/files/`)
+- **Nicht synchronisieren** (Do not synchronise): prevents database reconciliation
 
-#### Verschachtelte Ordner erstellen
+#### Creating nested folders
 
-Durch Eingabe eines Pfades wie `OrdnerA/OrdnerB` können direkt Unterordner erzeugt werden.
+By entering a path such as `OrdnerA/OrdnerB`, subfolders can be created directly.
 
-**Wichtig**: Bei verschachtelten Ordnern mit öffentlichem Zugang erhält lediglich der **letzte** (innerste) Ordner den öffentlichen Status.
+**Important**: with nested folders that have public access, only the **last** (innermost) folder receives the public status.
 
-### Dateien hochladen
+### Uploading files
 
-**Standardlimits:**
-- Dateigröße: bis 2 MB
-- Bildgröße: bis 3000 × 3000 Pixel
-- Bilder werden bei Überschreitung automatisch verkleinert
+**Default limits:**
+- File size: up to 2 MB
+- Image size: up to 3000 × 3000 pixels
+- Images are automatically scaled down when the limit is exceeded
 
-**DropZone**: In den Systemeinstellungen aktivierbar für komfortables Drag & Drop beim Upload.
+**DropZone**: can be enabled in the system settings for convenient drag & drop during upload.
 
-**Gleichnamige Datei hochladen**: Die bestehende Datei wird aktualisiert, die **UUID bleibt erhalten** — alle Referenzen in Inhaltselementen bleiben gültig.
+**Uploading a file with the same name**: the existing file is updated, the **UUID is retained** — all references in content elements remain valid.
 
-### FTP-Upload und Synchronisation
+### FTP upload and synchronisation
 
-Bei FTP-Uploads müssen Dateinamen **ASCII-konform** sein. Sonderzeichen können zu Problemen führen.
+For FTP uploads the file names must be **ASCII-compliant**. Special characters can cause problems.
 
-| Problematisch | Optimal |
+| Problematic | Optimal |
 |--------------|---------|
 | `Wies'n-Festzug München.jpg` | `Wiesn-Festzug-Muenchen.jpg` |
 | `Foto 2024 (1).png` | `foto-2024-1.png` |
 
-Nach einem FTP-Upload muss die Datenbank synchronisiert werden:
-- Über den **Synchronisierungs-Button** in der Dateiverwaltung, oder
+After an FTP upload the database must be synchronised:
+- Via the **synchronisation button** in the Dateiverwaltung, or
 - Via CLI: `vendor/bin/contao-console contao:automator generateSymlinks`
 
 ---
 
-## 2. Metadaten
+## 2. Metadata
 
-Metadaten können für **alle Dateitypen** erfasst werden. Sie werden primär in Bildergalerien und Download-Elementen genutzt.
+Metadata can be recorded for **all file types**. It is primarily used in image galleries and download elements.
 
-### Unterstützte Metadaten
+### Supported metadata
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| **Titel** | Dateititel (z.B. für Bildbeschriftungen) |
-| **Alternativer Text** | Alt-Attribut für Bilder (Barrierefreiheit) |
-| **Link** | Verlinkung auf externe URL oder Seite |
-| **Bildunterschrift** | Caption unter Bildern |
-| **Lizenz-URL** | Lizenzhinweis (als JSON-LD Schema ausgegeben) |
+| **Titel** (Title) | File title (e.g. for image captions) |
+| **Alternativer Text** (Alternative text) | Alt attribute for images (accessibility) |
+| **Link** | Link to an external URL or page |
+| **Bildunterschrift** (Image caption) | Caption below images |
+| **Lizenz-URL** (Licence URL) | Licence note (output as a JSON-LD schema) |
 
-### Mehrsprachige Metadaten
+### Multilingual metadata
 
-In mehrsprachigen Projekten können für jede Sprache **separate Metadaten** angelegt werden. Contao wählt automatisch die passende Sprache für den Besucher.
+In multilingual projects, **separate metadata** can be created for each language. Contao automatically chooses the appropriate language for the visitor.
 
-### HTML-Ausgabe-Beispiel (Bild-Inhaltselement)
+### HTML output example (image content element)
 
 ```html
 <div class="ce_image first block">
@@ -110,9 +110,9 @@ In mehrsprachigen Projekten können für jede Sprache **separate Metadaten** ang
 </div>
 ```
 
-### Lizenz-URL (JSON-LD)
+### Licence URL (JSON-LD)
 
-Die Lizenz-URL wird als `schema.org/ImageObject` im JSON-LD-Format ausgegeben:
+The Lizenz-URL is output as `schema.org/ImageObject` in JSON-LD format:
 
 ```json
 {
@@ -124,29 +124,29 @@ Die Lizenz-URL wird als `schema.org/ImageObject` im JSON-LD-Format ausgegeben:
 
 ---
 
-## 3. Downloads kontrollieren
+## 3. Controlling downloads
 
-### Verzeichnisschutz
+### Directory protection
 
-Neue Ordner sind standardmäßig **öffentlich** (über HTTP erreichbar). Beim Anlegen die Option **„Öffentlich"** deaktivieren, um einen Ordner zu schützen.
+New folders are **public** by default (reachable via HTTP). Deactivate the **"Öffentlich"** option when creating a folder in order to protect it.
 
-**Wichtig**: Wenn ein übergeordneter Ordner öffentlich ist, können darin enthaltene Unterordner und Dateien **nicht** separat geschützt werden.
+**Important**: if a parent folder is public, the subfolders and files it contains **cannot** be protected separately.
 
-#### Technischer Hintergrund
+#### Technical background
 
-Öffentliche Ordner werden als **Symlinks** unter `web/files/` erzeugt. Ohne Symlink sind Dateien für Browser nicht erreichbar.
+Public folders are created as **symlinks** under `web/files/`. Without a symlink, files are not reachable for browsers.
 
-Nicht-öffentliche Ordner sind per Browser **nicht direkt zugänglich**, aber über Contao-Inhaltselemente (Download, Downloads) weiterhin auslieferbar.
+Non-public folders are **not directly accessible** via a browser, but can still be delivered through Contao content elements (Download, Downloads).
 
-### Download-Element schützen
+### Protecting a download element
 
-Der Zugriff auf Download-Elemente wird über **geschützte Seiten** oder **geschützte Inhaltselemente** beschränkt:
+Access to download elements is restricted via **protected pages** or **protected content elements**:
 
-1. Schützendes Inhaltselement / Seite auf bestimmte Mitgliedergruppen beschränken
-2. Downloads sind ausschließlich über diese Inhaltselemente zugänglich
-3. Nur autorisierte Mitglieder können die Dateien herunterladen
+1. Restrict the protecting content element / page to certain member groups
+2. Downloads are accessible exclusively via these content elements
+3. Only authorised members can download the files
 
-### HTML-Ausgabe des Download-Elements
+### HTML output of the download element
 
 ```html
 <ul class="download_list">
@@ -158,26 +158,26 @@ Der Zugriff auf Download-Elemente wird über **geschützte Seiten** oder **gesch
 </ul>
 ```
 
-Der Pfad `?file=files/…` wird von Contao verarbeitet und gibt die Datei nur bei entsprechenden Rechten aus.
+The path `?file=files/…` is processed by Contao and outputs the file only when the appropriate rights are present.
 
 ---
 
-## Praxis-Tipps
+## Practical tips
 
-### Datei-UUID finden
+### Finding a file UUID
 
-Im Informations-Dialog einer Datei (i-Icon) wird die UUID angezeigt. Diese kann in Entwicklungsszenarien für direkte Datenbankabfragen genutzt werden.
+The UUID is shown in the information dialog of a file (i icon). It can be used in development scenarios for direct database queries.
 
-### Bild nicht im Frontend sichtbar?
+### Image not visible in the frontend?
 
-Häufige Ursache: Der Ordner ist **nicht öffentlich** markiert. Lösung:
-1. Ordner bearbeiten (Stift-Icon)
-2. Option „Öffentlich" aktivieren
-3. Symlink wird automatisch erstellt
+Common cause: the folder is **not** marked as public. Solution:
+1. Edit the folder (pen icon)
+2. Enable the "Öffentlich" option
+3. The symlink is created automatically
 
-### Suche ausblenden
+### Hiding the search
 
-Um den Suchbereich in der Dateiverwaltung auszublenden, kann ein DCA-Eintrag verwendet werden:
+To hide the search area in the Dateiverwaltung, a DCA entry can be used:
 
 ```php
 // contao/dca/tl_files.php

@@ -1,3 +1,3 @@
 # contao-profiler
 
-Vollständige Referenz: `PROFILER-CONTAO-PROFILER.md`
+Complete reference: `PROFILER-CONTAO-PROFILER.md`

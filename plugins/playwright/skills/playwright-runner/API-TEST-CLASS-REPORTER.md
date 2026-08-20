@@ -261,10 +261,10 @@ class SlackReporter implements Reporter {
 | Utility methods | 1 (`printsToStdio`) |
 | Total | 11 |
 
-**Fazit:** Die Reporter-Schnittstelle deckt den vollstaendigen Lebenszyklus einer Testausfuehrung
-ab. Fuer die meisten Integrationen genuegen `onBegin`, `onTestEnd` und `onEnd`. `onStepBegin`/
-`onStepEnd` ermoeglicht granulare Step-Level-Metriken. `onExit` ist der richtige Ort fuer
-asynchrone Upload-Operationen nach Abschluss aller Berichte.
+**Summary:** The reporter interface covers the complete lifecycle of a test run.
+For most integrations `onBegin`, `onTestEnd` and `onEnd` are sufficient. `onStepBegin`/
+`onStepEnd` enables granular step-level metrics. `onExit` is the right place for
+asynchronous upload operations after all reports are complete.
 
 ---
 

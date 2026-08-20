@@ -1,26 +1,26 @@
 # Contao Filesystem (5.x)
 
-> **Experimentell:** Die neuen Filesystem-Klassen sind mit `@experimental` markiert und nicht durch Contaos BC-Promise abgedeckt.
-> Legacy-Klassen (`\Contao\File`, `\Contao\Folder`, `\Contao\FilesModel`, `\Contao\Dbafs`) funktionieren weiterhin.
+> **Experimental:** The new filesystem classes are marked `@experimental` and are not covered by Contao's BC promise.
+> Legacy classes (`\Contao\File`, `\Contao\Folder`, `\Contao\FilesModel`, `\Contao\Dbafs`) continue to work.
 
 ---
 
 ## Contents
 
-- [Architektur-Überblick](#architektur-überblick)
+- [Architecture overview](#architecture-overview)
 - [VirtualFilesystem](#virtualfilesystem)
-- [Filesystem-Konfiguration](#filesystem-konfiguration)
+- [Filesystem configuration](#filesystem-configuration)
 - [DBAFS (Database-Assisted Filesystem)](#dbafs-database-assisted-filesystem)
 
-## Architektur-Überblick
+## Architecture overview
 
-| Komponente | Zweck | Level |
+| Component | Purpose | Level |
 |-----------|-------|-------|
-| `VirtualFilesystem` | Primärer Gateway für Lese-/Schreiboperationen | Hoch |
-| `MountManager` | Verwaltet mehrere Adapter nach Mount-Pfad | Niedrig |
-| `DbafsManager` | Verwaltet Metadaten und UUID-basierten Ressourcenzugriff | Niedrig |
+| `VirtualFilesystem` | Primary gateway for read/write operations | High |
+| `MountManager` | Manages multiple adapters by mount path | Low |
+| `DbafsManager` | Manages metadata and UUID-based resource access | Low |
 
-**Basis:** Flysystem (`League\Flysystem`) – unterstützt lokale FS, Dropbox, AWS S3, FTP u.a.
+**Foundation:** Flysystem (`League\Flysystem`) – supports the local FS, Dropbox, AWS S3, FTP and others.
 
 ---
 
@@ -29,7 +29,7 @@
 ### Autowiring
 
 ```php
-// Dateiname des VirtualFilesystem: "files" → Autowire-Name: "filesStorage"
+// File name of the VirtualFilesystem: "files" → autowire name: "filesStorage"
 class Example
 {
     public function __construct(
@@ -38,9 +38,9 @@ class Example
 }
 ```
 
-Alternativ explizit: `contao.filesystem.virtual.files`
+Alternatively, explicitly: `contao.filesystem.virtual.files`
 
-### UUIDs als Pfad
+### UUIDs as a path
 
 ```php
 use Symfony\Component\Uid\Uuid;
@@ -49,7 +49,7 @@ $filesStorage->read('my/file.txt');
 $filesStorage->read(new Uuid('94cc007c-8cc0-11ec-a8a3-0242ac120002'));
 ```
 
-### Operations-Referenz
+### Operations reference
 
 #### Tests
 ```php
@@ -58,7 +58,7 @@ directoryExists(string|Uuid $path, int $accessFlags = 0): bool
 has(string|Uuid $path, int $accessFlags = 0): bool
 ```
 
-#### Lesen / Schreiben / Löschen
+#### Read / write / delete
 ```php
 read(string|Uuid $path): string
 readStream(string|Uuid $path): resource
@@ -68,20 +68,20 @@ delete(string|Uuid $path): void
 deleteDirectory(string|Uuid $path): void
 ```
 
-#### Erstellen / Kopieren / Verschieben
+#### Create / copy / move
 ```php
 createDirectory(string $path, array $options = []): void
 copy(string|Uuid $source, string $destination, array $options = []): void
 move(string|Uuid $source, string $destination, array $options = []): void
 ```
 
-#### Auflisten
+#### Listing
 ```php
 listContents(string|Uuid $path, bool $deep = false, int $accessFlags = 0): FilesystemItemIterator
 ```
-Liefert Generator mit `FilesystemItem`-Objekten – filterbar via `.files()` / `.directories()`.
+Returns a generator of `FilesystemItem` objects – filterable via `.files()` / `.directories()`.
 
-#### Metadaten
+#### Metadata
 ```php
 getLastModified(string|Uuid $path, int $accessFlags = 0): int
 getFileSize(string|Uuid $path, int $accessFlags = 0): int
@@ -90,20 +90,20 @@ getExtraMetadata(string|Uuid $path, int $accessFlags = 0): array
 setExtraMetadata(string|Uuid $path, array $metadata): void
 ```
 
-### Access-Flags
+### Access flags
 
-| Flag | Wirkung |
+| Flag | Effect |
 |------|---------|
-| `VirtualFilesystemInterface::BYPASS_DBAFS` | Direkt aus MountManager lesen |
-| `VirtualFilesystemInterface::FORCE_SYNC` | DBAFS-Synchronisation erzwingen |
+| `VirtualFilesystemInterface::BYPASS_DBAFS` | Read directly from the MountManager |
+| `VirtualFilesystemInterface::FORCE_SYNC` | Force DBAFS synchronization |
 
-Kombination: `FORCE_SYNC|BYPASS_DBAFS`
+Combination: `FORCE_SYNC|BYPASS_DBAFS`
 
-### Exception-Handling
+### Exception handling
 
-Alle Operationen werfen `VirtualFilesystemException` bei Fehler. UUID-Auflösung wirft zusätzlich `UnableToResolveUuidException`.
+All operations throw a `VirtualFilesystemException` on failure. UUID resolution additionally throws an `UnableToResolveUuidException`.
 
-### Beispiel – Verzeichnisinhalt auflisten
+### Example – listing directory contents
 
 ```php
 #[AsContentElement(category: 'files')]
@@ -141,21 +141,21 @@ class FilesListController extends AbstractContentElementController
 
 ---
 
-## Filesystem-Konfiguration
+## Filesystem configuration
 
-### In einem Bundle (ConfigureFilesystemInterface)
+### Inside a bundle (ConfigureFilesystemInterface)
 
 ```php
 class MyFooBundleExtension extends Extension implements ConfigureFilesystemInterface
 {
     public function configureFilesystem(FilesystemConfiguration $config): void
     {
-        // API-Aufrufe hier
+        // API calls go here
     }
 }
 ```
 
-### In einer Applikation (CompilerPass)
+### Inside an application (CompilerPass)
 
 ```php
 class Plugin implements ConfigPluginInterface
@@ -166,7 +166,7 @@ class Plugin implements ConfigPluginInterface
             public function process(ContainerBuilder $container): void
             {
                 $config = new FilesystemConfiguration($container);
-                // API-Aufrufe hier
+                // API calls go here
             }
         };
     }
@@ -175,15 +175,15 @@ class Plugin implements ConfigPluginInterface
 
 ### FilesystemConfiguration API
 
-| Methode | Beschreibung |
+| Method | Description |
 |---------|-------------|
-| `addVirtualFilesystem($name, $prefix, $readOnly)` | Erstellt Service `contao.filesystem.virtual.{name}` |
-| `mountAdapter($type, $options, $path)` | Adapter in MountManager einbinden |
-| `mountLocalAdapter($path, $mountPath)` | Shortcut für lokale Adapter |
-| `registerDbafs($service, $prefix)` | DBAFS-Service registrieren |
-| `addDefaultDbafs($prefix, $table, $hashFn, $trackLastModified)` | Standard-DBAFS anlegen |
+| `addVirtualFilesystem($name, $prefix, $readOnly)` | Creates the service `contao.filesystem.virtual.{name}` |
+| `mountAdapter($type, $options, $path)` | Registers an adapter in the MountManager |
+| `mountLocalAdapter($path, $mountPath)` | Shortcut for local adapters |
+| `registerDbafs($service, $prefix)` | Registers a DBAFS service |
+| `addDefaultDbafs($prefix, $table, $hashFn, $trackLastModified)` | Creates a default DBAFS |
 
-### Beispiel: SFTP Remote-Backup
+### Example: SFTP remote backup
 
 ```php
 $config->mountAdapter(
@@ -197,11 +197,11 @@ $config->mountAdapter(
 
 ## DBAFS (Database-Assisted Filesystem)
 
-Reichert Dateien mit Metadaten aus der `tl_files`-Tabelle an (Autor, Lizenz, Alt-Text, Bildunterschriften). Jede Ressource erhält eine globale UUID.
+Enriches files with metadata from the `tl_files` table (author, license, alt text, captions). Every resource receives a global UUID.
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://docs.contao.org/5.x/dev/framework/filesystem/*
 - *https://docs.contao.org/5.x/dev/framework/filesystem/config/*
 - *https://docs.contao.org/5.x/dev/framework/filesystem/virtual-filesystem/*

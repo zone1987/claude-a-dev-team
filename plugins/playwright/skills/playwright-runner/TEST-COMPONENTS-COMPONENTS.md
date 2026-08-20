@@ -1,40 +1,40 @@
-# Playwright Component Testing — Vollstaendige Referenz
+# Playwright Component Testing — Complete Reference
 
-**Status:** Experimentell (`@playwright/experimental-ct-react`, `@playwright/experimental-ct-vue`)
+**Status:** Experimental (`@playwright/experimental-ct-react`, `@playwright/experimental-ct-vue`)
 
 ---
 
 ## Contents
 
 - [Setup](#setup)
-- [mount()-API](#mount-api)
-- [Props weitergeben](#props-weitergeben)
+- [mount() API](#mount-api)
+- [Passing props](#passing-props)
 - [Children / Slots](#children-slots)
-- [Events / Callbacks](#events-callbacks)
-- [update() — Props/Slots/Events aendern](#update-propsslotsevents-aendern)
-- [unmount() — Component entfernen](#unmount-component-entfernen)
-- [Lifecycle-Hooks (playwright/index.ts)](#lifecycle-hooks-playwrightindexts)
-- [Locators in Component Tests](#locators-in-component-tests)
-- [Testing Library Migration](#testing-library-migration)
-- [Vorteile von Playwright Component Testing](#vorteile-von-playwright-component-testing)
+- [Events / callbacks](#events-callbacks)
+- [update() — changing props/slots/events](#update--changing-propsslotsevents)
+- [unmount() — removing the component](#unmount--removing-the-component)
+- [Lifecycle hooks (playwright/index.ts)](#lifecycle-hooks-playwrightindexts)
+- [Locators in component tests](#locators-in-component-tests)
+- [Testing Library migration](#testing-library-migration)
+- [Advantages of Playwright component testing](#advantages-of-playwright-component-testing)
 
 ## Setup
 
 ### Installation
 
 ```bash
-# Interaktiv (empfohlen)
+# Interactive (recommended)
 npm init playwright@latest -- --ct
 yarn create playwright --ct
 pnpm create playwright --ct
 
-# Manuell fuer React
+# Manually for React
 npm install -D @playwright/experimental-ct-react
 ```
 
-Erzeugte Dateien:
+Generated files:
 
-**`playwright/index.html`** — HTML-Geruest fuer Component-Rendering:
+**`playwright/index.html`** — HTML scaffold for component rendering:
 
 ```html
 <!DOCTYPE html>
@@ -46,7 +46,7 @@ Erzeugte Dateien:
 </html>
 ```
 
-**`playwright/index.ts`** — Initialisierung (Themes, globale Styles):
+**`playwright/index.ts`** — initialization (themes, global styles):
 
 ```typescript
 // React
@@ -54,15 +54,15 @@ import { beforeMount, afterMount } from '@playwright/experimental-ct-react/hooks
 import '../src/theme.css';
 
 beforeMount(async ({ App, hooksConfig }) => {
-  // Optional: App in Provider wrappen
+  // Optional: wrap App in a provider
 });
 
 afterMount(async ({ component }) => {
-  // Optional: nach dem Mount
+  // Optional: after the mount
 });
 ```
 
-**`playwright-ct.config.ts`** — Separate Config fuer Component Tests:
+**`playwright-ct.config.ts`** — separate config for component tests:
 
 ```typescript
 import { defineConfig, devices } from '@playwright/experimental-ct-react';
@@ -72,7 +72,7 @@ export default defineConfig({
   use: {
     ctPort: 3100,
     ctViteConfig: {
-      // Vite-Konfiguration (Plugins, Aliase etc.)
+      // Vite configuration (plugins, aliases etc.)
     },
   },
 });
@@ -80,7 +80,7 @@ export default defineConfig({
 
 ---
 
-## mount()-API
+## mount() API
 
 ### React
 
@@ -108,16 +108,16 @@ test('renders', async ({ mount }) => {
 });
 ```
 
-### Rueckgabe
+### Return value
 
-`mount()` gibt einen `Locator` zurueck, der auf den gemounteten Component-Root zeigt.
-Alle Locator-Methoden und Assertions sind verfuegbar.
+`mount()` returns a `Locator` pointing at the mounted component root.
+All locator methods and assertions are available.
 
 ---
 
-## Props weitergeben
+## Passing props
 
-### React (JSX-Attribute)
+### React (JSX attributes)
 
 ```typescript
 const component = await mount(
@@ -129,7 +129,7 @@ const component = await mount(
 );
 ```
 
-### Vue (props-Objekt)
+### Vue (props object)
 
 ```typescript
 const component = await mount(MyComponent, {
@@ -141,15 +141,15 @@ const component = await mount(MyComponent, {
 });
 ```
 
-**Einschraenkung:** Nur serialisierbare Plain-JavaScript-Objekte (Strings, Numbers, Dates, Arrays, einfache Objekte). Keine Browser-Objekte, Promises, Funktionen als Daten.
+**Limitation:** only serializable plain JavaScript objects (strings, numbers, dates, arrays, simple objects). No browser objects, promises, or functions as data.
 
-Fuer komplexe Objekte: Story-Wrapper-Komponente erstellen.
+For complex objects: create a story wrapper component.
 
 ---
 
 ## Children / Slots
 
-### React (JSX-Children)
+### React (JSX children)
 
 ```typescript
 const component = await mount(
@@ -172,9 +172,9 @@ const component = await mount(MyComponent, {
 
 ---
 
-## Events / Callbacks
+## Events / callbacks
 
-### React (Callback-Props)
+### React (callback props)
 
 ```typescript
 let clicked = false;
@@ -185,7 +185,7 @@ await component.getByRole('button').click();
 expect(clicked).toBe(true);
 ```
 
-### Vue (on-Optionen)
+### Vue (on options)
 
 ```typescript
 const messages: string[] = [];
@@ -201,7 +201,7 @@ expect(messages).toContain('Hello');
 
 ---
 
-## update() — Props/Slots/Events aendern
+## update() — changing props/slots/events
 
 ```typescript
 const component = await mount(<MyComponent step={1} />);
@@ -221,24 +221,24 @@ await component.update(MyComponent, {
 
 ---
 
-## unmount() — Component entfernen
+## unmount() — removing the component
 
 ```typescript
 const component = await mount(<MyComponent />);
 await component.unmount();
-// Component ist jetzt aus dem DOM entfernt
+// The component is now removed from the DOM
 ```
 
 ---
 
-## Lifecycle-Hooks (playwright/index.ts)
+## Lifecycle hooks (playwright/index.ts)
 
 ```typescript
 import { beforeMount, afterMount } from '@playwright/experimental-ct-react/hooks';
 import { ThemeProvider } from './ThemeProvider';
 
 beforeMount<HooksConfig>(async ({ App, hooksConfig }) => {
-  // hooksConfig wird aus dem Test uebergeben
+  // hooksConfig is passed in from the test
   if (hooksConfig?.theme) {
     return (
       <ThemeProvider theme={hooksConfig.theme}>
@@ -249,12 +249,12 @@ beforeMount<HooksConfig>(async ({ App, hooksConfig }) => {
 });
 
 afterMount<HooksConfig>(async ({ component, hooksConfig }) => {
-  // component ist der Locator nach dem Mount
+  // component is the locator after the mount
 });
 ```
 
 ```typescript
-// Test nutzt hooksConfig
+// Test uses hooksConfig
 test('with dark theme', async ({ mount }) => {
   const component = await mount<HooksConfig>(
     <MyComponent />,
@@ -265,14 +265,14 @@ test('with dark theme', async ({ mount }) => {
 
 ---
 
-## Locators in Component Tests
+## Locators in component tests
 
-Da `mount()` einen Locator zurueckgibt, sind alle Standard-Locator-Methoden verfuegbar:
+Since `mount()` returns a locator, all standard locator methods are available:
 
 ```typescript
 const component = await mount(<UserForm />);
 
-// Elemente finden
+// Find elements
 await component.getByRole('textbox', { name: 'Email' }).fill('user@example.com');
 await component.getByRole('button', { name: 'Submit' }).click();
 
@@ -280,15 +280,15 @@ await component.getByRole('button', { name: 'Submit' }).click();
 await expect(component.getByText('Success')).toBeVisible();
 await expect(component).toHaveText('Welcome');
 
-// Verschachtelt
+// Nested
 await component.locator('.error-message').getByText('Required').isVisible();
 ```
 
 ---
 
-## Testing Library Migration
+## Testing Library migration
 
-### Konzept-Mapping
+### Concept mapping
 
 | Testing Library | Playwright |
 |---|---|
@@ -300,13 +300,13 @@ await component.locator('.error-message').getByText('Required').isVisible();
 | `screen.getByTestId(...)` | `component.getByTestId(...)` |
 | `userEvent.click(el)` | `await component.locator(el).click()` |
 | `userEvent.type(el, text)` | `await component.locator(el).fill(text)` |
-| `waitFor(() => ...)` | Automatisch durch Auto-Wait |
+| `waitFor(() => ...)` | Automatic via auto-wait |
 | `within(container)` | `component.locator(container).getBy...` |
 | `expect(el).toBeInTheDocument()` | `await expect(locator).toBeAttached()` |
 | `expect(el).toBeVisible()` | `await expect(locator).toBeVisible()` |
 | `expect(el).toHaveTextContent(t)` | `await expect(locator).toHaveText(t)` |
 
-### Vorher (Testing Library)
+### Before (Testing Library)
 
 ```typescript
 import { render, screen } from '@testing-library/react';
@@ -321,7 +321,7 @@ test('sign in', async () => {
 });
 ```
 
-### Nachher (Playwright)
+### After (Playwright)
 
 ```typescript
 import { test, expect } from '@playwright/experimental-ct-react';
@@ -331,26 +331,26 @@ test('sign in', async ({ mount }) => {
   await component.getByLabel('Username').fill('John');
   await component.getByRole('button', { name: 'Sign in' }).click();
   await expect(component.getByText('Welcome, John')).toBeVisible();
-  // Kein waitFor noetig - auto-wait
+  // No waitFor needed - auto-wait
 });
 ```
 
-### Async-Operationen
+### Async operations
 
 ```typescript
-// STATT: waitFor(() => expect(el).toBeInTheDocument())
-await expect(component.getByText('Loaded')).toBeVisible();  // wartet automatisch
+// INSTEAD OF: waitFor(() => expect(el).toBeInTheDocument())
+await expect(component.getByText('Loaded')).toBeVisible();  // waits automatically
 
-// Fuer komplexe Bedingungen:
+// For complex conditions:
 await expect.poll(async () => {
   return component.getByRole('listitem').count();
 }).toBeGreaterThan(0);
 ```
 
-### within() ersetzen
+### Replacing within()
 
 ```typescript
-// STATT: within(screen.getByRole('dialog'))
+// INSTEAD OF: within(screen.getByRole('dialog'))
 const dialog = component.getByRole('dialog');
 await expect(dialog.getByRole('heading')).toHaveText('Confirm');
 await dialog.getByRole('button', { name: 'OK' }).click();
@@ -358,14 +358,14 @@ await dialog.getByRole('button', { name: 'OK' }).click();
 
 ---
 
-## Vorteile von Playwright Component Testing
+## Advantages of Playwright component testing
 
 - Cross-Browser (Chromium, Firefox, WebKit)
 - TypeScript out of the box
-- Parallele Ausfuehrung
+- Parallel execution
 - Playwright Inspector, UI Mode, Trace Viewer
-- Code Generation mit Codegen
-- Kein jsdom-Polyfill-Problem (echter Browser)
+- Code generation with codegen
+- No jsdom polyfill problems (a real browser)
 
 ---
 

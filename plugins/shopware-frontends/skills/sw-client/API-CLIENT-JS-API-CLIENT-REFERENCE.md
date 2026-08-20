@@ -1,23 +1,23 @@
-# @shopware/api-client — Vollständige API-Referenz
+# @shopware/api-client — Complete API reference
 
 Version: **1.5.0**
 
 ## Contents
 
 - [Installation](#installation)
-- [`createAPIClient` — Store-API-Client](#createapiclient-store-api-client)
-- [`invoke` — Operationsaufruf](#invoke-operationsaufruf)
-- [`createAdminAPIClient` — Admin-API-Client](#createadminapiclient-admin-api-client)
-- [`defaultHeaders` — Proxy-Objekt](#defaultheaders-proxy-objekt)
+- [`createAPIClient` — Store API client](#createapiclient-store-api-client)
+- [`invoke` — calling an operation](#invoke-calling-an-operation)
+- [`createAdminAPIClient` — Admin API client](#createadminapiclient-admin-api-client)
+- [`defaultHeaders` — proxy object](#defaultheaders-proxy-object)
 - [Hooks](#hooks)
-- [Fehlerbehandlung](#fehlerbehandlung)
-- [`GlobalFetchOptions` — globale Retry-Konfiguration](#globalfetchoptions-globale-retry-konfiguration)
+- [Error handling](#error-handling)
+- [`GlobalFetchOptions` — global retry configuration](#globalfetchoptions-global-retry-configuration)
 - [`updateBaseConfig` / `getBaseConfig`](#updatebaseconfig-getbaseconfig)
-- [`encodeForQuery` — Hilfsfunktion](#encodeforquery-hilfsfunktion)
-- [Context-Token-Mechanik](#context-token-mechanik)
-- [Vollständiges Nuxt-Plugin-Beispiel](#vollständiges-nuxt-plugin-beispiel)
-- [TypeScript-Typen anpassen](#typescript-typen-anpassen)
-- [Exports des Pakets](#exports-des-pakets)
+- [`encodeForQuery` — helper function](#encodeforquery-helper-function)
+- [Context token mechanics](#context-token-mechanics)
+- [Complete Nuxt plugin example](#complete-nuxt-plugin-example)
+- [Customizing the TypeScript types](#customizing-the-typescript-types)
+- [Exports of the package](#exports-of-the-package)
 
 ## Installation
 
@@ -27,33 +27,33 @@ npm install @shopware/api-client
 
 ---
 
-## `createAPIClient` — Store-API-Client
+## `createAPIClient` — Store API client
 
-### Vollständige Signatur
+### Complete signature
 
 ```ts
 import { createAPIClient } from '@shopware/api-client';
-import type { operations } from '#shopware'; // aus @shopware/api-gen generiert
+import type { operations } from '#shopware'; // generated from @shopware/api-gen
 
 function createAPIClient<
   OPERATIONS extends Record<string, any> = operations,
   PATHS extends string | number | symbol = keyof OPERATIONS
 >(params: {
-  baseURL?: string;           // Store-API-URL, z.B. "https://shop.example.com/store-api"
-  accessToken?: string;       // sw-access-key Header
-  contextToken?: string;      // sw-context-token (z.B. aus Cookie beim SSR-Start)
+  baseURL?: string;           // Store API URL, e.g. "https://shop.example.com/store-api"
+  accessToken?: string;       // sw-access-key header
+  contextToken?: string;      // sw-context-token (e.g. from a cookie at SSR start)
   defaultHeaders?: ClientHeaders;
   fetchOptions?: GlobalFetchOptions;
 }): ApiClient
 ```
 
-### Rückgabe-Objekt (`ApiClient`)
+### Returned object (`ApiClient`)
 
 ```ts
 {
   invoke<OPERATION>(pathParam: string, params?: InvokeParameters<OPERATION>): Promise<RequestReturnType<OPERATION>>
   defaultHeaders: ClientHeadersProxy
-  hook: Hookable['hook']  // zum Registrieren von Hooks
+  hook: Hookable['hook']  // for registering hooks
   updateBaseConfig(config: { baseURL?: string; accessToken?: string }): void
   getBaseConfig(): { baseURL: string | undefined; accessToken: string | undefined }
 }
@@ -61,7 +61,7 @@ function createAPIClient<
 
 ---
 
-## `invoke` — Operationsaufruf
+## `invoke` — calling an operation
 
 ### Syntax
 
@@ -69,27 +69,27 @@ function createAPIClient<
 const result = await apiClient.invoke('OPERATION_NAME METHOD /path', params)
 ```
 
-Das erste Argument ist ein **typisierter String** in der Form:
+The first argument is a **typed string** of the form:
 ```
 "operationName METHOD /path/with/{param}"
 ```
 
-Beispiele:
+Examples:
 ```ts
-// GET ohne Body
+// GET without a body
 const { data } = await apiClient.invoke('readCart get /checkout/cart', {})
 
-// POST mit Body
+// POST with a body
 const { data } = await apiClient.invoke('addLineItem post /checkout/cart/line-item', {
   body: { items: [{ id: productId, quantity: 1, type: 'product', referencedId: productId }] }
 })
 
-// GET mit Pfad-Parameter
+// GET with a path parameter
 const { data } = await apiClient.invoke('readProduct post /product', {
   body: { limit: 10, filter: [{ type: 'equals', field: 'active', value: true }] }
 })
 
-// Mit PathParams
+// With pathParams
 const { data } = await apiClient.invoke('readProductDetail post /product/{productId}', {
   pathParams: { productId: '550e8400-e29b-41d4-a716-446655440000' }
 })
@@ -99,13 +99,13 @@ const { data } = await apiClient.invoke('readProductDetail post /product/{produc
 
 ```ts
 type InvokeParameters<CURRENT_OPERATION> = {
-  // Aus der Operation:
-  body?: ...         // Request-Body (aus Operation definiert)
-  query?: ...        // Query-Parameter
-  pathParams?: ...   // Pfad-Parameter (ersetzen {paramName})
-  headers?: ClientHeaders  // per-Request-Header (überschreiben defaultHeaders)
+  // From the operation:
+  body?: ...         // request body (defined by the operation)
+  query?: ...        // query parameters
+  pathParams?: ...   // path parameters (replace {paramName})
+  headers?: ClientHeaders  // per-request headers (override defaultHeaders)
 
-  // Zusätzlich:
+  // In addition:
   fetchOptions?: {
     cache?: RequestCache
     duplex?: string
@@ -115,26 +115,26 @@ type InvokeParameters<CURRENT_OPERATION> = {
     retry?: number
     retryDelay?: number
     retryStatusCodes?: number[]
-    signal?: AbortSignal     // für Abbruch
-    timeout?: number         // in Millisekunden
+    signal?: AbortSignal     // for aborting
+    timeout?: number         // in milliseconds
   }
 }
 ```
 
-### Rückgabe `RequestReturnType`
+### Return value `RequestReturnType`
 
 ```ts
 type RequestReturnType<OPERATION> = {
-  data: OPERATION['response']    // typisierte Response-Daten
-  status: OPERATION['responseCode']  // HTTP-Statuscode
+  data: OPERATION['response']    // typed response data
+  status: OPERATION['responseCode']  // HTTP status code
 }
 ```
 
 ---
 
-## `createAdminAPIClient` — Admin-API-Client
+## `createAdminAPIClient` — Admin API client
 
-### Vollständige Signatur
+### Complete signature
 
 ```ts
 import { createAdminAPIClient } from '@shopware/api-client';
@@ -148,9 +148,9 @@ function createAdminAPIClient<
   credentials?: {
     grant_type: 'password' | 'client_credentials'
     client_id: string
-    client_secret?: string   // für client_credentials
-    username?: string        // für password
-    password?: string        // für password
+    client_secret?: string   // for client_credentials
+    username?: string        // for password
+    password?: string        // for password
     scopes?: string
   }
   sessionData?: AdminSessionData
@@ -165,11 +165,11 @@ function createAdminAPIClient<
 type AdminSessionData = {
   accessToken: string
   refreshToken?: string
-  expirationTime: number   // Unix-Timestamp (ms)
+  expirationTime: number   // Unix timestamp (ms)
 }
 ```
 
-### Admin-Client Rückgabe-Objekt
+### Admin client returned object
 
 ```ts
 {
@@ -181,9 +181,9 @@ type AdminSessionData = {
 }
 ```
 
-### Auto-Refresh der OAuth-Token
+### Auto-refresh of the OAuth token
 
-Der Admin-Client prüft in jedem `onRequest`-Interceptor die Ablaufzeit des `accessToken`. Ist er abgelaufen oder nicht gesetzt, wird automatisch ein neuer Token via `/oauth/token` geholt:
+The admin client checks the expiry time of the `accessToken` in every `onRequest` interceptor. If it has expired or is not set, a new token is fetched automatically via `/oauth/token`:
 
 ```ts
 // client_credentials
@@ -207,7 +207,7 @@ const adminClient = createAdminAPIClient({
   }
 })
 
-// Vorhandene Session wiederverwenden (z.B. aus Storage)
+// Reuse an existing session (e.g. from storage)
 const adminClient = createAdminAPIClient({
   baseURL: 'https://shop.example.com/api',
   sessionData: {
@@ -220,25 +220,25 @@ const adminClient = createAdminAPIClient({
 
 ---
 
-## `defaultHeaders` — Proxy-Objekt
+## `defaultHeaders` — proxy object
 
-`defaultHeaders` ist ein reaktiver Proxy. Direktes Setzen löst den konfigurierten Hook aus.
+`defaultHeaders` is a reactive proxy. Setting it directly triggers the configured hook.
 
-### Unterstützte Header-Namen (`ClientHeaders`)
+### Supported header names (`ClientHeaders`)
 
 ```ts
 type ClientHeaders = Partial<Record<
-  | 'sw-context-token'     // Session-Token (Warenkorb, Login)
-  | 'sw-access-key'        // Sales-Channel-Access-Key
-  | 'sw-language-id'       // Sprache überschreiben
-  | 'sw-currency-id'       // Währung überschreiben
-  | 'sw-inheritance'       // Vererbung aktivieren
-  | 'sw-version-id'        // Versions-Kontext (Draft-Modus)
-  | 'sw-include-seo-urls'  // SEO-URLs in Response einschließen
-  | 'sw-skip-trigger-flow' // Flows nicht triggern
-  | 'sw-app-integration-id'// App-Integration
-  | 'indexing-behavior'    // Indexierungs-Verhalten
-  | 'indexing-skip'        // Indexierung überspringen
+  | 'sw-context-token'     // session token (cart, login)
+  | 'sw-access-key'        // sales channel access key
+  | 'sw-language-id'       // override the language
+  | 'sw-currency-id'       // override the currency
+  | 'sw-inheritance'       // enable inheritance
+  | 'sw-version-id'        // version context (draft mode)
+  | 'sw-include-seo-urls'  // include SEO URLs in the response
+  | 'sw-skip-trigger-flow' // do not trigger flows
+  | 'sw-app-integration-id'// app integration
+  | 'indexing-behavior'    // indexing behavior
+  | 'indexing-skip'        // skip indexing
   | 'content-type'
   | 'accept'
   , string
@@ -248,13 +248,13 @@ type ClientHeaders = Partial<Record<
 ### `ClientHeadersProxy` — bulk update
 
 ```ts
-// Einzelne Header direkt setzen:
+// Set individual headers directly:
 apiClient.defaultHeaders['sw-language-id'] = 'de-DE-uuid'
 
-// Oder bulk via .apply():
+// Or in bulk via .apply():
 apiClient.defaultHeaders.apply({
   'sw-language-id': 'de-DE-uuid',
-  'sw-currency-id': null,   // null/undefined = löschen
+  'sw-currency-id': null,   // null/undefined = delete
 })
 ```
 
@@ -262,43 +262,43 @@ apiClient.defaultHeaders.apply({
 
 ## Hooks
 
-Hooks werden mit `apiClient.hook(eventName, handler)` registriert.
+Hooks are registered with `apiClient.hook(eventName, handler)`.
 
-### Store-API-Hooks (`ApiClientHooks`)
+### Store API hooks (`ApiClientHooks`)
 
 ```ts
-// Context-Token hat sich geändert (z.B. nach Login)
+// The context token has changed (e.g. after login)
 apiClient.hook('onContextChanged', (newContextToken: string) => {
-  // Token in Cookie/localStorage speichern
+  // Store the token in a cookie/localStorage
   document.cookie = `sw-context-token=${newContextToken}`
 })
 
-// HTTP-Fehler aufgetreten (nach errorInterceptor — wird nach dem Throw aufgerufen)
+// An HTTP error occurred (after errorInterceptor — called after the throw)
 apiClient.hook('onResponseError', (response: FetchResponse) => {
   console.error('API Error:', response.status, response.url)
 })
 
-// Erfolgreiche Response
+// Successful response
 apiClient.hook('onSuccessResponse', (response: FetchResponse) => {
-  // z.B. Metrics
+  // e.g. metrics
 })
 
-// Default-Header hat sich geändert
+// A default header has changed
 apiClient.hook('onDefaultHeaderChanged', (headerName: string, value?: string) => {
   console.log(`Header ${headerName} changed to ${value}`)
 })
 
-// Vor jedem Request (für z.B. Logging)
+// Before every request (for e.g. logging)
 apiClient.hook('onRequest', (context: FetchContext) => {
   // context.request = URL, context.options = FetchOptions
 })
 ```
 
-### Admin-API-Hooks (`AdminApiClientHooks`)
+### Admin API hooks (`AdminApiClientHooks`)
 
 ```ts
 adminClient.hook('onAuthChange', (sessionData: AdminSessionData) => {
-  // Neuen Token persistieren
+  // Persist the new token
 })
 adminClient.hook('onResponseError', (response) => { ... })
 adminClient.hook('onSuccessResponse', (response) => { ... })
@@ -307,9 +307,9 @@ adminClient.hook('onDefaultHeaderChanged', (headerName, value) => { ... })
 
 ---
 
-## Fehlerbehandlung
+## Error handling
 
-Der Client wirft bei HTTP-Fehlerantworten automatisch eine `ApiClientError`-Instanz:
+On HTTP error responses the client automatically throws an `ApiClientError` instance:
 
 ```ts
 import { ApiClientError } from '@shopware/api-client'
@@ -321,26 +321,26 @@ try {
   })
 } catch (e) {
   if (e instanceof ApiClientError) {
-    console.log(e.status)       // HTTP-Statuscode, z.B. 401
-    console.log(e.statusText)   // z.B. "Unauthorized"
-    console.log(e.url)          // angefragt URL
+    console.log(e.status)       // HTTP status code, e.g. 401
+    console.log(e.statusText)   // e.g. "Unauthorized"
+    console.log(e.url)          // requested URL
     console.log(e.ok)           // false
-    console.log(e.message)      // String aus erstem Shopware-Fehler
+    console.log(e.message)      // string from the first Shopware error
 
-    // Einzelne Fehler iterieren:
+    // Iterate the individual errors:
     for (const err of e.details.errors) {
-      console.log(err.title)    // z.B. "Unauthorized"
-      console.log(err.detail)   // detaillierte Fehlermeldung
-      console.log(err.code)     // z.B. "CHECKOUT__CUSTOMER_NOT_LOGGED_IN"
-      console.log(err.status)   // HTTP-Status als String
-      console.log(err.source?.pointer)  // JSON-Pointer auf fehlerhaftes Feld
-      console.log(err.meta?.parameters) // Template-Parameter für die Fehlermeldung
+      console.log(err.title)    // e.g. "Unauthorized"
+      console.log(err.detail)   // detailed error message
+      console.log(err.code)     // e.g. "CHECKOUT__CUSTOMER_NOT_LOGGED_IN"
+      console.log(err.status)   // HTTP status as a string
+      console.log(err.source?.pointer)  // JSON pointer to the offending field
+      console.log(err.meta?.parameters) // template parameters for the error message
     }
   }
 }
 ```
 
-### `ApiError`-Typ
+### The `ApiError` type
 
 ```ts
 type ApiError = {
@@ -355,17 +355,17 @@ type ApiError = {
 
 ---
 
-## `GlobalFetchOptions` — globale Retry-Konfiguration
+## `GlobalFetchOptions` — global retry configuration
 
 ```ts
 const apiClient = createAPIClient({
   baseURL: 'https://shop.example.com/store-api',
   accessToken: 'SWSC...',
   fetchOptions: {
-    retry: 3,                    // 3 Wiederholungsversuche
-    retryDelay: 500,             // 500 ms Pause zwischen Versuchen
-    retryStatusCodes: [503, 429],// nur bei diesen Statuscodes wiederholen
-    timeout: 10_000,             // 10 Sekunden Timeout
+    retry: 3,                    // 3 retry attempts
+    retryDelay: 500,             // 500 ms pause between attempts
+    retryStatusCodes: [503, 429],// retry only on these status codes
+    timeout: 10_000,             // 10 second timeout
   }
 })
 ```
@@ -375,12 +375,12 @@ const apiClient = createAPIClient({
 ## `updateBaseConfig` / `getBaseConfig`
 
 ```ts
-// Aktuelle Konfiguration lesen
+// Read the current configuration
 const config = apiClient.getBaseConfig()
 // { baseURL: 'https://...', accessToken: 'SWSC...' }
 
-// Konfiguration zur Laufzeit ändern
-// (löst internen Fetch-Client-Neuaufbau aus wenn baseURL geändert)
+// Change the configuration at runtime
+// (triggers an internal rebuild of the fetch client when baseURL changes)
 apiClient.updateBaseConfig({
   baseURL: 'https://new-endpoint.example.com/store-api',
   accessToken: 'SWSC_NEW...'
@@ -389,9 +389,9 @@ apiClient.updateBaseConfig({
 
 ---
 
-## `encodeForQuery` — Hilfsfunktion
+## `encodeForQuery` — helper function
 
-Gzip-komprimiert ein Objekt und codiert es als Base64url. Nützlich um komplexe Criteria-Objekte als einzelnen Query-Parameter zu übergeben (Workaround für URL-Längenbeschränkungen).
+Gzip-compresses an object and encodes it as base64url. Useful for passing complex Criteria objects as a single query parameter (workaround for URL length limits).
 
 ```ts
 import { encodeForQuery } from '@shopware/api-client/helpers'
@@ -400,20 +400,20 @@ const encoded = encodeForQuery({
   filter: [{ type: 'equals', field: 'active', value: true }],
   associations: { categories: {} }
 })
-// Verwendung: /store-api/product?_criteria=<encoded>
+// Usage: /store-api/product?_criteria=<encoded>
 ```
 
 ---
 
-## Context-Token-Mechanik
+## Context token mechanics
 
-Der `sw-context-token` identifiziert die Shop-Session (Warenkorb, eingeloggter Nutzer, gewählte Währung/Sprache).
+The `sw-context-token` identifies the shop session (cart, logged-in user, chosen currency/language).
 
-**Automatisches Update**: Bei jeder Response prüft der Client, ob der `sw-context-token`-Antwortheader einen neuen Wert enthält. Falls ja, wird `defaultHeaders['sw-context-token']` automatisch aktualisiert und `onContextChanged` gefeuert.
+**Automatic update**: on every response the client checks whether the `sw-context-token` response header contains a new value. If so, `defaultHeaders['sw-context-token']` is updated automatically and `onContextChanged` is fired.
 
-**Initialisierung aus Cookie (SSR)**:
+**Initialization from a cookie (SSR)**:
 ```ts
-// Nuxt-Plugin / server-side
+// Nuxt plugin / server-side
 const contextToken = useCookie('sw-context-token').value
 const apiClient = createAPIClient({
   baseURL: runtimeConfig.public.shopware.endpoint,
@@ -421,7 +421,7 @@ const apiClient = createAPIClient({
   contextToken: contextToken ?? undefined,
 })
 
-// Token persistieren wenn er sich ändert:
+// Persist the token whenever it changes:
 apiClient.hook('onContextChanged', (newToken) => {
   useCookie('sw-context-token').value = newToken
 })
@@ -429,7 +429,7 @@ apiClient.hook('onContextChanged', (newToken) => {
 
 ---
 
-## Vollständiges Nuxt-Plugin-Beispiel
+## Complete Nuxt plugin example
 
 ```ts
 // plugins/shopware.client.ts
@@ -448,17 +448,17 @@ export default defineNuxtPlugin((nuxtApp) => {
     contextToken: contextToken.value,
   })
 
-  // Context-Token persistieren
+  // Persist the context token
   apiClient.hook('onContextChanged', (newToken) => {
     contextToken.value = newToken
   })
 
-  // Sprach-Header setzen
+  // Set the language header
   if (languageId.value) {
     apiClient.defaultHeaders['sw-language-id'] = languageId.value
   }
 
-  // Maintenance-Mode abfangen
+  // Catch maintenance mode
   apiClient.hook('onResponseError', (response) => {
     if (response.status === 503) {
       navigateTo('/maintenance')
@@ -474,9 +474,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ---
 
-## TypeScript-Typen anpassen
+## Customizing the TypeScript types
 
-Eigene/Plugin-Endpunkte können die generierten Typen erweitern:
+Own/plugin endpoints can extend the generated types:
 
 ```ts
 // shopware.d.ts
@@ -492,14 +492,14 @@ declare module '#shopware' {
 
 ---
 
-## Exports des Pakets
+## Exports of the package
 
 ```ts
 export { createAPIClient }    from './createAPIClient'
 export { createAdminAPIClient } from './createAdminAPIClient'
 export { ApiClientError }     from './ApiError'
 export type { ApiError }      from './ApiError'
-// Typen:
+// Types:
 export type { ApiClientHooks, RequestReturnType, RequestParameters, InvokeParameters, GlobalFetchOptions }
 export type { AdminApiClientHooks, AdminSessionData }
 export type { ClientHeaders, ClientHeadersProxy }

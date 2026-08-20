@@ -2,60 +2,60 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Index-Auslösung](#index-auslösung)
-- [Standard-Indexer deaktivieren](#standard-indexer-deaktivieren)
+- [Overview](#overview)
+- [Triggering indexing](#triggering-indexing)
+- [Disabling the default indexer](#disabling-the-default-indexer)
 - [Custom Indexer](#custom-indexer)
-- [Seiten dynamisch aus dem Index ausschließen](#seiten-dynamisch-aus-dem-index-ausschließen)
+- [Excluding pages from the index dynamically](#excluding-pages-from-the-index-dynamically)
 
-## Überblick
+## Overview
 
-Contao bietet eine eingebaute Seitensuche mit:
-- Worttrennung über alle Sprachen
-- Highlighting-Unterstützung
-- Einfache Relevanzsortierung
+Contao provides a built-in site search with:
+- Word splitting across all languages
+- Highlighting support
+- Simple relevance sorting
 
-Für erweiterte Funktionen (Autocomplete, Facetten, Sprachanalyse) können externe Suchmaschinen via Custom Indexer integriert werden.
+For advanced features (autocomplete, facets, language analysis), external search engines can be integrated via a custom indexer.
 
 ---
 
-## Index-Auslösung
+## Triggering indexing
 
-### 1. CLI-Crawler
+### 1. CLI crawler
 
 ```bash
 vendor/bin/contao-console contao:crawl
-# Optionen via --help
+# Options via --help
 ```
 
-Basiert auf Escargot. Domain muss in der CLI-Konfiguration gesetzt sein.
+Based on Escargot. The domain must be set in the CLI configuration.
 
-### 2. SearchIndexListener (automatisch)
+### 2. SearchIndexListener (automatic)
 
-Lauscht auf `kernel.terminate` und indiziert Responses bei jedem Request.
+Listens on `kernel.terminate` and indexes responses on every request.
 
-| Vorteile | Nachteile |
+| Advantages | Disadvantages |
 |---------|-----------|
-| Automatische Hintergrund-Indizierung | Kann Performance beeinflussen |
-| Index-Updates bei Redakteur-Änderungen | Timing unterscheidet sich (php-fpm: nach Response, mod_php/fcgi: vor Response) |
-| Löscht URIs bei nicht-2xx-Responses | — |
+| Automatic background indexing | May affect performance |
+| Index updates on editor changes | Timing differs (php-fpm: after the response, mod_php/fcgi: before the response) |
+| Deletes URIs on non-2xx responses | — |
 
-### Konfiguration
+### Configuration
 
 ```yaml
 # config/config.yaml
 contao:
     search:
         listener:
-            index: true    # Indexeintrag bei jedem Request aktualisieren
-            delete: false  # Eintrag bei nicht-erfolgreichen Requests löschen
+            index: true    # Update the index entry on every request
+            delete: false  # Delete the entry on unsuccessful requests
 ```
 
-Beide auf `false` → Listener komplett deaktivieren.
+Both set to `false` → disables the listener completely.
 
 ---
 
-## Standard-Indexer deaktivieren
+## Disabling the default indexer
 
 ```yaml
 contao:
@@ -68,7 +68,7 @@ contao:
 
 ## Custom Indexer
 
-### Registrierung
+### Registration
 
 ```yaml
 # config/services.yaml
@@ -78,40 +78,40 @@ services:
             - { name: 'contao.search_indexer' }
 ```
 
-### IndexerInterface – 3 Pflichtmethoden
+### IndexerInterface – 3 mandatory methods
 
 ```php
 interface IndexerInterface
 {
-    public function index(Document $document): void;    // Dokument indizieren
-    public function delete(Document $document): void;   // Dokument entfernen
-    public function clear(): void;                      // Gesamten Index leeren
+    public function index(Document $document): void;    // Index a document
+    public function delete(Document $document): void;   // Remove a document
+    public function clear(): void;                      // Clear the entire index
 }
 ```
 
-### Document-Zugriff
+### Document access
 
-Das `Document`-Objekt bietet:
-- HTTP-Statuscode
-- HTTP-Header
-- Response-Body
-- JSON-LD-Helfer
+The `Document` object provides:
+- HTTP status code
+- HTTP headers
+- Response body
+- JSON-LD helpers
 
-### JSON-LD aus Response extrahieren
+### Extracting JSON-LD from the response
 
 ```php
-// Schema.org-Metadaten aus Response extrahieren
+// Extract Schema.org metadata from the response
 $jsonLdScriptsData = $document->extractJsonLdScripts('https://schema.org', 'Product');
 ```
 
-**Beispiel JSON-LD im HTML:**
+**Example JSON-LD in the HTML:**
 ```html
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "Product",
-    "description": "Beschreibung",
-    "name": "Produktname",
+    "description": "Description",
+    "name": "Product name",
     "offers": {
         "@type": "Offer",
         "availability": "http://schema.org/InStock",
@@ -124,9 +124,9 @@ $jsonLdScriptsData = $document->extractJsonLdScripts('https://schema.org', 'Prod
 
 ---
 
-## Seiten dynamisch aus dem Index ausschließen
+## Excluding pages from the index dynamically
 
-### Via generatePage-Hook
+### Via the generatePage hook
 
 ```php
 // src/EventListener/GeneratePageListener.php
@@ -140,15 +140,15 @@ class GeneratePageListener
 {
     public function __invoke(PageModel $pageModel): void
     {
-        if (/* Bedingung */) {
+        if (/* condition */) {
             $pageModel->noSearch = true;
         }
     }
 }
 ```
 
-Alternativ: `pageModel` aus Request-Attributen in eigenen Kernel-Event-Listenern holen.
+Alternatively: fetch `pageModel` from the request attributes in your own kernel event listeners.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/search-indexing/*
+*Source: https://docs.contao.org/5.x/dev/framework/search-indexing/*

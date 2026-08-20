@@ -1,66 +1,66 @@
-# Shopware Frontends — Vollständige Paketmatrix & Architektur
+# Shopware Frontends — Complete package matrix & architecture
 
 ## Contents
 
-- [Paketübersicht (exakte npm-Namen und Versionen)](#paketübersicht-exakte-npm-namen-und-versionen)
-- [Architekturprinzipien](#architekturprinzipien)
-- [Abhängigkeitsgraph](#abhängigkeitsgraph)
-- [Template-/Starter-Optionen](#template-starter-optionen)
-- [Nuxt-Modul vs. Nuxt-Layer](#nuxt-modul-vs-nuxt-layer)
+- [Package overview (exact npm names and versions)](#package-overview-exact-npm-names-and-versions)
+- [Architecture principles](#architecture-principles)
+- [Dependency graph](#dependency-graph)
+- [Template/starter options](#templatestarter-options)
+- [Nuxt module vs. Nuxt layer](#nuxt-module-vs-nuxt-layer)
 
-## Paketübersicht (exakte npm-Namen und Versionen)
+## Package overview (exact npm names and versions)
 
-| npm-Paketname | Version | Zweck | Skill |
+| npm package name | Version | Purpose | Skill |
 |---|---|---|---|
-| `@shopware/api-client` | 1.5.0 | Typisierter HTTP-Client gegen Store API + Admin API | `sw-api-client-js` |
-| `@shopware/api-gen` | 1.5.0 | CLI-Tool: TypeScript-Typen aus OpenAPI-Spec generieren | `sw-api-gen-types` |
-| `@shopware/composables` | 1.11.1 | Vue-3-Composables: useCart, useCheckout, useUser, useListing, … | `sw-composables` |
-| `@shopware/helpers` | 1.7.1 | Reine Utility-Funktionen (Preise, URLs, Media, Übersetzungen) | `sw-frontends-helpers` |
-| `@shopware/cms-base-layer` | 3.0.0 | Nuxt-Layer mit Vue-Komponenten für CMS-Sections/Blocks/Elemente | `sw-frontends-cms` |
-| `@shopware/nuxt-module` | 1.4.4 | Nuxt-Modul: api-client + composables in Nuxt integrieren | `sw-frontends-nuxt` |
-| `eslint-config-shopware` | 1.0.0 | Shared ESLint-Config für das Monorepo | — |
-| `tsconfig` | 0.0.0 | Shared TypeScript-Konfiguration für das Monorepo | — |
-| `@shopware/unocss-design-tokens-layer` | 1.0.0 | UnoCSS Design-Token-Definitionen | — |
+| `@shopware/api-client` | 1.5.0 | Typed HTTP client against the Store API + Admin API | `sw-api-client-js` |
+| `@shopware/api-gen` | 1.5.0 | CLI tool: generate TypeScript types from the OpenAPI spec | `sw-api-gen-types` |
+| `@shopware/composables` | 1.11.1 | Vue 3 composables: useCart, useCheckout, useUser, useListing, … | `sw-composables` |
+| `@shopware/helpers` | 1.7.1 | Pure utility functions (prices, URLs, media, translations) | `sw-frontends-helpers` |
+| `@shopware/cms-base-layer` | 3.0.0 | Nuxt layer with Vue components for CMS sections/blocks/elements | `sw-frontends-cms` |
+| `@shopware/nuxt-module` | 1.4.4 | Nuxt module: integrate api-client + composables into Nuxt | `sw-frontends-nuxt` |
+| `eslint-config-shopware` | 1.0.0 | Shared ESLint config for the monorepo | — |
+| `tsconfig` | 0.0.0 | Shared TypeScript configuration for the monorepo | — |
+| `@shopware/unocss-design-tokens-layer` | 1.0.0 | UnoCSS design token definitions | — |
 
-## Architekturprinzipien
+## Architecture principles
 
-### Schichtenmodell
+### Layer model
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Anwendung (Nuxt / Vue / eigenes Framework)             │
+│  Application (Nuxt / Vue / your own framework)          │
 ├──────────────────────┬──────────────────────────────────┤
 │  @shopware/composables│  @shopware/cms-base-layer        │
-│  (Geschäftslogik)    │  (CMS-Rendering)                 │
+│  (business logic)    │  (CMS rendering)                 │
 ├──────────────────────┴──────────────────────────────────┤
-│  @shopware/helpers  (reine Utilities, kein State)        │
+│  @shopware/helpers  (pure utilities, no state)           │
 ├─────────────────────────────────────────────────────────┤
-│  @shopware/api-client  (HTTP, Types, Context-Token)      │
+│  @shopware/api-client  (HTTP, types, context token)      │
 ├─────────────────────────────────────────────────────────┤
 │  Shopware 6 Store API  (REST/JSON)                       │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Typgenerierung
+### Type generation
 
 ```
-Shopware-Instance
+Shopware instance
   └── /_info/openapi3.json
         └── @shopware/api-gen loadSchema  →  api-types/storeApiSchema.json
               └── @shopware/api-gen generate  →  api-types/storeApiTypes.d.ts
-                    └── #shopware  (TypeScript-Pfad-Alias)
+                    └── #shopware  (TypeScript path alias)
                           └── createAPIClient<operations>()
 ```
 
-### Kernprinzipien
+### Core principles
 
-1. **Nur öffentliche HTTP-APIs**: kein Zugriff auf interne Shopware-Klassen oder Datenbank — cloud-first, stabil über Updates hinweg.
-2. **Typsicherheit end-to-end**: generierte `operations`-Typen aus OpenAPI → jeder `invoke()`-Aufruf ist vollständig typisiert.
-3. **Context-Token-Mechanik**: `sw-context-token` identifiziert die Session (Warenkorb, Login, Währung). Der Client aktualisiert ihn automatisch aus Response-Headern.
-4. **Composable-First**: Geschäftslogik in `@shopware/composables`, Darstellung in der App oder `@shopware/cms-base-layer`.
-5. **Framework-agnostisch** (api-client + helpers), aber **Nuxt-optimiert** (nuxt-module + cms-base-layer).
+1. **Public HTTP APIs only**: no access to internal Shopware classes or the database — cloud-first, stable across updates.
+2. **End-to-end type safety**: generated `operations` types from OpenAPI → every `invoke()` call is fully typed.
+3. **Context token mechanics**: `sw-context-token` identifies the session (cart, login, currency). The client updates it automatically from response headers.
+4. **Composable-first**: business logic in `@shopware/composables`, presentation in the app or `@shopware/cms-base-layer`.
+5. **Framework-agnostic** (api-client + helpers), but **Nuxt-optimised** (nuxt-module + cms-base-layer).
 
-## Abhängigkeitsgraph
+## Dependency graph
 
 ```
 @shopware/nuxt-module
@@ -82,7 +82,7 @@ Shopware-Instance
   └── @shopware/api-client  (peer)
 
 @shopware/helpers
-  └── (keine @shopware-Abhängigkeiten — rein)
+  └── (no @shopware dependencies — pure)
 
 @shopware/api-gen
   ├── openapi-typescript
@@ -90,21 +90,21 @@ Shopware-Instance
   └── prettier / yargs
 ```
 
-## Template-/Starter-Optionen
+## Template/starter options
 
-Der offizielle Demo-Store (Nuxt 4 + Tailwind + UnoCSS) dient als Referenzimplementierung:
+The official demo store (Nuxt 4 + Tailwind + UnoCSS) serves as the reference implementation:
 
 ```bash
 npx degit shopware/frontends/templates/vue-demo-store my-shop
 ```
 
-Weitere Templates im Monorepo unter `templates/`.
+Further templates in the monorepo under `templates/`.
 
-## Nuxt-Modul vs. Nuxt-Layer
+## Nuxt module vs. Nuxt layer
 
-| Merkmal | `@shopware/nuxt-module` | `@shopware/cms-base-layer` |
+| Feature | `@shopware/nuxt-module` | `@shopware/cms-base-layer` |
 |---|---|---|
-| Art | Nuxt-Modul (Plugin-Registrierung) | Nuxt-Layer (Komponenten + Composables) |
-| Funktion | `createAPIClient`, SSR-Cookie-Handling, Context-Token | Vue-Komponenten für alle CMS-Block/Element/Section-Typen |
+| Kind | Nuxt module (plugin registration) | Nuxt layer (components + composables) |
+| Function | `createAPIClient`, SSR cookie handling, context token | Vue components for all CMS block/element/section types |
 | Integration | `modules: ['@shopware/nuxt-module']` | `extends: ['@shopware/cms-base-layer']` |
-| Konfiguration | `shopware: { endpoint, accessToken }` | `shopware-cms: {}` |
+| Configuration | `shopware: { endpoint, accessToken }` | `shopware-cms: {}` |

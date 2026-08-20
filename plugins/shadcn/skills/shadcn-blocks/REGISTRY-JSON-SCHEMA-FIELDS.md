@@ -90,7 +90,7 @@ Array of registry item definitions. The root `registry.json` must define at
 least one of `items` or `include`. If omitted, defaults to `[]`.
 
 Each item conforms to the registry-item.json schema. See the
-[registry-item-json skill](../../shadcn-registry-item-json/references/fields.md)
+[registry-item-json skill](REGISTRY-ITEM-JSON-FIELDS.md)
 for full field documentation.
 
 ## Minimal registry.json

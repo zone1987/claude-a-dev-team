@@ -1,41 +1,41 @@
-# WebDriverCheckbox — Vollstandige Referenz
+# WebDriverCheckbox — Complete Reference
 
 `Symfony\Component\Panther\WebDriver\WebDriverCheckbox`
 
-Hilfsklasse fur Checkboxen und Radio-Buttons. Implementiert `Facebook\WebDriver\WebDriverSelectInterface`
-analog zu `WebDriverSelect` (fur `<select>`) — damit konnen Checkbox-Gruppen und Radio-Gruppen
-uber dieselbe Schnittstelle angesteuert werden wie Select-Felder.
+Helper class for checkboxes and radio buttons. Implements `Facebook\WebDriver\WebDriverSelectInterface`
+analogous to `WebDriverSelect` (for `<select>`) — this allows checkbox groups and radio groups
+to be controlled through the same interface as select fields.
 
-Quelle: `src/WebDriver/WebDriverCheckbox.php`
+Source: `src/WebDriver/WebDriverCheckbox.php`
 
-Hinweis: Diese Klasse ist `internal` (nicht Teil der public API von Panther) und wird intern
-von `ChoiceFormField` und `Form` verwendet, wenn `<input type="checkbox">` oder
-`<input type="radio">` vorliegt.
+Note: This class is `internal` (not part of Panther's public API) and is used internally
+by `ChoiceFormField` and `Form` when an `<input type="checkbox">` or
+`<input type="radio">` is present.
 
 ---
 
 ## Contents
 
-- [Konstruktor](#konstruktor)
+- [Constructor](#constructor)
 - [isMultiple](#ismultiple)
 - [getOptions](#getoptions)
 - [getAllSelectedOptions](#getallselectedoptions)
 - [getFirstSelectedOption](#getfirstselectedoption)
 - [selectByIndex / selectByValue / selectByVisibleText / selectByVisiblePartialText](#selectbyindex-selectbyvalue-selectbyvisibletext-selectbyvisiblepartialtext)
 - [deselectAll / deselectByIndex / deselectByValue / deselectByVisibleText / deselectByVisiblePartialText](#deselectall-deselectbyindex-deselectbyvalue-deselectbyvisibletext-deselectbyvisiblepartialtext)
-- [Nutzung uber ChoiceFormField (empfohlen)](#nutzung-uber-choiceformfield-empfohlen)
+- [Usage via ChoiceFormField (recommended)](#usage-via-choiceformfield-recommended)
 
-## Konstruktor
+## Constructor
 
 ```php
 public function __construct(WebDriverElement $element)
 ```
 
-`$element` muss ein `<input type="checkbox">` oder `<input type="radio">` mit einem
-`name`-Attribut sein. Wirft sonst:
-- `UnexpectedTagNameException` wenn kein `<input>`
-- `WebDriverException` wenn Typ nicht checkbox/radio
-- `WebDriverException` wenn kein `name`-Attribut
+`$element` must be an `<input type="checkbox">` or `<input type="radio">` with a
+`name` attribute. Otherwise it throws:
+- `UnexpectedTagNameException` if not an `<input>`
+- `WebDriverException` if the type is not checkbox/radio
+- `WebDriverException` if there is no `name` attribute
 
 ---
 
@@ -45,8 +45,8 @@ public function __construct(WebDriverElement $element)
 public function isMultiple(): bool
 ```
 
-`true` fur Checkboxen (mehrere konnen gleichzeitig selektiert sein),
-`false` fur Radio-Buttons (gegenseitig exklusiv).
+`true` for checkboxes (several can be selected at the same time),
+`false` for radio buttons (mutually exclusive).
 
 ---
 
@@ -56,7 +56,7 @@ public function isMultiple(): bool
 public function getOptions(): array  // WebDriverElement[]
 ```
 
-Gibt alle verwandten Elemente (gleicher Name im gleichen Form) zuruck.
+Returns all related elements (same name within the same form).
 
 ---
 
@@ -66,7 +66,7 @@ Gibt alle verwandten Elemente (gleicher Name im gleichen Form) zuruck.
 public function getAllSelectedOptions(): array  // WebDriverElement[]
 ```
 
-Gibt alle aktuell selektierten Elemente zuruck. Stoppt beim ersten fur Radio-Buttons.
+Returns all currently selected elements. Stops at the first one for radio buttons.
 
 ---
 
@@ -76,7 +76,7 @@ Gibt alle aktuell selektierten Elemente zuruck. Stoppt beim ersten fur Radio-But
 public function getFirstSelectedOption(): WebDriverElement
 ```
 
-Wirft `NoSuchElementException` wenn nichts selektiert.
+Throws `NoSuchElementException` if nothing is selected.
 
 ---
 
@@ -89,14 +89,14 @@ public function selectByVisibleText(string $text): void
 public function selectByVisiblePartialText(string $text): void
 ```
 
-Selektiert das Element am gegebenen Index / mit gegebenem `value`-Attribut /
-mit gegebenem Label-Text.
+Selects the element at the given index / with the given `value` attribute /
+with the given label text.
 
 ---
 
 ## deselectAll / deselectByIndex / deselectByValue / deselectByVisibleText / deselectByVisiblePartialText
 
-Nur fur Checkboxen (`isMultiple() === true`). Wirft `UnsupportedOperationException` bei Radio-Buttons.
+Only for checkboxes (`isMultiple() === true`). Throws `UnsupportedOperationException` for radio buttons.
 
 ```php
 public function deselectAll(): void
@@ -108,22 +108,22 @@ public function deselectByVisiblePartialText(string $text): void
 
 ---
 
-## Nutzung uber ChoiceFormField (empfohlen)
+## Usage via ChoiceFormField (recommended)
 
-Direkte Nutzung von `WebDriverCheckbox` ist selten notig. Stattdessen uber `Form`:
+Direct use of `WebDriverCheckbox` is rarely necessary. Use `Form` instead:
 
 ```php
 $form = $crawler->selectButton('Speichern')->form();
 
-// Checkbox ticken
-$form['newsletter']->tick();     // ChoiceFormField::tick() -> WebDriverCheckbox intern
+// Tick checkbox
+$form['newsletter']->tick();     // ChoiceFormField::tick() -> WebDriverCheckbox internally
 
-// Checkbox un-ticken
+// Un-tick checkbox
 $form['newsletter']->untick();
 
-// Radio auswahlen
+// Select radio
 $form['payment_method']->select('paypal');
 
-// Checkbox-Gruppe (mehrere) auswahlen
+// Select checkbox group (multiple)
 $form['interests']->select(['php', 'symfony']);
 ```

@@ -1,4 +1,4 @@
 # contao-fragment-controllers
 
-Lies `FRAGMENT-CONTROLLERS-DETAIL.md` für vollständige Erklärung des
-Fragment-Controller-Konzepts und Implementierungsoptionen in Contao 5.
+Read `FRAGMENT-CONTROLLERS-DETAIL.md` for a complete explanation of the
+fragment controller concept and implementation options in Contao 5.

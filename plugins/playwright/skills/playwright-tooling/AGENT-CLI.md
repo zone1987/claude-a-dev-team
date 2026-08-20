@@ -5,9 +5,9 @@ capabilities and the skills system for the Playwright Agent CLI (`@playwright/cl
 
 ## Reference files
 
-- [Introduction, quick start, installation, skills](`AGENT-CLI-INTRO-INSTALL-SKILLS.md`)
-- [Configuration (complete schema + env variables)](`AGENT-CLI-CONFIGURATION.md`)
-- [Snapshots & accessibility tree](`AGENT-CLI-SNAPSHOTS.md`)
-- [Capabilities (capability groups)](`AGENT-CLI-CAPABILITIES.md`)
-- [Sessions & dashboard](`AGENT-CLI-SESSIONS.md`)
-- [Vision mode](`AGENT-CLI-VISION-MODE.md`)
+- [AGENT-CLI-INTRO-INSTALL-SKILLS.md](AGENT-CLI-INTRO-INSTALL-SKILLS.md)
+- [AGENT-CLI-CONFIGURATION.md](AGENT-CLI-CONFIGURATION.md)
+- [AGENT-CLI-SNAPSHOTS.md](AGENT-CLI-SNAPSHOTS.md)
+- [AGENT-CLI-CAPABILITIES.md](AGENT-CLI-CAPABILITIES.md)
+- [AGENT-CLI-SESSIONS.md](AGENT-CLI-SESSIONS.md)
+- [AGENT-CLI-VISION-MODE.md](AGENT-CLI-VISION-MODE.md)

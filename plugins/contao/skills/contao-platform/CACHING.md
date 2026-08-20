@@ -1,3 +1,3 @@
 # contao-caching
 
-Vollständige Referenz: `CACHING-CONTAO-CACHING.md`
+Complete reference: `CACHING-CONTAO-CACHING.md`

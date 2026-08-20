@@ -1,27 +1,27 @@
-# PantherWebDriverExpectedCondition — Vollstandige Referenz
+# PantherWebDriverExpectedCondition — Complete Reference
 
 `Symfony\Component\Panther\WebDriver\PantherWebDriverExpectedCondition`
 
-Panther-eigene Expected-Conditions, die uber die Standard-Conditions von
-`Facebook\WebDriver\WebDriverExpectedCondition` hinausgehen. Alle Methoden
-sind `static` und geben ein `callable` zuruck, das `WebDriverWait::until()`
-erwartet.
+Panther's own expected conditions, which go beyond the standard conditions of
+`Facebook\WebDriver\WebDriverExpectedCondition`. All methods
+are `static` and return a `callable`, which is what `WebDriverWait::until()`
+expects.
 
-Quelle: `src/WebDriver/PantherWebDriverExpectedCondition.php`
+Source: `src/WebDriver/PantherWebDriverExpectedCondition.php`
 
 ---
 
 ## Contents
 
-- [Methoden-Ubersicht](#methoden-ubersicht)
-- [Vergleich: Standard vs. Panther Expected Conditions](#vergleich-standard-vs-panther-expected-conditions)
-- [Direkte Nutzung mit wait()](#direkte-nutzung-mit-wait)
+- [Method Overview](#method-overview)
+- [Comparison: standard vs. Panther expected conditions](#comparison-standard-vs-panther-expected-conditions)
+- [Direct usage with wait()](#direct-usage-with-wait)
 
-## Methoden-Ubersicht
+## Method Overview
 
-Alle Methoden geben `callable(WebDriver $driver): bool|null` zuruck.
-Gibt `null` zuruck wenn eine `StaleElementReferenceException` auftritt (Element wurde
-aus dem DOM entfernt — Polling wird fortgesetzt).
+All methods return `callable(WebDriver $driver): bool|null`.
+Returns `null` when a `StaleElementReferenceException` occurs (the element was
+removed from the DOM — polling continues).
 
 ### elementTextNotContains
 
@@ -32,9 +32,9 @@ public static function elementTextNotContains(
 ): callable
 ```
 
-Wartet bis das per `$by` gefundene Element `$text` NICHT mehr im sichtbaren Text enthalt.
+Waits until the element found via `$by` NO LONGER contains `$text` in its visible text.
 
-Genutzt von `Client::waitForElementToNotContain()`.
+Used by `Client::waitForElementToNotContain()`.
 
 ```php
 use Facebook\WebDriver\WebDriverBy;
@@ -56,9 +56,9 @@ $client->wait(10, 250)->until(
 public static function elementEnabled(WebDriverBy $by): callable
 ```
 
-Wartet bis das Element `isEnabled() === true` (kein `disabled`-Attribut).
+Waits until the element is `isEnabled() === true` (no `disabled` attribute).
 
-Genutzt von `Client::waitForEnabled()`.
+Used by `Client::waitForEnabled()`.
 
 ```php
 $client->wait(30, 250)->until(
@@ -76,9 +76,9 @@ $client->wait(30, 250)->until(
 public static function elementDisabled(WebDriverBy $by): callable
 ```
 
-Wartet bis das Element `isEnabled() === false` (`disabled`-Attribut gesetzt).
+Waits until the element is `isEnabled() === false` (`disabled` attribute set).
 
-Genutzt von `Client::waitForDisabled()`.
+Used by `Client::waitForDisabled()`.
 
 ---
 
@@ -92,10 +92,10 @@ public static function elementAttributeContains(
 ): callable
 ```
 
-Wartet bis das Attribut `$attribute` des Elements `$text` enthalt.
-Gibt `null` zuruck (nicht `false`) wenn das Attribut `null` ist (Element hat Attribut nicht).
+Waits until the element's `$attribute` attribute contains `$text`.
+Returns `null` (not `false`) when the attribute is `null` (the element does not have the attribute).
 
-Genutzt von `Client::waitForAttributeToContain()`.
+Used by `Client::waitForAttributeToContain()`.
 
 ```php
 $client->wait(10, 250)->until(
@@ -119,54 +119,54 @@ public static function elementAttributeNotContains(
 ): callable
 ```
 
-Wartet bis das Attribut `$attribute` des Elements `$text` NICHT mehr enthalt.
-Gibt `null` wenn das Attribut selbst `null` ist.
+Waits until the element's `$attribute` attribute NO LONGER contains `$text`.
+Returns `null` when the attribute itself is `null`.
 
-Genutzt von `Client::waitForAttributeToNotContain()`.
-
----
-
-## Vergleich: Standard vs. Panther Expected Conditions
-
-`Facebook\WebDriver\WebDriverExpectedCondition` liefert (Auswahl):
-
-| Methode | Beschreibung |
-|---|---|
-| `presenceOfElementLocated($by)` | Element im DOM vorhanden (auch unsichtbar) |
-| `visibilityOfElementLocated($by)` | Element sichtbar |
-| `invisibilityOfElementLocated($by)` | Element unsichtbar oder nicht im DOM |
-| `stalenessOf($element)` | Element wurde aus dem DOM entfernt |
-| `elementTextContains($by, $text)` | Element enthalt Text |
-| `titleContains($title)` | Seiten-Titel enthalt String |
-| `titleIs($title)` | Seiten-Titel ist exakt gleich |
-| `urlContains($url)` | Aktuelle URL enthalt String |
-| `urlIs($url)` | Aktuelle URL ist exakt gleich |
-| `numberOfWindowsToBe($n)` | Exakt n Fenster/Tabs offen |
-
-`PantherWebDriverExpectedCondition` erganzt:
-
-| Methode | Beschreibung |
-|---|---|
-| `elementTextNotContains($by, $text)` | Element enthalt Text NICHT |
-| `elementEnabled($by)` | Element ist enabled |
-| `elementDisabled($by)` | Element ist disabled |
-| `elementAttributeContains($by, $attr, $text)` | Attribut enthalt Text |
-| `elementAttributeNotContains($by, $attr, $text)` | Attribut enthalt Text NICHT |
+Used by `Client::waitForAttributeToNotContain()`.
 
 ---
 
-## Direkte Nutzung mit wait()
+## Comparison: standard vs. Panther expected conditions
+
+`Facebook\WebDriver\WebDriverExpectedCondition` provides (selection):
+
+| Method | Description |
+|---|---|
+| `presenceOfElementLocated($by)` | Element present in the DOM (even if invisible) |
+| `visibilityOfElementLocated($by)` | Element visible |
+| `invisibilityOfElementLocated($by)` | Element invisible or not in the DOM |
+| `stalenessOf($element)` | Element was removed from the DOM |
+| `elementTextContains($by, $text)` | Element contains text |
+| `titleContains($title)` | Page title contains string |
+| `titleIs($title)` | Page title is exactly equal |
+| `urlContains($url)` | Current URL contains string |
+| `urlIs($url)` | Current URL is exactly equal |
+| `numberOfWindowsToBe($n)` | Exactly n windows/tabs open |
+
+`PantherWebDriverExpectedCondition` adds:
+
+| Method | Description |
+|---|---|
+| `elementTextNotContains($by, $text)` | Element does NOT contain text |
+| `elementEnabled($by)` | Element is enabled |
+| `elementDisabled($by)` | Element is disabled |
+| `elementAttributeContains($by, $attr, $text)` | Attribute contains text |
+| `elementAttributeNotContains($by, $attr, $text)` | Attribute does NOT contain text |
+
+---
+
+## Direct usage with wait()
 
 ```php
 use Facebook\WebDriver\WebDriverExpectedCondition;
 use Symfony\Component\Panther\WebDriver\PantherWebDriverExpectedCondition;
 
-// Standard-Condition
+// Standard condition
 $client->wait(10)->until(
     WebDriverExpectedCondition::titleContains('Dashboard')
 );
 
-// Panther-eigene Condition
+// Panther's own condition
 $client->wait(30, 500)->until(
     PantherWebDriverExpectedCondition::elementEnabled(
         \Facebook\WebDriver\WebDriverBy::cssSelector('input[name=submit]')
@@ -175,6 +175,6 @@ $client->wait(30, 500)->until(
 );
 ```
 
-Hinweis: Die hohere Ebene sind die `waitFor*`-Methoden von `Client`, die diese Conditions
-intern verwenden. Die direkte `wait()->until()`-Nutzung ist nur notwendig fur nicht direkt
-exponierte Conditions.
+Note: The higher-level API are the `waitFor*` methods of `Client`, which use these conditions
+internally. Using `wait()->until()` directly is only necessary for conditions that are not
+exposed directly.

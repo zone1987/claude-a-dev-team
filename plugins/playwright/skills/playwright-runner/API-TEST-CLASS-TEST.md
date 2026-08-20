@@ -460,9 +460,9 @@ await test.expect(page).toHaveTitle('Home');
 | Properties | 1 (expect) |
 | **Total** | **39** |
 
-**Fazit:** `test` ist der zentrale Einstiegspunkt des Test-Runners. Es vereint Deklaration,
-Organisation (describe), Lebenszyklus-Hooks, Modifier (skip/fail/slow/fixme), Steps,
-Fixture-Erweiterung (extend) und Konfiguration (use) in einem einzigen Objekt.
+**Summary:** `test` is the central entry point of the test runner. It combines declaration,
+organization (describe), lifecycle hooks, modifiers (skip/fail/slow/fixme), steps,
+fixture extension (extend) and configuration (use) in a single object.
 
 ---
 

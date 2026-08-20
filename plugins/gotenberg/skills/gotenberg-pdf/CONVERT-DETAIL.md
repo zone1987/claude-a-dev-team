@@ -1,14 +1,14 @@
-# Gotenberg — PDF/A & PDF/UA Konvertierung (Vollreferenz)
+# Gotenberg — PDF/A & PDF/UA Conversion (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [PDF/A-Standard-Uebersicht](#pdfa-standard-uebersicht)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [PDF/A Standard Overview](#pdfa-standard-overview)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -16,54 +16,54 @@
 POST /forms/pdfengines/convert
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
+| Header | Type | Required | Default | Description |
 |--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe; Erweiterung wird automatisch angehaengt |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Output-Filename` | string | No | random UUID | File name of the output; the extension is appended automatically |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Form-Felder
+## Form Fields
 
-| Feld | Typ | Pflicht | Standard | Erlaubte Werte | Beschreibung |
+| Field | Type | Required | Default | Allowed values | Description |
 |------|-----|---------|----------|----------------|--------------|
-| `files` | file[] | Ja | — | — | PDF-Dateien, die konvertiert werden sollen |
-| `pdfa` | enum | Bedingt* | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` | Zielarchivstandard (*mindestens eines von pdfa oder pdfua erforderlich) |
-| `pdfua` | boolean | Bedingt* | `false` | `true`, `false` | PDF/UA (Universal Accessibility) aktivieren |
+| `files` | file[] | Yes | — | — | PDF files to be converted |
+| `pdfa` | enum | Conditional* | — | `PDF/A-1b`, `PDF/A-2b`, `PDF/A-3b` | Target archival standard (*at least one of pdfa or pdfua is required) |
+| `pdfua` | boolean | Conditional* | `false` | `true`, `false` | Enable PDF/UA (Universal Accessibility) |
 
 ---
 
-## PDF/A-Standard-Uebersicht
+## PDF/A Standard Overview
 
-| Standard | Beschreibung | Anhaenge erlaubt |
+| Standard | Description | Attachments allowed |
 |----------|-------------|-----------------|
-| `PDF/A-1b` | ISO 19005-1 — visuelle Darstellung erhalten | Nein |
-| `PDF/A-2b` | ISO 19005-2 — verbesserte Kompression | Nein |
-| `PDF/A-3b` | ISO 19005-3 — beliebige Dateianhaenge erlaubt | Ja |
+| `PDF/A-1b` | ISO 19005-1 — preserves visual appearance | No |
+| `PDF/A-2b` | ISO 19005-2 — improved compression | No |
+| `PDF/A-3b` | ISO 19005-3 — arbitrary file attachments allowed | Yes |
 
 ---
 
-## Antwort-Codes
+## Response Codes
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | `application/pdf` | Konvertierte PDF; mehrere Inputs → ZIP-Archiv |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
-| `503` | `text/plain; charset=UTF-8` | Maximale Bearbeitungsdauer ueberschritten |
+| `200` | `application/pdf` | Converted PDF; multiple inputs → ZIP archive |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
+| `503` | `text/plain; charset=UTF-8` | Maximum processing time exceeded |
 
-Alle Antworten enthalten: `Content-Disposition`, `Content-Type`, `Content-Length`, `Gotenberg-Trace`
+All responses include: `Content-Disposition`, `Content-Type`, `Content-Length`, `Gotenberg-Trace`
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### In PDF/A-1b konvertieren
+### Convert to PDF/A-1b
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
@@ -72,7 +72,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
   -o archiv.pdf
 ```
 
-### In PDF/A-2b konvertieren
+### Convert to PDF/A-2b
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
@@ -81,7 +81,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
   -o archiv.pdf
 ```
 
-### In PDF/A-3b konvertieren (mit Anhang-Unterstuetzung)
+### Convert to PDF/A-3b (with attachment support)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
@@ -90,7 +90,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
   -o archiv.pdf
 ```
 
-### PDF/UA-Barrierefreiheit aktivieren
+### Enable PDF/UA accessibility
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
@@ -99,7 +99,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
   -o barrierefrei.pdf
 ```
 
-### Kombination PDF/A-3b + PDF/UA
+### Combining PDF/A-3b + PDF/UA
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
@@ -109,7 +109,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
   -o archiv-barrierefrei.pdf
 ```
 
-### Mehrere Dateien auf einmal (→ ZIP)
+### Multiple files at once (→ ZIP)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/convert \
@@ -121,14 +121,14 @@ curl --request POST http://localhost:3000/forms/pdfengines/convert \
 
 ---
 
-## Hinweise
+## Notes
 
-- Diese Operation erfordert LibreOffice-Neuverarbeitung der Dokumente — rechenintensiver als Merge/Split
-- PDF/A und Verschluesselung schliessen sich gegenseitig aus (Verschluesselung bricht PDF/A-Konformitaet)
-- Metadaten schreiben bricht typischerweise PDF/A-Konformitaet
-- Fuer E-Rechnungen mit Anhang ist PDF/A-3b erforderlich (ZUGFeRD/Factur-X)
-- Die Konvertierung kann bei komplexen Dokumenten erheblich laenger dauern
+- This operation requires LibreOffice to reprocess the documents — more compute-intensive than merge/split
+- PDF/A and encryption are mutually exclusive (encryption breaks PDF/A conformance)
+- Writing metadata typically breaks PDF/A conformance
+- For e-invoices with an attachment, PDF/A-3b is required (ZUGFeRD/Factur-X)
+- Conversion can take considerably longer for complex documents
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/pdfa-pdfua
+Source: https://gotenberg.dev/docs/manipulate-pdfs/pdfa-pdfua

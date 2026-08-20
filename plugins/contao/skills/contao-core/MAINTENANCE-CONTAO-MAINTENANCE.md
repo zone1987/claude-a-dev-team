@@ -1,20 +1,20 @@
-# Contao Maintenance-Module & Purge-Tasks (5.x)
+# Contao maintenance modules & purge tasks (5.x)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Eigenes Maintenance-Module](#eigenes-maintenance-module)
-- [Purge-Tasks](#purge-tasks)
+- [Overview](#overview)
+- [Custom maintenance module](#custom-maintenance-module)
+- [Purge tasks](#purge-tasks)
 
-## Überblick
+## Overview
 
-Der Wartungsbereich im Contao-Backend bietet standardmäßig Crawler- und Purge-Module. Eigene Module und Purge-Tasks können registriert werden.
+By default the maintenance area in the Contao back end offers crawler and purge modules. Custom modules and purge tasks can be registered.
 
 ---
 
-## Eigenes Maintenance-Module
+## Custom maintenance module
 
-### 1. Klasse erstellen
+### 1. Create the class
 
 ```php
 namespace App\Maintenance;
@@ -23,7 +23,7 @@ use Contao\MaintenanceModuleInterface;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Twig\Environment;
 
-#[AsController]   // Macht Service öffentlich für Dependency Injection
+#[AsController]   // Makes the service public for dependency injection
 class CustomMaintenanceModule implements MaintenanceModuleInterface
 {
     public function __construct(private readonly Environment $twig) {}
@@ -37,12 +37,12 @@ class CustomMaintenanceModule implements MaintenanceModuleInterface
 
     public function isActive(): bool
     {
-        return false;   // true → nur dieses Modul wird gerendert
+        return false;   // true → only this module is rendered
     }
 }
 ```
 
-### 2. Template erstellen
+### 2. Create the template
 
 ```twig
 {# templates/custom_maintenance_module.html.twig #}
@@ -54,7 +54,7 @@ class CustomMaintenanceModule implements MaintenanceModuleInterface
 </div>
 ```
 
-### 3. Registrieren
+### 3. Register it
 
 ```php
 // contao/config/config.php
@@ -65,19 +65,19 @@ $GLOBALS['TL_MAINTENANCE'][] = CustomMaintenanceModule::class;
 
 ---
 
-## Purge-Tasks
+## Purge tasks
 
-`$GLOBALS['TL_PURGE']` kennt drei Kategorien:
+`$GLOBALS['TL_PURGE']` knows three categories:
 
-| Kategorie | Zweck | Pflichtschlüssel |
+| Category | Purpose | Required keys |
 |-----------|-------|-----------------|
-| `tables` | Datenbanktabellen leeren | `callback`, `affected` |
-| `folders` | Verzeichnisinhalte bereinigen | `callback`, `affected` |
-| `custom` | Beliebige Bereinigung | `callback` |
+| `tables` | Empty database tables | `callback`, `affected` |
+| `folders` | Clean up directory contents | `callback`, `affected` |
+| `custom` | Arbitrary clean-up | `callback` |
 
 ---
 
-### Tabellen purgen
+### Purging tables
 
 ```php
 // contao/config/config.php
@@ -85,7 +85,7 @@ use App\Maintenance\PurgeFoobarTable;
 
 $GLOBALS['TL_PURGE']['tables']['foobar'] = [
     'callback' => [PurgeFoobarTable::class, '__invoke'],
-    'affected' => ['tl_foobar'],    // Zeigt Datensatzanzahl im Backend
+    'affected' => ['tl_foobar'],    // Shows the record count in the back end
 ];
 ```
 
@@ -108,7 +108,7 @@ class PurgeFoobarTable
 }
 ```
 
-**Übersetzung:**
+**Translation:**
 ```yaml
 # translations/contao_tl_maintenance.en.yaml
 tl_maintenance_jobs:
@@ -119,13 +119,13 @@ tl_maintenance_jobs:
 
 ---
 
-### Ordner purgen
+### Purging folders
 
 ```php
 // contao/config/config.php
 $GLOBALS['TL_PURGE']['folders']['foobar'] = [
     'callback' => [PurgeFoobarFolder::class, '__invoke'],
-    'affected' => ['%kernel.cache_dir%/foobar'],   // Zeigt Dateianzahl im Backend
+    'affected' => ['%kernel.cache_dir%/foobar'],   // Shows the file count in the back end
 ];
 ```
 
@@ -161,7 +161,7 @@ class PurgeFoobarFolder
 
 ---
 
-### Custom Purge-Aktion
+### Custom purge action
 
 ```php
 // contao/config/config.php
@@ -177,7 +177,7 @@ class PurgeFoobarCustom
 {
     public function __invoke(): void
     {
-        // Eigene Bereinigungslogik
+        // Your own clean-up logic
     }
 }
 ```
@@ -192,6 +192,6 @@ tl_maintenance_jobs:
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://docs.contao.org/5.x/dev/framework/maintenance-module/*
 - *https://docs.contao.org/5.x/dev/framework/maintenance-module/purge-task/*

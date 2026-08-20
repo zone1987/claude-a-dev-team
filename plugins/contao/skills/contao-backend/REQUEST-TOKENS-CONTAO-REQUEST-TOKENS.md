@@ -1,34 +1,34 @@
-# Contao Request Tokens / CSRF-Schutz (5.x)
+# Contao Request Tokens / CSRF protection (5.x)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Schutz deaktivieren](#schutz-deaktivieren)
-- [Token generieren und validieren](#token-generieren-und-validieren)
-- [Token in Templates ausgeben](#token-in-templates-ausgeben)
-- [Symfony Forms Integration](#symfony-forms-integration)
-- [Sicherheitshinweise](#sicherheitshinweise)
+- [Overview](#overview)
+- [Disabling protection](#disabling-protection)
+- [Generating and validating tokens](#generating-and-validating-tokens)
+- [Outputting tokens in templates](#outputting-tokens-in-templates)
+- [Symfony Forms integration](#symfony-forms-integration)
+- [Security notes](#security-notes)
 
-## Überblick
+## Overview
 
-Contao implementiert CSRF-Schutz via **Double Submit Cookie Technik**.
+Contao implements CSRF protection via the **double submit cookie technique**.
 
-### Schutzumfang
+### Scope of protection
 
-| Geschützt | Nicht geschützt |
+| Protected | Not protected |
 |-----------|----------------|
-| Alle `POST`-Requests aus Contao-Routes (Frontend/Backend) | Ajax-Requests mit `X-Requested-With: XMLHttpRequest` |
-| Nur wenn Authentifizierung per Cookies/Basic Auth persistiert | Unauthentifizierte Nutzer (kein Schutz nötig) |
+| All `POST` requests from Contao routes (frontend/backend) | Ajax requests with `X-Requested-With: XMLHttpRequest` |
+| Only if authentication is persisted via cookies/basic auth | Unauthenticated users (no protection needed) |
 
 ---
 
-## Schutz deaktivieren
+## Disabling protection
 
-Routen können Token-Prüfung via `_token_check => false` deaktivieren (Sicherheitsrisiko – alternative Absicherung erforderlich).
+Routes can disable the token check via `_token_check => false` (a security risk – alternative safeguards are required).
 
 ---
 
-## Token generieren und validieren
+## Generating and validating tokens
 
 ```php
 use Symfony\Component\Security\Csrf\CsrfToken;
@@ -56,32 +56,32 @@ class ExampleService
 }
 ```
 
-### ContaoCsrfTokenManager (vereinfacht)
+### ContaoCsrfTokenManager (simplified)
 
 ```php
-// Default-Token-Wert direkt abrufen
+// Retrieve the default token value directly
 $contaoCsrfTokenManager->getDefaultTokenValue();
 ```
 
 ---
 
-## Token in Templates ausgeben
+## Outputting tokens in templates
 
-**PHP-Template:**
+**PHP template:**
 ```php
 <?= $this->requestToken ?>
 ```
 
-**Twig-Template:**
+**Twig template:**
 ```twig
 {{ contao.request_token }}
 ```
 
 ---
 
-## Symfony Forms Integration
+## Symfony Forms integration
 
-### In Contao-Controllern (AbstractFrontendModuleController, AbstractContentElementController, AbstractController)
+### In Contao controllers (AbstractFrontendModuleController, AbstractContentElementController, AbstractController)
 
 ```php
 $formBuilder = $this->createFormBuilder(
@@ -89,7 +89,7 @@ $formBuilder = $this->createFormBuilder(
 );
 ```
 
-### In eigenen Services
+### In custom services
 
 ```php
 use Contao\CoreBundle\Csrf\ContaoCsrfTokenManager;
@@ -118,10 +118,10 @@ class MyCustomService
 
 ---
 
-## Sicherheitshinweise
+## Security notes
 
-> **XSS-Risiko:** Symfony-Forms für Backend-Records oder Legacy-Frontend-Templates kodieren Eingaben nicht automatisch. Eingaben sorgfältig behandeln um XSS zu verhindern.
+> **XSS risk:** Symfony forms for backend records or legacy frontend templates do not encode input automatically. Handle input carefully to prevent XSS.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/request-tokens/*
+*Source: https://docs.contao.org/5.x/dev/framework/request-tokens/*

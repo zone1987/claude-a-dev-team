@@ -1,13 +1,13 @@
-# Shopware 6 — Admin-Services
+# Shopware 6 — Admin services
 
-Services über `addServiceProvider` registrieren, in Komponenten via `inject` nutzen.
+Register services via `addServiceProvider` and use them in components via `inject`.
 
 ```js
 Shopware.Application.addServiceProvider('ffCalculator', () => new FfCalculator());
-// Komponente:
+// Component:
 Shopware.Component.register('ff-example-detail', { inject: ['ffCalculator', 'repositoryFactory'], /* ... */ });
 ```
 
-Häufige eingebaute Services: `repositoryFactory` (Daten), `systemConfigApiService` (Config), `acl`, `loginService`,
-`feature`. Eigene ApiServices für Custom-Endpoints (`sw-admin-api-requests`). `Shopware.Service('name')` für direkten
-Zugriff außerhalb von Komponenten.
+Common built-in services: `repositoryFactory` (data), `systemConfigApiService` (config), `acl`, `loginService`,
+`feature`. Custom ApiServices for custom endpoints (`sw-admin-api-requests`). `Shopware.Service('name')` for direct
+access outside components.

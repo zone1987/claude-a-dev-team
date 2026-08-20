@@ -4,32 +4,32 @@
 
 ```bash
 composer create-project contao/managed-edition
-# Spezifische Version:
+# Specific version:
 composer create-project contao/managed-edition . 5.7
 ```
 
-Die **Managed Edition** ist für Projekte gedacht, bei denen Contao der zentrale
-Bestandteil der Anwendung ist. Sie ermöglicht automatische Konfiguration durch
-Drittanbieter-Bundles.
+The **Managed Edition** is intended for projects in which Contao is the central
+component of the application. It enables automatic configuration through
+third-party bundles.
 
 ---
 
-## Managed Edition Internals
+## Managed Edition internals
 
-### Kernkomponenten
+### Core components
 
 1. **Manager Bundle** (`contao/manager-bundle`)  
-   Stellt das Anwendungs-Skelett bereit: Einstiegspunkte und Konfigurationsdateien.
+   Provides the application skeleton: entry points and configuration files.
    
 2. **Manager Plugin** (`contao/manager-plugin`)  
-   Ein Composer-Plugin, das nach jeder `composer install`/`composer update` automatisch
-   den `contao-setup`-Script ausführt.
+   A Composer plugin that automatically runs the `contao-setup` script after every
+   `composer install`/`composer update`.
 
-### Was `contao-setup` tut
+### What `contao-setup` does
 
-- Erstellt Anwendungsstruktur und benötigte Verzeichnisse
-- Baut den Cache neu
-- Generiert erforderliche Symlinks
+- Creates the application structure and the required directories
+- Rebuilds the cache
+- Generates the required symlinks
 
 **composer.json (Managed Edition):**
 
@@ -42,55 +42,55 @@ Drittanbieter-Bundles.
 }
 ```
 
-Der spezialisierte Kernel der Managed Edition fragt installierte Packages nach
-Konfigurationsdaten durch Interfaces des Manager Plugins ab — vollständige
-Autokonfiguration ist das Ergebnis.
+The specialised kernel of the Managed Edition queries installed packages for
+configuration data through interfaces of the Manager Plugin — full
+auto-configuration is the result.
 
 ---
 
-## Integration in bestehende Symfony Application
+## Integration into an existing Symfony application
 
-Contao kann als eigenständiges Symfony-Bundle in bestehende Symfony-Anwendungen
-integriert werden. Diese Option ist sinnvoll, wenn Contao nur ergänzende CMS-Features
-liefert, während die Symfony-App der Kern ist.
+Contao can be integrated into existing Symfony applications as a standalone Symfony
+bundle. This option makes sense when Contao only provides supplementary CMS features
+while the Symfony app is the core.
 
-### Contao 5.3 in Symfony Application
+### Contao 5.3 in a Symfony application
 
-Die Installationsanleitung für Contao 5.3 LTS als Symfony-Bundle ist unter
-`https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/contao-5.3/`
-dokumentiert.
+The installation instructions for Contao 5.3 LTS as a Symfony bundle are
+documented at
+`https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/contao-5.3/`.
 
-**Grundsatz:** Da Contao ein Symfony-Bundle ist, gelten alle Standard-Symfony-Bundles-
-Konventionen. Die Integration erfordert:
-- Bundle-Registrierung im Kernel
-- Routing-Konfiguration
-- Datenbank-Migrationen
+**Principle:** since Contao is a Symfony bundle, all standard Symfony bundle
+conventions apply. The integration requires:
+- Bundle registration in the kernel
+- Routing configuration
+- Database migrations
 
 ---
 
-## Wann welche Variante?
+## Which variant when?
 
-| Kriterium | Managed Edition | Symfony Application |
+| Criterion | Managed Edition | Symfony Application |
 |-----------|----------------|---------------------|
-| Contao ist Hauptkomponente | ✅ | ❌ |
-| Automatische Bundle-Konfiguration | ✅ | Manuell |
-| Bestehende Symfony-App | ❌ | ✅ |
-| Einfachste Updates | ✅ | ❌ |
+| Contao is the main component | ✅ | ❌ |
+| Automatic bundle configuration | ✅ | Manual |
+| Existing Symfony app | ❌ | ✅ |
+| Simplest updates | ✅ | ❌ |
 
 ---
 
-## Entwicklung starten
+## Starting development
 
-Nach der Installation mit der Managed Edition:
+After installing with the Managed Edition:
 
-1. `composer install` (ohne `--optimize-autoloader` in der Entwicklung)
-2. Neue Klassen sind sofort verfügbar ohne Cache-Neubau
-3. Eigener Code in `src/`, Contao-spezifisches in `contao/`
+1. `composer install` (without `--optimize-autoloader` during development)
+2. New classes are available immediately without a cache rebuild
+3. Your own code in `src/`, Contao-specific things in `contao/`
 
-**Empfehlung:** `.env`-Dateien statt `parameters.yaml` für sensible Daten verwenden.
+**Recommendation:** use `.env` files instead of `parameters.yaml` for sensitive data.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/getting-started/initial-setup/*  
+*Source: https://docs.contao.org/5.x/dev/getting-started/initial-setup/*  
 *https://docs.contao.org/5.x/dev/getting-started/initial-setup/managed-edition/*  
 *https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/*

@@ -13,8 +13,8 @@ Exports `toggleVariants` for use in custom components (e.g. ToggleGroup).
 
 ## Reference files
 
-- [installation.md](`TOGGLE-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`TOGGLE-SOURCE.md`) — Complete component source (new-york-v4 + radix base)
-- [api.md](`TOGGLE-API.md`) — Props table
-- [examples.md](`TOGGLE-EXAMPLES.md`) — All examples
-- [base-vs-radix.md](`TOGGLE-BASE-VS-RADIX.md`) — Styled vs base differences
+- [TOGGLE-INSTALLATION.md](TOGGLE-INSTALLATION.md) — CLI & manual setup
+- [TOGGLE-SOURCE.md](TOGGLE-SOURCE.md) — Complete component source (new-york-v4 + radix base)
+- [TOGGLE-API.md](TOGGLE-API.md) — Props table
+- [TOGGLE-EXAMPLES.md](TOGGLE-EXAMPLES.md) — All examples
+- [TOGGLE-BASE-VS-RADIX.md](TOGGLE-BASE-VS-RADIX.md) — Styled vs base differences

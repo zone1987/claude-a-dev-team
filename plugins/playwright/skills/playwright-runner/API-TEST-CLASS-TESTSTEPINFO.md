@@ -98,9 +98,9 @@ await test.step('Outer', async (outerStep) => {
 | Methods | 2 (`attach`, `skip`) |
 | Properties | 1 (`titlePath`) |
 
-**Fazit:** `TestStepInfo` ist bewusst schlank. Es bietet nur das, was auf Step-Ebene sinnvoll
-ist: Artefakte anhaengen (`attach`) und den Step abbrechen (`skip`). Das `titlePath`-Property
-erlaubt die Positionsbestimmung innerhalb der Step-Hierarchie.
+**Summary:** `TestStepInfo` is deliberately lean. It offers only what makes sense at step
+level: attaching artifacts (`attach`) and aborting the step (`skip`). The `titlePath` property
+allows the position within the step hierarchy to be determined.
 
 ---
 

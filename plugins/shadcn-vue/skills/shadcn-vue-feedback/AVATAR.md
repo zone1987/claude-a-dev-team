@@ -23,8 +23,8 @@ The Avatar component displays a user profile image with an automatic fallback wh
 The shadcn-vue example pages also demonstrate **`AvatarGroup`**, **`AvatarGroupCount`**, and **`AvatarBadge`** (online indicator). These come from the **`reka` extras / new-york-v4 extension layer**, not from the three files in `components/ui/avatar/`. If you need group layouts or badge overlays, you must add those components separately.
 
 ## References
-- [Installation](`AVATAR-INSTALLATION.md`)
-- [Source code](`AVATAR-SOURCE.md`)
-- [API reference](`AVATAR-API.md`)
-- [Examples](`AVATAR-EXAMPLES.md`)
+- [AVATAR-INSTALLATION.md](AVATAR-INSTALLATION.md)
+- [AVATAR-SOURCE.md](AVATAR-SOURCE.md)
+- [AVATAR-API.md](AVATAR-API.md)
+- [AVATAR-EXAMPLES.md](AVATAR-EXAMPLES.md)
 - [reka-ui Avatar docs](https://reka-ui.com/docs/components/avatar)

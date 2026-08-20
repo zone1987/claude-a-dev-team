@@ -1,6 +1,6 @@
-# Shopware 6 — Administration-Grundlagen
+# Shopware 6 — administration fundamentals
 
-Die Admin ist eine Vue-3-App. Plugins erweitern sie über das globale `Shopware`-Objekt; Einstieg ist
+The admin is a Vue 3 app. Plugins extend it through the global `Shopware` object; the entry point is
 `src/Resources/app/administration/src/main.js`.
 
 ```js
@@ -8,9 +8,9 @@ Die Admin ist eine Vue-3-App. Plugins erweitern sie über das globale `Shopware`
 import './module/ff-example';
 ```
 
-Zentrale Registries am `Shopware`-Objekt: `Shopware.Module.register`, `Shopware.Component.register/override`,
+Central registries on the `Shopware` object: `Shopware.Module.register`, `Shopware.Component.register/override`,
 `Shopware.Service(...)`, `Shopware.Store` (Pinia), `Shopware.Mixin`, `Shopware.Snippet`. Stack: Vue 3 +
-**Composition API**, **Pinia** (Vuex nur Legacy), **Vite**-Build, **Meteor**-Komponenten (`mt-*`).
+**Composition API**, **Pinia** (Vuex is legacy only), **Vite** build, **Meteor** components (`mt-*`).
 
-Bausteine: Module (`sw-admin-module`), Components (`sw-admin-component`), Routing (`sw-admin-routing`),
-Daten (`sw-admin-data-handling`). Build/Watcher: `sw-admin-vite`. Für 6.6→6.7-Umstellung (sw-*→mt-*) siehe Plugin `shopware-migration`.
+Building blocks: modules (`sw-admin-module`), components (`sw-admin-component`), routing (`sw-admin-routing`),
+data (`sw-admin-data-handling`). Build/watcher: `sw-admin-vite`. For the 6.6→6.7 switch (sw-*→mt-*) see the plugin `shopware-migration`.

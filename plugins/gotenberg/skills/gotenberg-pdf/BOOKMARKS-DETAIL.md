@@ -1,24 +1,24 @@
-# Gotenberg — PDF Lesezeichen Lesen & Schreiben (Vollreferenz)
+# Gotenberg — Reading & Writing PDF Bookmarks (Full Reference)
 
 ## Contents
 
-- [Routen](#routen)
-- [1. Lesezeichen Lesen](#1-lesezeichen-lesen)
-- [2. Lesezeichen Schreiben](#2-lesezeichen-schreiben)
-- [Hinweise](#hinweise)
+- [Routes](#routes)
+- [1. Reading Bookmarks](#1-reading-bookmarks)
+- [2. Writing Bookmarks](#2-writing-bookmarks)
+- [Notes](#notes)
 
-## Routen
+## Routes
 
 ```
 POST /forms/pdfengines/bookmarks/read
 POST /forms/pdfengines/bookmarks/write
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content type of the request:** `multipart/form-data`
 
 ---
 
-## 1. Lesezeichen Lesen
+## 1. Reading Bookmarks
 
 ### Route
 
@@ -26,27 +26,27 @@ POST /forms/pdfengines/bookmarks/write
 POST /forms/pdfengines/bookmarks/read
 ```
 
-### Request-Header
+### Request Headers
 
-| Header | Typ | Pflicht | Beschreibung |
+| Header | Type | Required | Description |
 |--------|-----|---------|--------------|
-| `Gotenberg-Trace` | string | Nein | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Trace` | string | No | Custom request ID for log identification |
 
-### Form-Felder
+### Form Fields
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|--------------|
-| `files` | file[] | Ja | PDF-Dateien, deren Lesezeichen gelesen werden sollen |
+| `files` | file[] | Yes | PDF files whose bookmarks are to be read |
 
-### Antwort
+### Response
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | `application/json; charset=UTF-8` | JSON-Objekt mit Dateiname als Schluessel |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| `200` | `application/json; charset=UTF-8` | JSON object with the file name as key |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### Antwort-Format (Beispiel)
+### Response Format (Example)
 
 ```json
 {
@@ -83,15 +83,15 @@ POST /forms/pdfengines/bookmarks/read
 }
 ```
 
-### Bookmark-Objekt-Struktur
+### Bookmark Object Structure
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `title` | string | Bezeichnung des Lesezeichens |
-| `page` | integer | Seitennummer (1-basiert) |
-| `children` | array | Untergeordnete Lesezeichen (rekursiv) |
+| `title` | string | Label of the bookmark |
+| `page` | integer | Page number (1-based) |
+| `children` | array | Nested bookmarks (recursive) |
 
-### curl-Beispiel
+### curl Example
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/read \
@@ -101,7 +101,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/read \
 
 ---
 
-## 2. Lesezeichen Schreiben
+## 2. Writing Bookmarks
 
 ### Route
 
@@ -109,21 +109,21 @@ curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/read \
 POST /forms/pdfengines/bookmarks/write
 ```
 
-### Request-Header
+### Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
+| Header | Type | Required | Default | Description |
 |--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID |
+| `Gotenberg-Output-Filename` | string | No | random UUID | File name of the output |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID |
 
-### Form-Felder
+### Form Fields
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|--------------|
-| `bookmarks` | JSON-string | Ja | Lesezeichen als Liste oder Dateiname-Map |
-| `files` | file[] | Ja | PDF-Dateien, die aktualisiert werden sollen |
+| `bookmarks` | JSON string | Yes | Bookmarks as a list or as a file-name map |
+| `files` | file[] | Yes | PDF files to be updated |
 
-### Bookmarks-JSON-Format: Liste (fuer eine Datei)
+### Bookmarks JSON Format: List (for a single file)
 
 ```json
 [
@@ -146,7 +146,7 @@ POST /forms/pdfengines/bookmarks/write
 ]
 ```
 
-### Bookmarks-JSON-Format: Map (fuer mehrere Dateien)
+### Bookmarks JSON Format: Map (for multiple files)
 
 ```json
 {
@@ -160,15 +160,15 @@ POST /forms/pdfengines/bookmarks/write
 }
 ```
 
-### Antwort
+### Response
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | variabel | Aktualisierte PDF; mehrere Inputs → ZIP |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| `200` | variable | Updated PDF; multiple inputs → ZIP |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### Antwort-Header bei Erfolg
+### Response Headers on Success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -177,9 +177,9 @@ Content-Length: {laenge}
 Gotenberg-Trace: {trace}
 ```
 
-### curl-Beispiele
+### curl Examples
 
-#### Lesezeichen als Liste schreiben
+#### Write bookmarks as a list
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/write \
@@ -188,7 +188,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/write \
   -o mit-lesezeichen.pdf
 ```
 
-#### Lesezeichen als Map fuer mehrere Dateien
+#### Bookmarks as a map for multiple files
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/write \
@@ -200,15 +200,15 @@ curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/write \
 
 ---
 
-## Hinweise
+## Notes
 
-- Lesezeichen representieren die Dokumentgliederung (Table of Contents) im PDF
-- `children`-Array ist immer angegeben, auch wenn leer (`[]`)
-- Seitennummern sind 1-basiert
-- Beim Merge kann `autoIndexBookmarks=true` verwendet werden, um bestehende Lesezeichen automatisch zu indexieren
+- Bookmarks represent the document outline (table of contents) within the PDF
+- The `children` array is always present, even when empty (`[]`)
+- Page numbers are 1-based
+- When merging, `autoIndexBookmarks=true` can be used to index existing bookmarks automatically
 
 ---
 
-Quelle:
+Source:
 - https://gotenberg.dev/docs/manipulate-pdfs/read-bookmarks
 - https://gotenberg.dev/docs/manipulate-pdfs/write-bookmarks

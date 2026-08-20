@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Datenhandling
+# Shopware 6 — Admin data handling
 
-Daten laufen über `repositoryFactory` (DAL via Admin-API). Criteria-API gespiegelt in JS.
+Data goes through `repositoryFactory` (DAL via the Admin API). The Criteria API is mirrored in JS.
 
 ```js
 const repo = this.repositoryFactory.create('ff_example');
@@ -11,6 +11,6 @@ const result = await repo.search(criteria, Shopware.Context.api);
 await repo.save(entity, Shopware.Context.api);
 ```
 
-`repositoryFactory` via `inject(['repositoryFactory'])` bereitstellen. `Shopware.Context.api` als Kontext.
-Filter/Sorting/Aggregation analog zur PHP-Criteria (`shopware-data`). Repository-Nutzung im Detail: `sw-admin-repository-js`.
-Globaler State über Pinia (`sw-admin-pinia-store`).
+Provide `repositoryFactory` via `inject(['repositoryFactory'])`. Use `Shopware.Context.api` as the context.
+Filters/sorting/aggregation work like the PHP Criteria (`shopware-data`). Repository usage in detail: `sw-admin-repository-js`.
+Global state via Pinia (`sw-admin-pinia-store`).

@@ -355,7 +355,7 @@ Returns the complete URL of the request.
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `Request` is a read-only data object. The most important methods for tests are `url()`, `method()`, `postData()`/`postDataJSON()` and `resourceType()`. For complete header information (including cookies) `allHeaders()` must be used instead of `headers()`.
+**Summary:** `Request` is a read-only data object. The most important methods for tests are `url()`, `method()`, `postData()`/`postDataJSON()` and `resourceType()`. For complete header information (including cookies) `allHeaders()` must be used instead of `headers()`.
 
 ---
 

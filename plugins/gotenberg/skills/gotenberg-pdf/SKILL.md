@@ -9,18 +9,18 @@ Operations on a PDF you already have. All live under the PDF engines route and c
 
 ## Reference map
 
-- **[ATTACHMENTS.md](ATTACHMENTS.md)**: Bettet externe Dateien als Anhaenge in PDF-Container ein. [ATTACHMENTS-DETAIL](ATTACHMENTS-DETAIL.md).
-- **[BOOKMARKS.md](BOOKMARKS.md)**: Extrahiert die Dokumentgliederung als JSON oder schreibt neue Lesezeichen in PDFs. [BOOKMARKS-DETAIL](BOOKMARKS-DETAIL.md).
-- **[CONVERT.md](CONVERT.md)**: Wandelt PDFs in Langzeitarchivformate oder barrierefreie PDFs um. [CONVERT-DETAIL](CONVERT-DETAIL.md).
-- **[ENCRYPT.md](ENCRYPT.md)**: Schuetzt PDFs mit Benutzer-/Eigentuemerpasswort und Berechtigungsrestriktionen. [ENCRYPT-DETAIL](ENCRYPT-DETAIL.md).
-- **[FACTURX.md](FACTURX.md)**: Erstellt normkonforme Factur-X / ZUGFeRD E-Rechnungen: bettet CII-XML als `factur-x.xml` ein, injiziert XMP-M…. [FACTURX-DETAIL](FACTURX-DETAIL.md).
-- **[FLATTEN.md](FLATTEN.md)**: Wandelt interaktive Formularfelder in statischen Seiteninhalt um. [FLATTEN-DETAIL](FLATTEN-DETAIL.md).
-- **[MERGE.md](MERGE.md)**: Kombiniert mehrere PDF-Dateien zu einem einzigen Dokument. [MERGE-DETAIL](MERGE-DETAIL.md).
-- **[METADATA.md](METADATA.md)**: Liest XMP/Exif-Metadaten via ExifTool und schreibt neue XMP-Tags. [METADATA-DETAIL](METADATA-DETAIL.md).
-- **[ROTATE.md](ROTATE.md)**: Dreht alle oder ausgewaehlte Seiten eines PDFs um 90, 180 oder 270 Grad. [ROTATE-DETAIL](ROTATE-DETAIL.md).
-- **[SPLIT.md](SPLIT.md)**: Teilt PDFs nach Seitenintervallen oder Seitenbereichen auf. [SPLIT-DETAIL](SPLIT-DETAIL.md).
-- **[STAMP.md](STAMP.md)**: Fuegt einen Text-, Bild- oder PDF-Stempel UEBER den Seiteninhalt. [STAMP-DETAIL](STAMP-DETAIL.md).
-- **[WATERMARK.md](WATERMARK.md)**: Fuegt ein Text-, Bild- oder PDF-Wasserzeichen HINTER den Seiteninhalt. [WATERMARK-DETAIL](WATERMARK-DETAIL.md).
+- **[ATTACHMENTS.md](ATTACHMENTS.md)**: Embeds external files as attachments in the PDF container. [ATTACHMENTS-DETAIL](ATTACHMENTS-DETAIL.md).
+- **[BOOKMARKS.md](BOOKMARKS.md)**: Extracts the document outline as JSON or writes new bookmarks into PDFs. [BOOKMARKS-DETAIL](BOOKMARKS-DETAIL.md).
+- **[CONVERT.md](CONVERT.md)**: Converts PDFs into long-term archival formats or accessible PDFs. [CONVERT-DETAIL](CONVERT-DETAIL.md).
+- **[ENCRYPT.md](ENCRYPT.md)**: Protects PDFs with a user/owner password and permission restrictions. [ENCRYPT-DETAIL](ENCRYPT-DETAIL.md).
+- **[FACTURX.md](FACTURX.md)**: Creates standards-compliant Factur-X / ZUGFeRD e-invoices: embeds CII XML as `factur-x.xml`, injects XMP m…. [FACTURX-DETAIL](FACTURX-DETAIL.md).
+- **[FLATTEN.md](FLATTEN.md)**: Converts interactive form fields into static page content. [FLATTEN-DETAIL](FLATTEN-DETAIL.md).
+- **[MERGE.md](MERGE.md)**: Combines several PDF files into a single document. [MERGE-DETAIL](MERGE-DETAIL.md).
+- **[METADATA.md](METADATA.md)**: Reads XMP/Exif metadata via ExifTool and writes new XMP tags. [METADATA-DETAIL](METADATA-DETAIL.md).
+- **[ROTATE.md](ROTATE.md)**: Rotates all or selected pages of a PDF by 90, 180 or 270 degrees. [ROTATE-DETAIL](ROTATE-DETAIL.md).
+- **[SPLIT.md](SPLIT.md)**: Splits PDFs by page intervals or page ranges. [SPLIT-DETAIL](SPLIT-DETAIL.md).
+- **[STAMP.md](STAMP.md)**: Adds a text, image or PDF stamp ON TOP OF the page content. [STAMP-DETAIL](STAMP-DETAIL.md).
+- **[WATERMARK.md](WATERMARK.md)**: Adds a text, image or PDF watermark BEHIND the page content. [WATERMARK-DETAIL](WATERMARK-DETAIL.md).
 
 ## Source
 

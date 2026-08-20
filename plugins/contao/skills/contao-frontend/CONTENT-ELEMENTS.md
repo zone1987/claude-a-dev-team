@@ -1,4 +1,4 @@
 # contao-content-elements
 
-Lies `CONTENT-ELEMENTS-DETAIL.md` für vollständige Implementierungsdetails
-aller Content-Element-Aspekte in Contao 5.
+Read `CONTENT-ELEMENTS-DETAIL.md` for complete implementation details
+of all content element aspects in Contao 5.

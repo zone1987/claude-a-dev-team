@@ -316,7 +316,7 @@ test.describe('E-Commerce Flow', () => {
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `start()` + `stop()` cover the standard case. `startChunk()` /
+**Summary:** `start()` + `stop()` cover the standard case. `startChunk()` /
 `stopChunk()` enables granular traces per test with a shared context.
 `startHar()` is independent of trace recording and serves network
 analysis specifically. `group()` / `groupEnd()` improve readability in the Trace

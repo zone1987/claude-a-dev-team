@@ -1,41 +1,41 @@
-# Gotenberg — Screenshots (Vollreferenz)
+# Gotenberg — Screenshots (full reference)
 
 ## Contents
 
-- [Routen](#routen)
-- [Basisbeispiele](#basisbeispiele)
-- [Request-Header](#request-header)
-- [Pflichtfelder je Route](#pflichtfelder-je-route)
-- [Screenshot-Rendering-Felder](#screenshot-rendering-felder)
-- [Viewport & Layout-Hinweise](#viewport-layout-hinweise)
-- [Gemeinsame Felder mit PDF-Konvertierung](#gemeinsame-felder-mit-pdf-konvertierung)
-- [Response-Codes](#response-codes)
-- [Gesamtzahl Form-Felder: ~22](#gesamtzahl-form-felder-22)
+- [Routes](#routes)
+- [Basic examples](#basic-examples)
+- [Request headers](#request-headers)
+- [Mandatory fields per route](#mandatory-fields-per-route)
+- [Screenshot rendering fields](#screenshot-rendering-fields)
+- [Viewport & layout notes](#viewport--layout-notes)
+- [Fields shared with PDF conversion](#fields-shared-with-pdf-conversion)
+- [Response codes](#response-codes)
+- [Total number of form fields: ~22](#total-number-of-form-fields-22)
 
-## Routen
+## Routes
 
-| Route | Input-Typ |
+| Route | Input type |
 |-------|-----------|
-| `POST /forms/chromium/screenshot/url` | URL (`url`-Feld) |
-| `POST /forms/chromium/screenshot/html` | `index.html`-Datei |
-| `POST /forms/chromium/screenshot/markdown` | `index.html`-Template + `.md`-Dateien |
+| `POST /forms/chromium/screenshot/url` | URL (`url` field) |
+| `POST /forms/chromium/screenshot/html` | `index.html` file |
+| `POST /forms/chromium/screenshot/markdown` | `index.html` template + `.md` files |
 
-## Basisbeispiele
+## Basic examples
 
 ```bash
-# URL-Screenshot
+# URL screenshot
 curl \
   --request POST http://localhost:3000/forms/chromium/screenshot/url \
   --form url=https://my.url \
   -o my.png
 
-# HTML-Screenshot
+# HTML screenshot
 curl \
   --request POST http://localhost:3000/forms/chromium/screenshot/html \
   --form files=@/path/to/index.html \
   -o my.png
 
-# Markdown-Screenshot
+# Markdown screenshot
 curl \
   --request POST http://localhost:3000/forms/chromium/screenshot/markdown \
   --form files=@/path/to/index.html \
@@ -43,46 +43,46 @@ curl \
   -o my.png
 ```
 
-## Request-Header
+## Request headers
 
-| Header | Typ | Default | Beschreibung |
+| Header | Type | Default | Description |
 |--------|-----|---------|-------------|
-| `Gotenberg-Output-Filename` | string | Random UUID | Ausgabe-Dateiname (ohne Extension) |
-| `Gotenberg-Trace` | string | Random UUID | Request-ID fuer Logs |
+| `Gotenberg-Output-Filename` | string | Random UUID | Output file name (without extension) |
+| `Gotenberg-Trace` | string | Random UUID | Request ID for logs |
 
-## Pflichtfelder je Route
+## Mandatory fields per route
 
 ### /screenshot/url
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|-------------|
-| `url` | string | Ja | URL der Zielseite. `file://`-URLs geben 400 zurueck. |
+| `url` | string | Yes | URL of the target page. `file://` URLs return 400. |
 
 ### /screenshot/html
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|-------------|
-| `files` (index.html) | file | Ja | HTML-Datei (muss `index.html` heissen) |
+| `files` (index.html) | file | Yes | HTML file (must be named `index.html`) |
 
 ### /screenshot/markdown
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|-------------|
-| `files` (index.html) | file | Ja | HTML-Template mit `{{ toHTML "datei.md" }}` |
-| `files` (*.md) | file[] | Ja | Mindestens eine Markdown-Datei |
+| `files` (index.html) | file | Yes | HTML template with `{{ toHTML "file.md" }}` |
+| `files` (*.md) | file[] | Yes | At least one Markdown file |
 
-## Screenshot-Rendering-Felder
+## Screenshot rendering fields
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `width` | number | `800` | Viewport-Breite in Pixel |
-| `height` | number | `600` | Viewport-Hoehe in Pixel |
-| `clip` | boolean | `false` | Screenshot auf Viewport beschneiden. Ohne Clip: volle Seitenhoehe. |
-| `deviceScaleFactor` | number | `1` | Pixel-Dichte. `2` = Retina/HiDPI-Qualitaet. |
-| `format` | enum | `png` | Ausgabeformat: `png`, `jpeg`, `webp` |
-| `quality` | number | `100` | Kompressionsqualitaet 0-100 (nur bei `format=jpeg`) |
-| `omitBackground` | boolean | `false` | Standard-Weisshintergrund ausblenden (Transparenz moeglich) |
-| `optimizeForSpeed` | boolean | `false` | Bild-Encoding fuer Geschwindigkeit statt Dateigroesse optimieren |
+| `width` | number | `800` | Viewport width in pixels |
+| `height` | number | `600` | Viewport height in pixels |
+| `clip` | boolean | `false` | Clip the screenshot to the viewport. Without clip: full page height. |
+| `deviceScaleFactor` | number | `1` | Pixel density. `2` = Retina/HiDPI quality. |
+| `format` | enum | `png` | Output format: `png`, `jpeg`, `webp` |
+| `quality` | number | `100` | Compression quality 0-100 (only with `format=jpeg`) |
+| `omitBackground` | boolean | `false` | Hide the default white background (transparency possible) |
+| `optimizeForSpeed` | boolean | `false` | Optimize image encoding for speed instead of file size |
 
 ```bash
 curl \
@@ -98,63 +98,63 @@ curl \
   -o my.jpeg
 ```
 
-## Viewport & Layout-Hinweise
+## Viewport & layout notes
 
-- Ohne `clip=true` erfasst Chromium die volle Seitenhoehe (hoehe des Inhalts)
-- Mit `clip=true` wird genau auf `width` x `height` beschnitten
-- `deviceScaleFactor=2` verdoppelt die Aufloesung (gut fuer Retina-Displays)
-- Viewport-Abmessungen mit `width`/`height` entsprechend setzen
+- Without `clip=true` Chromium captures the full page height (the height of the content)
+- With `clip=true` it clips exactly to `width` x `height`
+- `deviceScaleFactor=2` doubles the resolution (good for Retina displays)
+- Set the viewport dimensions accordingly with `width`/`height`
 
-## Gemeinsame Felder mit PDF-Konvertierung
+## Fields shared with PDF conversion
 
-Die folgenden Felder funktionieren auch bei Screenshots:
+The following fields also work for screenshots:
 
-### JavaScript & Warten
+### JavaScript & waiting
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `waitDelay` | duration | — | Feste Wartezeit vor Screenshot |
-| `waitForExpression` | string | — | JS-Ausdruck abwarten |
-| `waitForSelector` | string | — | CSS-Selektor abwarten |
+| `waitDelay` | duration | — | Fixed wait time before the screenshot |
+| `waitForExpression` | string | — | Wait for a JS expression |
+| `waitForSelector` | string | — | Wait for a CSS selector |
 
-### Netzwerk
+### Network
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `cookies` | json | — | Cookie-Array |
-| `extraHttpHeaders` | json | — | Zusaetzliche HTTP-Header |
-| `userAgent` | string | — | User-Agent |
-| `failOnHttpStatusCodes` | json | `[499,599]` | Fehler bei Status-Codes |
-| `failOnResourceHttpStatusCodes` | json | — | Fehler bei Asset-Status-Codes |
-| `ignoreResourceHttpStatusDomains` | json | — | Ausnahme-Domains |
-| `skipNetworkIdleEvent` | boolean | `true` | Nicht auf Netzwerk-Idle warten |
-| `skipNetworkAlmostIdleEvent` | boolean | `true` | Nicht auf Fast-Idle warten |
-| `failOnResourceLoadingFailed` | boolean | `false` | Fehler bei Asset-Ladefehler |
-| `failOnConsoleExceptions` | boolean | `false` | Fehler bei JS-Exceptions |
+| `cookies` | json | — | Cookie array |
+| `extraHttpHeaders` | json | — | Additional HTTP headers |
+| `userAgent` | string | — | User agent |
+| `failOnHttpStatusCodes` | json | `[499,599]` | Error on status codes |
+| `failOnResourceHttpStatusCodes` | json | — | Error on asset status codes |
+| `ignoreResourceHttpStatusDomains` | json | — | Exempt domains |
+| `skipNetworkIdleEvent` | boolean | `true` | Do not wait for network idle |
+| `skipNetworkAlmostIdleEvent` | boolean | `true` | Do not wait for almost-idle |
+| `failOnResourceLoadingFailed` | boolean | `false` | Error on asset loading failure |
+| `failOnConsoleExceptions` | boolean | `false` | Error on JS exceptions |
 
-### Druckmedien
+### Print media
 
-| Feld | Typ | Default | Beschreibung |
+| Field | Type | Default | Description |
 |------|-----|---------|-------------|
-| `emulatedMediaType` | enum | `screen` | `screen` oder `print` (Screenshots nutzen `screen` als Default) |
-| `emulatedMediaFeatures` | json | — | CSS-Media-Feature-Overrides |
+| `emulatedMediaType` | enum | `screen` | `screen` or `print` (screenshots use `screen` as the default) |
+| `emulatedMediaFeatures` | json | — | CSS media feature overrides |
 
-## Response-Codes
+## Response codes
 
-| Code | Bedeutung |
+| Code | Meaning |
 |------|-----------|
-| 200 | Erfolg — Bilddatei im Body |
-| 400 | Ungueltige Felder / Netzwerkfehler |
-| 403 | URL verboten (nur URL-Route) |
-| 409 | Status-Code-Fehler / Console-Exception |
+| 200 | Success — image file in the body |
+| 400 | Invalid fields / network error |
+| 403 | URL forbidden (URL route only) |
+| 409 | Status code error / console exception |
 | 503 | Timeout |
 
-## Gesamtzahl Form-Felder: ~22
+## Total number of form fields: ~22
 
-Screenshot-spezifisch (8) + Warten (3) + Netzwerk (10) + Medien (2) = ~23 Felder
+Screenshot-specific (8) + waiting (3) + network (10) + media (2) = ~23 fields
 
 ---
-Quellen:
+Sources:
 - https://gotenberg.dev/docs/convert-with-chromium/screenshot-url
 - https://gotenberg.dev/docs/convert-with-chromium/screenshot-html
 - https://gotenberg.dev/docs/convert-with-chromium/screenshot-markdown

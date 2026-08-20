@@ -1,6 +1,6 @@
-# Gotenberg — System-Endpunkte
+# Gotenberg — System Endpoints
 
-Health-Check (GET/HEAD /health), Versioninfo (/version),
-Prometheus-Metriken (/prometheus/metrics, deprecated → OTEL) und
-Debug-Konfiguration (/debug, requires API_ENABLE_DEBUG_ROUTE=true).
-Referenz: `SYSTEM-DETAIL.md`
+Health check (GET/HEAD /health), version info (/version),
+Prometheus metrics (/prometheus/metrics, deprecated → OTEL) and
+debug configuration (/debug, requires API_ENABLE_DEBUG_ROUTE=true).
+Reference: `SYSTEM-DETAIL.md`

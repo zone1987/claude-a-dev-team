@@ -844,7 +844,7 @@ Deprecated (Chromium Manifest V3). Always returns an empty array.
 | Properties | 4 |
 | Events | 16 |
 
-**Conclusion:** `BrowserContext` is the central isolation unit in Playwright. The most important features are network routing (`route`, `routeFromHAR`), cookie/storage management (`addCookies`, `storageState`, `setStorageState`) and permissions (`grantPermissions`). For end-to-end authentication flows, `storageState()` is indispensable.
+**Summary:** `BrowserContext` is the central isolation unit in Playwright. The most important features are network routing (`route`, `routeFromHAR`), cookie/storage management (`addCookies`, `storageState`, `setStorageState`) and permissions (`grantPermissions`). For end-to-end authentication flows, `storageState()` is indispensable.
 
 ---
 

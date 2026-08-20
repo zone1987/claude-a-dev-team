@@ -203,7 +203,7 @@ test('observe WebSocket communication', async ({ page }) => {
 | Properties | 0 |
 | Events | 4 |
 
-**Conclusion:** `WebSocket` is a read-only observer for WebSocket connections. The events `framereceived` and `framesent` are the core tools for monitoring. For actively intercepting and modifying WebSocket connections, `WebSocketRoute` (via `page.routeWebSocket()`) must be used.
+**Summary:** `WebSocket` is a read-only observer for WebSocket connections. The events `framereceived` and `framesent` are the core tools for monitoring. For actively intercepting and modifying WebSocket connections, `WebSocketRoute` (via `page.routeWebSocket()`) must be used.
 
 ---
 

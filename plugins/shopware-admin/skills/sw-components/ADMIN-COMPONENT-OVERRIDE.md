@@ -1,13 +1,13 @@
-# Shopware 6 — Admin-Komponente überschreiben
+# Shopware 6 — Overriding an admin component
 
-`Shopware.Component.override(name, config)` erweitert eine bestehende Komponente; mehrere Overrides stapeln sich.
+`Shopware.Component.override(name, config)` extends an existing component; multiple overrides stack.
 
 ```js
 import template from './sw-product-detail-override.html.twig';
 Shopware.Component.override('sw-product-detail', {
     template,
     methods: {
-        onSave() { this.$super('onSave'); /* zusätzliches Verhalten */ },
+        onSave() { this.$super('onSave'); /* additional behaviour */ },
     },
 });
 ```
@@ -18,5 +18,5 @@ Shopware.Component.override('sw-product-detail', {
 {% endblock %}
 ```
 
-`this.$super('methode', ...args)` ruft die Original-Methode. Im Template `{% parent %}` für den Originalinhalt,
-Block-Namen aus der Core-Komponente. Eigene neue Komponente stattdessen: `sw-admin-component`.
+`this.$super('method', ...args)` calls the original method. In the template use `{% parent %}` for the original content,
+with block names taken from the core component. To create a new component of your own instead: `sw-admin-component`.

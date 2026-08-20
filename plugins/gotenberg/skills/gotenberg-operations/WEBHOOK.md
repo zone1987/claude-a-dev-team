@@ -1,7 +1,7 @@
 # Gotenberg — Webhook & Download
 
-Asynchrone Verarbeitung: Gotenberg gibt sofort 204 zurueck, sendet das Ergebnis
-per Callback-Request. Unterstuetzt Events-URL und `downloadFrom` fuer Remote-Dateien.
-Referenz: `WEBHOOK-DETAIL.md`
+Asynchronous processing: Gotenberg returns 204 immediately and sends the result
+via a callback request. Supports an events URL and `downloadFrom` for remote files.
+Reference: `WEBHOOK-DETAIL.md`
 
-Antwort-Code: `204 No Content` (Verarbeitung laeuft im Hintergrund)
+Response code: `204 No Content` (processing runs in the background)

@@ -4,7 +4,7 @@ Entwickler-Referenz fuer das Erstellen eigener Migrationserweiterungen.
 
 ## Referenzen
 
-- [Custom Profile Vollreferenz](`ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md`)
+- [ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md](ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md)
 
 ## Querverweise
 

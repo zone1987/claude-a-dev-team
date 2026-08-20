@@ -154,10 +154,10 @@ printSteps(result.steps);
 | Properties | 13 |
 | Methods | 0 |
 
-**Fazit:** `TestResult` ist das vollstaendige Protokoll eines einzelnen Ausfuehrungs-Versuchs.
-Mit `status`, `errors`, `attachments`, `steps` und Timing-Daten hat ein Reporter alle
-Informationen, die er benoetigt, um Dashboards, Slack-Nachrichten oder Artefakt-Uploads zu
-implementieren.
+**Summary:** `TestResult` is the complete record of a single execution attempt.
+With `status`, `errors`, `attachments`, `steps` and timing data, a reporter has all the
+information it needs to implement dashboards, Slack messages or artifact
+uploads.
 
 ---
 

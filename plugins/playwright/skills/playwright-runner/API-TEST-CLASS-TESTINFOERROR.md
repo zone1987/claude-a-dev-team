@@ -97,9 +97,9 @@ test.afterEach(async ({}, testInfo) => {
 | Properties | 5 (`cause`, `errorContext`, `message`, `stack`, `value`) |
 | Methods | 0 |
 
-**Fazit:** `TestInfoError` ist ein einfaches Daten-Objekt mit fuenf optionalen Properties.
-`message` und `stack` decken den Standardfall (Error-Instanz) ab; `value` behandelt primitive
-Throws; `errorContext` (v1.60) liefert zusaetzlichen UI-Kontext bei Assertion-Fehlern.
+**Summary:** `TestInfoError` is a simple data object with five optional properties.
+`message` and `stack` cover the standard case (an Error instance); `value` handles primitive
+throws; `errorContext` (v1.60) provides additional UI context for assertion failures.
 
 ---
 

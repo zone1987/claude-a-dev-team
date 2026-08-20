@@ -1,95 +1,95 @@
-# Gotenberg — Telemetrie / OpenTelemetry (Vollreferenz)
+# Gotenberg — Telemetry / OpenTelemetry (Full Reference)
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Traces-Konfiguration](#traces-konfiguration)
-- [Trace-Spans und Attribute](#trace-spans-und-attribute)
-- [Metriken-Konfiguration](#metriken-konfiguration)
-- [Logs-Konfiguration](#logs-konfiguration)
-- [Telemetrie-Steuerung fuer High-Frequency-Routen](#telemetrie-steuerung-fuer-high-frequency-routen)
-- [Vollstaendiges Docker-Compose-Beispiel](#vollstaendiges-docker-compose-beispiel)
-- [Hinweise](#hinweise)
+- [Concept](#concept)
+- [Traces configuration](#traces-configuration)
+- [Trace spans and attributes](#trace-spans-and-attributes)
+- [Metrics configuration](#metrics-configuration)
+- [Logs configuration](#logs-configuration)
+- [Telemetry control for high-frequency routes](#telemetry-control-for-high-frequency-routes)
+- [Complete Docker Compose example](#complete-docker-compose-example)
+- [Notes](#notes)
 
-## Konzept
+## Concept
 
-Gotenberg integriert OpenTelemetry fuer:
-- **Distributed Tracing** — Spans fuer jeden Request und alle Unter-Operationen
-- **Metrics** — HTTP-Server-Metriken, Modul-Metriken, Queue-Groessen
-- **Logs** — Strukturiertes Log-Shipping via OTLP
+Gotenberg integrates OpenTelemetry for:
+- **Distributed Tracing** — spans for every request and all sub-operations
+- **Metrics** — HTTP server metrics, module metrics, queue sizes
+- **Logs** — structured log shipping via OTLP
 
-Konfiguration komplett ueber Umgebungsvariablen (Standard-OTEL-Konvention).
+Configuration entirely via environment variables (standard OTEL convention).
 
 ---
 
-## Traces-Konfiguration
+## Traces configuration
 
-### Umgebungsvariablen
+### Environment variables
 
-| Variable | Typ | Standard | Erlaubte Werte | Beschreibung |
+| Variable | Type | Default | Allowed values | Description |
 |----------|-----|---------|----------------|--------------|
-| `OTEL_TRACES_EXPORTER` | enum | `none` | `none`, `otlp`, `jaeger`, `zipkin` | Trace-Exporter-Typ |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | string | — | URL | OTLP-Endpunkt fuer alle Signale (Traces + Metriken + Logs) |
-| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | string | — | URL | OTLP-Endpunkt nur fuer Traces (ueberschreibt allgemeinen Endpunkt) |
-| `OTEL_EXPORTER_OTLP_PROTOCOL` | enum | `grpc` | `grpc`, `http/protobuf` | OTLP-Transportprotokoll |
-| `OTEL_EXPORTER_OTLP_HEADERS` | string | — | `Key=Value` | Custom-Request-Header fuer OTLP-Exporter |
-| `OTEL_SERVICE_NAME` | string | `gotenberg` | beliebig | Service-Name-Bezeichner in Traces |
-| `OTEL_TRACES_SAMPLER` | string | `parentbased_always_on` | OTEL-Sampler | Sampling-Strategie |
-| `OTEL_TRACES_SAMPLER_ARG` | string | — | Sampler-Argument | Fuer `traceidratio`: Sampling-Rate (z.B. `0.1` = 10%) |
+| `OTEL_TRACES_EXPORTER` | enum | `none` | `none`, `otlp`, `jaeger`, `zipkin` | Trace exporter type |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | string | — | URL | OTLP endpoint for all signals (traces + metrics + logs) |
+| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | string | — | URL | OTLP endpoint for traces only (overrides the general endpoint) |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | enum | `grpc` | `grpc`, `http/protobuf` | OTLP transport protocol |
+| `OTEL_EXPORTER_OTLP_HEADERS` | string | — | `Key=Value` | Custom request headers for the OTLP exporter |
+| `OTEL_SERVICE_NAME` | string | `gotenberg` | any | Service name identifier in traces |
+| `OTEL_TRACES_SAMPLER` | string | `parentbased_always_on` | OTEL sampler | Sampling strategy |
+| `OTEL_TRACES_SAMPLER_ARG` | string | — | Sampler argument | For `traceidratio`: sampling rate (e.g. `0.1` = 10%) |
 
 ---
 
-## Trace-Spans und Attribute
+## Trace spans and attributes
 
-### HTTP-Server-Spans
+### HTTP server spans
 
-Pro Request wird ein Server-Span erstellt. Child-Spans fuer alle Unter-Operationen.
+A server span is created per request. Child spans for all sub-operations.
 
-### Modul-Spans
+### Module spans
 
-| Span-Name | Beschreibung | Attribute/Events |
+| Span name | Description | Attributes/events |
 |-----------|-------------|-----------------|
-| `chromium.Pdf` | Chromium PDF-Konvertierung | Engine-Version, Queue-Tiefe, Konvertierungen seit Start, Fehlertyp |
-| `chromium.Screenshot` | Chromium Screenshot | Netzwerk-Attribute, `chromium.heaviest_resource`-Event, Datei-/Byte-Zaehler |
-| `chromium.print_to_pdf` | Print-to-PDF-Operation | — |
-| `chromium.queue.wait` | Warten auf Chromium-Slot | Slot-Wartezeit |
-| `chromium.process.start` | Chromium-Prozessstart | Startgrund: `first_start`, `unhealthy`, `max_requests` |
-| `libreoffice.Pdf` | LibreOffice PDF-Konvertierung | Engine-Version, Input/Output-Byte-Zaehler |
-| `libreoffice.queue.wait` | Warten auf LibreOffice-Slot | Slot-Wartezeit |
-| `libreoffice.process.start` | LibreOffice-Prozessstart | Startgrund |
-| `process.exec` | Externer Binary-Aufruf | Binary-Name, Versions-Tags |
-| `qpdf.InjectFacturXXMP` | Factur-X XMP-Injektion | — |
-| `qpdf.ReadPdfAConformance` | PDF/A-Konformitaets-Check | — |
+| `chromium.Pdf` | Chromium PDF conversion | Engine version, queue depth, conversions since start, error type |
+| `chromium.Screenshot` | Chromium screenshot | Network attributes, `chromium.heaviest_resource` event, file/byte counters |
+| `chromium.print_to_pdf` | Print-to-PDF operation | — |
+| `chromium.queue.wait` | Waiting for a Chromium slot | Slot wait time |
+| `chromium.process.start` | Chromium process start | Start reason: `first_start`, `unhealthy`, `max_requests` |
+| `libreoffice.Pdf` | LibreOffice PDF conversion | Engine version, input/output byte counters |
+| `libreoffice.queue.wait` | Waiting for a LibreOffice slot | Slot wait time |
+| `libreoffice.process.start` | LibreOffice process start | Start reason |
+| `process.exec` | External binary invocation | Binary name, version tags |
+| `qpdf.InjectFacturXXMP` | Factur-X XMP injection | — |
+| `qpdf.ReadPdfAConformance` | PDF/A conformance check | — |
 
-(Ab v8.34.0 verfuegbar)
+(Available as of v8.34.0)
 
 ---
 
-## Metriken-Konfiguration
+## Metrics configuration
 
-### Umgebungsvariablen
+### Environment variables
 
-| Variable | Typ | Standard | Erlaubte Werte | Beschreibung |
+| Variable | Type | Default | Allowed values | Description |
 |----------|-----|---------|----------------|--------------|
-| `OTEL_METRICS_EXPORTER` | enum | `none` | `none`, `otlp`, `prometheus` | Metriken-Exporter-Typ |
-| `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT` | string | — | URL | OTLP-Endpunkt fuer Metriken |
-| `OTEL_METRICS_EXEMPLAR_FILTER` | enum | `trace_based` | `trace_based`, `always_on`, `always_off` | Exemplar-Filterung |
-| `OTEL_EXPORTER_PROMETHEUS_HOST` | string | `localhost` | IP/Hostname | Bind-Adresse fuer Built-in-Prometheus-Exporter |
-| `OTEL_EXPORTER_PROMETHEUS_PORT` | integer | `9464` | Port | Port fuer Built-in-Prometheus-Exporter |
+| `OTEL_METRICS_EXPORTER` | enum | `none` | `none`, `otlp`, `prometheus` | Metrics exporter type |
+| `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT` | string | — | URL | OTLP endpoint for metrics |
+| `OTEL_METRICS_EXEMPLAR_FILTER` | enum | `trace_based` | `trace_based`, `always_on`, `always_off` | Exemplar filtering |
+| `OTEL_EXPORTER_PROMETHEUS_HOST` | string | `localhost` | IP/hostname | Bind address for the built-in Prometheus exporter |
+| `OTEL_EXPORTER_PROMETHEUS_PORT` | integer | `9464` | Port | Port for the built-in Prometheus exporter |
 
-### Verfuegbare Metriken
+### Available metrics
 
-| Metrik | Typ | Beschreibung |
+| Metric | Type | Description |
 |--------|-----|-------------|
-| HTTP-Server-Metriken | Counter/Histogram | Request-Anzahl, -Dauer, -Groesse |
-| `chromium.network.requests.total` | Counter | Chromium-Netzwerkanfragen mit Outcome-Labels |
-| `chromium.network.bytes` | Histogram | Chromium-Netzwerk-Bytes |
-| `libreoffice.conversion.retries.total` | Counter | LibreOffice-Konvertierungs-Wiederholungen |
-| Observable Gauges (Modul-spezifisch) | Gauge | Konvertierungsdauer, Output-Groesse, Queue-Groesse, Neustarts |
+| HTTP server metrics | Counter/Histogram | Request count, duration, size |
+| `chromium.network.requests.total` | Counter | Chromium network requests with outcome labels |
+| `chromium.network.bytes` | Histogram | Chromium network bytes |
+| `libreoffice.conversion.retries.total` | Counter | LibreOffice conversion retries |
+| Observable gauges (module-specific) | Gauge | Conversion duration, output size, queue size, restarts |
 
-### Prometheus-Migration (von /prometheus/metrics)
+### Prometheus migration (from /prometheus/metrics)
 
-**Option 1: OTLP → Prometheus-kompatibler Backend (via Collector)**
+**Option 1: OTLP → Prometheus-compatible backend (via collector)**
 
 ```yaml
 # otel-collector-config.yaml
@@ -110,7 +110,7 @@ service:
       exporters: [prometheus]
 ```
 
-**Option 2: Built-in Prometheus-Exporter**
+**Option 2: built-in Prometheus exporter**
 
 ```bash
 OTEL_METRICS_EXPORTER=prometheus
@@ -118,36 +118,36 @@ OTEL_EXPORTER_PROMETHEUS_HOST=0.0.0.0
 OTEL_EXPORTER_PROMETHEUS_PORT=9464
 ```
 
-Endpunkt: `http://0.0.0.0:9464/metrics`
+Endpoint: `http://0.0.0.0:9464/metrics`
 
 ---
 
-## Logs-Konfiguration
+## Logs configuration
 
-### Umgebungsvariablen
+### Environment variables
 
-| Variable | Typ | Standard | Erlaubte Werte | Beschreibung |
+| Variable | Type | Default | Allowed values | Description |
 |----------|-----|---------|----------------|--------------|
-| `OTEL_LOGS_EXPORTER` | enum | `none` | `none`, `otlp` | Logs-Exporter-Typ |
-| `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT` | string | — | URL | OTLP-Endpunkt fuer Logs |
-| `LOG_STD_FORMAT` | enum | `auto` | `auto`, `json`, `text` | Stdout-Log-Format |
-| `LOG_STD_ENABLE_GCP_FIELDS` | boolean | `false` | `true`/`false` | GCP-kompatible Feldnamen fuer Cloud Logging |
+| `OTEL_LOGS_EXPORTER` | enum | `none` | `none`, `otlp` | Logs exporter type |
+| `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT` | string | — | URL | OTLP endpoint for logs |
+| `LOG_STD_FORMAT` | enum | `auto` | `auto`, `json`, `text` | Stdout log format |
+| `LOG_STD_ENABLE_GCP_FIELDS` | boolean | `false` | `true`/`false` | GCP-compatible field names for Cloud Logging |
 
 ---
 
-## Telemetrie-Steuerung fuer High-Frequency-Routen
+## Telemetry control for high-frequency routes
 
-| Flag / Env-Variable | Beschreibung | Standard |
+| Flag / env variable | Description | Default |
 |--------------------|-------------|---------|
-| `API_DISABLE_ROOT_ROUTE_TELEMETRY` | Root-Route `/` | `true` |
-| `API_DISABLE_DEBUG_ROUTE_TELEMETRY` | Debug-Route `/debug` | `true` |
-| `API_DISABLE_VERSION_ROUTE_TELEMETRY` | Version-Route `/version` | `true` |
-| `API_DISABLE_HEALTH_CHECK_ROUTE_TELEMETRY` | Health-Check `/health` | `true` |
+| `API_DISABLE_ROOT_ROUTE_TELEMETRY` | Root route `/` | `true` |
+| `API_DISABLE_DEBUG_ROUTE_TELEMETRY` | Debug route `/debug` | `true` |
+| `API_DISABLE_VERSION_ROUTE_TELEMETRY` | Version route `/version` | `true` |
+| `API_DISABLE_HEALTH_CHECK_ROUTE_TELEMETRY` | Health check `/health` | `true` |
 | `PROMETHEUS_DISABLE_ROUTE_TELEMETRY` | Prometheus `/prometheus/metrics` | `true` |
 
 ---
 
-## Vollstaendiges Docker-Compose-Beispiel
+## Complete Docker Compose example
 
 ```yaml
 services:
@@ -173,7 +173,7 @@ services:
       - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
 ```
 
-### Jaeger-Integration
+### Jaeger integration
 
 ```yaml
 environment:
@@ -182,7 +182,7 @@ environment:
   OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
 ```
 
-### Zipkin-Integration
+### Zipkin integration
 
 ```yaml
 environment:
@@ -190,7 +190,7 @@ environment:
   OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "http://zipkin:9411/api/v2/spans"
 ```
 
-### Sampling (nur 10% der Traces)
+### Sampling (only 10% of traces)
 
 ```yaml
 environment:
@@ -200,12 +200,12 @@ environment:
 
 ---
 
-## Hinweise
+## Notes
 
-- `/prometheus/metrics`-Endpunkt ist ab v8.29.0 deprecated — zu OTEL migrieren
-- W3C `traceparent`-Header wird ab v8.34.0 auch in Webhook-Callbacks mitgesendet
-- Reiche Trace-Attribute (v8.34.0+) erfordern aktuelles Gotenberg-Image
+- The `/prometheus/metrics` endpoint is deprecated as of v8.29.0 — migrate to OTEL
+- The W3C `traceparent` header is also sent along in webhook callbacks as of v8.34.0
+- Rich trace attributes (v8.34.0+) require an up-to-date Gotenberg image
 
 ---
 
-Quelle: https://gotenberg.dev/docs/telemetry
+Source: https://gotenberg.dev/docs/telemetry

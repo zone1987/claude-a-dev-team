@@ -1,24 +1,24 @@
-# @shopware/nuxt-module — Vollständige Referenz
+# @shopware/nuxt-module — Complete reference
 
 Version: **1.4.4**
 
-Nuxt-Modul das `@shopware/api-client` + `@shopware/composables` in Nuxt 4 integriert.
+Nuxt module that integrates `@shopware/api-client` + `@shopware/composables` into Nuxt 4.
 
 ---
 
 ## Contents
 
 - [Installation](#installation)
-- [Registrierung](#registrierung)
-- [Alle Konfigurationsoptionen (`ShopwareNuxtOptions`)](#alle-konfigurationsoptionen-shopwarenuxtoptions)
-- [Umgebungsvariablen](#umgebungsvariablen)
-- [Was das Modul registriert](#was-das-modul-registriert)
-- [`#shopware`-Typen einrichten](#shopware-typen-einrichten)
-- [Auto-importierte Composables](#auto-importierte-composables)
-- [Vollständiges Setup-Beispiel](#vollständiges-setup-beispiel)
-- [Intern: Modul-Aufbau](#intern-modul-aufbau)
-- [Kompatibilitätsmatrix](#kompatibilitätsmatrix)
-- [Bekannte Migrations-Hinweise](#bekannte-migrations-hinweise)
+- [Registration](#registration)
+- [All configuration options (`ShopwareNuxtOptions`)](#all-configuration-options-shopwarenuxtoptions)
+- [Environment variables](#environment-variables)
+- [What the module registers](#what-the-module-registers)
+- [Setting up `#shopware` types](#setting-up-shopware-types)
+- [Auto-imported composables](#auto-imported-composables)
+- [Complete setup example](#complete-setup-example)
+- [Internals: module structure](#internals-module-structure)
+- [Compatibility matrix](#compatibility-matrix)
+- [Known migration notes](#known-migration-notes)
 
 ## Installation
 
@@ -28,7 +28,7 @@ npm install @shopware/nuxt-module
 
 ---
 
-## Registrierung
+## Registration
 
 ```ts
 // nuxt.config.ts
@@ -44,89 +44,89 @@ export default defineNuxtConfig({
 
 ---
 
-## Alle Konfigurationsoptionen (`ShopwareNuxtOptions`)
+## All configuration options (`ShopwareNuxtOptions`)
 
 ```ts
 interface ShopwareNuxtOptions {
-  // Store-API-URL (wird als CSR-Endpoint verwendet)
+  // Store API URL (used as the CSR endpoint)
   endpoint?: string
 
-  // Deprecated: shopwareEndpoint (ältere Configs)
+  // Deprecated: shopwareEndpoint (older configs)
   shopwareEndpoint?: string
 
-  // sw-access-key (Sales-Channel Public Access Key)
+  // sw-access-key (sales channel public access key)
   accessToken?: string
 
   // Deprecated: shopwareAccessToken
   shopwareAccessToken?: string
 
-  // URL des Twig-Storefronts (für Admin-Links im Dev-Mode, z.B. Produkt-Editier-Links)
+  // URL of the Twig storefront (for admin links in dev mode, e.g. product edit links)
   devStorefrontUrl?: string
 
-  // ofetch-Konfiguration für den API-Client
+  // ofetch configuration for the API client
   apiClientConfig?: {
-    timeout?: number | string  // Millisekunden
+    timeout?: number | string  // milliseconds
   }
 
-  // User-Context (Login-State) auch bei SSR-Anfragen verwenden
-  // false = nur anonymer Context beim SSR (verhindert Cache-Poisoning)
+  // Also use the user context (login state) for SSR requests
+  // false = anonymous context only during SSR (prevents cache poisoning)
   useUserContextInSSR?: boolean  // default: false
 
-  // GET-Anfragen cachen (experimentell)
+  // Cache GET requests (experimental)
   cacheableReads?: boolean  // default: false
 }
 ```
 
 ---
 
-## Umgebungsvariablen
+## Environment variables
 
-Das Modul liest folgende Umgebungsvariablen (überschreiben `nuxt.config.ts`):
+The module reads the following environment variables (they override `nuxt.config.ts`):
 
-| Variable | Nuxt-Config-Äquivalent | Sichtbarkeit |
+| Variable | Nuxt config equivalent | Visibility |
 |---|---|---|
 | `NUXT_PUBLIC_SHOPWARE_ENDPOINT` | `runtimeConfig.public.shopware.endpoint` | CSR + SSR |
 | `NUXT_PUBLIC_SHOPWARE_ACCESS_TOKEN` | `runtimeConfig.public.shopware.accessToken` | CSR + SSR |
-| `NUXT_SHOPWARE_ENDPOINT` | `runtimeConfig.shopware.endpoint` | SSR-only (privat) |
+| `NUXT_SHOPWARE_ENDPOINT` | `runtimeConfig.shopware.endpoint` | SSR-only (private) |
 | `NUXT_PUBLIC_SHOPWARE_SHOPWARE_ENDPOINT` | (legacy deprecated) | CSR + SSR |
 | `NUXT_SHOPWARE_SHOPWARE_ENDPOINT` | (legacy deprecated) | SSR-only |
 
-**CSR vs. SSR-Endpoint:** Wenn `NUXT_SHOPWARE_ENDPOINT` gesetzt ist, wird dieser für serverseitige Anfragen verwendet (z.B. internes Netzwerk). `NUXT_PUBLIC_SHOPWARE_ENDPOINT` wird für clientseitige Anfragen verwendet.
+**CSR vs. SSR endpoint:** when `NUXT_SHOPWARE_ENDPOINT` is set, it is used for server-side requests (e.g. an internal network). `NUXT_PUBLIC_SHOPWARE_ENDPOINT` is used for client-side requests.
 
 ---
 
-## Was das Modul registriert
+## What the module registers
 
-### 1. Nuxt-Plugin (`plugin.ts`)
+### 1. Nuxt plugin (`plugin.ts`)
 
-Das Plugin wird automatisch hinzugefügt. Es:
-- Erstellt `createAPIClient<operations>()` mit `baseURL` und `accessToken`
-- Liest den `sw-context-token` aus dem `useCookie('sw-context-token')`
-- Registriert `onContextChanged`-Hook → schreibt neuen Token in Cookie
-- Registriert `onResponseError`-Hook → behandelt Maintenance-Mode (503)
-- Ruft `createShopwareContext(nuxtApp.vueApp, { apiClient })` auf
+The plugin is added automatically. It:
+- Creates `createAPIClient<operations>()` with `baseURL` and `accessToken`
+- Reads the `sw-context-token` from `useCookie('sw-context-token')`
+- Registers an `onContextChanged` hook → writes the new token into the cookie
+- Registers an `onResponseError` hook → handles maintenance mode (503)
+- Calls `createShopwareContext(nuxtApp.vueApp, { apiClient })`
 
-### 2. TypeScript-Template (`shopware.d.ts`)
+### 2. TypeScript template (`shopware.d.ts`)
 
-Wird ins Build-Verzeichnis hinzugefügt wenn **keine** `shopware.d.ts` im Projektroot vorhanden ist. Deklariert den `#shopware`-Modul-Alias für die generierten Typen.
+Added to the build directory when **no** `shopware.d.ts` exists in the project root. Declares the `#shopware` module alias for the generated types.
 
-### 3. Nuxt DevTools-Tabs
+### 3. Nuxt DevTools tabs
 
 - **"Shopware Frontends"** → `https://frontends.shopware.com/` (iframe)
 - **"CMS Elements"** → `https://frontends.shopware.com/getting-started/cms/` (iframe)
 
 ---
 
-## `#shopware`-Typen einrichten
+## Setting up `#shopware` types
 
-### Automatisch (ohne Anpassung)
+### Automatically (without customisation)
 
-Das Modul erzeugt eine `shopware.d.ts` die die Standard-Typen aus `@shopware/api-client` einbindet.
+The module generates a `shopware.d.ts` that includes the default types from `@shopware/api-client`.
 
-### Mit `@shopware/api-gen` generierten Typen
+### With types generated by `@shopware/api-gen`
 
 ```ts
-// shopware.d.ts (im Projektroot — überschreibt die automatisch generierte)
+// shopware.d.ts (in the project root — overrides the automatically generated one)
 import type { operationsType } from './api-types/storeApiTypes'
 import type { components } from './api-types/storeApiTypes'
 
@@ -136,7 +136,7 @@ declare module '#shopware' {
 }
 ```
 
-### Mit Plugin-Erweiterungen
+### With plugin extensions
 
 ```ts
 // shopware.d.ts
@@ -152,21 +152,21 @@ declare module '#shopware' {
 
 ---
 
-## Auto-importierte Composables
+## Auto-imported composables
 
-Durch `createShopwareContext()` sind folgende Composables in allen Vue-Komponenten ohne expliziten Import verfügbar (wenn `@shopware/nuxt-module` + `@shopware/composables` installiert sind):
+Thanks to `createShopwareContext()`, the following composables are available in all Vue components without an explicit import (when `@shopware/nuxt-module` + `@shopware/composables` are installed):
 
 ```ts
-// Kein Import nötig in .vue-Dateien:
+// No import needed in .vue files:
 const { cart, addProduct } = useCart()
 const { sessionContext } = useSessionContext()
 const { user, login } = useUser()
-// ... alle @shopware/composables
+// ... all @shopware/composables
 ```
 
 ---
 
-## Vollständiges Setup-Beispiel
+## Complete setup example
 
 ### 1. Installation
 
@@ -180,7 +180,7 @@ npm install --save-dev @shopware/api-gen
 ```ts
 export default defineNuxtConfig({
   modules: ['@shopware/nuxt-module'],
-  extends: ['@shopware/cms-base-layer'],  // optional, für CMS-Rendering
+  extends: ['@shopware/cms-base-layer'],  // optional, for CMS rendering
 
   shopware: {
     endpoint: process.env.SHOPWARE_ENDPOINT ?? 'https://shop.example.com/store-api',
@@ -193,7 +193,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     shopware: {
-      // SSR-only (interner Endpoint)
+      // SSR-only (internal endpoint)
       endpoint: process.env.SHOPWARE_INTERNAL_ENDPOINT,
     },
     public: {
@@ -207,19 +207,19 @@ export default defineNuxtConfig({
 })
 ```
 
-### 3. Typen generieren
+### 3. Generate types
 
 ```bash
 # .env
 OPENAPI_JSON_URL=https://shop.example.com
 OPENAPI_ACCESS_KEY=SWSC...
 
-# Schema laden + Typen generieren
+# Load the schema + generate types
 npx @shopware/api-gen loadSchema --apiType=store
 npx @shopware/api-gen generate --apiType=store
 ```
 
-### 4. `shopware.d.ts` im Projektroot
+### 4. `shopware.d.ts` in the project root
 
 ```ts
 import type { operationsType } from './api-types/storeApiTypes'
@@ -231,7 +231,7 @@ declare module '#shopware' {
 }
 ```
 
-### 5. Erste Seite
+### 5. First page
 
 ```vue
 <!-- pages/index.vue -->
@@ -251,7 +251,7 @@ const { data: listing } = await useAsyncData('products', () =>
 </template>
 ```
 
-Oder mit Composable:
+Or with a composable:
 
 ```vue
 <!-- pages/[...path].vue -->
@@ -263,26 +263,26 @@ const seoUrl = await resolvePath(route.path)
 if (seoUrl?.routeName === 'frontend.navigation.page') {
   const { search } = useCategorySearch()
   const category = await search(seoUrl.foreignKey, { withCmsAssociations: true })
-  // category.cmsPage vorhanden wenn CMS-Seite konfiguriert
+  // category.cmsPage is present when a CMS page is configured
 }
 </script>
 ```
 
 ---
 
-## Intern: Modul-Aufbau
+## Internals: module structure
 
 ```
 packages/nuxt-module/
 ├── src/
-│   ├── index.ts      # defineNuxtModule — registriert Plugin + TypeTemplate + DevTools
+│   ├── index.ts      # defineNuxtModule — registers plugin + type template + DevTools
 │   └── utils.ts      # isDependencyInstalledLocally, resolveOwnDependency, isConfigDeprecated
-├── plugin.ts         # Nuxt-Plugin (läuft im Nuxt-App-Context)
-├── shopware.d.ts     # Default #shopware-Typ-Deklaration
-└── index.cjs         # CJS-Wrapper für Nuxt
+├── plugin.ts         # Nuxt plugin (runs in the Nuxt app context)
+├── shopware.d.ts     # default #shopware type declaration
+└── index.cjs         # CJS wrapper for Nuxt
 ```
 
-**Abhängigkeiten:**
+**Dependencies:**
 ```json
 {
   "@nuxt/kit": "4.4.6",
@@ -297,7 +297,7 @@ packages/nuxt-module/
 
 ---
 
-## Kompatibilitätsmatrix
+## Compatibility matrix
 
 | `@shopware/nuxt-module` | Nuxt | Vue | Node.js |
 |---|---|---|---|
@@ -305,22 +305,22 @@ packages/nuxt-module/
 
 ---
 
-## Bekannte Migrations-Hinweise
+## Known migration notes
 
-### Von `shopwareEndpoint`/`shopwareAccessToken` zu `endpoint`/`accessToken`
+### From `shopwareEndpoint`/`shopwareAccessToken` to `endpoint`/`accessToken`
 
 ```ts
-// Alt (deprecated):
+// Old (deprecated):
 shopware: {
   shopwareEndpoint: 'https://...',
   shopwareAccessToken: 'SWSC...'
 }
 
-// Neu:
+// New:
 shopware: {
   endpoint: 'https://...',
   accessToken: 'SWSC...'
 }
 ```
 
-Das Modul gibt eine Warnung aus wenn die deprecated Keys verwendet werden.
+The module emits a warning when the deprecated keys are used.

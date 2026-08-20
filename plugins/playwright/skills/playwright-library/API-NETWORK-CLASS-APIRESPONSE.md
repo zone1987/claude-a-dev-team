@@ -300,7 +300,7 @@ test('download PDF export', async ({ request }) => {
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `APIResponse` is the lightweight response object for API tests. `ok()`, `status()` and `json()` are the most common methods. `dispose()` must be called when no body is read, in order to avoid memory leaks. `headersArray()` is (unlike in `class-response`) synchronous.
+**Summary:** `APIResponse` is the lightweight response object for API tests. `ok()`, `status()` and `json()` are the most common methods. `dispose()` must be called when no body is read, in order to avoid memory leaks. `headersArray()` is (unlike in `class-response`) synchronous.
 
 ---
 

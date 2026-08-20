@@ -1,26 +1,26 @@
-# Contao 5 — Backend-Routen & Backend-Assets
+# Contao 5 — Backend routes & backend assets
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Backend-Controller aufsetzen](#backend-controller-aufsetzen)
-- [Backend-Template](#backend-template)
-- [Menü-Integration](#menü-integration)
-- [Backend-Assets global hinzufügen](#backend-assets-global-hinzufügen)
-- [Backend-Assets für spezifische DCA-Views](#backend-assets-für-spezifische-dca-views)
-- [ContaoCoreEvents Konstanten](#contaocoreevents-konstanten)
-- [Backend-Route mit Daten](#backend-route-mit-daten)
-- [Contao-Backend-URL-Prefix](#contao-backend-url-prefix)
+- [Overview](#overview)
+- [Setting up a backend controller](#setting-up-a-backend-controller)
+- [Backend template](#backend-template)
+- [Menu integration](#menu-integration)
+- [Adding backend assets globally](#adding-backend-assets-globally)
+- [Backend assets for specific DCA views](#backend-assets-for-specific-dca-views)
+- [ContaoCoreEvents constants](#contaocoreevents-constants)
+- [Backend route with data](#backend-route-with-data)
+- [Contao backend URL prefix](#contao-backend-url-prefix)
 
-## Übersicht
+## Overview
 
-Contao erlaubt eigene Backend-Controller und -Routen ohne ausschließliche
-DCA-Konfiguration. Dieser Skill deckt Backend-Routen, Menü-Integration und
-das Einbinden von Assets im Backend ab.
+Contao allows custom backend controllers and routes without relying exclusively on
+DCA configuration. This skill covers backend routes, menu integration and
+including assets in the backend.
 
 ---
 
-## Backend-Controller aufsetzen
+## Setting up a backend controller
 
 ### AbstractBackendController
 
@@ -48,11 +48,11 @@ class BackendController extends AbstractBackendController
 }
 ```
 
-**Schlüsselanforderung:** `_scope => 'backend'` im Route-Default für korrekte
-Registrierung im Contao-Backend-Scope.
+**Key requirement:** `_scope => 'backend'` in the route defaults for correct
+registration in the Contao backend scope.
 
-**Wichtig:** Controller müssen in `config/routes.yaml` **vor** den `ContaoCoreBundle`-Routen
-importiert werden:
+**Important:** controllers must be imported in `config/routes.yaml` **before** the
+`ContaoCoreBundle` routes:
 
 ```yaml
 # config/routes.yaml
@@ -63,9 +63,9 @@ app.controller:
 
 ---
 
-## Backend-Template
+## Backend template
 
-Templates erweitern das Basis-Backend-Layout:
+Templates extend the base backend layout:
 
 ```twig
 {# templates/my_backend_route.html.twig #}
@@ -84,9 +84,9 @@ Templates erweitern das Basis-Backend-Layout:
 
 ---
 
-## Menü-Integration
+## Menu integration
 
-Ein Event-Listener fügt den Menüeintrag hinzu:
+An event listener adds the menu entry:
 
 ```php
 // src/EventListener/BackendMenuListener.php
@@ -116,7 +116,7 @@ class BackendMenuListener
         $node->setLinkAttribute('class', 'my-module');
         $node->setCurrent($this->isCurrent($event));
 
-        // An vorhandene Kategorie hängen:
+        // Attach to an existing category:
         if ($contentNode = $tree->getChild('content')) {
             $contentNode->addChild($node);
         }
@@ -124,21 +124,21 @@ class BackendMenuListener
 
     private function isCurrent(MenuEvent $event): bool
     {
-        // Prüfen ob aktueller Request zu diesem Menüpunkt gehört
+        // Check whether the current request belongs to this menu item
         return false;
     }
 }
 ```
 
-**Niedrige Priorität** (`-255`) stellt sicher, dass Kern-Menüs zuerst geladen werden
-und Parent-Nodes verfügbar sind.
+**A low priority** (`-255`) ensures that core menus are loaded first
+and parent nodes are available.
 
 ---
 
-## Backend-Assets global hinzufügen
+## Adding backend assets globally
 
-Für universelle Backend-Asset-Einbindung einen Event-Listener nutzen, der auf
-Backend-Main-Requests prüft:
+For universal backend asset inclusion, use an event listener that checks for
+backend main requests:
 
 ```php
 // src/EventListener/AddBackendAssetsListener.php
@@ -169,9 +169,9 @@ class AddBackendAssetsListener
 
 ---
 
-## Backend-Assets für spezifische DCA-Views
+## Backend assets for specific DCA views
 
-Für bestimmte DataContainer-Views den `onload`-DCA-Callback nutzen:
+For particular DataContainer views, use the `onload` DCA callback:
 
 ```php
 // src/EventListener/DataContainer/ContentOnLoadCallbackListener.php
@@ -190,7 +190,7 @@ class ContentOnLoadCallbackListener
 }
 ```
 
-**Alternative:** Assets können auch in `config/config.yaml` konfiguriert werden:
+**Alternative:** assets can also be configured in `config/config.yaml`:
 
 ```yaml
 # config/config.yaml
@@ -204,25 +204,25 @@ contao:
 
 ---
 
-## ContaoCoreEvents Konstanten
+## ContaoCoreEvents constants
 
-Wichtige Event-Konstanten für Backend-Events:
+Important event constants for backend events:
 
 ```php
 use Contao\CoreBundle\ContaoCoreEvents;
 
-// Verfügbare Events (Auswahl):
-ContaoCoreEvents::BACKEND_MENU_BUILD    // Backend-Menü aufbauen
-ContaoCoreEvents::SLUG_VALID_CHARACTERS // Slug-Validierung
-ContaoCoreEvents::PREVIEW_URL_CREATE    // Preview-URL erzeugen
-ContaoCoreEvents::PREVIEW_URL_CONVERT   // Preview-URL konvertieren
+// Available events (selection):
+ContaoCoreEvents::BACKEND_MENU_BUILD    // Build the backend menu
+ContaoCoreEvents::SLUG_VALID_CHARACTERS // Slug validation
+ContaoCoreEvents::PREVIEW_URL_CREATE    // Create a preview URL
+ContaoCoreEvents::PREVIEW_URL_CONVERT   // Convert a preview URL
 ```
 
 ---
 
-## Backend-Route mit Daten
+## Backend route with data
 
-Vollständiges Beispiel mit Datenbankabfragen und Formular-Handling:
+Complete example with database queries and form handling:
 
 ```php
 #[Route(
@@ -250,7 +250,7 @@ class VendorExportController extends AbstractBackendController
 
     private function exportCsv(): Response
     {
-        // CSV-Export-Logik
+        // CSV export logic
         $response = new Response('...csv data...');
         $response->headers->set('Content-Type', 'text/csv');
         $response->headers->set('Content-Disposition', 'attachment; filename="vendors.csv"');
@@ -261,10 +261,10 @@ class VendorExportController extends AbstractBackendController
 
 ---
 
-## Contao-Backend-URL-Prefix
+## Contao backend URL prefix
 
-Der Route-Präfix `%contao.backend.route_prefix%` ergibt standardmäßig `/contao`.
-Er kann in `config/config.yaml` geändert werden:
+The route prefix `%contao.backend.route_prefix%` resolves to `/contao` by default.
+It can be changed in `config/config.yaml`:
 
 ```yaml
 contao:
@@ -274,5 +274,5 @@ contao:
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/guides/back-end-routes/*  
+*Source: https://docs.contao.org/5.x/dev/guides/back-end-routes/*  
 *https://docs.contao.org/5.x/dev/guides/adding-back-end-assets/*

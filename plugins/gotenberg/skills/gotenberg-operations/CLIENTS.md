@@ -1,9 +1,9 @@
 # Gotenberg — Clients & SDKs
 
-Gotenberg ist eine Standard-HTTP-API. Jede HTTP-Bibliothek funktioniert.
-Dedizierte Clients bieten Fluent-Interfaces, Typsicherheit und vereinfachtes File-Handling.
+Gotenberg is a standard HTTP API. Any HTTP library works.
+Dedicated clients provide fluent interfaces, type safety and simplified file handling.
 
-## Offizieller Client: PHP
+## Official client: PHP
 
 ```bash
 composer require gotenberg/gotenberg-php
@@ -11,15 +11,15 @@ composer require gotenberg/gotenberg-php
 
 GitHub: https://github.com/gotenberg/gotenberg-php
 
-- Unterstuetzt neue Features ab Tag 1
-- Fluent Interface fuer alle Routen
+- Supports new features from day one
+- Fluent interface for all routes
 
-## Community Clients
+## Community clients
 
-Clients fuer alle gaengigen Sprachen:
+Clients for all common languages:
 https://github.com/gotenberg/awesome-gotenberg#clients
 
-Eigene Sprache nicht dabei? `multipart/form-data` ist Standard — ein Wrapper
-ist schnell gebaut. Routen-Uebersicht als Ausgangspunkt nutzen.
+Your language not included? `multipart/form-data` is a standard — a wrapper
+is quickly built. Use the route overview as a starting point.
 
-Vollstaendige Referenz: `CLIENTS-DETAIL.md`
+Complete reference: `CLIENTS-DETAIL.md`

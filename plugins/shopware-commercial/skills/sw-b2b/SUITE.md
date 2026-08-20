@@ -4,7 +4,7 @@ Entwickler-Referenz fuer die B2B Suite (Legacy, bis Shopware 6.8 unterstuetzt).
 
 ## Referenzen
 
-- [B2B Suite Systemarchitektur und Konventionen](`SUITE-DETAIL.md`)
+- [SUITE-DETAIL.md](SUITE-DETAIL.md)
 
 ## Wichtiger Hinweis
 

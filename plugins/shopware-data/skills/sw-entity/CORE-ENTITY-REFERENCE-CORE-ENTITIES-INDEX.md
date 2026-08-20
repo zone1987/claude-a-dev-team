@@ -12,14 +12,14 @@ Total: **312** definitions (218 Entity, 40 Mapping, 54 Translation)
 
 | Domain | File | Count |
 |--------|------|-------|
-| Administration | [core-entities-administration.md](./core-entities-administration.md) | 2 |
-| Checkout | [core-entities-checkout.md](./core-entities-checkout.md) | 49 |
-| Content | [core-entities-content.md](./core-entities-content.md) | 89 |
-| Core | [core-entities-core.md](./core-entities-core.md) | 65 |
-| Elasticsearch | [core-entities-elasticsearch.md](./core-entities-elasticsearch.md) | 2 |
-| Framework | [core-entities-framework.md](./core-entities-framework.md) | 36 |
-| Storefront | [core-entities-storefront.md](./core-entities-storefront.md) | 5 |
-| System | [core-entities-system.md](./core-entities-system.md) | 64 |
+| Administration | [core-entities-administration.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-ADMINISTRATION.md) | 2 |
+| Checkout | [core-entities-checkout.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CHECKOUT.md) | 49 |
+| Content | [core-entities-content.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CONTENT.md) | 89 |
+| Core | [core-entities-core.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CORE.md) | 65 |
+| Elasticsearch | [core-entities-elasticsearch.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-ELASTICSEARCH.md) | 2 |
+| Framework | [core-entities-framework.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-FRAMEWORK.md) | 36 |
+| Storefront | [core-entities-storefront.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-STOREFRONT.md) | 5 |
+| System | [core-entities-system.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-SYSTEM.md) | 64 |
 
 ## Machine-Readable
 

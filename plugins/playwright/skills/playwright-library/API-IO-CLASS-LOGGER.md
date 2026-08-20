@@ -164,7 +164,7 @@ No events.
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** Logger is deprecated and should no longer be used in new
+**Summary:** Logger is deprecated and should no longer be used in new
 code. For complete diagnostics and debug information,
 `context.tracing` offers a far superior alternative with visual
 presentation in the Trace Viewer. Should Logger still be needed: implement `isEnabled()`

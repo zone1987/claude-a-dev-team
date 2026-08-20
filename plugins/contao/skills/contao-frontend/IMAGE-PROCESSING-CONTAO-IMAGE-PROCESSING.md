@@ -2,41 +2,41 @@
 
 ## Contents
 
-- [Architektur-Überblick](#architektur-überblick)
+- [Architecture overview](#architecture-overview)
 - [ImageFactory](#imagefactory)
 - [PictureFactory](#picturefactory)
 - [Size Array Format](#size-array-format)
 - [Image Sizes (config.yaml)](#image-sizes-configyaml)
 - [Image Studio](#image-studio)
 
-## Architektur-Überblick
+## Architecture overview
 
-| Anwendungsfall | Komponente | Abstraktionslevel |
+| Use case | Component | Abstraction level |
 |----------------|-----------|-------------------|
-| Template-Bildausgabe | Image Studio | Hoch |
-| Kontrolliertes Resize | ImageFactory / PictureFactory | Mittel |
-| Außerhalb Contao | contao/image | Niedrig-mittel |
-| Direkte Manipulation | imagine/imagine, contao/imagine-svg | Niedrig |
+| Image output in templates | Image Studio | High |
+| Controlled resize | ImageFactory / PictureFactory | Medium |
+| Outside of Contao | contao/image | Low to medium |
+| Direct manipulation | imagine/imagine, contao/imagine-svg | Low |
 
-**Verarbeitungskette:** Contao → Imagine → PHP-Extensions (GD / ImageMagick / GraphicsMagick)
+**Processing chain:** Contao → Imagine → PHP extensions (GD / ImageMagick / GraphicsMagick)
 
-**Integrierte Templates:** `image.html5`, `picture_default.html5`, `figure.html.twig`
+**Integrated templates:** `image.html5`, `picture_default.html5`, `figure.html.twig`
 
 ---
 
 ## ImageFactory
 
-Dienst: `contao.image.factory` → implements `ImageFactoryInterface`
+Service: `contao.image.factory` → implements `ImageFactoryInterface`
 
-### Methode `create($path, $size, $options)`
+### Method `create($path, $size, $options)`
 
-| Parameter | Typen |
+| Parameter | Types |
 |-----------|-------|
-| `$path` | `string` oder `ImageInterface` |
-| `$size` | `array` (Size Array), `int` (DB-ID), `ResizeConfiguration` |
-| `$options` | `string` (Zielpfad) oder `ResizeOptions` |
+| `$path` | `string` or `ImageInterface` |
+| `$size` | `array` (size array), `int` (DB ID), `ResizeConfiguration` |
+| `$options` | `string` (target path) or `ResizeOptions` |
 
-**Rückgabe:** `ImageInterface` (oder `DeferredImageInterface` wenn kein Zielpfad + noch nicht vorhanden)
+**Returns:** `ImageInterface` (or `DeferredImageInterface` if there is no target path and it does not exist yet)
 
 ```php
 use Contao\CoreBundle\Image\ImageFactoryInterface;
@@ -53,7 +53,7 @@ $image->getUrl('/root');                    // assets/images/9/image-6dc4b466.jp
 $image->getDimensions()->getSize()->getWidth(); // 100
 ```
 
-### Mit Zielpfad
+### With a target path
 
 ```php
 $image = $this->imageFactory->create(
@@ -67,9 +67,9 @@ $image = $this->imageFactory->create(
 
 ## PictureFactory
 
-Dienst: `contao.image.picture_factory` → implements `PictureFactoryInterface`
+Service: `contao.image.picture_factory` → implements `PictureFactoryInterface`
 
-Erzeugt responsive Bilder mit mehreren Varianten für `<picture>`, `srcset`, `sizes`.
+Generates responsive images with multiple variants for `<picture>`, `srcset`, `sizes`.
 
 ```php
 use Contao\CoreBundle\Image\PictureFactoryInterface;
@@ -82,22 +82,22 @@ $picture = $this->pictureFactory->create(
 );
 ```
 
-`$size` akzeptiert: `array`, `int`, `string` oder `PictureConfiguration`.
+`$size` accepts: `array`, `int`, `string` or `PictureConfiguration`.
 
 ---
 
 ## Size Array Format
 
 ```php
-// Statischer Resize-Modus
+// Static resize mode
 $size = [256, 128, 'crop'];
 $size = [256, 128, ResizeConfiguration::MODE_BOX];
-// Gültige Modi: crop | box | proportional
+// Valid modes: crop | box | proportional
 
-// Datenbankgespeicherte Konfiguration (tl_image_size ID)
+// Configuration stored in the database (tl_image_size ID)
 $size = [0, 0, 8];
 
-// config.yaml-Referenz (Unterstrich-Präfix!)
+// config.yaml reference (note the underscore prefix!)
 $size = [0, 0, '_example'];
 ```
 
@@ -105,7 +105,7 @@ $size = [0, 0, '_example'];
 
 ## Image Sizes (config.yaml)
 
-### Einfache Konfiguration
+### Simple configuration
 
 ```yaml
 # config/config.yaml
@@ -118,7 +118,7 @@ contao:
                 width: 1024
 ```
 
-### Erweiterte Konfiguration
+### Advanced configuration
 
 ```yaml
 contao:
@@ -134,7 +134,7 @@ contao:
                 densities: 1.5x, 2x
 ```
 
-### Media Queries / Responsive `<picture>`
+### Media queries / responsive `<picture>`
 
 ```yaml
 contao:
@@ -160,7 +160,7 @@ contao:
                         densities: 1.5x
 ```
 
-### Format-Konvertierung (WebP-Fallback)
+### Format conversion (WebP fallback)
 
 ```yaml
 contao:
@@ -193,7 +193,7 @@ contao:
                 height: 500
 ```
 
-### Backend-Übersetzung
+### Backend translation
 
 ```yaml
 # translations/image_sizes.en.yaml
@@ -204,18 +204,18 @@ example: Image with 512 Pixel width
 
 ## Image Studio
 
-### Studio-Klassen
+### Studio classes
 
-| Klasse | Zweck |
+| Class | Purpose |
 |--------|-------|
-| `FigureBuilder` | Fluent API zum Erstellen von `Figure`-Objekten |
-| `Figure` | Datenbehälter für alle Bilddaten |
-| `ImageResult` | Lazy-geladene Bild-/Source-Daten |
-| `LightboxResult` | Lightbox-Gruppe + optionales Resize |
+| `FigureBuilder` | Fluent API for creating `Figure` objects |
+| `Figure` | Data container for all image data |
+| `ImageResult` | Lazily loaded image/source data |
+| `LightboxResult` | Lightbox group + optional resize |
 
-Dienst: `Contao\CoreBundle\Image\Studio\Studio`
+Service: `Contao\CoreBundle\Image\Studio\Studio`
 
-### FigureBuilder – Basis
+### FigureBuilder – basics
 
 ```php
 use Contao\CoreBundle\Image\Studio\Studio;
@@ -230,32 +230,32 @@ $figure = $this->studio
     ->build();
 ```
 
-### Resource-Methoden
+### Resource methods
 
-| Methode | Quelle |
+| Method | Source |
 |---------|--------|
-| `fromFilesModel($model)` | FilesModel-Instanz |
-| `fromUuid($uuid)` | UUID aus tl_files |
-| `fromId($id)` | ID aus tl_files |
-| `fromPath($path)` | Dateipfad (auto-erkennt FilesModel) |
+| `fromFilesModel($model)` | FilesModel instance |
+| `fromUuid($uuid)` | UUID from tl_files |
+| `fromId($id)` | ID from tl_files |
+| `fromPath($path)` | File path (auto-detects FilesModel) |
 | `fromImage($image)` | ImageInterface |
-| `from($resource)` | Auto-Erkennung |
+| `from($resource)` | Auto-detection |
 
-### Konfigurations-Methoden
+### Configuration methods
 
-| Methode | Zweck |
+| Method | Purpose |
 |---------|-------|
-| `setSize($size)` | Resize (Array / PictureConfiguration / Referenz) |
-| `setMetadata($meta)` | Metadaten überschreiben oder deaktivieren |
-| `setLocale($locale)` | Locale für Metadaten |
-| `setLinkHref($href)` | Link-URL |
-| `setLinkAttribute($key, $val)` | Link-Attribut |
-| `enableLightbox()` | Lightbox aktivieren |
-| `setLightboxSize($size)` | Lightbox-Bildgröße |
-| `setLightboxGroupIdentifier($id)` | Lightbox-Gruppe (`data-lightbox`) |
-| `setOptions($options)` | Template-spezifische Optionen |
+| `setSize($size)` | Resize (array / PictureConfiguration / reference) |
+| `setMetadata($meta)` | Override or disable metadata |
+| `setLocale($locale)` | Locale for metadata |
+| `setLinkHref($href)` | Link URL |
+| `setLinkAttribute($key, $val)` | Link attribute |
+| `enableLightbox()` | Enable the lightbox |
+| `setLightboxSize($size)` | Lightbox image size |
+| `setLightboxGroupIdentifier($id)` | Lightbox group (`data-lightbox`) |
+| `setOptions($options)` | Template-specific options |
 
-### Twig-Ausgabe
+### Twig output
 
 ```twig
 {{ figure(id, '_my_size') }}
@@ -268,19 +268,19 @@ $figure = $this->studio
 {{ figure(uuid, special_size) }}
 ```
 
-### PHP-Template (Legacy)
+### PHP template (legacy)
 
 ```php
 $template = new FrontendTemplate('image');
 $figure->applyLegacyTemplateData($template);
 
-// Oder inline
+// Or inline
 echo $this->figure('path/to/image.png', '_my_size');
 ```
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://docs.contao.org/5.x/dev/framework/image-processing/*
 - *https://docs.contao.org/5.x/dev/framework/image-processing/image-picture-factory/*
 - *https://docs.contao.org/5.x/dev/framework/image-processing/image-sizes/*

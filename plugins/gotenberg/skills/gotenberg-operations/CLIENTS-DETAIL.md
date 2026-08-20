@@ -1,25 +1,25 @@
-# Gotenberg — Clients & SDKs Referenz
+# Gotenberg — Clients & SDKs Reference
 
 ## Contents
 
-- [Grundprinzip](#grundprinzip)
-- [Offizieller Client: PHP](#offizieller-client-php)
-- [Community Clients](#community-clients)
-- [Eigene Integration (kein SDK)](#eigene-integration-kein-sdk)
-- [Response-Handling](#response-handling)
+- [Basic principle](#basic-principle)
+- [Official client: PHP](#official-client-php)
+- [Community clients](#community-clients)
+- [Custom integration (no SDK)](#custom-integration-no-sdk)
+- [Response handling](#response-handling)
 
-## Grundprinzip
+## Basic principle
 
-Gotenberg ist eine Standard-HTTP-API. Jede HTTP-Bibliothek in jeder Sprache funktioniert.
-Das Protokoll ist `multipart/form-data` (POST) mit binaerer Datei-Antwort.
+Gotenberg is a standard HTTP API. Any HTTP library in any language works.
+The protocol is `multipart/form-data` (POST) with a binary file response.
 
-Dedizierte Clients bieten:
-- Fluent Interface / Builder-Pattern
-- Typsicherheit fuer Form-Felder
-- Vereinfachtes File-Handling
-- Eingebautes Error-Handling
+Dedicated clients provide:
+- Fluent interface / builder pattern
+- Type safety for form fields
+- Simplified file handling
+- Built-in error handling
 
-## Offizieller Client: PHP
+## Official client: PHP
 
 **Package**: `gotenberg/gotenberg-php`
 **Repository**: https://github.com/gotenberg/gotenberg-php
@@ -28,7 +28,7 @@ Dedizierte Clients bieten:
 composer require gotenberg/gotenberg-php
 ```
 
-Beispiel: URL zu PDF
+Example: URL to PDF
 
 ```php
 use Gotenberg\Gotenberg;
@@ -41,7 +41,7 @@ $request = Gotenberg::chromium($apiUrl)
 $response = $client->sendRequest($request);
 ```
 
-Beispiel: HTML zu PDF
+Example: HTML to PDF
 
 ```php
 use Gotenberg\Gotenberg;
@@ -54,7 +54,7 @@ $request = Gotenberg::chromium($apiUrl)
 $response = $client->sendRequest($request);
 ```
 
-Beispiel: Office-Dokument zu PDF
+Example: Office document to PDF
 
 ```php
 use Gotenberg\Gotenberg;
@@ -67,19 +67,19 @@ $request = Gotenberg::libreOffice($apiUrl)
 $response = $client->sendRequest($request);
 ```
 
-## Community Clients
+## Community clients
 
-Vollstaendige Liste: https://github.com/gotenberg/awesome-gotenberg#clients
+Complete list: https://github.com/gotenberg/awesome-gotenberg#clients
 
-Verfuegbare Community-Clients (Stand 2026):
+Available community clients (as of 2026):
 - **Go**: github.com/gotenberg/gotenberg-go-client
-- **JavaScript / Node.js**: npm `chromiumly` oder andere auf Awesome-Liste
-- **Python**: auf Awesome-Liste
-- **Ruby**, **Java**, **C#** / .NET: auf Awesome-Liste
+- **JavaScript / Node.js**: npm `chromiumly` or others on the Awesome list
+- **Python**: on the Awesome list
+- **Ruby**, **Java**, **C#** / .NET: on the Awesome list
 
-## Eigene Integration (kein SDK)
+## Custom integration (no SDK)
 
-Da `multipart/form-data` Standard ist, genuegt jede HTTP-Bibliothek:
+Since `multipart/form-data` is a standard, any HTTP library is sufficient:
 
 ### cURL (Bash)
 
@@ -90,7 +90,7 @@ curl \
   -o output.pdf
 ```
 
-### PHP (ohne SDK)
+### PHP (without SDK)
 
 ```php
 $client = new \GuzzleHttp\Client();
@@ -129,14 +129,14 @@ with open('output.pdf', 'wb') as f:
     f.write(response.content)
 ```
 
-## Response-Handling
+## Response handling
 
-Erfolg (200): Binaere Datei direkt im Body.
+Success (200): binary file directly in the body.
 - `Content-Disposition: attachment; filename=<name.ext>`
-- `Content-Type: application/pdf` (oder image/png etc.)
+- `Content-Type: application/pdf` (or image/png etc.)
 - `Gotenberg-Trace: <trace-id>`
 
-Fehler (400/409/503): Plaintext-Fehlermeldung im Body.
+Error (400/409/503): plaintext error message in the body.
 
 ---
-Quelle: https://gotenberg.dev/docs/getting-started/clients
+Source: https://gotenberg.dev/docs/getting-started/clients

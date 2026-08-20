@@ -9,11 +9,11 @@ Vite replaced Webpack in 6.7. Snippets are the translation mechanism for admin s
 
 ## Reference map
 
-- **[ADMIN-ASSETS.md](ADMIN-ASSETS.md)**: Statische Plugin-Assets liegen unter `src/Resources/app/administration/src/assets/` und werden vom Vite-Build….
-- **[ADMIN-SNIPPETS.md](ADMIN-SNIPPETS.md)**: Admin-Übersetzungen als JSON unter `module/<name>/snippet/<locale>.json`, im Modul registriert.
-- **[ADMIN-STYLES.md](ADMIN-STYLES.md)**: Pro Komponente eine `.scss` neben `index.js`/`.twig`, importiert im Komponenten-`index.js`.
-- **[ADMIN-TYPESCRIPT.md](ADMIN-TYPESCRIPT.md)**: Die Administration ist TypeScript-fähig. [ADMIN-TYPESCRIPT-TYPESCRIPT](ADMIN-TYPESCRIPT-TYPESCRIPT.md).
-- **[ADMIN-VITE.md](ADMIN-VITE.md)**: 6.7 nutzt **Vite** für den Admin-Build.
+- **[ADMIN-ASSETS.md](ADMIN-ASSETS.md)**: Static plugin assets live under `src/Resources/app/administration/src/assets/` and are bundled by the Vite build….
+- **[ADMIN-SNIPPETS.md](ADMIN-SNIPPETS.md)**: Admin translations as JSON under `module/<name>/snippet/<locale>.json`, registered in the module.
+- **[ADMIN-STYLES.md](ADMIN-STYLES.md)**: One `.scss` per component next to `index.js`/`.twig`, imported in the component's `index.js`.
+- **[ADMIN-TYPESCRIPT.md](ADMIN-TYPESCRIPT.md)**: The administration is TypeScript-capable. [ADMIN-TYPESCRIPT-TYPESCRIPT](ADMIN-TYPESCRIPT-TYPESCRIPT.md).
+- **[ADMIN-VITE.md](ADMIN-VITE.md)**: 6.7 uses **Vite** for the admin build.
 
 ## Source
 

@@ -1,3 +1,3 @@
 # contao-cron
 
-Vollständige Referenz: `CRON-CONTAO-CRON.md`
+Complete reference: `CRON-CONTAO-CRON.md`

@@ -1,6 +1,6 @@
-# Contao 5.x Backend-Widget-Referenz
+# Contao 5.x Backend Widget Reference
 
-Backend-Widgets sind die Formular-Elemente für die Bearbeitungsmasken von Datensätzen im Contao-Backend, konfiguriert über `inputType` im DCA-Array.
+Backend widgets are the form elements for the record editing masks in the Contao back end, configured via `inputType` in the DCA array.
 
 ---
 
@@ -23,44 +23,44 @@ Backend-Widgets sind die Formular-Elemente für die Bearbeitungsmasken von Daten
 - [text](#text)
 - [textarea](#textarea)
 - [timePeriod](#timeperiod)
-- [Nicht-dokumentierte Widgets](#nicht-dokumentierte-widgets)
+- [Undocumented widgets](#undocumented-widgets)
 
 ## checkbox
 
-Rendert eine oder mehrere Checkboxen.
+Renders one or more checkboxes.
 
 **inputType:** `checkbox`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `checkbox` |
-| `options` | `array` | Options-Array (kombiniert mit `eval.multiple`) |
-| `options_callback` | `callable` | Callback der Optionen zurückgibt |
-| `reference` | `array` | Übersetzungsreferenz für Optionen |
-| `foreignKey` | `string` | Optionen aus anderer Tabelle laden |
-| `eval.multiple` | `bool` | Mehrfachauswahl aktivieren |
-| `eval.includeBlankOption` | `bool` | Leere Option einbeziehen |
-| `eval.blankOptionLabel` | `string` | Label der leeren Option (Standard: `-`) |
+| `options` | `array` | Options array (combined with `eval.multiple`) |
+| `options_callback` | `callable` | Callback that returns the options |
+| `reference` | `array` | Translation reference for options |
+| `foreignKey` | `string` | Load options from another table |
+| `eval.multiple` | `bool` | Enable multiple selection |
+| `eval.includeBlankOption` | `bool` | Include a blank option |
+| `eval.blankOptionLabel` | `string` | Label of the blank option (default: `-`) |
 
-**Options-Array-Formate:**
-1. `['label1', 'label2']` — Index als Wert
-2. `['value' => 'label']` — Wert => Label
-3. `['foo' => ['a', 'b'], 'bar' => ['c', 'd']]` — Gruppierte Checkboxen
+**Options array formats:**
+1. `['label1', 'label2']` — index as value
+2. `['value' => 'label']` — value => label
+3. `['foo' => ['a', 'b'], 'bar' => ['c', 'd']]` — grouped checkboxes
 
-**SQL-Spaltendefinition:**
-- Einzel-Checkbox (Toggle): `boolean` oder `'1'/'0'`
-- Mehrfachauswahl: `blob` (serialisiertes Array)
+**SQL column definition:**
+- Single checkbox (toggle): `boolean` or `'1'/'0'`
+- Multiple selection: `blob` (serialized array)
 
-**Beispiele:**
+**Examples:**
 
 ```php
-// Toggle-Checkbox
+// Toggle checkbox
 'myCheckbox' => [
     'inputType' => 'checkbox',
     'sql' => ['type' => 'boolean', 'default' => false],
 ],
 
-// Feste Optionen
+// Fixed options
 'myCheckbox' => [
     'inputType' => 'checkbox',
     'options' => ['foo', 'bar', 'baz'],
@@ -68,7 +68,7 @@ Rendert eine oder mehrere Checkboxen.
     'sql' => ['type' => 'blob', 'notnull' => false],
 ],
 
-// Dynamische Optionen
+// Dynamic options
 'myCheckbox' => [
     'inputType' => 'checkbox',
     'options_callback' => ['Vendor\Class', 'getOptions'],
@@ -76,7 +76,7 @@ Rendert eine oder mehrere Checkboxen.
     'sql' => ['type' => 'blob', 'notnull' => false],
 ],
 
-// Optionen aus Tabelle
+// Options from a table
 'myUsers' => [
     'inputType' => 'checkbox',
     'foreignKey' => 'tl_user.name',
@@ -84,45 +84,45 @@ Rendert eine oder mehrere Checkboxen.
 ],
 ```
 
-**Contao-Nutzung:** Überall — einfache Checkbox oft für Subpaletten-Selektor.
+**Contao usage:** Everywhere — a simple checkbox is often used as a subpalette selector.
 
 ---
 
 ## checkboxWizard
 
-Wie `checkbox` aber mit manueller Sortierung der ausgewählten Elemente.
+Like `checkbox`, but with manual sorting of the selected elements.
 
 **inputType:** `checkboxWizard`
 
-Identische Optionen wie `checkbox` (siehe oben). Nützlich wenn die Reihenfolge der Auswahl relevant ist.
+Identical options to `checkbox` (see above). Useful when the order of the selection matters.
 
-**Contao-Nutzung:** Seitenlayout-Einstellungen (CSS-Framework, JS-Templates), Bildformate in responsiven Bildgrößen.
+**Contao usage:** Page layout settings (CSS framework, JS templates), image formats in responsive image sizes.
 
 ---
 
 ## fileTree
 
-Rendert einen Dateibaum-Picker für die Auswahl von Dateien oder Ordnern.
+Renders a file tree picker for selecting files or folders.
 
 **inputType:** `fileTree`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `fileTree` |
-| `eval.extensions` | `string` | Erlaubte Dateierweiterungen (kommagetrennt) |
-| `eval.fieldType` | `string` | `checkbox` (Mehrfachauswahl) / `radio` (Einzelauswahl) |
-| `eval.files` | `bool` | Dateien und Ordner anzeigen; `false` = nur Ordner |
-| `eval.filesOnly` | `bool` | Radio-/Checkboxen bei Ordnern ausblenden |
-| `eval.isGallery` | `bool` | Ausgewählte Dateien als Galerie anzeigen |
-| `eval.isSortable` | `bool` | Sortierung ausgewählter Elemente aktivieren |
-| `eval.multiple` | `bool` | Mehrfachauswahl aktivieren |
-| `eval.path` | `string` | Eigenes Stammverzeichnis für Dateibaum |
-| `eval.showFilePreview` | `bool` | Reguläre Dateien als Bilder anzeigen |
+| `eval.extensions` | `string` | Allowed file extensions (comma-separated) |
+| `eval.fieldType` | `string` | `checkbox` (multiple selection) / `radio` (single selection) |
+| `eval.files` | `bool` | Show files and folders; `false` = folders only |
+| `eval.filesOnly` | `bool` | Hide radio buttons/checkboxes for folders |
+| `eval.isGallery` | `bool` | Show the selected files as a gallery |
+| `eval.isSortable` | `bool` | Enable sorting of the selected elements |
+| `eval.multiple` | `bool` | Enable multiple selection |
+| `eval.path` | `string` | Custom root directory for the file tree |
+| `eval.showFilePreview` | `bool` | Show regular files as images |
 
-**Beispiele:**
+**Examples:**
 
 ```php
-// Einzelbild-Auswahl
+// Single image selection
 'singleSRC' => [
     'exclude' => true,
     'inputType' => 'fileTree',
@@ -134,7 +134,7 @@ Rendert einen Dateibaum-Picker für die Auswahl von Dateien oder Ordnern.
     'sql' => ['type' => 'binary', 'length' => 16, 'fixed' => true, 'notnull' => false],
 ],
 
-// Bildergalerie (Mehrfachauswahl)
+// Image gallery (multiple selection)
 'multiSRC' => [
     'exclude' => true,
     'inputType' => 'fileTree',
@@ -148,7 +148,7 @@ Rendert einen Dateibaum-Picker für die Auswahl von Dateien oder Ordnern.
     'sql' => ['type' => 'blob', 'notnull' => false],
 ],
 
-// Ordner-Auswahl
+// Folder selection
 'folders' => [
     'inputType' => 'fileTree',
     'eval' => [
@@ -160,19 +160,19 @@ Rendert einen Dateibaum-Picker für die Auswahl von Dateien oder Ordnern.
 ],
 ```
 
-**Contao-Nutzung:** Text-, Download-, Bild- und Galerie-Inhaltselemente.
+**Contao usage:** Text, download, image and gallery content elements.
 
 ---
 
 ## imageSize
 
-Dropdown + zwei Textfelder für Bildgrößendefinition.
+Dropdown plus two text fields for the image size definition.
 
 **inputType:** `imageSize`
 
-Keine speziellen Optionen — alle `text`-Widget-Optionen gelten.
+No special options — all `text` widget options apply.
 
-**Gespeicherter Wert:** Serialisiertes Image-Size-Array.
+**Stored value:** Serialized image size array.
 
 ```php
 'size' => [
@@ -190,7 +190,7 @@ Keine speziellen Optionen — alle `text`-Widget-Optionen gelten.
 ],
 ```
 
-**Optionen überschreiben via Callback:**
+**Overriding the options via callback:**
 ```php
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Image\ImageSizes;
@@ -207,23 +207,23 @@ class ImageSizeOptionsListener
 }
 ```
 
-**Contao-Nutzung:** Text-, Bild- und Galerie-Inhaltselemente.
+**Contao usage:** Text, image and gallery content elements.
 
 ---
 
 ## inputUnit
 
-Textfeld mit kleinem Dropdown-Menü für die Einheit.
+Text field with a small dropdown menu for the unit.
 
 **inputType:** `inputUnit`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `inputUnit` |
-| `options` | `array` | Optionen für das Dropdown |
-| `reference` | `array` | Übersetzungsreferenz für Dropdown-Optionen |
+| `options` | `array` | Options for the dropdown |
+| `reference` | `array` | Translation reference for the dropdown options |
 
-**Gespeicherter Wert:** Serialisiertes assoziatives Array mit Schlüsseln `value` und `unit`.
+**Stored value:** Serialized associative array with the keys `value` and `unit`.
 
 ```php
 'headline' => [
@@ -243,21 +243,21 @@ Textfeld mit kleinem Dropdown-Menü für die Einheit.
 ],
 ```
 
-**Contao-Nutzung:** Überschrift-Eingabe in Inhaltselementen und Modulen.
+**Contao usage:** Headline input in content elements and modules.
 
 ---
 
 ## listWizard
 
-Expandierbarer Listenwizard mit Hinzufügen, Entfernen und Umsortieren.
+Expandable list wizard with add, remove and reorder.
 
 **inputType:** `listWizard`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `listWizard` |
-| `eval.allowHtml` | `bool` | HTML-Eingabe in Listfelder erlauben |
-| `eval.maxlength` | `int` | Maximale Zeichenanzahl pro Listfeld |
+| `eval.allowHtml` | `bool` | Allow HTML input in the list fields |
+| `eval.maxlength` | `int` | Maximum number of characters per list field |
 
 ```php
 use Doctrine\DBAL\Platforms\MySQLPlatform;
@@ -273,17 +273,17 @@ use Doctrine\DBAL\Platforms\MySQLPlatform;
 ],
 ```
 
-**Contao-Nutzung:** Nur im Listen-Inhaltselement.
+**Contao usage:** Only in the list content element.
 
 ---
 
 ## moduleWizard
 
-Weist Frontend-Module den Layout-Abschnitten zu (nur `tl_layout`).
+Assigns front end modules to the layout sections (`tl_layout` only).
 
 **inputType:** `moduleWizard`
 
-Keine speziellen Optionen.
+No special options.
 
 ```php
 use Doctrine\DBAL\Platforms\MySQLPlatform;
@@ -299,17 +299,17 @@ use Doctrine\DBAL\Platforms\MySQLPlatform;
 ],
 ```
 
-**Contao-Nutzung:** Seitenlayout-Einstellungen in `tl_layout`.
+**Contao usage:** Page layout settings in `tl_layout`.
 
 ---
 
 ## optionWizard
 
-Expandierbare Liste von Optionen für Select-Felder (mit Kopieren, Löschen, Umsortieren, Standard-Option, Gruppen).
+Expandable list of options for select fields (with copy, delete, reorder, default option, groups).
 
 **inputType:** `optionWizard`
 
-Keine speziellen Optionen.
+No special options.
 
 ```php
 'foobar' => [
@@ -318,17 +318,17 @@ Keine speziellen Optionen.
 ],
 ```
 
-**Contao-Nutzung:** Formular-Generator für Select-Formularfelder.
+**Contao usage:** Form generator for select form fields.
 
 ---
 
 ## password
 
-Passwort-Textfeld (`type="password"`) mit Anzeige-Schaltfläche.
+Password text field (`type="password"`) with a reveal button.
 
 **inputType:** `password`
 
-Alle `text`-Widget-Optionen gelten.
+All `text` widget options apply.
 
 ```php
 'myPassword' => [
@@ -346,29 +346,29 @@ Alle `text`-Widget-Optionen gelten.
 
 ## picker
 
-Allgemeiner Picker für beliebige Data-Container-Elemente. Zeigt Backend-Ansicht im Popup.
+Generic picker for arbitrary data container elements. Shows a back end view in a popup.
 
 **inputType:** `picker`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `picker` |
-| `foreignKey` | `string` | Tabelle für Picker-Auswahl |
-| `relation` | `array` | Tabellenreferenz via `'table' => 'tl_foobar'` |
-| `eval.multiple` | `bool` | Mehrfachauswahl |
-| `eval.isSortable` | `bool` | Drag-n-Drop-Sortierung bei Mehrfachauswahl |
+| `foreignKey` | `string` | Table for the picker selection |
+| `relation` | `array` | Table reference via `'table' => 'tl_foobar'` |
+| `eval.multiple` | `bool` | Multiple selection |
+| `eval.isSortable` | `bool` | Drag-and-drop sorting for multiple selection |
 
-**SQL:** Einzel → `integer`; Mehrfach → `blob` (serialisiertes Array)
+**SQL:** single → `integer`; multiple → `blob` (serialized array)
 
 ```php
-// News-Artikel (Einzelauswahl)
+// News article (single selection)
 'myNewsReference' => [
     'inputType' => 'picker',
     'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
     'relation' => ['type' => 'hasOne', 'load' => 'lazy', 'table' => 'tl_news'],
 ],
 
-// Mehrere Inhaltselemente
+// Multiple content elements
 'myContentElements' => [
     'inputType' => 'picker',
     'eval' => ['multiple' => true],
@@ -376,7 +376,7 @@ Allgemeiner Picker für beliebige Data-Container-Elemente. Zeigt Backend-Ansicht
     'relation' => ['type' => 'hasMany', 'load' => 'lazy', 'table' => 'tl_content'],
 ],
 
-// Eigener Data-Container (braucht eigenen PickerProvider)
+// Custom data container (requires a custom PickerProvider)
 'myProducts' => [
     'inputType' => 'picker',
     'eval' => ['multiple' => true],
@@ -385,7 +385,7 @@ Allgemeiner Picker für beliebige Data-Container-Elemente. Zeigt Backend-Ansicht
 ],
 ```
 
-**Eigener PickerProvider:**
+**Custom PickerProvider:**
 ```php
 namespace App\Picker;
 
@@ -398,36 +398,36 @@ class ProductsPickerProvider extends AbstractTablePickerProvider
 }
 ```
 
-**Contao-Nutzung:** Inhaltselement-Include, Artikel-Teaser.
+**Contao usage:** Content element include, article teaser.
 
 ---
 
 ## radio
 
-Radio-Button-Auswahl.
+Radio button selection.
 
 **inputType:** `radio`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `radio` |
-| `options` | `array` | Options-Array |
-| `options_callback` | `callable` | Callback der Optionen zurückgibt |
-| `reference` | `array` | Übersetzungsreferenz |
-| `foreignKey` | `string` | Optionen aus anderer Tabelle |
-| `eval.includeBlankOption` | `bool` | Leere Option einbeziehen |
-| `eval.blankOptionLabel` | `string` | Label der leeren Option |
-| `eval.disabled` | `bool` | Feld deaktivieren |
+| `options` | `array` | Options array |
+| `options_callback` | `callable` | Callback that returns the options |
+| `reference` | `array` | Translation reference |
+| `foreignKey` | `string` | Options from another table |
+| `eval.includeBlankOption` | `bool` | Include a blank option |
+| `eval.blankOptionLabel` | `string` | Label of the blank option |
+| `eval.disabled` | `bool` | Disable the field |
 
 ```php
-// Einfache Radio-Buttons
+// Simple radio buttons
 'example' => [
     'inputType' => 'radio',
     'options' => ['lorem' => 'Lorem', 'ipsum' => 'Ipsum', 'dolor' => 'Dolor'],
     'sql' => ['type' => 'string', 'length' => 8, 'default' => 'lorem'],
 ],
 
-// Optionen aus Tabelle
+// Options from a table
 'example' => [
     'inputType' => 'radio',
     'foreignKey' => 'tl_user.name',
@@ -439,39 +439,39 @@ Radio-Button-Auswahl.
 
 ## select
 
-Dropdown-Menü (einfach oder mehrfach), optional mit Choices.js/Chosen.
+Dropdown menu (single or multiple), optionally with Choices.js/Chosen.
 
 **inputType:** `select`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `select` |
-| `options` | `array` | Options-Array |
-| `options_callback` | `callable` | Callback der Optionen zurückgibt |
-| `reference` | `array` | Übersetzungsreferenz |
-| `foreignKey` | `string` | Optionen aus anderer Tabelle |
-| `eval.multiple` | `bool` | Mehrfachauswahl |
-| `eval.includeBlankOption` | `bool` | Leere Option einbeziehen |
-| `eval.blankOptionLabel` | `string` | Label der leeren Option (Standard: `-`) |
-| `eval.chosen` | `bool` | Choices.js/Chosen.js aktivieren (ab 5.5 ab 8 Optionen) |
-| `eval.disabled` | `bool` | Feld deaktivieren |
+| `options` | `array` | Options array |
+| `options_callback` | `callable` | Callback that returns the options |
+| `reference` | `array` | Translation reference |
+| `foreignKey` | `string` | Options from another table |
+| `eval.multiple` | `bool` | Multiple selection |
+| `eval.includeBlankOption` | `bool` | Include a blank option |
+| `eval.blankOptionLabel` | `string` | Label of the blank option (default: `-`) |
+| `eval.chosen` | `bool` | Enable Choices.js/Chosen.js (as of 5.5 from 8 options on) |
+| `eval.disabled` | `bool` | Disable the field |
 
-**Options-Array-Formate:**
-1. `['label1', 'label2']` — Index als Wert
-2. `['value' => 'label']` — Wert => Label
-3. `['gruppe' => ['a', 'b']]` — Gruppierter Select
+**Options array formats:**
+1. `['label1', 'label2']` — index as value
+2. `['value' => 'label']` — value => label
+3. `['gruppe' => ['a', 'b']]` — grouped select
 
-**SQL:** Einzel → `string`; Mehrfach → `blob` (serialisiertes Array)
+**SQL:** single → `string`; multiple → `blob` (serialized array)
 
 ```php
-// Einfacher Select
+// Simple select
 'isVisible' => [
     'inputType' => 'select',
     'options' => ['always', 'never', 'auto'],
     'sql' => ['type' => 'string', 'length' => 8, 'default' => 'auto'],
 ],
 
-// Gruppierter Select
+// Grouped select
 'mySelect' => [
     'inputType' => 'select',
     'options' => [
@@ -481,7 +481,7 @@ Dropdown-Menü (einfach oder mehrfach), optional mit Choices.js/Chosen.
     'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
 ],
 
-// Dynamische Optionen mit Suchbox
+// Dynamic options with a search box
 'mySelect' => [
     'inputType' => 'select',
     'options_callback' => ['Vendor\Class', 'getOptions'],
@@ -489,7 +489,7 @@ Dropdown-Menü (einfach oder mehrfach), optional mit Choices.js/Chosen.
     'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
 ],
 
-// Optionen aus Tabelle
+// Options from a table
 'myUsers' => [
     'inputType' => 'select',
     'foreignKey' => 'tl_user.name',
@@ -502,17 +502,17 @@ Dropdown-Menü (einfach oder mehrfach), optional mit Choices.js/Chosen.
 
 ## serpPreview
 
-Zeigt Vorschau wie eine Suchmaschine Titel und Beschreibung darstellt.
+Shows a preview of how a search engine renders the title and description.
 
 **inputType:** `serpPreview`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `serpPreview` |
-| `eval.titleFields` | `array` | Titelfelder — erster nicht-leerer Wert wird verwendet |
-| `eval.descriptionFields` | `array` | Beschreibungsfelder — erster nicht-leerer Wert wird verwendet |
-| `eval.title_tag_callback` | `callable` | Gibt Titelformat zurück (z. B. `'%s - Meine Website'`) |
-| `eval.url_callback` | `callable` | Gibt URL für den Datensatz zurück |
+| `eval.titleFields` | `array` | Title fields — the first non-empty value is used |
+| `eval.descriptionFields` | `array` | Description fields — the first non-empty value is used |
+| `eval.title_tag_callback` | `callable` | Returns the title format (e.g. `'%s - My Website'`) |
+| `eval.url_callback` | `callable` | Returns the URL for the record |
 
 ```php
 'serpPreview' => [
@@ -526,13 +526,13 @@ Zeigt Vorschau wie eine Suchmaschine Titel und Beschreibung darstellt.
 ],
 ```
 
-**Contao-Nutzung:** Seiten-, News-, Kalender- und FAQ-Einstellungen.
+**Contao usage:** Page, news, calendar and FAQ settings.
 
 ---
 
 ## tableWizard
 
-Tabellen-Wizard (noch nicht vollständig dokumentiert in den offiziellen Docs).
+Table wizard (not yet fully documented in the official docs).
 
 **inputType:** `tableWizard`
 
@@ -543,26 +543,26 @@ Tabellen-Wizard (noch nicht vollständig dokumentiert in den offiziellen Docs).
 ],
 ```
 
-**Contao-Nutzung:** Tabellen-Inhaltselement.
+**Contao usage:** Table content element.
 
 ---
 
 ## text
 
-Standard-Textfeld (`<input type="text">`).
+Standard text field (`<input type="text">`).
 
 **inputType:** `text`
 
-Alle `eval`-Optionen gelten. Wichtigste:
+All `eval` options apply. The most important ones:
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
-| `eval.maxlength` | `int` | Maximale Zeichenanzahl |
-| `eval.minlength` | `int` | Minimale Zeichenanzahl |
-| `eval.rgxp` | `string` | Validierungsregex |
-| `eval.placeholder` | `string` | Platzhaltertext |
-| `eval.mandatory` | `bool` | Pflichtfeld |
-| `eval.readonly` | `bool` | Nur-Lesen |
+| `eval.maxlength` | `int` | Maximum number of characters |
+| `eval.minlength` | `int` | Minimum number of characters |
+| `eval.rgxp` | `string` | Validation regex |
+| `eval.placeholder` | `string` | Placeholder text |
+| `eval.mandatory` | `bool` | Mandatory field |
+| `eval.readonly` | `bool` | Read-only |
 
 ```php
 'myField' => [
@@ -576,33 +576,33 @@ Alle `eval`-Optionen gelten. Wichtigste:
 
 ## textarea
 
-Mehrzeilige Texteingabe, optional mit TinyMCE oder Ace Editor.
+Multi-line text input, optionally with TinyMCE or the Ace editor.
 
 **inputType:** `textarea`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
-| `eval.rte` | `string` | Rich-Text-Editor: `tinyMCE`, `ace`, `ace\|html`, `ace\|json`, etc. |
-| `eval.rows` | `int` | Anzahl Zeilen |
-| `eval.cols` | `int` | Anzahl Spalten |
+| `eval.rte` | `string` | Rich text editor: `tinyMCE`, `ace`, `ace\|html`, `ace\|json`, etc. |
+| `eval.rows` | `int` | Number of rows |
+| `eval.cols` | `int` | Number of columns |
 
-**SQL:** `text NULL` empfohlen.
+**SQL:** `text NULL` recommended.
 
 ```php
-// Einfache Textarea
+// Simple textarea
 'myTextarea' => [
     'inputType' => 'textarea',
     'sql' => ['type' => 'text', 'notnull' => false],
 ],
 
-// Mit TinyMCE
+// With TinyMCE
 'myTextarea' => [
     'inputType' => 'textarea',
     'eval' => ['rte' => 'tinyMCE', 'helpwizard' => true],
     'sql' => ['type' => 'text', 'notnull' => false],
 ],
 
-// Mit Ace Editor (JavaScript)
+// With the Ace editor (JavaScript)
 'myTextarea' => [
     'inputType' => 'textarea',
     'eval' => ['rte' => 'ace|js'],
@@ -610,25 +610,25 @@ Mehrzeilige Texteingabe, optional mit TinyMCE oder Ace Editor.
 ],
 ```
 
-**Automatische Verarbeitung:** Bei `ace|html` oder Templates mit "tiny" werden `allowHtml` und `decodeEntities` aktiviert.
+**Automatic processing:** With `ace|html` or templates containing "tiny", `allowHtml` and `decodeEntities` are enabled.
 
 ---
 
 ## timePeriod
 
-Textfeld mit Dropdown-Menü für Zeiteinheiten.
+Text field with a dropdown menu for time units.
 
 **inputType:** `timePeriod`
 
-| Schlüssel | Typ | Beschreibung |
+| Key | Type | Description |
 |-----------|-----|--------------|
 | `inputType` | `string` | `timePeriod` |
-| `options` | `array` | Optionen für Dropdown (z. B. `['s', 'm', 'h']`) |
-| `reference` | `array` | Übersetzungsreferenz |
-| `eval.disabled` | `bool` | Feld deaktivieren |
-| `eval.maxlength` | `int` | Maximale Zeichenanzahl |
+| `options` | `array` | Options for the dropdown (e.g. `['s', 'm', 'h']`) |
+| `reference` | `array` | Translation reference |
+| `eval.disabled` | `bool` | Disable the field |
+| `eval.maxlength` | `int` | Maximum number of characters |
 
-**Gespeicherter Wert:** Serialisiertes Array (→ `blob` empfohlen).
+**Stored value:** Serialized array (→ `blob` recommended).
 
 ```php
 use Doctrine\DBAL\Platforms\MySQLPlatform;
@@ -645,7 +645,7 @@ use Doctrine\DBAL\Platforms\MySQLPlatform;
 ],
 ```
 
-**Übersetzungsdatei:**
+**Translation file:**
 ```yaml
 # translations/contao_tl_foobar.en.yaml
 tl_foobar:
@@ -656,24 +656,24 @@ tl_foobar:
 
 ---
 
-## Nicht-dokumentierte Widgets
+## Undocumented widgets
 
-Folgende Widgets existieren im Contao-Core sind aber in der offiziellen Dokumentation noch nicht oder nur als Stub dokumentiert:
+The following widgets exist in the Contao core but are not yet documented in the official documentation, or only as a stub:
 
-| inputType | Beschreibung |
+| inputType | Description |
 |-----------|--------------|
-| `chmod` | CHMOD-Tabelle für Datei-/Ordnerrechte |
-| `keyValueWizard` | Key-Value-Wizard |
-| `metaWizard` | Dateimanager-Metainformationen |
-| `pageTree` | Seitenbaum-Picker (wie `fileTree` für Seiten) |
-| `radioTable` | Tabelle mit Bildern und Radio-Buttons |
-| `sectionWizard` | Seitenlayout-Abschnitte |
-| `textStore` | Textfeld ohne Wert-Anzeige |
-| `trbl` | Vier Textfelder + Einheiten-Dropdown (Top/Right/Bottom/Left) |
+| `chmod` | CHMOD table for file/folder permissions |
+| `keyValueWizard` | Key-value wizard |
+| `metaWizard` | File manager meta information |
+| `pageTree` | Page tree picker (like `fileTree` for pages) |
+| `radioTable` | Table with images and radio buttons |
+| `sectionWizard` | Page layout sections |
+| `textStore` | Text field without value display |
+| `trbl` | Four text fields plus unit dropdown (top/right/bottom/left) |
 
 ---
 
-*Quellen:*
+*Sources:*
 - https://docs.contao.org/5.x/dev/reference/widgets/
 - https://docs.contao.org/5.x/dev/reference/widgets/checkbox/
 - https://docs.contao.org/5.x/dev/reference/widgets/checkboxwizard/

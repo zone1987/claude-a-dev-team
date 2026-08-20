@@ -6,10 +6,10 @@ logical equivalents on install.
 
 ## References
 
-- [concepts.md](`RTL-CONCEPTS.md`) — How RTL works, migrations, animations, font recommendations
-- [next.md](`RTL-NEXT.md`) — Next.js setup
-- [vite.md](`RTL-VITE.md`) — Vite setup
-- [start.md](`RTL-START.md`) — TanStack Start setup
+- [RTL-CONCEPTS.md](RTL-CONCEPTS.md) — How RTL works, migrations, animations, font recommendations
+- [RTL-NEXT.md](RTL-NEXT.md) — Next.js setup
+- [RTL-VITE.md](RTL-VITE.md) — Vite setup
+- [RTL-START.md](RTL-START.md) — TanStack Start setup
 
 ## Enable RTL in a new project
 

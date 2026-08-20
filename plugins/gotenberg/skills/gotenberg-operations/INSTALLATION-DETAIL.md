@@ -1,25 +1,25 @@
-# Gotenberg — Vollstaendige Installationsanleitung
+# Gotenberg — Complete installation guide
 
 ## Contents
 
-- [Sicherheitshinweis](#sicherheitshinweis)
+- [Security notice](#security-notice)
 - [Live Demo](#live-demo)
 - [Docker](#docker)
-- [Image-Varianten](#image-varianten)
-- [Feature-Verfuegbarkeit nach Image](#feature-verfuegbarkeit-nach-image)
+- [Image variants](#image-variants)
+- [Feature availability by image](#feature-availability-by-image)
 - [Docker Compose](#docker-compose)
 - [Kubernetes](#kubernetes)
 - [Cloud Run](#cloud-run)
 - [AWS Lambda (Beta)](#aws-lambda-beta)
 
-## Sicherheitshinweis
+## Security notice
 
-**Gotenberg NICHT im oeffentlichen Internet exponieren.** Wie eine Datenbank behandeln:
-hinter der eigenen Firewall halten.
+**Do NOT expose Gotenberg on the public internet.** Treat it like a database:
+keep it behind your own firewall.
 
 ## Live Demo
 
-Ohne Installation testen: https://demo.gotenberg.dev
+Try it without installing: https://demo.gotenberg.dev
 
 ```bash
 curl \
@@ -28,7 +28,7 @@ curl \
   -o my.pdf
 ```
 
-Demo-Beschraenkungen: 2 req/s pro IP, 5 MB Body-Limit, laeuft auf Render (512 MB RAM, 0.5 CPU).
+Demo limitations: 2 req/s per IP, 5 MB body limit, runs on Render (512 MB RAM, 0.5 CPU).
 
 ## Docker
 
@@ -36,38 +36,38 @@ Demo-Beschraenkungen: 2 req/s pro IP, 5 MB Body-Limit, laeuft auf Render (512 MB
 docker run --rm -p "3000:3000" gotenberg/gotenberg:8
 ```
 
-API erreichbar unter http://localhost:3000.
+API reachable at http://localhost:3000.
 
-Sicherer (nur localhost):
+More secure (localhost only):
 ```bash
 docker run --rm -p "127.0.0.1:3000:3000" gotenberg/gotenberg:8
 ```
 
-## Image-Varianten
+## Image variants
 
-| Image | Groesse | Chromium | LibreOffice | PDF Engines |
+| Image | Size | Chromium | LibreOffice | PDF Engines |
 |-------|---------|----------|-------------|-------------|
-| `gotenberg/gotenberg:8` | Vollstaendig | Ja | Ja | Ja |
-| `gotenberg/gotenberg:8-chromium` | ~30% kleiner | Ja | Nein | Ja |
-| `gotenberg/gotenberg:8-libreoffice` | ~40% kleiner | Nein | Ja | Ja |
+| `gotenberg/gotenberg:8` | Complete | Yes | Yes | Yes |
+| `gotenberg/gotenberg:8-chromium` | ~30% smaller | Yes | No | Yes |
+| `gotenberg/gotenberg:8-libreoffice` | ~40% smaller | No | Yes | Yes |
 
-Alle Varianten enthalten PDF Engines (Merge, Split, Encrypt, Wasserzeichen, Metadaten, ...).
+All variants include PDF Engines (merge, split, encrypt, watermarks, metadata, ...).
 
-## Feature-Verfuegbarkeit nach Image
+## Feature availability by image
 
 | Feature | Full | Chromium | LibreOffice |
 |---------|------|----------|-------------|
-| URL/HTML/Markdown zu PDF | Ja | Ja | Nein |
-| Screenshots | Ja | Ja | Nein |
-| Office-Dokumente (.docx, .xlsx, .pptx, ...) | Ja | Nein | Ja |
-| Merge, Split, Rotate, Flatten | Ja | Ja | Ja |
-| Encrypt, Wasserzeichen, Stempel | Ja | Ja | Ja |
-| Metadaten & Lesezeichen | Ja | Ja | Ja |
-| Dateianhange | Ja | Ja | Ja |
-| Factur-X / ZUGFeRD E-Invoicing | Ja | Nein | Ja |
-| PDF/A & PDF/UA Konvertierung | Ja | Nein | Ja |
-| Webhooks & Async | Ja | Ja | Ja |
-| Download From (Remote URLs) | Ja | Ja | Ja |
+| URL/HTML/Markdown to PDF | Yes | Yes | No |
+| Screenshots | Yes | Yes | No |
+| Office documents (.docx, .xlsx, .pptx, ...) | Yes | No | Yes |
+| Merge, split, rotate, flatten | Yes | Yes | Yes |
+| Encrypt, watermarks, stamps | Yes | Yes | Yes |
+| Metadata & bookmarks | Yes | Yes | Yes |
+| File attachments | Yes | Yes | Yes |
+| Factur-X / ZUGFeRD e-invoicing | Yes | No | Yes |
+| PDF/A & PDF/UA conversion | Yes | No | Yes |
+| Webhooks & async | Yes | Yes | Yes |
+| Download From (remote URLs) | Yes | Yes | Yes |
 
 ## Docker Compose
 
@@ -80,74 +80,74 @@ services:
       - "127.0.0.1:3000:3000"
 ```
 
-Andere Services im selben Compose-Netzwerk erreichen Gotenberg unter `gotenberg:3000`.
+Other services in the same Compose network reach Gotenberg at `gotenberg:3000`.
 
-Mit Port-Exposure auf dem Host:
+With port exposure on the host:
 ```yaml
 services:
   gotenberg:
     image: gotenberg/gotenberg:8
     ports:
       - "3000:3000"
-      # Sicherer:
+      # More secure:
       # - "127.0.0.1:3000:3000"
 ```
 
 ## Kubernetes
 
-Der Container laeuft als Non-Root-User `gotenberg` (UID/GID 1001).
-Ab 8.21.0 werden auch beliebige User-IDs (OpenShift) unterstuetzt.
+The container runs as the non-root user `gotenberg` (UID/GID 1001).
+From 8.21.0 onwards, arbitrary user IDs (OpenShift) are supported as well.
 
-Pod-Deployment-Spec (Security Context):
+Pod deployment spec (security context):
 ```yaml
 securityContext:
   readOnlyRootFilesystem: false
   allowPrivilegeEscalation: false
   privileged: false
-  runAsUser: 1001  # weglassen bei beliebig zugewiesener User-ID
+  runAsUser: 1001  # omit for an arbitrarily assigned user ID
 ```
 
-Mindest-Ressourcen: **512 Mi Memory**, **0.2 CPU**.
+Minimum resources: **512 Mi memory**, **0.2 CPU**.
 
-Community Helm Chart: https://artifacthub.io/packages/helm/maikumori/gotenberg
+Community Helm chart: https://artifacthub.io/packages/helm/maikumori/gotenberg
 
 ## Cloud Run
 
-Image-Tags mit `-cloudrun`-Suffix:
+Image tags with the `-cloudrun` suffix:
 ```
 gotenberg/gotenberg:8-cloudrun
 gotenberg/gotenberg:8-chromium-cloudrun
 gotenberg/gotenberg:8-libreoffice-cloudrun
 ```
 
-Besonderheiten Cloud Run:
-- Nutzt die `PORT`-Umgebungsvariable von Cloud Run
-- Logs im Cloud-Run-kompatiblen Format
-- Startet Chromium und LibreOffice automatisch beim Init (schnellere Bereitschaft)
-- Synchroner Webhook-Modus (Cloud Run stoppt Container bei Inaktivitaet)
+Cloud Run specifics:
+- Uses the `PORT` environment variable from Cloud Run
+- Logs in a Cloud Run compatible format
+- Starts Chromium and LibreOffice automatically at init (faster readiness)
+- Synchronous webhook mode (Cloud Run stops containers when inactive)
 
-Mindest-Empfehlung: **1 Gi Memory**.
-Tipp: HTTP/2 aktivieren, um das 32 MB Request-Limit zu umgehen.
+Minimum recommendation: **1 Gi memory**.
+Tip: enable HTTP/2 to work around the 32 MB request limit.
 
 ## AWS Lambda (Beta)
 
-Verfuegbar auf `linux/amd64` und `linux/arm64`:
+Available on `linux/amd64` and `linux/arm64`:
 ```
 gotenberg/gotenberg:8-aws-lambda
 gotenberg/gotenberg:8-chromium-aws-lambda
 gotenberg/gotenberg:8-libreoffice-aws-lambda
 ```
 
-Konfiguration fuer AWS Lambda:
-- `AWS_LWA_PORT` — Port der API (wird von Gotenberg ausgelesen)
-- `AWS_LWA_READINESS_CHECK_PATH` — auf `/health` setzen
-- `AWS_LWA_INVOKE_MODE` — auf `buffered` setzen
-- Synchroner Webhook-Modus (AWS stoppt Container bei Inaktivitaet)
+Configuration for AWS Lambda:
+- `AWS_LWA_PORT` — port of the API (read by Gotenberg)
+- `AWS_LWA_READINESS_CHECK_PATH` — set to `/health`
+- `AWS_LWA_INVOKE_MODE` — set to `buffered`
+- Synchronous webhook mode (AWS stops containers when inactive)
 
-`buffered`-Modus unterstuetzt Responses bis **6 MB**.
-Groessere Outputs: Webhook-Feature verwenden und Ergebnisse in S3 hochladen.
+The `buffered` mode supports responses up to **6 MB**.
+Larger outputs: use the webhook feature and upload results to S3.
 
-Mehr AWS-Optionen: https://github.com/awslabs/aws-lambda-web-adapter
+More AWS options: https://github.com/awslabs/aws-lambda-web-adapter
 
 ---
-Quelle: https://gotenberg.dev/docs/getting-started/installation
+Source: https://gotenberg.dev/docs/getting-started/installation

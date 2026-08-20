@@ -1,90 +1,90 @@
-# Meteor Admin SDK — Konzepte, Guides & Setup
+# Meteor Admin SDK — Concepts, Guides & Setup
 
-Quelle: Offizielle Dokumentation `docs/admin-sdk/` im Meteor-Monorepo.
+Source: Official documentation `docs/admin-sdk/` in the Meteor monorepo.
 
-> API-Referenz (Methoden, Parameter, Typen): siehe `admin-sdk.md`.
-> Dieses Dokument behandelt Konzepte, Installation, Architektur, Migration und Entwicklungstools.
+> API reference (methods, parameters, types): see `admin-sdk.md`.
+> This document covers concepts, installation, architecture, migration and development tools.
 
 ---
 
 ## Contents
 
-- [Überblick — Was ist der Meteor Admin SDK?](#überblick-was-ist-der-meteor-admin-sdk)
-- [Extension-Typen: Apps vs. Plugins](#extension-typen-apps-vs-plugins)
-- [Installation — Apps (vollständige Walkthrough)](#installation-apps-vollständige-walkthrough)
-- [Installation — Plugins (vollständige Walkthrough, Shopware 6.7+)](#installation-plugins-vollständige-walkthrough-shopware-67)
-- [Ohne npm (CDN)](#ohne-npm-cdn)
-- [Architektur — postMessage-Kommunikation](#architektur-postmessage-kommunikation)
-- [Locations und iFrames](#locations-und-iframes)
+- [Overview — What is the Meteor Admin SDK?](#overview-what-is-the-meteor-admin-sdk)
+- [Extension types: Apps vs. Plugins](#extension-types-apps-vs-plugins)
+- [Installation — Apps (complete walkthrough)](#installation-apps-complete-walkthrough)
+- [Installation — Plugins (complete walkthrough, Shopware 6.7+)](#installation-plugins-complete-walkthrough-shopware-67)
+- [Without npm (CDN)](#without-npm-cdn)
+- [Architecture — postMessage communication](#architecture-postmessage-communication)
+- [Locations and iFrames](#locations-and-iframes)
 - [Positions vs. Locations](#positions-vs-locations)
 - [Component Sections](#component-sections)
 - [Data Selectors](#data-selectors)
-- [TypeScript Entity-Typen](#typescript-entity-typen)
-- [Übersetzungen in der Extension](#übersetzungen-in-der-extension)
-- [Migration bestehender Admin-Plugins](#migration-bestehender-admin-plugins)
-- [Berechtigungen in Apps (manifest.xml)](#berechtigungen-in-apps-manifestxml)
-- [URL-Persistenz bei Page-Reload](#url-persistenz-bei-page-reload)
+- [TypeScript entity types](#typescript-entity-types)
+- [Translations in the extension](#translations-in-the-extension)
+- [Migrating existing admin plugins](#migrating-existing-admin-plugins)
+- [Permissions in apps (manifest.xml)](#permissions-in-apps-manifestxml)
+- [URL persistence on page reload](#url-persistence-on-page-reload)
 
-## Überblick — Was ist der Meteor Admin SDK?
+## Overview — What is the Meteor Admin SDK?
 
-Das `@shopware-ag/meteor-admin-sdk` ist eine npm-Bibliothek für den Bau von Shopware-Administration-UI-Erweiterungen.
+The `@shopware-ag/meteor-admin-sdk` is an npm library for building Shopware Administration UI extensions.
 
-**Anwendungsgebiete:**
-- Custom Administration-Module mit eigenen Seiten
-- UI-Erweiterungen (Notifications, Modals, Tabs, Sidebars)
-- Zugriff auf und Änderung von Entity-Daten über die Admin-Datenschicht
-- Entity-gesteuerte Workflows und Admin-Integrationen
+**Areas of application:**
+- Custom Administration modules with their own pages
+- UI extensions (notifications, modals, tabs, sidebars)
+- Access to and modification of entity data through the admin data layer
+- Entity-driven workflows and admin integrations
 
-**Vorteile:**
-- Stabile, rückwärtskompatible API — reduziert Aufwand bei Shopware-Updates
-- Kein Deep-Know-how der Admin-Interna notwendig
-- Vollständiges TypeScript mit Auto-Completion
-- Lightweight, tree-shakable (nur importiertes landet im Bundle)
+**Advantages:**
+- Stable, backwards-compatible API — reduces effort on Shopware updates
+- No deep knowledge of the admin internals required
+- Full TypeScript with auto-completion
+- Lightweight, tree-shakable (only what is imported ends up in the bundle)
 
 ---
 
-## Extension-Typen: Apps vs. Plugins
+## Extension types: Apps vs. Plugins
 
 ### Apps
 
-Apps laufen auf einem eigenen externen Server und kommunizieren über eine definierte API.
+Apps run on their own external server and communicate through a defined API.
 
-**Empfohlen, weil:**
-- Funktionieren in Shopware Cloud **und** Self-Hosted, auch SaaS
-- Frontend und Backend sind vollständig vom Shopware-Code entkoppelt
-- Eigenständige Domain pro App erforderlich (CORS-Sicherheit)
+**Recommended because:**
+- They work in Shopware Cloud **and** self-hosted, including SaaS
+- Frontend and backend are fully decoupled from the Shopware code
+- A dedicated domain per app is required (CORS security)
 
 ```
-app-one.meine-firma.com   ✓
-app-two.meine-firma.com   ✓
-meine-firma.com/app-one   ✗  (gleiche Domain → nicht erlaubt)
+app-one.my-company.com   ✓
+app-two.my-company.com   ✓
+my-company.com/app-one   ✗  (same domain → not allowed)
 ```
 
-> Für lokale Entwicklung: `localhost` oder Tunneling-Dienst (ngrok). Wenn Shopware in Docker läuft, `registrationUrl` auf `host.docker.internal:PORT` setzen; `base-app-url` hingegen mit `localhost`.
+> For local development: `localhost` or a tunneling service (ngrok). If Shopware runs in Docker, set `registrationUrl` to `host.docker.internal:PORT`; `base-app-url`, on the other hand, with `localhost`.
 
 ### Plugins
 
-Plugins laufen direkt in der Shopware-Instanz. Vollzugriff auf PHP-Codebase, aber auf **Self-Hosted** beschränkt.
+Plugins run directly inside the Shopware instance. Full access to the PHP codebase, but limited to **self-hosted**.
 
 ---
 
-## Installation — Apps (vollständige Walkthrough)
+## Installation — Apps (complete walkthrough)
 
-### 1. App Server + Frontend aufsetzen
+### 1. Set up app server + frontend
 
 ```bash
-# Beispiel-App mit App Server SDK scaffolden
+# Scaffold an example app with the App Server SDK
 npx tiged shopware/app-sdk-js/examples/node-hono demo-app
 cd demo-app
 npm install
 
-# Meteor Admin SDK + Vite für das Admin-Frontend
+# Meteor Admin SDK + Vite for the admin frontend
 npm install @shopware-ag/meteor-admin-sdk
 npm install vue
 npm install -D vite
 ```
 
-### 2. Admin-Frontend erstellen (`meteor-app/`)
+### 2. Create the admin frontend (`meteor-app/`)
 
 **`demo-app/meteor-app/index.html`:**
 
@@ -114,9 +114,9 @@ notification.dispatch({
 });
 ```
 
-### 3. Vite auf dem App Server mounten
+### 3. Mount Vite on the app server
 
-In `demo-app/index.ts` den HTTP-Server so konfigurieren, dass `/admin`-Requests an Vite weitergeleitet werden:
+In `demo-app/index.ts`, configure the HTTP server so that `/admin` requests are forwarded to Vite:
 
 ```ts
 import { readFileSync } from "node:fs";
@@ -160,7 +160,7 @@ async function startServer() {
 void startServer();
 ```
 
-### 4. `manifest.xml` registrieren
+### 4. Register `manifest.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -176,18 +176,18 @@ void startServer();
     <license>MIT</license>
   </meta>
   <setup>
-    <!-- host.docker.internal wenn Shopware in Docker läuft -->
+    <!-- host.docker.internal when Shopware runs in Docker -->
     <registrationUrl>http://host.docker.internal:3000/app/register</registrationUrl>
     <secret>S3cr3tf0re$t</secret>
   </setup>
   <admin>
-    <!-- base-app-url wird vom Browser geladen → localhost funktioniert -->
+    <!-- base-app-url is loaded by the browser → localhost works -->
     <base-app-url>http://localhost:3000/admin/</base-app-url>
   </admin>
 </manifest>
 ```
 
-Name und Secret müssen mit dem App Server übereinstimmen:
+Name and secret must match the app server:
 
 ```ts
 configureAppServer(app, {
@@ -197,39 +197,39 @@ configureAppServer(app, {
 });
 ```
 
-### 5. App starten und installieren
+### 5. Start and install the app
 
 ```bash
 npm start
-# Admin-Frontend erreichbar unter http://localhost:3000/admin/
+# Admin frontend available at http://localhost:3000/admin/
 
-# In Shopware installieren (ggf. innerhalb Docker-Container):
+# Install in Shopware (inside the Docker container if applicable):
 bin/console app:install --activate MyExampleApp
 bin/console cache:clear
 ```
 
 ---
 
-## Installation — Plugins (vollständige Walkthrough, Shopware 6.7+)
+## Installation — Plugins (complete walkthrough, Shopware 6.7+)
 
-### 1. Entry-Point-Ordner anlegen
+### 1. Create the entry point folder
 
 ```
 custom/plugins/yourPluginName/src/Resources/app/meteor-app
 ```
 
-> Shopware < 6.7: Pfad `administration` statt `meteor-app`
+> Shopware < 6.7: path `administration` instead of `meteor-app`
 
-### 2. SDK installieren
+### 2. Install the SDK
 
 ```bash
 cd custom/plugins/yourPluginName/src/Resources/app/meteor-app
 npm install @shopware-ag/meteor-admin-sdk
 ```
 
-### 3. Entry-Dateien erstellen
+### 3. Create the entry files
 
-**`index.html`** (Shopware lädt diese Datei als versteckten iFrame):
+**`index.html`** (Shopware loads this file as a hidden iFrame):
 
 ```html
 <!doctype html>
@@ -246,7 +246,7 @@ npm install @shopware-ag/meteor-admin-sdk
 </html>
 ```
 
-> Shopware < 6.7: `<script type="module">` weglassen — wird automatisch injiziert.
+> Shopware < 6.7: omit `<script type="module">` — it is injected automatically.
 
 **`src/main.js`:**
 
@@ -259,16 +259,16 @@ notification.dispatch({
 });
 ```
 
-### 4. Plugin installieren
+### 4. Install the plugin
 
 ```bash
 bin/console plugin:install --activate yourPluginName
 bin/console cache:clear
 ```
 
-### 5. Admin-Watcher starten
+### 5. Start the admin watcher
 
-Shopware übernimmt das Bundling — kein eigenes Vite-Setup nötig:
+Shopware takes care of the bundling — no separate Vite setup needed:
 
 ```bash
 composer watch:admin
@@ -276,15 +276,15 @@ composer watch:admin
 
 ---
 
-## Ohne npm (CDN)
+## Without npm (CDN)
 
-Für Prototypen oder sehr kleine Setups kann das SDK direkt per `<script>`-Tag geladen werden:
+For prototypes or very small setups, the SDK can be loaded directly via a `<script>` tag:
 
 ```html
 <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
 ```
 
-Das SDK ist global als `sw` verfügbar:
+The SDK is globally available as `sw`:
 
 ```html
 <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
@@ -296,22 +296,22 @@ Das SDK ist global als `sw` verfügbar:
 </script>
 ```
 
-Apps mit CDN benötigen weiterhin: App-Server, HTML-Datei zum Servieren, `manifest.xml`.
+Apps using the CDN still require: an app server, an HTML file to serve, and `manifest.xml`.
 
 ---
 
-## Architektur — postMessage-Kommunikation
+## Architecture — postMessage communication
 
 ![postMessage communication](../assets/post-message-communication.png)
 
-### Hybrides Modell
+### Hybrid model
 
-Apps (in iFrames) und Plugins (im gleichen Fenster) verwenden **denselben SDK**. Jede Methode funktioniert sowohl in iFrames als auch im selben Fenster.
+Apps (in iFrames) and plugins (in the same window) use **the same SDK**. Every method works both in iFrames and in the same window.
 
-### Ablauf eines SDK-Calls
+### Flow of an SDK call
 
-1. Extension ruft `context.getLanguage()` auf
-2. SDK sendet über `channel.send()` eine JSON-Message per `postMessage`:
+1. The extension calls `context.getLanguage()`
+2. The SDK sends a JSON message via `channel.send()` using `postMessage`:
 
 ```js
 {
@@ -321,7 +321,7 @@ Apps (in iFrames) und Plugins (im gleichen Fenster) verwenden **denselben SDK**.
 }
 ```
 
-3. Administration reagiert via `handle('contextLanguage', () => { ... })` und sendet zurück:
+3. The Administration reacts via `handle('contextLanguage', () => { ... })` and sends back:
 
 ```js
 {
@@ -331,28 +331,28 @@ Apps (in iFrames) und Plugins (im gleichen Fenster) verwenden **denselben SDK**.
 }
 ```
 
-4. SDK löst das ursprüngliche Promise auf → Extension erhält die Daten
+4. The SDK resolves the original promise → the extension receives the data
 
-### Methoden in Nachrichten
+### Methods in messages
 
-Da JSON keine Funktionen unterstützt, werden Methoden in Informationsobjekte umgewandelt:
+Because JSON does not support functions, methods are converted into information objects:
 
 ```js
 { __type__: '__function__', id: 'theUniqueFunctionId' }
 ```
 
-Die Methode wird in einer `methodRegistry` gespeichert. Der Empfänger ruft dann per `send('__function__', { args, id })` zurück.
+The method is stored in a `methodRegistry`. The receiver then calls back via `send('__function__', { args, id })`.
 
 ---
 
-## Locations und iFrames
+## Locations and iFrames
 
-**Locations** definieren, wo Extension-Code ausgeführt wird. Jede Location läuft in einem eigenen iFrame — alle führen denselben JavaScript-Code aus, daher muss via `location.is()` verzweigt werden.
+**Locations** define where extension code is executed. Every location runs in its own iFrame — all of them execute the same JavaScript code, so you must branch via `location.is()`.
 
 ```js
 import { location, ui } from '@shopware-ag/meteor-admin-sdk';
 
-// Registrierung: im versteckten Haupt-iFrame
+// Registration: in the hidden main iFrame
 if (location.is(location.MAIN_HIDDEN)) {
   ui.componentSection.add({
     component: 'card',
@@ -364,48 +364,48 @@ if (location.is(location.MAIN_HIDDEN)) {
   });
 }
 
-// Inhalt rendern: im sichtbaren iFrame
+// Render content: in the visible iFrame
 if (location.is('my-app-card-before-properties')) {
   document.body.innerHTML = '<h1>Custom content here</h1>';
 }
 ```
 
-### iFrame-Höhe verwalten
+### Managing the iFrame height
 
 ```js
-location.updateHeight(750);           // feste Höhe
-location.startAutoResizer();          // automatisch bei Content-Änderungen
+location.updateHeight(750);           // fixed height
+location.startAutoResizer();          // automatically on content changes
 ```
 
-Scrollbars vermeiden: `overflow: hidden` auf `body` im iFrame setzen.
+Avoid scrollbars: set `overflow: hidden` on `body` inside the iFrame.
 
 ---
 
 ## Positions vs. Locations
 
-- **Position**: Wo UI injiziert werden kann (identifiziert durch `positionId`)
-- **Location**: Wo Extension-Code läuft und Inhalt rendert (identifiziert durch `locationId`)
+- **Position**: Where UI can be injected (identified by `positionId`)
+- **Location**: Where extension code runs and renders content (identified by `locationId`)
 
-### Positions mit Vue DevTools entdecken
+### Discovering positions with Vue DevTools
 
 ![DevTools usage](../assets/devtools-usage.png)
 
-**Voraussetzungen:**
-- Vue DevTools (Version 6+, Beta-Channel)
-- Laufende Shopware-Instanz im Watch-Mode (`composer watch:admin`)
+**Prerequisites:**
+- Vue DevTools (version 6+, beta channel)
+- A running Shopware instance in watch mode (`composer watch:admin`)
 
 **Workflow:**
-1. Shopware Administration öffnen
-2. Browser DevTools öffnen → Vue-Tab → "Shopware Extension API" Plugin
-3. Liste aller Extension-Punkte für die aktuelle Seite erscheint
-4. Extension-Punkt anklicken → Area in der Administration wird hervorgehoben
-5. `positionId` aus den Details ablesen
+1. Open the Shopware Administration
+2. Open browser DevTools → Vue tab → "Shopware Extension API" plugin
+3. A list of all extension points for the current page appears
+4. Click an extension point → the area in the Administration is highlighted
+5. Read the `positionId` from the details
 
 ---
 
 ## Component Sections
 
-Component Sections erlauben das Injizieren von UI-Komponenten in vordefinierte Extension-Points.
+Component sections allow injecting UI components into predefined extension points.
 
 ![Component Sections](../assets/component-sections-example.png)
 
@@ -433,18 +433,18 @@ if (location.is('my-app-card-before-properties')) {
 
 ## Data Selectors
 
-Selectors erlauben das Anfordern nur bestimmter Properties aus Admin-Datasets.
+Selectors allow requesting only certain properties from admin datasets.
 
 ### Syntax
 
-| Segment | Syntax | Beschreibung |
+| Segment | Syntax | Description |
 |:---|:---|:---|
-| Property | `name` | Named property auf dem Root-Objekt |
-| Nested | `a.b` | Tiefer in ein verschachteltes Objekt gehen |
-| Array index | `[N]` | Element per nullbasiertem Index |
-| Wildcard | `*` | Alle Elemente eines Arrays |
+| Property | `name` | Named property on the root object |
+| Nested | `a.b` | Descend into a nested object |
+| Array index | `[N]` | Element by zero-based index |
+| Wildcard | `*` | All elements of an array |
 
-### Beispiele
+### Examples
 
 ```js
 data.get({
@@ -461,31 +461,31 @@ data.get({
 // { variants: [{ name: "First Variant" }, { name: "Second Variant" }] }
 ```
 
-Mehrere Selectors auf denselben Parent werden zusammengeführt:
+Multiple selectors on the same parent are merged:
 
 ```js
 selectors: ['manufacturer.id', 'manufacturer.name']
 // → { manufacturer: { id: "...", name: "..." } }
 ```
 
-### Datasets entdecken
+### Discovering datasets
 
-Verfügbare Datasets lassen sich im Vue DevTools → "Shopware Extension API" inspizieren.
+Available datasets can be inspected in Vue DevTools → "Shopware Extension API".
 
 ---
 
-## TypeScript Entity-Typen
+## TypeScript entity types
 
-### Option 1: Generierte Typen von Shopware (empfohlen)
+### Option 1: Generated types from Shopware (recommended)
 
 ```bash
 npm install @shopware-ag/entity-schema-types@5.0.0
 ```
 
-Versionskorrespondenz (Shopware ohne führende `6.`):
+Version correspondence (Shopware without the leading `6.`):
 - Shopware 6.5.0.0 → `@shopware-ag/entity-schema-types@5.0.0`
 - Shopware 6.6.3.1 → `@shopware-ag/entity-schema-types@6.3.1`
-- Shopware 6.7.x.x → entsprechend `7.x.x`
+- Shopware 6.7.x.x → accordingly `7.x.x`
 
 **`global.d.ts`:**
 
@@ -493,7 +493,7 @@ Versionskorrespondenz (Shopware ohne führende `6.`):
 import '@shopware-ag/entity-schema-types';
 ```
 
-### Option 2: Fallback `any` (einfachste Option)
+### Option 2: Fallback `any` (simplest option)
 
 ```ts
 // global.d.ts
@@ -504,7 +504,7 @@ declare namespace EntitySchema {
 }
 ```
 
-### Option 3: Eigene Entity-Typen definieren
+### Option 3: Define your own entity types
 
 ```ts
 // global.d.ts
@@ -533,11 +533,11 @@ declare namespace EntitySchema {
 
 ---
 
-## Übersetzungen in der Extension
+## Translations in the extension
 
-### Snippet-Dateien für nativen Admin-UI
+### Snippet files for the native admin UI
 
-Für Text in **nativen UI-Komponenten** (z.B. Card-Titel in `componentSection.add`) werden Snippet-Dateien verwendet:
+For text in **native UI components** (e.g. card titles in `componentSection.add`), snippet files are used:
 
 ```
 <app-root>/Resources/app/administration/snippet/en-GB.json
@@ -557,7 +557,7 @@ Für Text in **nativen UI-Komponenten** (z.B. Card-Titel in `componentSection.ad
 }
 ```
 
-**Verwendung via Snippet-Key:**
+**Usage via snippet key:**
 
 ```js
 ui.componentSection.add({
@@ -571,34 +571,34 @@ ui.componentSection.add({
 });
 ```
 
-Bei Sprachänderungen wird automatisch die passende Snippet-Datei genutzt.
+On language changes the matching snippet file is used automatically.
 
-### Übersetzungen im eigenen iFrame-UI
+### Translations in your own iFrame UI
 
-Im eigenen iFrame können beliebige Frontend-Frameworks verwendet werden (z.B. `vue-i18n`). Um die aktuelle Admin-Sprache zu synchronisieren:
+Inside your own iFrame you can use any frontend framework (e.g. `vue-i18n`). To synchronize the current admin language:
 
 ```js
 import { context } from '@shopware-ag/meteor-admin-sdk';
 
 context.subscribeLanguage(({ languageId }) => {
-  // i18n-Locale umschalten
+  // switch the i18n locale
 });
 ```
 
 ---
 
-## Migration bestehender Admin-Plugins
+## Migrating existing admin plugins
 
-### Schrittweise Migration möglich
+### Stepwise migration possible
 
-Das SDK kann neben dem bestehenden Twig-Plugin-System verwendet werden. Beide Ansätze funktionieren parallel:
+The SDK can be used alongside the existing Twig plugin system. Both approaches work in parallel:
 
 ```js
-// Bestehende Extension-Funktionalität
+// Existing extension functionality
 Shopware.Component.override('sw-dashboard-index', {
   methods: {
     async createdComponent() {
-      // Meteor Admin SDK gleichzeitig nutzen
+      // use the Meteor Admin SDK at the same time
       await sw.notification.dispatch({
         title: 'Hello from the plugin',
         message: 'Combining old and new approach',
@@ -609,9 +609,9 @@ Shopware.Component.override('sw-dashboard-index', {
 });
 ```
 
-### Locations mit Vue-Komponenten (ohne iFrame)
+### Locations with Vue components (without an iFrame)
 
-Statt einen iFrame zu rendern, kann eine normale Vue-Komponente in eine Location eingebunden werden:
+Instead of rendering an iFrame, a regular Vue component can be bound into a location:
 
 ```js
 import { ui, location } from '@shopware-ag/meteor-admin-sdk';
@@ -619,13 +619,13 @@ import { ui, location } from '@shopware-ag/meteor-admin-sdk';
 if (!location.isIframe()) {
   const myLocationId = 'my-example-location-id';
 
-  // Tab erstellen
+  // create a tab
   ui.tabs('sw-product-detail').addTabItem({
     label: 'Example tab',
     componentSectionId: 'example-product-detail-tab-content'
   });
 
-  // Card mit Location in den Tab-Inhalt einfügen
+  // insert a card with a location into the tab content
   ui.componentSection.add({
     component: 'card',
     positionId: 'example-product-detail-tab-content',
@@ -635,12 +635,12 @@ if (!location.isIframe()) {
     }
   });
 
-  // Vue-Komponente im Plugin-System registrieren
+  // register the Vue component in the plugin system
   Shopware.Component.register('your-component-name', {
     // your component
   });
 
-  // Komponente zur Location zuordnen
+  // assign the component to the location
   Shopware.State.commit('sdkLocation/addLocation', {
     locationId: myLocationId,
     componentName: 'your-component-name'
@@ -648,13 +648,13 @@ if (!location.isIframe()) {
 }
 ```
 
-`location.isIframe()` gibt `false` zurück wenn der Code im Plugin-Kontext (nicht iFrame) läuft.
+`location.isIframe()` returns `false` when the code runs in the plugin context (not an iFrame).
 
 ---
 
-## Berechtigungen in Apps (manifest.xml)
+## Permissions in apps (manifest.xml)
 
-Für Repository-Operationen müssen Berechtigungen im Manifest deklariert werden:
+For repository operations, permissions must be declared in the manifest:
 
 ```xml
 <permissions>
@@ -665,32 +665,32 @@ Für Repository-Operationen müssen Berechtigungen im Manifest deklariert werden
 </permissions>
 ```
 
-> Nach Änderung der Berechtigungen: App-Version erhöhen und App aktualisieren.
+> After changing the permissions: increase the app version and update the app.
 
-### Client-seitige Privilege-Prüfung (Base Options)
+### Client-side privilege check (base options)
 
 ```ts
 notification.dispatch({
   title: 'Report ready',
   message: 'Your report is ready',
-  privileges: ['product:read'],  // Aktion wird übersprungen wenn Privilege fehlt
+  privileges: ['product:read'],  // the action is skipped if the privilege is missing
 });
 ```
 
-**Wichtig**: Das ist nur eine UI-seitige Prüfung. Server-seitige Autorisierung ist weiterhin erforderlich.
+**Important**: This is only a UI-side check. Server-side authorization is still required.
 
 ---
 
-## URL-Persistenz bei Page-Reload
+## URL persistence on page reload
 
-Für Module mit eigenem Router kann die aktuelle URL an den Admin gesendet werden, sodass nach einem Reload der korrekte Zustand wiederhergestellt wird:
+For modules with their own router, the current URL can be sent to the admin so that the correct state is restored after a reload:
 
 ```ts
-// Einmalig
+// once
 location.updateUrl(new URL(window.location.href));
 
-// Automatisch bei URL-Änderungen
+// automatically on URL changes
 location.startAutoUrlUpdater();
 ```
 
-Ab Shopware 6.6.8.0.
+Available from Shopware 6.6.8.0.

@@ -4,7 +4,7 @@ Eigene Komponenten-Registry aufbauen und hosten.
 
 ## Referenzen
 
-- [registry-overview.md](`REGISTRY-OVERVIEW.md`) — Uebersicht, Anforderungen,
+- [REGISTRY-OVERVIEW.md](REGISTRY-OVERVIEW.md) — Uebersicht, Anforderungen,
   Schritt-fuer-Schritt-Anleitung (registry.json, Komponente erstellen, hinzufuegen, bauen,
   bereitstellen, veroeffentlichen, Auth, Richtlinien, per CLI installieren)
 

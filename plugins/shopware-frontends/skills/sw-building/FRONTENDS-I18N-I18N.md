@@ -1,36 +1,36 @@
-# Shopware Frontends – Internationalisierung (i18n)
+# Shopware Frontends – Internationalisation (i18n)
 
-Quelle: `apps/docs/src/getting-started/languages.md`
+Source: `apps/docs/src/getting-started/languages.md`
 
 ---
 
 ## Contents
 
-- [Zwei Quellen von Übersetzungen](#zwei-quellen-von-übersetzungen)
-- [Konfiguration mit `@nuxtjs/i18n`](#konfiguration-mit-nuxtjsi18n)
-- [URLs mit Sprachpräfix bauen](#urls-mit-sprachpräfix-bauen)
-- [Sprache wechseln](#sprache-wechseln)
-- [localeId – Abweichende Sprachcodes](#localeid-abweichende-sprachcodes)
-- [Reverse-Proxy-Umgebungen](#reverse-proxy-umgebungen)
-- [Multi-Domain-Beispiel](#multi-domain-beispiel)
+- [Two sources of translations](#two-sources-of-translations)
+- [Configuration with `@nuxtjs/i18n`](#configuration-with-nuxtjsi18n)
+- [Building URLs with a language prefix](#building-urls-with-a-language-prefix)
+- [Switching the language](#switching-the-language)
+- [localeId – diverging language codes](#localeid--diverging-language-codes)
+- [Reverse proxy environments](#reverse-proxy-environments)
+- [Multi-domain example](#multi-domain-example)
 
-## Zwei Quellen von Übersetzungen
+## Two sources of translations
 
-| Quelle | Enthält |
+| Source | Contains |
 |--------|---------|
-| **Backend (Shopware)** | CMS-Übersetzungen, Produkte, Kategorien, Routing-Pfade |
-| **Frontend (vue-i18n)** | Alle statischen UI-Texte |
+| **Backend (Shopware)** | CMS translations, products, categories, routing paths |
+| **Frontend (vue-i18n)** | All static UI texts |
 
-> **Wichtig:** Backend-Sprachcodes und Frontend-Sprachcodes müssen übereinstimmen!
+> **Important:** backend language codes and frontend language codes must match!
 
 ---
 
-## Konfiguration mit `@nuxtjs/i18n`
+## Configuration with `@nuxtjs/i18n`
 
-### Same-Domain-Strategie (empfohlen)
+### Same-domain strategy (recommended)
 
 ```
-www.example.com          // GB (Default)
+www.example.com          // GB (default)
 www.example.com/de-DE    // DE
 ```
 
@@ -52,7 +52,7 @@ www.example.com/de-DE    // DE
 }
 ```
 
-### Multi-Domain-Strategie
+### Multi-domain strategy
 
 ```
 www.example1.com   // GB
@@ -73,9 +73,9 @@ www.example2.com   // DE
 
 ---
 
-## URLs mit Sprachpräfix bauen
+## Building URLs with a language prefix
 
-Bei `prefix`-Strategie: `formatLink()` aus `useInternationalization` verwenden, damit der Sprachpräfix korrekt gesetzt wird.
+With the `prefix` strategy: use `formatLink()` from `useInternationalization` so that the language prefix is set correctly.
 
 ```vue
 <script setup lang="ts">
@@ -89,7 +89,7 @@ const { formatLink } = useInternationalization(localePath);
 
 ---
 
-## Sprache wechseln
+## Switching the language
 
 ```ts
 const onChangeHandler = async (option: Event) => {
@@ -103,11 +103,11 @@ const onChangeHandler = async (option: Event) => {
 };
 ```
 
-### Lokale Dev-Umgebung: Redirect-Problem lösen
+### Local dev environment: solving the redirect problem
 
-Nach Sprachwechsel leitet die Backend-URL auf die konfigurierte Storefront-Domain um – nicht auf localhost.
+After a language switch the backend URL redirects to the configured storefront domain – not to localhost.
 
-**Option A: Dev-Resolver in der App**
+**Option A: dev resolver in the app**
 
 ```ts
 const dev = process.dev;
@@ -129,7 +129,7 @@ const onChangeHandler = async (option: Event) => {
 };
 ```
 
-**Option B: hosts-Datei überschreiben**
+**Option B: override the hosts file**
 
 ```
 # Windows: C:\Windows\System32\drivers\etc
@@ -138,7 +138,7 @@ const onChangeHandler = async (option: Event) => {
 ::1          yourDomainFromBackend.com
 ```
 
-### Lokales Testen mit Environment-Variable
+### Local testing with an environment variable
 
 ```bash
 NUXT_PUBLIC_SHOPWARE_DEV_STOREFRONT_URL=http://127.0.0.1:3000
@@ -146,49 +146,49 @@ NUXT_PUBLIC_SHOPWARE_DEV_STOREFRONT_URL=http://127.0.0.1:3000
 
 ---
 
-## localeId – Abweichende Sprachcodes
+## localeId – diverging language codes
 
-Wenn Frontend-Präfix und Backend-Sprachcode voneinander abweichen (z.B. `testde` vs. `de-DE`):
+When the frontend prefix and the backend language code diverge (e.g. `testde` vs. `de-DE`):
 
 ```ts
 locales: [
   { code: "en-GB", iso: "en-GB", file: "en-GB.ts" },
   {
-    code: "testde",       // Frontend-Präfix
+    code: "testde",       // frontend prefix
     iso: "de-DE",
     file: "de-DE.ts",
-    localeId: "c19b753b5f2c4bea8ad15e00027802d4",  // Backend-Sprach-ID aus Shopware-Admin
+    localeId: "c19b753b5f2c4bea8ad15e00027802d4",  // backend language ID from the Shopware admin
   },
 ],
 ```
 
-Die `localeId` entspricht der Sprach-ID in Shopware Administration → Einstellungen → Sprachen.
+The `localeId` corresponds to the language ID in the Shopware Administration → **Einstellungen** (Settings) → **Sprachen** (Languages).
 
 ---
 
-## Reverse-Proxy-Umgebungen
+## Reverse proxy environments
 
-Bei Cloudflare, Fastly, Vercel und anderen Proxies:
+With Cloudflare, Fastly, Vercel and other proxies:
 
-### Spracherkennung verstehen
+### Understanding language detection
 
-- `@nuxtjs/i18n` erkennt Sprache über URL-Präfix oder `Accept-Language`-Header
-- `detectBrowserLanguage: false` → nur URL-basierte Erkennung
-- Zwei URL-Strategien: `prefix_except_default` oder `prefix_and_default`
+- `@nuxtjs/i18n` detects the language via the URL prefix or the `Accept-Language` header
+- `detectBrowserLanguage: false` → URL-based detection only
+- Two URL strategies: `prefix_except_default` or `prefix_and_default`
 
-### `x-forwarded-host`-Header
+### The `x-forwarded-host` header
 
-Das i18n-Modul liest `x-forwarded-host` zur Domain-Erkennung – relevant bei Reverse-Proxy-Setup.
+The i18n module reads `x-forwarded-host` for domain detection – relevant in a reverse proxy setup.
 
-### Caching-Probleme vermeiden
+### Avoiding caching problems
 
-- Cache sollte basierend auf URL-Struktur oder `Accept-Language` differenzieren
-- Proxy-Cache nach Deployment neuer Sprachkonfigurationen purgen
+- The cache should differentiate based on the URL structure or `Accept-Language`
+- Purge the proxy cache after deploying new language configurations
 
 ---
 
-## Multi-Domain-Beispiel
+## Multi-domain example
 
-GitHub-Beispiel: https://github.com/shopware/frontends/tree/main/examples/i18n-multi-domain
+GitHub example: https://github.com/shopware/frontends/tree/main/examples/i18n-multi-domain
 
-*Muss lokal ausgeführt werden wegen Multi-Domain-Anforderungen*
+*Must be run locally because of the multi-domain requirements*

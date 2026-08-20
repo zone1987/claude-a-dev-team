@@ -13,9 +13,9 @@ mobile sheet fallback, keyboard shortcut, and full CSS variable theming.
 
 ## References
 
-- [installation.md](`SIDEBAR-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`SIDEBAR-SOURCE.md`) — Complete component source (new-york-v4 / radix)
-- [api.md](`SIDEBAR-API.md`) — All sub-component props and useSidebar hook
-- [theming.md](`SIDEBAR-THEMING.md`) — CSS variables and styling patterns
-- [recipes.md](`SIDEBAR-RECIPES.md`) — Cookbook patterns from official docs
-- [base-vs-radix.md](`SIDEBAR-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [SIDEBAR-INSTALLATION.md](SIDEBAR-INSTALLATION.md) — CLI & manual setup
+- [SIDEBAR-SOURCE.md](SIDEBAR-SOURCE.md) — Complete component source (new-york-v4 / radix)
+- [SIDEBAR-API.md](SIDEBAR-API.md) — All sub-component props and useSidebar hook
+- [SIDEBAR-THEMING.md](SIDEBAR-THEMING.md) — CSS variables and styling patterns
+- [SIDEBAR-RECIPES.md](SIDEBAR-RECIPES.md) — Cookbook patterns from official docs
+- [SIDEBAR-BASE-VS-RADIX.md](SIDEBAR-BASE-VS-RADIX.md) — Differences between base and radix variants

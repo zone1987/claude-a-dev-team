@@ -11,8 +11,8 @@ Accessible resizable panel groups and layouts with keyboard support, built on `r
 
 ## References
 
-- [installation.md](`RESIZABLE-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`RESIZABLE-SOURCE.md`) — Complete component source (new-york-v4)
-- [api.md](`RESIZABLE-API.md`) — Props / API table
-- [examples.md](`RESIZABLE-EXAMPLES.md`) — All examples (demo, vertical, handle)
-- [base-vs-radix.md](`RESIZABLE-BASE-VS-RADIX.md`) — Differences between base and radix variants
+- [RESIZABLE-INSTALLATION.md](RESIZABLE-INSTALLATION.md) — CLI & manual setup
+- [RESIZABLE-SOURCE.md](RESIZABLE-SOURCE.md) — Complete component source (new-york-v4)
+- [RESIZABLE-API.md](RESIZABLE-API.md) — Props / API table
+- [RESIZABLE-EXAMPLES.md](RESIZABLE-EXAMPLES.md) — All examples (demo, vertical, handle)
+- [RESIZABLE-BASE-VS-RADIX.md](RESIZABLE-BASE-VS-RADIX.md) — Differences between base and radix variants

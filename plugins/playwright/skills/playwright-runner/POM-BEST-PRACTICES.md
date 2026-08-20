@@ -5,18 +5,18 @@
 - [Page Object Model (POM)](#page-object-model-pom)
 - [Best Practices](#best-practices)
 - [Debugging](#debugging)
-- [Test-Organisation](#test-organisation)
-- [CI-Optimierung](#ci-optimierung)
+- [Test organization](#test-organization)
+- [CI optimization](#ci-optimization)
 
 ## Page Object Model (POM)
 
-### Zweck
+### Purpose
 
-Page Objects erfullen zwei Aufgaben:
-1. **Authoring vereinfachen**: Hoehere API, die zur Anwendung passt
-2. **Wartung vereinfachen**: Selektoren an einem Ort zentralisieren und Code wiederverwenden
+Page objects serve two purposes:
+1. **Simplify authoring**: a higher-level API that matches the application
+2. **Simplify maintenance**: centralize selectors in one place and reuse code
 
-### Struktur
+### Structure
 
 ```typescript
 // pages/PlaywrightDevPage.ts
@@ -25,7 +25,7 @@ import { type Page, type Locator, expect } from '@playwright/test';
 export class PlaywrightDevPage {
   readonly page: Page;
 
-  // Locators als readonly Properties (lazy evaluation)
+  // Locators as readonly properties (lazy evaluation)
   readonly getStartedLink: Locator;
   readonly gettingStartedHeader: Locator;
   readonly pomLink: Locator;
@@ -55,7 +55,7 @@ export class PlaywrightDevPage {
 }
 ```
 
-### Verwendung in Tests
+### Usage in tests
 
 ```typescript
 // tests/playwright-dev.spec.ts
@@ -86,7 +86,7 @@ test.describe('playwright.dev', () => {
 });
 ```
 
-### POM mit Fixtures kombinieren
+### Combining POM with fixtures
 
 ```typescript
 // fixtures.ts
@@ -110,29 +110,29 @@ export const test = base.extend<Fixtures>({
 
 ## Best Practices
 
-### 1. Nutzerverhalten testen, nicht Implementierung
+### 1. Test user behavior, not implementation
 
 ```typescript
-// GUT: testet was der Nutzer sieht und tut
+// GOOD: tests what the user sees and does
 await page.getByRole('button', { name: 'Submit' }).click();
 await expect(page.getByText('Thank you!')).toBeVisible();
 
-// SCHLECHT: testet Implementierungsdetails
+// BAD: tests implementation details
 await page.click('.submit-btn-v2');
 expect(await page.evaluate(() => window._formSubmitted)).toBe(true);
 ```
 
-### 2. Test-Isolation
+### 2. Test isolation
 
-Jeder Test sollte vollstaendig isoliert sein (eigene Cookies, Storage, Daten):
+Every test should be fully isolated (its own cookies, storage, data):
 
 ```typescript
 test.beforeEach(async ({ page }) => {
-  // State zuruecksetzen
+  // Reset state
   await page.goto('/');
 });
 
-// Isolation durch Fixtures (besser):
+// Isolation via fixtures (better):
 export const test = base.extend({
   isolatedPage: async ({ browser }, use) => {
     const context = await browser.newContext();
@@ -143,57 +143,57 @@ export const test = base.extend({
 });
 ```
 
-### 3. Bevorzugte Locatoren (Prioritaet)
+### 3. Preferred locators (priority)
 
-| Prioritaet | Locator | Beispiel |
+| Priority | Locator | Example |
 |---|---|---|
-| 1 (beste) | Rollen-basiert | `getByRole('button', { name: 'Submit' })` |
+| 1 (best) | Role-based | `getByRole('button', { name: 'Submit' })` |
 | 2 | Label | `getByLabel('Email address')` |
 | 3 | Placeholder | `getByPlaceholder('user@example.com')` |
 | 4 | Text | `getByText('Sign in')` |
-| 5 | Alt-Text | `getByAltText('Playwright logo')` |
+| 5 | Alt text | `getByAltText('Playwright logo')` |
 | 6 | Title | `getByTitle('Close dialog')` |
-| 7 | Test-ID | `getByTestId('submit-btn')` |
-| 8 (vermeiden) | CSS-Klasse | `locator('.btn-submit')` |
-| 9 (vermeiden) | XPath | `locator('//button')` |
+| 7 | Test ID | `getByTestId('submit-btn')` |
+| 8 (avoid) | CSS class | `locator('.btn-submit')` |
+| 9 (avoid) | XPath | `locator('//button')` |
 
 ```typescript
-// GUT: resilient gegen DOM-Aenderungen
+// GOOD: resilient against DOM changes
 page.getByRole('button', { name: 'submit' });
 page.getByLabel('Password');
 page.getByTestId('checkout-btn');
 
-// SCHLECHT: bruechig
+// BAD: brittle
 page.locator('button.buttonIcon.episode-actions-later');
 page.locator('#main > div:nth-child(2) > button');
 ```
 
-### 4. Locatoren verketten und filtern
+### 4. Chaining and filtering locators
 
 ```typescript
-// Auf Kontext einengen
+// Narrow down to a context
 await page
   .getByRole('listitem')
   .filter({ hasText: 'Product 2' })
   .getByRole('button', { name: 'Add to cart' })
   .click();
 
-// within-Aequivalent
+// within equivalent
 const dialog = page.getByRole('dialog');
 await dialog.getByRole('button', { name: 'Confirm' }).click();
 ```
 
-### 5. Web-First-Assertions verwenden
+### 5. Use web-first assertions
 
 ```typescript
-// GUT: wartet und wiederholt automatisch
+// GOOD: waits and retries automatically
 await expect(page.getByText('Welcome')).toBeVisible();
 
-// SCHLECHT: sofortige Auswertung, kein Auto-Wait
+// BAD: immediate evaluation, no auto-wait
 expect(await page.getByText('Welcome').isVisible()).toBe(true);
 ```
 
-### 6. Drittanbieter-Abhaengigkeiten mocken
+### 6. Mock third-party dependencies
 
 ```typescript
 await page.route('**/api/external-service', route =>
@@ -201,43 +201,43 @@ await page.route('**/api/external-service', route =>
 );
 ```
 
-### 7. Keine harten Wartezeiten
+### 7. No hard waits
 
 ```typescript
-// SCHLECHT
+// BAD
 await page.waitForTimeout(2000);
 
-// GUT: auf Bedingung warten
+// GOOD: wait for a condition
 await page.waitForSelector('[data-loaded]');
 await expect(page.getByRole('status')).toHaveText('Ready');
 ```
 
-### 8. Test-Daten kontrollieren
+### 8. Control test data
 
-- Staging-Umgebung mit bekannten Daten verwenden
-- Kein Testen gegen echte externe APIs in E2E-Tests
-- Konsistente Betriebssysteme fuer visuelle Regression
+- Use a staging environment with known data
+- Do not test against real external APIs in E2E tests
+- Consistent operating systems for visual regression
 
 ---
 
 ## Debugging
 
-### Lokal
+### Locally
 
 ```bash
-# Playwright Inspector (Schritt-fuer-Schritt)
+# Playwright Inspector (step by step)
 npx playwright test --debug
 npx playwright test example.spec.ts --debug
 npx playwright test example.spec.ts:10 --debug
 
-# Headed-Modus (Browser sichtbar)
+# Headed mode (browser visible)
 npx playwright test --headed
 
 # VS Code Extension
-# "Run test" und "Debug test" direkt im Editor
+# "Run test" and "Debug test" directly in the editor
 ```
 
-### CI-Debugging mit Trace Viewer
+### CI debugging with the Trace Viewer
 
 ```typescript
 // playwright.config.ts
@@ -246,25 +246,25 @@ use: { trace: 'on-first-retry' }
 
 ```bash
 npx playwright show-report
-# Im HTML-Report auf fehlgeschlagenen Test klicken -> Trace oeffnen
+# In the HTML report, click the failed test -> open the trace
 ```
 
-Trace Viewer zeigt: Timeline, DOM-Snapshots, Netzwerk-Requests, Console-Log.
+Trace Viewer shows: timeline, DOM snapshots, network requests, console log.
 
-### Locatoren testen
+### Testing locators
 
 ```bash
-# Codegen: interaktiv Locatoren aufzeichnen
+# Codegen: record locators interactively
 npx playwright codegen https://example.com
 ```
 
-Im UI-Modus: Locator-Picker zum Verifizieren von Selektoren.
+In UI mode: locator picker for verifying selectors.
 
 ---
 
-## Test-Organisation
+## Test organization
 
-### Mehrere Browser (Projects)
+### Multiple browsers (projects)
 
 ```typescript
 projects: [
@@ -274,23 +274,23 @@ projects: [
 ],
 ```
 
-### Parallelisierung nutzen
+### Use parallelization
 
 ```typescript
 // Global
 export default defineConfig({ fullyParallel: true });
 
-// Per Datei
+// Per file
 test.describe.configure({ mode: 'parallel' });
 ```
 
-### Sharding fuer grosse Suites
+### Sharding for large suites
 
 ```bash
-npx playwright test --shard=1/4   # auf 4 Maschinen verteilt
+npx playwright test --shard=1/4   # distributed across 4 machines
 ```
 
-### Datei-Benennung fuer sequenzielle Ausfuehrung (ohne fullyParallel)
+### File naming for sequential execution (without fullyParallel)
 
 ```
 001-setup.spec.ts
@@ -300,13 +300,13 @@ npx playwright test --shard=1/4   # auf 4 Maschinen verteilt
 
 ---
 
-## CI-Optimierung
+## CI optimization
 
 ```bash
-# Nur noetige Browser installieren
+# Install only the required browsers
 npx playwright install chromium --with-deps
 
-# Auf CI: 2 Worker, Retries aktivieren
+# On CI: 2 workers, enable retries
 export default defineConfig({
   workers: process.env.CI ? 2 : undefined,
   retries: process.env.CI ? 2 : 0,
@@ -325,11 +325,11 @@ export default defineConfig({
     path: playwright-report/
 ```
 
-### Abhängigkeiten aktuell halten
+### Keeping dependencies up to date
 
 ```bash
 npm install -D @playwright/test@latest
-npx playwright install   # neue Browser-Versionen
+npx playwright install   # new browser versions
 npx playwright --version
 ```
 
@@ -344,7 +344,7 @@ npx playwright --version
 }
 ```
 
-Fangen fehlende `await` vor Playwright-Aufrufen ab.
+Catches missing `await` before Playwright calls.
 
 ---
 

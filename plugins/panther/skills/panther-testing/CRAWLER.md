@@ -1,4 +1,4 @@
-# Panther Crawler — Vollstandige API
+# Panther Crawler — Complete API
 
 ```php
 $crawler = $client->request('GET', '/');
@@ -7,16 +7,16 @@ $links   = $crawler->filter('nav a')->links();
 $form    = $crawler->selectButton('Anmelden')->form();
 ```
 
-## Wichtigste Methoden-Gruppen
+## Most important method groups
 
-- **Filtern**: `filter($css)`, `filterXPath($xpath)`, `matches($css)`
+- **Filtering**: `filter($css)`, `filterXPath($xpath)`, `matches($css)`
 - **Traversal**: `eq($pos)`, `first()`, `last()`, `children($css?)`, `siblings()`, `nextAll()`, `previousAll()`, `ancestors()`, `closest($css)`
-- **Werte lesen**: `attr($name, $default?)`, `text($default?)` (nur normalisiert!), `html($default?)` (=outerHTML), `nodeName()`
+- **Reading values**: `attr($name, $default?)`, `text($default?)` (normalized only!), `html($default?)` (= outerHTML), `nodeName()`
 - **Iteration**: `each(callable)`, `reduce(callable)`, `count()`, `slice($offset, $length?)`
-- **Extraktion**: `extract(array $attributes)` — `evaluate()` wirft Exception in PantherCrawler
-- **Links/Bilder**: `links()`, `images()`, `selectLink($text)`, `selectImage($alt)`, `link()`, `image()`
-- **Formulare**: `selectButton($text)`, `form($values?, $method?)`, `getElement(int $position)` (WebDriverElement)
+- **Extraction**: `extract(array $attributes)` — `evaluate()` throws an exception in PantherCrawler
+- **Links/images**: `links()`, `images()`, `selectLink($text)`, `selectImage($alt)`, `link()`, `image()`
+- **Forms**: `selectButton($text)`, `form($values?, $method?)`, `getElement(int $position)` (WebDriverElement)
 
-## Vertiefung
+## Deep dive
 
-- [CRAWLER-DETAIL.md](CRAWLER-DETAIL.md) — Jede Methode mit vollstandiger Signatur, Ruckgabetyp, DomCrawler-Grundlagen und Beispielen
+- [CRAWLER-DETAIL.md](CRAWLER-DETAIL.md) — every method with its complete signature, return type, DomCrawler basics and examples

@@ -4,8 +4,8 @@ Entwickler-Referenz fuer Quote Management, Shopping Lists und Individual Pricing
 
 ## Referenzen
 
-- [Quote Management und Shopping Lists](`COMPONENTS-QUOTES-QUOTES-SHOPPING-LISTS.md`)
-- [Individual Pricing](`COMPONENTS-QUOTES-INDIVIDUAL-PRICING.md`)
+- [COMPONENTS-QUOTES-QUOTES-SHOPPING-LISTS.md](COMPONENTS-QUOTES-QUOTES-SHOPPING-LISTS.md)
+- [COMPONENTS-QUOTES-INDIVIDUAL-PRICING.md](COMPONENTS-QUOTES-INDIVIDUAL-PRICING.md)
 
 ## Querverweise
 

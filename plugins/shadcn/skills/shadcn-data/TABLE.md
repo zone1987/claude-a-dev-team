@@ -27,7 +27,7 @@ Table
 
 ## Reference files
 
-- [installation.md](`TABLE-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`TABLE-SOURCE.md`) — Complete component source
-- [api.md](`TABLE-API.md`) — Sub-component props
-- [examples.md](`TABLE-EXAMPLES.md`) — All examples
+- [TABLE-INSTALLATION.md](TABLE-INSTALLATION.md) — CLI & manual setup
+- [TABLE-SOURCE.md](TABLE-SOURCE.md) — Complete component source
+- [TABLE-API.md](TABLE-API.md) — Sub-component props
+- [TABLE-EXAMPLES.md](TABLE-EXAMPLES.md) — All examples

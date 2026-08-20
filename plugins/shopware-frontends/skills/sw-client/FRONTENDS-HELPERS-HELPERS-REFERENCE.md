@@ -1,30 +1,30 @@
-# @shopware/helpers — Vollständige Funktionsreferenz
+# @shopware/helpers — Complete Function Reference
 
 Version: **1.7.1**
 
-Reine Utility-Funktionen ohne State, ohne Vue-Abhängigkeiten. Alle Funktionen sind tree-shakeable.
+Pure utility functions without state, without Vue dependencies. All functions are tree-shakeable.
 
 ---
 
 ## Contents
 
-- [Installation & Import](#installation-import)
-- [Übersetzungen](#übersetzungen)
-- [Produkt-Funktionen](#produkt-funktionen)
-- [Kategorie-Funktionen](#kategorie-funktionen)
-- [CMS-Funktionen](#cms-funktionen)
-- [Media-Funktionen](#media-funktionen)
-- [Preis-Funktionen](#preis-funktionen)
-- [Listing-Funktionen](#listing-funktionen)
-- [Routing-Funktionen](#routing-funktionen)
-- [URL-Utilities](#url-utilities)
-- [Checkout-Hilfsfunktionen](#checkout-hilfsfunktionen)
-- [Sprach-Funktionen](#sprach-funktionen)
-- [B2B-Hilfsfunktionen](#b2b-hilfsfunktionen)
-- [UI-Interface-Typen](#ui-interface-typen)
-- [Vollständige Export-Liste](#vollständige-export-liste)
+- [Installation & import](#installation-import)
+- [Translations](#translations)
+- [Product functions](#product-functions)
+- [Category functions](#category-functions)
+- [CMS functions](#cms-functions)
+- [Media functions](#media-functions)
+- [Price functions](#price-functions)
+- [Listing functions](#listing-functions)
+- [Routing functions](#routing-functions)
+- [URL utilities](#url-utilities)
+- [Checkout helper functions](#checkout-helper-functions)
+- [Language functions](#language-functions)
+- [B2B helper functions](#b2b-helper-functions)
+- [UI interface types](#ui-interface-types)
+- [Complete export list](#complete-export-list)
 
-## Installation & Import
+## Installation & import
 
 ```ts
 import { getTranslatedProperty, getProductRoute, getFormattedPrice } from '@shopware/helpers'
@@ -32,7 +32,7 @@ import { getTranslatedProperty, getProductRoute, getFormattedPrice } from '@shop
 
 ---
 
-## Übersetzungen
+## Translations
 
 ### `getTranslatedProperty(element, property)`
 
@@ -43,7 +43,7 @@ function getTranslatedProperty<T extends { translated?: Record<string, unknown> 
 ): string
 ```
 
-Gibt `element.translated[property]` zurück, Fallback auf `element[property]`, Fallback auf `""`.
+Returns `element.translated[property]`, falling back to `element[property]`, falling back to `""`.
 
 ```ts
 const name = getTranslatedProperty(product, 'name')
@@ -53,7 +53,7 @@ const metaTitle = getTranslatedProperty(category, 'metaTitle')
 
 ---
 
-## Produkt-Funktionen
+## Product functions
 
 ### `getProductName(product)`
 
@@ -61,7 +61,7 @@ const metaTitle = getTranslatedProperty(category, 'metaTitle')
 function getProductName(product: Partial<Schemas["Product"]> | undefined): string
 ```
 
-Kurz für `getTranslatedProperty(product, 'name')`.
+Shorthand for `getTranslatedProperty(product, 'name')`.
 
 ---
 
@@ -71,7 +71,7 @@ Kurz für `getTranslatedProperty(product, 'name')`.
 function getProductUrl(product: Partial<Schemas["Product"]>): string
 ```
 
-Gibt `/{seoPathInfo}` zurück wenn vorhanden, sonst `/detail/{id}`.
+Returns `/{seoPathInfo}` when present, otherwise `/detail/{id}`.
 
 ---
 
@@ -81,7 +81,7 @@ Gibt `/{seoPathInfo}` zurück wenn vorhanden, sonst `/detail/{id}`.
 function getProductRoute(product: Partial<Schemas["Product"]>): RouteLocationRaw
 ```
 
-Gibt ein Vue-Router-Route-Objekt zurück:
+Returns a Vue Router route object:
 ```ts
 {
   path: '/',
@@ -100,7 +100,7 @@ Gibt ein Vue-Router-Route-Objekt zurück:
 function getMainImageUrl(product: Partial<Schemas["Product"]>): string
 ```
 
-Prüft der Reihe nach: `cover.media.url` → `cover.url` → `media[0].media.url` → `""`.
+Checks in order: `cover.media.url` → `cover.url` → `media[0].media.url` → `""`.
 
 ---
 
@@ -110,7 +110,7 @@ Prüft der Reihe nach: `cover.media.url` → `cover.url` → `media[0].media.url
 function getProductRealPrice(product: Partial<Schemas["Product"]>): Schemas["CalculatedPrice"] | undefined
 ```
 
-Gibt den letzten Eintrag aus `calculatedPrices[]` zurück wenn mehrere vorhanden (Tier-Preise), sonst `calculatedPrice`.
+Returns the last entry of `calculatedPrices[]` when several are present (tier prices), otherwise `calculatedPrice`.
 
 ---
 
@@ -120,7 +120,7 @@ Gibt den letzten Eintrag aus `calculatedPrices[]` zurück wenn mehrere vorhanden
 function getProductFromPrice(product: Partial<Schemas["Product"]>): number | undefined
 ```
 
-Gibt den `unitPrice` zurück, aber nur wenn `calculatedPrices.length > 0` (also wenn es Tier-Preise gibt — für "ab X €"-Anzeige).
+Returns the `unitPrice`, but only when `calculatedPrices.length > 0` (that is, when tier prices exist — for a "from X €" display).
 
 ---
 
@@ -130,7 +130,7 @@ Gibt den `unitPrice` zurück, aber nur wenn `calculatedPrices.length > 0` (also 
 function getProductCalculatedListingPrice(product: Partial<Schemas["Product"]>): number | undefined
 ```
 
-Gibt `listPrice.price ?? unitPrice` des `calculatedPrice`.
+Returns `listPrice.price ?? unitPrice` of the `calculatedPrice`.
 
 ---
 
@@ -148,7 +148,7 @@ function getProductRatingAverage(product: Partial<Schemas["Product"]>): number |
 function getProductReviews(product: Partial<Schemas["Product"]>): UiProductReview[]
 ```
 
-Konvertiert `productReviews[]` in `UiProductReview[]`:
+Converts `productReviews[]` into `UiProductReview[]`:
 
 ```ts
 type UiProductReview = {
@@ -178,7 +178,7 @@ function getProductManufacturerName(product: Partial<Schemas["Product"]>): strin
 function getProductTierPrices(product: Partial<Schemas["Product"]>): TierPrice[]
 
 type TierPrice = {
-  label: string   // "to N" oder "from N"
+  label: string   // "to N" or "from N"
   quantity: number
   unitPrice: number
   totalPrice: number
@@ -186,7 +186,7 @@ type TierPrice = {
 }
 ```
 
-Mappt `calculatedPrices[]` auf `TierPrice[]`. Letzter Eintrag bekommt `"from N"`, alle anderen `"to N"`.
+Maps `calculatedPrices[]` onto `TierPrice[]`. The last entry gets `"from N"`, all others `"to N"`.
 
 ---
 
@@ -220,7 +220,7 @@ function isProductTopSeller(product: Partial<Schemas["Product"]>): boolean
 
 ---
 
-## Kategorie-Funktionen
+## Category functions
 
 ### `getCategoryBreadcrumbs(category, options?)`
 
@@ -231,7 +231,7 @@ function getCategoryBreadcrumbs(
 ): Array<{ name: string }>
 ```
 
-Gibt `category.translated.breadcrumb.slice(startIndex)` zurück (Standard: ab Index 0).
+Returns `category.translated.breadcrumb.slice(startIndex)` (default: from index 0).
 
 ---
 
@@ -241,7 +241,7 @@ Gibt `category.translated.breadcrumb.slice(startIndex)` zurück (Standard: ab In
 function getCategoryImageUrl(category: Partial<Schemas["Category"]>): string
 ```
 
-Gibt `media.url` zurück wenn Typ `page`, `link` oder `folder`, sonst `""`.
+Returns `media.url` when the type is `page`, `link` or `folder`, otherwise `""`.
 
 ---
 
@@ -251,9 +251,9 @@ Gibt `media.url` zurück wenn Typ `page`, `link` oder `folder`, sonst `""`.
 function getCategoryRoute(category: Partial<Schemas["Category"]>): RouteLocationRaw
 ```
 
-Typenabhängige Logik:
-- Typ `link` → `{ path: category.externalLink }` (external) oder `{ path: category.internalLink }` (internal)
-- Typ `page`/`folder` → `{ path: '/', state: { routeName: 'frontend.navigation.page', foreignKey: id } }`
+Type-dependent logic:
+- Type `link` → `{ path: category.externalLink }` (external) or `{ path: category.internalLink }` (internal)
+- Type `page`/`folder` → `{ path: '/', state: { routeName: 'frontend.navigation.page', foreignKey: id } }`
 
 ---
 
@@ -263,13 +263,13 @@ Typenabhängige Logik:
 function getCategoryUrl(category: Partial<Schemas["Category"]>): string
 ```
 
-- Typ `link` → externe URL
-- SEO-URL vorhanden → `/{seoPathInfo}`
-- Sonst → `/navigation/{id}`
+- Type `link` → external URL
+- SEO URL present → `/{seoPathInfo}`
+- Otherwise → `/navigation/{id}`
 
 ---
 
-## CMS-Funktionen
+## CMS functions
 
 ### `getCmsEntityObject(page)`
 
@@ -279,7 +279,7 @@ function getCmsEntityObject(
 ): Schemas["Category"] | Schemas["Product"] | Schemas["LandingPage"] | undefined
 ```
 
-Extrahiert das Entity-Objekt aus der CMS-Page.
+Extracts the entity object from the CMS page.
 
 ---
 
@@ -299,7 +299,7 @@ function getCmsLayoutConfiguration(
 }
 ```
 
-Parst Sichtbarkeits-Flags und Style-Konfigurationen aus dem CMS-Element. Die CSS-Klassen entsprechen Tailwind-Klassen (z.B. `max-md:hidden`, `md:max-lg:hidden`, `lg:hidden`).
+Parses visibility flags and style configurations out of the CMS element. The CSS classes correspond to Tailwind classes (e.g. `max-md:hidden`, `md:max-lg:hidden`, `lg:hidden`).
 
 ---
 
@@ -323,7 +323,7 @@ function getCmsTranslate(
 ): string
 ```
 
-Sucht `content[key]` und ersetzt `{placeholder}` mit `params`-Werten.
+Looks up `content[key]` and replaces `{placeholder}` with the `params` values.
 
 ---
 
@@ -335,7 +335,7 @@ function getProductListingFromCmsPage<T = Schemas["ProductListingResult"]>(
 ): T | null
 ```
 
-Durchsucht `page.sections[].blocks[].slots[]` nach dem ersten Slot mit `type === 'product-listing'` und gibt `slot.data.listing` zurück.
+Searches `page.sections[].blocks[].slots[]` for the first slot with `type === 'product-listing'` and returns `slot.data.listing`.
 
 ---
 
@@ -353,7 +353,7 @@ function buildUrlPrefix(
 ): UrlRouteOutput
 ```
 
-Stellt einem relativen Pfad das Sprachpräfix voran. Absolute URLs werden unverändert zurückgegeben.
+Prepends the language prefix to a relative path. Absolute URLs are returned unchanged.
 
 ---
 
@@ -374,7 +374,7 @@ function getBackgroundImageUrl(
 ): string
 ```
 
-Extrahiert die URL aus einem CSS-`url()`-String oder Media-Objekt. Fügt CDN-Parameter `?width=N&fit=crop,smart` hinzu.
+Extracts the URL from a CSS `url()` string or a media object. Adds the CDN parameters `?width=N&fit=crop,smart`.
 
 ---
 
@@ -386,7 +386,7 @@ function isCategory(entity: unknown): entity is Schemas["Category"]
 function isLandingPage(entity: unknown): entity is Schemas["LandingPage"]
 ```
 
-Type-Guards die auf `apiAlias` prüfen.
+Type guards that check `apiAlias`.
 
 ---
 
@@ -396,7 +396,7 @@ Type-Guards die auf `apiAlias` prüfen.
 function isMaintenanceMode(errors: unknown): boolean
 ```
 
-Prüft auf Error-Code `FRAMEWORK__API_SALES_CHANNEL_MAINTENANCE_MODE`.
+Checks for the error code `FRAMEWORK__API_SALES_CHANNEL_MAINTENANCE_MODE`.
 
 ---
 
@@ -407,11 +407,11 @@ const helpersCssClasses: readonly string[]
 type HelpersCssClasses = typeof helpersCssClasses[number]
 ```
 
-Alle CSS-Klassen die von `getCmsLayoutConfiguration` zurückgegeben werden können (Tailwind-Responsiv-Klassen).
+All CSS classes that `getCmsLayoutConfiguration` can return (Tailwind responsive classes).
 
 ---
 
-## Media-Funktionen
+## Media functions
 
 ### `getBiggestThumbnailUrl(media)`
 
@@ -419,7 +419,7 @@ Alle CSS-Klassen die von `getCmsLayoutConfiguration` zurückgegeben werden könn
 function getBiggestThumbnailUrl(media: Schemas["Media"] | null | undefined): string
 ```
 
-Findet das Thumbnail mit der größten `width`. Fallback auf `""`.
+Finds the thumbnail with the largest `width`. Falls back to `""`.
 
 ---
 
@@ -429,7 +429,7 @@ Findet das Thumbnail mit der größten `width`. Fallback auf `""`.
 function getSmallestThumbnailUrl(media: Schemas["Media"] | null | undefined): string
 ```
 
-Findet das Thumbnail mit der kleinsten `width`. Fallback auf `media.url` → `""`.
+Finds the thumbnail with the smallest `width`. Falls back to `media.url` → `""`.
 
 ---
 
@@ -441,7 +441,7 @@ function getMedia(
 ): Array<{ id: string; fileName: string; accessGranted: boolean }>
 ```
 
-Mappt `lineItem.downloads[]` auf ein vereinfachtes Array.
+Maps `lineItem.downloads[]` onto a simplified array.
 
 ---
 
@@ -451,7 +451,7 @@ Mappt `lineItem.downloads[]` auf ein vereinfachtes Array.
 function getSrcSetForMedia(media: Schemas["Media"] | null | undefined): string
 ```
 
-Baut einen `srcset`-String aus `thumbnails[]`. Beispiel:
+Builds a `srcset` string from `thumbnails[]`. Example:
 ```
 "https://cdn.example.com/img-320.jpg 320w, https://cdn.example.com/img-640.jpg 640w"
 ```
@@ -464,7 +464,7 @@ Baut einen `srcset`-String aus `thumbnails[]`. Beispiel:
 function encodeUrlPath(url: string): string
 ```
 
-Normalisiert URL-Pfad-Encoding: dekodiert und re-encodiert jeden Pfad-Segment sauber.
+Normalizes URL path encoding: decodes and cleanly re-encodes every path segment.
 
 ---
 
@@ -478,7 +478,7 @@ function generateCdnSrcSet(
 ): string
 ```
 
-Generiert einen `srcset`-String mit CDN-Parametern:
+Generates a `srcset` string with CDN parameters:
 ```ts
 generateCdnSrcSet('https://cdn.example.com/img.jpg', [320, 640, 1280])
 // → "https://cdn.example.com/img.jpg?width=320&fit=crop,smart 320w, ..."
@@ -496,7 +496,7 @@ function buildCdnImageUrl(
 ): string
 ```
 
-Wählt die größere der beiden Dimensionen, rundet auf die nächste 100er-Grenze, fügt `?width=N&fit=crop,smart` hinzu.
+Picks the larger of the two dimensions, rounds up to the next multiple of 100, adds `?width=N&fit=crop,smart`.
 
 ---
 
@@ -506,28 +506,28 @@ Wählt die größere der beiden Dimensionen, rundet auf die nächste 100er-Grenz
 function downloadFile(file: Blob, name: string): void
 ```
 
-Erstellt einen temporären `<a>`-Tag mit `URL.createObjectURL`, triggert den Download und entfernt den Link danach.
+Creates a temporary `<a>` tag with `URL.createObjectURL`, triggers the download and removes the link afterwards.
 
 ---
 
-## Preis-Funktionen
+## Price functions
 
 ### `getFormattedPrice(value, currency?, options?)`
 
 ```ts
 function getFormattedPrice(
   value: number | string | undefined,
-  currency?: string,   // ISO-Währungscode, z.B. "EUR", "USD"
+  currency?: string,   // ISO currency code, e.g. "EUR", "USD"
   options?: {
-    localeCode?: string  // z.B. "de-DE", "en-US"
+    localeCode?: string  // e.g. "de-DE", "en-US"
     decimals?: number
-    rtl?: boolean        // Right-to-left für arabische Währungen
+    rtl?: boolean        // right-to-left for Arabic currencies
     removeCurrency?: boolean
   }
 ): string
 ```
 
-Formatiert einen Preis mit `Intl.NumberFormat`. Ohne `currency` wird das Währungssymbol aus dem `usePrice()`-Composable verwendet.
+Formats a price with `Intl.NumberFormat`. Without `currency`, the currency symbol from the `usePrice()` composable is used.
 
 ```ts
 getFormattedPrice(19.99, 'EUR', { localeCode: 'de-DE' })
@@ -539,7 +539,7 @@ getFormattedPrice(19.99, 'USD', { localeCode: 'en-US' })
 
 ---
 
-## Listing-Funktionen
+## Listing functions
 
 ### `getListingFilters(aggregations)`
 
@@ -551,16 +551,16 @@ function getListingFilters(
 type ListingFilter = {
   code: string
   label?: string
-  entities?: unknown[]   // für "properties"-Aggregationen
-  options?: unknown[]    // für andere Aggregationen
+  entities?: unknown[]   // for "properties" aggregations
+  options?: unknown[]    // for other aggregations
 }
 ```
 
-Transformiert das Aggregations-Objekt in eine strukturierte Filter-Liste. Überspringt `"options"`-Aggregationen.
+Transforms the aggregations object into a structured filter list. Skips `"options"` aggregations.
 
 ---
 
-## Routing-Funktionen
+## Routing functions
 
 ### `getRouteFromPathInfo(path)`
 
@@ -577,7 +577,7 @@ function getRouteFromPathInfo(
 ): RouteInfoFromPathInfo | null
 ```
 
-Konvertiert Shopware-Pfadinfo-Strings in Vue-Router-freundliche Objekte:
+Converts Shopware path info strings into Vue-Router-friendly objects:
 - `/navigation/{id}` → `{ routeName: 'frontend.navigation.page', foreignKey: id }`
 - `/detail/{id}` → `{ routeName: 'frontend.detail.page', foreignKey: id }`
 - `/landingPage/{id}` → `{ routeName: 'frontend.landing.page', foreignKey: id }`
@@ -590,7 +590,7 @@ Konvertiert Shopware-Pfadinfo-Strings in Vue-Router-freundliche Objekte:
 function normalizePath(path: string): string
 ```
 
-Normalisiert URL-Pfade (entfernt doppelte Slashes, etc.).
+Normalizes URL paths (removes duplicate slashes, etc.).
 
 ---
 
@@ -600,11 +600,11 @@ Normalisiert URL-Pfade (entfernt doppelte Slashes, etc.).
 function isTechnicalPath(path: string): boolean
 ```
 
-Prüft ob der Pfad ein technischer Shopware-Pfad ist (beginnt mit `/navigation/`, `/detail/`, etc.).
+Checks whether the path is a technical Shopware path (starts with `/navigation/`, `/detail/`, etc.).
 
 ---
 
-## URL-Utilities
+## URL utilities
 
 ### `relativeUrlSlash(url, slash?)`
 
@@ -612,8 +612,8 @@ Prüft ob der Pfad ein technischer Shopware-Pfad ist (beginnt mit `/navigation/`
 function relativeUrlSlash(url: string, slash?: boolean): string
 ```
 
-`slash = true` (Standard): führenden `/` hinzufügen.
-`slash = false`: führenden `/` entfernen.
+`slash = true` (default): add a leading `/`.
+`slash = false`: remove a leading `/`.
 
 ---
 
@@ -623,11 +623,11 @@ function relativeUrlSlash(url: string, slash?: boolean): string
 function urlIsAbsolute(url: string): boolean
 ```
 
-→ `true` wenn URL mit `//` oder `https://` beginnt.
+→ `true` when the URL starts with `//` or `https://`.
 
 ---
 
-## Checkout-Hilfsfunktionen
+## Checkout helper functions
 
 ### `getPaymentMethodIcon(paymentMethod)`
 
@@ -659,7 +659,7 @@ function getShippingMethodDeliveryTime(shippingMethod: Partial<Schemas["Shipping
 
 ---
 
-## Sprach-Funktionen
+## Language functions
 
 ### `getLanguageName(language)`
 
@@ -671,7 +671,7 @@ function getLanguageName(language: Partial<Schemas["Language"]>): string
 
 ---
 
-## B2B-Hilfsfunktionen
+## B2B helper functions
 
 ### `canUseQuoteActions(quote)`
 
@@ -679,11 +679,11 @@ function getLanguageName(language: Partial<Schemas["Language"]>): string
 function canUseQuoteActions(quote: Schemas["Quote"]): boolean
 ```
 
-→ `true` wenn `quote.stateMachineState.technicalName === "replied"`.
+→ `true` when `quote.stateMachineState.technicalName === "replied"`.
 
 ---
 
-## UI-Interface-Typen
+## UI interface types
 
 ```ts
 type UiMediaGalleryItemUrl = {
@@ -728,16 +728,16 @@ type UiProductReview = {
 
 ---
 
-## Vollständige Export-Liste
+## Complete export list
 
 ```ts
-// Produkt
+// product
 export { getProductName, getProductUrl, getProductRoute, getMainImageUrl }
 export { getProductRealPrice, getProductFromPrice, getProductCalculatedListingPrice }
 export { getProductRatingAverage, getProductReviews, getProductManufacturerName }
 export { getProductTierPrices, getProductFreeShipping, isProductOnSale, isProductTopSeller }
 
-// Kategorie
+// category
 export { getCategoryBreadcrumbs, getCategoryImageUrl, getCategoryRoute, getCategoryUrl }
 
 // CMS
@@ -748,37 +748,37 @@ export { isProduct, isCategory, isLandingPage, isMaintenanceMode }
 export { helpersCssClasses }
 export type { HelpersCssClasses }
 
-// Media
+// media
 export { getBiggestThumbnailUrl, getSmallestThumbnailUrl, getMedia }
 export { getSrcSetForMedia, encodeUrlPath, generateCdnSrcSet, buildCdnImageUrl }
 export { downloadFile }
 
-// Preis
+// price
 export { getFormattedPrice }
 
-// Listing
+// listing
 export { getListingFilters }
 
-// Routing
+// routing
 export { getRouteFromPathInfo, normalizePath, isTechnicalPath }
 export type { RouteNameFromPathInfo, RouteInfoFromPathInfo, UrlRouteOutput }
 
 // URL
 export { relativeUrlSlash, urlIsAbsolute }
 
-// Checkout
+// checkout
 export { getPaymentMethodIcon, getShippingMethodIcon, getShippingMethodDeliveryTime }
 
-// Sprache
+// language
 export { getLanguageName }
 
-// Übersetzung
+// translation
 export { getTranslatedProperty }
 
 // B2B
 export { canUseQuoteActions }
 
-// UI-Typen
+// UI types
 export type { UiMediaGalleryItemUrl, UiMediaGalleryItem }
 export type { UiProductOption, UiProductProperty, UiProductReview, TierPrice }
 ```

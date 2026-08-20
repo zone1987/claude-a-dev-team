@@ -492,7 +492,7 @@ await formHandle.dispose();
 
 **Total: 7 methods** (no properties, no events)
 
-**Conclusion:** `JSHandle` is the base class for all browser object handles in Playwright.
+**Summary:** `JSHandle` is the base class for all browser object handles in Playwright.
 It enables safe work with non-serializable JavaScript values in the browser.
 Important: always release handles with `dispose()` to avoid memory leaks.
 In practice, `JSHandle` is mostly used indirectly through `ElementHandle` and `page.evaluateHandle()`

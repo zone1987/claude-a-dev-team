@@ -1,7 +1,7 @@
 # shadcn-changelog
 
 Chronological feature history of shadcn/ui. See
-[history.md](`CHANGELOG-HISTORY.md`) for the full annotated timeline.
+[CHANGELOG-HISTORY.md](CHANGELOG-HISTORY.md) for the full annotated timeline.
 
 ## Recent highlights (2025-2026)
 

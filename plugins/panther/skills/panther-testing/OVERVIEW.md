@@ -1,18 +1,18 @@
-# Symfony Panther — Uberblick und Architektur
+# Symfony Panther — Overview and Architecture
 
-Panther ist eine Browser-Testing- und Web-Crawling-Bibliothek fur PHP, die echte Browser
-(Chrome, Firefox) uber das W3C-WebDriver-Protokoll steuert. Sie implementiert die
-`BrowserInterface` und liefert denselben `Crawler`-Typ wie Symfonys `WebTestCase`.
+Panther is a browser-testing and web-crawling library for PHP that drives real browsers
+(Chrome, Firefox) via the W3C WebDriver protocol. It implements the
+`BrowserInterface` and returns the same `Crawler` type as Symfony's `WebTestCase`.
 
-## Architektur: Drei Client-Typen
+## Architecture: three client types
 
-| Client                  | Basis             | JavaScript | Geschwindigkeit | Einsatz                              |
+| Client                  | Base              | JavaScript | Speed           | Usage                                |
 |-------------------------|-------------------|:----------:|:---------------:|--------------------------------------|
-| `PantherClient` (Chrome/Firefox) | WebDriver | Ja    | langsam         | E2E, JS-Apps, echte Interaktionen    |
-| `HttpBrowserClient`     | BrowserKit/cURL   | Nein       | schnell         | HTTP-only-Tests, Formulare ohne JS   |
-| `KernelBrowserClient`   | Symfony Kernel    | Nein       | sehr schnell    | Unit/Functional, nur Symfony-Apps    |
+| `PantherClient` (Chrome/Firefox) | WebDriver | Yes   | slow            | E2E, JS apps, real interactions      |
+| `HttpBrowserClient`     | BrowserKit/cURL   | No         | fast            | HTTP-only tests, forms without JS    |
+| `KernelBrowserClient`   | Symfony Kernel    | No         | very fast       | Unit/functional, Symfony apps only   |
 
-## Kurzbeispiel
+## Short example
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -21,7 +21,7 @@ class E2ETest extends PantherTestCase
 {
     public function testHomepage(): void
     {
-        $client = static::createPantherClient();          // echter Browser (Chrome)
+        $client = static::createPantherClient();          // real browser (Chrome)
         $client->request('GET', '/');
         $this->assertSelectorTextContains('h1', 'Welcome');
 
@@ -32,13 +32,13 @@ class E2ETest extends PantherTestCase
 }
 ```
 
-## Abgrenzung
+## Differentiation
 
-- **WebTestCase / KernelBrowser**: kein echter Browser, kein JS, aber vollstandiger Kernel-Zugriff.
-- **HttpBrowser (BrowserKit)**: echter HTTP-Stack, kein JS, kein Kernel-Zugriff.
-- **Goutte**: veraltet, Nachfolger ist `HttpBrowser`.
-- **Panther (WebDriver)**: einziger Client mit JS, Real-DOM, Screenshots, waitFor.
+- **WebTestCase / KernelBrowser**: no real browser, no JS, but full kernel access.
+- **HttpBrowser (BrowserKit)**: real HTTP stack, no JS, no kernel access.
+- **Goutte**: obsolete, its successor is `HttpBrowser`.
+- **Panther (WebDriver)**: the only client with JS, real DOM, screenshots, waitFor.
 
-## Vertiefung
+## Deep dive
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Vollstandige Architektur, Vergleichstabelle, Entscheidungsbaum
+- [ARCHITECTURE.md](ARCHITECTURE.md) — Complete architecture, comparison table, decision tree

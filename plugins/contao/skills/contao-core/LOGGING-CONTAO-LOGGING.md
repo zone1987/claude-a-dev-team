@@ -2,53 +2,53 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [System-Log-Integration](#system-log-integration)
-- [ContaoContext-Aktionen](#contaocontext-aktionen)
-- [Vorkonfigurierte Logger-Services](#vorkonfigurierte-logger-services)
-- [Verfügbare Contao-Kanäle](#verfügbare-contao-kanäle)
-- [Erweiterbarkeit](#erweiterbarkeit)
-- [Testing-Strategie](#testing-strategie)
+- [Overview](#overview)
+- [System log integration](#system-log-integration)
+- [ContaoContext actions](#contaocontext-actions)
+- [Preconfigured logger services](#preconfigured-logger-services)
+- [Available Contao channels](#available-contao-channels)
+- [Extensibility](#extensibility)
+- [Testing strategy](#testing-strategy)
 
-## Überblick
+## Overview
 
-Contao nutzt **Monolog** und das **Symfony Monolog Bundle** als Logging-Infrastruktur. Der `contao`-Kanal ist für Framework-spezifische Nachrichten reserviert.
+Contao uses **Monolog** and the **Symfony Monolog Bundle** as its logging infrastructure. The `contao` channel is reserved for framework-specific messages.
 
 ---
 
-## System-Log-Integration
+## System log integration
 
-Nachrichten mit `ContaoContext` werden automatisch im Contao-Backend-System-Log angezeigt:
+Messages with a `ContaoContext` are shown automatically in the Contao back end system log:
 
 ```php
 use Contao\CoreBundle\Monolog\ContaoContext;
 
 $logger->info(
-    'Diese Nachricht erscheint im Contao System-Log',
+    'This message appears in the Contao system log',
     ['contao' => new ContaoContext(__METHOD__, ContaoContext::GENERAL)]
 );
 ```
 
 ---
 
-## ContaoContext-Aktionen
+## ContaoContext actions
 
-| Konstante | Zweck |
+| Constant | Purpose |
 |-----------|-------|
-| `ContaoContext::GENERAL` | Allgemeine Meldungen |
-| `ContaoContext::CRON` | Cron-Job-Meldungen |
-| `ContaoContext::ACCESS` | Zugriffsprotokolle |
-| `ContaoContext::FILES` | Dateisystem-Operationen |
-| `ContaoContext::FORMS` | Formular-Verarbeitung |
-| `ContaoContext::ERROR` | Fehlermeldungen |
-| `ContaoContext::EMAIL` | E-Mail-Versand |
-| `ContaoContext::CONFIGURATION` | Konfigurationsänderungen |
+| `ContaoContext::GENERAL` | General messages |
+| `ContaoContext::CRON` | Cron job messages |
+| `ContaoContext::ACCESS` | Access logs |
+| `ContaoContext::FILES` | Filesystem operations |
+| `ContaoContext::FORMS` | Form processing |
+| `ContaoContext::ERROR` | Error messages |
+| `ContaoContext::EMAIL` | E-mail dispatch |
+| `ContaoContext::CONFIGURATION` | Configuration changes |
 
 ---
 
-## Vorkonfigurierte Logger-Services
+## Preconfigured logger services
 
-### Via Service-Tag
+### Via service tag
 
 ```yaml
 # config/services.yaml
@@ -60,7 +60,7 @@ services:
             - { name: monolog.logger, channel: contao.cron }
 ```
 
-Kanäle mit `contao.`-Präfix erhalten automatisch passende `ContaoContext`-Zuweisungen. Das Suffix bestimmt die Kontextaktion (z.B. `contao.cron` → `ContaoContext::CRON`).
+Channels with the `contao.` prefix automatically receive matching `ContaoContext` assignments. The suffix determines the context action (e.g. `contao.cron` → `ContaoContext::CRON`).
 
 ### Autowiring
 
@@ -73,7 +73,7 @@ public function __construct(
 ) {}
 ```
 
-### Explizite Service-Injektion
+### Explicit service injection
 
 ```yaml
 services:
@@ -85,33 +85,33 @@ services:
 
 ---
 
-## Verfügbare Contao-Kanäle
+## Available Contao channels
 
-| Kanal | Verwendung |
+| Channel | Usage |
 |-------|-----------|
-| `contao.access` | Zugriffsprotokolle |
-| `contao.configuration` | Konfiguration |
-| `contao.cron` | Cron-Jobs |
-| `contao.email` | E-Mail-Versand |
-| `contao.error` | Fehler |
-| `contao.files` | Datei-Operationen |
-| `contao.forms` | Formulare |
-| `contao.general` | Allgemein |
+| `contao.access` | Access logs |
+| `contao.configuration` | Configuration |
+| `contao.cron` | Cron jobs |
+| `contao.email` | E-mail dispatch |
+| `contao.error` | Errors |
+| `contao.files` | File operations |
+| `contao.forms` | Forms |
+| `contao.general` | General |
 
 ---
 
-## Erweiterbarkeit
+## Extensibility
 
-Monolog unterstützt Handler, Formatter und Processors. Referenz-Implementierungen: `ContaoTableProcessor`, `ContaoTableHandler`.
-
----
-
-## Testing-Strategie
-
-- Logger als optionale Abhängigkeit konfigurieren (vereinfacht Tests)
-- `Psr\Log\NullLogger` für Szenarien wo Logger-Aufrufe irrelevant sind
-- `Psr\Log\LoggerInterface` mocken zum Verifizieren von Logger-Interaktionen
+Monolog supports handlers, formatters and processors. Reference implementations: `ContaoTableProcessor`, `ContaoTableHandler`.
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/logging/*
+## Testing strategy
+
+- Configure the logger as an optional dependency (simplifies tests)
+- `Psr\Log\NullLogger` for scenarios where logger calls are irrelevant
+- Mock `Psr\Log\LoggerInterface` to verify logger interactions
+
+---
+
+*Source: https://docs.contao.org/5.x/dev/framework/logging/*

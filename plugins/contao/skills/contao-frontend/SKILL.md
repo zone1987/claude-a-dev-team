@@ -9,13 +9,13 @@ Everything rendered to a visitor. Content elements and frontend modules are both
 
 ## Reference map
 
-- **[ASSET-MANAGEMENT.md](ASSET-MANAGEMENT.md)**: Lies `ASSET-MANAGEMENT-DETAIL.md` für vollständige Details zu CSS/JS-Asset-Einbindung in Contao 5. [ASSET-MANAGEMENT-DETAIL](ASSET-MANAGEMENT-DETAIL.md).
-- **[CONTENT-ELEMENTS.md](CONTENT-ELEMENTS.md)**: Lies `CONTENT-ELEMENTS-DETAIL.md` für vollständige Implementierungsdetails aller Content-Element-Aspekte in C…. [CONTENT-ELEMENTS-DETAIL](CONTENT-ELEMENTS-DETAIL.md).
-- **[FRAGMENT-CONTROLLERS.md](FRAGMENT-CONTROLLERS.md)**: Lies `FRAGMENT-CONTROLLERS-DETAIL.md` für vollständige Erklärung des Fragment-Controller-Konzepts und Impleme…. [FRAGMENT-CONTROLLERS-DETAIL](FRAGMENT-CONTROLLERS-DETAIL.md).
-- **[IMAGE-PROCESSING.md](IMAGE-PROCESSING.md)**: Vollständige Referenz: `IMAGE-PROCESSING-CONTAO-IMAGE-PROCESSING.md`. [IMAGE-PROCESSING-CONTAO-IMAGE-PROCESSING](IMAGE-PROCESSING-CONTAO-IMAGE-PROCESSING.md).
-- **[INSERT-TAGS.md](INSERT-TAGS.md)**: Lies `INSERT-TAGS-DETAIL.md` für vollständige Implementierungsdetails zu eigenen Insert Tags in Contao 5. [INSERT-TAGS-DETAIL](INSERT-TAGS-DETAIL.md).
-- **[MODULES.md](MODULES.md)**: Lies `MODULES-DETAIL.md` für vollständige Implementierungsdetails zu Front-End-Modulen in Contao 5. [MODULES-DETAIL](MODULES-DETAIL.md).
-- **[TEMPLATES.md](TEMPLATES.md)**: Lies `TEMPLATES-DETAIL.md` für das vollständige Twig-Template-System von Contao 5 inklusive Architektur, Erst…. [TEMPLATES-DETAIL](TEMPLATES-DETAIL.md).
+- **[ASSET-MANAGEMENT.md](ASSET-MANAGEMENT.md)**: Read `ASSET-MANAGEMENT-DETAIL.md` for complete details on CSS/JS asset inclusion in Contao 5. [ASSET-MANAGEMENT-DETAIL](ASSET-MANAGEMENT-DETAIL.md).
+- **[CONTENT-ELEMENTS.md](CONTENT-ELEMENTS.md)**: Read `CONTENT-ELEMENTS-DETAIL.md` for complete implementation details of all content element aspects in C…. [CONTENT-ELEMENTS-DETAIL](CONTENT-ELEMENTS-DETAIL.md).
+- **[FRAGMENT-CONTROLLERS.md](FRAGMENT-CONTROLLERS.md)**: Read `FRAGMENT-CONTROLLERS-DETAIL.md` for a complete explanation of the fragment controller concept and imple…. [FRAGMENT-CONTROLLERS-DETAIL](FRAGMENT-CONTROLLERS-DETAIL.md).
+- **[IMAGE-PROCESSING.md](IMAGE-PROCESSING.md)**: Complete reference: `IMAGE-PROCESSING-CONTAO-IMAGE-PROCESSING.md`. [IMAGE-PROCESSING-CONTAO-IMAGE-PROCESSING](IMAGE-PROCESSING-CONTAO-IMAGE-PROCESSING.md).
+- **[INSERT-TAGS.md](INSERT-TAGS.md)**: Read `INSERT-TAGS-DETAIL.md` for complete implementation details on custom insert tags in Contao 5. [INSERT-TAGS-DETAIL](INSERT-TAGS-DETAIL.md).
+- **[MODULES.md](MODULES.md)**: Read `MODULES-DETAIL.md` for complete implementation details on frontend modules in Contao 5. [MODULES-DETAIL](MODULES-DETAIL.md).
+- **[TEMPLATES.md](TEMPLATES.md)**: Read `TEMPLATES-DETAIL.md` for the complete Twig template system of Contao 5 including architecture, crea…. [TEMPLATES-DETAIL](TEMPLATES-DETAIL.md).
 - **[TWIG-REFERENCE.md](TWIG-REFERENCE.md)** [TWIG-REFERENCE-TWIG-FUNCTIONS-FILTERS-GLOBALS-TAGS](TWIG-REFERENCE-TWIG-FUNCTIONS-FILTERS-GLOBALS-TAGS.md).
 - **[WIDGETS-REFERENCE.md](WIDGETS-REFERENCE.md)** [WIDGETS-REFERENCE-DETAIL](WIDGETS-REFERENCE-DETAIL.md).
 

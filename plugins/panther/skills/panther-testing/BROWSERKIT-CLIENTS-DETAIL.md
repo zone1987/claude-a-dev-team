@@ -1,36 +1,36 @@
-# Panther — BrowserKit-Clients als WebDriver-Alternative
+# Panther — BrowserKit clients as a WebDriver alternative
 
 ## Contents
 
-- [Uebersicht: Welchen Client waehlen?](#uebersicht-welchen-client-waehlen)
-- [HttpBrowserClient (Goutte-Ersatz)](#httpbrowserclient-goutte-ersatz)
+- [Overview: which client to choose?](#overview-which-client-to-choose)
+- [HttpBrowserClient (Goutte replacement)](#httpbrowserclient-goutte-replacement)
 - [Symfony KernelBrowser (createClient)](#symfony-kernelbrowser-createclient)
-- [Alle drei Clients kombinieren](#alle-drei-clients-kombinieren)
-- [PantherTestCaseTrait mit anderen TestCase-Klassen](#panthertestcasetrait-mit-anderen-testcase-klassen)
-- [Webserver wird automatisch geteilt](#webserver-wird-automatisch-geteilt)
-- [Performance-Abwaegung](#performance-abwaegung)
-- [Quellen](#quellen)
+- [Combining all three clients](#combining-all-three-clients)
+- [PantherTestCaseTrait with other TestCase classes](#panthertestcasetrait-with-other-testcase-classes)
+- [The web server is shared automatically](#the-web-server-is-shared-automatically)
+- [Performance trade-off](#performance-trade-off)
+- [Sources](#sources)
 
-## Uebersicht: Welchen Client waehlen?
+## Overview: which client to choose?
 
-| Client | Methode | JavaScript | Geschwindigkeit | Einsatz |
+| Client | Method | JavaScript | Speed | Usage |
 |---|---|---|---|---|
-| `PantherClient` (Chrome) | `createPantherClient()` | vollstaendig | langsam | E2E-Tests mit JS-Abhaengigkeiten |
-| `PantherClient` (Firefox) | `createPantherClient(['browser' => static::FIREFOX])` | vollstaendig | langsam | Cross-Browser-Tests |
-| `HttpBrowserClient` | `createHttpBrowserClient()` | keines | sehr schnell | Formulare, Links, API-Calls ohne JS |
-| Symfony `KernelBrowser` | `createClient()` | keines | am schnellsten | Symfony-Integrationstests in-process |
+| `PantherClient` (Chrome) | `createPantherClient()` | complete | slow | E2E tests with JS dependencies |
+| `PantherClient` (Firefox) | `createPantherClient(['browser' => static::FIREFOX])` | complete | slow | Cross-browser tests |
+| `HttpBrowserClient` | `createHttpBrowserClient()` | none | very fast | Forms, links, API calls without JS |
+| Symfony `KernelBrowser` | `createClient()` | none | fastest | Symfony integration tests in-process |
 
-Die ersten drei nutzen den PHP Built-In-Webserver; `createClient()` laeuft
-direkt im PHPUnit-Prozess ohne HTTP-Verbindung.
+The first three use the PHP built-in web server; `createClient()` runs
+directly in the PHPUnit process without an HTTP connection.
 
 ---
 
-## HttpBrowserClient (Goutte-Ersatz)
+## HttpBrowserClient (Goutte replacement)
 
-`HttpBrowserClient` basiert auf `symfony/http-client` und `symfony/browser-kit`.
-Er sendet echte HTTP-Requests, fuehrt aber kein JavaScript aus.
+`HttpBrowserClient` is based on `symfony/http-client` and `symfony/browser-kit`.
+It sends real HTTP requests, but does not execute any JavaScript.
 
-### Erstellung
+### Creation
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -39,7 +39,7 @@ class FormTest extends PantherTestCase
 {
     public function testContactForm(): void
     {
-        // Startet Built-In-Webserver wenn noch nicht laufend
+        // Starts the built-in web server if it is not already running
         $client = static::createHttpBrowserClient();
 
         $client->request('GET', '/contact');
@@ -55,12 +55,12 @@ class FormTest extends PantherTestCase
 }
 ```
 
-### Signature von createHttpBrowserClient()
+### Signature of createHttpBrowserClient()
 
 ```php
 protected static function createHttpBrowserClient(
-    array $options = [],       // Web-Server-Optionen (gleiche wie createPantherClient)
-    array $kernelOptions = []  // Symfony-Kernel-Optionen
+    array $options = [],       // web server options (same as createPantherClient)
+    array $kernelOptions = []  // Symfony kernel options
 ): HttpBrowserClient
 ```
 
@@ -70,9 +70,9 @@ protected static function createHttpBrowserClient(
 $client = static::createHttpBrowserClient(
     options: [
         'http_client_options' => [
-            // symfony/http-client Optionen:
+            // symfony/http-client options:
             'timeout'          => 30,
-            'verify_peer'      => false,    // SSL-Zertifikat nicht pruefen
+            'verify_peer'      => false,    // do not check the SSL certificate
             'verify_host'      => false,
             'headers'          => [
                 'X-Test-Mode' => 'true',
@@ -88,9 +88,9 @@ $client = static::createHttpBrowserClient(
 
 ## Symfony KernelBrowser (createClient)
 
-`createClient()` gibt einen `KernelBrowser` zurueck (aus `symfony/framework-bundle`).
-Er fuehrt keine HTTP-Verbindung auf — Requests werden direkt durch den Symfony-Kernel
-verarbeitet. Schnellste Option, keine Netzwerk-Latenz.
+`createClient()` returns a `KernelBrowser` (from `symfony/framework-bundle`).
+It does not open an HTTP connection — requests are processed directly by the Symfony
+kernel. Fastest option, no network latency.
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -100,7 +100,7 @@ class ApiTest extends PantherTestCase
     public function testApiEndpoint(): void
     {
         $client = static::createClient();
-        // Identisch zu WebTestCase::createClient()
+        // Identical to WebTestCase::createClient()
 
         $client->request('GET', '/api/products', [], [], [
             'HTTP_ACCEPT' => 'application/json',
@@ -113,13 +113,13 @@ class ApiTest extends PantherTestCase
 }
 ```
 
-Hinweis: `createClient()` ist nur verfuegbar wenn `PantherTestCase` von
-`KernelTestCase` erbt (was bei `Symfony\Component\Panther\PantherTestCase` der Fall
-ist, sofern `symfony/framework-bundle` installiert ist).
+Note: `createClient()` is only available when `PantherTestCase` extends
+`KernelTestCase` (which is the case for `Symfony\Component\Panther\PantherTestCase`,
+provided `symfony/framework-bundle` is installed).
 
 ---
 
-## Alle drei Clients kombinieren
+## Combining all three clients
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -128,19 +128,19 @@ class FullStackTest extends PantherTestCase
 {
     public function testFullFlow(): void
     {
-        // 1. Daten ueber KernelBrowser anlegen (am schnellsten)
+        // 1. Create data via KernelBrowser (fastest)
         $symfonyClient = static::createClient();
         $symfonyClient->request('POST', '/api/products', [], [], [
             'CONTENT_TYPE' => 'application/json',
         ], json_encode(['name' => 'Test-Produkt', 'price' => 9.99]));
         $this->assertResponseStatusCodeSame(201);
 
-        // 2. HTTP-Browser fuer Server-Side-Rendering-Check
+        // 2. HTTP browser for the server-side-rendering check
         $httpClient = static::createHttpBrowserClient();
         $httpClient->request('GET', '/products');
         $this->assertSelectorTextContains('.product-list', 'Test-Produkt');
 
-        // 3. Panther fuer JavaScript-basierte Interaktion
+        // 3. Panther for JavaScript-based interaction
         $pantherClient = static::createPantherClient();
         $pantherClient->request('GET', '/products');
         $pantherClient->clickLink('Test-Produkt');
@@ -152,10 +152,10 @@ class FullStackTest extends PantherTestCase
 
 ---
 
-## PantherTestCaseTrait mit anderen TestCase-Klassen
+## PantherTestCaseTrait with other TestCase classes
 
-Fuer Projekte die andere Basis-Klassen nutzen (z.B. `LiipFunctionalTestBundle`),
-gibt es den `PantherTestCaseTrait`:
+For projects that use other base classes (e.g. `LiipFunctionalTestBundle`),
+there is the `PantherTestCaseTrait`:
 
 ```php
 use Liip\FunctionalTestBundle\Test\WebTestCase;
@@ -167,12 +167,12 @@ class ProductTest extends WebTestCase
 
     public function testWithFixturesAndPanther(): void
     {
-        // Fixtures laden (LiipFunctionalTestBundle)
+        // Load fixtures (LiipFunctionalTestBundle)
         $this->loadFixtures([
             \App\DataFixtures\ProductFixtures::class,
         ]);
 
-        // Panther-Client nutzen
+        // Use the Panther client
         $client = self::createPantherClient();
         $client->request('GET', '/products');
 
@@ -181,7 +181,7 @@ class ProductTest extends WebTestCase
 }
 ```
 
-Weiteres Beispiel mit `ApiTestCase` (z.B. von `api-platform/core`):
+Another example with `ApiTestCase` (e.g. from `api-platform/core`):
 
 ```php
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
@@ -193,12 +193,12 @@ class ProductApiE2ETest extends ApiTestCase
 
     public function testApiAndBrowser(): void
     {
-        // API-Platform-Client fuer API-Tests
+        // API Platform client for API tests
         $apiClient = static::createClient();
         $response = $apiClient->request('GET', '/api/products');
         $this->assertResponseIsSuccessful();
 
-        // Panther fuer Frontend-Tests
+        // Panther for frontend tests
         $browser = self::createPantherClient();
         $browser->request('GET', '/products');
         $browser->waitFor('.product-grid');
@@ -209,22 +209,22 @@ class ProductApiE2ETest extends ApiTestCase
 
 ---
 
-## Webserver wird automatisch geteilt
+## The web server is shared automatically
 
-Alle drei `create*Client()`-Methoden nutzen denselben PHP Built-In-Webserver-Prozess.
-Der erste Aufruf startet ihn, weitere Aufrufe innerhalb derselben Test-Klasse
-nutzen die laufende Instanz.
+All three `create*Client()` methods use the same PHP built-in web server process.
+The first call starts it, further calls within the same test class
+use the running instance.
 
 ```php
 public function testSharedServer(): void
 {
-    // Startet Webserver auf Port 9080
+    // Starts the web server on port 9080
     $http = static::createHttpBrowserClient();
 
-    // Nutzt denselben Webserver (kein Neustart)
+    // Uses the same web server (no restart)
     $panther = static::createPantherClient();
 
-    // Beide sprechen http://127.0.0.1:9080 an
+    // Both talk to http://127.0.0.1:9080
     $http->request('GET', '/');
     $panther->request('GET', '/');
 }
@@ -232,22 +232,22 @@ public function testSharedServer(): void
 
 ---
 
-## Performance-Abwaegung
+## Performance trade-off
 
-| Kriterium | KernelBrowser | HttpBrowserClient | PantherClient |
+| Criterion | KernelBrowser | HttpBrowserClient | PantherClient |
 |---|---|---|---|
-| Startzeit | < 10ms | ~100ms (Server) | ~2-5s (Browser) |
-| Request-Zeit | < 1ms | ~5-50ms | ~100-500ms |
-| JavaScript | nein | nein | vollstaendig |
-| Echte Netzwerk-Stack | nein | ja | ja |
-| Echte Browser-Rendering | nein | nein | ja |
-| CSS-Animationen | nein | nein | ja |
-| Screenshots | nein | nein | ja |
-| Empfohlen fuer | Unit/Integrationstests | Formulare, Links, SSR | SPA, JavaScript, E2E |
+| Startup time | < 10ms | ~100ms (server) | ~2-5s (browser) |
+| Request time | < 1ms | ~5-50ms | ~100-500ms |
+| JavaScript | no | no | complete |
+| Real network stack | no | yes | yes |
+| Real browser rendering | no | no | yes |
+| CSS animations | no | no | yes |
+| Screenshots | no | no | yes |
+| Recommended for | Unit/integration tests | Forms, links, SSR | SPA, JavaScript, E2E |
 
 ---
 
-## Quellen
+## Sources
 
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther/blob/main/src/PantherTestCaseTrait.php

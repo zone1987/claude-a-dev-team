@@ -263,7 +263,7 @@ worker.on('console', msg => { /* ... */ });
 | Properties | 0     |
 | Events    | 0 (1 page event: 'console', 1 worker event: 'console') |
 
-**Conclusion:** `text()` and `type()` are enough for simple log monitoring.
+**Summary:** `text()` and `type()` are enough for simple log monitoring.
 `args()` is required when structured objects (arrays, objects) need to be
 inspected. `timestamp()` enables temporal correlation of browser
 messages with test steps.

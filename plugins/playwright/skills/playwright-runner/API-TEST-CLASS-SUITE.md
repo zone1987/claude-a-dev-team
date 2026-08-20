@@ -177,9 +177,9 @@ const tests = chromiumProject?.allTests() ?? [];
 | Methods | 4 (`allTests`, `entries`, `project`, `titlePath`) |
 | Properties | 6 (`location`, `parent`, `suites`, `tests`, `title`, `type`) |
 
-**Fazit:** `Suite` bildet die vollstaendige Baumstruktur aller Tests ab. `allTests()` liefert
-eine flache Liste fuer einfache Iteration; `entries()` und `suites` erlauben strukturtreue
-Traversal. Das `type`-Property ist der zuverlaessige Diskriminator fuer die vier Hierarchieebenen.
+**Summary:** `Suite` represents the complete tree structure of all tests. `allTests()` returns
+a flat list for simple iteration; `entries()` and `suites` allow structure-preserving
+traversal. The `type` property is the reliable discriminator for the four hierarchy levels.
 
 ---
 

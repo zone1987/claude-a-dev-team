@@ -1,228 +1,228 @@
-# Contao 5.x – Core-Erweiterungen
+# Contao 5.x – Core extensions
 
-Vollständige Referenz aus dem Contao 5.x Handbuch (deutsch).
-Paket: Bestandteil der "Vollständigen Installation".
+Complete reference from the Contao 5.x manual (German).
+Package: part of the "complete installation".
 
 ---
 
 ## Contents
 
-- [1. News/Blog-Erweiterung (`contao/news-bundle`)](#1-newsblog-erweiterung-contaonews-bundle)
-- [2. Kalender-Erweiterung (`contao/calendar-bundle`)](#2-kalender-erweiterung-contaocalendar-bundle)
-- [3. FAQ-Erweiterung (`contao/faq-bundle`)](#3-faq-erweiterung-contaofaq-bundle)
-- [4. Newsletter-Erweiterung (`contao/newsletter-bundle`)](#4-newsletter-erweiterung-contaonewsletter-bundle)
-- [5. Kommentare (Weiterleitung)](#5-kommentare-weiterleitung)
-- [6. Auflistung (Weiterleitung)](#6-auflistung-weiterleitung)
+- [1. News/blog extension (`contao/news-bundle`)](#1-newsblog-extension-contaonews-bundle)
+- [2. Calendar extension (`contao/calendar-bundle`)](#2-calendar-extension-contaocalendar-bundle)
+- [3. FAQ extension (`contao/faq-bundle`)](#3-faq-extension-contaofaq-bundle)
+- [4. Newsletter extension (`contao/newsletter-bundle`)](#4-newsletter-extension-contaonewsletter-bundle)
+- [5. Comments (cross-reference)](#5-comments-cross-reference)
+- [6. Auflistung / Listing (cross-reference)](#6-auflistung--listing-cross-reference)
 
-## 1. News/Blog-Erweiterung (`contao/news-bundle`)
+## 1. News/blog extension (`contao/news-bundle`)
 
-News-Einträge können im Backend verwaltet und mit Frontend-Modulen ausgegeben werden. Beiträge können mit Inhaltselementen beliebig strukturiert werden.
+News items can be managed in the backend and output with frontend modules. Items can be structured freely with content elements.
 
-### 1.1 Nachrichtenarchive
+### 1.1 Nachrichtenarchive (News archives)
 
-Archive organisieren News-Einträge nach Themen oder Sprachen.
+Archives organise news items by topic or language.
 
-**Titel und Weiterleitung:**
-- **Titel**: Backend-Anzeige
-- **Weiterleitungsseite**: Ziel für "Weiterlesen"-Links (sollte Nachrichtenleser-Modul enthalten)
+**Title and redirect:**
+- **Titel** (Title): backend display
+- **Weiterleitungsseite** (Redirect page): target for "Weiterlesen" (Read more) links (should contain a Nachrichtenleser module)
 
-**Zugriffsschutz:** Archiv schützen, erlaubte Mitgliedergruppen.
+**Access protection:** protect the archive, permitted Mitgliedergruppen (member groups).
 
-**Kommentare:**
-| Einstellung | Beschreibung |
+**Comments:**
+| Setting | Description |
 |-------------|-------------|
-| Kommentare aktivieren | Aktivierungsschalter |
-| Benachrichtigung an | Systemadmin, Artikelautor oder beide |
-| Sortierreihenfolge | Aufsteigend (älteste zuerst) oder absteigend |
-| Kommentare pro Seite | Pagination-Limit |
-| Moderieren | Freigabe vor Veröffentlichung |
-| BBCode erlauben | [b], [i], [u], [img], [code], [color], [quote], [url], [email] |
-| Login zum Kommentieren benötigt | Nur für registrierte Mitglieder |
-| Spam-Schutz deaktivieren | Für authentifizierte Nutzer |
+| Enable comments | Activation switch |
+| Notification to | System admin, article author or both |
+| Sort order | Ascending (oldest first) or descending |
+| Comments per page | Pagination limit |
+| Moderate | Approval before publication |
+| Allow BBCode | [b], [i], [u], [img], [code], [color], [quote], [url], [email] |
+| Login required to comment | Registered members only |
+| Disable spam protection | For authenticated users |
 
-**RSS-Feeds:** RSS 2.0, Atom oder JSON. Konfiguration über "News-Feed"-Seitentyp.
+**RSS feeds:** RSS 2.0, Atom or JSON. Configuration via the "News-Feed" page type.
 
-### 1.2 Nachrichtenbeiträge
+### 1.2 Nachrichtenbeiträge (News items)
 
-Einstellungen:
+Settings:
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| **Titel** | Artikelüberschrift |
-| **Beitrag hervorheben** | Hervorgehobener Status (über Archive hinweg) |
-| **Nachrichtenalias** | URL-Referenz |
-| **Autor** | Änderbar |
-| **Datum/Uhrzeit** | Veröffentlichungsdatum |
+| **Titel** (Title) | Article headline |
+| **Beitrag hervorheben** (Feature item) | Featured status (across archives) |
+| **Nachrichtenalias** (News alias) | URL reference |
+| **Autor** (Author) | Can be changed |
+| **Datum/Uhrzeit** (Date/time) | Publication date |
 
-**Weiterleitungsziel:**
-- Standard (Archiv-Standardseite)
-- Seite / Artikel / Individuelle URL
-- Link-Text, Kanonische URL (ab 5.3), neues Fenster
+**Redirect target:**
+- Default (the archive's default page)
+- Page / article / custom URL
+- Link text, canonical URL (as of 5.3), new window
 
-**Metadaten:**
-- Meta-Titel, Robots-Tag (index/follow/noindex/nofollow), Meta-Beschreibung (150–300 Zeichen)
-- Google-Suchergebnis-Vorschau
+**Metadata:**
+- Meta title, robots tag (index/follow/noindex/nofollow), meta description (150–300 characters)
+- Google search result preview
 
-**Inhalt:**
-- Unterüberschrift, Teasertext
-- Bild mit Ausrichtung (oben/unten/links/rechts), Skalierungsmodi, Lightbox, Alt-Text, Link
-- Anlagen (Dateien für RSS-Export und Download)
+**Content:**
+- Subheadline, teaser text
+- Image with alignment (top/bottom/left/right), scaling modes, lightbox, alt text, link
+- Enclosures (files for RSS export and download)
 
-**Experten-Einstellungen:**
-- CSS-Klasse
-- Kommentare deaktivieren
-- Suchindexierer (ab 5.6): Standard / Immer indizieren / Niemals indizieren
+**Expert settings:**
+- CSS class
+- Disable comments
+- Search indexer (as of 5.6): default / always index / never index
 
-**Veröffentlichung:** Manuell, Anzeigen ab, Anzeigen bis.
+**Publication:** manual, Anzeigen ab (Show from), Anzeigen bis (Show until).
 
-### 1.3 Frontend-Module
+### 1.3 Frontend modules
 
-#### Nachrichtenliste
-Zeigt Beiträge aus einem oder mehreren Archiven.
+#### Nachrichtenliste (News list)
+Shows items from one or more archives.
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Nachrichtenarchive | Quell-Archive |
-| Nachrichtenleser | Automatisch wechseln bei Beitrags-Auswahl |
-| Anzahl an Elementen | Limit |
-| Hervorgehobene Beiträge | Alle / Nur hervorgehobene / Hervorgehobene überspringen / Hervorgehobene zuerst |
-| Sortierreihenfolge | Datum auf-/absteigend, Überschrift auf-/absteigend, Zufällig |
-| Elemente überspringen | Offset |
-| Elemente pro Seite | Paginierung |
+| Nachrichtenarchive | Source archives |
+| Nachrichtenleser (News reader) | Switch automatically when an item is selected |
+| Number of items | Limit |
+| Featured items | All / featured only / skip featured / featured first |
+| Sort order | Date ascending/descending, headline ascending/descending, random |
+| Skip items | Offset |
+| Items per page | Pagination |
 
 **Templates:**
-- `news_full` – Vollständiger Artikel (für Nachrichtenleser empfohlen)
-- `news_latest` – Metadaten, Bild, Überschrift, Teaser, "Weiterlesen"
-- `news_short` – Metadaten, Überschrift, Teaser, "Weiterlesen"
-- `news_simple` – Datum und Überschrift
+- `news_full` – complete article (recommended for the Nachrichtenleser)
+- `news_latest` – metadata, image, headline, teaser, "Weiterlesen"
+- `news_short` – metadata, headline, teaser, "Weiterlesen"
+- `news_simple` – date and headline
 
-#### Nachrichtenleser
-Zeigt einzelne Beiträge via URL-Alias (Permalink).
-Beispiel: `www.example.com/nachricht/form-folgt-funktion.html`
-Gibt HTTP 404 zurück, wenn kein Artikel gefunden.
+#### Nachrichtenleser (News reader)
+Shows individual items via the URL alias (permalink).
+Example: `www.example.com/nachricht/form-folgt-funktion.html`
+Returns HTTP 404 if no article is found.
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| Nachrichtenarchive | Zu durchsuchende Archive |
-| Aktuelle URL für kanonische Links | Ab Contao 5.3 |
-| Übersichtsseite | Seite für "Zurück zur Übersicht"-Link |
+| Nachrichtenarchive | Archives to be searched |
+| Current URL for canonical links | As of Contao 5.3 |
+| Overview page | Page for the "Zurück zur Übersicht" (Back to the overview) link |
 
-#### Nachrichtenarchiv
-Listet alle Beiträge eines Zeitraums (Tag/Monat/Jahr).
-- Archivformat: Tag, Monat oder Jahr
-- "Kein Zeitraum ausgewählt": Modul ausblenden / Aktuellen Zeitraum anzeigen / Alle anzeigen
+#### Nachrichtenarchiv (News archive)
+Lists all items of a period (day/month/year).
+- Archive format: day, month or year
+- "No period selected": hide the module / show the current period / show all
 
-#### Nachrichtenarchiv-Menü
-Navigationsmenü nach Tag/Monat/Jahr.
-- Beitragsanzahl anzeigen, Sortierreihenfolge, Weiterleitungsseite
+#### Nachrichtenarchiv-Menü (News archive menu)
+Navigation menu by day/month/year.
+- Show item count, sort order, redirect page
 
-**Achtung:** Nur ein Lesermodul pro Seite erlaubt. Nachrichtenlisten nicht in Seitenlayouts einbauen (Auto-Switch vermeiden).
+**Caution:** only one reader module is allowed per page. Do not build news lists into Seitenlayouts (page layouts) (avoid the auto switch).
 
 ---
 
-## 2. Kalender-Erweiterung (`contao/calendar-bundle`)
+## 2. Calendar extension (`contao/calendar-bundle`)
 
-Verwaltet vergangene und zukünftige Veranstaltungen. Unterstützt Wiederholungstermine.
+Manages past and future events. Supports recurring dates.
 
-### 2.1 Terminarchive
+### 2.1 Terminarchive (Event archives)
 
-**Kommentare:** Identische Konfiguration wie bei News-Archiven.
+**Comments:** identical configuration to the news archives.
 
-**RSS-Feeds:**
-| Einstellung | Beschreibung |
+**RSS feeds:**
+| Setting | Description |
 |-------------|-------------|
-| Format | RSS 2.0 oder Atom |
-| Exporttyp | Teaser-Text oder vollständige Einträge |
-| Max. Beiträge | Typisch 25 |
-| Basis-URL | Für Multi-Domain-Setups |
+| Format | RSS 2.0 or Atom |
+| Export type | Teaser text or complete entries |
+| Max. items | Typically 25 |
+| Base URL | For multi-domain setups |
 
-### 2.2 Termine
+### 2.2 Termine (Events)
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| **Titel** | Veranstaltungsname |
-| **Zeit hinzufügen** | Aktiviert Zeitangaben |
-| **Start-/Endzeit** | Optional (ohne Ende: offenes Ende) |
-| **Start-/Enddatum** | Mehrtägige Events |
-| **Veranstaltungsort** | Name und Adresse |
-| **Teasertext** | Kurzfassung für Listen |
+| **Titel** (Title) | Event name |
+| **Zeit hinzufügen** (Add time) | Enables time information |
+| **Start-/Endzeit** (Start/end time) | Optional (without an end: open end) |
+| **Start-/Enddatum** (Start/end date) | Multi-day events |
+| **Veranstaltungsort** (Venue) | Name and address |
+| **Teasertext** (Teaser text) | Short version for lists |
 
-**Wiederholungen:**
-- Aktivierbar; Intervall: Tag(e), Woche(n), Monat(e), Jahr(e)
-- Wiederholungsanzahl; automatisch ausblenden nach N Wiederholungen
+**Recurrences:**
+- Can be enabled; interval: day(s), week(s), month(s), year(s)
+- Number of recurrences; hide automatically after N recurrences
 
-**Metadaten und Anlagen:** Analog zu News-Beiträgen.
+**Metadata and enclosures:** analogous to news items.
 
-### 2.3 Frontend-Module
+### 2.3 Frontend modules
 
-#### Kalender
-- Standard-Kalender (`cal_default`) – groß, klickbare Ereignisse
-- Mini-Kalender (`cal_mini`) – kompakt mit Tageslinks
-- Verkürzte Darstellung für Mehrtages-Events
-- Hervorgehobene Events: Alle / Nur hervorgehobene / Hervorgehobene überspringen
-- Weiterleitungsseite für Mini-Kalender
+#### Kalender (Calendar)
+- Standard calendar (`cal_default`) – large, clickable events
+- Mini calendar (`cal_mini`) – compact with day links
+- Shortened presentation for multi-day events
+- Featured events: all / featured only / skip featured
+- Redirect page for the mini calendar
 
-#### Eventleser
-Zeigt einzelne Events via Permalink.
-Beispiel: `www.example.com/event/european-design-awards.html`
+#### Eventleser (Event reader)
+Shows individual events via a permalink.
+Example: `www.example.com/event/european-design-awards.html`
 
-**Event-Templates:**
-- `event_full` – Vollständig (für Leser empfohlen)
-- `event_list` – Titel, Datum/Uhrzeit, Eventtext
-- `event_teaser` – Titel, Datum/Uhrzeit, Teaser, "Weiterlesen"
-- `event_upcoming` – Datum und Titel
+**Event templates:**
+- `event_full` – complete (recommended for the reader)
+- `event_list` – title, date/time, event text
+- `event_teaser` – title, date/time, teaser, "Weiterlesen"
+- `event_upcoming` – date and title
 
-#### Eventliste
-Listen nach Zeitraum; Anzeigeformat:
-- Eventliste (Zeitraum), Zukünftige Events (Vorschau), Vergangene Events (Rückblick)
+#### Eventliste (Event list)
+Lists by period; display format:
+- Event list (period), upcoming events (preview), past events (retrospective)
 
-#### Eventliste-Menü
-Navigation nach Tag/Monat/Jahr. Soll die gleichen Kalender verwenden wie die Eventliste.
+#### Eventliste-Menü (Event list menu)
+Navigation by day/month/year. Should use the same calendars as the Eventliste.
 
 ---
 
-## 3. FAQ-Erweiterung (`contao/faq-bundle`)
+## 3. FAQ extension (`contao/faq-bundle`)
 
-Verwaltet häufig gestellte Fragen in Kategorien.
+Manages frequently asked questions in categories.
 
-### 3.1 FAQ-Kategorien
+### 3.1 FAQ categories
 
-**Einstellungen:**
-- **Titel** (Backend)
-- **Überschrift** (Frontend)
-- **Weiterleitungsseite** (sollte FAQ-Leser-Modul enthalten)
-- **Kommentare**: Identische Konfiguration wie News
+**Settings:**
+- **Titel** (Title, backend)
+- **Überschrift** (Headline, frontend)
+- **Weiterleitungsseite** (Redirect page) (should contain an FAQ-Leser module)
+- **Comments**: identical configuration to news
 
-### 3.2 Fragen
+### 3.2 Questions
 
-| Feld | Beschreibung |
+| Field | Description |
 |------|-------------|
-| **Frage** | Fragestellung |
-| **FAQ-Alias** | URL-Referenz |
-| **Autor** | Änderbar |
-| **Antwort** | Rich-Text-Editor |
-| **Bild** | Optional, mit Skalierungsmodi und Ausrichtung |
-| **Anlagen** | Dateien für Download |
+| **Frage** (Question) | The question |
+| **FAQ-Alias** | URL reference |
+| **Autor** (Author) | Can be changed |
+| **Antwort** (Answer) | Rich text editor |
+| **Bild** (Image) | Optional, with scaling modes and alignment |
+| **Anlagen** (Enclosures) | Files for download |
 
-**Metadaten:** Meta-Titel, Robots-Tag, Meta-Beschreibung, Google-Vorschau.
+**Metadata:** meta title, robots tag, meta description, Google preview.
 
-### 3.3 Frontend-Module
+### 3.3 Frontend modules
 
-#### FAQ-Liste
-Zeigt Fragen aus einer oder mehreren Kategorien als Liste mit Links.
+#### FAQ-Liste (FAQ list)
+Shows questions from one or more categories as a list with links.
 ```html
 <div class="mod_faqlist block">
   <ul><li><a href="…">…</a></li></ul>
 </div>
 ```
 
-#### FAQ-Leser
-Zeigt die Antwort auf eine bestimmte Frage via Permalink.
-Beispiel: `example.com/frage/kann-ich-eigene-php-skripte-verwenden.html`
-Gibt HTTP 404 zurück, wenn nicht gefunden.
+#### FAQ-Leser (FAQ reader)
+Shows the answer to a particular question via a permalink.
+Example: `example.com/frage/kann-ich-eigene-php-skripte-verwenden.html`
+Returns HTTP 404 if not found.
 
-#### FAQ-Seite
-Zeigt alle Fragen und Antworten aus gewählten Kategorien auf einer einzigen Seite.
+#### FAQ-Seite (FAQ page)
+Shows all questions and answers from the selected categories on a single page.
 ```html
 <div class="mod_faqpage block">
   <article>
@@ -235,108 +235,108 @@ Zeigt alle Fragen und Antworten aus gewählten Kategorien auf einer einzigen Sei
 
 ---
 
-## 4. Newsletter-Erweiterung (`contao/newsletter-bundle`)
+## 4. Newsletter extension (`contao/newsletter-bundle`)
 
-Verwaltet Newsletter und Empfängerlisten. Versand direkt aus dem Backend. Double Opt-In integriert.
+Manages newsletters and recipient lists. Dispatch directly from the backend. Double opt-in integrated.
 
-### 4.1 Verteiler (Newsletter-Archiv)
+### 4.1 Verteiler (Distribution list / newsletter archive)
 
-**Einstellungen:**
-| Feld | Beschreibung |
+**Settings:**
+| Field | Description |
 |------|-------------|
-| **Titel** | Backend-Referenz |
-| **Weiterleitungsseite** | Ziel für Frontend-Modul-Links |
+| **Titel** (Title) | Backend reference |
+| **Weiterleitungsseite** (Redirect page) | Target for frontend module links |
 
-**E-Mail-Templates (ab 5.3):**
-- `mail_default` – HTML 3.2 für breite Kompatibilität
-- `mail_responsive` – Modernes responsives Design
+**E-mail templates (as of 5.3):**
+- `mail_default` – HTML 3.2 for broad compatibility
+- `mail_responsive` – modern responsive design
 
-Template-Variablen: `$this->charset`, `$this->title`, `$this->body`, `$this->css`
+Template variables: `$this->charset`, `$this->title`, `$this->body`, `$this->css`
 
-**Absender-Konfiguration:**
-- Absender-E-Mail (Pflichtfeld)
-- Absendername
-- Mailer-Transport (für Multi-Domain-Setups)
+**Sender configuration:**
+- Sender e-mail (mandatory field)
+- Sender name
+- Mailer transport (for multi-domain setups)
 
-### 4.2 Newsletter-Inhalte
+### 4.2 Newsletter content
 
-| Einstellung | Beschreibung |
+| Setting | Description |
 |-------------|-------------|
-| **Betreff** | E-Mail-Betreffzeile |
-| **Newsletter-Alias** | URL-freundlicher Bezeichner |
-| **HTML-Inhalt** | Rich-Text mit Preheader-Text (5.3+, 40–130 Zeichen) |
-| **Text-Inhalt** | Plaintext-Fallback |
-| **Anlagen** | Dateien für Versand |
+| **Betreff** (Subject) | E-mail subject line |
+| **Newsletter-Alias** | URL-friendly identifier |
+| **HTML-Inhalt** (HTML content) | Rich text with preheader text (5.3+, 40–130 characters) |
+| **Text-Inhalt** (Text content) | Plaintext fallback |
+| **Anlagen** (Enclosures) | Files for dispatch |
 
-**Personalisierung mit Simple Tokens:**
+**Personalisation with Simple Tokens:**
 ```
 ##firstname## ##lastname##
 {if gender=="male"}Herr {elseif gender=="female"}Frau {else}Damen und Herren{endif}
 ```
 
-**Experten-Einstellungen:**
-- Text-Only-Modus
-- Externe Bilder (verhindert Einbettung in HTML-Version)
+**Expert settings:**
+- Text-only mode
+- External images (prevents embedding in the HTML version)
 
-### 4.3 Abonnenten-Verwaltung
+### 4.3 Subscriber management
 
-- Datensätze enthalten nur E-Mail und Aktivierungsstatus (Datenschutz)
-- Double Opt-In: Bestätigungs-E-Mail vor Aktivierung
-- Manuelle Aktivierung im Backend möglich
-- CSV-Import: Trennzeichen Komma, Semikolon, Tab, Zeilenumbruch
+- Records contain only the e-mail address and activation status (data protection)
+- Double opt-in: confirmation e-mail before activation
+- Manual activation possible in the backend
+- CSV import: separators comma, semicolon, tab, line break
 
-### 4.4 Versandprozess
+### 4.4 Dispatch process
 
-**Server-Limit-Konfiguration:**
-- E-Mails pro Zyklus
-- Wartezeit zwischen Zyklen (Sekunden)
-- Versatz (Offset) für unterbrochenen Versand
+**Server limit configuration:**
+- E-mails per cycle
+- Waiting time between cycles (seconds)
+- Offset for an interrupted dispatch
 
-Beispiel: 100 E-Mails/Minute → 10 E-Mails alle 6 Sekunden
+Example: 100 e-mails/minute → 10 e-mails every 6 seconds
 
-**Unterbrochenen Versand fortsetzen:**
-1. System-Log prüfen (Kategorie: `NEWSLETTER_X`)
-2. Anzahl gesendeter E-Mails notieren
-3. Diesen Wert als Offset eingeben
+**Resuming an interrupted dispatch:**
+1. Check the system log (category: `NEWSLETTER_X`)
+2. Note the number of e-mails sent
+3. Enter this value as the offset
 
-### 4.5 Frontend-Module
+### 4.5 Frontend modules
 
-#### Abonnieren
-- Verteiler auswählen, Verteilermenü ausblenden, Spam-Schutz
-- Eigener Text (DSGVO-Hinweise)
-- Weiterleitungsseite
-- Bestätigungs-E-Mail mit `##channel##`, `##domain##`, `##link##`
+#### Abonnieren (Subscribe)
+- Select the Verteiler, hide the distribution list menu, spam protection
+- Custom text (GDPR notices)
+- Redirect page
+- Confirmation e-mail with `##channel##`, `##domain##`, `##link##`
 
-#### Kündigen
-- Verteiler, Menü ausblenden, Spam-Schutz
-- Weiterleitungsseite
-- Bestätigungs-E-Mail mit `##channel##`, `##domain##`
+#### Kündigen (Unsubscribe)
+- Verteiler, hide the menu, spam protection
+- Redirect page
+- Confirmation e-mail with `##channel##`, `##domain##`
 
-#### Newsletterliste
-Zeigt alle gesendeten Newsletter (nach Datum sortiert, neueste zuerst).
+#### Newsletterliste (Newsletter list)
+Shows all sent newsletters (sorted by date, newest first).
 
-#### Newsletterleser
-Einzelnen Newsletter via Permalink.
-Beispiel: `www.example.com/newsletterleser/newsletteralias.html`
-Gibt HTTP 404 zurück, wenn nicht gefunden.
-
----
-
-## 5. Kommentare (Weiterleitung)
-
-Die Kommentarfunktion ist als Include-Inhaltselement eingebunden und nicht als eigene Core-Extension eigenständig. Kommentareinstellungen werden pro Archiv (News, Kalender, FAQ) oder direkt im Inhaltselement "Kommentare" konfiguriert.
-
-Einstellungen: Sortierung, Paginierung, Moderation, BBCode, Login-Pflicht, Spam-Schutz.
+#### Newsletterleser (Newsletter reader)
+An individual newsletter via a permalink.
+Example: `www.example.com/newsletterleser/newsletteralias.html`
+Returns HTTP 404 if not found.
 
 ---
 
-## 6. Auflistung (Weiterleitung)
+## 5. Comments (cross-reference)
 
-Das Auflistungs-Modul befindet sich unter Layout > Modulverwaltung > Anwendungen und ist kein separates Core-Bundle, sondern Teil des Core. Siehe Layout-Referenz für Details.
+The comment function is embedded as an include content element and is not a standalone core extension in its own right. Comment settings are configured per archive (news, calendar, FAQ) or directly in the "Kommentare" (Comments) content element.
+
+Settings: sorting, pagination, moderation, BBCode, login requirement, spam protection.
 
 ---
 
-Quellen:
+## 6. Auflistung / Listing (cross-reference)
+
+The Auflistung (Listing) module is located under Layout > Modulverwaltung (Module management) > Anwendungen (Applications) and is not a separate core bundle but part of the core. See the layout reference for details.
+
+---
+
+Sources:
 - https://docs.contao.org/5.x/manual/de/core-erweiterungen/
 - https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/
 - https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/nachrichtenverwaltung/

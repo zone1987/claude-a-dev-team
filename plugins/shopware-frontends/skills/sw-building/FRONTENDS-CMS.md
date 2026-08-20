@@ -1,7 +1,7 @@
 # Shopware Frontends — CMS (@shopware/cms-base)
 
-Rendert die aus der Store-API geladene CMS-Page (`useCms`) — Sections → Blocks → Elemente — über generische
-Resolver-Komponenten, die anhand des Typs die passende Vue-Komponente wählen.
+Renders the CMS page loaded from the Store API (`useCms`) — sections → blocks → elements — through generic
+resolver components that pick the matching Vue component based on the type.
 
 ```vue
 <script setup>
@@ -12,9 +12,9 @@ const { page } = useCms();
 </template>
 ```
 
-Komponenten-Auflösung: `CmsGenericElement`/`CmsGenericBlock` mappen `type` (z.B. `text`, `image`, `product-slider`)
-auf `CmsElement<Type>`/`CmsBlock<Type>`. **Eigene/überschriebene** CMS-Komponenten registrieren (z.B. für ein
-Plugin-Element aus `shopware-cms` → `sw-cms-element`), damit Custom-Elemente headless gerendert werden.
-`@shopware/cms-base` liefert eine Tailwind-Default-Implementierung als Basis.
+Component resolution: `CmsGenericElement`/`CmsGenericBlock` map `type` (e.g. `text`, `image`, `product-slider`)
+onto `CmsElement<Type>`/`CmsBlock<Type>`. Register **custom/overridden** CMS components (e.g. for a
+plugin element from `shopware-cms` → `sw-cms-element`) so custom elements are rendered headlessly.
+`@shopware/cms-base` ships a Tailwind default implementation as a base.
 
-→ Vollständige Referenz: [FRONTENDS-CMS-CMS-REFERENCE.md](FRONTENDS-CMS-CMS-REFERENCE.md)
+→ Full reference: [FRONTENDS-CMS-CMS-REFERENCE.md](FRONTENDS-CMS-CMS-REFERENCE.md)

@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Utils & -Filter
+# Shopware 6 — Admin utils & filters
 
-Die Admin bietet viele Helfer am `Shopware`-Objekt — vor eigenem Code prüfen, ob es schon existiert.
+The admin offers many helpers on the `Shopware` object — before writing your own code, check whether one already exists.
 
 ## Utils — `Shopware.Utils`
 `createId()` (UUID), `get(obj, 'a.b', default)`, `object.*` (deepCopy, merge, cloneDeep), `array.*`,
@@ -11,7 +11,7 @@ const id = Shopware.Utils.createId();
 const name = Shopware.Utils.get(product, 'manufacturer.name', '—');
 ```
 
-## Filter — `Shopware.Filter.getByName(...)` / im Template
+## Filters — `Shopware.Filter.getByName(...)` / in the template
 `date`, `currency`, `fileSize`, `truncate`, `striphtml`, `asset`, `mediaName`, `unicodeUri`.
 
 ```twig
@@ -20,7 +20,7 @@ const name = Shopware.Utils.get(product, 'manufacturer.name', '—');
 {{ media.fileSize | fileSize }}
 ```
 
-## Weitere
+## Further
 `Shopware.Classes.ApiService`/`ShopwareError`, `Shopware.Defaults` (LIVE_VERSION, systemLanguageId…),
-`Shopware.Context.api`, `Shopware.Feature.isActive()`. Welche im Projekt real verfügbar/registriert sind:
-Katalog via `sw-admin-catalog` / `/sw-admin-map`.
+`Shopware.Context.api`, `Shopware.Feature.isActive()`. Which of these are actually available/registered in the project:
+catalog via `sw-admin-catalog` / `/sw-admin-map`.

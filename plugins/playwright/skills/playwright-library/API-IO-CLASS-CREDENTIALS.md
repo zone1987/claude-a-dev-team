@@ -161,7 +161,7 @@ await browser.close();
 | Properties | 4 (username, password, origin, send) |
 | Events    | 0      |
 
-**Conclusion:** `HTTPCredentials` is a pure configuration interface for
+**Summary:** `HTTPCredentials` is a pure configuration interface for
 HTTP basic auth — not a class with instance methods. Configuration happens
 once when creating the BrowserContext. For advanced authentication
 (OAuth, cookie-based, session storage) Playwright offers the `storageState`

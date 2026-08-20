@@ -9,10 +9,10 @@ A skill for the shadcn-vue `Carousel` component — built on Embla Carousel and 
 
 ## References
 
-- [installation.md](`CAROUSEL-INSTALLATION.md`) — CLI and manual installation
-- [source.md](`CAROUSEL-SOURCE.md`) — Complete source files
-- [api.md](`CAROUSEL-API.md`) — Props, emits, slot props, composable API
-- [examples.md](`CAROUSEL-EXAMPLES.md`) — Usage demos and patterns
+- [CAROUSEL-INSTALLATION.md](CAROUSEL-INSTALLATION.md) — CLI and manual installation
+- [CAROUSEL-SOURCE.md](CAROUSEL-SOURCE.md) — Complete source files
+- [CAROUSEL-API.md](CAROUSEL-API.md) — Props, emits, slot props, composable API
+- [CAROUSEL-EXAMPLES.md](CAROUSEL-EXAMPLES.md) — Usage demos and patterns
 
 ## Quick Start
 

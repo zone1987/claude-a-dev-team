@@ -6,10 +6,10 @@ Composable data table built on
 
 ## References
 
-- [installation.md](`DATA-TABLE-INSTALLATION.md`) — Table component + dep
-- [source.md](`DATA-TABLE-SOURCE.md`) — Full incremental DataTable builds
+- [DATA-TABLE-INSTALLATION.md](DATA-TABLE-INSTALLATION.md) — Table component + dep
+- [DATA-TABLE-SOURCE.md](DATA-TABLE-SOURCE.md) — Full incremental DataTable builds
   (Basic, Pagination, Sorting, Filtering, Visibility, Row Selection,
   Expanding) + Reusable components (ColumnHeader, Pagination, Toggle)
-- [api.md](`DATA-TABLE-API.md`) — TanStack Table API, valueUpdater,
+- [DATA-TABLE-API.md](DATA-TABLE-API.md) — TanStack Table API, valueUpdater,
   column definition patterns
-- [examples.md](`DATA-TABLE-EXAMPLES.md`) — Complete Payment table demo
+- [DATA-TABLE-EXAMPLES.md](DATA-TABLE-EXAMPLES.md) — Complete Payment table demo

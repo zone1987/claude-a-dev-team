@@ -5,7 +5,7 @@ header, title, description, action, content, and footer.
 
 ## References
 
-- [installation.md](`CARD-INSTALLATION.md`) — CLI and manual setup
-- [source.md](`CARD-SOURCE.md`) — Complete component source code
-- [api.md](`CARD-API.md`) — Sub-components and props
-- [examples.md](`CARD-EXAMPLES.md`) — All usage examples
+- [CARD-INSTALLATION.md](CARD-INSTALLATION.md) — CLI and manual setup
+- [CARD-SOURCE.md](CARD-SOURCE.md) — Complete component source code
+- [CARD-API.md](CARD-API.md) — Sub-components and props
+- [CARD-EXAMPLES.md](CARD-EXAMPLES.md) — All usage examples

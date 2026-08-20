@@ -279,7 +279,7 @@ await page.screenshot({ path: 'dashboard-june.png' });
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** `setFixedTime()` is the fastest option for simple date tests.
+**Summary:** `setFixedTime()` is the fastest option for simple date tests.
 `install()` + `pauseAt()` + `resume()` enables precise control over
 timer behaviour. `runFor()` vs. `fastForward()` differ in how they
 handle recursive timers — prefer `runFor()` for polling logic.

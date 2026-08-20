@@ -2,9 +2,9 @@
 
 ---
 
-## Teil 1: Async Messaging (Symfony Messenger ab 5.1)
+## Part 1: Async messaging (Symfony Messenger, 5.1 and later)
 
-### Standard-Transport-Konfiguration
+### Default transport configuration
 
 ```yaml
 framework:
@@ -23,17 +23,17 @@ framework:
             contao_prio_low:   doctrine://default?table_name=tl_message_queue&queue_name=prio_low&auto_setup=false
 ```
 
-Nachrichten werden in der Tabelle `tl_message_queue` gespeichert – verwaltet von `DoctrineSchemaListener` via `contao:migrate`.
+Messages are stored in the `tl_message_queue` table – managed by the `DoctrineSchemaListener` via `contao:migrate`.
 
 ---
 
-### WebWorker-Fallback
+### WebWorker fallback
 
-Verarbeitet Nachrichten während `kernel.terminate` wenn kein dedizierter Worker aktiv ist:
+Processes messages during `kernel.terminate` when no dedicated worker is active:
 
-- Smart Detection via `WorkerStartedEvent` / `WorkerRunningEvent` (10-Minuten-Puffer)
-- Zeitlimit via `max_execution_time`
-- Deferred Processing nach Response-Auslieferung (`fastcgi_finish_request()`)
+- Smart detection via `WorkerStartedEvent` / `WorkerRunningEvent` (10-minute buffer)
+- Time limit via `max_execution_time`
+- Deferred processing after the response has been delivered (`fastcgi_finish_request()`)
 
 ```yaml
 contao:
@@ -43,10 +43,10 @@ contao:
                 - contao_prio_high
                 - contao_prio_normal
                 - contao_prio_low
-            grace_period: 'PT5M'   # Erkennungsfenster anpassen
+            grace_period: 'PT5M'   # Adjust the detection window
 ```
 
-**WebWorker deaktivieren:**
+**Disabling the WebWorker:**
 ```yaml
 contao:
     messenger:
@@ -56,9 +56,9 @@ contao:
 
 ---
 
-### Eingebauter Cron-Job-Prozessmanager (Shared Hosting)
+### Built-in cron job process manager (shared hosting)
 
-Startet minutenlange `messenger:consume`-Worker automatisch mit Autoscaling:
+Automatically starts minute-long `messenger:consume` workers with autoscaling:
 
 ```yaml
 contao:
@@ -75,9 +75,9 @@ contao:
                     max: 10
 ```
 
-Voraussetzung: Konfigurierter Minuten-Cronjob für `contao:cron`.
+Prerequisite: a configured minutely cron job for `contao:cron`.
 
-**Worker deaktivieren:**
+**Disabling the workers:**
 ```yaml
 contao:
     messenger:
@@ -86,9 +86,9 @@ contao:
 
 ---
 
-### Message-Routing
+### Message routing
 
-#### Contao >= 5.7 – AsMessage-Attribut (empfohlen)
+#### Contao >= 5.7 – the AsMessage attribute (recommended)
 
 ```php
 use Symfony\Component\Messenger\Attribute\AsMessage;
@@ -100,7 +100,7 @@ class CreateAsyncZipFileMessage
 }
 ```
 
-#### Prioritäts-Interfaces (alle Versionen)
+#### Priority interfaces (all versions)
 
 ```php
 use Contao\CoreBundle\Messenger\Message\HighPriorityMessageInterface;
@@ -122,10 +122,10 @@ class MyMessage implements HighPriorityMessageInterface
 
 ---
 
-### Vollständiges Implementierungsbeispiel
+### Complete implementation example
 
 ```php
-// 1. Message-Klasse
+// 1. Message class
 namespace App\Messenger;
 
 class CreateAsyncZipFileMessage
@@ -133,7 +133,7 @@ class CreateAsyncZipFileMessage
     public function __construct(public array $fileIds) {}
 }
 
-// 2. Message-Handler
+// 2. Message handler
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
@@ -142,21 +142,21 @@ class CreateAsyncZipFileMessageHandler
     public function __invoke(CreateAsyncZipFileMessage $message): void
     {
         foreach ($message->fileIds as $fileId) {
-            // Asynchrone Verarbeitungslogik
+            // Asynchronous processing logic
         }
     }
 }
 ```
 
-Referenz-Implementierung: `SearchIndexMessage`, `SearchIndexMessageHandler`, `SearchIndexListener` im Contao Core.
+Reference implementation: `SearchIndexMessage`, `SearchIndexMessageHandler`, `SearchIndexListener` in the Contao core.
 
 ---
 
-## Teil 2: Jobs-Framework (ab Contao 5.7, experimentell)
+## Part 2: Jobs framework (Contao 5.7 and later, experimental)
 
-> **Experimentell** – nicht durch BC-Promise abgedeckt.
+> **Experimental** – not covered by the BC promise.
 
-### Einstiegspunkt
+### Entry point
 
 ```php
 use Contao\CoreBundle\Job\Jobs;
@@ -166,37 +166,37 @@ public function __construct(private Jobs $jobs) {}
 
 ---
 
-### Jobs erstellen
+### Creating jobs
 
 ```php
-// Aktueller Nutzer oder System-Job
+// Current user or system job
 $job = $this->jobs->createJob('data_export');
 
-// Öffentlicher System-Job
+// Public system job
 $job = $this->jobs->createSystemJob('cache_clear', public: true);
 
-// Nutzerspezifischer Job
+// User-specific job
 $job = $this->jobs->createUserJob('import_task', $userId);
 ```
 
 ---
 
-### Job-Eigenschaften
+### Job properties
 
 ```php
 $job->getUuid();        // string
 $job->getType();        // string
-$job->getStatus();      // Status-Enum (new, pending, completed, …)
-$job->getOwner();       // Owner-Objekt
+$job->getStatus();      // Status enum (new, pending, completed, …)
+$job->getOwner();       // Owner object
 $job->getCreatedAt();   // DateTimeImmutable
 $job->isPublic();       // bool
 ```
 
-> **Wichtig:** Jobs sind immutable – Methoden geben modifizierte Kopien zurück.
+> **Important:** Jobs are immutable – the methods return modified copies.
 
 ---
 
-### Status-Übergänge
+### Status transitions
 
 ```php
 $job = $job->markPending();
@@ -209,25 +209,25 @@ $job = $job->markFailedBecauseRequiresCLI();
 
 ---
 
-### Fortschritt verwalten
+### Managing progress
 
 ```php
-// Manueller Prozentsatz (0–100)
+// Manual percentage (0–100)
 $job = $job->withProgress(42.5);
 
-// Aus Mengen berechnen
+// Calculated from amounts
 $job = $job->withProgressFromAmounts(50, 200);   // = 25%
 
-// Unbekannte Gesamtzahl (logarithmisch, max. 95%)
+// Unknown total (logarithmic, max. 95%)
 $job = $job->withProgressFromAmounts(10, null);
 
-// Abschließen (setzt 100% automatisch)
+// Finish (sets 100% automatically)
 $job = $job->markCompleted();
 ```
 
 ---
 
-### Jobs abrufen und speichern
+### Retrieving and persisting jobs
 
 ```php
 $jobs = $this->jobs->findMyNewOrPending();
@@ -238,13 +238,13 @@ $this->jobs->persist($job);
 
 ---
 
-### Anhänge hinzufügen
+### Adding attachments
 
 ```php
-// Text-Anhang
+// Text attachment
 $this->jobs->addAttachment($job, 'report.txt', "Content\n");
 
-// Stream-Anhang (für große Dateien)
+// Stream attachment (for large files)
 $stream = fopen('/path/to/file.zip', 'rb');
 $this->jobs->addAttachment($job, 'export.zip', $stream);
 fclose($stream);
@@ -252,7 +252,7 @@ fclose($stream);
 
 ---
 
-### Vollständiges Handler-Beispiel
+### Complete handler example
 
 ```php
 #[AsMessageHandler]
@@ -272,7 +272,7 @@ class MyMessageHandler
         $this->jobs->persist($job);
 
         foreach ($this->connection->fetchAllAssociative('SELECT * FROM foo') as $i => $item) {
-            // Aufwändige Verarbeitung
+            // Expensive processing
             $job = $job->withProgressFromAmounts($i + 1);
             $this->jobs->persist($job);
         }
@@ -286,6 +286,6 @@ class MyMessageHandler
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://docs.contao.org/5.x/dev/framework/async-messaging/*
 - *https://docs.contao.org/5.x/dev/framework/jobs/*

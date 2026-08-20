@@ -1,29 +1,29 @@
-# Contao 5 — Back-End-Module
+# Contao 5 — Backend modules
 
 ## Contents
 
-- [Übersicht](#übersicht)
-- [Registrierung](#registrierung)
-- [Konfigurationsoptionen](#konfigurationsoptionen)
-- [tables (wichtigste Option)](#tables-wichtigste-option)
-- [Assets laden](#assets-laden)
+- [Overview](#overview)
+- [Registration](#registration)
+- [Configuration options](#configuration-options)
+- [tables (most important option)](#tables-most-important-option)
+- [Loading assets](#loading-assets)
 - [Custom Callback](#custom-callback)
 - [Custom Action Keys](#custom-action-keys)
 - [Translations](#translations)
-- [DCA für Backend-Module](#dca-für-backend-module)
-- [Verwandte Skills](#verwandte-skills)
+- [DCA for backend modules](#dca-for-backend-modules)
+- [Related skills](#related-skills)
 
-## Übersicht
+## Overview
 
-Back-End-Module sind Navigationseinträge in der Contao-Verwaltungsoberfläche.
-Das Framework gruppiert sie in Kategorien (z.B. "Content", "Layout") mit
-einzelnen Modulen darunter.
+Backend modules are navigation entries in the Contao administration interface.
+The framework groups them into categories (e.g. "Content", "Layout") with
+individual modules underneath.
 
 ---
 
-## Registrierung
+## Registration
 
-Module werden in `contao/config/config.php` über `$GLOBALS['BE_MOD']` registriert:
+Modules are registered in `contao/config/config.php` via `$GLOBALS['BE_MOD']`:
 
 ```php
 // contao/config/config.php
@@ -32,35 +32,35 @@ $GLOBALS['BE_MOD']['content']['my_module'] = [
 ];
 ```
 
-### Kategorien
+### Categories
 
-Standard-Kategorien in `BE_MOD`:
-- `design` — Design/Layout-Einstellungen
-- `modules` — Frontend-Module
-- `content` — Inhaltsverwaltung
-- `accounts` — Benutzer/Mitglieder
-- `system` — Systemeinstellungen
+Standard categories in `BE_MOD`:
+- `design` — design/layout settings
+- `modules` — frontend modules
+- `content` — content management
+- `accounts` — users/members
+- `system` — system settings
 
 ---
 
-## Konfigurationsoptionen
+## Configuration options
 
-| Schlüssel | Beschreibung |
+| Key | Description |
 |-----------|-------------|
-| `tables` | Datenbanktabellen, die das Modul verwaltet |
-| `stylesheet` | Zusätzliche CSS-Dateien |
-| `javascript` | Zusätzliche JavaScript-Dateien |
-| `callback` | Custom-Output-Rendering-Klasse |
-| `disablePermissionChecks` | Boolean: Berechtigungsprüfung deaktivieren |
-| `hideInNavigation` | Boolean: Aus Hauptnavigation ausblenden |
-| `<custom-key>` | Custom-Callback-Aktionen |
+| `tables` | Database tables managed by the module |
+| `stylesheet` | Additional CSS files |
+| `javascript` | Additional JavaScript files |
+| `callback` | Custom output rendering class |
+| `disablePermissionChecks` | Boolean: disable permission checks |
+| `hideInNavigation` | Boolean: hide from the main navigation |
+| `<custom-key>` | Custom callback actions |
 
 ---
 
-## tables (wichtigste Option)
+## tables (most important option)
 
-Der `tables`-Schlüssel definiert, welche Datenbanktabellen das Modul verwaltet.
-Mehrere Tabellen ermöglichen Parent-Child-Beziehungen:
+The `tables` key defines which database tables the module manages.
+Multiple tables enable parent-child relationships:
 
 ```php
 $GLOBALS['BE_MOD']['content']['parts'] = [
@@ -68,13 +68,13 @@ $GLOBALS['BE_MOD']['content']['parts'] = [
 ];
 ```
 
-Hierbei ist `tl_vendor` die Eltern-Tabelle, `tl_parts` die Kind-Tabelle.
+Here `tl_vendor` is the parent table and `tl_parts` the child table.
 
 ---
 
-## Assets laden
+## Loading assets
 
-CSS und JavaScript im Backend global einbinden:
+Including CSS and JavaScript globally in the backend:
 
 ```php
 $GLOBALS['BE_MOD']['content']['my_module'] = [
@@ -88,7 +88,7 @@ $GLOBALS['BE_MOD']['content']['my_module'] = [
 
 ## Custom Callback
 
-Eigenes Rendering über eine Callback-Klasse:
+Custom rendering via a callback class:
 
 ```php
 $GLOBALS['BE_MOD']['content']['my_module'] = [
@@ -109,14 +109,14 @@ class BackendModule
 }
 ```
 
-**Empfehlung:** Für komplexe Funktionalität eigene Backend-Routen verwenden
-(siehe `contao-backend-routes`-Skill).
+**Recommendation:** for complex functionality, use custom backend routes
+(see the `contao-backend-routes` skill).
 
 ---
 
 ## Custom Action Keys
 
-Eigene Aktionen per Query-Parameter (z.B. `&key=exportTheme`):
+Custom actions via query parameter (e.g. `&key=exportTheme`):
 
 ```php
 $GLOBALS['BE_MOD']['content']['my_module'] = [
@@ -125,13 +125,13 @@ $GLOBALS['BE_MOD']['content']['my_module'] = [
 ];
 ```
 
-URL-Aufruf: `contao?do=my_module&key=exportCsv`
+URL call: `contao?do=my_module&key=exportCsv`
 
 ---
 
 ## Translations
 
-Sprachdateien in `contao/languages/<sprache>/modules.xlf`:
+Language files in `contao/languages/<language>/modules.xlf`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -149,7 +149,7 @@ Sprachdateien in `contao/languages/<sprache>/modules.xlf`:
 </xliff>
 ```
 
-Als PHP-Array:
+As a PHP array:
 ```php
 // contao/languages/en/modules.php
 $GLOBALS['TL_LANG']['MOD']['my_module'] = ['My Module', 'Manage entries of my module'];
@@ -157,11 +157,11 @@ $GLOBALS['TL_LANG']['MOD']['my_module'] = ['My Module', 'Manage entries of my mo
 
 ---
 
-## DCA für Backend-Module
+## DCA for backend modules
 
-Vollständiges Beispiel mit zwei verbundenen Tabellen (Vendor/Parts):
+Complete example with two related tables (vendor/parts):
 
-### tl_vendor (Eltern-Tabelle)
+### tl_vendor (parent table)
 
 ```php
 // contao/dca/tl_vendor.php
@@ -212,12 +212,12 @@ $GLOBALS['TL_DCA']['tl_vendor'] = [
 
 ---
 
-## Verwandte Skills
+## Related skills
 
-- `contao-backend-routes` — Eigene Backend-Controller und Menüeinträge
-- `contao-dca-reference` — Vollständige DCA-Referenz (existierender Skill)
+- `contao-backend-routes` — custom backend controllers and menu entries
+- `contao-dca-reference` — complete DCA reference (existing skill)
 
 ---
 
-*Quelle: https://docs.contao.org/5.x/dev/framework/back-end-modules/*  
+*Source: https://docs.contao.org/5.x/dev/framework/back-end-modules/*  
 *https://docs.contao.org/5.x/dev/guides/dca/*

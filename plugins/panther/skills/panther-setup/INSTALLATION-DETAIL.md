@@ -1,51 +1,51 @@
-# Symfony Panther — Vollstandige Installations-Referenz
+# Symfony Panther — complete installation reference
 
 ## Contents
 
-- [1. Composer-Installation](#1-composer-installation)
-- [2. WebDriver-Installation](#2-webdriver-installation)
-- [3. PHPUnit-Extension registrieren](#3-phpunit-extension-registrieren)
-- [4. Vollstandige Umgebungsvariablen](#4-vollstandige-umgebungsvariablen)
-- [5. Docker-Setup](#5-docker-setup)
-- [6. CI/CD-Integration](#6-cicd-integration)
-- [7. Asset-Loading-Probleme losen](#7-asset-loading-probleme-losen)
-- [8. SSL-Zertifikat-Fehler umgehen](#8-ssl-zertifikat-fehler-umgehen)
+- [1. Composer installation](#1-composer-installation)
+- [2. WebDriver installation](#2-webdriver-installation)
+- [3. Registering the PHPUnit extension](#3-registering-the-phpunit-extension)
+- [4. Complete environment variables](#4-complete-environment-variables)
+- [5. Docker setup](#5-docker-setup)
+- [6. CI/CD integration](#6-cicd-integration)
+- [7. Solving asset loading problems](#7-solving-asset-loading-problems)
+- [8. Working around SSL certificate errors](#8-working-around-ssl-certificate-errors)
 
-## 1. Composer-Installation
+## 1. Composer installation
 
 ```bash
 composer require --dev symfony/panther
 ```
 
-Mindestanforderungen:
+Minimum requirements:
 - PHP 8.1+
-- Symfony 5.4 / 6.x / 7.x (Panther ist framework-agnostisch, auch ohne Symfony nutzbar)
+- Symfony 5.4 / 6.x / 7.x (Panther is framework-agnostic and can also be used without Symfony)
 - PHPUnit 9.5+ / 10+ / 11+
 
-## 2. WebDriver-Installation
+## 2. WebDriver installation
 
-### Option A: BDI (empfohlen — automatische Erkennung)
+### Option A: BDI (recommended — automatic detection)
 
 ```bash
 composer require --dev dbrekelmans/bdi
 vendor/bin/bdi detect drivers
 ```
 
-BDI erkennt den installierten Browser und ladt den passenden Treiber in `./drivers/` herunter.
+BDI detects the installed browser and downloads the matching driver into `./drivers/`.
 
-### Option B: Manuelle Installation
+### Option B: Manual installation
 
 **ChromeDriver:**
-1. Chrome-Version prufen: `google-chrome --version`
-2. Passenden ChromeDriver von https://googlechromelabs.github.io/chrome-for-testing/ laden
-3. In `./drivers/chromedriver` oder `PATH` ablegen, ausfuhrbar machen: `chmod +x drivers/chromedriver`
+1. Check the Chrome version: `google-chrome --version`
+2. Download the matching ChromeDriver from https://googlechromelabs.github.io/chrome-for-testing/
+3. Place it in `./drivers/chromedriver` or in `PATH` and make it executable: `chmod +x drivers/chromedriver`
 
 **GeckoDriver (Firefox):**
-1. Firefox-Version prufen: `firefox --version`
-2. GeckoDriver von https://github.com/mozilla/geckodriver/releases laden
-3. In `./drivers/geckodriver` oder `PATH` ablegen
+1. Check the Firefox version: `firefox --version`
+2. Download GeckoDriver from https://github.com/mozilla/geckodriver/releases
+3. Place it in `./drivers/geckodriver` or in `PATH`
 
-### Option C: System-Paketmanager
+### Option C: System package manager
 
 ```bash
 # Ubuntu/Debian
@@ -58,13 +58,13 @@ brew install chromedriver geckodriver
 choco install chromedriver selenium-gecko-driver
 ```
 
-## 3. PHPUnit-Extension registrieren
+## 3. Registering the PHPUnit extension
 
-Die Extension ist **Pflicht** fur:
-- Automatische Screenshots bei Testfehlern
-- Interaktiver Debug-Modus (`PANTHER_NO_HEADLESS=1 bin/phpunit --debug`)
-- Web-Server-Persistenz zwischen Tests (Performance)
-- Bessere Fehlerausgaben
+The extension is **mandatory** for:
+- Automatic screenshots on test failures
+- Interactive debug mode (`PANTHER_NO_HEADLESS=1 bin/phpunit --debug`)
+- Web server persistence between tests (performance)
+- Better error output
 
 ### PHPUnit 10+ (`phpunit.dist.xml`)
 
@@ -92,52 +92,52 @@ Die Extension ist **Pflicht** fur:
 </phpunit>
 ```
 
-## 4. Vollstandige Umgebungsvariablen
+## 4. Complete environment variables
 
-### Allgemein
+### General
 
-| Variable                          | Typ      | Default     | Beschreibung                                        |
+| Variable                          | Type     | Default     | Description                                         |
 |-----------------------------------|----------|-------------|-----------------------------------------------------|
-| `PANTHER_NO_HEADLESS`             | Flag     | —           | Browser-Fenster sichtbar anzeigen (Debug)           |
-| `PANTHER_WEB_SERVER_DIR`          | string   | `./public/` | Document-Root des integrierten PHP-Servers (muss mit `./` beginnen) |
-| `PANTHER_WEB_SERVER_PORT`         | int      | `9080`      | Port des integrierten PHP-Built-in-Servers          |
-| `PANTHER_WEB_SERVER_ROUTER`       | string   | —           | Router-Script-Pfad fur den PHP-Built-in-Server      |
-| `PANTHER_EXTERNAL_BASE_URI`       | string   | —           | Externe Server-URI (kein integrierter Server)       |
-| `PANTHER_APP_ENV`                 | string   | —           | Uberschreibt `APP_ENV` im Testserver                |
-| `PANTHER_ERROR_SCREENSHOT_DIR`    | string   | —           | Verzeichnis fur automatische Fehler-Screenshots     |
-| `PANTHER_ERROR_SCREENSHOT_ATTACH` | Flag     | —           | Screenshots an JUnit-XML-Output anhangen            |
-| `PANTHER_DEVTOOLS`                | string   | `enabled`   | Browser-DevTools umschalten                         |
-| `PANTHER_NO_REDUCED_MOTION`       | Flag     | —           | Nicht-essentielle Animationen aktivieren            |
+| `PANTHER_NO_HEADLESS`             | Flag     | —           | Show the browser window (debugging)                 |
+| `PANTHER_WEB_SERVER_DIR`          | string   | `./public/` | Document root of the integrated PHP server (must start with `./`) |
+| `PANTHER_WEB_SERVER_PORT`         | int      | `9080`      | Port of the integrated PHP built-in server          |
+| `PANTHER_WEB_SERVER_ROUTER`       | string   | —           | Router script path for the PHP built-in server      |
+| `PANTHER_EXTERNAL_BASE_URI`       | string   | —           | External server URI (no integrated server)          |
+| `PANTHER_APP_ENV`                 | string   | —           | Overrides `APP_ENV` in the test server              |
+| `PANTHER_ERROR_SCREENSHOT_DIR`    | string   | —           | Directory for automatic error screenshots           |
+| `PANTHER_ERROR_SCREENSHOT_ATTACH` | Flag     | —           | Attach screenshots to the JUnit XML output          |
+| `PANTHER_DEVTOOLS`                | string   | `enabled`   | Toggle the browser DevTools                         |
+| `PANTHER_NO_REDUCED_MOTION`       | Flag     | —           | Enable non-essential animations                     |
 
-### Chrome-spezifisch
+### Chrome-specific
 
-| Variable                    | Beschreibung                                           |
+| Variable                    | Description                                            |
 |-----------------------------|--------------------------------------------------------|
-| `PANTHER_NO_SANDBOX`        | `--no-sandbox` Flag (notwendig in Docker/CI)           |
-| `PANTHER_CHROME_ARGUMENTS`  | Zusatzliche Chrome-Argumente, z. B. `'--proxy-server=http://...'` |
-| `PANTHER_CHROME_BINARY`     | Pfad zur Chrome-Binary                                 |
+| `PANTHER_NO_SANDBOX`        | `--no-sandbox` flag (necessary in Docker/CI)           |
+| `PANTHER_CHROME_ARGUMENTS`  | Additional Chrome arguments, e.g. `'--proxy-server=http://...'` |
+| `PANTHER_CHROME_BINARY`     | Path to the Chrome binary                              |
 
-### Firefox-spezifisch
+### Firefox-specific
 
-| Variable                      | Beschreibung                          |
+| Variable                      | Description                           |
 |-------------------------------|---------------------------------------|
-| `PANTHER_FIREFOX_ARGUMENTS`   | Zusatzliche Firefox-Argumente         |
-| `PANTHER_FIREFOX_BINARY`      | Pfad zur Firefox-Binary               |
+| `PANTHER_FIREFOX_ARGUMENTS`   | Additional Firefox arguments          |
+| `PANTHER_FIREFOX_BINARY`      | Path to the Firefox binary            |
 
-## 5. Docker-Setup
+## 5. Docker setup
 
-### Minimales Dockerfile (Chrome + optional Firefox)
+### Minimal Dockerfile (Chrome + optionally Firefox)
 
 ```dockerfile
 FROM php:8.3-cli-alpine
 
-# Chrome und ChromeDriver
+# Chrome and ChromeDriver
 ENV PANTHER_NO_SANDBOX=1
 ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
 
 RUN apk add --no-cache chromium chromium-chromedriver
 
-# Optional: Firefox und GeckoDriver
+# Optional: Firefox and GeckoDriver
 ARG GECKODRIVER_VERSION=0.35.0
 RUN apk add --no-cache firefox libzip-dev && \
     docker-php-ext-install zip && \
@@ -155,7 +155,7 @@ docker build . -t myproject
 docker run -it -v "$PWD":/srv/app -w /srv/app myproject vendor/bin/phpunit
 ```
 
-## 6. CI/CD-Integration
+## 6. CI/CD integration
 
 ### GitHub Actions
 
@@ -194,18 +194,18 @@ test:
     - vendor/bin/phpunit
 ```
 
-## 7. Asset-Loading-Probleme losen
+## 7. Solving asset loading problems
 
 ### Problem
-Assets laden nicht mit PHP-Built-in-Server (besonders AssetMapper in dev).
+Assets do not load with the PHP built-in server (especially AssetMapper in dev).
 
-### Losung 1: Assets kompilieren
+### Solution 1: Compile the assets
 
 ```bash
 php bin/console asset-map:compile
 ```
 
-### Losung 2: Eigenes Router-Script
+### Solution 2: A custom router script
 
 `tests/router.php`:
 ```php
@@ -230,7 +230,7 @@ require $script;
 </phpunit>
 ```
 
-## 8. SSL-Zertifikat-Fehler umgehen
+## 8. Working around SSL certificate errors
 
 ### Chrome
 
@@ -250,6 +250,6 @@ $client = Client::createFirefoxClient(
 
 ---
 
-Quellen:
+Sources:
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://github.com/symfony/panther

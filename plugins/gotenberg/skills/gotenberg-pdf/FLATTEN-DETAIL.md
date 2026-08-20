@@ -1,4 +1,4 @@
-# Gotenberg — PDF Flatten (Vollreferenz)
+# Gotenberg — PDF Flatten (Full Reference)
 
 ## Route
 
@@ -6,48 +6,48 @@
 POST /forms/pdfengines/flatten
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
+| Header | Type | Required | Default | Description |
 |--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe; Erweiterung wird automatisch angehaengt |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Output-Filename` | string | No | random UUID | File name of the output; the extension is appended automatically |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Form-Felder
+## Form Fields
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
+| Field | Type | Required | Default | Description |
 |------|-----|---------|----------|--------------|
-| `files` | file[] | Ja | — | PDF-Dateien, die geflattenet werden sollen |
+| `files` | file[] | Yes | — | PDF files to be flattened |
 
 ---
 
-## Funktion
+## Function
 
-Flatten wandelt alle interaktiven Formularfelder (Texteingaben, Checkboxen, Dropdowns, Radiobuttons, Signaturen etc.) in statischen Seiteninhalt um. Das Ergebnis ist eine nicht mehr bearbeitbare PDF, die visuell identisch mit dem ausgefuellten Formular ist.
+Flatten converts all interactive form fields (text inputs, checkboxes, dropdowns, radio buttons, signatures, etc.) into static page content. The result is a no-longer-editable PDF that is visually identical to the filled-in form.
 
-**Typische Anwendungsfaelle:**
-- Ausgefuellte Formulare archivieren
-- Signierte PDFs fuer Weitergabe fixieren
-- PDFs fuer PDF/A-Konvertierung vorbereiten
-- Inhaltsschutz vor unerwuenschter Bearbeitung
+**Typical use cases:**
+- Archiving filled-in forms
+- Fixing signed PDFs for distribution
+- Preparing PDFs for PDF/A conversion
+- Protecting content against unwanted editing
 
 ---
 
-## Antwort-Codes
+## Response Codes
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | variabel | Geflattente PDF; mehrere Inputs → ZIP-Archiv |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
-| `503` | `text/plain; charset=UTF-8` | Maximale Bearbeitungsdauer ueberschritten |
+| `200` | variable | Flattened PDF; multiple inputs → ZIP archive |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
+| `503` | `text/plain; charset=UTF-8` | Maximum processing time exceeded |
 
-### Antwort-Header bei Erfolg
+### Response Headers on Success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -58,9 +58,9 @@ Gotenberg-Trace: {trace}
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### Einzelne PDF flatten
+### Flatten a single PDF
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/flatten \
@@ -68,7 +68,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/flatten \
   -o geflattenet.pdf
 ```
 
-### Mehrere PDFs auf einmal flatten (→ ZIP)
+### Flatten multiple PDFs at once (→ ZIP)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/flatten \
@@ -77,7 +77,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/flatten \
   -o geflattenet.zip
 ```
 
-### Mit eigenem Ausgabenamen
+### With a custom output name
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/flatten \
@@ -88,12 +88,12 @@ curl --request POST http://localhost:3000/forms/pdfengines/flatten \
 
 ---
 
-## Hinweis zum Unterschied Flatten vs. Encrypt
+## Note on the Difference Between Flatten and Encrypt
 
-- **Flatten** macht Formularfelder zu statischem Inhalt — visuell gleich, nicht mehr bearbeitbar
-- **Encrypt** schuetzt die gesamte PDF mit Passwort und Berechtigungen — Felder koennen aber noch sichtbar sein
-- Fuer maximalen Schutz: zuerst Flatten, dann Encrypt
+- **Flatten** turns form fields into static content — visually the same, no longer editable
+- **Encrypt** protects the entire PDF with a password and permissions — but fields may still be visible
+- For maximum protection: Flatten first, then Encrypt
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/flatten-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/flatten-pdfs

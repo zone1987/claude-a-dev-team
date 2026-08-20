@@ -1,28 +1,28 @@
-# Gotenberg — System-Endpunkte (Vollreferenz)
+# Gotenberg — System Endpoints (Full Reference)
 
 ## Contents
 
-- [Uebersicht aller System-Routen](#uebersicht-aller-system-routen)
-- [1. GET /health — Gesundheitspruefung](#1-get-health-gesundheitspruefung)
-- [2. HEAD /health — Leichtgewichtige Gesundheitspruefung](#2-head-health-leichtgewichtige-gesundheitspruefung)
-- [3. GET /version — Versionsinformation](#3-get-version-versionsinformation)
-- [4. GET /prometheus/metrics — Prometheus-Metriken](#4-get-prometheusmetrics-prometheus-metriken)
-- [5. GET /debug — Debug-Konfiguration](#5-get-debug-debug-konfiguration)
-- [Telemetrie-Steuerung fuer System-Routen](#telemetrie-steuerung-fuer-system-routen)
+- [Overview of all system routes](#overview-of-all-system-routes)
+- [1. GET /health — Health check](#1-get-health-health-check)
+- [2. HEAD /health — Lightweight health check](#2-head-health-lightweight-health-check)
+- [3. GET /version — Version information](#3-get-version-version-information)
+- [4. GET /prometheus/metrics — Prometheus metrics](#4-get-prometheusmetrics-prometheus-metrics)
+- [5. GET /debug — Debug configuration](#5-get-debug-debug-configuration)
+- [Telemetry control for system routes](#telemetry-control-for-system-routes)
 
-## Uebersicht aller System-Routen
+## Overview of all system routes
 
-| Methode | Route | Beschreibung |
+| Method | Route | Description |
 |---------|-------|-------------|
-| `GET` | `/health` | Gesundheitsstatus mit Detail-JSON |
-| `HEAD` | `/health` | Gesundheitsstatus (nur Status-Code, kein Body) |
-| `GET` | `/version` | Laufende Gotenberg-Version |
-| `GET` | `/prometheus/metrics` | Prometheus-Metriken (deprecated ab v8.29.0) |
-| `GET` | `/debug` | Runtime-Konfiguration + Module + Abhaengigkeiten (nur wenn aktiviert) |
+| `GET` | `/health` | Health status with detail JSON |
+| `HEAD` | `/health` | Health status (status code only, no body) |
+| `GET` | `/version` | Running Gotenberg version |
+| `GET` | `/prometheus/metrics` | Prometheus metrics (deprecated as of v8.29.0) |
+| `GET` | `/debug` | Runtime configuration + modules + dependencies (only when enabled) |
 
 ---
 
-## 1. GET /health — Gesundheitspruefung
+## 1. GET /health — Health check
 
 ### Route
 
@@ -30,20 +30,20 @@
 GET /health
 ```
 
-### Request-Header
+### Request headers
 
-| Header | Typ | Pflicht | Beschreibung |
+| Header | Type | Required | Description |
 |--------|-----|---------|--------------|
-| `Gotenberg-Trace` | string | Nein | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Trace` | string | No | Custom request ID for log identification |
 
-### Antwort-Codes
+### Response codes
 
-| Code | Beschreibung |
+| Code | Description |
 |------|-------------|
-| `200` | Dienst ist gesund |
-| `503` | Dienst ist nicht gesund |
+| `200` | Service is healthy |
+| `503` | Service is not healthy |
 
-### Antwort-Body (200 — gesund)
+### Response body (200 — healthy)
 
 ```json
 {
@@ -61,7 +61,7 @@ GET /health
 }
 ```
 
-### Antwort-Body (503 — nicht gesund)
+### Response body (503 — not healthy)
 
 ```json
 {
@@ -74,21 +74,21 @@ GET /health
     "libreoffice": {
       "status": "down",
       "timestamp": "2021-07-01T08:05:14.603364Z",
-      "error": "LibreOffice ist nicht verfuegbar"
+      "error": "LibreOffice is not available"
     }
   }
 }
 ```
 
-### Antwort-Struktur pro Modul
+### Response structure per module
 
-| Feld | Typ | Beschreibung |
+| Field | Type | Description |
 |------|-----|--------------|
-| `status` | `"up"` / `"down"` | Modulgesundheit |
-| `timestamp` | ISO 8601 | Zeitstempel der Pruefung |
-| `error` | string (optional) | Fehlermeldung wenn status=down |
+| `status` | `"up"` / `"down"` | Module health |
+| `timestamp` | ISO 8601 | Timestamp of the check |
+| `error` | string (optional) | Error message when status=down |
 
-### curl-Beispiel
+### curl example
 
 ```bash
 curl --request GET http://localhost:3000/health
@@ -96,7 +96,7 @@ curl --request GET http://localhost:3000/health
 
 ---
 
-## 2. HEAD /health — Leichtgewichtige Gesundheitspruefung
+## 2. HEAD /health — Lightweight health check
 
 ### Route
 
@@ -104,24 +104,24 @@ curl --request GET http://localhost:3000/health
 HEAD /health
 ```
 
-### Beschreibung
+### Description
 
-Identisch mit `GET /health`, aber ohne Response-Body. Ideal fuer haeufiges Polling (z.B. Kubernetes Liveness-Probe, Load-Balancer-Checks), da weniger Bandwidth verbraucht wird.
+Identical to `GET /health`, but without a response body. Ideal for frequent polling (e.g. Kubernetes liveness probe, load balancer checks), since less bandwidth is consumed.
 
-### Antwort-Codes
+### Response codes
 
-| Code | Beschreibung |
+| Code | Description |
 |------|-------------|
-| `200` | Dienst ist gesund |
-| `503` | Dienst ist nicht gesund |
+| `200` | Service is healthy |
+| `503` | Service is not healthy |
 
-### curl-Beispiel
+### curl example
 
 ```bash
 curl --request HEAD http://localhost:3000/health
 ```
 
-### Kubernetes Liveness-Probe (Beispiel)
+### Kubernetes liveness probe (example)
 
 ```yaml
 livenessProbe:
@@ -133,11 +133,11 @@ livenessProbe:
   failureThreshold: 3
 ```
 
-**Ab v8.33.0:** Toleriert eine transiente Fehler-Probe, cacht kurz erfolgreiche Ergebnisse — verhindert, dass Probe-Spam gesunde Instanzen zum Neustart zwingt.
+**As of v8.33.0:** Tolerates a transient failing probe and briefly caches successful results — prevents probe spam from forcing healthy instances to restart.
 
 ---
 
-## 3. GET /version — Versionsinformation
+## 3. GET /version — Version information
 
 ### Route
 
@@ -145,35 +145,35 @@ livenessProbe:
 GET /version
 ```
 
-### Request-Header
+### Request headers
 
-| Header | Typ | Pflicht | Beschreibung |
+| Header | Type | Required | Description |
 |--------|-----|---------|--------------|
-| `Gotenberg-Trace` | string | Nein | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Trace` | string | No | Custom request ID for log identification |
 
-### Antwort
+### Response
 
 | Code | Content-Type | Body |
 |------|-------------|------|
-| `200` | `text/plain; charset=UTF-8` | Versionsstring, z.B. `Gotenberg 8.0.0` |
+| `200` | `text/plain; charset=UTF-8` | Version string, e.g. `Gotenberg 8.0.0` |
 
-### curl-Beispiel
+### curl example
 
 ```bash
 curl --request GET http://localhost:3000/version
 ```
 
-### Antwort-Beispiel
+### Response example
 
 ```
 Gotenberg 8.0.0
 ```
 
-Hinweis: Custom-Builds koennen nicht-standardmaessige Versionen anzeigen (z.B. `8.0.0-live-demo-snapshot`).
+Note: Custom builds may report non-standard versions (e.g. `8.0.0-live-demo-snapshot`).
 
 ---
 
-## 4. GET /prometheus/metrics — Prometheus-Metriken
+## 4. GET /prometheus/metrics — Prometheus metrics
 
 ### Route
 
@@ -181,36 +181,36 @@ Hinweis: Custom-Builds koennen nicht-standardmaessige Versionen anzeigen (z.B. `
 GET /prometheus/metrics
 ```
 
-**Deprecated ab v8.29.0** — Migration zu OpenTelemetry empfohlen (siehe `gotenberg-telemetry`).
+**Deprecated as of v8.29.0** — migration to OpenTelemetry is recommended (see `gotenberg-telemetry`).
 
-### Request-Header
+### Request headers
 
-| Header | Typ | Pflicht | Beschreibung |
+| Header | Type | Required | Description |
 |--------|-----|---------|--------------|
-| `Gotenberg-Trace` | string | Nein | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Trace` | string | No | Custom request ID for log identification |
 
-### Antwort
+### Response
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | Prometheus-Textformat | Metriken im Prometheus-Exposition-Format |
+| `200` | Prometheus text format | Metrics in the Prometheus exposition format |
 
-### curl-Beispiel
+### curl example
 
 ```bash
 curl --request GET http://localhost:3000/prometheus/metrics
 ```
 
-### Konfiguration
+### Configuration
 
-Der Prometheus-Endpunkt wird durch das Prometheus-Modul aktiviert. Konfigurierbar ueber Gotenberg-Startflags.
+The Prometheus endpoint is enabled by the Prometheus module. Configurable via Gotenberg start flags.
 
-Telemetrie-Route-Disable (Standard `true`):
-- `PROMETHEUS_DISABLE_ROUTE_TELEMETRY=true` — Prometheus-Metriken-Route selbst erzeugt keine Telemetrie
+Telemetry route disable (default `true`):
+- `PROMETHEUS_DISABLE_ROUTE_TELEMETRY=true` — the Prometheus metrics route itself generates no telemetry
 
 ---
 
-## 5. GET /debug — Debug-Konfiguration
+## 5. GET /debug — Debug configuration
 
 ### Route
 
@@ -218,47 +218,47 @@ Telemetrie-Route-Disable (Standard `true`):
 GET /debug
 ```
 
-### Aktivierung
+### Enabling
 
-**Muss explizit aktiviert werden:**
+**Must be enabled explicitly:**
 
 ```bash
-# Als Startflag
+# As a start flag
 --api-enable-debug-route
 
-# Als Umgebungsvariable
+# As an environment variable
 API_ENABLE_DEBUG_ROUTE=true
 ```
 
-### Beschreibung
+### Description
 
-Gibt zurueck:
-- Runtime-Konfiguration (alle aktiven Flags und deren Werte)
-- Aktive Module
-- Abhaengigkeits-Versionen (Chromium, LibreOffice, ExifTool, etc.)
+Returns:
+- Runtime configuration (all active flags and their values)
+- Active modules
+- Dependency versions (Chromium, LibreOffice, ExifTool, etc.)
 
-Nuetzlich fuer Deployment-Verifikation und Debugging von Konfigurationsproblemen.
+Useful for deployment verification and for debugging configuration problems.
 
-### Request-Header
+### Request headers
 
-| Header | Typ | Pflicht | Beschreibung |
+| Header | Type | Required | Description |
 |--------|-----|---------|--------------|
-| `Gotenberg-Trace` | string | Nein | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Trace` | string | No | Custom request ID for log identification |
 
-### Antwort
+### Response
 
-| Code | Beschreibung |
+| Code | Description |
 |------|-------------|
-| `200` | Debug-Informationen (JSON-aehnliches Format) |
+| `200` | Debug information (JSON-like format) |
 
-### curl-Beispiel
+### curl example
 
 ```bash
 API_ENABLE_DEBUG_ROUTE=true
 curl --request GET http://localhost:3000/debug
 ```
 
-### Docker-Compose-Aktivierung
+### Docker Compose activation
 
 ```yaml
 services:
@@ -268,15 +268,15 @@ services:
       API_ENABLE_DEBUG_ROUTE: "true"
 ```
 
-**Sicherheitshinweis:** Debug-Route in Produktion deaktiviert lassen! Sie kann interne Konfigurationsdetails, Versionen und Passwort-Hints preisgeben.
+**Security note:** Keep the debug route disabled in production! It can reveal internal configuration details, versions and password hints.
 
 ---
 
-## Telemetrie-Steuerung fuer System-Routen
+## Telemetry control for system routes
 
-High-frequency-Routen erzeugen standardmaessig keine Telemetrie:
+High-frequency routes generate no telemetry by default:
 
-| Route | Env-Variable | Standard |
+| Route | Env variable | Default |
 |-------|-------------|---------|
 | Root `/` | `API_DISABLE_ROOT_ROUTE_TELEMETRY` | `true` |
 | `/debug` | `API_DISABLE_DEBUG_ROUTE_TELEMETRY` | `true` |
@@ -286,7 +286,7 @@ High-frequency-Routen erzeugen standardmaessig keine Telemetrie:
 
 ---
 
-Quellen:
+Sources:
 - https://gotenberg.dev/docs/system/get-health-check
 - https://gotenberg.dev/docs/system/head-health-check
 - https://gotenberg.dev/docs/system/version

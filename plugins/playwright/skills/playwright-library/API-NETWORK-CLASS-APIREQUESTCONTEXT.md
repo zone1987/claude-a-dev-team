@@ -436,7 +436,7 @@ test('create and delete user', async ({ request }) => {
 | Properties | 1 |
 | Events | 0 |
 
-**Conclusion:** `APIRequestContext` is the complete HTTP client for Playwright API tests. `post()` with `data` (JSON), `form` (URL-encoded) or `multipart` (file upload) covers all common content types. `storageState()` is the key mechanism for transferring auth state between API setup and browser tests.
+**Summary:** `APIRequestContext` is the complete HTTP client for Playwright API tests. `post()` with `data` (JSON), `form` (URL-encoded) or `multipart` (file upload) covers all common content types. `storageState()` is the key mechanism for transferring auth state between API setup and browser tests.
 
 ---
 

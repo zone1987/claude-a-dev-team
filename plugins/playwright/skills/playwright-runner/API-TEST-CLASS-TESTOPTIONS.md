@@ -412,10 +412,10 @@ viewport: { width: 1920, height: 1080 }
 | Direct option properties | 35 |
 | Properties with sub-fields | 10 |
 
-**Fazit:** `TestOptions` steuert den gesamten Browser- und Kontext-Lebenszyklus pro Test.
-Die haeufigsten Einstellungen sind `baseURL`, `trace`, `screenshot`, `storageState` und
-`viewport`. `launchOptions` und `contextOptions` bieten Escape-Hatch-Zugang zu allen
-nativen Playwright-Optionen.
+**Summary:** `TestOptions` controls the entire browser and context lifecycle per test.
+The most common settings are `baseURL`, `trace`, `screenshot`, `storageState` and
+`viewport`. `launchOptions` and `contextOptions` provide escape-hatch access to all
+native Playwright options.
 
 ---
 

@@ -4,7 +4,7 @@ Entwickler-Referenz fuer die Bundle-Struktur des Shopware Commercial Plugins.
 
 ## Referenzen
 
-- [Commercial Bundle Vollreferenz](`COMMERCIAL-BUNDLE-DETAIL.md`)
+- [COMMERCIAL-BUNDLE-DETAIL.md](COMMERCIAL-BUNDLE-DETAIL.md)
 
 ## Querverweise
 

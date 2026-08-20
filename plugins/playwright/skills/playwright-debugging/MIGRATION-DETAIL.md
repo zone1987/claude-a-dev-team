@@ -1,34 +1,34 @@
-# Migration zu Playwright
+# Migrating to Playwright
 
 ## Contents
 
-- [Von Puppeteer migrieren](#von-puppeteer-migrieren)
-- [Von Protractor migrieren](#von-protractor-migrieren)
-- [Selenium Grid anbinden](#selenium-grid-anbinden)
-- [Vorteile nach der Migration](#vorteile-nach-der-migration)
-- [Quellen](#quellen)
+- [Migrating from Puppeteer](#migrating-from-puppeteer)
+- [Migrating from Protractor](#migrating-from-protractor)
+- [Connecting to Selenium Grid](#connecting-to-selenium-grid)
+- [Advantages after the migration](#advantages-after-the-migration)
+- [Sources](#sources)
 
-## Von Puppeteer migrieren
+## Migrating from Puppeteer
 
-### Kernprinzipien
+### Core principles
 
-1. Die meisten Puppeteer-APIs koennen unveraendert uebernommen werden
-2. `ElementHandle` nicht mehr verwenden; Locators und Web-First-Assertions bevorzugen
-3. Playwright unterstuetzt Cross-Browser-Automation (Chrome, Firefox, WebKit)
-4. Explizite `waitFor*`-Aufrufe entfallen durch Auto-Waiting
+1. Most Puppeteer APIs can be carried over unchanged
+2. Stop using `ElementHandle`; prefer locators and web-first assertions
+3. Playwright supports cross-browser automation (Chrome, Firefox, WebKit)
+4. Explicit `waitFor*` calls become unnecessary thanks to auto-waiting
 
-### API-Vergleichstabelle
+### API comparison table
 
 | Puppeteer | Playwright |
 |-----------|-----------|
-| `puppeteer.launch()` | `playwright.chromium.launch()` (Browser-Engine explizit angeben) |
+| `puppeteer.launch()` | `playwright.chromium.launch()` (specify the browser engine explicitly) |
 | `{ product: 'firefox' }` | `playwright.firefox.launch()` |
-| — | `playwright.webkit.launch()` (in Puppeteer nicht verfuegbar) |
+| — | `playwright.webkit.launch()` (not available in Puppeteer) |
 | `createIncognitoBrowserContext()` | `browser.newContext()` |
 | `page.setViewport({ width, height })` | `page.setViewportSize({ width, height })` |
-| `page.waitForXPath()` | `page.waitForSelector()` (XPath weiterhin unterstuetzt) |
+| `page.waitForXPath()` | `page.waitForSelector()` (XPath is still supported) |
 | `page.waitForNetworkIdle()` | `page.waitForLoadState('networkidle')` |
-| `page.$eval()` | Assertions / Locators (Web-First bevorzugen) |
+| `page.$eval()` | Assertions / locators (prefer web-first) |
 | `page.$()` | `page.locator()` |
 | `page.$x()` | `page.locator('xpath=...')` |
 | — | `locator.check()` / `locator.uncheck()` |
@@ -43,7 +43,7 @@
 | `page.deleteCookie()` | `browserContext.clearCookies()` |
 | `page.setCookie()` | `browserContext.addCookies()` |
 
-### Automations-Script: Vorher/Nachher
+### Automation script: before/after
 
 **Puppeteer:**
 ```javascript
@@ -58,7 +58,7 @@ const puppeteer = require('puppeteer');
 })();
 ```
 
-**Playwright (aequivalent):**
+**Playwright (equivalent):**
 ```javascript
 const { chromium } = require('playwright');
 (async () => {
@@ -71,12 +71,12 @@ const { chromium } = require('playwright');
 })();
 ```
 
-Wesentliche Aenderungen:
+Key changes:
 - `setViewport` -> `setViewportSize`
 - `networkidle2` -> `networkidle`
-- Explizite Browser-Engine (`chromium`)
+- Explicit browser engine (`chromium`)
 
-### Test-Framework: Puppeteer+Jest -> Playwright Test
+### Test framework: Puppeteer+Jest -> Playwright Test
 
 **Puppeteer + Jest:**
 ```javascript
@@ -98,7 +98,7 @@ describe('Playwright homepage', () => {
 });
 ```
 
-**Playwright Test (modernisiert):**
+**Playwright Test (modernized):**
 ```javascript
 import { test, expect } from '@playwright/test';
 
@@ -113,29 +113,29 @@ test.describe('Playwright homepage', () => {
 });
 ```
 
-Wesentliche Unterschiede:
-- Import aus `@playwright/test`
-- `page` wird als Test-Fixture injiziert
-- Kein `beforeAll`/`afterAll`-Boilerplate
-- Locators ersetzen `$eval()`
-- Web-First-Assertions
+Key differences:
+- Import from `@playwright/test`
+- `page` is injected as a test fixture
+- No `beforeAll`/`afterAll` boilerplate
+- Locators replace `$eval()`
+- Web-first assertions
 
-### Locator-Strictness
+### Locator strictness
 
-Locators sind strikt: Alle Operationen werfen eine Exception, wenn mehr als ein Element den Selector trifft.
+Locators are strict: all operations throw an exception if more than one element matches the selector.
 
 ---
 
-## Von Protractor migrieren
+## Migrating from Protractor
 
-### Kernprinzipien
+### Core principles
 
-1. Kein `webdriver-manager` / Selenium mehr noetig
-2. Protractors `ElementFinder` -> Playwright Test Locators
-3. `waitForAngular` wird durch Auto-Waiting ersetzt
-4. Alle Playwright-Operationen benoetigen `await`
+1. No more `webdriver-manager` / Selenium needed
+2. Protractor's `ElementFinder` -> Playwright Test locators
+3. `waitForAngular` is replaced by auto-waiting
+4. All Playwright operations require `await`
 
-### API-Vergleichstabelle
+### API comparison table
 
 | Protractor | Playwright Test |
 |-----------|----------------|
@@ -146,11 +146,11 @@ Locators sind strikt: Alle Operationen werfen eine Exception, wenn mehr als ein 
 | `element(by.model('...'))` | `page.locator('[ng-model="..."]')` |
 | `element(by.repeater('...'))` | `page.locator('[ng-repeat="..."]')` |
 | `element(by.xpath('...'))` | `page.locator('xpath=...')` |
-| `element.all` | `page.locator(...)` (Liste von Elementen) |
+| `element.all` | `page.locator(...)` (list of elements) |
 | `browser.get(url)` | `await page.goto(url)` |
 | `browser.getCurrentUrl()` | `page.url()` |
 
-### Test-Migration: Vorher/Nachher
+### Test migration: before/after
 
 **Protractor:**
 ```javascript
@@ -180,11 +180,11 @@ test.describe('angularjs homepage todo list', () => {
 });
 ```
 
-### `waitForAngular`-Ersatz
+### `waitForAngular` replacement
 
-Playwright wartet automatisch auf DOM-Bereitschaft. In Sonderfaellen (aeltere Angular-Apps):
+Playwright waits for DOM readiness automatically. In special cases (older Angular apps):
 
-**Option 1 - Protractor-Client-Skripte:**
+**Option 1 - Protractor client scripts:**
 ```javascript
 async function waitForAngular(page) {
   const clientSideScripts = require('protractor/built/clientsidescripts.js');
@@ -192,7 +192,7 @@ async function waitForAngular(page) {
 }
 ```
 
-**Option 2 - Angular 2+ (empfohlen):**
+**Option 2 - Angular 2+ (recommended):**
 ```javascript
 async function waitForAngular(page) {
   await page.evaluate(async () => {
@@ -209,38 +209,38 @@ async function waitForAngular(page) {
 
 ---
 
-## Selenium Grid anbinden
+## Connecting to Selenium Grid
 
-### Funktionsprinzip
+### How it works
 
-Playwright verbindet sich per Chrome DevTools Protocol (CDP) mit Selenium Grid 4.
-Der eigentliche Code aendert sich **nicht** — nur Umgebungsvariablen setzen.
+Playwright connects to Selenium Grid 4 via the Chrome DevTools Protocol (CDP).
+The actual code does **not** change — just set environment variables.
 
-### Umgebungsvariablen
+### Environment variables
 
-| Variable | Beschreibung |
+| Variable | Description |
 |----------|-------------|
-| `SELENIUM_REMOTE_URL` | Zeigt auf den Selenium Grid Hub (z.B. `http://selenium-hub:4444`) |
-| `SELENIUM_REMOTE_CAPABILITIES` | Zusaetzliche Grid-Capabilities als JSON |
-| `SELENIUM_REMOTE_HEADERS` | Custom-Headers fuer Authentifizierung / Cloud-Services als JSON |
-| `SE_NODE_GRID_URL` | Hub-URL fuer Selenium-Nodes in verteilten Setups |
-| `DEBUG` | `pw:browser*` fuer detailliertes Logging |
+| `SELENIUM_REMOTE_URL` | Points at the Selenium Grid hub (e.g. `http://selenium-hub:4444`) |
+| `SELENIUM_REMOTE_CAPABILITIES` | Additional grid capabilities as JSON |
+| `SELENIUM_REMOTE_HEADERS` | Custom headers for authentication / cloud services as JSON |
+| `SE_NODE_GRID_URL` | Hub URL for Selenium nodes in distributed setups |
+| `DEBUG` | `pw:browser*` for detailed logging |
 
-### Verwendung
+### Usage
 
 ```bash
-# Hub-URL setzen, dann wie gewohnt testen
+# Set the hub URL, then test as usual
 SELENIUM_REMOTE_URL=http://localhost:4444 npx playwright test
 ```
 
-Mit zusaetzlichen Capabilities:
+With additional capabilities:
 ```bash
 SELENIUM_REMOTE_URL=http://selenium-hub:4444 \
 SELENIUM_REMOTE_CAPABILITIES='{"mygrid:options":{"os":"windows","username":"John","password":"secure"}}' \
 npx playwright test
 ```
 
-### Docker: Standalone-Modus
+### Docker: standalone mode
 
 ```yaml
 # docker-compose.yml
@@ -256,7 +256,7 @@ services:
 SELENIUM_REMOTE_URL=http://localhost:4444 npx playwright test
 ```
 
-### Docker: Hub + Node-Modus
+### Docker: hub + node mode
 
 ```yaml
 services:
@@ -274,26 +274,26 @@ services:
       - SE_NODE_GRID_URL=http://selenium-hub:4444
 ```
 
-### Einschraenkungen
+### Limitations
 
-- Nur Google Chrome und Microsoft Edge werden unterstuetzt
-- Feature als **experimentell** markiert
-- Selenium 3: Best-Effort mit direktem Node-Zugriff
-- Selenium Grid 4 empfohlen (CDP-Unterstuetzung)
-
----
-
-## Vorteile nach der Migration
-
-- Zero-Config TypeScript-Unterstuetzung
-- Multi-Browser (Chrome, Firefox, Safari) ohne zusaetzliche Konfiguration
-- Parallel-Ausfuehrung und Test-Isolation
-- Integriertes Artifact-Collection (Traces, Videos, Screenshots)
-- Playwright Inspector, Code-Generierung, Tracing
+- Only Google Chrome and Microsoft Edge are supported
+- Feature marked as **experimental**
+- Selenium 3: best effort with direct node access
+- Selenium Grid 4 recommended (CDP support)
 
 ---
 
-## Quellen
+## Advantages after the migration
+
+- Zero-config TypeScript support
+- Multi-browser (Chrome, Firefox, Safari) without additional configuration
+- Parallel execution and test isolation
+- Built-in artifact collection (traces, videos, screenshots)
+- Playwright Inspector, code generation, tracing
+
+---
+
+## Sources
 
 - https://playwright.dev/docs/puppeteer
 - https://playwright.dev/docs/protractor

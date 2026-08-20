@@ -1,6 +1,6 @@
-# Shopware 6 — Admin-Snippets
+# Shopware 6 — Admin snippets
 
-Admin-Übersetzungen als JSON unter `module/<name>/snippet/<locale>.json`, im Modul registriert.
+Admin translations as JSON under `module/<name>/snippet/<locale>.json`, registered in the module.
 
 ```js
 // module/ff-example/snippet/de-DE.json + index.js
@@ -15,5 +15,5 @@ Shopware.Module.register('ff-example', { snippets: { 'de-DE': deDE, 'en-GB': enG
 {{ $tc('ff-example.detail.items', count, { count }) }}
 ```
 
-`$tc` (mit Pluralisierung/Parametern) bzw. `$t`. Keys mit Modul-Präfix gegen Kollisionen. Storefront-Snippets
-sind getrennt (`shopware-storefront` → `sw-storefront-translations`). Umlaute als UTF-8.
+`$tc` (with pluralisation/parameters) or `$t`. Prefix keys with the module name to avoid collisions. Storefront
+snippets are separate (`shopware-storefront` → `sw-storefront-translations`). Umlauts as UTF-8.

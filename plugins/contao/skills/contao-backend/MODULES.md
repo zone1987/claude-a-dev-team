@@ -1,4 +1,4 @@
 # contao-backend-modules
 
-Lies `MODULES-DETAIL.md` für vollständige Details zu
-Backend-Modul-Registrierung, Assets und Callbacks in Contao 5.
+Read `MODULES-DETAIL.md` for complete details on
+backend module registration, assets and callbacks in Contao 5.

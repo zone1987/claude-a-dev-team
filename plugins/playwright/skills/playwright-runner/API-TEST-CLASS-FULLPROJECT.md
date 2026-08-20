@@ -178,9 +178,9 @@ onTestEnd(test, result) {
 | Properties | 16 |
 | Methods | 0 |
 
-**Fazit:** `FullProject` spiegelt `TestProject` mit aufgeloesten absoluten Pfaden wider.
-Es ist die primaere Quelle fuer projekt-spezifische Konfiguration in Reportern und Fixtures.
-`name` und `use` sind die am haeufigsten abgefragten Properties.
+**Summary:** `FullProject` mirrors `TestProject` with resolved absolute paths.
+It is the primary source for project-specific configuration in reporters and fixtures.
+`name` and `use` are the most frequently queried properties.
 
 ---
 

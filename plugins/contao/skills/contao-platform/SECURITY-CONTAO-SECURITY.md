@@ -2,45 +2,45 @@
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Berechtigungen prüfen](#berechtigungen-prüfen)
-- [Data Container – CRUD-Berechtigungen (ab 5.0)](#data-container-crud-berechtigungen-ab-50)
-- [Custom Backend Access Rights (4 Schritte)](#custom-backend-access-rights-4-schritte)
+- [Overview](#overview)
+- [Checking permissions](#checking-permissions)
+- [Data Container – CRUD permissions (5.0 and later)](#data-container-crud-permissions-50-and-later)
+- [Custom Backend Access Rights (4 steps)](#custom-backend-access-rights-4-steps)
 - [Preview Mode](#preview-mode)
 
-## Überblick
+## Overview
 
-Contao nutzt Symfonys Security Component für Frontend- und Backend-Authentifizierung. Ein eigener Authenticator verarbeitet POST-Anfragen mit `username`, `password` und `FORM_SUBMIT=tl_login`. Der Request-Scope (`_scope`: `frontend` / `backend`) bestimmt, welche Firewall greift.
+Contao uses Symfony's Security component for front end and back end authentication. A dedicated authenticator processes POST requests carrying `username`, `password` and `FORM_SUBMIT=tl_login`. The request scope (`_scope`: `frontend` / `backend`) determines which firewall applies.
 
-**Zugriffsstrategie:** „priority access decision strategy" – der erste Voter, der nicht abstain, entscheidet.
+**Access strategy:** "priority access decision strategy" – the first voter that does not abstain decides.
 
 ---
 
-## Berechtigungen prüfen
+## Checking permissions
 
-### isGranted – Standard-Checks
+### isGranted – standard checks
 
 ```php
-// Formular-Zugriff
+// Form access
 $security->isGranted('contao_user.forms', 5);
 
-// Feld-Level-Berechtigung
+// Field-level permission
 $security->isGranted('contao_user.alexf', 'tl_page::published');
 
-// Ordner-Zugriff
+// Folder access
 $security->isGranted('contao_user.filemounts', '/files/foo/bar');
 
-// Felder einer Tabelle bearbeiten
+// Editing the fields of a table
 $security->isGranted('contao_user.can_edit_fields', 'tl_page');
 
-// Seite bearbeiten
+// Editing a page
 $security->isGranted('contao_user.can_edit_page', $pageModel);
 
-// Mitgliedergruppe prüfen
+// Checking a member group
 $security->isGranted('contao_member.groups', $groupId);
 ```
 
-### isGranted – Konstanten (empfohlen)
+### isGranted – constants (recommended)
 
 ```php
 use Contao\CoreBundle\Security\ContaoCorePermissions;
@@ -54,9 +54,9 @@ $security->isGranted(ContaoNewsPermissions::USER_CAN_CREATE_ARCHIVES);
 
 ---
 
-## Data Container – CRUD-Berechtigungen (ab 5.0)
+## Data Container – CRUD permissions (5.0 and later)
 
-### Action-Klassen
+### Action classes
 
 ```php
 use Contao\CoreBundle\Security\DataContainer\CreateAction;
@@ -70,20 +70,20 @@ $security->isGranted('contao_dc.tl_foobar', new ReadAction('tl_foobar', $record)
 $security->isGranted('contao_dc.tl_foobar', new UpdateAction('tl_foobar', $record));
 ```
 
-### AbstractDataContainerVoter (ab 5.0)
+### AbstractDataContainerVoter (5.0 and later)
 
 ```php
-// Zwei Pflichtmethoden:
-protected function getTable(): string   // z.B. 'tl_example_archive'
+// Two mandatory methods:
+protected function getTable(): string   // e.g. 'tl_example_archive'
 protected function hasAccess(
     TokenInterface $token,
     CreateAction|ReadAction|UpdateAction|DeleteAction $action
 ): bool
 ```
 
-**Tipp:** In `onload`-Listener Root-IDs setzen, damit Listenansichten keine Access-Denied-Exceptions werfen.
+**Tip:** Set root IDs in an `onload` listener so that list views do not throw access-denied exceptions.
 
-### Eigenen Voter – Beispiel: Admin-Einschränkung
+### A custom voter – example: admin restriction
 
 ```php
 namespace App\Security\Voter;
@@ -116,7 +116,7 @@ class AdminMaintenanceAccessVoter extends Voter
 }
 ```
 
-### Eigenen Voter – Beispiel: Autor-Einschränkung (News)
+### A custom voter – example: author restriction (news)
 
 ```php
 namespace App\Security\Voter;
@@ -160,16 +160,16 @@ class NewsAccessVoter extends Voter
 
 ---
 
-## Custom Backend Access Rights (4 Schritte)
+## Custom Backend Access Rights (4 steps)
 
-### 1. Permission registrieren
+### 1. Register the permission
 
 ```php
 // contao/config/config.php
 $GLOBALS['TL_PERMISSIONS'][] = 'my_permissions';
 ```
 
-### 2. User-DCA erweitern
+### 2. Extend the user DCA
 
 ```php
 // contao/dca/tl_user.php
@@ -193,14 +193,14 @@ PaletteManipulator::create()
     ->applyToPalette('custom', 'tl_user');
 ```
 
-### 3. User-Group-DCA erweitern (identisch, Palette: `default`)
+### 3. Extend the user group DCA (identical, palette: `default`)
 
 ```php
 // contao/dca/tl_user_group.php
-// … (wie tl_user, aber ->applyToPalette('default', 'tl_user_group'))
+// … (same as tl_user, but ->applyToPalette('default', 'tl_user_group'))
 ```
 
-### 4. Im Controller prüfen
+### 4. Check in the controller
 
 ```php
 #[Route('/contao/my-backend-route', defaults: ['_scope' => 'backend'])]
@@ -221,7 +221,7 @@ class BackendController
 
 ## Preview Mode
 
-### Preview-Einstiegspunkt erkennen (`_preview`-Attribut)
+### Detecting the preview entry point (the `_preview` attribute)
 
 ```php
 // PHP
@@ -230,11 +230,11 @@ if ($request->attributes->get('_preview')) { /* … */ }
 
 ```twig
 {% if app.request.attributes._preview|default %}
-    {# Im Preview-Einstiegspunkt #}
+    {# Inside the preview entry point #}
 {% endif %}
 ```
 
-### Aktiven Preview-Modus erkennen (`TokenChecker`)
+### Detecting active preview mode (`TokenChecker`)
 
 ```php
 use Contao\CoreBundle\Security\Authentication\Token\TokenChecker;
@@ -243,15 +243,15 @@ if ($this->tokenChecker->isPreviewMode()) { /* … */ }
 ```
 
 ```twig
-{# Ab Contao 5.3 #}
+{# Contao 5.3 and later #}
 {% if contao.is_preview_mode %}
-    {# Nur im Preview-Modus #}
+    {# Only in preview mode #}
 {% endif %}
 ```
 
 ---
 
-*Quellen:*
+*Sources:*
 - *https://docs.contao.org/5.x/dev/framework/security/*
 - *https://docs.contao.org/5.x/dev/framework/security/data-container/*
 - *https://docs.contao.org/5.x/dev/framework/security/preview-mode/*

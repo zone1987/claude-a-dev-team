@@ -2,7 +2,7 @@
 
 ## Contents
 
-- [Grundprinzipien](#grundprinzipien)
+- [Basic principles](#basic-principles)
 - [GitHub Actions](#github-actions)
 - [Azure Pipelines](#azure-pipelines)
 - [CircleCI](#circleci)
@@ -10,29 +10,29 @@
 - [Jenkins](#jenkins)
 - [Bitbucket Pipelines](#bitbucket-pipelines)
 - [Google Cloud Build](#google-cloud-build)
-- [Docker-Images](#docker-images)
-- [Browser-Caching](#browser-caching)
-- [HTML-Report in Azure Storage veroeffentlichen](#html-report-in-azure-storage-veroeffentlichen)
-- [Headed-Modus unter Linux (Xvfb)](#headed-modus-unter-linux-xvfb)
+- [Docker images](#docker-images)
+- [Browser caching](#browser-caching)
+- [Publishing the HTML report to Azure Storage](#publishing-the-html-report-to-azure-storage)
+- [Headed mode on Linux (Xvfb)](#headed-mode-on-linux-xvfb)
 - [Debugging in CI](#debugging-in-ci)
-- [Sicherheitshinweise](#sicherheitshinweise)
-- [Quellen](#quellen)
+- [Security notes](#security-notes)
+- [Sources](#sources)
 
-## Grundprinzipien
+## Basic principles
 
-Drei Pflichtschritte fuer CI-Umgebungen:
+Three mandatory steps for CI environments:
 
-1. **Browser-Ausfuehrung**: Entweder Docker-Image nutzen oder System-Abhaengigkeiten installieren
+1. **Browser execution**: either use a Docker image or install the system dependencies
 2. **Installation**: `npm ci` + `npx playwright install --with-deps`
-3. **Ausfuehrung**: `npx playwright test`
+3. **Execution**: `npx playwright test`
 
-### Worker-Empfehlung fuer CI
+### Worker recommendation for CI
 
 ```typescript
 // playwright.config.ts
 export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
-  // CI: Sequenziell fuer Stabilitaet; Sharding fuer Parallelisierung
+  // CI: sequential for stability; sharding for parallelization
 });
 ```
 
@@ -40,7 +40,7 @@ export default defineConfig({
 
 ## GitHub Actions
 
-### Standard-Workflow (`.github/workflows/playwright.yml`)
+### Standard workflow (`.github/workflows/playwright.yml`)
 
 ```yaml
 name: Playwright Tests
@@ -72,7 +72,7 @@ jobs:
         retention-days: 30
 ```
 
-### Per Docker-Container
+### Via Docker container
 
 ```yaml
 jobs:
@@ -90,9 +90,9 @@ jobs:
         HOME: /root
 ```
 
-Hinweis: Beim Container-Ansatz `--user 1001` ergaenzen fuer konsistente Cross-Platform-Umgebungen.
+Note: with the container approach, add `--user 1001` for consistent cross-platform environments.
 
-### Deployment-Trigger
+### Deployment trigger
 
 ```yaml
 on:
@@ -111,10 +111,10 @@ jobs:
         PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
 ```
 
-### Fail-Fast / Only-Changed
+### Fail-fast / only-changed
 
 ```bash
-# Nur geaenderte Tests ausfuehren (Dependency-Graph-Analyse)
+# Run only changed tests (dependency graph analysis)
 npx playwright test --only-changed=origin/$GITHUB_BASE_REF
 ```
 
@@ -202,7 +202,7 @@ steps:
   condition: always()
 ```
 
-### Azure mit Sharding und Matrix
+### Azure with sharding and matrix
 
 ```yaml
 strategy:
@@ -255,13 +255,13 @@ workflows:
       - playwright-tests
 ```
 
-Hinweis: CircleCI verwendet 0-basierte Indizierung (`CIRCLE_NODE_INDEX`), daher `+1` fuer den `--shard`-Parameter.
+Note: CircleCI uses 0-based indexing (`CIRCLE_NODE_INDEX`), hence the `+1` for the `--shard` parameter.
 
 ---
 
 ## GitLab CI
 
-### Sequenziell (parallel jobs)
+### Sequential (parallel jobs)
 
 ```yaml
 stages:
@@ -281,7 +281,7 @@ playwright-tests:
     expire_in: 1 week
 ```
 
-### Matrix-basiert
+### Matrix-based
 
 ```yaml
 playwright-tests:
@@ -356,41 +356,41 @@ artifacts:
 
 ---
 
-## Docker-Images
+## Docker images
 
-### Verfuegbare Images (Microsoft Artifact Registry)
+### Available images (Microsoft Artifact Registry)
 
-| Image | Ubuntu-Version |
+| Image | Ubuntu version |
 |-------|---------------|
 | `mcr.microsoft.com/playwright:v1.60.0-noble` | Ubuntu 24.04 LTS |
 | `mcr.microsoft.com/playwright:v1.60.0-jammy` | Ubuntu 22.04 LTS |
-| `mcr.microsoft.com/playwright:v1.60.0` | Standard (noble) |
+| `mcr.microsoft.com/playwright:v1.60.0` | Default (noble) |
 
-### Empfohlene Docker-Flags
+### Recommended Docker flags
 
-| Flag | Zweck |
+| Flag | Purpose |
 |------|-------|
-| `--ipc=host` | Verhindert Chromium-Speicherabsturz |
-| `--init` | Verhindert Zombie-Prozesse (PID=1) |
-| `--cap-add=SYS_ADMIN` | Lokal bei Launch-Fehlern |
+| `--ipc=host` | Prevents Chromium memory crashes |
+| `--init` | Prevents zombie processes (PID=1) |
+| `--cap-add=SYS_ADMIN` | Locally, on launch failures |
 
-### Docker-Kommandos
+### Docker commands
 
 ```bash
-# Image pullen
+# Pull the image
 docker pull mcr.microsoft.com/playwright:v1.60.0-noble
 
-# E2E-Testing (vertrauenswuerdiger Code)
+# E2E testing (trusted code)
 docker run -it --rm --ipc=host mcr.microsoft.com/playwright:v1.60.0-noble /bin/bash
 
-# Web-Scraping (nicht-vertrauenswuerdige Seiten)
+# Web scraping (untrusted sites)
 docker run -it --rm --ipc=host \
   --user pwuser \
   --security-opt seccomp=seccomp_profile.json \
   mcr.microsoft.com/playwright:v1.60.0-noble /bin/bash
 ```
 
-### Remote-Server in Docker
+### Remote server in Docker
 
 ```bash
 docker run -p 3000:3000 --rm --init -it \
@@ -400,9 +400,9 @@ docker run -p 3000:3000 --rm --init -it \
   /bin/sh -c "npx -y playwright@1.60.0 run-server --port 3000 --host 0.0.0.0"
 ```
 
-Verbindung: `PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:3000/`
+Connection: `PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:3000/`
 
-### Eigenes Dockerfile
+### Custom Dockerfile
 
 ```dockerfile
 FROM node:20-bookworm
@@ -413,19 +413,19 @@ RUN npm ci
 COPY . .
 ```
 
-### Wichtige Hinweise
+### Important notes
 
-- Alpine Linux wird **nicht** unterstuetzt (benoetigt glibc; Alpine nutzt musl)
-- Image-Versionen immer pinnen (passend zur Playwright-Version des Projekts)
-- Images enthalten Browser + System-Abhaengigkeiten; Playwright-Package separat installieren
+- Alpine Linux is **not** supported (requires glibc; Alpine uses musl)
+- Always pin image versions (matching the project's Playwright version)
+- Images contain browsers + system dependencies; install the Playwright package separately
 
 ---
 
-## Browser-Caching
+## Browser caching
 
-Browser-Caching wird **nicht empfohlen**: Wiederherstellungszeit entspricht der Download-Zeit.
+Browser caching is **not recommended**: the restore time equals the download time.
 
-Falls dennoch gewuenscht:
+If you want it anyway:
 ```yaml
 - uses: actions/cache@v4
   id: playwright-cache
@@ -440,7 +440,7 @@ Falls dennoch gewuenscht:
 
 ---
 
-## HTML-Report in Azure Storage veroeffentlichen
+## Publishing the HTML report to Azure Storage
 
 ```yaml
 - script: |
@@ -453,20 +453,20 @@ Falls dennoch gewuenscht:
     AZCOPY_TENANT_ID: $(AZCOPY_TENANT_ID)
 ```
 
-Voraussetzungen:
-- Azure Storage Account mit aktiviertem "Static website hosting"
-- Service Principal mit "Storage Blob Data Contributor"-Rolle
-- Drei GitHub Secrets: `AZCOPY_SPA_APPLICATION_ID`, `AZCOPY_SPA_CLIENT_SECRET`, `AZCOPY_TENANT_ID`
+Prerequisites:
+- Azure Storage account with "Static website hosting" enabled
+- Service principal with the "Storage Blob Data Contributor" role
+- Three GitHub secrets: `AZCOPY_SPA_APPLICATION_ID`, `AZCOPY_SPA_CLIENT_SECRET`, `AZCOPY_TENANT_ID`
 
 ---
 
-## Headed-Modus unter Linux (Xvfb)
+## Headed mode on Linux (Xvfb)
 
 ```bash
-# Xvfb manuell starten
+# Start Xvfb manually
 xvfb-run npx playwright test
 
-# Oder als Schritt in CI
+# Or as a step in CI
 - run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" npx playwright test
 ```
 
@@ -475,25 +475,25 @@ xvfb-run npx playwright test
 ## Debugging in CI
 
 ```bash
-# Browser-Start-Fehler debuggen
+# Debug browser launch errors
 DEBUG=pw:browser npx playwright test
 
-# Alle API-Aufrufe loggen
+# Log all API calls
 DEBUG=pw:api npx playwright test
 ```
 
 ---
 
-## Sicherheitshinweise
+## Security notes
 
-Artefakte (Traces, Reports, Logs) koennen sensible Daten enthalten:
-- Test-Credentials und Access-Tokens
-- Quellcode-Fragmente
-- Nur in vertrauenswuerdige Artifact-Stores hochladen oder vor dem Teilen verschluesseln
+Artifacts (traces, reports, logs) can contain sensitive data:
+- Test credentials and access tokens
+- Source code fragments
+- Upload only to trusted artifact stores, or encrypt before sharing
 
 ---
 
-## Quellen
+## Sources
 
 - https://playwright.dev/docs/ci
 - https://playwright.dev/docs/ci-intro

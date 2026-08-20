@@ -13,7 +13,7 @@ Integrates with `next-themes` for automatic dark/light mode.
 
 ## References
 
-- [installation.md](`SONNER-INSTALLATION.md`) — CLI & manual setup incl. layout integration
-- [source.md](`SONNER-SOURCE.md`) — Complete component source
-- [api.md](`SONNER-API.md`) — Toaster props and toast() API
-- [examples.md](`SONNER-EXAMPLES.md`) — All examples (demo, types)
+- [SONNER-INSTALLATION.md](SONNER-INSTALLATION.md) — CLI & manual setup incl. layout integration
+- [SONNER-SOURCE.md](SONNER-SOURCE.md) — Complete component source
+- [SONNER-API.md](SONNER-API.md) — Toaster props and toast() API
+- [SONNER-EXAMPLES.md](SONNER-EXAMPLES.md) — All examples (demo, types)

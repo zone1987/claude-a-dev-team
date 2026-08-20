@@ -1,22 +1,22 @@
-# Shopware Frontends – Framework & Architektur
+# Shopware Frontends – Framework & architecture
 
-Quelle: `apps/docs/src/framework/`
+Source: `apps/docs/src/framework/`
 
 ---
 
 ## Contents
 
-- [Package-Hierarchie (von abstrakt zu konkret)](#package-hierarchie-von-abstrakt-zu-konkret)
+- [Package hierarchy (from abstract to concrete)](#package-hierarchy-from-abstract-to-concrete)
 - [1. api-client (`@shopware/api-client`)](#1-api-client-shopwareapi-client)
 - [2. helpers (`@shopware/helpers`)](#2-helpers-shopwarehelpers)
 - [3. composables (`@shopware/composables`)](#3-composables-shopwarecomposables)
 - [4. nuxt-module (`@shopware/nuxt-module`)](#4-nuxt-module-shopwarenuxt-module)
 - [5. cms-base-layer (`@shopware/cms-base-layer`)](#5-cms-base-layer-shopwarecms-base-layer)
-- [6. Styling mit UnoCSS](#6-styling-mit-unocss)
-- [7. Design Tokens (`@shopware/unocss-design-tokens-layer`)](#7-design-tokens-shopwareunocss-design-tokens-layer)
-- [3D/Spatial Media Support](#3dspatial-media-support)
+- [6. Styling with UnoCSS](#6-styling-with-unocss)
+- [7. Design tokens (`@shopware/unocss-design-tokens-layer`)](#7-design-tokens-shopwareunocss-design-tokens-layer)
+- [3D/spatial media support](#3dspatial-media-support)
 
-## Package-Hierarchie (von abstrakt zu konkret)
+## Package hierarchy (from abstract to concrete)
 
 ```
 api-client          (TypeScript only)
@@ -24,104 +24,104 @@ helpers             (TypeScript only)
 composables         (TypeScript + Vue 3)
 nuxt-module         (TypeScript + Vue 3 + Nuxt 3)
 cms-base-layer      (TypeScript + Vue 3 + Nuxt 3 + UnoCSS)
-unocss-design-tokens-layer  (Nuxt Layer für Styling/Tokens)
+unocss-design-tokens-layer  (Nuxt layer for styling/tokens)
 ```
 
 ---
 
 ## 1. api-client (`@shopware/api-client`)
 
-Einheitliches Interface für die Shopware Store-API.
-Kann standalone in jedem JavaScript-Projekt verwendet werden.
+A uniform interface for the Shopware Store API.
+Can be used standalone in any JavaScript project.
 
-- Typesafe via generierte Typen (`@shopware/api-gen`)
+- Typesafe via generated types (`@shopware/api-gen`)
 - `createAPIClient<operations>({ baseURL, accessToken })`
 - `apiClient.invoke("endpoint verb /path", { body, pathParams, query })`
-- `apiClient.onConfigChange(callback)` für Context-Token-Änderungen
-- `apiClient.hook("onSuccessResponse", callback)` für Response-Hooks
+- `apiClient.onConfigChange(callback)` for context token changes
+- `apiClient.hook("onSuccessResponse", callback)` for response hooks
 
 ---
 
 ## 2. helpers (`@shopware/helpers`)
 
-Stateless-Utility-Funktionen für Formatierung und Datenmanipulation.
-Nicht an Vue oder Nuxt gebunden.
+Stateless utility functions for formatting and data manipulation.
+Not bound to Vue or Nuxt.
 
-Wichtige Funktionen:
-- `getTranslatedProperty(entity, "name")` – übersetzten Wert holen
-- `getProductUrl(product)` – SEO-URL des Produkts
-- `getCategoryRoute(category)` – SEO-URL der Kategorie  
-- `getProductRoute(product)` – Route für RouterLink/NuxtLink
-- `getSmallestThumbnailUrl(product)` – kleinste Thumbnail-URL
-- `getFormattedPrice(price)` – Preis mit Währungssymbol
+Important functions:
+- `getTranslatedProperty(entity, "name")` – fetch the translated value
+- `getProductUrl(product)` – SEO URL of the product
+- `getCategoryRoute(category)` – SEO URL of the category  
+- `getProductRoute(product)` – route for RouterLink/NuxtLink
+- `getSmallestThumbnailUrl(product)` – smallest thumbnail URL
+- `getFormattedPrice(price)` – price with currency symbol
 
 ---
 
 ## 3. composables (`@shopware/composables`)
 
-Vue 3 Composition Functions für State Management, UI-Logik und Data Fetching.
+Vue 3 composition functions for state management, UI logic and data fetching.
 
-### Context Composables
+### Context composables
 
-Ermöglichen granulares State-Sharing zwischen Parent-/Child-Komponenten ohne Prop-Drilling via `provide`/`inject`.
+They enable granular state sharing between parent and child components without prop drilling, via `provide`/`inject`.
 
-**Prinzip:**
-- Composable mit `context`-Parameter aufrufen = neue Context-Boundary erstellen
-- Composable ohne Parameter = Context vom nächsten Parent holen
+**Principle:**
+- Calling a composable with a `context` parameter = create a new context boundary
+- Calling a composable without a parameter = get the context from the nearest parent
 
-**Beispiel:**
+**Example:**
 ```vue
-<!-- Category.vue – erstellt Context-Boundary -->
+<!-- Category.vue – creates the context boundary -->
 <script setup>
 const { search } = useCategorySearch();
 const categoryResponse = await search(path);
-const { category } = useCategory(categoryResponse);  // mit Param = Provider
+const { category } = useCategory(categoryResponse);  // with param = provider
 </script>
 
-<!-- CategoryHeader.vue – liest aus Context -->
+<!-- CategoryHeader.vue – reads from the context -->
 <script setup>
-const { category } = useCategory();  // ohne Param = Consumer
+const { category } = useCategory();  // without param = consumer
 </script>
 <template>
   <h1>{{ category.name }}</h1>
 </template>
 ```
 
-**Verfügbare Context-Composables:**
-- `useCategory(categoryResponse?)` – Kategorie-Kontext
-- `useProduct(product?)` – Produkt-Kontext
-- `useNavigationContext(seoResult?)` – Navigation/Route-Kontext
-  - `{ routeName, foreignKey }` aus `useNavigationContext()`
+**Available context composables:**
+- `useCategory(categoryResponse?)` – category context
+- `useProduct(product?)` – product context
+- `useNavigationContext(seoResult?)` – navigation/route context
+  - `{ routeName, foreignKey }` from `useNavigationContext()`
 
-**Visualisierung (Wireframe):**
+**Visualisation (wireframe):**
 ```
 App
-├─ useNavigationContext (blau, global)
+├─ useNavigationContext (blue, global)
 │
 └─ ProductDetailPage
-   └─ useProduct(detailProduct)  (rot, Seiten-Kontext)
-      ├─ ProductConfigurator → useProduct() ← kein Prop-Drilling
+   └─ useProduct(detailProduct)  (red, page context)
+      ├─ ProductConfigurator → useProduct() ← no prop drilling
       └─ Quickview
-         └─ useProduct(quickViewProduct)  (grün, eigener Kontext)
+         └─ useProduct(quickViewProduct)  (green, own context)
             └─ ProductPrice → useProduct()
 ```
 
 ---
 
-### Shared Composables
+### Shared composables
 
-Einmalige Instanz für die gesamte App (via `createSharedComposable` aus VueUse).
+A single instance for the whole app (via `createSharedComposable` from VueUse).
 
-**Wann nötig:** Wenn Daten (z.B. Cart-Inhalt) nicht mehrfach im Speicher dupliziert werden sollen.
+**When needed:** when data (e.g. cart contents) must not be duplicated multiple times in memory.
 
-**Beispiel `useCart`:**
+**Example `useCart`:**
 ```ts
 import { useCartFunction } from "@shopware/composables";
 import { createSharedComposable } from "@vueuse/core";
 
 function myUseCart() {
   const coreCartFunctions = useCartFunction();
-  const myCustomFunction = () => { /* eigene Logik */ };
+  const myCustomFunction = () => { /* your own logic */ };
   return { ...coreCartFunctions, myCustomFunction };
 }
 
@@ -130,9 +130,9 @@ export const useCart = createSharedComposable(myUseCart);
 
 ---
 
-### Composables überschreiben/erweitern
+### Overriding/extending composables
 
-Datei mit gleichem Namen in `composables/` erstellen (Nuxt auto-importiert sie mit Vorrang):
+Create a file with the same name in `composables/` (Nuxt auto-imports it with precedence):
 
 ```ts
 // composables/useAddToCart.ts
@@ -141,14 +141,14 @@ import { useAddToCart as coreUseAddToCart } from "@shopware/composables";
 export function useAddToCart(product: Ref<Product>) {
   const coreFunctionality = coreUseAddToCart(product);
 
-  // 1. Methode erweitern (z.B. Analytics)
+  // 1. Extend a method (e.g. analytics)
   const addToCart = async (quantity: number) => {
     const result = await coreFunctionality.addToCart(quantity);
-    // Analytics-Call hier
+    // analytics call here
     return result;
   };
 
-  // 2. Neue Eigenschaft hinzufügen
+  // 2. Add a new property
   const { cartItems } = useCart();
   const getQuantityInCart = computed(() =>
     cartItems.value.find(
@@ -164,14 +164,14 @@ export function useAddToCart(product: Ref<Product>) {
 
 ## 4. nuxt-module (`@shopware/nuxt-module`)
 
-Nuxt-3-Modul für Shopware Frontends. Stellt Composables und API-Client bereit.
-Auto-importiert alle Composables.
+Nuxt 3 module for Shopware Frontends. Provides composables and the API client.
+Auto-imports all composables.
 
 **nuxt.config.ts:**
 ```ts
 export default defineNuxtConfig({
   extends: [
-    "@shopware/composables/nuxt-layer",  // PFLICHT wenn nuxt-module genutzt
+    "@shopware/composables/nuxt-layer",  // MANDATORY when nuxt-module is used
     "@shopware/cms-base-layer",
     "@shopware/unocss-design-tokens-layer",
   ],
@@ -181,7 +181,7 @@ export default defineNuxtConfig({
 });
 ```
 
-**Wichtig:** `@shopware/composables/nuxt-layer` MUSS erweitert werden, sonst:
+**Important:** `@shopware/composables/nuxt-layer` MUST be extended, otherwise:
 ```
 [unimport] failed to find "createShopwareContext" imported from "#imports"
 ```
@@ -190,16 +190,16 @@ export default defineNuxtConfig({
 
 ## 5. cms-base-layer (`@shopware/cms-base-layer`)
 
-Nuxt-Layer mit fertigen Vue-Komponenten für alle Standard-Shopware-CMS-Blöcke und -Elemente.
+Nuxt layer with ready-made Vue components for all standard Shopware CMS blocks and elements.
 
 **Installation:**
 ```bash
 npm install -D @shopware/cms-base-layer
 ```
 
-### CMS-Rendering-Workflow
+### CMS rendering workflow
 
-**API-Struktur:**
+**API structure:**
 ```
 CmsPage
   └── CmsSection  (type: "default", "sidebar")
@@ -207,23 +207,23 @@ CmsPage
               └── CmsSlot     (type: "image", "text")
 ```
 
-**Komponenten-Auflösung (PascalCase):**
+**Component resolution (PascalCase):**
 
-| API-Node | type | Komponente |
+| API node | type | Component |
 |---|---|---|
 | `cms_section` | `default` | `CmsSectionDefault` |
 | `cms_block` | `image-text` | `CmsBlockImageText` |
 | `cms_slot` | `image` | `CmsElementImage` |
 
-Die Auflösung erfolgt via `resolveCmsComponent` aus `@shopware/composables`.
+Resolution happens via `resolveCmsComponent` from `@shopware/composables`.
 
-**Dev-Mode Placeholder:**
-Wenn eine Komponente fehlt, zeigt der Dev-Mode:
-- Erwarteten Komponentennamen (z.B. `CmsElementMyCustomSlider`)
-- Link zur Dokumentation
-- "Copy AI Prompt"-Button mit vollständigem API-JSON
+**Dev-mode placeholder:**
+When a component is missing, dev mode shows:
+- The expected component name (e.g. `CmsElementMyCustomSlider`)
+- A link to the documentation
+- A "Copy AI Prompt" button with the complete API JSON
 
-**Fehlende Komponente implementieren:**
+**Implementing a missing component:**
 ```vue
 <!-- components/CmsElementMyCustomSlider.vue -->
 <script setup lang="ts">
@@ -231,78 +231,78 @@ import type { Schemas } from "#shopware";
 defineProps<{ content: Schemas["CmsSlot"] }>();
 </script>
 <template>
-  <!-- content.data und content.config nutzen -->
+  <!-- use content.data and content.config -->
 </template>
 ```
 
-In Produktion: fehlende Komponenten rendern unsichtbar (kein Fehler).
+In production: missing components render invisibly (no error).
 
 ---
 
-## 6. Styling mit UnoCSS
+## 6. Styling with UnoCSS
 
-Shopware Frontends verwendet **UnoCSS** (Tailwind-kompatibel).
+Shopware Frontends uses **UnoCSS** (Tailwind-compatible).
 
-**Schichten:**
-- `@shopware/cms-base-layer` – CMS-Komponenten, Bild-Config
-- `@shopware/unocss-design-tokens-layer` – UnoCSS-Setup, Design Tokens, Laufzeit-Auflösung
-- Projektspezifisches `uno.config.ts` – markenspezifische Erweiterungen
+**Layers:**
+- `@shopware/cms-base-layer` – CMS components, image config
+- `@shopware/unocss-design-tokens-layer` – UnoCSS setup, design tokens, runtime resolution
+- Project-specific `uno.config.ts` – brand-specific extensions
 
-**Utility-CSS Prinzipien:**
+**Utility CSS principles:**
 ```html
-<!-- Responsive Design (Mobile First) -->
+<!-- Responsive design (mobile first) -->
 <div class="grid md:grid-cols-2"></div>
 
-<!-- State Variants -->
+<!-- State variants -->
 <input class="hover:shadow-xl border-indigo rounded-md p-3" />
 ```
 
-**Wiederverwendbarkeit:** Statt langen Klassen-Listen: Vue-Komponenten erstellen.
+**Reusability:** instead of long class lists: create Vue components.
 
-**Custom CSS Framework:** Blank Template verwenden, UnoCSS entfernen:
-1. `@unocss/nuxt` aus `modules` entfernen
-2. `@shopware/unocss-design-tokens-layer` aus `extends` entfernen
-3. UnoCSS-Reset-Import aus `css` entfernen
-4. `unocss`-Config aus `nuxt.config.ts` entfernen
-5. Eigene `uno.config.ts` löschen
+**Custom CSS framework:** use the blank template, remove UnoCSS:
+1. Remove `@unocss/nuxt` from `modules`
+2. Remove `@shopware/unocss-design-tokens-layer` from `extends`
+3. Remove the UnoCSS reset import from `css`
+4. Remove the `unocss` config from `nuxt.config.ts`
+5. Delete your own `uno.config.ts`
 
 ---
 
-## 7. Design Tokens (`@shopware/unocss-design-tokens-layer`)
+## 7. Design tokens (`@shopware/unocss-design-tokens-layer`)
 
-Color Design Tokens als UnoCSS-Theme-Colors. Material-Style Naming.
+Color design tokens as UnoCSS theme colors. Material-style naming.
 
-**Namensmuster:** `<category>-<role>[-<variant>]`
+**Naming pattern:** `<category>-<role>[-<variant>]`
 
-| Kategorie | Zweck | Beispiele |
+| Category | Purpose | Examples |
 |---|---|---|
-| `brand` | Primär-, Sekundär-, Tertiär-Farben | `brand-primary`, `brand-on-secondary` |
-| `surface` | Hintergründe, Container | `surface-surface-container-high` |
-| `outline` | Rahmen, Trennlinien | `outline-outline`, `outline-outline-focus` |
-| `states` | Semantisches Feedback | `states-error`, `states-on-warning-container` |
-| `fixed` | Theme-unabhängige Farben | `fixed-fixed-on-image` |
-| `other` | Diverse | `other-sale`, `other-shadow` |
-| `overlay` | Halbtransparente Overlays | `overlay-dark-high`, `overlay-light-low` |
+| `brand` | primary, secondary, tertiary colors | `brand-primary`, `brand-on-secondary` |
+| `surface` | backgrounds, containers | `surface-surface-container-high` |
+| `outline` | borders, separators | `outline-outline`, `outline-outline-focus` |
+| `states` | semantic feedback | `states-error`, `states-on-warning-container` |
+| `fixed` | theme-independent colors | `fixed-fixed-on-image` |
+| `other` | miscellaneous | `other-sale`, `other-shadow` |
+| `overlay` | semi-transparent overlays | `overlay-dark-high`, `overlay-light-low` |
 
-**Verwendung:**
+**Usage:**
 ```html
 <div class="bg-brand-primary text-brand-on-primary">Button</div>
-<p class="text-states-error">Fehler</p>
+<p class="text-states-error">Error</p>
 <div class="border border-outline-outline rounded-md">Card</div>
 ```
 
-**Anpassen (uno.config.ts):**
+**Customising (uno.config.ts):**
 ```ts
 theme: {
   colors: {
-    "brand-primary": "#123456",   // bestehenden Token überschreiben
-    "custom-accent": "#FF00FF",   // neuen Token hinzufügen
+    "brand-primary": "#123456",   // override an existing token
+    "custom-accent": "#FF00FF",   // add a new token
   },
 }
 ```
 
 ---
 
-## 3D/Spatial Media Support
+## 3D/spatial media support
 
-CMS unterstützt 3D-Modelle (GLB-Format) in Bildelementen, Bildgalerien und dem Spatial Viewer Block. Der 3D-Viewer wird on-demand geladen.
+The CMS supports 3D models (GLB format) in image elements, image galleries and the Spatial Viewer block. The 3D viewer is loaded on demand.

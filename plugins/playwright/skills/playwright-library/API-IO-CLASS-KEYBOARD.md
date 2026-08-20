@@ -208,7 +208,7 @@ elements, not on the keyboard object itself.
 | Properties | 0     |
 | Events    | 0      |
 
-**Conclusion:** The class covers all low-level keyboard input. `press()`
+**Summary:** The class covers all low-level keyboard input. `press()`
 and `type()` are the general-purpose methods; `down()`/`up()` are needed when
 modifier keys have to be held during other actions. `insertText()`
 is the most efficient option for pure text input without event overhead.

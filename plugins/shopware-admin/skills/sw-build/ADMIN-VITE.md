@@ -1,13 +1,13 @@
-# Shopware 6 — Admin-Build (Vite)
+# Shopware 6 — Admin build (Vite)
 
-6.7 nutzt **Vite** für den Admin-Build (löst Webpack ab). Plugin-Admin-Code unter
-`src/Resources/app/administration/src/` mit `main.js` als Entry — Shopware bindet ihn automatisch ein.
+6.7 uses **Vite** for the admin build (replacing Webpack). Plugin admin code lives under
+`src/Resources/app/administration/src/` with `main.js` as the entry — Shopware includes it automatically.
 
 ```
 bin/console administration:build      # Build
-./bin/watch-administration.sh         # Dev-Watcher (HMR)
+./bin/watch-administration.sh         # Dev watcher (HMR)
 ```
 
-Kein eigenes Webpack-Config-Handling mehr nötig; Vite-Anpassungen über die Shopware-Build-Mechanik. Assets/SCSS
-werden mitgebündelt (`sw-admin-assets`, `sw-admin-styles`). Lint: `composer eslint:admin`. Für Plugins, die von
-Webpack migrieren, siehe `shopware-migration` (`sw-vite-migration`).
+No custom Webpack config handling needed any more; Vite adjustments go through the Shopware build mechanics. Assets/SCSS
+are bundled along (`sw-admin-assets`, `sw-admin-styles`). Lint: `composer eslint:admin`. For plugins migrating from
+Webpack, see `shopware-migration` (`sw-vite-migration`).

@@ -1,14 +1,14 @@
-# Gotenberg — PDF Verschluesselung (Vollreferenz)
+# Gotenberg — PDF Encryption (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [Antwort-Codes](#antwort-codes)
-- [Engine-spezifisches Verhalten](#engine-spezifisches-verhalten)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [Response Codes](#response-codes)
+- [Engine-Specific Behavior](#engine-specific-behavior)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -16,56 +16,56 @@
 POST /forms/pdfengines/encrypt
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
+| Header | Type | Required | Default | Description |
 |--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe; Erweiterung wird automatisch angehaengt |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Output-Filename` | string | No | random UUID | File name of the output; the extension is appended automatically |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Form-Felder
+## Form Fields
 
-### Datei-Upload
+### File Upload
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|--------------|
-| `files` | file[] | Ja | PDF-Dateien, die verschluesselt werden sollen |
+| `files` | file[] | Yes | PDF files to be encrypted |
 
-### Passwoerter (mindestens eines erforderlich)
+### Passwords (at least one required)
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
+| Field | Type | Required | Default | Description |
 |------|-----|---------|----------|--------------|
-| `userPassword` | string | Bedingt* | — | Passwort, das zum Oeffnen der PDF benoetigt wird (*mindestens userPassword oder ownerPassword) |
-| `ownerPassword` | string | Bedingt* | = userPassword | Passwort fuer vollstaendigen Zugriff; hebt alle Berechtigungseinschraenkungen auf |
+| `userPassword` | string | Conditional* | — | Password required to open the PDF (*at least userPassword or ownerPassword) |
+| `ownerPassword` | string | Conditional* | = userPassword | Password for full access; lifts all permission restrictions |
 
-### Berechtigungen (alle Standard: `true`)
+### Permissions (all default to `true`)
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
+| Field | Type | Required | Default | Description |
 |------|-----|---------|----------|--------------|
-| `allowPrinting` | boolean | Nein | `true` | Drucken des Dokuments erlauben |
-| `allowCopying` | boolean | Nein | `true` | Text und Grafiken extrahieren erlauben |
-| `allowModifying` | boolean | Nein | `true` | Inhalte veraendern erlauben |
-| `allowAnnotating` | boolean | Nein | `true` | Annotationen hinzufuegen/aendern erlauben |
-| `allowFillingForms` | boolean | Nein | `true` | Formulare ausfuellen erlauben |
-| `allowAssembling` | boolean | Nein | `true` | Seiten einfuegen, loeschen, rotieren erlauben |
+| `allowPrinting` | boolean | No | `true` | Allow printing the document |
+| `allowCopying` | boolean | No | `true` | Allow extracting text and graphics |
+| `allowModifying` | boolean | No | `true` | Allow modifying content |
+| `allowAnnotating` | boolean | No | `true` | Allow adding/changing annotations |
+| `allowFillingForms` | boolean | No | `true` | Allow filling in forms |
+| `allowAssembling` | boolean | No | `true` | Allow inserting, deleting, rotating pages |
 
 ---
 
-## Antwort-Codes
+## Response Codes
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | `application/pdf` oder `application/zip` | Verschluesselte PDF; mehrere Inputs → ZIP-Archiv |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
-| `503` | `text/plain; charset=UTF-8` | Maximale Bearbeitungsdauer ueberschritten |
+| `200` | `application/pdf` or `application/zip` | Encrypted PDF; multiple inputs → ZIP archive |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
+| `503` | `text/plain; charset=UTF-8` | Maximum processing time exceeded |
 
-### Antwort-Header bei Erfolg
+### Response Headers on Success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -76,21 +76,21 @@ Gotenberg-Trace: {trace}
 
 ---
 
-## Engine-spezifisches Verhalten
+## Engine-Specific Behavior
 
-| Engine | Berechtigungs-Granularitaet | Besonderheiten |
+| Engine | Permission granularity | Particularities |
 |--------|----------------------------|----------------|
-| **QPDF** (Standard) | Vollstaendig — jede Berechtigung einzeln steuerbar | Empfohlen fuer fine-grained control |
-| **pdfcpu** | Alle oder keine — wenn eine Berechtigung verweigert, alle gesperrt | Vereinfachtes Modell |
-| **PDFtk** | Kein Owner-Only-Modus, keine Einzel-Berechtigungen | Eingeschraenkte Unterstuetzung |
+| **QPDF** (default) | Complete — every permission individually controllable | Recommended for fine-grained control |
+| **pdfcpu** | All or nothing — if one permission is denied, all are locked | Simplified model |
+| **PDFtk** | No owner-only mode, no individual permissions | Limited support |
 
-**Ab v8.34.0:** Owner-Only-PDFs (nur ownerPassword, kein userPassword) oeffnen sich passwortlos, wenden aber Berechtigungseinschraenkungen an.
+**As of v8.34.0:** Owner-only PDFs (ownerPassword only, no userPassword) open without a password but still apply permission restrictions.
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### Nur Benutzerpasswort (zum Oeffnen)
+### User password only (to open)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
@@ -99,7 +99,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
   -o verschluesselt.pdf
 ```
 
-### Benutzer- und Eigentuemer-Passwort
+### User and owner password
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
@@ -109,7 +109,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
   -o verschluesselt.pdf
 ```
 
-### Nur Lesen erlauben (Kopieren und Bearbeiten sperren)
+### Allow reading only (block copying and editing)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
@@ -124,7 +124,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
   -o nur-lesen.pdf
 ```
 
-### Nur Drucken sperren
+### Block printing only
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
@@ -134,7 +134,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
   -o kein-druck.pdf
 ```
 
-### Owner-Only (passwortlos oeffnen, Berechtigungen eingeschraenkt)
+### Owner-only (opens without a password, permissions restricted)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
@@ -147,13 +147,13 @@ curl --request POST http://localhost:3000/forms/pdfengines/encrypt \
 
 ---
 
-## Hinweise
+## Notes
 
-- Berechtigungseinschraenkungen erfordern mindestens `userPassword` oder `ownerPassword`
-- PDF/A und Verschluesselung schliessen sich gegenseitig aus
-- QPDF wird empfohlen, wenn individuelle Berechtigungen benoetigt werden
-- Fuer vollstaendige Lesesperre empfiehlt sich: Flatten → Encrypt
+- Permission restrictions require at least `userPassword` or `ownerPassword`
+- PDF/A and encryption are mutually exclusive
+- QPDF is recommended when individual permissions are needed
+- For a complete read lock, the following is recommended: Flatten → Encrypt
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/encrypt-pdfs
+Source: https://gotenberg.dev/docs/manipulate-pdfs/encrypt-pdfs

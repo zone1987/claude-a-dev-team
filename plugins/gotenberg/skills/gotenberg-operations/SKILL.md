@@ -9,15 +9,15 @@ Running and calling Gotenberg. It is stateless, so configuration is entirely fla
 
 ## Reference map
 
-- **[CLIENTS.md](CLIENTS.md)**: Gotenberg ist eine Standard-HTTP-API. [CLIENTS-DETAIL](CLIENTS-DETAIL.md).
-- **[CONFIGURATION.md](CONFIGURATION.md)**: Konfiguration via CLI-Flags oder Umgebungsvariablen. [CONFIGURATION-DETAIL](CONFIGURATION-DETAIL.md).
-- **[INSTALLATION.md](INSTALLATION.md)**: Gotenberg laeuft ausschliesslich als Docker-Container. [INSTALLATION-DETAIL](INSTALLATION-DETAIL.md).
-- **[INTRODUCTION.md](INTRODUCTION.md)**: Gotenberg ist eine **Docker-basierte, zustandslose HTTP-API** zur Dokumentenkonvertierung. [INTRODUCTION-DETAIL](INTRODUCTION-DETAIL.md).
-- **[OUTBOUND-FILTERING.md](OUTBOUND-FILTERING.md)**: Konfiguration des ausgehenden URL-Filters gegen SSRF und ungewollte Netzwerkzugriffe. [OUTBOUND-FILTERING-DETAIL](OUTBOUND-FILTERING-DETAIL.md).
-- **[SYSTEM.md](SYSTEM.md)**: Health-Check, Versioninfo, Prometheus-Metriken und Debug-Konfiguration. [SYSTEM-DETAIL](SYSTEM-DETAIL.md).
-- **[TELEMETRY.md](TELEMETRY.md)**: OTEL-Integration fuer Traces, Metriken und Logs. [TELEMETRY-DETAIL](TELEMETRY-DETAIL.md).
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Loesungen fuer haeufige Probleme: leere PDFs, Schriftartprobleme, LibreOffice-Abstuerze, Webhook-TLS-Fehler, …. [TROUBLESHOOTING-DETAIL](TROUBLESHOOTING-DETAIL.md).
-- **[WEBHOOK.md](WEBHOOK.md)**: Asynchrone Verarbeitung: Gotenberg gibt sofort 204 zurueck, sendet das Ergebnis per Callback-Request. [WEBHOOK-DETAIL](WEBHOOK-DETAIL.md).
+- **[CLIENTS.md](CLIENTS.md)**: Gotenberg is a standard HTTP API. [CLIENTS-DETAIL](CLIENTS-DETAIL.md).
+- **[CONFIGURATION.md](CONFIGURATION.md)**: Configuration via CLI flags or environment variables. [CONFIGURATION-DETAIL](CONFIGURATION-DETAIL.md).
+- **[INSTALLATION.md](INSTALLATION.md)**: Gotenberg runs exclusively as a Docker container. [INSTALLATION-DETAIL](INSTALLATION-DETAIL.md).
+- **[INTRODUCTION.md](INTRODUCTION.md)**: Gotenberg is a **Docker-based, stateless HTTP API** for document conversion. [INTRODUCTION-DETAIL](INTRODUCTION-DETAIL.md).
+- **[OUTBOUND-FILTERING.md](OUTBOUND-FILTERING.md)**: Configuring the outbound URL filter against SSRF and unwanted network access. [OUTBOUND-FILTERING-DETAIL](OUTBOUND-FILTERING-DETAIL.md).
+- **[SYSTEM.md](SYSTEM.md)**: Health check, version info, Prometheus metrics and debug configuration. [SYSTEM-DETAIL](SYSTEM-DETAIL.md).
+- **[TELEMETRY.md](TELEMETRY.md)**: OTEL integration for traces, metrics and logs. [TELEMETRY-DETAIL](TELEMETRY-DETAIL.md).
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Solutions for common problems: empty PDFs, font issues, LibreOffice crashes, webhook TLS errors, …. [TROUBLESHOOTING-DETAIL](TROUBLESHOOTING-DETAIL.md).
+- **[WEBHOOK.md](WEBHOOK.md)**: Asynchronous processing: Gotenberg returns 204 immediately and sends the result via a callback request. [WEBHOOK-DETAIL](WEBHOOK-DETAIL.md).
 
 ## Source
 

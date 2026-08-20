@@ -1,14 +1,14 @@
-# Gotenberg — PDF Anhaenge / Attachments (Vollreferenz)
+# Gotenberg — PDF Attachments (Full Reference)
 
 ## Contents
 
 - [Route](#route)
-- [Request-Header](#request-header)
-- [Form-Felder](#form-felder)
-- [embedsMetadata-JSON-Format](#embedsmetadata-json-format)
-- [Antwort-Codes](#antwort-codes)
-- [curl-Beispiele](#curl-beispiele)
-- [Hinweise](#hinweise)
+- [Request Headers](#request-headers)
+- [Form Fields](#form-fields)
+- [embedsMetadata JSON Format](#embedsmetadata-json-format)
+- [Response Codes](#response-codes)
+- [curl Examples](#curl-examples)
+- [Notes](#notes)
 
 ## Route
 
@@ -16,41 +16,41 @@
 POST /forms/pdfengines/embed
 ```
 
-**Content-Type des Requests:** `multipart/form-data`
+**Content type of the request:** `multipart/form-data`
 
 ---
 
-## Request-Header
+## Request Headers
 
-| Header | Typ | Pflicht | Standard | Beschreibung |
+| Header | Type | Required | Default | Description |
 |--------|-----|---------|----------|--------------|
-| `Gotenberg-Output-Filename` | string | Nein | zufaellige UUID | Dateiname der Ausgabe |
-| `Gotenberg-Trace` | string | Nein | UUID | Eigene Request-ID fuer Log-Identifizierung |
+| `Gotenberg-Output-Filename` | string | No | random UUID | File name of the output |
+| `Gotenberg-Trace` | string | No | UUID | Custom request ID for log identification |
 
 ---
 
-## Form-Felder
+## Form Fields
 
-### Datei-Upload
+### File Upload
 
-| Feld | Typ | Pflicht | Beschreibung |
+| Field | Type | Required | Description |
 |------|-----|---------|--------------|
-| `files` | file[] | Ja | PDF-Dateien, in die Inhalte eingebettet werden |
-| `embeds` | file[] | Ja | Dateien, die als Anhaenge eingebettet werden sollen (XML, Bilder, etc.) |
-| `facturxXml` | file | Bedingt | Factur-X CII-Rechnungs-XML; wird als `factur-x.xml` eingebettet (Dateiname wird ignoriert) |
+| `files` | file[] | Yes | PDF files into which content is embedded |
+| `embeds` | file[] | Yes | Files to be embedded as attachments (XML, images, etc.) |
+| `facturxXml` | file | Conditional | Factur-X CII invoice XML; is embedded as `factur-x.xml` (the file name is ignored) |
 
-### Metadaten
+### Metadata
 
-| Feld | Typ | Pflicht | Standard | Beschreibung |
+| Field | Type | Required | Default | Description |
 |------|-----|---------|----------|--------------|
-| `embedsMetadata` | JSON-string | Nein | — | Pro-Anhang-Metadaten, Schluessel = Dateiname des Anhangs |
-| `facturxConformanceLevel` | enum | Bedingt* | — | Konformitaetsstufe fuer Factur-X XMP-Metadaten (*wenn facturxXml angegeben) |
-| `facturxDocumentType` | enum | Nein | `INVOICE` | Dokumenttyp fuer Factur-X XMP-Metadaten |
-| `facturxVersion` | string | Nein | `1.0` | Factur-X-Version fuer XMP-Metadaten |
+| `embedsMetadata` | JSON string | No | — | Per-attachment metadata, key = file name of the attachment |
+| `facturxConformanceLevel` | enum | Conditional* | — | Conformance level for Factur-X XMP metadata (*if facturxXml is provided) |
+| `facturxDocumentType` | enum | No | `INVOICE` | Document type for Factur-X XMP metadata |
+| `facturxVersion` | string | No | `1.0` | Factur-X version for XMP metadata |
 
 ---
 
-## embedsMetadata-JSON-Format
+## embedsMetadata JSON Format
 
 ```json
 {
@@ -65,38 +65,38 @@ POST /forms/pdfengines/embed
 }
 ```
 
-### AFRelationship-Werte
+### AFRelationship Values
 
-| Wert | Beschreibung |
+| Value | Description |
 |------|-------------|
-| `Source` | Quelldokument (unveraenderte Quelle) |
-| `Data` | Datendatei (ergaenzende Daten) |
-| `Alternative` | Alternatives Format (z.B. XML-Version des PDF-Inhalts) |
-| `Supplement` | Ergaenzende Information |
-| `Unspecified` | Beziehung nicht definiert |
+| `Source` | Source document (unmodified source) |
+| `Data` | Data file (supplementary data) |
+| `Alternative` | Alternative format (e.g. XML version of the PDF content) |
+| `Supplement` | Supplementary information |
+| `Unspecified` | Relationship not defined |
 
-### facturxConformanceLevel-Werte
+### facturxConformanceLevel Values
 
-| Wert | Beschreibung |
+| Value | Description |
 |------|-------------|
-| `MINIMUM` | Minimalkonformitaet |
-| `BASIC WL` | Basis ohne Zeilenpositionen |
-| `BASIC` | Basiskonformitaet |
-| `EN 16931` | Europaeischer Standard (Core Invoice Usage Rules) |
-| `EXTENDED` | Erweiterte Konformitaet |
-| `XRECHNUNG` | Deutsche XRechnung (B2G) |
+| `MINIMUM` | Minimum conformance |
+| `BASIC WL` | Basic without line items |
+| `BASIC` | Basic conformance |
+| `EN 16931` | European standard (Core Invoice Usage Rules) |
+| `EXTENDED` | Extended conformance |
+| `XRECHNUNG` | German XRechnung (B2G) |
 
 ---
 
-## Antwort-Codes
+## Response Codes
 
-| Code | Content-Type | Beschreibung |
+| Code | Content-Type | Description |
 |------|-------------|--------------|
-| `200` | `application/pdf` oder `application/zip` | PDF mit eingebetteten Anhaengen; mehrere Inputs → ZIP |
-| `400` | `text/plain; charset=UTF-8` | Ungueltige Form-Felder |
+| `200` | `application/pdf` or `application/zip` | PDF with embedded attachments; multiple inputs → ZIP |
+| `400` | `text/plain; charset=UTF-8` | Invalid form fields |
 | `503` | `text/plain; charset=UTF-8` | Timeout |
 
-### Antwort-Header bei Erfolg
+### Response Headers on Success
 
 ```
 Content-Disposition: attachment; filename={dateiname.ext}
@@ -107,9 +107,9 @@ Gotenberg-Trace: {trace}
 
 ---
 
-## curl-Beispiele
+## curl Examples
 
-### XML als Anhang einbetten
+### Embed XML as an attachment
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
@@ -118,7 +118,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
   -o mit-anhang.pdf
 ```
 
-### XML mit Metadaten einbetten
+### Embed XML with metadata
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
@@ -128,7 +128,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
   -o mit-anhang.pdf
 ```
 
-### Factur-X XML (dediziertes Feld)
+### Factur-X XML (dedicated field)
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
@@ -138,7 +138,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
   -o e-rechnung.pdf
 ```
 
-### Mehrere Dateien einbetten
+### Embed multiple files
 
 ```bash
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
@@ -151,13 +151,13 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
 
 ---
 
-## Hinweise
+## Notes
 
-- Erfordert QPDF als PDF-Engine fuer volle `embedsMetadata`-Unterstuetzung (Standard)
-- `facturxXml` wird unabhaengig vom hochgeladenen Dateinamen immer als `factur-x.xml` eingebettet
-- Fuer E-Rechnungen (ZUGFeRD/Factur-X) ist PDF/A-3b erforderlich — verwende `POST /forms/pdfengines/factur-x` fuer den vollstaendigen Workflow
-- PDF/A-1b und PDF/A-2b unterstuetzen keine Dateianhaenge
+- Requires QPDF as the PDF engine for full `embedsMetadata` support (default)
+- `facturxXml` is always embedded as `factur-x.xml`, regardless of the uploaded file name
+- For e-invoices (ZUGFeRD/Factur-X), PDF/A-3b is required — use `POST /forms/pdfengines/factur-x` for the complete workflow
+- PDF/A-1b and PDF/A-2b do not support file attachments
 
 ---
 
-Quelle: https://gotenberg.dev/docs/manipulate-pdfs/attachments
+Source: https://gotenberg.dev/docs/manipulate-pdfs/attachments

@@ -266,7 +266,7 @@ wsRoute.send(JSON.stringify({ type: 'notification', message: 'New order!' }));
 | Properties | 0 |
 | Events | 0 |
 
-**Conclusion:** `WebSocketRoute` is the powerful tool for WebSocket tests. `connectToServer()` activates transparent mode with optional interception via `onMessage()`. Without `connectToServer()`, the page is mocked completely — no real server is contacted. `send()` is the central method for injecting messages from the outside.
+**Summary:** `WebSocketRoute` is the powerful tool for WebSocket tests. `connectToServer()` activates transparent mode with optional interception via `onMessage()`. Without `connectToServer()`, the page is mocked completely — no real server is contacted. `send()` is the central method for injecting messages from the outside.
 
 ---
 

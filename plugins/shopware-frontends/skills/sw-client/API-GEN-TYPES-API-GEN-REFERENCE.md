@@ -1,23 +1,23 @@
-# @shopware/api-gen — Vollständige CLI & API-Referenz
+# @shopware/api-gen — Complete CLI & API reference
 
 Version: **1.5.0**
 
-CLI-Tool und Node.js-API zum Generieren typsicherer TypeScript-Definitionen aus dem Shopware OpenAPI-Schema.
+CLI tool and Node.js API for generating type-safe TypeScript definitions from the Shopware OpenAPI schema.
 
 ---
 
 ## Contents
 
 - [Installation](#installation)
-- [CLI-Befehle](#cli-befehle)
-- [Konfigurationsdatei `api-gen.config.json`](#konfigurationsdatei-api-genconfigjson)
-- [Generierte Typen — Struktur](#generierte-typen-struktur)
-- [`#shopware`-Alias einrichten](#shopware-alias-einrichten)
-- [Empfohlener Workflow](#empfohlener-workflow)
-- [Programmatische API (Node.js)](#programmatische-api-nodejs)
-- [Schema-Patch-Mechanismus](#schema-patch-mechanismus)
-- [Custom Transform-Hooks](#custom-transform-hooks)
-- [Validation-Regeln](#validation-regeln)
+- [CLI commands](#cli-commands)
+- [Configuration file `api-gen.config.json`](#configuration-file-api-genconfigjson)
+- [Generated types — structure](#generated-types-structure)
+- [Setting up the `#shopware` alias](#setting-up-the-shopware-alias)
+- [Recommended workflow](#recommended-workflow)
+- [Programmatic API (Node.js)](#programmatic-api-nodejs)
+- [Schema patch mechanism](#schema-patch-mechanism)
+- [Custom transform hooks](#custom-transform-hooks)
+- [Validation rules](#validation-rules)
 
 ## Installation
 
@@ -27,58 +27,58 @@ npm install --save-dev @shopware/api-gen
 
 ---
 
-## CLI-Befehle
+## CLI commands
 
-Das Binary lautet `api-gen` (nach Installation via `npx @shopware/api-gen ...`).
+The binary is called `api-gen` (after installation via `npx @shopware/api-gen ...`).
 
-### Übersicht
+### Overview
 
 ```bash
 npx @shopware/api-gen <command> [options]
 
 Commands:
-  loadSchema    Schema vom Shopware-Shop herunterladen
-  generate      TypeScript-Typen aus dem Schema generieren
-  validateJson  Lokales Schema validieren
-  split         Schema in Teildateien aufteilen
+  loadSchema    Download the schema from the Shopware shop
+  generate      Generate TypeScript types from the schema
+  validateJson  Validate the local schema
+  split         Split the schema into partial files
 ```
 
 ---
 
-### `loadSchema` — Schema herunterladen
+### `loadSchema` — download the schema
 
 ```bash
 npx @shopware/api-gen loadSchema --apiType=store
 npx @shopware/api-gen loadSchema --apiType=admin
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `--apiType` | `store` \| `admin` | API-Typ |
-| `--cwd` / `-C` | `string` | Arbeitsverzeichnis (default: `process.cwd()`) |
-| `--filename` | `string` | Ausgabedateiname (default: `storeApiSchema.json` / `adminApiSchema.json`) |
-| `--url` | `string` | Override für Shop-URL |
+| `--apiType` | `store` \| `admin` | API type |
+| `--cwd` / `-C` | `string` | Working directory (default: `process.cwd()`) |
+| `--filename` | `string` | Output file name (default: `storeApiSchema.json` / `adminApiSchema.json`) |
+| `--url` | `string` | Override for the shop URL |
 
-**Ausgabe:** `api-types/storeApiSchema.json` oder `api-types/adminApiSchema.json`
+**Output:** `api-types/storeApiSchema.json` or `api-types/adminApiSchema.json`
 
-**Erforderliche Umgebungsvariablen:**
+**Required environment variables:**
 
-Für Store-API:
+For the Store API:
 ```env
 OPENAPI_JSON_URL=https://shop.example.com
 OPENAPI_ACCESS_KEY=SWSC...
 ```
 
-Für Admin-API (password grant):
+For the Admin API (password grant):
 ```env
 OPENAPI_JSON_URL=https://shop.example.com
 SHOPWARE_ADMIN_USERNAME=admin
 SHOPWARE_ADMIN_PASSWORD=shopware
 ```
 
-Für Admin-API (client_credentials):
+For the Admin API (client_credentials):
 ```env
 OPENAPI_JSON_URL=https://shop.example.com
 SHOPWARE_ADMIN_CLIENT_ID=SWIA...
@@ -87,70 +87,70 @@ SHOPWARE_ADMIN_CLIENT_SECRET=mySecret
 
 ---
 
-### `generate` — TypeScript-Typen generieren
+### `generate` — generate TypeScript types
 
 ```bash
 npx @shopware/api-gen generate --apiType=store
 npx @shopware/api-gen generate --apiType=admin
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `--apiType` | `store` \| `admin` | Welches Schema generieren |
-| `--cwd` / `-C` | `string` | Arbeitsverzeichnis |
-| `--filename` | `string` | Eingabedateiname (default: Schema-Dateiname) |
-| `--debug` | `boolean` | Debug-Output aktivieren |
-| `--logPatches` | `boolean` | Patch-Anwendung loggen |
+| `--apiType` | `store` \| `admin` | Which schema to generate |
+| `--cwd` / `-C` | `string` | Working directory |
+| `--filename` | `string` | Input file name (default: the schema file name) |
+| `--debug` | `boolean` | Enable debug output |
+| `--logPatches` | `boolean` | Log the patch application |
 
-**Eingabe:** `api-types/storeApiSchema.json` (lokal) oder Fallback auf eingebundene Standard-Schemata.
+**Input:** `api-types/storeApiSchema.json` (local) or a fallback to the bundled default schemas.
 
-**Ausgabe:** `api-types/storeApiTypes.d.ts` oder `api-types/adminApiTypes.d.ts`
+**Output:** `api-types/storeApiTypes.d.ts` or `api-types/adminApiTypes.d.ts`
 
-Die generierten Dateien exportieren:
-- `operations` — alle Store-/Admin-API-Operationen
-- `components` — alle Schema-Komponenten
-- `Schemas` = `components["schemas"]` — einzelne Shopware-Entitäten
+The generated files export:
+- `operations` — all Store/Admin API operations
+- `components` — all schema components
+- `Schemas` = `components["schemas"]` — individual Shopware entities
 
 ---
 
-### `validateJson` — Schema validieren
+### `validateJson` — validate the schema
 
 ```bash
 npx @shopware/api-gen validateJson --apiType=store
 ```
 
-Validiert das lokale Schema gegen:
-1. Konfigurierte Regeln (z.B. `COMPONENTS_API_ALIAS` — prüft dass jede Komponente ein korrektes `apiAlias`-Enum hat)
-2. Vergleich der Pfade mit den Live-API-Endpunkten des Shops (via `/_info/routes`)
+Validates the local schema against:
+1. Configured rules (e.g. `COMPONENTS_API_ALIAS` — checks that every component has a correct `apiAlias` enum)
+2. Comparison of the paths with the live API endpoints of the shop (via `/_info/routes`)
 
-Meldet:
-- Endpunkte die im Schema fehlen (im Live-Shop aber vorhanden)
-- Endpunkte die im Schema sind aber nicht im Live-Shop
+Reports:
+- Endpoints that are missing from the schema (but present in the live shop)
+- Endpoints that are in the schema but not in the live shop
 
 ---
 
-### `split` — Schema aufteilen
+### `split` — split the schema
 
 ```bash
 npx @shopware/api-gen split --apiType=store --list tags
 npx @shopware/api-gen split --apiType=store --filterBy "Cart,Checkout"
 ```
 
-**Optionen:**
+**Options:**
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |---|---|---|
-| `--list` | `tags` \| `paths` | Auflistungsmodus |
-| `--filterBy` | `string` | Kommaseparierte Tags/Pfade |
-| `--verbose-linting` | `boolean` | Ausführlicheres Linting |
+| `--list` | `tags` \| `paths` | Listing mode |
+| `--filterBy` | `string` | Comma-separated tags/paths |
+| `--verbose-linting` | `boolean` | More verbose linting |
 
 ---
 
-## Konfigurationsdatei `api-gen.config.json`
+## Configuration file `api-gen.config.json`
 
-Optional im Projektroot. Ermöglicht JSON-Overrides/Patches für das Schema.
+Optional, in the project root. Enables JSON overrides/patches for the schema.
 
 ```json
 {
@@ -166,7 +166,7 @@ Optional im Projektroot. Ermöglicht JSON-Overrides/Patches für das Schema.
 }
 ```
 
-**Format eines Patch-Files (`OverridesSchema`):**
+**Format of a patch file (`OverridesSchema`):**
 
 ```json
 {
@@ -201,18 +201,18 @@ Optional im Projektroot. Ermöglicht JSON-Overrides/Patches für das Schema.
 }
 ```
 
-**Spezielles `_DELETE_`-Schlüsselwort:** Felder im Patch mit `"_DELETE_": true` werden aus dem Schema entfernt.
+**Special `_DELETE_` keyword:** fields in the patch carrying `"_DELETE_": true` are removed from the schema.
 
 ---
 
-## Generierte Typen — Struktur
+## Generated types — structure
 
 ### `operations`
 
-Jede API-Operation wird als Typ exportiert:
+Every API operation is exported as a type:
 
 ```ts
-// Beispiel (vereinfacht aus generierten storeApiTypes.d.ts)
+// Example (simplified from the generated storeApiTypes.d.ts)
 export type operations = {
   "readProduct post /product": {
     body?: {
@@ -241,7 +241,7 @@ export type operations = {
 ### `Schemas` / `components["schemas"]`
 
 ```ts
-// Verwendung
+// Usage
 import type { Schemas } from '#shopware'
 
 const product: Schemas["Product"]
@@ -251,14 +251,14 @@ const category: Schemas["Category"]
 
 ---
 
-## `#shopware`-Alias einrichten
+## Setting up the `#shopware` alias
 
-### Nuxt (empfohlen)
+### Nuxt (recommended)
 
-Das `@shopware/nuxt-module` richtet den Alias automatisch ein. Eine lokale `shopware.d.ts` im Projektroot überschreibt die Standard-Typen:
+The `@shopware/nuxt-module` sets up the alias automatically. A local `shopware.d.ts` in the project root overrides the default types:
 
 ```ts
-// shopware.d.ts — eigene Typen/Erweiterungen
+// shopware.d.ts — own types/extensions
 import type { operationsType } from './api-types/storeApiTypes'
 import type { components } from './api-types/storeApiTypes'
 
@@ -268,7 +268,7 @@ declare module '#shopware' {
 }
 ```
 
-### Vite / andere Frameworks
+### Vite / other frameworks
 
 ```ts
 // vite.config.ts
@@ -298,17 +298,17 @@ export default {
 
 ---
 
-## Empfohlener Workflow
+## Recommended workflow
 
 ```bash
-# 1. Schema laden (einmalig oder nach Shopware-Update)
+# 1. Load the schema (once, or after a Shopware update)
 OPENAPI_JSON_URL=https://shop.example.com OPENAPI_ACCESS_KEY=SWSC... \
   npx @shopware/api-gen loadSchema --apiType=store
 
-# 2. Typen generieren
+# 2. Generate types
 npx @shopware/api-gen generate --apiType=store
 
-# 3. In package.json-Scripts eintragen:
+# 3. Add it to the package.json scripts:
 ```
 
 ```json
@@ -321,19 +321,19 @@ npx @shopware/api-gen generate --apiType=store
 
 ---
 
-## Programmatische API (Node.js)
+## Programmatic API (Node.js)
 
 ```ts
 import { generate, loadSchema, validateJson } from '@shopware/api-gen'
 
-// Schema laden
+// Load the schema
 await loadSchema({
   cwd: process.cwd(),
   apiType: 'store',
   filename: 'storeApiSchema.json'
 })
 
-// Typen generieren
+// Generate types
 await generate({
   cwd: process.cwd(),
   apiType: 'store',
@@ -341,7 +341,7 @@ await generate({
   logPatches: false
 })
 
-// Schema validieren
+// Validate the schema
 await validateJson({
   cwd: process.cwd(),
   apiType: 'store'
@@ -350,33 +350,33 @@ await validateJson({
 
 ---
 
-## Schema-Patch-Mechanismus
+## Schema patch mechanism
 
-`patchJsonSchema` wird intern aufgerufen um das Schema vor der Generierung zu modifizieren:
+`patchJsonSchema` is called internally to modify the schema before generation:
 
-1. **Pflichtfelder**: `requestBody.required` wird auf `true` gesetzt (Shopware-Standard)
-2. **Patches anwenden**: Tiefes Merge der Patch-Arrays per Komponente/Pfad
-3. **Outdated-Erkennung**: Patches die bereits im Schema enthalten sind werden als "outdated" gemeldet
-4. **`_DELETE_`-Support**: Schlüssel mit `_DELETE_: true` werden aus dem Schema entfernt
-
----
-
-## Custom Transform-Hooks
-
-`api-gen` wendet beim Generieren automatisch folgende Transformationen an:
-
-- `format: "binary"` → TypeScript-Typ `Blob`
-- Bare `object`-Typen → `GenericRecord` (vermeidet `Record<string, unknown>`)
-- Felder mit `translated`-Property + String-Feldern → typisiertes `translated`-Objekt
+1. **Required fields**: `requestBody.required` is set to `true` (the Shopware default)
+2. **Apply patches**: deep merge of the patch arrays per component/path
+3. **Outdated detection**: patches that are already contained in the schema are reported as "outdated"
+4. **`_DELETE_` support**: keys with `_DELETE_: true` are removed from the schema
 
 ---
 
-## Validation-Regeln
+## Custom transform hooks
+
+When generating, `api-gen` automatically applies the following transformations:
+
+- `format: "binary"` → TypeScript type `Blob`
+- Bare `object` types → `GenericRecord` (avoids `Record<string, unknown>`)
+- Fields with a `translated` property + string fields → typed `translated` object
+
+---
+
+## Validation rules
 
 ### `COMPONENTS_API_ALIAS`
 
-Prüft dass jede Komponente ein korrektes `apiAlias`-Enum-Feld hat:
+Checks that every component has a correct `apiAlias` enum field:
 - `CmsBlock` → `"cms_block"`
 - `ProductManufacturer` → `"product_manufacturer"`
 
-Meldet Abweichungen und schlägt den korrekten Wert vor.
+Reports deviations and suggests the correct value.

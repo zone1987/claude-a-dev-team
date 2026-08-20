@@ -23,8 +23,8 @@ ToggleGroup
 
 ## Reference files
 
-- [installation.md](`TOGGLE-GROUP-INSTALLATION.md`) — CLI & manual setup
-- [source.md](`TOGGLE-GROUP-SOURCE.md`) — Complete component source (new-york-v4 + radix base)
-- [api.md](`TOGGLE-GROUP-API.md`) — Props tables
-- [examples.md](`TOGGLE-GROUP-EXAMPLES.md`) — All examples
-- [base-vs-radix.md](`TOGGLE-GROUP-BASE-VS-RADIX.md`) — Differences between variants
+- [TOGGLE-GROUP-INSTALLATION.md](TOGGLE-GROUP-INSTALLATION.md) — CLI & manual setup
+- [TOGGLE-GROUP-SOURCE.md](TOGGLE-GROUP-SOURCE.md) — Complete component source (new-york-v4 + radix base)
+- [TOGGLE-GROUP-API.md](TOGGLE-GROUP-API.md) — Props tables
+- [TOGGLE-GROUP-EXAMPLES.md](TOGGLE-GROUP-EXAMPLES.md) — All examples
+- [TOGGLE-GROUP-BASE-VS-RADIX.md](TOGGLE-GROUP-BASE-VS-RADIX.md) — Differences between variants

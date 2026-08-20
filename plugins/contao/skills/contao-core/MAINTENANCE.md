@@ -1,3 +1,3 @@
 # contao-maintenance
 
-Vollständige Referenz: `MAINTENANCE-CONTAO-MAINTENANCE.md`
+Complete reference: `MAINTENANCE-CONTAO-MAINTENANCE.md`

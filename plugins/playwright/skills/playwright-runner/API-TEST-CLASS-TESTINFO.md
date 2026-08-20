@@ -380,10 +380,10 @@ const path = testInfo.snapshotPath('header.png', { kind: 'screenshot' });
 | Methods | 7 (`attach`, `fail`, `fixme`, `outputPath`, `setTimeout`, `skip`, `slow`, `snapshotPath`) |
 | Properties | 22 |
 
-**Fazit:** `TestInfo` ist die Laufzeitschnittstelle zum aktuellen Test. Es bietet sowohl
-lesende Metadaten (Titel, Datei, Retry) als auch steuernde Methoden (skip, fail, slow,
-setTimeout). `attach` und `outputPath` sind die primären Wege, Artefakte zu einem Test
-hinzuzufuegen.
+**Summary:** `TestInfo` is the runtime interface to the current test. It provides both
+readable metadata (title, file, retry) and controlling methods (skip, fail, slow,
+setTimeout). `attach` and `outputPath` are the primary ways to add artifacts to a
+test.
 
 ---
 

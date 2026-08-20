@@ -1,48 +1,48 @@
-# Meteor Component Library — Vollständige Komponenten-Referenz
+# Meteor Component Library — complete component reference
 
-Paket: `@shopware-ag/meteor-component-library`  
-Quelle: `packages/component-library/src/components/`
+Package: `@shopware-ag/meteor-component-library`  
+Source: `packages/component-library/src/components/`
 
-Alle Komponenten beginnen mit `mt-*`. Kategorien entsprechen der Verzeichnisstruktur.
+All components start with `mt-*`. Categories mirror the directory structure.
 
 ---
 
 ## Contents
 
-- [Form-Komponenten](#form-komponenten)
-- [Layout-Komponenten](#layout-komponenten)
-- [Navigation-Komponenten](#navigation-komponenten)
-- [Feedback-Komponenten](#feedback-komponenten)
-- [Overlay-Komponenten](#overlay-komponenten)
-- [Tabellen- und Listen-Komponenten](#tabellen--und-listen-komponenten)
-- [Icons & Media](#icons-media)
-- [Context-Menü](#context-menü)
-- [Action-Menü (Reka UI basiert)](#action-menü-reka-ui-basiert)
-- [Content-Komponenten](#content-komponenten)
+- [Form components](#form-components)
+- [Layout components](#layout-components)
+- [Navigation components](#navigation-components)
+- [Feedback components](#feedback-components)
+- [Overlay components](#overlay-components)
+- [Table and list components](#table-and-list-components)
+- [Icons & media](#icons--media)
+- [Context menu](#context-menu)
+- [Action menu (Reka UI based)](#action-menu-reka-ui-based)
+- [Content components](#content-components)
 - [Charts](#charts)
-- [Entity-Komponenten](#entity-komponenten)
+- [Entity components](#entity-components)
 - [Theme](#theme)
-- [Allgemeine Hinweise](#allgemeine-hinweise)
+- [General notes](#general-notes)
 
-## Form-Komponenten
+## Form components
 
 ### `mt-button`
 
-Primärer Aktionsbutton.
+Primary action button.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `is` | `Component \| string` | `'button'` | Rendert als dieses Element |
-| `variant` | `'primary'\|'secondary'\|'tertiary'\|'critical'` | `'secondary'` | Variante |
-| `ghost` | `boolean` | `false` | Ghost-Stil (transparent) |
-| `size` | `'x-small'\|'small'\|'default'\|'large'` | `'small'` | Größe |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `square` | `boolean` | `false` | Quadratisch |
-| `block` | `boolean` | `false` | Volle Breite |
-| `isLoading` | `boolean` | `false` | Ladeanimation |
-| `link` | `string` | `undefined` | **@deprecated** — nutze `is="a" href="..."` |
+| `is` | `Component \| string` | `'button'` | Renders as this element |
+| `variant` | `'primary'\|'secondary'\|'tertiary'\|'critical'` | `'secondary'` | Variant |
+| `ghost` | `boolean` | `false` | Ghost style (transparent) |
+| `size` | `'x-small'\|'small'\|'default'\|'large'` | `'small'` | Size |
+| `disabled` | `boolean` | `false` | Disabled |
+| `square` | `boolean` | `false` | Square |
+| `block` | `boolean` | `false` | Full width |
+| `isLoading` | `boolean` | `false` | Loading animation |
+| `link` | `string` | `undefined` | **@deprecated** — use `is="a" href="..."` |
 
 **Slots:** `default`, `iconFront: { size: number }`, `iconBack: { size: number }`
 
@@ -55,26 +55,26 @@ Primärer Aktionsbutton.
 
 ### `mt-text-field`
 
-Einzeiliges Textfeld.
+Single-line text field.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string \| number` | `''` | Wert (v-model) |
-| `label` | `string` | `null` | Beschriftung |
-| `placeholder` | `string` | `''` | Platzhaltertext |
-| `helpText` | `string` | `null` | Hilfstext |
-| `size` | `'small'\|'default'` | `'default'` | Größe |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `required` | `boolean` | `false` | Pflichtfeld |
-| `error` | `{ code: number, detail: string }` | `null` | Fehlerobjekt |
-| `copyable` | `boolean` | `false` | Kopierfunktion |
-| `copyableTooltip` | `boolean` | `false` | Tooltip nach erfolgreichem Kopieren |
-| `maxLength` | `number` | — | Maximale Zeichenanzahl |
-| `isInherited` | `boolean` | `false` | Vererbung aktiv |
-| `isInheritanceField` | `boolean` | `false` | Hat Vererbungs-Toggle |
-| `disableInheritanceToggle` | `boolean` | `false` | Vererbungs-Toggle deaktivieren |
+| `modelValue` | `string \| number` | `''` | Value (v-model) |
+| `label` | `string` | `null` | Label |
+| `placeholder` | `string` | `''` | Placeholder text |
+| `helpText` | `string` | `null` | Help text |
+| `size` | `'small'\|'default'` | `'default'` | Size |
+| `disabled` | `boolean` | `false` | Disabled |
+| `required` | `boolean` | `false` | Required field |
+| `error` | `{ code: number, detail: string }` | `null` | Error object |
+| `copyable` | `boolean` | `false` | Copy function |
+| `copyableTooltip` | `boolean` | `false` | Tooltip after a successful copy |
+| `maxLength` | `number` | — | Maximum number of characters |
+| `isInherited` | `boolean` | `false` | Inheritance active |
+| `isInheritanceField` | `boolean` | `false` | Has an inheritance toggle |
+| `disableInheritanceToggle` | `boolean` | `false` | Disable the inheritance toggle |
 
 **Events:** `update:modelValue`, `change`, `inheritance-restore`, `inheritance-remove`
 
@@ -88,18 +88,18 @@ Einzeiliges Textfeld.
 
 ### `mt-number-field`
 
-Zahleneingabefeld.
+Numeric input field.
 
-**Props:** Alle von `mt-text-field` plus:
+**Props:** all of `mt-text-field` plus:
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `numberType` | `'float'\|'int'` | `'float'` | Zahlentyp |
-| `step` | `number` | `null` | Schrittweite |
-| `min` | `number` | `null` | Minimalwert |
-| `max` | `number` | `null` | Maximalwert |
-| `fillDigits` | `boolean` | `false` | Nullstellen auffüllen |
-| `digits` | `number` | `2` | Nachkommastellen (float) |
+| `numberType` | `'float'\|'int'` | `'float'` | Number type |
+| `step` | `number` | `null` | Step size |
+| `min` | `number` | `null` | Minimum value |
+| `max` | `number` | `null` | Maximum value |
+| `fillDigits` | `boolean` | `false` | Pad with zeros |
+| `digits` | `number` | `2` | Decimal places (float) |
 
 **Events:** `update:modelValue`, `input-change`, `change`, `inheritance-restore`, `inheritance-remove`
 
@@ -107,22 +107,22 @@ Zahleneingabefeld.
 
 ### `mt-textarea`
 
-Mehrzeiliges Textfeld.
+Multi-line text field.
 
 **Props:**
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `modelValue` | `string` | Wert |
-| `label` | `string` | Beschriftung |
-| `placeholder` | `string` | Platzhalter |
-| `helpText` | `string` | Hilfstext |
-| `error` | `{ detail: string }` | Fehler |
-| `maxLength` | `number` | Maximale Zeichen |
-| `disabled` | `boolean` | Deaktiviert |
-| `required` | `boolean` | Pflichtfeld |
-| `isInherited` | `boolean` | Vererbung aktiv |
-| `isInheritanceField` | `boolean` | Vererbungs-Toggle anzeigen |
+| `modelValue` | `string` | Value |
+| `label` | `string` | Label |
+| `placeholder` | `string` | Placeholder |
+| `helpText` | `string` | Help text |
+| `error` | `{ detail: string }` | Error |
+| `maxLength` | `number` | Maximum characters |
+| `disabled` | `boolean` | Disabled |
+| `required` | `boolean` | Required field |
+| `isInherited` | `boolean` | Inheritance active |
+| `isInheritanceField` | `boolean` | Show the inheritance toggle |
 
 **Events:** `update:modelValue`, `change`, `inheritance-restore`, `inheritance-remove`
 
@@ -130,19 +130,19 @@ Mehrzeiliges Textfeld.
 
 ### `mt-email-field`
 
-E-Mail-Eingabefeld (basiert auf `mt-text-field`, type=email). Gleiche Props/Events.
+E-mail input field (based on `mt-text-field`, type=email). Same props/events.
 
 ---
 
 ### `mt-password-field`
 
-Passwort-Eingabefeld mit Sichtbarkeits-Toggle. Gleiche Props wie `mt-text-field`.
+Password input field with a visibility toggle. Same props as `mt-text-field`.
 
 ---
 
 ### `mt-url-field`
 
-URL-Eingabefeld. Gleiche Props wie `mt-text-field`.
+URL input field. Same props as `mt-text-field`.
 
 ---
 
@@ -150,16 +150,16 @@ URL-Eingabefeld. Gleiche Props wie `mt-text-field`.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
 | `modelValue` | `boolean` | `undefined` | v-model |
-| `checked` | `boolean` | `undefined` | Checkbox-Zustand (alternativ zu v-model) |
-| `label` | `string` | `undefined` | Beschriftung |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `partial` | `boolean` | `false` | Unbestimmt (indeterminate) |
-| `error` | `{ detail: string }` | — | Fehler |
-| `isInherited` | `boolean` | `false` | Vererbung aktiv |
-| `isInheritanceField` | `boolean` | `false` | Vererbungs-Toggle |
+| `checked` | `boolean` | `undefined` | Checkbox state (alternative to v-model) |
+| `label` | `string` | `undefined` | Label |
+| `disabled` | `boolean` | `false` | Disabled |
+| `partial` | `boolean` | `false` | Indeterminate |
+| `error` | `{ detail: string }` | — | Error |
+| `isInherited` | `boolean` | `false` | Inheritance active |
+| `isInheritanceField` | `boolean` | `false` | Inheritance toggle |
 
 **Events:** `update:modelValue`, `update:checked`, `change` (**@deprecated**), `inheritance-remove`, `inheritance-restore`
 
@@ -167,22 +167,22 @@ URL-Eingabefeld. Gleiche Props wie `mt-text-field`.
 
 ### `mt-switch`
 
-Toggle-Switch.
+Toggle switch.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
 | `modelValue` | `boolean` | `undefined` | v-model |
-| `label` | `string` | `undefined` | Beschriftung |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `required` | `boolean` | `false` | Pflichtfeld |
-| `bordered` | `boolean` | `false` | Mit Rahmen |
-| `helpText` | `string` | — | Hilfstext |
-| `error` | `{ detail: string }` | — | Fehler |
-| `checked` | `boolean` | — | Alternativer Zustand |
-| `isInherited` | `boolean` | `false` | Vererbung |
-| `isInheritanceField` | `boolean` | `false` | Vererbungs-Toggle |
+| `label` | `string` | `undefined` | Label |
+| `disabled` | `boolean` | `false` | Disabled |
+| `required` | `boolean` | `false` | Required field |
+| `bordered` | `boolean` | `false` | With a border |
+| `helpText` | `string` | — | Help text |
+| `error` | `{ detail: string }` | — | Error |
+| `checked` | `boolean` | — | Alternative state |
+| `isInherited` | `boolean` | `false` | Inheritance |
+| `isInheritanceField` | `boolean` | `false` | Inheritance toggle |
 
 **Events:** `change: [boolean]`, `update:modelValue: [boolean]`, `inheritance-remove`, `inheritance-restore`
 
@@ -190,24 +190,24 @@ Toggle-Switch.
 
 ### `mt-select`
 
-Dropdown-Auswahl (single oder multi).
+Dropdown selection (single or multi).
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `options` | `Array` | required | Optionen-Array |
-| `modelValue` | `string\|number\|boolean\|Array\|null` | `null` | Wert |
-| `labelProperty` | `string \| string[]` | `'label'` | Label-Key im Options-Objekt |
-| `valueProperty` | `string` | `'value'` | Wert-Key im Options-Objekt |
-| `enableMultiSelection` | `boolean` | `false` | Mehrfachauswahl |
-| `label` | `string` | `''` | Feld-Beschriftung |
-| `placeholder` | `string` | `''` | Platzhalter |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `isInherited` | `boolean` | `false` | Vererbung |
-| `isInheritanceField` | `boolean` | `false` | Vererbungs-Toggle |
-| `error` | Object | — | Fehler |
-| `valueLimit` | `number` | `5` | Angezeigte Auswahl-Chips |
+| `options` | `Array` | required | Options array |
+| `modelValue` | `string\|number\|boolean\|Array\|null` | `null` | Value |
+| `labelProperty` | `string \| string[]` | `'label'` | Label key in the options object |
+| `valueProperty` | `string` | `'value'` | Value key in the options object |
+| `enableMultiSelection` | `boolean` | `false` | Multiple selection |
+| `label` | `string` | `''` | Field label |
+| `placeholder` | `string` | `''` | Placeholder |
+| `disabled` | `boolean` | `false` | Disabled |
+| `isInherited` | `boolean` | `false` | Inheritance |
+| `isInheritanceField` | `boolean` | `false` | Inheritance toggle |
+| `error` | Object | — | Error |
+| `valueLimit` | `number` | `5` | Displayed selection chips |
 
 **Events:** `update:modelValue`, `change`, `item-add`, `item-remove`, `paginate`, `search-term-change`, `inheritance-restore`, `inheritance-remove`
 
@@ -215,20 +215,20 @@ Dropdown-Auswahl (single oder multi).
 
 ### `mt-datepicker`
 
-Datums-/Zeitauswahl.
+Date/time selection.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string\|string[]\|Date\|Date[]\|null` | — | Wert |
-| `label` | `string\|null` | — | Beschriftung |
-| `dateType` | `'date'\|'datetime'\|'time'` | `'date'` | Modus |
-| `locale` | `string` | — | Locale (z.B. `'de'`) |
-| `format` | `string\|function` | — | Anzeigeformat |
-| `timeZone` | `string` | — | Zeitzone |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `error` | Object | — | Fehler |
+| `modelValue` | `string\|string[]\|Date\|Date[]\|null` | — | Value |
+| `label` | `string\|null` | — | Label |
+| `dateType` | `'date'\|'datetime'\|'time'` | `'date'` | Mode |
+| `locale` | `string` | — | Locale (e.g. `'de'`) |
+| `format` | `string\|function` | — | Display format |
+| `timeZone` | `string` | — | Time zone |
+| `disabled` | `boolean` | `false` | Disabled |
+| `error` | Object | — | Error |
 
 **Events:** `update:modelValue`, `change`
 
@@ -236,7 +236,7 @@ Datums-/Zeitauswahl.
 
 ### `mt-colorpicker`
 
-Farbauswahl-Feld.
+Color selection field.
 
 **Events:** `update:modelValue`, `change`
 
@@ -244,7 +244,7 @@ Farbauswahl-Feld.
 
 ### `mt-slider`
 
-Schieberegler.
+Slider control.
 
 **Events:** `update:modelValue`, `change`
 
@@ -252,9 +252,9 @@ Schieberegler.
 
 ### `mt-radio-group`
 
-Radio-Button-Gruppe (Headless-Komponenten-System).
+Radio button group (headless component system).
 
-Unterkomponenten: `mt-radio-group-root`, `mt-radio-group-item`, `mt-radio-group-custom-item`, `mt-radio-group-list`, `mt-radio-group-indicator`
+Sub-components: `mt-radio-group-root`, `mt-radio-group-item`, `mt-radio-group-custom-item`, `mt-radio-group-list`, `mt-radio-group-indicator`
 
 ```html
 <mt-radio-group-root v-model="value">
@@ -269,7 +269,7 @@ Unterkomponenten: `mt-radio-group-root`, `mt-radio-group-item`, `mt-radio-group-
 
 ### `mt-text-editor`
 
-Rich-Text-Editor (WYSIWYG, basiert auf Tiptap).
+Rich text editor (WYSIWYG, based on Tiptap).
 
 **Events:** `update:modelValue`, `change`
 
@@ -277,32 +277,32 @@ Rich-Text-Editor (WYSIWYG, basiert auf Tiptap).
 
 ### `mt-unit-field`
 
-Zahlenfeld mit Einheitenauswahl. Kombiniert `mt-number-field` + `mt-unit-select`.
+Number field with a unit selection. Combines `mt-number-field` + `mt-unit-select`.
 
 ---
 
 ### `mt-help-text`
 
-Kleines Hilfstext-Icon mit Tooltip.
+Small help text icon with a tooltip.
 
 **Props:** `text: string`
 
 ---
 
-## Layout-Komponenten
+## Layout components
 
 ### `mt-card`
 
-Primärer Container mit Titel, Untertitel und Slots.
+Primary container with title, subtitle and slots.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `string` | — | Titel |
-| `subtitle` | `string` | — | Untertitel |
-| `isLoading` | `boolean` | `false` | Ladeanimation |
-| `inheritance` | `boolean` | `undefined` | Vererbungs-Visualisierung |
+| `title` | `string` | — | Title |
+| `subtitle` | `string` | — | Subtitle |
+| `isLoading` | `boolean` | `false` | Loading animation |
+| `inheritance` | `boolean` | `undefined` | Inheritance visualization |
 | `large` | `boolean` | — | **@deprecated** v4.0.0 |
 
 **Events:** `update:inheritance: [boolean]`
@@ -314,7 +314,7 @@ Primärer Container mit Titel, Untertitel und Slots.
   <template #toolbar>
     <mt-button>Neu</mt-button>
   </template>
-  <!-- Inhalt -->
+  <!-- Content -->
 </mt-card>
 ```
 
@@ -322,19 +322,19 @@ Primärer Container mit Titel, Untertitel und Slots.
 
 ### `mt-collapsible`
 
-Aufklappbarer Bereich (Headless, basiert auf Reka UI).
+Collapsible area (headless, based on Reka UI).
 
-Unterkomponenten: `mt-collapsible` (Root), `mt-collapsible-trigger`, `mt-collapsible-content`
+Sub-components: `mt-collapsible` (root), `mt-collapsible-trigger`, `mt-collapsible-content`
 
-**mt-collapsible Props:**
+**mt-collapsible props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `open` | `boolean` | — | Kontrollierter Zustand |
-| `defaultOpen` | `boolean` | — | Initialer Zustand |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `as` | `string\|object` | `'div'` | Root-Element |
-| `keepMounted` | `boolean` | `true` | DOM erhalten wenn geschlossen |
+| `open` | `boolean` | — | Controlled state |
+| `defaultOpen` | `boolean` | — | Initial state |
+| `disabled` | `boolean` | `false` | Disabled |
+| `as` | `string\|object` | `'div'` | Root element |
+| `keepMounted` | `boolean` | `true` | Keep the DOM when closed |
 
 ```html
 <mt-collapsible>
@@ -347,19 +347,19 @@ Unterkomponenten: `mt-collapsible` (Root), `mt-collapsible-trigger`, `mt-collaps
 
 ### `mt-empty-state`
 
-Leer-Zustand-Anzeige.
+Empty state display.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `headline` | `string` | required | Überschrift |
-| `description` | `string` | required | Beschreibung |
-| `icon` | `string` | required | Icon-Name |
-| `linkHref` | `string` | — | Link-URL |
-| `linkText` | `string` | — | Link-Text |
-| `linkType` | `'external'\|'internal'` | `'internal'` | Link-Typ |
-| `buttonText` | `string` | — | Button-Text |
+| `headline` | `string` | required | Headline |
+| `description` | `string` | required | Description |
+| `icon` | `string` | required | Icon name |
+| `linkHref` | `string` | — | Link URL |
+| `linkText` | `string` | — | Link text |
+| `linkType` | `'external'\|'internal'` | `'internal'` | Link type |
+| `buttonText` | `string` | — | Button text |
 
 **Events:** `button-click`
 
@@ -367,26 +367,26 @@ Leer-Zustand-Anzeige.
 
 ### `mt-inset`
 
-Inset-Container für eingerückten Inhalt (interner Wrapper).
+Inset container for indented content (internal wrapper).
 
 ---
 
-## Navigation-Komponenten
+## Navigation components
 
 ### `mt-tabs`
 
-Tab-Navigation.
+Tab navigation.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `items` | `TabItem[]` | required | Tab-Einträge |
-| `vertical` | `boolean` | `false` | Vertikale Ausrichtung |
-| `defaultItem` | `string` | `''` | Standardmäßig aktiver Tab (name) |
+| `items` | `TabItem[]` | required | Tab entries |
+| `vertical` | `boolean` | `false` | Vertical alignment |
+| `defaultItem` | `string` | `''` | Tab active by default (name) |
 | `small` | `boolean` | `false` | **@deprecated** v4.0.0 |
 
-**TabItem-Interface:**
+**TabItem interface:**
 
 ```ts
 {
@@ -405,17 +405,17 @@ Tab-Navigation.
 
 ### `mt-link`
 
-Styled Link.
+Styled link.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `to` | `string` | — | router-link Ziel |
-| `as` | `string` | `'router-link'` | Render-Element |
-| `variant` | `'primary'\|'critical'` | `'primary'` | Variante |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `type` | `'external'\|'internal'` | — | Link-Typ |
+| `to` | `string` | — | router-link target |
+| `as` | `string` | `'router-link'` | Render element |
+| `variant` | `'primary'\|'critical'` | `'primary'` | Variant |
+| `disabled` | `boolean` | `false` | Disabled |
+| `type` | `'external'\|'internal'` | — | Link type |
 
 **Events:** `click: [MouseEvent]`
 
@@ -423,16 +423,16 @@ Styled Link.
 
 ### `mt-search`
 
-Suchfeld.
+Search field.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string` | — | Suchbegriff |
-| `placeholder` | `string` | `'Search'` | Platzhalter |
-| `size` | `'small'\|'default'` | `'default'` | Größe |
-| `disabled` | `boolean` | `false` | Deaktiviert |
+| `modelValue` | `string` | — | Search term |
+| `placeholder` | `string` | `'Search'` | Placeholder |
+| `size` | `'small'\|'default'` | `'default'` | Size |
+| `disabled` | `boolean` | `false` | Disabled |
 
 **Events:** `update:modelValue`, `change: [string]`
 
@@ -440,26 +440,26 @@ Suchfeld.
 
 ### `mt-segmented-control`
 
-Segmentierte Auswahl (ähnlich Radio-Buttons).
+Segmented selection (similar to radio buttons).
 
 ---
 
-## Feedback-Komponenten
+## Feedback components
 
 ### `mt-banner`
 
-Hinweis-/Warnmeldung.
+Notice/warning message.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `'neutral'\|'info'\|'attention'\|'critical'\|'positive'\|'inherited'` | `'neutral'` | Variante |
-| `title` | `string` | — | Titel |
-| `hideIcon` | `boolean` | `false` | Icon ausblenden |
-| `closable` | `boolean` | `false` | Schließbar |
-| `bannerIndex` | `string` | — | Eindeutige ID für Events |
-| `icon` | `string` | — | Eigenes Icon (überschreibt Variant-Icon) |
+| `variant` | `'neutral'\|'info'\|'attention'\|'critical'\|'positive'\|'inherited'` | `'neutral'` | Variant |
+| `title` | `string` | — | Title |
+| `hideIcon` | `boolean` | `false` | Hide the icon |
+| `closable` | `boolean` | `false` | Closable |
+| `bannerIndex` | `string` | — | Unique ID for events |
+| `icon` | `string` | — | Custom icon (overrides the variant icon) |
 
 **Events:** `close: [bannerIndex?: string]`
 
@@ -475,16 +475,16 @@ Hinweis-/Warnmeldung.
 
 ### `mt-badge`
 
-Kleines Status-Badge.
+Small status badge.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `'neutral'\|'info'\|'attention'\|'critical'\|'positive'` | `'neutral'` | Variante |
+| `variant` | `'neutral'\|'info'\|'attention'\|'critical'\|'positive'` | `'neutral'` | Variant |
 | `icon` | `string` | — | Icon |
-| `size` | `'s'\|'m'\|'l'` | `'s'` | Größe |
-| `statusIndicator` | `boolean` | `false` | Als Punkt-Indikator |
+| `size` | `'s'\|'m'\|'l'` | `'s'` | Size |
+| `statusIndicator` | `boolean` | `false` | As a dot indicator |
 
 **Slots:** `default`, `icon: { size: number }`
 
@@ -492,38 +492,38 @@ Kleines Status-Badge.
 
 ### `mt-color-badge`
 
-Farbiger Badge-Punkt (wird in Tabs als Status-Indikator genutzt).
+Colored badge dot (used in tabs as a status indicator).
 
 ---
 
 ### `mt-loader`
 
-Lade-Spinner.
+Loading spinner.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `string` | `'50px'` | Größe (z.B. `'32px'`) |
-| `title` | `string` | — | Barrierefreiheit-Titel |
-| `description` | `string` | — | Beschreibung |
-| `backdrop` | `boolean` | `true` | Hintergrund-Overlay |
+| `size` | `string` | `'50px'` | Size (e.g. `'32px'`) |
+| `title` | `string` | — | Accessibility title |
+| `description` | `string` | — | Description |
+| `backdrop` | `boolean` | `true` | Background overlay |
 
 ---
 
 ### `mt-progress-bar`
 
-Fortschrittsbalken.
+Progress bar.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | required | Beschriftung |
-| `maxValue` | `number` | required | Maximalwert |
-| `modelValue` | `number` | — | Aktueller Wert (v-model) |
-| `error` | `{ detail: string, code: number } \| null` | — | Fehler |
-| `progressLabelType` | `string` | `'percent'` | Label-Typ ('percent' oder Einheit) |
+| `label` | `string` | required | Label |
+| `maxValue` | `number` | required | Maximum value |
+| `modelValue` | `number` | — | Current value (v-model) |
+| `error` | `{ detail: string, code: number } \| null` | — | Error |
+| `progressLabelType` | `string` | `'percent'` | Label type ('percent' or a unit) |
 
 **Events:** `update:modelValue`
 
@@ -531,47 +531,47 @@ Fortschrittsbalken.
 
 ### `mt-skeleton-bar`
 
-Lade-Skeleton-Platzhalter. Keine Props erforderlich.
+Loading skeleton placeholder. No props required.
 
 ---
 
 ### `mt-snackbar`
 
-Snackbar-Benachrichtigung.
+Snackbar notification.
 
 ---
 
 ### `mt-toast`
 
-Toast-Benachrichtigung (interne Komponente; extern via Admin-SDK `toast.dispatch`).
+Toast notification (internal component; externally via the Admin SDK `toast.dispatch`).
 
 ---
 
 ### `mt-promo-badge`
 
-Promo/Marketing-Badge.
+Promo/marketing badge.
 
 ---
 
-## Overlay-Komponenten
+## Overlay components
 
 ### `mt-modal`
 
-Modal-Dialog (Headless-Komponenten-System basierend auf Reka UI).
+Modal dialog (headless component system based on Reka UI).
 
-Unterkomponenten: `mt-modal` (Wrapper), `mt-modal-root`, `mt-modal-trigger`, `mt-modal-action`, `mt-modal-close`
+Sub-components: `mt-modal` (wrapper), `mt-modal-root`, `mt-modal-trigger`, `mt-modal-action`, `mt-modal-close`
 
-**mt-modal Props:**
+**mt-modal props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `string` | — | Titel |
-| `subtitle` | `string` | — | Untertitel |
-| `width` | `'s'\|'m'\|'l'\|'xl'\|'full'` | `'m'` | Breite |
-| `inset` | `boolean` | `false` | Mit Innenabstand |
-| `hideHeader` | `boolean` | `false` | Header ausblenden |
+| `title` | `string` | — | Title |
+| `subtitle` | `string` | — | Subtitle |
+| `width` | `'s'\|'m'\|'l'\|'xl'\|'full'` | `'m'` | Width |
+| `inset` | `boolean` | `false` | With inner spacing |
+| `hideHeader` | `boolean` | `false` | Hide the header |
 
-**Slots:** `default` (Inhalt), `header` (Kopfbereich)
+**Slots:** `default` (content), `header` (header area)
 
 ```html
 <mt-modal-root v-model:open="showModal">
@@ -591,32 +591,32 @@ Unterkomponenten: `mt-modal` (Wrapper), `mt-modal-root`, `mt-modal-trigger`, `mt
 
 ### `mt-tooltip`
 
-Tooltip-Wrapper.
+Tooltip wrapper.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `content` | `string` | required | Tooltip-Text (HTML wird sanitiert) |
-| `delayDurationInMs` | `number` | `300` | Einblende-Verzögerung |
-| `hideDelayDurationInMs` | `number` | `300` | Ausblende-Verzögerung |
+| `content` | `string` | required | Tooltip text (HTML is sanitized) |
+| `delayDurationInMs` | `number` | `300` | Show delay |
+| `hideDelayDurationInMs` | `number` | `300` | Hide delay |
 | `placement` | `Placement` (Floating UI) | `'top'` | Position |
-| `maxWidth` | `number` | `240` | Max-Breite in px |
+| `maxWidth` | `number` | `240` | Max width in px |
 
-**Slot:** `default` — das Element, das den Tooltip auslöst (benötigt `id="mt-tooltip--{id}__trigger"`)
+**Slot:** `default` — the element that triggers the tooltip (requires `id="mt-tooltip--{id}__trigger"`)
 
 ---
 
 ### `mt-popover`
 
-Schwebende Overlay-Karte (für Dropdown-Menüs etc.).
+Floating overlay card (for dropdown menus etc.).
 
 **Props:**
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `title` | `string` | Popover-Titel |
-| `childViews` | `View[]` | Unteransichten für Navigation |
+| `title` | `string` | Popover title |
+| `childViews` | `View[]` | Sub-views for navigation |
 
 **Slots:** `trigger: { toggleFloatingUi }`, `popover-items__base`, `popover-items__{viewId}`
 
@@ -624,7 +624,7 @@ Schwebende Overlay-Karte (für Dropdown-Menüs etc.).
 
 ### `mt-popover-item`
 
-Einzelner Eintrag in einem Popover.
+Single entry in a popover.
 
 **Props:** `label`, `showOptions`, `showCheckbox`, `checkboxChecked`
 
@@ -634,47 +634,47 @@ Einzelner Eintrag in einem Popover.
 
 ### `mt-popover-item-result`
 
-Suchergebnis-Liste in einem Popover. Enthält Suchfeld und Options-Liste.
+Search result list in a popover. Contains a search field and an options list.
 
 ---
 
-## Tabellen- und Listen-Komponenten
+## Table and list components
 
 ### `mt-data-table`
 
-Vollständige Datentabelle mit Pagination, Sortierung, Filterung, Spaltenkonfiguration.
+Complete data table with pagination, sorting, filtering, column configuration.
 
 **Props:**
 
-| Prop | Typ | Pflicht | Default | Beschreibung |
+| Prop | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `dataSource` | `Array<{ id: string, [key: string]: any }>` | ja | — | Datensätze |
-| `columns` | `ColumnProperty[]` | ja | — | Spaltendefinitionen |
-| `currentPage` | `number` | ja | — | Aktuelle Seite |
-| `paginationLimit` | `number` | ja | — | Einträge pro Seite |
-| `paginationTotalItems` | `number` | ja | — | Gesamt-Anzahl |
-| `columnChanges` | `Record<string, ColumnChanges>` | nein | `{}` | Spaltenanpassungen |
-| `title` | `string` | nein | `''` | Titel |
-| `subtitle` | `string` | nein | `''` | Untertitel |
-| `layout` | `'default'\|'full'` | nein | `'default'` | Layout |
-| `sortBy` | `string` | nein | `''` | Sortierspalte |
-| `sortDirection` | `'ASC'\|'DESC'` | nein | `'ASC'` | Sortierrichtung |
-| `isLoading` | `boolean` | nein | `false` | Ladeanimation |
-| `disableSearch` | `boolean` | nein | `false` | Suche deaktivieren |
-| `filters` | `Filter[]` | nein | `[]` | Filter-Definitionen |
-| `paginationOptions` | `number[]` | nein | `[5,10,25,50]` | Pagination-Optionen |
-| `allowRowSelection` | `boolean` | nein | `false` | Zeilenauswahl |
-| `enableReload` | `boolean` | nein | `false` | Reload-Button |
-| `disableEdit` | `boolean` | nein | `false` | Bearbeiten deaktivieren |
-| `disableDelete` | `boolean` | nein | `false` | Löschen deaktivieren |
+| `dataSource` | `Array<{ id: string, [key: string]: any }>` | yes | — | Records |
+| `columns` | `ColumnProperty[]` | yes | — | Column definitions |
+| `currentPage` | `number` | yes | — | Current page |
+| `paginationLimit` | `number` | yes | — | Entries per page |
+| `paginationTotalItems` | `number` | yes | — | Total count |
+| `columnChanges` | `Record<string, ColumnChanges>` | no | `{}` | Column adjustments |
+| `title` | `string` | no | `''` | Title |
+| `subtitle` | `string` | no | `''` | Subtitle |
+| `layout` | `'default'\|'full'` | no | `'default'` | Layout |
+| `sortBy` | `string` | no | `''` | Sort column |
+| `sortDirection` | `'ASC'\|'DESC'` | no | `'ASC'` | Sort direction |
+| `isLoading` | `boolean` | no | `false` | Loading animation |
+| `disableSearch` | `boolean` | no | `false` | Disable search |
+| `filters` | `Filter[]` | no | `[]` | Filter definitions |
+| `paginationOptions` | `number[]` | no | `[5,10,25,50]` | Pagination options |
+| `allowRowSelection` | `boolean` | no | `false` | Row selection |
+| `enableReload` | `boolean` | no | `false` | Reload button |
+| `disableEdit` | `boolean` | no | `false` | Disable editing |
+| `disableDelete` | `boolean` | no | `false` | Disable deletion |
 
 **ColumnProperty:**
 ```ts
 {
-  label: string;       // Spaltenüberschrift
-  property: string;    // Datenschlüssel
+  label: string;       // Column heading
+  property: string;    // Data key
   renderer: 'text' | 'number' | 'price' | 'badge';
-  position: number;    // Sortierposition
+  position: number;    // Sort position
   allowResize?: boolean;
   allowSort?: boolean;
   width?: string;
@@ -684,7 +684,7 @@ Vollständige Datentabelle mit Pagination, Sortierung, Filterung, Spaltenkonfigu
 
 **Events:** `update:currentPage`, `update:sortBy`, `update:sortDirection`, `update:searchValue`, `change-show-outlines`, `change-show-stripes`, `change-outline-framing`, `change-enable-row-numbering`, `select-all`, `deselect-all`, `row-selected`, `reload`
 
-**Slot:** `toolbar` — zusätzliche Toolbar-Elemente
+**Slot:** `toolbar` — additional toolbar elements
 
 ```html
 <mt-data-table
@@ -700,41 +700,41 @@ Vollständige Datentabelle mit Pagination, Sortierung, Filterung, Spaltenkonfigu
 
 ### `mt-entity-data-table`
 
-Datentabelle mit direkter Entity-Repository-Integration. Wrapper um `mt-data-table`.
+Data table with direct entity repository integration. Wrapper around `mt-data-table`.
 
 ---
 
 ### `mt-pagination`
 
-Eigenständige Pagination-Komponente.
+Standalone pagination component.
 
 **Props:**
 
-| Prop | Typ | Pflicht | Beschreibung |
+| Prop | Type | Required | Description |
 |---|---|---|---|
-| `currentPage` | `number` | ja | Aktuelle Seite |
-| `limit` | `number` | ja | Einträge pro Seite |
-| `totalItems` | `number` | ja | Gesamtanzahl |
+| `currentPage` | `number` | yes | Current page |
+| `limit` | `number` | yes | Entries per page |
+| `totalItems` | `number` | yes | Total count |
 
 **Events:** `change-current-page: [number]`
 
 ---
 
-## Icons & Media
+## Icons & media
 
 ### `mt-icon`
 
-Zeigt ein Meteor-Icon an.
+Displays a Meteor icon.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `name` | `string` | required | Icon-Name (z.B. `'solid-save'`, `'regular-home'`) |
-| `size` | `string` | — | Größe (z.B. `'16px'`, `'24'`) |
-| `color` | `string` | — | CSS-Farbe |
-| `mode` | `'solid'\|'regular'` | `'regular'` | Stil (wird durch Namens-Präfix überschrieben) |
-| `decorative` | `boolean` | `false` | Dekorativ (kein ARIA-Label) |
+| `name` | `string` | required | Icon name (e.g. `'solid-save'`, `'regular-home'`) |
+| `size` | `string` | — | Size (e.g. `'16px'`, `'24'`) |
+| `color` | `string` | — | CSS color |
+| `mode` | `'solid'\|'regular'` | `'regular'` | Style (overridden by the name prefix) |
+| `decorative` | `boolean` | `false` | Decorative (no ARIA label) |
 
 ```html
 <mt-icon name="solid-save" size="24px" />
@@ -745,46 +745,46 @@ Zeigt ein Meteor-Icon an.
 
 ### `mt-avatar`
 
-Benutzer-Avatar mit Initialen oder Bild.
+User avatar with initials or an image.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `'2xs'\|'xs'\|'s'\|'m'\|'l'` | `'m'` | Größe |
-| `firstName` | `string` | — | Vorname (für Initialen) |
-| `lastName` | `string` | — | Nachname (für Initialen) |
-| `imageUrl` | `string` | — | Bild-URL (überschreibt Initialen) |
-| `variant` | `'circle'\|'square'` | `'circle'` | Form |
+| `size` | `'2xs'\|'xs'\|'s'\|'m'\|'l'` | `'m'` | Size |
+| `firstName` | `string` | — | First name (for the initials) |
+| `lastName` | `string` | — | Last name (for the initials) |
+| `imageUrl` | `string` | — | Image URL (overrides the initials) |
+| `variant` | `'circle'\|'square'` | `'circle'` | Shape |
 
 ---
 
-## Context-Menü
+## Context menu
 
 ### `mt-context-button`
 
-Button der ein Kontext-Menü öffnet (Drei-Punkte-Menü).
+Button that opens a context menu (three-dot menu).
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `icon` | `string` | `'solid-ellipsis-h-s'` | Button-Icon |
-| `menuWidth` | `number` | `220` | Menübreite in px |
-| `menuHorizontalAlign` | `'right'\|'left'` | `'right'` | Horizontale Ausrichtung |
-| `menuVerticalAlign` | `'bottom'\|'top'` | `'bottom'` | Vertikale Ausrichtung |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `hasError` | `boolean` | `false` | Fehlerstatus |
-| `autoClose` | `boolean` | `true` | Automatisch schließen |
-| `title` | `string` | `''` | Menütitel |
+| `icon` | `string` | `'solid-ellipsis-h-s'` | Button icon |
+| `menuWidth` | `number` | `220` | Menu width in px |
+| `menuHorizontalAlign` | `'right'\|'left'` | `'right'` | Horizontal alignment |
+| `menuVerticalAlign` | `'bottom'\|'top'` | `'bottom'` | Vertical alignment |
+| `disabled` | `boolean` | `false` | Disabled |
+| `hasError` | `boolean` | `false` | Error state |
+| `autoClose` | `boolean` | `true` | Close automatically |
+| `title` | `string` | `''` | Menu title |
 
-**Slots:** `button-text` (Button-Beschriftung), `default: { toggleFloatingUi }` (Menüinhalt)
+**Slots:** `button-text` (button label), `default: { toggleFloatingUi }` (menu content)
 
 ---
 
 ### `mt-context-menu-item`
 
-Einzelner Menüeintrag im Kontext-Menü.
+Single menu entry in the context menu.
 
 **Props:** `label`, `type: 'default'|'critical'`, `disabled`, `icon`
 
@@ -794,65 +794,65 @@ Einzelner Menüeintrag im Kontext-Menü.
 
 ### `mt-context-menu-divider`
 
-Trennlinie im Kontext-Menü.
+Divider line in the context menu.
 
 ---
 
-## Action-Menü (Reka UI basiert)
+## Action menu (Reka UI based)
 
 ### `mt-action-menu`
 
-Dropdown-Menü, basiert auf Reka UI DropdownMenu.
+Dropdown menu, based on the Reka UI DropdownMenu.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `isSubMenu` | `boolean` | `false` | Als Untermenü rendern |
-| `matchTriggerWidth` | `boolean` | `false` | Breite an Trigger anpassen |
+| `isSubMenu` | `boolean` | `false` | Render as a submenu |
+| `matchTriggerWidth` | `boolean` | `false` | Match the width to the trigger |
 
-**Slot:** `default` — enthält `mt-action-menu-item` und `mt-action-menu-group`
+**Slot:** `default` — contains `mt-action-menu-item` and `mt-action-menu-group`
 
 ---
 
 ### `mt-action-menu-item`
 
-Menüeintrag im Action-Menü.
+Menu entry in the action menu.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `'default'\|'critical'` | `'default'` | Variante |
+| `variant` | `'default'\|'critical'` | `'default'` | Variant |
 | `icon` | `string` | — | Icon |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `shortcut` | `ShortcutDefinition` | — | Tastaturkürzel |
-| `isSubTrigger` | `boolean` | — | Als Sub-Menü-Trigger |
-| `as` | `string` | — | Render-Element |
+| `disabled` | `boolean` | `false` | Disabled |
+| `shortcut` | `ShortcutDefinition` | — | Keyboard shortcut |
+| `isSubTrigger` | `boolean` | — | As a submenu trigger |
+| `as` | `string` | — | Render element |
 | `link` | `string` | — | URL |
 
 ---
 
 ### `mt-action-menu-group`
 
-Gruppe von Menüeinträgen im Action-Menü.
+Group of menu entries in the action menu.
 
 ---
 
-## Content-Komponenten
+## Content components
 
 ### `mt-text`
 
-Textrenderer mit Design-System-Typografie.
+Text renderer with design system typography.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `'2xs'\|'xs'\|'s'\|'m'\|'l'\|'xl'\|'2xl'\|'3xl'` | — | Schriftgröße |
-| `weight` | `'bold'\|'semibold'\|'medium'\|'regular'` | — | Schriftstärke |
-| `color` | `string` | — | Farbe (Design-Token-Name oder CSS-Wert) |
-| `as` | `string \| Component` | — | Render-Element |
+| `size` | `'2xs'\|'xs'\|'s'\|'m'\|'l'\|'xl'\|'2xl'\|'3xl'` | — | Font size |
+| `weight` | `'bold'\|'semibold'\|'medium'\|'regular'` | — | Font weight |
+| `color` | `string` | — | Color (design token name or CSS value) |
+| `as` | `string \| Component` | — | Render element |
 
 ```html
 <mt-text size="l" weight="bold">Überschrift</mt-text>
@@ -865,37 +865,37 @@ Textrenderer mit Design-System-Typografie.
 
 ### `mt-chart`
 
-ApexCharts-Wrapper für Admin-kompatible Diagramme.
+ApexCharts wrapper for admin-compatible diagrams.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `series` | `any[]` | required | Datenserien |
-| `options` | `ApexOptions` | `{}` | ApexCharts-Optionen |
-| `type` | `ApexChart['type']` | `'area'` | Diagrammtyp |
-| `width` | `string\|number` | `'100%'` | Breite |
-| `height` | `string\|number` | `'300px'` | Höhe |
+| `series` | `any[]` | required | Data series |
+| `options` | `ApexOptions` | `{}` | ApexCharts options |
+| `type` | `ApexChart['type']` | `'area'` | Chart type |
+| `width` | `string\|number` | `'100%'` | Width |
+| `height` | `string\|number` | `'300px'` | Height |
 
 ---
 
-## Entity-Komponenten
+## Entity components
 
 ### `mt-entity-select`
 
-Entity-Auswahl mit Repository-Integration.
+Entity selection with repository integration.
 
 **Props:**
 
-| Prop | Typ | Default | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `entity` | `keyof EntitySchema.Entities` | required | Entity-Typ |
-| `modelValue` | `any` | `null` | Ausgewählter Wert |
-| `labelProperty` | `string \| string[]` | `'name'` | Label-Property der Entity |
-| `valueProperty` | `string` | `'id'` | Wert-Property der Entity |
-| `disabled` | `boolean` | `false` | Deaktiviert |
-| `enableMultiSelection` | `boolean` | `false` | Mehrfachauswahl |
-| `repository` | `Repository` | — | Eigenes Repository-Objekt |
+| `entity` | `keyof EntitySchema.Entities` | required | Entity type |
+| `modelValue` | `any` | `null` | Selected value |
+| `labelProperty` | `string \| string[]` | `'name'` | Label property of the entity |
+| `valueProperty` | `string` | `'id'` | Value property of the entity |
+| `disabled` | `boolean` | `false` | Disabled |
+| `enableMultiSelection` | `boolean` | `false` | Multiple selection |
+| `repository` | `Repository` | — | Custom repository object |
 
 **Events:** `update:modelValue`
 
@@ -905,33 +905,33 @@ Entity-Auswahl mit Repository-Integration.
 
 ### `mt-theme-provider`
 
-Stellt das Design-System-Theme bereit. Sollte einmalig in der App-Root verwendet werden.
+Provides the design system theme. Should be used once in the app root.
 
 **Slot:** `default`
 
 ---
 
-## Allgemeine Hinweise
+## General notes
 
-### v-model-Binding
+### v-model binding
 
-- Formfelder: `v-model` bindet auf `modelValue` + `update:modelValue`
-- Checkbox: Zusätzlich `checked` + `update:checked` verfügbar
-- Vererbungs-Events: `inheritance-restore` und `inheritance-remove` bei Feldern mit `isInheritanceField`
+- Form fields: `v-model` binds to `modelValue` + `update:modelValue`
+- Checkbox: additionally `checked` + `update:checked` available
+- Inheritance events: `inheritance-restore` and `inheritance-remove` on fields with `isInheritanceField`
 
-### Design-Token-Variablen
+### Design token variables
 
-Alle Komponenten verwenden CSS-Custom-Properties:
-- `--color-*` — Farben (light/dark theme-fähig)
-- `--scale-size-*` — Abstände/Größen
-- `--border-radius-*` — Abrundungen
-- `--font-family-*`, `--font-size-*` — Typografie
+All components use CSS custom properties:
+- `--color-*` — colors (light/dark theme capable)
+- `--scale-size-*` — spacing/sizes
+- `--border-radius-*` — corner rounding
+- `--font-family-*`, `--font-size-*` — typography
 
-Import der Tokens (Administration):
+Importing the tokens (administration):
 ```js
 import '@shopware-ag/meteor-tokens/deliverables/administration/light.css';
-// Für Dark-Mode:
+// For dark mode:
 import '@shopware-ag/meteor-tokens/deliverables/administration/dark.css';
-// Primitive Farben:
+// Primitive colors:
 import '@shopware-ag/meteor-tokens/deliverables/foundation/primitives.css';
 ```

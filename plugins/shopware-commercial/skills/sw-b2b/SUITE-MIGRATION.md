@@ -4,7 +4,7 @@ Entwickler-Referenz fuer die Migration von B2B Suite zu B2B Components.
 
 ## Referenzen
 
-- [B2B Suite Migration Vollreferenz](`SUITE-MIGRATION-DETAIL.md`)
+- [SUITE-MIGRATION-DETAIL.md](SUITE-MIGRATION-DETAIL.md)
 
 ## Querverweise
 
