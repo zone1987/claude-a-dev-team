@@ -1,9 +1,20 @@
 {
   "name": "shopware-api",
-  "version": "1.0.0",
-  "description": "Shopware 6 APIs: Admin API (OAuth), Store API, Sync API — endpoints, auth, requests/responses, parameters + live OpenAPI introspection.",
-  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
-  "license": "proprietary",
-  "keywords": ["shopware", "api"],
-  "category": "development"
+  "version": "2.0.0",
+  "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading — 3 domain skills.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "api"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-admin",
+    "./skills/sw-shared",
+    "./skills/sw-store"
+  ]
 }

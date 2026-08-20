@@ -28,6 +28,6 @@ npm install @lucide/vue
 npm install @vueuse/core
 ```
 
-4. Copy all component files from [source.md](source.md) into your components directory (e.g. `src/components/ui/select/`).
+4. Copy all component files from [source.md](SELECT-SOURCE.md) into your components directory (e.g. `src/components/ui/select/`).
 
 5. Ensure `@/lib/utils` exports the `cn` helper (clsx + tailwind-merge).

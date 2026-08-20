@@ -32,11 +32,11 @@ npx shadcn-vue@latest add separator
 
 ### 3. Create `src/components/ui/button-group/index.ts`
 
-See [Source](source.md) for the full content.
+See [Source](BUTTON-GROUP-SOURCE.md) for the full content.
 
 ### 4. Create the Vue SFCs
 
-Copy `ButtonGroup.vue`, `ButtonGroupSeparator.vue`, and `ButtonGroupText.vue` from [Source](source.md) into `src/components/ui/button-group/`.
+Copy `ButtonGroup.vue`, `ButtonGroupSeparator.vue`, and `ButtonGroupText.vue` from [Source](BUTTON-GROUP-SOURCE.md) into `src/components/ui/button-group/`.
 
 ### 5. Update your barrel import (optional)
 

@@ -1,12 +1,20 @@
 {
   "name": "shopware-quality",
-  "version": "1.0.0",
-  "description": "Shopware 6 Qualität: Coding-Guidelines, ADR-Wissen, Domain-Exceptions, Static-Analysis, README-Generator — plus selbstaktualisierender Knowledge-Sync.",
+  "version": "2.0.0",
+  "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration — 3 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "quality"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "quality"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-analysis",
+    "./skills/sw-guidelines",
+    "./skills/sw-release"
+  ]
 }

@@ -1,12 +1,19 @@
 {
   "name": "shopware-concepts",
-  "version": "1.0.0",
-  "description": "Konzept-Wissen für Shopware 6: Architektur, DAL, APIs, Catalog, Checkout, CMS, Rule-System, Translations, Extensions, App-System, Messaging. Beantwortet 'Wie funktioniert X architektonisch in Shopware?'",
+  "version": "2.0.0",
+  "description": "Shopware 6 concepts: why the platform is built as it is — architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and how each business domain is modelled — 2 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "concepts"],
-  "category": "documentation"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "concepts"
+  ],
+  "category": "documentation",
+  "skills": [
+    "./skills/sw-concept-architecture",
+    "./skills/sw-concept-domain"
+  ]
 }

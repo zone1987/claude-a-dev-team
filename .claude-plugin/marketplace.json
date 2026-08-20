@@ -123,13 +123,13 @@
     {
       "name": "shopware-cms",
       "source": "./plugins/shopware-cms",
-      "description": "Shopware 6 CMS: custom blocks, elements and data resolvers (admin + storefront).",
-      "version": "1.0.0",
+      "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver — 2 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "cms"
@@ -137,12 +137,7 @@
       "category": "development",
       "skills": [
         "./skills/sw-cms-block",
-        "./skills/sw-cms-block-admin",
-        "./skills/sw-cms-data-resolver",
-        "./skills/sw-cms-element",
-        "./skills/sw-cms-element-admin",
-        "./skills/sw-cms-element-storefront",
-        "./skills/sw-cms-slot-config"
+        "./skills/sw-cms-element"
       ]
     },
     {
@@ -170,82 +165,62 @@
     {
       "name": "shopware-testing",
       "source": "./plugins/shopware-testing",
-      "description": "Shopware 6 testing: PHPUnit (unit/integration/API), Jest (admin/storefront), Playwright E2E.",
-      "version": "1.0.0",
+      "description": "Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration and storefront, and Playwright end-to-end — 3 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "testing"
       ],
       "category": "development",
       "skills": [
-        "./skills/shopware-phpunit",
-        "./skills/sw-admin-api-test",
-        "./skills/sw-integration-test",
-        "./skills/sw-jest-admin",
-        "./skills/sw-jest-storefront",
-        "./skills/sw-mock-repository",
-        "./skills/sw-mock-system-config",
-        "./skills/sw-phpunit-setup",
-        "./skills/sw-playwright-e2e",
-        "./skills/sw-store-api-test",
-        "./skills/sw-test-builder",
-        "./skills/sw-test-fixtures",
-        "./skills/sw-unit-test",
-        "./skills/sw-vue-test"
+        "./skills/sw-e2e",
+        "./skills/sw-javascript",
+        "./skills/sw-phpunit"
       ]
     },
     {
       "name": "shopware-apps",
       "source": "./plugins/shopware-apps",
-      "description": "Shopware 6 app development: manifest, webhooks, auth, app scripts, payment/tax/CMS/flow gateways, IAP, JS/PHP SDK.",
-      "version": "1.0.0",
+      "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "apps"
       ],
       "category": "development",
       "skills": [
-        "./skills/shopware-apps",
-        "./skills/sw-app-manifest-reference",
-        "./skills/sw-app-php-sdk",
-        "./skills/sw-app-sdk-js",
-        "./skills/sw-monetization-iap"
+        "./skills/sw-app-manifest",
+        "./skills/sw-app-sdk"
       ]
     },
     {
       "name": "shopware-migration",
       "source": "./plugins/shopware-migration",
-      "description": "Shopware 6 version migrations: 6.6->6.7->6.8, Meteor/Vite/Pinia migration, deprecation handling, upgrade guides.",
-      "version": "1.0.0",
+      "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) — 2 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "migration"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-upgrade-overview",
-        "./skills/shopware-6.7-migration",
-        "./skills/sw-deprecation-handling",
-        "./skills/sw-meteor-component-map",
-        "./skills/sw-php-migration-patterns",
-        "./skills/sw-release-notes",
-        "./skills/sw-vite-migration",
-        "./skills/sw-vuex-to-pinia"
+        "./skills/sw-admin",
+        "./skills/sw-upgrade"
       ]
     },
     {
@@ -430,31 +405,21 @@
     {
       "name": "shopware-concepts",
       "source": "./plugins/shopware-concepts",
-      "description": "Konzept-Wissen für Shopware 6: Architektur, DAL, APIs, Catalog, Checkout, CMS, Rule-System, Translations, Extensions, App-System, Messaging. Beantwortet 'Wie funktioniert X architektonisch in Shopware?'",
-      "version": "1.0.0",
+      "description": "Shopware 6 concepts: why the platform is built as it is — architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and how each business domain is modelled — 2 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "shopware",
         "concepts"
       ],
       "category": "documentation",
       "skills": [
-        "./skills/sw-concept-api",
-        "./skills/sw-concept-app-system",
         "./skills/sw-concept-architecture",
-        "./skills/sw-concept-catalog",
-        "./skills/sw-concept-checkout",
-        "./skills/sw-concept-content-cms",
-        "./skills/sw-concept-dal",
-        "./skills/sw-concept-data-stores",
-        "./skills/sw-concept-extensions",
-        "./skills/sw-concept-messaging",
-        "./skills/sw-concept-rule-system",
-        "./skills/sw-concept-translations"
+        "./skills/sw-concept-domain"
       ]
     },
     {
@@ -483,13 +448,13 @@
     {
       "name": "flatpickr",
       "source": "./plugins/flatpickr",
-      "description": "flatpickr — the lightweight, dependency-free JavaScript datetime picker: getting started, all options, formatting tokens, events/hooks, instance API, localization, themes, official plugins, examples, mobile, migration.",
-      "version": "1.0.0",
+      "description": "flatpickr date picker: every option, method, event and format token, plus the official plugins, all 67 locales, themes and mobile behaviour — 2 domain skills.",
+      "version": "2.0.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
       },
-      "license": "proprietary",
+      "license": "MIT",
       "keywords": [
         "flatpickr",
         "datepicker",
@@ -497,17 +462,8 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/flatpickr-getting-started",
-        "./skills/flatpickr-events",
-        "./skills/flatpickr-examples",
-        "./skills/flatpickr-formatting",
-        "./skills/flatpickr-instance",
-        "./skills/flatpickr-localization",
-        "./skills/flatpickr-migration",
-        "./skills/flatpickr-mobile",
-        "./skills/flatpickr-options",
-        "./skills/flatpickr-plugins",
-        "./skills/flatpickr-themes"
+        "./skills/flatpickr-api",
+        "./skills/flatpickr-extend"
       ]
     },
     {

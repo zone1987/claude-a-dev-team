@@ -1,46 +1,37 @@
-# A-Dev-Team — Development Toolkit
+# A-Dev-Team — Claude Code plugin marketplace
 
-Ein Claude-Code-**Marketplace** mit **26 Plugins**, **801 Skills**, **48 Agents**, **59 Commands**, **8 Hooks**, **3 mitgelieferten MCP-Servern** und **Utils** — eine **wachsende Sammlung** von Wissens- und Werkzeug-Bibliotheken für verschiedene Web-Plattformen. Aktuell abgedeckt:
+A Claude Code **marketplace** of **26 plugins**, **117 skills**, **3,294** reference files and
+**367,948 lines** of distilled documentation, covering Shopware 6.7, Contao 5, the OCTO
+tourism API, React and Vue component libraries, and a set of testing and PDF tools.
 
-| Bereich | Abdeckung |
-|---|---|
-| **Shopware 6.7** (PHP 8.2+ / Symfony 7) | Backend/DAL, Storefront, Administration, CMS, Checkout, die drei APIs, Headless-Frontends, App-System, Commercial-Extensions, Betreiber-Doku sowie die OCTO-/Ventrata-/Go-City-API. |
-| **Contao 5.x** (Symfony-basiertes CMS) | Entwicklung **und** Benutzerhandbuch. |
-| **Frontend-Bibliotheken** (framework-agnostisch) | flatpickr (Datetime-Picker), Swiper (Touch-Slider) — weitere folgen. |
-| **React-UI** | shadcn/ui — alle Komponenten (Code/Props/Examples, Radix & Base UI), Blocks, Charts, Theming, eigene Registry, inkl. mitgeliefertem shadcn-MCP. |
-| **Vue-UI** | shadcn-vue — Vue-Port von shadcn/ui (reka-ui): alle 64 Komponenten (Vue-Code/Props/Slots/Emits, Demos), Blocks, Charts, Forms (vee-validate/TanStack), Theming, eigene Registry, inkl. mitgeliefertem shadcn-vue-MCP. |
-| **Tools & APIs** | Gotenberg (Docker-basierte PDF-Generierung & -Manipulation), Playwright (E2E-Testing & Browser-Automation, inkl. mitgeliefertem Playwright-MCP), Symfony Panther (E2E-/Browser-Testing für PHP) — weitere folgen. |
+Every plugin embeds its knowledge — no runtime dependency on the upstream site, no network call at
+answer time. Depth lives in reference files that load only when needed, so a plugin costs almost
+nothing until it is used.
 
-Weitere Plattformen/Frameworks sind geplant — die Struktur (Themen-Plugins mit Skills/Agents/Commands/Hooks) ist bewusst erweiterbar.
+## Installation
 
-Das Wissen ist aus den offiziellen Quellen destilliert (Shopware-Trunk-Source, developer.shopware.com, docs.shopware.com, die offiziellen GitHub-Repos sowie die OCTO-/Ventrata-Spezifikation) und in den Skills **eingebettet** (keine externen Laufzeit-Abhängigkeiten). Skills sind schlank; die Tiefe liegt in flachen Referenzdateien daneben. Agents/Commands nutzen das je Aufgabe günstigste Modell (haiku/sonnet/opus).
-
-**Regelwerk:** [`CLAUDE.md`](./CLAUDE.md) legt die verbindlichen Effizienz-Regeln fest (Listing-Budget, Description-Länge, Skill-Anzahl, Trigger-Anker), [`CONVENTIONS.md`](./CONVENTIONS.md) Benennung und Layout. Beide gelten für jedes Plugin hier.
-
-## Installation (Claude Code)
-
-**1. Marketplace hinzufügen** (GitHub oder lokaler Pfad):
+**1. Add the marketplace**
 
 ```
 /plugin marketplace add https://github.com/zone1987/claude-a-dev-team
 ```
 
-**2. Plugin(s) installieren** — interaktiv über `/plugin` (Browse & install) oder gezielt:
+**2. Install the plugins you need**
 
 ```
 /plugin install shopware-core@claude-a-dev-team
 /plugin install shopware-data@claude-a-dev-team
 /plugin install octo-api@claude-a-dev-team
-# ... je nach Bedarf
 ```
 
-**3. Nutzung:** Skills laden bei passendem Kontext automatisch; Commands stehen als `/<command>` bereit; Agents werden vom Orchestrator `shopware-dev` (bzw. `octo-integrator`, `shopware-merchant-guide`) oder direkt genutzt.
+**3. Use them.** Skills load automatically when the conversation matches their triggers; commands are
+available as `/<command>`; agents are reached through an orchestrator or directly with
+`@agent-<plugin>:<name>`.
 
-> Tipp: Für reine Shopware-Entwicklung genügen oft `shopware-core`, `shopware-data`, `shopware-framework`, `shopware-storefront`, `shopware-admin`. Headless zusätzlich `shopware-frontends`/`shopware-api`; Bedienung/Betrieb `shopware-merchant`.
+> **Enable only what a project needs.** Every active skill occupies the session's skill listing
+> budget — see [Context budget](#context-budget). Three to five plugins is the working range.
 
-> **Wichtig:** Aktiviere nur die Plugins, die du wirklich brauchst. Jeder aktive Skill belegt Platz im Skill-Listing-Budget deiner Session — siehe [Kontext-Budget](#kontext-budget).
-
-### Alternativ via settings.json
+### Via settings.json
 
 ```jsonc
 {
@@ -56,157 +47,173 @@ Das Wissen ist aus den offiziellen Quellen destilliert (Shopware-Trunk-Source, d
 
 ## Plugins
 
-Jedes Plugin ist ein eigenständig installierbares Themenpaket. Details in der jeweiligen Plugin-README (Plugin-Name verlinkt).
+### Shopware 6.7 — backend and data
 
-### Entwicklung — Backend, Daten & Domänen
-
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`shopware-core`](./plugins/shopware-core/README.md) | Plugin-Fundament: DI, Decoration, Events/Subscriber, CLI, Config, Logging, Filesystem, Rate-Limiter, Feature-Flags, NumberRange, SystemConfig + Event-Katalog. | 18 | 3 | 4 |
-| [`shopware-data`](./plugins/shopware-data/README.md) | DAL komplett (Entities/Fields/Flags/Associations/Translations/Criteria/Hydration) + vollständige Core-Entity-Referenz (312 Entities) + Entity-Introspektion. | 33 | 2 | 5 |
-| [`shopware-framework`](./plugins/shopware-framework/README.md) | ScheduledTasks, MessageQueue, Rules, Flow, Store-/Admin-API-Routen, ACL, Webhooks, App-Scripts, Mail (+Variablen-Baum), Media, Elasticsearch, Redis. | 25 | 1 | 4 |
-| [`shopware-checkout`](./plugins/shopware-checkout/README.md) | Cart-Pipeline, Payment (6.7) & App-Payment, Shipping, Order-StateMachine, Dokumente (ZUGFeRD), Promotions, Kunden. | 20 | 1 | 3 |
-| [`shopware-cms`](./plugins/shopware-cms/README.md) | Eigene CMS-Blöcke, CMS-Elemente und DataResolver (Erlebniswelten). | 7 | 1 | 2 |
+| [`shopware-core`](./plugins/shopware-core/README.md) | Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full eve… | 3 | 3 | 4 |
+| [`shopware-data`](./plugins/shopware-data/README.md) | Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregation… | 4 | 2 | 5 |
+| [`shopware-framework`](./plugins/shopware-framework/README.md) | Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and El… | 4 | 1 | 4 |
+| [`shopware-checkout`](./plugins/shopware-checkout/README.md) | Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and… | 4 | 1 | 3 |
+| [`shopware-cms`](./plugins/shopware-cms/README.md) | Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, store… | 2 | 1 | 2 |
 
-### Entwicklung — Frontend
+### Shopware 6.7 — frontend
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`shopware-storefront`](./plugins/shopware-storefront/README.md) | Controller/Pages/Twig/SCSS/Themes, JS-Storefront-Plugins, TypeScript, Accessibility + JS-Plugin-/Event-/SCSS-Introspektion. | 39 | 2 | 4 |
-| [`shopware-admin`](./plugins/shopware-admin/README.md) | Vue 3 / Pinia / Vite / Meteor: Module, Komponenten, Routing, Data-Handling, Services, ACL, Admin-SDK, TypeScript + Admin-Introspektion. | 29 | 2 | 3 |
-| [`shopware-frontends`](./plugins/shopware-frontends/README.md) | Headless (Shopware Frontends): api-client, composables, api-gen, cms-base, Vue 3 / Nuxt, Routing/i18n/B2B. | 19 | 1 | 0 |
+| [`shopware-storefront`](./plugins/shopware-storefront/README.md) | Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes a… | 5 | 2 | 4 |
+| [`shopware-admin`](./plugins/shopware-admin/README.md) | Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Met… | 4 | 2 | 3 |
+| [`shopware-frontends`](./plugins/shopware-frontends/README.md) | Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 … | 3 | 1 | 0 |
 
-### API, Apps & Commercial
+### Shopware 6.7 — APIs, apps, commercial
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`shopware-api`](./plugins/shopware-api/README.md) | Admin/Store/Sync API: Auth, Endpunkte, Requests/Responses, Header, Fehler + OpenAPI-Introspektion. | 17 | 2 | 1 |
-| [`shopware-apps`](./plugins/shopware-apps/README.md) | App-System: Manifest, Webhooks, Auth/Signatur, App-Scripts, Gateways, IAP + PHP-SDK & JS-SDK. | 5 | 1 | 1 |
-| [`shopware-commercial`](./plugins/shopware-commercial/README.md) | Commercial-Extensions (Entwickler-Sicht): B2B, Subscriptions, Advanced Search, Migration Assistant, DSR, Sales Agent, Nexus. | 23 | 1 | 0 |
-| [`octo-api`](./plugins/octo-api/README.md) | OCTO-API (Tourismus-Ticketing) als **Quelle der Wahrheit**: alle 46 Endpunkte, 139 Schemas und 254 capability-abhängigen Felder — deterministisch aus der Ventrata-OpenAPI-Spezifikation generiert und maschinell verifiziert. Core (products/availability/bookings), alle 23 Capabilities, Go-City-Overlay. | 8 | 1 | 2 |
+| [`shopware-api`](./plugins/shopware-api/README.md) | Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versionin… | 3 | 2 | 1 |
+| [`shopware-apps`](./plugins/shopware-apps/README.md) | Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 … | 2 | 1 | 1 |
+| [`shopware-commercial`](./plugins/shopware-commercial/README.md) | Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, M… | 4 | 1 | 0 |
+| [`octo-api`](./plugins/octo-api/README.md) | Source of truth for the OCTO tourism ticketing API: all 65 operations, 139 schemas and 254 capability fields, generated from the Ventrata OpenAPI s… | 8 | 1 | 2 |
 
-### Qualität, Tooling, Tests & Migration
+### Shopware 6.7 — quality, tooling, migration
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`shopware-quality`](./plugins/shopware-quality/README.md) | Coding-Guidelines, ADR-Wissen, Static-Analysis (ECS/PHPStan/Deptrac/Rector) + Knowledge-Sync (Selbst-Update) + Hooks. | 15 | 2 | 3 |
-| [`shopware-devops`](./plugins/shopware-devops/README.md) | shopware-cli, Recipes, PaaS, lokale Dev-Setups, Hosting/Performance, Troubleshooting, MCP-Server. | 37 | 1 | 0 |
-| [`shopware-testing`](./plugins/shopware-testing/README.md) | PHPUnit (Unit/Integration/API), Fixtures/Builder/Mocks, Jest (Admin/Storefront), Playwright-E2E. | 14 | 1 | 1 |
-| [`shopware-migration`](./plugins/shopware-migration/README.md) | Versions-Upgrades: 6.6 → 6.7 → 6.8, sw-* → mt-*, Webpack → Vite, Vuex → Pinia, Deprecations. | 8 | 1 | 1 |
+| [`shopware-quality`](./plugins/shopware-quality/README.md) | Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector con… | 3 | 2 | 3 |
+| [`shopware-devops`](./plugins/shopware-devops/README.md) | Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling a… | 5 | 1 | 0 |
+| [`shopware-testing`](./plugins/shopware-testing/README.md) | Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration a… | 3 | 1 | 1 |
+| [`shopware-migration`](./plugins/shopware-migration/README.md) | Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration mig… | 2 | 1 | 1 |
 
-### Wissen & Betrieb
+### Shopware 6.7 — concepts and operations
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`shopware-concepts`](./plugins/shopware-concepts/README.md) | Architektur-/Domänen-Konzepte: das Warum hinter den How-tos (DAL, API, Catalog, Checkout, CMS, Rules, Messaging, App-System). | 12 | 1 | 0 |
-| [`shopware-merchant`](./plugins/shopware-merchant/README.md) | Betreiber-Wissen: Bedienung der Administration (alle Bereiche) inkl. Screenshots — aus docs.shopware.com. | 109 | 1 | 0 |
+| [`shopware-concepts`](./plugins/shopware-concepts/README.md) | Shopware 6 concepts: why the platform is built as it is — architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and ho… | 2 | 1 | 0 |
+| [`shopware-merchant`](./plugins/shopware-merchant/README.md) | Shopware 6 merchant knowledge: operating the administration across catalogue, orders, customers, content, marketing, settings, sales channels, Comm… | 16 | 1 | 0 |
 
-### Frontend-Bibliotheken
+### UI libraries
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`flatpickr`](./plugins/flatpickr/README.md) | Leichtgewichtiger JS-Datetime-Picker (v4.6.x): alle Optionen, Tokens, Events/Hooks, Instanz-API, 67 Locales, Themes, alle Plugins. | 11 | 1 | 1 |
-| [`swiper`](./plugins/swiper/README.md) | Moderner Touch-Slider/Carousel (v11/v12): komplette API (236 Parameter, 68 Methoden, 74 Events), alle Module, Swiper Element + React/Vue/Angular/Svelte/Solid, Migration. | 33 | 1 | 1 |
-| [`shadcn`](./plugins/shadcn/README.md) | **shadcn/ui komplett**: alle **59 Komponenten** (kompletter Code + Props + alle Examples, **Radix & Base UI**), **27 Blocks**, **70 Charts**, Setup/CLI/components.json, Theming/Tailwind-v4/Dark-Mode, Forms, RTL, eigene **Registry** bauen — inkl. mitgeliefertem **shadcn-MCP** + Utils. | 96 | 6 | 6 |
-| [`shadcn-vue`](./plugins/shadcn-vue/README.md) | **shadcn-vue komplett** (Vue-Port, reka-ui): alle **64 Komponenten** (kompletter Vue-Code + Props/Slots/Emits + alle Demos), Blocks, Charts, Setup/CLI/components.json, Theming/Tailwind-v4/Dark-Mode, Forms (vee-validate/TanStack), eigene **Registry** — inkl. mitgeliefertem **shadcn-vue-MCP** + Utils. | 93 | 6 | 6 |
+| [`shadcn`](./plugins/shadcn/README.md) | shadcn/ui component library: all 59 components with full React source, props and examples for both Radix UI and Base UI, plus setup, theming, forms… | 8 | 6 | 6 |
+| [`shadcn-vue`](./plugins/shadcn-vue/README.md) | shadcn-vue component library: all 64 components with full Vue source, props, slots and demos, plus setup, theming, forms, blocks, charts and custom… | 8 | 6 | 6 |
+| [`swiper`](./plugins/swiper/README.md) | Swiper touch slider: the complete core API (parameters, methods, properties, events), every module, advanced features and the React, Vue, Angular, … | 4 | 1 | 1 |
+| [`flatpickr`](./plugins/flatpickr/README.md) | flatpickr date picker: every option, method, event and format token, plus the official plugins, all 67 locales, themes and mobile behaviour — 2 dom… | 2 | 1 | 1 |
 
-### Tools & APIs
+### Tools and services
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`gotenberg`](./plugins/gotenberg/README.md) | Gotenberg — Docker-basierte, stateless PDF-API: HTML/Markdown/URL (Chromium) & Office (LibreOffice) → PDF, Screenshots, merge/split/convert (PDF/A·PDF/UA)/flatten/encrypt/metadata/bookmarks/Factur-X/rotate/stamp/watermark, Konfiguration, Webhook, Betrieb & Clients. | 27 | 2 | 2 |
-| [`playwright`](./plugins/playwright/README.md) | Playwright — E2E-Testing & Browser-Automation: Test-Runner & Library-API, **komplette API-Referenz aller ~70 Klassen**, Assertions, Fixtures, Reporter, Parallelität/Sharding, Trace Viewer, Codegen, CI/Docker, Emulation, Auth, A11y, Migration + Playwright MCP & Agent-CLI. Liefert den **Playwright-MCP-Server** mit. | 35 | 3 | 3 |
-| [`panther`](./plugins/panther/README.md) | Symfony Panther — E2E-/Browser-Testing für PHP: echte Browser (WebDriver) + headless HTTP (BrowserKit), PantherTestCase/Client/Crawler-API, Interaktionen, `waitFor*`, JS/Screenshots, alle `PANTHER_*`-Env-Vars, Selenium/Docker/CI — **gegen den Paket-Quellcode verifiziert**, inkl. **Utils** (Dockerfile, CI, phpunit). | 11 | 2 | 2 |
+| [`gotenberg`](./plugins/gotenberg/README.md) | Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, waterm… | 3 | 2 | 2 |
+| [`playwright`](./plugins/playwright/README.md) | Playwright end-to-end testing: writing tests (locators, actions, assertions, auth), the test runner (config, fixtures, sharding, reporters), the co… | 5 | 3 | 3 |
+| [`panther`](./plugins/panther/README.md) | Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installat… | 2 | 2 | 2 |
 
-### Weitere
+### Other platforms
 
-| Plugin | Wofür | Skills | Agents | Commands |
+| Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`contao`](./plugins/contao/README.md) | Vollumfängliche Bibliothek für das Contao-5.x-CMS — Entwicklung (DCA, Models, Module, Templates, alle Hooks, Referenzen) UND Bedienung (komplettes Benutzerhandbuch). | 57 | 2 | 4 |
+| [`contao`](./plugins/contao/README.md) | Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete Ge… | 8 | 2 | 4 |
 
-## Kontext-Budget
+## Context budget
 
-Claude Code lädt Name und Description **jedes** aktiven Skills in den System-Prompt. Dieses Listing
-hat ein hartes Limit: **1 % des Kontextfensters**, also ~8.000 Zeichen bei 200k. Kosten je Skill =
-`len(description) + 109`.
+Claude Code loads the name and description of **every** active skill into the system prompt. That
+listing has a hard limit: **1 % of the context window**, so roughly 8,000 characters at 200k. Cost
+per skill is `len(description) + 109`.
 
-Läuft das Budget über, kürzt Claude Code Descriptions — **zuerst bei den am seltensten genutzten
-Skills**. Ein Skill ohne Description steht weiter namentlich im Listing, wird aber nicht mehr
-automatisch aktiviert. Er bleibt über `/<plugin>:<skill>` erreichbar.
+When the budget overflows, Claude Code shortens descriptions — **starting with the skills you invoke
+least**. A skill without a description is still listed by name but no longer activates on its own; it
+stays reachable as `/<plugin>:<skill>`.
 
-Ist-Stand dieses Marketplace bei **allen 26 Plugins gleichzeitig aktiv** (`python3 scripts/measure-skill-budget.py .`):
+Measured with `python3 scripts/measure-skill-budget.py .`:
 
-| Plugin | Skills | Zeichen | % des Budgets |
-|---|--:|--:|--:|
-| shopware-merchant | 109 | 48.591 | 607 % |
-| shadcn-vue | 93 | 42.448 | 531 % |
-| shadcn | 96 | 38.573 | 482 % |
-| contao | 57 | 29.360 | 367 % |
-| shopware-devops | 37 | 19.664 | 246 % |
-| playwright | 35 | 18.693 | 234 % |
-| swiper | 33 | 18.516 | 231 % |
-| shopware-storefront | 39 | 17.804 | 223 % |
-| … 17 weitere | 294 | 139.570 | 1.745 % |
-| `octo-api` (Referenz-Implementierung) | 8 | 2.392 | **30 %** |
-| **gesamt** | **801** | **375.611** | **4.695 %** |
+| Plugin | Skills | Chars | Avg description | % of budget |
+|---|--:|--:|--:|--:|
+| `shopware-merchant` | 16 | 4 569 | 177 | 57 % |
+| `octo-api` | 8 | 2 392 | 190 | 30 % |
+| `shadcn-vue` | 8 | 2 282 | 176 | 29 % |
+| `shadcn` | 8 | 2 265 | 174 | 28 % |
+| `contao` | 8 | 2 257 | 173 | 28 % |
+| `playwright` | 5 | 1 463 | 184 | 18 % |
+| `shopware-storefront` | 5 | 1 451 | 181 | 18 % |
+| `shopware-devops` | 5 | 1 433 | 178 | 18 % |
+| `shopware-admin` | 4 | 1 191 | 189 | 15 % |
+| `shopware-commercial` | 4 | 1 162 | 182 | 15 % |
+| `swiper` | 4 | 1 153 | 179 | 14 % |
+| `shopware-data` | 4 | 1 146 | 178 | 14 % |
+| `shopware-framework` | 4 | 1 146 | 178 | 14 % |
+| `shopware-checkout` | 4 | 1 116 | 170 | 14 % |
+| `gotenberg` | 3 | 892 | 188 | 11 % |
+| `shopware-api` | 3 | 885 | 186 | 11 % |
+| `shopware-frontends` | 3 | 873 | 182 | 11 % |
+| `shopware-quality` | 3 | 862 | 178 | 11 % |
+| `shopware-core` | 3 | 858 | 177 | 11 % |
+| `shopware-testing` | 3 | 826 | 166 | 10 % |
+| `shopware-apps` | 2 | 584 | 183 | 7 % |
+| `shopware-concepts` | 2 | 573 | 178 | 7 % |
+| `shopware-cms` | 2 | 564 | 173 | 7 % |
+| `flatpickr` | 2 | 557 | 170 | 7 % |
+| `shopware-migration` | 2 | 550 | 166 | 7 % |
+| `panther` | 2 | 525 | 154 | 7 % |
+| **total** | **117** | **33 575** | **178** | **420 %** |
 
-`octo-api` zeigt, was die Regeln in [`CLAUDE.md`](./CLAUDE.md) bewirken: von 38 Skills und 14.523
-Zeichen auf 8 Skills und 2.392 Zeichen — bei vollständiger, maschinell verifizierter Abdeckung aller
-65 Endpunkte.
+420 % exceeds the budget with *every* plugin enabled at once, which is why activation is per
+project: any three-to-five plugin selection fits comfortably. Diagnose a session with:
 
-**Praktische Folge:** Aktiviere pro Projekt nur die Plugins, die du brauchst. Drei bis fünf Plugins
-liegen im tragfähigen Bereich; alle gleichzeitig sind es nicht.
-
-Diagnose in einer Session:
-
-| Befehl | Zweck |
+| Command | Shows |
 |---|---|
-| `/context` | zeigt die Skills-Zeile nach Anwendung des Budgets |
-| `/doctor` | schätzt die Listing-Kosten und nennt die größten Verursacher |
-| `claude --debug` | protokolliert die Overflow-Warnung |
+| `/context` | the Skills row after the budget is applied |
+| `/doctor` | an estimate of the listing's cost and its biggest contributors |
+| `claude --debug` | the overflow warning in the debug log |
 
-Reicht das Budget nicht, lässt es sich anheben — `skillListingBudgetFraction` (z. B. `0.02` für 2 %)
-oder `SLASH_COMMAND_TOOL_CHAR_BUDGET` als feste Zeichenzahl. Einzelne Skills lassen sich per
-`skillOverrides` auf `"name-only"` setzen; **für Plugin-Skills greift das jedoch nicht** — dort ist
-die Description-Länge Autorensache, geregelt in [`CLAUDE.md`](./CLAUDE.md).
+Raise it if you need to: `skillListingBudgetFraction` (e.g. `0.02` for 2 %) or
+`SLASH_COMMAND_TOOL_CHAR_BUDGET` as a fixed character count. `skillOverrides` can silence individual
+skills — but **not plugin skills**, which is why description length is the author's responsibility
+here. The rules are in [`CLAUDE.md`](./CLAUDE.md).
 
-## Konzepte
+## How a plugin is built
 
-- **Skills** = Wissen/Referenz (schlanke `SKILL.md` ≤ 120 Zeilen + tiefe Referenzdateien als flache Siblings daneben).
-- **Agents** = Spezialisten/Orchestratoren, die mehrstufige Aufgaben autonom erledigen und delegieren.
-- **Commands** = Scaffolder/Lookups (`/sw-entity`, `/sw-cms-element`, `/octo-lookup`, …).
-- **Hooks** = Automatik (Lint-/Katalog-Reminder nach Datei-Änderungen).
-- **Introspektion** = gecachte Kataloge des KONKRETEN Projekts (Entities, JS-Plugins, JS-Events, Admin-Bausteine, API-Endpunkte) via `/sw-entity-map`, `/sw-js-plugin-map`, `/sw-admin-map`, `/sw-api-map`, `/sw-event-map`.
+- **Skills** — knowledge. A `SKILL.md` under 120 lines maps the domain; the depth sits in flat
+  sibling reference files, one level deep, loaded on demand.
+- **Agents** — specialists that run in their own context window and return a summary.
+- **Commands** — scaffolders and lookups (`/sw-entity`, `/octo-lookup`, …).
+- **Hooks** — deterministic automation, such as a reminder after a file edit.
+- **Introspection** — cached catalogues of the *concrete* project (entities, JS plugins, events,
+  API endpoints) via `/sw-entity-map`, `/sw-js-plugin-map`, `/sw-admin-map`, `/sw-api-map`,
+  `/sw-event-map`.
 
-## Aktualität / Selbst-Update
+Authoring rules: [`CLAUDE.md`](./CLAUDE.md) for efficiency and completeness,
+[`CONVENTIONS.md`](./CONVENTIONS.md) for naming and layout. The tooling in `scripts/` enforces both.
 
-Zwei Plugins prüfen ihre Upstream-Quelle selbst:
+## Keeping it current
 
-- **`shopware-quality`** — Agent `shopware-librarian`, Command `/sw-sync`: prüft `shopware/shopware`
-  (Releases/Tags-API + Trunk-Diff) und schlägt betroffene Skills vor bzw. aktualisiert sie.
-- **`octo-api`** — Command `/octo-spec-sync`: löst die Ventrata-OpenAPI-URL dynamisch auf, vergleicht
-  Content-Hash und Entitäts-Zähler gegen `.spec-state.json` und regeneriert die Referenzdateien auf
-  Wunsch. `--check` berichtet nur, `--apply` schreibt.
+Two plugins check their own upstream:
 
-## Lizenz & Quellen
+- **`shopware-quality`** — agent `shopware-librarian`, command `/sw-sync`: checks
+  `shopware/shopware` releases and trunk drift and reports which skills are affected.
+- **`octo-api`** — command `/octo-spec-sync`: resolves the Ventrata OpenAPI URL dynamically,
+  compares content hash and entity counts against `.spec-state.json`, and regenerates the
+  references on request. `--check` reports, `--apply` writes.
+
+`octo-api` also ships an audit that walks all 39 pages of the upstream documentation and reports any
+term the plugin does not mention — currently 1,162 of 1,162.
+
+## Licence and sources
 
 MIT — [zone1987](https://github.com/zone1987).
 
-Das Wissen in den Skills ist aus den jeweiligen offiziellen Quellen destilliert. Die Rechte an den
-Original-Dokumentationen liegen bei den jeweiligen Anbietern:
+Knowledge is distilled from each project's official documentation. Rights to the original
+documentation remain with the respective owners:
 
-| Plugin-Familie | Quelle |
+| Plugin family | Source |
 |---|---|
 | `shopware-*` | [shopware/shopware](https://github.com/shopware/shopware), developer.shopware.com, docs.shopware.com |
-| `octo-api` | [docs.ventrata.com](https://docs.ventrata.com) — OCTO ist ein offener Standard von OCTO Standards NP Inc. ([octo.travel](https://octo.travel)) |
+| `octo-api` | [docs.ventrata.com](https://docs.ventrata.com) — OCTO is an open standard by OCTO Standards NP Inc. ([octo.travel](https://octo.travel)) |
 | `contao` | [contao/contao](https://github.com/contao/contao), docs.contao.org |
 | `shadcn`, `shadcn-vue` | [ui.shadcn.com](https://ui.shadcn.com), [shadcn-vue.com](https://www.shadcn-vue.com) |
-| `swiper`, `flatpickr`, `playwright`, `panther`, `gotenberg` | jeweiliges Upstream-Repo + offizielle Doku |
+| `swiper`, `flatpickr`, `playwright`, `panther`, `gotenberg` | the respective upstream repository and documentation |
 
-### Weitere OCTO-Implementierungen
+### Other OCTO implementations
 
-OCTO wird nicht nur von Ventrata implementiert. Weitere Anbieter, die den Standard unterstützen:
-Peek Pro, Zaui, Xola und Anchor. Die Spezifikation selbst liegt bei
-[docs.octo.travel](https://docs.octo.travel) bzw. [github.com/octotravel](https://github.com/octotravel).
-Das Plugin `octo-api` dokumentiert die generische OCTO-Spezifikation (in Ventratas Ausprägung) plus
-ein Delta-Overlay für Go City.
+OCTO is an open standard, not a Ventrata product. Other implementers include **Peek Pro**, **Zaui**,
+**Xola** and **Anchor**; **Go City** is covered in `octo-api` as a delta overlay. The specification
+itself lives at [docs.octo.travel](https://docs.octo.travel) and
+[github.com/octotravel](https://github.com/octotravel).

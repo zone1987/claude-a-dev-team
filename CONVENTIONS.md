@@ -1,128 +1,133 @@
-# Konventionen — Plugin-Marketplace
+# Conventions — plugin marketplace
 
-Verbindliche Regeln für Aufbau, Benennung und Layout aller Plugins, Skills, Agents, Commands und
-Hooks in diesem Marketplace.
+Binding rules for the structure, naming and layout of every plugin, skill, agent, command and hook
+in this marketplace.
 
-**`CLAUDE.md` ist die übergeordnete Effizienz-Referenz und gewinnt bei Widerspruch.** Dieses
-Dokument übersetzt sie in konkrete Namens- und Layout-Regeln. Lies beide, bevor du einen Skill
-anlegst oder änderst.
+**[`CLAUDE.md`](./CLAUDE.md) is the higher authority on efficiency and completeness, and wins on
+conflict.** This document translates it into concrete naming and layout rules. Read both before
+adding or changing a skill.
 
-Kanonische Wissensquelle **je Plugin** (nicht repo-weit):
+Canonical source **per plugin**, never repository-wide:
 
-| Plugin-Familie | Kanonische Quelle |
+| Plugin family | Canonical source |
 |---|---|
-| `shopware-*` | Shopware-6.7-Trunk-Source (`src/`, `adr/`, `coding-guidelines/`, `AGENTS.md`, `UPGRADE-*`, `RELEASE_INFO-*`, `changelog/`) |
-| `octo-api` | Ventrata-OpenAPI-Spezifikation + `docs.ventrata.com` |
-| `contao` | Contao-5-Source + offizielles Handbuch |
-| `shadcn`, `shadcn-vue`, `swiper`, `flatpickr`, `playwright`, `panther`, `gotenberg` | jeweiliges Upstream-Repo + offizielle Doku |
+| `shopware-*` | Shopware 6.7 trunk (`src/`, `adr/`, `coding-guidelines/`, `AGENTS.md`, `UPGRADE-*`, `changelog/`) plus developer.shopware.com and docs.shopware.com |
+| `octo-api` | The Ventrata OpenAPI document plus the 39 pages of docs.ventrata.com |
+| `contao` | Contao 5 source plus docs.contao.org, developer documentation and end-user manual |
+| `shadcn`, `shadcn-vue`, `swiper`, `flatpickr`, `playwright`, `panther`, `gotenberg` | The upstream repository and its official documentation |
 
-## Marketplace-Layout
+## Marketplace layout
 
 ```
 claude-a-dev-team/
-├── CLAUDE.md                           # Effizienz-Regelwerk (übergeordnet)
-├── CONVENTIONS.md                      # dieses Dokument
+├── CLAUDE.md                           # efficiency rules — the higher authority
+├── CONVENTIONS.md                      # this document
 ├── README.md
-├── scripts/measure-skill-budget.py     # Listing-Kosten je Plugin messen
-├── .claude-plugin/marketplace.json     # registriert alle Plugins + deren Skills
+├── scripts/                            # the tooling that enforces both
+│   ├── measure-skill-budget.py         # listing cost per plugin
+│   ├── bundle-skills.py                # group skills into domains
+│   ├── finish-bundle.sh                # clean up after bundling
+│   ├── write-domain-skills.py          # write the domain maps
+│   ├── verify-bundle.py                # prove nothing was lost
+│   ├── register-plugin.py              # write both manifests consistently
+│   ├── add-toc.py                       # tables of contents
+│   ├── fix-links.py                     # repair links after renames
+│   └── domain-skills/<plugin>.{map,json}
+├── .claude-plugin/marketplace.json     # registers every plugin and its skills
 └── plugins/
     └── <plugin>/
         ├── .claude-plugin/plugin.json  # name, version, description, author, license,
-        │                               # keywords, category, skills[]  ← skills[] ist Pflicht
+        │                               # keywords, category, skills[]  ← skills[] required
         ├── README.md
-        ├── CHANGELOG.md                # bei SemVer-relevanten Änderungen
+        ├── CHANGELOG.md
         ├── .gitignore
-        ├── skills/<skill>/SKILL.md     # + flache SCREAMING-CASE.md-Siblings
+        ├── skills/<skill>/SKILL.md     # plus flat SCREAMING-CASE.md siblings
         ├── agents/<agent>.md           # auto-discovered
         ├── commands/<command>.md       # auto-discovered
         ├── hooks/hooks.json            # optional
-        ├── scripts/                    # optional: Generatoren, Verifikation
-        └── .<name>-state.json          # optional: Drift-Tracking der Upstream-Quelle
+        ├── scripts/                    # optional: generators, verification
+        └── .<name>-state.json          # optional: upstream drift tracking
 ```
 
-`skills[]` muss in **`plugin.json` und `marketplace.json`** stehen und in beiden identisch sein.
-Es definiert das ausgelieferte Set — Arbeitsstände dürfen im Repo liegen, ohne ins Listing-Budget
-zu zählen. **Ein Pfad auf ein nicht existierendes Skill-Verzeichnis bricht das Laden des Plugins.**
+`skills[]` must appear in **both** `plugin.json` and `marketplace.json`, and be identical in each.
+It defines the shipped set, so work in progress can sit in the repository without entering anyone's
+budget. **A path pointing at a directory without a `SKILL.md` breaks plugin loading** —
+`scripts/register-plugin.py` refuses to write in that case rather than warning.
 
 ## Naming
 
-| Artefakt | Schema | Beispiel |
+| Artefact | Pattern | Example |
 |---|---|---|
-| Plugin | `<produkt>-<thema>` | `shopware-data`, `octo-api` |
-| Skill | `<produkt-prefix>-<thema>` | `sw-entity-definition`, `octo-products` |
-| Agent | `<produkt>-<rolle>` | `shopware-dal-expert`, `octo-integrator` |
-| Command | `/<prefix>-<verb-objekt>` | `/sw-entity`, `/octo-lookup` |
-| Referenz-Datei | `SCREAMING-CASE.md` | `PRODUCT-SCHEMA.md`, `ADR-FORMAT.md` |
-| Katalog-Datei (Introspektion) | `.<produkt>-catalog/<thema>.md` | `.shopware-catalog/entities.md` |
+| Plugin | `<product>-<topic>` | `shopware-data`, `octo-api` |
+| Skill | `<prefix>-<domain>` | `sw-entity`, `octo-products` |
+| Agent | `<product>-<role>` | `shopware-dal-expert`, `octo-integrator` |
+| Command | `/<prefix>-<verb-object>` | `/sw-entity`, `/octo-lookup` |
+| Reference file | `SCREAMING-CASE.md` | `PRODUCT-SCHEMA.md`, `CRITERIA.md` |
+| Introspection catalogue | `.<product>-catalog/<topic>.md` | `.shopware-catalog/entities.md` |
 
-Alles kebab-case. Keine Agentur-, Kunden- oder Projektkürzel in Identifiern — dieses Repo ist
-öffentlich.
+All kebab-case. **No agency, client or project abbreviations in identifiers** — this repository is
+public.
 
-**Der Skill-Name ist selbst ein Trigger-Anker.** `octo-products` trägt das Markenwort und ist damit
-matchbar; ein prefixloses `products` wäre es nicht.
+**A skill name is itself a trigger anchor.** `octo-products` carries the brand word and is therefore
+matchable; a bare `products` would not be.
 
-## Token-Sparsamkeit (zentral)
+## Token economy
 
-Die harte Grenze ist das **Skill-Listing-Budget**: `len(description) + 109` je Skill gegen
-**8.000 Zeichen** (1 % des Kontextfensters bei 200k). Bei Überlauf verlieren die *am seltensten
-genutzten* Skills ihre Description und triggern nie mehr automatisch. Herleitung, Quellen und der
-gemessene Ist-Stand des Repos: `CLAUDE.md`.
+The binding constraint is the **skill listing budget**: `len(description) + 109` per skill against
+**8,000 characters** (1 % of a 200k context window). On overflow the *least-used* skills lose their
+description and stop activating on their own. Derivation, sources and the measured state:
+[`CLAUDE.md`](./CLAUDE.md).
 
-1. **Description ≤ 200 Zeichen**, einzeilig, englisch, dritte Person, Muster
-   `<Statement>. Use when <anchor>, <anchor>.` Kein `when_to_use` (zählt auf denselben Cap).
-2. **≤ 12 modell-sichtbare Skills je Plugin.** Mehr Themen → nach Domänen bündeln und die Tiefe in
-   Referenzdateien schieben. Reine Nachschlage-Skills können `disable-model-invocation: true`
-   tragen: sie kosten **null** Listing-Budget und sind über einen Router-Skill oder
-   `/<plugin>:<skill>` erreichbar.
-3. **Trigger-Anker müssen eindeutig sein.** Generische Vokabeln (`product`, `booking`, `pricing`,
-   `availability`, `cart`, `component`, `test`, `theme`) gehören **nie** in den `Use when`-Teil —
-   sie kollidieren über Plugins hinweg. An ein Markenwort binden: `OCTO or Ventrata products`.
-4. **Skills haben kein `model:`-Feld.** Sparsamkeit entsteht durch **progressive disclosure**:
-   - `SKILL.md` ≤ **120 Zeilen**: Zweck, Kernmodell, Referenz-Karte.
-   - Tiefe (vollständige Schemas, lange Beispiele, Edge-Cases) in flachen Siblings, **eine** Ebene
-     tief. Tiefer verschachtelte Dateien werden nur per `head -100` gelesen — alles ab Zeile 101
-     ist unsichtbar. Deshalb **kein** `references/deep/`.
-   - Inhaltsverzeichnis am Kopf jeder Datei über 100 Zeilen.
-5. **Tragendes zuerst.** Nach einer Kompaktierung werden nur die ersten 5.000 Token je Skill wieder
-   angehängt (gemeinsames Budget 25.000 Token).
-6. **Commands/Agents wählen das günstigste taugliche Model:**
-   - `haiku` → mechanisch/Template-getrieben: Scaffolder (`/sw-config-create`), Mapper
-     (`shopware-entity-mapper`), Lookup (`/octo-lookup`).
-   - `sonnet` → fokussierte Spezialisten und urteilende Commands (`/sw-entity`, `octo-integrator`).
-   - `opus` → nur Orchestrator (`shopware-dev`), Migrator (`shopware-migrator`), Knowledge-Sync
-     (`shopware-librarian`).
-7. **Wissen einbetten, nicht verlinken.** Referenzdateien enthalten destilliertes Wissen — keine
-   Verweise auf Upstream-Pfade, die im Nutzerprojekt nicht vorliegen.
-8. **Andere Skills per Tool-Call erreichen**, nicht per Pfad:
-   `Call the Skill tool with "octo-protocol".` Ein relativer Link in ein anderes Skill-Verzeichnis
-   ist keine Invokation und lädt nichts.
+1. **Description ≤ 200 characters**, single line, English, third person, pattern
+   `<Statement>. Use when <anchor>, <anchor>.` No `when_to_use` (it counts against the same cap).
+2. **≤ 12 model-visible skills per plugin.** More topics means grouping by domain and pushing depth
+   into reference files. A pure lookup skill may carry `disable-model-invocation: true`: it then
+   costs **nothing** and stays reachable through a router skill or `/<plugin>:<skill>`.
+3. **Trigger anchors must be unambiguous.** Generic vocabulary (`product`, `booking`, `pricing`,
+   `availability`, `cart`, `component`, `test`, `theme`) never belongs in the `Use when` clause — it
+   collides across plugins. Bind it to a brand word: `OCTO or Ventrata products`.
+4. **Skills carry no `model:` field.** Economy comes from **progressive disclosure**:
+   - `SKILL.md` ≤ **120 lines** (≤ 40 for a domain map): purpose, core model, reference map.
+   - Depth in flat siblings, **one** level deep. Files nested deeper are only partially read
+     (`head -100`), so everything past line 100 is invisible. Hence **no** `references/deep/`.
+   - Table of contents at the top of any file over 100 lines with more than two sections.
+5. **Load-bearing content first.** After compaction only the first 5,000 tokens of each skill are
+   re-attached, sharing a 25,000-token budget.
+6. **Commands and agents pick the cheapest adequate model:**
+   - `haiku` — mechanical and template-driven: scaffolders, mappers, lookups.
+   - `sonnet` — focused specialists and commands that judge.
+   - `opus` — orchestrators, migrators and knowledge sync only.
+7. **Embed knowledge, do not link to it.** Reference files hold distilled knowledge, never pointers
+   to upstream paths absent from the user's project.
+8. **Reach another skill by tool call**, not by path: `Call the Skill tool with "octo-protocol".`
+   A relative link into another skill's directory invokes nothing.
 
-## Frontmatter-Templates
+## Frontmatter templates
 
 ### Skill — `skills/<name>/SKILL.md`
 
-Nur `name` und `description`. Kein `triggers:` (existiert nicht), kein `model:`, kein
-`when_to_use:`, kein `context: fork` auf Referenz-Skills (Guidelines ohne Task liefern nichts),
-kein `paths:` auf prosa-getriggerte Wissens-Skills (Filter, kein Verstärker).
+Only `name` and `description`. No `triggers:` (no such field), no `model:`, no `when_to_use:`, no
+`context: fork` on a reference skill (guidelines without a task return nothing), no `paths:` on a
+prose-triggered knowledge skill (a filter, not an amplifier).
 
 ```markdown
 ---
 name: octo-products
-description: OCTO/Ventrata product catalogue: GET /products, Product, Option and Unit schemas, every field, enum and capability extension. Use when the request names OCTO or Ventrata products, options, units, or availabilityType.
+description: OCTO/Ventrata product catalogue: GET /products, Product, Option and Unit schemas, all fields and enums. Use when the request names OCTO or Ventrata products, options or units.
 ---
 
 # OCTO Products
 
-<1–3 Sätze Zweck. Tragendes zuerst.>
+<one to three sentences of purpose; load-bearing content first>
 
-## <Kernmodell / Endpunkte / Enums>
+## <Core model / endpoints / enums>
 
-- **fieldName** (string, required): Bedeutung.
+- **fieldName** (string, required): meaning.
 
 ## Reference map
 
-- **`[PRODUCT-SCHEMA.md](PRODUCT-SCHEMA.md)`**: alle 23 Basisfelder, Enums, Sub-Schemas.
-- **`[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)`**: die 16 capability-abhängigen Felder.
+- **`[PRODUCT-SCHEMA.md](PRODUCT-SCHEMA.md)`**: all 23 base fields, enums, sub-schemas.
+- **`[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)`**: the 16 capability-gated fields.
 
 ## Related
 
@@ -135,13 +140,12 @@ Distilled from the [Ventrata OCTO API specification](https://docs.ventrata.com) 
 Reference files in this directory are generated; see `scripts/extract_spec.py`.
 ```
 
-**`## Source` ist Pflicht** in jedem Skill: Upstream-URL, Datei/Version/Hash und Abrufdatum. Ein
-Leser muss jede Aussage am Original prüfen können, ein Maintainer muss wissen, was ein Refresh neu
-lesen muss. Generierte Dateien tragen zusätzlich einen Generator-Stempel in Zeile 1. Details:
-[`CLAUDE.md`](./CLAUDE.md) → „Cite the source".
+**`## Source` is mandatory** in every skill: upstream URL, file or version or hash, and retrieval
+date. A reader must be able to check any claim against the original; a maintainer must know what a
+refresh has to re-read. Generated files additionally carry a generator stamp on line 1. Details:
+[`CLAUDE.md`](./CLAUDE.md) → "Cite the source".
 
-Die Description im Beispiel ist 216 Zeichen — knapp über dem Ziel und damit die Obergrenze des
-Vertretbaren. Zeichen zählen: `python3 -c "print(len('...'))"`.
+Count characters before committing: `python3 -c "print(len('…'))"`.
 
 ### Agent — `agents/<name>.md`
 
@@ -149,41 +153,40 @@ Vertretbaren. Zeichen zählen: `python3 -c "print(len('...'))"`.
 ---
 name: octo-integrator
 description: >
-  <Rolle + wann delegieren>. Use proactively when <anchor>, <anchor>.
+  <role + when to delegate>. Use proactively when <anchor>, <anchor>.
 tools: Read, Grep, Glob, Bash
 model: sonnet
 skills: octo-protocol, octo-products
 ---
 
-# <Titel>
-<Anweisungen, Leitplanken, Vorgehensweise.>
+# <Title>
+<instructions, guardrails, approach>
 ```
 
-- **`skills:` injiziert den vollen Inhalt**, nicht nur die Description. Nur die zwei bis drei Skills
-  vorladen, die der Agent immer braucht; den Rest über das Skill-Tool erreichen.
-- **Least privilege bei `tools`.** Ein Nachschlage-Agent braucht kein `Edit`/`Write` — das schützt
-  zugleich eine Wahrheitsquelle vor versehentlichen Änderungen.
-- **`hooks`, `mcpServers`, `permissionMode` weglassen** — bei Plugin-Subagents werden sie ignoriert.
-- **Agent Teams sind nicht ausliefer­bar** (experimentell, zur Laufzeit erzeugt, ignorieren
-  `skills:`).
+- **`skills:` injects full content**, not just the description. Preload only the two or three the
+  agent always needs; reach the rest through the Skill tool.
+- **Least privilege on `tools`.** A lookup agent needs no `Edit`/`Write` — that also protects a
+  source-of-truth plugin from accidental edits.
+- **Omit `hooks`, `mcpServers`, `permissionMode`** — ignored for plugin subagents.
+- **Agent teams are not shippable** (experimental, generated at runtime, and they ignore `skills:`).
 
 ### Command — `commands/<name>.md`
 
 ```markdown
 ---
 name: octo-lookup
-description: Look up an OCTO endpoint, schema, field, or capability and print parameters, required flags, and a curl example.
+description: Look up an OCTO endpoint, schema, field or capability and print parameters, required flags and a curl example.
 argument-hint: <endpoint|schema|field|capability> [--vendor ventrata|gocity]
 allowed-tools: Read, Glob, Grep
 model: haiku
 ---
 
-<Anweisungen. Schluss: "Nichts erfinden.">
+<instructions; close with "Invent nothing.">
 ```
 
 ### Hook — `hooks/hooks.json`
 
-Nach einer Datei-Änderung erinnern (`PostToolUse`, mit Matcher):
+Remind after a file change (`PostToolUse`, with a matcher):
 
 ```json
 {
@@ -200,7 +203,7 @@ Nach einer Datei-Änderung erinnern (`PostToolUse`, mit Matcher):
 }
 ```
 
-Bei einem Prompt-Anker Kontext injizieren (`UserPromptSubmit`, **ohne** Matcher):
+Inject context on a prompt anchor (`UserPromptSubmit`, **no** matcher):
 
 ```json
 {
@@ -218,87 +221,85 @@ Bei einem Prompt-Anker Kontext injizieren (`UserPromptSubmit`, **ohne** Matcher)
 }
 ```
 
-- **`UserPromptSubmit` unterstützt keinen `matcher`** — er fiele still aus. Die Regex gehört ins
-  Skript, mit Early-Return vor jeder weiteren Arbeit.
-- **`additionalContext` muss in `hookSpecificOutput` liegen** — auf Top-Level wird es still
-  ignoriert. Häufigster Fehler bei diesem Event.
-- **Exec-Form** (Array) bei jedem Pfad-Platzhalter.
-- **`timeout: 5`** und Exit 0 auf jedem Pfad: der Hook läuft synchron vor jedem Prompt.
-- Ein Hook kann **keinen** Skill erzwingen — es gibt keinen solchen Mechanismus. Er erhöht nur die
-  Wahrscheinlichkeit.
+- **`UserPromptSubmit` supports no `matcher`** — one would be silently ignored. The regex belongs in
+  the script, with an early return before any other work.
+- **`additionalContext` must sit inside `hookSpecificOutput`** — at the top level it is silently
+  dropped. The most common mistake with this event.
+- **Exec form** (array) whenever a path placeholder is involved.
+- **`timeout: 5`** and exit 0 on every path: the hook runs synchronously before every prompt.
+- A hook **cannot** force a skill to load — no such mechanism exists. It only raises the odds.
 
-## Referenz-Skill vs. Introspektion
+## Reference skill versus introspection
 
-- **Referenz-Skill** = „wie baut man X" bzw. „was sagt die Spezifikation" — statisch, aus der
-  kanonischen Quelle destilliert.
-- **Introspektion** = „was existiert in DIESEM Projekt" → ein `haiku`-Mapper-Agent + Command scannt
-  das Nutzerprojekt und schreibt einen gecachten Markdown-Katalog nach `.<produkt>-catalog/`.
-  Andere Skills/Agents lesen den Katalog.
+- **Reference skill** — "how do I build X" or "what does the specification say": static, distilled
+  from the canonical source.
+- **Introspection** — "what exists in THIS project": a `haiku` mapper agent plus a command scans the
+  user's project and writes a cached Markdown catalogue to `.<product>-catalog/`. Other skills and
+  agents read the catalogue.
 
-## Quelle der Wahrheit
+## Source of truth
 
-Beansprucht ein Plugin Autorität für eine API oder einen Standard, werden Fakten **generiert, nicht
-erinnert**:
+When a plugin claims authority over an API or a standard, facts are **generated, not recalled**:
 
-- **Aus der maschinenlesbaren Quelle generieren** (OpenAPI, JSON-Schema, typisierter Export) per
-  Skript in `scripts/`. Zwischen Spezifikation und Referenzdatei liegt kein Modell.
-- **Feld-Index + Verify-Skript** mitliefern, das in **beide** Richtungen prüft: jedes spezifizierte
-  Feld ist dokumentiert, und jedes dokumentierte Feld existiert in der Spezifikation. Die zweite
-  Richtung fängt Halluzinationen.
-- **Drift-State-Datei** (`.<name>-state.json`) mit Quell-URL, Content-Hash und Entitäts-Zählern,
-  plus ein `--check`/`--apply`-Command. Kein Netzabruf beim Sessionstart.
-- **Generierte Dateien stempeln** mit Quell-Hash und Do-not-edit-Hinweis, damit späterer
-  Handbetrieb sichtbar bleibt.
-- **Prosa erst nach grünem Verify** ergänzen, danach erneut verifizieren.
-- **Quelle in jeder Datei nennen** — `## Source` im Skill, Generator-Stempel in generierten Dateien,
-  konkrete Seite (nicht die Site-Wurzel) in handgeschriebenen Referenzen, kanonische Quelle plus
-  Rechteinhaber in der Plugin-README.
+- **Generate from the machine-readable source** (OpenAPI, JSON schema, a typed export) with a script
+  in `scripts/`. No model sits between specification and reference file.
+- **Ship a field index and a verify script** that checks both directions: every specified field is
+  documented, and every documented field exists in the specification. The second direction catches
+  invention.
+- **Track drift in a state file** (`.<name>-state.json`) with source URL, content hash and entity
+  counts, plus a `--check` / `--apply` command. No network call at session start.
+- **Stamp generated files** with the source hash and a do-not-edit note, so later hand edits show.
+- **Add prose only after a green verify**, then verify again.
+- **Cite the source in every file** — `## Source` in the skill, a generator stamp in generated files,
+  the specific page (not the site root) in hand-written references, and the canonical source plus
+  rights holder in the plugin README.
 
-## Sprache & Öffentlichkeit
+## Language and publication
 
-Dieses Repo ist öffentlich und international.
+This repository is public and international.
 
-- **Englisch für alles Ausgelieferte**: Skills, Referenzdateien, Agents, Commands, Plugin-READMEs,
-  Code-Kommentare. `CLAUDE.md`, `CONVENTIONS.md` und die Root-`README.md` sind Autoren-Dokumente
-  und dürfen deutsch bleiben.
-- **Keine personen-, kunden- oder agenturbezogenen Daten** — keine privaten Mailadressen, keine
-  internen Projektnamen, keine Agenturkürzel. `author` trägt einen GitHub-Handle.
-- **`license` muss der Realität entsprechen.** `proprietary` in einem öffentlichen Repo ist ein
-  Widerspruch. Wo Wissen aus fremder Doku destilliert ist, die Quelle in README und in den
-  generierten Dateien nennen.
+- **English for everything**: skills, reference files, agents, commands, READMEs, code comments, and
+  the repository-level documents. Where a knowledge source is German — `docs.shopware.com/de`, the
+  Contao manual — the distilled text is still written in English.
+- **No personal, client or agency data**: no private e-mail addresses, no internal project names, no
+  agency prefixes. `author` carries a GitHub handle.
+- **`license` must match reality.** `proprietary` in a public repository is a contradiction. Where
+  knowledge is distilled from third-party documentation, name the source in the README and in the
+  generated files.
 
-## Vor dem Ausliefern prüfen
+## Verify before shipping
 
 ```bash
-python3 scripts/measure-skill-budget.py .                              # Listing-Kosten je Plugin
-find plugins/<name>/skills -mindepth 3 -name '*.md'                    # leer: Referenzen eine Ebene tief
-grep -rn 'triggers:\|when_to_use:\|model:' plugins/<name>/skills/*/SKILL.md   # leer
+python3 scripts/measure-skill-budget.py .                              # listing cost per plugin
+find plugins/<name>/skills -mindepth 3 -name '*.md'                    # empty: references one level deep
+grep -rn 'triggers:\|when_to_use:\|model:' plugins/<name>/skills/*/SKILL.md   # empty
 awk 'FNR==1{if(p&&n>120)print p,n; p=FILENAME; n=0} {n++} END{if(n>120)print p,n}' \
-  plugins/<name>/skills/*/SKILL.md                                     # kein SKILL.md > 120 Zeilen
+  plugins/<name>/skills/*/SKILL.md                                     # no SKILL.md over 120 lines
 python3 -c "import json,sys;[json.load(open(f)) for f in sys.argv[1:]]" \
-  .claude-plugin/marketplace.json plugins/<name>/.claude-plugin/plugin.json   # valides JSON
+  .claude-plugin/marketplace.json plugins/<name>/.claude-plugin/plugin.json   # valid JSON
 ```
 
-In einer Session: `/doctor` schätzt die Listing-Kosten und ihre größten Verursacher, `/context`
-zeigt die Skills-Zeile nach Budget-Anwendung, `--debug` protokolliert die Overflow-Warnung.
-Trigger **in beide Richtungen** testen: lösen die gewollten Prompts aus, und lösen Prompts aus
-Nachbardomänen nicht aus?
+In a session: `/doctor` estimates the listing cost and its biggest contributors, `/context` shows the
+Skills row after the budget is applied, `--debug` logs the overflow warning.
 
-## Stack-Fixpunkte
+Test triggering **in both directions**: do the intended prompts activate the skill, and do prompts
+from a neighbouring domain leave it alone?
 
-### Shopware-Plugins (Shopware 6.7)
+## Stack anchors
 
-PHP 8.2+, Symfony 7, Doctrine DBAL 4 (kein ORM — DAL + `Criteria`), Vue 3 + Pinia/Vite (Admin,
-`mt-*`), Twig + Bootstrap 5 + Webpack (Storefront), MySQL/MariaDB, OpenSearch/ES,
-PHPUnit/PHPStan/Jest/Playwright. Extensibilität: **Events vor Decorators**. Drei APIs: `/api/`
-(Admin), `/store-api/` (Store), `/api/_action/sync` (Sync).
+### Shopware plugins (Shopware 6.7)
+
+PHP 8.2+, Symfony 7, Doctrine DBAL 4 (no ORM — DAL plus `Criteria`), Vue 3 with Pinia and Vite in the
+administration (`mt-*` components), Twig with Bootstrap 5 in the Storefront, MySQL/MariaDB,
+OpenSearch/Elasticsearch, PHPUnit/PHPStan/Jest/Playwright. Extensibility: **events before
+decorators**. Three APIs: `/api/` (Admin), `/store-api/` (Store), `/api/_action/sync` (Sync).
 Lint: `composer ecs[-fix]`, `composer phpstan`, `composer eslint:admin|storefront[:fix]`,
 `composer stylelint`, `composer ludtwig:storefront`.
 
 ### octo-api
 
-OCTO (Open Connection for Tourism), offener Standard von OCTO Standards NP Inc. Basis-URL der
-Ventrata-Implementierung: `https://api.ventrata.com/octo`. Auth: Bearer. **`Octo-Capabilities` ist
-Pflicht-Header** — fehlt er, antwortet die API mit HTTP 400; leerer Wert ist erlaubt. Kernfluss:
-Products → Availability → reserve/confirm/cancel. Capabilities sind additiv und werden
-kommagetrennt im Header angefordert.
+OCTO (Open Connection for Tourism), an open standard by OCTO Standards NP Inc. Base URL of the
+Ventrata implementation: `https://api.ventrata.com/octo`. Auth: Bearer. **`Octo-Capabilities` is a
+required header** — omitting it returns HTTP 400; an empty value is allowed. Core flow: products →
+availability → reserve/confirm/cancel. Capabilities are additive and requested comma-separated in the
+header.

@@ -22,6 +22,6 @@ npm install reka-ui
 npm install @vueuse/core
 ```
 
-3. Copy `Separator.vue` and `index.ts` from [source.md](source.md) into your components directory (e.g. `src/components/ui/separator/`).
+3. Copy `Separator.vue` and `index.ts` from [source.md](SEPARATOR-SOURCE.md) into your components directory (e.g. `src/components/ui/separator/`).
 
 4. Ensure `@/lib/utils` exports the `cn` helper (clsx + tailwind-merge).

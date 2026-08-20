@@ -16,7 +16,7 @@ This adds `ScrollArea.vue`, `ScrollBar.vue`, and `index.ts` to your components d
 npm install reka-ui
 ```
 
-2. Copy `ScrollArea.vue`, `ScrollBar.vue`, and `index.ts` from [source.md](source.md) into your components directory (e.g. `src/components/ui/scroll-area/`).
+2. Copy `ScrollArea.vue`, `ScrollBar.vue`, and `index.ts` from [source.md](SCROLL-AREA-SOURCE.md) into your components directory (e.g. `src/components/ui/scroll-area/`).
 
 3. Ensure `@/lib/utils` exports the `cn` helper (clsx + tailwind-merge).
 

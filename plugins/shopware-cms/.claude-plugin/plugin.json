@@ -1,12 +1,19 @@
 {
   "name": "shopware-cms",
-  "version": "1.0.0",
-  "description": "Shopware 6 CMS: Custom Blocks, Elements und DataResolver (Admin- und Storefront-Seite).",
+  "version": "2.0.0",
+  "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver — 2 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "cms"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "cms"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-cms-block",
+    "./skills/sw-cms-element"
+  ]
 }

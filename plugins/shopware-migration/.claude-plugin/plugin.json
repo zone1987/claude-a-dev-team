@@ -1,12 +1,19 @@
 {
   "name": "shopware-migration",
-  "version": "1.0.0",
-  "description": "Shopware 6 Versions-Migration: 6.6→6.7→6.8, Meteor-/Vite-/Pinia-Migration, Deprecation-Handling, Upgrade-Guides.",
+  "version": "2.0.0",
+  "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) — 2 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "migration"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "migration"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-admin",
+    "./skills/sw-upgrade"
+  ]
 }

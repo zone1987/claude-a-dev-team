@@ -1,12 +1,19 @@
 {
   "name": "shopware-apps",
-  "version": "1.0.0",
-  "description": "Shopware 6 App-Entwicklung: Manifest, Webhooks, Auth, App-Scripts, Payment-/Tax-/CMS-/Flow-Gateways, IAP, JS-/PHP-SDK.",
+  "version": "2.0.0",
+  "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "apps"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "apps"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-app-manifest",
+    "./skills/sw-app-sdk"
+  ]
 }

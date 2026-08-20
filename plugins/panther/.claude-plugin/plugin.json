@@ -1,9 +1,24 @@
 {
   "name": "panther",
-  "version": "1.0.0",
-  "description": "Symfony Panther — End-to-End- & Browser-Testing für PHP: echte Browser via WebDriver (Chrome/Firefox) und headless HTTP via BrowserKit, PantherTestCase/Client/Crawler-API, Formulare & Interaktionen, Mouse/Keyboard, waitFor*-Mechanik, JavaScript-Ausführung, Screenshots, alle PANTHER_*-Umgebungsvariablen, Selenium/Proxy/SSL, Real-Time-Tests, Docker & CI.",
-  "author": { "name": "Andreas Gerhardt", "email": "a.gerhardt1987@gmail.com" },
-  "license": "proprietary",
-  "keywords": ["symfony", "panther", "testing", "e2e", "webdriver", "browserkit", "php"],
-  "category": "development"
+  "version": "2.0.0",
+  "description": "Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installation, PANTHER_* configuration, Selenium and CI — 2 domain skills.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "symfony",
+    "panther",
+    "testing",
+    "e2e",
+    "webdriver",
+    "browserkit",
+    "php"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/panther-setup",
+    "./skills/panther-testing"
+  ]
 }

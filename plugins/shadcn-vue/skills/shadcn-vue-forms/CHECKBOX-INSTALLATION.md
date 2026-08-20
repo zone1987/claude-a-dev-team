@@ -16,7 +16,7 @@ This adds `src/components/ui/checkbox/Checkbox.vue` and `src/components/ui/check
 npm install reka-ui
 ```
 
-2. Copy the source files (see [source.md](source.md)) into your project, e.g. `src/components/ui/checkbox/`.
+2. Copy the source files (see [source.md](CHECKBOX-SOURCE.md)) into your project, e.g. `src/components/ui/checkbox/`.
 
 3. Ensure `@/lib/utils` exports a `cn` helper (clsx + tailwind-merge) and that `@lucide/vue` is installed:
 

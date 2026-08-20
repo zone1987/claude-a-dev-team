@@ -1,30 +1,20 @@
 ---
 name: sw-cms-element
-description: >
-  Ein eigenes CMS-Element in Shopware 6 erstellen (Inhaltsbaustein in Block-Slots): registerCmsElement (Admin) +
-  DataResolver (PHP) + Storefront-Template. Trigger: "CMS Element", "registerCmsElement", "eigenes CMS-Element",
-  "cms element data resolver", "Inhaltselement Erlebniswelt". Shopware 6.7. Scaffolder: /sw-cms-element.
+description: Shopware CMS elements: registering an element, its administration component, the storefront template, and the data resolver that loads its data. Use when building a Shopware CMS element.
 ---
 
-# Shopware 6 — CMS-Element
+# Shopware CMS elements
 
-Ein Element ist ein konkreter Inhaltsbaustein (Bild, Text, eigener Baustein). Drei Teile:
+An element needs three parts: an admin component, a storefront template, and a data resolver.
 
-1. **Admin-Registrierung** (`registerCmsElement`) + Komponenten (`sw-cms-element-admin`).
-2. **DataResolver (PHP)** — lädt zur Laufzeit Daten für das Element (`sw-cms-data-resolver`).
-3. **Storefront-Template** — rendert das Element (`sw-cms-element-storefront`).
+## Reference map
 
-```js
-Shopware.Service('cmsService').registerCmsElement({
-    name: 'ff-teaser',
-    label: 'ff.cms.element.teaser',
-    component: 'sw-cms-el-ff-teaser',
-    configComponent: 'sw-cms-el-config-ff-teaser',
-    previewComponent: 'sw-cms-el-preview-ff-teaser',
-    defaultConfig: { product: { source: 'static', value: null } },
-});
-```
+- **[ADMIN.md](ADMIN.md)**: Drei Komponenten je Element, registriert unter `.../module/sw-cms/elements/ff-teaser/`:.
+- **[CMS.md](CMS.md)**: Plugins can add custom CMS elements and blocks to the Shopping Experiences content management system. [CMS-2](CMS-2.md).
+- **[DATA-RESOLVER.md](DATA-RESOLVER.md)**: Lädt serverseitig die Daten eines CMS-Elements.
+- **[OVERVIEW.md](OVERVIEW.md)**: Ein Element ist ein konkreter Inhaltsbaustein.
+- **[STOREFRONT.md](STOREFRONT.md)**: Das Element wird im Storefront über ein Twig-Template gerendert, Pfad `src/Resources/views/storefront/element….
 
-`defaultConfig`-Felder werden im Config-Modal editiert (`sw-cms-slot-config`) und vom DataResolver ausgewertet.
+## Source
 
-→ CMS-Architektur (Block/Element/Resolver): [references/cms.md](references/cms.md)
+Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.

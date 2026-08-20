@@ -24,7 +24,7 @@ npm install @vueuse/core
 
 ### 2. Copy the component files
 
-Create `components/ui/avatar/` and add the three Vue files plus `index.ts`. See [source.md](source.md) for the complete file contents.
+Create `components/ui/avatar/` and add the three Vue files plus `index.ts`. See [source.md](AVATAR-SOURCE.md) for the complete file contents.
 
 ### 3. Import in your component
 

@@ -1,12 +1,20 @@
 {
   "name": "shopware-core",
-  "version": "1.0.0",
-  "description": "Shopware 6 Plugin-Fundamentals: DI, Services, Decoration, Events/Subscriber, CLI, Config, Logging, Filesystem, Rate-Limiter, Feature-Flags, NumberRange, SystemConfig.",
+  "version": "2.0.0",
+  "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "core"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "core"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-platform",
+    "./skills/sw-plugin",
+    "./skills/sw-services"
+  ]
 }

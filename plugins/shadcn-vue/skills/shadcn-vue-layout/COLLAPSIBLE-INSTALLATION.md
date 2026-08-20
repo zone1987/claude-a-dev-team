@@ -20,7 +20,7 @@ This adds the following files to your project:
 npm install reka-ui
 ```
 
-2. Copy the source files (see [source.md](source.md)) into your project, e.g. `src/components/ui/collapsible/`.
+2. Copy the source files (see [source.md](COLLAPSIBLE-SOURCE.md)) into your project, e.g. `src/components/ui/collapsible/`.
 
 3. Update import paths as needed to match your project structure.
 

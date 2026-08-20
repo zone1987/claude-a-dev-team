@@ -82,13 +82,17 @@ def build(plugin: str, domain: str, meta: dict, check: bool) -> tuple[str, int]:
             owned[parent].append(n)
         else:
             owned[n] = []
-    # Keep the map inside the 120-line skill limit: drop the prose gist once a domain has
-    # more topics than fit with one.
+    # Keep the map inside the 120-line skill limit. Past 14 topics the prose gist goes; past
+    # 40 the per-topic lines go too and companions are summarised, because a map that lists
+    # ninety files is an index, not orientation.
     terse = len(owned) > 14
+    huge = len(owned) > 40
     for f in files:
         base = os.path.basename(f)
         if base not in owned:
             continue
+        if huge:
+            continue          # handled in one grouped block below
         companions = sorted(owned[base])
         bullet = f"- **[{base}]({base})**"
         if not terse:
@@ -100,6 +104,24 @@ def build(plugin: str, domain: str, meta: dict, check: bool) -> tuple[str, int]:
         if companions:
             bullet += " " + ", ".join(f"[{c[:-3]}]({c})" for c in companions) + "."
         lines.append(bullet)
+    if huge:
+        # Group by leading segment so the reader sees the shape of the set, then one line
+        # naming the files, rather than ninety bullets.
+        groups: dict[str, list[str]] = {}
+        for t in sorted(owned):
+            groups.setdefault(t.split("-")[0], []).append(t)
+        for head, members in sorted(groups.items()):
+            if len(members) > 12:
+                # Naming 700 files is not orientation. State the shape and the naming rule
+                # so the reader can construct the path they need.
+                stem = os.path.commonprefix([m[:-3] for m in members]).rstrip("-")
+                sample = ", ".join(f"`{m}`" for m in sorted(members)[:3])
+                lines.append(f"- **{head}** — {len(members)} files named "
+                             f"`{stem}-<TOPIC>.md`, for example {sample}.")
+            else:
+                names_line = ", ".join(f"[{m[:-3]}]({m})" for m in sorted(members))
+                lines.append(f"- **{head}** ({len(members)}): {names_line}")
+        lines.append("")
     listed = set(owned) | {c for v in owned.values() for c in v}
     for e in sorted(set(names) - listed):
         gist = gist_of(os.path.join(sk, e))

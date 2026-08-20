@@ -37,7 +37,7 @@ export function cn(...inputs: ClassValue[]) {
 
 ### 3. Copy component files
 
-Create `src/components/ui/button/` and add `index.ts` and `Button.vue` from the [source reference](source.md).
+Create `src/components/ui/button/` and add `index.ts` and `Button.vue` from the [source reference](BUTTON-SOURCE.md).
 
 ### 4. (Optional) Restore pointer cursor in Tailwind v4
 

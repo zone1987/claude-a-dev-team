@@ -1,12 +1,21 @@
 {
   "name": "shopware-checkout",
-  "version": "1.0.0",
-  "description": "Shopware 6 Checkout: Cart-Processors, LineItems, Preise, Tax, Payment-Handler, Shipping, Order-StateMachine, Dokumente, Promotions.",
+  "version": "2.0.0",
+  "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents — 4 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "checkout"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "checkout"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-cart",
+    "./skills/sw-document",
+    "./skills/sw-fulfilment",
+    "./skills/sw-payment"
+  ]
 }

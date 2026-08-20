@@ -1,29 +1,18 @@
 ---
 name: sw-cms-block
-description: >
-  Einen eigenen CMS-Block in Shopware 6 (Erlebniswelten/Shopping Experiences) erstellen: Block-Registrierung im Admin
-  (Shopware.Service('cmsService').registerCmsBlock), Slots, Storefront-Template. Trigger: "CMS Block", "registerCmsBlock",
-  "eigener Block Erlebniswelt", "shopping experience block", "cms block slots". Shopware 6.7. Scaffolder: /sw-cms-block.
+description: Shopware CMS blocks: registering a block, its administration component, slot configuration. Use when building a Shopware CMS block or Shopping Experience block.
 ---
 
-# Shopware 6 — CMS-Block
+# Shopware CMS blocks
 
-Ein Block ist ein Layout-Container mit benannten **Slots**, die CMS-Elemente aufnehmen. Registrierung im Admin
-(`cmsService`) + Storefront-Template.
+A block is a layout container holding slots. Each slot takes an element.
 
-```js
-Shopware.Service('cmsService').registerCmsBlock({
-    name: 'ff-image-text',
-    label: 'ff.cms.block.imageText',
-    category: 'commerce',
-    component: 'sw-cms-block-ff-image-text',          // Admin-Block-Komponente
-    previewComponent: 'sw-cms-preview-ff-image-text',
-    defaultConfig: { marginBottom: '20px', sizingMode: 'boxed' },
-    slots: { left: 'image', right: 'text' },           // Slot-Name → Default-Element
-});
-```
+## Reference map
 
-Admin-Block-/Preview-Komponente registrieren (`sw-cms-block-admin`); Storefront-Template unter
-`views/storefront/block/cms-block-ff-image-text.html.twig`. Die Slots werden mit CMS-Elementen befüllt (`sw-cms-element`).
+- **[ADMIN.md](ADMIN.md)**: Jeder Block braucht zwei Admin-Komponenten: die **Block-Komponente** und die **Preview-Komponente**.
+- **[OVERVIEW.md](OVERVIEW.md)**: Ein Block ist ein Layout-Container mit benannten **Slots**, die CMS-Elemente aufnehmen.
+- **[SLOT-CONFIG.md](SLOT-CONFIG.md)**: Jedes Element hat eine Konfiguration, zur Laufzeit als `FieldConfigCollection` am Slot.
 
-→ CMS-Details (Block + Element + Resolver): [../sw-cms-element/references/cms.md](../sw-cms-element/references/cms.md)
+## Source
+
+Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20.

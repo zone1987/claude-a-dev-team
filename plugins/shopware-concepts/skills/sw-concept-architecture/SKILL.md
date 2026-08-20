@@ -1,32 +1,23 @@
 ---
 name: sw-concept-architecture
-description: >
-  Shopware-6-Architektur-Konzept: Core, Storefront, Administration, API-first, Schichtentrennung.
-  Trigger: "Shopware Architektur", "wie ist Shopware aufgebaut", "shopware architecture",
-  "Core vs Storefront", "Administration Konzept", "Storefront Konzept", "wie kommuniziert Admin mit Core",
-  "SPA Administration", "Twig Storefront", "Pages und Pagelets", "composite data handling",
-  "wie funktioniert das Admin-Panel", "wie ist die Storefront aufgebaut", "ACL Administration".
+description: How Shopware works: overall architecture, the DAL, data stores, extension mechanisms, the APIs, the app system, messaging. Use when asked why Shopware works a certain way rather than how to code it.
 ---
 
-# Shopware 6 — Architektur-Konzept
+# Shopware architecture concepts
 
-Vollständige Konzept-Doku: `references/deep/architecture.md`
+The reasoning behind the platform. Answers "why is it built this way", not "how do I write it".
 
-## Kurzüberblick
+## Reference map
 
-Shopware folgt einer modularen, API-first-Architektur auf Basis von Symfony mit drei primären Domänen:
+- **[API.md](API.md)**: Vollständige Konzept-Doku: `API-DETAIL.md`. [API-DETAIL](API-DETAIL.md).
+- **[APP-SYSTEM.md](APP-SYSTEM.md)**: Vollständige Konzept-Doku: `APP-SYSTEM-DETAIL.md`. [APP-SYSTEM-DETAIL](APP-SYSTEM-DETAIL.md).
+- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Quellen: `concepts/framework/architecture/index.md`, `administration-concept.md`, `storefront-concept.md`.
+- **[DAL.md](DAL.md)**: Vollständige Konzept-Doku: `DAL-DETAIL.md`. [DAL-DETAIL](DAL-DETAIL.md).
+- **[DATA-STORES.md](DATA-STORES.md)**: Vollständige Konzept-Doku: `DATA-STORES-DETAIL.md`. [DATA-STORES-DETAIL](DATA-STORES-DETAIL.md).
+- **[EXTENSIONS.md](EXTENSIONS.md)**: Vollständige Konzept-Doku: `EXTENSIONS-DETAIL.md`. [EXTENSIONS-DETAIL](EXTENSIONS-DETAIL.md).
+- **[MESSAGING.md](MESSAGING.md)**: Vollständige Konzept-Doku: `MESSAGING-DATA-STORES.md`. [MESSAGING-DETAIL](MESSAGING-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: Vollständige Konzept-Doku: `OVERVIEW-DETAIL.md`. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
 
-- **Core** — Backend-Fundament: Business-Logik, DAL, APIs, Extension-Mechanismus
-- **Storefront** — PHP-Frontend: Twig-Templates, Pages/Pagelets, Themes, JS-Plugins
-- **Administration** — Vue.js-SPA: kommuniziert ausschließlich über Admin API
+## Source
 
-Alle drei teilen eine gemeinsame API-Schicht. Storefront und Admin haben keine eigene Business-Logik.
-
-## Kernprinzipien
-
-- API-first: alle Funktionalität über APIs erreichbar (headless möglich)
-- Separation of Concerns: Presentation von Business-Logik getrennt
-- Erweiterbarkeit via Events, Services und Extension Points
-- Asynchrone Verarbeitung via Symfony Messenger
-
-Technische Umsetzung: `shopware-core`, `shopware-storefront`, `shopware-admin` (Dev-Plugins)
+Distilled from [developer.shopware.com](https://developer.shopware.com) plus the Shopware 6.7 source, retrieved 2026-08-20. Conceptual explanations: for implementation, use the other shopware-* plugins.

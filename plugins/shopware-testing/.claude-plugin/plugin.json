@@ -1,12 +1,20 @@
 {
   "name": "shopware-testing",
-  "version": "1.0.0",
-  "description": "Shopware 6 Testing: PHPUnit (Unit/Integration/API), Jest (Admin/Storefront), Playwright-E2E.",
+  "version": "2.0.0",
+  "description": "Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration and storefront, and Playwright end-to-end — 3 domain skills.",
   "author": {
-    "name": "Andreas Gerhardt",
-    "email": "a.gerhardt1987@gmail.com"
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
   },
-  "license": "proprietary",
-  "keywords": ["shopware", "testing"],
-  "category": "development"
+  "license": "MIT",
+  "keywords": [
+    "shopware",
+    "testing"
+  ],
+  "category": "development",
+  "skills": [
+    "./skills/sw-e2e",
+    "./skills/sw-javascript",
+    "./skills/sw-phpunit"
+  ]
 }

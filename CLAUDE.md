@@ -35,19 +35,18 @@ Measured with `scripts/measure-skill-budget.py`:
 
 | plugin | skills | chars | avg desc | % of budget |
 |---|---:|---:|---:|---:|
-| shopware-merchant | 109 | 48,591 | 337 | 607% |
-| shadcn-vue | 93 | 42,448 | 347 | 531% |
-| shadcn | 96 | 38,573 | 293 | 482% |
-| contao | 57 | 29,360 | 406 | 367% |
-| shopware-devops | 37 | 19,664 | 422 | 246% |
-| playwright | 35 | 18,693 | 425 | 234% |
-| swiper | 33 | 18,516 | 452 | 231% |
-| shopware-storefront | 39 | 17,804 | 348 | 223% |
-| … 18 more | 302 | 141,962 | 361 | 1,775% |
-| **total** | **801** | **375,611** | **360** | **4,695%** |
+| shopware-merchant | 16 | 4,569 | 177 | 57% |
+| octo-api | 8 | 2,392 | 190 | 30% |
+| shadcn-vue | 8 | 2,282 | 176 | 29% |
+| shadcn | 8 | 2,265 | 174 | 28% |
+| contao | 8 | 2,257 | 173 | 28% |
+| playwright | 5 | 1,463 | 184 | 18% |
+| … 20 more | 64 | 18,347 | 178 | 229% |
+| **total** | **117** | **33,575** | **178** | **420%** |
 
-At 47× over budget, descriptions are being truncated continuously and silently. Every plugin
-authored from here on must fit its share; the largest consumers are being remediated separately.
+420 % is the cost of enabling all 26 plugins at once, which is why activation is per project:
+three to five plugins is the working range, and any such selection fits. A new plugin joining
+this repository holds that line — the limits below are how.
 
 `octo-api` is the reference implementation of these rules: 8 skills, 2,392 characters, 30 % of the
 budget, with all 65 operations and 254 capability fields covered and machine-verified.
@@ -91,8 +90,9 @@ restructuring is not finished until it reports zero losses.
 - **≤ 120 lines per `SKILL.md`, ≤ 40 for a domain map.** A map that grows past 40 lines is
   listing files rather than orienting a reader: drop the per-file gist and group companions
   onto their topic's line.
-- **Every reference file over 100 lines carries a table of contents.** `scripts/add-toc.py`
-  adds them.
+- **Every reference file over 100 lines carries a table of contents** — unless it has fewer
+  than three `##` sections, where a two-entry list is noise rather than navigation.
+  `scripts/add-toc.py` applies exactly that rule.
 - **Every skill names its source.** A `## Source` section at the end of `SKILL.md` states where
   the knowledge comes from — the upstream URL, the specification file, the version or commit it was
   distilled from, and the date. A reader must be able to check any claim against the original, and
