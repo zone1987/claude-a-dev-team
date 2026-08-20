@@ -2,7 +2,7 @@
 
 reka-ui API: https://reka-ui.com/docs/components/tags-input#api-reference
 
-## Sub-Komponenten
+## Sub-Components
 
 | Component | Description |
 |-----------|-------------|

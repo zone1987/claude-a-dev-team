@@ -1,27 +1,27 @@
-# shadcn-vue Chart Tooltips — Vollstaendiger Quellcode
+# shadcn-vue Chart Tooltips — Complete source code
 
-Alle 7 Tooltip-Varianten. Alle nutzen `VisStackedBar + VisAxis` aus `@unovis/vue`
-als Traeger-Chart. Tooltip via `ChartCrosshair :template + componentToString`.
+All 7 tooltip variants. All use `VisStackedBar + VisAxis` from `@unovis/vue` as
+the host chart. Tooltip via `ChartCrosshair :template + componentToString`.
 
 ---
 
 ## Contents
 
-- [Gemeinsame Struktur aller Tooltip-Beispiele](#gemeinsame-struktur-aller-tooltip-beispiele)
-- [ChartTooltipDefault.vue — Standard-Tooltip mit labelFormatter](#charttooltipdefaultvue-standard-tooltip-mit-labelformatter)
-- [ChartTooltipIcons.vue — Tooltip mit Icons](#charttooltipiconsvue-tooltip-mit-icons)
-- [ChartTooltipIndicatorLine.vue — Linien-Indikator statt Punkt](#charttooltipindicatorlinevue-linien-indikator-statt-punkt)
-- [ChartTooltipIndicatorNone.vue — Kein Indikator](#charttooltipindicatornonevue-kein-indikator)
-- [ChartTooltipLabelCustom.vue — Benutzerdefiniertes Label aus ChartConfig](#charttooltiplabelcustomvue-benutzerdefiniertes-label-aus-chartconfig)
-- [ChartTooltipLabelFormatter.vue — Label-Formatter (langes Datum)](#charttooltiplabelformattervue-label-formatter-langes-datum)
-- [ChartTooltipLabelNone.vue — Kein Label, kein Indikator](#charttooltiplabelnonevue-kein-label-kein-indikator)
-- [ChartTooltipContent Props — Uebersicht](#charttooltipcontent-props-uebersicht)
-- [componentToString — Signatur](#componenttostring-signatur)
+- [Structure shared by all tooltip examples](#structure-shared-by-all-tooltip-examples)
+- [ChartTooltipDefault.vue — Default tooltip with labelFormatter](#charttooltipdefaultvue--default-tooltip-with-labelformatter)
+- [ChartTooltipIcons.vue — Tooltip with icons](#charttooltipiconsvue--tooltip-with-icons)
+- [ChartTooltipIndicatorLine.vue — Line indicator instead of dot](#charttooltipindicatorlinevue--line-indicator-instead-of-dot)
+- [ChartTooltipIndicatorNone.vue — No indicator](#charttooltipindicatornonevue--no-indicator)
+- [ChartTooltipLabelCustom.vue — Custom label from ChartConfig](#charttooltiplabelcustomvue--custom-label-from-chartconfig)
+- [ChartTooltipLabelFormatter.vue — Label formatter (long date)](#charttooltiplabelformattervue--label-formatter-long-date)
+- [ChartTooltipLabelNone.vue — No label, no indicator](#charttooltiplabelnonevue--no-label-no-indicator)
+- [ChartTooltipContent props — overview](#charttooltipcontent-props--overview)
+- [componentToString — signature](#componenttostring--signature)
 
-## Gemeinsame Struktur aller Tooltip-Beispiele
+## Structure shared by all tooltip examples
 
 ```vue
-<!-- Gleiche Datenbasis in allen 7 Beispielen -->
+<!-- Same data set in all 7 examples -->
 const chartData = [
   { date: new Date("2024-07-15"), running: 450, swimming: 300 },
   { date: new Date("2024-07-16"), running: 380, swimming: 420 },
@@ -31,7 +31,7 @@ const chartData = [
   { date: new Date("2024-07-20"), running: 480, swimming: 400 },
 ]
 
-<!-- Gemeinsames VisXYContainer-Template -->
+<!-- Shared VisXYContainer template -->
 <VisXYContainer :data="chartData" :padding="{ top: 10, bottom: 10, left: 10, right: 10 }">
   <VisStackedBar
     :x="(d: Data) => d.date"
@@ -48,7 +48,7 @@ const chartData = [
   />
   <ChartTooltip />
   <ChartCrosshair
-    :template="/* VARIIERT je nach Beispiel */"
+    :template="/* VARIES per example */"
     color="#0000"
   />
 </VisXYContainer>
@@ -56,9 +56,9 @@ const chartData = [
 
 ---
 
-## ChartTooltipDefault.vue — Standard-Tooltip mit labelFormatter
+## ChartTooltipDefault.vue — Default tooltip with labelFormatter
 
-`indicator: "dot"` (Standard), Datum als Label via `labelFormatter`.
+`indicator: "dot"` (default), date as label via `labelFormatter`.
 
 ```vue
 <script setup lang="ts">
@@ -85,7 +85,7 @@ const chartConfig = {
 </script>
 
 <template>
-  <!-- ... Card-Wrapper ... -->
+  <!-- ... card wrapper ... -->
   <ChartCrosshair
     :template="componentToString(chartConfig, ChartTooltipContent, {
       labelFormatter(d) {
@@ -99,9 +99,9 @@ const chartConfig = {
 
 ---
 
-## ChartTooltipIcons.vue — Tooltip mit Icons
+## ChartTooltipIcons.vue — Tooltip with icons
 
-ChartConfig hat `icon: Footprints` / `icon: Waves`. `hideLabel: true` blendet das Datum aus.
+ChartConfig has `icon: Footprints` / `icon: Waves`. `hideLabel: true` hides the date.
 
 ```vue
 import { Footprints, Waves } from "@lucide/vue"
@@ -119,9 +119,9 @@ const chartConfig = {
 
 ---
 
-## ChartTooltipIndicatorLine.vue — Linien-Indikator statt Punkt
+## ChartTooltipIndicatorLine.vue — Line indicator instead of dot
 
-`indicator: 'line'` zeigt einen vertikalen Farbstreifen statt des Punktes.
+`indicator: 'line'` shows a vertical color stripe instead of the dot.
 
 ```vue
 <ChartCrosshair
@@ -136,9 +136,9 @@ const chartConfig = {
 
 ---
 
-## ChartTooltipIndicatorNone.vue — Kein Indikator
+## ChartTooltipIndicatorNone.vue — No indicator
 
-`hideIndicator: true` blendet den Farbindikator komplett aus.
+`hideIndicator: true` hides the color indicator entirely.
 
 ```vue
 <ChartCrosshair
@@ -153,13 +153,13 @@ const chartConfig = {
 
 ---
 
-## ChartTooltipLabelCustom.vue — Benutzerdefiniertes Label aus ChartConfig
+## ChartTooltipLabelCustom.vue — Custom label from ChartConfig
 
-`labelKey: 'activities'` liest das Label aus `chartConfig.activities.label`.
+`labelKey: 'activities'` reads the label from `chartConfig.activities.label`.
 
 ```vue
 const chartConfig = {
-  activities: { label: "Activities" },  // <-- wird als Tooltip-Label verwendet
+  activities: { label: "Activities" },  // <-- used as the tooltip label
   running: { label: "Running", color: "var(--chart-1)" },
   swimming: { label: "Swimming", color: "var(--chart-2)" },
 } satisfies ChartConfig
@@ -175,9 +175,9 @@ const chartConfig = {
 
 ---
 
-## ChartTooltipLabelFormatter.vue — Label-Formatter (langes Datum)
+## ChartTooltipLabelFormatter.vue — Label formatter (long date)
 
-Formattierung als "15. July 2024".
+Formatted as "15 July 2024".
 
 ```vue
 <ChartCrosshair
@@ -196,9 +196,9 @@ Formattierung als "15. July 2024".
 
 ---
 
-## ChartTooltipLabelNone.vue — Kein Label, kein Indikator
+## ChartTooltipLabelNone.vue — No label, no indicator
 
-`hideLabel: true` + `hideIndicator: true` = nur die Werte ohne Dekoration.
+`hideLabel: true` + `hideIndicator: true` = just the values, no decoration.
 
 ```vue
 <ChartCrosshair
@@ -215,21 +215,21 @@ Formattierung als "15. July 2024".
 
 ---
 
-## ChartTooltipContent Props — Uebersicht
+## ChartTooltipContent props — overview
 
-| Prop             | Typ                              | Standard | Wirkung                                      |
+| Prop             | Type                             | Default  | Effect                                       |
 |------------------|----------------------------------|----------|----------------------------------------------|
-| `hideLabel`      | `boolean`                        | `false`  | Obere Label-Zeile ausblenden                 |
-| `hideIndicator`  | `boolean`                        | `false`  | Farbindikator (Punkt/Linie) ausblenden       |
-| `indicator`      | `"line" \| "dot" \| "dashed"`    | `"dot"`  | Form des Farbindikators                      |
-| `labelKey`       | `string`                         | –        | ChartConfig-Key dessen `.label` angezeigt    |
-| `labelFormatter` | `(d: number \| Date) => string`  | –        | Formatter fuer das X-Label                  |
-| `nameKey`        | `string`                         | –        | Key fuer Zeilennamen                         |
-| `payload`        | `Record<string, any>`            | `{}`     | Datenpunkt (automatisch von componentToString)|
-| `config`         | `ChartConfig`                    | `{}`     | Chart-Konfiguration                          |
-| `x`              | `number \| Date`                 | –        | X-Wert fuer labelFormatter                  |
+| `hideLabel`      | `boolean`                        | `false`  | Hide the top label row                       |
+| `hideIndicator`  | `boolean`                        | `false`  | Hide the color indicator (dot/line)          |
+| `indicator`      | `"line" \| "dot" \| "dashed"`    | `"dot"`  | Shape of the color indicator                 |
+| `labelKey`       | `string`                         | –        | ChartConfig key whose `.label` is shown      |
+| `labelFormatter` | `(d: number \| Date) => string`  | –        | Formatter for the X label                   |
+| `nameKey`        | `string`                         | –        | Key for the row names                        |
+| `payload`        | `Record<string, any>`            | `{}`     | Data point (automatic from componentToString) |
+| `config`         | `ChartConfig`                    | `{}`     | Chart configuration                          |
+| `x`              | `number \| Date`                 | –        | X value for labelFormatter                  |
 
-## componentToString — Signatur
+## componentToString — signature
 
 ```ts
 componentToString(
@@ -239,5 +239,5 @@ componentToString(
 ): ((_data: any, x: number | Date) => string) | undefined
 ```
 
-Gibt eine Callback-Funktion zurueck, die `ChartCrosshair :template` erwartet.
-Rendert die Vue-Komponente zu HTML-String (mit Caching).
+Returns a callback function of the kind `ChartCrosshair :template` expects.
+Renders the Vue component to an HTML string (with caching).

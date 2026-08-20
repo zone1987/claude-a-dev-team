@@ -1,52 +1,52 @@
-# Shopware 6 — App Payment API-Referenz
+# Shopware 6 — App payment API reference
 
-> Quelle: `resources/references/app-reference/payment-reference.md`
-> Verfügbar ab Shopware 6.4.1.0
+> Source: `resources/references/app-reference/payment-reference.md`
+> Available from Shopware 6.4.1.0
 
-Die App-Payment-API besteht aus zwei Endpunkten, die von Shopware gegen die App-Server-URL aufgerufen werden.
-Alle Bodies sind JSON-kodiert.
+The app payment API consists of two endpoints that Shopware calls against the app server URL.
+All bodies are JSON-encoded.
 
 ---
 
 ## Contents
 
-- [Pay-Endpunkt](#pay-endpunkt)
-- [Finalize-Endpunkt](#finalize-endpunkt)
-- [Status-Werte](#status-werte)
-- [manifest.xml Registrierung](#manifestxml-registrierung)
+- [Pay endpoint](#pay-endpoint)
+- [Finalize endpoint](#finalize-endpoint)
+- [Status values](#status-values)
+- [manifest.xml registration](#manifestxml-registration)
 
-## Pay-Endpunkt
+## Pay endpoint
 
 **`POST https://payment.app/pay`**
 
-Wird aufgerufen wenn der Nutzer auf "Bestellung bestätigen" klickt.
+Called when the user clicks "Confirm order".
 
-### Request-Parameter
+### Request parameters
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |:----------|:----|:-------------|
 | **Header** | | |
-| `shopware-shop-signature`* | string | HMAC-Signatur des JSON-kodierten Body-Inhalts, signiert mit dem Shop-Secret aus der Registrierung |
+| `shopware-shop-signature`* | string | HMAC signature of the JSON-encoded body content, signed with the shop secret from the registration |
 | **Body** | | |
-| `order`* | OrderEntity | Die Bestellungs-Entity inklusive aller notwendigen Assoziationen (Währung, Lieferadresse, Rechnungsadresse, Positionen) |
-| `orderTransaction`* | OrderTransactionEntity | Die Zahlungstransaktion-Entity |
-| `orderTransaction.id`* | string | Zur Identifikation der Transaktion bei einem späteren Finalize-Request |
-| `returnUrl` | string | URL zu der der Nutzer nach der Bezahlung zurückgeleitet werden soll. Nur bei asynchronen Zahlungen vorhanden. |
-| `source`* | object | Daten zur Identifikation des Shops |
-| `source.url`* | string | Shop-URL |
-| `source.shopId`* | string | Shop-ID |
-| `source.appVersion`* | string | Version der installierten App |
+| `order`* | OrderEntity | The order entity including all necessary associations (currency, delivery address, billing address, line items) |
+| `orderTransaction`* | OrderTransactionEntity | The payment transaction entity |
+| `orderTransaction.id`* | string | To identify the transaction in a later finalize request |
+| `returnUrl` | string | URL the user should be redirected back to after the payment. Present only for asynchronous payments. |
+| `source`* | object | Data identifying the shop |
+| `source.url`* | string | Shop URL |
+| `source.shopId`* | string | Shop ID |
+| `source.appVersion`* | string | Version of the installed app |
 
 ### Responses
 
-**`200 OK` — Erfolgreiche Weiterleitung (asynchron):**
+**`200 OK` — Successful redirect (asynchronous):**
 ```json
 {
   "redirectUrl": "https://payment.app/user/go/here/068b1ec4d7ff431b95d3b7431cc725aa/"
 }
 ```
 
-**`200 OK` — Fehler (fehlende Credentials):**
+**`200 OK` — Error (missing credentials):**
 ```json
 {
   "status": "fail",
@@ -56,36 +56,36 @@ Wird aufgerufen wenn der Nutzer auf "Bestellung bestätigen" klickt.
 
 ---
 
-## Finalize-Endpunkt
+## Finalize endpoint
 
 **`POST https://payment.app/finalize`**
 
-Wird aufgerufen wenn der Nutzer zur `returnUrl` zurückkehrt (nach der Weiterleitung zum Zahlungsanbieter).
+Called when the user returns to the `returnUrl` (after being redirected to the payment provider).
 
-### Request-Parameter
+### Request parameters
 
-| Parameter | Typ | Beschreibung |
+| Parameter | Type | Description |
 |:----------|:----|:-------------|
 | **Header** | | |
-| `shopware-shop-signature`* | string | HMAC-Signatur des JSON-kodierten Body-Inhalts |
+| `shopware-shop-signature`* | string | HMAC signature of the JSON-encoded body content |
 | **Body** | | |
-| `orderTransaction`* | OrderTransactionEntity | Die Zahlungstransaktion-Entity |
-| `orderTransaction.id`* | string | Zur Identifikation der Transaktion |
-| `source`* | object | Daten zur Identifikation des Shops |
-| `source.url`* | string | Shop-URL |
-| `source.shopId`* | string | Shop-ID |
-| `source.appVersion`* | string | Version der installierten App |
+| `orderTransaction`* | OrderTransactionEntity | The payment transaction entity |
+| `orderTransaction.id`* | string | To identify the transaction |
+| `source`* | object | Data identifying the shop |
+| `source.url`* | string | Shop URL |
+| `source.shopId`* | string | Shop ID |
+| `source.appVersion`* | string | Version of the installed app |
 
 ### Responses
 
-**`200 OK` — Erfolgreich bezahlt:**
+**`200 OK` — Successfully paid:**
 ```json
 {
   "status": "paid"
 }
 ```
 
-**`200 OK` — Unzureichende Mittel:**
+**`200 OK` — Insufficient funds:**
 ```json
 {
   "status": "fail",
@@ -93,7 +93,7 @@ Wird aufgerufen wenn der Nutzer zur `returnUrl` zurückkehrt (nach der Weiterlei
 }
 ```
 
-**`200 OK` — Nutzer hat Zahlung abgebrochen:**
+**`200 OK` — User cancelled the payment:**
 ```json
 {
   "status": "cancel",
@@ -103,19 +103,19 @@ Wird aufgerufen wenn der Nutzer zur `returnUrl` zurückkehrt (nach der Weiterlei
 
 ---
 
-## Status-Werte
+## Status values
 
-| Status | Beschreibung |
+| Status | Description |
 |:-------|:-------------|
-| `paid` | Zahlung erfolgreich |
-| `fail` | Zahlung fehlgeschlagen |
-| `cancel` | Zahlung abgebrochen |
-| `authorize` | Zahlung autorisiert (nicht sofort belastet) |
-| `paid_partially` | Teilzahlung erfolgt |
+| `paid` | Payment successful |
+| `fail` | Payment failed |
+| `cancel` | Payment cancelled |
+| `authorize` | Payment authorized (not charged immediately) |
+| `paid_partially` | Partial payment made |
 
 ---
 
-## manifest.xml Registrierung
+## manifest.xml registration
 
 ```xml
 <payments>

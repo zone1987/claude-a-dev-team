@@ -37,7 +37,7 @@
 | HIGH | App Lifecycle | `lifecycle-` | Install, update, activate, deactivate, delete events |
 | HIGH | JavaScript SDK | `sdk-js-` | JS SDK setup, HTTP client, Hono integration |
 | HIGH | PHP SDK | `sdk-php-` | PHP SDK setup, HTTP client, Symfony integration |
-| HIGH | App Server Setup | `sdk-php-public-htaccess` | `.htaccess` im `public/`-Verzeichnis (Apache-Pflicht) |
+| HIGH | App Server Setup | `sdk-php-public-htaccess` | `.htaccess` in the `public/` directory (required for Apache) |
 | MEDIUM | App Scripts | `scripts-` | Cart manipulation, data loading, custom endpoints |
 | MEDIUM | Storefront | `storefront-` | Templates, themes, cookies |
 | MEDIUM | Administration | `admin-` | Admin SDK, action buttons, modules, CMS elements, snippets |
@@ -94,7 +94,7 @@ curl -s -X POST \
 
 ## Rules
 
-- README-Datei immer auf **Deutsch** erstellen.
+- Always write the README file in **German**.
 
 ## External References
 

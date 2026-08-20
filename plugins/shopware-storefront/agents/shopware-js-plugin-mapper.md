@@ -8,7 +8,7 @@ description: >
   "welche Storefront-JS-Plugins/Events gibt es". Reiner Scan — günstig.
 tools: Read, Grep, Glob, Bash, Write
 model: haiku
-skills: sw-js-plugin-catalog
+skills: sw-javascript
 ---
 
 # shopware-js-plugin-mapper — JS-Plugin-Katalog-Scanner

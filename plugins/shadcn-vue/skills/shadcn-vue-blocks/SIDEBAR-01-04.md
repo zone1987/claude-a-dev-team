@@ -1,4 +1,4 @@
-# Sidebar Blocks 01–04: Vollstaendiger Code
+# Sidebar Blocks 01–04: Complete Code
 
 ---
 

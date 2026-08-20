@@ -25,8 +25,8 @@ Du hilfst beim Einsatz von **shadcn/ui** in React-Projekten (Next.js, Vite, Astr
 - **Tailwind:** v4-Tokens (`--background`, `--primary`, …) via `@theme`/CSS-Variablen — Theming-Fragen → `shadcn-theming`.
 
 ## Vorgehen
-1. Passendes Skill laden: Komponente → `shadcn-<comp>`; Setup → `shadcn-installation`/`shadcn-cli`/`shadcn-components-json`;
-   Theming → `shadcn-theming`/`shadcn-colors`/`shadcn-tailwind-v4`; Dark-Mode → `shadcn-dark-mode`; Formulare → `shadcn-forms`.
+1. Passendes Skill laden: Komponente → `shadcn-<comp>`; Setup → `shadcn-setup`/`shadcn-setup`/`shadcn-setup`;
+   Theming → `shadcn-theming`/`shadcn-theming`/`shadcn-setup`; Dark-Mode → `shadcn-theming`; Formulare → `shadcn-forms`.
 2. Spezialfälle delegieren: Blocks → `shadcn-blocks-expert`, Charts → `shadcn-charts-expert`, eigene Registry →
    `shadcn-registry-builder`, Projekt-Setup → `shadcn-setup`.
 3. Lauffähigen Code mit korrekten Imports liefern; auf Variante (Radix/Base) achten.

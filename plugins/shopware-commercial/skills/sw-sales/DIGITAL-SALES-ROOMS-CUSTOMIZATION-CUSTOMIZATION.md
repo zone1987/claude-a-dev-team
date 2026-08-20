@@ -1,26 +1,26 @@
-# Digital Sales Rooms — Customization (vollständig)
+# Digital Sales Rooms — Customization (complete)
 
-> Alle Anpassungen erfolgen **im eigenen Nuxt-Layer**, nie im Default-Layer `dsr`.
+> All customizations happen **in your own Nuxt layer**, never in the default layer `dsr`.
 
 ## Contents
 
-- [Das Nuxt-Layer-Konzept](#das-nuxt-layer-konzept)
-- [Branding Anpassungen](#branding-anpassungen)
-- [Komponenten Überschreiben](#komponenten-überschreiben)
-- [i18n (Internationalisierung) Anpassen](#i18n-internationalisierung-anpassen)
+- [The Nuxt Layer Concept](#the-nuxt-layer-concept)
+- [Branding Customizations](#branding-customizations)
+- [Overriding Components](#overriding-components)
+- [Customizing i18n (Internationalization)](#customizing-i18n-internationalization)
 
-## Das Nuxt-Layer-Konzept
+## The Nuxt Layer Concept
 
-DSR-Frontend basiert auf [Nuxt Layers](https://nuxt.com/docs/getting-started/layers).
-Im Quellcode (`dsr-frontends`) existiert:
+The DSR frontend is based on [Nuxt Layers](https://nuxt.com/docs/getting-started/layers).
+The source code (`dsr-frontends`) contains:
 
-- **`dsr/`** — Default-Layer (nicht bearbeiten)
-- **`example/`** — Beispiel-Customization-Layer (umbenennen und anpassen)
+- **`dsr/`** — default layer (do not edit)
+- **`example/`** — example customization layer (rename and adapt)
 
-### Eigenen Layer erstellen
+### Creating Your Own Layer
 
-1. `example/`-Layer umbenennen (z.B. in `my-brand/`)
-2. In `nuxt.config.ts` importieren:
+1. Rename the `example/` layer (e.g. to `my-brand/`)
+2. Import it in `nuxt.config.ts`:
 
 ```ts
 // nuxt.config.ts
@@ -30,27 +30,27 @@ export default defineNuxtConfig({
 })
 ```
 
-Nuxt verwendet immer die zuerst gefundene Version einer Datei (eigener Layer
-hat Priorität über `dsr`).
+Nuxt always uses the first version of a file it finds (your own layer takes
+priority over `dsr`).
 
 ---
 
-## Branding Anpassungen
+## Branding Customizations
 
 ### Favicon
 
-Im eigenen Layer `public/`-Ordner anlegen (falls nicht vorhanden) und
-`favicon.ico` darin platzieren:
+Create a `public/` folder in your own layer (if it does not exist yet) and
+place `favicon.ico` inside it:
 
 ```
 my-brand/
   public/
-    favicon.ico   ← hier ablegen
+    favicon.ico   ← place it here
 ```
 
-### Web-Application-Titel
+### Web Application Title
 
-`nuxt.config.ts` im eigenen Layer anlegen (falls nicht vorhanden):
+Create `nuxt.config.ts` in your own layer (if it does not exist yet):
 
 ```js
 // my-brand/nuxt.config.ts
@@ -63,9 +63,9 @@ export default defineNuxtConfig({
 })
 ```
 
-### Theme-Farbe (Primärfarbe)
+### Theme Color (Primary Color)
 
-`uno.config.ts` im eigenen Layer anlegen:
+Create `uno.config.ts` in your own layer:
 
 ```js
 // my-brand/uno.config.ts
@@ -73,48 +73,48 @@ export default {
   theme: {
     colors: {
       primary: {
-        DEFAULT: '#000000'   // gewünschte Primärfarbe
+        DEFAULT: '#000000'   // desired primary color
       }
     }
   }
 }
 ```
 
-> Tipp: Die vollständige Key-Struktur zum Überschreiben findet sich in
+> Tip: The complete key structure available for overriding can be found in
 > `dsr/uno.config.ts`.
 
 ---
 
-## Komponenten Überschreiben
+## Overriding Components
 
-### Beispiel: `SwWishlistButton` anpassen
+### Example: Customizing `SwWishlistButton`
 
-1. Original-Komponente im Default-Layer lokalisieren:
+1. Locate the original component in the default layer:
    ```
    dsr/components/shared/molecules/SwWishlistButton.vue
    ```
 
-2. Datei in den eigenen Layer kopieren (gleiche Verzeichnisstruktur):
+2. Copy the file into your own layer (same directory structure):
    ```
    my-brand/components/shared/molecules/SwWishlistButton.vue
    ```
 
-3. Komponente im eigenen Layer nach Bedarf anpassen.
+3. Adapt the component in your own layer as needed.
 
-Die Frontend-App ignoriert nun `SwWishlistButton` aus dem `dsr`-Layer und
-verwendet ausschließlich die Version aus dem eigenen Layer.
+The frontend app now ignores `SwWishlistButton` from the `dsr` layer and
+uses exclusively the version from your own layer.
 
-**Generelles Prinzip:**
-- Alle verfügbaren Komponenten befinden sich unter `dsr/components/`
-- Gleiche Dateistruktur im eigenen Layer → automatisches Override
+**General principle:**
+- All available components are located under `dsr/components/`
+- The same file structure in your own layer → automatic override
 
 ---
 
-## i18n (Internationalisierung) Anpassen
+## Customizing i18n (Internationalization)
 
-### i18n in `nuxt.config.ts` konfigurieren
+### Configuring i18n in `nuxt.config.ts`
 
-Im eigenen Layer:
+In your own layer:
 
 ```js
 // my-brand/nuxt.config.ts
@@ -124,23 +124,23 @@ export default defineNuxtConfig({
   ],
   i18n: {
     langDir: "./i18n/src/langs/",
-    ...i18nConfig,  // aus dem dsr-Layer importieren
+    ...i18nConfig,  // import from the dsr layer
   },
 })
 ```
 
-### Übersetzungsdateien anlegen
+### Creating Translation Files
 
-Verzeichnisstruktur des `example`-Layers als Vorlage verwenden:
+Use the directory structure of the `example` layer as a template:
 
 ```
 my-brand/
   i18n/
     src/
       langs/
-        en-US.ts   ← nur überschriebene Keys enthalten
+        en-US.ts   ← contains only overridden keys
         de-DE.ts
 ```
 
-> Nur die Keys eintragen, die tatsächlich überschrieben werden sollen.
-> Fehlende Keys fallen automatisch auf den Default-Layer zurück.
+> Only enter the keys that should actually be overridden.
+> Missing keys automatically fall back to the default layer.

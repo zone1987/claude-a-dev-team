@@ -1,11 +1,11 @@
 # shadcn-vue Drawer
 
-Mobile-optimiertes Slide-in-Panel basierend auf vaul-vue. Unterstuetzt alle vier Richtungen (top/right/bottom/left). Skaliert optionalerweise den Hintergrund.
+Mobile-optimized slide-in panel based on vaul-vue. Supports all four directions (top/right/bottom/left). Optionally scales the background.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `DRAWER-INSTALLATION.md` — CLI- und manuelle Installation
-- `DRAWER-SOURCE.md` — Vollstaendiger Quellcode aller Komponenten
-- `DRAWER-API.md` — Props, Slots, Emits aller Sub-Komponenten
-- `DRAWER-EXAMPLES.md` — Alle Demos mit Code
+Load the references:
+- `DRAWER-INSTALLATION.md` — CLI and manual installation
+- `DRAWER-SOURCE.md` — Complete source code of all components
+- `DRAWER-API.md` — Props, slots, emits of all sub-components
+- `DRAWER-EXAMPLES.md` — All demos with code

@@ -1,12 +1,12 @@
 # shadcn-vue Field
 
-Zugaengliches Layout-System fuer Formularfelder. Unterstuetzt alle shadcn-vue Eingabe-
-Komponenten. Kein externes Headless-Framework — reines CSS/Container-Query-basiertes Layout.
+Accessible layout system for form fields. Supports all shadcn-vue input
+components. No external headless framework — pure CSS/container-query-based layout.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `FIELD-INSTALLATION.md` — CLI- und manuelle Installation
-- `FIELD-SOURCE.md` — Vollstaendiger Quellcode aller 10 Sub-Komponenten
-- `FIELD-API.md` — Props, Orientierungsvarianten, FieldError-API
+Load the references:
+- `FIELD-INSTALLATION.md` — CLI and manual installation
+- `FIELD-SOURCE.md` — Complete source code of all 10 sub-components
+- `FIELD-API.md` — Props, orientation variants, FieldError API
 - `FIELD-EXAMPLES.md` — Demos: Input, Checkbox, Radio, Switch, Select, OTP

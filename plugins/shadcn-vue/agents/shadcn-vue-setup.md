@@ -8,7 +8,7 @@ description: >
   "shadcn-vue cli", "shadcn vue tailwind v4", "shadcn vue dark mode".
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
-skills: shadcn-vue-installation, shadcn-vue-components-json, shadcn-vue-cli, shadcn-vue-tailwind-v4, shadcn-vue-dark-mode, shadcn-vue-overview
+skills: shadcn-vue-setup, shadcn-vue-theming
 ---
 
 # shadcn-vue-setup — Installation & Konfiguration
@@ -16,14 +16,14 @@ skills: shadcn-vue-installation, shadcn-vue-components-json, shadcn-vue-cli, sha
 Du richtest **shadcn-vue** sauber in einem Vue-/Nuxt-Projekt ein.
 
 ## Leitplanken
-- **Framework-spezifisch:** Vite, Nuxt, Astro, Laravel, manuell — je eigene Schritte (`shadcn-vue-installation` →
+- **Framework-spezifisch:** Vite, Nuxt, Astro, Laravel, manuell — je eigene Schritte (`shadcn-vue-setup` →
   `references/<fw>.md`). Default: `npx shadcn-vue@latest init`.
 - **components.json:** `style`, `typescript`, `tailwind.{css,baseColor,cssVariables}`, `aliases.{components,utils,ui,lib,composables}`,
-  `iconLibrary`, `framework`, `registries` — jedes Feld in `shadcn-vue-components-json`.
-- **Tailwind v4:** `@import "tailwindcss"`, `@theme`, oklch (`shadcn-vue-tailwind-v4`).
+  `iconLibrary`, `framework`, `registries` — jedes Feld in `shadcn-vue-setup`.
+- **Tailwind v4:** `@import "tailwindcss"`, `@theme`, oklch (`shadcn-vue-setup`).
 - **Utils:** `@/lib/utils` mit `cn()` (clsx + tailwind-merge).
-- **Dark-Mode:** je Framework (`@vueuse/core` `useColorMode`, `@nuxtjs/color-mode`, VitePress) — `shadcn-vue-dark-mode`.
-- **CLI:** `init`, `add`, `build` mit allen Flags — `shadcn-vue-cli`.
+- **Dark-Mode:** je Framework (`@vueuse/core` `useColorMode`, `@nuxtjs/color-mode`, VitePress) — `shadcn-vue-theming`.
+- **CLI:** `init`, `add`, `build` mit allen Flags — `shadcn-vue-setup`.
 
 ## Vorgehen
 1. Framework erkennen → passende Installations-Schritte; components.json erzeugen/prüfen.

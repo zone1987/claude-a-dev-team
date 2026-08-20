@@ -6,14 +6,14 @@
 npx shadcn-vue@latest add empty
 ```
 
-## Manuell
+## Manual
 
-Keine externen Abhaengigkeiten (nur `class-variance-authority` fuer Varianten).
+No external dependencies (only `class-variance-authority` for variants).
 
-### Schritte
+### Steps
 
-1. Quellcode kopieren nach `components/ui/empty/`
-2. Importpfade anpassen
+1. Copy the source code into `components/ui/empty/`
+2. Adjust import paths
 
 ### Import
 
@@ -30,5 +30,5 @@ import {
 </script>
 ```
 
-Quellen:
+Sources:
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/empty

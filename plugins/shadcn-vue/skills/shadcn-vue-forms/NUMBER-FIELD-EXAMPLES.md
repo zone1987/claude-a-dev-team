@@ -1,15 +1,15 @@
-# NumberField — Beispiele
+# NumberField — Examples
 
 ## Contents
 
-- [Beispiel 1: Basic Number Field (NumberFieldBasic.vue)](#beispiel-1-basic-number-field-numberfieldbasicvue)
-- [Beispiel 2: Number Field with Label (NumberFieldWithLabel.vue)](#beispiel-2-number-field-with-label-numberfieldwithlabelvue)
-- [Beispiel 3: Disabled Number Field (NumberFieldDisabled.vue)](#beispiel-3-disabled-number-field-numberfielddisabledvue)
-- [Quellen](#quellen)
+- [Example 1: Basic Number Field (NumberFieldBasic.vue)](#example-1-basic-number-field-numberfieldbasicvue)
+- [Example 2: Number Field with Label (NumberFieldWithLabel.vue)](#example-2-number-field-with-label-numberfieldwithlabelvue)
+- [Example 3: Disabled Number Field (NumberFieldDisabled.vue)](#example-3-disabled-number-field-numberfielddisabledvue)
+- [Sources](#sources)
 
-## Beispiel 1: Basic Number Field (NumberFieldBasic.vue)
+## Example 1: Basic Number Field (NumberFieldBasic.vue)
 
-Einfaches Zahlenfeld mit Min/Max und Custom-Icons.
+Simple number field with min/max and custom icons.
 
 ```vue
 <script setup lang="ts">
@@ -40,9 +40,9 @@ import {
 
 ---
 
-## Beispiel 2: Number Field with Label (NumberFieldWithLabel.vue)
+## Example 2: Number Field with Label (NumberFieldWithLabel.vue)
 
-Kombination mit `Label` und `id`-Prop fur Barrierefreiheit.
+Combined with `Label` and the `id` prop for accessibility.
 
 ```vue
 <script setup lang="ts">
@@ -77,9 +77,9 @@ import {
 
 ---
 
-## Beispiel 3: Disabled Number Field (NumberFieldDisabled.vue)
+## Example 3: Disabled Number Field (NumberFieldDisabled.vue)
 
-Deaktiviertes Feld — alle Controls werden deaktiviert.
+Disabled field — all controls are disabled.
 
 ```vue
 <script setup lang="ts">
@@ -110,7 +110,7 @@ import {
 
 ---
 
-## Quellen
+## Sources
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/number-field/NumberFieldBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/number-field/NumberFieldWithLabel.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/number-field/NumberFieldDisabled.vue`

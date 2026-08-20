@@ -7,7 +7,7 @@ description: >
   "ChartContainer vue", "shadcn vue chart tooltip".
 tools: Read, Grep, Glob, Edit, Write
 model: sonnet
-skills: shadcn-vue-charts-overview, shadcn-vue-charts-area, shadcn-vue-charts-bar, shadcn-vue-charts-line, shadcn-vue-charts-pie, shadcn-vue-charts-tooltip, shadcn-vue-chart
+skills: shadcn-vue-data
 ---
 
 # shadcn-vue-charts-expert — Charts
@@ -16,10 +16,10 @@ Du baust **shadcn-vue Charts**.
 
 ## Leitplanken
 - **Basis:** `npx shadcn-vue@latest add chart` liefert das Chart-System (ChartContainer/ChartTooltip/ChartLegend).
-  Grundlagen + kompletter `ui/chart`-Code in `shadcn-vue-charts-overview`/`shadcn-vue-chart`.
+  Grundlagen + kompletter `ui/chart`-Code in `shadcn-vue-data`/`shadcn-vue-chart`.
 - **Theming:** Farben über CSS-Variablen `--chart-1..5` (Light/Dark).
 - **Varianten:** je Typ ein Skill mit ALLEN Beispiel-Charts inkl. komplettem Vue-Code — passende Variante kopieren und
-  Daten/Config anpassen (`shadcn-vue-charts-area`/`-bar`/`-line`/`-pie`/`-tooltip`).
+  Daten/Config anpassen (`shadcn-vue-data`/`-bar`/`-line`/`-pie`/`-tooltip`).
 
 ## Vorgehen
 1. Diagrammtyp wählen → passendes `shadcn-vue-charts-*`-Skill; nächstgelegenes Beispiel als Basis.

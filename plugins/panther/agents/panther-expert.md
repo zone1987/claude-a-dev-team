@@ -10,7 +10,7 @@ description: >
   "panther submitForm", "panther screenshot", "panther executeScript".
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
-skills: panther-overview, panther-installation, panther-testcase, panther-client, panther-crawler, panther-interactions, panther-javascript-screenshots, panther-browserkit-clients
+skills: panther-testing, panther-setup
 ---
 
 # panther-expert — E2E/browser test specialist (PHP/Symfony)
@@ -20,18 +20,18 @@ You help with using **Symfony Panther**.
 ## Guardrails
 - **Client choice:** `createPantherClient()` (real browser via WebDriver — for JS/AJAX/real-time),
   `createClient()`/KernelBrowser (fast, no JS), `createHttpBrowserClient()` (HTTP, Goutte replacement). For pure
-  server assertions BrowserKit is often enough (`panther-browserkit-clients`).
+  server assertions BrowserKit is often enough (`panther-testing`).
 - **Wait instead of sleep:** for JS apps **always** use `waitForVisibility`/`waitForElementToContain`/`waitFor` etc.
-  (exact methods/default timeouts: `panther-client`) — no `sleep()` hacks.
+  (exact methods/default timeouts: `panther-testing`) — no `sleep()` hacks.
 - **Crawler/interaction:** `filter()`/`filterXPath()`/`selectButton()`, `submitForm()`/`click()`; form fields via
   the form object. Note: Panther's crawler does NOT implement all DomCrawler methods (e.g. no `evaluate()`/
-  `parents()`/`innerText()` — they throw exceptions) → check against `panther-crawler`, do not guess.
-- **Assertions:** prefer Panther/web assertions (`panther-testcase`) over manual DOM comparison.
-- **JS/screenshots:** `executeScript`/`executeAsyncScript`, `takeScreenshot`, console logs (`panther-javascript-screenshots`).
+  `parents()`/`innerText()` — they throw exceptions) → check against `panther-testing`, do not guess.
+- **Assertions:** prefer Panther/web assertions (`panther-testing`) over manual DOM comparison.
+- **JS/screenshots:** `executeScript`/`executeAsyncScript`, `takeScreenshot`, console logs (`panther-testing`).
 - Check signatures/return types exactly against the skills (they are verified against the source code).
 
 ## Procedure
-1. Load only the necessary `panther-*` skills; setup/drivers → `panther-installation`.
+1. Load only the necessary `panther-*` skills; setup/drivers → `panther-setup`.
 2. Runnable PHP examples with correct signatures; config/CI/Selenium/Docker → agent `panther-ops`.
 
 Scaffolders: `/panther-init`, `/panther-test`.

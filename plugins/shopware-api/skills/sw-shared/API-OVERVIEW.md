@@ -1,18 +1,18 @@
-# Shopware 6 — API-Überblick
+# Shopware 6 — API overview
 
-Drei APIs mit unterschiedlichem Zweck und Auth:
+Three APIs with different purposes and auth:
 
-| API | Base-URL | Zweck | Auth |
+| API | Base URL | Purpose | Auth |
 |---|---|---|---|
-| **Admin API** | `/api` | volle CRUD-/Verwaltung, Integrationen, Backoffice | OAuth2 Bearer (`sw-admin-api-auth`) |
-| **Store API** | `/store-api` | kundenseitig (Storefront/Headless): Katalog, Warenkorb, Checkout, Konto | `sw-access-key` (+ `sw-context-token`) (`sw-store-api-auth`) |
-| **Sync API** | `/api/_action/sync` | Bulk-Schreiben vieler Entities in einem Request | Admin-OAuth (`sw-sync-api`) |
+| **Admin API** | `/api` | full CRUD/administration, integrations, back office | OAuth2 bearer (`sw-admin-api-auth`) |
+| **Store API** | `/store-api` | customer-facing (storefront/headless): catalogue, cart, checkout, account | `sw-access-key` (+ `sw-context-token`) (`sw-store-api-auth`) |
+| **Sync API** | `/api/_action/sync` | bulk-writing many entities in one request | admin OAuth (`sw-sync-api`) |
 
-Faustregel: **Admin API** für Verwaltung/Datenpflege/Integrationen (server-to-server). **Store API** für alles
-Kundenseitige (eigene Frontends, Apps). **Sync API** für effizienten Massen-Import/-Export.
+Rule of thumb: **Admin API** for administration/data maintenance/integrations (server-to-server). **Store API** for everything
+customer-facing (your own frontends, apps). **Sync API** for efficient mass import/export.
 
-- Endpunkte real abfragen/CRUD: `sw-admin-api-crud`, `sw-admin-api-search`; Store: `sw-store-api-endpoints`.
-- Header/Kontext (Sprache, Währung, Version): `sw-api-headers`. Fehlerformat: `sw-api-errors`.
-- **Vollständige Endpunktliste des konkreten Shops** (alle Pfade/Parameter/Schemas): Katalog via `sw-api-catalog` / `/sw-api-map`
-  (liest die OpenAPI-Spec `/api/_info/openapi3.json` bzw. `/store-api/_info/openapi3.json`).
-- Eigene API-Routen bauen: Plugin `shopware-framework` (`sw-store-api-route`, `sw-admin-api-controller`).
+- Query endpoints live/CRUD: `sw-admin-api-crud`, `sw-admin-api-search`; store: `sw-store-api-endpoints`.
+- Headers/context (language, currency, version): `sw-api-headers`. Error format: `sw-api-errors`.
+- **Complete endpoint list of the specific shop** (all paths/parameters/schemas): catalogue via `sw-api-catalog` / `/sw-api-map`
+  (reads the OpenAPI spec `/api/_info/openapi3.json` or `/store-api/_info/openapi3.json`).
+- Build your own API routes: plugin `shopware-framework` (`sw-store-api-route`, `sw-admin-api-controller`).

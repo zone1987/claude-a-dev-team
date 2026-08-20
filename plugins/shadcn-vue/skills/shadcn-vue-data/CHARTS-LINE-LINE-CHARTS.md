@@ -1,19 +1,19 @@
-# shadcn-vue Line Charts — Vollstaendiger Quellcode
+# shadcn-vue Line Charts — Complete source code
 
-Alle 4 Line-Chart-Varianten. Alle nutzen `VisLine + VisAxis` aus `@unovis/vue`,
-`CurveType` aus `@unovis/ts`.
+All 4 line chart variants. All use `VisLine + VisAxis` from `@unovis/vue` and
+`CurveType` from `@unovis/ts`.
 
 ---
 
 ## Contents
 
-- [ChartLineDefault.vue — Natuerliche Kurve (CurveType.Natural)](#chartlinedefaultvue-natuerliche-kurve-curvetypenatural)
-- [ChartLineLinear.vue — Gerade Linie (CurveType.Linear)](#chartlinelinearvue-gerade-linie-curvetypelinear)
-- [ChartLineStep.vue — Treppenlinie (CurveType.Step)](#chartlinestepvue-treppenlinie-curvetypestep)
-- [ChartLineInteractive.vue — Interaktiver Line Chart (aktive Linie per Button-Toggle)](#chartlineinteractivevue-interaktiver-line-chart-aktive-linie-per-button-toggle)
-- [CurveType-Referenz](#curvetype-referenz)
+- [ChartLineDefault.vue — Natural curve (CurveType.Natural)](#chartlinedefaultvue--natural-curve-curvetypenatural)
+- [ChartLineLinear.vue — Straight line (CurveType.Linear)](#chartlinelinearvue--straight-line-curvetypelinear)
+- [ChartLineStep.vue — Step line (CurveType.Step)](#chartlinestepvue--step-line-curvetypestep)
+- [ChartLineInteractive.vue — Interactive line chart (active line via button toggle)](#chartlineinteractivevue--interactive-line-chart-active-line-via-button-toggle)
+- [CurveType reference](#curvetype-reference)
 
-## ChartLineDefault.vue — Natuerliche Kurve (CurveType.Natural)
+## ChartLineDefault.vue — Natural curve (CurveType.Natural)
 
 ```vue
 <script setup lang="ts">
@@ -84,12 +84,12 @@ const chartConfig = {
 
 ---
 
-## ChartLineLinear.vue — Gerade Linie (CurveType.Linear)
+## ChartLineLinear.vue — Straight line (CurveType.Linear)
 
-Identisch mit ChartLineDefault, nur `CurveType.Linear` statt `CurveType.Natural`.
+Identical to ChartLineDefault, only `CurveType.Linear` instead of `CurveType.Natural`.
 
 ```vue
-<!-- Nur der abweichende Teil: -->
+<!-- Only the differing part: -->
 <VisLine
   :x="(d: Data) => d.date"
   :y="(d: Data) => d.desktop"
@@ -98,16 +98,16 @@ Identisch mit ChartLineDefault, nur `CurveType.Linear` statt `CurveType.Natural`
 />
 ```
 
-Vollstaendiger Code: exakt wie ChartLineDefault, Titel "Line Chart - Linear".
+Complete code: exactly as ChartLineDefault, title "Line Chart - Linear".
 
 ---
 
-## ChartLineStep.vue — Treppenlinie (CurveType.Step)
+## ChartLineStep.vue — Step line (CurveType.Step)
 
-Identisch mit ChartLineDefault, nur `CurveType.Step`.
+Identical to ChartLineDefault, only `CurveType.Step`.
 
 ```vue
-<!-- Nur der abweichende Teil: -->
+<!-- Only the differing part: -->
 <VisLine
   :x="(d: Data) => d.date"
   :y="(d: Data) => d.desktop"
@@ -116,13 +116,13 @@ Identisch mit ChartLineDefault, nur `CurveType.Step`.
 />
 ```
 
-Vollstaendiger Code: exakt wie ChartLineDefault, Titel "Line Chart - Step".
+Complete code: exactly as ChartLineDefault, title "Line Chart - Step".
 
 ---
 
-## ChartLineInteractive.vue — Interaktiver Line Chart (aktive Linie per Button-Toggle)
+## ChartLineInteractive.vue — Interactive line chart (active line via button toggle)
 
-Unterschied zu den anderen: 2 Serien (desktop + mobile), Button-Toggle im Header,
+Difference from the others: 2 series (desktop + mobile), button toggle in the header,
 `ref(activeChart)`, `computed(total)`, `labelFormatter`.
 
 ```vue
@@ -132,7 +132,7 @@ import { VisAxis, VisLine, VisXYContainer } from "@unovis/vue"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york-v4/ui/card"
 import { ChartContainer, ChartCrosshair, ChartTooltip, ChartTooltipContent, componentToString } from "@/registry/new-york-v4/ui/chart"
 
-// 90 Datenpunkte 2024-04-01 bis 2024-06-30
+// 90 data points from 2024-04-01 to 2024-06-30
 const chartData = [
   { date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
   // ...
@@ -205,13 +205,13 @@ const total = computed(() => ({
 </template>
 ```
 
-## CurveType-Referenz
+## CurveType reference
 
-| Wert                  | Beschreibung          |
+| Value                 | Description           |
 |-----------------------|-----------------------|
-| `CurveType.Natural`   | Weiche Splines        |
-| `CurveType.Linear`    | Gerade Verbindungen   |
-| `CurveType.Step`      | Treppenfunktion       |
-| `CurveType.StepAfter` | Stufe nach dem Punkt  |
+| `CurveType.Natural`   | Soft splines          |
+| `CurveType.Linear`    | Straight connections  |
+| `CurveType.Step`      | Step function         |
+| `CurveType.StepAfter` | Step after the point  |
 | `CurveType.Basis`     | B-Spline              |
-| `CurveType.Cardinal`  | Cardinal-Spline       |
+| `CurveType.Cardinal`  | Cardinal spline       |

@@ -9,7 +9,7 @@ description: >
   Playwright", "playwright route/mock", "playwright auth/storageState", "@playwright/test".
 tools: Read, Grep, Glob, Edit, Write
 model: sonnet
-skills: playwright-intro, playwright-writing-tests, playwright-browsers, playwright-locators, playwright-actions, playwright-network, playwright-api-testing, playwright-evaluating, playwright-emulation, playwright-io-events, playwright-auth, playwright-accessibility, playwright-test-assertions, playwright-api-page, playwright-api-locator, playwright-api-assertions, playwright-api-browser, playwright-api-network, playwright-api-io
+skills: playwright-writing, playwright-tooling, playwright-library
 ---
 
 # playwright-expert — E2E- & Automatisierungs-Spezialist
@@ -18,12 +18,12 @@ Du hilfst beim Einsatz von **Playwright** (JS/TS, `@playwright/test` und Library
 
 ## Leitplanken
 - **Locators role-first:** bevorzugt `getByRole`/`getByLabel`/`getByText`/`getByTestId` statt CSS/XPath; Strictness
-  beachten (genau 1 Treffer), `filter()`/`and()`/`or()`/`nth()` korrekt nutzen (`playwright-locators`).
+  beachten (genau 1 Treffer), `filter()`/`and()`/`or()`/`nth()` korrekt nutzen (`playwright-writing`).
 - **Web-First-Assertions:** `await expect(locator).toBeVisible()` etc. — auto-retrying; **keine** manuellen
-  `waitForTimeout`-Hacks. Matcher gegen `playwright-test-assertions`/`playwright-api-assertions` prüfen.
-- **Auto-Waiting:** Aktionen warten auf Actionability — keine Sleeps. Options (force/timeout/trial/…) nur dokumentierte (`playwright-actions`).
-- **Isolation:** ein BrowserContext pro Test; Auth einmalig via `storageState` (`playwright-auth`).
-- **Netzwerk:** `page.route`/`context.route`, `fulfill/continue/abort`, HAR-Replay, WebSocket-Routing (`playwright-network`).
+  `waitForTimeout`-Hacks. Matcher gegen `playwright-writing`/`playwright-writing` prüfen.
+- **Auto-Waiting:** Aktionen warten auf Actionability — keine Sleeps. Options (force/timeout/trial/…) nur dokumentierte (`playwright-writing`).
+- **Isolation:** ein BrowserContext pro Test; Auth einmalig via `storageState` (`playwright-writing`).
+- **Netzwerk:** `page.route`/`context.route`, `fulfill/continue/abort`, HAR-Replay, WebSocket-Routing (`playwright-library`).
 - **API-Signaturen** nie raten — gegen die `playwright-api-*`-Referenz prüfen (Methoden/Optionen/Rückgaben).
 
 ## Vorgehen

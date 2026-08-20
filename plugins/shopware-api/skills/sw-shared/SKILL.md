@@ -9,14 +9,14 @@ What both APIs share. Partial loading is the single biggest lever on response si
 
 ## Reference map
 
-- **[API-CATALOG.md](API-CATALOG.md)**: Beantwortet: **„welche API-Endpunkte hat DIESER Shop, mit welchen Parametern/Schemas?"** — versionsgenau, inkl.
-- **[API-ERRORS.md](API-ERRORS.md)**: Fehler kommen als JSON mit `errors`-Array:.
-- **[API-FLOWS.md](API-FLOWS.md)**: Vollständige Abläufe als bash/curl-Sequenzen für lokale Entwicklung auf `http://127.0.0.1:8000`. [API-FLOWS-DETAIL](API-FLOWS-DETAIL.md).
-- **[API-HEADERS.md](API-HEADERS.md)**: Standard-Antwortformat ist „plain" JSON; mit `Accept: application/vnd.api+json` liefert die API das JSON:API-….
-- **[API-INTEGRATION.md](API-INTEGRATION.md)**: Bevorzuge `POST /api/search/{entity}` statt `GET /api/{entity}` — unterstützt filter/sort/associations. [API-INTEGRATION-DETAIL](API-INTEGRATION-DETAIL.md).
-- **[API-OVERVIEW.md](API-OVERVIEW.md)**: Drei APIs mit unterschiedlichem Zweck und Auth:.
-- **[API-PARTIAL-LOADING.md](API-PARTIAL-LOADING.md)**: Mit dem `fields`-Parameter werden nur die angeforderten Spalten auf **Datenbankebene** geladen. [API-PARTIAL-LOADING-PARTIAL-DATA-LOADING](API-PARTIAL-LOADING-PARTIAL-DATA-LOADING.md).
-- **[API-VERSIONING.md](API-VERSIONING.md)**: Moderne Shopware-6-APIs sind **versionslos**: Basis `/api` und `/store-api`.
+- **[API-CATALOG.md](API-CATALOG.md)**: Answers: **"which API endpoints does THIS shop have, with which parameters/schemas?"** — version-exact, incl.
+- **[API-ERRORS.md](API-ERRORS.md)**: Errors arrive as JSON with an `errors` array:.
+- **[API-FLOWS.md](API-FLOWS.md)**: Complete walkthroughs as bash/curl sequences for local development on `http://127.0.0.1:8000`. [API-FLOWS-DETAIL](API-FLOWS-DETAIL.md).
+- **[API-HEADERS.md](API-HEADERS.md)**: The default response format is "plain" JSON; with `Accept: application/vnd.api+json` the API returns the JSON:API….
+- **[API-INTEGRATION.md](API-INTEGRATION.md)**: Prefer `POST /api/search/{entity}` over `GET /api/{entity}` — it supports filter/sort/associations. [API-INTEGRATION-DETAIL](API-INTEGRATION-DETAIL.md).
+- **[API-OVERVIEW.md](API-OVERVIEW.md)**: Three APIs with different purposes and auth:.
+- **[API-PARTIAL-LOADING.md](API-PARTIAL-LOADING.md)**: With the `fields` parameter only the requested columns are loaded at **database level**. [API-PARTIAL-LOADING-PARTIAL-DATA-LOADING](API-PARTIAL-LOADING-PARTIAL-DATA-LOADING.md).
+- **[API-VERSIONING.md](API-VERSIONING.md)**: Modern Shopware 6 APIs are **versionless**: the bases are `/api` and `/store-api`.
 
 ## Source
 

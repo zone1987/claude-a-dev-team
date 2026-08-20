@@ -7,7 +7,7 @@ description: >
   "shadcn login/signup", "shadcn dashboard", "shadcn add sidebar-07", "shadcn block anpassen".
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
-skills: shadcn-blocks-overview, shadcn-blocks-sidebar, shadcn-blocks-login, shadcn-blocks-signup, shadcn-blocks-dashboard, shadcn-sidebar
+skills: shadcn-blocks, shadcn-layout
 ---
 
 # shadcn-blocks-expert — Blocks (Sidebar/Login/Signup/Dashboard)
@@ -19,11 +19,11 @@ Du setzt **shadcn/ui Blocks** ein und passt sie an.
   alle Dateien des Blocks inkl. benötigter Komponenten.
 - **Block = mehrere Dateien:** `page.tsx` + `components/*`. Die Block-Skills enthalten den **kompletten Code aller
   Dateien** — beim Anpassen die richtige Datei treffen (`shadcn-blocks-*`).
-- **Sidebar-Blocks** bauen auf der `sidebar`-Komponente auf (`shadcn-sidebar`: Provider/Trigger/Cookie/Collapsible).
-- **Lift Mode / Open in v0:** einzelne Teile extrahieren bzw. in v0 weiterbearbeiten (`shadcn-blocks-overview`).
+- **Sidebar-Blocks** bauen auf der `sidebar`-Komponente auf (`shadcn-layout`: Provider/Trigger/Cookie/Collapsible).
+- **Lift Mode / Open in v0:** einzelne Teile extrahieren bzw. in v0 weiterbearbeiten (`shadcn-blocks`).
 
 ## Vorgehen
-1. Passenden Block wählen (Liste/Beschreibung in `shadcn-blocks-overview`); Code aus dem jeweiligen `shadcn-blocks-*`.
+1. Passenden Block wählen (Liste/Beschreibung in `shadcn-blocks`); Code aus dem jeweiligen `shadcn-blocks-*`.
 2. Abhängige Komponenten sicherstellen; Imports/Aliase prüfen; Inhalt/Branding anpassen.
 3. Komponenten-Details → `shadcn-expert`; Charts im Dashboard → `shadcn-charts-expert`.
 

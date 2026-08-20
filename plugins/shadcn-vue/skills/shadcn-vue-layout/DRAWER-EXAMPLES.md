@@ -1,10 +1,10 @@
-# Drawer — Beispiele
+# Drawer — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/drawer/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/drawer/`
 
-## Drawer mit allen Seiten (DrawerWithSides.vue)
+## Drawer with all sides (DrawerWithSides.vue)
 
-Zeigt Drawers fuer alle vier Richtungen (top/right/bottom/left).
+Shows drawers for all four directions (top/right/bottom/left).
 
 ```vue
 <script setup lang="ts">
@@ -59,9 +59,9 @@ const DRAWER_SIDES = ["top", "right", "bottom", "left"] as const
 </template>
 ```
 
-## Drawer mit scrollbarem Inhalt (DrawerScrollableContent.vue)
+## Drawer with scrollable content (DrawerScrollableContent.vue)
 
-Drawer von rechts mit scrollbarem Content-Bereich.
+Drawer from the right with a scrollable content area.
 
 ```vue
 <script setup lang="ts">
@@ -109,7 +109,7 @@ import {
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/drawer/DrawerWithSides.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/drawer/DrawerScrollableContent.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/drawer.md`

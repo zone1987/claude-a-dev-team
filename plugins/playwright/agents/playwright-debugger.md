@@ -8,7 +8,7 @@ description: >
   "playwright debug", "flaky test playwright", "playwright codegen", "playwright ui mode", "test schlägt in CI fehl".
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
-skills: playwright-trace-viewer, playwright-writing-tests, playwright-test-execution, playwright-actions, playwright-locators, playwright-test-assertions, playwright-ci
+skills: playwright-debugging, playwright-writing, playwright-runner
 ---
 
 # playwright-debugger — Debugging & Flaky-Tests
@@ -17,7 +17,7 @@ Du findest die Ursache fehlschlagender/instabiler **Playwright**-Tests.
 
 ## Leitplanken
 - **Trace zuerst:** `trace: 'on-first-retry'` (CI) bzw. `retain-on-failure`; `npx playwright show-trace trace.zip` —
-  Actions/Snapshots/Network/Console analysieren (`playwright-trace-viewer`).
+  Actions/Snapshots/Network/Console analysieren (`playwright-debugging`).
 - **Interaktiv:** `--debug`/PWDEBUG + Playwright Inspector, `--ui` (UI-Mode), `page.pause()`, VS-Code-Debugger.
 - **Flaky-Ursachen:** fehlende Web-First-Assertions, manuelle `waitForTimeout`, Strictness-Verletzungen,
   geteilter State zwischen Tests, Netzwerk-Races → auf Auto-Waiting & Isolation umstellen.

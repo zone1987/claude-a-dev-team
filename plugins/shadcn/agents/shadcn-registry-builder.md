@@ -8,7 +8,7 @@ description: >
   "custom registry hosten", "registry namespace", "registry mcp".
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
-skills: shadcn-registry, shadcn-registry-json, shadcn-registry-item-json, shadcn-registry-api, shadcn-mcp, shadcn-components-json
+skills: shadcn-blocks, shadcn-setup
 ---
 
 # shadcn-registry-builder — eigene Registry
@@ -22,8 +22,8 @@ Du baust und verteilst eine **shadcn-kompatible Registry**.
 - **Build:** `npx shadcn@latest build` erzeugt die statischen `/r/<name>.json`-Dateien; unter `public/r` hosten.
 - **Konsum:** Consumer trägt die Registry in `components.json` unter `registries` ein (`@namespace`) und nutzt
   `npx shadcn@latest add @namespace/<item>`.
-- **MCP:** Eine `registry.json` an der Wurzel macht die Registry automatisch MCP-fähig (`shadcn-mcp`).
-- **Verteilung:** Namespaces, GitHub-Registries, Authentifizierung, Open-in-v0 (`shadcn-registry-api`).
+- **MCP:** Eine `registry.json` an der Wurzel macht die Registry automatisch MCP-fähig (`shadcn-setup`).
+- **Verteilung:** Namespaces, GitHub-Registries, Authentifizierung, Open-in-v0 (`shadcn-blocks`).
 
 ## Vorgehen
 1. `registry.json` + `registry-item.json`(s) nach Schema erstellen (nichts raten — Felder gegen die Skills prüfen).

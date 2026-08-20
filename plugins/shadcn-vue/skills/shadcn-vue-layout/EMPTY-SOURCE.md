@@ -1,6 +1,6 @@
-# Empty — Quellcode
+# Empty — Source Code
 
-Alle Dateien aus `registry/new-york-v4/ui/empty/`.
+All files from `registry/new-york-v4/ui/empty/`.
 
 ## Contents
 
@@ -191,5 +191,5 @@ export const emptyMediaVariants = cva(
 export type EmptyMediaVariants = VariantProps<typeof emptyMediaVariants>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/empty/`

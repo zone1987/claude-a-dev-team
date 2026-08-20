@@ -1,4 +1,4 @@
-# shadcn-vue ui/chart — Vollstaendiger Quellcode
+# shadcn-vue ui/chart — Complete source code
 
 Alle 6 Dateien unter `components/ui/chart/`.
 
@@ -12,10 +12,10 @@ Alle 6 Dateien unter `components/ui/chart/`.
 - [ChartTooltipContent.vue](#charttooltipcontentvue)
 - [ChartLegendContent.vue](#chartlegendcontentvue)
 - [utils.ts](#utilsts)
-- [Verwendungsbeispiel (Grundmuster)](#verwendungsbeispiel-grundmuster)
+- [Usage example (basic pattern)](#usage-example-basic-pattern)
 - [ChartTooltipContent Props](#charttooltipcontent-props)
 - [ChartLegendContent Props](#chartlegendcontent-props)
-- [Pie-Charts: Tooltip via triggers](#pie-charts-tooltip-via-triggers)
+- [Pie charts: tooltip via triggers](#pie-charts-tooltip-via-triggers)
 
 ## index.ts
 
@@ -392,7 +392,7 @@ export function componentToString<P>(config: ChartConfig, component: Constructor
 
 ---
 
-## Verwendungsbeispiel (Grundmuster)
+## Usage example (basic pattern)
 
 ```vue
 <script setup lang="ts">
@@ -439,30 +439,30 @@ const chartConfig = {
 
 ## ChartTooltipContent Props
 
-| Prop             | Typ                              | Standard | Beschreibung                        |
+| Prop             | Type                             | Default  | Description                         |
 |------------------|----------------------------------|----------|-------------------------------------|
-| `hideLabel`      | `boolean`                        | `false`  | Label-Zeile ausblenden              |
-| `hideIndicator`  | `boolean`                        | `false`  | Farbindikator ausblenden            |
-| `indicator`      | `"line" \| "dot" \| "dashed"`    | `"dot"`  | Art des Farbindikators              |
-| `nameKey`        | `string`                         | –        | Key fuer den Namen                  |
-| `labelKey`       | `string`                         | –        | Key fuer das Label aus ChartConfig  |
-| `labelFormatter` | `(d: number \| Date) => string`  | –        | Formatter fuer das Label            |
-| `payload`        | `Record<string, any>`            | `{}`     | Datenpunkt (von componentToString)  |
-| `config`         | `ChartConfig`                    | `{}`     | Chart-Konfiguration                 |
-| `x`              | `number \| Date`                 | –        | X-Wert des Datenpunkts              |
+| `hideLabel`      | `boolean`                        | `false`  | Hide the label row                  |
+| `hideIndicator`  | `boolean`                        | `false`  | Hide the color indicator            |
+| `indicator`      | `"line" \| "dot" \| "dashed"`    | `"dot"`  | Kind of color indicator             |
+| `nameKey`        | `string`                         | –        | Key for the name                    |
+| `labelKey`       | `string`                         | –        | Key for the label from ChartConfig  |
+| `labelFormatter` | `(d: number \| Date) => string`  | –        | Formatter for the label             |
+| `payload`        | `Record<string, any>`            | `{}`     | Data point (from componentToString) |
+| `config`         | `ChartConfig`                    | `{}`     | Chart configuration                 |
+| `x`              | `number \| Date`                 | –        | X value of the data point           |
 
 ## ChartLegendContent Props
 
-| Prop            | Typ                  | Standard   | Beschreibung               |
+| Prop            | Type                 | Default    | Description                |
 |-----------------|----------------------|------------|----------------------------|
-| `hideIcon`      | `boolean`            | `false`    | Icon ausblenden            |
-| `nameKey`       | `string`             | –          | Key fuer den Namen         |
-| `verticalAlign` | `"bottom" \| "top"`  | `"bottom"` | Position der Legende       |
+| `hideIcon`      | `boolean`            | `false`    | Hide the icon              |
+| `nameKey`       | `string`             | –          | Key for the name           |
+| `verticalAlign` | `"bottom" \| "top"`  | `"bottom"` | Position of the legend     |
 
-## Pie-Charts: Tooltip via triggers
+## Pie charts: tooltip via triggers
 
-Pie-Charts verwenden `VisSingleContainer` statt `VisXYContainer`. Tooltip wird
-ueber das `triggers`-Prop von `ChartTooltip` (`VisTooltip`) konfiguriert:
+Pie charts use `VisSingleContainer` instead of `VisXYContainer`. The tooltip is
+configured via the `triggers` prop of `ChartTooltip` (`VisTooltip`):
 
 ```vue
 import { Donut } from "@unovis/ts"

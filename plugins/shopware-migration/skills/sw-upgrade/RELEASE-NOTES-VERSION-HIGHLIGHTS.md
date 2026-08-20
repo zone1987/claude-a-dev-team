@@ -1,7 +1,7 @@
-# Shopware 6 — Versions-Highlights im Überblick
+# Shopware 6 — version highlights at a glance
 
-Kompakte Zusammenfassung der wichtigsten Neuerungen je Major-Version. Details zu Upgrade-Pfaden und
-Breaking Changes: Skills `sw-upgrade-overview` (Strategie) und `shopware-6.7-migration` (konkrete Schritte 6.6→6.7).
+Compact summary of the most important new features per major version. Details on upgrade paths and
+breaking changes: skills `sw-upgrade-overview` (strategy) and `shopware-6.7-migration` (concrete steps 6.6→6.7).
 
 ---
 
@@ -9,171 +9,171 @@ Breaking Changes: Skills `sw-upgrade-overview` (Strategie) und `shopware-6.7-mig
 
 - [6.5 (EOL)](#65-eol)
 - [6.6](#66)
-- [6.7 (aktuell LTS-Kandidat)](#67-aktuell-lts-kandidat)
-- [6.8 (upcoming / Breaking-Change-Major)](#68-upcoming-breaking-change-major)
-- [Versions-Übersicht auf einen Blick](#versions-übersicht-auf-einen-blick)
+- [6.7 (current LTS candidate)](#67-current-lts-candidate)
+- [6.8 (upcoming / breaking change major)](#68-upcoming--breaking-change-major)
+- [Version overview at a glance](#version-overview-at-a-glance)
 
 ## 6.5 (EOL)
 
-**PHP & Framework**
-- PHP 8.1+ Pflicht; Symfony 6.x.
-- Flow Builder eingeführt (ereignisbasierte Automatisierungen statt starrer E-Mail-Events).
-- Neue App-Scripting-Funktion (Twig-basierte App-Scripts).
+**PHP & framework**
+- PHP 8.1+ mandatory; Symfony 6.x.
+- Flow Builder introduced (event-based automations instead of rigid email events).
+- New app scripting feature (Twig-based app scripts).
 
 **API**
-- Store API als primäre Headless-Schnittstelle stabilisiert.
-- API-Versionierung (v1/v2/…) abgeschafft; versionsloses `/api`.
+- Store API stabilized as the primary headless interface.
+- API versioning (v1/v2/…) abolished; versionless `/api`.
 
 **Storefront**
-- Bootstrap 5-Migration abgeschlossen.
-- Webpack als Build-Tool.
+- Bootstrap 5 migration completed.
+- Webpack as build tool.
 
 **Administration**
-- Vue 3-Migration begonnen (schrittweise).
+- Vue 3 migration started (step by step).
 
-**Deprecations wichtig für 6.6**
+**Deprecations important for 6.6**
 - `setTwig()` in `StorefrontController`.
-- Diverse `address-editor.*` → `address-manager.*`.
+- Various `address-editor.*` → `address-manager.*`.
 
 ---
 
 ## 6.6
 
-**PHP & Framework**
-- PHP 8.2+ Pflicht.
+**PHP & framework**
+- PHP 8.2+ mandatory.
 - Symfony 7.x.
 
-**DAL / Entities**
-- `BulkEntityExtension`: Felder für mehrere Entities in einer Klasse.
-- `EntityExtension::getEntityName()` statt `getDefinitionClass()`.
-- `EnumField` für PHP-`BackedEnum`-Typen.
-- Externe URL als Media-Pfad (`path: https://...`).
+**DAL / entities**
+- `BulkEntityExtension`: fields for multiple entities in one class.
+- `EntityExtension::getEntityName()` instead of `getDefinitionClass()`.
+- `EnumField` for PHP `BackedEnum` types.
+- External URL as media path (`path: https://...`).
 
 **Messenger**
 - `messenger.bus.shopware` deprecated → `messenger.default_bus`.
 
-**HTTP-Cache**
-- MySQL-basierter Cache-Invalidator (kein Redis mehr zwingend für Delayed Invalidation).
+**HTTP cache**
+- MySQL-based cache invalidator (Redis no longer mandatory for delayed invalidation).
 - `ReverseProxyCacheClearer` deprecated.
 
 **Storefront**
-- Überarbeiteter Address-Manager (neues `address-manager.plugin.js`).
-- Neues `window.activeNavigationPathIdList`.
-- Cookie-Consent-Dialog: Toggle-Switches statt Checkboxen.
+- Reworked address manager (new `address-manager.plugin.js`).
+- New `window.activeNavigationPathIdList`.
+- Cookie consent dialog: toggle switches instead of checkboxes.
 
 **Administration**
-- Axios 0.30.2 weiter Standard; Doppel-Opt-In-Formular.
+- Axios 0.30.2 still the standard; double opt-in form.
 
-**Upgrade-Skill**: `sw-upgrade-overview` → Abschnitt 6.5→6.6.
+**Upgrade skill**: `sw-upgrade-overview` → section 6.5→6.6.
 
 ---
 
-## 6.7 (aktuell LTS-Kandidat)
+## 6.7 (current LTS candidate)
 
-Vollständige Details: `references/deep/release-notes-6.7.md`.
+Full details: `references/deep/release-notes-6.7.md`.
 
-**PHP & Framework**
-- PHP 8.2+ Pflicht (PHP 8.5 vollständig supported).
-- Symfony 7.4 (seit 6.7.7.0); php-redis ≥ 6.1 für Cache.
+**PHP & framework**
+- PHP 8.2+ mandatory (PHP 8.5 fully supported).
+- Symfony 7.4 (since 6.7.7.0); php-redis ≥ 6.1 for cache.
 
 **Core / DAL**
-- `product.type` (`digital`/`physical`) ersetzt `product.states`.
-- DAL: EXISTS-Subqueries statt LEFT JOINs, `Immutable`-Flag, `Choice`-Flag für OpenAPI-Enums.
-- Pluggable Thumbnail-Processor (GD oder Imagick).
-- `product.descriptionTeaser`: HTML-freier 512-Zeichen-Teaser für Listings.
-- SHA-256 für `product.display_group` (64 Zeichen statt 32).
+- `product.type` (`digital`/`physical`) replaces `product.states`.
+- DAL: EXISTS subqueries instead of LEFT JOINs, `Immutable` flag, `Choice` flag for OpenAPI enums.
+- Pluggable thumbnail processor (GD or Imagick).
+- `product.descriptionTeaser`: HTML-free 512-character teaser for listings.
+- SHA-256 for `product.display_group` (64 characters instead of 32).
 
 **Storefront**
-- Twig-UX-Komponenten-System + Vite-Dev-Server.
-- CSS Custom Properties für Theme-Konfiguration.
-- Globales JS-Event-System (`window.Shopware.emit/on`).
-- JSON-LD Structured Data (ersetzt Microdata).
-- Google Analytics 4-Erweiterung; Google Ads Enhanced Conversions.
+- Twig UX component system + Vite dev server.
+- CSS custom properties for theme configuration.
+- Global JS event system (`window.Shopware.emit/on`).
+- JSON-LD structured data (replaces microdata).
+- Google Analytics 4 extension; Google Ads Enhanced Conversions.
 
 **Administration**
-- SFC-Codemod + Composition-API-Extension-System.
-- MCP-Server (experimentell, `MCP_SERVER`-Flag).
-- Agentic Commerce Sales-Channel (experimentell).
-- 3D-Modell-Viewer und -Editor in Media.
+- SFC codemod + Composition API extension system.
+- MCP server (experimental, `MCP_SERVER` flag).
+- Agentic commerce sales channel (experimental).
+- 3D model viewer and editor in media.
 
 **API**
-- Store-API HTTP-Caching (`CACHE_REWORK`-Flag).
-- Sync-API Foreign-Key-Resolver (7 neue Resolver).
-- Neue Mail-Template-Preview-Routen.
-- Shipping-Cost-Endpunkte ohne Cart-Mutation.
+- Store API HTTP caching (`CACHE_REWORK` flag).
+- Sync API foreign key resolvers (7 new resolvers).
+- New mail template preview routes.
+- Shipping cost endpoints without cart mutation.
 
 **App System**
-- Webhook-Rework mit DB-Outbox und Retry-Backoff (`WEBHOOKS_REWORK`-Flag; 6.8-Default).
-- App Requirements Validierung (`<requirements>`-Element in Manifest).
+- Webhook rework with DB outbox and retry backoff (`WEBHOOKS_REWORK` flag; 6.8 default).
+- App requirements validation (`<requirements>` element in the manifest).
 
-**Wichtige Deprecations für 6.8**
+**Important deprecations for 6.8**
 - `--json` → `--format json` (CLI)
 - `product.states` → `product.type`
-- Newsletter-Route-Signaturen (Methodenumbenennungen)
-- Typ-basierter Number-Range-Preview
+- Newsletter route signatures (method renames)
+- Type-based number range preview
 - `CookieProviderInterface` → `CookieGroupCollectEvent`
 
-**Upgrade-Skills**:
-- `sw-upgrade-overview`: Strategie-Überblick
-- `shopware-6.7-migration`: konkrete Migrationsschritte 6.6 → 6.7
-- `sw-deprecation-handling`: Deprecations auflösen
-- `sw-meteor-component-map`: `sw-*` → `mt-*` Admin-Komponenten
+**Upgrade skills**:
+- `sw-upgrade-overview`: strategy overview
+- `shopware-6.7-migration`: concrete migration steps 6.6 → 6.7
+- `sw-deprecation-handling`: resolving deprecations
+- `sw-meteor-component-map`: `sw-*` → `mt-*` admin components
 - `sw-vite-migration`: Webpack → Vite
-- `sw-vuex-to-pinia`: State-Management-Migration
-- `sw-php-migration-patterns`: PHP-Signaturen und API-Änderungen
+- `sw-vuex-to-pinia`: state management migration
+- `sw-php-migration-patterns`: PHP signatures and API changes
 
 ---
 
-## 6.8 (upcoming / Breaking-Change-Major)
+## 6.8 (upcoming / breaking change major)
 
-**Breaking Changes gegenüber 6.7** (Quelle: `UPGRADE-6.8.md`):
+**Breaking changes compared to 6.7** (source: `UPGRADE-6.8.md`):
 
-**Messenger / Webhooks**
-- `webhook`-Messenger-Transport Pflicht (kein Opt-in mehr via `WEBHOOKS_REWORK`).
-- `bin/console messenger:consume webhook async low_priority` muss explizit gelistet sein.
+**Messenger / webhooks**
+- `webhook` messenger transport mandatory (no longer opt-in via `WEBHOOKS_REWORK`).
+- `bin/console messenger:consume webhook async low_priority` must be listed explicitly.
 
 **API**
-- Typ-basierter Number-Range-Preview `/preview-pattern/{type}` entfernt.
-- `/api/_info/queue.json` entfernt → `/api/_info/message-stats.json`.
-- `/api/_action/mail-template/validate` entfernt.
-- Newsletter-Routen: `subscribe()`/`confirm()`/`unsubscribe()` entfernt, nur noch `*WithResponse()`.
-- Mail-Payload: Custom Top-Level-Keys nicht mehr weitergeleitet; nur noch `extensions`-Feld.
-- `/store-api/document/download/` gibt `404` statt `204` wenn kein Dokument.
+- Type-based number range preview `/preview-pattern/{type}` removed.
+- `/api/_info/queue.json` removed → `/api/_info/message-stats.json`.
+- `/api/_action/mail-template/validate` removed.
+- Newsletter routes: `subscribe()`/`confirm()`/`unsubscribe()` removed, only `*WithResponse()` remains.
+- Mail payload: custom top-level keys no longer forwarded; only the `extensions` field.
+- `/store-api/document/download/` returns `404` instead of `204` when there is no document.
 
 **Core**
-- `product.states` / `order_line_item.states` entfernt.
-- `LineItemProductStatesRule` entfernt → `LineItemProductTypeRule`.
-- `StatesUpdater` entfernt.
-- `--json`/`--output json` CLI-Flags entfernt → `--format json`.
-- `mail_template_type.template_data`-Spalte entfernt.
-- `NumberRangeValueGeneratorInterface` entfernt → `AbstractNumberRangeValueGenerator`.
-- `CategoryDefinition::cmsPageIdSwitched` entfernt.
-- Debit-Payment-Methode entfernt.
-- `RuleComparison` wird `final` (keine Vererbung mehr).
-- Increment-basierte Message-Queue-Stats entfernt.
-- `MetricTransportInterface::flush()` Pflicht.
+- `product.states` / `order_line_item.states` removed.
+- `LineItemProductStatesRule` removed → `LineItemProductTypeRule`.
+- `StatesUpdater` removed.
+- `--json`/`--output json` CLI flags removed → `--format json`.
+- `mail_template_type.template_data` column removed.
+- `NumberRangeValueGeneratorInterface` removed → `AbstractNumberRangeValueGenerator`.
+- `CategoryDefinition::cmsPageIdSwitched` removed.
+- Debit payment method removed.
+- `RuleComparison` becomes `final` (no more inheritance).
+- Increment-based message queue stats removed.
+- `MetricTransportInterface::flush()` mandatory.
 
 **Administration**
-- Axios 1.x als Default.
-- Composition API Extension System stabil (kein Feature-Flag mehr).
-- Options API `Shopware.Component.override()` → Deprecation-Warnings und schrittweise Entfernung.
+- Axios 1.x as the default.
+- Composition API extension system stable (no more feature flag).
+- Options API `Shopware.Component.override()` → deprecation warnings and gradual removal.
 
 **Storefront**
-- Cache auch für eingeloggte Kunden / gefüllten Warenkorb (`CACHE_REWORK` → Default).
-- `context.token` in Twig dauerhaft entfernt.
-- Alte Microdata-Blöcke entfernt (JSON-LD ist neuer Standard).
+- Cache also for logged-in customers / filled cart (`CACHE_REWORK` → default).
+- `context.token` permanently removed from Twig.
+- Old microdata blocks removed (JSON-LD is the new standard).
 
-**Upgrade-Skills für 6.8** (sobald verfügbar):
-- `sw-upgrade-overview`: Abschnitt 6.7→6.8
-- Neuer `sw-migrate-68`-Skill (in Vorbereitung)
+**Upgrade skills for 6.8** (once available):
+- `sw-upgrade-overview`: section 6.7→6.8
+- New `sw-migrate-68` skill (in preparation)
 
 ---
 
-## Versions-Übersicht auf einen Blick
+## Version overview at a glance
 
-| Version | PHP min. | Symfony | Build-Tool | Admin State | HTTP-Cache |
+| Version | PHP min. | Symfony | Build tool | Admin state | HTTP cache |
 |---|---|---|---|---|---|
-| 6.5 | 8.1 | 6.x | Webpack | Vue 2/3 Mix | klassisch |
-| 6.6 | 8.2 | 7.x | Webpack | Vue 3 | MySQL-Invalidator |
-| 6.7 | 8.2 | 7.4 | Webpack + Vite (neu) | Vue 3 + Composition API | Policy-basiert (opt-in) |
-| 6.8 | 8.3 (erwartet) | 7.x | Vite (primary) | Composition API | Policy-basiert (default) |
+| 6.5 | 8.1 | 6.x | Webpack | Vue 2/3 mix | classic |
+| 6.6 | 8.2 | 7.x | Webpack | Vue 3 | MySQL invalidator |
+| 6.7 | 8.2 | 7.4 | Webpack + Vite (new) | Vue 3 + Composition API | policy-based (opt-in) |
+| 6.8 | 8.3 (expected) | 7.x | Vite (primary) | Composition API | policy-based (default) |

@@ -1,16 +1,16 @@
-# Shopware 6 — API-Header & Kontext
+# Shopware 6 — API headers & context
 
-| Header | Wirkung |
+| Header | Effect |
 |---|---|
-| `Authorization: Bearer {token}` | Admin-API-Auth (`sw-admin-api-auth`) |
-| `sw-access-key` | Store-API: Sales-Channel-Zugang (`sw-store-api-auth`) |
-| `sw-context-token` | Store-API: Kontext-/Warenkorb-/Login-Status |
-| `Content-Type: application/json` | JSON-Body |
-| `Accept: application/json` | einfaches JSON; `application/vnd.api+json` = **JSON:API** (mit `included`/`relationships`) |
-| `sw-language-id` | Sprache des Requests (Übersetzungen) |
-| `sw-currency-id` | Währung |
-| `sw-version-id` | Entity-Version (z.B. Order-Draft, `sw-entity-versioning`) |
-| `sw-inheritance` | `1` = geerbte Werte auflösen (Varianten/Parent) |
+| `Authorization: Bearer {token}` | Admin API auth (`sw-admin-api-auth`) |
+| `sw-access-key` | Store API: sales channel access (`sw-store-api-auth`) |
+| `sw-context-token` | Store API: context/cart/login state |
+| `Content-Type: application/json` | JSON body |
+| `Accept: application/json` | plain JSON; `application/vnd.api+json` = **JSON:API** (with `included`/`relationships`) |
+| `sw-language-id` | language of the request (translations) |
+| `sw-currency-id` | currency |
+| `sw-version-id` | entity version (e.g. order draft, `sw-entity-versioning`) |
+| `sw-inheritance` | `1` = resolve inherited values (variants/parent) |
 
-Standard-Antwortformat ist „plain" JSON (`data`/`total`); mit `Accept: application/vnd.api+json` liefert die API das
-JSON:API-Format. Fehlerformat: `sw-api-errors`. Suche/Criteria: `sw-admin-api-search`.
+The default response format is "plain" JSON (`data`/`total`); with `Accept: application/vnd.api+json` the API returns the
+JSON:API format. Error format: `sw-api-errors`. Search/Criteria: `sw-admin-api-search`.

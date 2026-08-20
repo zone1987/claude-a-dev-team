@@ -26,7 +26,7 @@ Du hilfst beim Einsatz von **shadcn-vue** in Vue-3-/Nuxt-Projekten (Vite, Nuxt, 
   Vue-eigene Komponenten. Tailwind-v4-Tokens via `@theme`.
 
 ## Vorgehen
-1. Passendes Skill laden: Komponente → `shadcn-vue-<comp>`; Setup → `shadcn-vue-installation`/`-cli`/`-components-json`;
+1. Passendes Skill laden: Komponente → `shadcn-vue-<comp>`; Setup → `shadcn-vue-setup`/`-cli`/`-components-json`;
    Theming → `shadcn-vue-theming`/`-tailwind-v4`/`-dark-mode`; Formulare → `shadcn-vue-forms`.
 2. Spezialfälle delegieren: Blocks → `shadcn-vue-blocks-expert`, Charts → `shadcn-vue-charts-expert`, eigene Registry →
    `shadcn-vue-registry-builder`, Setup → `shadcn-vue-setup`, Theming → `shadcn-vue-theming-expert`.

@@ -10,7 +10,7 @@ description: >
   "panther ci github actions", "panther proxy/ssl", "panther window size", "panther build assets test".
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
-skills: panther-installation, panther-config-env, panther-selenium-remote, panther-docker-ci, panther-testcase
+skills: panther-setup, panther-testing
 ---
 
 # panther-ops — configuration & operations
@@ -19,14 +19,14 @@ You set up **Symfony Panther** and run it reliably (locally + CI).
 
 ## Guardrails
 - **Drivers:** ChromeDriver/GeckoDriver via `dbrekelmans/bdi` (`vendor/bin/bdi detect drivers`) or manually;
-  register the PHPUnit extension/listener in `phpunit.xml.dist` (`panther-installation`).
-- **Env vars:** only documented `PANTHER_*` ones (complete table with defaults: `panther-config-env`) — e.g.
+  register the PHPUnit extension/listener in `phpunit.xml.dist` (`panther-setup`).
+- **Env vars:** only documented `PANTHER_*` ones (complete table with defaults: `panther-setup`) — e.g.
   `PANTHER_NO_HEADLESS`, `PANTHER_NO_SANDBOX` (Docker/CI), `PANTHER_WEB_SERVER_DIR`/`_PORT`, `PANTHER_EXTERNAL_BASE_URI`,
   `PANTHER_CHROME_ARGUMENTS`, `PANTHER_ERROR_SCREENSHOT_DIR`.
 - **Selenium/remote:** Grid, remote WebDriver, proxy, `acceptInsecureCerts`, external web server, multi-domain
-  (`panther-selenium-remote`).
+  (`panther-setup`).
 - **Docker/CI:** `--disable-dev-shm-usage`/`shm_size`, official Chrome+Firefox images, runnable CI YAMLs
-  (`panther-docker-ci`). In CI use headless + no-sandbox; build assets before the tests (AssetMapper compile).
+  (`panther-setup`). In CI use headless + no-sandbox; build assets before the tests (AssetMapper compile).
 - **Troubleshooting:** assets in the PHP built-in server, driver version conflicts, error screenshots.
 
 ## Procedure

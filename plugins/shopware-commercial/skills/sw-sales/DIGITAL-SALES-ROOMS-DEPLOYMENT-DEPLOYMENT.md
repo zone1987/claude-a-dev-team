@@ -1,8 +1,8 @@
-# Digital Sales Rooms — Deployment (vollständig)
+# Digital Sales Rooms — deployment (complete)
 
-Die DSR-Frontend-App ist eine Nuxt-3-Anwendung und kann überall deployed werden,
-wo Node.js läuft. Details zur Nuxt-Deployment-Optionen:
-[Nuxt Deploy-Dokumentation](https://nuxt.com/deploy).
+The DSR frontend app is a Nuxt 3 application and can be deployed anywhere
+Node.js runs. Details on the Nuxt deployment options:
+[Nuxt deployment documentation](https://nuxt.com/deploy).
 
 ---
 
@@ -10,53 +10,53 @@ wo Node.js läuft. Details zur Nuxt-Deployment-Optionen:
 
 - [Option 1: AWS Amplify](#option-1-aws-amplify)
 - [Option 2: Cloudflare Pages](#option-2-cloudflare-pages)
-- [Option 3: Ubuntu Server mit PM2](#option-3-ubuntu-server-mit-pm2)
+- [Option 3: Ubuntu server with PM2](#option-3-ubuntu-server-with-pm2)
 - [SaaS (Shopware Beyond)](#saas-shopware-beyond)
 
 ## Option 1: AWS Amplify
 
-### Voraussetzungen
+### Prerequisites
 
-- AWS-Account registriert
-- Frontend-Quellcode in eigenem Git-Repository (z.B. GitHub)
-  - Plugin-ZIP herunterladen → `/templates/dsr-frontends/` extrahieren → pushen
+- A registered AWS account
+- Frontend source code in your own Git repository (e.g. GitHub)
+  - Download the plugin ZIP → extract `/templates/dsr-frontends/` → push
 
-### Deployment-Schritte
+### Deployment steps
 
-1. AWS Amplify Hosting Console öffnen
-2. Neue App erstellen
-3. Git-Repository und Main-Branch autorisieren (Auto-Deploy bei Push)
-4. App-Name wählen — Build-Settings werden automatisch erkannt
-5. Unter **Advanced Settings → Environment variables** folgende Variables setzen:
+1. Open the AWS Amplify hosting console
+2. Create a new app
+3. Authorize the Git repository and main branch (auto-deploy on push)
+4. Choose an app name — the build settings are detected automatically
+5. Under **Advanced Settings → Environment variables**, set the following variables:
    - `SHOPWARE_STORE_API`
    - `SHOPWARE_ADMIN_API`
    - `SHOPWARE_STORE_API_ACCESS_TOKEN`
    - `SHOPWARE_STOREFRONT_URL`
    - `ORIGIN`
-6. Konfiguration bestätigen → **Save and Deploy**
+6. Confirm the configuration → **Save and Deploy**
 
 ### Custom Domain
 
-Nach dem Deployment: Custom Domain/Subdomain zuweisen.
-[AWS-Anleitung](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html)
+After deployment: assign a custom domain/subdomain.
+[AWS guide](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html)
 
-### Sales-Channel-Domain konfigurieren
+### Configuring the sales channel domain
 
-Erhaltene App-Domain in den Shopware Sales Channel eintragen →
+Enter the app domain you received into the Shopware sales channel →
 `sw-digital-sales-rooms-config`.
 
 ---
 
 ## Option 2: Cloudflare Pages
 
-### Voraussetzungen
+### Prerequisites
 
-- Cloudflare-Account
-- Frontend-Quellcode in eigenem GitHub-Repository
+- A Cloudflare account
+- Frontend source code in your own GitHub repository
 
-### Deployment vom lokalen Rechner
+### Deployment from a local machine
 
-Bekannter `.npmrc`-Fix für Nuxt/Cloudflare:
+Known `.npmrc` fix for Nuxt/Cloudflare:
 
 ```bash
 # .npmrc
@@ -67,25 +67,25 @@ strict-peer-dependencies=false
 ```bash
 pnpm install wrangler --save-dev
 
-# .env-Datei generieren (siehe Installation-Skill)
+# generate the .env file (see the installation skill)
 
-# Build für Cloudflare Pages:
+# build for Cloudflare Pages:
 npx nuxi build --preset=cloudflare_pages
 
-# Beim ersten Mal: Projekt erstellen
+# on the first run: create the project
 wrangler pages deploy dist/
 ```
 
-### Automatisierung mit GitHub Actions
+### Automation with GitHub Actions
 
-#### GitHub Secrets & Variables einrichten
+#### Setting up GitHub secrets & variables
 
-- **Secret:** `CLOUDFLARE_API_TOKEN` — API-Token mit "Cloudflare Pages — Edit"-Berechtigung
-  ([Token erstellen](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/))
-- **Environment** `production` anlegen mit diesen Variables:
+- **Secret:** `CLOUDFLARE_API_TOKEN` — API token with the "Cloudflare Pages — Edit" permission
+  ([create a token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/))
+- Create an **environment** `production` with these variables:
   - `SHOPWARE_STORE_API`, `SHOPWARE_ADMIN_API`, `SHOPWARE_STORE_API_ACCESS_TOKEN`
   - `SHOPWARE_STOREFRONT_URL`, `ORIGIN`
-- Optional weitere Environments: `development`, `staging`
+- Optionally further environments: `development`, `staging`
 
 #### Pipeline `.github/workflows/publish.yml`
 
@@ -132,7 +132,7 @@ jobs:
         uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: YOUR_ACCOUNT_ID       # aus Dashboard-URL
+          accountId: YOUR_ACCOUNT_ID       # from the dashboard URL
           projectName: YOUR_PROJECT_NAME
           directory: dist
           wranglerVersion: '3'
@@ -140,36 +140,36 @@ jobs:
 
 ### Custom Domain
 
-[Cloudflare-Anleitung](https://developers.cloudflare.com/pages/configuration/custom-domains/)
+[Cloudflare guide](https://developers.cloudflare.com/pages/configuration/custom-domains/)
 
 ---
 
-## Option 3: Ubuntu Server mit PM2
+## Option 3: Ubuntu server with PM2
 
-PM2 ist ein Node.js-Process-Manager, der die App im Hintergrund laufen lässt
-und bei Abstürzen automatisch neu startet.
+PM2 is a Node.js process manager that keeps the app running in the background
+and restarts it automatically on crashes.
 
-### Voraussetzungen
+### Prerequisites
 
 ```bash
 # Node.js + npm (Ubuntu)
 sudo apt update && sudo apt install nodejs npm
 
-# PM2 global installieren
+# install PM2 globally
 npm install -g pm2
 
-# pnpm global installieren
+# install pnpm globally
 npm install -g pnpm
 ```
 
 ### Build
 
-Quellcode auf dem Server klonen und gemäß `sw-digital-sales-rooms-installation`
-`.env` generieren und `pnpm build` ausführen.
+Clone the source code on the server, generate `.env` according to
+`sw-digital-sales-rooms-installation`, and run `pnpm build`.
 
-### App mit PM2 starten
+### Starting the app with PM2
 
-`ecosystem.config.cjs` im Projekt-Root anlegen:
+Create `ecosystem.config.cjs` in the project root:
 
 ```js
 module.exports = {
@@ -193,9 +193,9 @@ pm2 start ecosystem.config.cjs
 
 ## SaaS (Shopware Beyond)
 
-Im SaaS-Betrieb ist das SwagDigitalSalesRooms-Plugin bereits installiert
-(sichtbar unter Marketing-Menüpunkt). Folgende Schritte sind dennoch nötig:
+In SaaS operation the SwagDigitalSalesRooms plugin is already installed
+(visible under the Marketing menu item). The following steps are still required:
 
-1. **Frontend-App deployen** — eine der Optionen oben
-2. **3rd-Party-Setup** → `sw-digital-sales-rooms-3rdparty`
-3. **Plugin-Konfiguration** → `sw-digital-sales-rooms-config`
+1. **Deploy the frontend app** — one of the options above
+2. **Third-party setup** → `sw-digital-sales-rooms-3rdparty`
+3. **Plugin configuration** → `sw-digital-sales-rooms-config`

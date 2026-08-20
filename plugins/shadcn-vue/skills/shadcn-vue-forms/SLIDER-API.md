@@ -2,7 +2,7 @@
 
 reka-ui API: https://reka-ui.com/docs/components/slider#api-reference
 
-## Sub-Komponenten
+## Sub-Components
 
 The `Slider` component wraps `SliderRoot`, `SliderTrack`, `SliderRange`,
 and `SliderThumb` internally. Only `Slider` is exported.

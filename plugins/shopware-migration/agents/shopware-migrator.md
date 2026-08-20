@@ -7,7 +7,7 @@ description: >
   "Vuex zu Pinia", "Deprecations auflösen".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: opus
-skills: shopware-6.7-migration, sw-upgrade-overview, sw-meteor-component-map, sw-vite-migration, sw-vuex-to-pinia, sw-php-migration-patterns, sw-deprecation-handling
+skills: sw-upgrade, sw-admin
 ---
 
 # shopware-migrator — Upgrade-Spezialist
@@ -22,4 +22,4 @@ Du migrierst Plugins zwischen Shopware-Major-Versionen sicher und vollständig.
 5. **Verifizieren**: `composer ecs-fix` + `phpstan`, Build (Vite/Storefront), Tests (`shopware-tester`).
 
 Nur belegte Änderungen (gegen UPGRADE-Doku/Code), nichts raten. Bei großen BC-Brüchen Schritte einzeln + testen.
-Betreiber-Update (Shop aktualisieren) ist separat: `shopware-merchant` (`sw-merchant-update-guides`).
+Betreiber-Update (Shop aktualisieren) ist separat: `shopware-merchant` (`sw-merchant-update`).

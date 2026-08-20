@@ -63,10 +63,10 @@ store:
   automatic_bugfix_version_compatibility: true
   info:
     de:
-      name: "Mein Plugin"
-      summary: "Kurzbeschreibung"
-      description: "Lange Beschreibung"
-      installation_manual: "Installationsanleitung"
+      name: "My Plugin"
+      summary: "Short description"
+      description: "Long description"
+      installation_manual: "Installation instructions"
       highlights: []
       features: []
       faq: []

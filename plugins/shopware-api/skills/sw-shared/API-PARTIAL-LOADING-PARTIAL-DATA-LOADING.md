@@ -1,27 +1,27 @@
-# Shopware 6 — Partial Data Loading (vollständige Referenz)
+# Shopware 6 — Partial Data Loading (complete reference)
 
-Quelle: `guides/development/integrations-api/partial-data-loading.md`
+Source: `guides/development/integrations-api/partial-data-loading.md`
 
 ## Contents
 
-- [Konzept](#konzept)
-- [Verwendung — Einfache Felder](#verwendung-einfache-felder)
-- [Verwendung — Assoziationsfelder](#verwendung-assoziationsfelder)
-- [Immer geladene Felder (Default Fields)](#immer-geladene-felder-default-fields)
+- [Concept](#concept)
+- [Usage — simple fields](#usage--simple-fields)
+- [Usage — association fields](#usage--association-fields)
+- [Always-loaded fields (default fields)](#always-loaded-fields-default-fields)
 - [Runtime Fields](#runtime-fields)
-- [Einschränkungen](#einschränkungen)
-- [Vergleich: Partial Loading vs. Includes](#vergleich-partial-loading-vs-includes)
+- [Limitations](#limitations)
+- [Comparison: partial loading vs. includes](#comparison-partial-loading-vs-includes)
 
-## Konzept
+## Concept
 
-Partial Data Loading ermöglicht die Selektion spezifischer Entity-Felder, die von der API zurückgegeben werden. Der Unterschied zu `includes`:
+Partial Data Loading allows selecting the specific entity fields the API returns. The difference from `includes`:
 
-- **`fields` (Partial Data Loading)**: Arbeitet auf Datenbankebene — nur angeforderte Felder werden geladen. Reduziert DB-Last direkt.
-- **`includes`**: Post-Output-Processing — vollständige Entity wird geladen und dann im Response gefiltert.
+- **`fields` (Partial Data Loading)**: works at database level — only the requested fields are loaded. Reduces the DB load directly.
+- **`includes`**: post-output processing — the complete entity is loaded and then filtered in the response.
 
-Shopware selbst nutzt diesen Mechanismus für Storefront-Produktlistings: `core.listing.partialDataLoading` = 1. Siehe Performance Tweaks.
+Shopware itself uses this mechanism for storefront product listings: `core.listing.partialDataLoading` = 1. See Performance Tweaks.
 
-## Verwendung — Einfache Felder
+## Usage — simple fields
 
 ```http
 POST /api/search/currency
@@ -53,9 +53,9 @@ Response:
 }
 ```
 
-## Verwendung — Assoziationsfelder
+## Usage — association fields
 
-Punkt-Notation referenziert Felder von Assoziationen. Die notwendigen Joins werden automatisch hinzugefügt:
+Dot notation references fields of associations. The necessary joins are added automatically:
 
 ```http
 POST /api/search/currency
@@ -87,54 +87,54 @@ Response:
 }
 ```
 
-## Immer geladene Felder (Default Fields)
+## Always-loaded fields (default fields)
 
-Bestimmte Felder werden immer geladen, da sie für das korrekte Funktionieren der API notwendig sind:
+Certain fields are always loaded because they are necessary for the API to work correctly:
 - `id`
-- Join-relevante Felder (Foreign Keys)
+- Join-relevant fields (foreign keys)
 
-Diese können nicht entfernt werden.
+These cannot be removed.
 
 ## Runtime Fields
 
-Einige API-Felder werden zur Laufzeit generiert (z.B. `isSystemDefault` bei Currency). Diese werden standardmäßig geladen, wenn die referenzierten Daten verfügbar sind. Sie können auch explizit im `fields`-Parameter angefordert werden, um das Laden zu erzwingen.
+Some API fields are generated at runtime (e.g. `isSystemDefault` on currency). These are loaded by default when the referenced data is available. They can also be requested explicitly in the `fields` parameter to force the loading.
 
-In eigenen EntityDefinitions:
+In your own EntityDefinitions:
 ```php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
         (new IdField('id', 'id'))->addFlags(new ApiAware(), new PrimaryKey(), new Required()),
         (new StringField('path', 'path'))->addFlags(new ApiAware()),
-        // Wenn dieses Feld angefordert wird, brauchen wir 'path' zum Generieren der URL:
+        // If this field is requested, we need 'path' to generate the URL:
         (new StringField('url', 'url'))->addFlags(new ApiAware(), new Runtime(['path'])),
     ]);
 }
 ```
 
-## Einschränkungen
+## Limitations
 
-Die aktuelle Einschränkung von Partial Data Loading: Funktioniert **nur auf Entity-Ebene**.
+The current limitation of Partial Data Loading: it works **only at entity level**.
 
-Custom Responses wie Produkt-Detailseiten oder CMS in der Store API können diese Funktion nicht nutzen, da die Store API die vollständige Entity benötigt, um die Response zu generieren.
+Custom responses such as product detail pages or CMS in the Store API cannot use this feature, because the Store API needs the complete entity to generate the response.
 
-**Empfehlung**: Bei solchen Endpoints → `includes`-Feature des Search API nutzen.
+**Recommendation**: on such endpoints → use the `includes` feature of the search API.
 
-## Vergleich: Partial Loading vs. Includes
+## Comparison: partial loading vs. includes
 
 ```json
-// Nur mit includes (vollständige Entity geladen, Output gefiltert):
+// With includes only (complete entity loaded, output filtered):
 {
   "includes": {
     "product": ["id", "name"]
   }
 }
 
-// Mit fields (DB lädt nur angeforderte Spalten):
+// With fields (the DB loads only the requested columns):
 {
   "fields": ["id", "name"]
 }
 ```
 
-Für maximale Performance bei einfachen Entity-Abfragen: `fields` bevorzugen.
-Für komplexe Custom-Responses oder Store-API-CMS: `includes` verwenden.
+For maximum performance on simple entity queries: prefer `fields`.
+For complex custom responses or Store API CMS: use `includes`.

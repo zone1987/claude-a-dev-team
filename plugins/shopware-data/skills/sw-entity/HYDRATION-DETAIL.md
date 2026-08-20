@@ -1,46 +1,46 @@
 # Shopware DAL Entity Hydration — Deep Reference
 
-Quellen: `src/Core/Framework/DataAbstractionLayer/Dbal/EntityHydrator.php`
+Sources: `src/Core/Framework/DataAbstractionLayer/Dbal/EntityHydrator.php`
          `src/Core/Framework/DataAbstractionLayer/Command/CreateHydratorCommand.php`
 
 ---
 
 ## Contents
 
-- [Klassen-Hierarchie](#klassen-hierarchie)
-- [Lebenszyklus einer Hydration](#lebenszyklus-einer-hydration)
-- [assign() — Der überschreibbare Hook](#assign-der-überschreibbare-hook)
-- [hydrateFields() — Feld-Dispatch](#hydratefields-feld-dispatch)
+- [Class hierarchy](#class-hierarchy)
+- [Lifecycle of a hydration](#lifecycle-of-a-hydration)
+- [assign() — the overridable hook](#assign--the-overridable-hook)
+- [hydrateFields() — field dispatch](#hydratefields--field-dispatch)
 - [Partial Loading Details](#partial-loading-details)
-- [Translation-Chain Aufbau](#translation-chain-aufbau)
-- [ManyToMany ID-Mapping](#manytomany-id-mapping)
-- [Custom Hydrator registrieren (services.xml)](#custom-hydrator-registrieren-servicesxml)
-- [Performance-Vergleich](#performance-vergleich)
-- [Runtime-Felder](#runtime-felder)
+- [Building the translation chain](#building-the-translation-chain)
+- [ManyToMany ID mapping](#manytomany-id-mapping)
+- [Registering a custom hydrator (services.xml)](#registering-a-custom-hydrator-servicesxml)
+- [Performance comparison](#performance-comparison)
+- [Runtime fields](#runtime-fields)
 - [Caching](#caching)
-- [dal:create:hydrators Command](#dalcreatehydrators-command)
+- [dal:create:hydrators command](#dalcreatehydrators-command)
 
-## Klassen-Hierarchie
+## Class hierarchy
 
 ```
-EntityHydrator (Basis)
-  └── ProductHydrator       (generiert via dal:create:hydrators)
-  └── CategoryHydrator      (generiert)
-  └── PropertyGroupHydrator (generiert)
-  └── ...                   (alle Entities mit getHydratorClass())
+EntityHydrator (base)
+  └── ProductHydrator       (generated via dal:create:hydrators)
+  └── CategoryHydrator      (generated)
+  └── PropertyGroupHydrator (generated)
+  └── ...                   (all entities with getHydratorClass())
 ```
 
-Bei Partial Loading: immer Basis-`EntityHydrator`, nie Custom-Hydrator.
+With partial loading: always the base `EntityHydrator`, never a custom hydrator.
 
 ---
 
-## Lebenszyklus einer Hydration
+## Lifecycle of a hydration
 
 ```
 EntityReader::load()
   → EntityHydrator::hydrate($collection, $entityClass, $definition, $rows, $root, $context, $partial)
-      → self::$hydrated = []          (Cache leeren)
-      → self::$partial = $partial     (Partial-Paths setzen)
+      → self::$hydrated = []          (clear cache)
+      → self::$partial = $partial     (set partial paths)
       → foreach $rows: hydrateEntity()
           → $hydratorClass = $definition->getHydratorClass()
           → if partial: $hydratorClass = EntityHydrator::class, $entityClass = PartialEntity::class
@@ -58,20 +58,20 @@ EntityReader::load()
 
 ---
 
-## assign() — Der überschreibbare Hook
+## assign() — the overridable hook
 
 ```php
-// Basis-Implementierung in EntityHydrator:
+// Base implementation in EntityHydrator:
 protected function assign(EntityDefinition $definition, Entity $entity, string $root, array $row, Context $context): Entity
 {
     $entity = $this->hydrateFields($definition, $entity, $root, $row, $context, $definition->getFields());
     return $entity;
 }
 
-// Generierter Custom Hydrator (Performance-optimiert):
+// Generated custom hydrator (performance-optimized):
 protected function assign(EntityDefinition $definition, Entity $entity, string $root, array $row, Context $context): Entity
 {
-    // 1. StorageAware-Felder direkt (kein decode-Overhead):
+    // 1. StorageAware fields directly (no decode overhead):
     if (isset($row[$root . '.id'])) {
         $entity->id = Uuid::fromBytesToHex($row[$root . '.id']);
     }
@@ -80,16 +80,16 @@ protected function assign(EntityDefinition $definition, Entity $entity, string $
     }
     // ...
 
-    // 2. ManyToOne/OneToOne Assoziationen:
+    // 2. ManyToOne/OneToOne associations:
     $entity->manufacturer = $this->manyToOne($row, $root, $definition->getField('manufacturer'), $context);
 
     // 3. Translations:
     $this->translate($definition, $entity, $row, $root, $context, $definition->getTranslatedFields());
 
-    // 4. Extension-Felder (Plugin-Extensions):
+    // 4. Extension fields (plugin extensions):
     $this->hydrateFields($definition, $entity, $root, $row, $context, $definition->getExtensionFields());
 
-    // 5. ManyToMany via ID-Mapping:
+    // 5. ManyToMany via ID mapping:
     $this->manyToMany($row, $root, $entity, $definition->getField('categories'));
 
     return $entity;
@@ -98,14 +98,14 @@ protected function assign(EntityDefinition $definition, Entity $entity, string $
 
 ---
 
-## hydrateFields() — Feld-Dispatch
+## hydrateFields() — field dispatch
 
 ```php
 foreach ($fields as $field) {
-    // Partial-Filter: Feld nicht in $partial → überspringen
+    // Partial filter: field not in $partial → skip
     if ($isPartial && !isset(self::$partialFullPaths[$key])) { continue; }
 
-    // AssociationField + ArrayEntity → null initialisieren
+    // AssociationField + ArrayEntity → initialize to null
     if ($field instanceof AssociationField && $entity instanceof ArrayEntity) {
         $entity->set($property, null);
     }
@@ -115,10 +115,10 @@ foreach ($fields as $field) {
     if ($field instanceof ManyToOneAssociationField || OneToOneAssociationField) { manyToOne(); continue; }
     if ($field instanceof AssociationField) { continue; }                 // OneToMany: lazy
 
-    // Scalar-Feld:
+    // Scalar field:
     $value = $row[$root . '.' . $property];
 
-    // TranslatedField → typed field aus Translation-Definition
+    // TranslatedField → typed field from the translation definition
     if ($field instanceof TranslatedField) {
         $typed = EntityDefinitionQueryHelper::getTranslatedField($definition, $field);
     }
@@ -143,11 +143,11 @@ foreach ($fields as $field) {
 ## Partial Loading Details
 
 ```php
-// Criteria mit Partial-Fields:
+// Criteria with partial fields:
 $criteria->addFields(['id', 'name', 'price', 'manufacturer.name']);
 
-// Intern: EntityHydrator::mapPartialFieldsToHydrate()
-// Baut self::$partialFullPaths auf:
+// Internal: EntityHydrator::mapPartialFieldsToHydrate()
+// Builds up self::$partialFullPaths:
 // [
 //   'product.id' => true,
 //   'product.name' => true,
@@ -157,33 +157,33 @@ $criteria->addFields(['id', 'name', 'price', 'manufacturer.name']);
 // ]
 ```
 
-Alle Felder die nicht in `$partialFullPaths` sind, werden übersprungen.  
-Ergebnis: `PartialEntity` (kein typiertes Entity-Objekt).
+All fields that are not in `$partialFullPaths` are skipped.  
+Result: `PartialEntity` (not a typed entity object).
 
 ---
 
-## Translation-Chain Aufbau
+## Building the translation chain
 
 ```php
 // EntityDefinitionQueryHelper::buildTranslationChain($root, $context, $inherited)
 // → ['product.product', 'product.de-DE']  (main lang, fallback)
-// Mit Inheritance:
+// With inheritance:
 // → ['product.product', 'product.parent.product', 'product.de-DE', 'product.parent.de-DE']
 
-// translate() iteriert translatedFields:
+// translate() iterates translatedFields:
 foreach ($translatedFields as $field => $typed) {
     $fieldValue = self::value($row, $root, $field);      // resolved value
-    $entity->addTranslated($field, decoded($fieldValue)); // alle Sprachen
+    $entity->addTranslated($field, decoded($fieldValue)); // all languages
     $entity->$field = decoded(value($row, $chain[0], $field)); // main language
 }
 ```
 
 ---
 
-## ManyToMany ID-Mapping
+## ManyToMany ID mapping
 
 ```sql
--- Query baut GROUP_CONCAT:
+-- The query builds GROUP_CONCAT:
 GROUP_CONCAT(HEX(product_category.category_id) SEPARATOR '||') AS `product.categories.id_mapping`
 ```
 
@@ -196,76 +196,76 @@ protected function manyToMany(array $row, string $root, Entity $entity, ?Field $
     
     $mapping = $entity->getExtension(EntityReader::INTERNAL_MAPPING_STORAGE);
     $mapping->set($field->getPropertyName(), $ids);
-    // Die eigentlichen Entity-Objekte werden per separate Query geladen
+    // The actual entity objects are loaded via a separate query
 }
 ```
 
 ---
 
-## Custom Hydrator registrieren (services.xml)
+## Registering a custom hydrator (services.xml)
 
 ```xml
-<!-- Generiert von dal:create:hydrators in src/Core/Framework/DependencyInjection/hydrator.xml -->
+<!-- Generated by dal:create:hydrators in src/Core/Framework/DependencyInjection/hydrator.xml -->
 <service id="Shopware\Core\Content\Product\ProductHydrator" public="true">
     <argument type="service" id="service_container"/>
 </service>
 ```
 
-**Wichtig:** Der Hydrator-Service muss `public="true"` sein, da er per `$container->get($hydratorClass)` geladen wird.
+**Important:** the hydrator service must be `public="true"`, since it is loaded via `$container->get($hydratorClass)`.
 
 ---
 
-## Performance-Vergleich
+## Performance comparison
 
-| | Basis EntityHydrator | Custom Hydrator |
+| | Base EntityHydrator | Custom hydrator |
 |---|---|---|
-| Field-Dispatch | `hydrateFields()` Loop + `decode()` | Direkte PHP-Property-Assigns |
-| UUID-Decoding | `$field->getSerializer()->decode()` | `Uuid::fromBytesToHex()` direkt |
-| Typ-Cast | Via Serializer | PHP built-in cast `(int)`, `(bool)`, `(float)` |
-| Eignung | Alle Entities, flexible | Performance-kritische Entities |
+| Field dispatch | `hydrateFields()` loop + `decode()` | direct PHP property assignments |
+| UUID decoding | `$field->getSerializer()->decode()` | `Uuid::fromBytesToHex()` directly |
+| Type cast | via serializer | PHP built-in cast `(int)`, `(bool)`, `(float)` |
+| Suitability | all entities, flexible | performance-critical entities |
 
 ---
 
-## Runtime-Felder
+## Runtime fields
 
 ```php
-// In Definition:
+// In the definition:
 (new StringField('computed_field', 'computedField'))->addFlags(new Runtime()),
 ```
 
-`hydrateFields()` prüft das `Runtime`-Flag **nicht** direkt — aber da kein DB-Alias für Runtime-Felder gebaut wird, ist `$row[$root . '.computedField']` nicht gesetzt → Feld wird übersprungen. Wert muss per `EntityLoadedEvent`-Subscriber befüllt werden.
+`hydrateFields()` does **not** check the `Runtime` flag directly — but since no DB alias is built for runtime fields, `$row[$root . '.computedField']` is not set → the field is skipped. The value must be filled in by an `EntityLoadedEvent` subscriber.
 
 ---
 
 ## Caching
 
 ```php
-private static array $hydrated = [];  // Session-Cache (per hydrate()-Call)
-private static array $manyToOne = []; // ManyToOne-Property-Name Cache
-private static array $translatedFields = []; // TranslatedField-Cache per EntityName
+private static array $hydrated = [];  // session cache (per hydrate() call)
+private static array $manyToOne = []; // ManyToOne property name cache
+private static array $translatedFields = []; // TranslatedField cache per entity name
 ```
 
-Der `self::$hydrated`-Cache wird zu Beginn jedes `hydrate()`-Calls geleert. Er verhindert doppelte Hydration derselben Entity-ID innerhalb einer Query (z.B. wenn ein Produkt in mehreren Rows auftaucht).
+The `self::$hydrated` cache is cleared at the start of every `hydrate()` call. It prevents duplicate hydration of the same entity ID within one query (e.g. when a product appears in several rows).
 
 ---
 
-## dal:create:hydrators Command
+## dal:create:hydrators command
 
 ```bash
 # Whitelist auto-detect: product*, category*, property*
 bin/console dal:create:hydrators
 
-# Explizite Whitelist:
+# Explicit whitelist:
 bin/console dal:create:hydrators product order order_line_item product_manufacturer
 
-# Ausgabe:
+# Output:
 # - src/Core/Content/Product/ProductHydrator.php
 # - src/Core/Checkout/Order/OrderHydrator.php
-# - (Aktualisiert Definition: fügt getHydratorClass() ein)
+# - (updates the definition: inserts getHydratorClass())
 # - src/Core/Framework/DependencyInjection/hydrator.xml
 ```
 
-**Einschränkungen:**
-- Nur für `EntityDefinition` (nicht Translation/Mapping)
-- Wenn `getHydratorClass()` bereits existiert → Definition nicht überschrieben
-- Feature-Flag-abhängige Felder: Feature-Flags müssen aktiv sein beim Generieren
+**Limitations:**
+- only for `EntityDefinition` (not translation/mapping)
+- if `getHydratorClass()` already exists → the definition is not overwritten
+- feature-flag-dependent fields: the feature flags must be active while generating

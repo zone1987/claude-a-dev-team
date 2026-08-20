@@ -1,32 +1,32 @@
-# Shopware 6 — API-Integration Quickstart
+# Shopware 6 — API integration quickstart
 
-**Admin API**: OAuth2 `client_credentials` (Produktiv) oder `password` (lokal). **Store API**: `sw-access-key` (Sales Channel).
+**Admin API**: OAuth2 `client_credentials` (production) or `password` (local). **Store API**: `sw-access-key` (sales channel).
 
-## Admin API Token holen
+## Fetch an Admin API token
 
 ```bash
-# Produktiv: client_credentials (Integrationen: Settings → System → Integrations)
+# Production: client_credentials (integrations: Settings → System → Integrations)
 curl -s "http://127.0.0.1:8000/api/oauth/token" -H "Content-Type: application/json" \
   -d '{"grant_type":"client_credentials","client_id":"ACCESS_KEY_ID","client_secret":"SECRET"}'
 
-# Nur lokal: password grant
+# Local only: password grant
 curl -s -X POST "http://localhost:8000/api/oauth/token" -H "Content-Type: application/json" \
   -d '{"grant_type":"password","client_id":"administration","scopes":"write","username":"admin","password":"shopware"}'
-# → access_token (expires_in 600 s, hat refresh_token)
+# → access_token (expires_in 600 s, has a refresh_token)
 ```
 
-## Erster Admin-API-Request
+## First Admin API request
 
-Bevorzuge `POST /api/search/{entity}` statt `GET /api/{entity}` — unterstützt filter/sort/associations.
+Prefer `POST /api/search/{entity}` over `GET /api/{entity}` — it supports filter/sort/associations.
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/api/search/product" \
   -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{}'
 ```
 
-Antwort mit `data`, `meta`, `aggregations` → Erfolg (leeres `data` = keine Produkte, kein Fehler).
+A response with `data`, `meta`, `aggregations` → success (empty `data` = no products, not an error).
 
-## OpenAPI-Schema herunterladen (`APP_ENV=dev` nötig)
+## Download the OpenAPI schema (`APP_ENV=dev` required)
 
 ```bash
 curl -s "http://127.0.0.1:8000/api/_info/openapi3.json" -H "Authorization: Bearer $TOKEN" -o openapi.json
@@ -37,22 +37,22 @@ curl -s "http://127.0.0.1:8000/store-api/_info/openapi3.json" -o store-openapi.j
 
 Stoplight UI: `/api/_info/stoplightio.html` und `/store-api/_info/stoplightio.html`
 
-## Store API — Access Key ermitteln
+## Store API — determine the access key
 
-Administration → **Sales Channels → Storefront → API access** → API access key kopieren.
+Administration → **Sales Channels → Storefront → API access** → copy the API access key.
 
 ```bash
 curl -s "http://127.0.0.1:8000/store-api/product" -H "sw-access-key: $STORE_KEY"
 ```
 
-## Häufige Fehler
+## Common errors
 
-| Fehler | Ursache | Fix |
+| Error | Cause | Fix |
 |---|---|---|
-| `Table 'shopware.system_config' doesn't exist` | DB nicht initialisiert | `bin/console system:install --create-database --basic-setup` |
-| HTTP 500 auf `/api/_info/openapi3.json` | `APP_ENV` nicht `dev` | `.env.local`: `APP_ENV=dev`, Container neu starten |
-| `data` leer | Keine Produkte/Filter passt | Normales Ergebnis — kein Fehler |
-| Store API liefert nix | Falsche Sales-Channel-Domain | Admin: Sales Channels → Domains → `127.0.0.1:8000` ergänzen |
+| `Table 'shopware.system_config' doesn't exist` | DB not initialised | `bin/console system:install --create-database --basic-setup` |
+| HTTP 500 on `/api/_info/openapi3.json` | `APP_ENV` is not `dev` | `.env.local`: `APP_ENV=dev`, restart the container |
+| `data` empty | No products / filter matches nothing | Normal result — not an error |
+| Store API returns nothing | Wrong sales channel domain | Admin: Sales Channels → Domains → add `127.0.0.1:8000` |
 
-Vollständige End-to-End-Flows (Produkt anlegen, Warenkorb, Checkout): `sw-api-flows`.
-Header-Referenz: `sw-api-headers`. Criteria/Filter: `sw-admin-api-search`.
+Complete end-to-end flows (create a product, cart, checkout): `sw-api-flows`.
+Header reference: `sw-api-headers`. Criteria/filter: `sw-admin-api-search`.

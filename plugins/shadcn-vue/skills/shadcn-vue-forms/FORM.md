@@ -1,14 +1,14 @@
 # shadcn-vue Form
 
-Zugaengliche Formular-Abstraktion ueber vee-validate + Zod. Setzt automatisch ARIA-Attribute
-(aria-describedby, aria-invalid) und verwaltet eindeutige IDs pro Feld.
+Accessible form abstraction over vee-validate + Zod. Sets ARIA attributes automatically
+(aria-describedby, aria-invalid) and manages unique IDs per field.
 
-Hinweis: shadcn-vue empfiehlt fuer neue Projekte die `Field`-Komponente statt `Form`.
+Note: shadcn-vue recommends the `Field` component instead of `Form` for new projects.
 
-## Verwendung
+## Usage
 
-Lade die Referenzen:
-- `FORM-INSTALLATION.md` — CLI- und manuelle Installation
-- `FORM-SOURCE.md` — Vollstaendiger Quellcode aller Komponenten
-- `FORM-API.md` — Komponenten, useFormField Composable
-- `FORM-EXAMPLES.md` — Basic Form und Form mit Checkbox
+Load the references:
+- `FORM-INSTALLATION.md` — CLI and manual installation
+- `FORM-SOURCE.md` — Complete source code of all components
+- `FORM-API.md` — Components, useFormField composable
+- `FORM-EXAMPLES.md` — Basic form and form with checkbox

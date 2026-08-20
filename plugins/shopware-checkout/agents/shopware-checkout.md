@@ -8,7 +8,7 @@ description: >
   "Promotion", "Checkout".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-cart-processor, sw-cart-collector, sw-cart-validator, sw-cart-line-item, sw-nested-line-items, sw-cart-price, sw-cart-discount, sw-tax-provider, sw-cart-facade-script, sw-delivery, sw-shipping-method, sw-payment-handler, sw-payment-app, sw-order-state-machine, sw-order-events, sw-document, sw-document-type, sw-promotion, sw-customer, sw-paypal-sdk
+skills: sw-cart, sw-payment, sw-fulfilment
 ---
 
 # shopware-checkout — Checkout-Spezialist
@@ -25,7 +25,7 @@ Du implementierst Warenkorb-/Bestell-/Zahlungs-Logik konventionskonform.
 
 ## Vorgehen
 1. Nur nötige `sw-*`-Skills laden. Datenanlage (Versandart/Promotion/Dokumenttyp) über Migration/Repository.
-2. Bei Events/Status → `shopware-core` (`sw-event-catalog`/`sw-events-subscriber`); regelbasiert → `shopware-framework` (`sw-custom-rule`).
+2. Bei Events/Status → `shopware-core` (call the Skill tool with `sw-services`); regelbasiert → `shopware-framework` (call the Skill tool with `sw-automation`).
 3. Nach Änderung `composer ecs-fix` + `phpstan`.
 
 Datenmodell → `shopware-data`; API/Store-API → `shopware-api`; Betreiber-Bedienung → `shopware-merchant`.

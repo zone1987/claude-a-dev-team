@@ -7,7 +7,7 @@ description: >
   "PHPUnit shopware", "Jest test", "E2E shopware", "Coverage", "Test für Klasse X".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: shopware-phpunit, sw-phpunit-setup, sw-integration-test, sw-unit-test, sw-store-api-test, sw-admin-api-test, sw-test-fixtures, sw-test-builder, sw-mock-repository, sw-mock-system-config, sw-jest-admin, sw-vue-test, sw-jest-storefront, sw-playwright-e2e
+skills: sw-phpunit, sw-javascript, sw-e2e
 ---
 
 # shopware-tester — Test-Spezialist

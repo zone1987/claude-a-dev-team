@@ -1,7 +1,7 @@
-# Shopware 6 — Datenbank-Migration
+# Shopware 6 — Database migration
 
-Schema-Änderungen laufen über `MigrationStep` in `src/Migration/` (bzw. `Migration/V6_7/`). Dateiname/Klasse
-`Migration{Timestamp}{Beschreibung}`; `getCreationTimestamp()` = Unix-Timestamp (eindeutige Reihenfolge).
+Schema changes run through `MigrationStep` in `src/Migration/` (or `Migration/V6_7/`). File name/class
+`Migration{Timestamp}{Description}`; `getCreationTimestamp()` = Unix timestamp (unique ordering).
 
 ```php
 class Migration1700000000FfExample extends MigrationStep
@@ -15,12 +15,12 @@ class Migration1700000000FfExample extends MigrationStep
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
     }
-    public function updateDestructive(Connection $connection): void { /* Spalten/Tabellen droppen */ }
+    public function updateDestructive(Connection $connection): void { /* drop columns/tables */ }
 }
 ```
 
-`update()` = additiv/non-destructive (läuft immer); `updateDestructive()` = löschend (separater, späterer Lauf).
-IDs als `BINARY(16)`, Zeit als `DATETIME(3)`. Ausführen: `bin/console database:migrate --all`.
+`update()` = additive/non-destructive (always runs); `updateDestructive()` = deleting (separate, later run).
+IDs as `BINARY(16)`, time as `DATETIME(3)`. Execute: `bin/console database:migrate --all`.
 
-→ Migration-Patterns & Beispiele: [DATABASE-MIGRATION-MIGRATIONS.md](DATABASE-MIGRATION-MIGRATIONS.md)
-→ Gerüst: [examples/MigrationStep.php](examples/MigrationStep.php)
+→ Migration patterns & examples: [DATABASE-MIGRATION-MIGRATIONS.md](DATABASE-MIGRATION-MIGRATIONS.md)
+→ Scaffold: [examples/MigrationStep.php](examples/MigrationStep.php)

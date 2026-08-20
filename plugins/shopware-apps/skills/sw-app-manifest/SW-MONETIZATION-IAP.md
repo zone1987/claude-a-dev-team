@@ -1,12 +1,12 @@
 # Shopware In-App Purchases (IAP)
 
-Ab **Shopware 6.6.9.0**. Ermöglicht, bestimmte Features hinter einer Paywall zu sperren — innerhalb derselben Extension.
+From **Shopware 6.6.9.0** onwards. Allows locking specific features behind a paywall — within the same extension.
 
-## IAP-Kauf auslösen (Meteor Admin SDK)
+## Triggering an IAP purchase (Meteor Admin SDK)
 
 ```vue
 <template>
-  <mt-button @click="onClick">Feature kaufen</mt-button>
+  <mt-button @click="onClick">Buy feature</mt-button>
 </template>
 
 <script setup>
@@ -18,13 +18,13 @@ function onClick() {
 </script>
 ```
 
-Checkout-Prozess wird von Shopware bereitgestellt. Button anzeigen/verbergen liegt beim Entwickler.
+The checkout process is provided by Shopware. Showing/hiding the button is up to the developer.
 
-## Aktive IAPs prüfen
+## Checking active IAPs
 
-IAP-JWT kommt in jedem Request als:
-- GET: Query-Parameter `in-app-purchases`
-- POST: Request-Body `source.inAppPurchases`
+The IAP JWT arrives with every request as:
+- GET: query parameter `in-app-purchases`
+- POST: request body `source.inAppPurchases`
 
 ### PHP (Symfony/app-bundle)
 
@@ -46,16 +46,16 @@ import { jwtVerify, createRemoteJWKSet } from 'jose';
 
 const JWKS = createRemoteJWKSet(new URL('https://api.shopware.com/inappfeatures/jwks'));
 const { payload } = await jwtVerify(token, JWKS);
-// payload enthält Liste gekaufter IAP-Identifier
+// payload contains the list of purchased IAP identifiers
 ```
 
-## Monetarisierungsmodelle
+## Monetization models
 
-| Modell | Beschreibung |
+| Model | Description |
 |---|---|
-| **Paid Extension** | Einmalkauf oder Subscription im Shopware Store (via Shopware Account) |
-| **In-App Purchases** | Features einzeln kaufbar innerhalb der Extension |
-| **Commission-based** | Externe Service-Integration mit Transaktions-Gebühren → STP-Vertrag nötig |
+| **Paid Extension** | One-off purchase or subscription in the Shopware Store (via Shopware Account) |
+| **In-App Purchases** | Features purchasable individually within the extension |
+| **Commission-based** | External service integration with transaction fees → STP agreement required |
 
-Alle monetarisierten Extensions müssen Shopware Quality Guidelines erfüllen.
-Details und IAP-Gateway-Events: `SW-MONETIZATION-IAP-MONETIZATION-IAP.md`.
+All monetized extensions must meet the Shopware Quality Guidelines.
+Details and IAP gateway events: `SW-MONETIZATION-IAP-MONETIZATION-IAP.md`.

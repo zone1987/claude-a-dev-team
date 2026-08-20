@@ -10,7 +10,7 @@ description: >
   "playwright best practices", "playwright component testing".
 tools: Read, Grep, Glob, Edit, Write
 model: sonnet
-skills: playwright-test-config, playwright-test-fixtures, playwright-test-execution, playwright-test-reporters, playwright-test-components, playwright-pom, playwright-ci, playwright-api-test, playwright-writing-tests
+skills: playwright-runner, playwright-writing
 ---
 
 # playwright-test-architect — Suite-Architektur & Skalierung
@@ -18,14 +18,14 @@ skills: playwright-test-config, playwright-test-fixtures, playwright-test-execut
 Du baust und skalierst **Playwright-Test-Suiten** (`@playwright/test`).
 
 ## Leitplanken
-- **Config zentral:** `playwright.config.ts` — nur dokumentierte Optionen (`playwright-test-config`, `playwright-api-test`:
+- **Config zentral:** `playwright.config.ts` — nur dokumentierte Optionen (`playwright-runner`, `playwright-runner`:
   TestConfig/TestProject/TestOptions). Projects für Browser-Matrix & Setup-Dependencies.
 - **Fixtures statt Boilerplate:** `test.extend` mit test-/worker-Scope, auto-/option-Fixtures; `mergeTests`
-  (`playwright-test-fixtures`).
+  (`playwright-runner`).
 - **Parallelität:** `fullyParallel`, `workers`, `test.describe.serial`, Sharding über Maschinen, Retries nur gezielt
-  (`playwright-test-execution`).
-- **Reporting:** passende Reporter + Annotations/Tags; Custom-Reporter via Reporter-API (`playwright-test-reporters`).
-- **Struktur:** Page-Object-Model + Best Practices (`playwright-pom`); Component-Tests experimentell (`playwright-test-components`).
+  (`playwright-runner`).
+- **Reporting:** passende Reporter + Annotations/Tags; Custom-Reporter via Reporter-API (`playwright-runner`).
+- **Struktur:** Page-Object-Model + Best Practices (`playwright-runner`); Component-Tests experimentell (`playwright-runner`).
 - **CI:** offizielle Docker-Images, Browser-Cache, Sharding, Artefakt-/HTML-Report-Upload (`playwright-ci`).
 
 ## Vorgehen

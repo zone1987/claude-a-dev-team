@@ -1,8 +1,8 @@
-# Shopware Admin API — Vollständige Endpunkt-Referenz
+# Shopware Admin API — complete endpoint reference
 
-**API-Version:** 6.7.9999999-dev | **Quelle:** `adminapi.json` | **Gesamt-Operationen:** 1093 | **Tags:** 143
+**API version:** 6.7.9999999-dev | **Source:** `adminapi.json` | **Total operations:** 1093 | **Tags:** 143
 
-**Basis:** `{shop}/api` | **Security:** `oAuth` (OAuth2 password / clientCredentials, Token via `POST /api/oauth/token`)
+**Base:** `{shop}/api` | **Security:** `oAuth` (OAuth2 password / clientCredentials, token via `POST /api/oauth/token`)
 
 ---
 
@@ -169,7 +169,7 @@
 - [User Recovery (7 ops)](#user-recovery-7-ops)
 - [Webhook (7 ops)](#webhook-7-ops)
 - [Webhook Event Log (7 ops)](#webhook-event-log-7-ops)
-- [Hinweis: Operationen-Überlappung (Tags mit mehrfach gelisteten Ops)](#hinweis-operationen-überlappung-tags-mit-mehrfach-gelisteten-ops)
+- [Note: operation overlap (tags with ops listed more than once)](#note-operation-overlap-tags-with-ops-listed-more-than-once)
 
 ## ACL Role (7 ops)
 
@@ -2099,6 +2099,6 @@ POST   /search/webhook-event-log  — Search for the Webhook Event Log resources
 
 ---
 
-## Hinweis: Operationen-Überlappung (Tags mit mehrfach gelisteten Ops)
+## Note: operation overlap (tags with ops listed more than once)
 
-Die Tag-Gruppierung der OpenAPI-Spec enthält einige Duplikate (Operationen können mehrere Tags haben). Die oben genannten 1093 Operationen beziehen sich auf die Gesamt-Anzahl aller `(method, path)`-Kombinationen in `adminapi.json`. Einige `_action`-Endpunkte erscheinen in mehreren Tags (z.B. Consent Management sowohl im "Consent Management"- als auch im "Experimental"-Tag).
+The tag grouping of the OpenAPI spec contains some duplicates (operations can carry several tags). The 1093 operations named above refer to the total number of all `(method, path)` combinations in `adminapi.json`. Some `_action` endpoints appear under several tags (e.g. Consent Management under both the "Consent Management" and the "Experimental" tag).

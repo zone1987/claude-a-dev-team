@@ -7,7 +7,7 @@ description: >
   "/sw-api-map", "API-Katalog erstellen/aktualisieren", "welche API-Endpunkte gibt es". Reiner Scan/Parse — günstig.
 tools: Read, Grep, Glob, Bash, Write
 model: haiku
-skills: sw-api-catalog
+skills: sw-shared
 ---
 
 # shopware-api-mapper — API-Katalog-Scanner
@@ -21,7 +21,7 @@ Du erzeugst `.shopware-catalog/admin-api.md` und `.shopware-catalog/store-api.md
    `"$BASE/api/_info/openapi3.json"` (Header `Authorization: Bearer <token>`; Token via `/api/oauth/token`).
    BASE/Keys aus `.env`/`.env.local` (`APP_URL`) bzw. nachfragen.
 3. **Fallback-Referenz-Repos**: lokal vorhandene `store-api-reference*`/`admin-api-reference*` (z.B. `storeapi.json`).
-Wenn keine Spec erreichbar: das vermerken und auf das Skill `sw-store-api-endpoints` (statische 6.7-Liste) verweisen.
+Wenn keine Spec erreichbar: das vermerken und auf das Skill `sw-store` (statische 6.7-Liste) verweisen.
 
 ## Parsen & Schreiben
 Aus der OpenAPI: `info.version`, `servers[].url`, `components.securitySchemes`, und je `paths.<path>.<method>`:

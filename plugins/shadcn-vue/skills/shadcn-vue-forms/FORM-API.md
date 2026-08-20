@@ -3,7 +3,7 @@
 vee-validate API: https://vee-validate.logaretm.com/v4/api/
 Zod API: https://zod.dev
 
-## Anatomie
+## Anatomy
 
 ```vue
 <template>
@@ -12,7 +12,7 @@ Zod API: https://zod.dev
       <FormItem>
         <FormLabel />
         <FormControl>
-          <!-- Input-Komponente oder natives input -->
+          <!-- Input component or native input -->
         </FormControl>
         <FormDescription />
         <FormMessage />
@@ -22,60 +22,60 @@ Zod API: https://zod.dev
 </template>
 ```
 
-## Sub-Komponenten
+## Sub-Components
 
-| Komponente | Herkunft | Beschreibung |
+| Component | Origin | Description |
 |---|---|---|
-| `Form` | vee-validate (re-export) | Form-Root mit Validierungsschema |
-| `FormField` | vee-validate `Field` (re-export) | Scoped-Slot fuer Feldkontext |
-| `FormFieldArray` | vee-validate `FieldArray` (re-export) | Fuer Arrays von Feldern |
-| `FormItem` | shadcn-vue | Behaelter, stellt eindeutige ID via Injection bereit |
-| `FormLabel` | shadcn-vue | Label, verbindet sich automatisch mit FormItem-ID |
-| `FormControl` | shadcn-vue | Slot-Wrapper, setzt ARIA-Attribute automatisch |
-| `FormDescription` | shadcn-vue | Hilfetext (aria-describedby) |
-| `FormMessage` | shadcn-vue | Fehlermeldung (vee-validate ErrorMessage) |
+| `Form` | vee-validate (re-export) | Form root with validation schema |
+| `FormField` | vee-validate `Field` (re-export) | Scoped slot for field context |
+| `FormFieldArray` | vee-validate `FieldArray` (re-export) | For arrays of fields |
+| `FormItem` | shadcn-vue | Container, provides a unique ID via injection |
+| `FormLabel` | shadcn-vue | Label, links itself automatically to the FormItem ID |
+| `FormControl` | shadcn-vue | Slot wrapper, sets ARIA attributes automatically |
+| `FormDescription` | shadcn-vue | Help text (aria-describedby) |
+| `FormMessage` | shadcn-vue | Error message (vee-validate ErrorMessage) |
 
 ## FormField — Scoped Slot Props
 
-| Prop | Beschreibung |
+| Prop | Description |
 |---|---|
-| `componentField` | v-bind-Objekt fuer shadcn-Komponenten (modelValue + onChange) |
-| `field` | Objekt fuer native Inputs (value + onInput + onBlur) |
-| `value` | Aktueller Feldwert |
-| `handleChange` | Change-Handler-Funktion |
-| `meta` | Feldzustand (valid, dirty, touched) |
-| `errors` | Fehlerliste |
+| `componentField` | v-bind object for shadcn components (modelValue + onChange) |
+| `field` | Object for native inputs (value + onInput + onBlur) |
+| `value` | Current field value |
+| `handleChange` | Change handler function |
+| `meta` | Field state (valid, dirty, touched) |
+| `errors` | Error list |
 
 ## useFormField — Composable
 
-Gibt IDs und Feldstatus fuer eigene Komponenten zurueck:
+Returns IDs and field state for your own components:
 
 ```ts
 const {
-  id,              // Einzel-ID
-  name,            // Feldname
+  id,              // single ID
+  name,            // field name
   formItemId,      // `${id}-form-item`
   formDescriptionId, // `${id}-form-item-description`
   formMessageId,   // `${id}-form-item-message`
-  error,           // errorMessage aus vee-validate
+  error,           // errorMessage from vee-validate
   valid,           // computed boolean
   isDirty,         // computed boolean
   isTouched,       // computed boolean
 } = useFormField()
 ```
 
-Muss innerhalb von `<FormField>` (vee-validate `FieldContextKey`) und `<FormItem>` (FORM_ITEM_INJECTION_KEY) verwendet werden.
+Must be used inside `<FormField>` (vee-validate `FieldContextKey`) and `<FormItem>` (FORM_ITEM_INJECTION_KEY).
 
 ## FormControl
 
-Nutzt reka-ui `<Slot>` um ARIA-Attribute auf das erste Kind-Element anzuwenden:
-- `id`: automatisch gesetzt
-- `aria-describedby`: FormDescription-ID (+ FormMessage-ID wenn Fehler vorhanden)
-- `aria-invalid`: true wenn Fehler vorhanden
+Uses the reka-ui `<Slot>` to apply ARIA attributes to the first child element:
+- `id`: set automatically
+- `aria-describedby`: FormDescription ID (+ FormMessage ID if an error is present)
+- `aria-invalid`: true if an error is present
 
-## Checkbox-Sonderfall
+## Checkbox Special Case
 
-Fuer Checkbox/Switch/Radio: `type="checkbox"` in FormField setzen, Wert ueber `value` + `handleChange` binden:
+For checkbox/switch/radio: set `type="checkbox"` on FormField and bind the value via `value` + `handleChange`:
 
 ```vue
 <FormField v-slot="{ value, handleChange }" type="checkbox" name="accepts">

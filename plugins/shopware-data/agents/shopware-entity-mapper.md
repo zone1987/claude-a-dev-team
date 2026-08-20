@@ -7,7 +7,7 @@ description: >
   "welche Entities/Felder gibt es im Projekt". Rein mechanischer Scan — günstig.
 tools: Read, Grep, Glob, Bash, Write
 model: haiku
-skills: sw-entity-catalog
+skills: sw-entity
 ---
 
 # shopware-entity-mapper — Entity-Katalog-Scanner

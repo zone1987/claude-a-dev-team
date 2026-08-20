@@ -1,26 +1,26 @@
-# Sales Agent — Customization (vollständig)
+# Sales Agent — Customization (complete)
 
-> Alle Anpassungen erfolgen **im eigenen Nuxt-Layer**, nie im Default-Layer `sales-agent`.
+> All customizations happen **in your own Nuxt layer**, never in the default layer `sales-agent`.
 
 ## Contents
 
-- [Das Nuxt-Layer-Konzept](#das-nuxt-layer-konzept)
-- [Branding Anpassungen](#branding-anpassungen)
-- [Komponenten Überschreiben](#komponenten-überschreiben)
-- [i18n (Internationalisierung) Anpassen](#i18n-internationalisierung-anpassen)
+- [The Nuxt Layer Concept](#the-nuxt-layer-concept)
+- [Branding Customizations](#branding-customizations)
+- [Overriding Components](#overriding-components)
+- [Customizing i18n (Internationalization)](#customizing-i18n-internationalization)
 
-## Das Nuxt-Layer-Konzept
+## The Nuxt Layer Concept
 
-Sales Agent basiert auf [Nuxt Layers](https://nuxt.com/docs/getting-started/layers).
-Im Quellcode existiert:
+Sales Agent is based on [Nuxt Layers](https://nuxt.com/docs/getting-started/layers).
+The source code contains:
 
-- **`layers/sales-agent/`** — Default-Layer (nicht bearbeiten)
-- **`example/`** — Beispiel-Customization-Layer (umbenennen und anpassen)
+- **`layers/sales-agent/`** — default layer (do not edit)
+- **`example/`** — example customization layer (rename and adapt)
 
-### Eigenen Layer erstellen
+### Creating Your Own Layer
 
-1. `example/`-Layer umbenennen (z.B. `my-brand/`)
-2. In `nuxt.config.ts` importieren:
+1. Rename the `example/` layer (e.g. `my-brand/`)
+2. Import it in `nuxt.config.ts`:
 
 ```ts
 // nuxt.config.ts
@@ -32,11 +32,11 @@ export default defineNuxtConfig({
 
 ---
 
-## Branding Anpassungen
+## Branding Customizations
 
 ### Favicon
 
-Im eigenen Layer `public/`-Ordner anlegen und `favicon.ico` platzieren:
+Create a `public/` folder in your own layer and place `favicon.ico` in it:
 
 ```
 my-brand/
@@ -44,7 +44,7 @@ my-brand/
     favicon.ico
 ```
 
-### Web-Application-Titel
+### Web Application Title
 
 ```js
 // my-brand/nuxt.config.ts
@@ -57,22 +57,22 @@ export default defineNuxtConfig({
 })
 ```
 
-### Theme-Farben (Meteor Component Library)
+### Theme Colors (Meteor Component Library)
 
-Sales Agent nutzt die Shopware [Meteor Component Library](https://shopware.design/get-started/installation.html)
-mit einem umfassenden CSS-Variablen-System. Es gibt ein Light-Theme und Dark-Theme.
+Sales Agent uses the Shopware [Meteor Component Library](https://shopware.design/get-started/installation.html)
+with a comprehensive CSS variable system. There is a light theme and a dark theme.
 
-**Farben überschreiben:**
+**Overriding colors:**
 
 ```css
 /* my-brand/main.css */
 :root {
   --color-interaction-primary-default: #80A1BA;
-  /* Weitere CSS-Variablen nach Bedarf */
+  /* Further CSS variables as needed */
 }
 ```
 
-**CSS-Datei in Nuxt einbinden:**
+**Including the CSS file in Nuxt:**
 
 ```javascript
 // my-brand/nuxt.config.ts
@@ -81,38 +81,38 @@ export default defineNuxtConfig({
 })
 ```
 
-Verfügbare CSS-Variablen:
+Available CSS variables:
 - [Light Theme](https://github.com/shopware/meteor/blob/main/packages/tokens/deliverables/administration/light.css)
 - [Dark Theme](https://github.com/shopware/meteor/blob/main/packages/tokens/deliverables/administration/dark.css)
 
 ---
 
-## Komponenten Überschreiben
+## Overriding Components
 
-### Beispiel: Login-Seite anpassen
+### Example: Customizing the Login Page
 
-1. Original-Komponente im Default-Layer lokalisieren:
+1. Locate the original component in the default layer:
    ```
    layers/sales-agent/pages/auth/login.vue
    ```
 
-2. Datei in den eigenen Layer kopieren (gleiche Verzeichnisstruktur):
+2. Copy the file into your own layer (same directory structure):
    ```
    my-brand/pages/auth/login.vue
    ```
 
-3. Komponente nach Bedarf anpassen.
+3. Adapt the component as needed.
 
-Die App ignoriert `login.vue` aus dem Default-Layer und verwendet ausschließlich
-die Version aus dem eigenen Layer.
+The app ignores `login.vue` from the default layer and uses exclusively
+the version from your own layer.
 
-**Alle verfügbaren Komponenten** befinden sich unter `~/layers/sales-agent`.
+**All available components** are located under `~/layers/sales-agent`.
 
 ---
 
-## i18n (Internationalisierung) Anpassen
+## Customizing i18n (Internationalization)
 
-### i18n in `nuxt.config.ts` konfigurieren
+### Configuring i18n in `nuxt.config.ts`
 
 ```js
 // my-brand/nuxt.config.ts
@@ -138,15 +138,15 @@ export default defineNuxtConfig({
 })
 ```
 
-### Übersetzungsdateien anlegen
+### Creating Translation Files
 
 ```
 my-brand/
   i18n/
     src/
       langs/
-        en-GB.ts   ← nur überschriebene Keys
+        en-GB.ts   ← only overridden keys
         de-DE.ts
 ```
 
-Struktur des `example`-Layers als Vorlage verwenden.
+Use the structure of the `example` layer as a template.

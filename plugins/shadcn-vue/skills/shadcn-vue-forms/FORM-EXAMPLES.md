@@ -1,17 +1,17 @@
-# Form — Beispiele
+# Form — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/form/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/form/`
 
 ## Contents
 
 - [Basic Form (FormBasic.vue)](#basic-form-formbasicvue)
-- [Form mit Checkbox (FormWithCheckbox.vue)](#form-mit-checkbox-formwithcheckboxvue)
-- [Schema-Definition](#schema-definition)
-- [Composition API Ansatz (ohne Form-Komponente)](#composition-api-ansatz-ohne-form-komponente)
+- [Form with Checkbox (FormWithCheckbox.vue)](#form-with-checkbox-formwithcheckboxvue)
+- [Schema Definition](#schema-definition)
+- [Composition API Approach (without Form Component)](#composition-api-approach-without-form-component)
 
 ## Basic Form (FormBasic.vue)
 
-Vollstaendiges Formular mit Zod-Schema, useForm, zwei Feldern (username, email) und Submit-Handling.
+Complete form with Zod schema, useForm, two fields (username, email) and submit handling.
 
 ```vue
 <script setup lang="ts">
@@ -82,9 +82,9 @@ const onSubmit = form.handleSubmit((values) => {
 </template>
 ```
 
-## Form mit Checkbox (FormWithCheckbox.vue)
+## Form with Checkbox (FormWithCheckbox.vue)
 
-Formular mit Text-Input und zwei Checkbox-Feldern. Zeigt type="checkbox"-Pattern und Pflichtfeld-Validierung.
+Form with a text input and two checkbox fields. Shows the type="checkbox" pattern and required-field validation.
 
 ```vue
 <script setup lang="ts">
@@ -174,13 +174,13 @@ const onSubmit = form.handleSubmit((values) => {
 </template>
 ```
 
-## Schema-Definition
+## Schema Definition
 
 ```ts
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 
-// toTypedSchema macht Formularwerte typgeprueft (Input- und Output-Typen)
+// toTypedSchema makes form values type-checked (input and output types)
 const formSchema = toTypedSchema(z.object({
   username: z.string().min(2).max(50),
   email: z.string().email(),
@@ -188,7 +188,7 @@ const formSchema = toTypedSchema(z.object({
 }))
 ```
 
-## Composition API Ansatz (ohne Form-Komponente)
+## Composition API Approach (without Form Component)
 
 ```ts
 import { useForm } from 'vee-validate'
@@ -227,7 +227,7 @@ Template:
 </form>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/form/FormBasic.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/form/FormWithCheckbox.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/form.md`

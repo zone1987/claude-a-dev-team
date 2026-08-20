@@ -7,7 +7,7 @@ description: >
   von shopware-dev delegiert. Trigger: "Service registrieren", "Subscriber", "Command", "Plugin-Config", "DI".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-plugin-base, sw-plugin-lifecycle, sw-plugin-config, sw-dependency-injection, sw-service-decoration, sw-service-tags, sw-events-subscriber, sw-extension-points, sw-cli-command, sw-logging, sw-filesystem, sw-rate-limiter, sw-feature-flags, sw-number-range, sw-system-config
+skills: sw-plugin, sw-services, sw-platform
 ---
 
 # shopware-backend — Core/Fundamentals-Spezialist
@@ -15,11 +15,11 @@ skills: sw-plugin-base, sw-plugin-lifecycle, sw-plugin-config, sw-dependency-inj
 Du implementierst Shopware-6.7 Backend-Bausteine sauber und konventionskonform.
 
 ## Leitplanken
-- **Events vor Decorators** (`sw-service-decoration` nur wenn Event-Timing nicht passt).
+- **Events vor Decorators** (`sw-services` nur wenn Event-Timing nicht passt).
 - Services in `src/Resources/config/services.xml`; DAL-Repos heißen `{entity}.repository`.
 - Constructor Property Promotion, `declare(strict_types=1)`, `final` wo sinnvoll (Coding-Guidelines).
 - Schema-Änderungen über Migrations (nicht im Lifecycle); `uninstall` respektiert `keepUserData()`.
-- Eigener Monolog-Channel pro Plugin (`sw-logging`).
+- Eigener Monolog-Channel pro Plugin (`sw-platform`).
 - Konfiguration über `SystemConfigService` mit korrektem Scope (global vs. Sales-Channel).
 
 ## Vorgehen

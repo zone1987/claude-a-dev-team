@@ -1,51 +1,51 @@
 ---
 title: App Server Public Directory & .htaccess
 impact: HIGH
-impactDescription: Jeder PHP/Symfony App Server benötigt eine .htaccess im public-Verzeichnis, damit Apache-Anfragen korrekt an den Front Controller (index.php) weitergeleitet werden.
+impactDescription: Every PHP/Symfony app server needs an .htaccess in the public directory so that Apache requests are forwarded correctly to the front controller (index.php).
 tags: sdk, php, symfony, app-server, apache, htaccess, public
 ---
 
-## .htaccess im public-Verzeichnis
+## .htaccess in the public directory
 
-Jeder Shopware App Server auf Basis von PHP/Symfony **MUSS** eine `.htaccess`-Datei im `public/`-Verzeichnis enthalten.
+Every Shopware app server based on PHP/Symfony **MUST** contain an `.htaccess` file in the `public/` directory.
 
-### Warum ist die .htaccess erforderlich?
+### Why is the .htaccess required?
 
-- Apache leitet alle Anfragen an `public/index.php` (den Symfony Front Controller) weiter
-- Ohne `.htaccess` funktioniert das URL-Routing nicht – alle Webhook- und API-Endpunkte sind nicht erreichbar
-- Die Datei ermöglicht das Hosting unter einem Subpfad (z. B. `example.com/subpath`)
-- Der `HTTP_AUTHORIZATION`-Header (für HMAC-Verifizierung benötigt) wird korrekt weitergereicht
+- Apache forwards all requests to `public/index.php` (the Symfony front controller)
+- Without `.htaccess`, URL routing does not work – all webhook and API endpoints are unreachable
+- The file enables hosting under a subpath (e.g. `example.com/subpath`)
+- The `HTTP_AUTHORIZATION` header (needed for HMAC verification) is passed through correctly
 
-### Pflichtstruktur
+### Required structure
 
 ```
 my-app-server/
 ├── public/
-│   ├── .htaccess        ← PFLICHT für Apache
+│   ├── .htaccess        ← REQUIRED for Apache
 │   └── index.php
 ├── src/
 ├── config/
 └── composer.json
 ```
 
-### Beispieldatei
+### Example file
 
-Siehe `examples/public.htaccess` für die vollständige, kommentierte Referenzdatei.
+See `examples/public.htaccess` for the complete, commented reference file.
 
-### Wichtige Funktionen der .htaccess
+### Important functions of the .htaccess
 
-| Direktive | Zweck |
+| Directive | Purpose |
 |-----------|-------|
-| `DirectoryIndex index.php` | Front Controller als Standard-Index |
-| `Options -MultiViews` | Verhindert ungewolltes Content Negotiation |
-| `RewriteRule .* - [E=BASE:%1]` | Ermittelt dynamisch den RewriteBase-Pfad (Subpfad-Unterstützung) |
-| `E=HTTP_AUTHORIZATION:%0` | Stellt Authorization-Header sicher (Apache entfernt ihn sonst) |
-| `R=301` für `/index.php/` | Entfernt `/index.php/` aus URLs |
-| `RewriteCond %{REQUEST_FILENAME} !-f` | Leitet nur nicht-existierende Dateien weiter |
+| `DirectoryIndex index.php` | Front controller as the default index |
+| `Options -MultiViews` | Prevents unwanted content negotiation |
+| `RewriteRule .* - [E=BASE:%1]` | Determines the RewriteBase path dynamically (subpath support) |
+| `E=HTTP_AUTHORIZATION:%0` | Ensures the Authorization header (Apache strips it otherwise) |
+| `R=301` for `/index.php/` | Removes `/index.php/` from URLs |
+| `RewriteCond %{REQUEST_FILENAME} !-f` | Forwards only non-existing files |
 
-### Nginx-Alterative
+### Nginx alternative
 
-Bei Nginx-Hosting entfällt die `.htaccess`. Stattdessen wird in der Nginx-Konfiguration direkt ein `try_files`-Block eingesetzt:
+With Nginx hosting the `.htaccess` is not needed. Instead, a `try_files` block is used directly in the Nginx configuration:
 
 ```nginx
 location / {
@@ -53,9 +53,9 @@ location / {
 }
 ```
 
-### Checkliste beim App Server Setup
+### Checklist for the app server setup
 
-- [ ] `public/.htaccess` existiert
-- [ ] `public/index.php` existiert (Symfony Front Controller)
-- [ ] Apache hat `mod_rewrite` aktiviert
-- [ ] `AllowOverride All` ist für das Verzeichnis gesetzt
+- [ ] `public/.htaccess` exists
+- [ ] `public/index.php` exists (Symfony front controller)
+- [ ] Apache has `mod_rewrite` enabled
+- [ ] `AllowOverride All` is set for the directory

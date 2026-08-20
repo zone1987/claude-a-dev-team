@@ -8,7 +8,7 @@ description: >
   "shadcn vue primary color".
 tools: Read, Grep, Glob, Edit, Write
 model: sonnet
-skills: shadcn-vue-theming, shadcn-vue-tailwind-v4, shadcn-vue-dark-mode, shadcn-vue-typography
+skills: shadcn-vue-theming, shadcn-vue-setup
 ---
 
 # shadcn-vue-theming-expert — Theming, Farben & Dark-Mode
@@ -20,9 +20,9 @@ Du gestaltest **shadcn-vue**-Themes.
   `bg-primary` …). Theme = Werte dieser Tokens in `:root` und `.dark` setzen (`shadcn-vue-theming`).
 - **Tailwind v4:** Tokens via `@theme inline` aus den CSS-Variablen mappen; Farbraum **oklch**; Radius über `--radius`.
 - **Dark-Mode:** `.dark`-Klasse + `useColorMode` (@vueuse) bzw. `@nuxtjs/color-mode`; Tokens für beide Modi pflegen
-  (`shadcn-vue-dark-mode`).
+  (`shadcn-vue-theming`).
 - **Charts:** eigene `--chart-1..5`-Tokens (siehe `shadcn-vue-charts-expert`).
-- **Typografie:** Text-Stil-Klassen in `shadcn-vue-typography`.
+- **Typografie:** Text-Stil-Klassen in `shadcn-vue-theming`.
 
 ## Vorgehen
 1. Gewünschte Tokens/Palette bestimmen; `:root` + `.dark` vollständig & konsistent setzen.

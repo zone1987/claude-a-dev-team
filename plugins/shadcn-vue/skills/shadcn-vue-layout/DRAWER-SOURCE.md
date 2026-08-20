@@ -1,6 +1,6 @@
-# Drawer — Quellcode
+# Drawer — Source Code
 
-Alle Dateien aus `registry/new-york-v4/ui/drawer/`.
+All files from `registry/new-york-v4/ui/drawer/`.
 
 ## Contents
 
@@ -260,5 +260,5 @@ export { default as DrawerTitle } from "./DrawerTitle.vue"
 export { default as DrawerTrigger } from "./DrawerTrigger.vue"
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/new-york-v4/ui/drawer/`

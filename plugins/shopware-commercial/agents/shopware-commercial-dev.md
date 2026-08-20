@@ -7,7 +7,7 @@ description: >
   "Advanced Search entwickeln", "Migration Assistant", "Digital Sales Rooms", "Sales Agent App", "Nexus".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-commercial-overview
+skills: sw-features
 ---
 
 # shopware-commercial-dev — Commercial-Extensions-Spezialist (Dev)

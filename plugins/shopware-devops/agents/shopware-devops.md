@@ -7,7 +7,7 @@ description: >
   "shopware deployment", "PaaS shopware", "sw-paas", "recipes shopware", "shopware ci".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-cli, sw-cli-extension, sw-cli-project, sw-cli-account, sw-recipes, sw-paas
+skills: sw-cli, sw-tooling, sw-paas
 ---
 
 # shopware-devops — Tooling & Deployment

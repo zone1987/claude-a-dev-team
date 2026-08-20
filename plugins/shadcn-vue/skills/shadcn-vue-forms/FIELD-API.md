@@ -1,76 +1,76 @@
 # Field — API
 
-## Sub-Komponenten
+## Sub-Components
 
-| Komponente | Element | Beschreibung |
+| Component | Element | Description |
 |---|---|---|
-| `Field` | `<div role="group">` | Root-Container mit Orientierungsvarianten |
-| `FieldGroup` | `<div>` | Gruppiert mehrere Fields (`@container/field-group`) |
-| `FieldContent` | `<div>` | Bereich fuer Label + Description bei Checkboxen/Radios |
-| `FieldLabel` | `<Label>` | Zugaengliches Label (wraps reka-ui Label) |
-| `FieldTitle` | `<div>` | Nicht-label Title-Text (fuer FieldContent) |
-| `FieldDescription` | `<p>` | Hilfetext unter dem Eingabefeld |
-| `FieldError` | `<div role="alert">` | Fehlermeldung(en), dedupliziert |
-| `FieldLegend` | `<legend>` | Legend fuer `<fieldset>` (FieldSet) |
-| `FieldSet` | `<fieldset>` | Native fieldset fuer Radio-/Checkbox-Gruppen |
-| `FieldSeparator` | `<div>` | Horizontaler Trenner innerhalb einer FieldGroup |
+| `Field` | `<div role="group">` | Root container with orientation variants |
+| `FieldGroup` | `<div>` | Groups multiple Fields (`@container/field-group`) |
+| `FieldContent` | `<div>` | Area for label + description with checkboxes/radios |
+| `FieldLabel` | `<Label>` | Accessible label (wraps reka-ui Label) |
+| `FieldTitle` | `<div>` | Non-label title text (for FieldContent) |
+| `FieldDescription` | `<p>` | Help text below the input field |
+| `FieldError` | `<div role="alert">` | Error message(s), deduplicated |
+| `FieldLegend` | `<legend>` | Legend for `<fieldset>` (FieldSet) |
+| `FieldSet` | `<fieldset>` | Native fieldset for radio/checkbox groups |
+| `FieldSeparator` | `<div>` | Horizontal separator inside a FieldGroup |
 
 ## Field
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `orientation` | `"vertical" \| "horizontal" \| "responsive"` | `"vertical"` | Layout-Richtung |
+| `orientation` | `"vertical" \| "horizontal" \| "responsive"` | `"vertical"` | Layout direction |
 | `class` | `string` | - | - |
 
-### Daten-Attribute (data-*)
+### Data Attributes (data-*)
 
-| Attribut | Beschreibung |
+| Attribute | Description |
 |---|---|
-| `data-invalid` | Markiert Field als ungueltig (Farbe auf destructive) |
-| `data-disabled` | Markiert Field als deaktiviert (opacity-50 auf Label) |
+| `data-invalid` | Marks the field as invalid (color set to destructive) |
+| `data-disabled` | Marks the field as disabled (opacity-50 on label) |
 
-### Orientierungsvarianten
+### Orientation Variants
 
-| Variante | Verhalten |
+| Variant | Behavior |
 |---|---|
-| `vertical` (Standard) | Elemente vertikal gestapelt, volle Breite |
-| `horizontal` | Label links (`flex-auto`), Control rechts (`items-center`) |
-| `responsive` | Vertikal per Default, horizontal ab `@md` (Container Query) |
+| `vertical` (default) | Elements stacked vertically, full width |
+| `horizontal` | Label left (`flex-auto`), control right (`items-center`) |
+| `responsive` | Vertical by default, horizontal from `@md` (container query) |
 
-Hinweis: `responsive` nutzt `@md/field-group` Container Query — FieldGroup muss vorhanden sein.
+Note: `responsive` uses the `@md/field-group` container query — a FieldGroup must be present.
 
 ## FieldError
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `errors` | `Array<string \| { message: string \| undefined } \| undefined>` | Fehlermeldungen (Zod, Valibot, ArkType kompatibel) |
+| `errors` | `Array<string \| { message: string \| undefined } \| undefined>` | Error messages (Zod, Valibot, ArkType compatible) |
 | `class` | `string` | - |
 
-Verhalten:
-- Kein `errors`-Array: rendert `<slot>` (manueller Inhalt)
-- 1 unique Fehler: inline Text
-- Mehrere unique Fehler: `<ul>` Liste
-- Duplikate werden automatisch gefiltert
+Behavior:
+- No `errors` array: renders `<slot>` (manual content)
+- 1 unique error: inline text
+- Multiple unique errors: `<ul>` list
+- Duplicates are filtered automatically
 
 ## FieldLegend
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
 | `variant` | `"legend" \| "label"` | - | `legend`: text-base, `label`: text-sm |
 | `class` | `string` | - | - |
 
 ## FieldLabel (Choice Card Pattern)
 
-Wenn FieldLabel ein `<Field>` als Kind enthaelt, rendert es als "Choice Card":
+When FieldLabel contains a `<Field>` as a child, it renders as a "choice card":
 - `w-full flex-col rounded-md border`
-- `has-data-[state=checked]:bg-primary/5 border-primary` wenn ausgewaehlt
+- `has-data-[state=checked]:bg-primary/5 border-primary` when selected
 
-Nutzung: Checkbox/Radio innerhalb eines FieldLabel fuer klickbaren Card-Style.
+Usage: checkbox/radio inside a FieldLabel for a clickable card style.
 
 ## FieldSeparator
 
-Optionaler Slot fuer Text-Label in der Mitte der Trennlinie (CSS-Overlay-Technik).
+Optional slot for a text label in the middle of the separator line (CSS overlay technique).
 
 ```vue
-<FieldSeparator>oder</FieldSeparator>
+<FieldSeparator>or</FieldSeparator>
 ```

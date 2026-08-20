@@ -1,21 +1,21 @@
-# shadcn-vue Pie / Donut Charts — Vollstaendiger Quellcode
+# shadcn-vue Pie / Donut Charts — Complete source code
 
-Alle 4 Varianten. Nutzen `VisDonut + VisSingleContainer` aus `@unovis/vue`,
-`Donut` aus `@unovis/ts`. Tooltip ueber `ChartTooltip :triggers` (kein ChartCrosshair!).
+All 4 variants. They use `VisDonut + VisSingleContainer` from `@unovis/vue` and
+`Donut` from `@unovis/ts`. Tooltip via `ChartTooltip :triggers` (no ChartCrosshair!).
 
 ---
 
 ## Contents
 
-- [ChartPieSimple.vue — Einfaches Pie-Chart (arc-width=0)](#chartpiesimplevue-einfaches-pie-chart-arc-width0)
-- [ChartPieDonut.vue — Donut Chart (arc-width=30)](#chartpiedonutvue-donut-chart-arc-width30)
-- [ChartPieDonutText.vue — Donut mit Zahl in der Mitte](#chartpiedonuttextvue-donut-mit-zahl-in-der-mitte)
-- [ChartPieStacked.vue — Gestapelte Donuts (2 konzentrische Ringe)](#chartpiestackedvue-gestapelte-donuts-2-konzentrische-ringe)
-- [VisDonut wichtige Props](#visdonut-wichtige-props)
+- [ChartPieSimple.vue — Simple pie chart (arc-width=0)](#chartpiesimplevue--simple-pie-chart-arc-width0)
+- [ChartPieDonut.vue — Donut chart (arc-width=30)](#chartpiedonutvue--donut-chart-arc-width30)
+- [ChartPieDonutText.vue — Donut with a number in the center](#chartpiedonuttextvue--donut-with-a-number-in-the-center)
+- [ChartPieStacked.vue — Stacked donuts (2 concentric rings)](#chartpiestackedvue--stacked-donuts-2-concentric-rings)
+- [Important VisDonut props](#important-visdonut-props)
 
-## ChartPieSimple.vue — Einfaches Pie-Chart (arc-width=0)
+## ChartPieSimple.vue — Simple pie chart (arc-width=0)
 
-`arc-width: 0` = voller Kreis (kein Donut-Loch).
+`arc-width: 0` = full circle (no donut hole).
 
 ```vue
 <script setup lang="ts">
@@ -81,9 +81,9 @@ const chartConfig = {
 
 ---
 
-## ChartPieDonut.vue — Donut Chart (arc-width=30)
+## ChartPieDonut.vue — Donut chart (arc-width=30)
 
-Identisch mit ChartPieSimple, nur `arc-width: 30` statt `0`.
+Identical to ChartPieSimple, only `arc-width: 30` instead of `0`.
 
 ```vue
 <VisDonut
@@ -95,10 +95,10 @@ Identisch mit ChartPieSimple, nur `arc-width: 30` statt `0`.
 
 ---
 
-## ChartPieDonutText.vue — Donut mit Zahl in der Mitte
+## ChartPieDonutText.vue — Donut with a number in the center
 
-Unterschied: `computed(totalVisitors)`, CSS-Vars fuer Schriftgroesse/Farbe der Mitte-Beschriftung,
-`central-label` und `central-sub-label` Props am `VisDonut`.
+Difference: `computed(totalVisitors)`, CSS vars for font size/color of the center caption,
+`central-label` and `central-sub-label` props on `VisDonut`.
 
 ```vue
 <script setup lang="ts">
@@ -179,10 +179,10 @@ const totalVisitors = computed(() => chartData.reduce((acc, curr) => acc + curr.
 
 ---
 
-## ChartPieStacked.vue — Gestapelte Donuts (2 konzentrische Ringe)
+## ChartPieStacked.vue — Stacked donuts (2 concentric rings)
 
-Unterschied: 2 separate Datensaetze (desktopData, mobileData), 2 `VisSingleContainer`
-uebereinander positioniert via `position: absolute`. Innerer Ring: `arc-width: 0` + `radius: 50`.
+Difference: 2 separate data sets (desktopData, mobileData), 2 `VisSingleContainer`
+stacked via `position: absolute`. Inner ring: `arc-width: 0` + `radius: 50`.
 
 ```vue
 <script setup lang="ts">
@@ -234,7 +234,7 @@ const chartConfig = {
         :config="chartConfig"
         class="relative mx-auto aspect-square max-h-[250px] [&_[data-vis-single-container]]:!absolute"
       >
-        <!-- Aeusserer Ring: Donut (mobile) -->
+        <!-- Outer ring: donut (mobile) -->
         <VisSingleContainer :margin="{ top: 30, bottom: 30 }">
           <VisDonut
             :data="mobileData"
@@ -248,7 +248,7 @@ const chartConfig = {
             }"
           />
         </VisSingleContainer>
-        <!-- Innerer Kreis: Pie (desktop, radius=50) -->
+        <!-- Inner circle: pie (desktop, radius=50) -->
         <VisSingleContainer :margin="{ top: 30, bottom: 30 }">
           <VisDonut
             :data="desktopData"
@@ -277,14 +277,14 @@ const chartConfig = {
 </template>
 ```
 
-## VisDonut wichtige Props
+## Important VisDonut props
 
-| Prop                   | Beschreibung                                  |
+| Prop                   | Description                                   |
 |------------------------|-----------------------------------------------|
-| `value`                | Funktion: Datenpunkt -> numerischer Wert      |
-| `color`                | Funktion oder String fuer Segmentfarbe        |
-| `arc-width`            | 0 = volles Pie, >0 = Donut-Ringbreite         |
-| `radius`               | Aussenradius in Pixel (fuer stacked)          |
-| `central-label`        | Text in der Mitte des Donuts                  |
-| `central-sub-label`    | Untertext in der Mitte                        |
-| `central-label-offset-y` | Y-Offset des zentralen Labels              |
+| `value`                | Function: data point -> numeric value         |
+| `color`                | Function or string for the segment color      |
+| `arc-width`            | 0 = full pie, >0 = donut ring width           |
+| `radius`               | Outer radius in pixels (for stacked)          |
+| `central-label`        | Text in the center of the donut               |
+| `central-sub-label`    | Subtext in the center                         |
+| `central-label-offset-y` | Y offset of the central label              |

@@ -1,18 +1,18 @@
-# Empty — Beispiele
+# Empty — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/empty/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/empty/`
 
 ## Contents
 
 - [Basic (EmptyBasic.vue)](#basic-emptybasicvue)
-- [Mit Icon (EmptyWithIcon.vue)](#mit-icon-emptywithiconvue)
-- [Mit Rahmen (EmptyWithBorder.vue)](#mit-rahmen-emptywithbordervue)
-- [Mit Hintergrund (EmptyWithMutedBackground.vue)](#mit-hintergrund-emptywithmutedbackgroundvue)
+- [With Icon (EmptyWithIcon.vue)](#with-icon-emptywithiconvue)
+- [With Border (EmptyWithBorder.vue)](#with-border-emptywithbordervue)
+- [With Background (EmptyWithMutedBackground.vue)](#with-background-emptywithmutedbackgroundvue)
 - [In Card (EmptyInCard.vue)](#in-card-emptyincardvue)
 
 ## Basic (EmptyBasic.vue)
 
-Einfacher leerer Zustand ohne Icon, nur mit Titel und Beschreibung.
+Simple empty state without an icon, only with title and description.
 
 ```vue
 <script setup lang="ts">
@@ -47,9 +47,9 @@ import {
 </template>
 ```
 
-## Mit Icon (EmptyWithIcon.vue)
+## With Icon (EmptyWithIcon.vue)
 
-EmptyMedia mit `variant="icon"` fuer einen gestylten Icon-Container.
+EmptyMedia with `variant="icon"` for a styled icon container.
 
 ```vue
 <script setup lang="ts">
@@ -84,9 +84,9 @@ import {
 </template>
 ```
 
-## Mit Rahmen (EmptyWithBorder.vue)
+## With Border (EmptyWithBorder.vue)
 
-`class="border"` auf `Empty` fuer einen sichtbaren Rand.
+`class="border"` on `Empty` for a visible border.
 
 ```vue
 <template>
@@ -106,9 +106,9 @@ import {
 </template>
 ```
 
-## Mit Hintergrund (EmptyWithMutedBackground.vue)
+## With Background (EmptyWithMutedBackground.vue)
 
-`class="bg-muted"` fuer grauen Hintergrund.
+`class="bg-muted"` for a gray background.
 
 ```vue
 <template>
@@ -128,7 +128,7 @@ import {
 
 ## In Card (EmptyInCard.vue)
 
-Empty-State innerhalb einer Card-Komponente mit Icon.
+Empty state inside a Card component with an icon.
 
 ```vue
 <script setup lang="ts">
@@ -167,6 +167,6 @@ import {
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/empty/`
 - `/tmp/shadcn-vue-repo/apps/v4/content/docs/components/empty.md`

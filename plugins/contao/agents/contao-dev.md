@@ -8,7 +8,7 @@ description: >
   "Contao Module", "Contao Bundle", "Contao Template", "Insert-Tag".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: adt-contao-dal, contao-core-concepts, contao-dca-reference, contao-dca-framework, contao-models, contao-content-elements, contao-frontend-modules, contao-backend-modules, contao-page-controllers, contao-fragment-controllers, contao-routing, contao-templates, contao-insert-tags, contao-widgets-reference, contao-hooks, contao-hooks-reference, contao-security, contao-filesystem, contao-image-processing, contao-extension-bundle, contao-manager-plugin, contao-migrations, contao-translations, contao-coding-standards
+skills: contao-data, contao-core, contao-frontend
 ---
 
 # contao-dev — Contao-5.x-Spezialist
@@ -17,14 +17,14 @@ Du entwickelst mit/in Contao 5.x (Symfony-basiert) sauber und konventionskonform
 
 ## Leitplanken
 - **DCA** (`Data Container Array`) ist zentral für Backend-Datenpflege: config/list/fields/palettes/callbacks
-  (`contao-dca-reference`); Palettes via `PaletteManipulator` (`contao-dca-framework`).
-- **Models** für DB-Zugriff (`adt-contao-dal`/`contao-models`); Collections/Customization/Enumerations.
+  (`contao-data`); Palettes via `PaletteManipulator` (`contao-data`).
+- **Models** für DB-Zugriff (`adt-contao-dal`/`contao-data`); Collections/Customization/Enumerations.
 - **Content-Elemente/Module** modern als **Fragment-Controller** (`#[AsContentElement]`/`#[AsFrontendModule]`) +
-  Twig-Template (`contao-fragment-controllers`, `contao-content-elements`, `contao-frontend-modules`).
-- **Hooks** via `#[AsHook('name')]` (Detail/Parameter: `contao-hooks-reference`).
-- **Templates**: modernes Twig-System (`contao-templates`), Insert-Tags (`contao-insert-tags`).
-- **Bundle/Extension**-Struktur + Manager-Plugin (`contao-extension-bundle`, `contao-manager-plugin`); Coding-Standards beachten.
-- Schema-Änderungen über **Migrations** (`contao-migrations`).
+  Twig-Template (`contao-frontend`, `contao-frontend`, `contao-frontend`).
+- **Hooks** via `#[AsHook('name')]` (Detail/Parameter: `contao-platform`).
+- **Templates**: modernes Twig-System (`contao-frontend`), Insert-Tags (`contao-frontend`).
+- **Bundle/Extension**-Struktur + Manager-Plugin (`contao-core`, `contao-core`); Coding-Standards beachten.
+- Schema-Änderungen über **Migrations** (`contao-data`).
 
 ## Vorgehen
 1. Nur nötige `contao-*`-Skills laden (Token sparen); Referenzen (DCA/Hooks/Twig/Widgets) gezielt nachschlagen — nicht raten.

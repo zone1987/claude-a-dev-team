@@ -1,20 +1,20 @@
 # sw-entity-aliases
 
-Das DAL trennt **Storage-Name** (DB-Spalte) von **Property-Name** (PHP-Objekt).
+The DAL separates the **storage name** (DB column) from the **property name** (PHP object).
 
 Details: [ALIASES-DETAIL.md](ALIASES-DETAIL.md)
 
 ## Contents
 
-- [Grundprinzip](#grundprinzip)
-- [SQL-Aliase in Queries](#sql-aliase-in-queries)
-- [Association-Alias](#association-alias)
+- [Basic principle](#basic-principle)
+- [SQL aliases in queries](#sql-aliases-in-queries)
+- [Association alias](#association-alias)
 - [getByStorageName](#getbystoragename)
 - [buildTranslationChain](#buildtranslationchain)
-- [Criteria-Accessor vs. Storage-Name](#criteria-accessor-vs-storage-name)
-- [Entity-Name als Alias-Root](#entity-name-als-alias-root)
+- [Criteria accessor vs. storage name](#criteria-accessor-vs-storage-name)
+- [Entity name as alias root](#entity-name-as-alias-root)
 
-## Grundprinzip
+## Basic principle
 
 ```php
 // IdField('id', 'id')          → storage=id,              property=id
@@ -22,12 +22,12 @@ Details: [ALIASES-DETAIL.md](ALIASES-DETAIL.md)
 // StringField('product_number', 'productNumber') → storage=product_number, property=productNumber
 ```
 
-- `StorageAware::getStorageName()` → DB-Spaltenname
-- `Field::getPropertyName()` → PHP-Propertyname
+- `StorageAware::getStorageName()` → DB column name
+- `Field::getPropertyName()` → PHP property name
 
-## SQL-Aliase in Queries
+## SQL aliases in queries
 
-Der DAL baut alle SQL-Aliase nach dem Schema `<root>.<propertyName>`:
+The DAL builds all SQL aliases following the `<root>.<propertyName>` scheme:
 
 ```sql
 -- root = 'product'
@@ -37,19 +37,19 @@ SELECT `product`.`id` AS `product.id`,
 FROM `product`
 ```
 
-Der Escape-Helper: `EntityDefinitionQueryHelper::escape($string)` → `` `$string` ``
+The escape helper: `EntityDefinitionQueryHelper::escape($string)` → `` `$string` ``
 
-## Association-Alias
+## Association alias
 
 ```
-product.manufacturer           → JOIN-Alias für ManyToOne
-product.manufacturer.name      → Criteria-Accessor über Association hinweg
-product.translations           → Translation-Alias-Root
-product.translation            → Resolved-Translation-Alias (main language)
-product.translation.de-DE      → Fallback-Language-Alias
+product.manufacturer           → JOIN alias for ManyToOne
+product.manufacturer.name      → Criteria accessor across the association
+product.translations           → translation alias root
+product.translation            → resolved translation alias (main language)
+product.translation.de-DE      → fallback language alias
 ```
 
-In Criteria: Dot-Notation folgt der PHP-Property-Name (nicht storageName):
+In Criteria: dot notation follows the PHP property name (not the storageName):
 
 ```php
 $criteria->addAssociation('manufacturer');        // property: 'manufacturer'
@@ -60,11 +60,11 @@ $criteria->addFilter(new EqualsFilter('manufacturer.name', 'ACME'));
 ## getByStorageName
 
 ```php
-// Feld per DB-Spaltenname finden (z.B. 'tax_id' → TaxId-FkField):
+// Find a field by DB column name (e.g. 'tax_id' → TaxId FkField):
 $field = $definition->getFields()->getByStorageName('tax_id');
-// → FkField mit propertyName='taxId'
+// → FkField with propertyName='taxId'
 
-// Kompilingtes FieldCollection nötig:
+// Compiled FieldCollection required:
 $compiled = $definition->getFields();  // CompiledFieldCollection
 $field = $compiled->getByStorageName('product_number');
 ```
@@ -74,37 +74,37 @@ $field = $compiled->getByStorageName('product_number');
 ```php
 // EntityDefinitionQueryHelper::buildTranslationChain($root, $context, $inherited)
 
-// Ohne Inheritance:
+// Without inheritance:
 // ['product.translation', 'product.translation.fallback_1', ...]
-// (Anzahl abhängig von Language-Chain im Context)
+// (count depends on the language chain in the context)
 
-// Mit Inheritance:
+// With inheritance:
 // ['product.translation', 'product.parent.translation', 'product.translation.fallback_1', 'product.parent.translation.fallback_1']
 ```
 
-Interner SQL-Alias je Sprache im Query:
+Internal SQL alias per language in the query:
 ```sql
 `product.translation` AS `product.name`  -- resolved value
 `product.translation`.`name` AS `product.product.name`  -- main lang
 ```
 
-## Criteria-Accessor vs. Storage-Name
+## Criteria accessor vs. storage name
 
 ```php
-// Immer Property-Namen (camelCase) in Criteria, NIE storage_names:
+// Always property names (camelCase) in Criteria, NEVER storage_names:
 $criteria->addFilter(new EqualsFilter('productNumber', 'SW-100'));  // ✓
-$criteria->addFilter(new EqualsFilter('product_number', 'SW-100')); // ✗ → Exception
+$criteria->addFilter(new EqualsFilter('product_number', 'SW-100')); // ✗ → exception
 
-// Tief verschachtelt via Dot-Notation:
+// Deeply nested via dot notation:
 $criteria->addFilter(new EqualsFilter('categories.name', 'Electronics'));
 $criteria->addFilter(new EqualsFilter('manufacturer.translations.name', 'Acme'));
 ```
 
-## Entity-Name als Alias-Root
+## Entity name as alias root
 
-Der Entity-Name (Tabellenname) ist immer der Start-Alias in einer Query:
+The entity name (table name) is always the starting alias in a query:
 ```
-product                → root alias für ProductDefinition
-order_line_item        → root alias für OrderLineItemDefinition
-product.manufacturer   → JOIN-Alias für ManyToOne auf ProductManufacturerDefinition
+product                → root alias for ProductDefinition
+order_line_item        → root alias for OrderLineItemDefinition
+product.manufacturer   → JOIN alias for ManyToOne to ProductManufacturerDefinition
 ```

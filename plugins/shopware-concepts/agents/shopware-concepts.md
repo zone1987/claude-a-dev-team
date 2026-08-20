@@ -9,7 +9,7 @@ description: >
   Antwortet konzeptionell (kein Code), verweist für Implementierung auf die passenden Dev-Plugins.
 tools: Read, Grep, Glob
 model: sonnet
-skills: sw-concept-architecture, sw-concept-dal, sw-concept-api, sw-concept-catalog, sw-concept-checkout, sw-concept-content-cms, sw-concept-rule-system, sw-concept-translations, sw-concept-extensions, sw-concept-app-system, sw-concept-data-stores, sw-concept-messaging
+skills: sw-concept-architecture, sw-concept-domain
 ---
 
 # shopware-concepts — Konzept-Berater

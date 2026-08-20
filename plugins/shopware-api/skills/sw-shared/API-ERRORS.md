@@ -1,6 +1,6 @@
-# Shopware 6 — API-Fehler
+# Shopware 6 — API errors
 
-Fehler kommen als JSON mit `errors`-Array (JSON:API-Stil):
+Errors arrive as JSON with an `errors` array (JSON:API style):
 
 ```json
 { "errors": [ {
@@ -12,15 +12,15 @@ Fehler kommen als JSON mit `errors`-Array (JSON:API-Stil):
 } ] }
 ```
 
-Wichtige Codes:
-| HTTP | Bedeutung |
+Important codes:
+| HTTP | Meaning |
 |---|---|
-| 400 | Validierung/Constraint, fehlerhafter Body |
-| 401 | nicht/abgelaufen authentifiziert (Token erneuern) |
-| 403 | fehlende ACL-/Scope-Rechte |
-| 404 | Entity/Route nicht gefunden |
-| 409/412 | Versionskonflikt / Precondition |
-| 500 | Serverfehler |
+| 400 | validation/constraint, malformed body |
+| 401 | not authenticated / expired (renew the token) |
+| 403 | missing ACL/scope permissions |
+| 404 | entity/route not found |
+| 409/412 | version conflict / precondition |
+| 500 | server error |
 
-`code` ist der stabile Domain-Exception-Code (`shopware-quality` → `sw-domain-exceptions`) — auf den `code` matchen,
-nicht auf `detail`. `source.pointer` zeigt das fehlerhafte Feld (Index im Sync/Batch).
+`code` is the stable domain exception code (`shopware-quality` → `sw-domain-exceptions`) — match on `code`,
+not on `detail`. `source.pointer` points at the offending field (index in sync/batch).

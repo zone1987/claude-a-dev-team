@@ -1,41 +1,41 @@
 # sw-core-entity-reference
 
-Statisch generierte Referenz aller **312** Shopware-6-Core-DAL-Entity-Definitionen aus `src/` (trunk).
+Statically generated reference of all **312** Shopware 6 core DAL entity definitions from `src/` (trunk).
 
 - 218 EntityDefinition [E]
 - 40 MappingEntityDefinition [M]
 - 54 EntityTranslationDefinition [T]
-- 3 ausgeschlossen (kein DAL-Entity: DataValidationDefinition, LineItemGroupDefinition, ConsentDefinition)
+- 3 excluded (not a DAL entity: DataValidationDefinition, LineItemGroupDefinition, ConsentDefinition)
 
-## Dateien
+## Files
 
-| Datei | Inhalt |
+| File | Content |
 |-------|--------|
-| [references/deep/core-entities.json](references/deep/core-entities.json) | Maschinenlesbarer Vollbaum — alle Entities mit fields[], associations[], translations[], meta |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-INDEX.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-INDEX.md) | Index aller 312 Entities (alphabetisch) + Domain-Übersicht |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-CONTENT.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CONTENT.md) | Domäne Content (Product, Category, CMS, Media, ...) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-CHECKOUT.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CHECKOUT.md) | Domäne Checkout (Order, Customer, Cart, Payment, Shipping, Promotion) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-SYSTEM.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-SYSTEM.md) | Domäne System (SalesChannel, Tax, Currency, Country, Language, ...) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-FRAMEWORK.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-FRAMEWORK.md) | Domäne Framework (App, Plugin, Webhook, DAL, ...) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-CORE.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CORE.md) | Core-interne Entities (Core/Framework, Core/System, Core/Checkout Subpfade) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-STOREFRONT.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-STOREFRONT.md) | Domäne Storefront (Theme, ...) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-ADMINISTRATION.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-ADMINISTRATION.md) | Domäne Administration (Notification, Snippet) |
-| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-ELASTICSEARCH.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-ELASTICSEARCH.md) | Elasticsearch-Definitions |
+| [references/deep/core-entities.json](references/deep/core-entities.json) | Machine-readable full tree — all entities with fields[], associations[], translations[], meta |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-INDEX.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-INDEX.md) | Index of all 312 entities (alphabetical) + domain overview |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-CONTENT.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CONTENT.md) | Content domain (Product, Category, CMS, Media, ...) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-CHECKOUT.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CHECKOUT.md) | Checkout domain (Order, Customer, Cart, Payment, Shipping, Promotion) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-SYSTEM.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-SYSTEM.md) | System domain (SalesChannel, Tax, Currency, Country, Language, ...) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-FRAMEWORK.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-FRAMEWORK.md) | Framework domain (App, Plugin, Webhook, DAL, ...) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-CORE.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-CORE.md) | Core-internal entities (Core/Framework, Core/System, Core/Checkout subpaths) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-STOREFRONT.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-STOREFRONT.md) | Storefront domain (Theme, ...) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-ADMINISTRATION.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-ADMINISTRATION.md) | Administration domain (Notification, Snippet) |
+| [CORE-ENTITY-REFERENCE-CORE-ENTITIES-ELASTICSEARCH.md](CORE-ENTITY-REFERENCE-CORE-ENTITIES-ELASTICSEARCH.md) | Elasticsearch definitions |
 
-## Nutzung
+## Usage
 
 ```
-# Schnelle Feldabfrage via JSON (jq):
+# Quick field lookup via JSON (jq):
 cat references/deep/core-entities.json | jq '.entities[] | select(.entity == "product") | .fields[]'
 
-# Alle Entities einer Domäne:
+# All entities of a domain:
 cat references/deep/core-entities.json | jq '.entities[] | select(.domain | startswith("Content")) | .entity'
 
-# Associations für order:
+# Associations for order:
 cat references/deep/core-entities.json | jq '.entities[] | select(.entity == "order") | .associations[]'
 ```
 
-## JSON-Struktur (core-entities.json)
+## JSON structure (core-entities.json)
 
 ```json
 {
@@ -70,12 +70,12 @@ cat references/deep/core-entities.json | jq '.entities[] | select(.entity == "or
 }
 ```
 
-## Abgrenzung zu sw-entity-catalog
+## Distinction from sw-entity-catalog
 
 | | sw-core-entity-reference | sw-entity-catalog |
 |---|---|---|
-| **Scope** | Shopware Core (trunk) | Projekt-eigene + Custom Entities |
-| **Quelle** | Statisch generiert aus `src/` | Laufende DB / DefinitionRegistry |
-| **Custom Entities** | Nein | Ja |
-| **App Entities** | Nein | Ja |
-| **Aktuell** | Bei Core-Updates neu generieren | Immer aktuell (DB) |
+| **Scope** | Shopware core (trunk) | Project-owned + custom entities |
+| **Source** | Statically generated from `src/` | Running DB / DefinitionRegistry |
+| **Custom Entities** | No | Yes |
+| **App Entities** | No | Yes |
+| **Up to date** | Regenerate on core updates | Always current (DB) |

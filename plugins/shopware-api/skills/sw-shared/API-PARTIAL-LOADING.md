@@ -1,9 +1,9 @@
 # Shopware 6 — Partial Data Loading
 
-Mit dem `fields`-Parameter werden nur die angeforderten Spalten auf **Datenbankebene** geladen.
-Unterschied zu `includes` (Output-Post-Processing): Partial loading reduziert die DB-Last direkt.
+With the `fields` parameter only the requested columns are loaded at **database level**.
+Difference from `includes` (output post-processing): partial loading reduces the DB load directly.
 
-## Verwendung
+## Usage
 
 ```http
 POST /api/search/currency
@@ -24,34 +24,34 @@ Content-Type: application/json
 }
 ```
 
-Punkt-Notation `salesChannels.name` → fügt Assoziations-Join automatisch hinzu.
+Dot notation `salesChannels.name` → adds the association join automatically.
 
 ## Partial Loading vs. Includes
 
-| | `fields` (Partial Loading) | `includes` |
+| | `fields` (partial loading) | `includes` |
 |---|---|---|
-| Wann | DB-Abfrageebene | Ausgabe-Post-Processing |
-| Performance | Besser (DB lädt weniger) | Komplette Entity wird geladen |
-| Scope | Nur Entity-Level | Jeder Response-Typ |
+| When | DB query level | output post-processing |
+| Performance | Better (the DB loads less) | the complete entity is loaded |
+| Scope | Entity level only | every response type |
 
-## Feste Felder (immer geladen)
+## Fixed fields (always loaded)
 
-`id` und Join-relevante Felder (Foreign Keys) werden immer geladen — API braucht sie intern.
+`id` and join-relevant fields (foreign keys) are always loaded — the API needs them internally.
 
 ## Runtime Fields
 
-Werden standardmäßig geladen wenn referenzierte Daten verfügbar. Via `fields` erzwingen.
-In `EntityDefinition` mit `Runtime`-Flag und Dependencies definieren:
+Loaded by default when the referenced data is available. Force them via `fields`.
+Define them in `EntityDefinition` with the `Runtime` flag and its dependencies:
 
 ```php
 (new StringField('url', 'url'))->addFlags(new ApiAware(), new Runtime(['path']))
 ```
 
-## Einschränkungen
+## Limitations
 
-- Funktioniert **nur auf Entity-Ebene**
-- Store-API Custom-Responses (Produkt-Detailseite, CMS) nicht unterstützt
-- Für kleine Responses bei solchen Endpoints: `includes` verwenden
+- Works **only at entity level**
+- Store API custom responses (product detail page, CMS) are not supported
+- For small responses on such endpoints: use `includes`
 
-Storefront nutzt Partial Loading intern: `core.listing.partialDataLoading` = 1.
-Vollständige Criteria-Referenz: `sw-admin-api-search`. Header: `sw-api-headers`.
+The storefront uses partial loading internally: `core.listing.partialDataLoading` = 1.
+Complete Criteria reference: `sw-admin-api-search`. Headers: `sw-api-headers`.

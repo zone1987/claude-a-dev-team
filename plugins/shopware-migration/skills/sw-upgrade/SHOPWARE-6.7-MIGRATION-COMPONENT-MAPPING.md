@@ -2,7 +2,7 @@
 
 Complete migration reference for all deprecated `sw-*` administration components to their `mt-*` Meteor replacements in Shopware 6.7. All `sw-*` components are tagged for removal in v6.8.0.
 
-> **Detaillierter Guide:** Für vollständige Props/Events/Slots-Tabellen und echte Vorher/Nachher-Beispiele aus `src/module/` siehe [`component-migration-guide.md`](SHOPWARE-6.7-MIGRATION-COMPONENT-MIGRATION-GUIDE.md).
+> **Detailed guide:** For complete props/events/slots tables and real before/after examples from `src/module/` see [`component-migration-guide.md`](SHOPWARE-6.7-MIGRATION-COMPONENT-MIGRATION-GUIDE.md).
 
 ---
 
@@ -101,7 +101,7 @@ These components remain `sw-*` in Shopware 6.7 and are maintained by Shopware di
 | `:isLoading` | `:isLoading` | Unchanged |
 | `:block` | `:block` | Unchanged |
 | `:square` | `:square` | Unchanged |
-| `:router-link` | Removed | Use `@click` + `this.$router.push(...)` — **kein** `<router-link>` Wrapper |
+| `:router-link` | Removed | Use `@click` + `this.$router.push(...)` — **no** `<router-link>` wrapper |
 | `link="url"` | Removed (deprecated) | Use `is="a" href="url"` instead |
 
 ### Slot Changes
@@ -145,7 +145,7 @@ Standard DOM events via `$attrs`. No Shopware-specific events.
     {{ $tc('global.default.delete') }}
 </mt-button>
 
-<!-- router-link: KEIN Wrapper! Stattdessen @click mit $router.push() -->
+<!-- router-link: NO wrapper! Use @click with $router.push() instead -->
 <mt-button variant="primary" @click="$router.push({ name: 'my.route' })">
     Go to page
 </mt-button>
@@ -155,16 +155,16 @@ Standard DOM events via `$attrs`. No Shopware-specific events.
 </mt-button>
 ```
 
-### Router-Link Migration — Wichtige Regel
+### Router-link migration — important rule
 
-`mt-button` unterstützt kein `:router-link` Prop. Buttons mit Router-Navigation werden **nicht** in `<router-link>` gewrappt, sondern erhalten ein `@click` Event mit `$router.push()`.
+`mt-button` does not support a `:router-link` prop. Buttons with router navigation are **not** wrapped in `<router-link>`; they get an `@click` event with `$router.push()` instead.
 
-**Inline (einfache Routen):**
+**Inline (simple routes):**
 ```html
 <mt-button @click="$router.push({ name: 'route.name' })">...</mt-button>
 ```
 
-**Als Methode (empfohlen bei Params oder komplexer Logik):**
+**As a method (recommended for params or complex logic):**
 ```html
 <!-- Template -->
 <mt-button variant="primary" @click="onNavigate">

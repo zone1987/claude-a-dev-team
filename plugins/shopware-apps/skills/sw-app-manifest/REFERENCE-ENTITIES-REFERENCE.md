@@ -1,21 +1,21 @@
-# Shopware 6 — App Custom Entities XML-Referenz (entities.xml)
+# Shopware 6 — App custom entities XML reference (entities.xml)
 
-> Quelle: `resources/references/app-reference/entities-reference.md`
+> Source: `resources/references/app-reference/entities-reference.md`
 > XSD-Schema: `https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd`
 
 ---
 
 ## Contents
 
-- [Grundstruktur](#grundstruktur)
-- [Skalare Feldtypen](#skalare-feldtypen)
-- [Spezielle Feldtypen](#spezielle-feldtypen)
-- [Feld-Attribute](#feld-attribute)
-- [Relationstypen](#relationstypen)
-- [`on-delete`-Optionen](#on-delete-optionen)
-- [Vollständiges Beispiel](#vollständiges-beispiel)
+- [Basic structure](#basic-structure)
+- [Scalar field types](#scalar-field-types)
+- [Special field types](#special-field-types)
+- [Field attributes](#field-attributes)
+- [Relation types](#relation-types)
+- [`on-delete` options](#on-delete-options)
+- [Complete example](#complete-example)
 
-## Grundstruktur
+## Basic structure
 
 ```xml
 // Resources/entities.xml
@@ -30,86 +30,86 @@
 </entities>
 ```
 
-Seit Shopware v6.5.15.0 kann das `ce_`-Präfix als Kurzform verwendet werden:
+Since Shopware v6.5.15.0 the `ce_` prefix can be used as a short form:
 ```xml
 <entity name="ce_blog_comment">
 ```
 
 ---
 
-## Skalare Feldtypen
+## Scalar field types
 
-| Feldtyp | Beispiel | Beschreibung |
+| Field type | Example | Description |
 |:--------|:---------|:-------------|
-| `int` | `<int name="position" store-api-aware="true" />` | Ganzzahl |
-| `float` | `<float name="rating" store-api-aware="true" />` | Dezimalzahl |
-| `string` | `<string name="title" required="true" translatable="true" store-api-aware="true" />` | Zeichenkette |
-| `text` | `<text name="content" allow-html="true" translatable="true" store-api-aware="true" />` | Langer Text |
+| `int` | `<int name="position" store-api-aware="true" />` | Integer |
+| `float` | `<float name="rating" store-api-aware="true" />` | Decimal number |
+| `string` | `<string name="title" required="true" translatable="true" store-api-aware="true" />` | String |
+| `text` | `<text name="content" allow-html="true" translatable="true" store-api-aware="true" />` | Long text |
 | `bool` | `<bool name="display" translatable="true" store-api-aware="true" />` | Boolean |
-| `date` | `<date name="my_date" store-api-aware="false" />` | Datum |
+| `date` | `<date name="my_date" store-api-aware="false" />` | Date |
 
 ---
 
-## Spezielle Feldtypen
+## Special field types
 
-| Feldtyp | Beispiel | Beschreibung |
+| Field type | Example | Description |
 |:--------|:---------|:-------------|
-| `json` | `<json name="payload" store-api-aware="false" />` | JSON-Objekt |
-| `email` | `<email name="email" store-api-aware="false" />` | E-Mail-Adresse |
-| `price` | `<price name="price" store-api-aware="false" />` | Preis-Feld |
+| `json` | `<json name="payload" store-api-aware="false" />` | JSON object |
+| `email` | `<email name="email" store-api-aware="false" />` | Email address |
+| `price` | `<price name="price" store-api-aware="false" />` | Price field |
 
 ---
 
-## Feld-Attribute
+## Field attributes
 
-| Attribut | Werte | Beschreibung |
+| Attribute | Values | Description |
 |:---------|:------|:-------------|
-| `name` | string | Technischer Feldname (Pflicht) |
-| `required` | `true`/`false` | Pflichtfeld |
-| `translatable` | `true`/`false` | Übersetzbar (erzeugt translations-Tabelle) |
-| `store-api-aware` | `true`/`false` | Im Store-API verfügbar |
-| `allow-html` | `true`/`false` | HTML erlauben (nur `text`) |
-| `default` | value | Standardwert (nur skalare Typen) |
-| `inherited` | `true`/`false` | Vererbung für Produkt-Relationen |
+| `name` | string | Technical field name (required) |
+| `required` | `true`/`false` | Mandatory field |
+| `translatable` | `true`/`false` | Translatable (creates a translations table) |
+| `store-api-aware` | `true`/`false` | Available in the Store API |
+| `allow-html` | `true`/`false` | Allow HTML (only `text`) |
+| `default` | value | Default value (scalar types only) |
+| `inherited` | `true`/`false` | Inheritance for product relations |
 
 ---
 
-## Relationstypen
+## Relation types
 
 ### many-to-many
 
 ```xml
 <many-to-many name="products" reference="product" store-api-aware="true" />
-<!-- Vererbte many-to-many: -->
+<!-- Inherited many-to-many: -->
 <many-to-many name="inherited_products" reference="product" store-api-aware="true" inherited="true"/>
 ```
 
 ### one-to-many
 
 ```xml
-<!-- Mit cascade delete auf eigene Custom Entities: -->
+<!-- With cascade delete on your own custom entities: -->
 <one-to-many name="comments" reference="ce_blog_comment" store-api-aware="true"
              on-delete="cascade" reverse-required="true" />
 
-<!-- Restrict: verhindert Löschen wenn verknüpft -->
+<!-- Restrict: prevents deletion while linked -->
 <one-to-many name="links_restrict" reference="category" store-api-aware="true" on-delete="restrict" />
 
-<!-- Set null bei Löschen: -->
+<!-- Set null on deletion: -->
 <one-to-many name="links_set_null" reference="category" store-api-aware="true" on-delete="set-null" />
 ```
 
 ### many-to-one
 
 ```xml
-<!-- Restrict: Produktlöschung verhindert wenn als top_seller_restrict gesetzt -->
+<!-- Restrict: product deletion prevented when set as top_seller_restrict -->
 <many-to-one name="top_seller_restrict" reference="product" store-api-aware="true"
              required="false" on-delete="restrict" />
 
-<!-- Cascade: Löscht custom_entity_blog wenn Produkt gelöscht -->
+<!-- Cascade: deletes custom_entity_blog when the product is deleted -->
 <many-to-one name="top_seller_cascade" reference="product" store-api-aware="true"
              required="true" on-delete="cascade" />
 
-<!-- Set null: Setzt Spalte auf null bei Produktlöschung -->
+<!-- Set null: sets the column to null on product deletion -->
 <many-to-one name="top_seller_set_null" reference="product" store-api-aware="true"
              on-delete="set-null" />
 ```
@@ -120,24 +120,24 @@ Seit Shopware v6.5.15.0 kann das `ce_`-Präfix als Kurzform verwendet werden:
 <one-to-one name="link_product_restrict" reference="product" store-api-aware="false" on-delete="restrict" />
 <one-to-one name="link_product_cascade" reference="product" store-api-aware="false" on-delete="cascade" />
 <one-to-one name="link_product_set_null" reference="product" store-api-aware="false" on-delete="set-null" />
-<!-- Vererbte one-to-one: -->
+<!-- Inherited one-to-one: -->
 <one-to-one name="inherited_link_product" reference="product" store-api-aware="true"
             inherited="true" on-delete="set-null" />
 ```
 
 ---
 
-## `on-delete`-Optionen
+## `on-delete` options
 
-| Wert | Beschreibung |
+| Value | Description |
 |:-----|:-------------|
-| `cascade` | Löscht abhängige Datensätze mit |
-| `restrict` | Verhindert Löschen solange Datensatz verknüpft ist |
-| `set-null` | Setzt FK-Spalte auf NULL beim Löschen |
+| `cascade` | Deletes dependent records along with it |
+| `restrict` | Prevents deletion while the record is linked |
+| `set-null` | Sets the FK column to NULL on deletion |
 
 ---
 
-## Vollständiges Beispiel
+## Complete example
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>

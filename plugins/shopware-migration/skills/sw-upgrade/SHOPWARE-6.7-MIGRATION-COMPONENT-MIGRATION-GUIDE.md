@@ -1,13 +1,13 @@
-# Detaillierter sw-* → mt-* Component Migration Guide
+# Detailed sw-* → mt-* component migration guide
 
-> Vollständige Migrationsreferenz für alle 19 deprecated `sw-*` Wrapper-Komponenten zu ihren `mt-*` Meteor-Ersetzungen in Shopware 6.7. Alle `sw-*` Wrapper sind als deprecated markiert und werden in v6.8.0 entfernt.
+> Complete migration reference for all 19 deprecated `sw-*` wrapper components to their `mt-*` Meteor replacements in Shopware 6.7. All `sw-*` wrappers are marked as deprecated and will be removed in v6.8.0.
 
 ---
 
 ## Contents
 
 - [Scope](#scope)
-- [Universelle Migrationsmuster](#universelle-migrationsmuster)
+- [Universal migration patterns](#universal-migration-patterns)
 - [1. sw-button → mt-button](#1-sw-button-mt-button)
 - [2. sw-alert → mt-banner](#2-sw-alert-mt-banner)
 - [3. sw-card → mt-card](#3-sw-card-mt-card)
@@ -27,15 +27,15 @@
 - [17. sw-loader → mt-loader](#17-sw-loader-mt-loader)
 - [18. sw-popover → mt-floating-ui](#18-sw-popover-mt-floating-ui)
 - [19. sw-skeleton-bar → mt-skeleton-bar](#19-sw-skeleton-bar-mt-skeleton-bar)
-- [Zusammenfassung der Migrationsmuster](#zusammenfassung-der-migrationsmuster)
+- [Summary of the migration patterns](#summary-of-the-migration-patterns)
 
 ## Scope
 
-Dieses Dokument deckt exakt **19 deprecated Wrapper-Komponenten** ab, die in Shopware 6.7 ein `mt-*` Äquivalent haben. Jede Komponente wird mit vollständiger Props/Events/Slots-Tabelle und echten Vorher/Nachher-Beispielen aus `src/module/` dokumentiert.
+This document covers exactly **19 deprecated wrapper components** that have an `mt-*` equivalent in Shopware 6.7. Every component is documented with a complete props/events/slots table and real before/after examples from `src/module/`.
 
-### Abgedeckte Komponenten
+### Covered components
 
-| # | Alt (sw-*) | Neu (mt-*) | Kategorie |
+| # | Old (sw-*) | New (mt-*) | Category |
 |---|-----------|-----------|-----------|
 | 1 | `sw-button` | `mt-button` | Base |
 | 2 | `sw-alert` | `mt-banner` | Base |
@@ -57,35 +57,35 @@ Dieses Dokument deckt exakt **19 deprecated Wrapper-Komponenten** ab, die in Sho
 | 18 | `sw-popover` | `mt-floating-ui` | Utils |
 | 19 | `sw-skeleton-bar` | `mt-skeleton-bar` | Utils |
 
-### NICHT migriert (kein mt-* Ersatz oder nicht über Wrapper)
+### NOT migrated (no mt-* replacement or not via a wrapper)
 
-| Komponente | Status | Grund |
+| Component | Status | Reason |
 |-----------|--------|-------|
-| `sw-page` | Bleibt `sw-page` | Shopware-spezifisches Layout, kein `mt-page` |
-| `sw-card-view` | Bleibt `sw-card-view` | Shopware-spezifisches Layout, kein `mt-card-view` |
-| `sw-modal` | Bleibt `sw-modal` | 136 Nutzungen in 6.7, nur 6× `mt-modal` in neuen Modulen |
-| `sw-external-link` | Bleibt `sw-external-link` | Kein deprecated Wrapper in 6.7 |
-| `sw-data-grid` | Manuell → `mt-data-table` | Komplett andere API, erfordert manuelle Migration |
-| `sw-progress-bar` | Direkt `mt-progress-bar` | Kein deprecated Wrapper — direkte Nutzung |
+| `sw-page` | stays `sw-page` | Shopware-specific layout, no `mt-page` |
+| `sw-card-view` | stays `sw-card-view` | Shopware-specific layout, no `mt-card-view` |
+| `sw-modal` | stays `sw-modal` | 136 usages in 6.7, only 6× `mt-modal` in new modules |
+| `sw-external-link` | stays `sw-external-link` | No deprecated wrapper in 6.7 |
+| `sw-data-grid` | manual → `mt-data-table` | Completely different API, requires manual migration |
+| `sw-progress-bar` | directly `mt-progress-bar` | No deprecated wrapper — direct usage |
 
 ---
 
-## Universelle Migrationsmuster
+## Universal migration patterns
 
-### v-model Änderung (alle Formularfelder)
+### v-model change (all form fields)
 
-| Alt | Neu | Anwendung |
+| Old | New | Application |
 |-----|-----|-----------|
-| `v-model:value="x"` | `v-model="x"` | Standard für alle Felder |
-| `:value="x"` + `@update:value` | `:modelValue="x"` + `@update:modelValue` | Einweg-Binding |
-| `@input` | `@update:modelValue` | Event-Name für Wertänderungen |
-| `v-model:value="x"` (Checkbox) | `v-model:checked="x"` | **Nur bei mt-checkbox!** |
+| `v-model:value="x"` | `v-model="x"` | Standard for all fields |
+| `:value="x"` + `@update:value` | `:modelValue="x"` + `@update:modelValue` | One-way binding |
+| `@input` | `@update:modelValue` | Event name for value changes |
+| `v-model:value="x"` (checkbox) | `v-model:checked="x"` | **Only for mt-checkbox!** |
 
-### Button Variants
+### Button variants
 
-| Alt (sw-button) | Neu (mt-button) |
+| Old (sw-button) | New (mt-button) |
 |----------------|-----------------|
-| *(kein variant)* | `variant="secondary"` |
+| *(no variant)* | `variant="secondary"` |
 | `variant="primary"` | `variant="primary"` |
 | `variant="danger"` | `variant="critical"` |
 | `variant="ghost"` | `variant="tertiary"` |
@@ -93,58 +93,58 @@ Dieses Dokument deckt exakt **19 deprecated Wrapper-Komponenten** ab, die in Sho
 | `variant="contrast"` | `variant="primary"` |
 | `variant="context"` | `variant="secondary"` |
 
-### Alert/Banner Variants
+### Alert/banner variants
 
-| Alt (sw-alert) | Neu (mt-banner) |
+| Old (sw-alert) | New (mt-banner) |
 |---------------|-----------------|
 | `variant="info"` | `variant="info"` |
 | `variant="warning"` | `variant="attention"` |
 | `variant="error"` | `variant="critical"` |
 | `variant="success"` | `variant="positive"` |
 
-### Codemod-Tool
+### Codemod tool
 
-Shopware stellt einen Codemod bereit, der viele dieser Migrationen automatisch durchführt:
+Shopware provides a codemod that performs many of these migrations automatically:
 ```bash
 npx @shopware-ag/meteor-admin-sdk-codemod
 ```
 
-> **Hinweis:** Der Codemod deckt die meisten Prop-Umbenennungen und Komponentennamen ab, aber komplexere Migrationen (Tabs-Items, Select-Options, Router-Link) erfordern manuelle Nacharbeit.
+> **Note:** The codemod covers most prop renames and component names, but more complex migrations (tabs items, select options, router link) require manual follow-up work.
 
 ---
 
 ## 1. sw-button → mt-button
 
-> Der `sw-button` Wrapper leitet ab v6.7 an die Meteor-Komponente `mt-button` weiter. Die Prop `routerLink` wird im Wrapper via `$router.push()` behandelt und ist in `mt-button` selbst nicht mehr vorhanden. Der Wrapper setzt einen Fallback `variant="secondary"`.
+> From v6.7 on, the `sw-button` wrapper forwards to the Meteor component `mt-button`. The `routerLink` prop is handled in the wrapper via `$router.push()` and no longer exists in `mt-button` itself. The wrapper sets a fallback `variant="secondary"`.
 
 ### Props
 
-| Alt (sw-button) | Neu (mt-button) | Änderung |
+| Old (sw-button) | New (mt-button) | Change |
 |-----------|-----------|----------|
-| `variant`: `primary`, `ghost`, `danger`, `ghost-danger`, `contrast`, `context` | `variant`: `primary`, `secondary`, `tertiary`, `critical`, `action` | Werte umbenannt: `ghost` → `tertiary`, `danger` → `critical`; Default `""` → `"secondary"` |
-| `size`: `x-small`, `small` (Default: `""`) | `size`: `x-small`, `small`, `default`, `large` (Default: `"default"`) | Neue Größen `default` und `large` hinzugefügt |
-| `routerLink` (Object) | — entfallen — | Wrapper übernimmt via `$router.push()`; `mt-button` hat kein `routerLink` |
-| `isLoading` (Boolean) | `isLoading` (Boolean) | Identisch |
-| — | `ghost` (Boolean) | Neu: Separate Boolean-Prop für Ghost-Darstellung |
-| — | `is` (Component/String) | Neu: Erlaubt Rendering als anderes Element |
+| `variant`: `primary`, `ghost`, `danger`, `ghost-danger`, `contrast`, `context` | `variant`: `primary`, `secondary`, `tertiary`, `critical`, `action` | Values renamed: `ghost` → `tertiary`, `danger` → `critical`; default `""` → `"secondary"` |
+| `size`: `x-small`, `small` (default: `""`) | `size`: `x-small`, `small`, `default`, `large` (default: `"default"`) | New sizes `default` and `large` added |
+| `routerLink` (Object) | — dropped — | Wrapper takes over via `$router.push()`; `mt-button` has no `routerLink` |
+| `isLoading` (Boolean) | `isLoading` (Boolean) | Identical |
+| — | `ghost` (Boolean) | New: separate boolean prop for the ghost appearance |
+| — | `is` (Component/String) | New: allows rendering as a different element |
 
 ### Events
 
-| Alt (sw-button) | Neu (mt-button) | Änderung |
+| Old (sw-button) | New (mt-button) | Change |
 |-----------|-----------|----------|
-| `@click` | `@click` | Identisch |
+| `@click` | `@click` | Identical |
 
 ### Slots
 
-| Alt (sw-button) | Neu (mt-button) | Änderung |
+| Old (sw-button) | New (mt-button) | Change |
 |-----------|-----------|----------|
-| `default` | `default` | Identisch |
-| — | `iconFront` (scope: `{ size }`) | Neu: Slot für Icon vor dem Text |
-| — | `iconBack` (scope: `{ size }`) | Neu: Slot für Icon nach dem Text |
+| `default` | `default` | Identical |
+| — | `iconFront` (scope: `{ size }`) | New: slot for an icon before the text |
+| — | `iconBack` (scope: `{ size }`) | New: slot for an icon after the text |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-settings-customer-group/page/sw-settings-customer-group-detail/sw-settings-customer-group-detail.html.twig -->
+<!-- File: src/module/sw-settings-customer-group/page/sw-settings-customer-group-detail/sw-settings-customer-group-detail.html.twig -->
 {% block sw_settings_customer_group_detail_actions_cancel %}
 <sw-button
     v-tooltip.bottom="tooltipCancel"
@@ -156,9 +156,9 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-settings-customer-group/page/sw-settings-customer-group-detail/sw-settings-customer-group-detail.html.twig -->
+<!-- File: src/module/sw-settings-customer-group/page/sw-settings-customer-group-detail/sw-settings-customer-group-detail.html.twig -->
 {% block sw_settings_customer_group_detail_actions_cancel %}
 <mt-button
     v-tooltip.bottom="tooltipCancel"
@@ -172,15 +172,15 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 {% endblock %}
 ```
 
-### Router-Link Migration
+### Router-link migration
 
-`mt-button` unterstützt kein `:router-link` Prop. Buttons mit Router-Navigation erhalten ein `@click` Event mit `$router.push()`:
+`mt-button` does not support a `:router-link` prop. Buttons with router navigation get an `@click` event with `$router.push()`:
 
 ```html
-<!-- Inline (einfache Routen): -->
+<!-- Inline (simple routes): -->
 <mt-button @click="$router.push({ name: 'route.name' })">...</mt-button>
 
-<!-- Als Methode (empfohlen bei Params): -->
+<!-- As a method (recommended for params): -->
 <mt-button variant="primary" @click="onNavigate">Edit item</mt-button>
 ```
 
@@ -188,36 +188,36 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 
 ## 2. sw-alert → mt-banner
 
-> Der Komponentenname ändert sich von "Alert" zu "Banner". Die Varianten-Werte werden umbenannt (`warning` → `attention`, `error` → `critical`, `success` → `positive`). Die `appearance`-Prop entfällt komplett.
+> The component name changes from "Alert" to "Banner". The variant values are renamed (`warning` → `attention`, `error` → `critical`, `success` → `positive`). The `appearance` prop is dropped entirely.
 
 ### Props
 
-| Alt (sw-alert) | Neu (mt-banner) | Änderung |
+| Old (sw-alert) | New (mt-banner) | Change |
 |-----------|-----------|----------|
-| `variant`: `info`, `warning`, `error`, `success` | `variant`: `info`, `attention`, `critical`, `positive`, `neutral`, `inherited` | Umbenannt: `warning` → `attention`, `error` → `critical`, `success` → `positive`; Neu: `inherited` |
-| `appearance`: `default`, `notification`, `system` | — entfallen — | Komplett entfernt in `mt-banner` |
-| `showIcon` (Boolean, Default: `true`) | `hideIcon` (Boolean, Default: `false`) | **Logik invertiert**: `showIcon=false` → `hideIcon=true` |
-| `notificationIndex` (String) | `bannerIndex` (String) | Umbenannt |
-| `closable` (Boolean) | `closable` (Boolean) | Identisch |
-| `title` (String) | `title` (String) | Identisch |
+| `variant`: `info`, `warning`, `error`, `success` | `variant`: `info`, `attention`, `critical`, `positive`, `neutral`, `inherited` | Renamed: `warning` → `attention`, `error` → `critical`, `success` → `positive`; new: `inherited` |
+| `appearance`: `default`, `notification`, `system` | — dropped — | Removed entirely in `mt-banner` |
+| `showIcon` (Boolean, default: `true`) | `hideIcon` (Boolean, default: `false`) | **Logic inverted**: `showIcon=false` → `hideIcon=true` |
+| `notificationIndex` (String) | `bannerIndex` (String) | Renamed |
+| `closable` (Boolean) | `closable` (Boolean) | Identical |
+| `title` (String) | `title` (String) | Identical |
 
 ### Events
 
-| Alt (sw-alert) | Neu (mt-banner) | Änderung |
+| Old (sw-alert) | New (mt-banner) | Change |
 |-----------|-----------|----------|
-| `@close(notificationIndex)` | `@close(bannerIndex?)` | Parameter umbenannt |
+| `@close(notificationIndex)` | `@close(bannerIndex?)` | Parameter renamed |
 
 ### Slots
 
-| Alt (sw-alert) | Neu (mt-banner) | Änderung |
+| Old (sw-alert) | New (mt-banner) | Change |
 |-----------|-----------|----------|
-| `default` | `default` | Identisch |
-| `actions` | — entfallen — | Slot existiert in `mt-banner` nicht mehr |
-| — | `customIcon` | Neu: Eigenes Icon |
+| `default` | `default` | Identical |
+| `actions` | — dropped — | The slot no longer exists in `mt-banner` |
+| — | `customIcon` | New: custom icon |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-view/sw-category-view.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-view/sw-category-view.html.twig -->
 {% block sw_category_view_column_info %}
 <sw-alert
     v-if="category.isColumn"
@@ -234,9 +234,9 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-view/sw-category-view.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-view/sw-category-view.html.twig -->
 {% block sw_category_view_column_info %}
 <mt-banner
     v-if="isCategoryColumn"
@@ -257,46 +257,46 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 
 ## 3. sw-card → mt-card
 
-> Der Wrapper leitet alle Slots dynamisch an `mt-card` weiter. Die Props `hero`, `aiBadge` und `contentPadding` entfallen. Der Slot `header-right` wird zu `headerRight` (camelCase).
+> The wrapper forwards all slots dynamically to `mt-card`. The props `hero`, `aiBadge` and `contentPadding` are dropped. The slot `header-right` becomes `headerRight` (camelCase).
 
 ### Props
 
-| Alt (sw-card) | Neu (mt-card) | Änderung |
+| Old (sw-card) | New (mt-card) | Change |
 |-----------|-----------|----------|
-| `positionIdentifier` (String, required) | — via $attrs — | Nicht mehr als required Prop; wird via `$attrs` durchgereicht |
-| `hero` (Boolean) | — entfallen — | Komplett entfernt |
-| `aiBadge` (Boolean) | — entfallen — | Komplett entfernt |
-| `contentPadding` (Boolean) | — entfallen — | Komplett entfernt |
-| `title` (String) | `title` (String) | Identisch |
-| `subtitle` (String) | `subtitle` (String) | Identisch |
-| `isLoading` (Boolean) | `isLoading` (Boolean) | Identisch |
-| `large` (Boolean) | `large` (Boolean) | Identisch |
-| — | `inheritance` (Boolean) | Neu: Inheritance-Modus mit `v-model:inheritance` |
+| `positionIdentifier` (String, required) | — via $attrs — | No longer a required prop; passed through via `$attrs` |
+| `hero` (Boolean) | — dropped — | Removed entirely |
+| `aiBadge` (Boolean) | — dropped — | Removed entirely |
+| `contentPadding` (Boolean) | — dropped — | Removed entirely |
+| `title` (String) | `title` (String) | Identical |
+| `subtitle` (String) | `subtitle` (String) | Identical |
+| `isLoading` (Boolean) | `isLoading` (Boolean) | Identical |
+| `large` (Boolean) | `large` (Boolean) | Identical |
+| — | `inheritance` (Boolean) | New: inheritance mode with `v-model:inheritance` |
 
 ### Events
 
-| Alt (sw-card) | Neu (mt-card) | Änderung |
+| Old (sw-card) | New (mt-card) | Change |
 |-----------|-----------|----------|
-| — | `@update:inheritance(value)` | Neu: Event für Inheritance-Toggle |
+| — | `@update:inheritance(value)` | New: event for the inheritance toggle |
 
 ### Slots
 
-| Alt (sw-card) | Neu (mt-card) | Änderung |
+| Old (sw-card) | New (mt-card) | Change |
 |-----------|-----------|----------|
-| `default` | `default` | Identisch |
-| `title` | `title` | Identisch |
-| `subtitle` | `subtitle` | Identisch |
-| `avatar` | `avatar` | Identisch |
-| `footer` | `footer` | Identisch |
-| `toolbar` | `toolbar` | Identisch |
-| `tabs` | `tabs` | Identisch |
-| `header-right` | `headerRight` | **Umbenannt**: kebab-case → camelCase |
-| `context-actions` | `context-actions` | Identisch |
-| `grid` | `grid` | Identisch |
+| `default` | `default` | Identical |
+| `title` | `title` | Identical |
+| `subtitle` | `subtitle` | Identical |
+| `avatar` | `avatar` | Identical |
+| `footer` | `footer` | Identical |
+| `toolbar` | `toolbar` | Identical |
+| `tabs` | `tabs` | Identical |
+| `header-right` | `headerRight` | **Renamed**: kebab-case → camelCase |
+| `context-actions` | `context-actions` | Identical |
+| `grid` | `grid` | Identical |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-settings-delivery-times/page/sw-settings-delivery-time-list/sw-settings-delivery-time-list.html.twig -->
+<!-- File: src/module/sw-settings-delivery-times/page/sw-settings-delivery-time-list/sw-settings-delivery-time-list.html.twig -->
 {% block sw_settings_delivery_time_list_grid_wrapper %}
 <sw-card position-identifier="sw-settings-delivery-time-list-grid-wrapper">
     <template #grid>
@@ -312,9 +312,9 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-settings-delivery-times/page/sw-settings-delivery-time-list/sw-settings-delivery-time-list.html.twig -->
+<!-- File: src/module/sw-settings-delivery-times/page/sw-settings-delivery-time-list/sw-settings-delivery-time-list.html.twig -->
 {% block sw_settings_delivery_time_list_grid_wrapper %}
 <mt-card position-identifier="sw-settings-delivery-time-list-grid-wrapper">
     <template #grid>
@@ -334,33 +334,33 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 
 ## 4. sw-icon → mt-icon
 
-> Die Boolean-Props `small` und `large` entfallen zugunsten eines expliziten `size`-Strings. Der Default-Size ist `"24px"`. Der neue `mode` Prop erlaubt die Unterscheidung zwischen `solid` und `regular` Icons.
+> The boolean props `small` and `large` are dropped in favor of an explicit `size` string. The default size is `"24px"`. The new `mode` prop allows distinguishing between `solid` and `regular` icons.
 
 ### Props
 
-| Alt (sw-icon) | Neu (mt-icon) | Änderung |
+| Old (sw-icon) | New (mt-icon) | Change |
 |-----------|-----------|----------|
-| `small` (Boolean) | — entfallen — | Ersetzt durch `size="16px"` |
-| `large` (Boolean) | — entfallen — | Ersetzt durch `size="32px"` |
-| `size` (String) | `size` (String, Default: `"24px"`) | Default nun explizit `"24px"` |
-| `name` (String, required) | `name` (String, required) | Identisch |
-| `color` (String) | `color` (String) | Identisch |
-| `decorative` (Boolean) | `decorative` (Boolean) | Identisch |
-| — | `mode`: `solid`, `regular` | Neu: Explizite Wahl zwischen Solid- und Regular-Icons |
+| `small` (Boolean) | — dropped — | Replaced by `size="16px"` |
+| `large` (Boolean) | — dropped — | Replaced by `size="32px"` |
+| `size` (String) | `size` (String, default: `"24px"`) | Default is now explicitly `"24px"` |
+| `name` (String, required) | `name` (String, required) | Identical |
+| `color` (String) | `color` (String) | Identical |
+| `decorative` (Boolean) | `decorative` (Boolean) | Identical |
+| — | `mode`: `solid`, `regular` | New: explicit choice between solid and regular icons |
 
 ### Events
 
-Keine relevanten Event-Änderungen.
+No relevant event changes.
 
 ### Slots
 
-| Alt (sw-icon) | Neu (mt-icon) | Änderung |
+| Old (sw-icon) | New (mt-icon) | Change |
 |-----------|-----------|----------|
-| `default` | — entfallen — | `mt-icon` hat keinen Default-Slot |
+| `default` | — dropped — | `mt-icon` has no default slot |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-media/component/sidebar/sw-media-quickinfo/sw-media-quickinfo.html.twig -->
+<!-- File: src/module/sw-media/component/sidebar/sw-media-quickinfo/sw-media-quickinfo.html.twig -->
 <sw-icon
     small
     name="regular-files"
@@ -368,9 +368,9 @@ Keine relevanten Event-Änderungen.
 />
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-media/component/sidebar/sw-media-quickinfo/sw-media-quickinfo.html.twig -->
+<!-- File: src/module/sw-media/component/sidebar/sw-media-quickinfo/sw-media-quickinfo.html.twig -->
 <mt-icon
     size="16px"
     name="regular-files"
@@ -382,47 +382,47 @@ Keine relevanten Event-Änderungen.
 
 ## 5. sw-tabs → mt-tabs
 
-> Die grundlegendste Änderung: `mt-tabs` verwendet eine deklarative `:items`-Array-Prop anstelle von `sw-tabs-item`-Kindkomponenten in Slots. Route-Navigation wird per `onClick`-Callback im Item-Objekt definiert. In 6.7 konvertiert der Wrapper automatisch die alten `sw-tabs-item`-Kinder; ab v6.8.0 muss `mt-tabs` direkt mit `:items` verwendet werden.
+> The most fundamental change: `mt-tabs` uses a declarative `:items` array prop instead of `sw-tabs-item` child components in slots. Route navigation is defined via an `onClick` callback in the item object. In 6.7 the wrapper automatically converts the old `sw-tabs-item` children; from v6.8.0 on, `mt-tabs` must be used directly with `:items`.
 
 ### Props
 
-| Alt (sw-tabs) | Neu (mt-tabs) | Änderung |
+| Old (sw-tabs) | New (mt-tabs) | Change |
 |-----------|-----------|----------|
-| Kindkomponenten `<sw-tabs-item>` im Default-Slot | `:items` (Array von `TabItem[]`) | **Komplett neues Modell**: Deklaratives Array statt Slot-Kinder |
-| `isVertical` (Boolean) | `vertical` (Boolean) | Umbenannt |
+| Child components `<sw-tabs-item>` in the default slot | `:items` (array of `TabItem[]`) | **Completely new model**: declarative array instead of slot children |
+| `isVertical` (Boolean) | `vertical` (Boolean) | Renamed |
 | `small` (Boolean) | `small` (Boolean) | Deprecated in Meteor v4 |
-| `alignRight` (Boolean) | — entfallen — | Komplett entfernt |
-| `defaultItem` (String) | `defaultItem` (String) | Identisch |
+| `alignRight` (Boolean) | — dropped — | Removed entirely |
+| `defaultItem` (String) | `defaultItem` (String) | Identical |
 
-**TabItem-Interface (neu):**
+**TabItem interface (new):**
 ```typescript
 interface TabItem {
-    label: string;      // Anzeigetext (früher: Slot-Content von sw-tabs-item)
-    name: string;       // Identifier (früher: name-Prop auf sw-tabs-item)
+    label: string;      // Display text (formerly: slot content of sw-tabs-item)
+    name: string;       // Identifier (formerly: name prop on sw-tabs-item)
     hasError?: boolean;
     disabled?: boolean;
     badge?: "positive" | "critical" | "warning" | "info";
-    onClick?: (name: string) => void;  // Früher: route-Prop auf sw-tabs-item
+    onClick?: (name: string) => void;  // Formerly: route prop on sw-tabs-item
     hidden?: boolean;
 }
 ```
 
 ### Events
 
-| Alt (sw-tabs) | Neu (mt-tabs) | Änderung |
+| Old (sw-tabs) | New (mt-tabs) | Change |
 |-----------|-----------|----------|
-| `@new-item-active(item)` | `@new-item-active(item)` | Identisch |
+| `@new-item-active(item)` | `@new-item-active(item)` | Identical |
 
 ### Slots
 
-| Alt (sw-tabs) | Neu (mt-tabs) | Änderung |
+| Old (sw-tabs) | New (mt-tabs) | Change |
 |-----------|-----------|----------|
-| `default` (scope: `{ active }`) — enthält `sw-tabs-item`-Kinder | — entfallen — | Ersetzt durch `:items`-Prop |
-| `content` (scope: `{ active }`) | `content` (scope: `{ active }`) | Inhalt-Slot bleibt (im Wrapper) |
+| `default` (scope: `{ active }`) — contains `sw-tabs-item` children | — dropped — | Replaced by the `:items` prop |
+| `content` (scope: `{ active }`) | `content` (scope: `{ active }`) | Content slot remains (in the wrapper) |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-view/sw-category-view.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-view/sw-category-view.html.twig -->
 <sw-tabs
     v-if="!isLoading"
     position-identifier="sw-category-view"
@@ -447,9 +447,9 @@ interface TabItem {
 </sw-tabs>
 ```
 
-### Nachher (6.7 — Zielformat mit mt-tabs)
+### After (6.7 — target format with mt-tabs)
 ```twig
-<!-- Zielformat für direkte mt-tabs Nutzung (ab v6.8 erforderlich) -->
+<!-- Target format for direct mt-tabs usage (required from v6.8) -->
 <mt-tabs
     v-if="!isLoading"
     position-identifier="sw-category-view"
@@ -470,41 +470,41 @@ interface TabItem {
 />
 ```
 
-> **Hinweis:** In 6.7 wird `sw-tabs` in den Modulen noch verwendet — der Wrapper konvertiert automatisch die `sw-tabs-item`-Kinder in das `items`-Array (siehe `itemsBackwardCompatible` Computed Property). Ab v6.8.0 wird der Wrapper entfernt.
+> **Note:** In 6.7 `sw-tabs` is still used in the modules — the wrapper automatically converts the `sw-tabs-item` children into the `items` array (see the `itemsBackwardCompatible` computed property). From v6.8.0 on, the wrapper is removed.
 
 ---
 
 ## 6. sw-text-field → mt-text-field
 
-> Einfaches Texteingabefeld. Der Wrapper konvertiert `value`/`update:value` auf das Vue-3-Standard `modelValue`/`update:modelValue`.
+> Simple text input field. The wrapper converts `value`/`update:value` to the Vue 3 standard `modelValue`/`update:modelValue`.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
-| `copyable` | — entfallen — | Entfernt in mt-text-field |
-| `copyableTooltip` | — entfallen — | Entfernt in mt-text-field |
-| `idSuffix` | — entfallen — | Entfernt in mt-text-field |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
+| `copyable` | — dropped — | Removed in mt-text-field |
+| `copyableTooltip` | — dropped — | Removed in mt-text-field |
+| `idSuffix` | — dropped — | Removed in mt-text-field |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt (Vue-3-Standard) |
-| `@inheritance-restore` | — entfallen — | Entfernt |
-| `@inheritance-remove` | — entfallen — | Entfernt |
+| `@update:value` | `@update:modelValue` | Renamed (Vue 3 standard) |
+| `@inheritance-restore` | — dropped — | Removed |
+| `@inheritance-remove` | — dropped — | Removed |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `label` | `label` | Identisch |
-| `hint` | `hint` | Identisch |
+| `label` | `label` | Identical |
+| `hint` | `hint` | Identical |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-newsletter-recipient/page/sw-newsletter-recipient-detail/sw-newsletter-recipient-detail.html.twig -->
+<!-- File: src/module/sw-newsletter-recipient/page/sw-newsletter-recipient-detail/sw-newsletter-recipient-detail.html.twig -->
 {% block sw_newsletter_recipient_detail_form_title %}
 <sw-text-field
     v-model:value="newsletterRecipient.title"
@@ -514,9 +514,9 @@ interface TabItem {
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-newsletter-recipient/page/sw-newsletter-recipient-detail/sw-newsletter-recipient-detail.html.twig -->
+<!-- File: src/module/sw-newsletter-recipient/page/sw-newsletter-recipient-detail/sw-newsletter-recipient-detail.html.twig -->
 {% block sw_newsletter_recipient_detail_form_title %}
 <mt-text-field
     v-model="newsletterRecipient.title"
@@ -530,35 +530,35 @@ interface TabItem {
 
 ## 7. sw-number-field → mt-number-field
 
-> Numerisches Eingabefeld mit Unterstützung für Integer/Float, Min/Max/Step. Der Wrapper konvertiert `value` auf `v-model` und emittiert zusätzlich `change` für Rückwärtskompatibilität.
+> Numeric input field with support for integer/float, min/max/step. The wrapper converts `value` to `v-model` and additionally emits `change` for backward compatibility.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
-| `digits` | — entfallen — | Entfernt in mt-number-field |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
+| `digits` | — dropped — | Removed in mt-number-field |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt (Vue-3-Standard) |
-| `@input-change` | — entfallen — | Entfernt |
-| `@change` | `@change` | Identisch (Wrapper emittiert weiterhin für Kompatibilität) |
-| `@inheritance-restore` | — entfallen — | Entfernt |
-| `@inheritance-remove` | — entfallen — | Entfernt |
+| `@update:value` | `@update:modelValue` | Renamed (Vue 3 standard) |
+| `@input-change` | — dropped — | Removed |
+| `@change` | `@change` | Identical (the wrapper still emits it for compatibility) |
+| `@inheritance-restore` | — dropped — | Removed |
+| `@inheritance-remove` | — dropped — | Removed |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `label` | `label` | Identisch |
-| `hint` | `hint` | Identisch |
+| `label` | `label` | Identical |
+| `hint` | `hint` | Identical |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-promotion-v2/view/sw-promotion-v2-detail-base/sw-promotion-v2-detail-base.html.twig -->
+<!-- File: src/module/sw-promotion-v2/view/sw-promotion-v2-detail-base/sw-promotion-v2-detail-base.html.twig -->
 <sw-number-field
     v-model:value="promotion.priority"
     :disabled="!acl.can('promotion.editor')"
@@ -567,9 +567,9 @@ interface TabItem {
 />
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-promotion-v2/view/sw-promotion-v2-detail-base/sw-promotion-v2-detail-base.html.twig -->
+<!-- File: src/module/sw-promotion-v2/view/sw-promotion-v2-detail-base/sw-promotion-v2-detail-base.html.twig -->
 <mt-number-field
     v-model="promotion.priority"
     :disabled="!acl.can('promotion.editor')"
@@ -585,34 +585,34 @@ interface TabItem {
 
 ## 8. sw-checkbox-field → mt-checkbox
 
-> Checkbox-Feld für boolesche Werte. **Wichtigste Änderung**: Das Binding wechselt von `value` auf `checked` — sowohl beim Prop als auch beim Event. Dies ist die einzige Komponente, die `v-model:checked` statt `v-model` verwendet.
+> Checkbox field for boolean values. **Most important change**: the binding switches from `value` to `checked` — for both the prop and the event. This is the only component that uses `v-model:checked` instead of `v-model`.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` (Boolean) | `checked` (Boolean) | **Umbenannt**: `v-model:value` wird zu `v-model:checked` |
-| `ghostValue` | — entfallen — | Entfernt |
-| `inheritedValue` | — entfallen — | Entfernt |
+| `value` (Boolean) | `checked` (Boolean) | **Renamed**: `v-model:value` becomes `v-model:checked` |
+| `ghostValue` | — dropped — | Removed |
+| `inheritedValue` | — dropped — | Removed |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:checked` | **Umbenannt**: Wrapper konvertiert `update:checked` auf `update:value` |
-| `@inheritance-restore` | — entfallen — | Entfernt |
-| `@inheritance-remove` | — entfallen — | Entfernt |
+| `@update:value` | `@update:checked` | **Renamed**: the wrapper converts `update:checked` to `update:value` |
+| `@inheritance-restore` | — dropped — | Removed |
+| `@inheritance-remove` | — dropped — | Removed |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `label` | `label` | Identisch |
-| `hint` | `hint` | Identisch |
+| `label` | `label` | Identical |
+| `hint` | `hint` | Identical |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-bulk-edit/component/sw-bulk-edit-change-type-field-renderer/sw-bulk-edit-change-type-field-renderer.html.twig -->
+<!-- File: src/module/sw-bulk-edit/component/sw-bulk-edit-change-type-field-renderer/sw-bulk-edit-change-type-field-renderer.html.twig -->
 {% block sw_bulk_edit_change_type_field_renderer_change_field_title %}
 <sw-checkbox-field
     v-model:value="bulkEditData[formField.name].isChanged"
@@ -625,9 +625,9 @@ interface TabItem {
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-bulk-edit/component/sw-bulk-edit-change-type-field-renderer/sw-bulk-edit-change-type-field-renderer.html.twig -->
+<!-- File: src/module/sw-bulk-edit/component/sw-bulk-edit-change-type-field-renderer/sw-bulk-edit-change-type-field-renderer.html.twig -->
 {% block sw_bulk_edit_change_type_field_renderer_change_field_title %}
 <mt-checkbox
     v-model:checked="bulkEditData[formField.name].isChanged"
@@ -644,36 +644,36 @@ interface TabItem {
 
 ## 9. sw-switch-field → mt-switch
 
-> Toggle/Switch für boolesche Werte. Der Tippfehler `borderd` wird zu `bordered` korrigiert. Props `size` und `noMarginTop` entfallen.
+> Toggle/switch for boolean values. The typo `borderd` is corrected to `bordered`. The props `size` and `noMarginTop` are dropped.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` (Boolean) | `modelValue` (Boolean) | Umbenannt: `v-model:value` wird zu `v-model` |
-| `checked` (Boolean) | `modelValue` (Boolean) | Zusammengeführt: Wrapper akzeptiert beides |
-| `borderd` | `bordered` | **Tippfehler korrigiert** |
-| `size` | — entfallen — | Entfernt (`small`, `medium`, `default`) |
-| `noMarginTop` | — entfallen — | Entfernt |
+| `value` (Boolean) | `modelValue` (Boolean) | Renamed: `v-model:value` becomes `v-model` |
+| `checked` (Boolean) | `modelValue` (Boolean) | Merged: the wrapper accepts both |
+| `borderd` | `bordered` | **Typo corrected** |
+| `size` | — dropped — | Removed (`small`, `medium`, `default`) |
+| `noMarginTop` | — dropped — | Removed |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt |
-| `@inheritance-restore` | — entfallen — | Entfernt |
-| `@inheritance-remove` | — entfallen — | Entfernt |
+| `@update:value` | `@update:modelValue` | Renamed |
+| `@inheritance-restore` | — dropped — | Removed |
+| `@inheritance-remove` | — dropped — | Removed |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `label` | — entfallen — | Label wird nur als Prop übergeben |
-| `hint` | — entfallen — | `mt-switch` hat keine Slot-Unterstützung |
+| `label` | — dropped — | The label is only passed as a prop |
+| `hint` | — dropped — | `mt-switch` has no slot support |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-detail-menu/sw-category-detail-menu.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-detail-menu/sw-category-detail-menu.html.twig -->
 {% block sw_category_detail_information_visible %}
 <sw-switch-field
     v-model:value="reversedVisibility"
@@ -684,9 +684,9 @@ interface TabItem {
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-detail-menu/sw-category-detail-menu.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-detail-menu/sw-category-detail-menu.html.twig -->
 {% block sw_category_detail_information_visible %}
 <mt-switch
     v-model="reversedVisibility"
@@ -701,34 +701,34 @@ interface TabItem {
 
 ## 10. sw-select-field → mt-select
 
-> Native Select-Dropdown. **Gravierendste Änderung**: `<option>`-Slots im Template entfallen komplett und werden durch ein `:options`-Array-Prop ersetzt. Die Optionen müssen in ein JavaScript-Array im Component verschoben werden.
+> Native select dropdown. **Most severe change**: `<option>` slots in the template are dropped entirely and replaced by an `:options` array prop. The options must be moved into a JavaScript array in the component.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
-| `options` (optional, Array) | `options` (erforderlich, Array) | Nun **die einzige Möglichkeit** Optionen zu definieren (Slots entfallen) |
-| `aside` | — entfallen — | Entfernt |
-| `placeholder` | `placeholder` | Identisch |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
+| `options` (optional, array) | `options` (required, array) | Now **the only way** to define options (slots are dropped) |
+| `aside` | — dropped — | Removed |
+| `placeholder` | `placeholder` | Identical |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt (Vue-3-Standard) |
+| `@update:value` | `@update:modelValue` | Renamed (Vue 3 standard) |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| default (`<option>` Elemente) | — entfallen — | **Entfernt**: Optionen müssen als `:options`-Array übergeben werden |
-| `label` | — entfallen — | Entfernt als Slot |
-| `hint` | — entfallen — | Entfernt als Slot |
+| default (`<option>` elements) | — dropped — | **Removed**: options must be passed as an `:options` array |
+| `label` | — dropped — | Removed as a slot |
+| `hint` | — dropped — | Removed as a slot |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-cms/component/sw-cms-block/sw-cms-block-config/sw-cms-block-config.html.twig -->
+<!-- File: src/module/sw-cms/component/sw-cms-block/sw-cms-block-config/sw-cms-block-config.html.twig -->
 {% block sw_cms_block_config_background_image_position_field %}
 <sw-select-field
     v-model:value="block.backgroundMediaMode"
@@ -748,9 +748,9 @@ interface TabItem {
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-cms/component/sw-cms-block/sw-cms-block-config/sw-cms-block-config.html.twig -->
+<!-- File: src/module/sw-cms/component/sw-cms-block/sw-cms-block-config/sw-cms-block-config.html.twig -->
 {% block sw_cms_block_config_background_image_position_field %}
 <mt-select
     v-model="block.backgroundMediaMode"
@@ -761,7 +761,7 @@ interface TabItem {
 {% endblock %}
 ```
 
-**Optionen in den Component verschieben:**
+**Moving the options into the component:**
 ```js
 computed: {
     backgroundModeOptions() {
@@ -778,31 +778,31 @@ computed: {
 
 ## 11. sw-password-field → mt-password-field
 
-> Passwort-Eingabefeld mit Sichtbarkeits-Toggle. Strukturell sehr ähnlich zu `sw-text-field`.
+> Password input field with a visibility toggle. Structurally very similar to `sw-text-field`.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
-| `placeholder` | `placeholder` | Identisch (explizit durchgereicht) |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
+| `placeholder` | `placeholder` | Identical (passed through explicitly) |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt; Wrapper emittiert beides für Kompatibilität |
+| `@update:value` | `@update:modelValue` | Renamed; the wrapper emits both for compatibility |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `label` | `label` | Identisch |
-| `hint` | `hint` | Identisch |
+| `label` | `label` | Identical |
+| `hint` | `hint` | Identical |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-login/view/sw-login-login/sw-login-login.html.twig -->
+<!-- File: src/module/sw-login/view/sw-login-login/sw-login-login.html.twig -->
 {% block sw_login_login_password_field %}
 <sw-password-field
     v-model:value="password"
@@ -815,9 +815,9 @@ computed: {
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-login/view/sw-login-login/sw-login-login.html.twig -->
+<!-- File: src/module/sw-login/view/sw-login-login/sw-login-login.html.twig -->
 {% block sw_login_login_password_field %}
 <mt-password-field
     v-model="password"
@@ -834,27 +834,27 @@ computed: {
 
 ## 12. sw-email-field → mt-email-field
 
-> E-Mail-Eingabefeld mit eingebauter Validierung. Folgt dem Standard-v-model-Migrationsmuster.
+> Email input field with built-in validation. Follows the standard v-model migration pattern.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt (Vue-3-Standard) |
+| `@update:value` | `@update:modelValue` | Renamed (Vue 3 standard) |
 
 ### Slots
 
-Keine Änderungen. Slots (`default`, `prefix`) werden 1:1 durchgereicht.
+No changes. Slots (`default`, `prefix`) are passed through 1:1.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-customer/component/sw-customer-card/sw-customer-card.html.twig -->
+<!-- File: src/module/sw-customer/component/sw-customer-card/sw-customer-card.html.twig -->
 {% block sw_customer_card_metadata_customer_email_editor %}
 <sw-email-field
     v-else
@@ -869,9 +869,9 @@ Keine Änderungen. Slots (`default`, `prefix`) werden 1:1 durchgereicht.
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-customer/component/sw-customer-card/sw-customer-card.html.twig -->
+<!-- File: src/module/sw-customer/component/sw-customer-card/sw-customer-card.html.twig -->
 {% block sw_customer_card_metadata_customer_email_editor %}
 <mt-email-field
     v-else
@@ -890,27 +890,27 @@ Keine Änderungen. Slots (`default`, `prefix`) werden 1:1 durchgereicht.
 
 ## 13. sw-textarea-field → mt-textarea
 
-> Mehrzeiliges Texteingabefeld. **Achtung**: Der Komponentenname ändert sich von `sw-textarea-field` zu `mt-textarea` (nicht `mt-textarea-field`).
+> Multi-line text input field. **Caution**: the component name changes from `sw-textarea-field` to `mt-textarea` (not `mt-textarea-field`).
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt (Vue-3-Standard) |
+| `@update:value` | `@update:modelValue` | Renamed (Vue 3 standard) |
 
 ### Slots
 
-Keine Änderungen. Slots (`default`, `hint`) werden durchgereicht.
+No changes. Slots (`default`, `hint`) are passed through.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-seo-form/sw-category-seo-form.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-seo-form/sw-category-seo-form.html.twig -->
 {% block sw_category_seo_form_meta_description %}
 <sw-textarea-field
     v-model:value="category.metaDescription"
@@ -923,9 +923,9 @@ Keine Änderungen. Slots (`default`, `hint`) werden durchgereicht.
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-category/component/sw-category-seo-form/sw-category-seo-form.html.twig -->
+<!-- File: src/module/sw-category/component/sw-category-seo-form/sw-category-seo-form.html.twig -->
 {% block sw_category_seo_form_meta_description %}
 <mt-textarea
     v-model="category.metaDescription"
@@ -942,29 +942,29 @@ Keine Änderungen. Slots (`default`, `hint`) werden durchgereicht.
 
 ## 14. sw-colorpicker → mt-colorpicker
 
-> Farbauswahl-Komponente. Die `color-output`-Prop entfällt (war `auto`, `hex`, `hsl`, `rgb`). `mt-colorpicker` gibt immer Hex aus.
+> Color picker component. The `color-output` prop is dropped (it was `auto`, `hex`, `hsl`, `rgb`). `mt-colorpicker` always outputs hex.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
-| `color-output` | — entfallen — | Entfernt; `mt-colorpicker` gibt immer Hex aus |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
+| `color-output` | — dropped — | Removed; `mt-colorpicker` always outputs hex |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt |
-| `@change` | `@update:modelValue` | `@change` wird im Wrapper auf `@update:modelValue` gemappt |
+| `@update:value` | `@update:modelValue` | Renamed |
+| `@change` | `@update:modelValue` | `@change` is mapped to `@update:modelValue` in the wrapper |
 
 ### Slots
 
-Keine Änderungen. Default-Slot wird durchgereicht.
+No changes. The default slot is passed through.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-property/component/sw-property-option-detail/sw-property-option-detail.html.twig -->
+<!-- File: src/module/sw-property/component/sw-property-option-detail/sw-property-option-detail.html.twig -->
 {% block sw_property_option_detail_color %}
 <sw-colorpicker
     v-model:value="currentOption.colorHexCode"
@@ -977,9 +977,9 @@ Keine Änderungen. Default-Slot wird durchgereicht.
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-property/component/sw-property-option-detail/sw-property-option-detail.html.twig -->
+<!-- File: src/module/sw-property/component/sw-property-option-detail/sw-property-option-detail.html.twig -->
 {% block sw_property_option_detail_color %}
 <mt-colorpicker
     v-model="colorHexCode"
@@ -995,27 +995,27 @@ Keine Änderungen. Default-Slot wird durchgereicht.
 
 ## 15. sw-datepicker → mt-datepicker
 
-> Datumsauswahl-Komponente mit Kalender und verschiedenen Datumsformaten. Folgt dem Standard-v-model-Migrationsmuster.
+> Date picker component with a calendar and various date formats. Follows the standard v-model migration pattern.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt |
+| `@update:value` | `@update:modelValue` | Renamed |
 
 ### Slots
 
-Keine Änderungen.
+No changes.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-customer/component/sw-customer-base-form/sw-customer-base-form.html.twig -->
+<!-- File: src/module/sw-customer/component/sw-customer-base-form/sw-customer-base-form.html.twig -->
 {% block sw_customer_base_form_birthday_field %}
 <sw-datepicker
     v-model:value="customer.birthday"
@@ -1028,9 +1028,9 @@ Keine Änderungen.
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-customer/component/sw-customer-base-form/sw-customer-base-form.html.twig -->
+<!-- File: src/module/sw-customer/component/sw-customer-base-form/sw-customer-base-form.html.twig -->
 {% block sw_customer_base_form_birthday_field %}
 <mt-datepicker
     v-model="customer.birthday"
@@ -1047,27 +1047,27 @@ Keine Änderungen.
 
 ## 16. sw-url-field → mt-url-field
 
-> URL-Eingabefeld mit Protokoll-Prefix-Anzeige (SSL-Toggle). Folgt dem Standard-v-model-Migrationsmuster.
+> URL input field with a protocol prefix display (SSL toggle). Follows the standard v-model migration pattern.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `value` | `modelValue` | Umbenannt: `v-model:value` wird zu `v-model` |
+| `value` | `modelValue` | Renamed: `v-model:value` becomes `v-model` |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@update:value` | `@update:modelValue` | Umbenannt |
+| `@update:value` | `@update:modelValue` | Renamed |
 
 ### Slots
 
-Keine Änderungen.
+No changes.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-sales-channel/component/sw-sales-channel-detail-domains/sw-sales-channel-detail-domains.html.twig -->
+<!-- File: src/module/sw-sales-channel/component/sw-sales-channel-detail-domains/sw-sales-channel-detail-domains.html.twig -->
 {% block sw_sales_channel_detail_domains_input_url %}
 <sw-url-field
     v-model:value="currentDomain.url"
@@ -1081,9 +1081,9 @@ Keine Änderungen.
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-sales-channel/component/sw-sales-channel-detail-domains/sw-sales-channel-detail-domains.html.twig -->
+<!-- File: src/module/sw-sales-channel/component/sw-sales-channel-detail-domains/sw-sales-channel-detail-domains.html.twig -->
 {% block sw_sales_channel_detail_domains_input_url %}
 <mt-url-field
     v-model="currentDomain.url"
@@ -1101,31 +1101,31 @@ Keine Änderungen.
 
 ## 17. sw-loader → mt-loader
 
-> Lade-Spinner für asynchrone Operationen. Einfache 1:1-Ersetzung ohne Prop-Änderungen.
+> Loading spinner for asynchronous operations. Simple 1:1 replacement without prop changes.
 
 ### Props
 
-Keine Änderungen. Der `size`-Prop bleibt identisch (Format: `"${number}px"`, Default: `"50px"`).
+No changes. The `size` prop stays identical (format: `"${number}px"`, default: `"50px"`).
 
 ### Events
 
-Keine Events.
+No events.
 
 ### Slots
 
-Keine Slots.
+No slots.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-login/page/index/sw-login.html.twig -->
+<!-- File: src/module/sw-login/page/index/sw-login.html.twig -->
 {% block sw_login_loader %}
 <sw-loader v-if="isLoading" />
 {% endblock %}
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-login/page/index/sw-login.html.twig -->
+<!-- File: src/module/sw-login/page/index/sw-login.html.twig -->
 {% block sw_login_loader %}
 <mt-loader v-if="isLoading" />
 {% endblock %}
@@ -1135,35 +1135,35 @@ Keine Slots.
 
 ## 18. sw-popover → mt-floating-ui
 
-> Tiefgreifende Änderung: `sw-popover` hatte eigene Positionierungslogik. `mt-floating-ui` nutzt `@floating-ui/dom`. Der Wrapper mappt `resizeWidth` auf `matchReferenceWidth` und die Slot-Struktur ändert sich grundlegend.
+> Far-reaching change: `sw-popover` had its own positioning logic. `mt-floating-ui` uses `@floating-ui/dom`. The wrapper maps `resizeWidth` to `matchReferenceWidth` and the slot structure changes fundamentally.
 
 ### Props
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `resizeWidth` | `matchReferenceWidth` | **Umbenannt** |
-| `popoverClass` | — entfallen — | Entfernt; CSS direkt verwenden |
-| `popoverConfigExtension` | `floatingUiOptions` | Ersetzt durch `@floating-ui/dom` Config |
-| `isOpened` | `isOpened` | Identisch |
-| — | `showArrow` (Boolean) | Neu: Pfeil-Anzeige |
-| — | `offset` (Number) | Neu: Abstand zum Trigger (Default: 6) |
+| `resizeWidth` | `matchReferenceWidth` | **Renamed** |
+| `popoverClass` | — dropped — | Removed; use CSS directly |
+| `popoverConfigExtension` | `floatingUiOptions` | Replaced by `@floating-ui/dom` config |
+| `isOpened` | `isOpened` | Identical |
+| — | `showArrow` (Boolean) | New: arrow display |
+| — | `offset` (Number) | New: distance from the trigger (default: 6) |
 
 ### Events
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `@close-popover` | `@close` | Umbenannt |
+| `@close-popover` | `@close` | Renamed |
 
 ### Slots
 
-| Alt (sw-*) | Neu (mt-*) | Änderung |
+| Old (sw-*) | New (mt-*) | Change |
 |-----------|-----------|----------|
-| `default` (Trigger-Element) | `trigger` | **Umbenannt**: Trigger-Content in neuen `trigger`-Slot |
-| `popover-content` | `default` (scope: `{ referenceElementWidth, referenceElementHeight }`) | **Umbenannt**: Popover-Inhalt wird zum Default-Slot |
+| `default` (trigger element) | `trigger` | **Renamed**: trigger content into the new `trigger` slot |
+| `popover-content` | `default` (scope: `{ referenceElementWidth, referenceElementHeight }`) | **Renamed**: popover content becomes the default slot |
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Konzeptbeispiel für sw-popover -->
+<!-- Conceptual example for sw-popover -->
 <sw-popover :isOpened="showPopover" @close-popover="showPopover = false">
     <template #default>
         <sw-button @click="showPopover = !showPopover">Toggle</sw-button>
@@ -1174,9 +1174,9 @@ Keine Slots.
 </sw-popover>
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Direktes mt-floating-ui Format -->
+<!-- Direct mt-floating-ui format -->
 <mt-floating-ui :isOpened="showPopover" @close="showPopover = false">
     <template #trigger>
         <mt-button @click="showPopover = !showPopover">Toggle</mt-button>
@@ -1187,37 +1187,37 @@ Keine Slots.
 </mt-floating-ui>
 ```
 
-> **Hinweis:** In 6.7 wird `sw-popover` in Modulen weiterhin als Wrapper-Name verwendet. Der Wrapper delegiert intern an `mt-floating-ui`. Ab v6.8.0 muss `mt-floating-ui` direkt verwendet werden.
+> **Note:** In 6.7 `sw-popover` is still used in modules as the wrapper name. The wrapper delegates internally to `mt-floating-ui`. From v6.8.0 on, `mt-floating-ui` must be used directly.
 
 ---
 
 ## 19. sw-skeleton-bar → mt-skeleton-bar
 
-> Skeleton-Loading-Platzhalter. Einfache 1:1-Ersetzung ohne Prop-, Event- oder Slot-Änderungen.
+> Skeleton loading placeholder. Simple 1:1 replacement without prop, event or slot changes.
 
 ### Props
 
-Keine Änderungen. Keine spezifischen Props (nur Standard-HTML-Attribute via `v-bind="$attrs"`).
+No changes. No specific props (only standard HTML attributes via `v-bind="$attrs"`).
 
 ### Events
 
-Keine Events.
+No events.
 
 ### Slots
 
-Keine Slots.
+No slots.
 
-### Vorher (6.6)
+### Before (6.6)
 ```twig
-<!-- Datei: src/module/sw-cms/component/sw-cms-slot/sw-cms-slot.html.twig -->
+<!-- File: src/module/sw-cms/component/sw-cms-slot/sw-cms-slot.html.twig -->
 <div v-else>
     <sw-skeleton-bar style="width: 100%; min-height: 250px;" />
 </div>
 ```
 
-### Nachher (6.7)
+### After (6.7)
 ```twig
-<!-- Datei: src/module/sw-cms/component/sw-cms-slot/sw-cms-slot.html.twig -->
+<!-- File: src/module/sw-cms/component/sw-cms-slot/sw-cms-slot.html.twig -->
 <div v-else>
     <mt-skeleton-bar style="width: 100%; min-height: 250px;" />
 </div>
@@ -1225,32 +1225,32 @@ Keine Slots.
 
 ---
 
-## Zusammenfassung der Migrationsmuster
+## Summary of the migration patterns
 
-### Gemeinsame Muster aller Formularfelder (6-16)
+### Patterns common to all form fields (6-16)
 
-| Muster | Alt (6.6) | Neu (6.7) |
+| Pattern | Old (6.6) | New (6.7) |
 |--------|-----------|-----------|
-| **v-model Binding** | `v-model:value="..."` | `v-model="..."` |
-| **Manuelles Binding** | `:value="..."` + `@update:value="..."` | `:model-value="..."` + `@update:model-value="..."` |
-| **Komponentenname** | `sw-*-field` | `mt-*` (ohne `-field` bei checkbox, switch, select, textarea) |
+| **v-model binding** | `v-model:value="..."` | `v-model="..."` |
+| **Manual binding** | `:value="..."` + `@update:value="..."` | `:model-value="..."` + `@update:model-value="..."` |
+| **Component name** | `sw-*-field` | `mt-*` (without `-field` for checkbox, switch, select, textarea) |
 
-### Sonderfälle
+### Special cases
 
-| Komponente | Besonderheit |
+| Component | Particularity |
 |-----------|-------------|
-| **sw-checkbox-field** | `v-model:checked` statt `v-model` — einzige Ausnahme |
-| **sw-switch-field** | Tippfehler `borderd` → `bordered`; Props `size`, `noMarginTop` entfallen; Slots `label`, `hint` entfallen |
-| **sw-select-field** | Inline `<option>`-Slots → `:options`-Array-Prop (größte strukturelle Änderung) |
-| **sw-tabs** | `<sw-tabs-item>`-Kinder → `:items`-Array mit `onClick`-Callbacks (komplexeste Migration) |
-| **sw-button** | `routerLink` → `@click` + `$router.push()`; Default-Variant wird `"secondary"` |
-| **sw-alert** | `showIcon` → `hideIcon` (Logik invertiert); `appearance` entfällt komplett |
-| **sw-popover** | Slot-Umbenennung: `default` → `trigger`, `popover-content` → `default` |
-| **sw-colorpicker** | `color-output` entfällt (immer Hex) |
+| **sw-checkbox-field** | `v-model:checked` instead of `v-model` — the only exception |
+| **sw-switch-field** | Typo `borderd` → `bordered`; props `size`, `noMarginTop` dropped; slots `label`, `hint` dropped |
+| **sw-select-field** | Inline `<option>` slots → `:options` array prop (biggest structural change) |
+| **sw-tabs** | `<sw-tabs-item>` children → `:items` array with `onClick` callbacks (most complex migration) |
+| **sw-button** | `routerLink` → `@click` + `$router.push()`; the default variant becomes `"secondary"` |
+| **sw-alert** | `showIcon` → `hideIcon` (logic inverted); `appearance` is dropped entirely |
+| **sw-popover** | Slot rename: `default` → `trigger`, `popover-content` → `default` |
+| **sw-colorpicker** | `color-output` is dropped (always hex) |
 
-### Datenquellen (Wrapper-Dateien in 6.7)
+### Data sources (wrapper files in 6.7)
 
-Alle Wrapper-Dateien befinden sich unter:
+All wrapper files are located under:
 ```
 vendor/shopware/administration/Resources/app/administration/src/app/component/
 ├── base/
@@ -1277,4 +1277,4 @@ vendor/shopware/administration/Resources/app/administration/src/app/component/
     └── sw-skeleton-bar/index.ts + sw-skeleton-bar.html.twig
 ```
 
-> **Siehe auch:** `references/component-mapping.md` für die Quick-Reference-Tabelle mit allen Komponenten.
+> **See also:** `references/component-mapping.md` for the quick reference table with all components.

@@ -1,18 +1,18 @@
-# shadcn-vue Area Charts — Vollstaendiger Quellcode
+# shadcn-vue Area Charts — Complete source code
 
-Alle 4 Area-Chart-Varianten. Alle nutzen `VisXYContainer + VisArea + VisLine + VisAxis`
-aus `@unovis/vue`.
+All 4 area chart variants. All use `VisXYContainer + VisArea + VisLine + VisAxis`
+from `@unovis/vue`.
 
 ---
 
 ## Contents
 
-- [ChartAreaAxes.vue — Area mit X- und Y-Achsen](#chartareaaxesvue-area-mit-x--und-y-achsen)
-- [ChartAreaGradient.vue — Area mit SVG-Gradient-Fuellung](#chartareagradientvue-area-mit-svg-gradient-fuellung)
-- [ChartAreaIcons.vue — Area mit Icons in der Legende](#chartareaiconsvue-area-mit-icons-in-der-legende)
-- [ChartAreaInteractive.vue — Area mit Zeitfilter (Select)](#chartareainteractivevue-area-mit-zeitfilter-select)
+- [ChartAreaAxes.vue — Area with X and Y axes](#chartareaaxesvue--area-with-x-and-y-axes)
+- [ChartAreaGradient.vue — Area with SVG gradient fill](#chartareagradientvue--area-with-svg-gradient-fill)
+- [ChartAreaIcons.vue — Area with icons in the legend](#chartareaiconsvue--area-with-icons-in-the-legend)
+- [ChartAreaInteractive.vue — Area with time filter (Select)](#chartareainteractivevue--area-with-time-filter-select)
 
-## ChartAreaAxes.vue — Area mit X- und Y-Achsen
+## ChartAreaAxes.vue — Area with X and Y axes
 
 ```vue
 <script setup lang="ts">
@@ -96,9 +96,9 @@ const chartConfig = {
 
 ---
 
-## ChartAreaGradient.vue — Area mit SVG-Gradient-Fuellung
+## ChartAreaGradient.vue — Area with SVG gradient fill
 
-Unterschied: `svgDefs` mit `<linearGradient>` Definitionen + `url(#fillDesktop)` als Farbe.
+Difference: `svgDefs` with `<linearGradient>` definitions + `url(#fillDesktop)` as the color.
 
 ```vue
 <script setup lang="ts">
@@ -192,9 +192,9 @@ const svgDefs = `
 
 ---
 
-## ChartAreaIcons.vue — Area mit Icons in der Legende
+## ChartAreaIcons.vue — Area with icons in the legend
 
-Unterschied: ChartConfig enthaelt `icon: TrendingUp` / `icon: TrendingDown` + `ChartLegendContent`.
+Difference: ChartConfig contains `icon: TrendingUp` / `icon: TrendingDown` + `ChartLegendContent`.
 
 ```vue
 <script setup lang="ts">
@@ -277,10 +277,10 @@ const chartConfig = {
 
 ---
 
-## ChartAreaInteractive.vue — Area mit Zeitfilter (Select)
+## ChartAreaInteractive.vue — Area with time filter (Select)
 
-Unterschied: 90 Datenpunkte (Date-Objekte), `ref(timeRange)`, `computed(filterRange)`,
-`Select`-Dropdown, `labelFormatter` im Tooltip, Gradient-Fuellung.
+Difference: 90 data points (Date objects), `ref(timeRange)`, `computed(filterRange)`,
+`Select` dropdown, `labelFormatter` in the tooltip, gradient fill.
 
 ```vue
 <script setup lang="ts">
@@ -293,7 +293,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const chartData = [
   { date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
   { date: new Date("2024-04-02"), desktop: 97, mobile: 180 },
-  // ... 90 Datenpunkte bis 2024-06-30
+  // ... 90 data points through 2024-06-30
 ]
 
 type Data = typeof chartData[number]

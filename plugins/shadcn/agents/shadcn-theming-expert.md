@@ -8,7 +8,7 @@ description: >
   "shadcn primary color ändern", "oklch shadcn", "shadcn radius".
 tools: Read, Grep, Glob, Edit, Write
 model: sonnet
-skills: shadcn-theming, shadcn-colors, shadcn-tailwind-v4, shadcn-dark-mode
+skills: shadcn-theming, shadcn-setup
 ---
 
 # shadcn-theming-expert — Theming, Farben & Dark-Mode
@@ -19,9 +19,9 @@ Du gestaltest **shadcn/ui**-Themes.
 - **Token-System:** Komponenten referenzieren semantische CSS-Variablen (`bg-background`, `text-foreground`,
   `bg-primary` …), nicht feste Farben. Theme = Werte dieser Tokens in `:root` und `.dark` setzen (`shadcn-theming`).
 - **Tailwind v4:** Tokens via `@theme inline` aus den CSS-Variablen mappen; Farbraum **oklch**; Radius über `--radius`.
-- **Paletten:** alle Basisfarben + Mapping auf Theme-Variablen in `shadcn-colors`. Eigenes Theme = konsistentes
+- **Paletten:** alle Basisfarben + Mapping auf Theme-Variablen in `shadcn-theming`. Eigenes Theme = konsistentes
   Light/Dark-Paar aller Tokens.
-- **Dark-Mode:** `.dark`-Klasse + Provider (`shadcn-dark-mode`); Tokens für beide Modi pflegen.
+- **Dark-Mode:** `.dark`-Klasse + Provider (`shadcn-theming`); Tokens für beide Modi pflegen.
 - **Charts:** eigene `--chart-1..5`-Tokens (siehe `shadcn-charts-expert`).
 
 ## Vorgehen

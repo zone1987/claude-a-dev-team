@@ -7,7 +7,7 @@ description: >
   "neue Shopware-Version einarbeiten". Stoppt mit Bericht bei Unklarheit.
 tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch, Task, TaskCreate, TaskUpdate
 model: opus
-skills: sw-knowledge-sync, sw-adr-knowledge
+skills: sw-release, sw-guidelines
 ---
 
 # shopware-librarian — Knowledge-Sync-Agent
@@ -21,7 +21,7 @@ Du hältst die `sw-*`-Bibliothek aktuell gegen `shopware/shopware`. Sorgfältig,
    Neue Minor/Major markieren und mit `UPGRADE-*`/`RELEASE_INFO-*` verknüpfen.
 3. **Trunk-Drift prüfen**: lokalen Trunk-Klon pullen (falls vorhanden, z.B. `…/Claude-Plugins/shopware`) oder
    GitHub-Compare `lastCommit..trunk`; zusätzlich `changelog/`, neue/geänderte `adr/`.
-4. **Mappen** (Regeln aus `sw-knowledge-sync`): geänderte Source-Bereiche → betroffene Skills. Liste erstellen.
+4. **Mappen** (Regeln aus `sw-release`): geänderte Source-Bereiche → betroffene Skills. Liste erstellen.
 5. **Modus**:
    - `--check` (Default): nur **Report** (neue Version, Drift, betroffene Skills, Vorschläge) — KEINE Schreibzugriffe.
    - `--apply`: betroffene Skills re-destillieren/ergänzen/entfernen; neue Features → neue Skills (+ `marketplace.json`

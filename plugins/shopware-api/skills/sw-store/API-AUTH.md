@@ -1,19 +1,19 @@
-# Shopware 6 — Store-API-Auth & Kontext
+# Shopware 6 — Store API auth & context
 
-Die Store API ist kundenseitig und nutzt **keine OAuth-Tokens**, sondern Header.
+The Store API is customer-facing and uses **no OAuth tokens**, but headers instead.
 
-- **`sw-access-key`** (Pflicht): Access-Key des Sales Channels (Admin → Verkaufskanal → API-Zugang). Identifiziert den Channel.
-- **`sw-context-token`** (zustandsbehaftet): identifiziert den aktuellen Kontext (Warenkorb, eingeloggter Kunde,
-  gewählte Währung/Sprache). Wird vom Server zurückgegeben (Header/Body) und bei Folge-Requests **mitgeschickt**.
+- **`sw-access-key`** (required): the access key of the sales channel (Admin → sales channel → API access). Identifies the channel.
+- **`sw-context-token`** (stateful): identifies the current context (cart, logged-in customer,
+  chosen currency/language). Returned by the server (header/body) and **sent along** on follow-up requests.
 
 ```bash
-# erster Request: Access-Key reicht; Server liefert ggf. einen sw-context-token zurück
+# first request: the access key is enough; the server may return an sw-context-token
 curl "$BASE/store-api/context" -H "sw-access-key: $KEY"
 
-# Login: Token wird im Response-Header zurückgegeben und danach wiederverwendet
+# login: the token is returned in the response header and reused afterwards
 curl -X POST "$BASE/store-api/account/login" -H "sw-access-key: $KEY" -H "Content-Type: application/json" \
-     -d '{ "username": "kunde@example.com", "password": "..." }'   # -> sw-context-token
+     -d '{ "username": "customer@example.com", "password": "..." }'   # -> sw-context-token
 ```
 
-Den `sw-context-token` über die ganze Session/Warenkorb-Strecke konstant halten. Sprache/Währung über Kontext
-bzw. Header (`sw-api-headers`). Endpunkte: `sw-store-api-endpoints`.
+Keep the `sw-context-token` constant across the whole session/cart journey. Language/currency via the context
+or headers (`sw-api-headers`). Endpoints: `sw-store-api-endpoints`.

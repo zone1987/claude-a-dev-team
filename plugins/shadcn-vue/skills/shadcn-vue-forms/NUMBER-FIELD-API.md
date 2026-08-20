@@ -1,4 +1,4 @@
-# NumberField — API-Referenz
+# NumberField — API Reference
 
 ## Contents
 
@@ -7,32 +7,32 @@
 - [NumberFieldInput](#numberfieldinput)
 - [NumberFieldDecrement](#numberfielddecrement)
 - [NumberFieldIncrement](#numberfieldincrement)
-- [reka-ui Referenz](#reka-ui-referenz)
+- [reka-ui Reference](#reka-ui-reference)
 
 ## NumberField (Root)
 
-Basiert auf reka-ui `NumberFieldRoot`. Verwaltet Wert, Min/Max, Step und Disabled-State.
+Based on reka-ui `NumberFieldRoot`. Manages value, min/max, step and disabled state.
 
 ### Props
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `number` | — | Kontrollierter Wert |
-| `defaultValue` | `number` | — | Unkontrollierter Startwert |
-| `min` | `number` | — | Minimaler Wert |
-| `max` | `number` | — | Maximaler Wert |
-| `step` | `number` | `1` | Schrittweite |
-| `disabled` | `boolean` | `false` | Deaktiviert das gesamte Feld |
-| `id` | `string` | — | Fur `<Label>`-Verknupfung |
-| `locale` | `string` | — | Lokale fur Zahlenformatierung |
-| `formatOptions` | `Intl.NumberFormatOptions` | — | Zahlenformatierung |
-| `class` | `HTMLAttributes["class"]` | — | Zusatzliche CSS-Klassen |
+| `modelValue` | `number` | — | Controlled value |
+| `defaultValue` | `number` | — | Uncontrolled initial value |
+| `min` | `number` | — | Minimum value |
+| `max` | `number` | — | Maximum value |
+| `step` | `number` | `1` | Step size |
+| `disabled` | `boolean` | `false` | Disables the entire field |
+| `id` | `string` | — | For `<Label>` association |
+| `locale` | `string` | — | Locale for number formatting |
+| `formatOptions` | `Intl.NumberFormatOptions` | — | Number formatting |
+| `class` | `HTMLAttributes["class"]` | — | Additional CSS classes |
 
 ### Emits
 
-| Event | Typ | Beschreibung |
+| Event | Type | Description |
 |---|---|---|
-| `update:modelValue` | `number` | Feuert bei Wertanderung |
+| `update:modelValue` | `number` | Fires on value change |
 
 ### Slot Props
 
@@ -44,68 +44,68 @@ Basiert auf reka-ui `NumberFieldRoot`. Verwaltet Wert, Min/Max, Step und Disable
 
 ## NumberFieldContent
 
-Positionierungs-Wrapper fur Input + Buttons.
+Positioning wrapper for input + buttons.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
-### Verhalten
-Passt automatisch das Padding des Inputs an, wenn Decrement/Increment vorhanden ist (`has-[[data-slot=increment]]`, `has-[[data-slot=decrement]]`).
+### Behavior
+Automatically adjusts the input padding when decrement/increment is present (`has-[[data-slot=increment]]`, `has-[[data-slot=decrement]]`).
 
 ---
 
 ## NumberFieldInput
 
-Basiert auf reka-ui `NumberFieldInput`. Kein eigenes `v-model` — Zustand wird von `NumberFieldRoot` verwaltet.
+Based on reka-ui `NumberFieldInput`. No own `v-model` — state is managed by `NumberFieldRoot`.
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
 
 ---
 
 ## NumberFieldDecrement
 
-Minus-Button (absolut links positioniert).
+Minus button (absolutely positioned on the left).
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `NumberFieldDecrementProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `NumberFieldDecrementProps` | — | Forwarded |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Benutzerdefiniertes Icon (Standard: `<Minus>`) |
+| default | Custom icon (default: `<Minus>`) |
 
 ---
 
 ## NumberFieldIncrement
 
-Plus-Button (absolut rechts positioniert).
+Plus button (absolutely positioned on the right).
 
 ### Props
 
-| Prop | Typ | Beschreibung |
+| Prop | Type | Description |
 |---|---|---|
-| `class` | `HTMLAttributes["class"]` | Zusatzliche CSS-Klassen |
-| Alle `NumberFieldIncrementProps` | — | Weitergeleitet |
+| `class` | `HTMLAttributes["class"]` | Additional CSS classes |
+| All `NumberFieldIncrementProps` | — | Forwarded |
 
 ### Slots
 
-| Slot | Beschreibung |
+| Slot | Description |
 |---|---|
-| default | Benutzerdefiniertes Icon (Standard: `<Plus>`) |
+| default | Custom icon (default: `<Plus>`) |
 
 ---
 
-## reka-ui Referenz
+## reka-ui Reference
 - https://reka-ui.com/docs/components/number-field

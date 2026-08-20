@@ -9,13 +9,13 @@ The Admin API is OAuth-authenticated and covers every entity. The Sync API batch
 
 ## Reference map
 
-- **[API-ACTIONS.md](API-ACTIONS.md)**: Operationen, die kein reines CRUD sind, liegen unter `/api/_action/...`.
-- **[API-AUTH.md](API-AUTH.md)**: Token holen an `POST /api/oauth/token`, dann `Authorization: Bearer {access_token}` an allen Admin-API-Reques….
-- **[API-CRUD.md](API-CRUD.md)**: Generisches Schema je DAL-Entity:.
-- **[API-ENDPOINTS.md](API-ENDPOINTS.md)**: Security-Scheme: `oAuth`. [API-ENDPOINTS-DETAIL](API-ENDPOINTS-DETAIL.md).
-- **[API-SEARCH.md](API-SEARCH.md)**: Für echte Abfragen `POST /api/search/{entity}` mit Criteria-JSON.
-- **[SALES-AGENT-API.md](SALES-AGENT-API.md)**: Für Standard-Verkaufsprozesse die Store API; Sales-Agent nur bei installierter B2B-Extension.
-- **[SYNC-API.md](SYNC-API.md)**: Mehrere Schreiboperationen über verschiedene Entities in **einem** Request — effizient für Import/Sync.
+- **[API-ACTIONS.md](API-ACTIONS.md)**: Operations that are not plain CRUD live under `/api/_action/...`.
+- **[API-AUTH.md](API-AUTH.md)**: Fetch a token at `POST /api/oauth/token`, then send `Authorization: Bearer {access_token}` on all Admin API reques….
+- **[API-CRUD.md](API-CRUD.md)**: Generic schema per DAL entity:.
+- **[API-ENDPOINTS.md](API-ENDPOINTS.md)**: Security scheme: `oAuth`. [API-ENDPOINTS-DETAIL](API-ENDPOINTS-DETAIL.md).
+- **[API-SEARCH.md](API-SEARCH.md)**: For real queries use `POST /api/search/{entity}` with Criteria JSON.
+- **[SALES-AGENT-API.md](SALES-AGENT-API.md)**: For standard sales processes use the Store API; Sales Agent only with the B2B extension installed.
+- **[SYNC-API.md](SYNC-API.md)**: Several write operations across different entities in **one** request — efficient for import/sync.
 
 ## Source
 

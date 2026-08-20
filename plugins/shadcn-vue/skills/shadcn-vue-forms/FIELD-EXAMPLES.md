@@ -1,18 +1,18 @@
-# Field — Beispiele
+# Field — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/field/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/field/`
 
 ## Contents
 
 - [Input Fields (InputFields.vue)](#input-fields-inputfieldsvue)
 - [Checkbox Fields (CheckboxFields.vue)](#checkbox-fields-checkboxfieldsvue)
 - [Radio Fields (RadioFields.vue)](#radio-fields-radiofieldsvue)
-- [Responsive Orientation (InputFields mit responsive)](#responsive-orientation-inputfields-mit-responsive)
-- [FieldError (Fehlermeldungen)](#fielderror-fehlermeldungen)
+- [Responsive Orientation (InputFields with responsive)](#responsive-orientation-inputfields-with-responsive)
+- [FieldError (Error Messages)](#fielderror-error-messages)
 
 ## Input Fields (InputFields.vue)
 
-Zeigt verschiedene Input-Varianten: basic, mit Beschreibung, required, disabled, Badge-Label, invalid, deaktiviertes Field.
+Shows various input variants: basic, with description, required, disabled, badge label, invalid, disabled field.
 
 ```vue
 <script setup lang="ts">
@@ -88,7 +88,7 @@ import { Input } from "@/registry/bases/reka/ui/input"
 
 ## Checkbox Fields (CheckboxFields.vue)
 
-Zeigt horizontale Checkboxes, Choice-Card-Pattern mit FieldLabel, FieldContent mit Description, FieldSet + FieldLegend fuer Gruppen.
+Shows horizontal checkboxes, choice card pattern with FieldLabel, FieldContent with description, FieldSet + FieldLegend for groups.
 
 ```vue
 <script setup lang="ts">
@@ -107,7 +107,7 @@ import {
 
 <template>
   <FieldGroup>
-    <!-- Einfache horizontale Checkbox -->
+    <!-- Simple horizontal checkbox -->
     <Field orientation="horizontal">
       <Checkbox id="checkbox-basic" :default-checked="true" />
       <FieldLabel html-for="checkbox-basic" class="font-normal">
@@ -115,7 +115,7 @@ import {
       </FieldLabel>
     </Field>
 
-    <!-- Checkbox mit FieldContent (Label + Description) -->
+    <!-- Checkbox with FieldContent (label + description) -->
     <Field orientation="horizontal">
       <Checkbox id="checkbox-with-desc" />
       <FieldContent>
@@ -128,7 +128,7 @@ import {
       </FieldContent>
     </Field>
 
-    <!-- Choice Card: FieldLabel umschliesst Field -->
+    <!-- Choice card: FieldLabel wraps Field -->
     <FieldLabel html-for="checkbox-with-title">
       <Field orientation="horizontal">
         <Checkbox id="checkbox-with-title" />
@@ -141,7 +141,7 @@ import {
       </Field>
     </FieldLabel>
 
-    <!-- FieldSet + FieldLegend fuer Gruppen -->
+    <!-- FieldSet + FieldLegend for groups -->
     <FieldSet>
       <FieldLegend variant="label">
         Preferences
@@ -170,7 +170,7 @@ import {
 
 ## Radio Fields (RadioFields.vue)
 
-Radio-Gruppen mit FieldSet + FieldLegend, FieldContent, Choice Card Pattern.
+Radio groups with FieldSet + FieldLegend, FieldContent, choice card pattern.
 
 ```vue
 <script setup lang="ts">
@@ -218,7 +218,7 @@ import {
       </RadioGroup>
     </FieldSet>
 
-    <!-- Radio mit FieldContent + FieldTitle (Choice Card) -->
+    <!-- Radio with FieldContent + FieldTitle (choice card) -->
     <RadioGroup class="gap-3">
       <FieldLabel html-for="radio-title-1">
         <Field orientation="horizontal">
@@ -247,7 +247,7 @@ import {
 </template>
 ```
 
-## Responsive Orientation (InputFields mit responsive)
+## Responsive Orientation (InputFields with responsive)
 
 ```vue
 <template>
@@ -258,17 +258,17 @@ import {
       </FieldLabel>
       <Input id="responsive-input" type="email" placeholder="email@example.com" />
       <FieldDescription>
-        Vertikal auf kleinen Bildschirmen, horizontal ab md Breite.
+        Vertical on small screens, horizontal from md width upward.
       </FieldDescription>
     </Field>
   </FieldGroup>
 </template>
 ```
 
-Hinweis: Orientierung `responsive` nutzt Container Query `@md/field-group`.
-FieldGroup setzt `@container/field-group` — FieldGroup muss als Eltern vorhanden sein.
+Note: the `responsive` orientation uses the `@md/field-group` container query.
+FieldGroup sets `@container/field-group` — a FieldGroup parent must be present.
 
-## FieldError (Fehlermeldungen)
+## FieldError (Error Messages)
 
 ```vue
 <script setup lang="ts">
@@ -282,7 +282,7 @@ import {
 } from "@/registry/bases/reka/ui/field"
 import { Input } from "@/registry/bases/reka/ui/input"
 
-// Kompatibel mit Zod, Valibot, ArkType
+// Compatible with Zod, Valibot, ArkType
 const errors = ref([
   { message: "This field is required" },
   { message: "Must be at least 2 characters" },
@@ -300,7 +300,7 @@ const errors = ref([
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/field/InputFields.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/field/CheckboxFields.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/field/RadioFields.vue`

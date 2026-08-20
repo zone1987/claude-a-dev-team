@@ -1,51 +1,51 @@
 # Drawer — API
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `Drawer` | Root-Wrapper (DrawerRoot von vaul-vue), `shouldScaleBackground: true` als Standard |
-| `DrawerTrigger` | Oeffnet den Drawer |
-| `DrawerPortal` | Portiert Content (intern) |
-| `DrawerOverlay` | Halbtransparentes Overlay |
-| `DrawerContent` | Container des Drawers, Richtung via `data-[vaul-drawer-direction=*]` gesteuert |
-| `DrawerHeader` | Bereich fuer Title/Description, `p-4` padding |
-| `DrawerFooter` | Bereich fuer Buttons, `mt-auto p-4` |
-| `DrawerTitle` | Semantischer Titel |
-| `DrawerDescription` | Semantische Beschreibung |
-| `DrawerClose` | Schliesst den Drawer |
+| `Drawer` | Root wrapper (DrawerRoot from vaul-vue), `shouldScaleBackground: true` by default |
+| `DrawerTrigger` | Opens the drawer |
+| `DrawerPortal` | Portals the content (internal) |
+| `DrawerOverlay` | Semi-transparent overlay |
+| `DrawerContent` | Container of the drawer, direction controlled via `data-[vaul-drawer-direction=*]` |
+| `DrawerHeader` | Area for title/description, `p-4` padding |
+| `DrawerFooter` | Area for buttons, `mt-auto p-4` |
+| `DrawerTitle` | Semantic title |
+| `DrawerDescription` | Semantic description |
+| `DrawerClose` | Closes the drawer |
 
 ## Drawer (Root)
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `open` | `boolean` | - | Kontrollierter Zustand |
-| `defaultOpen` | `boolean` | `false` | Unkontrollierter Startwert |
-| `direction` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Slide-Richtung |
-| `shouldScaleBackground` | `boolean` | `true` | Hintergrund skalieren |
-| `modal` | `boolean` | `true` | Modal-Modus |
+| `open` | `boolean` | - | Controlled state |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial value |
+| `direction` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Slide direction |
+| `shouldScaleBackground` | `boolean` | `true` | Scale the background |
+| `modal` | `boolean` | `true` | Modal mode |
 
-| Emit | Payload | Beschreibung |
+| Emit | Payload | Description |
 |---|---|---|
-| `update:open` | `boolean` | Zustand geaendert |
+| `update:open` | `boolean` | State changed |
 
 ## DrawerContent
 
-Nimmt `DialogContentProps` von reka-ui entgegen (intern). Die Richtung wird automatisch via `data-[vaul-drawer-direction=*]` CSS-Attribut gesteuert:
+Accepts `DialogContentProps` from reka-ui (internal). The direction is controlled automatically via the `data-[vaul-drawer-direction=*]` CSS attribute:
 
-- `bottom` (Standard): `inset-x-0 bottom-0 mt-24 max-h-[80vh] rounded-t-lg` + Drag-Handle oben
+- `bottom` (default): `inset-x-0 bottom-0 mt-24 max-h-[80vh] rounded-t-lg` + drag handle on top
 - `top`: `inset-x-0 top-0 mb-24 max-h-[80vh] rounded-b-lg`
 - `right`: `inset-y-0 right-0 w-3/4 sm:max-w-sm`
 - `left`: `inset-y-0 left-0 w-3/4 sm:max-w-sm`
 
-| Prop | Typ | Standard |
+| Prop | Type | Default |
 |---|---|---|
 | `class` | `string` | - |
 
-## Alle einfachen Wrapper
+## All simple wrappers
 
-`DrawerHeader`, `DrawerFooter`, `DrawerTitle`, `DrawerDescription`, `DrawerOverlay` akzeptieren jeweils:
+`DrawerHeader`, `DrawerFooter`, `DrawerTitle`, `DrawerDescription`, `DrawerOverlay` each accept:
 
-| Prop | Typ |
+| Prop | Type |
 |---|---|
 | `class` | `string` |

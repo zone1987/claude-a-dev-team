@@ -7,7 +7,7 @@ description: >
   "welche Events/Argumente gibt es". Reiner Scan — günstig.
 tools: Read, Grep, Glob, Bash, Write
 model: haiku
-skills: sw-event-catalog
+skills: sw-services
 ---
 
 # shopware-event-mapper — Event-Katalog-Scanner

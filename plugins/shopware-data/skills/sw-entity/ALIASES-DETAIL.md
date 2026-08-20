@@ -11,9 +11,9 @@ Sources:
 
 ## Contents
 
-- [Storage-Name vs. Property-Name](#storage-name-vs-property-name)
-- [CompiledFieldCollection — Lookup-Maps](#compiledfieldcollection-lookup-maps)
-- [SQL-Alias-Schema](#sql-alias-schema)
+- [Storage name vs. property name](#storage-name-vs-property-name)
+- [CompiledFieldCollection — lookup maps](#compiledfieldcollection--lookup-maps)
+- [SQL alias scheme](#sql-alias-scheme)
 - [EntityDefinitionQueryHelper::escape()](#entitydefinitionqueryhelperescape)
 - [getFieldAccessor() — Accessor Resolution](#getfieldaccessor--accessor-resolution)
 - [buildTranslationChain()](#buildtranslationchain)
@@ -21,7 +21,7 @@ Sources:
 - [Criteria Field Notation Rules](#criteria-field-notation-rules)
 - [Known Pitfalls](#known-pitfalls)
 
-## Storage-Name vs. Property-Name
+## Storage name vs. property name
 
 Every `StorageAware` field has two names:
 
@@ -65,7 +65,7 @@ These fields have no storageName (no own DB column):
 
 ---
 
-## CompiledFieldCollection — Lookup-Maps
+## CompiledFieldCollection — lookup maps
 
 After `FieldCollection::compile()` a `CompiledFieldCollection` is created with pre-built maps:
 
@@ -94,7 +94,7 @@ $reference = $field->getReferenceDefinition()->getFields()->getByStorageName(
 
 ---
 
-## SQL-Alias-Schema
+## SQL alias scheme
 
 ### Scalar Fields
 

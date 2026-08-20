@@ -1,67 +1,67 @@
 # sw-entity-hydration
 
-Der `EntityHydrator` übersetzt flache DB-Zeilen (DBAL-Array) in typisierte `Entity`-Objekte.
+The `EntityHydrator` translates flat DB rows (DBAL array) into typed `Entity` objects.
 
 Details: [HYDRATION-DETAIL.md](HYDRATION-DETAIL.md)
 
 ## Contents
 
-- [Kernaprinzip](#kernaprinzip)
-- [Partial Loading (PartialEntity)](#partial-loading-partialentity)
-- [Custom Hydrator erzeugen](#custom-hydrator-erzeugen)
-- [Translation-Hydration](#translation-hydration)
-- [Runtime-Felder](#runtime-felder)
-- [Wichtige Methoden](#wichtige-methoden)
+- [Core principle](#core-principle)
+- [Partial loading (PartialEntity)](#partial-loading-partialentity)
+- [Creating a custom hydrator](#creating-a-custom-hydrator)
+- [Translation hydration](#translation-hydration)
+- [Runtime fields](#runtime-fields)
+- [Important methods](#important-methods)
 
-## Kernaprinzip
+## Core principle
 
 ```
 DB-Row (flat array)  →  EntityHydrator::hydrate()  →  EntityCollection
                               ↓
-                    hydrateEntity() per Row
+                    hydrateEntity() per row
                               ↓
-                    Hydrator::assign() (überschreibbar)
+                    Hydrator::assign() (overridable)
                               ↓
-                    Entity-Objekt (typed properties)
+                    Entity object (typed properties)
 ```
 
-Jede `EntityDefinition` kann eine eigene Hydrator-Klasse referenzieren:
+Every `EntityDefinition` can reference its own hydrator class:
 
 ```php
-// In der Definition:
+// In the definition:
 public function getHydratorClass(): string
 {
     return ProductHydrator::class;
 }
 ```
 
-Der spezifische Hydrator extends `EntityHydrator` und überschreibt `assign()`.
+The specific hydrator extends `EntityHydrator` and overrides `assign()`.
 
-## Partial Loading (PartialEntity)
+## Partial loading (PartialEntity)
 
 ```php
 $criteria = new Criteria();
 $criteria->addFields(['id', 'name', 'price']);
-// → EntityHydrator nutzt PartialEntity statt ProductEntity
-// → Nur die angeforderten Felder werden hydratisiert
+// → EntityHydrator uses PartialEntity instead of ProductEntity
+// → only the requested fields are hydrated
 ```
 
-Bei Partial Loading:
-- `self::$partial !== []` → Collection wird durch leere `EntityCollection` ersetzt
-- `PartialEntity` statt spez. Entity-Klasse
-- Basis-`EntityHydrator` statt spez. Hydrator
+With partial loading:
+- `self::$partial !== []` → collection is replaced by an empty `EntityCollection`
+- `PartialEntity` instead of the specific entity class
+- base `EntityHydrator` instead of the specific hydrator
 
-## Custom Hydrator erzeugen
+## Creating a custom hydrator
 
 ```bash
-# Generiert Hydrator-Klassen für product, category, property-Entities:
+# Generates hydrator classes for the product, category, property entities:
 bin/console dal:create:hydrators
 
-# Für spezifische Entities (Whitelist):
+# For specific entities (whitelist):
 bin/console dal:create:hydrators product_manufacturer order_line_item
 ```
 
-Der generierte Hydrator enthält direkte Property-Assigns (kein `decode()`) für bekannte Typen:
+The generated hydrator contains direct property assignments (no `decode()`) for known types:
 
 ```php
 class ProductHydrator extends EntityHydrator
@@ -74,7 +74,7 @@ class ProductHydrator extends EntityHydrator
         if (isset($row[$root . '.active'])) {
             $entity->active = (bool) $row[$root . '.active'];
         }
-        // ... alle StorageAware-Felder direkt
+        // ... all StorageAware fields directly
         
         $entity->manufacturer = $this->manyToOne($row, $root, $definition->getField('manufacturer'), $context);
         
@@ -86,10 +86,10 @@ class ProductHydrator extends EntityHydrator
 }
 ```
 
-## Translation-Hydration
+## Translation hydration
 
 ```
-DB-Row enthält Translations-Chain-Aliase:
+DB row contains translation chain aliases:
   product.name          → resolved fallback value
   product.product.name  → main language
   product.de-DE.name    → fallback language
@@ -100,21 +100,21 @@ EntityHydrator::translate():
   3. entity->$property = chainFieldValue (main language)
 ```
 
-## Runtime-Felder
+## Runtime fields
 
-Felder mit `Runtime`-Flag werden vom Hydrator **übersprungen** — sie werden nicht aus der DB gelesen. Wert muss per Subscriber/Decorator gesetzt werden.
+Fields with the `Runtime` flag are **skipped** by the hydrator — they are not read from the DB. The value must be set via a subscriber/decorator.
 
-## Wichtige Methoden
+## Important methods
 
-| Methode | Zweck |
+| Method | Purpose |
 |---------|-------|
-| `hydrate()` | Entry-Point, iteriert Rows |
-| `hydrateEntity()` | Einzelne Row → Entity, cached per ID |
-| `assign()` | Überschreibbarer Hook für eigenen Hydrator |
-| `hydrateFields()` | Iteriert alle Felder, dispatcht nach Typ |
-| `translate()` | Translation-Chain auflösen |
-| `manyToOne()` | Assoziierte Entity hydratisieren |
-| `manyToMany()` | ID-Mapping aus `||`-separiertem String |
-| `customFields()` | JSON merge bei Inherited CustomFields |
-| `buildUniqueIdentifier()` | PK-Werte aus Row extrahieren |
-| `createClass()` | `new $class()` (static, für Hydrator-Extension) |
+| `hydrate()` | entry point, iterates rows |
+| `hydrateEntity()` | single row → entity, cached per ID |
+| `assign()` | overridable hook for your own hydrator |
+| `hydrateFields()` | iterates all fields, dispatches by type |
+| `translate()` | resolve the translation chain |
+| `manyToOne()` | hydrate the associated entity |
+| `manyToMany()` | ID mapping from a `||`-separated string |
+| `customFields()` | JSON merge for inherited custom fields |
+| `buildUniqueIdentifier()` | extract PK values from the row |
+| `createClass()` | `new $class()` (static, for hydrator extension) |

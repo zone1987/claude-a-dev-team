@@ -48,7 +48,7 @@ class FfContentPlus extends Plugin
                             ],
                             'placeholder' => [
                                 'en-GB' => 'e.g. NEW',
-                                'de-DE' => 'z.B. NEU',
+                                'de-DE' => 'e.g. NEW',
                             ],
                             'componentName' => 'sw-field',
                             'customFieldType' => 'text',
@@ -61,7 +61,7 @@ class FfContentPlus extends Plugin
                         'config' => [
                             'label' => [
                                 'en-GB' => 'Highlight Product',
-                                'de-DE' => 'Produkt hervorheben',
+                                'de-DE' => 'Highlight Product',
                             ],
                             'componentName' => 'sw-field',
                             'customFieldType' => 'checkbox',
@@ -74,7 +74,7 @@ class FfContentPlus extends Plugin
                         'config' => [
                             'label' => [
                                 'en-GB' => 'Priority',
-                                'de-DE' => 'Priorität',
+                                'de-DE' => 'Priority',
                             ],
                             'componentName' => 'sw-field',
                             'customFieldType' => 'number',

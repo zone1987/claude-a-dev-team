@@ -1,11 +1,11 @@
-# Shopware 6 — API-Versionierung
+# Shopware 6 — API versioning
 
-Moderne Shopware-6-APIs sind **versionslos**: Basis `/api` und `/store-api` (frühere explizite `/api/v{n}`-Pfade
-sind entfallen). Breaking Changes der API folgen dem Major-Release-Zyklus (UPGRADE-Guides, Plugin `shopware-migration`).
+Modern Shopware 6 APIs are **versionless**: the bases are `/api` and `/store-api` (the earlier explicit `/api/v{n}` paths
+are gone). Breaking API changes follow the major release cycle (UPGRADE guides, plugin `shopware-migration`).
 
-- Schema/Diff prüfen über den OpenAPI-Endpunkt (APP_ENV=dev):
-  `GET /api/_info/openapi3.json` bzw. `GET /store-api/_info/openapi3.json` (`?type=json`).
-- Entity-/Datensatz-**Version** (nicht API-Version) wird per `sw-version-id`-Header gesteuert (`sw-api-headers`,
+- Check the schema/diff via the OpenAPI endpoint (APP_ENV=dev):
+  `GET /api/_info/openapi3.json` or `GET /store-api/_info/openapi3.json` (`?type=json`).
+- The entity/record **version** (not the API version) is controlled via the `sw-version-id` header (`sw-api-headers`,
   `sw-entity-versioning`).
-- Eigene Integrationen gegen stabile `code`-Werte (Fehler) und dokumentierte Felder bauen; nach Major-Upgrade
-  OpenAPI-Diff fahren (Katalog `sw-api-catalog` / `/sw-api-map` vorher/nachher vergleichen).
+- Build your own integrations against stable `code` values (errors) and documented fields; after a major upgrade
+  run an OpenAPI diff (compare the catalogue `sw-api-catalog` / `/sw-api-map` before/after).

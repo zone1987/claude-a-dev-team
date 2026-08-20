@@ -7,7 +7,7 @@ description: >
   Services/Mixins gibt es". Reiner Scan — günstig.
 tools: Read, Grep, Glob, Bash, Write
 model: haiku
-skills: sw-admin-catalog
+skills: sw-data
 ---
 
 # shopware-admin-mapper — Admin-Katalog-Scanner

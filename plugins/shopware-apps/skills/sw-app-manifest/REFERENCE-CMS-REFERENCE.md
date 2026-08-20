@@ -1,20 +1,20 @@
-# Shopware 6 — App CMS-Blocks XML-Referenz (cms.xml)
+# Shopware 6 — App CMS blocks XML reference (cms.xml)
 
-> Quelle: `resources/references/app-reference/cms-reference.md`
+> Source: `resources/references/app-reference/cms-reference.md`
 > XSD-Schema: `https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd`
 
 ---
 
 ## Contents
 
-- [Grundstruktur](#grundstruktur)
-- [`<block>`-Elemente](#block-elemente)
-- [`<slots>` und `<slot>`](#slots-und-slot)
+- [Basic structure](#basic-structure)
+- [`<block>` elements](#block-elements)
+- [`<slots>` and `<slot>`](#slots-and-slot)
 - [`<default-config>`](#default-config)
-- [Verfügbare CMS-Element-Typen (Slot `type`)](#verfügbare-cms-element-typen-slot-type)
-- [Vollständiges Beispiel](#vollständiges-beispiel)
+- [Available CMS element types (slot `type`)](#available-cms-element-types-slot-type)
+- [Complete example](#complete-example)
 
-## Grundstruktur
+## Basic structure
 
 ```xml
 // Resources/cms.xml
@@ -31,21 +31,21 @@
 
 ---
 
-## `<block>`-Elemente
+## `<block>` elements
 
-| Element | Pflicht | Beschreibung |
+| Element | Required | Description |
 |:--------|:--------|:-------------|
-| `<name>` | ja | Eindeutiger technischer Name (empfohlen: Firmen-Kürzel als Präfix, z.B. `swag-my-block`) |
-| `<category>` | ja | Kategorie-Zuordnung (Werte aus XSD) |
-| `<label>` | ja | Anzeigebezeichnung in der Administration (übersetzbar mit `lang="de-DE"`) |
-| `<slots>` | ja | Slot-Definitionen des Blocks |
-| `<default-config>` | nein | Standard-Konfiguration beim Hinzufügen des Blocks |
+| `<name>` | yes | Unique technical name (recommended: company abbreviation as a prefix, e.g. `swag-my-block`) |
+| `<category>` | yes | Category assignment (values from the XSD) |
+| `<label>` | yes | Display name in the Administration (translatable with `lang="de-DE"`) |
+| `<slots>` | yes | Slot definitions of the block |
+| `<default-config>` | no | Default configuration when the block is added |
 
 ---
 
-## `<slots>` und `<slot>`
+## `<slots>` and `<slot>`
 
-Jeder Slot benötigt einen eindeutigen `name` und einen `type`, der auf ein CMS-Element verweist.
+Every slot needs a unique `name` and a `type` that references a CMS element.
 
 ```xml
 <slots>
@@ -68,21 +68,21 @@ Jeder Slot benötigt einen eindeutigen `name` und einen `type`, der auf ein CMS-
 </slots>
 ```
 
-### `<config-value>`-Attribute
+### `<config-value>` attributes
 
-| Attribut | Beschreibung |
+| Attribute | Description |
 |:---------|:-------------|
-| `name` | Konfigurationsschlüssel |
-| `source` | Quelltyp (z.B. `static`) |
-| `value` | Wert |
+| `name` | Configuration key |
+| `source` | Source type (e.g. `static`) |
+| `value` | Value |
 
-Wird in JavaScript interpretiert als: `{ displayMode: { source: "static", value: "cover" } }`
+Interpreted in JavaScript as: `{ displayMode: { source: "static", value: "cover" } }`
 
 ---
 
 ## `<default-config>`
 
-Standard-Layout-Konfiguration des Blocks:
+Default layout configuration of the block:
 
 ```xml
 <default-config>
@@ -90,7 +90,7 @@ Standard-Layout-Konfiguration des Blocks:
     <margin-top>20px</margin-top>
     <margin-left>20px</margin-left>
     <margin-right>20px</margin-right>
-    <!-- Erlaubte Werte: "boxed" oder "full_width" -->
+    <!-- Allowed values: "boxed" or "full_width" -->
     <sizing-mode>boxed</sizing-mode>
     <background-color>#000</background-color>
 </default-config>
@@ -98,27 +98,27 @@ Standard-Layout-Konfiguration des Blocks:
 
 ---
 
-## Verfügbare CMS-Element-Typen (Slot `type`)
+## Available CMS element types (slot `type`)
 
-Aktuell nur die von Shopware bereitgestellten CMS-Elemente nutzbar:
+Currently only the CMS elements provided by Shopware can be used:
 
-| Typ | Beschreibung |
+| Type | Description |
 |:----|:-------------|
-| `manufacturer-logo` | Herstellerlogo |
-| `image-gallery` | Bildergalerie |
-| `buy-box` | Kauf-Box |
-| `form` | Formular |
-| `image` | Einzelbild |
-| `youtube-video` | YouTube-Video |
-| `text` | Text-Element |
-| `product-listing` | Produktauflistung |
-| `product-box` | Produktbox |
-| `cross-selling` | Crossselling |
-| `category-navigation` | Kategorienavigation |
+| `manufacturer-logo` | Manufacturer logo |
+| `image-gallery` | Image gallery |
+| `buy-box` | Buy box |
+| `form` | Form |
+| `image` | Single image |
+| `youtube-video` | YouTube video |
+| `text` | Text element |
+| `product-listing` | Product listing |
+| `product-box` | Product box |
+| `cross-selling` | Cross-selling |
+| `category-navigation` | Category navigation |
 
 ---
 
-## Vollständiges Beispiel
+## Complete example
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>

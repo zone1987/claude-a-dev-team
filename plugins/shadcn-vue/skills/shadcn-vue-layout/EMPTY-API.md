@@ -1,45 +1,45 @@
 # Empty — API
 
-## Sub-Komponenten
+## Sub-components
 
-| Komponente | Beschreibung |
+| Component | Description |
 |---|---|
-| `Empty` | Root-Container (zentriert, flex-col, border-dashed optional) |
-| `EmptyHeader` | Bereich fuer Media, Titel, Beschreibung |
-| `EmptyMedia` | Medien-Bereich (Icon, Avatar, Bild) |
-| `EmptyTitle` | Titel des leeren Zustands |
-| `EmptyDescription` | Beschreibung / Help-Text |
-| `EmptyContent` | Bereich fuer Aktionen (Buttons, Input etc.) |
+| `Empty` | Root container (centered, flex-col, border-dashed optional) |
+| `EmptyHeader` | Area for media, title, description |
+| `EmptyMedia` | Media area (icon, avatar, image) |
+| `EmptyTitle` | Title of the empty state |
+| `EmptyDescription` | Description / help text |
+| `EmptyContent` | Area for actions (buttons, input etc.) |
 
 ## Empty
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `class` | `string` | - | Z.B. `border` fuer Outline, `bg-muted` fuer Hintergrund |
+| `class` | `string` | - | E.g. `border` for outline, `bg-muted` for background |
 
-Standard-Klassen: `flex min-w-0 flex-1 flex-col items-center justify-center gap-6 text-balance rounded-lg border-dashed p-6 text-center md:p-12`
+Default classes: `flex min-w-0 flex-1 flex-col items-center justify-center gap-6 text-balance rounded-lg border-dashed p-6 text-center md:p-12`
 
 ## EmptyMedia
 
-| Prop | Typ | Standard | Beschreibung |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `"default" \| "icon"` | `"default"` | Anzeige-Variante |
+| `variant` | `"default" \| "icon"` | `"default"` | Display variant |
 | `class` | `string` | - | - |
 
-### Varianten
+### Variants
 
-| Variante | Klassen |
+| Variant | Classes |
 |---|---|
-| `default` | `bg-transparent` — fuer Bilder/Avatare |
-| `icon` | `bg-muted text-foreground size-10 rounded-lg` — fuer Icons |
+| `default` | `bg-transparent` — for images/avatars |
+| `icon` | `bg-muted text-foreground size-10 rounded-lg` — for icons |
 
-## Alle anderen Komponenten
+## All other components
 
-Alle akzeptieren nur `class: string`. Keine weiteren Props.
+All accept only `class: string`. No further props.
 
-| Komponente | Basis-Styling |
+| Component | Base styling |
 |---|---|
 | `EmptyHeader` | `flex max-w-sm flex-col items-center gap-2 text-center` |
 | `EmptyTitle` | `text-lg font-medium tracking-tight` |
-| `EmptyDescription` | `text-muted-foreground text-sm/relaxed` + Link-Styling |
+| `EmptyDescription` | `text-muted-foreground text-sm/relaxed` + link styling |
 | `EmptyContent` | `flex w-full min-w-0 max-w-sm flex-col items-center gap-4` |

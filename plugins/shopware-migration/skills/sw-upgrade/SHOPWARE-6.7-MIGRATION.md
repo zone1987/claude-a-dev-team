@@ -85,12 +85,12 @@ All `sw-*` wrappers are deprecated (removal in v6.8.0). The universal migration 
 | Icon sizing | `:small` / `:large` | `size="16px"` / `size="32px"` |
 | Modal sizing | `variant="large"` | `width="l"` |
 | Popover | `sw-popover` | `mt-floating-ui` |
-| Button router-link | `:router-link="{ name: 'x' }"` | `@click="$router.push({ name: 'x' })"` — kein `<router-link>` Wrapper |
+| Button router-link | `:router-link="{ name: 'x' }"` | `@click="$router.push({ name: 'x' })"` — no `<router-link>` wrapper |
 | Password toggle | `:passwordToggleAble` | `:toggable` |
 | Alert icon | `:showIcon="false"` | `:hideIcon="true"` |
 | Tabs | Child `<sw-tabs-item>` components | `:items` array prop |
-| `sw-page` / `sw-card-view` | — | **Kein Ersatz** — bleiben `sw-*`, kein `mt-page` vorhanden |
-| `sw-skeleton` / `sw-skeleton-bar` | — | **Kein Ersatz** — `mt-skeleton` existiert nicht, nicht verwenden |
+| `sw-page` / `sw-card-view` | — | **No replacement** — stay `sw-*`, no `mt-page` exists |
+| `sw-skeleton` / `sw-skeleton-bar` | — | **No replacement** — `mt-skeleton` does not exist, do not use it |
 
 Full mapping with prop/event/slot tables for all 25 components: `SHOPWARE-6.7-MIGRATION-COMPONENT-MAPPING.md`
 Detailed migration guide with real before/after examples for 19 deprecated wrapper components: `SHOPWARE-6.7-MIGRATION-COMPONENT-MIGRATION-GUIDE.md`
@@ -205,8 +205,8 @@ curl -s -X POST \
 
 ## Rules
 
-1. README-Datei immer auf **Deutsch** erstellen.
-2. `composer.json` `"version"`: Majorversion um 1 erhöhen, Minor und Patch auf 0 setzen (z.B. `1.3.2` → `2.0.0`).
+1. Always create the README file in **German**.
+2. `composer.json` `"version"`: increase the major version by 1, set minor and patch to 0 (e.g. `1.3.2` → `2.0.0`).
 3. Always review codemod output manually — never trust automated migration blindly.
 4. `sw-data-grid` → `mt-data-table` always requires manual migration.
 5. `mt-skeleton` does not exist — never use it; there is no Meteor replacement for `sw-skeleton`/`sw-skeleton-bar`.

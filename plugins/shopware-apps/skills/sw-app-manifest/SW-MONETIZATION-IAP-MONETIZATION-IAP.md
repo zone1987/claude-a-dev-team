@@ -1,51 +1,51 @@
-# Shopware Monetarisierung & In-App Purchases (vollständige Referenz)
+# Shopware monetization & in-app purchases (complete reference)
 
-Quellen: `guides/development/monetization/index.md`, `monetization/in-app-purchases.md`
+Sources: `guides/development/monetization/index.md`, `monetization/in-app-purchases.md`
 
 ## Contents
 
-- [Monetarisierungsmodelle im Überblick](#monetarisierungsmodelle-im-überblick)
-- [In-App Purchases — Technische Details](#in-app-purchases-technische-details)
-- [Best Practices für IAP-Implementierung](#best-practices-für-iap-implementierung)
-- [Weiterführende Links](#weiterführende-links)
+- [Monetization models at a glance](#monetization-models-at-a-glance)
+- [In-App Purchases — technical details](#in-app-purchases--technical-details)
+- [Best practices for IAP implementation](#best-practices-for-iap-implementation)
+- [Further links](#further-links)
 
-## Monetarisierungsmodelle im Überblick
+## Monetization models at a glance
 
 ### Paid Extensions
 
-Erweiterungen mit Einmalkauf oder Subscription-Modell über den Shopware Store verkaufen.
-Pricing und Lizenzierung werden im Shopware Account verwaltet.
+Sell extensions with a one-off purchase or subscription model through the Shopware Store.
+Pricing and licensing are managed in the Shopware Account.
 
 ### In-App Purchases (IAP)
 
-Bestimmte Features innerhalb derselben Extension hinter einer Paywall sperren.
-**Verfügbar ab Shopware 6.6.9.0.**
+Lock specific features behind a paywall within the same extension.
+**Available from Shopware 6.6.9.0.**
 
-Nützlich für:
-- Kostenlose Basisversion + bezahlte Premium-Features
-- Feature-Add-ons zur Haupt-Extension
+Useful for:
+- Free base version + paid premium features
+- Feature add-ons for the main extension
 
 ### Commission-based Integrations
 
-Wenn eine Extension externe Services integriert und Umsatz generiert (z.B. transaktionsbasierte Gebühren):
-→ Shopware Technology Partner (STP)-Vereinbarung kann erforderlich sein.
+When an extension integrates external services and generates revenue (e.g. transaction-based fees):
+→ a Shopware Technology Partner (STP) agreement may be required.
 
-**Alle monetarisierten Extensions müssen die Quality Guidelines erfüllen.**
+**All monetized extensions must meet the Quality Guidelines.**
 
 ---
 
-## In-App Purchases — Technische Details
+## In-App Purchases — technical details
 
-### IAP-Kauf auslösen
+### Triggering an IAP purchase
 
-Via `sw.iap.purchase()` aus dem Meteor Admin SDK:
+Via `sw.iap.purchase()` from the Meteor Admin SDK:
 
 ```vue
 <template>
-  <!-- Button nur anzeigen, wenn noch nicht gekauft -->
-  <p>Mit diesem Kauf erhaltest du das Premium-Feature: ...</p>
+  <!-- Only show the button when not yet purchased -->
+  <p>With this purchase you get the premium feature: ...</p>
   <mt-button @click="onClick">
-    Kaufen
+    Buy
   </mt-button>
 </template>
 
@@ -58,22 +58,22 @@ function onClick() {
 </script>
 ```
 
-**Verantwortlichkeiten des Entwicklers:**
-- Button bereitstellen
-- Button ausblenden, wenn IAP nicht mehrfach kaufbar ist
-- Der Checkout-Prozess wird von Shopware selbst bereitgestellt
+**Developer responsibilities:**
+- Provide the button
+- Hide the button when the IAP cannot be purchased more than once
+- The checkout process is provided by Shopware itself
 
-**Alternative**: Manuell via `window.postMessage` mit formatiertem IAP-Identifier an die Administration.
+**Alternative**: manually via `window.postMessage` with a formatted IAP identifier to the Administration.
 
-### IAP-Token-Format
+### IAP token format
 
-Shopware sendet bei jedem Request einen JWT als Nachweis aktiver In-App Purchases:
-- **GET-Requests**: Query-Parameter `in-app-purchases`
-- **POST-Requests**: Request-Body unter `source.inAppPurchases`
+With every request Shopware sends a JWT as proof of active in-app purchases:
+- **GET requests**: query parameter `in-app-purchases`
+- **POST requests**: request body under `source.inAppPurchases`
 
-Der JWT enthält im Payload die Liste aller gekauften IAP-Identifier.
+The JWT payload contains the list of all purchased IAP identifiers.
 
-### Token-Validierung — PHP (Symfony mit shopware/app-bundle)
+### Token validation — PHP (Symfony with shopware/app-bundle)
 
 ```php
 #[Route(path: '/app/admin', name: 'admin')]
@@ -84,7 +84,7 @@ public function admin(ModuleAction $action): Response {
 }
 ```
 
-Twig-Template — IAP-Daten in JavaScript injizieren:
+Twig template — inject the IAP data into JavaScript:
 
 ```html
 <!DOCTYPE html>
@@ -102,16 +102,16 @@ Twig-Template — IAP-Daten in JavaScript injizieren:
 </html>
 ```
 
-Für Plain PHP: `shopware/app-php-sdk` verwenden.
-Beispiel: https://github.com/shopware/app-php-sdk/blob/main/examples/index.php
+For plain PHP: use `shopware/app-php-sdk`.
+Example: https://github.com/shopware/app-php-sdk/blob/main/examples/index.php
 
-### Token-Validierung — Non-PHP App-Server
+### Token validation — non-PHP app servers
 
-JWT/JOSE-Bibliothek der jeweiligen Sprache verwenden. Tokens sind signierte JWTs — Signatur via Shopware's Public Keys validieren.
+Use the JWT/JOSE library of the respective language. Tokens are signed JWTs — validate the signature via Shopware's public keys.
 
-**JWKS-Endpunkt**: `https://api.shopware.com/inappfeatures/jwks`
+**JWKS endpoint**: `https://api.shopware.com/inappfeatures/jwks`
 
-Node.js Beispiel mit `jose`:
+Node.js example with `jose`:
 
 ```js
 import { jwtVerify, createRemoteJWKSet } from 'jose';
@@ -120,33 +120,33 @@ const JWKS = createRemoteJWKSet(new URL('https://api.shopware.com/inappfeatures/
 
 const { payload } = await jwtVerify(token, JWKS);
 console.log(payload);
-// Enthält Liste gekaufter IAP-Identifier
-// z.B.: { features: ['my-iap-identifier', 'another-feature'] }
+// Contains the list of purchased IAP identifiers
+// e.g.: { features: ['my-iap-identifier', 'another-feature'] }
 ```
 
-### Admin-Initialanfrage
+### Initial admin request
 
-IAP werden auch mit der initialen `sw-main-hidden` Admin-Anfrage übertragen.
-Für JavaScript-Zugriff → in die Anwendung injizieren (siehe Template-Beispiel oben).
+IAPs are also transmitted with the initial `sw-main-hidden` admin request.
+For JavaScript access → inject them into the application (see the template example above).
 
-### IAP-Gateway-Event
+### IAP gateway event
 
-Apps können verfügbare IAPs manipulieren via:
+Apps can manipulate the available IAPs via:
 In-App Purchase Gateway
 
 ---
 
-## Best Practices für IAP-Implementierung
+## Best practices for IAP implementation
 
-1. **Nicht kaufbare IAPs verbergen**: Button nur anzeigen, wenn IAP verfügbar und noch nicht gekauft
-2. **Server-seitige Prüfung**: Immer serverseitig den JWT validieren — nie nur client-seitige Checks
-3. **Graceful Degradation**: Basis-Features ohne IAP verfügbar lassen
-4. **Klare UX**: Nutzer müssen verstehen, welches Feature sie kaufen und was sie dafür erhalten
-5. **JWKS-Caching**: Public Keys cachen, nicht bei jedem Request neu laden
+1. **Hide non-purchasable IAPs**: only show the button when the IAP is available and not yet purchased
+2. **Server-side check**: always validate the JWT server-side — never rely on client-side checks alone
+3. **Graceful degradation**: keep base features available without an IAP
+4. **Clear UX**: users must understand which feature they are buying and what they get for it
+5. **JWKS caching**: cache the public keys, do not reload them on every request
 
-## Weiterführende Links
+## Further links
 
-- Konzept-Dokumentation: `concepts/framework/in-app-purchases`
-- Extension Partner Dokumentation: https://docs.shopware.com/en/account-en/extension-partner/in-app-purchases
+- Concept documentation: `concepts/framework/in-app-purchases`
+- Extension partner documentation: https://docs.shopware.com/en/account-en/extension-partner/in-app-purchases
 - Meteor Admin SDK: https://github.com/shopware/meteor/tree/main/packages/admin-sdk
 - Quality Guidelines: `guides/development/testing/store/quality-guidelines.md`

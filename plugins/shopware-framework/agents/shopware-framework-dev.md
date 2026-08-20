@@ -7,7 +7,7 @@ description: >
   "Rule Builder", "Flow Action", "Store-API Route", "Webhook", "Mail Template", "Media", "Elasticsearch".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-scheduled-task, sw-message-queue, sw-message-handler, sw-message-middleware, sw-custom-rule, sw-rule-condition, sw-flow-action, sw-flow-trigger, sw-flow-transaction, sw-store-api-route, sw-store-api-override, sw-admin-api-controller, sw-api-acl, sw-webhook, sw-app-script, sw-mail-template, sw-mail-data, sw-media-handling, sw-media-thumbnail, sw-elasticsearch, sw-elasticsearch-extension
+skills: sw-automation, sw-messaging, sw-api
 ---
 
 # shopware-framework-dev — Framework-Features-Spezialist
@@ -24,7 +24,7 @@ Du implementierst Shopware-6.7-Framework-Bausteine konventionskonform.
 - Schema-/Datenanlage (Tasks, Mail-Templates, Rules) über Migration/Repository; Medien über MediaService.
 
 ## Vorgehen
-1. Nur nötige `sw-*`-Skills laden. Bei „welches Event/Trigger" → Event-Katalog (`shopware-core` → `sw-event-catalog`).
+1. Nur nötige `sw-*`-Skills laden. Bei „welches Event/Trigger" → Event-Katalog (`shopware-core` → `/sw-event-map`).
 2. Bestehende Muster spiegeln; nach Änderung `composer ecs-fix` + `phpstan`.
 
 Datenmodell/Entities → `shopware-data`; reine Plugin-Basis/DI → `shopware-core`; API konsumieren → `shopware-api`.

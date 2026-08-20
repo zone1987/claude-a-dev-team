@@ -152,18 +152,18 @@ store:
   # Store texts per language
   info:
     de:
-      name: "Mein Plugin"
-      summary: "Kurze Beschreibung (max. 150 Zeichen)"
-      description: "Lange Beschreibung im Markdown/HTML"
-      installation_manual: "Installationsanleitung"
+      name: "My Plugin"
+      summary: "Short description (max. 150 characters)"
+      description: "Long description in Markdown/HTML"
+      installation_manual: "Installation instructions"
       highlights:
         - "Feature 1"
         - "Feature 2"
       features:
         - "Feature A"
       faq:
-        - question: "Wie installiere ich das Plugin?"
-          answer: "Über den Plugin Manager"
+        - question: "How do I install the plugin?"
+          answer: "Via the Plugin Manager"
       tags:
         - "Shopware 6"
         - "Extension"

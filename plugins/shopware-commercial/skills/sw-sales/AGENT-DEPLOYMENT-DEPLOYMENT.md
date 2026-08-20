@@ -1,7 +1,7 @@
-# Sales Agent — Deployment (vollständig)
+# Sales Agent — Deployment (complete)
 
-Sales Agent ist eine Nuxt-3-Anwendung mit MySQL und Redis. Deployment-Optionen
-analog zu DSR, aber mit **zwingend erforderlichem Redis-Cache**.
+Sales Agent is a Nuxt 3 application with MySQL and Redis. Deployment options are
+analogous to DSR, but with a **mandatory Redis cache**.
 
 ---
 
@@ -9,80 +9,80 @@ analog zu DSR, aber mit **zwingend erforderlichem Redis-Cache**.
 
 - [Option 1: AWS Amplify](#option-1-aws-amplify)
 - [Option 2: Cloudflare Pages](#option-2-cloudflare-pages)
-- [Option 3: Ubuntu Server mit PM2](#option-3-ubuntu-server-mit-pm2)
+- [Option 3: Ubuntu Server with PM2](#option-3-ubuntu-server-with-pm2)
 
 ## Option 1: AWS Amplify
 
-### Voraussetzungen
+### Prerequisites
 
-- AWS-Account
-- Frontend-Quellcode in Git-Repository
+- AWS account
+- Frontend source code in a Git repository
 
-### Redis mit Amazon ElastiCache einrichten
+### Setting Up Redis with Amazon ElastiCache
 
-AWS Amplify enthält kein Redis. Optionen:
+AWS Amplify does not include Redis. Options:
 
 **Option A: Amazon ElastiCache**
 
 1. [ElastiCache Console](https://console.aws.amazon.com/elasticache/) → "Create"
 2. Engine: Redis OSS
-3. Cluster konfigurieren (Node-Type, Replikas)
-4. Security Groups: Zugriff von Amplify erlauben
-5. Primary Endpoint notieren
+3. Configure the cluster (node type, replicas)
+4. Security groups: allow access from Amplify
+5. Note the primary endpoint
 
-> **Hinweis:** ElastiCache läuft in einem VPC. Verbindung von Amplify erfordert
-> VPC Peering oder öffentlichen Endpoint.
+> **Note:** ElastiCache runs inside a VPC. Connecting from Amplify requires
+> VPC peering or a public endpoint.
 
-**Option B: Serverless Redis (empfohlen für Amplify)**
+**Option B: Serverless Redis (recommended for Amplify)**
 
-- [Upstash](https://upstash.com/) — Serverless Redis mit REST API
-- [Redis Cloud](https://redis.com/cloud/overview/) — Managed Redis
+- [Upstash](https://upstash.com/) — serverless Redis with REST API
+- [Redis Cloud](https://redis.com/cloud/overview/) — managed Redis
 
-### Redis-Umgebungsvariablen
+### Redis Environment Variables
 
 ```bash
 REDIS_CACHE=true
 REDIS_HOST=your-redis-endpoint.cache.amazonaws.com
 REDIS_PORT=6379
 REDIS_PASSWORD=your_redis_password
-REDIS_TLS=true   # Empfohlen für Produktion
+REDIS_TLS=true   # Recommended for production
 ```
 
-### Deployment-Schritte
+### Deployment Steps
 
-1. AWS Amplify Hosting Console → Neue App erstellen
-2. Git-Repository und Main-Branch autorisieren
-3. Build-Settings werden automatisch erkannt
-4. Unter **Advanced Settings → Environment variables** alle Variables aus
-   `.env.template` setzen (inkl. Redis-Variables)
+1. AWS Amplify Hosting Console → create a new app
+2. Authorize the Git repository and main branch
+3. Build settings are detected automatically
+4. Under **Advanced Settings → Environment variables**, set all variables from
+   `.env.template` (including the Redis variables)
 5. **Save and Deploy**
 
 ### Custom Domain
 
-[AWS-Anleitung](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html)
+[AWS guide](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html)
 
 ---
 
 ## Option 2: Cloudflare Pages
 
-### Redis mit Upstash
+### Redis with Upstash
 
-Cloudflare Pages/Workers enthält kein Redis.
-[Upstash](https://upstash.com/) ist die empfohlene Lösung.
+Cloudflare Pages/Workers does not include Redis.
+[Upstash](https://upstash.com/) is the recommended solution.
 
-**Upstash einrichten:**
+**Setting up Upstash:**
 
 1. [Upstash Console](https://console.upstash.com/) → "Create Database"
-2. Region wählen (nah an Usern)
-3. Connection Details kopieren:
+2. Choose a region (close to your users)
+3. Copy the connection details:
    - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
 
-**Alternative: Cloudflare-Integration**
+**Alternative: Cloudflare integration**
 
-1. Cloudflare Dashboard → Workers & Pages → Projekt
-2. Settings → Integrations → Upstash-Integration hinzufügen
+1. Cloudflare Dashboard → Workers & Pages → project
+2. Settings → Integrations → add the Upstash integration
 
-### Umgebungsvariablen `.env`
+### Environment Variables `.env`
 
 ```bash
 REDIS_CACHE=true
@@ -92,7 +92,7 @@ REDIS_PASSWORD=your_upstash_password
 REDIS_TLS=true
 ```
 
-### Deployment vom lokalen Rechner
+### Deployment from Your Local Machine
 
 `.npmrc` fix:
 
@@ -104,21 +104,21 @@ strict-peer-dependencies=false
 ```bash
 pnpm install wrangler --save-dev
 
-# .env-Datei vorbereiten (Setup-Skill)
+# Prepare the .env file (setup skill)
 
-# Build für Cloudflare Pages:
+# Build for Cloudflare Pages:
 npx nuxi build --preset=cloudflare_pages
 
-# Deployen (erstmalig: Projekt erstellen):
+# Deploy (first time: create the project):
 wrangler pages deploy dist/
 ```
 
-### Automatisierung mit GitHub Actions
+### Automation with GitHub Actions
 
 #### Secrets & Variables
 
-- **Secret:** `CLOUDFLARE_API_TOKEN` (Berechtigung: "Cloudflare Pages — Edit")
-- **Environment** `production` mit allen Variables aus `.env.template`
+- **Secret:** `CLOUDFLARE_API_TOKEN` (permission: "Cloudflare Pages — Edit")
+- **Environment** `production` with all variables from `.env.template`
 
 #### `.github/workflows/publish.yml`
 
@@ -177,11 +177,11 @@ jobs:
 
 ---
 
-## Option 3: Ubuntu Server mit PM2
+## Option 3: Ubuntu Server with PM2
 
-### Redis einrichten
+### Setting Up Redis
 
-**Option A: Lokal installieren**
+**Option A: Install locally**
 
 ```bash
 sudo apt update
@@ -189,10 +189,10 @@ sudo apt install redis-server
 sudo nano /etc/redis/redis.conf
 ```
 
-Wichtige Einstellungen:
-- `supervised systemd` — systemd-Integration
-- `bind 127.0.0.1` — nur lokaler Zugriff
-- `requirepass your_secure_password` — Passwort setzen
+Important settings:
+- `supervised systemd` — systemd integration
+- `bind 127.0.0.1` — local access only
+- `requirepass your_secure_password` — set a password
 
 ```bash
 sudo systemctl enable redis-server
@@ -204,25 +204,25 @@ redis-cli -a your_secure_password ping   # → PONG
 
 **Option B: Managed Redis (Upstash, Redis Cloud)**
 
-Connection-Details des Providers in `.env` eintragen.
+Enter the provider's connection details in `.env`.
 
-### Redis-Umgebungsvariablen (lokal)
+### Redis Environment Variables (local)
 
 ```bash
 REDIS_CACHE=true
 REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 REDIS_PASSWORD=your_secure_password
-REDIS_TLS=false   # true für managed services
+REDIS_TLS=false   # true for managed services
 ```
 
-### Code bauen
+### Building the Code
 
-Gemäß `sw-sales-agent-setup`: `.env` konfigurieren, `pnpm install`, `pnpm build`.
+As per `sw-sales-agent-setup`: configure `.env`, `pnpm install`, `pnpm build`.
 
-### PM2-Konfiguration
+### PM2 Configuration
 
-`ecosystem.config.cjs` im Projekt-Root:
+`ecosystem.config.cjs` in the project root:
 
 ```js
 module.exports = {

@@ -1,46 +1,46 @@
-# Shopware 6 — API End-to-End-Flows (vollständige Referenz)
+# Shopware 6 — API end-to-end flows (complete reference)
 
-Quelle: `guides/development/integrations-api/flows/create-product.md`
+Source: `guides/development/integrations-api/flows/create-product.md`
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Schritt 1: Admin API Token (lokal)](#schritt-1-admin-api-token-lokal)
-- [Schritt 2: API-Schemas herunterladen (optional, aber empfohlen)](#schritt-2-api-schemas-herunterladen-optional-aber-empfohlen)
-- [Schritt 3: Benötigte IDs ermitteln](#schritt-3-benötigte-ids-ermitteln)
-- [Schritt 4: Kategorie anlegen](#schritt-4-kategorie-anlegen)
-- [Schritt 5: Produkt anlegen](#schritt-5-produkt-anlegen)
-- [Schritt 6: Store API Context erstellen](#schritt-6-store-api-context-erstellen)
-- [Schritt 7: Produkt über Store API lesen](#schritt-7-produkt-über-store-api-lesen)
-- [Schritt 8: Produkt in Warenkorb legen](#schritt-8-produkt-in-warenkorb-legen)
-- [Schritt 9: Checkout vorbereiten](#schritt-9-checkout-vorbereiten)
-- [Schritt 10: Kunden registrieren und Bestellung aufgeben](#schritt-10-kunden-registrieren-und-bestellung-aufgeben)
+- [Overview](#overview)
+- [Step 1: Admin API token (local)](#step-1-admin-api-token-local)
+- [Step 2: download the API schemas (optional, but recommended)](#step-2-download-the-api-schemas-optional-but-recommended)
+- [Step 3: determine the required IDs](#step-3-determine-the-required-ids)
+- [Step 4: create a category](#step-4-create-a-category)
+- [Step 5: create a product](#step-5-create-a-product)
+- [Step 6: create a Store API context](#step-6-create-a-store-api-context)
+- [Step 7: read the product via the Store API](#step-7-read-the-product-via-the-store-api)
+- [Step 8: put the product into the cart](#step-8-put-the-product-into-the-cart)
+- [Step 9: prepare the checkout](#step-9-prepare-the-checkout)
+- [Step 10: register a customer and place the order](#step-10-register-a-customer-and-place-the-order)
 - [Troubleshooting](#troubleshooting)
-- [Faustregel: Admin API vs. Store API](#faustregel-admin-api-vs-store-api)
+- [Rule of thumb: Admin API vs. Store API](#rule-of-thumb-admin-api-vs-store-api)
 
-## Überblick
+## Overview
 
-Dieser Flow zeigt einen vollständigen lokalen Entwicklungs-Ablauf:
-1. Kategorie und Produkt mit der Admin API anlegen
-2. Produkt mit der Store API lesen
-3. Produkt in den Warenkorb legen
-4. Kunden im Store API-Kontext registrieren
-5. Bestellung aufgeben
-6. Zahlung abwickeln (falls nötig)
+This flow shows a complete local development walkthrough:
+1. Create a category and a product with the Admin API
+2. Read the product with the Store API
+3. Put the product into the cart
+4. Register a customer in the Store API context
+5. Place the order
+6. Handle the payment (if required)
 
-Entwicklungsumgebung: `http://127.0.0.1:8000`. Benötigte Tools: `curl`, `jq`.
+Development environment: `http://127.0.0.1:8000`. Required tools: `curl`, `jq`.
 
-### Wichtige Details für lokale Setups
+### Important details for local setups
 
-- Store API verwendet `sw-access-key`, nicht `sw-access-token`
-- `/store-api/context` wird mit `GET` aufgerufen
-- Store API Context Tokens sind ephemer und können bei längeren Debug-Sessions ablaufen
-- `register` oder `login` kann einen neuen `Sw-Context-Token` zurückgeben
-- Bei Kontextänderung muss der Warenkorb neu befüllt werden
-- Produktanlage erfordert Preis in der **System-Standardwährung**
-- Kundenregistrierung erfordert echte IDs: `salutationId`, `countryId`
+- The Store API uses `sw-access-key`, not `sw-access-token`
+- `/store-api/context` is called with `GET`
+- Store API context tokens are ephemeral and can expire during longer debug sessions
+- `register` or `login` can return a new `Sw-Context-Token`
+- When the context changes, the cart has to be filled again
+- Creating a product requires a price in the **system default currency**
+- Customer registration requires real IDs: `salutationId`, `countryId`
 
-## Schritt 1: Admin API Token (lokal)
+## Step 1: Admin API token (local)
 
 ```bash
 ADMIN_TOKEN=$(curl -s -X POST "http://127.0.0.1:8000/api/oauth/token" \
@@ -56,7 +56,7 @@ ADMIN_TOKEN=$(curl -s -X POST "http://127.0.0.1:8000/api/oauth/token" \
 printf '%s\n' "$ADMIN_TOKEN"
 ```
 
-## Schritt 2: API-Schemas herunterladen (optional, aber empfohlen)
+## Step 2: download the API schemas (optional, but recommended)
 
 ```bash
 curl -s "http://127.0.0.1:8000/api/_info/openapi3.json" \
@@ -66,9 +66,9 @@ curl -s "http://127.0.0.1:8000/api/_info/open-api-schema.json" \
   -H "Authorization: Bearer $ADMIN_TOKEN" -o entity-schema.json
 ```
 
-## Schritt 3: Benötigte IDs ermitteln
+## Step 3: determine the required IDs
 
-### Tax-ID finden
+### Find the tax ID
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/api/search/tax" \
@@ -89,7 +89,7 @@ curl -s -X POST "http://127.0.0.1:8000/api/search/sales-channel" \
   }' | jq
 ```
 
-### System-Default-Currency ID
+### System default currency ID
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/api/search/currency" \
@@ -98,16 +98,16 @@ curl -s -X POST "http://127.0.0.1:8000/api/search/currency" \
   -d '{"includes": {"currency": ["id", "name", "isoCode", "isSystemDefault"]}}' | jq
 ```
 
-### IDs speichern
+### Store the IDs
 
 ```bash
-TAX_ID="<aus-response>"
-SALES_CHANNEL_ID="<aus-response>"
-CURRENCY_ID="<aus-response>"
-STORE_API_ACCESS_KEY="<accessKey-aus-response>"
+TAX_ID="<from-response>"
+SALES_CHANNEL_ID="<from-response>"
+CURRENCY_ID="<from-response>"
+STORE_API_ACCESS_KEY="<accessKey-from-response>"
 ```
 
-## Schritt 4: Kategorie anlegen
+## Step 4: create a category
 
 ```bash
 CATEGORY_ID=$(uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '-')
@@ -115,27 +115,27 @@ CATEGORY_ID=$(uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '-')
 curl -s -X POST "http://127.0.0.1:8000/api/category" \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
   -H "Content-Type: application/json" \
-  -d "{\"id\": \"$CATEGORY_ID\", \"name\": \"Beispielkategorie\", \"active\": true}"
+  -d "{\"id\": \"$CATEGORY_ID\", \"name\": \"Example category\", \"active\": true}"
 
-# Verifizieren:
+# Verify:
 curl -s -X POST "http://127.0.0.1:8000/api/search/category" \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
   -H "Content-Type: application/json" \
   -d "{\"ids\": [\"$CATEGORY_ID\"], \"includes\": {\"category\": [\"id\", \"name\", \"active\"]}}" | jq
 ```
 
-## Schritt 5: Produkt anlegen
+## Step 5: create a product
 
 ```bash
 PRODUCT_ID=$(uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '-')
-PRODUCT_NUMBER="BeispielProdukt-001"
+PRODUCT_NUMBER="ExampleProduct-001"
 
 curl -s -X POST "http://127.0.0.1:8000/api/product" \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
   -H "Content-Type: application/json" \
   -d "{
     \"id\": \"$PRODUCT_ID\",
-    \"name\": \"Mein Beispielprodukt\",
+    \"name\": \"My example product\",
     \"productNumber\": \"$PRODUCT_NUMBER\",
     \"stock\": 10,
     \"active\": true,
@@ -154,13 +154,13 @@ curl -s -X POST "http://127.0.0.1:8000/api/product" \
   }"
 ```
 
-### Visibility-Werte
+### Visibility values
 
-- `10` (VISIBILITY_LINK): Versteckt in Listings und Suche — nur via direktem Link erreichbar
-- `20` (VISIBILITY_SEARCH): Versteckt in Listings — nur in Suche sichtbar
-- `30` (VISIBILITY_ALL): Überall sichtbar (Listings + Suche)
+- `10` (VISIBILITY_LINK): hidden in listings and search — reachable only via a direct link
+- `20` (VISIBILITY_SEARCH): hidden in listings — visible only in search
+- `30` (VISIBILITY_ALL): visible everywhere (listings + search)
 
-### Produkt verifizieren
+### Verify the product
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/api/search/product" \
@@ -177,16 +177,16 @@ curl -s -X POST "http://127.0.0.1:8000/api/search/product" \
   }" | jq
 ```
 
-`sw-inheritance: 1` → Vererbung von Parent/Varianten berücksichtigen.
+`sw-inheritance: 1` → take inheritance from parent/variants into account.
 
-## Schritt 6: Store API Context erstellen
+## Step 6: create a Store API context
 
 ```bash
-# Context-Token holen (aus Response-Header)
+# Fetch the context token (from the response header)
 curl -i "http://127.0.0.1:8000/store-api/context" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY"
 
-# Automatisch extrahieren:
+# Extract it automatically:
 STORE_CONTEXT_TOKEN=$(curl -si "http://127.0.0.1:8000/store-api/context" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" \
   | tr -d '\r' | awk -F': ' 'tolower($1)=="sw-context-token" {print $2}')
@@ -194,21 +194,21 @@ STORE_CONTEXT_TOKEN=$(curl -si "http://127.0.0.1:8000/store-api/context" \
 echo "$STORE_CONTEXT_TOKEN"
 ```
 
-## Schritt 7: Produkt über Store API lesen
+## Step 7: read the product via the Store API
 
 ```bash
-# Volltextsuche
+# Full-text search
 curl -s -X POST "http://127.0.0.1:8000/store-api/search" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" \
   -H "sw-context-token: $STORE_CONTEXT_TOKEN" \
   -H "Content-Type: application/json" \
   -d "{
-    \"term\": \"Mein Beispielprodukt\",
+    \"term\": \"My example product\",
     \"limit\": 5,
     \"includes\": {\"product\": [\"id\", \"name\", \"translated\", \"calculatedPrice\"]}
   }" | jq
 
-# Nach productNumber filtern
+# Filter by productNumber
 curl -s -X POST "http://127.0.0.1:8000/store-api/search" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" \
   -H "sw-context-token: $STORE_CONTEXT_TOKEN" \
@@ -222,7 +222,7 @@ curl -s -X POST "http://127.0.0.1:8000/store-api/search" \
   }" | jq
 ```
 
-## Schritt 8: Produkt in Warenkorb legen
+## Step 8: put the product into the cart
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/store-api/checkout/cart/line-item" \
@@ -238,21 +238,21 @@ curl -s -X POST "http://127.0.0.1:8000/store-api/checkout/cart/line-item" \
     }]
   }" | jq
 
-# Warenkorb prüfen:
+# Check the cart:
 curl -s -X GET "http://127.0.0.1:8000/store-api/checkout/cart" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" \
   -H "sw-context-token: $STORE_CONTEXT_TOKEN" | jq
 ```
 
-## Schritt 9: Checkout vorbereiten
+## Step 9: prepare the checkout
 
-Vor Bestellaufgabe benötigt der Kontext:
-- Eingeloggten Kunden
-- Aktive Billing- und Shipping-Adressen
-- Versandmethode
-- Zahlungsmethode
+Before placing the order the context needs:
+- A logged-in customer
+- Active billing and shipping addresses
+- A shipping method
+- A payment method
 
-IDs für Registrierung ermitteln:
+Determine the IDs for the registration:
 ```bash
 # Salutation IDs
 curl -s "http://127.0.0.1:8000/store-api/salutation" \
@@ -263,9 +263,9 @@ curl -s "http://127.0.0.1:8000/store-api/country" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" | jq
 ```
 
-## Schritt 10: Kunden registrieren und Bestellung aufgeben
+## Step 10: register a customer and place the order
 
-### 10.1 Kunden registrieren
+### 10.1 Register the customer
 
 ```bash
 curl -i -X POST "http://127.0.0.1:8000/store-api/account/register" \
@@ -275,45 +275,45 @@ curl -i -X POST "http://127.0.0.1:8000/store-api/account/register" \
   -d "{
     \"salutationId\": \"$SALUTATION_ID\",
     \"firstName\": \"Max\",
-    \"lastName\": \"Mustermann\",
+    \"lastName\": \"Sample\",
     \"email\": \"test@example.com\",
     \"password\": \"shopware123!\",
     \"acceptedDataProtection\": true,
     \"storefrontUrl\": \"http://127.0.0.1:8000\",
     \"billingAddress\": {
       \"firstName\": \"Max\",
-      \"lastName\": \"Mustermann\",
-      \"street\": \"Musterstr. 1\",
+      \"lastName\": \"Sample\",
+      \"street\": \"Sample St. 1\",
       \"zipcode\": \"12345\",
-      \"city\": \"Musterstadt\",
+      \"city\": \"Sampletown\",
       \"countryId\": \"$COUNTRY_ID\"
     }
   }"
 ```
 
-**WICHTIG**: Neuen `Sw-Context-Token` aus dem Response-Header speichern!
+**IMPORTANT**: save the new `Sw-Context-Token` from the response header!
 ```bash
-STORE_CONTEXT_TOKEN="NEUER_TOKEN_AUS_HEADER"
+STORE_CONTEXT_TOKEN="NEW_TOKEN_FROM_HEADER"
 ```
 
-### 10.2 Produkt nach Kontextwechsel erneut hinzufügen
+### 10.2 Add the product again after the context change
 
-Nach Register/Login kann sich der Context-Token ändern → Warenkorb ist leer → Produkt erneut hinzufügen.
+After register/login the context token can change → the cart is empty → add the product again.
 
-### 10.3 Bestellung aufgeben
+### 10.3 Place the order
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/store-api/checkout/order" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" \
   -H "sw-context-token: $STORE_CONTEXT_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"customerComment": "Testbestellung"}' | jq
+  -d '{"customerComment": "Test order"}' | jq
 ```
 
-Fehler `Cart is empty` → Produkt erneut zum Warenkorb hinzufügen.
-Fehler `Customer is not logged in` → Login/Registrierung im korrekten Kontext.
+Error `Cart is empty` → add the product to the cart again.
+Error `Customer is not logged in` → log in/register in the correct context.
 
-### 10.4 Zahlung abwickeln (falls nötig)
+### 10.4 Handle the payment (if required)
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/store-api/handle-payment" \
@@ -327,37 +327,37 @@ curl -s -X POST "http://127.0.0.1:8000/store-api/handle-payment" \
   }' | jq
 ```
 
-`"redirectUrl": null` → Zahlungsmethode erfordert keinen Redirect-Flow.
+`"redirectUrl": null` → the payment method requires no redirect flow.
 
 ## Troubleshooting
 
-### Schema-Endpoints liefern 500 oder fehlende Tabellen
+### Schema endpoints return 500 or report missing tables
 
-DB neu initialisieren:
+Re-initialise the DB:
 ```bash
 docker compose exec web bin/console system:install --create-database --basic-setup
 ```
 
-### Produkt erscheint nicht in Store API
+### The product does not appear in the Store API
 
-Checkliste:
+Checklist:
 - `active: true`
-- Gültiger `price` gesetzt
-- `visibilities` für den Sales Channel vorhanden
-- Korrekte Store API Access Key
-- Storefront Sales Channel Domain entspricht lokaler URL
+- A valid `price` is set
+- `visibilities` exist for the sales channel
+- The correct Store API access key
+- The storefront sales channel domain matches the local URL
 
-### Relevante Request-Header
+### Relevant request headers
 
 - Admin API: `Authorization: Bearer $ADMIN_TOKEN`, optional `sw-language-id`, `sw-version-id`, `sw-inheritance`, `sw-currency-id`
 - Store API: `sw-access-key`, `sw-context-token`
 
-## Faustregel: Admin API vs. Store API
+## Rule of thumb: Admin API vs. Store API
 
-| Bereich | API |
+| Area | API |
 |---|---|
-| Daten anlegen/verwalten | Admin API |
-| Als Käufer agieren | Store API |
-| Checkout, Warenkorb | Store API |
-| Produkte/Kategorien anlegen | Admin API |
-| Headless Storefront | Store API |
+| Create/manage data | Admin API |
+| Act as a buyer | Store API |
+| Checkout, cart | Store API |
+| Create products/categories | Admin API |
+| Headless storefront | Store API |

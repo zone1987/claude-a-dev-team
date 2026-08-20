@@ -6,18 +6,18 @@
 npx shadcn-vue@latest add drawer
 ```
 
-## Manuell
+## Manual
 
-### Abhaengigkeiten
+### Dependencies
 
 ```bash
 npm install reka-ui vaul-vue
 ```
 
-### Manuelle Schritte
+### Manual steps
 
-1. Quellcode kopieren (siehe `references/source.md`) nach `components/ui/drawer/`
-2. Importpfade anpassen (`@/lib/utils` etc.)
+1. Copy the source code (see `references/source.md`) into `components/ui/drawer/`
+2. Adjust import paths (`@/lib/utils` etc.)
 
 ### Imports
 
@@ -37,6 +37,6 @@ import {
 </script>
 ```
 
-Quellen:
-- https://reka-ui.com/docs/components/dialog (vaul-vue basiert auf Dialog-Pattern)
+Sources:
+- https://reka-ui.com/docs/components/dialog (vaul-vue is based on the Dialog pattern)
 - https://github.com/unovue/shadcn-vue/tree/dev/apps/v4/registry/new-york-v4/ui/drawer

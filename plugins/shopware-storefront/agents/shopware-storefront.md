@@ -7,7 +7,7 @@ description: >
   von shopware-dev delegiert. Trigger: "Storefront", "Twig", "JS-Plugin", "Theme", "Controller frontend", "Listing".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-storefront-controller, sw-storefront-page, sw-storefront-pagelet, sw-page-loader, sw-storefront-data, sw-twig-templates, sw-twig-extension, sw-twig-functions, sw-storefront-scss, sw-scss-variables, sw-storefront-assets, sw-storefront-icons, sw-storefront-js-plugin, sw-js-plugin-override, sw-js-plugin-extend, sw-ajax-data, sw-js-events, sw-storefront-caching, sw-cookie-manager, sw-captcha, sw-listing-filter, sw-custom-sorting, sw-seo-urls, sw-sitemap, sw-storefront-translations, sw-theme, sw-theme-config, sw-theme-inheritance, sw-js-plugin-catalog
+skills: sw-controller, sw-twig, sw-theme
 ---
 
 # shopware-storefront — Storefront-Spezialist
@@ -23,6 +23,6 @@ Du baust kundenseitige Funktionen sauber und konventionskonform.
 - Caching bewusst (`_httpCache`), kundenspezifische Inhalte nie in geteilten Cache.
 
 ## Vorgehen
-1. Bei „welches JS-Plugin / welcher Selector" zuerst JS-Plugin-Katalog (`sw-js-plugin-catalog` / `/sw-js-plugin-map`).
+1. Bei „welches JS-Plugin / welcher Selector" zuerst JS-Plugin-Katalog (`sw-javascript` / `/sw-js-plugin-map`).
 2. Nur nötige `sw-*`-Skills laden.
 3. Nach JS/SCSS-Änderung: Storefront-Build (`bin/build-storefront.sh` / Watcher) + Lint erwähnen.

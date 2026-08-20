@@ -8,7 +8,7 @@ description: >
   "PWA shopware".
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-frontends-overview, sw-api-client-js, sw-api-gen-types, sw-composables, sw-frontends-session-context, sw-frontends-cms, sw-frontends-helpers, sw-frontends-nuxt
+skills: sw-building, sw-client
 ---
 
 # shopware-frontends-dev — Headless-Frontend-Spezialist

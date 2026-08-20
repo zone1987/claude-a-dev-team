@@ -1,17 +1,17 @@
-# shadcn-vue Bar Charts — Vollstaendiger Quellcode
+# shadcn-vue Bar Charts — Complete source code
 
-Alle 4 Bar-Chart-Varianten. Alle nutzen `VisGroupedBar + VisAxis` aus `@unovis/vue`.
+All 4 bar chart variants. All use `VisGroupedBar + VisAxis` from `@unovis/vue`.
 
 ---
 
 ## Contents
 
-- [ChartBarDefault.vue — Einfacher Bar Chart](#chartbardefaultvue-einfacher-bar-chart)
-- [ChartBarHorizontal.vue — Horizontaler Bar Chart](#chartbarhorizontalvue-horizontaler-bar-chart)
-- [ChartBarMultiple.vue — Gruppierter Bar Chart (mehrere Serien)](#chartbarmultiplevue-gruppierter-bar-chart-mehrere-serien)
-- [ChartBarInteractive.vue — Interaktiver Bar Chart (aktive Spalte per Button)](#chartbarinteractivevue-interaktiver-bar-chart-aktive-spalte-per-button)
+- [ChartBarDefault.vue — Simple bar chart](#chartbardefaultvue--simple-bar-chart)
+- [ChartBarHorizontal.vue — Horizontal bar chart](#chartbarhorizontalvue--horizontal-bar-chart)
+- [ChartBarMultiple.vue — Grouped bar chart (multiple series)](#chartbarmultiplevue--grouped-bar-chart-multiple-series)
+- [ChartBarInteractive.vue — Interactive bar chart (active column via button)](#chartbarinteractivevue--interactive-bar-chart-active-column-via-button)
 
-## ChartBarDefault.vue — Einfacher Bar Chart
+## ChartBarDefault.vue — Simple bar chart
 
 ```vue
 <script setup lang="ts">
@@ -81,9 +81,9 @@ const chartConfig = {
 
 ---
 
-## ChartBarHorizontal.vue — Horizontaler Bar Chart
+## ChartBarHorizontal.vue — Horizontal bar chart
 
-Unterschied: `Orientation.Horizontal` aus `@unovis/ts`, X-Achse wird zur Y-Achse.
+Difference: `Orientation.Horizontal` from `@unovis/ts`, the X axis becomes the Y axis.
 
 ```vue
 <script setup lang="ts">
@@ -154,9 +154,9 @@ const chartConfig = {
 
 ---
 
-## ChartBarMultiple.vue — Gruppierter Bar Chart (mehrere Serien)
+## ChartBarMultiple.vue — Grouped bar chart (multiple series)
 
-Unterschied: `:y` als Array, `:color` als Array, `bar-padding`, `group-padding`.
+Difference: `:y` as an array, `:color` as an array, `bar-padding`, `group-padding`.
 
 ```vue
 <script setup lang="ts">
@@ -229,10 +229,10 @@ const chartConfig = {
 
 ---
 
-## ChartBarInteractive.vue — Interaktiver Bar Chart (aktive Spalte per Button)
+## ChartBarInteractive.vue — Interactive bar chart (active column via button)
 
-Unterschied: `ref(activeChart)`, `computed(total)`, Button-Toggle im Card-Header,
-`labelFormatter` im Tooltip.
+Difference: `ref(activeChart)`, `computed(total)`, button toggle in the card header,
+`labelFormatter` in the tooltip.
 
 ```vue
 <script setup lang="ts">
@@ -241,7 +241,7 @@ import { VisAxis, VisGroupedBar, VisXYContainer } from "@unovis/vue"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york-v4/ui/card"
 import { ChartContainer, ChartCrosshair, ChartTooltip, ChartTooltipContent, componentToString } from "@/registry/new-york-v4/ui/chart"
 
-// 90 Datenpunkte von 2024-04-01 bis 2024-06-30
+// 90 data points from 2024-04-01 to 2024-06-30
 const chartData = [
   { date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
   // ...

@@ -8,7 +8,7 @@ description: >
   "Bestellung/Produkt/Versandart/Aktion einrichten", "Shopware Handbuch", "Shop aktualisieren", "Erlebniswelt erstellen".
 tools: Read, Grep, Glob
 model: sonnet
-skills: sw-merchant-overview, sw-merchant-catalog, sw-merchant-orders, sw-merchant-customers, sw-merchant-content, sw-merchant-marketing, sw-merchant-settings, sw-merchant-sales-channels, sw-merchant-extensions, sw-merchant-getting-started, sw-merchant-migration, sw-merchant-cloud, sw-merchant-features, sw-merchant-commercial, sw-merchant-services, sw-merchant-spatial-commerce, sw-merchant-insider-previews, sw-merchant-tutorials, sw-merchant-update-guides
+skills: sw-merchant-general, sw-merchant-catalog, sw-merchant-orders
 ---
 
 # shopware-merchant-guide — Betreiber-Berater
@@ -16,7 +16,7 @@ skills: sw-merchant-overview, sw-merchant-catalog, sw-merchant-orders, sw-mercha
 Du beantwortest Bedienungs-/Konfigurationsfragen für Shop-Betreiber anhand der Merchant-Doku-Skills.
 
 ## Vorgehen
-1. Frage einem Bereich zuordnen (Überblick: `sw-merchant-overview`) und das passende Mikro-Skill + dessen
+1. Frage einem Bereich zuordnen (Überblick: `sw-merchant-general`) und das passende Mikro-Skill + dessen
    `references/deep/` lesen.
 2. Schritt-für-Schritt antworten (Admin-Pfade, Buttons, Felder); auf vorhandene Screenshots in `assets/` verweisen.
 3. Plan-Abhängigkeiten nennen (Community/Rise/Evolve/Beyond) und ob ein Feature Commercial/Service ist.

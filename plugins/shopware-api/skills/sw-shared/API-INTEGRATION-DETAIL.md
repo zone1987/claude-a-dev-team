@@ -1,47 +1,47 @@
-# Shopware 6 — API-Integration (vollständige Referenz)
+# Shopware 6 — API integration (complete reference)
 
-Quellen: `guides/development/integrations-api/index.md`, `auth-api-requests.md`
+Sources: `guides/development/integrations-api/index.md`, `auth-api-requests.md`
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Voraussetzungen](#voraussetzungen)
-- [Schritt 1: Admin API Token (OAuth2 client_credentials)](#schritt-1-admin-api-token-oauth2-client_credentials)
-- [Lokaler Shortcut: password grant (NUR lokal)](#lokaler-shortcut-password-grant-nur-lokal)
-- [Schritt 2: Authentifizierter API-Request](#schritt-2-authentifizierter-api-request)
-- [Schritt 3: OpenAPI-Schema herunterladen](#schritt-3-openapi-schema-herunterladen)
-- [Schritt 4: Store API](#schritt-4-store-api)
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Step 1: Admin API token (OAuth2 client_credentials)](#step-1-admin-api-token-oauth2-client_credentials)
+- [Local shortcut: password grant (LOCAL only)](#local-shortcut-password-grant-local-only)
+- [Step 2: authenticated API request](#step-2-authenticated-api-request)
+- [Step 3: download the OpenAPI schema](#step-3-download-the-openapi-schema)
+- [Step 4: Store API](#step-4-store-api)
 - [Troubleshooting](#troubleshooting)
-- [Gemeinsame Konzepte beider APIs](#gemeinsame-konzepte-beider-apis)
+- [Concepts shared by both APIs](#concepts-shared-by-both-apis)
 
-## Überblick
+## Overview
 
-Shopware bietet zwei HTTP-APIs:
+Shopware offers two HTTP APIs:
 
-- **Admin API** (`/api/*`): Backend-Operationen — Produkte, Bestellungen, Kunden, Plugins, Bulk-Verarbeitung
-- **Store API** (`/store-api/*`): Kundenseitige Interaktionen — Headless-Frontends, Mobile Apps, Warenkorb, Checkout, Sales-Channel-Zugang
+- **Admin API** (`/api/*`): back-end operations — products, orders, customers, plugins, bulk processing
+- **Store API** (`/store-api/*`): customer-facing interactions — headless frontends, mobile apps, cart, checkout, sales channel access
 
-Offizielle Stoplight-Dokumentation:
+Official Stoplight documentation:
 - Admin API: https://shopware.stoplight.io/docs/admin-api/
 - Store API: https://shopware.stoplight.io/docs/store-api/
 
-Vollständige Endpunkt-Dokumentation (lokale Instanz): `/api/_info/stoplightio.html`
+Complete endpoint documentation (local instance): `/api/_info/stoplightio.html`
 
-## Voraussetzungen
+## Prerequisites
 
-- Shopware-Instanz läuft: `http://127.0.0.1:8000`
+- A Shopware instance is running: `http://127.0.0.1:8000`
 - Admin: `http://localhost:8000/admin`
-- `APP_ENV=dev` für Schema-Zugriff und bessere Fehlermeldungen
+- `APP_ENV=dev` for schema access and better error messages
 
 ```bash
-# Prüfen:
+# Check:
 docker compose exec web printenv APP_ENV
-# Falls nicht 'dev': .env.local → APP_ENV=dev → make up
+# If not 'dev': .env.local → APP_ENV=dev → make up
 ```
 
-## Schritt 1: Admin API Token (OAuth2 client_credentials)
+## Step 1: Admin API token (OAuth2 client_credentials)
 
-Integration anlegen: **Admin → Settings → System → Integrations** → Toggle "Administrator" aktivieren.
+Create an integration: **Admin → Settings → System → Integrations** → enable the "Administrator" toggle.
 - Access key ID → `client_id`
 - Secret access key → `client_secret`
 
@@ -55,7 +55,7 @@ curl -s "http://127.0.0.1:8000/api/oauth/token" \
   }'
 ```
 
-Antwort:
+Response:
 ```json
 {
   "token_type": "Bearer",
@@ -64,7 +64,7 @@ Antwort:
 }
 ```
 
-## Lokaler Shortcut: password grant (NUR lokal)
+## Local shortcut: password grant (LOCAL only)
 
 ```bash
 curl -X POST "http://localhost:8000/api/oauth/token" \
@@ -78,13 +78,13 @@ curl -X POST "http://localhost:8000/api/oauth/token" \
   }'
 ```
 
-Antwort enthält `access_token` (600 s) und `refresh_token`. **Nur für lokale Entwicklung** — in Integrationen immer `client_credentials` verwenden.
+The response contains `access_token` (600 s) and `refresh_token`. **For local development only** — in integrations always use `client_credentials`.
 
-## Schritt 2: Authentifizierter API-Request
+## Step 2: authenticated API request
 
-Bevorzuge `POST /api/search/{entity}` gegenüber `GET /api/{entity}`:
-- GET: einfaches Listing ohne Filter/Sort
-- POST search: vollständige Criteria (filter, sort, associations, aggregations, pagination)
+Prefer `POST /api/search/{entity}` over `GET /api/{entity}`:
+- GET: simple listing without filter/sort
+- POST search: complete Criteria (filter, sort, associations, aggregations, pagination)
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/api/search/product" \
@@ -93,11 +93,11 @@ curl -X POST "http://127.0.0.1:8000/api/search/product" \
   -d '{}'
 ```
 
-Erfolgreiche Antwort enthält Keys: `data`, `meta`, `aggregations`. Leeres `data`-Array = kein Fehler, nur keine Produkte.
+A successful response contains the keys: `data`, `meta`, `aggregations`. An empty `data` array = not an error, just no products.
 
-## Schritt 3: OpenAPI-Schema herunterladen
+## Step 3: download the OpenAPI schema
 
-**Voraussetzung: `APP_ENV=dev`**
+**Prerequisite: `APP_ENV=dev`**
 
 ```bash
 # Admin API OpenAPI Spec
@@ -105,7 +105,7 @@ curl -X GET "http://localhost:8000/api/_info/openapi3.json" \
   -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -o openapi.json
 
-# Entity-Schema
+# Entity schema
 curl -X GET "http://localhost:8000/api/_info/open-api-schema.json" \
   -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -o entity-schema.json
@@ -113,62 +113,62 @@ curl -X GET "http://localhost:8000/api/_info/open-api-schema.json" \
 # Store API
 curl -s "http://127.0.0.1:8000/store-api/_info/openapi3.json" -o store-openapi.json
 
-# Verfügbare Pfade filtern:
+# Filter the available paths:
 jq -r '.paths | keys[]' store-openapi.json | grep -E 'checkout|account|payment'
 ```
 
-Schema-Endpunkte:
+Schema endpoints:
 - OpenAPI Spec: `/(api|store-api)/_info/openapi3.json`
 - Entity Schema: `/(api|store-api)/_info/open-api-schema.json`
 - Stoplight UI: `/(api|store-api)/_info/stoplightio.html`
 
-## Schritt 4: Store API
+## Step 4: Store API
 
-Sales Channel Access Key: Admin → **Sales Channels → Storefront (oder aktiver Channel)** → API access-Bereich.
+Sales channel access key: Admin → **Sales Channels → Storefront (or the active channel)** → API access area.
 
-Neuen Key generieren invalidiert den alten.
+Generating a new key invalidates the old one.
 
 ```bash
 curl -s "http://127.0.0.1:8000/store-api/product" \
   -H "sw-access-key: YOUR_ACCESS_KEY"
 ```
 
-Antwort mit JSON = Erfolg. Leeres `elements`-Array = kein Fehler, keine Produkte.
+A JSON response = success. An empty `elements` array = not an error, no products.
 
-Store API-Domain: Falls `127.0.0.1:8000` nicht funktioniert → Admin: Sales Channels → Domains → ergänzen.
+Store API domain: if `127.0.0.1:8000` does not work → Admin: Sales Channels → Domains → add it.
 
 ## Troubleshooting
 
-### DB-Fehler: `Table 'shopware.system_config' doesn't exist`
+### DB error: `Table 'shopware.system_config' doesn't exist`
 
 ```bash
 docker compose exec web bin/console system:install --create-database --basic-setup
 ```
 
-### HTTP 500 auf Schema-Endpunkten
+### HTTP 500 on schema endpoints
 
-`APP_ENV` muss `dev` sein. `.env.local`:
+`APP_ENV` has to be `dev`. `.env.local`:
 ```dotenv
 APP_ENV=dev
 ```
-Dann Container neu starten: `make up` (oder `docker compose up -d`).
+Then restart the container: `make up` (or `docker compose up -d`).
 
-### Token-Request liefert keinen Output
+### The token request returns no output
 
-Aus verschachtelten Shell-Sessions herausgehen und erneut versuchen.
+Leave nested shell sessions and try again.
 
-### Store API: Produkt erscheint nicht
+### Store API: the product does not appear
 
-Checkliste:
-- Produkt ist `active`
-- Hat gültigen `price`
-- Hat `visibilities` für den Sales Channel
-- Korrekte Store API Access Key verwendet
-- Storefront Sales Channel Domain entspricht lokaler URL
+Checklist:
+- The product is `active`
+- It has a valid `price`
+- It has `visibilities` for the sales channel
+- The correct Store API access key is used
+- The storefront sales channel domain matches the local URL
 
-## Gemeinsame Konzepte beider APIs
+## Concepts shared by both APIs
 
-- Gleiche Search-Criteria-Syntax (Filtering, Sorting, Pagination)
-- Context-abhängige Antworten (Berechtigungen / Sales-Channel-Status)
+- The same search Criteria syntax (filtering, sorting, pagination)
+- Context-dependent responses (permissions / sales channel state)
 
-Faustregel: Admin API = Daten verwalten. Store API = als Käufer agieren.
+Rule of thumb: Admin API = manage data. Store API = act as a buyer.
