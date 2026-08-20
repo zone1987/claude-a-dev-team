@@ -152,10 +152,10 @@ const { android } = require('playwright');
 | Properties | 0 |
 | Events | 2 (`close`, `data`) |
 
-**Fazit:** `AndroidSocket` ist ein schlankes Wrapper-Objekt um eine ADB-Shell-Verbindung.
-Es ermoeglicht bidirektionale Kommunikation mit beliebigen Geraetp rozessen via `write()` und
-dem `data`-Event. Typische Anwendungsfaelle sind: Logcat-Streaming, Custom-Shell-Protokolle
-und direktes ADB-Forwarding.
+**Summary:** `AndroidSocket` is a lightweight wrapper object around an ADB shell connection.
+It enables bidirectional communication with arbitrary device processes via `write()` and
+the `data` event. Typical use cases are: logcat streaming, custom shell protocols
+and direct ADB forwarding.
 
 ---
 

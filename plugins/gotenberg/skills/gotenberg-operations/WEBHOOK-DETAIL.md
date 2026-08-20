@@ -167,7 +167,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   --form watermarkSource=image \
   --form 'downloadFrom=[{"url":"https://cdn.example.com/logo.png","field":"watermark"}]' \
   --form watermarkExpression=logo.png \
-  -o mit-wasserzeichen.pdf
+  -o with-watermark.pdf
 ```
 
 ---

@@ -1,5 +1,5 @@
 # Shopware Multi-Inventory
 
-Produkte unabhängig vom Lagerstandort kaufbar halten – Verwaltung mehrerer Lagerhäuser (Beyond).
+Keeping products purchasable regardless of stock location – managing multiple warehouses (Beyond).
 
-<!-- Detaildokumentation: `MULTI-INVENTORY-DETAIL.md` -->
+<!-- Detailed documentation: `MULTI-INVENTORY-DETAIL.md` -->

@@ -1,5 +1,5 @@
-# Shopware Kundenspezifische Preise
+# Shopware Customer-Specific Prices
 
-Individuelle Preise pro Kunde via API – Listenpreise, Staffelpreise, Währungspreise (Beyond).
+Individual prices per customer via API – list prices, tiered prices, currency prices (Beyond).
 
-<!-- Detaildokumentation: `CUSTOM-PRICING-DETAIL.md` -->
+<!-- Detailed documentation: `CUSTOM-PRICING-DETAIL.md` -->

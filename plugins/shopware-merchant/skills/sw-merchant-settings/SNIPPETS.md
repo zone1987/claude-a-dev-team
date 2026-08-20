@@ -1,8 +1,8 @@
 # Shopware 6 – Textbausteine (Snippets)
 
-Referenz für das Verwalten und Anpassen von Übersetzungstexten in Shop und Storefront.
+Reference for managing and customising translation texts in the shop and storefront.
 
-**Pfad:** Einstellungen > Shop > Textbausteine  
-**Verfügbar ab:** 6.7.5.0 (aktuelle Doku)
+**Path:** Einstellungen (Settings) > Shop > Textbausteine  
+**Available from:** 6.7.5.0 (current docs)
 
-Detaillierte Referenz: [SNIPPETS-DETAIL.md](SNIPPETS-DETAIL.md)
+Detailed reference: [SNIPPETS-DETAIL.md](SNIPPETS-DETAIL.md)

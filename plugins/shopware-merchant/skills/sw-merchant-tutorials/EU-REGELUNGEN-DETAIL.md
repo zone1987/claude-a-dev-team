@@ -1,96 +1,96 @@
-# Shopware 6 — Tutorials: EU-Regelungen (vollständige Referenz)
+# Shopware 6 — Tutorials: EU regulations (complete reference)
 
 ---
 
-## 1. DSGVO (Datenschutz-Grundverordnung)
+## 1. GDPR (General Data Protection Regulation)
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/dsgvo  
-**Gültig ab:** 25. Mai 2018
+**Source:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/dsgvo  
+**In force since:** 25 May 2018
 
-### Welche personenbezogenen Daten werden verarbeitet?
+### Which personal data is processed?
 
-| Kategorie | Daten |
+| Category | Data |
 |-----------|-------|
-| Kundendaten | Adresse, Geburtsdatum, Firmenname |
-| Bestellungen | Lieferadresse, Bestellsumme, Warenkorb, IP-Adresse, Referrer |
-| Newsletter | Registrierungsdaten |
-| Formulare | Anrede, Name, E-Mail, Telefon |
-| Bewertungen | Mit Kundenkonto verknüpfte Produktbewertungen |
-| Admin | Mitarbeiterdaten mit E-Mail |
-| API | Über autorisierte Schnittstellen abrufbare Daten |
+| Customer data | Address, date of birth, company name |
+| Bestellungen (Orders) | Delivery address, order total, cart, IP address, referrer |
+| Newsletter | Registration data |
+| Forms | Salutation, name, e-mail, phone |
+| Bewertungen (Reviews) | Product reviews linked to a customer account |
+| Admin | Staff data including e-mail |
+| API | Data retrievable through authorised interfaces |
 
-### IP-Adressen werden gespeichert in
+### IP addresses are stored in
 
-- `order_customer` (je Bestellung)
-- `customer` (letzte Bestellung)
-- `log_entry` (Backend-Aktivitäten)
-- `version_commit_data` (aktuelle Nutzungsdaten)
+- `order_customer` (per order)
+- `customer` (last order)
+- `log_entry` (backend activities)
+- `version_commit_data` (current usage data)
 
-### Verschlüsselung
+### Encryption
 
-HTTPS-Protokoll mit SSL-Zertifikat für sichere Datenübertragung erforderlich.
+The HTTPS protocol with an SSL certificate is required for secure data transmission.
 
-### Cookies (Browser-Speicherung)
+### Cookies (browser storage)
 
-- Session-Cookies (Warenkorb, Login-Status)
-- CSRF-Cookies (Schutzfunktion)
-- Timezone-Cookies (Zeitzonenkalibrierung)
+- Session cookies (cart, login status)
+- CSRF cookies (protection function)
+- Timezone cookies (time zone calibration)
 
-Shopware speichert stets nur IDs im Browser des Kunden.
+Shopware only ever stores IDs in the customer's browser.
 
-### Datenschutzerklärung einbinden
+### Embedding the privacy policy
 
-- Vorkonfigurierte Erlebniswelt "Datenschutz" nutzen
-- Unter Einstellungen > Shop > Stammdaten anpassen
-- In Checkout und Formularen verlinken
+- Use the pre-configured "Datenschutz" (Privacy) Erlebniswelt (Shopping Experience)
+- Adjust under Einstellungen (Settings) > Shop > Stammdaten (Master data)
+- Link it in the checkout and in forms
 
 ### Cookie Consent Manager
 
-- Shopware bietet integrierten Cookie Consent Manager
-- Plugins können eigene Cookies registrieren
-- Link für spätere Änderungen: `/cookie/offcanvas`
-- Einstellungen: Einstellungen > Allgemein > Stammdaten (Alles-akzeptieren-Button)
-- Texte anpassen: Einstellungen > Regional > Textbausteine (Suche "Cookie")
+- Shopware provides an integrated Cookie Consent Manager
+- Plugins can register their own cookies
+- Link for later changes: `/cookie/offcanvas`
+- Settings: Einstellungen > Allgemein (General) > Stammdaten (accept-all button)
+- Adjust texts: Einstellungen > Regional > Textbausteine (Snippets) (search for "Cookie")
 
-### Daten strukturiert ausgeben (Export)
+### Exporting data in a structured form
 
-Import/Export-Funktion für CSV/XML-Export personenbezogener Daten.
+Import/Export function for CSV/XML export of personal data.
 
-### Daten löschen
+### Deleting data
 
-Über Admin-Kundenmodul durchführbar (automatische Verknüpfungsentfernung).
+Can be carried out via the admin customer module (links are removed automatically).
 
-**Warenkörbe:** Standard-Löschung nach 120 Tagen, konfigurierbar via `shopware.yaml`.
+**Carts:** deleted after 120 days by default, configurable via `shopware.yaml`.
 
 ### FAQ
 
-- Kein separates DSGVO-Plugin geplant — Updates werden bei Notwendigkeit bereitgestellt
-- Registrierung referenziert Datenschutz via Textbaustein `general.privacyNotice`
-- Formulare enthalten automatische Datenschutz-Checkbox
-- Drittanbieter-Erweiterungen (PayPal, ERP, Newsletter) können eigene Datenflüsse initiieren
+- No separate GDPR plugin is planned — updates are provided where necessary
+- Registration references the privacy policy via the snippet `general.privacyNotice`
+- Forms automatically contain a data protection checkbox
+- Third-party extensions (PayPal, ERP, newsletter) may initiate their own data flows
 
 ---
 
-## 2. One-Stop-Shop-Verfahren (EU-OSS)
+## 2. One-Stop-Shop procedure (EU-OSS)
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/one-stop-shop  
-**Ab Version:** 6.4.1.0  
-**Gültig ab:** 1. Juli 2021
+**Source:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/one-stop-shop  
+**From version:** 6.4.1.0  
+**In force since:** 1 July 2021
 
 ### Definition
 
-EU-OSS ist ein elektronisches Portal, über das Händler und Unternehmen ihre Mehrwertsteuerverpflichtung innerhalb der EU zentral erfüllen können, anstatt sich in jedem Land einzeln zu registrieren.
+EU-OSS is an electronic portal through which merchants and companies can fulfil their VAT obligations within the EU centrally, instead of registering separately in each country.
 
-### Schwellenwert
+### Threshold
 
-**10.000 € EU-weit (einheitlich).** Händler, die diesen Betrag überschreiten, sollten sich beim zuständigen OSS-Portal registrieren.
+**EUR 10,000 EU-wide (uniform).** Merchants exceeding this amount should register with the responsible OSS portal.
 
-### Shopware-Konfiguration
+### Shopware configuration
 
-- Steuersätze weiterhin über das Steuern-Modul konfigurieren
-- Anzeige des Lieferlandes neben dem Preis erforderlich
-- Kunden müssen Lieferland transparent auswählen können (mit entsprechenden Preisen)
+- Continue to configure tax rates via the Steuern (Taxes) module
+- The delivery country must be displayed next to the price
+- Customers must be able to select the delivery country transparently (with the corresponding prices)
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen — Stand: 2026-06*
+*Source: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen — as of: 2026-06*

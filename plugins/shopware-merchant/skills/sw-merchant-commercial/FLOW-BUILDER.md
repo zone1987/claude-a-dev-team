@@ -1,5 +1,5 @@
 # Shopware Flow Builder (Commercial Features)
 
-No-Code-Automatisierung: Webhooks (Evolve+), Delays (Beyond), Flow-Sharing (Rise+).
+No-code automation: webhooks (Evolve+), delays (Beyond), flow sharing (Rise+).
 
-<!-- Detaildokumentation: `FLOW-BUILDER-DETAIL.md` -->
+<!-- Detailed documentation: `FLOW-BUILDER-DETAIL.md` -->

@@ -1,117 +1,117 @@
-# Shopware SaaS — Erweiterungen verwalten
+# Shopware SaaS — managing Erweiterungen (Extensions)
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/saas/erweiterungen
+**Source**: https://docs.shopware.com/de/shopware-6-de/saas/erweiterungen
 
-> Diese Dokumentation gilt ausschließlich für Nutzer einer **Shopware 6 SaaS-Umgebung** (nicht für self-hosted).
+> This documentation applies exclusively to users of a **Shopware 6 SaaS environment** (not to self-hosted).
 
 ---
 
 ## Contents
 
-- [Store — Erweiterungen finden](#store-erweiterungen-finden)
-- [Erweiterung hinzufügen](#erweiterung-hinzufügen)
-- [Meine Erweiterungen verwalten](#meine-erweiterungen-verwalten)
-- [Erweiterung installieren](#erweiterung-installieren)
-- [Kostenpflichtige Erweiterung kündigen und entfernen](#kostenpflichtige-erweiterung-kündigen-und-entfernen)
-- [Inkompatible Apps](#inkompatible-apps)
-- [SaaS-Updates und Erweiterungen](#saas-updates-und-erweiterungen)
-- [Voraussetzungen für Erweiterungen](#voraussetzungen-für-erweiterungen)
-- [Erweiterungen von macOS hochladen](#erweiterungen-von-macos-hochladen)
+- [Store — finding extensions](#store--finding-extensions)
+- [Adding an extension](#adding-an-extension)
+- [Managing my extensions](#managing-my-extensions)
+- [Installing an extension](#installing-an-extension)
+- [Cancelling and removing a paid extension](#cancelling-and-removing-a-paid-extension)
+- [Incompatible apps](#incompatible-apps)
+- [SaaS updates and extensions](#saas-updates-and-extensions)
+- [Prerequisites for extensions](#prerequisites-for-extensions)
+- [Uploading extensions from macOS](#uploading-extensions-from-macos)
 
-## Store — Erweiterungen finden
+## Store — finding extensions
 
-Kostenlose und kostenpflichtige Erweiterungen durchstöbern und erwerben.
+Browse and purchase free and paid extensions.
 
-**Verfügbare Filter:**
-- Sortierung
-- Kategorien
-- Bewertungen
-- Bezahlmodell
-- Zusatzoptionen (Support, Testversionen)
-
----
-
-## Erweiterung hinzufügen
-
-Prozess über Modal:
-1. AGB akzeptieren (Pflicht)
-2. Berechtigungen bestätigen (je nach Funktionsumfang der App)
-3. Link „Berechtigungen anzeigen" für Details aufrufen (optional)
-4. Erfolgsmeldung erscheint nach Abschluss
+**Available filters:**
+- Sorting
+- Categories
+- Ratings
+- Payment model
+- Additional options (support, trial versions)
 
 ---
 
-## Meine Erweiterungen verwalten
+## Adding an extension
 
-### Apps-Bereich
-- Übersicht aller Apps mit Basisinformationen
-- Schalter zum Ausblenden inaktiver Apps
-- Sortieroptionen
-- Aktiv-/Deaktiv-Schalter je App
-- Kontextmenü:
-  - **Berechtigungen** anzeigen
-  - **Aktualisieren**
-  - **Deinstallieren**
-- Upload-Funktion für manuelle Installation (ZIP)
-
-### Themes-Bereich
-- Ähnliche Verwaltungsfunktionen wie Apps
-- Zusätzliche Optionen: „Datenschutz & Datensicherheit", „Datenschutz-Erweiterungen"
-- **Hinweis:** Aktive Themes müssen zusätzlich dem Verkaufskanal zugeordnet werden
+Process via modal:
+1. Accept the terms and conditions (mandatory)
+2. Confirm permissions (depending on the app's feature scope)
+3. Open the link **Berechtigungen anzeigen** (Show permissions) for details (optional)
+4. A success message appears once finished
 
 ---
 
-## Erweiterung installieren
+## Managing my extensions
 
-Button **„App installieren"** → Installation starten → danach ist „App öffnen" verfügbar.
+### Apps area
+- Overview of all apps with basic information
+- Toggle for hiding inactive apps
+- Sorting options
+- Aktiv (Active)/Inaktiv (Inactive) toggle per app
+- Context menu:
+  - Show **Berechtigungen** (Permissions)
+  - **Aktualisieren** (Update)
+  - **Deinstallieren** (Uninstall)
+- Upload function for manual installation (ZIP)
 
----
-
-## Kostenpflichtige Erweiterung kündigen und entfernen
-
-Vollständige Entfernung erforderlich (Deaktivieren allein genügt nicht zur Kündigung).
-
-**Vorgehen:**
-1. „..."-Button bei der Erweiterung
-2. **„Kündigen und entfernen"** wählen
-
-> ⚠️ **Warnung:** Alle Einstellungen der Erweiterung gehen verloren!
-
----
-
-## Inkompatible Apps
-
-**Kennzeichnung:** Wird angezeigt wenn Apps mit der kommenden Shopware-Hauptversion nicht kompatibel sind.
-
-**Automatisches Verhalten:** Apps werden bei Versionsaktualisierung automatisch deaktiviert, sofern sie bis dahin nicht aktualisiert wurden.
-
-**Aktion:** App manuell aktualisieren und reaktivieren.
+### Themes area
+- Management functions similar to those for apps
+- Additional options: "Datenschutz & Datensicherheit" (Data protection & data security), "Datenschutz-Erweiterungen" (Data protection extensions)
+- **Note:** active themes must additionally be assigned to the Verkaufskanal (Sales channel)
 
 ---
 
-## SaaS-Updates und Erweiterungen
+## Installing an extension
 
-- Shopware aktualisiert den SaaS-Shop **automatisch**
-- Inkompatible Erweiterungen können dabei **automatisch deaktiviert** werden
-- Betreiber muss Erweiterungen **manuell aktualisieren und reaktivieren**
-- Status-Informationen: `https://status.shopware.com/`
+Button **App installieren** (Install app) → start the installation → afterwards "App öffnen" (Open app) is available.
 
 ---
 
-## Voraussetzungen für Erweiterungen
+## Cancelling and removing a paid extension
 
-Auch für **kostenlose** Erweiterungen benötigt:
+Complete removal is required (deactivating alone is not enough to cancel).
 
-1. **Firmeninformationen** (Einstellungen > Account > Firma)
-2. **Zahlungsart für Abrechnung** (Einstellungen > Account > Abrechnungen > Zahlungsart)
+**Procedure:**
+1. "..." button next to the extension
+2. Choose **Kündigen und entfernen** (Cancel and remove)
+
+> ⚠️ **Warning:** all settings of the extension are lost!
 
 ---
 
-## Erweiterungen von macOS hochladen
+## Incompatible apps
 
-> ⚠️ macOS erstellt beim Komprimieren automatisch einen Unterordner im ZIP-File.
+**Marking:** shown when apps are not compatible with the upcoming Shopware major version.
 
-Lösung: Erweiterung per Terminal komprimieren (ohne macOS-Metadaten):
+**Automatic behaviour:** apps are deactivated automatically on the version update if they have not been updated by then.
+
+**Action:** update and reactivate the app manually.
+
+---
+
+## SaaS updates and extensions
+
+- Shopware updates the SaaS shop **automatically**
+- Incompatible extensions can be **deactivated automatically** in the process
+- The operator must **update and reactivate** extensions **manually**
+- Status information: `https://status.shopware.com/`
+
+---
+
+## Prerequisites for extensions
+
+Required even for **free** extensions:
+
+1. **Company information** (Einstellungen (Settings) > Account > Firma (Company))
+2. **Payment method for billing** (Einstellungen > Account > Abrechnungen (Billing) > Zahlungsart (Payment method))
+
+---
+
+## Uploading extensions from macOS
+
+> ⚠️ When compressing, macOS automatically creates a subfolder inside the ZIP file.
+
+Solution: compress the extension via terminal (without macOS metadata):
 ```bash
 cd /Pfad/zum/Plugin-Ordner
 zip -r plugin-name.zip . -x "*.DS_Store" -x "__MACOSX/*"
@@ -119,4 +119,4 @@ zip -r plugin-name.zip . -x "*.DS_Store" -x "__MACOSX/*"
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/saas/erweiterungen*
+*Source: https://docs.shopware.com/de/shopware-6-de/saas/erweiterungen*

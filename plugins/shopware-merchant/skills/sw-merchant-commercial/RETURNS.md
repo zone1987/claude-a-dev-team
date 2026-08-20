@@ -1,5 +1,5 @@
-# Shopware Retouren-Management
+# Shopware Returns Management
 
-Retourenabwicklung direkt im Admin-Panel auf Basis bestehender Bestellungen (Rise+).
+Returns processing directly in the admin panel based on existing orders (Rise+).
 
-<!-- Detaildokumentation: `RETURNS-MANAGEMENT.md` -->
+<!-- Detailed documentation: `RETURNS-MANAGEMENT.md` -->

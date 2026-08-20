@@ -1,30 +1,30 @@
 ---
 name: gotenberg-convert
-description: Scaffold eines Gotenberg-Requests — wählt Route (Chromium HTML/URL/Markdown, LibreOffice, PDF-Engines merge/split/convert/…), baut den multipart/form-data-curl-Aufruf mit den gewünschten Form-Feldern, optional als gotenberg-php-Snippet oder async via Webhook.
-argument-hint: <was> z.B. "html→pdf A4 quer mit Header" | "merge a.pdf b.pdf" | "docx→pdf/a-2b" [--client curl|php] [--async]
+description: Scaffold a Gotenberg request — picks the route (Chromium HTML/URL/Markdown, LibreOffice, PDF engines merge/split/convert/…), builds the multipart/form-data curl call with the desired form fields, optionally as a gotenberg-php snippet or async via webhook.
+argument-hint: <what> e.g. "html→pdf A4 landscape with header" | "merge a.pdf b.pdf" | "docx→pdf/a-2b" [--client curl|php] [--async]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /gotenberg-convert
 
-Erzeuge einen einsatzfertigen Gotenberg-Aufruf. Skills: `gotenberg-routes` + die passende(n) Themen-Skills
-(`gotenberg-chromium-*`, `gotenberg-libreoffice`, `gotenberg-pdf-*`), Client-Beispiele aus `gotenberg-clients`,
-Async aus `gotenberg-webhook`.
+Produce a ready-to-run Gotenberg call. Skills: `gotenberg-routes` plus the matching topic skill(s)
+(`gotenberg-chromium-*`, `gotenberg-libreoffice`, `gotenberg-pdf-*`), client examples from `gotenberg-clients`,
+async from `gotenberg-webhook`.
 
-## Ablauf
-1. **Ziel + Route** aus `$ARGUMENTS` bestimmen:
+## Procedure
+1. **Determine target + route** from `$ARGUMENTS`:
    - HTML/Markdown/URL → PDF → `/forms/chromium/convert/{html|markdown|url}`
    - Screenshot → `/forms/chromium/screenshot/{html|markdown|url}`
    - Office → PDF → `/forms/libreoffice/convert`
    - merge/split/convert/flatten/encrypt/metadata/bookmarks/embed/factur-x/rotate/stamp/watermark → `/forms/pdfengines/<op>`
-2. **Eingabedateien** als `-F "files=@..."` (Reihenfolge bei merge beachten; HTML braucht `index.html` + Assets).
-3. **Form-Felder** ergänzen — NUR dokumentierte Felder mit korrektem Namen/Typ (Quelle: jeweiliges Skill), z.B.
+2. **Input files** as `-F "files=@..."` (mind the order for merge; HTML needs `index.html` + assets).
+3. **Add form fields** — ONLY documented fields with the correct name/type (source: the respective skill), e.g.
    `paperWidth/paperHeight`, `marginTop…`, `landscape`, `nativePageRanges`, `printBackground`, `waitDelay`,
-   `pdfa`, `pdfua`, `metadata`, Header/Footer-Dateien.
-4. **Output/Tracing**: `-H "Gotenberg-Output-Filename: …"`, optional `-H "Gotenberg-Trace: …"`.
-5. **Variante**: `--client php` → `gotenberg-php`-Snippet; `--async` → Webhook-Header
-   (`Gotenberg-Webhook-Url`, `-Webhook-Error-Url`, ggf. `-Webhook-Method`/`-Webhook-Extra-Http-Headers`).
+   `pdfa`, `pdfua`, `metadata`, header/footer files.
+4. **Output/tracing**: `-H "Gotenberg-Output-Filename: …"`, optionally `-H "Gotenberg-Trace: …"`.
+5. **Variant**: `--client php` → `gotenberg-php` snippet; `--async` → webhook headers
+   (`Gotenberg-Webhook-Url`, `-Webhook-Error-Url`, and if needed `-Webhook-Method`/`-Webhook-Extra-Http-Headers`).
 
-Routen/Feldnamen/Defaults nie raten — gegen die `gotenberg-*`-Skills prüfen. Keine echten Credentials/Tokens in Beispiele.
-Auf Wechselwirkungen hinweisen (z.B. PDF/A ↔ Verschlüsselung).
+Never guess routes/field names/defaults — check them against the `gotenberg-*` skills. No real credentials/tokens in examples.
+Point out interactions (e.g. PDF/A ↔ encryption).

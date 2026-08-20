@@ -1,16 +1,16 @@
-# Shopware 6 – Retouren & Rückerstattungen
+# Shopware 6 – Returns & refunds
 
-Vollständige Referenz für das Retouren-Management und Zahlungsabbruch-Handling.
+Complete reference for returns management and payment cancellation handling.
 
-Ausführliche Dokumentation: [REFUNDS-DETAIL.md](REFUNDS-DETAIL.md)
+Detailed documentation: [REFUNDS-DETAIL.md](REFUNDS-DETAIL.md)
 
-## Kurzinfo
+## Key facts
 
-- **Retouren-Management**: ab Shopware **Rise** (Commercial Extension erforderlich)
-- **Derzeit**: max. 1 Retoure pro Bestellung
-- Kunden sehen die Retoure inkl. Status im Kundenkonto
-- Teilgutschriften möglich (wenn Rechnung vorhanden)
+- **Returns management**: from Shopware **Rise** upwards (Commercial Extension required)
+- **Currently**: max. 1 return per order
+- Customers see the return including its state in their customer account
+- Partial credit notes are possible (if an invoice exists)
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/retouren-management
 https://docs.shopware.com/de/shopware-6-de/bestellungen/zahlungsvorgang-nach-bestellung

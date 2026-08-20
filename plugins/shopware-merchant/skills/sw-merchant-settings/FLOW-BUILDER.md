@@ -1,7 +1,7 @@
 # Shopware 6 – Flow Builder
 
-Referenz für die Automatisierung von Geschäftsprozessen ohne Programmierkenntnisse.
+Reference for automating business processes without programming knowledge.
 
-**Pfad:** Einstellungen > Automatisierung > Flow Builder
+**Path:** Einstellungen (Settings) > Automatisierung (Automation) > Flow Builder
 
-Detaillierte Referenz: [FLOW-BUILDER-DETAIL.md](FLOW-BUILDER-DETAIL.md)
+Detailed reference: [FLOW-BUILDER-DETAIL.md](FLOW-BUILDER-DETAIL.md)

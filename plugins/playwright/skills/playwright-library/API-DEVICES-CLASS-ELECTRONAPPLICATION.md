@@ -460,10 +460,10 @@ test('Electron app smoke test', async () => {
 | Properties | 0 |
 | Events | 3 (`close`, `console`, `window`) |
 
-**Fazit:** `ElectronApplication` ist das zentrale Objekt fuer Electron-Testing. Die Methoden
-`evaluate()` / `evaluateHandle()` geben Zugriff auf alle Electron-Main-Process-APIs.
-`browserWindow(page)` verbindet Playwright-Pages mit ihren nativen BrowserWindow-Objekten.
-`context()` ermoeg licht kontextweites Routing ueber alle Fenster hinweg.
+**Summary:** `ElectronApplication` is the central object for Electron testing. The methods
+`evaluate()` / `evaluateHandle()` give access to all Electron main-process APIs.
+`browserWindow(page)` connects Playwright pages with their native BrowserWindow objects.
+`context()` enables context-wide routing across all windows.
 
 ---
 

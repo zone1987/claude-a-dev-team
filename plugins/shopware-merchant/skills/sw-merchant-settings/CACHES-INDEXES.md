@@ -1,7 +1,7 @@
-# Shopware 6 – Caches & Indizes
+# Shopware 6 – Caches & Indizes (Caches & indexes)
 
-Referenz für Cache- und Indexverwaltung (nur Self-Hosted).
+Reference for cache and index management (self-hosted only).
 
-**Pfad:** Einstellungen > System > Caches & Indizes
+**Path:** Einstellungen (Settings) > System > Caches & Indizes
 
-Detaillierte Referenz: [CACHES-INDEXES-DETAIL.md](CACHES-INDEXES-DETAIL.md)
+Detailed reference: [CACHES-INDEXES-DETAIL.md](CACHES-INDEXES-DETAIL.md)

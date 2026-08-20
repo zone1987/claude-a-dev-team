@@ -1,40 +1,40 @@
-# Shopware 6 — Update Guides: Vollständige Referenz (Überblick)
+# Shopware 6 — Update guides: complete reference (overview)
 
 ## Contents
 
-- [Kapitelstruktur der offiziellen Dokumentation](#kapitelstruktur-der-offiziellen-dokumentation)
-- [Systemanforderungen je Version](#systemanforderungen-je-version)
-- [Update-Prozess: Schritt-für-Schritt (Überblick)](#update-prozess-schritt-für-schritt-überblick)
-- [Wichtige Warnhinweise](#wichtige-warnhinweise)
+- [Chapter structure of the official documentation](#chapter-structure-of-the-official-documentation)
+- [System requirements per version](#system-requirements-per-version)
+- [Update process: step by step (overview)](#update-process-step-by-step-overview)
+- [Important warnings](#important-warnings)
 
-## Kapitelstruktur der offiziellen Dokumentation
+## Chapter structure of the official documentation
 
-Die offiziellen Update Guides unter `docs.shopware.com/de/shopware-6-de/update-guides` umfassen:
+The official update guides at `docs.shopware.com/de/shopware-6-de/update-guides` comprise:
 
-| Seite | Inhalt |
+| Page | Content |
 |---|---|
-| Shopware aktualisieren / updaten | Allgemeine Anleitung (alle Methoden) |
-| Update Guide 6.4 zu 6.5 | Major-Update-Anleitung |
-| Update Guide Shopware 6.6 | Neuerungen & Anforderungen für 6.6 |
-| Update Guide 6.5 zu 6.6 | Major-Update-Anleitung |
-| Update Guide Shopware 6.7 | Neuerungen & Anforderungen für 6.7 |
+| Shopware aktualisieren / updaten (Updating Shopware) | General instructions (all methods) |
+| Update Guide 6.4 zu 6.5 (6.4 to 6.5) | Major update instructions |
+| Update Guide Shopware 6.6 | New features & requirements for 6.6 |
+| Update Guide 6.5 zu 6.6 (6.5 to 6.6) | Major update instructions |
+| Update Guide Shopware 6.7 | New features & requirements for 6.7 |
 
 ---
 
-## Systemanforderungen je Version
+## System requirements per version
 
-### Shopware 6.7 (aktuell)
-| Komponente | Anforderung |
+### Shopware 6.7 (current)
+| Component | Requirement |
 |---|---|
-| PHP | 8.2, 8.3 oder 8.4 |
-| Node.js | 20 oder höher |
-| MySQL | 8.0.17+ (nicht 8.0.20, 8.0.21) |
-| MariaDB | 10.11+ (nicht 10.11.5 & 11.0.3) |
+| PHP | 8.2, 8.3 or 8.4 |
+| Node.js | 20 or higher |
+| MySQL | 8.0.17+ (not 8.0.20, 8.0.21) |
+| MariaDB | 10.11+ (not 10.11.5 & 11.0.3) |
 | Redis | 7.0+ (optional) |
 | OpenSearch/Elasticsearch | 1.0+ / 7.8+ (optional) |
 
 ### Shopware 6.6
-| Komponente | Anforderung |
+| Component | Requirement |
 |---|---|
 | PHP | 8.2+ |
 | Node.js | 20 |
@@ -42,70 +42,70 @@ Die offiziellen Update Guides unter `docs.shopware.com/de/shopware-6-de/update-g
 | Redis | 7.0 (optional) |
 | MySQL | 8.0+ |
 
-### Shopware 6.5 (für Update von 6.4)
-| Komponente | Anforderung |
+### Shopware 6.5 (for an update from 6.4)
+| Component | Requirement |
 |---|---|
 | PHP | 8.1+ |
 | Node.js | 18 |
-| Git | erforderlich |
+| Git | required |
 
-### Hardware (Empfehlungen)
-| Komponente | Minimum | Empfehlung |
+### Hardware (recommendations)
+| Component | Minimum | Recommendation |
 |---|---|---|
-| CPU | Dual-Core | Quad-Core oder höher |
+| CPU | Dual core | Quad core or higher |
 | RAM | 8 GB | 16 GB |
-| Disk | 10 GB frei | 20 GB frei |
+| Disk | 10 GB free | 20 GB free |
 
 ---
 
-## Update-Prozess: Schritt-für-Schritt (Überblick)
+## Update process: step by step (overview)
 
-### Phase 1: Vorbereitung
+### Phase 1: preparation
 
-**1.1 Testumgebung einrichten**
-- Separaten Server oder Subdomain aufsetzen
-- Produktive Datenbank klonen (anonymisiert)
-- Update erst auf Testumgebung durchführen
+**1.1 Set up a test environment**
+- Set up a separate server or subdomain
+- Clone the production database (anonymised)
+- Run the update on the test environment first
 
-**1.2 Backup erstellen (PFLICHT)**
-- Shopware erstellt kein automatisches Backup
-- Datenbank-Dump via `mysqldump` oder Hosting-Panel
-- Alle Dateien sichern (var/, public/media/, config/)
-- Backup-Speicherort: extern (anderer Server/Cloud)
+**1.2 Create a backup (MANDATORY)**
+- Shopware does not create an automatic backup
+- Database dump via `mysqldump` or the hosting panel
+- Back up all files (var/, public/media/, config/)
+- Backup storage location: external (another server/cloud)
 
-**1.3 Erweiterungen prüfen**
+**1.3 Check extensions**
 
-Drei Kompatibilitäts-Status im Admin:
-1. **Bereits kompatibel** — installierte Version läuft mit neuer Shopware-Version
-2. **Mit der neuen Shopware Version kompatibel** — Update der Extension nach Shop-Update möglich
-3. **Nicht kompatibel** — keine Nachfolgeversion; Extension muss vor Update deaktiviert/gelöscht werden
+Three compatibility statuses in the admin:
+1. **Bereits kompatibel** (Already compatible) — the installed version runs with the new Shopware version
+2. **Mit der neuen Shopware Version kompatibel** (Compatible with the new Shopware version) — the extension can be updated after the shop update
+3. **Nicht kompatibel** (Not compatible) — no successor version; the extension must be deactivated/deleted before the update
 
-Kompatibilität prüfen über:
+Check compatibility via:
 - Shopware Store (store.shopware.com)
-- Admin-Panel: Einstellungen > System > Shopware-Update
-- Shopware Account: Bereich "Lizenzen"
+- Admin panel: Einstellungen (Settings) > System > Shopware-Update (Shopware update)
+- Shopware Account: the "Lizenzen" (Licences) area
 
-### Phase 2: Update durchführen
+### Phase 2: running the update
 
-→ Methode wählen: Admin-Panel, Browser-Installer oder Composer+CLI
+→ Choose a method: admin panel, browser installer or Composer+CLI
 
-### Phase 3: Nachbereitung
-- Erweiterungen aktualisieren (Store oder Composer)
-- Erweiterungen reaktivieren
-- Theme neu kompilieren (bei CLI: `bin/console theme:compile`)
-- Storefront testen
-- Cache leeren: `bin/console cache:clear`
-
----
-
-## Wichtige Warnhinweise
-
-> **KRITISCH:** Beim Major-Update (6.4→6.5 oder 6.5→6.6) MÜSSEN ALLE Erweiterungen deaktiviert werden — auch kompatible. Das Theme muss auf den Standard-Theme gesetzt werden.
-
-> **WICHTIG:** Composer-Update ist stabiler als Admin-Update (keine PHP-Timeouts bei großen Shops).
-
-> **HINWEIS:** Inkompatible Erweiterungen können das Update abbrechen oder den Shop blockieren.
+### Phase 3: follow-up
+- Update the extensions (Store or Composer)
+- Reactivate the extensions
+- Recompile the theme (with CLI: `bin/console theme:compile`)
+- Test the storefront
+- Clear the cache: `bin/console cache:clear`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/update-guides*
+## Important warnings
+
+> **CRITICAL:** For a major update (6.4→6.5 or 6.5→6.6), ALL extensions MUST be deactivated — including compatible ones. The theme must be set to the default theme.
+
+> **IMPORTANT:** A Composer update is more stable than an admin update (no PHP timeouts on large shops).
+
+> **NOTE:** Incompatible extensions can abort the update or block the shop.
+
+---
+
+*Source: https://docs.shopware.com/de/shopware-6-de/update-guides*

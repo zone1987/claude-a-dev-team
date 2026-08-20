@@ -1,4 +1,4 @@
-# Panther Crawler — Vollstandige API-Referenz
+# Panther Crawler — Complete API reference
 
 `Symfony\Component\Panther\DomCrawler\Crawler` erweitert
 `Symfony\Component\DomCrawler\Crawler`.
@@ -8,14 +8,14 @@
 - [Konstruktion / Erzeugung](#konstruktion-erzeugung)
 - [Filtern (Auswahl)](#filtern-auswahl)
 - [Traversal (Baum-Navigation)](#traversal-baum-navigation)
-- [Werte lesen](#werte-lesen)
+- [Reading values](#reading-values)
 - [Iteration](#iteration)
 - [Extraktion](#extraktion)
 - [Links](#links)
 - [Bilder](#bilder)
 - [Formulare](#formulare)
-- [Form-Klasse — Vollstandige API](#form-klasse-vollstandige-api)
-- [FormField-Typen — Vollstandige Methoden](#formfield-typen-vollstandige-methoden)
+- [Form class — complete API](#form-class--complete-api)
+- [FormField types — complete methods](#formfield-types--complete-methods)
 - [Inhalte hinzufugen](#inhalte-hinzufugen)
 - [URI-Auflosung](#uri-auflosung)
 - [Bekannte Einschrankungen (PantherCrawler)](#bekannte-einschrankungen-panthercrawler)
@@ -29,7 +29,7 @@ $crawler = $client->request('GET', '/');
 // Aus waitFor
 $crawler = $client->waitFor('.dynamic-element');
 
-// Direkt (ohne Browser, fur Unit-Tests)
+// Directly (without a browser, for unit tests)
 use Symfony\Component\DomCrawler\Crawler;
 $crawler = new Crawler('<html><body><p class="msg">Hallo</p></body></html>');
 ```
@@ -44,7 +44,7 @@ $crawler = new Crawler('<html><body><p class="msg">Hallo</p></body></html>');
 public function filter(string $selector): static
 ```
 
-Filtert nach CSS-Selektor. Erfordert `symfony/css-selector` (wird automatisch mit Panther installiert).
+Filters by CSS selector. Requires `symfony/css-selector` (installed automatically with Panther).
 
 ```php
 $paragraphs = $crawler->filter('article > p');
@@ -58,7 +58,7 @@ $inputs     = $crawler->filter('form input:not([type=hidden])');
 public function filterXPath(string $xpath): static
 ```
 
-Filtert nach XPath-Ausdruck.
+Filters by XPath expression.
 
 ```php
 $nodes = $crawler->filterXPath('//div[@class="content"]/p');
@@ -71,7 +71,7 @@ $texts = $crawler->filterXPath('descendant-or-self::h2');
 public function matches(string $selector): bool
 ```
 
-Pruft ob der aktuelle Knoten den CSS-Selektor erfullt.
+Checks whether the current node matches the CSS selector.
 
 ```php
 if ($crawler->filter('button')->first()->matches('[disabled]')) { ... }
@@ -81,19 +81,19 @@ if ($crawler->filter('button')->first()->matches('[disabled]')) { ... }
 
 ```php
 public function registerNamespace(string $prefix, string $namespace): void
-// NICHT implementiert in PantherCrawler — wirft LogicException ("not supported")
+// NOT implemented in PantherCrawler — throws LogicException ("not supported")
 ```
 
-Quelle: `src/DomCrawler/Crawler.php:registerNamespace()`
+Source: `src/DomCrawler/Crawler.php:registerNamespace()`
 
 ### setDefaultNamespacePrefix
 
 ```php
 public function setDefaultNamespacePrefix(string $prefix): void
-// NICHT implementiert in PantherCrawler — wirft LogicException ("not supported")
+// NOT implemented in PantherCrawler — throws LogicException ("not supported")
 ```
 
-Quelle: `src/DomCrawler/Crawler.php:setDefaultNamespacePrefix()`
+Source: `src/DomCrawler/Crawler.php:setDefaultNamespacePrefix()`
 
 ---
 
@@ -105,7 +105,7 @@ Quelle: `src/DomCrawler/Crawler.php:setDefaultNamespacePrefix()`
 public function eq(int $position): static
 ```
 
-Element an Position `$position` (0-basiert).
+Element at position `$position` (0-based).
 
 ```php
 $thirdRow = $crawler->filter('tr')->eq(2);
@@ -117,7 +117,7 @@ $thirdRow = $crawler->filter('tr')->eq(2);
 public function first(): static
 ```
 
-Erstes gefundenes Element.
+First element found.
 
 ### last
 
@@ -125,7 +125,7 @@ Erstes gefundenes Element.
 public function last(): static
 ```
 
-Letztes gefundenes Element.
+Last element found.
 
 ### slice
 
@@ -133,7 +133,7 @@ Letztes gefundenes Element.
 public function slice(int $offset = 0, int $length = null): static
 ```
 
-Teilmenge der gefundenen Elemente.
+Subset of the elements found.
 
 ```php
 $firstThree = $crawler->filter('li')->slice(0, 3);
@@ -146,7 +146,7 @@ $fromSecond = $crawler->filter('li')->slice(1);
 public function children(?string $selector = null): static
 ```
 
-Direkte Kind-Knoten, optional gefiltert nach CSS-Selektor.
+Direct child nodes, optionally filtered by CSS selector.
 
 ```php
 $items     = $crawler->filter('ul')->children();
@@ -159,7 +159,7 @@ $listItems = $crawler->filter('ul')->children('li.active');
 public function siblings(): static
 ```
 
-Alle Geschwister-Knoten (ohne den Knoten selbst).
+All sibling nodes (excluding the node itself).
 
 ### nextAll
 
@@ -191,7 +191,7 @@ Alle Vorfahren (parent, grandparent, ...).
 public function closest(string $selector): ?static
 ```
 
-Nachster Vorfahre der den CSS-Selektor erfullt (inkl. aktueller Knoten). Gibt `null` zuruck wenn nicht gefunden.
+Nearest ancestor matching the CSS selector (including the current node). Returns `null` if none is found.
 
 ```php
 $form = $crawler->filter('input[name=email]')->closest('form');
@@ -199,7 +199,7 @@ $form = $crawler->filter('input[name=email]')->closest('form');
 
 ---
 
-## Werte lesen
+## Reading values
 
 ### text
 
@@ -210,14 +210,14 @@ public function text(
 ): string
 ```
 
-Gibt den sichtbaren Textinhalt des Knotens zuruck (wie `innerText` im Browser).
-- `$default`: Ruckgabewert wenn kein Knoten gefunden
-- `$normalizeWhitespace`: Whitespace normalisieren und trimmen (Default: `true`)
+Returns the visible text content of the node (like `innerText` in the browser).
+- `$default`: return value if no node was found
+- `$normalizeWhitespace`: normalize and trim whitespace (default: `true`)
 
-Wichtig: In `PantherCrawler` muss `$normalizeWhitespace = true` sein (Default). Der Wert
-`false` wirft `InvalidArgumentException` ("Panther only supports getting normalized text.").
+Important: in `PantherCrawler`, `$normalizeWhitespace = true` is required (the default). The value
+`false` throws `InvalidArgumentException` ("Panther only supports getting normalized text.").
 
-Quelle: `src/DomCrawler/Crawler.php:text()`
+Source: `src/DomCrawler/Crawler.php:text()`
 
 ```php
 $title = $crawler->filter('h1')->text();
@@ -230,18 +230,18 @@ $title = $crawler->filter('h1')->text();
 public function html(?string $default = null): string
 ```
 
-Gibt das HTML des Knotens zuruck. Fur das `<html>`-Root-Element: vollstandiger Seitenquelltext
-via `$webDriver->getPageSource()`. Fur alle anderen Elemente: `outerHTML` des Elements
-(inkl. eigener Tags). Es gibt KEINE separate `outerHtml()`-Methode in `PantherCrawler`.
+Returns the HTML of the node. For the `<html>` root element: the complete page source
+via `$webDriver->getPageSource()`. For all other elements: the `outerHTML` of the element
+(including its own tags). There is NO separate `outerHtml()` method in `PantherCrawler`.
 
-Quelle: `src/DomCrawler/Crawler.php:html()`
+Source: `src/DomCrawler/Crawler.php:html()`
 
 ```php
 $html = $crawler->filter('.content')->html();
 // z. B.: '<div class="content"><p>Hello</p></div>'
 
 $pageSource = $crawler->filter('html')->html();
-// vollstandiger Seitenquelltext
+// complete page source
 ```
 
 ### attr
@@ -253,7 +253,7 @@ public function attr(
 ): ?string
 ```
 
-Gibt den Attributwert des ersten Knotens zuruck.
+Returns the attribute value of the first node.
 
 ```php
 $href  = $crawler->filter('a.primary')->attr('href');
@@ -267,7 +267,7 @@ $val   = $crawler->filter('input[name=token]')->attr('value');
 public function nodeName(): string
 ```
 
-Gibt den HTML-Tag-Namen in Kleinbuchstaben zuruck.
+Returns the HTML tag name in lower case.
 
 ```php
 $tag = $crawler->filter('.container > *')->first()->nodeName(); // 'div', 'p', etc.
@@ -283,8 +283,8 @@ $tag = $crawler->filter('.container > *')->first()->nodeName(); // 'div', 'p', e
 public function each(callable $closure): array
 ```
 
-Ruft `$closure(Crawler $node, int $index)` fur jeden Knoten auf.
-Gibt Array der Ruckgabewerte zuruck.
+Calls `$closure(Crawler $node, int $index)` for every node.
+Returns an array of the return values.
 
 ```php
 $texts = $crawler->filter('li')->each(fn(Crawler $node, int $i) => $node->text());
@@ -297,7 +297,7 @@ $texts = $crawler->filter('li')->each(fn(Crawler $node, int $i) => $node->text()
 public function reduce(callable $closure): static
 ```
 
-Behalt nur Knoten fur die `$closure(Crawler $node, int $index)` `true` zuruckgibt.
+Keeps only the nodes for which `$closure(Crawler $node, int $index)` returns `true`.
 
 ```php
 $evenRows = $crawler->filter('tr')->reduce(fn(Crawler $node, int $i) => $i % 2 === 0);
@@ -309,7 +309,7 @@ $evenRows = $crawler->filter('tr')->reduce(fn(Crawler $node, int $i) => $i % 2 =
 public function count(): int
 ```
 
-Anzahl der gefundenen Knoten.
+Number of nodes found.
 
 ```php
 $itemCount = $crawler->filter('li')->count();
@@ -334,12 +334,12 @@ foreach ($crawler->filter('p') as $domElement) {
 public function extract(array $attributes): array
 ```
 
-Extrahiert Attributwerte fur alle gefundenen Knoten.
+Extracts attribute values for all nodes found.
 Sonderattribute: `'_name'` (Tag-Name), `'_text'` (Textinhalt).
 
 ```php
 $data = $crawler->filter('a')->extract(['href', '_text']);
-// [['https://...', 'Link-Text'], ['https://...', 'Anderer Text']]
+// [['https://...', 'Link text'], ['https://...', 'Other text']]
 
 $classes = $crawler->filter('div')->extract(['class']);
 // [['container'], ['wrapper'], ...]
@@ -349,14 +349,14 @@ $meta = $crawler->filterXPath('//body/*')->extract(['_name', '_text', 'class']);
 
 ### evaluate
 
-`PantherCrawler::evaluate()` ist NICHT implementiert und wirft immer eine
-`LogicException` ("not supported"). Diese Methode stammt aus der Basis-Klasse
-`DomCrawler\Crawler`, ist aber im WebDriver-Modus nicht verwendbar.
+`PantherCrawler::evaluate()` is NOT implemented and always throws a
+`LogicException` ("not supported"). This method comes from the base class
+`DomCrawler\Crawler`, but is not usable in WebDriver mode.
 
-Quelle: `src/DomCrawler/Crawler.php:evaluate()` — wirft via `ExceptionThrower`
+Source: `src/DomCrawler/Crawler.php:evaluate()` — throws via `ExceptionThrower`
 
 ```php
-// NICHT nutzbar mit PantherCrawler:
+// NOT usable with PantherCrawler:
 // $crawler->evaluate('//span'); // => LogicException
 ```
 
@@ -372,7 +372,7 @@ Stattdessen: `filterXPath()` verwenden.
 public function links(): array
 ```
 
-Gibt alle `Link`-Objekte aus `<a>`-Elementen im Crawler zuruck.
+Returns all `Link` objects from `<a>` elements in the crawler.
 
 ```php
 $links = $crawler->filter('nav')->links();
@@ -387,10 +387,10 @@ foreach ($links as $link) {
 public function link(string $method = 'get'): Link
 ```
 
-Gibt ein `Link`-Objekt (`Symfony\Component\Panther\DomCrawler\Link`) fur den aktuellen Knoten
-zuruck. Nur `'get'` ist als Methode zugelassen — andere Werte werfen `InvalidArgumentException`.
+Returns a `Link` object (`Symfony\Component\Panther\DomCrawler\Link`) for the current
+node. Only `'get'` is allowed as the method — other values throw `InvalidArgumentException`.
 
-Quelle: `src/DomCrawler/Crawler.php:link()`
+Source: `src/DomCrawler/Crawler.php:link()`
 
 ```php
 $link = $crawler->filter('a.cta')->first()->link();
@@ -403,7 +403,7 @@ $client->click($link);
 public function selectLink(string $value): static
 ```
 
-Findet `<a>`, `<area>` und `<link>` Elemente anhand von Text-Inhalt, `id` oder `title`-Attribut.
+Finds `<a>`, `<area>` and `<link>` elements by text content, `id` or `title` attribute.
 
 ```php
 $loginLink = $crawler->selectLink('Anmelden');
@@ -416,7 +416,7 @@ $client->click($loginLink->link());
 public function getUri(): string
 ```
 
-Gibt die absolute URI des aktuellen Link-/Image-Elements zuruck.
+Returns the absolute URI of the current link/image element.
 
 ---
 
@@ -428,7 +428,7 @@ Gibt die absolute URI des aktuellen Link-/Image-Elements zuruck.
 public function images(): array
 ```
 
-Gibt alle `Image`-Objekte aus `<img>`-Elementen zuruck.
+Returns all `Image` objects from `<img>` elements.
 
 ### image
 
@@ -436,7 +436,7 @@ Gibt alle `Image`-Objekte aus `<img>`-Elementen zuruck.
 public function image(): Image
 ```
 
-Gibt ein `Image`-Objekt fur den aktuellen Knoten zuruck.
+Returns an `Image` object for the current node.
 
 ### selectImage
 
@@ -444,7 +444,7 @@ Gibt ein `Image`-Objekt fur den aktuellen Knoten zuruck.
 public function selectImage(string $value): static
 ```
 
-Findet `<img>` nach `alt`-Text.
+Finds `<img>` by `alt` text.
 
 ```php
 $img = $crawler->selectImage('Company Logo')->image();
@@ -461,8 +461,8 @@ echo $img->getUri();
 public function selectButton(string $value): static
 ```
 
-Findet `<button>`, `<input type="submit">`, `<input type="button">`, `<input type="image">`
-anhand von: Text-Inhalt, `id`, `name`, `alt` (fur Images) oder `value`-Attribut.
+Finds `<button>`, `<input type="submit">`, `<input type="button">`, `<input type="image">`
+by: text content, `id`, `name`, `alt` (for images) or the `value` attribute.
 
 ```php
 $buttonCrawler = $crawler->selectButton('Anmelden');
@@ -474,11 +474,11 @@ $buttonCrawler = $crawler->selectButton('submit-btn');  // per id
 ```php
 public function form(
     array   $values = [],   // Formularwerte vorbelegen
-    ?string $method = null  // HTTP-Methode uberschreiben
+    ?string $method = null  // override the HTTP method
 ): Form
 ```
 
-Erstellt ein `Form`-Objekt fur das Formular, das den Button enthalt (oder das aktuelle Form-Element).
+Creates a `Form` object for the form that contains the button (or the current form element).
 
 ```php
 $form = $crawler->selectButton('Login')->form([
@@ -494,10 +494,10 @@ $client->submit($form);
 public function getElement(int $position): ?\Facebook\WebDriver\WebDriverElement
 ```
 
-Gibt das `WebDriverElement` an Index `$position` (0-basiert) zuruck, oder `null` wenn
-die Position nicht existiert. Nur bei WebDriver-Clients verfugbar.
+Returns the `WebDriverElement` at index `$position` (0-based), or `null` if
+the position does not exist. Only available with WebDriver clients.
 
-Quelle: `src/DomCrawler/Crawler.php:getElement()`
+Source: `src/DomCrawler/Crawler.php:getElement()`
 
 ```php
 $el = $crawler->filter('.upload-zone')->getElement(0);
@@ -505,13 +505,13 @@ if (null !== $el) {
     $el->sendKeys('/path/to/file.pdf');
 }
 
-// Erstes Element — Standard-Verwendung
+// First element — standard usage
 $input = $crawler->filter('input[name=email]')->getElement(0);
 ```
 
 ---
 
-## Form-Klasse — Vollstandige API
+## Form class — complete API
 
 `Symfony\Component\DomCrawler\Form`
 
@@ -523,54 +523,54 @@ $form = $crawler->filter('form.login')->form();
 $form = $crawler->filter('form')->form(['username' => 'admin']);
 ```
 
-### Werte-Methoden
+### Value methods
 
 ```php
-$form->getValues(): array              // flaches Array aller Formularwerte
-$form->setValues(array $values): self  // mehrere Werte setzen
-$form->getPhpValues(): array           // verschachteltes Array (fur PHP-Arrays im Form)
-$form->getPhpFiles(): array            // verschachteltes Array der Datei-Uploads
-$form->getFiles(): array               // flaches Array der Datei-Uploads
+$form->getValues(): array              // flat array of all form values
+$form->setValues(array $values): self  // set multiple values
+$form->getPhpValues(): array           // nested array (for PHP arrays in the form)
+$form->getPhpFiles(): array            // nested array of the file uploads
+$form->getFiles(): array               // flat array of the file uploads
 ```
 
-### Informations-Methoden
+### Information methods
 
 ```php
-$form->getUri(): string     // vollstandige URI (inkl. Query-String bei GET)
-$form->getMethod(): string  // 'GET' oder 'POST'
-$form->getName(): string    // name-Attribut des Formulars
+$form->getUri(): string     // complete URI (including the query string for GET)
+$form->getMethod(): string  // 'GET' or 'POST'
+$form->getName(): string    // name attribute of the form
 ```
 
 ### Validierung
 
 ```php
-$form->disableValidation(): self  // Nur auf Form-Ebene; ChoiceFormField::disableValidation() wirft LogicException
+$form->disableValidation(): self  // Form level only; ChoiceFormField::disableValidation() throws LogicException
 ```
 
-Quelle: `src/DomCrawler/Field/ChoiceFormField.php:disableValidation()` — nicht implementiert
+Source: `src/DomCrawler/Field/ChoiceFormField.php:disableValidation()` — not implemented
 
 ### Felder-Zugriff
 
 ```php
-// Einzelne Felder direkt uber Array-Syntax
+// Individual fields directly via array syntax
 $form['username']->setValue('admin');
 $form['role']->select('ADMIN');
 $form['active']->tick();
 
-// ACHTUNG: $form['country']->disableValidation() ist in Panther NICHT verfugbar
-// (wirft LogicException). Stattdessen: direkt per value selectieren.
+// CAUTION: $form['country']->disableValidation() is NOT available in Panther
+// (throws LogicException). Instead: select directly by value.
 $form['country']->select('DE');
 ```
 
 ---
 
-## FormField-Typen — Vollstandige Methoden
+## FormField types — complete methods
 
 ### InputFormField (`<input type="text|email|number|...">`)
 
 ```php
-setValue(string $value): void   // Setzt den Eingabewert
-getValue(): string              // Gibt den aktuellen Wert zuruck
+setValue(string $value): void   // Sets the input value
+getValue(): string              // Returns the current value
 ```
 
 ### TextareaFormField (`<textarea>`)
@@ -584,22 +584,22 @@ getValue(): string
 
 ```php
 select(string|array $value): void
-// Wahlt eine Option in <select> oder setzt Radio/Checkbox
-// Fur Multi-Select: $value als Array ['opt1', 'opt2']
+// Selects an option in <select> or sets radio/checkbox
+// For multi-select: $value as an array ['opt1', 'opt2']
 
-tick(): void   // Setzt Checkbox auf checked (true)
-untick(): void // Entfernt Checkbox-Haken
+tick(): void   // Sets the checkbox to checked (true)
+untick(): void // Removes the checkbox tick
 
-getValue(): string|array        // Aktuell ausgewahlter Wert
-isDisabled(): bool              // Pruft ob Feld disabled ist
+getValue(): string|array        // Currently selected value
+isDisabled(): bool              // Checks whether the field is disabled
 
 availableOptionValues(): array
-// Gibt alle verfugbaren value-Attribute der Options zuruck
+// Returns all available value attributes of the options
 ```
 
-Hinweis: `addChoice()` aus der Basis-Klasse ist in `PantherCrawler::ChoiceFormField`
-NICHT implementiert und wirft `LogicException` ("not supported").
-Quelle: `src/DomCrawler/Field/ChoiceFormField.php:addChoice()`
+Note: `addChoice()` from the base class is NOT implemented in
+`PantherCrawler::ChoiceFormField` and throws `LogicException` ("not supported").
+Source: `src/DomCrawler/Field/ChoiceFormField.php:addChoice()`
 
 Beispiele:
 ```php
@@ -622,18 +622,18 @@ $options = $form['country']->availableOptionValues();
 ### FileFormField (`<input type="file">`)
 
 ```php
-upload(?string $path): void       // Setzt Dateipfad (geerbt, ruft setValue() intern)
-setFilePath(string $path): void   // Setzt Pfad direkt via sendKeys() auf das Element
-setValue(?string $value): void    // Normalisiert Pfad via realpath(), ruft setFilePath()
-getValue(): array|string|null     // Gibt Upload-Array: ['name','type','tmp_name','error','size']
+upload(?string $path): void       // Sets the file path (inherited, calls setValue() internally)
+setFilePath(string $path): void   // Sets the path directly via sendKeys() on the element
+setValue(?string $value): void    // Normalizes the path via realpath(), calls setFilePath()
+getValue(): array|string|null     // Returns the upload array: ['name','type','tmp_name','error','size']
 ```
 
-Quelle: `src/DomCrawler/Field/FileFormField.php`
+Source: `src/DomCrawler/Field/FileFormField.php`
 
 ```php
 $form['avatar']->upload('/var/www/tests/fixtures/avatar.jpg');
 $form['document']->upload('/tmp/contract.pdf');
-// oder direkt:
+// or directly:
 $form['avatar']->setFilePath('/absolute/path/photo.jpg');
 ```
 
@@ -641,21 +641,21 @@ $form['avatar']->setFilePath('/absolute/path/photo.jpg');
 
 ## Inhalte hinzufugen
 
-Hinweis: Die folgenden Methoden (geerbt von `DomCrawler\Crawler`) sind in `PantherCrawler`
-ALLE NICHT implementiert und werfen `LogicException` ("not supported"):
+Note: the following methods (inherited from `DomCrawler\Crawler`) are
+ALL NOT implemented in `PantherCrawler` and throw `LogicException` ("not supported"):
 `add()`, `addContent()`, `addHtmlContent()`, `addXmlContent()`, `addDocument()`,
 `addNodeList()`, `addNodes()`, `addNode()`, `clear()`.
 
-Quelle: `src/DomCrawler/Crawler.php` — alle diese Methoden delegieren an `ExceptionThrower`
+Source: `src/DomCrawler/Crawler.php` — all of these methods delegate to `ExceptionThrower`
 
-Fur Panther-Tests wird der Crawler ausschliesslich vom `Client` via `request()`, `waitFor*()` oder
-`refreshCrawler()` erzeugt. Direktes Befuellen ist nicht moeglich.
+For Panther tests the crawler is created exclusively by the `Client` via `request()`, `waitFor*()` or
+`refreshCrawler()`. Populating it directly is not possible.
 
 ```php
-// Richtig: Crawler uber Client erzeugen
+// Correct: create the crawler via the client
 $crawler = $client->request('GET', '/');
 
-// NICHT moeglich:
+// NOT possible:
 // $crawler = new PantherCrawler();
 // $crawler->addHtmlContent('<html>...');  // => LogicException
 ```
@@ -681,14 +681,14 @@ UriResolver::resolve('../images/', 'http://localhost/a/b/');
 
 ## Bekannte Einschrankungen (PantherCrawler)
 
-| Einschrankung                 | Beschreibung                                         |
+| Limitation                    | Description                                          |
 |-------------------------------|------------------------------------------------------|
-| Kein XML-Crawling             | Nur HTML-Dokumente werden unterstutzt               |
-| Keine DOM-Manipulation        | Crawler ist read-only (kein Schreiben ins DOM)       |
-| Kein `\DOMElement`            | `getElement()` gibt `WebDriverElement`, nicht DOMElement |
-| Keine Multi-Dimensionalen Arrays | Formularfelder mit `name[]`-Syntax haben Einschrankungen |
+| No XML crawling               | Only HTML documents are supported                    |
+| No DOM manipulation           | The crawler is read-only (no writing into the DOM)   |
+| No `\DOMElement`              | `getElement()` returns `WebDriverElement`, not DOMElement |
+| No multi-dimensional arrays   | Form fields with `name[]` syntax have limitations |
 | Kein invalides `<select>`     | Standardmassig keine ungultigen Optionen wahlbar     |
-| Bootstrap 5 Smooth Scroll     | Kann waitFor-Methoden storen — deaktivieren via `$enable-smooth-scroll: false` |
+| Bootstrap 5 smooth scroll     | Can interfere with waitFor methods — disable via `$enable-smooth-scroll: false` |
 
 ---
 

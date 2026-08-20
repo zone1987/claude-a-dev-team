@@ -1,31 +1,31 @@
-# Shopware 6 – Verkaufskanal anlegen
+# Shopware 6 – Create a Verkaufskanal (Sales channel)
 
-Neuen Verkaufskanal über das **+** Symbol im Menü anlegen.
+Create a new Verkaufskanal via the **+** icon in the menu.
 
-## Kanal-Typen
+## Channel types
 
-| Typ | Einsatz |
+| Type | Use |
 |---|---|
-| **Storefront (HTML)** | Online-Shop mit Theme und Frontend |
-| **Headless** | Reine API (Fremdsysteme, Apps) |
-| **Produktvergleich** | Feeds für Preisportale/Marktplätze |
+| **Storefront (HTML)** | Online shop with theme and frontend |
+| **Headless** | Pure API (third-party systems, apps) |
+| **Produktvergleich** (Product comparison) | Feeds for price portals/marketplaces |
 | **Social Shopping** | Facebook, Instagram, Google, Pinterest |
-| **Agentic Commerce** | KI-Plattformen (ab 6.7.10) |
+| **Agentic Commerce** | AI platforms (as of 6.7.10) |
 
-## Schritte
+## Steps
 
-1. Hauptmenü > **Verkaufskanäle** > **+** Symbol
-2. Typ aus Dialog wählen
-3. Name vergeben (intern)
-4. Grundeinstellungen konfigurieren
-5. Domain(s) hinterlegen
-6. Speichern
+1. Main menu > **Verkaufskanäle** (Sales channels) > **+** icon
+2. Choose the type from the dialogue
+3. Assign a name (internal)
+4. Configure the basic settings
+5. Enter the domain(s)
+6. Save
 
-## Wichtig
+## Important
 
-- Headless-Kanal **nie löschen** (wird von Erweiterungen benötigt)
-- Jeder Typ erfordert unterschiedliche Pflichtkonfiguration
+- **Never delete** the headless channel (it is required by extensions)
+- Each type requires different mandatory configuration
 
-## Quelle
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele

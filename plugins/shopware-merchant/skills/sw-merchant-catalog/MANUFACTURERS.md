@@ -1,32 +1,32 @@
-# Shopware 6 – Hersteller
+# Shopware 6 – Hersteller (Manufacturers)
 
-Hersteller werden unter **Kataloge > Hersteller** verwaltet und können Produkten zugewiesen werden.
-Sie erscheinen auf der Produktdetailseite (oben rechts).
+Manufacturers are managed under **Kataloge** (Catalogues) > **Hersteller** (Manufacturers) and can be assigned to products.
+They appear on the product detail page (top right).
 
-## Hersteller anlegen
+## Creating a manufacturer
 
-1. Kataloge > Hersteller > **„Hersteller anlegen"**
-2. **Pflichtfeld**: Name
-3. Optional: Website-Link, Logo, Beschreibung (unterstützt Twig-Variablen)
-4. Speichern
+1. Kataloge > Hersteller > **"Hersteller anlegen"** (Create manufacturer)
+2. **Mandatory field**: Name
+3. Optional: website link, logo, description (supports Twig variables)
+4. Save
 
-## Hersteller-Aktionen
+## Manufacturer actions
 
-| Aktion | Beschreibung |
+| Action | Description |
 |---|---|
-| Bearbeiten | Öffnet Bearbeitungsmaske |
-| Duplizieren | Kopie mit allen Daten erstellen |
-| Löschen | Nur möglich wenn keinem Produkt zugewiesen |
+| Bearbeiten (Edit) | Opens the editing screen |
+| Duplizieren (Duplicate) | Creates a copy with all data |
+| Löschen (Delete) | Only possible if not assigned to any product |
 
-## Herstellerseite erstellen (Workaround)
+## Creating a manufacturer page (workaround)
 
-Shopware 6 hat keine native Herstellerseite. Vorgehen:
-1. Erlebniswelt-Landingpage in „Inhalte > Erlebniswelten" erstellen
-2. Unter Kataloge > Kategorien eine Landingpage anlegen (SEO-URL setzen)
-3. Layout der Erlebniswelt zuweisen
-4. Diese SEO-URL beim Hersteller unter „Hersteller-URL" eintragen (mit führendem `/`)
+Shopware 6 has no native manufacturer page. Procedure:
+1. Create a Shopping Experience landing page in "Inhalte > Erlebniswelten" (Content > Shopping Experiences)
+2. Create a landing page under Kataloge > Kategorien (Categories) (set the SEO URL)
+3. Assign the Shopping Experience layout
+4. Enter this SEO URL for the manufacturer under "Hersteller-URL" (Manufacturer URL) (with a leading `/`)
 
-Siehe `MANUFACTURERS-DETAIL.md` für vollständige Anleitung.
+See `MANUFACTURERS-DETAIL.md` for the full guide.
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/produkte/hersteller

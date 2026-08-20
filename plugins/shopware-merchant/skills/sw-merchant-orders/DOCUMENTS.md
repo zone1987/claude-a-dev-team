@@ -1,18 +1,18 @@
-# Shopware 6 – Dokumente (Rechnung, Lieferschein, ZUGFeRD)
+# Shopware 6 – Documents (invoice, delivery note, ZUGFeRD)
 
-Vollständige Referenz für die Dokumentenverwaltung in Bestellungen.
+Complete reference for document management in orders.
 
-Ausführliche Dokumentation: [DOCUMENTS-DETAIL.md](DOCUMENTS-DETAIL.md)
+Detailed documentation: [DOCUMENTS-DETAIL.md](DOCUMENTS-DETAIL.md)
 
-## Dokumententypen
+## Document types
 
-| Typ | Voraussetzung |
+| Type | Prerequisite |
 |---|---|
-| Rechnung | Keine |
-| Lieferschein | Keine |
-| Stornorechnung | Rechnung muss vorhanden sein |
-| Gutschrift | Rechnung + Gutschrift-Positionen |
-| ZUGFeRD-Rechnung | Shopware 6.6.10.0+, Geschäftsadresse gepflegt |
+| Rechnung (Invoice) | None |
+| Lieferschein (Delivery note) | None |
+| Stornorechnung (Cancellation invoice) | An invoice must exist |
+| Gutschrift (Credit note) | Invoice + credit note line items |
+| ZUGFeRD invoice | Shopware 6.6.10.0+, business address maintained |
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht

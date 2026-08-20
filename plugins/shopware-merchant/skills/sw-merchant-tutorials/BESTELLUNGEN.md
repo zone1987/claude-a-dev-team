@@ -1,4 +1,4 @@
-# Shopware 6 — Tutorials: Bestellungen
+# Shopware 6 — Tutorials: Orders
 
-Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`.
+Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`.
 Details in `references/deep/`.

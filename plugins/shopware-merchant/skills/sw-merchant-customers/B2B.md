@@ -1,10 +1,10 @@
-# Shopware 6 – B2B / Firmenkonten (Unternehmen-Tab)
+# Shopware 6 – B2B / company accounts (Unternehmen (Company) tab)
 
-Vollständige Referenz: `B2B-DETAIL.md`
+Full reference: `B2B-DETAIL.md`
 
-## Auf einen Blick
+## At a glance
 
-- Verfügbar ab v6.5.6.0, Shopware **Evolve Plan**
-- Mitarbeiter pro Firmenkonto einladen und deaktivieren
-- Rollen mit Berechtigungen (Mitarbeiter, Rollen, Bestellungen) anlegen
-- Einladungslink gültig **2 Stunden**
+- Available from v6.5.6.0, Shopware **Evolve Plan**
+- Invite and deactivate employees per company account
+- Create Rollen (Roles) with permissions (Mitarbeiter (Employees), Rollen, Bestellungen (Orders))
+- Invitation link valid for **2 hours**

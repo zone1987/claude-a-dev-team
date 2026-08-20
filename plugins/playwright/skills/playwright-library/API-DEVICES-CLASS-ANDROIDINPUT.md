@@ -206,10 +206,10 @@ await device.input.press(AndroidKey.Enter);
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `AndroidInput` ist die Low-Level-Schicht fuer koordinatenbasierte Eingaben.
-`drag` und `swipe` verwenden Steps als Zeiteinheit (1 Step = 5 ms), was genaue
-Geschwindigkeitskontrolle ermoeglicht. `swipe` unterstuetzt Multi-Segment-Pfade.
-Fuer die meisten Anwendungsfaelle sind die Selector-basierten Methoden auf `AndroidDevice` vorzuziehen.
+**Summary:** `AndroidInput` is the low-level layer for coordinate-based input.
+`drag` and `swipe` use steps as their time unit (1 step = 5 ms), which enables precise
+speed control. `swipe` supports multi-segment paths.
+For most use cases the selector-based methods on `AndroidDevice` are preferable.
 
 ---
 

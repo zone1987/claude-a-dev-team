@@ -115,7 +115,7 @@ Gotenberg-Trace: {trace}
 curl --request POST http://localhost:3000/forms/pdfengines/embed \
   --form files=@/path/to/rechnung.pdf \
   --form embeds=@/path/to/rechnung.xml \
-  -o mit-anhang.pdf
+  -o with-attachment.pdf
 ```
 
 ### Embed XML with metadata
@@ -125,7 +125,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
   --form files=@/path/to/rechnung.pdf \
   --form embeds=@/path/to/factur-x.xml \
   --form 'embedsMetadata={"factur-x.xml":{"mimeType":"text/xml","relationship":"Alternative"}}' \
-  -o mit-anhang.pdf
+  -o with-attachment.pdf
 ```
 
 ### Factur-X XML (dedicated field)
@@ -146,7 +146,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/embed \
   --form embeds=@/path/to/daten.xml \
   --form embeds=@/path/to/logo.png \
   --form 'embedsMetadata={"daten.xml":{"mimeType":"text/xml","relationship":"Data"},"logo.png":{"mimeType":"image/png","relationship":"Supplement"}}' \
-  -o dokument-mit-anhaengen.pdf
+  -o document-with-attachments.pdf
 ```
 
 ---

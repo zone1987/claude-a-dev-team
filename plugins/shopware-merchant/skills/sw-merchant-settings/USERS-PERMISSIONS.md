@@ -1,7 +1,7 @@
-# Shopware 6 – Benutzer & Rechte
+# Shopware 6 – Benutzer & Rechte (Users & permissions)
 
-Referenz für Benutzerverwaltung und Rollenkonfiguration.
+Reference for user management and role configuration.
 
-**Pfad:** Einstellungen > System > Benutzer & Rechte
+**Path:** Einstellungen (Settings) > System > Benutzer & Rechte
 
-Detaillierte Referenz: [USERS-PERMISSIONS-DETAIL.md](USERS-PERMISSIONS-DETAIL.md)
+Detailed reference: [USERS-PERMISSIONS-DETAIL.md](USERS-PERMISSIONS-DETAIL.md)

@@ -1,7 +1,7 @@
-# Shopware 6 – Steuern
+# Shopware 6 – Steuern (Taxes)
 
-Referenz für Steuersatzverwaltung und länderspezifische Steuerregeln.
+Reference for tax rate management and country-specific tax rules.
 
-**Pfad:** Einstellungen > Regional > Steuern
+**Path:** Einstellungen (Settings) > Regional > Steuern
 
-Detaillierte Referenz: [TAX-DETAIL.md](TAX-DETAIL.md)
+Detailed reference: [TAX-DETAIL.md](TAX-DETAIL.md)

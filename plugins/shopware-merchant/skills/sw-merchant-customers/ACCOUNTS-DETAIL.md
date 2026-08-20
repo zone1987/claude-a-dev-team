@@ -1,128 +1,128 @@
-# Shopware 6 – Kundenaccount: Vollständige Referenz
+# Shopware 6 – Customer account: full reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kunden/kundenaccount  
-> Dokumentierte Version: 6.7.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/kunden/kundenaccount  
+> Documented version: 6.7.0.0+
 
 ---
 
 ## Contents
 
-- [1. Übersicht (Account-Dashboard)](#1-übersicht-account-dashboard)
-- [2. Persönliches Profil](#2-persönliches-profil)
-- [3. Adressen](#3-adressen)
-- [4. Bestellungen](#4-bestellungen)
-- [5. Abonnements (ab v6.5.4.0, Plan Beyond)](#5-abonnements-ab-v6540-plan-beyond)
-- [6. Passwort zurücksetzen](#6-passwort-zurücksetzen)
-- [Versionsmatrix](#versionsmatrix)
+- [1. Übersicht (Overview) (account dashboard)](#1-übersicht-overview-account-dashboard)
+- [2. Personal profile](#2-personal-profile)
+- [3. Adressen (Addresses)](#3-adressen-addresses)
+- [4. Bestellungen (Orders)](#4-bestellungen-orders)
+- [5. Abonnements (Subscriptions) (from v6.5.4.0, Beyond plan)](#5-abonnements-subscriptions-from-v6540-beyond-plan)
+- [6. Resetting the password](#6-resetting-the-password)
+- [Version matrix](#version-matrix)
 
-## 1. Übersicht (Account-Dashboard)
+## 1. Übersicht (Overview) (account dashboard)
 
-![Kundenaccount Übersicht](../../assets/kundenaccount-uebersicht.png)
+![Customer account overview](../../assets/kundenaccount-uebersicht.png)
 
-Dashboard-ähnliche Ansicht mit schnellem Überblick über:
-- Aktuelle Bestellungen und deren Status
-- Gespeicherte Adressen
-- Newsletter-Anmeldestatus
+Dashboard-style view giving a quick overview of:
+- Current orders and their status
+- Saved addresses
+- Newsletter subscription status
 
-Kunden können sich hier direkt für den **Newsletter anmelden**.
-
----
-
-## 2. Persönliches Profil
-
-![Kundenaccount Profil](../../assets/kundenaccount-profil.png)
-
-Im Profil-Bereich können Kunden ihre **Zugangsdaten** anpassen:
-- **E-Mail-Adresse** ändern
-- **Passwort** ändern
-
-Beide Änderungen erfordern das aktuelle Passwort zur Bestätigung.
+Customers can **subscribe to the newsletter** directly here.
 
 ---
 
-## 3. Adressen
+## 2. Personal profile
 
-![Kundenaccount Adressen](../../assets/kundenaccount-adressen.png)
+![Customer account profile](../../assets/kundenaccount-profil.png)
 
-Kunden verwalten gespeicherte Adressen vollständig selbst:
+In the profile area, customers can adjust their **login credentials**:
+- Change the **email address**
+- Change the **password**
 
-| Aktion | Beschreibung |
+Both changes require the current password as confirmation.
+
+---
+
+## 3. Adressen (Addresses)
+
+![Customer account addresses](../../assets/kundenaccount-adressen.png)
+
+Customers manage saved addresses entirely on their own:
+
+| Action | Description |
 |--------|-------------|
-| Neue Adresse hinzufügen | Formular mit allen Adressfeldern |
-| Adresse bearbeiten | Bestehende Einträge ändern |
-| Adresse löschen | Nicht mehr benötigte Adressen entfernen |
-| Als Standard-Lieferadresse | Primäre Lieferadresse festlegen |
-| Als Standard-Rechnungsadresse | Primäre Rechnungsadresse festlegen |
+| Add new address | Form with all address fields |
+| Edit address | Change existing entries |
+| Delete address | Remove addresses that are no longer needed |
+| As default shipping address | Define the primary shipping address |
+| As default billing address | Define the primary billing address |
 
 ---
 
-## 4. Bestellungen
+## 4. Bestellungen (Orders)
 
-![Kundenaccount Bestellungen](../../assets/kundenaccount-bestellungen.png)
+![Customer account orders](../../assets/kundenaccount-bestellungen.png)
 
-Kunden sehen alle getätigten Bestellungen mit:
-- Bestellnummer
-- Bestellbetrag
-- Aktueller Bearbeitungsstand / Status
-- Bestelldatum
+Customers see all orders they have placed, with:
+- Order number
+- Order total
+- Current processing state / status
+- Order date
 
-**Drei-Punkte-Menü** pro Bestellung bietet:
-- **Bestellung wiederholen**: Alle Artikel erneut in den Warenkorb legen
-- **Zahlungsstatus ändern**: Kunden können (je nach Konfiguration) den Zahlungsweg wechseln
-
----
-
-## 5. Abonnements (ab v6.5.4.0, Plan Beyond)
-
-![Kundenaccount Abonnements](../../assets/kundenaccount-abonnements.png)
-
-Ermöglicht **wiederkehrende Bestellungen** mit konfigurierbaren Intervallen.
-
-- Übersicht aller aktiven Abonnements
-- Konfiguration von Bestellintervall und Laufzeit
-- Pausieren / Kündigen von Abonnements
-
-> Voraussetzung: Shopware Beyond Plan + Feature aktiv in den Einstellungen  
-> Weitere Details: `/de/shopware-6-de/einstellungen/abonnements`
+The **three-dot menu** per order offers:
+- **Repeat order**: add all items to the cart again
+- **Change payment status**: customers can (depending on configuration) switch the payment method
 
 ---
 
-## 6. Passwort zurücksetzen
+## 5. Abonnements (Subscriptions) (from v6.5.4.0, Beyond plan)
 
-### Ablauf für Kunden
+![Customer account subscriptions](../../assets/kundenaccount-abonnements.png)
 
-1. Auf der Login-Seite: **„Ich habe mein Passwort vergessen"** klicken
-2. E-Mail-Adresse des Kontos eingeben
-3. System sendet E-Mail mit Wiederherstellungslink
-4. Link anklicken → neues Passwort vergeben
+Enables **recurring orders** with configurable intervals.
 
-### Sicherheitsregeln
+- Overview of all active subscriptions
+- Configuration of order interval and term
+- Pausing / cancelling subscriptions
 
-| Regel | Detail |
+> Prerequisite: Shopware Beyond Plan + feature active in the Einstellungen (Settings)  
+> Further details: `/de/shopware-6-de/einstellungen/abonnements`
+
+---
+
+## 6. Resetting the password
+
+### Procedure for customers
+
+1. On the login page: click **"Ich habe mein Passwort vergessen"** (I forgot my password)
+2. Enter the email address of the account
+3. The system sends an email containing a recovery link
+4. Click the link → set a new password
+
+### Security rules
+
+| Rule | Detail |
 |-------|--------|
-| **Gültigkeitsdauer des Links** | **2 Stunden** |
-| **Verwendbarkeit des Links** | **Einmalig** (wird nach Nutzung ungültig) |
-| **Rate Limiting** | Schutz gegen Missbrauch (konfigurierbar via `user_recovery`) |
+| **Link validity period** | **2 hours** |
+| **Link usability** | **Single use** (becomes invalid after use) |
+| **Rate limiting** | Protection against abuse (configurable via `user_recovery`) |
 
-### Wichtige Hinweise
+### Important notes
 
-- Falls die E-Mail nicht ankommt: **Spam-Ordner** prüfen
-- Abgelaufener Link: Prozess muss **neu gestartet** werden
-- Nicht verwendete Links werden nach 2 Stunden automatisch ungültig
+- If the email does not arrive: check the **spam folder**
+- Expired link: the process must be **started again**
+- Unused links automatically become invalid after 2 hours
 
-### Technische Konfiguration (Admin / Entwickler)
+### Technical configuration (admin / developer)
 
-Das Rate Limiting für Passwort-Reset-Anfragen ist über den Parameter `user_recovery` konfigurierbar.  
-Standardmäßig schützt das System vor zu vielen Anfragen von derselben IP/E-Mail.
+Rate limiting for password reset requests is configurable via the `user_recovery` parameter.  
+By default, the system protects against too many requests from the same IP/email address.
 
 ---
 
-## Versionsmatrix
+## Version matrix
 
-| Feature | Mindestversion | Plan |
+| Feature | Minimum version | Plan |
 |---------|---------------|------|
-| Account-Grundfunktionen | 6.0.0 | alle |
-| Bestellung wiederholen | 6.0.0 | alle |
-| Zahlungsstatus ändern | 6.0.0 | alle |
+| Basic account functions | 6.0.0 | all |
+| Repeat order | 6.0.0 | all |
+| Change payment status | 6.0.0 | all |
 | Abonnements | 6.5.4.0 | Beyond |
-| Aktuelle Doku-Version | 6.7.0.0 | – |
+| Current documentation version | 6.7.0.0 | – |

@@ -1,27 +1,27 @@
-# Shopware 6 – Inhalte (Überblick)
+# Shopware 6 – Inhalte (Content) (overview)
 
-Der Bereich **Inhalte** im Shopware 6 Admin umfasst alle Werkzeuge zur visuellen
-Gestaltung und Inhaltsverwaltung des Shops.
+The **Inhalte** area in the Shopware 6 admin covers all tools for the visual
+design and content management of the shop.
 
-## Enthaltene Bereiche
+## Included areas
 
-| Bereich | Pfad im Admin | Skill |
+| Area | Path in the admin | Skill |
 |---|---|---|
-| Erlebniswelten | Inhalte > Erlebniswelten | `sw-merchant-content-shopping-experiences` |
-| Medien | Inhalte > Medien | `sw-merchant-content-media` |
+| Erlebniswelten (Shopping Experiences) | Inhalte > Erlebniswelten | `sw-merchant-content-shopping-experiences` |
+| Medien (Media) | Inhalte > Medien | `sw-merchant-content-media` |
 | Themes | Inhalte > Themes | `sw-merchant-content-themes` |
-| CMS-Erweiterungen | Erweiterungen > CMS-Erweiterungen | `sw-merchant-content-cms-extensions` |
+| CMS-Erweiterungen (CMS extensions) | Erweiterungen > CMS-Erweiterungen | `sw-merchant-content-cms-extensions` |
 
-## Konzept
+## Concept
 
-- **Erlebniswelten** (Shopping Experiences): Drag-and-Drop-CMS für Layouts
-  aller Seitentypen. Struktur: Sektion → Block → Element.
-- **Medien**: Zentrale Medienbibliothek für Bilder, Videos, Dokumente, 3D-Modelle.
-- **Themes**: Visuelles Design des Storefronts; Farben, Schriften, Logos.
-- **CMS-Erweiterungen**: Zusatzfunktionen (Quickview, Scroll-Navigation,
-  Block-Sichtbarkeit, Custom-Formulare) – Teil von Shopware Evolve.
+- **Erlebniswelten** (Shopping Experiences): drag-and-drop CMS for layouts
+  of all page types. Structure: section → block → element.
+- **Medien**: central media library for images, videos, documents, 3D models.
+- **Themes**: visual design of the storefront; colours, fonts, logos.
+- **CMS-Erweiterungen**: additional functions (quickview, scroll navigation,
+  block visibility, custom forms) – part of Shopware Evolve.
 
-## Schnellnavigation
+## Quick navigation
 
-Siehe `OVERVIEW-DETAIL.md` für eine detaillierte Übersicht
-aller Funktionen und Querverweise.
+See `OVERVIEW-DETAIL.md` for a detailed overview
+of all functions and cross-references.

@@ -1,33 +1,33 @@
-# Shopware 6 – Produkte
+# Shopware 6 – Produkte (Products)
 
-Produkte werden unter **Kataloge > Produkte** verwaltet. Dieser Skill deckt die vollständige
-Produktanlage, Bearbeitung, Varianten, Preise, SEO und Sonderfeatures ab.
+Products are managed under **Kataloge** (Catalogues) **> Produkte** (Products). This skill covers the
+complete product creation, editing, variants, prices, SEO and special features.
 
-## Neues Produkt anlegen (Pflichtfelder)
+## Creating a new product (mandatory fields)
 
-1. Kataloge > Produkte > **„Produkt hinzufügen"**
-2. Mindestangaben:
-   - **Titel** (Produktname)
-   - **Produktnummer** (manuell oder auto)
-   - **Steuersatz** auswählen
-   - **Brutto- und Nettopreis** eingeben
-   - **Lagerbestand** setzen
-3. Speichern → weitere Tabs werden freigeschaltet
+1. Kataloge > Produkte > **"Produkt hinzufügen" (Add product)**
+2. Minimum details:
+   - **Titel** (Title / product name)
+   - **Produktnummer** (Product number, manual or automatic)
+   - Select the **Steuersatz** (Tax rate)
+   - Enter the **Brutto- und Nettopreis** (Gross and net price)
+   - Set the **Lagerbestand** (Stock)
+3. Save → the remaining tabs are unlocked
 
-## Bereiche im Detail
+## The areas in detail
 
-Siehe `PRODUCTS-DETAIL.md` für vollständige Feldbeschreibungen.
+See `PRODUCTS-DETAIL.md` for complete field descriptions.
 
-## Tabs nach dem Speichern
+## Tabs available after saving
 
-- **Allgemein** – Stammdaten, Preise, Medien, Lieferbarkeit
-- **Spezifikationen** – Maße, Eigenschaften, Grundpreis, Zusatzfelder
-- **Erweiterte Preise** – Rule-Builder-Preise, Staffelpreise
-- **Varianten** – Eigenschaftsbasierte Varianten generieren
-- **Layout** – Erlebniswelt zuweisen
-- **SEO** – Meta-Daten, URLs
-- **Cross Selling** – Empfehlungen & verwandte Produkte
-- **Bewertungen** – Kundenrezensionen
+- **Allgemein** (General) – master data, prices, media, availability
+- **Spezifikationen** (Specifications) – dimensions, properties, base price, additional fields
+- **Erweiterte Preise** (Advanced prices) – Rule Builder prices, tiered prices
+- **Varianten** (Variants) – generate property-based variants
+- **Layout** – assign a shopping experience
+- **SEO** – meta data, URLs
+- **Cross Selling** – recommendations & related products
+- **Bewertungen** (Reviews) – customer reviews
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/kataloge/produkte

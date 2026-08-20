@@ -1,20 +1,20 @@
-# Shopware 6 — Merchant/Betreiber-Wissen (Überblick)
+# Shopware 6 — Merchant/operator knowledge (overview)
 
-Wissen zur **Bedienung der Administration** (Shop betreiben), destilliert aus `docs.shopware.com/de/shopware-6-de`.
-Abzugrenzen von der Entwicklung (dafür die übrigen `shopware-*`-Plugins).
+Knowledge about **operating the administration** (running a shop), distilled from `docs.shopware.com/de/shopware-6-de`.
+To be distinguished from development (for that, see the other `shopware-*` plugins).
 
-## Bereiche (je ein Skill)
-| Bereich | Skill |
+## Areas (one skill each)
+| Area | Skill |
 |---|---|
-| Erste Schritte (Setup, erste Anmeldung) | `sw-merchant-getting-started` |
-| Kataloge (Produkte, Kategorien, Hersteller, Eigenschaften, Medien) | `sw-merchant-catalog` |
-| Bestellungen (Bearbeitung, Status, Dokumente) | `sw-merchant-orders` |
-| Kunden (Konten, Gruppen, Adressen) | `sw-merchant-customers` |
-| Inhalte (Erlebniswelten/Shopping Experiences, Medien, Theme) | `sw-merchant-content` |
-| Marketing (Aktionen, Gutscheine, Produktvergleich) | `sw-merchant-marketing` |
-| Einstellungen (Shop, Versand, Zahlung, Steuern, System) | `sw-merchant-settings` |
-| Verkaufskanäle (Anlegen, Domains, Konfiguration) | `sw-merchant-sales-channels` |
-| Erweiterungen (Store, Apps/Plugins verwalten) | `sw-merchant-extensions` |
+| Erste Schritte (First steps — setup, first login) | `sw-merchant-getting-started` |
+| Kataloge (Catalogues — products, categories, manufacturers, properties, media) | `sw-merchant-catalog` |
+| Bestellungen (Orders — processing, states, documents) | `sw-merchant-orders` |
+| Kunden (Customers — accounts, groups, addresses) | `sw-merchant-customers` |
+| Inhalte (Content — Erlebniswelten/Shopping Experiences, media, theme) | `sw-merchant-content` |
+| Marketing (promotions, vouchers, product comparison) | `sw-merchant-marketing` |
+| Einstellungen (Settings — shop, shipping, payment, taxes, system) | `sw-merchant-settings` |
+| Verkaufskanäle (Sales channels — creating, domains, configuration) | `sw-merchant-sales-channels` |
+| Erweiterungen (Extensions — store, managing apps/plugins) | `sw-merchant-extensions` |
 
-Jedes Skill hält die destillierte Anleitung in `references/` und Screenshots in `assets/`.
-Für die technische Umsetzung der gleichen Konzepte → Entwickler-Plugins (z.B. Erlebniswelten technisch: `shopware-cms`).
+Every skill keeps the distilled instructions in `references/` and screenshots in `assets/`.
+For the technical implementation of the same concepts → developer plugins (e.g. Shopping Experiences technically: `shopware-cms`).

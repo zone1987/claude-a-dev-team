@@ -9,14 +9,14 @@ Task-oriented recipes from the documentation — the answers to "how do I actual
 
 ## Reference map
 
-- **[ALLGEMEINES.md](ALLGEMEINES.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/allgemeines`. [ALLGEMEINES-DETAIL](ALLGEMEINES-DETAIL.md).
-- **[BEISPIELE.md](BEISPIELE.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/beispiele`. [BEISPIELE-DETAIL](BEISPIELE-DETAIL.md).
-- **[BESTELLUNGEN.md](BESTELLUNGEN.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`. [BESTELLUNGEN-DETAIL](BESTELLUNGEN-DETAIL.md).
-- **[EU-REGELUNGEN.md](EU-REGELUNGEN.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`. [EU-REGELUNGEN-DETAIL](EU-REGELUNGEN-DETAIL.md).
-- **[GEWUSST-WIE.md](GEWUSST-WIE.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/gewusst-wie`. [GEWUSST-WIE-DETAIL](GEWUSST-WIE-DETAIL.md).
-- **[MEHRSPRACHIG.md](MEHRSPRACHIG.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/shops-in-anderen-sprachen`. [MEHRSPRACHIG-DETAIL](MEHRSPRACHIG-DETAIL.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/troubleshooting`. [TROUBLESHOOTING-DETAIL](TROUBLESHOOTING-DETAIL.md).
+- **[ALLGEMEINES.md](ALLGEMEINES.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/allgemeines`. [ALLGEMEINES-DETAIL](ALLGEMEINES-DETAIL.md).
+- **[BEISPIELE.md](BEISPIELE.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/beispiele`. [BEISPIELE-DETAIL](BEISPIELE-DETAIL.md).
+- **[BESTELLUNGEN.md](BESTELLUNGEN.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen`. [BESTELLUNGEN-DETAIL](BESTELLUNGEN-DETAIL.md).
+- **[EU-REGELUNGEN.md](EU-REGELUNGEN.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`. [EU-REGELUNGEN-DETAIL](EU-REGELUNGEN-DETAIL.md).
+- **[GEWUSST-WIE.md](GEWUSST-WIE.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/gewusst-wie`. [GEWUSST-WIE-DETAIL](GEWUSST-WIE-DETAIL.md).
+- **[MEHRSPRACHIG.md](MEHRSPRACHIG.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/shops-in-anderen-sprachen`. [MEHRSPRACHIG-DETAIL](MEHRSPRACHIG-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/troubleshooting`. [TROUBLESHOOTING-DETAIL](TROUBLESHOOTING-DETAIL.md).
 
 ## Source
 

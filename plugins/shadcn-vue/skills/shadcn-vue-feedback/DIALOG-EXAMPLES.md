@@ -1,19 +1,19 @@
-# Dialog — Beispiele
+# Dialog — Examples
 
-Quellen: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dialog/`
+Sources: `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dialog/`
 
 ## Contents
 
-- [Dialog mit Formular (DialogWithForm.vue)](#dialog-mit-formular-dialogwithformvue)
-- [Dialog ohne Close-Button (DialogNoCloseButton.vue)](#dialog-ohne-close-button-dialognoclosebuttonvue)
-- [Scrollbarer Inhalt (DialogScrollableContent.vue)](#scrollbarer-inhalt-dialogscrollablecontentvue)
-- [Dialog mit Sticky Footer (DialogWithStickyFooter.vue)](#dialog-mit-sticky-footer-dialogwithstickyfootervue)
-- [Chat-Settings Dialog (DialogChatSettings.vue)](#chat-settings-dialog-dialogchatsettingsvue)
-- [Hinweis: Dialog in ContextMenu/DropdownMenu](#hinweis-dialog-in-contextmenudropdownmenu)
+- [Dialog with form (DialogWithForm.vue)](#dialog-with-form-dialogwithformvue)
+- [Dialog without close button (DialogNoCloseButton.vue)](#dialog-without-close-button-dialognoclosebuttonvue)
+- [Scrollable content (DialogScrollableContent.vue)](#scrollable-content-dialogscrollablecontentvue)
+- [Dialog with sticky footer (DialogWithStickyFooter.vue)](#dialog-with-sticky-footer-dialogwithstickyfootervue)
+- [Chat settings dialog (DialogChatSettings.vue)](#chat-settings-dialog-dialogchatsettingsvue)
+- [Note: Dialog inside ContextMenu/DropdownMenu](#note-dialog-inside-contextmenudropdownmenu)
 
-## Dialog mit Formular (DialogWithForm.vue)
+## Dialog with form (DialogWithForm.vue)
 
-Dialog mit Profil-Bearbeitungs-Formular. Felder werden im Dialog behalten.
+Dialog with a profile editing form. Fields are kept inside the dialog.
 
 ```vue
 <script setup lang="ts">
@@ -82,9 +82,9 @@ import { Input } from "@/registry/bases/reka/ui/input"
 </template>
 ```
 
-## Dialog ohne Close-Button (DialogNoCloseButton.vue)
+## Dialog without close button (DialogNoCloseButton.vue)
 
-`:show-close-button="false"` entfernt das X oben rechts. Stattdessen schliessen via DialogClose im Footer.
+`:show-close-button="false"` removes the X in the top right. Close via DialogClose in the footer instead.
 
 ```vue
 <script setup lang="ts">
@@ -128,9 +128,9 @@ import {
 </template>
 ```
 
-## Scrollbarer Inhalt (DialogScrollableContent.vue)
+## Scrollable content (DialogScrollableContent.vue)
 
-Langer Inhalt mit `max-h-[70vh] overflow-y-auto` innerhalb des Dialogs.
+Long content with `max-h-[70vh] overflow-y-auto` inside the dialog.
 
 ```vue
 <script setup lang="ts">
@@ -169,9 +169,9 @@ import {
 </template>
 ```
 
-## Dialog mit Sticky Footer (DialogWithStickyFooter.vue)
+## Dialog with sticky footer (DialogWithStickyFooter.vue)
 
-Footer bleibt sichtbar, waehrend Inhalt scrollt.
+The footer stays visible while the content scrolls.
 
 ```vue
 <script setup lang="ts">
@@ -211,9 +211,9 @@ import {
 </template>
 ```
 
-## Chat-Settings Dialog (DialogChatSettings.vue)
+## Chat settings dialog (DialogChatSettings.vue)
 
-Komplexes Dialog-Beispiel mit Tabs, NativeSelect, Switch, InputGroup und mehr.
+Complex dialog example with Tabs, NativeSelect, Switch, InputGroup and more.
 
 ```vue
 <script setup lang="ts">
@@ -268,9 +268,9 @@ const tab = ref("general")
 </template>
 ```
 
-## Hinweis: Dialog in ContextMenu/DropdownMenu
+## Note: Dialog inside ContextMenu/DropdownMenu
 
-Um einen Dialog innerhalb eines Context- oder Dropdown-Menus zu verwenden, muss der Dialog das Menu ummanteln:
+To use a dialog inside a context or dropdown menu, the dialog must wrap the menu:
 
 ```vue
 <template>
@@ -295,7 +295,7 @@ Um einen Dialog innerhalb eines Context- oder Dropdown-Menus zu verwenden, muss 
 </template>
 ```
 
-Quellen:
+Sources:
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dialog/DialogWithForm.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dialog/DialogNoCloseButton.vue`
 - `/tmp/shadcn-vue-repo/apps/v4/registry/bases/reka/examples/dialog/DialogScrollableContent.vue`

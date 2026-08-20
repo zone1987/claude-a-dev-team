@@ -1,45 +1,45 @@
-# Advanced Search – Hochleistungssuche für den Storefront
+# Advanced Search – high-performance search for the storefront
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/advanced-search  
-**Plan**: Shopware Evolve (oder höher)  
-**Technologie**: Elasticsearch (bis SW 6.4) / OpenSearch (ab SW 6.5.6.0)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/advanced-search  
+**Plan**: Shopware Evolve (or higher)  
+**Technology**: Elasticsearch (up to SW 6.4) / OpenSearch (from SW 6.5.6.0)
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Versionen & Kompatibilität](#versionen-kompatibilität)
-- [Voraussetzungen](#voraussetzungen)
+- [Overview](#overview)
+- [Versions & compatibility](#versions--compatibility)
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Konfigurationsbereiche](#konfigurationsbereiche)
-- [Index-Verwaltung](#index-verwaltung)
-- [Unterschied zur Standard-Suche](#unterschied-zur-standard-suche)
+- [Configuration areas](#configuration-areas)
+- [Index management](#index-management)
+- [Difference from the standard search](#difference-from-the-standard-search)
 
-## Überblick
+## Overview
 
-**Advanced Search** bietet einfache Konfigurationsmöglichkeiten und aufgrund der
-Elasticsearch/OpenSearch-Basis **hohe Performance** auch bei großen Produktkatalogen.
-Ab Shopware 6.5 ist der Nachfolger **Advanced Search 2.0** zu nutzen.
+**Advanced Search** offers simple configuration options and, thanks to its
+Elasticsearch/OpenSearch foundation, **high performance** even with large product catalogues.
+From Shopware 6.5 onwards, the successor **Advanced Search 2.0** must be used.
 
 ---
 
-## Versionen & Kompatibilität
+## Versions & compatibility
 
-| Shopware Version | Advanced Search Version | Suchmaschine |
+| Shopware version | Advanced Search version | Search engine |
 |---|---|---|
-| bis 6.4.20.2 | Advanced Search 1.x | Elasticsearch |
-| 6.5.x | Advanced Search 2.0 | OpenSearch (ab 6.5.6.0) |
+| up to 6.4.20.2 | Advanced Search 1.x | Elasticsearch |
+| 6.5.x | Advanced Search 2.0 | OpenSearch (from 6.5.6.0) |
 | 6.6+ | Advanced Search 2.0+ | OpenSearch |
 
 ---
 
-## Voraussetzungen
+## Prerequisites
 
-- **Elasticsearch-Instanz** (für 1.x) oder **OpenSearch-Instanz** (für 2.0) zwingend erforderlich
-- Environment-Variable setzen:
+- An **Elasticsearch instance** (for 1.x) or an **OpenSearch instance** (for 2.0) is mandatory
+- Set the environment variable:
   ```
   SHOPWARE_ES_INDEXING_ENABLED=1
   ```
-- Index erstellen:
+- Create the index:
   ```bash
   php bin/console es:index
   php bin/console messenger:consume
@@ -51,92 +51,92 @@ Ab Shopware 6.5 ist der Nachfolger **Advanced Search 2.0** zu nutzen.
 
 ## Installation
 
-1. **Erweiterungen > Meine Erweiterungen** im Admin
-2. Im Shopware Account Tab einloggen (Lizenzverifizierung)
-3. Advanced Search herunterladen und installieren
-4. Aktivieren
-5. Index neu aufbauen (siehe oben)
+1. **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions) in the admin
+2. Log in on the Shopware Account tab (licence verification)
+3. Download and install Advanced Search
+4. Activate it
+5. Rebuild the index (see above)
 
 ---
 
-## Konfigurationsbereiche
+## Configuration areas
 
-### 1. Durchsuchbare Informationen (Searchable Information)
+### 1. Durchsuchbare Informationen (Searchable information)
 
-Festlegen, **welche Datenfelder** indexiert werden und mit welcher Priorität:
+Define **which data fields** are indexed and with which priority:
 
-| Entität | Felder (Beispiele) |
+| Entity | Fields (examples) |
 |---|---|
-| Produkte | Name, Beschreibung, EAN, Artikelnummer, Hersteller, Eigenschaften |
-| Kategorien | Name, Beschreibung, Keywords |
-| Hersteller | Name, Beschreibung |
+| Produkte (Products) | name, description, EAN, product number, manufacturer, properties |
+| Kategorien (Categories) | name, description, keywords |
+| Hersteller (Manufacturers) | name, description |
 
-Optionen pro Feld:
-- **Teilübereinstimmung (Partial Match)**: Auch Teile des Suchbegriffs finden
-- **Komposita (Compound Words)**: Zusammengesetzte Wörter (z. B. "Laufschuhe" findet "Lauf" + "Schuhe")
-- **Priorität**: Höhere Zahl = wichtiger in der Suchreihenfolge
+Options per field:
+- **Teilübereinstimmung** (Partial match): also find parts of the search term
+- **Komposita** (Compound words): compound words (e.g. "Laufschuhe" finds "Lauf" + "Schuhe")
+- **Priorität** (Priority): higher number = more important in the search order
 
 ### 2. Vorschau (Preview)
 
-- Suchfunktion **live testen** nach Verkaufskanal und Entitätstyp
-- Zeigt Relevanzbewertungen der Treffer
-- Ideal zum Prüfen von Konfigurationsänderungen vor dem Go-Live
+- **Test the search live** by sales channel and entity type
+- Shows relevance scores of the hits
+- Ideal for checking configuration changes before going live
 
 ### 3. Boostings
 
-Gezielte Sichtbarkeitsanpassungen für bestimmte Inhalte:
+Targeted visibility adjustments for specific content:
 
-| Typ | Beschreibung |
+| Type | Description |
 |---|---|
-| Produkt-Boostings | Über dynamische Produktgruppen definieren |
-| Kategorie-Boostings | Über benutzerdefinierte Regeln (Rule Builder) |
-| Hersteller-Boostings | Über benutzerdefinierte Regeln |
+| Product boostings | Defined via dynamic product groups |
+| Category boostings | Via custom rules (Rule Builder) |
+| Manufacturer boostings | Via custom rules |
 
-### 4. Actions (Suchumleitungen)
+### 4. Actions (search redirects)
 
-Kunden **automatisch weiterleiten** bei bestimmten Suchbegriffen:
-- Zu einer URL (extern oder intern)
-- Zu einem bestimmten Produkt
-- Zu einer bestimmten Kategorie
+**Automatically redirect** customers for certain search terms:
+- To a URL (external or internal)
+- To a specific product
+- To a specific category
 
-Beispiel: Suche nach "Sale" → automatische Weiterleitung zur Sale-Kategorie
+Example: a search for "Sale" → automatic redirect to the sale category
 
-### 5. Synonyme
+### 5. Synonyme (Synonyms)
 
-Gleichwertige oder definierende Synonyme konfigurieren:
+Configure equivalent or defining synonyms:
 
-| Typ | Beispiel |
+| Type | Example |
 |---|---|
-| Gleichwertig | "Hose" ↔ "Jeans" ↔ "Chino" |
-| Definierend | "Smartphone" → "Handy, Mobiltelefon, Telefon" |
+| Equivalent | "Hose" ↔ "Jeans" ↔ "Chino" |
+| Defining | "Smartphone" → "Handy, Mobiltelefon, Telefon" |
 
-- Mehrere Sprachen werden unterstützt
-- Erweitert die Suchabdeckung erheblich
+- Multiple languages are supported
+- Considerably extends the search coverage
 
 ---
 
-## Index-Verwaltung
+## Index management
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
-| `php bin/console es:index` | Index neu aufbauen |
-| `php bin/console es:create:alias` | Alias neu setzen |
-| `php bin/console es:admin:index` | Admin-Suchindex aktualisieren |
-| `php bin/console messenger:consume` | Message-Queue abarbeiten |
+| `php bin/console es:index` | Rebuild the index |
+| `php bin/console es:create:alias` | Set the alias anew |
+| `php bin/console es:admin:index` | Update the admin search index |
+| `php bin/console messenger:consume` | Process the message queue |
 
-> **Wichtig**: Bei neuen Produkten oder Preisänderungen muss kein manueller Rebuild erfolgen,
-> wenn `SHOPWARE_ES_INDEXING_ENABLED=1` gesetzt ist – dies erfolgt automatisch.
+> **Important**: for new products or price changes no manual rebuild is required
+> when `SHOPWARE_ES_INDEXING_ENABLED=1` is set – this happens automatically.
 
 ---
 
-## Unterschied zur Standard-Suche
+## Difference from the standard search
 
-| Feature | Standard-Suche | Advanced Search |
+| Feature | Standard search | Advanced Search |
 |---|---|---|
-| Technologie | Datenbankbasiert (MySQL) | Elasticsearch/OpenSearch |
-| Performance bei großem Katalog | Begrenzt | Sehr hoch |
-| Konfigurierbare Felder | Nein | Ja |
-| Synonyme | Nein | Ja |
-| Boostings | Nein | Ja |
-| Actions/Weiterleitungen | Nein | Ja |
-| Partial Match | Begrenzt | Vollständig |
+| Technology | Database-based (MySQL) | Elasticsearch/OpenSearch |
+| Performance with a large catalogue | Limited | Very high |
+| Configurable fields | No | Yes |
+| Synonyms | No | Yes |
+| Boostings | No | Yes |
+| Actions/redirects | No | Yes |
+| Partial match | Limited | Complete |

@@ -109,7 +109,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   --form watermarkSource=text \
   --form watermarkExpression=VERTRAULICH \
   --form 'watermarkOptions={"opacity":0.25,"rotation":45}' \
-  -o mit-wasserzeichen.pdf
+  -o with-watermark.pdf
 ```
 
 ### Text watermark, gray and transparent
@@ -132,7 +132,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   --form watermarkSource=image \
   --form watermarkExpression=logo.png \
   --form 'watermarkOptions={"opacity":0.1,"scale":0.5}' \
-  -o mit-logo-wm.pdf
+  -o with-logo-wm.pdf
 ```
 
 ### PDF watermark (PDF as an overlay background)
@@ -143,7 +143,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/watermark \
   --form watermark=@/path/to/hintergrund.pdf \
   --form watermarkSource=pdf \
   --form watermarkExpression=hintergrund.pdf \
-  -o mit-hintergrund.pdf
+  -o with-background.pdf
 ```
 
 ### Watermark on selected pages only

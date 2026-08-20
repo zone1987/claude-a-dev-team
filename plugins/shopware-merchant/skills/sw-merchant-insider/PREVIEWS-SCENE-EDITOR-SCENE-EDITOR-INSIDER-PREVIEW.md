@@ -1,243 +1,243 @@
-# Shopware 6 – Scene Editor (Beta): Vollständige Referenz
+# Shopware 6 – Scene Editor (Beta): full reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor
+> Source: https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor
 > Insider Previews: https://docs.shopware.com/de/shopware-6-de/insider-previews
-> Plan: Rise oder höher | Mindestversion: 6.6.8.1 | Status: Beta
+> Plan: Rise or higher | Minimum version: 6.6.8.1 | Status: Beta
 
 ---
 
 ## Contents
 
-- [1. Überblick](#1-überblick)
-- [2. Aktivierung (Insider Previews)](#2-aktivierung-insider-previews)
-- [3. Plan-Anforderungen](#3-plan-anforderungen)
-- [4. Beta-Status – Hinweise](#4-beta-status-hinweise)
-- [5. Szenenübersicht](#5-szenenübersicht)
-- [6. Neue Szene erstellen](#6-neue-szene-erstellen)
-- [7. Bereich: 3D-Objekte](#7-bereich-3d-objekte)
-- [8. Bereich: Szene (globale Einstellungen)](#8-bereich-szene-globale-einstellungen)
-- [9. Bild exportieren – vollständiger Prozess](#9-bild-exportieren-vollständiger-prozess)
-- [10. Formen (Primitive)](#10-formen-primitive)
+- [1. Overview](#1-overview)
+- [2. Activation (Insider Previews)](#2-activation-insider-previews)
+- [3. Plan requirements](#3-plan-requirements)
+- [4. Beta status – notes](#4-beta-status-notes)
+- [5. Scene overview](#5-scene-overview)
+- [6. Creating a new scene](#6-creating-a-new-scene)
+- [7. Area: 3D objects](#7-area-3d-objects)
+- [8. Area: scene (global settings)](#8-area-scene-global-settings)
+- [9. Exporting an image – complete process](#9-exporting-an-image-complete-process)
+- [10. Shapes (primitives)](#10-shapes-primitives)
 - [11. Community Hub](#11-community-hub)
-- [Quelle](#quelle)
+- [Source](#source)
 
-## 1. Überblick
+## 1. Overview
 
-Der **Scene Editor** bietet die Möglichkeit, das volle Potenzial von 3D-Modellen
-für die Erstellung von Produktbildern zu nutzen. Die Kernfunktionen:
+The **Scene Editor** offers the possibility to use the full potential of 3D models
+for creating product images. The core functions:
 
-- Verschiedenste **3D-Szenen** aufbauen
-- Produkte in der Szene **platzieren und arrangieren**
-- **Unbegrenzt Bilder** aus den Szenen generieren
-- Exportierte Bilder sind perfekt auf die eigenen Produkte abgestimmt
+- Build a wide variety of **3D scenes**
+- **Place and arrange** products in the scene
+- Generate **unlimited images** from the scenes
+- Exported images are perfectly matched to your own products
 
-**Pfad im Admin**: Inhalte > Scene Editor
-
----
-
-## 2. Aktivierung (Insider Previews)
-
-### Versionen 6.6.8.1 – 6.6.10.5
-
-In diesen Versionen ist der Scene Editor ein **Insider Preview Feature** und muss
-zunächst explizit aktiviert werden:
-
-1. Im Admin das Modul **Insider Previews** aufrufen
-2. Den **Scene Editor** in der Liste der verfügbaren Preview-Features finden
-3. Feature **aktivieren**
-4. Anschließend ist der Scene Editor unter **Inhalte > Scene Editor** erreichbar
-
-### Ab Version 6.6.10.6
-
-Der Scene Editor ist ohne Aktivierungsschritt direkt verfügbar.
+**Path in the admin**: **Inhalte** (Content) > Scene Editor
 
 ---
 
-## 3. Plan-Anforderungen
+## 2. Activation (Insider Previews)
 
-| Plan | Scene Editor verfügbar |
+### Versions 6.6.8.1 – 6.6.10.5
+
+In these versions the Scene Editor is an **insider preview feature** and must
+first be enabled explicitly:
+
+1. Open the **Insider Previews** module in the admin
+2. Find the **Scene Editor** in the list of available preview features
+3. **Enable** the feature
+4. The Scene Editor is then reachable under **Inhalte > Scene Editor**
+
+### From version 6.6.10.6
+
+The Scene Editor is available directly, without an activation step.
+
+---
+
+## 3. Plan requirements
+
+| Plan | Scene Editor available |
 |---|---|
-| Starter | Nein |
-| Basics | Nein |
-| Rise | Ja (ab 6.6.8.1) |
-| Evolve | Ja |
-| Beyond | Ja |
+| Starter | No |
+| Basics | No |
+| Rise | Yes (from 6.6.8.1) |
+| Evolve | Yes |
+| Beyond | Yes |
 
 ---
 
-## 4. Beta-Status – Hinweise
+## 4. Beta status – notes
 
-> ⚠ **Dieses Feature befindet sich derzeit im Beta-Status.** Der Funktionsumfang ist
-> in dieser Version noch eingeschränkt und kann in zukünftigen Updates weiter ausgebaut werden.
-> Es kann sich in Verhalten und Umfang noch ändern.
+> ⚠ **This feature is currently in beta status.** The feature scope is
+> still limited in this version and may be expanded further in future updates.
+> Its behaviour and scope may still change.
 
-Shopware freut sich über Feedback, um die Funktion gezielt weiterzuentwickeln.
-Feedback kann über das verlinkte Feedback-Forum eingereicht werden.
+Shopware welcomes feedback in order to develop the feature in a targeted way.
+Feedback can be submitted via the linked feedback forum.
 
 ---
 
-## 5. Szenenübersicht
+## 5. Scene overview
 
-Die Startseite des Scene Editors listet alle angelegten Szenen.
+The Scene Editor start page lists all scenes that have been created.
 
-### Bedienelemente
+### Controls
 
-| Element | Nr. | Funktion |
+| Element | No. | Function |
 |---|---|---|
-| Listenansicht | (1) | Wechsel zwischen Kachel- und Listenansicht |
-| Sortieren nach | (2) | Sortierung: Erstelldatum, Bearbeitungsdatum, Name |
-| Kontextmenü | (3) | Löschen, Duplizieren, Bearbeiten |
-| Neue Szene erstellen | (4) | Erstellungsdialog öffnen |
+| **Listenansicht** (List view) | (1) | Switch between tile and list view |
+| **Sortieren nach** (Sort by) | (2) | Sorting: creation date, modification date, name |
+| **Kontextmenü** (Context menu) | (3) | Delete, duplicate, edit |
+| **Neue Szene erstellen** (Create new scene) | (4) | Open the creation dialog |
 
-Direktes Öffnen: Klick auf einen Szenen-Eintrag öffnet die Bearbeitung sofort.
-
----
-
-## 6. Neue Szene erstellen
-
-1. **„Neue Szene erstellen"** anklicken
-2. Szenenname vergeben (einziges Pflichtfeld)
-3. Automatische Weiterleitung in die Bearbeitungsansicht
+Opening directly: clicking a scene entry opens editing immediately.
 
 ---
 
-## 7. Bereich: 3D-Objekte
+## 6. Creating a new scene
 
-### 7.1 Hauptelemente
+1. Click **"Neue Szene erstellen"**
+2. Assign a scene name (the only mandatory field)
+3. Automatic redirection into the editing view
 
-| Element | Nr. | Beschreibung |
+---
+
+## 7. Area: 3D objects
+
+### 7.1 Main elements
+
+| Element | No. | Description |
 |---|---|---|
-| Objekt im Arbeitsbereich | (1) | Hauptfenster; frei drehbares Gitternetz; zeigt ausgewähltes 3D-Objekt |
-| 3D-Objekt hinzufügen | (2) | Dropdown-Menü mit verschiedenen Objektarten |
-| Gruppe hinzufügen | (3) | Mehrere Objekte zu einer Gruppe zusammenfassen |
-| Ansichtsauswahl | (4) | Kamera-/Perspektivwechsel (z. B. "Freie Ansicht") |
-| Verschieben-Werkzeug | (5) | Move-Tool aktivieren |
-| Drehen-Werkzeug | (6) | Rotate-Tool aktivieren |
-| Skalieren-Werkzeug | (7) | Scale-Tool aktivieren |
-| Light Settings | (8) | Beleuchtung konfigurieren |
-| Bild exportieren | (9) | Szene als Bilddatei exportieren |
-| Szene speichern | (10) | Komplette Szene persistent speichern |
+| Object in the workspace | (1) | Main window; freely rotatable grid; shows the selected 3D object |
+| **3D-Objekt hinzufügen** (Add 3D object) | (2) | Dropdown menu with various object types |
+| **Gruppe hinzufügen** (Add group) | (3) | Combine several objects into one group |
+| **Ansichtsauswahl** (View selection) | (4) | Camera/perspective switch (e.g. "Freie Ansicht" – free view) |
+| **Verschieben-Werkzeug** (Move tool) | (5) | Activate the move tool |
+| **Drehen-Werkzeug** (Rotate tool) | (6) | Activate the rotate tool |
+| **Skalieren-Werkzeug** (Scale tool) | (7) | Activate the scale tool |
+| Light Settings | (8) | Configure the lighting |
+| **Bild exportieren** (Export image) | (9) | Export the scene as an image file |
+| **Szene speichern** (Save scene) | (10) | Save the complete scene persistently |
 
 ---
 
-### 7.2 Verschieben-Werkzeug (Move-Tool) – Detail
+### 7.2 Move tool – detail
 
-**Farbkodierung der Achsen-Pfeile**:
+**Colour coding of the axis arrows**:
 
-| Farbe | Achse | Richtung |
+| Colour | Axis | Direction |
 |---|---|---|
-| Blau | Z-Achse | Vorwärts / Rückwärts |
-| Grün | Y-Achse | Aufwärts / Abwärts |
-| Rot | X-Achse | Links / Rechts |
+| Blue | Z axis | Forward / backward |
+| Green | Y axis | Up / down |
+| Red | X axis | Left / right |
 
-**Farbige Quadrate**: Bewegung entlang kombinierter Ebenen
-**Mittleres Quadrat**: Freie Bewegung in alle Richtungen
-
----
-
-### 7.3 Drehen-Werkzeug (Rotate-Tool) – Detail
-
-**Farbkodierung der Rotationsringe**:
-
-| Farbe | Rotation |
-|---|---|
-| Rot | Nach vorne/hinten kippen (Pitch) |
-| Blau | Nach links/rechts kippen (Roll) |
-| Grün | Um die eigene Achse drehen (Yaw) |
-| Gelb (Außenring) | Drehung aus der Kameraperspektive |
+**Coloured squares**: movement along combined planes
+**Centre square**: free movement in all directions
 
 ---
 
-### 7.4 Skalieren-Werkzeug (Scale-Tool) – Detail
+### 7.3 Rotate tool – detail
 
-| Modus | Beschreibung |
+**Colour coding of the rotation rings**:
+
+| Colour | Rotation |
 |---|---|
-| **Gleichmäßig (Standard)** | Proportionen bleiben erhalten; alle Achsen skalieren gleichzeitig |
-| **Achsenspezifisch** | Option deaktivieren für individuelle Achsenskalierung |
-
-**Achsenspezifische Quadrate**:
-
-| Farbe | Achse |
-|---|---|
-| Grün | Höhe |
-| Rot | Breite |
-| Blau | Tiefe |
+| Red | Tilt forward/backward (pitch) |
+| Blue | Tilt left/right (roll) |
+| Green | Rotate around its own axis (yaw) |
+| Yellow (outer ring) | Rotation from the camera perspective |
 
 ---
 
-### 7.5 Light Settings – Detail
+### 7.4 Scale tool – detail
 
-| Parameter | Optionen |
+| Mode | Description |
 |---|---|
-| **Typ** | Szenenweites Licht **oder** objektspezifisches Licht |
-| **Einstellungen** | Vordefinierte Presets **oder** benutzerdefinierte Anpassungen |
-| **Lichtfarbe** | Farbcode eingeben (Beispiel: `#ffffff` = Weißlicht) |
-| **Light Intensity** | Schieberegler 0–100 % |
+| **Uniform (default)** | Proportions are preserved; all axes scale simultaneously |
+| **Axis-specific** | Disable the option for individual axis scaling |
 
-> Die Ansicht der Lichtoptionen kann sich je nach ausgewähltem Objekt unterscheiden.
+**Axis-specific squares**:
+
+| Colour | Axis |
+|---|---|
+| Green | Height |
+| Red | Width |
+| Blue | Depth |
 
 ---
 
-## 8. Bereich: Szene (globale Einstellungen)
+### 7.5 Light Settings – detail
 
-| Einstellung | Nr. | Beschreibung |
+| Parameter | Options |
+|---|---|
+| **Typ** (Type) | Scene-wide light **or** object-specific light |
+| **Einstellungen** (Settings) | Predefined presets **or** custom adjustments |
+| **Lichtfarbe** (Light colour) | Enter a colour code (example: `#ffffff` = white light) |
+| **Light Intensity** | Slider 0–100 % |
+
+> The view of the light options can differ depending on the selected object.
+
+---
+
+## 8. Area: scene (global settings)
+
+| Setting | No. | Description |
 |---|---|---|
-| Szenenname | (1) | Name der Szene bearbeiten |
-| Hintergrundfarbe | (2) | Hintergrundfarbe der Szene konfigurieren |
-| Bodenfarbe | (3) | Bodenfarbe der Szene konfigurieren |
+| **Szenenname** (Scene name) | (1) | Edit the name of the scene |
+| **Hintergrundfarbe** (Background colour) | (2) | Configure the background colour of the scene |
+| **Bodenfarbe** (Floor colour) | (3) | Configure the floor colour of the scene |
 
 ---
 
-## 9. Bild exportieren – vollständiger Prozess
+## 9. Exporting an image – complete process
 
-### Schritt-für-Schritt
+### Step by step
 
-1. Auf **„Bild exportieren"** (oben rechts) klicken
-2. **Kamera (1)** auswählen: Welche der konfigurierten Kameras soll für den Export genutzt werden?
-3. **Auflösung (2)** wählen: Vorlage oder benutzerdefiniert
-4. **Breite (3)** in Pixeln eingeben
-5. **Höhe (4)** in Pixeln eingeben
-6. **„Bild speichern" (5)** anklicken
-7. Das Bild wird automatisch im Medienordner **„Scene Editor Media"** gespeichert
+1. Click **"Bild exportieren"** (top right)
+2. Select the **Kamera** (Camera) **(1)**: which of the configured cameras should be used for the export?
+3. Choose the **Auflösung** (Resolution) **(2)**: template or custom
+4. Enter the **Breite** (Width) **(3)** in pixels
+5. Enter the **Höhe** (Height) **(4)** in pixels
+6. Click **"Bild speichern"** (Save image) **(5)**
+7. The image is saved automatically in the media folder **"Scene Editor Media"**
 
-### Verwendung der exportierten Bilder
+### Using the exported images
 
-Exportierte Bilder können direkt aus der Medienbibliothek:
-- Als Produktbild zugewiesen werden
-- In Erlebniswelten eingebaut werden
-- Für Marketing-Materialien genutzt werden
+Exported images can, directly from the media library:
+- Be assigned as a product image
+- Be built into **Erlebniswelten** (Shopping Experiences)
+- Be used for marketing materials
 
 ---
 
-## 10. Formen (Primitive)
+## 10. Shapes (primitives)
 
-Geometrische Grundformen als Bühnenelemente:
+Basic geometric shapes as stage elements:
 
-### Hinzufügen
+### Adding
 
-1. **„3D-Objekt hinzufügen"** → Tab **„Primitive"** im Fenster "Medien auswählen"
-2. Gewünschte Form auswählen und hinzufügen
+1. **"3D-Objekt hinzufügen"** → tab **"Primitive"** in the "Medien auswählen" (Select media) window
+2. Select the desired shape and add it
 
-### Konfigurierbar
+### Configurable
 
-- **Materialbeschaffenheit** (Oberfläche, Glanz, Reflexion)
-- **Farbe** der Form
+- **Material properties** (surface, gloss, reflection)
+- **Colour** of the shape
 
-### Typische Verwendung
+### Typical use
 
-- Podest / Plattform für das Produkt
-- Hintergrundwand
-- Dekorative geometrische Elemente
+- Pedestal / platform for the product
+- Background wall
+- Decorative geometric elements
 
 ---
 
 ## 11. Community Hub
 
-Im **Community Hub** ist ein interaktiver Lernpfad zum Scene Editor verfügbar.
-Dort können Funktionen direkt ausprobiert und Wissen spielerisch erweitert werden.
+An interactive learning path for the Scene Editor is available in the **Community Hub**.
+There, features can be tried out directly and knowledge expanded in a playful way.
 
 ---
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/commercial-features/scene-editor
 https://docs.shopware.com/de/shopware-6-de/insider-previews

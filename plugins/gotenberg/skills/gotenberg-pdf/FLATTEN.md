@@ -1,7 +1,7 @@
-# Gotenberg — PDF Flatten
+# Gotenberg — PDF flatten
 
-Wandelt interaktive Formularfelder in statischen Seiteninhalt um (nicht mehr bearbeitbar).
-Referenz: `FLATTEN-DETAIL.md`
+Converts interactive form fields into static page content (no longer editable).
+Reference: `FLATTEN-DETAIL.md`
 
 Route: `POST /forms/pdfengines/flatten`
-Rueckgabe: PDF (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF (200) | ZIP (multiple inputs) | 400 | 503

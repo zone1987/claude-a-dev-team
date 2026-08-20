@@ -1,14 +1,14 @@
 # Panther Utils
 
-Einsatzfertige Vorlagen für Symfony Panther — kopieren und an dein Projekt anpassen. Alle Werte (Pfade, Ports,
-Treiber-Versionen) sind Beispiele; echte Credentials/Secrets gehören **nicht** hierher, sondern in `.env.test`/CI-Secrets.
+Ready-to-use templates for Symfony Panther — copy them and adapt them to your project. All values (paths, ports,
+driver versions) are examples; real credentials/secrets do **not** belong here, but in `.env.test`/CI secrets.
 
-| Datei | Zweck |
+| File | Purpose |
 |---|---|
-| `phpunit.panther.xml` | PHPUnit-Konfiguration (PHPUnit 10+) mit registrierter Panther-`ServerExtension` und sinnvollen `PANTHER_*`-Env-Vars. |
-| `AbstractPantherTestCase.php` | Basis-TestCase mit Helfern: headless-Client, `waitForVisibility`-Wrapper, Fehler-Screenshot. |
-| `Dockerfile.panther` | Image mit PHP + Chrome + ChromeDriver für headless Panther-Tests (no-sandbox, `--disable-dev-shm-usage`). |
-| `docker-compose.selenium.yml` | Selenium-Grid (Standalone Chrome) zum Testen gegen einen Remote-WebDriver via `PANTHER_*`. |
-| `github-actions-panther.yml` | GitHub-Actions-Workflow: Treiber, AssetMapper-Build, headless Panther-Tests. |
+| `phpunit.panther.xml` | PHPUnit configuration (PHPUnit 10+) with the Panther `ServerExtension` registered and sensible `PANTHER_*` env vars. |
+| `AbstractPantherTestCase.php` | Base test case with helpers: headless client, `waitForVisibility` wrapper, error screenshot. |
+| `Dockerfile.panther` | Image with PHP + Chrome + ChromeDriver for headless Panther tests (no-sandbox, `--disable-dev-shm-usage`). |
+| `docker-compose.selenium.yml` | Selenium Grid (standalone Chrome) for testing against a remote WebDriver via `PANTHER_*`. |
+| `github-actions-panther.yml` | GitHub Actions workflow: drivers, AssetMapper build, headless Panther tests. |
 
-Details/alle Optionen: Skills `panther-installation`, `panther-config-env`, `panther-docker-ci`, `panther-selenium-remote`.
+Details/all options: skills `panther-installation`, `panther-config-env`, `panther-docker-ci`, `panther-selenium-remote`.

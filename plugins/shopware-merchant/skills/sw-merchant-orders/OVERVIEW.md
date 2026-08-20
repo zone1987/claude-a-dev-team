@@ -1,15 +1,15 @@
-# Shopware 6 – Bestellübersicht, Filter & Bulk-Aktionen
+# Shopware 6 – Order overview, filters & bulk actions
 
-Vollständige Referenz für die Bestellliste, alle Filter-Kriterien und Massenbearbeitungsfunktionen.
+Complete reference for the order list, all filter criteria and bulk editing functions.
 
-Ausführliche Dokumentation: [OVERVIEW-DETAIL.md](OVERVIEW-DETAIL.md)
+Detailed documentation: [OVERVIEW-DETAIL.md](OVERVIEW-DETAIL.md)
 
-## Kernfunktionen
+## Core functions
 
-- 15+ Filterkriterien (Status, Datum, Zahlungsart, Versandart, Produkt, Land, Kundengr. …)
-- Spalten ein-/ausblenden, Kompaktansicht
-- Bulk-Aktionen für bis zu 1.000 Bestellungen: Statusänderung, Dokumente erstellen, Download
-- Bestellung manuell anlegen via „Bestellung anlegen"-Button
+- 15+ filter criteria (Status, date, payment method, shipping method, product, country, customer group …)
+- Show/hide columns, compact view
+- Bulk actions for up to 1,000 orders: state change, create documents, download
+- Create an order manually via the "Bestellung anlegen" (Create order) button
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht

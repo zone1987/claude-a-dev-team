@@ -31,11 +31,11 @@ def main() -> int:
     msgs = []
     # Route hygiene
     if "/forms/" in blob:
-        msgs.append("Gotenberg-Aufruf erkannt → Route + Form-Feldnamen/Defaults gegen die `gotenberg-*`-Skills prüfen (multipart/form-data, Eingaben als `files`).")
+        msgs.append("Gotenberg call detected → check the route + form field names/defaults against the `gotenberg-*` skills (multipart/form-data, inputs as `files`).")
     # Credentials leak check (public repo / shared code)
     if re.search(r"basic[_-]?auth|authorization:\s*basic|gotenberg_api_basic_auth_(username|password)", blob):
         if re.search(r"(password|passwort)\s*[:=]\s*['\"]?[^\s'\"]{3,}", blob) and "platzhalter" not in blob and "your-" not in blob and "changeme" not in blob:
-            msgs.append("Mögliche Klartext-Credentials → als Secret/Env-Platzhalter auslagern, nichts Echtes committen.")
+            msgs.append("Possible plaintext credentials → move them out into a secret/env placeholder, commit nothing real.")
     # Output filename hint
     if "/forms/" in blob and "gotenberg-output-filename" not in blob:
         msgs.append("Tipp: Output-Dateiname per Header `Gotenberg-Output-Filename` setzen; lange Jobs ggf. async via Webhook (`Gotenberg-Webhook-Url`).")

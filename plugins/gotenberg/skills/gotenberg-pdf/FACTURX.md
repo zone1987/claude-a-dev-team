@@ -1,8 +1,8 @@
-# Gotenberg — Factur-X / ZUGFeRD E-Rechnung
+# Gotenberg — Factur-X / ZUGFeRD e-invoice
 
-Erstellt normkonforme Factur-X / ZUGFeRD E-Rechnungen: bettet CII-XML als
-`factur-x.xml` ein, injiziert XMP-Metadaten, konvertiert zu PDF/A-3.
-Referenz: `FACTURX-DETAIL.md`
+Creates standards-compliant Factur-X / ZUGFeRD e-invoices: embeds CII XML as
+`factur-x.xml`, injects XMP metadata, converts to PDF/A-3.
+Reference: `FACTURX-DETAIL.md`
 
 Route: `POST /forms/pdfengines/factur-x`
-Rueckgabe: PDF/A-3 (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF/A-3 (200) | ZIP (multiple inputs) | 400 | 503

@@ -1,51 +1,51 @@
-# Shopware 6 — Update Guides (Betreiber-Überblick)
+# Shopware 6 — Update guides (merchant overview)
 
-Destilliert aus `docs.shopware.com/de/shopware-6-de/update-guides`. Betreibersicht: Shop aktualisieren — nicht Code-Migration für Entwickler.
+Distilled from `docs.shopware.com/de/shopware-6-de/update-guides`. Merchant perspective: updating the shop — not code migration for developers.
 
-## Überblick: Update-Prozess in Kurzform
+## Overview: the update process in brief
 
-1. **Testumgebung anlegen** — Update nie direkt auf Live testen
-2. **Backup erstellen** — Pflicht; Shopware erstellt kein Auto-Backup
-3. **Erweiterungen prüfen** — Kompatibilität im Shopware Store / Admin prüfen
-4. **Update durchführen** — via Admin-Panel, Browser-Installer oder Composer/CLI
-5. **Erweiterungen reaktivieren** — nach Update aktualisieren und wieder einschalten
+1. **Set up a test environment** — never test an update directly on live
+2. **Create a backup** — mandatory; Shopware does not create an automatic backup
+3. **Check extensions** — verify compatibility in the Shopware Store / admin
+4. **Run the update** — via admin panel, browser installer or Composer/CLI
+5. **Reactivate extensions** — update them after the update and switch them back on
 
-> **Warnung:** Starte ein Update nur, wenn du über entsprechende Erfahrung verfügst oder kontaktiere deine Partneragentur.
+> **Warning:** Only start an update if you have the corresponding experience, or contact your partner agency.
 
-## Update-Methoden
+## Update methods
 
-| Methode | Geeignet für | Vorteil |
+| Method | Suitable for | Advantage |
 |---|---|---|
-| Admin-Panel | Standard-Hosting, einfache Shops | Keine Shell nötig |
-| Browser-Installer (PHP-Datei) | Shared Hosting, kein SSH | Leichtgewichtig |
-| Composer + CLI | Professionell, CI/CD | Stabiler, keine Timeouts |
+| Admin panel | Standard hosting, simple shops | No shell required |
+| Browser installer (PHP file) | Shared hosting, no SSH | Lightweight |
+| Composer + CLI | Professional, CI/CD | More stable, no timeouts |
 
-## Versionsspezifische Guides
+## Version-specific guides
 
-| Migration | Besonderheit |
+| Migration | Particularity |
 |---|---|
-| 6.4 → 6.5 | Alle Extensions deaktivieren (Pflicht), PHP 8.1+, Node 18 |
-| 6.5 → 6.6 | Alle Extensions deaktivieren, PHP 8.2, Node 20, MariaDB 10.11+ |
-| 6.5/6.6 → 6.6 | Neues Vue 3-System, Webpack 5 + SWC |
-| 6.6 → 6.7 | Vite statt Webpack, Vue 3 ohne Compat-Mode, PHPUnit 11 |
+| 6.4 → 6.5 | Deactivate all extensions (mandatory), PHP 8.1+, Node 18 |
+| 6.5 → 6.6 | Deactivate all extensions, PHP 8.2, Node 20, MariaDB 10.11+ |
+| 6.5/6.6 → 6.6 | New Vue 3 system, Webpack 5 + SWC |
+| 6.6 → 6.7 | Vite instead of Webpack, Vue 3 without compat mode, PHPUnit 11 |
 
-## Detailwissen je Thema
+## Detailed knowledge per topic
 
-| Thema | Skill |
+| Topic | Skill |
 |---|---|
-| Update-Prozess (Admin, CLI, Browser, Troubleshooting) | `sw-merchant-update-guides-ausfuehren` |
-| Versionsspezifische Update-Hinweise (6.4→6.7) | `sw-merchant-update-guides-versionen` |
-| Testumgebung & Staging-Instanz | `sw-merchant-update-guides-staging` |
+| Update process (admin, CLI, browser, troubleshooting) | `sw-merchant-update-guides-ausfuehren` |
+| Version-specific update notes (6.4→6.7) | `sw-merchant-update-guides-versionen` |
+| Test environment & staging instance | `sw-merchant-update-guides-staging` |
 
-## Referenz-Dokumente in diesem Skill
+## Reference documents in this skill
 
-| Dokument | Inhalt |
+| Document | Content |
 |---|---|
-| `GUIDES-UEBERBLICK.md` | Systemanforderungen aller Versionen, Prozess-Überblick |
-| `GUIDES-BACKUP-UND-VORBEREITUNG.md` | Backup-Methoden, Checklisten, Screenshots |
+| `GUIDES-UEBERBLICK.md` | System requirements of all versions, process overview |
+| `GUIDES-BACKUP-UND-VORBEREITUNG.md` | Backup methods, checklists, screenshots |
 
-Screenshots: `assets/` (Admin-Panel-Schritte)
+Screenshots: `assets/` (admin panel steps)
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/update-guides*
+*Source: https://docs.shopware.com/de/shopware-6-de/update-guides*

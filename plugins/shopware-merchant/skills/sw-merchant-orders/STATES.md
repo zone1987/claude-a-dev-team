@@ -1,17 +1,17 @@
-# Shopware 6 – Status-Management (Bestell-/Zahlungs-/Lieferstatus)
+# Shopware 6 – State management (order/payment/delivery state)
 
-Vollständige Referenz aller Status, Übergänge und der Zahlungslogik nach der Bestellung.
+Complete reference of all states, transitions and the payment logic after ordering.
 
-Ausführliche Dokumentation: [STATES-DETAIL.md](STATES-DETAIL.md)
+Detailed documentation: [STATES-DETAIL.md](STATES-DETAIL.md)
 
-## Drei Status-Dimensionen
+## Three state dimensions
 
-| Status | Kontrolliert |
+| State | Controls |
 |---|---|
-| Bestellstatus | Gesamtzustand der Bestellung; Stornierung setzt Lagerbestand frei |
-| Zahlungsstatus | Zahlungsvorgang (Offen → Bezahlt / Fehlgeschlagen / Erstattet) |
-| Lieferstatus | Versandprozess (Offen → Geliefert → Retoure) |
+| Bestellstatus (Order state) | Overall condition of the order; cancelling releases the stock |
+| Zahlungsstatus (Payment state) | Payment process (Offen (Open) → Bezahlt (Paid) / Fehlgeschlagen (Failed) / Erstattet (Refunded)) |
+| Lieferstatus (Delivery state) | Shipping process (Offen → Geliefert (Shipped) → Retoure (Return)) |
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht
 https://docs.shopware.com/de/shopware-6-de/bestellungen/zahlungsvorgang-nach-bestellung

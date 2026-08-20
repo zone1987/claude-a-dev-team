@@ -34,16 +34,16 @@ def main() -> int:
     if looks_panther:
         # sleep() instead of waitFor*
         if re.search(r"\bsleep\s*\(", content) or re.search(r"\busleep\s*\(", content):
-            msgs.append("`sleep()`/`usleep()` in Panther-Test → bei JS/AJAX `waitForVisibility`/`waitForElementToContain`/`waitFor` nutzen (stabiler).")
+            msgs.append("`sleep()`/`usleep()` in a Panther test → for JS/AJAX use `waitForVisibility`/`waitForElementToContain`/`waitFor` (more stable).")
         # crawler methods not implemented in Panther
         if re.search(r"->(evaluate|parents|innerText|outerHtml)\s*\(", content):
             msgs.append("Achtung: Panthers Crawler implementiert `evaluate()`/`parents()`/`innerText()`/`outerHtml()` NICHT (wirft Exception) — Alternativen in `panther-crawler`.")
         # getElement without index
         if re.search(r"->getElement\s*\(\s*\)", content):
-            msgs.append("`getElement()` braucht eine Position: `getElement(0)`.")
+            msgs.append("`getElement()` needs a position: `getElement(0)`.")
         # hardcoded credentials
         if re.search(r"(password|passwort|secret|token)\s*(=>|=|:)\s*['\"][^'\"]{4,}", content, re.I) and "getenv" not in content.lower():
-            msgs.append("Mögliche Klartext-Credentials im Test → via `.env.test`/CI-Secret beziehen.")
+            msgs.append("Possible plaintext credentials in the test → obtain them via `.env.test`/a CI secret.")
     if is_phpunit_cfg and looks_panther is False:
         if "panther" in content.lower() and "serverextension" not in content.lower() and "ServerExtension" not in content:
             msgs.append("Panther in phpunit.xml: Extension registrieren (PHPUnit 10+: `Symfony\\Component\\Panther\\ServerExtension`).")

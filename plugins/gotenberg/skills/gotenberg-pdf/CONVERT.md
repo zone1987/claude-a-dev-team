@@ -1,8 +1,8 @@
-# Gotenberg — PDF/A & PDF/UA Konvertierung
+# Gotenberg — PDF/A & PDF/UA conversion
 
-Wandelt PDFs in Langzeitarchivformate (PDF/A-1b, PDF/A-2b, PDF/A-3b) oder
-barrierefreie PDFs (PDF/UA) um. Erfordert LibreOffice-Neuverarbeitung.
-Referenz: `CONVERT-DETAIL.md`
+Converts PDFs into long-term archival formats (PDF/A-1b, PDF/A-2b, PDF/A-3b) or
+accessible PDFs (PDF/UA). Requires LibreOffice reprocessing.
+Reference: `CONVERT-DETAIL.md`
 
 Route: `POST /forms/pdfengines/convert`
-Rueckgabe: PDF (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF (200) | ZIP (multiple inputs) | 400 | 503

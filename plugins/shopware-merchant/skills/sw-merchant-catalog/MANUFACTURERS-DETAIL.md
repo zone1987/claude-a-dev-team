@@ -1,138 +1,138 @@
-# Shopware 6 – Hersteller: Vollständige Referenz
+# Shopware 6 – Hersteller (Manufacturers): Complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/produkte/hersteller  
-> Gilt ab: Shopware 6.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/produkte/hersteller  
+> Applies from: Shopware 6.0.0+
 
 ---
 
 ## Contents
 
-- [1. Herstellerübersicht](#1-herstellerübersicht)
-- [2. Hersteller anlegen](#2-hersteller-anlegen)
-- [3. Storefront-Darstellung](#3-storefront-darstellung)
-- [4. Hersteller bearbeiten](#4-hersteller-bearbeiten)
-- [5. Herstellerseite erstellen (Workaround)](#5-herstellerseite-erstellen-workaround)
-- [6. Hersteller und Produkte](#6-hersteller-und-produkte)
-- [7. Hersteller löschen](#7-hersteller-löschen)
-- [8. Tipps](#8-tipps)
+- [1. Manufacturer overview](#1-manufacturer-overview)
+- [2. Creating a manufacturer](#2-creating-a-manufacturer)
+- [3. Storefront presentation](#3-storefront-presentation)
+- [4. Editing a manufacturer](#4-editing-a-manufacturer)
+- [5. Creating a manufacturer page (workaround)](#5-creating-a-manufacturer-page-workaround)
+- [6. Manufacturers and products](#6-manufacturers-and-products)
+- [7. Deleting a manufacturer](#7-deleting-a-manufacturer)
+- [8. Tips](#8-tips)
 
-## 1. Herstellerübersicht
+## 1. Manufacturer overview
 
-Pfad: **Kataloge > Hersteller**
+Path: **Kataloge** (Catalogues) > **Hersteller** (Manufacturers)
 
-Die Übersicht zeigt alle angelegten Hersteller mit den wichtigsten Informationen in einer Tabelle.
+The overview lists all created manufacturers with the most important information in a table.
 
-### Spalten und Funktionen
+### Columns and functions
 
-- Spalten sind per Klick auf den Spaltenkopf auf- und absteigend sortierbar
-- Kontextmenü (**„..."**-Button) je Hersteller:
+- Columns can be sorted ascending and descending by clicking the column header
+- Context menu (**"..."** button) per manufacturer:
 
-| Option | Beschreibung |
+| Option | Description |
 |---|---|
-| Bearbeiten | Öffnet die Bearbeitungsmaske des Herstellers |
-| Duplizieren | Erstellt eine Kopie mit allen bestehenden Daten |
-| Löschen | Löscht den Hersteller (nur möglich wenn keinem Produkt zugewiesen) |
+| Bearbeiten (Edit) | Opens the manufacturer's editing screen |
+| Duplizieren (Duplicate) | Creates a copy with all existing data |
+| Löschen (Delete) | Deletes the manufacturer (only possible if not assigned to any product) |
 
 ---
 
-## 2. Hersteller anlegen
+## 2. Creating a manufacturer
 
-1. Klick auf **„Hersteller anlegen"**
-2. Pflichtfeld: **Name** (einziges Pflichtfeld)
-3. Optionale Felder:
-   - **Website-Link**: URL der Herstellerwebsite
-   - **Logo**: Bild-Upload (erscheint auf Produktdetailseite statt Name)
-   - **Beschreibung**: Freitext-Beschreibung; unterstützt **Twig-Variablen** für Storefront-Darstellung
-4. Speichern
+1. Click **"Hersteller anlegen"** (Create manufacturer)
+2. Mandatory field: **Name** (the only mandatory field)
+3. Optional fields:
+   - **Website-Link** (Website link): URL of the manufacturer's website
+   - **Logo**: image upload (appears on the product detail page instead of the name)
+   - **Beschreibung** (Description): free-text description; supports **Twig variables** for the storefront presentation
+4. Save
 
 ---
 
-## 3. Storefront-Darstellung
+## 3. Storefront presentation
 
-Herstellerinformationen erscheinen auf der **Produktdetailseite** in der **oberen rechten Ecke**.
+Manufacturer information appears on the **product detail page** in the **top right corner**.
 
-| Situation | Darstellung |
+| Situation | Presentation |
 |---|---|
-| Nur Name vorhanden | Name wird als Text angezeigt |
-| Logo hochgeladen | Logo wird anstelle des Namens angezeigt |
-| Website-Link gesetzt | Name/Logo wird klickbar (Weiterleitung zur Herstellerwebsite) |
-| Kein Hersteller zugewiesen | Kein Herstellerbereich auf der Detailseite |
+| Only name available | Name is displayed as text |
+| Logo uploaded | Logo is displayed instead of the name |
+| Website link set | Name/logo becomes clickable (redirects to the manufacturer's website) |
+| No manufacturer assigned | No manufacturer area on the detail page |
 
 ---
 
-## 4. Hersteller bearbeiten
+## 4. Editing a manufacturer
 
-Zugriff per Klick auf **„Bearbeiten"** im Kontextmenü oder per Direktklick auf den Namen.
+Accessed by clicking **"Bearbeiten"** in the context menu or by clicking the name directly.
 
-Alle Felder aus der Anlage sind bearbeitbar:
+All fields from the creation screen can be edited:
 - Name
 - Website
-- Logo (Bild ersetzen oder entfernen)
+- Logo (replace or remove the image)
 - Beschreibung
 
 ---
 
-## 5. Herstellerseite erstellen (Workaround)
+## 5. Creating a manufacturer page (workaround)
 
-Shopware 6 hat keine native Herstellerseite. Der folgende Workaround erstellt eine dedizierte Seite:
+Shopware 6 has no native manufacturer page. The following workaround creates a dedicated page:
 
-### Schritt 1: Erlebniswelt-Landingpage erstellen
+### Step 1: Create a Shopping Experience landing page
 
-1. Inhalte > Erlebniswelten > **„Erlebniswelt hinzufügen"**
-2. Typ: **Landingpage** wählen
-3. Layout gestalten (Herstellerinfos, Produkte etc.)
-4. Speichern und aktivieren
+1. Inhalte (Content) > Erlebniswelten (Shopping Experiences) > **"Erlebniswelt hinzufügen"** (Add Shopping Experience)
+2. Type: select **Landingpage** (Landing page)
+3. Design the layout (manufacturer info, products etc.)
+4. Save and activate
 
-### Schritt 2: Landingpage in Kategorien anlegen
+### Step 2: Create the landing page in Kategorien
 
-1. Kataloge > Kategorien
-2. Unterhalb der Kategorieübersicht: **„Landingpage hinzufügen"**
-3. Felder ausfüllen:
-   - Name (z. B. „Shopware AG")
-   - Landingpage ist aktiv: **Ja**
-   - Verkaufskanal zuweisen
-4. Tab **SEO** öffnen:
-   - **SEO URL** (Pflicht): Pfad definieren, z. B. `shopwareag`
-   - Die fertige URL lautet dann: `www.meinshop.de/shopwareag`
-5. Tab **Layout** öffnen:
-   - Die in Schritt 1 erstellte Erlebniswelt zuweisen
-6. Speichern
+1. Kataloge > Kategorien (Categories)
+2. Below the category overview: **"Landingpage hinzufügen"** (Add landing page)
+3. Fill in the fields:
+   - Name (e.g. "Shopware AG")
+   - Landingpage ist aktiv (Landing page is active): **Ja** (Yes)
+   - Assign a Verkaufskanal (Sales channel)
+4. Open the **SEO** tab:
+   - **SEO URL** (mandatory): define the path, e.g. `shopwareag`
+   - The resulting URL is then: `www.meinshop.de/shopwareag`
+5. Open the **Layout** tab:
+   - Assign the Shopping Experience created in step 1
+6. Save
 
-### Schritt 3: SEO-URL beim Hersteller eintragen
+### Step 3: Enter the SEO URL for the manufacturer
 
-1. Kataloge > Hersteller > Hersteller öffnen
-2. Feld **„Hersteller-URL"** (oder vergleichbares Feld): SEO-URL mit führendem `/` eintragen
-   - Beispiel: `/shopwareag`
-3. Speichern
+1. Kataloge > Hersteller > open the manufacturer
+2. Field **"Hersteller-URL"** (Manufacturer URL) (or a comparable field): enter the SEO URL with a leading `/`
+   - Example: `/shopwareag`
+3. Save
 
-Ergebnis: Die Hersteller-Verlinkung auf der Produktdetailseite führt nun zur Landingpage statt zur externen Website.
-
----
-
-## 6. Hersteller und Produkte
-
-- Einem Produkt kann genau **ein Hersteller** zugewiesen werden
-- Zuweisung erfolgt in der Produktmaske unter **Allgemein > Informationen > Hersteller**
-- Neue Hersteller können direkt aus der Produktmaske angelegt werden (ohne in Kataloge > Hersteller zu wechseln)
-- Ein Hersteller kann beliebig vielen Produkten zugewiesen sein
+Result: the manufacturer link on the product detail page now leads to the landing page instead of the external website.
 
 ---
 
-## 7. Hersteller löschen
+## 6. Manufacturers and products
 
-- Löschen ist nur möglich wenn der Hersteller **keinem Produkt** mehr zugewiesen ist
-- Zuerst alle Produktzuweisungen entfernen, dann löschen
-- Alternativ: Duplizieren → nicht benötigt; Hersteller einfach keinem weiteren Produkt zuweisen
-
----
-
-## 8. Tipps
-
-- Das **Logo** sollte in einem Format mit transparentem Hintergrund hochgeladen werden (PNG, SVG), da es auf dem Produktbild-Hintergrund angezeigt wird
-- Die **Beschreibung** kann Twig-Syntax enthalten und ist daher für dynamische Inhalte geeignet
-- Für SEO-relevante Herstellerseiten ist der Landingpage-Workaround die empfohlene Methode
-- Hersteller können auch für interne Sortierpurposen in der Produktübersicht genutzt werden
+- Exactly **one manufacturer** can be assigned to a product
+- The assignment is made in the product screen under **Allgemein** (General) > **Informationen** (Information) > **Hersteller**
+- New manufacturers can be created directly from the product screen (without switching to Kataloge > Hersteller)
+- A manufacturer can be assigned to any number of products
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/produkte/hersteller*
+## 7. Deleting a manufacturer
+
+- Deletion is only possible if the manufacturer is **no longer assigned to any product**
+- First remove all product assignments, then delete
+- Alternatively: duplicating → not needed; simply do not assign the manufacturer to any further product
+
+---
+
+## 8. Tips
+
+- The **Logo** should be uploaded in a format with a transparent background (PNG, SVG), because it is displayed on the product image background
+- The **Beschreibung** can contain Twig syntax and is therefore suitable for dynamic content
+- For SEO-relevant manufacturer pages, the landing page workaround is the recommended method
+- Manufacturers can also be used for internal sorting purposes in the product overview
+
+---
+
+*Source: https://docs.shopware.com/de/shopware-6-de/produkte/hersteller*

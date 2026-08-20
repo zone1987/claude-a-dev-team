@@ -1,36 +1,36 @@
-# Shopware 6 – Kategorien
+# Shopware 6 – Kategorien (Categories)
 
-Kategorien werden unter **Kataloge > Kategorien** in einer Baumstruktur verwaltet.
-Sie steuern Navigation, Produktlisting und Shopseiten.
+Categories are managed under **Kataloge** (Catalogues) **> Kategorien** (Categories) in a tree structure.
+They control navigation, product listings and shop pages.
 
-## Kategorie anlegen
+## Creating a category
 
-1. Kategorien > Kontextmenü der übergeordneten Kategorie
-2. Wählen: **„Neue Subkategorie"** / „Neue Kategorie davor" / „Neue Kategorie danach"
-3. Name eingeben, mit Häkchen bestätigen
-4. Kategorie ist initial **inaktiv** – muss aktiviert werden
+1. Kategorien > context menu of the parent category
+2. Choose: **"Neue Subkategorie" (New subcategory)** / "Neue Kategorie davor" (New category before) / "Neue Kategorie danach" (New category after)
+3. Enter the name and confirm with the check mark
+4. The category is initially **inaktiv** (Inactive) – it has to be activated
 
-## Kategorietypen
+## Category types
 
-| Typ | Verwendung |
+| Type | Use |
 |---|---|
-| Seite/Liste | Produktlisting, Standard-Shopseiten |
-| Strukturierungselement | Nur zur Navigation, kein Inhalt |
-| Link | Verlinkung auf interne/externe Ziele |
+| Seite/Liste (Page/list) | Product listing, standard shop pages |
+| Strukturierungselement (Structuring element) | Navigation only, no content |
+| Link | Link to internal/external targets |
 
-## Wichtige Tabs
+## Important tabs
 
-- **Allgemein** – Name, Typ, Einstiegspunkt, Navigation
-- **Produkte** – Manuelle oder dynamische Produktzuweisung
-- **Layout** – Erlebniswelt zuweisen
-- **SEO** – Meta-Titel, -Beschreibung, URLs
+- **Allgemein** (General) – name, type, entry point, navigation
+- **Produkte** (Products) – manual or dynamic product assignment
+- **Layout** – assign a shopping experience
+- **SEO** – meta title, meta description, URLs
 
-## Landingpages
+## Landing pages
 
-Eigene Seiten ohne Navigation; erreichbar via Verkaufskanal-URL + SEO-URL.
-Verwaltung unterhalb der Kategorieübersicht.
+Standalone pages without navigation; reachable via the sales channel URL + SEO URL.
+Managed below the category overview.
 
-Siehe `CATEGORIES-DETAIL.md` für vollständige Details.
+See `CATEGORIES-DETAIL.md` for full details.
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/kataloge/kategorien

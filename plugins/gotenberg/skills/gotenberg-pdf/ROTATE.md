@@ -1,7 +1,7 @@
-# Gotenberg — PDF Seiten drehen
+# Gotenberg — rotate PDF pages
 
-Dreht alle oder ausgewaehlte Seiten eines PDFs um 90, 180 oder 270 Grad.
-Referenz: `ROTATE-DETAIL.md`
+Rotates all or selected pages of a PDF by 90, 180 or 270 degrees.
+Reference: `ROTATE-DETAIL.md`
 
 Route: `POST /forms/pdfengines/rotate`
-Rueckgabe: PDF (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF (200) | ZIP (multiple inputs) | 400 | 503

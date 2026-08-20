@@ -1,9 +1,9 @@
-# Panther — Vollstandige Interaktions-Referenz
+# Panther — complete interactions reference
 
 ## Contents
 
-- [1. Klick-Methoden](#1-klick-methoden)
-- [2. Formular-Interaktionen](#2-formular-interaktionen)
+- [1. Click methods](#1-click-methods)
+- [2. Form interactions](#2-form-interactions)
 - [3. Form-Objekt — Vollstandige Interaktions-API](#3-form-objekt-vollstandige-interaktions-api)
 - [4. FormField-Klassen — Methoden-Tabellen](#4-formfield-klassen-methoden-tabellen)
 - [5. Mouse-API](#5-mouse-api)
@@ -11,9 +11,9 @@
 - [7. Keyboard-API](#7-keyboard-api)
 - [8. Element-Methoden (WebDriverElement)](#8-element-methoden-webdriverelement)
 - [9. File-Upload (vollstandig)](#9-file-upload-vollstandig)
-- [10. Vollstandiges Interaktions-Beispiel](#10-vollstandiges-interaktions-beispiel)
+- [10. Complete interaction example](#10-complete-interaction-example)
 
-## 1. Klick-Methoden
+## 1. Click methods
 
 ### client->click
 
@@ -24,7 +24,7 @@ public function click(
 ): Crawler
 ```
 
-Klickt auf ein `Link`-Objekt (aus `$crawler->link()`).
+Clicks a `Link` object (from `$crawler->link()`).
 
 ```php
 $link = $crawler->filter('a.next-page')->link();
@@ -37,7 +37,7 @@ $crawler = $client->click($link);
 public function clickLink(string $linkText): Crawler
 ```
 
-Klickt auf einen Link anhand seines Textes.
+Clicks a link by its text.
 
 ```php
 $client->clickLink('Weiter');
@@ -46,13 +46,13 @@ $client->clickLink('Abmelden');
 
 ---
 
-## 2. Formular-Interaktionen
+## 2. Form interactions
 
 ### client->submitForm
 
 ```php
 public function submitForm(
-    string $buttonText,          // Text, id oder name des Submit-Buttons
+    string $buttonText,          // text, id or name of the submit button
     array  $fieldValues  = [],   // Feldbelegung: ['feldname' => 'wert']
     string $method       = null, // HTTP-Methode uberschreiben
     array  $serverParameters = []
@@ -80,7 +80,7 @@ public function submit(
 ): Crawler
 ```
 
-Sendet ein `Form`-Objekt (aus `$crawler->form()`).
+Submits a `Form` object (from `$crawler->form()`).
 
 ```php
 $form = $crawler->selectButton('Bestellen')->form();
@@ -93,7 +93,7 @@ $client->submit($form);
 
 ## 3. Form-Objekt — Vollstandige Interaktions-API
 
-### Felder uber Array-Syntax setzen
+### Setting fields via array syntax
 
 ```php
 $form = $crawler->selectButton('Speichern')->form();
@@ -130,7 +130,7 @@ $form->setValues([
 ### Verschachtelte Arrays (PHP-Formulare)
 
 ```php
-// Formular hat: <input name="multi[]" value="a"> und <input name="multi[]" value="b">
+// The form has: <input name="multi[]" value="a"> and <input name="multi[]" value="b">
 $form->setValues(['multi' => ['x', 'y']]);
 
 // Mit expliziten Indizes
@@ -146,12 +146,12 @@ $form->setValues(['interests' => ['php', 'symfony']]);
 ### Validierung deaktivieren
 
 ```php
-// Auf Form-Ebene (aus Basis-Klasse, funktioniert)
+// At form level (from the base class, works)
 $form->disableValidation();
 ```
 
-Hinweis: `$form['country']->disableValidation()` (auf ChoiceFormField-Ebene) ist in Panther
-NICHT implementiert und wirft `LogicException`. Quelle: `src/DomCrawler/Field/ChoiceFormField.php:disableValidation()`.
+Note: `$form['country']->disableValidation()` (at ChoiceFormField level) in Panther
+is NOT implemented and throws `LogicException`. Source: `src/DomCrawler/Field/ChoiceFormField.php:disableValidation()`.
 
 ---
 
@@ -164,8 +164,8 @@ Zustandig fur: `<input type="text">`, `<input type="email">`, `<input type="numb
 
 | Methode                  | Signatur                       | Beschreibung                      |
 |--------------------------|--------------------------------|-----------------------------------|
-| `setValue`               | `setValue(string $value): void` | Setzt den Feldwert               |
-| `getValue`               | `getValue(): string`           | Liest den aktuellen Wert          |
+| `setValue`               | `setValue(string $value): void` | Sets the field value             |
+| `getValue`               | `getValue(): string`           | Reads the current value           |
 
 ### TextareaFormField
 
@@ -173,8 +173,8 @@ Zustandig fur: `<textarea>`
 
 | Methode     | Signatur                        | Beschreibung              |
 |-------------|---------------------------------|---------------------------|
-| `setValue`  | `setValue(string $value): void` | Setzt den Inhalt           |
-| `getValue`  | `getValue(): string`            | Liest den aktuellen Inhalt |
+| `setValue`  | `setValue(string $value): void` | Sets the content           |
+| `getValue`  | `getValue(): string`            | Reads the current content  |
 
 ### ChoiceFormField
 
@@ -183,11 +183,11 @@ Zustandig fur: `<select>`, `<input type="radio">`, `<input type="checkbox">`
 | Methode       | Signatur                                          | Beschreibung                                    |
 |---------------|---------------------------------------------------|-------------------------------------------------|
 | `select`      | `select(string\|array $value): void`              | Wahlt Option(en)                               |
-| `tick`        | `tick(): void`                                    | Setzt Checkbox = checked                       |
-| `untick`      | `untick(): void`                                  | Setzt Checkbox = unchecked                     |
-| `getValue`    | `getValue(): string\|array`                       | Gibt ausgewahlten Wert / ausgewahlte Werte zuruck |
-| `isDisabled`  | `isDisabled(): bool`                              | True wenn das Feld disabled ist                 |
-| `availableOptionValues` | `availableOptionValues(): array` | Gibt alle verfugbaren Optionswerte als string-Array zuruck |
+| `tick`        | `tick(): void`                                    | Sets checkbox = checked                        |
+| `untick`      | `untick(): void`                                  | Sets checkbox = unchecked                      |
+| `getValue`    | `getValue(): string\|array`                       | Returns the selected value / selected values |
+| `isDisabled`  | `isDisabled(): bool`                              | True if the field is disabled                   |
+| `availableOptionValues` | `availableOptionValues(): array` | Returns all available option values as a string array |
 
 ### FileFormField
 
@@ -195,23 +195,23 @@ Zustandig fur: `<input type="file">`
 
 | Methode       | Signatur                                  | Beschreibung                                                |
 |---------------|-------------------------------------------|-------------------------------------------------------------|
-| `upload`      | `upload(?string $path): void`             | Setzt den absoluten Dateipfad fur den Upload (geerbt)       |
-| `setFilePath` | `setFilePath(string $path): void`         | Setzt Dateipfad direkt via `sendKeys()` auf das Element     |
+| `upload`      | `upload(?string $path): void`             | Sets the absolute file path for the upload (inherited)      |
+| `setFilePath` | `setFilePath(string $path): void`         | Sets the file path directly via `sendKeys()` on the element |
 | `setValue`    | `setValue(?string $value): void`          | Wie `upload`, normalisiert Pfad via `realpath()`            |
-| `getValue`    | `getValue(): array\|string\|null`         | Gibt Upload-Array `['name','type','tmp_name','error','size']` zuruck |
+| `getValue`    | `getValue(): array\|string\|null`         | Returns the upload array `['name','type','tmp_name','error','size']` |
 
-Quelle: `src/DomCrawler/Field/FileFormField.php`
+Source: `src/DomCrawler/Field/FileFormField.php`
 
 ---
 
 ## 5. Mouse-API
 
 `$client->getMouse()` gibt `\Symfony\Component\Panther\WebDriver\WebDriverMouse` zuruck —
-Panthers eigene Klasse, die `BaseWebDriverMouse` wrappt und CSS-Selektor-basierte Hilfsmethoden
-hinzufugt. Alle `*To`-Methoden nehmen einen CSS-Selektor, konvertieren ihn zu Koordinaten und
-delegieren an die zugrundeliegende `BaseWebDriverMouse`.
+Panther's own class, which wraps `BaseWebDriverMouse` and adds CSS-selector-based helper
+methods. All `*To` methods take a CSS selector, convert it to coordinates and
+delegate to the underlying `BaseWebDriverMouse`.
 
-Quelle: `src/WebDriver/WebDriverMouse.php`
+Source: `src/WebDriver/WebDriverMouse.php`
 
 ### clickTo
 
@@ -256,12 +256,12 @@ $client->getMouse()->contextClickTo('#file-icon');
 public function mouseMoveTo(string $cssSelector, mixed $xOffset = null, mixed $yOffset = null): self
 ```
 
-Bewegt die Maus uber ein Element (Hover-Effekte triggern). `$xOffset`/`$yOffset` werden an
-`BaseWebDriverMouse::mouseMove()` weitergegeben (Pixel-Offset relativ zur Element-Mitte).
+Moves the mouse over an element (triggering hover effects). `$xOffset`/`$yOffset` are passed to
+`BaseWebDriverMouse::mouseMove()` (pixel offset relative to the element center).
 
 ```php
 $client->getMouse()->mouseMoveTo('.dropdown-trigger');
-$client->getMouse()->mouseMoveTo('.map', 150, 80); // Offset-Klick
+$client->getMouse()->mouseMoveTo('.map', 150, 80); // Offset click
 $client->waitForVisibility('.dropdown-menu');
 $client->clickLink('Einstellungen');
 ```
@@ -292,7 +292,7 @@ public function mouseMove(WebDriverCoordinates $where, $xOffset = null, $yOffset
 
 ## 6. Drag & Drop
 
-Panther unterstutzt Drag & Drop uber die WebDriverActions-API:
+Panther supports drag & drop via the WebDriverActions API:
 
 ```php
 use Facebook\WebDriver\Interactions\WebDriverActions;
@@ -328,7 +328,7 @@ $actions
 $client->getKeyboard()->sendKeys(string $keys): void
 ```
 
-Sendet Tastatureingaben an das aktuell fokussierte Element.
+Sends keyboard input to the currently focused element.
 
 ```php
 $crawler->filter('input[name=search]')->getElement(0)->click();
@@ -397,7 +397,7 @@ $el = $crawler->filter('#my-input')->getElement(0);
 $el->click(): void
 $el->sendKeys(string $value): self      // Text eingeben
 $el->clear(): self                      // Inhalt loschen
-$el->submit(): void                     // Eltern-Formular abschicken
+$el->submit(): void                     // Submit the parent form
 $el->getText(): string                  // Sichtbarer Text
 $el->getAttribute(string $name): ?string
 $el->isEnabled(): bool
@@ -446,7 +446,7 @@ $el->sendKeys('/path/file2.pdf');
 
 ---
 
-## 10. Vollstandiges Interaktions-Beispiel
+## 10. Complete interaction example
 
 ```php
 use Symfony\Component\Panther\PantherTestCase;
@@ -460,7 +460,7 @@ class ProductTest extends PantherTestCase
         $client = static::createPantherClient();
         $client->request('GET', '/products/new');
 
-        // Formular-Felder befüllen
+        // Fill in the form fields
         $form = $client->getCrawler()->selectButton('Speichern')->form();
         $form['product[name]']->setValue('Neues Produkt');
         $form['product[description]']->setValue("Zeile 1\nZeile 2");
@@ -468,7 +468,7 @@ class ProductTest extends PantherTestCase
         $form['product[active]']->tick();
         $form['product[image]']->upload('/tmp/product.jpg');
 
-        // Hover und Klick
+        // Hover and click
         $client->getMouse()->mouseMoveTo('.help-tooltip');
         $client->waitForVisibility('.tooltip-content');
 
@@ -479,7 +479,7 @@ class ProductTest extends PantherTestCase
                 ->keyUp(null, WebDriverKeys::CONTROL)
                 ->perform();
 
-        // Oder: Formular direkt absenden
+        // Or: submit the form directly
         $client->submit($form);
 
         // Warten auf Erfolgsmeldung
@@ -487,7 +487,7 @@ class ProductTest extends PantherTestCase
         $this->assertSelectorWillExist('.product-detail');
         $this->assertSelectorTextContains('h1', 'Neues Produkt');
 
-        // Screenshot zur Dokumentation
+        // Screenshot for documentation
         $client->takeScreenshot('/tmp/product-saved.png');
     }
 }

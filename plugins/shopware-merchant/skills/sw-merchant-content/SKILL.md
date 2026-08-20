@@ -5,16 +5,16 @@ description: Operating Shopware content: Shopping Experiences, CMS blocks and el
 
 # Shopware content administration
 
-Everything under **Inhalte** — Shopping Experiences (Erlebniswelten), themes and the media manager.
+Everything under **Inhalte** (Content) — Shopping Experiences (Erlebniswelten), themes and the media manager.
 
 ## Reference map
 
-- **[CMS-EXTENSIONS.md](CMS-EXTENSIONS.md)**: Pfad: **Erweiterungen > Meine Erweiterungen > CMS-Erweiterungen**. [CMS-EXTENSIONS-DETAIL](CMS-EXTENSIONS-DETAIL.md).
-- **[CONTENT-OVERVIEW.md](CONTENT-OVERVIEW.md)**: Pfad: **Inhalte**.
-- **[MEDIA.md](MEDIA.md)**: Zentrale Medienbibliothek für alle Medien des Shops: Bilder, Videos, Dokumente, 3D-Modelle. [MEDIA-DETAIL](MEDIA-DETAIL.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: Der Bereich **Inhalte** im Shopware 6 Admin umfasst alle Werkzeuge zur visuellen Gestaltung und Inhaltsverwal…. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
-- **[SHOPPING-EXPERIENCES.md](SHOPPING-EXPERIENCES.md)**: Pfad: **Inhalte > Erlebniswelten**. [SHOPPING-EXPERIENCES-DETAIL](SHOPPING-EXPERIENCES-DETAIL.md).
-- **[THEMES.md](THEMES.md)**: Verwaltung und Konfiguration des visuellen Designs des Storefronts. [THEMES-DETAIL](THEMES-DETAIL.md).
+- **[CMS-EXTENSIONS.md](CMS-EXTENSIONS.md)**: Path: **Erweiterungen** (Extensions) > **Meine Erweiterungen** (My extensions) > **CMS-Erweiterungen** (CMS extensions). [CMS-EXTENSIONS-DETAIL](CMS-EXTENSIONS-DETAIL.md).
+- **[CONTENT-OVERVIEW.md](CONTENT-OVERVIEW.md)**: Path: **Inhalte**.
+- **[MEDIA.md](MEDIA.md)**: Central media library for all of the shop's media: images, videos, documents, 3D models. [MEDIA-DETAIL](MEDIA-DETAIL.md).
+- **[OVERVIEW.md](OVERVIEW.md)**: The **Inhalte** area in the Shopware 6 admin covers all tools for the visual design and content managem…. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
+- **[SHOPPING-EXPERIENCES.md](SHOPPING-EXPERIENCES.md)**: Path: **Inhalte > Erlebniswelten** (Shopping Experiences). [SHOPPING-EXPERIENCES-DETAIL](SHOPPING-EXPERIENCES-DETAIL.md).
+- **[THEMES.md](THEMES.md)**: Management and configuration of the storefront's visual design. [THEMES-DETAIL](THEMES-DETAIL.md).
 
 ## Source
 

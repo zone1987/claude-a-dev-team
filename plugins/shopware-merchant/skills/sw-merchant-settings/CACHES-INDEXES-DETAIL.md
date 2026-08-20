@@ -1,38 +1,38 @@
-# Shopware 6 – Caches & Indizes (vollständige Referenz)
+# Shopware 6 – Caches & Indizes (Caches & indexes) (complete reference)
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/caches-indizes
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/caches-indizes
 
 ---
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Konfigurationsübersicht (Dashboard)](#konfigurationsübersicht-dashboard)
-- [Admin-Aktionen](#admin-aktionen)
-- [Indexer-Übersicht](#indexer-übersicht)
-- [Cache automatisiert leeren](#cache-automatisiert-leeren)
-- [Manuelle Cache-Löschung (Fallback)](#manuelle-cache-löschung-fallback)
-- [Hintergrundwissen](#hintergrundwissen)
+- [Overview](#overview)
+- [Configuration overview (dashboard)](#configuration-overview-dashboard)
+- [Admin actions](#admin-actions)
+- [Indexer overview](#indexer-overview)
+- [Clearing the cache automatically](#clearing-the-cache-automatically)
+- [Manual cache deletion (fallback)](#manual-cache-deletion-fallback)
+- [Background knowledge](#background-knowledge)
 
-## Überblick
+## Overview
 
-**Pfad:** Einstellungen > System > Caches & Indizes  
-**Nur für Self-Hosted** (nicht für SaaS-Umgebungen)  
-**Verfügbar ab:** 6.2.0
+**Path:** Einstellungen (Settings) > System > Caches & Indizes  
+**Self-hosted only** (not for SaaS environments)  
+**Available from:** 6.2.0
 
 ---
 
-## Konfigurationsübersicht (Dashboard)
+## Configuration overview (dashboard)
 
-Das Dashboard zeigt drei Hauptinformationen:
+The dashboard shows three main pieces of information:
 
-| Information | Beschreibung |
+| Information | Description |
 |---|---|
-| Umgebung | Zeigt ob der Shop im „Production"-Modus läuft |
-| HTTP-Cache | Status der HTTP-Cache-Aktivierung |
-| Cache-Adapter | Welcher Adapter verwendet wird |
+| Umgebung (Environment) | Shows whether the shop runs in "Production" mode |
+| HTTP-Cache | Status of the HTTP cache activation |
+| Cache-Adapter | Which adapter is in use |
 
-### Konfiguration via .env
+### Configuration via .env
 ```env
 # HTTP-Cache aktivieren (1) oder deaktivieren (0)
 SHOPWARE_HTTP_CACHE_ENABLED=1
@@ -40,73 +40,73 @@ SHOPWARE_HTTP_CACHE_ENABLED=1
 
 ---
 
-## Admin-Aktionen
+## Admin actions
 
-### Cache aktualisieren
-Löscht zwischengespeicherte Daten für kürzlich geänderte Inhalte (z.B. Theme-, Produktanpassungen).
+### Cache aktualisieren (Refresh cache)
+Deletes cached data for recently changed content (e.g. theme or product adjustments).
 
-### Cache löschen
-Entfernt den **gesamten Cache** ohne anschließendes Aufwärmen.
+### Cache löschen (Clear cache)
+Removes the **entire cache** without warming it up afterwards.
 ```bash
 php bin/console cache:clear
 ```
 
-### Indizes aktualisieren
-Aktualisiert Kategorie-, Produkt- und SEO-URL-Indizes:
+### Indizes aktualisieren (Update indexes)
+Updates the category, product and SEO URL indexes:
 ```bash
 php bin/console dal:refresh:index
 ```
 
 ---
 
-## Indexer-Übersicht
+## Indexer overview
 
-| Indexer | Funktion |
+| Indexer | Function |
 |---|---|
-| `category.indexer` | Kategorieindex mit Subkategorien, Baum, Breadcrumb, SEO-URLs |
-| `customer.indexer` | Suchindex für Kundeneinträge |
-| `landing_page.indexer` | Index für Landingpages mit SEO-URLs |
-| `media.indexer` | Mediendateien und -ordner mit Vererbung |
-| `payment_method.indexer` | Zahlungsarten-Index |
-| `product.indexer` | Umfassender Produktindex: Vererbung, Lagerbestand, Varianten, Kategoriezuweisungen, Preise, Bewertungen, Streams, SEO-URLs |
-| `product_stream.indexer` | Dynamische Produktgruppen |
-| `promotion.indexer` | Rabatte & Aktionen mit Ausschlüssen und Verwendung |
-| `rule.indexer` | Rule-Builder-Regeln und Bedingungen |
-| `sales_channel.indexer` | Verkaufskanäle |
-| `flow.indexer` | Workflow-Flows |
-| `newsletter_recipient.indexer` | Newsletter-Empfänger |
+| `category.indexer` | Category index with subcategories, tree, breadcrumb, SEO URLs |
+| `customer.indexer` | Search index for customer records |
+| `landing_page.indexer` | Index for landing pages with SEO URLs |
+| `media.indexer` | Media files and folders with inheritance |
+| `payment_method.indexer` | Payment method index |
+| `product.indexer` | Comprehensive product index: inheritance, stock, variants, category assignments, prices, reviews, streams, SEO URLs |
+| `product_stream.indexer` | Dynamische Produktgruppen (Dynamic product groups) |
+| `promotion.indexer` | Rabatte & Aktionen (Discounts & promotions) with exclusions and usage |
+| `rule.indexer` | Rule Builder rules and Bedingungen (Conditions) |
+| `sales_channel.indexer` | Verkaufskanäle (Sales channels) |
+| `flow.indexer` | Workflow flows |
+| `newsletter_recipient.indexer` | Newsletter recipients |
 
-### Selektive Indexaktualisierung
-- Indexer aus Dropdown auswählen
-- Methode: „Nur Auswahl aktualisieren" oder „Alle außer Auswahl"
+### Selective index refresh
+- Select an indexer from the dropdown
+- Method: "Nur Auswahl aktualisieren" (Update selection only) or "Alle außer Auswahl" (All except selection)
 
 ---
 
-## Cache automatisiert leeren
+## Clearing the cache automatically
 
-Shopware 6 leert den Cache **nicht automatisch**. Empfehlung:
+Shopware 6 does **not** clear the cache automatically. Recommendation:
 
 ```bash
 php bin/console cache:clear
 php bin/console cache:warmup
 ```
 
-**Best Practice:** Via Cronjob täglich während geringen Traffics (z.B. nachts) ausführen.
+**Best practice:** run this daily via cron job during low traffic (e.g. at night).
 
 ---
 
-## Manuelle Cache-Löschung (Fallback)
+## Manual cache deletion (fallback)
 
-Falls CLI-Befehl fehlschlägt:
+If the CLI command fails:
 ```bash
 rm -rf /path/to/shopware/var/cache/*
 ```
 
 ---
 
-## Hintergrundwissen
+## Background knowledge
 
-| Begriff | Bedeutung |
+| Term | Meaning |
 |---|---|
-| **Cache** | Beschleunigt Anfragen durch gespeicherte Daten |
-| **Index** | Listen von Daten im Textformat für schnelle Suchalgorithmen |
+| **Cache** | Speeds up requests by means of stored data |
+| **Index** | Lists of data in text format for fast search algorithms |

@@ -1,6 +1,6 @@
-# Shopware 6 – Rule Builder (vollständige Referenz)
+# Shopware 6 – Rule Builder (complete reference)
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/regeln
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/regeln
 
 ---
 
@@ -18,176 +18,176 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/regeln
 - [Regeln löschen](#regeln-löschen)
 - [Lernressourcen](#lernressourcen)
 
-## Überblick
+## Überblick (Overview)
 
-**Pfad:** Einstellungen > Automatisierung > Rule Builder
+**Path:** Einstellungen (Settings) > Automatisierung (Automation) > Rule Builder
 
-Ermöglicht die Definition von Regeln zur Individualisierung verschiedener Shop-Features ohne Programmierung.
-
----
-
-## Allgemeine Informationen einer Regel
-
-| Feld | Beschreibung |
-|---|---|
-| Name | Eindeutige Regelbezeichnung |
-| Beschreibung | Optionale Funktionserläuterung |
-| Priorität | Anwendungsreihenfolge (höherer Wert = früher ausgewertet) |
-| Typ | Optional zur Einschränkung von Zuweisungsmöglichkeiten |
-| Tags | Organisationsmerkmale für Suche und Filterung |
+Allows rules to be defined that customise various shop features without programming.
 
 ---
 
-## Bedingungssystem
+## Allgemeine Informationen (General information) of a rule
 
-### Kernkomponenten
-| Komponente | Beschreibung |
+| Feld (Field) | Beschreibung (Description) |
 |---|---|
-| Bedingung | Parameter zum Abfragen (z.B. Lieferland) |
-| Operator | Vergleichsmethode (z.B. Ist, Ist nicht) |
-| Eingabewert | Vergleichskriterium (z.B. Deutschland) |
-| UND-Verknüpfung | Alle Bedingungen müssen erfüllt sein |
-| ODER-Verknüpfung | Mindestens eine Bedingung muss erfüllt sein |
-| Unterbedingungen | Werden automatisch bei Verknüpfungswechsel angelegt |
+| Name | Unique rule name |
+| Beschreibung | Optional explanation of the function |
+| Priorität (Priority) | Order of application (higher value = evaluated earlier) |
+| Typ (Type) | Optional, to restrict assignment options |
+| Tags | Organisational attributes for search and filtering |
 
-### Regeln anlegen
+---
+
+## Condition system
+
+### Core components
+| Komponente (Component) | Beschreibung |
+|---|---|
+| Bedingung (Condition) | Parameter to be queried (e.g. delivery country) |
+| Operator | Comparison method (e.g. Ist, Ist nicht) |
+| Eingabewert (Input value) | Comparison criterion (e.g. Deutschland) |
+| UND-Verknüpfung (AND link) | All conditions must be met |
+| ODER-Verknüpfung (OR link) | At least one condition must be met |
+| Unterbedingungen (Sub-conditions) | Created automatically when the link type changes |
+
+### Creating rules
 1. Einstellungen > Automatisierung > Rule Builder
-2. „Regel erstellen"
-3. Allgemeine Informationen ausfüllen
-4. Mindestens eine Bedingung mit Operator wählen
-5. Eingabewert angeben
-6. Speichern
+2. "Regel erstellen" (Create rule)
+3. Fill in the general information
+4. Select at least one condition with an operator
+5. Enter the input value
+6. Speichern (Save)
 
 ---
 
-## Operatoren
+## Operatoren (Operators)
 
-| Operator | Funktion |
+| Operator | Funktion (Function) |
 |---|---|
-| Mind. eine | Mindestens ein Wert trifft zu |
-| Alle | Alle Werte treffen zu |
-| Gleich | Exakte Übereinstimmung |
-| Ungleich | Keine Übereinstimmung |
-| Ist eine von | Übereinstimmung mit einer von mehreren Optionen |
-| Ist keine von | Keine Übereinstimmung mit einer der Optionen |
-| Größer | Wert größer als Eingabe |
-| Größer gleich | Wert ≥ Eingabe |
-| Kleiner | Wert kleiner als Eingabe |
-| Kleiner gleich | Wert ≤ Eingabe |
+| Mind. eine (At least one) | At least one value applies |
+| Alle (All) | All values apply |
+| Gleich (Equal) | Exact match |
+| Ungleich (Not equal) | No match |
+| Ist eine von (Is one of) | Match with one of several options |
+| Ist keine von (Is none of) | No match with any of the options |
+| Größer (Greater) | Value greater than input |
+| Größer gleich (Greater or equal) | Value ≥ input |
+| Kleiner (Less) | Value less than input |
+| Kleiner gleich (Less or equal) | Value ≤ input |
 
 ---
 
-## Bedingungskategorien
+## Condition categories
 
-### Allgemein
-- Ausgelöst durch Admin-API
-- Datumsbereich, Immer zutreffend
-- Sprache, Steuerdarstellung, Verkaufskanal, Währung
-- Wochentag, Zeitraum
+### Allgemein (General)
+- Triggered by the Admin API
+- Date range, always applies
+- Language, tax display, sales channel, currency
+- Weekday, time period
 
-### Bestellungen
-- Affiliate-Code, Bestellstatus
-- Bestellung mit Dokument / gesendetem Dokument
-- Bestellung mit Tag / Zusatzfeld
-- Kampagnen-Code, Lieferstatus, Zahlungsstatus
-- Vom Administrator erstellt
+### Bestellungen (Orders)
+- Affiliate code, order status
+- Order with document / with sent document
+- Order with tag / custom field
+- Campaign code, delivery status, payment status
+- Created by the administrator
 
-### Kunde
-- Affiliate-Code, Angemeldeter Kunde
-- Angefragte Kundengruppe
-- Anzahl abgeschlossener Bestellungen, Gesamtwert
-- Firmenkunde, Gastbesteller
-- Kundenanrede, Kundenalter, Geburtstag
-- Kundengruppe, Kundennummer
-- Lieferadresse: Bundesland, Land, PLZ, Stadt, Straße
-- Rechnungsadresse: Bundesland, Land, PLZ, Stadt, Straße
-- Zeit seit erster/letzter Anmeldung
-- Zeit seit letzter Bestellung
-- Ist aktiv, Newsletter-Empfänger
-- Mit abweichender Lieferadresse
-- Standard-Zahlungsart, Tag, Zusatzfeld
+### Kunde (Customer)
+- Affiliate code, logged-in customer
+- Requested customer group
+- Number of completed orders, total value
+- Business customer, guest orderer
+- Customer salutation, customer age, birthday
+- Customer group, customer number
+- Shipping address: state, country, postcode, city, street
+- Billing address: state, country, postcode, city, street
+- Time since first/last login
+- Time since last order
+- Is active, newsletter recipient
+- With differing shipping address
+- Default payment method, tag, custom field
 
-### Positionen im Warenkorb
-- Anzahl unterschiedlicher Positionen
-- Position als „neu" markiert / im Abverkauf
-- In dynamischer Produktgruppe / Kategorie
-- Hervorgehoben / versandkostenfrei
-- Durchschnittsbewertung
-- Breite, Einkaufspreis, Erscheinungsdatum, Gewicht, Höhe
-- Hersteller, Lagerbestand, Länge, Steuersatz
-- Prozentuales Preis/Streichpreis-Verhältnis
-- Streichpreis, Tag, Varianten-/Eigenschaftsausprägung
-- Verfügbarer Bestand, Volumen, Zusatzfeld
-- Positionsanzahl, Stückpreis, Zwischensumme
-- Summe aller Einkaufspreise
+### Positionen im Warenkorb (Line items in the cart)
+- Number of different line items
+- Line item marked as "neu" (new) / in clearance sale
+- In dynamic product group / category
+- Highlighted / free of shipping costs
+- Average rating
+- Width, purchase price, release date, weight, height
+- Manufacturer, stock, length, tax rate
+- Percentage price/list price ratio
+- List price, tag, variant/property value
+- Available stock, volume, custom field
+- Line item count, unit price, subtotal
+- Sum of all purchase prices
 
-### Warenkorb
-- Gesamtanzahl aller Produkte (mit optionalem Filter)
-- Gesamtanzahl unterschiedlicher Produkte (mit optionalem Filter)
-- Gesamtgewicht, Gesamtsumme, Gesamtvolumen
-- Summe, Versandkosten
-- Verwendete Versandart, Zahlungsart
+### Warenkorb (Cart)
+- Total quantity of all products (with optional filter)
+- Total number of different products (with optional filter)
+- Total weight, total sum, total volume
+- Sum, shipping costs
+- Shipping method used, payment method
 
-### Marketing & Rabattaktionen
-- Anzahl der Rabatte
-- Rabattaktion, Rabattaktionen mit Aktionscodetyp
-- Zwischensumme aller Rabatte
+### Marketing & Rabattaktionen (Discount promotions)
+- Number of discounts
+- Discount promotion, discount promotions with promotion code type
+- Subtotal of all discounts
 
 ---
 
-## Bedingungen mit optionalem Filter
+## Conditions with an optional filter
 
-| Bedingung | Filtermöglichkeit |
+| Bedingung | Filtermöglichkeit (Filter option) |
 |---|---|
-| Zwischensumme aller Positionen | Nach Kategorie |
-| Gesamtanzahl aller Produkte | Nach Tags |
-| Gesamtanzahl unterschiedlicher Produkte | Nach Streichpreis-Status |
+| Zwischensumme aller Positionen (Subtotal of all line items) | By category |
+| Gesamtanzahl aller Produkte (Total quantity of all products) | By tags |
+| Gesamtanzahl unterschiedlicher Produkte (Total number of different products) | By list price status |
 
 ---
 
-## Zuweisungen (Reiter)
+## Zuweisungen (Assignments) tab
 
-| Bereich | Verwendung |
+| Bereich (Area) | Verwendung (Usage) |
 |---|---|
-| Zahlungsmethoden | Verfügbarkeitsregel |
-| Versandmethoden | Verfügbarkeitsregel |
-| Versandkosten | Berechnungsregel |
-| Promotionen | Verfügbarkeit |
-| Rabatte | Berechnungsregel |
-| Erweiterte Preisgestaltung | Preisregeln |
+| Zahlungsmethoden (Payment methods) | Availability rule |
+| Versandmethoden (Shipping methods) | Availability rule |
+| Versandkosten (Shipping costs) | Calculation rule |
+| Promotionen (Promotions) | Availability |
+| Rabatte (Discounts) | Calculation rule |
+| Erweiterte Preisgestaltung (Advanced pricing) | Price rules |
 | Flow-Definition | Flow Builder |
-| Sichtbarkeit | Dynamic Access |
+| Sichtbarkeit (Visibility) | Dynamic Access |
 
 ---
 
-## Vorschaumodus (ab Plan Rise)
+## Vorschaumodus (Preview mode) (from plan Rise)
 
-- Validiert Bedingungen in Echtzeit anhand ausgewählter Bestellungen
-- Simulierbare Zeitpunkte
-- Kein Einfluss auf Echtdaten
+- Validates conditions in real time against selected orders
+- Points in time can be simulated
+- No effect on live data
 
 ---
 
-## Regeln teilen (ab v6.7.1.0 + Rise Plan)
+## Sharing rules (from v6.7.1.0 + Rise plan)
 
 ### Download
-Kontextmenü → **Download** → JSON-Export mit allen Bedingungen und Operatoren
+Context menu → **Download** → JSON export with all conditions and operators
 
 ### Upload
-Einstellungen > Automatisierung > Rule Builder → **Regel hochladen** → Datei wählen → Upload
+Einstellungen > Automatisierung > Rule Builder → **Regel hochladen** (Upload rule) → choose file → upload
 
-Bei fehlenden Referenzen (Kunden, Kundengruppen, Verkaufskanäle) erfolgt automatische Neuzuweisung.
-
----
-
-## Regeln löschen
-
-Via Kontextmenü → **Löschen**
-
-> **Einschränkung:** Zugewiesene Regeln können nicht gelöscht werden.
+If references are missing (customers, customer groups, sales channels), they are reassigned automatically.
 
 ---
 
-## Lernressourcen
+## Deleting rules
 
-- Interaktiver Lernpfad: https://hub.shopware.com/learn/unit/user-rule-builder
+Via context menu → **Löschen** (Delete)
+
+> **Limitation:** Assigned rules cannot be deleted.
+
+---
+
+## Learning resources
+
+- Interactive learning path: https://hub.shopware.com/learn/unit/user-rule-builder

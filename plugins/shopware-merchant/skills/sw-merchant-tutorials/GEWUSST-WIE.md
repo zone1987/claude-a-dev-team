@@ -1,4 +1,4 @@
-# Shopware 6 — Tutorials: Gewusst-wie
+# Shopware 6 — Tutorials: How-to
 
-Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/gewusst-wie`.
+Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/gewusst-wie`.
 Details in `references/deep/`.

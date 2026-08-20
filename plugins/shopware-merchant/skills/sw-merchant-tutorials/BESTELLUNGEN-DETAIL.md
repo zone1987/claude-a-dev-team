@@ -1,117 +1,117 @@
-# Shopware 6 — Tutorials: Bestellungen (vollständige Referenz)
+# Shopware 6 — Tutorials: Bestellungen (Orders) — complete reference
 
 ---
 
 ## Contents
 
-- [1. Bestellung im Admin anlegen](#1-bestellung-im-admin-anlegen)
-- [2. Bestellungen exportieren](#2-bestellungen-exportieren)
-- [3. Bestellungen mit PayPal](#3-bestellungen-mit-paypal)
+- [1. Creating an order in the admin](#1-creating-an-order-in-the-admin)
+- [2. Exporting orders](#2-exporting-orders)
+- [3. Orders with PayPal](#3-orders-with-paypal)
 
-## 1. Bestellung im Admin anlegen
+## 1. Creating an order in the admin
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/bestellungen/bestellung-im-admin-anlegen  
-**Ab Version:** 6.5.0.0
+**Source:** https://docs.shopware.com/de/shopware-6-de/bestellungen/bestellung-im-admin-anlegen  
+**From version:** 6.5.0.0
 
-### Schritt-für-Schritt
+### Step by step
 
-**Schritt 1 — Kunden auswählen:**
-- Bestellungen > Bestellübersicht > "Bestellung anlegen"
-- Kunden aus der Liste wählen oder direkt im Formular anlegen
+**Step 1 — select a customer:**
+- Bestellungen (Orders) > Bestellübersicht (Order overview) > "Bestellung anlegen" (Create order)
+- Pick a customer from the list or create one directly in the form
 
-**Schritt 2 — Produkte hinzufügen:**
-- Bereich "Produkte" > "Produkt hinzufügen"
-- Preis wird automatisch ermittelt (anpassbar)
-- Standard-Steuersatz wird automatisch zugewiesen
+**Step 2 — add products:**
+- "Produkte" (Products) section > "Produkt hinzufügen" (Add product)
+- The price is determined automatically (adjustable)
+- The default tax rate is assigned automatically
 
-**Schritt 3 — Leere Positionen (für nicht-katalogisierte Produkte):**
-- Dropdown neben "Produkt hinzufügen" > "Leere Position hinzufügen"
-- Name, Bruttopreis, Steuersatz, Menge eingeben
+**Step 3 — empty line items (for products not in the catalogue):**
+- Dropdown next to "Produkt hinzufügen" > "Leere Position hinzufügen" (Add empty line item)
+- Enter name, gross price, tax rate and quantity
 
-**Schritt 4 — Gutschriften:**
-- Dropdown > "Gutschrift hinzufügen"
-- Steuersatz wird automatisch berechnet; Bezeichnung und Betrag eingeben
+**Step 4 — credit notes:**
+- Dropdown > "Gutschrift hinzufügen" (Add credit note)
+- The tax rate is calculated automatically; enter a label and an amount
 
-**Schritt 5 — Optionen konfigurieren:**
-- Automatische Rabattaktionen aktivieren/deaktivieren
-- Bestellsprache festlegen
-- Rabatt-Code eingeben
-- Zahlungsart wählen
-- Rechnungs- und Lieferadresse definieren
-- Versandart und -kosten festlegen
-- Währung auswählen
+**Step 5 — configure options:**
+- Enable/disable automatic discount promotions
+- Set the order language
+- Enter a discount code
+- Choose a payment method
+- Define the billing and delivery address
+- Set the shipping method and shipping costs
+- Select a currency
 
-**Schritt 6 — Speichern:**
-- "Bestellung speichern" → Bestätigungsmail wird automatisch versendet
-- Alle Zahlungs-, Versand- und Bestellinfos im Details-Bereich einsehbar
+**Step 6 — save:**
+- "Bestellung speichern" (Save order) → a confirmation mail is sent automatically
+- All payment, shipping and order information can be viewed in the details section
 
-### Tipps
-- Versandkosten: Doppelklick auf Eintrag zum manuellen Anpassen
-- Position löschen: Checkbox aktivieren + Löschoption
-- PayPal-Zahlung: Kunden können nachträglich über ihr Konto bezahlen
+### Tips
+- Shipping costs: double-click the entry to adjust it manually
+- Deleting a line item: tick the checkbox + delete option
+- PayPal payment: customers can pay later via their account
 
 ---
 
-## 2. Bestellungen exportieren
+## 2. Exporting orders
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen-exportieren  
-**Ab Version:** 6.4.7.0
+**Source:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen-exportieren  
+**From version:** 6.4.7.0
 
-### Schritt 1: Neues Profil erstellen
+### Step 1: create a new profile
 
-Einstellungen > Import/Export > Profile > Neues Profil anlegen.
+Einstellungen (Settings) > Import/Export > Profile > create a new profile.
 
-**Pflichtfelder (ohne diese schlägt der Export fehl):**
+**Mandatory fields (the export fails without them):**
 - `id`
 - `salesChannelId`
 - `orderDateTime`
 - `stateId`
 
-Weitere Felder über Dropdown in der Spalte "Datenbank-Eintrag" hinzufügen. Der Wert in "Name" wird zum Spaltennamen im Export.
+Add further fields via the dropdown in the "Datenbank-Eintrag" (Database entry) column. The value in "Name" becomes the column name in the export.
 
-### Schritt 2: Export starten
+### Step 2: start the export
 
-Profil "Bestellungen" auswählen, Export starten.
+Select the "Bestellungen" profile and start the export.
 
-### Schritt 3: Datei herunterladen
+### Step 3: download the file
 
-Exportierte CSV herunterladen. Empfehlung: OpenOffice (keine ungewollte Formatierung).
+Download the exported CSV. Recommendation: OpenOffice (no unwanted formatting).
 
 ---
 
-## 3. Bestellungen mit PayPal
+## 3. Orders with PayPal
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen-mit-paypal  
-**Ab Version:** 6.3.0.0
+**Source:** https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen-mit-paypal  
+**From version:** 6.3.0.0
 
-### Grundprinzip
+### Basic principle
 
-Zahlung und Bestellung sind **getrennte Entitäten**. Die Bestellung entsteht bei "Zahlungspflichtig bestellen" — unabhängig davon, ob die Zahlung abgeschlossen wird.
+Payment and order are **separate entities**. The order is created on "Zahlungspflichtig bestellen" (Place binding order) — regardless of whether the payment is completed.
 
-### Zahlungsstatus-Erklärungen
+### Payment status explanations
 
-| Status | Ursache |
+| Status | Cause |
 |--------|---------|
-| Abgebrochen | Kunde klickt "Zurück zum Shop" im PayPal-Fenster |
-| Fehlgeschlagen | Zahlung wurde durch Kunden nicht abgeschlossen |
-| Unbestätigt | Bestellung ausgelöst, PayPal erhielt keine Transaktion (Browser-Absturz) |
+| Abgebrochen (Cancelled) | Customer clicks "Zurück zum Shop" (Back to shop) in the PayPal window |
+| Fehlgeschlagen (Failed) | The payment was not completed by the customer |
+| Unbestätigt (Unconfirmed) | Order triggered, PayPal received no transaction (browser crash) |
 
-### Kundenoptionen bei fehlgeschlagener Bestellung
+### Customer options after a failed order
 
-Kunden können im eigenen Konto:
-- Zahlungsart wechseln (leitet zu Checkout) → Bestellstatus: "In Bearbeitung"
-- Bestellung wiederholen (neue Bestellung wird erstellt)
+In their own account, customers can:
+- Change the payment method (redirects to the checkout) → order status: "In Bearbeitung" (In progress)
+- Repeat the order (a new order is created)
 
-### Feldbezeichnungen: Shopware vs. PayPal
+### Field names: Shopware vs. PayPal
 
-| Shopware | PayPal | Bedeutung |
+| Shopware | PayPal | Meaning |
 |----------|--------|-----------|
-| `zahlungs_id` | `order_id` | Eindeutige Bestell-ID |
-| `tracking_id` | `capture_id` / `transaction_id` / `resource_id` | Zahlungs-Tracking |
-| `händler_id` | `merchant_id` / `payer_id` | Händler-Identifikation |
+| `zahlungs_id` | `order_id` | Unique order ID |
+| `tracking_id` | `capture_id` / `transaction_id` / `resource_id` | Payment tracking |
+| `händler_id` | `merchant_id` / `payer_id` | Merchant identification |
 
-Einsehbar unter: Bestellungen > Übersicht > Bestellung > PayPal
+Can be viewed under: Bestellungen > Übersicht (Overview) > Bestellung > PayPal
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen — Stand: 2026-06*
+*Source: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/bestellungen — as of: 2026-06*

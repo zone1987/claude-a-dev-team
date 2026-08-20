@@ -1,26 +1,26 @@
-# Shopware 6 – Medien
+# Shopware 6 – Medien (Media)
 
-Pfad: **Inhalte > Medien**
+Path: **Inhalte** (Content) > **Medien**
 
-Zentrale Medienbibliothek für alle Medien des Shops: Bilder, Videos, Dokumente, 3D-Modelle.
+Central media library for all of the shop's media: images, videos, documents, 3D models.
 
-## Kernfunktionen
+## Core functions
 
-- Dateien hochladen (Upload oder URL)
-- Ordnerstruktur organisieren
-- Metadaten pflegen (Name, Alt-Text, Meta-Titel)
-- Thumbnails konfigurieren
-- KI-Bildgenerierung (kommerziell, ab „Rise")
-- 3D-Modelle betrachten und bearbeiten
+- Upload files (upload or URL)
+- Organise the folder structure
+- Maintain metadata (name, alt text, meta title)
+- Configure thumbnails
+- AI image generation (commercial, from "Rise" upwards)
+- View and edit 3D models
 
-## Unterstützte Dateitypen
+## Supported file types
 
-Bilder: jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps  
+Images: jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps  
 Video: webm, mkv, flv, ogv, ogg, mov, mp4, avi, wmv  
-Dokumente: pdf, txt, doc  
+Documents: pdf, txt, doc  
 Audio: aac, mp3, wav, flac, oga, wma  
 3D: glb
 
-## Schnellreferenz
+## Quick reference
 
-Vollständige Dokumentation: `MEDIA-DETAIL.md`
+Full documentation: `MEDIA-DETAIL.md`

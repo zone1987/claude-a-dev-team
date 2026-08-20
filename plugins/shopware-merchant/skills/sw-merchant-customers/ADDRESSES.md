@@ -1,10 +1,10 @@
-# Shopware 6 – Kundenadressen
+# Shopware 6 – Customer addresses
 
-Vollständige Referenz: `ADDRESSES-DETAIL.md`
+Full reference: `ADDRESSES-DETAIL.md`
 
-## Auf einen Blick
+## At a glance
 
-- Adressen im Admin: Kunden-Detail → Tab „Adressen"
-- Aktionen: Hinzufügen, Bearbeiten, Duplizieren, Löschen
-- Standard-Liefer- und -Rechnungsadresse separat festlegbar
-- Kunden können Adressen auch selbst im Storefront verwalten
+- Addresses in the admin: customer detail → **Adressen** (Addresses) tab
+- Actions: Hinzufügen (Add), Bearbeiten (Edit), Duplizieren (Duplicate), Löschen (Delete)
+- Default shipping and billing address can be set separately
+- Customers can also manage addresses themselves in the storefront

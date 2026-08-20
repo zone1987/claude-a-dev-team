@@ -1,7 +1,7 @@
-# Shopware 6 – Integrationen & API-Zugänge
+# Shopware 6 – Integrationen (Integrations) & API access
 
-Referenz für das Einrichten externer API-Verbindungen.
+Reference for setting up external API connections.
 
-**Pfad:** Einstellungen > System > Integrationen
+**Path:** Einstellungen (Settings) > System > Integrationen
 
-Detaillierte Referenz: [INTEGRATIONS-API-DETAIL.md](INTEGRATIONS-API-DETAIL.md)
+Detailed reference: [INTEGRATIONS-API-DETAIL.md](INTEGRATIONS-API-DETAIL.md)

@@ -1,5 +1,5 @@
 # Shopware Digital Sales Rooms
 
-Interaktive Live-Video-Shopping-Events direkt im Shopware-Shop (Beyond, ab 15.09.22).
+Interactive live video shopping events directly in the Shopware shop (Beyond, from 15.09.22).
 
-<!-- Detaildokumentation: `DIGITAL-SALES-ROOMS-DETAIL.md` -->
+<!-- Detailed documentation: `DIGITAL-SALES-ROOMS-DETAIL.md` -->

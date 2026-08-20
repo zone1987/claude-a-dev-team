@@ -1,5 +1,5 @@
 # Shopware Spatial Commerce
 
-3D-Viewer, Immersive Elements und Scene Editor für dreidimensionale Produktpräsentation (Rise+).
+3D viewer, Immersive Elements and Scene Editor for three-dimensional product presentation (Rise+).
 
-<!-- Detaildokumentation: `SPATIAL-COMMERCE.md` -->
+<!-- Detailed documentation: `SPATIAL-COMMERCE.md` -->

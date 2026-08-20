@@ -1,42 +1,42 @@
-# Shopware 6 – Kataloge: Überblick und Zusammenhänge
+# Shopware 6 – Kataloge (Catalogues): overview and interrelations
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge
+> Source: https://docs.shopware.com/de/shopware-6-de/kataloge
 
 ---
 
 ## Contents
 
-- [1. Was ist der Katalog-Bereich?](#1-was-ist-der-katalog-bereich)
-- [2. Enthaltene Bereiche](#2-enthaltene-bereiche)
-- [3. Abhängigkeitsdiagramm](#3-abhängigkeitsdiagramm)
-- [4. Typischer Workflow: Neues Produkt einrichten](#4-typischer-workflow-neues-produkt-einrichten)
-- [5. Wichtige Grundregeln](#5-wichtige-grundregeln)
-- [6. Verkaufskanal-Verknüpfung](#6-verkaufskanal-verknüpfung)
-- [7. Weiterführende Dokumentation](#7-weiterführende-dokumentation)
+- [1. What is the catalogue area?](#1-what-is-the-catalogue-area)
+- [2. Areas included](#2-areas-included)
+- [3. Dependency diagram](#3-dependency-diagram)
+- [4. Typical workflow: setting up a new product](#4-typical-workflow-setting-up-a-new-product)
+- [5. Important ground rules](#5-important-ground-rules)
+- [6. Sales channel linkage](#6-sales-channel-linkage)
+- [7. Further documentation](#7-further-documentation)
 
-## 1. Was ist der Katalog-Bereich?
+## 1. What is the catalogue area?
 
-Der Bereich **Kataloge** in der Shopware 6 Administration ist das Herzstück der Produktverwaltung. Hier werden alle produktbezogenen Stammdaten angelegt und gepflegt.
+The **Kataloge** (Catalogues) area in the Shopware 6 administration is the heart of product management. This is where all product-related master data is created and maintained.
 
-**Admin-Pfad:** Hauptmenü > Kataloge
+**Admin path:** main menu > Kataloge
 
 ---
 
-## 2. Enthaltene Bereiche
+## 2. Areas included
 
-| Bereich | Admin-Pfad | Funktion |
+| Area | Admin path | Function |
 |---|---|---|
-| **Produkte** | Kataloge > Produkte | Produktanlage, -bearbeitung, Varianten, Preise |
-| **Kategorien** | Kataloge > Kategorien | Navigationsstruktur, Produktzuweisung |
-| **Hersteller** | Kataloge > Hersteller | Hersteller verwalten, Produkten zuweisen |
-| **Eigenschaften** | Kataloge > Eigenschaften | Filterattribute und Variantenbasis |
-| **Dynamische Produktgruppen** | Kataloge > Dynamische Produktgruppen | Regelbasierte Produktgruppen |
-| **Bewertungen** | Kataloge > Bewertungen | Kundenbewertungen moderieren |
-| **Medien** | Inhalte > Medien | Zentrale Dateiverwaltung (technisch nicht unter Kataloge, aber inhaltlich verknüpft) |
+| **Produkte** (Products) | Kataloge > Produkte | Product creation, editing, variants, prices |
+| **Kategorien** (Categories) | Kataloge > Kategorien | Navigation structure, product assignment |
+| **Hersteller** (Manufacturers) | Kataloge > Hersteller | Manage manufacturers, assign them to products |
+| **Eigenschaften** (Properties) | Kataloge > Eigenschaften | Filter attributes and the basis for variants |
+| **Dynamische Produktgruppen** (Dynamic product groups) | Kataloge > Dynamische Produktgruppen | Rule-based product groups |
+| **Bewertungen** (Reviews) | Kataloge > Bewertungen | Moderate customer reviews |
+| **Medien** (Media) | Inhalte (Content) > Medien | Central file management (technically not under Kataloge, but linked in terms of content) |
 
 ---
 
-## 3. Abhängigkeitsdiagramm
+## 3. Dependency diagram
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -66,82 +66,82 @@ BEWERTUNGEN ──→ Produkte (verknüpft)
 
 ---
 
-## 4. Typischer Workflow: Neues Produkt einrichten
+## 4. Typical workflow: setting up a new product
 
-### Vorbereitungsschritte (einmalig)
+### Preparatory steps (one-off)
 
-1. **Eigenschaften anlegen** (Kataloge > Eigenschaften)
-   - Eigenschaftsgruppen mit Ausprägungen definieren
-   - z. B. Größe (XS, S, M, L, XL), Farbe (Rot, Blau, Grün)
+1. **Create properties** (Kataloge > Eigenschaften)
+   - Define property groups with their options
+   - e.g. Größe (Size: XS, S, M, L, XL), Farbe (Colour: Rot, Blau, Grün)
 
-2. **Hersteller anlegen** (Kataloge > Hersteller)
-   - Name, Logo, Website-URL
+2. **Create manufacturers** (Kataloge > Hersteller)
+   - Name, logo, website URL
 
-3. **Kategoriestruktur aufbauen** (Kataloge > Kategorien)
-   - Navigationsbaum definieren
-   - Verkaufskanäle zuweisen
+3. **Build the category structure** (Kataloge > Kategorien)
+   - Define the navigation tree
+   - Assign sales channels
 
-4. **Medien vorbereiten** (Inhalte > Medien)
-   - Produktbilder hochladen
-   - Ordnerstruktur anlegen
+4. **Prepare media** (Inhalte > Medien)
+   - Upload product images
+   - Create the folder structure
 
-### Produktanlage
+### Product creation
 
-5. **Produkt anlegen** (Kataloge > Produkte)
-   - Pflichtfelder: Titel, Produktnummer, Steuersatz, Preise, Lagerbestand
-   - Hersteller zuweisen
-   - Kategorien zuweisen
-   - Bilder aus Medienverwaltung hinzufügen
-   - Eigenschaften zuweisen (für Filter)
-   - Varianten generieren (falls gewünscht)
-   - SEO-Einstellungen vornehmen
-   - Cross-Selling konfigurieren (optional)
+5. **Create the product** (Kataloge > Produkte)
+   - Mandatory fields: Titel (Title), Produktnummer (Product number), Steuersatz (Tax rate), prices, Lagerbestand (Stock)
+   - Assign a manufacturer
+   - Assign categories
+   - Add images from the media management
+   - Assign properties (for filters)
+   - Generate variants (if required)
+   - Configure the SEO settings
+   - Configure cross-selling (optional)
 
 ---
 
-## 5. Wichtige Grundregeln
+## 5. Important ground rules
 
-### Löschen und Auswirkungen
+### Deleting and its consequences
 
-| Aktion | Auswirkung |
+| Action | Consequence |
 |---|---|
-| Eigenschaft löschen | Wird von ALLEN Produkten entfernt |
-| Hersteller löschen | Nur möglich wenn kein Produkt zugewiesen |
-| Kategorie löschen | Alle Unterkategorien werden mitgelöscht |
-| Produkt löschen | Bleibt in bestehenden Bestellungen sichtbar (→ lieber inaktiv schalten) |
-| Medium löschen | Fehlende Bilder im Shop wenn noch verwendet |
+| Delete a property | It is removed from ALL products |
+| Delete a manufacturer | Only possible if no product is assigned |
+| Delete a category | All subcategories are deleted along with it |
+| Delete a product | It stays visible in existing orders (→ better to set it inactive) |
+| Delete a medium | Missing images in the shop if it is still in use |
 
-### Aktivierung
+### Activation
 
-- Neue Kategorien sind initial **inaktiv**
-- Neue Produkte sind initial **aktiv** (wenn kein Verkaufskanal zugewiesen → nicht sichtbar)
-- Bewertungen sind nach Einreichung **nicht sichtbar** (müssen freigegeben werden)
-
----
-
-## 6. Verkaufskanal-Verknüpfung
-
-Der Katalog-Bereich ist eng mit Verkaufskanälen verknüpft:
-
-- Produkte müssen einem Verkaufskanal zugewiesen werden um sichtbar zu sein
-- Kategorien werden als Einstiegspunkt für einen Verkaufskanal festgelegt
-- SEO-URLs können pro Verkaufskanal unterschiedlich konfiguriert werden
-- Preise können je Währung/Kanal variieren
+- New categories are initially **inaktiv** (Inactive)
+- New products are initially **aktiv** (Active) (if no sales channel is assigned → not visible)
+- Reviews are **not visible** after submission (they have to be approved)
 
 ---
 
-## 7. Weiterführende Dokumentation
+## 6. Sales channel linkage
 
-| Thema | Skill |
+The catalogue area is tightly linked to sales channels:
+
+- Products have to be assigned to a sales channel in order to be visible
+- Categories are defined as the entry point for a sales channel
+- SEO URLs can be configured differently per sales channel
+- Prices can vary per currency/channel
+
+---
+
+## 7. Further documentation
+
+| Topic | Skill |
 |---|---|
-| Produkte vollständig verstehen | `sw-merchant-catalog-products` |
-| Kategorien und Navigation | `sw-merchant-catalog-categories` |
-| Hersteller verwalten | `sw-merchant-catalog-manufacturers` |
-| Eigenschaften und Filter | `sw-merchant-catalog-properties` |
-| Dynamische Produktgruppen | `sw-merchant-catalog-product-streams` |
-| Bewertungen moderieren | `sw-merchant-catalog-reviews` |
-| Medienverwaltung | `sw-merchant-catalog-media` |
+| Understanding products in full | `sw-merchant-catalog-products` |
+| Categories and navigation | `sw-merchant-catalog-categories` |
+| Managing manufacturers | `sw-merchant-catalog-manufacturers` |
+| Properties and filters | `sw-merchant-catalog-properties` |
+| Dynamic product groups | `sw-merchant-catalog-product-streams` |
+| Moderating reviews | `sw-merchant-catalog-reviews` |
+| Media management | `sw-merchant-catalog-media` |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/kataloge*
+*Source: https://docs.shopware.com/de/shopware-6-de/kataloge*

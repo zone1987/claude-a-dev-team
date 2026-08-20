@@ -135,7 +135,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/stamp \
   --form stampSource=image \
   --form stampExpression=logo.png \
   --form 'stampOptions={"scale":0.3,"pos":"br","opacity":1}' \
-  -o mit-logo.pdf
+  -o with-logo.pdf
 ```
 
 ### PDF stamp

@@ -1,7 +1,7 @@
 # Shopware 6 – Import / Export
 
-Referenz für CSV-basierte Datenimporte und -exporte.
+Reference for CSV-based data imports and exports.
 
-**Pfad:** Einstellungen > Automatisierung > Import/Export
+**Path:** Einstellungen (Settings) > Automatisierung (Automation) > Import/Export
 
-Detaillierte Referenz: [IMPORT-EXPORT-DETAIL.md](IMPORT-EXPORT-DETAIL.md)
+Detailed reference: [IMPORT-EXPORT-DETAIL.md](IMPORT-EXPORT-DETAIL.md)

@@ -1,7 +1,7 @@
-# Shopware 6 – Zahlungsarten
+# Shopware 6 – Zahlungsarten (Payment methods)
 
-Referenz für die Konfiguration von Zahlungsmethoden.
+Reference for configuring payment methods.
 
-**Pfad:** Einstellungen > Handel > Zahlungsarten
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Zahlungsarten
 
-Detaillierte Referenz: [PAYMENT-METHODS-DETAIL.md](PAYMENT-METHODS-DETAIL.md)
+Detailed reference: [PAYMENT-METHODS-DETAIL.md](PAYMENT-METHODS-DETAIL.md)

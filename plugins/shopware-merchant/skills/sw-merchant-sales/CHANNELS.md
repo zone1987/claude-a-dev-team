@@ -1,33 +1,33 @@
-# Shopware 6 – Verkaufskanäle (Überblick)
+# Shopware 6 – Verkaufskanäle (Sales channels) (Overview)
 
-Verkaufskanäle verbinden die Administration mit der Storefront und weiteren Absatzwegen.
+Verkaufskanäle connect the administration with the storefront and further sales routes.
 
-## Enthaltene Bereiche
+## Included areas
 
-| Bereich | Skill |
+| Area | Skill |
 |---|---|
-| Verkaufskanal anlegen (Typ wählen) | `sw-merchant-sales-channels-create` |
-| Grundeinstellungen / Konfiguration | `sw-merchant-sales-channels-config` |
-| Domains, Sprachen, Währungen | `sw-merchant-sales-channels-domains` |
-| Produkte zuweisen | `sw-merchant-sales-channels-products` |
-| API-Zugang / Access Key | `sw-merchant-sales-channels-api-access` |
+| Create a sales channel (choose type) | `sw-merchant-sales-channels-create` |
+| Basic settings / configuration | `sw-merchant-sales-channels-config` |
+| Domains, languages, currencies | `sw-merchant-sales-channels-domains` |
+| Assign products | `sw-merchant-sales-channels-products` |
+| API access / access key | `sw-merchant-sales-channels-api-access` |
 | Social Shopping | `sw-merchant-sales-channels-social-shopping` |
-| Produktvergleich / Export-Feeds | `sw-merchant-sales-channels-product-comparison` |
+| Product comparison / export feeds | `sw-merchant-sales-channels-product-comparison` |
 | Agentic Commerce Product Feed | `sw-merchant-sales-channels-agentic` |
 
-## Kanal-Typen
+## Channel types
 
-- **Storefront** – HTML-Schaufenster mit Theme, Navigation, Checkout
-- **Headless** – Reine API-Schnittstelle (nie löschen!)
-- **Produktvergleich** – XML/CSV-Feed für Preisportale & Marktplätze
-- **Social Shopping** – Feeds für Facebook, Instagram, Google Shopping, Pinterest
-- **Agentic Commerce** – JSONL-Feed für KI-Plattformen (ab 6.7.10)
+- **Storefront** – HTML shop window with theme, navigation, checkout
+- **Headless** – Pure API interface (never delete!)
+- **Produktvergleich** (Product comparison) – XML/CSV feed for price portals & marketplaces
+- **Social Shopping** – Feeds for Facebook, Instagram, Google Shopping, Pinterest
+- **Agentic Commerce** – JSONL feed for AI platforms (as of 6.7.10)
 
-## Schnelleinstieg
+## Quick start
 
-- Neuen Kanal anlegen: Verkaufskanäle > **+** Symbol
-- Kanal als Favorit markieren: Verkaufskanäle verwalten > Stern-Symbol
+- Create a new channel: Verkaufskanäle > **+** icon
+- Mark a channel as favourite: Verkaufskanäle verwalten (Manage sales channels) > star icon
 
-## Quelle
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele

@@ -1,129 +1,129 @@
-# Shopware 6 – Bestellübersicht: Vollständige Referenz
+# Shopware 6 – Order overview: complete reference
 
 ## Contents
 
-- [Bestellliste (Übersicht)](#bestellliste-übersicht)
-- [Filteroptionen](#filteroptionen)
-- [Listenmenü](#listenmenü)
-- [Bulk-Aktionen (Mehrfachänderung)](#bulk-aktionen-mehrfachänderung)
-- [Status-Übersichten](#status-übersichten)
-- [Quelle](#quelle)
+- [Bestellliste (Order list)](#bestellliste-order-list)
+- [Filter options](#filter-options)
+- [List menu](#list-menu)
+- [Bulk actions (Mehrfachänderung)](#bulk-actions-mehrfachänderung)
+- [State overviews](#state-overviews)
+- [Source](#source)
 
-## Bestellliste (Übersicht)
+## Bestellliste (Order list)
 
-Die Bestellübersicht ist unter **Bestellungen** in der Administration erreichbar.
+The order overview is reachable under **Bestellungen** (Orders) in the administration.
 
-![Bestellübersicht](../../assets/bestellungen-uebersicht.png)
+![Order overview](../../assets/bestellungen-uebersicht.png)
 
-### Listenansicht-Elemente
+### Elements of the list view
 
-| Element | Beschreibung |
+| Element | Description |
 |---|---|
-| „Bestellung anlegen"-Button | Neue manuelle Bestellung erstellen |
-| Spalten-Dropdown | Sichtbarkeit einzelner Tabellenspalten steuern |
-| Kompaktmodus | Platzsparende Ansicht der Listenzeilen |
-| Spaltensortierung | Klick auf Spaltenüberschrift sortiert auf-/absteigend |
-| Filterbereich | 15+ Filterkriterien kombinierbar |
+| "Bestellung anlegen" (Create order) button | Create a new manual order |
+| Column dropdown | Control the visibility of individual table columns |
+| Compact mode | Space-saving view of the list rows |
+| Column sorting | Clicking a column heading sorts ascending/descending |
+| Filter area | 15+ filter criteria, combinable |
 
 ---
 
-## Filteroptionen
+## Filter options
 
 ![Filter](../../assets/bestellungen-filter.png)
 
-Folgende Filterkriterien stehen zur Verfügung (Kombination möglich):
+The following filter criteria are available (they can be combined):
 
-| Filter | Werte / Hinweis |
+| Filter | Values / note |
 |---|---|
-| Affiliate-Code | Freitext |
-| Kampagnen-Code | Freitext |
-| Dokumente | Mit / Ohne Anhang |
-| Bestelldatum | Datumsbereich (von–bis) |
-| Bestellstatus | Offen, In Bearbeitung, Abgeschlossen, Storniert, Abgelehnt, Ausstehende Freigabe |
-| Zahlungsstatus | 12 Varianten: Bezahlt, Offen, Erstattet, Teilweise bezahlt, Teilweise erstattet, Genehmigt, Erinnerung zugeschickt, Beauftragt, Fehlgeschlagen, Storniert, In Bearbeitung, Widerrufen |
-| Lieferstatus | Geliefert, Teilweise geliefert, Offen, Teilretoure, Retoure, Storniert |
-| Zahlungsart | Aus konfigurierten Zahlungsarten wählen |
-| Versandart | Aus konfigurierten Versandarten wählen |
-| Verkaufskanal | Alle aktiven Verkaufskanäle |
-| Rechnungsland | Länderliste |
-| Lieferland | Länderliste |
-| Kundengruppe | Alle angelegten Kundengruppen |
-| Tags | Vergebene Bestell-Tags |
-| Produkte | Suche nach enthaltenen Produkten |
+| Affiliate-Code (Affiliate code) | Free text |
+| Kampagnen-Code (Campaign code) | Free text |
+| Dokumente (Documents) | With / without attachment |
+| Bestelldatum (Order date) | Date range (from–to) |
+| Bestellstatus (Order state) | Offen (Open), In Bearbeitung (In progress), Abgeschlossen (Completed), Storniert (Cancelled), Abgelehnt (Rejected), Ausstehende Freigabe (Pending approval) |
+| Zahlungsstatus (Payment state) | 12 variants: Bezahlt (Paid), Offen, Erstattet (Refunded), Teilweise bezahlt (Partially paid), Teilweise erstattet (Partially refunded), Genehmigt (Authorised), Erinnerung zugeschickt (Reminded), Beauftragt (In progress/ordered), Fehlgeschlagen (Failed), Storniert, In Bearbeitung, Widerrufen (Chargeback) |
+| Lieferstatus (Delivery state) | Geliefert (Shipped), Teilweise geliefert (Partially shipped), Offen, Teilretoure (Partial return), Retoure (Return), Storniert |
+| Zahlungsart (Payment method) | Choose from the configured payment methods |
+| Versandart (Shipping method) | Choose from the configured shipping methods |
+| Verkaufskanal (Sales channel) | All active sales channels |
+| Rechnungsland (Billing country) | Country list |
+| Lieferland (Shipping country) | Country list |
+| Kundengruppe (Customer group) | All customer groups that have been created |
+| Tags | Order tags that have been assigned |
+| Produkte (Products) | Search by the products contained |
 
 ---
 
-## Listenmenü
+## List menu
 
-![Listenmenü](../../assets/bestellungen-menue.png)
+![List menu](../../assets/bestellungen-menue.png)
 
-Über das Aktionsmenü (drei Punkte) je Zeile oder per Checkbox-Auswahl sind Einzelaktionen verfügbar: Bestellung öffnen, bearbeiten, löschen.
+Via the action menu (three dots) on each row or via checkbox selection, single actions are available: open, edit or delete the order.
 
 ---
 
-## Bulk-Aktionen (Mehrfachänderung)
+## Bulk actions (Mehrfachänderung)
 
-![Mehrfachänderung](../../assets/mehrfachaenderung.png)
+![Bulk edit](../../assets/mehrfachaenderung.png)
 
-### Auswahl
+### Selection
 
-- Einzelne Bestellungen per Checkbox selektieren
-- Alle sichtbaren Bestellungen per Kopf-Checkbox auswählen
-- Seitenübergreifende Auswahl möglich
-- **Maximum: 1.000 Bestellungen pro Batch**
-- Auswahlzähler wird eingeblendet
-- Abwahl-Option für seitenübergreifende Selektionen
+- Select individual orders via checkbox
+- Select all visible orders via the header checkbox
+- Selection across pages is possible
+- **Maximum: 1,000 orders per batch**
+- A selection counter is displayed
+- Deselect option for selections spanning multiple pages
 
-### Verfügbare Bulk-Operationen
+### Available bulk operations
 
-#### Statusänderungen
+#### State changes
 
-Gleichzeitige Änderung von:
+Simultaneous change of:
 - Zahlungsstatus
 - Lieferstatus
 - Bestellstatus
 
-Optionen:
-- E-Mail-Benachrichtigung an Kunden (Toggle)
-- Dokument mitsenden (wenn E-Mail aktiv)
-- **„Bereits versendete Dokumente überspringen"**: Verhindert doppelten Dokumentversand
+Options:
+- E-mail notification to the customer (toggle)
+- Send a document along (if e-mail is active)
+- **"Bereits versendete Dokumente überspringen" (Skip already sent documents)**: prevents sending documents twice
 
-> **Hinweis:** Statusübergänge unterliegen Validierungsregeln – inkompatible Übergänge über mehrere Bestellungen werden abgefangen.
+> **Note:** State transitions are subject to validation rules – incompatible transitions across several orders are intercepted.
 
-#### Dokumente stapelweise erstellen
+#### Creating documents in batches
 
-| Dokument | Besonderheit |
+| Document | Particularity |
 |---|---|
-| Rechnung | Datum pflichtpflichtig; automatische Nummernvergabe |
-| Stornorechnung | Referenziert automatisch vorherige Rechnungsnummer |
-| Lieferschein | Datum + Kommentar optional |
-| Gutschrift | Nur wenn Gutschrift-Positionen in der Bestellung vorhanden |
+| Rechnung (Invoice) | Date is mandatory; numbers are assigned automatically |
+| Stornorechnung (Cancellation invoice) | Automatically references the preceding invoice number |
+| Lieferschein (Delivery note) | Date + comment optional |
+| Gutschrift (Credit note) | Only if credit note line items exist in the order |
 
-- Sammelseitige PDF-Download möglich (Bestellungen werden zu einer PDF zusammengeführt)
-- Duplikatprüfung: bereits vorhandene Dokumente werden übersprungen
+- Collective PDF download is possible (the orders are merged into a single PDF)
+- Duplicate check: documents that already exist are skipped
 
-#### Flow-Ausführungssteuerung
+#### Controlling flow execution
 
-Toggle **„Flows auslösen"**: Verhindert doppelte Ausführung von Automatisierungsregeln bei Bulk-Operationen.
+Toggle **"Flows auslösen" (Trigger flows)**: prevents automation rules from being executed twice during bulk operations.
 
 ---
 
-## Status-Übersichten
+## State overviews
 
-Die folgenden Status-Diagramme zeigen erlaubte Übergänge:
+The following state diagrams show the permitted transitions:
 
-### Bestellstatus-Übergänge
-Offen → In Bearbeitung → Abgeschlossen oder Storniert
+### Bestellstatus transitions
+Offen → In Bearbeitung → Abgeschlossen or Storniert
 
-### Zahlungsstatus-Übergänge
-Offen → Bezahlt / Fehlgeschlagen / Erstattet (je nach Zahlungsart)
+### Zahlungsstatus transitions
+Offen → Bezahlt / Fehlgeschlagen / Erstattet (depending on the payment method)
 
-### Lieferstatus-Übergänge
+### Lieferstatus transitions
 Offen → Geliefert → Retoure / Teilretoure
 
-> **Stornierung**: Erst wenn der **Bestellstatus** auf „Storniert" gesetzt wird, werden reservierte Lagerbestände wieder freigegeben. Die alleinige Änderung von Zahlungs- oder Lieferstatus auf „Storniert" genügt nicht.
+> **Cancellation**: Only when the **Bestellstatus** is set to "Storniert" are reserved stock levels released again. Setting only the payment or delivery state to "Storniert" is not sufficient.
 
 ---
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht

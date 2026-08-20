@@ -1,91 +1,91 @@
-# Shopware in der Cloud — Überblick & Vergleich
+# Shopware in der Cloud (Shopware in the cloud) — Overview & comparison
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/in-der-cloud
+**Source**: https://docs.shopware.com/de/shopware-6-de/in-der-cloud
 
 ---
 
-## Die zwei Cloud-Optionen
+## The two cloud options
 
 ### SaaS (Software as a Service)
 
-> „eine cloud-basierte Lösung, bei der Shopware die gesamte Infrastruktur verwaltet."
+> "a cloud-based solution in which Shopware manages the entire infrastructure."
 
-**Merkmale:**
-- Vollständig von Shopware verwaltet und gehostet
-- Standardisierte Lösung ohne individuelle Serverkonfiguration
-- Automatische Updates (Shopware aktualisiert automatisch)
-- Keine eigene Serverinfrastruktur erforderlich
-- Drei Pläne: **Rise**, **Evolve**, **Beyond**
-- Abrechnung monatlich per PayPal
-- Einstieg: 30-tägige Testphase
+**Characteristics:**
+- Fully managed and hosted by Shopware
+- Standardised solution without individual server configuration
+- Automatic updates (Shopware updates automatically)
+- No server infrastructure of your own required
+- Three plans: **Rise**, **Evolve**, **Beyond**
+- Billed monthly via PayPal
+- Entry point: 30-day trial phase
 
-**Geeignet für:** Händler die schnell starten wollen ohne technischen Overhead.
+**Suitable for:** merchants who want to start quickly without technical overhead.
 
-**Dokumentation:** `docs.shopware.com/de/shopware-6-de/saas`
+**Documentation:** `docs.shopware.com/de/shopware-6-de/saas`
 
 ---
 
 ### PaaS (Platform as a Service)
 
-> „bietet mehr Flexibilität als die SaaS-Variante"
+> "offers more flexibility than the SaaS variant"
 
-**Merkmale:**
-- Shopware hostet die Infrastruktur, Betreiber hat mehr Kontrolle
-- Individuelle Anpassungen und Konfigurationen möglich
-- Höhere technische Eigenverantwortung
-- Richtet sich an Betreiber mit technischem Know-how
-- Support über `console.shopware.com`
+**Characteristics:**
+- Shopware hosts the infrastructure, the operator has more control
+- Individual customisations and configurations possible
+- Higher technical responsibility on your side
+- Aimed at operators with technical know-how
+- Support via `console.shopware.com`
 
-**Geeignet für:** Agenturen und technisch versierte Händler mit individuellen Anforderungen.
+**Suitable for:** agencies and technically experienced merchants with individual requirements.
 
-**Dokumentation:** Hauptsächlich in der **Entwicklerdokumentation:**
+**Documentation:** primarily in the **developer documentation:**
 `https://developer.shopware.com/docs/products/paas/`
 
 ---
 
-## Vergleich: SaaS vs. PaaS vs. Self-hosted
+## Comparison: SaaS vs. PaaS vs. self-hosted
 
-| Kriterium | SaaS | PaaS | Self-hosted |
+| Criterion | SaaS | PaaS | Self-hosted |
 |---|---|---|---|
-| Infrastruktur | Shopware komplett | Shopware (konfigurierbar) | Eigener Server |
-| Updates | Automatisch durch Shopware | Konfigurierbar | Manuell |
-| Anpassbarkeit | Standardisiert | Hoch (mit tech. Wissen) | Vollständig |
-| Serveradministration | Keine | Teilweise | Vollständig |
-| Technischer Aufwand | Gering | Mittel | Hoch |
-| Zielgruppe | Händler ohne IT | Tech-versierte Händler/Agenturen | Entwickler |
+| Infrastructure | Shopware, completely | Shopware (configurable) | Your own server |
+| Updates | Automatic, by Shopware | Configurable | Manual |
+| Customisability | Standardised | High (with tech. knowledge) | Complete |
+| Server administration | None | Partly | Complete |
+| Technical effort | Low | Medium | High |
+| Target group | Merchants without IT | Tech-savvy merchants/agencies | Developers |
 
-Weiterführender Vergleich: `https://www.shopware.com/de/news/saas-paas-oder-self-hosted-welche-loesung-passt-am-besten-zu-deinem-business/`
-
----
-
-## PaaS Support-Tickets
-
-**Zugang:** `console.shopware.com` > Benutzer-Dropdown > „Support"
-
-### Ticket-Status
-| Status | Bedeutung |
-|---|---|
-| **Open** | Wird in Kürze bearbeitet |
-| **On-Hold** | Ein Kollege arbeitet bereits daran |
-| **Solved** | Erfolgreich gelöst |
-| **Closed** | Geschlossen |
-
-### Ticket erstellen — Felder
-
-| Feld | Beschreibung |
-|---|---|
-| **Project (1)** | PaaS-Projekt auswählen |
-| **Select category (2)** | Ticketkategorie |
-| **Select priority (3)** | Prioritätsstufe |
-| **Ticket subject (4)** | Aussagekräftiger Titel |
-| **Description (5)** | Anfrage/Problem-Beschreibung |
-| **Attach file (6)** | Bilder oder Logs anhängen |
-| **Environment (7)** | Betroffene Umgebung |
-| **Affected URL (8)** | Domain eintragen |
-| **Submit (9)** | Ticket erstellen |
-
-**Ticket abschließen:** „Solve Ticket (1)" im Ticket-Detail anklicken.
+Further comparison: `https://www.shopware.com/de/news/saas-paas-oder-self-hosted-welche-loesung-passt-am-besten-zu-deinem-business/`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/in-der-cloud | https://docs.shopware.com/de/shopware-6-de/paas | https://docs.shopware.com/de/shopware-6-de/paas/support*
+## PaaS support tickets
+
+**Access:** `console.shopware.com` > user dropdown > "Support"
+
+### Ticket status
+| Status | Meaning |
+|---|---|
+| **Open** | Will be processed shortly |
+| **On-Hold** | A colleague is already working on it |
+| **Solved** | Successfully solved |
+| **Closed** | Closed |
+
+### Creating a ticket — fields
+
+| Field | Description |
+|---|---|
+| **Project (1)** | Select the PaaS project |
+| **Select category (2)** | Ticket category |
+| **Select priority (3)** | Priority level |
+| **Ticket subject (4)** | Meaningful title |
+| **Description (5)** | Description of the request/problem |
+| **Attach file (6)** | Attach images or logs |
+| **Environment (7)** | Affected environment |
+| **Affected URL (8)** | Enter the domain |
+| **Submit (9)** | Create the ticket |
+
+**Closing a ticket:** click "Solve Ticket (1)" in the ticket detail view.
+
+---
+
+*Source: https://docs.shopware.com/de/shopware-6-de/in-der-cloud | https://docs.shopware.com/de/shopware-6-de/paas | https://docs.shopware.com/de/shopware-6-de/paas/support*

@@ -1,154 +1,154 @@
-# Shopware B2B Components – Vollständige Dokumentation
+# Shopware B2B Components – Complete documentation
 
 ## Contents
 
-- [Überblick](#überblick)
+- [Overview](#overview)
 - [Feature 1: Angebots-Management (Quote Management)](#feature-1-angebots-management-quote-management)
 - [Feature 2: Mitarbeiterverwaltung (Employee Management)](#feature-2-mitarbeiterverwaltung-employee-management)
 - [Feature 3: Bestellgenehmigungen (Order Approvals)](#feature-3-bestellgenehmigungen-order-approvals)
 - [Feature 4: Organisationseinheiten (Organizational Units)](#feature-4-organisationseinheiten-organizational-units)
-- [Feature 5: Erweiterte Produktkataloge](#feature-5-erweiterte-produktkataloge)
+- [Feature 5: Extended product catalogues](#feature-5-extended-product-catalogues)
 - [Feature 6: Budgets](#feature-6-budgets)
-- [Feature 7: B2B Kundenspezifische Preise](#feature-7-b2b-kundenspezifische-preise)
+- [Feature 7: B2B customer-specific prices](#feature-7-b2b-customer-specific-prices)
 - [Feature 8: Schnell-Bestellungen (Quick Orders)](#feature-8-schnell-bestellungen-quick-orders)
 - [Feature 9: Einkaufslisten (Shopping Lists)](#feature-9-einkaufslisten-shopping-lists)
-- [Feature 10: Sales Agent (Außendienst)](#feature-10-sales-agent-außendienst)
-- [Aktivierungsübersicht](#aktivierungsübersicht)
+- [Feature 10: Sales Agent (field sales)](#feature-10-sales-agent-field-sales)
+- [Activation overview](#activation-overview)
 
-## Überblick
+## Overview
 
-Die B2B Components sind ein Set von Funktionalitäten für den B2B-Handel in Shopware 6. Sie aktivieren essentielle B2B-Workflows über die Shopware Commercial Extension.
+The B2B Components are a set of functionalities for B2B trade in Shopware 6. They activate essential B2B workflows through the Shopware Commercial extension.
 
-**Verfügbarkeit:** Evolve-Plan und höher
-**Aktivierung:** Einzeln pro Kunde oder über Kundengruppen-Registrierungsformulare
+**Availability:** Evolve plan and higher
+**Activation:** Individually per customer or via customer group registration forms
 
-### B2B für einzelne Kunden aktivieren
-Pfad: Kunden → Übersicht → Kunde auswählen → B2B-Bereich → Aktivieren
+### Activating B2B for individual customers
+Path: Kunden (Customers) → Übersicht (Overview) → select the customer → B2B area → Aktivieren (Activate)
 
-### B2B für Kundengruppen aktivieren
-Pfad: Einstellungen → Kunden → Kundengruppen → Registrierungsformular mit B2B-Option
+### Activating B2B for customer groups
+Path: Einstellungen (Settings) → Kunden → Kundengruppen (Customer groups) → registration form with the B2B option
 
 ---
 
 ## Feature 1: Angebots-Management (Quote Management)
 
-**Verfügbar ab:** Evolve-Plan
+**Available from:** Evolve plan
 
 ### Workflow
-1. Kunden befüllen den Warenkorb und fordern ein Angebot an
-2. Händler sieht die Anfrage unter: Bestellungen → Angebote
-3. Händler überprüft und antwortet mit:
-   - Individuellen Preisen oder Rabatten
-   - Optionalem Ablaufdatum
-4. Kunden erhalten das Angebot und können es annehmen/ablehnen
+1. Customers fill the cart and request a quote
+2. The merchant sees the request under: Bestellungen (Orders) → Angebote (Quotes)
+3. The merchant reviews it and replies with:
+   - Individual prices or discounts
+   - An optional expiry date
+4. Customers receive the quote and can accept/decline it
 
-### Für Sales Agent
-Außendienstmitarbeiter können über die Sales Agent App Angebote erstellen:
-- Allgemeine Infos: Kundenwahl, Verkaufskanal
-- Positionen: Produkte hinzufügen mit Standard- und Sonderpreisen
-- Rabatte: Absolut oder prozentual
-- Dokumente: Auto-PDF oder Upload
-- Sendungseinstellungen: Ablaufdatum, persönliche Nachricht
+### For the Sales Agent
+Field sales staff can create quotes through the Sales Agent app:
+- General info: customer choice, Verkaufskanal (Sales channel)
+- Positionen (Line items): add products with standard and special prices
+- Discounts: absolute or percentage
+- Documents: auto-PDF or upload
+- Dispatch settings: expiry date, personal message
 
 ---
 
 ## Feature 2: Mitarbeiterverwaltung (Employee Management)
 
-**Verfügbar ab:** Shopware 6.5.6.0 (Evolve+)
+**Available from:** Shopware 6.5.6.0 (Evolve+)
 
-### Funktionsumfang
-- Unternehmen registrieren Mitarbeiter im B2B-Bereich
-- Rollen zuweisen mit spezifischen Berechtigungen:
-  - Mitarbeiterverwaltung
-  - Rollenverwaltung
-  - Bestellungen
+### Scope of functions
+- Companies register employees in the B2B area
+- Assign roles with specific permissions:
+  - Employee management
+  - Role management
+  - Orders
 
-### Mitarbeiter-Rollen
-Administratoren legen Rollen fest und bestimmen, welche Aktionen Mitarbeiter ausführen dürfen.
+### Employee roles
+Administrators define roles and determine which actions employees are allowed to perform.
 
-**Pfad im Admin:** Kunden → B2B → Mitarbeiter
+**Path in the admin:** Kunden → B2B → Mitarbeiter (Employees)
 
 ---
 
 ## Feature 3: Bestellgenehmigungen (Order Approvals)
 
-**Verfügbar ab:** Shopware 6.5.8.0 (Evolve+)
+**Available from:** Shopware 6.5.8.0 (Evolve+)
 
-### Funktionsweise
-1. Händler erstellt Genehmigungsregeln je Rolle
-2. Regel definiert: Wer muss Bestellungen genehmigen? Unter welchen Bedingungen?
-   - Beispiel: Bestellwert über 1.000 € benötigt Manager-Genehmigung
-   - Beispiel: Bestimmte Versandmethoden benötigen Freigabe
-3. Bestellung wird bei Genehmigungspflicht pausiert
-4. Genehmigender Mitarbeiter erhält Benachrichtigung und kann freigeben/ablehnen
+### How it works
+1. The merchant creates approval rules per role
+2. The rule defines: who has to approve orders? Under which conditions?
+   - Example: an order value above 1,000 € requires manager approval
+   - Example: certain shipping methods require a release
+3. The order is paused when approval is required
+4. The approving employee receives a notification and can release/decline it
 
 ---
 
 ## Feature 4: Organisationseinheiten (Organizational Units)
 
-**Verfügbar ab:** Evolve+
+**Available from:** Evolve+
 
-### Anwendungsfälle
-- Multi-Standort-Unternehmen (z.B. Filialen)
-- Bildungseinrichtungen mit Abteilungen
-- Konzerne mit Tochtergesellschaften
+### Use cases
+- Multi-site companies (e.g. branches)
+- Educational institutions with departments
+- Groups with subsidiaries
 
-### Funktionen je Einheit
-- Eigene Bestellhistorie
-- Separate Lieferadressen
-- Eigene Benutzer und Rollen
-- Unabhängige Budget-Verwaltung
+### Functions per unit
+- Its own order history
+- Separate delivery addresses
+- Its own users and roles
+- Independent budget management
 
 ---
 
-## Feature 5: Erweiterte Produktkataloge
+## Feature 5: Extended product catalogues
 
-**Verfügbar ab:** Evolve+
+**Available from:** Evolve+
 
-Händler können die Sichtbarkeit von Produktkategorien je Organisationseinheit einschränken:
-- Im Storefront: Produkte nur für bestimmte Einheiten sichtbar
-- Im Admin: Kategorien für bestimmte Einheiten freigeben/sperren
+Merchants can restrict the visibility of product categories per organizational unit:
+- In the storefront: products visible only for certain units
+- In the admin: release/block categories for certain units
 
 ---
 
 ## Feature 6: Budgets
 
-**Verfügbar ab:** Shopware 6.7.4.0 (Evolve+)
+**Available from:** Shopware 6.7.4.0 (Evolve+)
 
-### Konfiguration
-- Ausgabelimits für Organisationseinheiten festlegen
-- Automatische Erneuerungsoptionen (täglich/monatlich/jährlich)
-- Benachrichtigungen bei Schwellenwert-Annäherung
+### Configuration
+- Set spending limits for organizational units
+- Automatic renewal options (daily/monthly/yearly)
+- Notifications when a threshold is approached
 
-### Verhalten
-- Mitarbeiter können nicht über ihr Budget hinaus bestellen
-- Genehmiger können Budget-Überschreitungen manuell freigeben
+### Behaviour
+- Employees cannot order beyond their budget
+- Approvers can manually release budget overruns
 
 ---
 
-## Feature 7: B2B Kundenspezifische Preise
+## Feature 7: B2B customer-specific prices
 
-**Verfügbar ab:** Shopware 6.7.8.0 (Evolve+)
+**Available from:** Shopware 6.7.8.0 (Evolve+)
 
-Prozentuale, fixe oder gestaffelte Rabatte basierend auf:
-- Zugewiesene Regeln für Organisationseinheiten
-- Kunden-Tags
+Percentage, fixed or tiered discounts based on:
+- Rules assigned to organizational units
+- Customer tags
 
-**Wichtig:** Dies ist die B2B-interne Variante. Die vollständige kundenspezifische Preisgestaltung per API ist ein Beyond-Feature (→ `sw-merchant-commercial-custom-pricing`).
+**Important:** This is the B2B-internal variant. Full customer-specific pricing via API is a Beyond feature (→ `sw-merchant-commercial-custom-pricing`).
 
 ---
 
 ## Feature 8: Schnell-Bestellungen (Quick Orders)
 
-**Verfügbar ab:** Evolve+
+**Available from:** Evolve+
 
-Beschleunigter Bestellprozess für wiederkehrende B2B-Käufer:
+Accelerated ordering process for recurring B2B buyers:
 
-**Methode 1: Produktnummer-Suche**
-- Kunden geben Produktnummern direkt ein
-- System ergänzt Produktname und Preis automatisch
+**Method 1: product number search**
+- Customers enter product numbers directly
+- The system completes product name and price automatically
 
-**Methode 2: CSV-Upload**
+**Method 2: CSV upload**
 ```
 product_number,quantity
 SW-100,5
@@ -156,52 +156,52 @@ SW-200,10
 SW-300,2
 ```
 
-Beide Methoden leiten direkt in den Warenkorb weiter.
+Both methods forward directly into the cart.
 
 ---
 
 ## Feature 9: Einkaufslisten (Shopping Lists)
 
-**Verfügbar ab:** Evolve+
+**Available from:** Evolve+
 
-### Kunden-Einkaufslisten
-- Kunden erstellen persönliche Listen für häufige Käufe
-- Listen können gespeichert, benannt und verwaltet werden
-- Direkt in Warenkorb übernehmbar
+### Customer shopping lists
+- Customers create personal lists for frequent purchases
+- Lists can be saved, named and managed
+- Can be transferred into the cart directly
 
-### Vorkonfigurierte Listen (Händler)
-- Händler erstellen Listen für spezifische Anwendungsfälle
-- Zur Verfügung stellen für Kundengruppen oder Einzelkunden
-- Beispiel: „Standard-Bürobedarf" für Firmenkunden
-
----
-
-## Feature 10: Sales Agent (Außendienst)
-
-Separater Skill: `sw-merchant-commercial-sales-agent`
-
-Die Sales Agent App ermöglicht Außendienstmitarbeitern:
-- Kundendaten einsehen und verwalten
-- Bestellungen direkt für Kunden erstellen
-- Angebote erstellen und versenden
+### Pre-configured lists (merchant)
+- Merchants create lists for specific use cases
+- Make them available to customer groups or individual customers
+- Example: "Standard-Bürobedarf" (standard office supplies) for corporate customers
 
 ---
 
-## Aktivierungsübersicht
+## Feature 10: Sales Agent (field sales)
 
-| Feature | Plan | Mindestversion |
+Separate skill: `sw-merchant-commercial-sales-agent`
+
+The Sales Agent app enables field sales staff to:
+- View and manage customer data
+- Create orders directly for customers
+- Create and send quotes
+
+---
+
+## Activation overview
+
+| Feature | Plan | Minimum version |
 |---|---|---|
 | Angebots-Management | Evolve+ | 6.5.x |
 | Mitarbeiterverwaltung | Evolve+ | 6.5.6.0 |
 | Bestellgenehmigungen | Evolve+ | 6.5.8.0 |
 | Organisationseinheiten | Evolve+ | 6.5.x |
-| Erweiterte Produktkataloge | Evolve+ | 6.5.x |
+| Extended product catalogues | Evolve+ | 6.5.x |
 | Budgets | Evolve+ | 6.7.4.0 |
-| B2B Kundenpreise | Evolve+ | 6.7.8.0 |
+| B2B customer prices | Evolve+ | 6.7.8.0 |
 | Schnell-Bestellungen | Evolve+ | 6.5.x |
 | Einkaufslisten | Evolve+ | 6.5.x |
 | Sales Agent | Evolve+ | 6.5.0.0 |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/commercial-features/b2b-components (Stand: 2026-06)*
+*Source: https://docs.shopware.com/de/shopware-6-de/commercial-features/b2b-components (as of: 2026-06)*

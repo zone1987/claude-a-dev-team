@@ -1,7 +1,7 @@
-# Shopware 6 – Features & Editionen-Überblick
+# Shopware 6 – Features & editions overview
 
-Shopware 6 ist in vier Editionen verfügbar: **Community Edition (CE)**, **Rise**, **Evolve** und **Beyond**. Jede Edition baut auf der vorherigen auf (kumulativ).
+Shopware 6 is available in four editions: **Community Edition (CE)**, **Rise**, **Evolve** and **Beyond**. Each edition builds on the previous one (cumulative).
 
-<!-- Detaildokumentation: `FEATURES-EDITIONS-OVERVIEW.md` -->
+<!-- Detailed documentation: `FEATURES-EDITIONS-OVERVIEW.md` -->
 
-Für Details zu den Commercial Features: `sw-merchant-commercial`
+For details on the Commercial features: `sw-merchant-commercial`

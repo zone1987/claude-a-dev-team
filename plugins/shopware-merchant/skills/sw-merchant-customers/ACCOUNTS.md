@@ -1,9 +1,9 @@
-# Shopware 6 – Kundenaccount (Storefront-Sicht)
+# Shopware 6 – Customer account (storefront view)
 
-Vollständige Referenz: `ACCOUNTS-DETAIL.md`
+Full reference: `ACCOUNTS-DETAIL.md`
 
-## Auf einen Blick
+## At a glance
 
-- Kunden verwalten Profil, Adressen und Bestellungen selbst im Storefront-Konto
-- Passwort-Reset: Link gültig 2 Stunden, einmalig verwendbar
-- Abonnements: ab v6.5.4.0, Plan Beyond
+- Customers manage their profile, addresses and orders themselves in the storefront account
+- Password reset: link valid for 2 hours, single use only
+- Abonnements (Subscriptions): from v6.5.4.0, Beyond plan

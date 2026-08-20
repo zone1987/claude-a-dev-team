@@ -185,7 +185,7 @@ Gotenberg-Trace: {trace}
 curl --request POST http://localhost:3000/forms/pdfengines/bookmarks/write \
   --form files=@/path/to/dokument.pdf \
   --form 'bookmarks=[{"title":"Kapitel 1","page":1,"children":[]},{"title":"Kapitel 2","page":5,"children":[{"title":"Abschnitt 2.1","page":6,"children":[]}]}]' \
-  -o mit-lesezeichen.pdf
+  -o with-bookmarks.pdf
 ```
 
 #### Bookmarks as a map for multiple files

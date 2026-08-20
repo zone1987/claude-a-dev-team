@@ -1,8 +1,8 @@
-# Symfony Panther — headless Chrome im Container (Quelle: panther-docker-ci).
-# Beispiel-Image; Versionen/Extensions an dein Projekt anpassen.
+# Symfony Panther — headless Chrome in a container (source: panther-docker-ci).
+# Example image; adapt versions/extensions to your project.
 FROM php:8.3-cli
 
-# System-Abhängigkeiten + Google Chrome (stable)
+# System dependencies + Google Chrome (stable)
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git unzip libzip-dev libxml2-dev wget gnupg ca-certificates \
     && wget -q -O /usr/share/keyrings/google-chrome.gpg https://dl.google.com/linux/linux_signing_key.pub \
@@ -24,7 +24,7 @@ COPY . .
 # ChromeDriver passend zu Chrome installieren (dbrekelmans/bdi)
 RUN vendor/bin/bdi detect drivers || true
 
-# Headless + no-sandbox + disable-dev-shm-usage sind im Container Pflicht.
+# Headless + no-sandbox + disable-dev-shm-usage are mandatory in a container.
 ENV PANTHER_NO_SANDBOX=1
 ENV PANTHER_CHROME_ARGUMENTS="--disable-dev-shm-usage"
 

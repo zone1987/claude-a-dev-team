@@ -1,23 +1,23 @@
-# Shopware 6 – CMS-Erweiterungen
+# Shopware 6 – CMS-Erweiterungen (CMS extensions)
 
-Pfad: **Erweiterungen > Meine Erweiterungen > CMS-Erweiterungen**
+Path: **Erweiterungen** (Extensions) > **Meine Erweiterungen** (My extensions) > **CMS-Erweiterungen**
 
-Zusatzfunktionen für Erlebniswelten. Teil von **Shopware Evolve** (Plan erforderlich).
+Additional functions for Erlebniswelten (Shopping Experiences). Part of **Shopware Evolve** (plan required).
 
-## Enthaltene Features
+## Included features
 
-| Feature | Beschreibung |
+| Feature | Beschreibung (Description) |
 |---|---|
-| Quickview | Produktvorschau direkt im Listing |
-| Suchergebnisse-Quickview | Quickview auf Suchergebnisseite |
-| Scroll-Navigation | Anker-Punkte innerhalb einer Seite |
-| Block-Sichtbarkeit | Blöcke per Rule Builder konditionell anzeigen |
-| Custom Forms | Benutzerdefinierte Formulare erstellen |
+| Quickview | Product preview directly in the listing |
+| Suchergebnisse-Quickview (Search results quickview) | Quickview on the search results page |
+| Scroll-Navigation (Scroll navigation) | Anchor points within a page |
+| Block-Sichtbarkeit (Block visibility) | Show blocks conditionally via the Rule Builder |
+| Custom Forms | Create custom forms |
 
-## Voraussetzungen
+## Prerequisites
 
-- Shopware Evolve Plan oder höher
-- Extension über Erweiterungen > Meine Erweiterungen installiert
-- Shopware Account authentifiziert
+- Shopware Evolve plan or higher
+- Extension installed via Erweiterungen > Meine Erweiterungen
+- Shopware account authenticated
 
-Vollständige Dokumentation: `CMS-EXTENSIONS-DETAIL.md`
+Full documentation: `CMS-EXTENSIONS-DETAIL.md`

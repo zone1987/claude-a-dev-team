@@ -1,4 +1,4 @@
-# Shopware 6 — Tutorials: EU-Regelungen
+# Shopware 6 — Tutorials: EU regulations
 
-Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`.
+Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/eu-regelungen`.
 Details in `references/deep/`.

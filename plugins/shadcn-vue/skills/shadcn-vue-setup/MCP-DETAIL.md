@@ -1,4 +1,4 @@
-# shadcn-vue MCP-Server
+# shadcn-vue MCP Server
 
 The shadcn MCP Server allows AI assistants to interact with items from registries. You can browse available components, search for specific ones, and install them directly into your project using natural language.
 
@@ -387,4 +387,4 @@ If you see the `No tools or prompts` message, try the following:
 
 
 ---
-Quelle: `unovue/shadcn-vue` (dev) `apps/v4/content/docs/mcp.md`
+Source: `unovue/shadcn-vue` (dev) `apps/v4/content/docs/mcp.md`

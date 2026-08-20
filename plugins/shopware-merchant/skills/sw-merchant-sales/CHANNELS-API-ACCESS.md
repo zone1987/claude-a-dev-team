@@ -1,23 +1,23 @@
-# Shopware 6 – API-Zugang (Access Key)
+# Shopware 6 – API access (access key)
 
-Pro Verkaufskanal wird ein API-Zugangsschlüssel (Access Key) generiert.
+An API access key is generated per Verkaufskanal (Sales channel).
 
-## Wo
+## Where
 
-**Verkaufskanal > Abschnitt "API-Zugang"**
+**Verkaufskanal > "API-Zugang" (API access) section**
 
-## Funktion
+## Function
 
-- Eindeutiger API-Schlüssel für die Sales Channel (Store) API
-- Erlaubt Zugriff von Fremdsystemen (Apps, PWA, Mobile) auf Shop-Daten
-- Jeder Kanal hat einen eigenen Schlüssel → Anfragen sind kanalspezifisch
+- Unique API key for the Sales Channel (Store) API
+- Allows third-party systems (apps, PWA, mobile) to access shop data
+- Every channel has its own key → requests are channel-specific
 
-## Wichtig
+## Important
 
-- Schlüssel nur einmal sichtbar → sofort sichern
-- Bei Kompromittierung: neuen Schlüssel generieren (alter wird ungültig)
-- Headless-Kanal: API-Zugang wird von Erweiterungen intern genutzt
+- The key is visible only once → secure it immediately
+- If compromised: generate a new key (the old one becomes invalid)
+- Headless channel: API access is used internally by extensions
 
-## Quelle
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele

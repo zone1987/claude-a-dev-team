@@ -1,20 +1,20 @@
-# Shopware 6 – Kunden (Überblick)
+# Shopware 6 – Kunden (Customers) (overview)
 
-Dieses Skill deckt die **komplette Kundenverwaltung** im Shopware 6 Admin ab.
+This skill covers the **complete customer administration** in the Shopware 6 admin.
 
-## Unter-Skills
+## Sub-skills
 
-| Skill | Thema |
+| Skill | Topic |
 |---|---|
-| `sw-merchant-customers-accounts` | Kundenaccount (Storefront-Sicht, Passwort-Reset) |
-| `sw-merchant-customers-addresses` | Adressen verwalten (Liefer-/Rechnungsadresse) |
-| `sw-merchant-customers-groups` | Kundengruppen & Preisregeln |
-| `sw-merchant-customers-b2b` | B2B / Firmenkonten: Mitarbeiter & Rollen (ab 6.5.6) |
-| `sw-merchant-customers-bulk` | Mehrfachänderung & AI-Klassifizierung |
+| `sw-merchant-customers-accounts` | Customer account (storefront view, password reset) |
+| `sw-merchant-customers-addresses` | Managing addresses (shipping/billing address) |
+| `sw-merchant-customers-groups` | Customer groups & price rules |
+| `sw-merchant-customers-b2b` | B2B / company accounts: employees & roles (from 6.5.6) |
+| `sw-merchant-customers-bulk` | Bulk edit & AI classification |
 
-## Schnell-Referenz
+## Quick reference
 
-- Detaildokumentation → `OVERVIEW-DETAIL.md`
-- Alle Screenshots → `assets/`
+- Detailed documentation → `OVERVIEW-DETAIL.md`
+- All screenshots → `assets/`
 
-Für tiefe Einzelthemen lade den jeweiligen Unter-Skill.
+For in-depth individual topics, load the respective sub-skill.

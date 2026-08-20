@@ -1,122 +1,122 @@
-# Shopware AI Copilot – Vollständige Dokumentation
+# Shopware AI Copilot – Complete documentation
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Funktionen im Detail](#funktionen-im-detail)
-- [Übersetzungsfunktionen](#übersetzungsfunktionen)
-- [Technische Voraussetzungen](#technische-voraussetzungen)
-- [Integration mit anderen Features](#integration-mit-anderen-features)
+- [Overview](#overview)
+- [Functions in detail](#functions-in-detail)
+- [Translation functions](#translation-functions)
+- [Technical prerequisites](#technical-prerequisites)
+- [Integration with other features](#integration-with-other-features)
 
-## Überblick
+## Overview
 
-Der **Shopware AI Copilot** ist ein KI-Assistent, der nativ in Shopware 6 integriert ist. Er nutzt künstliche Intelligenz, um E-Commerce-Abläufe zu vereinfachen.
+The **Shopware AI Copilot** is an AI assistant natively integrated into Shopware 6. It uses artificial intelligence to simplify e-commerce workflows.
 
-**Verfügbarkeit:** Rise-Plan und höher (Commercial Extension erforderlich)
-
----
-
-## Funktionen im Detail
-
-### 1. Content für Erlebniswelten
-
-Der AI Copilot hilft dabei, verschiedene Arten von Textinhalten für Shopping Experiences zu erstellen. Texte können direkt generiert und in mehrere Sprachen übersetzt werden.
-
-**Anwendung:** Im Erlebniswelten-Editor → AI Copilot-Funktion aktivieren → Beschreibung eingeben → Text generieren/übersetzen
-
-### 2. Bild-Keywords
-
-Das System analysiert hochgeladene Produktbilder und vergibt automatisch relevante Schlagwörter. Diese werden für die Suche und Klassifizierung genutzt.
-
-**Pfad:** Produkt bearbeiten → Medienbereich → AI-Keyword-Vorschlag
-
-### 3. Produkteigenschaften
-
-Basierend auf vorhandenen Produktbeschreibungen schlägt die KI passende Produktattribute und -eigenschaften vor. Der Händler übernimmt oder passt diese an.
-
-### 4. Personalisierte Checkout-Nachricht (Post-Purchase Messaging)
-
-Nach dem Checkout erhalten Kunden eine personalisierte, KI-generierte Nachricht. Die KI nutzt dabei den Warenkorbinhalt, um relevante und loyalitätsstärkende Nachrichten zu formulieren.
-
-**Konfiguration:** Flow Builder → Trigger: Bestellung abgeschlossen → Aktion: AI Checkout-Nachricht
-
-### 5. Bewertungszusammenfassung (Review Summaries)
-
-Statt einzelner Bewertungen zu lesen, erhalten Kunden auf der Produktdetailseite eine prägnante KI-Zusammenfassung aller Produktbewertungen.
-
-**Anzeige:** Wird automatisch auf Produktdetailseiten angezeigt (ab konfigurierter Mindestanzahl von Bewertungen)
-
-### 6. Kundenklassifizierung
-
-Das System erstellt automatisch Kundenlabels basierend auf der Kaufhistorie. Diese Labels ermöglichen gezieltes Marketing und Segmentierung.
-
-**Pfad:** Kunden > Kunden-Übersicht → KI-Labels werden automatisch zugeordnet
-
-### 7. Export-Assistent
-
-Händler können Shop-Daten in CSV-Format exportieren, indem sie natürliche Sprachbefehle eingeben. Kein manuelles Konfigurieren der Export-Parameter nötig.
-
-**Beispiel:** „Exportiere alle Produkte aus Kategorie Schuhe mit Preis unter 100 Euro"
-
-### 8. Produktbeschreibungen
-
-Händler geben Kerninformationen zu einem Produkt ein, die KI generiert daraus vollständige, verkaufsoptimierte Produktbeschreibungen. Diese können direkt verwendet oder weiter angepasst werden.
-
-**Pfad:** Produkt bearbeiten → Beschreibungsfeld → AI-Assistent öffnen → Stichworte eingeben → Generieren
-
-### 9. Intelligente Suche (Advanced Search Integration)
-
-Zwei Suchmodi, die mit Advanced Search 2.0 kombiniert werden:
-
-**Kontextbasierte Suche:**
-- Kunden beschreiben ihr Produktbedürfnis in natürlicher Sprache
-- System interpretiert die Absicht unter Berücksichtigung des Shop-Kontexts
-- Maximale Keyword-Länge: 100 Zeichen
-- Im Storefront: Icon neben dem Suchfeld mit Beispielvorschlägen
-
-**Bildbasierte Suche:**
-- Kunden laden ein Foto hoch
-- System findet visuell ähnliche Produkte
-
-**Voraussetzung:** Advanced Search 2.0 (Evolve+) für volle Funktionalität; grundlegende AI-Suche bereits in Rise
-
-### 10. Bildgenerierung
-
-Händler erstellen Produktbilder durch natürlichsprachliche Beschreibungen. Kein Bildbearbeitungsprogramm erforderlich.
-
-**Pfad:** Medienbereich → AI Bild generieren → Beschreibung eingeben → Bild erstellen
+**Availability:** Rise plan and higher (Commercial extension required)
 
 ---
 
-## Übersetzungsfunktionen
+## Functions in detail
 
-Der AI Copilot kann generierte Inhalte automatisch in alle konfigurierten Shop-Sprachen übersetzen:
-- Bewertungsübersetzungen für internationale Kunden
-- Produktbeschreibungen in mehrere Sprachen
-- Erlebniswelt-Texte übersetzen
+### 1. Content for Erlebniswelten (Shopping Experiences)
+
+The AI Copilot helps to create various kinds of text content for Shopping Experiences. Texts can be generated directly and translated into several languages.
+
+**Usage:** In the Erlebniswelten editor → activate the AI Copilot function → enter a description → generate/translate text
+
+### 2. Image keywords
+
+The system analyses uploaded product images and automatically assigns relevant keywords. These are used for search and classification.
+
+**Path:** Edit a product → Medien (Media) area → AI keyword suggestion
+
+### 3. Produkteigenschaften (Product properties)
+
+Based on existing product descriptions, the AI suggests matching product attributes and properties. The merchant accepts or adjusts them.
+
+### 4. Personalised checkout message (post-purchase messaging)
+
+After checkout, customers receive a personalised, AI-generated message. The AI uses the cart contents to phrase relevant, loyalty-building messages.
+
+**Configuration:** Flow Builder → trigger: Bestellung abgeschlossen (Order completed) → action: AI checkout message
+
+### 5. Review summaries (Bewertungszusammenfassung)
+
+Instead of reading individual reviews, customers get a concise AI summary of all product reviews on the product detail page.
+
+**Display:** Shown automatically on product detail pages (from the configured minimum number of reviews)
+
+### 6. Customer classification
+
+The system automatically creates customer labels based on purchase history. These labels enable targeted marketing and segmentation.
+
+**Path:** Kunden (Customers) > Kunden-Übersicht (Customer overview) → AI labels are assigned automatically
+
+### 7. Export assistant
+
+Merchants can export shop data in CSV format by entering natural language commands. No manual configuration of the export parameters is needed.
+
+**Example:** "Export all products from the category Schuhe with a price below 100 euro"
+
+### 8. Product descriptions
+
+Merchants enter core information about a product and the AI generates complete, sales-optimised product descriptions from it. These can be used directly or adjusted further.
+
+**Path:** Edit a product → description field → open the AI assistant → enter keywords → generate
+
+### 9. Intelligent search (Advanced Search integration)
+
+Two search modes that are combined with Advanced Search 2.0:
+
+**Context-based search:**
+- Customers describe their product need in natural language
+- The system interprets the intent taking the shop context into account
+- Maximum keyword length: 100 characters
+- In the storefront: icon next to the search field with example suggestions
+
+**Image-based search:**
+- Customers upload a photo
+- The system finds visually similar products
+
+**Prerequisite:** Advanced Search 2.0 (Evolve+) for full functionality; basic AI search is already in Rise
+
+### 10. Image generation
+
+Merchants create product images through natural-language descriptions. No image editing program is required.
+
+**Path:** Medien area → AI Bild generieren (Generate AI image) → enter a description → create the image
 
 ---
 
-## Technische Voraussetzungen
+## Translation functions
 
-- Shopware Commercial Extension aktiv
-- Rise-Plan oder höher gebucht
-- Für bildbasierte Suche: Advanced Search 2.0 (Evolve+)
-- Internetverbindung für KI-API-Aufrufe
+The AI Copilot can translate generated content automatically into all configured shop languages:
+- Review translations for international customers
+- Product descriptions in several languages
+- Translating Erlebniswelten texts
 
 ---
 
-## Integration mit anderen Features
+## Technical prerequisites
 
-| Feature | AI Copilot Funktion |
+- Shopware Commercial extension active
+- Rise plan or higher booked
+- For image-based search: Advanced Search 2.0 (Evolve+)
+- Internet connection for AI API calls
+
+---
+
+## Integration with other features
+
+| Feature | AI Copilot function |
 |---|---|
-| Erlebniswelten | Content-Erstellung und Übersetzung |
-| Flow Builder | Personalisierte Checkout-Nachrichten |
-| Advanced Search | Kontextbasierte und bildbasierte Suche |
-| Produktverwaltung | Beschreibungen und Eigenschaften |
-| Medienbereich | Bildkeywords und Bildgenerierung |
-| Kundenmanagement | Kundenklassifizierung und Labels |
+| Erlebniswelten | Content creation and translation |
+| Flow Builder | Personalised checkout messages |
+| Advanced Search | Context-based and image-based search |
+| Product management | Descriptions and properties |
+| Medien area | Image keywords and image generation |
+| Customer management | Customer classification and labels |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/features/shopware-rise/ai-copilot (Stand: 2026-06)*
+*Source: https://docs.shopware.com/de/shopware-6-de/features/shopware-rise/ai-copilot (as of: 2026-06)*

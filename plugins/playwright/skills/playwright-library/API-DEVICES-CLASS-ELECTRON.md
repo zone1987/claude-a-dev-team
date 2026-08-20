@@ -127,10 +127,10 @@ const { _electron: electron } = require('playwright');
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `Electron` ist das minimale Factory-Objekt — seine einzige Aufgabe ist der Launch
-der Electron-Applikation via `launch()`. Alle weiteren Interaktionen finden ueber das zurueckgegebene
-`ElectronApplication`-Objekt statt. Die zahlreichen Launch-Optionen decken Netzwerk-, Video-,
-HAR- und Tracing-Konfiguration ab.
+**Summary:** `Electron` is the minimal factory object — its only job is launching
+the Electron application via `launch()`. All further interactions happen through the returned
+`ElectronApplication` object. The numerous launch options cover network, video,
+HAR and tracing configuration.
 
 ---
 

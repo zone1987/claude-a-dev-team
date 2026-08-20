@@ -1,13 +1,13 @@
-# Shopware 6 – Flow Builder (vollständige Referenz)
+# Shopware 6 – Flow Builder (complete reference)
 
-Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/Flow-Builder
+Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/Flow-Builder
 
 ---
 
 ## Contents
 
 - [Überblick](#überblick)
-- [Konfigurationsbereich „Allgemein"](#konfigurationsbereich-allgemein)
+- [Konfigurationsbereich "Allgemein"](#konfigurationsbereich-allgemein)
 - [Hauptkomponenten](#hauptkomponenten)
 - [Custom Trigger (ab v6.5.3.0)](#custom-trigger-ab-v6530)
 - [Flows teilen & verwalten](#flows-teilen-verwalten)
@@ -15,205 +15,205 @@ Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/Flow-Builder
 - [Wichtige Hinweise](#wichtige-hinweise)
 - [Lernressourcen](#lernressourcen)
 
-## Überblick
+## Überblick (Overview)
 
-**Pfad:** Einstellungen > Automatisierung > Flow Builder
+**Path:** Einstellungen (Settings) > Automatisierung (Automation) > Flow Builder
 
-Ermöglicht die ereignisbasierte Automatisierung von Geschäftsprozessen ohne Programmierkenntnisse.
-
----
-
-## Konfigurationsbereich „Allgemein"
-
-| Feld | Funktion |
-|---|---|
-| Name | Identifikation in der Übersicht |
-| Beschreibung | Aussagekräftige Erläuterung |
-| Priorität | Ausführungsreihenfolge bei gleichen Triggern (höher = früher) |
-| Aktiv | Temporäres Aktivieren/Deaktivieren |
+Enables event-based automation of business processes without programming knowledge.
 
 ---
 
-## Hauptkomponenten
+## Configuration area "Allgemein" (General)
 
-### 1. Trigger (Auslöser)
-
-Über 80 verfügbare Ereignisse, kategorisiert:
-
-**Kunden-Events:**
-| Event | Zeitpunkt |
+| Feld (Field) | Funktion (Function) |
 |---|---|
-| `checkout.customer.before.login` | Vor dem Login |
-| `checkout.customer.login` | Bei Login |
-| `checkout.customer.register` | Neue Registrierung |
-| `checkout.customer.deleted` | Kundenlöschung |
-
-**Bestellungs-Events:**
-| Event | Zeitpunkt |
-|---|---|
-| `checkout.order.placed` | Bestellung aufgegeben |
-| `state_enter.order.state.*` | Statusänderungen (offen, in Bearbeitung, abgeschlossen, storniert) |
-
-**Zahlungs-Events:**
-| Event | Zeitpunkt |
-|---|---|
-| `state_enter.order_transaction.state.paid` | Zahlung erfolgt |
-| `state_enter.order_transaction.state.refunded` | Erstattung |
-| `checkout.order.payment_method.changed` | Zahlungsmethode geändert → setzt Status auto. auf „Offen" |
-
-**Lieferungs-Events:**
-| Event | Zeitpunkt |
-|---|---|
-| `state_enter.order_delivery.state.shipped` | Versandt |
-| `state_enter.order_delivery.state.returned` | Retourniert |
-
-**Marketing-Events:**
-| Event | Zeitpunkt |
-|---|---|
-| `newsletter.register` | Newsletter-Anmeldung |
-| `newsletter.confirm` | Newsletter-Bestätigung |
-| `review_form.send` | Produktbewertung eingereicht |
-
-**Mail-Events:**
-| Event | Zeitpunkt |
-|---|---|
-| `mail.before.send` | Vor E-Mail-Versand |
-| `mail.sent` | E-Mail versendet |
-
-**Sonstige:**
-| Event | Zeitpunkt |
-|---|---|
-| `contact_form.send` | Kontaktformular abgesendet |
-| `customer.recovery.request` | Passwort-Wiederherstellung angefordert |
+| Name | Identification in the overview |
+| Beschreibung (Description) | Meaningful explanation |
+| Priorität (Priority) | Execution order for identical triggers (higher = earlier) |
+| Aktiv (Active) | Temporary enabling/disabling |
 
 ---
 
-### 2. Bedingungen
+## Main components
 
-- Basieren auf dem Rule Builder
-- Zwei Ausgänge: **Wahr** oder **Falsch**
-- Mehrere Bedingungen sequenziell kombinierbar
-- Bestimmen, welche Aktion ausgeführt wird
+### 1. Trigger
 
----
+More than 80 available events, categorised:
 
-### 3. Verzögerung (ab Plan Shopware Beyond)
-
-**Verfügbare Zeiteinheiten:**
-- Stunde, Tag, Woche, Monat
-- Benutzerdefiniert: Format `SS.TT.WW.MM`
-
-**Geplante Aktionen:**
-Übersicht aller verzögerten Aktionen mit:
-- Bestellnummer, Kundeninfo
-- Verbleibende Zeit, geplanter Ausführungszeitpunkt
-
----
-
-### 4. Aktionen
-
-#### E-Mail verschicken
-| Feld | Optionen |
+**Customer events:**
+| Event | Zeitpunkt (Point in time) |
 |---|---|
-| Empfänger | Administrator (alle Admin-Nutzer!), Kunde, spezifische E-Mail |
-| Absender | Konfigurierbar |
-| Template | Auswahl aus E-Mail-Templates |
-| Anhänge | Dokumente optional hinzufügbar |
+| `checkout.customer.before.login` | Before login |
+| `checkout.customer.login` | On login |
+| `checkout.customer.register` | New registration |
+| `checkout.customer.deleted` | Customer deletion |
 
-> **Achtung:** „Administrator" sendet an **ALLE** Admin-Benutzer inkl. externe (Agenturen, Dienstleister).
+**Order events:**
+| Event | Zeitpunkt |
+|---|---|
+| `checkout.order.placed` | Order placed |
+| `state_enter.order.state.*` | Status changes (open, in progress, completed, cancelled) |
 
-#### Status zuweisen
-- Zahlungsstatus, Versandstatus, Bestellstatus ändern
-- **Abhängigkeiten beachten:** Einige Status erfordern vorherige Status (z.B. „Erstattet" nur nach „Bezahlt")
+**Payment events:**
+| Event | Zeitpunkt |
+|---|---|
+| `state_enter.order_transaction.state.paid` | Payment received |
+| `state_enter.order_transaction.state.refunded` | Refund |
+| `checkout.order.payment_method.changed` | Payment method changed → sets status automatically to "Offen" (Open) |
 
-#### Dokumente erzeugen
-- Dokumenttyp im Dropdown auswählen
-- Neues Dokument wird der Bestellung hinzugefügt
+**Delivery events:**
+| Event | Zeitpunkt |
+|---|---|
+| `state_enter.order_delivery.state.shipped` | Shipped |
+| `state_enter.order_delivery.state.returned` | Returned |
 
-#### Tag hinzufügen / entfernen
-- Nur für Tag-fähige Entitäten
-- Flexible Tagging-Verwaltung
+**Marketing events:**
+| Event | Zeitpunkt |
+|---|---|
+| `newsletter.register` | Newsletter sign-up |
+| `newsletter.confirm` | Newsletter confirmation |
+| `review_form.send` | Product review submitted |
 
-#### Kundengruppe zuweisen
-- Kundengruppe über Dropdown ändern
+**Mail events:**
+| Event | Zeitpunkt |
+|---|---|
+| `mail.before.send` | Before mail is sent |
+| `mail.sent` | Mail sent |
 
-#### Kontostatus zuweisen
-- Kunde aktiv oder inaktiv setzen
+**Others:**
+| Event | Zeitpunkt |
+|---|---|
+| `contact_form.send` | Contact form submitted |
+| `customer.recovery.request` | Password recovery requested |
 
-#### Zusatzfeld zuweisen
+---
+
+### 2. Bedingungen (Conditions)
+
+- Based on the Rule Builder
+- Two outputs: **Wahr** (True) or **Falsch** (False)
+- Several conditions can be combined sequentially
+- Determine which action is executed
+
+---
+
+### 3. Verzögerung (Delay) (from plan Shopware Beyond)
+
+**Available time units:**
+- Hour, day, week, month
+- Custom: format `SS.TT.WW.MM`
+- 
+**Scheduled actions:**
+Overview of all delayed actions with:
+- Order number, customer info
+- Remaining time, scheduled execution time
+
+---
+
+### 4. Aktionen (Actions)
+
+#### Send mail
+| Feld | Optionen (Options) |
+|---|---|
+| Empfänger (Recipient) | Administrator (all admin users!), customer, specific mail address |
+| Absender (Sender) | Configurable |
+| Template | Selection from the mail templates |
+| Anhänge (Attachments) | Documents can optionally be added |
+
+> **Caution:** "Administrator" sends to **ALL** admin users including external ones (agencies, service providers).
+
+#### Assign status
+- Change payment status, delivery status, order status
+- **Mind the dependencies:** some statuses require a preceding status (e.g. "Erstattet" (Refunded) only after "Bezahlt" (Paid))
+
+#### Generate documents
+- Select the document type in the dropdown
+- The new document is added to the order
+
+#### Add / remove tag
+- Only for tag-capable entities
+- Flexible tag management
+
+#### Assign customer group
+- Change the customer group via dropdown
+
+#### Assign account status
+- Set the customer to active or inactive
+
+#### Assign custom field
 | Feld | Beschreibung |
 |---|---|
-| Entität | Kunde oder Bestellung |
-| Zusatzfeld-Set | Set auswählen |
-| Spezifisches Feld | Feld konfigurieren |
+| Entität (Entity) | Customer or order |
+| Zusatzfeld-Set (Custom field set) | Select the set |
+| Specific field | Configure the field |
 
-#### Affiliate- und Kampagnen-Code zuweisen
-- Entität (Kunde/Bestellung) + Code + Überschreib-Option
+#### Assign affiliate and campaign code
+- Entity (customer/order) + code + overwrite option
 
-#### Download-Recht setzen
-- Für digitale Produkte: Downloadlink freischalten oder sperren
+#### Set download permission
+- For digital products: unlock or block the download link
 
-#### Flow anhalten
-- Stoppt den kompletten Flow
-- Verhindert nachfolgende Aktionen
-- Nützlich nach „Falsch"-Bedingungen
+#### Stop flow
+- Stops the entire flow
+- Prevents subsequent actions
+- Useful after "Falsch" conditions
 
-#### Call URL / Webhook (ab Plan Evolve)
-**HTTP-Methoden:** GET, POST, PUT, PATCH, DELETE
+#### Call URL / webhook (from plan Evolve)
+**HTTP methods:** GET, POST, PUT, PATCH, DELETE
 
 | Feld | Beschreibung |
 |---|---|
-| URL | Ziel-Adresse |
-| Parameter | Key-Value-Paare aus Shop-System |
-| URL-Vorschau | Zeigt finale URL mit Parametern |
-| Header-Parameter | Spezielle Server-Header |
-| Body | JSON/Code-Format (Shopware-Variablen verfügbar) |
-| Basic Auth | Authentifizierungsdaten |
+| URL | Target address |
+| Parameter | Key-value pairs from the shop system |
+| URL-Vorschau (URL preview) | Shows the final URL with parameters |
+| Header-Parameter | Special server headers |
+| Body | JSON/code format (Shopware variables available) |
+| Basic Auth | Authentication data |
 
 ---
 
-## Custom Trigger (ab v6.5.3.0)
+## Custom Trigger (from v6.5.3.0)
 
-Drei Flow-Typen möglich:
-1. Interne Shopware-Flows
-2. Shopware-Events → Webhooks in Drittsystemen
-3. Drittsystem-Events → Shopware-Flows
-
----
-
-## Flows teilen & verwalten
-
-### Herunterladen
-Kontextmenü → **Herunterladen** → JSON-Export
-
-> **Hinweis:** Kategorie-, Produkt-, Eigenschafts-Verweise müssen beim Upload neu zugeordnet werden.
-
-### Hochladen
-Einstellungen > Flow Builder → **Flow hochladen** → Datei wählen
-
-### Flow-Templates
-Von Shopware bereitgestellte Vorlagen für Standard-Flows.
+Three flow types are possible:
+1. Internal Shopware flows
+2. Shopware events → webhooks in third-party systems
+3. Third-party system events → Shopware flows
 
 ---
 
-## Verfügbarkeit nach Plan
+## Sharing & managing flows
+
+### Download
+Context menu → **Herunterladen** (Download) → JSON export
+
+> **Note:** references to categories, products and properties have to be reassigned on upload.
+
+### Upload
+Einstellungen > Flow Builder → **Flow hochladen** (Upload flow) → choose file
+
+### Flow templates
+Templates provided by Shopware for standard flows.
+
+---
+
+## Availability by plan
 
 | Feature | Plan |
 |---|---|
-| Basis-Aktionen | Standard |
-| Flow-Teilen | Shopware Rise (ab v6.4.19.0) |
-| Zeitverzögerte Aktionen | Shopware Beyond |
-| Webhook-Aktionen (Call URL) | Shopware Evolve |
+| Basic actions | Standard |
+| Flow sharing | Shopware Rise (from v6.4.19.0) |
+| Time-delayed actions | Shopware Beyond |
+| Webhook actions (Call URL) | Shopware Evolve |
 
 ---
 
-## Wichtige Hinweise
+## Important notes
 
-- `checkout.order.payment_method.changed` setzt Zahlungsstatus automatisch auf „Offen" — manuelles Setzen nicht nötig
-- Manche Aktionen (Tags) funktionieren nur mit kompatiblen Entitäten
+- `checkout.order.payment_method.changed` sets the payment status automatically to "Offen" — setting it manually is not necessary
+- Some actions (tags) only work with compatible entities
 
 ---
 
-## Lernressourcen
+## Learning resources
 
-- Lernpfad: https://hub.shopware.com/learn/unit/user-flow-builder
+- Learning path: https://hub.shopware.com/learn/unit/user-flow-builder

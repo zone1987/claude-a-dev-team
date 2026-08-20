@@ -1,8 +1,8 @@
-# Shopware 6 – Shop-Grundeinstellungen
+# Shopware 6 – Basic shop settings
 
-Vollständige Referenz für alle allgemeinen Shop-Einstellungen unter **Einstellungen > Shop**.
+Complete reference for all general shop settings under **Einstellungen > Shop** (Settings > Shop).
 
-## Enthaltene Themen
+## Contents
 
 - [Stammdaten](#stammdaten)
 - [Adressen](#adressen)
@@ -20,6 +20,6 @@ Vollständige Referenz für alle allgemeinen Shop-Einstellungen unter **Einstell
 - [Zusatzfelder (Custom Fields)](#zusatzfelder-custom-fields)
 - [Abonnements](#abonnements)
 
-Detaillierte Referenz:
+Detailed reference:
 - [SHOP-BASICS-DETAIL.md](SHOP-BASICS-DETAIL.md)
-- [SHOP-BASICS-SUBSCRIPTIONS.md](SHOP-BASICS-SUBSCRIPTIONS.md) — Abonnement-Pläne, Intervalle, gemischte Warenkörbe
+- [SHOP-BASICS-SUBSCRIPTIONS.md](SHOP-BASICS-SUBSCRIPTIONS.md) — subscription plans, intervals, mixed carts

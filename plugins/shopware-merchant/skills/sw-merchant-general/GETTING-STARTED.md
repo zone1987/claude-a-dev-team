@@ -1,46 +1,46 @@
-# Shopware 6 – Erste Schritte (Admin)
+# Shopware 6 – Erste Schritte (First steps) (admin)
 
-Dieses Skill dokumentiert alle Themen des Kapitels "Erste Schritte" der Shopware-6-Händlerdokumentation.
+This skill documents every topic of the "Erste Schritte" (First steps) chapter of the Shopware 6 merchant documentation.
 
-## Enthaltene Themen
+## Topics covered
 
-| Thema | Referenz |
+| Topic | Reference |
 |---|---|
-| Willkommen & Ökosystem | `GETTING-STARTED-WILLKOMMEN.md` |
-| Shopware Account erstellen | `GETTING-STARTED-SHOPWARE-ACCOUNT.md` |
-| Ersteinrichtungs-Assistent | `GETTING-STARTED-ERSTEINRICHTUNG.md` |
-| Administration im Überblick | `GETTING-STARTED-ADMINISTRATION.md` |
+| Welcome & ecosystem | `GETTING-STARTED-WILLKOMMEN.md` |
+| Creating a Shopware Account | `GETTING-STARTED-SHOPWARE-ACCOUNT.md` |
+| Ersteinrichtungs-Assistent (First-run wizard) | `GETTING-STARTED-ERSTEINRICHTUNG.md` |
+| Administration at a glance | `GETTING-STARTED-ADMINISTRATION.md` |
 | Dashboard | `GETTING-STARTED-DASHBOARD.md` |
-| Profileinstellungen | `GETTING-STARTED-PROFILEINSTELLUNGEN.md` |
-| Suche in der Administration | `GETTING-STARTED-SUCHE.md` |
-| Internationalisierung | `GETTING-STARTED-INTERNATIONALISIERUNG.md` |
-| Hilfe & Support | `GETTING-STARTED-HILFE-SUPPORT.md` |
-| Systemvoraussetzungen | `GETTING-STARTED-SYSTEMVORAUSSETZUNGEN.md` |
+| Profileinstellungen (Profile settings) | `GETTING-STARTED-PROFILEINSTELLUNGEN.md` |
+| Search in the administration | `GETTING-STARTED-SUCHE.md` |
+| Internationalisation | `GETTING-STARTED-INTERNATIONALISIERUNG.md` |
+| Help & support | `GETTING-STARTED-HILFE-SUPPORT.md` |
+| System requirements | `GETTING-STARTED-SYSTEMVORAUSSETZUNGEN.md` |
 
-## Schnellreferenz
+## Quick reference
 
-- **Admin-URL**: `https://www.meinshop.de/admin`
-- **Ersteinrichtungs-Assistent erneut starten**: Einstellungen > System > Ersteinrichtungs-Assistent
-- **Profil öffnen**: Links unten in der Administration
+- **Admin URL**: `https://www.meinshop.de/admin`
+- **Restart the Ersteinrichtungs-Assistent**: Einstellungen (Settings) > System > Ersteinrichtungs-Assistent
+- **Open profile**: bottom left in the administration
 - **Shopware Account**: https://account.shopware.com
 
-## Bilder
+## Images
 
-| Datei | Inhalt |
+| File | Content |
 |---|---|
-| `assets/admin-login.png` | Admin Login-Screen |
-| `assets/admin-uebersicht.png` | Admin-Gesamtübersicht |
-| `assets/admin-menueleiste.png` | Linke Navigationsleiste |
-| `assets/dashboard-statistics.png` | Dashboard mit Statistik-Widgets |
-| `assets/dashboard-zeitraum.png` | Zeitraum-Dropdown im Dashboard |
-| `assets/wizard-willkommen.png` | Ersteinrichtungs-Assistent – Willkommen |
-| `assets/wizard-dein-start.png` | Ersteinrichtungs-Assistent – Dein Start |
-| `assets/wizard-mailer.png` | Ersteinrichtungs-Assistent – Mailer |
+| `assets/admin-login.png` | Admin login screen |
+| `assets/admin-uebersicht.png` | Overall admin overview |
+| `assets/admin-menueleiste.png` | Left-hand navigation bar |
+| `assets/dashboard-statistics.png` | Dashboard with statistics widgets |
+| `assets/dashboard-zeitraum.png` | Period dropdown in the dashboard |
+| `assets/wizard-willkommen.png` | Ersteinrichtungs-Assistent – welcome |
+| `assets/wizard-dein-start.png` | Ersteinrichtungs-Assistent – Dein Start (Your start) |
+| `assets/wizard-mailer.png` | Ersteinrichtungs-Assistent – mailer |
 | `assets/wizard-paypal.png` | Ersteinrichtungs-Assistent – PayPal |
 
-## Weiterführende Skills
+## Further skills
 
-- `sw-merchant-catalog-products` – Produkte anlegen
-- `sw-merchant-sales-channels` – Verkaufskanäle konfigurieren
-- `sw-merchant-settings` – Systemeinstellungen
-- `sw-merchant-extensions` – Erweiterungen installieren
+- `sw-merchant-catalog-products` – creating products
+- `sw-merchant-sales-channels` – configuring sales channels
+- `sw-merchant-settings` – system settings
+- `sw-merchant-extensions` – installing extensions

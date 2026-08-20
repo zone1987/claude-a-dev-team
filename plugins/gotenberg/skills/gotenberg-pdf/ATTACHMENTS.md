@@ -1,8 +1,8 @@
-# Gotenberg — PDF Anhange (Attachments)
+# Gotenberg — PDF attachments
 
-Bettet externe Dateien (XML, Bilder etc.) als Anhaenge in PDF-Container ein.
-Beinhaltet Metadaten pro Anhang (mimeType, AFRelationship).
-Referenz: `ATTACHMENTS-DETAIL.md`
+Embeds external files (XML, images etc.) as attachments in the PDF container.
+Includes per-attachment metadata (mimeType, AFRelationship).
+Reference: `ATTACHMENTS-DETAIL.md`
 
 Route: `POST /forms/pdfengines/embed`
-Rueckgabe: PDF (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF (200) | ZIP (multiple inputs) | 400 | 503

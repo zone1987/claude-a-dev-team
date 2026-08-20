@@ -1,38 +1,38 @@
 # Shopware 6 – Erlebniswelten (Shopping Experiences)
 
-Pfad: **Inhalte > Erlebniswelten**
+Path: **Inhalte** (Content) > **Erlebniswelten**
 
-Shopwares visuelles Drag-and-Drop-CMS zur Gestaltung aller Seitentypen.
-Keine Code-Kenntnisse erforderlich.
+Shopware's visual drag-and-drop CMS for designing all page types.
+No coding knowledge required.
 
-## Architektur
+## Architecture
 
 ```
-Layout (Seitentyp)
-└── Sektion
-    └── Block (aus Bibliothek)
-        └── Element (Text, Bild, Video, ...)
+Layout (page type)
+└── Section
+    └── Block (from the library)
+        └── Element (text, image, video, ...)
 ```
 
-## Layout erstellen – Schritt für Schritt
+## Creating a layout – step by step
 
-1. **Inhalte > Erlebniswelten > „Neues Layout anlegen"**
-2. Seitentyp wählen (Shopseite / Landingpage / Kategorieseite / Produktseite / Bundle)
-3. Sektions-Layout wählen (Sidebar oder volle Breite)
-4. Layout benennen → Bestätigen
-5. Im Editor: Blöcke per Drag-and-Drop aus rechter Sidebar einfügen
-6. Elemente konfigurieren (Inhalt, Darstellung, Links)
-7. Speichern → Layout zuweisen
+1. **Inhalte > Erlebniswelten > "Neues Layout anlegen"** (Create new layout)
+2. Choose the page type (Shopseite / Landingpage / Kategorieseite / Produktseite / Bundle — shop page / landing page / category page / product page / bundle)
+3. Choose the section layout (sidebar or full width)
+4. Name the layout → confirm
+5. In the editor: insert blocks by drag and drop from the right-hand sidebar
+6. Configure elements (content, appearance, links)
+7. **Speichern** (Save) → assign the layout
 
-## Block-Kategorien
+## Block categories
 
-Vollständige Referenz: `SHOPPING-EXPERIENCES-DETAIL.md`
+Full reference: `SHOPPING-EXPERIENCES-DETAIL.md`
 
-## Layout zuweisen
+## Assigning a layout
 
-| Seitentyp | Zuweisung |
+| Page type | Assignment |
 |---|---|
-| Shopseite | Einstellungen > Shops > Stammdaten |
-| Kategorieseite | Kataloge > Kategorien > Tab Layout |
-| Landingpage | Kataloge > Kategorien (als Landingpage) |
-| Produktseite | Kataloge > Produkte > Tab Layout |
+| Shopseite (Shop page) | Einstellungen (Settings) > Shops > Stammdaten (Master data) |
+| Kategorieseite (Category page) | Kataloge (Catalogues) > Kategorien (Categories) > Layout tab |
+| Landingpage (Landing page) | Kataloge > Kategorien (as a landing page) |
+| Produktseite (Product page) | Kataloge > Produkte (Products) > Layout tab |

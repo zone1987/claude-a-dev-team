@@ -1,23 +1,23 @@
-# Playwright API Testing - Vollstaendige Referenz
+# Playwright API Testing - Complete Reference
 
-Playwright ermoeglicht vollstaendiges API-Testing ohne Browser ueber
-`APIRequestContext`. Kein Browser-Launch erforderlich.
+Playwright enables complete API testing without a browser via
+`APIRequestContext`. No browser launch required.
 
 ---
 
 ## Contents
 
-- [1. Grundkonfiguration](#1-grundkonfiguration)
-- [2. request-Fixture](#2-request-fixture)
-- [3. APIRequestContext - Alle Methoden](#3-apirequestcontext---alle-methoden)
-- [4. APIResponse - Alle Methoden](#4-apiresponse---alle-methoden)
-- [5. Manueller Context](#5-manueller-context)
-- [6. Kontext-gebundener vs. isolierter Request](#6-kontext-gebundener-vs-isolierter-request)
-- [7. UI + API kombinieren](#7-ui-api-kombinieren)
-- [8. Lifecycle-Hooks](#8-lifecycle-hooks)
-- [9. Auth-Zustand wiederverwenden](#9-auth-zustand-wiederverwenden)
+- [1. Basic Configuration](#1-basic-configuration)
+- [2. request Fixture](#2-request-fixture)
+- [3. APIRequestContext - All Methods](#3-apirequestcontext---all-methods)
+- [4. APIResponse - All Methods](#4-apiresponse---all-methods)
+- [5. Manual Context](#5-manual-context)
+- [6. Context-bound vs. Isolated Request](#6-context-bound-vs-isolated-request)
+- [7. Combining UI + API](#7-combining-ui-api)
+- [8. Lifecycle Hooks](#8-lifecycle-hooks)
+- [9. Reusing Auth State](#9-reusing-auth-state)
 
-## 1. Grundkonfiguration
+## 1. Basic Configuration
 
 ### playwright.config.ts
 
@@ -31,13 +31,13 @@ export default defineConfig({
       'Accept': 'application/vnd.github.v3+json',
       'Authorization': `token ${process.env.API_TOKEN}`,
     },
-    // Proxy fuer alle API-Anfragen
+    // Proxy for all API requests
     proxy: {
       server: 'http://my-proxy:8080',
       username: 'user',
       password: 'secret',
     },
-    // HTTPS-Fehler ignorieren
+    // Ignore HTTPS errors
     ignoreHTTPSErrors: true,
   },
 });
@@ -45,10 +45,10 @@ export default defineConfig({
 
 ---
 
-## 2. request-Fixture
+## 2. request Fixture
 
-Das `request`-Fixture ist in jedem Test verfuegbar und respektiert `baseURL`
-und `extraHTTPHeaders` aus der Konfiguration.
+The `request` fixture is available in every test and respects `baseURL`
+and `extraHTTPHeaders` from the configuration.
 
 ```typescript
 import { test, expect } from '@playwright/test';
@@ -68,46 +68,46 @@ test('create and verify issue', async ({ request }) => {
 
 ---
 
-## 3. APIRequestContext - Alle Methoden
+## 3. APIRequestContext - All Methods
 
-### Gemeinsame Optionen (fuer alle HTTP-Methoden)
+### Common Options (for all HTTP methods)
 
-| Option | Typ | Default | Beschreibung |
+| Option | Type | Default | Description |
 |--------|-----|---------|--------------|
-| `data` | `string \| Buffer \| Serializable` | - | Request-Body; Objekte werden zu JSON (Content-Type: application/json) |
-| `failOnStatusCode` | `boolean` | `false` | Exception bei non-2xx/3xx Antworten |
-| `form` | `Object \| FormData` | - | URL-kodierte Formulardaten (application/x-www-form-urlencoded) |
-| `headers` | `Object<string, string>` | - | Zusaetzliche/ueberschreibende HTTP-Header |
-| `ignoreHTTPSErrors` | `boolean` | `false` | TLS-Fehler ignorieren |
-| `maxRedirects` | `number` | `20` | Max. automatische Weiterleitungen (0 = deaktiviert) |
-| `maxRetries` | `number` | `0` | Wiederholungen bei Netzwerkfehlern |
-| `multipart` | `FormData \| Object` | - | Multipart-Formulardaten (multipart/form-data) |
-| `params` | `Object \| URLSearchParams \| string` | - | Query-Parameter (werden an URL angehaengt) |
-| `timeout` | `number` | `30000` | Timeout in ms (0 = kein Timeout) |
+| `data` | `string \| Buffer \| Serializable` | - | Request body; objects become JSON (Content-Type: application/json) |
+| `failOnStatusCode` | `boolean` | `false` | Throw an exception on non-2xx/3xx responses |
+| `form` | `Object \| FormData` | - | URL-encoded form data (application/x-www-form-urlencoded) |
+| `headers` | `Object<string, string>` | - | Additional/overriding HTTP headers |
+| `ignoreHTTPSErrors` | `boolean` | `false` | Ignore TLS errors |
+| `maxRedirects` | `number` | `20` | Max. automatic redirects (0 = disabled) |
+| `maxRetries` | `number` | `0` | Retries on network errors |
+| `multipart` | `FormData \| Object` | - | Multipart form data (multipart/form-data) |
+| `params` | `Object \| URLSearchParams \| string` | - | Query parameters (appended to the URL) |
+| `timeout` | `number` | `30000` | Timeout in ms (0 = no timeout) |
 
 ---
 
 ### request.get(url, options?)
 
 ```typescript
-// Einfaches GET
+// Simple GET
 const response = await request.get('/users');
 
-// Mit Query-Parametern (Object)
+// With query parameters (Object)
 const response = await request.get('/search', {
   params: { q: 'playwright', page: 1, per_page: 20 },
 });
 
-// Mit Query-Parametern (URLSearchParams)
+// With query parameters (URLSearchParams)
 const params = new URLSearchParams();
 params.set('q', 'playwright');
 params.append('page', '1');
 const response = await request.get('/search', { params });
 
-// Mit Query-Parametern (String)
+// With query parameters (String)
 const response = await request.get('/search', { params: 'q=playwright&page=1' });
 
-// Mit Headern
+// With headers
 const response = await request.get('/protected', {
   headers: { 'Authorization': `Bearer ${token}` },
 });
@@ -118,23 +118,23 @@ const response = await request.get('/protected', {
 ### request.post(url, options?)
 
 ```typescript
-// JSON-Body (Objekt wird automatisch serialisiert)
+// JSON body (object is serialized automatically)
 const response = await request.post('/users', {
   data: { name: 'Alice', email: 'alice@example.com' },
 });
 
-// URL-encoded Form
+// URL-encoded form
 const response = await request.post('/login', {
   form: { username: 'alice', password: 'secret' },
 });
 
-// Multipart mit Datei-Upload (native FormData)
+// Multipart with file upload (native FormData)
 const form = new FormData();
 form.set('name', 'Alice');
 form.append('avatar', new File(['<svg>...</svg>'], 'avatar.svg', { type: 'image/svg+xml' }));
 const response = await request.post('/upload', { multipart: form });
 
-// Multipart als Objekt
+// Multipart as an object
 const response = await request.post('/upload', {
   multipart: {
     name: 'Alice',
@@ -146,7 +146,7 @@ const response = await request.post('/upload', {
   },
 });
 
-// Raw-String-Body
+// Raw string body
 const response = await request.post('/raw', {
   data: 'plain text body',
   headers: { 'Content-Type': 'text/plain' },
@@ -190,25 +190,25 @@ expect(response.status()).toBe(204);
 ```typescript
 const response = await request.head('/health');
 expect(response.ok()).toBeTruthy();
-// Kein Body bei HEAD
+// No body with HEAD
 ```
 
 ---
 
 ### request.fetch(urlOrRequest, options?)
 
-Generische Methode; akzeptiert URL oder bestehendes `Request`-Objekt (z.B.
-aus `route.request()`).
+Generic method; accepts a URL or an existing `Request` object (e.g.
+from `route.request()`).
 
-| Zusatzoption | Typ | Beschreibung |
+| Extra option | Type | Description |
 |--------------|-----|--------------|
-| `method` | `string` | HTTP-Verb (Default: GET wenn nicht angegeben) |
+| `method` | `string` | HTTP verb (default: GET if not specified) |
 
 ```typescript
-// Beliebige Methode
+// Arbitrary method
 const response = await request.fetch('/api/data', { method: 'OPTIONS' });
 
-// Request-Objekt weiterverwenden (in Route-Handler)
+// Reuse the Request object (inside a route handler)
 await page.route('**/api/**', async route => {
   const response = await request.fetch(route.request());
   await route.fulfill({ response });
@@ -219,19 +219,19 @@ await page.route('**/api/**', async route => {
 
 ### request.storageState(options?)
 
-Speichert oder gibt den aktuellen Auth-Zustand (Cookies, LocalStorage) zurueck.
+Stores or returns the current auth state (cookies, local storage).
 
-| Option | Typ | Beschreibung |
+| Option | Type | Description |
 |--------|-----|--------------|
-| `path` | `string` | Dateipfad zum Speichern (relativ zu cwd) |
-| `indexedDB` | `boolean` | IndexedDB-Snapshot einschliessen (default: false, ab v1.51) |
+| `path` | `string` | File path to save to (relative to cwd) |
+| `indexedDB` | `boolean` | Include an IndexedDB snapshot (default: false, from v1.51) |
 
 ```typescript
-// Zustand nach Login speichern
+// Save the state after login
 await request.post('/login', { data: { user: 'alice', password: 'secret' } });
 await request.storageState({ path: 'playwright/.auth/alice.json' });
 
-// Zustand zurueckgeben ohne Speichern
+// Return the state without saving
 const state = await request.storageState();
 console.log(state.cookies);
 ```
@@ -240,34 +240,34 @@ console.log(state.cookies);
 
 ### request.dispose(options?)
 
-Gibt alle gespeicherten Responses frei (Speicher-Management).
+Releases all stored responses (memory management).
 
 ```typescript
-// Nach manuell erstelltem Context immer aufrufen
+// Always call this after a manually created context
 await apiContext.dispose();
 
-// Mit Grund (ab v1.45)
-await apiContext.dispose({ reason: 'Test beendet' });
+// With a reason (from v1.45)
+await apiContext.dispose({ reason: 'Test finished' });
 ```
 
 ---
 
-## 4. APIResponse - Alle Methoden
+## 4. APIResponse - All Methods
 
-| Methode | Rueckgabe | Beschreibung |
+| Method | Returns | Description |
 |---------|-----------|--------------|
 | `response.ok()` | `boolean` | Status 200-299 |
-| `response.status()` | `number` | HTTP-Statuscode |
-| `response.statusText()` | `string` | HTTP-Statustext |
-| `response.url()` | `string` | Finale URL (nach Redirects) |
+| `response.status()` | `number` | HTTP status code |
+| `response.statusText()` | `string` | HTTP status text |
+| `response.url()` | `string` | Final URL (after redirects) |
 | `response.headers()` | `Object<string, string>` | Headers (lowercase) |
-| `response.headersArray()` | `Promise<Array<{name,value}>>` | Headers als Array |
-| `response.headerValue(name)` | `Promise<string \| null>` | Einzelner Header |
-| `response.headerValues(name)` | `Promise<string[]>` | Alle Werte fuer einen Header |
-| `response.body()` | `Promise<Buffer>` | Body als Buffer |
-| `response.text()` | `Promise<string>` | Body als String |
-| `response.json()` | `Promise<any>` | Body als geparste JSON |
-| `response.dispose()` | `Promise<void>` | Speicher freigeben |
+| `response.headersArray()` | `Promise<Array<{name,value}>>` | Headers as an array |
+| `response.headerValue(name)` | `Promise<string \| null>` | Single header |
+| `response.headerValues(name)` | `Promise<string[]>` | All values for one header |
+| `response.body()` | `Promise<Buffer>` | Body as a Buffer |
+| `response.text()` | `Promise<string>` | Body as a string |
+| `response.json()` | `Promise<any>` | Body as parsed JSON |
+| `response.dispose()` | `Promise<void>` | Release memory |
 
 ```typescript
 const response = await request.post('/users', { data: { name: 'Alice' } });
@@ -285,9 +285,9 @@ expect(location).toMatch(/\/users\/\d+/);
 
 ---
 
-## 5. Manueller Context
+## 5. Manual Context
 
-Fuer erweiterte Konfiguration oder isolierte Cookie-Verwaltung.
+For advanced configuration or isolated cookie management.
 
 ```typescript
 import { request } from '@playwright/test';
@@ -298,7 +298,7 @@ test.beforeAll(async () => {
     extraHTTPHeaders: {
       'Authorization': `token ${process.env.TOKEN}`,
     },
-    // Zertifikat-Konfiguration
+    // Certificate configuration
     clientCertificates: [{
       origin: 'https://api.example.com',
       certPath: './cert.pem',
@@ -314,32 +314,32 @@ test.afterAll(async () => {
 
 ---
 
-## 6. Kontext-gebundener vs. isolierter Request
+## 6. Context-bound vs. Isolated Request
 
-### Kontext-gebunden (teilt Cookies mit Browser)
+### Context-bound (shares cookies with the browser)
 
-Zugriff ueber `page.request` oder `context.request`.
+Accessed via `page.request` or `context.request`.
 
 ```typescript
 test('shared cookies', async ({ page, context }) => {
-  // Cookies aus dem Browser-Kontext werden automatisch mitgesendet
+  // Cookies from the browser context are sent automatically
   const response = await page.request.get('/api/profile');
   expect(response.ok()).toBeTruthy();
 });
 ```
 
-### Isoliert (eigene Cookie-Verwaltung)
+### Isolated (own cookie management)
 
-Erstellt ueber `playwright.request.newContext()`.
+Created via `playwright.request.newContext()`.
 
 ```typescript
 test('isolated cookies', async ({ playwright, browser }) => {
   const apiRequest = await playwright.request.newContext();
 
-  // Cookies bleiben in apiRequest isoliert
+  // Cookies stay isolated within apiRequest
   await apiRequest.get('/api/login');
 
-  // Explizit in Browser-Kontext uebertragen wenn noetig
+  // Explicitly transfer to the browser context if needed
   const state = await apiRequest.storageState();
   const browserContext = await browser.newContext({ storageState: state });
 
@@ -350,9 +350,9 @@ test('isolated cookies', async ({ playwright, browser }) => {
 
 ---
 
-## 7. UI + API kombinieren
+## 7. Combining UI + API
 
-### Vorbedingungen per API setzen
+### Set up preconditions via the API
 
 ```typescript
 let apiContext: APIRequestContext;
@@ -369,23 +369,23 @@ test.afterAll(async () => {
 });
 
 test('newest issue first in list', async ({ page }) => {
-  // Server-Zustand per API vorbereiten
+  // Prepare the server state via the API
   const issue = await apiContext.post('/repos/owner/repo/issues', {
     data: { title: '[Feature] My new feature' },
   });
   const { number } = await issue.json();
 
-  // UI validieren
+  // Validate the UI
   await page.goto('https://github.com/owner/repo/issues');
   await expect(page.locator('a[data-hovercard-type="issue"]').first())
     .toHaveText('[Feature] My new feature');
 
-  // Aufraumen
+  // Clean up
   await apiContext.delete(`/repos/owner/repo/issues/${number}`);
 });
 ```
 
-### Nachbedingungen per API validieren
+### Validate postconditions via the API
 
 ```typescript
 test('ui action creates server state', async ({ page, request }) => {
@@ -397,7 +397,7 @@ test('ui action creates server state', async ({ page, request }) => {
 
   const issueNumber = page.url().split('/').pop();
 
-  // Server-Zustand per API pruefen
+  // Check the server state via the API
   const response = await request.get(`/repos/owner/repo/issues/${issueNumber}`);
   expect(response.ok()).toBeTruthy();
   const issue = await response.json();
@@ -407,31 +407,31 @@ test('ui action creates server state', async ({ page, request }) => {
 
 ---
 
-## 8. Lifecycle-Hooks
+## 8. Lifecycle Hooks
 
 ```typescript
 test.beforeAll(async ({ request }) => {
-  // Server-Zustand global vorbereiten
+  // Prepare the server state globally
   await request.post('/test/seed', { data: { scenario: 'default' } });
 });
 
 test.afterAll(async ({ request }) => {
-  // Aufraumen
+  // Clean up
   await request.delete('/test/cleanup');
 });
 
 test.beforeEach(async ({ request }) => {
-  // Pro-Test-Zustand
+  // Per-test state
   await request.post('/test/reset');
 });
 ```
 
 ---
 
-## 9. Auth-Zustand wiederverwenden
+## 9. Reusing Auth State
 
 ```typescript
-// 1. Login per API, Zustand speichern
+// 1. Log in via the API, save the state
 const context = await request.newContext();
 await context.post('https://example.com/api/login', {
   data: { username: 'admin', password: 'secret' },
@@ -439,7 +439,7 @@ await context.post('https://example.com/api/login', {
 await context.storageState({ path: 'playwright/.auth/admin.json' });
 await context.dispose();
 
-// 2. Browser-Kontext mit gespeichertem Zustand
+// 2. Browser context with the saved state
 const browserCtx = await browser.newContext({
   storageState: 'playwright/.auth/admin.json',
 });
@@ -447,4 +447,4 @@ const browserCtx = await browser.newContext({
 
 ---
 
-Quelle: https://playwright.dev/docs/api-testing | https://playwright.dev/docs/api/class-apirequestcontext
+Source: https://playwright.dev/docs/api-testing | https://playwright.dev/docs/api/class-apirequestcontext

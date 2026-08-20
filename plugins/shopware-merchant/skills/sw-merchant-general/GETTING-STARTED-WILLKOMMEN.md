@@ -1,72 +1,72 @@
-# Willkommen bei Shopware – Ökosystem & Ressourcen
+# Welcome to Shopware – ecosystem & resources
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/willkommen-bei-shopware
+**Source**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/willkommen-bei-shopware
 
-## Überblick
+## Overview
 
-Shopware ist Open-Source-Software. Nach dem Kauf oder der Entscheidung für Shopware stehen diverse
-Ressourcen zur Verfügung. Dieser Artikel gibt einen Überblick über das Shopware-Ökosystem.
+Shopware is open-source software. After purchasing or deciding on Shopware, a variety of
+resources are available. This article gives an overview of the Shopware ecosystem.
 
 ---
 
-## Zentrale Plattformen
+## Central platforms
 
-### Shopware Website
+### Shopware website
 - URL: https://www.shopware.com/de/
-- Produktinformationen, Agenturpartner-Verzeichnis, Bildungsangebote
-- Preisübersicht und Planvergleich (Rise / Evolve / Beyond)
+- Product information, agency partner directory, training offerings
+- Price overview and plan comparison (Rise / Evolve / Beyond)
 
 ### Shopware Store
 - URL: https://store.shopware.com
-- Marktplatz für Erweiterungen, Themes und Zahlungslösungen von Drittanbietern
-- Erweiterungen können auch direkt im Admin unter **Erweiterungen > Store** gefunden werden
+- Marketplace for third-party extensions, themes and payment solutions
+- Extensions can also be found directly in the admin under **Erweiterungen** (Extensions) **> Store**
 
 ### Shopware Account
 - URL: https://account.shopware.com
-- Zentraler Hub für: gekaufte Lizenzen, Rechnungen, Support-Anfragen, Domain-Verwaltung
-- Pflicht vor Installation von Erweiterungen
+- Central hub for: purchased licences, invoices, support requests, domain management
+- Mandatory before installing extensions
 
 ---
 
-## Dokumentation & Entwickler
+## Documentation & developers
 
-| Ressource | URL | Zielgruppe |
+| Resource | URL | Target group |
 |---|---|---|
-| Shopware Docs | https://docs.shopware.com | Händler, Shop-Betreiber |
-| Shopware Devdocs | https://developer.shopware.com | Entwickler, Designer |
-| API-Dokumentation | https://shopware.stoplight.io | Entwickler |
+| Shopware Docs | https://docs.shopware.com | Merchants, shop operators |
+| Shopware Devdocs | https://developer.shopware.com | Developers, designers |
+| API documentation | https://shopware.stoplight.io | Developers |
 
 ---
 
-## Community & Support
+## Community & support
 
-| Kanal | URL | Beschreibung |
+| Channel | URL | Description |
 |---|---|---|
-| Community Hub | https://hub.shopware.com | Interaktive Lernpfade, Networking |
-| Shopware Forum | https://forum.shopware.com | Peer-to-Peer-Austausch |
-| Product Feedback Portal | https://feedback.shopware.com | Feature-Wünsche, Bug-Meldungen |
-| GitHub Issues | https://github.com/shopware | Technische Bug-Reports |
-| Discord | https://chat.shopware.com | Live-Community-Chat |
+| Community Hub | https://hub.shopware.com | Interactive learning paths, networking |
+| Shopware Forum | https://forum.shopware.com | Peer-to-peer exchange |
+| Product Feedback Portal | https://feedback.shopware.com | Feature requests, bug reports |
+| GitHub Issues | https://github.com/shopware | Technical bug reports |
+| Discord | https://chat.shopware.com | Live community chat |
 
 ---
 
-## Support nach Plan
+## Support by plan
 
-| Plan | Primärer Support |
+| Plan | Primary support |
 |---|---|
-| Community Edition (kostenlos) | Forum + Community |
-| Rise / Evolve / Beyond | Shopware Support + Forum + zertifizierte Partner |
+| Community Edition (free) | Forum + community |
+| Rise / Evolve / Beyond | Shopware Support + forum + certified partners |
 
-- **Zertifizierte Shopware-Partner**: Agenturen für individuelle Entwicklung, komplexe Fragen
-- **Response-Zeit-Garantien**: Abhängig vom Vertragslevel
-- Kontakt Support: https://account.shopware.com (Ticket erstellen)
+- **Certified Shopware partners**: agencies for custom development, complex questions
+- **Response time guarantees**: depending on the contract level
+- Contact support: https://account.shopware.com (create a ticket)
 
 ---
 
-## Nächste Schritte für Neukunden
+## Next steps for new customers
 
-1. Shopware Account anlegen → https://account.shopware.com/register
-2. Shop-Domain verknüpfen
-3. Systemvoraussetzungen prüfen
-4. Shopware 6 installieren oder Cloud-Instanz starten
-5. Ersteinrichtungs-Assistent durchlaufen
+1. Create a Shopware Account → https://account.shopware.com/register
+2. Link the shop domain
+3. Check the system requirements
+4. Install Shopware 6 or start a cloud instance
+5. Run through the Ersteinrichtungs-Assistent (First-run wizard)

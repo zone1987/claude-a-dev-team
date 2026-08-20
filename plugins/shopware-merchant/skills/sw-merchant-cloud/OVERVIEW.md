@@ -1,36 +1,36 @@
-# Shopware in der Cloud — Überblick
+# Shopware in der Cloud (Shopware in the cloud) — Overview
 
-Destilliert aus `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
+Distilled from `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
 
-## Zwei Cloud-Modelle
+## Two cloud models
 
 ### SaaS (Software as a Service)
-- Shopware verwaltet **gesamte Infrastruktur**
-- Standardisiert, keine Serververwaltung nötig
-- Updates erfolgen **automatisch**
-- Für Händler ohne tiefes technisches Know-how geeignet
-- Pläne: Rise, Evolve, Beyond
-- Detail-Skill: `sw-merchant-cloud-saas-setup` + `sw-merchant-cloud-saas-betrieb`
+- Shopware manages the **entire infrastructure**
+- Standardised, no server administration required
+- Updates are applied **automatically**
+- Suitable for merchants without deep technical know-how
+- Plans: Rise, Evolve, Beyond
+- Detail skill: `sw-merchant-cloud-saas-setup` + `sw-merchant-cloud-saas-betrieb`
 
 ### PaaS (Platform as a Service)
-- **Mehr Flexibilität** als SaaS
-- Individuelle Anpassungen möglich
-- Mehr Kontrolle über Konfigurationen
-- Höhere technische Eigenverantwortung
-- Hauptdoku: **Entwicklerdokumentation** (developer.shopware.com/docs/products/paas/)
-- Support-Tickets: über console.shopware.com
+- **More flexibility** than SaaS
+- Individual customisations possible
+- More control over configurations
+- Higher technical responsibility on your side
+- Main documentation: **developer documentation** (developer.shopware.com/docs/products/paas/)
+- Support tickets: via console.shopware.com
 
-## Vergleich
+## Comparison
 
-| Merkmal | SaaS | PaaS | Self-hosted |
+| Characteristic | SaaS | PaaS | Self-hosted |
 |---|---|---|---|
-| Infrastruktur | Shopware | Shopware (flexibel) | Eigener Server |
-| Updates | Automatisch | Konfigurierbar | Manuell |
-| Anpassbarkeit | Standard | Hoch | Vollständig |
-| Technischer Aufwand | Gering | Mittel | Hoch |
+| Infrastructure | Shopware | Shopware (flexible) | Your own server |
+| Updates | Automatic | Configurable | Manual |
+| Customisability | Standard | High | Complete |
+| Technical effort | Low | Medium | High |
 
-Weiterführend: `https://www.shopware.com/de/news/saas-paas-oder-self-hosted-welche-loesung-passt-am-besten-zu-deinem-business/`
+Further reading: `https://www.shopware.com/de/news/saas-paas-oder-self-hosted-welche-loesung-passt-am-besten-zu-deinem-business/`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/in-der-cloud*
+*Source: https://docs.shopware.com/de/shopware-6-de/in-der-cloud*

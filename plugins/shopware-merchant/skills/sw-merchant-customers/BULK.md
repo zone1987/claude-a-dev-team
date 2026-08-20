@@ -1,9 +1,9 @@
-# Shopware 6 – Mehrfachänderung & AI-Klassifizierung
+# Shopware 6 – Bulk edit & AI classification
 
-Vollständige Referenz: `BULK-DETAIL.md`
+Full reference: `BULK-DETAIL.md`
 
-## Auf einen Blick
+## At a glance
 
-- **Mehrfachänderung**: bis zu 1.000 Kunden gleichzeitig bearbeiten
-- 4 Operatoren: Überschreiben · Leeren · Hinzufügen · Entfernen
-- **AI-Klassifizierung**: ab Shopware Rise Plan, Tags als KI-Output
+- **Mehrfachänderung** (Bulk edit): edit up to 1,000 customers at once
+- 4 operators: Überschreiben (Overwrite) · Leeren (Clear) · Hinzufügen (Add) · Entfernen (Remove)
+- **AI-Klassifizierung** (AI classification): from Shopware Rise Plan, tags as AI output

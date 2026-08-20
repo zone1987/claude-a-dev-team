@@ -1,39 +1,39 @@
-# Shopware 6 – Inhalte: Vollständige Übersicht
+# Shopware 6 – Inhalte (Content): full overview
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/inhalte  
-**Version:** ab 6.7.0.0
+**Source:** https://docs.shopware.com/de/shopware-6-de/inhalte  
+**Version:** from 6.7.0.0
 
 ---
 
 ## Contents
 
-- [Bereich im Admin](#bereich-im-admin)
+- [Area in the admin](#area-in-the-admin)
 - [Erlebniswelten (Shopping Experiences)](#erlebniswelten-shopping-experiences)
 - [Medien](#medien)
 - [Themes](#themes)
 - [CMS-Erweiterungen](#cms-erweiterungen)
 
-## Bereich im Admin
+## Area in the admin
 
-Pfad: **Inhalte** (Hauptnavigation links)
+Path: **Inhalte** (main navigation on the left)
 
-Der Inhalte-Bereich enthält die vier Hauptmodule:
+The Inhalte area contains the four main modules:
 
-1. **Erlebniswelten** – visueller Seiten-Builder (CMS)
-2. **Medien** – zentrale Medienbibliothek
-3. **Themes** – Design-Konfiguration des Storefronts
-4. **CMS-Erweiterungen** – Zusatzfunktionen (Shopware Evolve+)
+1. **Erlebniswelten** (Shopping Experiences) – visual page builder (CMS)
+2. **Medien** (Media) – central media library
+3. **Themes** – design configuration of the storefront
+4. **CMS-Erweiterungen** (CMS extensions) – additional functions (Shopware Evolve+)
 
 ---
 
 ## Erlebniswelten (Shopping Experiences)
 
-Pfad: Inhalte > Erlebniswelten
+Path: Inhalte > Erlebniswelten
 
-Shopwares eigenes Drag-and-Drop-CMS. Ermöglicht das Erstellen und Zuweisen
-von Layouts für verschiedene Seitentypen ohne Code-Kenntnisse.
+Shopware's own drag-and-drop CMS. Allows layouts for various page types to be
+created and assigned without any coding knowledge.
 
-### Architektur
+### Architecture
 
 ```
 Layout
@@ -42,185 +42,185 @@ Layout
         └── Element (Text, Bild, Video, ...)
 ```
 
-### Layouttypen
+### Layout types
 
-| Typ | Verwendung | Besonderheit |
+| Type | Use | Particularity |
 |---|---|---|
-| Shopseite | AGB, Impressum, Kontakt | Zuweisung unter Einstellungen > Shops |
-| Landingpage | Marketing-Seiten | Eigene URL über Kategorie-Zuweisung |
-| Kategorieseite | Kategorie-Startseiten | Enthält Produktlisting automatisch |
-| Produktseite | Produktdetailseiten | Individuelle Anpassung pro Produkt möglich |
-| Bundle-Seite | Produkt-Bundles | Automatische Bundle-Datenbefüllung |
+| Shopseite (Shop page) | T&Cs, imprint, contact | Assigned under Einstellungen (Settings) > Shops |
+| Landingpage (Landing page) | Marketing pages | Own URL via category assignment |
+| Kategorieseite (Category page) | Category start pages | Includes the product listing automatically |
+| Produktseite (Product page) | Product detail pages | Individual adjustment per product possible |
+| Bundle-Seite (Bundle page) | Product bundles | Automatic bundle data population |
 
-### Block-Kategorien und Elemente
+### Block categories and elements
 
-#### Text-Blöcke
-- Vollwertiger WYSIWYG-Editor mit Formatierung (Bold, Italic, Listen, Links)
-- **Datenzuordnung**: Dynamische Inhalte aus Kategorie/Produkt-Daten
-- **Variablen**: `{{ variable }}` Syntax für direkte Dateneingabe
-- **AI Copilot** (kommerziell): KI-generierte Textvorschläge
-- **Link-Typen**: URL, Produkt, Kategorie, E-Mail, Telefon
+#### Text blocks
+- Full WYSIWYG editor with formatting (bold, italic, lists, links)
+- **Datenzuordnung** (Data mapping): dynamic content from category/product data
+- **Variables**: `{{ variable }}` syntax for direct data entry
+- **AI Copilot** (commercial): AI-generated text suggestions
+- **Link types**: URL, product, category, email, phone
 
-#### Bild-Blöcke
-- Bildauswahl aus Medienbereich oder Direktupload
-- Datenzuordnung für automatische Bildbefüllung
-- **Anzeigemodi**: Standard | Füllen | Strecken
-- **Ausrichtung**: Vertikal und horizontal konfigurierbar
-- **Link**: Bild als Verlinkung verwendbar
-- **Größenempfehlung**: 1280×528 px für vollbreite Bilder; max. 1320 px bei Full-HD
+#### Image blocks
+- Image selection from the media area or direct upload
+- Data mapping for automatic image population
+- **Display modes**: Standard | Füllen (Fill) | Strecken (Stretch)
+- **Alignment**: configurable vertically and horizontally
+- **Link**: the image can be used as a link
+- **Size recommendation**: 1280×528 px for full-width images; max. 1320 px at Full HD
 
 #### Slider
-- **Anzeigemodi**: Original | Feste Höhe | Zugeschnitten
-- Mindeststhöhe konfigurierbar
-- Pfeil- und Punkt-Navigation (de-/aktivierbar)
-- Auto-Play mit Verzögerung (ms) – Barrierefreiheitshinweis beachten
-- Bilder einzeln verlinkbar
-- Dekoratives Bild-Flag für Screenreader-Zugänglichkeit
+- **Display modes**: Original | Feste Höhe (Fixed height) | Zugeschnitten (Cropped)
+- Minimum height configurable
+- Arrow and dot navigation (can be enabled/disabled)
+- Auto-play with delay (ms) – note the accessibility advice
+- Images can be linked individually
+- Decorative image flag for screen reader accessibility
 
-#### Galerie
-- Mehrere Anzeigemodi wählbar
-- Vorschau-Navigation (links oder unten)
-- Zoom-Funktion
-- Vollbild-Modus
-- Seitenverhältnis-Beibehaltung
+#### Gallery
+- Several display modes selectable
+- Preview navigation (left or bottom)
+- Zoom function
+- Full-screen mode
+- Aspect ratio retention
 
-#### Commerce-Blöcke
+#### Commerce blocks
 
-**Produktname & Hersteller-Logo**
-- Auf Produktseiten: automatische Befüllung mit Produktname und Hersteller-Logo
+**Produktname & Hersteller-Logo** (Product name & manufacturer logo)
+- On product pages: automatic population with the product name and manufacturer logo
 
-**Drei Spalten Produkte-Boxen**
-- Bis zu 3 Produkte anzeigen
-- Layout-Typ: Standard | Großes Bild | Minimaler Text
+**Drei Spalten Produkte-Boxen** (Three-column product boxes)
+- Display up to 3 products
+- Layout type: Standard | Großes Bild (Large image) | Minimaler Text (Minimal text)
 
-**Produkt-Slider**
-- Horizontaler Slider für mehrere Produkte
-- Minimale Breite einstellbar
-- Rahmen de-/aktivierbar
-- Auto-Wechsel mit Animationsdauer (ms)
+**Produkt-Slider** (Product slider)
+- Horizontal slider for several products
+- Minimum width adjustable
+- Border can be enabled/disabled
+- Auto-rotation with animation duration (ms)
 
 **Cross-Selling**
-- Produkt für Cross-Selling-Basis im Tab „Inhalt" angeben
-- Verknüpfte Produkte werden automatisch geladen
+- Specify the product used as the cross-selling basis on the "Inhalt" (Content) tab
+- Linked products are loaded automatically
 
 **Bundles**
-- Automatische Befüllung: Produktliste, Bundle-Name, Galerie, Beschreibung
-- Speziell für Bundle-Seitentyp
+- Automatic population: product list, bundle name, gallery, description
+- Specifically for the bundle page type
 
-#### Video-Blöcke
+#### Video blocks
 
-| Typ | Besonderheiten |
+| Type | Particularities |
 |---|---|
-| Video (lokal) | Auto-Play, Stummschalten, Auf Anfrage laden |
-| YouTube | Erweiterter Datenschutzmodus, Start-/Endzeit |
-| Vimeo | Farbanpassung, Informations-Overlay konfigurierbar |
+| Video (local) | Auto-play, mute, load on demand |
+| YouTube | Enhanced privacy mode, start/end time |
+| Vimeo | Colour adjustment, information overlay configurable |
 
-**Achtung**: Auto-Play deaktiviert automatisch Ton-Option (Barrierefreiheit).
+**Caution**: auto-play automatically disables the sound option (accessibility).
 
-#### Weitere Blöcke
+#### Further blocks
 
-- **Sidebar**: Automatisch befüllt (Filter, Navigation)
-- **Formular**: Kontaktformular mit konfigurierbaren Empfänger-E-Mails
-- **HTML**: Direktes HTML einbetten (HTML Sanitizer-Einstellungen beachten)
-- **3D-Modelle** (kommerziell, Plan „Rise"): .glb-Format, realistische Produktvisualisierung
+- **Sidebar**: populated automatically (filters, navigation)
+- **Formular** (Form): contact form with configurable recipient email addresses
+- **HTML**: embed HTML directly (mind the HTML sanitizer settings)
+- **3D models** (commercial, "Rise" plan): .glb format, realistic product visualisation
 
-#### Produktlisting-Block (Kategorieseiten)
+#### Product listing block (category pages)
 
-Automatisch in Kategorieseiten integriert. Konfigurierbar:
+Integrated into category pages automatically. Configurable:
 
-**Sortierungen:**
-- „Produktsortierung anzeigen" aktivieren/deaktivieren
-- Eigene oder Standard-Sortierungen
-- Priorität durch Doppelklick ändern
-- Standard-Sortierung auswählen
+**Sortings:**
+- Enable/disable "Produktsortierung anzeigen" (Show product sorting)
+- Custom or standard sortings
+- Change the Priorität (Priority) by double-clicking
+- Select the default sorting
 
-**Filter:**
-- Allgemeine Filter: Hersteller, Preis
-- Eigenschaftsbasierte Filter konfigurierbar
-- Filter werden nur angezeigt, wenn Produkte mit dieser Eigenschaft existieren
+**Filters:**
+- General filters: Hersteller (Manufacturers), Preis (Price)
+- Property-based filters configurable
+- Filters are only shown if products with that property exist
 
 ---
 
-### Einstellungen im Layout-Editor
+### Settings in the layout editor
 
-#### Block-Einstellungen (Klick auf Block → rechte Sidebar)
+#### Block settings (click a block → right-hand sidebar)
 
-| Einstellung | Beschreibung |
+| Setting | Beschreibung (Description) |
 |---|---|
-| Name | Bezeichnung für Navigator |
-| Hintergrundfarbe | Farbauswahl inkl. Hex-Eingabe |
-| Hintergrundbild | Bild aus Medienbibliothek |
-| Bildmodus | Standard/Füllen/Strecken |
-| Layout/CSS-Klassen | Custom-CSS-Klassen und Abstände |
+| Name | Designation for the navigator |
+| Hintergrundfarbe (Background colour) | Colour picker incl. hex entry |
+| Hintergrundbild (Background image) | Image from the media library |
+| Bildmodus (Image mode) | Standard/Füllen/Strecken |
+| Layout/CSS classes | Custom CSS classes and spacing |
 
-#### Sektions-Einstellungen
+#### Section settings
 
-| Einstellung | Beschreibung |
+| Setting | Beschreibung |
 |---|---|
-| Sektionsname | Zur Identifikation im Navigator |
-| CSS-Klassen | Mehrere mit Leerzeichen trennen |
-| Größenmodus | Volle Breite oder zentriert |
-| Mobiles Sidebar-Verhalten | „Nicht angezeigt" für mobiles Ausblenden |
-| Hintergrundfarbe/-bild | Identisch zu Block-Einstellungen |
+| Sektionsname (Section name) | For identification in the navigator |
+| CSS classes | Separate several with spaces |
+| Größenmodus (Size mode) | Full width or centred |
+| Mobile sidebar behaviour | "Nicht angezeigt" (Not displayed) to hide it on mobile |
+| Hintergrundfarbe/-bild | Identical to the block settings |
 
-#### Sichtbarkeit (Viewport-Steuerung)
+#### Sichtbarkeit (Visibility) (viewport control)
 
-Jedes Element und jede Sektion kann geräteabhängig ein-/ausgeblendet werden.
-Einstellung pro Viewport: Desktop | Tablet | Mobil.
+Every element and every section can be shown/hidden depending on the device.
+Setting per viewport: Desktop | Tablet | Mobil (Mobile).
 
 #### Navigator
 
-Rechte Sidebar-Tab. Zeigt alle Blöcke als Hierarchie:
-- **Drag & Drop**: Reihenfolge per Ziehen ändern
-- **Plus-Icon**: Block duplizieren
-- **Papierkorb-Icon**: Block löschen
+Right-hand sidebar tab. Shows all blocks as a hierarchy:
+- **Drag & drop**: change the order by dragging
+- **Plus icon**: duplicate the block
+- **Bin icon**: delete the block
 
-#### Fehlerbehandlung
+#### Error handling
 
-Beim Speichern zeigt das System:
-- Genaue Fehlermeldung
-- Betroffenes Element
-- Fehlerposition im Layout
+When saving, the system shows:
+- The exact error message
+- The affected element
+- The error position in the layout
 
 ---
 
-### Layout-Zuweisung
+### Layout assignment
 
-#### Shopseiten
-Einstellungen > Shops > Stammdaten > Bereich „Shopseiten"
+#### Shop pages
+Einstellungen > Shops > Stammdaten (Master data) > "Shopseiten" area
 
-#### Kategorieseiten
-Kataloge > Kategorien > Kategorie öffnen > Tab „Layout" > Layout zuweisen
+#### Category pages
+Kataloge (Catalogues) > Kategorien (Categories) > open the category > "Layout" tab > assign the layout
 
-#### Landingpages
-1. Landingpage-Layout erstellen
-2. Unter Kataloge > Kategorien einer Kategorie zuweisen
-3. Aufruf über URL der Kategorie
+#### Landing pages
+1. Create a landing page layout
+2. Assign it to a category under Kataloge > Kategorien
+3. Access it via the category's URL
 
-#### Produktseiten
-Kataloge > Produkte > Produkt öffnen > Tab „Layout" > Layout auswählen
-→ Individuelle Elementwerte pro Produkt überschreibbar
+#### Product pages
+Kataloge > Produkte (Products) > open the product > "Layout" tab > select the layout
+→ individual element values can be overridden per product
 
-#### Standardlayouts festlegen
-Layout-Editor > Sidebar > Layout-Zuweisung > Standardlayouts > „Als Standardlayout verwenden"
-- Spart Zeit bei neuen Kategorien/Produkten
+#### Defining default layouts
+Layout editor > sidebar > Layout-Zuweisung (Layout assignment) > Standardlayouts (Default layouts) > "Als Standardlayout verwenden" (Use as default layout)
+- Saves time with new categories/products
 
 ---
 
 ## Medien
 
-Pfad: Inhalte > Medien
+Path: Inhalte > Medien
 
-Zentrale Medienbibliothek. Details: `sw-merchant-content-media`
+Central media library. Details: `sw-merchant-content-media`
 
 ## Themes
 
-Pfad: Inhalte > Themes
+Path: Inhalte > Themes
 
-Design-Konfiguration (Farben, Schriften, Logos). Details: `sw-merchant-content-themes`
+Design configuration (colours, fonts, logos). Details: `sw-merchant-content-themes`
 
 ## CMS-Erweiterungen
 
-Pfad: Erweiterungen > CMS-Erweiterungen (Shopware Evolve+)
+Path: Erweiterungen > CMS-Erweiterungen (Shopware Evolve+)
 
 Details: `sw-merchant-content-cms-extensions`

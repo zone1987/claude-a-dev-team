@@ -1,97 +1,97 @@
-# Administration im Überblick
+# Administration at a glance
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/administration-ueberblick
+**Source**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/administration-ueberblick
 
-## Überblick
+## Overview
 
-Die Shopware-6-Administration ist das zentrale Backend für die Verwaltung des Online-Shops.
-Sie nutzt ein zentrales Anzeige-Format (kein separates Fenstermanagement) und kann in
-**mehreren Browser-Tabs parallel** geöffnet werden.
-
----
-
-## Zugang
-
-- **URL-Schema**: `https://www.meinshop.de/admin`
-- **Login**: E-Mail/Benutzername + Passwort
-- **Passwort vergessen**: Über den Login-Screen, Bestätigungs-E-Mail an hinterlegte Adresse
+The Shopware 6 administration is the central backend for managing the online shop.
+It uses a single display format (no separate window management) and can be opened in
+**several browser tabs in parallel**.
 
 ---
 
-## Hauptbereiche der Oberfläche
+## Access
 
-### 1. Linke Navigationsleiste
+- **URL scheme**: `https://www.meinshop.de/admin`
+- **Login**: email/username + password
+- **Forgotten password**: via the login screen, confirmation email to the stored address
 
-Die primäre Navigation verläuft links und enthält:
+---
 
-| Bereich | Beschreibung |
+## Main areas of the interface
+
+### 1. Left-hand navigation bar
+
+The primary navigation runs down the left and contains:
+
+| Area | Description |
 |---|---|
-| **Dashboard** | Startseite nach Login, Statistik-Übersicht |
-| **Bestellungen** | Bestellverwaltung, Retouren |
-| **Kunden** | Kundenstammdaten, Gruppen |
-| **Katalog** | Produkte, Kategorien, Eigenschaften, Medien |
+| **Dashboard** | Start page after login, statistics overview |
+| **Bestellungen** (Orders) | Order management, returns |
+| **Kunden** (Customers) | Customer master data, groups |
+| **Katalog** (Catalogue) | Products, categories, properties, media |
 | **Content** | Erlebniswelten (Shopping Experiences / CMS) |
-| **Marketing** | Promotionen, Gutscheine, Newsletter |
-| **Verkaufskanäle** | Storefront, Headless, Social, POS |
-| **Erweiterungen** | Store, Meine Erweiterungen |
-| **Einstellungen** | System, Zahlungen, Versand, Steuern, Benutzer |
+| **Marketing** | Promotions, vouchers, newsletter |
+| **Verkaufskanäle** (Sales channels) | Storefront, headless, social, POS |
+| **Erweiterungen** (Extensions) | Store, Meine Erweiterungen (My extensions) |
+| **Einstellungen** (Settings) | System, payments, shipping, taxes, users |
 
-- Oben in der Leiste: **Shopware-Versionsnummer** sichtbar
-- Unten in der Leiste: **Profil-Einstellungen** (Name, Sprache, Passwort)
-- **Navigation minimieren**: Klick auf Pfeil-Icon → nur Icons werden angezeigt (mehr Platz)
+- At the top of the bar: the **Shopware version number** is visible
+- At the bottom of the bar: **Profil-Einstellungen** (Profile settings) (name, language, password)
+- **Minimise the navigation**: click the arrow icon → only icons are shown (more room)
 
 ---
 
-### 2. Obere Leiste (Top Bar)
+### 2. Top bar
 
-| Element | Funktion |
+| Element | Function |
 |---|---|
-| **Suchleiste (Mitte)** | Suche über Produkte, Kategorien, Kunden, Bestellungen, Medien |
-| **Glocken-Icon** | Benachrichtigungen: System-Updates, Plugin-Updates, Hinweise |
+| **Search bar (centre)** | Searches across products, categories, customers, orders, media |
+| **Bell icon** | Notifications: system updates, plugin updates, hints |
 
 ---
 
-### 3. Hauptbereich (Content Area)
+### 3. Content area
 
-- Zeigt den Inhalt des aktuell gewählten Menüpunkts
-- **Mehrere Tabs**: Browser-Tabs können unabhängig voneinander verschiedene Admin-Seiten anzeigen
-- Keine Desktop-Fenster-Metapher – alle Aktionen im gleichen Tab
+- Shows the content of the currently selected menu entry
+- **Multiple tabs**: browser tabs can show different admin pages independently of each other
+- No desktop window metaphor – all actions happen in the same tab
 
 ---
 
-## Tastenkürzel
+## Keyboard shortcuts
 
-| Kürzel | Funktion |
+| Shortcut | Function |
 |---|---|
-| `Strg/Cmd + F` | Schnellsuche öffnen |
-| `#` in Suche tippen | Modul-Filterauswahl öffnen |
+| `Ctrl/Cmd + F` | Open the quick search |
+| Typing `#` in the search | Open the module filter selection |
 
-Vollständige Übersicht: **Profil > Tastenkürzel**
-
----
-
-## Mehrsprachigkeit der Administration
-
-- Sprache wechseln: Profil (links unten) > Sprache auswählen
-- Verfügbare Sprachen: Abhängig vom installierten Sprachpaket
-- Standard: Deutsch und Englisch
+Full overview: **Profil** (Profile) **> Tastenkürzel** (Keyboard shortcuts)
 
 ---
 
-## Interaktiver Lernpfad
+## Multi-language support in the administration
 
-Im **Community Hub** (https://hub.shopware.com) gibt es einen interaktiven Lernpfad,
-um die Administration praktisch kennenzulernen:
-- Schritt-für-Schritt-Anleitungen
-- Sandbox-Übungen
-- Networking mit anderen Shopware-Nutzern
+- Switch the language: Profil (bottom left) > select the language
+- Available languages: depending on the installed language pack
+- Default: German and English
 
 ---
 
-## Hinweis: Berechtigungen
+## Interactive learning path
 
-Nicht alle Menüpunkte sind für jeden Benutzer sichtbar. Das hängt von der
-**Benutzerrolle** ab (konfigurierbar unter Einstellungen > System > Benutzer & Rechte).
+The **Community Hub** (https://hub.shopware.com) offers an interactive learning path
+for getting hands-on with the administration:
+- Step-by-step instructions
+- Sandbox exercises
+- Networking with other Shopware users
 
-- Administrator: Vollzugriff
-- Benutzerdefinierte Rollen: Eingeschränkte Sichtbarkeit/Bearbeitung
+---
+
+## Note: permissions
+
+Not all menu entries are visible to every user. This depends on the
+**user role** (configurable under Einstellungen > System > Benutzer & Rechte (Users & permissions)).
+
+- Administrator: full access
+- Custom roles: restricted visibility/editing

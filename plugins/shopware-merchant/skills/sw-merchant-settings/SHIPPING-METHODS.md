@@ -1,9 +1,9 @@
-# Shopware 6 – Versandarten
+# Shopware 6 – Versandarten (Shipping methods)
 
-Referenz für die Konfiguration von Versandmethoden und Versandkosten.
+Reference for configuring shipping methods and shipping costs.
 
-**Pfad:** Einstellungen > Handel > Versand
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Versand (Shipping)
 
-Detaillierte Referenz:
+Detailed reference:
 - [SHIPPING-METHODS-DETAIL.md](SHIPPING-METHODS-DETAIL.md)
-- [SHIPPING-METHODS-WAREHOUSES.md](SHIPPING-METHODS-WAREHOUSES.md) — Lagerhäuser & Lagerhausgruppen (Plan Beyond)
+- [SHIPPING-METHODS-WAREHOUSES.md](SHIPPING-METHODS-WAREHOUSES.md) — Lagerhäuser (Warehouses) & Lagerhausgruppen (Warehouse groups) (Beyond plan)

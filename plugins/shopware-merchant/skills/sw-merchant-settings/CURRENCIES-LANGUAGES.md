@@ -1,11 +1,11 @@
-# Shopware 6 – Währungen, Sprachen & Länder
+# Shopware 6 – Währungen (Currencies), Sprachen (Languages) & Länder (Countries)
 
-Referenz für regionale Konfiguration: Währungen, Sprachen und Länder.
+Reference for regional configuration: currencies, languages and countries.
 
-## Enthaltene Themen
+## Topics covered
 
-- [Währungen](#währungen) — ISO-Code, Faktor, Preisrundungen
-- [Sprachen](#sprachen) — Systemsprache, Vererbung, ISO-Codes
-- [Länder](#länder) — Länder-/Regionen-Verwaltung, Adressformate, USt-ID
+- [Währungen](#währungen) — ISO code, factor, price rounding
+- [Sprachen](#sprachen) — system language, inheritance, ISO codes
+- [Länder](#länder) — country/region management, address formats, VAT ID
 
-Detaillierte Referenz: [CURRENCIES-LANGUAGES-DETAIL.md](CURRENCIES-LANGUAGES-DETAIL.md)
+Detailed reference: [CURRENCIES-LANGUAGES-DETAIL.md](CURRENCIES-LANGUAGES-DETAIL.md)

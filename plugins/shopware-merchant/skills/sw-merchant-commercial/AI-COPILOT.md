@@ -1,5 +1,5 @@
 # Shopware AI Copilot
 
-KI-Assistent in Shopware 6 (Rise+) für Content, Suche, Klassifizierung und Analyse.
+AI assistant in Shopware 6 (Rise+) for content, search, classification and analysis.
 
-<!-- Detaildokumentation: `AI-COPILOT-DETAIL.md` -->
+<!-- Detailed documentation: `AI-COPILOT-DETAIL.md` -->

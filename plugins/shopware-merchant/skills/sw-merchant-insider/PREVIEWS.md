@@ -1,24 +1,24 @@
 # Shopware 6 – Insider Previews
 
-Frühzeitiger Zugang zu neuen Shopware-Funktionen in der Beta-Phase. Nutzer können
-neue Features vorab testen und Feedback einreichen.
+Early access to new Shopware features while they are still in beta. Users can test
+new features ahead of release and submit feedback.
 
-> Empfehlung: Neue Funktionen zunächst in einer **Staging-Umgebung** testen,
-> bevor sie in der Produktivumgebung aktiviert werden.
+> Recommendation: test new features in a **staging environment** first,
+> before enabling them in the production environment.
 
-## Aktuelle Insider Previews
+## Current insider previews
 
-| Feature | Status | Plan | Mindestversion |
+| Feature | Status | Plan | Minimum version |
 |---|---|---|---|
 | Scene Editor | Beta | Rise+ | 6.6.8.1 |
 | Bundles | Blueprint | Evolve+ | 6.7.9.0 |
 
-## Sub-Skills
+## Sub-skills
 
 - `sw-merchant-insider-previews-scene-editor` – Scene Editor (Beta)
 - `sw-merchant-insider-previews-bundles` – Product Bundles (Blueprint)
 
-Vollständige Referenz: `PREVIEWS-DETAIL.md`
+Full reference: `PREVIEWS-DETAIL.md`
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/insider-previews

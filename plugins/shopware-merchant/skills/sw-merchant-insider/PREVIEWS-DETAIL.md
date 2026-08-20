@@ -1,98 +1,98 @@
-# Shopware 6 – Insider Previews: Vollständige Referenz
+# Shopware 6 – Insider Previews: full reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/insider-previews
-
----
-
-## 1. Was sind Insider Previews?
-
-Mit den **Insider Previews** erhalten Shopware-Nutzer frühzeitig Zugang zu neuen Funktionen
-und können diese vorab testen. Nutzer werden damit Teil der **Betaphase** und haben die
-Möglichkeit, Feedback zu geben zu:
-
-- Fehlenden Funktionen
-- Bugs/Fehlern
-- Verbesserungsvorschlägen
-
-### Was enthält jeder Insider-Preview-Artikel?
-
-- Eine **Beschreibung zur Konfiguration** der jeweiligen Funktion
-- **Links zum Feedback-Portal** für direktes Feedback
+> Source: https://docs.shopware.com/de/shopware-6-de/insider-previews
 
 ---
 
-## 2. Wichtiger Hinweis
+## 1. What are insider previews?
 
-> ⚠ **Empfehlung**: Neue Funktionen zunächst in einer **Staging-Umgebung** testen,
-> bevor sie in der Produktivumgebung eingesetzt werden.
+**Insider Previews** give Shopware users early access to new features
+and let them test those features ahead of release. Users thereby become part of the
+**beta phase** and get the chance to give feedback on:
 
----
+- Missing functionality
+- Bugs/defects
+- Suggestions for improvement
 
-## 3. Feature-Status-Definitionen
+### What does every insider preview article contain?
 
-### Beta-Status
-
-- Funktion ist grundsätzlich nutzbar, aber noch eingeschränkt
-- Verhalten und Umfang können sich in künftigen Updates ändern
-- Funktionsumfang kann weiter ausgebaut werden
-
-### Blueprint-Status
-
-- Funktion befindet sich in einer sehr frühen Phase
-- Funktionsumfang ist **bewusst minimal gehalten**
-- Dient dazu, Funktionen frühzeitig bereitzustellen und Feedback einzuholen
-- Kann sich strukturell noch stark verändern
+- A **description of how to configure** the respective feature
+- **Links to the feedback portal** for direct feedback
 
 ---
 
-## 4. Aktuelle Insider Previews (Stand: Juni 2026)
+## 2. Important note
+
+> ⚠ **Recommendation**: test new features in a **staging environment** first,
+> before putting them to use in the production environment.
+
+---
+
+## 3. Feature status definitions
+
+### Beta status
+
+- The feature is basically usable, but still limited
+- Behaviour and scope can change in future updates
+- The feature scope may be expanded further
+
+### Blueprint status
+
+- The feature is at a very early stage
+- The feature scope is **deliberately kept minimal**
+- Serves to make features available early and to gather feedback
+- Its structure may still change considerably
+
+---
+
+## 4. Current insider previews (as of June 2026)
 
 ### 4.1 Scene Editor (Beta)
 
-| Eigenschaft | Detail |
+| Property | Detail |
 |---|---|
 | Status | **Beta** |
-| Plan | Rise oder höher |
-| Mindestversion | 6.6.8.1 |
-| Pfad | Inhalte > Scene Editor |
+| Plan | Rise or higher |
+| Minimum version | 6.6.8.1 |
+| Path | **Inhalte** (Content) > Scene Editor |
 
-**Aktivierung für ältere Versionen**:
-Wenn Shopware in einer Version **zwischen 6.6.8.1 und 6.6.10.5** betrieben wird, muss
-der Scene Editor zunächst über das Modul **Insider Previews** aktiviert werden.
+**Activation for older versions**:
+If Shopware runs on a version **between 6.6.8.1 and 6.6.10.5**, the
+Scene Editor must first be enabled via the **Insider Previews** module.
 
-Ab Version 6.6.10.6 ist der Scene Editor direkt verfügbar ohne Aktivierungsschritt.
+From version 6.6.10.6 onwards the Scene Editor is available directly without an activation step.
 
-**Funktion**: 3D-Szenen erstellen, Produkte platzieren, Bilder generieren.
-Unbegrenzte Bildexporte, optimiert auf die eigenen Produkte abgestimmt.
+**Function**: create 3D scenes, place products, generate images.
+Unlimited image exports, optimally tuned to your own products.
 
-Detaillierte Dokumentation: `sw-merchant-insider-previews-scene-editor`
+Detailed documentation: `sw-merchant-insider-previews-scene-editor`
 → `references/deep/scene-editor-insider-preview.md`
 
 ---
 
 ### 4.2 Bundles (Blueprint)
 
-| Eigenschaft | Detail |
+| Property | Detail |
 |---|---|
 | Status | **Blueprint** |
-| Plan | Evolve oder höher |
-| Mindestversion | 6.7.9.0 |
-| Pfad | Kataloge > Bundles |
+| Plan | Evolve or higher |
+| Minimum version | 6.7.9.0 |
+| Path | **Kataloge** (Catalogues) > Bundles |
 
-**Funktion**: Mehrere Produkte zu einem gemeinsamen Bundle-Angebot zusammenfassen,
-optional mit Rabatt, und als eigenständiges Produkt in der Storefront verkaufen.
+**Function**: combine several products into one joint bundle offer,
+optionally with a discount, and sell it as a standalone product in the storefront.
 
-Detaillierte Dokumentation: `sw-merchant-insider-previews-bundles`
+Detailed documentation: `sw-merchant-insider-previews-bundles`
 → `references/deep/bundles.md`
 
 ---
 
-## 5. Feedback einreichen
+## 5. Submitting feedback
 
-Für jedes Insider-Preview-Feature wird ein direkter Link zum **Feedback-Portal** bereitgestellt.
-Shopware nutzt dieses Feedback, um die Funktionen gezielt weiterzuentwickeln.
+For every insider preview feature a direct link to the **feedback portal** is provided.
+Shopware uses this feedback to develop the features in a targeted way.
 
 ---
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/insider-previews

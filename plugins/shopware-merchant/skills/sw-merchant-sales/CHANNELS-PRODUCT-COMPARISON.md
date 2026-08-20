@@ -1,30 +1,30 @@
-# Shopware 6 – Produktvergleich (Export-Feeds)
+# Shopware 6 – Produktvergleich (Product comparison) (export feeds)
 
-XML/CSV-Feeds für Preisportale und Marktplätze konfigurieren.
+Configuring XML/CSV feeds for price portals and marketplaces.
 
-## Kernfunktionen
+## Core functions
 
-- Vorkonfigurierte Templates für bekannte Portale
-- Eigene Templates mit Twig möglich
-- Scheduler für automatische Neuberechnung
-- Dynamische Produktgruppen für Produktauswahl
-- Variablen für alle Produktdaten, Preise, SEO-URLs
+- Pre-configured templates for well-known portals
+- Custom templates possible with Twig
+- Scheduler for automatic recalculation
+- Dynamische Produktgruppen (Dynamic product groups) for product selection
+- Variables for all product data, prices, SEO URLs
 
-## Template-Typen
+## Template types
 
-| Abschnitt | Beschreibung |
+| Section | Description |
 |---|---|
-| **Kopfzeile** | XML/CSV-Header (einmalig) |
-| **Produktzeile** | Twig-Schleife pro Produkt |
-| **Fußzeile** | XML-Abschluss (nur XML) |
+| **Kopfzeile** (Header) | XML/CSV header (once) |
+| **Produktzeile** (Product row) | Twig loop per product |
+| **Fußzeile** (Footer) | XML closing (XML only) |
 
-## Häufige Twig-Variablen
+## Common Twig variables
 
-- `product.translated.name` – Produktname
-- `product.calculatedPrice.unitPrice` – Preis
-- `product.cover.media.url` – Produktbild
+- `product.translated.name` – product name
+- `product.calculatedPrice.unitPrice` – price
+- `product.cover.media.url` – product image
 - `seoUrl('frontend.detail.page', {'productId': product.id})` – URL
 
-## Quelle
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/Produktvergleich

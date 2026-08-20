@@ -1,5 +1,5 @@
-# Selenium-Grid (Standalone Chrome) für Panther-Tests gegen einen Remote-WebDriver.
-# Quelle: panther-selenium-remote. Tests nutzen createSeleniumClient(...) bzw. die PANTHER_*-Variablen.
+# Selenium Grid (standalone Chrome) for Panther tests against a remote WebDriver.
+# Source: panther-selenium-remote. Tests use createSeleniumClient(...) or the PANTHER_* variables.
 services:
   selenium:
     image: selenium/standalone-chrome:latest
@@ -10,11 +10,11 @@ services:
     environment:
       - SE_NODE_MAX_SESSIONS=1
 
-  # Beispiel: dein App-/Test-Container, der gegen das Grid testet.
+  # Example: your app/test container that tests against the grid.
   # tests:
   #   build: { context: ., dockerfile: utils/Dockerfile.panther }
   #   depends_on: [selenium]
   #   environment:
-  #     # Externer Webserver/Host, den der Remote-Browser erreicht:
+  #     # External web server/host that the remote browser reaches:
   #     - PANTHER_EXTERNAL_BASE_URI=http://app:8000
   #   command: vendor/bin/phpunit -c phpunit.panther.xml

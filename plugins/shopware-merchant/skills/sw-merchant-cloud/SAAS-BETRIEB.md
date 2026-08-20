@@ -1,19 +1,19 @@
-# Shopware SaaS — Laufender Betrieb
+# Shopware SaaS — Ongoing operation
 
-Destilliert aus `docs.shopware.com/de/shopware-6-de/saas`.
+Distilled from `docs.shopware.com/de/shopware-6-de/saas`.
 
-## Themen
+## Topics
 
-| Thema | Deep-Referenz |
+| Topic | Deep reference |
 |---|---|
-| Erweiterungen (Apps, Themes, Store) | `SAAS-BETRIEB-ERWEITERUNGEN-SAAS.md` |
-| Zahlungsarten (PayPal, Standard) | `SAAS-BETRIEB-ZAHLUNGSARTEN-SAAS.md` |
-| Versandarten (Anlegen, Preismatrix) | `SAAS-BETRIEB-VERSANDARTEN-SAAS.md` |
-| Häufige Fragen (Sperre, Backup, Updates) | `SAAS-BETRIEB-FAQ-SAAS.md` |
-| Kosten & Abrechnung | `SAAS-BETRIEB-KOSTEN-SAAS.md` |
-| Rate Limits (API-Limits) | `SAAS-BETRIEB-RATE-LIMITS-SAAS.md` |
-| Stammdaten & Firma | `SAAS-BETRIEB-STAMMDATEN-FIRMA-SAAS.md` |
+| Erweiterungen (Extensions) (apps, themes, store) | `SAAS-BETRIEB-ERWEITERUNGEN-SAAS.md` |
+| Zahlungsarten (Payment methods) (PayPal, standard) | `SAAS-BETRIEB-ZAHLUNGSARTEN-SAAS.md` |
+| Versandarten (Shipping methods) (creating, price matrix) | `SAAS-BETRIEB-VERSANDARTEN-SAAS.md` |
+| Frequently asked questions (suspension, backup, updates) | `SAAS-BETRIEB-FAQ-SAAS.md` |
+| Costs & billing | `SAAS-BETRIEB-KOSTEN-SAAS.md` |
+| Rate limits (API limits) | `SAAS-BETRIEB-RATE-LIMITS-SAAS.md` |
+| Stammdaten (Master data) & company | `SAAS-BETRIEB-STAMMDATEN-FIRMA-SAAS.md` |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/saas*
+*Source: https://docs.shopware.com/de/shopware-6-de/saas*

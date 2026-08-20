@@ -1,6 +1,6 @@
-# Shopware 6 – System-Info, Logs & Sonstige System-Einstellungen (vollständige Referenz)
+# Shopware 6 – System info, logs & other system settings (complete reference)
 
-Quellen:
+Sources:
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/logging
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/System/shopwareaccount
 - https://docs.shopware.com/de/shopware-6-de/einstellungen/system/daten-teilen
@@ -18,123 +18,123 @@ Quellen:
 
 ## Ereignis-Logs
 
-**Pfad:** Einstellungen > System > Ereignis-Logs  
-**Nur für Self-Hosted**
+**Path:** Einstellungen (Settings) > System > Ereignis-Logs (Event logs)  
+**Self-hosted only**
 
-Ab Version 6.5 wurden die Einträge minimalisiert. Für erweiterte Logging-Konfiguration (z.B. E-Mail-Logs): Developer-Dokumentation heranziehen.
+As of version 6.5 the entries have been minimised. For extended logging configuration (e.g. mail logs) consult the developer documentation.
 
-### Bedienelemente
-- `...`-Symbol: Spalten ausblenden
-- 3-Striche-Symbol: Spalten einblenden, Kompaktmodus umschalten
-- Zentrale Suchleiste: Log durchsuchen
+### Controls
+- `...` icon: hide columns
+- Three-bar icon: show columns, toggle compact mode
+- Central search bar: search the log
 
-### Spalten
-| Spalte | Inhalt |
+### Columns
+| Spalte (Column) | Inhalt (Content) |
 |---|---|
-| Nachricht | Bereichsherkunft (z.B. Checkout, Mail) |
-| Priorität | Wichtigkeitsstufe mit numerischem Wert |
-| Inhalt | Meldungstext (anklickbar für Details) |
+| Nachricht (Message) | Originating area (e.g. Checkout, Mail) |
+| Priorität (Priority) | Importance level with numeric value |
+| Inhalt | Message text (clickable for details) |
 
-### Prioritätsstufen
+### Priority levels
 
-| Stufe | Wert | Bedeutung |
+| Stufe (Level) | Wert (Value) | Bedeutung (Meaning) |
 |---|---|---|
-| Debug | 100 | Funktions-Debugging |
-| Info | 200 | Basis-Systeminformationen |
-| Error | 300 | Zu überprüfende Fehlermeldung |
-| Critical | 400 | Kritischer Fehler, sofortige Überprüfung erforderlich |
+| Debug | 100 | Function debugging |
+| Info | 200 | Basic system information |
+| Error | 300 | Error message to be checked |
+| Critical | 400 | Critical error, immediate review required |
 
-### Detailansicht
-Modalfenster zeigt unterschiedliche Informationen je nach Eintragstyp.
-- Mail-Logs: verschiedene Ansichtsmodi
-- Debug-Einträge: nur im Quelltext-Format
+### Detail view
+A modal window shows different information depending on the entry type.
+- Mail logs: several view modes
+- Debug entries: source-code format only
 
 ---
 
 ## Shopware Account Verknüpfung
 
-**Pfad:** Einstellungen > System > Shopware Account  
-**Verfügbar ab:** 6.3.5.0  
-**Nur für Self-Hosted**
+**Path:** Einstellungen > System > Shopware Account  
+**Available from:** 6.3.5.0  
+**Self-hosted only**
 
-Verbindet Shopware-Installation mit dem persönlichen Shopware Account für Zugriff auf erworbene Erweiterungen und Abonnements.
+Connects the Shopware installation with the personal Shopware Account to access purchased extensions and subscriptions.
 
-### Konfigurationsfelder
+### Configuration fields
 
-| Feld | Beschreibung |
+| Feld (Field) | Beschreibung (Description) |
 |---|---|
-| Lizenzierungshost | Host-Domain (muss exakt mit im Account registrierter Domain übereinstimmen inkl. `www.` falls nötig) |
-| Verifikationsprüfsumme | Optional; erforderlich wenn Domain noch nicht verifiziert; beim Domain-Eintrag im Account angezeigt |
+| Lizenzierungshost (Licensing host) | Host domain (must match the domain registered in the account exactly, including `www.` if needed) |
+| Verifikationsprüfsumme (Verification checksum) | Optional; required if the domain is not yet verified; shown at the domain entry in the account |
 
 ---
 
 ## Datenschutzeinstellungen (Daten teilen)
 
-**Pfad:** Einstellungen > System > Datenschutzeinstellungen
+**Path:** Einstellungen > System > Datenschutzeinstellungen (Data protection settings)
 
-Transparente und DSGVO-konforme Datenverwaltung für Analyse und Shopware-Verbesserungen.
+Transparent and GDPR-compliant data management for analysis and Shopware improvements.
 
-### Zwei Datenkategorien
+### Two data categories
 
-| Kategorie | Beschreibung |
+| Kategorie (Category) | Beschreibung |
 |---|---|
-| **Shop-Daten (anonym)** | Bestellungen, Diagnosen, allgemeine Shop-Informationen; vollständig anonymisiert |
-| **Nutzungsdaten** | Persönliche Verhaltensdaten in der Administration (Klicks, Navigation, Funktionen) |
+| **Shop-Daten (anonym)** (Shop data, anonymous) | Orders, diagnostics, general shop information; fully anonymised |
+| **Nutzungsdaten** (Usage data) | Personal behavioural data in the administration (clicks, navigation, features) |
 
-### Konfiguration
-- **Shop-Daten:** Einstellungen > System > Datenschutzeinstellungen (Toggle)
-- **Nutzungsdaten:** Eigenes Profil > Datenschutzeinstellungen (Toggle)
+### Configuration
+- **Shop-Daten:** Einstellungen > System > Datenschutzeinstellungen (toggle)
+- **Nutzungsdaten:** own profile > Datenschutzeinstellungen (toggle)
 
-### Modal nach Login
-Optionen:
-- „Alles ablehnen" — kein Teilen
-- „Alles akzeptieren" — beide Typen aktiviert
-- „Auswahl speichern" — individuelle Konfiguration
+### Modal after login
+Options:
+- "Alles ablehnen" (Reject all) — no sharing
+- "Alles akzeptieren" (Accept all) — both types enabled
+- "Auswahl speichern" (Save selection) — individual configuration
 
-### FAQ-Hinweis
-Shop-Daten: Keine personenbezogenen Daten. Nutzungsdaten: Erfassung von Admin-Aktionen.
+### FAQ note
+Shop data: no personal data. Usage data: recording of admin actions.
 
 ---
 
 ## Business-Events (Legacy)
 
-**Pfad:** Einstellungen > Shop > Business-Events  
-**Verfügbar ab:** 6.3.3.0  
-**Hinweis:** Ab v6.4.8.0 durch den **Flow Builder** ersetzt.
+**Path:** Einstellungen > Shop > Business-Events  
+**Available from:** 6.3.3.0  
+**Note:** Replaced by the **Flow Builder** as of v6.4.8.0.
 
-### Tabellenkolumnen
+### Table columns
 
 | Spalte | Inhalt |
 |---|---|
-| Event | Technischer Name + verständliche Beschreibung |
-| Titel | Individuell vergebener Name |
-| Verkaufskanal | Zugeordnete Kanäle (leer = alle) |
-| Regeln | Bedingungen aus dem Rule Builder |
-| E-Mail-Template | Verwendete Vorlage |
-| Aktiv | Status |
+| Event | Technical name + understandable description |
+| Titel (Title) | Individually assigned name |
+| Verkaufskanal (Sales channel) | Assigned channels (empty = all) |
+| Regeln (Rules) | Conditions from the Rule Builder |
+| E-Mail-Template (Mail template) | Template used |
+| Aktiv (Active) | Status |
 
-### Business-Event erstellen
+### Creating a business event
 
 | Feld | Beschreibung |
 |---|---|
-| Titel | Benutzerdefinierter Name |
-| Aktiv | Aktivieren/Deaktivieren |
-| Event | Zu automatisierendes Ereignis |
-| E-Mail-Template | Versandvorlage |
-| Verkaufskanal | Optional kanalspezifisch |
-| Regeln | Rule-Builder-Bedingungen |
+| Titel | Custom name |
+| Aktiv | Enable/disable |
+| Event | Event to be automated |
+| E-Mail-Template | Template used for sending |
+| Verkaufskanal | Optionally channel-specific |
+| Regeln | Rule Builder conditions |
 
-### E-Mail-Empfänger
-Interne E-Mail-Adressen hinterlegen. Kunden erhalten Templates nur, wenn **keine** internen Empfänger konfiguriert sind.
+### Mail recipients
+Store internal mail addresses. Customers only receive templates if **no** internal recipients are configured.
 
 ---
 
 ## Suche (Einstellungen > Shop > Suche)
 
-**Verfügbar ab:** 6.4.0.0
+**Available from:** 6.4.0.0
 
-### Sonderzeichen in Produktnummern
-Konfigurierbar in `config/packages/shopware.yaml`:
+### Special characters in product numbers
+Configurable in `config/packages/shopware.yaml`:
 ```yaml
 shopware:
   search:
@@ -143,36 +143,36 @@ shopware:
         special_chars: ['-', '_', '+', '.', '@', '/']
 ```
 
-### Allgemein – Such-Verhalten
+### Allgemein (General) – search behaviour
 | Option | Beschreibung |
 |---|---|
-| UND-Modus | Nur Ergebnisse mit allen Suchbegriffen |
-| ODER-Modus | Ergebnisse mit mindestens einem Begriff |
-| Minimale Suchbegriffslänge | Standard: 2 Zeichen |
-| Maximale Länge | 255 Zeichen |
+| UND-Modus (AND mode) | Only results containing all search terms |
+| ODER-Modus (OR mode) | Results containing at least one term |
+| Minimale Suchbegriffslänge (Minimum search term length) | Default: 2 characters |
+| Maximale Länge (Maximum length) | 255 characters |
 
-### Durchsuchbare Inhalte (pro Feld konfigurierbar)
-- Suchbar: Ein-/Ausschalten
-- Ranking Punktzahl: Gewichtung
-- Suchbegriffe trennen: Aufteilung nach Sonderzeichen
+### Searchable content (configurable per field)
+- Suchbar (Searchable): on/off
+- Ranking Punktzahl (Ranking score): weighting
+- Suchbegriffe trennen (Split search terms): splitting at special characters
 
-**Durchsuchbare Standard-Inhalte:**
-Kategoriename, Kategorie-Zusatzfelder, Eigene Suchbegriffe, Produktbeschreibung, Produkt-EAN, Herstellername, Herstellernummer, Hersteller-Zusatzfelder, Produkt-Meta-Beschreibung, Produkt-Meta-Titel, Produktname, Eigenschaftsausprägung, Produktnummer, Eigenschaftsname, Produkt-Tag
+**Default searchable content:**
+Category name, category custom fields, own search terms, product description, product EAN, manufacturer name, manufacturer number, manufacturer custom fields, product meta description, product meta title, product name, property value, product number, property name, product tag
 
-### Such-Index
-- „Such-Index neu erstellen"-Button
-- Zeigt letzten Aktualisierungszeitpunkt
-- Fortschrittsanzeige während Neuerstellung
+### Search index
+- "Such-Index neu erstellen" (Rebuild search index) button
+- Shows the time of the last update
+- Progress indicator while rebuilding
 
-### Advanced Search (ab Plan Evolve / Commercial)
-Erfordert Elasticsearch oder OpenSearch.
+### Advanced Search (from plan Evolve / Commercial)
+Requires Elasticsearch or OpenSearch.
 
 | Option | Beschreibung |
 |---|---|
-| Advanced Search aktivieren | Pro Verkaufskanal |
-| Trefferanzahl | Für Vorschausuche und Ergebnisseite |
-| Echtzeit-Suche | Mit Testfunktion (ohne Frontend-Zugriff) |
+| Advanced Search aktivieren (Enable Advanced Search) | Per sales channel |
+| Trefferanzahl (Number of hits) | For preview search and result page |
+| Echtzeit-Suche (Real-time search) | With test function (without frontend access) |
 
-### AI Copilot (ab Plan Rise)
-- **Kontextbasierte Suche:** Natürlichsprachliche Eingabe, Verkaufskanalbeschreibung (max. 100 Zeichen), 3 Beispiel-Anweisungen pro Sprache
-- **Bildbasierte Suche:** PNG/JPEG Upload oder Kamerafoto (bis zu 3 ähnliche Produkte)
+### AI Copilot (from plan Rise)
+- **Context-based search:** natural-language input, sales channel description (max. 100 characters), 3 example instructions per language
+- **Image-based search:** PNG/JPEG upload or camera photo (up to 3 similar products)

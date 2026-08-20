@@ -1,30 +1,30 @@
-# Shopware 6 — Testumgebung & Staging-Instanz
+# Shopware 6 — Test environment & staging instance
 
-Destilliert aus `developer.shopware.com/docs/guides/hosting/installation-updates/creating-a-staging-instance.html`.
+Distilled from `developer.shopware.com/docs/guides/hosting/installation-updates/creating-a-staging-instance.html`.
 
-## Staging-Modus vs. Staging-Umgebung
+## Staging mode vs. staging environment
 
-| Begriff | Bedeutung |
+| Term | Meaning |
 |---|---|
-| Staging-Umgebung | Separate Server-Instanz mit eigenem Hosting, Domain, DB |
-| Staging-Modus | Shopware-Mechanismus seit 6.6.1.0 (`system:setup:staging`) |
+| Staging environment | Separate server instance with its own hosting, domain, DB |
+| Staging mode | Shopware mechanism since 6.6.1.0 (`system:setup:staging`) |
 
-## Staging-Instanz in 4 Schritten
+## Staging instance in 4 steps
 
-1. **Separate Installation einrichten** — eigene Domain/Subdomain, APP_URL anpassen
-2. **Datenbank klonen** — mysqldump oder shopware-cli (mit Anonymisierung möglich)
-3. **Staging konfigurieren** — .env anpassen, Elasticsearch-Prefix setzen
-4. **Staging-Modus aktivieren** — `bin/console system:setup:staging`
+1. **Set up a separate installation** — own domain/subdomain, adjust APP_URL
+2. **Clone the database** — mysqldump or shopware-cli (anonymisation possible)
+3. **Configure staging** — adjust .env, set the Elasticsearch prefix
+4. **Activate staging mode** — `bin/console system:setup:staging`
 
-## Was der Staging-Modus tut
+## What staging mode does
 
-- Löscht Apps mit externen Verbindungen (keine Produktions-Datenlecks)
-- Deaktiviert E-Mail-Versand
-- Schreibt URLs zur Staging-Domain um
-- Zeigt Banner in Admin und Storefront
-- Verifiziert Elasticsearch-Indizes (keine Konflikte mit Live)
+- Deletes apps with external connections (no production data leaks)
+- Disables e-mail sending
+- Rewrites URLs to the staging domain
+- Shows a banner in the admin and the storefront
+- Verifies Elasticsearch indexes (no conflicts with live)
 
-## Wichtige Befehle
+## Important commands
 
 ```bash
 # Datenbank klonen (mit Anonymisierung)
@@ -37,8 +37,8 @@ bin/console system:setup:staging
 bin/console system:setup:staging --no-interaction --force
 ```
 
-Tiefes Referenzwissen: `GUIDES-STAGING-STAGING.md`
+Deep reference knowledge: `GUIDES-STAGING-STAGING.md`
 
 ---
 
-*Quelle: https://developer.shopware.com/docs/guides/hosting/installation-updates/creating-a-staging-instance.html*
+*Source: https://developer.shopware.com/docs/guides/hosting/installation-updates/creating-a-staging-instance.html*

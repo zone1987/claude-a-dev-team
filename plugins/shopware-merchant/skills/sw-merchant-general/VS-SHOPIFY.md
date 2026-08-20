@@ -1,23 +1,23 @@
-# Shopware vs. Shopify – Plattformvergleich
+# Shopware vs. Shopify – platform comparison
 
-Detaillierter Vergleich beider E-Commerce-Plattformen nach Architektur, Kosten, Flexibilität, B2B, Internationalisierung und Migrationspfad.
+Detailed comparison of the two e-commerce platforms by architecture, cost, flexibility, B2B, internationalisation and migration path.
 
-## Kurzübersicht
+## Quick overview
 
-| Kriterium | Shopware | Shopify |
+| Criterion | Shopware | Shopify |
 |---|---|---|
-| Modell | Open Source + SaaS/PaaS | Reines SaaS |
-| Hosting | Self-hosted, PaaS oder Cloud (frei wählbar) | Shopify-Cloud (erzwungen) |
-| Open Source | Ja (Community Edition) | Nein |
-| Lizenzkosten | GMV-basiert / kostenlos (CE) | Feste Monatstarife |
-| Transaktionsgebühren | Keine bei Dritt-Zahlern | Ja (bei externen Anbietern) |
-| B2B | Nativ integriert | Über Apps |
-| Internationalisierung | Nativ (Sprachen, Währungen, Kanäle) | Shopify Markets (eingeschränkter) |
-| API-first/Headless | Ja, vollständig | Eingeschränkt |
-| Anpassbarkeit | Vollständig (Quellcode-Zugang) | Liquid-Templates, App-Store |
-| Datenschutz/DSGVO | Selbstbestimmt, Server wählbar | Daten in Shopify-Cloud |
-| Zielgruppe | KMU bis Enterprise, B2B, DACH | KMU, Schnelleinstieg |
+| Model | Open source + SaaS/PaaS | Pure SaaS |
+| Hosting | Self-hosted, PaaS or cloud (free choice) | Shopify cloud (mandatory) |
+| Open source | Yes (Community Edition) | No |
+| Licence cost | GMV-based / free (CE) | Fixed monthly plans |
+| Transaction fees | None with third-party payment providers | Yes (with external providers) |
+| B2B | Natively integrated | Via apps |
+| Internationalisation | Native (languages, currencies, channels) | Shopify Markets (more limited) |
+| API-first/headless | Yes, fully | Limited |
+| Customisability | Complete (source code access) | Liquid templates, app store |
+| Data protection/GDPR | Self-determined, server can be chosen | Data in the Shopify cloud |
+| Target group | SMB to enterprise, B2B, DACH | SMB, quick start |
 
 ---
 
-Vollständige Analyse: `VS-SHOPIFY-SHOPWARE-VS-SHOPIFY.md`
+Full analysis: `VS-SHOPIFY-SHOPWARE-VS-SHOPIFY.md`

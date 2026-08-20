@@ -8,9 +8,9 @@ use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\PantherTestCase;
 
 /**
- * Basis-TestCase für Symfony-Panther-E2E-Tests.
+ * Base test case for Symfony Panther E2E tests.
  *
- * Bietet bequeme Helfer rund um den WebDriver-Client. Methoden-Signaturen sind gegen den
+ * Provides convenient helpers around the WebDriver client. Method signatures are verified against the
  * Panther-Quellcode verifiziert (Skill: panther-client). Passe Namespace/Pfade an dein Projekt an.
  */
 abstract class AbstractPantherTestCase extends PantherTestCase
@@ -21,7 +21,7 @@ abstract class AbstractPantherTestCase extends PantherTestCase
     {
         parent::setUp();
 
-        // Echter Browser (Chrome/Firefox) via WebDriver — für JS/AJAX/Real-Time.
+        // Real browser (Chrome/Firefox) via WebDriver — for JS/AJAX/real-time.
         // Optionen: $options (Webserver), $kernelOptions, $managerOptions (Browser-Args). Siehe panther-testcase.
         $this->client = static::createPantherClient(
             options: [
@@ -34,7 +34,7 @@ abstract class AbstractPantherTestCase extends PantherTestCase
     }
 
     /**
-     * Navigiert zu einem Pfad und gibt den frischen Crawler zurück.
+     * Navigates to a path and returns the fresh crawler.
      */
     protected function visit(string $path): \Symfony\Component\Panther\DomCrawler\Crawler
     {
@@ -42,7 +42,7 @@ abstract class AbstractPantherTestCase extends PantherTestCase
     }
 
     /**
-     * Wartet, bis das Element sichtbar ist (statt sleep()) — Default-Timeout aus Panther.
+     * Waits until the element is visible (instead of sleep()) — default timeout from Panther.
      */
     protected function waitVisible(string $cssSelector, int $timeoutInSecond = 30): void
     {
@@ -50,7 +50,7 @@ abstract class AbstractPantherTestCase extends PantherTestCase
     }
 
     /**
-     * Erstellt einen Screenshot (z. B. zur Diagnose) unter dem angegebenen Pfad.
+     * Takes a screenshot (e.g. for diagnostics) at the given path.
      */
     protected function screenshot(string $file): void
     {

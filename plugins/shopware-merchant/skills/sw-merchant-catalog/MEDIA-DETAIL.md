@@ -1,268 +1,268 @@
-# Shopware 6 – Medienverwaltung: Vollständige Referenz
+# Shopware 6 – Media management: Complete reference
 
-> Quelle: https://docs.shopware.com/de/shopware-6-de/inhalte/medien  
-> Gilt ab: Shopware 6.0.0+
+> Source: https://docs.shopware.com/de/shopware-6-de/inhalte/medien  
+> Applies from: Shopware 6.0.0+
 
 ---
 
 ## Contents
 
-- [1. Überblick](#1-überblick)
-- [2. Unterstützte Dateitypen](#2-unterstützte-dateitypen)
-- [3. Dateien hochladen](#3-dateien-hochladen)
-- [4. Medien-Aktionen](#4-medien-aktionen)
-- [5. Metadaten bearbeiten](#5-metadaten-bearbeiten)
-- [6. Ordnerverwaltung](#6-ordnerverwaltung)
-- [7. Thumbnail-Konfiguration](#7-thumbnail-konfiguration)
-- [8. 3D-Funktionen](#8-3d-funktionen)
-- [9. Darstellung und Sortierung anpassen](#9-darstellung-und-sortierung-anpassen)
-- [10. AI-Features](#10-ai-features)
-- [11. Wartung und Bereinigung](#11-wartung-und-bereinigung)
-- [12. Empfehlungen für Produktbilder](#12-empfehlungen-für-produktbilder)
-- [13. Empfehlungen für Produktvideos](#13-empfehlungen-für-produktvideos)
+- [1. Overview](#1-overview)
+- [2. Supported file types](#2-supported-file-types)
+- [3. Uploading files](#3-uploading-files)
+- [4. Media actions](#4-media-actions)
+- [5. Editing metadata](#5-editing-metadata)
+- [6. Folder management](#6-folder-management)
+- [7. Thumbnail configuration](#7-thumbnail-configuration)
+- [8. 3D functions](#8-3d-functions)
+- [9. Adjusting presentation and sorting](#9-adjusting-presentation-and-sorting)
+- [10. AI features](#10-ai-features)
+- [11. Maintenance and cleanup](#11-maintenance-and-cleanup)
+- [12. Recommendations for product images](#12-recommendations-for-product-images)
+- [13. Recommendations for product videos](#13-recommendations-for-product-videos)
 
-## 1. Überblick
+## 1. Overview
 
-Die Medienverwaltung ist das zentrale Repository für alle Dateien in Shopware 6. Von hier aus werden Produktbilder, Kategoriebilder, Dokumente, Videos und 3D-Modelle verwaltet und dem Shop zur Verfügung gestellt.
+Media management is the central repository for all files in Shopware 6. From here, product images, category images, documents, videos and 3D models are managed and made available to the shop.
 
-Pfad: **Inhalte > Medien**
+Path: **Inhalte** (Content) > **Medien** (Media)
 
 ---
 
-## 2. Unterstützte Dateitypen
+## 2. Supported file types
 
-| Kategorie | Formate |
+| Category | Formats |
 |---|---|
-| **Bilder** | jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps |
+| **Images** | jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps |
 | **Videos** | webm, mkv, flv, ogv, ogg, mov, mp4, avi, wmv |
 | **Audio** | aac, mp3, wav, flac |
-| **Dokumente** | pdf, txt, doc |
-| **3D-Modelle** | glb |
+| **Documents** | pdf, txt, doc |
+| **3D models** | glb |
 
 ---
 
-## 3. Dateien hochladen
+## 3. Uploading files
 
-### 3.1 Upload-Methoden
+### 3.1 Upload methods
 
-| Methode | Beschreibung |
+| Method | Description |
 |---|---|
-| **Datei-Upload** | Lokale Datei vom Computer hochladen (Klick auf Upload-Button oder Drag & Drop) |
-| **URL-Upload** | Öffentlich erreichbare Datei per URL importieren |
+| **File upload** | Upload a local file from the computer (click the upload button or drag & drop) |
+| **URL upload** | Import a publicly reachable file via URL |
 
-### 3.2 Upload-Prozess
+### 3.2 Upload process
 
 1. Inhalte > Medien
-2. Gewünschten Ordner auswählen (oder Stammverzeichnis)
-3. **„Datei hochladen"** oder URL eingeben
-4. Bei Duplikaten: Shopware fragt ob die bestehende Datei ersetzt werden soll
+2. Select the desired folder (or the root directory)
+3. **"Datei hochladen"** (Upload file) or enter a URL
+4. For duplicates: Shopware asks whether the existing file should be replaced
 
-### 3.3 Duplikat-Handling
+### 3.3 Duplicate handling
 
-Wenn eine Datei mit identischem Namen bereits existiert, bietet Shopware an:
-- Datei **ersetzen** (Datei wird überschrieben, URL bleibt gleich)
-- Datei **umbenennen** (neue Datei wird mit geändertem Namen gespeichert)
-
----
-
-## 4. Medien-Aktionen
-
-### 4.1 Einzelne Datei
-
-Über das Kontextmenü oder die Datei-Detailansicht stehen zur Verfügung:
-
-| Aktion | Beschreibung |
-|---|---|
-| **Ersetzen** | Bestehende Datei durch neue Version ersetzen; URL bleibt erhalten |
-| **Herunterladen** | Datei auf den lokalen Computer laden |
-| **Verschieben** | In einen anderen Ordner verschieben |
-| **Link kopieren** | Direkt-URL der Datei in die Zwischenablage |
-| **Löschen** | Datei aus dem System entfernen |
-
-> **Hinweis**: Das Löschen einer Datei die noch in Produkten, Kategorien etc. verwendet wird kann zu fehlenden Bildern im Shop führen!
+If a file with an identical name already exists, Shopware offers to:
+- **ersetzen** (replace) the file (the file is overwritten, the URL stays the same)
+- **umbenennen** (rename) the file (the new file is stored under a changed name)
 
 ---
 
-## 5. Metadaten bearbeiten
+## 4. Media actions
 
-Jede Datei verfügt über bearbeitbare Metadaten:
+### 4.1 Single file
 
-| Feld | Beschreibung |
+The following are available via the context menu or the file detail view:
+
+| Action | Description |
 |---|---|
-| **Dateiname** | Name ohne Dateiendung; bestimmt die URL der Datei |
-| **Alt-Text** | Barrierefreiheit und SEO; erscheint wenn Bild nicht geladen werden kann |
-| **Meta-Titel** | Titel für SEO-Zwecke |
-| **Tags** | Schlagworte für bessere Auffindbarkeit in der Medienverwaltung |
-| **Wird verwendet in** | Zeigt alle Entitäten (Produkte, Kategorien etc.) die diese Datei nutzen |
+| **Ersetzen** (Replace) | Replace the existing file with a new version; the URL is retained |
+| **Herunterladen** (Download) | Download the file to the local computer |
+| **Verschieben** (Move) | Move it to another folder |
+| **Link kopieren** (Copy link) | Copy the file's direct URL to the clipboard |
+| **Löschen** (Delete) | Remove the file from the system |
 
-### Metadaten bearbeiten
-
-1. Datei in der Medienverwaltung anklicken
-2. Rechte Seitenleiste öffnet Detailansicht
-3. Felder bearbeiten
-4. Speichern (automatisch oder per Button)
+> **Note**: Deleting a file that is still used in products, categories etc. can lead to missing images in the shop!
 
 ---
 
-## 6. Ordnerverwaltung
+## 5. Editing metadata
 
-### 6.1 Ordner erstellen
+Every file has editable metadata:
 
-- Button **„Ordner hinzufügen"** oder per Kontextmenü
-- Beliebig tiefe Verschachtelung möglich
-- Ordnernamen sollten aussagekräftig gewählt werden (z. B. „Produkte", „Banner", „Hersteller")
-
-### 6.2 Ordner-Aktionen
-
-| Aktion | Beschreibung |
+| Field | Description |
 |---|---|
-| **Verschieben** | Ordner in einen anderen Ordner verschieben |
-| **Umbenennen** | Ordnerbezeichnung ändern |
-| **Auflösen** | Inhalt des Ordners in übergeordneten Ordner verschieben, dann Ordner löschen |
-| **Löschen** | Ordner und Inhalt löschen |
+| **Dateiname** (File name) | Name without file extension; determines the file's URL |
+| **Alt-Text** (Alt text) | Accessibility and SEO; appears when the image cannot be loaded |
+| **Meta-Titel** (Meta title) | Title for SEO purposes |
+| **Tags** | Keywords for better findability in media management |
+| **Wird verwendet in** (Used in) | Shows all entities (products, categories etc.) that use this file |
 
-### 6.3 Standard-Ordnerstruktur
+### Editing metadata
 
-Shopware legt automatisch Standardordner für verschiedene Entitäten an, z. B.:
-- `Produkte` – Produktbilder
-- `Kategorien` – Kategoriebilder  
-- `Hersteller` – Hersteller-Logos
-- `Medienverwaltung` – Allgemeine Dateien
+1. Click the file in media management
+2. The right sidebar opens the detail view
+3. Edit the fields
+4. Save (automatically or via button)
 
 ---
 
-## 7. Thumbnail-Konfiguration
+## 6. Folder management
 
-Thumbnails sind automatisch generierte Versionen von Bildern in definierten Größen.
+### 6.1 Creating a folder
 
-### 7.1 Standard-Thumbnail-Größen
+- Button **"Ordner hinzufügen"** (Add folder) or via the context menu
+- Nesting of any depth is possible
+- Folder names should be chosen meaningfully (e.g. "Produkte", "Banner", "Hersteller")
 
-| Größe | Verwendung |
+### 6.2 Folder actions
+
+| Action | Description |
 |---|---|
-| 400×400 px | Produktlisting (Vorschaubilder) |
-| 800×800 px | Produktdetailseite (mittlere Qualität) |
-| 1920×1920 px | Zoom-Ansicht / hohe Auflösung |
+| **Verschieben** (Move) | Move the folder into another folder |
+| **Umbenennen** (Rename) | Change the folder label |
+| **Auflösen** (Dissolve) | Move the folder's content into the parent folder, then delete the folder |
+| **Löschen** (Delete) | Delete the folder and its content |
 
-### 7.2 Thumbnail-Einstellungen (pro Ordner konfigurierbar)
+### 6.3 Default folder structure
 
-| Einstellung | Beschreibung |
+Shopware automatically creates default folders for various entities, e.g.:
+- `Produkte` – product images
+- `Kategorien` – category images  
+- `Hersteller` – manufacturer logos
+- `Medienverwaltung` – general files
+
+---
+
+## 7. Thumbnail configuration
+
+Thumbnails are automatically generated versions of images in defined sizes.
+
+### 7.1 Default thumbnail sizes
+
+| Size | Usage |
 |---|---|
-| **Größen** | Welche Thumbnail-Größen generiert werden sollen |
-| **Qualität** | Komprimierungsgrad (1–100); 80 ist ein guter Standardwert |
-| **Seitenverhältnis** | Beschnitt-Verhalten (proportional / füllen / dehnen) |
-| **Automatische Generierung** | Thumbnails werden bei Upload automatisch erstellt |
+| 400×400 px | Product listing (preview images) |
+| 800×800 px | Product detail page (medium quality) |
+| 1920×1920 px | Zoom view / high resolution |
 
-### 7.3 Thumbnails manuell generieren (CLI)
+### 7.2 Thumbnail settings (configurable per folder)
+
+| Setting | Description |
+|---|---|
+| **Größen** (Sizes) | Which thumbnail sizes should be generated |
+| **Qualität** (Quality) | Compression level (1–100); 80 is a good default value |
+| **Seitenverhältnis** (Aspect ratio) | Cropping behaviour (proportional / fill / stretch) |
+| **Automatische Generierung** (Automatic generation) | Thumbnails are created automatically on upload |
+
+### 7.3 Generating thumbnails manually (CLI)
 
 ```bash
 bin/console media:generate-thumbnails
 ```
 
-Nützlich nach Änderungen der Thumbnail-Konfiguration oder bei fehlenden Thumbnails.
+Useful after changes to the thumbnail configuration or when thumbnails are missing.
 
 ---
 
-## 8. 3D-Funktionen
+## 8. 3D functions
 
 ### 8.1 Model Viewer
 
-- Ermöglicht die Betrachtung von GLB-Dateien direkt in der Administration
-- 3D-Modell kann gedreht, gezoomt und erkundet werden
-- Vorschau vor der Einbindung in Produkte
+- Allows GLB files to be viewed directly in the administration
+- The 3D model can be rotated, zoomed and explored
+- Preview before embedding it in products
 
 ### 8.2 Model Editor
 
-- Bearbeitung von Position, Rotation und Skalierung des 3D-Modells
-- Visuelle Echtzeit-Vorschau der Änderungen
-- Automatische Speicherung der Einstellungen
+- Editing of position, rotation and scaling of the 3D model
+- Visual real-time preview of the changes
+- Settings are saved automatically
 
 ### 8.3 AR (Augmented Reality)
 
-Voraussetzungen:
+Prerequisites:
 - iOS 12+ (Apple ARKit)
-- Android 8.0+ mit ARCore 1.9
-- GLB-Format der 3D-Datei
-- AR-Aktivierung in den Produkt-Einstellungen
+- Android 8.0+ with ARCore 1.9
+- GLB format of the 3D file
+- AR activation in the product settings
 
 ---
 
-## 9. Darstellung und Sortierung anpassen
+## 9. Adjusting presentation and sorting
 
-### 9.1 Ansichtsoptionen
+### 9.1 View options
 
-- **Rasteransicht**: Kacheln mit Vorschaubildern
-- **Listenansicht**: Tabellarische Darstellung
-- Umschaltbar per Dropdown
+- **Rasteransicht** (Grid view): tiles with preview images
+- **Listenansicht** (List view): tabular presentation
+- Switchable via dropdown
 
-### 9.2 Sortieroptionen
+### 9.2 Sorting options
 
 - Name (A–Z / Z–A)
-- Datum hochgeladen (neu/alt zuerst)
-- Dateigröße
-- Dateityp
+- Upload date (newest/oldest first)
+- File size
+- File type
 
 ---
 
-## 10. AI-Features
+## 10. AI features
 
-### 10.1 AI-Bildgenerierung (ab Shopware Rise)
+### 10.1 AI image generation (from Shopware Rise)
 
-- **„AI Copilot Bildgenerierung"** direkt in der Medienverwaltung
-- Bilder durch natürlichsprachliche Beschreibung generieren
-- Generierte Bilder werden direkt in der Medienverwaltung gespeichert
-- Geeignet für Stimmungsbilder, Banner, Platzhalterbilder
+- **"AI Copilot Bildgenerierung"** (AI Copilot image generation) directly in media management
+- Generate images from a natural-language description
+- Generated images are stored directly in media management
+- Suitable for mood images, banners, placeholder images
 
-**Verwendung:**
+**Usage:**
 1. Inhalte > Medien
-2. Button **„KI-Bild generieren"** (oder ähnlich)
-3. Beschreibung in natürlicher Sprache eingeben
-4. Bild generieren lassen
-5. In gewünschtem Ordner speichern
+2. Button **"KI-Bild generieren"** (Generate AI image) (or similar)
+3. Enter a description in natural language
+4. Have the image generated
+5. Save it in the desired folder
 
 ---
 
-## 11. Wartung und Bereinigung
+## 11. Maintenance and cleanup
 
-### 11.1 Ungenutzte Medien identifizieren
+### 11.1 Identifying unused media
 
-Das Feld **„Wird verwendet in"** zeigt für jede Datei, wo sie eingesetzt wird.
-Ist das Feld leer: Datei wird nirgendwo verwendet.
+The **"Wird verwendet in"** field shows for each file where it is used.
+If the field is empty: the file is not used anywhere.
 
-### 11.2 Ungenutzte Medien löschen (CLI)
+### 11.2 Deleting unused media (CLI)
 
 ```bash
 bin/console media:delete-unused
 ```
 
-Löscht alle Mediendateien, die in keiner Shopware-Entität mehr referenziert werden.
+Deletes all media files that are no longer referenced in any Shopware entity.
 
-> **Vorsicht**: Vor dem Ausführen prüfen ob externe Systeme (Import-Tools, Exporte) Dateien referenzieren, die Shopware nicht als „verwendet" kennt!
+> **Caution**: Before running it, check whether external systems (import tools, exports) reference files that Shopware does not know as "used"!
 
 ---
 
-## 12. Empfehlungen für Produktbilder
+## 12. Recommendations for product images
 
-| Eigenschaft | Empfehlung |
+| Property | Recommendation |
 |---|---|
-| Format | JPG (Fotos) oder PNG (mit Transparenz) oder WebP |
-| Seitenverhältnis | **Quadratisch** (1:1) für konsistente Darstellung |
-| Mindestgröße | 600×600 px |
-| Optimalgröße | 1920×1920 px (deckt alle Thumbnail-Größen ab) |
-| Dateiname | Sprechend und SEO-freundlich (z. B. `blaues-t-shirt-vorne.jpg`) |
-| Alt-Text | Immer ausfüllen für Barrierefreiheit und SEO |
+| Format | JPG (photos) or PNG (with transparency) or WebP |
+| Aspect ratio | **Square** (1:1) for a consistent presentation |
+| Minimum size | 600×600 px |
+| Optimal size | 1920×1920 px (covers all thumbnail sizes) |
+| File name | Descriptive and SEO-friendly (e.g. `blaues-t-shirt-vorne.jpg`) |
+| Alt text | Always fill in for accessibility and SEO |
 
 ---
 
-## 13. Empfehlungen für Produktvideos
+## 13. Recommendations for product videos
 
-| Eigenschaft | Empfehlung |
+| Property | Recommendation |
 |---|---|
-| Format | **MP4** (beste Browser-Kompatibilität) |
-| Codecs | H.264 Video, AAC Audio |
-| Alternative | WebM als Fallback |
-| Auflösung | Mindestens 720p (1280×720) |
-| Dateigröße | Unter 100 MB (Performance) |
+| Format | **MP4** (best browser compatibility) |
+| Codecs | H.264 video, AAC audio |
+| Alternative | WebM as fallback |
+| Resolution | At least 720p (1280×720) |
+| File size | Under 100 MB (performance) |
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/inhalte/medien*
+*Source: https://docs.shopware.com/de/shopware-6-de/inhalte/medien*

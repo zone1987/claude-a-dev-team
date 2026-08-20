@@ -1,15 +1,15 @@
-# Shopware 6 — Tutorials & FAQs (Überblick)
+# Shopware 6 — Tutorials & FAQs (Overview)
 
-Destilliert aus `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.
+Distilled from `https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq`.
 
-## Themengruppen (Sub-Skills)
+## Topic groups (sub-skills)
 
-| Bereich | Skill | Inhalt |
+| Area | Skill | Content |
 |---|---|---|
-| Allgemeines | `sw-merchant-tutorials-allgemeines` | Warenkorb-Berechnung, APP_URL, Flooding, Message Queue, Performance, Onboarding, PayPal Checkout, Sicherheit |
-| Beispiele | `sw-merchant-tutorials-beispiele` | Dynamic Access, Rabatte/Aktionen, Rule Builder, Flow Builder, Tags, Advanced Search |
-| Bestellungen | `sw-merchant-tutorials-bestellungen` | Bestellung im Admin anlegen, exportieren, PayPal-Besonderheiten |
-| EU-Regelungen | `sw-merchant-tutorials-eu-regelungen` | DSGVO, One-Stop-Shop (OSS) |
-| Gewusst-wie | `sw-merchant-tutorials-gewusst-wie` | Go-Live, Template, Footer, robots.txt, MwSt., Sendungsverfolgung, Zahlungsarten, Testumgebung |
-| Mehrsprachige Shops | `sw-merchant-tutorials-mehrsprachig` | Schweiz, UK, Irland, Niederlande, Polen, USA-Verkauf, Versand nach GB |
-| Troubleshooting | `sw-merchant-tutorials-troubleshooting` | Passwort-Reset, Erweiterung entfernen, Debuggen, SQL-Tipps, Migration |
+| Allgemeines (General) | `sw-merchant-tutorials-allgemeines` | Cart calculation, APP_URL, flooding, message queue, performance, onboarding, PayPal checkout, security |
+| Beispiele (Examples) | `sw-merchant-tutorials-beispiele` | Dynamic Access, discounts/promotions, Rule Builder, Flow Builder, tags, Advanced Search |
+| Bestellungen (Orders) | `sw-merchant-tutorials-bestellungen` | Creating an order in the admin, exporting, PayPal specifics |
+| EU-Regelungen (EU regulations) | `sw-merchant-tutorials-eu-regelungen` | GDPR, One-Stop-Shop (OSS) |
+| Gewusst-wie (How-to) | `sw-merchant-tutorials-gewusst-wie` | Go-live, template, footer, robots.txt, VAT, shipment tracking, payment methods, test environment |
+| Mehrsprachige Shops (Multilingual shops) | `sw-merchant-tutorials-mehrsprachig` | Switzerland, UK, Ireland, Netherlands, Poland, selling to the USA, shipping to Great Britain |
+| Troubleshooting | `sw-merchant-tutorials-troubleshooting` | Password reset, removing an extension, debugging, SQL tips, migration |

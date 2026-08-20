@@ -1,102 +1,102 @@
-# Shopware 6 — Versionsspezifische Update-Hinweise: Vollständige Referenz
+# Shopware 6 — Version-specific update notes: complete reference
 
 ## Contents
 
-- [Update Guide: 6.4 → 6.5](#update-guide-64-65)
-- [Update Guide: 6.5 → 6.6](#update-guide-65-66)
-- [Update Guide: Shopware 6.6 — Neuerungen](#update-guide-shopware-66-neuerungen)
-- [Update Guide: Shopware 6.7 — Neuerungen](#update-guide-shopware-67-neuerungen)
-- [Upgrade-Pfad: Mehrere Versionen überspringen](#upgrade-pfad-mehrere-versionen-überspringen)
-- [Kompatibilitäts-Matrix für gängige Anforderungen](#kompatibilitäts-matrix-für-gängige-anforderungen)
+- [Update guide: 6.4 → 6.5](#update-guide-64--65)
+- [Update guide: 6.5 → 6.6](#update-guide-65--66)
+- [Update guide: Shopware 6.6 — new features](#update-guide-shopware-66--new-features)
+- [Update guide: Shopware 6.7 — new features](#update-guide-shopware-67--new-features)
+- [Upgrade path: skipping several versions](#upgrade-path-skipping-several-versions)
+- [Compatibility matrix for common requirements](#compatibility-matrix-for-common-requirements)
 
-## Update Guide: 6.4 → 6.5
+## Update guide: 6.4 → 6.5
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-64-zu-65
+**Source:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-64-zu-65
 
-### Voraussetzungen (Pflicht)
+### Prerequisites (mandatory)
 
-| Komponente | Anforderung |
+| Component | Requirement |
 |---|---|
-| Shopware-Ausgangsversion | 6.4.20.2 oder neuer (NICHT von 6.4.0–6.4.20.1!) |
-| PHP | 8.1 oder höher |
+| Shopware source version | 6.4.20.2 or newer (NOT from 6.4.0–6.4.20.1!) |
+| PHP | 8.1 or higher |
 | Node.js | 18 |
-| Git | Installiert und konfiguriert |
+| Git | Installed and configured |
 
-> **WICHTIG:** Falls noch eine ältere 6.4-Version vorhanden ist, erst auf 6.4.20.2 updaten, dann erst auf 6.5.
+> **IMPORTANT:** If an older 6.4 version is still in place, first update to 6.4.20.2, only then to 6.5.
 
-### Erweiterungen: Alle deaktivieren (Pflicht)
+### Extensions: deactivate all of them (mandatory)
 
-Bei diesem Major-Update müssen ALLE Erweiterungen deaktiviert werden:
+For this major update, ALL extensions must be deactivated:
 
-1. **Theme auf Standard setzen** — aktives eigenes Theme deaktivieren, Storefront-Standard aktivieren
-2. **Theme-Extension unter Erweiterungen deaktivieren**
-3. **Alle weiteren Erweiterungen deaktivieren**
-4. Erst dann: Update auf 6.5 durchführen
+1. **Set the theme to the default** — deactivate the active custom theme, activate the storefront default
+2. **Deactivate the theme extension under Erweiterungen** (Extensions)
+3. **Deactivate all further extensions**
+4. Only then: run the update to 6.5
 
-Nach erfolgreichem Update:
-- Erweiterungen im Store/Composer auf kompatible Versionen aktualisieren
-- Erweiterungen wieder aktivieren
+After a successful update:
+- Update the extensions in the Store/Composer to compatible versions
+- Reactivate the extensions
 
-### Update durchführen
+### Running the update
 
-Update wie in der allgemeinen Anleitung beschrieben:
+Update as described in the general instructions:
 → https://docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten#update-per-administration
 
-### Neue Features in Shopware 6.5
+### New features in Shopware 6.5
 
-- Vue 3 Unterstützung im Admin (Erweiterungen müssen angepasst werden)
-- Node.js 18 als Mindestanforderung
-- PHP 8.1 als Mindestanforderung
-- Überarbeitetes Berechtigungssystem
+- Vue 3 support in the admin (extensions must be adapted)
+- Node.js 18 as the minimum requirement
+- PHP 8.1 as the minimum requirement
+- Reworked permission system
 
 ---
 
-## Update Guide: 6.5 → 6.6
+## Update guide: 6.5 → 6.6
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-65-zu-66
+**Source:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-65-zu-66
 
-### Voraussetzungen (Pflicht)
+### Prerequisites (mandatory)
 
-| Komponente | Anforderung |
+| Component | Requirement |
 |---|---|
-| Shopware-Ausgangsversion | 6.5.0.0 oder neuer |
+| Shopware source version | 6.5.0.0 or newer |
 | PHP | 8.2 |
 | Node.js | 20 |
-| MySQL | 8.0 oder höher |
-| MariaDB | 10.11 oder höher |
-| Git | Installiert und konfiguriert |
+| MySQL | 8.0 or higher |
+| MariaDB | 10.11 or higher |
+| Git | Installed and configured |
 
-> **HINWEIS:** Falls noch Shopware 6.4 vorhanden ist, erst von 6.4 auf 6.5 updaten, dann auf 6.6.
+> **NOTE:** If Shopware 6.4 is still in place, first update from 6.4 to 6.5, then to 6.6.
 
-### Erweiterungen: Alle deaktivieren (Pflicht)
+### Extensions: deactivate all of them (mandatory)
 
-Gleiche Vorgehensweise wie bei 6.4 → 6.5:
+Same procedure as for 6.4 → 6.5:
 
-1. Theme auf Standard setzen
-2. Theme-Extension deaktivieren
-3. Alle weiteren Erweiterungen deaktivieren
-4. Update durchführen
-5. Nach Update: Extensions aktualisieren und reaktivieren
+1. Set the theme to the default
+2. Deactivate the theme extension
+3. Deactivate all further extensions
+4. Run the update
+5. After the update: update and reactivate the extensions
 
-### Update durchführen
+### Running the update
 
-Update wie in der allgemeinen Anleitung beschrieben, per Administration.
+Update as described in the general instructions, via the administration.
 
-### Neue Features in Shopware 6.6
+### New features in Shopware 6.6
 
-Detailliert im Update Guide 6.6 dokumentiert (siehe nächster Abschnitt).
+Documented in detail in the 6.6 update guide (see the next section).
 
 ---
 
-## Update Guide: Shopware 6.6 — Neuerungen
+## Update guide: Shopware 6.6 — new features
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-shopware-66
+**Source:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-shopware-66
 
-**Gilt für:** Shopware 6.6.0.0 und neuer
+**Applies to:** Shopware 6.6.0.0 and newer
 
-### Systemanforderungen 6.6
+### System requirements 6.6
 
-| Komponente | Anforderung |
+| Component | Requirement |
 |---|---|
 | PHP | 8.2+ |
 | Node.js | 20 |
@@ -104,113 +104,113 @@ Detailliert im Update Guide 6.6 dokumentiert (siehe nächster Abschnitt).
 | MariaDB | 10.11+ |
 | MySQL | 8.0+ |
 
-### Technische Neuerungen
+### Technical new features
 
-#### Vue 3 Vollunterstützung
-- Vue 3 ist im Admin-Bereich vollständig aktiviert
-- Extension-Inkompatibilitäten möglich → individuelle Extension-Updates erforderlich
-- Erweiterungsentwickler müssen auf Vue 3 API umstellen
+#### Full Vue 3 support
+- Vue 3 is fully enabled in the admin area
+- Extension incompatibilities are possible → individual extension updates required
+- Extension developers must switch to the Vue 3 API
 
-#### Webpack 5 mit SWC
-- Webpack auf Version 5 aktualisiert
-- Babel durch SWC ersetzt → **dreimal schnellere** Admin-Builds
-- Plugin-Erweiterungen mit eigenen Webpack-Konfigurationen müssen auf Webpack 5 API migriert werden
+#### Webpack 5 with SWC
+- Webpack updated to version 5
+- Babel replaced by SWC → **three times faster** admin builds
+- Plugin extensions with their own Webpack configurations must be migrated to the Webpack 5 API
 
-#### Schnellere Storefront-Performance
-- Verbesserte Seitengeschwindigkeit (SEO-Vorteil)
-- Bis zu 6× schnellere Indizierung für mehrsprachige Shops
-- Verbesserter Elasticsearch/OpenSearch-Mapping: mehrere Sprachen in einem Index
+#### Faster storefront performance
+- Improved page speed (an SEO advantage)
+- Up to 6× faster indexing for multilingual shops
+- Improved Elasticsearch/OpenSearch mapping: several languages in one index
 
-#### Automatischer Logout (verlängerbar)
-- Login-Session kann via Checkbox auf bis zu 14 Tage verlängert werden
-- Konfigurierbar: Einstellungen > Login-Einstellungen
+#### Automatic logout (extendable)
+- The login session can be extended to up to 14 days via a checkbox
+- Configurable: Einstellungen (Settings) > Login-Einstellungen (Login settings)
 
-#### Lagerverwaltung (Lagerbestand)
-- Lagerbestand wird nun beim Aufgeben der Bestellung abgezogen (nicht erst beim Abschluss)
-- Einstellbar: Lagerbestandsberechnung kann deaktiviert werden
+#### Warehouse management (Lagerbestand — stock)
+- Stock is now deducted when the order is placed (not only on completion)
+- Adjustable: the stock calculation can be disabled
 
-#### Medien-Pfad-Speicherung
-- Dateipfade werden fest in der Datenbank gespeichert (vorher dynamisch berechnet)
-- Behebt Performance-Probleme und "Datei nicht gefunden"-Fehler der Vorgängerversionen
+#### Media path storage
+- File paths are now stored permanently in the database (previously calculated dynamically)
+- Fixes performance problems and "file not found" errors of the previous versions
 
-#### Sprachabhängige Elasticsearch-Indizes
-- OpenSearch/Elasticsearch-Indizes unterstützen nun sprachspezifische Konfigurationen
-- Verbesserte Performance bei mehrsprachigen Shops
+#### Language-dependent Elasticsearch indexes
+- OpenSearch/Elasticsearch indexes now support language-specific configurations
+- Improved performance for multilingual shops
 
 ---
 
-## Update Guide: Shopware 6.7 — Neuerungen
+## Update guide: Shopware 6.7 — new features
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-shopware-67
+**Source:** https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-shopware-67
 
-**Gilt für:** Shopware 6.7.0.0 und neuer
+**Applies to:** Shopware 6.7.0.0 and newer
 
-### Systemanforderungen 6.7
+### System requirements 6.7
 
-| Komponente | Anforderung | Ausgeschlossene Versionen |
+| Component | Requirement | Excluded versions |
 |---|---|---|
-| PHP | 8.2, 8.3 oder 8.4 | — |
+| PHP | 8.2, 8.3 or 8.4 | — |
 | Node.js | 20+ | — |
-| MySQL | 8.0.17+ | 8.0.20, 8.0.21 (Bugs!) |
-| MariaDB | 10.11+ | 10.11.5, 11.0.3 (Bugs!) |
+| MySQL | 8.0.17+ | 8.0.20, 8.0.21 (bugs!) |
+| MariaDB | 10.11+ | 10.11.5, 11.0.3 (bugs!) |
 | Redis | 7.0+ (optional) | — |
 | OpenSearch | 1.0+ (optional) | — |
 | Elasticsearch | 7.8+ (optional) | — |
 
-### Technische Neuerungen
+### Technical new features
 
-#### Webpack → Vite Migration
-- Frontend-Toolchain vollständig auf Vite umgestellt
-- **Konsequenz für Extension-Betreiber:** Erweiterungen mit Admin-Komponenten benötigen separate Plugin-Versionen für 6.6 und 6.7
-- Storefront-Erweiterungen müssen auf Vite Build-System migriert werden
+#### Webpack → Vite migration
+- The frontend toolchain has been switched over to Vite entirely
+- **Consequence for extension operators:** extensions with admin components require separate plugin versions for 6.6 and 6.7
+- Storefront extensions must be migrated to the Vite build system
 
-#### Vue 3 ohne Compat-Mode
-- Vollständige Vue 3 Kompatibilität: Compatibility-Mode wurde beendet
-- State Management: Vuex → Pinia
-- **Konsequenz:** Extensions die noch Vue 2 APIs nutzen, sind inkompatibel
+#### Vue 3 without compat mode
+- Full Vue 3 compatibility: compatibility mode has been discontinued
+- State management: Vuex → Pinia
+- **Consequence:** extensions still using Vue 2 APIs are incompatible
 
-#### Cache-Architektur-Überarbeitung
-Wesentliche Verbesserungen:
-- **Delayed Cache Invalidation:** Cache wird verzögert geleert (verhindert Cache-Stampedes)
-- **Store API Caching Layer entfernt:** Vereinfachte Architektur, bessere Performance
-- **Erwartete Ergebnisse:** Weniger Speicherverbrauch, höhere Cache-Hit-Rate
+#### Cache architecture rework
+Substantial improvements:
+- **Delayed cache invalidation:** the cache is cleared with a delay (prevents cache stampedes)
+- **Store API caching layer removed:** simplified architecture, better performance
+- **Expected results:** lower memory consumption, higher cache hit rate
 
-#### Core Library Updates
-| Library | Alte Version | Neue Version |
+#### Core library updates
+| Library | Old version | New version |
 |---|---|---|
 | PHPUnit | 10 | 11 |
-| League OAuth2 Server | alt | aktuell |
-| DomPDF | alt | aktuell |
+| League OAuth2 Server | old | current |
+| DomPDF | old | current |
 | DBAL | 3.x | 4.0 |
 
-> **Hinweis für Extension-Entwickler (Betreiber-Sicht):** Extensions, die diese Libraries direkt nutzen, müssen auf Kompatibilität geprüft werden. Im Shopware Store wird dies durch den Kompatibilitäts-Checker angezeigt.
+> **Note for extension developers (merchant perspective):** extensions that use these libraries directly must be checked for compatibility. In the Shopware Store this is indicated by the compatibility checker.
 
 ---
 
-## Upgrade-Pfad: Mehrere Versionen überspringen
+## Upgrade path: skipping several versions
 
-### Direkt von 6.4 auf 6.7 möglich?
-**Nein.** Shopware unterstützt keine Version-Sprünge. Jedes Major-Update muss einzeln durchgeführt werden:
+### Is going directly from 6.4 to 6.7 possible?
+**No.** Shopware does not support version jumps. Every major update must be carried out individually:
 
 ```
 6.4.x → 6.4.20.2 → 6.5.x → 6.6.x → 6.7.x
 ```
 
-### Empfohlener Upgrade-Pfad
+### Recommended upgrade path
 
-1. Auf neueste 6.4-Patch-Version updaten (6.4.20.2)
-2. Alle Extensions deaktivieren
-3. Update auf 6.5 (neueste Patch-Version)
-4. Extensions auf 6.5-kompatible Versionen aktualisieren
-5. Alle Extensions deaktivieren
-6. Update auf 6.6 (neueste Patch-Version)
-7. Extensions auf 6.6-kompatible Versionen aktualisieren
-8. Alle Extensions deaktivieren
-9. Update auf 6.7
+1. Update to the latest 6.4 patch version (6.4.20.2)
+2. Deactivate all extensions
+3. Update to 6.5 (latest patch version)
+4. Update the extensions to 6.5-compatible versions
+5. Deactivate all extensions
+6. Update to 6.6 (latest patch version)
+7. Update the extensions to 6.6-compatible versions
+8. Deactivate all extensions
+9. Update to 6.7
 
 ---
 
-## Kompatibilitäts-Matrix für gängige Anforderungen
+## Compatibility matrix for common requirements
 
 | Shopware | PHP | Node.js | MariaDB | MySQL | Redis |
 |---|---|---|---|---|---|
@@ -221,7 +221,7 @@ Wesentliche Verbesserungen:
 
 ---
 
-*Quellen:*
+*Sources:*
 *- https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-64-zu-65*
 *- https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-65-zu-66*
 *- https://docs.shopware.com/de/shopware-6-de/update-guides/update-guide-shopware-66*

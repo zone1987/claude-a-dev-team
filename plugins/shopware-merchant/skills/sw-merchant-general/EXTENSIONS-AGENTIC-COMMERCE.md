@@ -1,112 +1,112 @@
-# Agentic Commerce – KI-Commerce-Agents & Produkt-Feeds
+# Agentic Commerce – AI commerce agents & product feeds
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/agentic-commerce  
-**Status**: Beta (limitierte Funktionalität, Erweiterung folgt)
+**Source**: https://docs.shopware.com/de/shopware-6-de/erweiterungen/agentic-commerce  
+**Status**: Beta (limited functionality, extension to follow)
 
 ## Contents
 
-- [Überblick](#überblick)
+- [Overview](#overview)
 - [Universal Commerce Protocol (UCP)](#universal-commerce-protocol-ucp)
 - [Product Feed Sales Channel](#product-feed-sales-channel)
-- [Tracking & Analytics](#tracking-analytics)
-- [ChatGPT-Marktplatz: Verfügbarkeit](#chatgpt-marktplatz-verfügbarkeit)
-- [Beta-Hinweis](#beta-hinweis)
-- [Zukunftsvision](#zukunftsvision)
+- [Tracking & analytics](#tracking--analytics)
+- [ChatGPT marketplace: availability](#chatgpt-marketplace-availability)
+- [Beta note](#beta-note)
+- [Vision for the future](#vision-for-the-future)
 
-## Überblick
+## Overview
 
-**Agentic Commerce** integriert Shopware 6 mit KI-Commerce-Agenten und ermöglicht
-automatisierten Handel über KI-Plattformen wie ChatGPT.
+**Agentic Commerce** integrates Shopware 6 with AI commerce agents and enables
+automated trading via AI platforms such as ChatGPT.
 
-### Zwei Hauptkomponenten:
+### Two main components:
 
-1. **Universal Commerce Protocol (UCP)** – Standardisierte Schnittstelle für KI-Agenten
-2. **Product Feed Sales Channel** – Produktdaten-Export für externe Systeme und KI-Agenten
+1. **Universal Commerce Protocol (UCP)** – standardised interface for AI agents
+2. **Product Feed Sales Channel** – product data export for external systems and AI agents
 
 ---
 
 ## Universal Commerce Protocol (UCP)
 
-### Was es ist
-Ein standardisiertes Protokoll, das KI-Commerce-Agenten ermöglicht:
-- Deinen Shop **automatisch zu erkennen**
-- Über eine **standardisierte Schnittstelle** zu interagieren
-- Einkaufsprozesse **vollständig zu automatisieren**
+### What it is
+A standardised protocol that allows AI commerce agents to:
+- **Detect your shop automatically**
+- Interact through a **standardised interface**
+- **Fully automate** purchasing processes
 
-### Konfiguration
-**Einstellungen > Commerce > UCP**
+### Configuration
+**Einstellungen** (Settings) **> Commerce > UCP**
 
-Dort steuerbar, welche Verkaufskanäle für KI-Agenten zugänglich sind und
-welche Fähigkeiten aktiviert werden:
+There you control which sales channels are accessible to AI agents and
+which capabilities are enabled:
 
-| Fähigkeit | Beschreibung |
+| Capability | Description |
 |---|---|
-| **Katalogzugriff** | KI-Agent kann Produkte durchsuchen |
-| **Warenkorb-Management** | KI-Agent kann Warenkorb befüllen |
-| **Rabatt-Anwendung** | KI-Agent kann Gutscheine verwenden |
-| **Checkout-Prozess** | KI-Agent kann Bestellung abschließen |
-| **Bestellerstellung** | KI-Agent erstellt Bestellungen |
-| **Zahlungs-Tokenisierung** | Sichere Zahlungsabwicklung durch KI-Agent |
-| **Kunden-Identitätsverknüpfung** | KI-Agent kann Kundendaten zuordnen |
+| **Catalogue access** | The AI agent can browse products |
+| **Cart management** | The AI agent can fill the cart |
+| **Discount application** | The AI agent can use vouchers |
+| **Checkout process** | The AI agent can complete an order |
+| **Order creation** | The AI agent creates orders |
+| **Payment tokenisation** | Secure payment handling by the AI agent |
+| **Customer identity linking** | The AI agent can map customer data |
 
 ---
 
 ## Product Feed Sales Channel
 
-### Unterstützte Plattformen
+### Supported platforms
 
-| Plattform | Feed-Format | Status |
+| Platform | Feed format | Status |
 |---|---|---|
-| OpenAI / ChatGPT | JSONL | Verfügbar (US-only für ChatGPT-Marktplatz) |
-| Google Shopping | XML | Verfügbar |
-| Weitere | Geplant | Beta |
+| OpenAI / ChatGPT | JSONL | Available (US-only for the ChatGPT marketplace) |
+| Google Shopping | XML | Available |
+| Others | Planned | Beta |
 
-### Einrichtung
+### Setup
 
-1. **Verkaufskanäle** → Neuen Kanal hinzufügen → "Agentic Commerce" wählen
-2. Feed-Typ auswählen (JSONL für OpenAI / XML für Google)
-3. Produktvarianten konfigurieren:
+1. **Verkaufskanäle** (Sales channels) → add a new channel → choose "Agentic Commerce"
+2. Select the feed type (JSONL for OpenAI / XML for Google)
+3. Configure product variants:
 
-### Varianten-Mapping
-Produktattribute auf KI-Plattform-Anforderungen mappen:
+### Variant mapping
+Map product attributes to the AI platform's requirements:
 
-| Shopware-Attribut | KI-Plattform-Attribut |
+| Shopware attribute | AI platform attribute |
 |---|---|
-| Eigenschaft "Farbe" | color |
-| Eigenschaft "Größe" | size |
-| Eigenschaft "Material" | material |
-| Produktnummer | sku |
+| Property "Farbe" (Colour) | color |
+| Property "Größe" (Size) | size |
+| Property "Material" | material |
+| Product number | sku |
 
 ---
 
-## Tracking & Analytics
+## Tracking & analytics
 
-Über den Agentic Commerce Kanal werden verfolgt:
-- Bestellungen aus KI-Agent-Traffic
-- Kundengewinnung über KI-Kanäle
-- Umsatz aus AI-Commerce
-
----
-
-## ChatGPT-Marktplatz: Verfügbarkeit
-
-> **Aktuell**: ChatGPT-Marktplatz-Registrierung ist nur für **US-Händler** verfügbar.
-> Europäische Verfügbarkeit ist geplant aber noch nicht angekündigt (Stand: 2024).
+The Agentic Commerce channel tracks:
+- Orders from AI agent traffic
+- Customer acquisition via AI channels
+- Revenue from AI commerce
 
 ---
 
-## Beta-Hinweis
+## ChatGPT marketplace: availability
 
-- Funktion befindet sich in **aktiver Entwicklung**
-- Funktionsumfang wird erweitert
-- Vor produktivem Einsatz: Testumgebung verwenden
-- Änderungen an API und Protokoll möglich
+> **Currently**: ChatGPT marketplace registration is available only to **US merchants**.
+> European availability is planned but not yet announced (as of 2024).
 
 ---
 
-## Zukunftsvision
+## Beta note
 
-Shopware positioniert Agentic Commerce als strategische Investition in die Zukunft:
-- Shopping ohne manuellen Eingriff des Kunden
-- KI-Agenten als neue "Kunden-Touchpoints"
-- Vollautomatisierter B2B-Einkauf über KI
+- The feature is under **active development**
+- Its scope of functionality will be extended
+- Before productive use: use a test environment
+- Changes to the API and the protocol are possible
+
+---
+
+## Vision for the future
+
+Shopware positions Agentic Commerce as a strategic investment in the future:
+- Shopping without manual intervention by the customer
+- AI agents as new "customer touchpoints"
+- Fully automated B2B purchasing via AI

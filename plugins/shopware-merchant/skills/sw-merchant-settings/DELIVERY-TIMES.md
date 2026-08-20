@@ -1,7 +1,7 @@
-# Shopware 6 – Lieferzeiten
+# Shopware 6 – Lieferzeiten (Delivery times)
 
-Referenz für Lieferzeitkonfiguration und -zuweisung.
+Reference for delivery time configuration and assignment.
 
-**Pfad:** Einstellungen > Handel > Lieferzeiten
+**Path:** Einstellungen (Settings) > Handel (Commerce) > Lieferzeiten
 
-Detaillierte Referenz: [DELIVERY-TIMES-DETAIL.md](DELIVERY-TIMES-DETAIL.md)
+Detailed reference: [DELIVERY-TIMES-DETAIL.md](DELIVERY-TIMES-DETAIL.md)

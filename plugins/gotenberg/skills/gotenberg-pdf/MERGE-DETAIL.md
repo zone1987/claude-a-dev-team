@@ -173,7 +173,7 @@ curl --request POST http://localhost:3000/forms/pdfengines/merge \
   --form watermarkSource=text \
   --form watermarkExpression=VERTRAULICH \
   --form 'watermarkOptions={"opacity":0.25,"rotation":45,"color":"#808080"}' \
-  -o mit-wasserzeichen.pdf
+  -o with-watermark.pdf
 ```
 
 ### With Factur-X

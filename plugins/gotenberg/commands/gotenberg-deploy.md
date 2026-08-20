@@ -1,25 +1,25 @@
 ---
 name: gotenberg-deploy
-description: Scaffold eines Gotenberg-Deployments — docker run / docker-compose / Kubernetes / Cloud Run mit Health-Check, Ports, Ressourcen und den passenden CLI-Flags/Env-Vars (api-*, chromium-*, libreoffice-*, webhook-*, log-*, Outbound-Filtering).
-argument-hint: <ziel> docker|compose|k8s|cloudrun [--auth basic] [--webhook] [--prometheus]
+description: Scaffold a Gotenberg deployment — docker run / docker-compose / Kubernetes / Cloud Run with health check, ports, resources and the matching CLI flags/env vars (api-*, chromium-*, libreoffice-*, webhook-*, log-*, outbound filtering).
+argument-hint: <target> docker|compose|k8s|cloudrun [--auth basic] [--webhook] [--prometheus]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /gotenberg-deploy
 
-Erzeuge eine einsatzfertige Gotenberg-Betriebskonfiguration. Skills: `gotenberg-installation`, `gotenberg-configuration`,
-`gotenberg-system` (Health/Metrics), `gotenberg-outbound-filtering`, ggf. `gotenberg-webhook`, `gotenberg-telemetry`.
+Produce a ready-to-run Gotenberg operating configuration. Skills: `gotenberg-installation`, `gotenberg-configuration`,
+`gotenberg-system` (health/metrics), `gotenberg-outbound-filtering`, and if needed `gotenberg-webhook`, `gotenberg-telemetry`.
 
-## Ablauf
-1. **Zielplattform** aus `$ARGUMENTS` (docker run, docker-compose, K8s-Manifest, Cloud Run).
-2. **Basis** erzeugen: offizielles Image `gotenberg/gotenberg:<tag>`, Port `3000`, Health-Check gegen `/health`
-   (`gotenberg-system`), sinnvolle Ressourcen-Limits (Chromium/LibreOffice sind speicherhungrig).
-3. **Flags/Env-Vars** NUR dokumentierte ergänzen (Quelle: `gotenberg-configuration`), z.B. `--api-timeout`,
+## Procedure
+1. **Target platform** from `$ARGUMENTS` (docker run, docker-compose, K8s manifest, Cloud Run).
+2. **Create the base**: official image `gotenberg/gotenberg:<tag>`, port `3000`, health check against `/health`
+   (`gotenberg-system`), sensible resource limits (Chromium/LibreOffice are memory-hungry).
+3. **Flags/env vars** — add ONLY documented ones (source: `gotenberg-configuration`), e.g. `--api-timeout`,
    `--api-port`, `--chromium-disable-javascript`, `--libreoffice-restart-after`, `--log-level`, `--api-enable-basic-auth`
-   (mit `GOTENBERG_API_BASIC_AUTH_USERNAME/PASSWORD` als **Platzhalter**, niemals echte Werte).
-4. **Optionen**: `--auth basic` → Basic-Auth; `--webhook` → Hinweise/Whitelist (`gotenberg-webhook`); `--prometheus` →
-   Metrics-Endpoint aktiv lassen (`gotenberg-system`). SSRF-Schutz via Outbound-Filtering empfehlen.
-5. Kurzer Betriebs-Hinweis: Stateless → horizontal skalierbar; keine Persistenz nötig.
+   (with `GOTENBERG_API_BASIC_AUTH_USERNAME/PASSWORD` as **placeholders**, never real values).
+4. **Options**: `--auth basic` → basic auth; `--webhook` → notes/allowlist (`gotenberg-webhook`); `--prometheus` →
+   keep the metrics endpoint enabled (`gotenberg-system`). Recommend SSRF protection via outbound filtering.
+5. Brief operating note: stateless → horizontally scalable; no persistence needed.
 
-Flags/Defaults nie raten — gegen `gotenberg-configuration`/`-installation` prüfen. Keine echten Credentials ins Manifest.
+Never guess flags/defaults — check them against `gotenberg-configuration`/`-installation`. No real credentials in the manifest.

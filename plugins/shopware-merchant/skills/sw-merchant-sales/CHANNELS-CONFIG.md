@@ -1,25 +1,25 @@
-# Shopware 6 – Verkaufskanal konfigurieren
+# Shopware 6 – Configure a Verkaufskanal (Sales channel)
 
-Konfigurationsreiter eines bestehenden Verkaufskanals.
+Configuration tabs of an existing Verkaufskanal.
 
-## Reiter
+## Tabs
 
-| Reiter | Inhalt |
+| Tab | Content |
 |---|---|
-| **Allgemein** | Name, Navigation, Sprachen, Währungen, Zahlungs-/Versandarten |
-| **Domains** | URL, Sprache, Währung, Textbaustein-Set je Domain |
-| **Produkte** | Produkte und Kategorien dem Kanal zuweisen |
-| **Theme** | Theme zuweisen und wechseln |
-| **Analyse** | Google Analytics verbinden |
+| **Allgemein** (General) | Name, navigation, languages, currencies, payment/shipping methods |
+| **Domains** | URL, language, currency, Textbaustein-Set (snippet set) per domain |
+| **Produkte** (Products) | Assign products and categories to the channel |
+| **Theme** | Assign and switch the theme |
+| **Analyse** (Analytics) | Connect Google Analytics |
 
-## Pflichtfelder
+## Mandatory fields
 
-- Mindestens eine Sprache + Standard-Sprache
-- Mindestens eine Währung + Standard-Währung
-- Mindestens eine Zahlungsart + Standard
-- Mindestens eine Versandart + Standard
-- Mindestens eine Domain
+- At least one language + default language
+- At least one currency + default currency
+- At least one payment method + default
+- At least one shipping method + default
+- At least one domain
 
-## Quelle
+## Source
 
 https://docs.shopware.com/de/shopware-6-de/einstellungen/Verkaufskanaele

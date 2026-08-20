@@ -1,7 +1,7 @@
 # Shopware 6 – Rule Builder
 
-Referenz für das Erstellen und Verwalten von Regeln.
+Reference for creating and managing rules.
 
-**Pfad:** Einstellungen > Automatisierung > Rule Builder
+**Path:** Einstellungen (Settings) > Automatisierung (Automation) > Rule Builder
 
-Detaillierte Referenz: [RULE-BUILDER-DETAIL.md](RULE-BUILDER-DETAIL.md)
+Detailed reference: [RULE-BUILDER-DETAIL.md](RULE-BUILDER-DETAIL.md)

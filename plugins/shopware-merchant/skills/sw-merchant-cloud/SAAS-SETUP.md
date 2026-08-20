@@ -1,17 +1,17 @@
-# Shopware SaaS — Einrichtung & Livegang
+# Shopware SaaS — Setup & go-live
 
-Destilliert aus `docs.shopware.com/de/shopware-6-de/saas`.
+Distilled from `docs.shopware.com/de/shopware-6-de/saas`.
 
-## Kurzübersicht Einrichtung
+## Setup at a glance
 
-1. **Shop erstellen** (Shopware Account oder Direkt-URL)
-2. **Plan buchen** (Rise / Evolve / Beyond) — erst nach 30 Tagen nötig
-3. **Domain verbinden** (DNS-Einträge setzen)
-4. **Grundkonfiguration** (Produkte, Theme, Rechtstexte, Versand, Zahlung)
-5. **Livegang** (PayPal verbinden, Rechnungsinfos, Plan aktivieren)
+1. **Create shop** (Shopware Account or direct URL)
+2. **Book plan** (Rise / Evolve / Beyond) — only required after 30 days
+3. **Connect domain** (set DNS records)
+4. **Base configuration** (products, theme, legal texts, shipping, payment)
+5. **Go live** (connect PayPal, billing information, activate plan)
 
-Tiefes Referenzwissen: `references/deep/`
+In-depth reference knowledge: `references/deep/`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/saas*
+*Source: https://docs.shopware.com/de/shopware-6-de/saas*

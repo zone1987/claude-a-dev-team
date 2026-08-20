@@ -1,5 +1,5 @@
 # Shopware Sales Agent
 
-Separate Frontend-App für Außendienstmitarbeiter: Kundenverwaltung und Angebotserstellung (Evolve+).
+Separate frontend app for field sales staff: customer management and quote creation (Evolve+).
 
-<!-- Detaildokumentation: `SALES-AGENT-DETAIL.md` -->
+<!-- Detailed documentation: `SALES-AGENT-DETAIL.md` -->

@@ -161,9 +161,9 @@ android.setDefaultTimeout(60_000); // 1 minute
 | Properties | 0 |
 | Events | 0 |
 
-**Fazit:** `Android` ist ein schlankes Factory-Objekt. Kernmethode ist `devices()` um verbundene Geraete
-zu enumerieren; `launchServer()` + `connect()` ermoeglichen verteiltes Testen ueber WebSocket.
-`setDefaultTimeout()` setzt den globalen Timeout fuer alle Android-Operationen.
+**Summary:** `Android` is a lightweight factory object. The core method is `devices()` for enumerating
+connected devices; `launchServer()` + `connect()` enable distributed testing over WebSocket.
+`setDefaultTimeout()` sets the global timeout for all Android operations.
 
 ---
 

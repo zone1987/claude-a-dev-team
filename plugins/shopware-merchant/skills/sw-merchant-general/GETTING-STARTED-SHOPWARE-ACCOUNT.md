@@ -1,81 +1,81 @@
-# Shopware Account – Erstellung & Verwaltung
+# Shopware Account – creation & management
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/shopware-account-erstellen
+**Source**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/shopware-account-erstellen
 
-## Überblick
+## Overview
 
-Der Shopware Account ist das zentrale Portal für alle lizenzierten Erweiterungen, Rechnungen und
-Support-Anfragen. Vor der Installation von Erweiterungen oder der Nutzung des Shopware Stores
-**muss** ein Account verknüpft sein.
+The Shopware Account is the central portal for all licensed extensions, invoices and
+support requests. Before installing extensions or using the Shopware Store, an account
+**must** be linked.
 
 ---
 
-## Account anlegen
+## Creating an account
 
-### Registrierung
+### Registration
 1. URL: https://account.shopware.com/register
-2. Felder: E-Mail-Adresse, Vorname, Nachname, Passwort
-3. Klick auf **Account anlegen** – Account wird sofort erstellt
+2. Fields: email address, first name, last name, password
+3. Click **Account anlegen** (Create account) – the account is created immediately
 
-### Stammdaten vervollständigen
-Nach der Registrierung Stammdaten ergänzen:
-- Vollständige Adresse (Straße, PLZ, Ort, Land)
-- Telefonnummer
-- **Exakter Unternehmensname** (muss mit Handelsregister oder Gewerbeanmeldung übereinstimmen)
+### Completing the master data
+After registration, complete the master data:
+- Full address (street, postcode, city, country)
+- Phone number
+- **Exact company name** (must match the commercial register or business registration)
 
-> **Wichtig**: "Die Unternehmensbezeichnung muss genau wie im Handelsregister oder in der
-> Gewerbeanmeldung angegeben werden." Falsche Angaben können bei Rechnungen zu Problemen führen.
-
----
-
-## Shop-Domain verknüpfen
-
-1. Im Account-Menü **Shops** auswählen
-2. Domain eintragen (z. B. `www.meinshop.de`)
-3. Shopware-Version auswählen (6.x)
-4. Umgebungstyp wählen: **Produktion** oder **Test**
-
-> Für Test-/Entwicklungsumgebungen eine separate Domain registrieren, um Lizenzkonflikte zu vermeiden.
+> **Important**: "The company name must be entered exactly as stated in the commercial register or in
+> the business registration." Incorrect details can cause problems with invoices.
 
 ---
 
-## Zahlungsmethoden
+## Linking the shop domain
 
-| Methode | Hinweise |
+1. Select **Shops** in the account menu
+2. Enter the domain (e.g. `www.meinshop.de`)
+3. Select the Shopware version (6.x)
+4. Choose the environment type: **Produktion** (Production) or **Test**
+
+> For test/development environments, register a separate domain to avoid licence conflicts.
+
+---
+
+## Payment methods
+
+| Method | Notes |
 |---|---|
-| PayPal | Sofortige Verarbeitung |
-| Kreditkarte (Mastercard/Visa) | Sofortige Verarbeitung |
-| SEPA-Lastschrift | Bankverbindung hinterlegen |
-| Vorauszahlung / Kontoaufladung | Mindesteinzahlung 5,00 € |
+| PayPal | Immediate processing |
+| Credit card (Mastercard/Visa) | Immediate processing |
+| SEPA direct debit | Bank details must be stored |
+| Prepayment / account top-up | Minimum deposit EUR 5.00 |
 
-- Für Vorkasse oder Rechnungsausgleich: beliebigen Betrag einzahlen (mind. 5,00 €)
-- Rechnungsfragen: financial.services@shopware.com oder +49 2555 9288 510
+- For prepayment or settling invoices: deposit any amount (min. EUR 5.00)
+- Invoice enquiries: financial.services@shopware.com or +49 2555 9288 510
 
 ---
 
-## Erweiterungen kaufen & verwalten
+## Buying & managing extensions
 
-Erweiterungen können gekauft werden über:
+Extensions can be purchased via:
 - **Shopware Store**: https://store.shopware.com
-- **Im Admin**: Erweiterungen > Store
+- **In the admin**: Erweiterungen (Extensions) > Store
 
-Gekaufte Lizenzen erscheinen im Account unter **Lizenzen**. Die Zuweisung zu einem Shop
-erfolgt über die Domain-Verknüpfung.
-
----
-
-## Mehrere Shops im selben Account
-
-Ein Account kann mehrere Shop-Domains verwalten. Jede Domain benötigt eigene Lizenzen
-für kostenpflichtige Erweiterungen (außer bei speziellen Mehrlizenz-Paketen).
+Purchased licences appear in the account under **Lizenzen** (Licences). Assignment to a shop
+happens via the domain link.
 
 ---
 
-## Nützliche Links
+## Multiple shops in the same account
+
+One account can manage several shop domains. Each domain needs its own licences
+for paid extensions (except with special multi-licence packages).
+
+---
+
+## Useful links
 
 | Link | URL |
 |---|---|
-| Account-Portal | https://account.shopware.com |
-| Registrierung | https://account.shopware.com/register |
-| Support-Tickets | https://account.shopware.com (Menü: Support) |
-| Rechnungen | https://account.shopware.com (Menü: Finanzen) |
+| Account portal | https://account.shopware.com |
+| Registration | https://account.shopware.com/register |
+| Support tickets | https://account.shopware.com (menu: Support) |
+| Invoices | https://account.shopware.com (menu: Finanzen / Finances) |

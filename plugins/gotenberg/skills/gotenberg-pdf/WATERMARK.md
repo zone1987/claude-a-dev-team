@@ -1,8 +1,8 @@
-# Gotenberg — PDF Wasserzeichen (Watermark)
+# Gotenberg — PDF watermark
 
-Fuegt ein Text-, Bild- oder PDF-Wasserzeichen HINTER den Seiteninhalt.
-Schriftart, Farbe, Rotation, Opazitaet via `watermarkOptions` (JSON, pdfcpu-Syntax).
-Referenz: `WATERMARK-DETAIL.md`
+Adds a text, image or PDF watermark BEHIND the page content.
+Font, color, rotation, opacity via `watermarkOptions` (JSON, pdfcpu syntax).
+Reference: `WATERMARK-DETAIL.md`
 
 Route: `POST /forms/pdfengines/watermark`
-Rueckgabe: PDF (200) | ZIP (mehrere Inputs) | 400 | 503
+Returns: PDF (200) | ZIP (multiple inputs) | 400 | 503

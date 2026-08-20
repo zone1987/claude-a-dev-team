@@ -1,16 +1,16 @@
-# Shopware 6 — Update ausführen (alle Methoden)
+# Shopware 6 — Running the update (all methods)
 
-Destilliert aus `docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten`.
+Distilled from `docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten`.
 
-## Update-Methoden im Überblick
+## Update methods at a glance
 
-| Methode | Geeignet für | Risiko Timeout |
+| Method | Suitable for | Timeout risk |
 |---|---|---|
-| Admin-Panel | Standard-Hosting, kleine Shops | Möglich |
-| Browser-Installer | Shared Hosting, kein SSH | Gering |
-| Composer + CLI | Professionell, CI/CD | Kein |
+| Admin panel | Standard hosting, small shops | Possible |
+| Browser installer | Shared hosting, no SSH | Low |
+| Composer + CLI | Professional, CI/CD | None |
 
-## Composer + CLI (Kurzfassung)
+## Composer + CLI (short version)
 
 ```bash
 bin/console sales-channel:maintenance:enable --all
@@ -24,18 +24,18 @@ bin/console cache:clear
 bin/console sales-channel:maintenance:disable --all
 ```
 
-## Troubleshooting: Extensions nicht deaktivierbar
+## Troubleshooting: extensions cannot be deactivated
 
 ```sql
 -- Alle Plugins deaktivieren (Major-Update)
 UPDATE plugin SET active = 0;
 ```
 
-Vollständige Anleitungen (alle Methoden, Rollback, Wartungsmodus, SQL-Troubleshooting):
+Complete instructions (all methods, rollback, maintenance mode, SQL troubleshooting):
 → `GUIDES-AUSFUEHREN-METHODEN.md`
 
-Screenshots (Admin-Prozess): `assets/`
+Screenshots (admin process): `assets/`
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten*
+*Source: https://docs.shopware.com/de/shopware-6-de/update-guides/shopware-aktualisieren-updaten*

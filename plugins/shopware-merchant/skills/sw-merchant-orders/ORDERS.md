@@ -1,25 +1,25 @@
-# Shopware 6 – Bestellungen (Kapitel-Überblick)
+# Shopware 6 – Bestellungen (Orders) (chapter overview)
 
-Der Bereich **Bestellungen** in der Shopware-6-Administration umfasst die komplette Verwaltung aller Kundenbestellungen.
+The **Bestellungen** (Orders) area in the Shopware 6 administration covers the complete management of all customer orders.
 
-## Enthaltene Sub-Skills
+## Included sub-skills
 
-| Thema | Admin-Pfad | Skill |
+| Topic | Admin path | Skill |
 |---|---|---|
-| Bestellübersicht, Filter, Bulk-Aktionen | Bestellungen | `sw-merchant-orders-overview` |
-| Bestellung manuell anlegen | Bestellungen > Bestellung anlegen | `sw-merchant-orders-create` |
-| Bestellung bearbeiten (Positionen, Adressen, Details) | Bestellungen > [Bestellung] | `sw-merchant-orders-edit` |
-| Status-Management (Bestell-/Zahlungs-/Versandstatus) | Bestellungen > [Bestellung] > Status | `sw-merchant-orders-states` |
-| Dokumente (Rechnung, Lieferschein, ZUGFeRD) | Bestellungen > [Bestellung] > Dokumente | `sw-merchant-orders-documents` |
-| Retouren & Rückerstattungen | Bestellungen > [Bestellung] > Retouren | `sw-merchant-orders-refunds` |
+| Order overview, filters, bulk actions | Bestellungen | `sw-merchant-orders-overview` |
+| Create an order manually | Bestellungen > Bestellung anlegen (Create order) | `sw-merchant-orders-create` |
+| Edit an order (line items, addresses, details) | Bestellungen > [order] | `sw-merchant-orders-edit` |
+| State management (order/payment/delivery state) | Bestellungen > [order] > Status (Status) | `sw-merchant-orders-states` |
+| Documents (invoice, delivery note, ZUGFeRD) | Bestellungen > [order] > Dokumente (Documents) | `sw-merchant-orders-documents` |
+| Returns & refunds | Bestellungen > [order] > Retouren (Returns) | `sw-merchant-orders-refunds` |
 
-## Schnelleinstieg
+## Quick start
 
-- **Bestellung anlegen**: Bestellungen > „Bestellung anlegen" → Kunde wählen → Produkte → Optionen → Speichern
-- **Status ändern**: Bestellung öffnen > Info-Bereich oben > Status-Dropdown
-- **Rechnung erstellen**: Bestellung > Tab „Allgemein" > Dokumente > „Dokument hinzufügen"
-- **Retoure erstellen**: Bestellung > Tab „Allgemein" > Positionen auswählen > „Artikel zurückgeben"
-- **Bulk-Statusänderung**: Bestellungen auswählen > „Mehrfachänderung"
+- **Create an order**: Bestellungen > "Bestellung anlegen" → select customer → products → options → Speichern (Save)
+- **Change a state**: open the order > info area at the top > state dropdown
+- **Create an invoice**: order > "Allgemein" (General) tab > Dokumente > "Dokument hinzufügen" (Add document)
+- **Create a return**: order > "Allgemein" tab > select line items > "Artikel zurückgeben" (Return items)
+- **Bulk state change**: select orders > "Mehrfachänderung" (Bulk edit)
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen

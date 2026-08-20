@@ -1,10 +1,10 @@
-# Shopware 6 – Kundengruppen
+# Shopware 6 – Customer groups
 
-Vollständige Referenz: `GROUPS-DETAIL.md`
+Full reference: `GROUPS-DETAIL.md`
 
-## Auf einen Blick
+## At a glance
 
-- Kundengruppen steuern Brutto/Netto-Preisanzeige und Zugangskontrolle
-- Standard-Kundengruppe = Fallback für alle Verkaufskanäle (nie löschen!)
-- Erweitertes Registrierungsformular für B2B-Self-Service
-- Kunden nach Registrierung manuell annehmen oder ablehnen
+- Customer groups control gross/net price display and access control
+- Default customer group = fallback for all Verkaufskanäle (Sales channels) (never delete!)
+- Extended registration form for B2B self-service
+- Manually accept or reject customers after registration

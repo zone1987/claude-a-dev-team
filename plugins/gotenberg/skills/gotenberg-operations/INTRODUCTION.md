@@ -1,14 +1,14 @@
-# Gotenberg — Einstieg & Ueberblick
+# Gotenberg — getting started & overview
 
-Gotenberg ist eine **Docker-basierte, zustandslose HTTP-API** zur Dokumentenkonvertierung.
-Dateien per `multipart/form-data` senden, PDF (oder Screenshot) zurueckerhalten.
-Keine eigene Chromium/LibreOffice-Installation noetig.
+Gotenberg is a **Docker-based, stateless HTTP API** for document conversion.
+Send files via `multipart/form-data`, receive a PDF (or screenshot) back.
+No Chromium/LibreOffice installation of your own is needed.
 
-## Kernfunktionen
+## Core features
 
-- **Konvertierung zu PDF**: HTML, URL, Markdown, Office-Dokumente
-- **Screenshots**: HTML, URL, Markdown als PNG/JPEG/WebP
-- **PDF-Manipulation**: Merge, Split, Verschluesseln, Wasserzeichen, Metadaten, Factur-X/ZUGFeRD
+- **Conversion to PDF**: HTML, URL, Markdown, Office documents
+- **Screenshots**: HTML, URL, Markdown as PNG/JPEG/WebP
+- **PDF manipulation**: merge, split, encrypt, watermark, metadata, Factur-X/ZUGFeRD
 
 ## Quickstart
 
@@ -20,4 +20,4 @@ curl --request POST http://localhost:3000/forms/chromium/convert/url \
   -o output.pdf
 ```
 
-Vollstaendige Referenz: `INTRODUCTION-DETAIL.md`
+Complete reference: `INTRODUCTION-DETAIL.md`

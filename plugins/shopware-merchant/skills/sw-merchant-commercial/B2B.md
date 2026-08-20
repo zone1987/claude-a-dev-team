@@ -1,5 +1,5 @@
 # Shopware B2B Components
 
-Vollständige B2B-Funktionalitäten: Angebote, Mitarbeiter, Genehmigungen, Budgets (Evolve+).
+Complete B2B functionality: quotes, employees, approvals, budgets (Evolve+).
 
-<!-- Detaildokumentation: `B2B-COMPONENTS.md` -->
+<!-- Detailed documentation: `B2B-COMPONENTS.md` -->

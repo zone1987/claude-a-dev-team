@@ -1,234 +1,234 @@
-# Shopware 6 – CMS-Erweiterungen: Vollständige Dokumentation
+# Shopware 6 – CMS-Erweiterungen (CMS extensions): full documentation
 
-**Quelle:** https://docs.shopware.com/de/shopware-6-de/erweiterungen/cms-erweiterungen  
-**Version:** ab 1.0.1; aktuelle Version 2.2.0+
+**Source:** https://docs.shopware.com/de/shopware-6-de/erweiterungen/cms-erweiterungen  
+**Version:** from 1.0.1; current version 2.2.0+
 
 ---
 
 ## Contents
 
 - [Screenshots](#screenshots)
-- [Übersicht](#übersicht)
+- [Overview](#overview)
 - [Installation](#installation)
 - [Feature 1: Quickview](#feature-1-quickview)
 - [Feature 2: Suchergebnisse-Quickview](#feature-2-suchergebnisse-quickview)
 - [Feature 3: Scroll-Navigation](#feature-3-scroll-navigation)
-- [Feature 4: Block-Sichtbarkeit per Rule Builder](#feature-4-block-sichtbarkeit-per-rule-builder)
+- [Feature 4: Block-Sichtbarkeit via the Rule Builder](#feature-4-block-sichtbarkeit-via-the-rule-builder)
 - [Feature 5: Custom Forms (Benutzerdefinierte Formulare)](#feature-5-custom-forms-benutzerdefinierte-formulare)
-- [Changelog (Versionshistorie)](#changelog-versionshistorie)
-- [Verwandte Dokumentation](#verwandte-dokumentation)
+- [Changelog (version history)](#changelog-version-history)
+- [Related documentation](#related-documentation)
 
 ## Screenshots
 
-| Datei | Inhalt |
+| File | Content |
 |---|---|
-| `../../assets/quickview.png` | Quickview im Listing |
-| `../../assets/scroll-navigation-sektion.png` | Scroll-Navigation Sektions-Einstellung |
-| `../../assets/scroll-navigation-frontend.png` | Scroll-Navigation im Storefront |
-| `../../assets/block-sichtbarkeit.png` | Block-Sichtbarkeit per Rule Builder |
-| `../../assets/custom-form-erstellen.png` | Custom Form erstellen |
-| `../../assets/custom-form-optionen.png` | Custom Form Optionen |
-| `../../assets/custom-form-felder.png` | Custom Form Felder und Gruppen |
+| `../../assets/quickview.png` | Quickview in the listing |
+| `../../assets/scroll-navigation-sektion.png` | Scroll-Navigation section setting |
+| `../../assets/scroll-navigation-frontend.png` | Scroll-Navigation in the storefront |
+| `../../assets/block-sichtbarkeit.png` | Block-Sichtbarkeit via the Rule Builder |
+| `../../assets/custom-form-erstellen.png` | Creating a custom form |
+| `../../assets/custom-form-optionen.png` | Custom form options |
+| `../../assets/custom-form-felder.png` | Custom form fields and groups |
 
 ---
 
-## Übersicht
+## Overview
 
-Die **CMS-Erweiterungen** sind eine offizielle Shopware-Erweiterung, die als Teil
-von **Shopware Evolve** (und höheren Plänen) verfügbar ist.
+The **CMS-Erweiterungen** are an official Shopware extension available as part
+of **Shopware Evolve** (and higher plans).
 
-Sie erweitern die Erlebniswelten um folgende Kernfunktionen:
-1. Quickview (Produktvorschau im Listing)
-2. Suchergebnisse-Quickview
-3. Scroll-Navigation (Anker-Punkte)
-4. Block-Sichtbarkeit per Rule Builder
-5. Custom Forms (benutzerdefinierte Formulare)
+They extend the Erlebniswelten (Shopping Experiences) with the following core functions:
+1. Quickview (product preview in the listing)
+2. Suchergebnisse-Quickview (search results quickview)
+3. Scroll-Navigation (anchor points)
+4. Block-Sichtbarkeit (block visibility) via the Rule Builder
+5. Custom Forms (Benutzerdefinierte Formulare — custom forms)
 
 ---
 
 ## Installation
 
-### Voraussetzungen
-- Shopware Evolve Plan oder höher auf der Shop-Domain
-- Shopware Account in der Admin hinterlegt
+### Prerequisites
+- Shopware Evolve plan or higher on the shop domain
+- Shopware account stored in the admin
 
-### Schritte
-1. Admin > **Erweiterungen > Meine Erweiterungen**
-2. Extension „CMS-Erweiterungen" suchen
-3. „Installieren" → „Aktivieren"
-4. Shop-Konfiguration ggf. anpassen
+### Steps
+1. Admin > **Erweiterungen** (Extensions) > **Meine Erweiterungen** (My extensions)
+2. Search for the "CMS-Erweiterungen" extension
+3. "Installieren" (Install) → "Aktivieren" (Activate)
+4. Adjust the shop configuration if needed
 
 ---
 
 ## Feature 1: Quickview
 
-### Funktion
-Ermöglicht die Produktvorschau direkt im Listing, ohne die Kategorie-Seite zu verlassen.
-Nutzer klicken auf ein Produkt und erhalten sofort einen modalen Vorschau-Dialog.
+### Function
+Allows a product preview directly in the listing, without leaving the category page.
+Users click a product and immediately get a modal preview dialogue.
 
-### Verfügbare Blöcke
-Quickview funktioniert mit folgenden Erlebniswelt-Blöcken:
-- **Drei Spalten Produkte-Boxen**
-- **Produkt-Slider**
+### Available blocks
+Quickview works with the following Erlebniswelten blocks:
+- **Drei Spalten Produkte-Boxen** (Three-column product boxes)
+- **Produkt-Slider** (Product slider)
 - **Cross-Selling**
 
-### Aktivierung
-Nach Installation der Extension ist Quickview automatisch für unterstützte Blöcke aktiv.
+### Activation
+After installing the extension, Quickview is automatically active for supported blocks.
 
-### Konfiguration
-- Extension-Einstellungen öffnen (in Erweiterungen > CMS-Erweiterungen > Konfiguration)
-- Quickview de-/aktivieren
+### Configuration
+- Open the extension settings (under Erweiterungen > CMS-Erweiterungen > Konfiguration (Configuration))
+- Enable/disable Quickview
 
 ---
 
 ## Feature 2: Suchergebnisse-Quickview
 
-### Funktion
-Erweitert die Quickview-Funktionalität auf die **Suchergebnisseite**.
+### Function
+Extends the Quickview functionality to the **search results page**.
 
-Nutzer können Produktdetails direkt in der Suche einsehen ohne zur Produktdetailseite
-navigieren zu müssen.
+Users can view product details directly in the search without having to navigate to
+the product detail page.
 
-### Aktivierung
-In der Extension-Konfiguration unter:
-- CMS-Erweiterungen > Konfiguration > „Quickview auf Suchergebnisseite aktivieren"
+### Activation
+In the extension configuration under:
+- CMS-Erweiterungen > Konfiguration > "Quickview auf Suchergebnisseite aktivieren" (Enable quickview on the search results page)
 
 ---
 
 ## Feature 3: Scroll-Navigation
 
-### Funktion
-Erstellt eine **Anker-Punkt-Navigation** innerhalb einer Erlebniswelten-Seite.
-Besonders nützlich für lange Landingpages mit mehreren Sektionen.
+### Function
+Creates an **anchor-point navigation** within an Erlebniswelten page.
+Especially useful for long landing pages with several sections.
 
-### Darstellung im Storefront
+### Presentation in the storefront
 
 **Desktop:**
-- Navigation erscheint als vertikales Menü auf der **linken Seite**
-- Scrollt mit dem Nutzer mit (sticky)
-- Aktiver Abschnitt wird hervorgehoben
+- The navigation appears as a vertical menu on the **left-hand side**
+- It scrolls along with the user (sticky)
+- The active section is highlighted
 
-**Mobil:**
-- Navigation erscheint als Buttons unten rechts
-- Aufklappbares Menü
+**Mobile:**
+- The navigation appears as buttons at the bottom right
+- Expandable menu
 
-### URL-Parameter
-Sektionen können direkt über URL-Anker angesprungen werden:
+### URL parameters
+Sections can be jumped to directly via URL anchors:
 ```
 https://meinshop.de/landingpage/#sektionsname
 ```
-Beispiel: `/#lorem%20ipsum`
+Example: `/#lorem%20ipsum`
 
-### Einrichtung
-1. Erlebniswelt-Layout öffnen
-2. Sektion anklicken → Sektions-Einstellungen
-3. Sektionsname vergeben (wird als Anker verwendet)
-4. Scroll-Navigation ist automatisch aktiv wenn Extension installiert
+### Setup
+1. Open the Erlebniswelten layout
+2. Click the section → section settings
+3. Assign a section name (used as the anchor)
+4. Scroll-Navigation is active automatically once the extension is installed
 
 ---
 
-## Feature 4: Block-Sichtbarkeit per Rule Builder
+## Feature 4: Block-Sichtbarkeit via the Rule Builder
 
-### Funktion
-Einzelne CMS-Blöcke können basierend auf **Rule Builder-Regeln** konditionell
-ein- oder ausgeblendet werden.
+### Function
+Individual CMS blocks can be shown or hidden conditionally based on
+**Rule Builder rules**.
 
-### Anwendungsfälle
-- Blöcke nur für eingeloggte Kunden anzeigen
-- Blöcke nur für bestimmte Kundengruppen
-- Blöcke nur in bestimmten Zeiträumen (z.B. Aktionszeitraum)
-- Blöcke nach Bestellhistorie / Umsatz steuern
-- Geographische Steuerung (Land/Region)
+### Use cases
+- Show blocks only to logged-in customers
+- Blocks only for certain Kundengruppen (customer groups)
+- Blocks only during certain periods (e.g. a promotion period)
+- Control blocks by order history / turnover
+- Geographic control (country/region)
 
-### Verwendung
-1. Erlebniswelt-Layout öffnen
-2. Block anklicken → Block-Einstellungen in rechter Sidebar
-3. Bereich „Sichtbarkeit" → Regel zuweisen
-4. Aus vorhandenen Rules auswählen oder neue erstellen
-5. Speichern
+### Usage
+1. Open the Erlebniswelten layout
+2. Click the block → block settings in the right-hand sidebar
+3. "Sichtbarkeit" (Visibility) area → assign a rule
+4. Select from existing rules or create new ones
+5. **Speichern** (Save)
 
 ### Rule Builder
-Rules werden in **Einstellungen > Rule Builder** (oder Marketing > Rule Builder) definiert.
-Hier können komplexe Bedingungen mit AND/OR-Verknüpfungen erstellt werden.
+Rules are defined in **Einstellungen** (Settings) **> Rule Builder** (or Marketing > Rule Builder).
+Complex conditions with AND/OR combinations can be created here.
 
 ---
 
 ## Feature 5: Custom Forms (Benutzerdefinierte Formulare)
 
-### Funktion
-Ermöglicht die Erstellung von **individuellen Formularen** mit eigenen Feldern,
-Feldgruppen und E-Mail-Vorlagen – weit über das Standard-Kontaktformular hinaus.
+### Function
+Allows the creation of **individual forms** with your own fields,
+field groups and email templates – going far beyond the standard contact form.
 
-### Einsatzbereiche
-- Bewerbungsformulare
-- Produktanfragen mit spezifischen Feldern
-- Veranstaltungsanmeldungen
-- Rückrufanfragen
-- Kundenumfragen
+### Areas of use
+- Application forms
+- Product enquiries with specific fields
+- Event registrations
+- Callback requests
+- Customer surveys
 
-### Verfügbare Feldtypen
-- Textfeld (einzeilig)
-- Textarea (mehrzeilig)
-- E-Mail-Feld
-- Telefonnummer
-- Zahl
-- Datum/Uhrzeit
-- Auswahlliste (Dropdown)
+### Available field types
+- Text field (single line)
+- Textarea (multi-line)
+- Email field
+- Phone number
+- Number
+- Date/time
+- Selection list (dropdown)
 - Checkbox
-- Radio-Buttons
-- Datei-Upload
+- Radio buttons
+- File upload
 
-### Formular erstellen
+### Creating a form
 
-1. Erweiterungen > CMS-Erweiterungen > Tab „Formulare"
-2. „Neues Formular erstellen"
-3. **Allgemeine Einstellungen:**
-   - Formularname
-   - Empfänger-E-Mail(s)
-   - E-Mail-Vorlage für Bestätigungs-E-Mail
-   - E-Mail-Vorlage für Benachrichtigung
-4. **Felder hinzufügen:**
-   - Feldtyp wählen
-   - Label/Bezeichnung eingeben
-   - Pflichtfeld (ja/nein)
-   - Validierungsregeln setzen
-5. **Feldgruppen** (optional): Felder logisch gruppieren
-6. Speichern
+1. Erweiterungen > CMS-Erweiterungen > "Formulare" (Forms) tab
+2. "Neues Formular erstellen" (Create new form)
+3. **General settings:**
+   - Form name
+   - Recipient email address(es)
+   - Email template for the confirmation email
+   - Email template for the notification
+4. **Adding fields:**
+   - Choose the field type
+   - Enter the label/designation
+   - Mandatory field (yes/no)
+   - Set validation rules
+5. **Field groups** (optional): group fields logically
+6. **Speichern** (Save)
 
-### Formular in Erlebniswelt einbinden
+### Embedding a form in an Erlebniswelt
 
-1. Erlebniswelt-Layout öffnen
-2. Block-Kategorie „Formulare" in der Sidebar öffnen
-3. „Custom Form"-Block per Drag & Drop einfügen
-4. Block anklicken → Formular aus Liste auswählen
-5. Speichern
+1. Open the Erlebniswelten layout
+2. Open the "Formulare" block category in the sidebar
+3. Insert the "Custom Form" block by drag and drop
+4. Click the block → select the form from the list
+5. **Speichern** (Save)
 
-### E-Mail-Vorlagen für Custom Forms
+### Email templates for Custom Forms
 
-Separate Vorlagen für:
-- **Kundenbestätigung**: E-Mail an Absender nach Formular-Einreichung
-- **Shop-Benachrichtigung**: E-Mail an Shop-Betreiber mit Formularinhalt
+Separate templates for:
+- **Customer confirmation**: email to the sender after the form is submitted
+- **Shop notification**: email to the shop operator with the form content
 
-Vorlagen können unter Einstellungen > E-Mail-Vorlagen angepasst werden.
+Templates can be adjusted under Einstellungen > E-Mail-Vorlagen (Mail templates).
 
 ---
 
-## Changelog (Versionshistorie)
+## Changelog (version history)
 
-| Version | Änderungen |
+| Version | Changes |
 |---|---|
-| 2.2.0+ | Aktuelle Version |
-| 2.0.0 | Custom Forms Feature |
-| 1.5.0 | Block-Sichtbarkeit per Rule Builder |
+| 2.2.0+ | Current version |
+| 2.0.0 | Custom Forms feature |
+| 1.5.0 | Block-Sichtbarkeit via the Rule Builder |
 | 1.3.0 | Suchergebnisse-Quickview |
 | 1.1.0 | Scroll-Navigation |
-| 1.0.1 | Initiale Version (Quickview) |
+| 1.0.1 | Initial version (Quickview) |
 
 ---
 
-## Verwandte Dokumentation
+## Related documentation
 
 - Erlebniswelten: `sw-merchant-content-shopping-experiences`
-- Rule Builder: `sw-merchant-marketing` (Marketing-Bereich)
-- Standard-Kontaktformular: Erlebniswelten > Block „Formular"
+- Rule Builder: `sw-merchant-marketing` (Marketing area)
+- Standard contact form: Erlebniswelten > "Formular" (Form) block
 - Shopware Evolve: https://www.shopware.com/de/preise/

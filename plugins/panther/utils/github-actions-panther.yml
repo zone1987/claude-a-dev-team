@@ -1,5 +1,5 @@
-# GitHub-Actions-Workflow für Symfony-Panther-E2E-Tests (Quelle: panther-docker-ci).
-# Nach .github/workflows/ kopieren und anpassen. Secrets via ${{ secrets.* }}, keine Klartext-Credentials.
+# GitHub Actions workflow for Symfony Panther E2E tests (source: panther-docker-ci).
+# Copy it to .github/workflows/ and adapt it. Secrets via ${{ secrets.* }}, no plaintext credentials.
 name: E2E (Panther)
 
 on: [push, pull_request]
@@ -23,7 +23,7 @@ jobs:
       - name: Install browser drivers
         run: vendor/bin/bdi detect drivers
 
-      # Falls AssetMapper/Frontend: Assets vor den Tests bauen.
+      # If using AssetMapper/a frontend: build the assets before the tests.
       - name: Compile assets
         run: php bin/console asset-map:compile --env=test || true
 

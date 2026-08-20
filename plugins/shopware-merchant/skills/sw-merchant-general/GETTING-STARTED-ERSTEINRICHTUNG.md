@@ -1,81 +1,81 @@
 # Ersteinrichtungs-Assistent (First-Run Wizard)
 
-**Quelle**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/ersteinrichtungs-assistent
+**Source**: https://docs.shopware.com/de/shopware-6-de/erste-schritte/ersteinrichtungs-assistent
 
-## Überblick
+## Overview
 
-Der Ersteinrichtungs-Assistent (First-Run Wizard) startet **automatisch nach der ersten Installation**
-von Shopware 6. Er führt durch die grundlegende Shop-Konfiguration in mehreren Schritten.
+The Ersteinrichtungs-Assistent (First-Run Wizard) starts **automatically after the first installation**
+of Shopware 6. It guides you through the basic shop configuration in several steps.
 
-Der Assistent kann jederzeit erneut aufgerufen werden:
-> **Einstellungen > System > Ersteinrichtungs-Assistent**
-
----
-
-## Schritte des Assistenten
-
-### 1. Dataimport (Demo-Daten)
-- **Option A: Demo-Daten laden** – Produkte, Kategorien, Hersteller für Testzwecke importieren
-- **Option B: Überspringen** – Mit leerem Shop beginnen
-
-> Empfehlung: Demo-Daten für erste Tests laden; vor dem echten Betrieb wieder entfernen.
+The wizard can be opened again at any time:
+> **Einstellungen** (Settings) **> System > Ersteinrichtungs-Assistent**
 
 ---
 
-### 2. Standardwerte
-- Konfiguration: Welche Verkaufskanäle werden **automatisch mit neu erstellten Produkten** verknüpft?
-- Erleichtert das Inventarmanagement über mehrere Storefronts hinweg
+## Steps of the wizard
+
+### 1. Data import (demo data)
+- **Option A: load demo data** – import products, categories and manufacturers for testing
+- **Option B: skip** – start with an empty shop
+
+> Recommendation: load demo data for initial tests; remove it again before going live.
 
 ---
 
-### 3. Mailer-Einstellungen
-- SMTP-Konfiguration für ausgehende E-Mails (Bestellbestätigungen, Passwort-Reset etc.)
-- **Kann später konfiguriert werden** (überspringen möglich)
-- Pfad zum Nachkonfigurieren: Einstellungen > System > Mailer
+### 2. Default values
+- Configuration: which sales channels are **linked automatically to newly created products**?
+- Makes inventory management across multiple storefronts easier
 
 ---
 
-### 4. PayPal-Integration
-- PayPal-API-Zugangsdaten eingeben
-- Optional: PayPal als Standard-Zahlungsmethode für alle Verkaufskanäle setzen
-- Kann auch später unter **Erweiterungen > Meine Erweiterungen > PayPal** konfiguriert werden
+### 3. Mailer settings
+- SMTP configuration for outgoing emails (order confirmations, password reset etc.)
+- **Can be configured later** (skipping is possible)
+- Path for configuring it later: Einstellungen > System > Mailer
 
 ---
 
-### 5. Erweiterungen
-- Empfohlene Erweiterungen nach Region und Kategorie durchsuchen
-- Direkte Installation im Assistenten möglich
-- Voraussetzung: Shopware Account muss verknüpft sein (Schritt 6)
+### 4. PayPal integration
+- Enter the PayPal API credentials
+- Optional: set PayPal as the default payment method for all sales channels
+- Can also be configured later under **Erweiterungen** (Extensions) **> Meine Erweiterungen** (My extensions) **> PayPal**
 
 ---
 
-### 6. Shopware Account verknüpfen
-- Account mit der Shop-Instanz verbinden
-- Ermöglicht Zugriff auf gekaufte Erweiterungen und Lizenzen
-- **Domain-Verifizierung** für Shop-Betrieb notwendig
+### 5. Extensions
+- Browse recommended extensions by region and category
+- Direct installation from within the wizard is possible
+- Prerequisite: a Shopware Account must be linked (step 6)
 
 ---
 
-### 7. Shopware Store-Verbindung
-- Direktzugriff auf Shopware Store-Erweiterungen und -Dienste aus dem Admin heraus aktivieren
-- Voraussetzung für die Anzeige des Store-Bereichs im Admin
+### 6. Linking the Shopware Account
+- Connect the account with the shop instance
+- Enables access to purchased extensions and licences
+- **Domain verification** is required for shop operation
 
 ---
 
-## Nach dem Assistenten: Empfohlene erste Schritte
-
-1. **Grundeinstellungen prüfen**: Einstellungen > Grundeinstellungen (Shop-Name, Adresse, Kontakt)
-2. **Verkaufskanal konfigurieren**: Verkaufskanäle > Storefront
-3. **Erste Kategorie anlegen**: Katalog > Kategorien
-4. **Erstes Produkt erstellen**: Katalog > Produkte > Produkt anlegen
-5. **Zahlungsmethoden aktivieren**: Einstellungen > Zahlungen
-6. **Versandmethoden einrichten**: Einstellungen > Versand
-7. **Steuerregeln konfigurieren**: Einstellungen > Steuern
+### 7. Shopware Store connection
+- Enable direct access to Shopware Store extensions and services from within the admin
+- Prerequisite for the Store area to be displayed in the admin
 
 ---
 
-## Tipps
+## After the wizard: recommended first steps
 
-- Der Assistent ist **idempotent** – erneutes Durchlaufen überschreibt keine vorhandenen Daten
-- Schritte können einzeln übersprungen und später nachgeholt werden
-- Nach dem Assistenten: Dashboard zeigt erste Statistiken
+1. **Check the basic settings**: Einstellungen > Grundeinstellungen (Basic settings) (shop name, address, contact)
+2. **Configure a sales channel**: Verkaufskanäle (Sales channels) > Storefront
+3. **Create the first category**: Katalog (Catalogue) > Kategorien (Categories)
+4. **Create the first product**: Katalog > Produkte (Products) > Produkt anlegen (Create product)
+5. **Activate payment methods**: Einstellungen > Zahlungen (Payments)
+6. **Set up shipping methods**: Einstellungen > Versand (Shipping)
+7. **Configure tax rules**: Einstellungen > Steuern (Taxes)
+
+---
+
+## Tips
+
+- The wizard is **idempotent** – running it again does not overwrite existing data
+- Steps can be skipped individually and completed later
+- After the wizard: the dashboard shows the first statistics

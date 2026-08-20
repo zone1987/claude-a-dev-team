@@ -164,10 +164,10 @@ const { android } = require('playwright');
 | Properties | 0 |
 | Events | 1 (`close`) |
 
-**Fazit:** `AndroidWebView` ist das Bindeglied zwischen nativer Android-Automatisierung und
-der vollstaendigen Playwright-Page-API. Die zentrale Methode ist `page()`, die einen
-Standard-`Page`-Handle zurueckgibt. `pid()` und `pkg()` sind nuetzlich zum Identifizieren
-der richtigen WebView-Instanz bei Mehrfach-App-Szenarien.
+**Summary:** `AndroidWebView` is the link between native Android automation and
+the complete Playwright page API. The central method is `page()`, which returns a
+standard `Page` handle. `pid()` and `pkg()` are useful for identifying
+the right WebView instance in multi-app scenarios.
 
 ---
 

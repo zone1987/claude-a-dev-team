@@ -1,28 +1,28 @@
-# Symfony Panther — Installation
+# Symfony Panther — installation
 
 ```bash
 composer require --dev symfony/panther
-vendor/bin/bdi detect drivers   # empfohlen: automatische Treiber-Erkennung
+vendor/bin/bdi detect drivers   # recommended: automatic driver detection
 ```
 
-## PHPUnit-Extension (Pflicht fur volle Funktionalitat)
+## PHPUnit extension (required for full functionality)
 
 ```xml
-<!-- phpunit.dist.xml (PHPUnit 10+) oder phpunit.xml.dist (alt) -->
+<!-- phpunit.dist.xml (PHPUnit 10+) or phpunit.xml.dist (old) -->
 <extensions>
     <bootstrap class="Symfony\Component\Panther\ServerExtension"/>
 </extensions>
 ```
 
-## Umgebungsvariablen (Kurzliste)
+## Environment variables (short list)
 
-| Variable                   | Beschreibung                              | Default     |
+| Variable                   | Description                               | Default     |
 |----------------------------|-------------------------------------------|-------------|
-| `PANTHER_NO_HEADLESS`      | Browser sichtbar machen                   | —           |
-| `PANTHER_WEB_SERVER_PORT`  | Port des integrierten PHP-Servers         | `9080`      |
-| `PANTHER_ERROR_SCREENSHOT_DIR` | Screenshot-Pfad bei Testfehlern       | —           |
-| `PANTHER_NO_SANDBOX`       | Sandbox deaktivieren (Docker/CI)          | —           |
+| `PANTHER_NO_HEADLESS`      | Make the browser visible                  | —           |
+| `PANTHER_WEB_SERVER_PORT`  | Port of the built-in PHP server           | `9080`      |
+| `PANTHER_ERROR_SCREENSHOT_DIR` | Screenshot path on test failures      | —           |
+| `PANTHER_NO_SANDBOX`       | Disable the sandbox (Docker/CI)           | —           |
 
-## Vertiefung
+## Deep dive
 
-- [INSTALLATION-DETAIL.md](INSTALLATION-DETAIL.md) — Vollstandige Treiber-Optionen, alle Env-Vars, Docker, GitHub Actions, GitLab CI, SSL
+- [INSTALLATION-DETAIL.md](INSTALLATION-DETAIL.md) — complete driver options, all env vars, Docker, GitHub Actions, GitLab CI, SSL

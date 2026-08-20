@@ -1,11 +1,11 @@
-# Shopware 6 – System-Info, Logs & Sonstige System-Einstellungen
+# Shopware 6 – System info, logs & other system settings
 
-Referenz für Systemlogs, Account-Verbindung, Datenschutz und weitere System-Einstellungen.
+Reference for system logs, account connection, data protection and further system settings.
 
-**Pfade:**
-- Einstellungen > System > Ereignis-Logs
+**Paths:**
+- Einstellungen (Settings) > System > Ereignis-Logs (Event logs)
 - Einstellungen > System > Shopware-Account
-- Einstellungen > System > Datenschutzeinstellungen
+- Einstellungen > System > Datenschutzeinstellungen (Data protection settings)
 - Einstellungen > Shop > Business-Events
 
-Detaillierte Referenz: [SYSTEM-INFO-DETAIL.md](SYSTEM-INFO-DETAIL.md)
+Detailed reference: [SYSTEM-INFO-DETAIL.md](SYSTEM-INFO-DETAIL.md)

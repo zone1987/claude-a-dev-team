@@ -1,48 +1,48 @@
-# Shopware 6 – Medien
+# Shopware 6 – Medien (Media)
 
-Die Medienverwaltung ist unter **Inhalte > Medien** erreichbar.
-Hier werden alle Dateien zentral verwaltet, die im Shop verwendet werden.
+Media management is reachable under **Inhalte** (Content) > **Medien** (Media).
+All files used in the shop are managed centrally here.
 
-## Datei hochladen
+## Uploading a file
 
 1. Inhalte > Medien
-2. **„Datei hochladen"** (lokale Datei) oder **URL-Upload** (öffentliche URL)
-3. Datei wird im aktuellen Ordner abgelegt
+2. **"Datei hochladen"** (Upload file) (local file) or **URL upload** (public URL)
+3. The file is placed in the current folder
 
-## Unterstützte Dateitypen
+## Supported file types
 
-| Kategorie | Formate |
+| Category | Formats |
 |---|---|
-| Bilder | jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps |
+| Images | jpg, jpeg, png, webp, gif, svg, bmp, tiff, eps |
 | Videos | webm, mkv, flv, ogv, mov, mp4, avi, wmv |
 | Audio | aac, mp3, wav, flac |
-| Dokumente | pdf, txt, doc |
-| 3D-Modelle | glb |
+| Documents | pdf, txt, doc |
+| 3D models | glb |
 
-## Medien-Aktionen
+## Media actions
 
-- Ersetzen (gleiche Datei neu hochladen)
-- Herunterladen
-- In Ordner verschieben
-- Link kopieren
-- Löschen
+- Ersetzen (Replace) (upload the same file again)
+- Herunterladen (Download)
+- In Ordner verschieben (Move to folder)
+- Link kopieren (Copy link)
+- Löschen (Delete)
 
-## Metadaten bearbeiten
+## Editing metadata
 
-- Dateiname, Alt-Text, Meta-Titel, Tags
-- „Wird verwendet in" (Nutzungsübersicht)
+- File name, alt text, meta title, tags
+- "Wird verwendet in" (Used in) (usage overview)
 
 ## Thumbnails
 
-Standard-Größen: 400×400, 800×800, 1920×1920 px.
-Konfigurierbar: Qualität (1–100), Seitenverhältnis, Auto-Generierung.
-CLI-Befehl: `media:generate-thumbnails`
+Default sizes: 400×400, 800×800, 1920×1920 px.
+Configurable: quality (1–100), aspect ratio, auto-generation.
+CLI command: `media:generate-thumbnails`
 
-## Ungenutzte Medien bereinigen
+## Cleaning up unused media
 
-CLI-Befehl: `media:delete-unused`
+CLI command: `media:delete-unused`
 
-Siehe `MEDIA-DETAIL.md` für vollständige Konfigurationsdetails.
+See `MEDIA-DETAIL.md` for full configuration details.
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/inhalte/medien

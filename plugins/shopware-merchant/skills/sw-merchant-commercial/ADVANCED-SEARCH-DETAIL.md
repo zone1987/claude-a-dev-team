@@ -1,48 +1,48 @@
-# Shopware Advanced Search 2.0 – Vollständige Dokumentation
+# Shopware Advanced Search 2.0 – Complete documentation
 
 ## Contents
 
-- [Überblick](#überblick)
-- [Such-Verhalten konfigurieren](#such-verhalten-konfigurieren)
-- [Durchsuchbare Inhalte](#durchsuchbare-inhalte)
-- [Suchergebnis-Anzeige](#suchergebnis-anzeige)
+- [Overview](#overview)
+- [Configuring search behaviour](#configuring-search-behaviour)
+- [Searchable content](#searchable-content)
+- [Search result display](#search-result-display)
 - [Boostings](#boostings)
-- [Actions (Suchterm-Umleitungen)](#actions-suchterm-umleitungen)
-- [Synonyme](#synonyme)
-- [AI Copilot Integration (Rise+)](#ai-copilot-integration-rise)
-- [Storefront-Integration](#storefront-integration)
+- [Actions (search term redirects)](#actions-search-term-redirects)
+- [Synonyme (Synonyms)](#synonyme-synonyms)
+- [AI Copilot integration (Rise+)](#ai-copilot-integration-rise)
+- [Storefront integration](#storefront-integration)
 
-## Überblick
+## Overview
 
-**Advanced Search 2.0** ist die professionelle Suchlösung von Shopware 6, basierend auf OpenSearch-Infrastruktur.
+**Advanced Search 2.0** is the professional search solution of Shopware 6, based on OpenSearch infrastructure.
 
-**Verfügbarkeit:** Evolve-Plan und höher
-**Mindestversion:** Shopware 6.5.6.0
-**Voraussetzungen:**
-- OpenSearch-Infrastruktur
-- Shopware Commercial Extension
-- Evolve-Plan oder höher
+**Availability:** Evolve plan and higher
+**Minimum version:** Shopware 6.5.6.0
+**Prerequisites:**
+- OpenSearch infrastructure
+- Shopware Commercial extension
+- Evolve plan or higher
 
-**Pfad im Admin:** Einstellungen → Allgemein → Suche
+**Path in the admin:** Einstellungen (Settings) → Allgemein (General) → Suche (Search)
 
 ---
 
-## Such-Verhalten konfigurieren
+## Configuring search behaviour
 
-### Suchmodus
+### Suchmodus (Search mode)
 
-| Modus | Verhalten |
+| Mode | Behaviour |
 |---|---|
-| AND-Suche | Ergebnisse müssen ALLE Suchbegriffe enthalten |
-| OR-Suche | Ergebnisse müssen mindestens EINEN Begriff enthalten |
+| AND-Suche (AND search) | Results must contain ALL search terms |
+| OR-Suche (OR search) | Results must contain at least ONE term |
 
-### Mindestsuchwortlänge
+### Mindestsuchwortlänge (Minimum search term length)
 
-Pro Verkaufskanal konfigurierbar – Suchen mit weniger Zeichen werden ignoriert.
+Configurable per Verkaufskanal (sales channel) – searches with fewer characters are ignored.
 
-### Sonderzeichen in Produktnummern
+### Special characters in product numbers
 
-Sonderzeichen können über die YAML-Konfiguration beibehalten werden:
+Special characters can be preserved via the YAML configuration:
 
 ```yaml
 # config/packages/shopware.yaml
@@ -53,113 +53,113 @@ shopware:
 
 ---
 
-## Durchsuchbare Inhalte
+## Searchable content
 
-Festlegbar, welche Felder in Suchergebnissen erscheinen:
+You can define which fields appear in search results:
 
-### Produkte
-- Name, Beschreibung, Produktnummer
-- EAN, Hersteller-Nummer
-- Benutzerdefinierte Felder
+### Produkte (Products)
+- Name, description, product number
+- EAN, manufacturer number
+- Custom fields
 
-### Kategorien
-- Name, Beschreibung
-- Kategorie-Tags
+### Kategorien (Categories)
+- Name, description
+- Category tags
 
-### Hersteller
+### Hersteller (Manufacturers)
 - Name
 
-### Ranking / Gewichtung
+### Ranking / weighting
 
-Jedes Suchfeld erhält eine Punktzahl (Score). Höhere Werte = höhere Sichtbarkeit in Suchergebnissen.
+Every search field is given a score. Higher values = higher visibility in search results.
 
-**Beispiel:**
-- Produktname: 1000 Punkte
-- Produktnummer: 500 Punkte
-- Beschreibung: 100 Punkte
+**Example:**
+- Product name: 1000 points
+- Product number: 500 points
+- Description: 100 points
 
 ---
 
-## Suchergebnis-Anzeige
+## Search result display
 
-Separate Konfiguration für:
+Separate configuration for:
 
-| Bereich | Einstellung |
+| Area | Setting |
 |---|---|
-| Schnellsuche (Dropdown) | Max. Ergebnisanzahl |
-| Volltextsuche (Ergebnisseite) | Max. Ergebnisanzahl |
+| Schnellsuche (Quick search, dropdown) | Max. number of results |
+| Volltextsuche (Full-text search, result page) | Max. number of results |
 
 ---
 
 ## Boostings
 
-Boostings erhöhen die Sichtbarkeit bestimmter Produkte in Suchergebnissen.
+Boostings increase the visibility of specific products in search results.
 
-**Erstellung:**
-1. Einstellungen → Suche → Boostings → Neues Boosting
-2. Name und Priorität festlegen
-3. Produktauswahl über dynamische Produktgruppe oder Custom-Regel
-4. Gültigkeitszeitraum (optional für saisonale Relevanz)
-5. Zuweisung zu Verkaufskanälen
+**Creation:**
+1. Einstellungen → Suche → Boostings → Neues Boosting (New boosting)
+2. Define name and Priorität (Priority)
+3. Product selection via Dynamische Produktgruppe (Dynamic product group) or custom rule
+4. Gültigkeitszeitraum (Validity period, optional for seasonal relevance)
+5. Zuweisung (Assignment) to Verkaufskanäle (Sales channels)
 
-**Anwendungsfälle:**
-- Saison-Produkte temporär hervorheben
-- Neue Kollektionen priorisieren
-- Margenstarke Produkte bevorzugen
-
----
-
-## Actions (Suchterm-Umleitungen)
-
-Actions leiten Kunden von bestimmten Suchbegriffen zu definierten Zielen um.
-
-**Konfiguration:**
-1. Einstellungen → Suche → Actions → Neue Action
-2. Suchbegriff/e definieren
-3. Ziel festlegen: Produkt, Kategorie oder URL
-
-**Anwendungsfälle:**
-- Markennamen auf Kategorie leiten
-- Tippfehler abfangen und korrekt weiterleiten
-- Saisonale Aktionsseiten bei bestimmten Suchen anzeigen
+**Use cases:**
+- Highlight seasonal products temporarily
+- Prioritise new collections
+- Favour high-margin products
 
 ---
 
-## Synonyme
+## Actions (search term redirects)
 
-Synonyme sorgen dafür, dass verwandte Begriffe dieselben Ergebnisse liefern.
+Actions redirect customers from specific search terms to defined targets.
 
-### Äquivalenz-Synonyme
-Alle Begriffe sind vollständig austauschbar:
-- „Sofa" ↔ „Couch" ↔ „Sessel"
+**Configuration:**
+1. Einstellungen → Suche → Actions → Neue Action (New action)
+2. Define search term(s)
+3. Set the target: Produkt, Kategorie or URL
 
-### Explizite Zuordnung
-Spezifische Begriffe werden auf breitere Kategorien gemappt:
-- „iPhone" → „Smartphone", „Handy", „Mobiltelefon"
-- Suche nach „iPhone" zeigt alle Smartphones, aber nicht umgekehrt
-
----
-
-## AI Copilot Integration (Rise+)
-
-Mit dem AI Copilot (Rise-Plan) wird die Suche um KI-Funktionen erweitert:
-
-### Kontextbasierte Suche
-- Kunden beschreiben ihr Produkt in natürlicher Sprache
-- KI interpretiert Kundenabsicht unter Berücksichtigung des Shop-Kontexts
-- Max. 100 Zeichen Eingabe
-- Im Storefront: Icon neben dem Suchfeld mit Beispielvorschlägen
-
-### Bildbasierte Suche
-- Kunden laden ein Bild hoch
-- System findet visuell ähnliche Produkte im Sortiment
+**Use cases:**
+- Route brand names to a category
+- Catch typos and forward correctly
+- Show seasonal promotion pages for certain searches
 
 ---
 
-## Storefront-Integration
+## Synonyme (Synonyms)
 
-Die Advanced Search aktiviert sich automatisch für alle konfigurierten Verkaufskanäle. Keine weiteren Storefront-Anpassungen nötig.
+Synonyms make sure that related terms return the same results.
+
+### Equivalence synonyms
+All terms are fully interchangeable:
+- "Sofa" ↔ "Couch" ↔ "Sessel"
+
+### Explicit mapping
+Specific terms are mapped to broader categories:
+- "iPhone" → "Smartphone", "Handy", "Mobiltelefon"
+- A search for "iPhone" shows all smartphones, but not the other way round
 
 ---
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/advancedsearch-2-0 (Stand: 2026-06)*
+## AI Copilot integration (Rise+)
+
+With the AI Copilot (Rise plan), the search is extended by AI functions:
+
+### Context-based search
+- Customers describe their product in natural language
+- The AI interprets customer intent taking the shop context into account
+- Max. 100 characters of input
+- In the storefront: icon next to the search field with example suggestions
+
+### Image-based search
+- Customers upload an image
+- The system finds visually similar products in the assortment
+
+---
+
+## Storefront integration
+
+Advanced Search activates itself automatically for all configured Verkaufskanäle. No further storefront adjustments are needed.
+
+---
+
+*Source: https://docs.shopware.com/de/shopware-6-de/einstellungen/advancedsearch-2-0 (as of: 2026-06)*

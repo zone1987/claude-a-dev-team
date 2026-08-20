@@ -1,19 +1,19 @@
 # Shopware 6 – Themes
 
-Pfad: **Inhalte > Themes**
+Path: **Inhalte** (Content) > **Themes**
 
-Verwaltung und Konfiguration des visuellen Designs des Storefronts.
-Themes steuern Farben, Schriften, Logos und Icons.
+Management and configuration of the storefront's visual design.
+Themes control colours, fonts, logos and icons.
 
-## Kernfunktionen
+## Core functions
 
-- Theme aktivieren / Verkaufskanal zuordnen
-- Farben, Schriften, Logos konfigurieren
-- Themes duplizieren und anpassen
-- Vorschaubilder verwalten
+- Activate a theme / assign it to a Verkaufskanal (Sales channel)
+- Configure colours, fonts, logos
+- Duplicate and adapt themes
+- Manage preview images
 
-## Theme einem Verkaufskanal zuweisen
+## Assigning a theme to a sales channel
 
-Verkaufskanäle > [Kanal] > Tab „Themes" → Theme auswählen → Speichern
+Verkaufskanäle (Sales channels) > [channel] > "Themes" tab → select theme → **Speichern** (Save)
 
-Vollständige Dokumentation: `THEMES-DETAIL.md`
+Full documentation: `THEMES-DETAIL.md`

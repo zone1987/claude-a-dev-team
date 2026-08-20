@@ -1,7 +1,7 @@
-# Shopware 6 – Commercial Features (Überblick)
+# Shopware 6 – Commercial Features (Overview)
 
-Die **Shopware Commercial** Erweiterung schaltet planabhängige Premium-Features frei.
+The **Shopware Commercial** extension unlocks plan-dependent premium features.
 
-<!-- Detaildokumentation: `OVERVIEW-DETAIL.md` -->
+<!-- Detailed documentation: `OVERVIEW-DETAIL.md` -->
 
-Für Editionen-Vergleich und Pläne: `sw-merchant-features`
+For an edition comparison and plans: `sw-merchant-features`

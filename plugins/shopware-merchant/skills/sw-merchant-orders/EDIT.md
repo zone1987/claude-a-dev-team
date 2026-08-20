@@ -1,14 +1,14 @@
-# Shopware 6 – Bestellung bearbeiten
+# Shopware 6 – Edit an order
 
-Vollständige Referenz für alle Bearbeitungsmöglichkeiten einer geöffneten Bestellung.
+Complete reference for every editing option on an opened order.
 
-Ausführliche Dokumentation: [EDIT-DETAIL.md](EDIT-DETAIL.md)
+Detailed documentation: [EDIT-DETAIL.md](EDIT-DETAIL.md)
 
-## Tabs im Bestelldetail
+## Tabs in the order detail view
 
-- **Allgemein**: Info-Bereich, Positionen, Dokumente, Tags
-- **Details**: Zahlung, Versand, Bestelldaten
-- **Retouren** (wenn vorhanden)
+- **Allgemein** (General): info area, line items, documents, tags
+- **Details** (Details): payment, shipping, order data
+- **Retouren** (Returns) (if present)
 
-## Quelle
+## Source
 https://docs.shopware.com/de/shopware-6-de/bestellungen/uebersicht
