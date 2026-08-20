@@ -84,9 +84,18 @@ rather than leaving a blank that reads as absence.
 one-level references. Every limit below is binding at all times, not on first authoring.
 
 These pull in opposite directions only if you think in files. They do not conflict in fact:
-descriptions cost budget, reference files do not. `octo-api` documents 139 schemas, 412
-properties and 65 operations across 7,700 lines and spends 2,392 characters — 30 % of the
-budget — because the depth sits in references that load on demand.
+descriptions cost budget, reference files do not. `octo-api` documents 139 schemas and 65
+operations — 1,800 rendered field entries across 7,736 lines — and spends 2,392 characters,
+30 % of the budget, because the depth sits in references that load on demand.
+
+Reproduce those numbers rather than trusting them:
+
+```bash
+python3 scripts/measure-skill-budget.py . | grep octo-api             # 8 skills, 2,392 chars
+find plugins/octo-api/skills -name '*.md' | xargs wc -l | tail -1     # 7,736 lines
+grep -rhoE '^- \*\*[A-Za-z_][A-Za-z0-9_]*\*\* \(' plugins/octo-api/skills | wc -l   # 1,800 fields
+python3 -c "import json; print(json.load(open('plugins/octo-api/.spec-state.json'))['counts'])"
+```
 
 So the rule for restructuring is absolute: **bundling may never drop content.** Move a body
 into a reference file, rename it, split it — but verify afterwards that every source body still
