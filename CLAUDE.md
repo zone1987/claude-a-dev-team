@@ -282,8 +282,18 @@ conversation pays only for the summary it returns.
   description field." ([Subagents](https://code.claude.com/docs/en/sub-agents)) Note what that
   sentence does not promise — it is a nudge, not a guarantee. `@agent-<plugin>:<name>` is the
   guarantee.
-- **Agent teams are not shippable.** They are experimental, generated at session start, must not be
-  pre-authored, and they ignore a definition's `skills` and `mcpServers` fields.
+- **A team is not a plugin component.** Teams are experimental and off by default
+  ("Agent teams are experimental and disabled by default"), and the config is session-derived state:
+  "Claude Code generates both of these automatically at session startup … so don't edit it by hand
+  or pre-author it: your changes are overwritten on the next state update."
+  ([Agent teams](https://code.claude.com/docs/en/agent-teams#architecture))
+
+  What we *can* ship is the agent definition, which the same page endorses reusing as a teammate —
+  with one caveat that shapes how we write ours: "The `skills` and `mcpServers` frontmatter fields
+  in a subagent definition are not applied when that definition runs as a teammate."
+  So an agent whose usefulness rests on preloaded `skills:` degrades silently in that role. Write
+  the agent so its body tells it which skills to call, and treat `skills:` as an optimisation rather
+  than the mechanism.
 
 Model choice: `haiku` for mechanical scanning and scaffolding, `sonnet` for specialists that judge,
 `opus` only for orchestrators, migrators and knowledge sync.
