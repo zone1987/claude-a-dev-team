@@ -18,36 +18,41 @@ committed; the skill *prose* is still German where the knowledge was distilled f
 | Git author switched to a handle; private address removed from every file | `0517ac6` |
 | `octo-api` — generated from the Ventrata OpenAPI document, verified both directions, all 39 upstream pages covered | earlier |
 | `shadcn`, `shopware-core`, `shopware-checkout` skills — English | done |
+| `shopware-devops`, `shopware-testing` skills — English | `e975ee4` |
+| Batches that landed before the translation agents were stopped: `shadcn-vue` forms, `contao` platform topics, `shopware-storefront`, single files elsewhere | `bc6528c` |
 
 ## Outstanding
 
-**934 skill files, 122,728 lines of German prose.** A plugin is finished when its row disappears.
+**805 skill files, 112 872 lines of German prose.** A plugin is finished when its row disappears.
 Largest first, because that is the order in which agents should be dispatched.
 
 | Plugin | German files | German lines |
 |---|--:|--:|
-| `playwright` | 100 | 28 474 |
+| `playwright` | 96 | 28 203 |
 | `shopware-merchant` | 268 | 26 001 |
-| `contao` | 86 | 16 565 |
+| `contao` | 66 | 14 367 |
 | `shopware-frontends` | 26 | 5 774 |
 | `shopware-admin` | 37 | 5 051 |
-| `gotenberg` | 52 | 4 791 |
 | `panther` | 22 | 4 672 |
-| `swiper` | 29 | 4 620 |
-| `shadcn-vue` | 71 | 4 608 |
+| `gotenberg` | 44 | 4 499 |
 | `shopware-commercial` | 46 | 4 164 |
-| `flatpickr` | 7 | 2 764 |
-| `shopware-storefront` | 41 | 2 649 |
+| `shadcn-vue` | 58 | 3 881 |
+| `swiper` | 16 | 2 715 |
 | `shopware-concepts` | 24 | 2 412 |
-| `shopware-quality` | 5 | 2 320 |
+| `shopware-storefront` | 16 | 2 144 |
 | `shopware-migration` | 11 | 1 862 |
 | `shopware-framework` | 30 | 1 462 |
-| `shopware-data` | 25 | 1 173 |
+| `flatpickr` | 3 | 1 455 |
+| `shopware-quality` | 2 | 1 335 |
 | `shopware-api` | 20 | 1 083 |
-| `shopware-devops` | 2 | 946 |
 | `shopware-apps` | 7 | 864 |
-| `shopware-testing` | 16 | 288 |
+| `shopware-data` | 4 | 743 |
 | `shopware-cms` | 9 | 185 |
+
+Measured with the snippet below at commit `bc6528c`. `playwright` and `contao` read higher than in
+the previous revision of this table: the figures there were taken before the bundling pass moved
+further reference files into those two plugins, so the totals were incomplete rather than the
+translation having regressed.
 
 Re-measure at any time:
 
