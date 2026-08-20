@@ -1,21 +1,21 @@
 # shopware-apps
 
-> Das App-System als cloud-fähige Alternative zum Plugin.
+> The app system as the cloud-capable alternative to a plugin.
 
-`shopware-apps` behandelt das **App-System** — die **cloud-fähige** Alternative zum klassischen Plugin, bei der die
-Logik (optional) auf einem eigenen App-Server statt im Shop läuft.
+`shopware-apps` deals with the **app system** — the **cloud-capable** alternative to the classic plugin, where the
+logic (optionally) runs on a dedicated app server instead of inside the shop.
 
-Abgedeckt: das **Manifest** (Meta, Permissions, Webhooks, ActionButtons, Payment, Flow, CMS, Custom-Fields/-Entities),
-der **Registrierungs-/Handshake**-Ablauf und die **HMAC-Signatur** aller Requests, **App-Scripts** (Logik ohne
-eigenen Server), **Storefront-/Admin-Integration**, **Payment-/Tax-/CMS-/Flow-Gateways**, **In-App-Purchases** und
-**Monetarisierung**. Für eigene App-Server stehen die offiziellen SDKs im Fokus: das **PHP-SDK** (`app-php-sdk`,
-Symfony) und das **JS-SDK** (`app-sdk-js`, runtime-agnostisch: Node/Bun/Deno/Cloudflare Workers).
+Covered: the **manifest** (meta, permissions, webhooks, action buttons, payment, flow, CMS, custom fields/entities),
+the **registration/handshake** sequence and the **HMAC signature** on all requests, **app scripts** (logic without a
+server of your own), **storefront/admin integration**, **payment/tax/CMS/flow gateways**, **in-app purchases** and
+**monetisation**. For custom app servers the official SDKs are the focus: the **PHP SDK** (`app-php-sdk`,
+Symfony) and the **JS SDK** (`app-sdk-js`, runtime-agnostic: Node/Bun/Deno/Cloudflare Workers).
 
-Spezialist: **`shopware-app-dev`**; Scaffolder **`/sw-app-create`**. **Wann nutzen:** wenn eine Erweiterung
-SaaS/Cloud-fähig sein muss oder als App im Store vertrieben wird. Für klassische, im Shop laufende Erweiterungen
-stattdessen die Plugin-Cluster (`shopware-core`, `shopware-data`, …).
+Specialist: **`shopware-app-dev`**; scaffolder **`/sw-app-create`**. **When to use:** when an extension has to be
+SaaS/cloud-capable or is distributed as an app in the store. For classic extensions running inside the shop use the
+plugin clusters instead (`shopware-core`, `shopware-data`, …).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Part of the **[claude-a-dev-team](../../README.md)** marketplace. The knowledge is distilled from the official sources and embedded; each skill's depth sits in flat SCREAMING-CASE.md reference files next to its SKILL.md and is loaded progressively.
 
 ## Installation
 
@@ -24,24 +24,21 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 /plugin install shopware-apps@claude-a-dev-team
 ```
 
-## Skills (5)
+## Skills (2)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `shopware-apps` | Comprehensive guide for developing Shopware 6 Apps, covering manifest configuration, webhooks, authentication, app scripts, storefront/admin customization, payments, custom data, flow actions, gateways, and in-app purchases |
-| `sw-app-manifest-reference` | Shopware 6 App manifest.xml Vollreferenz — alle Sektionen (meta, setup, requirements, permissions, webhooks, admin, custom-fields, cookies, payments, shipping-methods, rule-conditions, tax, storefront), Custom Entities XML, CMS-Blocks XML,  |
-| `sw-app-php-sdk` | Exhaustive reference for `shopware/app-php-sdk` (PHP 8.1+, PSR-based, framework-agnostic) |
-| `sw-app-sdk-js` | Exhaustive reference for `@shopware-ag/app-server-sdk` (TypeScript, runtime-agnostic: Node 20, Bun, Deno, Cloudflare Workers) |
-| `sw-monetization-iap` | Shopware In-App Purchases (IAP) — Features hinter Paywall in Extensions |
+| `sw-app-manifest` | Shopware apps: the app system versus plugins, the complete `manifest.xml` reference, registration and signatures, in-app purchases. Use when building a Shopware app or writing a `manifest.xml`. |
+| `sw-app-sdk` | Shopware app SDKs: `app-php-sdk` and `app-sdk-js` — registration handling, request signing, webhooks, app scripts. Use when the request names the Shopware `app-php-sdk` or `app-sdk-js`. |
 
 ## Agents (1)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shopware-app-dev` | Spezialist für die Shopware-6 App-Entwicklung (App-System statt Plugin): Manifest, Registrierung/Signatur, Webhooks, App-Scripts, Admin-/Storefront-Integration, Custom-Data/-Entities/-CMS, Payment/Tax/Flow/Gateways, IAP, sowie die SDKs (app |
+| `shopware-app-dev` | Specialist for Shopware 6 app development (app system instead of plugin): manifest, registration/signature, webhooks, app scripts, admin/storefront integration, custom data/entities/CMS, payment/tax/flow/gateways, IAP, plus the SDKs (app… |
 
 ## Commands (1)
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/sw-app-create` | Scaffold einer Shopware-6-App (App-System): manifest.xml mit Meta/Permissions, optional Setup (Registrierung/Signatur) und Auswahl SDK (PHP/JS) bzw |
+| `/sw-app-create` | Scaffolds a Shopware 6 app (app system): `manifest.xml` with meta/permissions, optional setup (registration/signature) and a choice of SDK (PHP/JS) or |

@@ -1,10 +1,10 @@
 # gotenberg
 
-Vollumfängliche Bibliothek für **[Gotenberg](https://gotenberg.dev)** — die Docker-basierte, **stateless** Developer-API zur **PDF-Erzeugung und -Manipulation**. Gotenberg bündelt **Chromium** (HTML/Markdown/URL → PDF + Screenshots), **LibreOffice** (Office-Dokumente → PDF) und **PDF-Engines** (pdfcpu/QPDF/PDFtk: merge/split/convert/flatten/encrypt/metadata/bookmarks/embed/Factur-X/rotate/stamp/watermark) hinter einer einheitlichen HTTP-Schnittstelle: jede Route ist ein `POST` mit `multipart/form-data`, Eingaben als `files`, Optionen als gleichnamige Form-Felder, Antwort ist die fertige Datei.
+Comprehensive library for **[Gotenberg](https://gotenberg.dev)** — the Docker-based, **stateless** developer API for **PDF generation and manipulation**. Gotenberg bundles **Chromium** (HTML/Markdown/URL → PDF plus screenshots), **LibreOffice** (Office documents → PDF) and **PDF engines** (pdfcpu/QPDF/PDFtk: merge/split/convert/flatten/encrypt/metadata/bookmarks/embed/Factur-X/rotate/stamp/watermark) behind a single HTTP interface: every route is a `POST` with `multipart/form-data`, inputs go in as `files`, options as identically named form fields, and the response is the finished file.
 
-Dieses Plugin dokumentiert **jede Route, jedes Form-Feld, jeden CLI-Flag/jede Env-Var und jeden Header** — destilliert aus der offiziellen Doku (gotenberg.dev) und in die Skills eingebettet (keine externen Laufzeit-Abhängigkeiten). Schlanke `SKILL.md`, Tiefe in `references/deep/`. Es deckt außerdem Betrieb (Health/Metrics/Debug/Telemetry/Logging), Sicherheit (Outbound-URL-Filtering gegen SSRF, Basic-Auth), asynchrone Verarbeitung (Webhook) und die Client-Bibliotheken (PHP `gotenberg-php`, Go, JS, Python) ab.
+This plugin documents **every route, every form field, every CLI flag and env var and every header** — distilled from the official documentation (gotenberg.dev) and embedded in the skills (no external runtime dependencies). Each skill keeps a lean `SKILL.md` and loads its depth from flat SCREAMING-CASE.md reference files next to it. It also covers operations (health/metrics/debug/telemetry/logging), security (outbound URL filtering against SSRF, basic auth), asynchronous processing (webhook) and the client libraries (PHP `gotenberg-php`, Go, JS, Python).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**.
+Part of the marketplace **[claude-a-dev-team](../../README.md)**.
 
 ## Installation
 
@@ -13,65 +13,41 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**.
 /plugin install gotenberg@claude-a-dev-team
 ```
 
-## Nutzung
+## Usage
 
-- **Skills** laden automatisch bei passendem Kontext (z.B. „HTML to PDF", „PDF mergen", „docx→pdf/a", „ZUGFeRD/Factur-X").
-- **Agent `gotenberg-expert`** für Konvertierung/Manipulation, **`gotenberg-ops`** für Bereitstellung & Betrieb.
-- **Commands** `/gotenberg-convert` (Request-Scaffold) und `/gotenberg-deploy` (Deployment-Scaffold).
-- **Hook** erinnert beim Bearbeiten von Gotenberg-Aufrufen an Routen-/Feld-Prüfung, Output-Filename/Async und Credential-Hygiene.
+- **Skills** load automatically in matching context (for example "HTML to PDF", "merge PDF", "docx→pdf/a", "ZUGFeRD/Factur-X").
+- **Agent `gotenberg-expert`** for conversion/manipulation, **`gotenberg-ops`** for provisioning and operations.
+- **Commands** `/gotenberg-convert` (request scaffold) and `/gotenberg-deploy` (deployment scaffold).
+- **Hook** reminds you, when editing Gotenberg calls, to verify routes and fields, to consider output filename/async and to keep credentials clean.
 
-## Skills
+## Skills (3)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `gotenberg-introduction` | Überblick — was ist Gotenberg, welche Fähigkeiten, wann einsetzen. |
-| `gotenberg-installation` | Installieren — Docker, Docker Compose, Kubernetes, Cloud Run, AWS Lambda. |
-| `gotenberg-routes` | Routen-Übersicht — alle Endpunkte, multipart/form-data, Response-Header, `Gotenberg-Output-Filename`, `Gotenberg-Trace`, Basic-Auth, gemeinsame Felder. |
-| `gotenberg-clients` | Client-Bibliotheken — PHP-SDK (`gotenberg-php`), Community-Clients, eigene HTTP-Integration. |
-| `gotenberg-configuration` | Konfiguration — alle CLI-Flags und Env-Vars für API, Chromium, LibreOffice, PDF-Engines, Webhook, Logging. |
-| `gotenberg-chromium-html` | HTML → PDF — alle Form-Felder, Header/Footer, Assets, Warte-Mechanismen, PDF/A, Metadaten, Seitengröße. |
-| `gotenberg-chromium-url` | URL → PDF — alle Form-Felder, Cookies, Headers, Warte-Mechanismen, JS-SPAs. |
-| `gotenberg-chromium-markdown` | Markdown → PDF — `index.html`-Template, `.md`-Dateien, MathJax, Assets. |
-| `gotenberg-chromium-screenshots` | Screenshots — HTML, URL und Markdown als PNG/JPEG/WebP erfassen. |
-| `gotenberg-libreoffice` | LibreOffice — Office-Dokumente (100+ Formate) zu PDF konvertieren. |
-| `gotenberg-pdf-merge` | PDFs zusammenführen (`POST /forms/pdfengines/merge`). |
-| `gotenberg-pdf-split` | PDFs aufteilen — `splitMode` pages/intervals (`POST /forms/pdfengines/split`). |
-| `gotenberg-pdf-convert` | PDFs nach PDF/A bzw. PDF/UA konvertieren (`POST /forms/pdfengines/convert`). |
-| `gotenberg-pdf-flatten` | PDF-Formularfelder flatten (`POST /forms/pdfengines/flatten`). |
-| `gotenberg-pdf-encrypt` | PDFs mit Passwort & Berechtigungen verschlüsseln (`POST /forms/pdfengines/encrypt`). |
-| `gotenberg-pdf-metadata` | PDF-Metadaten (XMP/Exif) lesen und schreiben. |
-| `gotenberg-pdf-bookmarks` | PDF-Lesezeichen / Document-Outline lesen und schreiben. |
-| `gotenberg-pdf-attachments` | Datei-Anhänge in PDFs einbetten (`POST /forms/pdfengines/embed`). |
-| `gotenberg-pdf-facturx` | Factur-X / ZUGFeRD-E-Rechnungen erzeugen (`POST /forms/pdfengines/factur-x`). |
-| `gotenberg-pdf-rotate` | PDF-Seiten rotieren (`POST /forms/pdfengines/rotate`). |
-| `gotenberg-pdf-stamp` | PDFs mit Text-/Bild-/PDF-Overlays stempeln (`POST /forms/pdfengines/stamp`). |
-| `gotenberg-pdf-watermark` | Text-/Bild-/PDF-Wasserzeichen hinter den Inhalt legen (`POST /forms/pdfengines/watermark`). |
-| `gotenberg-webhook` | Asynchrone Webhook-Callbacks und Remote-Datei-Download. |
-| `gotenberg-outbound-filtering` | Outbound-URL-Filtering / SSRF-Schutz konfigurieren. |
-| `gotenberg-system` | System-Endpunkte: Health-Check, Version, Prometheus-Metrics, Debug. |
-| `gotenberg-telemetry` | OpenTelemetry-Tracing, -Metrics und -Logging konfigurieren. |
-| `gotenberg-troubleshooting` | Fehlersuche: leere PDFs, Font-Probleme, Timeouts, LibreOffice-Fehler. |
+| `gotenberg-convert` | Conversion with Gotenberg: an overview of what Gotenberg is, which capabilities it has and when to use it; the route overview — all endpoints, `multipart/form-data`, response headers, `Gotenberg-Output-Filename`, `Gotenberg-Trace`, basic auth, shared fields; HTML → PDF with all form fields, header/footer, assets, wait mechanisms, PDF/A, metadata, page size; URL → PDF with all form fields, cookies, headers, wait mechanisms, JS SPAs; Markdown → PDF with the `index.html` template, `.md` files, MathJax, assets; screenshots — capturing HTML, URL and Markdown as PNG/JPEG/WebP; and LibreOffice — converting Office documents (100+ formats) to PDF. |
+| `gotenberg-pdf` | PDF manipulation with Gotenberg: merging PDFs (`POST /forms/pdfengines/merge`), splitting PDFs with `splitMode` pages/intervals (`POST /forms/pdfengines/split`), converting PDFs to PDF/A or PDF/UA (`POST /forms/pdfengines/convert`), flattening PDF form fields (`POST /forms/pdfengines/flatten`), encrypting PDFs with a password and permissions (`POST /forms/pdfengines/encrypt`), reading and writing PDF metadata (XMP/Exif), reading and writing PDF bookmarks / the document outline, embedding file attachments in PDFs (`POST /forms/pdfengines/embed`), generating Factur-X / ZUGFeRD e-invoices (`POST /forms/pdfengines/factur-x`), rotating PDF pages (`POST /forms/pdfengines/rotate`), stamping PDFs with text/image/PDF overlays (`POST /forms/pdfengines/stamp`) and placing text/image/PDF watermarks behind the content (`POST /forms/pdfengines/watermark`). |
+| `gotenberg-operations` | Running Gotenberg: installation — Docker, Docker Compose, Kubernetes, Cloud Run, AWS Lambda; configuration — all CLI flags and env vars for API, Chromium, LibreOffice, PDF engines, webhook, logging; client libraries — the PHP SDK (`gotenberg-php`), community clients, a custom HTTP integration; asynchronous webhook callbacks and remote file download; configuring outbound URL filtering / SSRF protection; the system endpoints — health check, version, Prometheus metrics, debug; configuring OpenTelemetry tracing, metrics and logging; and troubleshooting — empty PDFs, font problems, timeouts, LibreOffice errors. |
 
 ## Agents
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `gotenberg-expert` | Spezialist für Konvertierung & PDF-Manipulation: Routen, alle Form-Felder, Chromium/LibreOffice/PDF-Engines, Webhook, Clients. |
-| `gotenberg-ops` | Betriebs-/DevOps-Spezialist: Installation, Konfiguration (alle Flags/Env-Vars), Health/Metrics/Debug, Telemetry, SSRF-Schutz, Skalierung, Troubleshooting. |
+| `gotenberg-expert` | Specialist for conversion and PDF manipulation: routes, all form fields, Chromium/LibreOffice/PDF engines, webhook, clients. |
+| `gotenberg-ops` | Operations/DevOps specialist: installation, configuration (all flags/env vars), health/metrics/debug, telemetry, SSRF protection, scaling, troubleshooting. |
 
 ## Commands
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/gotenberg-convert` | Scaffold eines Gotenberg-Requests — wählt Route (Chromium/LibreOffice/PDF-Engines), baut den `multipart/form-data`-curl-Aufruf mit den gewünschten Form-Feldern, optional als `gotenberg-php`-Snippet oder async via Webhook. |
-| `/gotenberg-deploy` | Scaffold eines Deployments — `docker run` / docker-compose / Kubernetes / Cloud Run mit Health-Check, Ports, Ressourcen und den passenden CLI-Flags/Env-Vars. |
+| `/gotenberg-convert` | Scaffolds a Gotenberg request — picks the route (Chromium/LibreOffice/PDF engines) and builds the `multipart/form-data` curl call with the desired form fields, optionally as a `gotenberg-php` snippet or async via webhook. |
+| `/gotenberg-deploy` | Scaffolds a deployment — `docker run` / docker-compose / Kubernetes / Cloud Run with health check, ports, resources and the matching CLI flags/env vars. |
 
 ## Hooks
 
-| Hook | Beschreibung |
+| Hook | Description |
 |---|---|
-| `gotenberg-reminder.py` (PostToolUse) | Feuert beim Bearbeiten von Dateien mit Gotenberg-Aufrufen: erinnert an Routen-/Feldnamen-Prüfung, `Gotenberg-Output-Filename`/Async und warnt vor Klartext-Credentials. |
+| `gotenberg-reminder.py` (PostToolUse) | Fires when editing files that contain Gotenberg calls: reminds you to verify route and field names, to consider `Gotenberg-Output-Filename`/async and warns about plaintext credentials. |
 
-## Lizenz & Autor
+## License & author
 
-proprietary — Andreas Gerhardt, A-Dev-Team. Quelle: offizielle Gotenberg-Dokumentation (https://gotenberg.dev).
+proprietary — Andreas Gerhardt, A-Dev-Team. Source: the official Gotenberg documentation (https://gotenberg.dev).

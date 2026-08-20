@@ -1,21 +1,21 @@
 # shopware-testing
 
-> Testen über alle Ebenen (PHPUnit, Jest, Playwright).
+> Testing across every level (PHPUnit, Jest, Playwright).
 
-`shopware-testing` deckt das **Testen über alle Ebenen der Test-Pyramide** ab.
+`shopware-testing` covers **testing across every level of the test pyramid**.
 
-**PHP/PHPUnit:** Setup & Kernel-Bootstrap (`IntegrationTestBehaviour`), **Unit-Tests** (reine Logik, gemockt) vs.
-**Integrationstests** (echte DAL/DB mit Transaktions-Rollback), **Store-API-** und **Admin-API-Tests**, **Fixtures**
-und **Builder** (mit `IdsCollection`) sowie **Static-Mocks** (`StaticEntityRepository`, `StaticSystemConfigService`).
-**JavaScript:** **Jest** für die Administration (inkl. `fail-on-console`) und Vue-Komponententests (`@vue/test-utils`,
-`Shopware.Component.build`) sowie Jest für **Storefront**-JS-Plugins. **E2E:** **Playwright** (Acceptance Test Suite)
-für kritische End-to-End-Flows.
+**PHP/PHPUnit:** setup and kernel bootstrap (`IntegrationTestBehaviour`), **unit tests** (pure logic, mocked) vs.
+**integration tests** (real DAL/DB with transaction rollback), **Store API** and **Admin API tests**, **fixtures**
+and **builders** (with `IdsCollection`) as well as **static mocks** (`StaticEntityRepository`, `StaticSystemConfigService`).
+**JavaScript:** **Jest** for the administration (including `fail-on-console`) and Vue component tests (`@vue/test-utils`,
+`Shopware.Component.build`) as well as Jest for **storefront** JS plugins. **E2E:** **Playwright** (Acceptance Test Suite)
+for critical end-to-end flows.
 
-Spezialist: **`shopware-tester`**; Scaffolder **`/sw-test`** erzeugt den passenden Test je Klasse/Ebene. **Wann
-nutzen:** beim Schreiben/Reparieren von Tests oder zum Absichern nach Code-Änderungen (z. B. delegiert von
-`shopware-dev`). Konventionen/Static-Analysis ergänzt `shopware-quality`.
+Specialist: **`shopware-tester`**; the scaffolder **`/sw-test`** generates the appropriate test per class/level. **When
+to use:** when writing/repairing tests or to safeguard code changes (for example, delegated by
+`shopware-dev`). Conventions/static analysis are covered by `shopware-quality`.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Part of the marketplace **[claude-a-dev-team](../../README.md)**. The knowledge is distilled from the official sources and embedded; each skill keeps its depth in flat SCREAMING-CASE.md reference files next to its `SKILL.md`.
 
 ## Installation
 
@@ -24,33 +24,22 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 /plugin install shopware-testing@claude-a-dev-team
 ```
 
-## Skills (14)
+## Skills (3)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `shopware-phpunit` | Best practices for writing PHPUnit tests in Shopware 6 projects, including integration tests, unit tests, and common testing patterns for plugins and apps |
-| `sw-admin-api-test` | Admin-API-Tests in Shopware 6: AdminApiTestBehaviour, getBrowser (authentifizierter Admin-Client), Requests gegen /api, ACL-Fälle |
-| `sw-integration-test` | Integrationstests in Shopware 6: IntegrationTestBehaviour, echte DAL-Repositories, Container-Services, DB-Transaktion je Test, Daten anlegen/prüfen |
-| `sw-jest-admin` | Jest-Tests für die Shopware-6-Administration: Test-Setup (composer admin:unit), Komponenten/Services testen, fail-on-console, JS-only Testfiles |
-| `sw-jest-storefront` | Jest-Tests für Storefront-JS-Plugins in Shopware 6: Test-Setup (composer storefront:unit), PluginManager/DOM mocken, Plugin-Methoden testen |
-| `sw-mock-repository` | EntityRepository in Shopware-6-Unit-Tests mocken: StaticEntityRepository (ADR mocking-repositories), Such-Ergebnisse ohne DB simulieren |
-| `sw-mock-system-config` | SystemConfigService in Shopware-6-Unit-Tests mocken: StaticSystemConfigService, Plugin-Config-Werte ohne DB setzen |
-| `sw-phpunit-setup` | PHPUnit-Setup für Shopware-6-Plugins: phpunit.xml.dist, Kernel-Bootstrap (TestBootstrapper), IntegrationTestBehaviour, Test-Datenbank, Tests ausführen |
-| `sw-playwright-e2e` | End-to-End-Tests für Shopware 6 mit Playwright (Acceptance Test Suite): Setup, Page-Objects/Fixtures, Storefront- & Admin-Flows, gegen laufende Instanz |
-| `sw-store-api-test` | Store-API-Tests in Shopware 6: SalesChannelApiTestBehaviour, getSalesChannelBrowser, Requests gegen /store-api, Response prüfen |
-| `sw-test-builder` | Test-Daten-Builder in Shopware 6: ProductBuilder & eigene Builder (fluent API) für komplexe Entity-Payloads in Tests |
-| `sw-test-fixtures` | Testdaten in Shopware 6: Fixtures/Helper zum Anlegen von Entities (Produkt, Kunde, SalesChannel) für Tests, IdsCollection, wiederverwendbare Daten |
-| `sw-unit-test` | Unit-Tests in Shopware 6: reine Logik ohne Kernel/DB, Abhängigkeiten mocken, schnelle Tests, assertSame |
-| `sw-vue-test` | Vue-3-Komponententests im Shopware-6-Admin: @vue/test-utils mount/shallowMount, Shopware.Component.build, Props/Events, Pinia-Store mocken |
+| `sw-e2e` | Shopware end-to-end testing with Playwright: setup, fixtures and the shop-specific helpers. Use when writing a Playwright end-to-end test against a Shopware shop |
+| `sw-javascript` | Shopware JavaScript testing: Jest for the administration and the storefront, Vue component tests. Use when writing a Jest or Vue test for Shopware |
+| `sw-phpunit` | Shopware PHPUnit: setup, unit and integration tests, Store API and Admin API tests, fixtures and builders, repository and config mocks. Use when writing a PHPUnit test for a Shopware plugin |
 
 ## Agents (1)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shopware-tester` | Test-Spezialist für Shopware-6-Plugins über alle Ebenen: PHPUnit (Unit/Integration/Store-API/Admin-API), Test-Daten (Fixtures/Builder), Mocks (StaticEntityRepository/StaticSystemConfigService), Jest (Admin/Vue, Storefront), Playwright-E2E |
+| `shopware-tester` | Test specialist for Shopware 6 plugins across every level: PHPUnit (unit/integration/Store API/Admin API), test data (fixtures/builders), mocks (StaticEntityRepository/StaticSystemConfigService), Jest (admin/Vue, storefront), Playwright E2E |
 
 ## Commands (1)
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/sw-test` | Scaffold eines passenden Tests für eine Shopware-6-Klasse (Unit/Integration/Store-API/Admin-API bzw |
+| `/sw-test` | Scaffolds a suitable test for a Shopware 6 class (unit/integration/Store API/Admin API, respectively) |

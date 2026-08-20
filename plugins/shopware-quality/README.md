@@ -1,23 +1,23 @@
 # shopware-quality
 
-> Qualität, Konventionen, Static-Analysis — und die Selbst-Aktualisierung der Bibliothek.
+> Quality, conventions, static analysis — and the library's own self-update.
 
-`shopware-quality` sorgt für **Konventionskonformität, Code-Qualität** — und hält die gesamte Bibliothek aktuell.
+`shopware-quality` enforces **convention compliance and code quality** — and keeps the whole library current.
 
-Abgedeckt: die **Core-Coding-Guidelines** (Extendability, `final`/`@internal`, Decorator-Pattern, Deprecation,
-DB-Migrationen, Code für Static Analysis) inklusive der vollständigen Guideline-Referenz, **Domain-Exceptions**
-(Factory mit stabilen `code`s), **Extendability** und **Code-Struktur**, das destillierte **ADR-Wissen** (Index aller
-~150 ADRs) und die **Static-Analysis-Werkzeuge** **ECS/PHP-CS-Fixer**, **PHPStan** (+ `phpstan-shopware`-Regeln),
-**Deptrac** und **Rector**. Dazu der **README-Generator** und die **Changelog**-Konvention.
+Covered: the **core coding guidelines** (extendability, `final`/`@internal`, decorator pattern, deprecation,
+DB migrations, code written for static analysis) including the complete guideline reference, **domain exceptions**
+(factory with stable `code`s), **extendability** and **code structure**, the distilled **ADR knowledge** (index of all
+~150 ADRs) and the **static analysis tools** **ECS/PHP-CS-Fixer**, **PHPStan** (+ `phpstan-shopware` rules),
+**Deptrac** and **Rector**. Plus the **README generator** and the **changelog** convention.
 
-Das Herzstück ist der **Knowledge-Sync** (Skill `sw-knowledge-sync`, Agent **`shopware-librarian`**, Command
-**`/sw-sync`**): er prüft das Upstream-Repo `shopware/shopware` über die **Releases-/Tags-API** *und* den **Trunk-Diff**,
-mappt Änderungen auf betroffene Skills und schlägt Aktualisierungen vor (`--check`) bzw. wendet sie an (`--apply`).
-Ergänzend liefern **Hooks** kontextsensitive Lint-/Katalog-Reminder nach Datei-Änderungen. Spezialist:
-**`shopware-reviewer`**. **Wann nutzen:** für Code-Reviews, Qualitäts-Gates, README/Changelog und das Aktuell-Halten
-der Bibliothek.
+The centerpiece is the **knowledge sync** (skill `sw-release`, agent **`shopware-librarian`**, command
+**`/sw-sync`**): it checks the upstream repository `shopware/shopware` via the **releases/tags API** *and* the **trunk diff**,
+maps changes onto the affected skills and proposes updates (`--check`) or applies them (`--apply`).
+In addition, **hooks** provide context-sensitive lint/catalog reminders after file changes. Specialist:
+**`shopware-reviewer`**. **When to use:** for code reviews, quality gates, README/changelog and keeping
+the library up to date.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Part of the marketplace **[claude-a-dev-team](../../README.md)**. The knowledge is distilled from the official sources and embedded; each skill keeps its depth in flat SCREAMING-CASE.md reference files next to its `SKILL.md`.
 
 ## Installation
 
@@ -26,43 +26,31 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 /plugin install shopware-quality@claude-a-dev-team
 ```
 
-## Skills (15)
+## Skills (3)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `shopware-readme` | Generiert und aktualisiert README.md-Dateien für Shopware 6 Plugins nach einem einheitlichen Schema |
-| `sw-adr-knowledge` | Wissen über die Shopware-6 Architecture Decision Records (ADRs): warum bestimmte Muster gelten (Events vor Decorators, domain-exceptions, nested line items, payment flow, custom entities, UUIDv7, Pinia statt Vuex, Meteor, transactional flow |
-| `sw-changelog` | Changelog-Konvention für Shopware-6-Plugins: CHANGELOG.md (Keep-a-Changelog), changelog/_unreleased Flag-Files im Core-Stil, Version-Bump |
-| `sw-code-structure` | Shopware-6 Bundle- und Plugin-Code-Struktur: welcher Extension-Typ für welchen Use Case (Plugin, App, Bundle, Theme), Verzeichnis-Layout, Namespace-Konventionen, Domänen-Schnitt, Upgrade-orientierte Struktur, Isolierung von Integration-Poin |
-| `sw-coding-guidelines` | Shopware-6 Core-Coding-Guidelines: final & internal, Extendability (Events vor Decorators), Decorator-Pattern, Domain-Exceptions, Feature-Flags, DB-Migrationen, Code für Static Analysis, Deprecation-Strategie |
-| `sw-deptrac` | Architektur-/Schichten-Prüfung für Shopware-6-Plugins mit Deptrac: Layer definieren, erlaubte Abhängigkeiten, deptrac.yaml, Verstöße finden |
-| `sw-documentation-guidelines` | Shopware Dokumentations-Guidelines: wie Shopware-Doku und Markdown für Contributions geschrieben wird — Zielgruppen, Dokumentationsstruktur (Concepts/Guides/Resources), Sprache & Grammatik, Formatierungsregeln, Asset-Management, Doc-Prozess |
-| `sw-domain-exceptions` | Domain-Exceptions in Shopware 6 (ADR domain-exceptions): pro Domäne eine Exception-Factory-Klasse mit statischen Factory-Methoden, stabile error-codes, HttpException-Mapping, Log-Level |
-| `sw-ecs-cs-fixer` | Code-Style für Shopware-6-Plugins mit Easy Coding Standard (ECS) / PHP-CS-Fixer: Config, Shopware-Regelset, composer ecs / ecs-fix |
-| `sw-extendability` | Shopware-6 Erweiterbarkeits-Prinzipien: wann Events vs. Decorator vs |
-| `sw-knowledge-sync` | Selbst-Aktualisierung der Shopware-Skill-Bibliothek gegen das Upstream-Repo: neue Versionen/Releases (GitHub releases/tags API) + Trunk-Drift (Commits/Changelog/ADRs) erkennen, betroffene Skills anpassen/ergänzen/entfernen, State pflegen |
-| `sw-phpstan` | PHPStan für Shopware-6-Plugins: phpstan.neon einrichten, Level, Bootstrap/Autoload des Shopware-Kernels, Baseline, composer phpstan |
-| `sw-phpstan-shopware` | PHPStan-Extension für Shopware-Plugins |
-| `sw-rector` | Automatisierte Code-Modernisierung/Migration für Shopware-6-Plugins mit Rector: rector.php, Shopware-Rule-Set, PHP-Level-Upgrades, Deprecation-Fixes |
-| `sw-static-analysis` | Static-Analysis & Lint-Pipeline für Shopware-6-Plugins: Überblick ECS/PHP-CS-Fixer, PHPStan, Deptrac, Rector, ESLint, Stylelint, ludtwig — welche Befehle, wann |
+| `sw-analysis` | Shopware static analysis: PHPStan and its Shopware extension, ECS and PHP-CS-Fixer, Deptrac, Rector. Use when configuring or fixing Shopware static analysis |
+| `sw-guidelines` | Shopware coding guidelines: code structure, domain exceptions, extendability rules, ADR knowledge, documentation guidelines. Use when reviewing Shopware code against the platform's own conventions |
+| `sw-release` | Shopware release hygiene: README and changelog conventions, and the knowledge-sync process for keeping distilled documentation current. Use when preparing a Shopware plugin release |
 
 ## Agents (2)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shopware-librarian` | Selbst-Update-Agent der Shopware-Skill-Bibliothek. Prüft Upstream (shopware/shopware) auf neue Versionen/Releases und Trunk-Drift, mappt Änderungen auf betroffene sw-*-Skills und aktualisiert/ergänzt/entfernt Wissen, pflegt die .sync-state. |
-| `shopware-reviewer` | Qualitäts-/Review-Spezialist für Shopware-6-Plugins: prüft gegen Coding-Guidelines, Domain-Exceptions, Static-Analysis (ECS/PHPStan/Deptrac/Rector), Konventionen und ADRs; schlägt Fixes vor; erstellt README/Changelog |
+| `shopware-librarian` | Self-update agent for the Shopware skill library. Checks upstream (shopware/shopware) for new versions/releases and trunk drift, maps changes onto the affected sw-* skills and updates/extends/removes knowledge, maintains the .sync-state |
+| `shopware-reviewer` | Quality/review specialist for Shopware 6 plugins: checks against coding guidelines, domain exceptions, static analysis (ECS/PHPStan/Deptrac/Rector), conventions and ADRs; proposes fixes; creates README/changelog |
 
 ## Commands (3)
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/sw-changelog` | Fügt einem Shopware-6-Plugin einen Changelog-Eintrag hinzu (Keep-a-Changelog) und bumpt optional die Version in composer.json |
-| `/sw-readme` | Generiert/aktualisiert eine README für ein Shopware-6-Plugin nach dem etablierten README-Schema (Installation, Konfiguration, Features, Kompatibilität) |
-| `/sw-sync` | Prüft das Upstream-Repo shopware/shopware auf neue Versionen/Releases (GitHub releases/tags API) und Trunk-Drift und aktualisiert die sw-*-Skill-Bibliothek |
+| `/sw-changelog` | Adds a changelog entry to a Shopware 6 plugin (Keep a Changelog) and optionally bumps the version in composer.json |
+| `/sw-readme` | Generates/updates a README for a Shopware 6 plugin following the established README schema (installation, configuration, features, compatibility) |
+| `/sw-sync` | Checks the upstream repository shopware/shopware for new versions/releases (GitHub releases/tags API) and trunk drift and updates the sw-* skill library |
 
 ## Hooks (1)
 
-| Hook | Beschreibung |
+| Hook | Description |
 |---|---|
-| `PostToolUse` | Edit/Write/MultiEdit — kontextsensitive Lint-/Katalog-Reminder bei passenden Dateien; nicht-blockierend (`hooks/hooks.json`) |
+| `PostToolUse` | Edit/Write/MultiEdit — context-sensitive lint/catalog reminders on matching files; non-blocking (`hooks/hooks.json`) |

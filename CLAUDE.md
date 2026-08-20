@@ -42,11 +42,12 @@ Measured with `scripts/measure-skill-budget.py`:
 | contao | 8 | 2,257 | 173 | 28% |
 | playwright | 5 | 1,463 | 184 | 18% |
 | … 20 more | 64 | 18,347 | 178 | 229% |
-| **total** | **117** | **33,575** | **178** | **420%** |
 
-420 % is the cost of enabling all 26 plugins at once, which is why activation is per project:
-three to five plugins is the working range, and any such selection fits. A new plugin joining
-this repository holds that line — the limits below are how.
+Read those shares against a working set, never as a sum: a session enables three to five
+plugins, and any such set lands inside the limit — `shopware-core` plus `shopware-data` plus
+`shopware-storefront` is 43 %. Enabling all 26 is not a supported configuration.
+
+A new plugin joining this repository holds that line. The limits below are how.
 
 `octo-api` is the reference implementation of these rules: 8 skills, 2,392 characters, 30 % of the
 budget, with all 65 operations and 254 capability fields covered and machine-verified.

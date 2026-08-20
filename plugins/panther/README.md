@@ -1,10 +1,10 @@
 # panther
 
-Vollumfängliche Bibliothek für **[Symfony Panther](https://symfony.com/doc/current/testing/end_to_end.html)** — die PHP-Library für **End-to-End- & Browser-Testing** (und Web-Scraping). Panther steuert **echte Browser** (Chrome/Firefox) über das WebDriver-Protokoll und bietet zugleich einen **headless HTTP-Client** via BrowserKit/`HttpBrowser` — mit derselben API wie Symfonys `WebTestCase`/DomCrawler.
+Comprehensive library for **[Symfony Panther](https://symfony.com/doc/current/testing/end_to_end.html)** — the PHP library for **end-to-end and browser testing** (and web scraping). Panther drives **real browsers** (Chrome/Firefox) over the WebDriver protocol and at the same time offers a **headless HTTP client** via BrowserKit/`HttpBrowser` — with the same API as Symfony's `WebTestCase`/DomCrawler.
 
-Diese Bibliothek dokumentiert **jede öffentliche Methode, jedes Argument, jede `PANTHER_*`-Umgebungsvariable und jede Option** — destilliert aus der Symfony-Doku **und gegen den echten Quellcode des Pakets `symfony/panther` verifiziert** (`Client`, `Crawler`, Form/Field-Klassen, `WebDriverMouse`/`WebDriverCheckbox`, `PantherWebDriverExpectedCondition`, `PantherTestCase`/Trait, `WebTestAssertionsTrait`, die ProcessManager). Dadurch sind auch die Feinheiten korrekt — z. B. die exakten `waitFor*`-Default-Timeouts und dass Panthers Crawler `evaluate()`/`parents()`/`innerText()` **nicht** implementiert. Schlanke `SKILL.md`, Tiefe in `references/deep/`. Beispiele in PHP.
+This library documents **every public method, every argument, every `PANTHER_*` environment variable and every option** — distilled from the Symfony documentation **and verified against the real source code of the `symfony/panther` package** (`Client`, `Crawler`, form/field classes, `WebDriverMouse`/`WebDriverCheckbox`, `PantherWebDriverExpectedCondition`, `PantherTestCase`/trait, `WebTestAssertionsTrait`, the ProcessManager). That makes even the fine points correct — for example the exact `waitFor*` default timeouts and the fact that Panther's crawler does **not** implement `evaluate()`/`parents()`/`innerText()`. Each skill keeps a lean `SKILL.md` and loads its depth from flat SCREAMING-CASE.md reference files next to it. Examples in PHP.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**.
+Part of the marketplace **[claude-a-dev-team](../../README.md)**.
 
 ## Installation
 
@@ -13,62 +13,53 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**.
 /plugin install panther@claude-a-dev-team
 ```
 
-## Nutzung
+## Usage
 
-- **Skills** laden automatisch bei passendem Kontext (z.B. „PantherTestCase", „createPantherClient", „waitForVisibility", „Panther Selenium", „PANTHER_ env").
-- **Agents:** `panther-expert` (Tests/Client/Crawler/Interaktion/JS) und `panther-ops` (Installation/Treiber/Env/Selenium/Docker/CI).
-- **Commands:** `/panther-init` (Setup) und `/panther-test` (Test aus Beschreibung).
-- **Hook** erinnert in Panther-Test-/`phpunit.xml`-Dateien an `waitFor*` statt `sleep()`, nicht-implementierte Crawler-Methoden, `getElement(int)`, Extension-Registrierung und Credential-Hygiene.
-- **Utils** (`utils/`): einsatzfertige Vorlagen — siehe unten.
+- **Skills** load automatically in matching context (for example "PantherTestCase", "createPantherClient", "waitForVisibility", "Panther Selenium", "PANTHER_ env").
+- **Agents:** `panther-expert` (tests/client/crawler/interaction/JS) and `panther-ops` (installation/drivers/env/Selenium/Docker/CI).
+- **Commands:** `/panther-init` (setup) and `/panther-test` (test from a description).
+- **Hook** reminds you, in Panther test and `phpunit.xml` files, about `waitFor*` instead of `sleep()`, unimplemented crawler methods, `getElement(int)`, extension registration and credential hygiene.
+- **Utils** (`utils/`): ready-to-use templates — see below.
 
 ## Agents
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `panther-expert` | E2E-/Browser-Test-Spezialist: PantherTestCase, Client-API (request/click/submitForm, `waitFor*`, executeScript, Screenshots), Crawler/Form, Mouse/Keyboard, Assertions, Client-Wahl. |
-| `panther-ops` | Konfigurations-/Betriebs-Spezialist: Web-Driver-Installation, PHPUnit-Extension, alle `PANTHER_*`-Env-Vars, Selenium/Proxy/SSL, Docker & CI, Troubleshooting. |
+| `panther-expert` | E2E/browser test specialist: PantherTestCase, client API (request/click/submitForm, `waitFor*`, executeScript, screenshots), crawler/form, mouse/keyboard, assertions, choosing the client. |
+| `panther-ops` | Configuration/operations specialist: web driver installation, PHPUnit extension, all `PANTHER_*` env vars, Selenium/proxy/SSL, Docker and CI, troubleshooting. |
 
 ## Commands
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/panther-init` | Setup-Scaffold: `composer require`, Web-Driver (bdi), PHPUnit-Extension in `phpunit.xml.dist`, `PANTHER_*`-Env-Vars, Basis-`PantherTestCase` + erster Test. |
-| `/panther-test` | Test-Scaffold aus Beschreibung: passender Client (WebDriver/KernelBrowser/HttpBrowser), Navigation, Formular-Interaktion, korrekte `waitFor*`-Aufrufe, Panther-/Web-Assertions, optional POM. |
+| `/panther-init` | Setup scaffold: `composer require`, web driver (bdi), PHPUnit extension in `phpunit.xml.dist`, `PANTHER_*` env vars, a base `PantherTestCase` and a first test. |
+| `/panther-test` | Test scaffold from a description: the matching client (WebDriver/KernelBrowser/HttpBrowser), navigation, form interaction, correct `waitFor*` calls, Panther/web assertions, optional POM. |
 
 ## Hooks
 
-| Hook | Beschreibung |
+| Hook | Description |
 |---|---|
-| `panther-reminder.py` (PostToolUse) | Feuert in Panther-Test-/`phpunit.xml`-Dateien: warnt vor `sleep()` (→ `waitFor*`), nicht-implementierten Crawler-Methoden (`evaluate`/`parents`/`innerText`), `getElement()` ohne Index, fehlender Extension-Registrierung und Klartext-Credentials. |
+| `panther-reminder.py` (PostToolUse) | Fires in Panther test and `phpunit.xml` files: warns about `sleep()` (→ `waitFor*`), unimplemented crawler methods (`evaluate`/`parents`/`innerText`), `getElement()` without an index, a missing extension registration and plaintext credentials. |
 
 ## Utils
 
-Einsatzfertige Vorlagen unter `utils/` (kopieren & anpassen — keine echten Credentials):
+Ready-to-use templates under `utils/` (copy and adapt — no real credentials):
 
-| Datei | Zweck |
+| File | Purpose |
 |---|---|
-| `phpunit.panther.xml` | PHPUnit-10/11-Config mit registrierter `ServerExtension` + sinnvollen `PANTHER_*`-Env-Vars. |
-| `AbstractPantherTestCase.php` | Basis-TestCase mit Helfern (`visit`, `waitVisible`, `screenshot`) — quellverifizierte Signaturen. |
-| `Dockerfile.panther` | PHP + Chrome + ChromeDriver für headless Tests (no-sandbox, `--disable-dev-shm-usage`). |
-| `docker-compose.selenium.yml` | Selenium-Grid (Standalone Chrome) für Remote-WebDriver-Tests. |
-| `github-actions-panther.yml` | GitHub-Actions-Workflow: Treiber, AssetMapper-Build, headless Tests, Screenshot-Upload bei Fehler. |
+| `phpunit.panther.xml` | PHPUnit 10/11 config with a registered `ServerExtension` plus sensible `PANTHER_*` env vars. |
+| `AbstractPantherTestCase.php` | Base test case with helpers (`visit`, `waitVisible`, `screenshot`) — signatures verified against the source. |
+| `Dockerfile.panther` | PHP + Chrome + ChromeDriver for headless tests (no-sandbox, `--disable-dev-shm-usage`). |
+| `docker-compose.selenium.yml` | Selenium Grid (standalone Chrome) for remote WebDriver tests. |
+| `github-actions-panther.yml` | GitHub Actions workflow: drivers, AssetMapper build, headless tests, screenshot upload on failure. |
 
-## Skills
+## Skills (2)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `panther-overview` | Was ist Panther, Architektur (echter Browser via WebDriver + headless HTTP via BrowserKit), Client-Wahl, Abgrenzung zu WebTestCase/Goutte. |
-| `panther-installation` | Installation: `composer require`, Web-Driver (bdi/ChromeDriver/GeckoDriver), PHPUnit-Extension, Anforderungen, Docker, CI-Env-Vars. |
-| `panther-testcase` | `PantherTestCase`/`PantherTestCaseTrait`: Factory-Methoden mit allen Optionen, WebTestCase-Integration, alle 22 `assert*`-Assertions (sofort + waitFor). |
-| `panther-client` | Komplette Client-API: request/click/submitForm, alle `waitFor*`-Varianten (mit Timeout/Interval), executeScript, takeScreenshot, getWebDriver/getMouse/getCookieJar u.v.m. |
-| `panther-crawler` | Komplette Crawler-API: filter/filterXPath, selectButton/Link/Image, form/`getElement(int)`, attr/text/html, each/eq/first/last, links/images — inkl. nicht-implementierter Methoden. |
-| `panther-interactions` | Interaktionen: click/submitForm, Form-Objekt & alle FormField-Typen, Mouse-API (clickTo/doubleClickTo/contextClickTo), Keyboard (sendKeys), Drag&Drop, File-Upload. |
-| `panther-javascript-screenshots` | JavaScript (executeScript/executeAsyncScript), Console-Logs, Screenshots/Fehler-Screenshots, Real-Time-Apps (Mercure/WebSocket, mehrere Clients). |
-| `panther-config-env` | Alle `PANTHER_*`-Umgebungsvariablen: Name/Typ/Default/Wirkung — headless, sandbox, web-server-dir/port, external-base-uri, chrome/firefox-arguments, devtools, error-screenshot, window-size. |
-| `panther-browserkit-clients` | BrowserKit-Clients als WebDriver-Alternative: `HttpBrowser` (HTTP-only, Goutte-Ersatz), KernelBrowser (`createClient`), Performance-Abwägung. |
-| `panther-selenium-remote` | Selenium-Grid & Remote-WebDriver (`createSeleniumClient`), Proxy, Self-Signed-SSL, externer Webserver, Multi-Domain, ChromeDriver-Argumente, Timeouts, DesiredCapabilities. |
-| `panther-docker-ci` | Docker (Chrome/Firefox-Image, no-sandbox), Interactive Mode, vollständige CI-YAMLs (GitHub Actions/Travis/GitLab/AppVeyor), Known Limitations & Troubleshooting. |
+| `panther-testing` | Writing Panther tests: what Panther is and its architecture (a real browser via WebDriver plus headless HTTP via BrowserKit), choosing a client and the distinction from WebTestCase/Goutte; `PantherTestCase`/`PantherTestCaseTrait` (factory methods with all options, WebTestCase integration, all 22 `assert*` assertions — immediate and waitFor); the complete client API (request/click/submitForm, all `waitFor*` variants with timeout/interval, executeScript, takeScreenshot, getWebDriver/getMouse/getCookieJar and more); the complete crawler API (filter/filterXPath, selectButton/Link/Image, form/`getElement(int)`, attr/text/html, each/eq/first/last, links/images — including the unimplemented methods); interactions (click/submitForm, the form object and all FormField types, the mouse API clickTo/doubleClickTo/contextClickTo, keyboard sendKeys, drag & drop, file upload); JavaScript (executeScript/executeAsyncScript), console logs, screenshots and error screenshots, real-time apps (Mercure/WebSocket, multiple clients); and the BrowserKit clients as a WebDriver alternative (`HttpBrowser` for HTTP only as a Goutte replacement, KernelBrowser via `createClient`, the performance trade-off). |
+| `panther-setup` | Panther setup and operation: installation (`composer require`, web driver via bdi/ChromeDriver/GeckoDriver, PHPUnit extension, requirements, Docker, CI env vars); all `PANTHER_*` environment variables with name/type/default/effect — headless, sandbox, web-server-dir/port, external-base-uri, chrome/firefox-arguments, devtools, error-screenshot, window-size; Selenium Grid and remote WebDriver (`createSeleniumClient`), proxy, self-signed SSL, an external web server, multi-domain, ChromeDriver arguments, timeouts, DesiredCapabilities; Docker (Chrome/Firefox image, no-sandbox), interactive mode, complete CI YAML files (GitHub Actions/Travis/GitLab/AppVeyor), known limitations and troubleshooting. |
 
-## Lizenz & Autor
+## License & author
 
-proprietary — Andreas Gerhardt, A-Dev-Team. Quellen: offizielle Symfony-Doku & der Quellcode von `symfony/panther`.
+proprietary — Andreas Gerhardt, A-Dev-Team. Sources: the official Symfony documentation and the source code of `symfony/panther`.

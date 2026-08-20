@@ -1,21 +1,22 @@
 # shopware-concepts
 
-> Das „Warum" hinter Shopware: Architektur- und Domänenkonzepte.
+> The "why" behind Shopware: architecture and domain concepts.
 
-`shopware-concepts` vermittelt das **„Warum"** hinter Shopware — die Architektur- und Domänenkonzepte, die den
-konkreten How-to-Skills der anderen Plugins zugrunde liegen.
+`shopware-concepts` conveys the **"why"** behind Shopware — the architecture and domain concepts that underlie the
+concrete how-to skills of the other plugins.
 
-Enthalten sind die destillierten **Concept-Dokumente** der offiziellen Doku: die **Framework-Architektur** (Bundles,
-DI, Adapter, Rule-System, Übersetzungen), das **Datenkonzept** (DAL als Idee, nicht als API), die **Commerce-Domänen**
-(Catalog/Produkte, Checkout-Konzept, Content/CMS), das **API-Konzept** (warum drei APIs), das **Extension-/App-System**
-und das **Messaging**. Diese Skills erklären Zusammenhänge und Entwurfsentscheidungen — ideal zum Einarbeiten und um
-fundierte Architektur-Entscheidungen zu treffen.
+It contains the distilled **concept documents** of the official documentation: the **framework architecture** (bundles,
+DI, adapters, rule system, translations), the **data concept** (the DAL as an idea, not as an API), the
+**commerce domains** (catalogue/products, checkout concept, content/CMS), the **API concept** (why three APIs), the
+**extension/app system** and **messaging**. These skills explain relationships and design decisions — ideal for
+onboarding and for making well-founded architecture decisions.
 
-Spezialist: **`shopware-concepts-guide`**. **Wann nutzen:** zum Verstehen der Hintergründe, beim Onboarding oder vor
-größeren Architektur-Entscheidungen. Die konkrete Umsetzung liefern dann `shopware-data`, `shopware-framework`,
-`shopware-checkout` usw.; die bindenden Entscheidungen vertieft `shopware-quality` (`sw-adr-knowledge`).
+Specialist: **`shopware-concepts`**. **When to use:** to understand the background, during onboarding or before
+larger architecture decisions. The concrete implementation then comes from `shopware-data`, `shopware-framework`,
+`shopware-checkout` and so on; the binding decisions are covered in depth by `shopware-quality`
+(`sw-adr-knowledge`).
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Part of the **[claude-a-dev-team](../../README.md)** marketplace. The knowledge is distilled from the official sources and embedded; each skill's depth sits in flat SCREAMING-CASE.md reference files next to its SKILL.md and is loaded progressively.
 
 ## Installation
 
@@ -24,25 +25,15 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 /plugin install shopware-concepts@claude-a-dev-team
 ```
 
-## Skills (12)
+## Skills (2)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `sw-concept-api` | Shopware Admin API und Store API: Zweck, Unterschiede, Authentifizierung, Search Criteria |
-| `sw-concept-app-system` | Shopware App-System im Detail: Manifest, Registration Handshake, Webhooks, App Scripts, Storefront-Assets, Payments, Rule Conditions, In-App Purchases |
-| `sw-concept-architecture` | Shopware-6-Architektur-Konzept: Core, Storefront, Administration, API-first, Schichtentrennung |
-| `sw-concept-catalog` | Shopware Produktkatalog: Products (Varianten, Properties, Options), Categories (Tree, SEO, CMS), Sales Channels (Domains, Navigation, Sichtbarkeit) |
-| `sw-concept-checkout` | Shopware Checkout-Konzept: Cart (Struktur, Zustände, Berechnung), Orders (State Machines), Payments (Synchron/Asynchron, Handler) |
-| `sw-concept-content-cms` | Shopware Shopping Experiences (CMS): Struktur (Page/Section/Block/Slot/Element), Content-Hydration, Headless-CMS, Cookie Consent Management |
-| `sw-concept-dal` | Shopware Data Abstraction Layer (DAL): kein ORM, EntityRepository, Criteria, Translations, Versioning, Inheritance, Indexing |
-| `sw-concept-data-stores` | Shopware Framework-Konzepte: Flow Builder, HTTP Cache, Elasticsearch, Migrations, System Checks, Storefront Components (ab 6.7.11) |
-| `sw-concept-extensions` | Shopware Extensions: App vs. Plugin — Unterschiede, Einsatzgebiete, Cloud-Kompatibilität |
-| `sw-concept-messaging` | Shopware Messaging (Symfony Messenger): Message Bus, Handler, Transport, asynchrone Verarbeitung |
-| `sw-concept-rule-system` | Shopware Rule-System und Rule Builder: Rules, RuleScopes, Container Rules (AND/OR/NOT), Evaluation, Operatoren, Validierung |
-| `sw-concept-translations` | Shopware Übersetzungssystem: DAL-Translations, Snippet-Dateien, Fallback-Sprachen, Built-in Translation System (ab 6.7), country-agnostic Snippets |
+| `sw-concept-architecture` | How Shopware works: overall architecture, the DAL, data stores, extension mechanisms, the APIs, the app system, messaging. Use when asked why Shopware works a certain way rather than how to code it. |
+| `sw-concept-domain` | Shopware domain concepts: catalogue, checkout, content and CMS, the rule system, translations. Use when asked how a Shopware domain is modelled conceptually. |
 
 ## Agents (1)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shopware-concepts` | Shopware-6-Konzept-Berater. Beantwortet architektonische und konzeptionelle Fragen zu Shopware — "wie funktioniert X in Shopware", "was ist der Unterschied zwischen App und Plugin", "wie arbeitet der Cart", "wie funktioniert das Rule-System |
+| `shopware-concepts` | Shopware 6 concept advisor. Answers architectural and conceptual questions about Shopware — "how does X work in Shopware", "what is the difference between an app and a plugin", "how does the cart work", "how does the rule system work… |

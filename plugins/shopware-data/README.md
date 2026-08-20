@@ -1,29 +1,30 @@
 # shopware-data
 
-> Die Data Abstraction Layer (DAL) in voller Tiefe + komplette Core-Entity-Referenz.
+> The Data Abstraction Layer (DAL) in full depth + complete core entity reference.
 
-`shopware-data` dokumentiert die **Data Abstraction Layer (DAL)** — Shopwares eigene Datenzugriffsschicht anstelle
-eines Doctrine-ORM — auf **drei Ebenen**, damit sowohl „wie baue ich" als auch „was existiert" beantwortet wird:
+`shopware-data` documents the **Data Abstraction Layer (DAL)** — Shopware's own data access layer in place of a
+Doctrine ORM — on **three levels**, so that both "how do I build it" and "what exists" get answered:
 
-1. **Mechanik / How-to** (Mikro-Skills): EntityDefinition, Entity-Klasse, Collection und Repository; alle
-   **Field-Typen** und **Flags**; alle vier **Association**-Arten (1:1, 1:n, n:1, n:m inkl. Mapping-Entity);
-   **Translations**, **Field-Inheritance**, **Versioning**, **EntityExtension**, **CustomFields** und
-   **CustomEntities**; **Criteria** mit **Filtern/Sorting/Aggregationen**; **Write-Events**, **Indexer**,
-   **FieldSerializer**, **Pricing-Field**, **EntityProtection**, **Attribut-Entities** sowie **Hydration** und
-   **Aliases**. Dazu **Datenbank-Migrationen** und die Abwägung **DAL vs. plain SQL**.
-2. **Vollständige Core-Entity-Referenz** (`sw-core-entity-reference`): **alle 312 Core-Entities** aus der
-   Trunk-Quelle generiert — je Entity Tabellenname, Entity-/Collection-Klasse, **alle Felder** (Typ, storageName,
-   propertyName, Flags, Default), **alle Associations**, Translations und Inheritance — als maschinenlesbares
-   **JSON** (742 KB) und nach Domänen aufgeteiltes Markdown. Damit lässt sich jederzeit nachschlagen, welche Felder/
-   Beziehungen z. B. `product` oder `order` hat.
-3. **Projekt-Introspektion** (`sw-entity-catalog` + `/sw-entity-map`, Agent `shopware-entity-mapper`): scannt das
-   **konkrete** Projekt (Core + `custom/plugins`) und erzeugt einen gecachten Katalog inkl. eigener Entities/Extensions.
+1. **Mechanics / how-to**: `EntityDefinition`, entity class, collection and repository; all **field types** and
+   **flags**; all four **association** kinds (1:1, 1:n, n:1, n:m including the mapping entity);
+   **translations**, **field inheritance**, **versioning**, **EntityExtension**, **custom fields** and
+   **custom entities**; **Criteria** with **filters/sorting/aggregations**; **write events**, **indexers**,
+   **field serializers**, **pricing field**, **entity protection**, **attribute entities** as well as
+   **hydration** and **aliases**. Plus **database migrations** and the trade-off **DAL vs. plain SQL**.
+2. **Complete core entity reference**: **all 312 core entities** generated from the trunk source — per entity
+   the table name, entity/collection class, **all fields** (type, storageName, propertyName, flags, default),
+   **all associations**, translations and inheritance — as machine-readable **JSON** (742 KB) and as Markdown
+   split by domain. This makes it possible to look up at any time which fields and relations, for example,
+   `product` or `order` has.
+3. **Project introspection** (`/sw-entity-map`, agent `shopware-entity-mapper`): scans the **concrete** project
+   (core + `custom/plugins`) and produces a cached catalogue including custom entities/extensions.
 
-Der Spezialist **`shopware-dal-expert`** und die Scaffolder **`/sw-entity`**, **`/sw-entity-extension`**,
-**`/sw-custom-field`**, **`/sw-migration`** erzeugen konventionskonforme Bausteine. **Wann nutzen:** sobald
-Datenmodelle, Entities, Felder, Beziehungen oder Abfragen im Spiel sind.
+The specialist **`shopware-dal-expert`** and the scaffolders **`/sw-entity`**, **`/sw-entity-extension`**,
+**`/sw-custom-field`**, **`/sw-migration`** generate convention-compliant building blocks. **When to use:** as
+soon as data models, entities, fields, relations or queries are involved.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Part of the **[claude-a-dev-team](../../README.md)** marketplace. The knowledge is distilled from the official
+sources and embedded; depth sits in flat reference files beside each SKILL.md, loaded on demand.
 
 ## Installation
 
@@ -32,57 +33,28 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 /plugin install shopware-data@claude-a-dev-team
 ```
 
-## Skills (33)
+## Skills (4)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `adt-shopware-dal` | Comprehensive reference for Shopware 6 Data Abstraction Layer (DAL) |
-| `sw-aggregations` | Aggregationen in der Shopware-6 Criteria-API: TermsAggregation, CountAggregation, SumAggregation, AvgAggregation, StatsAggregation, FilterAggregation, verschachtelte Aggregationen + Ergebnis auslesen |
-| `sw-associations-manytomany` | ManyToMany-Associations in Shopware 6 DAL über eine Mapping-Entity (MappingEntityDefinition) inkl |
-| `sw-associations-manytoone` | ManyToOne-Associations in Shopware 6 DAL (viele Kinder zeigen auf ein Eltern-Objekt) inkl |
-| `sw-associations-onetomany` | OneToMany-Associations in Shopware 6 DAL (Eltern hat viele Kinder), inkl |
-| `sw-associations-onetoone` | OneToOne-Associations in Shopware 6 DAL (genau ein zugeordnetes Objekt) inkl |
-| `sw-attribute-entities` | Attribut-basierte DAL-Entities in Shopware 6 (6.6+): Entity-Definition via PHP-Attribute (#[Entity], Field-Attribute) statt klassischer EntityDefinition |
-| `sw-core-entity-reference` | Statische Vollreferenz aller Shopware-6-Core-DAL-Entities (312 Definitionen, generiert aus trunk src/) |
-| `sw-criteria` | Die Shopware-6 Criteria-API als zentrales Query-Werkzeug der DAL: IDs, Limit/Offset, Associations laden, getAssociation, Total-Count-Mode, Criteria kombinieren |
-| `sw-custom-entity` | Custom Entities in Shopware 6 (codearm, via custom_entity.xml / Entities.xml definierte Entities ohne eigene PHP-Definition), inkl |
-| `sw-custom-fields` | Custom Fields in Shopware 6: CustomFieldSet + CustomField per Migration/Repository anlegen, Typen, Entity-Zuordnung, Auslesen via getCustomFields(), Media-/Entity-Selection-Typ |
-| `sw-database-migration` | Datenbank-Migrations in Shopware 6: MigrationStep (getCreationTimestamp, update, updateDestructive), Namens-/Verzeichniskonvention Migration/MigrationV{major}, destructive vs |
-| `sw-entity-aliases` | Shopware DAL Storage-Aliasing — storageName vs propertyName, SQL-Aliase in Queries, Association-Aliase in Criteria, getByStorageName, buildTranslationChain |
-| `sw-entity-catalog` | Den projektspezifischen Entity-Katalog von Shopware nutzen — welche Entities, Felder, Associations, Translations und CustomFields es im KONKRETEN Projekt (Core + custom/plugins) wirklich gibt |
-| `sw-entity-class` | Die Entity-Klasse einer Shopware-6 DAL-Definition: Properties, Getter/Setter, EntityIdTrait, translated-Felder, Association-Properties |
-| `sw-entity-collection` | Die EntityCollection einer Shopware-6 DAL-Entity: typisierte Collection, getExpectedClass(), eigene Filter-/Map-Helfer |
-| `sw-entity-definition` | Eine Shopware-6 DAL-EntityDefinition bauen: defineFields(), getEntityName(), getEntityClass(), getCollectionClass(), Registrierung via shopware.entity.definition |
-| `sw-entity-extension` | Bestehende Core-Entities in Shopware 6 erweitern: EntityExtension mit extendFields(), zusätzliche Felder/ Associations zu product/order/customer etc |
-| `sw-entity-hydration` | Shopware DAL EntityHydrator — wie DB-Zeilen in Entity-Objekte verwandelt werden |
-| `sw-entity-indexer` | Eigener EntityIndexer in Shopware 6 DAL: vorberechnete/abgeleitete Daten bei Schreibvorgängen aktualisieren, IndexerRegistry, partial/full index, EntityIndexingMessage |
-| `sw-entity-protection` | Zugriffsschutz in Shopware 6 DAL: ApiAware-Scopes, ReadProtected/WriteProtected, EntityProtection, interne Felder von der API ausschließen |
-| `sw-entity-repository` | CRUD mit dem Shopware-6 EntityRepository: search, searchIds, create, update, upsert, delete, aggregate; Context vs |
-| `sw-entity-versioning` | Entity-Versioning in Shopware 6 DAL: createVersion, merge, Versionskontext, ReferenceVersionField, VersionField |
-| `sw-field-flags` | Shopware-6 DAL-Field-Flags: PrimaryKey, Required, ApiAware, Inherited, Runtime, Computed, ReadProtected, WriteProtected, SearchRanking, AllowHtml, CascadeDelete, RestrictDelete, SetNullOnDelete |
-| `sw-field-inheritance` | Field-Inheritance in Shopware 6 DAL (Parent→Child, z.B. Produkt-Varianten erben vom Hauptprodukt) mit dem Inherited-Flag und setParentDefinition/Inheritance-Aware-Definition |
-| `sw-field-serializer` | Eigener FieldSerializer in Shopware 6 DAL: Schreib-/Leselogik eines (eigenen) Field-Typs, encode/decode, Validation-Constraints |
-| `sw-field-types` | Alle Shopware-6 DAL-Field-Typen: IdField, FkField, StringField, IntField, FloatField, BoolField, JsonField, DateTimeField, ListField, PriceField, TranslatedField, EnumField, Association-Felder u.v.m |
-| `sw-filters` | Filter in der Shopware-6 Criteria-API: EqualsFilter, EqualsAnyFilter, ContainsFilter, RangeFilter, MultiFilter (AND/OR), NotFilter, PrefixFilter, post-filter |
-| `sw-plain-sql-vs-dal` | Entscheidung in Shopware 6: wann DAL (Criteria/Repository) und wann plain SQL via Doctrine\DBAL\Connection |
-| `sw-pricing-field` | Preise in Shopware 6 DAL: PriceField/PriceCollection, Price (net/gross je Currency), CashRounding, Preise schreiben/lesen |
-| `sw-sorting` | Sortierung in der Shopware-6 Criteria-API: FieldSorting (ASC/DESC), CountSorting, natural sorting, Sortierung über Associations |
-| `sw-translations` | Übersetzbare Felder in Shopware 6 DAL: TranslatedField + TranslationDefinition + TranslationsAssociationField, das translated-Array, Schreiben pro Sprache |
-| `sw-write-events` | Das Shopware-6 DAL-Write-System & seine Events: EntityWrittenEvent, EntityWrittenContainerEvent, BeforeWriteEvent, EntityDeletedEvent, auf Schreibvorgänge reagieren |
+| `sw-entity` | Shopware DAL entities: EntityDefinition, entity class, collection, repository, extensions, versioning, indexers, custom entities. Use when the request names a Shopware entity or EntityDefinition |
+| `sw-fields` | Shopware DAL fields: field types, flags, inheritance, serializers, custom fields, translations, all four association kinds. Use when the request names a Shopware field type or association |
+| `sw-query` | Shopware DAL queries: the Criteria API, filters, sorting, aggregations, and when plain SQL beats the DAL. Use when the request names a Shopware Criteria, DAL filter or aggregation |
+| `sw-write` | Shopware DAL writes: write events and their payloads, database migrations. Use when the request names a Shopware write event or database migration |
 
 ## Agents (2)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shopware-dal-expert` | Spezialist für die Shopware-6.7 Data Abstraction Layer (DAL): Entities/Definitions/Collections/Repositories, Field-Typen & Flags, Associations (1:1, 1:n, n:1, n:m), Translations, Inheritance, Versioning, EntityExtension, CustomFields/Custom |
-| `shopware-entity-mapper` | Introspektions-Agent: scannt ein konkretes Shopware-6-Projekt (Core-Vendor + custom/plugins) und erzeugt einen gecachten Entity-Katalog (.shopware-catalog/entities.md) mit allen Entities, Feldern, Flags, Associations, Translations, CustomFi |
+| `shopware-dal-expert` | Specialist for the Shopware 6.7 Data Abstraction Layer (DAL): entities/definitions/collections/repositories, field types and flags, associations (1:1, 1:n, n:1, n:m), translations, inheritance, versioning, EntityExtension, custom fields/custom |
+| `shopware-entity-mapper` | Introspection agent: scans a concrete Shopware 6 project (core vendor + custom/plugins) and produces a cached entity catalogue (.shopware-catalog/entities.md) with all entities, fields, flags, associations, translations, custom fi |
 
 ## Commands (5)
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/sw-custom-field` | Scaffold eines CustomFieldSet inkl. CustomFields für eine Shopware-6-Entity (Migration oder Lifecycle), mit Typen und Entity-Relation |
-| `/sw-entity-extension` | Scaffold einer EntityExtension, um einer bestehenden Core-Entity (product, order, customer, ...) Felder/Associations hinzuzufügen — inkl |
-| `/sw-entity-map` | Scannt das aktuelle Shopware-Projekt (Core + custom/plugins) und erzeugt/aktualisiert den Entity-Katalog .shopware-catalog/entities.md (Entities, Felder, Flags, Associations, Translations, CustomFields, CustomEntities) |
-| `/sw-entity` | Scaffold einer kompletten Shopware-6 DAL-Entity — Definition + Entity-Klasse + Collection + Migration + services.xml-Registrierung (optional Translations) |
-| `/sw-migration` | Scaffold einer Shopware-6 Datenbank-Migration (MigrationStep) mit korrektem Timestamp, update()/updateDestructive() und Shopware-Konventionen (BINARY(16) id, DATETIME(3)) |
+| `/sw-custom-field` | Scaffolds a CustomFieldSet including CustomFields for a Shopware 6 entity (migration or lifecycle), with types and entity relation |
+| `/sw-entity-extension` | Scaffolds an EntityExtension to add fields/associations to an existing core entity (product, order, customer, ...) — incl |
+| `/sw-entity-map` | Scans the current Shopware project (core + custom/plugins) and creates or updates the entity catalogue .shopware-catalog/entities.md (entities, fields, flags, associations, translations, custom fields, custom entities) |
+| `/sw-entity` | Scaffolds a complete Shopware 6 DAL entity — definition + entity class + collection + migration + services.xml registration (optionally translations) |
+| `/sw-migration` | Scaffolds a Shopware 6 database migration (MigrationStep) with the correct timestamp, update()/updateDestructive() and Shopware conventions (BINARY(16) id, DATETIME(3)) |

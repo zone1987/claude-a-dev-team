@@ -1,18 +1,18 @@
 # swiper
 
-> Vollständige Dokumentation des modernen Touch-Sliders Swiper (v11/v12) — komplette API + alle Module.
+> Complete documentation of the modern touch slider Swiper (v11/v12) — the full API plus every module.
 
-`swiper` ist die vollständige Wissens-Bibliothek zum modernen, abhängigkeitsfreien Touch-Slider/Carousel **Swiper** (v11/v12), destilliert aus swiperjs.com. Sie deckt die komplette API und alle Module bis ins kleinste Detail ab.
+`swiper` is the complete knowledge library for the modern, dependency-free touch slider/carousel **Swiper** (v11/v12), distilled from swiperjs.com. It covers the entire API and every module down to the smallest detail.
 
-**Core-API:** Einbindung (npm/CDN, CSS-Imports, HTML-Struktur, Modul-Registrierung), die **vollständige Parameter-Referenz** (236 Parameter mit Typ/Default), **alle Methoden** (68), **alle Events** (74) und **Properties** (45).
+**Core API:** integration (npm/CDN, CSS imports, HTML structure, module registration), the **complete parameter reference** (236 parameters with type/default), **all methods** (68), **all events** (74) and **properties** (45).
 
-**Alle Module** (je eigenes Skill mit Parametern/Methoden/Events/CSS): Navigation, Pagination, Scrollbar, Autoplay, **Effekte** (fade/cube/coverflow/flip/cards/creative), Virtual, Keyboard, Mousewheel, Zoom, FreeMode, Grid, Thumbs, Controller, A11y, History, HashNavigation, Parallax, Manipulation, Lazy.
+**All modules** (each with its parameters/methods/events/CSS): Navigation, Pagination, Scrollbar, Autoplay, **effects** (fade/cube/coverflow/flip/cards/creative), Virtual, Keyboard, Mousewheel, Zoom, FreeMode, Grid, Thumbs, Controller, A11y, History, HashNavigation, Parallax, Manipulation, Lazy.
 
-**Einbindungsvarianten:** die **Swiper-Element**-Web-Component (`<swiper-container>`) sowie **React/Vue** (eigene Komponenten) und **Angular/Svelte/Solid** (über das Element, da seit v9 ohne eigene Adapter). Dazu **Migration** (v9/v10/v11), eigene **Plugins** (Plugin-API) und der **Swiper-MCP**-Server.
+**Integration variants:** the **Swiper Element** web component (`<swiper-container>`) as well as **React/Vue** (dedicated components) and **Angular/Svelte/Solid** (via the element, since v9 ships without dedicated adapters). Plus **migration** (v9/v10/v11), custom **plugins** (plugin API) and the **Swiper MCP** server.
 
-Spezialist: **`swiper-expert`**; Scaffolder **`/swiper-init`** (Variante + HTML + CSS-Imports + Modul-Registrierung + Init). **Wann nutzen:** für jeden Slider/Carousel im Frontend — auch in Shopware-Storefront-/Admin- oder Contao-Projekten.
+Specialist: **`swiper-expert`**; scaffolder **`/swiper-init`** (variant + HTML + CSS imports + module registration + init). **When to use:** for any slider/carousel in the frontend — including Shopware storefront/admin or Contao projects.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen aus swiperjs.com destilliert und eingebettet; Skills laden Tiefe progressiv aus `references/`.
+Part of the marketplace **[claude-a-dev-team](../../README.md)**. Knowledge distilled from swiperjs.com and embedded; each skill keeps a lean `SKILL.md` and loads its depth from flat SCREAMING-CASE.md reference files next to it.
 
 ## Installation
 
@@ -21,62 +21,23 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Wissen aus swiper
 /plugin install swiper@claude-a-dev-team
 ```
 
-## Skills — Core-API (5)
+## Skills (4)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `swiper-getting-started` | Swiper installieren und einbinden: npm, CDN, CSS-Imports, HTML-Struktur, erste Instanz, Module registrieren, Core vs |
-| `swiper-events` | Alle Swiper-Events: init, slideChange, transitionStart/End, touchStart/Move/End, reachBeginning, reachEnd, progress, autoplay, pagination, navigation, zoom und mehr |
-| `swiper-methods` | Alle Swiper-Instanz-Methoden: slideNext, slidePrev, slideTo, update, destroy, on/off/once, Navigation-, Pagination-, Scrollbar-, Autoplay-, Zoom-, Manipulation-Methoden |
-| `swiper-parameters` | Erschöpfende Referenz aller Swiper-Konfigurationsparameter: Core, Navigation, Pagination, Scrollbar, Autoplay, FreeMode, Grid, Effekte, Thumbs, Zoom, Keyboard, Mousewheel, Virtual |
-| `swiper-properties` | Alle Swiper-Instanz-Properties: activeIndex, realIndex, previousIndex, slides, translate, progress, isBeginning, isEnd, params, el, wrapperEl, snapGrid, slidesGrid und Modul-Properties |
-
-## Skills — Module (19)
-
-| Skill | Beschreibung |
-|---|---|
-| `swiper-a11y` | Vollständige Referenz des Swiper A11y (Accessibility)-Moduls: ARIA-Attribute, prevSlideMessage, nextSlideMessage, firstSlideMessage, lastSlideMessage, paginationBulletMessage, notificationClass — Screen-Reader-Unterstützung |
-| `swiper-autoplay` | Vollständige Referenz des Swiper Autoplay-Moduls: delay, disableOnInteraction, pauseOnMouseEnter, reverseDirection, stopOnLastSlide, waitForTransition, Methoden start/stop/pause/resume, Events autoplayTimeLeft |
-| `swiper-controller` | Vollständige Referenz des Swiper Controller-Moduls: control, inverse, by (slide/progress) — mehrere Swiper-Instanzen synchronisieren, bidirektionale Steuerung |
-| `swiper-effects` | Vollständige Referenz aller Swiper-Übergangseffekte: fade, cube, coverflow, flip, cards, creative — je mit vollständigem Parameter-Objekt (fadeEffect, cubeEffect, coverflowEffect, flipEffect, cardsEffect, creativeEffect inkl |
-| `swiper-free-mode` | Vollständige Referenz des Swiper Free Mode-Moduls: momentum, momentumRatio, momentumVelocityRatio, momentumBounce, minimumVelocity, sticky — freies Scrollen ohne Snap-Punkte, mit Momentum-Physik |
-| `swiper-grid` | Vollständige Referenz des Swiper Grid-Moduls: rows, fill (column/row) — mehrzeilige Slide-Layouts mit Swiper Grid |
-| `swiper-hash-navigation` | Vollständige Referenz des Swiper Hash Navigation-Moduls: enabled, replaceState, watchState — URL-Hash-basierte Slide-Navigation mit data-hash-Attribut |
-| `swiper-history` | Vollständige Referenz des Swiper History-Moduls: key, replaceState, keepQuery, root — Browser-History-Integration mit data-history-Attribut je Slide |
-| `swiper-keyboard` | Vollständige Referenz des Swiper Keyboard-Moduls: enabled, onlyInViewport, pageUpDown, Methoden enable/disable, Event keyPress — Tastaturnavigation für Swiper |
-| `swiper-lazy` | Vollständige Referenz des Swiper Lazy Loading: loading="lazy" native Browser-Integration, lazyPreloadPrevNext, lazyPreloaderClass, swiper-lazy-preloader HTML-Element |
-| `swiper-manipulation` | Vollständige Referenz des Swiper Manipulation-Moduls: appendSlide, prependSlide, addSlide(index), removeSlide, removeAllSlides — dynamisches Hinzufügen/Entfernen von Slides |
-| `swiper-mousewheel` | Vollständige Referenz des Swiper Mousewheel-Moduls: enabled, invert, forceToAxis, releaseOnEdges, sensitivity, thresholdDelta, thresholdTime, eventsTarget, noMousewheelClass, Methoden enable/disable, Event scroll |
-| `swiper-navigation` | Vollständige Referenz des Swiper Navigation-Moduls: nextEl/prevEl, disabledClass, hiddenClass, lockClass, addIcons, hideOnClick, CSS-Variablen, Events, Methoden |
-| `swiper-pagination` | Vollständige Referenz des Swiper Pagination-Moduls: bullets/fraction/progressbar/custom, clickable, dynamicBullets, renderBullet/Fraction/Custom/Progressbar, CSS-Variablen, Events |
-| `swiper-parallax` | Vollständige Referenz des Swiper Parallax-Moduls: data-swiper-parallax, data-swiper-parallax-x/y, data-swiper-parallax-scale, data-swiper-parallax-opacity, data-swiper-parallax-duration — Parallax-Effekte für Hintergründe und Slide-Inhalte |
-| `swiper-scrollbar` | Vollständige Referenz des Swiper Scrollbar-Moduls: el, draggable, dragSize, hide, snapOnRelease, CSS-Variablen, Events (scrollbarDragStart/Move/End), Methoden |
-| `swiper-thumbs` | Vollständige Referenz des Swiper Thumbs-Moduls: swiper-Instanz verknüpfen, multipleActiveThumbs, autoScrollOffset, slideThumbActiveClass, thumbsContainerClass, Methoden init/update — Thumbnail-Galerie-Navigation |
-| `swiper-virtual` | Vollständige Referenz des Swiper Virtual Slides-Moduls: slides-Array, renderSlide, renderExternal, cache, addSlidesBefore/After — performantes DOM-Rendering großer Slide-Mengen |
-| `swiper-zoom` | Vollständige Referenz des Swiper Zoom-Moduls: maxRatio, minRatio, toggle, limitToOriginalSize, panOnMouseMove, containerClass, Methoden zoom.in/out/toggle, Event zoomChange, data-swiper-zoom Attribut per Slide |
-
-## Skills — Integration & Migration (9)
-
-| Skill | Beschreibung |
-|---|---|
-| `swiper-angular` | Swiper in Angular — ab v9 via Swiper Element (`<swiper-container>`/`<swiper-slide>`), CUSTOM_ELEMENTS_SCHEMA, Property-Binding, Events, ViewChild-Zugriff |
-| `swiper-element` | Swiper Web Component — `<swiper-container>`/`<swiper-slide>` Registrierung, Parameter als Attribute (kebab-case), JSON-Attribute, Property-Binding, Slots, Events (Lowercase), Methoden, Shadow-DOM-CSS |
-| `swiper-mcp` | Swiper MCP-Server — HTTP-Endpunkt für programmatischen Zugriff auf Swiper-Dokumentation, 8 Tools (search-api, get-option, get-method, get-event, get-module-options, list-demos, get-demo, get-premium-recommendations), Setup für Claude Code,  |
-| `swiper-migration` | Swiper Breaking Changes für v9, v10 und v11 — CSS-Imports, Modul-Imports, Lazy Loading, Element-Struktur, entfernte Parameter, Framework-Adapter-Entfernung, Touch-Events, Dom7 |
-| `swiper-plugins` | Swiper Plugins & Community-Module — Premium-Plugins (UI Initiative, Swiper Studio), Plugin-API-Struktur zum Schreiben eigener Swiper-Module |
-| `swiper-react` | Swiper React-Komponenten — `<Swiper>`/`<SwiperSlide>`, alle Props (= API-Parameter), modules-Prop, Events als `onXxx`-Props, `useSwiper`/`useSwiperSlide`-Hooks, Slots, Virtual Slides, Controller |
-| `swiper-solid` | Swiper in SolidJS — ab v9 via Swiper Element (`<swiper-container>`/`<swiper-slide>`), `register()`, Property-Binding, Events |
-| `swiper-svelte` | Swiper in Svelte/SvelteKit — ab v9 via Swiper Element (`<swiper-container>`/`<swiper-slide>`), `register()`, Property-Binding mit `bind:this`, Events mit `on:swiper*` |
-| `swiper-vue` | Swiper Vue-Komponenten — `<Swiper>`/`<SwiperSlide>`, Props, Events, `v-slot`-Render-Props, `useSwiper`/`useSwiperSlide`-Composables, Modules, Virtual Slides, Controller, Thumbs |
+| `swiper-core` | Swiper core API: getting started (npm, CDN, CSS imports, HTML structure, first instance, module registration), the exhaustive reference of all configuration parameters, all instance methods (slideNext, slidePrev, slideTo, update, destroy, on/off/once, navigation/pagination/scrollbar/autoplay/zoom/manipulation methods), all events (init, slideChange, transitionStart/End, touchStart/Move/End, reachBeginning, reachEnd, progress, autoplay, pagination, navigation, zoom and more), all properties (activeIndex, realIndex, previousIndex, slides, translate, progress, isBeginning, isEnd, params, el, wrapperEl, snapGrid, slidesGrid plus module properties), the Swiper Element web component (`<swiper-container>`/`<swiper-slide>` registration, parameters as kebab-case attributes, JSON attributes, property binding, slots, lowercase events, methods, shadow-DOM CSS) and migration across major versions (v9/v10/v11 breaking changes: CSS imports, module imports, lazy loading, element structure, removed parameters, framework adapter removal, touch events, Dom7). |
+| `swiper-modules` | Swiper modules with their parameters, methods, events and CSS: Navigation (nextEl/prevEl, disabledClass, hiddenClass, lockClass, addIcons, hideOnClick, CSS variables), Pagination (bullets/fraction/progressbar/custom, clickable, dynamicBullets, renderBullet/Fraction/Custom/Progressbar, CSS variables), Scrollbar (el, draggable, dragSize, hide, snapOnRelease, CSS variables, scrollbarDragStart/Move/End), Autoplay (delay, disableOnInteraction, pauseOnMouseEnter, reverseDirection, stopOnLastSlide, waitForTransition, start/stop/pause/resume, autoplayTimeLeft), effects (fade, cube, coverflow, flip, cards, creative — each with its full parameter object: fadeEffect, cubeEffect, coverflowEffect, flipEffect, cardsEffect, creativeEffect), Virtual (slides array, renderSlide, renderExternal, cache, addSlidesBefore/After for performant DOM rendering of large slide sets), Zoom (maxRatio, minRatio, toggle, limitToOriginalSize, panOnMouseMove, containerClass, zoom.in/out/toggle, zoomChange, per-slide `data-swiper-zoom`), Thumbs (linking a swiper instance, multipleActiveThumbs, autoScrollOffset, slideThumbActiveClass, thumbsContainerClass, init/update), Grid (rows, fill column/row for multi-row slide layouts), FreeMode (momentum, momentumRatio, momentumVelocityRatio, momentumBounce, minimumVelocity, sticky — free scrolling without snap points, with momentum physics), Keyboard (enabled, onlyInViewport, pageUpDown, enable/disable, keyPress), Mousewheel (enabled, invert, forceToAxis, releaseOnEdges, sensitivity, thresholdDelta, thresholdTime, eventsTarget, noMousewheelClass, enable/disable, scroll) and A11y (ARIA attributes, prevSlideMessage, nextSlideMessage, firstSlideMessage, lastSlideMessage, paginationBulletMessage, notificationClass — screen reader support). |
+| `swiper-advanced` | Swiper advanced features: Controller (control, inverse, by slide/progress — synchronizing multiple Swiper instances, bidirectional control), History (key, replaceState, keepQuery, root — browser history integration with a per-slide `data-history` attribute), Hash Navigation (enabled, replaceState, watchState — URL-hash-based slide navigation with the `data-hash` attribute), Parallax (`data-swiper-parallax`, `data-swiper-parallax-x/y`, `data-swiper-parallax-scale`, `data-swiper-parallax-opacity`, `data-swiper-parallax-duration` — parallax effects for backgrounds and slide content), Lazy loading (native `loading="lazy"` browser integration, lazyPreloadPrevNext, lazyPreloaderClass, the `swiper-lazy-preloader` HTML element), Manipulation (appendSlide, prependSlide, addSlide(index), removeSlide, removeAllSlides — adding and removing slides dynamically), custom plugins (premium plugins from UI Initiative and Swiper Studio, plus the plugin API structure for writing your own Swiper modules) and the Swiper MCP server (HTTP endpoint for programmatic access to the Swiper documentation, 8 tools: search-api, get-option, get-method, get-event, get-module-options, list-demos, get-demo, get-premium-recommendations, plus setup for Claude Code). |
+| `swiper-frameworks` | Swiper framework bindings: React (`<Swiper>`/`<SwiperSlide>`, all props = API parameters, the modules prop, events as `onXxx` props, the `useSwiper`/`useSwiperSlide` hooks, slots, virtual slides, controller), Vue (`<Swiper>`/`<SwiperSlide>`, props, events, `v-slot` render props, the `useSwiper`/`useSwiperSlide` composables, modules, virtual slides, controller, thumbs), Angular (since v9 via Swiper Element `<swiper-container>`/`<swiper-slide>`, CUSTOM_ELEMENTS_SCHEMA, property binding, events, ViewChild access), Svelte/SvelteKit (since v9 via Swiper Element, `register()`, property binding with `bind:this`, events with `on:swiper*`) and SolidJS (since v9 via Swiper Element, `register()`, property binding, events). |
 
 ## Agents (1)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `swiper-expert` | Spezialist für Swiper (moderner Touch-Slider/Carousel, v11/v12) |
+| `swiper-expert` | Specialist for Swiper (modern touch slider/carousel, v11/v12). |
 
 ## Commands (1)
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/swiper-init` | Scaffold einer Swiper-Einbindung — Variante (Core/Element/React/Vue), HTML-Struktur, CSS-Imports, Modul-Registrierung (Navigation/Pagination/Autoplay/Effekte/…) und Init-Code mit den gewünschten Parametern |
+| `/swiper-init` | Scaffolds a Swiper integration — variant (Core/Element/React/Vue), HTML structure, CSS imports, module registration (Navigation/Pagination/Autoplay/effects/…) and init code with the desired parameters. |

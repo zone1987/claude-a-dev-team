@@ -1,20 +1,20 @@
 # shadcn-vue
 
-Die **ultimative, vollumfängliche Bibliothek für [shadcn-vue](https://www.shadcn-vue.com)** — den **Vue-Port von shadcn/ui** auf Basis von **[reka-ui](https://reka-ui.com)** (Tailwind v4, Vue-3-SFC). Wie das Original ist shadcn-vue kein npm-Paket: Komponenten werden per CLI in dein Projekt **kopiert** und gehören dir.
+The **ultimate, comprehensive library for [shadcn-vue](https://www.shadcn-vue.com)** — the **Vue port of shadcn/ui** built on **[reka-ui](https://reka-ui.com)** (Tailwind v4, Vue 3 SFC). Like the original, shadcn-vue is not an npm package: the CLI **copies** components into your project and they are yours.
 
-Diese Bibliothek enthält **alles**, destilliert aus `unovue/shadcn-vue` (`apps/v4`, Doku + Registry) und gegen den echten Quellcode verifiziert:
+This library contains **everything**, distilled from `unovue/shadcn-vue` (`apps/v4`, docs + registry) and verified against the real source code:
 
-- **Alle 64 Komponenten** — je ein Skill mit **komplettem, ungekürztem Vue-Quellcode** (alle `.vue` + `index.ts`), Props/Slots/Emits, **allen Demos** und der verlinkten **reka-ui-API**. Inkl. Vue-spezifischer Komponenten: number-field, pin-input, range-calendar, stepper, tags-input.
-- **Alle Blocks** (16× Sidebar, 5× Login, 5× Signup, 5× OTP, Dashboard, Products) — kompletter Code aller Dateien.
-- **Alle Charts** (Area/Bar/Line/Pie/Tooltip) — kompletter Vue-Code + Chart-System.
-- **Setup**: Installation für Vite, Nuxt, Astro, Laravel + manuell; `components.json` (jedes Feld inkl. `framework`/`composables`), CLI, Tailwind v4.
-- **Theming**: alle CSS-Variablen-Tokens, oklch, Dark-Mode (Vite/Nuxt/VitePress/Astro), Typografie.
-- **Forms** (vee-validate + Zod **und** TanStack Form), **eigene Registry bauen** (registry.json + registry-item.json), **MCP-Server**, Changelog, Legacy, Figma.
-- **Mitgelieferter shadcn-vue-MCP-Server** (`.mcp.json`).
+- **All 64 components** — with **complete, unabridged Vue source code** (all `.vue` files + `index.ts`), props/slots/emits, **all demos** and the linked **reka-ui API**. Including the Vue-specific components: number-field, pin-input, range-calendar, stepper, tags-input.
+- **All blocks** (16× sidebar, 5× login, 5× signup, 5× OTP, dashboard, products) — the complete code of every file.
+- **All charts** (area/bar/line/pie/tooltip) — complete Vue code plus the chart system.
+- **Setup**: installation for Vite, Nuxt, Astro, Laravel and manual; `components.json` (every field including `framework`/`composables`), CLI, Tailwind v4.
+- **Theming**: all CSS variable tokens, oklch, dark mode (Vite/Nuxt/VitePress/Astro), typography.
+- **Forms** (vee-validate + Zod **and** TanStack Form), **building your own registry** (registry.json + registry-item.json), the **MCP server**, changelog, legacy, Figma.
+- **Bundled shadcn-vue MCP server** (`.mcp.json`).
 
-Schlanke `SKILL.md`, Tiefe in strukturierten `references/`-Dateien (installation/source/api/examples). **93 Skills.**
+Each skill keeps a lean `SKILL.md` and loads its depth from flat SCREAMING-CASE.md reference files next to it (installation/source/api/examples). **8 skills.**
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**.
+Part of the marketplace **[claude-a-dev-team](../../README.md)**.
 
 ## Installation
 
@@ -23,89 +23,71 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**.
 /plugin install shadcn-vue@claude-a-dev-team
 ```
 
-## MCP-Server (mitgeliefert)
+## MCP server (included)
 
-Das Plugin bringt den offiziellen **shadcn-vue-MCP-Server** über `.mcp.json` mit (`npx shadcn-vue@latest mcp`). Claude kann damit Registries durchsuchen und Komponenten per natürlicher Sprache installieren. Details + Client-Setup im Skill `shadcn-vue-mcp`.
+The plugin ships the official **shadcn-vue MCP server** via `.mcp.json` (`npx shadcn-vue@latest mcp`). Claude can use it to search registries and install components through natural language. Details and client setup are in the skill `shadcn-vue-setup`.
 
 ```jsonc
 // plugins/shadcn-vue/.mcp.json
 { "mcpServers": { "shadcn-vue": { "command": "npx", "args": ["shadcn-vue@latest", "mcp"] } } }
 ```
 
-## Nutzung
+## Usage
 
-- **Skills** laden automatisch (z.B. „shadcn-vue button", „shadcn vue add dialog", „shadcn vue sidebar block", „shadcn vue chart", „reka-ui", „components.json vue").
-- **Agents:** `shadcn-vue-expert` (allgemein), `shadcn-vue-setup`, `shadcn-vue-theming-expert`, `shadcn-vue-blocks-expert`, `shadcn-vue-charts-expert`, `shadcn-vue-registry-builder`.
+- **Skills** load automatically (for example "shadcn-vue button", "shadcn vue add dialog", "shadcn vue sidebar block", "shadcn vue chart", "reka-ui", "components.json vue").
+- **Agents:** `shadcn-vue-expert` (general), `shadcn-vue-setup`, `shadcn-vue-theming-expert`, `shadcn-vue-blocks-expert`, `shadcn-vue-charts-expert`, `shadcn-vue-registry-builder`.
 - **Commands:** `/shadcn-vue-init`, `/shadcn-vue-add`, `/shadcn-vue-block`, `/shadcn-vue-chart`, `/shadcn-vue-theme`, `/shadcn-vue-registry`.
-- **Hook** erinnert in `*.vue`/`components.json`/CSS an `cn()`, Theme-Tokens statt fester Farben, `reka-ui` statt `radix-vue` und Credential-Hygiene.
-- **Utils** (`utils/`): `components.json`, `lib-utils.ts` (cn), `globals.css` (Theme-Tokens), `registry.json` + `registry-item.example.json`.
+- **Hook** reminds you, in `*.vue`/`components.json`/CSS files, about `cn()`, theme tokens instead of hard-coded colors, `reka-ui` instead of `radix-vue`, and credential hygiene.
+- **Utils** (`utils/`): `components.json`, `lib-utils.ts` (cn), `globals.css` (theme tokens), `registry.json` + `registry-item.example.json`.
 
 ## Agents
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shadcn-vue-expert` | Allrounder: alle Komponenten (Code/Props/Demos), Usage, reka-ui-Basis, Verweis auf Spezialisten. |
-| `shadcn-vue-setup` | Installation je Framework, `components.json`, CLI, Tailwind-v4, cn-Util, Dark-Mode. |
-| `shadcn-vue-theming-expert` | Theme-Tokens (Light/Dark), oklch, Tailwind-v4 `@theme`, Radius, `--chart-*`, Typografie. |
-| `shadcn-vue-blocks-expert` | Blocks: Sidebar/Login/Signup/OTP/Dashboard/Products, kompletter Code. |
-| `shadcn-vue-charts-expert` | Charts: ChartContainer/Config, alle Varianten, `--chart-*`-Theming. |
-| `shadcn-vue-registry-builder` | Eigene Registry: registry.json + registry-item.json, `shadcn-vue build`, Hosting, MCP. |
+| `shadcn-vue-expert` | All-rounder: every component (code/props/demos), usage, the reka-ui foundation, pointers to the specialists. |
+| `shadcn-vue-setup` | Installation per framework, `components.json`, CLI, Tailwind v4, the cn util, dark mode. |
+| `shadcn-vue-theming-expert` | Theme tokens (light/dark), oklch, Tailwind v4 `@theme`, radius, `--chart-*`, typography. |
+| `shadcn-vue-blocks-expert` | Blocks: sidebar/login/signup/OTP/dashboard/products, complete code. |
+| `shadcn-vue-charts-expert` | Charts: ChartContainer/Config, all variants, `--chart-*` theming. |
+| `shadcn-vue-registry-builder` | Your own registry: registry.json + registry-item.json, `shadcn-vue build`, hosting, MCP. |
 
 ## Commands
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/shadcn-vue-init` | Projekt-Setup: `init`, components.json, cn-Util, globals.css-Tokens, optional Dark-Mode. |
-| `/shadcn-vue-add` | Komponente(n) hinzufügen (`add`) + lauffähiges SFC-Usage-Beispiel. |
-| `/shadcn-vue-block` | Block einfügen (`add sidebar-07` …) + Anpassung. |
-| `/shadcn-vue-chart` | Chart erstellen: Typ/Variante, Daten + `--chart-*`-Farben. |
-| `/shadcn-vue-theme` | Theme erzeugen/ändern: alle Tokens (Light+Dark), Tailwind-v4-Mapping. |
-| `/shadcn-vue-registry` | Eigene Registry scaffolden: registry.json + registry-item.json, build, Consumer-Setup, MCP. |
+| `/shadcn-vue-init` | Project setup: `init`, components.json, the cn util, globals.css tokens, optionally dark mode. |
+| `/shadcn-vue-add` | Add one or more components (`add`) plus a runnable SFC usage example. |
+| `/shadcn-vue-block` | Insert a block (`add sidebar-07` …) plus adaptation. |
+| `/shadcn-vue-chart` | Create a chart: type/variant, data and `--chart-*` colors. |
+| `/shadcn-vue-theme` | Create or change a theme: all tokens (light + dark), Tailwind v4 mapping. |
+| `/shadcn-vue-registry` | Scaffold your own registry: registry.json + registry-item.json, build, consumer setup, MCP. |
 
-## Hooks & Utils
+## Hooks & utils
 
-| Artefakt | Beschreibung |
+| Artifact | Description |
 |---|---|
-| `shadcn-vue-reminder.py` (PostToolUse) | Warnt bei Template-String-Klassen statt `cn()`, festen Farb-Utilities, veraltetem `radix-vue`; prüft components.json & `.dark`-Tokens. |
+| `shadcn-vue-reminder.py` (PostToolUse) | Warns about template-string classes instead of `cn()`, hard-coded color utilities and the outdated `radix-vue`; checks components.json and the `.dark` tokens. |
 | `utils/` | `components.json`, `lib-utils.ts`, `globals.css`, `registry.json`, `registry-item.example.json`. |
 
-## Skills
+## Skills (8)
 
-### Setup, CLI & Konfiguration
+The 64 components, all blocks and all charts are grouped into eight domain skills by what they do. Each skill's `SKILL.md` maps to the reference files next to it, one per component (source, API, installation, examples).
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `shadcn-vue-overview` | Was ist shadcn-vue, reka-ui-Basis, Abgrenzung zu shadcn/ui (React). |
-| `shadcn-vue-installation` | Installation für Vite/Nuxt/Astro/Laravel + manuell (je `references/<fw>.md`). |
-| `shadcn-vue-components-json` | `components.json` — jedes Feld (style, typescript, tailwind.*, aliases.* inkl. composables, framework, registries). |
-| `shadcn-vue-cli` | CLI: `init`, `add`, `build`, `registry` — alle Flags. |
-| `shadcn-vue-tailwind-v4` | Tailwind-v4-Setup: `@theme`, oklch. |
-| `shadcn-vue-javascript` · `shadcn-vue-figma` · `shadcn-vue-changelog` · `shadcn-vue-legacy` | JS-statt-TS, Figma, Feature-Historie, Legacy-Doku. |
+| `shadcn-vue-setup` | Installation and configuration: what shadcn-vue is, the reka-ui foundation and the distinction from shadcn/ui (React); installation for Vite/Nuxt/Astro/Laravel and manual; `components.json` — every field (style, typescript, tailwind.*, aliases.* including composables, framework, registries); the CLI (`init`, `add`, `build`, `registry` — all flags); the Tailwind v4 setup (`@theme`, oklch); JavaScript instead of TypeScript; Figma; the feature history/changelog; the legacy documentation; and the shadcn-vue MCP server (setup per client, `registries`, skills.sh, debugging). |
+| `shadcn-vue-theming` | Theming: the theme token system (semantic CSS variables) and a complete theme, dark mode per framework (Vite/Nuxt/VitePress/Astro), and the typography classes (h1–h4, p, blockquote, list, table, code, lead, large, small, muted). |
+| `shadcn-vue-forms` | Form components with Vue code, props/slots/emits and demos: form, field, input, input-group, input-otp, label, native-select, select, checkbox, radio-group, switch, toggle, toggle-group, slider, textarea, combobox, calendar, range-calendar, date-picker, number-field, pin-input, stepper, tags-input — plus the two validation integrations shadcn-vue documents: vee-validate with Zod, and TanStack Form. |
+| `shadcn-vue-layout` | Layout components for structuring a page: card, sidebar, sheet, drawer, tabs, accordion, collapsible, resizable, scroll-area, separator, skeleton, spinner, aspect-ratio, empty, item. |
+| `shadcn-vue-navigation` | Navigation components and command palettes: navigation-menu, menubar, dropdown-menu, context-menu, command, breadcrumb, pagination, kbd. |
+| `shadcn-vue-feedback` | Components that report state or ask for confirmation: dialog, alert-dialog, alert, popover, hover-card, tooltip, toast, sonner, progress, badge, button, button-group. Dialog and AlertDialog differ in intent: AlertDialog interrupts and requires an answer. |
+| `shadcn-vue-data` | Data display: table (markup), data-table (TanStack Table for sorting, filtering and pagination), carousel, and the chart system — ChartContainer/Config/Tooltip/Legend plus all example charts (area, bar, line, pie, tooltip variants) with complete Vue source code and `--chart-*` theming. |
+| `shadcn-vue-blocks` | Blocks and your own registry: all blocks with complete code (16 sidebar, 5 login, 5 signup, 5 OTP, dashboard and products), plus building and hosting your own registry — registry.json and registry-item.json with their full schemas, all `registry:*` types, `shadcn-vue build`, examples and FAQ. |
 
-### Theming & Dark-Mode
-
-| Skill | Beschreibung |
-|---|---|
-| `shadcn-vue-theming` | Theme-Token-System (semantische CSS-Variablen), komplettes Theme. |
-| `shadcn-vue-dark-mode` | Dark-Mode je Framework (Vite/Nuxt/VitePress/Astro). |
-| `shadcn-vue-typography` | Text-Stil-Klassen (h1–h4, p, blockquote, list, table, code, lead, large, small, muted). |
-
-### Komponenten (64 — je Skill: Vue-Code + Props/Slots/Emits + Demos)
+### The 64 components covered
 
 accordion · alert · alert-dialog · aspect-ratio · avatar · badge · breadcrumb · button · button-group · calendar · card · carousel · chart · checkbox · collapsible · combobox · command · context-menu · data-table · date-picker · dialog · drawer · dropdown-menu · empty · field · form · hover-card · input · input-group · input-otp · item · kbd · label · menubar · native-select · navigation-menu · number-field · pagination · pin-input · popover · progress · radio-group · range-calendar · resizable · scroll-area · select · separator · sheet · sidebar · skeleton · slider · sonner · spinner · stepper · switch · table · tabs · tags-input · textarea · toast · toggle · toggle-group · tooltip · typography
 
-(jeweils als Skill `shadcn-vue-<komponente>`)
+## License & author
 
-### Blocks, Charts, Forms, Registry & MCP
-
-| Skill | Beschreibung |
-|---|---|
-| `shadcn-vue-blocks-overview` · `-sidebar` · `-login` · `-signup` · `-otp` · `-dashboard` | Alle Blocks mit komplettem Code (Sidebar 16, Login 5, Signup 5, OTP 5, Dashboard + Products). |
-| `shadcn-vue-charts-overview` · `-area` · `-bar` · `-line` · `-pie` · `-tooltip` | Chart-System + alle Beispiel-Charts mit komplettem Vue-Code. |
-| `shadcn-vue-forms` | Formulare mit vee-validate + Zod und TanStack Form (Field/Form). |
-| `shadcn-vue-registry` · `-registry-json` · `-registry-item-json` · `-registry-examples` | Eigene Registry bauen + vollständige Schemas + Beispiele/FAQ. |
-| `shadcn-vue-mcp` | shadcn-vue-MCP-Server: Setup je Client, `registries`, skills.sh, Debugging. |
-
-## Lizenz & Autor
-
-proprietary — Andreas Gerhardt, A-Dev-Team. Quelle: offizielle shadcn-vue-Doku & `unovue/shadcn-vue` (apps/v4, reka-ui).
+proprietary — Andreas Gerhardt, A-Dev-Team. Source: the official shadcn-vue documentation and `unovue/shadcn-vue` (apps/v4, reka-ui).

@@ -1,21 +1,22 @@
 # shopware-cms
 
-> Eigene CMS-Bausteine für die Erlebniswelten (Shopping Experiences).
+> Custom CMS building blocks for the Shopping Experiences.
 
-`shopware-cms` ist auf die **Erlebniswelten** (Shopping Experiences / CMS) spezialisiert und zeigt, wie man die
-drei Ebenen eines eigenen CMS-Bausteins konsistent umsetzt.
+`shopware-cms` specialises in the **Shopping Experiences** (CMS) and shows how to implement the three levels of a
+custom CMS building block consistently.
 
-Enthalten: eigene **CMS-Blöcke** (Layout-Container mit benannten Slots — Admin-Registrierung via `cmsService` +
-Block-/Preview-Komponente + Storefront-Template), eigene **CMS-Elemente** (Inhaltsbausteine — Admin-Komponente,
-Config-Komponente, Preview, **PHP-DataResolver** mit `collect()`/`enrich()`, Storefront-Template) sowie die
-**Slot-/Element-Konfiguration** (`FieldConfig`, `source: static|mapped`).
+Included: custom **CMS blocks** (layout containers with named slots — administration registration via
+`cmsService` + block/preview component + storefront template), custom **CMS elements** (content building blocks —
+administration component, config component, preview, **PHP DataResolver** with `collect()`/`enrich()`, storefront
+template) as well as the **slot/element configuration** (`FieldConfig`, `source: static|mapped`).
 
-Spezialist **`shopware-cms`**; Scaffolder **`/sw-cms-element`** und **`/sw-cms-block`** erzeugen alle Ebenen mit
-konsistenten Namen. **Wann nutzen:** für individuelle Inhaltsbausteine im Page-Builder. Das headless-Rendering der
-gleichen Inhalte behandelt `shopware-frontends` (`@shopware/cms-base`); die Bedienung der Erlebniswelten aus
-Betreibersicht `shopware-merchant`.
+Specialist **`shopware-cms`**; the scaffolders **`/sw-cms-element`** and **`/sw-cms-block`** generate all levels
+with consistent names. **When to use:** for individual content building blocks in the page builder. Headless
+rendering of the same content is handled by `shopware-frontends` (`@shopware/cms-base`); operating the Shopping
+Experiences from the merchant's perspective by `shopware-merchant`.
 
-Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist aus den offiziellen Quellen destilliert und eingebettet; Skills laden ihre Tiefe progressiv aus `references/`.
+Part of the **[claude-a-dev-team](../../README.md)** marketplace. The knowledge is distilled from the official
+sources and embedded; depth sits in flat reference files beside each SKILL.md, loaded on demand.
 
 ## Installation
 
@@ -24,27 +25,22 @@ Teil des Marketplace **[claude-a-dev-team](../../README.md)**. Das Wissen ist au
 /plugin install shopware-cms@claude-a-dev-team
 ```
 
-## Skills (7)
+## Skills (2)
 
-| Skill | Beschreibung |
+| Skill | Description |
 |---|---|
-| `sw-cms-block` | Einen eigenen CMS-Block in Shopware 6 (Erlebniswelten/Shopping Experiences) erstellen: Block-Registrierung im Admin (Shopware.Service('cmsService').registerCmsBlock), Slots, Storefront-Template |
-| `sw-cms-block-admin` | Die Admin-Seite eines Shopware-6 CMS-Blocks: Block-Komponente (sw-cms-block-*) + Preview-Komponente (sw-cms-preview-*), Slot-Markup, Registrierung |
-| `sw-cms-data-resolver` | Ein CmsElementResolver (DataResolver) in Shopware 6: AbstractCmsElementResolver, collect() (Criteria-Collection) + enrich() (Daten ans Element), Slot-Config auswerten |
-| `sw-cms-element` | Ein eigenes CMS-Element in Shopware 6 erstellen (Inhaltsbaustein in Block-Slots): registerCmsElement (Admin) + DataResolver (PHP) + Storefront-Template |
-| `sw-cms-element-admin` | Die Admin-Komponenten eines Shopware-6 CMS-Elements: Element-Komponente (sw-cms-el-*), Config-Komponente (sw-cms-el-config-*), Preview (sw-cms-el-preview-*), cms-element/cms-config-Mixin, defaultConfig |
-| `sw-cms-element-storefront` | Das Storefront-Template eines Shopware-6 CMS-Elements: cms-element-<name>.html.twig, Zugriff auf element.data/ element.config, Block-/Slot-Rendering |
-| `sw-cms-slot-config` | Slot-/Element-Konfiguration in Shopware 6 CMS: FieldConfig/FieldConfigCollection, source 'static' vs |
+| `sw-cms-block` | Shopware CMS blocks: registering a block, its administration component, slot configuration. Use when building a Shopware CMS block or Shopping Experience block |
+| `sw-cms-element` | Shopware CMS elements: registering an element, its administration component, the storefront template, and the data resolver that loads its data. Use when building a Shopware CMS element |
 
 ## Agents (1)
 
-| Agent | Beschreibung |
+| Agent | Description |
 |---|---|
-| `shopware-cms` | Spezialist für das Shopware-6.7 CMS (Erlebniswelten/Shopping Experiences): eigene CMS-Blöcke und CMS-Elemente (Admin-Komponenten + DataResolver + Storefront-Template), Slot-/Element-Konfiguration |
+| `shopware-cms` | Specialist for the Shopware 6.7 CMS (Shopping Experiences): custom CMS blocks and CMS elements (administration components + DataResolver + storefront template), slot/element configuration |
 
 ## Commands (2)
 
-| Command | Beschreibung |
+| Command | Description |
 |---|---|
-| `/sw-cms-block` | Scaffold eines Shopware-6 CMS-Blocks — Admin-Block-/Preview-Komponente + registerCmsBlock (Slots) und Storefront-Block-Template |
-| `/sw-cms-element` | Scaffold eines kompletten Shopware-6 CMS-Elements — Admin (component/config/preview + registerCmsElement), PHP-DataResolver und Storefront-Template |
+| `/sw-cms-block` | Scaffolds a Shopware 6 CMS block — administration block/preview component + registerCmsBlock (slots) and storefront block template |
+| `/sw-cms-element` | Scaffolds a complete Shopware 6 CMS element — administration (component/config/preview + registerCmsElement), PHP DataResolver and storefront template |

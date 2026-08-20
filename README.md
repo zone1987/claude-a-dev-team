@@ -153,10 +153,20 @@ Measured with `python3 scripts/measure-skill-budget.py .`:
 | `flatpickr` | 2 | 557 | 170 | 7 % |
 | `shopware-migration` | 2 | 550 | 166 | 7 % |
 | `panther` | 2 | 525 | 154 | 7 % |
-| **total** | **117** | **33 575** | **178** | **420 %** |
 
-420 % exceeds the budget with *every* plugin enabled at once, which is why activation is per
-project: any three-to-five plugin selection fits comfortably. Diagnose a session with:
+Read the last column as a budget share, not as something to add up: a working set of three to
+five plugins is what a session actually enables, and any such set lands well inside the limit.
+
+| Working set | Share |
+|---|--:|
+| `shopware-core` + `shopware-data` + `shopware-storefront` | 43 % |
+| `shopware-core` + `shopware-data` + `shopware-admin` + `shopware-framework` | 54 % |
+| `octo-api` + `shopware-core` + `shopware-data` | 55 % |
+| `shadcn` + `shadcn-vue` | 57 % |
+
+Enabling all 26 at once is not a supported configuration, and no plugin is written for it.
+
+Diagnose a session with:
 
 | Command | Shows |
 |---|---|
