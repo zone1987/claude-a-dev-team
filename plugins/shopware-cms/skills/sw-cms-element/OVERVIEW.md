@@ -1,10 +1,10 @@
-# Shopware 6 — CMS-Element
+# Shopware 6 — CMS element
 
-Ein Element ist ein konkreter Inhaltsbaustein (Bild, Text, eigener Baustein). Drei Teile:
+An element is a concrete content building block (image, text, your own block). Three parts:
 
-1. **Admin-Registrierung** (`registerCmsElement`) + Komponenten (`sw-cms-element-admin`).
-2. **DataResolver (PHP)** — lädt zur Laufzeit Daten für das Element (`sw-cms-data-resolver`).
-3. **Storefront-Template** — rendert das Element (`sw-cms-element-storefront`).
+1. **Admin registration** (`registerCmsElement`) + components (`sw-cms-element-admin`).
+2. **DataResolver (PHP)** — loads the element's data at runtime (`sw-cms-data-resolver`).
+3. **Storefront template** — renders the element (`sw-cms-element-storefront`).
 
 ```js
 Shopware.Service('cmsService').registerCmsElement({
@@ -17,6 +17,6 @@ Shopware.Service('cmsService').registerCmsElement({
 });
 ```
 
-`defaultConfig`-Felder werden im Config-Modal editiert (`sw-cms-slot-config`) und vom DataResolver ausgewertet.
+`defaultConfig` fields are edited in the config modal (`sw-cms-slot-config`) and evaluated by the DataResolver.
 
-→ CMS-Architektur (Block/Element/Resolver): [CMS.md](CMS.md)
+→ CMS architecture (block/element/resolver): [CMS.md](CMS.md)

@@ -1,7 +1,7 @@
-# Shopware 6 — CMS-DataResolver
+# Shopware 6 — CMS DataResolver
 
-Lädt serverseitig die Daten eines CMS-Elements. Erweitert `AbstractCmsElementResolver` mit `collect()` (welche Daten
-nachladen) und `enrich()` (geladene Daten ans Element hängen).
+Loads a CMS element's data server-side. Extends `AbstractCmsElementResolver` with `collect()` (which data to fetch)
+and `enrich()` (attach the fetched data to the element).
 
 ```php
 class FfTeaserResolver extends AbstractCmsElementResolver
@@ -25,6 +25,6 @@ class FfTeaserResolver extends AbstractCmsElementResolver
 }
 ```
 
-Registrierung via `shopware.cms.data_resolver`-Tag. `getType()` = Element-Name. `collect()` bündelt Criteria
-(performant, gebündelte Queries), `enrich()` setzt `$slot->setData(...)` → im Storefront als `element.data`.
-Slot-Konfiguration: `sw-cms-slot-config`.
+Registered via the `shopware.cms.data_resolver` tag. `getType()` = the element name. `collect()` bundles criteria
+(efficient, batched queries), `enrich()` calls `$slot->setData(...)` → available in the storefront as `element.data`.
+Slot configuration: `sw-cms-slot-config`.

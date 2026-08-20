@@ -1,6 +1,6 @@
 ---
 name: sw-cms-element
-description: Scaffold eines kompletten Shopware-6 CMS-Elements — Admin (component/config/preview + registerCmsElement), PHP-DataResolver und Storefront-Template.
+description: Scaffold a complete Shopware 6 CMS element — admin (component/config/preview + registerCmsElement), the PHP DataResolver and the storefront template.
 argument-hint: <element-name> [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,16 +8,16 @@ model: sonnet
 
 # /sw-cms-element
 
-Erzeuge ein vollständiges CMS-Element über alle drei Ebenen. Skills: `sw-cms-element`, `sw-cms-element-admin`,
-`sw-cms-data-resolver`, `sw-cms-element-storefront`, `sw-cms-slot-config`.
+Create a complete CMS element across all three layers. Skills: `sw-cms-element`,
+`sw-cms-block`.
 
-## Ablauf
-1. Element-Name (kebab, Owner-Präfix z.B. `ff-teaser`) + Ziel-Plugin + benötigte Config-Felder.
-2. Admin (`.../module/sw-cms/elements/<name>/`): `index.js` (`registerCmsElement` + `Component.register` für
-   component/configComponent/previewComponent), `.html.twig`-Templates, `defaultConfig`.
-3. PHP-Resolver `src/Core/Content/Cms/.../<Name>CmsElementResolver.php` (`getType`, `collect`, `enrich`) +
-   `shopware.cms.data_resolver`-Tag in services.xml.
-4. Storefront-Template `views/storefront/element/cms-element-<name>.html.twig`.
-5. In main.js importieren. Hinweis: Admin-Build + Lint.
+## Steps
+1. Element name (kebab-case, owner prefix e.g. `ff-teaser`) + target plugin + the config fields you need.
+2. Admin (`.../module/sw-cms/elements/<name>/`): `index.js` (`registerCmsElement` + `Component.register` for
+   component/configComponent/previewComponent), the `.html.twig` templates, `defaultConfig`.
+3. PHP resolver `src/Core/Content/Cms/.../<Name>CmsElementResolver.php` (`getType`, `collect`, `enrich`) +
+   the `shopware.cms.data_resolver` tag in services.xml.
+4. Storefront template `views/storefront/element/cms-element-<name>.html.twig`.
+5. Import it in main.js. Note: admin build + lint.
 
-Namen über alle Ebenen identisch halten. Bestehende Elemente nicht überschreiben.
+Keep the name identical across all layers. Do not overwrite existing elements.

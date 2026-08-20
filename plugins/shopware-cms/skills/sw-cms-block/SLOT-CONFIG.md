@@ -1,15 +1,15 @@
-# Shopware 6 — CMS-Slot-/Element-Config
+# Shopware 6 — CMS slot and element config
 
-Jedes Element hat eine Konfiguration (`defaultConfig` im Admin), zur Laufzeit als `FieldConfigCollection` am Slot.
+Every element has a configuration (`defaultConfig` in the admin), available at runtime as a `FieldConfigCollection` on the slot.
 
 ```php
 $config = $slot->getFieldConfig()->get('product');
-$config->getValue();        // roher Wert
-$config->getStringValue();  // typisiert
-$config->isStatic();        // source 'static' (fester Wert) vs. 'mapped' (aus Mapping-Entity)
+$config->getValue();        // raw value
+$config->getStringValue();  // typed
+$config->isStatic();        // source 'static' (fixed value) vs. 'mapped' (from a mapping entity)
 ```
 
-`defaultConfig`-Feld: `{ source: 'static'|'mapped', value: ... }`. **static** = fest gewählter Wert (z.B. konkretes
-Produkt); **mapped** = aus dem Kontext gemappt (z.B. `product.name` auf einer Produktseite). Im Admin via
-`cms-element`-Mixin an `element.config.<feld>.value` gebunden; im Resolver (`sw-cms-data-resolver`) auswerten,
-im Template als `element.config` (`sw-cms-element-storefront`).
+`defaultConfig` field: `{ source: 'static'|'mapped', value: ... }`. **static** = a fixed chosen value (e.g. a specific
+product); **mapped** = mapped from the context (e.g. `product.name` on a product page). In the admin it is bound to
+`element.config.<field>.value` via the `cms-element` mixin; evaluate it in the resolver (`sw-cms-data-resolver`),
+and read it in the template as `element.config` (`sw-cms-element-storefront`).

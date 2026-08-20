@@ -1,6 +1,6 @@
-# Shopware 6 — CMS-Element (Storefront)
+# Shopware 6 — CMS element (storefront)
 
-Das Element wird im Storefront über ein Twig-Template gerendert, Pfad
+The element is rendered in the storefront through a Twig template, path
 `src/Resources/views/storefront/element/cms-element-ff-teaser.html.twig`.
 
 ```twig
@@ -14,5 +14,5 @@ Das Element wird im Storefront über ein Twig-Template gerendert, Pfad
 {% endblock %}
 ```
 
-`element.data` = Ergebnis des DataResolvers (`sw-cms-data-resolver`), `element.config` = Konfiguration. Template wird
-über den Element-Namen automatisch gefunden. Styling über Storefront-SCSS (`shopware-storefront`).
+`element.data` = the DataResolver's result (`sw-cms-data-resolver`), `element.config` = the configuration. The template
+is found automatically by the element name. Styling via storefront SCSS (`shopware-storefront`).

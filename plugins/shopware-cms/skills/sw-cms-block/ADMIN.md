@@ -1,7 +1,7 @@
-# Shopware 6 — CMS-Block (Admin)
+# Shopware 6 — CMS block (admin)
 
-Jeder Block braucht zwei Admin-Komponenten: die **Block-Komponente** (rendert die Slots im Editor) und die
-**Preview-Komponente** (Vorschaubild in der Block-Auswahl).
+Every block needs two admin components: the **block component** (renders the slots in the editor) and the
+**preview component** (the preview image in the block picker).
 
 ```js
 Shopware.Component.register('sw-cms-block-ff-image-text', { template });
@@ -17,5 +17,5 @@ Shopware.Component.register('sw-cms-preview-ff-image-text', { template: previewT
 {% endblock %}
 ```
 
-Die `<slot name="...">` entsprechen den `slots` aus `registerCmsBlock` (`sw-cms-block`). Verzeichnis:
-`.../module/sw-cms/blocks/<category>/ff-image-text/`. Elemente, die in den Slots erscheinen: `sw-cms-element-admin`.
+The `<slot name="...">` entries correspond to the `slots` from `registerCmsBlock` (`sw-cms-block`). Directory:
+`.../module/sw-cms/blocks/<category>/ff-image-text/`. Elements that appear in the slots: `sw-cms-element-admin`.
