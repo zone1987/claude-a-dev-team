@@ -4,13 +4,13 @@
 
 - [1. Click methods](#1-click-methods)
 - [2. Form interactions](#2-form-interactions)
-- [3. Form-Objekt — Vollstandige Interaktions-API](#3-form-objekt-vollstandige-interaktions-api)
-- [4. FormField-Klassen — Methoden-Tabellen](#4-formfield-klassen-methoden-tabellen)
+- [3. Form object — complete interactions API](#3-form-object--complete-interactions-api)
+- [4. FormField classes — method tables](#4-formfield-classes--method-tables)
 - [5. Mouse-API](#5-mouse-api)
 - [6. Drag & Drop](#6-drag-drop)
 - [7. Keyboard-API](#7-keyboard-api)
-- [8. Element-Methoden (WebDriverElement)](#8-element-methoden-webdriverelement)
-- [9. File-Upload (vollstandig)](#9-file-upload-vollstandig)
+- [8. Element methods (WebDriverElement)](#8-element-methods-webdriverelement)
+- [9. File upload (complete)](#9-file-upload-complete)
 - [10. Complete interaction example](#10-complete-interaction-example)
 
 ## 1. Click methods
@@ -40,8 +40,8 @@ public function clickLink(string $linkText): Crawler
 Clicks a link by its text.
 
 ```php
-$client->clickLink('Weiter');
-$client->clickLink('Abmelden');
+$client->clickLink('Next');
+$client->clickLink('Log out');
 ```
 
 ---
@@ -53,21 +53,21 @@ $client->clickLink('Abmelden');
 ```php
 public function submitForm(
     string $buttonText,          // text, id or name of the submit button
-    array  $fieldValues  = [],   // Feldbelegung: ['feldname' => 'wert']
-    string $method       = null, // HTTP-Methode uberschreiben
+    array  $fieldValues  = [],   // field values: ['fieldname' => 'value']
+    string $method       = null, // override the HTTP method
     array  $serverParameters = []
 ): Crawler
 ```
 
-Kurzform fur schnelle Form-Interaktionen:
+Shorthand for quick form interactions:
 
 ```php
-$client->submitForm('Anmelden', [
+$client->submitForm('Sign in', [
     'login[email]'    => 'user@example.com',
-    'login[password]' => 'geheim123',
+    'login[password]' => 'secret123',
 ]);
 
-$client->submitForm('Suchen', ['q' => 'symfony panther'], 'GET');
+$client->submitForm('Search', ['q' => 'symfony panther'], 'GET');
 ```
 
 ### client->submit
@@ -83,28 +83,28 @@ public function submit(
 Submits a `Form` object (from `$crawler->form()`).
 
 ```php
-$form = $crawler->selectButton('Bestellen')->form();
+$form = $crawler->selectButton('Order')->form();
 $form['quantity']->setValue('3');
-$form['address']->setValue('Musterstrasse 1');
+$form['address']->setValue('Example Street 1');
 $client->submit($form);
 ```
 
 ---
 
-## 3. Form-Objekt — Vollstandige Interaktions-API
+## 3. Form object — complete interactions API
 
 ### Setting fields via array syntax
 
 ```php
-$form = $crawler->selectButton('Speichern')->form();
+$form = $crawler->selectButton('Save')->form();
 
 // Input/Textarea
-$form['username'] = 'symfonyfan';               // Kurzschreibweise
-$form['username']->setValue('symfonyfan');      // explizit
+$form['username'] = 'symfonyfan';               // shorthand
+$form['username']->setValue('symfonyfan');      // explicit
 
 // Select
 $form['country']->select('DE');
-$form['lang']->select(['de', 'en']);            // Multi-Select
+$form['lang']->select(['de', 'en']);            // multi-select
 
 // Checkbox
 $form['newsletter']->tick();
@@ -113,11 +113,11 @@ $form['marketing']->untick();
 // Radio
 $form['gender']->select('m');
 
-// Datei-Upload
+// File upload
 $form['avatar']->upload('/absolute/path/to/photo.jpg');
 ```
 
-### setValues (Bulk-Setzen)
+### setValues (bulk assignment)
 
 ```php
 $form->setValues([
@@ -127,23 +127,23 @@ $form->setValues([
 ]);
 ```
 
-### Verschachtelte Arrays (PHP-Formulare)
+### Nested arrays (PHP forms)
 
 ```php
 // The form has: <input name="multi[]" value="a"> and <input name="multi[]" value="b">
 $form->setValues(['multi' => ['x', 'y']]);
 
-// Mit expliziten Indizes
+// With explicit indices
 $form->setValues(['grid' => [
-    0             => 'Wert A',
-    'dimensional' => 'Wert B',
+    0             => 'Value A',
+    'dimensional' => 'Value B',
 ]]);
 
-// Mehrere Checkboxen per value
+// Multiple checkboxes by value
 $form->setValues(['interests' => ['php', 'symfony']]);
 ```
 
-### Validierung deaktivieren
+### Disabling validation
 
 ```php
 // At form level (from the base class, works)
@@ -155,34 +155,34 @@ is NOT implemented and throws `LogicException`. Source: `src/DomCrawler/Field/Ch
 
 ---
 
-## 4. FormField-Klassen — Methoden-Tabellen
+## 4. FormField classes — method tables
 
 ### InputFormField
 
-Zustandig fur: `<input type="text">`, `<input type="email">`, `<input type="number">`,
+Responsible for: `<input type="text">`, `<input type="email">`, `<input type="number">`,
 `<input type="hidden">`, `<input type="password">`, `<input type="search">`, etc.
 
-| Methode                  | Signatur                       | Beschreibung                      |
+| Method                   | Signature                      | Description                       |
 |--------------------------|--------------------------------|-----------------------------------|
 | `setValue`               | `setValue(string $value): void` | Sets the field value             |
 | `getValue`               | `getValue(): string`           | Reads the current value           |
 
 ### TextareaFormField
 
-Zustandig fur: `<textarea>`
+Responsible for: `<textarea>`
 
-| Methode     | Signatur                        | Beschreibung              |
+| Method      | Signature                       | Description               |
 |-------------|---------------------------------|---------------------------|
 | `setValue`  | `setValue(string $value): void` | Sets the content           |
 | `getValue`  | `getValue(): string`            | Reads the current content  |
 
 ### ChoiceFormField
 
-Zustandig fur: `<select>`, `<input type="radio">`, `<input type="checkbox">`
+Responsible for: `<select>`, `<input type="radio">`, `<input type="checkbox">`
 
-| Methode       | Signatur                                          | Beschreibung                                    |
+| Method        | Signature                                         | Description                                     |
 |---------------|---------------------------------------------------|-------------------------------------------------|
-| `select`      | `select(string\|array $value): void`              | Wahlt Option(en)                               |
+| `select`      | `select(string\|array $value): void`              | Selects option(s)                              |
 | `tick`        | `tick(): void`                                    | Sets checkbox = checked                        |
 | `untick`      | `untick(): void`                                  | Sets checkbox = unchecked                      |
 | `getValue`    | `getValue(): string\|array`                       | Returns the selected value / selected values |
@@ -191,13 +191,13 @@ Zustandig fur: `<select>`, `<input type="radio">`, `<input type="checkbox">`
 
 ### FileFormField
 
-Zustandig fur: `<input type="file">`
+Responsible for: `<input type="file">`
 
-| Methode       | Signatur                                  | Beschreibung                                                |
+| Method        | Signature                                 | Description                                                 |
 |---------------|-------------------------------------------|-------------------------------------------------------------|
 | `upload`      | `upload(?string $path): void`             | Sets the absolute file path for the upload (inherited)      |
 | `setFilePath` | `setFilePath(string $path): void`         | Sets the file path directly via `sendKeys()` on the element |
-| `setValue`    | `setValue(?string $value): void`          | Wie `upload`, normalisiert Pfad via `realpath()`            |
+| `setValue`    | `setValue(?string $value): void`          | Like `upload`, normalizes the path via `realpath()`         |
 | `getValue`    | `getValue(): array\|string\|null`         | Returns the upload array `['name','type','tmp_name','error','size']` |
 
 Source: `src/DomCrawler/Field/FileFormField.php`
@@ -206,7 +206,7 @@ Source: `src/DomCrawler/Field/FileFormField.php`
 
 ## 5. Mouse-API
 
-`$client->getMouse()` gibt `\Symfony\Component\Panther\WebDriver\WebDriverMouse` zuruck —
+`$client->getMouse()` returns `\Symfony\Component\Panther\WebDriver\WebDriverMouse` —
 Panther's own class, which wraps `BaseWebDriverMouse` and adds CSS-selector-based helper
 methods. All `*To` methods take a CSS selector, convert it to coordinates and
 delegate to the underlying `BaseWebDriverMouse`.
@@ -219,7 +219,7 @@ Source: `src/WebDriver/WebDriverMouse.php`
 public function clickTo(string $cssSelector): self
 ```
 
-Linksklick auf Element per CSS-Selektor. Kein Offset-Parameter.
+Left-click on an element by CSS selector. No offset parameter.
 
 ```php
 $client->getMouse()->clickTo('#submit-btn');
@@ -232,7 +232,7 @@ $client->getMouse()->clickTo('.card:first-child');
 public function doubleClickTo(string $cssSelector): self
 ```
 
-Doppelklick auf Element. Kein Offset-Parameter.
+Double-click on an element. No offset parameter.
 
 ```php
 $client->getMouse()->doubleClickTo('.editable-cell');
@@ -244,7 +244,7 @@ $client->getMouse()->doubleClickTo('.editable-cell');
 public function contextClickTo(string $cssSelector): self
 ```
 
-Rechtsklick (Kontextmenu) auf Element. Kein Offset-Parameter.
+Right-click (context menu) on an element. No offset parameter.
 
 ```php
 $client->getMouse()->contextClickTo('#file-icon');
@@ -263,7 +263,7 @@ Moves the mouse over an element (triggering hover effects). `$xOffset`/`$yOffset
 $client->getMouse()->mouseMoveTo('.dropdown-trigger');
 $client->getMouse()->mouseMoveTo('.map', 150, 80); // Offset click
 $client->waitForVisibility('.dropdown-menu');
-$client->clickLink('Einstellungen');
+$client->clickLink('Settings');
 ```
 
 ### mouseDownTo / mouseUpTo
@@ -273,11 +273,11 @@ public function mouseDownTo(string $cssSelector): self
 public function mouseUpTo(string $cssSelector): self
 ```
 
-Maustaste drucken / loslassen (fur Drag & Drop). Kein Offset-Parameter.
+Press / release the mouse button (for drag & drop). No offset parameter.
 
-### click / contextClick / doubleClick / mouseDown / mouseUp / mouseMove (niedrigstufig)
+### click / contextClick / doubleClick / mouseDown / mouseUp / mouseMove (low-level)
 
-Die niedrigstufigen Methoden nehmen `WebDriverCoordinates` statt CSS-Selektor:
+The low-level methods take `WebDriverCoordinates` instead of a CSS selector:
 
 ```php
 public function click(WebDriverCoordinates $where): self
@@ -305,10 +305,10 @@ $target = $client->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector('#dr
 
 $actions->dragAndDrop($source, $target)->perform();
 
-// Mit Offset
+// With offset
 $actions->dragAndDropBy($source, 100, 50)->perform();
 
-// Manuell (press-move-release)
+// Manual (press-move-release)
 $actions
     ->clickAndHold($source)
     ->moveToElement($target)
@@ -320,7 +320,7 @@ $actions
 
 ## 7. Keyboard-API
 
-`$client->getKeyboard()` gibt ein `\Facebook\WebDriver\WebDriverKeyboard` zuruck.
+`$client->getKeyboard()` returns a `\Facebook\WebDriver\WebDriverKeyboard`.
 
 ### sendKeys
 
@@ -336,7 +336,7 @@ $client->getKeyboard()->sendKeys('symfony panther');
 $client->getKeyboard()->sendKeys(\Facebook\WebDriver\WebDriverKeys::ENTER);
 ```
 
-### WebDriverKeys-Konstanten (Auswahl)
+### WebDriverKeys constants (selection)
 
 ```php
 use Facebook\WebDriver\WebDriverKeys;
@@ -346,37 +346,37 @@ WebDriverKeys::TAB           // Tab
 WebDriverKeys::ESCAPE        // Escape
 WebDriverKeys::BACKSPACE     // Backspace
 WebDriverKeys::DELETE        // Delete
-WebDriverKeys::SPACE         // Leerzeichen
-WebDriverKeys::ARROW_UP      // Pfeil hoch
-WebDriverKeys::ARROW_DOWN    // Pfeil runter
-WebDriverKeys::ARROW_LEFT    // Pfeil links
-WebDriverKeys::ARROW_RIGHT   // Pfeil rechts
-WebDriverKeys::HOME          // Pos1
-WebDriverKeys::END           // Ende
-WebDriverKeys::PAGE_UP       // Bild hoch
-WebDriverKeys::PAGE_DOWN     // Bild runter
-WebDriverKeys::F1 ... F12    // Funktionstasten
-WebDriverKeys::CONTROL       // Strg
+WebDriverKeys::SPACE         // Space
+WebDriverKeys::ARROW_UP      // Arrow up
+WebDriverKeys::ARROW_DOWN    // Arrow down
+WebDriverKeys::ARROW_LEFT    // Arrow left
+WebDriverKeys::ARROW_RIGHT   // Arrow right
+WebDriverKeys::HOME          // Home
+WebDriverKeys::END           // End
+WebDriverKeys::PAGE_UP       // Page up
+WebDriverKeys::PAGE_DOWN     // Page down
+WebDriverKeys::F1 ... F12    // Function keys
+WebDriverKeys::CONTROL       // Ctrl
 WebDriverKeys::SHIFT         // Shift
 WebDriverKeys::ALT           // Alt
 WebDriverKeys::META          // Meta/Windows/Cmd
-WebDriverKeys::NULL_KEY      // Modifier freigeben
+WebDriverKeys::NULL_KEY      // Release modifier
 ```
 
-### Tastenkombinationen
+### Key combinations
 
 ```php
 use Facebook\WebDriver\Interactions\WebDriverActions;
 
 $actions = new WebDriverActions($client->getWebDriver());
 
-// Strg+A (Alles markieren)
+// Ctrl+A (select all)
 $actions->keyDown(null, WebDriverKeys::CONTROL)
         ->sendKeys(null, 'a')
         ->keyUp(null, WebDriverKeys::CONTROL)
         ->perform();
 
-// Direkt auf Element
+// Directly on an element
 $el = $client->findElement(WebDriverBy::cssSelector('input'));
 $actions->keyDown($el, WebDriverKeys::SHIFT)
         ->sendKeys($el, 'hello')
@@ -386,46 +386,46 @@ $actions->keyDown($el, WebDriverKeys::SHIFT)
 
 ---
 
-## 8. Element-Methoden (WebDriverElement)
+## 8. Element methods (WebDriverElement)
 
-Nach `$crawler->filter('...')->getElement(0)` verfugbar
-(Signatur: `getElement(int $position): ?WebDriverElement`):
+Available after `$crawler->filter('...')->getElement(0)`
+(signature: `getElement(int $position): ?WebDriverElement`):
 
 ```php
 $el = $crawler->filter('#my-input')->getElement(0);
 
 $el->click(): void
-$el->sendKeys(string $value): self      // Text eingeben
-$el->clear(): self                      // Inhalt loschen
+$el->sendKeys(string $value): self      // Type text
+$el->clear(): self                      // Clear the content
 $el->submit(): void                     // Submit the parent form
-$el->getText(): string                  // Sichtbarer Text
+$el->getText(): string                  // Visible text
 $el->getAttribute(string $name): ?string
 $el->isEnabled(): bool
 $el->isSelected(): bool
 $el->isDisplayed(): bool
 $el->getTagName(): string
-$el->getLocation(): WebDriverPoint      // {x, y} Position
+$el->getLocation(): WebDriverPoint      // {x, y} position
 $el->getSize(): WebDriverDimension      // {width, height}
 $el->getRect(): WebDriverRect           // {x, y, width, height}
 $el->getCSSValue(string $property): string
 $el->findElement(WebDriverBy $by): WebDriverElement
 $el->findElements(WebDriverBy $by): array
-$el->takeScreenshot(): string           // Screenshot nur dieses Elements
+$el->takeScreenshot(): string           // Screenshot of this element only
 ```
 
 ---
 
-## 9. File-Upload (vollstandig)
+## 9. File upload (complete)
 
-### Uber Crawler/Form (empfohlen)
+### Via Crawler/Form (recommended)
 
 ```php
-$form = $crawler->selectButton('Hochladen')->form();
+$form = $crawler->selectButton('Upload')->form();
 $form['profile_picture']->upload('/absolute/path/to/image.jpg');
 $client->submit($form);
 ```
 
-### Uber WebDriverElement (fur Custom-Inputs)
+### Via WebDriverElement (for custom inputs)
 
 ```php
 $fileInput = $client->findElement(
@@ -434,12 +434,12 @@ $fileInput = $client->findElement(
 $fileInput->sendKeys('/absolute/path/to/document.pdf');
 ```
 
-### Mehrere Dateien (Multi-Upload)
+### Multiple files (multi-upload)
 
 ```php
-// Upload-Feld fur mehrere Dateien (<input type="file" multiple>)
+// Upload field for multiple files (<input type="file" multiple>)
 $form['attachments[]']->upload('/path/file1.pdf');
-// Zweite Datei per WebDriver (direkt)
+// Second file via WebDriver (directly)
 $el = $crawler->filter('input[name="attachments[]"]')->getElement(0);
 $el->sendKeys('/path/file2.pdf');
 ```
@@ -461,9 +461,9 @@ class ProductTest extends PantherTestCase
         $client->request('GET', '/products/new');
 
         // Fill in the form fields
-        $form = $client->getCrawler()->selectButton('Speichern')->form();
-        $form['product[name]']->setValue('Neues Produkt');
-        $form['product[description]']->setValue("Zeile 1\nZeile 2");
+        $form = $client->getCrawler()->selectButton('Save')->form();
+        $form['product[name]']->setValue('New product');
+        $form['product[description]']->setValue("Line 1\nLine 2");
         $form['product[category]']->select('electronics');
         $form['product[active]']->tick();
         $form['product[image]']->upload('/tmp/product.jpg');
@@ -482,10 +482,10 @@ class ProductTest extends PantherTestCase
         // Or: submit the form directly
         $client->submit($form);
 
-        // Warten auf Erfolgsmeldung
-        $client->waitForElementToContain('.flash-success', 'gespeichert');
+        // Wait for the success message
+        $client->waitForElementToContain('.flash-success', 'saved');
         $this->assertSelectorWillExist('.product-detail');
-        $this->assertSelectorTextContains('h1', 'Neues Produkt');
+        $this->assertSelectorTextContains('h1', 'New product');
 
         // Screenshot for documentation
         $client->takeScreenshot('/tmp/product-saved.png');
@@ -495,7 +495,7 @@ class ProductTest extends PantherTestCase
 
 ---
 
-Quellen:
+Sources:
 - https://symfony.com/doc/current/testing/end_to_end.html
 - https://symfony.com/doc/current/components/dom_crawler.html
 - https://github.com/php-webdriver/php-webdriver

@@ -833,10 +833,10 @@ for (const wv of views) {
 | Properties | 1 (`input`) |
 | Events | 2 (`close`, `webview`) |
 
-**Fazit:** `AndroidDevice` ist die Kern-API fuer Android-Automatisierung. Sie deckt saemlichte
-UI-Gesten (Tap, Swipe, Fling, Pinch, Drag), Datei-/Shell-Operationen und WebView-Integration ab.
-Die Methode `launchBrowser()` gibt einen Standard-Playwright-`BrowserContext` zurueck und ermoeglicht
-damit die volle Page-API auf Android-Chrome.
+**Summary:** `AndroidDevice` is the core API for Android automation. It covers all
+UI gestures (tap, swipe, fling, pinch, drag), file/shell operations and WebView integration.
+The `launchBrowser()` method returns a standard Playwright `BrowserContext` and thereby
+enables the full Page API on Android Chrome.
 
 ---
 
