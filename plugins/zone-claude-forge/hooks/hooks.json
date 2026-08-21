@@ -6,10 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": [
-              "python3",
-              "${CLAUDE_PLUGIN_ROOT}/hooks/SESSION-ANCHOR.py"
-            ],
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/SESSION-ANCHOR.py\"",
             "timeout": 5
           }
         ]
@@ -20,10 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": [
-              "python3",
-              "${CLAUDE_PLUGIN_ROOT}/hooks/PROMPT-NUDGE.py"
-            ],
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/PROMPT-NUDGE.py\"",
             "timeout": 5
           }
         ]
@@ -35,10 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": [
-              "python3",
-              "${CLAUDE_PLUGIN_ROOT}/hooks/PRE-WRITE-GATE.py"
-            ],
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/PRE-WRITE-GATE.py\"",
             "timeout": 5
           }
         ]
@@ -50,10 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": [
-              "python3",
-              "${CLAUDE_PLUGIN_ROOT}/hooks/POST-WRITE-CHECK.py"
-            ],
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/POST-WRITE-CHECK.py\"",
             "timeout": 10
           }
         ]

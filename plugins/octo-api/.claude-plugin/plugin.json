@@ -19,7 +19,6 @@
     "api",
     "openapi"
   ],
-  "category": "development",
   "skills": [
     "./skills/octo-protocol",
     "./skills/octo-products",

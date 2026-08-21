@@ -11,7 +11,6 @@
     "shopware",
     "dal"
   ],
-  "category": "development",
   "skills": [
     "./skills/sw-entity",
     "./skills/sw-fields",

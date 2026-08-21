@@ -11,7 +11,6 @@
     "shopware",
     "cms"
   ],
-  "category": "development",
   "skills": [
     "./skills/sw-cms-block",
     "./skills/sw-cms-element"

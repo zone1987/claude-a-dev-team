@@ -17,7 +17,6 @@
     "components",
     "mcp"
   ],
-  "category": "development",
   "skills": [
     "./skills/shadcn-vue-blocks",
     "./skills/shadcn-vue-data",

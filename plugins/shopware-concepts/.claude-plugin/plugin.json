@@ -11,7 +11,6 @@
     "shopware",
     "concepts"
   ],
-  "category": "documentation",
   "skills": [
     "./skills/sw-concept-architecture",
     "./skills/sw-concept-domain"

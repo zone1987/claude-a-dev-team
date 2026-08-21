@@ -12,7 +12,6 @@
     "commercial",
     "b2b"
   ],
-  "category": "development",
   "skills": [
     "./skills/sw-b2b",
     "./skills/sw-features",

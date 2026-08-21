@@ -11,7 +11,6 @@
     "shopware",
     "devops"
   ],
-  "category": "development",
   "skills": [
     "./skills/sw-cli",
     "./skills/sw-hosting",

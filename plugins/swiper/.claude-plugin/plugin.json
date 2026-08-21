@@ -13,7 +13,6 @@
     "carousel",
     "javascript"
   ],
-  "category": "development",
   "skills": [
     "./skills/swiper-advanced",
     "./skills/swiper-core",

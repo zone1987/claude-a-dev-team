@@ -11,7 +11,6 @@
     "shopware",
     "admin"
   ],
-  "category": "development",
   "skills": [
     "./skills/sw-build",
     "./skills/sw-components",

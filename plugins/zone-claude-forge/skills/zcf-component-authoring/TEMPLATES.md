@@ -124,7 +124,7 @@ Reports after the fact; cannot prevent.
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
           { "type": "command",
-            "command": ["python3", "${CLAUDE_PLUGIN_ROOT}/hooks/POST-WRITE-CHECK.py"],
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/POST-WRITE-CHECK.py\"",
             "timeout": 5 }
         ]
       }

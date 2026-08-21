@@ -6,8 +6,7 @@
   },
   "metadata": {
     "description": "Development toolkit for Claude Code — themed plugins (skills, agents, commands, hooks) for multiple web platforms: Shopware 6.7 (comprehensive) and Contao 5.x, more to come.",
-    "version": "1.1.0",
-    "homepage": "https://github.com/zone1987/claude-a-dev-team"
+    "version": "1.1.0"
   },
   "plugins": [
     {

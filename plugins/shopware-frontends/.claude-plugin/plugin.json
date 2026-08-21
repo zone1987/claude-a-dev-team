@@ -12,7 +12,6 @@
     "frontends",
     "headless"
   ],
-  "category": "development",
   "skills": [
     "./skills/sw-building",
     "./skills/sw-client",

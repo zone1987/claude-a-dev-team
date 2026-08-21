@@ -15,7 +15,6 @@
     "chromium",
     "libreoffice"
   ],
-  "category": "development",
   "skills": [
     "./skills/gotenberg-convert",
     "./skills/gotenberg-operations",

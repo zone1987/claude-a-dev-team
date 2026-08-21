@@ -557,14 +557,17 @@
     },
     {
       "id": "HOOK-05",
-      "ground": "documented",
+      "ground": "technique",
       "enforcement": "blocking",
-      "rule": "A hook command that references a path placeholder uses exec form, so each path is one argument with no quoting.",
+      "rule": "A hook command is a string, with any path placeholder wrapped in double quotes: python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/x.py\". The exec form (an array) is documented but rejected at load time.",
       "source": {
         "url": "https://code.claude.com/docs/en/plugins-reference",
         "quote": "In hook commands, use exec form with args so each path is passed as one argument with no quoting.",
         "retrieved": "2026-08-21"
-      }
+      },
+      "effect": "Claude Code 2.1.238 refuses an array command with \"expected string, received array\" and then fails to load the entire hooks file, so every hook in that plugin silently stops firing. Quoting the placeholder achieves what exec form was for: a path containing a space still arrives as one argument.",
+      "measurement": "Observed on Claude Code 2.1.238 against plugins/contao and plugins/octo-api: \"Failed to load hooks from …/hooks.json\" naming the command path in the error, with the plugin's hooks inert until the form was changed.",
+      "note": "The plugins reference recommends the exec form: \"In hook commands, use exec form with args so each path is passed as one argument with no quoting.\" That is the documentation, and this build contradicts it. Where the documentation and the running build disagree, the build decides what works: a rule that produces a plugin whose hooks never fire is worse than no rule. Re-check on a later version."
     },
     {
       "id": "HOOK-06",

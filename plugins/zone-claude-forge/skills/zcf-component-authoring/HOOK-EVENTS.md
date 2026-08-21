@@ -124,16 +124,22 @@ server), `prompt` (single-turn model evaluation), `agent` (a subagent that can u
 The last two cost a model call per fire, so they do not belong on `UserPromptSubmit` or
 `PreToolUse`, which run constantly. Use `command` for anything synchronous.
 
-**Exec form whenever a path placeholder is involved:**
+**A string command, with the placeholder quoted:**
 
 ```json
 { "type": "command",
-  "command": ["python3", "${CLAUDE_PLUGIN_ROOT}/hooks/pre-write-gate.py"],
+  "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/PRE-WRITE-GATE.py\"",
   "timeout": 5 }
 ```
 
-Each path arrives as one argument with no quoting to get wrong. In shell form, the variable must be
-double-quoted. `HOOK-05`
+The plugins reference recommends the **exec form** instead, an array of `["python3", "…"]`, so that
+each path arrives as one argument with no quoting to get wrong. **Claude Code 2.1.238 rejects it**:
+it reports `expected string, received array` and then fails to load the **entire** hooks file, so
+every hook in that plugin silently stops firing.
+
+So use the string form and quote the placeholder, which buys the same protection against a path
+containing a space. Where the documentation and the running build disagree, the build decides what
+works. Re-check on a later version. `HOOK-05`
 
 ## Hooks in skills and agents
 

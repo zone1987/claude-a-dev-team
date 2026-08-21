@@ -17,7 +17,6 @@
     "components",
     "mcp"
   ],
-  "category": "development",
   "skills": [
     "./skills/shadcn-blocks",
     "./skills/shadcn-data",

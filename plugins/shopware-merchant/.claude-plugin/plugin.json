@@ -13,7 +13,6 @@
     "administration",
     "handbuch"
   ],
-  "category": "documentation",
   "skills": [
     "./skills/sw-merchant-catalog",
     "./skills/sw-merchant-cloud",

@@ -12,7 +12,6 @@
     "datepicker",
     "javascript"
   ],
-  "category": "development",
   "skills": [
     "./skills/flatpickr-api",
     "./skills/flatpickr-extend"

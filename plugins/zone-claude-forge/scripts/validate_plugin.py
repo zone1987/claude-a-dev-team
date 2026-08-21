@@ -414,10 +414,16 @@ def check_hooks(path: str, rep: Report) -> None:
                 if h.get("type") != "command":
                     continue
                 cmd = h.get("command")
-                if isinstance(cmd, str) and "${CLAUDE_PLUGIN_ROOT}" in cmd:
+                if isinstance(cmd, list):
                     rep.error("HOOK-05", rel,
-                              "a path placeholder needs exec form, so the path arrives as one "
-                              "argument with no quoting")
+                              "command is an array; Claude Code 2.1.238 rejects the exec form and "
+                              "then fails to load the whole hooks file, so every hook here stops "
+                              'firing. Use a string with the placeholder quoted: python3 '
+                              '"${CLAUDE_PLUGIN_ROOT}/hooks/x.py"')
+                elif isinstance(cmd, str) and "${" in cmd and '"${' not in cmd:
+                    rep.error("HOOK-05", rel,
+                              "the path placeholder is unquoted, so a path containing a space "
+                              "splits into two arguments")
                 if "timeout" not in h:
                     rep.error("HOOK-04", rel,
                               f"{event} hook sets no timeout; the command default is 600s, and a "

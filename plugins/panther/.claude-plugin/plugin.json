@@ -16,7 +16,6 @@
     "browserkit",
     "php"
   ],
-  "category": "development",
   "skills": [
     "./skills/panther-setup",
     "./skills/panther-testing"
