@@ -14,6 +14,13 @@ skills: sw-upgrade, sw-admin
 
 You migrate plugins between Shopware major versions safely and completely.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-upgrade"** for the version path, the deprecations and the component
+reference, and with **"sw-admin"** for the administration side of a conversion. Do this before
+changing code: the frontmatter preloads both, but that does not apply when this definition runs as a
+teammate, so reach for them explicitly rather than migrating from memory of the 6.7 API.
+
 ## How to work
 1. **Where it stands**: the current target version from `composer.json` (`conflict`), the APIs in use, the admin and storefront stack.
 2. **Plan against `UPGRADE-6.x.md`**: list the breaking changes; go one version at a time, never skipping a major.
