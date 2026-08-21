@@ -1,6 +1,6 @@
 ---
 name: octo-capabilities-platform
-description: 'OCTO/Ventrata platform capabilities: webhooks, notifications, content, mappings, memberships, waitlists. Use when the request names an octo/* platform capability such as octo/webhooks.'
+description: 'OCTO/Ventrata platform capabilities: webhooks, notifications, content, mappings, memberships, waitlists. Use when a request names an octo/* platform capability, e.g. octo/webhooks.'
 ---
 
 # OCTO platform capabilities
@@ -10,19 +10,19 @@ The plumbing around the selling flow: staying in sync, enriching content, identi
 ## The capabilities
 
 - **octo/webhooks** (5 endpoints): register HTTP callbacks for events. No schema fields — it is
-  endpoints only. → [WEBHOOKS.md](WEBHOOKS.md)
+  endpoints only. → [WEBHOOKS.md](references/WEBHOOKS.md)
 - **octo/notifications** (5 endpoints): notification subscriptions under
-  `/notifications/subscriptions`. → [NOTIFICATIONS.md](NOTIFICATIONS.md)
+  `/notifications/subscriptions`. → [NOTIFICATIONS.md](references/NOTIFICATIONS.md)
 - **octo/content** (14 fields, 9 schemas): titles, descriptions, images and itineraries — the
-  human-readable layer over the catalogue. → [CONTENT.md](CONTENT.md)
-- **octo/mappings** (5 fields, 2 endpoints): map supplier IDs to your own. → [MAPPINGS.md](MAPPINGS.md)
+  human-readable layer over the catalogue. → [CONTENT.md](references/CONTENT.md)
+- **octo/mappings** (5 fields, 2 endpoints): map supplier IDs to your own. → [MAPPINGS.md](references/MAPPINGS.md)
 - **octo/memberships** (18 fields, 14 schemas, 2 endpoints): membership lookup and benefits. Adds
-  the `membership[*]` parameters to product and availability calls. → [MEMBERSHIPS.md](MEMBERSHIPS.md)
-- **octo/campaigns** (1 field, 1 endpoint): campaign attribution. → [CAMPAIGNS.md](CAMPAIGNS.md)
+  the `membership[*]` parameters to product and availability calls. → [MEMBERSHIPS.md](references/MEMBERSHIPS.md)
+- **octo/campaigns** (1 field, 1 endpoint): campaign attribution. → [CAMPAIGNS.md](references/CAMPAIGNS.md)
 - **octo/waitlists** (1 endpoint): join a waitlist when availability is exhausted.
-  → [WAITLISTS.md](WAITLISTS.md)
+  → [WAITLISTS.md](references/WAITLISTS.md)
 - **octo/identities** (10 fields, 3 endpoints): **internal capability.** Not returned by
-  `GET /capabilities` and not available to a normal reseller connection. → [IDENTITIES.md](IDENTITIES.md)
+  `GET /capabilities` and not available to a normal reseller connection. → [IDENTITIES.md](references/IDENTITIES.md)
 
 ## Webhooks over polling
 

@@ -72,6 +72,22 @@ COVERAGE: dict[str, tuple[str, ...]] = {
 }
 
 
+def _resolve(f: str) -> str:
+    """Locate a mapped file, whether it sits flat or under references/ (REF-04).
+
+    The map records skill-relative paths like 'octo-protocol/HEADERS.md'. References moved into
+    skills/<skill>/references/, so resolve both layouts rather than restating every path here:
+    the mapping states which page a file covers, not where the file happens to live.
+    """
+    skill, _, base = f.partition("/")
+    cands = [os.path.join(PLUGIN, "skills", f), os.path.join(PLUGIN, f)]
+    if base:                       # a skill-relative path may have moved into references/
+        cands.insert(0, os.path.join(PLUGIN, "skills", skill, "references", base))
+    for cand in cands:
+        if os.path.exists(cand):
+            return cand
+    return ""
+
 def pages(offline: str = "") -> list[str]:
     xml = open(offline, encoding="utf-8").read() if offline else fetch(SITEMAP).decode("utf-8")
     return [
@@ -93,9 +109,7 @@ def main() -> int:
         if not files:
             uncovered.append(page)
             continue
-        missing = [f for f in files
-                   if not os.path.exists(os.path.join(PLUGIN, "skills", f))
-                   and not os.path.exists(os.path.join(PLUGIN, f))]
+        missing = [f for f in files if not _resolve(f)]
         if missing:
             dangling.append((page, missing))
         rows.append((page, files))

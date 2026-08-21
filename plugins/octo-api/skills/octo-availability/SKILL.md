@@ -1,6 +1,6 @@
 ---
 name: octo-availability
-description: 'OCTO/Ventrata availability: POST /availability, /availability/calendar, availabilityId, capacity. Use when the request names OCTO or Ventrata availability, availabilityId, or calendar.'
+description: 'OCTO/Ventrata availability: POST /availability, /availability/calendar, availabilityId, capacity. Use when a request names OCTO or Ventrata availability, availabilityId, or calendar.'
 ---
 
 # OCTO Availability
@@ -46,11 +46,11 @@ for freesale products: you still need the `availabilityId`.
 
 ## Reference map
 
-- **[ENDPOINTS.md](ENDPOINTS.md)**: all six endpoints with their request bodies and parameters.
-- **[AVAILABILITY-SCHEMA.md](AVAILABILITY-SCHEMA.md)**: the `Availability` object.
-- **[AVAILABILITY-CALENDAR-SCHEMA.md](AVAILABILITY-CALENDAR-SCHEMA.md)**: the calendar variant.
-- **[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)**: capability-gated availability fields.
-- **[SUB-SCHEMAS-1.md](SUB-SCHEMAS-1.md)** and **[SUB-SCHEMAS-2.md](SUB-SCHEMAS-2.md)**: every
+- **[ENDPOINTS.md](references/ENDPOINTS.md)**: all six endpoints with their request bodies and parameters.
+- **[AVAILABILITY-SCHEMA.md](references/AVAILABILITY-SCHEMA.md)**: the `Availability` object.
+- **[AVAILABILITY-CALENDAR-SCHEMA.md](references/AVAILABILITY-CALENDAR-SCHEMA.md)**: the calendar variant.
+- **[CAPABILITY-EXTENSIONS.md](references/CAPABILITY-EXTENSIONS.md)**: capability-gated availability fields.
+- **[SUB-SCHEMAS-1.md](references/SUB-SCHEMAS-1.md)** and **[SUB-SCHEMAS-2.md](references/SUB-SCHEMAS-2.md)**: every
   referenced schema, including opening hours and pricing.
 
 ## Related

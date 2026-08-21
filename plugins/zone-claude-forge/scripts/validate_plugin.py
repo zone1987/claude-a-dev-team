@@ -514,6 +514,15 @@ def check_plugin(name: str, rep: Report, cat: dict) -> None:
     if not man:
         rep.error("MANIFEST-01", f"plugins/{name}/.claude-plugin/plugin.json",
                   "missing or unparseable")
+
+    # COV-09: a plugin distilled from online documentation records what it extracted. Only ask
+    # for it where a docs site is actually the source, which the enumeration scripts reveal.
+    enumerates = bool(glob.glob(os.path.join(pdir, "scripts", "*sitemap*"))
+                      or glob.glob(os.path.join(pdir, "scripts", "*audit_pages*")))
+    if enumerates and not os.path.exists(os.path.join(pdir, "INVENTORY.json")):
+        rep.error("COV-09", f"plugins/{name}/INVENTORY.json",
+                  "the plugin enumerates a docs site but records no inventory, so nothing states "
+                  "which pages were extracted or when; write one with scripts/inventory.py --write")
     listed = [p.rstrip("/").split("/")[-1] for p in man.get("skills", [])]
 
     skills = skill_dirs(pdir)

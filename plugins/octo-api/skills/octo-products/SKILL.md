@@ -1,6 +1,6 @@
 ---
 name: octo-products
-description: 'OCTO/Ventrata product catalogue: GET /products, Product, Option and Unit schemas, all fields and enums. Use when the request names OCTO or Ventrata products, options, units, or availabilityType.'
+description: 'OCTO/Ventrata catalogue: GET /products, the Product, Option and Unit schemas, fields and enums. Use when a request names OCTO or Ventrata products, options, units, or availabilityType.'
 ---
 
 # OCTO Products
@@ -57,12 +57,12 @@ references are stale.
 
 ## Reference map
 
-- **[ENDPOINTS.md](ENDPOINTS.md)**: both endpoints with every parameter, its `in`, type and rules.
-- **[PRODUCT-SCHEMA.md](PRODUCT-SCHEMA.md)**: all 23 base fields of `Product`.
-- **[OPTION-SCHEMA.md](OPTION-SCHEMA.md)**: all 21 base fields of `Option`, including the cutoff triplets.
-- **[UNIT-SCHEMA.md](UNIT-SCHEMA.md)**: all 8 base fields of `Unit`.
-- **[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)**: the 35 capability-gated fields across the three schemas.
-- **[SUB-SCHEMAS-1.md](SUB-SCHEMAS-1.md)** and **[SUB-SCHEMAS-2.md](SUB-SCHEMAS-2.md)**: every referenced schema.
+- **[ENDPOINTS.md](references/ENDPOINTS.md)**: both endpoints with every parameter, its `in`, type and rules.
+- **[PRODUCT-SCHEMA.md](references/PRODUCT-SCHEMA.md)**: all 23 base fields of `Product`.
+- **[OPTION-SCHEMA.md](references/OPTION-SCHEMA.md)**: all 21 base fields of `Option`, including the cutoff triplets.
+- **[UNIT-SCHEMA.md](references/UNIT-SCHEMA.md)**: all 8 base fields of `Unit`.
+- **[CAPABILITY-EXTENSIONS.md](references/CAPABILITY-EXTENSIONS.md)**: the 35 capability-gated fields across the three schemas.
+- **[SUB-SCHEMAS-1.md](references/SUB-SCHEMAS-1.md)** and **[SUB-SCHEMAS-2.md](references/SUB-SCHEMAS-2.md)**: every referenced schema.
 
 ## Related
 

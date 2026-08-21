@@ -1,6 +1,6 @@
 ---
 name: octo-capabilities-fulfilment
-description: 'OCTO/Ventrata fulfilment capabilities: redemption, extras, pickups, rentals, resources, waivers, questions. Use when the request names an octo/* fulfilment capability such as octo/redemption.'
+description: 'OCTO/Ventrata fulfilment capabilities: redemption, extras, pickups, rentals, resources, waivers. Use when a request names an octo/* fulfilment capability, e.g. octo/redemption.'
 ---
 
 # OCTO fulfilment capabilities
@@ -11,19 +11,19 @@ collecting a guest, signing a waiver, handing over equipment.
 ## The capabilities
 
 - **octo/redemption** (6 endpoints): scan and redeem tickets, mark no-shows, and reverse both.
-  Every operation has an inverse — `DELETE /redemption/redeem` unredeems. → [REDEMPTION.md](REDEMPTION.md)
-- **octo/extras** (10 fields, 8 schemas): add-ons sold alongside a booking. → [EXTRAS.md](EXTRAS.md)
+  Every operation has an inverse — `DELETE /redemption/redeem` unredeems. → [REDEMPTION.md](references/REDEMPTION.md)
+- **octo/extras** (10 fields, 8 schemas): add-ons sold alongside a booking. → [EXTRAS.md](references/EXTRAS.md)
 - **octo/pickups** (50 fields, 7 schemas): hotel and point pickups. The largest capability in the
-  API by field count. → [PICKUPS.md](PICKUPS.md)
-- **octo/rentals** (6 fields): rental durations and equipment. → [RENTALS.md](RENTALS.md)
+  API by field count. → [PICKUPS.md](references/PICKUPS.md)
+- **octo/rentals** (6 fields): rental durations and equipment. → [RENTALS.md](references/RENTALS.md)
 - **octo/resources** (6 fields, 2 endpoints): capacity-bearing resources such as vehicles or
-  guides, with their own availability endpoints. → [RESOURCES.md](RESOURCES.md)
+  guides, with their own availability endpoints. → [RESOURCES.md](references/RESOURCES.md)
 - **octo/waivers** (17 fields, 5 schemas): liability waivers. `waiverPer` decides whether one
-  waiver covers the booking or one is needed per unit. → [WAIVERS.md](WAIVERS.md)
+  waiver covers the booking or one is needed per unit. → [WAIVERS.md](references/WAIVERS.md)
 - **octo/questions** (9 fields, 9 schemas): custom questions asked at booking time.
-  → [QUESTIONS.md](QUESTIONS.md)
+  → [QUESTIONS.md](references/QUESTIONS.md)
 - **octo/checkin** (3 fields, 1 endpoint): online check-in. The ID is `octo/checkin`, not
-  `octo/online-check-in`. → [CHECKIN.md](CHECKIN.md)
+  `octo/online-check-in`. → [CHECKIN.md](references/CHECKIN.md)
 
 ## Fulfilment data is collected before confirm
 

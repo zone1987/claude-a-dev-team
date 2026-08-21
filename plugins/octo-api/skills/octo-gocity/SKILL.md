@@ -1,6 +1,6 @@
 ---
 name: octo-gocity
-description: 'Go City Trade API as an OCTO overlay: what Go City omits, changes or inverts versus generic OCTO. Use when the request names Go City, gocity, or compares Ventrata with Go City.'
+description: 'Go City Trade API as an OCTO overlay: what Go City omits, changes or inverts. Use when a request names Go City, gocity, or compares Ventrata with Go City.'
 ---
 
 # Go City overlay
@@ -36,9 +36,9 @@ than assuming either shape.
 
 ## Reference map
 
-- **[DELTAS.md](DELTAS.md)**: every difference by area — auth, capabilities, availability, products,
+- **[DELTAS.md](references/DELTAS.md)**: every difference by area — auth, capabilities, availability, products,
   bookings — with the Ventrata behaviour beside it.
-- **[ENDPOINTS.md](ENDPOINTS.md)**: the 9 supported operations.
+- **[ENDPOINTS.md](references/ENDPOINTS.md)**: the 9 supported operations.
 - **`gocity-openapi.json`**: the Go City OpenAPI 3.1 specification as published.
 
 ## Related

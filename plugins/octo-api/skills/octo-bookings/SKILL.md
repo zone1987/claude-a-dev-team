@@ -1,6 +1,6 @@
 ---
 name: octo-bookings
-description: 'OCTO/Ventrata booking lifecycle: reserve, confirm, update, cancel, extend, plus the Booking schema. Use when the request names OCTO or Ventrata bookings, reservations, or a booking uuid.'
+description: 'OCTO/Ventrata booking lifecycle: reserve, confirm, update, cancel, extend, and the Booking schema. Use when a request names OCTO or Ventrata bookings, reservations, or a booking uuid.'
 ---
 
 # OCTO Bookings
@@ -19,7 +19,7 @@ Alongside those: **`PATCH /bookings/{uuid}`** to change a reservation before con
 **`GET /bookings`** to list and **`GET /bookings/{uuid}`** to read one.
 
 `GET /bookings` requires one primary filter — an unfiltered list is not available. See
-[LISTING-BOOKINGS.md](LISTING-BOOKINGS.md).
+[LISTING-BOOKINGS.md](references/LISTING-BOOKINGS.md).
 
 **`INVALID_BOOKING_UUID` on confirm usually means the reservation expired**, not that the UUID is
 wrong. Reserve again rather than retrying the confirm.
@@ -46,15 +46,15 @@ UUID does not double-book. Generate one per checkout attempt and reuse it across
 
 ## Reference map
 
-- **[ENDPOINTS.md](ENDPOINTS.md)**: all seven operations with parameters and request bodies.
-- **[BOOKING-SCHEMA.md](BOOKING-SCHEMA.md)**: the `Booking` object and its status values.
-- **[BOOKING-UNIT-ITEM-SCHEMA.md](BOOKING-UNIT-ITEM-SCHEMA.md)**: `BookingUnitItem`, all fields.
-- **[CAPABILITY-EXTENSIONS.md](CAPABILITY-EXTENSIONS.md)**: capability-gated booking fields.
-- **[AFTER-CONFIRMATION.md](AFTER-CONFIRMATION.md)**: which fields to read once a booking is
+- **[ENDPOINTS.md](references/ENDPOINTS.md)**: all seven operations with parameters and request bodies.
+- **[BOOKING-SCHEMA.md](references/BOOKING-SCHEMA.md)**: the `Booking` object and its status values.
+- **[BOOKING-UNIT-ITEM-SCHEMA.md](references/BOOKING-UNIT-ITEM-SCHEMA.md)**: `BookingUnitItem`, all fields.
+- **[CAPABILITY-EXTENSIONS.md](references/CAPABILITY-EXTENSIONS.md)**: capability-gated booking fields.
+- **[AFTER-CONFIRMATION.md](references/AFTER-CONFIRMATION.md)**: which fields to read once a booking is
   confirmed, `VOUCHER` versus `TICKET`, and the delivery-option shape.
-- **[LISTING-BOOKINGS.md](LISTING-BOOKINGS.md)**: the mandatory primary filter for `GET /bookings`,
+- **[LISTING-BOOKINGS.md](references/LISTING-BOOKINGS.md)**: the mandatory primary filter for `GET /bookings`,
   all 10 status values, and how pagination really behaves.
-- **[SUB-SCHEMAS-1.md](SUB-SCHEMAS-1.md)** and **[SUB-SCHEMAS-2.md](SUB-SCHEMAS-2.md)**: contact,
+- **[SUB-SCHEMAS-1.md](references/SUB-SCHEMAS-1.md)** and **[SUB-SCHEMAS-2.md](references/SUB-SCHEMAS-2.md)**: contact,
   ticket, voucher, pricing and every other referenced schema.
 
 ## Related

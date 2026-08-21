@@ -1,6 +1,6 @@
 ---
 name: octo-capabilities-commerce
-description: 'OCTO/Ventrata commerce capabilities: pricing, offers, cart, packages, card payments, gift vouchers, adjustments. Use when the request names an octo/* commerce capability such as octo/pricing.'
+description: 'OCTO/Ventrata commerce capabilities: pricing, offers, cart, packages, card payments, gifts, adjustments. Use when a request names an octo/* commerce capability, e.g. octo/pricing.'
 ---
 
 # OCTO commerce capabilities
@@ -13,18 +13,18 @@ endpoints of their own.
 
 - **octo/pricing** (35 fields, 16 schemas): prices on products, options, units, availability and
   bookings. The widest-reaching capability in the API — almost nothing commercial works without it.
-  → [PRICING.md](PRICING.md)
+  → [PRICING.md](references/PRICING.md)
 - **octo/offers** (37 fields, 1 endpoint): discounts and promotional offers, including
-  `offerDiscount` on every pricing object. → [OFFERS.md](OFFERS.md)
+  `offerDiscount` on every pricing object. → [OFFERS.md](references/OFFERS.md)
 - **octo/cart** (11 fields, 10 endpoints): multi-product carts and orders, for a basket that spans
-  several products before checkout. → [CART.md](CART.md)
-- **octo/packages** (12 fields): products that bundle other products. → [PACKAGES.md](PACKAGES.md)
+  several products before checkout. → [CART.md](references/CART.md)
+- **octo/packages** (12 fields): products that bundle other products. → [PACKAGES.md](references/PACKAGES.md)
 - **octo/gifts** (8 fields, 10 endpoints): gift vouchers — purchase, redeem, check balance.
-  The ID is `octo/gifts`, not `octo/gift-vouchers`. → [GIFTS.md](GIFTS.md)
+  The ID is `octo/gifts`, not `octo/gift-vouchers`. → [GIFTS.md](references/GIFTS.md)
 - **octo/cardPayments** (1 endpoint): card payment records. The only camelCase capability ID in the
-  API, and its path is `/card_payments` with an underscore. → [CARD-PAYMENTS.md](CARD-PAYMENTS.md)
+  API, and its path is `/card_payments` with an underscore. → [CARD-PAYMENTS.md](references/CARD-PAYMENTS.md)
 - **octo/adjustments** (1 field): booking-level price adjustments and commission handling.
-  → [ADJUSTMENTS.md](ADJUSTMENTS.md)
+  → [ADJUSTMENTS.md](references/ADJUSTMENTS.md)
 
 ## Combining capabilities
 

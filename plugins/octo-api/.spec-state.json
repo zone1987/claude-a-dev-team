@@ -24,5 +24,17 @@
     "platform"
   ],
   "lastChecked": "2026-08-20",
-  "note": "The spec URL is content-addressed: resolve it with scripts/resolve_blob.py, never hardcode it. Check drift with /octo-spec-sync --check."
+  "note": "The spec URL is content-addressed: resolve it with scripts/resolve_blob.py, never hardcode it. Check drift with /octo-spec-sync --check.",
+  "coverageAudit": {
+    "date": "2026-08-21",
+    "sitemap": "https://docs.ventrata.com/sitemap-pages.xml",
+    "pages": 39,
+    "pagesMapped": 39,
+    "uncovered": 0,
+    "dangling": 0,
+    "terms": 1163,
+    "termsMissing": 0,
+    "mirrorSha256": "4f3f7e6ecb38b79b",
+    "note": "COV-08: re-run on every optimisation. python3 scripts/check_sitemap.py maps every page to a file; python3 scripts/audit_pages.py --pages <mirror> checks each page term by term. The mirror hash is over the concatenated pages in sorted order."
+  }
 }

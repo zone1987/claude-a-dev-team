@@ -1,6 +1,6 @@
 ---
 name: octo-protocol
-description: 'OCTO/Ventrata wire protocol: auth, the mandatory Octo-Capabilities header, error codes, localization. Use when the request names OCTO, Ventrata, Octo-Capabilities, Octo-Env, or an octo/* capability.'
+description: 'OCTO/Ventrata wire protocol: auth, the Octo-Capabilities header, error codes, localization. Use when a request names OCTO, Ventrata, Octo-Capabilities, Octo-Env, or an octo/* capability.'
 ---
 
 # OCTO Protocol
@@ -48,7 +48,7 @@ There is no `/supplier` endpoint. `octo/identities` is the only internal capabil
 ## Values a response can carry
 
 Every value-like field comes with its possible values in
-[ENUMERATED-VALUES.md](ENUMERATED-VALUES.md), split by how firm the set is:
+[ENUMERATED-VALUES.md](references/ENUMERATED-VALUES.md), split by how firm the set is:
 
 - **Declared** — the specification lists an `enum`, so the set is closed. `availabilityType` is
   `START_TIME` or `OPENING_HOURS`, nothing else.
@@ -58,27 +58,28 @@ Every value-like field comes with its possible values in
 
 ## Reference map
 
-- **[DOCUMENTATION-MAP.md](DOCUMENTATION-MAP.md)**: every page of Ventrata's documentation and the
+- **[DOCUMENTATION-MAP.md](references/DOCUMENTATION-MAP.md)**: every page of Ventrata's documentation and the
   file here that covers it — the audit trail behind "nothing was left out".
-- **[GLOSSARY.md](GLOSSARY.md)**: the nine core terms, and the distinctions that get mismodelled —
+- **[GLOSSARY.md](references/GLOSSARY.md)**: the nine core terms, and the distinctions that get mismodelled —
   unit versus unit item, voucher versus ticket.
-- **[AUTHENTICATION.md](AUTHENTICATION.md)**: the Bearer key, why one key means one supplier, and
+- **[AUTHENTICATION.md](references/AUTHENTICATION.md)**: the Bearer key, why one key means one supplier, and
   what a `403` actually tells you.
-- **[TESTING.md](TESTING.md)**: the EdinExplore test supplier, its API logs, and `Octo-Env: test`
+- **[TESTING.md](references/TESTING.md)**: the EdinExplore test supplier, its API logs, and `Octo-Env: test`
   against live credentials.
-- **[INTEGRATION-STEPS.md](INTEGRATION-STEPS.md)**: Ventrata's four-step path from planning to
+- **[INTEGRATION-STEPS.md](references/INTEGRATION-STEPS.md)**: Ventrata's four-step path from planning to
   go-live, and what their review asks for.
-- **[HEADERS.md](HEADERS.md)**: every request and response header, verbatim requirement and example.
-- **[ERRORS.md](ERRORS.md)**: all 10 error codes, their extra fields, and example bodies.
-- **[ENUMERATED-VALUES.md](ENUMERATED-VALUES.md)**: every possible value of every value-like field,
+- **[HEADERS.md](references/HEADERS.md)**: every request and response header, verbatim requirement and example.
+- **[ERRORS.md](references/ERRORS.md)**: all 10 error codes, their extra fields, and example bodies.
+- **[CAPABILITY-ERRORS.md](references/CAPABILITY-ERRORS.md)**: the 21 further codes that 9 capabilities add on top of those 10.
+- **[ENUMERATED-VALUES.md](references/ENUMERATED-VALUES.md)**: every possible value of every value-like field,
   with what each one means.
-- **[REMAINING-SCHEMAS-1.md](REMAINING-SCHEMAS-1.md)** and
-  **[REMAINING-SCHEMAS-2.md](REMAINING-SCHEMAS-2.md)**: the request wrappers, list envelopes,
+- **[REMAINING-SCHEMAS-1.md](references/REMAINING-SCHEMAS-1.md)** and
+  **[REMAINING-SCHEMAS-2.md](references/REMAINING-SCHEMAS-2.md)**: the request wrappers, list envelopes,
   protocol objects and action results the domain skills do not lay out, so all 139 schemas are
   covered.
-- **[CAPABILITY-DISCOVERY.md](CAPABILITY-DISCOVERY.md)**: the discovery endpoints, the Capability
+- **[CAPABILITY-DISCOVERY.md](references/CAPABILITY-DISCOVERY.md)**: the discovery endpoints, the Capability
   object, and all 23 capabilities mapped to the skill that documents them.
-- **[LOCALIZATION.md](LOCALIZATION.md)**: language negotiation and which fields get translated.
+- **[LOCALIZATION.md](references/LOCALIZATION.md)**: language negotiation and which fields get translated.
 
 ## Related
 

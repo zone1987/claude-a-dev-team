@@ -1,7 +1,19 @@
 # Enumerating a source
 
 The inventory is the denominator. Without it, "we covered everything" is a claim nobody can check,
-and a page added upstream next month goes unnoticed. Rules: `SOURCE-01`, `COV-01`, `COV-05`.
+and a page added upstream next month goes unnoticed. Rules: `SOURCE-01`, `COV-01`, `COV-05`, `COV-09`, `COV-10`.
+
+## Contents
+
+- [Prefer the original](#prefer-the-original)
+- [Docs site](#docs-site)
+- [OpenAPI or JSON Schema](#openapi-or-json-schema)
+- [GitHub or GitLab](#github-or-gitlab)
+- [Typed export or CLI](#typed-export-or-cli)
+- [Mirror it](#mirror-it)
+- [Write the map](#write-the-map)
+- [Record it in INVENTORY.json](#record-it-in-inventory.json)
+- [Source](#source)
 
 ## Prefer the original
 
@@ -81,6 +93,33 @@ live site. That is the tell.
 
 `--write` emits a `DOCUMENTATION-MAP.md` pairing each source unit with the file covering it. That
 table is the artefact a reviewer checks, and the thing that makes a later gap obvious.
+
+## Record it in INVENTORY.json
+
+The map says which file covers which page. The inventory says **when**, and against **what**:
+
+```bash
+python3 scripts/inventory.py --plugin <name> --write --pages <mirror>
+```
+
+Per page it stores the URL, the content hash, the covering files, the term count and the extraction
+date. `COV-09` One line of it:
+
+```json
+{ "page": "https://docs.ventrata.com/getting-started/headers",
+  "sha256": "445c442d…", "covers": ["skills/octo-protocol/references/HEADERS.md"],
+  "terms": 20, "extracted": "2026-08-21" }
+```
+
+**Why the hash and not just the date.** The next audit reads this file before fetching anything and
+compares each hash against the live page. `COV-10` Pages that match need no work, whatever the date
+says; only changed, new or missing pages are re-extracted. On `plugins/octo-api` that settled 39
+pages and 1,163 terms in 6.5 seconds, with no page content entering context — against mirroring
+304 KB before any decision could be made. Age decides only when the source is unreachable, where a
+record over 30 days old counts as unproven.
+
+Write the inventory in the same run as the audit. Written later, from memory of what was covered, it
+records a belief rather than a measurement.
 
 ## Source
 

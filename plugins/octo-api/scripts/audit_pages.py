@@ -50,6 +50,12 @@ EXCLUDED: dict[str, str] = {
     "serialize_redemption(...)": "Ventrata server internal",
     "create_booking": "Ventrata server internal",
     "adyen-channel": "anchor slug on the card-payments page",
+    # The docs landing page explains how to fetch the documentation itself as markdown.
+    # That is GitBook's delivery mechanism, not OCTO surface a client implements.
+    "/getting-started/headers.md": "docs-delivery hint on the landing page",
+    "Accept: text/markdown": "docs-delivery hint on the landing page",
+    "goal": "query parameter of GitBook's own ?ask= endpoint",
+    "index": "prose word on the landing page",
     # Customer names from the client list page: context, not integration detail.
     **{k: "client brand name" for k in
        ("CHICAGO", "CTCE", "EPIC", "FRS", "NOLA", "NYC", "SKY", "WWII", "COMING")},
@@ -91,7 +97,9 @@ def page_terms(text: str) -> set[str]:
 
 def plugin_text() -> str:
     parts = []
-    for pattern in ("skills/*/*.md", "README.md", "CHANGELOG.md"):
+    # References live in skills/<skill>/references/ (REF-04); keep the flat pattern so the
+    # audit still works on a plugin that has not been migrated yet.
+    for pattern in ("skills/*/*.md", "skills/*/references/*.md", "README.md", "CHANGELOG.md"):
         for f in glob.glob(os.path.join(PLUGIN, pattern)):
             parts.append(open(f, encoding="utf-8").read())
     return "\n".join(parts).lower()
