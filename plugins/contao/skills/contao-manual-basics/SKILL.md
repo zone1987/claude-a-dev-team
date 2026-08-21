@@ -9,14 +9,14 @@ Operating Contao rather than developing for it. Written for administrators and e
 
 ## Reference map
 
-- **[MANUAL-BACKEND.md](MANUAL-BACKEND.md)**: Referenz: `MANUAL-BACKEND-BACKEND.md` Quelle: https://docs.contao.org/5.x/manual/de/administrationsbereich/. [MANUAL-BACKEND-BACKEND](MANUAL-BACKEND-BACKEND.md).
-- **[MANUAL-CLI.md](MANUAL-CLI.md)**: Referenz: `MANUAL-CLI-CLI.md` Quelle: https://docs.contao.org/5.x/manual/de/cli/. [MANUAL-CLI-CLI](MANUAL-CLI-CLI.md).
-- **[MANUAL-INSTALLATION.md](MANUAL-INSTALLATION.md)**: Referenz: `MANUAL-INSTALLATION-INSTALLATION.md` Quelle: https://docs.contao.org/5.x/manual/de/installation/. [MANUAL-INSTALLATION-INSTALLATION](MANUAL-INSTALLATION-INSTALLATION.md).
-- **[MANUAL-MIGRATION.md](MANUAL-MIGRATION.md)**: Referenz: `MANUAL-MIGRATION-MIGRATION.md` Quelle: https://docs.contao.org/5.x/manual/de/migration/. [MANUAL-MIGRATION-MIGRATION](MANUAL-MIGRATION-MIGRATION.md).
-- **[MANUAL-OVERVIEW.md](MANUAL-OVERVIEW.md)**: Referenz: `MANUAL-OVERVIEW-OVERVIEW.md` Quelle: https://docs.contao.org/5.x/manual/de/einleitung/. [MANUAL-OVERVIEW-OVERVIEW](MANUAL-OVERVIEW-OVERVIEW.md).
-- **[MANUAL-PERFORMANCE.md](MANUAL-PERFORMANCE.md)**: Referenz: `MANUAL-PERFORMANCE-PERFORMANCE.md` Quelle: https://docs.contao.org/5.x/manual/de/performance/. [MANUAL-PERFORMANCE-PERFORMANCE](MANUAL-PERFORMANCE-PERFORMANCE.md).
-- **[MANUAL-SYSTEM.md](MANUAL-SYSTEM.md)**: Referenz: `MANUAL-SYSTEM-SYSTEM.md` Quelle: https://docs.contao.org/5.x/manual/de/system/. [MANUAL-SYSTEM-SYSTEM](MANUAL-SYSTEM-SYSTEM.md).
-- **[MANUAL-USER-MANAGEMENT.md](MANUAL-USER-MANAGEMENT.md)**: Referenz: `MANUAL-USER-MANAGEMENT-USER-MANAGEMENT.md` Quelle: https://docs.contao.org/5.x/manual/de/benutzerv…. [MANUAL-USER-MANAGEMENT-USER-MANAGEMENT](MANUAL-USER-MANAGEMENT-USER-MANAGEMENT.md).
+- **[MANUAL-BACKEND.md](MANUAL-BACKEND.md)**: Referenz: `MANUAL-BACKEND.md` Quelle: https://docs.contao.org/5.x/manual/de/administrationsbereich/. [MANUAL-BACKEND](MANUAL-BACKEND.md).
+- **[MANUAL-CLI.md](MANUAL-CLI.md)**: Referenz: `MANUAL-CLI.md` Quelle: https://docs.contao.org/5.x/manual/de/cli/. [MANUAL-CLI](MANUAL-CLI.md).
+- **[MANUAL-INSTALLATION.md](MANUAL-INSTALLATION.md)**: Referenz: `MANUAL-INSTALLATION.md` Quelle: https://docs.contao.org/5.x/manual/de/installation/. [MANUAL-INSTALLATION](MANUAL-INSTALLATION.md).
+- **[MANUAL-MIGRATION.md](MANUAL-MIGRATION.md)**: Referenz: `MANUAL-MIGRATION.md` Quelle: https://docs.contao.org/5.x/manual/de/migration/. [MANUAL-MIGRATION](MANUAL-MIGRATION.md).
+- **[MANUAL-OVERVIEW.md](MANUAL-OVERVIEW.md)**: Referenz: `MANUAL-OVERVIEW.md` Quelle: https://docs.contao.org/5.x/manual/de/einleitung/. [MANUAL-OVERVIEW](MANUAL-OVERVIEW.md).
+- **[MANUAL-PERFORMANCE.md](MANUAL-PERFORMANCE.md)**: Referenz: `MANUAL-PERFORMANCE.md` Quelle: https://docs.contao.org/5.x/manual/de/performance/. [MANUAL-PERFORMANCE](MANUAL-PERFORMANCE.md).
+- **[MANUAL-SYSTEM.md](MANUAL-SYSTEM.md)**: Referenz: `MANUAL-SYSTEM.md` Quelle: https://docs.contao.org/5.x/manual/de/system/. [MANUAL-SYSTEM](MANUAL-SYSTEM.md).
+- **[MANUAL-USER-MANAGEMENT.md](MANUAL-USER-MANAGEMENT.md)**: Referenz: `MANUAL-USER-MANAGEMENT.md` Quelle: https://docs.contao.org/5.x/manual/de/benutzerv…. [MANUAL-USER-MANAGEMENT](MANUAL-USER-MANAGEMENT.md).
 
 ## Source
 

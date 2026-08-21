@@ -9,12 +9,12 @@ Extending the administration area, and the routing and CSRF machinery behind it.
 
 ## Reference map
 
-- **[MODULES.md](MODULES.md)**: Read `MODULES-DETAIL.md` for complete details on backend module registration, assets and callbacks in Con…. [MODULES-DETAIL](MODULES-DETAIL.md).
-- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: Read `PAGE-CONTROLLERS-DETAIL.md` for complete documentation on page controllers and their integration into…. [PAGE-CONTROLLERS-DETAIL](PAGE-CONTROLLERS-DETAIL.md).
-- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: Complete reference: `REQUEST-TOKENS-CONTAO-REQUEST-TOKENS.md`. [REQUEST-TOKENS-CONTAO-REQUEST-TOKENS](REQUEST-TOKENS-CONTAO-REQUEST-TOKENS.md).
-- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: Complete reference: `RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT.md`. [RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT](RESPONSE-CONTEXT-CONTAO-RESPONSE-CONTEXT.md).
-- **[ROUTES.md](ROUTES.md)**: Read `ROUTES-DETAIL.md` for complete implementation details on custom backend routes and backend asset in…. [ROUTES-DETAIL](ROUTES-DETAIL.md).
-- **[ROUTING.md](ROUTING.md)**: Read `ROUTING-DETAIL.md` for complete routing documentation including content routing and legacy parameter…. [ROUTING-DETAIL](ROUTING-DETAIL.md).
+- **[MODULES.md](MODULES.md)**: Read `MODULES.md` for complete details on backend module registration, assets and callbacks in Con…. [MODULES](MODULES.md).
+- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: Read `PAGE-CONTROLLERS.md` for complete documentation on page controllers and their integration into…. [PAGE-CONTROLLERS](PAGE-CONTROLLERS.md).
+- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: Complete reference: `REQUEST-TOKENS.md`. [REQUEST-TOKENS](REQUEST-TOKENS.md).
+- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: Complete reference: `RESPONSE-CONTEXT.md`. [RESPONSE-CONTEXT](RESPONSE-CONTEXT.md).
+- **[ROUTES.md](ROUTES.md)**: Read `ROUTES.md` for complete implementation details on custom backend routes and backend asset in…. [ROUTES](ROUTES.md).
+- **[ROUTING.md](ROUTING.md)**: Read `ROUTING.md` for complete routing documentation including content routing and legacy parameter…. [ROUTING](ROUTING.md).
 
 ## Source
 

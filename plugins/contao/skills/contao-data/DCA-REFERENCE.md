@@ -1,2 +1,0 @@
-# contao-dca-reference
-

@@ -9,10 +9,10 @@ Features an editor configures rather than codes: the form generator, the bundled
 
 ## Reference map
 
-- **[MANUAL-CORE-EXTENSIONS.md](MANUAL-CORE-EXTENSIONS.md)**: Referenz: `MANUAL-CORE-EXTENSIONS-CORE-EXTENSIONS.md` Quelle: https://docs.contao.org/5.x/manual/de/core-erwe…. [MANUAL-CORE-EXTENSIONS-CORE-EXTENSIONS](MANUAL-CORE-EXTENSIONS-CORE-EXTENSIONS.md).
-- **[MANUAL-FORM-GENERATOR.md](MANUAL-FORM-GENERATOR.md)**: Referenz: `MANUAL-FORM-GENERATOR-FORM-GENERATOR.md` Quelle: https://docs.contao.org/5.x/manual/de/formulargen…. [MANUAL-FORM-GENERATOR-FORM-GENERATOR](MANUAL-FORM-GENERATOR-FORM-GENERATOR.md).
-- **[MANUAL-THIRD-PARTY-EXTENSIONS.md](MANUAL-THIRD-PARTY-EXTENSIONS.md)**: Referenz: `MANUAL-THIRD-PARTY-EXTENSIONS-THIRD-PARTY-EXTENSIONS.md` Quelle: https://docs.contao.org/5.x/manua…. [MANUAL-THIRD-PARTY-EXTENSIONS-THIRD-PARTY-EXTENSIONS](MANUAL-THIRD-PARTY-EXTENSIONS-THIRD-PARTY-EXTENSIONS.md).
-- **[MANUAL-TUTORIALS.md](MANUAL-TUTORIALS.md)**: Referenz: `MANUAL-TUTORIALS-TUTORIALS.md` Quelle: https://docs.contao.org/5.x/manual/de/anleitungen/. [MANUAL-TUTORIALS-TUTORIALS](MANUAL-TUTORIALS-TUTORIALS.md).
+- **[MANUAL-CORE-EXTENSIONS.md](MANUAL-CORE-EXTENSIONS.md)**: Referenz: `MANUAL-CORE-EXTENSIONS.md` Quelle: https://docs.contao.org/5.x/manual/de/core-erwe…. [MANUAL-CORE-EXTENSIONS](MANUAL-CORE-EXTENSIONS.md).
+- **[MANUAL-FORM-GENERATOR.md](MANUAL-FORM-GENERATOR.md)**: Referenz: `MANUAL-FORM-GENERATOR.md` Quelle: https://docs.contao.org/5.x/manual/de/formulargen…. [MANUAL-FORM-GENERATOR](MANUAL-FORM-GENERATOR.md).
+- **[MANUAL-THIRD-PARTY-EXTENSIONS.md](MANUAL-THIRD-PARTY-EXTENSIONS.md)**: Referenz: `MANUAL-THIRD-PARTY-EXTENSIONS.md` Quelle: https://docs.contao.org/5.x/manua…. [MANUAL-THIRD-PARTY-EXTENSIONS](MANUAL-THIRD-PARTY-EXTENSIONS.md).
+- **[MANUAL-TUTORIALS.md](MANUAL-TUTORIALS.md)**: Referenz: `MANUAL-TUTORIALS.md` Quelle: https://docs.contao.org/5.x/manual/de/anleitungen/. [MANUAL-TUTORIALS](MANUAL-TUTORIALS.md).
 
 ## Source
 
