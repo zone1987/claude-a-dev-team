@@ -9,16 +9,16 @@ How a Contao 5 extension is put together and how the framework boots it. Start h
 
 ## Reference map
 
-- **[CODING-STANDARDS.md](CODING-STANDARDS.md)**: Read `CODING-STANDARDS.md` for the complete conventions on code standards, namespaces and bundle publi…. [CODING-STANDARDS](CODING-STANDARDS.md).
-- **[CONCEPTS.md](CONCEPTS.md)**: Read `CONCEPTS.md` for the complete overview of all core concepts and extension points in Contao 5. [CONCEPTS](CONCEPTS.md).
-- **[EXTENSION-BUNDLE.md](EXTENSION-BUNDLE.md)**: Read `EXTENSION-BUNDLE.md` for complete guides on bundle creation, structure, publishing and…. [EXTENSION-BUNDLE](EXTENSION-BUNDLE.md).
-- **[GETTING-STARTED.md](GETTING-STARTED.md)**: Read `GETTING-STARTED.md` for complete details on the directory structure, configuration files, DCA…. [GETTING-STARTED](GETTING-STARTED.md).
-- **[INITIAL-SETUP.md](INITIAL-SETUP.md)**: Read `INITIAL-SETUP.md` for complete installation guides, Managed Edition internals and Symfo…. [INITIAL-SETUP](INITIAL-SETUP.md).
-- **[LOGGING.md](LOGGING.md)**: Complete reference: `LOGGING.md`. [LOGGING](LOGGING.md).
-- **[MAINTENANCE.md](MAINTENANCE.md)**: Complete reference: `MAINTENANCE.md`. [MAINTENANCE](MAINTENANCE.md).
-- **[MANAGER-PLUGIN.md](MANAGER-PLUGIN.md)**: Read `MANAGER-PLUGIN.md` for complete documentation of all Manager plugin interfaces and how to use…. [MANAGER-PLUGIN](MANAGER-PLUGIN.md).
-- **[PROFILER.md](PROFILER.md)**: Complete reference: `PROFILER.md`. [PROFILER](PROFILER.md).
-- **[REFERENCE-MISC.md](REFERENCE-MISC.md)** [REFERENCE-MISC](REFERENCE-MISC.md).
+- **[GETTING-STARTED.md](GETTING-STARTED.md)**: the Managed Edition directory layout, every configuration file, autoloading, and how a project is wired together.
+- **[INITIAL-SETUP.md](INITIAL-SETUP.md)**: installing the Managed Edition, its internals, and integrating Contao into an existing Symfony application.
+- **[EXTENSION-BUNDLE.md](EXTENSION-BUNDLE.md)**: building an extension: `composer.json`, the development structure, path repositories for local work, and publishing.
+- **[MANAGER-PLUGIN.md](MANAGER-PLUGIN.md)**: the Manager plugin and all its interfaces: `BundlePluginInterface`, config, routing, extension and dependent plugins.
+- **[CONCEPTS.md](CONCEPTS.md)**: the ten concepts a Contao developer needs: DCA and models, front-end modules, content elements, hooks, templates and the rest.
+- **[CODING-STANDARDS.md](CODING-STANDARDS.md)**: the coding standards, the tooling that enforces them, the namespace structure, and class-suffix conventions.
+- **[LOGGING.md](LOGGING.md)**: system-log integration, `ContaoContext` actions, and the preconfigured logger services.
+- **[MAINTENANCE.md](MAINTENANCE.md)**: writing a maintenance module and a purge task.
+- **[PROFILER.md](PROFILER.md)**: the Contao profiler panel, its components, and when it is available.
+- **[REFERENCE-MISC.md](REFERENCE-MISC.md)**: the long reference, 988 lines: core services, events, console commands, `contao.yaml` configuration, environment variables and request attributes.
 
 ## Source
 

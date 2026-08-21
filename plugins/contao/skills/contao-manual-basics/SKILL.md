@@ -9,14 +9,14 @@ Operating Contao rather than developing for it. Written for administrators and e
 
 ## Reference map
 
-- **[MANUAL-BACKEND.md](MANUAL-BACKEND.md)**: Referenz: `MANUAL-BACKEND.md` Quelle: https://docs.contao.org/5.x/manual/de/administrationsbereich/. [MANUAL-BACKEND](MANUAL-BACKEND.md).
-- **[MANUAL-CLI.md](MANUAL-CLI.md)**: Referenz: `MANUAL-CLI.md` Quelle: https://docs.contao.org/5.x/manual/de/cli/. [MANUAL-CLI](MANUAL-CLI.md).
-- **[MANUAL-INSTALLATION.md](MANUAL-INSTALLATION.md)**: Referenz: `MANUAL-INSTALLATION.md` Quelle: https://docs.contao.org/5.x/manual/de/installation/. [MANUAL-INSTALLATION](MANUAL-INSTALLATION.md).
-- **[MANUAL-MIGRATION.md](MANUAL-MIGRATION.md)**: Referenz: `MANUAL-MIGRATION.md` Quelle: https://docs.contao.org/5.x/manual/de/migration/. [MANUAL-MIGRATION](MANUAL-MIGRATION.md).
-- **[MANUAL-OVERVIEW.md](MANUAL-OVERVIEW.md)**: Referenz: `MANUAL-OVERVIEW.md` Quelle: https://docs.contao.org/5.x/manual/de/einleitung/. [MANUAL-OVERVIEW](MANUAL-OVERVIEW.md).
-- **[MANUAL-PERFORMANCE.md](MANUAL-PERFORMANCE.md)**: Referenz: `MANUAL-PERFORMANCE.md` Quelle: https://docs.contao.org/5.x/manual/de/performance/. [MANUAL-PERFORMANCE](MANUAL-PERFORMANCE.md).
-- **[MANUAL-SYSTEM.md](MANUAL-SYSTEM.md)**: Referenz: `MANUAL-SYSTEM.md` Quelle: https://docs.contao.org/5.x/manual/de/system/. [MANUAL-SYSTEM](MANUAL-SYSTEM.md).
-- **[MANUAL-USER-MANAGEMENT.md](MANUAL-USER-MANAGEMENT.md)**: Referenz: `MANUAL-USER-MANAGEMENT.md` Quelle: https://docs.contao.org/5.x/manual/de/benutzerv…. [MANUAL-USER-MANAGEMENT](MANUAL-USER-MANAGEMENT.md).
+- **[MANUAL-OVERVIEW.md](MANUAL-OVERVIEW.md)**: what Contao is, the system at a glance, and the Contao network.
+- **[MANUAL-INSTALLATION.md](MANUAL-INSTALLATION.md)**: system requirements, installation, updating, the Contao Manager, and installing extensions.
+- **[MANUAL-BACKEND.md](MANUAL-BACKEND.md)**: calling up the backend, its structure, the keyboard shortcuts, and listing and editing records.
+- **[MANUAL-USER-MANAGEMENT.md](MANUAL-USER-MANAGEMENT.md)**: backend users, front-end members, and the practical tips the manual gives.
+- **[MANUAL-SYSTEM.md](MANUAL-SYSTEM.md)**: the settings screen, the configuration files, environment variables, maintenance, preview links and debug mode.
+- **[MANUAL-PERFORMANCE.md](MANUAL-PERFORMANCE.md)**: the cronjob framework, HTTP caching, PHP setup, and the optimisation steps in order.
+- **[MANUAL-CLI.md](MANUAL-CLI.md)**: every console command: `contao:automator`, `contao:backup`, `contao:crawl` and the rest, with their options.
+- **[MANUAL-MIGRATION.md](MANUAL-MIGRATION.md)**: semantic versioning, minor and bugfix updates, and the 3.5 to 4.x and 4.x to 5.x migrations.
 
 ## Source
 

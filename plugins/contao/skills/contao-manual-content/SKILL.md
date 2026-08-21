@@ -9,11 +9,11 @@ The editor's daily work: page tree, articles, content elements, layouts and the 
 
 ## Reference map
 
-- **[MANUAL-ARTICLES-CONTENT.md](MANUAL-ARTICLES-CONTENT.md)**: Referenz: `MANUAL-ARTICLES-CONTENT.md` Quelle: https://docs.contao.org/5.x/manual/de/artikel…. [MANUAL-ARTICLES-CONTENT](MANUAL-ARTICLES-CONTENT.md).
-- **[MANUAL-FILE-MANAGEMENT.md](MANUAL-FILE-MANAGEMENT.md)**: Referenz: `MANUAL-FILE-MANAGEMENT.md`. [MANUAL-FILE-MANAGEMENT](MANUAL-FILE-MANAGEMENT.md).
-- **[MANUAL-INSERT-TAGS-TOKENS.md](MANUAL-INSERT-TAGS-TOKENS.md)**: Referenz: `MANUAL-INSERT-TAGS-TOKENS.md` Quelle: https://docs.contao.org/5.x/manual/de/art…. [MANUAL-INSERT-TAGS-TOKENS](MANUAL-INSERT-TAGS-TOKENS.md).
-- **[MANUAL-LAYOUT.md](MANUAL-LAYOUT.md)**: Referenz: `MANUAL-LAYOUT.md` Quelle: https://docs.contao.org/5.x/manual/de/layout/. [MANUAL-LAYOUT](MANUAL-LAYOUT.md).
-- **[MANUAL-PAGE-STRUCTURE.md](MANUAL-PAGE-STRUCTURE.md)**: Referenz: `MANUAL-PAGE-STRUCTURE.md` Quelle: https://docs.contao.org/5.x/manual/de/seitenstruk…. [MANUAL-PAGE-STRUCTURE](MANUAL-PAGE-STRUCTURE.md).
+- **[MANUAL-PAGE-STRUCTURE.md](MANUAL-PAGE-STRUCTURE.md)**: pages as central elements, every page type, multi-domain operation, and multilingual sites.
+- **[MANUAL-ARTICLES-CONTENT.md](MANUAL-ARTICLES-CONTENT.md)**: article management and every content element: text, link, media, file, include and the rest.
+- **[MANUAL-LAYOUT.md](MANUAL-LAYOUT.md)**: the Theme Manager, module management, and templates.
+- **[MANUAL-FILE-MANAGEMENT.md](MANUAL-FILE-MANAGEMENT.md)**: managing files and folders, metadata, and controlling downloads.
+- **[MANUAL-INSERT-TAGS-TOKENS.md](MANUAL-INSERT-TAGS-TOKENS.md)**: every insert tag and token: link tags, member and page properties, environment variables and more.
 
 ## Source
 

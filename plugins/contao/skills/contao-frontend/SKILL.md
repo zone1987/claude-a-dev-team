@@ -9,15 +9,15 @@ Everything rendered to a visitor. Content elements and frontend modules are both
 
 ## Reference map
 
-- **[ASSET-MANAGEMENT.md](ASSET-MANAGEMENT.md)**: Read `ASSET-MANAGEMENT.md` for complete details on CSS/JS asset inclusion in Contao 5. [ASSET-MANAGEMENT](ASSET-MANAGEMENT.md).
-- **[CONTENT-ELEMENTS.md](CONTENT-ELEMENTS.md)**: Read `CONTENT-ELEMENTS.md` for complete implementation details of all content element aspects in C…. [CONTENT-ELEMENTS](CONTENT-ELEMENTS.md).
-- **[FRAGMENT-CONTROLLERS.md](FRAGMENT-CONTROLLERS.md)**: Read `FRAGMENT-CONTROLLERS.md` for a complete explanation of the fragment controller concept and imple…. [FRAGMENT-CONTROLLERS](FRAGMENT-CONTROLLERS.md).
-- **[IMAGE-PROCESSING.md](IMAGE-PROCESSING.md)**: Complete reference: `IMAGE-PROCESSING.md`. [IMAGE-PROCESSING](IMAGE-PROCESSING.md).
-- **[INSERT-TAGS.md](INSERT-TAGS.md)**: Read `INSERT-TAGS.md` for complete implementation details on custom insert tags in Contao 5. [INSERT-TAGS](INSERT-TAGS.md).
-- **[MODULES.md](MODULES.md)**: Read `MODULES.md` for complete implementation details on frontend modules in Contao 5. [MODULES](MODULES.md).
-- **[TEMPLATES.md](TEMPLATES.md)**: Read `TEMPLATES.md` for the complete Twig template system of Contao 5 including architecture, crea…. [TEMPLATES](TEMPLATES.md).
-- **[TWIG-REFERENCE.md](TWIG-REFERENCE.md)** [TWIG-REFERENCE](TWIG-REFERENCE.md).
-- **[WIDGETS-REFERENCE.md](WIDGETS-REFERENCE.md)** [WIDGETS-REFERENCE](WIDGETS-REFERENCE.md).
+- **[CONTENT-ELEMENTS.md](CONTENT-ELEMENTS.md)**: content elements: the basic components, a minimal implementation, every service-tag option, and both registration methods.
+- **[MODULES.md](MODULES.md)**: front-end modules, the same ground as content elements where the two differ.
+- **[FRAGMENT-CONTROLLERS.md](FRAGMENT-CONTROLLERS.md)**: the fragment concept, the built-in types, extending legacy classes, and sub-requests with their caching.
+- **[TEMPLATES.md](TEMPLATES.md)**: the Twig system in 528 lines: `ContaoFilesystemLoader`, naming and scoping, the component pattern, debugging, and legacy interop.
+- **[TWIG-REFERENCE.md](TWIG-REFERENCE.md)**: every Twig function, filter, global, tag and Contao Twig component, 705 lines.
+- **[WIDGETS-REFERENCE.md](WIDGETS-REFERENCE.md)**: every form widget with its DCA `eval` options: `checkbox`, `fileTree`, `imageSize`, `inputUnit` and the rest.
+- **[INSERT-TAGS.md](INSERT-TAGS.md)**: registering an insert tag (Contao 5.2 and later), simple and block tags, and flags.
+- **[ASSET-MANAGEMENT.md](ASSET-MANAGEMENT.md)**: the global arrays, adding CSS and JavaScript, and the template helper functions.
+- **[IMAGE-PROCESSING.md](IMAGE-PROCESSING.md)**: `ImageFactory`, `PictureFactory`, the size-array format, and image sizes from the database.
 
 ## Source
 

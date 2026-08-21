@@ -9,12 +9,12 @@ Extending the administration area, and the routing and CSRF machinery behind it.
 
 ## Reference map
 
-- **[MODULES.md](MODULES.md)**: Read `MODULES.md` for complete details on backend module registration, assets and callbacks in Con…. [MODULES](MODULES.md).
-- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: Read `PAGE-CONTROLLERS.md` for complete documentation on page controllers and their integration into…. [PAGE-CONTROLLERS](PAGE-CONTROLLERS.md).
-- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: Complete reference: `REQUEST-TOKENS.md`. [REQUEST-TOKENS](REQUEST-TOKENS.md).
-- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: Complete reference: `RESPONSE-CONTEXT.md`. [RESPONSE-CONTEXT](RESPONSE-CONTEXT.md).
-- **[ROUTES.md](ROUTES.md)**: Read `ROUTES.md` for complete implementation details on custom backend routes and backend asset in…. [ROUTES](ROUTES.md).
-- **[ROUTING.md](ROUTING.md)**: Read `ROUTING.md` for complete routing documentation including content routing and legacy parameter…. [ROUTING](ROUTING.md).
+- **[MODULES.md](MODULES.md)**: backend modules: registration, the `tables` option, loading a DCA, permissions, and the operations a module offers.
+- **[ROUTES.md](ROUTES.md)**: backend controllers, the backend template, menu integration, and adding a route to an existing module.
+- **[ROUTING.md](ROUTING.md)**: custom routes, request attributes, and content routing (Contao 5.3 and later).
+- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: page controllers: both registration methods, every configuration parameter, URL generation, and a minimal example.
+- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: CSRF tokens: generating, validating, outputting them in a template, and when protection may be disabled.
+- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: the four-step response-context workflow, the core capabilities (HTML head, JSON-LD), and how a page controller creates one.
 
 ## Source
 

@@ -9,10 +9,10 @@ Features an editor configures rather than codes: the form generator, the bundled
 
 ## Reference map
 
-- **[MANUAL-CORE-EXTENSIONS.md](MANUAL-CORE-EXTENSIONS.md)**: Referenz: `MANUAL-CORE-EXTENSIONS.md` Quelle: https://docs.contao.org/5.x/manual/de/core-erwe…. [MANUAL-CORE-EXTENSIONS](MANUAL-CORE-EXTENSIONS.md).
-- **[MANUAL-FORM-GENERATOR.md](MANUAL-FORM-GENERATOR.md)**: Referenz: `MANUAL-FORM-GENERATOR.md` Quelle: https://docs.contao.org/5.x/manual/de/formulargen…. [MANUAL-FORM-GENERATOR](MANUAL-FORM-GENERATOR.md).
-- **[MANUAL-THIRD-PARTY-EXTENSIONS.md](MANUAL-THIRD-PARTY-EXTENSIONS.md)**: Referenz: `MANUAL-THIRD-PARTY-EXTENSIONS.md` Quelle: https://docs.contao.org/5.x/manua…. [MANUAL-THIRD-PARTY-EXTENSIONS](MANUAL-THIRD-PARTY-EXTENSIONS.md).
-- **[MANUAL-TUTORIALS.md](MANUAL-TUTORIALS.md)**: Referenz: `MANUAL-TUTORIALS.md` Quelle: https://docs.contao.org/5.x/manual/de/anleitungen/. [MANUAL-TUTORIALS](MANUAL-TUTORIALS.md).
+- **[MANUAL-FORM-GENERATOR.md](MANUAL-FORM-GENERATOR.md)**: configuring a form, every form field, and the search-form tutorial.
+- **[MANUAL-CORE-EXTENSIONS.md](MANUAL-CORE-EXTENSIONS.md)**: the core extensions: `news-bundle`, `calendar-bundle`, `faq-bundle`, `newsletter-bundle` and the rest.
+- **[MANUAL-THIRD-PARTY-EXTENSIONS.md](MANUAL-THIRD-PARTY-EXTENSIONS.md)**: the third-party extensions the manual covers, each with its package name.
+- **[MANUAL-TUTORIALS.md](MANUAL-TUTORIALS.md)**: the tutorials, 488 lines: test versions, a first start page, the maintenance page and more.
 
 ## Source
 
