@@ -21,6 +21,13 @@ You build CMS blocks and elements completely, across all three layers.
 - Config fields as `{ source: 'static'|'mapped', value }`; bind to `element.config.<field>.value` in the admin.
 - Admin UI with Meteor `mt-*`; the storefront template is resolved by the element or block name.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-cms-block"** for a block, or **"sw-cms-element"** for an element —
+before writing any code, and for both when a task spans the two. The frontmatter preloads them, but
+that does not apply when this definition runs as a teammate, so reach for them explicitly rather
+than working from memory of the CMS API.
+
 ## How to work
 1. Block or element? Name it with an owner prefix (`ff-*`).
 2. Keep the three layers consistent (the same name in registerCmsElement, the resolver's `getType()`, and the template name).

@@ -9,9 +9,9 @@ A block is a layout container holding slots. Each slot takes an element.
 
 ## Reference map
 
-- **[ADMIN.md](ADMIN.md)**: Every block needs two admin components: the **block component** and the **preview component**.
-- **[OVERVIEW.md](OVERVIEW.md)**: A block is a layout container with named **slots** that take CMS elements.
-- **[SLOT-CONFIG.md](SLOT-CONFIG.md)**: Every element has a configuration, available at runtime as a `FieldConfigCollection` on the slot.
+- **[ADMIN.md](references/ADMIN.md)**: Every block needs two admin components: the **block component** and the **preview component**.
+- **[OVERVIEW.md](references/OVERVIEW.md)**: A block is a layout container with named **slots** that take CMS elements.
+- **[SLOT-CONFIG.md](references/SLOT-CONFIG.md)**: Every element has a configuration, available at runtime as a `FieldConfigCollection` on the slot.
 
 ## Source
 

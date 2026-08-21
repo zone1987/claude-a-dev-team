@@ -9,11 +9,11 @@ An element needs three parts: an admin component, a storefront template, and a d
 
 ## Reference map
 
-- **[ADMIN.md](ADMIN.md)**: Three components per element, registered under `.../module/sw-cms/elements/ff-teaser/`.
-- **[CMS.md](CMS.md)**: Plugins can add custom CMS elements and blocks to the Shopping Experiences content management system. [CMS-2](CMS-2.md).
-- **[DATA-RESOLVER.md](DATA-RESOLVER.md)**: Loads a CMS element's data server-side.
-- **[OVERVIEW.md](OVERVIEW.md)**: An element is a concrete content building block.
-- **[STOREFRONT.md](STOREFRONT.md)**: The element is rendered in the storefront through a Twig template, path `src/Resources/views/storefront/element….
+- **[ADMIN.md](references/ADMIN.md)**: Three components per element, registered under `.../module/sw-cms/elements/ff-teaser/`.
+- **[CMS.md](references/CMS.md)**: Plugins can add custom CMS elements and blocks to the Shopping Experiences content management system. [CMS-2](references/CMS-2.md).
+- **[DATA-RESOLVER.md](references/DATA-RESOLVER.md)**: Loads a CMS element's data server-side.
+- **[OVERVIEW.md](references/OVERVIEW.md)**: An element is a concrete content building block.
+- **[STOREFRONT.md](references/STOREFRONT.md)**: The element is rendered in the storefront through a Twig template, path `src/Resources/views/storefront/element….
 
 ## Source
 
