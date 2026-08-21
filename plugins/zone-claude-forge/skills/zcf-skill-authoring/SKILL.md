@@ -27,7 +27,9 @@ the rules each step applies, so a rule has one authoritative wording. Never rest
    model, then a reference map. Load-bearing content first: after compaction only the first 5,000
    tokens come back. `SIZE-01`, `BUDGET-06`
 5. **Push depth into flat siblings.** `SCREAMING-CASE.md` beside `SKILL.md`, never a subdirectory.
-   Link every one from `SKILL.md` with a note on what it holds. `DEPTH-01`, `REF-01`, `LINK-01`
+   Link every one from `SKILL.md` with a note on what it holds. **Name each file after what is in
+   it**, so the name alone tells a reader whether to open it. `DEPTH-01`, `REF-01`, `REF-03`,
+   `LINK-01`
 6. **Close on `## Source`** with the upstream URL, the version, hash or commit, and the date.
    `SRC-01`, `SRC-06`
 7. **Run the gate.** `python3 scripts/validate_plugin.py --plugin <name> --strict`. A finding names

@@ -1,11 +1,11 @@
 # Contao 5.x — System
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/system/
-- https://docs.contao.org/5.x/manual/de/system/einstellungen/
-- https://docs.contao.org/5.x/manual/de/system/systemwartung/
-- https://docs.contao.org/5.x/manual/de/system/preview-link/
-- https://docs.contao.org/5.x/manual/de/system/debug-modus/
+- https://docs.contao.org/5.x/manual/en/system/
+- https://docs.contao.org/5.x/manual/en/system/settings/
+- https://docs.contao.org/5.x/manual/en/system/maintenance/
+- https://docs.contao.org/5.x/manual/en/system/preview-links/
+- https://docs.contao.org/5.x/manual/en/system/debug-mode/
 
 ---
 
@@ -262,8 +262,8 @@ contao:
 **Step 3**: translations (optional):
 ```yaml
 # translations/mailer_transports.de.yaml
-website1: 'SMTP für Webseite 1'
-website2: 'SMTP für Webseite 2'
+website1: 'SMTP for website 1'
+website2: 'SMTP for website 2'
 ```
 
 ### Testing e-mail

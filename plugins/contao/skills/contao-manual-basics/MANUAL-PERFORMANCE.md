@@ -1,10 +1,10 @@
 # Contao 5.x — Performance
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/performance/
-- https://docs.contao.org/5.x/manual/de/performance/cronjobs/
-- https://docs.contao.org/5.x/manual/de/performance/http-caching/
-- https://docs.contao.org/5.x/manual/de/performance/php-setup/
+- https://docs.contao.org/5.x/manual/en/performance/
+- https://docs.contao.org/5.x/manual/en/performance/cronjobs/
+- https://docs.contao.org/5.x/manual/en/performance/http-caching/
+- https://docs.contao.org/5.x/manual/en/performance/php-setup/
 
 ---
 

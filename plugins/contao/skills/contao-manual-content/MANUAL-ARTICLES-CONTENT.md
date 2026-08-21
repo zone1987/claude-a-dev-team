@@ -279,13 +279,64 @@ Uses the `js_slider` template in the Seitenlayout.
 ---
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/artikel/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/text-elemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/media-elemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/link-elemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/datei-elemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/include-elemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/legacy-elemente/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/verschiedenes/
+- https://docs.contao.org/5.x/manual/en/article-management/
+- https://docs.contao.org/5.x/manual/en/article-management/articles/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/text-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/media-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/link-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/file-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/include-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/legacy-elements/
+- https://docs.contao.org/5.x/manual/en/article-management/content-elements/miscellaneous/
+
+## Content slider
+
+**Source:** https://docs.contao.org/5.x/manual/en/article-management/content-elements/content-slider/
+
+This page describes the content element "Content Slider", with which a slider is created from different content elements. Upstream, the page is marked hidden and as a redirect to `/en/article-management/content-elements/legacy-element/`, so it may not resolve as a standalone URL.
+
+For the slider to work, the `js_slider` template must be included in the page layout.
+
+### Configuration fields
+
+- **Operation mode**: selects the operation mode of the slider element. Values: `Envelope beginning` (the element opens a new slider section into which any other content elements can be inserted), `End envelope` (the element closes a slider section previously opened using "Envelope Start").
+- **Slide Interval**: defines the time interval between slides in milliseconds (1000 = 1s). `0` disables the automatic change.
+- **Transition Speed**: sets the transition speed in milliseconds (1000 = 1s).
+- **Slide offset**: starts the slider with a specific slide. Counting starts at 0.
+- **Continuous**: creates a continuous slider, starting over when the end is reached.
+- **Individual template**: overwrites the default `ce_sliderStart` template.
+
+### HTML Output
+
+The element generates the following HTML code:
+
+```html
+<div class="ce_sliderStart first block">
+
+    <div class="content-slider" data-config="5000,300,0,1">
+        <div class="slider-wrapper">    
+            <div class="ce_text block">
+                <figure class="image_container float_above">
+                <img src="…" alt="…" itemprop="image">
+                </figure>
+                <p>…</p> 
+            </div>
+            <div class="ce_text block">
+                <figure class="image_container float_above">
+                <img src="…" alt="…" itemprop="image">
+                </figure>
+                <p>…</p> 
+            </div>
+        </div>
+    </div>
+
+    <nav class="slider-control">
+        <a href="#" class="slider-prev">Zurück</a>
+        <span class="slider-menu"></span>
+        <a href="#" class="slider-next">Vorwärts</a>
+    </nav>
+
+</div>
+```
+

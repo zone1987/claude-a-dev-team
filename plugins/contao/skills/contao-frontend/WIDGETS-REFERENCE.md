@@ -656,20 +656,305 @@ tl_foobar:
 
 ---
 
+## keyValueWizard
+
+Enter multiple key-and-value (or value-and-label) combinations. Individual entries can be copied,
+deleted and reordered.
+
+**Deprecated in Contao 5.7** in favour of `rowWizard`.
+
+### eval options
+
+- **maxlength** (int): maximum number of characters allowed in the individual input fields. Default
+  not stated upstream.
+- **keyLabel** (string): the label for the key column of the wizard. Default not stated upstream.
+- **valueLabel** (string): the label for the value column of the wizard. Default not stated upstream.
+
+### Example
+
+```php
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+
+'foobar' => [
+    'inputType' => 'keyValueWizard',
+    'eval' => [
+        'maxlength' => 255,
+        'keyLabel' => 'The key',
+        'valueLabel' => 'The label',
+    ],
+    'sql' => [
+        'type' => 'blob',
+        'length' => MySQLPlatform::LENGTH_LIMIT_BLOB,
+        'notnull' => false,
+    ],
+],
+```
+
+Source: https://docs.contao.org/5.x/dev/reference/widgets/key-value-wizard/
+
+---
+
+## metaWizard
+
+Edit metadata fields. Where several languages are enabled, the widget creates one row per language.
+
+### eval options
+
+- **metaFields** (array): the meta fields to display. The array key is the field; the value is
+  either a string of field attributes or an array of the options below.
+- **metaFields.<field>.type** (string): the field input type. The only supported value is
+  `textarea`; anything else renders a text input.
+- **metaFields.<field>.attributes** (string): the field attributes.
+- **metaFields.<field>.dcaPicker** (bool): show a DCA picker.
+- **metaFields.<field>.rgxp** (string): a validation regular expression.
+- **metaFields.<field>.rgxpErrMsg** (string): the error message shown when validation fails.
+
+`allowHtml` and `multiple` appear in the upstream example without a description there.
+
+### Example
+
+```php
+'meta' => [
+    'exclude' => true,
+    'inputType' => 'metaWizard',
+    'eval' => [
+        'allowHtml' => true,
+        'multiple' => true,
+        'metaFields' => [
+            'title' => 'maxlength="255"',
+            'alt' => 'maxlength="255"',
+            'link' => ['attributes' => 'maxlength="2048"', 'dcaPicker' => true],
+            'caption' => ['type' => 'textarea'],
+            'license' => [
+                'attributes' => 'maxlength="255"',
+                'dcaPicker' => true,
+                'rgxp' => '#(^$|^{{link_url::.+$|^https?://.+$)#',
+                'rgxpErrMsg' => &$GLOBALS['TL_LANG']['tl_files']['licenseRgxpError'],
+            ],
+        ],
+    ],
+    'sql' => [
+        'type' => 'blob',
+        'length' => MySQLPlatform::LENGTH_LIMIT_BLOB,
+        'notnull' => false,
+    ],
+],
+```
+
+Source: https://docs.contao.org/5.x/dev/reference/widgets/meta-wizard/
+
+---
+
+## pageTree
+
+Select one or more pages from the site structure. The page counterpart to `fileTree`.
+
+### eval options
+
+- **fieldType** (string, **mandatory**): `checkbox` to allow multiple selections, `radio` for a
+  single one. One of: `checkbox`, `radio`.
+- **multiple** (bool): allows several pages to be selected. Default not stated upstream.
+- **isSortable** (bool): allows the selected pages to be sorted after selection. Only with
+  `multiple`.
+
+### Example, single page
+
+```php
+'jumpTo' => [
+    'exclude' => true,
+    'inputType' => 'pageTree',
+    'foreignKey' => 'tl_page.title',
+    'eval' => ['fieldType' => 'radio'],
+    'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
+    'relation' => ['type' => 'hasOne', 'load' => 'lazy'],
+],
+```
+
+### Example, several pages
+
+```php
+'pages' => [
+    'exclude' => true,
+    'inputType' => 'pageTree',
+    'foreignKey' => 'tl_page.title',
+    'eval' => ['multiple' => true, 'fieldType' => 'checkbox', 'isSortable' => true],
+    'sql' => [
+        'type' => 'blob',
+        'length' => MySQLPlatform::LENGTH_LIMIT_BLOB,
+        'notnull' => false,
+    ],
+    'relation' => ['type' => 'hasMany', 'load' => 'lazy'],
+],
+```
+
+A single selection pairs an unsigned `integer` column defaulting to `0` with `foreignKey`
+`tl_page.title` and a `hasOne` lazy relation. Several selections pair a nullable `blob` with a
+`hasMany` lazy relation.
+
+Source: https://docs.contao.org/5.x/dev/reference/widgets/page-tree/
+
+---
+
+## radioTable
+
+Renders a set of radio buttons horizontally, each with an image label rather than a text label.
+
+### eval options
+
+- **cols** (int): the number of radio buttons to display. Default not stated upstream.
+
+`tl_class` appears in the upstream examples without a description there.
+
+### Related field keys
+
+- **options** (array): the options array. For custom images the option value is a path relative to
+  the `public/` directory, **without** the `.svg` extension. Only SVGs are supported.
+- **options_callback** (callable): returns the options, for use with `eval.multiple`.
+- **reference** (array): an array used to translate the options.
+
+### Example, core icons
+
+```php
+'floating' => [
+    'label' => ['Image alignment', 'Please specify how to align the image.'],
+    'inputType' => 'radioTable',
+    'options' => ['above', 'left', 'right', 'below'],
+    'eval' => ['cols' => 4, 'tl_class' => 'w50'],
+    'reference' => &$GLOBALS['TL_LANG']['MSC'],
+    'sql' => ['type' => 'string', 'length' => 8, 'default' => 'above'],
+],
+```
+
+### Example, own SVGs
+
+```php
+'alignment' => [
+    'label' => ['Text alignment', 'Please specify how to align the text.'],
+    'inputType' => 'radioTable',
+    'options' => [
+        'bundles/mybundle/align-left' => 'Left',
+        'bundles/mybundle/align-center' => 'Center',
+        'bundles/mybundle/align-right' => 'Right',
+        'bundles/mybundle/align-justify' => 'Justify',
+    ],
+    'eval' => ['cols' => 4, 'tl_class' => 'w50'],
+    'sql' => ['type' => 'string', 'length' => 64, 'default' => 'bundles/mybundle/align-left'],
+],
+```
+
+The `sql` string length has to accommodate the longest possible option value.
+
+Source: https://docs.contao.org/5.x/dev/reference/widgets/radio-table/
+
+---
+
+## rowWizard
+
+Renders one or more rows of arbitrary DCA fields, each row a configurable set of child widgets.
+**Available in Contao 5.7 and later**, and the replacement for the deprecated `keyValueWizard`.
+
+### eval options
+
+- **actions** (array, default `['copy', 'delete']`): the row actions offered. One of: `copy`,
+  `delete`, `enable`.
+- **sortable** (bool, default `true`): enables drag-and-drop sorting.
+- **min** (int): minimum number of rows. Default not stated upstream.
+- **max** (int): maximum number of rows. Default not stated upstream.
+
+Per child field:
+
+- **fields.<field>.eval.cell_class** (string): CSS classes applied to the widget cell.
+- **fields.<field>.eval.cell_style** (string): CSS styles applied to the widget cell.
+
+The child widgets are declared under a top-level `fields` key on the field definition, **not** under
+`eval`.
+
+### Example
+
+```php
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['rowWizard'] = [
+    'label' => ['rowWizardExample', 'And some random description'],
+    'inputType' => 'rowWizard',
+    'fields' => [
+        'type' => [
+            'label' => ['Type'],
+            'inputType' => 'select',
+            'options' => ['foo', 'bar', 'baz', 'quux'],
+            'eval' => ['includeBlankOption' => true, 'chosen' => true],
+        ],
+        'checkbox' => ['label' => ['Checkbox'], 'inputType' => 'checkbox'],
+        'textarea' => ['label' => ['Textarea'], 'inputType' => 'textarea'],
+        'text' => ['label' => ['Text'], 'inputType' => 'text'],
+    ],
+    'eval' => [
+        'tl_class' => 'clr',
+        'actions' => ['copy', 'delete', 'enable'],
+        'min' => 2,
+        'max' => 5,
+        'sortable' => false,
+    ],
+    'sql' => [
+        'type' => 'blob',
+        'length' => AbstractMySQLPlatform::LENGTH_LIMIT_BLOB,
+        'notnull' => false,
+    ],
+];
+```
+
+### Known limitations
+
+The upstream page names these explicitly:
+
+- `eval.color-picker`, `eval.datepicker` and `eval.rte` do not work inside the row wizard.
+- Any modification that appends JavaScript to the widget through `DataContainer::row()` does not work.
+- Custom widgets from extensions that depend on JavaScript do not work; Stimulus controllers may.
+
+Source: https://docs.contao.org/5.x/dev/reference/widgets/row-wizard/
+
+---
+
+## sectionWizard
+
+Used in page layouts to define custom sections beyond the default ones. For each section it defines
+how and where it is rendered within the layout.
+
+### eval options
+
+None. The upstream page states the widget has no special options.
+
+### Example
+
+```php
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+
+'modules' => [
+    'search' => true,
+    'inputType' => 'sectionWizard',
+    'sql' => [
+        'type' => 'blob',
+        'length' => MySQLPlatform::LENGTH_LIMIT_BLOB,
+        'notnull' => false,
+    ],
+],
+```
+
+Source: https://docs.contao.org/5.x/dev/reference/widgets/section-wizard/
+
+---
+
 ## Undocumented widgets
 
-The following widgets exist in the Contao core but are not yet documented in the official documentation, or only as a stub:
+These widgets exist in the Contao core and have an upstream page that this file has not yet
+distilled, or none at all:
 
-| inputType | Description |
-|-----------|--------------|
-| `chmod` | CHMOD table for file/folder permissions |
-| `keyValueWizard` | Key-value wizard |
-| `metaWizard` | File manager meta information |
-| `pageTree` | Page tree picker (like `fileTree` for pages) |
-| `radioTable` | Table with images and radio buttons |
-| `sectionWizard` | Page layout sections |
-| `textStore` | Text field without value display |
-| `trbl` | Four text fields plus unit dropdown (top/right/bottom/left) |
+| inputType | Description | Upstream page |
+|---|---|---|
+| `chmod` | CHMOD table for file and folder permissions | [reference/widgets/chmod](https://docs.contao.org/5.x/dev/reference/widgets/chmod/) |
+| `rootPageDependentSelect` | Select whose options depend on the root page | [reference/widgets/root-page-dependent-select](https://docs.contao.org/5.x/dev/reference/widgets/root-page-dependent-select/) |
+| `trbl` | Four text fields plus a unit dropdown (top, right, bottom, left) | [reference/widgets/trbl](https://docs.contao.org/5.x/dev/reference/widgets/trbl/) |
+| `textStore` | Text field that does not display its value | none |
 
 ---
 

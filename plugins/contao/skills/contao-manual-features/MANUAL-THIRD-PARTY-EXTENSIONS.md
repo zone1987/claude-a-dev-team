@@ -228,11 +228,26 @@ Templates receive additional variables:
 ---
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/erweiterungen/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/animated-timeline/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/contao-easy_themes/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/isotope-core/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/maklermodul/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/merger2/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/metamodels/
-- https://docs.contao.org/5.x/manual/de/erweiterungen/news-facebook-sync/
+- https://docs.contao.org/5.x/manual/en/extensions/
+- https://docs.contao.org/5.x/manual/en/extensions/animated-timeline/
+- https://docs.contao.org/5.x/manual/en/extensions/contao-easy_themes/
+- https://docs.contao.org/5.x/manual/en/extensions/isotope-core/
+- https://docs.contao.org/5.x/manual/en/extensions/maklermodul/
+- https://docs.contao.org/5.x/manual/en/extensions/cca-merger2/
+- https://docs.contao.org/5.x/manual/en/extensions/metamodels/
+- https://docs.contao.org/5.x/manual/en/extensions/news-facebook-sync/
+
+## Social Feed
+
+**Package:** `pdir/social-feed-bundle`, by pdir GmbH.
+
+Shows a user feed from Facebook and Instagram. The posts are written **directly into the database**,
+created as news items, and then displayed with the **news list** module type.
+
+The manual page carries nothing further: no backend module, no configuration field, no front-end
+module of its own, no setup steps, no caveat or version note. It points at `docs.pdir.de` for
+detailed instructions. Recorded as absent rather than guessed.
+
+Source: https://docs.contao.org/5.x/manual/en/extensions/social-feed/
+
+---

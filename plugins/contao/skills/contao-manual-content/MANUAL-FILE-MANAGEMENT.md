@@ -1,10 +1,10 @@
 # Contao 5.x — Dateiverwaltung (File Management)
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/dateiverwaltung/
-- https://docs.contao.org/5.x/manual/de/dateiverwaltung/dateien-und-ordner-verwalten/
-- https://docs.contao.org/5.x/manual/de/dateiverwaltung/metadaten/
-- https://docs.contao.org/5.x/manual/de/dateiverwaltung/downloads-kontrollieren/
+- https://docs.contao.org/5.x/manual/en/file-manager/
+- https://docs.contao.org/5.x/manual/en/file-manager/file-manager/
+- https://docs.contao.org/5.x/manual/en/file-manager/meta-data/
+- https://docs.contao.org/5.x/manual/en/file-manager/control-downloads/
 
 ---
 

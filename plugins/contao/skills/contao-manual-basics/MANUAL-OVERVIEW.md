@@ -1,10 +1,10 @@
 # Contao 5.x — Introduction (Overview)
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/einleitung/
-- https://docs.contao.org/5.x/manual/de/einleitung/contao-open-source-cms/
-- https://docs.contao.org/5.x/manual/de/einleitung/das-contao-netzwerk/
-- https://docs.contao.org/5.x/manual/de/einleitung/contao-im-schnelldurchlauf/
+- https://docs.contao.org/5.x/manual/en/introduction/
+- https://docs.contao.org/5.x/manual/en/introduction/contao-open-source-cms/
+- https://docs.contao.org/5.x/manual/en/introduction/the-contao-network/
+- https://docs.contao.org/5.x/manual/en/introduction/contao-quickstart/
 
 ---
 
@@ -53,9 +53,9 @@ Contao is divided into two areas:
 - **Backend** (`/contao`): administration area where articles are written and pages are managed
 - **Frontend**: the actual website for visitors
 
-![The page structure](assets/die-page-structure.png)
+![The page structure](assets/page-structure.png)
 
-![Frontend modules](assets/die-frontend-module.png)
+![Frontend modules](assets/frontend-module.png)
 
 Backend access: URL of the website + `/contao` → log in with user name and password.
 

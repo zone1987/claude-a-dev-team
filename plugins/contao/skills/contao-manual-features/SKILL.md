@@ -12,8 +12,10 @@ Features an editor configures rather than codes: the form generator, the bundled
 - **[MANUAL-FORM-GENERATOR.md](MANUAL-FORM-GENERATOR.md)**: configuring a form, every form field, and the search-form tutorial.
 - **[MANUAL-CORE-EXTENSIONS.md](MANUAL-CORE-EXTENSIONS.md)**: the core extensions: `news-bundle`, `calendar-bundle`, `faq-bundle`, `newsletter-bundle` and the rest.
 - **[MANUAL-THIRD-PARTY-EXTENSIONS.md](MANUAL-THIRD-PARTY-EXTENSIONS.md)**: the third-party extensions the manual covers, each with its package name.
+- **[MANUAL-GUIDES.md](MANUAL-GUIDES.md)**: deployment with Deployer, building an installable theme,
+  the listing module, web fonts, and a front-end filter, each with its commands verbatim.
 - **[MANUAL-TUTORIALS.md](MANUAL-TUTORIALS.md)**: the tutorials, 488 lines: test versions, a first start page, the maintenance page and more.
 
 ## Source
 
-Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) — the developer documentation and the German end-user manual — plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.
+Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) : the developer documentation and the German end-user manual : plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.

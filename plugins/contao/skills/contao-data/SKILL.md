@@ -19,4 +19,4 @@ The DCA array describes a table to Contao; a Model gives you typed access to it.
 
 ## Source
 
-Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) — the developer documentation and the German end-user manual — plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.
+Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) : the developer documentation and the German end-user manual : plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.

@@ -1,10 +1,10 @@
 # Contao 5.x — Seitenstruktur (Page Structure)
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/seitenstruktur/
-- https://docs.contao.org/5.x/manual/de/seitenstruktur/seiten-als-zentrale-elemente/
-- https://docs.contao.org/5.x/manual/de/seitenstruktur/mehrsprachige-webseiten/
-- https://docs.contao.org/5.x/manual/de/seitenstruktur/multidomain-betrieb/
+- https://docs.contao.org/5.x/manual/en/site-structure/
+- https://docs.contao.org/5.x/manual/en/site-structure/pages-as-central-elements/
+- https://docs.contao.org/5.x/manual/en/site-structure/multilingual-websites/
+- https://docs.contao.org/5.x/manual/en/site-structure/multi-domain-operation/
 
 ---
 

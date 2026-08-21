@@ -29,6 +29,26 @@ the skill at a glance and sorts above lowercase siblings in a listing. An agent 
 different: its name **is** the invocation name (`/zcf-validate`), so it follows the identifier
 convention instead.
 
+### The name has to match the content
+
+Casing is the easy half. The harder half is that **the name says what is inside, and the inside
+matches the name**. `REF-03`
+
+The name is what a reader and the model choose by: a reference map lists names, a grep matches names,
+and Claude decides whether to open a file from its name plus one line. A misleading name costs a read
+of the wrong file and hides the right one.
+
+Two failures to watch for:
+
+- **An inverted relationship.** `HOOKS-REFERENCE-07-CONTENT-MODULES.md` reads as content modules and
+  holds the hooks that fire while rendering content elements. The file's own first line got it right
+  (`Contao Hooks: Content elements`); the name inverted it.
+- **A positional number doing the naming.** `-07-` files the document rather than naming it. Nobody
+  looks for group seven, so the number spends characters and delivers nothing.
+
+The test takes ten seconds: read the file name aloud, then read its first heading. Where the two
+describe different things, rename the file.
+
 Nothing in the platform requires any of this. The documentation asks only for descriptive names
 (`form_validation_rules.md`, not `doc2.md`) and its own examples use both `FORMS.md` and
 `reference/finance.md`. The catalogue records `REF-01` as a `convention` for exactly that reason:

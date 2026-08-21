@@ -195,7 +195,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['headline']['eval']['allowHtml'] = tr
 // News-Überschriften
 $GLOBALS['TL_DCA']['tl_news']['fields']['headline']['eval']['preserveTags'] = true;
 
-// Seitennamen und -titel
+// Page name and page title
 $GLOBALS['TL_DCA']['tl_page']['fields']['title']['eval']['allowHtml'] = true;
 $GLOBALS['TL_DCA']['tl_page']['fields']['pageTitle']['eval']['allowHtml'] = true;
 
@@ -471,18 +471,18 @@ WAMP stack installer for Windows with automatic virtual hosts.
 ---
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/anleitungen/
-- https://docs.contao.org/5.x/manual/de/anleitungen/testversionen-installieren/
-- https://docs.contao.org/5.x/manual/de/anleitungen/die-erste-startseite/
-- https://docs.contao.org/5.x/manual/de/anleitungen/wartungstemplate-anpassen/
-- https://docs.contao.org/5.x/manual/de/anleitungen/contao-demo/
-- https://docs.contao.org/5.x/manual/de/anleitungen/dca/
-- https://docs.contao.org/5.x/manual/de/anleitungen/sass-less-integration/
-- https://docs.contao.org/5.x/manual/de/anleitungen/tinymce-konfiguration/
-- https://docs.contao.org/5.x/manual/de/anleitungen/grid/
-- https://docs.contao.org/5.x/manual/de/anleitungen/svg/
-- https://docs.contao.org/5.x/manual/de/anleitungen/formulardaten-speichern/
-- https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/
-- https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/ddev/
-- https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/devilbox/
-- https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/laragon/
+- https://docs.contao.org/5.x/manual/en/guides/
+- https://docs.contao.org/5.x/manual/en/guides/install-test-versions/
+- https://docs.contao.org/5.x/manual/en/guides/add-first-index-page/
+- https://docs.contao.org/5.x/manual/en/guides/maintenance-template/
+- https://docs.contao.org/5.x/manual/en/guides/contao-demo/
+- https://docs.contao.org/5.x/manual/en/guides/dca/
+- https://docs.contao.org/5.x/manual/en/guides/sass-less-integration/
+- https://docs.contao.org/5.x/manual/en/guides/tinymce-configuration/
+- https://docs.contao.org/5.x/manual/en/guides/grid-system/
+- https://docs.contao.org/5.x/manual/en/guides/svg/
+- https://docs.contao.org/5.x/manual/en/guides/save-form-data/
+- https://docs.contao.org/5.x/manual/en/guides/local-installation/
+- https://docs.contao.org/5.x/manual/en/guides/local-installation/ddev/
+- https://docs.contao.org/5.x/manual/en/guides/local-installation/devilbox/
+- https://docs.contao.org/5.x/manual/en/guides/local-installation/laragon/

@@ -4,7 +4,11 @@
       {
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/contao-reminder.py\"" }
+          {
+            "type": "command",
+            "command": ["python3", "${CLAUDE_PLUGIN_ROOT}/hooks/contao-reminder.py"],
+            "timeout": 5
+          }
         ]
       }
     ]

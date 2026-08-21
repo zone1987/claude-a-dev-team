@@ -1,10 +1,10 @@
 # Contao 5.x — Administration area (backend)
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/administrationsbereich/aufruf-und-aufbau-des-backends/
-- https://docs.contao.org/5.x/manual/de/administrationsbereich/backend-tastaturkuerzel/
-- https://docs.contao.org/5.x/manual/de/administrationsbereich/datensaetze-auflisten/
-- https://docs.contao.org/5.x/manual/de/administrationsbereich/datensaetze-bearbeiten/
+- https://docs.contao.org/5.x/manual/en/administration-area/accessing-and-structure-of-the-backend/
+- https://docs.contao.org/5.x/manual/en/administration-area/back-end-keyboard-shortcuts/
+- https://docs.contao.org/5.x/manual/en/administration-area/list-data-records/
+- https://docs.contao.org/5.x/manual/en/administration-area/edit-data-records/
 
 ---
 

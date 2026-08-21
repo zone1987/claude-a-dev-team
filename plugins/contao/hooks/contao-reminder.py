@@ -14,7 +14,11 @@ def main() -> int:
     path = ti.get("file_path") or ti.get("path") or ""
     if not isinstance(path, str) or not path:
         return 0
+    # Normalise to a leading slash so a relative path matches the same tests as an absolute
+    # one: Write and Edit both report whatever the caller passed.
     low = path.replace("\\", "/").lower()
+    if not low.startswith("/"):
+        low = "/" + low
 
     is_contao = (
         "/contao/dca/" in low
@@ -23,7 +27,7 @@ def main() -> int:
         or "/contao/config/" in low
         or "/controller/contentelement/" in low
         or "/controller/frontendmodule/" in low
-        or "/eventlistener/" in low and "/contao" in low
+        or ("/eventlistener/" in low and "/contao" in low)
         or low.endswith(".html5")  # legacy Contao templates
     )
     if not is_contao:
@@ -31,11 +35,13 @@ def main() -> int:
 
     msgs = []
     if low.endswith(".php"):
-        msgs.append("Contao-PHP geändert → Coding-Standards prüfen (ECS/PHP-CS-Fixer) und ggf. Cache leeren (`contao:cache:clear` / `cache:clear`).")
+        msgs.append("Contao PHP changed: check the coding standards (ECS, PHP-CS-Fixer) and "
+                    "clear the cache where the change affects it (`contao:cache:clear`).")
     if "/contao/dca/" in low:
-        msgs.append("DCA geändert → ggf. Migration für DB-Änderungen; Backend-Cache leeren.")
+        msgs.append("DCA changed: a database change needs a migration, and the backend cache "
+                    "needs clearing.")
     if low.endswith((".html.twig", ".html5")):
-        msgs.append("Contao-Template geändert → Template-Cache leeren.")
+        msgs.append("Contao template changed: clear the template cache.")
     if msgs:
         print("[contao] " + " ".join(msgs))
     return 0

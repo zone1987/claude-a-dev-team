@@ -1,9 +1,9 @@
 # Contao 5.x — Update and migration
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/migration/
-- https://docs.contao.org/5.x/manual/de/installation/contao-aktualisieren/
-- https://docs.contao.org/5.x/manual/de/faq/
+- https://docs.contao.org/5.x/manual/en/migration/
+- https://docs.contao.org/5.x/manual/en/installation/update-contao/
+- https://docs.contao.org/5.x/manual/en/faq/
 
 ---
 

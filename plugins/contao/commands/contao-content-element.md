@@ -1,6 +1,6 @@
 ---
 name: contao-content-element
-description: Scaffold eines Contao-Content-Elements als Fragment-Controller (#[AsContentElement]) inkl. Twig-Template, DCA-Palette und Übersetzungen.
+description: Scaffolds a Contao content element as a fragment controller with #[AsContentElement], a Twig template, a DCA palette and translations.
 argument-hint: <name> [--bundle <Bundle>] [--category <category>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,15 +8,25 @@ model: sonnet
 
 # /contao-content-element
 
-Erzeuge ein Content-Element (modernes Fragment-Controller-Muster). Skills: `contao-frontend`,
-`contao-frontend`, `contao-frontend`.
+Create the content element named in $ARGUMENTS, using the fragment-controller pattern.
 
-## Ablauf
-1. Name (z.B. `my_element`) + Ziel-Bundle + Kategorie.
-2. Controller `src/Controller/ContentElement/<Name>Controller.php` mit `#[AsContentElement(category: '...')]`,
-   `getResponse()`/`__invoke` (Template-Daten setzen).
-3. Twig-Template `contao/templates/content_element/<name>.html.twig` (bzw. modernes `@Contao`-Namespace-Template).
-4. DCA/Palette für das Element + Übersetzungen (`contao/languages/.../default.xlf` bzw. PHP).
-5. Hinweis: Cache leeren; Element erscheint im Backend unter der Kategorie.
+Call the Skill tool with "contao-frontend" first: it carries the service-tag options, both
+registration methods and the Twig naming rules.
 
-Front-End-Modul stattdessen → `/contao-module`. Bestehende Dateien nicht überschreiben.
+## Steps (one question at a time, skip what the arguments settle)
+
+1. **The name** (`my_element`), the target bundle, and the backend category.
+2. **The controller** at `src/Controller/ContentElement/<Name>Controller.php`, carrying
+   `#[AsContentElement(category: '...')]` and a `__invoke` or `getResponse` that fills the template
+   data.
+3. **The template** at `contao/templates/content_element/<name>.html.twig`, or the `@Contao`
+   namespace form for a modern element.
+4. **The DCA palette** for the element, plus translations in
+   `contao/languages/<lang>/default.xlf` or their PHP equivalent.
+5. **Clear the cache**, after which the element appears in the backend under its category.
+
+## Output
+
+Every file written, and the cache command still to run.
+
+For a front-end module use `/contao-module` instead. Never overwrite an existing file. Invent nothing.

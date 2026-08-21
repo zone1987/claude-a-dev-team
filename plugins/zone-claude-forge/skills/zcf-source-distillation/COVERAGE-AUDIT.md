@@ -51,6 +51,20 @@ The audit reads a local mirror whose hash is recorded, not the live site, so the
 reproducible months later and the check does not depend on the network. **The tell that this went
 wrong**: a re-run gives a different verdict with no change to the plugin. `COV-05`
 
+## The bar is every page
+
+For a plugin that claims a product's developer documentation, the target is **not a percentage**. It
+is every page in the sitemap, and every term on every page. `COV-06`
+
+The reason is asymmetric: coverage buys a reader the confidence not to check upstream, and one
+missing page destroys that confidence for the whole plugin. Ninety-five per cent coverage still sends
+the reader to the site, and once there they stay. `contao` documents 376 of 376 pages for exactly
+this reason.
+
+Two pages in that set are thin upstream rather than here, and the reference files say so: one carries
+only a package name and a pointer to the vendor's own docs, the other is marked internal by a leading
+underscore in its URL. **Documenting a page as thin is coverage; skipping it is not.**
+
 ## Counts, not adjectives
 
 Report `39/39 pages mapped`, not "coverage is good". A count is checkable and exhaustive at once, and

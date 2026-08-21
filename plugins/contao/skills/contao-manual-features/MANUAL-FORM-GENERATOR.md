@@ -170,7 +170,7 @@ A custom search form can be created with the Formulargenerator and embedded in t
 ---
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/formulargenerator/
-- https://docs.contao.org/5.x/manual/de/formulargenerator/formulare/
-- https://docs.contao.org/5.x/manual/de/formulargenerator/formularfelder/
-- https://docs.contao.org/5.x/manual/de/formulargenerator/ein-suchformular-erstellen/
+- https://docs.contao.org/5.x/manual/en/form-generator/
+- https://docs.contao.org/5.x/manual/en/form-generator/forms/
+- https://docs.contao.org/5.x/manual/en/form-generator/form-fields/
+- https://docs.contao.org/5.x/manual/en/form-generator/create-a-search-form/

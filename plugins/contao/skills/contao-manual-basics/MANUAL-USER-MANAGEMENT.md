@@ -1,9 +1,9 @@
 # Contao 5.x — Benutzerverwaltung (User Management)
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/benutzerverwaltung/
-- https://docs.contao.org/5.x/manual/de/benutzerverwaltung/benutzer/
-- https://docs.contao.org/5.x/manual/de/benutzerverwaltung/mitglieder/
+- https://docs.contao.org/5.x/manual/en/user-management/
+- https://docs.contao.org/5.x/manual/en/user-management/users/
+- https://docs.contao.org/5.x/manual/en/user-management/members/
 
 ---
 

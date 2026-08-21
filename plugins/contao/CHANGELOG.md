@@ -1,12 +1,12 @@
 # Changelog
 
-## 2.0.0 — 2026-08-20
+## 2.0.0 : 2026-08-20
 
 Restructured from 57 skills into 8 domain skills. **Breaking:** every skill ID changed.
 
 ### Why
 
-57 skills cost 29,360 characters of the skill listing budget — 367 % of the 8,000 available at a
+57 skills cost 29,360 characters of the skill listing budget : 367 % of the 8,000 available at a
 200k context window, from this plugin alone. Claude Code truncates descriptions on overflow starting
 with the least-used skills, so most of these silently stopped auto-activating.
 
@@ -28,4 +28,4 @@ Each former skill is now a file named after its topic inside the domain director
 
 ## 1.0.0
 
-Initial release — 57 skills, one per documentation topic.
+Initial release : 57 skills, one per documentation topic.

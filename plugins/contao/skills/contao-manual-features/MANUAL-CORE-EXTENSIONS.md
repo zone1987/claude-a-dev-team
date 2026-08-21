@@ -322,31 +322,163 @@ Returns HTTP 404 if not found.
 
 ---
 
-## 5. Comments (cross-reference)
+## 5. Comments
 
-The comment function is embedded as an include content element and is not a standalone core extension in its own right. Comment settings are configured per archive (news, calendar, FAQ) or directly in the "Kommentare" (Comments) content element.
+Lets visitors leave comments, and can also run a guestbook. Documented as a **content element**
+rather than a bundle of its own: the `/core-extensions/comments/` URL redirects to the
+include-elements page. Comment settings also exist per news archive, calendar and FAQ category, and
+carry the same fields.
 
-Settings: sorting, pagination, moderation, BBCode, login requirement, spam protection.
+### 5.1 Comment settings
+
+- **Sort order**: a guestbook usually shows the newest entry first (descending), comments the oldest
+  (ascending). Values: ascending, descending.
+- **Items per page**: comments per page, with an automatic page break when needed. `0` disables it.
+- **Moderate**: comments appear only after being enabled in the backend.
+- **Allow BBCode**: visitors may format their comments. Supported: `[b]`, `[i]`, `[u]`, `[img]`,
+  `[code]`, `[color=#f00]`, `[quote]`, `[quote=Tim]`, `[url]`, `[url=http://example.com]`,
+  `[email]`, `[email=info@example.com]`.
+- **Require login to comment**: only logged-in members may comment. Comments already submitted stay
+  visible to everyone.
+- **Disable spam protection**: not recommended. Since Contao 4.4 the security question is only shown
+  to spambots, so it costs a real visitor nothing.
+
+### 5.2 Template settings
+
+- **Comments template**: the template for the individual posts.
+- **Content element template**: overwrites the default `ce_comments`.
+
+### 5.3 Managing comments
+
+Comments are managed centrally through the **Comments** module in the backend **Content** group. All
+of them appear there, whether they belong to a content element, an article or a blog post, and can be
+filtered by origin or parent element. With moderation on, an administrator approves each one before
+it is published.
+
+Source: https://docs.contao.org/5.x/manual/en/article-management/content-elements/include-elements/#comments
 
 ---
 
-## 6. Auflistung / Listing (cross-reference)
+## 6. Listing
 
-The Auflistung (Listing) module is located under Layout > Modulverwaltung (Module management) > Anwendungen (Applications) and is not a separate core bundle but part of the core. See the layout reference for details.
+Adds a list of database records that visitors can sort, filter and search. The basis is any table in
+the database, `tl_member` for example. Documented as a **front-end module** under
+**Layout > Module management > Applications**: the `/core-extensions/listing/` URL redirects there.
+
+### 6.1 Module configuration
+
+- **Table**: the table whose records are listed.
+- **Fields**: the fields shown in the list, comma separated.
+- **Condition**: a filter for the records. The module does nothing but a database query, so
+  SQL-compliant code works (`published=1`), and insert tags are allowed (`user={{user::id}}`).
+- **Searchable fields**: marking fields searchable makes Contao build a search form automatically.
+- **Order by**: the default sort columns, comma separated.
+- **Items per page**: above `0`, results are spread over several pages.
+- **Details page fields**: entering one or more adds an icon per row that opens a detail view, which
+  can show fields that would not fit the list.
+- **Details page condition**: a filter for the detail page's records.
+
+### 6.2 Template settings
+
+- **List template**: the template for the list view.
+- **Detail page template**: the template for the detail page.
+
+Source: https://docs.contao.org/5.x/manual/en/layout/module-management/applications/#listing
 
 ---
 
-Sources:
-- https://docs.contao.org/5.x/manual/de/core-erweiterungen/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/nachrichtenverwaltung/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/frontend-module/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/terminverwaltung/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/frontend-module/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/faq-verwaltung/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/frontend-module/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/newsletter-verwaltung/
-- https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/frontend-module/
+## 7. Settings that repeat across the extensions
+
+Four blocks appear on nearly every archive, item and module. They are written once here, because an
+editor needs the exact label and the exact set of values.
+
+### 7.1 Comment settings, per archive
+
+News archives, calendars and FAQ categories all carry this block, identical in each:
+
+- **Enable comments**: activates the function for that archive, calendar or category.
+- **Notify**: who hears about a new comment. Values: the system administrator, the author of the
+  post, or both.
+- **Sort order**: ascending is typical for blog comments.
+- **Comments per page**: a page break is created when needed.
+- **Moderate comments**: approval in the backend before publication.
+- **Allow BBCode**: the twelve tags listed in section 5.1.
+- **Require login to comment**: existing comments stay visible to all.
+- **Disable spam protection**: available where login is required.
+
+### 7.2 Robots tag, per reader-driven item
+
+A news item, an event and an FAQ each inherit the robots tag from the page holding the reader
+module, and may override it:
+
+- **Default (-)**: use the setting from the page with the reader module.
+- **index**: add the page to the search index.
+- **follow**: follow the links on the page.
+- **noindex**: keep the page out of the index.
+- **nofollow**: do not follow the links.
+
+`index,follow` lets search engines include the item; `noindex,nofollow` instructs them to exclude it.
+
+### 7.3 Search indexer, Contao 5.6 and later
+
+The same three-way choice on a news item, an event and an FAQ:
+
+- **Default**: index according to the reader page's setting; where that is unset, according to the
+  metadata robots tag.
+- **Always index**: include the item even when its robots tag says `noindex`, or the reader page says
+  otherwise.
+- **Never index**: exclude it even when its robots tag says `index`.
+
+An FAQ's metadata and search-indexer settings can only be adjusted when the category has a redirect
+page selected.
+
+### 7.4 Image scaling, wherever an image is configured
+
+**Relative format**: `Proportional` fits the longer side and scales proportionally; `Fit to frame`
+fits the shorter side.
+
+**Exact format**, nine crop positions: `Important part` (as marked in the file manager), then
+`Left/Top`, `Middle/Top`, `Right/Top`, `Left/Center`, `Middle/Center`, `Right/Middle`,
+`Left/Bottom`, `Middle/Bottom`, `Right/Bottom`. Each preserves that part of a landscape image and
+the corresponding part of a portrait image.
+
+### 7.5 Newsletter dispatch, the numbers that matter
+
+- **Mails per cycle**, **Waiting time in seconds**, **Offset**: the three fields that pace a send.
+- **The manual's worked example**: a server limit of 100 mails per minute and 10,000 recipients means
+  10 mails every 6 seconds, so the whole send takes 100 minutes.
+- **Resuming an interrupted send**: filter the system log (**System > System Log**) for category
+  `NEWSLETTER_X`, where X is the newsletter ID, read how many went out, and enter that as the offset.
+- **Double opt-in** is on by default: every subscriber gets a confirmation link, without which the
+  subscription cannot complete. The manual notes this satisfies section 7 paragraph 2 numbers 2 and 3
+  of the German Law against Unfair Competition (UWG).
+
+### 7.6 Reader modules, the constraint that breaks pages
+
+**Only one reader module per page**, whatever its type. Two of them make one or the other return a
+404 through an alias conflict.
+
+And a list module with a reader attached does not belong in the page layout: that creates a reader
+instance at every layout position and stops other reader modules working.
+
+## Source
+
+Distilled from the [Contao 5 user manual](https://docs.contao.org/5.x/manual/en/core-extensions/),
+the 14 pages under `core-extensions/`, retrieved 2026-08-21:
+
+- https://docs.contao.org/5.x/manual/en/core-extensions/
+- https://docs.contao.org/5.x/manual/en/core-extensions/news/
+- https://docs.contao.org/5.x/manual/en/core-extensions/news/news-management/
+- https://docs.contao.org/5.x/manual/en/core-extensions/news/frontend-modules/
+- https://docs.contao.org/5.x/manual/en/core-extensions/calendar/
+- https://docs.contao.org/5.x/manual/en/core-extensions/calendar/calendar-management/
+- https://docs.contao.org/5.x/manual/en/core-extensions/calendar/frontend-modules/
+- https://docs.contao.org/5.x/manual/en/core-extensions/faq/
+- https://docs.contao.org/5.x/manual/en/core-extensions/faq/faq-management/
+- https://docs.contao.org/5.x/manual/en/core-extensions/faq/frontend-modules/
+- https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/
+- https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/newsletter-management/
+- https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/frontend-modules/
+
+`core-extensions/comments/` and `core-extensions/listing/` are redirect stubs; their content lives at
+the two targets cited in sections 5 and 6.

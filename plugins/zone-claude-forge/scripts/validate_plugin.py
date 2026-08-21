@@ -185,6 +185,42 @@ def unbound_anchors(clause: str) -> list[str]:
     return [t for t in re.findall(r"[a-z][a-z-]{2,}", clause.lower()) if t in GENERIC_ANCHORS]
 
 
+# What CLAUDE.md's language rule explicitly permits, so LANG-01 must not read it as prose:
+# a source URL keeps its path (docs.shopware.com/de, docs.contao.org/manual/de), a code span or
+# fenced block can hold German data, and a documented UI label stays with an English gloss beside
+# it ("**Speichern** (Save)"). Reading any of these as a violation makes the check cry wolf, and a
+# check nobody trusts is a check nobody runs.
+URL_RE = re.compile(r"https?://\S+|\[[^\]]*\]\([^)]*\)")
+CODE_SPAN_RE = re.compile(r"`[^`\n]*`")
+GLOSSED_LABEL_RE = re.compile(r"\*\*[^*]+\*\*\s*\([A-Z][^)]*\)")
+FENCE_RE = re.compile(r"^\s*```", re.M)
+
+
+def prose_only(text: str) -> str:
+    """Blank out what the language rule permits, keeping line numbers intact."""
+    out, fenced = [], False
+    for ln in text.split("\n"):
+        if FENCE_RE.match(ln):
+            fenced = not fenced
+            out.append("")
+            continue
+        if fenced:
+            out.append("")
+            continue
+        for rx in (URL_RE, GLOSSED_LABEL_RE, CODE_SPAN_RE):
+            ln = rx.sub(lambda m: " " * len(m.group(0)), ln)
+        out.append(ln)
+    return "\n".join(out)
+
+
+def first_german(text: str, rx) -> tuple[int, str] | None:
+    """Line and word of the first German hit in prose, or None."""
+    m = rx.search(prose_only(text))
+    if not m:
+        return None
+    return text[:m.start()].count("\n") + 1, m.group(0)
+
+
 def check_skill(path: str, rep: Report, cat: dict) -> None:
     """Every blocking rule that a single SKILL.md decides on its own."""
     fm, body_start, body = frontmatter(path)
@@ -421,10 +457,10 @@ def check_language(root: str, rep: Report) -> None:
             for rx, rule, what in ((GERMAN_WORDS, "LANG-01", "German prose"),
                                    (GERMAN_MIT, "LANG-01", "German prose"),
                                    (GERMAN_TRANSLIT, "LANG-01", "transliterated German")):
-                m = rx.search(text)
-                if m:
-                    line = text[:m.start()].count("\n") + 1
-                    rep.error(rule, frel, f"{what}: '{m.group(0)}'", line)
+                hit = first_german(text, rx)
+                if hit:
+                    line, word = hit
+                    rep.error(rule, frel, f"{what}: '{word}'", line)
                     break
 
 

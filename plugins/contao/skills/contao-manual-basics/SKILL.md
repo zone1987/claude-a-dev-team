@@ -20,4 +20,4 @@ Operating Contao rather than developing for it. Written for administrators and e
 
 ## Source
 
-Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) — the developer documentation and the German end-user manual — plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.
+Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) : the developer documentation and the German end-user manual : plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.

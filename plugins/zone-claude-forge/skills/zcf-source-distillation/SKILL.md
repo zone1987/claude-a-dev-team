@@ -36,14 +36,26 @@ Facts from a machine-readable source are produced by a script, with **no model b
 specification and the reference file**. A model in that path paraphrases a type or drops an enum
 value silently; a script cannot. `SOURCE-02`
 
-## Exhaustive per page, not per topic
+## Every page, and everything on it
+
+**A plugin claiming a product's developer documentation carries every page of it.** Not a selection,
+not the important ones. A developer reaches for the plugin precisely on the question the
+documentation answers in a corner, and one missing page sends them to the upstream site, where they
+will go first next time too. Partial coverage is worth less than half of full coverage, because the
+reader cannot tell which half they have. `COV-06`
+
+The developer documentation carries the stricter bar of the two. A user manual describes a screen the
+reader can also look at; developer documentation describes an API they cannot guess.
 
 The unit of completeness is the **page**: it is done when every term a reader could look up on it
 appears in a reference file. Mapping a page to a file is only half of that. `COV-03`
 
-Distillation removes redundancy of expression, **never information**. A field without its type, an
-enum value without its meaning, a parameter without its optionality are gaps. Where the upstream is
-silent, say so, because a blank reads as absence. `COV-04`
+Distillation removes redundancy of expression, **never information**. A field keeps its type, an enum
+every value with its meaning, a procedure every step, a command its exact form, a policy its exact
+boundary. Where the upstream is silent, say so, because a blank reads as absence. `COV-04`, `COV-07`
+
+**Where the upstream page is itself thin, say that too.** "The page states only a package name and
+points at the vendor's own documentation" is a useful fact; a silently skipped page is not.
 
 ## Prove it, both directions
 

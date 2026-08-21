@@ -18,8 +18,11 @@ How a Contao 5 extension is put together and how the framework boots it. Start h
 - **[LOGGING.md](LOGGING.md)**: system-log integration, `ContaoContext` actions, and the preconfigured logger services.
 - **[MAINTENANCE.md](MAINTENANCE.md)**: writing a maintenance module and a purge task.
 - **[PROFILER.md](PROFILER.md)**: the Contao profiler panel, its components, and when it is available.
+- **[INTERNALS.md](INTERNALS.md)**: what the backward compatibility promise covers and the nine things
+  it does not, the four experimental features and since when, the release stages and deadlines, the
+  Contao Manager API with its four OAuth scopes, and the issue labels.
 - **[REFERENCE-MISC.md](REFERENCE-MISC.md)**: the long reference, 988 lines: core services, events, console commands, `contao.yaml` configuration, environment variables and request attributes.
 
 ## Source
 
-Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) — the developer documentation and the German end-user manual — plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.
+Distilled from [docs.contao.org/5.x](https://docs.contao.org/5.x) : the developer documentation and the German end-user manual : plus the [contao/contao](https://github.com/contao/contao) source, retrieved 2026-08-20.

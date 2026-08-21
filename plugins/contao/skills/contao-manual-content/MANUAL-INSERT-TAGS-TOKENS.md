@@ -157,7 +157,7 @@ Tags that output IDs or aliases can be nested:
 
 ```
 {{link::{{page::id}}::absolute}}   → Link zur aktuellen Seite (absolut)
-{{link_url::{{page::id}}}}#anker  → Relativer Link mit Anker
+{{link_url::{{page::id}}}}#anchor  -> relative link with an anchor
 ```
 
 **Caution:** avoid endless loops (e.g. `{{insert_article::{{page::alias}}}}`) — a page crash is possible.
@@ -268,5 +268,5 @@ File paths: `files/data/##form_broschuere##.pdf`
 ---
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/insert-tags/
-- https://docs.contao.org/5.x/manual/de/artikelverwaltung/simple-tokens/
+- https://docs.contao.org/5.x/manual/en/article-management/insert-tags/
+- https://docs.contao.org/5.x/manual/en/article-management/simple-tokens/

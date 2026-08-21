@@ -1,15 +1,15 @@
 # Contao 5.x — Command line commands (CLI)
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/cli/
-- https://docs.contao.org/5.x/manual/de/cli/automator/
-- https://docs.contao.org/5.x/manual/de/cli/datenbank-backups/
-- https://docs.contao.org/5.x/manual/de/cli/crawl/
-- https://docs.contao.org/5.x/manual/de/cli/maintenance-mode/
-- https://docs.contao.org/5.x/manual/de/cli/migrate/
-- https://docs.contao.org/5.x/manual/de/cli/resize-images/
-- https://docs.contao.org/5.x/manual/de/cli/user/
-- https://docs.contao.org/5.x/manual/de/cli/dca/
+- https://docs.contao.org/5.x/manual/en/cli/
+- https://docs.contao.org/5.x/manual/en/cli/automator/
+- https://docs.contao.org/5.x/manual/en/cli/db-backups/
+- https://docs.contao.org/5.x/manual/en/cli/crawl/
+- https://docs.contao.org/5.x/manual/en/cli/maintenance-mode/
+- https://docs.contao.org/5.x/manual/en/cli/migrate/
+- https://docs.contao.org/5.x/manual/en/cli/resize-images/
+- https://docs.contao.org/5.x/manual/en/cli/user/
+- https://docs.contao.org/5.x/manual/en/cli/dca/
 
 ---
 
@@ -131,7 +131,7 @@ php vendor/bin/contao-console contao:backup:restore backup__20220126153243.sql.g
 # config/config.yaml
 contao:
     backup:
-        # Tabellen die nicht gesichert werden (z.B. Logs, Crawl-Daten)
+        # Tables excluded from the backup, for example logs and crawl data
         ignore_tables:
             - tl_crawl_queue
             - tl_log

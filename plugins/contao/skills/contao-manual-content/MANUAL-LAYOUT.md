@@ -244,7 +244,7 @@ Template: `ce_two_factor`
 **Indexing control:**
 ```html
 <!-- indexer::stop -->
-[Inhalt wird nicht indiziert]
+[content is not indexed]
 <!-- indexer::continue -->
 ```
 
@@ -310,24 +310,31 @@ Template: `mod_template`
 
 ## 3. Templates
 
-Templates control the HTML output of modules, content elements, forms and other components. In the backend under Layout > Templates they can be customised without any update risk.
+Templates control the HTML output of modules, content elements, forms and other components. Under
+**Layout > Templates** they are customised without update risk.
 
-**Types:** PHP templates and Twig templates.
+Contao 5 ships two systems: **Twig**, the standard since 5.0, and the legacy **PHP** templates. From
+5.7 every `.html5` template has a Twig equivalent, though a `.html5` file of the same name in
+`templates` still takes precedence over the Twig one.
 
-**Important:** for CSS adjustments a template override is often not necessary — the CSS ID and class can be set directly in the expert settings.
+For a CSS adjustment a template override is often unnecessary: the CSS id and class can be set in the
+element's expert settings.
+
+Syntax, storage paths, inheritance and the `dump()` helper are in
+[MANUAL-TEMPLATES.md](MANUAL-TEMPLATES.md).
 
 ---
 
 Sources:
-- https://docs.contao.org/5.x/manual/de/layout/
-- https://docs.contao.org/5.x/manual/de/layout/theme-manager/
-- https://docs.contao.org/5.x/manual/de/layout/theme-manager/themes-verwalten/
-- https://docs.contao.org/5.x/manual/de/layout/theme-manager/stylesheets-verwalten/
-- https://docs.contao.org/5.x/manual/de/layout/theme-manager/seitenlayouts-verwalten/
-- https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/
-- https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/navigationsmodule/
-- https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/benutzermodule/
-- https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/website-suche/
-- https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/anwendungen/
-- https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/verschiedenes/
-- https://docs.contao.org/5.x/manual/de/layout/templates/
+- https://docs.contao.org/5.x/manual/en/layout/
+- https://docs.contao.org/5.x/manual/en/layout/theme-manager/
+- https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-themes/
+- https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-stylesheets/
+- https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-page-layouts/
+- https://docs.contao.org/5.x/manual/en/layout/module-management/
+- https://docs.contao.org/5.x/manual/en/layout/module-management/navigation-modules/
+- https://docs.contao.org/5.x/manual/en/layout/module-management/user-modules/
+- https://docs.contao.org/5.x/manual/en/layout/module-management/website-search/
+- https://docs.contao.org/5.x/manual/en/layout/module-management/applications/
+- https://docs.contao.org/5.x/manual/en/layout/module-management/miscellaneous/
+- https://docs.contao.org/5.x/manual/en/layout/templates/

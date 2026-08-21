@@ -1,6 +1,6 @@
 ---
 name: contao-dca
-description: Scaffold einer Contao-DCA-Konfiguration (Data Container Array) für eine Tabelle tl_* — config, list (sorting/label/operations), fields (mit eval + sql), palettes, optional callbacks + Model.
+description: Scaffolds a Contao DCA for a tl_* table: config, list, fields with eval and sql, palettes, optional callbacks and a model.
 argument-hint: <tl_tablename> [--bundle <Bundle>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,14 +8,28 @@ model: sonnet
 
 # /contao-dca
 
-Erzeuge eine DCA-Datei `contao/dca/<tl_table>.php`. Skills: `contao-data`, `contao-data`, `contao-data`.
+Create the DCA file `contao/dca/<tl_table>.php` for the table named in $ARGUMENTS.
 
-## Ablauf
-1. Tabellenname (`tl_<name>`) + Ziel-Bundle bestimmen.
-2. Felder erfragen (Name, inputType, eval-Optionen, sql-Definition, Pflicht). 
-3. DCA erzeugen: `config` (dataContainer Table, ctable/ptable falls nötig, sql.keys), `list` (sorting mode/fields,
-   label, global_operations, operations), `fields` (je Feld label/exclude/inputType/eval/sql), `palettes` (+ `__selector__`/subpalettes).
-4. Optional: `callbacks` (z.B. onload/onsubmit/save) und ein zugehöriges **Model** (`contao/../Model/<Name>Model.php` bzw. via Annotation).
-5. Hinweis: `contao/dca/<tl_table>.php` korrekt platzieren; Migration für die DB-Tabelle (`contao-data`).
+Call the Skill tool with "contao-data" first: it carries the field types, every `eval` option and the
+callback signatures.
 
-Feld-Typen/eval-Optionen aus `contao-data`. Bestehende DCA nicht überschreiben — ergänzen.
+## Steps (one question at a time, skip what the arguments settle)
+
+1. **The table** (`tl_<name>`) and the target bundle.
+2. **The fields**: for each one the name, `inputType`, the `eval` options, the `sql` definition, and
+   whether it is mandatory.
+3. **Write the DCA**:
+   - `config`: `dataContainer: Table`, `ctable`/`ptable` where the table is nested, `sql.keys`.
+   - `list`: `sorting` mode and fields, `label`, `global_operations`, `operations`.
+   - `fields`: per field `label`, `exclude`, `inputType`, `eval`, `sql`.
+   - `palettes`, plus `__selector__` and `subpalettes` where a field toggles others.
+4. **Optional**: `callbacks` (`onload`, `onsubmit`, `save`) and a matching model under
+   `contao/../Model/<Name>Model.php`.
+5. **The migration** for the database table, which `contao-data` covers.
+
+## Output
+
+The file written, the fields it declares, and the migration still to run.
+
+Extend an existing DCA rather than overwriting it. Take every field type and `eval` option from
+`contao-data`. Invent nothing.

@@ -1,6 +1,6 @@
 ---
 name: contao-hook
-description: Scaffold eines Contao-Hook-Listeners (#[AsHook('hookName')]) mit korrekter Methoden-Signatur des gewählten Hooks.
+description: Scaffolds a Contao hook listener with #[AsHook] and the exact method signature the chosen hook requires.
 argument-hint: <hookName> [--bundle <Bundle>] [--priority <int>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,13 +8,24 @@ model: sonnet
 
 # /contao-hook
 
-Erzeuge einen Hook-Listener. Skills: `contao-platform`, `contao-platform`.
+Create a listener for the hook named in $ARGUMENTS.
 
-## Ablauf
-1. Hook-Name aus `$ARGUMENTS` (z.B. `parseTemplate`, `generatePage`, `getContentElement`). Die **exakte Signatur**
-   (Parameter-Typen + Rückgabewert) aus `contao-platform` ermitteln.
-2. Listener-Klasse `src/EventListener/<Name>Listener.php` mit `#[AsHook('<hookName>')]` (optional `priority:`) und der
-   korrekten `__invoke(...)`-Signatur des Hooks.
-3. Hinweis: Service wird per Attribut automatisch registriert (Autoconfigure); Cache leeren.
+Call the Skill tool with "contao-platform" first. **The signature is not negotiable**: each of the 69
+hooks takes specific arguments and returns a specific type, and a listener with the wrong signature
+fails at runtime rather than at build time. Read the hook's entry in the grouped reference before
+writing a line.
 
-Nur dokumentierte Hooks verwenden; Signatur nicht erfinden — aus der Referenz übernehmen.
+## Steps
+
+1. **Resolve the hook name** against the reference. Where the name is unknown, list the near matches
+   from the alphabetical index rather than guessing.
+2. **Copy the signature exactly**: every argument, its type, and the return type.
+3. **Write the listener** at `src/EventListener/<Name>Listener.php` with
+   `#[AsHook('<hookName>')]`, adding `priority` where the order against other listeners matters.
+4. **Register it** if the bundle does not autoconfigure listeners.
+
+## Output
+
+The file written, the signature used, and the reference file it came from.
+
+Take the signature from the reference, never from memory. Invent nothing.
