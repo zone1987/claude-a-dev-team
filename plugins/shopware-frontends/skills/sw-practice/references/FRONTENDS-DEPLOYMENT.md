@@ -1,0 +1,3 @@
+# sw-frontends-deployment
+
+Full reference: [FRONTENDS-DEPLOYMENT-DEPLOYMENT.md](FRONTENDS-DEPLOYMENT-DEPLOYMENT.md)

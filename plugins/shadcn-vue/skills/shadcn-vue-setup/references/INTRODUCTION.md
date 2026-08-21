@@ -1,0 +1,69 @@
+# shadcn-vue: Introduction
+
+**This is not a component library. It is how you build your component library.**
+
+You know how most traditional component libraries work: you install a package from NPM,
+import the components, and use them in your app. This approach works well until you need
+to customize a component to fit your design system or require one that is not included
+in the library. Often, you end up wrapping library components, writing workarounds to
+override styles, or mixing components from different libraries with incompatible APIs.
+
+This is what shadcn-vue aims to solve. It is built around the following principles:
+
+- **Open Code:** The top layer of your component code is open for modification.
+- **Composition:** Every component uses a common, composable interface, making them predictable.
+- **Distribution:** A flat-file schema and command-line tool make it easy to distribute components.
+- **Beautiful Defaults:** Carefully chosen default styles, so you get great design out-of-the-box.
+- **AI-Ready:** Open code for LLMs to read, understand, and improve.
+
+## Open Code
+
+shadcn-vue hands you the actual component code. You have full control to customize and
+extend the components to your needs.
+
+- **Full Transparency:** You see exactly how each component is built.
+- **Easy Customization:** Modify any part of a component to fit your design and functionality requirements.
+- **AI Integration:** Access to the code makes it straightforward for LLMs to read, understand,
+  and even improve your components.
+
+How to pull upstream updates: shadcn-vue follows a headless component architecture.
+The core of your app can receive fixes by updating dependencies (e.g. reka-ui or input-otp).
+The topmost layer (closest to your design system) stays open for modification.
+
+## Composition
+
+Every component in shadcn-vue shares a common, composable interface. If a component does
+not exist, we bring it in, make it composable, and adjust its style to match the rest of
+the design system.
+
+A shared, composable interface means it is predictable for both your team and LLMs.
+You are not learning different APIs for every new component, even for third-party ones.
+
+## Distribution
+
+shadcn-vue is also a code distribution system. It defines a schema for components and a
+CLI to distribute them.
+
+- **Schema:** A flat-file structure that defines the components, their dependencies, and properties.
+- **CLI:** A command-line tool to distribute and install components across projects with
+  cross-framework support.
+
+You can use the schema to distribute your components to other projects or have AI generate
+completely new components based on existing schema.
+
+## Beautiful Defaults
+
+shadcn-vue comes with a large collection of components that have carefully chosen default
+styles. They are designed to look good on their own and to work well together as a consistent
+system:
+
+- **Good Out-of-the-Box:** Your UI has a clean and minimal look without extra work.
+- **Unified Design:** Components naturally fit with one another.
+- **Easily Customizable:** Override and extend the defaults easily.
+
+## AI-Ready
+
+The design of shadcn-vue makes it easy for AI tools to work with your code. Its open code
+and consistent API allow AI models to read, understand, and even generate new components.
+
+Source: `/tmp/shadcn-vue-repo/apps/v4/content/docs/01.introduction.md`
