@@ -1,0 +1,453 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-09).",
+  "plugin": "octo-api",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://docs.ventrata.com",
+    "sitemap": "https://docs.ventrata.com/sitemap-pages.xml",
+    "base": "https://docs.ventrata.com/"
+  },
+  "pages": 39,
+  "urls": [
+    "https://docs.ventrata.com",
+    "https://docs.ventrata.com/getting-started/steps-to-integrate",
+    "https://docs.ventrata.com/getting-started/glossary-of-terms",
+    "https://docs.ventrata.com/getting-started/getting-started",
+    "https://docs.ventrata.com/getting-started/test-credentials",
+    "https://docs.ventrata.com/getting-started/headers",
+    "https://docs.ventrata.com/getting-started/errors",
+    "https://docs.ventrata.com/getting-started/localization",
+    "https://docs.ventrata.com/getting-started/request-capabilities",
+    "https://docs.ventrata.com/octo-core/products",
+    "https://docs.ventrata.com/octo-core/availability",
+    "https://docs.ventrata.com/octo-core/bookings",
+    "https://docs.ventrata.com/capabilities/pricing",
+    "https://docs.ventrata.com/capabilities/content",
+    "https://docs.ventrata.com/capabilities/offers",
+    "https://docs.ventrata.com/capabilities/extras",
+    "https://docs.ventrata.com/capabilities/packages",
+    "https://docs.ventrata.com/capabilities/pickups",
+    "https://docs.ventrata.com/capabilities/questions",
+    "https://docs.ventrata.com/capabilities/waivers",
+    "https://docs.ventrata.com/capabilities/resources",
+    "https://docs.ventrata.com/capabilities/rentals",
+    "https://docs.ventrata.com/capabilities/redemption",
+    "https://docs.ventrata.com/capabilities/mappings",
+    "https://docs.ventrata.com/capabilities/cart",
+    "https://docs.ventrata.com/capabilities/gift-vouchers",
+    "https://docs.ventrata.com/capabilities/online-check-in",
+    "https://docs.ventrata.com/capabilities/card-payments",
+    "https://docs.ventrata.com/capabilities/memberships",
+    "https://docs.ventrata.com/capabilities/adjustments",
+    "https://docs.ventrata.com/capabilities/webhooks",
+    "https://docs.ventrata.com/capabilities/waitlists",
+    "https://docs.ventrata.com/capabilities/identities",
+    "https://docs.ventrata.com/capabilities/campaigns",
+    "https://docs.ventrata.com/capabilities/notifications",
+    "https://docs.ventrata.com/additional-resources/ventrata-clients",
+    "https://docs.ventrata.com/additional-resources/other-octo-implementations",
+    "https://docs.ventrata.com/additional-resources/support",
+    "https://docs.ventrata.com/additional-resources/faqs"
+  ],
+  "entries": [
+    {
+      "page": "https://docs.ventrata.com",
+      "sha256": "002ecfc25508044479a439bf5b3e9385fc91610b4534d658b20e8888cbe8bf8d",
+      "mirror": "index.md",
+      "covers": [
+        "skills/octo-protocol/SKILL.md"
+      ],
+      "terms": 3,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/steps-to-integrate",
+      "sha256": "c9d48ceba9bfbc3b0d48041bd66706791b3d91367fc77409b8f9ac5df12c4859",
+      "mirror": "getting-started_steps-to-integrate.md",
+      "covers": [
+        "skills/octo-protocol/references/INTEGRATION-STEPS.md"
+      ],
+      "terms": 1,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/glossary-of-terms",
+      "sha256": "d7ef524d11e35f9ab670ee789ebc53d53eaecfbc638f7d43fef99bd738bca4c2",
+      "mirror": "getting-started_glossary-of-terms.md",
+      "covers": [
+        "skills/octo-protocol/references/GLOSSARY.md"
+      ],
+      "terms": 1,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/getting-started",
+      "sha256": "72347f670c6219741611083a509a39d3a47eb3608f16d4e21aefec97fa99406b",
+      "mirror": "getting-started_getting-started.md",
+      "covers": [
+        "skills/octo-protocol/references/AUTHENTICATION.md"
+      ],
+      "terms": 8,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/test-credentials",
+      "sha256": "f29ac142bd33ebb6959a5c22920f0855b15b328cc138c6c0d94290ae64870077",
+      "mirror": "getting-started_test-credentials.md",
+      "covers": [
+        "skills/octo-protocol/references/TESTING.md"
+      ],
+      "terms": 4,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/headers",
+      "sha256": "445c442d92576bb05f13769253f3c897cc8a8b75f4af52d89c1925f94fe61351",
+      "mirror": "getting-started_headers.md",
+      "covers": [
+        "skills/octo-protocol/references/HEADERS.md"
+      ],
+      "terms": 20,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/errors",
+      "sha256": "4982486add7dc8337fc23068ae86438ac03874ec60dfb93502aecd2fce8b58f1",
+      "mirror": "getting-started_errors.md",
+      "covers": [
+        "skills/octo-protocol/references/ERRORS.md",
+        "skills/octo-protocol/references/CAPABILITY-ERRORS.md"
+      ],
+      "terms": 23,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/localization",
+      "sha256": "07e4d6d08a6b4dc0ac37602f0a909505830e2598f8ce7ab78df4520c1a2237e0",
+      "mirror": "getting-started_localization.md",
+      "covers": [
+        "skills/octo-protocol/references/LOCALIZATION.md"
+      ],
+      "terms": 3,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/getting-started/request-capabilities",
+      "sha256": "3215a45101a9cedf3938de5100d37b38ae736a41a117f44cfd8854b2bb9d68ca",
+      "mirror": "getting-started_request-capabilities.md",
+      "covers": [
+        "skills/octo-protocol/references/CAPABILITY-DISCOVERY.md"
+      ],
+      "terms": 38,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/octo-core/products",
+      "sha256": "8513aaf46304047afe7721a29ba519673a51ab560024f157c837e0c1b447ae91",
+      "mirror": "octo-core_products.md",
+      "covers": [
+        "skills/octo-products/SKILL.md",
+        "skills/octo-products/references/ENDPOINTS.md",
+        "skills/octo-products/references/PRODUCT-SCHEMA.md"
+      ],
+      "terms": 1,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/octo-core/availability",
+      "sha256": "f9a6b3bf37139da483a6b816062acd40f31e365aec501b55650f050523a93e54",
+      "mirror": "octo-core_availability.md",
+      "covers": [
+        "skills/octo-availability/SKILL.md",
+        "skills/octo-availability/references/ENDPOINTS.md"
+      ],
+      "terms": 2,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/octo-core/bookings",
+      "sha256": "78b43a5376cc68886e57643ca3a0b8c1b09f940ebc718a53b8d1dbb6a33bf935",
+      "mirror": "octo-core_bookings.md",
+      "covers": [
+        "skills/octo-bookings/SKILL.md",
+        "skills/octo-bookings/references/ENDPOINTS.md",
+        "skills/octo-bookings/references/AFTER-CONFIRMATION.md",
+        "skills/octo-bookings/references/LISTING-BOOKINGS.md"
+      ],
+      "terms": 58,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/pricing",
+      "sha256": "fbe4194c8654995a5b98e8198570386d1cc07c8da13be700b84027e75f971013",
+      "mirror": "capabilities_pricing.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/PRICING.md"
+      ],
+      "terms": 77,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/content",
+      "sha256": "0aaf947a082282c3b9e9966b5aabd16410a3b34301d229c9add532b24920a0d7",
+      "mirror": "capabilities_content.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/CONTENT.md"
+      ],
+      "terms": 55,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/offers",
+      "sha256": "1dc21067231c58d0c4ffbb3dfce466c4a4e2579005e63cdaa2f2b734ebe19ad1",
+      "mirror": "capabilities_offers.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/OFFERS.md"
+      ],
+      "terms": 100,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/extras",
+      "sha256": "2e19bbb8059d0c1ce4f1641a2e9d3709d4999758c01303960cf940a95c1a47d8",
+      "mirror": "capabilities_extras.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/EXTRAS.md"
+      ],
+      "terms": 67,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/packages",
+      "sha256": "8ae642830eca796bb4649625cd42f0069fcdcfcc6d93cb37ec21333c681f39cc",
+      "mirror": "capabilities_packages.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/PACKAGES.md"
+      ],
+      "terms": 46,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/pickups",
+      "sha256": "1aa251dfdf681a83fe8fd7597ff01ba9ac4a6d529cd1acb980368530bb94993a",
+      "mirror": "capabilities_pickups.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/PICKUPS.md"
+      ],
+      "terms": 44,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/questions",
+      "sha256": "ec43a0535d06a44bf43a8ce040610863008bf6e4c448ce1091c10133a9859cb1",
+      "mirror": "capabilities_questions.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/QUESTIONS.md"
+      ],
+      "terms": 53,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/waivers",
+      "sha256": "ff738451c4bb5873442b45601c4a3b5e8b997e65e3f3f9a93b21e8baed588da0",
+      "mirror": "capabilities_waivers.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/WAIVERS.md"
+      ],
+      "terms": 44,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/resources",
+      "sha256": "6d22a7bda37939b3832e6bc75b8464cbaae303b7b61187def1aedab368ce1b67",
+      "mirror": "capabilities_resources.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/RESOURCES.md"
+      ],
+      "terms": 42,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/rentals",
+      "sha256": "2a88fb6e0c701a52ace32d4a9c63e7ea7eace0c38575ab6752a9a53cc348daec",
+      "mirror": "capabilities_rentals.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/RENTALS.md"
+      ],
+      "terms": 37,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/redemption",
+      "sha256": "6ec81d715c7df50bacb64ea822bb23aab4fd2a99796170b3612984ebda26132d",
+      "mirror": "capabilities_redemption.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/REDEMPTION.md"
+      ],
+      "terms": 35,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/mappings",
+      "sha256": "e2bd646f9611a826451d072871405465f918f1cef9d9237a63d501f276203191",
+      "mirror": "capabilities_mappings.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/MAPPINGS.md"
+      ],
+      "terms": 38,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/cart",
+      "sha256": "fc0f715b378257496662820518e43dfad7357acfd1e492cb12702fef4c18529b",
+      "mirror": "capabilities_cart.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/CART.md"
+      ],
+      "terms": 21,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/gift-vouchers",
+      "sha256": "5187ce10c0700739a1b3e9abe94b9d06cf08b58bea753f189bbc3f5ab3cc0b51",
+      "mirror": "capabilities_gift-vouchers.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/GIFTS.md"
+      ],
+      "terms": 31,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/online-check-in",
+      "sha256": "ef0eeacdf039d17f7b7b5bd3c9fb9bd06489325aa7df63e0220895f0905aeccf",
+      "mirror": "capabilities_online-check-in.md",
+      "covers": [
+        "skills/octo-capabilities-fulfilment/references/CHECKIN.md"
+      ],
+      "terms": 35,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/card-payments",
+      "sha256": "80bd62c1e91aa467eeda0886acb4e2e7f46952c90b292bbc9e52fa0cad18e7da",
+      "mirror": "capabilities_card-payments.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/CARD-PAYMENTS.md"
+      ],
+      "terms": 65,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/memberships",
+      "sha256": "55fae43a10c3a8c66aec1803ce5695454318423e43d6374b3664bd7aaed57410",
+      "mirror": "capabilities_memberships.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/MEMBERSHIPS.md"
+      ],
+      "terms": 66,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/adjustments",
+      "sha256": "db9b88e3442dc43b9fb8a6aa3afb9fc1299fa32686f1b97fc711a90c4eb16a73",
+      "mirror": "capabilities_adjustments.md",
+      "covers": [
+        "skills/octo-capabilities-commerce/references/ADJUSTMENTS.md"
+      ],
+      "terms": 18,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/webhooks",
+      "sha256": "46c2ad95f71dd8a95cecd1d0186dd56d74bded49c240a4e86b3efe4476376c6f",
+      "mirror": "capabilities_webhooks.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/WEBHOOKS.md"
+      ],
+      "terms": 46,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/waitlists",
+      "sha256": "dae780f70237bc3c40b0f268a33d61e5d394b7515c72e0b2b684eccbff399b24",
+      "mirror": "capabilities_waitlists.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/WAITLISTS.md"
+      ],
+      "terms": 19,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/identities",
+      "sha256": "28e2f474733fb4d71a730568c87435b8a0ab83bc6f6f351d2c77fd47e1c4b70c",
+      "mirror": "capabilities_identities.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/IDENTITIES.md"
+      ],
+      "terms": 30,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/campaigns",
+      "sha256": "fd043339f5f032756d33c731f7a2feead9075968811b1a450bae60a295210c46",
+      "mirror": "capabilities_campaigns.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/CAMPAIGNS.md"
+      ],
+      "terms": 3,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/capabilities/notifications",
+      "sha256": "ffd8274d574ecc102d301055cae76b8647f6882c4e5da25482b9fa4c40d70f6f",
+      "mirror": "capabilities_notifications.md",
+      "covers": [
+        "skills/octo-capabilities-platform/references/NOTIFICATIONS.md"
+      ],
+      "terms": 16,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/additional-resources/ventrata-clients",
+      "sha256": "04018fe0c77b163e101689adeb83c3133c7e890caf6010c272a0d4c81120ae5d",
+      "mirror": "additional-resources_ventrata-clients.md",
+      "covers": [
+        "README.md"
+      ],
+      "terms": 5,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/additional-resources/other-octo-implementations",
+      "sha256": "aa2de36ef34792e418edd7523e3a76e8c55a1369a1e02cfdc94415c5e52b3e28",
+      "mirror": "additional-resources_other-octo-implementations.md",
+      "covers": [
+        "README.md"
+      ],
+      "terms": 1,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/additional-resources/support",
+      "sha256": "1fc9144c4ce6e9eaa62ce1578c41ec91808159586fc758cbdd997af4337bfd25",
+      "mirror": "additional-resources_support.md",
+      "covers": [
+        "README.md"
+      ],
+      "terms": 0,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.ventrata.com/additional-resources/faqs",
+      "sha256": "bd6309ad59b5cd2655e86a14799e77c9670dac7e27e54848ef3d139c4741ebe7",
+      "mirror": "additional-resources_faqs.md",
+      "covers": [
+        "README.md"
+      ],
+      "terms": 7,
+      "extracted": "2026-08-21"
+    }
+  ],
+  "termsTotal": 1163,
+  "termsMissing": 0
+}
