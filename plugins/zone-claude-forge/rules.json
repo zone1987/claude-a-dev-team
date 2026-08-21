@@ -595,7 +595,7 @@
       "rule": "Every path segment is English: directories and non-reference files in lowercase kebab-case, reference files in SCREAMING-CASE.md. No German stem in any segment.",
       "purpose": "The content greps read file contents only, so a German directory name survives them.",
       "not-a-platform-requirement": "Only forward slashes are required by the documentation.",
-      "note": "plugins/ticket-plattform/ is the existing counter-example, and scripts/rename-german-files.py exists because of it."
+      "note": "plugins/ticket-plattform/ was the counter-example that prompted this rule and scripts/rename-german-files.py; the plugin has since been removed, so the marketplace now satisfies the rule throughout. Keep the check: a German stem reaches a path far more easily than it reaches prose."
     },
     {
       "id": "LANG-03",

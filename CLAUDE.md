@@ -480,8 +480,9 @@ this document, `CONVENTIONS.md`, `README.md`, `marketplace.json`.
   stays, the explanation around it is English.
 
 - **Filenames and directory names are English too.** The two greps below read file *contents*, so a
-  German directory name passes both: `plugins/ticket-plattform/` is why
-  `scripts/rename-german-files.py` exists. `LANG-02` checks every path segment.
+  German directory name passes both: `plugins/ticket-plattform/` was the case that prompted
+  `scripts/rename-german-files.py`, and that plugin has since been removed. `LANG-02` checks every
+  path segment, and every plugin now passes it.
 
 Check a plugin before shipping it:
 
