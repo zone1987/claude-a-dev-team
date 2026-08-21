@@ -9,9 +9,9 @@ Services around content: transactional mail, media processing, and search indexi
 
 ## Reference map
 
-- **[ELASTICSEARCH.md](ELASTICSEARCH.md)**: The `Shopware\Elasticsearch` bundle integrates OpenSearch/Elasticsearch as the search/aggregation backend. [ELASTICSEARCH-ARCHITECTURE](ELASTICSEARCH-ARCHITECTURE.md), [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md), [ELASTICSEARCH-EXTENSION](ELASTICSEARCH-EXTENSION.md).
-- **[MAIL.md](MAIL.md)**: Plugins can create custom mail templates and add data to existing mail events. [MAIL-DATA](MAIL-DATA.md), [MAIL-TEMPLATE](MAIL-TEMPLATE.md), [MAIL-VARIABLES-MAIL-TEMPLATES](MAIL-VARIABLES-MAIL-TEMPLATES.md), [MAIL-VARIABLES-VARIABLE-TREES](MAIL-VARIABLES-VARIABLE-TREES.md), [MAIL-VARIABLES](MAIL-VARIABLES.md).
-- **[MEDIA.md](MEDIA.md)**: Plugins can add custom file extensions, prevent media deletion, handle thumbnails, and upload files programma…. [MEDIA-HANDLING](MEDIA-HANDLING.md), [MEDIA-THUMBNAIL](MEDIA-THUMBNAIL.md).
+- **[ELASTICSEARCH.md](references/ELASTICSEARCH.md)**: The `Shopware\Elasticsearch` bundle integrates OpenSearch/Elasticsearch as the search/aggregation backend. [ELASTICSEARCH-ARCHITECTURE](references/ELASTICSEARCH-ARCHITECTURE.md), [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS](references/ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md), [ELASTICSEARCH-EXTENSION](references/ELASTICSEARCH-EXTENSION.md).
+- **[MAIL.md](references/MAIL.md)**: Plugins can create custom mail templates and add data to existing mail events. [MAIL-DATA](references/MAIL-DATA.md), [MAIL-TEMPLATE](references/MAIL-TEMPLATE.md), [MAIL-VARIABLES-MAIL-TEMPLATES](references/MAIL-VARIABLES-MAIL-TEMPLATES.md), [MAIL-VARIABLES-VARIABLE-TREES](references/MAIL-VARIABLES-VARIABLE-TREES.md), [MAIL-VARIABLES](references/MAIL-VARIABLES.md).
+- **[MEDIA.md](references/MEDIA.md)**: Plugins can add custom file extensions, prevent media deletion, handle thumbnails, and upload files programma…. [MEDIA-HANDLING](references/MEDIA-HANDLING.md), [MEDIA-THUMBNAIL](references/MEDIA-THUMBNAIL.md).
 
 ## Source
 

@@ -9,12 +9,12 @@ Extend by event subscriber first, decorator second — the platform's own guidan
 
 ## Reference map
 
-- **[CLI-COMMAND.md](CLI-COMMAND.md)**: A plugin command is a plain Symfony command, registered via `#[AsCommand]`. [CLI-COMMAND-COMMANDS](CLI-COMMAND-COMMANDS.md).
-- **[DEPENDENCY-INJECTION.md](DEPENDENCY-INJECTION.md)**: Register services in `src/Resources/config/services.xml`. [DEPENDENCY-INJECTION-DI](DEPENDENCY-INJECTION-DI.md).
-- **[EVENT-CATALOG.md](EVENT-CATALOG.md)**: Answers: **"which events exist in THIS project and what do they carry?"** — from a cached catalogu….
-- **[EVENTS-SUBSCRIBER.md](EVENTS-SUBSCRIBER.md)**: The **preferred** extension path. [EVENTS-SUBSCRIBER-SUBSCRIBERS](EVENTS-SUBSCRIBER-SUBSCRIBERS.md).
-- **[SERVICE-DECORATION.md](SERVICE-DECORATION.md)**: The decorator implements the same interface, holds the `.inner` service and delegates.
-- **[SERVICE-TAGS.md](SERVICE-TAGS.md)**: Tags make services discoverable for Shopware/Symfony. [SERVICE-TAGS-TAGS](SERVICE-TAGS-TAGS.md).
+- **[CLI-COMMAND.md](references/CLI-COMMAND.md)**: A plugin command is a plain Symfony command, registered via `#[AsCommand]`. [CLI-COMMAND-COMMANDS](references/CLI-COMMAND-COMMANDS.md).
+- **[DEPENDENCY-INJECTION.md](references/DEPENDENCY-INJECTION.md)**: Register services in `src/Resources/config/services.xml`. [DEPENDENCY-INJECTION-DI](references/DEPENDENCY-INJECTION-DI.md).
+- **[EVENT-CATALOG.md](references/EVENT-CATALOG.md)**: Answers: **"which events exist in THIS project and what do they carry?"** — from a cached catalogu….
+- **[EVENTS-SUBSCRIBER.md](references/EVENTS-SUBSCRIBER.md)**: The **preferred** extension path. [EVENTS-SUBSCRIBER-SUBSCRIBERS](references/EVENTS-SUBSCRIBER-SUBSCRIBERS.md).
+- **[SERVICE-DECORATION.md](references/SERVICE-DECORATION.md)**: The decorator implements the same interface, holds the `.inner` service and delegates.
+- **[SERVICE-TAGS.md](references/SERVICE-TAGS.md)**: Tags make services discoverable for Shopware/Symfony. [SERVICE-TAGS-TAGS](references/SERVICE-TAGS-TAGS.md).
 
 ## Source
 

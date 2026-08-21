@@ -1,3 +1,0 @@
-# sw-frontends-customization
-
-Full reference: [FRONTENDS-CUSTOMIZATION-CUSTOMIZATION.md](FRONTENDS-CUSTOMIZATION-CUSTOMIZATION.md)

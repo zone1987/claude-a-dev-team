@@ -9,11 +9,11 @@ Adding endpoints. A Store API route is a controller with a route annotation plus
 
 ## Reference map
 
-- **[ACL.md](ACL.md)**: Backend access is secured through privileges.
-- **[ADMIN-API-CONTROLLER.md](ADMIN-API-CONTROLLER.md)**: For non-CRUD actions in the backend.
-- **[APP-SCRIPT.md](APP-SCRIPT.md)**: Apps can ship server-side logic as **Twig scripts**, executed at defined **hooks**.
-- **[STORE-API.md](STORE-API.md)**: Store API routes provide data to the storefront and headless clients. [STORE-API-OVERRIDE](STORE-API-OVERRIDE.md), [STORE-API-ROUTE](STORE-API-ROUTE.md).
-- **[WEBHOOK.md](WEBHOOK.md)**: Shopware can send business events to external URLs — primarily the **app system**, but also programmatically thro….
+- **[ACL.md](references/ACL.md)**: Backend access is secured through privileges.
+- **[ADMIN-API-CONTROLLER.md](references/ADMIN-API-CONTROLLER.md)**: For non-CRUD actions in the backend.
+- **[APP-SCRIPT.md](references/APP-SCRIPT.md)**: Apps can ship server-side logic as **Twig scripts**, executed at defined **hooks**.
+- **[STORE-API.md](references/STORE-API.md)**: Store API routes provide data to the storefront and headless clients. [STORE-API-OVERRIDE](references/STORE-API-OVERRIDE.md), [STORE-API-ROUTE](references/STORE-API-ROUTE.md).
+- **[WEBHOOK.md](references/WEBHOOK.md)**: Shopware can send business events to external URLs — primarily the **app system**, but also programmatically thro….
 
 ## Source
 

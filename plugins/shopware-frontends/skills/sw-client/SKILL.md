@@ -9,11 +9,11 @@ The data layer. api-gen turns the shop's OpenAPI into types, so the client is ty
 
 ## Reference map
 
-- **[API-CLIENT-JS.md](API-CLIENT-JS.md)**: Typed client against the **Store API**. [API-CLIENT-JS-API-CLIENT-REFERENCE](API-CLIENT-JS-API-CLIENT-REFERENCE.md).
-- **[API-GEN-TYPES.md](API-GEN-TYPES.md)**: Generates TypeScript types from the shop's OpenAPI spec — the basis of the `api-client`'s type safety. [API-GEN-TYPES-API-GEN-REFERENCE](API-GEN-TYPES-API-GEN-REFERENCE.md).
-- **[COMPOSABLES.md](COMPOSABLES.md)**: Opinionated Vue composables that encapsulate business logic + state on top of the `api-client`. [COMPOSABLES-REFERENCE](COMPOSABLES-REFERENCE.md).
-- **[FRONTENDS-HELPERS.md](FRONTENDS-HELPERS.md)**: Pure utility functions for recurring tasks in headless frontends:. [FRONTENDS-HELPERS-HELPERS-REFERENCE](FRONTENDS-HELPERS-HELPERS-REFERENCE.md).
-- **[FRONTENDS-SESSION-CONTEXT.md](FRONTENDS-SESSION-CONTEXT.md)**: The `sw-context-token` represents the session. [FRONTENDS-SESSION-CONTEXT-SESSION-CONTEXT-REFERENCE](FRONTENDS-SESSION-CONTEXT-SESSION-CONTEXT-REFERENCE.md).
+- **[API-CLIENT-JS.md](references/API-CLIENT-JS.md)**: Typed client against the **Store API**. [API-CLIENT-JS-API-CLIENT-REFERENCE](references/API-CLIENT-JS-API-CLIENT-REFERENCE.md).
+- **[API-GEN-TYPES.md](references/API-GEN-TYPES.md)**: Generates TypeScript types from the shop's OpenAPI spec — the basis of the `api-client`'s type safety. [API-GEN-TYPES-API-GEN-REFERENCE](references/API-GEN-TYPES-API-GEN-REFERENCE.md).
+- **[COMPOSABLES.md](references/COMPOSABLES.md)**: Opinionated Vue composables that encapsulate business logic + state on top of the `api-client`. [COMPOSABLES-REFERENCE](references/COMPOSABLES-REFERENCE.md).
+- **[FRONTENDS-HELPERS.md](references/FRONTENDS-HELPERS.md)**: Pure utility functions for recurring tasks in headless frontends:. [FRONTENDS-HELPERS-HELPERS-REFERENCE](references/FRONTENDS-HELPERS-HELPERS-REFERENCE.md).
+- **[FRONTENDS-SESSION-CONTEXT.md](references/FRONTENDS-SESSION-CONTEXT.md)**: The `sw-context-token` represents the session. [FRONTENDS-SESSION-CONTEXT-SESSION-CONTEXT-REFERENCE](references/FRONTENDS-SESSION-CONTEXT-SESSION-CONTEXT-REFERENCE.md).
 
 ## Source
 

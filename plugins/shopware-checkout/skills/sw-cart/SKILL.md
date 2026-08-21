@@ -9,15 +9,15 @@ The cart is recalculated on every change through collector, processor and valida
 
 ## Reference map
 
-- **[COLLECTOR.md](COLLECTOR.md)**: The collector runs **before** the processors and loads all data needed for the calculation in a single batc….
-- **[DISCOUNT.md](DISCOUNT.md)**: Discounts are separate line items or promotion items.
-- **[FACADE-SCRIPT.md](FACADE-SCRIPT.md)**: Apps manipulate the cart through the **cart facade** in the `cart` script hook — without a PHP processor of their own.
-- **[LINE-ITEM.md](LINE-ITEM.md)**: A cart position is a `LineItem`.
-- **[NESTED-LINE-ITEMS.md](NESTED-LINE-ITEMS.md)**: Line items can have `children` — e.g. a bundle with sub-products.
-- **[PRICE.md](PRICE.md)**: Cart prices come from calculator services, turning a `PriceDefinition` into a `CalculatedPrice`.
-- **[PROCESSOR.md](PROCESSOR.md)**: The cart is calculated in two phases: **collector** → **processor**. [PROCESSOR-CHECKOUT](PROCESSOR-CHECKOUT.md).
-- **[PROMOTION.md](PROMOTION.md)**: Campaigns are `promotion` entities with discounts, optional codes and conditions via rules.
-- **[VALIDATOR.md](VALIDATOR.md)**: Validators inspect the calculated cart and can attach **blocking** or informational errors.
+- **[COLLECTOR.md](references/COLLECTOR.md)**: The collector runs **before** the processors and loads all data needed for the calculation in a single batc….
+- **[DISCOUNT.md](references/DISCOUNT.md)**: Discounts are separate line items or promotion items.
+- **[FACADE-SCRIPT.md](references/FACADE-SCRIPT.md)**: Apps manipulate the cart through the **cart facade** in the `cart` script hook — without a PHP processor of their own.
+- **[LINE-ITEM.md](references/LINE-ITEM.md)**: A cart position is a `LineItem`.
+- **[NESTED-LINE-ITEMS.md](references/NESTED-LINE-ITEMS.md)**: Line items can have `children` — e.g. a bundle with sub-products.
+- **[PRICE.md](references/PRICE.md)**: Cart prices come from calculator services, turning a `PriceDefinition` into a `CalculatedPrice`.
+- **[PROCESSOR.md](references/PROCESSOR.md)**: The cart is calculated in two phases: **collector** → **processor**. [PROCESSOR-CHECKOUT](references/PROCESSOR-CHECKOUT.md).
+- **[PROMOTION.md](references/PROMOTION.md)**: Campaigns are `promotion` entities with discounts, optional codes and conditions via rules.
+- **[VALIDATOR.md](references/VALIDATOR.md)**: Validators inspect the calculated cart and can attach **blocking** or informational errors.
 
 ## Source
 

@@ -1,3 +1,0 @@
-# sw-frontends-getting-started
-
-Full reference: [FRONTENDS-GETTING-STARTED-GETTING-STARTED.md](FRONTENDS-GETTING-STARTED-GETTING-STARTED.md)

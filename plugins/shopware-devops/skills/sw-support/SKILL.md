@@ -9,7 +9,7 @@ Symptom-first diagnosis for a shop that will not behave.
 
 ## Reference map
 
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**: Other supported profilers: `tideways`, `pcov`. [TROUBLESHOOTING-DETAIL](TROUBLESHOOTING-DETAIL.md).
+- **[TROUBLESHOOTING.md](references/TROUBLESHOOTING.md)**: Other supported profilers: `tideways`, `pcov`. [TROUBLESHOOTING-DETAIL](references/TROUBLESHOOTING-DETAIL.md).
 
 ## Source
 

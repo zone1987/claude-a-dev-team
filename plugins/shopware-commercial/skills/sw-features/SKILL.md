@@ -9,11 +9,11 @@ Features delivered through the Commercial bundle. Each states the plan and minim
 
 ## Reference map
 
-- **[ADVANCED-SEARCH.md](ADVANCED-SEARCH.md)**: Developer knowledge for Shopware Advanced Search. [ADVANCED-SEARCH-DETAIL](ADVANCED-SEARCH-DETAIL.md).
-- **[COMMERCIAL-BUNDLE.md](COMMERCIAL-BUNDLE.md)**: Developer reference for the bundle structure of the Shopware Commercial plugin. [COMMERCIAL-BUNDLE-DETAIL](COMMERCIAL-BUNDLE-DETAIL.md).
-- **[COMMERCIAL-OVERVIEW.md](COMMERCIAL-OVERVIEW.md)**: This skill covers the overview of the Shopware Commercial plugin. [COMMERCIAL-OVERVIEW-DETAIL](COMMERCIAL-OVERVIEW-DETAIL.md).
-- **[NEXUS.md](NEXUS.md)**: > **Beta:** Nexus is currently in beta. [NEXUS-DETAIL](NEXUS-DETAIL.md).
-- **[SUBSCRIPTIONS.md](SUBSCRIPTIONS.md)**: Developer reference for the Shopware Subscriptions extension. [SUBSCRIPTIONS-DETAIL](SUBSCRIPTIONS-DETAIL.md).
+- **[ADVANCED-SEARCH.md](references/ADVANCED-SEARCH.md)**: Developer knowledge for Shopware Advanced Search. [ADVANCED-SEARCH-DETAIL](references/ADVANCED-SEARCH-DETAIL.md).
+- **[COMMERCIAL-BUNDLE.md](references/COMMERCIAL-BUNDLE.md)**: Developer reference for the bundle structure of the Shopware Commercial plugin. [COMMERCIAL-BUNDLE-DETAIL](references/COMMERCIAL-BUNDLE-DETAIL.md).
+- **[COMMERCIAL-OVERVIEW.md](references/COMMERCIAL-OVERVIEW.md)**: This skill covers the overview of the Shopware Commercial plugin. [COMMERCIAL-OVERVIEW-DETAIL](references/COMMERCIAL-OVERVIEW-DETAIL.md).
+- **[NEXUS.md](references/NEXUS.md)**: > **Beta:** Nexus is currently in beta. [NEXUS-DETAIL](references/NEXUS-DETAIL.md).
+- **[SUBSCRIPTIONS.md](references/SUBSCRIPTIONS.md)**: Developer reference for the Shopware Subscriptions extension. [SUBSCRIPTIONS-DETAIL](references/SUBSCRIPTIONS-DETAIL.md).
 
 ## Source
 

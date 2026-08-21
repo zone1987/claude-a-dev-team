@@ -9,10 +9,10 @@ Colour and typography come from CSS variable tokens, not from component props. C
 
 ## Reference map
 
-- **[DARK-MODE.md](DARK-MODE.md)**: Dark mode is based on the `.dark` CSS class on the `<html>` element. [DARK-MODE-ASTRO](DARK-MODE-ASTRO.md), [DARK-MODE-NUXT](DARK-MODE-NUXT.md), [DARK-MODE-VITE](DARK-MODE-VITE.md), [DARK-MODE-VITEPRESS](DARK-MODE-VITEPRESS.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: shadcn-vue recommends CSS variables for theming. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
-- **[THEMING.md](THEMING.md)**: shadcn-vue uses CSS variables for theming by default.
-- **[TYPOGRAPHY.md](TYPOGRAPHY.md)**: shadcn-vue provides ready-made typography style classes that can be applied directly as Tailwind clas…. [TYPOGRAPHY-API](TYPOGRAPHY-API.md), [TYPOGRAPHY-DETAIL](TYPOGRAPHY-DETAIL.md), [TYPOGRAPHY-EXAMPLES](TYPOGRAPHY-EXAMPLES.md), [TYPOGRAPHY-INSTALLATION](TYPOGRAPHY-INSTALLATION.md), [TYPOGRAPHY-SOURCE](TYPOGRAPHY-SOURCE.md).
+- **[DARK-MODE.md](references/DARK-MODE.md)**: Dark mode is based on the `.dark` CSS class on the `<html>` element. [DARK-MODE-ASTRO](references/DARK-MODE-ASTRO.md), [DARK-MODE-NUXT](references/DARK-MODE-NUXT.md), [DARK-MODE-VITE](references/DARK-MODE-VITE.md), [DARK-MODE-VITEPRESS](references/DARK-MODE-VITEPRESS.md).
+- **[OVERVIEW.md](references/OVERVIEW.md)**: shadcn-vue recommends CSS variables for theming. [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
+- **[THEMING.md](references/THEMING.md)**: shadcn-vue uses CSS variables for theming by default.
+- **[TYPOGRAPHY.md](references/TYPOGRAPHY.md)**: shadcn-vue provides ready-made typography style classes that can be applied directly as Tailwind clas…. [TYPOGRAPHY-API](references/TYPOGRAPHY-API.md), [TYPOGRAPHY-DETAIL](references/TYPOGRAPHY-DETAIL.md), [TYPOGRAPHY-EXAMPLES](references/TYPOGRAPHY-EXAMPLES.md), [TYPOGRAPHY-INSTALLATION](references/TYPOGRAPHY-INSTALLATION.md), [TYPOGRAPHY-SOURCE](references/TYPOGRAPHY-SOURCE.md).
 
 ## Source
 

@@ -9,11 +9,11 @@ What makes local development bearable: watchers, IDE integration and fixtures.
 
 ## Reference map
 
-- **[DAL-REFERENCE.md](DAL-REFERENCE.md)**: Complete filter and aggregation examples: `DAL-REFERENCE-DETAIL.md`. [DAL-REFERENCE-DETAIL](DAL-REFERENCE-DETAIL.md).
-- **[FIXTURE-BUNDLE.md](FIXTURE-BUNDLE.md)**: 1. [FIXTURE-BUNDLE-DETAIL](FIXTURE-BUNDLE-DETAIL.md).
-- **[IDE.md](IDE.md)**: JetBrains Marketplace: https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox. [IDE-TOOLING](IDE-TOOLING.md).
-- **[RECIPES.md](RECIPES.md)**: Recipes automate configuration during `composer require`. [RECIPES-MANIFEST](RECIPES-MANIFEST.md), [RECIPES-PACKAGES](RECIPES-PACKAGES.md).
-- **[WATCHERS.md](WATCHERS.md)**: Watchers **do not replace** the final build step!. [WATCHERS-DETAIL](WATCHERS-DETAIL.md).
+- **[DAL-REFERENCE.md](references/DAL-REFERENCE.md)**: Complete filter and aggregation examples: `DAL-REFERENCE-DETAIL.md`. [DAL-REFERENCE-DETAIL](references/DAL-REFERENCE-DETAIL.md).
+- **[FIXTURE-BUNDLE.md](references/FIXTURE-BUNDLE.md)**: 1. [FIXTURE-BUNDLE-DETAIL](references/FIXTURE-BUNDLE-DETAIL.md).
+- **[IDE.md](references/IDE.md)**: JetBrains Marketplace: https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox. [IDE-TOOLING](references/IDE-TOOLING.md).
+- **[RECIPES.md](references/RECIPES.md)**: Recipes automate configuration during `composer require`. [RECIPES-MANIFEST](references/RECIPES-MANIFEST.md), [RECIPES-PACKAGES](references/RECIPES-PACKAGES.md).
+- **[WATCHERS.md](references/WATCHERS.md)**: Watchers **do not replace** the final build step!. [WATCHERS-DETAIL](references/WATCHERS-DETAIL.md).
 
 ## Source
 

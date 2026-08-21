@@ -9,11 +9,11 @@ Setting up and running a Shopware Cloud tenant, and the limits that distinguish 
 
 ## Reference map
 
-- **[CLOUD-OVERVIEW.md](CLOUD-OVERVIEW.md)**: > "a cloud-based solution in which Shopware manages the entire infrastructure.".
-- **[OVERVIEW.md](OVERVIEW.md)**: Distilled from `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
-- **[SAAS-OPERATIONS.md](SAAS-OPERATIONS.md)**: Distilled from `docs.shopware.com/de/shopware-6-de/saas`. [SAAS-BETRIEB-ERWEITERUNGEN-SAAS](SAAS-OPERATIONS-EXTENSIONS-SAAS.md), [SAAS-BETRIEB-FAQ-SAAS](SAAS-OPERATIONS-FAQ-SAAS.md), [SAAS-BETRIEB-KOSTEN-SAAS](SAAS-OPERATIONS-COSTS-SAAS.md), [SAAS-BETRIEB-RATE-LIMITS-SAAS](SAAS-OPERATIONS-RATE-LIMITS-SAAS.md), [SAAS-BETRIEB-STAMMDATEN-FIRMA-SAAS](SAAS-OPERATIONS-MASTER-DATA-COMPANY-SAAS.md), [SAAS-BETRIEB-VERSANDARTEN-SAAS](SAAS-OPERATIONS-SHIPPING-METHODS-SAAS.md), [SAAS-BETRIEB-ZAHLUNGSARTEN-SAAS](SAAS-OPERATIONS-PAYMENT-METHODS-SAAS.md).
-- **[SAAS-SETUP.md](SAAS-SETUP.md)**: Distilled from `docs.shopware.com/de/shopware-6-de/saas`. [SAAS-SETUP-DOMAINS-SAAS](SAAS-SETUP-DOMAINS-SAAS.md), [SAAS-SETUP-EINSTIEG-SAAS](SAAS-SETUP-EINSTIEG-SAAS.md), [SAAS-SETUP-LIVEGANG-SAAS](SAAS-SETUP-LIVEGANG-SAAS.md), [SAAS-SETUP-PLAENE-SAAS](SAAS-SETUP-PLAENE-SAAS.md).
-- **[OVERVIEW-DETAIL.md](OVERVIEW-DETAIL.md)**: > "a cloud-based solution in which Shopware manages the entire infrastructure.".
+- **[CLOUD-OVERVIEW.md](references/CLOUD-OVERVIEW.md)**: > "a cloud-based solution in which Shopware manages the entire infrastructure.".
+- **[OVERVIEW.md](references/OVERVIEW.md)**: Distilled from `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
+- **[SAAS-OPERATIONS.md](references/SAAS-OPERATIONS.md)**: Distilled from `docs.shopware.com/de/shopware-6-de/saas`. [SAAS-BETRIEB-ERWEITERUNGEN-SAAS](references/SAAS-OPERATIONS-EXTENSIONS-SAAS.md), [SAAS-BETRIEB-FAQ-SAAS](references/SAAS-OPERATIONS-FAQ-SAAS.md), [SAAS-BETRIEB-KOSTEN-SAAS](references/SAAS-OPERATIONS-COSTS-SAAS.md), [SAAS-BETRIEB-RATE-LIMITS-SAAS](references/SAAS-OPERATIONS-RATE-LIMITS-SAAS.md), [SAAS-BETRIEB-STAMMDATEN-FIRMA-SAAS](references/SAAS-OPERATIONS-MASTER-DATA-COMPANY-SAAS.md), [SAAS-BETRIEB-VERSANDARTEN-SAAS](references/SAAS-OPERATIONS-SHIPPING-METHODS-SAAS.md), [SAAS-BETRIEB-ZAHLUNGSARTEN-SAAS](references/SAAS-OPERATIONS-PAYMENT-METHODS-SAAS.md).
+- **[SAAS-SETUP.md](references/SAAS-SETUP.md)**: Distilled from `docs.shopware.com/de/shopware-6-de/saas`. [SAAS-SETUP-DOMAINS-SAAS](references/SAAS-SETUP-DOMAINS-SAAS.md), [SAAS-SETUP-EINSTIEG-SAAS](references/SAAS-SETUP-EINSTIEG-SAAS.md), [SAAS-SETUP-LIVEGANG-SAAS](references/SAAS-SETUP-LIVEGANG-SAAS.md), [SAAS-SETUP-PLAENE-SAAS](references/SAAS-SETUP-PLAENE-SAAS.md).
+- **[OVERVIEW-DETAIL.md](references/OVERVIEW-DETAIL.md)**: > "a cloud-based solution in which Shopware manages the entire infrastructure.".
 
 ## Source
 

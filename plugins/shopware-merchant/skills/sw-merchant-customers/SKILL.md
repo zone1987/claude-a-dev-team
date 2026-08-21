@@ -9,13 +9,13 @@ Everything under **Kunden** (Customers), plus what the customer sees in their st
 
 ## Reference map
 
-- **[ACCOUNTS.md](ACCOUNTS.md)**: Full reference: `ACCOUNTS-DETAIL.md`. [ACCOUNTS-DETAIL](ACCOUNTS-DETAIL.md).
-- **[ADDRESSES.md](ADDRESSES.md)**: Full reference: `ADDRESSES-DETAIL.md`. [ADDRESSES-DETAIL](ADDRESSES-DETAIL.md).
-- **[B2B.md](B2B.md)**: Full reference: `B2B-DETAIL.md`. [B2B-DETAIL](B2B-DETAIL.md).
-- **[BULK.md](BULK.md)**: Full reference: `BULK-DETAIL.md`. [BULK-DETAIL](BULK-DETAIL.md).
-- **[CUSTOMERS-OVERVIEW.md](CUSTOMERS-OVERVIEW.md)**: > Source: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht > Documented version: 6.7.0.0+.
-- **[GROUPS.md](GROUPS.md)**: Full reference: `GROUPS-DETAIL.md`. [GROUPS-DETAIL](GROUPS-DETAIL.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: This skill covers the **complete customer administration** in the Shopware 6 admin. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
+- **[ACCOUNTS.md](references/ACCOUNTS.md)**: Full reference: `ACCOUNTS-DETAIL.md`. [ACCOUNTS-DETAIL](references/ACCOUNTS-DETAIL.md).
+- **[ADDRESSES.md](references/ADDRESSES.md)**: Full reference: `ADDRESSES-DETAIL.md`. [ADDRESSES-DETAIL](references/ADDRESSES-DETAIL.md).
+- **[B2B.md](references/B2B.md)**: Full reference: `B2B-DETAIL.md`. [B2B-DETAIL](references/B2B-DETAIL.md).
+- **[BULK.md](references/BULK.md)**: Full reference: `BULK-DETAIL.md`. [BULK-DETAIL](references/BULK-DETAIL.md).
+- **[CUSTOMERS-OVERVIEW.md](references/CUSTOMERS-OVERVIEW.md)**: > Source: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht > Documented version: 6.7.0.0+.
+- **[GROUPS.md](references/GROUPS.md)**: Full reference: `GROUPS-DETAIL.md`. [GROUPS-DETAIL](references/GROUPS-DETAIL.md).
+- **[OVERVIEW.md](references/OVERVIEW.md)**: This skill covers the **complete customer administration** in the Shopware 6 admin. [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
 
 ## Source
 

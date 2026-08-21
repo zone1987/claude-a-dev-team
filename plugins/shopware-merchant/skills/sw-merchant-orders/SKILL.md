@@ -9,13 +9,13 @@ Everything under **Bestellungen**. An order's three state machines — order, pa
 
 ## Reference map
 
-- **[CREATE.md](CREATE.md)**: Guide to creating manual orders via the Shopware administration. [CREATE-DETAIL](CREATE-DETAIL.md).
-- **[DOCUMENTS.md](DOCUMENTS.md)**: Complete reference for document management in orders. [DOCUMENTS-DETAIL](DOCUMENTS-DETAIL.md).
-- **[EDIT.md](EDIT.md)**: Complete reference for every editing option on an opened order. [EDIT-DETAIL](EDIT-DETAIL.md).
-- **[ORDERS.md](ORDERS.md)**: The **Bestellungen** (Orders) area in the Shopware 6 administration covers the complete management of all customer or….
-- **[OVERVIEW.md](OVERVIEW.md)**: Complete reference for the order list, all filter criteria and bulk editing functions. [OVERVIEW-DETAIL](OVERVIEW-DETAIL.md).
-- **[REFUNDS.md](REFUNDS.md)**: Complete reference for returns management and payment cancellation handling. [REFUNDS-DETAIL](REFUNDS-DETAIL.md).
-- **[STATES.md](STATES.md)**: Complete reference of all states, transitions and the payment logic after ordering. [STATES-DETAIL](STATES-DETAIL.md).
+- **[CREATE.md](references/CREATE.md)**: Guide to creating manual orders via the Shopware administration. [CREATE-DETAIL](references/CREATE-DETAIL.md).
+- **[DOCUMENTS.md](references/DOCUMENTS.md)**: Complete reference for document management in orders. [DOCUMENTS-DETAIL](references/DOCUMENTS-DETAIL.md).
+- **[EDIT.md](references/EDIT.md)**: Complete reference for every editing option on an opened order. [EDIT-DETAIL](references/EDIT-DETAIL.md).
+- **[ORDERS.md](references/ORDERS.md)**: The **Bestellungen** (Orders) area in the Shopware 6 administration covers the complete management of all customer or….
+- **[OVERVIEW.md](references/OVERVIEW.md)**: Complete reference for the order list, all filter criteria and bulk editing functions. [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
+- **[REFUNDS.md](references/REFUNDS.md)**: Complete reference for returns management and payment cancellation handling. [REFUNDS-DETAIL](references/REFUNDS-DETAIL.md).
+- **[STATES.md](references/STATES.md)**: Complete reference of all states, transitions and the payment logic after ordering. [STATES-DETAIL](references/STATES-DETAIL.md).
 
 ## Source
 

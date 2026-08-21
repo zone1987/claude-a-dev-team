@@ -9,9 +9,9 @@ The three administration migrations 6.7 forces, each with a mapping table.
 
 ## Reference map
 
-- **[METEOR-COMPONENT-MAP.md](METEOR-COMPONENT-MAP.md)**: In 6.7, Meteor components supersede the legacy `sw-*` components.
-- **[VITE-MIGRATION.md](VITE-MIGRATION.md)**: 6.7 switches the admin build from Webpack to **Vite**.
-- **[VUEX-TO-PINIA.md](VUEX-TO-PINIA.md)**: Pinia is the new standard.
+- **[METEOR-COMPONENT-MAP.md](references/METEOR-COMPONENT-MAP.md)**: In 6.7, Meteor components supersede the legacy `sw-*` components.
+- **[VITE-MIGRATION.md](references/VITE-MIGRATION.md)**: 6.7 switches the admin build from Webpack to **Vite**.
+- **[VUEX-TO-PINIA.md](references/VUEX-TO-PINIA.md)**: Pinia is the new standard.
 
 ## Source
 

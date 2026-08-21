@@ -9,15 +9,15 @@ Data comes through repositoryFactory, not fetch. Pinia is current, Vuex is legac
 
 ## Reference map
 
-- **[ADMIN-ACL-PERMISSIONS.md](ADMIN-ACL-PERMISSIONS.md)**: Register privileges and bind them to module/route/navigation/buttons.
-- **[ADMIN-API-REQUESTS.md](ADMIN-API-REQUESTS.md)**: For non-CRUD calls register an `ApiService` or.
-- **[ADMIN-CATALOG.md](ADMIN-CATALOG.md)**: Answers: **"which admin building blocks exist in THIS project?"** — modules, components, services, mixi….
-- **[ADMIN-DATA-HANDLING.md](ADMIN-DATA-HANDLING.md)**: Data goes through `repositoryFactory`.
-- **[ADMIN-ERROR-HANDLING.md](ADMIN-ERROR-HANDLING.md)**: Catch API/save errors and show them as a notification; validation errors are bound to the entity automatic….
-- **[ADMIN-PINIA-STORE.md](ADMIN-PINIA-STORE.md)**: Since 6.6/6.7 **Pinia** is the standard.
-- **[ADMIN-REPOSITORY-JS.md](ADMIN-REPOSITORY-JS.md)**: `create` produces an entity with a generated ID.
-- **[ADMIN-SERVICES.md](ADMIN-SERVICES.md)**: Register services via `addServiceProvider` and use them in components via `inject`.
-- **[ADMIN-VUEX-STORE.md](ADMIN-VUEX-STORE.md)**: Vuex is **deprecated**.
+- **[ADMIN-ACL-PERMISSIONS.md](references/ADMIN-ACL-PERMISSIONS.md)**: Register privileges and bind them to module/route/navigation/buttons.
+- **[ADMIN-API-REQUESTS.md](references/ADMIN-API-REQUESTS.md)**: For non-CRUD calls register an `ApiService` or.
+- **[ADMIN-CATALOG.md](references/ADMIN-CATALOG.md)**: Answers: **"which admin building blocks exist in THIS project?"** — modules, components, services, mixi….
+- **[ADMIN-DATA-HANDLING.md](references/ADMIN-DATA-HANDLING.md)**: Data goes through `repositoryFactory`.
+- **[ADMIN-ERROR-HANDLING.md](references/ADMIN-ERROR-HANDLING.md)**: Catch API/save errors and show them as a notification; validation errors are bound to the entity automatic….
+- **[ADMIN-PINIA-STORE.md](references/ADMIN-PINIA-STORE.md)**: Since 6.6/6.7 **Pinia** is the standard.
+- **[ADMIN-REPOSITORY-JS.md](references/ADMIN-REPOSITORY-JS.md)**: `create` produces an entity with a generated ID.
+- **[ADMIN-SERVICES.md](references/ADMIN-SERVICES.md)**: Register services via `addServiceProvider` and use them in components via `inject`.
+- **[ADMIN-VUEX-STORE.md](references/ADMIN-VUEX-STORE.md)**: Vuex is **deprecated**.
 
 ## Source
 

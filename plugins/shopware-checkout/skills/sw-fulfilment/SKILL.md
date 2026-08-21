@@ -9,10 +9,10 @@ Three independent state machines run per order — order, payment, delivery — 
 
 ## Reference map
 
-- **[DELIVERY.md](DELIVERY.md)**: The `DeliveryProcessor` calculates deliveries including shipping costs.
-- **[ORDER-EVENTS.md](ORDER-EVENTS.md)**: Key order-related events:.
-- **[ORDER-STATE-MACHINE.md](ORDER-STATE-MACHINE.md)**: Orders have three state machines: `order.state`, `order_transaction.state`, `order_delivery.state`.
-- **[SHIPPING-METHOD.md](SHIPPING-METHOD.md)**: A shipping method is a `shipping_method` entity.
+- **[DELIVERY.md](references/DELIVERY.md)**: The `DeliveryProcessor` calculates deliveries including shipping costs.
+- **[ORDER-EVENTS.md](references/ORDER-EVENTS.md)**: Key order-related events:.
+- **[ORDER-STATE-MACHINE.md](references/ORDER-STATE-MACHINE.md)**: Orders have three state machines: `order.state`, `order_transaction.state`, `order_delivery.state`.
+- **[SHIPPING-METHOD.md](references/SHIPPING-METHOD.md)**: A shipping method is a `shipping_method` entity.
 
 ## Source
 

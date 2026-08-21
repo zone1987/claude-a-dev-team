@@ -9,15 +9,15 @@ The official CLI for building extensions and driving a project. Each command's f
 
 ## Reference map
 
-- **[ACCOUNT.md](ACCOUNT.md)**: Commands for Shopware Account management and store publishing. [ACCOUNT-COMMANDS](ACCOUNT-COMMANDS.md).
-- **[ALL-COMMANDS.md](ALL-COMMANDS.md)**: Source: `github.com/shopware/shopware-cli`. [ALL-COMMANDS-2](ALL-COMMANDS-2.md).
-- **[COMMANDS-REFERENCE.md](COMMANDS-REFERENCE.md)**: All subcommands with flags. [COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS](COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS.md).
-- **[EXTENSION.md](EXTENSION.md)**: Commands for building, validating and packaging Shopware extensions. [EXTENSION-COMMANDS](EXTENSION-COMMANDS.md).
-- **[INTERNAL-PACKAGES.md](INTERNAL-PACKAGES.md)**: Source: `github.com/shopware/shopware-cli/internal/`. [INTERNAL-PACKAGES-2](INTERNAL-PACKAGES-2.md).
-- **[MCP-SERVER.md](MCP-SERVER.md)**: Shopware 6.7+ ships a native MCP server — connects AI clients directly to the shop. [MCP-SERVER-DETAIL](MCP-SERVER-DETAIL.md).
-- **[OVERVIEW.md](OVERVIEW.md)**: `shopware-cli` is a CLI written in Go for all Shopware DevOps tasks: extension build, project ma….
-- **[PROJECT.md](PROJECT.md)**: Commands for managing the entire Shopware project. [PROJECT-COMMANDS](PROJECT-COMMANDS.md).
-- **[REFERENCE.md](REFERENCE.md)**: Complete table of all `bin/console` commands by group plus Composer dev commands. [REFERENCE-COMPOSER-COMMANDS](REFERENCE-COMPOSER-COMMANDS.md), [REFERENCE-CONSOLE-COMMANDS](REFERENCE-CONSOLE-COMMANDS.md).
+- **[ACCOUNT.md](references/ACCOUNT.md)**: Commands for Shopware Account management and store publishing. [ACCOUNT-COMMANDS](references/ACCOUNT-COMMANDS.md).
+- **[ALL-COMMANDS.md](references/ALL-COMMANDS.md)**: Source: `github.com/shopware/shopware-cli`. [ALL-COMMANDS-2](references/ALL-COMMANDS-2.md).
+- **[COMMANDS-REFERENCE.md](references/COMMANDS-REFERENCE.md)**: All subcommands with flags. [COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS](references/COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS.md).
+- **[EXTENSION.md](references/EXTENSION.md)**: Commands for building, validating and packaging Shopware extensions. [EXTENSION-COMMANDS](references/EXTENSION-COMMANDS.md).
+- **[INTERNAL-PACKAGES.md](references/INTERNAL-PACKAGES.md)**: Source: `github.com/shopware/shopware-cli/internal/`. [INTERNAL-PACKAGES-2](references/INTERNAL-PACKAGES-2.md).
+- **[MCP-SERVER.md](references/MCP-SERVER.md)**: Shopware 6.7+ ships a native MCP server — connects AI clients directly to the shop. [MCP-SERVER-DETAIL](references/MCP-SERVER-DETAIL.md).
+- **[OVERVIEW.md](references/OVERVIEW.md)**: `shopware-cli` is a CLI written in Go for all Shopware DevOps tasks: extension build, project ma….
+- **[PROJECT.md](references/PROJECT.md)**: Commands for managing the entire Shopware project. [PROJECT-COMMANDS](references/PROJECT-COMMANDS.md).
+- **[REFERENCE.md](references/REFERENCE.md)**: Complete table of all `bin/console` commands by group plus Composer dev commands. [REFERENCE-COMPOSER-COMMANDS](references/REFERENCE-COMPOSER-COMMANDS.md), [REFERENCE-CONSOLE-COMMANDS](references/REFERENCE-CONSOLE-COMMANDS.md).
 
 ## Source
 

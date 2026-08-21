@@ -9,11 +9,11 @@ Reading data. Criteria is the single entry point; filters, sorting and aggregati
 
 ## Reference map
 
-- **[AGGREGATIONS.md](AGGREGATIONS.md)**: Aggregations compute metrics and facets server-side. [AGGREGATIONS-SEARCH-CRITERIA](AGGREGATIONS-SEARCH-CRITERIA.md).
-- **[CRITERIA.md](CRITERIA.md)**: `Criteria` is the DAL's query builder. [CRITERIA-SEARCH-CRITERIA](CRITERIA-SEARCH-CRITERIA.md).
-- **[FILTERS.md](FILTERS.md)**: Filters narrow the result set, via `$criteria->addFilter`. [FILTERS-SEARCH-CRITERIA](FILTERS-SEARCH-CRITERIA.md).
-- **[PLAIN-SQL-VS-DAL.md](PLAIN-SQL-VS-DAL.md)**: The risk with SQL: no write events, no cache invalidation, no translation/inheritance logic, UUID binar….
-- **[SORTING.md](SORTING.md)**: Multiple sortings apply in the order they are added. [SORTING-SEARCH-CRITERIA](SORTING-SEARCH-CRITERIA.md).
+- **[AGGREGATIONS.md](references/AGGREGATIONS.md)**: Aggregations compute metrics and facets server-side. [AGGREGATIONS-SEARCH-CRITERIA](references/AGGREGATIONS-SEARCH-CRITERIA.md).
+- **[CRITERIA.md](references/CRITERIA.md)**: `Criteria` is the DAL's query builder. [CRITERIA-SEARCH-CRITERIA](references/CRITERIA-SEARCH-CRITERIA.md).
+- **[FILTERS.md](references/FILTERS.md)**: Filters narrow the result set, via `$criteria->addFilter`. [FILTERS-SEARCH-CRITERIA](references/FILTERS-SEARCH-CRITERIA.md).
+- **[PLAIN-SQL-VS-DAL.md](references/PLAIN-SQL-VS-DAL.md)**: The risk with SQL: no write events, no cache invalidation, no translation/inheritance logic, UUID binar….
+- **[SORTING.md](references/SORTING.md)**: Multiple sortings apply in the order they are added. [SORTING-SEARCH-CRITERIA](references/SORTING-SEARCH-CRITERIA.md).
 
 ## Source
 
