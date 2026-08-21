@@ -4,7 +4,11 @@
       {
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/playwright-reminder.py\"" }
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/playwright-reminder.py\"",
+            "timeout": 10
+          }
         ]
       }
     ]

@@ -1,6 +1,6 @@
 ---
 name: sw-hosting
-description: Shopware self-hosted operations: requirements, installation, webserver, database, search, HTTP caching, S3, env config, worker and cron, performance, observability, updates, deployment.
+description: Shopware self-hosted operations: requirements, webserver, database, search, HTTP caching, S3, env config, worker and cron, observability, updates. Use when hosting or deploying Shopware 6.
 ---
 
 # Shopware self-hosting

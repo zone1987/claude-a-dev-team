@@ -66,7 +66,8 @@ GERMAN_STEMS = re.compile(
 SELF_EXEMPT = re.compile(r"lang-01-pattern-definitions")
 # Reference files are SCREAMING-CASE.md (REF-01), which keeps them distinguishable from SKILL.md
 # at a glance. Nothing in the platform requires it; see the rule's grounding in rules.json.
-REFERENCE_NAME = re.compile(r"^[A-Z][A-Z0-9-]*\.md$")
+# A leading digit is still SCREAMING-CASE: 3D-PRODUCTS.md names its subject correctly.
+REFERENCE_NAME = re.compile(r"^[A-Z0-9][A-Z0-9-]*\.md$")
 LOWER_PATH = re.compile(r"^[a-z0-9][a-z0-9._-]*$")
 MD_LINK = re.compile(r"\[[^\]]+\]\(([^)\s#]+)")
 TRUTHY = {"true", "yes", "on", "1"}
@@ -165,6 +166,20 @@ def load_rules() -> dict:
         return json.load(fh)
 
 
+def plugin_word(clause: str) -> bool:
+    """Does the clause name a plugin of this marketplace, whatever its casing?
+
+    A brand is not always capitalised: flatpickr, shadcn-vue and swiper are the product names
+    their own documentation uses, and each identifies its domain as sharply as Ventrata does.
+    """
+    names = {os.path.basename(d) for d in glob.glob(os.path.join(REPO, "plugins", "*"))}
+    words = set(re.findall(r"[a-z][a-z0-9-]{2,}", clause.lower()))
+    for n in names:
+        if n in words or n.split("-")[0] in words:
+            return True
+    return False
+
+
 def unbound_anchors(clause: str) -> list[str]:
     """Generic words in a Use when clause that no bound word rescues.
 
@@ -179,6 +194,8 @@ def unbound_anchors(clause: str) -> list[str]:
         or re.search(r"[\w*-]+\.(md|json|ya?ml|xml|php|py|ts|tsx|vue|js)\b", clause)
         or re.search(r"[\w-]+/[\w*.-]+", clause)                       # agents/*.md
         or re.search(r"\b[A-Z][a-z]+\b", clause)                       # Ventrata, Shopware
+        or re.search(r"\b[a-z]+(?:-[a-z]+)+\b", clause)                # flatpickr-extend, shadcn-vue
+        or plugin_word(clause)                                         # a lowercase brand: flatpickr
     )
     if bound:
         return []

@@ -1,6 +1,6 @@
 ---
 name: playwright-library
-description: Playwright library API: Page, Browser, BrowserContext, Locator, Request, Response, network routing, devices, file and clipboard IO, API testing. Use when automating a browser outside the test runner.
+description: Playwright library API: Page, Browser, BrowserContext, Locator, Request, Response, network routing, devices, file and clipboard IO. Use when driving Playwright outside @playwright/test.
 ---
 
 # Playwright: library API
