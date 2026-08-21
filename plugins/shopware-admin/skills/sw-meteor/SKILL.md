@@ -13,7 +13,7 @@ Meteor is the current component library — mt-* replaces the older sw-* compone
 - **[COMPONENTS.md](references/COMPONENTS.md)**: In 6.7 the **Meteor Component Library** is the standard toolkit., [COMPONENTS-ICON-KIT](references/COMPONENTS-ICON-KIT.md), [COMPONENTS-TOKENS](references/COMPONENTS-TOKENS.md).
 - **[COMPOSABLES.md](references/COMPOSABLES.md)**:
 - **[GETTING-STARTED.md](references/GETTING-STARTED.md)**:
-- **[METEOR-ADMIN-SDK.md](references/METEOR-ADMIN-SDK.md)**: API reference: `METEOR-ADMIN-SDK-ADMIN-SDK.md` Concepts, setup, guides: `METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES.md`. [METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES](references/METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES.md), [METEOR-ADMIN-SDK-ADMIN-SDK](references/METEOR-ADMIN-SDK-ADMIN-SDK.md).
+- **[METEOR-ADMIN-SDK.md](references/METEOR-ADMIN-SDK.md)**: API reference: `METEOR-ADMIN-SDK-ADMIN-SDK.md` Concepts, setup, guides: `METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES.md`. [METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES](references/METEOR-ADMIN-SDK-ADMIN-SDK-GUIDES.md),
 - **[USAGE-GUIDELINES.md](references/USAGE-GUIDELINES.md)**:
 
 ## Source

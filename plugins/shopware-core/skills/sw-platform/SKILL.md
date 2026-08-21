@@ -9,7 +9,7 @@ Infrastructure a plugin consumes rather than extends.
 
 ## Reference map
 
-- **[CONFIG-REFERENCE.md](references/CONFIG-REFERENCE.md)**: Complete webserver configurations for Nginx, Apache and Caddy. [CONFIG-REFERENCE-SERVER-CONFIGS](references/CONFIG-REFERENCE-SERVER-CONFIGS.md).
+- **[CONFIG-REFERENCE.md](references/CONFIG-REFERENCE.md)**: Complete webserver configurations for Nginx, Apache and Caddy.
 - **[FILESYSTEM.md](references/FILESYSTEM.md)**: Shopware wraps storage in League\Flysystem.
 - **[LOGGING.md](references/LOGGING.md)**: Plugins should log into their **own Monolog channel**, not into the core channel.
 - **[NUMBER-RANGE.md](references/NUMBER-RANGE.md)**: Use the `NumberRangeValueGenerator` for sequential, configurable numbers — never count up yourself.

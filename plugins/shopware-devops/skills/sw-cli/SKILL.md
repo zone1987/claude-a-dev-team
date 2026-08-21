@@ -11,7 +11,7 @@ The official CLI for building extensions and driving a project. Each command's f
 
 - **[ACCOUNT.md](references/ACCOUNT.md)**: Commands for Shopware Account management and store publishing. [ACCOUNT-COMMANDS](references/ACCOUNT-COMMANDS.md).
 - **[ALL-COMMANDS.md](references/ALL-COMMANDS.md)**: Source: `github.com/shopware/shopware-cli`. [ALL-COMMANDS-2](references/ALL-COMMANDS-2.md).
-- **[COMMANDS-REFERENCE.md](references/COMMANDS-REFERENCE.md)**: All subcommands with flags. [COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS](references/COMMANDS-REFERENCE-SHOPWARE-CLI-COMMANDS.md).
+- **[COMMANDS-REFERENCE.md](references/COMMANDS-REFERENCE.md)**: All subcommands with flags.
 - **[EXTENSION.md](references/EXTENSION.md)**: Commands for building, validating and packaging Shopware extensions. [EXTENSION-COMMANDS](references/EXTENSION-COMMANDS.md).
 - **[INTERNAL-PACKAGES.md](references/INTERNAL-PACKAGES.md)**: Source: `github.com/shopware/shopware-cli/internal/`. [INTERNAL-PACKAGES-2](references/INTERNAL-PACKAGES-2.md).
 - **[MCP-SERVER.md](references/MCP-SERVER.md)**: Shopware 6.7+ ships a native MCP server — connects AI clients directly to the shop.
