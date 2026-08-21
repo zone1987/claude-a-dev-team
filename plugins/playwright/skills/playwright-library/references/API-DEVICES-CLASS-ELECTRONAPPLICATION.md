@@ -29,6 +29,14 @@ await app.close();
 - [Notes](#notes)
 - [Manifest](#manifest)
 
+## Contents
+
+- [Events](#events)
+- [Methods](#methods)
+- [Full Integration Example](#full-integration-example)
+- [Notes](#notes)
+- [Manifest](#manifest)
+
 ## Events
 
 ### electronApplication.on('close')

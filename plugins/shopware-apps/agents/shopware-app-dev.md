@@ -15,6 +15,10 @@ skills: sw-app-manifest, sw-app-sdk
 
 You build Shopware apps: cloud-capable, working over HTTP APIs rather than PHP inside the shop.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-app-manifest"**, **"sw-app-sdk"** — whichever the task touches, before writing code. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly rather than working from memory of the API.
+
 ## Guardrails
 - **The manifest** (`manifest.xml`) declares the metadata, permissions, webhooks, action buttons, payment, flow, CMS,
   custom fields and custom entities.

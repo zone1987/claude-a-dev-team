@@ -1,6 +1,6 @@
 ---
 name: flatpickr-init
-description: Scaffold einer flatpickr-Einbindung — npm/CDN-Setup inkl. CSS, Init-Code mit gewünschten Optionen (Range/Zeit/inline/Locale), Events/Hooks und optional einem offiziellen Plugin.
+description: Scaffolds a flatpickr integration — npm/CDN setup including the CSS, init code with the options you want (range/time/inline/locale), events and hooks, and optionally one official plugin.
 argument-hint: <selector> [--mode single|multiple|range|time] [--locale de] [--framework vanilla|react|vue]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,15 +8,14 @@ model: sonnet
 
 # /flatpickr-init
 
-Erzeuge eine einsatzfertige flatpickr-Einbindung. Skills: `flatpickr-api`, `flatpickr-api`,
-`flatpickr-api`, `flatpickr-extend`, `flatpickr-extend`.
+Produce a ready-to-use flatpickr integration. Skills: `flatpickr-api`, `flatpickr-extend`.
 
-## Ablauf
-1. Selector + Modus (single/multiple/range/time) + Locale + Framework aus `$ARGUMENTS`.
-2. Einbindung erzeugen: CSS-Import (`flatpickr/dist/flatpickr.css` + ggf. Theme), JS-Import bzw. CDN-Tags.
-3. Init-Code mit den passenden Optionen (z.B. `mode`, `enableTime`, `dateFormat`/`altInput`+`altFormat`,
-   `minDate`/`maxDate`, `locale`) + relevante Hooks (`onChange`/`onReady`).
-4. Bei Bedarf ein offizielles Plugin einbinden (z.B. `rangePlugin`, `confirmDatePlugin`, `monthSelectPlugin`).
-5. Framework-Variante: Vanilla, `react-flatpickr` oder Vue-Wrapper.
+## Steps
+1. Selector, mode (single/multiple/range/time), locale and framework from `$ARGUMENTS`.
+2. Build the integration: CSS import (`flatpickr/dist/flatpickr.css` plus a theme if wanted), JS import or CDN tags.
+3. Init code with the fitting options (e.g. `mode`, `enableTime`, `dateFormat`/`altInput`+`altFormat`,
+   `minDate`/`maxDate`, `locale`) plus the relevant hooks (`onChange`/`onReady`).
+4. Where asked for, wire in one official plugin (e.g. `rangePlugin`, `confirmDatePlugin`, `monthSelectPlugin`).
+5. Framework variant: vanilla, `react-flatpickr` or the Vue wrapper.
 
-Nur dokumentierte Optionen/Tokens (Quelle: `flatpickr-api`/`-formatting`). CSS/Locale-Import nicht vergessen.
+Use documented options and tokens only (source: `flatpickr-api`). Do not omit the CSS or locale import.

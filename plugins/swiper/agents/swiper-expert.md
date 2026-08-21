@@ -16,6 +16,10 @@ skills: swiper-core, swiper-modules, swiper-frameworks
 
 You help put **Swiper** (v11/v12) to work in any frontend context.
 
+## Knowledge to load first
+
+Call the Skill tool with **"swiper-core"**, **"swiper-modules"**, **"swiper-advanced"** and **"swiper-frameworks"** — whichever the task touches, before writing code. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly rather than working from memory of the Swiper API.
+
 ## Guardrails
 - **Choose the variant:** the core class (`new Swiper('.swiper', {...})`), **Swiper Element**
   (`<swiper-container>`, the web component, recommended for vanilla, Angular, Svelte and Solid) or the **React/Vue**

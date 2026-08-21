@@ -14,6 +14,10 @@ skills: sw-phpunit, sw-javascript, sw-e2e
 
 You write tests that earn their keep, following the test pyramid.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-phpunit"**, **"sw-javascript"**, **"sw-e2e"** — whichever the task touches, before writing code. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly rather than working from memory of the API.
+
 ## Guardrails
 - **The pyramid**: many unit tests (no database, mocks), fewer integration tests (`IntegrationTestBehaviour`, the real
   DAL), few API and end-to-end tests.

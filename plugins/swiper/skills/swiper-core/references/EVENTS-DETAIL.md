@@ -2,6 +2,19 @@
 
 Register events with `swiper.on(event, handler)`, `swiper.once(event, handler)`, or directly in the constructor via `on: { eventName: handler }`.
 
+## Contents
+
+- [1. Core events](#1-core-events)
+- [2. Navigation events](#2-navigation-events)
+- [3. Pagination events](#3-pagination-events)
+- [4. Scrollbar events](#4-scrollbar-events)
+- [5. Autoplay events](#5-autoplay-events)
+- [6. Keyboard events](#6-keyboard-events)
+- [7. Mousewheel events](#7-mousewheel-events)
+- [8. Zoom events](#8-zoom-events)
+- [Event usage examples](#event-usage-examples)
+
+
 ```js
 // In the constructor
 const swiper = new Swiper('.swiper', {
@@ -18,6 +31,18 @@ swiper.onAny((eventName, ...args) => console.log(eventName, args));
 ```
 
 ---
+
+## Contents
+
+- [1. Core events](#1-core-events)
+- [2. Navigation events](#2-navigation-events)
+- [3. Pagination events](#3-pagination-events)
+- [4. Scrollbar events](#4-scrollbar-events)
+- [5. Autoplay events](#5-autoplay-events)
+- [6. Keyboard events](#6-keyboard-events)
+- [7. Mousewheel events](#7-mousewheel-events)
+- [8. Zoom events](#8-zoom-events)
+- [Event usage examples](#event-usage-examples)
 
 ## Contents
 

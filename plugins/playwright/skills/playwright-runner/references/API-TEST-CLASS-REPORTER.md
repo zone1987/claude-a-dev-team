@@ -28,6 +28,12 @@ reporter: [['./my-reporter.ts', { /* options */ }]]
 - [Custom Reporter with Options](#custom-reporter-with-options)
 - [Manifest](#manifest)
 
+## Contents
+
+- [Hook Methods](#hook-methods)
+- [Custom Reporter with Options](#custom-reporter-with-options)
+- [Manifest](#manifest)
+
 ## Hook Methods
 
 All methods are optional. Implement only the hooks you need.

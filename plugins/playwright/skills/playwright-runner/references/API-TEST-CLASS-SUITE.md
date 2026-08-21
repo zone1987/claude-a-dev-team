@@ -26,6 +26,13 @@ class MyReporter implements Reporter {
 - [Traversal Patterns](#traversal-patterns)
 - [Manifest](#manifest)
 
+## Contents
+
+- [Methods](#methods)
+- [Properties](#properties)
+- [Traversal Patterns](#traversal-patterns)
+- [Manifest](#manifest)
+
 ## Methods
 
 ### `allTests()`

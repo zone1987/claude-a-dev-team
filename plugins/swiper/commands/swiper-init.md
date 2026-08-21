@@ -1,6 +1,6 @@
 ---
 name: swiper-init
-description: Scaffold einer Swiper-Einbindung — Variante (Core/Element/React/Vue), HTML-Struktur, CSS-Imports, Modul-Registrierung (Navigation/Pagination/Autoplay/Effekte/…) und Init-Code mit den gewünschten Parametern.
+description: Scaffolds a Swiper integration — the variant (core/element/React/Vue), the HTML structure, CSS imports, module registration (navigation/pagination/autoplay/effects/…) and init code with the parameters you want.
 argument-hint: <selector> [--variant core|element|react|vue] [--modules navigation,pagination,autoplay] [--effect slide|fade|coverflow|cards]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,14 +8,17 @@ model: sonnet
 
 # /swiper-init
 
-Erzeuge eine einsatzfertige Swiper-Einbindung. Skills: `swiper-core`, `swiper-core`, gewünschte Modul-Skills, `swiper-core`/`swiper-frameworks`/`swiper-frameworks`.
+Produce a ready-to-use Swiper integration. Skills: `swiper-core`, the module skills you need,
+`swiper-frameworks`.
 
-## Ablauf
-1. Variante + Selector + Module + Effekt aus `$ARGUMENTS`.
-2. **HTML** erzeugen (`.swiper > .swiper-wrapper > .swiper-slide`; beim Element `<swiper-container>/<swiper-slide>`).
-3. **CSS-Imports**: `swiper/css` + je Modul (`swiper/css/navigation`, `/pagination`, `/effect-fade` …).
-4. **JS**: Module importieren + registrieren (`modules: [...]`), Init mit Parametern (slidesPerView, spaceBetween,
-   loop, breakpoints, autoplay, pagination/navigation, effect-Optionen …) + ggf. Events (`on: { slideChange }`).
-5. Variante-spezifisch: Core-Klasse, Swiper Element (`register()` + Attribute), React/Vue-Komponente.
+## Steps
+1. Variant, selector, modules and effect from `$ARGUMENTS`.
+2. **HTML** (`.swiper > .swiper-wrapper > .swiper-slide`; with the element, `<swiper-container>/<swiper-slide>`).
+3. **CSS imports**: `swiper/css` plus one per module (`swiper/css/navigation`, `/pagination`, `/effect-fade` …).
+4. **JS**: import and register the modules (`modules: [...]`), init with the parameters (slidesPerView,
+   spaceBetween, loop, breakpoints, autoplay, pagination/navigation, effect options …) plus events where
+   needed (`on: { slideChange }`).
+5. Per variant: the core class, the Swiper element (`register()` plus attributes), or the React/Vue component.
 
-Nur dokumentierte Parameter/Module (Quelle: `swiper-core` + Modul-Skills). CSS-Imports nie vergessen; Module ab v9 explizit registrieren.
+Use documented parameters and modules only (source: `swiper-core` plus the module skills). Never omit the CSS
+imports; from v9 on, register modules explicitly.

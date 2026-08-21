@@ -1,6 +1,6 @@
 ---
 name: sw-app-create
-description: Scaffold einer Shopware-6-App (App-System): manifest.xml mit Meta/Permissions, optional Setup (Registrierung/Signatur) und Auswahl SDK (PHP/JS) bzw. App-Scripts.
+description: Scaffolds a Shopware 6 app (app system): manifest.xml with meta and permissions, optional setup (registration and signing), and a choice of SDK (PHP/JS) or app scripts.
 argument-hint: <AppName> [--owner Ff|Adt|Ag|Pb] [--sdk php|js|scripts]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,15 +8,16 @@ model: sonnet
 
 # /sw-app-create
 
-Lege eine Shopware-App an. Skills: `shopware-apps`, `sw-app-sdk`/`sw-app-sdk`.
+Create a Shopware app. Skills: `sw-app-manifest`, `sw-app-sdk`.
 
-## Ablauf
-1. App-Name (PascalCase, Owner-Präfix) + Zweck + Auslieferungsart (`--sdk`): `scripts` (nur App-Scripts, kein Server),
-   `php` (app-php-sdk), `js` (app-sdk-js).
-2. `manifest.xml` erzeugen: `<meta>` (name, label, version, author, license), `<permissions>` (minimal), bei Bedarf
-   `<webhooks>`, `<admin>`/`<storefront>`, `<payments>`, `<custom-fields>`.
-3. Je nach SDK: App-Server-Gerüst (Registrierung/Signatur, ShopRepository, Webhook-/ActionButton-Handler) oder
-   `Resources/scripts/<hook>/` für App-Scripts.
-4. Hinweis: App registrieren/installieren, Signatur verifizieren, Permissions prüfen.
+## Steps
+1. App name (PascalCase, owner prefix), purpose and delivery shape (`--sdk`): `scripts` (app scripts only,
+   no server), `php` (app-php-sdk), `js` (app-sdk-js).
+2. Write `manifest.xml`: `<meta>` (name, label, version, author, license), `<permissions>` (minimal), and
+   where needed `<webhooks>`, `<admin>`/`<storefront>`, `<payments>`, `<custom-fields>`.
+3. Per SDK: the app-server skeleton (registration and signing, ShopRepository, webhook and action-button
+   handlers), or `Resources/scripts/<hook>/` for app scripts.
+4. Note the follow-up: register and install the app, verify the signature, review the permissions.
 
-Plugin statt App? → `shopware-core` (`/sw-plugin-create`). Manifest-Detailthemen in den References des Skills `shopware-apps`.
+A plugin rather than an app? Use `shopware-core` (`/sw-plugin-create`). Manifest detail lives in the
+references of the `sw-app-manifest` skill.

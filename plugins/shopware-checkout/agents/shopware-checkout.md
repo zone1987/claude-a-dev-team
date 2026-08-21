@@ -15,6 +15,10 @@ skills: sw-cart, sw-payment, sw-fulfilment
 
 You implement cart, order and payment logic along the conventions.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-cart"**, **"sw-payment"**, **"sw-fulfilment"**, **"sw-document"** — whichever the task touches, before writing code. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly rather than working from memory of the API.
+
 ## Guardrails
 - **The cart pipeline**: collector (gather data, in one batch) → processor (calculate) → validator (check and block).
   Always work on `$toCalculate`, and build prices ONLY through the calculator services — never hard-code one.

@@ -29,6 +29,14 @@ console.log(await page.title());
 - [Notes](#notes)
 - [Manifest](#manifest)
 
+## Contents
+
+- [Events](#events)
+- [Methods](#methods)
+- [Full Usage Example](#full-usage-example)
+- [Notes](#notes)
+- [Manifest](#manifest)
+
 ## Events
 
 ### androidWebView.on('close')

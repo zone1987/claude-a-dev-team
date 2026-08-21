@@ -15,7 +15,7 @@ Less common modules, plus the plugin API for writing your own.
 - **[LAZY.md](references/LAZY.md)**: Images load only once they become visible. [LAZY-DETAIL](references/LAZY-DETAIL.md).
 - **[MANIPULATION.md](references/MANIPULATION.md)**: Add, insert, and remove slides dynamically in the DOM. [MANIPULATION-DETAIL](references/MANIPULATION-DETAIL.md).
 - **[PARALLAX.md](references/PARALLAX.md)**: Parallax effects on backgrounds and slide elements via data attributes. [PARALLAX-DETAIL](references/PARALLAX-DETAIL.md).
-- **[PLUGINS.md](references/PLUGINS.md)**: Premium plugins from UI Initiative / Swiper Studio, plus the basic structure of your own modules. [PLUGINS-SWIPER-PLUGINS](references/PLUGINS-SWIPER-PLUGINS.md).
+- **[PLUGINS.md](references/PLUGINS.md)**: Premium plugins from UI Initiative / Swiper Studio, plus the basic structure of your own modules.
 
 ## Source
 
