@@ -1,5 +1,12 @@
 # Shopware 6 — code structure and extension types
 
+## Contents
+
+- [Choosing an extension type](#choosing-an-extension-type)
+- [Core conventions](#core-conventions)
+- [Upgrade orientation](#upgrade-orientation)
+- [Shopware 6 — code structure: complete reference](#shopware-6-code-structure-complete-reference)
+
 ## Choosing an extension type
 
 | Type | When | Characteristic |

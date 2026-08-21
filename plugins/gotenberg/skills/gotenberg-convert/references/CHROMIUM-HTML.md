@@ -4,6 +4,13 @@
 
 Converts an `index.html` (with optional assets) to PDF via headless Chromium.
 
+## Contents
+
+- [Required field](#required-field)
+- [Common headers](#common-headers)
+- [Page size (approx. 10 fields)](#page-size-approx-10-fields)
+- [Gotenberg — HTML to PDF (full reference)](#gotenberg-html-to-pdf-full-reference)
+
 ## Required field
 
 | Field | Type | Description |

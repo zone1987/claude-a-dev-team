@@ -4,6 +4,12 @@ An app (developed with Instorier) with six immersive 3D blocks for the **Erlebni
 Available from the **Rise plan** or for €49/month in the Shopware Store. All elements under
 **Erlebniswelten > Blöcke > Commerce** (Shopping Experiences > Blocks > Commerce).
 
+## Contents
+
+- [The six elements](#the-six-elements)
+- [Source](#source)
+- [Shopware 6 – Immersive Elements app: full reference](#shopware-6-immersive-elements-app-full-reference)
+
 ## The six elements
 
 1. **Cylinder Gallery** – 360° image slider with mouse control

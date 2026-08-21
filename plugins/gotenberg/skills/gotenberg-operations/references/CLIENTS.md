@@ -3,6 +3,12 @@
 Gotenberg is a standard HTTP API. Any HTTP library works.
 Dedicated clients provide fluent interfaces, type safety and simplified file handling.
 
+## Contents
+
+- [Official client: PHP](#official-client-php)
+- [Community clients](#community-clients)
+- [Gotenberg — Clients & SDKs Reference](#gotenberg-clients-sdks-reference)
+
 ## Official client: PHP
 
 ```bash

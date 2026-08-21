@@ -6,6 +6,13 @@ new features ahead of release and submit feedback.
 > Recommendation: test new features in a **staging environment** first,
 > before enabling them in the production environment.
 
+## Contents
+
+- [Current insider previews](#current-insider-previews)
+- [Sub-skills](#sub-skills)
+- [Source](#source)
+- [Shopware 6 – Insider Previews: full reference](#shopware-6-insider-previews-full-reference)
+
 ## Current insider previews
 
 | Feature | Status | Plan | Minimum version |

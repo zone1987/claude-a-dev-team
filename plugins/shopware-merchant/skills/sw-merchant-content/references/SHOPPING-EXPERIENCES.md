@@ -5,6 +5,14 @@ Path: **Inhalte** (Content) > **Erlebniswelten**
 Shopware's visual drag-and-drop CMS for designing all page types.
 No coding knowledge required.
 
+## Contents
+
+- [Architecture](#architecture)
+- [Creating a layout – step by step](#creating-a-layout-step-by-step)
+- [Block categories](#block-categories)
+- [Assigning a layout](#assigning-a-layout)
+- [Shopware 6 – Erlebniswelten: Vollständige Dokumentation](#shopware-6-erlebniswelten-vollständige-dokumentation)
+
 ## Architecture
 
 ```

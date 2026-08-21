@@ -3,6 +3,13 @@
 Shopware Spatial Commerce comprises all functions for presenting products in 3D,
 augmented reality and immersive experiences. Available from the **Rise plan** (or higher).
 
+## Contents
+
+- [Overview of the functions](#overview-of-the-functions)
+- [Sub-skills](#sub-skills)
+- [Source](#source)
+- [Shopware 6 – Spatial Commerce: full reference](#shopware-6-spatial-commerce-full-reference)
+
 ## Overview of the functions
 
 | Function | Location in the admin | Plan |

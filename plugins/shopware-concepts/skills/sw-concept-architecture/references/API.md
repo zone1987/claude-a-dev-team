@@ -1,5 +1,12 @@
 # Shopware APIs — concept
 
+## Contents
+
+- [Brief overview](#brief-overview)
+- [Shared patterns](#shared-patterns)
+- [Store API particularity](#store-api-particularity)
+- [Shopware APIs — complete concept documentation](#shopware-apis-complete-concept-documentation)
+
 ## Brief overview
 
 Shopware provides **two functional APIs**:

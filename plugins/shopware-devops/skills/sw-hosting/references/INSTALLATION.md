@@ -1,5 +1,12 @@
 # Shopware Hosting — Installation & Docker
 
+## Contents
+
+- [New project](#new-project)
+- [Docker image](#docker-image)
+- [Extension management via Composer](#extension-management-via-composer)
+- [Shopware 6 — Installation & Docker (Deep Reference)](#shopware-6-installation-docker-deep-reference)
+
 ## New project
 
 ```bash

@@ -1,5 +1,15 @@
 # Shopware PaaS Native — Get Started
 
+## Contents
+
+- [1. Install & authenticate the CLI](#1-install-authenticate-the-cli)
+- [2. Prepare the codebase](#2-prepare-the-codebase)
+- [3. Create application.yaml](#3-create-applicationyaml)
+- [4. Set up repository access](#4-set-up-repository-access)
+- [5. Create project & application](#5-create-project-application)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS Native — Get Started (Deep Reference)](#shopware-paas-native-get-started-deep-reference)
+
 ## 1. Install & authenticate the CLI
 
 ```bash

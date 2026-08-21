@@ -6,6 +6,12 @@ Converts Markdown (with MathJax support) to PDF via headless Chromium.
 Requires an `index.html` template file with a Go template directive
 and at least one `.md` file.
 
+## Contents
+
+- [Required template structure](#required-template-structure)
+- [Required files](#required-files)
+- [Gotenberg — Markdown to PDF (full reference)](#gotenberg-markdown-to-pdf-full-reference)
+
 ## Required template structure
 
 ```html

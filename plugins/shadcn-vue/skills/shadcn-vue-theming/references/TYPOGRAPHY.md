@@ -3,6 +3,12 @@
 shadcn-vue provides ready-made typography style classes that can be applied
 directly as Tailwind classes on HTML elements.
 
+## Contents
+
+- [Available types](#available-types)
+- [Reference Files](#reference-files)
+- [shadcn-vue: Typography Reference](#shadcn-vue-typography-reference)
+
 ## Available types
 
 | Class / Selector | Usage |

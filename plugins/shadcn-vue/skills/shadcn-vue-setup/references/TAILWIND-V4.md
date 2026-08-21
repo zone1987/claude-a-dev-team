@@ -3,6 +3,12 @@
 Tailwind v4 is fully supported. New projects start with v4 automatically.
 Existing v3 projects keep working without changes.
 
+## Contents
+
+- [Key changes](#key-changes)
+- [Reference Files](#reference-files)
+- [shadcn-vue: Tailwind v4](#shadcn-vue-tailwind-v4)
+
 ## Key changes
 
 - CLI initializes projects with Tailwind v4

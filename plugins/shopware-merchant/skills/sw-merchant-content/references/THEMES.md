@@ -5,6 +5,12 @@ Path: **Inhalte** (Content) > **Themes**
 Management and configuration of the storefront's visual design.
 Themes control colours, fonts, logos and icons.
 
+## Contents
+
+- [Core functions](#core-functions)
+- [Assigning a theme to a sales channel](#assigning-a-theme-to-a-sales-channel)
+- [Shopware 6 – Themes: Vollständige Dokumentation](#shopware-6-themes-vollständige-dokumentation)
+
 ## Core functions
 
 - Activate a theme / assign it to a Verkaufskanal (Sales channel)

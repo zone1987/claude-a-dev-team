@@ -7,6 +7,12 @@ and integration**. Low-code workflows visually connect Shopware with ERPs, CRMs
 and other business systems (e.g. Microsoft Dynamics Business Central).
 
 
+## Contents
+
+- [Core features (beta)](#core-features-beta)
+- [Access](#access)
+- [Shopware Nexus — full reference](#shopware-nexus-full-reference)
+
 ## Core features (beta)
 
 - Visual workflow builder (drag & drop)

@@ -5,6 +5,12 @@
 Converts Office documents to PDF via LibreOffice. Supports Word, Excel, PowerPoint,
 OpenDocument, text files and many more formats.
 
+## Contents
+
+- [Required field](#required-field)
+- [Layout fields](#layout-fields)
+- [Gotenberg — LibreOffice conversion (full reference)](#gotenberg-libreoffice-conversion-full-reference)
+
 ## Required field
 
 | Field | Type | Description |

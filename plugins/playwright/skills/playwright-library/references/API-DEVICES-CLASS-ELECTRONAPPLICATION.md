@@ -3,6 +3,15 @@
 > **EXPERIMENTAL** — ElectronApplication is part of Playwright's experimental Electron support.
 > Requires Electron v12.2.0+, v13.4.0+, or v14+.
 
+## Contents
+
+- [Events](#events)
+- [Methods](#methods)
+- [Full Integration Example](#full-integration-example)
+- [Notes](#notes)
+- [Manifest](#manifest)
+
+
 `ElectronApplication` represents a running Electron app. It is returned by `electron.launch()`.
 Through this object you can:
 - Access and automate individual `BrowserWindow` instances as Playwright `Page` objects

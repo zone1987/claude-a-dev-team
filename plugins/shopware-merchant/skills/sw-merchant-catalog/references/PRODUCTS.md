@@ -3,6 +3,14 @@
 Products are managed under **Kataloge** (Catalogues) **> Produkte** (Products). This skill covers the
 complete product creation, editing, variants, prices, SEO and special features.
 
+## Contents
+
+- [Creating a new product (mandatory fields)](#creating-a-new-product-mandatory-fields)
+- [The areas in detail](#the-areas-in-detail)
+- [Tabs available after saving](#tabs-available-after-saving)
+- [Source](#source)
+- [Shopware 6 – Produkte (Products): complete reference](#shopware-6-produkte-products-complete-reference)
+
 ## Creating a new product (mandatory fields)
 
 1. Kataloge > Produkte > **"Produkt hinzufügen" (Add product)**

@@ -364,7 +364,14 @@ def check_siblings(skill_md: str, body: list[str], rep: Report) -> None:
                 rep.error("REF-02", srel,
                           f"carries no content of its own, only a pointer to {pointed[0]}; "
                           "merge the two files")
-        sections = sum(1 for ln in lines if ln.startswith("## "))
+        # A "## " inside a fenced block is a shell comment, not a section: counting it demands a
+        # table of contents for headings that do not exist.
+        sections, in_fence = 0, False
+        for ln in lines:
+            if ln.lstrip().startswith("```"):
+                in_fence = not in_fence
+            elif not in_fence and ln.startswith("## "):
+                sections += 1
         if len(lines) > TOC_MIN and sections >= 3:
             head = "\n".join(lines[:20]).lower()
             if "contents" not in head and "## toc" not in head:

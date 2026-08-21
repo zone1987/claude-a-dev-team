@@ -3,6 +3,12 @@
 Create 3D scenes, place products and export product images.
 Path: **Inhalte > Scene Editor** (Content > Scene Editor) — available from the **Rise plan**, from version **6.6.8.1** (beta).
 
+## Contents
+
+- [Quick start](#quick-start)
+- [Source](#source)
+- [Shopware 6 – Scene Editor: full reference](#shopware-6-scene-editor-full-reference)
+
 ## Quick start
 
 1. **Inhalte > Scene Editor** → **Neue Szene erstellen** (Create new scene)

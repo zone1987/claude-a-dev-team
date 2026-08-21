@@ -1,5 +1,11 @@
 # flatpickr — Migration and compatibility
 
+## Contents
+
+- [Updating from v2 → v3+](#updating-from-v2-v3)
+- [IE9 support](#ie9-support)
+- [flatpickr — Migration and browser compatibility (complete reference)](#flatpickr-migration-and-browser-compatibility-complete-reference)
+
 ## Updating from v2 → v3+
 
 Two breaking changes:

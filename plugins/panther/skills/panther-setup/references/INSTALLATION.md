@@ -5,6 +5,13 @@ composer require --dev symfony/panther
 vendor/bin/bdi detect drivers   # recommended: automatic driver detection
 ```
 
+## Contents
+
+- [PHPUnit extension (required for full functionality)](#phpunit-extension-required-for-full-functionality)
+- [Environment variables (short list)](#environment-variables-short-list)
+- [Deep dive](#deep-dive)
+- [Symfony Panther — complete installation reference](#symfony-panther-complete-installation-reference)
+
 ## PHPUnit extension (required for full functionality)
 
 ```xml

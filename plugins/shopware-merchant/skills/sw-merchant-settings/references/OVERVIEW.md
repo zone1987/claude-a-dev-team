@@ -2,6 +2,13 @@
 
 The **Einstellungen** area in Shopware 6 holds every central configuration option for shop, system and extensions.
 
+## Contents
+
+- [Sub-areas](#sub-areas)
+- [Quick start](#quick-start)
+- [Note on Cloud vs. self-hosted](#note-on-cloud-vs-self-hosted)
+- [Shopware 6 – Einstellungen (Settings) (complete overview reference)](#shopware-6-einstellungen-settings-complete-overview-reference)
+
 ## Sub-areas
 
 | Area | Path in the admin | Skill |

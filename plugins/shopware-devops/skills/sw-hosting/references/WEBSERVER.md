@@ -1,5 +1,14 @@
 # Shopware Hosting — Web Server & Reverse Proxy
 
+## Contents
+
+- [Recommended web server](#recommended-web-server)
+- [Varnish XKey (recommended)](#varnish-xkey-recommended)
+- [Fastly](#fastly)
+- [Trusted proxies (since SW 6.6)](#trusted-proxies-since-sw-66)
+- [Cache commands](#cache-commands)
+- [Shopware 6 — Web Server & Reverse Proxy (Deep Reference)](#shopware-6-web-server-reverse-proxy-deep-reference)
+
 ## Recommended web server
 Caddy or FrankenPHP for containers (automatic resource allocation, single process).
 For bare-metal: Nginx or Apache (see Shopware config references for full configs).

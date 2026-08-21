@@ -1,5 +1,13 @@
 # Shopware Hosting — Updates & Staging
 
+## Contents
+
+- [Update via CLI (recommended)](#update-via-cli-recommended)
+- [Security-only updates](#security-only-updates)
+- [Staging instance](#staging-instance)
+- [Check extension compatibility before update](#check-extension-compatibility-before-update)
+- [Shopware 6 — Updates & Staging (Deep Reference)](#shopware-6-updates-staging-deep-reference)
+
 ## Update via CLI (recommended)
 
 ### Local

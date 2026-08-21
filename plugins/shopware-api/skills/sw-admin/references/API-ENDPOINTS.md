@@ -2,6 +2,12 @@
 
 **Version:** 6.7.9999999-dev | **Base URL:** `{shop}/api` | **Operations:** 1093 across 143 tags
 
+## Contents
+
+- [Authentication](#authentication)
+- [Generic CRUD/search pattern](#generic-crudsearch-pattern)
+- [Shopware Admin API — complete endpoint reference](#shopware-admin-api-complete-endpoint-reference)
+
 ## Authentication
 
 Security scheme: `oAuth` (OAuth 2.0)

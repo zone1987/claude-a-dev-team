@@ -3,6 +3,15 @@
 Dynamic product groups are managed under **Kataloge** (Catalogues) > **Dynamische Produktgruppen**.
 They group products automatically according to defined rules.
 
+## Contents
+
+- [Creating a product group](#creating-a-product-group)
+- [Condition operators](#condition-operators)
+- [Links](#links)
+- [Areas of use](#areas-of-use)
+- [Source](#source)
+- [Shopware 6 – Dynamische Produktgruppen (Dynamic product groups): complete reference](#shopware-6-dynamische-produktgruppen-dynamic-product-groups-complete-reference)
+
 ## Creating a product group
 
 1. Kataloge > Dynamische Produktgruppen > **"Produktgruppe anlegen"** (Create product group)

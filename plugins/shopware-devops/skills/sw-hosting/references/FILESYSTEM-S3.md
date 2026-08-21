@@ -1,5 +1,15 @@
 # Shopware Hosting — Filesystem & S3
 
+## Contents
+
+- [Basic structure](#basic-structure)
+- [Install S3 adapter](#install-s3-adapter)
+- [Google Cloud Storage](#google-cloud-storage)
+- [Private file download strategies](#private-file-download-strategies)
+- [Cluster: shared directories](#cluster-shared-directories)
+- [CDN (public files only)](#cdn-public-files-only)
+- [Shopware 6 — Filesystem & S3 (Deep Reference)](#shopware-6-filesystem-s3-deep-reference)
+
 ## Basic structure
 
 ```yaml

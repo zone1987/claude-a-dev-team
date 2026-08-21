@@ -2,6 +2,14 @@
 
 The **Kataloge** (Catalogues) area is the heart of product management in Shopware 6. This is where all product-related data is created and maintained.
 
+## Contents
+
+- [Areas included](#areas-included)
+- [Quick start](#quick-start)
+- [Dependencies between the areas](#dependencies-between-the-areas)
+- [Source](#source)
+- [Shopware 6 – Kataloge (Catalogues): overview and interrelations](#shopware-6-kataloge-catalogues-overview-and-interrelations)
+
 ## Areas included
 
 | Area | Path in the admin | Skill |

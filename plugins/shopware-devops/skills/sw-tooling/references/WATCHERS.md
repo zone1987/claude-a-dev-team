@@ -1,5 +1,12 @@
 # Shopware 6 — Watchers & hot module replacement
 
+## Contents
+
+- [Building JS/CSS (without a watcher)](#building-jscss-without-a-watcher)
+- [Starting the watchers (HMR)](#starting-the-watchers-hmr)
+- [Environment variables](#environment-variables)
+- [Shopware 6 — Watchers & hot module replacement (complete reference)](#shopware-6-watchers-hot-module-replacement-complete-reference)
+
 ## Building JS/CSS (without a watcher)
 
 | Command | Purpose |

@@ -1,5 +1,14 @@
 # Shopware Hosting — Worker & Cron
 
+## Contents
+
+- [CLI Worker (recommended for production)](#cli-worker-recommended-for-production)
+- [systemd (3 instances)](#systemd-3-instances)
+- [Scheduled Tasks](#scheduled-tasks)
+- [Message queue transports](#message-queue-transports)
+- [Mail via queue](#mail-via-queue)
+- [Shopware 6 — Worker & Cron (Deep Reference)](#shopware-6-worker-cron-deep-reference)
+
 ## CLI Worker (recommended for production)
 
 ```bash

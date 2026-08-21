@@ -2,6 +2,16 @@
 
 PaaS Native = Kubernetes/AWS-managed hosting exclusively for Shopware, fully managed infra.
 
+## Contents
+
+- [Hierarchy](#hierarchy)
+- [Core commands](#core-commands)
+- [application.yaml (minimal)](#applicationyaml-minimal)
+- [Vault secrets (highest priority)](#vault-secrets-highest-priority)
+- [k8s-meta package](#k8s-meta-package)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS Native — Fundamentals (Deep Reference)](#shopware-paas-native-fundamentals-deep-reference)
+
 ## Hierarchy
 
 ```

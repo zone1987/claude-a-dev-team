@@ -3,6 +3,12 @@
 Complete reference for document management in orders.
 
 
+## Contents
+
+- [Document types](#document-types)
+- [Source](#source)
+- [Shopware 6 – Order documents: complete reference](#shopware-6-order-documents-complete-reference)
+
 ## Document types
 
 | Type | Prerequisite |

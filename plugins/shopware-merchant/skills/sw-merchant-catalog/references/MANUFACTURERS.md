@@ -3,6 +3,14 @@
 Manufacturers are managed under **Kataloge** (Catalogues) > **Hersteller** (Manufacturers) and can be assigned to products.
 They appear on the product detail page (top right).
 
+## Contents
+
+- [Creating a manufacturer](#creating-a-manufacturer)
+- [Manufacturer actions](#manufacturer-actions)
+- [Creating a manufacturer page (workaround)](#creating-a-manufacturer-page-workaround)
+- [Source](#source)
+- [Shopware 6 – Hersteller (Manufacturers): Complete reference](#shopware-6-hersteller-manufacturers-complete-reference)
+
 ## Creating a manufacturer
 
 1. Kataloge > Hersteller > **"Hersteller anlegen"** (Create manufacturer)

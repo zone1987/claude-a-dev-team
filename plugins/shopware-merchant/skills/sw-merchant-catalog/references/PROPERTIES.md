@@ -3,6 +3,15 @@
 Properties are managed under **Kataloge** (Catalogues) > **Eigenschaften** (Properties). They serve as filterable
 product information (e.g. size, colour) and as the basis for product variants.
 
+## Contents
+
+- [Creating a property](#creating-a-property)
+- [Display types](#display-types)
+- [Sorting options](#sorting-options)
+- [Creating Ausprägungen (options / values)](#creating-ausprägungen-options-values)
+- [Source](#source)
+- [Shopware 6 – Eigenschaften (Properties): complete reference](#shopware-6-eigenschaften-properties-complete-reference)
+
 ## Creating a property
 
 1. Kataloge > Eigenschaften > **"Eigenschaft hinzufügen"** (Add property)

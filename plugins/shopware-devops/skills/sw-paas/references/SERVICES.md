@@ -1,5 +1,15 @@
 # Shopware PaaS — Services
 
+## Contents
+
+- [PaaS Native: managed MySQL](#paas-native-managed-mysql)
+- [PaaS Native: OpenSearch](#paas-native-opensearch)
+- [PaaS Native: object storage (S3)](#paas-native-object-storage-s3)
+- [PaaS (Platform.sh): Elasticsearch/OpenSearch](#paas-platformsh-elasticsearchopensearch)
+- [PaaS (Platform.sh): RabbitMQ](#paas-platformsh-rabbitmq)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS — Services (Deep Reference)](#shopware-paas-services-deep-reference)
+
 ## PaaS Native: managed MySQL
 
 - Automatic backups, high availability, encryption at rest/in transit

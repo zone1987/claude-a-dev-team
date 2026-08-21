@@ -1,5 +1,13 @@
 # Shopware PaaS Native — Monitoring
 
+## Contents
+
+- [Logs via CLI](#logs-via-cli)
+- [Grafana (browser)](#grafana-browser)
+- [Following events live](#following-events-live)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS Native — Monitoring (Deep Reference)](#shopware-paas-native-monitoring-deep-reference)
+
 ## Logs via CLI
 
 ```bash

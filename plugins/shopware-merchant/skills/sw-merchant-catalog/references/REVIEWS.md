@@ -3,6 +3,16 @@
 Product reviews are managed under **Kataloge** (Catalogues) > **Bewertungen** (Reviews).
 Customers can leave reviews on the product detail page.
 
+## Contents
+
+- [Review overview](#review-overview)
+- [Approving a review](#approving-a-review)
+- [Deactivating reviews (globally)](#deactivating-reviews-globally)
+- [AI features (from the Rise plan)](#ai-features-from-the-rise-plan)
+- [Customer frontend](#customer-frontend)
+- [Source](#source)
+- [Shopware 6 – product reviews: complete reference](#shopware-6-product-reviews-complete-reference)
+
 ## Review overview
 
 Shows: title, star rating, reviewed product, customer, publication status.

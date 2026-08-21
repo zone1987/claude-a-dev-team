@@ -1,5 +1,12 @@
 # Shopware 6 — extendability principles
 
+## Contents
+
+- [Short version](#short-version)
+- [@internal / @final rules](#internal-final-rules)
+- [Mandatory decoration pattern rules](#mandatory-decoration-pattern-rules)
+- [Shopware 6 — extendability: complete reference](#shopware-6-extendability-complete-reference)
+
 ## Short version
 
 - **Events (mediator)** — first choice for extendability; listeners via `EventSubscriberInterface`; pass primary keys only, never entities

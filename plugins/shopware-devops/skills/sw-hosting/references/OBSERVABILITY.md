@@ -1,5 +1,13 @@
 # Shopware Hosting — Observability
 
+## Contents
+
+- [Logging (Monolog)](#logging-monolog)
+- [OpenTelemetry](#opentelemetry)
+- [Grafana Stack (self-hosted)](#grafana-stack-self-hosted)
+- [Profiling tools](#profiling-tools)
+- [Shopware 6 — Observability (Deep Reference)](#shopware-6-observability-deep-reference)
+
 ## Logging (Monolog)
 
 ```yaml

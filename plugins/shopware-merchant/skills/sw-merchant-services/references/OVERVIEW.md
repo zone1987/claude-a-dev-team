@@ -3,6 +3,12 @@
 Shopware Services sind cloudbasierte Dienste (SaaS), die exklusiv von Shopware entwickelt werden
 und über APIs und Webhooks spezifische Funktionen bereitstellen.
 
+## Contents
+
+- [Verfügbare Services](#verfügbare-services)
+- [Aktivierung](#aktivierung)
+- [Shopware Services — Vollständige Referenz](#shopware-services-vollständige-referenz)
+
 ## Verfügbare Services
 
 | Service | Skill |

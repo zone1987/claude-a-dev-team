@@ -4,6 +4,16 @@
 composer require shopware/fixture-bundle:*
 ```
 
+## Contents
+
+- [Basic fixture](#basic-fixture)
+- [`#[Fixture]` attribute](#fixture-attribute)
+- [Commands](#commands)
+- [Specialized loaders](#specialized-loaders)
+- [Execution order](#execution-order)
+- [Best practices](#best-practices)
+- [Shopware Fixture Bundle (complete reference)](#shopware-fixture-bundle-complete-reference)
+
 ## Basic fixture
 
 ```php

@@ -2,6 +2,15 @@
 
 > **EXPERIMENTAL** — AndroidWebView is part of Playwright's experimental Android (ADB) support.
 
+## Contents
+
+- [Events](#events)
+- [Methods](#methods)
+- [Full Usage Example](#full-usage-example)
+- [Notes](#notes)
+- [Manifest](#manifest)
+
+
 `AndroidWebView` represents a WebView instance running inside an Android application.
 Once a WebView is obtained, you can call `page()` to get a full Playwright `Page` object
 and use the entire Playwright page API (navigation, locators, assertions, screenshots, etc.)

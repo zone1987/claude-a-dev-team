@@ -3,6 +3,13 @@
 `Reporter` is the interface to implement for custom test reporters. Create a file that exports
 a `default` class (or factory function) implementing some or all of the hook methods.
 
+## Contents
+
+- [Hook Methods](#hook-methods)
+- [Custom Reporter with Options](#custom-reporter-with-options)
+- [Manifest](#manifest)
+
+
 ```ts
 // my-reporter.ts
 import type { Reporter, FullConfig, Suite, TestCase, TestResult, TestStep, TestError } from '@playwright/test/reporter';

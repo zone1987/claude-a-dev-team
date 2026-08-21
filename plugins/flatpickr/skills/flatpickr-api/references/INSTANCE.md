@@ -9,6 +9,12 @@ fp.set("minDate", "today");       // change an option dynamically
 fp.destroy();                     // remove the instance
 ```
 
+## Contents
+
+- [Most important methods](#most-important-methods)
+- [Most important properties](#most-important-properties)
+- [flatpickr — Instance API (complete reference, v4.6.13)](#flatpickr-instance-api-complete-reference-v4613)
+
 ## Most important methods
 
 | Method | Description |

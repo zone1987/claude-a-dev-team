@@ -4,6 +4,12 @@ Gotenberg is a **Docker-based, stateless HTTP API** for document conversion.
 Send files via `multipart/form-data`, receive a PDF (or screenshot) back.
 No Chromium/LibreOffice installation of your own is needed.
 
+## Contents
+
+- [Core features](#core-features)
+- [Quickstart](#quickstart)
+- [Gotenberg — Complete introduction](#gotenberg-complete-introduction)
+
 ## Core features
 
 - **Conversion to PDF**: HTML, URL, Markdown, Office documents

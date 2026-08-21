@@ -2,6 +2,13 @@
 
 Developer reference for the B2B Suite (legacy, supported up to Shopware 6.8).
 
+## Contents
+
+- [References](#references)
+- [Important note](#important-note)
+- [Cross-references](#cross-references)
+- [B2B Suite — Developer reference (legacy)](#b2b-suite-developer-reference-legacy)
+
 ## References
 
 ## Important note

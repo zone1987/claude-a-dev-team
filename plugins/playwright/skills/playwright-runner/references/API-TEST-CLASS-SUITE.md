@@ -3,6 +3,14 @@
 `Suite` is the tree node in the Reporter API that groups tests. The root `Suite` passed to
 `reporter.onBegin()` contains the entire test hierarchy.
 
+## Contents
+
+- [Methods](#methods)
+- [Properties](#properties)
+- [Traversal Patterns](#traversal-patterns)
+- [Manifest](#manifest)
+
+
 Hierarchy levels: **root** → **project** → **file** → **describe** → (TestCase)
 
 ```ts

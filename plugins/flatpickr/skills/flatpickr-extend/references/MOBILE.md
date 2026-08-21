@@ -11,6 +11,12 @@ flatpickr("#date", {});
 flatpickr("#date", { disableMobile: true });
 ```
 
+## Contents
+
+- [Natively supported features](#natively-supported-features)
+- [Limitations](#limitations)
+- [flatpickr — Mobile Support (complete reference)](#flatpickr-mobile-support-complete-reference)
+
 ## Natively supported features
 
 - Prefilling (`defaultDate`)

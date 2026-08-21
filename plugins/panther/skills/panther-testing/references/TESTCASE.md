@@ -15,6 +15,13 @@ class MyTest extends PantherTestCase
 }
 ```
 
+## Contents
+
+- [createPantherClient — Optionen](#createpantherclient-optionen)
+- [Alle Assertions (22)](#alle-assertions-22)
+- [Vertiefung](#vertiefung)
+- [PantherTestCase — Complete reference](#panthertestcase-complete-reference)
+
 ## createPantherClient — Optionen
 
 ```php

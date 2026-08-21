@@ -2,6 +2,15 @@
 
 **Admin API**: OAuth2 `client_credentials` (production) or `password` (local). **Store API**: `sw-access-key` (sales channel).
 
+## Contents
+
+- [Fetch an Admin API token](#fetch-an-admin-api-token)
+- [First Admin API request](#first-admin-api-request)
+- [Download the OpenAPI schema (`APP_ENV=dev` required)](#download-the-openapi-schema-appenvdev-required)
+- [Store API — determine the access key](#store-api-determine-the-access-key)
+- [Common errors](#common-errors)
+- [Shopware 6 — API integration (complete reference)](#shopware-6-api-integration-complete-reference)
+
 ## Fetch an Admin API token
 
 ```bash

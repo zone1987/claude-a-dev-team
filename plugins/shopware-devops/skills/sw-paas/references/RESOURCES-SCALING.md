@@ -1,5 +1,14 @@
 # Shopware PaaS Native — Resources & scaling
 
+## Contents
+
+- [Default resource profile](#default-resource-profile)
+- [Snapshots (backups)](#snapshots-backups)
+- [Deployment types](#deployment-types)
+- [Important limits](#important-limits)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS Native — Resources & scaling (Deep Reference)](#shopware-paas-native-resources-scaling-deep-reference)
+
 ## Default resource profile
 
 | Component    | Replicas | CPU req | Memory req | Memory limit |

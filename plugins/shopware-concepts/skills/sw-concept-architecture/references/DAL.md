@@ -1,5 +1,11 @@
 # Shopware DAL — concept
 
+## Contents
+
+- [Brief overview](#brief-overview)
+- [Core features](#core-features)
+- [Shopware DAL — complete concept documentation](#shopware-dal-complete-concept-documentation)
+
 ## Brief overview
 
 Shopware uses **no Doctrine ORM**, but a DAL of its own. Advantages: optimised for e-commerce

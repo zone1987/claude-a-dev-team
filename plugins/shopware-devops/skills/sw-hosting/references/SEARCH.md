@@ -1,5 +1,16 @@
 # Shopware Hosting — Elasticsearch / OpenSearch
 
+## Contents
+
+- [Environment variables](#environment-variables)
+- [Install bundle](#install-bundle)
+- [Indexing](#indexing)
+- [Custom shard/replica config](#custom-shardreplica-config)
+- [Admin search (since 6.4.19)](#admin-search-since-6419)
+- [N-gram tuning](#n-gram-tuning)
+- [Staging isolation](#staging-isolation)
+- [Shopware 6 — Elasticsearch / OpenSearch (Deep Reference)](#shopware-6-elasticsearch-opensearch-deep-reference)
+
 ## Environment variables
 
 ```dotenv

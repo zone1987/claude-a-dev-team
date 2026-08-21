@@ -4,6 +4,12 @@ Path: **Erweiterungen** (Extensions) > **Meine Erweiterungen** (My extensions) >
 
 Additional functions for Erlebniswelten (Shopping Experiences). Part of **Shopware Evolve** (plan required).
 
+## Contents
+
+- [Included features](#included-features)
+- [Prerequisites](#prerequisites)
+- [Shopware 6 – CMS-Erweiterungen (CMS extensions): full documentation](#shopware-6-cms-erweiterungen-cms-extensions-full-documentation)
+
 ## Included features
 
 | Feature | Beschreibung (Description) |

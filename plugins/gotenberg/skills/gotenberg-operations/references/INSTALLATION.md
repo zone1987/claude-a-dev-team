@@ -2,6 +2,12 @@
 
 Gotenberg runs exclusively as a Docker container. There is no native install.
 
+## Contents
+
+- [Docker (fastest start)](#docker-fastest-start)
+- [Image variants](#image-variants)
+- [Gotenberg — Complete installation guide](#gotenberg-complete-installation-guide)
+
 ## Docker (fastest start)
 
 ```bash

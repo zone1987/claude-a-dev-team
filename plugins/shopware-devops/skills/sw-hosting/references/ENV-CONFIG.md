@@ -1,5 +1,14 @@
 # Shopware Hosting — Environment & Configuration
 
+## Contents
+
+- [Key environment variables](#key-environment-variables)
+- [Config structure](#config-structure)
+- [Static System Config (since 6.6.4.0)](#static-system-config-since-6640)
+- [Cluster setup flag](#cluster-setup-flag)
+- [Rate Limiter](#rate-limiter)
+- [Shopware 6 — Environment & Configuration (Deep Reference)](#shopware-6-environment-configuration-deep-reference)
+
 ## Key environment variables
 
 ```dotenv

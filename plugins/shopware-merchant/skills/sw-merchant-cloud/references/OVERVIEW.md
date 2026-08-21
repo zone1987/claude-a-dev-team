@@ -2,6 +2,12 @@
 
 Distilled from `docs.shopware.com/de/shopware-6-de/in-der-cloud`.
 
+## Contents
+
+- [Two cloud models](#two-cloud-models)
+- [Comparison](#comparison)
+- [Shopware in der Cloud (Shopware in the cloud) — Overview & comparison](#shopware-in-der-cloud-shopware-in-the-cloud-overview-comparison)
+
 ## Two cloud models
 
 ### SaaS (Software as a Service)

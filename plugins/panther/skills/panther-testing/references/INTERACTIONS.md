@@ -9,6 +9,13 @@ $form['terms']->tick();
 $client->submit($form);
 ```
 
+## Contents
+
+- [Form-Feld-Typen](#form-feld-typen)
+- [Mouse & Keyboard](#mouse-keyboard)
+- [Vertiefung](#vertiefung)
+- [Panther — complete interactions reference](#panther-complete-interactions-reference)
+
 ## Form-Feld-Typen
 
 | Klasse               | Methoden                                      |

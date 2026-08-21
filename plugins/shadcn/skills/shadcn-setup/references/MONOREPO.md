@@ -3,6 +3,14 @@
 The CLI understands monorepo structure and installs components, dependencies,
 and registry dependencies to the correct paths while handling imports.
 
+## Contents
+
+- [Create a new monorepo project](#create-a-new-monorepo-project)
+- [Add components (run from app directory)](#add-components-run-from-app-directory)
+- [Import components](#import-components)
+- [Reference files](#reference-files)
+- [shadcn/ui — Monorepo Details](#shadcnui-monorepo-details)
+
 ## Create a new monorepo project
 
 ```bash

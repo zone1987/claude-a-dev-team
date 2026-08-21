@@ -2,6 +2,14 @@
 
 WCAG 2.1 AA + BITV 2.0. Bootstrap 5 base with ARIA roles.
 
+## Contents
+
+- [Feature flag ACCESSIBILITY_TWEAKS](#feature-flag-accessibilitytweaks)
+- [Breaking-change pattern in Twig](#breaking-change-pattern-in-twig)
+- [a11y checklist for Shopware extensions](#a11y-checklist-for-shopware-extensions)
+- [Testing tools](#testing-tools)
+- [Shopware 6 Storefront accessibility (full reference)](#shopware-6-storefront-accessibility-full-reference)
+
 ## Feature flag ACCESSIBILITY_TWEAKS
 
 ```dotenv

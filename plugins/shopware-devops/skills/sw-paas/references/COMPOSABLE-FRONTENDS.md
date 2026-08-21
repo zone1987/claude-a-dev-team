@@ -1,5 +1,14 @@
 # Shopware PaaS — Composable Frontends (Nuxt.js)
 
+## Contents
+
+- [Store API caching (backend)](#store-api-caching-backend)
+- [Frontend caching (Nuxt.js)](#frontend-caching-nuxtjs)
+- [Avoiding CORS (OPTIONS requests)](#avoiding-cors-options-requests)
+- [Blackfire Node.js profiling](#blackfire-nodejs-profiling)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS — Composable Frontends (Deep Reference)](#shopware-paas-composable-frontends-deep-reference)
+
 ## Store API caching (backend)
 
 ```bash

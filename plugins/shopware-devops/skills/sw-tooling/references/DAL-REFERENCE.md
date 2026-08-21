@@ -1,5 +1,12 @@
 # Shopware 6 — DAL reference (filters, aggregations, flags, fields)
 
+## Contents
+
+- [Filter types](#filter-types)
+- [Aggregation types](#aggregation-types)
+- [Flags reference](#flags-reference)
+- [Shopware 6 DAL reference (complete reference)](#shopware-6-dal-reference-complete-reference)
+
 ## Filter types
 
 | Type | PHP class | Description |

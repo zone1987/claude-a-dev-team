@@ -2,6 +2,13 @@
 
 Distilled from `docs.shopware.com/de/migration-de`. Three source systems supported:
 
+## Contents
+
+- [Supported migration sources](#supported-migration-sources)
+- [Three migration phases](#three-migration-phases)
+- [Detailed knowledge per topic](#detailed-knowledge-per-topic)
+- [Migration zu Shopware 6 — Überblick](#migration-zu-shopware-6-überblick)
+
 ## Supported migration sources
 
 | Source | Target |

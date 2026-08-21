@@ -4,6 +4,13 @@ Path: **Inhalte** (Content) > **Medien**
 
 Central media library for all of the shop's media: images, videos, documents, 3D models.
 
+## Contents
+
+- [Core functions](#core-functions)
+- [Supported file types](#supported-file-types)
+- [Quick reference](#quick-reference)
+- [Shopware 6 – Medien (Media): full documentation](#shopware-6-medien-media-full-documentation)
+
 ## Core functions
 
 - Upload files (upload or URL)

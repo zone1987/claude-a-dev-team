@@ -1,5 +1,12 @@
 # Shopware Hosting — Database & Redis
 
+## Contents
+
+- [MySQL cluster](#mysql-cluster)
+- [Reconnect for long-running workers (FrankenPHP)](#reconnect-for-long-running-workers-frankenphp)
+- [Redis named connections (since 6.6.8.0)](#redis-named-connections-since-6680)
+- [Shopware 6 — Database & Redis (Deep Reference)](#shopware-6-database-redis-deep-reference)
+
 ## MySQL cluster
 
 ```dotenv

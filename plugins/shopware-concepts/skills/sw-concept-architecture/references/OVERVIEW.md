@@ -1,5 +1,11 @@
 # Shopware 6 — architecture concept
 
+## Contents
+
+- [Brief overview](#brief-overview)
+- [Core principles](#core-principles)
+- [Shopware 6 — complete architecture documentation](#shopware-6-complete-architecture-documentation)
+
 ## Brief overview
 
 Shopware follows a modular, API-first architecture built on Symfony with three primary domains:

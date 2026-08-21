@@ -3,6 +3,17 @@
 `shadcn create` / `npx shadcn@latest create` — scaffold new projects with a
 fully configured style, component library, icons, base color, theme, and fonts.
 
+## Contents
+
+- [Create a project](#create-a-project)
+- [Available styles (as of 2026)](#available-styles-as-of-2026)
+- [Apply a preset to existing project](#apply-a-preset-to-existing-project)
+- [Preset commands](#preset-commands)
+- [Add components after creation](#add-components-after-creation)
+- [Install skills for AI assistants](#install-skills-for-ai-assistants)
+- [Connect the MCP server](#connect-the-mcp-server)
+- [shadcn create: Full Reference](#shadcn-create-full-reference)
+
 ## Create a project
 
 ```bash

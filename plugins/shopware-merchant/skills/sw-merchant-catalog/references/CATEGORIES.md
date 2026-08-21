@@ -3,6 +3,15 @@
 Categories are managed under **Kataloge** (Catalogues) **> Kategorien** (Categories) in a tree structure.
 They control navigation, product listings and shop pages.
 
+## Contents
+
+- [Creating a category](#creating-a-category)
+- [Category types](#category-types)
+- [Important tabs](#important-tabs)
+- [Landing pages](#landing-pages)
+- [Source](#source)
+- [Shopware 6 – Kategorien (Categories): complete reference](#shopware-6-kategorien-categories-complete-reference)
+
 ## Creating a category
 
 1. Kategorien > context menu of the parent category

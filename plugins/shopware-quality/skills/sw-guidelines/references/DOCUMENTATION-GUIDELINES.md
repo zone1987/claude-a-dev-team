@@ -1,5 +1,13 @@
 # Shopware — documentation guidelines
 
+## Contents
+
+- [Structure](#structure)
+- [Language and tone](#language-and-tone)
+- [Markdown conventions](#markdown-conventions)
+- [Asset management](#asset-management)
+- [Shopware Dokumentations-Guidelines: Vollständige Referenz](#shopware-dokumentations-guidelines-vollständige-referenz)
+
 ## Structure
 
 - **Concepts**: explain concepts (what/why), no code, no step-by-step instructions

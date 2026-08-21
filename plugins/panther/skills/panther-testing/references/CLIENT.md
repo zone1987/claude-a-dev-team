@@ -9,6 +9,12 @@ $crawler = $client->waitFor('.app-loaded');
 $client->takeScreenshot('/tmp/screen.png');
 ```
 
+## Contents
+
+- [Most Important Method Groups](#most-important-method-groups)
+- [In Depth](#in-depth)
+- [Panther Client — Complete API Reference](#panther-client-complete-api-reference)
+
 ## Most Important Method Groups
 
 - **Navigation**: `request`, `get`, `back`, `forward`, `reload`, `restart`

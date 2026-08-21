@@ -7,6 +7,12 @@ $links   = $crawler->filter('nav a')->links();
 $form    = $crawler->selectButton('Anmelden')->form();
 ```
 
+## Contents
+
+- [Most important method groups](#most-important-method-groups)
+- [Deep dive](#deep-dive)
+- [Panther Crawler — Complete API reference](#panther-crawler-complete-api-reference)
+
 ## Most important method groups
 
 - **Filtering**: `filter($css)`, `filterXPath($xpath)`, `matches($css)`

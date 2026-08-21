@@ -2,6 +2,14 @@
 
 > Cron jobs complement Shopware's scheduled tasks, they do not replace them.
 
+## Contents
+
+- [Define a cron job in application.yaml](#define-a-cron-job-in-applicationyaml)
+- [CLI management](#cli-management)
+- [Cron syntax examples](#cron-syntax-examples)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS Native — Cron Jobs & Worker (Deep Reference)](#shopware-paas-native-cron-jobs-worker-deep-reference)
+
 ## Define a cron job in application.yaml
 
 ```yaml

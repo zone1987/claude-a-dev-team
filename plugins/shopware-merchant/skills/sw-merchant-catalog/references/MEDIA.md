@@ -3,6 +3,17 @@
 Media management is reachable under **Inhalte** (Content) > **Medien** (Media).
 All files used in the shop are managed centrally here.
 
+## Contents
+
+- [Uploading a file](#uploading-a-file)
+- [Supported file types](#supported-file-types)
+- [Media actions](#media-actions)
+- [Editing metadata](#editing-metadata)
+- [Thumbnails](#thumbnails)
+- [Cleaning up unused media](#cleaning-up-unused-media)
+- [Source](#source)
+- [Shopware 6 – Media management: Complete reference](#shopware-6-media-management-complete-reference)
+
 ## Uploading a file
 
 1. Inhalte > Medien

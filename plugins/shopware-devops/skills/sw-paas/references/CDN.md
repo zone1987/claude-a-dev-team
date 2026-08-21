@@ -1,5 +1,13 @@
 # Shopware PaaS Native — CDN & Custom Domains
 
+## Contents
+
+- [Fastly CDN (active automatically)](#fastly-cdn-active-automatically)
+- [Set up a custom domain](#set-up-a-custom-domain)
+- [Fastly Snippets (PaaS Native)](#fastly-snippets-paas-native)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS Native — CDN & Custom Domains (Deep Reference)](#shopware-paas-native-cdn-custom-domains-deep-reference)
+
 ## Fastly CDN (active automatically)
 
 - Default CDN for all PaaS Native environments

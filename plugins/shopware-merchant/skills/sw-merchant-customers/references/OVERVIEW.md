@@ -2,6 +2,12 @@
 
 This skill covers the **complete customer administration** in the Shopware 6 admin.
 
+## Contents
+
+- [Sub-skills](#sub-skills)
+- [Quick reference](#quick-reference)
+- [Shopware 6 – Customers: Complete reference (Admin)](#shopware-6-customers-complete-reference-admin)
+
 ## Sub-skills
 
 | Skill | Topic |

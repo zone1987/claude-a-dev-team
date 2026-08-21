@@ -3,6 +3,16 @@
 > This skill covers **classic Shopware PaaS** (Platform.sh/Upsun),
 > not PaaS Native. For PaaS Native → `sw-paas-fundamentals`.
 
+## Contents
+
+- [Setup](#setup)
+- [.platform/ configuration](#platform-configuration)
+- [Build → Deploy sequence](#build-deploy-sequence)
+- [Automatic environment variables](#automatic-environment-variables)
+- [Force a rebuild (without a code change)](#force-a-rebuild-without-a-code-change)
+- [Deep dive](#deep-dive)
+- [Shopware PaaS (Platform.sh/Upsun) — Build & Deploy (Deep Reference)](#shopware-paas-platformshupsun-build-deploy-deep-reference)
+
 ## Setup
 
 ```bash

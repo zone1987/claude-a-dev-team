@@ -2,6 +2,14 @@
 
 Complete walkthroughs as bash/curl sequences for local development on `http://127.0.0.1:8000`.
 
+## Contents
+
+- [Preparation — determine IDs](#preparation-determine-ids)
+- [Create a product (Admin API)](#create-a-product-admin-api)
+- [Store API — context, search, cart](#store-api-context-search-cart)
+- [Register a customer → order](#register-a-customer-order)
+- [Shopware 6 — API end-to-end flows (complete reference)](#shopware-6-api-end-to-end-flows-complete-reference)
+
 ## Preparation — determine IDs
 
 ```bash

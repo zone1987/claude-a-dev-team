@@ -3,6 +3,13 @@
 The **Inhalte** area in the Shopware 6 admin covers all tools for the visual
 design and content management of the shop.
 
+## Contents
+
+- [Included areas](#included-areas)
+- [Concept](#concept)
+- [Quick navigation](#quick-navigation)
+- [Shopware 6 – Inhalte: Vollständige Übersicht](#shopware-6-inhalte-vollständige-übersicht)
+
 ## Included areas
 
 | Area | Path in the admin | Skill |
