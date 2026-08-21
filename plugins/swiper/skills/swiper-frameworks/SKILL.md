@@ -9,11 +9,11 @@ Each binding wraps the same core; what differs is how slides are declared and ho
 
 ## Reference map
 
-- **[ANGULAR.md](ANGULAR.md)**: As of Swiper v9: no separate Angular components anymore. [ANGULAR-SWIPER-ANGULAR](ANGULAR-SWIPER-ANGULAR.md).
-- **[REACT.md](REACT.md)**: `import { Swiper, SwiperSlide } from 'swiper/react'` — fully typed, React 18-compatible. [REACT-SWIPER-REACT](REACT-SWIPER-REACT.md).
-- **[SOLID.md](SOLID.md)**: As of Swiper v9: no separate SolidJS components. [SOLID-SWIPER-SOLID](SOLID-SWIPER-SOLID.md).
-- **[SVELTE.md](SVELTE.md)**: As of Swiper v9: no separate Svelte components. [SVELTE-SWIPER-SVELTE](SVELTE-SWIPER-SVELTE.md).
-- **[VUE.md](VUE.md)**: `import { Swiper, SwiperSlide } from 'swiper/vue'` — Composition API, Vue 3, all parameters as props. [VUE-SWIPER-VUE](VUE-SWIPER-VUE.md).
+- **[ANGULAR.md](references/ANGULAR.md)**: As of Swiper v9: no separate Angular components anymore. [ANGULAR-SWIPER-ANGULAR](references/ANGULAR-SWIPER-ANGULAR.md).
+- **[REACT.md](references/REACT.md)**: `import { Swiper, SwiperSlide } from 'swiper/react'` — fully typed, React 18-compatible. [REACT-SWIPER-REACT](references/REACT-SWIPER-REACT.md).
+- **[SOLID.md](references/SOLID.md)**: As of Swiper v9: no separate SolidJS components. [SOLID-SWIPER-SOLID](references/SOLID-SWIPER-SOLID.md).
+- **[SVELTE.md](references/SVELTE.md)**: As of Swiper v9: no separate Svelte components. [SVELTE-SWIPER-SVELTE](references/SVELTE-SWIPER-SVELTE.md).
+- **[VUE.md](references/VUE.md)**: `import { Swiper, SwiperSlide } from 'swiper/vue'` — Composition API, Vue 3, all parameters as props. [VUE-SWIPER-VUE](references/VUE-SWIPER-VUE.md).
 
 ## Source
 

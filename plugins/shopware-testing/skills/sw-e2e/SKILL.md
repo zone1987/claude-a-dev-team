@@ -9,7 +9,7 @@ Full-stack tests against a running shop.
 
 ## Reference map
 
-- **[PLAYWRIGHT-E2E.md](PLAYWRIGHT-E2E.md)**: Shopware uses **Playwright** for E2E/acceptance tests — against a running shop instance, the smallest tie….
+- **[PLAYWRIGHT-E2E.md](references/PLAYWRIGHT-E2E.md)**: Shopware uses **Playwright** for E2E/acceptance tests — against a running shop instance, the smallest tie….
 
 ## Source
 

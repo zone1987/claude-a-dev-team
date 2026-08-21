@@ -9,11 +9,11 @@ The tool chain a Shopware plugin is expected to pass, with the configuration eac
 
 ## Reference map
 
-- **[DEPTRAC.md](DEPTRAC.md)**: Enforces layer and dependency rules.
-- **[ECS-CS-FIXER.md](ECS-CS-FIXER.md)**: Shopware uses **Easy Coding Standard** for PHP code style.
-- **[PHPSTAN.md](PHPSTAN.md)**: Static type analysis. [PHPSTAN-SHOPWARE-RULES](PHPSTAN-SHOPWARE-RULES.md), [PHPSTAN-SHOPWARE](PHPSTAN-SHOPWARE.md).
-- **[RECTOR.md](RECTOR.md)**: Rector transforms code automatically.
-- **[STATIC-ANALYSIS.md](STATIC-ANALYSIS.md)**: Lint/analysis matrix:.
+- **[DEPTRAC.md](references/DEPTRAC.md)**: Enforces layer and dependency rules.
+- **[ECS-CS-FIXER.md](references/ECS-CS-FIXER.md)**: Shopware uses **Easy Coding Standard** for PHP code style.
+- **[PHPSTAN.md](references/PHPSTAN.md)**: Static type analysis. [PHPSTAN-SHOPWARE-RULES](references/PHPSTAN-SHOPWARE-RULES.md), [PHPSTAN-SHOPWARE](references/PHPSTAN-SHOPWARE.md).
+- **[RECTOR.md](references/RECTOR.md)**: Rector transforms code automatically.
+- **[STATIC-ANALYSIS.md](references/STATIC-ANALYSIS.md)**: Lint/analysis matrix:.
 
 ## Source
 

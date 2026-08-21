@@ -9,9 +9,9 @@ A Storefront request becomes a Page built by a PageLoader. Extending existing da
 
 ## Reference map
 
-- **[AJAX-DATA.md](AJAX-DATA.md)**: In a JS plugin, load data through the built-in `HttpClient` or
-- **[PAGE-LOADER.md](PAGE-LOADER.md)**: The PageLoader builds the page struct: first the generic page, then its own data, then the event.
-- **[STOREFRONT.md](STOREFRONT.md)**: The storefront covers Twig templates, controllers, JavaScript plugins, SCSS styling, and snippet translations…. [STOREFRONT-CONTROLLER](STOREFRONT-CONTROLLER.md), [STOREFRONT-DATA](STOREFRONT-DATA.md), [STOREFRONT-PAGE](STOREFRONT-PAGE.md), [STOREFRONT-PAGELET](STOREFRONT-PAGELET.md).
+- **[AJAX-DATA.md](references/AJAX-DATA.md)**: In a JS plugin, load data through the built-in `HttpClient` or
+- **[PAGE-LOADER.md](references/PAGE-LOADER.md)**: The PageLoader builds the page struct: first the generic page, then its own data, then the event.
+- **[STOREFRONT.md](references/STOREFRONT.md)**: The storefront covers Twig templates, controllers, JavaScript plugins, SCSS styling, and snippet translations…. [STOREFRONT-CONTROLLER](references/STOREFRONT-CONTROLLER.md), [STOREFRONT-DATA](references/STOREFRONT-DATA.md), [STOREFRONT-PAGE](references/STOREFRONT-PAGE.md), [STOREFRONT-PAGELET](references/STOREFRONT-PAGELET.md).
 
 ## Source
 

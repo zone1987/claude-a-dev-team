@@ -9,9 +9,9 @@ Jest with Shopware's own setup. Administration and storefront have different con
 
 ## Reference map
 
-- **[JEST-ADMIN.md](JEST-ADMIN.md)**: Admin JS/Vue tests run with Jest.
-- **[JEST-STOREFRONT.md](JEST-STOREFRONT.md)**: Test storefront JS plugins with Jest.
-- **[VUE-TEST.md](VUE-TEST.md)**: Test admin components with `@vue/test-utils`; obtain the final component through `Shopware.Component.build`.
+- **[JEST-ADMIN.md](references/JEST-ADMIN.md)**: Admin JS/Vue tests run with Jest.
+- **[JEST-STOREFRONT.md](references/JEST-STOREFRONT.md)**: Test storefront JS plugins with Jest.
+- **[VUE-TEST.md](references/VUE-TEST.md)**: Test admin components with `@vue/test-utils`; obtain the final component through `Shopware.Component.build`.
 
 ## Source
 
