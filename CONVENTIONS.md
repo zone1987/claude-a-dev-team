@@ -50,9 +50,16 @@ claude-a-dev-team/
 ```
 
 `skills[]` must appear in **both** `plugin.json` and `marketplace.json`, and be identical in each.
-It defines the shipped set, so work in progress can sit in the repository without entering anyone's
-budget. **A path pointing at a directory without a `SKILL.md` breaks plugin loading** —
+**A path pointing at a directory without a `SKILL.md` breaks plugin loading** —
 `scripts/register-plugin.py` refuses to write in that case rather than warning.
+
+**`skills[]` does not restrict what loads.** The field *adds to* the default `skills/` scan, so a
+directory under `skills/` is loaded whether or not it is listed, and work in progress kept there does
+enter the budget. To keep a skill out of the listing, give it `disable-model-invocation: true` or move
+the directory outside `skills/`. Verified 2026-08-21 against the
+[plugins reference](https://code.claude.com/docs/en/plugins-reference); `BUDGET-05` in
+[`plugins/zone-claude-forge/RULES.md`](plugins/zone-claude-forge/RULES.md) carries the citation.
+Audit with `python3 plugins/zone-claude-forge/scripts/validate_plugin.py --unlisted`.
 
 ## Naming
 
@@ -106,9 +113,17 @@ description and stop activating on their own. Derivation, sources and the measur
 
 ### Skill — `skills/<name>/SKILL.md`
 
-Only `name` and `description`. No `triggers:` (no such field), no `model:`, no `when_to_use:`, no
-`context: fork` on a reference skill (guidelines without a task return nothing), no `paths:` on a
+Only `name` and `description`, plus `disable-model-invocation: true` where the skill is
+user-invoked. No `triggers:` (no such field), no `when_to_use:` (same 1,536-character cap, no gain),
+no `context: fork` on a reference skill (guidelines without a task return nothing), no `paths:` on a
 prose-triggered knowledge skill (a filter, not an amplifier).
+
+**The portability boundary decides the rest.** Claude Code accepts far more fields, including
+`model`, `effort`, `allowed-tools`, `disallowed-tools`, `user-invocable`, `arguments` and `hooks`. But
+outside Claude Code only **six** are spec-legal — `name`, `description`, `license`, `compatibility`,
+`metadata`, `allowed-tools` — and any other field makes a claude.ai upload or a Skills API package
+**fail hard** rather than ignore it. Keeping to `name` and `description` buys portability for free.
+See `FM-01` and `FM-02` in [`plugins/zone-claude-forge/RULES.md`](plugins/zone-claude-forge/RULES.md).
 
 ```markdown
 ---
@@ -272,10 +287,20 @@ This repository is public and international.
 
 ## Verify before shipping
 
+One command runs every blocking rule and exits non-zero on any violation:
+
+```bash
+python3 plugins/zone-claude-forge/scripts/validate_plugin.py --plugin <name> --strict
+python3 plugins/zone-claude-forge/scripts/validate_plugin.py --working-set <name> <sibling> <sibling>
+```
+
+The second is the number that actually overflows: a plugin at 30 % of the budget is fine alone and
+ruinous beside three others. The checks it implements, if you want them by hand:
+
 ```bash
 python3 scripts/measure-skill-budget.py .                              # listing cost per plugin
 find plugins/<name>/skills -mindepth 3 -name '*.md'                    # empty: references one level deep
-grep -rn 'triggers:\|when_to_use:\|model:' plugins/<name>/skills/*/SKILL.md   # empty
+grep -rn 'triggers:\|when_to_use:' plugins/<name>/skills/*/SKILL.md    # empty
 awk 'FNR==1{if(p&&n>120)print p,n; p=FILENAME; n=0} {n++} END{if(n>120)print p,n}' \
   plugins/<name>/skills/*/SKILL.md                                     # no SKILL.md over 120 lines
 python3 -c "import json,sys;[json.load(open(f)) for f in sys.argv[1:]]" \

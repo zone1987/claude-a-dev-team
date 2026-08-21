@@ -1,0 +1,812 @@
+{
+  "$comment": "Rule catalogue for the claude-a-dev-team marketplace. Source of truth; RULES.md is generated from this file by scripts/render_rules.py. Every entry carries a ground class and the grounding that class demands.",
+  "version": "1.0.0",
+  "retrieved": "2026-08-21",
+  "docs": {
+    "skills": "https://code.claude.com/docs/en/skills",
+    "best-practices": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+    "sub-agents": "https://code.claude.com/docs/en/sub-agents",
+    "hooks": "https://code.claude.com/docs/en/hooks",
+    "plugins-reference": "https://code.claude.com/docs/en/plugins-reference"
+  },
+  "classes": {
+    "ground": {
+      "documented": "Stated by the Claude Code documentation. Carries url, quote and retrieved.",
+      "technique": "The documentation is silent; the rule claims an effect. Carries effect and measurement.",
+      "convention": "A choice, not a necessity. Carries purpose and an explicit note that no platform requirement backs it."
+    },
+    "enforcement": {
+      "blocking": "Machine-decidable. validate_plugin.py fails the build.",
+      "review": "Judgement-bound. No script decides it; claude-component-reviewer applies it. Carries a tell."
+    }
+  },
+  "rules": [
+    {
+      "id": "BUDGET-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "The sum of len(description) + 109 over model-visible skills stays inside 8,000 characters. A disable-model-invocation skill still contributes its name.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short",
+        "quote": "The listing always contains every skill name, but if you have many skills, Claude Code shortens descriptions to fit the listing's character budget, which can strip the keywords Claude needs to match your request. The budget scales at 1% of the model's context window.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "The 109-character per-entry overhead is measured, not documented: anthropics/claude-code#64606."
+    },
+    {
+      "id": "BUDGET-02",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "A plausible working set of five plugins including this one stays inside 8,000 characters.",
+      "effect": "A session enables several plugins that share one budget, so a per-plugin percentage never predicts overflow.",
+      "measurement": "measure-skill-budget.py reports 229% for all 26 plugins at once; three Shopware plugins together reach 43%."
+    },
+    {
+      "id": "BUDGET-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "No listing entry exceeds 1,536 characters of combined description and when_to_use text.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short",
+        "quote": "each entry's combined text is capped at 1,536 characters regardless of budget. The cap is configurable with skillListingMaxDescChars.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "BUDGET-04",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A description leaves headroom rather than sitting at the limit.",
+      "effect": "Overflow is decided by the whole listing, so an entry at 199 of 200 characters passes alone and truncates once a sibling plugin is enabled beside it.",
+      "measurement": "Existing plugins average 178 characters, which is the headroom that keeps a five-plugin set inside budget.",
+      "tell": "Every description in the plugin lands within a few characters of the limit."
+    },
+    {
+      "id": "BUDGET-05",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "Every directory under skills/ is shipped deliberately, because listing a skill in skills[] adds to the default scan rather than restricting it. Work in progress lives outside skills/ or carries disable-model-invocation.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/plugins-reference",
+        "quote": "Adds to default: skills (always scans skills/ + custom paths)",
+        "retrieved": "2026-08-21"
+      },
+      "note": "CONVENTIONS.md:52 states the opposite. This rule corrects it."
+    },
+    {
+      "id": "BUDGET-06",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "Load-bearing content comes first in a skill body.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#skill-content-lifecycle",
+        "quote": "Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens.",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "The first screen of the body is preamble, and the rule the skill exists for sits past it."
+    },
+    {
+      "id": "DESC-01",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "A skill description is at most 200 characters.",
+      "purpose": "Keeps a working set of plugins inside the shared listing budget with headroom to spare.",
+      "not-a-platform-requirement": "The platform allows 1,024 characters per description and truncates the listing entry at 1,536."
+    },
+    {
+      "id": "DESC-02",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "A description is a single line.",
+      "purpose": "A single line is countable at a glance and survives YAML round-tripping without folding surprises.",
+      "not-a-platform-requirement": "Block scalars parse correctly; this is legibility, not validity."
+    },
+    {
+      "id": "DESC-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A description states what the skill does and when to use it, with the key use case first.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#frontmatter-reference",
+        "quote": "Put the key use case first: the combined description and when_to_use text is truncated at 1,536 characters in the skill listing to reduce context usage.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "DESC-04",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A description is written in the third person.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#writing-effective-descriptions",
+        "quote": "Always write in third person. The description is injected into the system prompt, and inconsistent point-of-view can cause discovery problems.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "ANCHOR-01",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "Every trigger anchor identifies this domain and no other. Generic vocabulary is bound to a brand word, a filename, or an exact API identifier.",
+      "effect": "A generic anchor fires the wrong skill in a neighbouring domain, which costs a full skill load rather than a listing entry.",
+      "measurement": "The marketplace holds 26 plugins whose subjects overlap on words like product, test, build, component and theme.",
+      "tell": "The Use when clause reads as plausible for a plugin in a different domain."
+    },
+    {
+      "id": "ANCHOR-02",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "An anchor does not collide with another plugin's Use when clause.",
+      "effect": "Two skills answering the same prompt both load, doubling cost and making the outcome depend on ordering.",
+      "measurement": "anchor_inventory.py collects every Use when clause in the marketplace for comparison.",
+      "tell": "Grepping the anchor across ANCHOR-INVENTORY.md returns another plugin."
+    },
+    {
+      "id": "FM-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "Skill frontmatter carries only fields the frontmatter reference defines. A triggers field does not exist and is silently ignored.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#frontmatter-reference",
+        "quote": "All fields are optional. Only description is recommended so Claude knows when to use the skill.",
+        "retrieved": "2026-08-21"
+      },
+      "valid-fields": [
+        "name",
+        "description",
+        "when_to_use",
+        "argument-hint",
+        "arguments",
+        "disable-model-invocation",
+        "user-invocable",
+        "allowed-tools",
+        "disallowed-tools",
+        "model",
+        "effort",
+        "context",
+        "agent",
+        "background",
+        "hooks",
+        "paths",
+        "shell",
+        "metadata",
+        "license",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "FM-02",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A skill intended to remain portable outside Claude Code uses only the six spec-legal fields: name, description, license, compatibility, metadata, allowed-tools.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code",
+        "quote": "If you include any field the spec doesn't allow, packaging or upload fails with a hard error instead of ignoring the field",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "FM-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "No when_to_use field. Triggers belong in description.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#frontmatter-reference",
+        "quote": "Appended to description in the skill listing and counts toward the 1,536-character cap.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "It buys nothing against the same cap and doubles the maintenance surface."
+    },
+    {
+      "id": "FM-04",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "No paths field on a prose-triggered knowledge skill.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#frontmatter-reference",
+        "quote": "When set, Claude loads the skill automatically only when working with files matching the patterns.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "It is a filter, not an amplifier: a question with no matching file open then matches nothing."
+    },
+    {
+      "id": "FM-05",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "No context: fork on a skill that is pure reference.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#run-a-skill-in-a-subagent",
+        "quote": "If your skill contains guidelines like \"use these API conventions\" without a task, the subagent receives the guidelines but no actionable prompt, and returns without meaningful output.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "INVOKE-01",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "A skill is model-invoked only when Claude or another skill must reach it unprompted. Otherwise disable-model-invocation: true keeps its description out of context.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#control-who-invokes-a-skill",
+        "quote": "disable-model-invocation: true | Yes | No | Description not in context, full skill loads when you invoke",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "A skill nobody has ever seen Claude choose still spends its description every turn."
+    },
+    {
+      "id": "INVOKE-02",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A step that depends on a user-invoked skill instructs the human to run it; it never calls the Skill tool with it.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#control-who-invokes-a-skill",
+        "quote": "If Claude tries anyway, Claude Code blocks the call and instructs it not to reproduce the deploy steps another way",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "NAME-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A skill name is at most 64 characters, lowercase letters, digits and hyphens only, and never contains the reserved words anthropic or claude.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#skill-structure",
+        "quote": "Maximum 64 characters; Must contain only lowercase letters, numbers, and hyphens; Cannot contain XML tags; Cannot contain reserved words: \"anthropic\", \"claude\"",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "NAME-02",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "Every plugin skill sets the frontmatter name field.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/plugins-reference",
+        "quote": "Set the frontmatter name field to control the skill's invocation name. Without it, Claude Code falls back to the install directory name, which for marketplace-installed plugins is a version string that changes on every update.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "COUNT-01",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "At most 12 model-visible skills per plugin.",
+      "purpose": "Caps a single plugin's share of the shared listing budget so several plugins can be enabled together.",
+      "not-a-platform-requirement": "No documented limit on skill count exists; the budget is on characters, not entries."
+    },
+    {
+      "id": "SIZE-01",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "A SKILL.md body is at most 120 lines, or 40 for a domain map.",
+      "effect": "Once a skill loads its content stays in context for the session, so every line is a recurring cost, and compaction re-attaches only the first 5,000 tokens.",
+      "measurement": "The platform ceiling is 500 lines. The benchmark repository mattpocock/skills has a median of 75 and a maximum of 140; this marketplace's 117 skills have a median of 23.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#token-budgets",
+        "quote": "Keep SKILL.md body under 500 lines for optimal performance.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "DEPTH-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "Reference files sit one level deep from SKILL.md, as flat siblings. No references/ subdirectory.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-deeply-nested-references",
+        "quote": "Claude may partially read files when they're referenced from other referenced files. When encountering nested references, Claude might use commands like head -100 to preview content rather than reading entire files, resulting in incomplete information. Keep references one level deep from SKILL.md.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "A references/ subdirectory is the common instinct and it costs content: measured on plugins/contao, 66 of 128 reference files exceed 100 lines, so moving them one level down would hide 11,116 of 18,471 lines. The 988-line services and events reference would lose 90 % of itself. Subdirectories carry non-markdown only: scripts/, examples/, assets/."
+    },
+    {
+      "id": "TOC-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A reference file over 100 lines carries a table of contents, unless it has fewer than three sections.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#structure-longer-reference-files-with-table-of-contents",
+        "quote": "For reference files longer than 100 lines, include a table of contents at the top. This ensures Claude can see the full scope of available information even when previewing with partial reads.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "REF-01",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "Every markdown file beside SKILL.md is named SCREAMING-CASE.md: DESCRIPTION-PATTERN.md, not description-pattern.md. This covers reference files, RULES.md and the plugin's README.md and CHANGELOG.md. SKILL.md keeps the name the platform looks for; scripts keep their language's convention (snake_case.py), and directories stay lowercase kebab-case.",
+      "purpose": "A reference stays distinguishable from SKILL.md at a glance, sorts above lowercase siblings in a listing, and matches the 3,294 reference files already in this marketplace, so one convention covers every plugin.",
+      "not-a-platform-requirement": "No casing is required. The documentation asks only for descriptive names (form_validation_rules.md, not doc2.md) and its own examples use both FORMS.md and reference/finance.md."
+    },
+    {
+      "id": "LINK-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "Every sibling reference file is linked from SKILL.md with a note on what it contains, and every link resolves.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-deeply-nested-references",
+        "quote": "All reference files should link directly from SKILL.md to ensure Claude reads complete files when needed.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "SHARE-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A skill reaches another skill by calling the Skill tool with its name, one skill per call. A relative path into another skill's directory invokes nothing.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills",
+        "quote": "Claude uses skills when relevant, or you can invoke one directly with /skill-name.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "SHARE-02",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "Reference several skills need lives in one model-invoked skill they all call, rather than being copied into each.",
+      "effect": "One description buys knowledge for every dependant; duplication costs maintenance on top of tokens and inflates the meaning's rank.",
+      "measurement": "mattpocock/skills reduces grill-with-docs to a seven-line skill that only calls grilling and domain-modeling.",
+      "tell": "The same paragraph appears in two SKILL.md files."
+    },
+    {
+      "id": "SHARE-03",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "Where both dependants are user-invoked, shared material moves to a plain reference file each links, because neither can invoke the other.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/skills#control-who-invokes-a-skill",
+        "quote": "disable-model-invocation: true | Yes | No | Description not in context",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "A user-invoked skill instructs the model to call another user-invoked skill, a step that can never fire."
+    },
+    {
+      "id": "SRC-01",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "Every SKILL.md ends on a ## Source section naming the upstream URL, the version, hash or commit, and the retrieval date.",
+      "purpose": "A reader must be able to check any claim against the original, and a maintainer must know what a refresh has to re-read.",
+      "not-a-platform-requirement": "No platform mechanism reads this section; it is a maintenance contract."
+    },
+    {
+      "id": "SRC-02",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "A hand-written reference file cites the specific page, not the site root.",
+      "purpose": "A precise citation is checkable; a vague one is decoration.",
+      "not-a-platform-requirement": "Nothing validates citation depth automatically upstream."
+    },
+    {
+      "id": "SRC-03",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "A generated file carries a stamp on line 1 naming the generator and the source hash.",
+      "purpose": "Later hand edits become visible instead of silently diverging from the generator.",
+      "not-a-platform-requirement": "A convention that makes drift auditable."
+    },
+    {
+      "id": "SRC-04",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every rule in this catalogue carries the grounding its class demands: a documented rule a URL, a verbatim quotation and a retrieval date; a technique rule its claimed effect and measurement; a convention rule its purpose and an explicit note that no platform requirement backs it.",
+      "effect": "A remembered but unverified rule otherwise acquires authority merely by sitting in a table.",
+      "measurement": "verify_sources.py checks both directions: every rule has grounding, and every quotation appears verbatim on the page it cites."
+    },
+    {
+      "id": "SRC-05",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A source is the original documentation or a pinned commit, never a third-party write-up of it.",
+      "effect": "A secondary source dates silently and cannot be re-checked against the thing it describes.",
+      "measurement": "This plan's own five corrections all came from reading the primary pages after working from a distilled copy.",
+      "tell": "The citation points at a blog post, a summary, or another repository's notes."
+    },
+    {
+      "id": "SRC-06",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "A citation of versioned material names a version, sha or date rather than a bare URL.",
+      "purpose": "Lets a reader judge the age of a claim, not only its origin.",
+      "not-a-platform-requirement": "A maintenance property, unenforced upstream."
+    },
+    {
+      "id": "AGENT-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "An agent carries name and description; tools, model, effort, maxTurns, disallowedTools, skills, memory, background and isolation are optional.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "name | Yes | Unique identifier (lowercase, hyphens only; no colons except for plugin scopes)",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "AGENT-02",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A plugin agent omits hooks, mcpServers and permissionMode. Only isolation: worktree is valid.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "For security reasons, plugin subagents don't support the hooks, mcpServers, or permissionMode frontmatter fields. These fields are ignored when loading agents from a plugin.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "AGENT-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "An agent preloads at most three skills, and its body names the skills it calls, because a teammate takes only tools and model from the definition.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "Skills to preload into the subagent's context at startup. The full skill content is injected, not only the description.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "AGENT-04",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A plugin gets an orchestrator only when delegation spans several plugins or the work is multi-step with results to merge. A single entry point is a router skill instead.",
+      "effect": "An orchestrator over a handful of targets is a dispatcher with no decision to make, and each invocation spends its own context window.",
+      "measurement": "Of 48 agents in this marketplace exactly two carry the full Task set; shopware-dev earns it by routing across 12 plugins that cannot see each other.",
+      "tell": "The orchestrator's delegation table has one row per skill in the same plugin."
+    },
+    {
+      "id": "AGENT-05",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "Delegate work whose output compresses: bulk reading, extraction, scanning. Keep the deciding in the parent.",
+      "effect": "A subagent reads in its own context window and the parent pays only for the summary, so bulk work never lands in the main conversation.",
+      "measurement": "A docs site distilled into 30 reference files returns as one summary instead of 30 file reads.",
+      "tell": "The subagent's result is as large as its input."
+    },
+    {
+      "id": "AGENT-06",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "An agent picks the cheapest adequate model: haiku for mechanical scanning and scaffolding, sonnet where judgement is required, opus for orchestration, migration and knowledge sync.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "Context window size: a subagent's context window is sized by its own model, not the parent's.",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "A file-listing agent runs on opus."
+    },
+    {
+      "id": "AGENT-07",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "An agent restricts tools by allowlist, and adds disallowedTools where a capability must be impossible rather than merely absent.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "disallowedTools | No | Denylist; applied before tools",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "A read-only reviewer lists Write among its tools."
+    },
+    {
+      "id": "AGENT-08",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "An agent that could loop sets maxTurns.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "maxTurns | No | Maximum agentic turns before stopping",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "No agent in the plugin bounds its turns, and one of them iterates over a work list."
+    },
+    {
+      "id": "AGENT-09",
+      "ground": "documented",
+      "enforcement": "review",
+      "rule": "A plugin that fans out plans inside the concurrency and depth limits: 20 concurrent subagents, spawn depth 3.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sub-agents",
+        "quote": "By default, when 20 subagents are running in a session, spawning another with the Agent tool fails with Concurrent subagent limit reached.",
+        "retrieved": "2026-08-21"
+      },
+      "tell": "A command promises one subagent per page of a large docs site."
+    },
+    {
+      "id": "HOOK-01",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A UserPromptSubmit hook carries no matcher. The matching belongs in the script, with an early return.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/hooks",
+        "quote": "UserPromptSubmit | No matcher support",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "HOOK-02",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "additionalContext sits at the top level of a hook's JSON output, never inside hookSpecificOutput.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/hooks",
+        "quote": "additionalContext is a universal field in the top-level JSON object.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "CLAUDE.md:318-322 states the opposite and calls it the most common mistake. This rule corrects it; octo-api/hooks/octo-anchor.py needs re-checking."
+    },
+    {
+      "id": "HOOK-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A PreToolUse hook denies a call by exiting 0 and printing hookSpecificOutput with permissionDecision deny and a permissionDecisionReason. Exit 2 is reserved for the script's own failure.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/hooks",
+        "quote": "Instead of exiting with code 2 to block, exit 0 and print a JSON object to stdout.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "Exit 2 also blocks, but the reason reaches Claude only as scraped stderr text."
+    },
+    {
+      "id": "HOOK-04",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A hook meant to gate sets an explicit low timeout and returns fast, because a timed-out PreToolUse hook does not block.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/hooks",
+        "quote": "A timed-out command, http, or mcp_tool hook doesn't block the tool call. The call continues through the normal permission flow, so don't count on a stalled hook to act as a gate.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "The documented command default is 600 s, lowered to 30 s on UserPromptSubmit. A tighter value is our own tightening."
+    },
+    {
+      "id": "HOOK-05",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A hook command that references a path placeholder uses exec form, so each path is one argument with no quoting.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/plugins-reference",
+        "quote": "In hook commands, use exec form with args so each path is passed as one argument with no quoting.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "HOOK-06",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A hook cannot force a skill to load. It injects context or denies a call; it never guarantees an invocation.",
+      "effect": "Designing around a hook that 'makes' Claude use a skill produces an enforcement claim the platform cannot keep.",
+      "measurement": "No documented mechanism loads a skill from a hook; the invocation table lists only user and model as invokers.",
+      "tell": "A plugin's README promises the skill always runs, and the mechanism named is a hook."
+    },
+    {
+      "id": "LANG-01",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "Every file is written in English: bodies, frontmatter, reference files, agents, commands, hooks, scripts, READMEs, changelogs, JSON descriptions and code comments. Both German greps come back empty, including the transliterated form.",
+      "purpose": "The marketplace is public and international, so the language of the repository is English regardless of the source language of the knowledge.",
+      "not-a-platform-requirement": "Claude Code is language-agnostic; this is a publication decision.",
+      "carve-out": "German as the subject rather than the medium stays, glossed on first use: a UI label being documented, or German string data inside an example."
+    },
+    {
+      "id": "LANG-02",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "Every path segment is English: directories and non-reference files in lowercase kebab-case, reference files in SCREAMING-CASE.md. No German stem in any segment.",
+      "purpose": "The content greps read file contents only, so a German directory name survives them.",
+      "not-a-platform-requirement": "Only forward slashes are required by the documentation.",
+      "note": "plugins/ticket-plattform/ is the existing counter-example, and scripts/rename-german-files.py exists because of it."
+    },
+    {
+      "id": "LANG-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "A description is English and third person.",
+      "source": {
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#writing-effective-descriptions",
+        "quote": "Always write in third person. The description is injected into the system prompt, and inconsistent point-of-view can cause discovery problems.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "MANIFEST-01",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "skills[] is identical in plugin.json and marketplace.json.",
+      "purpose": "Two manifests that disagree make the shipped set ambiguous to a reader; register-plugin.py writes both from one scan.",
+      "not-a-platform-requirement": "Only name is required in plugin.json, and the marketplace entry is read independently."
+    },
+    {
+      "id": "MANIFEST-02",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "Every path listed in skills[] contains a SKILL.md.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/plugins-reference",
+        "quote": "Skills | skills/ | Yes | skills | Directories with <name>/SKILL.md",
+        "retrieved": "2026-08-21"
+      },
+      "note": "register-plugin.py refuses to write rather than warn in this case."
+    },
+    {
+      "id": "MANIFEST-03",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "claude plugin validate --strict passes, so a misspelled or foreign manifest field is caught before publishing.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/plugins-reference",
+        "quote": "Pass --strict to treat warnings as errors. Use it in CI to catch a misspelled field name or a field left over from another tool's manifest before publishing, even though the plugin would load at runtime.",
+        "retrieved": "2026-08-21"
+      }
+    },
+    {
+      "id": "COV-01",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every enumerated source unit maps to a plugin file. No UNCOVERED.",
+      "effect": "Without an inventory, completeness is a claim; with one, a page added upstream surfaces as a gap instead of going unnoticed.",
+      "measurement": "octo-api/scripts/check_sitemap.py maps all 39 documentation pages to files and exits non-zero on any that is unmapped."
+    },
+    {
+      "id": "COV-02",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "No mapping points at a missing file, and no mapping survives the source unit it covers. No DANGLING, no STALE.",
+      "effect": "A stale map reports coverage that no longer exists, which is worse than no map.",
+      "measurement": "The same script reports both conditions separately."
+    },
+    {
+      "id": "COV-03",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every term on a covered page is either documented or on the exclusion list with a stated reason. Terms are backticked identifiers, camelCase fields, SCREAMING_CASE values and table rows.",
+      "effect": "A page counted as covered can still be half-read; term-level checking is what closes that gap.",
+      "measurement": "octo-api/scripts/audit_pages.py does exactly this, and its EXCLUDED map carries a reason per entry because a reviewable decision beats a clever pattern."
+    },
+    {
+      "id": "COV-04",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Distillation removes redundancy of expression, never information. A field without its type, an enum value without its meaning, or a parameter without its optionality is a gap, and where upstream is silent the file says so.",
+      "effect": "A blank reads as absence, so an unstated fact and a missing one become indistinguishable.",
+      "measurement": "octo-api renders 1,787 field entries across 7,736 lines for 2,392 characters of listing cost, which is the proof that completeness and frugality do not conflict."
+    },
+    {
+      "id": "COV-05",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "The coverage audit reads a local mirror of the source, whose hash is recorded, rather than the live site.",
+      "effect": "A coverage claim stays reproducible and re-checkable months later, and the audit does not depend on the network.",
+      "measurement": "audit_pages.py documents the mirror-fetch loop for exactly this reason; .forge-state.json records the hash.",
+      "tell": "Re-running the audit gives a different verdict with no change to the plugin."
+    },
+    {
+      "id": "SOURCE-01",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "Enumerate a source before extracting from it. A docs site through /sitemap.xml and its variants, an API through its OpenAPI or JSON Schema document, a repository through its tree at a pinned ref.",
+      "effect": "Extraction without an inventory has no denominator, so nothing can report what was missed.",
+      "measurement": "GitHub and GitLab serve no sitemap.xml, so a repository source is enumerated by tree listing and versioned by commit sha instead of a retrieval date.",
+      "tell": "The plugin documents pages someone happened to open."
+    },
+    {
+      "id": "SOURCE-02",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "Facts from a machine-readable source are generated by a script, with no model between the specification and the reference file.",
+      "effect": "A model in that path can paraphrase a type or drop an enum value silently; a script cannot.",
+      "measurement": "octo-api/scripts/extract_spec.py generates from openapi.yaml and verify_spec.py checks both directions.",
+      "tell": "A reference file's field list was written by hand from a specification that was available as a file."
+    },
+    {
+      "id": "API-01",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every operation in the source has an entry carrying method, path, summary, description, every parameter grouped by location, the request body with its media type and schema, and every response status with its schema.",
+      "effect": "An API plugin exists to be the specialist for that API; a missing status or parameter group is where a reader falls back to the upstream docs.",
+      "measurement": "octo-api documents all 65 operations across 46 paths, verified against the spec by count."
+    },
+    {
+      "id": "API-02",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every operation carries a worked request and response example, error responses included rather than only the happy path.",
+      "effect": "An example is what makes a schema usable without mentally assembling it, and the error shape is the one nobody guesses correctly.",
+      "measurement": "This is the one facet octo-api lacks today, so it is a rule the forge adds rather than inherits."
+    },
+    {
+      "id": "API-03",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every parameter and every response property carries name, type, format, required or optional, nullability, location, all possible values with their meaning, default, constraints, an example and the upstream description. Where upstream states none, the entry says so.",
+      "effect": "Any omitted facet is a lookup the reader has to make elsewhere, which defeats the purpose of the plugin.",
+      "measurement": "octo-api renders 1,787 such entries; PRODUCT-SCHEMA.md shows the shape, including One of for enums and Example for every scalar."
+    },
+    {
+      "id": "API-04",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every enum lists all of its values, each with its meaning.",
+      "effect": "A truncated value list produces code that handles some cases and fails on the rest.",
+      "measurement": "octo-api tracks 254 capability fields and their enums in FIELD-INDEX.json."
+    },
+    {
+      "id": "API-05",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "An API skill ships a FIELD-INDEX.json holding the machine-readable inventory and the source hash.",
+      "effect": "It is what makes the two-direction verify possible at all; without an index the reverse check has nothing to compare against.",
+      "measurement": "Each octo-api domain skill ships one, keyed by endpoints and schemas with base, required, capabilities and enums."
+    },
+    {
+      "id": "API-06",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "The verify script checks both directions: every specified field is documented, and every documented field exists in the specification.",
+      "effect": "The reverse direction is the one that catches invention; a plausible field added by hand fails the build.",
+      "measurement": "octo-api/scripts/verify_spec.py implements exactly this and documents the asymmetry in its docstring."
+    },
+    {
+      "id": "COMP-01",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A plugin carries a command where a task is repeated with varying arguments, or has side effects whose timing the human should own.",
+      "effect": "A step sequence people run by hand is a command that was never written.",
+      "measurement": "59 commands across the marketplace, 25 of which take $ARGUMENTS.",
+      "tell": "A skill body contains numbered steps someone types out each time."
+    },
+    {
+      "id": "COMP-02",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A plugin carries an agent where bulk work compresses well into a summary, or a judgement should run read-only.",
+      "effect": "Without one, the main context pays for every file the work has to read.",
+      "measurement": "The five haiku mapper agents in this marketplace return a catalogue instead of the scan.",
+      "tell": "A skill asks the main conversation to read many files."
+    },
+    {
+      "id": "COMP-03",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A plugin carries a hook where a rule is deterministic and a violation is worth catching at the moment it happens.",
+      "effect": "A documented rule that nothing checks is a rule that drifts.",
+      "measurement": "8 of 27 plugins ship a hook today; the rules they document outnumber the hooks by an order of magnitude.",
+      "tell": "The plugin states a rule and no script tests it."
+    },
+    {
+      "id": "COMP-04",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A plugin carries a router skill once its user-invoked set grows past what one person remembers.",
+      "effect": "User-invoked skills cost no context but spend the human's memory; a router turns many things to remember into one.",
+      "measurement": "mattpocock/skills routes 12 user-invoked skills through a single 90-line ask-matt.",
+      "tell": "More than three or four user-invoked skills and no index over them."
+    },
+    {
+      "id": "COMP-05",
+      "ground": "technique",
+      "enforcement": "review",
+      "rule": "A component that no longer earns its place is removed. Each proposed component names the trigger that earns it.",
+      "effect": "An unearned component is pure cost: a command nobody types, an agent whose result is as large as its input, a hook that fires on every prompt to match nothing.",
+      "measurement": "The audit reports both directions, missing and redundant.",
+      "tell": "A command exists that no README, skill or agent mentions."
+    },
+    {
+      "id": "MANIFEST-04",
+      "ground": "documented",
+      "enforcement": "blocking",
+      "rule": "category belongs in the marketplace entry, not in plugin.json. Claude Code ignores it there, and claude plugin validate --strict fails on it.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/plugins-reference",
+        "quote": "Claude Code ignores top-level fields it does not recognize.",
+        "retrieved": "2026-08-21"
+      },
+      "note": "26 of the 27 plugins in this marketplace carry it in plugin.json and warn under --strict. They are aligned separately; a new plugin gets it right from the start."
+    },
+    {
+      "id": "REF-02",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "A reference file carries content. A file whose only job is to point at another file is merged into it instead.",
+      "effect": "A pointer file spends a read, a listing entry in the reference map and a maintenance surface to deliver one sentence the map already carries. Claude opens it, learns a filename, and has to open a second file, so every lookup costs two reads instead of one.",
+      "measurement": "plugins/contao shipped 57 such stubs of 2 to 5 lines beside 18 -DETAIL.md partners, 128 reference files where 71 carry the same content.",
+      "tell": "The file is under 15 lines and its body names another file in the same directory."
+    }
+  ]
+}

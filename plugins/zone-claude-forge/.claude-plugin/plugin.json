@@ -1,0 +1,25 @@
+{
+  "name": "zone-claude-forge",
+  "version": "1.0.0",
+  "description": "Authoring instrument for this marketplace: writes compliant skills, agents, commands and hooks, distils upstream sources into reference files, and audits existing plugins.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "authoring",
+    "skills",
+    "plugins",
+    "validation"
+  ],
+  "skills": [
+    "./skills/zcf-skill-authoring",
+    "./skills/zcf-component-authoring",
+    "./skills/zcf-source-distillation",
+    "./skills/zcf-forge",
+    "./skills/zcf-plugin-audit",
+    "./skills/zcf-anchor-design"
+  ]
+}

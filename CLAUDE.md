@@ -5,6 +5,38 @@ Binding rules for every plugin, skill, agent, command and hook in this marketpla
 
 Read this before adding or editing any skill.
 
+## Creating or editing a plugin goes through the forge
+
+`plugins/zone-claude-forge` is this marketplace's authoring instrument, and the rules are executable
+there rather than prose. Use it:
+
+| You are doing | Reach for |
+|---|---|
+| writing a `SKILL.md`, a description, or frontmatter | Skill tool with `"zcf-skill-authoring"` |
+| writing an agent, a command, or a hook | Skill tool with `"zcf-component-authoring"` |
+| distilling upstream docs into reference files | Skill tool with `"zcf-source-distillation"` |
+| scaffolding a new skill | `/zcf-new-skill <plugin> <skill>` |
+| checking a plugin before it ships | `/zcf-validate <plugin> --strict` |
+| auditing an existing plugin | `/zcf-audit <plugin>` |
+| unsure which applies | `/zone-claude-forge:zcf-forge` |
+
+**The gate a change passes before it ships:**
+
+```bash
+python3 plugins/zone-claude-forge/scripts/validate_plugin.py --plugin <name> --strict
+```
+
+A `PreToolUse` hook refuses a write into `plugins/` that breaks a blocking rule, naming the rule and
+the measured value. `ZCF_BYPASS=1` downgrades it to a warning, for repairing a plugin that is already
+failing.
+
+The complete rule set is [`plugins/zone-claude-forge/RULES.md`](plugins/zone-claude-forge/RULES.md):
+75 rules, each carrying whether the documentation states it (`documented`), a measured effect backs
+it (`technique`), or it is a choice with no platform requirement behind it (`convention`). Where that
+catalogue and this document disagree, the catalogue has the citation and this document is corrected.
+
+**The Claude Code documentation is the source of truth**, above the catalogue and above this file.
+
 ## The skill listing budget is the binding constraint
 
 Claude Code loads a listing of skill names and descriptions into the system prompt so it knows
@@ -46,21 +78,66 @@ descriptions from their settings; their only lever is enabling or disabling the 
 
 ### Where this repository stands
 
-Measured with `scripts/measure-skill-budget.py`:
+Measured with `scripts/measure-skill-budget.py`, every plugin, most expensive first. Regenerate the
+table rather than editing it: a hand-maintained figure here is a figure that goes stale silently.
 
-| plugin | skills | chars | avg desc | % of budget |
+| plugin | model-visible skills | chars | avg desc | % of budget |
 |---|---:|---:|---:|---:|
-| shopware-merchant | 16 | 4,569 | 177 | 57% |
-| octo-api | 8 | 2,392 | 190 | 30% |
-| shadcn-vue | 8 | 2,282 | 176 | 29% |
-| shadcn | 8 | 2,265 | 174 | 28% |
-| contao | 8 | 2,257 | 173 | 28% |
-| playwright | 5 | 1,463 | 184 | 18% |
-| … 20 more | 64 | 18,347 | 178 | 229% |
+| `shopware-merchant` | 16 | 4,569 | 177 | 57 % |
+| `octo-api` | 8 | 2,376 | 188 | 30 % |
+| `shadcn-vue` | 8 | 2,282 | 176 | 28 % |
+| `shadcn` | 8 | 2,265 | 174 | 28 % |
+| `contao` | 8 | 2,257 | 173 | 28 % |
+| `playwright` | 5 | 1,463 | 184 | 18 % |
+| `shopware-storefront` | 5 | 1,451 | 181 | 18 % |
+| `shopware-devops` | 5 | 1,433 | 178 | 18 % |
+| `shopware-admin` | 4 | 1,191 | 189 | 15 % |
+| `shopware-commercial` | 4 | 1,162 | 182 | 14 % |
+| `swiper` | 4 | 1,153 | 179 | 14 % |
+| `shopware-data` | 4 | 1,146 | 178 | 14 % |
+| `shopware-framework` | 4 | 1,146 | 178 | 14 % |
+| `shopware-checkout` | 4 | 1,116 | 170 | 14 % |
+| `zone-claude-forge` | 3 | 893 | 189 | 11 % |
+| `gotenberg` | 3 | 892 | 188 | 11 % |
+| `shopware-api` | 3 | 885 | 186 | 11 % |
+| `shopware-frontends` | 3 | 873 | 182 | 11 % |
+| `shopware-quality` | 3 | 862 | 178 | 11 % |
+| `shopware-core` | 3 | 858 | 177 | 11 % |
+| `shopware-testing` | 3 | 826 | 166 | 10 % |
+| `shopware-apps` | 2 | 584 | 183 | 7 % |
+| `shopware-concepts` | 2 | 573 | 178 | 7 % |
+| `shopware-cms` | 2 | 564 | 173 | 7 % |
+| `flatpickr` | 2 | 557 | 170 | 7 % |
+| `shopware-migration` | 2 | 550 | 166 | 7 % |
+| `panther` | 2 | 525 | 154 | 7 % |
 
-Read those shares against a working set, never as a sum: a session enables three to five
-plugins, and any such set lands inside the limit — `shopware-core` plus `shopware-data` plus
-`shopware-storefront` is 43 %. Enabling all 26 is not a supported configuration.
+**Read a share against a working set, never as a sum.** A session enables three to five plugins and
+they share one budget, so the only number that predicts overflow is the total of the set actually
+enabled. Adding every plugin's share together describes a configuration nobody runs.
+
+Plugin families are disjoint in practice: a Shopware project never enables `contao`, and nobody
+opens `swiper` beside `octo-api`. A realistic set is **one family**, sometimes plus an integration
+partner. The exception is `zone-claude-forge`, which by definition runs beside whatever you are
+working on, so its share always lands on top of another set's.
+
+| working set | chars | % of budget |
+|---|---:|---:|
+| `shopware-core` + `shopware-data` + `shopware-storefront` | 3,455 | 43 % |
+| the same, while authoring a skill | 4,348 | 54 % |
+| a five-plugin Shopware session | 5,472 | 68 % |
+| the same, while authoring a skill | 6,365 | 79 % |
+| `octo-api` + `shopware-core` + `shopware-data` (an integration) | 4,380 | 54 % |
+| `shopware-merchant` + `shopware-core` + `shopware-data` | 6,573 | 82 % |
+
+Two things this makes plain. A single expensive plugin dominates: `shopware-merchant` alone puts a
+three-plugin set at 82 %. And authoring inside a working session costs about 11 points on top,
+which is why the forge stays at three model-visible skills instead of six.
+
+The check to run is the set, not the plugin:
+
+```bash
+python3 plugins/zone-claude-forge/scripts/validate_plugin.py --working-set <a> <b> <c>
+```
 
 A new plugin joining this repository holds that line. The limits below are how.
 
@@ -109,8 +186,13 @@ restructuring is not finished until it reports zero losses.
   reference files, or make the detail skills user-invoked only.
 - **No `when_to_use`.** It is appended to `description` and counts against the same 1,536-character
   cap, so it buys nothing and doubles the maintenance surface. Put the triggers in `description`.
-- **`skills[]` in `plugin.json` is mandatory.** It defines the shipped set, so work in progress can
-  live in the repo without entering anyone's budget.
+- **`skills[]` in `plugin.json` is mandatory, and it does not restrict what loads.** The field
+  **adds to** the default `skills/` scan ([plugins reference](https://code.claude.com/docs/en/plugins-reference)),
+  so a directory under `skills/` is loaded whether or not it is listed, and work in progress kept
+  there **does** enter the budget. To keep a skill out of the listing, give it
+  `disable-model-invocation` or move the directory outside `skills/`. Verified 2026-08-21; `BUDGET-05`
+  carries the citation. Check with
+  `python3 plugins/zone-claude-forge/scripts/validate_plugin.py --unlisted`.
 - **`SKILL.md` ≤ 120 lines, ≤ 40 for a domain map.** The documented ceiling is higher — "Keep
   SKILL.md body under 500 lines for optimal performance"
   ([best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#token-budgets))
@@ -262,8 +344,13 @@ Imperative, second person, addressed to the agent. Force comes from precise word
 - **A `triggers:` field.** It does not exist — it is absent from the frontmatter reference, so it is
   parsed as unknown and silently does nothing. Triggers belong in `description`.
   ([frontmatter reference](https://code.claude.com/docs/en/skills#skill-frontmatter))
-- **`model:` in a skill.** Not a skill frontmatter field; model selection belongs to agents and
-  commands. Same reference.
+- **`model:` in a skill, here.** It *is* a valid field: the frontmatter reference documents it in
+  full, along with `effort`, `disallowed-tools`, `arguments`, `hooks`, `user-invocable` and more. We
+  leave it out for **portability**, not validity: outside Claude Code only six fields are spec-legal
+  (`name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`), and any other
+  field makes a claude.ai upload fail hard. Model selection belongs to agents and commands, where it
+  costs nothing. This is a convention with a reason, and `FM-01`/`FM-02` in the forge's catalogue
+  record it as one.
 - **`hooks`, `mcpServers` or `permissionMode` in a plugin agent.** Writing them creates false
   confidence:
 
@@ -315,19 +402,25 @@ but it can inject context that makes the right choice obvious.
 - **`UserPromptSubmit` has no `matcher`.** The events table lists it under "no matcher support —
   always fires on every occurrence" ([Hooks](https://code.claude.com/docs/en/hooks#matcher-patterns)).
   It fires on every prompt; do the matching in the script and return early.
-- **`additionalContext` must sit inside `hookSpecificOutput`.** The documentation is explicit:
-  "Return `additionalContext` inside `hookSpecificOutput` alongside the event name"
-  ([Hooks](https://code.claude.com/docs/en/hooks#add-context-for-claude)), and the
-  `UserPromptSubmit` example nests it under `hookEventName: "UserPromptSubmit"`. At the top level it
-  is not picked up. This is the most common mistake with this event.
+- **`additionalContext` sits at the TOP level**, not inside `hookSpecificOutput`. The hooks
+  reference lists it as a universal root-level field. `hookSpecificOutput` is where a
+  `permissionDecision` goes. Nesting `additionalContext` is the failure that looks like it worked:
+  the hook exits 0, prints valid JSON, and the context never arrives. Verified 2026-08-21 against
+  [Hooks](https://code.claude.com/docs/en/hooks); `HOOK-02` in the forge's catalogue carries the
+  citation. `plugins/octo-api/hooks/octo-anchor.py` predates this correction and needs re-checking.
 - **Use exec form** (`"command": ["python3", "${CLAUDE_PLUGIN_ROOT}/hooks/x.py"]`) whenever a path
   placeholder is involved.
-- **Set `timeout: 5`.** The `command` default is 600 s, which `UserPromptSubmit` lowers to 30 s
-  ([Hooks](https://code.claude.com/docs/en/hooks)) — still far too long for something that runs
-  synchronously before every prompt. And a hook that times out has its output discarded entirely:
-  "A `UserPromptSubmit` command, HTTP, or MCP tool hook that reaches its timeout is canceled and
-  its output, including any `additionalContext`, is discarded." So a slow hook is not a late hook,
-  it is no hook. Exit 0 on every path; never block the user's work.
+- **Set an explicit low `timeout`.** The `command` default is 600 s, which `UserPromptSubmit`
+  lowers to 30 s — still far too long for something running before every prompt. A timed-out hook has
+  its output discarded entirely, and on `PreToolUse` the consequence is sharper: "A timed-out
+  `command`, `http`, or `mcp_tool` hook doesn't block the tool call. The call continues through the
+  normal permission flow, so don't count on a stalled hook to act as a gate."
+  ([Hooks](https://code.claude.com/docs/en/hooks)) So a slow gate is not a late gate, it is an **open**
+  one: test the cheap condition first and return early. Exit 0 on every path.
+- **Deny with JSON, not exit 2.** On `PreToolUse`, exit 0 plus
+  `hookSpecificOutput: {hookEventName, permissionDecision: "deny", permissionDecisionReason}` refuses
+  the call *and* hands Claude a structured reason. Exit 2 also blocks, but the reason arrives only as
+  scraped stderr. Keep exit 2 for the script's own failure. `HOOK-03`
 
 ## Source of truth
 
@@ -378,14 +471,24 @@ this document, `CONVENTIONS.md`, `README.md`, `marketplace.json`.
   demonstrates German data — an Austrian month-name array, a German translation payload: the data
   stays, the explanation around it is English.
 
+- **Filenames and directory names are English too.** The two greps below read file *contents*, so a
+  German directory name passes both: `plugins/ticket-plattform/` is why
+  `scripts/rename-german-files.py` exists. `LANG-02` checks every path segment.
+
 Check a plugin before shipping it:
 
 ```bash
-# German prose left anywhere in the plugin — must be empty
-grep -rlE '\b(der|die|das|und|werden|müssen|wird|für|mit|kann|sich)\b' plugins/<name>
+# the whole language rule, contents and paths, in one run
+python3 plugins/zone-claude-forge/scripts/validate_plugin.py --plugin <name> --strict
+
+# or by hand: German prose left anywhere in the plugin — must be empty
+grep -rlE '\b(der|die|das|und|werden|müssen|wird|für|kann|sich)\b' plugins/<name>
 # German written without umlauts is still German — must also be empty
 grep -rliE '\b(fuer|ueber|koennen|muessen|vollstaendig|zusaetzlich|groesse)\b' plugins/<name>
 ```
+
+Note `mit` is dropped from the first pattern and checked case-sensitively instead: `MIT` is the
+licence identifier in every `plugin.json`, so a case-insensitive `mit` flags all 27 plugins.
 
 The second check matters: transliterated German passes the first one. Treat both as blocking.
 

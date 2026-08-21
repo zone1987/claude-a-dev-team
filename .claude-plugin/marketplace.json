@@ -630,6 +630,33 @@
         "./skills/shadcn-vue-setup",
         "./skills/shadcn-vue-theming"
       ]
+    },
+    {
+      "name": "zone-claude-forge",
+      "source": "./plugins/zone-claude-forge",
+      "description": "Authoring instrument for this marketplace: writes compliant skills, agents, commands and hooks, distils upstream sources into reference files, and audits existing plugins.",
+      "version": "1.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "claude-code",
+        "authoring",
+        "skills",
+        "plugins",
+        "validation"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/zcf-skill-authoring",
+        "./skills/zcf-component-authoring",
+        "./skills/zcf-source-distillation",
+        "./skills/zcf-forge",
+        "./skills/zcf-plugin-audit",
+        "./skills/zcf-anchor-design"
+      ]
     }
   ]
 }

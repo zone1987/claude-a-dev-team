@@ -1,0 +1,63 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": [
+              "python3",
+              "${CLAUDE_PLUGIN_ROOT}/hooks/SESSION-ANCHOR.py"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": [
+              "python3",
+              "${CLAUDE_PLUGIN_ROOT}/hooks/PROMPT-NUDGE.py"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": [
+              "python3",
+              "${CLAUDE_PLUGIN_ROOT}/hooks/PRE-WRITE-GATE.py"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": [
+              "python3",
+              "${CLAUDE_PLUGIN_ROOT}/hooks/POST-WRITE-CHECK.py"
+            ],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

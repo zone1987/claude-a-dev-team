@@ -1,0 +1,32 @@
+{
+  "rulesVersion": "1.0.0",
+  "retrieved": "2026-08-21",
+  "note": "Page hashes are written by scripts/verify_sources.py --fetch --apply. Verify the catalogue against a local mirror with --pages DIR when the network is unavailable; a mirror keeps a coverage claim reproducible months later.",
+  "verified": {
+    "https://code.claude.com/docs/en/skills": {
+      "rules": 13,
+      "status": "every quotation confirmed verbatim",
+      "checked": "2026-08-21"
+    },
+    "https://code.claude.com/docs/en/sub-agents": {
+      "rules": 7,
+      "status": "read in full when the catalogue was written; quotation check pending a mirror",
+      "checked": "2026-08-21"
+    },
+    "https://code.claude.com/docs/en/hooks": {
+      "rules": 4,
+      "status": "read in full when the catalogue was written; quotation check pending a mirror",
+      "checked": "2026-08-21"
+    },
+    "https://code.claude.com/docs/en/plugins-reference": {
+      "rules": 5,
+      "status": "read in full when the catalogue was written; quotation check pending a mirror",
+      "checked": "2026-08-21"
+    },
+    "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices": {
+      "rules": 6,
+      "status": "read in full when the catalogue was written; quotation check pending a mirror",
+      "checked": "2026-08-21"
+    }
+  }
+}

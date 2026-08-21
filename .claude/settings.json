@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ["python3", "${CLAUDE_PROJECT_DIR}/plugins/zone-claude-forge/hooks/PRE-WRITE-GATE.py"],
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

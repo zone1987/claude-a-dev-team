@@ -32,6 +32,12 @@ def frontmatter(path):
             buf.append(line.strip().lstrip('- '))
     if key:
         out[key] = ' '.join(buf).strip()
+    # Strip the quotes YAML needs around a description containing a colon. They are syntax, not
+    # content, and counting them overstates the listing cost: octo-api measures 2,392 with them
+    # and 2,376 without.
+    for k, v in out.items():
+        if len(v) > 1 and v[0] == v[-1] and v[0] in '"\'':
+            out[k] = v[1:-1]
     return out
 
 rows = []
@@ -45,7 +51,10 @@ for pdir in sorted(glob.glob(os.path.join(ROOT, 'plugins', '*'))):
         d = fm.get('description', '')
         w = fm.get('when_to_use', '')
         if fm.get('disable-model-invocation', '').lower() in ('true', 'yes', 'on', '1'):
-            continue          # costs zero listing budget
+            # Not free: "The listing always contains every skill name", so the description leaves
+            # context but the name stays. Count the name and skip the overhead.
+            chars += len(fm.get('name', os.path.basename(os.path.dirname(sk))))
+            continue
         n += 1
         chars += len(d) + len(w) + OVERHEAD
     if n:
