@@ -9,13 +9,13 @@ The DCA array describes a table to Contao; a Model gives you typed access to it.
 
 ## Reference map
 
-- **[DCA-FRAMEWORK.md](DCA-FRAMEWORK.md)**: creating a DCA, registering callbacks, `PaletteManipulator`, and custom drivers.
-- **[DCA-REFERENCE-DCA-CONFIG-LIST-FIELDS.md](DCA-REFERENCE-DCA-CONFIG-LIST-FIELDS.md)**: every key of `config`, `list` and `fields`, with types and defaults.
-- **[DCA-REFERENCE-DCA-PALETTES-CALLBACKS.md](DCA-REFERENCE-DCA-PALETTES-CALLBACKS.md)**: every `palettes` and `subpalettes` form, and each callback with its signature.
-- **[MODELS.md](MODELS.md)**: the model API: retrieving and modifying records, the options parameter, eager loading and relations.
-- **[ADT-CONTAO-DAL.md](ADT-CONTAO-DAL.md)**: the same ground from the data-access side, kept as the older entry point.
-- **[MIGRATIONS.md](MIGRATIONS.md)**: `MigrationInterface` and its three mandatory methods, `AbstractMigration`, and service registration.
-- **[SEARCH-INDEXING.md](SEARCH-INDEXING.md)**: triggering indexing, writing a custom indexer, and excluding pages from the index.
+- **[DCA-FRAMEWORK.md](references/DCA-FRAMEWORK.md)**: creating a DCA, registering callbacks, `PaletteManipulator`, and custom drivers.
+- **[DCA-REFERENCE-DCA-CONFIG-LIST-FIELDS.md](references/DCA-REFERENCE-DCA-CONFIG-LIST-FIELDS.md)**: every key of `config`, `list` and `fields`, with types and defaults.
+- **[DCA-REFERENCE-DCA-PALETTES-CALLBACKS.md](references/DCA-REFERENCE-DCA-PALETTES-CALLBACKS.md)**: every `palettes` and `subpalettes` form, and each callback with its signature.
+- **[MODELS.md](references/MODELS.md)**: the model API: retrieving and modifying records, the options parameter, eager loading and relations.
+- **[ADT-CONTAO-DAL.md](references/ADT-CONTAO-DAL.md)**: the same ground from the data-access side, kept as the older entry point.
+- **[MIGRATIONS.md](references/MIGRATIONS.md)**: `MigrationInterface` and its three mandatory methods, `AbstractMigration`, and service registration.
+- **[SEARCH-INDEXING.md](references/SEARCH-INDEXING.md)**: triggering indexing, writing a custom indexer, and excluding pages from the index.
 
 ## Source
 

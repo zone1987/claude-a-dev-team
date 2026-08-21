@@ -9,12 +9,12 @@ Features an editor configures rather than codes: the form generator, the bundled
 
 ## Reference map
 
-- **[MANUAL-FORM-GENERATOR.md](MANUAL-FORM-GENERATOR.md)**: configuring a form, every form field, and the search-form tutorial.
-- **[MANUAL-CORE-EXTENSIONS.md](MANUAL-CORE-EXTENSIONS.md)**: the core extensions: `news-bundle`, `calendar-bundle`, `faq-bundle`, `newsletter-bundle` and the rest.
-- **[MANUAL-THIRD-PARTY-EXTENSIONS.md](MANUAL-THIRD-PARTY-EXTENSIONS.md)**: the third-party extensions the manual covers, each with its package name.
-- **[MANUAL-GUIDES.md](MANUAL-GUIDES.md)**: deployment with Deployer, building an installable theme,
+- **[MANUAL-FORM-GENERATOR.md](references/MANUAL-FORM-GENERATOR.md)**: configuring a form, every form field, and the search-form tutorial.
+- **[MANUAL-CORE-EXTENSIONS.md](references/MANUAL-CORE-EXTENSIONS.md)**: the core extensions: `news-bundle`, `calendar-bundle`, `faq-bundle`, `newsletter-bundle` and the rest.
+- **[MANUAL-THIRD-PARTY-EXTENSIONS.md](references/MANUAL-THIRD-PARTY-EXTENSIONS.md)**: the third-party extensions the manual covers, each with its package name.
+- **[MANUAL-GUIDES.md](references/MANUAL-GUIDES.md)**: deployment with Deployer, building an installable theme,
   the listing module, web fonts, and a front-end filter, each with its commands verbatim.
-- **[MANUAL-TUTORIALS.md](MANUAL-TUTORIALS.md)**: the tutorials, 488 lines: test versions, a first start page, the maintenance page and more.
+- **[MANUAL-TUTORIALS.md](references/MANUAL-TUTORIALS.md)**: the tutorials, 488 lines: test versions, a first start page, the maintenance page and more.
 
 ## Source
 

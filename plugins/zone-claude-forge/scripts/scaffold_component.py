@@ -93,8 +93,8 @@ def skill(args: argparse.Namespace) -> None:
     ]
     if refs:
         body += ["## Reference map", ""]
-        body += [f"- **[{r}]({r})**: <what it holds, so Claude can decide whether to open it>."
-                 for r in refs]
+        body += [f"- **[{r}](references/{r})**: <what it holds, so Claude can decide whether "
+                 "to open it>." for r in refs]
         body.append("")
     body += [
         "## Source", "",
@@ -102,8 +102,9 @@ def skill(args: argparse.Namespace) -> None:
     ]
     base = os.path.join(REPO, "plugins", args.plugin, "skills", args.name)
     write(os.path.join(base, "SKILL.md"), "\n".join(body))
+    # REF-04: references live in references/, each linked directly from SKILL.md.
     for r in refs:
-        write(os.path.join(base, r), "\n".join([
+        write(os.path.join(base, "references", r), "\n".join([
             f"# {r[:-3].replace('-', ' ').title()}", "",
             "<What this file holds. A file over 100 lines with three or more sections needs a",
             "table of contents here (TOC-01).>", "",

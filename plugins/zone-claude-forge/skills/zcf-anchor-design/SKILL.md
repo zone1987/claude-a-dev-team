@@ -67,7 +67,7 @@ before shipping, and run them.
 
 ## Reference map
 
-- **[ANCHOR-INVENTORY.md](ANCHOR-INVENTORY.md)**: every `Use when` clause across installed plugins,
+- **[ANCHOR-INVENTORY.md](references/ANCHOR-INVENTORY.md)**: every `Use when` clause across installed plugins,
   generated. The file to grep a candidate against.
 
 ## Related

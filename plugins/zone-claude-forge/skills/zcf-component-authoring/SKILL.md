@@ -39,14 +39,14 @@ Cheapest adequate model: `haiku` for mechanical scanning, `sonnet` where judgeme
 - **Omit `hooks`, `mcpServers` and `permissionMode`**: ignored for plugin agents, so writing them
   creates false confidence. `AGENT-02`
 
-Read [`AGENT-FRONTMATTER.md`](AGENT-FRONTMATTER.md) before setting any field.
+Read [`AGENT-FRONTMATTER.md`](references/AGENT-FRONTMATTER.md) before setting any field.
 
 ## Commands
 
 Five fields, always: `name`, `description`, `argument-hint`, `allowed-tools`, `model`. Note
 `allowed-tools`, not `tools`. Take input through `$ARGUMENTS`. Close on a sentence that forbids
 invention, because a command that reports what it did not find is worse than one that reports
-nothing: [`COMMAND-FRONTMATTER.md`](COMMAND-FRONTMATTER.md).
+nothing: [`COMMAND-FRONTMATTER.md`](references/COMMAND-FRONTMATTER.md).
 
 ## Hooks
 
@@ -60,21 +60,21 @@ flow, so a slow gate is not a late gate, it is an **open** one. Test the path fi
 before doing anything expensive. `HOOK-04`
 
 The shapes that follow from that, plus every event and its matcher support, are in
-[`HOOK-EVENTS.md`](HOOK-EVENTS.md). Two traps worth naming here because both are silent:
+[`HOOK-EVENTS.md`](references/HOOK-EVENTS.md). Two traps worth naming here because both are silent:
 `additionalContext` belongs at the **top level** of the JSON, never inside `hookSpecificOutput`; and
 `UserPromptSubmit` supports **no** matcher, so match inside the script. `HOOK-01/02`
 
 ## Reference map
 
-- **[AGENT-FRONTMATTER.md](AGENT-FRONTMATTER.md)**: every subagent field, the ones plugins may not
+- **[AGENT-FRONTMATTER.md](references/AGENT-FRONTMATTER.md)**: every subagent field, the ones plugins may not
   use, model and effort selection, and the concurrency and depth limits.
-- **[COMMAND-FRONTMATTER.md](COMMAND-FRONTMATTER.md)**: the five fields, argument handling, and the
+- **[COMMAND-FRONTMATTER.md](references/COMMAND-FRONTMATTER.md)**: the five fields, argument handling, and the
   body shape that keeps a command from inventing.
-- **[HOOK-EVENTS.md](HOOK-EVENTS.md)**: all events with matcher support, exit-code semantics,
+- **[HOOK-EVENTS.md](references/HOOK-EVENTS.md)**: all events with matcher support, exit-code semantics,
   the deny shape, timeouts, and the JSON a hook receives on stdin.
-- **[MODEL-SELECTION.md](MODEL-SELECTION.md)**: which model and effort a component earns, with the
+- **[MODEL-SELECTION.md](references/MODEL-SELECTION.md)**: which model and effort a component earns, with the
   resolution order that decides what actually runs.
-- **[TEMPLATES.md](TEMPLATES.md)**: skeletons for an agent, a command and each hook shape.
+- **[TEMPLATES.md](references/TEMPLATES.md)**: skeletons for an agent, a command and each hook shape.
 
 ## Related
 

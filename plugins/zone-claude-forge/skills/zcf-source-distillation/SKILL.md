@@ -77,20 +77,20 @@ An API plugin exists to be the specialist for that API, so nothing is summarised
 operation with its method, path, parameter groups, request body, **every** response status, and a
 worked request and response example including the error shapes. Every parameter and property carries
 its type, format, optionality, nullability, possible values, default, constraints, example and the
-upstream description. The exact facet list is [`API-CONTRACT.md`](API-CONTRACT.md). `API-01` to `API-06`
+upstream description. The exact facet list is [`API-CONTRACT.md`](references/API-CONTRACT.md). `API-01` to `API-06`
 
 ## Reference map
 
-- **[SOURCE-INVENTORY.md](SOURCE-INVENTORY.md)**: enumerating each source kind, the sitemap variants,
+- **[SOURCE-INVENTORY.md](references/SOURCE-INVENTORY.md)**: enumerating each source kind, the sitemap variants,
   and how to mirror a source reproducibly.
-- **[EXTRACTION-STRATEGY.md](EXTRACTION-STRATEGY.md)**: script-generated versus hand-written, how to
+- **[EXTRACTION-STRATEGY.md](references/EXTRACTION-STRATEGY.md)**: script-generated versus hand-written, how to
   split a source into skills, and what belongs in the map rather than a reference.
-- **[API-CONTRACT.md](API-CONTRACT.md)**: the per-operation and per-parameter facets, with the
+- **[API-CONTRACT.md](references/API-CONTRACT.md)**: the per-operation and per-parameter facets, with the
   rendering shape and what to write when the upstream is silent.
-- **[COVERAGE-AUDIT.md](COVERAGE-AUDIT.md)**: the two-direction proof, `UNCOVERED`/`DANGLING`/`STALE`,
+- **[COVERAGE-AUDIT.md](references/COVERAGE-AUDIT.md)**: the two-direction proof, `UNCOVERED`/`DANGLING`/`STALE`,
   and why an exclusion list carries a reason per entry.
-- **[CITATION.md](CITATION.md)**: what a citation must let a reader do, and the three places one goes.
-- **[DRIFT-STATE.md](DRIFT-STATE.md)**: the state file, `--check` and `--apply`, and why nothing polls
+- **[CITATION.md](references/CITATION.md)**: what a citation must let a reader do, and the three places one goes.
+- **[DRIFT-STATE.md](references/DRIFT-STATE.md)**: the state file, `--check` and `--apply`, and why nothing polls
   at session start.
 
 ## Related

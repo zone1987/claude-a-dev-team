@@ -26,7 +26,8 @@ the rules each step applies, so a rule has one authoritative wording. Never rest
 4. **Draft the body as a map, not the territory.** Purpose in one to three sentences, the core
    model, then a reference map. Load-bearing content first: after compaction only the first 5,000
    tokens come back. `SIZE-01`, `BUDGET-06`
-5. **Push depth into flat siblings.** `SCREAMING-CASE.md` beside `SKILL.md`, never a subdirectory.
+5. **Push depth into `references/`.** `skills/<skill>/references/SCREAMING-CASE.md`, each linked
+   directly from `SKILL.md`. Never an index file: what indirection costs is content, not tidiness.
    Link every one from `SKILL.md` with a note on what it holds. **Name each file after what is in
    it**, so the name alone tells a reader whether to open it. `DEPTH-01`, `REF-01`, `REF-03`,
    `LINK-01`
@@ -39,31 +40,31 @@ the rules each step applies, so a rule has one authoritative wording. Never rest
 
 Only what changes behaviour against the model's default. A sentence the model would follow anyway
 pays load to say nothing, and the test is settled by running the skill, not by arguing about it.
-Read [`PRUNING.md`](PRUNING.md) before deciding a paragraph is necessary.
+Read [`PRUNING.md`](references/PRUNING.md) before deciding a paragraph is necessary.
 
 ## Frontmatter
 
 Claude Code accepts far more fields than this marketplace uses, and six of them are all that stay
 portable outside it. Both facts matter when choosing one:
-[`FRONTMATTER.md`](FRONTMATTER.md). `FM-01/02`
+[`FRONTMATTER.md`](references/FRONTMATTER.md). `FM-01/02`
 
 ## Reference map
 
-- **[FRONTMATTER.md](FRONTMATTER.md)**: every documented field, what it does, and which six survive
+- **[FRONTMATTER.md](references/FRONTMATTER.md)**: every documented field, what it does, and which six survive
   outside Claude Code. Read before adding any field beyond `name` and `description`.
-- **[DESCRIPTION-PATTERN.md](DESCRIPTION-PATTERN.md)**: the pattern, worked examples, and how to
+- **[DESCRIPTION-PATTERN.md](references/DESCRIPTION-PATTERN.md)**: the pattern, worked examples, and how to
   bind a generic noun to an anchor that cannot collide.
-- **[LISTING-BUDGET.md](LISTING-BUDGET.md)**: the arithmetic, what overflow does, and the four
+- **[LISTING-BUDGET.md](references/LISTING-BUDGET.md)**: the arithmetic, what overflow does, and the four
   levers in the order to reach for them.
-- **[DISCLOSURE.md](DISCLOSURE.md)**: the information hierarchy, the branching test for what to
-  disclose, and why one level deep is a mechanism rather than a preference.
-- **[COMPLETION-CRITERIA.md](COMPLETION-CRITERIA.md)**: how to end a step so the agent can tell done
+- **[DISCLOSURE.md](references/DISCLOSURE.md)**: the information hierarchy, the branching test for what to
+  disclose, and why a direct link from `SKILL.md` is a mechanism rather than a preference.
+- **[COMPLETION-CRITERIA.md](references/COMPLETION-CRITERIA.md)**: how to end a step so the agent can tell done
   from not-done, and how demand drives the legwork.
-- **[LEADING-WORDS.md](LEADING-WORDS.md)**: anchoring behaviour in one pretrained token, and why a
+- **[LEADING-WORDS.md](references/LEADING-WORDS.md)**: anchoring behaviour in one pretrained token, and why a
   prohibition makes the forbidden behaviour more available rather than less.
-- **[PRUNING.md](PRUNING.md)**: single source of truth, the no-op test, sprawl, and what the
+- **[PRUNING.md](references/PRUNING.md)**: single source of truth, the no-op test, sprawl, and what the
   environment already answers.
-- **[SKILL-TEMPLATE.md](SKILL-TEMPLATE.md)**: the skeleton to copy, with the measuring commands.
+- **[SKILL-TEMPLATE.md](references/SKILL-TEMPLATE.md)**: the skeleton to copy, with the measuring commands.
 
 ## Related
 

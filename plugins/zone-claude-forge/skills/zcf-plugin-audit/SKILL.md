@@ -53,7 +53,7 @@ match nothing. Report a component no README, skill or agent mentions. `COMP-05`
 ## Repairs, in order
 
 Apply the cheapest fix that holds, and stop there:
-[`OPTIMISATION-MOVES.md`](OPTIMISATION-MOVES.md). Deleting facts to shorten a file is the one move
+[`OPTIMISATION-MOVES.md`](references/OPTIMISATION-MOVES.md). Deleting facts to shorten a file is the one move
 the gate rejects. `COV-04`
 
 ## Output
@@ -66,9 +66,9 @@ Report only what the files and the gate contain. Invent nothing.
 
 ## Reference map
 
-- **[AUDIT-RULES.md](AUDIT-RULES.md)**: how to read a finding, which rules a script decides and which
+- **[AUDIT-RULES.md](references/AUDIT-RULES.md)**: how to read a finding, which rules a script decides and which
   need judgement, and the exit codes.
-- **[OPTIMISATION-MOVES.md](OPTIMISATION-MOVES.md)**: the repair sequence, cheapest first, and what
+- **[OPTIMISATION-MOVES.md](references/OPTIMISATION-MOVES.md)**: the repair sequence, cheapest first, and what
   each move costs.
 
 ## Related

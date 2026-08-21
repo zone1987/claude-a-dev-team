@@ -52,7 +52,7 @@ fine alone and ruinous beside three others.
 2. **Choose invocation.** Model-invoked spends its description permanently; user-invoked spends only
    your memory, which is what this router is for.
 3. **Write the description and count it.** `python3 -c "print(len('…'))"`
-4. **Draft the body as a map**, depth in flat siblings.
+4. **Draft the body as a map**, depth in `references/`, each file linked from `SKILL.md`.
 5. **Run the gate** after each step, not at the end: `/zcf-validate <plugin> --strict`
 
 ## Two things worth knowing up front

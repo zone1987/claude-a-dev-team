@@ -317,21 +317,42 @@ def check_siblings(skill_md: str, body: list[str], rep: Report) -> None:
     d = os.path.dirname(skill_md)
     rel = os.path.relpath(skill_md, REPO)
     prose = strip_code(body)
-    linked = {os.path.basename(t) for t in MD_LINK.findall(prose) if t.endswith(".md")}
 
+    # DEPTH-01: what breaks a read is indirection, not the directory. A file linked as
+    # references/X.md straight from SKILL.md is a direct reference and is read in full; one
+    # reachable only through another reference is previewed with head -100.
+    linked_rel = {t for t in MD_LINK.findall(prose) if t.endswith(".md")}
+    reachable = {os.path.normpath(os.path.join(d, t)) for t in linked_rel}
     for nested in glob.glob(os.path.join(d, "*", "**", "*.md"), recursive=True):
+        if os.path.normpath(nested) in reachable:
+            continue
         rep.error("DEPTH-01", os.path.relpath(nested, REPO),
-                  "reference sits more than one level from SKILL.md, so a head -100 preview "
-                  "hides everything past line 100")
+                  "no link in SKILL.md resolves to this file, so it is reachable only through "
+                  "another reference and a head -100 preview hides everything past line 100")
+    # REF-04: references live in references/ only. An index file inside it is a DEPTH-01
+    # error, since every file behind it drops to a head -100 preview.
+    for sub in sorted(glob.glob(os.path.join(d, "*", "*.md"))):
+        if re.match(r"(INDEX|README|CONTENTS)\.md$", os.path.basename(sub)):
+            rep.error("DEPTH-01", os.path.relpath(sub, REPO),
+                      "an index file only points at other references, which downgrades every file "
+                      "behind it to a head -100 preview; SKILL.md's reference map is the index")
 
-    for sib in sorted(glob.glob(os.path.join(d, "*.md"))):
+    # Every reference, wherever it sits: references/ is the required home (REF-04), but the
+    # name, link, content and TOC rules apply to a misplaced file just the same.
+    refs = sorted(glob.glob(os.path.join(d, "*.md")) + glob.glob(os.path.join(d, "*", "*.md")))
+    for sib in refs:
         base = os.path.basename(sib)
         if base == "SKILL.md":
             continue
         srel = os.path.relpath(sib, REPO)
+        parent = os.path.basename(os.path.dirname(sib))
+        if parent != "references":
+            rep.error("REF-04", srel,
+                      "a reference sits beside SKILL.md; move it to references/ and link it "
+                      "directly from SKILL.md")
         if not REFERENCE_NAME.match(base):
             rep.error("REF-01", srel, f"'{base}' is not SCREAMING-CASE.md")
-        if base not in linked:
+        if os.path.normpath(sib) not in reachable:
             rep.error("LINK-01", rel, f"'{base}' is never linked from SKILL.md, so it is unreachable")
         lines = open(sib, encoding="utf-8", errors="replace").read().splitlines()
         # REF-02: a file whose only job is to point at a sibling costs two reads per lookup.

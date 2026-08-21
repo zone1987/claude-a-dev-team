@@ -23,25 +23,50 @@ length heuristic, and it explains why disclosure is not primarily a token optimi
 the hierarchy. In-file reference that should be disclosed buries the steps around it and turns
 attending to them into a coin-flip.
 
-## One level deep, and why it is a mechanism
+## Direct links, and why they are a mechanism
 
 > Claude may partially read files when they're referenced from other referenced files. When
 > encountering nested references, Claude might use commands like `head -100` to preview content
 > rather than reading entire files, resulting in incomplete information.
 >
 > **Keep references one level deep from SKILL.md.**
+>
+> **All reference files should link directly from SKILL.md** to ensure Claude reads complete files
+> when needed.
 
-So a `references/deep/x.md` layout silently loses most of its own content: **everything past line 100
-of a nested file is effectively invisible.** This is not a preference to trade off against tidiness.
-`DEPTH-01`
+**What breaks a read is the indirection, not the directory.** A file reachable only through another
+reference silently loses most of its content: **everything past line 100 is effectively invisible.**
+This is not a preference to trade off against tidiness. `DEPTH-01`
 
-Consequences for layout:
+Read the two layouts against that test:
 
-- Reference files are **flat siblings** of `SKILL.md`, named `SCREAMING-CASE.md`. `REF-01`
-- **No `references/` subdirectory**, at any depth.
-- Subdirectories carry non-markdown only: `scripts/`, `examples/`, `assets/`.
-- **Every sibling is linked from `SKILL.md`** with a note on what it holds, so the agent can decide
-  whether to open it, and so nothing becomes unreachable. `LINK-01`
+```
+skills/x/SKILL.md → [TWIG.md](references/TWIG.md)              ✅ direct link, read in full
+skills/x/SKILL.md → references/INDEX.md → [TWIG.md](TWIG.md)   ❌ head -100, 100 lines survive
+```
+
+The directory is the same in both. What differs is whether the link in `SKILL.md` resolves straight
+to the file. An `INDEX.md` is how authors usually arrive at the broken variant, so it is never
+created — anywhere, for anything. `SKILL.md`'s reference map already is the index, and a second one
+only downgrades every file behind it.
+
+The layout, binding for every plugin in this marketplace:
+
+```
+skills/<skill-name>/
+├── SKILL.md                    ← the map, alone at the top
+└── references/
+    ├── TWIG-REFERENCE.md       ← linked as references/TWIG-REFERENCE.md from SKILL.md
+    └── TEMPLATES.md            ← same, never through an index
+```
+
+- **Every reference lives in `skills/<skill-name>/references/`.** No reference file sits beside
+  `SKILL.md`. `REF-04`
+- **Every reference is linked directly from `SKILL.md`**, with a note on what it holds, so the agent
+  can decide whether to open it and nothing becomes unreachable. `DEPTH-01`, `LINK-01`
+- **Never an `INDEX.md`, `README.md` or `CONTENTS.md` inside `references/`.** `DEPTH-01`
+- Reference files are named `SCREAMING-CASE.md`. `REF-01`
+- Other subdirectories carry non-markdown only: `scripts/`, `examples/`, `assets/`.
 - **A file over 100 lines carries a table of contents**, unless it has fewer than three sections.
   The 100 is the same preview boundary: a TOC is what lets a partial read still see the full scope.
   `TOC-01`

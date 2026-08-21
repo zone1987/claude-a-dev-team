@@ -9,17 +9,17 @@ The editor's daily work: page tree, articles, content elements, layouts and the 
 
 ## Reference map
 
-- **[MANUAL-PAGE-STRUCTURE.md](MANUAL-PAGE-STRUCTURE.md)**: pages as central elements, the page-type
+- **[MANUAL-PAGE-STRUCTURE.md](references/MANUAL-PAGE-STRUCTURE.md)**: pages as central elements, the page-type
   overview, multi-domain operation, and multilingual sites.
-- **[MANUAL-PAGE-TYPES.md](MANUAL-PAGE-TYPES.md)**: all ten page types field by field, with the groups
+- **[MANUAL-PAGE-TYPES.md](references/MANUAL-PAGE-TYPES.md)**: all ten page types field by field, with the groups
   they share written once: website root, regular page, both redirects, logout, the four error types, news feed.
-- **[MANUAL-ARTICLES-CONTENT.md](MANUAL-ARTICLES-CONTENT.md)**: article management and every content element: text, link, media, file, include and the rest.
-- **[MANUAL-LAYOUT.md](MANUAL-LAYOUT.md)**: the Theme Manager, module management, and the two
+- **[MANUAL-ARTICLES-CONTENT.md](references/MANUAL-ARTICLES-CONTENT.md)**: article management and every content element: text, link, media, file, include and the rest.
+- **[MANUAL-LAYOUT.md](references/MANUAL-LAYOUT.md)**: the Theme Manager, module management, and the two
   template systems in outline.
-- **[MANUAL-TEMPLATES.md](MANUAL-TEMPLATES.md)**: Twig syntax, where a template lives, extending and
+- **[MANUAL-TEMPLATES.md](references/MANUAL-TEMPLATES.md)**: Twig syntax, where a template lives, extending and
   reusing one, `dump()` for inspecting data, the legacy PHP system, and assets from a template.
-- **[MANUAL-FILE-MANAGEMENT.md](MANUAL-FILE-MANAGEMENT.md)**: managing files and folders, metadata, and controlling downloads.
-- **[MANUAL-INSERT-TAGS-TOKENS.md](MANUAL-INSERT-TAGS-TOKENS.md)**: every insert tag and token: link tags, member and page properties, environment variables and more.
+- **[MANUAL-FILE-MANAGEMENT.md](references/MANUAL-FILE-MANAGEMENT.md)**: managing files and folders, metadata, and controlling downloads.
+- **[MANUAL-INSERT-TAGS-TOKENS.md](references/MANUAL-INSERT-TAGS-TOKENS.md)**: every insert tag and token: link tags, member and page properties, environment variables and more.
 
 ## Source
 

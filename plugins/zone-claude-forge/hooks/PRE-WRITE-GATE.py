@@ -31,6 +31,15 @@ def decision(reason: str) -> None:
     }}))
 
 
+def refuse(reason: str) -> int:
+    """Deny a write, or warn only when ZCF_BYPASS is set, as the content gate does."""
+    if BYPASS:
+        print(f"[zcf] ZCF_BYPASS set, allowing a non-compliant write: {reason}", file=sys.stderr)
+        return 0
+    decision(reason)
+    return 0
+
+
 def main() -> int:
     try:
         payload = json.load(sys.stdin)
@@ -44,10 +53,34 @@ def main() -> int:
     if "/plugins/" not in path.replace(os.sep, "/") and not path.startswith("plugins/"):
         return 0
     base = os.path.basename(path)
+    norm = path.replace(os.sep, "/")
+
+    # REF-04 is decidable from the path alone, before any content is parsed: a reference
+    # belongs in skills/<skill>/references/. Catching it here stops the file being created in
+    # the wrong place, which is cheaper than moving it and re-pointing SKILL.md afterwards.
+    if base.endswith(".md") and "/skills/" in norm and base != "SKILL.md":
+        parts = norm.split("/skills/", 1)[1].split("/")
+        if len(parts) == 2:            # skills/<skill>/FILE.md
+            return refuse(
+                f"[REF-04] '{base}' would sit beside SKILL.md. Every reference belongs in "
+                f"skills/{parts[0]}/references/{base} and must be linked directly from "
+                "SKILL.md. Never add an INDEX.md there: SKILL.md's reference map is the "
+                "index, and a second one drops every file behind it to a head -100 preview "
+                "(DEPTH-01)."
+            )
+        if len(parts) >= 3 and parts[1] == "references" and base in (
+            "INDEX.md", "README.md", "CONTENTS.md"
+        ):
+            return refuse(
+                f"[DEPTH-01] '{base}' inside references/ is an index file. Every reference is "
+                "linked directly from SKILL.md instead; an index downgrades every file behind "
+                "it to a head -100 preview, hiding everything past line 100."
+            )
+
     if base != "SKILL.md" and base != "hooks.json" and not (
         base.endswith(".md") and ("/agents/" in path or "/commands/" in path)
     ):
-        return 0                       # a README, a reference file, a script: not gated
+        return 0                       # a README, a script: not gated
 
     content = tool_input.get("content")
     if content is None:

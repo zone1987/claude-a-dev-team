@@ -9,12 +9,12 @@ Extending the administration area, and the routing and CSRF machinery behind it.
 
 ## Reference map
 
-- **[MODULES.md](MODULES.md)**: backend modules: registration, the `tables` option, loading a DCA, permissions, and the operations a module offers.
-- **[ROUTES.md](ROUTES.md)**: backend controllers, the backend template, menu integration, and adding a route to an existing module.
-- **[ROUTING.md](ROUTING.md)**: custom routes, request attributes, and content routing (Contao 5.3 and later).
-- **[PAGE-CONTROLLERS.md](PAGE-CONTROLLERS.md)**: page controllers: both registration methods, every configuration parameter, URL generation, and a minimal example.
-- **[REQUEST-TOKENS.md](REQUEST-TOKENS.md)**: CSRF tokens: generating, validating, outputting them in a template, and when protection may be disabled.
-- **[RESPONSE-CONTEXT.md](RESPONSE-CONTEXT.md)**: the four-step response-context workflow, the core capabilities (HTML head, JSON-LD), and how a page controller creates one.
+- **[MODULES.md](references/MODULES.md)**: backend modules: registration, the `tables` option, loading a DCA, permissions, and the operations a module offers.
+- **[ROUTES.md](references/ROUTES.md)**: backend controllers, the backend template, menu integration, and adding a route to an existing module.
+- **[ROUTING.md](references/ROUTING.md)**: custom routes, request attributes, and content routing (Contao 5.3 and later).
+- **[PAGE-CONTROLLERS.md](references/PAGE-CONTROLLERS.md)**: page controllers: both registration methods, every configuration parameter, URL generation, and a minimal example.
+- **[REQUEST-TOKENS.md](references/REQUEST-TOKENS.md)**: CSRF tokens: generating, validating, outputting them in a template, and when protection may be disabled.
+- **[RESPONSE-CONTEXT.md](references/RESPONSE-CONTEXT.md)**: the four-step response-context workflow, the core capabilities (HTML head, JSON-LD), and how a page controller creates one.
 
 ## Source
 
