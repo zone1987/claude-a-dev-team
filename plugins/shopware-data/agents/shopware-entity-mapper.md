@@ -14,6 +14,10 @@ skills: sw-entity
 
 You create or update `.shopware-catalog/entities.md` at the project root. A pure scan, no judgement.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-entity"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## What to scan
 - **PHP definitions**: `**/*Definition.php` that `extends EntityDefinition` — `getEntityName()`/`ENTITY_NAME` plus
   `defineFields()` (field name, field type, flags, and associations with their target definition).

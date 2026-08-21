@@ -11,8 +11,8 @@ Asynchronous work through Symfony Messenger, with Shopware's own middleware and 
 
 - **[MESSAGE-HANDLER.md](references/MESSAGE-HANDLER.md)**: A handler processes a message asynchronously.
 - **[MESSAGE-MIDDLEWARE.md](references/MESSAGE-MIDDLEWARE.md)**: Middleware wraps every message on the bus.
-- **[MESSAGE-QUEUE.md](references/MESSAGE-QUEUE.md)**: Shopware uses Symfony Messenger for asynchronous tasks. [MESSAGE-QUEUE-DETAIL](references/MESSAGE-QUEUE-DETAIL.md).
-- **[REDIS.md](references/REDIS.md)**: Redis is used in Shopware optionally as fast storage for several subsystems — through configuration. [REDIS-DETAIL](references/REDIS-DETAIL.md).
+- **[MESSAGE-QUEUE.md](references/MESSAGE-QUEUE.md)**: Shopware uses Symfony Messenger for asynchronous tasks.
+- **[REDIS.md](references/REDIS.md)**: Redis is used in Shopware optionally as fast storage for several subsystems — through configuration.
 
 ## Source
 

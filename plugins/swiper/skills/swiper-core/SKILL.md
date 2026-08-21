@@ -10,13 +10,13 @@ The complete API surface. Parameters configure, methods control, events react â€
 ## Reference map
 
 - **[ELEMENT.md](references/ELEMENT.md)**: `<swiper-container>` and `<swiper-slide>` are native custom elements.
-- **[EVENTS.md](references/EVENTS.md)**: Register events with `swiper.on` or in the constructor via `on: { . [EVENTS-DETAIL](references/EVENTS-DETAIL.md).
-- **[GETTING-STARTED.md](references/GETTING-STARTED.md)**: Touch-enabled slider/carousel with no external dependencies. [GETTING-STARTED-DETAIL](references/GETTING-STARTED-DETAIL.md).
+- **[EVENTS.md](references/EVENTS.md)**: Register events with `swiper.on` or in the constructor via `on: { .
+- **[GETTING-STARTED.md](references/GETTING-STARTED.md)**: Touch-enabled slider/carousel with no external dependencies.
 - **[MCP.md](references/MCP.md)**: HTTP MCP server at `https://swiperjs.com/mcp` â€” no auth, JSON-RPC 2.0, 8 tools.
-- **[METHODS.md](references/METHODS.md)**: Call all methods on the Swiper instance. [METHODS-DETAIL](references/METHODS-DETAIL.md).
+- **[METHODS.md](references/METHODS.md)**: Call all methods on the Swiper instance.
 - **[MIGRATION.md](references/MIGRATION.md)**: All breaking changes per major version with concrete before/after code examples.
-- **[PARAMETERS.md](references/PARAMETERS.md)**: All configuration options for `new Swiper`. [PARAMETERS-DETAIL](references/PARAMETERS-DETAIL.md).
-- **[PROPERTIES.md](references/PROPERTIES.md)**: All properties are read-only and available directly on the instance. [PROPERTIES-DETAIL](references/PROPERTIES-DETAIL.md).
+- **[PARAMETERS.md](references/PARAMETERS.md)**: All configuration options for `new Swiper`.
+- **[PROPERTIES.md](references/PROPERTIES.md)**: All properties are read-only and available directly on the instance.
 
 ## Source
 

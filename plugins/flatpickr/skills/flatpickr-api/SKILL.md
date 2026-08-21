@@ -9,13 +9,13 @@ The whole API surface. Options configure, the instance controls, hooks react.
 
 ## Reference map
 
-- **[EVENTS.md](references/EVENTS.md)**: Hooks are passed as options. [EVENTS-DETAIL](references/EVENTS-DETAIL.md).
-- **[EXAMPLES.md](references/EXAMPLES.md)** [EXAMPLES-DETAIL](references/EXAMPLES-DETAIL.md).
-- **[FORMATTING.md](references/FORMATTING.md)**: `dateFormat` and `altFormat` are composed from these tokens. [FORMATTING-DETAIL](references/FORMATTING-DETAIL.md).
-- **[GETTING-STARTED.md](references/GETTING-STARTED.md)**: Lightweight datetime picker with no external dependencies. [GETTING-STARTED-DETAIL](references/GETTING-STARTED-DETAIL.md).
-- **[INSTANCE.md](references/INSTANCE.md)** [INSTANCE-DETAIL](references/INSTANCE-DETAIL.md).
-- **[MIGRATION.md](references/MIGRATION.md)**: 1. [MIGRATION-DETAIL](references/MIGRATION-DETAIL.md).
-- **[OPTIONS.md](references/OPTIONS.md)**: All options are passed as the second argument to `flatpickr`. [OPTIONS-DETAIL](references/OPTIONS-DETAIL.md).
+- **[EVENTS.md](references/EVENTS.md)**: Hooks are passed as options.
+- **[EXAMPLES.md](references/EXAMPLES.md)**
+- **[FORMATTING.md](references/FORMATTING.md)**: `dateFormat` and `altFormat` are composed from these tokens.
+- **[GETTING-STARTED.md](references/GETTING-STARTED.md)**: Lightweight datetime picker with no external dependencies.
+- **[INSTANCE.md](references/INSTANCE.md)**
+- **[MIGRATION.md](references/MIGRATION.md)**: 1.
+- **[OPTIONS.md](references/OPTIONS.md)**: All options are passed as the second argument to `flatpickr`.
 
 ## Source
 

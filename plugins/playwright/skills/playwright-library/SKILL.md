@@ -15,9 +15,9 @@ The complete class reference, for automation and for the parts of a test the gui
 - **[API-LOCATOR.md](references/API-LOCATOR.md)**: Exhaustive API reference for all three classes around Playwright locators. [API-LOCATOR-CLASS-FRAMELOCATOR](references/API-LOCATOR-CLASS-FRAMELOCATOR.md), [API-LOCATOR-CLASS-LOCATOR](references/API-LOCATOR-CLASS-LOCATOR.md), [API-LOCATOR-CLASS-SELECTORS](references/API-LOCATOR-CLASS-SELECTORS.md).
 - **[API-NETWORK.md](references/API-NETWORK.md)**: Complete API reference: - `API-NETWORK-CLASS-REQUEST.md` - `API-NETWORK-CLASS-RESPONSE.md` - `API-NETWORK…. [API-NETWORK-CLASS-APIREQUEST](references/API-NETWORK-CLASS-APIREQUEST.md), [API-NETWORK-CLASS-APIREQUESTCONTEXT](references/API-NETWORK-CLASS-APIREQUESTCONTEXT.md), [API-NETWORK-CLASS-APIRESPONSE](references/API-NETWORK-CLASS-APIRESPONSE.md), [API-NETWORK-CLASS-REQUEST](references/API-NETWORK-CLASS-REQUEST.md), [API-NETWORK-CLASS-RESPONSE](references/API-NETWORK-CLASS-RESPONSE.md), [API-NETWORK-CLASS-ROUTE](references/API-NETWORK-CLASS-ROUTE.md), [API-NETWORK-CLASS-WEBSOCKET](references/API-NETWORK-CLASS-WEBSOCKET.md), [API-NETWORK-CLASS-WEBSOCKETROUTE](references/API-NETWORK-CLASS-WEBSOCKETROUTE.md).
 - **[API-PAGE.md](references/API-PAGE.md)**: Complete API reference for the four core Playwright interaction classes:. [API-PAGE-CLASS-ELEMENTHANDLE](references/API-PAGE-CLASS-ELEMENTHANDLE.md), [API-PAGE-CLASS-FRAME](references/API-PAGE-CLASS-FRAME.md), [API-PAGE-CLASS-JSHANDLE](references/API-PAGE-CLASS-JSHANDLE.md), [API-PAGE-CLASS-PAGE](references/API-PAGE-CLASS-PAGE.md).
-- **[API-TESTING.md](references/API-TESTING.md)**: Complete reference: `API-TESTING-DETAIL.md`. [API-TESTING-DETAIL](references/API-TESTING-DETAIL.md).
-- **[IO-EVENTS.md](references/IO-EVENTS.md)**: Complete reference: `IO-EVENTS-DETAIL.md`. [IO-EVENTS-DETAIL](references/IO-EVENTS-DETAIL.md).
-- **[NETWORK.md](references/NETWORK.md)**: Complete reference: `NETWORK-DETAIL.md`. [NETWORK-DETAIL](references/NETWORK-DETAIL.md).
+- **[API-TESTING.md](references/API-TESTING.md)**:
+- **[IO-EVENTS.md](references/IO-EVENTS.md)**:
+- **[NETWORK.md](references/NETWORK.md)**:
 
 ## Source
 

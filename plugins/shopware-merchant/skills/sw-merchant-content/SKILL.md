@@ -9,12 +9,12 @@ Everything under **Inhalte** (Content) — Shopping Experiences (Erlebniswelten)
 
 ## Reference map
 
-- **[CMS-EXTENSIONS.md](references/CMS-EXTENSIONS.md)**: Path: **Erweiterungen** (Extensions) > **Meine Erweiterungen** (My extensions) > **CMS-Erweiterungen** (CMS extensions). [CMS-EXTENSIONS-DETAIL](references/CMS-EXTENSIONS-DETAIL.md).
+- **[CMS-EXTENSIONS.md](references/CMS-EXTENSIONS.md)**: Path: **Erweiterungen** (Extensions) > **Meine Erweiterungen** (My extensions) > **CMS-Erweiterungen** (CMS extensions).
 - **[CONTENT-OVERVIEW.md](references/CONTENT-OVERVIEW.md)**: Path: **Inhalte**.
-- **[MEDIA.md](references/MEDIA.md)**: Central media library for all of the shop's media: images, videos, documents, 3D models. [MEDIA-DETAIL](references/MEDIA-DETAIL.md).
-- **[OVERVIEW.md](references/OVERVIEW.md)**: The **Inhalte** area in the Shopware 6 admin covers all tools for the visual design and content managem…. [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
-- **[SHOPPING-EXPERIENCES.md](references/SHOPPING-EXPERIENCES.md)**: Path: **Inhalte > Erlebniswelten** (Shopping Experiences). [SHOPPING-EXPERIENCES-DETAIL](references/SHOPPING-EXPERIENCES-DETAIL.md).
-- **[THEMES.md](references/THEMES.md)**: Management and configuration of the storefront's visual design. [THEMES-DETAIL](references/THEMES-DETAIL.md).
+- **[MEDIA.md](references/MEDIA.md)**: Central media library for all of the shop's media: images, videos, documents, 3D models.
+- **[OVERVIEW.md](references/OVERVIEW.md)**: The **Inhalte** area in the Shopware 6 admin covers all tools for the visual design and content managem….
+- **[SHOPPING-EXPERIENCES.md](references/SHOPPING-EXPERIENCES.md)**: Path: **Inhalte > Erlebniswelten** (Shopping Experiences).
+- **[THEMES.md](references/THEMES.md)**: Management and configuration of the storefront's visual design.
 
 ## Source
 

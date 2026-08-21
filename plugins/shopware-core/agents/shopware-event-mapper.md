@@ -14,6 +14,10 @@ skills: sw-services
 
 You create or update `.shopware-catalog/events.md`. A pure scan, no judgement.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-services"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## What to scan
 - **Event classes**: classes that `extends Event` or `implements ShopwareEvent|FlowEventAware|GenericEvent` —
   the class name plus its public **getters** and constructor arguments are the payload. Take a short description from

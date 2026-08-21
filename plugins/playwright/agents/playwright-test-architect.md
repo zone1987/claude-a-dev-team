@@ -17,6 +17,10 @@ skills: playwright-runner, playwright-writing
 
 You build and scale **Playwright test suites** (`@playwright/test`).
 
+## Knowledge to load first
+
+Call the Skill tool with **"playwright-runner"** and **"playwright-writing"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **The config is central:** `playwright.config.ts` — only documented options (`playwright-runner` covers TestConfig,
   TestProject and TestOptions). Projects give you the browser matrix and setup dependencies.

@@ -1,0 +1,335 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "gotenberg",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://gotenberg.dev",
+    "sitemap": "https://gotenberg.dev/sitemap.xml",
+    "base": "https://gotenberg.dev/"
+  },
+  "pages": 40,
+  "urls": [
+    "https://gotenberg.dev/",
+    "https://gotenberg.dev/blog",
+    "https://gotenberg.dev/docs",
+    "https://gotenberg.dev/docs/configuration",
+    "https://gotenberg.dev/docs/convert-with-chromium/convert-html-to-pdf",
+    "https://gotenberg.dev/docs/convert-with-chromium/convert-markdown-to-pdf",
+    "https://gotenberg.dev/docs/convert-with-chromium/convert-url-to-pdf",
+    "https://gotenberg.dev/docs/convert-with-chromium/screenshot-html",
+    "https://gotenberg.dev/docs/convert-with-chromium/screenshot-markdown",
+    "https://gotenberg.dev/docs/convert-with-chromium/screenshot-url",
+    "https://gotenberg.dev/docs/convert-with-libreoffice/convert-to-pdf",
+    "https://gotenberg.dev/docs/getting-started/clients",
+    "https://gotenberg.dev/docs/getting-started/installation",
+    "https://gotenberg.dev/docs/getting-started/introduction",
+    "https://gotenberg.dev/docs/getting-started/routes",
+    "https://gotenberg.dev/docs/manipulate-pdfs/attachments",
+    "https://gotenberg.dev/docs/manipulate-pdfs/encrypt-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/factur-x",
+    "https://gotenberg.dev/docs/manipulate-pdfs/flatten-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/merge-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/optimize-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/pdfa-pdfua",
+    "https://gotenberg.dev/docs/manipulate-pdfs/read-bookmarks",
+    "https://gotenberg.dev/docs/manipulate-pdfs/read-metadata",
+    "https://gotenberg.dev/docs/manipulate-pdfs/rotate-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/split-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/stamp-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/watermark-pdfs",
+    "https://gotenberg.dev/docs/manipulate-pdfs/write-bookmarks",
+    "https://gotenberg.dev/docs/manipulate-pdfs/write-metadata",
+    "https://gotenberg.dev/docs/outbound-url-filtering",
+    "https://gotenberg.dev/docs/system/debug",
+    "https://gotenberg.dev/docs/system/get-health-check",
+    "https://gotenberg.dev/docs/system/head-health-check",
+    "https://gotenberg.dev/docs/system/prometheus-metrics",
+    "https://gotenberg.dev/docs/system/version",
+    "https://gotenberg.dev/docs/telemetry",
+    "https://gotenberg.dev/docs/troubleshooting",
+    "https://gotenberg.dev/docs/webhook-download",
+    "https://gotenberg.dev/search"
+  ],
+  "entries": [
+    {
+      "page": "https://gotenberg.dev/",
+      "sha256": "ec9a948dfa3f44acb94d7ea987634eecafafec1be92fa9d947202482eba63a67",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/blog",
+      "sha256": "130b3f235b25a2eb482e27e64045e1d169440e4aa8079be1c3a3011a589cdb1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs",
+      "sha256": "d7e82915f4dbaee899b41d8a7bbb2cc2578e9453e501bd6d0b73fdace9d3580e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/configuration",
+      "sha256": "5ff49a2cd80082c3fa116869f3049dd3f118a40245709376008da06155978b41",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-chromium/convert-html-to-pdf",
+      "sha256": "40fd9653e55dc59b01c23b47890a90f1b97fd90817f00b1145b9542015266ac1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-chromium/convert-markdown-to-pdf",
+      "sha256": "ae3083d264a305fee46464b35b212733abaf539ecac3cfa1b9ddf050823a835b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-chromium/convert-url-to-pdf",
+      "sha256": "cbf6677edf7abf9ba66337cb25a8e8e1d92ac87b9883e5331bea26a0de330d8c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-chromium/screenshot-html",
+      "sha256": "094a08f449a33d361629f6a1e8d549f6fb8cc99a96c58cfd1cd93eb9666c4c03",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-chromium/screenshot-markdown",
+      "sha256": "469e29130b3e10b01d87ff0bbadb07bc21b8ff9e19709794a73486e3f768c6f5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-chromium/screenshot-url",
+      "sha256": "dd51b78a57bb1381354ae78bd6df81ddbd491ded603c90f24c40576655e088be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/convert-with-libreoffice/convert-to-pdf",
+      "sha256": "e2872d8792222a3dfe3abe1cf7aafdeeaf8c0fb692376f95c73935077eb5efea",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/getting-started/clients",
+      "sha256": "861e05cb9511f6569dcd02c46ffa27364b3bdba7a134d6aea0cd0185442caf04",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/getting-started/installation",
+      "sha256": "eadc0f3e9c55f0983ce5658be538bbd1d2677a2ea36e50db6036b692fff3ffc0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/getting-started/introduction",
+      "sha256": "86062a355af7a9a2375e77d2a56e19da6610c66b51854d0c3947d6055d8c5348",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/getting-started/routes",
+      "sha256": "4d2f2237ad2051212ee7e3f9de8c9a446b54d506b1d3568a05824784e63ee38f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/attachments",
+      "sha256": "7c9151094419ac8edb22415ec937f7f5003d4773224a72d772727a60b3c8c01c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/encrypt-pdfs",
+      "sha256": "2db777ef92816068950959396a9e6e9a27402575854dc9835a717ed698115e2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/factur-x",
+      "sha256": "3334cc2a96682733d17d0ddc3e9433ca2ead868ff85ec3fbe20f83bedbbdc4c0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/flatten-pdfs",
+      "sha256": "bbf6c6272b235cbd8d800a59f06dc237037beb66ee9a4dd8d9e6f7f35a4dda1f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/merge-pdfs",
+      "sha256": "8a2e1a0483255525e202338c9e3f2052473a8663aafe4bf05ae51ec602a3781c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/optimize-pdfs",
+      "sha256": "0febc4d5c839858c6dfec41caddbf245466b9b8dca2b935bc4556cb86237ccd7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/pdfa-pdfua",
+      "sha256": "e046ea464e0d8b5b160778fa4d160daafb31b86a4514feb8f5c9202761b3076b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/read-bookmarks",
+      "sha256": "f843c2d49cf476974b7b0ffebc61a119a166060942797fbe39c9f861a8fc79fb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/read-metadata",
+      "sha256": "9abb1d25538036b0e75803a4b6b144bfb3f8e2f589938edb184a0c53d96aad8a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/rotate-pdfs",
+      "sha256": "0f252bf98f6f810283283b0817faa5afd7f7ae09fa133f86c9e655d12836b176",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/split-pdfs",
+      "sha256": "5454af5d1650c10c15693936525de70a24414b884b6f5eea0052a86ddbdd111a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/stamp-pdfs",
+      "sha256": "7addfb5549c6c4dbec17c769972da52636a0051e742df9dc94b06d374a09d544",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/watermark-pdfs",
+      "sha256": "c59383e34d988d2bc2fb4383384c2ba041d5f77bc64534c1ef8a461e0440f76e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/write-bookmarks",
+      "sha256": "732c281e960c49416f55c472ec8c32ea7129213cda94cfd2bb507e323a825c15",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/manipulate-pdfs/write-metadata",
+      "sha256": "1c8410249448da8716b726528bd419fab7f75e3de56d46a8453b37df0fa250cd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/outbound-url-filtering",
+      "sha256": "c22993a57d4fe29152fcf3a1ad1068ce82bfe3ba97e258b1af7804be7f5b05d4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/system/debug",
+      "sha256": "99f259c6bbe69c38ee9cb250b279a5eacfafc66f6ee5ed44b8c746d14936ff63",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/system/get-health-check",
+      "sha256": "aec4ac1e59001de80bccdd96fa90ed5498ed5ef6cb2da8112a6e7df8936bbddb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/system/head-health-check",
+      "sha256": "060e00a79781877fbf66c3d4aea9179fcee0b451c92bc9e799395041e8dd4a02",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/system/prometheus-metrics",
+      "sha256": "f661ad320781a797a303b801b4061217d4cfc3e87bd8f24421e565bfc4161ba4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/system/version",
+      "sha256": "b02a715939de98def6321720af00667bbc44425b754c7a863d2956f690b8698f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/telemetry",
+      "sha256": "ff44b51a9c4184d36e8765dd11055c3aca8aab6e412971c195167d15e01b3c96",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/troubleshooting",
+      "sha256": "e85fff340c70cff85eeff514fdc30ea782c0d145749dd8a59035fb2fc0c89624",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/docs/webhook-download",
+      "sha256": "89d169dbaaf74e0dd77363f3b4263e67432cd367f3ad815e7d7edc61bc58cd17",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://gotenberg.dev/search",
+      "sha256": "f7b601d00eafd25d424bf6a87339fd677e3ecb8b37476f8e6603580d63d7ca68",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    }
+  ]
+}

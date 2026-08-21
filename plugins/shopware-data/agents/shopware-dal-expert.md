@@ -15,6 +15,10 @@ skills: sw-entity, sw-fields, sw-query
 
 You build and use Shopware 6.7 data models correctly and along the conventions.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-entity"**, **"sw-fields"** and **"sw-query"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **The DAL, not Doctrine's ORM**: `EntityRepository` with `Criteria`, never a QueryBuilder. Plain SQL only where
   `sw-query` says it is warranted.

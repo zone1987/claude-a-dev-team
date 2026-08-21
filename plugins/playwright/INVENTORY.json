@@ -1,0 +1,2879 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "playwright",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://playwright.dev",
+    "sitemap": "https://playwright.dev/sitemap.xml",
+    "base": "https://playwright.dev/"
+  },
+  "pages": 358,
+  "urls": [
+    "https://playwright.dev/",
+    "https://playwright.dev/agent-cli/capabilities",
+    "https://playwright.dev/agent-cli/commands/attach",
+    "https://playwright.dev/agent-cli/commands/console-eval",
+    "https://playwright.dev/agent-cli/commands/dialogs",
+    "https://playwright.dev/agent-cli/commands/interaction",
+    "https://playwright.dev/agent-cli/commands/keyboard-mouse",
+    "https://playwright.dev/agent-cli/commands/navigation",
+    "https://playwright.dev/agent-cli/commands/network-routing",
+    "https://playwright.dev/agent-cli/commands/screenshots-pdf",
+    "https://playwright.dev/agent-cli/commands/storage",
+    "https://playwright.dev/agent-cli/commands/tabs",
+    "https://playwright.dev/agent-cli/commands/test-debugging",
+    "https://playwright.dev/agent-cli/commands/tracing",
+    "https://playwright.dev/agent-cli/commands/video-recording",
+    "https://playwright.dev/agent-cli/configuration",
+    "https://playwright.dev/agent-cli/installation",
+    "https://playwright.dev/agent-cli/introduction",
+    "https://playwright.dev/agent-cli/quick-start",
+    "https://playwright.dev/agent-cli/sessions",
+    "https://playwright.dev/agent-cli/skills",
+    "https://playwright.dev/agent-cli/snapshots",
+    "https://playwright.dev/agent-cli/vision-mode",
+    "https://playwright.dev/community/ambassadors",
+    "https://playwright.dev/community/conference-videos",
+    "https://playwright.dev/community/feature-videos",
+    "https://playwright.dev/community/learn-videos",
+    "https://playwright.dev/community/live-streams",
+    "https://playwright.dev/community/mcp-videos",
+    "https://playwright.dev/community/release-videos",
+    "https://playwright.dev/community/welcome",
+    "https://playwright.dev/docs/accessibility-testing",
+    "https://playwright.dev/docs/actionability",
+    "https://playwright.dev/docs/api-testing",
+    "https://playwright.dev/docs/api/class-android",
+    "https://playwright.dev/docs/api/class-androiddevice",
+    "https://playwright.dev/docs/api/class-androidinput",
+    "https://playwright.dev/docs/api/class-androidsocket",
+    "https://playwright.dev/docs/api/class-androidwebview",
+    "https://playwright.dev/docs/api/class-apirequest",
+    "https://playwright.dev/docs/api/class-apirequestcontext",
+    "https://playwright.dev/docs/api/class-apiresponse",
+    "https://playwright.dev/docs/api/class-apiresponseassertions",
+    "https://playwright.dev/docs/api/class-browser",
+    "https://playwright.dev/docs/api/class-browsercontext",
+    "https://playwright.dev/docs/api/class-browserserver",
+    "https://playwright.dev/docs/api/class-browsertype",
+    "https://playwright.dev/docs/api/class-cdpsession",
+    "https://playwright.dev/docs/api/class-clock",
+    "https://playwright.dev/docs/api/class-consolemessage",
+    "https://playwright.dev/docs/api/class-coverage",
+    "https://playwright.dev/docs/api/class-credentials",
+    "https://playwright.dev/docs/api/class-debugger",
+    "https://playwright.dev/docs/api/class-dialog",
+    "https://playwright.dev/docs/api/class-disposable",
+    "https://playwright.dev/docs/api/class-download",
+    "https://playwright.dev/docs/api/class-electron",
+    "https://playwright.dev/docs/api/class-electronapplication",
+    "https://playwright.dev/docs/api/class-elementhandle",
+    "https://playwright.dev/docs/api/class-filechooser",
+    "https://playwright.dev/docs/api/class-fixtures",
+    "https://playwright.dev/docs/api/class-frame",
+    "https://playwright.dev/docs/api/class-framelocator",
+    "https://playwright.dev/docs/api/class-fullconfig",
+    "https://playwright.dev/docs/api/class-fullproject",
+    "https://playwright.dev/docs/api/class-genericassertions",
+    "https://playwright.dev/docs/api/class-jshandle",
+    "https://playwright.dev/docs/api/class-keyboard",
+    "https://playwright.dev/docs/api/class-location",
+    "https://playwright.dev/docs/api/class-locator",
+    "https://playwright.dev/docs/api/class-locatorassertions",
+    "https://playwright.dev/docs/api/class-logger",
+    "https://playwright.dev/docs/api/class-mouse",
+    "https://playwright.dev/docs/api/class-page",
+    "https://playwright.dev/docs/api/class-pageassertions",
+    "https://playwright.dev/docs/api/class-playwright",
+    "https://playwright.dev/docs/api/class-playwrightassertions",
+    "https://playwright.dev/docs/api/class-reporter",
+    "https://playwright.dev/docs/api/class-request",
+    "https://playwright.dev/docs/api/class-response",
+    "https://playwright.dev/docs/api/class-route",
+    "https://playwright.dev/docs/api/class-screencast",
+    "https://playwright.dev/docs/api/class-selectors",
+    "https://playwright.dev/docs/api/class-snapshotassertions",
+    "https://playwright.dev/docs/api/class-suite",
+    "https://playwright.dev/docs/api/class-test",
+    "https://playwright.dev/docs/api/class-testcase",
+    "https://playwright.dev/docs/api/class-testconfig",
+    "https://playwright.dev/docs/api/class-testerror",
+    "https://playwright.dev/docs/api/class-testinfo",
+    "https://playwright.dev/docs/api/class-testinfoerror",
+    "https://playwright.dev/docs/api/class-testoptions",
+    "https://playwright.dev/docs/api/class-testproject",
+    "https://playwright.dev/docs/api/class-testresult",
+    "https://playwright.dev/docs/api/class-testrun",
+    "https://playwright.dev/docs/api/class-teststep",
+    "https://playwright.dev/docs/api/class-teststepinfo",
+    "https://playwright.dev/docs/api/class-timeouterror",
+    "https://playwright.dev/docs/api/class-touchscreen",
+    "https://playwright.dev/docs/api/class-tracing",
+    "https://playwright.dev/docs/api/class-video",
+    "https://playwright.dev/docs/api/class-weberror",
+    "https://playwright.dev/docs/api/class-websocket",
+    "https://playwright.dev/docs/api/class-websocketroute",
+    "https://playwright.dev/docs/api/class-webstorage",
+    "https://playwright.dev/docs/api/class-worker",
+    "https://playwright.dev/docs/api/class-workerinfo",
+    "https://playwright.dev/docs/aria-snapshots",
+    "https://playwright.dev/docs/auth",
+    "https://playwright.dev/docs/best-practices",
+    "https://playwright.dev/docs/browser-contexts",
+    "https://playwright.dev/docs/browsers",
+    "https://playwright.dev/docs/canary-releases",
+    "https://playwright.dev/docs/chrome-extensions",
+    "https://playwright.dev/docs/ci",
+    "https://playwright.dev/docs/ci-intro",
+    "https://playwright.dev/docs/clock",
+    "https://playwright.dev/docs/codegen",
+    "https://playwright.dev/docs/codegen-intro",
+    "https://playwright.dev/docs/debug",
+    "https://playwright.dev/docs/dialogs",
+    "https://playwright.dev/docs/docker",
+    "https://playwright.dev/docs/downloads",
+    "https://playwright.dev/docs/emulation",
+    "https://playwright.dev/docs/evaluating",
+    "https://playwright.dev/docs/events",
+    "https://playwright.dev/docs/extensibility",
+    "https://playwright.dev/docs/frames",
+    "https://playwright.dev/docs/getting-started-cli",
+    "https://playwright.dev/docs/getting-started-mcp",
+    "https://playwright.dev/docs/getting-started-vscode",
+    "https://playwright.dev/docs/handles",
+    "https://playwright.dev/docs/input",
+    "https://playwright.dev/docs/intro",
+    "https://playwright.dev/docs/languages",
+    "https://playwright.dev/docs/library",
+    "https://playwright.dev/docs/locators",
+    "https://playwright.dev/docs/mock",
+    "https://playwright.dev/docs/mock-browser-apis",
+    "https://playwright.dev/docs/navigations",
+    "https://playwright.dev/docs/network",
+    "https://playwright.dev/docs/next/accessibility-testing",
+    "https://playwright.dev/docs/next/actionability",
+    "https://playwright.dev/docs/next/api-testing",
+    "https://playwright.dev/docs/next/api/class-android",
+    "https://playwright.dev/docs/next/api/class-androiddevice",
+    "https://playwright.dev/docs/next/api/class-androidinput",
+    "https://playwright.dev/docs/next/api/class-androidsocket",
+    "https://playwright.dev/docs/next/api/class-androidwebview",
+    "https://playwright.dev/docs/next/api/class-apirequest",
+    "https://playwright.dev/docs/next/api/class-apirequestcontext",
+    "https://playwright.dev/docs/next/api/class-apiresponse",
+    "https://playwright.dev/docs/next/api/class-apiresponseassertions",
+    "https://playwright.dev/docs/next/api/class-browser",
+    "https://playwright.dev/docs/next/api/class-browsercontext",
+    "https://playwright.dev/docs/next/api/class-browserserver",
+    "https://playwright.dev/docs/next/api/class-browsertype",
+    "https://playwright.dev/docs/next/api/class-by",
+    "https://playwright.dev/docs/next/api/class-cdpsession",
+    "https://playwright.dev/docs/next/api/class-clock",
+    "https://playwright.dev/docs/next/api/class-consolemessage",
+    "https://playwright.dev/docs/next/api/class-coverage",
+    "https://playwright.dev/docs/next/api/class-credentials",
+    "https://playwright.dev/docs/next/api/class-debugger",
+    "https://playwright.dev/docs/next/api/class-dialog",
+    "https://playwright.dev/docs/next/api/class-disposable",
+    "https://playwright.dev/docs/next/api/class-download",
+    "https://playwright.dev/docs/next/api/class-electron",
+    "https://playwright.dev/docs/next/api/class-electronapplication",
+    "https://playwright.dev/docs/next/api/class-elementhandle",
+    "https://playwright.dev/docs/next/api/class-filechooser",
+    "https://playwright.dev/docs/next/api/class-fixtures",
+    "https://playwright.dev/docs/next/api/class-frame",
+    "https://playwright.dev/docs/next/api/class-framelocator",
+    "https://playwright.dev/docs/next/api/class-fullconfig",
+    "https://playwright.dev/docs/next/api/class-fullproject",
+    "https://playwright.dev/docs/next/api/class-genericassertions",
+    "https://playwright.dev/docs/next/api/class-jshandle",
+    "https://playwright.dev/docs/next/api/class-keyboard",
+    "https://playwright.dev/docs/next/api/class-location",
+    "https://playwright.dev/docs/next/api/class-locator",
+    "https://playwright.dev/docs/next/api/class-locatorassertions",
+    "https://playwright.dev/docs/next/api/class-logger",
+    "https://playwright.dev/docs/next/api/class-mouse",
+    "https://playwright.dev/docs/next/api/class-page",
+    "https://playwright.dev/docs/next/api/class-pageassertions",
+    "https://playwright.dev/docs/next/api/class-playwright",
+    "https://playwright.dev/docs/next/api/class-playwrightassertions",
+    "https://playwright.dev/docs/next/api/class-reporter",
+    "https://playwright.dev/docs/next/api/class-request",
+    "https://playwright.dev/docs/next/api/class-response",
+    "https://playwright.dev/docs/next/api/class-route",
+    "https://playwright.dev/docs/next/api/class-screencast",
+    "https://playwright.dev/docs/next/api/class-selectors",
+    "https://playwright.dev/docs/next/api/class-snapshotassertions",
+    "https://playwright.dev/docs/next/api/class-suite",
+    "https://playwright.dev/docs/next/api/class-test",
+    "https://playwright.dev/docs/next/api/class-testcase",
+    "https://playwright.dev/docs/next/api/class-testconfig",
+    "https://playwright.dev/docs/next/api/class-testerror",
+    "https://playwright.dev/docs/next/api/class-testinfo",
+    "https://playwright.dev/docs/next/api/class-testinfoerror",
+    "https://playwright.dev/docs/next/api/class-testoptions",
+    "https://playwright.dev/docs/next/api/class-testproject",
+    "https://playwright.dev/docs/next/api/class-testresult",
+    "https://playwright.dev/docs/next/api/class-testrun",
+    "https://playwright.dev/docs/next/api/class-teststep",
+    "https://playwright.dev/docs/next/api/class-teststepinfo",
+    "https://playwright.dev/docs/next/api/class-timeouterror",
+    "https://playwright.dev/docs/next/api/class-touchscreen",
+    "https://playwright.dev/docs/next/api/class-tracing",
+    "https://playwright.dev/docs/next/api/class-video",
+    "https://playwright.dev/docs/next/api/class-weberror",
+    "https://playwright.dev/docs/next/api/class-websocket",
+    "https://playwright.dev/docs/next/api/class-websocketroute",
+    "https://playwright.dev/docs/next/api/class-webstorage",
+    "https://playwright.dev/docs/next/api/class-worker",
+    "https://playwright.dev/docs/next/api/class-workerinfo",
+    "https://playwright.dev/docs/next/aria-snapshots",
+    "https://playwright.dev/docs/next/auth",
+    "https://playwright.dev/docs/next/best-practices",
+    "https://playwright.dev/docs/next/browser-contexts",
+    "https://playwright.dev/docs/next/browsers",
+    "https://playwright.dev/docs/next/canary-releases",
+    "https://playwright.dev/docs/next/chrome-extensions",
+    "https://playwright.dev/docs/next/ci",
+    "https://playwright.dev/docs/next/ci-intro",
+    "https://playwright.dev/docs/next/clock",
+    "https://playwright.dev/docs/next/codegen",
+    "https://playwright.dev/docs/next/codegen-intro",
+    "https://playwright.dev/docs/next/debug",
+    "https://playwright.dev/docs/next/dialogs",
+    "https://playwright.dev/docs/next/docker",
+    "https://playwright.dev/docs/next/downloads",
+    "https://playwright.dev/docs/next/emulation",
+    "https://playwright.dev/docs/next/evaluating",
+    "https://playwright.dev/docs/next/events",
+    "https://playwright.dev/docs/next/extensibility",
+    "https://playwright.dev/docs/next/frames",
+    "https://playwright.dev/docs/next/getting-started-cli",
+    "https://playwright.dev/docs/next/getting-started-mcp",
+    "https://playwright.dev/docs/next/getting-started-vscode",
+    "https://playwright.dev/docs/next/handles",
+    "https://playwright.dev/docs/next/input",
+    "https://playwright.dev/docs/next/intro",
+    "https://playwright.dev/docs/next/languages",
+    "https://playwright.dev/docs/next/library",
+    "https://playwright.dev/docs/next/locators",
+    "https://playwright.dev/docs/next/mock",
+    "https://playwright.dev/docs/next/mock-browser-apis",
+    "https://playwright.dev/docs/next/navigations",
+    "https://playwright.dev/docs/next/network",
+    "https://playwright.dev/docs/next/other-locators",
+    "https://playwright.dev/docs/next/pages",
+    "https://playwright.dev/docs/next/pom",
+    "https://playwright.dev/docs/next/protractor",
+    "https://playwright.dev/docs/next/puppeteer",
+    "https://playwright.dev/docs/next/release-notes",
+    "https://playwright.dev/docs/next/running-tests",
+    "https://playwright.dev/docs/next/screenshots",
+    "https://playwright.dev/docs/next/selenium-grid",
+    "https://playwright.dev/docs/next/service-workers",
+    "https://playwright.dev/docs/next/test-agents",
+    "https://playwright.dev/docs/next/test-annotations",
+    "https://playwright.dev/docs/next/test-assertions",
+    "https://playwright.dev/docs/next/test-cli",
+    "https://playwright.dev/docs/next/test-components",
+    "https://playwright.dev/docs/next/test-configuration",
+    "https://playwright.dev/docs/next/test-fixtures",
+    "https://playwright.dev/docs/next/test-global-setup-teardown",
+    "https://playwright.dev/docs/next/test-parallel",
+    "https://playwright.dev/docs/next/test-parameterize",
+    "https://playwright.dev/docs/next/test-projects",
+    "https://playwright.dev/docs/next/test-reporters",
+    "https://playwright.dev/docs/next/test-retries",
+    "https://playwright.dev/docs/next/test-sharding",
+    "https://playwright.dev/docs/next/test-snapshots",
+    "https://playwright.dev/docs/next/test-timeouts",
+    "https://playwright.dev/docs/next/test-typescript",
+    "https://playwright.dev/docs/next/test-ui-mode",
+    "https://playwright.dev/docs/next/test-use-options",
+    "https://playwright.dev/docs/next/test-webserver",
+    "https://playwright.dev/docs/next/testing-library",
+    "https://playwright.dev/docs/next/touch-events",
+    "https://playwright.dev/docs/next/trace-viewer",
+    "https://playwright.dev/docs/next/trace-viewer-intro",
+    "https://playwright.dev/docs/next/videos",
+    "https://playwright.dev/docs/next/webview2",
+    "https://playwright.dev/docs/next/writing-tests",
+    "https://playwright.dev/docs/other-locators",
+    "https://playwright.dev/docs/pages",
+    "https://playwright.dev/docs/pom",
+    "https://playwright.dev/docs/protractor",
+    "https://playwright.dev/docs/puppeteer",
+    "https://playwright.dev/docs/release-notes",
+    "https://playwright.dev/docs/running-tests",
+    "https://playwright.dev/docs/screenshots",
+    "https://playwright.dev/docs/selenium-grid",
+    "https://playwright.dev/docs/service-workers",
+    "https://playwright.dev/docs/test-agents",
+    "https://playwright.dev/docs/test-annotations",
+    "https://playwright.dev/docs/test-assertions",
+    "https://playwright.dev/docs/test-cli",
+    "https://playwright.dev/docs/test-components",
+    "https://playwright.dev/docs/test-configuration",
+    "https://playwright.dev/docs/test-fixtures",
+    "https://playwright.dev/docs/test-global-setup-teardown",
+    "https://playwright.dev/docs/test-parallel",
+    "https://playwright.dev/docs/test-parameterize",
+    "https://playwright.dev/docs/test-projects",
+    "https://playwright.dev/docs/test-reporters",
+    "https://playwright.dev/docs/test-retries",
+    "https://playwright.dev/docs/test-sharding",
+    "https://playwright.dev/docs/test-snapshots",
+    "https://playwright.dev/docs/test-timeouts",
+    "https://playwright.dev/docs/test-typescript",
+    "https://playwright.dev/docs/test-ui-mode",
+    "https://playwright.dev/docs/test-use-options",
+    "https://playwright.dev/docs/test-webserver",
+    "https://playwright.dev/docs/testing-library",
+    "https://playwright.dev/docs/touch-events",
+    "https://playwright.dev/docs/trace-viewer",
+    "https://playwright.dev/docs/trace-viewer-intro",
+    "https://playwright.dev/docs/videos",
+    "https://playwright.dev/docs/webview2",
+    "https://playwright.dev/docs/writing-tests",
+    "https://playwright.dev/mcp/capabilities",
+    "https://playwright.dev/mcp/clients/claude-code",
+    "https://playwright.dev/mcp/clients/claude-desktop",
+    "https://playwright.dev/mcp/clients/cursor",
+    "https://playwright.dev/mcp/clients/other-clients",
+    "https://playwright.dev/mcp/clients/vscode",
+    "https://playwright.dev/mcp/clients/windsurf",
+    "https://playwright.dev/mcp/configuration/browser-extension",
+    "https://playwright.dev/mcp/configuration/options",
+    "https://playwright.dev/mcp/configuration/user-profile",
+    "https://playwright.dev/mcp/installation",
+    "https://playwright.dev/mcp/introduction",
+    "https://playwright.dev/mcp/snapshots",
+    "https://playwright.dev/mcp/tools/assertions",
+    "https://playwright.dev/mcp/tools/code-execution",
+    "https://playwright.dev/mcp/tools/console",
+    "https://playwright.dev/mcp/tools/dialogs",
+    "https://playwright.dev/mcp/tools/file-upload",
+    "https://playwright.dev/mcp/tools/forms",
+    "https://playwright.dev/mcp/tools/interaction",
+    "https://playwright.dev/mcp/tools/keyboard-mouse",
+    "https://playwright.dev/mcp/tools/navigation",
+    "https://playwright.dev/mcp/tools/network-mocking",
+    "https://playwright.dev/mcp/tools/pdf",
+    "https://playwright.dev/mcp/tools/screenshots",
+    "https://playwright.dev/mcp/tools/storage",
+    "https://playwright.dev/mcp/tools/tabs",
+    "https://playwright.dev/mcp/tools/tracing",
+    "https://playwright.dev/mcp/tools/video",
+    "https://playwright.dev/mcp/tools/waiting",
+    "https://playwright.dev/mcp/vision-mode",
+    "https://playwright.dev/search"
+  ],
+  "entries": [
+    {
+      "page": "https://playwright.dev/",
+      "sha256": "001fb8b8c7b1bc883266536dcb46e36c25435f862758c401bfe5e262cbcebd47",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/capabilities",
+      "sha256": "7cd2155eb4cbb647a09498ab951289a8e32d4ed5594cafe600c8bc03cd5cfaae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/attach",
+      "sha256": "9220c07b7dbf0670ac340ffb6406dc69618d455e7abe70c0c1c930d4faad7b3a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/console-eval",
+      "sha256": "87f887d2208852586c0e1d1cd6f5e87e6fedc40b97e4265e3f8ccabddb94d186",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/dialogs",
+      "sha256": "5eee4711a55ed699da2ffd7f054577651275e38bd42ac12d85639d5e9ee74122",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/interaction",
+      "sha256": "fe498a296db15419375ec75d4fd39031c4b6a86f959860880c915e5174fc99e0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/keyboard-mouse",
+      "sha256": "71e10eaa3826bf36c5944fd41b90087516d9f0fa99ad6e8d1fd2781aacf39abe",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/navigation",
+      "sha256": "2b7240963c88146d0d392759d2ef27973b24ddcc4e98ac4bea620165828ccbc6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/network-routing",
+      "sha256": "95ad6d5b7074046f147dff104f2125f972557a231853557b50b6e2bca03e3f8c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/screenshots-pdf",
+      "sha256": "3c3c13638d051e23e0ca3428b48b777ec07094a80e72d6164e4a38b0d28cdb91",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/storage",
+      "sha256": "42ad4fc6133839eeada6e028bb5aaf85d95be006584cc5282da226db64b788b7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/tabs",
+      "sha256": "4b06eed5e1e19180a8de53f1093dc227de3e261fd991f062c15a306c4690e6c1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/test-debugging",
+      "sha256": "b18df001bb9c09bbb91e085cad4ca130fb22afdbfd518872ad69442c0334a487",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/tracing",
+      "sha256": "ff655a0d5a2527c58c3b9a91a5ff4fe3942d241caafefd81aef27518816d7edc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/commands/video-recording",
+      "sha256": "303daed648f03cc747fc387f8fed202250f97cb675558aed161e69e383d84e64",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/configuration",
+      "sha256": "79cd90b1234f3b2844a0773035eb67c1ebf1e3cef492be787a511d2f3d175ea5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/installation",
+      "sha256": "6fb04663812205f1582bb8ae404a0f59043f1af502fa8d7543f847852eb49073",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/introduction",
+      "sha256": "0b384879a77683500f75e71aae6b9035480ae331a5140f66116620fc3f090a55",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/quick-start",
+      "sha256": "966fcfdff0d39220fc7462091b3a6ad1385ee1c990bc1fc3e777abc77822ac2c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/sessions",
+      "sha256": "1af5d787b1b1b91ba830e1cf18aa3c51768a1ffbbe60716cadaf480752a00fb1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/skills",
+      "sha256": "93e7ca1a6f99412c91047e29995a781af9217f2df3ff358f1c348a2b122a0911",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/snapshots",
+      "sha256": "3ead1dbde19afb3c17f0b49f320ed9621ee0be24eb648934318b1de1780bf06a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/agent-cli/vision-mode",
+      "sha256": "26183ff3351e79e20e7b54709b2ba68c7f2229796824a3965eba05ab4a8ab9f4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/ambassadors",
+      "sha256": "a520359095ff8a8e20a579b96dbfd67daef76221a869a874834915d3a98331eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/conference-videos",
+      "sha256": "ea571bd56f4013bbcbeaa986799c5e53bbabbfd5a847d34436bbe4f3704a8e13",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/feature-videos",
+      "sha256": "4fe17e3135e32a2c8b9280916cb1a927a862a8f16e695624c7f1a6056b558d58",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/learn-videos",
+      "sha256": "c3561f0a131a7d4e38f69484722adeb7882e5d7fa4805544b6394cd754fd9e09",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/live-streams",
+      "sha256": "e5da19474302d1192b9217f3eb5498cb26298fa8a28fc0834efbbb8c14601c3b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/mcp-videos",
+      "sha256": "e56e9d09f7ee2b53c220f55af6b2fe4195cac7b8ce1ef579d08b4ff42197be0b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/release-videos",
+      "sha256": "b0f89a227ab2da225da6c479ca4660ce99e866d98c189f3c690358311d95cfca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/community/welcome",
+      "sha256": "6d9a9e974b346c59e745287f2b8f9170ddaa774fe36afab7313efe9c1f9e62e8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/accessibility-testing",
+      "sha256": "4950c311cc08a6c2882234eb62c0ba231fae211c890a06611461c9e81e9997b3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/actionability",
+      "sha256": "19d78a594ba450c4b977f659c75529b7e0cf37c18363e8233e736cff750ab379",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api-testing",
+      "sha256": "b6da3561b3ca81120190b716d708a90d33908cc7bbabe7080695bf587f621d50",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-android",
+      "sha256": "2b2ad98fc3f543982e97cb8b1a828c3bfc42030363f89e3a6fd29e39ce14f29d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-androiddevice",
+      "sha256": "37152ff09b7b8886f3b2b20a106820f5ec9e0bffde297974c21d1445f260b3e5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-androidinput",
+      "sha256": "3181b75c66c80655c64b9fd6564640f1baa382a178426c61d84ef90f54c00f7c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-androidsocket",
+      "sha256": "7897258a4c03077bfcc4daadcb7462441689d6c9384b34e83ae9cd6e858217db",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-androidwebview",
+      "sha256": "e9613889600d566dfb762856a4fc3d379c6cd060cf43e883497f0ff4da9252a8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-apirequest",
+      "sha256": "b30991bec32c7bee55d38453b7528b6f2f650aa1e2b8744dc9416d38869c3e5c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-apirequestcontext",
+      "sha256": "12679ccb5526413b24fe4e06aea4616ec833359bcb12409c5e83007cc422da1d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-apiresponse",
+      "sha256": "04a1a9cfa21b30221bce340839a63b22c0ebbb132ce76a68b3a9c7cd613128cf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-apiresponseassertions",
+      "sha256": "1ee02e65788be9624d333abfd5bec64acca1bca27ecd6a0687ce8537138e9a8c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-browser",
+      "sha256": "fe478e36bd773d5d6754ddd6aecb4323d36f1f4e345b5acaae36297e18583efc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-browsercontext",
+      "sha256": "4754fece5c0a673d07377bc430dc64a370ceb3f88b4b4604250d9dd7d3b8f734",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-browserserver",
+      "sha256": "68b77dfb47063a6ea4ef57166806c8da20b309a4d3a5591e7c417f04f7c80cfe",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-browsertype",
+      "sha256": "13b825077bfab3ca6645c077e7e8d99d6270278b2852132cf02f2a9d600fdec3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-cdpsession",
+      "sha256": "17a905bf633213c8540be63cff8128fa504d1203342ba6ab12611c0516a34be0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-clock",
+      "sha256": "acdbd02bb96b63264eeed12febe9827439244c1724e91b0d8df658e4f8c89100",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-consolemessage",
+      "sha256": "316627e235ab850f7433561d11a4d400cb59298fde7c58121216ffac2718aa6d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-coverage",
+      "sha256": "c71a02b5f45f691f19f182e9559d1a1c5b64aa2b4a8b146a021906d1441f60a8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-credentials",
+      "sha256": "192e07fa9b9814d4f4083e7a69e9250beb39ba1878a5f3a68ddeaeb67ad5eaf4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-debugger",
+      "sha256": "28ad51ac356cdf420faea6e3cd60e0cbd8d03fb542599dbdd1dc42d8923ee501",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-dialog",
+      "sha256": "ef8d7cc186502f27b2277e0f2ea8da2a4bbb52d55521169df90d3def668df6bd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-disposable",
+      "sha256": "7d7319f9fd74db34131d2eadd65af7ace0c89372931d6307b2a9e9d6df5a3c13",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-download",
+      "sha256": "01c100efc136edc3895fd12b4e1738ecce4357d8d45a4054164febf208c6171f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-electron",
+      "sha256": "ce3c8e56bf2259e76e788b7e77c0feceb3aff8da89446c4fd3b7ea25df3e780d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-electronapplication",
+      "sha256": "f3440d04c11bbfef2b71cb260bf889f0b137714c4557440d02dc88df34c9d166",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-elementhandle",
+      "sha256": "55ac9645c428a35fac50d5e5bcec90d5a7f09cb4d98c0d9d0ff8ec997af16214",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-filechooser",
+      "sha256": "46650eb204b9993d050458d51c36ff2f161bb3498fc3de8633d1e482ff8b8231",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-fixtures",
+      "sha256": "e9d57a98d5c5cf12e9c07f9bec4f58e78f2b616e73b4861d4924fbcd634a7648",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-frame",
+      "sha256": "55943fb5292933fe157f2992a00532e8168e731a156ffde56343b9a0518295fb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-framelocator",
+      "sha256": "4151785b71c98ecb1304e575410108f6f576169d90277d073a415dac501b60e3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-fullconfig",
+      "sha256": "5e9a18e6f86c7487e34cfc2c6ca002b6377269d9a2e83bb24876ad10286a869c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-fullproject",
+      "sha256": "190dd6484e34d3f6c0bcc8e70601fbdeb1f6c78800444066a965962c6ad1cdb5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-genericassertions",
+      "sha256": "e65838b42132edd8be449611bac8af6e827835c4fd27658537c584e47ab77a1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-jshandle",
+      "sha256": "756aa102bafca5b02da3f2aa2f6a0f22cea6f33adc38d48e41c97376cd4cae6c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-keyboard",
+      "sha256": "caaf189325078aff07278da0fbc2bbed79487dc44a0a842d5555c92233618443",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-location",
+      "sha256": "98e14170483c7b14c5690c39bfdd016bcc5fb33bc73193e12b6151bf338fcbd2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-locator",
+      "sha256": "1353d1c90b6005df6c946bed63318411eade74fadfae1788a35739a4aff2833f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-locatorassertions",
+      "sha256": "0671044cec3cb17e33c036bde712cdffc78e9e20cc6729ea42f62aaa1d75c10d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-logger",
+      "sha256": "b267cba1cd62cb938561999afaf866fa0d99e5a3ccbd1d266cbf65bd28550256",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-mouse",
+      "sha256": "70b894c0126b1609e85180fc53d2793d5588303acf7a46a4bc6563be045dda3e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-page",
+      "sha256": "1f6796ff37d802aad643d2f2e7572a4974228fcf0fc59442ae48cb5278a28e95",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-pageassertions",
+      "sha256": "2f3804da2c2ca21f11ed9361feaf78409a28d4e77fd82c40baa52a7f05516995",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-playwright",
+      "sha256": "0068c0719cf7ead732dcbeef2973da8f686eb21293eacb971f1a7266e887a6ec",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-playwrightassertions",
+      "sha256": "a33094e2d335e74e63a563da951731c41cf7d0d8dea120e1e2a93050b062fd24",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-reporter",
+      "sha256": "2687d146d1e5b65e64fe828fb2fa8bd58ecb312cffb8b72f8eb5ac6af54e1db2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-request",
+      "sha256": "d1cd17f044c38c4835f6bc87207e62094fca5abdb7906abcd1502b320b7b3917",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-response",
+      "sha256": "9303616de815206ff9de2fb5edd21a5ea3898c014b3ce627e6f8e34f8927e5bd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-route",
+      "sha256": "231fb06783ac9dd071a31c300cb1718b5de5c460dbd25631e7a5c976cf24ab1c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-screencast",
+      "sha256": "cf1681e160fa0505f522e605a2b811b7bce3896fde70e378059feada4fb64683",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-selectors",
+      "sha256": "f32213d5688c239685da3e742948778a7e737ed2b4fee3025f531e1ef33331b9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-snapshotassertions",
+      "sha256": "49100b455415b0634c4efea9ac72cd5bbd62db2b3a9f9a8d17296a284349558b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-suite",
+      "sha256": "39f76207a76ee7c7870df3747bd7ff828f15fd9f03b28ecda77560bae13b6893",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-test",
+      "sha256": "5629d78d025fc8bd5b2b90c29a24c814d8f92ca617f84e5b0176319514d9ad72",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testcase",
+      "sha256": "8ff23d66dd4fa3eb09336d75a05deec80c03764a34dfc55e4675b6a30db4407d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testconfig",
+      "sha256": "12dbf822d4e32f4310a89dce2195fe48a6abb73a2d6406e102d8d9f8b0c35842",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testerror",
+      "sha256": "eec88296eec30dabfbb58ac5d6ff82fe6c05ce2a41a13534255fe4c071ad5bca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testinfo",
+      "sha256": "4055b3b6bb98c99ab1a86d185dabb7057ec528d118184a1b7cd733fdb1531c9a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testinfoerror",
+      "sha256": "913b9a61e17ce8f90cdc1bd55e61e8e865fa307cc48f89f0d6340249e9d72a38",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testoptions",
+      "sha256": "df0953b95b27ca23ecf1e3c599cb5aaf8256d8a5e12bb1a089e5822139770019",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testproject",
+      "sha256": "2ecc4ac10c2db1311f8a734f5d5cf508f4756fe731a59e257f08e36e4a89111b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testresult",
+      "sha256": "79d5a359383b9b47dc2a5a7837529aef4af803caeef11c7174e0c6ad62a13778",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-testrun",
+      "sha256": "5c97fef6f9984f8447ea32920fa1a93e9cfc4443467310a34ca8990a09c64b63",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-teststep",
+      "sha256": "3233655c393de26d0eb1a1fae8feb28a1420d022cf01e8ff229d3d42bfb59978",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-teststepinfo",
+      "sha256": "b87c5b2c294b67b3aefac6a5788874c9a7d7b38a4b866239a3e5e1c6231cae2c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-timeouterror",
+      "sha256": "e799de2fe3b2aad40f236bb221ab5aedaa86c36fc67b86cf893a41c160d6ccb4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-touchscreen",
+      "sha256": "29aea2280897349162145b19d1d907166c0d15640da3ee73780aaa0816cde879",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-tracing",
+      "sha256": "498f3531b97952d42bf11b218daffb83c2d1dc03b74124599abda15ab0add9bc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-video",
+      "sha256": "be1e9a945cfa409bd0117388d3062024c5ba9af1429174a29c5e88d12215a7d4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-weberror",
+      "sha256": "2e6b1d60ec39e8a531932ae2f5e6d0665c91d674737c1466b6c2e84ae2d6aa62",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-websocket",
+      "sha256": "472e4ebc5ebd12203dc39e3169c1342ef0bc52014278a40b7ae31e1efe40e3d5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-websocketroute",
+      "sha256": "3bbfed477a02b493a0ef1aefa1736a7797c180be75d9b2c86dd5276a4a780334",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-webstorage",
+      "sha256": "ef3c192895fb6373eb454c6e7b48967af9d5c1b2dd6b79cd9083e8edddd82900",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-worker",
+      "sha256": "8167c2baea322e7d65aafe65d6202e113bef59115b82ed4b9a781d9127498757",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/api/class-workerinfo",
+      "sha256": "fbf9c698297f6b52e3b81e31f07dcb929c2226db5050b8fb1325b1a92ddd6e00",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/aria-snapshots",
+      "sha256": "4233366bb6876ef4725188f6857556ee24946261c94e0c790293ca8732f5a61a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/auth",
+      "sha256": "6fff1b147e4029e7b7953fdcb3b0968447146a37b3cfd8df072f9a1b474f48aa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/best-practices",
+      "sha256": "39e60d7e4491b416ac4ccf666c8cfa7c7362ff63c4cc4234b9861a3e0ec0b09e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/browser-contexts",
+      "sha256": "deeb1651e5945c8cbbfb0609ca4a1c33b597370269e592b5d65c6ce070e70078",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/browsers",
+      "sha256": "6e0efa1560dcda90ee058505b93b835b3c26010e4e89bf64b9d6b380c51837b4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/canary-releases",
+      "sha256": "9644abc794bd2959b6ecbc75668def63acb083b6fbd6da34a16c319dfa6c805d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/chrome-extensions",
+      "sha256": "0f56fa524f34b3345167bd19b08a1cf7af200457f7f2b163c3517d95cd08cf47",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/ci",
+      "sha256": "b712aff78de6901a588d0e23b5ecf611af3e00fde0c45e4dd60a1869195d598f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/ci-intro",
+      "sha256": "2768f6b73fedee2ab7297f7a377901d61f1445e4ab1a084bc1eb6ac348403228",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/clock",
+      "sha256": "57197672fdbbf283ed4f0e7148e56e98a5623827f384d12640a4047328838f99",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/codegen",
+      "sha256": "7bba486a7d9fb3b074c3a65ecdf7db2ec110f164323193c3fd0cd595c8ad19a0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/codegen-intro",
+      "sha256": "8e3c8e0b37915b9ca1b703bc5360325376037e4df4d02544db4e5c9974fbff5b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/debug",
+      "sha256": "d52d3d3a3eb7c244cacbda97664f84f13bb3ec1aec5afa0126271a04b9aaa387",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/dialogs",
+      "sha256": "8ad69de23695e23d3a84310735cf66bf1db0b8e88f873f278426398e6fbdc1f8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/docker",
+      "sha256": "d2e94a6a909d7a747e52a5764b859b2ee87dd39265ad48e3eee23cfcd81162ab",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/downloads",
+      "sha256": "faca1af8b49420567891ba0ece132d4d7c003bb96b8d17e80fa6b60720724af3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/emulation",
+      "sha256": "4c87dbe2578cfca2194cc7ca7a30afcb78ba2899edc10373943c10d3d0845581",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/evaluating",
+      "sha256": "ed1a7916561b2a237e67e2d12fe180900a6fc3b9dd166cbd44e9160b3514b317",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/events",
+      "sha256": "1de0d4f61080dba87d7b529807f847d1f504c8486696283b210f6cfa51635294",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/extensibility",
+      "sha256": "71053a5ea19133908869fa551899830b6b804633cb997e3fc57f368923d8e2b5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/frames",
+      "sha256": "2fb72bc4009148fb72b2bafb9502ca1673f4f4cd8a06489155b9357123c1c1f8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/getting-started-cli",
+      "sha256": "88ee93c1f377af66cee2ba16ae6b5f5fefcbc03fa2cf56769edb74315f2bcf91",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/getting-started-mcp",
+      "sha256": "726d8e513dab4ffbd9c24b9ce6cd0fcc81f3d42905c1072b29c449de0a0c943e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/getting-started-vscode",
+      "sha256": "9d5ff20207b65b1c081fdd1fb5c955c5aaa0ba3c83e0a4f717add0345f5e7c83",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/handles",
+      "sha256": "2de9268abc8d7e7b7fc69700f2d1afe2778fa34ce3e5bf71e26094a784de709f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/input",
+      "sha256": "21f091134b220740eed8f5d7bdbe39e389242379cf413cb74b1fbad2e1e98527",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/intro",
+      "sha256": "cf4f3816bf01055ad3135b6afa8883e19062260709c2e3d41d325db2bd5280eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/languages",
+      "sha256": "595f46ae33989c981cfdcc3bf52ec0d0ff631e6e7c8d463f48baa920572c49fb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/library",
+      "sha256": "b44f7c78beeb458834ace196adca9ce1001d34872c5ef41b72841143d2e480ce",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/locators",
+      "sha256": "f60333e2ec8bf6ba0bea8e540c09ee5a00529a8d7be01325e4ea60d97fbb9a44",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/mock",
+      "sha256": "69dfc5cf9ad586f490be790f05dedd2cc0301c64899c665de61e2eb1e6f63500",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/mock-browser-apis",
+      "sha256": "9038611d4af2e718d1b02c6dd49591ca62957ba575f63783c7566e25177678b1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/navigations",
+      "sha256": "d28abaab46a8b7ac59374bf711d74927c0f55f60be32951db46304cfcb41b220",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/network",
+      "sha256": "746a5f7c1bc1e6239ba3818bc029a09f8927e3b21503df77081a8f2039aa2dc5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/accessibility-testing",
+      "sha256": "9f40f4c28ff93bb5926ae5b8f92f7c97e26f94b90cfd5bc92b626460f3e49564",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/actionability",
+      "sha256": "a59c98b1e4e3d0c8eac6241a1a996557168358631e48d2e8070710a2abbaf23b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api-testing",
+      "sha256": "f8df4b8fe9ac584df9325d6ffc3769d61418eb9d3f8e2038b10f80844d2fde10",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-android",
+      "sha256": "bbfd71081a14f889efc31f1045bb582624a80f964495e8568d16f2f0950d3eb1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-androiddevice",
+      "sha256": "f9f871d7b71b525fdf7a51b93d9c5bcf5dc60bfe7df29a7b939c2e3217c0d7c3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-androidinput",
+      "sha256": "1314df493e6a57ff3ed0d0b47c844e0a2e0221b526d1cb62ade4122a75668af3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-androidsocket",
+      "sha256": "94cd1c4c5e60c3516dd79c748d14b2e4e7476cf8cc1bd1cdc7c1dcf50d8ccdf3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-androidwebview",
+      "sha256": "ac455c90f4f2b471a7be3697676e806c3ea64946357ecfb4c32b31bc3b160740",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-apirequest",
+      "sha256": "5aeb1f5be3e6172f24e7796cdee31283c80e36ea498d6ac5a8b2e7e4bf1b28fe",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-apirequestcontext",
+      "sha256": "ae81882fd4647a7ce15a437b686b9dd61bae54ec844946fff8f65905c2186f02",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-apiresponse",
+      "sha256": "a5d9f6e453f3a6e9722f3c595db2a90c69f7eedc2163d52d781184f02fc84a03",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-apiresponseassertions",
+      "sha256": "d276502cbbaf8e98e76b63b0129bf4044557f1ec18b622a48f8cc541f8679262",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-browser",
+      "sha256": "3d9ee96e378df5f73835d02d45513cd195a06eacb5b9c7adc8e328cf65ef925c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-browsercontext",
+      "sha256": "cb27e34cfcecd6bdf8fa8a2f0d0233118c8c25868bd9726078bb5af260b14fdc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-browserserver",
+      "sha256": "0d0983b4b93b084c8eb80a61b21c1ee4f6336fc53cf014650be1a98edced2329",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-browsertype",
+      "sha256": "0ce2c1a16dd8eddcd3cb1ef51883ecdac8f95dc70cff216e7710412e38a6a0ba",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-by",
+      "sha256": "1b051b335c9802926dcec3076b1b25b84406fe5e7b966956ad4a3633eaf0e053",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-cdpsession",
+      "sha256": "fb78f6b0689f36fe0c543f939e1e4c56beb2303a9e59ac7d1e61dd6f16f551f8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-clock",
+      "sha256": "a2aa7125aa7591da974b7094c0d5939d9f2c5ba01b34feed41a446f936475d32",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-consolemessage",
+      "sha256": "a17b64b6affa9f773a7530342f65b7bcae9afe5fc17ee0578b6d15c8e5131586",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-coverage",
+      "sha256": "a10b1df416157ea7bc9349ed99d875fdbb2348e9e1ee79d12e220fbf0cbf330a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-credentials",
+      "sha256": "5345b06350e3e89acfc4249a60416f3bb83ec0ff67edfcd11faf29d8157991eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-debugger",
+      "sha256": "6438247211bfb5074fdd1fe69d68ae9d5e6c83b7562b9643b3e0d34568b10653",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-dialog",
+      "sha256": "91cfd6d06500eb3b211c4cdae5eb4d3ebdba7b649a42e9299bf370837ec7a68c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-disposable",
+      "sha256": "f8ddaaccf6b53be0469a30a0b98a8a2d12094ebf46b361d916c84efa71aabb61",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-download",
+      "sha256": "3ab2c73c9eb719fcb211f1fae76a78a7fc537a481e2897b4a4931151cf888f79",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-electron",
+      "sha256": "27ac8ff67821989d881c8792489c26b4707fbde970d317d0d84b649a43fb272c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-electronapplication",
+      "sha256": "9d502b564386c291860762da15eabce9e8a29762c09a69775725be537ccb26bd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-elementhandle",
+      "sha256": "f82c7b7ec54b88f29651664a9418cdb154e2bdf69a41d703d5a3b1d98de32e50",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-filechooser",
+      "sha256": "3f218bd2d09a7c685764f8c76b1a30c9be077f9a2740f719541e43ab383d5792",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-fixtures",
+      "sha256": "1ec41983630f72e3afa30401c67384a179b5c5727854ca9c1d420a6406ddb901",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-frame",
+      "sha256": "3ed21d827f28a6c3d484a4747c31b52049a318dc941e0824d0144223b6edf5d8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-framelocator",
+      "sha256": "64ce112f8f523dc6b11cc6b14a573ddc62fdb12e8135b2d4ea1253a39b1628b7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-fullconfig",
+      "sha256": "093e15eac4d4edaf7b5764932a177c064334ac79b4a702f1caa64e68c3d25896",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-fullproject",
+      "sha256": "54aaf77c29653d3b0d27af96e6fbbbef31061cd95cfa1f421b45cb64de70bf86",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-genericassertions",
+      "sha256": "9ac432af617f22b145d17316278493686e4acabbd2b9cfb67845a20b2481b598",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-jshandle",
+      "sha256": "f5c9dd7e60a8c1377235085e55affdb902d7407fa438f8583e69b2bda44a6130",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-keyboard",
+      "sha256": "f19c346beb607d279b70782b39c6056ca566aca70fc69ef2cc1c96c0dce34d76",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-location",
+      "sha256": "f407642faa190a836ac94a8c831c6ad2ce7422f55b065aac961b4970618f6996",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-locator",
+      "sha256": "28e7f62c1dec3d82efa4f3dad79f5bc55ed905389de6c4208b96881176aad102",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-locatorassertions",
+      "sha256": "6f81626da0141c5ccd86bd8738aef0b04203bd6698be91f2a4647f583e4b07be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-logger",
+      "sha256": "a6d2196c3429b7bbf48cb146c222c683ca0e47795440df0392770d636e9a8e8d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-mouse",
+      "sha256": "ddaee2594867781db6d25157928eae6488d042214a5b8c0766005feb25a95bb0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-page",
+      "sha256": "1b299a22d61afc47509d22d4f39b0525c981c922c950618abf93b583c7b4499d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-pageassertions",
+      "sha256": "4988fa946dfd37e2092b204992730c603e7bf03b9e8bac7e17b145befaa89fde",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-playwright",
+      "sha256": "c7e105461eb4eefa31ee5cf65a89b0ac0874057e2a1f923ccfbb9d467bf91887",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-playwrightassertions",
+      "sha256": "bde0278ff21d64b0132f9c31d11030cd28d4a058dec3053d3d137be49b209457",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-reporter",
+      "sha256": "3172b168737d700f00988a980b14b13c3de6834346c0b749e1344f076371658a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-request",
+      "sha256": "5182317f654cd3f85645002d5358ad34e543ab9b6d3b9063e91646439ef5c626",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-response",
+      "sha256": "ea972664be1ecaac03f289a26378f591e6839a2c19a4b476a6105c749b947db0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-route",
+      "sha256": "c1907af1d0ae2a0b169fb4132a2ce7263d3c1ce460ee52a6fd2fac59c1410e59",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-screencast",
+      "sha256": "91c3536eea75d4bbf6061701b43f9b2af18ac534b0fb9edc4212483e488961db",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-selectors",
+      "sha256": "996b623ac19e4f4673e92f8ab267098473f556a90fa25ee0075a3f1ec9b67ce9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-snapshotassertions",
+      "sha256": "2038c3629f85c53142fac328c0a634f630cc03cef33ef93a43fb4a0be7fe0e7c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-suite",
+      "sha256": "1a4dcab9ead69b492d74e8922010e354a6b0a053774fbde44b4c8a0cf39f418b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-test",
+      "sha256": "e81f5790edbcfa5563f2a7b4390a1b9c864604b8a30b3a65bbde04627706a55f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testcase",
+      "sha256": "7ce75706e786936ecc72602394623ddac3b07b58f9ec87b52798169e47af6f5e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testconfig",
+      "sha256": "15dbfe0ca4ca5474eb2c29a72244594d89e475654787bd60dcce161c0ae071c8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testerror",
+      "sha256": "e2253630740c2fd884610618526d1dea166fd7eb5e7401f9d468e6e9eb1e77af",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testinfo",
+      "sha256": "dd4d2fbe9a81a9157cff6622f28c1c0bd6cd6baf9544eeeb0e1408e77b7ea83c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testinfoerror",
+      "sha256": "b963ba3f8a72bb189306fc414c578f27a50fca299c66e656285c69fdfa1907dc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testoptions",
+      "sha256": "e9f67333eea1caa4c4724bb68decb986c9a3e5cd2a8d9487ad1eadf182401f3c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testproject",
+      "sha256": "d976488a37a119044d7325118f8e672d36306f85e9c66ce01bc79f4b46ba27f1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testresult",
+      "sha256": "97d27c8d663fc5884f8985cd0ef84960bc2eb2af60a2b5aaee16dd73b0b1fd30",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-testrun",
+      "sha256": "e71b25f99e1d9172705ec2af75c6354b171bd97e5d6ff3b9fe05d9416dfb70e6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-teststep",
+      "sha256": "41899edb0c17bdbc9161909a77603b9184fbd40a423956fd3bea71d93f7697f0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-teststepinfo",
+      "sha256": "c5cb8b82bd7461d7d4910564f0610fd88103321928dea93642bf22cf6ff1248b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-timeouterror",
+      "sha256": "54e6dd15e81186a28e80d263795a04fc2990935d2474047ed96b53eb288497c5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-touchscreen",
+      "sha256": "3a87dd5fe57f4601c798b2144d7d9630be7e6a144695a14d862472838bef223c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-tracing",
+      "sha256": "efbbfee1cdeb644588794fa49e00e4a4e73cde59b9af7604f859926bf4d5bb0d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-video",
+      "sha256": "07021ef1fc46d1626d2a1bc8d7dbd972c90478fd4044e3e9208c5f745d568b9a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-weberror",
+      "sha256": "cbbf16af5b387ba84e5b1b00fbd9703a0dbe722663d339500958f1b739845490",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-websocket",
+      "sha256": "116f9ace557469e3cb5f9086048176f3f03cb23ba0941b9d56da0312cfa8a7d9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-websocketroute",
+      "sha256": "23e6b71baff0820c1c6e29d06c1d4da4ef0fa740cdab288348c9d0719c46d28d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-webstorage",
+      "sha256": "a65c27467fabd1672b347fabf3f5da5c4c015cb443c8db2699f5c1ff8e3fe310",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-worker",
+      "sha256": "b9b5b31d5e7b519c8acd69c136c03c3deb879eb236b35394b4cf9e3ae2141272",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/api/class-workerinfo",
+      "sha256": "e2f7006aa9565f20526e1c5e19179430c6a255484b5357877fd28f61e2a92337",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/aria-snapshots",
+      "sha256": "cbf7eaf49c1074a445e01097048c851914993c1df265acc510d1be1297043e59",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/auth",
+      "sha256": "da971b0acaeda0b50b806fac59dbf762e53947fa3feead9dce1a02fafa08a634",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/best-practices",
+      "sha256": "e332dd1e58699e7e30056de94fc5f07204b81822f01696c014d4fdb27cf1cdd9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/browser-contexts",
+      "sha256": "ba8b9af0513e7bb1216108b3e25e1eac59915da6cc1edf448ba49b31e6a4694a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/browsers",
+      "sha256": "f0618a09f71d820d33467174a04adf41a9184a53ce91fffc6832ad5a6b139910",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/canary-releases",
+      "sha256": "a5ed47d3731515140830507bd97c4b2dea2c8b9e0929d67df4324cb2bec723c5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/chrome-extensions",
+      "sha256": "d62143b814eb8b3212042034189b65aa9266a4b5b8b72fdf20e7269f000269c9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/ci",
+      "sha256": "c693c38fec6194c8f084266bcb02ab93aaff116c937efdd221bf96a86f489ce0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/ci-intro",
+      "sha256": "cdc9c52c968bd7281bd48f972002e22531b33788c3298e20dc3c7bfdc726a793",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/clock",
+      "sha256": "291d99eb842646d808e229d9e7dc8f0bf866a8fefb0096d5e6bf54cb528ca79a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/codegen",
+      "sha256": "f504f94395eec47b7212d9781539a5dc9e78b412d8d35a3282fe202ac04c1a23",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/codegen-intro",
+      "sha256": "07b2c883c2a4d8d88007d3278a9e40aa6e392e163d878c5fa621896a074c9b32",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/debug",
+      "sha256": "00a3d6eea8fd6cb3475c75e98af53f3df5737a4800447d359861402a7a6b4986",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/dialogs",
+      "sha256": "2911d9d2ce225d70e4ec309906b48c4cfd718be06516a0eac64d96817901c8c4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/docker",
+      "sha256": "d4a615292cb3d9561308c489f9acd8e72ecafbd88095ee13b230acb65e6ff081",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/downloads",
+      "sha256": "c95658003456bbde5b1bc681ef2aa0e5fdf4205906106e532f5ab3174627c9f2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/emulation",
+      "sha256": "4040a870710ca5f5e5c228a4e783f8a2dbc8b69ea5066497074f3986b99b837e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/evaluating",
+      "sha256": "c1771189f69729952778b5eba85d4f88f1f2bd7e13dedcd4e38dedb0967890ec",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/events",
+      "sha256": "68863403ce1dd5853f5088a0623a981d004cde2e144dacba576654e1d4052e60",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/extensibility",
+      "sha256": "30bf079fbbba169fb927a3e87fa3690c7fea8632875846cf19a240d261b151a3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/frames",
+      "sha256": "6446bac97f896b1c6e44b3c13056b3ca384603bc4cb4c8215935039f5c0ceaaf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/getting-started-cli",
+      "sha256": "a68831491e2cb32f991840304ae62b60ab83edd48913236aa99da04e31c6d446",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/getting-started-mcp",
+      "sha256": "552297174d1cb5498ce06625c5557693010706b6d82574bbde9ee17700f9724a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/getting-started-vscode",
+      "sha256": "4a254d8757070628fd90e9e54abf64c787a1fcd952e069e4e14868556cafc34a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/handles",
+      "sha256": "56b2b94398ec6846ee3b2146d544f036bea4067705f3d400c2c0709ba1638c83",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/input",
+      "sha256": "514aa6ca74b72b7a4183fff14c7e145be805d97ddbbc089cd987c8ccb490162e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/intro",
+      "sha256": "653fa74b7b5af907a63190b5a24fb462bf45f6e6ff673a96cd1cc51edb7f3893",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/languages",
+      "sha256": "f3a04cc945d1c8caaeae0c4e9f87109fa9d29efc0c81088664ad15868cad17a7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/library",
+      "sha256": "cd5d4d98725a81dcb90b3e33949ed60d1ade4bc3d5b8ded4878a8a2875c886c2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/locators",
+      "sha256": "51104b1eebf7219c2c8b58eb0abec8e6a6e6e68406ccefb562315f7ed6dfe474",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/mock",
+      "sha256": "8f69ba7680fa7d9257b62b410281e42da6e845c5d760a1ab94d49ab4b3b25410",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/mock-browser-apis",
+      "sha256": "d2eb6a410eb041975f3033e5781f4d8396fe5f9e145394a3a77bfe1a5705fe75",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/navigations",
+      "sha256": "2ab65991004d3b2d92df9af6002c8d0f3cecb971fb6519a9b54f704a269e9a91",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/network",
+      "sha256": "d7c2fd44307b1f059368b5d8e05a5a0a28011851e3ce0434fc6926f29f7dc962",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/other-locators",
+      "sha256": "5ce1951e36c14f8893e0426614d6715f04e1ab84ebc538ca53fc78a55a7a98ef",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/pages",
+      "sha256": "a4be2a85dccc8641b0084e72a3909f44f3992d1b7511ebb162ede35ceac0678e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/pom",
+      "sha256": "4fe372aac5c609f69f121b3d70847cb93647a5d254e1697c9aadcb679c5ddb83",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/protractor",
+      "sha256": "61e44d95747e1dbfa9f4620b495dc61b0243c2f1dc11ace3967f8f82703d0be6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/puppeteer",
+      "sha256": "3adda429b6badbb0a4b501b417340cfb0c4a4264f646109ea66ce57f8b09ef5a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/release-notes",
+      "sha256": "bf6a75d4e2991266ec5d08f1b4e96d04f41f82e4620d046c7cec4a92ec46eb51",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/running-tests",
+      "sha256": "86957b77921e26daf88af01c324cc85caa3b6b943d7f2ea945216d4cb6280b85",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/screenshots",
+      "sha256": "ebf318ab3321f96dde85650c0ceb57cf668187a1350824d6e90fbdcb904be6c9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/selenium-grid",
+      "sha256": "6cfc2e42d57a293237c6a53831f94d27a0db93fbc573418b0dd60613d4d5d65c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/service-workers",
+      "sha256": "c28595e52d357161cebe04b715b2214a36857120d10a22ad308941c91fbb7e2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-agents",
+      "sha256": "119ec417628ae0357616f0055bfb30babbee734c823b3d766e831df6e5d906a3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-annotations",
+      "sha256": "5b581545024a94468c33ea900a9b4c9b4664d0f9ed360ffe0e956d6c2faabcf5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-assertions",
+      "sha256": "c395f7c639f51b026204279e4465a147898c7791b24ab14711b2b3c3087aff88",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-cli",
+      "sha256": "4aa5e595a2686776ff7b373bf43c1c069bd0268aef2478fa18a664522b7dca03",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-components",
+      "sha256": "a704ebc7ed311987d911cb9a25816a68148178558b59c657a61b89c85dd33824",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-configuration",
+      "sha256": "fff780273f19462fdf23967f5c75fba5a7deb1d1ada3b656e70051dbabdded33",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-fixtures",
+      "sha256": "45ad493173984ad9a606209977f1491f33e78a734dedc69e5b045b91dcf2edef",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-global-setup-teardown",
+      "sha256": "fce465cc18740c0cf338c1fa1d99cebec739f81bacf6758665f876c1abcb6b24",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-parallel",
+      "sha256": "ac8b997c5f3308f6a92fddc9816c8e4688a1e451b41676aaf2130f3a45f148de",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-parameterize",
+      "sha256": "b8471a215b75a6ccde9931d3b26e277e65987e3492bd7df4a066ed5ec26aada8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-projects",
+      "sha256": "0b3e6d21309ad3fd9db628a57015aea4c2d8bdebd2a108e356084b3c679ccfca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-reporters",
+      "sha256": "22f79b462ce4dbc8862d983db8a3e7185dcdfafdfa988aeee8f39fed35ed09a3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-retries",
+      "sha256": "bdb80d5917ebac58568f3a36b30e86e8b9cdff38ca422e0571b23f6bfe4d91dd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-sharding",
+      "sha256": "223129defd5bea07e14ac293647b64d9fa95e80fe1ccf3d2a3655fc2c82aee03",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-snapshots",
+      "sha256": "aadea98fb471971ba5311ba247172d4056f0d30bb07c3786b35fbc7fc1d6f5d3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-timeouts",
+      "sha256": "eb43e67608bb752aa8c2913840dc141bd8b81447677450f93125f7d0c804e71d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-typescript",
+      "sha256": "23fcbdbb27aa2c6ab6a9c5e4159de426a945f72b225b941c0c016e380b49b819",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-ui-mode",
+      "sha256": "0179fa5e7669997082fb1306bcb0caf6d0954a020f64ee5dfecaf2690fd6518d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-use-options",
+      "sha256": "bfbf9756166713410a8634988cdde80382b6d5789c8a8a5b72aee0a2ec08dc25",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/test-webserver",
+      "sha256": "ce097e9ec822d9ba0376555676b73832e3b4082f1216665f702ad5407d028a61",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/testing-library",
+      "sha256": "e4c6355e92890196be675dbc4a2a3473db3d14a3b23e07d1f44b3b05e2a07f2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/touch-events",
+      "sha256": "220d671593f350d2fa6afa0fec5a4d5c03c80b90b0f31c4939c39eb3461a1d43",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/trace-viewer",
+      "sha256": "c4233f8edbc7a3058271ce460bab552256f12057b21f7b79e93522c2014d91eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/trace-viewer-intro",
+      "sha256": "c2cbd50e6fe534a6dda2bb713888f37a627b04ab56b108c83ef2e659e6ce66db",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/videos",
+      "sha256": "432e97b7eff78f0b3c928b9eb6eb615a25125322e0c96ea0a16b292534faadb2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/webview2",
+      "sha256": "04a9be71d430d527a591a66a1eabe0a5d9cd107c408cc971e621b1e5e68f8886",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/next/writing-tests",
+      "sha256": "f820a58d767aa2dbfd455538faccec7f8865fc660e285e83a73b2969692280aa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/other-locators",
+      "sha256": "b1e3084fc434ad5353a0823d38d466ad3157f4002a52f62e3a0d4eb2fbfc59f5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/pages",
+      "sha256": "18538299be5901cc84aca80c6156d25fdfc9028bf2856921b6c3f9119c205d41",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/pom",
+      "sha256": "73d0de91bdfc571f58003d35c788cb912fa38dbebf02dac98deb7af8a37e9d92",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/protractor",
+      "sha256": "78f437c6d9e5786f27c8556836dd55c605a31b3d3e19f96d47ad9c1728e94182",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/puppeteer",
+      "sha256": "51a911a9a916ea051aa8f62601efd8e4c0f34f9f60f0e51f1eb88933e50a3179",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/release-notes",
+      "sha256": "b8a9caddadbf9966e89f22566c9aa4986d5376a5b67fec3618f498ea86d94589",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/running-tests",
+      "sha256": "0000ccffa0bb6d0a89fcb1cfbcecb64e9ab89f3727e3b317a37c6b6274353b2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/screenshots",
+      "sha256": "ee9d60180e7a18f560bc6282cdf89aa92bf9c7d988bc824242a1a2029c580263",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/selenium-grid",
+      "sha256": "0e64b57dd6d3258d92452d8bf6e165c7b7f34d01180a4feceb685aaebc883abb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/service-workers",
+      "sha256": "14cb1ec048b80c657dd8baccdc699471c51b41c4be4fd3a939f1ed31e90cc13b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-agents",
+      "sha256": "d57d129966c0220fa237dfb18565268e0d3739bc6b9ae7b975c4302190d94370",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-annotations",
+      "sha256": "7b5d842612db68552a0941a5f318291d440f0d85e2fd3ee5e36d003006c535ca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-assertions",
+      "sha256": "1b02bc05352cb4010a104567075f2413f0c286b6fccfd31b8758ffaec8cc9faf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-cli",
+      "sha256": "d5ab6c18d095824f9e6f546edafb6da07271064da61d3d19f89e7bccf239acaa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-components",
+      "sha256": "83f865933d75c62dcf45aa84947cd038ab63c37d39a4f8403644404f9d30c164",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-configuration",
+      "sha256": "5c7e78ca087bc1d579f01ed5c4ef6838d3ba3ba9f4956416e20e925ae050d48e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-fixtures",
+      "sha256": "837dc32c3cff7e0acfcc3371acb9cbaafd28fa74c75a89e1e103e69de9bb099f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-global-setup-teardown",
+      "sha256": "800cd05f146b11f63b4cdda3888b8d181d78781e82dfd98fa00cdd56cee2cdcb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-parallel",
+      "sha256": "46d9de74ce7e5b9e11e3e7ddc0ba7b99417a7c8dd072f650541afcf1dd11142e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-parameterize",
+      "sha256": "a9f87dbfd2a437cd2ce33213e084e6ae8229d3a0818e64e7e9086bf5bf67ea03",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-projects",
+      "sha256": "6ac921df21b4e9108c7428ef39f616125d2c0e2d8f265052301b18ada5a9f27b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-reporters",
+      "sha256": "d27051cd3b65add283580a61efc622698fce3593e66dafe5bc92ed976ab3965c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-retries",
+      "sha256": "91857ddeaf5ee6202f52191644f9514c0ba52bbce58a71df0e9e117d36431ef3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-sharding",
+      "sha256": "3bdd3cb35ee4828978f74084dcd0e9a48a4a1e2306d9b49c0b5d1069310d4f26",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-snapshots",
+      "sha256": "5bf55e60f444b1a0994551fbaa12c930115a597c3bfeaa244e7a7bb0380c6cef",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-timeouts",
+      "sha256": "332cf78ed86336ea65bff693c9c353aaf971ce0c5af09578621a5474bfbf43d7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-typescript",
+      "sha256": "77087f21dea70404ee7da4566beb68ccb1aaaa47875ede8ab017251d6f4ff8a4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-ui-mode",
+      "sha256": "109f5d2221c34b721590f4d748c2016dae911318ba2eab1771827e2338668677",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-use-options",
+      "sha256": "dca1a3b5202390315ea6ee2dc7ba017fd362d4861995efbb1b55c15fe0df43c0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/test-webserver",
+      "sha256": "56717a5204e0ff170a00aa27bb1081b2a31fb74e39fc0c7189ee0e3779623917",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/testing-library",
+      "sha256": "e83ba98df92c7313071f0faedef2d9f9b81167ab87d27e107346f00aa84ad9da",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/touch-events",
+      "sha256": "95d3ba3a0824cc3d01f1825260e2d0a7790a4ee7e3947a24844d353c07021c85",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/trace-viewer",
+      "sha256": "339a36bcfb1065566e87997464be69010b2554905210bab21aeb180f54045f3f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/trace-viewer-intro",
+      "sha256": "7e192df6e94e21ae141ee10e1597f49ced8ba7d83c2af4ed08c157011f988bae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/videos",
+      "sha256": "7d84c48698113f4190a44eb0c3a5e2f7f434112bf306ec6141dfd90fe3f240a7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/webview2",
+      "sha256": "3cf48604d1acacc029c5f4d87d9df97d07cf97d6d8dc182933a6dd43a9ae81be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/docs/writing-tests",
+      "sha256": "c5602c767d36a2cf83086d274f739183d8d008d72421f57ed7e43b0d310ab405",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/capabilities",
+      "sha256": "b48ff5c55504b7f7da21dc0d4d604e7bce1124fb0d1dc65d4edf169f63f585f7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/clients/claude-code",
+      "sha256": "3da4e151e3988ce4e40b16f50155297b23cb45d2efd5113aeeb60882ffafa9b6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/clients/claude-desktop",
+      "sha256": "51b0294d31d37e35b8cac4aac3dc5df378bd921abb7fede0236b6e934b502a01",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/clients/cursor",
+      "sha256": "925ce228bab56a5064f841652962eab10b08cd537733fd9b4c72cc6772470830",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/clients/other-clients",
+      "sha256": "3d4f8bdad96ec42758648ce2ce267914edf8cf8043a3d10cc61fd948660d220a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/clients/vscode",
+      "sha256": "3c3a29acb754b2834a6ba33a1ee16065b3c81186d84bb6c7f883a5f43904246b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/clients/windsurf",
+      "sha256": "20bbb064ee8d913179cac2e2bdb80ca29d1d1cf6cd45a95da3e116f581391299",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/configuration/browser-extension",
+      "sha256": "c399d86ec6de0b34421d06ccaad68260969af5a4fec694ec621a48b3eda48280",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/configuration/options",
+      "sha256": "e52bc912458eb34a52413f2c29181cfb368975955c7f66799e7cb69963571ddb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/configuration/user-profile",
+      "sha256": "6ad4c3b8d22c2dd0518002797eb851538820a32d97d298dbbee704c4aab788ea",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/installation",
+      "sha256": "df85671948576a928e15577f19437085ea1e04d55624938fb44191ac332e61f2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/introduction",
+      "sha256": "2ae84b6dd142d64053b1ca14f8816c7a171422e1e8f4b5e4451d2eef7fca4362",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/snapshots",
+      "sha256": "2675873744498751cd7f7968141fabaf4ee739556f0f9fa7c651cd88c7cf322a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/assertions",
+      "sha256": "507610ae340adc54abe78fa230fac232ea88c3af6e6998f49d46732b928e3eb4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/code-execution",
+      "sha256": "548da9066d50d4b36b0a76a3e7835e1068df38be68a86ae9bdd683b179fa2924",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/console",
+      "sha256": "32f9c1db5772f2ca74831eecbd97e242b4086d0ff12f33ccaaf88d1ab497c025",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/dialogs",
+      "sha256": "e7e5abd77c3ed363bc97fc721ead7c91e7ed9f94202e98c968429b50916a291b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/file-upload",
+      "sha256": "2376728dae8e01b2049ea3a1bc5385a9bf3ebd334a9f5fe1db47b7c410b76947",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/forms",
+      "sha256": "863d1281eaec9bfc1e3509333428779cb48f1a5d1e8e47e5d9ea003e46ffd9dc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/interaction",
+      "sha256": "55892b5f6f9653ebd748637819b2c6b36e9e0cb430bbca009d5d5bb8b0cf1ade",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/keyboard-mouse",
+      "sha256": "e132d303edae5c033ff2d72f7a1c4c8d44696d0edbabf53290a0a6028fab9d18",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/navigation",
+      "sha256": "90d2290ffddce151fd2911e5d9e9ab0d4ad3778dc65c99211dc0a31b6816ce5b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/network-mocking",
+      "sha256": "a97f80925b4c7cbb946880d264258b170e0cb32e79d71770d5bb62fc653f5cf0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/pdf",
+      "sha256": "40ce3de71ff091a99b6e58c38cab4d25d8286b822ab125d36581f90ecad85a3a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/screenshots",
+      "sha256": "907189f84b6a91bc3df34890e1d4047d0c49615751606ceb8789073ad527a166",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/storage",
+      "sha256": "b55a75cbeede5565bafd0b447d9c4df20d3aa6169ec28729ebb098fade689efb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/tabs",
+      "sha256": "e43baa15c185a5c4f1c89057fa74650e6607f2c12993187c97bf5bc634ba7a1c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/tracing",
+      "sha256": "7e5a05095ffe0a1d19c828d4261fa47aad27f3fcd47dee09831981a5ce803bc9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/video",
+      "sha256": "fc703f28c26f28c8968c37186822cbd1df3603bf391d9b27485988bec05a8bb8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/tools/waiting",
+      "sha256": "ab4b0ddb81c256c3e626db6a0dcf2988864219ca9beb0837e9f770050144eabe",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/mcp/vision-mode",
+      "sha256": "c6f77e39dd21dc6ccda96869fd529c4a69ad93ac0399fe5644c0deae02ef8b78",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://playwright.dev/search",
+      "sha256": "04790bb35932b8ce7b1446d093e71c8932a2cb37abfeffd1b5414ed8faa8ab64",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    }
+  ]
+}

@@ -10,8 +10,8 @@ Two generations coexist: the older B2B Suite and the newer B2B Components. New w
 ## Reference map
 
 - **[COMPONENTS.md](references/COMPONENTS.md)**: Overview and architecture of the Shopware B2B Components. [COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT](references/COMPONENTS-EMPLOYEE-MANAGEMENT-EMPLOYEE-MANAGEMENT.md), [COMPONENTS-EMPLOYEE-MANAGEMENT](references/COMPONENTS-EMPLOYEE-MANAGEMENT.md), [COMPONENTS-OVERVIEW](references/COMPONENTS-OVERVIEW.md), [COMPONENTS-QUOTES-INDIVIDUAL-PRICING](references/COMPONENTS-QUOTES-INDIVIDUAL-PRICING.md), [COMPONENTS-QUOTES-QUOTES-SHOPPING-LISTS](references/COMPONENTS-QUOTES-QUOTES-SHOPPING-LISTS.md), [COMPONENTS-QUOTES](references/COMPONENTS-QUOTES.md).
-- **[ORDER-APPROVAL.md](references/ORDER-APPROVAL.md)**: Developer reference for the B2B Order Approval workflow. [ORDER-APPROVAL-DETAIL](references/ORDER-APPROVAL-DETAIL.md).
-- **[SUITE.md](references/SUITE.md)**: Developer reference for the B2B Suite. [SUITE-DETAIL](references/SUITE-DETAIL.md), [SUITE-MIGRATION-DETAIL](references/SUITE-MIGRATION-DETAIL.md), [SUITE-MIGRATION](references/SUITE-MIGRATION.md).
+- **[ORDER-APPROVAL.md](references/ORDER-APPROVAL.md)**: Developer reference for the B2B Order Approval workflow.
+- **[SUITE.md](references/SUITE.md)**: Developer reference for the B2B Suite.,, [SUITE-MIGRATION](references/SUITE-MIGRATION.md).
 
 ## Source
 

@@ -9,7 +9,7 @@ Self-contained Storefront features, each with its own extension point.
 
 ## Reference map
 
-- **[ACCESSIBILITY.md](references/ACCESSIBILITY.md)**: WCAG 2.1 AA + BITV 2.0. [ACCESSIBILITY-DETAIL](references/ACCESSIBILITY-DETAIL.md).
+- **[ACCESSIBILITY.md](references/ACCESSIBILITY.md)**: WCAG 2.1 AA + BITV 2.0.
 - **[CAPTCHA.md](references/CAPTCHA.md)**: Forms are protected by captchas.
 - **[COOKIE-MANAGER.md](references/COOKIE-MANAGER.md)**: Add your own cookies to the consent management by decorating `CookieProviderInterface`.
 - **[CUSTOM-SORTING.md](references/CUSTOM-SORTING.md)**: Sorting options in the listing are data, not code classes.

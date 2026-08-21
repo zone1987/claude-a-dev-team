@@ -515,14 +515,24 @@ def check_plugin(name: str, rep: Report, cat: dict) -> None:
         rep.error("MANIFEST-01", f"plugins/{name}/.claude-plugin/plugin.json",
                   "missing or unparseable")
 
-    # COV-09: a plugin distilled from online documentation records what it extracted. Only ask
-    # for it where a docs site is actually the source, which the enumeration scripts reveal.
-    enumerates = bool(glob.glob(os.path.join(pdir, "scripts", "*sitemap*"))
-                      or glob.glob(os.path.join(pdir, "scripts", "*audit_pages*")))
-    if enumerates and not os.path.exists(os.path.join(pdir, "INVENTORY.json")):
+    # COV-09: a plugin whose subject has official online documentation records what it extracted,
+    # and creates the record when it is absent. The trigger is the documentation itself, not the
+    # presence of tooling: a plugin with no enumeration scripts is exactly the one still on trust.
+    # A repository host is not documentation, and a plugin resting on convention needs no inventory.
+    hosts = set()
+    for sm in skill_dirs(pdir):
+        text = open(sm, encoding="utf-8", errors="replace").read()
+        at = text.find("## Source")
+        if at < 0:
+            continue
+        for host in re.findall(r"https?://([A-Za-z0-9.-]+)", text[at:]):
+            if not host.endswith(("github.com", "gitlab.com", "github.io", "npmjs.com")):
+                hosts.add(host)
+    if hosts and not os.path.exists(os.path.join(pdir, "INVENTORY.json")):
         rep.error("COV-09", f"plugins/{name}/INVENTORY.json",
-                  "the plugin enumerates a docs site but records no inventory, so nothing states "
-                  "which pages were extracted or when; write one with scripts/inventory.py --write")
+                  f"the plugin distils {sorted(hosts)[0]} but records no inventory, so nothing "
+                  "states which pages were extracted or when; create one with "
+                  "scripts/inventory.py --write after auditing coverage")
     listed = [p.rstrip("/").split("/")[-1] for p in man.get("skills", [])]
 
     skills = skill_dirs(pdir)

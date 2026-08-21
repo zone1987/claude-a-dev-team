@@ -9,10 +9,10 @@ Most Panther problems are environment problems. The PANTHER_* variables control 
 
 ## Reference map
 
-- **[CONFIG-ENV.md](references/CONFIG-ENV.md)**: Complete reference of all PANTHER_* environment variables as well as the programmatic configuration options f…. [CONFIG-ENV-DETAIL](references/CONFIG-ENV-DETAIL.md).
-- **[DOCKER-CI.md](references/DOCKER-CI.md)**: Docker integration, interactive mode and complete CI configurations. [DOCKER-CI-DETAIL](references/DOCKER-CI-DETAIL.md).
-- **[INSTALLATION.md](references/INSTALLATION.md)** [INSTALLATION-DETAIL](references/INSTALLATION-DETAIL.md).
-- **[SELENIUM-REMOTE.md](references/SELENIUM-REMOTE.md)**: Selenium Grid, remote WebDriver, external web server, proxy, SSL and multi-domain configuration with Panther. [SELENIUM-REMOTE-DETAIL](references/SELENIUM-REMOTE-DETAIL.md).
+- **[CONFIG-ENV.md](references/CONFIG-ENV.md)**: Complete reference of all PANTHER_* environment variables as well as the programmatic configuration options f….
+- **[DOCKER-CI.md](references/DOCKER-CI.md)**: Docker integration, interactive mode and complete CI configurations.
+- **[INSTALLATION.md](references/INSTALLATION.md)**
+- **[SELENIUM-REMOTE.md](references/SELENIUM-REMOTE.md)**: Selenium Grid, remote WebDriver, external web server, proxy, SSL and multi-domain configuration with Panther.
 
 ## Source
 

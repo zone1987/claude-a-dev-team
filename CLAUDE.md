@@ -427,6 +427,14 @@ but it can inject context that makes the right choice obvious.
 When a plugin claims to be authoritative for an API or a standard, facts must be generated, not
 recalled:
 
+- **Fetch with `curl`, always.** Every request to a source — a docs page, a sitemap, an OpenAPI
+  document — goes through `curl -sSfL`: it carries the system trust store and follows redirects,
+  which is what documentation hosts require in practice. Python's `urllib` does neither reliably.
+  Measured while inventorying this marketplace: `urllib` raised `CERTIFICATE_VERIFY_FAILED` on all
+  39 `docs.ventrata.com` pages that `curl` fetched without complaint, and returned a 301 HTML page
+  instead of `docs.contao.org`'s sitemap — which reads as *no sitemap exists* rather than as an
+  error. `plugins/contao` yielded 0 pages through `urllib` and 586 through `curl -sSfL`. Before
+  reporting a source as unreachable, retry it with `curl`. `SOURCE-03`
 - **Generate from the machine-readable source** (OpenAPI, JSON schema, a typed export) with a
   script. No model in the path between specification and reference file.
 - **Ship a field index** and a verify script that checks both directions: every specified field is

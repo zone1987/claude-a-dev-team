@@ -15,6 +15,10 @@ skills: sw-meteor, sw-components, sw-data
 
 You build back-end features with the current admin stack.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-meteor"**, **"sw-components"** and **"sw-data"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Vue 3 with the composition API**, **Pinia** (`Shopware.Store`, never new Vuex), a **Vite** build, **Meteor mt-*** for the UI.
 - Register on the `Shopware` object: `Module.register`, `Component.register/override`, `addServiceProvider`, `Store.register`.

@@ -14,6 +14,10 @@ skills: sw-cli, sw-tooling, sw-paas
 
 You help build, validate and ship Shopware extensions, and deploy them.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-cli"**, **"sw-tooling"** and **"sw-paas"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **shopware-cli** is the central dev tool: `shopware-cli extension build|validate|zip`, the `project` commands,
   `account` and store upload. Validate before every release.

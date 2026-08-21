@@ -1,0 +1,327 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "swiper",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://swiperjs.com",
+    "sitemap": "https://swiperjs.com/sitemap.xml",
+    "base": "https://swiperjs.com/"
+  },
+  "pages": 39,
+  "urls": [
+    "https://swiperjs.com/",
+    "https://swiperjs.com/angular",
+    "https://swiperjs.com/blog",
+    "https://swiperjs.com/blog/rebuilding-playground-with-cladd",
+    "https://swiperjs.com/blog/slide-slots-in-v10-1-0",
+    "https://swiperjs.com/blog/swiper-playground",
+    "https://swiperjs.com/blog/swiper-slider-in-webflow",
+    "https://swiperjs.com/blog/swiper-studio-for-shopify",
+    "https://swiperjs.com/blog/swiper-studio-v2",
+    "https://swiperjs.com/blog/swiper-v10",
+    "https://swiperjs.com/blog/swiper-v11-back-to-basics",
+    "https://swiperjs.com/blog/swiper-v12",
+    "https://swiperjs.com/blog/swiper-v14",
+    "https://swiperjs.com/blog/using-swiper-element-in-react",
+    "https://swiperjs.com/changelog",
+    "https://swiperjs.com/compare",
+    "https://swiperjs.com/compare/swiper-vs-embla-carousel",
+    "https://swiperjs.com/compare/swiper-vs-flickity",
+    "https://swiperjs.com/compare/swiper-vs-glidejs",
+    "https://swiperjs.com/compare/swiper-vs-keen-slider",
+    "https://swiperjs.com/compare/swiper-vs-owl-carousel",
+    "https://swiperjs.com/compare/swiper-vs-slick",
+    "https://swiperjs.com/compare/swiper-vs-splide",
+    "https://swiperjs.com/demos",
+    "https://swiperjs.com/element",
+    "https://swiperjs.com/get-started",
+    "https://swiperjs.com/migration-guide-v10",
+    "https://swiperjs.com/migration-guide-v11",
+    "https://swiperjs.com/migration-guide-v9",
+    "https://swiperjs.com/playground",
+    "https://swiperjs.com/plugins",
+    "https://swiperjs.com/premium-guide",
+    "https://swiperjs.com/react",
+    "https://swiperjs.com/solid",
+    "https://swiperjs.com/sponsors",
+    "https://swiperjs.com/svelte",
+    "https://swiperjs.com/swiper-api",
+    "https://swiperjs.com/swiper-mcp",
+    "https://swiperjs.com/vue"
+  ],
+  "entries": [
+    {
+      "page": "https://swiperjs.com/",
+      "sha256": "0bed3aebe45204559833c3273db5e609a3feb8c3946bd7e833b004273dccbd1f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/angular",
+      "sha256": "77b1d4cfb6ff9b6245149bf8b0a498738d6e5522f51789edf8db78afc953654b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog",
+      "sha256": "390248f7ceda6c47ad3746c27866a4bba9c92946318bee48f4d434c9ddfb7848",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/rebuilding-playground-with-cladd",
+      "sha256": "d4a473999c330c68ccf9a518da5cb993bad995ef35d645e51d9796706bd9e9c5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/slide-slots-in-v10-1-0",
+      "sha256": "d249acb20a568688130918d6d5c3edc8d2f9d360990faceacc69b8382562ca3e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-playground",
+      "sha256": "1660b2a1345af7f5bba9bcf33e3d87eb615c27bdddca6d6c0fd5b1ab31491d1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-slider-in-webflow",
+      "sha256": "3c2e6aa926fba498542fcde798b1159c8048e1c9de25790fba9b5ca9e5d2726f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-studio-for-shopify",
+      "sha256": "07c843f8af784a9122490012890a163deceef6d64bdb633ce6bc0908be67685c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-studio-v2",
+      "sha256": "4ad2e867c1c479ef8f3ed585f306e8d41a827abe5dbfd7a6d360c57f8cb92a64",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-v10",
+      "sha256": "395de105ec9538fba48be323f37431c429223715aca62096430d7780fe186d16",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-v11-back-to-basics",
+      "sha256": "00b43f76fbde1d6d516f569796935902ae6f6c54df99aba3e4dd5742e10c7f71",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-v12",
+      "sha256": "7f8f0454c38c40e5291febcd74d6efe75ed6dad7b5fc2971b559ea5765cb0992",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/swiper-v14",
+      "sha256": "356186f598877546a5f1c3cb325d514ae8006d3d3b3adcf6142e56ab6bbc964e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/blog/using-swiper-element-in-react",
+      "sha256": "19c1c3a6c76f63f513dcfcc3d915cf09686dcea7201f68c567626fc747393bdb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/changelog",
+      "sha256": "a8191545716c6d8d378a9bd4942ca5422fb8111b32dd98c7ed42af284480b71c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare",
+      "sha256": "dab4e7414d0f4d02b0f9a18ef553e56a0dbe3207343a64ad357963c343beee33",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-embla-carousel",
+      "sha256": "e4d22d8e2b3d0f3ddf960f22e03366fb07414b6ec73885ab779dc04db812da7f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-flickity",
+      "sha256": "b66a9805d275ab58b349b8f73b21487e57a8aca25d75aa69848822ff8f2be69c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-glidejs",
+      "sha256": "dc0b81bec1ca6935aa9bdeb3f1ae28cc48eddeea7874a0b170744adc2dc55e5c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-keen-slider",
+      "sha256": "ca9cb588d05048162db0235fe57ccb524dc373a66a7a0b3d99e8ab01d3152126",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-owl-carousel",
+      "sha256": "e6051299f9e46ac65d5e77d385713c744c083c884451f1a75107e0a85d30097f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-slick",
+      "sha256": "4c4505d6ae83a4fed69967233f89f34c1c8bf13fc5323aba063c5e9e35ee6ee3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/compare/swiper-vs-splide",
+      "sha256": "0ae1db7efcb6317095b9539e2bfb0670b9902e51c3a9882cbcee1591ed9e5037",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/demos",
+      "sha256": "29ca89a31205bedf4cc5bcfcea7954f47d4f93985a401698744e93d2ef20951c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/element",
+      "sha256": "d8d2d712e87e8d5ece66617c17c667f125430a3918880eb65de1d842ba2366f2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/get-started",
+      "sha256": "0ba07743c5b5361dd4af9fe7de9249eb9889bdac1b8253721474fb7436035d54",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/migration-guide-v10",
+      "sha256": "c850c7a50bb76cdc394fc42248ea665d185e33917eef3a7acdaee7ac400e05e6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/migration-guide-v11",
+      "sha256": "bc16b823521ac568988ef2df8be459bcf862f446db32918a48fa3f16c98652c1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/migration-guide-v9",
+      "sha256": "73a3bfdcc8966b6e29181fe95c0a4a0274dd87200da9f603a839801de53c883e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/playground",
+      "sha256": "428e36ff88f8d03ef96d77efe3f185361f1890ab20a17af83231829b2e873793",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/plugins",
+      "sha256": "bd8941492c4188c0c5b784388ad7ec15c0f15d2acb4412df3f37dfb9e528ed08",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/premium-guide",
+      "sha256": "8c1dd394f0477ad215df32f6a4c973f1be2036184c63eafb6868e385522e55fc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/react",
+      "sha256": "542005e6f7d54b4b03a6626d036387d8f67edd8bcc1a6a0cb3aff6cae9b401cb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/solid",
+      "sha256": "27081b3654956a91827e97bbf3308fbcd4a1426586257dd83d92af8a04c97b8b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/sponsors",
+      "sha256": "cf884213c8aab2118a91012f0be7ae1cfa66ee7bf64329a8bcb796e959ea76d0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/svelte",
+      "sha256": "8752bc213cd1871220a94835b4010a6fb4b425c1a354f2ace9d6fd71e23aadf2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/swiper-api",
+      "sha256": "df370d1e1b097608ce4ff8dd356002c1c403b0b7a8717a07c447e18367195653",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/swiper-mcp",
+      "sha256": "f396115708e7f89dd7828d5fb9edc698d3c961150a71258a40cd45f2c9d8042e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://swiperjs.com/vue",
+      "sha256": "4b68d47cedf5da802942e65e719ee636bd360a3cc71d82844f136d570c65efe4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    }
+  ]
+}

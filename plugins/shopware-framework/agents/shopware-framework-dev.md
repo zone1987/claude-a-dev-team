@@ -15,6 +15,10 @@ skills: sw-automation, sw-messaging, sw-api
 
 You implement Shopware 6.7 framework building blocks along the conventions.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-automation"**, **"sw-messaging"** and **"sw-api"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - Long-running or expensive work goes **asynchronous** (the message queue) or on a schedule (a scheduled task);
   keep the handler idempotent.

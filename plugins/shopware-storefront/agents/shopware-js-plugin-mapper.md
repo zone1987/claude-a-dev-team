@@ -15,6 +15,10 @@ skills: sw-javascript
 
 You create or update `.shopware-catalog/js-plugins.md`. A pure scan, no judgement.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-javascript"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## What to scan
 - **Plugin classes**: `*.plugin.js`/`*.plugin.ts` files that `extends Plugin`, `extends window.PluginBaseClass`
   or `extends <X>Plugin`. From them: the class name, the job (from a comment or the methods), and the

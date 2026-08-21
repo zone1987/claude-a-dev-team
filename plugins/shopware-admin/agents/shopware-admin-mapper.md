@@ -14,6 +14,10 @@ skills: sw-data
 
 You create or update `.shopware-catalog/admin.md`. A pure scan, no judgement.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-data"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## The scan (grep for the registration calls)
 - **Modules**: `Shopware.Module.register('<name>', {...})` — name, title, routes, navigation, path.
 - **Components**: `Component.register('<name>'`/`Component.extend(`/`Component.override('<name>'` — name, file, override target.

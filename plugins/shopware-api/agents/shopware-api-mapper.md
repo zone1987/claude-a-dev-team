@@ -14,6 +14,10 @@ skills: sw-shared
 
 You produce `.shopware-catalog/admin-api.md` and `.shopware-catalog/store-api.md` from the OpenAPI spec.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-shared"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Getting the OpenAPI (try these in order)
 1. **A local spec file** in the project, if there is one: `*storeapi*.json`, `*adminapi*.json`/`openapi3.json`.
 2. **A running shop** (APP_ENV=dev): `curl` against

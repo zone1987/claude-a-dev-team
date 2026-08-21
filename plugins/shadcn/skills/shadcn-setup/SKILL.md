@@ -12,15 +12,15 @@ Getting shadcn/ui into a project. The CLI copies component source into your repo
 - **[CHANGELOG.md](references/CHANGELOG.md)**: [CHANGELOG-HISTORY](references/CHANGELOG-HISTORY.md).
 - **[CLI.md](references/CLI.md)**: [CLI-COMMANDS](references/CLI-COMMANDS.md).
 - **[COMPONENTS-JSON.md](references/COMPONENTS-JSON.md)**: [COMPONENTS-JSON-FIELDS](references/COMPONENTS-JSON-FIELDS.md), [COMPONENTS-JSON-REGISTRIES](references/COMPONENTS-JSON-REGISTRIES.md).
-- **[CREATE.md](references/CREATE.md)**: [CREATE-DETAIL](references/CREATE-DETAIL.md).
-- **[DIRECTORY.md](references/DIRECTORY.md)**: [DIRECTORY-DETAIL](references/DIRECTORY-DETAIL.md).
+- **[CREATE.md](references/CREATE.md)**:
+- **[DIRECTORY.md](references/DIRECTORY.md)**:
 - **[FIGMA.md](references/FIGMA.md)**
 - **[INSTALLATION.md](references/INSTALLATION.md)**: [INSTALLATION-ASTRO](references/INSTALLATION-ASTRO.md), [INSTALLATION-GATSBY](references/INSTALLATION-GATSBY.md), [INSTALLATION-LARAVEL](references/INSTALLATION-LARAVEL.md), [INSTALLATION-MANUAL](references/INSTALLATION-MANUAL.md), [INSTALLATION-NEXT](references/INSTALLATION-NEXT.md), [INSTALLATION-REACT-ROUTER](references/INSTALLATION-REACT-ROUTER.md), [INSTALLATION-REMIX](references/INSTALLATION-REMIX.md), [INSTALLATION-TANSTACK-ROUTER](references/INSTALLATION-TANSTACK-ROUTER.md), [INSTALLATION-TANSTACK](references/INSTALLATION-TANSTACK.md), [INSTALLATION-VITE](references/INSTALLATION-VITE.md).
 - **[JAVASCRIPT.md](references/JAVASCRIPT.md)**
 - **[LEGACY.md](references/LEGACY.md)**
 - **[MCP.md](references/MCP.md)**: [MCP-OVERVIEW](references/MCP-OVERVIEW.md), [MCP-REGISTRIES](references/MCP-REGISTRIES.md), [MCP-REGISTRY-DEV](references/MCP-REGISTRY-DEV.md).
-- **[MONOREPO.md](references/MONOREPO.md)**: [MONOREPO-DETAIL](references/MONOREPO-DETAIL.md).
-- **[OVERVIEW.md](references/OVERVIEW.md)**: [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
+- **[MONOREPO.md](references/MONOREPO.md)**:
+- **[OVERVIEW.md](references/OVERVIEW.md)**:
 - **[PACKAGE-IMPORTS.md](references/PACKAGE-IMPORTS.md)**
 - **[REACT-19.md](references/REACT-19.md)**
 - **[TAILWIND-V4.md](references/TAILWIND-V4.md)**: [TAILWIND-V4-CHANGELOG](references/TAILWIND-V4-CHANGELOG.md), [TAILWIND-V4-UPGRADE-GUIDE](references/TAILWIND-V4-UPGRADE-GUIDE.md).

@@ -9,15 +9,15 @@ Running and calling Gotenberg. It is stateless, so configuration is entirely fla
 
 ## Reference map
 
-- **[CLIENTS.md](references/CLIENTS.md)**: Gotenberg is a standard HTTP API. [CLIENTS-DETAIL](references/CLIENTS-DETAIL.md).
-- **[CONFIGURATION.md](references/CONFIGURATION.md)**: Configuration via CLI flags or environment variables. [CONFIGURATION-DETAIL](references/CONFIGURATION-DETAIL.md).
-- **[INSTALLATION.md](references/INSTALLATION.md)**: Gotenberg runs exclusively as a Docker container. [INSTALLATION-DETAIL](references/INSTALLATION-DETAIL.md).
-- **[INTRODUCTION.md](references/INTRODUCTION.md)**: Gotenberg is a **Docker-based, stateless HTTP API** for document conversion. [INTRODUCTION-DETAIL](references/INTRODUCTION-DETAIL.md).
-- **[OUTBOUND-FILTERING.md](references/OUTBOUND-FILTERING.md)**: Configuring the outbound URL filter against SSRF and unwanted network access. [OUTBOUND-FILTERING-DETAIL](references/OUTBOUND-FILTERING-DETAIL.md).
-- **[SYSTEM.md](references/SYSTEM.md)**: Health check, version info, Prometheus metrics and debug configuration. [SYSTEM-DETAIL](references/SYSTEM-DETAIL.md).
-- **[TELEMETRY.md](references/TELEMETRY.md)**: OTEL integration for traces, metrics and logs. [TELEMETRY-DETAIL](references/TELEMETRY-DETAIL.md).
-- **[TROUBLESHOOTING.md](references/TROUBLESHOOTING.md)**: Solutions for common problems: empty PDFs, font issues, LibreOffice crashes, webhook TLS errors, …. [TROUBLESHOOTING-DETAIL](references/TROUBLESHOOTING-DETAIL.md).
-- **[WEBHOOK.md](references/WEBHOOK.md)**: Asynchronous processing: Gotenberg returns 204 immediately and sends the result via a callback request. [WEBHOOK-DETAIL](references/WEBHOOK-DETAIL.md).
+- **[CLIENTS.md](references/CLIENTS.md)**: Gotenberg is a standard HTTP API.
+- **[CONFIGURATION.md](references/CONFIGURATION.md)**: Configuration via CLI flags or environment variables.
+- **[INSTALLATION.md](references/INSTALLATION.md)**: Gotenberg runs exclusively as a Docker container.
+- **[INTRODUCTION.md](references/INTRODUCTION.md)**: Gotenberg is a **Docker-based, stateless HTTP API** for document conversion.
+- **[OUTBOUND-FILTERING.md](references/OUTBOUND-FILTERING.md)**: Configuring the outbound URL filter against SSRF and unwanted network access.
+- **[SYSTEM.md](references/SYSTEM.md)**: Health check, version info, Prometheus metrics and debug configuration.
+- **[TELEMETRY.md](references/TELEMETRY.md)**: OTEL integration for traces, metrics and logs.
+- **[TROUBLESHOOTING.md](references/TROUBLESHOOTING.md)**: Solutions for common problems: empty PDFs, font issues, LibreOffice crashes, webhook TLS errors, ….
+- **[WEBHOOK.md](references/WEBHOOK.md)**: Asynchronous processing: Gotenberg returns 204 immediately and sends the result via a callback request.
 
 ## Source
 

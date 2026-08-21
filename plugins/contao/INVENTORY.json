@@ -1,0 +1,4703 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "contao",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://docs.contao.org",
+    "sitemap": "https://docs.contao.org/dev/sitemap.xml",
+    "base": "https://docs.contao.org/"
+  },
+  "pages": 586,
+  "urls": [
+    "https://docs.contao.org/5.x/dev/",
+    "https://docs.contao.org/5.x/dev/categories/",
+    "https://docs.contao.org/5.x/dev/framework/",
+    "https://docs.contao.org/5.x/dev/framework/asset-management/",
+    "https://docs.contao.org/5.x/dev/framework/async-messaging/",
+    "https://docs.contao.org/5.x/dev/framework/back-end-modules/",
+    "https://docs.contao.org/5.x/dev/framework/caching/",
+    "https://docs.contao.org/5.x/dev/framework/content-elements/",
+    "https://docs.contao.org/5.x/dev/framework/cron/",
+    "https://docs.contao.org/5.x/dev/framework/csp/",
+    "https://docs.contao.org/5.x/dev/framework/dca/",
+    "https://docs.contao.org/5.x/dev/framework/dca/palettemanipulator/",
+    "https://docs.contao.org/5.x/dev/framework/filesystem/",
+    "https://docs.contao.org/5.x/dev/framework/filesystem/config/",
+    "https://docs.contao.org/5.x/dev/framework/filesystem/virtual-filesystem/",
+    "https://docs.contao.org/5.x/dev/framework/front-end-modules/",
+    "https://docs.contao.org/5.x/dev/framework/hooks/",
+    "https://docs.contao.org/5.x/dev/framework/image-processing/",
+    "https://docs.contao.org/5.x/dev/framework/image-processing/image-picture-factory/",
+    "https://docs.contao.org/5.x/dev/framework/image-processing/image-sizes/",
+    "https://docs.contao.org/5.x/dev/framework/image-processing/image-studio/",
+    "https://docs.contao.org/5.x/dev/framework/insert-tags/",
+    "https://docs.contao.org/5.x/dev/framework/jobs/",
+    "https://docs.contao.org/5.x/dev/framework/logging/",
+    "https://docs.contao.org/5.x/dev/framework/maintenance-module/",
+    "https://docs.contao.org/5.x/dev/framework/maintenance-module/purge-task/",
+    "https://docs.contao.org/5.x/dev/framework/manager-plugin/",
+    "https://docs.contao.org/5.x/dev/framework/migrations/",
+    "https://docs.contao.org/5.x/dev/framework/models/",
+    "https://docs.contao.org/5.x/dev/framework/models/collections/",
+    "https://docs.contao.org/5.x/dev/framework/models/customization/",
+    "https://docs.contao.org/5.x/dev/framework/models/enumerations/",
+    "https://docs.contao.org/5.x/dev/framework/page-controllers/",
+    "https://docs.contao.org/5.x/dev/framework/profiler/",
+    "https://docs.contao.org/5.x/dev/framework/request-tokens/",
+    "https://docs.contao.org/5.x/dev/framework/response-context/",
+    "https://docs.contao.org/5.x/dev/framework/routing/",
+    "https://docs.contao.org/5.x/dev/framework/routing/content-routing/",
+    "https://docs.contao.org/5.x/dev/framework/routing/legacy-parameters/",
+    "https://docs.contao.org/5.x/dev/framework/search-indexing/",
+    "https://docs.contao.org/5.x/dev/framework/security/",
+    "https://docs.contao.org/5.x/dev/framework/security/data-container/",
+    "https://docs.contao.org/5.x/dev/framework/security/preview-mode/",
+    "https://docs.contao.org/5.x/dev/framework/templates/",
+    "https://docs.contao.org/5.x/dev/framework/templates/architecture/",
+    "https://docs.contao.org/5.x/dev/framework/templates/creating-templates/",
+    "https://docs.contao.org/5.x/dev/framework/templates/debugging/",
+    "https://docs.contao.org/5.x/dev/framework/templates/getting-started/",
+    "https://docs.contao.org/5.x/dev/framework/templates/legacy/",
+    "https://docs.contao.org/5.x/dev/framework/templates/quick-reference/",
+    "https://docs.contao.org/5.x/dev/framework/translations/",
+    "https://docs.contao.org/5.x/dev/framework/widgets/",
+    "https://docs.contao.org/5.x/dev/getting-started/",
+    "https://docs.contao.org/5.x/dev/getting-started/content-elements-modules/",
+    "https://docs.contao.org/5.x/dev/getting-started/core-concepts/",
+    "https://docs.contao.org/5.x/dev/getting-started/dca/",
+    "https://docs.contao.org/5.x/dev/getting-started/extension/",
+    "https://docs.contao.org/5.x/dev/getting-started/hooks/",
+    "https://docs.contao.org/5.x/dev/getting-started/initial-setup/",
+    "https://docs.contao.org/5.x/dev/getting-started/initial-setup/managed-edition/",
+    "https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/",
+    "https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/contao-5.3/",
+    "https://docs.contao.org/5.x/dev/getting-started/starting-development/",
+    "https://docs.contao.org/5.x/dev/getting-started/translations/",
+    "https://docs.contao.org/5.x/dev/guides/",
+    "https://docs.contao.org/5.x/dev/guides/adding-back-end-assets/",
+    "https://docs.contao.org/5.x/dev/guides/back-end-routes/",
+    "https://docs.contao.org/5.x/dev/guides/coding-standards/",
+    "https://docs.contao.org/5.x/dev/guides/dca/",
+    "https://docs.contao.org/5.x/dev/guides/first-bundle/",
+    "https://docs.contao.org/5.x/dev/guides/fragment-controllers/",
+    "https://docs.contao.org/5.x/dev/guides/modify-container-at-compile-time/",
+    "https://docs.contao.org/5.x/dev/guides/namespaces/",
+    "https://docs.contao.org/5.x/dev/guides/publishing-bundles/",
+    "https://docs.contao.org/5.x/dev/guides/using-content-elements/",
+    "https://docs.contao.org/5.x/dev/internals/",
+    "https://docs.contao.org/5.x/dev/internals/_stimulus-backend/",
+    "https://docs.contao.org/5.x/dev/internals/bc-promise/",
+    "https://docs.contao.org/5.x/dev/internals/contao-manager-api/",
+    "https://docs.contao.org/5.x/dev/internals/experimental-features/",
+    "https://docs.contao.org/5.x/dev/internals/issue-workflow/",
+    "https://docs.contao.org/5.x/dev/internals/release-procedure/",
+    "https://docs.contao.org/5.x/dev/reference/",
+    "https://docs.contao.org/5.x/dev/reference/commands/",
+    "https://docs.contao.org/5.x/dev/reference/config/",
+    "https://docs.contao.org/5.x/dev/reference/dca/",
+    "https://docs.contao.org/5.x/dev/reference/dca/callbacks/",
+    "https://docs.contao.org/5.x/dev/reference/dca/config/",
+    "https://docs.contao.org/5.x/dev/reference/dca/fields/",
+    "https://docs.contao.org/5.x/dev/reference/dca/list/",
+    "https://docs.contao.org/5.x/dev/reference/dca/palettes/",
+    "https://docs.contao.org/5.x/dev/reference/events/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/activateAccount/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/activateRecipient/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/addComment/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/addCustomRegexp/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/closeAccount/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/colorizeLogEntries/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/compareThemeFiles/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/compileArticle/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/compileFormFields/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/createNewUser/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/customizeSearch/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/executePostActions/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/executePreActions/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/exportTheme/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/extractThemeFiles/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/findCalendarBoundaries/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/generateBreadcrumb/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/generatePage/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/generateXmlFiles/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getAllEvents/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getArticle/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getArticles/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getAttributesFromDca/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getCombinedFile/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getContentElement/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getForm/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getFrontendModule/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getPageLayout/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getPageStatusIcon/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getSystemMessages/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/getUserNavigation/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/indexPage/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/initializeSystem/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/insertTagFlags/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/isAllowedToEditComment/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/isVisibleElement/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/listComments/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/loadDataContainer/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/loadFormField/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/loadLanguageFile/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/loadPageDetails/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/modifyFrontendPage/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/newsListCountItems/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/newsListFetchItems/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/outputBackendTemplate/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/outputFrontendTemplate/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/parseArticles/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/parseBackendTemplate/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/parseDate/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/parseFrontendTemplate/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/parseTemplate/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/parseWidget/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/postDownload/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/postUpload/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/prepareFormData/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/processFormData/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/removeOldFeeds/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/removeRecipient/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/replaceDynamicScriptTags/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/replaceInsertTags/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/reviseTable/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/setCookie/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/setNewPassword/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/sqlCompileCommands/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/sqlGetFromDB/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/sqlGetFromDca/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/storeFormData/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/updatePersonalData/",
+    "https://docs.contao.org/5.x/dev/reference/hooks/validateFormField/",
+    "https://docs.contao.org/5.x/dev/reference/request-attributes/",
+    "https://docs.contao.org/5.x/dev/reference/services/",
+    "https://docs.contao.org/5.x/dev/reference/twig/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/csp_inline_styles/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/csp_unsafe_inline_style/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/deserialize/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/encode_email/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/escape/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/format_bytes/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/highlight/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/highlight_auto/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/insert_tag/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/insert_tag_raw/",
+    "https://docs.contao.org/5.x/dev/reference/twig/filters/sanitize_html/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/add_schema_org/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/attrs/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/backend_icon/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/contao_figure/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/contao_section/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/contao_sections/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/content_element/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/content_url/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/csp_hash/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/csp_nonce/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/csp_source/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/figure/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/file_icon/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/frontend_module/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/include/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/insert_tag/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/picture_config/",
+    "https://docs.contao.org/5.x/dev/reference/twig/functions/prefix_url/",
+    "https://docs.contao.org/5.x/dev/reference/twig/globals/",
+    "https://docs.contao.org/5.x/dev/reference/twig/globals/contao/",
+    "https://docs.contao.org/5.x/dev/reference/twig/tags/",
+    "https://docs.contao.org/5.x/dev/reference/twig/tags/add/",
+    "https://docs.contao.org/5.x/dev/reference/twig/tags/slot/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/checkbox-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/checkbox/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/chmod/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/file-tree/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/image-size/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/input-unit/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/key-value-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/list-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/meta-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/module-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/option-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/page-tree/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/password/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/picker/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/radio-table/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/radio/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/root-page-dependent-select/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/row-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/section-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/select/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/serp-preview/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/table-wizard/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/text/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/textarea/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/time-period/",
+    "https://docs.contao.org/5.x/dev/reference/widgets/trbl/",
+    "https://docs.contao.org/5.x/dev/tags/",
+    "https://docs.contao.org/5.x/dev/tags/Twig/",
+    "https://docs.contao.org/5.x/dev/tags/hook-article/",
+    "https://docs.contao.org/5.x/dev/tags/hook-automator/",
+    "https://docs.contao.org/5.x/dev/tags/hook-backend/",
+    "https://docs.contao.org/5.x/dev/tags/hook-calendar/",
+    "https://docs.contao.org/5.x/dev/tags/hook-comment/",
+    "https://docs.contao.org/5.x/dev/tags/hook-config/",
+    "https://docs.contao.org/5.x/dev/tags/hook-controller/",
+    "https://docs.contao.org/5.x/dev/tags/hook-custom/",
+    "https://docs.contao.org/5.x/dev/tags/hook-dca/",
+    "https://docs.contao.org/5.x/dev/tags/hook-form/",
+    "https://docs.contao.org/5.x/dev/tags/hook-installer/",
+    "https://docs.contao.org/5.x/dev/tags/hook-member/",
+    "https://docs.contao.org/5.x/dev/tags/hook-module/",
+    "https://docs.contao.org/5.x/dev/tags/hook-navigation/",
+    "https://docs.contao.org/5.x/dev/tags/hook-news/",
+    "https://docs.contao.org/5.x/dev/tags/hook-newsletter/",
+    "https://docs.contao.org/5.x/dev/tags/hook-page/",
+    "https://docs.contao.org/5.x/dev/tags/hook-search/",
+    "https://docs.contao.org/5.x/dev/tags/hook-system/",
+    "https://docs.contao.org/5.x/dev/tags/hook-template/",
+    "https://docs.contao.org/5.x/dev/tags/hook-theme/",
+    "https://docs.contao.org/5.x/dev/tags/hook-widget/",
+    "https://docs.contao.org/5.x/manual/de/",
+    "https://docs.contao.org/5.x/manual/de/administrationsbereich/",
+    "https://docs.contao.org/5.x/manual/de/administrationsbereich/aufruf-und-aufbau-des-backends/",
+    "https://docs.contao.org/5.x/manual/de/administrationsbereich/backend-tastaturkuerzel/",
+    "https://docs.contao.org/5.x/manual/de/administrationsbereich/datensaetze-auflisten/",
+    "https://docs.contao.org/5.x/manual/de/administrationsbereich/datensaetze-bearbeiten/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/contao-demo/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/dca/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/die-erste-startseite/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/formulardaten-speichern/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/grid/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/ddev/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/devilbox/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/laragon/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/sass-less-integration/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/svg/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/testversionen-installieren/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/tinymce-konfiguration/",
+    "https://docs.contao.org/5.x/manual/de/anleitungen/wartungstemplate-anpassen/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/artikel/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/akkordeon/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/content-slider/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/datei-elemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/include-elemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/legacy-elemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/link-elemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/media-elemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/text-elemente/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/verschiedenes/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/insert-tags/",
+    "https://docs.contao.org/5.x/manual/de/artikelverwaltung/simple-tokens/",
+    "https://docs.contao.org/5.x/manual/de/beitragen/",
+    "https://docs.contao.org/5.x/manual/de/benutzerverwaltung/",
+    "https://docs.contao.org/5.x/manual/de/benutzerverwaltung/benutzer/",
+    "https://docs.contao.org/5.x/manual/de/benutzerverwaltung/mitglieder/",
+    "https://docs.contao.org/5.x/manual/de/categories/",
+    "https://docs.contao.org/5.x/manual/de/cli/",
+    "https://docs.contao.org/5.x/manual/de/cli/automator/",
+    "https://docs.contao.org/5.x/manual/de/cli/crawl/",
+    "https://docs.contao.org/5.x/manual/de/cli/datenbank-backups/",
+    "https://docs.contao.org/5.x/manual/de/cli/dca/",
+    "https://docs.contao.org/5.x/manual/de/cli/maintenance-mode/",
+    "https://docs.contao.org/5.x/manual/de/cli/migrate/",
+    "https://docs.contao.org/5.x/manual/de/cli/resize-images/",
+    "https://docs.contao.org/5.x/manual/de/cli/user/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/auflistung/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/faq-verwaltung/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/frontend-module/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/frontend-module/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/terminverwaltung/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/kommentare/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/frontend-module/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/nachrichtenverwaltung/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/frontend-module/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/newsletter-verwaltung/",
+    "https://docs.contao.org/5.x/manual/de/core-erweiterungen/",
+    "https://docs.contao.org/5.x/manual/de/dateiverwaltung/",
+    "https://docs.contao.org/5.x/manual/de/dateiverwaltung/dateien-und-ordner-verwalten/",
+    "https://docs.contao.org/5.x/manual/de/dateiverwaltung/downloads-kontrollieren/",
+    "https://docs.contao.org/5.x/manual/de/dateiverwaltung/metadaten/",
+    "https://docs.contao.org/5.x/manual/de/einleitung/",
+    "https://docs.contao.org/5.x/manual/de/einleitung/contao-im-schnelldurchlauf/",
+    "https://docs.contao.org/5.x/manual/de/einleitung/contao-open-source-cms/",
+    "https://docs.contao.org/5.x/manual/de/einleitung/das-contao-netzwerk/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/animated-timeline/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/contao-easy_themes/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/isotope-core/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/maklermodul/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/merger2/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/metamodels/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/news-facebook-sync/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/news-sync/",
+    "https://docs.contao.org/5.x/manual/de/erweiterungen/social-feed/",
+    "https://docs.contao.org/5.x/manual/de/faq/",
+    "https://docs.contao.org/5.x/manual/de/formulargenerator/",
+    "https://docs.contao.org/5.x/manual/de/formulargenerator/ein-suchformular-erstellen/",
+    "https://docs.contao.org/5.x/manual/de/formulargenerator/formulare/",
+    "https://docs.contao.org/5.x/manual/de/formulargenerator/formularfelder/",
+    "https://docs.contao.org/5.x/manual/de/guides/deployer/",
+    "https://docs.contao.org/5.x/manual/de/guides/filter/",
+    "https://docs.contao.org/5.x/manual/de/guides/local-installation/xampp/",
+    "https://docs.contao.org/5.x/manual/de/guides/manager-theme/",
+    "https://docs.contao.org/5.x/manual/de/guides/module-listing/",
+    "https://docs.contao.org/5.x/manual/de/guides/webfont/",
+    "https://docs.contao.org/5.x/manual/de/installation/",
+    "https://docs.contao.org/5.x/manual/de/installation/contao-aktualisieren/",
+    "https://docs.contao.org/5.x/manual/de/installation/contao-installieren/",
+    "https://docs.contao.org/5.x/manual/de/installation/contao-installtool/",
+    "https://docs.contao.org/5.x/manual/de/installation/contao-manager-error/",
+    "https://docs.contao.org/5.x/manual/de/installation/contao-manager/",
+    "https://docs.contao.org/5.x/manual/de/installation/contao-umziehen/",
+    "https://docs.contao.org/5.x/manual/de/installation/erweiterungen-aktualisieren/",
+    "https://docs.contao.org/5.x/manual/de/installation/erweiterungen-deinstallieren/",
+    "https://docs.contao.org/5.x/manual/de/installation/erweiterungen-installieren/",
+    "https://docs.contao.org/5.x/manual/de/installation/quickstart/",
+    "https://docs.contao.org/5.x/manual/de/installation/systemvoraussetzungen/",
+    "https://docs.contao.org/5.x/manual/de/installation/systemvoraussetzungen/backend-suche/",
+    "https://docs.contao.org/5.x/manual/de/layout/",
+    "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/",
+    "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/anwendungen/",
+    "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/benutzermodule/",
+    "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/navigationsmodule/",
+    "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/verschiedenes/",
+    "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/website-suche/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/php/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/php/assets/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/php/data/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/php/insertion/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/php/vererbung/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/php/verwaltung/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/twig/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/twig/data/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/twig/syntax/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/twig/verwaltung/",
+    "https://docs.contao.org/5.x/manual/de/layout/templates/twig/wiederverwendung/",
+    "https://docs.contao.org/5.x/manual/de/layout/theme-manager/",
+    "https://docs.contao.org/5.x/manual/de/layout/theme-manager/seitenlayouts-verwalten/",
+    "https://docs.contao.org/5.x/manual/de/layout/theme-manager/stylesheets-verwalten/",
+    "https://docs.contao.org/5.x/manual/de/layout/theme-manager/themes-verwalten/",
+    "https://docs.contao.org/5.x/manual/de/migration/",
+    "https://docs.contao.org/5.x/manual/de/performance/",
+    "https://docs.contao.org/5.x/manual/de/performance/cronjobs/",
+    "https://docs.contao.org/5.x/manual/de/performance/http-caching/",
+    "https://docs.contao.org/5.x/manual/de/performance/php-setup/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/abmelden/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/dienst-nicht-verfuegbar/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/externe-weiterleitung/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/interne-weiterleitung/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/mehrsprachige-webseiten/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/multidomain-betrieb/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/news-feed/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/nicht-authentifiziert/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/regulaere-seite/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/seite-nicht-gefunden/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/seiten-als-zentrale-elemente/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/website-startseite/",
+    "https://docs.contao.org/5.x/manual/de/seitenstruktur/zugriff-verweigert/",
+    "https://docs.contao.org/5.x/manual/de/system/",
+    "https://docs.contao.org/5.x/manual/de/system/debug-modus/",
+    "https://docs.contao.org/5.x/manual/de/system/einstellungen/",
+    "https://docs.contao.org/5.x/manual/de/system/preview-link/",
+    "https://docs.contao.org/5.x/manual/de/system/systemwartung/",
+    "https://docs.contao.org/5.x/manual/de/tags/",
+    "https://docs.contao.org/5.x/manual/de/tags/DCA/",
+    "https://docs.contao.org/5.x/manual/de/tags/Demo/",
+    "https://docs.contao.org/5.x/manual/de/tags/Deployer/",
+    "https://docs.contao.org/5.x/manual/de/tags/Deployment/",
+    "https://docs.contao.org/5.x/manual/de/tags/Formular/",
+    "https://docs.contao.org/5.x/manual/de/tags/Hook/",
+    "https://docs.contao.org/5.x/manual/de/tags/Installation/",
+    "https://docs.contao.org/5.x/manual/de/tags/Leads/",
+    "https://docs.contao.org/5.x/manual/de/tags/Seitenstruktur/",
+    "https://docs.contao.org/5.x/manual/de/tags/Template/",
+    "https://docs.contao.org/5.x/manual/de/tags/Theme/",
+    "https://docs.contao.org/5.x/manual/de/tags/Twig/",
+    "https://docs.contao.org/5.x/manual/de/tags/Wartungstemplate/",
+    "https://docs.contao.org/5.x/manual/en/",
+    "https://docs.contao.org/5.x/manual/en/administration-area/",
+    "https://docs.contao.org/5.x/manual/en/administration-area/accessing-and-structure-of-the-backend/",
+    "https://docs.contao.org/5.x/manual/en/administration-area/back-end-keyboard-shortcuts/",
+    "https://docs.contao.org/5.x/manual/en/administration-area/edit-data-records/",
+    "https://docs.contao.org/5.x/manual/en/administration-area/list-data-records/",
+    "https://docs.contao.org/5.x/manual/en/article-management/",
+    "https://docs.contao.org/5.x/manual/en/article-management/articles/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/accordion/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/content-slider/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/file-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/include-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/legacy-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/link-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/media-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/miscellaneous/",
+    "https://docs.contao.org/5.x/manual/en/article-management/content-elements/text-elements/",
+    "https://docs.contao.org/5.x/manual/en/article-management/insert-tags/",
+    "https://docs.contao.org/5.x/manual/en/article-management/simple-tokens/",
+    "https://docs.contao.org/5.x/manual/en/categories/",
+    "https://docs.contao.org/5.x/manual/en/cli/",
+    "https://docs.contao.org/5.x/manual/en/cli/automator/",
+    "https://docs.contao.org/5.x/manual/en/cli/crawl/",
+    "https://docs.contao.org/5.x/manual/en/cli/db-backups/",
+    "https://docs.contao.org/5.x/manual/en/cli/dca/",
+    "https://docs.contao.org/5.x/manual/en/cli/maintenance-mode/",
+    "https://docs.contao.org/5.x/manual/en/cli/migrate/",
+    "https://docs.contao.org/5.x/manual/en/cli/resize-images/",
+    "https://docs.contao.org/5.x/manual/en/cli/user/",
+    "https://docs.contao.org/5.x/manual/en/contributing/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/calendar/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/calendar/calendar-management/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/calendar/frontend-modules/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/comments/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/faq/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/faq/faq-management/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/faq/frontend-modules/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/listing/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/news/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/news/frontend-modules/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/news/news-management/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/frontend-modules/",
+    "https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/newsletter-management/",
+    "https://docs.contao.org/5.x/manual/en/extensions/",
+    "https://docs.contao.org/5.x/manual/en/extensions/animated-timeline/",
+    "https://docs.contao.org/5.x/manual/en/extensions/cca-merger2/",
+    "https://docs.contao.org/5.x/manual/en/extensions/contao-easy_themes/",
+    "https://docs.contao.org/5.x/manual/en/extensions/isotope-core/",
+    "https://docs.contao.org/5.x/manual/en/extensions/maklermodul/",
+    "https://docs.contao.org/5.x/manual/en/extensions/metamodels/",
+    "https://docs.contao.org/5.x/manual/en/extensions/news-facebook-sync/",
+    "https://docs.contao.org/5.x/manual/en/extensions/news-sync/",
+    "https://docs.contao.org/5.x/manual/en/extensions/social-feed/",
+    "https://docs.contao.org/5.x/manual/en/faq/",
+    "https://docs.contao.org/5.x/manual/en/file-manager/",
+    "https://docs.contao.org/5.x/manual/en/file-manager/control-downloads/",
+    "https://docs.contao.org/5.x/manual/en/file-manager/file-manager/",
+    "https://docs.contao.org/5.x/manual/en/file-manager/meta-data/",
+    "https://docs.contao.org/5.x/manual/en/form-generator/",
+    "https://docs.contao.org/5.x/manual/en/form-generator/create-a-search-form/",
+    "https://docs.contao.org/5.x/manual/en/form-generator/form-fields/",
+    "https://docs.contao.org/5.x/manual/en/form-generator/forms/",
+    "https://docs.contao.org/5.x/manual/en/guides/",
+    "https://docs.contao.org/5.x/manual/en/guides/add-first-index-page/",
+    "https://docs.contao.org/5.x/manual/en/guides/contao-demo/",
+    "https://docs.contao.org/5.x/manual/en/guides/dca/",
+    "https://docs.contao.org/5.x/manual/en/guides/deployer/",
+    "https://docs.contao.org/5.x/manual/en/guides/filter/",
+    "https://docs.contao.org/5.x/manual/en/guides/grid-system/",
+    "https://docs.contao.org/5.x/manual/en/guides/install-test-versions/",
+    "https://docs.contao.org/5.x/manual/en/guides/local-installation/",
+    "https://docs.contao.org/5.x/manual/en/guides/local-installation/ddev/",
+    "https://docs.contao.org/5.x/manual/en/guides/local-installation/devilbox/",
+    "https://docs.contao.org/5.x/manual/en/guides/local-installation/laragon/",
+    "https://docs.contao.org/5.x/manual/en/guides/local-installation/xampp/",
+    "https://docs.contao.org/5.x/manual/en/guides/maintenance-template/",
+    "https://docs.contao.org/5.x/manual/en/guides/manager-theme/",
+    "https://docs.contao.org/5.x/manual/en/guides/module-listing/",
+    "https://docs.contao.org/5.x/manual/en/guides/sass-less-integration/",
+    "https://docs.contao.org/5.x/manual/en/guides/save-form-data/",
+    "https://docs.contao.org/5.x/manual/en/guides/svg/",
+    "https://docs.contao.org/5.x/manual/en/guides/tinymce-configuration/",
+    "https://docs.contao.org/5.x/manual/en/guides/webfont/",
+    "https://docs.contao.org/5.x/manual/en/installation/",
+    "https://docs.contao.org/5.x/manual/en/installation/contao-installtool/",
+    "https://docs.contao.org/5.x/manual/en/installation/contao-manager-error/",
+    "https://docs.contao.org/5.x/manual/en/installation/contao-manager/",
+    "https://docs.contao.org/5.x/manual/en/installation/install-contao/",
+    "https://docs.contao.org/5.x/manual/en/installation/install-extensions/",
+    "https://docs.contao.org/5.x/manual/en/installation/move-contao/",
+    "https://docs.contao.org/5.x/manual/en/installation/quickstart/",
+    "https://docs.contao.org/5.x/manual/en/installation/system-requirements/",
+    "https://docs.contao.org/5.x/manual/en/installation/system-requirements/backend-search/",
+    "https://docs.contao.org/5.x/manual/en/installation/uninstalling-extensions/",
+    "https://docs.contao.org/5.x/manual/en/installation/update-contao/",
+    "https://docs.contao.org/5.x/manual/en/installation/update-extensions/",
+    "https://docs.contao.org/5.x/manual/en/introduction/",
+    "https://docs.contao.org/5.x/manual/en/introduction/contao-open-source-cms/",
+    "https://docs.contao.org/5.x/manual/en/introduction/contao-quickstart/",
+    "https://docs.contao.org/5.x/manual/en/introduction/the-contao-network/",
+    "https://docs.contao.org/5.x/manual/en/layout/",
+    "https://docs.contao.org/5.x/manual/en/layout/module-management/",
+    "https://docs.contao.org/5.x/manual/en/layout/module-management/applications/",
+    "https://docs.contao.org/5.x/manual/en/layout/module-management/miscellaneous/",
+    "https://docs.contao.org/5.x/manual/en/layout/module-management/navigation-modules/",
+    "https://docs.contao.org/5.x/manual/en/layout/module-management/user-modules/",
+    "https://docs.contao.org/5.x/manual/en/layout/module-management/website-search/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/php/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/php/manage-template/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-assets/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-data/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-inheritance/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-insertion/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/twig/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/twig/data/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/twig/manage/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/twig/reuse/",
+    "https://docs.contao.org/5.x/manual/en/layout/templates/twig/syntax/",
+    "https://docs.contao.org/5.x/manual/en/layout/theme-manager/",
+    "https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-page-layouts/",
+    "https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-stylesheets/",
+    "https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-themes/",
+    "https://docs.contao.org/5.x/manual/en/migration/",
+    "https://docs.contao.org/5.x/manual/en/performance/",
+    "https://docs.contao.org/5.x/manual/en/performance/cronjobs/",
+    "https://docs.contao.org/5.x/manual/en/performance/http-caching/",
+    "https://docs.contao.org/5.x/manual/en/performance/php-setup/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/access-denied/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/external-redirect/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/logout/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/multi-domain-operation/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/multilingual-websites/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/news-feed/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/not-authenticated/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/page-not-found/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/pages-as-central-elements/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/pages-as-central-elements/internal-redirect/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/regular-page/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/service-unavailable/",
+    "https://docs.contao.org/5.x/manual/en/site-structure/website-root/",
+    "https://docs.contao.org/5.x/manual/en/system/",
+    "https://docs.contao.org/5.x/manual/en/system/debug-mode/",
+    "https://docs.contao.org/5.x/manual/en/system/maintenance/",
+    "https://docs.contao.org/5.x/manual/en/system/preview-links/",
+    "https://docs.contao.org/5.x/manual/en/system/settings/",
+    "https://docs.contao.org/5.x/manual/en/tags/",
+    "https://docs.contao.org/5.x/manual/en/tags/DCA/",
+    "https://docs.contao.org/5.x/manual/en/tags/Demo/",
+    "https://docs.contao.org/5.x/manual/en/tags/Deployer/",
+    "https://docs.contao.org/5.x/manual/en/tags/Deployment/",
+    "https://docs.contao.org/5.x/manual/en/tags/Form/",
+    "https://docs.contao.org/5.x/manual/en/tags/Hook/",
+    "https://docs.contao.org/5.x/manual/en/tags/Installation/",
+    "https://docs.contao.org/5.x/manual/en/tags/Leads/",
+    "https://docs.contao.org/5.x/manual/en/tags/SiteStructure/",
+    "https://docs.contao.org/5.x/manual/en/tags/Template/",
+    "https://docs.contao.org/5.x/manual/en/tags/Theme/",
+    "https://docs.contao.org/5.x/manual/en/tags/Twig/",
+    "https://docs.contao.org/5.x/manual/en/tags/maintenance-template/",
+    "https://docs.contao.org/5.x/manual/en/user-management/",
+    "https://docs.contao.org/5.x/manual/en/user-management/members/",
+    "https://docs.contao.org/5.x/manual/en/user-management/users/"
+  ],
+  "entries": [
+    {
+      "page": "https://docs.contao.org/5.x/dev/",
+      "sha256": "6cf4986ba05f4fd5a4e75fe521f509ec4101b8fde255c98f52a37485a2a8d7be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/categories/",
+      "sha256": "f3e6e14026408e024b7b09c21ef40d79549792192c5615d75ef0a81c76a8ec2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/",
+      "sha256": "e137e8be74a59c047432b7d63539d2dbb149eaae90f66fd01b8f1c3edba52a64",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/asset-management/",
+      "sha256": "94bc20030c5c61a64b27fcecdfa2e7ec4386888d8f6ceb5ff1d937259e8e77eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/async-messaging/",
+      "sha256": "b14bac7cba5456858444b847d4c500094979906cf7986fe3bc861379f283356c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/back-end-modules/",
+      "sha256": "d272c91a75603207baa58cca93f37daf96f14eb61a9067a51856968d1b2fa48e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/caching/",
+      "sha256": "c87bb17d83e12b5ec4bb39d6d1db03442742cb3943e1e4cb50ddbed57f1088cc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/content-elements/",
+      "sha256": "6b41e2e449edc697f28eb60813070a160cc22e2cc87154a821d1808331bf8c1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/cron/",
+      "sha256": "86b9a74d937198f560a7a7efb524210e9f90521434c46a321df1a9369fe47543",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/csp/",
+      "sha256": "0033d39a08586440c29a4eb17840f2de4d5360d9b9b3692ea47e38a41f35ead1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/dca/",
+      "sha256": "740f0999f633bca0d47c2b967fdf49e57ee9ab446856d5ae9bb993677ffb9ed1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/dca/palettemanipulator/",
+      "sha256": "7bb75b12ea4f1bb7ec7ce8608a9940a704a6517a237281663c90a63068bb9355",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/filesystem/",
+      "sha256": "4b537c0777cfb31919b36de3341c0273282bb02a700b5b5cffc570244dc2527f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/filesystem/config/",
+      "sha256": "a3deddd15ff001a990488b99def16f5c076a2d74afe1937f1c387a7526ecc899",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/filesystem/virtual-filesystem/",
+      "sha256": "ede0a06c41178002c279365dda10f54da6c130014e8634172e6d07672382c8c9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/front-end-modules/",
+      "sha256": "20b703daf661f3aa3876176976343acce8564be0e501247b8ec1e710e219d843",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/hooks/",
+      "sha256": "e9a764e07fa5d59ea8c6d2bc347790a7d4dee6af454831e4741c16343bbd4c4e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/image-processing/",
+      "sha256": "07f85cfed6bba5161f8bfd20b6e90849beaca1385eaa667a1cbab2b52186f023",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/image-processing/image-picture-factory/",
+      "sha256": "e46f90d84d2a2ab57255b326cc67b7b221d62e3f51f19315252a0d2aff0372bb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/image-processing/image-sizes/",
+      "sha256": "dd828b5214fb9f7f80662b3dc03217bae2c768bbde2a80e4397732f3ebb09925",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/image-processing/image-studio/",
+      "sha256": "996dfb58ee9e3eb14bb3d4d6fa8b9c8e8760623a2ffd49a55fd507d77126f17b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/insert-tags/",
+      "sha256": "1c6339eab155a49570028d8aebe87f6f391cccac46b793dcada645778e460c6b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/jobs/",
+      "sha256": "c43580300049860cf623a085df2ae3ecb21711169e04d4a5e58652e4f9829d94",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/logging/",
+      "sha256": "29ee58d01f384bb39b46a135196b5be1bea8e518db9a2b72f1448a6c6f155e1c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/maintenance-module/",
+      "sha256": "db608a6693065caeb85d7bc3d231d8525a2b572ff6de89a7c444c10088b16f47",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/maintenance-module/purge-task/",
+      "sha256": "7eed5fe9b088567061f6d07aa8cf1964a6d51694254a477068759e43b115a257",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/manager-plugin/",
+      "sha256": "85af7a6cca2ffe35e2c04c0a568ee666708a2af1a1307e3202274ce34eff9ecd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/migrations/",
+      "sha256": "39b8b4adea1249e235f283684cf164be9fc6c20d4d0586261dbe167de5cf8ce4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/models/",
+      "sha256": "8ca21caf7c328c70b75aa2ff9799d81a33e1ef0f7ca7471e27864646caa1b68c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/models/collections/",
+      "sha256": "55db410c6fefc052b72b3f37baa7f13e8fd219ecd4e6c0b915333f3f1d245ff9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/models/customization/",
+      "sha256": "474e9669e92f46c9da2242bd44a79b24652bdb9b59bafad4a90424837496f318",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/models/enumerations/",
+      "sha256": "4f3bdcd2a26615857392a7d8231c90833a7193144fbb1de37bfddcd7dc5fed53",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/page-controllers/",
+      "sha256": "9a34fc9bfa6f58cf0c375e4b49ace5578c6d20fba84a2da23d6ef50f089dc6e1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/profiler/",
+      "sha256": "cb7fa036e0031576bd45e0e1e1cd7c626ef6a9061bb297b42923f0c2407a3908",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/request-tokens/",
+      "sha256": "2a377fe17d2ce7d98b18856d58762d3af31dfe53490ee98b300e575cf2576d58",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/response-context/",
+      "sha256": "7211956a40d625c61fa0ae7ccc8a348c000cd398cb1985595b767426c503d203",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/routing/",
+      "sha256": "b0d6be799bfdb6f727e512c496a1acaaf2e05be68b6f5d658aec79c5542fd8a0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/routing/content-routing/",
+      "sha256": "febb984ecb3cc4880bac318d92413871bc0bb9f2e0346fca941afa263e81bb34",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/routing/legacy-parameters/",
+      "sha256": "f01e06beb2475912763db89a62a3e72e31d3fd3b2e4e3098c5f668c178111946",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/search-indexing/",
+      "sha256": "69d3e28c9ae5801f41648a8252c7f14a135976fb788201a704064a01d879fb4f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/security/",
+      "sha256": "70c0fdf690a64558956e14cdb9efcebf83442388295074b81d7426ee2d7832ca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/security/data-container/",
+      "sha256": "f632e5b3ff43a40ecf3b7d45715c1759889420b68661def92f064a27d4377159",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/security/preview-mode/",
+      "sha256": "17e4083fc868370a1222a63a0388f429bda7a9f0c2c1d8686db625cf18942e1d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/",
+      "sha256": "42a5497906d3639525691ba2e3f649b0d4d3435e1a26eb0b24f50dca2a834c95",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/architecture/",
+      "sha256": "fddce08b68e0ec0dc4fc7c450cd6ba86b47dcdd3bcf7d8e4280f7655bdcbb58d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/creating-templates/",
+      "sha256": "1097a4214cfdbf5efd5443fc1094e4d389405de6db9bdb4e0254cdf86eec7733",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/debugging/",
+      "sha256": "60462fff0af7a170002d0378355a5a174d34d8d1c0ed67f479a1a47a3bceee26",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/getting-started/",
+      "sha256": "273cdf1acd951cd576f440d2005e7a61ba91696b311ee61e79da22a426b02c10",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/legacy/",
+      "sha256": "8842734cc66031825f10bdc1fd904285a698997ccc8696c4081bc3c067096036",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/templates/quick-reference/",
+      "sha256": "c333eb8520907468d6699a7046aff081ceacaacf887d95baee01b0916133f5b5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/translations/",
+      "sha256": "faf0b6765e78e996fba0fda81f4137941b5fa1c4a9b9ead4589dd8f30e3fb263",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/framework/widgets/",
+      "sha256": "51138e4a2223a6e40c2d74712bb38ed687bb98b55c41f9ca9c8c7d567c363446",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/",
+      "sha256": "b17c89c3edd570a30c054eb93cd30915dc123e04aee62f420761c56e798980f2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/content-elements-modules/",
+      "sha256": "09661b63dee57cb54cbf26249e273c02909a7487085fa3bfb2ced6b6b5b64577",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/core-concepts/",
+      "sha256": "404178ad25e64adb778bc5e9c1cc1ffda22945aab3e18662952726c8bc947d8d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/dca/",
+      "sha256": "8c76343ab42370fb914e6ef907331dbddff07908ad146477c90145d5a05ee7b6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/extension/",
+      "sha256": "d7050da4635631f62424ceb841fe728052fb9e235fa5273b99f354ea6be98a7c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/hooks/",
+      "sha256": "8b3863031fcbd8fa625a1cef8723b3bbbee253878d6e870966756bf578132d64",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/initial-setup/",
+      "sha256": "8b43c09f7f5a2bb007fd10b2b3f2517977d1195ade0c12298dbec2cf148af24e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/initial-setup/managed-edition/",
+      "sha256": "6e4b2f4b0d16b19c930e31531dff5936b74d6b3dc5d5c5ed18024f2656278a24",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/",
+      "sha256": "8c04b6fe9847b098b86bcc15ef538448c4f3f359b7a96e6a6c1c3a3df3a13daf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/initial-setup/symfony-application/contao-5.3/",
+      "sha256": "5a7bff37267cac8a549b68733299747bf0b1e8a05821af66337fba440119a151",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/starting-development/",
+      "sha256": "2985821196763d9e32e6e59af13c41ca6ec91cd96dffa2b8a26d147589d6b316",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/getting-started/translations/",
+      "sha256": "5bf59cb95baa3eadf417982a43b357d6a60b9f1c61507651215353030b3e0833",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/",
+      "sha256": "4e98cecd9d3f80e2ed19d1339580f927cc8978aeff1b765addc9c4907e589087",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/adding-back-end-assets/",
+      "sha256": "f933b618c790274df5ce2d25ce1a0e06cc275b17612be606c2e75d0edf376061",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/back-end-routes/",
+      "sha256": "e7574db94b7f4c86c2f4d8d42074a181b7757bfcef0e4467f6085fe010e8627c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/coding-standards/",
+      "sha256": "e3d34c41e03bae5205a54de55b6e5b9d005304c2df541654ca58ffdc4b274646",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/dca/",
+      "sha256": "9077eb73f59db2eb7352ffcc96827b14917522dc99545bde69296fef7a02fb32",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/first-bundle/",
+      "sha256": "b1073d22400d6e27490e3c5c0f02bd6ec363d44db8884a3603274477e9cc81a7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/fragment-controllers/",
+      "sha256": "1b519712be029d684f34b2ac285ccfd340bf6dce1e72eb50353af80e0100a427",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/modify-container-at-compile-time/",
+      "sha256": "9d5eec3e4c1589a6706cd49706e2550ab943bca0397c1eb18a6bd1cd61d59958",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/namespaces/",
+      "sha256": "70c598115077ed954bc1d17b803b0b07b0d4016d231df50c024442e7238e6b56",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/publishing-bundles/",
+      "sha256": "21281598c1333ed999f51cefedda995d43fa5dfa3e571573d541aaa111546180",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/guides/using-content-elements/",
+      "sha256": "14b849599d2eedc6e53a0d28aab3986ee30c277248c70672a8f145f194a8e0ef",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/",
+      "sha256": "43eeaf47a564d11cdd2d664bacb99b11f7a33957c1716cf68c52e9dca365dce6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/_stimulus-backend/",
+      "sha256": "3a9cd8dac265c58b36adc4d63577b019ff398e7d8e8e16d0253e5e7a24a83e82",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/bc-promise/",
+      "sha256": "f6f7d1138b2734d8aec29efb7da2f87de893663ed16a476961ac54b1fdb55488",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/contao-manager-api/",
+      "sha256": "9d24e1e1467c4b62b17fc916e8cc0e0994138f3bc4d1dc0b545a9cffdcbf9e3d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/experimental-features/",
+      "sha256": "56449e1419564d1f2fa55e9056513464859515db1eaa649801b0deb8a097811c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/issue-workflow/",
+      "sha256": "4a07fcdde428a028a38d702ad76a646e4ed709b2cba02420e88f521afdc0d4f8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/internals/release-procedure/",
+      "sha256": "b6c67fb0412b09a409f792f4bd5b23d3c820a4be6c9392393e91d7d78e7e3681",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/",
+      "sha256": "da8149b3c6fd486017cbfad15f5ea7ee6bb5b68a67cd033217507f9f5b6a62da",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/commands/",
+      "sha256": "999b003a9f7c8f311cbfb2522314c986c7f10e7b5dc818692c69651cc9a676d3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/config/",
+      "sha256": "4ae6f52998b2d01d631535a1b547d48ea7b40519e4466fe8cd9a9f929b8ad56c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/dca/",
+      "sha256": "fbe5ce1e7b7d5e42982ab6d4e68575707b7479f1e091effa2485f962824e3c87",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/dca/callbacks/",
+      "sha256": "875c57f2367fbc266b31daa054486bcfbc420aa96d2c9022c623d7b5f69d4278",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/dca/config/",
+      "sha256": "c43d4a01c60e17fc792310cb517bffda7e30a7d01ba004b390cf0d4e7fd50817",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/dca/fields/",
+      "sha256": "2f4be7bd103ec1f943ad59a2c88e560fed5ad39a4400b98aaf009d0c9bc9edc7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/dca/list/",
+      "sha256": "92bc7ad49e75be6b434c42505a1efab66114b36d79c905b937310d7e4094f388",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/dca/palettes/",
+      "sha256": "81f394a6c4750f654172591fe6d2548627581cd411c2cf00cd1bf782fcb8ab1f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/events/",
+      "sha256": "f21f84de809f61c86f37f5455cbb2e94bdd6d1f8f138abe3b70a40751e01b4d3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/",
+      "sha256": "1a2deec345e9e3ba5a3c83cd497c16f5176d722e2b1b50478f0a289fb82aa58b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/activateAccount/",
+      "sha256": "0c856e70054436bec2eb3ecaaa750139d0694fbf53adccc0d6df14784f355eaa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/activateRecipient/",
+      "sha256": "8d056bb8777e5f1db4f0549676d4aac484dce982ff039883a41e0e1003aedd7b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/addComment/",
+      "sha256": "470c0b9c9da0ee89265d58d59a4b826bd3c97cbeca11716e245f9282e9c22b71",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/addCustomRegexp/",
+      "sha256": "42e8a4bd90e31c15deb03a495fa2a5ba4176a89835b4a4d12d84592280c9bdf1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/closeAccount/",
+      "sha256": "084f8af1f0bb5cc2a72cb6356753c4e96d068f77dbe27a62f468f2b2975f44a1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/colorizeLogEntries/",
+      "sha256": "5daf02377775a7855e80ce0dcb27258e3680d7aa07336fa9b2766934c908e8b7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/compareThemeFiles/",
+      "sha256": "71904f051e4e6c95080c88be046023cdf3ec1513fbfc033417ba7d7967c121ae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/compileArticle/",
+      "sha256": "2bf13eff6d441abfec503d25dc408510a0cd70aa93ef45061eac6dece59cc333",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/compileFormFields/",
+      "sha256": "69d473b4870a3bf546f42d8d81dfb04ea871b3e3c8c460551299d7dd4d494532",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/createNewUser/",
+      "sha256": "af6ff45627b5b4c3df28da0885f4abb9c857c10b792bf63663f1c6a0e947bc73",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/customizeSearch/",
+      "sha256": "9761b0c7714c3927926b997b9a99bf9d8dfd43e288d97963e8a5fd8fe9c8bde2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/executePostActions/",
+      "sha256": "a6801d47c3efdcf43bc82848859bab26dbef5a6feb6d37d9e11ee4413e9f4f7a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/executePreActions/",
+      "sha256": "6e3a48e4bc0d80a03718f722afc94d553a0ebb545d189c7176dbc5264e3714f5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/exportTheme/",
+      "sha256": "7699cb897f201abfcd9c047807dc8bc7ab9c42ef77b2bcca9104b6c9e8ae531d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/extractThemeFiles/",
+      "sha256": "cf48ba4935200ee08e60e7b6c7744ff4fbc5241928306f17cf4728b7be909dd8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/findCalendarBoundaries/",
+      "sha256": "7237c73c14dec401472ffbcb50d2389f27eed312ea8a895e1cabc25261594ecc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/generateBreadcrumb/",
+      "sha256": "e15dfe7f7876c06efd2e21515e202896737154459167801dd6ea0e98441d61cb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/generatePage/",
+      "sha256": "02d70f561b03ab82dff82b41ac1bc406deca55f34b970d0763ecb12bc0f9eea0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/generateXmlFiles/",
+      "sha256": "15a2a08db8569b5e5462dd941ee4d394be5f2541f4c211378ccdab29a61b4768",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getAllEvents/",
+      "sha256": "b21cbc9918716977ca01bbb1b1c09154751a4ba59b139f79ec5fdcdec713b062",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getArticle/",
+      "sha256": "a73c7025755f5e697e09ac31648bc5bc9111b2e3fb0129e8c021a023bf23a10f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getArticles/",
+      "sha256": "58628dec34f068301a78d86b89364fdc30d1da830f67965685a20d22904b70f7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getAttributesFromDca/",
+      "sha256": "5c9767f668dfa9dfcc6544eb06b5dbfad65aaa5520d396bb9eaa37ffbfff4004",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getCombinedFile/",
+      "sha256": "809966381f0be64ef0913fc44c912b06956166526d73f7e7f68ed860da6e7b01",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getContentElement/",
+      "sha256": "fdf77a551e70d10c3debf353f1b4b5afb029c37ad194564e1aa2b9c6e74bc215",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getForm/",
+      "sha256": "c1bc587ef7cceb0725733bf9de86a98fad85b5806301200ef8c7b480907c4ae6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getFrontendModule/",
+      "sha256": "57d821ad9254ceeebabf6cb7c1a313a49c67c02f3f0466d78f8b1be0d0fcb749",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getPageLayout/",
+      "sha256": "e283812f75d702a1dfc4aa55cf3ddd785d56ef0b3d98e27e8a5f1a4444c0b53a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getPageStatusIcon/",
+      "sha256": "176474286a7d5b53beb5a983a02470a26a0cfeed12ee0c4d95f4b751ed6bee4e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getSystemMessages/",
+      "sha256": "446d0cb26d73a447f4ad91fbe0297e100231206bb50c71756c417a3d5a51de8b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/getUserNavigation/",
+      "sha256": "71949a3380db03d5210569f0264870e2767defd3e8b7ee68f96aef3a180a7b2f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/indexPage/",
+      "sha256": "fecea14dcd8ddaf2db411d3a5a8056fd8789bc88b10156ff733289af46a926ad",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/initializeSystem/",
+      "sha256": "51ca3bd0bd1df26467e6a97f6f8f33c908bf6e21b22c1c0e0b4e9d41a9384eb0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/insertTagFlags/",
+      "sha256": "795a43bf248406d192c5b14b481aa6db61d3c38d9adb520452b80589f3e702f1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/isAllowedToEditComment/",
+      "sha256": "9d7977c188b0d39c31ec262c56fde2310304a9c7b27874cee33eb8e27e7bd702",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/isVisibleElement/",
+      "sha256": "789bddaa476161ae850b1bb436f041c9f06ac4ed65b9aeb862fad36e0845791c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/listComments/",
+      "sha256": "b5933e001c800ce3a83f4d8fcd194e483e7c72de4c2a7c5f58a0b7c2c22dbe4a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/loadDataContainer/",
+      "sha256": "2e2b373fe54a85daf99c5358ba2be956ccb7188ca8bc40dc00d065e33fcdb132",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/loadFormField/",
+      "sha256": "1e8a8943a93555aab79dd4f0a240be3c1b6206ced6efd72f045cd4f8d88d6e6e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/loadLanguageFile/",
+      "sha256": "56e91f02ce8d73ef898bb453d9f90cf02bba2ab5af91feb1c204d957f005f752",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/loadPageDetails/",
+      "sha256": "6276be3c04aefdafe3e56493e85c02f9e16e368bc03dc028a8b3a09c4c644ada",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/modifyFrontendPage/",
+      "sha256": "ef46869a8538277f70858a8b7943e3d2017b7603eb4027b1121c6f741e7706e5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/newsListCountItems/",
+      "sha256": "0e621a92dc59d16c1b7bc9069801c10d3e1f47eb772a58db76bc3c3dbe6d6b9e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/newsListFetchItems/",
+      "sha256": "2b992e7535553be2b3545e1eb442926efe98a9f945e8c1847dc7dc216f918349",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/outputBackendTemplate/",
+      "sha256": "a1536d7ee6d7f20fa1e9f5ecceac8d316da6bb73b006598c61636ced1a4b2cbf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/outputFrontendTemplate/",
+      "sha256": "2d0c3b9036069aea6ee2244c85b60068fe904f06bbc86f2bf0229f345b84359b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/parseArticles/",
+      "sha256": "1ee2b0277391d634f4a3efa811c32eb2f2401c96b95499e1e3ace1b72f6e43fa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/parseBackendTemplate/",
+      "sha256": "12d79891e3efd43d311ee3492f49ab6c5d279c87ec01dd3526069499851b8f51",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/parseDate/",
+      "sha256": "ad1ebb2d4dd8fac91038c8d408b64cb5e1c68ebe1d5dc9e3e6a94676a861aab0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/parseFrontendTemplate/",
+      "sha256": "9c5a96612cd902b20f5d7b77c5b504ee756fb407e81fbd0d461f4d61600035e8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/parseTemplate/",
+      "sha256": "489c17b42576e7b9754c28e8560cd49ae85b5d20c4abeafd9fc4ca65b654aa63",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/parseWidget/",
+      "sha256": "0e1cfe58365b7051fe1c492a8dbe651a1511d8ed3a23918d045e9f2aace4bff1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/postDownload/",
+      "sha256": "4e3a1ee10d42c50e52b8b93bd315c52a48ee4553eef72257f16ba5d4ddeeba27",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/postUpload/",
+      "sha256": "a318c1a5f7ef8c910a0025b91114b66c6ac61a3cf0a5042769683a301c5b8c81",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/prepareFormData/",
+      "sha256": "dceb156e36587c4928f0831e40042ac305da18d3baa75b15d45f0fee3a5f79aa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/processFormData/",
+      "sha256": "1a57b01bb017a06c39bf1c4160527a15062dee92a29d6782ffc0bf1b7f88f5a8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/removeOldFeeds/",
+      "sha256": "94edd786fa1801444a81ad16e6227f0c491f5abb6a7a01ef0fffda08aae9b543",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/removeRecipient/",
+      "sha256": "7fe64dde317c2b8e303c4d228c59d16caec6636ff48a3ca452fc27c0a747eeae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/replaceDynamicScriptTags/",
+      "sha256": "014a6f591b2028ba981a7d05ca6bf401d2a805d57e13781d42aaed652a01278f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/replaceInsertTags/",
+      "sha256": "a5743a59685a83ba70be92b009e920f28e1ec9b6c2c9718cfcf7bcb0fb1dcce3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/reviseTable/",
+      "sha256": "e80f7f815a7c1d4ad3a75653de0decead893091dc16520b6bf4e08dd8ac9c27f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/setCookie/",
+      "sha256": "5db7d3abe9e38dda5c38e4ff3805bf379dbd54590c7849932fcb73aa038e9f6e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/setNewPassword/",
+      "sha256": "9af946dad299cf2b89b3b2c202be070033b4c1600e1dc8a624ff148021a8d542",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/sqlCompileCommands/",
+      "sha256": "7badf5336ea0952d3957f018d71e48ac6228e46222772a0414aec4185093c0d5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/sqlGetFromDB/",
+      "sha256": "8dababe7695a84fe66d21fdcfd0ae4d7f717840e272b6518c05ec17bf95ac78c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/sqlGetFromDca/",
+      "sha256": "5e6cb0ce3b35b52664fecefa2e04ce66974445d5f21c924d27b8b9ef3651ebbd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/storeFormData/",
+      "sha256": "635ddd9b26b432168fb25cc15abdcc83a1bc07412d5b2d5f1c4d973ecaa2dd04",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/updatePersonalData/",
+      "sha256": "6712da80ea51baf59eaafc6d834bfd37a7f5f0a522379fdb64e686d62d8d40f6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/hooks/validateFormField/",
+      "sha256": "ff82067d01eb1d519794c7e0a2126366f5b738dbe35d7fbd5b5ad41a279d534a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/request-attributes/",
+      "sha256": "fd1b86917c22e546bca4ca9ae51d7e066a30a7e64a6acbdc3f6dc0ec616ee708",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/services/",
+      "sha256": "6e8536ae031cab1de01bacfc8c780ea17f2936377fc270723e8bba60ffdcf51e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/",
+      "sha256": "323f51e6871c5375d909e590b03de95d3757bd46801877aff9b8f82d4408ccf6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/",
+      "sha256": "4228ed702ed4965db093c13e3db076af39d74f4154446a0d9d4df3834246ebc9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/csp_inline_styles/",
+      "sha256": "8820bd86e041e0e985a9bc981fe45c70099594355a67d841ebfeee575219f6b4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/csp_unsafe_inline_style/",
+      "sha256": "c927c4198627e1aea8205005fb391d19cee318f0a297428b9393ec3d2e185054",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/deserialize/",
+      "sha256": "4b1efe618f7e26c6365143797b973442fbd72f6b66756130d9cac24098966fc9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/encode_email/",
+      "sha256": "49765d384978b310c19858255b2f4c53a3448759e3d44342ecb00ecd21132b53",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/escape/",
+      "sha256": "82bb7604e1e5e9c40ab3c4d02872b75eb6e57d267fdfddac6a9aea5d01329066",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/format_bytes/",
+      "sha256": "b44f4d47e873e8b93f606a1497e8869bbcedac62ab1bd6a5409f8c82baae8579",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/highlight/",
+      "sha256": "19a09eba9ba684d8b771d80e7cfbdd98fe052d684fd09fb31ad6a8dfae8b226f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/highlight_auto/",
+      "sha256": "ec76b5e6cd5e4f53ff069760e93ed10f9ff99bd6fd46bfed0bf97497198d74e0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/insert_tag/",
+      "sha256": "4adde85b301b2cc2eac7dad3a91d7ee65112a7dbed8f6e48221ddeeb042c268d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/insert_tag_raw/",
+      "sha256": "16f6bf6c405e9b4b7706313fc30dbe0522635c3b833749999f6383c8bb798931",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/filters/sanitize_html/",
+      "sha256": "d8c8e5dd743fd9902299fc540f972945a82b6bb9dd8ce79def8c8114ac0debb2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/",
+      "sha256": "bb1ef7052b948b97a4bb6dec23a82e196133354b2d0ae87f8a71ec1e20392fe2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/add_schema_org/",
+      "sha256": "5ca03fae1370c952ac01bfcb9d5a30ef92d3f50d5c774faafc156a28dc6f3fa5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/attrs/",
+      "sha256": "a19fff0cc6eeb50bd31d32f486f8e44d6d93471e72e0c7ac50036c2cd7719058",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/backend_icon/",
+      "sha256": "d74d4df3e2ecdafc0861df63678b66f2085d7aed93a3e83b24c4ce07fe93fb28",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/contao_figure/",
+      "sha256": "f489406fbfbc6a705c46822643e67c74b44c998cd411669cb04e48655e11d423",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/contao_section/",
+      "sha256": "d384ac199363a3cc43b70189c47ae55adb693eaf988c813f2c368b5ccdd558f7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/contao_sections/",
+      "sha256": "92ea2525f9c16b5b5fcf14193da000f468a92b029fbbc0d8a63e69c302883d2e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/content_element/",
+      "sha256": "df10d0bc3ad1d4d7ec155add0fe85a706f24a39a70070f51aa492ff9efe195b8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/content_url/",
+      "sha256": "a0fa03cd1a59cfe9353d7e931de6a3772e407939b15b343b4f1757627787e53d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/csp_hash/",
+      "sha256": "f55669b1ffd00f14eaba884e73ed8506c1b9a0e9815ad66a3d180b0022021d83",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/csp_nonce/",
+      "sha256": "af7359e5f56fe1b6a6c50d06c3fb136c346ecd6ed7023b45a18879555ed704eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/csp_source/",
+      "sha256": "297314c4bd48771eb7daf9021af4ec0b9fc8b0dce2774091785ce730365b6d92",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/figure/",
+      "sha256": "cf76870af93b1805a6b1ca8f51cdb46bf1df2db26fcf2b9763dc2b739ec5d8b7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/file_icon/",
+      "sha256": "81ac0de600494e74b11fad32b88d87e3228fa47ed63e2d710299497c9d9c6495",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/frontend_module/",
+      "sha256": "ae196a2c842df8cc3f025ddfd8f8be4e1ee1ad14d10d88c30ee397259e7e2516",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/include/",
+      "sha256": "414edb5644ee5fccfe8a05dcfa9a717c0a577ba806f2b4f8b2fec748ea9e7aba",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/insert_tag/",
+      "sha256": "48f819a92ab35a2ca34b2223aec00029b77a4c19d23d01648ca8205da2da5d2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/picture_config/",
+      "sha256": "04c88213a502387078e8cd16657dc7aa27635561e29b3e313c1d4c0aa5311cc9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/functions/prefix_url/",
+      "sha256": "40afeb36c9aebd7d3620b121c72391b3bc56e4269e88301ec8e6f3495c6e5bb1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/globals/",
+      "sha256": "0e37e11e29f858bafcba07584c43d7bc121d6f13e82b7e4b4e2704c7a8150b47",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/globals/contao/",
+      "sha256": "c1236e87c9ab68a1a17d35b4d6f02e7662101a0e26d485f94d55bacb4776915f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/tags/",
+      "sha256": "13ea34e3430d3d4e7b0b93fc64de98ebaca88449f53fd21f7a42ceb488e00dd3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/tags/add/",
+      "sha256": "cfcef4e49205303f3fd68a6828a30d4356bbc1acedce6d07976ecd8728703e93",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/twig/tags/slot/",
+      "sha256": "dd415dd5507443fe01d93e91e6ae6eaef42851379e23cba43bc7b6ab8ad6f8eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/",
+      "sha256": "f49f24c898286ff602b90e84a2bcb9cada3b9f688df834f189308e9682599d37",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/checkbox-wizard/",
+      "sha256": "c49df14ce755f80bde7cf2c71a1d546f528abcbc5f24cd997f96f70c1507ef58",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/checkbox/",
+      "sha256": "1b56a29649795ff06b522ca9c8db5e6980e8f4a063a55b00ebee2dc3a02df36f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/chmod/",
+      "sha256": "76209a3351a99f0f966c8f9642678bea20ba63cbf61c725851ce29c5381c0ce9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/file-tree/",
+      "sha256": "1b477a1f49821cec76e4adfaf4dbad77a6ea5b9456fa2d17216a27fe914e6f7e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/image-size/",
+      "sha256": "73400c3ef6ae69e83647be1f9b5f4cb7f905c7636756b0d7193238a741815599",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/input-unit/",
+      "sha256": "9da3492488427f98c85050071575e365f5248bb845bee366f1f74ef59c289bcf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/key-value-wizard/",
+      "sha256": "edd54f8ba00edf8d9004907255520f305cb82a2deec9d1fe7b6e05516b97f3d6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/list-wizard/",
+      "sha256": "88cb85f38943a3a797b92c2e61cd3c4ad447ff83b2ae3a80321465966661caed",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/meta-wizard/",
+      "sha256": "998753479c45bb8fbc98e2d7db5f7c2eaed56966e6a6867f7bdfb58f84d9f0bd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/module-wizard/",
+      "sha256": "9139b99c1c081d81b0842afc64b351237ecb319cbd85dce21631b083a43fe29b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/option-wizard/",
+      "sha256": "a1527d3bb405ac9d74074ea5a9ce75804060845c10689045d4c890ea4dc09e18",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/page-tree/",
+      "sha256": "a1980d126e238069e83189923a1ede1f9a416565c7b87ca73c71aacc91315edd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/password/",
+      "sha256": "b864e99e77600cdc0672ab2c60f395dd4c39976bff527002380bc39fb8a7c212",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/picker/",
+      "sha256": "c7da748499223ea85d0a5136418843e439050f80eae5a18f07648564023d1ba6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/radio-table/",
+      "sha256": "1144c7ff5039299a1124bd1409ae85175c2880e8447c5e498fe3cc0f5782c599",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/radio/",
+      "sha256": "b194b4ca3546071551abe83070f0201c98ae11c3d2f582bfafd9400e35e46f06",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/root-page-dependent-select/",
+      "sha256": "3b52d5b4791a446ca2af729303de1c78c41c0d44b117cea8d26e618cdd2effa7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/row-wizard/",
+      "sha256": "ef864320f918cc360c261ac25616f036e0829c690fdddb4bb31fbc8d1bceddcb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/section-wizard/",
+      "sha256": "b6428ff21a09d44f88d1b5845319aa81bde91f431e537d09f523bc4f7ee39684",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/select/",
+      "sha256": "4b3eb1097c94e8df8ac842500d1eba43044c7ec7ea2914db3d154e58b23b7256",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/serp-preview/",
+      "sha256": "e3d0ed7531b234d86c71dbd9639ba28298fd483b089aa71c743a478c496083f4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/table-wizard/",
+      "sha256": "23b44a81750939fcbf826ee9a35ac118f9d9fe85d359a8f53de485874a1957e5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/text/",
+      "sha256": "26d1da5cc887b41a1abb76d0e8fd75d2a0143742ab37b10e0d0e6632727defad",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/textarea/",
+      "sha256": "f5c328a9b75c3c3f08f6e21369a7af54e6c83fba98e3133670ea425ad7a3855a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/time-period/",
+      "sha256": "a270de0b8027f54d9799074c4b371d190abde587a1436a79dca715825e473497",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/reference/widgets/trbl/",
+      "sha256": "aa4582aa3687e27a3cb1bd72b50c263e6e26c264531f195496f054eae07b20be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/",
+      "sha256": "653636b6be496f175a5ad5f1b3bf73ff5cac8f70bf5663c8a9ad0830699a05d1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/Twig/",
+      "sha256": "df94006082ac3c017c35ab08c4e8579fa36b32cc3be3c1652220984ee2e9e4a9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-article/",
+      "sha256": "22ba8de616fc6078987fdcefb4a7ccfa5c42c211fa2ab1353f99ee2b7cafe9bf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-automator/",
+      "sha256": "de1c74e076ef0f0f77861a253d84dfbf7379b32df985998acc6aa791587fdff8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-backend/",
+      "sha256": "b4e8da266fb178bcfaffdcb8b7900ecd1f7e2a8268ecfa56ba315767c3240d90",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-calendar/",
+      "sha256": "e84d4c0f931c4a46a317c082b7f48a913989582ccf74d45bbdb02a80b7b5976d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-comment/",
+      "sha256": "af9a79bd5eba67c39a1b5b56af62251353f27b7032ae1abdb6bd092ecc2d39f6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-config/",
+      "sha256": "7a5f9a91caee101fa46c041421abc373b663f97a8da2554b55b35fa487e417d1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-controller/",
+      "sha256": "e37905e91c9d04bc027184776c1186d604e5052aa1b7b8eff3f9ffadbe5b8856",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-custom/",
+      "sha256": "8ef65cb71cb19e1211d343aef0c6bfbadf6dd74ebdf08ccf9dd9a41f178958dd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-dca/",
+      "sha256": "2ace88c954bb69967e61ab5afda54fd4025fda467a85a0703096018214c5085d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-form/",
+      "sha256": "5f0b6f4552cd3b5ba4872725d839c60c14802306d778950c710fa307f0107483",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-installer/",
+      "sha256": "0a6f4084fe394cb3e2a3d5963e89ac80d6b2027459324adfeaeede0ee4be9181",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-member/",
+      "sha256": "607dba29e2c76e7e8510fcce79c06892b35d9f3be360624276de6093c9e49e87",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-module/",
+      "sha256": "3cda695a1022cf23221de09995cd5a5c1d387c344526c9c4dac11da020e7d180",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-navigation/",
+      "sha256": "d9d73b787a1623bedd2963da0a94d04894dd2a0d0b0d4e790a88ec4c124a3894",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-news/",
+      "sha256": "90d1e0b164b3faadb940d385865a83b116f583e293b01ebbdc67542ff9cc1469",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-newsletter/",
+      "sha256": "4885dc4c57323304577699957407d61f9e4905f19616b3feecc120636244ea0f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-page/",
+      "sha256": "9661995e5c550089e2a6bbc85bb8327f31f01c40e2c6cf19ccd2bc8ea485d21e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-search/",
+      "sha256": "dcfd8c8e0cef4c7624d4eabf1da7df89c8c73b1f6ec0951cb3931d32e3f6a105",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-system/",
+      "sha256": "c4b92859429cd3363579eb64972d291da5dce270404b1f9654c8408c57c5a489",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-template/",
+      "sha256": "2764b48adadb4d25f0c739861a570eec91170f17eeda9a8bbf387d8c4a4493f5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-theme/",
+      "sha256": "eec6c63333f4fc4ed7dd9601ecdb1a932ff2985abd6f678c4843e63486b0e2c5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/dev/tags/hook-widget/",
+      "sha256": "67c7b36e4dc1de504c467bf21b035ff0d5810f615ba91483de9cb2c07cb81019",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/",
+      "sha256": "ef828880a82595c82cf7cc5e1c34d65640df5afb450ffdf443a9753f9b9fa4e3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/administrationsbereich/",
+      "sha256": "06ce9a80b80baa7086d9d5072b058ff081516a78029f3e6bebe73ecc830fcba1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/administrationsbereich/aufruf-und-aufbau-des-backends/",
+      "sha256": "f6c3d36b464dee07cf4135b1cda32a7e33d0907940609bedcde16698ed780f6e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/administrationsbereich/backend-tastaturkuerzel/",
+      "sha256": "5f80d7a2f283cf3d969f66ab3d171a7954cb4953986836bd67c51b2ddc59a6d0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/administrationsbereich/datensaetze-auflisten/",
+      "sha256": "1846187dc4dc87ecd04ac014ce48ba27b99f6b2974ec74092522631c7a0118dd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/administrationsbereich/datensaetze-bearbeiten/",
+      "sha256": "b04b36c58ccbddadc8687152d7d9c0227d38564cb6e4f997f40e5414fd92eaf9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/",
+      "sha256": "02794f83d7f9f20c8e11bb5dbedb5798986b003232d4bf05cafc16055fc69dfc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/contao-demo/",
+      "sha256": "4a3e9fb75215838cf598673fef775207c4187082fb4e9822c95f7c5869a799da",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/dca/",
+      "sha256": "b8730fc1df0cca6a399cf4c9cf9936489e47d96f74e2982ba04e875e5024fc73",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/die-erste-startseite/",
+      "sha256": "d89ababad6a27fcc1b191b0889c860ce7c23f6048aa17a68420a670d021857ae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/formulardaten-speichern/",
+      "sha256": "30e998c153cff4cc22625d779fd187788ab0a4bd5eda4426bc663cb9bb13961a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/grid/",
+      "sha256": "2d169914c8afa2ae5199861046f70245096babb9109fd50b43449642f5172a87",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/",
+      "sha256": "864d8ef3dfd2c1729fa89b0035c2625f6602549aefb938ed7c326d96beec7fae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/ddev/",
+      "sha256": "8ffbc8d05b6efd912f3a9184d69aa313bf157b339e0d300251dfa1ab4d2dc3bf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/devilbox/",
+      "sha256": "f1d6de9c30b59c1225fbedf0da919a20a5d7ccc2ec63ce566521bb4c9233c749",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/lokale-installation/laragon/",
+      "sha256": "025b25c39e4c8ea3d0b427ef512880a64ca653c96129681cad93dee675d9f693",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/sass-less-integration/",
+      "sha256": "b4ff6675943eeae7f43bc5f98f3f18322afcdea720469507dc0506aedae325f6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/svg/",
+      "sha256": "3b6f54f49dd0881ce61ed6958914dc510048d67e93d2e88ad9a07c4a08da47bb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/testversionen-installieren/",
+      "sha256": "f9ccfe08774e6c4b548c47688afe16dd73859fb8176923fe223069cd263151b0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/tinymce-konfiguration/",
+      "sha256": "3951e2bfa0dd6c534348bf03155de0730a350e142e33a50bced9c9b53a095804",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/anleitungen/wartungstemplate-anpassen/",
+      "sha256": "37b46b606eaf93e51096d507a03ce14b14ab4a707c21760c670d6274084ae998",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/",
+      "sha256": "40cb079f010e688714a09457947cfcfbedcb1f111df272e045cd76fafc8b01a5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/artikel/",
+      "sha256": "621fdcc27a0061118914a1bcd0c0011a7523094c28d11d74322f592e6afec371",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/",
+      "sha256": "b322c84b12a6b403dea38ee656e29753b13d428a824b80aa3d12e31cf0880dc3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/akkordeon/",
+      "sha256": "8a3f2228ef9f5c5f5b2352d00c5cc8922fb6bbece6ca9f405bc48b07a519fae1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/content-slider/",
+      "sha256": "8a3f2228ef9f5c5f5b2352d00c5cc8922fb6bbece6ca9f405bc48b07a519fae1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/datei-elemente/",
+      "sha256": "7a4e46a4385efccd24b1f6bee7036972c7be96d61d949817145a7515efcf23d7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/include-elemente/",
+      "sha256": "ca1d33a78b5e47a0f9fd4e35c2a16988a872942954a7e3ee3f171c700d1d1766",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/legacy-elemente/",
+      "sha256": "17f51d51b0cf36df59f256079394daace6e406a763430ddfbc29b43110a58400",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/link-elemente/",
+      "sha256": "135d07f3d1c1cfa2ce79ec2fd65d06b8f08abdaf19e1a06eca7a721646aa4a30",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/media-elemente/",
+      "sha256": "b9fdb3e2ee9a9962e58dacc581b53f501447b8d1010e916baeaa5aab986a4e11",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/text-elemente/",
+      "sha256": "126fabc7eacd8009b9931a483bf7051c43ec6aa0e0aa7b7478df36d1a647ae0c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/inhaltselemente/verschiedenes/",
+      "sha256": "dfc3cbcca956fcb9e2e4f996ffe1614474d6ac4855c19de14eae942595f9d014",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/insert-tags/",
+      "sha256": "c987ad3f13910b753ece202b00decdb2dcc741f2b42b7ae246f49ef453c007d0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/artikelverwaltung/simple-tokens/",
+      "sha256": "9bedc5c904d5745bc03fd4b361e34f09290ce1d8fe210557d817921d339ad065",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/beitragen/",
+      "sha256": "be7541611dec129ca77bee6c6f3147ca5ae9999a39cb47af034e76d96dff7554",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/benutzerverwaltung/",
+      "sha256": "4d7d2d5f34d7b0dc5d389c0eadfb5dd4922321e8d59f01200ac0f70a19ade2ab",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/benutzerverwaltung/benutzer/",
+      "sha256": "8d6f053f7912b67c41c47e8ef22fe6bd55391af7eed46db17b095cc7ad3b2c9b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/benutzerverwaltung/mitglieder/",
+      "sha256": "5d40d1c175e60ec376a7962d8fa12c93d3fc3f5c4223e4c9ab64e90432b7cc46",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/categories/",
+      "sha256": "62eb5fd09084b056c042139a4d5b3146f85adf0bc6d63a90adcb77770f786be4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/",
+      "sha256": "868b635fc7dfc7c212f151601b4175235ab371ff7e814932856f8d448f0f452d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/automator/",
+      "sha256": "4ecc2b5f11f55329a84818e417409b7bf4fe29a2b600b4425551c4ff7e31ea6e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/crawl/",
+      "sha256": "f9b9b6aeb0a020cee752928fdc452dffb117435fa91abc36bea8e90e5411eefc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/datenbank-backups/",
+      "sha256": "7a38d3582d5861e297fb2bf67c39e328c58be9a4758b4f340e46c65c7a228d90",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/dca/",
+      "sha256": "a6442e43dc74055ceaf50af38b39f366a694743a927e9d9e1fb1fa0df710686f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/maintenance-mode/",
+      "sha256": "a760817022238478e1264500ccbc23cf986323330244001f0ddc0f5b7a7e7eb3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/migrate/",
+      "sha256": "7e1e8e83fb65c86b51f458c6d0eca84bc4966d56d106dcd13b5c04f9ef6d2a45",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/resize-images/",
+      "sha256": "7a6b5720c1463def3937881f717f52894e3788355fc8924840f168223e36fa04",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/cli/user/",
+      "sha256": "10485340961f5fb5e7e59fd92fe388cb69a8c9f2dd8e6081ba1423be1e48bfde",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/auflistung/",
+      "sha256": "af7ff139f4858a754b09085c78e4f03452329983c8015c3beab35b30752c92e6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/",
+      "sha256": "7dca5f2f12a90f61da65a86fd555b93a3e425505a94817d46a5628822a627978",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/faq-verwaltung/",
+      "sha256": "105824324fcfbcddae00599327912553cb9b98c5f4cca0ff77b825862c8b1725",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/faq/frontend-module/",
+      "sha256": "3aa5cc108058e0a971faefc76424b7513c8370112b9468f0222d292e37ccb160",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/",
+      "sha256": "590c9bb962aa3387a5476fcbd28ccc05e6fdc3dd0eef106a0a48494d324c5757",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/frontend-module/",
+      "sha256": "244256144c175007e45f86924f594094394b91df879aef115fd21c07914edcc1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/kalender/terminverwaltung/",
+      "sha256": "82dee8a285d57c2740929b31125b50eada42adc1c8de0be63325cb7b298d4fee",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/kommentare/",
+      "sha256": "624d04af0b06024dcb8208e27ddb3adff6a7ec7f5d5ec615a37cad0446927d6d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/",
+      "sha256": "6e63989199c545dfa9a37e4af0dfaccf7f2c1df9a9a2755360c1d47d9c9c94be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/frontend-module/",
+      "sha256": "c62600bbad1868ed5e6730c480a9f5e46c35d3248ca5562622049ebaa1d39279",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/nachrichten/nachrichtenverwaltung/",
+      "sha256": "1a435929cd973a1ea7cd388479bc0d7f3c85a4accf23dd7e41019cd02fbf5c82",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/",
+      "sha256": "19dfd087f9afcef6e50ee50aa70added613ff63ae0ffaa167cd942c99754f794",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/frontend-module/",
+      "sha256": "7752b6d4e1f9bacf090622fc7ab1c195fd233cc517877ac0f9b7b4f1e0edf08e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterung/newsletter/newsletter-verwaltung/",
+      "sha256": "93ea8377e7f8d6a803fcff5aa887f58046a6a08389ca1adbe21ade3392991c67",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/core-erweiterungen/",
+      "sha256": "ea9232c27ea9d48cce9fedca304d5513a8608cde6d9d932bb83c067680db25e6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/dateiverwaltung/",
+      "sha256": "62990ea3f8705df49a1aaaed461002550443b9f6635325b75a2a1f204bac026a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/dateiverwaltung/dateien-und-ordner-verwalten/",
+      "sha256": "57e45440f07a3186c026f99644b0487653970e93d9b9fb779ab2532baa2477f4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/dateiverwaltung/downloads-kontrollieren/",
+      "sha256": "19edd7feaed344b3ea715c729827b1889d1b4fa328b5b65dfd2dfec30f256d76",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/dateiverwaltung/metadaten/",
+      "sha256": "be0f431cfdf96f4b51274500c50d7d8c6fdb27362d115a7d122bd29e8c78ad93",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/einleitung/",
+      "sha256": "be81ec1f16ecc3fc91c5854421bf69769cf8b17242b7bc1ac3b11ed71253ce1f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/einleitung/contao-im-schnelldurchlauf/",
+      "sha256": "17d77cdc7af84d1b29954233e5121ccd343b08032c9aebf11b58925edd402e97",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/einleitung/contao-open-source-cms/",
+      "sha256": "76b4560401e28c46bb6f4cc5adce76f5626aa3f1c92f440c29f29872a19d4e58",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/einleitung/das-contao-netzwerk/",
+      "sha256": "d249d394d0f00e16c3e34152d16bd74f07e0ba76adbd7ed7bd5cb0e18495efc2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/",
+      "sha256": "4bdbe6339e89814ad88a9c48b50f125fc5fd367b43d180e45fd97625a5c10f4a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/animated-timeline/",
+      "sha256": "8c598fc2d40f2e54fdb40dd1f462d8e5b2599e2b8bc20bfdc191c6f3ad3fd7d6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/contao-easy_themes/",
+      "sha256": "159c6ba8c8d2503e3cd0af17ce25fc28bd204a5c60994641320f456bbd012375",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/isotope-core/",
+      "sha256": "19fce9668c0cd8f4b6384451f883ccad468353777c814b1b73cffe9029aff334",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/maklermodul/",
+      "sha256": "f3290916e5c683c5edd629394e6b1a670e1b858d935827d5400b273252869a5b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/merger2/",
+      "sha256": "e9b977d6bb3003f2cc94de1a01a94ef16cd0c540c3362d8bd686751a8bba401e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/metamodels/",
+      "sha256": "15c4b4fb9d6065512d6240a8d0b64339bf170bbe347197fe249590fd966ae6d6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/news-facebook-sync/",
+      "sha256": "df96c6bfa1f162aefd4ddf90846c0e243f3ff07f3440ef603e97c5db96b2bacb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/news-sync/",
+      "sha256": "0d59c46a514b95fc7d6babd69b6141836071ec28ea10a998665e6fffc887a014",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/erweiterungen/social-feed/",
+      "sha256": "296bad9abf2f9e06639b2cd80c09cd5006b2a608da87cda58b7e50e3d7ad3fa9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/faq/",
+      "sha256": "f1ffdefec7032d3fbd8aca234c4d76de5d54768eec70ceb4ad8c954943779815",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/formulargenerator/",
+      "sha256": "6353e441dfdcc8fcc190a4b9f07b21804bb7387acfc283ab86e8b9ece95cee8b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/formulargenerator/ein-suchformular-erstellen/",
+      "sha256": "2cd032eb8f810b9ce4ce420b13283c8cae33d363d828b4a82914da1f9c73faed",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/formulargenerator/formulare/",
+      "sha256": "3c60ebc2253c10c5458e5d76d3d64ae06c5dabb72ce446c792746a6697810dca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/formulargenerator/formularfelder/",
+      "sha256": "b8a6190353b11ad436a86513bbd7aad0e74b819ff549415a6ced375273b7ad09",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/guides/deployer/",
+      "sha256": "402b5034ce956cf6f1c282f84e3e3ca0ca1bbeab0bcc38c8ea2bd2c0393d1faa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/guides/filter/",
+      "sha256": "152805d2dbece56fcd75446ff2f22d0f3f392e7c9ce7f4cd0062bd1c1a633b83",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/guides/local-installation/xampp/",
+      "sha256": "0d35e3c39d4376eed1663df0c43e2b69e8e055954c22a67a56d7595fd5a4175c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/guides/manager-theme/",
+      "sha256": "c1cf0d89d32516f74fe9e3b895524f44f3c834305eb18d60ab2ae48738de465c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/guides/module-listing/",
+      "sha256": "66d693347cc214f60dd6524c936705212e0fef34f6d0894301b6cbd099272af6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/guides/webfont/",
+      "sha256": "775474fb3e6a3e233958e138098ff4a61233d5c80bac43535c2e1fc31ce43551",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/",
+      "sha256": "517f8bbb284ab186a32e6a88d8d3d5b30aaab2551a08d74287a58a6de228ea28",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/contao-aktualisieren/",
+      "sha256": "0954f844dd56bb1143bc3ec57aca405cea772eb01fcd9e914dc32af694b67f74",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/contao-installieren/",
+      "sha256": "32ed8436a777f92fa7c2db055147c7a8d4bc0c82765c8f1cf696d5f5d064281d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/contao-installtool/",
+      "sha256": "5af07410cb9d51080a8f28e78e07e3ca46328f4fe1f422eec89e64bf7c2d10b5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/contao-manager-error/",
+      "sha256": "b6a6344df579b6bb60af10744da4f02d5428214cd44c43a4cad2487fd7a8b91e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/contao-manager/",
+      "sha256": "a8619ba4290c1711915f3e789fbd0def6bd7234c22613cfce4b0272f7d5b1c23",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/contao-umziehen/",
+      "sha256": "2b4056bbdc00314d8e69713150add1b1746328a2fcfbf11b027cc5625fa9f9de",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/erweiterungen-aktualisieren/",
+      "sha256": "118eb76c6323b8412fef72a51ddcb7f67dabe634df7bf40429fe20a70ea92d1b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/erweiterungen-deinstallieren/",
+      "sha256": "132a2fe0365eab93b5cda4754146a35bd6078a5feda1c612a58efc328e5178fa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/erweiterungen-installieren/",
+      "sha256": "0fd06967520ac9949d6dec2722393bd0a90799b5697737df723bb3173b96b16f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/quickstart/",
+      "sha256": "593ab2602d7c586edecd9fe801d46fa5eb9bf6e3ad5e1731913a44f0f8f4188e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/systemvoraussetzungen/",
+      "sha256": "168864ee9b72e51d516a33173b301bf5ca709c3268ea7ceb6a7025171435ef58",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/installation/systemvoraussetzungen/backend-suche/",
+      "sha256": "d50439a505dcd91d0a58670608930a392ac6d71bd24666464695b9baf6ba951d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/",
+      "sha256": "fd0f69499ca6eaa23850490d204e638f4e808d2ad11552a940c10a779bca7afa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/",
+      "sha256": "3a58f40ccb9d4fb73aeff11686594dfd0dc53994ac490616539b3556ee39e735",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/anwendungen/",
+      "sha256": "21adfb486d6a6b2ee4d2677b8fa970e6f32f78cd952025614bf3b4188471ac1d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/benutzermodule/",
+      "sha256": "b93d8849986a43f9b63b762c4c1601e4ea5fc847045c645074a2c3ab7204243e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/navigationsmodule/",
+      "sha256": "deec81118c661c626f6584da5d639d0e01b94b3efca7c7eec9cfc830bb542908",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/verschiedenes/",
+      "sha256": "d835b21272e72fbebe734e4e700f7f12c31d05a487a7b9ef40a4ee169567b0d8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/modulverwaltung/website-suche/",
+      "sha256": "ddbebff8fa56223701cc7ce36d2ca523746245c3974708dfe3880ee01dcdf1ec",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/",
+      "sha256": "72b1d273350334fc6bd3ab9821434eaa30a5c243df2a151aae4800b338e23a3c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/php/",
+      "sha256": "38d82c9b6695ee0ff3f9833b634d11d2b57c6c3068d3534c33b4db02c3469a99",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/php/assets/",
+      "sha256": "a4d81aa8884392463c75afd03b80b1a46dc49546d7cc3e215c948fe15ba078cf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/php/data/",
+      "sha256": "76e66786ddb812f8607e22d531119734acaf538360bb9828d672c6aee44f6d25",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/php/insertion/",
+      "sha256": "cd8eb652197a2f7131bd14a0c2616eea4c1c5d573f358c67023d11c4f50cfc6b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/php/vererbung/",
+      "sha256": "322fd822f7e7cd47e1e117631db17fd25994216274e41e82564dffc670602d3e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/php/verwaltung/",
+      "sha256": "5bded42b72bd373e791e866bc25215cee86bcc6fcc3a7939d7d9aec8426eb962",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/twig/",
+      "sha256": "6ea58ed994abe0be349d5fb7d926976a45617a8028d50cf9a022720b456a4cc3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/twig/data/",
+      "sha256": "f2de9766879b6a0428be483f2da0ba2bf6a061d0bd81b96477e2758ba5eea1bf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/twig/syntax/",
+      "sha256": "b1f843ae1f69b0c6ee0da1e3b5dcdf52113ad2be7856b705c3953567037c056d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/twig/verwaltung/",
+      "sha256": "2fc73d0fcc0e827ced4653eb9f5e8cccfb3f0d046f16d7f34c8bfa894c297bad",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/templates/twig/wiederverwendung/",
+      "sha256": "007012747251ed92976c8cd78046b544bd90fb563d05293eed3405e415704625",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/theme-manager/",
+      "sha256": "d5c21af24f048a377e4f86e25bd8917f52231614e6eabbf9b40716c78362c244",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/theme-manager/seitenlayouts-verwalten/",
+      "sha256": "ae9f5fedd6817cc966c0bb368d71ead4ffe5acea5c4013b6d577cd98487b00e7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/theme-manager/stylesheets-verwalten/",
+      "sha256": "cb51e330aad4abe9943531b7402a50736b407eb4d6827f6cac8d6254bde8fdd7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/layout/theme-manager/themes-verwalten/",
+      "sha256": "09fbc6d951e42ea44f92f87b2e2301a2695863873643cace25c85bbcf3f42882",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/migration/",
+      "sha256": "cef92c89f6c5cdc73f02f533d3a9311997b0706b8a61f413e5deda5d3a7c7e7b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/performance/",
+      "sha256": "ca6e0aebd567f943fe3e5ae65007d35543074e4b7492079931397378c4b66432",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/performance/cronjobs/",
+      "sha256": "ec5a37a2e9c2287e8832c59a4d80edc9052dcc928925ed3f2bad945d531a7b76",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/performance/http-caching/",
+      "sha256": "b2c7047c5dfca01d12db73a5acc4bffe86715f9f925a27a0d6cc7b25dacdb5cf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/performance/php-setup/",
+      "sha256": "08bd8d9631974bc539c7aa788b3f59e3165c173eae1494716fb76d2eb3a2ef25",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/",
+      "sha256": "b9ca618f40b82ab43c1ae8d9b750afe463fa77de872c54778640f688e163b908",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/abmelden/",
+      "sha256": "56848e4d593837224f869e277e8ab52071ff8ac323251734beff4792f8d1eb52",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/dienst-nicht-verfuegbar/",
+      "sha256": "1c460e06edf200dbc7b85985d1f4960bab0ea50a7efe39b4c64eeb0cdd6853bf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/externe-weiterleitung/",
+      "sha256": "33399bda97558e15118a7ad9cb5a2dab13477bde4cc298a14a4360097d9609c3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/interne-weiterleitung/",
+      "sha256": "acc8aafdf81fc7b592354735c1ea721af4d903b8d9390293fbb382d24facc036",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/mehrsprachige-webseiten/",
+      "sha256": "76fc1c8c1d394dbda3c2360da665f985088251a3475e48a51a48d46281e7207a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/multidomain-betrieb/",
+      "sha256": "d164eb6621e207c0932b27f010855deec075be198d5cd821a51f4373c653d50a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/news-feed/",
+      "sha256": "a45418443539a7500ad20f1b52e56ddc7a6ae7ded3d399eb223e38f8ae19636d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/nicht-authentifiziert/",
+      "sha256": "2567dff80e69c81073384afbd146e06fde14a64add286e18810629b1e6c56e4f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/regulaere-seite/",
+      "sha256": "744a4d88120d9de0d4e5d795a97831e11d59623b77a1c43b8f318266bfc91c1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/seite-nicht-gefunden/",
+      "sha256": "f80d43f3675786ed4ba1daabcbe151eeffa8174128f47e2733f58bc7f4ae0cc2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/seiten-als-zentrale-elemente/",
+      "sha256": "dc5b7382b66dc9af2ab2b36ed333faf557e745a040f4840949c37dcd7fd6463f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/website-startseite/",
+      "sha256": "5b1bc8d291751afe9ea61ba3ee5a274a90f5d74987e142236a9d5dcd3cdf330d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/seitenstruktur/zugriff-verweigert/",
+      "sha256": "4d1109dfdf4ecda7ed1fe07ba457a1fcf76039e17deff38b4dacb6ac3229ba4a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/system/",
+      "sha256": "3588a4f4cb397ef7fd3b7c1a7c1b790a251127db50eb6d76da1cc0af3cf4e5e7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/system/debug-modus/",
+      "sha256": "312a893102d01fb1b06c1281a3bae1100e9f050f952f3121214bc64b78f77bd6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/system/einstellungen/",
+      "sha256": "3bb608ac0715de48f6b93b2508df993e6ee63ee12dd7e8fff2d9a0db035d1a3c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/system/preview-link/",
+      "sha256": "7c5fac000481cef92947844b3fc28e62619eec0d6774d02335548a6b05748e93",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/system/systemwartung/",
+      "sha256": "5eea30d9e74aa9d3da470a8bc71579de985918bdb717f0c2fda30eb6bf43722f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/",
+      "sha256": "2322fe30b460d45070adde35ec07581f7571be13e17a3061d5b8c43863c81d1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/DCA/",
+      "sha256": "835ec4a8788af4c6414a7a619520885e10e63d4aff5a30766c3dc44eecfe6873",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Demo/",
+      "sha256": "d6cacac1a5dca4ed053f560ac3f63c3d2f7b9f6047c184b0f1ca9f0066ba45e9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Deployer/",
+      "sha256": "8e84acf6bf828b1bbeafd5077959ad8e3ecd51affb2e5f660ed281ddc843ab3d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Deployment/",
+      "sha256": "e3e678da0995833d586aae9d9f83bf64346393c486ccf60a53df34c7b0eaaa68",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Formular/",
+      "sha256": "a8e8943c376626940daa5483960c6996f2aafb55b91701742bddab96b09750b2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Hook/",
+      "sha256": "1b0e7313e2785fcdcb595f378d7f04f8cd0651a20235c5516364a3e9e29a1c70",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Installation/",
+      "sha256": "e263a73cfe0ac0378820ca1429605f1c0400c6a0e7cf4dfdd7647e069e4fcbdf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Leads/",
+      "sha256": "da22bdfa63c98408a53c6f5b29ed952ea5d3a82e302224796aa366951013c46a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Seitenstruktur/",
+      "sha256": "f4a1bd7e25c23d22e29db061871d251996e98a559266d22b97e4286bb12c1c49",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Template/",
+      "sha256": "3a75d802af817c68feee659aa3ab6de59b8f52c9afb779c1cac706cbfd193c26",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Theme/",
+      "sha256": "ba02d13989e0074181adc8c922284614f218b1d8cb96bb5af26e43bc45aa199f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Twig/",
+      "sha256": "928275353afa88298415a6d0286dade633a0b4b7fe3e4d0af7e549051466a46d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/de/tags/Wartungstemplate/",
+      "sha256": "bd3ed1939c621cf7454ab9d3879540877b4e0b8eed52a0a1bf407ffec01bf3e9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/",
+      "sha256": "c3701690251d267832b0711f3fbbfe346275586c68d76ca85c9b44c835f0b1e3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/administration-area/",
+      "sha256": "b25907ae1568e15fe2f988201aac9c895a53ca381609f628fbb23ec78a90351d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/administration-area/accessing-and-structure-of-the-backend/",
+      "sha256": "f5d0cecdac0b917557d2d0eff7145bc3276f3b4079b446a42b796f6955f42b0e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/administration-area/back-end-keyboard-shortcuts/",
+      "sha256": "11f4f3c4c767c2e566dbb076fd1933a61520fdb315d5ecef66bb6cb077c86814",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/administration-area/edit-data-records/",
+      "sha256": "cd04fc2d2a5528cfa74f2eab0850fe04650d7b41631d5c436fa9bc83ce080191",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/administration-area/list-data-records/",
+      "sha256": "649dbeb60ebcd85318ab10196c00413297da7012fb5374b63adb4c9f92070801",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/",
+      "sha256": "05e51a31ca93fabf2ef25dcf686f0e9cd8746b43d3b8bcdc00f6505cdf9ddb66",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/articles/",
+      "sha256": "e5b195995f42ec16c2a037e73d0209dd4fb70476dccdfc8bec363b955051173e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/",
+      "sha256": "4eae40b45bd234fbd608ee1d178f3926a0c14d00285e1702bc46f6f5a94419d8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/accordion/",
+      "sha256": "bca70e1edb20bdbac9da3b18b24d217bc92e1eddf50a4f644ea5a2599091e964",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/content-slider/",
+      "sha256": "238f61e943fa1250f785eb06ea47ca5ca57dc56734b3a4f7e3a135f647c26043",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/file-elements/",
+      "sha256": "59aac79583e5eb52121edd9a80d95d18768a52aee1579ccc8b1d4b607f78cf07",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/include-elements/",
+      "sha256": "463d9656db6be502f403e49ff062ce32c87d8faa10058e6c69f8af6c27ee34e7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/legacy-elements/",
+      "sha256": "15b0b0450ed3291124a38a83057d72658f1d8b632cdd5f18938cadc189f4fd17",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/link-elements/",
+      "sha256": "c130c7c869d60ee6e9d2d4c5fde9d5e8eb5c3f7ae02d7f39001724ea031068bd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/media-elements/",
+      "sha256": "0e5b1c066218c16710a3d31e74c290a912199e1dac531c210417a809c6fd96fb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/miscellaneous/",
+      "sha256": "4c80b05423cc75aebf6821a08603f549d961a665eafe6857c06d036e9debff25",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/content-elements/text-elements/",
+      "sha256": "01c2949869612db5606fad282b651d542e198183f92da5e2f9c345d0d2ea3db4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/insert-tags/",
+      "sha256": "b20d5789b359719947f1965f59b3b3db50685b922887fa53c6c00ca40bf9d361",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/article-management/simple-tokens/",
+      "sha256": "f4d8fece975fdc0996d9e9823b5c4485450a2537a80c020df90615d873331118",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/categories/",
+      "sha256": "ea03817fc46f4eb4a0d9cba1e2f1af06e2ba9ee5d285bde65ae38036c92dc2b6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/",
+      "sha256": "f127cdc560400308edb4344f322deb90513b6bde393c7d0e9519cb2bde9b281c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/automator/",
+      "sha256": "09361f09cf524ba650128bf016ae35459ba073fc0299c961e364a334adbbea8d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/crawl/",
+      "sha256": "ae58288fdfc2b209236f863fa265dc86caf9ecf5ae95ca1fa755572ddb07f39e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/db-backups/",
+      "sha256": "8fe6e0cec6838d2eee72a09687d2a319a3ab966ce4d1dd85603047907e52c56e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/dca/",
+      "sha256": "dd3c3353a5129686f361116f7cdecd9b0d9ee1bf5e10e205a73491ab51f61dd9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/maintenance-mode/",
+      "sha256": "40cf2e31b6c5fd48eefcc5565b0f07e0a972f68de6f24d2ca422502dd36bc000",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/migrate/",
+      "sha256": "32b9f47bd8b2005b4a64ff72f62ecdf6ea77375e3e8c87e1646e05117766388a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/resize-images/",
+      "sha256": "8d1b51745c2ed5ae12aee0a86a8716c017074d7d165b0d246b872b7f039ebe80",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/cli/user/",
+      "sha256": "f8976bcdf129a8ca9cabc4826fe8c77cd5a5b8253e2ad9c97a601eed3cf3da3a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/contributing/",
+      "sha256": "bc978bad4f9157f0a23375387977ef52e85f5f7204c626a44338eacd26de94e4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/",
+      "sha256": "22805db39918fe612fd871a78472df6edaaa9eabc6c546d1c5686e2465a8d136",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/calendar/",
+      "sha256": "12ce0d3b258cd87bff75d0aa86b5a54b0273f50d904bd818accd4673297ebdd7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/calendar/calendar-management/",
+      "sha256": "d22faa16552656bc55eabe4b2a150237b1f01ae8ca038675f1010c741cb4a25f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/calendar/frontend-modules/",
+      "sha256": "d84e1acb5fe3572095d02b2667b139c9209be199f98e1d44f6f20a57df1cbc4f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/comments/",
+      "sha256": "2da11e1d8cf5255da6054a4e584f864f8882208741cb9d08ed26779715f6f4e9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/faq/",
+      "sha256": "95abd25f802d9aa3c1c7fcc58f48c403549bf94c84a2f80aef0c88039ff7b1c3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/faq/faq-management/",
+      "sha256": "205d80e8308ba62db6335ac6bf0de51500a27ca27a7d5fe85196cb315541850a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/faq/frontend-modules/",
+      "sha256": "0a577598acb96b29346a566e7edb621b4bb06351b74889f60d3366b5a15e812d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/listing/",
+      "sha256": "0d35eeb2966ee1619159153b5eb94a23cac2e97dbe9478fabd02490b33d8dcbf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/news/",
+      "sha256": "fa4e907358bd3c646fe2fc8bff74be4816f995eae7730f00c37ebdec2a8177a2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/news/frontend-modules/",
+      "sha256": "573748827d91b06c2f0b861a7a79a74521f4fbdeb8b068cc693203965c6cdd38",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/news/news-management/",
+      "sha256": "c969b488117d0ec5901d540e4f5529cc090a52c462cb4469e61cd4e817b3247d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/",
+      "sha256": "7533c502b0058f9b36d06fba2a075ce24eefd823ff18b294f24376d609e92e3c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/frontend-modules/",
+      "sha256": "44e73d3d16677324aad2579f9eea95bf7e2b0e1ddc08d0e0bc1ba29fa3446771",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/core-extensions/newsletter/newsletter-management/",
+      "sha256": "05ce30d6d36478481e1df98de658eab550696295f579cb87967efdfd5a586536",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/",
+      "sha256": "bd147752d8d551d283ee03a8c76a40ae2f13c12a48a588329610f6bee9822b1d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/animated-timeline/",
+      "sha256": "60be8c31adb883065ab3c9466efa9b8e2db32a423fb52729dd1f8b09c00b0bee",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/cca-merger2/",
+      "sha256": "798d655f51055aef0d3672ede9a161223be7b3989ee3460e03ce262e74d90f46",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/contao-easy_themes/",
+      "sha256": "3b8f67575d1d9db0ccdcfb936a33a4230530e039a3f33e24be00bbee8d52ea68",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/isotope-core/",
+      "sha256": "72ce38f5c1f0e37c37c30a1a68c8bdfc44c0464a616b98db0a890bcb59b3aa99",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/maklermodul/",
+      "sha256": "cd58a736262ad8ed6b75ae92db7df20d74c8b714c26fd0168626290274d7556c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/metamodels/",
+      "sha256": "838a10b4881eeaf98a5f5e9db451bb490a76f9d00603add497f4b4e6ecd57382",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/news-facebook-sync/",
+      "sha256": "4a558828af1e23014ec2941cb8a2c556501df63c076b921fae26544f7313684c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/news-sync/",
+      "sha256": "a8c2e425b3f116d6effdada088cb0d92512f423b37495e43c6f9470b1b43c3c9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/extensions/social-feed/",
+      "sha256": "b72136150d655155f730380b3374be642e42ff36d76a056c702f75dbb272571c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/faq/",
+      "sha256": "6e57e3f39405bb4f3aaa6a0e1c822ec412199a860315cce1634649fbf7e72b76",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/file-manager/",
+      "sha256": "1eccfea7fc05a423c2673a7cc66c32551934054d54ddfcf310517ccca45361a4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/file-manager/control-downloads/",
+      "sha256": "ec85aa6091a2bc3b8bece49acb8d89b09ce38e846da50109570e0fe44259425f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/file-manager/file-manager/",
+      "sha256": "a35dff9c95858dcf0027c1f42a7dfa225cadb1024e600a23858646ba9b0a45d1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/file-manager/meta-data/",
+      "sha256": "7e846aefe7e8db7a88147a1c53564fd3deeadee5131b480c31bb8b71984ce874",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/form-generator/",
+      "sha256": "71c8311e0e2724376cb09311723b90289fd7090249d7c6f70f917806e7600da5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/form-generator/create-a-search-form/",
+      "sha256": "08eb93faf1ebe4c4f0fe6d3846b39bf57bf5d1a1704645b12a5d89eaabc53ed3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/form-generator/form-fields/",
+      "sha256": "603fc21dab697954f03cdc8fee452056c662d41169ea4c3bc4105ee2b44df2b6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/form-generator/forms/",
+      "sha256": "7c495c72a8ca92cf6d799342fefb6e9eb10ba08f13e6af2a20f9cd2a8503a887",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/",
+      "sha256": "d86bf564ce8a008c9d282d6321d76c6c1d16491c7c11ced342c7f4aeb96b33d6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/add-first-index-page/",
+      "sha256": "27b7e2027c09e2baba4521c4a2c6d4ce88a0e4a7a7a64940d70b88ac321ee7bf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/contao-demo/",
+      "sha256": "f2976cb91cbc54844afa55864f3ecac8f07f5f0564a8115b569943a29c49cc05",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/dca/",
+      "sha256": "3ea307f618284d253b35ca4b3d6ce42f4a646bd4036cd6f97214d17d5ecdad1e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/deployer/",
+      "sha256": "7ee2ec14bca20228d74b9e5bfd4b91ec81416a5de836b2ef1361acaedc3513ba",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/filter/",
+      "sha256": "12cbbd5f5eab65766f749f2d7d05f76e81fb93265afc0b51ad1069179f3e357d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/grid-system/",
+      "sha256": "2a36e9ed8dc3c6ca3ab2ad27f4a47918dcc16ebe0de347840bdb1991413d110b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/install-test-versions/",
+      "sha256": "266b8ee7c4974316f329df83b9be81f0ab1996a127202033fb3f3dc953547bb8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/local-installation/",
+      "sha256": "6e04ccfb607a765e50ba786c63c11b7b5ad59d7ee43acf9d8fae7cd0d39b0533",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/local-installation/ddev/",
+      "sha256": "b690d1a02166023e414926fde7c0791a78ebed2ecb08defab5fb6a5f11c29f08",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/local-installation/devilbox/",
+      "sha256": "9650eb6779ea9d6a0c561f0c3c29392d6c83c58ed60476cceebb3d3d3e4657fc",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/local-installation/laragon/",
+      "sha256": "e8b1886ac5d15e587c04e8a73a300fc28f9c9587e3dce908c376d47fbe68f0c2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/local-installation/xampp/",
+      "sha256": "86a39b43e1b91da28ec9c6e64067d11e9b71dbc7479d20ceebea16ef7dcb2354",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/maintenance-template/",
+      "sha256": "70ca940f0a4d5d4ca5706583501589c4e06ff16d39832c410eb89536982e9012",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/manager-theme/",
+      "sha256": "b2f104c905fe4f57cadc63f29b13714c0847e1b92f8fc5697dd2cbd0e4300427",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/module-listing/",
+      "sha256": "09b3087906b70fd390072b61571dd6686aa734b4dc7d36e054a889eb12995552",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/sass-less-integration/",
+      "sha256": "2cd5101671ea1b8f8150106b7a0a92076b4ac129c3f36932bbc238da2f58e8cd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/save-form-data/",
+      "sha256": "a7f3351d435e48caf5cc7fd64a5dd2566d29663a2c42761cbbc9727e4fcc8f2d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/svg/",
+      "sha256": "ac880d89e1bcc7092cbac21e1e2fa332e7349ef9a9dff5d70990d8453e2f1bf3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/tinymce-configuration/",
+      "sha256": "2ca35a89e67f0732650ece398e8be89ea5842853fa42ef6438b795724ec25f9e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/guides/webfont/",
+      "sha256": "06ce5e8f4ee6f2d80b48547cb55b780265d841b9a0ec783d2b5de006bb8fd9c9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/",
+      "sha256": "85dfddf3d2a8c235582d6405a65f68e76f3f24b1d513d2431bd6a8c0e1881e07",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/contao-installtool/",
+      "sha256": "07630ceebecb8fa9c6d71376172b93435b97b4839bee6d18d573812f874feeba",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/contao-manager-error/",
+      "sha256": "6e2f99044ee2bb9ff98c952d3e3497dfb2884fc77d3b96daae4f8b3e96d0dd58",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/contao-manager/",
+      "sha256": "379a0998853f4e64294ed118b3c75ec6ac3d9b7da47df65c392a6af429beece9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/install-contao/",
+      "sha256": "f7769472ed9bcb91f4105b3064f7d0d9910ba3298b8d6d72da18e84bb00f6739",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/install-extensions/",
+      "sha256": "fa7915534970cc28625900a7c486b501fb2115ce13907690d0692c52789d7ac2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/move-contao/",
+      "sha256": "d8acdfe6f4469dd864bbce0ff5c962de161392840faf89025b35508b1ba195e2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/quickstart/",
+      "sha256": "74ee983fabcb4bb033f43848018c4bbf6815bea10abaed6a34d967cc9d5276c1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/system-requirements/",
+      "sha256": "a408b1fbfcf89aaefeedb5ef6267aa0c01c52b3e1decf45f04af342c88bb1d4b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/system-requirements/backend-search/",
+      "sha256": "8f59a5f13ab80f525924740e7fc0a662f8e06445ac09116d9050d6e737a3b3d4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/uninstalling-extensions/",
+      "sha256": "ef9a4af89e8248e8367386d9f0a50f6b13077f05bce0e2882b089b605498fa55",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/update-contao/",
+      "sha256": "9be48ee6d3b1cf8f7373693ea97458f05df307138685a525938509be6984e00d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/installation/update-extensions/",
+      "sha256": "7178ab2a0bd723b7a5a82dabc4dbcbb8672ec8971ec535805a1ca46b024f99cd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/introduction/",
+      "sha256": "c1b92c4508d4dde6078e2c3010fce0fc893d5e1545933f93f697b9169b937d32",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/introduction/contao-open-source-cms/",
+      "sha256": "3a34a9b08485a87c4a6ff24002d69cf6a36dc448a93c26635d1c114e3e414fe7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/introduction/contao-quickstart/",
+      "sha256": "9eeb233691c2c8657d5a4ddad55d1bc881a0cf229aab89a37fa80fa01e14ed44",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/introduction/the-contao-network/",
+      "sha256": "57d476ec525c9c1545d4175652430a97274762c5cded8caaa1e23db5aab0a57f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/",
+      "sha256": "756b98108ddbaced2ca9a865b8988b03516fe5237bdfcd83e944ca7e580e9706",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/module-management/",
+      "sha256": "0099fd2623fa5ab5581e65e1ae7724adcfdd121a1ed06149843584c3da2ee901",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/module-management/applications/",
+      "sha256": "5cc97a9d21f8cfebde2f714b97922a8fa3908a937cdf5dc23ac10d28c23ca3f8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/module-management/miscellaneous/",
+      "sha256": "d0e3beb8f7217f76a582e46100e82f669eb762ace834fecb2308f93e4c93323b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/module-management/navigation-modules/",
+      "sha256": "6c3315f9fec5357ca797d017bd272b33b4b01ec38599cf0c78fb92bc046c9e0f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/module-management/user-modules/",
+      "sha256": "b0c9d82d1b9e7c6f8206371df0a1ff8f7d5ebf85143c22bfcb4921b81bf82854",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/module-management/website-search/",
+      "sha256": "b0a09d7852ce911b3bf46e3ba706ddc7f6e92c2ba5ae91183ec0cee45627610f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/",
+      "sha256": "dcb8f56f9da7c3b012105690f8e566b89adb461d054198abac8613f50e4f4de9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/php/",
+      "sha256": "b7063a4a0ca5e29932a128c0ca38e0e3faccfb353b3668c3b3053731f47bacb7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/php/manage-template/",
+      "sha256": "dab9b95e1c0c7ac196272111a48161a7f43a8f9784a1ae5f25f86ff729964763",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-assets/",
+      "sha256": "cb55daee376b23a460202c314fc5ba4db99993edcf00619ef7b576e985b50c38",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-data/",
+      "sha256": "deccf1d9b258da90438693f82d4b976b632e92d71089b73d37db12b5554b32af",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-inheritance/",
+      "sha256": "17218bce9935aa2b5917bd5f8b6877324fe5b8feaa460e4fd75dceeaf8d8eed0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/php/template-insertion/",
+      "sha256": "f36363cfd188c91125463a7648bdbcc310372ce9643b1f85feec14c5580fafa4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/twig/",
+      "sha256": "bb2e54edb7443e6a441cacaa403b7e817ec46648bf4b8b1f5804833a815c449e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/twig/data/",
+      "sha256": "408540cd603ce4425c63f7db6a824a0022e6471ee01156df9d5d06a93fc97904",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/twig/manage/",
+      "sha256": "3a960a29d5b1d5dae96f3d417a5dfaafc79fae054c5db2a3d7d74ef884a766c6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/twig/reuse/",
+      "sha256": "506ef1105a82f9aeb290b589493440ce0592ae7714a62a3d0633d4324742948c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/templates/twig/syntax/",
+      "sha256": "9478dcece4b0a87f8524599080e0c8e5c72b58c853bb2c0e4243c6ec44a94a73",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/theme-manager/",
+      "sha256": "1892df286dc2c1eb495015a7910a8860ce6a6d4056a8aee6cef3d3a909f0ff84",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-page-layouts/",
+      "sha256": "70aa09aa7c3e930084bc5876e065782ed7657870602f413f77d0a2fe814a30a7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-stylesheets/",
+      "sha256": "4c0f6da3d15848eadb41fbc2e6c04e0b56f6bfb0e51402d1abea25845fede589",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/layout/theme-manager/manage-themes/",
+      "sha256": "818e0b638e8f68f286b24664fa06571dd78caee135d95e1a6ece7fe3f7ad7f5c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/migration/",
+      "sha256": "d22374e34829ffb85ab04aec7fb6891d8d4fbe4ebff700d3f605bbfd2d54fce7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/performance/",
+      "sha256": "43eca590cf1c184c261824fb3fb05aa8d7a23ab112e57c57017eba23d03673f9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/performance/cronjobs/",
+      "sha256": "9af7c8d00b44060aae516f10c979c6bea80c03dc4d71d406914dfe5c49414a0a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/performance/http-caching/",
+      "sha256": "f0437162c6949e0ebc2a54d748e00caaed26d0e66debdd0ea40f49d14fc7105d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/performance/php-setup/",
+      "sha256": "e27be539f1a74b1f0fa345460d519d48d069b143653c7aadd5762dc0c1c8fbc0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/",
+      "sha256": "1f77996ed595759a511336710879e095c4a3af006cb4885ebb28235bb1aacbf4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/access-denied/",
+      "sha256": "f9d936557dff633b9d46fd4023daddad5d8df4be306d8f1d15bf7cc94f92ca05",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/external-redirect/",
+      "sha256": "ffdd96af7c69fce593c60767045a8747791bcfd1d08fcd6758c7b24cb3354ed4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/logout/",
+      "sha256": "93aec99d3978143429c039766d92751358eec9cf060d3ffeb5bcf3e272016e15",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/multi-domain-operation/",
+      "sha256": "1f2728507a0d54c3fca3c52d446b1af8282b743605fb12b22a8c5aca4dd65542",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/multilingual-websites/",
+      "sha256": "fae694e6402207b97e25867ec09480ae4fda66b3bff83e181b98f69100fd4156",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/news-feed/",
+      "sha256": "a318edb320c4141153aba2cf7951f281612e4c855953ad5347f6478fa83ab397",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/not-authenticated/",
+      "sha256": "32fa6d1422d20dbfacc2ad2b188d88a1e13e662f517eb2f88ab1803f39b852be",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/page-not-found/",
+      "sha256": "96700b90f0cde56dca8329a5a02ce2c4f257b9fb36b266d937aab65df746a3e2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/pages-as-central-elements/",
+      "sha256": "51f8ff9ab04ea211e9d43199d8c9008da5906f4925f7b0a30ee36570d5fe081b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/pages-as-central-elements/internal-redirect/",
+      "sha256": "d2ce7d6ef1b37767976d40dcf58f5530c41b6b03161fbe458836974ebedec5da",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/regular-page/",
+      "sha256": "c426653b03783858fcf51302f1da7a59451f192ddab472c80b57a6404fbae9a5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/service-unavailable/",
+      "sha256": "c8319aa6f5b611882e1434a0becf91ad26c1cf140b067f9ebefafafd2967a4bd",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/site-structure/website-root/",
+      "sha256": "cf0ade9af381a3c6d7a367eb128fc3a388459c0af0114c72ca253e2140d4ca00",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/system/",
+      "sha256": "67ffbdcf7569da34e521f0bfc34ac0086846e1abbd6a01cee3fe6985602d7614",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/system/debug-mode/",
+      "sha256": "da40f724f0270545c5def6efb6f0856ee37687623cf9b4d22600f7fb93ab2543",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/system/maintenance/",
+      "sha256": "7d5e4c1e4752061575fd0e4b5a23b898b2826ce0ae2a5a708ff1ac1595b75917",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/system/preview-links/",
+      "sha256": "62ad0f31f0735c1fa42ded37b0056859cd6134121e57c2aa2f7b8483dc04b677",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/system/settings/",
+      "sha256": "7968ae72152648cf252701f56c4769ed62e80a165e8c41396c8e6ba94563502c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/",
+      "sha256": "77703aaa3c27d927767759f78eba411d64d8b1dec97f19668a4d435755a873e2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/DCA/",
+      "sha256": "9d3f7014494747c2fcafd4dd9b415115e2f5acf622dd0fa4af07a399feecd800",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Demo/",
+      "sha256": "82e849ca87af19d722096dabf56ec2153612b6244ca72074b641f0327708c10a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Deployer/",
+      "sha256": "1dd1c32f15753d3420c96bf05d3d03f552b9fa46e2bfbd0a9c90186a78bc40b5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Deployment/",
+      "sha256": "f190e4ea43423185a8bc4185a17c791de026c15d477c246321c618c4ad914b7a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Form/",
+      "sha256": "9007c7578da4618d6e8ae01bd8e06586bfe8783086780c8dc8222b4515c83bb8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Hook/",
+      "sha256": "32595c28edddcf42cb253562499e4f64481001645826b8cd497b521581a2795a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Installation/",
+      "sha256": "1335d7fee79e8a57926eefe20f701ed9a2adb5612ea873109e0443641a54887f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Leads/",
+      "sha256": "b9a0e56474df0a284fe37bf565d25a3f0127048f6b1cd2928c11bad38c6f5a64",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/SiteStructure/",
+      "sha256": "a6ed993c92ac3cea75ebe63f362bca9d80ee45fb5c4c168fff765733f4ca0676",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Template/",
+      "sha256": "25207e75bac2daad60f5fb3a7b6c9870fc8969b61bb667116f0fa252eb4c0995",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Theme/",
+      "sha256": "32935067288197f573692746c61fddc8f38ad5c1d0a37bf44d9edda244d87311",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/Twig/",
+      "sha256": "f989e461e5f9b23cbe7b4fd8d0192835080fdca125a95aa4d4bfa42d8d251ba7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/tags/maintenance-template/",
+      "sha256": "1cb2e2efd7c3a40c6b0b83679facde5aaeae6b58164b82f6e6a7c516eb4f1f6e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/user-management/",
+      "sha256": "635aee45690d5170b25f15b826df0b38e589e85bc88188618511e048bf032964",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/user-management/members/",
+      "sha256": "0dd4bfc1ce172f6ee89374671d2de95b5ad591236c10591efe1eac311f9312d2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://docs.contao.org/5.x/manual/en/user-management/users/",
+      "sha256": "8749a2ca141fb82134c170e2a286a79c58e0e765fce596775cd3f223c4059108",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    }
+  ]
+}

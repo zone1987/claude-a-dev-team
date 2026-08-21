@@ -9,12 +9,12 @@ A theme is a plugin with a theme.json. Variables and inheritance decide how much
 
 ## Reference map
 
-- **[ASSETS.md](references/ASSETS.md)**: Full reference: [ASSETS-DETAIL.md]. [ASSETS-DETAIL](references/ASSETS-DETAIL.md).
-- **[COMPILE.md](references/COMPILE.md)**: Full reference: [COMPILE-DETAIL.md]. [COMPILE-DETAIL](references/COMPILE-DETAIL.md).
+- **[ASSETS.md](references/ASSETS.md)**: Full reference: [ASSETS-DETAIL.md].
+- **[COMPILE.md](references/COMPILE.md)**: Full reference: [COMPILE-DETAIL.md].
 - **[CONFIG.md](references/CONFIG.md)**: `theme.json` can define configurable fields that are available as SCSS variables and in Twig via `theme_config`….
-- **[CREATE.md](references/CREATE.md)**: Full step-by-step guide: [CREATE-DETAIL.md]. [CREATE-DETAIL](references/CREATE-DETAIL.md).
+- **[CREATE.md](references/CREATE.md)**: Full step-by-step guide: [CREATE-DETAIL.md].
 - **[INHERITANCE.md](references/INHERITANCE.md)**: Themes inherit via `@` references in `theme.json`.
-- **[MULTIPLE.md](references/MULTIPLE.md)**: Full reference: [MULTIPLE-DETAIL.md]. [MULTIPLE-DETAIL](references/MULTIPLE-DETAIL.md).
+- **[MULTIPLE.md](references/MULTIPLE.md)**: Full reference: [MULTIPLE-DETAIL.md].
 - **[OVERVIEW.md](references/OVERVIEW.md)**: A theme is a plugin whose class implements `ThemeInterface`; its core is the `theme.json` in `src/….
 - **[SCSS-CATALOG.md](references/SCSS-CATALOG.md)**: This skill scans a concrete Shopware 6 project and builds a complete SCSS catalog at `.sh….
 - **[SCSS-STRUCTURE.md](references/SCSS-STRUCTURE.md)**: Full reference of the SCSS architecture in the Shopware 6 Storefront core. [SCSS-STRUCTURE-CSS-CUSTOM-PROPERTIES](references/SCSS-STRUCTURE-CSS-CUSTOM-PROPERTIES.md), [SCSS-STRUCTURE-SCSS-FILE-MAP](references/SCSS-STRUCTURE-SCSS-FILE-MAP.md), [SCSS-STRUCTURE-SCSS-VARIABLES](references/SCSS-STRUCTURE-SCSS-VARIABLES.md).

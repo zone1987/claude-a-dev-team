@@ -16,6 +16,10 @@ skills: sw-plugin, sw-services, sw-platform
 You are the entry point for Shopware 6.7 tasks. Assign the task to the right domain, load the
 matching `sw-*` skills, and delegate — smallest unit that does the job.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-plugin"**, **"sw-services"** and **"sw-platform"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Delegation depends on installed plugins
 
 Every specialist below lives in a **different plugin of this marketplace**. A plugin the user has

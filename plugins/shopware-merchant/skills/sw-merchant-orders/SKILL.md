@@ -9,13 +9,13 @@ Everything under **Bestellungen**. An order's three state machines — order, pa
 
 ## Reference map
 
-- **[CREATE.md](references/CREATE.md)**: Guide to creating manual orders via the Shopware administration. [CREATE-DETAIL](references/CREATE-DETAIL.md).
-- **[DOCUMENTS.md](references/DOCUMENTS.md)**: Complete reference for document management in orders. [DOCUMENTS-DETAIL](references/DOCUMENTS-DETAIL.md).
-- **[EDIT.md](references/EDIT.md)**: Complete reference for every editing option on an opened order. [EDIT-DETAIL](references/EDIT-DETAIL.md).
+- **[CREATE.md](references/CREATE.md)**: Guide to creating manual orders via the Shopware administration.
+- **[DOCUMENTS.md](references/DOCUMENTS.md)**: Complete reference for document management in orders.
+- **[EDIT.md](references/EDIT.md)**: Complete reference for every editing option on an opened order.
 - **[ORDERS.md](references/ORDERS.md)**: The **Bestellungen** (Orders) area in the Shopware 6 administration covers the complete management of all customer or….
-- **[OVERVIEW.md](references/OVERVIEW.md)**: Complete reference for the order list, all filter criteria and bulk editing functions. [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
-- **[REFUNDS.md](references/REFUNDS.md)**: Complete reference for returns management and payment cancellation handling. [REFUNDS-DETAIL](references/REFUNDS-DETAIL.md).
-- **[STATES.md](references/STATES.md)**: Complete reference of all states, transitions and the payment logic after ordering. [STATES-DETAIL](references/STATES-DETAIL.md).
+- **[OVERVIEW.md](references/OVERVIEW.md)**: Complete reference for the order list, all filter criteria and bulk editing functions.
+- **[REFUNDS.md](references/REFUNDS.md)**: Complete reference for returns management and payment cancellation handling.
+- **[STATES.md](references/STATES.md)**: Complete reference of all states, transitions and the payment logic after ordering.
 
 ## Source
 

@@ -9,10 +9,10 @@ Everything beyond the core: plugins, localisation, styling and the native mobile
 
 ## Reference map
 
-- **[LOCALIZATION.md](references/LOCALIZATION.md)**: 60+ locales available. [LOCALIZATION-DETAIL](references/LOCALIZATION-DETAIL.md).
-- **[MOBILE.md](references/MOBILE.md)**: flatpickr detects mobile browsers automatically and switches to the native datetime picker. [MOBILE-DETAIL](references/MOBILE-DETAIL.md).
-- **[PLUGINS.md](references/PLUGINS.md)**: Plugins are activated via `plugins: [new PluginName]`. [PLUGINS-DETAIL](references/PLUGINS-DETAIL.md).
-- **[THEMES.md](references/THEMES.md)**: 7 ready-made themes. [THEMES-DETAIL](references/THEMES-DETAIL.md).
+- **[LOCALIZATION.md](references/LOCALIZATION.md)**: 60+ locales available.
+- **[MOBILE.md](references/MOBILE.md)**: flatpickr detects mobile browsers automatically and switches to the native datetime picker.
+- **[PLUGINS.md](references/PLUGINS.md)**: Plugins are activated via `plugins: [new PluginName]`.
+- **[THEMES.md](references/THEMES.md)**: 7 ready-made themes.
 
 ## Source
 

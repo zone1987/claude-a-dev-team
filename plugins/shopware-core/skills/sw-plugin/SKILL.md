@@ -14,7 +14,7 @@ Where a plugin hooks into the platform, and which lifecycle method runs when.
 - **[CONFIG.md](references/CONFIG.md)**: `src/Resources/config/config.xml` defines the settings form. [CONFIG-CONFIGURATION](references/CONFIG-CONFIGURATION.md).
 - **[EXTENSION-POINTS.md](references/EXTENSION-POINTS.md)**: In addition to events, Shopware offers **extension points**: defined places where the core dispatches an `Ext….
 - **[FEATURE-FLAGS.md](references/FEATURE-FLAGS.md)**: Flags let you ship new code behind a switch.
-- **[LIFECYCLE.md](references/LIFECYCLE.md)**: The plugin class can override lifecycle hooks. [LIFECYCLE-DETAIL](references/LIFECYCLE-DETAIL.md).
+- **[LIFECYCLE.md](references/LIFECYCLE.md)**: The plugin class can override lifecycle hooks.
 
 ## Source
 

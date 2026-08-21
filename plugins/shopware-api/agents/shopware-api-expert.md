@@ -14,6 +14,10 @@ skills: sw-shared, sw-admin, sw-store
 
 You help consume and integrate the Shopware APIs.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-shared"**, **"sw-admin"** and **"sw-store"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Pick the right API** (`sw-shared`): Admin (`/api`, OAuth) for administration and integration, Store (`/store-api`,
   `sw-access-key`) for the customer side, Sync (`/api/_action/sync`) for bulk work.

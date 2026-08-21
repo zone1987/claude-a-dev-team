@@ -14,6 +14,10 @@ skills: sw-plugin, sw-services, sw-platform
 
 You implement Shopware 6.7 backend building blocks cleanly and along the conventions.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-plugin"**, **"sw-services"** and **"sw-platform"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Events before decorators** — decorate only when no event fires at the right moment (`sw-services`).
 - Services go in `src/Resources/config/services.xml`; DAL repositories are named `{entity}.repository`.

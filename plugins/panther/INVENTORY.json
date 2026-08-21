@@ -1,0 +1,72 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "panther",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://symfony.com/doc/current/testing",
+    "sitemap": "https://symfony.com/sitemap.xml",
+    "base": "https://symfony.com/",
+    "scope": "https://symfony.com/doc/current/testing"
+  },
+  "pages": 7,
+  "urls": [
+    "https://symfony.com/doc/current/testing.html",
+    "https://symfony.com/doc/current/testing/bootstrap.html",
+    "https://symfony.com/doc/current/testing/database.html",
+    "https://symfony.com/doc/current/testing/dom_crawler.html",
+    "https://symfony.com/doc/current/testing/end_to_end.html",
+    "https://symfony.com/doc/current/testing/insulating_clients.html",
+    "https://symfony.com/doc/current/testing/profiling.html"
+  ],
+  "entries": [
+    {
+      "page": "https://symfony.com/doc/current/testing.html",
+      "sha256": "bbfc36492d62c6a802af232a103705b456318283a72ae2abc93e9b9096e6cdcf",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://symfony.com/doc/current/testing/bootstrap.html",
+      "sha256": "fa53ca5431754c8ca9393fa6b939396690dac3232668ae6db11aa96574d549ab",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://symfony.com/doc/current/testing/database.html",
+      "sha256": "1fb9cd907116c1c31f719a18e0cfe455543f2ce9236ba2820d43d9cba2e58da7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://symfony.com/doc/current/testing/dom_crawler.html",
+      "sha256": "db494d80e53271e30faf2dab702aa5f64af8f3911f046154d33e96209da1f91e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://symfony.com/doc/current/testing/end_to_end.html",
+      "sha256": "ea07d5173af4089dcf6626065d6c385a16685df066316ac4576c7b1beb923d47",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://symfony.com/doc/current/testing/insulating_clients.html",
+      "sha256": "e19c5955786c8afd735c3a06b3dc49229c6f2a098d9720487900f68d048dcd29",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://symfony.com/doc/current/testing/profiling.html",
+      "sha256": "49e51be5ecfff7ff9a850285c04e5eaec5384d582ffeaf9321eeae481803e33c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    }
+  ]
+}

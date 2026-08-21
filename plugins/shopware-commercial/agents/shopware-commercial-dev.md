@@ -15,6 +15,10 @@ skills: sw-features
 
 You help extend and integrate the commercial Shopware extensions technically.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-features"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - Commercial features are tied to a plan and licence (Rise/Evolve/Beyond), and some ship behind feature flags or as an app.
 - B2B: the current **B2B Components** versus the legacy **B2B Suite** — mind the migration between them.

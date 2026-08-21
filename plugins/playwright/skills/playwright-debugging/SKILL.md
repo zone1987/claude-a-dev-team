@@ -9,9 +9,9 @@ A failing trace answers more questions than a rerun. Start with the trace viewer
 
 ## Reference map
 
-- **[MIGRATION.md](references/MIGRATION.md)**: Migration to Playwright: from Puppeteer and Protractor, Selenium Grid integration — API mappings and before/after. [MIGRATION-DETAIL](references/MIGRATION-DETAIL.md).
-- **[MISC.md](references/MISC.md)**: Playwright extensibility and miscellaneous topics: custom selector engines, video recording, release channels/canary. [MISC-DETAIL](references/MISC-DETAIL.md).
-- **[TRACE-VIEWER.md](references/TRACE-VIEWER.md)**: Playwright Trace Viewer and debugging: record/open a trace, UI inspector, PWDEBUG, Playwright Inspector, VS…. [TRACE-VIEWER-DETAIL](references/TRACE-VIEWER-DETAIL.md).
+- **[MIGRATION.md](references/MIGRATION.md)**: Migration to Playwright: from Puppeteer and Protractor, Selenium Grid integration — API mappings and before/after.
+- **[MISC.md](references/MISC.md)**: Playwright extensibility and miscellaneous topics: custom selector engines, video recording, release channels/canary.
+- **[TRACE-VIEWER.md](references/TRACE-VIEWER.md)**: Playwright Trace Viewer and debugging: record/open a trace, UI inspector, PWDEBUG, Playwright Inspector, VS….
 
 ## Source
 

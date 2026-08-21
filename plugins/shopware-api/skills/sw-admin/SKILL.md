@@ -12,7 +12,7 @@ The Admin API is OAuth-authenticated and covers every entity. The Sync API batch
 - **[API-ACTIONS.md](references/API-ACTIONS.md)**: Operations that are not plain CRUD live under `/api/_action/...`.
 - **[API-AUTH.md](references/API-AUTH.md)**: Fetch a token at `POST /api/oauth/token`, then send `Authorization: Bearer {access_token}` on all Admin API reques….
 - **[API-CRUD.md](references/API-CRUD.md)**: Generic schema per DAL entity:.
-- **[API-ENDPOINTS.md](references/API-ENDPOINTS.md)**: Security scheme: `oAuth`. [API-ENDPOINTS-DETAIL](references/API-ENDPOINTS-DETAIL.md).
+- **[API-ENDPOINTS.md](references/API-ENDPOINTS.md)**: Security scheme: `oAuth`.
 - **[API-SEARCH.md](references/API-SEARCH.md)**: For real queries use `POST /api/search/{entity}` with Criteria JSON.
 - **[SALES-AGENT-API.md](references/SALES-AGENT-API.md)**: For standard sales processes use the Store API; Sales Agent only with the B2B extension installed.
 - **[SYNC-API.md](references/SYNC-API.md)**: Several write operations across different entities in **one** request — efficient for import/sync.

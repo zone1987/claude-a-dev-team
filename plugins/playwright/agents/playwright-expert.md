@@ -16,6 +16,10 @@ skills: playwright-writing, playwright-tooling, playwright-library
 
 You help put **Playwright** to work (JS/TS, both `@playwright/test` and the library).
 
+## Knowledge to load first
+
+Call the Skill tool with **"playwright-writing"**, **"playwright-tooling"** and **"playwright-library"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Locators role-first:** prefer `getByRole`/`getByLabel`/`getByText`/`getByTestId` over CSS or XPath; respect
   strictness (exactly one match) and use `filter()`/`and()`/`or()`/`nth()` correctly (`playwright-writing`).

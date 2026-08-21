@@ -10,14 +10,14 @@ Everything under **Kataloge** (Catalogues) in the Shopware administration. Produ
 ## Reference map
 
 - **[CATALOG-OVERVIEW.md](references/CATALOG-OVERVIEW.md)**: > Source: https://docs.shopware.com/de/shopware-6-de/kataloge.
-- **[CATEGORIES.md](references/CATEGORIES.md)**: Categories are managed under **Kataloge > Kategorien** (Categories) in a tree structure. [CATEGORIES-DETAIL](references/CATEGORIES-DETAIL.md).
-- **[MANUFACTURERS.md](references/MANUFACTURERS.md)**: Manufacturers are managed under **Kataloge > Hersteller** (Manufacturers) and can be assigned to products. [MANUFACTURERS-DETAIL](references/MANUFACTURERS-DETAIL.md).
-- **[MEDIA.md](references/MEDIA.md)**: Media management is reachable under **Inhalte > Medien** (Content > Media). [MEDIA-DETAIL](references/MEDIA-DETAIL.md).
-- **[OVERVIEW.md](references/OVERVIEW.md)**: The **Kataloge** area is the heart of product management in Shopware 6. [OVERVIEW-DETAIL](references/OVERVIEW-DETAIL.md).
-- **[PRODUCT-STREAMS.md](references/PRODUCT-STREAMS.md)**: Dynamic product groups are managed under **Kataloge > Dynamische Produktgruppen** (Dynamic product groups). [PRODUCT-STREAMS-DETAIL](references/PRODUCT-STREAMS-DETAIL.md).
-- **[PRODUCTS.md](references/PRODUCTS.md)**: Products are managed under **Kataloge > Produkte** (Products). [PRODUCTS-DETAIL](references/PRODUCTS-DETAIL.md), [PRODUCTS-PRODUCT-OVERVIEW](references/PRODUCTS-PRODUCT-OVERVIEW.md).
-- **[PROPERTIES.md](references/PROPERTIES.md)**: Properties are managed under **Kataloge > Eigenschaften** (Properties). [PROPERTIES-DETAIL](references/PROPERTIES-DETAIL.md).
-- **[REVIEWS.md](references/REVIEWS.md)**: Product reviews are managed under **Kataloge > Bewertungen** (Reviews). [REVIEWS-DETAIL](references/REVIEWS-DETAIL.md).
+- **[CATEGORIES.md](references/CATEGORIES.md)**: Categories are managed under **Kataloge > Kategorien** (Categories) in a tree structure.
+- **[MANUFACTURERS.md](references/MANUFACTURERS.md)**: Manufacturers are managed under **Kataloge > Hersteller** (Manufacturers) and can be assigned to products.
+- **[MEDIA.md](references/MEDIA.md)**: Media management is reachable under **Inhalte > Medien** (Content > Media).
+- **[OVERVIEW.md](references/OVERVIEW.md)**: The **Kataloge** area is the heart of product management in Shopware 6.
+- **[PRODUCT-STREAMS.md](references/PRODUCT-STREAMS.md)**: Dynamic product groups are managed under **Kataloge > Dynamische Produktgruppen** (Dynamic product groups).
+- **[PRODUCTS.md](references/PRODUCTS.md)**: Products are managed under **Kataloge > Produkte** (Products)., [PRODUCTS-PRODUCT-OVERVIEW](references/PRODUCTS-PRODUCT-OVERVIEW.md).
+- **[PROPERTIES.md](references/PROPERTIES.md)**: Properties are managed under **Kataloge > Eigenschaften** (Properties).
+- **[REVIEWS.md](references/REVIEWS.md)**: Product reviews are managed under **Kataloge > Bewertungen** (Reviews).
 
 ## Source
 

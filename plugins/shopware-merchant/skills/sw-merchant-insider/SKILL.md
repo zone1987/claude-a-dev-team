@@ -9,7 +9,7 @@ Features in preview. Treat everything here as subject to change — behaviour an
 
 ## Reference map
 
-- **[PREVIEWS.md](references/PREVIEWS.md)**: Early access to new Shopware features while they are still in beta. [PREVIEWS-BUNDLES-BUNDLES](references/PREVIEWS-BUNDLES-BUNDLES.md), [PREVIEWS-BUNDLES](references/PREVIEWS-BUNDLES.md), [PREVIEWS-DETAIL](references/PREVIEWS-DETAIL.md), [PREVIEWS-SCENE-EDITOR-SCENE-EDITOR-INSIDER-PREVIEW](references/PREVIEWS-SCENE-EDITOR-SCENE-EDITOR-INSIDER-PREVIEW.md), [PREVIEWS-SCENE-EDITOR](references/PREVIEWS-SCENE-EDITOR.md).
+- **[PREVIEWS.md](references/PREVIEWS.md)**: Early access to new Shopware features while they are still in beta. [PREVIEWS-BUNDLES-BUNDLES](references/PREVIEWS-BUNDLES-BUNDLES.md), [PREVIEWS-BUNDLES](references/PREVIEWS-BUNDLES.md),, [PREVIEWS-SCENE-EDITOR-SCENE-EDITOR-INSIDER-PREVIEW](references/PREVIEWS-SCENE-EDITOR-SCENE-EDITOR-INSIDER-PREVIEW.md), [PREVIEWS-SCENE-EDITOR](references/PREVIEWS-SCENE-EDITOR.md).
 
 ## Source
 

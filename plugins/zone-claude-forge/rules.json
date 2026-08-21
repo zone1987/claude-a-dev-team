@@ -699,6 +699,15 @@
       "tell": "A reference file's field list was written by hand from a specification that was available as a file."
     },
     {
+      "id": "SOURCE-03",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "Every HTTP request to a source is made with curl, following redirects (curl -sSfL). Python urllib, wget and language-level HTTP clients are not used for fetching documentation, sitemaps or specifications.",
+      "effect": "curl carries the system trust store and follows redirects by default, which is what documentation hosts actually require. Measured while inventorying this marketplace: urllib raised CERTIFICATE_VERIFY_FAILED on all 39 docs.ventrata.com pages where curl succeeded, and returned a 301 HTML page instead of docs.contao.org's sitemap, which reads as 'no sitemap' rather than as an error. Both failures are silent in the sense that matters: the script reports an empty or unreachable source and the gap looks like the source's fault.",
+      "measurement": "plugins/contao yielded 0 pages through urllib and 586 through curl -sSfL, from the same two sitemaps declared in robots.txt.",
+      "tell": "A fetch helper importing urllib.request, or a report claiming a source is unreachable without a curl attempt behind it. Retry with curl before believing the source is gone."
+    },
+    {
       "id": "API-01",
       "ground": "technique",
       "enforcement": "blocking",
@@ -843,10 +852,10 @@
       "id": "COV-09",
       "ground": "technique",
       "enforcement": "blocking",
-      "rule": "A plugin distilled from online documentation carries INVENTORY.json at its root, recording per page the URL, the content hash, the plugin files that cover it, the term count and the date extracted. It is written whenever the coverage audit runs and read before any work that depends on the plugin being complete.",
-      "effect": "The file is what makes 'still complete' answerable without re-reading the source. Measured on plugins/octo-api: mirroring 39 pages and comparing 1,163 terms takes minutes and pulls the whole source through context, while reading the inventory plus one hash comparison per page settles it in under 7 seconds and leaves no page content in context at all. It also converts a silent gap into a named one: a page upstream added since the audit has no entry, and a page that changed has a different hash.",
+      "rule": "A plugin whose subject has official online documentation carries INVENTORY.json at its root, and it is created when absent rather than deferred. Per page it records the URL, the content hash, the plugin files that cover it, the term count and the date extracted. Where the subject has no published documentation to enumerate — a convention, a house rule, a distilled practice — no inventory is required, and the SKILL.md Source section states what the knowledge rests on instead.",
+      "effect": "The file is what makes 'still complete' answerable without re-reading the source. Measured on plugins/octo-api: mirroring 39 pages and comparing 1,163 terms takes minutes and pulls the whole source through context, while reading the inventory plus one hash comparison per page settles it in under 7 seconds and leaves no page content in context. It also converts a silent gap into a named one: a page upstream added since the audit has no entry, and a changed page has a different hash. Creating it on first touch is what stops that debt accumulating — a plugin without one has no cheap answer available at all.",
       "measurement": "scripts/inventory.py --plugin octo-api --check --fetch reported 39 unchanged, 0 changed, 0 unreachable in 6.5 s against an inventory of 39 pages and 1,163 terms recorded 2026-08-21.",
-      "tell": "A plugin whose README claims full coverage of a docs site with no INVENTORY.json beside it. The claim rests on whoever wrote it remembering correctly."
+      "tell": "A plugin documenting a product with a docs site — playwright, swiper, gotenberg, flatpickr, shopware, contao — and no INVENTORY.json beside it. Its coverage claim rests on whoever wrote it remembering correctly. Conversely, an inventory is not expected where the subject is a convention rather than a documented product."
     },
     {
       "id": "COV-10",

@@ -9,7 +9,7 @@ Data migration into Shopware 6. A custom profile is how you support a source sys
 
 ## Reference map
 
-- **[ASSISTANT.md](references/ASSISTANT.md)**: Developer reference for the Shopware Migration Assistant plugin. [ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE](references/ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md), [ASSISTANT-CUSTOM-PROFILE](references/ASSISTANT-CUSTOM-PROFILE.md), [ASSISTANT-DETAIL](references/ASSISTANT-DETAIL.md).
+- **[ASSISTANT.md](references/ASSISTANT.md)**: Developer reference for the Shopware Migration Assistant plugin. [ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE](references/ASSISTANT-CUSTOM-PROFILE-CUSTOM-PROFILE.md), [ASSISTANT-CUSTOM-PROFILE](references/ASSISTANT-CUSTOM-PROFILE.md),
 
 ## Source
 

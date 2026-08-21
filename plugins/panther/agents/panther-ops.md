@@ -17,6 +17,10 @@ skills: panther-setup, panther-testing
 
 You set up **Symfony Panther** and run it reliably (locally + CI).
 
+## Knowledge to load first
+
+Call the Skill tool with **"panther-setup"** and **"panther-testing"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Drivers:** ChromeDriver/GeckoDriver via `dbrekelmans/bdi` (`vendor/bin/bdi detect drivers`) or manually;
   register the PHPUnit extension/listener in `phpunit.xml.dist` (`panther-setup`).

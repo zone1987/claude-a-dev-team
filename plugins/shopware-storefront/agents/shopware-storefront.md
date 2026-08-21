@@ -15,6 +15,10 @@ skills: sw-controller, sw-twig, sw-theme
 
 You build customer-facing features cleanly and along the conventions.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-controller"**, **"sw-twig"** and **"sw-theme"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Controller → PageLoader → Page/Pagelet → Twig**; route names `frontend.*`, `_routeScope: ['storefront']`.
 - Enrich an existing core page through its `*PageLoadedEvent` plus `addExtension` — no controller override needed.

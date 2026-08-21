@@ -9,16 +9,16 @@ The day-to-day surface. Locators and web-first assertions carry the auto-waiting
 
 ## Reference map
 
-- **[ACCESSIBILITY.md](references/ACCESSIBILITY.md)**: Complete reference: `ACCESSIBILITY-DETAIL.md`. [ACCESSIBILITY-DETAIL](references/ACCESSIBILITY-DETAIL.md).
-- **[ACTIONS.md](references/ACTIONS.md)**: Complete reference: `ACTIONS-DETAIL.md`. [ACTIONS-DETAIL](references/ACTIONS-DETAIL.md).
+- **[ACCESSIBILITY.md](references/ACCESSIBILITY.md)**:
+- **[ACTIONS.md](references/ACTIONS.md)**:
 - **[API-ASSERTIONS.md](references/API-ASSERTIONS.md)**: Exhaustive API reference for all six Playwright assertion classes. [API-ASSERTIONS-CLASS-APIRESPONSEASSERTIONS](references/API-ASSERTIONS-CLASS-APIRESPONSEASSERTIONS.md), [API-ASSERTIONS-CLASS-GENERICASSERTIONS](references/API-ASSERTIONS-CLASS-GENERICASSERTIONS.md), [API-ASSERTIONS-CLASS-LOCATORASSERTIONS](references/API-ASSERTIONS-CLASS-LOCATORASSERTIONS.md), [API-ASSERTIONS-CLASS-PAGEASSERTIONS](references/API-ASSERTIONS-CLASS-PAGEASSERTIONS.md), [API-ASSERTIONS-CLASS-PLAYWRIGHTASSERTIONS](references/API-ASSERTIONS-CLASS-PLAYWRIGHTASSERTIONS.md), [API-ASSERTIONS-CLASS-SNAPSHOTASSERTIONS](references/API-ASSERTIONS-CLASS-SNAPSHOTASSERTIONS.md).
-- **[AUTH.md](references/AUTH.md)**: Complete reference: `AUTH-DETAIL.md`. [AUTH-DETAIL](references/AUTH-DETAIL.md).
-- **[EMULATION.md](references/EMULATION.md)**: Complete reference: `EMULATION-DETAIL.md`. [EMULATION-DETAIL](references/EMULATION-DETAIL.md).
-- **[EVALUATING.md](references/EVALUATING.md)**: Complete reference: `EVALUATING-DETAIL.md`. [EVALUATING-DETAIL](references/EVALUATING-DETAIL.md).
-- **[INTRO.md](references/INTRO.md)**: Complete reference: `INTRO-DETAIL.md`. [INTRO-DETAIL](references/INTRO-DETAIL.md).
-- **[LOCATORS.md](references/LOCATORS.md)**: Complete reference: `LOCATORS-DETAIL.md`. [LOCATORS-DETAIL](references/LOCATORS-DETAIL.md).
+- **[AUTH.md](references/AUTH.md)**:
+- **[EMULATION.md](references/EMULATION.md)**:
+- **[EVALUATING.md](references/EVALUATING.md)**:
+- **[INTRO.md](references/INTRO.md)**:
+- **[LOCATORS.md](references/LOCATORS.md)**:
 - **[TEST-ASSERTIONS.md](references/TEST-ASSERTIONS.md)**: Complete assertion reference: all `expect.*` matchers, `expect.*`, `expect.*`, all generic matchers, …. [TEST-ASSERTIONS-ASSERTIONS](references/TEST-ASSERTIONS-ASSERTIONS.md).
-- **[TESTS.md](references/TESTS.md)**: Complete reference: `TESTS-DETAIL.md`. [TESTS-DETAIL](references/TESTS-DETAIL.md).
+- **[TESTS.md](references/TESTS.md)**:
 
 ## Source
 

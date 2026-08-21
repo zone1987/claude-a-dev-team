@@ -16,6 +16,10 @@ skills: playwright-debugging, playwright-writing, playwright-runner
 
 You find the cause of failing or unstable **Playwright** tests.
 
+## Knowledge to load first
+
+Call the Skill tool with **"playwright-debugging"**, **"playwright-writing"** and **"playwright-runner"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **The trace first:** `trace: 'on-first-retry'` in CI, or `retain-on-failure`; `npx playwright show-trace trace.zip` —
   work through the actions, snapshots, network and console (`playwright-debugging`).

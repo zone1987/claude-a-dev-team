@@ -15,6 +15,10 @@ skills: sw-building, sw-client
 
 You build decoupled storefronts against the Store API.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-building"** and **"sw-client"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **The Store API and stable HTTP APIs only** — never an internal, volatile one. Stay type-safe through `@shopware/api-gen`.
 - Provide `createAPIClient` centrally; the composables use the client context you provide.

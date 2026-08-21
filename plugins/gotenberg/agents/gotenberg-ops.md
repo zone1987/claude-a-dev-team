@@ -16,6 +16,10 @@ skills: gotenberg-operations, gotenberg-convert
 
 You set up **Gotenberg** and run it reliably (stateless Docker API).
 
+## Knowledge to load first
+
+Call the Skill tool with **"gotenberg-operations"** and **"gotenberg-convert"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Guardrails
 - **Provisioning:** official image `gotenberg/gotenberg:<tag>`, port `3000`. Health check against `/health`
   (`GET`/`HEAD`). Stateless → freely scalable horizontally, no persistence/shared state needed.

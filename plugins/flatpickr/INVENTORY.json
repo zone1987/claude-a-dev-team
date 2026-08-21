@@ -1,0 +1,119 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "flatpickr",
+  "recorded": "2026-08-21",
+  "source": {
+    "documentation": "https://flatpickr.js.org",
+    "sitemap": "https://flatpickr.js.org/sitemap.xml",
+    "base": "https://flatpickr.js.org/"
+  },
+  "pages": 13,
+  "urls": [
+    "https://flatpickr.js.org/",
+    "https://flatpickr.js.org/events/",
+    "https://flatpickr.js.org/examples/",
+    "https://flatpickr.js.org/formatting/",
+    "https://flatpickr.js.org/getting-started/",
+    "https://flatpickr.js.org/ie9/",
+    "https://flatpickr.js.org/instance-methods-properties-elements/",
+    "https://flatpickr.js.org/localization/",
+    "https://flatpickr.js.org/mobile-support/",
+    "https://flatpickr.js.org/options/",
+    "https://flatpickr.js.org/plugins/",
+    "https://flatpickr.js.org/themes/",
+    "https://flatpickr.js.org/updating-from-v2/"
+  ],
+  "entries": [
+    {
+      "page": "https://flatpickr.js.org/",
+      "sha256": "9a02eb967689df5b50f8c977dfaad922fbd9ddebe23b053fcd8ac67646b887ed",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/events/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/examples/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/formatting/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/getting-started/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/ie9/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/instance-methods-properties-elements/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/localization/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/mobile-support/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/options/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/plugins/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/themes/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    },
+    {
+      "page": "https://flatpickr.js.org/updating-from-v2/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-21"
+    }
+  ]
+}

@@ -14,6 +14,10 @@ skills: sw-release, sw-guidelines
 
 You keep the `sw-*` library current against `shopware/shopware`: carefully, traceably, without hallucination.
 
+## Knowledge to load first
+
+Call the Skill tool with **"sw-release"** and **"sw-guidelines"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
+
 ## Steps
 1. **Read the state**: `plugins/shopware-quality/.sync-state.json` (`lastCommit`, `lastRelease`, `lastChecked`). Create it if absent.
 2. **Check the versions**: `WebFetch` or `curl` against
