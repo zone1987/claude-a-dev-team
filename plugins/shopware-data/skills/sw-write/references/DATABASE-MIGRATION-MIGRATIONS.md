@@ -77,8 +77,8 @@ class Migration1709123456CreateCustomTable extends MigrationStep
      */
     public function updateDestructive(Connection $connection): void
     {
-        // Destructive changes (column drops, table drops)
-        // Only runs with: bin/console dal:migration:run --destructive
+        // The core uses this for delayed, major-version destructive changes.
+        // A plugin's install and update never call it — leave it empty.
     }
 }
 ```
@@ -87,7 +87,10 @@ class Migration1709123456CreateCustomTable extends MigrationStep
 
 1. **`getCreationTimestamp()`** must return the integer timestamp matching the filename
 2. **`update()`** is for non-destructive changes: CREATE TABLE, ADD COLUMN, ADD INDEX
-3. **`updateDestructive()`** is for destructive changes: DROP TABLE, DROP COLUMN. Only runs explicitly with `--destructive` flag
+3. **`updateDestructive()` never runs for a plugin.** `MigrationStep` defines it, and the core uses
+   it for delayed destructive changes at a major version — but plugin install and update do not call
+   it, and in practice nobody runs `database:migrate-destructive` for a plugin. **Put every change
+   your plugin needs in `update()`**, and clean up in the `uninstall()` lifecycle method
 4. **Always use `IF NOT EXISTS`** for CREATE TABLE / ADD COLUMN to make migrations idempotent
 5. **Always use `BINARY(16)`** for ID columns (Shopware uses binary UUIDs)
 6. **Always include** `created_at DATETIME(3)` and `updated_at DATETIME(3) NULL`
@@ -158,3 +161,107 @@ bin/console database:migrate --all --destructive FfContentPlus
 bin/console plugin:install FfContentPlus
 bin/console plugin:update FfContentPlus
 ```
+
+## Contents
+
+- [File naming](#file-naming)
+- [Generating a migration](#generating-a-migration)
+- [Running migrations](#running-migrations)
+- [Advanced control](#advanced-control)
+- [Relocating the migration directory](#relocating-the-migration-directory)
+
+## File naming
+
+Shopware looks for migrations in a `Migration` directory relative to the plugin's base class:
+`<plugin root>/src/Migration/Migration1546422281ExampleDescription.php`.
+
+| Part | Meaning |
+|---|---|
+| `Migration` | every migration file starts with it |
+| `1546422281` | a timestamp, which is what makes migrations incremental |
+| `ExampleDescription` | a descriptive name |
+
+## Generating a migration
+
+```bash
+./bin/console database:create-migration -p SwagBasicExample --name ExampleDescription
+```
+
+| Part | Meaning |
+|---|---|
+| `-p your_plugin_name` | creates the migration for that plugin |
+| `--name your_descriptive_name` | appended after the timestamp |
+
+**There is no rollback.** A migration class holds no instructions to reverse itself; database cleanup
+on removal belongs in the plugin's `uninstall()` lifecycle method.
+
+Shopware can also generate the SQL from your entity definitions:
+
+```bash
+./bin/console dal:migration:create --bundle=SwagBasicExample --entities=your_entity,your_other_entity
+```
+
+It writes the `CREATE TABLE` or `ALTER TABLE` statements needed to bring the schema in line with the
+definitions — **one migration file per entity**.
+
+| Option | Meaning |
+|---|---|
+| `--bundle` | the plugin name; omitted, the migration is generated in the core |
+| `--entities` | comma-separated list of entities |
+
+**The plugin has to be active**, or its entity definitions cannot be found.
+
+## Running migrations
+
+Installing a plugin adds its migration directory to a `MigrationCollection` and runs every
+`update()`. Updating through the Plugin Manager runs the new ones the same way.
+
+```bash
+./bin/console database:migrate SwagBasicExample --all
+```
+
+The identifier argument selects which migrations run. **It defaults to the Shopware core**, so a
+plugin's own migrations need its bundle name passed explicitly.
+
+A migration created after the plugin was installed can be run by hand, since the directory is already
+registered.
+
+## Advanced control
+
+A plugin that wants to decide which migrations run has to refuse the automatic execution first.
+`MigrationCollection` — filled with that plugin's migrations only — is reachable from `InstallContext`
+and its subclasses (`UpdateContext`, `ActivateContext`, …):
+
+```php
+public function update(UpdateContext $updateContext): void
+{
+    $updateContext->setAutoMigrate(false);   // disable automatic execution
+
+    $migrationCollection = $updateContext->getMigrationCollection();
+
+    // run UPDATE migrations up to and including 2019-12-12T09:30:51+00:00
+    $migrationCollection->migrateInPlace(1576143014);
+}
+```
+
+A plugin not using the migration system finds an empty collection (a `NullObject`) in the context.
+
+## Relocating the migration directory
+
+Most plugins should keep `src/Migration` — the tooling assumes it. Where there is a reason to move
+it, override `getMigrationNamespace()` in the plugin base class:
+
+```php
+public function getMigrationNamespace(): string
+{
+    return 'Swag\BasicExample\MyMigrationNamespace';
+}
+```
+
+**The path is derived from the namespace**, so the directory has to be renamed to match —
+`MyMigrationNamespace` here.
+
+## Source
+
+[developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html](https://developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html),
+Shopware 6.7, retrieved 2026-08-21.

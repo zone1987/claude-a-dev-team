@@ -1,0 +1,43 @@
+{
+ "$comment": "Documentation inventory. Read before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+ "plugin": "shopware-data",
+ "recorded": "2026-08-21",
+ "source": {
+  "documentation": "https://developer.shopware.com/docs/",
+  "sitemap": "https://developer.shopware.com/sitemap.xml",
+  "base": "https://developer.shopware.com/docs/",
+  "version": "6.7"
+ },
+ "pages": 3,
+ "urls": [
+  "https://developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-data-indexer.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/writing-data.html"
+ ],
+ "entries": [
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-data-indexer.html",
+   "sha256": "f8f4737d1d8c522b12c391190bcc5a3dd3e0ac76083243f7e4e05f6deebe7535",
+   "covers": [
+    "skills/sw-entity/references/INDEXER.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html",
+   "sha256": "5336ff8a49338c543fed7e5533c82a0e8a31eef1d6b46b491105f339cf187b7c",
+   "covers": [
+    "skills/sw-write/references/DATABASE-MIGRATION-MIGRATIONS.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/writing-data.html",
+   "sha256": "a9956100d8dfa39758ee344e006ce42accfb15499847e7d453b8781596a85ca9",
+   "covers": [
+    "skills/sw-write/references/WRITING-DATA.md"
+   ],
+   "extracted": "2026-08-21"
+  }
+ ]
+}

@@ -1919,7 +1919,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html",
    "slug": "guides/plugins/plugins/database/database-migrations.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1982,7 +1982,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-data-indexer.html",
    "slug": "guides/plugins/plugins/framework/data-handling/add-data-indexer.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -2052,7 +2052,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/writing-data.html",
    "slug": "guides/plugins/plugins/framework/data-handling/writing-data.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
