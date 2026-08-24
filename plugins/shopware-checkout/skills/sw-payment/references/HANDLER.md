@@ -18,7 +18,8 @@ class FfPaymentHandler extends AbstractPaymentHandler
 ```
 
 Create the `payment_method` entity via migration/lifecycle and assign it to the handler; set the transaction state through the
-state machine (`sw-order-state-machine`). Report errors via `PaymentException`. App-based payment: `sw-payment-app`.
-PayPal example SDK: `sw-paypal-sdk`.
+state machine — see `ORDER-STATE-MACHINE.md` in `sw-fulfilment`. Report errors via `PaymentException`.
+App-based payment: `APP.md`. The PayPal SDK example: `PAYPAL-SDK.md`.
 
-→ Payment details: [HANDLER-OVERVIEW.md](HANDLER-OVERVIEW.md) · Example: [examples/PaymentHandler.php](examples/PaymentHandler.php)
+→ The full handler reference, the removed 6.6 tags and interfaces, and the plugin lifecycle:
+[HANDLER-OVERVIEW.md](HANDLER-OVERVIEW.md)

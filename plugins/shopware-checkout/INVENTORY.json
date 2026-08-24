@@ -9,12 +9,13 @@
   "version": "6.7",
   "scope": "guides/plugins/plugins/checkout \u2014 cart, payment, documents, order"
  },
- "pages": 4,
+ "pages": 5,
  "urls": [
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
-  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html"
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html"
  ],
  "entries": [
   {
@@ -46,6 +47,15 @@
    "sha256": "32dbf50576f5b5c6b76deab81b325bd8a597cbce7a3295a238acaa50ea1b3598",
    "covers": [
     "skills/sw-fulfilment/references/ORDER-EVENTS.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html",
+   "sha256": "25660f9b42124d88c302c4a205efe2b2f12392b95099e7e644c188d4019b3c45",
+   "covers": [
+    "skills/sw-payment/references/HANDLER-OVERVIEW.md",
+    "skills/sw-payment/references/HANDLER.md"
    ],
    "extracted": "2026-08-21"
   }

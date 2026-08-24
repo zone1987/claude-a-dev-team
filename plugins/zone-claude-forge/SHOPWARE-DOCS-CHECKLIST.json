@@ -1779,7 +1779,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html",
    "slug": "guides/plugins/plugins/checkout/payment/add-payment-plugin.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

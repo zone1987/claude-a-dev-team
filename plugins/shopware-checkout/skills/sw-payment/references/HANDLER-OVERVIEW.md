@@ -152,45 +152,113 @@ class ExternalPaymentHandler extends AbstractPaymentHandler
 }
 ```
 
-## Service Registration
+## Service registration
 
-```xml
-<service id="FfContentPlus\Checkout\Payment\InvoicePaymentHandler">
-    <tag name="shopware.payment.method.sync"/>
-</service>
-
-<service id="FfContentPlus\Checkout\Payment\ExternalPaymentHandler">
-    <tag name="shopware.payment.method.async"/>
-    <tag name="shopware.payment.method.refund"/>
-</service>
-```
-
-## Payment Handler Types & Tags
-
-| Type | Tag | Description |
-|------|-----|-------------|
-| Sync | `shopware.payment.method.sync` | No redirect, instant capture |
-| Async | `shopware.payment.method.async` | Redirect to provider, finalize on return |
-| Prepared | `shopware.payment.method.prepared` | Pre-authorized payment |
-| Refund | `shopware.payment.method.refund` | Supports refunds |
-| Recurring | `shopware.payment.method.recurring` | Subscription payments |
-
-## Registering Payment Method (Plugin Lifecycle)
+**One tag, since 6.7:** `shopware.payment.method`. Without it Shopware does not recognise the class
+as a payment handler at all.
 
 ```php
-public function install(InstallContext $installContext): void
-{
-    $paymentMethodRepository = $this->container->get('payment_method.repository');
+// <plugin root>/src/Resources/config/services.php
+$services->set(MyCustomPaymentHandler::class)
+    ->tag('shopware.payment.method');
+```
 
-    $paymentMethodRepository->create([
-        [
-            'handlerIdentifier' => InvoicePaymentHandler::class,
-            'name' => 'Invoice Payment',
-            'translations' => [
-                'de-DE' => ['name' => 'Rechnungskauf', 'description' => 'Zahlung per Rechnung'],
-                'en-GB' => ['name' => 'Invoice Payment', 'description' => 'Pay by invoice'],
-            ],
-        ],
-    ], $installContext->getContext());
+### The five tags that no longer exist
+
+Before 6.7 a handler declared its capabilities through separate tags. All five were removed with the
+unified handler — **remove every one of them when migrating**, or the handler is registered twice
+over and its capabilities are read from the wrong place:
+
+| Removed tag | Removed interface | Replaced by |
+|---|---|---|
+| `shopware.payment.method.sync` | `SynchronousPaymentHandlerInterface` | `pay()`, always called during checkout |
+| `shopware.payment.method.async` | `AsynchronousPaymentHandlerInterface` | `finalize()`, called only when `pay()` returns a `RedirectResponse` |
+| `shopware.payment.method.prepared` | `PreparedPaymentHandlerInterface` | `validate()`, always called; use it to validate the cart during checkout |
+| `shopware.payment.method.recurring` | `RecurringPaymentHandlerInterface` | `recurring()`, gated by `supports(PaymentHandlerType::RECURRING, …)` |
+| `shopware.payment.method.refund` | `RefundPaymentHandlerInterface` | `refund()`, gated by `supports(PaymentHandlerType::REFUND, …)` |
+
+Those interfaces lived under `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\`. Instead of
+implementing several of them, extend `AbstractPaymentHandler` and implement the methods you
+need. **Prepared payments** lost their `capture()` method — implement `validate()` and let the
+streamlined `pay()` do the capture.
+
+## Registering the payment method (plugin lifecycle)
+
+The handler alone does nothing: a `payment_method` entity has to point at it. Create it on install.
+
+```php
+private function addPaymentMethod(Context $context): void
+{
+    // already there? nothing to do
+    if ($this->getPaymentMethodId()) {
+        return;
+    }
+
+    $pluginIdProvider = $this->container->get(PluginIdProvider::class);
+    $pluginId = $pluginIdProvider->getPluginIdByBaseClass(get_class($this), $context);
+
+    $examplePaymentData = [
+        // the handler is selected by this identifier
+        'handlerIdentifier' => MyCustomPaymentHandler::class,
+        'name' => 'Example payment',
+        'description' => 'Example payment description',
+        'pluginId' => $pluginId,
+        // keeps the method available after the order exists, e.g. to retry a failed payment
+        'afterOrderEnabled' => true,
+        // REQUIRED from 6.7; use a plugin-specific prefix
+        'technicalName' => 'swag_example-example_payment',
+    ];
+
+    $this->container->get('payment_method.repository')->create([$examplePaymentData], $context);
 }
 ```
+
+**`technicalName` is required for plugin-provided payment methods from 6.7 on.** It must be unique,
+and a plugin-specific prefix is what keeps it so. Omitting it can prevent the plugin from being
+installed or activated, depending on where the validation runs — so when migrating a payment plugin
+to 6.7, check whether it sets one at all.
+
+### Uninstall deactivates, never deletes
+
+```php
+public function uninstall(UninstallContext $context): void
+{
+    // Only deactivate. Removing the payment method breaks data consistency,
+    // because past orders reference it.
+    $this->setPaymentMethodIsActive(false, $context->getContext());
+}
+
+public function activate(ActivateContext $context): void
+{
+    $this->setPaymentMethodIsActive(true, $context->getContext());
+    parent::activate($context);
+}
+
+public function deactivate(DeactivateContext $context): void
+{
+    $this->setPaymentMethodIsActive(false, $context->getContext());
+    parent::deactivate($context);
+}
+```
+
+`setPaymentMethodIsActive()` returns early when no method exists — there is nothing to
+(de)activate — and `getPaymentMethodId()` finds it by handler identifier:
+
+```php
+$paymentCriteria = (new Criteria())->addFilter(new EqualsFilter('handlerIdentifier', ExamplePayment::class));
+return $paymentRepository->searchIds($paymentCriteria, Context::createDefaultContext())->firstId();
+```
+
+### Identifying your payment method
+
+Two ways, and the second is the one to prefer:
+
+- **`formattedHandlerIdentifier`** shortens the PHP class reference: `Custom/Payment/SEPAPayment`
+  becomes `handler_custom_sepapayment`. The exact shortening lives in
+  `Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber`.
+- **`technicalName`**, which you chose yourself and which is unique by construction.
+
+## Source
+
+[developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html),
+Shopware 6.7, retrieved 2026-08-21.
