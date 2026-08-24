@@ -9,12 +9,15 @@
   "version": "6.7",
   "scope": "guides/plugins/plugins/checkout \u2014 cart, payment, documents, order"
  },
- "pages": 5,
+ "pages": 8,
  "urls": [
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-items.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-validator.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/customize-price-calculation.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html",
-  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html"
  ],
  "entries": [
@@ -56,6 +59,31 @@
    "covers": [
     "skills/sw-payment/references/HANDLER-OVERVIEW.md",
     "skills/sw-payment/references/HANDLER.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-validator.html",
+   "sha256": "070942764907ded85b92eba669d5a2072d632bb35d31702295d92988416b8770",
+   "covers": [
+    "skills/sw-cart/references/VALIDATOR.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-items.html",
+   "sha256": "dc8f741e15a74577c2c167be03997e3a0c4c2a806f1853680d7f4f60cac8b372",
+   "covers": [
+    "skills/sw-cart/references/LINE-ITEM.md",
+    "skills/sw-cart/references/PROCESSOR.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/customize-price-calculation.html",
+   "sha256": "ef21e2e1b23e421d719029792c0f6629067b6fdcdf14b320aa04194847ef96da",
+   "covers": [
+    "skills/sw-cart/references/PRICE.md"
    ],
    "extracted": "2026-08-21"
   }

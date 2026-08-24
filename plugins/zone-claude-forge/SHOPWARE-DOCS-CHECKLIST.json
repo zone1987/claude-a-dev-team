@@ -1688,7 +1688,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-items.html",
    "slug": "guides/plugins/plugins/checkout/cart/add-cart-items.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1702,7 +1702,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-validator.html",
    "slug": "guides/plugins/plugins/checkout/cart/add-cart-validator.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1716,7 +1716,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/customize-price-calculation.html",
    "slug": "guides/plugins/plugins/checkout/cart/customize-price-calculation.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
