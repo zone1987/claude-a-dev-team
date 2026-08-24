@@ -1,160 +1,176 @@
-# Shopware Abonnements (Subscriptions)
+# Shopware Subscriptions
 
-Recurring orders with configurable intervals. Available from the Beyond plan (6.5.4.0+).
+Recurring orders with configurable intervals. A commercial feature, available from the Beyond plan
+and part of the Shopware Commercial extension, from Shopware 6.5.4.0 onwards.
 
-## Shopware Abonnements (Subscriptions) – Vollständige Dokumentation
+## Contents
 
-### Contents
+- [Overview](#overview)
+- [Configuration and setup](#configuration-and-setup)
+- [Plans](#plans)
+- [Intervals](#intervals)
+- [Settings and mixed carts](#settings-and-mixed-carts)
+- [Storefront experience](#storefront-experience)
+- [Payment methods](#payment-methods)
+- [Customer self-service](#customer-self-service)
+- [Cancellation behaviour](#cancellation-behaviour)
+- [Admin management](#admin-management)
+- [Rule and Flow Builder](#rule-and-flow-builder)
 
-- [Überblick](#überblick)
-- [Kernkonzepte](#kernkonzepte)
-- [Storefront-Erlebnis](#storefront-erlebnis)
-- [Zahlungsmethoden](#zahlungsmethoden)
-- [Kundenverwaltung im Storefront](#kundenverwaltung-im-storefront)
-- [Kündigungsverhalten](#kündigungsverhalten)
-- [Admin-Verwaltung](#admin-verwaltung)
-- [Integration mit anderen Features](#integration-mit-anderen-features)
+## Overview
 
-### Überblick
+Subscriptions let a merchant offer recurring orders on a configurable interval.
 
-Das Abonnements-Feature ermöglicht Händlern, wiederkehrende Bestellungen mit konfigurierbaren Intervallen anzubieten.
-
-**Verfügbarkeit:** Beyond-Plan (auch: Rise laut einiger Quellen, primär Beyond)
-**Mindestversion:** Shopware 6.5.4.0
-**Voraussetzung:** Shopware Commercial Extension
-
----
-
-### Kernkonzepte
-
-#### Plans (Abonnementpläne)
-
-Pläne sind die Grundkonfigurationen für Abonnements. Jeder Plan definiert:
-
-| Einstellung | Beschreibung |
+| | |
 |---|---|
-| Name | Anzeigename des Plans im Storefront |
-| Aktiv/Inaktiv | Sichtbarkeit für Kunden |
-| Beschreibung | Erläuterung für Kunden |
-| Verfügbarkeitsregeln | Rule Builder Integration für Bedingungen |
-| Intervalle | Lieferrhythmus (täglich/wöchentlich/monatlich) |
-| Mindestlaufzeit | Minimale Abo-Dauer vor Kündigung |
-| Rabatt | Prozentualer Preisnachlass während der Abo-Dauer |
+| Availability | the Beyond plan, as part of the Shopware Commercial extension |
+| Minimum version | 6.5.4.0 |
+| Mixed carts | 6.7.4.0 and later |
 
-**Pfad im Admin:** Einstellungen → Abonnements → Pläne → Neuer Plan
+A **mixed cart** combines one-off products and subscription items in a single order. The system
+distinguishes the one-off deliveries from the recurring ones by itself, and applies discounts and
+shipping costs correctly to both.
 
-##### Produkt-Zuweisung
+## Configuration and setup
 
-Produkte können bidirektional mit Plänen verknüpft werden:
-- Im Plan unter dem Tab „Produkte" Produkte hinzufügen
-- Im Produkt selbst einen Plan zuweisen
+The subscriptions live under **Settings > Commerce > Subscriptions**.
 
-#### Intervalle
+## Plans
 
-Flexible Zeitplanung für Lieferungen:
+A plan is the base configuration of a subscription. In the **Plans** tab you add, edit and delete
+them.
 
-| Modus | Einstellung |
+### General
+
+| Field | What it does |
 |---|---|
-| Täglich | Intervall in Tagen |
-| Wöchentlich | Wochentag auswählen |
-| Monatlich | Datum im Monat |
-| Erweitert | Kombination aus Wochentag, Datum und Monat |
+| Name | names the subscription |
+| Active | the switch that activates or deactivates it |
+| Use a different name in the Storefront | shows the **Label** field instead of the name, for the front end |
+| Description | free text explaining the subscription to the customer |
 
-Im Admin wird eine Vorschau der nächsten Bestelltermine angezeigt.
+### Availability
 
-**Screenshot:** `../../assets/subscriptions-intervalle.png`
+An availability rule is configured under **Availability**. Subscriptions are fully compatible with
+the Rule Builder, so a plan can be limited to a customer group, a sales channel, or any other
+condition the rule system can express.
 
----
+### Intervals on a plan
 
-### Storefront-Erlebnis
+**Intervals** defines which intervals the end customer is finally offered.
 
-#### Produktdetailseite
-
-- Abonnement-Auswahl erscheint neben der „In den Warenkorb"-Option
-- Mehrere Pläne werden als Radio-Button-Auswahl angezeigt
-- Bei Auswahl eines Plans ändert sich der Button zu „Jetzt abonnieren"
-- Separater Checkout-Prozess für Abonnements
-
-**Screenshot:** `../../assets/subscriptions-storefront.png`
-
-#### Mixed Cart (ab 6.7.4.0)
-
-Kunden können Abonnements und Einmalkäufe im selben Warenkorb kombinieren:
-- System trennt automatisch wiederkehrende und einmalige Lieferungen
-- Rabatte und Versandkosten werden korrekt für beide Typen berechnet
-- Kunden sehen klare Trennung im Checkout
-
----
-
-### Zahlungsmethoden
-
-Folgende Zahlungsmethoden werden unterstützt:
-
-| Methode | Voraussetzung |
+| Field | What it does |
 |---|---|
-| Vorkasse | Standard |
-| Rechnung | Standard |
-| PayPal | PayPal mit aktiviertem Vaulting |
-| Kreditkarte | PayPal Vaulting aktiviert |
+| Minimum term | the minimum use of the subscription, e.g. 24 months on a monthly interval |
+| Discount (%) | a discount applied when the product is bought as a subscription, making it more attractive |
 
-**Wichtig:** Nicht alle Zahlungsanbieter unterstützen wiederkehrende Lastschriften. PayPal Vaulting muss separat aktiviert werden.
+### Products
 
----
+The **Products** tab adds products to the subscription. It works in both directions: a subscription
+can equally be assigned to a product from the product's own settings. **Add product** opens a modal
+where products are picked by checkbox, identified by product name and product number.
 
-### Kundenverwaltung im Storefront
+## Intervals
 
-Kunden können ihre Abonnements eigenständig verwalten:
+The **Intervals** tab manages intervals themselves: **Add interval** creates one, and the
+three-dot menu edits or deletes an existing one.
 
-| Aktion | Beschreibung |
+| Field | What it does |
 |---|---|
-| Übersicht | Dashboard zeigt alle aktiven Abonnements |
-| Pausieren | Einmalige Pause für einen Zyklus |
-| Kündigen | Abonnement beenden |
-| Status einsehen | Aktueller Status jedes Abonnements |
+| Name | names the interval |
+| Active | activates or deactivates it |
+| Availability | an availability rule, as for a plan |
+| Frequency | how often it recurs, e.g. every week or every second week |
+| Time interval | the unit: days, weeks or months |
 
-**Admin-Screenshot:** `../../assets/subscriptions-pause-admin.png`
+The preview shows the next dates the subscription would fall on if bought now. **View more**
+extends that list beyond the first three.
 
----
+### Advanced settings
 
-### Kündigungsverhalten
+Where a regular frequency is not specific enough, **Advanced settings** adds, on top of the
+frequency, the weekdays, the days in the month and the months in the year. The preview covers this
+configuration too.
 
-Das System unterscheidet zwei Szenarien:
+## Settings and mixed carts
 
-#### Mit Mindestlaufzeit
-- Status: „Zur Kündigung vorgemerkt" (bis Laufzeit abläuft)
-- Bestellungen laufen automatisch weiter bis zum Laufzeitende
-- Kündigung wird erst nach Ablauf wirksam
+From 6.7.4.0, the subscription settings decide whether mixed carts are allowed. With **Activate
+mixed carts** enabled, a customer combines subscription products and one-off purchases in a single
+order; disabled, subscription products have to be bought on their own.
 
-#### Ohne Mindestlaufzeit
-- Status: „Zur Kündigung vorgemerkt" (sofort)
-- Letzte Bestellung wird noch verarbeitet
-- Dann endet das Abonnement
+## Storefront experience
 
----
+- The subscription choice appears beside the **Add to cart** option.
+- Several plans are offered as a radio-button selection.
+- Choosing a plan changes the button to **Subscribe now**.
+- Subscriptions go through a checkout process of their own.
 
-### Admin-Verwaltung
+With a mixed cart, the order overview shows the price components of both parts separately.
 
-Händler können im Admin:
-- Alle Kundabonnements einsehen und filtern
-- Status manuell ändern
-- Abonnements im Namen des Kunden pausieren/kündigen
-- Protokoll aller Abonnement-Aktionen einsehen
+## Payment methods
 
-**Pfad:** Bestellungen → Abonnements (oder Einstellungen → Abonnements)
+| Method | Requirement |
+|---|---|
+| Credit card | recurring payments supported by the provider |
+| SEPA direct debit | recurring debits supported by the provider |
+| PayPal | vaulting enabled |
 
----
+**Not every payment provider supports recurring debits, and PayPal vaulting has to be enabled
+separately.** The Rule Builder can restrict or exclude specific payment methods for subscription
+purchases, which matters where a method is unsuitable for recurring orders.
 
-### Integration mit anderen Features
+## Customer self-service
 
-#### Rule Builder
-- Verfügbarkeitsregeln für Pläne (z.B. nur für bestimmte Kundengruppen)
-- Zahlungsmethoden-Einschränkungen per Regel
+A customer manages their own subscriptions in the storefront account:
 
-#### Flow Builder
-- Trigger: Abonnement erstellt / pausiert / gekündigt
-- Aktionen: Erinnerungs-E-Mails, Verzögerungen vor Ablauf
-- Beispiel: 3 Tage vor nächster Lieferung E-Mail senden
+| Action | What it does |
+|---|---|
+| Overview | the dashboard listing every active subscription |
+| Pause | a single pause, for one cycle |
+| Cancel | ends the subscription |
+| Status | the current state of each subscription |
 
----
+## Cancellation behaviour
 
-*Quelle: https://docs.shopware.com/de/shopware-6-de/einstellungen/abonnements (Stand: 2026-06)*
+The system distinguishes two cases.
+
+**With a minimum term** — the status becomes *marked for cancellation* and stays there until the
+term expires. Orders continue automatically until the end of the term, and the cancellation takes
+effect only afterwards.
+
+**Without a minimum term** — the status becomes *marked for cancellation* at once. The last order
+is still processed, then the subscription ends.
+
+## Admin management
+
+In the admin, a merchant can:
+
+- view and filter every customer subscription
+- change a status by hand
+- pause or cancel a subscription on the customer's behalf
+- read the log of every subscription action
+
+A mixed order is shown in full in the admin. The upper section carries the order information —
+customer details, status and total — for the **first delivery**. Under **Items**, subscription items
+are marked with a subscription number and one-off products are not; a discount such as the
+subscription discount is assigned to its subscription automatically. The subscription number links
+straight to that subscription.
+
+**Path:** Orders → Subscriptions, or Settings → Subscriptions.
+
+## Rule and Flow Builder
+
+Subscriptions work with both builders, so rules and automations can target them specifically.
+
+**Rule Builder** — availability rules for plans (a customer group, for instance), and restrictions
+on which payment methods a subscription purchase may use.
+
+**Flow Builder** — dedicated triggers cover the subscription lifecycle: created, paused, cancelled.
+Typical automations send a reminder email or delay an action before a term expires, for example an
+email three days before the next delivery.
+
+## Source
+
+Distilled from
+[docs.shopware.com/en/shopware-6-en/settings/shop/subscriptions](https://docs.shopware.com/en/shopware-6-en/settings/shop/subscriptions),
+retrieved 2026-08-21.
