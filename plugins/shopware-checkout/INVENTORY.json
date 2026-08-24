@@ -1,0 +1,35 @@
+{
+ "$comment": "Documentation inventory. Read before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+ "plugin": "shopware-checkout",
+ "recorded": "2026-08-21",
+ "source": {
+  "documentation": "https://developer.shopware.com/docs/",
+  "sitemap": "https://developer.shopware.com/sitemap.xml",
+  "base": "https://developer.shopware.com/docs/",
+  "version": "6.7",
+  "scope": "guides/plugins/plugins/checkout \u2014 cart, payment, documents, order"
+ },
+ "pages": 2,
+ "urls": [
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html"
+ ],
+ "entries": [
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html",
+   "sha256": "9ef4a4141e1ebbe04c74b0e2368e389a5b77609fd469c4ea3e2357658d829b9f",
+   "covers": [
+    "skills/sw-document/references/TYPE.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html",
+   "sha256": "175c8b55a17bd0c6e515883614daa3e3dd86811af22d678027dd785a970ec230",
+   "covers": [
+    "skills/sw-document/references/TYPE.md"
+   ],
+   "extracted": "2026-08-21"
+  }
+ ]
+}

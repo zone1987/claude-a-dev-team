@@ -1,16 +1,308 @@
-# Shopware 6 — Custom Document Type
+# Shopware 6 — custom document types
 
-A new document type = a `document_type` entity + a renderer + a Twig template.
+Two document systems exist in 6.7, and which one applies decides everything else:
+
+| System | State in 6.7 | Use it when |
+|---|---|---|
+| **legacy** | the working default; deprecated, removed in 6.9 | building for 6.7 today |
+| **v2** | experimental, behind the `DOCUMENT_GENERATION_REWORK` feature flag; becomes the default in 6.8 | preparing for 6.8, accepting API churn |
+
+## Contents
+
+- [Legacy: the database entries](#legacy-the-database-entries)
+- [Legacy: the renderer](#legacy-the-renderer)
+- [Legacy: the number range](#legacy-the-number-range)
+- [Legacy: service registration and template](#legacy-service-registration-and-template)
+- [v2: type, render data and provider](#v2-type-render-data-and-provider)
+- [v2: registration, template and database](#v2-registration-template-and-database)
+
+## Legacy: the database entries
+
+A type needs rows in three tables, added by a plugin migration: `document_type`,
+`document_type_translation` (one per language) and `document_base_config`.
 
 ```php
-class FfPackingListRenderer extends AbstractDocumentRenderer
+// <plugin root>/src/Migration/Migration1616677952AddDocumentType.php
+$connection->insert('document_type', [
+    'id' => $documentTypeId,
+    'technical_name' => self::TYPE,
+    'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+]);
+```
+
+**Translations** go through `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which supplies
+`importTranslation()`. It takes the translation table plus a
+`Shopware\Core\Migration\Traits\Translations` instance, whose two constructor arguments are the
+German array and the English array, each with its id column:
+
+```php
+$documentTypeTranslations = new Translations(
+    ['document_type_id' => $documentTypeId, 'name' => $germanName],
+    ['document_type_id' => $documentTypeId, 'name' => $englishName],
+);
+$this->importTranslation('document_type_translation', $documentTypeTranslations, $connection);
+```
+
+**The base configuration** holds the defaults an editor later overrides in the administration. The
+full set the guide uses:
+
+```php
+$defaultConfig = [
+    'displayPrices' => true,
+    'displayFooter' => true,
+    'displayHeader' => true,
+    'displayLineItems' => true,
+    'diplayLineItemPosition' => true,     // spelled this way in the core
+    'displayPageCount' => true,
+    'displayCompanyAddress' => true,
+    'pageOrientation' => 'portrait',
+    'pageSize' => 'a4',
+    'itemsPerPage' => 10,
+    'companyName' => 'Example Company',
+    'taxNumber' => '',
+    'vatId' => '',
+    'taxOffice' => '',
+    'bankName' => '',
+    'bankIban' => '',
+    'bankBic' => '',
+    'placeOfJurisdiction' => '',
+    'placeOfFulfillment' => '',
+    'executiveDirector' => '',
+    'companyAddress' => '',
+    'referencedDocumentType' => self::TYPE,
+];
+```
+
+It is inserted into `document_base_config` with `global => 1` and a `filename_prefix`, then linked to
+the sales channels through `document_base_config_sales_channel`.
+
+After installing the plugin the type appears in the administration — but it does not work yet, since
+every type needs an `AbstractDocumentRenderer`.
+
+## Legacy: the renderer
+
+Implement `Shopware\Core\Checkout\Document\Renderer\AbstractDocumentRenderer`, conventionally under
+`<plugin root>/src/Core/Checkout/Document/Renderer`. It forces three methods:
+
+| Method | Contract |
+|---|---|
+| `getDecorated` | returns the decorated service, or throws `DecorationPatternException` |
+| `supports` | returns the type's technical name — `'example'` for a type named example |
+| `render` | returns a `RendererResult` holding a `RenderedDocument` per `orderId` |
+
+`render()` takes three parameters: `$operations`, an array of `DocumentGenerateOperation` objects
+carrying the order ids; `$context`; and `$rendererConfig`, a `DocumentRendererConfig` for additional
+configuration.
+
+```php
+public function render(array $operations, Context $context, DocumentRendererConfig $rendererConfig): RendererResult
 {
-    public function supports(): string { return 'ff_packing_list'; }
-    public function render(array $operations, Context $context, RendererConfig $rendererConfig): RendererResult
-    { /* load order, render Twig, return RenderedDocument */ }
+    $ids = \array_map(fn (DocumentGenerateOperation $operation) => $operation->getOrderId(), $operations);
+    if (empty($ids)) {
+        return new RendererResult();
+    }
+
+    $result = new RendererResult();
+    $criteria = new Criteria($ids);
+    $criteria->addAssociation('language');
+    $criteria->addAssociation('language.locale');
+
+    $orders = $this->orderRepository->search($criteria, $context)->getEntities();
+    foreach ($orders as $order) {
+        $orderId = $order->getId();
+        try {
+            $operation = $operations[$orderId] ?? null;
+            if ($operation === null) {
+                continue;
+            }
+
+            $config = clone $this->documentConfigLoader->load(self::TYPE, $order->getSalesChannelId(), $context);
+            $config->merge($operation->getConfig());
+
+            $number = $config->getDocumentNumber() ?: $this->getNumber($context, $order, $operation);
+            $now = (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
+
+            $config->merge([
+                'documentDate' => $operation->getConfig()['documentDate'] ?? $now,
+                'documentNumber' => $number,
+                'custom' => ['invoiceNumber' => $number],
+            ]);
+
+            // a document uploaded manually
+            if ($operation->isStatic()) {
+                $doc = new RenderedDocument($number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
+                $result->addSuccess($orderId, $doc);
+                continue;
+            }
+
+            $doc = new RenderedDocument($number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
+
+            // the recommended path: let the registry produce the content
+            $doc->setTemplate(self::DEFAULT_TEMPLATE);
+            $doc->setOrder($order);
+            $doc->setContext($context);
+            $doc->setContent($this->fileRendererRegistry->render($doc));
+
+            // alternatively set the content by hand, e.g. XML or CSV:
+            // $doc->setContent('Id;Name;…');
+
+            $result->addSuccess($orderId, $doc);
+        } catch (\Throwable $exception) {
+            $result->addError($orderId, $exception);
+        }
+    }
+
+    return $result;
 }
 ```
 
-Register via the `document.renderer` tag; create `document_type` and `document_base_config` in a migration. Place the template at
-`Resources/views/documents/<type>.html.twig`. Generation then works like the standard types through the `DocumentGenerator` (`sw-document`).
-Number range for document numbers: `shopware-core` (`sw-number-range`).
+The document number comes from the number range named `'document_' . self::TYPE`:
+
+```php
+private function getNumber(Context $context, OrderEntity $order, DocumentGenerateOperation $operation): string
+{
+    return $this->numberRangeValueGenerator->getValue(
+        'document_' . self::TYPE, $context, $order->getSalesChannelId(), $operation->isPreview(),
+    );
+}
+```
+
+**`DocumentFileRendererRegistry`** is the central registry of file renderers keyed by extension
+(`.pdf`, `.html`), delegating to the implementation for that type. Use it rather than producing PDF
+bytes yourself; set the content by hand only for a format it does not cover.
+
+An error is caught per order and added with `addError()`, so one failing order does not abort the
+batch.
+
+## Legacy: the number range
+
+Without a number range no number is generated, so the document cannot be produced. It takes four
+kinds of row, again in a plugin migration:
+
+| Table | What it holds |
+|---|---|
+| `number_range_type` | the type itself, with a technical name |
+| `number_range` | the configured range, referencing that type |
+| `number_range_sales_channel` | assigns a sales channel to the range |
+| `number_range_translation`, `number_range_type_translation` | one row per language |
+
+```php
+// <plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php
+$connection->insert('number_range_type', [
+    'id' => $numberRangeTypeId,
+    'global' => 0,
+    'technical_name' => 'document_example',
+    'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+]);
+
+$connection->insert('number_range', [
+    'id' => $numberRangeId,
+    'type_id' => $numberRangeTypeId,
+    'global' => 0,
+    'pattern' => '{n}',
+    'start' => 10000,
+    'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+]);
+```
+
+The technical name must match what the renderer asks for — `'document_' . self::TYPE`.
+
+The sales channel assignment needs the storefront channel's id, which is found by its type:
+
+```php
+Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
+```
+
+Where no storefront channel exists, skip the assignment rather than failing the migration. Then
+insert `number_range_sales_channel` with the range id, the channel id and the type id.
+
+Both translation tables take the same `Translations` shape as the document type, keyed by
+`number_range_id` and `number_range_type_id`; the type's label column is `type_name`, not `name`.
+
+## Legacy: service registration and template
+
+```php
+// <plugin root>/src/Resources/config/services.php
+$services->set(ExampleDocumentRenderer::class)
+    ->args([
+        service('order.repository'),
+        service(DocumentConfigLoader::class),
+        service(NumberRangeValueGeneratorInterface::class),
+        service(DocumentFileRendererRegistry::class),
+    ])
+    ->tag('document.renderer');
+```
+
+The tag `document.renderer` is what makes the renderer discoverable. The template goes to
+`<plugin root>/src/Resources/views/documents/example_document.html.twig` and extends the base:
+
+```twig
+{% sw_extends '@Framework/documents/base.html.twig' %}
+```
+
+## v2: type, render data and provider
+
+Experimental in 6.7, the default in 6.8. Four parts: the type, a render-data DTO, a data provider,
+and a template.
+
+A **document type** declares its technical name and the formats it can be rendered in
+(`<plugin root>/src/Core/Checkout/Document/ExampleDocumentType.php`).
+
+A **render data DTO** carries the values the template uses. **Public properties on the DTO end up on
+the template's `config` variable** — a `noteText` property renders as `config.noteText`.
+
+A **data provider** builds that DTO for an order. `enrichOrderCriteria()` adds the associations the
+provider needs, so they are loaded before `provideRenderingData()` runs:
+
+```php
+public function enrichOrderCriteria(Criteria $criteria): void
+{
+    $criteria->addAssociation('lineItems');
+}
+
+public function provideRenderingData(ProviderInput $input, Context $context): AbstractRenderData
+{
+    return new ExampleRenderData(
+        noteText: 'Thank you for your order!',
+    );
+}
+```
+
+## v2: registration, template and database
+
+```php
+// <plugin root>/src/Resources/config/services.php
+$services->set(ExampleDocumentType::class)->tag('shopware.document_v2.type');
+$services->set(ExampleDocumentDataProvider::class)->tag('shopware.document_v2.provider');
+```
+
+The HTML renderer resolves `@Framework/documents/<technical_name>.html.twig`:
+
+```twig
+{% sw_extends '@Framework/documents/base.html.twig' %}
+
+{% block document_headline %}
+    <h1>Example document {{ documentNumber }}</h1>
+    <p>{{ config.noteText }}</p>
+{% endblock %}
+```
+
+A type offering the `zugferd_xml` format additionally needs an XML template at
+`<plugin root>/src/Resources/views/documents/zugferd/example_document.xml.twig`, resolved the same
+way.
+
+**Two database rows are still required**, exactly as in the legacy system: a `document_type` row
+whose `technical_name` matches the type — the `document` table has a foreign key on it — and a number
+range of type `document_<technical_name>`. The migration code is identical to the legacy one above.
+
+## Related
+
+Generation itself runs through `DocumentGenerator`; see `OVERVIEW.md`. For number ranges, call the
+Skill tool with `sw-platform`.
+
+## Source
+
+- [add-custom-document-type.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html) — the legacy system
+- [v2/add-a-document-type.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html) — Document System v2
+
+Shopware 6.7, retrieved 2026-08-21.
