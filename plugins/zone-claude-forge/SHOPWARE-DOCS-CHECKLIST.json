@@ -2619,63 +2619,63 @@
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/meteor-components.html",
    "slug": "guides/upgrades-migrations/administration/meteor-components.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/pinia.html",
    "slug": "guides/upgrades-migrations/administration/pinia.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vite.html",
    "slug": "guides/upgrades-migrations/administration/vite.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue-migration-build.html",
    "slug": "guides/upgrades-migrations/administration/vue-migration-build.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue-native.html",
    "slug": "guides/upgrades-migrations/administration/vue-native.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue3.html",
    "slug": "guides/upgrades-migrations/administration/vue3.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/extension-translation.html",
    "slug": "guides/upgrades-migrations/extension-translation.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/language-pack-migration.html",
    "slug": "guides/upgrades-migrations/language-pack-migration.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/upgrades-migrations/upgrade-shopware.html",
    "slug": "guides/upgrades-migrations/upgrade-shopware.html",
    "plugin": "shopware-migration",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

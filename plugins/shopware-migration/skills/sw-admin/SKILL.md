@@ -12,6 +12,8 @@ The three administration migrations 6.7 forces, each with a mapping table.
 - **[METEOR-COMPONENT-MAP.md](references/METEOR-COMPONENT-MAP.md)**: In 6.7, Meteor components supersede the legacy `sw-*` components.
 - **[VITE-MIGRATION.md](references/VITE-MIGRATION.md)**: 6.7 switches the admin build from Webpack to **Vite**.
 - **[VUEX-TO-PINIA.md](references/VUEX-TO-PINIA.md)**: Pinia is the new standard.
+- **[VUE3-MIGRATION.md](references/VUE3-MIGRATION.md)**: the Vue 2 to Vue 3 pass, the APIs the removed migration build covered, and the known issues.
+- **[VUE-NATIVE.md](references/VUE-NATIVE.md)**: where the administration is heading — Composition API, native blocks, and Vuex removal in 6.8.
 
 ## Source
 

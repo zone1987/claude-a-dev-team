@@ -1,0 +1,129 @@
+{
+ "$comment": "Documentation inventory. Read before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+ "plugin": "shopware-migration",
+ "recorded": "2026-08-21",
+ "source": {
+  "documentation": "https://developer.shopware.com/docs/",
+  "sitemap": "https://developer.shopware.com/sitemap.xml",
+  "base": "https://developer.shopware.com/docs/",
+  "version": "6.7"
+ },
+ "pages": 9,
+ "urls": [
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/meteor-components.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/pinia.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vite.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue-migration-build.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue-native.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue3.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/extension-translation.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/language-pack-migration.html",
+  "https://developer.shopware.com/docs/guides/upgrades-migrations/upgrade-shopware.html"
+ ],
+ "entries": [
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/pinia.html",
+   "sha256": "9cd6e6bd7cb134b9597e3c0707778a1075a4ba106849af61bc3f8a3db96d41ee",
+   "covers": [
+    "skills/sw-admin/references/VUEX-TO-PINIA.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vite.html",
+   "sha256": "669b6fbf06d6a58314fa2884070b539db7f2664a85bf50ba5f29bc0443b8ceef",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue3.html",
+   "sha256": "6ac689a9e3c1941b10681e8ff668ba016a2a1b1c14e942b7ab2d59bf15c4ff90",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue-migration-build.html",
+   "sha256": "35a0181e620de01c0a8a6221064d599bfdfeab2fc22d072678941bcfc463c862",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/vue-native.html",
+   "sha256": "76e8ea99ebc682807768824a6ba8e3d1158a1f2bb691190a30b2ef2c75a34c02",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/administration/meteor-components.html",
+   "sha256": "420f506463c1699f931da15884c23655030f127b49c475d606a7263503b233b9",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/extension-translation.html",
+   "sha256": "eb645dff480dde34b5c0fb820f4860983c0e34f545faf19a4a31299249517f97",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/upgrade-shopware.html",
+   "sha256": "23ea111d42e5a08416c361922f59611a686d41a6e97986ca8cccbfb84026e11e",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/upgrades-migrations/language-pack-migration.html",
+   "sha256": "16fa0b4d8b8bde2775c511d5b58b60c3a1fc4b08ff52004d5a37a9db2324b2c6",
+   "covers": [
+    "skills/sw-admin/references/VITE-MIGRATION.md",
+    "skills/sw-admin/references/VUE3-MIGRATION.md",
+    "skills/sw-admin/references/VUE-NATIVE.md",
+    "skills/sw-upgrade/references/LANGUAGE-PACK.md",
+    "skills/sw-upgrade/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  }
+ ]
+}

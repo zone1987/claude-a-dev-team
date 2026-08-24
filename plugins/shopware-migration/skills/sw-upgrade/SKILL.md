@@ -41,6 +41,7 @@ on a table of contents linking every component in it, so look one up by name:
 Across versions:
 
 - **[OVERVIEW.md](references/OVERVIEW.md)**: the upgrade sequence version by version.
+- **[LANGUAGE-PACK.md](references/LANGUAGE-PACK.md)**: the Language Pack plugin becomes incompatible in 6.8; the translation:install path out of it.
 - **[DEPRECATION-HANDLING.md](references/DEPRECATION-HANDLING.md)**: finding and resolving
   deprecations.
 - **[PHP-MIGRATION-PATTERNS.md](references/PHP-MIGRATION-PATTERNS.md)**: PHP-side migration patterns.
