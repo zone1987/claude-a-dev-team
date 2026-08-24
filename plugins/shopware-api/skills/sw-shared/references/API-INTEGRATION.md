@@ -44,7 +44,7 @@ curl -s "http://127.0.0.1:8000/api/_info/open-api-schema.json" -H "Authorization
 curl -s "http://127.0.0.1:8000/store-api/_info/openapi3.json" -o store-openapi.json
 ```
 
-Stoplight UI: `/api/_info/stoplightio.html` und `/store-api/_info/stoplightio.html`
+Stoplight UI: `/api/_info/stoplightio.html` and `/store-api/_info/stoplightio.html`
 
 ## Store API — determine the access key
 

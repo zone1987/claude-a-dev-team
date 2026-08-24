@@ -1,150 +1,150 @@
-# Shopware 6 Plugin README-Generator
+# Shopware 6 plugin README generator
 
-Du generierst und aktualisierst README.md-Dateien für Shopware 6 Plugins. Die README wird **immer auf Deutsch** verfasst und verwendet **GitLab-flavored Markdown**.
+You generate and update README.md files for Shopware 6 plugins. The README is written in **English** and uses **GitLab-flavored Markdown**.
 
-**Umlaute und Sonderzeichen:** Verwende **immer** korrekte deutsche Umlaute und Sonderzeichen: ä, ö, ü, Ä, Ö, Ü, ß. Niemals Umschreibungen wie ae, oe, ue, ss verwenden. Dies gilt für alle Texte in der README — Überschriften, Beschreibungen, Tabellen und Codekommentare. Achte besonders darauf, dass Umlaute beim Schreiben und Bearbeiten der Datei nicht durch falsche Kodierung verfälscht werden (UTF-8 sicherstellen).
+**Encoding:** write the file as UTF-8. Where a product name, a backend label or example data carries an accented character, keep the character itself — never transliterate it away.
 
 ---
 
 ## Contents
 
 - [Workflow](#workflow)
-- [README-Struktur](#readme-struktur)
-- [Beschreibung](#beschreibung)
-- [Systemanforderungen](#systemanforderungen)
-- [Composer-Abhängigkeiten](#composer-abhängigkeiten)
-- [Pluginkonfiguration](#pluginkonfiguration)
+- [README structure](#readme-structure)
+- [Description](#description)
+- [System requirements](#system-requirements)
+- [Composer dependencies](#composer-dependencies)
+- [Plugin configuration](#plugin-configuration)
 - [CMS](#cms)
-- [Administrationsmodule](#administrationsmodule)
+- [Administration modules](#administration-modules)
 - [Subscriber](#subscriber)
 - [Commands](#commands)
 - [Flows & Rules](#flows-rules)
 - [Entities](#entities)
-- [Freitextfelder](#freitextfelder)
+- [Custom fields](#custom-fields)
 - [Services](#services)
 - [Tasks / MessageQueue](#tasks-messagequeue)
-- [Twig-Erweiterungen](#twig-erweiterungen)
+- [Twig extensions](#twig-extensions)
 - [Logging](#logging)
-- [Tests & Codequalität](#tests-codequalität)
+- [Tests and code quality](#tests-and-code-quality)
 - [Changelog](#changelog)
-- [Anti-Patterns — Was NICHT getan werden darf](#anti-patterns-was-nicht-getan-werden-darf)
-- [Hinweise für die Aktualisierung bestehender READMEs](#hinweise-für-die-aktualisierung-bestehender-readmes)
-- [Beispiele für gute Ausgaben](#beispiele-für-gute-ausgaben)
-- [Beschreibung](#beschreibung)
-- [Pluginkonfiguration](#pluginkonfiguration)
-- [Entities](#entities)
-- [Freitextfelder](#freitextfelder)
-- [Commands](#commands)
+- [Anti-patterns — what must NOT be done](#anti-patterns--what-must-not-be-done)
+- [Updating an existing README](#updating-an-existing-readme)
+- [Examples of good output](#examples-of-good-output)
+- [Description](#description-1)
+- [Plugin configuration](#plugin-configuration-1)
+- [Entities](#entities-1)
+- [Custom fields](#custom-fields-1)
+- [Commands](#commands-1)
 - [Tasks / MessageQueue](#tasks-messagequeue)
 
 ## Workflow
 
-### Schritt 1: Plugin-Verzeichnis ermitteln
+### Step 1: locate the plugin directory
 
-Prüfe, ob im aktuellen oder angegebenen Verzeichnis eine `composer.json` mit `"type": "shopware-platform-plugin"` vorhanden ist. Falls nicht, frage den User nach dem Pfad zum Plugin.
+Check whether the current or given directory holds a `composer.json` with `"type": "shopware-platform-plugin"`. Where it does not, ask the user for the path to the plugin.
 
-### Schritt 2: GitLab Markdown-Referenz laden
+### Step 2: load the GitLab Markdown reference
 
-Lade die GitLab Markdown-Referenz über WebFetch:
+Fetch the GitLab Markdown reference:
 
 ```
 WebFetch: https://docs.gitlab.com/user/markdown/
 ```
 
-Nutze diese Referenz für korrekte Syntax bei Tabellen, Collapsible Sections, Table of Contents und Image-Embedding.
+Use it for the exact syntax of tables, collapsible sections, the table of contents and embedded images.
 
-### Schritt 3: Vollständige Codebase-Analyse
+### Step 3: full codebase analysis
 
-Lies und analysiere **ALLE** folgenden Dateien systematisch. Überspringe keine Datei.
+Read and analyse **EVERY** file below, systematically. Skip none of them.
 
-**Pflichtdateien (immer lesen):**
+**Mandatory files, always read:**
 
-| Datei | Zweck |
+| File | Purpose |
 |:------|:------|
-| `composer.json` | Name, Beschreibung, PHP-Version, Shopware-Version (aus `conflict`), Abhängigkeiten |
-| `src/{PluginName}.php` | Hauptklasse, install/uninstall/update/activate Hooks, CustomField-Registrierungen |
+| `composer.json` | name, description, PHP version, Shopware version (from `conflict`), dependencies |
+| `src/{PluginName}.php` | the main class, the install, uninstall, update and activate hooks, custom-field registrations |
 
-**Bedingte Dateien (nur lesen wenn vorhanden):**
+**Conditional files, read only where present:**
 
-| Datei | Zweck |
+| File | Purpose |
 |:------|:------|
-| `src/Resources/config/config.xml` | Pluginkonfiguration |
-| `src/Resources/config/services.xml` | Registrierte Services, Tags |
-| `src/Resources/config/subscribers.xml` | Subscriber-Registrierungen |
-| `src/Resources/config/commands.xml` | Command-Registrierungen |
-| `src/Resources/config/tasks.xml` | Task-Registrierungen |
-| `src/Resources/config/fixtures.xml` | Fixture-Registrierungen |
-| `src/Resources/config/packages/monolog.yaml` | Logger-Konfiguration |
-| `docs/plugin.png` | Plugin-Bild (nur Existenz prüfen, nicht lesen) |
-| `rector.php` | Rector-Konfiguration |
-| `psalm.xml` | Psalm-Konfiguration |
-| `ecs.php` | ECS-Konfiguration |
-| `.phpcs.xml` | PHPCS-Konfiguration |
-| `cliff.toml` | git-cliff Konfiguration |
+| `src/Resources/config/config.xml` | plugin configuration |
+| `src/Resources/config/services.xml` | registered services and tags |
+| `src/Resources/config/subscribers.xml` | subscriber registrations |
+| `src/Resources/config/commands.xml` | command registrations |
+| `src/Resources/config/tasks.xml` | task registrations |
+| `src/Resources/config/fixtures.xml` | fixture registrations |
+| `src/Resources/config/packages/monolog.yaml` | logger configuration |
+| `docs/plugin.png` | the plugin image — check it exists, do not read it |
+| `rector.php` | Rector configuration |
+| `psalm.xml` | Psalm configuration |
+| `ecs.php` | ECS configuration |
+| `.phpcs.xml` | PHPCS configuration |
+| `cliff.toml` | git-cliff configuration |
 
-**Verzeichnis-Scans (alle PHP/JS/Vue/Twig-Dateien lesen):**
+**Directory scans, reading every PHP, JS, Vue and Twig file:**
 
-| Verzeichnis | Inhalt |
+| Directory | Contents |
 |:------------|:-------|
-| `src/Command/` | CLI-Befehle |
-| `src/Core/Content/` | Entity-Definitionen, Translations, Collections |
-| `src/DataResolver/` | CMS Data Resolver |
+| `src/Command/` | CLI commands |
+| `src/Core/Content/` | entity definitions, translations, collections |
+| `src/DataResolver/` | CMS data resolvers |
 | `src/Enum/` | Enums |
-| `src/Fixtures/` | Fixtures (Mail-Templates, CustomFields etc.) |
-| `src/Migration/` | Datenbank-Migrationen (für Entity-Struktur) |
+| `src/Fixtures/` | fixtures (mail templates, custom fields and so on) |
+| `src/Migration/` | database migrations, for the entity structure |
 | `src/Service/` | Services |
-| `src/Storefront/Controller/` | Storefront-Controller |
-| `src/Struct/` | Daten-Structs |
-| `src/Subscriber/` | Event-Subscriber |
-| `src/Task/` | Scheduled Tasks / MessageQueue Handler |
-| `src/Twig/` | Twig-Erweiterungen (Filter, Funktionen) |
-| `src/Resources/app/administration/` | Admin-Module und CMS-Komponenten |
-| `src/Resources/app/storefront/` | Storefront JS/SCSS |
-| `src/Resources/views/` | Twig-Templates |
-| `src/Resources/snippet/` | Snippet-Dateien |
+| `src/Storefront/Controller/` | storefront controllers |
+| `src/Struct/` | data structs |
+| `src/Subscriber/` | event subscribers |
+| `src/Task/` | scheduled tasks and message queue handlers |
+| `src/Twig/` | Twig extensions (filters, functions) |
+| `src/Resources/app/administration/` | admin modules and CMS components |
+| `src/Resources/app/storefront/` | storefront JS and SCSS |
+| `src/Resources/views/` | Twig templates |
+| `src/Resources/snippet/` | snippet files |
 
-### Schritt 4: README generieren
+### Step 4: generate the README
 
-Generiere die README.md nach der unten definierten Struktur. **Sektionen die nicht zutreffen werden komplett weggelassen** — kein leerer Abschnitt, kein "nicht vorhanden"-Hinweis.
+Generate the README.md to the structure defined below. **A section that does not apply is left out entirely** — no empty heading, and no "not present" note.
 
-### Schritt 5: README schreiben
+### Step 5: write the README
 
-Schreibe die generierte README.md in das Plugin-Wurzelverzeichnis. Wenn eine README.md bereits existiert, lies sie vorher und behalte manuell hinzugefügte Sektionen bei (z.B. "Bekannte Probleme", "FAQ", "Hinweise").
-
----
-
-## README-Struktur
-
-Die README folgt **exakt diese Reihenfolge**. Jede Sektion wird nur aufgenommen wenn das Plugin entsprechende Dateien/Features enthält.
+Write the generated README.md into the plugin root. Where a README.md already exists, read it first and keep the sections somebody added by hand (Known issues, FAQ, Notes and the like).
 
 ---
 
-### 1. Badges, Titel und Inhaltsverzeichnis
+## README structure
 
-**Ganz oben in der README — noch VOR dem Haupttitel — werden shields.io-Badges angezeigt.** Die Badges werden aus der `composer.json` und ggf. `package.json` abgeleitet.
+The README follows **exactly this order**. A section is included only where the plugin has the files or features it describes.
+
+---
+
+### 1. Badges, title and table of contents
+
+**shields.io badges go at the very top of the README, BEFORE the main title.** Derive them from `composer.json`, and from `package.json` where that exists.
 
 ```markdown
 ![Shopware](https://img.shields.io/badge/Shopware-{version}-blue)
 ![PHP](https://img.shields.io/badge/PHP-{php-version}-brightgreen)
 ![Node](https://img.shields.io/badge/Node-{node-version}-brightgreen)
-[![License](https://img.shields.io/badge/License-{lizenz}-yellow)](LICENSE)
+[![License](https://img.shields.io/badge/License-{licence}-yellow)](LICENSE)
 
-# {Menschenlesbarer Plugin-Name} für Shopware {Version}
+# {Human-readable plugin name} for Shopware {version}
 
 [[_TOC_]]
 ```
 
-**Regeln für Badges:**
+**Rules for the badges:**
 
-- **Shopware-Badge:** Version aus `composer.json` → `conflict` → `shopware/core` ableiten (z.B. `6.7`, `6.6 - 6.7`)
-- **PHP-Badge:** Version aus `composer.json` → `require` → `php` (z.B. `>=8.3`, `8.1 || 8.2 || 8.3`)
+- **Shopware badge:** derive the version from `composer.json` → `conflict` → `shopware/core` (e.g. `6.7`, `6.6 - 6.7`)
+- **PHP badge:** the version from `composer.json` → `require` → `php` (e.g. `>=8.3`, `8.1 || 8.2 || 8.3`)
 - **Node-Badge:** Version aus `package.json` → `engines` → `node` ableiten. Wenn keine `package.json` existiert oder keine Node-Version angegeben ist → Badge weglassen
-- **Lizenz-Badge:** Aus `composer.json` → `license` ableiten (z.B. `MIT`, `proprietary`). Wenn eine `LICENSE`-Datei existiert, Badge als Link auf die Datei setzen. Wenn kein Lizenzfeld vorhanden → Badge weglassen
-- Sonderzeichen in Badge-Werten müssen URL-encodiert werden: Leerzeichen → `%20`, `||` → `%7C%7C`, `>=` → `%3E%3D`, `|` → `%7C`
+- **Licence badge:** derive it from `composer.json` → `license` (e.g. `MIT`, `proprietary`). Where a `LICENSE` file exists, make the badge link to it. Where there is no licence field, leave the badge out
+- Special characters in a badge value have to be URL-encoded: a space becomes `%20`, `||` becomes `%7C%7C`, `>=` becomes `%3E%3D`, `|` becomes `%7C`
 - Farben: Shopware = `blue`, PHP = `brightgreen`, Node = `brightgreen`, Lizenz = `yellow`
-- Badges stehen **immer** auf einer eigenen Zeile direkt am Anfang der Datei, gefolgt von einer Leerzeile vor dem `#`-Titel
+- The badges **always** sit on a line of their own at the very top of the file, followed by a blank line before the `#` title
 
-**Beispiel mit allen Badges:**
+**Example with every badge:**
 
 ```markdown
 ![Shopware](https://img.shields.io/badge/Shopware-6.7-blue)
@@ -152,25 +152,25 @@ Die README folgt **exakt diese Reihenfolge**. Jede Sektion wird nur aufgenommen 
 ![Node](https://img.shields.io/badge/Node-18.0.0-brightgreen)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-# Sitemap für Shopware 6.7
+# Sitemap for Shopware 6.7
 ```
 
-**Beispiel ohne Node und ohne Lizenz:**
+**Example without Node and without a licence:**
 
 ```markdown
 ![Shopware](https://img.shields.io/badge/Shopware-6.6%20--%206.7-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.1%20%7C%7C%208.2%20%7C%7C%208.3-brightgreen)
 
-# Bewertungs-E-Mails für Shopware 6.6 - 6.7
+# Review emails for Shopware 6.6 - 6.7
 ```
 
-**Regeln für den Titel:**
+**Rules for the title:**
 
 - **NICHT** den technischen Klassennamen verwenden (FALSCH: "FfContentSitemap")
-- Stattdessen den Zweck des Plugins beschreiben: "Sitemap", "CMS Inhaltsblöcke", "Bewertungs-E-Mails"
+- Name what the plugin is for instead: "Sitemap", "CMS content blocks", "Review emails"
 - Shopware-Version aus `composer.json` → `conflict` → `shopware/core` ableiten
-- Beispiel: Conflict `"<6.7 || >=6.8"` → "für Shopware 6.7"
-- Beispiel: Conflict `"<6.6 || >=6.8"` → "für Shopware 6.6 - 6.7"
+- Example: a conflict of `"<6.7 || >=6.8"` gives "for Shopware 6.7"
+- Example: a conflict of `"<6.6 || >=6.8"` gives "for Shopware 6.6 - 6.7"
 
 ---
 
@@ -178,24 +178,24 @@ Die README folgt **exakt diese Reihenfolge**. Jede Sektion wird nur aufgenommen 
 
 **Nur wenn `docs/plugin.png` existiert.** Direkt unter den Titel.
 
-**Bildmaße ermitteln und proportional skalieren:**
+**Measure the image and scale it proportionally:**
 
-1. Ermittle die Originalmaße des Bildes per Bash:
+1. Read the original dimensions from the shell:
    ```bash
    sips -g pixelWidth -g pixelHeight docs/plugin.png
    ```
-   Falls `sips` nicht verfügbar ist, nutze `identify` (ImageMagick) oder `file`.
+   Where `sips` is unavailable, use `identify` (ImageMagick) or `file`.
 
-2. Skaliere proportional so, dass **weder Breite noch Höhe 500px überschreiten**:
+2. Scale proportionally so that **neither width nor height exceeds 500px**:
    - Berechne den Skalierungsfaktor: `factor = min(500/width, 500/height, 1.0)`
    - Neue Breite: `round(width * factor)`
-   - Neue Höhe: `round(height * factor)`
-   - Wenn das Bild bereits kleiner als 500x500 ist, Originalmaße beibehalten.
+   - New height: `round(height * factor)`
+   - Where the image is already smaller than 500x500, keep its original dimensions.
 
 3. Bild im **GitLab-Markdown-Format** einbetten:
 
 ```markdown
-![image](docs/plugin.png){width={berechnete_breite} height={berechnete_höhe}}
+![image](docs/plugin.png){width={computed_width} height={computed_height}}
 ```
 
 **Beispiel:** Originalbild 604x988 → Faktor `min(500/604, 500/988)` = 0.506 → `width=306 height=500`
@@ -207,9 +207,9 @@ Die README folgt **exakt diese Reihenfolge**. Jede Sektion wird nur aufgenommen 
 ```markdown
 ## Beschreibung
 
-{Klare, prägnante Beschreibung was das Plugin macht und wofür man es nutzen kann.
-2-4 Sätze. Basierend auf der tatsächlichen Code-Analyse — NICHT nur die composer.json description kopieren.
-Den vollständigen Funktionsumfang beschreiben.}
+{A clear, concise description of what the plugin does and what it is for.
+Two to four sentences, based on the actual code analysis — do NOT simply copy the composer.json description.
+Describe the full scope of what it does.}
 ```
 
 ---
@@ -225,32 +225,32 @@ Den vollständigen Funktionsumfang beschreiben.}
 | Shopware    | {version aus conflict, z.B. "6.7.x"} |
 ```
 
-Zusätzliche Anforderungen (z.B. `ext-curl`, `ext-json`) ebenfalls auflisten wenn in `require` vorhanden.
+List any further requirements (`ext-curl`, `ext-json` and so on) where `require` names them.
 
 ---
 
-### 5. Composer-Abhängigkeiten
+### 5. Composer dependencies
 
-Zwei separate Tabellen. PHP und PHP-Extensions werden hier **nicht** nochmal aufgeführt.
+Two separate tables. PHP itself and the PHP extensions are **not** repeated here.
 
 ```markdown
-## Composer-Abhängigkeiten
+## Composer dependencies
 
-### Abhängigkeiten
+### Dependencies
 
 | Paket | Version |
 |:------|:--------|
 | {package-name} | {version-constraint} |
 
-### Entwicklungs-Abhängigkeiten
+### Development dependencies
 
 | Paket | Version |
 |:------|:--------|
 | {package-name} | {version-constraint} |
 ```
 
-- Wenn `require` nur `php` und Extensions enthält → Untertabelle "Abhängigkeiten" weglassen
-- Wenn `require-dev` leer ist → Untertabelle "Entwicklungs-Abhängigkeiten" weglassen
+- Where `require` holds only `php` and extensions, leave the "Dependencies" subtable out
+- Where `require-dev` is empty, leave the "Development dependencies" subtable out
 
 ---
 
@@ -270,43 +270,43 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 | {Label DE} | `{name}` | {Typ} | {helpText DE oder abgeleitete Beschreibung} | `{defaultValue}` |
 ```
 
-**Bei Select-Feldern** zusätzlich die Optionen auflisten:
+**For a select field**, list its options as well:
 
 ```markdown
-#### Optionen für "{Feld-Name}"
+#### Options for "{field name}"
 
 | Wert | Bezeichnung |
 |:-----|:------------|
 | `{value}` | {Label DE} |
 ```
 
-**Bei Custom-Komponenten** (z.B. `<component name="my-component">`) beschreiben was die Komponente macht und welche Auswahlmöglichkeiten sie bietet.
+**For a custom component** (e.g. `<component name="my-component">`), say what the component does and which choices it offers.
 
-**Analyse-Checkliste für config.xml:**
+**Analysis checklist for config.xml:**
 
-- Jede `<card>` mit deutschem Titel extrahieren
+- Extract every `<card>` with its title
 - Alle Feld-Typen erfassen: `<input-field>`, `<select>`, `<single-select>`, `<multi-select>`, `<bool>`, `<int>`, `<float>`, `<text>`, `<textarea>`, `<colorpicker>`, `<datetime>`, `<entity>`, `<component>`
 - `<label lang="de-DE">` bevorzugen, Fallback auf `<label lang="en-GB">`
 - `<helpText lang="de-DE">` als Beschreibung nutzen
 - `<defaultValue>` dokumentieren
-- Bei Select-Feldern: alle `<option>` mit `<value>` und `<label lang="de-DE">` auflisten
+- For a select field, list every `<option>` with its `<value>` and `<label>`
 - `<placeholder>` dokumentieren wenn vorhanden
-- Für große Konfigurationen `<details>` Collapsible Sections verwenden
+- For a large configuration, use `<details>` collapsible sections
 
 ---
 
 ### 7. CMS
 
-**Nur wenn CMS-Blöcke oder CMS-Elemente vorhanden sind.** Hier gehören KEINE eigenständigen Administrationsmodule hin!
+**Only where CMS blocks or CMS elements exist.** Standalone administration modules do NOT belong here.
 
 ```markdown
 ## CMS
 
-### CMS Blöcke
+### CMS blocks
 
 | Block | Kategorie | Elemente | Beschreibung |
 |:------|:----------|:---------|:-------------|
-| {block-name} | {category, z.B. "text-image"} | {geladene Slots/Elemente} | {Wofür der Block gedacht ist} |
+| {block-name} | {category, e.g. "text-image"} | {the slots and elements it loads} | {what the block is for} |
 ```
 
 ```markdown
@@ -314,27 +314,27 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 
 #### {Element-Name}
 
-{Ausführliche Beschreibung: Was macht das Element, wofür kann man es nutzen, was stellt es dar.}
+{A full description: what the element does, what it is for, what it renders.}
 
 ##### Konfiguration
 
 | Option | Technischer Name | Typ | Beschreibung | Standardwert |
 |:-------|:-----------------|:----|:-------------|:-------------|
-| {Label} | `{name}` | {type} | {Was die Option bewirkt} | `{default}` |
+| {Label} | `{name}` | {type} | {what the option does} | `{default}` |
 ```
 
-**Für jedes Element mit eigenem DataResolver:**
+**For every element with a data resolver of its own:**
 
 ```markdown
 ##### DataResolver: {ResolverClassName}
 
-{Genaue Beschreibung was der DataResolver macht, welche Daten er lädt und aufbereitet.}
+{Exactly what the data resolver does, and which data it loads and prepares.}
 
 **Datenausgabe:**
 
 | Zugriff | Pfad | Beschreibung |
 |:--------|:-----|:-------------|
-| Daten | `element.data.{key}` | {Was hier verfügbar ist} |
+| Data | `element.data.{key}` | {what is available here} |
 | Konfiguration | `element.config.{key}.value` | {Konfigurationswerte} |
 
 **Zugriff in Twig:**
@@ -349,91 +349,91 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 ```
 ```
 
-**Analyse-Checkliste für CMS:**
+**Analysis checklist for CMS:**
 
 - Admin-Komponenten in `src/Resources/app/administration/src/module/sw-cms/` durchsuchen
 - Block-Registrierungen in `index.js` Dateien finden (Kategorie, Slots)
 - Element-Konfigurationen aus `config/index.js` extrahieren
 - DataResolver-Klassen in `src/DataResolver/` analysieren: `getType()`, `enrich()`, `collect()` Methoden
-- Struct-Klassen in `src/Struct/` analysieren für Datenstruktur
-- Twig-Templates in `src/Resources/views/storefront/element/` für Zugriffsbeispiele prüfen
-- Storefront-Komponenten in `src/Resources/app/storefront/` prüfen
+- Read the struct classes in `src/Struct/` for the data structure
+- Check the Twig templates in `src/Resources/views/storefront/element/` for access examples
+- Check the storefront components in `src/Resources/app/storefront/`
 
 ---
 
 ### 8. Administrationsmodule
 
-**Nur wenn eigene Admin-Module existieren** (in `src/Resources/app/administration/src/module/` — aber NICHT `sw-cms`, das gehört zu Sektion 7).
+**Only where the plugin has admin modules of its own** (in `src/Resources/app/administration/src/module/`, but NOT `sw-cms`, which belongs to section 7).
 
 ```markdown
 ## Administrationsmodule
 
 ### {Modul-Name}
 
-**Menü-Pfad:** {Wo das Modul im Admin zu finden ist, z.B. "Inhalte → {Modul-Name}"}
+**Menu path:** {where the module sits in the admin, e.g. "Content → {module name}"}
 
-{Ausführliche Beschreibung: Was macht das Modul, welche Funktionen bietet es.}
+{A full description: what the module does and which functions it offers.}
 
 | Einstellung/Funktion | Beschreibung | Auswirkung |
 |:---------------------|:-------------|:-----------|
-| {name} | {Was man hier einstellen/tun kann} | {Was passiert wenn man es nutzt} |
+| {name} | {what can be set or done here} | {what happens when it is used} |
 ```
 
 **Analyse-Checkliste:**
 
 - `src/Resources/app/administration/src/module/` durchsuchen (OHNE `sw-cms`)
-- `index.js` für Modul-Registrierungen prüfen (Route, Navigation, Berechtigungen)
+- Check `index.js` for the module registrations (route, navigation, privileges)
 - Alle Vue-Komponenten des Moduls analysieren
-- Snippet-Dateien für Labels und Beschreibungen heranziehen
+- Take the labels and descriptions from the snippet files
 
 ---
 
 ### 9. Subscriber
 
-**Nur wenn `src/Subscriber/` existiert und Subscriber enthält.**
+**Only where `src/Subscriber/` exists and holds subscribers.**
 
 ```markdown
 ## Subscriber
 
 ### {SubscriberClassName}
 
-{Kurze Beschreibung wofür dieser Subscriber zuständig ist.}
+{Briefly, what this subscriber is responsible for.}
 
 | Event | Methode | Beschreibung |
 |:------|:--------|:-------------|
-| `{EventKlasse::EVENT_NAME}` | `{methodName}()` | {Was die Methode konkret macht} |
+| `{EventClass::EVENT_NAME}` | `{methodName}()` | {what the method actually does} |
 ```
 
 **Analyse-Checkliste:**
 
 - `getSubscribedEvents()` auswerten
-- Jede Event-Handler-Methode analysieren und Zweck beschreiben
-- Event-Klasse mit vollem Namespace oder bekanntem Shortname angeben
+- Read every event handler method and state its purpose
+- Give the event class with its full namespace, or its well-known short name
 
 ---
 
 ### 10. Commands
 
-**Nur wenn `src/Command/` existiert und Commands enthält.**
+**Only where `src/Command/` exists and holds commands.**
 
 ```markdown
 ## Commands
 
 ### `{command:name}`
 
-{Ausführliche Beschreibung was der Befehl macht.}
+{A full description of what the command does.}
 
 **Argumente:**
 
 | Argument | Beschreibung | Pflicht |
 |:---------|:-------------|:--------|
-| `{name}` | {Wofür das Argument ist} | Ja / Nein |
+| `{name}` | {what the argument is for} | Yes / No |
 
 **Optionen:**
 
 | Option | Kurzform | Beschreibung | Standardwert |
 |:-------|:---------|:-------------|:-------------|
-| `--{name}` | `-{shortcut}` | {Was die Option bewirkt} | `{default}` |
+| `--{name}` | `-{shortcut}` | {what the option does} | `{default}` |
 
 **Beispiel:**
 
@@ -445,7 +445,7 @@ bin/console {command:name} {praxisnahe-beispiel-argumente}
 **Analyse-Checkliste:**
 
 - `configure()` Methode: Command-Name, Beschreibung, Argumente, Optionen extrahieren
-- `execute()` Methode: Tatsächliche Funktionalität beschreiben
+- The `execute()` method: describe what it actually does
 - Praxisnahe Beispielaufrufe konstruieren
 - Wenn keine Argumente → Argumente-Tabelle weglassen
 - Wenn keine Optionen → Optionen-Tabelle weglassen
@@ -463,13 +463,13 @@ bin/console {command:name} {praxisnahe-beispiel-argumente}
 
 | Action | Trigger | Beschreibung |
 |:-------|:--------|:-------------|
-| `{ActionName}` | {Auslösendes Event} | {Was die Action macht} |
+| `{ActionName}` | {the event that triggers it} | {what the action does} |
 
 ### Rules
 
 | Rule | Beschreibung | Konfiguration |
 |:-----|:-------------|:--------------|
-| `{RuleName}` | {Wann die Regel greift} | {Konfigurierbare Parameter} |
+| `{RuleName}` | {when the rule applies} | {its configurable parameters} |
 ```
 
 ---
@@ -483,25 +483,25 @@ bin/console {command:name} {praxisnahe-beispiel-argumente}
 
 ### {EntityName} (`{tabellen_name}`)
 
-{Kurze Beschreibung wofür diese Entity genutzt wird.}
+{Briefly, what this entity is used for.}
 
 #### Felder
 
 | Feld | Typ | Beschreibung | Standard | Pflicht |
 |:-----|:----|:-------------|:---------|:--------|
-| `{fieldName}` | `{FieldType}` | {Wofür das Feld ist} | `{defaultValue}` | Ja / Nein |
+| `{fieldName}` | `{FieldType}` | {what the field is for} | `{defaultValue}` | Yes / No |
 
 #### Assoziationen
 
 | Assoziation | Typ | Ziel-Entity | Beschreibung |
 |:------------|:----|:------------|:-------------|
-| `{name}` | {ManyToOne / OneToMany / ManyToMany} | `{ZielDefinition}` | {Zweck der Assoziation} |
+| `{name}` | {ManyToOne / OneToMany / ManyToMany} | `{TargetDefinition}` | {what the association is for} |
 ```
 
-Wenn die Entity eine Übersetzung hat:
+Where the entity has a translation:
 
 ```markdown
-#### Übersetzbare Felder
+#### Translatable fields
 
 | Feld | Typ | Beschreibung |
 |:-----|:----|:-------------|
@@ -510,20 +510,20 @@ Wenn die Entity eine Übersetzung hat:
 
 **Analyse-Checkliste:**
 
-- `defineFields()` Methode vollständig auswerten
+- Read `defineFields()` in full
 - Feld-Typen korrekt benennen: `IdField`, `StringField`, `BoolField`, `IntField`, `FloatField`, `DateTimeField`, `JsonField`, `FkField`, `LongTextField`, `TextField` etc.
 - Flags beachten: `AllowHtml`, `Required`, `PrimaryKey`, `Inherited`
 - Translations-Entity (`*TranslationDefinition`) separat dokumentieren
-- Default-Werte aus `defineFields()` und Migrationen ableiten
-- Migrationen für Tabellenstruktur und Constraints heranziehen
+- Derive the default values from `defineFields()` and the migrations
+- Take the table structure and constraints from the migrations
 
 ---
 
-### 13. Freitextfelder und Freitextfeldsets
+### 13. Custom fields and custom field sets
 
-**WICHTIG:** Immer **"Freitextfeld(er)"** statt "Customfield(s)" und **"Freitextfeldset(s)"** statt "CustomFieldSet(s)" verwenden!
+**IMPORTANT:** write **"custom field(s)"** and **"custom field set(s)"**, matching the terms the administration uses.
 
-**Nur wenn CustomFields/CustomFieldSets im Plugin registriert werden.**
+**Only where the plugin registers custom fields or custom field sets.**
 
 ```markdown
 ## Freitextfelder
@@ -535,13 +535,13 @@ Wenn die Entity eine Übersetzung hat:
 
 | Freitextfeld | Technischer Name | Typ | Beschreibung |
 |:-------------|:-----------------|:----|:-------------|
-| {Label DE} | `{technical_name}` | {Typ: Text, Bool, Int, Float, Select, etc.} | {Was das Feld speichert} |
+| {Label} | `{technical_name}` | {type: text, bool, int, float, select, …} | {what the field stores} |
 ```
 
-Bei Select-Freitextfeldern zusätzlich:
+For a select custom field, additionally:
 
 ```markdown
-#### Optionen für "{Feld-Name}"
+#### Options for "{field name}"
 
 | Wert | Bezeichnung |
 |:-----|:------------|
@@ -557,7 +557,7 @@ Immer den Twig-Zugriff dokumentieren:
 {# Storefront #}
 {{ product.customFields.{technical_name} }}
 
-{# Prüfung ob Freitextfeld gesetzt ist #}
+{# check whether the custom field is set #}
 {% if product.customFields.{technical_name} is defined and product.customFields.{technical_name} is not empty %}
     {{ product.customFields.{technical_name} }}
 {% endif %}
@@ -566,36 +566,36 @@ Immer den Twig-Zugriff dokumentieren:
 
 **Analyse-Checkliste:**
 
-- Hauptklasse (`{PluginName}.php`) auf `install()`, `update()`, `activate()` prüfen
-- CustomFieldSet-Registrierungen mit `customFieldSetRepository` finden
-- Fixtures-Verzeichnis auf CustomField-Definitionen prüfen
-- Service-Klassen die CustomFields verwalten analysieren (z.B. `CustomFieldService`)
-- Alle Felder mit Typ, Optionen und zugeordneten Entity-Relationen dokumentieren
+- Check the main class (`{PluginName}.php`) for `install()`, `update()` and `activate()`
+- Find the custom field set registrations through `customFieldSetRepository`
+- Check the fixtures directory for custom-field definitions
+- Read the service classes that manage custom fields (e.g. `CustomFieldService`)
+- Document every field with its type, options and the entity relations it is bound to
 
 ---
 
 ### 14. Services
 
-**Nur wenn `src/Service/` existiert und Services mit öffentlichen Methoden enthält.**
+**Only where `src/Service/` exists and holds services with public methods.**
 
 ```markdown
 ## Services
 
 ### {ServiceClassName}
 
-{Kurze Beschreibung wofür der Service zuständig ist.}
+{Briefly, what the service is responsible for.}
 
-| Methode | Parameter | Rückgabe | Beschreibung |
+| Method | Parameters | Returns | Description |
 |:--------|:----------|:---------|:-------------|
-| `{methodName}()` | `{Type} $name` | `{ReturnType}` | {Was die Methode macht} |
+| `{methodName}()` | `{Type} $name` | `{ReturnType}` | {what the method does} |
 ```
 
 **Analyse-Checkliste:**
 
-- Nur **öffentliche (public)** Methoden dokumentieren
+- Document **public** methods only
 - `__construct()` NICHT dokumentieren
-- Parameter mit Typen angeben
-- Rückgabetypen aus Type Declarations oder PHPDoc
+- Give each parameter with its type
+- Take return types from the type declarations or PHPDoc
 - Abstrakte Klassen als solche kennzeichnen
 
 ---
@@ -609,27 +609,27 @@ Immer den Twig-Zugriff dokumentieren:
 
 ### {TaskName}
 
-{Beschreibung was der Task macht und wofür er gedacht ist.}
+{What the task does and what it is for.}
 
 | Eigenschaft | Wert |
 |:------------|:-----|
-| Task-Name | `{getTaskName() Rückgabewert}` |
+| Task name | `{the getTaskName() return value}` |
 | Intervall | {Sekunden} ({menschenlesbar, z.B. "alle 24 Stunden"}) |
 | Handler | `{HandlerClassName}` |
-| Beschreibung | {Was der Handler bei Ausführung konkret macht} |
+| Description | {what the handler actually does when it runs} |
 ```
 
 **Analyse-Checkliste:**
 
-- `getTaskName()` und `getDefaultInterval()` aus der ScheduledTask-Klasse
+- `getTaskName()` and `getDefaultInterval()` from the ScheduledTask class
 - `run()` oder `__invoke()` Methode des Handlers analysieren
-- Intervall menschenlesbar umrechnen: 3600 = stündlich, 86400 = täglich, 604800 = wöchentlich
+- Convert the interval to something readable: 3600 is hourly, 86400 daily, 604800 weekly
 
 ---
 
 ### 16. Twig-Erweiterungen
 
-**Nur wenn `src/Twig/` existiert und Twig-Extensions enthält.**
+**Only where `src/Twig/` exists and holds Twig extensions.**
 
 ```markdown
 ## Twig-Erweiterungen
@@ -638,21 +638,21 @@ Immer den Twig-Zugriff dokumentieren:
 
 | Filter | Beschreibung | Beispiel |
 |:-------|:-------------|:---------|
-| `{filterName}` | {Was der Filter macht} | `{{ variable \| {filterName} }}` |
+| `{filterName}` | {what the filter does} | `{{ variable \| {filterName} }}` |
 
 ### Funktionen
 
 | Funktion | Parameter | Beschreibung | Beispiel |
 |:---------|:----------|:-------------|:---------|
-| `{functionName}` | `{parameter1}, {parameter2}` | {Was die Funktion macht} | `{{ {functionName}(param1, param2) }}` |
+| `{functionName}` | `{parameter1}, {parameter2}` | {what the function does} | `{{ {functionName}(param1, param2) }}` |
 ```
 
 **Analyse-Checkliste:**
 
-- `getFilters()` und `getFunctions()` Methoden analysieren
-- Für jeden Filter/jede Funktion: Name, Parameter, Rückgabe, Zweck
+- Read the `getFilters()` and `getFunctions()` methods
+- Per filter and function: name, parameters, return value, purpose
 - Praxisnahe Twig-Beispiele erstellen
-- Wenn nur Filter → "Funktionen"-Abschnitt weglassen und umgekehrt
+- Where there are only filters, leave the "Functions" section out, and the other way round
 
 ---
 
@@ -674,12 +674,12 @@ Immer den Twig-Zugriff dokumentieren:
 
 ---
 
-### 18. Tests & Codequalität
+### 18. Tests and code quality
 
-**Nur wenn mindestens eine der Konfigurationsdateien existiert.** Nur die Tools auflisten die tatsächlich vorhanden sind.
+**Only where at least one of those configuration files exists.** List only the tools actually presnden sind.
 
 ```markdown
-## Tests & Codequalität
+## Tests and code quality
 ```
 
 **Rector** (wenn `rector.php` existiert):
@@ -687,7 +687,7 @@ Immer den Twig-Zugriff dokumentieren:
 ```markdown
 ### Rector
 
-Rector prüft und aktualisiert PHP-Code automatisch auf moderne Syntax und Shopware-Konventionen.
+Rector checks PHP code and updates it automatically to modern syntax and Shopware conventions.
 
 | Einstellung | Wert |
 |:------------|:-----|
@@ -695,22 +695,22 @@ Rector prüft und aktualisiert PHP-Code automatisch auf moderne Syntax und Shopw
 | Shopware-Set | {Shopware-Set, z.B. "SHOPWARE_6_7_0"} |
 
 ```bash
-# Prüfung (Dry-Run)
+# check only (dry run)
 vendor/bin/rector process --dry-run
 
-# Änderungen anwenden
+# apply the changes
 vendor/bin/rector process --clear-cache
 ```
 ```
 
-Wenn in der `composer.json` Scripts für rector definiert sind (z.B. `"rector": "vendor/bin/rector process --dry-run"`), dann stattdessen die composer-Scripts verwenden:
+Where `composer.json` defines scripts for rector (e.g. `"rector": "vendor/bin/rector process --dry-run"`), use those composer scripts instead:
 
 ```markdown
 ```bash
-# Prüfung (Dry-Run)
+# check only (dry run)
 composer run rector
 
-# Änderungen anwenden
+# apply the changes
 vendor/bin/rector process --clear-cache
 ```
 ```
@@ -720,7 +720,7 @@ vendor/bin/rector process --clear-cache
 ```markdown
 ### Psalm
 
-Statische Code-Analyse zur Erkennung von Typfehlern und potenziellen Bugs.
+Static analysis, to find type errors and potential bugs.
 
 | Einstellung | Wert |
 |:------------|:-----|
@@ -737,10 +737,10 @@ composer run psalm
 ```markdown
 ### ECS (Easy Coding Standard)
 
-Automatische Prüfung und Korrektur von Coding-Standards.
+Checks and corrects coding standards automatically.
 
 ```bash
-# Prüfen
+# check
 composer run ecs
 
 # Automatisch korrigieren
@@ -753,7 +753,7 @@ composer run ecs-fix
 ```markdown
 ### PHPCS (PHP CodeSniffer)
 
-Prüfung der Code-Formatierung nach definierten Standards.
+Checks code formatting against the defined standards.
 
 ```bash
 composer run phpcs
@@ -764,9 +764,9 @@ composer run phpcs
 
 - `rector.php` lesen: verwendete Sets (`SetList::PHP_*`, `ShopwareSetList::*`), Skip-Regeln
 - `psalm.xml` lesen: `errorLevel`, `phpVersion`
-- `ecs.php` lesen: verwendete Sets und Regeln
-- `.phpcs.xml` lesen: Standard und Regeln
-- `composer.json` → `scripts` Sektion für die korrekten Ausführungsbefehle prüfen
+- Read `ecs.php`: the sets and rules in use
+- Read `.phpcs.xml`: the standard and its rules
+- Read the `scripts` section of `composer.json` for the exact commands to run
 
 ---
 
@@ -777,61 +777,61 @@ composer run phpcs
 ```markdown
 ## Changelog
 
-Das Changelog wird mit [git-cliff](https://git-cliff.org/) generiert:
+The changelog is generated with [git-cliff](https://git-cliff.org/):
 
 ```bash
 git cliff --tag X.Y.Z --output CHANGELOG.md
 ```
 
-Ersetze `X.Y.Z` durch die gewünschte Versionsnummer.
+Replace `X.Y.Z` with the version number you want.
 ```
 
 ---
 
-## Anti-Patterns — Was NICHT getan werden darf
+## Anti-patterns — what must NOT be done
 
 | Nr. | Anti-Pattern | Richtig |
 |:----|:-------------|:--------|
-| 1 | Technischen Klassennamen als Titel verwenden ("# FfContentSitemap") | Menschenlesbaren Namen nutzen ("# Sitemap für Shopware 6.7") |
+| 1 | Using the technical class name as the title ("# FfContentSitemap") | Use a human-readable name ("# Sitemap for Shopware 6.7") |
 | 2 | Leere Sektionen anzeigen ("## Commands — Keine vorhanden") | Sektion komplett weglassen |
-| 3 | "Customfield" oder "CustomFieldSet" schreiben | Immer "Freitextfeld" und "Freitextfeldset" |
-| 4 | Englische Überschriften oder Beschreibungen | Alles auf Deutsch (Fachbegriffe wie "Entity", "DataResolver", "Subscriber" sind erlaubt) |
-| 5 | composer.json-Beschreibung 1:1 kopieren | Beschreibung basiert auf Code-Analyse und beschreibt den tatsächlichen Funktionsumfang |
-| 6 | Admin-Module unter CMS auflisten | CMS = CMS-Blöcke/-Elemente, Admin-Module = eigenständige Module |
-| 7 | Private/protected Methoden von Services dokumentieren | Nur öffentliche (public) API dokumentieren |
-| 8 | Intervalle nur in Sekunden angeben | Immer menschenlesbar umrechnen (86400 Sekunden = täglich) |
-| 9 | Standard-Markdown statt GitLab-Markdown | `[[_TOC_]]` für Inhaltsverzeichnis, `<details>` für Collapsible Sections |
-| 10 | Fehlende Dateien erraten oder erfinden | Wenn eine Datei nicht existiert → zugehörige Sektion weglassen |
-| 11 | `__construct()` als Service-Methode dokumentieren | Konstruktor ist keine öffentliche API |
-| 12 | CMS-Abschnitt für reine Admin-Erweiterungen | CMS bezieht sich ausschließlich auf CMS-Blöcke und CMS-Elemente |
-| 13 | Bestehende README-Inhalte ignorieren | Bei Updates: manuell hinzugefügte Sektionen beibehalten |
-| 14 | Umlaute als ae/oe/ue/ss umschreiben | Immer korrekte Umlaute verwenden: ä, ö, ü, Ä, Ö, Ü, ß |
+| 3 | Writing "Customfield" or "CustomFieldSet" | Write "custom field" and "custom field set" |
+| 4 | Mixing languages in headings or descriptions | Everything in English (technical terms such as "Entity", "DataResolver", "Subscriber" sind erlaubt) |
+| 5 | Copying the composer.json description verbatim | Base the description on the code analysis, describing what it actuahlichen Funktionsumfang |
+| 6 | Listing admin modules under CMS | CMS means CMS blocks and elements; admin modules are standalone |
+| 7 | Documenting private or protected service methods | Document the public API only |
+| 8 | Giving an interval in seconds only | Always convert it (86400 seconds is daily) |
+| 9 | Standard Markdown instead of GitLab Markdown | `[[_TOC_]]` for the table of contents, `<details>` for a collapsible Sections |
+| 10 | Guessing at or inventing a missing file | Where a file does not exist, leave its section out |
+| 11 | Documenting `__construct()` as a service method | A constructor is not public API |
+| 12 | A CMS section for a pure admin extension | CMS refers only to CMS blocks and CMS elemente |
+| 13 | Ignoring what an existing README holds | On an update, keep the sections added by hand |
+| 14 | Transliterating an accented character in a name or label | Keep the character itself, and write the file as UTF-8 |
 
 ---
 
-## Hinweise für die Aktualisierung bestehender READMEs
+## Updating an existing README
 
 Wenn eine README.md bereits existiert:
 
-1. Lies die bestehende README **zuerst**
+1. Read the existing README **first**
 2. Analysiere den gesamten Plugin-Code (wie bei Neuerstellung)
-3. Vergleiche bestehenden Inhalt mit dem analysierten Code
-4. Aktualisiere alle Sektionen — entferne veraltete, füge neue hinzu
-5. **Behalte manuell hinzugefügte Sektionen bei** die nicht automatisch generiert werden (z.B. "Bekannte Probleme", "FAQ", "Hinweise", "Mitwirkende")
-6. Informiere den User über wesentliche Änderungen
+3. Compare what it holds against the code you analysed
+4. Update every section — drop what is obsolete, add what is new
+5. **Keep the sections added by hand** that this generator does not produce (Known issume", "FAQ", "Hinweise", "Mitwirkende")
+6. Tell the user what changed substantially
 
 ---
 
-## Beispiele für gute Ausgaben
+## Examples of good output
 
-### Beispiel: Badges, Titel mit Bild
+### Example: badges and a title with an image
 
 ```markdown
 ![Shopware](https://img.shields.io/badge/Shopware-6.7-blue)
 ![PHP](https://img.shields.io/badge/PHP-%3E%3D%208.3-brightgreen)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-# Sitemap für Shopware 6.7
+# Sitemap for Shopware 6.7
 
 [[_TOC_]]
 
@@ -839,12 +839,12 @@ Wenn eine README.md bereits existiert:
 
 ## Beschreibung
 
-Dieses Plugin generiert eine XML-Sitemap für alle Sales Channels und berücksichtigt
-dabei Produkte, Kategorien und CMS-Seiten. Die Sitemap kann über ein CLI-Command
-manuell oder per Scheduled Task automatisch erstellt werden.
+This plugin generates an XML sitemap for every sales channel, covering
+products, categories and CMS pages. The sitemap can be rebuilt through a CLI command
+either by hand or automatically through a scheduled task.
 ```
 
-### Beispiel: Pluginkonfiguration mit Select-Optionen
+### Example: plugin configuration with select options
 
 ```markdown
 ## Pluginkonfiguration
@@ -855,11 +855,11 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 
 | Feld | Technischer Name | Typ | Beschreibung | Standardwert |
 |:-----|:-----------------|:----|:-------------|:-------------|
-| Aktiv | `active` | Bool | Aktiviert die Bewertungsanfragen | `true` |
-| API-Schlüssel | `apiKey` | Text | Shopvote API-Schlüssel für die Authentifizierung | _(leer)_ |
-| Versandzeitpunkt | `sendDelay` | Single-Select | Wann die Bewertungsanfrage versendet wird | `7_days` |
+| Active | `active` | bool | switches the review requests on | `true` |
+| API key | `apiKey` | text | the Shopvote API key used to authenticate | _(empty)_ |
+| Dispatch time | `sendDelay` | single select | when the review request is sent | `7_days` |
 
-#### Optionen für "Versandzeitpunkt"
+#### Options for "Dispatch time"
 
 | Wert | Bezeichnung |
 |:-----|:------------|
@@ -869,34 +869,34 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 | `14_days` | Nach 14 Tagen |
 ```
 
-### Beispiel: Entity mit Übersetzung
+### Example: an entity with a translation
 
 ```markdown
 ## Entities
 
 ### Retailer (`ff_retailer`)
 
-Speichert Händlerstandorte für die Händlersuche mit Adressdaten und Geokoordinaten.
+Stores dealer locations for the dealer search, with address data and geo coordinates.
 
 #### Felder
 
 | Feld | Typ | Beschreibung | Standard | Pflicht |
 |:-----|:----|:-------------|:---------|:--------|
-| `id` | `IdField` | Primärschlüssel | _(auto)_ | Ja |
-| `name` | `StringField` | Name des Händlers (übersetzbar) | — | Ja |
-| `street` | `StringField` | Straße | — | Ja |
+| `id` | `IdField` | the primary key | _(auto)_ | Yes |
+| `name` | `StringField` | the dealer name (translatable) | — | Yes |
+| `street` | `StringField` | street | — | Yes |
 | `zip` | `StringField` | Postleitzahl | — | Nein |
 | `city` | `StringField` | Stadt | — | Ja |
 | `latitude` | `FloatField` | Breitengrad | — | Nein |
-| `longitude` | `FloatField` | Längengrad | — | Nein |
-| `active` | `BoolField` | Ob der Händler aktiv ist | `true` | Nein |
+| `longitude` | `FloatField` | longitude | — | No |
+| `active` | `BoolField` | whether the dealer is active | `true` | No |
 
-#### Übersetzbare Felder
+#### Translatable fields
 
 | Feld | Typ | Beschreibung |
 |:-----|:----|:-------------|
-| `name` | `StringField` | Name des Händlers |
-| `description` | `LongTextField` | Beschreibung des Händlers |
+| `name` | `StringField` | the dealer name |
+| `description` | `LongTextField` | the dealer description |
 ```
 
 ### Beispiel: Freitextfelder
@@ -911,8 +911,8 @@ Speichert Händlerstandorte für die Händlersuche mit Adressdaten und Geokoordi
 
 | Freitextfeld | Technischer Name | Typ | Beschreibung |
 |:-------------|:-----------------|:----|:-------------|
-| Bewertungsanfrage gesendet | `ff_shopvote_evaluation_sent` | Bool | Ob eine Bewertungsanfrage für diese Bestellung versendet wurde |
-| Sendedatum | `ff_shopvote_evaluation_sent_at` | Datetime | Zeitpunkt der Versendung der Bewertungsanfrage |
+| Review request sent | `ff_shopvote_evaluation_sent` | bool | whether a review request has been sent for this order |
+| Sent at | `ff_shopvote_evaluation_sent_at` | datetime | when the review request was sent |
 
 **Zugriff in Twig:**
 
@@ -945,7 +945,7 @@ Versendet Bewertungsanfragen per E-Mail an Kunden deren Bestellung abgeschlossen
 # Normaler Versand
 bin/console ff:shopvote:send-mail
 
-# Testlauf mit Limit
+# a test run with a limit
 bin/console ff:shopvote:send-mail --dry-run --limit 10
 ```
 ```
@@ -962,12 +962,12 @@ Versendet automatisch Bewertungsanfragen an Kunden nach Abschluss ihrer Bestellu
 | Eigenschaft | Wert |
 |:------------|:-----|
 | Task-Name | `ff_shopvote.send_evaluation_request_mail` |
-| Intervall | 86400 Sekunden (täglich) |
+| Interval | 86400 seconds (daily) |
 | Handler | `SendEvaluationRequestMailTaskHandler` |
-| Beschreibung | Sucht Bestellungen deren Bewertungszeitraum abgelaufen ist und versendet Bewertungsanfrage-E-Mails |
+| Description | finds orders whose review window has passed and sends the review request emails |
 ```
 
-### Beispiel: Collapsible Section für große Konfigurationen
+### Example: a collapsible section for a large configuration
 
 ```markdown
 <details>
@@ -977,9 +977,9 @@ Versendet automatisch Bewertungsanfragen an Kunden nach Abschluss ihrer Bestellu
 
 | Option | Technischer Name | Typ | Beschreibung | Standardwert |
 |:-------|:-----------------|:----|:-------------|:-------------|
-| Automatisch abspielen | `autoplay` | Bool | Slider wechselt automatisch zum nächsten Slide | `true` |
+| Autoplay | `autoplay` | bool | the slider advances to the next slide on its own | `true` |
 | Geschwindigkeit | `speed` | Int | Wechselgeschwindigkeit in Millisekunden | `5000` |
-| Navigation anzeigen | `showNavigation` | Bool | Vor/Zurück-Pfeile anzeigen | `true` |
+| Show navigation | `showNavigation` | bool | show the previous and next arrows | `true` |
 | Pagination anzeigen | `showPagination` | Bool | Punkt-Indikatoren anzeigen | `true` |
 
 </details>

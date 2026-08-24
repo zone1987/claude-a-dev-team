@@ -215,9 +215,9 @@ Shopware feature names are always capitalised: Rule Builder, Sales Channel, Flow
 
 In English: `you` and `your` for every audience.
 
-In German: the informal address (Du). In the Shopware administration, Du, Dich, Dir and Dein are capitalised (as a sign of respect).
-
-Example (German): *Speichere das Produkt, bevor Du die Seite verlässt.* ("Save the product before you leave the page.")
+For German localisation: use the informal second person, and capitalise its forms — the
+administration treats that capitalisation as a mark of respect. Shopware's own example translates
+as "Save the product before you leave the page."
 
 ---
 

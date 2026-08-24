@@ -1,4 +1,4 @@
-# Shopware 6 — Vollständiger Variablen-Baum je Mail-Template
+# Shopware 6 — the complete variable tree per mail template
 
 Abgeleitet aus echten Entity-Definitionen + Default-Twig-Fixtures.  
 Stand: Shopware 6.7 (trunk)
@@ -9,41 +9,41 @@ Legende: `(?)` = nullable, `[*]` = Collection/Array, `→` = Assoziation/Sub-Obj
 
 ## Contents
 
-- [`order_confirmation_mail` — Bestellbestätigung](#order_confirmation_mail-bestellbestätigung)
+- [`order_confirmation_mail` — order confirmation](#order_confirmation_mail--order-confirmation)
 - [`order.state.*` — Bestellstatus-Benachrichtigungen](#orderstate-bestellstatus-benachrichtigungen)
 - [`order_delivery.state.*` — Lieferstatus-Benachrichtigungen](#order_deliverystate-lieferstatus-benachrichtigungen)
 - [`order_transaction.state.*` — Zahlungsstatus-Benachrichtigungen](#order_transactionstate-zahlungsstatus-benachrichtigungen)
-- [`order.payment_method.changed` — Zahlungsmethode geändert](#orderpayment_methodchanged-zahlungsmethode-geändert)
+- [`order.payment_method.changed` — payment method changed](#orderpayment_methodchanged--payment-method-changed)
 - [`invoice_mail` / `delivery_mail` / `credit_note_mail` / `cancellation_mail` — Dokument-Mails](#invoice_mail-delivery_mail-credit_note_mail-cancellation_mail-dokument-mails)
 - [`downloads_delivery` — Digitale Downloads](#downloads_delivery-digitale-downloads)
-- [`customer_register` — Registrierungsbestätigung](#customer_register-registrierungsbestätigung)
+- [`customer_register` — registration confirmation](#customer_register--registration-confirmation)
 - [`customer_register.double_opt_in` — DOI Registrierung](#customer_registerdouble_opt_in-doi-registrierung)
 - [`guest_order.double_opt_in` — DOI Gastbestellung](#guest_orderdouble_opt_in-doi-gastbestellung)
 - [`password_change` — Passwort-Reset-Anfrage](#password_change-passwort-reset-anfrage)
-- [`customer.password.changed` — Passwort erfolgreich geändert (6.7)](#customerpasswordchanged-passwort-erfolgreich-geändert-67)
+- [`customer.password.changed` — password changed successfully (6.7)](#customerpasswordchanged--password-changed-successfully-67)
 - [`customer.group.registration.accepted` / `.declined` — Kundengruppen-Registrierung](#customergroupregistrationaccepted-declined-kundengruppen-registrierung)
 - [`newsletterRegister` / `newsletterDoubleOptIn` — Newsletter](#newsletterregister-newsletterdoubleoptin-newsletter)
 - [`contact_form` — Kontaktformular](#contact_form-kontaktformular)
 - [`revocation_request.customer` / `.merchant` — Widerrufsformular (6.7)](#revocation_requestcustomer-merchant-widerrufsformular-67)
 - [`review_form` — Produktbewertung](#review_form-produktbewertung)
-- [Immer verfügbare Variablen (alle Templates)](#immer-verfügbare-variablen-alle-templates)
-- [Eigene Variablen ergänzen](#eigene-variablen-ergänzen)
+- [Variables always available (every template)](#variables-always-available-every-template)
+- [Adding variables of your own](#adding-variables-of-your-own)
 
-## `order_confirmation_mail` — Bestellbestätigung
+## `order_confirmation_mail` — order confirmation
 
-Identische Struktur auch bei: `order_transaction.state.open` (+ Zahlungshinweis im Intro)
+The same structure applies to `order_transaction.state.open`, which adds a payment note in its intro.
 
 ### Top-Level-Variablen
 
 ```
 order               → OrderEntity
 salesChannel        → SalesChannelEntity
-a11yDocuments       [*] → array (optional, für barrierefreie Dokumentenlinks)
+a11yDocuments       [*] → array (optional, for accessible document links)
 eventName           string
 salesChannelId      string (UUID)
 ```
 
-### `order.*` — vollständiger Baum
+### `order.*` — the complete tree
 
 ```
 order
@@ -148,7 +148,7 @@ order
 │   ├── shippingMethod            → ShippingMethodEntity
 │   │   ├── name                  string(?) (translated)
 │   │   ├── description           string(?) (translated)
-│   │   └── trackingUrl           string(?)  ← enthält %s für Trackingnummer
+│   │   └── trackingUrl           string(?)  ← holds %s for the tracking number
 │   └── shippingOrderAddress      → OrderAddressEntity (Lieferadresse)
 │       ├── firstName             string
 │       ├── lastName              string
@@ -198,7 +198,7 @@ lineItem (each in order.nestedLineItems)
 ├── position                      int
 ├── good                          bool
 ├── referencedId                  string(?)  (Produkt-UUID)
-├── identifier                    string     (Cart-Schlüssel)
+├── identifier                    string     (the cart key)
 │
 ├── price                         → CalculatedPrice(?)
 │   ├── totalPrice                float
@@ -206,7 +206,7 @@ lineItem (each in order.nestedLineItems)
 │   ├── quantity                  int
 │   └── calculatedTaxes           [*] → CalculatedTax
 │
-├── payload                       array(?)   ← Snapshot-Daten bei Bestellung
+├── payload                       array(?)   ← snapshot data taken at order time
 │   ├── productNumber             string
 │   ├── manufacturerId            string(?)
 │   ├── taxId                     string(?)
@@ -276,7 +276,7 @@ a11yDocuments (array)
 
 ## `order.state.*` — Bestellstatus-Benachrichtigungen
 
-Gilt für: `order.state.open`, `order.state.in_progress`, `order.state.completed`, `order.state.cancelled`
+Applies to: `order.state.open`, `order.state.in_progress`, `order.state.completed`, `order.state.cancelled`
 
 ### Top-Level-Variablen
 
@@ -317,7 +317,7 @@ a11yDocuments[]
 
 ## `order_delivery.state.*` — Lieferstatus-Benachrichtigungen
 
-Gilt für: `shipped`, `shipped_partially`, `returned`, `returned_partially`, `cancelled`
+Applies to: `shipped`, `shipped_partially`, `returned`, `returned_partially`, `cancelled`
 
 ### Top-Level-Variablen
 
@@ -356,7 +356,7 @@ a11yDocuments[].documentId / .deepLinkCode / .fileExtension
 
 ## `order_transaction.state.*` — Zahlungsstatus-Benachrichtigungen
 
-Gilt für alle außer `order_transaction.state.open` (der hat vollständige Bestelldetails).
+Applies to all but `order_transaction.state.open`, which carries the full order detail.
 
 ### Top-Level-Variablen
 
@@ -381,7 +381,7 @@ order
 
 ---
 
-## `order.payment_method.changed` — Zahlungsmethode geändert
+## `order.payment_method.changed` — payment method changed
 
 ### Top-Level-Variablen
 
@@ -399,7 +399,7 @@ order
 ├── orderNumber                   string
 └── orderCustomer → firstName, lastName, salutation(?)
 
-order.transactions.last           → OrderTransactionEntity  ← ACHTUNG: .last, nicht .first
+order.transactions.last           → OrderTransactionEntity  ← NOTE: .last, not .first
 └── paymentMethod
     └── name                      string (translated)
 ```
@@ -463,7 +463,7 @@ salesChannel.domains|first.url
 
 ---
 
-## `customer_register` — Registrierungsbestätigung
+## `customer_register` — registration confirmation
 
 ### Top-Level-Variablen
 
@@ -472,7 +472,7 @@ customer            → CustomerEntity
 salesChannel        → SalesChannelEntity
 ```
 
-### `customer.*` — vollständiger Baum
+### `customer.*` — the complete tree
 
 ```
 customer
@@ -533,7 +533,7 @@ customer
 
 ```
 customer            → CustomerEntity  (Felder wie oben)
-confirmUrl          string            ← Bestätigungslink
+confirmUrl          string            ← the confirmation link
 salesChannel        → SalesChannelEntity
 ```
 
@@ -545,7 +545,7 @@ salesChannel        → SalesChannelEntity
 
 ```
 customer            → CustomerEntity
-confirmUrl          string            ← Bestätigungslink
+confirmUrl          string            ← the confirmation link
 salesChannel        → SalesChannelEntity
 ```
 
@@ -583,7 +583,7 @@ shopName
 
 ---
 
-## `customer.password.changed` — Passwort erfolgreich geändert (6.7)
+## `customer.password.changed` — password changed successfully (6.7)
 
 ### Top-Level-Variablen
 
@@ -629,7 +629,7 @@ customerGroup.translated.name
 
 ```
 newsletterRecipient → NewsletterRecipientEntity
-url                 string   ← DOI-Bestätigungslink (bei Register)
+url                 string   ← the double-opt-in confirmation link, on registration
 salesChannel        → SalesChannelEntity
 ```
 
@@ -645,7 +645,7 @@ newsletterRecipient
 ├── city                          string(?)
 ├── street                        string(?)
 ├── status                        string  ("notSet"|"direct"|"optIn"|"optOut")
-├── hash                          string  ← für Abmelde-/Bestätigungs-Links
+├── hash                          string  ← for unsubscribe and confirmation links
 ├── confirmedAt                   \DateTimeInterface(?)
 └── salutation                    → SalutationEntity(?)
     ├── letterName (translated)
@@ -737,17 +737,17 @@ product
 
 ---
 
-## Immer verfügbare Variablen (alle Templates)
+## Variables always available (every template)
 
 ```
 eventName           string   ← technischer Event-Name
 salesChannelId      string   ← UUID des Sales Channel
-salesChannel        → SalesChannelEntity (von MailService eingefügt)
+salesChannel        → SalesChannelEntity (inserted by MailService)
 ```
 
 ---
 
-## Eigene Variablen ergänzen
+## Adding variables of your own
 
 ### Via MailBeforeValidateEvent (empfohlen)
 
@@ -757,10 +757,10 @@ public function onMailValidate(MailBeforeValidateEvent $event): void
 {
     $data = $event->getTemplateData();
 
-    // Neue Variable ergänzen
+    // add a new variable
     $data['shopConfig'] = $this->systemConfig->get('MyPlugin.config.someValue');
 
-    // Order-abhängige Daten
+    // data that depends on the order
     if (isset($data['order'])) {
         $order = $data['order'];
         $data['extraInfo'] = $this->myService->loadForOrder($order->getId());
@@ -770,26 +770,26 @@ public function onMailValidate(MailBeforeValidateEvent $event): void
 }
 ```
 
-### Via Flow "Variablen setzen" (Admin)
+### Through the flow action "Set variables" (admin)
 
-Im Flow-Builder kann man über die Action "Variablen setzen" (SetOrderCustomFieldsAction oder
-ScalarValuesAware-basierte Aktionen) eigene Schlüssel in `getValues()` befüllen, die dann als
-Top-Level-Twig-Variablen verfügbar sind.
+In the flow builder, the "Set variables" action (SetOrderCustomFieldsAction, or any action based
+on ScalarValuesAware) fills keys of your own into `getValues()`, and those then become available as
+top-level Twig variables.
 
-### Via eigenem MailTemplateType mit `availableEntities`
+### Through a MailTemplateType of your own, with `availableEntities`
 
 ```php
-// In Migration:
+// In a migration:
 $this->mailTemplateTypeRepo->upsert([[
     'technicalName' => 'my_custom_mail',
     'availableEntities' => [
         'order'       => 'order',
         'customer'    => 'customer',
         'salesChannel'=> 'sales_channel',
-        'myEntity'    => 'my_entity',  // eigene Entity-Definition
+        'myEntity'    => 'my_entity',  // an entity definition of your own
     ],
 ]], $context);
 ```
 
-Die `availableEntities` steuern, welche Variablen im Admin-Template-Editor als Vorschläge erscheinen.
-Sie verhindern aber nicht das Hinzufügen weiterer Variablen via `MailBeforeValidateEvent`.
+`availableEntities` decides which variables the admin template editor suggests. It does not
+prevent further variables being added through `MailBeforeValidateEvent`.

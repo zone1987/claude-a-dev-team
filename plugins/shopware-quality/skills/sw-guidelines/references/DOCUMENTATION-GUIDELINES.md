@@ -6,7 +6,7 @@
 - [Language and tone](#language-and-tone)
 - [Markdown conventions](#markdown-conventions)
 - [Asset management](#asset-management)
-- [Shopware Dokumentations-Guidelines: Vollständige Referenz](#shopware-dokumentations-guidelines-vollständige-referenz)
+- [Shopware documentation guidelines: complete reference](#shopware-documentation-guidelines-complete-reference)
 
 ## Structure
 
@@ -37,200 +37,200 @@
 - Diagrams: Mermaid (embedded) or the Meteor Diagram Kit (Figma)
 - Alt text is mandatory for all images
 
-## Shopware Dokumentations-Guidelines: Vollständige Referenz
+## Shopware documentation guidelines: complete reference
 
-Quellen: `resources/guidelines/documentation-guidelines/` (alle Dateien)
+Sources: `resources/guidelines/documentation-guidelines/` (every file)
 
 ---
 
 ### Contents
 
-- [Zielgruppen](#zielgruppen)
-- [Dokumentationsstruktur](#dokumentationsstruktur)
-- [Sprache und Grammatik](#sprache-und-grammatik)
-- [Formatierung: Text](#formatierung-text)
-- [Formatierung: Code](#formatierung-code)
-- [Asset-Management](#asset-management)
-- [Dokumentationsprozess](#dokumentationsprozess)
-- [Embedding in Developer Portal](#embedding-in-developer-portal)
-- [Referenzen](#referenzen)
+- [Audiences](#audiences)
+- [Documentation structure](#documentation-structure)
+- [Language and grammar](#language-and-grammar)
+- [Formatting: text](#formatting-text)
+- [Formatting: code](#formatting-code)
+- [Asset management](#asset-management-1)
+- [The documentation process](#the-documentation-process)
+- [Embedding in the developer portal](#embedding-in-the-developer-portal)
+- [References](#references)
 
-### Zielgruppen
+### Audiences
 
-| Zielgruppe | Aufgaben |
+| Audience | What they work on |
 |-----------|---------|
-| Fullstack Developer | Plugin-Entwicklung, Templates, Routes/Controller |
-| Frontend Developer | Admin, Themes, PWA |
-| Backend Developer | DI/Service-Architektur, Message Queues, DAL, ElasticSearch |
-| API Developer | API konsumieren, erweitern, Paradigmen |
-| DevOps | Hosting, Deployment, Performance |
-| Solution Architect | Hosting, Architektur, Extension-System, Paradigmen |
-| Designer | Component Library, Design System |
+| Fullstack developer | plugin development, templates, routes and controllers |
+| Frontend developer | the administration, themes, PWA |
+| Backend developer | DI and service architecture, message queues, the DAL, Elasticsearch |
+| API developer | consuming and extending the API, its paradigms |
+| DevOps | hosting, deployment, performance |
+| Solution architect | hosting, architecture, the extension system, paradigms |
+| Designer | the component library, the design system |
 
 ---
 
-### Dokumentationsstruktur
+### Documentation structure
 
 #### Concepts
 
-Erklärt Core-Konzepte von Shopware. Entry Point um zu verstehen wie die Plattform organisiert ist.
-- **Erklärt** (nicht zeigt), was etwas ist und warum es so ist
-- Kein Code; keine Schritt-für-Schritt-Anleitungen
-- Pseudo-Code nur zur Illustration akzeptabel (keine Shopware-Source)
-- Cross-Links zu verwandten Konzepten pflegen
+Explains Shopware's core concepts. The entry point for understanding how the platform is organised.
+- **Explains** what something is and why it is that way, rather than showing it
+- No code, no step-by-step instructions
+- Pseudo-code is acceptable purely to illustrate, never Shopware source
+- Maintain cross-links to related concepts
 
-**Aufbau eines Concept-Artikels:**
-1. **Introduction**: Was ist das Konzept? Was kann es enthalten? Wie verhält es sich zu anderen Teilen? Was erwartet der Leser in verwandten Artikeln?
-2. **Comprehensive explanation**: Details mit Beispielen, Tabellen, Grafiken
-3. **Conclusions**: Überleitung zum nächsten Artikel
+**How a concept article is built:**
+1. **Introduction**: what is the concept? What can it contain? How does it relate to other parts? What will the reader find in related articles?
+2. **Comprehensive explanation**: the detail, with examples, tables and diagrams
+3. **Conclusions**: the bridge to the next article
 
 #### Guides
 
-Home für How-tos, Tutorials, Cookbooks, Beispiele.
-- Enthält Code; gibt konkrete Beispiele; Schritt-für-Schritt-Anweisungen
-- Cross-Links zurück zur Concepts-Section für verwandte Konzepte
-- Erklärt Shopware-spezifische Begriffe und verlinkt zu Definitionen
+Home for how-tos, tutorials, cookbooks and examples.
+- Carries code, gives concrete examples, and instructs step by step
+- Cross-links back to the concepts section for the concepts involved
+- Explains Shopware-specific terms and links to their definitions
 
 #### Resources
 
-- API-Referenzen, Code-Referenzen, Testing-Referenzen
-- Tooling-Dokumentation
-- Links, SDKs, Libraries
-- Guidelines für Contributions (dieses Dokument)
+- API references, code references, testing references
+- Tooling documentation
+- Links, SDKs, libraries
+- Contribution guidelines (this document)
 
 ---
 
-### Sprache und Grammatik
+### Language and grammar
 
-#### Stimme und Ton
+#### Voice and tone
 
-**Friendly** — weniger formal, menschlicher als ein Roboter; gelegentlich Humor wenn passend.
+**Friendly** — less formal, more human than a robot; the occasional touch of humour where it fits.
 
-**Direct and clear** — auf den Punkt; Skim-lesbar; so einfach wie möglich.
+**Direct and clear** — to the point, skimmable, as simple as the subject allows.
 
-**Customer focussed** — Leser als kompetent aber mit variablem Niveau annehmen.
+**Customer focussed** — assume a competent reader, but not a uniform level of knowledge.
 
-#### Aktiv- vs. Passivstimme
+#### Active versus passive voice
 
-Aktiv bevorzugen:
+Prefer the active:
 ```
-Gut:    The user passes the access-key.
-Schlecht: The access-key is passed by the user.
+Good: The user passes the access-key.
+Bad:  The access-key is passed by the user.
 ```
 
-Passiv akzeptabel bei: Objektbetonung, De-Emphase des Subjekts, unbekannter Handelnder.
+The passive is acceptable when the object is what matters, when the subject should recede, or when the actor is unknown.
 
 #### Person
 
-- Zweite Person ("you") statt erste ("we", "I")
-- Imperativform: "Create a PDF file." statt "You need to create a PDF file."
-- "our" vermeiden
+- Second person ("you") rather than first ("we", "I")
+- The imperative: "Create a PDF file." rather than "You need to create a PDF file."
+- Avoid "our"
 
 #### Tense
 
-- Einfaches Präsens (simple present)
-- Kein Futur oder Vergangenheit
+- The simple present
+- No future or past tense
 
-#### Abkürzungen
+#### Abbreviations
 
-- Beim ersten Auftreten ausschreiben + Kürzel in Klammern: "JSON Web Token (JWT)"
-- Bekannte Abkürzungen (API, HTTPS, PDF) müssen nicht erklärt werden
-- Keine eigenen Abkürzungen erfinden
-- Plural: "APIs", "IDEs" (bei Endung s/sh/ch/x: "OSes")
+- Spell it out on first use, with the abbreviation in brackets: "JSON Web Token (JWT)"
+- Familiar abbreviations (API, HTTPS, PDF) need no explanation
+- Never invent an abbreviation of your own
+- Plural: "APIs", "IDEs"; where the abbreviation ends in s, sh, ch or x, "OSes"
 
-#### Konjunktionen und Satzzeichen
+#### Conjunctions and punctuation
 
-- Kein Schrägstrich als Konjunktion (nicht "blue/red" — stattdessen "blue or red")
-- Kein Ampersand als Konjunktion (nicht "&" — stattdessen "and")
-- Oxford-Komma bei Aufzählungen: "assets, controllers, services, or tests"
-- Em-Dash (—) für Gedankenpause; Hyphen (-) für Komposita, Zahlenbereiche, Präfix-Wörter
+- No slash as a conjunction: "blue or red", never "blue/red"
+- No ampersand as a conjunction: "and", never "&"
+- The Oxford comma in a list: "assets, controllers, services, or tests"
+- An em dash (—) for a break in thought; a hyphen (-) for compounds, number ranges and prefixed words
 
-#### Verbotenes
+#### What not to write
 
-- Kein Internet-Slang
-- Keine Buzzwords und Jargon
-- Keine Idiome und Phrasen
-- Kein "In order to" am Satzanfang wiederholen
-- Kein "please", "request" (zu höflich/um etwas bitten)
-- Nicht so schreiben wie man spricht
+- No internet slang
+- No buzzwords or jargon
+- No idioms or set phrases
+- Do not keep opening sentences with "In order to"
+- No "please" or "request" — documentation instructs, it does not ask
+- Do not write the way you speak
 
 ---
 
-### Formatierung: Text
+### Formatting: text
 
-#### Schriftauszeichnung
+#### Emphasis
 
-- **Bold** (`**bold**`): UI-Elemente, Notices (Warning/Important), API Status-Codes, Titel in Description-Lists
-- *Italic* (`*italic*`): Spezifische Wörter/Phrasen, Parameter-Werte, Klassen, Methoden, Produktversionen, Key Terms
-- Unterstrichen: NIE verwenden
+- **Bold** (`**bold**`): UI elements, notices (warning, important), API status codes, the title in a description list
+- *Italic* (`*italic*`): a specific word or phrase, parameter values, classes, methods, product versions, key terms
+- Underline: NEVER
 
-#### Listen
+#### Lists
 
-- **Nummerierte Liste**: sequentielle Schritte oder fixe Anzahl von Elementen
-- **Bulleted List**: allgemeine Aufzählung mit `*` (nicht `-`)
-- **Description List**: Titel (bold) + Beschreibung; kann nummeriert oder bulleted sein
-- Sentence Case für alle Listen-Items
+- **Numbered list**: sequential steps, or a fixed number of items
+- **Bulleted list**: a general enumeration, with `*` rather than `-`
+- **Description list**: a bold title plus its description; either numbered or bulleted
+- Sentence case for every list item
 
 #### Headings
 
-- `#` (H1): Camel Case — z.B. "Flow Sequence Evaluation"
-- `##` und tiefer: Sentence Case — z.B. "Flow sequence evaluation"
-- Keine Heading-Hierarchie überspringen (kein H3 direkt unter H1)
-- Keine Punkte am Ende von Headings
+- `#` (H1): camel case — e.g. "Flow Sequence Evaluation"
+- `##` and below: sentence case — e.g. "Flow sequence evaluation"
+- Never skip a heading level (no H3 directly under an H1)
+- No full stop at the end of a heading
 
 #### Hyperlinks
 
-- Bedeutungsvoller Link-Text; nicht "click here" oder "read this document"
-- Kompletter Satz mit Kontext: "For more information, see [XY]"
-- Link-Text kurz halten; wichtige Wörter an den Anfang
-- Nicht dieselbe Link-Formulierung für unterschiedliche Ziele
+- Meaningful link text: never "click here" or "read this document"
+- A complete sentence carrying the context: "For more information, see [XY]"
+- Keep the link text short, with the words that matter first
+- Never use the same wording for links to different places
 
-#### Tabellen
+#### Tables
 
-- Nicht in Sätze einbetten
-- Nur wenn mehr als eine Zeile und Spalte vorhanden
-- Sentence Case für alle Inhalte
-- Keine Punkte am Satz-Ende in Tabellen-Zellen
-- Tabelle einleiten mit vollständigem Satz + "the following table"
+- Do not embed a table in a sentence
+- Only where there is more than one row and one column
+- Sentence case throughout
+- No full stop at the end of a cell
+- Introduce a table with a complete sentence naming "the following table"
 
 ---
 
-### Formatierung: Code
+### Formatting: code
 
 #### Inline Code
 
-Backticks für: Attribute, CLI-Namen, Klassen/Methoden/Funktions-Namen, Enum-Namen, Dateipfade, Verzeichnisse, HTTP-Methoden, Parameter-Werte, Environment-Variablen, Command-Output.
+Backticks for: attributes, CLI names, class, method and function names, enum names, file paths, directories, HTTP methods, parameter values, environment variables and command output.
 
 #### Code Blocks
 
-- Fenced Code Blocks (drei Backticks) für mehrzeiligen Code oder Terminal-Ausgaben
-- Immer Sprach-Identifier angeben: ` ```php `, ` ```bash `, ` ```twig ` etc.
-- In Listen: korrekte Einrückung um Liste nicht zu brechen
-- Zwei Spaces als Indentation, keine Tabs
-- Drei Punkte (`...`) auf eigener Zeile für ausgelassene Ausgabe
+- Fenced code blocks (three backticks) for multi-line code or terminal output
+- Always give the language identifier: ` ```php `, ` ```bash `, ` ```twig ` and so on
+- Inside a list, indent correctly so the list does not break
+- Two spaces for indentation, never tabs
+- Three dots (`...`) on a line of their own where output is elided
 
-#### Platzhalter
+#### Placeholders
 
-- In Großbuchstaben und kursiv: `*`PLACEHOLDER_NAME`*`
-- Informative Namen verwenden; kein "X" als Platzhalter
+- Upper case and italic: `*`PLACEHOLDER_NAME`*`
+- Use an informative name; never "X"
 
 #### HTTP Status Codes
 
-- Code-Font: `400 Bad Request`
+- Code font: `400 Bad Request`
 - Range: `HTTP 2xx`
-- Explizite Range: `400-499`
+- An explicit range: `400-499`
 
-#### CLI-Befehle
+#### CLI commands
 
-- `$`-Prompt am Anfang jeder Eingabezeile
-- Kein Verzeichnispfad vor Prompt
+- A `$` prompt at the start of every input line
+- No directory path before the prompt
 
-#### API-Referenz
+#### API reference
 
-- Jede Klasse, Interface, Konstante, Methode beschreiben
-- HTTP-Methoden in Großbuchstaben: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
-- Parameter beschreiben inkl. Valid Values und Default
-- Method-Namen mit Klammern: `getProduct()`
+- Describe every class, interface, constant and method
+- HTTP methods in upper case: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
+- Describe each parameter, with its valid values and default
+- Method names with brackets: `getProduct()`
 
 #### Deprecations
 
@@ -242,18 +242,18 @@ Backticks für: Attribute, CLI-Namen, Klassen/Methoden/Funktions-Namen, Enum-Nam
 
 ---
 
-### Asset-Management
+### Asset management
 
-#### Bilder
+#### Images
 
-| Attribut | Vorgabe |
+| Attribute | Requirement |
 |----------|---------|
-| Format | `.png` (Screenshots), `.svg` (Diagramme, Logos, Vektoren), `.gif` (Animationen) |
-| Größe | max. 5 MB |
-| Dimensionen | max. 768×576px (4:3) |
-| Alt-Text | Pflicht für jedes Bild |
-| Rand | Kein Border |
-| PII | Maskieren: Passwörter, Logins, Account-Details |
+| Format | `.png` (screenshots), `.svg` (diagrams, logos, vectors), `.gif` (animations) |
+| Size | max. 5 MB |
+| Dimensions | max. 768×576px (4:3) |
+| Alt text | mandatory for every image |
+| Border | none |
+| PII | mask it: passwords, logins, account details |
 
 **Naming:**
 ```
@@ -284,22 +284,22 @@ Tools:
 
 Einsetzen bei:
 - Visualisierungen/Beispiele zeigen
-- Panels mit Query/Einstellungen
+- Panels showing the query or settings
 - Neue Features hervorheben
 
 Regeln:
 - Neuestes OS-Versionen
 - Fokussiertes aktives Fenster
-- Kein unnötiger Whitespace/Scrollbalken
-- Reale oder realitätsnahe Daten
-- Kein Code in Screenshots (→ Code Blocks)
-- Kein Screenshot für sich häufig ändernde Seiten
+- No needless whitespace or scrollbars
+- Real data, or data that looks real
+- No code inside a screenshot — use a code block
+- No screenshot of a page that changes often
 
-#### Videos und GIFs
+#### Videos and GIFs
 
-Einsetzen für: Ablauf von Prozeduren, visuelle Feature-Demonstration, Setup-Anleitungen.
+Use them for: walking through a procedure, demonstrating a feature visually, setup instructions.
 
-- Captions und Transkripte für Videos
+- Captions and transcripts for videos
 - Naming analog zu Bildern
 
 #### Datei-Naming
@@ -315,39 +315,39 @@ Einsetzen für: Ablauf von Prozeduren, visuelle Feature-Demonstration, Setup-Anl
 
 #### 1. Ideate
 
-Vor dem Schreiben klären:
-- Wer ist die Zielgruppe?
-- Was wird dokumentiert?
-- Was sind die Voraussetzungen?
-- Welche Fragen werden beantwortet?
-- Welche anderen Themen sind relevant?
+Settle before writing:
+- Who is the audience?
+- What is being documented?
+- What are the prerequisites?
+- Which questions does it answer?
+- Which other topics bear on it?
 
 #### 2. Write — 30/90 Rule
 
 - Bei **30% fertig**: Erster Draft + erstes Feedback auf High Level
-- Bei **90% fertig**: Steady Review für In-depth-Validierung
+- At **90% done**: a steady review, for in-depth validation
 
 Erster Draft:
 - Dokumentstruktur (Themen-Fluss) vorbereiten
 - Alle Punkte kurz skizzieren
 - Gemeinsamen roten Faden beibehalten
-- Platzhalter für Bilder und Code
+- Placeholders for images and code
 - Cross-Referenzen einbauen
 - Nicht-Shopware-spezifische Sprache bevorzugen oder verlinken
 
 #### 3. Review
 
-Reviewer prüft: Allgemeinen Ansatz, Ton, Formulierung gem. Guidelines.
+The reviewer checks the overall approach, the tone, and the wording against these guidelines.
 
-Mehrere Reviewer können vorteilhaft sein. Wiederholbarer Prozess bis Finalversion.
+More than one reviewer often helps. Repeat the cycle until the version is final.
 
 #### 4. Publish
 
-Vor Veröffentlichung prüfen ob alle ursprünglichen Fragen und Ziele erfüllt.
+Before publishing, check that every original question and goal has been met.
 
 #### 5. Versionen pflegen
 
-Inhalte sind auf Shopware Major-Versionen basiert (6.3, 6.4, ...). Aktuell = `main`-Branch; ältere Versionen = eigene Branches.
+Content is tied to Shopware major versions (6.3, 6.4, …). Current is the `main` branch; older versions live in their own Branches.
 
 Versions-Hinweis:
 ```markdown
@@ -360,14 +360,14 @@ This functionality is available starting with Shopware 6.4.3.0.
 
 ### Embedding in Developer Portal
 
-Repositories können Content via Docs CLI (`developer-portal`) einbetten:
+A repository can embed content through the docs CLI (`developer-portal`):
 
 ```bash
 ## portal.json anpassen, dann:
 ./docs-cli manage
 ```
 
-Nach Konfiguration in `.vitepress/navigation.ts` für Sidebar und in `.github/scripts/mount.sh` für Production Build.
+Then configure it in `.vitepress/navigation.ts` for the sidebar, and in `.github/scripts/mount.sh` for the production build.
 
 Shortcuts in `package.json`:
 - `docs:env` — Portal klonen/aktualisieren

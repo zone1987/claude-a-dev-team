@@ -231,11 +231,24 @@ def prose_only(text: str) -> str:
 
 
 def first_german(text: str, rx) -> tuple[int, str] | None:
-    """Line and word of the first German hit in prose, or None."""
-    m = rx.search(prose_only(text))
+    """Line and word of the first German hit in prose, or None.
+
+    The offset has to be resolved against the same string the match came from. Searching the
+    filtered prose and counting newlines in the original reports a line that may hold no German
+    at all, which sends a reader to the wrong place — or to a line already translated.
+    """
+    prose = prose_only(text)
+    m = rx.search(prose)
     if not m:
         return None
-    return text[:m.start()].count("\n") + 1, m.group(0)
+    hit = prose[m.start():m.end()]
+    # Map back to the real file by finding that line's text in the original.
+    line_text = prose[prose.rfind("\n", 0, m.start()) + 1:]
+    line_text = line_text.split("\n", 1)[0].strip()
+    for n, ln in enumerate(text.splitlines(), 1):
+        if line_text and line_text in ln:
+            return n, hit
+    return prose[:m.start()].count("\n") + 1, hit
 
 
 def check_skill(path: str, rep: Report, cat: dict) -> None:
