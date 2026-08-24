@@ -1793,21 +1793,21 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-block.html",
    "slug": "guides/plugins/plugins/content/cms/add-cms-block.html",
    "plugin": "shopware-cms",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html",
    "slug": "guides/plugins/plugins/content/cms/add-cms-element.html",
    "plugin": "shopware-cms",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-data-to-cms-elements.html",
    "slug": "guides/plugins/plugins/content/cms/add-data-to-cms-elements.html",
    "plugin": "shopware-cms",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

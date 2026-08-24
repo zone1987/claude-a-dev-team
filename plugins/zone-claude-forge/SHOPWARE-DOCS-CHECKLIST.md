@@ -25,7 +25,8 @@ its exact URL with a retrieval date, and the page hash is recorded in that plugi
 | `shopware-checkout` | 17 | 0 |
 | `shopware-migration` | 9 | 0 |
 | `shopware-api` | 6 | 0 |
-| `shopware-cms` | 3 | 0 |
+| `shopware-cms` | 3 | 3 |
+| **total** | **779** | **3** |
 
 ## Pages by plugin
 
@@ -174,9 +175,9 @@ its exact URL with a retrieval date, and the page hash is recorded in that plugi
 
 ### shopware-cms (3)
 
-- [ ] `guides/plugins/plugins/content/cms/add-cms-block.html`
-- [ ] `guides/plugins/plugins/content/cms/add-cms-element.html`
-- [ ] `guides/plugins/plugins/content/cms/add-data-to-cms-elements.html`
+- [x] `guides/plugins/plugins/content/cms/add-cms-block.html`
+- [x] `guides/plugins/plugins/content/cms/add-cms-element.html`
+- [x] `guides/plugins/plugins/content/cms/add-data-to-cms-elements.html`
 
 ### shopware-commercial (116)
 

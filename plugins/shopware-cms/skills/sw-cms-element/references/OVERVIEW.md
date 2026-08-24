@@ -19,4 +19,20 @@ Shopware.Service('cmsService').registerCmsElement({
 
 `defaultConfig` fields are edited in the config modal (`sw-cms-slot-config`) and evaluated by the DataResolver.
 
+## Where the core code lives
+
+| Layer | Path |
+|---|---|
+| Administration | `src/Administration/Resources/app/administration/src/module/sw-cms/elements/` |
+| Storefront | `src/Storefront/Resources/views/storefront/element/` |
+| Core | `\Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader::load` |
+
+In the storefront template, `element` is passed in automatically and carries the element's metadata
+and configuration values. `CmsSlotDefinition.php` lists them in full.
+
 → CMS architecture (block/element/resolver): [CMS.md](CMS.md)
+
+## Source
+
+[developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html),
+Shopware 6.7, retrieved 2026-08-21.

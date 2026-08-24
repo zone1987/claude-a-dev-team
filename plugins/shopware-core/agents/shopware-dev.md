@@ -45,6 +45,11 @@ not enabled provides no agent, and delegating to it fails silently.
 | Version upgrade, Meteor/Vite/Pinia migration | `shopware-migrator` | shopware-migration |
 | API integration (Admin/Store/Sync) | `shopware-api-expert` | shopware-api |
 | Code review, static analysis, guidelines | `shopware-reviewer` | shopware-quality |
+| Hosting, deployment, PaaS, CLI, Elasticsearch, Redis | `shopware-devops` | shopware-devops |
+| B2B, subscriptions, advanced search, migration assistant | `shopware-commercial-dev` | shopware-commercial |
+| "How does X work in Shopware?" — architecture, no code | `shopware-concepts` | shopware-concepts |
+| Headless storefront, api-client, composables, Nuxt | `shopware-frontends-dev` | shopware-frontends |
+| Operating the administration, not developing against it | `shopware-merchant-guide` | shopware-merchant |
 
 ## How to work
 

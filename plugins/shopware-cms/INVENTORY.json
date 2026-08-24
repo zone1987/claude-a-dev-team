@@ -1,0 +1,46 @@
+{
+ "$comment": "Documentation inventory. Read before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+ "plugin": "shopware-cms",
+ "recorded": "2026-08-21",
+ "source": {
+  "documentation": "https://developer.shopware.com/docs/",
+  "sitemap": "https://developer.shopware.com/sitemap.xml",
+  "base": "https://developer.shopware.com/docs/",
+  "version": "6.7",
+  "scope": "guides/plugins/plugins/content/cms \u2014 the CMS block and element guides"
+ },
+ "pages": 3,
+ "urls": [
+  "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-block.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-data-to-cms-elements.html"
+ ],
+ "entries": [
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-block.html",
+   "sha256": "f628c873d772b10dcde5b252bfbd67294c8818b75eb89a350b61b07911626435",
+   "covers": [
+    "skills/sw-cms-block/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html",
+   "sha256": "a76b77034c3fc55aff9248b76b2d70f292b663801cd40453248f02981a2988ec",
+   "covers": [
+    "skills/sw-cms-element/references/OVERVIEW.md",
+    "skills/sw-cms-element/references/ADMIN.md",
+    "skills/sw-cms-element/references/STOREFRONT.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-data-to-cms-elements.html",
+   "sha256": "e3e63f6980c05b76a387e18eb12967a6e1741b06927494f4548bd9c2ac1bf623",
+   "covers": [
+    "skills/sw-cms-element/references/DATA-RESOLVER.md"
+   ],
+   "extracted": "2026-08-21"
+  }
+ ]
+}

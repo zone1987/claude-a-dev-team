@@ -30,28 +30,49 @@ not a bookkeeping one.
 
 ## The constraint that shapes everything
 
-The skill listing budget is 8,000 characters, and the Shopware plugins already consume it:
+The skill listing budget is 8,000 characters. What matters is not the marketplace total but the
+**set a session actually enables** — and the Shopware plugins are deliberately separate products, not
+one family that loads together. Checkout knowledge is needed while working on checkout; frontends
+only when building a headless storefront.
 
-| Working set | Chars | % of budget |
-|---|---:|---:|
-| `core` + `data` + `storefront` | 3,455 | 43 % |
-| the same, plus `admin` + `checkout` | 5,762 | 72 % |
-| `core` + `devops` + `quality` + `testing` | 3,982 | 49 % |
-| `merchant` + `core` + `data` | 6,573 | 82 % |
+Measured per realistic set:
 
-**So the page count must not become a skill count.** 779 pages spread over 15 plugins at ~290
-characters per skill entry would put a five-plugin session over budget on its own, and Claude Code
-then drops descriptions from the least-used skills — silently disabling exactly the rarely-needed
-knowledge this exercise exists to preserve.
+| Working set | Plugins | Skills | Chars | % |
+|---|---:|---:|---:|---:|
+| headless (`frontends` + `api`) | 2 | 6 | 1,758 | 21 % |
+| ops (`devops` + `quality`) | 2 | 8 | 2,298 | 28 % |
+| app dev (`apps` + `core` + `api`) | 3 | 8 | 2,327 | 29 % |
+| storefront (`core` + `storefront` + `cms`) | 3 | 10 | 2,873 | 35 % |
+| admin (`core` + `admin` + `data`) | 3 | 11 | 3,195 | 39 % |
+| backend (`core` + `framework` + `data` + `testing`) | 4 | 14 | 3,976 | 49 % |
+| **everything a plugin developer might touch** | 7 | 25 | 7,152 | **89 %** |
 
-The answer is the property this marketplace is built on: **a description costs budget on every turn,
-a reference file costs nothing until it is read.** `octo-api` documents 65 operations and 254
-capability fields in 8 skills for 2,296 characters. The same ratio applies here — depth goes into
-`references/`, and the skill count stays where it is.
+The last row is the one to design against, and it is also the one nobody actually runs: even a
+full-stack plugin task touches admin *or* storefront *or* checkout at a given moment, not all seven
+at once. That is what the orchestrator is for.
 
-Concretely: **no new model-visible skills.** Where a plugin's page count outgrows its skills
-(`shopware-quality` at 188 pages across 3), the growth goes into more reference files behind the
-same skills, and the `SKILL.md` reference map is regrouped rather than extended.
+### The orchestrator is what makes per-plugin growth safe
+
+`shopware-core` ships **`shopware-dev`**, the entry point for any Shopware task: it assigns the task
+to a domain, loads the matching `sw-*` skills and delegates to the domain specialist — each of which
+lives in its own plugin (`shopware-data:shopware-dal-expert`, `shopware-cms:shopware-cms`, and so
+on). A specialist runs in its own context window, so the main conversation pays for a summary rather
+than for the domain's whole reference set.
+
+This has two consequences for how the pages are carried:
+
+- **Each plugin is built out as a standalone product.** A plugin is enabled because its domain is
+  the work at hand, so it may carry the full depth of its area — `shopware-devops` can hold all 129
+  hosting pages without any cost to a session that never enables it.
+- **Skill count still matters, but per plugin rather than per marketplace.** A plugin at 4 skills
+  costs ~1,150 characters in the sets that include it. Growth goes into `references/` first; a new
+  skill is justified only when a genuinely separate domain appears that a reference map cannot
+  express, and it is measured against the 7-plugin worst case before it ships.
+
+The orchestrator's delegation table therefore has to stay complete: a plugin missing from it is a
+plugin `shopware-dev` never reaches, so its knowledge is unreachable in practice. Five plugins are
+missing from it today (`devops`, `commercial`, `concepts`, `frontends`, `merchant`) and adding them
+is part of this work.
 
 ## Version strategy
 
