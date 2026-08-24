@@ -295,42 +295,42 @@
    "url": "https://developer.shopware.com/docs/guides/development/integrations-api/auth-api-requests.html",
    "slug": "guides/development/integrations-api/auth-api-requests.html",
    "plugin": "shopware-api",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/development/integrations-api/flows/create-product.html",
    "slug": "guides/development/integrations-api/flows/create-product.html",
    "plugin": "shopware-api",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/development/integrations-api/generated-reference.html",
    "slug": "guides/development/integrations-api/generated-reference.html",
    "plugin": "shopware-api",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/development/integrations-api/partial-data-loading.html",
    "slug": "guides/development/integrations-api/partial-data-loading.html",
    "plugin": "shopware-api",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/development/integrations-api/request-headers.html",
    "slug": "guides/development/integrations-api/request-headers.html",
    "plugin": "shopware-api",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/development/integrations-api/search-criteria.html",
    "slug": "guides/development/integrations-api/search-criteria.html",
    "plugin": "shopware-api",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

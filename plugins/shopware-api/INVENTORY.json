@@ -1,0 +1,76 @@
+{
+ "$comment": "Documentation inventory. Read before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+ "plugin": "shopware-api",
+ "recorded": "2026-08-21",
+ "source": {
+  "documentation": "https://developer.shopware.com/docs/",
+  "sitemap": "https://developer.shopware.com/sitemap.xml",
+  "base": "https://developer.shopware.com/docs/",
+  "version": "6.7"
+ },
+ "pages": 6,
+ "urls": [
+  "https://developer.shopware.com/docs/guides/development/integrations-api/auth-api-requests.html",
+  "https://developer.shopware.com/docs/guides/development/integrations-api/flows/create-product.html",
+  "https://developer.shopware.com/docs/guides/development/integrations-api/generated-reference.html",
+  "https://developer.shopware.com/docs/guides/development/integrations-api/partial-data-loading.html",
+  "https://developer.shopware.com/docs/guides/development/integrations-api/request-headers.html",
+  "https://developer.shopware.com/docs/guides/development/integrations-api/search-criteria.html"
+ ],
+ "entries": [
+  {
+   "page": "https://developer.shopware.com/docs/guides/development/integrations-api/search-criteria.html",
+   "sha256": "d54abf4946428519551fc83f21e0f6b9a569cd7c8245c9da34c230c619970423",
+   "covers": [
+    "skills/sw-admin/references/API-SEARCH.md",
+    "skills/sw-shared/references/API-INTEGRATION.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/development/integrations-api/flows/create-product.html",
+   "sha256": "562d2c1cd142194785b060fe2c857443704f5fecf43595b90da3ddaed2219b2e",
+   "covers": [
+    "skills/sw-admin/references/API-SEARCH.md",
+    "skills/sw-shared/references/API-INTEGRATION.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/development/integrations-api/auth-api-requests.html",
+   "sha256": "fc5fbab5d3631fa9f462738059d243ccb4c8e7c14335babf76d4b693b045ae56",
+   "covers": [
+    "skills/sw-admin/references/API-SEARCH.md",
+    "skills/sw-shared/references/API-INTEGRATION.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/development/integrations-api/generated-reference.html",
+   "sha256": "0d134a94ad8f14952dedc9123795fc01e329d1cb8fed05fb9a89b712dbc43a8a",
+   "covers": [
+    "skills/sw-admin/references/API-SEARCH.md",
+    "skills/sw-shared/references/API-INTEGRATION.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/development/integrations-api/partial-data-loading.html",
+   "sha256": "362893af5c435ac3c296742ac458a3a973cc63ae7c6f35dd2440ac2486184973",
+   "covers": [
+    "skills/sw-admin/references/API-SEARCH.md",
+    "skills/sw-shared/references/API-INTEGRATION.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/development/integrations-api/request-headers.html",
+   "sha256": "0b01165976ef6dc2ba3b2905a632e0d9685bfde03da5c87477ef4f46408a54cf",
+   "covers": [
+    "skills/sw-admin/references/API-SEARCH.md",
+    "skills/sw-shared/references/API-INTEGRATION.md"
+   ],
+   "extracted": "2026-08-21"
+  }
+ ]
+}
