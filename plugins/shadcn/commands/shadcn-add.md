@@ -1,20 +1,24 @@
 ---
 name: shadcn-add
-description: Fügt eine oder mehrere shadcn/ui-Komponenten hinzu — nennt den exakten CLI-Befehl (`npx shadcn@latest add …`), zeigt den Quellcode/Props aus dem passenden shadcn-<komponente>-Skill und baut ein lauffähiges Usage-Beispiel (Radix- oder Base-UI-Variante).
-argument-hint: <komponente(n)> z.B. "button dialog form" [--base|--radix] [--usage "Login-Formular"]
+description: Adds one or more shadcn/ui components — names the exact CLI command (`npx shadcn@latest add …`), shows the source and props from the fitting shadcn skill, and builds a runnable usage example (Radix or Base UI variant).
+argument-hint: <component(s)> e.g. "button dialog form" [--base|--radix] [--usage "login form"]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 ---
 
 # /shadcn-add
 
-Komponente(n) hinzufügen und einsetzen. Skills: das jeweilige `shadcn-<komponente>` + `shadcn-setup`.
+Add components and put them to use. Skills: the fitting component skill (`shadcn-forms`,
+`shadcn-layout`, `shadcn-data`, `shadcn-navigation`, `shadcn-feedback`) plus `shadcn-setup`.
 
-## Ablauf
-1. Komponenten + Variante aus `$ARGUMENTS` (Default: vorhandene Projekt-Variante / sonst Radix).
-2. **CLI:** `npx shadcn@latest add <comp> [<comp> …]` ausgeben (installiert Quellcode + Dependencies in `@/components/ui`).
-3. Aus dem `shadcn-<komponente>`-Skill: Imports + Grund-Usage; bei Bedarf Props/Anatomy/Varianten nennen.
-4. `--usage` → konkretes, lauffähiges Beispiel bauen (passende Examples des Skills als Vorlage; Code nicht raten).
-5. Auf benötigte Peer-Komponenten/Provider hinweisen (z.B. `<TooltipProvider>`, `<SidebarProvider>`).
+## Steps
+1. Components and variant from `$ARGUMENTS` (default: the variant already in the project, otherwise Radix).
+2. **CLI:** print `npx shadcn@latest add <comp> [<comp> …]` (it installs the source and dependencies
+   into `@/components/ui`).
+3. From the component skill: the imports and basic usage; name props, anatomy and variants where needed.
+4. `--usage` builds a concrete, runnable example, taking the skill's examples as the template — never
+   guess the code.
+5. Point out the peer components or providers required (e.g. `<TooltipProvider>`, `<SidebarProvider>`).
 
-Feldnamen/Props/Varianten gegen das Komponenten-Skill prüfen. Variante (Radix vs. Base) konsistent halten — Imports unterscheiden sich.
+Check field names, props and variants against the component skill. Keep the variant (Radix vs. Base)
+consistent — the imports differ.

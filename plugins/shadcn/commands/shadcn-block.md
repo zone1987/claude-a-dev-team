@@ -1,20 +1,21 @@
 ---
 name: shadcn-block
-description: Fügt einen shadcn/ui-Block ein (Sidebar/Login/Signup/Dashboard) — nennt den CLI-Befehl, zeigt den kompletten Block-Code (alle Dateien) aus dem passenden shadcn-blocks-*-Skill und passt ihn an Branding/Routen/Daten an.
-argument-hint: <block> z.B. "sidebar-07" | "login-03" | "dashboard-01" [--customize "Hinweise"]
+description: Inserts a shadcn/ui block (sidebar, login, signup, dashboard) — names the CLI command, shows the block's complete code (every file) from the shadcn-blocks skill, and adapts it to your branding, routes and data.
+argument-hint: <block> e.g. "sidebar-07" | "login-03" | "dashboard-01" [--customize "notes"]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 ---
 
 # /shadcn-block
 
-Block einsetzen. Skills: `shadcn-blocks` + `shadcn-blocks`/`-login`/`-signup`/`-dashboard`.
+Insert a block and adapt it. Skills: `shadcn-blocks`, plus `shadcn-setup` for the project wiring.
 
-## Ablauf
-1. Block aus `$ARGUMENTS` (Liste/Beschreibung in `shadcn-blocks`).
-2. **CLI:** `npx shadcn@latest add <block>` (z.B. `sidebar-07`) — installiert alle Block-Dateien + abhängige Komponenten.
-3. Aus dem passenden `shadcn-blocks-*`-Skill den kompletten Dateibaum + Code zeigen; Einstiegspunkt (`page.tsx`) erklären.
-4. `--customize` → Branding/Navigation/Daten anpassen, ohne die Struktur zu brechen; Sidebar-Mechanik via `shadcn-layout`.
-5. Abhängige Komponenten/Provider sicherstellen.
+## Steps
+1. Block and options from `$ARGUMENTS`.
+2. **CLI:** print `npx shadcn@latest add <block>` — it writes every file the block consists of.
+3. From `shadcn-blocks`: walk the complete code, file by file, and say what each part does.
+4. Adapt it to the project: branding, routes, data sources, and the components already present.
+5. `--customize` applies the notes given, without inventing structure the block does not have.
 
-Block-Dateien/Code gegen das Block-Skill prüfen — nicht raten. Variante (Radix/Base) des Projekts beachten.
+Take the block's code from the skill rather than reconstructing it: a block is several files that
+have to match.

@@ -1,20 +1,21 @@
 ---
 name: shadcn-chart
-description: Erstellt ein shadcn/ui-Chart (Recharts) — wählt den passenden Diagrammtyp/die Variante, übernimmt den kompletten Beispiel-Code aus dem shadcn-charts-*-Skill und passt ChartConfig, Daten und --chart-Farbtokens an.
-argument-hint: <typ> area|bar|line|pie|radar|radial [--variant z.B. stacked|interactive|donut] [--data "Beschreibung"]
+description: Creates a shadcn/ui chart (Recharts) — picks the chart type and variant, takes the complete example code from the shadcn-data skill, and adapts ChartConfig, the data and the --chart colour tokens.
+argument-hint: <type> area|bar|line|pie|radar|radial [--variant e.g. stacked|interactive|donut] [--data "description"]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 ---
 
 # /shadcn-chart
 
-Chart erstellen. Skills: `shadcn-data` + `shadcn-charts-<typ>`.
+Build a chart. Skills: `shadcn-data` for the chart code, `shadcn-theming` for the colour tokens.
 
-## Ablauf
-1. Diagrammtyp + Variante aus `$ARGUMENTS`.
-2. **Basis sicherstellen:** `npx shadcn@latest add chart` (ChartContainer/ChartTooltip/ChartLegend).
-3. Nächstgelegenes Beispiel aus `shadcn-charts-<typ>` als Vorlage nehmen (kompletter Code).
-4. **`ChartConfig`** (label/icon/color je Reihe) + Datenstruktur an den Use-Case anpassen; Achsen/Tooltip/Legend konfigurieren.
-5. **Farben:** `--chart-1..5`-Tokens in `globals.css` (Light/Dark) setzen/prüfen — ggf. `/shadcn-theme`.
+## Steps
+1. Chart type and variant from `$ARGUMENTS`.
+2. From `shadcn-data`: take the complete example for that type and variant.
+3. Adapt `ChartConfig` (the series keys, labels and colours) to the actual data.
+4. Colours come from the `--chart-1` to `--chart-5` tokens, so the chart follows the theme in light
+   and dark (`shadcn-theming`).
+5. `--data` shapes the example data to what is described.
 
-Recharts-Props/ChartConfig-Felder gegen `shadcn-data`/`shadcn-chart` prüfen — nicht raten.
+Use the documented ChartConfig fields and Recharts props only (source: `shadcn-data`).

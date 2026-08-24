@@ -1,13 +1,15 @@
 # shadcn-vue Utils
 
-Einsatzfertige Vorlagen — kopieren und an dein Projekt anpassen. Keine echten Credentials einfügen (Registry-Auth via Env-Var).
+Ready-to-use templates — copy one and adapt it to your project. Never paste real credentials
+(registry auth belongs in an env var).
 
-| Datei | Zweck |
+| File | Purpose |
 |---|---|
-| `components.json` | shadcn-vue-Projektkonfiguration (new-york, neutral, `framework`, Aliase inkl. `composables`, Tailwind-v4 cssVariables). Ins Projekt-Root. Details: Skill `shadcn-vue-components-json`. |
-| `lib-utils.ts` | Der Pflicht-Helfer `cn()` (clsx + tailwind-merge) → nach `src/lib/utils.ts`. |
-| `globals.css` | Tailwind-v4-Theme: alle CSS-Variablen-Tokens (`:root` + `.dark`, oklch) + `@theme inline`-Mapping. Details: Skills `shadcn-vue-theming`, `shadcn-vue-tailwind-v4`. |
-| `registry.json` | Beispiel-Index einer EIGENEN Registry. Details: Skill `shadcn-vue-registry-json`. |
-| `registry-item.example.json` | Beispiel eines Registry-Items mit allen wichtigen Feldern (`.vue`/`composable`). Details: Skill `shadcn-vue-registry-item-json`. |
+| `components.json` | The shadcn-vue project configuration (style, base colour, aliases including `composables`, Tailwind v4 cssVariables). Goes in the project root. Details: skill `shadcn-vue-setup`. |
+| `lib-utils.ts` | The mandatory `cn()` helper (clsx plus tailwind-merge) — put it in `lib/utils.ts` or `src/lib/utils.ts`. |
+| `globals.css` | The Tailwind v4 theme: every CSS variable token (`:root` plus `.dark`, oklch) and the `@theme inline` mapping. Details: skill `shadcn-vue-theming`. |
+| `registry.json` | An example index for a registry of YOUR OWN. Details: skill `shadcn-vue-setup`. |
+| `registry-item.example.json` | An example registry item with every field that matters. Details: skill `shadcn-vue-setup`. |
 
-Der **shadcn-vue-MCP-Server** wird über die `.mcp.json` im Plugin-Root mitgeliefert (`npx shadcn-vue@latest mcp`). Details: Skill `shadcn-vue-mcp`.
+The **shadcn-vue MCP server** ships with the plugin through `.mcp.json` in its root. Details: skill
+`shadcn-vue-setup`.

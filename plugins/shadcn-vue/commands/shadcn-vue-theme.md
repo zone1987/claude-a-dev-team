@@ -1,21 +1,23 @@
 ---
 name: shadcn-vue-theme
-description: Erzeugt/ändert ein shadcn-vue-Theme — setzt die semantischen CSS-Variablen-Tokens (Light + Dark) konsistent, mappt sie via Tailwind-v4 @theme (oklch), passt --radius und --chart-Tokens an und prüft Kontrast/A11y.
-argument-hint: [--base-color neutral|zinc|slate|stone|gray] [--primary "<farbe>"] [--radius 0.5rem] [--dark]
+description: Creates or changes a shadcn-vue theme — sets the semantic CSS variable tokens consistently for light and dark, maps them through Tailwind v4 @theme (oklch), adjusts --radius and the --chart tokens, and checks contrast.
+argument-hint: [--base-color neutral|zinc|slate|stone|gray] [--primary "<colour>"] [--radius 0.5rem] [--dark]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /shadcn-vue-theme
 
-Theme bauen/anpassen. Skills: `shadcn-vue-theming`, `shadcn-vue-setup`, bei `--dark` `shadcn-vue-theming`.
+Build or change a theme. Skill: `shadcn-vue-theming`.
 
-## Ablauf
-1. Basisfarbe/Primary/Radius aus `$ARGUMENTS`.
-2. **Tokens setzen:** in `globals.css` `:root` UND `.dark` alle Theme-Variablen konsistent (`--background`,
-   `--foreground`, `--primary`(+`-foreground`), `--secondary`, `--muted`, `--accent`, `--destructive`, `--border`,
-   `--input`, `--ring`, `--card`, `--popover`, `--sidebar*`, `--chart-1..5`, `--radius`).
-3. **Tailwind v4:** `@theme inline`-Mapping der Variablen; Farbraum oklch.
-4. Kontrast/A11y prüfen (Light + Dark); fehlende Tokens ergänzen.
+## Steps
+1. Base colour and options from `$ARGUMENTS`.
+2. Set every semantic token in `:root` and `.dark`: `--background`, `--foreground`, `--primary`,
+   `--secondary`, `--muted`, `--accent`, `--destructive`, `--border`, `--ring`, `--card`,
+   `--popover`, `--sidebar`, `--chart-1` to `--chart-5`.
+3. Map them through Tailwind v4 `@theme inline`, in oklch.
+4. `--radius` and the chart tokens follow the same palette, so a chart matches the surface it sits on.
+5. Check the contrast of every foreground-on-background pair, in both modes.
 
-Token-Namen/Werte gegen `shadcn-vue-theming` prüfen — keine festen Farben in Komponenten. Vorlage: `utils/globals.css`.
+Never define a colour only inside `.dark`: a token missing from `:root` falls back to nothing. Use
+the documented token names only (source: `shadcn-vue-theming`).

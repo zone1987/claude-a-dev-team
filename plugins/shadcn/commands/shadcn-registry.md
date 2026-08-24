@@ -1,6 +1,6 @@
 ---
 name: shadcn-registry
-description: Scaffold einer eigenen shadcn-kompatiblen Registry — erzeugt registry.json und registry-item.json nach Schema, den shadcn-build-Schritt, Hosting-/Consumer-Hinweise (components.json registries) und optional MCP-Kompatibilität.
+description: Scaffolds a shadcn-compatible registry of your own — writes registry.json and registry-item.json to schema, the shadcn build step, hosting and consumer notes (components.json registries) and optionally MCP compatibility.
 argument-hint: [--item-type ui|block|theme|hook|lib|page] [--name "@acme/my-component"] [--mcp]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
@@ -8,16 +8,16 @@ model: sonnet
 
 # /shadcn-registry
 
-Eigene Registry aufsetzen. Skills: `shadcn-registry`, `shadcn-blocks`, `shadcn-blocks`,
-`shadcn-blocks`, bei `--mcp` `shadcn-setup`.
+Build a registry of your own. Skill: `shadcn-setup`.
 
-## Ablauf
-1. **`registry.json`** erstellen (name, homepage, items[]) — Schema aus `shadcn-blocks`.
-2. **`registry-item.json`** je Item nach `$ARGUMENTS` — alle nötigen Felder (`name`, `type` registry:<…>, `title`,
-   `description`, `files[]` mit path/type, `dependencies`, `registryDependencies`, `cssVars`, `tailwind`, `envVars`,
-   `meta`, `docs`) — Schema aus `shadcn-blocks`. Nur dokumentierte Felder.
-3. **Build:** `npx shadcn@latest build` → statische `/r/<name>.json`; unter `public/r` hosten.
-4. **Consumer:** Eintrag in `components.json` `registries` (`@namespace`) + `npx shadcn@latest add @namespace/<item>`.
-5. `--mcp` → `registry.json` an der Wurzel für MCP-Kompatibilität (`shadcn-setup`).
+## Steps
+1. Item type and name from `$ARGUMENTS`.
+2. **`registry.json`**: the index — `$schema`, `name`, `homepage`, `items`.
+3. **`registry-item.json`** per item: `$schema`, `name`, `type` (`registry:ui`, `registry:block`,
+   `registry:theme`, …), `files` with their `path` and `type`, plus `dependencies` and
+   `registryDependencies` where needed.
+4. **Build:** `npx shadcn@latest build`, then host the output as static JSON.
+5. Consumer side: the `registries` entry in `components.json`, and `--mcp` for MCP compatibility.
 
-Schema-Felder/`type`-Werte gegen die Registry-Skills prüfen — nicht raten. Keine echten Secrets in `envVars` (nur Platzhalter).
+Use the documented schema fields and `registry:*` types only (source: `shadcn-setup`). Never put a
+token in the registry URL — reference an env var.

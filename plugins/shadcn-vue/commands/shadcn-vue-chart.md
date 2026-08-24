@@ -1,20 +1,22 @@
 ---
 name: shadcn-vue-chart
-description: Erstellt ein shadcn-vue-Chart — wählt Diagrammtyp/Variante, übernimmt den kompletten Beispiel-Vue-Code aus dem shadcn-vue-charts-*-Skill und passt Daten, Config und --chart-Farbtokens an.
-argument-hint: <typ> area|bar|line|pie [--variant z.B. interactive|stacked|donut] [--data "Beschreibung"]
+description: Creates a shadcn-vue chart — picks the chart type and variant, takes the complete example Vue code from the shadcn-vue-data skill, and adapts the chart config, the data and the --chart colour tokens.
+argument-hint: <type> area|bar|line|pie [--variant e.g. stacked|donut] [--data "description"]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 ---
 
 # /shadcn-vue-chart
 
-Chart erstellen. Skills: `shadcn-vue-data` + `shadcn-vue-charts-<typ>`.
+Build a chart. Skills: `shadcn-vue-data` for the chart code, `shadcn-vue-theming` for the tokens.
 
-## Ablauf
-1. Diagrammtyp + Variante aus `$ARGUMENTS`.
-2. **Basis sicherstellen:** `npx shadcn-vue@latest add chart` (ChartContainer/ChartTooltip/ChartLegend).
-3. Nächstgelegenes Beispiel aus `shadcn-vue-charts-<typ>` als Vorlage (kompletter SFC-Code).
-4. Datenstruktur + Config anpassen; Tooltip/Legend/Achsen konfigurieren.
-5. **Farben:** `--chart-1..5`-Tokens in `globals.css` (Light/Dark) setzen/prüfen — ggf. `/shadcn-vue-theme`.
+## Steps
+1. Chart type and variant from `$ARGUMENTS`.
+2. From `shadcn-vue-data`: take the complete example for that type and variant, including
+   `ChartContainer` and the tooltip and legend components.
+3. Adapt the chart config (series keys, labels, colours) to the actual data.
+4. Colours come from the `--chart-1` to `--chart-5` tokens, so the chart follows the theme in light
+   and dark (`shadcn-vue-theming`).
+5. `--data` shapes the example data to what is described.
 
-Chart-Props/Config gegen `shadcn-vue-data`/`shadcn-vue-chart` prüfen — nicht raten.
+Use the documented config fields and component props only (source: `shadcn-vue-data`).

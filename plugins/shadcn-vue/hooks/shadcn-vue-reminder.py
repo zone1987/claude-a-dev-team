@@ -39,18 +39,18 @@ def main() -> int:
     msgs = []
     if is_vue_comp or uses:
         if re.search(r":class=\"`", content) and "cn(" not in content:
-            msgs.append("Klassen besser über `cn()` aus `@/lib/utils` zusammenführen (clsx + tailwind-merge) statt Template-Strings.")
+            msgs.append("Merge classes through `cn()` from `@/lib/utils` (clsx plus tailwind-merge) statt Template-Strings.")
         if re.search(r"(bg|text|border)-(red|blue|green|zinc|slate|gray|neutral)-\d{2,3}", content):
-            msgs.append("Feste Farb-Utilities gefunden — bevorzugt semantische Theme-Tokens (bg-background/text-foreground/bg-primary …).")
+            msgs.append("Hard-coded colour utilities: prefer the semantic theme tokens (bg-background/text-foreground/bg-primary …).")
         if "radix-vue" in content:
-            msgs.append("`radix-vue` ist veraltet → shadcn-vue nutzt jetzt `reka-ui` (Imports anpassen).")
+            msgs.append("`radix-vue` is superseded: shadcn-vue builds on `reka-ui` now (update the imporsen).")
     if is_components_json:
-        msgs.append("components.json geändert → Aliase (@/components, @/lib/utils, composables), `style`, `tailwind.cssVariables`, `framework` prüfen; Komponenten via `npx shadcn-vue@latest add` holen.")
+        msgs.append("components.json changed: check the aliases (@/components, @/lib/utils, composables), `style`, `tailwind.cssVariables`, `framework` prüfen; Komponenten via `npx shadcn-vue@latest add` holen.")
         if re.search(r"(token|secret|api[_-]?key)\s*[\"']?\s*:\s*[\"'][^\"']{6,}", content, re.I):
-            msgs.append("Mögliche Credentials in components.json → Registry-Auth via Env-Var, nichts Echtes committen.")
+            msgs.append("Possible credentials in components.json: registry auth belongs in an env var, nothing real committen.")
     if is_css and css_tokens:
         if ".dark" not in content and ":root" in content:
-            msgs.append("Theme-Tokens in :root, aber kein `.dark`-Block — Dark-Mode-Werte ergänzen.")
+            msgs.append("Theme tokens in :root with no `.dark` block: add the dark values.")
 
     if msgs:
         print("[shadcn-vue] " + " ".join(msgs))

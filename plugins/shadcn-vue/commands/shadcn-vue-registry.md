@@ -1,23 +1,23 @@
 ---
 name: shadcn-vue-registry
-description: Scaffold einer eigenen shadcn-vue-kompatiblen Registry — erzeugt registry.json und registry-item.json nach Schema, den shadcn-vue-build-Schritt, Hosting-/Consumer-Hinweise (components.json registries) und optional MCP-Kompatibilität.
-argument-hint: [--item-type ui|block|theme|composable|lib|page] [--name "@acme/my-component"] [--mcp]
+description: Scaffolds a shadcn-vue-compatible registry of your own — writes registry.json and registry-item.json to schema, the shadcn-vue build step, hosting and consumer notes, and optionally MCP compatibility.
+argument-hint: [--item-type ui|block|theme|hook|lib|page] [--name "@acme/my-component"] [--mcp]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 ---
 
 # /shadcn-vue-registry
 
-Eigene Registry aufsetzen. Skills: `shadcn-vue-registry`, `shadcn-vue-blocks`, `shadcn-vue-blocks`,
-`shadcn-vue-blocks`, bei `--mcp` `shadcn-vue-setup`.
+Build a registry of your own. Skill: `shadcn-vue-setup`.
 
-## Ablauf
-1. **`registry.json`** erstellen (name, homepage, items[]) — Schema aus `shadcn-vue-blocks`.
-2. **`registry-item.json`** je Item nach `$ARGUMENTS` — alle nötigen Felder (`name`, `type` registry:<…>, `title`,
-   `description`, `files[]` mit path/type, `dependencies`, `registryDependencies`, `cssVars`, `tailwind`, `envVars`,
-   `meta`, `docs`) — Schema aus `shadcn-vue-blocks`. Nur dokumentierte Felder. Vue: `.vue`-SFC, `composables`.
-3. **Build:** `npx shadcn-vue@latest build` → statische `/r/<name>.json`; unter `public/r` hosten.
-4. **Consumer:** Eintrag in `components.json` `registries` (`@namespace`) + `npx shadcn-vue@latest add @namespace/<item>`.
-5. `--mcp` → `registry.json` an der Wurzel für MCP-Kompatibilität (`shadcn-vue-setup`).
+## Steps
+1. Item type and name from `$ARGUMENTS`.
+2. **`registry.json`**: the index — `$schema`, `name`, `homepage`, `items`.
+3. **`registry-item.json`** per item: `$schema`, `name`, `type` (`registry:ui`, `registry:block`,
+   `registry:theme`, …), `files` with their `path` and `type`, plus `dependencies` and
+   `registryDependencies` where needed.
+4. **Build:** `npx shadcn-vue@latest build`, then host the output as static JSON.
+5. Consumer side: the `registries` entry in `components.json`, and `--mcp` for MCP compatibility.
 
-Schema-Felder/`type`-Werte gegen die Registry-Skills prüfen. Keine echten Secrets in `envVars`.
+Use the documented schema fields and `registry:*` types only (source: `shadcn-vue-setup`). Never put
+a token in the registry URL — reference an env var.

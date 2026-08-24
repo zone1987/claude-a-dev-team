@@ -1,20 +1,25 @@
 ---
 name: shadcn-vue-add
-description: Fügt eine oder mehrere shadcn-vue-Komponenten hinzu — nennt den exakten CLI-Befehl (`npx shadcn-vue@latest add …`), zeigt Quellcode/Props aus dem passenden shadcn-vue-<komponente>-Skill und baut ein lauffähiges SFC-Usage-Beispiel.
-argument-hint: <komponente(n)> z.B. "button dialog form" [--usage "Login-Formular"]
+description: Adds one or more shadcn-vue components — names the exact CLI command (`npx shadcn-vue@latest add …`), shows the Vue source, props, slots and emits from the fitting skill, and builds a runnable usage example.
+argument-hint: <component(s)> e.g. "button dialog form" [--usage "login form"]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
 ---
 
 # /shadcn-vue-add
 
-Komponente(n) hinzufügen und einsetzen. Skills: das jeweilige `shadcn-vue-<komponente>` + `shadcn-vue-setup`.
+Add components and put them to use. Skills: the fitting component skill (`shadcn-vue-forms`,
+`shadcn-vue-layout`, `shadcn-vue-data`, `shadcn-vue-navigation`, `shadcn-vue-feedback`) plus
+`shadcn-vue-setup`.
 
-## Ablauf
-1. Komponenten aus `$ARGUMENTS`.
-2. **CLI:** `npx shadcn-vue@latest add <comp> [<comp> …]` (kopiert .vue-Quellcode + Dependencies, z.B. reka-ui, nach `@/components/ui`).
-3. Aus dem `shadcn-vue-<komponente>`-Skill: Imports + Grund-Usage (SFC, `<script setup>`); Props/Slots/Emits nennen.
-4. `--usage` → konkretes, lauffähiges SFC-Beispiel (passende Demos des Skills als Vorlage; Code nicht raten).
-5. Auf benötigte Peer-Komponenten/Provider hinweisen (z.B. `<TooltipProvider>`, `<SidebarProvider>`).
+## Steps
+1. Components from `$ARGUMENTS`.
+2. **CLI:** print `npx shadcn-vue@latest add <comp> [<comp> …]` (it installs the source and
+   dependencies into the `components/ui` alias).
+3. From the component skill: the imports and basic usage; name props, slots and emits where needed.
+4. `--usage` builds a concrete, runnable single-file component, taking the skill's demos as the
+   template — never guess the code.
+5. Point out the peer components or providers required (e.g. `<TooltipProvider>`, `<SidebarProvider>`).
 
-Props/Slots/Emits gegen das Komponenten-Skill + die reka-ui-API prüfen. `v-model` statt React-State.
+Check props, slots and emits against the component skill. The underlying primitive is `reka-ui`, so
+its API is what the props ultimately follow.

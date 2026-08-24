@@ -30,18 +30,18 @@ def main() -> int:
     if is_test or looks_pw:
         # hard waits / sleeps
         if re.search(r"waitForTimeout\s*\(", content) or re.search(r"page\.waitFor\(\s*\d", content):
-            msgs.append("`waitForTimeout`/feste Sleeps gefunden → durch Web-First-Assertions (`await expect(locator)…`) bzw. Auto-Waiting ersetzen (Flaky-Risiko).")
+            msgs.append("`waitForTimeout` or a fixed sleep: replace it with a web-first assertion (`await expect(locator)…`) or auto-waiting, which is what keeps the test from flaking.")
         # non-awaited expect
         if re.search(r"(?<!await )\bexpect\(\s*page\.", content) or re.search(r"(?<!await )\bexpect\(\s*locator", content):
-            msgs.append("Web-First-Assertion ohne `await` → `await expect(locator).…` (sonst greift kein Auto-Retry).")
+            msgs.append("A web-first assertion without `await`: write `await expect(locator).…`, otherwise no auto-retry happens.")
         # brittle selectors
         if re.search(r"page\.\$\(|page\.\$\$\(|\$x\(", content):
-            msgs.append("`page.$`/`$$`/`$x` sind veraltet → `page.locator()`/`getByRole()` verwenden.")
+            msgs.append("`page.$`, `$$` and `$x` are deprecated: use `page.locator()` or `getByRole()`.")
     if is_config:
         if "trace:" not in content:
-            msgs.append("Tipp: in `use` `trace: 'on-first-retry'` setzen — erleichtert Debugging via Trace Viewer.")
+            msgs.append("Consider `trace: 'on-first-retry'` in `use`, so a failure can be read in the Trace Viewer.")
         if re.search(r"(password|secret|token|api[_-]?key)\s*[:=]\s*['\"][^'\"]{4,}", content, re.I):
-            msgs.append("Mögliche Klartext-Credentials in der Config → als Env-Var/CI-Secret auslagern.")
+            msgs.append("Possible plaintext credentials in the config: move them to an env var or a CI secret.")
 
     if msgs:
         print("[playwright] " + " ".join(msgs))

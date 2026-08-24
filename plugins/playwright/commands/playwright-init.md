@@ -1,6 +1,6 @@
 ---
 name: playwright-init
-description: Scaffold eines Playwright-Projekts — Installation (@playwright/test + Browser), playwright.config.ts mit sinnvollen Defaults (Projects/Browser-Matrix, reporter, use-Options, webServer, trace), erster Beispiel-Test und optional Page-Object-Struktur.
+description: Scaffolds a Playwright project — installation (@playwright/test plus browsers), a playwright.config.ts with sensible defaults (projects and browser matrix, reporter, use options, webServer, trace), a first example test and optionally a page-object structure.
 argument-hint: [--ts|--js] [--browsers chromium,firefox,webkit] [--ui] [--webserver "npm run dev"] [--pom]
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 model: sonnet
@@ -8,17 +8,18 @@ model: sonnet
 
 # /playwright-init
 
-Erzeuge ein einsatzfertiges Playwright-Setup. Skills: `playwright-writing`, `playwright-writing`,
-`playwright-runner`, ggf. `playwright-runner`.
+Produce a ready-to-use Playwright setup. Skills: `playwright-writing`, `playwright-runner`.
 
-## Ablauf
-1. Sprache/Browser/Optionen aus `$ARGUMENTS` (Default TS, Browser-Matrix chromium+firefox+webkit).
-2. **Installation** vorschlagen: `npm init playwright@latest` bzw. `npm i -D @playwright/test` + `npx playwright install`
-   (mit `--with-deps` für Linux/CI).
-3. **`playwright.config.ts`** erzeugen — nur dokumentierte Optionen (`playwright-runner`): `testDir`, `fullyParallel`,
-   `forbidOnly`/`retries`/`workers` (CI-abhängig), `reporter: 'html'`, `use` (`baseURL`, `trace: 'on-first-retry'`,
-   `screenshot`/`video` on failure), `projects` (Browser-Matrix), optional `webServer`.
-4. **Erster Test** (`tests/example.spec.ts`) mit `getByRole`-Locator + Web-First-`expect`.
-5. `--pom` → Page-Object-Klasse + Fixture (`playwright-runner`).
+## Steps
+1. Language, browsers and options from `$ARGUMENTS` (default TS, browser matrix chromium+firefox+webkit).
+2. **Installation**: propose `npm init playwright@latest` or `npm i -D @playwright/test` plus
+   `npx playwright install` (with `--with-deps` on Linux and CI).
+3. **`playwright.config.ts`** — documented options only (`playwright-runner`): `testDir`,
+   `fullyParallel`, `forbidOnly`/`retries`/`workers` (depending on CI), `reporter: 'html'`, `use`
+   (`baseURL`, `trace: 'on-first-retry'`, `screenshot`/`video` on failure), `projects` (the browser
+   matrix), optionally `webServer`.
+4. **A first test** (`tests/example.spec.ts`) with a `getByRole` locator and a web-first `expect`.
+5. `--pom` adds a page-object class plus a fixture (`playwright-runner`).
 
-Nur dokumentierte Config-Felder/Options (Quelle: `playwright-runner`). Web-First-Assertions statt Sleeps. Keine Secrets in die Config.
+Use documented config fields and options only (source: `playwright-runner`). Web-first assertions
+rather than sleeps. No secrets in the config.

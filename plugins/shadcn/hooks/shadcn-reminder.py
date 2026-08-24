@@ -40,20 +40,20 @@ def main() -> int:
     if is_ui_comp or uses_shadcn:
         # className concatenation without cn()
         if re.search(r"className=\{`", content) and "cn(" not in content:
-            msgs.append("Klassen besser über `cn()` aus `@/lib/utils` zusammenführen (clsx + tailwind-merge) statt Template-Strings.")
+            msgs.append("Merge classes through `cn()` from `@/lib/utils` (clsx plus tailwind-merge) statt Template-Strings.")
         # Base vs Radix mismatch hint
         if "@radix-ui/" in content and "@base-ui-components/" in content:
-            msgs.append("Sowohl Radix- als auch Base-UI-Imports gefunden — pro Projekt EINE Variante konsistent verwenden.")
+            msgs.append("Both Radix and Base UI imports are present — keep ONE variant per project, consistent verwenden.")
         # hardcoded colors instead of tokens
         if re.search(r"(bg|text|border)-(red|blue|green|zinc|slate|gray|neutral)-\d{2,3}", content):
-            msgs.append("Feste Farb-Utilities gefunden — bevorzugt semantische Theme-Tokens (bg-background/text-foreground/bg-primary …).")
+            msgs.append("Hard-coded colour utilities: prefer the semantic theme tokens (bg-background/text-foreground/bg-primary …).")
     if is_components_json:
-        msgs.append("components.json geändert → Aliase (@/components, @/lib/utils), `style`, `tailwind.cssVariables` prüfen; Komponenten via `npx shadcn@latest add` holen.")
+        msgs.append("components.json changed: check the aliases (@/components, @/lib/utils), `style`, `tailwind.cssVariables` prüfen; Komponenten via `npx shadcn@latest add` holen.")
         if re.search(r"(token|secret|api[_-]?key)\s*[\"']?\s*:\s*[\"'][^\"']{6,}", content, re.I):
-            msgs.append("Mögliche Credentials in components.json → Registry-Auth via Env-Var, nichts Echtes committen.")
+            msgs.append("Possible credentials in components.json: registry auth belongs in an env var, nothing real committen.")
     if is_css and css_has_tokens:
         if ".dark" not in content and ":root" in content:
-            msgs.append("Theme-Tokens in :root, aber kein `.dark`-Block — Dark-Mode-Werte ergänzen für konsistentes Theme.")
+            msgs.append("Theme tokens in :root with no `.dark` block: add the dark values, for consistentes Theme.")
 
     if msgs:
         print("[shadcn] " + " ".join(msgs))

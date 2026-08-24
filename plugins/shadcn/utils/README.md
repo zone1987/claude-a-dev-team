@@ -1,13 +1,15 @@
 # shadcn Utils
 
-Einsatzfertige Vorlagen — kopieren und an dein Projekt anpassen. Keine echten Credentials einfügen (Registry-Auth via Env-Var).
+Ready-to-use templates — copy one and adapt it to your project. Never paste real credentials
+(registry auth belongs in an env var).
 
-| Datei | Zweck |
+| File | Purpose |
 |---|---|
-| `components.json` | shadcn-Projektkonfiguration (new-york, neutral, RSC, Aliase, Tailwind-v4 cssVariables). Ins Projekt-Root. Details: Skill `shadcn-components-json`. |
-| `lib-utils.ts` | Der Pflicht-Helfer `cn()` (clsx + tailwind-merge) → nach `lib/utils.ts` bzw. `src/lib/utils.ts`. |
-| `globals.css` | Tailwind-v4-Theme: alle CSS-Variablen-Tokens (`:root` + `.dark`, oklch) + `@theme inline`-Mapping. Details: Skills `shadcn-theming`, `shadcn-tailwind-v4`, `shadcn-colors`. |
-| `registry.json` | Beispiel-Index einer EIGENEN Registry. Details: Skill `shadcn-registry-json`. |
-| `registry-item.example.json` | Beispiel eines Registry-Items mit allen wichtigen Feldern. Details: Skill `shadcn-registry-item-json`. |
+| `components.json` | The shadcn project configuration (new-york, neutral, RSC, aliases, Tailwind v4 cssVariables). Goes in the project root. Details: skill `shadcn-setup`. |
+| `lib-utils.ts` | The mandatory `cn()` helper (clsx plus tailwind-merge) — put it in `lib/utils.ts` or `src/lib/utils.ts`. |
+| `globals.css` | The Tailwind v4 theme: every CSS variable token (`:root` plus `.dark`, oklch) and the `@theme inline` mapping. Details: skill `shadcn-theming`. |
+| `registry.json` | An example index for a registry of YOUR OWN. Details: skill `shadcn-setup`. |
+| `registry-item.example.json` | An example registry item with every field that matters. Details: skill `shadcn-setup`. |
 
-Der **shadcn-MCP-Server** wird über die `.mcp.json` im Plugin-Root mitgeliefert (Befehl `npx shadcn@latest mcp`). Details: Skill `shadcn-mcp`.
+The **shadcn MCP server** ships with the plugin through `.mcp.json` in its root (command
+`npx shadcn@latest mcp`). Details: skill `shadcn-setup`.

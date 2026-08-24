@@ -1,7 +1,7 @@
 {
   "name": "shadcn-vue",
   "version": "2.0.0",
-  "description": "shadcn-vue — der Vue-Port von shadcn/ui (auf Basis von reka-ui, Tailwind v4): alle 64 Komponenten mit komplettem Vue-Quellcode, Props/Slots/Emits, allen Demos und Reka-UI-API, dazu Blocks, Charts, Theming/Colors/Dark-Mode, Installation (Vite/Nuxt/Astro/Laravel/SvelteKit u.a.), CLI, components.json, eigene Registry, Forms (vee-validate/Zod), MCP-Server. Liefert den shadcn-vue-MCP-Server mit.",
+  "description": "shadcn-vue — the Vue port of shadcn/ui (built on reka-ui, Tailwind v4): all 64 components with their complete Vue source, props, slots and emits, every demo and the reka-ui API, plus blocks, charts, theming, colours and dark mode, installation (Vite, Nuxt, Astro, Laravel, SvelteKit and others), the CLI, components.json, your own registry, forms (vee-validate and Zod) and the MCP server. Ships the shadcn-vue MCP server with it.",
   "author": {
     "name": "zone1987",
     "url": "https://github.com/zone1987"
