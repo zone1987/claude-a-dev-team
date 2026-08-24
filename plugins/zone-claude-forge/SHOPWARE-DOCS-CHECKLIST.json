@@ -1765,14 +1765,14 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html",
    "slug": "guides/plugins/plugins/checkout/order/listen-to-order-changes.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
    "slug": "guides/plugins/plugins/checkout/order/using-the-state-machine.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

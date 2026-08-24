@@ -9,10 +9,12 @@
   "version": "6.7",
   "scope": "guides/plugins/plugins/checkout \u2014 cart, payment, documents, order"
  },
- "pages": 2,
+ "pages": 4,
  "urls": [
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html",
-  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html"
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html"
  ],
  "entries": [
   {
@@ -28,6 +30,22 @@
    "sha256": "175c8b55a17bd0c6e515883614daa3e3dd86811af22d678027dd785a970ec230",
    "covers": [
     "skills/sw-document/references/TYPE.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
+   "sha256": "1846ff6896fd15fdc1803a53b4c5655410132df541448d7f9d956a9c28eb113d",
+   "covers": [
+    "skills/sw-fulfilment/references/ORDER-STATE-MACHINE.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html",
+   "sha256": "32dbf50576f5b5c6b76deab81b325bd8a597cbce7a3295a238acaa50ea1b3598",
+   "covers": [
+    "skills/sw-fulfilment/references/ORDER-EVENTS.md"
    ],
    "extracted": "2026-08-21"
   }
