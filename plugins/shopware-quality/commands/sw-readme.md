@@ -1,6 +1,6 @@
 ---
 name: sw-readme
-description: Generiert/aktualisiert eine README für ein Shopware-6-Plugin nach dem etablierten README-Schema (Installation, Konfiguration, Features, Kompatibilität).
+description: Generates or updates a README for a Shopware 6 plugin following the established schema (installation, configuration, features, compatibility).
 argument-hint: [--plugin <PluginName>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,12 +8,14 @@ model: sonnet
 
 # /sw-readme
 
-Erzeuge/aktualisiere die Plugin-README. Skill: `shopware-readme` (Schema/Struktur).
+Create or update the plugin README. Skill: `sw-release` (the schema and structure).
 
-## Ablauf
-1. Ziel-Plugin bestimmen; `composer.json` (Name, Label, Version, Ziel-SW-Version) + vorhandene Features aus dem Code lesen.
-2. README nach Schema erstellen: Titel/Beschreibung, Installation (`plugin:install --activate`), Konfiguration,
-   Features, Kompatibilität (SW-Version), ggf. Lizenz/Support.
-3. Bestehende README respektieren — nur aktualisieren/ergänzen, nicht blind überschreiben.
+## Steps
+1. Settle the target plugin; read `composer.json` (name, label, version, target Shopware version)
+   and the features already present in the code.
+2. Write the README to the schema: title and description, installation
+   (`plugin:install --activate`), configuration, features, compatibility (the Shopware version), and
+   licence or support where they apply.
+3. Respect an existing README — update and extend it rather than overwriting it blindly.
 
-Changelog separat: `/sw-changelog`.
+The changelog is separate: `/sw-changelog`.

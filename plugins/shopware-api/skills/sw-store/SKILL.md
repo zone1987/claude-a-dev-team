@@ -9,7 +9,7 @@ The customer-facing API. Two headers carry identity: the access key names the sa
 
 ## Reference map
 
-- **[API-AUTH.md](references/API-AUTH.md)**: Die Store API ist kundenseitig und nutzt **keine OAuth-Tokens**, sondern Header.
+- **[API-AUTH.md](references/API-AUTH.md)**: the Store API is customer-facing and uses **no OAuth tokens** — it authenticates through headers.
 - **[API-ENDPOINTS.md](references/API-ENDPOINTS.md)**: Base `/store-api`, Header `sw-access-key`.
 
 ## Source

@@ -1,23 +1,25 @@
 ---
 name: sw-js-plugin
-description: Scaffold eines JavaScript-Storefront-Plugins in Shopware 6 (PluginBaseClass) inkl. main.js-Registrierung, data-Selector und Template-Hook.
-argument-hint: <PluginJsName> [--plugin <PluginName>] [--selector data-ff-x]
+description: Scaffolds a JavaScript storefront plugin in Shopware 6 including its PluginManager registration and a template hook.
+argument-hint: <Name> [--plugin <PluginName>] [--selector data-example]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /sw-js-plugin
 
-Erzeuge ein Storefront-JS-Plugin. Skill: `sw-javascript`.
+Produce a storefront JS plugin. Skill: `sw-javascript`.
 
-## Ablauf
-1. Name (PascalCase, ohne Suffix) + Ziel-Plugin + Selector (`data-...`) bestimmen.
-2. Erzeugen:
-   - `src/Resources/app/storefront/src/<kebab>/<kebab>.plugin.js` (extends `window.PluginBaseClass`, `static options`,
-     `init()`, `_registerEvents()`).
-   - Eintrag in `src/Resources/app/storefront/src/main.js`: `PluginManager.register('<Name>', <Class>, '[<selector>]')`.
-   - Optional Template-Hook (`<div data-...>`).
-3. Hinweis: Storefront-Build (`bin/build-storefront.sh`) + `composer eslint:storefront`.
+## Steps
+1. Settle the name (PascalCase, no suffix), the target plugin and the selector (`data-…`).
+2. Create:
+   - `src/Resources/app/storefront/src/<kebab>/<kebab>.plugin.js` (extends `window.PluginBaseClass`,
+     with `static options`, `init()` and `_registerEvents()`).
+   - The entry in `src/Resources/app/storefront/src/main.js`:
+     `PluginManager.register('<Name>', <Class>, '[<selector>]')`.
+   - Optionally a template hook (`<div data-…>`).
+3. Note the follow-up: the storefront build (`bin/build-storefront.sh`) and
+   `composer eslint:storefront`.
 
-Für das Ändern eines bestehenden Plugins stattdessen override/extend (Skills `sw-javascript`/`-extend`);
-vorhandene Plugins via `/sw-js-plugin-map` prüfen.
+To change an existing plugin, override or extend it instead (`sw-javascript`); check what is already
+there with `/sw-js-plugin-map`.

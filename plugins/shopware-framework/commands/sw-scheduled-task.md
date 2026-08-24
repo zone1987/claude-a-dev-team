@@ -1,20 +1,24 @@
 ---
 name: sw-scheduled-task
-description: Scaffold eines Shopware-6 ScheduledTask + Handler inkl. services.xml-Registrierung (Task-Tag + Message-Handler).
-argument-hint: <task:name> [--plugin <PluginName>] [--interval 86400]
+description: Scaffolds a Shopware 6 ScheduledTask plus its handler, including the services.xml registration (task tag and message handler).
+argument-hint: <Name> [--plugin <PluginName>] [--interval 86400]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: haiku
 ---
 
 # /sw-scheduled-task
 
-Erzeuge ScheduledTask + Handler. Skill: `sw-scheduled-task`.
+Produce a scheduled task and its handler. Skill: `sw-messaging`.
 
-## Ablauf
-1. Task-Name (`vendor.domain.action`, z.B. `ff.cleanup`) + Ziel-Plugin + Intervall (Sekunden).
-2. `src/ScheduledTask/<Name>Task.php` (extends `ScheduledTask`, `getTaskName`, `getDefaultInterval`).
-3. `src/ScheduledTask/<Name>TaskHandler.php` (`#[AsMessageHandler(handles: ...)]` extends `ScheduledTaskHandler`, `run()`).
-4. `services.xml`: Task mit Tag `shopware.scheduled.task`, Handler als Service (Autoconfigure oder `messenger.message_handler`).
-5. Hinweis: `bin/console scheduled-task:run` + Worker/Cron.
+## Steps
+1. Settle the task name (`vendor.domain.action`, e.g. `ff.cleanup`), the target plugin and the
+   interval in seconds.
+2. `src/ScheduledTask/<Name>Task.php` (extends `ScheduledTask`, with `getTaskName` and
+   `getDefaultInterval`).
+3. `src/ScheduledTask/<Name>TaskHandler.php` (`#[AsMessageHandler(handles: …)]`, extends
+   `ScheduledTaskHandler`, with `run()`).
+4. `services.xml`: the task tagged `shopware.scheduled.task`, the handler as a service (through
+   autoconfigure or `messenger.message_handler`).
+5. Note the follow-up: `bin/console scheduled-task:run`, and the worker or cron that drives it.
 
-Schwere Logik in eine eigene Message auslagern (MessageQueue). Bestehende Tasks nicht überschreiben.
+Move heavy work into a message of its own (the message queue). Never overwrite an existing task.

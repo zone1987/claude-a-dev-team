@@ -1,6 +1,6 @@
 ---
 name: sw-changelog
-description: Fügt einem Shopware-6-Plugin einen Changelog-Eintrag hinzu (Keep-a-Changelog) und bumpt optional die Version in composer.json.
+description: Adds a changelog entry to a Shopware 6 plugin (Keep a Changelog) and optionally bumps the version in composer.json.
 argument-hint: [--plugin <PluginName>] [--bump major|minor|patch]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: haiku
@@ -8,11 +8,14 @@ model: haiku
 
 # /sw-changelog
 
-Pflege den Plugin-Changelog. Skill: `sw-changelog`.
+Maintain the plugin changelog. Skill: `sw-release`.
 
-## Ablauf
-1. Ziel-Plugin + Änderungen erfragen/aus git-diff ableiten; Kategorien Added/Changed/Fixed/Removed.
-2. `CHANGELOG.md` (anlegen falls fehlt) mit neuem Versions-Abschnitt + Datum ergänzen (neueste oben).
-3. Bei `--bump` die `version` in `composer.json` entsprechend erhöhen (semver) und konsistent halten.
+## Steps
+1. Settle the target plugin and the changes — ask, or derive them from the git diff; categories are
+   Added, Changed, Fixed and Removed.
+2. Extend `CHANGELOG.md` (creating it where absent) with a new version section and date, newest
+   first.
+3. With `--bump`, raise `version` in `composer.json` accordingly (semver) and keep the two
+   consistent.
 
-Bestehende Einträge nie ändern — nur neue hinzufügen.
+Never edit an existing entry — only add new ones.

@@ -1,20 +1,24 @@
 ---
 name: sw-store-api-route
-description: Scaffold einer Shopware-6 Store-API-Route (Abstract + Route + Response-Struct) mit _routeScope store-api und Registrierung.
-argument-hint: <name> [--plugin <PluginName>] [--path /store-api/ff/example]
+description: Scaffolds a Shopware 6 Store API route (abstract base, route and response struct) with _routeScope store-api and its registration.
+argument-hint: <Name> [--plugin <PluginName>] [--path /store-api/example]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /sw-store-api-route
 
-Erzeuge eine Store-API-Route. Skill: `sw-store-api-route`.
+Produce a Store API route. Skill: `sw-api`.
 
-## Ablauf
-1. Name + Ziel-Plugin + Pfad (`/store-api/...`); Route-Name `store-api.<owner>.<name>`.
-2. `Abstract<Name>Route` (abstrakte Basis, `getDecorated`), `<Name>Route` (extends Abstract, `#[Route]` mit
-   `_routeScope: ['store-api']`, `load(Request, SalesChannelContext)`), `<Name>RouteResponse` (extends `StoreApiResponse`).
-3. services.xml-Registrierung.
-4. Hinweis: Auth via `sw-access-key`; für Frontends Typen neu generieren (`@shopware/api-gen`).
+## Steps
+1. Settle the name, target plugin and path (`/store-api/…`); the route name is
+   `store-api.<owner>.<name>`.
+2. Create `Abstract<Name>Route` (the abstract base, with `getDecorated`), `<Name>Route` (extends the
+   abstract, `#[Route]` with `_routeScope: ['store-api']`, `load(Request, SalesChannelContext)`) and
+   `<Name>RouteResponse` (extends `StoreApiResponse`).
+3. Register them in services.xml.
+4. Note the follow-up: auth goes through `sw-access-key`, and a frontend needs its types regenerated
+   (`@shopware/api-gen`).
 
-Für das Ändern einer bestehenden Core-Route stattdessen Decoration (`sw-api`). Admin-API-Aktion → `sw-api`.
+To change an existing core route, decorate it instead (`sw-api`). For an Admin API action, see
+`sw-api`.

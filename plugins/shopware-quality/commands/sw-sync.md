@@ -1,6 +1,6 @@
 ---
 name: sw-sync
-description: Prüft das Upstream-Repo shopware/shopware auf neue Versionen/Releases (GitHub releases/tags API) und Trunk-Drift und aktualisiert die sw-*-Skill-Bibliothek. --check = nur Report, --apply = Skills aktualisieren.
+description: Checks the upstream shopware/shopware repository for new versions and trunk drift (GitHub releases and tags API) and updates the sw-* skill library. --check reports only, --apply updates the skills.
 argument-hint: [--check|--apply]
 allowed-tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch, Task
 model: sonnet
@@ -8,17 +8,21 @@ model: sonnet
 
 # /sw-sync
 
-Synchronisiere die Skill-Bibliothek mit dem aktuellen Shopware-Stand. Delegiere an den Agent `shopware-librarian`
-(Skill `sw-release`).
+Bring the skill library up to the current Shopware release. Delegate to the `shopware-librarian`
+agent (skill `sw-release`).
 
-## Ablauf
-1. State lesen (`plugins/shopware-quality/.sync-state.json`).
-2. **Versionen**: `https://api.github.com/repos/shopware/shopware/tags` + `/releases` → neueste vs. gespeicherte Version.
-3. **Trunk-Drift**: lokaler Trunk-Pull / GitHub-Compare seit `lastCommit`; `changelog/`, neue `adr/`.
-4. Betroffene Skills mappen (Regeln aus `sw-release`).
-5. Modus:
-   - `--check` (Default): Report (aktuelle vs. neueste Version, Drift, betroffene Skills, Vorschläge) — keine Änderungen.
-   - `--apply`: Skills aktualisieren/ergänzen/entfernen, `marketplace.json` + Plugin-Version + Changelog pflegen,
-     `.sync-state.json` updaten; danach validieren.
+## Steps
+1. Read the state file (`plugins/shopware-quality/.sync-state.json`).
+2. **Versions**: `https://api.github.com/repos/shopware/shopware/tags` and `/releases` — the newest
+   against the recorded version.
+3. **Trunk drift**: a local trunk pull or a GitHub compare since `lastCommit`; `changelog/`, and any
+   new `adr/`.
+4. Map the skills affected (the rules live in `sw-release`).
+5. Mode:
+   - `--check` (the default): report the recorded against the newest version, the drift, the skills
+     affected and what to do — changing nothing.
+   - `--apply`: update, extend or remove the skills, maintain `marketplace.json`, the plugin version
+     and the changelog, update `.sync-state.json`, then validate.
 
-Bei Unklarheit/großen BC-Brüchen stoppen und berichten. Nichts erfinden — gegen die Quelle prüfen.
+Where something is unclear, or a large BC break is involved, stop and report instead. Never invent —
+check against the source.

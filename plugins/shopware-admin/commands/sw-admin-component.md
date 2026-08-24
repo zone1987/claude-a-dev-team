@@ -15,7 +15,7 @@ Erzeuge eine Admin-Komponente (oder ein Override). Skills: `sw-admin-component`,
 1. Komponentenname (kebab, mit Owner-Präfix) + Ziel-Plugin. Bei `--override <coreComponent>` ein Override erzeugen.
 2. Dateien in `.../component/<name>/` (oder `view/`): `index.js` (`Component.register` bzw. `Component.override`),
    `<name>.html.twig` (Meteor `mt-*`, bei Override `{% parent %}`), optional `<name>.scss`.
-3. Bei Override: `this.$super('methode')` für Original-Logik, Block-Namen aus Core übernehmen.
+3. When overriding: `this.$super('method')` for the original logic, block names from Core übernehmen.
 4. In main.js / Modul importieren. Hinweis: Build + `eslint:admin`/`stylelint`.
 
 Vor neuer Komponente Admin-Katalog prüfen (`/sw-admin-map`), ob etwas Passendes existiert.

@@ -1,6 +1,6 @@
 ---
 name: sw-admin-module
-description: Scaffold eines Admin-Moduls in Shopware 6 (Vue 3) — module/<name>/index.js mit Module.register, List/Detail-Pages, Navigation, Snippets, ACL.
+description: Scaffolds an administration module in Shopware 6 — Module.register with its routes, navigation, snippets, list and detail pages, and ACL privileges.
 argument-hint: <module-name> [--plugin <PluginName>] [--entity <entity>]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -8,16 +8,19 @@ model: sonnet
 
 # /sw-admin-module
 
-Erzeuge ein Admin-Modul. Skills: `sw-admin-module`, `sw-admin-component`, `sw-components`, `sw-components`,
-`sw-data`, `sw-data`, `sw-meteor`.
+Produce an admin module. Skills: `sw-components`, `sw-data`, `sw-meteor`.
 
-## Ablauf
-1. Modulname (kebab, mit Owner-Präfix z.B. `ff-example`) + Ziel-Plugin (+ optional gebundene Entity) bestimmen.
-2. Struktur `src/Resources/app/administration/src/module/<name>/`:
-   - `index.js` (`Module.register` mit routes list/detail, navigation, snippets, optional settingsItem)
-   - `page/<name>-list/` + `page/<name>-detail/` (je `index.js` + `.html.twig`, Meteor `mt-*`)
-   - `snippet/de-DE.json` + `en-GB.json`
-   - ACL-Privileges (`addPrivilegeMappingEntry`) + `acl`-Service-Datei
-3. In `main.js` importieren. Hinweis: Admin-Watcher/Build + `eslint:admin`.
+## Steps
+1. Settle the module name (kebab-case with an owner prefix, e.g. `ff-example`), the target plugin,
+   and optionally the entity it is bound to.
+2. Build `src/Resources/app/administration/src/module/<name>/`:
+   - `index.js` (`Module.register` with the list and detail routes, navigation, snippets, and
+     optionally a `settingsItem`)
+   - `page/<name>-list/` and `page/<name>-detail/` (each an `index.js` plus a `.html.twig`, using
+     Meteor `mt-*`)
+   - `snippet/de-DE.json` and `en-GB.json`
+   - ACL privileges (`addPrivilegeMappingEntry`) plus the `acl` service file
+3. Import it in `main.js`. Note the follow-up: the admin watcher or build, and `eslint:admin`.
 
-Daten via `repositoryFactory` (bei `--entity`). UI mit `mt-*`. Bestehende Module nicht überschreiben.
+Data goes through `repositoryFactory` (with `--entity`). Build the UI from `mt-*`. Never overwrite an
+existing module.

@@ -13,7 +13,7 @@ Base `/store-api`, Header `sw-access-key` (+ `sw-context-token`, `sw-store-api-a
 | Konto | `POST /store-api/account/login`, `/logout`, `/register`, `GET /store-api/account/customer`, `PATCH /store-api/account/change-*` |
 | Methoden | `POST /store-api/payment-method`, `POST /store-api/shipping-method` |
 
-Such-/Listing-Requests nutzen denselben Criteria-Body (filter/sort/associations/aggregations) wie die Admin-Suche.
+Search and listing requests take the same Criteria body (filter, sort, associations, aggregations) as the admin search.
 Commercial/Plugin-Erweiterungen (SwagCommercial, SwagCustomizedProducts, SwagDigitalSalesRooms) ergänzen weitere Routen.
 
 → Shop-spezifische Endpunkte inkl. installierter Plugins: OpenAPI-Katalog (`sw-api-catalog` / `/sw-api-map`).

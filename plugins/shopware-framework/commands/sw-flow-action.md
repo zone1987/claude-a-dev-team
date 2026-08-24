@@ -1,20 +1,23 @@
 ---
 name: sw-flow-action
-description: Scaffold einer Shopware-6 Flow-Builder-Action (PHP + Admin-Komponente) inkl. requirements und Registrierung.
-argument-hint: <action.name> [--plugin <PluginName>]
+description: Scaffolds a Shopware 6 flow builder action (PHP plus an admin component) including its requirements and registration.
+argument-hint: <Name> [--plugin <PluginName>] [--aware order|customer]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
 ---
 
 # /sw-flow-action
 
-Erzeuge eine Flow-Action. Skills: `sw-flow-action`, `sw-automation`, `sw-automation`.
+Produce a flow action. Skill: `sw-automation`.
 
-## Ablauf
-1. Action-Name (`action.<owner>.<verb>`, z.B. `action.ff.notify`) + Ziel-Plugin + benötigte Aware-Daten (z.B. OrderAware).
-2. PHP `src/Core/Content/Flow/Dispatching/Action/<Name>Action.php` (`getName`, `requirements`, `handleFlow(StorableFlow)`),
-   Registrierung via `flow.action`-Tag.
-3. Admin-Komponente (`sw-flow-action-...`) für Konfiguration + Registrierung beim Flow-Action-Service.
-4. Hinweis: transaktional nach Business-Prozess; externe Calls fehlertolerant/idempotent.
+## Steps
+1. Settle the action name (`action.<owner>.<verb>`, e.g. `action.ff.notify`), the target plugin, and
+   the aware data it needs (e.g. OrderAware).
+2. PHP: `src/Core/Content/Flow/Dispatching/Action/<Name>Action.php` (`getName`, `requirements`,
+   `handleFlow(StorableFlow)`), registered through the `flow.action` tag.
+3. The admin component (`sw-flow-action-…`) for its configuration, registered with the flow action
+   service.
+4. Note the follow-up: keep it transactional with respect to the business process, and make external
+   calls fault-tolerant and idempotent.
 
-Eigener Trigger nötig? → `sw-automation`. Bestehende Actions nicht überschreiben.
+Need a trigger of your own as well? See `sw-automation`. Never overwrite an existing action.
