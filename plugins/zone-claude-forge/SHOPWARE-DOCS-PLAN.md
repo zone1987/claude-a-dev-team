@@ -171,6 +171,22 @@ of the marketplace is complete.
 
 ## Definition of done
 
+**100 percent identifier coverage, measured, not judged.** `COV-11`
+
+```bash
+python3 scripts/page_coverage.py <mirrored page> 'plugins/<name>/skills/*/references/*.md'
+```
+
+It names every identifier of the page that the plugin does not carry. The only exclusion is the
+renderer's own formatting labels — a callout kind (`WARNING`, `DANGER`) or a fence language tag —
+and the callout's *content* is still carried.
+
+Nothing below 100 counts, and "only placeholder names remain" is not a reason to stop. Measured on
+the first eight pages: four sat at 85 to 95 percent, and reading the leftovers turned up the
+migration's own structure (`insertNumberRange`, `getStorefrontSalesChannelId`), the file the payment
+lifecycle code belongs in, and the built-in blocks of three CMS categories. Every one of those was a
+fact a reader following the guide would need.
+
 A page is `done` when all of these hold, and `validate_plugin.py --strict` is clean for its plugin:
 
 - its facts are in a reference file under `skills/<skill>/references/`
@@ -178,6 +194,7 @@ A page is `done` when all of these hold, and `validate_plugin.py --strict` is cl
 - the file is linked directly from `SKILL.md`
 - the page hash is in the plugin's `INVENTORY.json`
 - the plugin's skill count is unchanged from before this work
+- `page_coverage.py` reports 100 percent for the page
 
 A page marked `skip` carries a reason in the checklist. Anything else stays `todo`.
 

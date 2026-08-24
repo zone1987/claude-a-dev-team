@@ -21,6 +21,10 @@ Two document systems exist in 6.7, and which one applies decides everything else
 A type needs rows in three tables, added by a plugin migration: `document_type`,
 `document_type_translation` (one per language) and `document_base_config`.
 
+The migration splits into three private methods — `addTranslations()` and
+`addDocumentBaseConfig()` are called from `update()` after the type row itself is inserted, and
+`$documentBaseConfigId` is generated with `Uuid::randomBytes()`:
+
 ```php
 // <plugin root>/src/Migration/Migration1616677952AddDocumentType.php
 $connection->insert('document_type', [
@@ -186,6 +190,9 @@ kinds of row, again in a plugin migration:
 | `number_range_sales_channel` | assigns a sales channel to the range |
 | `number_range_translation`, `number_range_type_translation` | one row per language |
 
+The number range migration splits the same way: `insertNumberRange()` writes the three rows and
+`insertTranslations()` the language rows, both called from `update()`.
+
 ```php
 // <plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php
 $connection->insert('number_range_type', [
@@ -207,17 +214,27 @@ $connection->insert('number_range', [
 
 The technical name must match what the renderer asks for — `'document_' . self::TYPE`.
 
-The sales channel assignment needs the storefront channel's id, which is found by its type:
+The sales channel assignment needs the storefront channel's id. A private
+`getStorefrontSalesChannelId()` finds it by channel type and returns `null` when there is none:
 
 ```php
-Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
+private function getStorefrontSalesChannelId(Connection $connection): ?string
+{
+    $salesChannelId = $connection->fetchOne($sql, [
+        'typeId' => Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT),
+    ]);
+
+    return $salesChannelId ?: null;
+}
 ```
 
-Where no storefront channel exists, skip the assignment rather than failing the migration. Then
-insert `number_range_sales_channel` with the range id, the channel id and the type id.
+Where `$storefrontSalesChannelId` is null, return early rather than failing the migration. Otherwise
+insert `number_range_sales_channel` with `Uuid::randomBytes()` as its id, plus the range id, the
+channel id and the type id.
 
-Both translation tables take the same `Translations` shape as the document type, keyed by
-`number_range_id` and `number_range_type_id`; the type's label column is `type_name`, not `name`.
+Both translation tables take the same `Translations` shape as the document type —
+`$numberRangeTranslations` keyed by `number_range_id`, `$numberRangeTypeTranslations` by
+`number_range_type_id`. **The type's label column is `type_name`, not `name`.**
 
 ## Legacy: service registration and template
 

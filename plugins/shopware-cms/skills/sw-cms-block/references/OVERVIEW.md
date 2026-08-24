@@ -29,8 +29,17 @@ right.
 ## Where blocks live
 
 In the administration: **Content → Shopping Experience**, then create or edit a layout. The designer
-sidebar groups the available blocks by category — Text, Images, Text & Images, Commerce, Video, Form
-and Sidebar — and blocks are dragged from there into a section.
+sidebar groups the available blocks by category, and blocks are dragged from there into a section:
+
+| Category | What it holds |
+|---|---|
+| Text | text-only blocks |
+| Images | image-only blocks |
+| Text & Images | combined text and image blocks |
+| Commerce | product sliders, listings and the like |
+| Video | YouTube and Vimeo video blocks |
+| Form | contact and newsletter forms |
+| Sidebar | category navigation and listing filters |
 
 The core code sits in three places:
 

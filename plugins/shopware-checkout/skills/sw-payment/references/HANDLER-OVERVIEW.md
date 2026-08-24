@@ -184,13 +184,18 @@ streamlined `pay()` do the capture.
 
 ## Registering the payment method (plugin lifecycle)
 
-The handler alone does nothing: a `payment_method` entity has to point at it. Create it on install.
+The handler alone does nothing: a `payment_method` entity has to point at it. Create it on install,
+in the plugin base class — `SwagBasicExample.php` in the guide's own example, i.e. the class named
+after your plugin.
 
 ```php
+// <plugin root>/src/SwagBasicExample.php — your plugin's base class
 private function addPaymentMethod(Context $context): void
 {
-    // already there? nothing to do
-    if ($this->getPaymentMethodId()) {
+    $paymentMethodExists = $this->getPaymentMethodId();
+
+    // payment method exists already, no need to continue here
+    if ($paymentMethodExists) {
         return;
     }
 

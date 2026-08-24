@@ -38,8 +38,9 @@ Slot configuration: `sw-cms-slot-config`.
 ## collect: preparing the criteria
 
 `collect()` builds the criteria object. Read the element's configuration through
-`$slot->getFieldConfig()`, then reach the individual fields on it — a stored `mediaId`, for instance.
-Where the field is empty, return `null` and nothing is loaded.
+`$slot->getFieldConfig()`, then reach the individual fields on it — the guide reads a
+`myCustomMedia` field holding a `mediaId`. Where the field is empty, return `null` and nothing is
+loaded.
 
 Registration goes through the `shopware.cms.data_resolver` tag:
 
@@ -62,8 +63,10 @@ second argument instead — `'example_entity.definition'` in place of `MediaDefi
 ## enrich: attaching the data
 
 `enrich()` runs additional logic on what was resolved, with the same access to the configuration
-fields. It is where an external API call belongs: query it, then hand the response to the slot with
-`$slot->setData($response)`. In the storefront the result is available as `element.data`.
+fields. It is where an external API call belongs — the guide reads a `myCustomApiPayload` field,
+passes it to a `MyCustomAPI` client (`$myCustomAPI->query($myCustomApiPayload)`), and hands the
+response to the slot with `$slot->setData($response)`. In the storefront the result is available as
+`element.data`.
 
 ## Extending the resolution, and why a page event is too late
 

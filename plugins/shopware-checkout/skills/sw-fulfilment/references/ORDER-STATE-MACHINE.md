@@ -128,6 +128,7 @@ public function setOrderDeliveryToShipped(string $orderId, Context $context): vo
     $criteria = new Criteria();
     $criteria->addFilter(new EqualsFilter('orderId', $orderId));
 
+    // named $orderDeliveryId in the shorter example, $orderDeliveryEntityId in the full one
     $orderDeliveryEntityId = $this->orderDeliveryRepository->searchIds($criteria, $context)->firstId();
 
     $this->stateMachineRegistry->transition(new Transition(

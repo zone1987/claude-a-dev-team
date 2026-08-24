@@ -867,6 +867,15 @@
       "tell": "A re-audit that begins by fetching every page, or a report citing the inventory's date without naming a hash comparison. Both mean the cheap question was skipped."
     },
     {
+      "id": "COV-11",
+      "ground": "technique",
+      "enforcement": "blocking",
+      "rule": "A page is done at 100 percent identifier coverage, never less. Every class, method, field, tag, constant and option the page names appears in the plugin. The only exclusion is the documentation renderer's own formatting labels — a callout kind (WARNING, DANGER, TIP) or a code-fence language tag — and the callout's content is still carried.",
+      "effect": "A partial figure hides which part is missing, and the judgement that a leftover is \"just an example name\" is usually wrong. Measured on plugins/shopware-checkout: the ten identifiers dismissed as private helpers on the document-type page were the structure of the migration — addTranslations, insertNumberRange, getStorefrontSalesChannelId — and the ones dismissed on the payment page named the file the lifecycle code belongs in. Both were real gaps for a reader following the guide.",
+      "measurement": "scripts/page_coverage.py <mirrored page> \"<plugin glob>\" reports the percentage and names every absent identifier. All eight pages carried so far report 100 percent; four of them reported 85 to 95 percent before the leftovers were read.",
+      "tell": "A completion report quoting a percentage below 100, or the phrase \"only placeholder names remain\". Read them: a placeholder in a guide still tells the reader which field, file or method the example uses."
+    },
+    {
       "id": "REF-03",
       "ground": "technique",
       "enforcement": "review",
