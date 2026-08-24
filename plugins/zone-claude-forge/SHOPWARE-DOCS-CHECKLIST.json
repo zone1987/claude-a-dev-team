@@ -1639,7 +1639,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/architecture/cart-process.html",
    "slug": "guides/plugins/plugins/architecture/cart-process.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1681,7 +1681,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-discounts.html",
    "slug": "guides/plugins/plugins/checkout/cart/add-cart-discounts.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1695,7 +1695,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-processor-collector.html",
    "slug": "guides/plugins/plugins/checkout/cart/add-cart-processor-collector.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1709,7 +1709,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/change-price-of-item.html",
    "slug": "guides/plugins/plugins/checkout/cart/change-price-of-item.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1723,7 +1723,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/tax-provider.html",
    "slug": "guides/plugins/plugins/checkout/cart/tax-provider.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1737,7 +1737,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document.html",
    "slug": "guides/plugins/plugins/checkout/documents/legacy/add-custom-document.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1751,14 +1751,14 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-format-renderer.html",
    "slug": "guides/plugins/plugins/checkout/documents/v2/add-a-format-renderer.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/customize-document-data-and-templates.html",
    "slug": "guides/plugins/plugins/checkout/documents/v2/customize-document-data-and-templates.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -1786,7 +1786,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/customize-payment-provider.html",
    "slug": "guides/plugins/plugins/checkout/payment/customize-payment-provider.html",
    "plugin": "shopware-checkout",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

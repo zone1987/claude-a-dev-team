@@ -15,6 +15,9 @@ Two document systems exist in 6.7, and which one applies decides everything else
 - [Legacy: service registration and template](#legacy-service-registration-and-template)
 - [v2: type, render data and provider](#v2-type-render-data-and-provider)
 - [v2: registration, template and database](#v2-registration-template-and-database)
+- [v2: format renderers](#v2-format-renderers)
+- [v2: adding data to an existing document](#v2-adding-data-to-an-existing-document)
+- [v2: overriding a document template](#v2-overriding-a-document-template)
 
 ## Legacy: the database entries
 
@@ -312,6 +315,87 @@ way.
 whose `technical_name` matches the type — the `document` table has a foreign key on it — and a number
 range of type `document_<technical_name>`. The migration code is identical to the legacy one above.
 
+## v2: format renderers
+
+A renderer produces exactly **one** format. `getDependencies()` names the formats that must render
+first, so their results are in `RenderState` when yours runs.
+
+```php
+// <plugin root>/src/Core/Checkout/Document/TextRenderer.php
+// depends on 'html' and derives plain text from the rendered HTML
+$html = $state->require('html');
+
+return new RenderResult(
+    $this->getFormat(),
+    strip_tags($html->content),
+    sprintf('%s_txt', $input->documentNumber),
+    $this->getFileExtension(),
+    'text/plain',
+);
+```
+
+```php
+$container->services()
+    ->set(TextRenderer::class)
+    ->tag('shopware.document_v2.renderer');
+```
+
+**A format only becomes selectable once a document type lists it in `getSupportedFormats()`.**
+
+### Overriding a built-in renderer
+
+The registry keeps the **first** renderer registered per format, ordered by tag priority. Register
+for the same format string with a higher priority to replace a built-in one:
+
+```php
+$container->services()
+    ->set(CustomPdfRenderer::class)
+    ->tag('shopware.document_v2.renderer', ['priority' => 100]);
+```
+
+This replaces the legacy system's `getDecorated()` decoration chains.
+
+## v2: adding data to an existing document
+
+**Any number of providers can support the same document type.** Each stores its render data DTO under
+its own key, and the DTO's public fields are flattened onto the template's `config` variable.
+
+**A key already used by another provider for the same type makes generation throw.**
+
+```php
+// <plugin root>/src/Core/Checkout/Document/InvoiceNoteDataProvider.php
+$order = $input->order;
+
+return new InvoiceNoteRenderData(
+    invoiceNote: sprintf('Please quote order %s in all correspondence.', $order->getOrderNumber()),
+);
+```
+
+```php
+$container->services()
+    ->set(InvoiceNoteDataProvider::class)
+    ->tag('shopware.document_v2.provider');
+```
+
+## v2: overriding a document template
+
+Templates live under `@Framework/documents/` and are overridden with `sw_extends`, the same mechanism
+as everywhere else in Shopware. The invoice template exposes the blocks of `base.html.twig` and the
+`includes/` partials, so overriding `invoice.html.twig` reaches all of them.
+
+```twig
+{# <plugin root>/src/Resources/views/documents/invoice.html.twig #}
+{% sw_extends '@Framework/documents/invoice.html.twig' %}
+
+{% block document_footer %}
+    {{ parent() }}
+    {{ config.invoiceNote }}
+{% endblock %}
+```
+
+**The same templates render for every format that needs HTML**, so a change to `invoice.html.twig`
+reaches the HTML, the PDF and the ZUGFeRD-embedded PDF alike.
+
 ## Related
 
 Generation itself runs through `DocumentGenerator`; see `OVERVIEW.md`. For number ranges, call the
@@ -319,7 +403,9 @@ Skill tool with `sw-platform`.
 
 ## Source
 
-- [add-custom-document-type.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html) — the legacy system
+- [legacy/add-custom-document-type.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html) — the legacy system
 - [v2/add-a-document-type.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html) — Document System v2
+- [v2/add-a-format-renderer.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-format-renderer.html) — format renderers
+- [v2/customize-document-data-and-templates.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/customize-document-data-and-templates.html) — providers and templates
 
 Shopware 6.7, retrieved 2026-08-21.

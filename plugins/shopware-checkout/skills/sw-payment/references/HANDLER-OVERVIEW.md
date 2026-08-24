@@ -263,7 +263,50 @@ Two ways, and the second is the one to prefer:
   `Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber`.
 - **`technicalName`**, which you chose yourself and which is unique by construction.
 
+## Customising an existing payment provider
+
+To change how a core payment handler behaves, **decorate it** rather than replacing the method. The
+example customises `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment`; the same
+procedure applies to an asynchronous handler.
+
+The constructor takes what the original service takes — an `OrderTransactionStateHandler` — plus the
+instance being decorated:
+
+```php
+// <plugin root>/src/Checkout/Payment/ExampleDebitPayment.php
+public function getDecorated(): DebitPayment
+{
+    return $this->decorated;
+}
+
+public function pay(Request $request, PaymentTransactionStruct $transaction,
+                    Context $context, ?Struct $validateStruct): ?RedirectResponse
+{
+    // your own behaviour here
+
+    $this->transactionStateHandler->process(
+        $transaction->getOrderTransaction()->getId(),
+        $salesChannelContext->getContext()
+    );
+}
+```
+
+```php
+// <plugin root>/src/Resources/config/services.php
+$services->set(ExampleDebitPayment::class)
+    ->decorate(DebitPayment::class)
+    ->args([
+        service(OrderTransactionStateHandler::class),
+        service('.inner'),
+    ]);
+```
+
+The order of `args` matches the constructor: the state handler first, then `.inner` — the service
+being decorated.
+
 ## Source
 
-[developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html),
+- [add-payment-plugin.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html) — the handler, its registration and the plugin lifecycle
+- [customize-payment-provider.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/customize-payment-provider.html) — decorating a core handler
+
 Shopware 6.7, retrieved 2026-08-21.

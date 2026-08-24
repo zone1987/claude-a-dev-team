@@ -9,16 +9,25 @@
   "version": "6.7",
   "scope": "guides/plugins/plugins/checkout \u2014 cart, payment, documents, order"
  },
- "pages": 8,
+ "pages": 17,
  "urls": [
+  "https://developer.shopware.com/docs/guides/plugins/plugins/architecture/cart-process.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-discounts.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-items.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-processor-collector.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-validator.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/change-price-of-item.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/customize-price-calculation.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/tax-provider.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document-type.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-document-type.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-format-renderer.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/customize-document-data-and-templates.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/listen-to-order-changes.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/order/using-the-state-machine.html",
-  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html"
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/add-payment-plugin.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/customize-payment-provider.html"
  ],
  "entries": [
   {
@@ -84,6 +93,83 @@
    "sha256": "ef21e2e1b23e421d719029792c0f6629067b6fdcdf14b320aa04194847ef96da",
    "covers": [
     "skills/sw-cart/references/PRICE.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-processor-collector.html",
+   "sha256": "05c9cb508eb97d816f9d3f9a4c8db194509988d9c1f13114fcb2656f1a0383ed",
+   "covers": [
+    "skills/sw-cart/references/COLLECTOR.md",
+    "skills/sw-cart/references/DISCOUNT.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-discounts.html",
+   "sha256": "8740fee769e0acd0a0e471f0aec2aa571b576fb62b1594e374bb578c7bc45a22",
+   "covers": [
+    "skills/sw-cart/references/COLLECTOR.md",
+    "skills/sw-cart/references/DISCOUNT.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/change-price-of-item.html",
+   "sha256": "4615af9e15126a51ec6a7f2c4b5afe112ef5675e3e7d0b2d738fa85cc1b2cf46",
+   "covers": [
+    "skills/sw-cart/references/PRICE-OVERWRITE.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/tax-provider.html",
+   "sha256": "53d7185f048198b615f4f23569238c24e64418ba19b4f4e62b298682e9422dc3",
+   "covers": [
+    "skills/sw-payment/references/TAX-PROVIDER.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/payment/customize-payment-provider.html",
+   "sha256": "093873a85d19abe73e34685cc0a0eb3631374750a5b9525221c7f05c6c16964b",
+   "covers": [
+    "skills/sw-payment/references/HANDLER-OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/add-a-format-renderer.html",
+   "sha256": "7d677356ed82e70fc8d229bb7429ef6d382f5fdcba5f02273601fc51b23f6ecd",
+   "covers": [
+    "skills/sw-document/references/TYPE.md",
+    "skills/sw-document/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/v2/customize-document-data-and-templates.html",
+   "sha256": "ed56e59fea463a6344584b7da5b2c685082f122643d3ce3be01b615ad13582af",
+   "covers": [
+    "skills/sw-document/references/TYPE.md",
+    "skills/sw-document/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/checkout/documents/legacy/add-custom-document.html",
+   "sha256": "368e0c89b31da504d8a8ee9222fbfdf3697b5e762426897c5a866c9f81c47bdf",
+   "covers": [
+    "skills/sw-document/references/TYPE.md",
+    "skills/sw-document/references/OVERVIEW.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/architecture/cart-process.html",
+   "sha256": "0489aa127b4a3c11f5091d86fbb706e8525003e4b8a736a5faade6da470b7ae0",
+   "covers": [
+    "skills/sw-cart/references/PROCESSOR.md"
    ],
    "extracted": "2026-08-21"
   }

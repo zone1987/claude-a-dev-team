@@ -15,6 +15,7 @@ The cart is recalculated on every change through collector, processor and valida
 - **[LINE-ITEM.md](references/LINE-ITEM.md)**: A cart position is a `LineItem`.
 - **[NESTED-LINE-ITEMS.md](references/NESTED-LINE-ITEMS.md)**: Line items can have `children` — e.g. a bundle with sub-products.
 - **[PRICE.md](references/PRICE.md)**: Cart prices come from calculator services, turning a `PriceDefinition` into a `CalculatedPrice`.
+- **[PRICE-OVERWRITE.md](references/PRICE-OVERWRITE.md)**: overwriting a line item price with a collector plus processor, and why a discount is usually the better answer.
 - **[PROCESSOR.md](references/PROCESSOR.md)**: The cart is calculated in two phases: **collector** → **processor**. [PROCESSOR-CHECKOUT](references/PROCESSOR-CHECKOUT.md).
 - **[PROMOTION.md](references/PROMOTION.md)**: Campaigns are `promotion` entities with discounts, optional codes and conditions via rules.
 - **[VALIDATOR.md](references/VALIDATOR.md)**: Validators inspect the calculated cart and can attach **blocking** or informational errors.

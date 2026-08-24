@@ -1,19 +1,75 @@
-# Shopware 6 — Cart Collector
+# Shopware 6 — cart collectors and processors
 
-The collector runs **before** the processors and loads all data needed for the calculation (e.g. products,
-prices) in a single batch — so processors never issue their own DB queries.
+Changing the cart at runtime takes two roles, and keeping them apart is what keeps the cart fast.
+
+| Role | Purpose | Tag |
+|---|---|---|
+| **Collector** | fetch the data a processor needs — from the database, an API, anywhere | `shopware.cart.collector` |
+| **Processor** | apply changes to the cart, using what the collector fetched | `shopware.cart.processor` |
+
+## Contents
+
+- [The collector](#the-collector)
+- [The processor](#the-processor)
+- [Why the split matters](#why-the-split-matters)
+
+## The collector
+
+Implement `Shopware\Core\Checkout\Cart\CartDataCollectorInterface` and its `collect` method.
 
 ```php
-class FfDataCollector implements CartDataCollectorInterface
+public function collect(CartDataCollection $data, Cart $original,
+                        SalesChannelContext $context, CartBehavior $behavior): void
 {
-    public function collect(CartDataCollection $data, Cart $original, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        $ids = /* LineItem references */;
-        if ($data->has($key)) { return; }       // do not load twice
-        $data->set($key, $this->loadOnce($ids, $context));
+    $newData = $this->collectData();
+
+    $data->set('uniqueKey', $newData);
+}
+```
+
+`collect()` takes four parameters:
+
+| Parameter | What it is |
+|---|---|
+| `CartDataCollection` | where the collected data goes, normally through `set()` with a unique key. **Available in every processor** |
+| `Cart` | the current cart and its line items |
+| `SalesChannelContext` | the current context: currency, country and the rest |
+| `CartBehavior` | the cart state, describing which actions are allowed — the product processor checks it for permission to skip stock validation, for instance |
+
+## The processor
+
+Implement `Shopware\Core\Checkout\Cart\CartProcessorInterface` and its `process` method.
+
+```php
+public function process(CartDataCollection $data, Cart $original, Cart $toCalculate,
+                        SalesChannelContext $context, CartBehavior $behavior): void
+{
+    $newData = $data->get('uniqueKey');
+
+    foreach ($toCalculate->getLineItems()->getFlat() as $lineItem) {
+        $lineItem->setPayload($newData['stuff']);
     }
 }
 ```
 
-Register via the `shopware.cart.collector` tag. Write into the `CartDataCollection`; the processor (`sw-cart-processor`)
-reads it. Performance: load only missing data (`$data->has(...)`). Order via priority.
+The parameters match `collect()` with one addition, and that addition is the point: alongside
+`$original` there is **`$toCalculate`**. **Make every change on `$toCalculate`** — that is the cart
+which ends up being used.
+
+## Why the split matters
+
+**Never query data in `process()`.** It runs many times over a cart's life, so a query there
+multiplies. Fetch in `collect()` instead, which is also where duplicate requests can be filtered out.
+
+A processor's tag accepts a priority, and priority decides what it sees. Running at `4500` puts a
+processor after the product processor, so the products already carry their name and price:
+
+```php
+$services->set(ExampleProcessor::class)
+    ->tag('shopware.cart.processor', ['priority' => 4500]);
+```
+
+## Source
+
+[developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-processor-collector.html](https://developer.shopware.com/docs/guides/plugins/plugins/checkout/cart/add-cart-processor-collector.html),
+Shopware 6.7, retrieved 2026-08-21.
