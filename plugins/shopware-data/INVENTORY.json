@@ -8,9 +8,10 @@
   "base": "https://developer.shopware.com/docs/",
   "version": "6.7"
  },
- "pages": 6,
+ "pages": 7,
  "urls": [
   "https://developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-complex-data-to-existing-entities.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-data-indexer.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/deleting-associated-data.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/replacing-associated-data.html",
@@ -63,6 +64,14 @@
    "sha256": "2215b10567e75d1b6a4c659f3333538e40e6edfdbd9f650daebba7393f034b0d",
    "covers": [
     "skills/sw-write/references/EVENTS.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-complex-data-to-existing-entities.html",
+   "sha256": "8ccd0d792b716662161c3276fdfab8984ef2ded2f618e1babd072bf7a16649ed",
+   "covers": [
+    "skills/sw-entity/references/EXTENSION.md"
    ],
    "extracted": "2026-08-21"
   }

@@ -1961,7 +1961,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-complex-data-to-existing-entities.html",
    "slug": "guides/plugins/plugins/framework/data-handling/add-complex-data-to-existing-entities.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

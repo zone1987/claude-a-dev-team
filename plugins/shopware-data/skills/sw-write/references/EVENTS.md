@@ -3,6 +3,17 @@
 Every write (`create/update/upsert/delete`) passes through the `EntityWriter` and dispatches events — the clean
 way to react to data changes (instead of polling or decorators).
 
+## Contents
+
+- [Batch events](#batch-events)
+- [EntityWriteEvent](#entitywriteevent)
+- [EntityDeleteEvent](#entitydeleteevent)
+- [Per-entity events](#per-entity-events)
+- [Event classes](#event-classes)
+
+Every event is nested inside a container event, so **a subscriber is called once per operation** —
+one call for a search request rather than thirty.
+
 ```php
 public static function getSubscribedEvents(): array
 {
@@ -21,17 +32,6 @@ Use `{entity}.written/.deleted` for targeted reactions; the container event for 
 manipulate before the write via `PreWriteValidationEvent`/`BeforeWriteEvent`. Run heavy follow-up work async (`sw-message-queue`).
 
 → Write pipeline, commands, all events: [EVENTS-SYSTEM.md](EVENTS-SYSTEM.md)
-
-## Contents
-
-- [Batch events](#batch-events)
-- [EntityWriteEvent](#entitywriteevent)
-- [EntityDeleteEvent](#entitydeleteevent)
-- [Per-entity events](#per-entity-events)
-- [Event classes](#event-classes)
-
-Every event is nested inside a container event, so **a subscriber is called once per operation** —
-one call for a search request rather than thirty.
 
 ## Batch events
 
