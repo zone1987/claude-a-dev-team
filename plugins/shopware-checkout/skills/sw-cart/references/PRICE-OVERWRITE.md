@@ -135,13 +135,19 @@ One service, two tags, both after the product collector and processor:
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(OverwritePriceCollector::class)
-    ->args([
-        service(QuantityPriceCalculator::class),
-    ])
-    // after the product collector and processor
-    ->tag('shopware.cart.processor', ['priority' => 4500])
-    ->tag('shopware.cart.collector', ['priority' => 4500]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(OverwritePriceCollector::class)
+        ->args([
+            service(QuantityPriceCalculator::class),
+        ])
+        // after the product collector and processor
+        ->tag('shopware.cart.processor', ['priority' => 4500])
+        ->tag('shopware.cart.collector', ['priority' => 4500]);
+};
 ```
 
 ## Source

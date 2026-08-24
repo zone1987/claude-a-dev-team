@@ -54,8 +54,14 @@ public function __construct(EntityRepository $productRepository)
 
 ```php
 // Explicit DI configuration (services.php)
-$services->set(DalExampleService::class)
-    ->args([service('product.repository')]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(DalExampleService::class)
+        ->args([service('product.repository')]);
+};
 ```
 
 With service autowiring and the correct type + argument name, the repository is injected automatically.

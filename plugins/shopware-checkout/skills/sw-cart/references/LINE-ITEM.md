@@ -23,7 +23,7 @@ argument and the argument resolver fills it. Outside a controller, fetch it with
 
 ```php
 // <plugin root>/src/Service/ExampleController.php
-#[Route(defaults: ['_routeScope' => [StorefrontRouteScope::ID]])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
     public function __construct(
@@ -98,8 +98,14 @@ Register with the tag `shopware.cart.line_item.factory`:
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleHandler::class)
-    ->tag('shopware.cart.line_item.factory');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleHandler::class)
+        ->tag('shopware.cart.line_item.factory');
+};
 ```
 
 ## The processor that persists it
@@ -124,8 +130,14 @@ the cart that gets persisted. A processor can do far more than that — see `PRO
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleProcessor::class)
-    ->tag('shopware.cart.processor', ['priority' => 4800]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleProcessor::class)
+        ->tag('shopware.cart.processor', ['priority' => 4800]);
+};
 ```
 
 ## Nested line items

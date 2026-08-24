@@ -243,14 +243,20 @@ Both translation tables take the same `Translations` shape as the document type 
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleDocumentRenderer::class)
-    ->args([
-        service('order.repository'),
-        service(DocumentConfigLoader::class),
-        service(NumberRangeValueGeneratorInterface::class),
-        service(DocumentFileRendererRegistry::class),
-    ])
-    ->tag('document.renderer');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDocumentRenderer::class)
+        ->args([
+            service('order.repository'),
+            service(DocumentConfigLoader::class),
+            service(NumberRangeValueGeneratorInterface::class),
+            service(DocumentFileRendererRegistry::class),
+        ])
+        ->tag('document.renderer');
+};
 ```
 
 The tag `document.renderer` is what makes the renderer discoverable. The template goes to
@@ -265,13 +271,26 @@ The tag `document.renderer` is what makes the renderer discoverable. The templat
 Experimental in 6.7, the default in 6.8. Four parts: the type, a render-data DTO, a data provider,
 and a template.
 
-A **document type** declares its technical name and the formats it can be rendered in
-(`<plugin root>/src/Core/Checkout/Document/ExampleDocumentType.php`).
+A **document type** extends `Shopware\Core\Checkout\DocumentV2\Type\AbstractDocumentType` and
+declares its technical name plus the formats it can render
+(`<plugin root>/src/Core/Checkout/Document/ExampleDocumentType.php`):
+
+```php
+readonly class ExampleDocumentType extends AbstractDocumentType
+{
+    public function getTechnicalName(): string
+    {
+        return 'example_document';
+    }
+}
+```
 
 A **render data DTO** carries the values the template uses. **Public properties on the DTO end up on
 the template's `config` variable** — a `noteText` property renders as `config.noteText`.
 
-A **data provider** builds that DTO for an order. `enrichOrderCriteria()` adds the associations the
+A **data provider** extends
+`Shopware\Core\Checkout\DocumentV2\Provider\AbstractDocumentDataProvider` and builds that DTO for
+an order (`readonly class ExampleDocumentDataProvider extends AbstractDocumentDataProvider`). `enrichOrderCriteria()` adds the associations the
 provider needs, so they are loaded before `provideRenderingData()` runs:
 
 ```php
@@ -292,8 +311,14 @@ public function provideRenderingData(ProviderInput $input, Context $context): Ab
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleDocumentType::class)->tag('shopware.document_v2.type');
-$services->set(ExampleDocumentDataProvider::class)->tag('shopware.document_v2.provider');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDocumentType::class)->tag('shopware.document_v2.type');
+    $services->set(ExampleDocumentDataProvider::class)->tag('shopware.document_v2.provider');
+};
 ```
 
 The HTML renderer resolves `@Framework/documents/<technical_name>.html.twig`:
@@ -322,6 +347,10 @@ first, so their results are in `RenderState` when yours runs.
 
 ```php
 // <plugin root>/src/Core/Checkout/Document/TextRenderer.php
+use Shopware\Core\Checkout\DocumentV2\Struct\RenderInput;
+
+public function renderToString(RenderInput $input, RenderState $state, Context $context): RenderResult
+{
 // depends on 'html' and derives plain text from the rendered HTML
 $html = $state->require('html');
 

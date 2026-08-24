@@ -15,15 +15,20 @@ Changing the cart at runtime takes two roles, and keeping them apart is what kee
 
 ## The collector
 
-Implement `Shopware\Core\Checkout\Cart\CartDataCollectorInterface` and its `collect` method.
+Implement `Shopware\Core\Checkout\Cart\CartDataCollectorInterface` and its `collect` method — the
+guide's example class is `CustomCartCollector`.
 
 ```php
+// namespace Swag\BasicExample\Core\Checkout\Cart;
+class CustomCartCollector implements CartDataCollectorInterface
+{
 public function collect(CartDataCollection $data, Cart $original,
                         SalesChannelContext $context, CartBehavior $behavior): void
 {
     $newData = $this->collectData();
 
     $data->set('uniqueKey', $newData);
+}
 }
 ```
 
@@ -38,9 +43,12 @@ public function collect(CartDataCollection $data, Cart $original,
 
 ## The processor
 
-Implement `Shopware\Core\Checkout\Cart\CartProcessorInterface` and its `process` method.
+Implement `Shopware\Core\Checkout\Cart\CartProcessorInterface` and its `process` method — the
+guide's example class is `CustomCartProcessor`.
 
 ```php
+class CustomCartProcessor implements CartProcessorInterface
+{
 public function process(CartDataCollection $data, Cart $original, Cart $toCalculate,
                         SalesChannelContext $context, CartBehavior $behavior): void
 {
@@ -49,6 +57,7 @@ public function process(CartDataCollection $data, Cart $original, Cart $toCalcul
     foreach ($toCalculate->getLineItems()->getFlat() as $lineItem) {
         $lineItem->setPayload($newData['stuff']);
     }
+}
 }
 ```
 

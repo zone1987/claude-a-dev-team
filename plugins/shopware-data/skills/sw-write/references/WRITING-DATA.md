@@ -15,11 +15,17 @@ Every write goes through the repository generated per entity. **The service name
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(WritingData::class)
-    ->args([
-        service('product.repository'),
-        service('tax.repository'),
-    ]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(WritingData::class)
+        ->args([
+            service('product.repository'),
+            service('tax.repository'),
+        ]);
+};
 ```
 
 Switching entity means switching that reference — nothing else changes.

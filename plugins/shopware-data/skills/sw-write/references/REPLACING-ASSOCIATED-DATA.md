@@ -36,11 +36,17 @@ entity's name comes from `getEntityName` in its definition — `product_category
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ReplacingData::class)
-    ->args([
-        service('product.repository'),
-        service('product_category.repository'),
-    ]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ReplacingData::class)
+        ->args([
+            service('product.repository'),
+            service('product_category.repository'),
+        ]);
+};
 ```
 
 ```php

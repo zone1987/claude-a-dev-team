@@ -108,8 +108,14 @@ added to `$toCalculate`.
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleProcessor::class)
-    ->tag('shopware.cart.processor', ['priority' => 4500]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleProcessor::class)
+        ->tag('shopware.cart.processor', ['priority' => 4500]);
+};
 ```
 
 **Priority `4500` runs after the product processor**, which is what makes the products' prices

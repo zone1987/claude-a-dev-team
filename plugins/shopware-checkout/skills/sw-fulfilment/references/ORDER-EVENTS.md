@@ -30,6 +30,8 @@ one for general changes to the order itself.
 
 ```php
 // <plugin root>/src/Service/ListenToOrderChanges.php
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
 public static function getSubscribedEvents(): array
 {
     return [

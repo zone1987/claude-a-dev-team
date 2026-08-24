@@ -47,8 +47,14 @@ public function getDefinitionClass(): string
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(CustomExtension::class)
-    ->tag('shopware.entity.extension');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomExtension::class)
+        ->tag('shopware.entity.extension');
+};
 ```
 
 ## With a database table

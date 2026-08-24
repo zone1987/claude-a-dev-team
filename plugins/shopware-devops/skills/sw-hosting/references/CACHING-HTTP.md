@@ -193,7 +193,13 @@ Redis config for sessions: persistence (RDB + AOF), eviction `allkeys-lru`.
 
 ```php
 // config/services.php
-$services->set('session.db', PdoSessionHandler::class)->args([...]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set('session.db', PdoSessionHandler::class)->args([...]);
+};
 ```
 
 ```yaml

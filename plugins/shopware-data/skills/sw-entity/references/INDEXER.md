@@ -102,13 +102,19 @@ private function writeLog($customerId)
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleIndexer::class)
-    ->args([
-        service(IteratorFactory::class),
-        service('customer.repository'),
-        service(Connection::class),
-    ])
-    ->tag('shopware.entity_indexer');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleIndexer::class)
+        ->args([
+            service(IteratorFactory::class),
+            service('customer.repository'),
+            service(Connection::class),
+        ])
+        ->tag('shopware.entity_indexer');
+};
 ```
 
 ## Synchronous or queued

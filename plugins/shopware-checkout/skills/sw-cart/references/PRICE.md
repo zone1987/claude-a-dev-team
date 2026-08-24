@@ -60,11 +60,17 @@ calculation covers.
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(CustomProductPriceCalculator::class)
-    ->decorate(ProductPriceCalculator::class)
-    ->args([
-        service('.inner'),
-    ]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomProductPriceCalculator::class)
+        ->decorate(ProductPriceCalculator::class)
+        ->args([
+            service('.inner'),
+        ]);
+};
 ```
 
 Without that registration the decoration has no effect at all.

@@ -315,12 +315,18 @@ framework:
 
 ```php
 // config/services.php
-use AsyncAws\Core\HttpClient\AwsRetryStrategy;
-use Symfony\Component\HttpClient\RetryableHttpClient;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-$services->set(AwsRetryStrategy::class);
-$services->set('shopware.filesystem.s3.client', RetryableHttpClient::class)
-    ->args([service('s3.http_client'), service(AwsRetryStrategy::class), 3]);
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    use AsyncAws\Core\HttpClient\AwsRetryStrategy;
+    use Symfony\Component\HttpClient\RetryableHttpClient;
+    
+    $services->set(AwsRetryStrategy::class);
+    $services->set('shopware.filesystem.s3.client', RetryableHttpClient::class)
+        ->args([service('s3.http_client'), service(AwsRetryStrategy::class), 3]);
+};
 ```
 
 ### Custom Flysystem adapter

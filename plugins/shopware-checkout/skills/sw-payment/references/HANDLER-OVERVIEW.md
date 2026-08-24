@@ -159,8 +159,15 @@ as a payment handler at all.
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(MyCustomPaymentHandler::class)
-    ->tag('shopware.payment.method');
+use Swag\PaymentPlugin\Service\MyCustomPaymentHandler;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MyCustomPaymentHandler::class)
+        ->tag('shopware.payment.method');
+};
 ```
 
 ### The five tags that no longer exist
@@ -190,6 +197,8 @@ after your plugin.
 
 ```php
 // <plugin root>/src/SwagBasicExample.php — your plugin's base class
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+
 private function addPaymentMethod(Context $context): void
 {
     $paymentMethodExists = $this->getPaymentMethodId();
@@ -274,6 +283,8 @@ instance being decorated:
 
 ```php
 // <plugin root>/src/Checkout/Payment/ExampleDebitPayment.php
+use Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct;
+
 public function getDecorated(): DebitPayment
 {
     return $this->decorated;
@@ -293,12 +304,18 @@ public function pay(Request $request, PaymentTransactionStruct $transaction,
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(ExampleDebitPayment::class)
-    ->decorate(DebitPayment::class)
-    ->args([
-        service(OrderTransactionStateHandler::class),
-        service('.inner'),
-    ]);
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDebitPayment::class)
+        ->decorate(DebitPayment::class)
+        ->args([
+            service(OrderTransactionStateHandler::class),
+            service('.inner'),
+        ]);
+};
 ```
 
 The order of `args` matches the constructor: the state handler first, then `.inner` — the service

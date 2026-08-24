@@ -45,8 +45,14 @@ Register with the tag `shopware.cart.validator`:
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(CustomCartValidator::class)
-    ->tag('shopware.cart.validator');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomCartValidator::class)
+        ->tag('shopware.cart.validator');
+};
 ```
 
 ## The error class

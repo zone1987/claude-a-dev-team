@@ -14,7 +14,9 @@ supply new tax rates.
 
 ## The provider
 
-Extend `AbstractTaxProvider` and implement `provide`.
+Extend `AbstractTaxProvider` and implement `provide`. A real integration calls a service from here —
+the guide's example imports `TaxJar\Client`. Translations for the provider name live in
+`TaxProviderTranslationDefinition`.
 
 ```php
 // <plugin root>/src/Checkout/Cart/Tax/TaxProvider.php
@@ -60,8 +62,14 @@ Tag the service `shopware.tax.provider`:
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(TaxProvider::class)
-    ->tag('shopware.tax.provider');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(TaxProvider::class)
+        ->tag('shopware.tax.provider');
+};
 ```
 
 ## Persisting it: migration
@@ -71,6 +79,18 @@ migration or through the entity repository.
 
 ```php
 // <plugin root>/src/Migration/MigrationTaxProvider.php
+namespace SwagTaxProviders\Migration;
+
+use Shopware\Core\Framework\Migration\MigrationStep;
+use Shopware\Core\System\TaxProvider\Aggregate\TaxProviderTranslation\TaxProviderTranslationDefinition;
+
+class MigrationTaxProvider extends MigrationStep
+{
+public function getCreationTimestamp(): int
+{
+    return 1668677456;
+}
+
 $ruleId = $connection->fetchOne(
     'SELECT `id` FROM `rule` WHERE `name` = :name',
     ['name' => 'Always valid (Default)']

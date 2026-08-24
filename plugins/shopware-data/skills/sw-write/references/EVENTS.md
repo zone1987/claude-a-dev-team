@@ -50,6 +50,15 @@ write — an old filename, for instance, to remove from a CDN.
 
 ```php
 // <plugin root>/src/Subscriber/EntityWriteSubscriber.php
+use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class EntityWriteSubscriber implements EventSubscriberInterface
+{
+public function __construct(private readonly LoggerInterface $logger)
+{
+}
+
 public static function getSubscribedEvents(): array
 {
     return [EntityWriteEvent::class => 'beforeWrite'];
@@ -79,6 +88,7 @@ public function beforeWrite(EntityWriteEvent $event)
     $event->addError(function () use ($ids) {
         $this->logger->critical(sprintf('Entities with ids: "%s" were not written', implode(', ', $ids)));
     });
+}
 }
 ```
 

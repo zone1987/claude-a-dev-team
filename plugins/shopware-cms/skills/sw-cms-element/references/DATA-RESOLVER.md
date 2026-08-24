@@ -46,8 +46,14 @@ Registration goes through the `shopware.cms.data_resolver` tag:
 
 ```php
 // <plugin root>/src/Resources/config/services.php
-$services->set(DailyMotionCmsElementResolver::class)
-    ->tag('shopware.cms.data_resolver');
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(DailyMotionCmsElementResolver::class)
+        ->tag('shopware.cms.data_resolver');
+};
 ```
 
 The `CriteriaCollection` key must be unique per slot, which is what
@@ -94,6 +100,19 @@ To change entity data before it reaches the elements: subscribe to the resolve e
 modified entity.
 
 ```php
+// namespace Swag\BasicExample\DataResolver;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class CmsPreResolveSubscriber implements EventSubscriberInterface
+{
+public static function getSubscribedEvents(): array
+{
+    return [
+        CmsSlotsDataResolveExtension::pre() => 'onCmsSlotsResolvePre',
+    ];
+}
+
 public function onCmsSlotsResolvePre(CmsSlotsDataResolveExtension $event): void
 {
     $resolverContext = $event->getResolverContext();
@@ -103,7 +122,11 @@ public function onCmsSlotsResolvePre(CmsSlotsDataResolveExtension $event): void
         $entity->setName('New custom name');
     }
 }
+}
 ```
+
+The resolver class itself sits under the plugin's own namespace — `Swag\BasicExample\DataResolver`
+for `DailyMotionCmsElementResolver` in the guide.
 
 ## Source
 

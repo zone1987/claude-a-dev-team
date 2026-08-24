@@ -31,7 +31,7 @@ export default {
 Pinia — `Shopware.Store.register`, with `state`, `getters` and `actions`:
 
 ```javascript
-const store = Shopware.Store.register('myStore', {
+const store = Shopware.Store.register('<storeName>', {
     state: () => ({ /* ... */ }),
     getters: { /* ... */ },
     actions: { /* ... */ },
@@ -44,7 +44,7 @@ The id can also live in the definition object:
 
 ```javascript
 const store = Shopware.Store.register({
-    id: 'myStore',
+    id: '<storeName>',
     state: () => ({ /* ... */ }),
     getters: { /* ... */ },
     actions: { /* ... */ },
