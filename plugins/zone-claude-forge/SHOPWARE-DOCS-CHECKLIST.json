@@ -1996,7 +1996,7 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/deleting-associated-data.html",
    "slug": "guides/plugins/plugins/framework/data-handling/deleting-associated-data.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
@@ -2024,14 +2024,14 @@
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/replacing-associated-data.html",
    "slug": "guides/plugins/plugins/framework/data-handling/replacing-associated-data.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {
    "url": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/using-database-events.html",
    "slug": "guides/plugins/plugins/framework/data-handling/using-database-events.html",
    "plugin": "shopware-data",
-   "status": "todo",
+   "status": "done",
    "reason": ""
   },
   {

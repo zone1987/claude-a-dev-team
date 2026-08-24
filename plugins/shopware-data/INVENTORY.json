@@ -8,10 +8,13 @@
   "base": "https://developer.shopware.com/docs/",
   "version": "6.7"
  },
- "pages": 3,
+ "pages": 6,
  "urls": [
   "https://developer.shopware.com/docs/guides/plugins/plugins/database/database-migrations.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-data-indexer.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/deleting-associated-data.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/replacing-associated-data.html",
+  "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/using-database-events.html",
   "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/writing-data.html"
  ],
  "entries": [
@@ -36,6 +39,30 @@
    "sha256": "a9956100d8dfa39758ee344e006ce42accfb15499847e7d453b8781596a85ca9",
    "covers": [
     "skills/sw-write/references/WRITING-DATA.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/replacing-associated-data.html",
+   "sha256": "aef03d3928e484bba9306cdb6adbdebf294a03dec3e9b163d1d52d4bf97c3fa7",
+   "covers": [
+    "skills/sw-write/references/REPLACING-ASSOCIATED-DATA.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/deleting-associated-data.html",
+   "sha256": "616a96c424107299fd7578dba74c40fb974670122e2ebdecf9bffc393aec2457",
+   "covers": [
+    "skills/sw-write/references/REPLACING-ASSOCIATED-DATA.md"
+   ],
+   "extracted": "2026-08-21"
+  },
+  {
+   "page": "https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/using-database-events.html",
+   "sha256": "2215b10567e75d1b6a4c659f3333538e40e6edfdbd9f650daebba7393f034b0d",
+   "covers": [
+    "skills/sw-write/references/EVENTS.md"
    ],
    "extracted": "2026-08-21"
   }
