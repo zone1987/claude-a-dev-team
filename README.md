@@ -1,7 +1,7 @@
 # Claude Code plugin marketplace
 
-A Claude Code **marketplace** of **26 plugins**, **117 skills**, **3,294** reference files and
-**367,948 lines** of distilled documentation, covering Shopware 6.7, Contao 5, the OCTO
+A Claude Code **marketplace** of **27 plugins**, **124 skills**, **1,963** reference files and
+**398,868 lines** of distilled documentation, covering Shopware 6.7, Contao 5, the OCTO
 tourism API, React and Vue component libraries, and a set of testing and PDF tools.
 
 Every plugin embeds its knowledge — no runtime dependency on the upstream site, no network call at
@@ -61,7 +61,7 @@ available as `/<command>`; agents are reached through an orchestrator or directl
 
 | Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
-| [`shopware-storefront`](./plugins/shopware-storefront/README.md) | Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes a… | 5 | 2 | 4 |
+| [`shopware-storefront`](./plugins/shopware-storefront/README.md) | Shopware 6.7 Storefront: every Twig block with its nesting, route-to-template chains, CMS resolvers, JS selectors, themes, SCSS and the checkout… | 6 | 4 | 6 |
 | [`shopware-admin`](./plugins/shopware-admin/README.md) | Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Met… | 4 | 2 | 3 |
 | [`shopware-frontends`](./plugins/shopware-frontends/README.md) | Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 … | 3 | 1 | 0 |
 
@@ -112,6 +112,7 @@ available as `/<command>`; agents are reached through an orchestrator or directl
 | Plugin | Covers | Skills | Agents | Commands |
 |---|---|--:|--:|--:|
 | [`contao`](./plugins/contao/README.md) | Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete Ge… | 8 | 2 | 4 |
+| [`zone-claude-forge`](./plugins/zone-claude-forge/README.md) | Authoring instrument for this marketplace: writes compliant skills, agents, commands and hooks, distils upstream sources into reference files, and audits e… | 6 | 2 | 4 |
 
 ## Context budget
 
@@ -123,24 +124,25 @@ When the budget overflows, Claude Code shortens descriptions — **starting with
 least**. A skill without a description is still listed by name but no longer activates on its own; it
 stays reachable as `/<plugin>:<skill>`.
 
-Measured with `python3 scripts/measure-skill-budget.py .`:
+Measured with `python3 scripts/measure-skill-budget.py .`. Only model-visible skills count: one carrying `disable-model-invocation` stays reachable as `/<plugin>:<skill>` and costs nothing, which is why a plugin can list more skills in the table above than here.
 
-| Plugin | Skills | Chars | Avg description | % of budget |
+| Plugin | Model-visible skills | Chars | Avg description | % of budget |
 |---|--:|--:|--:|--:|
 | `shopware-merchant` | 16 | 4 569 | 177 | 57 % |
-| `octo-api` | 8 | 2 392 | 190 | 30 % |
+| `octo-api` | 8 | 2 296 | 178 | 29 % |
 | `shadcn-vue` | 8 | 2 282 | 176 | 29 % |
 | `shadcn` | 8 | 2 265 | 174 | 28 % |
 | `contao` | 8 | 2 257 | 173 | 28 % |
-| `playwright` | 5 | 1 463 | 184 | 18 % |
-| `shopware-storefront` | 5 | 1 451 | 181 | 18 % |
-| `shopware-devops` | 5 | 1 433 | 178 | 18 % |
+| `shopware-storefront` | 6 | 1 758 | 184 | 22 % |
+| `playwright` | 5 | 1 449 | 181 | 18 % |
+| `shopware-devops` | 5 | 1 436 | 178 | 18 % |
 | `shopware-admin` | 4 | 1 191 | 189 | 15 % |
 | `shopware-commercial` | 4 | 1 162 | 182 | 15 % |
 | `swiper` | 4 | 1 153 | 179 | 14 % |
 | `shopware-data` | 4 | 1 146 | 178 | 14 % |
 | `shopware-framework` | 4 | 1 146 | 178 | 14 % |
 | `shopware-checkout` | 4 | 1 116 | 170 | 14 % |
+| `zone-claude-forge` | 3 | 893 | 189 | 11 % |
 | `gotenberg` | 3 | 892 | 188 | 11 % |
 | `shopware-api` | 3 | 885 | 186 | 11 % |
 | `shopware-frontends` | 3 | 873 | 182 | 11 % |
@@ -159,9 +161,9 @@ five plugins is what a session actually enables, and any such set lands well ins
 
 | Working set | Share |
 |---|--:|
-| `shopware-core` + `shopware-data` + `shopware-storefront` | 43 % |
+| `shopware-core` + `shopware-data` + `shopware-storefront` | 47 % |
 | `shopware-core` + `shopware-data` + `shopware-admin` + `shopware-framework` | 54 % |
-| `octo-api` + `shopware-core` + `shopware-data` | 55 % |
+| `octo-api` + `shopware-core` + `shopware-data` | 54 % |
 | `shadcn` + `shadcn-vue` | 57 % |
 
 Enabling all 26 at once is not a supported configuration, and no plugin is written for it.
