@@ -5,14 +5,14 @@
     "url": "https://github.com/zone1987"
   },
   "metadata": {
-    "description": "Development toolkit for Claude Code — themed plugins (skills, agents, commands, hooks) for multiple web platforms: Shopware 6.7 (comprehensive) and Contao 5.x, more to come.",
+    "description": "Development toolkit for Claude Code \u2014 themed plugins (skills, agents, commands, hooks) for multiple web platforms: Shopware 6.7 (comprehensive) and Contao 5.x, more to come.",
     "version": "1.1.0"
   },
   "plugins": [
     {
-      "name": "shopware-core",
-      "source": "./plugins/shopware-core",
-      "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
+      "name": "contao",
+      "source": "./plugins/contao",
+      "description": "Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete German end-user manual \u2014 8 domain skills over 128 reference files.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -20,20 +20,59 @@
       },
       "license": "MIT",
       "keywords": [
-        "shopware",
-        "core"
+        "contao"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-platform",
-        "./skills/sw-plugin",
-        "./skills/sw-services"
+        "./skills/contao-backend",
+        "./skills/contao-core",
+        "./skills/contao-data",
+        "./skills/contao-frontend",
+        "./skills/contao-manual-basics",
+        "./skills/contao-manual-content",
+        "./skills/contao-manual-features",
+        "./skills/contao-platform"
       ]
     },
     {
-      "name": "shopware-data",
-      "source": "./plugins/shopware-data",
-      "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference — 4 domain skills.",
+      "name": "discord",
+      "source": "./plugins/discord",
+      "description": "Source of truth for the Discord developer platform: the HTTP API, Gateway, interactions and components, OAuth2 and permissions, Activities, the Social SDK, monetization, RPC and voice, distilled from all 159 pages of docs.discord.com.",
+      "version": "1.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "discord",
+        "discord-bot",
+        "discord-api",
+        "gateway",
+        "slash-commands",
+        "embedded-app-sdk",
+        "social-sdk",
+        "oauth2"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/discord-bots",
+        "./skills/discord-local-testing",
+        "./skills/discord-rest",
+        "./skills/discord-gateway",
+        "./skills/discord-interactions",
+        "./skills/discord-oauth2",
+        "./skills/discord-activities",
+        "./skills/discord-social-sdk",
+        "./skills/discord-monetization",
+        "./skills/discord-rpc-voice",
+        "./skills/discord-platform"
+      ]
+    },
+    {
+      "name": "flatpickr",
+      "source": "./plugins/flatpickr",
+      "description": "flatpickr date picker: every option, method, event and format token, plus the official plugins, all 67 locales, themes and mobile behaviour \u2014 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -41,21 +80,20 @@
       },
       "license": "MIT",
       "keywords": [
-        "shopware",
-        "dal"
+        "flatpickr",
+        "datepicker",
+        "javascript"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-entity",
-        "./skills/sw-fields",
-        "./skills/sw-query",
-        "./skills/sw-write"
+        "./skills/flatpickr-api",
+        "./skills/flatpickr-extend"
       ]
     },
     {
-      "name": "shopware-framework",
-      "source": "./plugins/shopware-framework",
-      "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch — 4 domain skills.",
+      "name": "gotenberg",
+      "source": "./plugins/gotenberg",
+      "description": "Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, watermark), plus installation, configuration and clients \u2014 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -63,185 +101,18 @@
       },
       "license": "MIT",
       "keywords": [
-        "shopware",
-        "framework"
+        "gotenberg",
+        "pdf",
+        "docker",
+        "api",
+        "chromium",
+        "libreoffice"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-api",
-        "./skills/sw-automation",
-        "./skills/sw-content",
-        "./skills/sw-messaging"
-      ]
-    },
-    {
-      "name": "shopware-storefront",
-      "source": "./plugins/shopware-storefront",
-      "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching — 5 domain skills.",
-      "version": "3.2.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "storefront"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-controller",
-        "./skills/sw-features",
-        "./skills/sw-javascript",
-        "./skills/sw-structure",
-        "./skills/sw-theme",
-        "./skills/sw-twig"
-      ]
-    },
-    {
-      "name": "shopware-admin",
-      "source": "./plugins/shopware-admin",
-      "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK — 4 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "admin"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-build",
-        "./skills/sw-components",
-        "./skills/sw-data",
-        "./skills/sw-meteor"
-      ]
-    },
-    {
-      "name": "shopware-cms",
-      "source": "./plugins/shopware-cms",
-      "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver — 2 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "cms"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-cms-block",
-        "./skills/sw-cms-element"
-      ]
-    },
-    {
-      "name": "shopware-checkout",
-      "source": "./plugins/shopware-checkout",
-      "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents — 4 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "checkout"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-cart",
-        "./skills/sw-document",
-        "./skills/sw-fulfilment",
-        "./skills/sw-payment"
-      ]
-    },
-    {
-      "name": "shopware-testing",
-      "source": "./plugins/shopware-testing",
-      "description": "Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration and storefront, and Playwright end-to-end — 3 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "testing"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-e2e",
-        "./skills/sw-javascript",
-        "./skills/sw-phpunit"
-      ]
-    },
-    {
-      "name": "shopware-apps",
-      "source": "./plugins/shopware-apps",
-      "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "apps"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-app-manifest",
-        "./skills/sw-app-sdk"
-      ]
-    },
-    {
-      "name": "shopware-migration",
-      "source": "./plugins/shopware-migration",
-      "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) — 2 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "migration"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-admin",
-        "./skills/sw-upgrade"
-      ]
-    },
-    {
-      "name": "shopware-quality",
-      "source": "./plugins/shopware-quality",
-      "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration — 3 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "quality"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/sw-analysis",
-        "./skills/sw-guidelines",
-        "./skills/sw-release"
+        "./skills/gotenberg-convert",
+        "./skills/gotenberg-operations",
+        "./skills/gotenberg-pdf"
       ]
     },
     {
@@ -276,9 +147,147 @@
       ]
     },
     {
+      "name": "panther",
+      "source": "./plugins/panther",
+      "description": "Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installation, PANTHER_* configuration, Selenium and CI \u2014 2 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "symfony",
+        "panther",
+        "testing",
+        "e2e",
+        "webdriver",
+        "browserkit",
+        "php"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/panther-setup",
+        "./skills/panther-testing"
+      ]
+    },
+    {
+      "name": "playwright",
+      "source": "./plugins/playwright",
+      "description": "Playwright end-to-end testing: writing tests (locators, actions, assertions, auth), the test runner (config, fixtures, sharding, reporters), the complete library API, trace-based debugging, MCP and CLI tooling \u2014 5 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "playwright",
+        "testing",
+        "e2e",
+        "browser-automation",
+        "test-runner",
+        "mcp"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/playwright-debugging",
+        "./skills/playwright-library",
+        "./skills/playwright-runner",
+        "./skills/playwright-tooling",
+        "./skills/playwright-writing"
+      ]
+    },
+    {
+      "name": "shadcn",
+      "source": "./plugins/shadcn",
+      "description": "shadcn/ui component library: all 59 components with full React source, props and examples for both Radix UI and Base UI, plus setup, theming, forms, blocks, 70 charts and custom registries \u2014 8 domain skills over 444 reference files.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shadcn",
+        "ui",
+        "react",
+        "tailwind",
+        "radix",
+        "base-ui",
+        "components",
+        "mcp"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/shadcn-blocks",
+        "./skills/shadcn-data",
+        "./skills/shadcn-feedback",
+        "./skills/shadcn-forms",
+        "./skills/shadcn-layout",
+        "./skills/shadcn-navigation",
+        "./skills/shadcn-setup",
+        "./skills/shadcn-theming"
+      ]
+    },
+    {
+      "name": "shadcn-vue",
+      "source": "./plugins/shadcn-vue",
+      "description": "shadcn-vue component library: all 64 components with full Vue source, props, slots and demos, plus setup, theming, forms, blocks, charts and custom registries \u2014 8 domain skills over 402 reference files.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shadcn",
+        "shadcn-vue",
+        "vue",
+        "nuxt",
+        "reka-ui",
+        "tailwind",
+        "components",
+        "mcp"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/shadcn-vue-blocks",
+        "./skills/shadcn-vue-data",
+        "./skills/shadcn-vue-feedback",
+        "./skills/shadcn-vue-forms",
+        "./skills/shadcn-vue-layout",
+        "./skills/shadcn-vue-navigation",
+        "./skills/shadcn-vue-setup",
+        "./skills/shadcn-vue-theming"
+      ]
+    },
+    {
+      "name": "shopware-admin",
+      "source": "./plugins/shopware-admin",
+      "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK \u2014 4 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "admin"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-build",
+        "./skills/sw-components",
+        "./skills/sw-data",
+        "./skills/sw-meteor"
+      ]
+    },
+    {
       "name": "shopware-api",
       "source": "./plugins/shopware-api",
-      "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading — 3 domain skills.",
+      "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading \u2014 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -297,9 +306,9 @@
       ]
     },
     {
-      "name": "shopware-frontends",
-      "source": "./plugins/shopware-frontends",
-      "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 domain skills.",
+      "name": "shopware-apps",
+      "source": "./plugins/shopware-apps",
+      "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js \u2014 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -308,20 +317,18 @@
       "license": "MIT",
       "keywords": [
         "shopware",
-        "frontends",
-        "headless"
+        "apps"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-building",
-        "./skills/sw-client",
-        "./skills/sw-practice"
+        "./skills/sw-app-manifest",
+        "./skills/sw-app-sdk"
       ]
     },
     {
-      "name": "contao",
-      "source": "./plugins/contao",
-      "description": "Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete German end-user manual — 8 domain skills over 128 reference files.",
+      "name": "shopware-checkout",
+      "source": "./plugins/shopware-checkout",
+      "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents \u2014 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -329,24 +336,127 @@
       },
       "license": "MIT",
       "keywords": [
-        "contao"
+        "shopware",
+        "checkout"
       ],
       "category": "development",
       "skills": [
-        "./skills/contao-backend",
-        "./skills/contao-core",
-        "./skills/contao-data",
-        "./skills/contao-frontend",
-        "./skills/contao-manual-basics",
-        "./skills/contao-manual-content",
-        "./skills/contao-manual-features",
-        "./skills/contao-platform"
+        "./skills/sw-cart",
+        "./skills/sw-document",
+        "./skills/sw-fulfilment",
+        "./skills/sw-payment"
+      ]
+    },
+    {
+      "name": "shopware-cms",
+      "source": "./plugins/shopware-cms",
+      "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver \u2014 2 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "cms"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-cms-block",
+        "./skills/sw-cms-element"
+      ]
+    },
+    {
+      "name": "shopware-commercial",
+      "source": "./plugins/shopware-commercial",
+      "description": "Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, Migration Assistant \u2014 4 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "commercial",
+        "b2b"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-b2b",
+        "./skills/sw-features",
+        "./skills/sw-migration",
+        "./skills/sw-sales"
+      ]
+    },
+    {
+      "name": "shopware-concepts",
+      "source": "./plugins/shopware-concepts",
+      "description": "Shopware 6 concepts: why the platform is built as it is \u2014 architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and how each business domain is modelled \u2014 2 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "concepts"
+      ],
+      "category": "documentation",
+      "skills": [
+        "./skills/sw-concept-architecture",
+        "./skills/sw-concept-domain"
+      ]
+    },
+    {
+      "name": "shopware-core",
+      "source": "./plugins/shopware-core",
+      "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging \u2014 3 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "core"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-platform",
+        "./skills/sw-plugin",
+        "./skills/sw-services"
+      ]
+    },
+    {
+      "name": "shopware-data",
+      "source": "./plugins/shopware-data",
+      "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference \u2014 4 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "dal"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-entity",
+        "./skills/sw-fields",
+        "./skills/sw-query",
+        "./skills/sw-write"
       ]
     },
     {
       "name": "shopware-devops",
       "source": "./plugins/shopware-devops",
-      "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting — 5 domain skills.",
+      "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting \u2014 5 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -367,9 +477,53 @@
       ]
     },
     {
+      "name": "shopware-framework",
+      "source": "./plugins/shopware-framework",
+      "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch \u2014 4 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "framework"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-api",
+        "./skills/sw-automation",
+        "./skills/sw-content",
+        "./skills/sw-messaging"
+      ]
+    },
+    {
+      "name": "shopware-frontends",
+      "source": "./plugins/shopware-frontends",
+      "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment \u2014 3 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "frontends",
+        "headless"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-building",
+        "./skills/sw-client",
+        "./skills/sw-practice"
+      ]
+    },
+    {
       "name": "shopware-merchant",
       "source": "./plugins/shopware-merchant",
-      "description": "Shopware 6 merchant knowledge: operating the administration across catalogue, orders, customers, content, marketing, settings, sales channels, Commercial features, Services, Cloud, updates and migration — 16 domain skills with 269 reference files and 292 screenshots.",
+      "description": "Shopware 6 merchant knowledge: operating the administration across catalogue, orders, customers, content, marketing, settings, sales channels, Commercial features, Services, Cloud, updates and migration \u2014 16 domain skills with 269 reference files and 292 screenshots.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -403,9 +557,9 @@
       ]
     },
     {
-      "name": "shopware-concepts",
-      "source": "./plugins/shopware-concepts",
-      "description": "Shopware 6 concepts: why the platform is built as it is — architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and how each business domain is modelled — 2 domain skills.",
+      "name": "shopware-migration",
+      "source": "./plugins/shopware-migration",
+      "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) \u2014 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -414,41 +568,63 @@
       "license": "MIT",
       "keywords": [
         "shopware",
-        "concepts"
-      ],
-      "category": "documentation",
-      "skills": [
-        "./skills/sw-concept-architecture",
-        "./skills/sw-concept-domain"
-      ]
-    },
-    {
-      "name": "shopware-commercial",
-      "source": "./plugins/shopware-commercial",
-      "description": "Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, Migration Assistant — 4 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shopware",
-        "commercial",
-        "b2b"
+        "migration"
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-b2b",
+        "./skills/sw-admin",
+        "./skills/sw-upgrade"
+      ]
+    },
+    {
+      "name": "shopware-quality",
+      "source": "./plugins/shopware-quality",
+      "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration \u2014 3 domain skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "quality"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-analysis",
+        "./skills/sw-guidelines",
+        "./skills/sw-release"
+      ]
+    },
+    {
+      "name": "shopware-storefront",
+      "source": "./plugins/shopware-storefront",
+      "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching \u2014 5 domain skills.",
+      "version": "3.2.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "shopware",
+        "storefront"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/sw-controller",
         "./skills/sw-features",
-        "./skills/sw-migration",
-        "./skills/sw-sales"
+        "./skills/sw-javascript",
+        "./skills/sw-structure",
+        "./skills/sw-theme",
+        "./skills/sw-twig"
       ]
     },
     {
-      "name": "flatpickr",
-      "source": "./plugins/flatpickr",
-      "description": "flatpickr date picker: every option, method, event and format token, plus the official plugins, all 67 locales, themes and mobile behaviour — 2 domain skills.",
+      "name": "shopware-testing",
+      "source": "./plugins/shopware-testing",
+      "description": "Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration and storefront, and Playwright end-to-end \u2014 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -456,20 +632,20 @@
       },
       "license": "MIT",
       "keywords": [
-        "flatpickr",
-        "datepicker",
-        "javascript"
+        "shopware",
+        "testing"
       ],
       "category": "development",
       "skills": [
-        "./skills/flatpickr-api",
-        "./skills/flatpickr-extend"
+        "./skills/sw-e2e",
+        "./skills/sw-javascript",
+        "./skills/sw-phpunit"
       ]
     },
     {
       "name": "swiper",
       "source": "./plugins/swiper",
-      "description": "Swiper touch slider: the complete core API (parameters, methods, properties, events), every module, advanced features and the React, Vue, Angular, Svelte and Solid bindings — 4 domain skills.",
+      "description": "Swiper touch slider: the complete core API (parameters, methods, properties, events), every module, advanced features and the React, Vue, Angular, Svelte and Solid bindings \u2014 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -488,147 +664,6 @@
         "./skills/swiper-core",
         "./skills/swiper-frameworks",
         "./skills/swiper-modules"
-      ]
-    },
-    {
-      "name": "gotenberg",
-      "source": "./plugins/gotenberg",
-      "description": "Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, watermark), plus installation, configuration and clients — 3 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "gotenberg",
-        "pdf",
-        "docker",
-        "api",
-        "chromium",
-        "libreoffice"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/gotenberg-convert",
-        "./skills/gotenberg-operations",
-        "./skills/gotenberg-pdf"
-      ]
-    },
-    {
-      "name": "playwright",
-      "source": "./plugins/playwright",
-      "description": "Playwright end-to-end testing: writing tests (locators, actions, assertions, auth), the test runner (config, fixtures, sharding, reporters), the complete library API, trace-based debugging, MCP and CLI tooling — 5 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "playwright",
-        "testing",
-        "e2e",
-        "browser-automation",
-        "test-runner",
-        "mcp"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/playwright-debugging",
-        "./skills/playwright-library",
-        "./skills/playwright-runner",
-        "./skills/playwright-tooling",
-        "./skills/playwright-writing"
-      ]
-    },
-    {
-      "name": "panther",
-      "source": "./plugins/panther",
-      "description": "Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installation, PANTHER_* configuration, Selenium and CI — 2 domain skills.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "symfony",
-        "panther",
-        "testing",
-        "e2e",
-        "webdriver",
-        "browserkit",
-        "php"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/panther-setup",
-        "./skills/panther-testing"
-      ]
-    },
-    {
-      "name": "shadcn",
-      "source": "./plugins/shadcn",
-      "description": "shadcn/ui component library: all 59 components with full React source, props and examples for both Radix UI and Base UI, plus setup, theming, forms, blocks, 70 charts and custom registries — 8 domain skills over 444 reference files.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shadcn",
-        "ui",
-        "react",
-        "tailwind",
-        "radix",
-        "base-ui",
-        "components",
-        "mcp"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/shadcn-blocks",
-        "./skills/shadcn-data",
-        "./skills/shadcn-feedback",
-        "./skills/shadcn-forms",
-        "./skills/shadcn-layout",
-        "./skills/shadcn-navigation",
-        "./skills/shadcn-setup",
-        "./skills/shadcn-theming"
-      ]
-    },
-    {
-      "name": "shadcn-vue",
-      "source": "./plugins/shadcn-vue",
-      "description": "shadcn-vue component library: all 64 components with full Vue source, props, slots and demos, plus setup, theming, forms, blocks, charts and custom registries — 8 domain skills over 402 reference files.",
-      "version": "2.0.0",
-      "author": {
-        "name": "zone1987",
-        "url": "https://github.com/zone1987"
-      },
-      "license": "MIT",
-      "keywords": [
-        "shadcn",
-        "shadcn-vue",
-        "vue",
-        "nuxt",
-        "reka-ui",
-        "tailwind",
-        "components",
-        "mcp"
-      ],
-      "category": "development",
-      "skills": [
-        "./skills/shadcn-vue-blocks",
-        "./skills/shadcn-vue-data",
-        "./skills/shadcn-vue-feedback",
-        "./skills/shadcn-vue-forms",
-        "./skills/shadcn-vue-layout",
-        "./skills/shadcn-vue-navigation",
-        "./skills/shadcn-vue-setup",
-        "./skills/shadcn-vue-theming"
       ]
     },
     {

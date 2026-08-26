@@ -1,0 +1,124 @@
+{
+  "skill": "discord-rest",
+  "source": "Discord Developer Documentation \u2014 docs.discord.com/developers/resources/*",
+  "retrieved": "2026-08-26",
+  "page_count": 17,
+  "counts": {
+    "pages": 17,
+    "objects": 67,
+    "endpoints": 178,
+    "tables": 259,
+    "table_rows": 1784,
+    "field_and_enum_entries": 1525,
+    "code_examples": 66,
+    "headings": 631,
+    "reference_lines": 7260
+  },
+  "generator": "scripts/build_rest_reference.py",
+  "verifier": "scripts/verify_rest_coverage.py",
+  "verification": "two-direction, 0 failures",
+  "pages": {
+    "resources__application": {
+      "url": "https://docs.discord.com/developers/resources/application",
+      "reference": "references/APPLICATION.md",
+      "sha256": "e86263ee052273935e97f2afb906d860e3d3b5038a8db12a62fbdcc12a0154d9",
+      "source_lines": 364
+    },
+    "resources__audit-log": {
+      "url": "https://docs.discord.com/developers/resources/audit-log",
+      "reference": "references/AUDIT-LOG.md",
+      "sha256": "908d278721d0c3bd202b24e93f021e23df78973423e59abbb22a8f8ed5ba3985",
+      "source_lines": 248
+    },
+    "resources__auto-moderation": {
+      "url": "https://docs.discord.com/developers/resources/auto-moderation",
+      "reference": "references/AUTO-MODERATION.md",
+      "sha256": "83c3c1db2ab4b220069f8363d9ee7205acea04199915f8fe4a397d62055b73c0",
+      "source_lines": 334
+    },
+    "resources__channel": {
+      "url": "https://docs.discord.com/developers/resources/channel",
+      "reference": "references/CHANNEL.md",
+      "sha256": "85046321ec482acfe3d97072caf78b063bc630e30465d89802cf82000b437d25",
+      "source_lines": 897
+    },
+    "resources__emoji": {
+      "url": "https://docs.discord.com/developers/resources/emoji",
+      "reference": "references/EMOJI.md",
+      "sha256": "edf72cf6b874fe27eb893bae5100222d14e0c85704243448ae188a37e107fdbb",
+      "source_lines": 276
+    },
+    "resources__guild": {
+      "url": "https://docs.discord.com/developers/resources/guild",
+      "reference": "references/GUILD.md",
+      "sha256": "521644e9891ebac385e9c8b9d5880aa0dcab65a9cc72891b265b5b609a24e8e5",
+      "source_lines": 1654
+    },
+    "resources__guild-scheduled-event": {
+      "url": "https://docs.discord.com/developers/resources/guild-scheduled-event",
+      "reference": "references/GUILD-SCHEDULED-EVENT.md",
+      "sha256": "329dfa481cd7ec2ed007afad2472ea803efe9f48376505232e770eddcd981d95",
+      "source_lines": 551
+    },
+    "resources__guild-template": {
+      "url": "https://docs.discord.com/developers/resources/guild-template",
+      "reference": "references/GUILD-TEMPLATE.md",
+      "sha256": "0d641b81bd33c55dbf0589438f187f68b65b06232c2b85ec48364ef14f3d6801",
+      "source_lines": 172
+    },
+    "resources__invite": {
+      "url": "https://docs.discord.com/developers/resources/invite",
+      "reference": "references/INVITE.md",
+      "sha256": "1cf2132cb238924400a05ea728ffcab154982dea9f5b7e8bd275b60cfbd30b0e",
+      "source_lines": 275
+    },
+    "resources__message": {
+      "url": "https://docs.discord.com/developers/resources/message",
+      "reference": "references/MESSAGE.md",
+      "sha256": "3fafbc63ac60473e156b2c3839729fa9f97f1d41fd0f2a7f7532e204b3fab4c6",
+      "source_lines": 1387
+    },
+    "resources__poll": {
+      "url": "https://docs.discord.com/developers/resources/poll",
+      "reference": "references/POLL.md",
+      "sha256": "3ebb91a124c1193a5ef20ddc35e0349b3f41a9fab9dede4e89b379caf5ffa24f",
+      "source_lines": 181
+    },
+    "resources__soundboard": {
+      "url": "https://docs.discord.com/developers/resources/soundboard",
+      "reference": "references/SOUNDBOARD.md",
+      "sha256": "3dcd1793c165e8c520aa419d16db5ce45970f79a8313e2ac56f14b45cb2624e1",
+      "source_lines": 185
+    },
+    "resources__stage-instance": {
+      "url": "https://docs.discord.com/developers/resources/stage-instance",
+      "reference": "references/STAGE-INSTANCE.md",
+      "sha256": "90c534e29f3c87ae6f694f2f6ca9415074c2bb42d1ed44c60b88ea1046f44e6c",
+      "source_lines": 147
+    },
+    "resources__sticker": {
+      "url": "https://docs.discord.com/developers/resources/sticker",
+      "reference": "references/STICKER.md",
+      "sha256": "ff841adb0cae8c7db834a3d747722d068dca94164d9097ab98decbf276c5d610",
+      "source_lines": 232
+    },
+    "resources__user": {
+      "url": "https://docs.discord.com/developers/resources/user",
+      "reference": "references/USER.md",
+      "sha256": "e177c7e832dd1add50ccc6072c3e949f7daf6e2a0df313400b590b1e70fcb6a6",
+      "source_lines": 421
+    },
+    "resources__voice": {
+      "url": "https://docs.discord.com/developers/resources/voice",
+      "reference": "references/VOICE.md",
+      "sha256": "139d8d7f0d1ba86798362ec5805739772473d2a18aa1b778fe2e6fcb04ae0b6e",
+      "source_lines": 150
+    },
+    "resources__webhook": {
+      "url": "https://docs.discord.com/developers/resources/webhook",
+      "reference": "references/WEBHOOK.md",
+      "sha256": "0f188cf92ad8d8429064ca77afc8aef948603c84a56fd86b2dd0be5c3778a8bf",
+      "source_lines": 400
+    }
+  }
+}

@@ -1,0 +1,3180 @@
+{
+ "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-09).",
+ "plugin": "discord",
+ "recorded": "2026-08-26",
+ "source": {
+  "documentation": "https://docs.discord.com/developers/intro",
+  "sitemap": "https://docs.discord.com/sitemap.xml",
+  "sitemap_sha256": "5f88bd8ed24253a5fc624762d2cfaf5b31fde94edb9ec2f1bbc71851082900ed",
+  "base": "https://docs.discord.com/developers/",
+  "note": "Each page is served as a markdown twin at its URL plus .md; that is what was extracted.",
+  "rights_holder": "Discord Inc."
+ },
+ "pages": 159,
+ "source_lines": 51480,
+ "entries": {
+  "activities/building-an-activity": {
+   "url": "https://docs.discord.com/developers/activities/building-an-activity",
+   "markdown_url": "https://docs.discord.com/developers/activities/building-an-activity.md",
+   "sha256": "f52c62f91ae1a577e23bf65f96a8caee194f69fb61daabfbe5bd0880d2f8e030",
+   "source_lines": 715,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/design-patterns": {
+   "url": "https://docs.discord.com/developers/activities/design-patterns",
+   "markdown_url": "https://docs.discord.com/developers/activities/design-patterns.md",
+   "sha256": "f54d0edaaf60046c40f2e43f97a19267e8d036d4688ca23278a686e9c3bb0916",
+   "source_lines": 259,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides": {
+   "url": "https://docs.discord.com/developers/activities/development-guides",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides.md",
+   "sha256": "a63871b1059d4466c1905da2b50e199bedc2dd2d62a2424e4fe1ebfe08d6e20d",
+   "source_lines": 182,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/assets-and-metadata": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/assets-and-metadata",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/assets-and-metadata.md",
+   "sha256": "9f92d8aba3790f3080a2df765aa0a23252987b9a4c1dd3d56157a53185d44a5f",
+   "source_lines": 62,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/growth-and-referrals": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/growth-and-referrals",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/growth-and-referrals.md",
+   "sha256": "4157dd3081885a9d277bb5ed7760545d2aa033296e5a2393385b6c21fcf3556c",
+   "source_lines": 188,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/layout": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/layout",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/layout.md",
+   "sha256": "43b332dbdeef12946d437be276e9690b849490d8bd35d4e39f0164f8263469ee",
+   "source_lines": 78,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/local-development": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/local-development",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/local-development.md",
+   "sha256": "ac86fb7fed1c30903be5896ba66b35018e51c38f3572a0a0ea390790a6f933f0",
+   "source_lines": 197,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/mobile": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/mobile",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/mobile.md",
+   "sha256": "44c09ff23e46569e0826df769e4558c6c250cc0492cd294455ee2ad6bd5dd602",
+   "source_lines": 93,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/multiplayer-experience": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/multiplayer-experience",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/multiplayer-experience.md",
+   "sha256": "f6cf68e6f7fbaf1e63555c68cb068457b004e5d8fe198bc7a5fe9c3a2b95c3fc",
+   "source_lines": 252,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/networking": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/networking",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/networking.md",
+   "sha256": "67417190854791c7906fe84553a53a5fea0b3cfc910ff8fe8fe62ae4a6845866",
+   "source_lines": 107,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/production-readiness": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/production-readiness",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/production-readiness.md",
+   "sha256": "24f94084c3c8901f4048ee98a8141a12e3af0c6f574b3e0aad269606459120d7",
+   "source_lines": 51,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/development-guides/user-actions": {
+   "url": "https://docs.discord.com/developers/activities/development-guides/user-actions",
+   "markdown_url": "https://docs.discord.com/developers/activities/development-guides/user-actions.md",
+   "sha256": "4ec0818ef69388e063c2f8b347370e14769a596bbf34390b615549640334c05b",
+   "source_lines": 187,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/how-activities-work": {
+   "url": "https://docs.discord.com/developers/activities/how-activities-work",
+   "markdown_url": "https://docs.discord.com/developers/activities/how-activities-work.md",
+   "sha256": "25aa4e05f27912367d54562516995cc201426154b0e4432f26978030d1d9312b",
+   "source_lines": 94,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "activities/overview": {
+   "url": "https://docs.discord.com/developers/activities/overview",
+   "markdown_url": "https://docs.discord.com/developers/activities/overview.md",
+   "sha256": "689a6884dd475d435cc9902c040185ed82db48f7e8adf8797c82f972af93f75e",
+   "source_lines": 76,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "developer-tools/embedded-app-sdk": {
+   "url": "https://docs.discord.com/developers/developer-tools/embedded-app-sdk",
+   "markdown_url": "https://docs.discord.com/developers/developer-tools/embedded-app-sdk.md",
+   "sha256": "b2ab2a059681aa23c029616e96f4804992b04e5d23cfba42c34a69a9fc98c98e",
+   "source_lines": 1817,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "platform/activities": {
+   "url": "https://docs.discord.com/developers/platform/activities",
+   "markdown_url": "https://docs.discord.com/developers/platform/activities.md",
+   "sha256": "a49662e9b78c04daf943a50eeaa1b5f4e1b4294249f93d0cb7ba40c04dd1a62f",
+   "source_lines": 44,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "rich-presence/using-with-the-embedded-app-sdk": {
+   "url": "https://docs.discord.com/developers/rich-presence/using-with-the-embedded-app-sdk",
+   "markdown_url": "https://docs.discord.com/developers/rich-presence/using-with-the-embedded-app-sdk.md",
+   "sha256": "39029f57b1a620da9c4574928d899bec28f967f92514ee78a8d253ee96736c7d",
+   "source_lines": 175,
+   "skill": "discord-activities",
+   "covered_by": [
+    "skills/discord-activities/SKILL.md",
+    "skills/discord-activities/references/BUILDING-AN-ACTIVITY.md",
+    "skills/discord-activities/references/DEVELOPMENT-GUIDES.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-COMMANDS.md",
+    "skills/discord-activities/references/EMBEDDED-APP-SDK-EVENTS.md",
+    "skills/discord-activities/references/HOW-ACTIVITIES-WORK.md",
+    "skills/discord-activities/references/RICH-PRESENCE-IN-ACTIVITIES.md"
+   ]
+  },
+  "change-log": {
+   "url": "https://docs.discord.com/developers/change-log",
+   "markdown_url": "https://docs.discord.com/developers/change-log.md",
+   "sha256": "36814aefcfb58fd4c01687f3d32ffeb86b262011a82168fba7e2f61937c72ece",
+   "source_lines": 5175,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "developer-tools/community-resources": {
+   "url": "https://docs.discord.com/developers/developer-tools/community-resources",
+   "markdown_url": "https://docs.discord.com/developers/developer-tools/community-resources.md",
+   "sha256": "dd8e23335d92ef5dca571e86d25ce1fa7df2bab76af2c0ffbe37976ec03d0c78",
+   "source_lines": 124,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "intro": {
+   "url": "https://docs.discord.com/developers/intro",
+   "markdown_url": "https://docs.discord.com/developers/intro.md",
+   "sha256": "25c7f376e74ef53097a7b5914f9892ea5e9a2f51b85157831cbbcf00fa5e48bc",
+   "source_lines": 68,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "quick-start/getting-started": {
+   "url": "https://docs.discord.com/developers/quick-start/getting-started",
+   "markdown_url": "https://docs.discord.com/developers/quick-start/getting-started.md",
+   "sha256": "41c94ba28edba16d77fa3003278ec026fcc06dd49cb10f9349656b12c48d868e",
+   "source_lines": 634,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "quick-start/overview-of-apps": {
+   "url": "https://docs.discord.com/developers/quick-start/overview-of-apps",
+   "markdown_url": "https://docs.discord.com/developers/quick-start/overview-of-apps.md",
+   "sha256": "c6c63e2524dea64cf2223635c9106920a31a740b0f25b06b638831cb2d1fb13d",
+   "source_lines": 116,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "reference": {
+   "url": "https://docs.discord.com/developers/reference",
+   "markdown_url": "https://docs.discord.com/developers/reference.md",
+   "sha256": "6da83037d27b86cd1147eec10dd969a22f5ff4943a8a9ee8a03e49b4d55ba204",
+   "source_lines": 741,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "tutorials/developing-a-user-installable-app": {
+   "url": "https://docs.discord.com/developers/tutorials/developing-a-user-installable-app",
+   "markdown_url": "https://docs.discord.com/developers/tutorials/developing-a-user-installable-app.md",
+   "sha256": "114a6fa227ebbbe65575b125b6f974a21fe6635245e95ab83283ddc48138dc0b",
+   "source_lines": 396,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "tutorials/hosting-on-cloudflare-workers": {
+   "url": "https://docs.discord.com/developers/tutorials/hosting-on-cloudflare-workers",
+   "markdown_url": "https://docs.discord.com/developers/tutorials/hosting-on-cloudflare-workers.md",
+   "sha256": "3ff14c736fd26b84a3b4960df334956f3ddf7f329c2b82473c67808d1c7924ae",
+   "source_lines": 356,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "tutorials/using-community-invites": {
+   "url": "https://docs.discord.com/developers/tutorials/using-community-invites",
+   "markdown_url": "https://docs.discord.com/developers/tutorials/using-community-invites.md",
+   "sha256": "13ce75842b3c924954f67d47edbedd7b3f23e3cee8ff6fcb0305fdb965524116",
+   "source_lines": 308,
+   "skill": "discord-bots",
+   "covered_by": [
+    "skills/discord-bots/SKILL.md",
+    "skills/discord-bots/references/API-REFERENCE-CONVENTIONS.md",
+    "skills/discord-bots/references/CHANGELOG-2024-AND-LATER.md",
+    "skills/discord-bots/references/CHANGELOG-EARLIER.md",
+    "skills/discord-bots/references/COMMUNITY-RESOURCES.md",
+    "skills/discord-bots/references/GETTING-STARTED.md",
+    "skills/discord-bots/references/LOCAL-DEVELOPMENT.md",
+    "skills/discord-bots/references/TUTORIALS.md"
+   ]
+  },
+  "events/gateway": {
+   "url": "https://docs.discord.com/developers/events/gateway",
+   "markdown_url": "https://docs.discord.com/developers/events/gateway.md",
+   "sha256": "229fd0b34845d8cee1f78e415b4d4de226db2d2e267ce3f9533f41e15b395b09",
+   "source_lines": 808,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "events/gateway-events": {
+   "url": "https://docs.discord.com/developers/events/gateway-events",
+   "markdown_url": "https://docs.discord.com/developers/events/gateway-events.md",
+   "sha256": "b2b69ca08b2a4b811cb800779dc014e36d2be0cbe1a5b92bedff49177cd1f291",
+   "source_lines": 1768,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "events/overview": {
+   "url": "https://docs.discord.com/developers/events/overview",
+   "markdown_url": "https://docs.discord.com/developers/events/overview.md",
+   "sha256": "7c9a4a9fd7eed9bfe473b8656771d4765085a3afe347d1c36e09b0e595c8246c",
+   "source_lines": 56,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "events/webhook-events": {
+   "url": "https://docs.discord.com/developers/events/webhook-events",
+   "markdown_url": "https://docs.discord.com/developers/events/webhook-events.md",
+   "sha256": "7949286b9bf6a9b2f6898a7a763a4d093ab329cda7215ec1d5e6f5da93598460",
+   "source_lines": 611,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "gateway/getting-started-with-privileged-intent-review": {
+   "url": "https://docs.discord.com/developers/gateway/getting-started-with-privileged-intent-review",
+   "markdown_url": "https://docs.discord.com/developers/gateway/getting-started-with-privileged-intent-review.md",
+   "sha256": "73d9101bd132a6405ec8a5e263724c4ea2fab33e8bf7754e33c157209a018020",
+   "source_lines": 170,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "gateway/you-might-not-need-a-privileged-intent": {
+   "url": "https://docs.discord.com/developers/gateway/you-might-not-need-a-privileged-intent",
+   "markdown_url": "https://docs.discord.com/developers/gateway/you-might-not-need-a-privileged-intent.md",
+   "sha256": "b304107549ae16c372536d75b8df2418b10e539f72ed2db4666cf0869f007e09",
+   "source_lines": 149,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "topics/opcodes-and-status-codes": {
+   "url": "https://docs.discord.com/developers/topics/opcodes-and-status-codes",
+   "markdown_url": "https://docs.discord.com/developers/topics/opcodes-and-status-codes.md",
+   "sha256": "4e219ae6f02b3bb33ddb3059f435b803243b0c930db85f2eefe164989c84d011",
+   "source_lines": 439,
+   "skill": "discord-gateway",
+   "covered_by": [
+    "skills/discord-gateway/SKILL.md",
+    "skills/discord-gateway/references/CONNECTION-LIFECYCLE.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-GUILDS.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-MESSAGES.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-RECEIVE-INDEX.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-SEND.md",
+    "skills/discord-gateway/references/GATEWAY-EVENTS-VOICE-AND-MISC.md",
+    "skills/discord-gateway/references/INTENTS.md",
+    "skills/discord-gateway/references/OPCODES-AND-STATUS-CODES.md",
+    "skills/discord-gateway/references/WEBHOOK-EVENTS.md"
+   ]
+  },
+  "components/overview": {
+   "url": "https://docs.discord.com/developers/components/overview",
+   "markdown_url": "https://docs.discord.com/developers/components/overview.md",
+   "sha256": "2dfe0b3e809424151dfc92f990d1bf6e08708b648606e08666f257301b30ea3e",
+   "source_lines": 46,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "components/reference": {
+   "url": "https://docs.discord.com/developers/components/reference",
+   "markdown_url": "https://docs.discord.com/developers/components/reference.md",
+   "sha256": "93be24396e68652aca41c37d3a6e277c88b7a984dcc38d55c4800fad3ebd37e7",
+   "source_lines": 2636,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "components/using-message-components": {
+   "url": "https://docs.discord.com/developers/components/using-message-components",
+   "markdown_url": "https://docs.discord.com/developers/components/using-message-components.md",
+   "sha256": "401539f85f93a1b56d698f3b2b6fe0a95bb62b3a41e554c8c1061e892c7e3f1b",
+   "source_lines": 113,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "components/using-modal-components": {
+   "url": "https://docs.discord.com/developers/components/using-modal-components",
+   "markdown_url": "https://docs.discord.com/developers/components/using-modal-components.md",
+   "sha256": "a57e231b712909d6a744ae27111e5e83d0e0611ba28ec822b86415e253e239a5",
+   "source_lines": 86,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "interactions/application-commands": {
+   "url": "https://docs.discord.com/developers/interactions/application-commands",
+   "markdown_url": "https://docs.discord.com/developers/interactions/application-commands.md",
+   "sha256": "d57f0331dc2815ac830f19ed2897727de8f9f775fb6d1bd22478b941b5a3e433",
+   "source_lines": 1466,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "interactions/overview": {
+   "url": "https://docs.discord.com/developers/interactions/overview",
+   "markdown_url": "https://docs.discord.com/developers/interactions/overview.md",
+   "sha256": "f64706f749365e695870ec85af29ac15df7ab07d7dad6012338a2338f604e6b4",
+   "source_lines": 229,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "interactions/receiving-and-responding": {
+   "url": "https://docs.discord.com/developers/interactions/receiving-and-responding",
+   "markdown_url": "https://docs.discord.com/developers/interactions/receiving-and-responding.md",
+   "sha256": "5a03a3d9c4e5798990b58cc1c5919833d7ffca46ef1135383515139f33d06436",
+   "source_lines": 532,
+   "skill": "discord-interactions",
+   "covered_by": [
+    "skills/discord-interactions/SKILL.md",
+    "skills/discord-interactions/references/APPLICATION-COMMANDS.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-INTERACTIVE.md",
+    "skills/discord-interactions/references/COMPONENTS-REFERENCE-LAYOUT-AND-CONTENT.md",
+    "skills/discord-interactions/references/RECEIVING-AND-RESPONDING.md",
+    "skills/discord-interactions/references/USING-COMPONENTS.md"
+   ]
+  },
+  "monetization/enabling-monetization": {
+   "url": "https://docs.discord.com/developers/monetization/enabling-monetization",
+   "markdown_url": "https://docs.discord.com/developers/monetization/enabling-monetization.md",
+   "sha256": "2a31e017d14ca94670770b5e56dff4911bfa43726929ee7a2496671cd13068ad",
+   "source_lines": 97,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "monetization/implementing-app-subscriptions": {
+   "url": "https://docs.discord.com/developers/monetization/implementing-app-subscriptions",
+   "markdown_url": "https://docs.discord.com/developers/monetization/implementing-app-subscriptions.md",
+   "sha256": "612010f8d1959c1455001f2422b81c57d0f83fa466f8da5bd3948112db3f798e",
+   "source_lines": 226,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "monetization/implementing-iap-for-activities": {
+   "url": "https://docs.discord.com/developers/monetization/implementing-iap-for-activities",
+   "markdown_url": "https://docs.discord.com/developers/monetization/implementing-iap-for-activities.md",
+   "sha256": "9b388c8daeb7a1c0639c5bf1b787fa2866a4db0053d6d0de8f927fae1b5eebc0",
+   "source_lines": 187,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "monetization/implementing-one-time-purchases": {
+   "url": "https://docs.discord.com/developers/monetization/implementing-one-time-purchases",
+   "markdown_url": "https://docs.discord.com/developers/monetization/implementing-one-time-purchases.md",
+   "sha256": "c4c1cf6046fb6f26a7910fd045632db4cd0e8b363c0d2b09413d030677034481",
+   "source_lines": 133,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "monetization/managing-skus": {
+   "url": "https://docs.discord.com/developers/monetization/managing-skus",
+   "markdown_url": "https://docs.discord.com/developers/monetization/managing-skus.md",
+   "sha256": "76991074531a9c2a4317456cf457d325a6da0832952c8798430317f3c67a5b51",
+   "source_lines": 255,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "monetization/overview": {
+   "url": "https://docs.discord.com/developers/monetization/overview",
+   "markdown_url": "https://docs.discord.com/developers/monetization/overview.md",
+   "sha256": "c87c54e5d4ff634145767368a63ea0e36b4998e8e1db5eae913c6d637adcbace",
+   "source_lines": 52,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "platform/app-monetization": {
+   "url": "https://docs.discord.com/developers/platform/app-monetization",
+   "markdown_url": "https://docs.discord.com/developers/platform/app-monetization.md",
+   "sha256": "15e196f92bd3c05d49f7392132df4a96e249845328eec4895c1b458c2c342695",
+   "source_lines": 35,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "resources/entitlement": {
+   "url": "https://docs.discord.com/developers/resources/entitlement",
+   "markdown_url": "https://docs.discord.com/developers/resources/entitlement.md",
+   "sha256": "0090e5cbc3d2c1cdb0841a42599b247c0720fc3385fcc1db6092bdb98bcf9644",
+   "source_lines": 188,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "resources/sku": {
+   "url": "https://docs.discord.com/developers/resources/sku",
+   "markdown_url": "https://docs.discord.com/developers/resources/sku.md",
+   "sha256": "0ef451b21a35a689ac4fb9a71318683ead12b687c5192c4d7ea5e474c6a98f48",
+   "source_lines": 133,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "resources/subscription": {
+   "url": "https://docs.discord.com/developers/resources/subscription",
+   "markdown_url": "https://docs.discord.com/developers/resources/subscription.md",
+   "sha256": "6d5138297403cb6bf6cb6d927d9d4755752880d30d5b564bc50566fd34cfc236",
+   "source_lines": 92,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "social-commerce/overview": {
+   "url": "https://docs.discord.com/developers/social-commerce/overview",
+   "markdown_url": "https://docs.discord.com/developers/social-commerce/overview.md",
+   "sha256": "2e0eb4ad222f5d1a8245d89fc6ab29069a435d856ca4d4ae44e7105526325183",
+   "source_lines": 48,
+   "skill": "discord-monetization",
+   "covered_by": [
+    "skills/discord-monetization/SKILL.md",
+    "skills/discord-monetization/references/ENABLING-AND-OVERVIEW.md",
+    "skills/discord-monetization/references/ENTITLEMENT.md",
+    "skills/discord-monetization/references/IMPLEMENTING.md",
+    "skills/discord-monetization/references/SKU.md",
+    "skills/discord-monetization/references/SUBSCRIPTION.md"
+   ]
+  },
+  "platform/account-linking": {
+   "url": "https://docs.discord.com/developers/platform/account-linking",
+   "markdown_url": "https://docs.discord.com/developers/platform/account-linking.md",
+   "sha256": "d4a5a20aacb46af09f6eaa99759859ebfd083730aad9bedfaf8ea33c7ab3e211",
+   "source_lines": 176,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "platform/oauth2-and-permissions": {
+   "url": "https://docs.discord.com/developers/platform/oauth2-and-permissions",
+   "markdown_url": "https://docs.discord.com/developers/platform/oauth2-and-permissions.md",
+   "sha256": "ecd97bda713a43eaa5f47e1d4eb9e935ed698cfd18fb129cb9eb8b8508f9c175",
+   "source_lines": 75,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "resources/application-role-connection-metadata": {
+   "url": "https://docs.discord.com/developers/resources/application-role-connection-metadata",
+   "markdown_url": "https://docs.discord.com/developers/resources/application-role-connection-metadata.md",
+   "sha256": "a49d03b6a57fc0c31dae20304a17152a080452244370b64ef7162007b8977444",
+   "source_lines": 77,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "topics/oauth2": {
+   "url": "https://docs.discord.com/developers/topics/oauth2",
+   "markdown_url": "https://docs.discord.com/developers/topics/oauth2.md",
+   "sha256": "7d58382885f41366ce714aa37f89d3e3feeba29c2cc566fb45ff81841552866a",
+   "source_lines": 529,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "topics/permissions": {
+   "url": "https://docs.discord.com/developers/topics/permissions",
+   "markdown_url": "https://docs.discord.com/developers/topics/permissions.md",
+   "sha256": "f5a66a7fb81c970ff7da78a75093414b317518955275b763143a1750910c5715",
+   "source_lines": 331,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "topics/teams": {
+   "url": "https://docs.discord.com/developers/topics/teams",
+   "markdown_url": "https://docs.discord.com/developers/topics/teams.md",
+   "sha256": "60b25fb3c5b20b7e9efe9e9a840745c7bd79c2503d2fc993534048de0f50b7fc",
+   "source_lines": 97,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "tutorials/configuring-app-metadata-for-linked-roles": {
+   "url": "https://docs.discord.com/developers/tutorials/configuring-app-metadata-for-linked-roles",
+   "markdown_url": "https://docs.discord.com/developers/tutorials/configuring-app-metadata-for-linked-roles.md",
+   "sha256": "dbaa8e8420156a370207a8f193c5c2ebf94ff2abeb326869b82a87e682633224",
+   "source_lines": 191,
+   "skill": "discord-oauth2",
+   "covered_by": [
+    "skills/discord-oauth2/SKILL.md",
+    "skills/discord-oauth2/references/ACCOUNT-LINKING.md",
+    "skills/discord-oauth2/references/LINKED-ROLES.md",
+    "skills/discord-oauth2/references/OAUTH2-FLOWS.md",
+    "skills/discord-oauth2/references/PERMISSIONS.md",
+    "skills/discord-oauth2/references/SCOPES.md",
+    "skills/discord-oauth2/references/TEAMS.md"
+   ]
+  },
+  "bots/overview": {
+   "url": "https://docs.discord.com/developers/bots/overview",
+   "markdown_url": "https://docs.discord.com/developers/bots/overview.md",
+   "sha256": "1c2161b9e91b10ce221a93cd6b09e56eb570d565e4f8ccf72598f4018f8fb86a",
+   "source_lines": 47,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "discovery/best-practices": {
+   "url": "https://docs.discord.com/developers/discovery/best-practices",
+   "markdown_url": "https://docs.discord.com/developers/discovery/best-practices.md",
+   "sha256": "0ca761b0d25b37b7e4bc0017fcec613cb712ad442b4f8c87f11f765ef5cefdab",
+   "source_lines": 104,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "discovery/enabling-discovery": {
+   "url": "https://docs.discord.com/developers/discovery/enabling-discovery",
+   "markdown_url": "https://docs.discord.com/developers/discovery/enabling-discovery.md",
+   "sha256": "fad560f1762fc4b2ac708ccaa215b8a3a3e984c6e0abbd18d45534ba54667532",
+   "source_lines": 67,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "discovery/overview": {
+   "url": "https://docs.discord.com/developers/discovery/overview",
+   "markdown_url": "https://docs.discord.com/developers/discovery/overview.md",
+   "sha256": "98db9e22d5c8a8a1e0c0635195fe8e07a7c42a4f5fc52308aa3b5cb898ceadb0",
+   "source_lines": 81,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "game-development/how-to-grow-your-game": {
+   "url": "https://docs.discord.com/developers/game-development/how-to-grow-your-game",
+   "markdown_url": "https://docs.discord.com/developers/game-development/how-to-grow-your-game.md",
+   "sha256": "67d41a5512b9bbb60f9e7e9b77faa9c2d36418b40ee633ddce70dffd0279e91e",
+   "source_lines": 156,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides": {
+   "url": "https://docs.discord.com/developers/guides",
+   "markdown_url": "https://docs.discord.com/developers/guides.md",
+   "sha256": "f17296231fb86c21abba2b08865bf4103b75e67ed0aa192acdd075038f55c764",
+   "source_lines": 110,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides/activities": {
+   "url": "https://docs.discord.com/developers/guides/activities",
+   "markdown_url": "https://docs.discord.com/developers/guides/activities.md",
+   "sha256": "a76480cc80b8a9a254addde343e4cbf2b6cb1929724dbfe95ad84195bc68d81b",
+   "source_lines": 104,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides/bots": {
+   "url": "https://docs.discord.com/developers/guides/bots",
+   "markdown_url": "https://docs.discord.com/developers/guides/bots.md",
+   "sha256": "325320f376afcf669b286dcabe59232717a10fda9b4f02eb86e58644ce60d841",
+   "source_lines": 132,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides/communities": {
+   "url": "https://docs.discord.com/developers/guides/communities",
+   "markdown_url": "https://docs.discord.com/developers/guides/communities.md",
+   "sha256": "29a02eaee3e527e8fc59a0125d1b5cedc97d7fe0fd12184880a84aeba683b3e1",
+   "source_lines": 84,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides/game-development": {
+   "url": "https://docs.discord.com/developers/guides/game-development",
+   "markdown_url": "https://docs.discord.com/developers/guides/game-development.md",
+   "sha256": "2e6180e338ddf14e5e118da7029b59c7ea6a20ee1eca8bed5a45d01171fa8958",
+   "source_lines": 99,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides/platform": {
+   "url": "https://docs.discord.com/developers/guides/platform",
+   "markdown_url": "https://docs.discord.com/developers/guides/platform.md",
+   "sha256": "4c2f55f28576c2b1446f1bae56ba3a193c5b404da6b465d6765c142266a24ecf",
+   "source_lines": 84,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "guides/social-sdk": {
+   "url": "https://docs.discord.com/developers/guides/social-sdk",
+   "markdown_url": "https://docs.discord.com/developers/guides/social-sdk.md",
+   "sha256": "e86907f88e1f563ba7440b08e7946746daade09d64f0fd8f1b11662a8cdb5a56",
+   "source_lines": 162,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/bots": {
+   "url": "https://docs.discord.com/developers/platform/bots",
+   "markdown_url": "https://docs.discord.com/developers/platform/bots.md",
+   "sha256": "f87d5088b199ef142515108f9da5b0826a879800a5a582a0e6f55918ea12c68a",
+   "source_lines": 38,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/claim-your-game": {
+   "url": "https://docs.discord.com/developers/platform/claim-your-game",
+   "markdown_url": "https://docs.discord.com/developers/platform/claim-your-game.md",
+   "sha256": "d03e2d6364735f3bc52eb5227c6179def2ca01188a3b59636b771a54a305371b",
+   "source_lines": 151,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/community-servers": {
+   "url": "https://docs.discord.com/developers/platform/community-servers",
+   "markdown_url": "https://docs.discord.com/developers/platform/community-servers.md",
+   "sha256": "d6de3da43347abf5997541a06d97df428f8d188ab67f4e65dcbf1d91e0e1adac",
+   "source_lines": 42,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/components": {
+   "url": "https://docs.discord.com/developers/platform/components",
+   "markdown_url": "https://docs.discord.com/developers/platform/components.md",
+   "sha256": "44e8cd17caa349918ce055f2dc8a4ec67c62237228b2a2b304a9cb001d514248",
+   "source_lines": 44,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/discovery": {
+   "url": "https://docs.discord.com/developers/platform/discovery",
+   "markdown_url": "https://docs.discord.com/developers/platform/discovery.md",
+   "sha256": "8fead76af8d4d0ecdb53b34e6f81b7688f5d658eea8fe7636334f4fc00f45ed1",
+   "source_lines": 46,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/game-profiles": {
+   "url": "https://docs.discord.com/developers/platform/game-profiles",
+   "markdown_url": "https://docs.discord.com/developers/platform/game-profiles.md",
+   "sha256": "a70b93069d935d400dc9ca4f52c01ac994d54d6703befe0d95eee649e9f6f1c0",
+   "source_lines": 57,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/interactions": {
+   "url": "https://docs.discord.com/developers/platform/interactions",
+   "markdown_url": "https://docs.discord.com/developers/platform/interactions.md",
+   "sha256": "ab482392745c015806c07f812cc9d993a6060bba891e182111e55924f0c2e3ba",
+   "source_lines": 55,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/rich-presence": {
+   "url": "https://docs.discord.com/developers/platform/rich-presence",
+   "markdown_url": "https://docs.discord.com/developers/platform/rich-presence.md",
+   "sha256": "146f512f48ae1b11a75c551dfaf2797f12ca7d6d6dde2e88898c0f8bd56cf911",
+   "source_lines": 65,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/server-and-channel-management": {
+   "url": "https://docs.discord.com/developers/platform/server-and-channel-management",
+   "markdown_url": "https://docs.discord.com/developers/platform/server-and-channel-management.md",
+   "sha256": "101f540205d3b5c86a7cd584b1305f6bfe932055964e311687171d2c0ae8f008",
+   "source_lines": 66,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/social-layer": {
+   "url": "https://docs.discord.com/developers/platform/social-layer",
+   "markdown_url": "https://docs.discord.com/developers/platform/social-layer.md",
+   "sha256": "30635d77e5c2fb8520fb5b1b9884887f8e297d57111ece8f8ab00dc3ab23034c",
+   "source_lines": 66,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "platform/webhooks": {
+   "url": "https://docs.discord.com/developers/platform/webhooks",
+   "markdown_url": "https://docs.discord.com/developers/platform/webhooks.md",
+   "sha256": "3d7d63fb90885f0bbe27071ab18e37ee14d8d26254ddcce0f9fad592eb3952a3",
+   "source_lines": 51,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "topics/rate-limits": {
+   "url": "https://docs.discord.com/developers/topics/rate-limits",
+   "markdown_url": "https://docs.discord.com/developers/topics/rate-limits.md",
+   "sha256": "1fd43a24e53cbd249cad1001e7c3f079f6d7e5554736998152c63be12d5a6af2",
+   "source_lines": 152,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "topics/threads": {
+   "url": "https://docs.discord.com/developers/topics/threads",
+   "markdown_url": "https://docs.discord.com/developers/topics/threads.md",
+   "sha256": "af3bdb8df111dba5c4e068bda9947b8d65aa16f9b8d7899618ca73b778e143e3",
+   "source_lines": 254,
+   "skill": "discord-platform",
+   "covered_by": [
+    "skills/discord-platform/SKILL.md",
+    "skills/discord-platform/references/DISCOVERY.md",
+    "skills/discord-platform/references/GUIDE-INDEXES.md",
+    "skills/discord-platform/references/PLATFORM-FEATURES.md",
+    "skills/discord-platform/references/RATE-LIMITS.md",
+    "skills/discord-platform/references/THREADS.md"
+   ]
+  },
+  "resources/application": {
+   "url": "https://docs.discord.com/developers/resources/application",
+   "markdown_url": "https://docs.discord.com/developers/resources/application.md",
+   "sha256": "e86263ee052273935e97f2afb906d860e3d3b5038a8db12a62fbdcc12a0154d9",
+   "source_lines": 364,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/audit-log": {
+   "url": "https://docs.discord.com/developers/resources/audit-log",
+   "markdown_url": "https://docs.discord.com/developers/resources/audit-log.md",
+   "sha256": "908d278721d0c3bd202b24e93f021e23df78973423e59abbb22a8f8ed5ba3985",
+   "source_lines": 248,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/auto-moderation": {
+   "url": "https://docs.discord.com/developers/resources/auto-moderation",
+   "markdown_url": "https://docs.discord.com/developers/resources/auto-moderation.md",
+   "sha256": "83c3c1db2ab4b220069f8363d9ee7205acea04199915f8fe4a397d62055b73c0",
+   "source_lines": 334,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/channel": {
+   "url": "https://docs.discord.com/developers/resources/channel",
+   "markdown_url": "https://docs.discord.com/developers/resources/channel.md",
+   "sha256": "85046321ec482acfe3d97072caf78b063bc630e30465d89802cf82000b437d25",
+   "source_lines": 897,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/emoji": {
+   "url": "https://docs.discord.com/developers/resources/emoji",
+   "markdown_url": "https://docs.discord.com/developers/resources/emoji.md",
+   "sha256": "edf72cf6b874fe27eb893bae5100222d14e0c85704243448ae188a37e107fdbb",
+   "source_lines": 276,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/guild": {
+   "url": "https://docs.discord.com/developers/resources/guild",
+   "markdown_url": "https://docs.discord.com/developers/resources/guild.md",
+   "sha256": "521644e9891ebac385e9c8b9d5880aa0dcab65a9cc72891b265b5b609a24e8e5",
+   "source_lines": 1654,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/guild-scheduled-event": {
+   "url": "https://docs.discord.com/developers/resources/guild-scheduled-event",
+   "markdown_url": "https://docs.discord.com/developers/resources/guild-scheduled-event.md",
+   "sha256": "329dfa481cd7ec2ed007afad2472ea803efe9f48376505232e770eddcd981d95",
+   "source_lines": 551,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/guild-template": {
+   "url": "https://docs.discord.com/developers/resources/guild-template",
+   "markdown_url": "https://docs.discord.com/developers/resources/guild-template.md",
+   "sha256": "0d641b81bd33c55dbf0589438f187f68b65b06232c2b85ec48364ef14f3d6801",
+   "source_lines": 172,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/invite": {
+   "url": "https://docs.discord.com/developers/resources/invite",
+   "markdown_url": "https://docs.discord.com/developers/resources/invite.md",
+   "sha256": "1cf2132cb238924400a05ea728ffcab154982dea9f5b7e8bd275b60cfbd30b0e",
+   "source_lines": 275,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/message": {
+   "url": "https://docs.discord.com/developers/resources/message",
+   "markdown_url": "https://docs.discord.com/developers/resources/message.md",
+   "sha256": "3fafbc63ac60473e156b2c3839729fa9f97f1d41fd0f2a7f7532e204b3fab4c6",
+   "source_lines": 1387,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/poll": {
+   "url": "https://docs.discord.com/developers/resources/poll",
+   "markdown_url": "https://docs.discord.com/developers/resources/poll.md",
+   "sha256": "3ebb91a124c1193a5ef20ddc35e0349b3f41a9fab9dede4e89b379caf5ffa24f",
+   "source_lines": 181,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/soundboard": {
+   "url": "https://docs.discord.com/developers/resources/soundboard",
+   "markdown_url": "https://docs.discord.com/developers/resources/soundboard.md",
+   "sha256": "3dcd1793c165e8c520aa419d16db5ce45970f79a8313e2ac56f14b45cb2624e1",
+   "source_lines": 185,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/stage-instance": {
+   "url": "https://docs.discord.com/developers/resources/stage-instance",
+   "markdown_url": "https://docs.discord.com/developers/resources/stage-instance.md",
+   "sha256": "90c534e29f3c87ae6f694f2f6ca9415074c2bb42d1ed44c60b88ea1046f44e6c",
+   "source_lines": 147,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/sticker": {
+   "url": "https://docs.discord.com/developers/resources/sticker",
+   "markdown_url": "https://docs.discord.com/developers/resources/sticker.md",
+   "sha256": "ff841adb0cae8c7db834a3d747722d068dca94164d9097ab98decbf276c5d610",
+   "source_lines": 232,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/user": {
+   "url": "https://docs.discord.com/developers/resources/user",
+   "markdown_url": "https://docs.discord.com/developers/resources/user.md",
+   "sha256": "e177c7e832dd1add50ccc6072c3e949f7daf6e2a0df313400b590b1e70fcb6a6",
+   "source_lines": 421,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/voice": {
+   "url": "https://docs.discord.com/developers/resources/voice",
+   "markdown_url": "https://docs.discord.com/developers/resources/voice.md",
+   "sha256": "139d8d7f0d1ba86798362ec5805739772473d2a18aa1b778fe2e6fcb04ae0b6e",
+   "source_lines": 150,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "resources/webhook": {
+   "url": "https://docs.discord.com/developers/resources/webhook",
+   "markdown_url": "https://docs.discord.com/developers/resources/webhook.md",
+   "sha256": "0f188cf92ad8d8429064ca77afc8aef948603c84a56fd86b2dd0be5c3778a8bf",
+   "source_lines": 400,
+   "skill": "discord-rest",
+   "covered_by": [
+    "skills/discord-rest/SKILL.md",
+    "skills/discord-rest/references/APPLICATION.md",
+    "skills/discord-rest/references/AUDIT-LOG.md",
+    "skills/discord-rest/references/AUTO-MODERATION.md",
+    "skills/discord-rest/references/CHANNEL.md",
+    "skills/discord-rest/references/EMOJI.md",
+    "skills/discord-rest/references/GUILD-SCHEDULED-EVENT.md",
+    "skills/discord-rest/references/GUILD-TEMPLATE.md",
+    "skills/discord-rest/references/GUILD.md",
+    "skills/discord-rest/references/INVITE.md",
+    "skills/discord-rest/references/MESSAGE.md",
+    "skills/discord-rest/references/POLL.md",
+    "skills/discord-rest/references/SOUNDBOARD.md",
+    "skills/discord-rest/references/STAGE-INSTANCE.md",
+    "skills/discord-rest/references/STICKER.md",
+    "skills/discord-rest/references/USER.md",
+    "skills/discord-rest/references/VOICE.md",
+    "skills/discord-rest/references/WEBHOOK.md"
+   ]
+  },
+  "topics/certified-devices": {
+   "url": "https://docs.discord.com/developers/topics/certified-devices",
+   "markdown_url": "https://docs.discord.com/developers/topics/certified-devices.md",
+   "sha256": "030e2916c281d53d4ff79adc9ce6efddcfd27ef817e3257a2d046a55b6365f05",
+   "source_lines": 240,
+   "skill": "discord-rpc-voice",
+   "covered_by": [
+    "skills/discord-rpc-voice/SKILL.md",
+    "skills/discord-rpc-voice/references/CERTIFIED-DEVICES.md",
+    "skills/discord-rpc-voice/references/RPC-COMMANDS.md",
+    "skills/discord-rpc-voice/references/RPC-EVENTS.md",
+    "skills/discord-rpc-voice/references/RPC-PROTOCOL.md",
+    "skills/discord-rpc-voice/references/VOICE-CONNECTIONS.md"
+   ]
+  },
+  "topics/rpc": {
+   "url": "https://docs.discord.com/developers/topics/rpc",
+   "markdown_url": "https://docs.discord.com/developers/topics/rpc.md",
+   "sha256": "28aebb78a2063cfb147e10e9fb7bf935bc6ed66f8f6b2a87a0a00c88b0415f92",
+   "source_lines": 2196,
+   "skill": "discord-rpc-voice",
+   "covered_by": [
+    "skills/discord-rpc-voice/SKILL.md",
+    "skills/discord-rpc-voice/references/CERTIFIED-DEVICES.md",
+    "skills/discord-rpc-voice/references/RPC-COMMANDS.md",
+    "skills/discord-rpc-voice/references/RPC-EVENTS.md",
+    "skills/discord-rpc-voice/references/RPC-PROTOCOL.md",
+    "skills/discord-rpc-voice/references/VOICE-CONNECTIONS.md"
+   ]
+  },
+  "topics/voice-connections": {
+   "url": "https://docs.discord.com/developers/topics/voice-connections",
+   "markdown_url": "https://docs.discord.com/developers/topics/voice-connections.md",
+   "sha256": "7b462e887de105b94f38a1bf50eb4597ed813fd54a5c9a05b4711af1d05dfff7",
+   "source_lines": 618,
+   "skill": "discord-rpc-voice",
+   "covered_by": [
+    "skills/discord-rpc-voice/SKILL.md",
+    "skills/discord-rpc-voice/references/CERTIFIED-DEVICES.md",
+    "skills/discord-rpc-voice/references/RPC-COMMANDS.md",
+    "skills/discord-rpc-voice/references/RPC-EVENTS.md",
+    "skills/discord-rpc-voice/references/RPC-PROTOCOL.md",
+    "skills/discord-rpc-voice/references/VOICE-CONNECTIONS.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts.md",
+   "sha256": "4132246906d4b44c61ab217eaf03ce26b2efcff6992214564fec1c5243dd7d5f",
+   "source_lines": 66,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/communication-features": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/communication-features",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/communication-features.md",
+   "sha256": "2f71462d499a50bb4c499e3c83973b26e679e8ec7051ee5ec77a988370d9b287",
+   "source_lines": 459,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/core-features": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/core-features",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/core-features.md",
+   "sha256": "8b840ada43d40af6552e5ccd7b660002bd4df80d6e60cbf5b607c8ad4c6b7df5",
+   "source_lines": 115,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/integration-overview": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/integration-overview",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/integration-overview.md",
+   "sha256": "0a043308a6aba38046dac623eb50a6c552bafec0b4ccfcac143a93d80ef0a615",
+   "source_lines": 68,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/mobile": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/mobile",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/mobile.md",
+   "sha256": "da9a37e56cf35d649d7a97693704dd994fcc1a86aeac1aaeb1834b603faa1020",
+   "source_lines": 122,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/oauth2-scopes": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/oauth2-scopes",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/oauth2-scopes.md",
+   "sha256": "f15943a31ca30ef1801c9c398117ea0780e78c5dc4ae3fcb21b719fc95655ca9",
+   "source_lines": 121,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/platform-compatibility": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/platform-compatibility",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/platform-compatibility.md",
+   "sha256": "156351df29fe9208151bf508d093c152534598b9b2531b97300ae71a0da3e9a1",
+   "source_lines": 120,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/core-concepts/release-cadence-and-support": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/release-cadence-and-support",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/core-concepts/release-cadence-and-support.md",
+   "sha256": "da48b2a86ca712c3b270d3f98e1ed489deb6dd10a1ba5fe32833467db9be8e0f",
+   "source_lines": 112,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/branding-guidelines": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/branding-guidelines",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/branding-guidelines.md",
+   "sha256": "af582207f8f7b57ed81df99299e4aed3facc811ad2d604c4bff3f523b366490f",
+   "source_lines": 48,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/chat-history": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/chat-history",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/chat-history.md",
+   "sha256": "19eb785ca55475f0d1d5da4bb8b425f4a5ffc76ff2adf2851f09808987a50ed2",
+   "source_lines": 36,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/connection-points": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/connection-points",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/connection-points.md",
+   "sha256": "a9722a6d3cd0efac196a3a534381f345024c3c4b11c9e145b81f4b8e49c0f83f",
+   "source_lines": 46,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/consoles": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/consoles",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/consoles.md",
+   "sha256": "ea193f0f24c240d219f58dc5b44285252bcc91280ce014dc4ed3c18c78a31ad3",
+   "source_lines": 67,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/direct-messages": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/direct-messages",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/direct-messages.md",
+   "sha256": "c28e9b9c9205e9d463e2655a62299fefe6c7fa4ccc88c0ff50b05082f0466f41",
+   "source_lines": 42,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/game-friends": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/game-friends",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/game-friends.md",
+   "sha256": "0bdab13d36b72acf98d0f1f2a8cfc6c1e0441829f96937bd019c76eac1c0359b",
+   "source_lines": 90,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/linked-channels": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/linked-channels",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/linked-channels.md",
+   "sha256": "c840e88caef72a66c85c782d7e380003b54e6c350abc7f966197265b39f4a193",
+   "source_lines": 85,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/principles": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/principles",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/principles.md",
+   "sha256": "3a6b043a848b01a0febab866bd2ce4e2da6ec035b6a18d6e0deb079008c0436f",
+   "source_lines": 50,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/provisional-accounts": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/provisional-accounts",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/provisional-accounts.md",
+   "sha256": "035c8310b4fef4c1dcf761b08876e8266e5715dfdda478d9fe4d0e29d1a3ef3a",
+   "source_lines": 58,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/signing-in": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/signing-in",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/signing-in.md",
+   "sha256": "7853952b29c426c7239d93d6ff1a2985741a3336ec68a3f5fdebb374682236af",
+   "source_lines": 83,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/social-settings": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/social-settings",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/social-settings.md",
+   "sha256": "3416eb52cf2a49543f54cde402874b0ae3145af734f24c320b5f863aafd33383",
+   "source_lines": 46,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/status-rich-presence": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/status-rich-presence",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/status-rich-presence.md",
+   "sha256": "17d14a204965191bf0f44bfd1c089da4a1d01a98bfa5c29baa7f111b59bc3b22",
+   "source_lines": 62,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/design-guidelines/unified-friends-list": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/unified-friends-list",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/design-guidelines/unified-friends-list.md",
+   "sha256": "45eca8382e1c16bb6077d4cf87dd259a91f028b550fc23ee6a70e8a8d6e92c1a",
+   "source_lines": 115,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/account-linking-from-discord": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-from-discord",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-from-discord.md",
+   "sha256": "92b4aa6541fd20455110809edc743981472badc0355e34a8889ca195e6643be7",
+   "source_lines": 206,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/account-linking-on-consoles": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-on-consoles",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-on-consoles.md",
+   "sha256": "8f62cab3f94dd1679013608772f207a7265f97f3254ae9d147a7600eecd0a5d5",
+   "source_lines": 341,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/account-linking-on-mobile": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-on-mobile",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-on-mobile.md",
+   "sha256": "505872b32bc8831699f40b1e3fb0dfef2e60bc2cb344e9233843c94ce9a6b149",
+   "source_lines": 668,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/account-linking-with-discord": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-with-discord",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/account-linking-with-discord.md",
+   "sha256": "93785d8e1e59f05ff141c340c2bfe33376aae5609e09486a6296a948d5ec33ab",
+   "source_lines": 468,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/creating-a-unified-friends-list": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/creating-a-unified-friends-list",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/creating-a-unified-friends-list.md",
+   "sha256": "e8bdb72c2e81e589bbaf577b7d8c223bc629cf8f3859410bbc4bad4298a7064b",
+   "source_lines": 478,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/linked-channels": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/linked-channels",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/linked-channels.md",
+   "sha256": "2213c30408f72e737335b499f551cf4bf35c5b7a3f219ed03f0284ee104a7915",
+   "source_lines": 410,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/managing-game-invites": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-game-invites",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-game-invites.md",
+   "sha256": "b6d1084ddccff2661f330ffeaef5accb7d8da9b1698a380e33f6443dcee6fd37",
+   "source_lines": 552,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/managing-lobbies": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-lobbies",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-lobbies.md",
+   "sha256": "770011d6948a4d667b517cdb8b09989baec7c19a0a2b3b4cca6a674aa39f9a3e",
+   "source_lines": 304,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/managing-relationships": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-relationships",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-relationships.md",
+   "sha256": "fa32521eec16fcbd19866c9044fe9036bd884b0a732a72cadb7391056454f8c9",
+   "source_lines": 282,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/managing-voice-chat": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-voice-chat",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/managing-voice-chat.md",
+   "sha256": "81607be4f98db29ffe415498330cef4993f7f33bfa31278517d48366d1e1f752",
+   "source_lines": 438,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/bot-token-endpoint": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/bot-token-endpoint",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/bot-token-endpoint.md",
+   "sha256": "8b9025e65bee514e583e0c60c001296a3fae6a7e16de2450081862a6e6c4e6d5",
+   "source_lines": 174,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/external-credentials-exchange": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/external-credentials-exchange",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/external-credentials-exchange.md",
+   "sha256": "b7954c3d66f4f365d4f3c0924558d57e015a9a24e4480a4e9ef6d435e768ba5a",
+   "source_lines": 133,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/identity-providers": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/identity-providers",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/identity-providers.md",
+   "sha256": "253f9f3e39d929680980156ba8d96f2781991a1eb1ad5c45cce85216f21a4cda",
+   "source_lines": 149,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/managing-accounts": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/managing-accounts",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/managing-accounts.md",
+   "sha256": "57f3456ff967057831a9643ad4bd31f3c9ad23721e7246e40536813141459b8b",
+   "source_lines": 133,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/merging-accounts": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/merging-accounts",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/merging-accounts.md",
+   "sha256": "a69de075afbefa14d990cad4233401b161d5b66f378b0ebcb5d53dd25024d2d2",
+   "source_lines": 375,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/overview": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/overview",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/overview.md",
+   "sha256": "bc7cf8ac0aacfaa441513b6217a55fa3e440283be55311e30151406061261133",
+   "source_lines": 164,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/public-client": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/public-client",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/public-client.md",
+   "sha256": "801ca456f407d819d9e486822d8abc8d0b6099505bdb88d19cc3a4f9d3735bc0",
+   "source_lines": 127,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/provisional-accounts/unmerging-accounts": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/unmerging-accounts",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/provisional-accounts/unmerging-accounts.md",
+   "sha256": "47e9fc5f1b92447edead1310b774803cb17986aa254784b92c224cab9fa5dc66",
+   "source_lines": 283,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/publisher-level-account-linking": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/publisher-level-account-linking",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/publisher-level-account-linking.md",
+   "sha256": "ab6d4458c7053115961f8e78529506fc7a1f49d0a3550c6c6cddec5f206107ae",
+   "source_lines": 539,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/sending-direct-messages": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/sending-direct-messages",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/sending-direct-messages.md",
+   "sha256": "7d788dfc14ecf41fb05cd4c4bc8c57525cecd48f6f20d72695becd2c91236f3a",
+   "source_lines": 298,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/development-guides/setting-rich-presence": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/setting-rich-presence",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/development-guides/setting-rich-presence.md",
+   "sha256": "0b30b95c4c7699dd06567589f8b2995bab9bea2cd093d3e04ee82e26b4a4ff35",
+   "source_lines": 452,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/getting-started": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/getting-started",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/getting-started.md",
+   "sha256": "3902b172f0beee15b83808c4d43b44921e74f938cf323a8c7681cbf290c572e1",
+   "source_lines": 42,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/getting-started/using-c++": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/getting-started/using-c++",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/getting-started/using-c++.md",
+   "sha256": "c2a389a3fcc5a388aecbec20c4abb94c6609bc2635058b7dbd0848fb8918bc9c",
+   "source_lines": 1067,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/getting-started/using-unity": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/getting-started/using-unity",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/getting-started/using-unity.md",
+   "sha256": "6de8a049c1798319f2499cbc206537337e015374f4e968947c1d4f7f8ba87817",
+   "source_lines": 992,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/getting-started/using-unreal-engine": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/getting-started/using-unreal-engine",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/getting-started/using-unreal-engine.md",
+   "sha256": "78d5da973d56a46c5a65386935b8f98477883c72952c0efd264debe283eceb21",
+   "source_lines": 799,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to.md",
+   "sha256": "6186b0fd38ead6cbb254daf86a636bd09256584f9947a878314f0b9459a8ad90",
+   "source_lines": 63,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/debug-log": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/debug-log",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/debug-log.md",
+   "sha256": "81d8af13ed371a54abf923a5535078e10a6854b0a03ed16d939e9250cef0f1ba",
+   "source_lines": 139,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/handle-rate-limits": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/handle-rate-limits",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/handle-rate-limits.md",
+   "sha256": "d24d81c8e8dbe9f46cb188f30e7912c1a15e72e0479788429f41ea66fe3ad380",
+   "source_lines": 127,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/handle-special-characters-display-names": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/handle-special-characters-display-names",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/handle-special-characters-display-names.md",
+   "sha256": "ac2461b6045f2e4fc9c64edf7662e7fee7d92a267b5985767ae5e82400016695",
+   "source_lines": 50,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/integrate-moderation": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/integrate-moderation",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/integrate-moderation.md",
+   "sha256": "3ec93be43585d8d32a1b697df869f559ae7e8d6307913556e903d48d7028c98d",
+   "source_lines": 382,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/market-your-integration": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/market-your-integration",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/market-your-integration.md",
+   "sha256": "585c220aaf730320ae9761f83e3e8c7a720eb54661fabe02b0c220b45943c7db",
+   "source_lines": 154,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/use-with-discord-apis": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/use-with-discord-apis",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/use-with-discord-apis.md",
+   "sha256": "de03a739f2da4bf4f00e0ffe02f11f8ecdd2760da1c3525ac7289541bc71a6aa",
+   "source_lines": 157,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/how-to/voice-muting-for-blocked-players": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/how-to/voice-muting-for-blocked-players",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/how-to/voice-muting-for-blocked-players.md",
+   "sha256": "8301c8b0106640be5a9110492f01b5b2507e470a069ec6049b4b227c66cf84a2",
+   "source_lines": 297,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "discord-social-sdk/overview": {
+   "url": "https://docs.discord.com/developers/discord-social-sdk/overview",
+   "markdown_url": "https://docs.discord.com/developers/discord-social-sdk/overview.md",
+   "sha256": "f2bd4732036c112817ed4e7a5caf7b730db2ebff342f3c8bcb9dce0406aae0e1",
+   "source_lines": 78,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  },
+  "resources/lobby": {
+   "url": "https://docs.discord.com/developers/resources/lobby",
+   "markdown_url": "https://docs.discord.com/developers/resources/lobby.md",
+   "sha256": "b1c601ccba95576138de76b85c23077b56a25b72b6ca08599665852f2fe47f71",
+   "source_lines": 377,
+   "skill": "discord-social-sdk",
+   "covered_by": [
+    "skills/discord-social-sdk/SKILL.md",
+    "skills/discord-social-sdk/references/ACCOUNT-LINKING.md",
+    "skills/discord-social-sdk/references/CORE-CONCEPTS.md",
+    "skills/discord-social-sdk/references/DESIGN-GUIDELINES.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-CPP.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNITY.md",
+    "skills/discord-social-sdk/references/GETTING-STARTED-UNREAL.md",
+    "skills/discord-social-sdk/references/HOW-TO-GUIDES.md",
+    "skills/discord-social-sdk/references/LOBBIES.md",
+    "skills/discord-social-sdk/references/MESSAGING.md",
+    "skills/discord-social-sdk/references/OVERVIEW.md",
+    "skills/discord-social-sdk/references/PROVISIONAL-ACCOUNTS.md",
+    "skills/discord-social-sdk/references/RELATIONSHIPS-AND-FRIENDS.md",
+    "skills/discord-social-sdk/references/RICH-PRESENCE.md",
+    "skills/discord-social-sdk/references/VOICE-CHAT.md"
+   ]
+  }
+ }
+}

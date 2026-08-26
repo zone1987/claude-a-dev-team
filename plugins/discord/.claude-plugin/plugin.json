@@ -1,0 +1,36 @@
+{
+  "name": "discord",
+  "displayName": "Discord",
+  "version": "1.0.0",
+  "description": "Source of truth for the Discord developer platform: the HTTP API, Gateway, interactions and components, OAuth2 and permissions, Activities, the Social SDK, monetization, RPC and voice, distilled from all 159 pages of docs.discord.com.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "homepage": "https://github.com/zone1987/claude-a-dev-team",
+  "repository": "https://github.com/zone1987/claude-a-dev-team",
+  "license": "MIT",
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discord-api",
+    "gateway",
+    "slash-commands",
+    "embedded-app-sdk",
+    "social-sdk",
+    "oauth2"
+  ],
+  "skills": [
+    "./skills/discord-bots",
+    "./skills/discord-local-testing",
+    "./skills/discord-rest",
+    "./skills/discord-gateway",
+    "./skills/discord-interactions",
+    "./skills/discord-oauth2",
+    "./skills/discord-activities",
+    "./skills/discord-social-sdk",
+    "./skills/discord-monetization",
+    "./skills/discord-rpc-voice",
+    "./skills/discord-platform"
+  ]
+}
