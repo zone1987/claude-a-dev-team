@@ -42,6 +42,13 @@ TOPICS = {
 
 ORDER = list(TOPICS)
 
+# The agent to address first where a plugin ships more than one. A plugin whose
+# entry point is not listed here has its agents rendered in plain order.
+ENTRY_AGENT = {
+    "shopware-storefront": "shopware-storefront-lead",
+    "shopware-core": "shopware-backend",
+}
+
 
 def read_plugin(path: str):
     skills = []
@@ -72,7 +79,12 @@ def build(root: str) -> list[str]:
         total_s += len(skills)
         total_a += len(agents)
         total_c += len(commands)
-        agent_cell = "<br>".join(f"`{name}:{a}`" for a in agents) or "—"
+        entry = ENTRY_AGENT.get(name)
+        if entry and entry in agents:
+            agents = [entry] + [a for a in agents if a != entry]
+        agent_cell = "<br>".join(
+            f"`{name}:{a}`" + (" ← start here" if a == entry else "") for a in agents
+        ) or "—"
         skill_cell = ", ".join(f"`{s}`" for s in skills) or "—"
         cmd_cell = ", ".join(f"`/{c}`" for c in commands) or "—"
         lines.append(

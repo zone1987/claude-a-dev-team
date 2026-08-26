@@ -78,7 +78,7 @@
       "name": "shopware-storefront",
       "source": "./plugins/shopware-storefront",
       "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching — 5 domain skills.",
-      "version": "3.1.0",
+      "version": "3.2.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"

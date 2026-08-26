@@ -30,15 +30,17 @@ not enabled provides no agent, and delegating to it fails silently.
   the domain knowledge: "`shopware-data` is not enabled — I worked from the source instead."
 - **Name the scope when you delegate**: `shopware-data:shopware-dal-expert`, not the bare name,
   since a bare name is ambiguous across plugins.
+- **Where a plugin marks an entry agent, address that one.** It knows the plugin's own skills and
+  commands and routes onwards; the other agents are the specialists it delegates to.
 
 <!-- routing-table:start -->
 
 | Topic | Plugin | Agent | Skills | Commands |
 |---|---|---|---|---|
-| Plugin base, DI, services, events, CLI, config, logging | `shopware-core` | `shopware-core:shopware-backend`<br>`shopware-core:shopware-dev`<br>`shopware-core:shopware-event-mapper` | `sw-platform`, `sw-plugin`, `sw-services` | `/sw-command-create`, `/sw-config-create`, `/sw-event-map`, `/sw-plugin-create` |
+| Plugin base, DI, services, events, CLI, config, logging | `shopware-core` | `shopware-core:shopware-backend` ← start here<br>`shopware-core:shopware-dev`<br>`shopware-core:shopware-event-mapper` | `sw-platform`, `sw-plugin`, `sw-services` | `/sw-command-create`, `/sw-config-create`, `/sw-event-map`, `/sw-plugin-create` |
 | Entities, definitions, fields, associations, Criteria, migrations | `shopware-data` | `shopware-data:shopware-dal-expert`<br>`shopware-data:shopware-entity-mapper` | `sw-entity`, `sw-fields`, `sw-query`, `sw-write` | `/sw-custom-field`, `/sw-entity-extension`, `/sw-entity-map`, `/sw-entity`, `/sw-migration` |
 | Scheduled tasks, message queue, rules, Flow Builder, API routes, mail, media | `shopware-framework` | `shopware-framework:shopware-framework-dev` | `sw-api`, `sw-automation`, `sw-content`, `sw-messaging` | `/sw-flow-action`, `/sw-rule`, `/sw-scheduled-task`, `/sw-store-api-route` |
-| Controllers, pages, Twig, blocks, SCSS, storefront JS, theme | `shopware-storefront` | `shopware-storefront:shopware-js-plugin-mapper`<br>`shopware-storefront:shopware-storefront` | `sw-controller`, `sw-features`, `sw-javascript`, `sw-theme`, `sw-twig` | `/sw-controller`, `/sw-js-plugin-map`, `/sw-js-plugin`, `/sw-theme` |
+| Controllers, pages, Twig, blocks, SCSS, storefront JS, theme | `shopware-storefront` | `shopware-storefront:shopware-storefront-lead` ← start here<br>`shopware-storefront:shopware-js-plugin-mapper`<br>`shopware-storefront:shopware-storefront`<br>`shopware-storefront:shopware-structure-mapper` | `sw-controller`, `sw-features`, `sw-javascript`, `sw-structure`, `sw-theme`, `sw-twig` | `/sw-block-find`, `/sw-controller`, `/sw-js-plugin-map`, `/sw-js-plugin`, `/sw-structure-map`, `/sw-theme` |
 | Building a CMS block or element, its resolver and admin component | `shopware-cms` | `shopware-cms:shopware-cms` | `sw-cms-block`, `sw-cms-element` | `/sw-cms-block`, `/sw-cms-element` |
 | Administration modules, components, routing, Pinia, mt-* components | `shopware-admin` | `shopware-admin:shopware-admin-mapper`<br>`shopware-admin:shopware-admin` | `sw-build`, `sw-components`, `sw-data`, `sw-meteor` | `/sw-admin-component`, `/sw-admin-map`, `/sw-admin-module` |
 | Cart, payment, shipping, order state, documents, promotions | `shopware-checkout` | `shopware-checkout:shopware-checkout` | `sw-cart`, `sw-document`, `sw-fulfilment`, `sw-payment` | `/sw-cart-processor`, `/sw-document-type`, `/sw-payment-handler` |
@@ -53,7 +55,7 @@ not enabled provides no agent, and delegating to it fails silently.
 | Headless storefront: api-client, composables, Nuxt | `shopware-frontends` | `shopware-frontends:shopware-frontends-dev` | `sw-building`, `sw-client`, `sw-practice` | — |
 | Operating the administration, not developing against it | `shopware-merchant` | `shopware-merchant:shopware-merchant-guide` | `sw-merchant-catalog`, `sw-merchant-cloud`, `sw-merchant-commercial`, `sw-merchant-content`, `sw-merchant-customers`, `sw-merchant-general`, `sw-merchant-insider`, `sw-merchant-marketing`, `sw-merchant-migration`, `sw-merchant-orders`, `sw-merchant-sales`, `sw-merchant-services`, `sw-merchant-settings`, `sw-merchant-spatial`, `sw-merchant-tutorials`, `sw-merchant-update` | — |
 
-*17 plugins, 24 agents, 69 skills, 32 commands. Regenerate with `scripts/build_routing_table.py`.*
+*17 plugins, 26 agents, 70 skills, 34 commands. Regenerate with `scripts/build_routing_table.py`.*
 
 <!-- routing-table:end -->
 
@@ -62,10 +64,42 @@ loads to do it; the commands scaffold a concrete artefact. Delegate to the agent
 substantial, call a command when the user wants exactly that artefact, and load a skill yourself
 when the answer is knowledge rather than work.
 
+**Read the directory as a prior, and the task as the decision.** A plugin containing a
+`Resources/theme.json`, or a base class carrying `implements ThemeInterface`, **is a theme**, so
+work inside it is storefront work *by default* — most tasks there touch templates, SCSS or
+storefront JavaScript, and `shopware-storefront:shopware-storefront-lead` is the right entry point.
+
+```bash
+find . -maxdepth 4 -name theme.json -not -path '*/vendor/*'
+grep -rl 'implements ThemeInterface' --include='*.php' custom 2>/dev/null
+```
+
+**The task still decides.** A theme plugin is a plugin like any other, and plenty of work inside one
+belongs elsewhere:
+
+| Task inside a theme plugin | Goes to |
+|---|---|
+| Templates, blocks, SCSS, storefront JavaScript, `theme.json` | `shopware-storefront` |
+| Writing tests — PHPUnit, Jest, Playwright | `shopware-testing` |
+| An entity, a custom field, a migration | `shopware-data` |
+| A subscriber, a service, DI, a CLI command | `shopware-core` |
+| Registering a CMS block or element | `shopware-cms` |
+| A Store API route | `shopware-framework` |
+| Build, deployment, `shopware-cli` | `shopware-devops` |
+| Code review, static analysis, changelog | `shopware-quality` |
+
+So: let the location raise the odds, let the task settle it. When the two disagree — "write a
+Playwright test" inside a theme — **the task wins**. When the task is ambiguous — "extend the
+product box" — the location breaks the tie toward the storefront.
+
 **Where domains meet**, delegate by what is being built, not by the file that will change:
 
 - A **CMS block or element** is `shopware-cms`, even though its template lands in the storefront.
   It spans three layers — admin component, resolver, template — and that plugin covers all three.
+- A **DataResolver** follows the same split. Writing a new one, or changing what an existing one
+  loads, is `shopware-cms`. Working out *which* resolver feeds a template, what it puts in
+  `element.data`, or which configuration fields it exposes is `shopware-storefront` — its
+  `sw-structure` skill maps all 19 resolvers to their templates and their 124 configuration fields.
 - **Overriding an existing storefront template or block** is `shopware-storefront`, even when the
   template is a CMS element: nothing is being registered, only re-rendered.
 - A **Store API route** is `shopware-framework`; **consuming** one is `shopware-api`.

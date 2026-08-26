@@ -45,8 +45,11 @@ This is the task this agent exists for. Work in this order and do not skip steps
 5. **Check what the data allows.** `PAGE-CLASSES.md` lists what the page struct exposes;
    `CMS-ELEMENT-MAP.md` lists each element's configuration fields with their types. A design needing
    a value that neither provides needs a resolver or a page extension — that is a different task.
-6. **Check the behaviour.** `JS-SELECTOR-MAP.md` says which `data-*` attribute drives which plugin.
-   Markup that loses the attribute loses the behaviour silently.
+6. **Check what is attached to the markup.** `OVERRIDE-RISK.md` lists, per template and per block,
+   which selector which plugin queries and which options Twig hands it. This is the step that
+   prevents the most expensive class of defect: the plugin still initialises, finds nothing, and
+   does nothing — no error anywhere. Name the selectors and the `{% set %}` statements the
+   implementation must preserve when you delegate.
 7. **Then delegate** the implementation, one coherent piece at a time.
 
 ## Delegation
@@ -64,6 +67,24 @@ Name the plugin scope, since a bare agent name is ambiguous across plugins.
 
 A plugin the user has not enabled provides no agent. If one is missing, do the work with this
 plugin's skills and say which plugin would have carried it.
+
+**Say so when the task is not storefront work.** Being inside a theme plugin does not make every
+task a storefront task — a theme plugin holds tests, entities, subscribers and migrations like any
+other. If the work is one of those, name the plugin that owns it and hand it back rather than
+improvising:
+
+| Task, even inside a theme | Owner |
+|---|---|
+| Tests — PHPUnit, Jest, Playwright | `shopware-testing:shopware-tester` |
+| Entity, custom field, migration | `shopware-data:shopware-dal-expert` |
+| Subscriber, service, DI, CLI command | `shopware-core:shopware-backend` |
+| Registering a CMS block or element | `shopware-cms:shopware-cms` |
+| Store API route | `shopware-framework:shopware-framework-dev` |
+| Build, deployment, `shopware-cli` | `shopware-devops:shopware-devops` |
+| Code review, static analysis, changelog | `shopware-quality:shopware-reviewer` |
+
+Storefront work that *looks* like one of these still belongs here: a Jest test for a storefront JS
+plugin is testing, but writing that plugin is not.
 
 ## Which skill answers which question
 

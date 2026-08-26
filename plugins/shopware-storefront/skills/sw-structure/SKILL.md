@@ -24,6 +24,10 @@ Route -> Controller -> PageLoader -> Page struct -> Twig template -> block
 **Override the innermost block that covers the change.** Overriding a parent replaces every child
 inside it, which is the usual way core markup disappears.
 
+**Not every block is free to rewrite.** 120 templates carry selectors a JavaScript plugin queries,
+and 204 places hand options from Twig into a plugin. Losing one fails silently — the plugin
+initialises, finds nothing and does nothing. Check `OVERRIDE-RISK.md` first.
+
 ## Two constraints on every change
 
 **Accessibility is mandatory, not optional.** German shops fall under the BFSG
@@ -57,6 +61,7 @@ behaves unexpectedly.
 - **[DESIGN-TO-CODE.md](references/DESIGN-TO-CODE.md)**: CSS class to template, block, stylesheet and JavaScript binding.
 - **[CMS-ELEMENT-MAP.md](references/CMS-ELEMENT-MAP.md)**: element type to admin component, resolver and template, with all 124 configuration fields.
 - **[JS-SELECTOR-MAP.md](references/JS-SELECTOR-MAP.md)**: 70 registrations with selectors and options, 111 events, every `data-*` in the templates.
+- **[OVERRIDE-RISK.md](references/OVERRIDE-RISK.md)**: **read before overriding any block** — which plugin needs which selector in which block (413 pairs over 120 templates), and the 204 places where Twig hands options into a plugin.
 
 **Subsystems**, read before rebuilding one:
 

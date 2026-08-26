@@ -1,5 +1,38 @@
 # Changelog
 
+## [3.2.0] - 2026-08-26
+
+### Added
+
+- `OVERRIDE-RISK.md` — what breaks when a block is overridden, generated from the source.
+  Answers the question a theme rebuild starts with: *is this template safe to rewrite?*
+  - **413 template-block-selector pairs** across **120 templates**: which selector which of
+    **62 plugins** queries, located down to the enclosing Twig block.
+  - **204 places where Twig hands options into a plugin** via `data-<name>-options` and
+    `-config`, with the expression and, where the value is a variable, the `{% set %}` that
+    built it.
+  - A reverse lookup by selector, and a separate list of the selectors the analytics events
+    read — the ones whose loss breaks tracking without breaking the page.
+- `scripts/extract_override_risk.py`, with a `--count` check against the source.
+
+### Changed
+
+- `shopware-dev` (shopware-core): the delegation table was regenerated — it had gone stale and
+  still listed two of the four storefront agents, without `sw-structure` or the new commands. It
+  now marks `shopware-storefront-lead` as the entry agent, and splits DataResolver work: writing
+  one is `shopware-cms`, finding out which one feeds a template is `shopware-storefront`.
+- Both orchestrators treat the working directory as a **prior, not a verdict**: a plugin with a
+  `theme.json` or `ThemeInterface` is a theme, so work inside it is storefront work by default —
+  but a test, an entity, a migration or a subscriber inside that same plugin belongs to its own
+  domain. Where location and task disagree, the task wins; where the task is ambiguous, the
+  location breaks the tie. `shopware-storefront-lead` carries the matching hand-back table.
+- `build_routing_table.py` learned the `ENTRY_AGENT` map, so a plugin with several agents names the
+  one to address first.
+- `sw-structure/SKILL.md` states up front that not every block is free to rewrite.
+- Both storefront agents check `OVERRIDE-RISK.md` before an override, and name the selectors and
+  `{% set %}` statements an implementation must preserve.
+
+
 ## [3.0.0] - 2026-08-26
 
 ### Added

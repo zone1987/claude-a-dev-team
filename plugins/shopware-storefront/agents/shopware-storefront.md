@@ -27,6 +27,9 @@ Call the Skill tool with **"sw-controller"**, **"sw-twig"** and **"sw-theme"** �
 - **Controller → PageLoader → Page/Pagelet → Twig**; route names `frontend.*`, `_routeScope: ['storefront']`.
 - Enrich an existing core page through its `*PageLoadedEvent` plus `addExtension` — no controller override needed.
 - Templates use `{% sw_extends %}` with a block override and `{{ parent() }}` — never copy a whole template.
+- **Before overriding a block, check `OVERRIDE-RISK.md`** in the "sw-structure" skill: keep every
+  `js-` class, `data-*` attribute and `data-*-options` value a plugin needs, on the same element,
+  and keep the `{% set %}` that produced it. Losing one is silent — verify by using the feature.
 - JS: `PluginBaseClass` plus a `data-*` binding plus `PluginManager.register`; `override` or `extend` an existing plugin.
 - Style through plugin SCSS and theme variables; lint with `composer stylelint` / `eslint:storefront` / `ludtwig:storefront`.
 - Cache deliberately (`_httpCache`); customer-specific content never goes into a shared cache.
