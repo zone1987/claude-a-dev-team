@@ -23,4 +23,4 @@ PluginManager.register('FfExample', FfExamplePlugin, '[data-ff-example]');
 Template binding: `<div data-ff-example data-ff-example-options='{"url":"..."}'>`. Build via `bin/build-storefront.sh`
 or the watcher. Pass data into the DOM via `data-*` (`sw-ajax-data`). Adjust existing plugins: `sw-js-plugin-override` / `sw-js-plugin-extend`.
 
-→ Scaffold: [examples/StorefrontJsPlugin.js](examples/StorefrontJsPlugin.js) · [examples/main.js](examples/main.js)
+→ Scaffold: [examples/StorefrontJsPlugin.js](../examples/storefront-js-plugin-StorefrontJsPlugin.js) · [examples/main.js](../examples/storefront-js-plugin-main.js)

@@ -1,0 +1,690 @@
+{
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10).",
+  "plugin": "shopware-storefront",
+  "recorded": "2026-08-26",
+  "source": {
+    "documentation": "https://developer.shopware.com",
+    "sitemap": "https://developer.shopware.com/sitemap.xml",
+    "base": "https://developer.shopware.com/",
+    "scope": [
+      "https://developer.shopware.com/docs/guides/plugins/plugins/storefront",
+      "https://developer.shopware.com/docs/guides/plugins/themes",
+      "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms",
+      "https://developer.shopware.com/docs/concepts/framework"
+    ],
+    "generated_from": {
+      "note": "Reference files under skills/sw-structure are generated from the Shopware source, not from these pages; the documentation informs the prose only.",
+      "shopware_version": "v6.7.13.1",
+      "generators": "plugins/shopware-storefront/scripts/"
+    }
+  },
+  "pages": 83,
+  "urls": [
+    "https://developer.shopware.com/docs/concepts/framework/",
+    "https://developer.shopware.com/docs/concepts/framework/architecture/",
+    "https://developer.shopware.com/docs/concepts/framework/architecture/administration-concept.html",
+    "https://developer.shopware.com/docs/concepts/framework/architecture/storefront-concept.html",
+    "https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer.html",
+    "https://developer.shopware.com/docs/concepts/framework/elasticsearch.html",
+    "https://developer.shopware.com/docs/concepts/framework/flow-concept.html",
+    "https://developer.shopware.com/docs/concepts/framework/http_cache.html",
+    "https://developer.shopware.com/docs/concepts/framework/in-app-purchases.html",
+    "https://developer.shopware.com/docs/concepts/framework/messaging.html",
+    "https://developer.shopware.com/docs/concepts/framework/migrations.html",
+    "https://developer.shopware.com/docs/concepts/framework/rule-system/",
+    "https://developer.shopware.com/docs/concepts/framework/rule-system/rule-concepts.html",
+    "https://developer.shopware.com/docs/concepts/framework/rule-system/rule-evaluation.html",
+    "https://developer.shopware.com/docs/concepts/framework/storefront-components.html",
+    "https://developer.shopware.com/docs/concepts/framework/system-check.html",
+    "https://developer.shopware.com/docs/concepts/framework/translations/",
+    "https://developer.shopware.com/docs/concepts/framework/translations/automated-translation-updates.html",
+    "https://developer.shopware.com/docs/concepts/framework/translations/built-in-translation-system.html",
+    "https://developer.shopware.com/docs/concepts/framework/translations/extension-points.html",
+    "https://developer.shopware.com/docs/concepts/framework/translations/fallback-language-selection.html",
+    "https://developer.shopware.com/docs/concepts/framework/translations/plain-vs-translated-fields.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-block.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-data-to-cms-elements.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/add-caching-to-custom-controller.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/add-cookie-to-manager.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/reacting-to-cookie-consent-changes.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/remove-unnecessary-js-plugin.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-custom-controller.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-custom-page.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-custom-pagelet.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-data-to-storefront-page.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-dynamic-content-via-ajax-calls.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/add-custom-captcha.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/add-custom-sorting-product-listing.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/add-listing-filters.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/use-media-thumbnails.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/use-nested-line-items.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/using-a-modal-window.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/using-custom-fields-storefront.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/using-the-datepicker-plugin.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/add-custom-javascript.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/add-javascript-as-script-tag.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/fetching-data-with-javascript.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/override-existing-javascript.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/plugin-reference.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/reacting-to-javascript-events.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-custom-assets.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-custom-styling.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-icons.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-scss-variables-via-subscriber.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-scss-variables.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-translations.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/add-custom-twig-function.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/agentic-files.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/customize-header-footer.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/customize-templates.html",
+    "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/twig-function-reference.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/",
+    "https://developer.shopware.com/docs/guides/plugins/themes/assets/",
+    "https://developer.shopware.com/docs/guides/plugins/themes/assets/add-assets-to-theme.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/assets/add-icons.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/configuration/",
+    "https://developer.shopware.com/docs/guides/plugins/themes/configuration/theme-configuration.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/configuration/theme-inheritance-configuration.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/create-a-theme.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/inheritance/",
+    "https://developer.shopware.com/docs/guides/plugins/themes/inheritance/add-theme-inheritance-without-resources.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/inheritance/add-theme-inheritance.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/styling/",
+    "https://developer.shopware.com/docs/guides/plugins/themes/styling/add-css-js-to-theme.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/styling/override-bootstrap-variables-in-a-theme.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/styling/override-theme-breakpoints.html",
+    "https://developer.shopware.com/docs/guides/plugins/themes/theme-base-guide.html"
+  ],
+  "entries": [
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/",
+      "sha256": "88177bc33d41c3bf40f7ea25b096ec6d07d29bf33f9736e96ad23e012ce21ffa",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/architecture/",
+      "sha256": "10e616fce8a61919a1d831d881be10261e4cae08a6a6f2708740839412933cfb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/architecture/administration-concept.html",
+      "sha256": "9224528cf7c0a27113e6424f262a3eb73ef5f61a7a94ac4e97fcfba07d4e53c5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/architecture/storefront-concept.html",
+      "sha256": "f733559c28047921d079c0615db7d282a3bdde7bfa1174c27d0951dedb1712f9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer.html",
+      "sha256": "ea607399b656d218a4f10408b2f18033724ecedc63a45c7a20c2f532925362ae",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/elasticsearch.html",
+      "sha256": "e1fdd4ce884c595801e903dd90c747a381e78d6181e5fb75c50aa7f09f2088eb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/flow-concept.html",
+      "sha256": "05d7ce64ae4da0e2fce38382785cb353cf2a8cf174b01d606c64c31c84d341e2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/http_cache.html",
+      "sha256": "dc77e0f79b643b326ee191a7b3d35787bf47d0fc39515aab71410abe9ab37854",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/in-app-purchases.html",
+      "sha256": "947b9f35ccc11c532f7b35e6636b17975741d61a6f6f320e5e96fe48f8708595",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/messaging.html",
+      "sha256": "b648ab64ccd70727d7c9413b01c8408a94458e810f5e0d2cb57d1a8f5a12ea59",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/migrations.html",
+      "sha256": "b2a72bef269fa89227be6ca807b1fd5eddc3ec7b75dde21b94034104e1f2ec46",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/rule-system/",
+      "sha256": "b5d0cc43d77b3174f26c4d87169c0742a30fbb756d8709329afd81f34c8a6530",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/rule-system/rule-concepts.html",
+      "sha256": "1e1500b5da9984785cf346a89e2d69fb38cdc32e62f2bd27d60840d361b302b4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/rule-system/rule-evaluation.html",
+      "sha256": "19514e370c260c2cce422da20f87283450aef0b33612abb993e8fde5cda45865",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/storefront-components.html",
+      "sha256": "d288d5252785e40f4ce0825425ad9cedbac57f67a31724fc874e8f81e2d4d3a8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/system-check.html",
+      "sha256": "75cfc0384f308991ffc18e98b7cfa26de1a3dcaff1d664435c55f3108bd4513c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/translations/",
+      "sha256": "54d4e1191966cf5c3cc586b034316469450bd1586f4fef692427b7217cbd2cb5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/translations/automated-translation-updates.html",
+      "sha256": "43c3d26fe8207f29f464e90c8b95c385a19437db390f23e63211dc350c1cf3a6",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/translations/built-in-translation-system.html",
+      "sha256": "30ea1b6ac0081a6c1ec91d95191ee2771235ca981e892ee32bc51582ed5c2aa1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/translations/extension-points.html",
+      "sha256": "b7bab8b05b356d043f466e48c7b2c4fc3e270557819e866b6daa7656e0ad1de7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/translations/fallback-language-selection.html",
+      "sha256": "2b1c75a70a8ff6a55a329e6fc249decdd69a3a89637824b436a045a0b9744346",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/concepts/framework/translations/plain-vs-translated-fields.html",
+      "sha256": "bd48f28cef664eb1a9ff553dc0d08c9d7e695ed60e5fc8cacd140c69e2d35bf2",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/",
+      "sha256": "e67b105bedda937476816a705b78dff676a5e712bc027f116f10b68c721d50a7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-block.html",
+      "sha256": "1b73e4d386fd2d9f998fecf670062548f5eed8a7c906acfd2fe648e28fba112b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element.html",
+      "sha256": "cf1e57bc6f179512f5e8d8503f4f5af6fd978a0cd0b61edfea085412ab961432",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-data-to-cms-elements.html",
+      "sha256": "b0bf10e57514781aeb0c874cf67d29c6369d811a84f246d0c744a73d0f80d090",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/",
+      "sha256": "9e685abd22deca049d850fdf680cc3dc69e3765d302c630b7a4d17f3f71ba0c1",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/",
+      "sha256": "853b678252b5bbaab551a9c453de0024ef20eb63c1f964564d55cd6480444444",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/add-caching-to-custom-controller.html",
+      "sha256": "78676728f1eef59a1565b6dfe51e9cdebbb3565bd0698ca1b391789f0201271b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/add-cookie-to-manager.html",
+      "sha256": "95400f3c8ff17c93e44e950103c66bc7dec9814256ff3c090c1c1ff3956f60a7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/reacting-to-cookie-consent-changes.html",
+      "sha256": "552ef16f7eefac5bd51ce18b48715d5c989c324d5b8353d8a2465222906f2991",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/advanced/remove-unnecessary-js-plugin.html",
+      "sha256": "2650b4ea6c124188826d625b8a49b837ea546d0aeed452e9fa0d3eae8e51c322",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/",
+      "sha256": "d644ab89de892e7bbd6eb4b7cb75f8d8f0e5bd2bdfff7eea81709a6559a72bcb",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-custom-controller.html",
+      "sha256": "b93ad21c6f76a04b91805f557e10f1ec38e158d55404d1e4ad194bccf419cd96",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-custom-page.html",
+      "sha256": "29f3b5741b27d7c3aba39259c0f903fbca464ac95cd317960e3fd90ad06f6898",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-custom-pagelet.html",
+      "sha256": "f4c81ae321b79a6d401b873f7fa9e21937502b8f5606eee0ac508b6a38bfbd78",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-data-to-storefront-page.html",
+      "sha256": "82257053ea8bc3b25e42ce4c6292a86e605ca3d2a84791e3b875af4cf42ef3ff",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/controllers/add-dynamic-content-via-ajax-calls.html",
+      "sha256": "cb2b44466103d8d4e066a8d199f08e4840623761990934b03997c60870d8b485",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/",
+      "sha256": "ef6be43f3d9736ba1169015ed59a6cc801a2a3f5972257d1a4c19a86cc837587",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/add-custom-captcha.html",
+      "sha256": "398ab3dfe1f591e3e21fd7616ecaca24494fdc88d876abdb7ee12e02d09974ab",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/add-custom-sorting-product-listing.html",
+      "sha256": "4fadab2224a651a0a8fcffd8055a99da345c4be9cab9fdf3982649e402da4be7",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/add-listing-filters.html",
+      "sha256": "54b425cf8c06fb6487c57bcffc30af7f59cf2ba1a313c6e73ce8307cf4df2465",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/use-media-thumbnails.html",
+      "sha256": "240568b3e7e7ebce0f15c6d244800f0e5ba242b8f231d24a538868c8d2766eee",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/use-nested-line-items.html",
+      "sha256": "dd3f6cb45a85203caf37c3d36829210ce28067c82241d372409c8bfbfc252c11",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/using-a-modal-window.html",
+      "sha256": "a7e0a99024444dd0444fed7aea735870aaa7907f5be730ae6f52bad58d8eeff0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/using-custom-fields-storefront.html",
+      "sha256": "53497a14b7a2ef3b40caad089818be59e9bdbfa97d16789bbfa68330ef379b5b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/howto/using-the-datepicker-plugin.html",
+      "sha256": "a7801a1d5187789ee54c51a7f5a90da0c5e2c3978b079b5cfa094f5db9902b6c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/",
+      "sha256": "a1fc2fbc544c955cdb9e18ff1026624ccb812e090465bb7ebd1e50f737f7d0e3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/add-custom-javascript.html",
+      "sha256": "a2c799855f946e786c577ec91152ce97e1a6915efbe66069ef20d312b03bad52",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/add-javascript-as-script-tag.html",
+      "sha256": "fe6a05e16617888fecbb2cb251cf29b58c4cc093d3540f557fa3cbede24c3a4a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/fetching-data-with-javascript.html",
+      "sha256": "cd675ef129126eef2f1a52281c0a5c6a081ad619788ac1dfc5778c0bb72d4ab8",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/override-existing-javascript.html",
+      "sha256": "597e7aa2cb0f43552409e05879ecbe44c5050df1d2c07777e433cc92f0272f6e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/plugin-reference.html",
+      "sha256": "fe8f177ce8d387f1cc3c5ba763b36351cfe66918718e8a973038279ebfe017e0",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/javascript/reacting-to-javascript-events.html",
+      "sha256": "8f3bb05c177e949c382ec0186f131dc31caa930caaa60b11d389dee260177832",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/",
+      "sha256": "08e352ca686da1e72b9a8557959347d395b8fe428f867e48cd0ada55d37f3c80",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-custom-assets.html",
+      "sha256": "2473964750258c9a8b53bb373030f47e89eef0c5839ef1506f4628af43615528",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-custom-styling.html",
+      "sha256": "bd518f7da50412db82cf26eb0818a7707ea2c400a3e559204a828f5e70b6fe09",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-icons.html",
+      "sha256": "3f5c7d37605a08e848965dc851212a47b9f28c005b95cd45eb89fd878d1dc43f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-scss-variables-via-subscriber.html",
+      "sha256": "ed7a4180e3d2cd28aba942286b00b7a3b65bf146a77c09cf8cb3b8de4430734f",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-scss-variables.html",
+      "sha256": "3fdd9ad67da0ae6fea998bca30c28b01e9d2c15679117e0c6c5d4a1512405b9a",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/styling/add-translations.html",
+      "sha256": "79ef75e2024098be384c31bcdbc9a5761c06587f5616ed8e8e6051a5a14e771d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/",
+      "sha256": "d7bf2c37321789ee3f9f67d3e2890f8f9b6342540f0f14d5bd7db0afd88b6b75",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/add-custom-twig-function.html",
+      "sha256": "81db657394b65dbc6dd0de5f5f266db023ad75d1bfb48904a862304caaafaf72",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/agentic-files.html",
+      "sha256": "f7927cf8491c48054dede1b892f49d9deefebde1d0e138f984d3cf090678c434",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/customize-header-footer.html",
+      "sha256": "0a120ab66a658acddf98dabd22e5d5fba1c68c26a25f8a980645df4ac35a51a4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/customize-templates.html",
+      "sha256": "7ce9388a3f603ebeccdf9f0f15efcac876da045256450ce54ceb36101a76cfb9",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/templates/twig-function-reference.html",
+      "sha256": "bc991a62416c92f5e4705f5dbf98eff48532e2ea4a70d859cb2cf96e35991bca",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/",
+      "sha256": "b3b73b420c675e68edb8d60ae32b1f8b75ab2fa51e90da4042834f99c782c414",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/assets/",
+      "sha256": "0c66b017ee4849e49b262efa01b57332e99f01e407b78f39c52a4b76c276c5b3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/assets/add-assets-to-theme.html",
+      "sha256": "03b0fd426d66e2233ce067c0e2746a3d02e34ad50a793a543f20141362999052",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/assets/add-icons.html",
+      "sha256": "04231c0f1582981d6e341460f4dcdf38a21e60ed45ff9646926324ad57b50da3",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/configuration/",
+      "sha256": "9ea7b8a72297673dac6c71999afecd4524db4cee82c594c60a1a31837b081811",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/configuration/theme-configuration.html",
+      "sha256": "f2b5f80d39abb63deee17391b492a16bdff82c08e0cb7cb58f38f5ef287c8b04",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/configuration/theme-inheritance-configuration.html",
+      "sha256": "44ab115408acb130fc2afb5cb6fc2d6004a19914f86c7848312ba21be50ea87d",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/create-a-theme.html",
+      "sha256": "ecc4328fc67516e7e29eb22573dfc039ec0b2256e8c506fb971aa5419a43b2d4",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/inheritance/",
+      "sha256": "fe059fcaca60d0148cd9b1d2426556fbd3b36cebbce16e52a782df9c58a2f39b",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/inheritance/add-theme-inheritance-without-resources.html",
+      "sha256": "c05fc7711412052459dca8e4851b0ebdc110cf9e9aba3bbd4ceb4c367c174b11",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/inheritance/add-theme-inheritance.html",
+      "sha256": "848a67db5175892bd01783c8a6e40a42086292e419c9c809f190efb027cd358e",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/styling/",
+      "sha256": "fd9274f865ace53dbfc605080bd5e137217b3308906b6d2a0c9032db47626a3c",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/styling/add-css-js-to-theme.html",
+      "sha256": "e22038c0aac19e18d272d91936746cb787d01be24f04f190fa52d2037eeef7b5",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/styling/override-bootstrap-variables-in-a-theme.html",
+      "sha256": "d3c8421d546504a2e4bf0f946be2032d9643d15034116bb7d5e2211a075d1452",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/styling/override-theme-breakpoints.html",
+      "sha256": "7fbbdaeeaa6732ea10cacb64f003119cd6f12283fd35a9b1eebc7f0474c83a20",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    },
+    {
+      "page": "https://developer.shopware.com/docs/guides/plugins/themes/theme-base-guide.html",
+      "sha256": "a38660296aa36a09712535505dc2239a2ff0da7b3d6b6047285d2cd727b44893",
+      "covers": [],
+      "terms": null,
+      "extracted": "2026-08-26"
+    }
+  ]
+}

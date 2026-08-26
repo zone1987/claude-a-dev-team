@@ -31,25 +31,47 @@ not enabled provides no agent, and delegating to it fails silently.
 - **Name the scope when you delegate**: `shopware-data:shopware-dal-expert`, not the bare name,
   since a bare name is ambiguous across plugins.
 
-| Topic | Specialist | Plugin |
-|---|---|---|
-| Plugin base, DI, events, CLI, config, logging | `shopware-backend` | shopware-core (this one) |
-| Entities, definitions, fields, associations, criteria | `shopware-dal-expert` | shopware-data |
-| ScheduledTask, message queue, rules, flow, Store/Admin API, mail, media | `shopware-framework-dev` | shopware-framework |
-| Controller, page, Twig, SCSS, storefront JS plugins, theme | `shopware-storefront` | shopware-storefront |
-| Admin modules, components, routing, Pinia (Vue 3, `mt-*`) | `shopware-admin` | shopware-admin |
-| CMS blocks, elements, DataResolver | `shopware-cms` | shopware-cms |
-| Cart, payment, shipping, order state, documents, promotions | `shopware-checkout` | shopware-checkout |
-| Tests (PHPUnit/Jest/Playwright) | `shopware-tester` | shopware-testing |
-| App development (manifest, webhooks, SDK) | `shopware-app-dev` | shopware-apps |
-| Version upgrade, Meteor/Vite/Pinia migration | `shopware-migrator` | shopware-migration |
-| API integration (Admin/Store/Sync) | `shopware-api-expert` | shopware-api |
-| Code review, static analysis, guidelines | `shopware-reviewer` | shopware-quality |
-| Hosting, deployment, PaaS, CLI, Elasticsearch, Redis | `shopware-devops` | shopware-devops |
-| B2B, subscriptions, advanced search, migration assistant | `shopware-commercial-dev` | shopware-commercial |
-| "How does X work in Shopware?" — architecture, no code | `shopware-concepts` | shopware-concepts |
-| Headless storefront, api-client, composables, Nuxt | `shopware-frontends-dev` | shopware-frontends |
-| Operating the administration, not developing against it | `shopware-merchant-guide` | shopware-merchant |
+<!-- routing-table:start -->
+
+| Topic | Plugin | Agent | Skills | Commands |
+|---|---|---|---|---|
+| Plugin base, DI, services, events, CLI, config, logging | `shopware-core` | `shopware-core:shopware-backend`<br>`shopware-core:shopware-dev`<br>`shopware-core:shopware-event-mapper` | `sw-platform`, `sw-plugin`, `sw-services` | `/sw-command-create`, `/sw-config-create`, `/sw-event-map`, `/sw-plugin-create` |
+| Entities, definitions, fields, associations, Criteria, migrations | `shopware-data` | `shopware-data:shopware-dal-expert`<br>`shopware-data:shopware-entity-mapper` | `sw-entity`, `sw-fields`, `sw-query`, `sw-write` | `/sw-custom-field`, `/sw-entity-extension`, `/sw-entity-map`, `/sw-entity`, `/sw-migration` |
+| Scheduled tasks, message queue, rules, Flow Builder, API routes, mail, media | `shopware-framework` | `shopware-framework:shopware-framework-dev` | `sw-api`, `sw-automation`, `sw-content`, `sw-messaging` | `/sw-flow-action`, `/sw-rule`, `/sw-scheduled-task`, `/sw-store-api-route` |
+| Controllers, pages, Twig, blocks, SCSS, storefront JS, theme | `shopware-storefront` | `shopware-storefront:shopware-js-plugin-mapper`<br>`shopware-storefront:shopware-storefront` | `sw-controller`, `sw-features`, `sw-javascript`, `sw-theme`, `sw-twig` | `/sw-controller`, `/sw-js-plugin-map`, `/sw-js-plugin`, `/sw-theme` |
+| Building a CMS block or element, its resolver and admin component | `shopware-cms` | `shopware-cms:shopware-cms` | `sw-cms-block`, `sw-cms-element` | `/sw-cms-block`, `/sw-cms-element` |
+| Administration modules, components, routing, Pinia, mt-* components | `shopware-admin` | `shopware-admin:shopware-admin-mapper`<br>`shopware-admin:shopware-admin` | `sw-build`, `sw-components`, `sw-data`, `sw-meteor` | `/sw-admin-component`, `/sw-admin-map`, `/sw-admin-module` |
+| Cart, payment, shipping, order state, documents, promotions | `shopware-checkout` | `shopware-checkout:shopware-checkout` | `sw-cart`, `sw-document`, `sw-fulfilment`, `sw-payment` | `/sw-cart-processor`, `/sw-document-type`, `/sw-payment-handler` |
+| PHPUnit, Jest, Playwright | `shopware-testing` | `shopware-testing:shopware-tester` | `sw-e2e`, `sw-javascript`, `sw-phpunit` | `/sw-test` |
+| App system: manifest, webhooks, app SDKs | `shopware-apps` | `shopware-apps:shopware-app-dev` | `sw-app-manifest`, `sw-app-sdk` | `/sw-app-create` |
+| Version upgrades, Meteor/Vite/Pinia migration, deprecations | `shopware-migration` | `shopware-migration:shopware-migrator` | `sw-admin`, `sw-upgrade` | `/sw-migrate-component` |
+| Consuming the Admin, Store and Sync APIs | `shopware-api` | `shopware-api:shopware-api-expert`<br>`shopware-api:shopware-api-mapper` | `sw-admin`, `sw-shared`, `sw-store` | `/sw-api-map` |
+| Code review, static analysis, guidelines, changelog | `shopware-quality` | `shopware-quality:shopware-librarian`<br>`shopware-quality:shopware-reviewer` | `sw-analysis`, `sw-guidelines`, `sw-release` | `/sw-changelog`, `/sw-readme`, `/sw-sync` |
+| Hosting, deployment, PaaS, shopware-cli, troubleshooting | `shopware-devops` | `shopware-devops:shopware-devops` | `sw-cli`, `sw-hosting`, `sw-paas`, `sw-support`, `sw-tooling` | — |
+| B2B, subscriptions, advanced search, migration assistant | `shopware-commercial` | `shopware-commercial:shopware-commercial-dev` | `sw-b2b`, `sw-features`, `sw-migration`, `sw-sales` | — |
+| How Shopware works, architecture, no code | `shopware-concepts` | `shopware-concepts:shopware-concepts` | `sw-concept-architecture`, `sw-concept-domain` | — |
+| Headless storefront: api-client, composables, Nuxt | `shopware-frontends` | `shopware-frontends:shopware-frontends-dev` | `sw-building`, `sw-client`, `sw-practice` | — |
+| Operating the administration, not developing against it | `shopware-merchant` | `shopware-merchant:shopware-merchant-guide` | `sw-merchant-catalog`, `sw-merchant-cloud`, `sw-merchant-commercial`, `sw-merchant-content`, `sw-merchant-customers`, `sw-merchant-general`, `sw-merchant-insider`, `sw-merchant-marketing`, `sw-merchant-migration`, `sw-merchant-orders`, `sw-merchant-sales`, `sw-merchant-services`, `sw-merchant-settings`, `sw-merchant-spatial`, `sw-merchant-tutorials`, `sw-merchant-update` | — |
+
+*17 plugins, 24 agents, 69 skills, 32 commands. Regenerate with `scripts/build_routing_table.py`.*
+
+<!-- routing-table:end -->
+
+**Reading the table.** The agent is who does the work; the skills are what that agent (or you)
+loads to do it; the commands scaffold a concrete artefact. Delegate to the agent when the task is
+substantial, call a command when the user wants exactly that artefact, and load a skill yourself
+when the answer is knowledge rather than work.
+
+**Where domains meet**, delegate by what is being built, not by the file that will change:
+
+- A **CMS block or element** is `shopware-cms`, even though its template lands in the storefront.
+  It spans three layers — admin component, resolver, template — and that plugin covers all three.
+- **Overriding an existing storefront template or block** is `shopware-storefront`, even when the
+  template is a CMS element: nothing is being registered, only re-rendered.
+- A **Store API route** is `shopware-framework`; **consuming** one is `shopware-api`.
+- **Writing an entity** is `shopware-data`; **reading one in a template** is `shopware-storefront`.
+- **Operating** the administration is `shopware-merchant`; **developing** against it is
+  `shopware-admin`.
 
 ## How to work
 

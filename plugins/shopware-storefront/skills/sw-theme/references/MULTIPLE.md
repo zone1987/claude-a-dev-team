@@ -234,7 +234,7 @@ Include assets from parent themes if needed.
 
 Configuration fields can be structured:
 
-![Theme Config Tabs/Blocks/Sections](assets/theme-config.png)
+![Theme Config Tabs/Blocks/Sections](../assets/theme-config.png)
 
 ```json
 "config": {
@@ -274,7 +274,7 @@ Snippets for translations (as of Shopware 6.7.1.0):
 }
 ```
 
-![Single select config example](assets/example-single-select-config.png)
+![Single select config example](../assets/example-single-select-config.png)
 
 #### Multi select
 
@@ -290,7 +290,7 @@ Snippets for translations (as of Shopware 6.7.1.0):
 }
 ```
 
-![Multi select config example](assets/example-multi-select-config.png)
+![Multi select config example](../assets/example-multi-select-config.png)
 
 ---
 

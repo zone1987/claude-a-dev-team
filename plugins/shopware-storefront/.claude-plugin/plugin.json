@@ -1,6 +1,6 @@
 {
   "name": "shopware-storefront",
-  "version": "2.0.0",
+  "version": "3.1.0",
   "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching — 5 domain skills.",
   "author": {
     "name": "zone1987",
@@ -15,6 +15,7 @@
     "./skills/sw-controller",
     "./skills/sw-features",
     "./skills/sw-javascript",
+    "./skills/sw-structure",
     "./skills/sw-theme",
     "./skills/sw-twig"
   ]

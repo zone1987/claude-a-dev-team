@@ -15,4 +15,5 @@ the original and override only the block you need.
 Use `{% sw_extends %}` instead of Twig's `extends` (multiple inheritance across plugins). `{{ parent() }}` keeps the core content.
 Reuse the block names from the original. Header/footer via their respective blocks. Custom functions: `sw-twig-functions`.
 
-→ Template override details: [../sw-storefront-controller/`TEMPLATES-STOREFRONT.md`](../sw-storefront-controller/`TEMPLATES-STOREFRONT.md`)
+To find **which** template and block to override, call the Skill tool with "sw-structure": it
+carries every block with its nesting, the inheritance chains and the CSS class to block map.

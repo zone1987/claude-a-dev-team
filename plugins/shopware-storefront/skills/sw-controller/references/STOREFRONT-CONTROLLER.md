@@ -21,4 +21,4 @@ Route name convention `frontend.*`. Data comes from a **PageLoader** (`sw-page-l
 Use `renderStorefront()` for HTML, `$this->json()`/`renderStorefront` for AJAX (`sw-ajax-data`). Caching: `sw-storefront-caching`.
 
 → Controllers, routing, examples: [STOREFRONT.md](STOREFRONT.md)
-→ Scaffold: [examples/StorefrontController.php](examples/StorefrontController.php) · [examples/routes.xml](examples/routes.xml)
+→ Scaffold: [examples/StorefrontController.php](../examples/storefront-controller-StorefrontController.php) · [examples/routes.xml](../examples/storefront-controller-routes.xml)
