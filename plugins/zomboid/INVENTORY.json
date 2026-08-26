@@ -1,0 +1,127 @@
+{
+ "$comment": "Source inventory. Read this before re-auditing: a source's recorded hash proves it has not changed, whatever the date says (COV-09).",
+ "plugin": "zomboid",
+ "recorded": "2026-08-26",
+ "game_build": "42.20.2",
+ "game_revision": "ffe7a8a4b1",
+ "primary_source": "the local game installation, not a documentation site",
+ "note": "Unlike a docs-site plugin there is no page list to enumerate: the authority is the shipped game. Completeness is therefore measured per source directory with a content hash, and every reference file naming its generator.",
+ "sources": {
+  "game-install": {
+   "kind": "local installation",
+   "path": "~/Library/Application Support/Steam/steamapps/common/ProjectZomboid/Project Zomboid.app/Contents/Java",
+   "build": "42.20.2",
+   "revision": "ffe7a8a4b1",
+   "note": "The primary source. Lua, scripts, tile definitions and XML data are extracted from it directly.",
+   "parts": {
+    "media/lua": {
+     "files": 1395,
+     "lines": 439296,
+     "sha256": "8a0e1ff9c0d80afae4c771b8d6b6aa0ba2afbdcc2c9de9ae9b88a28f986a2947",
+     "covered_by": [
+      "skills/pz-lua-api/references/FILE-INDEX.md",
+      "skills/pz-events/references/EVENT-CATALOGUE.md"
+     ]
+    },
+    "media/lua/client/ISUI": {
+     "files": 265,
+     "lines": 87624,
+     "sha256": "b0a12fbf49c7ba67",
+     "covered_by": [
+      "skills/pz-ui/references/ISUI-WIDGETS.md"
+     ]
+    },
+    "media/scripts": {
+     "files": 1004,
+     "blocks": 15138,
+     "sha256": "d4a48ede8b5cb907",
+     "covered_by": [
+      "skills/pz-items/references/PROPERTY-CATALOGUE.md",
+      "skills/pz-items/references/DATA-ITEM.md",
+      "skills/pz-crafting/references/DATA-CRAFTRECIPE.md",
+      "skills/pz-vehicles/references/DATA-VEHICLE.md"
+     ]
+    },
+    "media/*.tiles.txt": {
+     "files": 5,
+     "lines": 381135,
+     "tilesets": 583,
+     "tiles": 37060,
+     "sha256": "dd30d2a56a6f032e",
+     "covered_by": [
+      "skills/pz-world/references/TILE-DEFINITIONS.md"
+     ]
+    },
+    "media XML directories": {
+     "files": 8016,
+     "sha256": "6492286a9a97a72b",
+     "covered_by": [
+      "skills/pz-items/references/XML-DATA.md"
+     ]
+    },
+    "projectzomboid.jar": {
+     "classes": 5080,
+     "covered_by": [
+      "skills/pz-server/references/ADMIN-COMMANDS.md",
+      "skills/pz-server/references/SERVER-OPTIONS.md",
+      "skills/pz-lua-api/references/GLOBAL-FUNCTIONS.md"
+     ]
+    }
+   }
+  },
+  "javadocs-b42": {
+   "kind": "documentation",
+   "url": "https://github.com/demiurgeQuantified/ProjectZomboidJavaDocs",
+   "branch": "develop",
+   "commit": "edcb2c482b",
+   "packages": 267,
+   "types": 3965,
+   "members": 72831,
+   "note": "Read through its three JavaDoc search-index files rather than its 3,965 HTML pages, which carry the same inventory at a fraction of the cost.",
+   "covered_by": [
+    "skills/pz-java-api/references/ (78 files)"
+   ]
+  },
+  "javadocs-official": {
+   "kind": "documentation",
+   "url": "https://projectzomboid.com/modding/index.html",
+   "generated": "2026-08-19",
+   "packages": 161,
+   "classes": 1433,
+   "note": "The official JavaDoc build. Consulted per class for cross-checking; the B42 build above is more complete for build 42."
+  },
+  "installed-mods": {
+   "kind": "empirical survey",
+   "path": "~/Library/Application Support/Steam/steamapps/workshop/content/108600",
+   "mods": 33,
+   "plus": "the game's own Workshop/ModTemplate",
+   "sha256": "21ab2fb782ae3c32",
+   "note": "The mod format has no published specification, so mod.info keys and the folder layout are established from mods that demonstrably load.",
+   "covered_by": [
+    "skills/pz-modding/references/MOD-INFO-AND-LAYOUT.md"
+   ]
+  },
+  "context7": {
+   "kind": "documentation mirror",
+   "url": "https://context7.com/demiurgequantified/projectzomboidjavadocs",
+   "note": "Queried for LuaManager.GlobalObject and the Lua bridge. Mirrors the JavaDocs above."
+  }
+ },
+ "generators": [
+  "build_event_index.py",
+  "build_item_fields.py",
+  "build_java_api.py",
+  "build_lua_globals.py",
+  "build_lua_index.py",
+  "build_mod_survey.py",
+  "build_script_data.py",
+  "build_tile_index.py",
+  "build_ui_index.py",
+  "build_xml_data.py",
+  "parse_admin_commands.py",
+  "parse_server_options.py",
+  "sync_java_api_map.py",
+  "verify_orchestrator.py",
+  "verify_references.py"
+ ]
+}

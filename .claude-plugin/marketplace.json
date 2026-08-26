@@ -667,6 +667,42 @@
       ]
     },
     {
+      "name": "zomboid",
+      "source": "./plugins/zomboid",
+      "description": "Source of truth for Project Zomboid build 42 modding: all 3,965 Java classes and 72,831 members, the 1,395 game Lua files, every item and script property, events, world model, server and RCON.",
+      "version": "1.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "project-zomboid",
+        "zomboid",
+        "modding",
+        "lua",
+        "rcon",
+        "build42",
+        "game-server",
+        "kahlua"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/pz-modding",
+        "./skills/pz-lua-api",
+        "./skills/pz-java-api",
+        "./skills/pz-events",
+        "./skills/pz-items",
+        "./skills/pz-world",
+        "./skills/pz-server",
+        "./skills/pz-multiplayer",
+        "./skills/pz-ui",
+        "./skills/pz-crafting",
+        "./skills/pz-vehicles",
+        "./skills/pz-tooling"
+      ]
+    },
+    {
       "name": "zone-claude-forge",
       "source": "./plugins/zone-claude-forge",
       "description": "Authoring instrument for this marketplace: writes compliant skills, agents, commands and hooks, distils upstream sources into reference files, and audits existing plugins.",

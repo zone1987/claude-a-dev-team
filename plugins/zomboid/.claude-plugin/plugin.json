@@ -1,0 +1,37 @@
+{
+  "name": "zomboid",
+  "displayName": "Project Zomboid",
+  "version": "1.0.0",
+  "description": "Source of truth for Project Zomboid build 42 modding: all 3,965 Java classes and 72,831 members, the 1,395 game Lua files, every item and script property, events, world model, server and RCON.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "homepage": "https://github.com/zone1987/claude-a-dev-team",
+  "repository": "https://github.com/zone1987/claude-a-dev-team",
+  "license": "MIT",
+  "keywords": [
+    "project-zomboid",
+    "zomboid",
+    "modding",
+    "lua",
+    "rcon",
+    "build42",
+    "game-server",
+    "kahlua"
+  ],
+  "skills": [
+    "./skills/pz-modding",
+    "./skills/pz-lua-api",
+    "./skills/pz-java-api",
+    "./skills/pz-events",
+    "./skills/pz-items",
+    "./skills/pz-world",
+    "./skills/pz-server",
+    "./skills/pz-multiplayer",
+    "./skills/pz-ui",
+    "./skills/pz-crafting",
+    "./skills/pz-vehicles",
+    "./skills/pz-tooling"
+  ]
+}

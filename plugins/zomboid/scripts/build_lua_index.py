@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+"""Generate the game Lua file index from the Project Zomboid installation.
+
+No model sits between the source tree and the output. A model asked to transcribe 1,395 files
+misspells a class name or drops a function silently; a script cannot. That is the whole reason this
+exists rather than an agent reading the tree.
+
+Source: media/lua/{client,server,shared} in the game installation. Every .lua file is scanned with
+line-anchored regular expressions, so what lands in the index is what the file actually declares.
+
+Per file the index records:
+
+  * the path relative to media/lua
+  * its line count
+  * the global functions it defines            -- ^function Name(
+  * the classes it declares                    -- ^Name = Parent:derive("Name")
+  * the global tables it declares              -- ^Name = {}
+
+What is deliberately NOT recorded: methods on a class (^function Class:method), which number 15,462
+across the tree. They belong to the class, and the class's file is what a reader needs to find. An
+index carrying all of them would be an order of magnitude larger and no more useful for the one
+question it exists to answer: which file holds the code that does X.
+
+Usage:
+    build_lua_index.py --lua-dir DIR --out FILE [--build STR]
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import pathlib
+import re
+import sys
+
+# Line-anchored so a match is a declaration rather than a mention inside a call or a comment.
+# ^function Name(...)  -- a global function. The absence of a dot or colon is what makes it global.
+RE_GLOBAL_FUNC = re.compile(r"^function\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(", re.M)
+
+# ^Name = Parent:derive("Type")  -- the game's class declaration, and the several spellings of it.
+# Captures the assigned name, the parent it derives from, and the Type string when one is given.
+RE_DERIVE = re.compile(
+    r"^([A-Za-z_][A-Za-z0-9_.]*)\s*=\s*"
+    r"([A-Za-z_][A-Za-z0-9_.]*)\s*:\s*derive\s*\(\s*(?:['\"]([^'\"]*)['\"])?",
+    re.M,
+)
+
+# ^Name = {} or ^Name = {  -- a global table, which is how the non-class singletons are declared.
+RE_GLOBAL_TABLE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*\{\s*$", re.M)
+
+# ^function Name.field(  or  ^function Name:method(  -- counted, never listed. See the docstring.
+RE_MEMBER_FUNC = re.compile(
+    r"^function\s+([A-Za-z_][A-Za-z0-9_.]*)[.:]([A-Za-z0-9_]+)\s*\(", re.M
+)
+
+
+def scan(text: str) -> dict:
+    """Extract every declaration the regular expressions recognise from one file's text."""
+    return {
+        "globals": sorted(set(RE_GLOBAL_FUNC.findall(text))),
+        "classes": [
+            {"name": name, "parent": parent, "type": type_ or None}
+            for name, parent, type_ in RE_DERIVE.findall(text)
+        ],
+        "tables": sorted(set(RE_GLOBAL_TABLE.findall(text))),
+        "member_count": len(RE_MEMBER_FUNC.findall(text)),
+    }
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--lua-dir", required=True, help="the media/lua directory of the installation")
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--build", default="42.20", help="game build identifier for the stamp")
+    args = ap.parse_args()
+
+    root = pathlib.Path(args.lua_dir)
+    if not root.is_dir():
+        print(f"not a directory: {root}", file=sys.stderr)
+        return 1
+
+    files = sorted(root.rglob("*.lua"), key=lambda p: str(p.relative_to(root)).lower())
+    if not files:
+        print(f"no .lua files under {root}", file=sys.stderr)
+        return 1
+
+    # Hash the source so the stamp identifies the exact tree this index was built from: every
+    # relative path and the sha256 of every file's bytes, in a fixed order.
+    tree_hash = hashlib.sha256()
+    records = []
+    totals = {"lines": 0, "globals": 0, "classes": 0, "tables": 0, "members": 0}
+    per_dir: dict[str, dict[str, int]] = {}
+
+    for path in files:
+        rel = path.relative_to(root).as_posix()
+        raw = path.read_bytes()
+        tree_hash.update(rel.encode() + b"\0" + hashlib.sha256(raw).digest())
+        text = raw.decode("utf-8", errors="replace")
+        info = scan(text)
+        # A file whose last line has no newline still holds that line.
+        lines = text.count("\n") + (1 if text and not text.endswith("\n") else 0)
+
+        records.append({"path": rel, "lines": lines, **info})
+        totals["lines"] += lines
+        totals["globals"] += len(info["globals"])
+        totals["classes"] += len(info["classes"])
+        totals["tables"] += len(info["tables"])
+        totals["members"] += info["member_count"]
+
+        top = rel.split("/", 1)[0]
+        d = per_dir.setdefault(top, {"files": 0, "lines": 0, "globals": 0, "classes": 0})
+        d["files"] += 1
+        d["lines"] += lines
+        d["globals"] += len(info["globals"])
+        d["classes"] += len(info["classes"])
+
+    digest = tree_hash.hexdigest()
+    out = []
+    w = out.append
+
+    w(
+        f"<!-- generated by scripts/build_lua_index.py from Project Zomboid build "
+        f"{args.build} media/lua, {len(records)} files, sha256:{digest[:16]} — do not edit -->"
+    )
+    w("")
+    w("# Game Lua file index")
+    w("")
+    w(
+        f"Every one of the {len(records)} Lua files the game ships, with the global functions and "
+        f"classes each declares. {totals['lines']:,} lines total."
+    )
+    w("")
+    w(
+        "This is the lookup table for *where is the code that does X*. Search a class or function "
+        "name here, then open the file it names in the installation."
+    )
+    w("")
+    w(
+        "**Class methods are counted, not listed.** The tree declares "
+        f"{totals['members']:,} `function Class:method()` definitions; they belong to the class, "
+        "and the class's file is what you need in order to find them. `grep` the installation for "
+        "a method name once the file is known."
+    )
+    w("")
+    w("## Contents")
+    w("")
+    w("- [Totals](#totals)")
+    for top in sorted(per_dir):
+        w(f"- [{top}](#{top})")
+    w("")
+    w("## Totals")
+    w("")
+    w("| directory | files | lines | global functions | classes |")
+    w("|---|---:|---:|---:|---:|")
+    for top in sorted(per_dir):
+        d = per_dir[top]
+        w(
+            f"| `{top}` | {d['files']:,} | {d['lines']:,} | "
+            f"{d['globals']:,} | {d['classes']:,} |"
+        )
+    w(
+        f"| **total** | **{len(records):,}** | **{totals['lines']:,}** | "
+        f"**{totals['globals']:,}** | **{totals['classes']:,}** |"
+    )
+    w("")
+
+    for top in sorted(per_dir):
+        w(f"## {top}")
+        w("")
+        d = per_dir[top]
+        w(f"{d['files']:,} files, {d['lines']:,} lines.")
+        w("")
+        for rec in records:
+            if rec["path"].split("/", 1)[0] != top:
+                continue
+            w(f"### `{rec['path']}`")
+            w("")
+            bits = [f"{rec['lines']:,} lines"]
+            if rec["member_count"]:
+                bits.append(f"{rec['member_count']} class method(s)")
+            w(" · ".join(bits))
+            w("")
+            if rec["classes"]:
+                for c in rec["classes"]:
+                    type_ = f' Type `"{c["type"]}"`' if c["type"] else " no Type string"
+                    w(f"- **class** `{c['name']}` derives `{c['parent']}`,{type_}")
+            if rec["tables"]:
+                w("- **table** " + ", ".join(f"`{t}`" for t in rec["tables"]))
+            if rec["globals"]:
+                w("- **global** " + ", ".join(f"`{g}()`" for g in rec["globals"]))
+            if not (rec["classes"] or rec["tables"] or rec["globals"]):
+                w("- declares no global function, class or table at file scope")
+            w("")
+
+    w("## Source")
+    w("")
+    w(
+        f"Generated by `scripts/build_lua_index.py` from `media/lua` of Project Zomboid build "
+        f"{args.build}, {len(records)} files, tree sha256 `{digest}`."
+    )
+    w("")
+
+    pathlib.Path(args.out).write_text("\n".join(out), encoding="utf-8")
+    print(
+        f"{len(records)} files, {totals['lines']:,} lines, {totals['globals']:,} globals, "
+        f"{totals['classes']:,} classes, {totals['tables']:,} tables, "
+        f"{totals['members']:,} class methods -> {args.out}"
+    )
+    print(f"tree sha256: {digest}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

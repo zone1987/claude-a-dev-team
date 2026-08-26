@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+"""Generate a reference for the game's XML data directories.
+
+Beyond media/lua and media/scripts the game carries thousands of XML definitions that nothing else
+documents: clothing and its decals, action groups, animation sets, hair and beard styles, voice
+styles, radio channels. A mod that adds clothing or an animation needs the element and attribute
+vocabulary, and that vocabulary exists only in the files.
+
+Generated because the volume is high and repetitive: 3,203 action groups and 2,949 animation sets
+carry the same handful of shapes, so what matters is the schema plus the inventory, not 6,000 dumps.
+
+Per directory it records: the file count, the root elements, every element path with its frequency,
+every attribute per element, and the distinct text values where the set is enum-sized.
+
+Usage:
+    build_xml_data.py --media DIR --out FILE [--build 42] [--dirs a,b,c]
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import hashlib
+import pathlib
+import sys
+import xml.etree.ElementTree as ET
+
+DEFAULT_DIRS = ["clothing", "actiongroups", "AnimSets", "animstates", "hairStyles",
+                "voiceStyles", "radio", "animscript"]
+ENUM_MAX = 25
+
+
+def walk(elem: ET.Element, path: str, paths: collections.Counter,
+         attrs: dict[str, collections.Counter], texts: dict[str, set]) -> None:
+    here = f"{path}/{elem.tag}" if path else elem.tag
+    paths[here] += 1
+    for k in elem.attrib:
+        attrs.setdefault(here, collections.Counter())[k] += 1
+    if elem.text and elem.text.strip():
+        s = texts.setdefault(here, set())
+        if len(s) <= ENUM_MAX + 1:
+            s.add(elem.text.strip())
+    for child in elem:
+        walk(child, here, paths, attrs, texts)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--media", required=True)
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--build", default="42")
+    ap.add_argument("--dirs", default=",".join(DEFAULT_DIRS))
+    args = ap.parse_args()
+
+    media = pathlib.Path(args.media)
+    dirs = [d.strip() for d in args.dirs.split(",") if d.strip()]
+    digest = hashlib.sha256()
+
+    L: list[str] = [
+        "",  # stamp inserted after the hash is known
+        "",
+        "# XML data definitions",
+        "",
+        "The game's XML directories, their element vocabulary and their attribute sets. These files "
+        "define clothing, animations, action groups, hair, voices and radio content, and nothing else "
+        "documents their schema — a mod adding any of them writes XML in exactly these shapes.",
+        "",
+        "Element paths are given from the document root. A frequency is how many elements of that "
+        "path exist across every file in the directory, which shows at a glance which parts of a "
+        "schema are load-bearing and which are rare.",
+        "",
+        "## Contents",
+        "",
+    ]
+    for d in dirs:
+        if (media / d).is_dir():
+            L.append(f"- [{d}](#{d.lower()})")
+    L.append("")
+
+    summary: list[tuple[str, int, int, int]] = []
+    for d in dirs:
+        root_dir = media / d
+        if not root_dir.is_dir():
+            continue
+        files = sorted(p for p in root_dir.rglob("*.xml"))
+        paths: collections.Counter[str] = collections.Counter()
+        attrs: dict[str, collections.Counter] = {}
+        texts: dict[str, set] = {}
+        parsed = failed = 0
+        for f in files:
+            raw = f.read_bytes()
+            digest.update(raw)
+            try:
+                walk(ET.fromstring(raw.decode("utf-8-sig", errors="replace")), "", paths, attrs, texts)
+                parsed += 1
+            except ET.ParseError:
+                failed += 1
+
+        L.append(f"## {d}")
+        L.append("")
+        L.append(f"`media/{d}` — {len(files):,} XML file(s), {parsed:,} parsed"
+                 + (f", **{failed} failed to parse**" if failed else "") + ".")
+        L.append("")
+        if not paths:
+            L.append("No XML elements were readable in this directory.")
+            L.append("")
+            continue
+        L.append("| Element path | Count | Attributes | Distinct text values |")
+        L.append("| --- | ---: | --- | --- |")
+        for p, n in sorted(paths.items(), key=lambda x: (-x[1], x[0])):
+            a = attrs.get(p, {})
+            a_txt = ", ".join(f"`{k}` ({v})" for k, v in sorted(a.items())) or "_none_"
+            t = texts.get(p, set())
+            if not t:
+                t_txt = "_no text_"
+            elif len(t) <= ENUM_MAX:
+                t_txt = ", ".join(f"`{v}`" for v in sorted(t))
+            else:
+                t_txt = f"_{len(t)}+ distinct — data, not an enum_"
+            L.append(f"| `{p}` | {n} | {a_txt} | {t_txt} |")
+        L.append("")
+        summary.append((d, len(files), len(paths), failed))
+
+    source_hash = digest.hexdigest()[:16]
+    L[0] = (f"<!-- generated by scripts/build_xml_data.py from Project Zomboid build {args.build} "
+            f"media XML directories, sha256:{source_hash} — do not edit above the prose marker -->")
+
+    out = pathlib.Path(args.out)
+    out.write_text("\n".join(L) + "\n", encoding="utf-8")
+    print(f"sha256:{source_hash}")
+    for d, nf, np, nfail in summary:
+        print(f"  {d:16s} {nf:6,} files  {np:4d} element paths"
+              + (f"  {nfail} unparsed" if nfail else ""))
+    print(f"-> {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

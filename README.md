@@ -1,8 +1,9 @@
 # Claude Code plugin marketplace
 
-A Claude Code **marketplace** of **27 plugins**, **124 skills**, **1,963** reference files and
-**398,868 lines** of distilled documentation, covering Shopware 6.7, Contao 5, the OCTO
-tourism API, React and Vue component libraries, and a set of testing and PDF tools.
+A Claude Code **marketplace** of **29 plugins**, **147 skills**, **2,167** reference files and
+**610,546 lines** of distilled documentation, covering Shopware 6.7, Contao 5, the OCTO
+tourism API, the Discord developer platform, Project Zomboid modding, React and Vue component
+libraries, and a set of testing and PDF tools.
 
 Every plugin embeds its knowledge — no runtime dependency on the upstream site, no network call at
 answer time. Depth lives in reference files that load only when needed, so a plugin costs almost
@@ -107,6 +108,13 @@ available as `/<command>`; agents are reached through an orchestrator or directl
 | [`playwright`](./plugins/playwright/README.md) | Playwright end-to-end testing: writing tests (locators, actions, assertions, auth), the test runner (config, fixtures, sharding, reporters), the co… | 5 | 3 | 3 |
 | [`panther`](./plugins/panther/README.md) | Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installat… | 2 | 2 | 2 |
 
+### Platforms and games
+
+| Plugin | Covers | Skills | Agents | Commands |
+|---|---|--:|--:|--:|
+| [`discord`](./plugins/discord/README.md) | The Discord developer platform, all 159 documentation pages: the HTTP API, the Gateway with every event and intent, slash commands and components, OAuth2 and the permission bitfield, Activities and the Embedded App SDK, the Social SDK, monetization, RPC and voice, plus local testing | 11 | 4 | 3 |
+| [`zomboid`](./plugins/zomboid/README.md) | Project Zomboid build 42 modding, extracted from the game itself: all 3,965 Java classes and 72,831 members, the 1,395 game Lua files, 296 ISUI widget classes, 5,105 items with every script property, 37,060 world objects, RCON and 67 admin commands | 12 | 4 | 3 |
+
 ### Other platforms
 
 | Plugin | Covers | Skills | Agents | Commands |
@@ -129,6 +137,8 @@ Measured with `python3 scripts/measure-skill-budget.py .`. Only model-visible sk
 | Plugin | Model-visible skills | Chars | Avg description | % of budget |
 |---|--:|--:|--:|--:|
 | `shopware-merchant` | 16 | 4 569 | 177 | 57 % |
+| `zomboid` | 12 | 3 368 | 172 | 42 % |
+| `discord` | 11 | 3 003 | 164 | 38 % |
 | `octo-api` | 8 | 2 296 | 178 | 29 % |
 | `shadcn-vue` | 8 | 2 282 | 176 | 29 % |
 | `shadcn` | 8 | 2 265 | 174 | 28 % |
@@ -165,8 +175,10 @@ five plugins is what a session actually enables, and any such set lands well ins
 | `shopware-core` + `shopware-data` + `shopware-admin` + `shopware-framework` | 54 % |
 | `octo-api` + `shopware-core` + `shopware-data` | 54 % |
 | `shadcn` + `shadcn-vue` | 57 % |
+| `zomboid` alone — it is a self-contained domain | 42 % |
+| `discord` + `zomboid` — a bot bridging a game server | 80 % |
 
-Enabling all 26 at once is not a supported configuration, and no plugin is written for it.
+Enabling all 29 at once is not a supported configuration, and no plugin is written for it.
 
 Diagnose a session with:
 
@@ -197,7 +209,7 @@ Authoring rules: [`CLAUDE.md`](./CLAUDE.md) for efficiency and completeness,
 
 ## Keeping it current
 
-Two plugins check their own upstream:
+Four plugins check their own upstream:
 
 - **`shopware-quality`** — agent `shopware-librarian`, command `/sw-sync`: checks
   `shopware/shopware` releases and trunk drift and reports which skills are affected.
@@ -205,8 +217,25 @@ Two plugins check their own upstream:
   compares content hash and entity counts against `.spec-state.json`, and regenerates the
   references on request. `--check` reports, `--apply` writes.
 
+- **`discord`** — command `/discord-docs-sync`: compares `docs.discord.com/sitemap.xml` against the
+  recorded hash in `PAGE-COVERAGE.json`, reports pages added, removed or changed, and re-distils on
+  `--apply`.
+- **`zomboid`** — the game itself is the source, so there is no site to poll. `INVENTORY.json`
+  records a content hash per source directory instead, and every reference file names the generator
+  that produced it, so a game update is detected by re-running the generators and diffing.
+
 `octo-api` also ships an audit that walks all 39 pages of the upstream documentation and reports any
 term the plugin does not mention — currently 1,162 of 1,162.
+
+`discord` and `zomboid` verify completeness in both directions rather than by page count:
+
+| Script | Proves |
+|---|---|
+| `verify_references.py` (both) | every reference file is reachable from its `SKILL.md`, and every relative link resolves |
+| `verify_page_coverage.py` (`discord`) | every one of the 159 documentation pages reached a skill that carries content |
+| `audit_terms.py` (`discord`) | every identifier, constant, route and table number of each source page appears in the references — and, in reverse, that no documented name is absent upstream, which is what catches invention |
+| `audit_structure.py` (`discord`) | no section, table or code block was dropped during distillation |
+| `verify_orchestrator.py` (`zomboid`) | the orchestrator names every skill and every agent with a stated purpose — an omitted skill would otherwise never be routed to |
 
 ## Licence and sources
 
@@ -222,6 +251,8 @@ documentation remain with the respective owners:
 | `contao` | [contao/contao](https://github.com/contao/contao), docs.contao.org |
 | `shadcn`, `shadcn-vue` | [ui.shadcn.com](https://ui.shadcn.com), [shadcn-vue.com](https://www.shadcn-vue.com) |
 | `swiper`, `flatpickr`, `playwright`, `panther`, `gotenberg` | the respective upstream repository and documentation |
+| `discord` | [docs.discord.com](https://docs.discord.com/developers/intro) — © Discord Inc. |
+| `zomboid` | the shipped game (build 42), plus [projectzomboid.com/modding](https://projectzomboid.com/modding/index.html) and [demiurgeQuantified/ProjectZomboidJavaDocs](https://github.com/demiurgeQuantified/ProjectZomboidJavaDocs). Project Zomboid is developed by The Indie Stone |
 
 ### Other OCTO implementations
 
