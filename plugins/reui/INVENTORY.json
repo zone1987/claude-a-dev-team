@@ -1,5 +1,5 @@
 {
-  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-09).",
+  "$comment": "Documentation inventory. Read this before re-auditing: an identical page hash proves the page has not changed, whatever the date says (COV-10). Hashes are of what scripts/inventory.py fetch_page() returns for each URL — reui.io serves no markdown twin, so these are the rendered pages.",
   "plugin": "reui",
   "recorded": "2026-09-04",
   "source": {
@@ -90,372 +90,372 @@
   "entries": [
     {
       "page": "https://reui.io/docs",
-      "sha256": "45144b63eedd4fcbae02af5c6472ac970e518ebbd9defb0a8251726f3aa93434",
+      "sha256": "f5048cc19b3049cafff423914b928a9e35c5acc60e04e09c41f96e2160e03487",
       "mirror": "docs.md"
     },
     {
       "page": "https://reui.io/docs/agent-skills",
-      "sha256": "bfb4b8d4420ad989c4f622a21b2b3a9bb0cfff2f87702948bf27bdf7ab2a99e5",
+      "sha256": "65416cb2f663ccea151d2b98f9285d87eb723cef23becb2cb00945f2ee4125e1",
       "mirror": "docs_agent-skills.md"
     },
     {
       "page": "https://reui.io/docs/antigravity",
-      "sha256": "e6de7e863fb6f3407db76d8912993f5f58a9e04cbc94931a8d93e156787df53a",
+      "sha256": "e989e8d1ecd2726425d3bcb91847a08ac5103b00581bab0fb99ebd8e0f5e0258",
       "mirror": "docs_antigravity.md"
     },
     {
       "page": "https://reui.io/docs/bolt",
-      "sha256": "273c38985cb707f09f932929855cce6406d15c79a08f71be981300ccc09e0879",
+      "sha256": "91c90c5654d53e69f551ef03dbce18d33239308b07657a73e9b19052f27cde93",
       "mirror": "docs_bolt.md"
     },
     {
       "page": "https://reui.io/docs/changelog",
-      "sha256": "21f48ce705fcec67da18b59d2eda049950ad480ad76fc9d8fec7c5d273a34988",
+      "sha256": "b615c6262bdb70067a8a35e26398b8012e57f0b0db6cd618cbc202e3a7477fb4",
       "mirror": "docs_changelog.md"
     },
     {
       "page": "https://reui.io/docs/claude",
-      "sha256": "1c36d23fcff56532024fa9e80032d7a7c99fa8c0508be49ba56c62db308d271a",
+      "sha256": "42dea7e70e3274d34c24a1b622540093778628ce16698421e23252e92d3add78",
       "mirror": "docs_claude.md"
     },
     {
       "page": "https://reui.io/docs/codex",
-      "sha256": "dc3fe92068fb9757dffb5659f690865223572dae35d75bc55ab94b8589457267",
+      "sha256": "a3238dacc75fcecd678f48c44b1f639b5405dd7f6f07f0a5bb8ac938d75c33dd",
       "mirror": "docs_codex.md"
     },
     {
       "page": "https://reui.io/docs/components/base/alert",
-      "sha256": "65c7fa184eb8a79f7e5268f7b298e314a7c31241d2ed21cad5200314aac047ed",
+      "sha256": "139fbbee7dc6f53bbb35227349ed65b9059884259af0e138568e4aeaa7c853e2",
       "mirror": "docs_components_base_alert.md"
     },
     {
       "page": "https://reui.io/docs/components/base/autocomplete",
-      "sha256": "ab6d39c407b7434978125aa8196b40fb56e7beb900edd43b011cbb3833b1f1f6",
+      "sha256": "2df7ca9fc916abb32953b87c4899972259081347ab526870e884da77caf9be1a",
       "mirror": "docs_components_base_autocomplete.md"
     },
     {
       "page": "https://reui.io/docs/components/base/badge",
-      "sha256": "2bef2a553495f4716229caecabececd967109813bb6ca5ac976df0c0e1212d71",
+      "sha256": "e68187c3dbca7a3a9cee920f170026bce5c707dd7b840a5721e7ed2eeaeab1f8",
       "mirror": "docs_components_base_badge.md"
     },
     {
       "page": "https://reui.io/docs/components/base/cascader",
-      "sha256": "c09a2031ea758ed660e5cc73f609b8dfffd9b84b50c760cc5501ecaf69f8c67b",
+      "sha256": "07e9d36da560faa576274de9a30cf081b0e9ed7322d71e12ebfce9042d42bbe2",
       "mirror": "docs_components_base_cascader.md"
     },
     {
       "page": "https://reui.io/docs/components/base/code-block",
-      "sha256": "9479eb2e4cdfae0492023c18e0e68596c16c4871684ba71b5801ee428009560c",
+      "sha256": "8ebcd10275d31075eaf892842bc0fcbdb4a7e0756ab957d7c889a1bde5eb02d5",
       "mirror": "docs_components_base_code-block.md"
     },
     {
       "page": "https://reui.io/docs/components/base/data-grid",
-      "sha256": "6eda78a0514d795df9d79793f595a890747a7886f90cc074245f85e175dd21d9",
+      "sha256": "538bbb721e52d4c9736b6010cba6675d26ea3263975fb0e22b2f93d6749841e2",
       "mirror": "docs_components_base_data-grid.md"
     },
     {
       "page": "https://reui.io/docs/components/base/date-selector",
-      "sha256": "60ba6caabf8254a0043b16c16bbcc18efba3ed2567dd18a1b0b0930d9c756510",
+      "sha256": "d0ca29cabe83de57dd861efaf5cfb9d45fb0f3237f7cb175a29573a70c32e2e6",
       "mirror": "docs_components_base_date-selector.md"
     },
     {
       "page": "https://reui.io/docs/components/base/event-calendar",
-      "sha256": "ac502698b69fd1c24e4af1302d9a79d48f04a20c089e31638e20895e8ef39d74",
+      "sha256": "cd93f33fe1902d676a1f39e53d59b674dae9341a7b13e260db19052c09ab27ef",
       "mirror": "docs_components_base_event-calendar.md"
     },
     {
       "page": "https://reui.io/docs/components/base/file-upload",
-      "sha256": "622d7bed77db2cb58fc0133b6b669f5d30916386943cd679b21140e6e5280685",
+      "sha256": "a564ed8dbbee13b38f9aae158fa30a8fa01814cf44eb15c0b5597a2fa83f11ce",
       "mirror": "docs_components_base_file-upload.md"
     },
     {
       "page": "https://reui.io/docs/components/base/filters",
-      "sha256": "6fec28ab7145a83248266142b4e8bbe610215b864c5df466bd05172677491e91",
+      "sha256": "de5bab136fcb472bf1ecd5486005b603748f63ade7d2fc5bd81df09c3513456e",
       "mirror": "docs_components_base_filters.md"
     },
     {
       "page": "https://reui.io/docs/components/base/frame",
-      "sha256": "314f6d1464cb7047afaa3c11086620b5d07a47f5b0e6022470e957c0462316d0",
+      "sha256": "d3dc19be5447434d38a03c2b7de8d2f92b4f5e310d4c91dfc37f0489e72f5212",
       "mirror": "docs_components_base_frame.md"
     },
     {
       "page": "https://reui.io/docs/components/base/gantt",
-      "sha256": "3737528ebe93f7df8d3a947e26093f1fa82818719f1826ea7d6070e3197723d6",
+      "sha256": "7a6be88c8d40a544dd6554107509349bd1d7d1ae0f9b90b8c13409bfde2bb96e",
       "mirror": "docs_components_base_gantt.md"
     },
     {
       "page": "https://reui.io/docs/components/base/icon-stack",
-      "sha256": "e574477786316f79d2c4511686c0dda497f106d7a4e6712f6b26ee1fccca29fe",
+      "sha256": "a64ed72461581bfe2e4951d494f9f189795e0d3ac07faf65c17741ab49facabb",
       "mirror": "docs_components_base_icon-stack.md"
     },
     {
       "page": "https://reui.io/docs/components/base/icon-tile",
-      "sha256": "5b45432996131a4a909cbbcfa979f1815e5a969293cb072487230785ccb5eec0",
+      "sha256": "53892416b019270d1bcf0578304881244f23652a92c791618b715aa9e96576a0",
       "mirror": "docs_components_base_icon-tile.md"
     },
     {
       "page": "https://reui.io/docs/components/base/kanban",
-      "sha256": "c63a563df8eef0843a098f5eb3eb554ce6c7733ea976b7fd49a3fd878226de45",
+      "sha256": "4f6342192c85df441fb3b26674f1c6f93a92f2fb0e5d72665c120af5efaec2f0",
       "mirror": "docs_components_base_kanban.md"
     },
     {
       "page": "https://reui.io/docs/components/base/number-field",
-      "sha256": "4c3b47270e9760482ec014d889a5696c01634e7ba074df177080fca7558dfcb6",
+      "sha256": "1ae195499c5ed9a0dbee8f7a96d99a9fa4e21afd6e4db19ed5cae4e2c01e16dd",
       "mirror": "docs_components_base_number-field.md"
     },
     {
       "page": "https://reui.io/docs/components/base/phone-input",
-      "sha256": "023b4d63fee61e3305f45443d736dd4b7142d53a8124404884122b4238e0887a",
+      "sha256": "73c4c92d727aee375d4263ac79e2fd7f31c64b1907de5549f526ae957e9901db",
       "mirror": "docs_components_base_phone-input.md"
     },
     {
       "page": "https://reui.io/docs/components/base/rating",
-      "sha256": "bb1e5c5d470f8f101eb9169fe578a2585b045bde7e82a1be96f099e2ff08ccf0",
+      "sha256": "efa731847454b22dcdd0d109cf896d23911976a05fb43fee732905d43c648269",
       "mirror": "docs_components_base_rating.md"
     },
     {
       "page": "https://reui.io/docs/components/base/scrollspy",
-      "sha256": "e89f0a8a375aeaf5eab785cb39c198275a7261ec817c717665b37b3d760cc4bd",
+      "sha256": "edbf724ffb0aa2154e7a32a314271a83d0141437ae06f20f1e9a6edc68a41c3a",
       "mirror": "docs_components_base_scrollspy.md"
     },
     {
       "page": "https://reui.io/docs/components/base/sortable",
-      "sha256": "670aa818a16a363ad17414924de6783d4c1b6cd946498f74f85479d68a20d065",
+      "sha256": "751c68529c7a43e2059e5d99a8bf2bbc30d0525e76f5ab156b143b7e82e19e51",
       "mirror": "docs_components_base_sortable.md"
     },
     {
       "page": "https://reui.io/docs/components/base/stepper",
-      "sha256": "a1d0f229755c27aa8896de7b8e9f4ebcc80351f3f6efdba389a0f153ba9b3c75",
+      "sha256": "81c31c53c55b74547918fcba751079714ee4f9b53e11c608a5f9a38801217696",
       "mirror": "docs_components_base_stepper.md"
     },
     {
       "page": "https://reui.io/docs/components/base/timeline",
-      "sha256": "d16cf9d2d03f7dda14dd48e7644e7adf5dda35d2e70fa7fe7c673adafb2facc5",
+      "sha256": "a60f7c5208751df7b89131270e3a9a74aa18a1eb19400b97cfb4286c1533be20",
       "mirror": "docs_components_base_timeline.md"
     },
     {
       "page": "https://reui.io/docs/components/base/tree",
-      "sha256": "334de2330fc967362dc950dd98e306bfb11ed1c64867a3209bf43752d08734a2",
+      "sha256": "3d3779aecf780fb33b236a6af2790c54143693102d78424af9d813c3400f61f9",
       "mirror": "docs_components_base_tree.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/alert",
-      "sha256": "f944fc91bb01cf90a0fbf154a94f7a48f78259fb122f6de884b8704834950e95",
+      "sha256": "8ba46935853906e3141c5d9c395082812e3f51e05150072aa3fb53e59dae45af",
       "mirror": "docs_components_radix_alert.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/autocomplete",
-      "sha256": "d055e1180c3762203217283df88118516bbf20d77530d9ef4373803cef76ab41",
+      "sha256": "9f74e7efbfef320dfdbc987703824f4e84834548b559644fdaf1f388d853075c",
       "mirror": "docs_components_radix_autocomplete.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/badge",
-      "sha256": "293657a9d6efd56179f0fb46f3ec5ddac0bdaf98fd1ff07bcc39e63017e23a03",
+      "sha256": "9106c2da86ad8ff8238cb1fee5f300cda0a03ee8eb8e6b38e4f49df5e2e49982",
       "mirror": "docs_components_radix_badge.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/cascader",
-      "sha256": "ece8a5003960afb0a348a23832ef9bbb013760ba28415838b62a646edb836bb7",
+      "sha256": "3284e40c760b56be87aa28c05583a19c4e8548221be297013d07fff1dd7e22d4",
       "mirror": "docs_components_radix_cascader.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/code-block",
-      "sha256": "6a035acd9d596831b684a6305c28ab54e8f078fcc083e9ffd3794149c40c96fb",
+      "sha256": "30abf1ebf0230bff66387d1936d6808acfa9e0165e09089d023077a4c5984015",
       "mirror": "docs_components_radix_code-block.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/data-grid",
-      "sha256": "a4d1c16af12e422c4dafff2e40dbdd8919aacced62b36f5826063be5988c59fa",
+      "sha256": "71c99ee04c67b887a39b15a9e5d1462c29d94fe61f25527515aa2135bcd058cc",
       "mirror": "docs_components_radix_data-grid.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/date-selector",
-      "sha256": "a789059b13452c82acf1dcf20a21720ae0c23338185b89b808cf0a14e590668b",
+      "sha256": "842447116952b2176c0db743aa1c4a0b03686898141724a58f76ee9bc6bb239f",
       "mirror": "docs_components_radix_date-selector.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/event-calendar",
-      "sha256": "386a16a6c7ffa3f6e2c66e34ef22bbf271f9fdfc9536c9f3918b3f79c3bd3512",
+      "sha256": "bafea9308f835de45850ec36e612a58d1f79ccff5991fc968a057521c75672fe",
       "mirror": "docs_components_radix_event-calendar.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/file-upload",
-      "sha256": "2494ed921d2e9c2699cfe752980c930cf0de7602c3b4efff8f90c52a31481343",
+      "sha256": "18b8ed0e11f2482d9d1560b973f705a0376eb3ee6391afa3d8c09d5752ba1512",
       "mirror": "docs_components_radix_file-upload.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/filters",
-      "sha256": "41ed64f293e678508f1eafa5278d16edc273a07fab7a51cf0230068393a77c1b",
+      "sha256": "252affd78604ae4e00184fa311215ceadc4198b22b6f83426fcdebc44924b1fd",
       "mirror": "docs_components_radix_filters.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/frame",
-      "sha256": "8dfaa3c8be85d5804c89cf9b74474ac075fd4310260829b204e7e98d3d141b1a",
+      "sha256": "ffeb19b0054135b74f5f342535632145161e5aea4de37172277f449667d96a5c",
       "mirror": "docs_components_radix_frame.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/gantt",
-      "sha256": "cca70013812008ec5f95973fb93297c9e48c02d16d7fca058e37a53a466f15fd",
+      "sha256": "8042a7d408648cc8ff12c495b77f93e049235bde8f2630ea78d334aabe70f9f5",
       "mirror": "docs_components_radix_gantt.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/icon-stack",
-      "sha256": "d1cded42262658cd1aad82cd34ffef2bb4fb5ef6654c4c97e1d5d6c4cec83612",
+      "sha256": "be5eba0f5f1a2cb6d9468a98434627767acde71f9c9f0fb7f99a877ea101d0e7",
       "mirror": "docs_components_radix_icon-stack.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/icon-tile",
-      "sha256": "3ff9c1d88e298b708128ebdc6c5b41f2585c8d4c1253e444c928d26515de4858",
+      "sha256": "d36e81384473c8d97aa194ba27564589540d83a40f0008c02623a26e8e6e7bea",
       "mirror": "docs_components_radix_icon-tile.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/kanban",
-      "sha256": "cd5a4601ad90aaacc3bd5f2c41533bab440dd6a1b9fe50b29232b65f8e3e7305",
+      "sha256": "2ba16368b0de1db18a4cc6617bb201ec63a3e4729acedd3c8e4a22a4e50cbc2d",
       "mirror": "docs_components_radix_kanban.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/number-field",
-      "sha256": "74ce619aabd665b56981ea806c22365e8d1204f1f0c089c5386f5bee0e08654a",
+      "sha256": "f415dcebf48a74691aae72f2026a04718b9401fa092333ff43fccf28534c94b6",
       "mirror": "docs_components_radix_number-field.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/phone-input",
-      "sha256": "72617d5b39a4996be9f2010259b6ef579f1421d40edf9c988dd29c3bd46204c9",
+      "sha256": "abd16605da15c9974e6e09995c3c6ec5489583907592de453e5646410b6ffdd8",
       "mirror": "docs_components_radix_phone-input.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/rating",
-      "sha256": "4f389c3d2124cf66eb729ed61d24904ac96de36cc6840791b1a2284047ffbc82",
+      "sha256": "3e890227af19a28372c6ad6b0b93b481e95043ed07b1e13a41b49c7a045bec5c",
       "mirror": "docs_components_radix_rating.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/scrollspy",
-      "sha256": "0132d442b31360960842a92bd3880799227eaca82935799eeda0a1adce64968d",
+      "sha256": "1f4793de880c95ac98f5f222e1858b1081c2249ff1575de1dbd5ab9cd9c7f6bb",
       "mirror": "docs_components_radix_scrollspy.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/sortable",
-      "sha256": "c0ad98ca29a0704c82a9558be737ee60c064589e8152a56a3fe93753f56a9a60",
+      "sha256": "a80d052d02562726685185c65bcf8b58333b33e418af83f721cc4dbdbf196c7a",
       "mirror": "docs_components_radix_sortable.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/stepper",
-      "sha256": "3b6108f9a9cc08f6587f02e116bcc5fe498e460f3b265be840bd8a6e6800dab3",
+      "sha256": "a2f2bd77d51c80d9816df705b203ee79a590f0e7c4d955440a487feb48710d51",
       "mirror": "docs_components_radix_stepper.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/timeline",
-      "sha256": "3498c362ee356f9b2cceb47f683991e2698db28234d8e9cf98e8d28cb5e26529",
+      "sha256": "5baf5f2255139da6f69c707000d5e311600d728c4cb4e22f3507483d70225b33",
       "mirror": "docs_components_radix_timeline.md"
     },
     {
       "page": "https://reui.io/docs/components/radix/tree",
-      "sha256": "74e81c8bb024e193ab7393c77945007eac248174b20dabacdf6ce16d3b47ad24",
+      "sha256": "69093d1ccf3921f28814b04cc34fd92b8c38e46ac52a4775cd08d45dfc90f377",
       "mirror": "docs_components_radix_tree.md"
     },
     {
       "page": "https://reui.io/docs/conductor",
-      "sha256": "e2cc986ab8ecab38b27a92b755c216ed3f219879d61e75e454078e8e1cd1769a",
+      "sha256": "1eddf723cf3d1dbb3386b787ce1fdf88cf70382dc23e0e533b8eda2f96ffe153",
       "mirror": "docs_conductor.md"
     },
     {
       "page": "https://reui.io/docs/cursor",
-      "sha256": "b36571aa66e38cf137ab7987b058e377630daad13cbc08e156f2709b885cb1cf",
+      "sha256": "8866eb2d7d40f08a947ec5899dfdbe8edaa6c6419f2894802fd9947f1c9f24b8",
       "mirror": "docs_cursor.md"
     },
     {
       "page": "https://reui.io/docs/get-started",
-      "sha256": "fadd248e4c39747af497191d601c5bae68e44b0a313eb18377c557b483629fa9",
+      "sha256": "3102626fa755f7c4eb032d508670c6340bd5ba1e3e8af30c3c183198291b72e4",
       "mirror": "docs_get-started.md"
     },
     {
       "page": "https://reui.io/docs/github-copilot",
-      "sha256": "6b2a0b470d5f23d145bd36ac13bebca33d22c835fe19c8c4456dc37a9cd87a1f",
+      "sha256": "530aa1d61e0d27c5ba023f3204aaba537bd2ec843a8be745a1cfc921d8c444fd",
       "mirror": "docs_github-copilot.md"
     },
     {
       "page": "https://reui.io/docs/grok",
-      "sha256": "1beca5d2b45ccb8598b188fde17f5dfaf0d678a9ff4534f4ff81d03966dfa266",
+      "sha256": "ab43ba4af12bb70eae3a7ac5575054ccec8d624f87edc6e487eea87482d93e09",
       "mirror": "docs_grok.md"
     },
     {
       "page": "https://reui.io/docs/kilo-code",
-      "sha256": "9a6defb6e66c68424d50bccf11df99fd99889e577a84ddffc63c6708cb31dad6",
+      "sha256": "1c09e721cfed25bc0f1d8a3378ab09594bce83a5b370904d32609a32a3d6eaab",
       "mirror": "docs_kilo-code.md"
     },
     {
       "page": "https://reui.io/docs/license-setup",
-      "sha256": "bc48adea224179a756758a9735e587a8142cdaa2f2f0b4da3cbd16952fda0821",
+      "sha256": "548932f1b6eb07e35877e48ac147a526bddcc80a51133b0336096363e1910b26",
       "mirror": "docs_license-setup.md"
     },
     {
       "page": "https://reui.io/docs/lovable",
-      "sha256": "2f17edcbdcf03d5fa52042f8f573f3e6f776068cd9cbe10ab09ff86831aa4019",
+      "sha256": "669971abfff2b36fab7a0f9273a7e39a43d96067567273832afe0ce6fee74917",
       "mirror": "docs_lovable.md"
     },
     {
       "page": "https://reui.io/docs/mcp",
-      "sha256": "0621a07bf97f2f627bc9da1196bb219ed9a15dd1000c8dcf16a622656c09c86b",
+      "sha256": "2bd42d28e08265e0e8248ed2be9665bdebdc14490f6348e86d62ec239bca2b56",
       "mirror": "docs_mcp.md"
     },
     {
       "page": "https://reui.io/docs/opencode",
-      "sha256": "2b50aec923a8495a855b5a6a85935ce64f7c99a73e0448db9af541f9364c7ab4",
+      "sha256": "e6c0024a3e1ddbb0309bd268db9db688099d1a2c8dbc259fa80721e5f84078c0",
       "mirror": "docs_opencode.md"
     },
     {
       "page": "https://reui.io/docs/registry",
-      "sha256": "33214d55f27586afe4baa179914db9f8e458403efbe98825bf1e8c605315c23e",
+      "sha256": "3887daf4a65003a23dbab9c179b1054ba81eb34142a23480655170ab7952501e",
       "mirror": "docs_registry.md"
     },
     {
       "page": "https://reui.io/docs/replit",
-      "sha256": "9d9b3b01735619d70090aa5fe163ed3632b70329a61a3fad60c5d466db96438a",
+      "sha256": "195f8da16df838da4a45c9e0b5466b268331e910657e732db11f3f8c414219ef",
       "mirror": "docs_replit.md"
     },
     {
       "page": "https://reui.io/docs/rtl",
-      "sha256": "47a678699ec9c7a4fb74f4f365ec399b4451b92271831649732c3db88657a2e3",
+      "sha256": "02d81389bff09f9deea095622c22cc58d1f2a504464ec8011f466ebdb6e25d64",
       "mirror": "docs_rtl.md"
     },
     {
       "page": "https://reui.io/docs/styling",
-      "sha256": "96039352a3ab60d4c8e062259860f2d0ce0fd968cda2c9f3c72c7645d37f7ab1",
+      "sha256": "a411de02af86e26c9477b5e10f66810566b7f634360d1f6be51f5b5ab32e8cda",
       "mirror": "docs_styling.md"
     },
     {
       "page": "https://reui.io/docs/v0",
-      "sha256": "97c64c14bf5bd203a81a1d3bf46d27a0dfdd7243ce10a2460d577cc80e7ebdf8",
+      "sha256": "dcfbf12886122ca8a6f49e66e58cfa99f1b6c055dfc7258679a326afec3be8fe",
       "mirror": "docs_v0.md"
     },
     {
       "page": "https://reui.io/docs/vscode",
-      "sha256": "3599413f1e9abe21679aef431e69972582f2b214d9fd62b03ee64eb431b1cff0",
+      "sha256": "a8eab871b83ca3423b96767082b5d890812943c72fec950087389350eec87fee",
       "mirror": "docs_vscode.md"
     },
     {
       "page": "https://reui.io/docs/zed",
-      "sha256": "e4ae9156a191019a1a43621566a0e7acde942effbeb36690b92f51a17e36076a",
+      "sha256": "d441ae77a6b1758158cc8fd628efa137fae8ced602067ac84d43b2156a1ee887",
       "mirror": "docs_zed.md"
     },
     {
       "page": "https://reui.io/mcp",
-      "sha256": "038ef12f014c272af8353000defb0be3adc424fa3be4326459709b3f8a65e56d",
+      "sha256": "aee365ef174faa6dd836ff4a9558db3d2c676ed33e1a13bb085a9e6857ffa3ea",
       "mirror": "mcp.md"
     },
     {
       "page": "https://reui.io/pricing",
-      "sha256": "083ff495427fc7bc4d190bf7770e252d8dd21df5d7a5817b7401b81ad3b15032",
+      "sha256": "ec611d736cb605d9d7c34612826f689077008bf390b76402c3c23ac4ba0ba24d",
       "mirror": "pricing.md"
     },
     {
       "page": "https://reui.io/roadmap",
-      "sha256": "ba1b18e82b8f56434b10562737e2119a3e896d32376763e5d8a6172339136600",
+      "sha256": "a3abd1839a8122b168336f77031b94aa0e01e5ba004bd631c4f36b4ed5f7ea5f",
       "mirror": "roadmap.md"
     },
     {
       "page": "https://reui.io/support",
-      "sha256": "f220b715e3c8905887e366b753bdd17a04c7ffac833f01f7bd8ed69948dc881f",
+      "sha256": "193dfb2f733ab0a5f5ce9f60482ed78271d01d21c8face228cdc529d74807825",
       "mirror": "support.md"
     }
   ]

@@ -65,11 +65,45 @@ def fetch(url: str) -> bytes:
     back a 301 HTML page instead of docs.contao.org's sitemap, which reads as an absent source
     rather than an error.
     """
-    out = subprocess.run(["curl", "-sSfL", "--max-time", "30",
+    return fetch_typed(url)[0]
+
+
+def fetch_typed(url: str) -> tuple[bytes, str]:
+    """Fetch, and report the Content-Type alongside the body.
+
+    The type is what separates a real markdown twin from a site that ignores the suffix: reui.io
+    answers `<page>.md` with 200 and the rendered HTML page, so a status check alone cannot tell
+    the two apart and every page then hashes as changed.
+    """
+    out = subprocess.run(["curl", "-sSfL", "--max-time", "30", "-w", "\n%{content_type}",
                           "-H", "User-Agent: zcf-inventory", url], capture_output=True)
     if out.returncode:
         raise OSError((out.stderr or b"").decode()[:80] or f"curl exit {out.returncode}")
-    return out.stdout
+    body, _, ctype = out.stdout.rpartition(b"\n")
+    return body, ctype.decode(errors="replace").strip().lower()
+
+
+MARKDOWN_TYPES = ("text/markdown", "text/plain", "text/x-markdown")
+
+
+def fetch_page(url: str) -> bytes:
+    """The bytes to hash for one documentation page.
+
+    Ask for the markdown twin first, because it is far cheaper than rendered HTML and stable
+    across a redeploy that only changes the shell. Accept it ONLY when the server answers with a
+    markdown content type: a host that ignores the suffix returns the HTML page at 200, and taking
+    that would hash a different pipeline's output than the mirror recorded. Fall back to the page
+    itself, which is what every caller must also have used when writing the inventory.
+    """
+    u = url.rstrip("/")
+    target = u + ".md" if urllib.parse.urlparse(u).path.strip("/") else u + "/index.md"
+    try:
+        body, ctype = fetch_typed(target)
+        if any(ctype.startswith(t) for t in MARKDOWN_TYPES):
+            return body
+    except OSError:
+        pass
+    return fetch(u)
 
 
 SITEMAP_PATHS = ("/sitemap-pages.xml", "/sitemap.xml", "/sitemap_index.xml", "/docs/sitemap.xml")
@@ -211,16 +245,11 @@ def do_init(plugin: str, today: str, host_override: str, prefix: str = "") -> in
 
     entries, unreachable = [], 0
     for url in urls:
-        u = url.rstrip("/")
-        target = u + ".md" if urllib.parse.urlparse(u).path.strip("/") else u + "/index.md"
         try:
-            body = fetch(target)
+            body = fetch_page(url)
         except OSError:
-            try:
-                body = fetch(u)                     # a site that serves no .md variant
-            except OSError:
-                unreachable += 1
-                continue
+            unreachable += 1
+            continue
         entries.append({"page": url, "sha256": sha(body), "covers": [], "terms": None,
                         "extracted": today})
 
@@ -274,10 +303,7 @@ def do_check(plugin: str, live: bool, today: str) -> int:
         if not url:
             continue
         try:
-            # A docs root has no path to suffix: ask for /index.md instead of "<host>.md".
-            u = url.rstrip("/")
-            target = u + ".md" if urllib.parse.urlparse(u).path.strip("/") else u + "/index.md"
-            body = fetch(target)
+            body = fetch_page(url)
         except OSError as exc:
             gone.append((url, str(exc)[:60]))
             continue
