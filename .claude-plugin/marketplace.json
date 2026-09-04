@@ -5,14 +5,14 @@
     "url": "https://github.com/zone1987"
   },
   "metadata": {
-    "description": "Development toolkit for Claude Code \u2014 themed plugins (skills, agents, commands, hooks) for multiple web platforms: Shopware 6.7 (comprehensive) and Contao 5.x, more to come.",
+    "description": "Development toolkit for Claude Code — themed plugins (skills, agents, commands, hooks) for multiple web platforms: Shopware 6.7 (comprehensive) and Contao 5.x, more to come.",
     "version": "1.1.0"
   },
   "plugins": [
     {
       "name": "contao",
       "source": "./plugins/contao",
-      "description": "Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete German end-user manual \u2014 8 domain skills over 128 reference files.",
+      "description": "Contao 5 knowledge library: development (DCA, Models, content elements, fragment controllers, all hooks, Twig, backend modules) and the complete German end-user manual — 8 domain skills over 128 reference files.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -72,7 +72,7 @@
     {
       "name": "flatpickr",
       "source": "./plugins/flatpickr",
-      "description": "flatpickr date picker: every option, method, event and format token, plus the official plugins, all 67 locales, themes and mobile behaviour \u2014 2 domain skills.",
+      "description": "flatpickr date picker: every option, method, event and format token, plus the official plugins, all 67 locales, themes and mobile behaviour — 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -93,7 +93,7 @@
     {
       "name": "gotenberg",
       "source": "./plugins/gotenberg",
-      "description": "Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, watermark), plus installation, configuration and clients \u2014 3 domain skills.",
+      "description": "Gotenberg PDF service: HTML, URL, Markdown and Office conversion, screenshots, the full PDF manipulation set (merge, split, PDF/A, Factur-X, watermark), plus installation, configuration and clients — 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -149,7 +149,7 @@
     {
       "name": "panther",
       "source": "./plugins/panther",
-      "description": "Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installation, PANTHER_* configuration, Selenium and CI \u2014 2 domain skills.",
+      "description": "Symfony Panther browser testing: PantherTestCase, client and crawler API, interactions and waitFor mechanics, screenshots, plus WebDriver installation, PANTHER_* configuration, Selenium and CI — 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -174,7 +174,7 @@
     {
       "name": "playwright",
       "source": "./plugins/playwright",
-      "description": "Playwright end-to-end testing: writing tests (locators, actions, assertions, auth), the test runner (config, fixtures, sharding, reporters), the complete library API, trace-based debugging, MCP and CLI tooling \u2014 5 domain skills.",
+      "description": "Playwright end-to-end testing: writing tests (locators, actions, assertions, auth), the test runner (config, fixtures, sharding, reporters), the complete library API, trace-based debugging, MCP and CLI tooling — 5 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -199,9 +199,42 @@
       ]
     },
     {
+      "name": "reui",
+      "source": "./plugins/reui",
+      "description": "ReUI registry for shadcn projects: the 22 free primitives with their full React API for both Base UI and Radix UI, all 1,105 free c-* examples and 533 premium blocks with an explicit free/Pro/Ultimate split, plus installation, licence setup, the extended theme tokens, RTL and the hosted MCP server across 15 clients. The MCP stays the live source; these references are the fallback when it is rate-limited, signed out or unreachable.",
+      "version": "1.0.0",
+      "author": {
+        "name": "zone1987",
+        "url": "https://github.com/zone1987"
+      },
+      "license": "MIT",
+      "keywords": [
+        "reui",
+        "shadcn",
+        "react",
+        "tailwind",
+        "radix",
+        "base-ui",
+        "data-grid",
+        "registry",
+        "mcp"
+      ],
+      "category": "development",
+      "skills": [
+        "./skills/reui-setup",
+        "./skills/reui-mcp",
+        "./skills/reui-registry",
+        "./skills/reui-theming",
+        "./skills/reui-data",
+        "./skills/reui-forms",
+        "./skills/reui-layout",
+        "./skills/reui-blocks"
+      ]
+    },
+    {
       "name": "shadcn",
       "source": "./plugins/shadcn",
-      "description": "shadcn/ui component library: all 59 components with full React source, props and examples for both Radix UI and Base UI, plus setup, theming, forms, blocks, 70 charts and custom registries \u2014 8 domain skills over 444 reference files.",
+      "description": "shadcn/ui component library: all 59 components with full React source, props and examples for both Radix UI and Base UI, plus setup, theming, forms, blocks, 70 charts and custom registries — 8 domain skills over 444 reference files.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -233,7 +266,7 @@
     {
       "name": "shadcn-vue",
       "source": "./plugins/shadcn-vue",
-      "description": "shadcn-vue component library: all 64 components with full Vue source, props, slots and demos, plus setup, theming, forms, blocks, charts and custom registries \u2014 8 domain skills over 402 reference files.",
+      "description": "shadcn-vue component library: all 64 components with full Vue source, props, slots and demos, plus setup, theming, forms, blocks, charts and custom registries — 8 domain skills over 402 reference files.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -265,7 +298,7 @@
     {
       "name": "shopware-admin",
       "source": "./plugins/shopware-admin",
-      "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK \u2014 4 domain skills.",
+      "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK — 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -287,7 +320,7 @@
     {
       "name": "shopware-api",
       "source": "./plugins/shopware-api",
-      "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading \u2014 3 domain skills.",
+      "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading — 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -308,7 +341,7 @@
     {
       "name": "shopware-apps",
       "source": "./plugins/shopware-apps",
-      "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js \u2014 2 domain skills.",
+      "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -328,7 +361,7 @@
     {
       "name": "shopware-checkout",
       "source": "./plugins/shopware-checkout",
-      "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents \u2014 4 domain skills.",
+      "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents — 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -350,7 +383,7 @@
     {
       "name": "shopware-cms",
       "source": "./plugins/shopware-cms",
-      "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver \u2014 2 domain skills.",
+      "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver — 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -370,7 +403,7 @@
     {
       "name": "shopware-commercial",
       "source": "./plugins/shopware-commercial",
-      "description": "Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, Migration Assistant \u2014 4 domain skills.",
+      "description": "Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, Migration Assistant — 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -393,7 +426,7 @@
     {
       "name": "shopware-concepts",
       "source": "./plugins/shopware-concepts",
-      "description": "Shopware 6 concepts: why the platform is built as it is \u2014 architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and how each business domain is modelled \u2014 2 domain skills.",
+      "description": "Shopware 6 concepts: why the platform is built as it is — architecture, DAL, data stores, extension mechanisms, APIs, app system, messaging, and how each business domain is modelled — 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -413,7 +446,7 @@
     {
       "name": "shopware-core",
       "source": "./plugins/shopware-core",
-      "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging \u2014 3 domain skills.",
+      "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -434,7 +467,7 @@
     {
       "name": "shopware-data",
       "source": "./plugins/shopware-data",
-      "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference \u2014 4 domain skills.",
+      "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference — 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -456,7 +489,7 @@
     {
       "name": "shopware-devops",
       "source": "./plugins/shopware-devops",
-      "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting \u2014 5 domain skills.",
+      "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting — 5 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -479,7 +512,7 @@
     {
       "name": "shopware-framework",
       "source": "./plugins/shopware-framework",
-      "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch \u2014 4 domain skills.",
+      "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch — 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -501,7 +534,7 @@
     {
       "name": "shopware-frontends",
       "source": "./plugins/shopware-frontends",
-      "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment \u2014 3 domain skills.",
+      "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -523,7 +556,7 @@
     {
       "name": "shopware-merchant",
       "source": "./plugins/shopware-merchant",
-      "description": "Shopware 6 merchant knowledge: operating the administration across catalogue, orders, customers, content, marketing, settings, sales channels, Commercial features, Services, Cloud, updates and migration \u2014 16 domain skills with 269 reference files and 292 screenshots.",
+      "description": "Shopware 6 merchant knowledge: operating the administration across catalogue, orders, customers, content, marketing, settings, sales channels, Commercial features, Services, Cloud, updates and migration — 16 domain skills with 269 reference files and 292 screenshots.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -559,7 +592,7 @@
     {
       "name": "shopware-migration",
       "source": "./plugins/shopware-migration",
-      "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) \u2014 2 domain skills.",
+      "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) — 2 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -579,7 +612,7 @@
     {
       "name": "shopware-quality",
       "source": "./plugins/shopware-quality",
-      "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration \u2014 3 domain skills.",
+      "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration — 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -600,7 +633,7 @@
     {
       "name": "shopware-storefront",
       "source": "./plugins/shopware-storefront",
-      "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching \u2014 5 domain skills.",
+      "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching — 5 domain skills.",
       "version": "3.2.0",
       "author": {
         "name": "zone1987",
@@ -624,7 +657,7 @@
     {
       "name": "shopware-testing",
       "source": "./plugins/shopware-testing",
-      "description": "Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration and storefront, and Playwright end-to-end \u2014 3 domain skills.",
+      "description": "Shopware 6 testing across all levels: PHPUnit (unit, integration, Store and Admin API) with fixtures, builders and mocks, Jest for administration and storefront, and Playwright end-to-end — 3 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",
@@ -645,7 +678,7 @@
     {
       "name": "swiper",
       "source": "./plugins/swiper",
-      "description": "Swiper touch slider: the complete core API (parameters, methods, properties, events), every module, advanced features and the React, Vue, Angular, Svelte and Solid bindings \u2014 4 domain skills.",
+      "description": "Swiper touch slider: the complete core API (parameters, methods, properties, events), every module, advanced features and the React, Vue, Angular, Svelte and Solid bindings — 4 domain skills.",
       "version": "2.0.0",
       "author": {
         "name": "zone1987",

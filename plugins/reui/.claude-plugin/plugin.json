@@ -1,0 +1,31 @@
+{
+  "name": "reui",
+  "version": "1.0.0",
+  "description": "ReUI registry for shadcn projects: the 22 free primitives with their full React API for both Base UI and Radix UI, all 1,105 free c-* examples and 533 premium blocks with an explicit free/Pro/Ultimate split, plus installation, licence setup, the extended theme tokens, RTL and the hosted MCP server across 15 clients. The MCP stays the live source; these references are the fallback when it is rate-limited, signed out or unreachable.",
+  "author": {
+    "name": "zone1987",
+    "url": "https://github.com/zone1987"
+  },
+  "license": "MIT",
+  "keywords": [
+    "reui",
+    "shadcn",
+    "react",
+    "tailwind",
+    "radix",
+    "base-ui",
+    "data-grid",
+    "registry",
+    "mcp"
+  ],
+  "skills": [
+    "./skills/reui-setup",
+    "./skills/reui-mcp",
+    "./skills/reui-registry",
+    "./skills/reui-theming",
+    "./skills/reui-data",
+    "./skills/reui-forms",
+    "./skills/reui-layout",
+    "./skills/reui-blocks"
+  ]
+}
