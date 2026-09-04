@@ -11,7 +11,8 @@ First release.
   than recalled.
 - Component APIs distilled from all 74 documentation pages, with the Base UI and Radix UI builds
   diffed rather than duplicated.
-- `reui-dev` orchestrator plus `reui-expert` and `reui-setup-assistant`.
+- `reui-dev` router skill as the entry point, plus the `reui-expert` and
+  `reui-setup-assistant` agents.
 - Commands: `/reui-init`, `/reui-add`, `/reui-build`, `/reui-license`, `/reui-sync`.
 - `MCP-FALLBACK.py` hands the session its local references when an `mcp__reui__*` call fails —
   including the free plan's 100 calls a day; `PREMIUM-GATE.py` warns before a premium install that

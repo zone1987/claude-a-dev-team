@@ -27,7 +27,7 @@ npx shadcn@latest add @reui/icons/default/<style>/<name> --yes    # static
 npx shadcn@latest add @reui/icons/animated/<style>/<name> --yes   # hover-animated (motion/react)
 ```
 
-Finding them via the MCP is free; installing requires an Ultimate license (`REUI_LICENSE_KEY`, see [cli.md](./cli.md)). Reach for a Motion Icon on a primary action when a subtle hover cue helps; keep motion restrained.
+Finding them via the MCP is free; installing requires an Ultimate license (`REUI_LICENSE_KEY`, see [reui-setup/LICENSE-SETUP.md](../../reui-setup/references/LICENSE-SETUP.md)). Reach for a Motion Icon on a primary action when a subtle hover cue helps; keep motion restrained.
 
 Finding icons:
 
@@ -37,3 +37,21 @@ Finding icons:
 - Every icon result carries a `previewUrl` (its live icon-category page) - **share it with the user** so they can SEE the icon before installing.
 
 The `icon-stack` component composes multiple icons into a stacked display.
+
+## One vendor claim the platform documentation contradicts
+
+ReUI's own skill states that "an MCP client config never expands variables, so a ReUI MCP server
+config must carry the raw token instead." That is not true of Claude Code, and reui.io's own Claude
+page says the opposite: Claude Code substitutes `${VAR}` and `${VAR:-default}` in a server's `url`
+and `headers` in `.mcp.json`, which is why the ReUI installer writes
+`Authorization: Bearer ${REUI_LICENSE_KEY}` there rather than the key itself. Keep the value in the
+environment. The vendor's warning does hold for clients that do not interpolate — there a `${...}`
+placeholder is sent as literal text and comes back as a 401.
+
+## Source
+
+Distilled from ReUI's own agent skill (`rules/icons.md`, skill version `3bdbad788a`),
+retrieved 2026-09-04 — the vendor's working rules, which no `reui.io/docs` page covers.
+The contradiction noted above is resolved against
+[https://reui.io/docs/claude](https://reui.io/docs/claude) (mirrored 2026-09-04) and the
+Claude Code documentation.

@@ -35,3 +35,7 @@ The 77 `registry:ui` files make up **22 documented primitives** plus the documen
 - `<component>` with no prefix — free primitive.
 - anything else (`app-shell-3`, `hero-11`, `solution-crm-2`, `data-grid-base-1`) — premium block.
 - `@reui/icons/<default|animated>/<style>/<name>` — Ultimate icon.
+
+## Source
+
+Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), sha256 `a598d3b8b544a0fa1fc834d7a590b2b04642c080890c46790c7a5df5e1ea239f`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) (sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.

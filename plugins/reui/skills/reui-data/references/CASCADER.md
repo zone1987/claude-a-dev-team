@@ -14,6 +14,18 @@ committing a selection, the popup stays open, and a breadcrumb and a back contro
 The trigger then shows the selection's full path rather than a bare leaf label, because in a nested
 picker the leaf alone is frequently ambiguous.
 
+## Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Anatomy](#anatomy)
+- [Examples](#examples)
+- [API Reference](#api-reference)
+- [Keyboard](#keyboard)
+- [Accessibility](#accessibility)
+- [Base UI vs Radix UI](#base-ui-vs-radix-ui)
+- [Source](#source)
+
 ## Installation
 
 ```

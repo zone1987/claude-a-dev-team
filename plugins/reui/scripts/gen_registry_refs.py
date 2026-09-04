@@ -37,6 +37,14 @@ def reui_deps(item):
     return sorted({d for d in item.get('registryDependencies', []) if d.startswith('@reui/')})
 
 
+def source(digest):
+    return ('\n## Source\n\n'
+            'Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), '
+            f'sha256 `{digest}`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. '
+            'Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) '
+            '(sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.\n')
+
+
 def write(path, text):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
@@ -68,6 +76,7 @@ def gen_primitives(items, digest, out):
     for fam in sorted(fams):
         parts = [i['name'] for i in fams[fam]]
         lines.append(f'- **{fam}** ({len(parts)}): ' + ', '.join(f'`{p}`' for p in parts) + '\n')
+    lines.append(source(digest))
     return write(out / 'PRIMITIVES.md', ''.join(lines))
 
 
@@ -85,6 +94,7 @@ def gen_examples(items, digest, out):
     for fam in sorted(fams):
         names = sorted(fams[fam], key=lambda n: (len(n), n))
         lines.append(f'| `{fam}` | {len(names)} | ' + ', '.join(f'`{n}`' for n in names) + ' |\n')
+    lines.append(source(digest))
     return write(out / 'EXAMPLES-FREE.md', ''.join(lines))
 
 
@@ -126,7 +136,9 @@ def gen_blocks(items, digest, out):
                 docs = (i.get('docs') or '').strip()
                 if docs:
                     body.append(docs + '\n\n')
+        body.append(source(digest))
         written.append(write(out / fname, ''.join(body)))
+    index.append(source(digest))
     written.append(write(out / 'BLOCKS-PREMIUM.md', ''.join(index)))
     return written
 
@@ -165,6 +177,7 @@ def gen_matrix(items, digest, out):
                 '- anything else (`app-shell-3`, `hero-11`, `solution-crm-2`, '
                 '`data-grid-base-1`) — premium block.\n'
                 '- `@reui/icons/<default|animated>/<style>/<name>` — Ultimate icon.\n')
+    rows.append(source(digest))
     return write(out / 'FREE-VS-PREMIUM.md', ''.join(rows))
 
 

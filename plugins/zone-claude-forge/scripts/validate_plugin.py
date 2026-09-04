@@ -541,6 +541,32 @@ def manifest(pdir: str) -> dict:
         return {}
 
 
+def entry_point(pdir: str, visible_skills: list[str]) -> str:
+    """COMP-06: the one place a reader enters the plugin, or "" when there is none.
+
+    Two shapes satisfy it, and AGENT-04 decides which a plugin has earned. An orchestrator agent
+    says so in its description; a router skill is one whose body routes to the plugin's other
+    skills, which is what a delegation table over sibling skill names looks like.
+    """
+    for agent in sorted(glob.glob(os.path.join(pdir, "agents", "*.md"))):
+        fm, _, _ = frontmatter(agent)
+        desc = " ".join(str(fm.get("description", "")).split()).lower()
+        if "orchestrator" in desc or "entry point" in desc:
+            return os.path.relpath(agent, REPO)
+
+    # a router skill names most of its siblings in its own body
+    for sm in skill_dirs(pdir):
+        me = os.path.basename(os.path.dirname(sm))
+        others = [n for n in visible_skills if n != me]
+        if len(others) < 2:
+            continue
+        body = open(sm, encoding="utf-8", errors="replace").read()
+        named = sum(1 for n in others if re.search(r"\b" + re.escape(n) + r"\b", body))
+        if named >= max(2, (len(others) + 1) // 2):
+            return os.path.relpath(sm, REPO)
+    return ""
+
+
 def check_plugin(name: str, rep: Report, cat: dict) -> None:
     pdir = os.path.join(REPO, "plugins", name)
     if not os.path.isdir(pdir):
@@ -574,6 +600,7 @@ def check_plugin(name: str, rep: Report, cat: dict) -> None:
 
     skills = skill_dirs(pdir)
     visible = 0
+    visible_names: list[str] = []
     total = 0
     for sm in skills:
         check_skill(sm, rep, cat)
@@ -582,10 +609,20 @@ def check_plugin(name: str, rep: Report, cat: dict) -> None:
         total += listing_cost(fm, sname)
         if model_visible(fm):
             visible += 1
+            visible_names.append(sname)
         if sname not in listed:
             rep.error("BUDGET-05", os.path.relpath(sm, REPO),
                       "under skills/ but absent from skills[]; the field adds to the default "
                       "scan rather than restricting it, so this skill loads and costs budget")
+
+    # COMP-06: more than one model-visible skill means a reader has to choose, so the plugin
+    # names one entry point. A router skill satisfies this as fully as an orchestrator agent;
+    # AGENT-04 decides which of the two the plugin has earned.
+    if visible > 1 and not entry_point(pdir, visible_names):
+        rep.error("COMP-06", f"plugins/{name}/.claude-plugin/plugin.json",
+                  f"{visible} model-visible skills but no entry point: no agent whose description "
+                  "says it is an orchestrator or the default entry point, and no skill that routes "
+                  "to its siblings, so nothing tells a reader which skill answers which question")
 
     if "category" in man:
         rep.error("MANIFEST-04", f"plugins/{name}/.claude-plugin/plugin.json",

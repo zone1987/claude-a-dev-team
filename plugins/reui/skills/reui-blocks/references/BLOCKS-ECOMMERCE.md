@@ -19,6 +19,7 @@ Generated from `https://reui.io/r/registry.json` (sha256 `a598d3b8b544a0fa`) by 
 - [shop-hero (8)](#shop-hero-8)
 - [shopping-cart (7)](#shopping-cart-7)
 - [wishlist (6)](#wishlist-6)
+- [Source](#source)
 
 ## category-card (6)
 
@@ -764,3 +765,7 @@ Multi-Collection Wishlist with Cover-Stacked Collection Rail
 
 Saved products in selectable collections: a left rail of cover-stacked tiles with count and total, plus a product pane with brand, price, savings, and bulk add-to-cart. shadcn Breadcrumb, Button, Empty, Item. Wishlist, favorites, lookbook.
 
+
+## Source
+
+Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), sha256 `a598d3b8b544a0fa1fc834d7a590b2b04642c080890c46790c7a5df5e1ea239f`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) (sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.

@@ -31,7 +31,7 @@ The design IS the product. A ReUI block/component encodes senior-designer decisi
 - Replace every placeholder with the user's real data. Model it as **typed data structures** and **map over arrays** - never duplicate JSX per row/card. Keep small block-specific formatters next to the data.
 - Wire the real source (columns, fields, fetch). For `data-grid`, implement the server fetch contract if the user needs server-side data.
 - **Type from the component API, derive during render.** Type domain state through the component's own types - e.g. map status to `BadgeProps["variant"]` via a typed `Record<Status, …>` - instead of stringly-typed values. Compute view state during render; don't mirror derived data into `useState`/`useEffect`.
-- **Adapt on the right base.** Use the API for the project's base (Base UI vs Radix - see [components.md](./components.md)); the installed files are already base-correct, so reuse their shape rather than translating from memory.
+- **Adapt on the right base.** Use the API for the project's base (Base UI vs Radix - see the component references in reui-data, reui-forms and reui-layout); the installed files are already base-correct, so reuse their shape rather than translating from memory.
 
 ## Believable content (no AI tells)
 
@@ -41,3 +41,10 @@ The design IS the product. A ReUI block/component encodes senior-designer decisi
 ## Operational surfaces (settings / profile / admin)
 
 Pick ONE archetype and keep the family consistent: a vertical rail (3-6 sections), horizontal tabs (5-8), or a frame/stack. Prefer `frame` for tool-like surfaces, a card for profile-like ones. Don't mix archetypes in one surface.
+
+## Source
+
+Distilled from ReUI's own agent skill (`rules/adapting.md`, skill version `3bdbad788a`), which
+the ReUI installer writes into a project and which the MCP serves through
+`get_agent_skill`. Retrieved 2026-09-04. These are the vendor's own working rules, not
+statements from a `reui.io/docs` page — no documentation page covers them.

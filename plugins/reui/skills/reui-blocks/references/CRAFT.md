@@ -1,6 +1,6 @@
 # Craft: make ReUI UI exceptional, not generic
 
-ReUI items ship senior-designer quality. Your adaptation has to hold that bar, so the result reads like a real product surface a team would keep - not a wireframe an AI generated. Use these alongside the reuse rules in [adapting.md](./adapting.md).
+ReUI items ship senior-designer quality. Your adaptation has to hold that bar, so the result reads like a real product surface a team would keep - not a wireframe an AI generated. Use these alongside the reuse rules in [ADAPTING.md](ADAPTING.md).
 
 ## Have a point of view
 
@@ -42,4 +42,11 @@ These instantly read as generated - don't ship them: equal-weight card walls, em
 
 ## The bar
 
-Before you finish, ask: **would a product team keep this instead of replacing it? Does it still feel strong after swapping in real content?** If not, reuse the shipped ReUI design harder - don't restyle it into something new - then run the [quality.md](./quality.md) gates.
+Before you finish, ask: **would a product team keep this instead of replacing it? Does it still feel strong after swapping in real content?** If not, reuse the shipped ReUI design harder - don't restyle it into something new - then run the [QUALITY-GATES.md](QUALITY-GATES.md) gates.
+
+## Source
+
+Distilled from ReUI's own agent skill (`rules/craft.md`, skill version `3bdbad788a`), which
+the ReUI installer writes into a project and which the MCP serves through
+`get_agent_skill`. Retrieved 2026-09-04. These are the vendor's own working rules, not
+statements from a `reui.io/docs` page — no documentation page covers them.

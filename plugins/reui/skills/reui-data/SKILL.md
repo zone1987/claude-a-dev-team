@@ -31,9 +31,13 @@ Never write a prop you have not read in one of the three.
 
 - **[DATA-GRID.md](references/DATA-GRID.md)**: TanStack Table v9 grid — sorting, filtering,
   pagination, row and column virtualization, drag-and-drop, row pinning, tree rows, cell selection
-  with clipboard, inline editing, i18n.
+  with clipboard, inline editing, i18n —
+  with [DATA-GRID-EXAMPLE.md](references/DATA-GRID-EXAMPLE.md) as the worked composition.
 - **[FILTERS.md](references/FILTERS.md)**: the stepped filter builder — nested attributes, popover
-  value editors, the boolean query tree.
+  value editors, the boolean query tree —
+  with [FILTERS-API.md](references/FILTERS-API.md) as the exhaustive API (349 prop rows, every
+  sub-component, type, i18n key, hook, keyboard and accessibility contract) and
+  [FILTERS-EXAMPLES.md](references/FILTERS-EXAMPLES.md) as the six worked sources.
 - **[CASCADER.md](references/CASCADER.md)**: nested multi-level combobox with drill-down,
   breadcrumbs, search and custom rows.
 - **[GANTT.md](references/GANTT.md)**: split tree and timeline panes, day-to-year scales, zoom, drag

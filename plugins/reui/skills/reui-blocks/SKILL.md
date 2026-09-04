@@ -45,6 +45,16 @@ keep the composition, swap the demo data for real data, fix icon imports, and le
 the theme. Output that looks generic means the design was reused too little, not that it needs
 restyling.
 
+- **[ADAPTING.md](references/ADAPTING.md)**: reuse-first — preserve the design, reuse a block's own
+  elements, wire real data, and never invent an API.
+- **[CRAFT.md](references/CRAFT.md)**: the bar an adaptation has to hold — hierarchy, deliberate
+  density, the empty, loading and error states, responsive, restrained motion, and the AI tells that
+  give a generated surface away.
+- **[QUALITY-GATES.md](references/QUALITY-GATES.md)**: the done gate — security, accessibility and
+  scroll mechanics. Clear every item, and run the MCP `get_audit_checklist` when it is reachable.
+- **[ICONS.md](references/ICONS.md)**: portable icons and the `iconLibrary` import mappings, plus
+  the Motion Icon install paths.
+
 ## Icons and templates (Ultimate)
 
 - Icons: 638 in 4 styles, 2,552 variants. Static `@reui/icons/default/<style>/<name>`, hover-animated

@@ -221,14 +221,15 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/reui-setup",
-        "./skills/reui-mcp",
-        "./skills/reui-registry",
-        "./skills/reui-theming",
+        "./skills/reui-blocks",
         "./skills/reui-data",
+        "./skills/reui-dev",
         "./skills/reui-forms",
         "./skills/reui-layout",
-        "./skills/reui-blocks"
+        "./skills/reui-mcp",
+        "./skills/reui-registry",
+        "./skills/reui-setup",
+        "./skills/reui-theming"
       ]
     },
     {

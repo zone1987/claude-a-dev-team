@@ -27,6 +27,7 @@ Generated from `https://reui.io/r/registry.json` (sha256 `a598d3b8b544a0fa`) by 
 - [stats (15)](#stats-15)
 - [timeline (9)](#timeline-9)
 - [wizard (7)](#wizard-7)
+- [Source](#source)
 
 ## app-shell (21)
 
@@ -2608,3 +2609,7 @@ Uses: `@reui/alert`, `@reui/icon-stack`, `@reui/stepper`
 
 npm: `motion`, `sonner`
 
+
+## Source
+
+Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), sha256 `a598d3b8b544a0fa1fc834d7a590b2b04642c080890c46790c7a5df5e1ea239f`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) (sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.

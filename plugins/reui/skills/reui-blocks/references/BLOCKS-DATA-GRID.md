@@ -55,6 +55,7 @@ Generated from `https://reui.io/r/registry.json` (sha256 `a598d3b8b544a0fa`) by 
 - [Real Data Integration](#real-data-integration)
 - [LLM Guidance](#llm-guidance)
 - [data-grid-virtualization (2)](#data-grid-virtualization-2)
+- [Source](#source)
 
 ## data-grid-base (7)
 
@@ -720,3 +721,7 @@ Uses: `@reui/badge`, `@reui/data-grid`, `@reui/data-grid-column-header`, `@reui/
 
 npm: `@tanstack/react-table`, `sonner`
 
+
+## Source
+
+Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), sha256 `a598d3b8b544a0fa1fc834d7a590b2b04642c080890c46790c7a5df5e1ea239f`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) (sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.

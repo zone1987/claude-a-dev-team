@@ -8,8 +8,30 @@ description: Full APIs of the ReUI form primitives: autocomplete, number-field, 
 Input components beyond what shadcn/ui ships. All **free** — no licence key — installed with
 `npx shadcn@latest add @reui/<name> --yes`.
 
-For a generic control shadcn/ui already has — Input, Select, Checkbox, Label, Field — use plain
-shadcn/ui and its form conventions. Reach here only for what it does not solve.
+## What is here, and what is not
+
+ReUI adds an API for **six** form primitives, and this skill carries all six. Three further
+selection primitives live in [reui-data](../reui-data/SKILL.md) because they edit data rather than
+a single field: `cascader`, `date-selector` and `filters`.
+
+Everything else in a form is **plain shadcn/ui** — ReUI ships examples for it but no API of its own:
+
+| Control | Where its API lives | ReUI examples |
+|---|---|---|
+| `input`, `input-group`, `input-otp`, `textarea` | the `shadcn` plugin | 83 |
+| `select`, `native-select`, `combobox` | the `shadcn` plugin | 67 |
+| `checkbox`, `radio-group`, `switch`, `toggle`, `toggle-group` | the `shadcn` plugin | 83 |
+| `calendar` | the `shadcn` plugin | 30 |
+| `label`, `field`, `slider` | the `shadcn` plugin | 36 |
+
+So a form is normally **both**: shadcn/ui for the ordinary controls and their validation
+conventions, this skill for what shadcn does not solve. Reach for the `shadcn` plugin's
+`shadcn-forms` skill for the generic half — do not look for an `@reui/input` that does not exist,
+and do not hand-roll a control shadcn already ships.
+
+The ReUI examples for those generic controls are still worth installing: they are free `c-*` items,
+listed by family in
+[reui-registry/EXAMPLES-FREE.md](../reui-registry/references/EXAMPLES-FREE.md).
 
 ## Read your build first
 

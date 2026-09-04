@@ -23,6 +23,7 @@ source. This plugin adds three things around it:
 
 | Skill | Covers |
 |---|---|
+| `reui-dev` | the entry point: routes a task to the skill that answers it |
 | `reui-registry` | the free/premium split, every primitive and `c-*` example by name |
 | `reui-setup` | installation, `components.json`, the licence, RTL, prerequisites |
 | `reui-mcp` | the MCP server, its tools, authentication, the daily quota, troubleshooting |
@@ -32,8 +33,12 @@ source. This plugin adds three things around it:
 | `reui-layout` | kanban, sortable, timeline, frame, alert, badge, scrollspy, icon-stack, icon-tile |
 | `reui-blocks` | the 533 premium blocks by group, plus icons and templates |
 
-**Agents.** `reui-dev` is the orchestrator and default entry point; `reui-expert` finds, installs
-and wires an item; `reui-setup-assistant` handles installation and diagnoses a failing one.
+**Entry point.** The `reui-dev` skill routes a task to the skill that answers it. It is a router
+rather than an orchestrator agent: routing across a plugin's own skills is a decision the main
+conversation can make, and a router costs its description instead of a context window per call.
+
+**Agents.** `reui-expert` finds, installs and wires an item; `reui-setup-assistant` handles
+installation and diagnoses a failing one. Both are handed a self-contained slice of work.
 
 **Commands.** `/reui-init`, `/reui-add`, `/reui-build`, `/reui-license`, `/reui-sync`.
 

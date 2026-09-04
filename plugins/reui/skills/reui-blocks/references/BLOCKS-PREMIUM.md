@@ -13,3 +13,7 @@ keep working through the same `@reui` namespace.
 | eCommerce | 87 | [BLOCKS-ECOMMERCE.md](BLOCKS-ECOMMERCE.md) |
 | Marketing | 40 | [BLOCKS-MARKETING.md](BLOCKS-MARKETING.md) |
 | Solutions | 65 | [BLOCKS-SOLUTIONS.md](BLOCKS-SOLUTIONS.md) |
+
+## Source
+
+Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), sha256 `a598d3b8b544a0fa1fc834d7a590b2b04642c080890c46790c7a5df5e1ea239f`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) (sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.

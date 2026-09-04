@@ -116,6 +116,33 @@ unlocks premium blocks and animated icons, and removes the daily MCP request lim
 Free — see TROUBLESHOOTING.md), so the same workflow can install and adapt the paid parts of the
 registry too.
 
+## Tools the vendor skill documents and the docs pages do not
+
+ReUI's own agent skill (shipped by the installer as `SKILL.md` + `tools.md`) names two tools and one
+result field that no `reui.io/docs` page mentions. Recorded here with that provenance, because a
+reader must be able to tell the two sources apart.
+
+- **`whats_new`** — reach for it when registry knowledge might be stale: a name 404s, or the user
+  names an item you do not know. Returns items added and removed per build, newest first.
+- **`report_issue`** — for an installed item that is genuinely broken (bad source, wrong dependency,
+  broken preview). Goes to the ReUI team, rate-limited to 5 an hour. Not for usage questions.
+
+Result fields the same source documents:
+
+- **`score`** is relative to the top hit, which is ~100 by construction — not an absolute quality.
+  Compare results against each other, and show the user the close contenders rather than guessing.
+- **`termCoverage`** (0–1) is the share of the query an item matched. A low value means a weak match
+  even when the score looks high: rephrase or widen the search.
+- **`componentDigests`** is a top-level map carrying a compact API contract per referenced
+  component — often enough to wire an item with no `get_component` call at all.
+- **`found: false`** carries `suggestions`. Use them, or search again; never run a fabricated
+  install command.
+
+That skill also states the batching rule this file's guidance rests on: **one** `get_component` call
+with the whole `componentsUsed` array, never one call per name.
+
 ## Source
 
 https://reui.io/docs/mcp, https://reui.io/mcp, https://reui.io/docs, https://reui.io/docs/agent-skills — mirrored 2026-09-04.
+
+The vendor-skill section above is distilled from ReUI's own agent skill (`tools.md`, skill version `3bdbad788a`), which the ReUI installer writes into a project and which the MCP also serves through `get_agent_skill`. Retrieved 2026-09-04.

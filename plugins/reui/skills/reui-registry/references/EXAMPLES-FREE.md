@@ -83,3 +83,7 @@ correct composition to copy.
 | `toggle-group` | 16 | `c-toggle-group-1`, `c-toggle-group-2`, `c-toggle-group-3`, `c-toggle-group-4`, `c-toggle-group-5`, `c-toggle-group-6`, `c-toggle-group-7`, `c-toggle-group-8`, `c-toggle-group-9`, `c-toggle-group-10`, `c-toggle-group-11`, `c-toggle-group-12`, `c-toggle-group-13`, `c-toggle-group-14`, `c-toggle-group-15`, `c-toggle-group-16` |
 | `tooltip` | 16 | `c-tooltip-1`, `c-tooltip-2`, `c-tooltip-3`, `c-tooltip-4`, `c-tooltip-5`, `c-tooltip-6`, `c-tooltip-7`, `c-tooltip-8`, `c-tooltip-9`, `c-tooltip-10`, `c-tooltip-11`, `c-tooltip-12`, `c-tooltip-13`, `c-tooltip-14`, `c-tooltip-15`, `c-tooltip-16` |
 | `tree` | 7 | `c-tree-1`, `c-tree-2`, `c-tree-3`, `c-tree-4`, `c-tree-5`, `c-tree-6`, `c-tree-7` |
+
+## Source
+
+Generated from [`https://reui.io/r/registry.json`](https://reui.io/r/registry.json), sha256 `a598d3b8b544a0fa1fc834d7a590b2b04642c080890c46790c7a5df5e1ea239f`, mirrored 2026-09-04, by `scripts/gen_registry_refs.py`. Counts cross-checked against [`https://reui.io/llms.txt`](https://reui.io/llms.txt) (sha256 `a58bc32429b11535`). Regenerate with `/reui-sync`.

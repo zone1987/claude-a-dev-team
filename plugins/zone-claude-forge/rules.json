@@ -801,6 +801,15 @@
       "tell": "A command exists that no README, skill or agent mentions."
     },
     {
+      "id": "COMP-06",
+      "ground": "convention",
+      "enforcement": "blocking",
+      "rule": "A plugin with more than one model-visible skill names exactly one entry point: an orchestrator agent whose description says it is the default entry point, or a router skill that routes to the others. Which of the two is AGENT-04's decision, not this rule's.",
+      "purpose": "Without one, a reader facing a plugin's eight skills has to guess which applies, and the plugin's own routing knowledge lives nowhere. The entry point is where a plugin says what it is for and which of its parts answers which question.",
+      "not-a-platform-requirement": "Claude Code loads every skill in a plugin regardless. Nothing breaks without an entry point; the plugin is merely harder to enter.",
+      "note": "Complements AGENT-04 rather than overriding it. AGENT-04 decides whether the entry point earns a full orchestrator agent — a dispatcher over a handful of same-plugin skills does not — and a router skill satisfies this rule at no per-invocation context cost. A single-skill plugin is its own entry point and is exempt."
+    },
+    {
       "id": "MANIFEST-04",
       "ground": "documented",
       "enforcement": "blocking",

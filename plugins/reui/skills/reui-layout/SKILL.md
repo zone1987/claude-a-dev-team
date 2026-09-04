@@ -8,6 +8,18 @@ description: Full APIs of the ReUI layout primitives: kanban, sortable, timeline
 Structure, ordering and status components. All **free** — no licence key — installed with
 `npx shadcn@latest add @reui/<name> --yes`.
 
+## What is here, and what is not
+
+These nine are the ReUI layout and display primitives with an API of their own. The ordinary
+containers — `card`, `tabs`, `dialog`, `sheet`, `drawer`, `popover`, `separator`, `skeleton`,
+`table`, `accordion`, `collapsible`, `resizable`, `scroll-area`, `pagination`, `breadcrumb`,
+`navigation-menu`, `dropdown-menu`, `menubar`, `tooltip`, `hover-card`, `empty`, `item`, `spinner`,
+`avatar`, `kbd`, `sonner`, `progress`, `chart`, `carousel` — are **plain shadcn/ui**: ReUI ships
+free `c-*` examples for them but no API of its own. Their props live in the `shadcn` plugin.
+
+So do not look for an `@reui/card` or `@reui/tabs`; there is none. Use shadcn/ui for the container
+and these primitives for what it does not solve.
+
 ## Read your build first
 
 `components.json` → `style`: `base-nova` → Base UI, `radix-nova` → Radix UI. Write against that
