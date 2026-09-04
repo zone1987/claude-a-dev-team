@@ -1,6 +1,6 @@
 ---
 name: pz-items
-description: "Project Zomboid item scripts: every item property and enum, plus all 5,105 items with type, module, capacity and weight. Use when defining a Project Zomboid item or naming Capacity."
+description: "Project Zomboid item scripts: every item property and enum, plus all 5,105 items with type, module, capacity and weight, and how to extract the ~4,400 item icons out of the game's sprite atlases. Use when defining a Project Zomboid item, naming Capacity, or showing a real item icon outside the game."
 ---
 
 # Project Zomboid items
@@ -22,6 +22,7 @@ complete for build 42 by construction.
 - **[references/PROPERTY-CATALOGUE.md](references/PROPERTY-CATALOGUE.md)**: every property that occurs on every script block type, how many blocks set it, and every distinct value where the set is enum-sized. 2,172 property entries. This answers "what can I set" and "what values are legal".
 - **[references/DATA-ITEM.md](references/DATA-ITEM.md)**: all 5,105 items with module, `Type`, `DisplayCategory`, `Weight`, `Capacity`, `WeightReduction`, damage values, `ItemType` and the file each is defined in.
 - **[references/ITEM-FIELDS.md](references/ITEM-FIELDS.md)**: the 239 public fields of the runtime `Item` object, each with its setter and getter where one exists — 95 setters, 76 field/setter pairs. This is what makes runtime mutation possible, and it distinguishes a field you assign directly from one with a setter.
+- **[references/ITEM-ICONS.md](references/ITEM-ICONS.md)**: where item icons actually live — ~4,400 of them are packed into sprite atlases under `media/texturepacks/`, not shipped as files. Documents both pack layouts, the three traps that make a hand-written reader return almost nothing, and why an icon name cannot be derived from the item id (`Base.Disinfectant` → `Item_Alcohol`). Use with `scripts/extract_item_icons.py`.
 
 The other block types have their own generated tables: **[DATA-MODEL.md](references/DATA-MODEL.md)** (3,836), **[DATA-SOUND.md](references/DATA-SOUND.md)** (3,038), **[DATA-TABLE.md](references/DATA-TABLE.md)** (267), **[DATA-XUISKIN.md](references/DATA-XUISKIN.md)** (254), **[DATA-AREA.md](references/DATA-AREA.md)** (154), **[DATA-TIMEDACTION.md](references/DATA-TIMEDACTION.md)** (119), **[DATA-PHYSICSSHAPE.md](references/DATA-PHYSICSSHAPE.md)** (90), **[DATA-ANIMATIONSMESH.md](references/DATA-ANIMATIONSMESH.md)** (75), **[DATA-RAGDOLL.md](references/DATA-RAGDOLL.md)** (66), **[DATA-PHYSICS.md](references/DATA-PHYSICS.md)** (62), **[DATA-ANIM.md](references/DATA-ANIM.md)** (59), **[DATA-ATTACHMENT.md](references/DATA-ATTACHMENT.md)** (52), **[DATA-MANNEQUIN.md](references/DATA-MANNEQUIN.md)** (30), **[DATA-PHYSICSHITREACTION.md](references/DATA-PHYSICSHITREACTION.md)** (10), **[DATA-CLOCK.md](references/DATA-CLOCK.md)**, **[DATA-ENERGY.md](references/DATA-ENERGY.md)**, **[DATA-ANIMATION.md](references/DATA-ANIMATION.md)**, **[DATA-VEHICLEENGINERPM.md](references/DATA-VEHICLEENGINERPM.md)**, **[DATA-XUICONFIG.md](references/DATA-XUICONFIG.md)**.
 

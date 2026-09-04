@@ -35,6 +35,7 @@ but that does not apply when this definition runs as a teammate, so reach for it
 | An exact Java class, method signature or field reachable from Lua | `pz-java-api` |
 | Reacting to something happening in game, or finding there is no event for it | `pz-events` |
 | Item properties, item types, changing an existing item, loot distribution | `pz-items` |
+| Showing a real item icon outside the game (panel, wiki, planner) | `pz-items` → [ITEM-ICONS.md](../skills/pz-items/references/ITEM-ICONS.md) |
 | Coordinates, squares, chunks, buildings, basements, finding a thing by position | `pz-world` |
 | RCON, admin commands, server options, sandbox vars, logs, custom server commands | `pz-server` |
 | Client/server split, commands between them, permissions, getting state out of the game | `pz-multiplayer` |
@@ -42,9 +43,14 @@ but that does not apply when this definition runs as a teammate, so reach for it
 | Recipes, entities, components, fluids, the build 42 crafting rework | `pz-crafting` |
 | Vehicles, parts, mechanics | `pz-vehicles` |
 | Debug mode, the Lua console, reloading, reading a crash log | `pz-tooling` |
+| A savegame on disk: what it contains, why the server starts slowly, fog of war, an offline edit | `pz-server` → [SAVEGAME-FORMAT.md](../skills/pz-server/references/SAVEGAME-FORMAT.md) |
 
 Most real tasks touch three or four. Server tooling is almost always `pz-server` plus
 `pz-multiplayer` plus whichever domain holds the data being read.
+
+**A savegame question is not a Lua question.** Diagnosing a save, sizing a world, or editing a file
+offline runs on the on-disk format, not the runtime API — delegate to `pz-server-dev` and have it read
+`SAVEGAME-FORMAT.md` before it decodes anything.
 
 ## The four questions that decide a Zomboid task
 
@@ -139,7 +145,16 @@ settle it, and reading them beats guessing:
 ~/Library/Application Support/Steam/steamapps/common/ProjectZomboid/Project Zomboid.app/Contents/Java/
   media/lua/{client,server,shared}/    the game's own Lua, 1,395 files
   media/scripts/                       every item, recipe, vehicle definition
+  media/texturepacks/*.pack            sprite atlases — where the item icons are
+  media/ui/                            ~100 loose icons
   projectzomboid.jar                   the compiled classes
 ```
 
 Say when you have read the installation rather than the plugin, so the answer's provenance is clear.
+
+**Assets are not text.** Icons, tiles and models live in packed atlases, not as files — a task that
+needs to *show* something from the game needs extraction, not a lookup. `scripts/` holds the tools:
+`extract_item_icons.py` for item icons (read
+[ITEM-ICONS.md](../skills/pz-items/references/ITEM-ICONS.md) first — the format has three traps that
+silently return almost nothing). Extracted assets belong to The Indie Stone: keep them out of the
+repository and out of anything published.

@@ -72,6 +72,8 @@ which cost nothing until read.
 | `/pz-lookup <term>` | Print what the references say about a class, method, event, item, property or command — with the source file named |
 | `/pz-mod-new <what it does>` | Scaffold a mod with the correct layout and the client/server split the feature needs |
 | `/pz-server-tool <what it does>` | Build a server-side command, a state query, or a bridge |
+| `/pz-savegame-fog <save folder>` | Read or fully reveal the per-player fog of war in a dedicated-server save (`--reveal` to write) |
+| `/pz-server-ftp <what to do>` | Fetch logs or saves from a hosted server over FTP, or upload config to a stopped one |
 
 ## The four questions that decide a Zomboid task
 

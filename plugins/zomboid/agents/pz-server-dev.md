@@ -2,8 +2,9 @@
 name: pz-server-dev
 description: >
   Project Zomboid server and integration specialist. Use proactively when the task concerns the
-  dedicated server, RCON, admin commands, a custom server-side command, reading server state, or
-  bridging Zomboid to an external tool such as a Discord bot or control panel.
+  dedicated server, RCON, admin commands, a custom server-side command, reading server state,
+  inspecting or repairing a savegame on disk, or bridging Zomboid to an external tool such as a
+  Discord bot or control panel.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
 skills: pz-server, pz-multiplayer
@@ -55,6 +56,46 @@ belong to the outside process.
 **Prefer append-only output over a rewritten file.** A tailing consumer survives a restart and
 cannot read a half-written state file.
 
+## Working on a savegame on disk
+
+Forensics and offline edits — why a server starts slowly, how big the world has grown, what a save
+actually contains, revealing the fog of war — are a separate mode from writing Lua. Read
+[references/SAVEGAME-FORMAT.md](../skills/pz-server/references/SAVEGAME-FORMAT.md) in `pz-server`
+first; it carries the verified layout of every file, and marks the three things that are *not*
+verified so they do not get guessed.
+
+- **Derive geometry from the save, never from a default.** `map_worldgen.bin`'s last 16 bytes give
+  `minXCell, minYCell, maxXCell, maxYCell`, and every offset formula depends on them.
+- **Validate a decoded layout against a known value before trusting it.** Take a player position from
+  `players.db` and check that the byte it maps to is non-zero. If a player sits on "unexplored", the
+  geometry is wrong — stop rather than write.
+- **Counters are not censuses.** `id_manager_data.bin` holds monotonic ID allocations. Cross-check
+  against something countable (`SELECT COUNT(*) FROM vehicles`) before quoting a number as a total.
+- **Edit only with the server stopped**, or with the affected player disconnected. The server holds
+  in-memory copies and writes them back on save and on disconnect, silently discarding an edit.
+- **Back the file up first and report where the backup is**, with the command to restore it.
+- **Report what a change cannot fix.** Chunk files are written on first visit and never deleted, so a
+  world that has grown large stays large; say that instead of implying an edit will shrink it.
+
+## Reaching a hosted server
+
+A rented server is usually only reachable over FTP. Use `scripts/pz_ftp.sh` from this plugin
+(`check`, `ls`, `get`, `put`, `tail`, `logs`) rather than assembling `curl` calls — it verifies every
+upload byte-for-byte and keeps the credentials out of `ps` and shell history.
+
+- **Credentials live in `PZ_FTP_HOST` / `PZ_FTP_PORT` / `PZ_FTP_USER` / `PZ_FTP_PASS`** (falling back
+  to the unprefixed `FTP_*` names). **Never print a value, never pass one as an argument, never write
+  one to a file, never commit one.** Report only whether a variable is set.
+- **Read freely, write only to a stopped server.** A running server holds save state in memory and
+  overwrites files on its next save — the upload lands and then silently disappears.
+- **Back up the remote file before overwriting it**, `diff` it against the local version, and state
+  the change set before uploading. Read the changed values back from the server afterwards.
+- **Never bulk-upload a save folder over a live one.** A local copy is a snapshot; the server has
+  written since, so a bulk upload reverts progress. Upload only the files that changed.
+- **Do not pull a whole `map/` tree over FTP** — hundreds of thousands of small files means hours of
+  round-trips. Ask for an archive.
+- `tail` before `get` on a big log: the interesting part of `server-console.txt` is the end.
+
 ## Reviewing existing server code
 
 Check in this order — these are the failures that look like something else:
@@ -65,5 +106,7 @@ Check in this order — these are the failures that look like something else:
 - a command whose arguments are not validated,
 - a token, password or SteamID committed into the mod,
 - output written where a client can also write it.
+- a savegame edit performed against a live server, or without a backup.
+- a credential printed, passed as an argument, or written into a tracked file.
 
 Verify each against the reference files before reporting it, and name the file you checked.

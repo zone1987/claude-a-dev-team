@@ -66,6 +66,17 @@
       "skills/pz-server/references/SERVER-OPTIONS.md",
       "skills/pz-lua-api/references/GLOBAL-FUNCTIONS.md"
      ]
+    },
+    "media/texturepacks (icon packs)": {
+     "files": 5,
+     "bytes": 55957549,
+     "item_sprites": 4475,
+     "distinct_names": 4363,
+     "sha256": "16b9a1b937915cfe",
+     "note": "UI.pack, UI2.pack, ApComUI.pack, RadioIcons.pack, IconsMoveables.pack. Sprite atlases holding the item icons. Two layouts: legacy and PZPK. The other packs in this directory are tiles and carry no Item_* sprites.",
+     "covered_by": [
+      "skills/pz-items/references/ITEM-ICONS.md"
+     ]
     }
    }
   },
@@ -122,6 +133,11 @@
   "parse_server_options.py",
   "sync_java_api_map.py",
   "verify_orchestrator.py",
-  "verify_references.py"
+  "verify_references.py",
+  {
+   "script": "scripts/extract_item_icons.py",
+   "reads": "media/texturepacks/*.pack",
+   "writes": "image files plus icons.json — not checked in: these are game assets"
+  }
  ]
 }
