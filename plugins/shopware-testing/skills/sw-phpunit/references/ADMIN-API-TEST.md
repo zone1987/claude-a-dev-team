@@ -5,7 +5,7 @@ Tests admin API endpoints with an authenticated client (`AdminApiTestBehaviour`/
 ```php
 use IntegrationTestBehaviour, AdminApiTestBehaviour;
 
-public function testAction(): void
+public function testTheEndpointAcceptsAValidRequest(): void
 {
     $this->getBrowser()->request('POST', '/api/_action/ff/import/' . $id);
     static::assertSame(200, $this->getBrowser()->getResponse()->getStatusCode());

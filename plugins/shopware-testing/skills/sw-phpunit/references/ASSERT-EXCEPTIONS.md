@@ -12,7 +12,7 @@ tags: exceptions, assertions, expectExceptionObject, best-practice
 **Incorrect (separate expectException and expectExceptionMessage):**
 
 ```php
-public function testThrowsOnInvalidProduct(): void
+public function testAnUnknownProductIdIsRejectedRatherThanIgnored(): void
 {
     // Two separate calls to maintain, message can drift out of sync
     $this->expectException(ProductNotFoundException::class);
@@ -25,7 +25,7 @@ public function testThrowsOnInvalidProduct(): void
 **Correct (using expectExceptionObject):**
 
 ```php
-public function testThrowsOnInvalidProduct(): void
+public function testAnUnknownProductIdIsRejectedRatherThanIgnored(): void
 {
     $this->expectExceptionObject(
         new ProductNotFoundException('abc')

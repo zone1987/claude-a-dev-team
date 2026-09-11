@@ -16,10 +16,10 @@ use PHPUnit\Framework\TestCase;
 
 class MyRepositoryTest extends TestCase
 {
-    public function testFindProduct(): void
+    public function testAStoredProductIsFoundByItsId(): void
     {
         // This will fail — no kernel, no container, no database
-        $repository = $this->getContainer()->get('product.repository');
+        $repository = static::getContainer()->get('product.repository');
     }
 }
 ```
@@ -34,7 +34,7 @@ class MyRepositoryTest extends TestCase
 {
     use IntegrationTestBehaviour;
 
-    public function testFindProduct(): void
+    public function testAStoredProductIsFoundByItsId(): void
     {
         $repository = static::getContainer()->get('product.repository');
 

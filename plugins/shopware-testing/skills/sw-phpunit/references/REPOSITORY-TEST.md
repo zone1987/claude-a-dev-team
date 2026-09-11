@@ -34,7 +34,7 @@ class ProductRepositoryTest extends TestCase
 {
     use IntegrationTestBehaviour;
 
-    public function testProductCanBeCreatedAndFound(): void
+    public function testAProductIsFoundUnderTheIdItWasCreatedWith(): void
     {
         $repository = static::getContainer()->get('product.repository');
         $context = Context::createDefaultContext();

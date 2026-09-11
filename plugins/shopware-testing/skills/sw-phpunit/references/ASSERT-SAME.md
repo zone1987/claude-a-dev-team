@@ -12,7 +12,7 @@ tags: assertions, assertSame, assertEquals, strict-comparison
 **Incorrect (using assertEquals):**
 
 ```php
-public function testOrderTotal(): void
+public function testTheTotalIsTheSumOfTheLineItems(): void
 {
     $total = $this->orderService->calculateTotal($orderId);
 
@@ -27,7 +27,7 @@ public function testOrderTotal(): void
 **Correct (using assertSame):**
 
 ```php
-public function testOrderTotal(): void
+public function testTheTotalIsTheSumOfTheLineItems(): void
 {
     $total = $this->orderService->calculateTotal($orderId);
 
