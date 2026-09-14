@@ -20,3 +20,27 @@
 - **visibleContactFields** (string[], optional): List of visible contact field values. Example: `["fullName", "emailAddress"]`.
 
 <!-- prose below this line is written by hand and preserved on regeneration -->
+
+## `minQuantity` on a unit is a bundle size, not a floor
+
+`UnitRestrictions.minQuantity` is how many of that fare go into a booking **that includes it** —
+it does not mean a guest may never come back below it. Only `restrictions.required` keeps a fare
+from being taken out entirely. Reading `minQuantity` as a floor leaves a chosen fare stuck at one
+and un-removable.
+
+Every fare one live supplier serves (Edin Explore) declares `minQuantity: 1`, so the distinction
+only shows on a supplier that books a fare in pairs.
+
+## The accompaniment fields, and what happens when two fares disagree
+
+`UnitRestrictions.accompaniedBy` lists the unit ids that may accompany this one;
+`notAccompaniedBy` is its mutual-exclusion counterpart and is the only one of the four the
+specification describes. `accompaniedByRatio` with `accompaniedByRatioDenominator` says how many
+accompanied units one companion covers.
+
+Two rules that are not in the specification and cost a refused booking to learn:
+
+- **One companion is enough however many accompanied units are booked**, unless the supplier
+  actually sent a ratio. Requiring one companion per child is stricter than the API asks for.
+- **Where two fares carry different ratios, the stricter one — the smaller denominator — wins**
+  for the booking as a whole.

@@ -39,3 +39,29 @@
 - **visibleContactFields** (string[], optional): List of visible contact field values. Example: `["fullName", "emailAddress"]`.
 
 <!-- prose below this line is written by hand and preserved on regeneration -->
+
+## A cancellation cutoff of zero is an answer, not an absence
+
+`cancellationCutoffAmount: 0` means cancellable up to the moment the departure starts — it is a
+real policy, not a missing value. Rendering it as "0 hours" reads as a broken field; it needs a
+sentence of its own. Measured over one live Ventrata catalogue, **41 captured options** carry a
+zero cutoff.
+
+The reverse also occurs: an amount with an **empty `cancellationCutoffUnit`** cannot be turned
+into a deadline at all. "Free cancellation up to 3." is worse than saying nothing, so an option
+missing the unit gets no sentence rather than a half one.
+
+`cancellationCutoff` (the string form) and the amount/unit pair are not guaranteed to agree — the
+pair is the one to compute with.
+
+## `availabilityLocalDateStart` is a seasonal option's own validity window
+
+For a product that only sells part of the year this is the **only** field that says so in advance.
+The availability endpoints answer for a month outside the window with every day closed and a
+`statusMessage` such as "Outside the validity period" — a correct answer to a useless question —
+and `nextAvailableDate` cannot help, because it is computed from the days of the window that was
+asked for, so a month with nothing open carries nothing to point at.
+
+A client painting a month view should therefore open on `availabilityLocalDateStart` where it lies
+in the future, rather than on today. Verified against a Christmas tour valid from 13 November: a
+guest arriving in September met 31 closed days and nothing indicating where the open ones were.

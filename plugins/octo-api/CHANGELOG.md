@@ -1,5 +1,45 @@
 # Changelog
 
+## 2.2.0 — 2026-09-15
+
+Field semantics and measured distributions from a live Ventrata integration. Nothing here is
+generated: it is what the API actually does where the specification is thin, silent or absent,
+recorded so the next integration does not pay for it again.
+
+### Added
+
+- **`octo-availability`: the three ceilings.** `UnitRestrictions.maxQuantity` limits one fare;
+  `OptionRestrictions.maxUnits` and `Availability.maxUnits` limit the whole booking, counting every
+  unit item together. The specification describes all three as "Max units numeric value".
+  `maxUnits` is a rule about order size, `vacancies` is what is left — only the latter is scarcity.
+  With a measured distribution over 82 availabilities and 1,437 calendar days.
+- **`octo-availability`: an empty calendar answer means no calendar endpoint**, not a closed month.
+  Reading it as closed shuts a shop that sells perfectly well.
+- **`octo-availability`: an `OPENING_HOURS` product still needs an `availabilityId`**, and the
+  `availabilityId` is bound to its day.
+- **`AVAILABILITY-CALENDAR-SCHEMA.md`: `statusMessage` is required**, so a supplier with nothing to
+  explain echoes the status itself — in its own language, not the one `Accept-Language` asked for.
+- **`OPTION-SCHEMA.md`**: a cancellation cutoff of zero is a policy rather than a missing value (41
+  captured options); an amount with no unit cannot be rendered at all; and
+  `availabilityLocalDateStart` is the only field that declares a seasonal option's window in
+  advance — `nextAvailableDate` cannot substitute for it.
+- **`UNIT-SCHEMA.md`**: `minQuantity` is a bundle size, not a floor — only `required` stops a fare
+  being removed. Plus the accompaniment rules the specification leaves undescribed: one companion
+  suffices unless a ratio was sent, and the smaller denominator wins where two fares disagree.
+- **`PRICING.md`**: `unitPricing` is matched by `unitId` and never by position; a supplier can quote
+  `retail: 0`, which means unpriced rather than free.
+- **`CONTENT.md`**: five field groups live Ventrata sends that the OpenAPI document does not declare
+  (`meetingPoint`, its coordinates, `galleryImages`, the duration triplet), where each one sits, and
+  the fact that duration, meeting point and cancellation cutoff belong to the **option** rather than
+  the product. Plus: `meetingPoint` is one free-text field with no name beside it and effectively no
+  coordinates (2 of 484), and the same photograph arrives repeatedly under different URLs, which no
+  URL or byte comparison can detect (85 of 287 products).
+- **`HEADERS.md`**: the two directions of an `Octo-Env` mismatch are not equally serious — `live`
+  answered where `test` was sent is the expensive one and should abort.
+- **`ERRORS.md`**: a transport failure carries no OCTO error code at all, and only reads are
+  retried — `POST /bookings` is the one write that may be repeated, because of its client-supplied
+  `uuid`.
+
 ## 2.1.0 — 2026-08-20
 
 Completeness pass: all 39 documentation pages read in full, not just the OpenAPI document.

@@ -32,6 +32,12 @@ Use `Octo-Env: test` while integrating even with live credentials, and switch to
 you intend to sell. A supplier can force a connection into `test` mode regardless of what you send —
 check the response header to see which mode actually applied.
 
+**The two directions of that mismatch are not equally serious, and a client should not treat them
+alike.** A connection forced from `live` into `test` costs nothing: nothing is sold by mistake, so
+a warning is enough. A request sent as `test` and answered `live` is the expensive one — the next
+booking sells a real ticket to a real guest — and should abort the run rather than carry on. Check
+the response header on **every** response, not only the first: the mode can change between them.
+
 ## Response headers
 
 | Header | Meaning |

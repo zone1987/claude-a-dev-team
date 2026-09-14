@@ -1,7 +1,7 @@
 {
   "name": "octo-api",
   "displayName": "OCTO API",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Source of truth for the OCTO tourism ticketing API: all 65 operations, 139 schemas and 254 capability fields, generated from the Ventrata OpenAPI specification and machine-verified.",
   "author": {
     "name": "zone1987",

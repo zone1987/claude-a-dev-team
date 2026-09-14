@@ -139,3 +139,48 @@ Event names, notification types and enum members the specification does not decl
 
 Each item also carries `itinerary.travelTime` (time needed to reach this location) and
 `itinerary.duration` (time spent there), each with its own unit field.
+
+### Fields live Ventrata sends that the specification does not declare
+
+Observed on real `octo/content` responses from a Ventrata connection (278 Golden Tours products,
+47 Go City). **None of these appear in the OpenAPI document or in this skill's `FIELD-INDEX.json`**,
+so a client has to read them defensively — treat each as optional and absent.
+
+| Field | Where | What it holds |
+|---|---|---|
+| `meetingPoint` | `Option` | free text, the whole of it (see below) |
+| `meetingPointLatitude`, `meetingPointLongitude` | `Option` | coordinates, almost never filled |
+| `galleryImages` | `Product` | further pictures beside the cover |
+| `duration`, `durationAmount`, `durationUnit` | `Option` | how long the experience runs |
+| `cancellationCutoff*` | `Option` | declared — see OPTION-SCHEMA.md |
+
+**Duration, meeting point and cancellation cutoff sit on the `Option`, not on the `Product`.** Two
+packages of one product routinely differ in all three, so reading them off the product shows the
+first option's values for every option.
+
+### `meetingPoint` is one free-text field with no name beside it
+
+There is no separate venue field: the whole address is one string, and the supplier writes the
+venue first where there is one — "Westminster Pier, Victoria Embankment, London", "190 High Street,
+EH1 1QX, Edinburgh". A client that wants a heading and an address under it has to split the string
+itself, on line breaks and commas alike.
+
+**Coordinates are effectively never sent.** Measured on one live Ventrata catalogue: 484 of 705
+options name a meeting point and **two** carry `meetingPointLatitude`. Anything drawing a map from
+this data has to geocode, and should expect a ceiling well below 100 % — a meeting point is written
+the way a guest is told where to go, not the way a gazetteer is searched. "Any Uber Boat Pier
+between Putney and Barking Riverside" and "Bus Stop 1 Bullied Way" (the supplier's own typo) have no
+coordinate at all.
+
+### The same photograph arrives more than once, under different URLs
+
+Ventrata uploads one picture repeatedly and its CDN gives every upload its own signature, file name
+and resolution — so a cover at 800×533 and a gallery entry at 1080×720 of one photograph share not
+a single byte. **Comparing URLs cannot detect it and neither can a file hash.** Measured: **85 of
+287 products** carried such a pair, showing the same picture twice on one page.
+
+A client that cares has to compare the pictures themselves (a perceptual hash over a downscaled
+grey grid separates them cleanly). Sizes are worth knowing about too: 725 KB for a 960×640
+photograph is ordinary here, and galleries run to four pictures on average and ten at worst on the
+278 products that carry one.
+

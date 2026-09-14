@@ -35,3 +35,19 @@
 - **weightUnit** (string, optional, nullable): Weight unit for the weight value. Possible values: `kg`, `lb` (the specification declares this set on `AvailabilityUnitRequest`; here it types the field as a plain string). Example: `"kg"`.
 
 <!-- prose below this line is written by hand and preserved on regeneration -->
+
+## `statusMessage` is required, so a supplier with nothing to say echoes the status
+
+The specification marks `statusMessage` required, which means a supplier that has no explanation
+still has to write something — and what it writes is usually the status itself, in words. A closed
+day then carries "Closed" rather than a reason.
+
+Two consequences for anything that renders it:
+
+- **It is written in the supplier's own language, not the one `Accept-Language` asked for.** It is
+  supplier prose, so the localisation rules that govern product text do not reach it. A German shop
+  reading a British supplier shows "Closed" among otherwise German text.
+- **Where the message is merely the status restated, a client's own wording is better.** Where the
+  supplier actually wrote a sentence, keep it: it says more than the status does. Telling the two
+  apart means comparing the message against the status, which is the only signal available.
+

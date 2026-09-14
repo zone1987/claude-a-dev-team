@@ -177,3 +177,23 @@ Event names, notification types and enum members the specification does not decl
 ### Callouts
 
 - **Throughout this capability, fields ending with `From` are indicative prices and not final prices. Make sure this is communicated clearly to customers.**
+
+## `unitPricing` is matched by `unitId`, never by position
+
+Each entry of `unitPricing` carries the `unitId` it prices. The order of the array is not
+guaranteed to follow the order of `option.units`, so matching by position puts one fare's amount on
+another — silently, because both are valid prices.
+
+The id is the **supplier's own**, which matters for any client that keys units by an identifier of
+its own: that identifier never appears in an API answer, so the supplier's has to be carried
+alongside it.
+
+## A supplier can quote zero, and zero is not a price
+
+`retail: 0` occurs in live data on products that simply have not been priced. It is not a free
+ticket, and selling it as one is worse than not selling it: five adopted products stood buyable for
+nothing in one shop before this was noticed.
+
+Treat a zero amount as "no price yet" rather than as a value — a `!== null` check passes it through,
+a `> 0` check does not.
+

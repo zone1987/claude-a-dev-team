@@ -67,6 +67,22 @@ The error table spells the code `INVALID_AVAILABILITY_ID`, but the example block
 `INVALID_AVAILABILIY_ID` — missing the second `T`. Handle both when matching, and treat the table
 spelling as canonical unless a live response says otherwise.
 
+## A transport failure carries no OCTO error code
+
+The 200-or-400 contract only holds once an OCTO response exists. A connection refused, a TLS
+failure, a timeout or a gateway error in front of the API produces no `errorCode` at all — storing
+one leaves a health indicator reporting a failure it cannot name. Record the client's own code and
+the message instead, and keep it distinguishable from a real OCTO error, because the two need
+different responses: one is retried, the other is not.
+
+## Only reads are retried, never writes
+
+A read that fails can be repeated safely. A write cannot, unless it carries an identifier the API
+deduplicates on — `POST /bookings` does, through the client-supplied `uuid`, and that is why it is
+the one write that may be repeated with the same body. `confirm`, `cancel` and any `PATCH` have no
+such key, so a failed one is a case for a review queue rather than for a second attempt: the first
+may well have succeeded.
+
 ## Source
 
 [docs.ventrata.com/getting-started/errors](https://docs.ventrata.com/getting-started/errors),
