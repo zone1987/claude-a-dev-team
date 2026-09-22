@@ -37,7 +37,7 @@ The `manifest.xml` is the central configuration file for every Shopware app. It 
         <copyright>(c) Your Company</copyright>
         <version>1.0.0</version>
         <icon>Resources/config/plugin.png</icon>
-        <license>MIT</license>
+        <license>proprietary</license>
     </meta>
 </manifest>
 ```

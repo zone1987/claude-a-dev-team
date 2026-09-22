@@ -6,6 +6,7 @@ Translations live as JSON in `src/Resources/snippet/<locale>/<name>.<locale>.jso
 ```json
 { "ff": { "hint": "Hinweis", "greeting": "Hallo {{ name }}" } }
 ```
+
 ```twig
 {{ "ff.hint"|trans }}
 {{ "ff.greeting"|trans({'%name%': customer.firstName}) }}  {# or {{ name }} placeholders, depending on convention #}

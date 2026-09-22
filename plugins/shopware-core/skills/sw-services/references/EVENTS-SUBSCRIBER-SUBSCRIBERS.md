@@ -24,14 +24,14 @@ namespace FfContentPlus\Subscriber;
 
 use Shopware\Core\Content\Product\ProductEvents;
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWrittenEvent;
-use Shopware\Core\Framework\Log\Package;
+use {PluginNamespace}\Framework\Log\Package;   // the plugin's OWN attribute
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * @class ProductWrittenSubscriber
  * @package FfContentPlus\Subscriber
  */
-#[Package('custom-plugins')]
+#[Package('{PluginName}.{Area}')]
 class ProductWrittenSubscriber implements EventSubscriberInterface
 {
     /**
@@ -61,7 +61,11 @@ class ProductWrittenSubscriber implements EventSubscriberInterface
 
 ## Service Registration
 
-With `autoconfigure="true"`, subscribers are auto-tagged:
+Older plugins with `autoconfigure="true"` had subscribers tagged for them:
+
+**New plugins do not use `autoconfigure`** (→ [DEPENDENCY-INJECTION.md](DEPENDENCY-INJECTION.md)),
+so the tag is set by hand. Forgetting it is silent: the class exists, the service is
+registered, and nothing ever calls it.
 
 ```xml
 <service id="FfContentPlus\Subscriber\ProductWrittenSubscriber"/>

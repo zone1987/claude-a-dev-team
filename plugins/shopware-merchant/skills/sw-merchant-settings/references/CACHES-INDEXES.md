@@ -4,7 +4,7 @@ Reference for cache and index management (self-hosted only).
 
 **Path:** Einstellungen (Settings) > System > Caches & Indizes
 
-Detailed reference: [CACHES-INDEXES-DETAIL.md](CACHES-INDEXES-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – Caches & Indizes (Caches & indexes) (complete reference)
 

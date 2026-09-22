@@ -1,5 +1,11 @@
 # Meteor (mt-*) components
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 58 components, each with its props, slots, events and examples exactly as the generator extracted them. One file per component cost 1044 unreachable references; grouped, every component stays one direct link from SKILL.md.
 
 ## Contents

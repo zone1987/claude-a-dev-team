@@ -1,5 +1,11 @@
 # Administration (sw-*) components
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 391 components, each with its props, slots, events and examples exactly as the generator extracted them. One file per component cost 1044 unreachable references; grouped, every component stays one direct link from SKILL.md.
 
 ## Contents
@@ -900,7 +906,7 @@ Source: `sw-settings/component/sw-system-config/sw-system-config.html.twig`
 ## sw-alert-deprecated
 
 > **Deprecated in 6.7** — Use `mt-banner` instead. Will be removed in 6.8.
-> See [mt-banner](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-BANNER.md) for the replacement.
+> See mt-banner for the replacement.
 
 ### Migration
 
@@ -949,7 +955,7 @@ Source: `sw-settings/component/sw-system-config/sw-system-config.html.twig`
 ## sw-alert
 
 > **Migration wrapper** — Delegates to `mt-banner` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-banner](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-BANNER.md) for the new component.
+> See mt-banner for the new component.
 
 ### Props
 
@@ -3073,7 +3079,7 @@ Source: `sw-bulk-edit/component/product/sw-bulk-edit-product-media/sw-bulk-edit-
 ## sw-button-deprecated
 
 > **Deprecated in 6.7** — Use `mt-button` instead. Will be removed in 6.8.
-> See [mt-button](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-BUTTON.md) for the replacement.
+> See mt-button for the replacement.
 
 - [Props](#props)
 - [Slots](#slots)
@@ -3466,7 +3472,7 @@ Source: `sw-bulk-edit/page/sw-bulk-edit-product/sw-bulk-edit-product.html.twig`
 ## sw-button
 
 > **Migration wrapper** — Delegates to `mt-button` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-button](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-BUTTON.md) for the new component.
+> See mt-button for the new component.
 
 - [Slots](#slots)
 - [Methods](#methods)
@@ -3596,7 +3602,7 @@ Source: `sw-bulk-edit/page/sw-bulk-edit-product/sw-bulk-edit-product.html.twig`
 ## sw-card-deprecated
 
 > **Deprecated in 6.7** — Use `mt-card` instead. Will be removed in 6.8.
-> See [mt-card](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-CARD.md) for the replacement.
+> See mt-card for the replacement.
 
 - [Props](#props)
 - [Slots](#slots)
@@ -4140,7 +4146,7 @@ Source: `sw-settings-salutation/page/sw-settings-salutation-list/sw-settings-sal
 ## sw-card
 
 > **Migration wrapper** — Delegates to `mt-card` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-card](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-CARD.md) for the new component.
+> See mt-card for the new component.
 
 - [Slots](#slots)
 - [Methods](#methods)
@@ -5477,7 +5483,7 @@ Source: `sw-dashboard/component/sw-dashboard-statistics/sw-dashboard-statistics.
 ## sw-checkbox-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-checkbox` instead. Will be removed in 6.8.
-> See [mt-checkbox](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-CHECKBOX.md) for the replacement.
+> See mt-checkbox for the replacement.
 
 ### Migration
 
@@ -5549,7 +5555,7 @@ Source: `sw-dashboard/component/sw-dashboard-statistics/sw-dashboard-statistics.
 ## sw-checkbox-field
 
 > **Migration wrapper** — Delegates to `mt-checkbox` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-checkbox](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-CHECKBOX.md) for the new component.
+> See mt-checkbox for the new component.
 
 ### Props
 
@@ -11528,7 +11534,7 @@ Source: `sw-settings-shopware-updates/view/sw-settings-shopware-updates-requirem
 ## sw-colorpicker-deprecated
 
 > **Deprecated in 6.7** — Use `mt-colorpicker` instead. Will be removed in 6.8.
-> See [mt-colorpicker](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-COLORPICKER.md) for the replacement.
+> See mt-colorpicker for the replacement.
 
 ### Migration
 
@@ -11620,7 +11626,7 @@ Source: `sw-settings-shopware-updates/view/sw-settings-shopware-updates-requirem
 ## sw-colorpicker
 
 > **Migration wrapper** — Delegates to `mt-colorpicker` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-colorpicker](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-COLORPICKER.md) for the new component.
+> See mt-colorpicker for the new component.
 
 ### Props
 
@@ -15919,7 +15925,7 @@ Source: `sw-settings-search/component/sw-settings-search-searchable-content-gene
 ## sw-datepicker-deprecated
 
 > **Deprecated in 6.7** — Use `mt-datepicker` instead. Will be removed in 6.8.
-> See [mt-datepicker](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-DATEPICKER.md) for the replacement.
+> See mt-datepicker for the replacement.
 
 ### Migration
 
@@ -16001,7 +16007,7 @@ Source: `sw-settings-search/component/sw-settings-search-searchable-content-gene
 ## sw-datepicker
 
 > **Migration wrapper** — Delegates to `mt-datepicker` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-datepicker](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-DATEPICKER.md) for the new component.
+> See mt-datepicker for the new component.
 
 ### Props
 
@@ -16353,7 +16359,7 @@ Source: `sw-cms/elements/image/config/sw-cms-el-config-image.html.twig`
 ## sw-email-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-email-field` instead. Will be removed in 6.8.
-> See [mt-email-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-EMAIL-FIELD.md) for the replacement.
+> See mt-email-field for the replacement.
 
 ### Migration
 
@@ -16402,7 +16408,7 @@ Source: `sw-custom-entity/component/sw-custom-entity-input-field/sw-custom-entit
 ## sw-email-field
 
 > **Migration wrapper** — Delegates to `mt-email-field` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-email-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-EMAIL-FIELD.md) for the new component.
+> See mt-email-field for the new component.
 
 ### Props
 
@@ -19726,7 +19732,7 @@ Source: `sw-extension/component/sw-extension-card-base/sw-extension-card-base.ht
 ## sw-external-link
 
 > **Migration wrapper** — Delegates to `mt-link` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-link](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-LINK.md) for the new component.
+> See mt-link for the new component.
 
 ### Props
 

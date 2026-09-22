@@ -73,5 +73,5 @@ export {};
 
 ## Notes
 - Vue 3 Composition API: `defineComponent` pattern or `<script setup lang="ts">` in SFCs (where the build supports it).
-- Lint/typecheck: `composer eslint:admin` + a project-wide `tsc --noEmit` (via the tsconfig).
+- Lint/typecheck: `npm --prefix src/Resources/app/administration run lint` plus `tsc --noEmit`.
 - Keep `strict` enabled; `noUncheckedIndexedAccess` optional for extra safety.

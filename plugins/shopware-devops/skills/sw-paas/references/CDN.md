@@ -73,8 +73,6 @@ Snippets are installed automatically during deployment.
 
 ## Deep dive
 
-[CDN-DETAIL.md](CDN-DETAIL.md)
-
 ## Shopware PaaS Native — CDN & Custom Domains (Deep Reference)
 
 Sources: `products/paas/shopware/cdn/index.md`,

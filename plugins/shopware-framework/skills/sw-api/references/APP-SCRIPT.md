@@ -6,6 +6,7 @@ Apps can ship server-side logic as **Twig scripts** (without an own app server),
 ```
 MyApp/Resources/scripts/<hook-name>/my-script.twig
 ```
+
 ```twig
 {% set page = hook.page %}
 {% do hook.someService.doSomething() %}

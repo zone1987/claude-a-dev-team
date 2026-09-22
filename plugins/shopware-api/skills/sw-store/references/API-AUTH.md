@@ -1,5 +1,11 @@
 # Shopware 6 — Store API auth & context
 
+> **Credentials come from `shopware/.env.local`, never hard-coded.**
+> `SHOPWARE_ADMIN_USERNAME`, `SHOPWARE_ADMIN_PASSWORD`, `SHOPWARE_ACCESS_KEY_ID`,
+> `SHOPWARE_SECRET_ACCESS_KEY`. They are never printed to a console, never committed, and
+> never written into documentation — a default pair in an example is the pair somebody
+> copies into a shop that is reachable from the internet.
+
 The Store API is customer-facing and uses **no OAuth tokens**, but headers instead.
 
 - **`sw-access-key`** (required): the access key of the sales channel (Admin → sales channel → API access). Identifies the channel.

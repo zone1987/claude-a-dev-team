@@ -16,7 +16,9 @@ Create a complete CMS element across all three layers. Skills: `sw-cms-element`,
 2. Admin (`.../module/sw-cms/elements/<name>/`): `index.js` (`registerCmsElement` + `Component.register` for
    component/configComponent/previewComponent), the `.html.twig` templates, `defaultConfig`.
 3. PHP resolver `src/Core/Content/Cms/.../<Name>CmsElementResolver.php` (`getType`, `collect`, `enrich`) +
-   the `shopware.cms.data_resolver` tag in services.xml.
+   the `shopware.cms.data_resolver` tag, registered in `src/Resources/config/services/cms.php` — PHP, not XML
+   (`XmlFileLoader` is `@deprecated tag:v6.8.0`), explicitly and without autowiring
+   (→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`).
 4. Storefront template `views/storefront/element/cms-element-<name>.html.twig`.
 5. Import it in main.js. Note: admin build + lint.
 

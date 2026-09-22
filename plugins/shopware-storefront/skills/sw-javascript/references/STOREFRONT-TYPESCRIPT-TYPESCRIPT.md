@@ -82,5 +82,5 @@ client.get(this.options.url, (response: string) => {
 
 ## Build & Lint
 - The Storefront build (Vite/webpack) transpiles `.ts` automatically; the entry point stays `main.js`/`main.ts`.
-- Typecheck: `tsc --noEmit`. Lint: `composer eslint:storefront`.
+- Typecheck: `tsc --noEmit`. Lint: `npm --prefix src/Resources/app/storefront run lint`.
 - Register `.ts` plugins in `main.(js|ts)` via `PluginManager.register(...)` exactly like JS plugins.

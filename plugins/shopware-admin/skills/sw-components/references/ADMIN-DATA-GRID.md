@@ -13,6 +13,7 @@ Lists with `sw-entity-listing` (coupled to a repository) or `sw-data-grid` (your
     @page-change="onPageChange" />
 {% endblock %}
 ```
+
 ```js
 mixins: [Shopware.Mixin.getByName('listing')],
 computed: {

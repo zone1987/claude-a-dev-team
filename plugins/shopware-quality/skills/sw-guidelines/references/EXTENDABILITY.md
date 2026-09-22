@@ -151,12 +151,15 @@ ADR: [2020-11-25-decoration-pattern](https://github.com/shopware/shopware/blob/t
 
 **Example:** `LineItemFactoryRegistry` — a registry with tagged services; third parties can register their own handlers.
 
-```xml
-<!-- services.xml -->
-<service id="MyPlugin\LineItemFactory\CustomLineItemFactory">
-    <tag name="shopware.cart.line_item_factory_handler"/>
-</service>
+```php
+// src/Resources/config/services/cart.php — PHP, not XML
+// (`XmlFileLoader` is `@deprecated tag:v6.8.0`), explicitly and without autowiring.
+$services->set(CustomLineItemFactory::class)
+    // Without autoconfigure this tag is not inferred.
+    ->tag('shopware.cart.line_item_factory_handler');
 ```
+
+→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`
 
 ---
 

@@ -1,5 +1,11 @@
 # Detailed sw-* → mt-* component migration guide
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 > Complete migration reference for all 19 deprecated `sw-*` wrapper components to their `mt-*` Meteor replacements in Shopware 6.7. All `sw-*` wrappers are marked as deprecated and will be removed in v6.8.0.
 
 ---
@@ -178,7 +184,7 @@ npx @shopware-ag/meteor-admin-sdk-codemod
 
 ```html
 <!-- Inline (simple routes): -->
-<mt-button @click="$router.push({ name: 'route.name' })">...</mt-button>
+<mt-button size="default" @click="$router.push({ name: 'route.name' })">...</mt-button>
 
 <!-- As a method (recommended for params): -->
 <mt-button variant="primary" @click="onNavigate">Edit item</mt-button>

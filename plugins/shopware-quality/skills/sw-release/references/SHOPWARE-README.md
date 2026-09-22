@@ -1,6 +1,6 @@
 # Shopware 6 plugin README generator
 
-You generate and update README.md files for Shopware 6 plugins. The README is written in **English** and uses **GitLab-flavored Markdown**.
+You generate and update README.md files for Shopware 6 plugins. **The README is written in German** — it addresses the shop operator, not the developer, and it is the one file exempt from the English-only rule. It uses **GitLab-flavored Markdown**.
 
 **Encoding:** write the file as UTF-8. Where a product name, a backend label or example data carries an accented character, keep the character itself — never transliterate it away.
 
@@ -69,11 +69,8 @@ Read and analyse **EVERY** file below, systematically. Skip none of them.
 | File | Purpose |
 |:------|:------|
 | `src/Resources/config/config.xml` | plugin configuration |
-| `src/Resources/config/services.xml` | registered services and tags |
-| `src/Resources/config/subscribers.xml` | subscriber registrations |
-| `src/Resources/config/commands.xml` | command registrations |
-| `src/Resources/config/tasks.xml` | task registrations |
-| `src/Resources/config/fixtures.xml` | fixture registrations |
+| `src/Resources/config/services.php` and `src/Resources/config/services/*.php` | registered services and tags (the current standard — PHP, not XML) |
+| `src/Resources/config/services.xml`, `subscribers.xml`, `commands.xml`, `tasks.xml`, `fixtures.xml` | the same, in existing plugins not yet migrated off XML |
 | `src/Resources/config/packages/monolog.yaml` | logger configuration |
 | `docs/plugin.png` | the plugin image — check it exists, do not read it |
 | `rector.php` | Rector configuration |
@@ -347,7 +344,6 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 {# Konfiguration abrufen #}
 {% set config = element.config.{key}.value %}
 ```
-```
 
 **Analysis checklist for CMS:**
 
@@ -439,7 +435,6 @@ Die Konfiguration ist erreichbar unter **Erweiterungen → Meine Erweiterungen �
 
 ```bash
 bin/console {command:name} {praxisnahe-beispiel-argumente}
-```
 ```
 
 **Analyse-Checkliste:**
@@ -561,7 +556,6 @@ Immer den Twig-Zugriff dokumentieren:
 {% if product.customFields.{technical_name} is defined and product.customFields.{technical_name} is not empty %}
     {{ product.customFields.{technical_name} }}
 {% endif %}
-```
 ```
 
 **Analyse-Checkliste:**
@@ -701,7 +695,6 @@ vendor/bin/rector process --dry-run
 # apply the changes
 vendor/bin/rector process --clear-cache
 ```
-```
 
 Where `composer.json` defines scripts for rector (e.g. `"rector": "vendor/bin/rector process --dry-run"`), use those composer scripts instead:
 
@@ -712,7 +705,6 @@ composer run rector
 
 # apply the changes
 vendor/bin/rector process --clear-cache
-```
 ```
 
 **Psalm** (wenn `psalm.xml` existiert):
@@ -730,22 +722,21 @@ Static analysis, to find type errors and potential bugs.
 ```bash
 composer run psalm
 ```
-```
 
-**ECS** (wenn `ecs.php` existiert):
+**The gate** (whenever `composer.json` declares a `gate` script — it should):
 
 ```markdown
-### ECS (Easy Coding Standard)
+### Quality gate
 
-Checks and corrects coding standards automatically.
+One command runs the fixers and then every check: php-cs-fixer, PHPStan at `level: max`,
+Rector, the phpat architecture rules, Stylelint and the unit tests.
 
 ```bash
-# check
-composer run ecs
+# fix, then check
+composer gate
 
-# Automatisch korrigieren
-composer run ecs-fix
-```
+# check only
+composer gate:check
 ```
 
 **PHPCS** (wenn `.phpcs.xml` existiert):
@@ -757,7 +748,6 @@ Checks code formatting against the defined standards.
 
 ```bash
 composer run phpcs
-```
 ```
 
 **Analyse-Checkliste:**
@@ -921,7 +911,6 @@ Stores dealer locations for the dealer search, with address data and geo coordin
     Bewertungsanfrage gesendet am: {{ order.customFields.ff_shopvote_evaluation_sent_at|date('d.m.Y H:i') }}
 {% endif %}
 ```
-```
 
 ### Beispiel: Command
 
@@ -947,7 +936,6 @@ bin/console ff:shopvote:send-mail
 
 # a test run with a limit
 bin/console ff:shopvote:send-mail --dry-run --limit 10
-```
 ```
 
 ### Beispiel: Scheduled Task

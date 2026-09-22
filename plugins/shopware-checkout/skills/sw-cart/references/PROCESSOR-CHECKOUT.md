@@ -106,19 +106,41 @@ class MinOrderValidator implements CartValidatorInterface
 
 ## Service Registration
 
-```xml
-<service id="FfContentPlus\Core\Checkout\Cart\DiscountProcessor">
-    <tag name="shopware.cart.processor" priority="4000"/>
-</service>
+```php
+<?php declare(strict_types=1);
 
-<service id="FfContentPlus\Core\Checkout\Cart\ProductDataCollector">
-    <tag name="shopware.cart.collector"/>
-</service>
+namespace FfContentPlus\Resources\config\services;
 
-<service id="FfContentPlus\Core\Checkout\Cart\MinOrderValidator">
-    <tag name="shopware.cart.validator"/>
-</service>
+use FfContentPlus\Core\Checkout\Cart\DiscountProcessor;
+use FfContentPlus\Core\Checkout\Cart\MinOrderValidator;
+use FfContentPlus\Core\Checkout\Cart\ProductDataCollector;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(DiscountProcessor::class)
+        ->args([service('Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator')])
+        // Without autoconfigure this tag is not inferred.
+        ->tag('shopware.cart.processor', ['priority' => 4000]);
+
+    $services->set(ProductDataCollector::class)
+        ->args([service('product.repository')])
+        // Without autoconfigure this tag is not inferred.
+        ->tag('shopware.cart.collector');
+
+    $services->set(MinOrderValidator::class)
+        // Without autoconfigure this tag is not inferred.
+        ->tag('shopware.cart.validator');
+};
 ```
+
+Each of the three tags is silent when missing: the class exists, the service is
+registered, and the cart is calculated without it.
+
+→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`
 
 ## Order State Machine
 

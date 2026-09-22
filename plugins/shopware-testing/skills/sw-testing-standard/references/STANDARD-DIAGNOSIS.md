@@ -89,7 +89,8 @@ final class DebugCommand extends Command
 the `SalesChannelContext` arrives with an *empty* price collection, while the one on the
 cart's delivery carries it fully loaded. `prices: 0` in the output settled it in seconds.
 
-Wire it in `services.xml` with a `console.command` tag, run it, **then delete it**. It is a
+Wire it in `services/commands.php` with a `console.command` tag — set by hand, since the
+standard registers services without `autoconfigure` — run it, **then delete it**. It is a
 probe, not a feature — and the code that replaces it is a test.
 
 ```bash
@@ -211,7 +212,7 @@ curl -sk -c $J -b $J "$B/" -o /dev/null
 curl -sk -c $J -b $J "$B/checkout/offcanvas" > /tmp/oc.html
 grep -oE 'up-to-free-shipping[a-z-]*' /tmp/oc.html | sort | uniq -c
 SH
-ddev exec -s playwright sh /var/www/html/shopware/public/_probe.sh
+ddev exec -s browserless sh /var/www/html/shopware/public/_probe.sh
 rm -f shopware/public/_probe.sh
 ```
 
@@ -230,7 +231,10 @@ SELECT (SELECT COUNT(*) FROM shipping_method_translation WHERE name LIKE 'Test-%
        (SELECT COUNT(*) FROM sales_channel_translation WHERE name LIKE '%acceptance%') AS channels,
        (SELECT COUNT(*) FROM customer)                                             AS customers;" -N; }
 
-count; ddev playwright test; count; ddev playwright test; count
+e2e() { ddev exec -d /var/www/html/shopware/custom/static-plugins/{PluginName}/tests/E2E \
+            npx playwright test; }
+
+count; e2e; count; e2e; count
 ```
 
 **Two runs**, because a clean-up that works once can still leave the second run's data.

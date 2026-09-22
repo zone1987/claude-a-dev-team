@@ -7,7 +7,7 @@ Datenabfragen und autonome Aufgabenausführung.
 
 **Mindestversion:** Shopware 6.7.8.0
 
-Detaillierte Referenz: [COPILOT-DETAIL.md](COPILOT-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Copilot — Vollständige Referenz
 

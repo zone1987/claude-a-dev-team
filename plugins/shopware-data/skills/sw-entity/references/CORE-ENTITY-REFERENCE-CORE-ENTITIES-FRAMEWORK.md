@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 36 definitions
 
-
 ## Contents
 
 - [Framework/App](#frameworkapp)
@@ -393,7 +392,6 @@
 | `privacyPolicyExtensions` | `privacy_policy_extensions` | LongTextField |  |
 | `` | `` | CustomFields | Since |
 
-
 ## Framework/DAL
 
 ### `attribute_entity` [E]
@@ -476,13 +474,11 @@
 |-------------|------|--------|
 | `commit` | ManyToOne | `VersionCommitDefinition` |
 
-
 ## Framework/Event
 
 ### `business_event` [E]
 
 **Class:** `BusinessEventDefinition`
-
 
 ## Framework/Log
 
@@ -498,7 +494,6 @@
 | `channel` | `channel` | StringField |  |
 | `context` | `context` | JsonField | SearchRanking |
 | `extra` | `extra` | JsonField | SearchRanking |
-
 
 ## Framework/MessageQueue
 
@@ -518,7 +513,6 @@
 | `status` | `status` | StringField | Required |
 | `lastExecutionTime` | `last_execution_time` | DateTimeField |  |
 | `nextExecutionTime` | `next_execution_time` | DateTimeField | Required |
-
 
 ## Framework/Plugin
 
@@ -569,7 +563,6 @@
 | `manufacturerLink` | `manufacturer_link` | StringField |  |
 | `supportLink` | `support_link` | StringField |  |
 | `` | `` | CustomFields |  |
-
 
 ## Framework/Webhook
 

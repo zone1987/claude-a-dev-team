@@ -57,13 +57,22 @@ Webpack config did.
 
 The feature flag is **`ADMIN_VITE`**, which is what lets the setup be tested.
 
+The table below describes the **core's own build internals** — what Shopware runs inside its
+administration bundle. A plugin never invokes any of it. A plugin is built with `shopware-cli`,
+inside the container, and with nothing else:
+
+```bash
+ddev exec shopware-cli project admin-build --only-extensions <PluginName>
+ddev exec shopware-cli project admin-watch --only-extensions <PluginName>
+```
+
 | Piece | Detail |
 |---|---|
-| Bundle information | `Shopware\Core\Framework\Plugin\Command\BundleDumpCommand` writes `<shopwareRoot>/var/plugins.json`; standalone as `php bin/console bundle:dump`, and part of `build:js:admin`, `build:js:storefront`, `watch:admin` and `watch:storefront` |
-| Building everything | still `composer build:js:admin` |
+| Bundle information | `Shopware\Core\Framework\Plugin\Command\BundleDumpCommand` writes `<shopwareRoot>/var/plugins.json`; standalone as `ddev exec bin/console bundle:dump`. `shopware-cli` triggers it for you — a plugin build never calls it by hand |
+| Building everything (core) | the core's own `build:js:admin` script. Not the plugin path: a plugin uses `ddev exec shopware-cli project admin-build --only-extensions <PluginName>` |
 | The core config | `<shopwareRoot>/src/Administration/Resources/app/administration/vite.config.mts` — **core only, not extensions** |
 | Extension build | `.../administration/build/plugins.vite.ts` reads `var/plugins.json` and calls Vite's `build` per plugin, picking up each plugin's own `vite.config` from its entry path |
-| Dev server | still `composer watch:admin`; `plugins.vite.ts` calls `createServer` per plugin |
+| Dev server | the core's own `watch:admin` script; `plugins.vite.ts` calls `createServer` per plugin. For a plugin: `ddev exec shopware-cli project admin-watch --only-extensions <PluginName>` |
 
 **Vite needs a different module loading order than Webpack**, which is why some core files are
 duplicated as `*.vite.ts` — the entry point, for instance, is

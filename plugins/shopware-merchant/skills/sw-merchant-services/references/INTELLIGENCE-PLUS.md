@@ -10,7 +10,7 @@ Enthaltene Services:
 - 3D Preview Generator (nur mit Abo)
 - CAD to 3D File Conversion (über Freikontingent)
 
-Detaillierte Referenz: [INTELLIGENCE-PLUS-DETAIL.md](INTELLIGENCE-PLUS-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Intelligence+ — Vollständige Referenz
 
@@ -92,8 +92,6 @@ auch wenn das Abonnement aktiv ist. Dies gilt insbesondere für automatisierte M
 
 ### Enthaltene Services im Detail
 
-→ Bild-Editor: [`IMAGE-EDITOR-DETAIL.md`](IMAGE-EDITOR-DETAIL.md)
-→ CAD to 3D: [`CAD-3D-DETAIL.md`](CAD-3D-DETAIL.md)
 
 ---
 

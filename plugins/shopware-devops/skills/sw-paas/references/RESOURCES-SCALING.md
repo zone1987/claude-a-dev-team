@@ -54,8 +54,6 @@ sw-paas application deploy get
 
 ## Deep dive
 
-[RESOURCES-SCALING-DETAIL.md](RESOURCES-SCALING-DETAIL.md)
-
 ## Shopware PaaS Native — Resources & scaling (Deep Reference)
 
 Sources: `products/paas/shopware/fundamentals/applications.md`,

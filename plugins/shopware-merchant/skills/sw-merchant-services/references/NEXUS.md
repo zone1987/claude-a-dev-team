@@ -7,7 +7,7 @@ Workflows werden per Drag-and-Drop auf einem Canvas erstellt — ohne Programmie
 
 **Mindestversion:** Shopware 6.7.1.0
 
-Detaillierte Referenz: [NEXUS-DETAIL.md](NEXUS-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Nexus — Vollständige Referenz
 

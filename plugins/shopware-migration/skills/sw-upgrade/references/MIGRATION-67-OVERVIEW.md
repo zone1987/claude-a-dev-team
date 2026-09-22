@@ -65,7 +65,7 @@ This skill guides the migration of Shopware 6 plugins from version 6.6 to 6.7. I
 Shopware provides an automated ESLint-based codemod for admin component migration:
 
 ```bash
-composer run admin:code-mods -- --plugin-name=YourPluginName --shopware-version=6.7 --fix
+ddev exec composer run admin:code-mods -- --plugin-name=YourPluginName --shopware-version=6.7 --fix
 ```
 
 Options: `--shopware-root=PATH`, `--src=PATH`, `--ignore-git`. Always review output — the codemod adds `// TODO` comments for items requiring manual migration (especially `sw-data-grid` → `mt-data-table`).
@@ -150,14 +150,14 @@ When migrating a plugin:
     # Preferred (if shopware-cli available)
     ddev exec shopware-cli project storefront-build --only-extensions {PluginName}
     # Fallback
-    ddev exec bash -c "cd shopware && bin/build-storefront.sh"
+    ddev exec shopware-cli project storefront-build --only-extensions <PluginName>
     ```
 13. **Build Administration** — if any Admin Vue/JS files were changed, trigger an admin build:
     ```bash
     # Preferred (if shopware-cli available)
     ddev exec shopware-cli project admin-build --only-extensions {PluginName}
     # Fallback
-    ddev exec bash -c "cd shopware && bin/build-administration.sh"
+    ddev exec shopware-cli project admin-build --only-extensions <PluginName>
     ```
 14. **Test** — verify pages, run PHPUnit
 
@@ -205,7 +205,9 @@ curl -s -X POST \
 
 ## Rules
 
-1. Always create the README file in **German**.
+1. The `README.md` is written in **German** — it addresses the shop operator, not the
+   developer, and it is the one file exempt from the English-only rule. Everything else
+   (code, comments, test names, ADRs, `CLAUDE.md`, `CHANGELOG.md`) is English.
 2. `composer.json` `"version"`: increase the major version by 1, set minor and patch to 0 (e.g. `1.3.2` → `2.0.0`).
 3. Always review codemod output manually — never trust automated migration blindly.
 4. `sw-data-grid` → `mt-data-table` always requires manual migration.
@@ -215,6 +217,6 @@ curl -s -X POST \
 8. All PHP code must follow `shopware-plugins/examples/coding-style.md`.
 9. Use `Shopware.Store.register()` (not `defineStore()` directly) for Pinia stores.
 10. Class DocBlock annotation order: description/`@method` first, then blank line, then `@class` and `@package` last.
-11. Rector config for 6.7 must use `ShopwareSetList::SHOPWARE_6_7_0` and `ShopwareSetList::SHOPWARE_6_8_0` sets only.
-12. During migration: remove unused code — PHP classes/methods with no references, unused class properties, Vue/JS components not registered or imported, Twig blocks that only call `parent()` with no additions, orphaned service definitions in `services.xml`.
-13. After all changes: run a **Storefront build** if any Storefront JS/SCSS/Twig files were modified; run an **Admin build** if any Administration Vue/JS files were modified. Use `shopware-cli` if available, otherwise fall back to `bin/build-storefront.sh` / `bin/build-administration.sh`.
+11. Rector config for a plugin released for 6.7 uses `ShopwareSetList::SHOPWARE_6_7_0` — and no other Shopware set. The Rector set matches the version the plugin is released for, never the one after it: the `conflict` block in `composer.json` excludes 6.8, so a 6.8 set would rewrite the plugin into code the shop is not allowed to run. Never add `ShopwareSetList::SHOPWARE_6_8_0`. What belongs to the next major goes into `UPGRADE-6.8.md`, not into the source — see `DEPRECATION-HANDLING.md`.
+12. During migration: remove unused code — PHP classes/methods with no references, unused class properties, Vue/JS components not registered or imported, Twig blocks that only call `parent()` with no additions, orphaned service definitions in the plugin's service files (existing plugins may still carry `services.xml`; new code uses PHP — see `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`).
+13. After all changes: run a **Storefront build** if any Storefront JS/SCSS/Twig files were modified; run an **Admin build** if any Administration Vue/JS files were modified. **Always `shopware-cli`** — there is no fallback: `project storefront-build` / `project admin-build`, each with `--only-extensions <PluginName>`.

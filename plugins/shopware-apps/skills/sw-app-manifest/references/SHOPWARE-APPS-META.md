@@ -18,7 +18,7 @@ The `<meta>` section is the only required section in manifest.xml. It defines th
 | `<author>` | Developer/company name |
 | `<copyright>` | Copyright notice |
 | `<version>` | Semantic version (e.g., 1.0.0) |
-| `<license>` | License identifier (e.g., MIT) |
+| `<license>` | License identifier — **`proprietary`** for our own apps |
 
 ### Optional Elements
 
@@ -40,7 +40,7 @@ The `<meta>` section is the only required section in manifest.xml. It defines th
     <author>Dev</author>
     <copyright>(c) Dev</copyright>
     <version>1.0.0</version>
-    <license>MIT</license>
+    <license>proprietary</license>
 </meta>
 ```
 
@@ -58,7 +58,7 @@ The `<meta>` section is the only required section in manifest.xml. It defines th
     <copyright>(c) by Your Company Ltd.</copyright>
     <version>1.0.0</version>
     <icon>Resources/config/plugin.png</icon>
-    <license>MIT</license>
+    <license>proprietary</license>
     <privacy>https://example.com/privacy</privacy>
 </meta>
 ```

@@ -7,8 +7,9 @@
 Covered: the **core coding guidelines** (extendability, `final`/`@internal`, decorator pattern, deprecation,
 DB migrations, code written for static analysis) including the complete guideline reference, **domain exceptions**
 (factory with stable `code`s), **extendability** and **code structure**, the distilled **ADR knowledge** (index of all
-~150 ADRs) and the **static analysis tools** **ECS/PHP-CS-Fixer**, **PHPStan** (+ `phpstan-shopware` rules),
-**Deptrac** and **Rector**. Plus the **README generator** and the **changelog** convention.
+~150 ADRs) and the **static analysis tools** **php-cs-fixer**, **PHPStan** at `level: max` (+ `phpstan-shopware` rules),
+**phpat** (architecture rules, run by PHPStan) and **Rector** — all behind the one command,
+`composer gate`. Plus the **README generator** and the **changelog** convention.
 
 The centerpiece is the **knowledge sync** (skill `sw-release`, agent **`shopware-librarian`**, command
 **`/sw-sync`**): it checks the upstream repository `shopware/shopware` via the **releases/tags API** *and* the **trunk diff**,
@@ -30,7 +31,7 @@ Part of the marketplace **[claude-a-dev-team](../../README.md)**. The knowledge 
 
 | Skill | Description |
 |---|---|
-| `sw-analysis` | Shopware static analysis: PHPStan and its Shopware extension, ECS and PHP-CS-Fixer, Deptrac, Rector. Use when configuring or fixing Shopware static analysis |
+| `sw-analysis` | Shopware static analysis: PHPStan at `level: max`, php-cs-fixer, Rector, and phpat for architecture rules — all behind `composer gate`. Use when configuring or fixing Shopware static analysis |
 | `sw-guidelines` | Shopware coding guidelines: code structure, domain exceptions, extendability rules, ADR knowledge, documentation guidelines. Use when reviewing Shopware code against the platform's own conventions |
 | `sw-release` | Shopware release hygiene: README and changelog conventions, and the knowledge-sync process for keeping distilled documentation current. Use when preparing a Shopware plugin release |
 
@@ -39,7 +40,7 @@ Part of the marketplace **[claude-a-dev-team](../../README.md)**. The knowledge 
 | Agent | Description |
 |---|---|
 | `shopware-librarian` | Self-update agent for the Shopware skill library. Checks upstream (shopware/shopware) for new versions/releases and trunk drift, maps changes onto the affected sw-* skills and updates/extends/removes knowledge, maintains the .sync-state |
-| `shopware-reviewer` | Quality/review specialist for Shopware 6 plugins: checks against coding guidelines, domain exceptions, static analysis (ECS/PHPStan/Deptrac/Rector), conventions and ADRs; proposes fixes; creates README/changelog |
+| `shopware-reviewer` | Quality/review specialist for Shopware 6 plugins: checks against coding guidelines, domain exceptions, static analysis (php-cs-fixer, PHPStan `max`, Rector, phpat), conventions and ADRs; proposes fixes; creates README/changelog |
 
 ## Commands (3)
 

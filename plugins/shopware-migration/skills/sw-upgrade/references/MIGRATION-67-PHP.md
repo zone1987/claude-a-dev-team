@@ -538,7 +538,8 @@ enum ImportStatusEnum: string
 
 ## 5. Rector Configuration
 
-Use Rector with Shopware-specific sets for 6.7 migration. The `rector.php` must use `ShopwareSetList::SHOPWARE_6_7_0` and `ShopwareSetList::SHOPWARE_6_8_0` to apply all Shopware-specific code transformations.
+Use Rector with the Shopware set of the version the plugin is released for. A plugin
+released for 6.7 uses `ShopwareSetList::SHOPWARE_6_7_0` — and only that set.
 
 ```php
 // rector.php
@@ -553,29 +554,57 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/src',
     ])
+    // The released version only. The next major's set is deliberately absent.
     ->withSets([
         ShopwareSetList::SHOPWARE_6_7_0,
-        ShopwareSetList::SHOPWARE_6_8_0,
     ]);
 ```
 
-### Why Both Sets?
+### Why Only the Released Version's Set
 
-- `ShopwareSetList::SHOPWARE_6_7_0` — applies transformations for Shopware 6.7 compatibility (deprecated API replacements, constructor promotion, etc.)
-- `ShopwareSetList::SHOPWARE_6_8_0` — prepares code for 6.8 by addressing features that will be removed in 6.8 (proactive cleanup)
+The rule: **the Rector set matches the version the plugin is released for — never the one
+after it.**
+
+This follows directly from the `conflict` block in `composer.json`, which excludes the next
+major:
+
+```json
+{
+    "conflict": {
+        "shopware/core":           "< 6.7.0.0 || >= 6.8.0.0",
+        "shopware/storefront":     "< 6.7.0.0 || >= 6.8.0.0",
+        "shopware/administration": "< 6.7.0.0 || >= 6.8.0.0"
+    }
+}
+```
+
+Adding `ShopwareSetList::SHOPWARE_6_8_0` while `conflict` excludes 6.8 would rewrite the
+plugin into code for a version the shop is not allowed to run it under. The next major is
+documented in `UPGRADE-6.8.md`, not applied to the source — see `DEPRECATION-HANDLING.md`.
+
+> **A real finding.** An earlier configuration carried
+> `ShopwareSetList::SHOPWARE_6_8_0` — a constant that did **not exist** in the installed
+> version of `frosh/shopware-rector`. Rector still ran green, because PHP only complains
+> about an unknown class constant when the constant is actually accessed, and that code
+> path was never reached. A configuration that "runs" is not the same as one that takes
+> effect. Verify that the set constant exists in the installed `frosh/shopware-rector`
+> version before trusting a green run.
 
 ### Running Rector
 
-```bash
-# Preview changes (dry run)
-vendor/bin/rector process --dry-run --clear-cache
+Rector runs through the gate (`composer gate` → `gate:fix` → `rector:fix`), inside the
+container:
 
-# Apply changes
-vendor/bin/rector process --clear-cache
+```bash
+ddev exec bash -c "cd /var/www/html/shopware/custom/static-plugins/<PLUGIN-NAME> && composer rector"
+ddev exec bash -c "cd /var/www/html/shopware/custom/static-plugins/<PLUGIN-NAME> && composer rector:fix"
 ```
+
+`composer rector` is the dry run (`rector process --dry-run --no-progress-bar`);
+`composer rector:fix` applies the changes.
 
 ### Important
 
-- Do NOT use generic `LevelSetList::UP_TO_PHP_84` — the Shopware sets already include the necessary PHP-level transformations
+- Do NOT use generic `LevelSetList::UP_TO_PHP_84` — the Shopware set plus `withPhpSets()` already covers the PHP-level transformations
 - Always review Rector output manually before committing
 - Run Rector before other migration steps (codemod, manual fixes) as it automates many PHP-level changes

@@ -15,7 +15,7 @@ Complete walkthroughs as bash/curl sequences for local development on `http://12
 ```bash
 ADMIN_TOKEN=$(curl -s -X POST "http://127.0.0.1:8000/api/oauth/token" \
   -H "Content-Type: application/json" \
-  -d '{"grant_type":"password","client_id":"administration","scopes":"write","username":"admin","password":"shopware"}' \
+  -d '{"grant_type":"password","client_id":"administration","scopes":"write","username":"'"$SHOPWARE_ADMIN_USERNAME"'","password":"'"$SHOPWARE_ADMIN_PASSWORD"'"}' \
   | jq -r '.access_token')
 
 # Tax ID
@@ -147,7 +147,7 @@ ADMIN_TOKEN=$(curl -s -X POST "http://127.0.0.1:8000/api/oauth/token" \
     "client_id": "administration",
     "scopes": "write",
     "username": "admin",
-    "password": "shopware"
+    "password": "$SHOPWARE_ADMIN_PASSWORD"
   }' | jq -r '.access_token')
 
 printf '%s\n' "$ADMIN_TOKEN"

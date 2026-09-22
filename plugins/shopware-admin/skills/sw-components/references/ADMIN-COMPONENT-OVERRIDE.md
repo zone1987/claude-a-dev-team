@@ -11,6 +11,7 @@ Shopware.Component.override('sw-product-detail', {
     },
 });
 ```
+
 ```twig
 {% block sw_product_detail_content %}
     {% parent %}

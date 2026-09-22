@@ -88,6 +88,7 @@ mkcert localhost
 ```bash
 pnpm add -D @vitejs/plugin-basic-ssl
 ```
+
 ```ts
 // nuxt.config.ts
 import basicSsl from '@vitejs/plugin-basic-ssl'

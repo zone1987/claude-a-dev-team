@@ -62,7 +62,7 @@ Primary action button.
 | `is` | `Component \| string` | `'button'` | Renders as this element |
 | `variant` | `'primary'\|'secondary'\|'tertiary'\|'critical'` | `'secondary'` | Variant |
 | `ghost` | `boolean` | `false` | Ghost style (transparent) |
-| `size` | `'x-small'\|'small'\|'default'\|'large'` | `'small'` | Size |
+| `size` | `'x-small'\|'small'\|'default'\|'large'` | `'small'` | **Always set `"default"` explicitly** — see the rule below |
 | `disabled` | `boolean` | `false` | Disabled |
 | `square` | `boolean` | `false` | Square |
 | `block` | `boolean` | `false` | Full width |
@@ -72,9 +72,39 @@ Primary action button.
 **Slots:** `default`, `iconFront: { size: number }`, `iconBack: { size: number }`
 
 ```html
-<mt-button variant="primary" @click="save">Speichern</mt-button>
-<mt-button variant="critical" ghost>Löschen</mt-button>
+<mt-button variant="primary" size="default" @click="save">Save</mt-button>
+<mt-button variant="critical" size="default" ghost>Delete</mt-button>
 ```
+
+**Every `mt-button` a plugin renders carries `size="default"`, explicitly.**
+
+The component defaults to `size="small"`: **32 pixels tall with 12 pixel text**. An
+`sw-language-switch` beside it in the same smart bar is **40 pixels with 14 pixel text**.
+Measured on a plugin list page: the button stood at 32px against the switch's 40px and sat
+four pixels lower than the control it was aligned with. Nothing is wrong with either
+component — they belong to two different size scales, and the smaller one reads as an
+afterthought, as though the page were bolted onto the administration rather than part of
+it.
+
+The core uses `size="small"` 355 times, so following the core here reproduces exactly that
+mismatch. A plugin's pages sit inside Shopware's own settings area, beside core controls,
+and a merchant moving between them should not be able to tell which page a plugin wrote.
+
+**Not affected:** components with no size prop of their own (`mt-switch`, `mt-text-field`,
+`mt-number-field`) already render at the height the core's forms use. Neither are core
+components a plugin places but does not control — `sw-media-upload-v2` renders two small
+buttons of its own, and reaching into another component's markup is a bigger fault than
+the inconsistency it would fix.
+
+**Enforce it with a conventions spec** that reads the templates off disk rather than
+listing known buttons — a list leaves the next one out. Three spellings are forbidden:
+`size="small"`, `size="x-small"` and the bound form `:size="'small'"`.
+→ `shopware-testing`, skill `sw-testing-standard`, and the Jest setup in
+`shopware-admin` → `sw-build` → `ADMIN-LINTING.md`.
+
+Record the decision as an ADR: the button added next inherits the wrong size unless
+somebody writes `size="default"` on it, and nothing in the toolchain says so — the page
+renders, every test passes, and the button is simply eight pixels short.
 
 ---
 
@@ -335,9 +365,9 @@ Primary container with title, subtitle and slots.
 **Slots:** `default`, `title`, `subtitle`, `avatar`, `grid`, `footer`, `toolbar`, `tabs`, `before-card`, `after-card`, `headerRight`, `context-actions`
 
 ```html
-<mt-card title="Produkt-Infos">
+<mt-card title="Product details">
   <template #toolbar>
-    <mt-button>Neu</mt-button>
+    <mt-button size="default">New</mt-button>
   </template>
   <!-- Content -->
 </mt-card>
@@ -363,8 +393,8 @@ Sub-components: `mt-collapsible` (root), `mt-collapsible-trigger`, `mt-collapsib
 
 ```html
 <mt-collapsible>
-  <mt-collapsible-trigger>Titel</mt-collapsible-trigger>
-  <mt-collapsible-content>Inhalt</mt-collapsible-content>
+  <mt-collapsible-trigger>Title</mt-collapsible-trigger>
+  <mt-collapsible-content>Content</mt-collapsible-content>
 </mt-collapsible>
 ```
 
@@ -491,8 +521,8 @@ Notice/warning message.
 **Slot:** `default`
 
 ```html
-<mt-banner variant="critical" title="Fehler" closable @close="dismiss">
-  Beim Speichern ist ein Fehler aufgetreten.
+<mt-banner variant="critical" title="Error" closable @close="dismiss">
+  Something went wrong while saving.
 </mt-banner>
 ```
 
@@ -601,12 +631,12 @@ Sub-components: `mt-modal` (wrapper), `mt-modal-root`, `mt-modal-trigger`, `mt-m
 ```html
 <mt-modal-root v-model:open="showModal">
   <mt-modal-trigger>
-    <mt-button>Öffnen</mt-button>
+    <mt-button size="default">Open</mt-button>
   </mt-modal-trigger>
-  <mt-modal title="Titel">
+  <mt-modal title="Title">
     Inhalt
     <mt-modal-action>
-      <mt-button variant="primary">OK</mt-button>
+      <mt-button variant="primary" size="default">OK</mt-button>
     </mt-modal-action>
   </mt-modal>
 </mt-modal-root>
@@ -880,8 +910,8 @@ Text renderer with design system typography.
 | `as` | `string \| Component` | — | Render element |
 
 ```html
-<mt-text size="l" weight="bold">Überschrift</mt-text>
-<mt-text size="s" color="color-text-secondary-default">Hinweistext</mt-text>
+<mt-text size="l" weight="bold">Heading</mt-text>
+<mt-text size="s" color="color-text-secondary-default">Supporting text</mt-text>
 ```
 
 ---

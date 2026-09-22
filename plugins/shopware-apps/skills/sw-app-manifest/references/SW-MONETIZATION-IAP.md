@@ -6,7 +6,7 @@ From **Shopware 6.6.9.0** onwards. Allows locking specific features behind a pay
 
 ```vue
 <template>
-  <mt-button @click="onClick">Buy feature</mt-button>
+  <mt-button size="default" @click="onClick">Buy feature</mt-button>
 </template>
 
 <script setup>

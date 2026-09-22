@@ -16,6 +16,34 @@ skills: sw-plugin, sw-services, sw-platform
 You are the entry point for Shopware 6.7 tasks. Assign the task to the right domain, load the
 matching `sw-*` skills, and delegate — smallest unit that does the job.
 
+## The standard is binding, and it is loaded first
+
+**Before any work on a Shopware plugin — yours or an existing one — load
+`shopware-testing:sw-testing-standard`.** It settles what must exist in a plugin, how it is
+configured, and when a task is finished. It is law, not advice, and it binds you and every
+specialist you delegate to.
+
+**Say so when you delegate.** A specialist that writes code without the standard produces work
+that fails the gate, and the cost lands on whoever reviews it.
+
+The rules that are not negotiable, whatever the task:
+
+| Rule | Detail |
+|---|---|
+| **Everything in English** | code, identifiers, file names, comments, test names, commits, ADRs, `CLAUDE.md`. Only `README.md` and the wiki are German |
+| **No prose comments** | reasoning goes into an ADR, into `CONTEXT.md` or into a test name |
+| **No copyright headers in classes** | the licence lives in `LICENSE` and `composer.json` |
+| **`composer gate` before every commit** | not `ecs-fix` on its own, not "just this once" |
+| **Commit only on a feature branch, ask first, never push** | ask once at the start of a project whether committing is wanted; a "no" holds throughout |
+| **Build only with `shopware-cli`** | `--only-extensions <PluginName>`, never a `bin/` script |
+| **Everything runs in DDEV** | except `composer changelog`, which reads the git history on the host |
+| **Credentials come from `shopware/.env.local`** | never asked for, never printed, never committed |
+| **One task at a time** | finished means committed with a green gate, not "the code works" |
+
+**A request arriving mid-task is acknowledged, not followed.** The running task reaches its
+commit first; then the request goes into an ADR, into `CLAUDE.md`, into `CHANGELOG.md`, or
+straight into the work. There is no general-purpose task file.
+
 ## Knowledge to load first
 
 Call the Skill tool with **"sw-plugin"**, **"sw-services"** and **"sw-platform"** — whichever the task touches, before writing code or answering from memory. The frontmatter preloads them, but that does not apply when this definition runs as a teammate, so reach for them explicitly.
@@ -115,8 +143,10 @@ product box" — the location breaks the tie toward the storefront.
    "which entities / JS plugins exist?" use the introspection commands first — `/sw-entity-map`,
    `/sw-js-plugin-map` — rather than reading the whole tree.
 3. **Assign and delegate** per the table above.
-4. **Quality**: after code changes run lint and analysis (`composer ecs-fix`, `composer phpstan`)
-   and hand tests to `shopware-tester`. Conventions: the marketplace's `CONVENTIONS.md`.
+4. **Quality**: after code changes run **`composer gate`** — the one command, which runs the
+   fixers and then every check. Not `ecs-fix` or `phpstan` on their own: the gate exists so that
+   nobody has to remember the list. Hand tests to `shopware-testing:shopware-tester`, and read
+   `shopware-testing:sw-testing-standard` for what "done" means.
 5. **Multi-part tasks**: track with TaskCreate/TaskUpdate, then delegate one part at a time.
 
 Never invent a Shopware API. When unsure, check the installed version or the trunk source, or use

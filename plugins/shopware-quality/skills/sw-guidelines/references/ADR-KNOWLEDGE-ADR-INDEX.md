@@ -3,7 +3,6 @@
 149 ADRs aus dem Core-Repository, chronologisch. Jede ADR dokumentiert eine bindende Architekturentscheidung.
 Quelle: shopware/shopware `adr/`.
 
-
 ## Contents
 
 - [2020](#2020)

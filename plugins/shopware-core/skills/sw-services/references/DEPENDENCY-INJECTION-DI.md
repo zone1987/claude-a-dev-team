@@ -3,8 +3,8 @@
 ## Contents
 
 - [Overview](#overview)
-- [services.xml Structure](#servicesxml-structure)
-- [Autowiring (Recommended)](#autowiring-recommended)
+- [services.xml Structure (legacy)](#servicesxml-structure-legacy)
+- [Autowiring (legacy)](#autowiring-legacy--not-used-in-new-plugins)
 - [When Manual Wiring is Needed](#when-manual-wiring-is-needed)
 - [Service Decoration](#service-decoration)
 - [Common Service Tags](#common-service-tags)
@@ -15,9 +15,15 @@
 
 ## Overview
 
-Shopware uses Symfony's DI container. Plugin services are registered in `src/Resources/config/services.xml`.
+Shopware uses Symfony's DI container.
 
-## services.xml Structure
+> **The current standard is PHP without autowiring** — see
+> [DEPENDENCY-INJECTION.md](DEPENDENCY-INJECTION.md). Shopware's `XmlFileLoader` carries
+> `@deprecated tag:v6.8.0`, so the XML below describes what existing plugins still look
+> like, not how a new one is written. The autowiring sections are kept for reading old
+> code, not for writing new.
+
+## services.xml Structure (legacy)
 
 ```xml
 <?xml version="1.0" ?>
@@ -48,7 +54,7 @@ Shopware uses Symfony's DI container. Plugin services are registered in `src/Res
 </container>
 ```
 
-## Autowiring (Recommended)
+## Autowiring (legacy — not used in new plugins)
 
 With `<defaults autowire="true" autoconfigure="true"/>`, most services only need the `<service>` tag:
 
@@ -120,7 +126,7 @@ class DecoratedProductRoute extends AbstractProductDetailRoute
 | `shopware.payment.method.prepared` | Prepared payment handler |
 | `shopware.payment.method.refund` | Refund handler |
 | `shopware.payment.method.recurring` | Recurring payment handler |
-| `shopware.flow.action` | Flow builder action |
+| `flow.action` | Flow builder action |
 | `shopware.rule.definition` | Custom rule |
 | `console.command` | CLI command (auto with `autoconfigure`) |
 | `shopware.entity.extension` | Entity extension |

@@ -20,7 +20,7 @@ curl -s "http://127.0.0.1:8000/api/oauth/token" -H "Content-Type: application/js
 
 # Local only: password grant
 curl -s -X POST "http://localhost:8000/api/oauth/token" -H "Content-Type: application/json" \
-  -d '{"grant_type":"password","client_id":"administration","scopes":"write","username":"admin","password":"shopware"}'
+  -d '{"grant_type":"password","client_id":"administration","scopes":"write","username":"'"$SHOPWARE_ADMIN_USERNAME"'","password":"'"$SHOPWARE_ADMIN_PASSWORD"'"}'
 # → access_token (expires_in 600 s, has a refresh_token)
 ```
 
@@ -142,7 +142,7 @@ curl -X POST "http://localhost:8000/api/oauth/token" \
     "client_id": "administration",
     "scopes": "write",
     "username": "admin",
-    "password": "shopware"
+    "password": "$SHOPWARE_ADMIN_PASSWORD"
   }'
 ```
 

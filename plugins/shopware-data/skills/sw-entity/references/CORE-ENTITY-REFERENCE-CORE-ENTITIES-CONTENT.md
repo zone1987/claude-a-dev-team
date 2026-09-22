@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 89 definitions
 
-
 ## Contents
 
 - [Content/CMS](#contentcms)
@@ -160,7 +159,6 @@
 | `config` | `config` | SlotConfigField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
 
-
 ## Content/Category
 
 ### `category` [E]
@@ -267,7 +265,6 @@
 |-------|---------|------|-------|
 | `seoUrl` | `seo_url` | StringField | ApiAware |
 
-
 ## Content/Flow
 
 ### `flow` [E]
@@ -335,7 +332,6 @@
 | `id` | `id` | IdField | PrimaryKey |
 | `name` | `name` | StringField | Required |
 | `config` | `config` | FlowTemplateConfigField |  |
-
 
 ## Content/ImportExport
 
@@ -417,7 +413,6 @@
 
 **Translated fields:** `label`
 
-
 ## Content/LandingPage
 
 ### `landing_page` [E]
@@ -496,7 +491,6 @@
 ### `sales_channel_landing_page` [E]
 
 **Class:** `SalesChannelLandingPageDefinition`
-
 
 ## Content/MailTemplate
 
@@ -618,7 +612,6 @@
 |-------|---------|------|-------|
 | `name` | `name` | StringField | Required |
 | `` | `` | CustomFields | ApiAware |
-
 
 ## Content/Media
 
@@ -818,7 +811,6 @@
 | `alt` | `alt` | LongTextField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
 
-
 ## Content/Newsletter
 
 ### `newsletter_recipient` [E]
@@ -867,7 +859,6 @@
 ### `sales_channel_newsletter_recipient` [E]
 
 **Class:** `SalesChannelNewsletterRecipientDefinition`
-
 
 ## Content/Product
 
@@ -1604,7 +1595,6 @@
 | `order` | OneToOne | `OrderDefinition` |
 | `salesChannel` | ManyToOne | `SalesChannelDefinition` |
 
-
 ## Content/Property
 
 ### `property_group` [E]
@@ -1683,7 +1673,6 @@
 | `position` | `position` | IntField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
 
-
 ## Content/Rule
 
 ### `rule` [E]
@@ -1755,7 +1744,6 @@
 |-------------|------|--------|
 | `rule` | ManyToOne | `RuleDefinition` |
 | `tag` | ManyToOne | `TagDefinition` |
-
 
 ## Content/SEO
 

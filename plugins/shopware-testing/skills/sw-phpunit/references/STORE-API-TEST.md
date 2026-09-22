@@ -27,9 +27,11 @@ public function testStoreApiRoute(): void
 ```php
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
 use Shopware\Core\Framework\Test\TestCaseBase\SalesChannelApiTestBehaviour;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-class ProductRouteTest extends TestCase
+#[CoversClass(ProductRoute::class)]
+final class ProductRouteTest extends TestCase
 {
     use IntegrationTestBehaviour;
     use SalesChannelApiTestBehaviour;

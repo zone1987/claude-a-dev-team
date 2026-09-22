@@ -37,9 +37,15 @@ cannot express. Measured against `vendor/shopware/core`: `@class` appears zero t
 Generic and shape types (`list<>`, `array<k,v>`, `Collection<>`) are mandatory wherever
 they apply. Adding tags never removes type information.
 
-`#[Package('YourPlugin')]` is used **in addition**, as the core does, because Shopware
-reads the attribute at runtime while `@package` is inert. It needs an ignore rule in
-`phpstan.neon` — the attribute declares a whitelist of core domain names.
+`#[Package('{PluginName}.{Area}')]` is used **in addition** to `@package`, because
+Shopware reads the attribute at runtime while the DocBlock tag is inert.
+
+**It is the plugin's own attribute, not the core's.** Shopware's
+`Shopware\Core\Framework\Log\Package` is marked `@internal`, and its `PackageString`
+type lists the core's own domains only — so using it both reaches into internal API and
+forces an `ignoreErrors` entry in `phpstan.neon`. A plugin ships its own attribute class
+under `src/Framework/Log/Package.php`, which carries the same meaning at neither cost.
+→ `shopware-core` → `sw-plugin` → `PLUGIN-PACKAGE-ATTRIBUTE.md`
 
 ## The nineteen rules that must be off
 

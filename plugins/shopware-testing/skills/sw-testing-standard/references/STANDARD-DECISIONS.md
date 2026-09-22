@@ -79,12 +79,12 @@ var/
 src/Resources/app/*/coverage/
 
 ### Playwright output
-tests/Acceptance/.env
-tests/Acceptance/test-results/
-tests/Acceptance/playwright-report/
-tests/Acceptance/report.xml
-tests/Acceptance/blob-report/
-tests/Acceptance/.cache/
+tests/E2E/.env
+tests/E2E/test-results/
+tests/E2E/playwright-report/
+tests/E2E/report.xml
+tests/E2E/blob-report/
+tests/E2E/.cache/
 
 ### Logs, except the mutation baselines below
 *.log
@@ -180,15 +180,28 @@ Everything else is removed, and a report from the global teardown is treated as 
 the earlier levels rather than as the teardown doing its job.
 → [STANDARD-CLEANUP.md](STANDARD-CLEANUP.md)
 
-## Git is the plugin owner's
+## Git: commit on a feature branch, never push, and ask first
 
-No tooling and no assistant runs a git command that writes — not `commit`, not `add`, not
-`branch`, not `rm --cached`. Work is left in the working tree; `git status` and `git diff`
-is how the owner sees it.
+**Three rules, in this order.**
 
-This is stricter than it looks: `git rm --cached` to untrack a directory is a git write,
-even though nothing is deleted from disk. Change the `.gitignore`, say what remains to be
-done, and leave it.
+**1. Ask before the first commit of a project.** At the start of a piece of work, ask
+whether committing is wanted at all. **A "no" is binding for the whole project** — from
+then on the work stays in the working tree and `git status` plus `git diff` is how the
+owner sees it. The question is asked once, not per commit.
+
+**2. Commit only on a feature branch.** Where committing was agreed, it happens on a
+feature branch and nowhere else. On `main`, `master`, `trunk` or a release branch nothing
+is committed — branch first, or leave the work uncommitted and say so.
+
+**3. Never `git push`.** Not once, not "just this branch", not after a green gate. The
+owner pushes after their own review.
+
+**Why push is the one that is absolute:** it is the only step here that cannot be quietly
+undone once somebody else has fetched. Commit, rebase and reset all stay locally
+repairable.
+
+Within those rules the ordinary writing commands — `add`, `commit`, `branch`,
+`rm --cached` — are available. Outside them nothing is written.
 
 ## Read the source before deciding
 

@@ -71,8 +71,6 @@ sw-paas command create       # Run a one-off command
 
 ## Deep dive
 
-[ENVIRONMENTS-DETAIL.md](ENVIRONMENTS-DETAIL.md)
-
 ## Shopware PaaS Native — Environments & Applications (Deep Reference)
 
 Sources: `products/paas/shopware/guides/clone-application.md`,

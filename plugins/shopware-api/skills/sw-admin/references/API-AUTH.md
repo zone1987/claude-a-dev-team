@@ -1,5 +1,11 @@
 # Shopware 6 — Admin API authentication (OAuth2)
 
+> **Credentials come from `shopware/.env.local`, never hard-coded.**
+> `SHOPWARE_ADMIN_USERNAME`, `SHOPWARE_ADMIN_PASSWORD`, `SHOPWARE_ACCESS_KEY_ID`,
+> `SHOPWARE_SECRET_ACCESS_KEY`. They are never printed to a console, never committed, and
+> never written into documentation — a default pair in an example is the pair somebody
+> copies into a shop that is reachable from the internet.
+
 Fetch a token at `POST /api/oauth/token`, then send `Authorization: Bearer {access_token}` on all Admin API requests.
 
 ## client_credentials (integrations, production)
@@ -16,7 +22,7 @@ curl -X POST "$BASE/api/oauth/token" -H "Content-Type: application/json" -d '{
 ```bash
 curl -X POST "$BASE/api/oauth/token" -H "Content-Type: application/json" -d '{
   "grant_type": "password", "client_id": "administration",
-  "username": "admin", "password": "shopware"
+  "username": "$SHOPWARE_ADMIN_USERNAME", "password": "$SHOPWARE_ADMIN_PASSWORD"
 }'
 ```
 

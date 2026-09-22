@@ -101,11 +101,25 @@ class MinCartQuantityRule extends Rule
 
 ## Service Registration
 
-```xml
-<service id="FfContentPlus\Core\Rule\MinCartQuantityRule">
-    <tag name="shopware.rule.definition"/>
-</service>
+```php
+<?php declare(strict_types=1);
+
+namespace FfContentPlus\Resources\config\services;
+
+use FfContentPlus\Core\Rule\MinCartQuantityRule;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(MinCartQuantityRule::class)
+        // Without autoconfigure this tag is not inferred.
+        ->tag('shopware.rule.definition');
+};
 ```
+
+Without the tag the rule class exists, the service is registered, and the rule never
+appears in the rule builder. Nothing reports it.
 
 ## Rule Scopes
 

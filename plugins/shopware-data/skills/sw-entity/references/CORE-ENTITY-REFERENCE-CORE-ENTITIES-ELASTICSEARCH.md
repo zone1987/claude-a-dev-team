@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 2 definitions
 
-
 ## Elasticsearch
 
 ### `abstract_elasticsearch` [E]

@@ -34,6 +34,7 @@ export default class FfExamplePlugin extends window.PluginBaseClass<FfExampleOpt
 ```
 
 Declare global types (`window.PluginManager`, `window.PluginBaseClass`) via `.d.ts` if not present.
-Build via Storefront Vite/webpack (transpiles `.ts`). Lint: `composer eslint:storefront`.
+Build via `shopware-cli project storefront-build --only-extensions <PluginName>`.
+Lint: `npm --prefix src/Resources/app/storefront run lint`.
 
 → tsconfig details, global window types, AJAX/HttpClient typing, examples: [STOREFRONT-TYPESCRIPT-TYPESCRIPT.md](STOREFRONT-TYPESCRIPT-TYPESCRIPT.md)

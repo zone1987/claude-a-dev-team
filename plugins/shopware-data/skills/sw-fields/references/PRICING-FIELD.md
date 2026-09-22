@@ -5,6 +5,7 @@ Prices are stored in a `PriceField` (JSON per currency with net/gross + currency
 ```php
 (new PriceField('price', 'price'))->addFlags(new Required()),
 ```
+
 ```php
 $payload = ['price' => [[
     'currencyId' => Defaults::CURRENCY,

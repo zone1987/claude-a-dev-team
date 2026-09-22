@@ -50,5 +50,5 @@ sources and embedded; depth sits in flat reference files beside each SKILL.md, l
 |---|---|
 | `/sw-flow-action` | Scaffolds a Shopware 6 Flow Builder action (PHP + administration component) incl |
 | `/sw-rule` | Scaffolds a Shopware 6 custom rule (PHP rule + administration condition component) for the Rule Builder, incl |
-| `/sw-scheduled-task` | Scaffolds a Shopware 6 ScheduledTask + handler including services.xml registration (task tag + message handler) |
+| `/sw-scheduled-task` | Scaffolds a Shopware 6 ScheduledTask + handler including services.php registration (task tag + message handler) |
 | `/sw-store-api-route` | Scaffolds a Shopware 6 Store API route (abstract + route + response struct) with _routeScope store-api and registration |

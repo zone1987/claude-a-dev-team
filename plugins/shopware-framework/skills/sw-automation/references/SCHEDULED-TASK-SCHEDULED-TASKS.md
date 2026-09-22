@@ -95,16 +95,38 @@ class CleanupTaskHandler extends ScheduledTaskHandler
 
 ## Service Registration
 
-```xml
-<service id="FfContentPlus\ScheduledTask\CleanupTask">
-    <tag name="shopware.scheduled.task"/>
-</service>
+```php
+<?php declare(strict_types=1);
 
-<service id="FfContentPlus\ScheduledTask\CleanupTaskHandler">
-    <argument type="service" id="scheduled_task.repository"/>
-    <argument type="service" id="logger"/>
-</service>
+namespace FfContentPlus\Resources\config\services;
+
+use FfContentPlus\ScheduledTask\CleanupTask;
+use FfContentPlus\ScheduledTask\CleanupTaskHandler;
+use FfContentPlus\Service\MyCleanupService;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(CleanupTask::class)
+        // Without autoconfigure this tag is not inferred.
+        ->tag('shopware.scheduled.task');
+
+    $services->set(CleanupTaskHandler::class)
+        ->args([
+            service('scheduled_task.repository'),
+            service('logger'),
+            service(MyCleanupService::class),
+        ])
+        // Without autoconfigure this tag is not inferred from #[AsMessageHandler].
+        ->tag('messenger.message_handler');
+};
 ```
+
+Both tags are silent when missing: an untagged task is never registered by
+`scheduled-task:register`, and an untagged handler is never called when the task is due.
 
 ## Common Intervals
 
@@ -122,16 +144,16 @@ class CleanupTaskHandler extends ScheduledTaskHandler
 
 ```bash
 # List all scheduled tasks
-bin/console scheduled-task:list
+ddev exec bin/console scheduled-task:list
 
 # Run due tasks manually
-bin/console scheduled-task:run
+ddev exec bin/console scheduled-task:run
 
 # Run a specific task
-bin/console scheduled-task:run-single ff_content_plus.cleanup
+ddev exec bin/console scheduled-task:run-single ff_content_plus.cleanup
 
 # Register new tasks (after plugin install/update)
-bin/console scheduled-task:register
+ddev exec bin/console scheduled-task:register
 ```
 
 ## Best Practices

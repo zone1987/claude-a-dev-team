@@ -13,8 +13,6 @@ Controls which fields and entities are readable or writable through which API so
 
 This keeps internal data out of the Admin and Store API without a separate entity. Complement it with ACL for admin permissions (`shopware-framework` → `sw-api-acl`).
 
-→ Protection details: [PROTECTION-DETAIL.md](PROTECTION-DETAIL.md)
-
 ## Entity Protection
 
 Scope-based access control at the entity level, complementing field-level `WriteProtected` flags.

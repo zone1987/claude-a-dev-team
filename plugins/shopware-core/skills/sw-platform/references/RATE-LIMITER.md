@@ -11,8 +11,6 @@ $this->rateLimiter->ensureAccepted('ff_content_import', $cacheKey);
 Policy types: `time_backoff` (increasing wait time) and `system_config`. Reset the limiter after success via
 `reset($key)`. Worth applying to public Store API endpoints to prevent abuse.
 
-→ Policies, config examples, integration: [RATE-LIMITER-DETAIL.md](RATE-LIMITER-DETAIL.md)
-
 ## Rate Limiter
 
 ### Overview
@@ -21,16 +19,19 @@ Plugins can add rate limiting to custom routes to prevent abuse. Shopware uses S
 
 ### Adding a Rate Limiter
 
-#### Configuration (services.xml)
+#### Configuration (`src/Resources/config/services/rate-limiter.php`)
 
-```xml
-<service id="FfContentPlus\Core\Framework\RateLimiter\FfContentPlusRateLimiterFactory"
-         class="Shopware\Core\Framework\RateLimiter\RateLimiterFactory">
-    <argument>ff_content_plus_api</argument>
-    <argument>%shopware.api.rate_limiter.ff_content_plus_api%</argument>
-    <argument type="service" id="cache.rate_limiter"/>
-    <argument type="service" id="lock.factory"/>
-</service>
+PHP, not XML (`XmlFileLoader` is `@deprecated tag:v6.8.0`), explicitly and without autowiring
+(→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`).
+
+```php
+$services->set(FfContentPlusRateLimiterFactory::class, RateLimiterFactory::class)
+    ->args([
+        'ff_content_plus_api',
+        param('shopware.api.rate_limiter.ff_content_plus_api'),
+        service('cache.rate_limiter'),
+        service('lock.factory'),
+    ]);
 ```
 
 #### Rate Limiter Configuration (config/packages/)

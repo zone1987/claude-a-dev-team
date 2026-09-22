@@ -277,6 +277,6 @@ ddev exec shopware-cli project storefront-build --only-extensions FfContentPlus
 ddev exec shopware-cli project storefront-watch --only-extensions FfContentPlus
 
 # Without Shopware CLI
-ddev exec bin/build-storefront.sh
-ddev exec bin/watch-storefront.sh
+ddev exec shopware-cli project storefront-build --only-extensions <PluginName>
+ddev exec shopware-cli project storefront-watch --only-extensions <PluginName>
 ```

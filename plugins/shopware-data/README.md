@@ -56,5 +56,5 @@ sources and embedded; depth sits in flat reference files beside each SKILL.md, l
 | `/sw-custom-field` | Scaffolds a CustomFieldSet including CustomFields for a Shopware 6 entity (migration or lifecycle), with types and entity relation |
 | `/sw-entity-extension` | Scaffolds an EntityExtension to add fields/associations to an existing core entity (product, order, customer, ...) — incl |
 | `/sw-entity-map` | Scans the current Shopware project (core + custom/plugins) and creates or updates the entity catalogue .shopware-catalog/entities.md (entities, fields, flags, associations, translations, custom fields, custom entities) |
-| `/sw-entity` | Scaffolds a complete Shopware 6 DAL entity — definition + entity class + collection + migration + services.xml registration (optionally translations) |
+| `/sw-entity` | Scaffolds a complete Shopware 6 DAL entity — definition + entity class + collection + migration + services.php registration (optionally translations) |
 | `/sw-migration` | Scaffolds a Shopware 6 database migration (MigrationStep) with the correct timestamp, update()/updateDestructive() and Shopware conventions (BINARY(16) id, DATETIME(3)) |

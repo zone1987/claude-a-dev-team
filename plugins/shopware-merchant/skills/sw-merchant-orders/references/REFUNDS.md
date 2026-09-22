@@ -2,7 +2,6 @@
 
 Complete reference for returns management and payment cancellation handling.
 
-
 ## Key facts
 
 - **Returns management**: from Shopware **Rise** upwards (Commercial Extension required)

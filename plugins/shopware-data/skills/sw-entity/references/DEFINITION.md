@@ -21,7 +21,17 @@ class FfExampleDefinition extends EntityDefinition
 }
 ```
 
-Register it in `services.xml` with the tag `shopware.entity.definition`. Table name = `ENTITY_NAME` (snake_case),
+Register it in `src/Resources/config/services/definitions.php` — PHP, not XML (`XmlFileLoader` is
+`@deprecated tag:v6.8.0`), explicitly and without autowiring — with the tag `shopware.entity.definition`
+(→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`):
+
+```php
+$services->set(MyEntityDefinition::class)
+    // Without autoconfigure this tag is not inferred.
+    ->tag('shopware.entity.definition');
+```
+
+Table name = `ENTITY_NAME` (snake_case),
 the PK is always an `IdField` with a binary UUIDv7. Create the schema through a migration (`sw-database-migration`).
 
 → Core classes and architecture: [DEFINITION-CORE-CLASSES.md](DEFINITION-CORE-CLASSES.md)

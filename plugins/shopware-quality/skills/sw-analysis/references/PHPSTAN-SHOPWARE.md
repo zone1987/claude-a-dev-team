@@ -24,7 +24,8 @@ Level **6–8** for plugin development. The Shopware rules are level-independent
 
 ```yaml
 parameters:
-    level: 8
+    # The binding standard is `max`, not a numbered level — see PHPSTAN.md.
+    level: max
     paths:
         - src
 ```

@@ -394,6 +394,7 @@ NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-k
 ```bash
 pnpm add -D @vitejs/plugin-basic-ssl
 ```
+
 ```ts
 // nuxt.config.ts
 devServer: { https: true },

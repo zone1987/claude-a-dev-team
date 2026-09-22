@@ -7,7 +7,7 @@ Administration integriert — ohne externe Systeme oder komplexe Integrationen.
 
 **Mindestversion:** Shopware 6.5.7.0 / 6.6.3.0 / ab 6.7.1.0 nativ
 
-Detaillierte Referenz: [PAYMENTS-DETAIL.md](PAYMENTS-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Payments — Vollständige Referenz
 

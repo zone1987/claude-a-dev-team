@@ -22,7 +22,9 @@ an **event-driven** extension system. Keep these fixed points in mind before sta
 
 ## Bundle structure (source)
 `src/Core` (business + framework), `src/Administration` (Vue 3 admin), `src/Storefront` (Twig/JS),
-`src/Elasticsearch`. Plugins live under `custom/plugins/<PluginName>` with `src/` as the PSR-4 root.
+`src/Elasticsearch`. Plugins live under `custom/plugins/{PluginName}` (installed third-party extensions) or
+`custom/static-plugins/{PluginName}` (the ones we develop), with `src/` as the PSR-4 root.
+Tree: [PLUGIN-STRUCTURE.md](PLUGIN-STRUCTURE.md).
 
 ## Stack fixed points (6.7)
 PHP 8.2+, Symfony 7, DBAL 4, Vue 3 + Pinia/Vite (admin, `mt-*`), Twig + Bootstrap 5 + Webpack (storefront),

@@ -217,7 +217,8 @@ Compilation is **atomic**: the new output is written and only then swapped in, s
 leaves the running shop untouched. A theme change is not visible until a compile has run — this is
 the reason a changed variable "does nothing" in production.
 
-For development, the watcher (`bin/watch-storefront.sh`) recompiles on save; it does not replace a
+For development, the watcher (`shopware-cli project storefront-watch --only-extensions <PluginName>`)
+recompiles on save; it does not replace a
 real compile before deployment.
 
 ## Common mistakes

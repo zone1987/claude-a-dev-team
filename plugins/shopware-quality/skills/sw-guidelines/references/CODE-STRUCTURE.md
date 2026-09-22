@@ -123,7 +123,9 @@ src/
 │       └── Migration*.php
 └── Resources/
     └── config/
-        └── services.xml
+        ├── services.php            # PHP, not XML; imports one file per area
+        └── services/
+            └── definitions.php
 ```
 
 **Conventions:**
@@ -149,7 +151,8 @@ MyPlugin/
 │   │       └── Migration*.php
 │   ├── Resources/
 │   │   ├── config/
-│   │   │   ├── services.xml
+│   │   │   ├── services.php     # PHP, not XML; imports one file per area
+│   │   │   ├── services/        # one file per area (definitions, subscribers, commands, …)
 │   │   │   └── config.xml       # plugin configuration
 │   │   ├── views/               # Twig templates (overrides)
 │   │   ├── storefront/          # storefront JS/SCSS assets

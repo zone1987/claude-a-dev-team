@@ -64,8 +64,6 @@ shopware variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 
 ## Deep dive
 
-[BUILD-DEPLOY-DETAIL.md](BUILD-DEPLOY-DETAIL.md)
-
 ## Shopware PaaS (Platform.sh/Upsun) — Build & Deploy (Deep Reference)
 
 Sources: `products/paas/shopware-paas/build-deploy.md`,

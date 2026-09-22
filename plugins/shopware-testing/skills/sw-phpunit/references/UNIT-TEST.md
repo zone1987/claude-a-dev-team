@@ -71,7 +71,7 @@ $context->method('getCurrencyId')->willReturn(Defaults::CURRENCY);
 
 // A call is asserted: a mock.
 $logger = static::createMock(LoggerInterface::class);
-$logger->expects(static::once())->method('warning');
+$logger->expects($this->once())->method('warning');
 ```
 
 PHPUnit 12 reports a mock without expectations as a notice, and `failOnRisky` turns that

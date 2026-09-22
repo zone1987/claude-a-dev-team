@@ -1,4 +1,14 @@
-# Shopware 6 — Deptrac
+# Shopware 6 — Deptrac (superseded)
+
+> **Architecture rules run through phpat, not Deptrac.** phpat executes inside PHPStan and
+> shares its type resolution, so the check costs almost nothing and runs on every
+> `composer gate`. Deptrac parses independently, knows less, and needs its own run, its own
+> configuration and its own place in the gate.
+>
+> → `shopware-testing` → `sw-testing-standard` → `STANDARD-ARCHITECTURE.md`
+>
+> What follows describes Deptrac for reading projects that still use it. **Do not set it up
+> in a new plugin.**
 
 Enforces layer and dependency rules (for example: Core must not access Storefront; domains stay decoupled).
 

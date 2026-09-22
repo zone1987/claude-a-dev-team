@@ -26,7 +26,7 @@ und über APIs und Webhooks spezifische Funktionen bereitstellen.
 
 **Einstellungen > System > Shopware Services** — Services einzeln aktivieren.
 
-Detaillierte Referenz: [OVERVIEW-DETAIL.md](OVERVIEW-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Services — Vollständige Referenz
 

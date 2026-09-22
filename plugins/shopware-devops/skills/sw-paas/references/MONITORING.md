@@ -71,8 +71,6 @@ sw-paas application deploy get    # event history of a deployment
 
 ## Deep dive
 
-[MONITORING-DETAIL.md](MONITORING-DETAIL.md)
-
 ## Shopware PaaS Native — Monitoring (Deep Reference)
 
 Sources: `products/paas/shopware/monitoring/index.md`,

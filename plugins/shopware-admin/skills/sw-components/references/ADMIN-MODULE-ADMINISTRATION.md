@@ -225,6 +225,6 @@ ddev exec shopware-cli project admin-build --only-extensions FfContentPlus
 ddev exec shopware-cli project admin-watch --only-extensions FfContentPlus
 
 # Without Shopware CLI
-ddev exec bin/build-administration.sh
-ddev exec bin/watch-administration.sh
+ddev exec shopware-cli project admin-build --only-extensions <PluginName>
+ddev exec shopware-cli project admin-watch --only-extensions <PluginName>
 ```

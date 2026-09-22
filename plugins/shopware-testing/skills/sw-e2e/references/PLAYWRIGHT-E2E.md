@@ -1,8 +1,9 @@
 # Shopware 6 — Playwright end-to-end
 
-**The full setup, the required environment variables and the clean-up rule live in
-`sw-testing-standard` → `STANDARD-PLAYWRIGHT.md` and `STANDARD-CLEANUP.md`.** This file
-covers writing a spec once that exists.
+**The full setup — the location `tests/E2E/`, the `avhulst/ddev-browserless` add-on, the
+complete `playwright.config.ts`, the three `.env` files, the pinned versions and the
+clean-up rule — lives in the `sw-testing-standard` skill, `STANDARD-PLAYWRIGHT.md` and
+`STANDARD-CLEANUP.md`.** This file covers writing a spec once that exists.
 
 ## Not "sparingly"
 
@@ -95,18 +96,35 @@ test('lists the offers once a supplier carries the product', async ({
 
 ## Running
 
+The specs run inside the DDEV web container, but the browser does not live there: it runs
+in a container of its own, provided by the
+[`avhulst/ddev-browserless`](https://github.com/avhulst/ddev-browserless) add-on and
+reached over `ws://browserless:3000/chromium/playwright`. Start it on the host first:
+
 ```bash
-ddev playwright test              # from the directory holding playwright.config.ts
-ddev playwright --ui              # UI mode in the browser
+ddev browserless on
+ddev exec -d /var/www/html/shopware/custom/static-plugins/<PLUGIN-NAME>/tests/E2E \
+    npx playwright test
 ```
 
-Provided by the `zone1987/ddev-playwright` add-on, which ships the browsers preinstalled.
+`-d` sets the working directory **inside the container** — the one holding
+`playwright.config.ts`. The report afterwards:
+
+```bash
+npx playwright show-report tests/E2E/playwright-report
+```
+
 Never `docker exec`; a restart is `ddev restart`.
+
+**If a long test dies with `Target page, context or browser has been closed`**, it is not
+the test: `BROWSERLESS_TIMEOUT` in `.ddev/.env.browserless` is too small. The value and
+the reasoning are in the `sw-testing-standard` skill, `STANDARD-PLAYWRIGHT.md`.
 
 ## Not part of `composer gate`
 
-They need a running shop with the plugin installed and its storefront built. Run them
-before a release and after any change to a template or an administration page.
+They need a running shop with the plugin installed, its storefront built, and the
+browserless container started. Run them before a release and after any change to a
+template or an administration page.
 
 ## The suite is not finished until it leaves no trace
 

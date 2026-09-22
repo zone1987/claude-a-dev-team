@@ -30,7 +30,7 @@ yet, **create it first** — the standard specifies every file.
    | Architecture | `tests/Architecture/` | none — phpat, registered in `phpstan.neon` |
    | Jest admin | `src/Resources/app/administration/src/**/*.spec.js` | beside the code |
    | Jest storefront | `src/Resources/app/storefront/src/**/*.spec.js` | beside the code |
-   | Playwright | `tests/Acceptance/tests/*.spec.ts` | the acceptance fixture |
+   | Playwright | `tests/E2E/tests/*.spec.ts` | the acceptance fixture |
 
 3. **Write it to the standard's rules**, which are not stylistic preferences:
    - `#[CoversClass(…)]` on the class. **Never `#[CoversNothing]`** — a test that covers
@@ -51,8 +51,14 @@ yet, **create it first** — the standard specifies every file.
    composer test:unit
    composer test:integration
    npm --prefix src/Resources/app/administration run unit
-   ddev playwright test
+   ddev browserless on
+   ddev exec -d /var/www/html/shopware/custom/static-plugins/<PluginName>/tests/E2E \
+       npx playwright test
    ```
+
+   The Playwright specs drive a Chromium in its own container; `ddev browserless on` starts
+   it, and it has to be running before the specs are. The details are in the
+   `sw-testing-standard` skill, `STANDARD-PLAYWRIGHT.md`.
 
 5. **Report the coverage consequence.** If the new test does not bring its subject to
    100 %, say what is still uncovered and why.
@@ -63,4 +69,5 @@ yet, **create it first** — the standard specifies every file.
 - **Never weaken an assertion to make a test pass.** The failure is the finding.
 - **Never write a tautological assertion** — `assertInstanceOf` on a statically known type
   reaches the line and proves nothing. PHPStan rejects it, correctly.
-- **Never run a git command that writes.**
+- **Git: commit on a feature branch, never push, and ask first** — a "no" at the start of
+  a project holds throughout.

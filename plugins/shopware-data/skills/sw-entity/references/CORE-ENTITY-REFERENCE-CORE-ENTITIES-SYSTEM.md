@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 64 definitions
 
-
 ## Contents
 
 - [System/Country](#systemcountry)
@@ -121,7 +120,6 @@
 
 **Class:** `SalesChannelCountryStateDefinition`
 
-
 ## System/Currency
 
 ### `currency` [E]
@@ -187,7 +185,6 @@
 
 **Class:** `SalesChannelCurrencyDefinition`
 
-
 ## System/CustomEntity
 
 ### `custom_entity` [E]
@@ -234,7 +231,6 @@
 ### `dynamic_translation_entity` [T]
 
 **Class:** `DynamicTranslationEntityDefinition`
-
 
 ## System/CustomField
 
@@ -299,7 +295,6 @@
 |-------------|------|--------|
 | `customFieldSet` | ManyToOne | `CustomFieldSetDefinition` |
 
-
 ## System/DeliveryTime
 
 ### `delivery_time` [E]
@@ -331,7 +326,6 @@
 |-------|---------|------|-------|
 | `name` | `name` | StringField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
-
 
 ## System/Integration
 
@@ -372,7 +366,6 @@
 |-------------|------|--------|
 | `integration` | ManyToOne | `IntegrationDefinition` |
 | `role` | ManyToOne | `AclRoleDefinition` |
-
 
 ## System/Language
 
@@ -460,7 +453,6 @@
 
 **Class:** `SalesChannelLanguageDefinition`
 
-
 ## System/Locale
 
 ### `locale` [E]
@@ -492,7 +484,6 @@
 | `name` | `name` | StringField | ApiAware |
 | `territory` | `territory` | StringField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
-
 
 ## System/NumberRange
 
@@ -589,7 +580,6 @@
 |-------|---------|------|-------|
 | `typeName` | `type_name` | StringField | Required |
 | `` | `` | CustomFields |  |
-
 
 ## System/SalesChannel
 
@@ -848,7 +838,6 @@
 | `descriptionLong` | `description_long` | LongTextField | ApiAware |
 | `` | `` | CustomFields |  |
 
-
 ## System/Snippet
 
 ### `snippet` [E]
@@ -884,7 +873,6 @@
 |-------------|------|--------|
 | `snippets` | OneToMany | `SnippetDefinition` |
 | `salesChannelDomains` | OneToMany | `SalesChannelDomainDefinition` |
-
 
 ## System/StateMachine
 
@@ -1000,7 +988,6 @@
 | `name` | `name` | StringField | Required |
 | `` | `` | CustomFields | ApiAware |
 
-
 ## System/SystemConfig
 
 ### `system_config` [E]
@@ -1017,7 +1004,6 @@
 | Association | Type | Target |
 |-------------|------|--------|
 | `salesChannel` | ManyToOne | `SalesChannelDefinition` |
-
 
 ## System/Tag
 
@@ -1041,7 +1027,6 @@
 | `newsletterRecipients` | ManyToMany | `NewsletterRecipientDefinition` |
 | `landingPages` | ManyToMany | `LandingPageDefinition` |
 | `rules` | ManyToMany | `RuleDefinition` |
-
 
 ## System/Tax
 
@@ -1151,7 +1136,6 @@
 |-------|---------|------|-------|
 | `typeName` | `type_name` | StringField | Required |
 
-
 ## System/Unit
 
 ### `unit` [E]
@@ -1181,7 +1165,6 @@
 | `shortCode` | `short_code` | StringField | ApiAware |
 | `name` | `name` | StringField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
-
 
 ## System/User
 

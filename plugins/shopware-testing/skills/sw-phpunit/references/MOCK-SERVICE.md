@@ -68,7 +68,7 @@ final class MyServiceTest extends TestCase
     {
         // createMock here, because the call itself is the assertion.
         $provider = static::createMock(SomeExternalDependency::class);
-        $provider->expects(static::once())->method('call')->willReturn('a-value');
+        $provider->expects($this->once())->method('call')->willReturn('a-value');
 
         static::getContainer()->set(SomeExternalDependency::class, $provider);
 

@@ -5,7 +5,7 @@ Reference for managing and customising translation texts in the shop and storefr
 **Path:** Einstellungen (Settings) > Shop > Textbausteine  
 **Available from:** 6.7.5.0 (current docs)
 
-Detailed reference: [SNIPPETS-DETAIL.md](SNIPPETS-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – Textbausteine (Snippets) – complete reference
 

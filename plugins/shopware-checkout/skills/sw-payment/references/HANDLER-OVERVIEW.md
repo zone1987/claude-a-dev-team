@@ -51,37 +51,22 @@ namespace FfContentPlus\Checkout\Payment;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
 use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
+use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Struct\Struct;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @class InvoicePaymentHandler
- * @package FfContentPlus\Checkout\Payment
- */
 #[Package('custom-plugins')]
 class InvoicePaymentHandler extends AbstractPaymentHandler
 {
-    /**
-     * @param PaymentHandlerType $type
-     * @param string $paymentMethodId
-     * @param Context $context
-     * @return bool
-     */
     public function supports(PaymentHandlerType $type, string $paymentMethodId, Context $context): bool
     {
         return $type === PaymentHandlerType::SYNC;
     }
 
-    /**
-     * @param Request $request
-     * @param PaymentTransactionStruct $transaction
-     * @param Context $context
-     * @param Struct|null $validateStruct
-     * @return RedirectResponse|null
-     */
+    /** @throws PaymentException */
     public function pay(
         Request $request,
         PaymentTransactionStruct $transaction,

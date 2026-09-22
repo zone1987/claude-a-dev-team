@@ -215,10 +215,14 @@ SELECT (SELECT COUNT(*) FROM shipping_method_translation WHERE name LIKE 'Test-%
        (SELECT COUNT(*) FROM sales_channel_translation WHERE name LIKE '%acceptance%') AS channels,
        (SELECT COUNT(*) FROM customer)                                             AS customers;" -N; }
 
+# One helper so the line stays readable; the path is the plugin's own.
+e2e() { ddev exec -d /var/www/html/shopware/custom/static-plugins/{PluginName}/tests/E2E \
+            npx playwright test; }
+
 count
-ddev playwright test
+e2e
 count
-ddev playwright test
+e2e
 count
 ```
 

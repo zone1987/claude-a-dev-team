@@ -1,28 +1,28 @@
-# Shopware 6 — Store-API-Endpunkte
+# Shopware 6 — Store API endpoints
 
-Base `/store-api`, Header `sw-access-key` (+ `sw-context-token`, `sw-store-api-auth`). Wichtigste Gruppen:
+Base `/store-api`, header `sw-access-key` (+ `sw-context-token`, `sw-store-api-auth`). Main groups:
 
-| Bereich | Endpunkte (Beispiele) |
+| Area | Endpoints (examples) |
 |---|---|
-| Kontext | `GET/PATCH /store-api/context` (Sprache/Währung/Versand/Zahlung wechseln) |
-| Katalog | `POST /store-api/product`, `POST /store-api/product/{id}`, `POST /store-api/search`, `POST /store-api/search-suggest` |
-| Listing | `POST /store-api/product-listing/{categoryId}` (Filter/Sort wie Criteria, `sw-admin-api-search`) |
-| Navigation/Kategorie | `POST /store-api/navigation/{activeId}/{rootId}`, `POST /store-api/category/{id}` |
-| Warenkorb | `GET /store-api/checkout/cart`, `POST /store-api/checkout/cart/line-item`, `PATCH .../line-item`, `DELETE .../line-item` |
-| Bestellung | `POST /store-api/checkout/order`, `GET /store-api/order`, `POST /store-api/handle-payment` |
-| Konto | `POST /store-api/account/login`, `/logout`, `/register`, `GET /store-api/account/customer`, `PATCH /store-api/account/change-*` |
-| Methoden | `POST /store-api/payment-method`, `POST /store-api/shipping-method` |
+| Context | `GET/PATCH /store-api/context` (switch language/currency/shipping/payment) |
+| Catalogue | `POST /store-api/product`, `POST /store-api/product/{id}`, `POST /store-api/search`, `POST /store-api/search-suggest` |
+| Listing | `POST /store-api/product-listing/{categoryId}` (filter/sort like Criteria, `sw-admin-api-search`) |
+| Navigation/category | `POST /store-api/navigation/{activeId}/{rootId}`, `POST /store-api/category/{id}` |
+| Cart | `GET /store-api/checkout/cart`, `POST /store-api/checkout/cart/line-item`, `PATCH .../line-item`, `DELETE .../line-item` |
+| Order | `POST /store-api/checkout/order`, `GET /store-api/order`, `POST /store-api/handle-payment` |
+| Account | `POST /store-api/account/login`, `/logout`, `/register`, `GET /store-api/account/customer`, `PATCH /store-api/account/change-*` |
+| Methods | `POST /store-api/payment-method`, `POST /store-api/shipping-method` |
 
 Search and listing requests take the same Criteria body (filter, sort, associations, aggregations) as the admin search.
-Commercial/Plugin-Erweiterungen (SwagCommercial, SwagCustomizedProducts, SwagDigitalSalesRooms) ergänzen weitere Routen.
+Commercial/plugin extensions (SwagCommercial, SwagCustomizedProducts, SwagDigitalSalesRooms) add further routes.
 
-→ Shop-spezifische Endpunkte inkl. installierter Plugins: OpenAPI-Katalog (`sw-api-catalog` / `/sw-api-map`).
-→ Eigene Store-API-Routen bauen: `shopware-framework` (`sw-store-api-route`).
+→ Shop-specific endpoints including installed plugins: OpenAPI catalogue (`sw-api-catalog` / `/sw-api-map`).
+→ Building your own Store API routes: `shopware-framework` (`sw-store-api-route`).
 
-## Shopware Store API — vollständige Endpunktliste (6.7)
+## Shopware Store API — complete endpoint list (6.7)
 
-Base-URL `/store-api`. Auth-Header: `sw-access-key` (Pflicht), `sw-context-token` (Kontext/Session).
-Quelle: offizielle OpenAPI (store-api-reference). 110 Operationen / 20 Bereiche.
+Base URL `/store-api`. Auth headers: `sw-access-key` (required), `sw-context-token` (context/session).
+Source: official OpenAPI (store-api-reference). 110 operations / 20 areas.
 
 ### Contents
 

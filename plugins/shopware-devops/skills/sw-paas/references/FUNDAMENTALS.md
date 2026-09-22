@@ -74,8 +74,6 @@ Installs `operator.yaml` (S3, Redis, cluster mode, OpenSearch).
 
 ## Deep dive
 
-[FUNDAMENTALS-DETAIL.md](FUNDAMENTALS-DETAIL.md)
-
 ## Shopware PaaS Native — Fundamentals (Deep Reference)
 
 Sources: `products/paas/shopware/fundamentals/` (account.md, organization.md, project.md,

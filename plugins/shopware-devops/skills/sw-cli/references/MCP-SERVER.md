@@ -113,6 +113,7 @@ url = "https://your-shop.example.com/api/_mcp"
 env_http_headers = { "sw-access-key" = "SHOPWARE_MCP_ACCESS_KEY", "sw-secret-access-key" = "SHOPWARE_MCP_SECRET_KEY" }
 enabled = true
 ```
+
 ```bash
 export SHOPWARE_MCP_ACCESS_KEY='SWIA...'
 export SHOPWARE_MCP_SECRET_KEY='...'
@@ -628,7 +629,16 @@ class OrdersTool extends McpToolResponse
 }
 ```
 
-Service tag in `services.xml`: `<tag name="shopware.mcp.tool"/>`.
+Register it in `src/Resources/config/services/mcp.php` — PHP, not XML (`XmlFileLoader` is
+`@deprecated tag:v6.8.0`), explicitly and without autowiring
+(→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`):
+
+```php
+$services->set(MyOrderTool::class)
+    ->args([service(ContextProvider::class)])
+    // Without autoconfigure this tag is not inferred.
+    ->tag('shopware.mcp.tool');
+```
 
 #### Via app (remote webhook)
 

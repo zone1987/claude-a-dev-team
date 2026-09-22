@@ -8,13 +8,11 @@ $this->bus->dispatch(new FfImportMessage($id));
 ```
 
 Transports: `async` (default) and `low_priority` (e.g. indexing). The worker consumes:
-`bin/console messenger:consume async low_priority`. In production run it as a daemon (Supervisor);
+`ddev exec bin/console messenger:consume async low_priority`. In production run it as a daemon (Supervisor);
 failed messages end up in the `failed` transport (`messenger:failed:*`).
 
 Suitable for long/expensive operations (import, mail sending, indexing). Recurring on a schedule → `sw-scheduled-task`.
 Own middleware: `sw-message-middleware`.
-
-→ Configuration, transports, retry: [MESSAGE-QUEUE-DETAIL.md](MESSAGE-QUEUE-DETAIL.md)
 
 ## Message Queue
 
@@ -138,11 +136,29 @@ class MyService
 
 ### Service Registration
 
-With autoconfigure, handlers are auto-tagged:
+```php
+<?php declare(strict_types=1);
 
-```xml
-<service id="FfContentPlus\MessageQueue\ImportProductHandler"/>
+namespace FfContentPlus\Resources\config\services;
+
+use FfContentPlus\MessageQueue\ImportProductHandler;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(ImportProductHandler::class)
+        ->args([service('product.repository')])
+        // Without autoconfigure this tag is not inferred from #[AsMessageHandler].
+        ->tag('messenger.message_handler');
+};
 ```
+
+`#[AsMessageHandler]` alone registers nothing here: the attribute is read through
+`registerForAutoconfiguration`, which this setup does not use. The class exists, the
+service is registered, and the message is never handled — the queue simply grows.
 
 ### Running the Worker
 

@@ -12,6 +12,7 @@ After `theme:compile` the assets end up in `public/theme/<uuid>/asset/`.
 {# Twig #}
 <img src="{{ asset('/assets/your-image.png', 'theme') }}">
 ```
+
 ```scss
 // SCSS
 body { background-image: url('#{$app-css-relative-asset-path}/your-image.png'); }

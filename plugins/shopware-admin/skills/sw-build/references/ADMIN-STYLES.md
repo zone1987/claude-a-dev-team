@@ -12,4 +12,5 @@ a component prefix.
 ```
 
 Use Meteor/admin design tokens as CSS custom properties (`--color-*`, spacing) — no hardcoded values. Lint:
-`composer stylelint` / `eslint:admin`. Build via Vite (`sw-admin-vite`). UI building blocks: Meteor components (`sw-meteor-components`).
+`npm --prefix src/Resources/app/administration run lint` — the configuration is in
+[ADMIN-LINTING.md](ADMIN-LINTING.md). Build via Vite (`sw-admin-vite`). UI building blocks: Meteor components.

@@ -2,7 +2,6 @@
 
 Complete reference of all states, transitions and the payment logic after ordering.
 
-
 ## Three state dimensions
 
 | State | Controls |

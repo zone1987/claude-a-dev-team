@@ -1,31 +1,31 @@
 # Shopware 6 — the complete variable tree per mail template
 
-Abgeleitet aus echten Entity-Definitionen + Default-Twig-Fixtures.  
-Stand: Shopware 6.7 (trunk)
+Derived from the real entity definitions plus the default Twig fixtures.  
+As of Shopware 6.7 (trunk)
 
-Legende: `(?)` = nullable, `[*]` = Collection/Array, `→` = Assoziation/Sub-Objekt
+Legend: `(?)` = nullable, `[*]` = collection or array, `→` = association or sub-object
 
 ---
 
 ## Contents
 
-- [`order_confirmation_mail` — order confirmation](#order_confirmation_mail--order-confirmation)
-- [`order.state.*` — Bestellstatus-Benachrichtigungen](#orderstate-bestellstatus-benachrichtigungen)
-- [`order_delivery.state.*` — Lieferstatus-Benachrichtigungen](#order_deliverystate-lieferstatus-benachrichtigungen)
-- [`order_transaction.state.*` — Zahlungsstatus-Benachrichtigungen](#order_transactionstate-zahlungsstatus-benachrichtigungen)
-- [`order.payment_method.changed` — payment method changed](#orderpayment_methodchanged--payment-method-changed)
-- [`invoice_mail` / `delivery_mail` / `credit_note_mail` / `cancellation_mail` — Dokument-Mails](#invoice_mail-delivery_mail-credit_note_mail-cancellation_mail-dokument-mails)
-- [`downloads_delivery` — Digitale Downloads](#downloads_delivery-digitale-downloads)
-- [`customer_register` — registration confirmation](#customer_register--registration-confirmation)
-- [`customer_register.double_opt_in` — DOI Registrierung](#customer_registerdouble_opt_in-doi-registrierung)
-- [`guest_order.double_opt_in` — DOI Gastbestellung](#guest_orderdouble_opt_in-doi-gastbestellung)
-- [`password_change` — Passwort-Reset-Anfrage](#password_change-passwort-reset-anfrage)
-- [`customer.password.changed` — password changed successfully (6.7)](#customerpasswordchanged--password-changed-successfully-67)
-- [`customer.group.registration.accepted` / `.declined` — Kundengruppen-Registrierung](#customergroupregistrationaccepted-declined-kundengruppen-registrierung)
+- [`order_confirmation_mail` — order confirmation](#order_confirmation_mail-order-confirmation)
+- [`order.state.*` — order state notifications](#orderstate-order-state-notifications)
+- [`order_delivery.state.*` — delivery state notifications](#order_deliverystate-delivery-state-notifications)
+- [`order_transaction.state.*` — payment state notifications](#order_transactionstate-payment-state-notifications)
+- [`order.payment_method.changed` — payment method changed](#orderpayment_methodchanged-payment-method-changed)
+- [`invoice_mail` / `delivery_mail` / `credit_note_mail` / `cancellation_mail` — document mails](#invoice_mail-delivery_mail-credit_note_mail-cancellation_mail-document-mails)
+- [`downloads_delivery` — digital downloads](#downloads_delivery-digital-downloads)
+- [`customer_register` — registration confirmation](#customer_register-registration-confirmation)
+- [`customer_register.double_opt_in` — double opt-in registration](#customer_registerdouble_opt_in-double-opt-in-registration)
+- [`guest_order.double_opt_in` — double opt-in guest order](#guest_orderdouble_opt_in-double-opt-in-guest-order)
+- [`password_change` — password reset request](#password_change-password-reset-request)
+- [`customer.password.changed` — password changed successfully (6.7)](#customerpasswordchanged-password-changed-successfully-67)
+- [`customer.group.registration.accepted` / `.declined` — customer group registration](#customergroupregistrationaccepted-declined-customer-group-registration)
 - [`newsletterRegister` / `newsletterDoubleOptIn` — Newsletter](#newsletterregister-newsletterdoubleoptin-newsletter)
-- [`contact_form` — Kontaktformular](#contact_form-kontaktformular)
-- [`revocation_request.customer` / `.merchant` — Widerrufsformular (6.7)](#revocation_requestcustomer-merchant-widerrufsformular-67)
-- [`review_form` — Produktbewertung](#review_form-produktbewertung)
+- [`contact_form` — contact form](#contact_form-contact-form)
+- [`revocation_request.customer` / `.merchant` — revocation form (6.7)](#revocation_requestcustomer-merchant-revocation-form-67)
+- [`review_form` — product review](#review_form-product-review)
 - [Variables always available (every template)](#variables-always-available-every-template)
 - [Adding variables of your own](#adding-variables-of-your-own)
 
@@ -33,7 +33,7 @@ Legende: `(?)` = nullable, `[*]` = Collection/Array, `→` = Assoziation/Sub-Obj
 
 The same structure applies to `order_transaction.state.open`, which adds a payment note in its intro.
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
@@ -55,7 +55,7 @@ order
 ├── positionPrice                 float
 ├── shippingTotal                 float
 ├── taxStatus                     string ("gross"|"net"|"tax-free")
-├── deepLinkCode                  string  ← Kunden-Login-Link
+├── deepLinkCode                  string  ← customer login link
 ├── affiliateCode                 string(?)
 ├── campaignCode                  string(?)
 ├── customerComment               string(?)
@@ -86,8 +86,8 @@ order
 │   └── decimals                  int
 │
 ├── currency                      → CurrencyEntity
-│   ├── isoCode                   string  (z.B. "EUR")
-│   ├── symbol                    string  (z.B. "€")
+│   ├── isoCode                   string  (e.g. "EUR")
+│   ├── symbol                    string  (e.g. "€")
 │   ├── name                      string(?) (translated)
 │   ├── shortName                 string(?) (translated)
 │   └── factor                    float
@@ -102,12 +102,12 @@ order
 │   ├── vatIds                    array<string>(?)
 │   └── salutation                → SalutationEntity(?)
 │       ├── salutationKey         string  ("mr"|"mrs"|"not_specified")
-│       ├── letterName            string(?) (translated, z.B. "Sehr geehrter Herr")
-│       └── displayName           string(?) (translated, z.B. "Herr")
+│       ├── letterName            string(?) (translated, e.g. "Dear Mr")
+│       └── displayName           string(?) (translated, e.g. "Mr")
 │
 ├── stateMachineState             → StateMachineStateEntity
 │   ├── technicalName             string  ("open"|"in_progress"|"completed"|"cancelled")
-│   └── name                      string(?) (translated, z.B. "Offen")
+│   └── name                      string(?) (translated, e.g. "Open")
 │
 ├── billingAddress                → OrderAddressEntity (via order.addresses.get(order.billingAddressId))
 │   ├── firstName                 string
@@ -131,12 +131,12 @@ order
 │       └── name                  string(?) (translated)
 │
 ├── addresses                     [*] → OrderAddressCollection
-│   └── (each entry = OrderAddressEntity, Felder wie billingAddress oben)
+│   └── (each entry = OrderAddressEntity, the same fields as billingAddress above)
 │
 ├── deliveries                    [*] → OrderDeliveryCollection
-│   └── (each entry = OrderDeliveryEntity, s.u.)
+│   └── (each entry = OrderDeliveryEntity, see below)
 │
-├── deliveries.first              → OrderDeliveryEntity (Convenience-Zugriff)
+├── deliveries.first              → OrderDeliveryEntity (convenience accessor)
 │   ├── trackingCodes             array<string>
 │   ├── shippingDateEarliest      \DateTimeInterface
 │   ├── shippingDateLatest        \DateTimeInterface
@@ -149,7 +149,7 @@ order
 │   │   ├── name                  string(?) (translated)
 │   │   ├── description           string(?) (translated)
 │   │   └── trackingUrl           string(?)  ← holds %s for the tracking number
-│   └── shippingOrderAddress      → OrderAddressEntity (Lieferadresse)
+│   └── shippingOrderAddress      → OrderAddressEntity (shipping address)
 │       ├── firstName             string
 │       ├── lastName              string
 │       ├── street                string
@@ -175,21 +175,21 @@ order
 │       ├── shortName             string(?)
 │       └── technicalName         string
 │
-├── nestedLineItems               [*] → OrderLineItemCollection (verschachtelt)
-│   └── (each entry = OrderLineItemEntity, s.u.)
+├── nestedLineItems               [*] → OrderLineItemCollection (nested)
+│   └── (each entry = OrderLineItemEntity, see below)
 │
-├── lineItems                     [*] → OrderLineItemCollection (flach)
-│   └── (each entry = OrderLineItemEntity, s.u.)
+├── lineItems                     [*] → OrderLineItemCollection (flat)
+│   └── (each entry = OrderLineItemEntity, see below)
 │
 └── documents                     [*] → DocumentCollection
     └── (each entry = DocumentEntity)
 ```
 
-### `order.nestedLineItems[*]` — Positionen-Baum
+### `order.nestedLineItems[*]` — the line item tree
 
 ```
 lineItem (each in order.nestedLineItems)
-├── label                         string   ← Produktname zum Bestellzeitpunkt
+├── label                         string   ← product name at the time of the order
 ├── quantity                      int
 ├── unitPrice                     float
 ├── totalPrice                    float
@@ -197,7 +197,7 @@ lineItem (each in order.nestedLineItems)
 ├── type                          string(?)  ("product"|"promotion"|"credit"|"custom")
 ├── position                      int
 ├── good                          bool
-├── referencedId                  string(?)  (Produkt-UUID)
+├── referencedId                  string(?)  (product UUID)
 ├── identifier                    string     (the cart key)
 │
 ├── price                         → CalculatedPrice(?)
@@ -212,9 +212,9 @@ lineItem (each in order.nestedLineItems)
 │   ├── taxId                     string(?)
 │   ├── productType               string
 │   ├── categoryIds               array
-│   ├── options                   [*] → array (Variantenoptionen)
+│   ├── options                   [*] → array (variant options)
 │   │   └── {group: string, option: string}
-│   └── features                  [*] → array (Produktmerkmale)
+│   └── features                  [*] → array (product features)
 │       └── {type: string, value: {…}}
 │
 ├── cover                         → MediaEntity(?)
@@ -231,7 +231,7 @@ lineItem (each in order.nestedLineItems)
 │   └── manufacturer              → ProductManufacturerEntity(?)
 │       └── name                  string(?) (translated)
 │
-├── children                      [*] → OrderLineItemCollection (rekursiv)
+├── children                      [*] → OrderLineItemCollection (recursive)
 │   └── children.count            int
 │
 └── downloads                     [*] → OrderLineItemDownloadCollection
@@ -253,16 +253,16 @@ salesChannel
 ├── taxCalculationType            string
 ├── domains                       [*] → SalesChannelDomainCollection
 │   └── domains|first             → SalesChannelDomainEntity
-│       └── url                   string   ← z.B. "https://shop.example.com"
+│       └── url                   string   ← e.g. "https://shop.example.com"
 ├── currency                      → CurrencyEntity
 ├── language                      → LanguageEntity
 ├── country                       → CountryEntity
-├── paymentMethod                 → PaymentMethodEntity  (Standard)
-├── shippingMethod                → ShippingMethodEntity (Standard)
+├── paymentMethod                 → PaymentMethodEntity  (default)
+├── shippingMethod                → ShippingMethodEntity (default)
 └── mailHeaderFooter              → MailHeaderFooterEntity(?)
 ```
 
-### `a11yDocuments[*]` — Barrierefreie Dokumente
+### `a11yDocuments[*]` — accessible documents
 
 ```
 a11yDocuments (array)
@@ -274,11 +274,11 @@ a11yDocuments (array)
 
 ---
 
-## `order.state.*` — Bestellstatus-Benachrichtigungen
+## `order.state.*` — order state notifications
 
 Applies to: `order.state.open`, `order.state.in_progress`, `order.state.completed`, `order.state.cancelled`
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
@@ -288,7 +288,7 @@ eventName           string
 salesChannelId      string
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 order
@@ -296,7 +296,7 @@ order
 ├── orderDateTime                 \DateTimeInterface
 ├── deepLinkCode                  string
 ├── stateMachineState             → StateMachineStateEntity
-│   └── name                      string (translated)  ← z.B. "Abgeschlossen"
+│   └── name                      string (translated)  ← e.g. "Done"
 └── orderCustomer                 → OrderCustomerEntity
     ├── firstName                 string
     ├── lastName                  string
@@ -315,11 +315,11 @@ a11yDocuments[]
 
 ---
 
-## `order_delivery.state.*` — Lieferstatus-Benachrichtigungen
+## `order_delivery.state.*` — delivery state notifications
 
 Applies to: `shipped`, `shipped_partially`, `returned`, `returned_partially`, `cancelled`
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
@@ -327,7 +327,7 @@ salesChannel        → SalesChannelEntity
 a11yDocuments       [*] (optional)
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 order
@@ -336,7 +336,7 @@ order
 ├── deepLinkCode                  string
 ├── deliveries.first              → OrderDeliveryEntity
 │   └── stateMachineState         → StateMachineStateEntity
-│       └── name                  string (translated)  ← z.B. "Versendet"
+│       └── name                  string (translated)  ← e.g. "Shipped"
 └── orderCustomer                 → OrderCustomerEntity
     ├── firstName, lastName, salutation.letterName
 
@@ -344,7 +344,7 @@ salesChannel.name / salesChannel.domains|first.url
 a11yDocuments[].documentId / .deepLinkCode / .fileExtension
 ```
 
-**Tipp — Tracking-URL ausgeben:**
+**Tip — printing the tracking URL:**
 ```twig
 {% set delivery = order.deliveries.first %}
 {% for code in delivery.trackingCodes %}
@@ -354,11 +354,11 @@ a11yDocuments[].documentId / .deepLinkCode / .fileExtension
 
 ---
 
-## `order_transaction.state.*` — Zahlungsstatus-Benachrichtigungen
+## `order_transaction.state.*` — payment state notifications
 
 Applies to all but `order_transaction.state.open`, which carries the full order detail.
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
@@ -366,7 +366,7 @@ salesChannel        → SalesChannelEntity
 a11yDocuments       [*] (optional)
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 order
@@ -375,7 +375,7 @@ order
 ├── deepLinkCode                  string
 ├── transactions.first            → OrderTransactionEntity
 │   └── stateMachineState         → StateMachineStateEntity
-│       └── name                  string (translated)  ← z.B. "Bezahlt"
+│       └── name                  string (translated)  ← e.g. "Paid"
 └── orderCustomer → firstName, lastName, salutation.letterName
 ```
 
@@ -383,7 +383,7 @@ order
 
 ## `order.payment_method.changed` — payment method changed
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
@@ -392,7 +392,7 @@ customer            → CustomerEntity
 salesChannel        → SalesChannelEntity
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 order
@@ -406,9 +406,9 @@ order.transactions.last           → OrderTransactionEntity  ← NOTE: .last, n
 
 ---
 
-## `invoice_mail` / `delivery_mail` / `credit_note_mail` / `cancellation_mail` — Dokument-Mails
+## `invoice_mail` / `delivery_mail` / `credit_note_mail` / `cancellation_mail` — document mails
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
@@ -416,7 +416,7 @@ salesChannel        → SalesChannelEntity
 a11yDocuments       [*] (optional)
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 order
@@ -430,16 +430,16 @@ a11yDocuments[].documentId / .deepLinkCode / .fileExtension
 
 ---
 
-## `downloads_delivery` — Digitale Downloads
+## `downloads_delivery` — digital downloads
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 order               → OrderEntity
 salesChannel        → SalesChannelEntity
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 order
@@ -465,7 +465,7 @@ salesChannel.domains|first.url
 
 ## `customer_register` — registration confirmation
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 customer            → CustomerEntity
@@ -514,7 +514,7 @@ customer
 │   │   ├── name (translated), iso, iso3
 │   └── salutation                → SalutationEntity(?)
 │
-├── defaultShippingAddress        → CustomerAddressEntity (gleiche Felder)
+├── defaultShippingAddress        → CustomerAddressEntity (the same fields)
 │
 ├── salesChannel                  → SalesChannelEntity
 │   ├── name (translated)
@@ -527,21 +527,21 @@ customer
 
 ---
 
-## `customer_register.double_opt_in` — DOI Registrierung
+## `customer_register.double_opt_in` — double opt-in registration
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
-customer            → CustomerEntity  (Felder wie oben)
+customer            → CustomerEntity  (the same fields as above)
 confirmUrl          string            ← the confirmation link
 salesChannel        → SalesChannelEntity
 ```
 
 ---
 
-## `guest_order.double_opt_in` — DOI Gastbestellung
+## `guest_order.double_opt_in` — double opt-in guest order
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 customer            → CustomerEntity
@@ -549,28 +549,28 @@ confirmUrl          string            ← the confirmation link
 salesChannel        → SalesChannelEntity
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 customer.salutation.translated.displayName
 customer.lastName
-confirmUrl   (direkte Twig-Variable)
+confirmUrl   (a plain Twig variable)
 ```
 
 ---
 
-## `password_change` — Passwort-Reset-Anfrage
+## `password_change` — password reset request
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 customer            → CustomerEntity
-resetUrl            string            ← Reset-Link
+resetUrl            string            ← reset link
 salesChannel        → SalesChannelEntity
 shopName            string
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 customer.salutation.translated.letterName
@@ -585,7 +585,7 @@ shopName
 
 ## `customer.password.changed` — password changed successfully (6.7)
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 customer            → CustomerEntity
@@ -593,7 +593,7 @@ shopName            string
 salesChannel        → SalesChannelEntity
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 customer.firstName
@@ -603,9 +603,9 @@ shopName
 
 ---
 
-## `customer.group.registration.accepted` / `.declined` — Kundengruppen-Registrierung
+## `customer.group.registration.accepted` / `.declined` — customer group registration
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 customer            → CustomerEntity
@@ -613,7 +613,7 @@ customerGroup       → CustomerGroupEntity
 salesChannel        → SalesChannelEntity
 ```
 
-### Verwendete Pfade
+### Paths used
 
 ```
 customer.salutation.translated.letterName
@@ -625,7 +625,7 @@ customerGroup.translated.name
 
 ## `newsletterRegister` / `newsletterDoubleOptIn` — Newsletter
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 newsletterRecipient → NewsletterRecipientEntity
@@ -654,12 +654,12 @@ newsletterRecipient
 
 ---
 
-## `contact_form` — Kontaktformular
+## `contact_form` — contact form
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
-contactFormData     array (Formularfelder)
+contactFormData     array (form fields)
 salesChannel        → SalesChannelEntity
 ```
 
@@ -672,14 +672,14 @@ contactFormData
 ├── lastName        string
 ├── phone           string(?)
 ├── subject         string(?)
-└── comment         string   ← via |nl2br ausgeben
+└── comment         string   ← print through |nl2br
 ```
 
 ---
 
-## `revocation_request.customer` / `.merchant` — Widerrufsformular (6.7)
+## `revocation_request.customer` / `.merchant` — revocation form (6.7)
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 revocationRequestFormData   array
@@ -695,14 +695,14 @@ revocationRequestFormData
 ├── lastName        string
 ├── email           string
 ├── comment         string(?)
-└── submitTime      \DateTimeInterface  ← via |format_datetime ausgeben
+└── submitTime      \DateTimeInterface  ← print through |format_datetime
 ```
 
 ---
 
-## `review_form` — Produktbewertung
+## `review_form` — product review
 
-### Top-Level-Variablen
+### Top-level variables
 
 ```
 reviewFormData      array
@@ -740,8 +740,8 @@ product
 ## Variables always available (every template)
 
 ```
-eventName           string   ← technischer Event-Name
-salesChannelId      string   ← UUID des Sales Channel
+eventName           string   ← the technical event name
+salesChannelId      string   ← the UUID of the sales channel
 salesChannel        → SalesChannelEntity (inserted by MailService)
 ```
 
@@ -749,7 +749,7 @@ salesChannel        → SalesChannelEntity (inserted by MailService)
 
 ## Adding variables of your own
 
-### Via MailBeforeValidateEvent (empfohlen)
+### Through MailBeforeValidateEvent (recommended)
 
 ```php
 // src/EventSubscriber/MailDataSubscriber.php

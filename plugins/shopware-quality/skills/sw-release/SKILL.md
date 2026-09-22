@@ -10,8 +10,10 @@ What ships alongside the code, and how this library keeps itself current.
 ## Reference map
 
 - **[CHANGELOG.md](references/CHANGELOG.md)**: Plugin `CHANGELOG.md` following "Keep a Changelog", one section per release with Added/Changed/Fixed/Removed.
+- **[IMAGES.md](references/IMAGES.md)**: Every image licence-free, neutral and documented; the Shopware demo-data trap, AI images and labelling under the AI Act.
 - **[KNOWLEDGE-SYNC.md](references/KNOWLEDGE-SYNC.md)**: Keeps the `sw-*` skills current against `shopware/shopware`.
 - **[SHOPWARE-README.md](references/SHOPWARE-README.md)**: Generate and update README.md files for Shopware 6 plugins.
+- **[WIKI.md](references/WIKI.md)**: The wiki split into a user and a developer part, in German; screenshot rules and matching the text to the interface.
 
 ## Source
 

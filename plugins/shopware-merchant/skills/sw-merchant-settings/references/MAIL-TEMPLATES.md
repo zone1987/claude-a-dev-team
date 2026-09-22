@@ -6,7 +6,7 @@ Reference for mail templates, variables and SMTP configuration.
 - Einstellungen (Settings) > Inhalte (Content) > E-Mail-Templates (Mail templates)
 - Einstellungen > System > Mailer
 
-Detailed reference: [MAIL-TEMPLATES-DETAIL.md](MAIL-TEMPLATES-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – Email templates & mailer – complete reference
 

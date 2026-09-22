@@ -13,7 +13,7 @@ Since Shopware 6.6.9.0, developers can monetize apps by locking features behind 
 
 ```vue
 <template>
-    <mt-button @click="buyFeature">Buy Premium Feature</mt-button>
+    <mt-button size="default" @click="buyFeature">Buy Premium Feature</mt-button>
 </template>
 
 <script setup>

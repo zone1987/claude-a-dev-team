@@ -8,7 +8,7 @@ Reference for system logs, account connection, data protection and further syste
 - Einstellungen > System > Datenschutzeinstellungen (Data protection settings)
 - Einstellungen > Shop > Business-Events
 
-Detailed reference: [SYSTEM-INFO-DETAIL.md](SYSTEM-INFO-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – System info, logs & other system settings (complete reference)
 

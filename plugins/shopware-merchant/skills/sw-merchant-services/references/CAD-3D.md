@@ -7,7 +7,7 @@ Die Konvertierung läuft im Hintergrund.
 
 **Mindestversion:** Shopware 6.7.6.0 | Freikontingent: 1 Konvertierung/Monat
 
-Detaillierte Referenz: [CAD-3D-DETAIL.md](CAD-3D-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware CAD to 3D File Conversion — Vollständige Referenz
 

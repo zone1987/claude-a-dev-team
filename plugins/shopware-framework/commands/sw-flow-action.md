@@ -21,3 +21,9 @@ Produce a flow action. Skill: `sw-automation`.
    calls fault-tolerant and idempotent.
 
 Need a trigger of your own as well? See `sw-automation`. Never overwrite an existing action.
+
+## Before it counts as done
+
+`composer gate` green, unit tests for `handleFlow()`, and the action proved end-to-end:
+selectable in the Flow Builder and running when its trigger fires.
+→ `shopware-testing` → `sw-testing-standard`

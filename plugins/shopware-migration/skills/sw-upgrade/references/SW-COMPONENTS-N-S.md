@@ -1,5 +1,11 @@
 # Administration (sw-*) components
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 370 components, each with its props, slots, events and examples exactly as the generator extracted them. One file per component cost 1044 unreachable references; grouped, every component stays one direct link from SKILL.md.
 
 ## Contents
@@ -600,7 +606,7 @@
 ## sw-number-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-number-field` instead. Will be removed in 6.8.
-> See [mt-number-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-NUMBER-FIELD.md) for the replacement.
+> See mt-number-field for the replacement.
 
 ### Migration
 
@@ -677,7 +683,7 @@
 ## sw-number-field
 
 > **Migration wrapper** — Delegates to `mt-number-field` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-number-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-NUMBER-FIELD.md) for the new component.
+> See mt-number-field for the new component.
 
 ### Props
 
@@ -5079,7 +5085,7 @@ Source: `sw-settings-product-feature-sets/component/sw-settings-product-feature-
 ## sw-password-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-password-field` instead. Will be removed in 6.8.
-> See [mt-password-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-PASSWORD-FIELD.md) for the replacement.
+> See mt-password-field for the replacement.
 
 ### Migration
 
@@ -5134,7 +5140,7 @@ Source: `sw-settings-product-feature-sets/component/sw-settings-product-feature-
 ## sw-password-field
 
 > **Migration wrapper** — Delegates to `mt-password-field` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-password-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-PASSWORD-FIELD.md) for the new component.
+> See mt-password-field for the new component.
 
 ### Props
 
@@ -9238,7 +9244,7 @@ Source: `sw-product/component/sw-product-category-form/sw-product-category-form.
 ## sw-progress-bar
 
 > **Migration wrapper** — Delegates to `mt-progress-bar` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-progress-bar](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-PROGRESS-BAR.md) for the new component.
+> See mt-progress-bar for the new component.
 
 ### Props
 
@@ -12739,7 +12745,7 @@ Source: `sw-settings-cache/page/sw-settings-cache-index/sw-settings-cache-index.
 ## sw-select-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-select` instead. Will be removed in 6.8.
-> See [mt-select](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-SELECT.md) for the replacement.
+> See mt-select for the replacement.
 
 ### Migration
 
@@ -12798,7 +12804,7 @@ Source: `sw-settings-cache/page/sw-settings-cache-index/sw-settings-cache-index.
 ## sw-select-field
 
 > **Migration wrapper** — Delegates to `mt-select` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-select](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-SELECT.md) for the new component.
+> See mt-select for the new component.
 
 ### Props
 
@@ -20917,7 +20923,7 @@ Source: `sw-settings-listing/component/sw-settings-listing-option-criteria-grid/
 ## sw-skeleton-bar-deprecated
 
 > **Deprecated in 6.7** — Use `mt-skeleton-bar` instead. Will be removed in 6.8.
-> See [mt-skeleton-bar](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-SKELETON-BAR.md) for the replacement.
+> See mt-skeleton-bar for the replacement.
 
 ### Migration
 
@@ -20936,7 +20942,7 @@ Source: `sw-cms/component/sw-cms-slot/sw-cms-slot.html.twig`
 ## sw-skeleton-bar
 
 > **Migration wrapper** — Delegates to `mt-skeleton-bar` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-skeleton-bar](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-SKELETON-BAR.md) for the new component.
+> See mt-skeleton-bar for the new component.
 
 ### Computed Properties
 
@@ -21531,7 +21537,7 @@ Source: `sw-first-run-wizard/component/sw-first-run-wizard-modal/sw-first-run-wi
 ## sw-switch-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-switch` instead. Will be removed in 6.8.
-> See [mt-switch](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-SWITCH.md) for the replacement.
+> See mt-switch for the replacement.
 
 ### Migration
 
@@ -21585,7 +21591,7 @@ Source: `sw-first-run-wizard/component/sw-first-run-wizard-modal/sw-first-run-wi
 ## sw-switch-field
 
 > **Migration wrapper** — Delegates to `mt-switch` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-switch](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-SWITCH.md) for the new component.
+> See mt-switch for the new component.
 
 ### Props
 

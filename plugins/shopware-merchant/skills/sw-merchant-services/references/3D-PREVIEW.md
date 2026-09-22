@@ -7,7 +7,7 @@ Previews erscheinen in der Mediathek, auf Produktseiten und in Produktlistings.
 
 **Mindestversion:** Shopware 6.7.1.0 | Erfordert: Intelligence+-Abonnement
 
-Detaillierte Referenz: [3D-PREVIEW-DETAIL.md](3D-PREVIEW-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware 3D Preview Generator — Vollständige Referenz
 

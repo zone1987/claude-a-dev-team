@@ -47,7 +47,9 @@ The standard is not negotiable, and neither is any of this:
 - **Read Shopware's own source at the installed version** before deciding how something
   works — `github.com/shopware/shopware/tree/v<VERSION>`. Constructor argument order,
   feature flag defaults and nullability have all been got wrong by assuming.
-- **Never run a git command that writes.** Leave the work in the tree.
+- **Git: commit on a feature branch, never push, and ask first.** Ask once at the start
+  of a project whether committing is wanted — a "no" holds throughout. Commit only on a
+  feature branch, never on `main`/`master`/`trunk`. **`git push` never.**
 
 ## Guardrails
 - **The pyramid decides where logic is tested, not whether something is tested.** Many unit
@@ -79,7 +81,9 @@ The standard is not negotiable, and neither is any of this:
    composer test:integration
    npm --prefix src/Resources/app/administration run unit
    npm --prefix src/Resources/app/storefront run unit
-   ddev playwright test
+   ddev browserless on
+   ddev exec -d /var/www/html/shopware/custom/static-plugins/<PluginName>/tests/E2E \
+       npx playwright test
    ```
 
 5. Say what the new test does to coverage. If its subject is not at 100 %, name what is

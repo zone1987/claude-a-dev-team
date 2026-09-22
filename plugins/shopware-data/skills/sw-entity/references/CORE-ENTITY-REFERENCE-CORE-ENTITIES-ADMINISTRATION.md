@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 2 definitions
 
-
 ## Administration
 
 ### `app_administration_snippet` [E]

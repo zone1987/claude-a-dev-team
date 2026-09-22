@@ -3,7 +3,7 @@
 Use the admin's built-in Vue directives in the template:
 
 ```twig
-<mt-button v-tooltip="{ message: $tc('ff.hint') }">…</mt-button>
+<mt-button size="default" v-tooltip="{ message: $tc('ff.hint') }">…</mt-button>
 <input v-autofocus />
 ```
 

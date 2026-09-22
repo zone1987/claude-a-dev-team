@@ -17,7 +17,7 @@ final class FfCleanupTaskHandler extends ScheduledTaskHandler
 ```
 
 Registration: the task via the `shopware.scheduled.task` tag, the handler as a message handler. Runs via
-`bin/console scheduled-task:run` (triggered by the system cron) or the worker. Move heavy load into the message queue
+`ddev exec bin/console scheduled-task:run` (triggered by the system cron) or the worker. Move heavy load into the message queue
 (`sw-message-queue`). The interval can be overridden in the admin (Settings → System → Tasks).
 
 → Details: [SCHEDULED-TASK-SCHEDULED-TASKS.md](SCHEDULED-TASK-SCHEDULED-TASKS.md) · Examples: [examples/ScheduledTask.php](examples/ScheduledTask.php), [examples/ScheduledTaskHandler.php](examples/ScheduledTaskHandler.php)

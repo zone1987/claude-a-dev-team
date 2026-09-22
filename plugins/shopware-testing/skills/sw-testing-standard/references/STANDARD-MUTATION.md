@@ -32,6 +32,10 @@ number.
             // DDL only. A mutant in a CREATE TABLE string either breaks every test at
             // once or none of them, and says nothing about the tests.
             'Migration',
+            // Both npm trees ship a stray php file of their own: flatted carries a php
+            // port beside its javascript, and it is nobody's code but its author's.
+            'Resources/app/administration/node_modules',
+            'Resources/app/storefront/node_modules',
         ],
     },
     mutators: {
@@ -39,6 +43,10 @@ number.
     },
     // The integration suite shares one database, so parallel runs corrupt each other.
     threads: 1,
+    // Measured: the suite runs in 1 second and the Shopware kernel takes 16 to boot, so
+    // Infection's default of 10 seconds turns every mutant into a timeout - 201 of 273
+    // on the first attempt, which is a number that says nothing about the tests.
+    timeout: 60,
     // Every class extends a Shopware one, and the plugin's own autoloader does not know
     // the core. Without this Infection dies on the plugin base class.
     bootstrap: '../../../vendor/autoload.php',
@@ -81,6 +89,53 @@ cacheDirectory="../../var/phpunit-infection"
 
 Put a `README.md` beside it explaining why the directory exists, or the next person deletes
 it as a duplicate of the plugin's own config.
+
+**`timeout: 60` is not optional.** Infection's default is 10 seconds. Measured: the unit
+suite runs in 1 second and the Shopware kernel takes 16 to boot — which turned **201 of
+273 mutants** into timeouts on the first attempt. A timeout is neither a kill nor a
+survivor; it is a number that says nothing.
+
+**The exclude list appears in four places and has to match everywhere:** here, in every
+phpunit config's `<source>` block, and in `phpstan.neon`'s `excludePaths`. Where one
+diverges it measures something the others do not, and two figures contradict each other
+with no way to tell which is right.
+
+## Running it, and what the switches do
+
+```bash
+composer infection
+# infection --show-mutations --no-interaction --threads=1 --only-covering-test-cases
+```
+
+| Switch | Effect |
+|---|---|
+| `--show-mutations` | prints every survivor as a diff — without it you have to open the report |
+| `--no-interaction` | no prompts |
+| `--threads=1` | see above: one shared database |
+| `--only-covering-test-cases` | runs only the tests that cover the mutated line. The single largest saving there is |
+
+## A measured result
+
+From a real run's `docs/mutation/<date>/infection-summary.json`:
+
+```json
+{
+    "stats": {
+        "totalMutantsCount": 273,
+        "killedCount": 264,
+        "notCoveredCount": 0,
+        "escapedCount": 8,
+        "errorCount": 0,
+        "timeOutCount": 1,
+        "msi": 97.07,
+        "mutationCodeCoverage": 100,
+        "coveredCodeMsi": 97.07
+    }
+}
+```
+
+**`notCoveredCount: 0` is the figure that confirms the coverage claim**: there is no mutant
+in code no test executes.
 
 ## "No source code was executed by the test framework"
 
@@ -154,6 +209,142 @@ foreach ([1.15, 4.35, 0.07, 0.10] as $v) {
 }
 ```
 
+## Stryker — the same thing for JavaScript
+
+Infection covers PHP. **JavaScript needs Stryker**, for the administration and for the
+storefront as soon as it has JavaScript of its own.
+
+### `stryker.config.json`
+
+Lives beside `jest.config.js` in `src/Resources/app/administration/`:
+
+```json
+{
+    "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+    "packageManager": "npm",
+    "testRunner": "jest",
+    "jest": {
+        "projectType": "custom",
+        "configFile": "jest.config.js",
+        "enableFindRelatedTests": true
+    },
+    "mutate": [
+        "src/**/*.js",
+        "!src/**/*.spec.js",
+        "!src/**/snippet/*.json"
+    ],
+    "coverageAnalysis": "perTest",
+    "reporters": [
+        "html",
+        "json",
+        "clear-text",
+        "progress"
+    ],
+    "htmlReporter": {
+        "fileName": "mutation/index.html"
+    },
+    "jsonReporter": {
+        "fileName": "mutation/report.json"
+    },
+    "clearTextReporter": {
+        "allowColor": false,
+        "maxTestsToLog": 3
+    },
+    "thresholds": {
+        "high": 90,
+        "low": 80,
+        "break": null
+    },
+    "timeoutMS": 30000,
+    "timeoutFactor": 2,
+    "concurrency": 4,
+    "tempDirName": ".stryker-tmp",
+    "cleanTempDir": true,
+    "disableTypeChecks": false,
+    "ignoreStatic": false
+}
+```
+
+| Setting | Why |
+|---|---|
+| `projectType: "custom"` | tells Stryker **not** to guess the Jest setup. The default assumes a `create-react-app` project and ignores the plugin's own `jest.config.js` |
+| `enableFindRelatedTests: true` | the counterpart to Infection's `--only-covering-test-cases`: per mutant only the specs that touch the file run |
+| `coverageAnalysis: "perTest"` | the most precise level — Stryker measures per **test** which lines it executes. The alternative `"all"` runs the whole suite for every mutant |
+| `"!src/**/snippet/*.json"` | snippets are translations. A mutant in a German string teaches nothing |
+| `concurrency: 4` | unlike Infection, Stryker may run in parallel: Jest tests share no database |
+| `timeoutMS: 30000` | generous, because a jsdom test with a mounted component is noticeably slower than a plain function |
+| `"break": null` | **the run does not fail on a minimum score.** A breaking threshold leads to tests written to reach a number — exactly what the four forbidden routes above rule out |
+
+Two reports, deliberately: `html` under `mutation/index.html` to look at, `json` under
+`mutation/report.json` for the baseline.
+
+### Pin 9.6.1 — version 10 cannot run here
+
+```
+BABEL_VERSION_UNSUPPORTED
+```
+
+Stryker 10's instrumenter requires `@babel/core@~8.0.0`. Its JavaScript parser passes
+**no** `configFile: false`, so it loads the plugin's own `babel.config.js` — which uses
+`@babel/preset-env` 7 — into a Babel 8 context, and fails.
+
+**9.6.1 uses Babel 7.29** and therefore shares the plugin's dependency tree. Pin it, and
+put a line in `CLAUDE.md` saying why, so nobody bumps it casually.
+
+### The `qs` override
+
+```json
+{
+    "overrides": {
+        "qs": "6.16.0"
+    }
+}
+```
+
+Stryker pulls in `typed-rest-client` transitively, which pins a version of `qs` carrying
+**three DoS advisories**. `npm audit fix` can do nothing about a pinned version. The
+override forces 6.16.0 across the tree, after which `npm audit` reports **zero** findings.
+
+### Running it
+
+```bash
+composer mutation:admin
+# npm --prefix src/Resources/app/administration run mutation   →   stryker run
+```
+
+**The reports do not belong in the repository.** The HTML report runs to several
+megabytes:
+
+```gitignore
+/src/Resources/app/administration/.stryker-tmp/
+/src/Resources/app/administration/mutation/
+```
+
+Only the **summary** is committed, under `docs/mutation/<date>/stryker-summary.json` —
+the same rule as for Infection.
+
+### An equivalent mutant, from a real report
+
+```json
+{
+    "notKilled": [
+        {
+            "line": 19,
+            "mutator": "OptionalChaining",
+            "replacement": "this.$refs.swTree",
+            "static": false
+        }
+    ]
+}
+```
+
+Mutating `this.$refs.swTree?.foo` to `this.$refs.swTree.foo` changes nothing unless
+`$refs.swTree` is absent — and in every state the component can reach it is set. The
+mutant is equivalent: document it in the baseline with that sentence, and the next run's
+diff shows only genuinely new survivors.
+
+Measured on a plugin built to this standard: **609 killed, 1 survivor, 99.84 %.**
+
 ## Baselines are committed — coverage reports are not
 
 This is the one generated artifact that belongs in the repository.
@@ -162,7 +353,7 @@ A mutation run costs hours. The figure's **history** answers a question nothing 
 "we were at 96 %, why are we at 71 %?" is unanswerable without the old run. A coverage
 report answers nothing that a two-second rerun would not.
 
-So: `docs/mutation/<YYYY-MM-DD>/` holds `summary.json` and `infection.log` (the survivors),
+So: `docs/mutation/<YYYY-MM-DD>/` holds `infection-summary.json`, `infection-not-killed.json` and `stryker-summary.json` (the survivors),
 and `docs/mutation/README.md` holds the table and the judgement on each survivor. The
 verbose `infection.html` is not kept.
 
@@ -194,12 +385,12 @@ var/
 src/Resources/app/*/coverage/
 
 ### Playwright output
-tests/Acceptance/.env
-tests/Acceptance/test-results/
-tests/Acceptance/playwright-report/
-tests/Acceptance/report.xml
-tests/Acceptance/blob-report/
-tests/Acceptance/.cache/
+tests/E2E/.env
+tests/E2E/test-results/
+tests/E2E/playwright-report/
+tests/E2E/report.xml
+tests/E2E/blob-report/
+tests/E2E/.cache/
 
 ### Logs, except the mutation baselines below
 *.log

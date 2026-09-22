@@ -82,10 +82,15 @@ Every new flow, every new configuration switch.
 - the Playwright suite green
 - **the shop unchanged after the run** → [STANDARD-CLEANUP.md](STANDARD-CLEANUP.md)
 - `CONTEXT.md` and `CHANGELOG.md` written
-- the working tree left clean for the owner
+- `README.md`, the ADRs and `CLAUDE.md` up to date
+- **seen in a browser** — a green test proves the code does what the test expects; whether
+  the result is right on screen is something only a person sees
+- committed on the feature branch, **nothing pushed**
 
-**Done does not include committing.** What enters the repository, and when, is the plugin
-owner's decision. Never run a git command that writes.
+**Committing is part of done — under three conditions.** Ask at the start of a project
+whether committing is wanted (a "no" holds for the whole project), commit only on a
+feature branch, and **never push**.
+→ Git is the plugin owner's: [STANDARD-DECISIONS.md](STANDARD-DECISIONS.md)
 
 ## Verification is claimed only when it has been run
 

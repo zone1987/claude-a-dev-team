@@ -116,10 +116,10 @@ The Admin Extension SDK has been renamed and updated:
 
 ```bash
 # Remove old package
-npm remove @shopware-ag/admin-extension-sdk
+ddev exec npm remove @shopware-ag/admin-extension-sdk
 
 # Install new package
-npm install @shopware-ag/meteor-admin-sdk@^6.4.0
+ddev exec npm install @shopware-ag/meteor-admin-sdk@^6.4.0
 ```
 
 ### Update All Imports
@@ -157,34 +157,30 @@ Key dependencies in the Shopware 6.7 administration:
 
 ## Build Commands
 
+Building is done **only** with `shopware-cli`, and every command runs inside the DDEV
+container. There is no `bin/` script, no hand-written Webpack command and no "if available"
+fallback.
+
+`--only-extensions` limits the build to this one plugin; without it every installed
+extension is rebuilt, which costs minutes and touches other people's artefacts.
+
 ### Development (watch mode)
 
 ```bash
-# From Shopware root
-bin/watch-administration.sh
-
-# Or via DDEV
-ddev exec bin/watch-administration.sh
-
-# Watcher URL
-# Administration: http://localhost:5173
+ddev exec shopware-cli project admin-watch --only-extensions <PluginName>
 ```
+
+The watcher serves the administration on `http://localhost:5173`.
 
 ### Production Build
 
 ```bash
-# From Shopware root
-bin/build-administration.sh
-
-# Or via DDEV
-ddev exec bin/build-administration.sh
+ddev exec shopware-cli project admin-build      --only-extensions <PluginName>
+ddev exec shopware-cli project storefront-build --only-extensions <PluginName>
 ```
 
-### Using shopware-cli (if available)
-
-```bash
-ddev exec shopware-cli project admin-build --only-extensions YourPluginName
-```
+Run the admin build when administration Vue/JS files changed, the storefront build when
+storefront JS/SCSS/Twig files changed.
 
 ---
 

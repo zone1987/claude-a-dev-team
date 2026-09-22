@@ -2,7 +2,6 @@
 
 The DAL separates the **storage name** (DB column) from the **property name** (PHP object).
 
-
 ## Contents
 
 - [Basic principle](#basic-principle)

@@ -18,8 +18,6 @@ $this->customFieldSetRepo->upsert([[
 Reading: `$entity->getCustomFields()['ff_extra_hint']`. Types include `text`, `bool`, `int`, `float`, `datetime`,
 `select`, `entity` (entity selection), `media`. For real columns and associations of your own → `sw-entity-extension`.
 
-→ Types, media/entity selection, storefront access: [CUSTOM-FIELDS-DETAIL.md](CUSTOM-FIELDS-DETAIL.md)
-
 ## Custom Fields
 
 ### Contents

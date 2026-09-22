@@ -7,9 +7,11 @@ Admin translations as JSON under `module/<name>/snippet/<locale>.json`, register
 import deDE from './snippet/de-DE.json';
 Shopware.Module.register('ff-example', { snippets: { 'de-DE': deDE, 'en-GB': enGB }, /* ... */ });
 ```
+
 ```json
 { "ff-example": { "general": { "title": "FF Beispiel" }, "detail": { "items": "{count} Einträge" } } }
 ```
+
 ```twig
 {{ $tc('ff-example.general.title') }}
 {{ $tc('ff-example.detail.items', count, { count }) }}

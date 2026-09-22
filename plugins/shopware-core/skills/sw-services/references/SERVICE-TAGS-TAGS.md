@@ -61,7 +61,7 @@ Shopware uses Symfony service tags to register plugin extensions. This is a comp
 
 | Tag | Purpose |
 |-----|---------|
-| `shopware.flow.action` | Flow builder action |
+| `flow.action` | Flow builder action |
 
 ## Payment
 
@@ -156,7 +156,11 @@ A service can have multiple tags:
 
 ## Autoconfigure
 
-With `autoconfigure="true"` in services.xml, many tags are applied automatically based on implemented interfaces:
+With `autoconfigure="true"`, many tags are applied automatically based on implemented
+interfaces. **New plugins do not use it** (see
+[DEPENDENCY-INJECTION.md](DEPENDENCY-INJECTION.md)), so each of the following is set by
+hand — and forgetting one is silent: the interface is implemented, the method exists, and
+nothing ever calls it.
 
 - `EventSubscriberInterface` → `kernel.event_subscriber`
 - `#[AsCommand]` → `console.command`

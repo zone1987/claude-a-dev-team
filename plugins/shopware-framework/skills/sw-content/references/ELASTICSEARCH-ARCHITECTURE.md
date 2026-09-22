@@ -27,7 +27,7 @@ Registers two compiler passes:
 - `ElasticsearchMigrationCompilerPass` — integrates bundle migrations
 - `ElasticsearchProfileCompilerPass` — enables the profiler in dev mode
 
-**Extension:** `ElasticsearchExtension` loads `Resources/config/services.xml` and registers all config parameters as container parameters (`elasticsearch.*`).
+**Extension:** `ElasticsearchExtension` (the core's own bundle) loads its `Resources/config/services.xml` and registers all config parameters as container parameters (`elasticsearch.*`). (Existing core code; new plugin code registers services in PHP — see `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`.)
 
 ---
 

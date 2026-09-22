@@ -2,7 +2,6 @@
 
 Guide to creating manual orders via the Shopware administration.
 
-
 ## Quick overview
 
 1. Bestellungen (Orders) > "Bestellung anlegen" (Create order)

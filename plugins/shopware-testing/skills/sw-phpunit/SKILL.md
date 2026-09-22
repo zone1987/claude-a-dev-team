@@ -48,6 +48,8 @@ skill covers how to write it.
 **Doubles**
 
 - **[MOCK-REPOSITORY.md](references/MOCK-REPOSITORY.md)**: `StaticEntityRepository` rather than a hand-rolled repository mock.
+- **[MOCK-DEFINITION-REGISTRY.md](references/MOCK-DEFINITION-REGISTRY.md)**: Compile a DAL definition without a kernel — and the static cache that makes every mutant in `defineFields()` survive by construction.
+- **[MOCK-LOGGER.md](references/MOCK-LOGGER.md)**: Assert **what** was logged, not that logging happened. Plus the helper name that takes the whole suite down.
 - **[MOCK-SYSTEM-CONFIG.md](references/MOCK-SYSTEM-CONFIG.md)**: `StaticSystemConfigService` for config-dependent logic.
 - **[MOCK-SERVICE.md](references/MOCK-SERVICE.md)**: replacing a service in the container, and stub versus mock.
 

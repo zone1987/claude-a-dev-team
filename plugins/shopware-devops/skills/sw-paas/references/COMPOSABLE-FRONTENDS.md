@@ -68,8 +68,6 @@ Create the file `server/plugins/blackfire.ts` (details → Deep Reference).
 
 ## Deep dive
 
-[COMPOSABLE-FRONTENDS-DETAIL.md](COMPOSABLE-FRONTENDS-DETAIL.md)
-
 ## Shopware PaaS — Composable Frontends (Deep Reference)
 
 Sources: `products/paas/shopware-paas/composable-frontends/performance.md`,

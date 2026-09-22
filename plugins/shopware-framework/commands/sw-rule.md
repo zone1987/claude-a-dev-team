@@ -21,3 +21,9 @@ Produce a custom rule. Skill: `sw-automation`.
 
 Never overwrite an existing rule. Keep the fields of the PHP constraints and the admin component
 consistent — they describe the same condition.
+
+## Before it counts as done
+
+`composer gate` green, unit tests for `match()` covering both outcomes, and the rule proved
+end-to-end: selectable in the rule builder and taking effect in the cart.
+→ `shopware-testing` → `sw-testing-standard`

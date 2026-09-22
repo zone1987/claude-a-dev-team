@@ -36,7 +36,7 @@ tests/
 ├── Unit/            no kernel, no database
 ├── Integration/     IntegrationTestBehaviour, real DAL
 ├── Architecture/    phpat rules, run by PHPStan
-└── Acceptance/      Playwright, its own package.json
+└── E2E/            Playwright, its own package.json
 ```
 
 All four exist in every plugin. `tests/Integration/` keeps a `.gitkeep` while empty,

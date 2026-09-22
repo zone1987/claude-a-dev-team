@@ -1,9 +1,22 @@
+# src/Resources/config/packages/monolog.yaml
+#
+# Shopware does NOT load this directory by itself — the plugin class has to override
+# build(). See references/LOGGING.md and examples/logging-PluginLoggerTrait.php.
+#
+# {log-channel} is snake_case with the vendor prefix, e.g. acme_product_badge.
+
 monolog:
-    channels: ['{plugin-kebab-case}']
+    channels:
+        - '{log-channel}'
 
     handlers:
-        {PluginNameNoPrefixCamel}LogHandler:
+        {pluginNameCamel}:
+            # One file per day. A single file grows until nobody can open it.
             type: rotating_file
-            path: "%kernel.logs_dir%/{vendor-prefix}-{plugin-kebab-case}-%kernel.environment%.log"
-            level: error
-            channels: ["{plugin-kebab-case}"]
+            path: "%kernel.logs_dir%/{log-channel}/%kernel.environment%.log"
+            # warning is the floor: info and debug are never written.
+            level: warning
+            # Fourteen days — long enough to investigate something reported on a Friday.
+            max_files: 14
+            # Without this line the handler catches every channel, not just this one.
+            channels: ['{log-channel}']

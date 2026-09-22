@@ -1,6 +1,6 @@
 ---
 name: sw-entity
-description: Scaffold a complete Shopware 6 DAL entity — definition + entity class + collection + migration + services.xml registration (translations optional).
+description: Scaffold a complete Shopware 6 DAL entity — definition + entity class + collection + migration + PHP service registration (translations optional).
 argument-hint: <EntityName> [--plugin <PluginName>] [--translatable] [--attribute]
 allowed-tools: Read, Glob, Grep, Write, Edit
 model: sonnet
@@ -19,7 +19,9 @@ Create a complete DAL entity in the target plugin. Skills: `sw-entity`, `sw-fiel
    - `src/Core/Content/<Entity>/<Entity>Definition.php`, `<Entity>Entity.php`, `<Entity>Collection.php`
    - with `--translatable`: `<Entity>TranslationDefinition.php` + `TranslatedField`/`TranslationsAssociationField`
    - `src/Migration/Migration{ts}<Entity>.php` (BINARY(16) id, DATETIME(3) created_at/updated_at)
-   - `services.xml`: the definition(s) with the tag `shopware.entity.definition`
+   - `src/Resources/config/services/definitions.php`: the definition(s) with the tag
+     `shopware.entity.definition` — PHP, not XML (`XmlFileLoader` is `@deprecated tag:v6.8.0`),
+     explicitly and without autowiring (→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`)
 5. Point out `bin/console database:migrate --all <PluginName>` and updating the entity catalogue via `/sw-entity-map`.
 
-Keep the plugin's PSR-4 namespace, never overwrite an existing `services.xml` or migration. No invented field types.
+Keep the plugin's PSR-4 namespace, never overwrite an existing service file or migration. No invented field types.

@@ -8,7 +8,8 @@ Symfony/Doctrine: its own DAL instead of an ORM, `Criteria` instead of a QueryBu
 decorators**, three APIs) and extends from the **plugin foundation** (bootstrap class, `composer.json`, PSR-4,
 the vendor-prefix naming convention) to every cross-cutting concern.
 
-Covered: **dependency injection** (`services.xml`, autowiring, argument binding), **service decoration**
+Covered: **dependency injection** (`services.php` — PHP, not XML, explicitly and without autowiring),
+**service decoration**
 (when to use it instead of an event) and **service tags**, the **event/subscriber system** and **extension
 points**, custom **CLI commands**, **logging** (dedicated Monolog channel / `PluginLoggerTrait`),
 **filesystem** (Flysystem), **rate limiter**, **feature flags**, **NumberRange** and the
@@ -42,7 +43,7 @@ sources and embedded; depth sits in flat reference files beside each SKILL.md, l
 
 | Agent | Description |
 |---|---|
-| `shopware-backend` | Specialist for Shopware 6.7 backend fundamentals: plugin base/lifecycle, dependency injection and services.xml, service decoration and tags, event subscribers, CLI commands, logging, filesystem, rate limiter, feature flags, NumberRange, SystemC |
+| `shopware-backend` | Specialist for Shopware 6.7 backend fundamentals: plugin base/lifecycle, dependency injection and services.php, service decoration and tags, event subscribers, CLI commands, logging, filesystem, rate limiter, feature flags, NumberRange, SystemC |
 | `shopware-dev` | Orchestrator and default entry point for ALL Shopware 6.7 development tasks |
 | `shopware-event-mapper` | Introspection agent: scans a Shopware 6 project (core vendor + custom/plugins) for events and produces a cached catalogue (.shopware-catalog/events.md) with event name/constant, event class, dispatch location and arguments/payload (getters/con |
 

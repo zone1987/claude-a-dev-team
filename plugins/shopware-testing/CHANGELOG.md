@@ -1,5 +1,9 @@
 # Changelog
 
+> **Entries below describe the state at their release.** The E2E setup has since moved
+> from `tests/Acceptance/` with `zone1987/ddev-playwright` to `tests/E2E/` with
+> `avhulst/ddev-browserless`; see `STANDARD-PLAYWRIGHT.md` for what holds now.
+
 ## [3.0.0] - 2026-09-11
 
 ### Added
@@ -93,7 +97,6 @@
   favour of the core, scoped to collections alone.
 - `tests/Acceptance/tsconfig.json` is now documented; without its `paths` block the
   `@fixtures/*` imports do not resolve.
-
 
 ## 2.0.0 — 2026-08-20
 

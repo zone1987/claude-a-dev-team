@@ -9,12 +9,7 @@ Everything under **Kunden** (Customers), plus what the customer sees in their st
 
 ## Reference map
 
-- **[ACCOUNTS.md](references/ACCOUNTS.md)**: Full reference: `ACCOUNTS-DETAIL.md`.
-- **[ADDRESSES.md](references/ADDRESSES.md)**: Full reference: `ADDRESSES-DETAIL.md`.
-- **[B2B.md](references/B2B.md)**: Full reference: `B2B-DETAIL.md`.
-- **[BULK.md](references/BULK.md)**: Full reference: `BULK-DETAIL.md`.
 - **[CUSTOMERS-OVERVIEW.md](references/CUSTOMERS-OVERVIEW.md)**: > Source: https://docs.shopware.com/de/shopware-6-de/kunden/uebersicht > Documented version: 6.7.0.0+.
-- **[GROUPS.md](references/GROUPS.md)**: Full reference: `GROUPS-DETAIL.md`.
 - **[OVERVIEW.md](references/OVERVIEW.md)**: This skill covers the **complete customer administration** in the Shopware 6 admin.
 
 ## Source

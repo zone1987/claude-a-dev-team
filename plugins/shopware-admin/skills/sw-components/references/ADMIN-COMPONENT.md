@@ -11,6 +11,7 @@ Shopware.Component.register('ff-example-card', {
     computed: { title() { return this.item.name; } },
 });
 ```
+
 ```twig
 {% block ff_example_card %}
 <mt-card :title="title">

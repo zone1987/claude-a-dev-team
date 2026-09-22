@@ -173,7 +173,7 @@ void startServer();
     <author>Developer</author>
     <copyright>(c) Developer</copyright>
     <version>1.0.0</version>
-    <license>MIT</license>
+    <license>proprietary</license>   <!-- our own apps are proprietary -->
   </meta>
   <setup>
     <!-- host.docker.internal when Shopware runs in Docker -->

@@ -100,6 +100,9 @@ composer storefront:dev-server
 ```
 `composer watch:storefront` deprecated (next major).
 
+**These are the core repository's own scripts.** A plugin watches its own assets with
+`ddev exec shopware-cli project storefront-watch --only-extensions <PluginName>`.
+
 ### CSS custom properties for theme config (6.7.11.0)
 
 Theme configuration values available as native CSS custom properties:

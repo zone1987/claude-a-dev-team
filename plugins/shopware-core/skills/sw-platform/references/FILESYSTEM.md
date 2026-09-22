@@ -6,6 +6,7 @@ Shopware wraps storage in League\Flysystem. Two default filesystems:
 ```xml
 <argument type="service" id="shopware.filesystem.private"/>
 ```
+
 ```php
 $this->privateFilesystem->write('exports/data.csv', $contents);
 $stream = $this->privateFilesystem->readStream('exports/data.csv');
@@ -13,8 +14,6 @@ $stream = $this->privateFilesystem->readStream('exports/data.csv');
 
 Register your own plugin filesystem via `shopware.filesystem` + `config/packages`; adapters (local, S3, …)
 are configurable without code changes. For media always use the media system (`sw-media-handling`).
-
-→ Adapter config, custom filesystem, examples: [FILESYSTEM-DETAIL.md](FILESYSTEM-DETAIL.md)
 
 ## Filesystem
 
@@ -49,9 +48,9 @@ Plugins can access the filesystem using Flysystem adapters. Shopware provides pr
 namespace FfContentPlus\Service;
 
 use League\Flysystem\FilesystemOperator;
-use Shopware\Core\Framework\Log\Package;
+use {PluginNamespace}\Framework\Log\Package;   // the plugin's OWN attribute
 
-#[Package('custom-plugins')]
+#[Package('{PluginName}.{Area}')]
 class FileService
 {
     public function __construct(

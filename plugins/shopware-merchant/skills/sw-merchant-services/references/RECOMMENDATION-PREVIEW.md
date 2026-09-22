@@ -7,7 +7,7 @@ in der Administration — proaktiv, ohne Workflows zu unterbrechen.
 
 **Mindestversion:** Shopware 6.7.1.0
 
-Detaillierte Referenz: [RECOMMENDATION-PREVIEW-DETAIL.md](RECOMMENDATION-PREVIEW-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Empfehlungs-Vorschau — Vollständige Referenz
 

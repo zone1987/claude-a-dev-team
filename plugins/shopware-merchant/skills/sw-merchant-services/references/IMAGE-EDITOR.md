@@ -7,7 +7,7 @@ Objektentfernung und Zuschneiden — direkt in der Administration.
 
 **Mindestversion:** Shopware 6.7.1.0
 
-Detaillierte Referenz: [IMAGE-EDITOR-DETAIL.md](IMAGE-EDITOR-DETAIL.md)
+Detaillierte Referenz
 
 ## Shopware Bild-Editor — Vollständige Referenz
 

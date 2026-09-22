@@ -1,5 +1,9 @@
 # Shopware 6 — Watchers & hot module replacement
 
+> **Always `--only-extensions <PluginName>` when working on one plugin.** Without it every
+> installed extension is rebuilt — minutes of build time, and it touches artefacts that
+> belong to somebody else's plugin.
+
 ## Contents
 
 - [Building JS/CSS (without a watcher)](#building-jscss-without-a-watcher)
@@ -12,9 +16,9 @@
 | Command | Purpose |
 |---|---|
 | `composer run build:js:admin` | Admin (source code) |
-| `shopware-cli project admin-build` | Admin (production template) |
+| `shopware-cli project admin-build --only-extensions <PluginName>` | Admin (production template) |
 | `composer run build:js:storefront` | Storefront (source code) |
-| `shopware-cli project storefront-build` | Storefront (production template) |
+| `shopware-cli project storefront-build --only-extensions <PluginName>` | Storefront (production template) |
 
 ## Starting the watchers (HMR)
 
@@ -23,8 +27,8 @@
 | `composer run watch:admin` | Admin watcher (source code) |
 | `composer run storefront:dev-server` | Storefront watcher ≥ 6.7.11.0 |
 | `composer run watch:storefront` | Storefront watcher < 6.7.11.0 |
-| `shopware-cli project admin-watch` | Admin watcher (production template) |
-| `shopware-cli project storefront-watch` | Storefront watcher (production template) |
+| `shopware-cli project admin-watch --only-extensions <PluginName>` | Admin watcher (production template) |
+| `shopware-cli project storefront-watch --only-extensions <PluginName>` | Storefront watcher (production template) |
 
 Watchers **do not replace** the final build step!
 
@@ -68,10 +72,10 @@ composer run build:js:storefront
 
 ```bash
 ## Administration:
-shopware-cli project admin-build
+shopware-cli project admin-build --only-extensions <PluginName>
 
 ## Storefront:
-shopware-cli project storefront-build
+shopware-cli project storefront-build --only-extensions <PluginName>
 ```
 
 ### Enabling hot module replacement

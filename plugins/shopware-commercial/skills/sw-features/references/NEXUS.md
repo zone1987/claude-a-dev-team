@@ -6,7 +6,6 @@ Shopware Nexus is a unified platform for **event-driven automation
 and integration**. Low-code workflows visually connect Shopware with ERPs, CRMs
 and other business systems (e.g. Microsoft Dynamics Business Central).
 
-
 ## Contents
 
 - [Core features (beta)](#core-features-beta)

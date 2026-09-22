@@ -44,7 +44,7 @@ Via `sw.iap.purchase()` from the Meteor Admin SDK:
 <template>
   <!-- Only show the button when not yet purchased -->
   <p>With this purchase you get the premium feature: ...</p>
-  <mt-button @click="onClick">
+  <mt-button size="default" @click="onClick">
     Buy
   </mt-button>
 </template>

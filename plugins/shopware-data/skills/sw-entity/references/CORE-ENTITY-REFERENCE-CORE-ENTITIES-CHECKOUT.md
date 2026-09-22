@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 49 definitions
 
-
 ## Contents
 
 - [Checkout/Cart](#checkoutcart)
@@ -33,7 +32,6 @@
 ### `reference_price` [E]
 
 **Class:** `ReferencePriceDefinition`
-
 
 ## Checkout/Customer
 
@@ -270,7 +268,6 @@
 |-------|---------|------|-------|
 | `isDefaultBillingAddress` | `is_default_billing_address` | BoolField | Runtime |
 | `isDefaultShippingAddress` | `is_default_shipping_address` | BoolField | Runtime |
-
 
 ## Checkout/Order
 
@@ -628,7 +625,6 @@
 | `orderLineItem` | ManyToOne | `OrderLineItemDefinition` |
 | `orderTransactionCaptureRefund` | ManyToOne | `OrderTransactionCaptureRefundDefinition` |
 
-
 ## Checkout/Payment
 
 ### `payment_method` [E]
@@ -681,7 +677,6 @@
 ### `sales_channel_payment_method` [E]
 
 **Class:** `SalesChannelPaymentMethodDefinition`
-
 
 ## Checkout/Promotion
 
@@ -915,7 +910,6 @@
 |-------|---------|------|-------|
 | `name` | `name` | StringField | Required |
 | `` | `` | CustomFields | ApiAware |
-
 
 ## Checkout/Shipping
 

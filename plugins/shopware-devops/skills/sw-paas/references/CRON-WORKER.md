@@ -67,8 +67,6 @@ sw-paas application cron logs --follow
 
 ## Deep dive
 
-[CRON-WORKER-DETAIL.md](CRON-WORKER-DETAIL.md)
-
 ## Shopware PaaS Native — Cron Jobs & Worker (Deep Reference)
 
 Sources: `products/paas/shopware/guides/cronjobs.md`,

@@ -6,7 +6,7 @@ Reference for SEO URL templates and sitemap configuration.
 - Einstellungen (Settings) > Shop > SEO-Einstellungen (SEO settings)
 - Einstellungen > Shop > Sitemap
 
-Detailed reference: [SEO-DETAIL.md](SEO-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – SEO settings & sitemap – complete reference
 

@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 65 definitions
 
-
 ## Contents
 
 - [Core/Checkout](#corecheckout)
@@ -142,13 +141,11 @@
 | `name` | `name` | StringField | Required |
 | `` | `` | CustomFields | ApiAware |
 
-
 ## Core/DevOps
 
 ### `name_constant_entity` [E]
 
 **Class:** `NameConstantEntityDefinition`
-
 
 ## Core/Framework
 
@@ -864,7 +861,6 @@
 |-------|---------|------|-------|
 | `name` | `name` | StringField | ApiAware |
 
-
 ## Core/System
 
 ### `sales_channel_salutation` [E]
@@ -906,7 +902,6 @@
 | `displayName` | `display_name` | StringField | ApiAware |
 | `letterName` | `letter_name` | StringField | ApiAware |
 | `` | `` | CustomFields | ApiAware |
-
 
 ## Core/Test
 

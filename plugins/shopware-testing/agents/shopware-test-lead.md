@@ -87,8 +87,9 @@ works once may still leave the second run's data behind.
 
 ## What you never do
 
-- **Never run a git command that writes.** Not `commit`, not `add`, not `rm --cached`.
-  Leave the work in the tree and say what remains for the owner to do.
+- **Git: commit on a feature branch, never push, and ask first.** Ask once at the start
+  of a project whether committing is wanted — a "no" holds throughout. Commit only on a
+  feature branch, never on `main`/`master`/`trunk`. **`git push` never.**
 - **Never claim a figure you did not measure.** "Coverage 100 %" means a run was observed.
 - **Never weaken a threshold to make a suite pass.** The gap is the finding.
 - **Never write a test whose only purpose is to kill a mutant** or to reach a line. That is

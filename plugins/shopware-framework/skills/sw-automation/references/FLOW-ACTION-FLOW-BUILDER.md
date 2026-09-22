@@ -70,11 +70,28 @@ class SendNotificationAction extends FlowAction
 
 ## Service Registration
 
-```xml
-<service id="FfContentPlus\Core\Flow\SendNotificationAction">
-    <tag name="shopware.flow.action"/>
-</service>
+```php
+<?php declare(strict_types=1);
+
+namespace FfContentPlus\Resources\config\services;
+
+use FfContentPlus\Core\Flow\SendNotificationAction;
+use FfContentPlus\Service\NotificationService;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(SendNotificationAction::class)
+        ->args([service(NotificationService::class)])
+        // Without autoconfigure this tag is not inferred.
+        ->tag('flow.action');
+};
 ```
+
+Without the tag the action never appears in the Flow Builder, and nothing reports it.
 
 ## Flow Data Access
 

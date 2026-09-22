@@ -1,5 +1,11 @@
 # Administration (sw-*) components
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 176 components, each with its props, slots, events and examples exactly as the generator extracted them. One file per component cost 1044 unreachable references; grouped, every component stays one direct link from SKILL.md.
 
 ## Contents
@@ -3742,7 +3748,7 @@ Source: `sw-cms/elements/product-listing/config/sw-cms-el-config-product-listing
 ## sw-icon-deprecated
 
 > **Deprecated in 6.7** — Use `mt-icon` instead. Will be removed in 6.8.
-> See [mt-icon](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-ICON.md) for the replacement.
+> See mt-icon for the replacement.
 
 ### Migration
 
@@ -3789,7 +3795,7 @@ Source: `sw-cms/elements/product-listing/config/sw-cms-el-config-product-listing
 ## sw-icon
 
 > **Migration wrapper** — Delegates to `mt-icon` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-icon](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-ICON.md) for the new component.
+> See mt-icon for the new component.
 
 ### Props
 
@@ -6547,7 +6553,7 @@ Source: `sw-product/view/sw-product-detail-context-prices/sw-product-detail-cont
 ## sw-loader-deprecated
 
 > **Deprecated in 6.7** — Use `mt-loader` instead. Will be removed in 6.8.
-> See [mt-loader](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-LOADER.md) for the replacement.
+> See mt-loader for the replacement.
 
 ### Migration
 
@@ -6632,7 +6638,7 @@ Source: `sw-extension/page/sw-extension-app-module-page/sw-extension-app-module-
 ## sw-loader
 
 > **Migration wrapper** — Delegates to `mt-loader` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-loader](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-LOADER.md) for the new component.
+> See mt-loader for the new component.
 
 ### Props
 

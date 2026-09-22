@@ -9,9 +9,11 @@ Binding guidelines from the core (`coding-guidelines/`). Key points:
 - **Domain exceptions**: one exception factory per domain with stable `code`s (`sw-domain-exceptions`).
 - **Deprecation**: put changes behind feature flags/major flags; consistent deprecation notices; Rector codemods.
 - **DB migrations**: non-destructive `update()` plus a separate `updateDestructive()`; idempotent.
-- **Static analysis**: write code so that the PHPStan level (high) and Deptrac stay green; strict types.
+- **Static analysis**: write code so that PHPStan at `level: max` and the phpat architecture rules stay green; strict types.
 
-Lint/analysis commands: `composer ecs[-fix]`, `composer phpstan`, `composer eslint:admin|storefront`, `stylelint`, `ludtwig`.
+Lint and analysis run as one command: **`composer gate`**. It covers php-cs-fixer, PHPStan `max`, Rector and
+Stylelint; ESLint and Prettier join it where the plugin has JavaScript.
+→ `sw-analysis` → `STATIC-ANALYSIS.md`
 Architecture decisions: `sw-adr-knowledge`. Static analysis tools: `sw-static-analysis`.
 
 **Complete code guidelines** (all rules from `resources/guidelines/code/core`): `CODING-GUIDELINES-CODE-GUIDELINES-FULL.md`

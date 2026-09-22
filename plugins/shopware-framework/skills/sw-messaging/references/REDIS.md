@@ -26,8 +26,6 @@ shopware:
 Set `REDIS_URL` (e.g. `redis://localhost:6379/0`) as an env; a separate DB index/connection per subsystem is recommended.
 In the cloud/PaaS often preconfigured (`shopware-devops` → `sw-paas`). Performance/scaling benefit strongly from Redis.
 
-→ Full configuration per subsystem (cache/cart/session/increment/lock/messenger): [REDIS-DETAIL.md](REDIS-DETAIL.md)
-
 ## Redis Integration
 
 ### Contents
@@ -47,12 +45,14 @@ Plugins can use Redis for caching, session storage, and custom data storage. Sho
 
 The recommended approach is to use Symfony's cache pools:
 
-```xml
-<!-- services.xml -->
-<service id="FfContentPlus\Service\CacheService">
-    <argument type="service" id="cache.object"/>
-</service>
+```php
+// src/Resources/config/services/cache.php — PHP, not XML
+// (`XmlFileLoader` is `@deprecated tag:v6.8.0`), explicitly and without autowiring.
+$services->set(CacheService::class)
+    ->args([service('cache.object')]);
 ```
+
+→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`
 
 ```php
 <?php declare(strict_types=1);
@@ -146,10 +146,14 @@ class CacheTagSubscriber implements EventSubscriberInterface
 
 For advanced use cases requiring direct Redis access:
 
-```xml
-<service id="FfContentPlus\Service\RedisService">
-    <argument>%env(REDIS_URL)%</argument>
-</service>
+```php
+// src/Resources/config/services/redis.php
+use FfContentPlus\Service\RedisService;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\env;
+
+$services->set(RedisService::class)
+    ->args([env('REDIS_URL')]);
 ```
 
 ```php

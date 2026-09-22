@@ -32,7 +32,6 @@
 - Both storefront agents check `OVERRIDE-RISK.md` before an override, and name the selectors and
   `{% set %}` statements an implementation must preserve.
 
-
 ## [3.0.0] - 2026-08-26
 
 ### Added
@@ -87,7 +86,6 @@
 ### Fixed
 
 - Eight dead links across `sw-twig`, `sw-controller`, `sw-javascript` and `sw-theme`.
-
 
 ## 2.0.0 — 2026-08-20
 

@@ -35,14 +35,14 @@ Generate a timestamp with: `date +%s`
 namespace FfContentPlus\Migration;
 
 use Doctrine\DBAL\Connection;
-use Shopware\Core\Framework\Log\Package;
+use {PluginNamespace}\Framework\Log\Package;   // the plugin's OWN attribute
 use Shopware\Core\Framework\Migration\MigrationStep;
 
 /**
  * @class Migration1709123456CreateCustomTable
  * @package FfContentPlus\Migration
  */
-#[Package('custom-plugins')]
+#[Package('{PluginName}.{Area}')]
 class Migration1709123456CreateCustomTable extends MigrationStep
 {
     /**

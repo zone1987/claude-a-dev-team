@@ -21,7 +21,7 @@ Fetch a token:
 ```bash
 curl -X POST "$SHOP/api/oauth/token" \
   -H "Content-Type: application/json" \
-  -d '{"grant_type":"password","client_id":"administration","username":"admin","password":"shopware","scopes":"write"}'
+  -d '{"grant_type":"password","client_id":"administration","username":"'"$SHOPWARE_ADMIN_USERNAME"'","password":"'"$SHOPWARE_ADMIN_PASSWORD"'","scopes":"write"}'
 ```
 
 All following requests: `Authorization: Bearer {token}`

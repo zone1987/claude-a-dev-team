@@ -27,10 +27,12 @@ class MyRepositoryTest extends TestCase
 **Correct (using Shopware's TestCase for integration tests):**
 
 ```php
+use PHPUnit\Framework\Attributes\CoversClass;
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
 use PHPUnit\Framework\TestCase;
 
-class MyRepositoryTest extends TestCase
+#[CoversClass(MyRepository::class)]
+final class MyRepositoryTest extends TestCase
 {
     use IntegrationTestBehaviour;
 
@@ -49,3 +51,12 @@ class MyRepositoryTest extends TestCase
 ```
 
 Use `PHPUnit\Framework\TestCase` (without any Shopware trait) only for pure unit tests that don't need the container or database. Use `IntegrationTestBehaviour` when you need access to services, repositories, or the database.
+
+## Every test class is `final` and carries `#[CoversClass]`
+
+**`final`** because a test is never inherited — a shared base class hides which assertions
+actually ran.
+
+**`#[CoversClass]`** because without it PHPUnit counts incidental execution as coverage:
+a test of class A that happens to call class B reports B as covered, and the figure stops
+meaning anything.

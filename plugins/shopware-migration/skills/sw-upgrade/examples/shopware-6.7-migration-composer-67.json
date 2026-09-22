@@ -1,9 +1,38 @@
 {
-    "_comment": "composer.json version constraints for Shopware 6.7 plugin",
+    "_comment": "composer.json constraints for a Shopware 6.7 plugin. The conflict block is not decoration: without it Composer installs the plugin under 6.8 too, where changed signatures fatal on the first page view in production — not at install time. It also forbids writing code for the next major, which is why rector.php never carries the 6.8 set.",
     "require": {
-        "shopware/core": "~6.7.0"
+        "php": ">=8.3"
     },
     "conflict": {
-        "shopware/core": "<6.7 || >=6.8"
-    }
+        "shopware/core": "<6.7 || >=6.8",
+        "shopware/storefront": "<6.7 || >=6.8",
+        "shopware/administration": "<6.7 || >=6.8"
+    },
+    "require-dev": {
+        "cyclonedx/cyclonedx-php-composer": "^6.2",
+        "friendsofphp/php-cs-fixer": "3.95.15",
+        "frosh/shopware-rector": "^0.6.0",
+        "infection/infection": "0.35.4",
+        "phpat/phpat": "0.12.4",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "2.2.8",
+        "phpstan/phpstan-deprecation-rules": "2.0.5",
+        "phpstan/phpstan-phpunit": "2.0.18",
+        "phpstan/phpstan-strict-rules": "2.0.12",
+        "phpstan/phpstan-symfony": "2.0.20",
+        "rector/rector": "^2.0",
+        "rector/type-perfect": "2.1.4"
+    },
+    "_comment_phpunit": "phpunit/phpunit is deliberately absent. It comes from the project (../../../vendor/bin/phpunit) together with the core's test behaviours; a second copy in the plugin loads a second autoloader and breaks them with errors that look like test failures.",
+    "config": {
+        "allow-plugins": {
+            "cyclonedx/cyclonedx-php-composer": true,
+            "infection/extension-installer": true,
+            "phpstan/extension-installer": true,
+            "symfony/runtime": false
+        },
+        "sort-packages": true
+    },
+    "_comment_allow_plugins": "Without this block Composer asks interactively and refuses in a non-interactive run, so phpstan/extension-installer never registers the five extensions and PHPStan reports different errors locally than in CI.",
+    "license": "proprietary"
 }

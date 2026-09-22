@@ -14,6 +14,7 @@ class FfExampleException extends HttpException
     }
 }
 ```
+
 ```php
 throw FfExampleException::notFound($id);
 ```

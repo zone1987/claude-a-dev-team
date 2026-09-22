@@ -15,9 +15,9 @@ ADMIN_ES_HOSTS=elasticsearch:9200
 ```
 
 ```bash
-bin/console es:index            # (re)build index, blue-green via alias
-bin/console es:index:cleanup    # remove old indices
-bin/console dal:refresh:index   # DAL indexer (prerequisite for ES data)
+ddev exec bin/console es:index            # (re)build index, blue-green via alias
+ddev exec bin/console es:index:cleanup    # remove old indices
+ddev exec bin/console dal:refresh:index   # DAL indexer (prerequisite for ES data)
 ```
 
 Indexing runs asynchronously via Symfony Messenger. To get custom entities/fields into the index: `sw-elasticsearch-extension`.

@@ -43,7 +43,7 @@ Metadata about the app. Specify inside the `<meta>` element.
     <author>Company GmbH</author>
     <copyright>(c) by Company GmbH</copyright>
     <version>1.0.0</version>
-    <license>MIT</license>
+    <license>proprietary</license>
     <icon>Resources/config/plugin.png</icon>
 </meta>
 ```

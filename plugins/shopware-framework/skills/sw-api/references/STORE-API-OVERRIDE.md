@@ -17,5 +17,17 @@ class FfProductRouteDecorator extends AbstractProductListingRoute
 }
 ```
 
-Register in `services.xml` with `decorates="..."`, inject `.inner` (`sw-service-decoration`). Often an
+Register in `src/Resources/config/services/routes.php` — PHP, not XML (`XmlFileLoader` is
+`@deprecated tag:v6.8.0`), explicitly and without autowiring — with `->decorate(...)` and the decorated
+service injected as `.inner` (`sw-service-decoration`):
+
+```php
+$services->set(MyCategoryRoute::class)
+    ->decorate(AbstractCategoryRoute::class)
+    ->args([service(MyCategoryRoute::class . '.inner')]);
+```
+
+→ `shopware-core` → `sw-services` → `DEPENDENCY-INJECTION.md`
+
+Often an
 event/subscriber is enough for enrichment (e.g. criteria/result events) — check that first. Own new route: `sw-store-api-route`.

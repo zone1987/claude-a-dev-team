@@ -1,12 +1,16 @@
 # shopware-cli project
 
+> **Always `--only-extensions <PluginName>` when working on one plugin.** Without it every
+> installed extension is rebuilt — minutes of build time, and it touches artefacts that
+> belong to somebody else's plugin.
+
 Commands for managing the entire Shopware project.
 
 ```bash
 shopware-cli project create my-shop --version latest --deployment shopware-paas
 shopware-cli project ci .                    # CI build pipeline
-shopware-cli project admin-build .           # Build admin assets
-shopware-cli project storefront-build .      # Storefront + theme:compile
+shopware-cli project admin-build . --only-extensions <PluginName>        # Build admin assets
+shopware-cli project storefront-build . --only-extensions <PluginName>   # Storefront + theme:compile
 shopware-cli project worker 2                # Start 2 messenger consumers
 shopware-cli project dump --clean --anonymize
 ```
@@ -17,8 +21,8 @@ shopware-cli project dump --clean --anonymize
 |---------|---------|
 | `create` | Create a new Shopware project (interactively or with flags) |
 | `ci` | Complete CI pipeline (composer + assets + cache + checksums) |
-| `admin-build` | Build admin JS/CSS for all extensions |
-| `storefront-build` | Storefront assets + `theme:compile` |
+| `admin-build` | Build admin JS/CSS — **`--only-extensions <PluginName>`** when working on one |
+| `storefront-build` | Storefront assets + `theme:compile` — same switch |
 | `admin-watch` | Start the admin webpack dev server |
 | `storefront-watch` | Start the storefront webpack hot proxy |
 | `console` | `bin/console` passthrough with tab completion |

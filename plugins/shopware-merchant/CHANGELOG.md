@@ -46,7 +46,7 @@ also sat two levels deep in `references/deep/`, where files are only partially r
 | `overview`, `features`, `extensions`, `getting-started`, `vs-shopify` | `sw-merchant-general` |
 
 Inside each domain, a former skill is now a file named after its topic: `sw-merchant-orders-states`
-became `skills/sw-merchant-orders/STATES.md`, and its deep reference `STATES-DETAIL.md`.
+became `skills/sw-merchant-orders/STATES.md`, and its deep reference ``.
 
 ## 1.0.0
 

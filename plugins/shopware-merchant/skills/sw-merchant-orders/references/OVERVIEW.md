@@ -2,7 +2,6 @@
 
 Complete reference for the order list, all filter criteria and bulk editing functions.
 
-
 ## Core functions
 
 - 15+ filter criteria (Status, date, payment method, shipping method, product, country, customer group …)

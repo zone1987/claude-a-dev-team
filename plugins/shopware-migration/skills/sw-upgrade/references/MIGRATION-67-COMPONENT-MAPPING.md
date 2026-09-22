@@ -1,8 +1,14 @@
 # Component Mapping Reference: sw-* to mt-*
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 Complete migration reference for all deprecated `sw-*` administration components to their `mt-*` Meteor replacements in Shopware 6.7. All `sw-*` components are tagged for removal in v6.8.0.
 
-> **Detailed guide:** For complete props/events/slots tables and real before/after examples from `src/module/` see [`component-migration-guide.md`](SHOPWARE-6.7-MIGRATION-COMPONENT-MIGRATION-GUIDE.md).
+> **Detailed guide:** For complete props/events/slots tables and real before/after examples from `src/module/` see `component-migration-guide.md`.
 
 ---
 

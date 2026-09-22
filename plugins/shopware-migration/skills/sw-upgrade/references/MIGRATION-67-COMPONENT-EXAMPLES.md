@@ -1,5 +1,11 @@
 # Component Migration Examples
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 Real-world migration scenarios showing complete before/after code for common Shopware admin patterns.
 
 ---
@@ -131,11 +137,12 @@ A typical plugin detail page with cards, form fields, tabs, and action buttons.
 {% block my_plugin_detail %}
 <sw-page class="my-plugin-detail">
     <template #smart-bar-actions>
-        <mt-button variant="secondary" :ghost="true" @click="onCancel">
+        <mt-button variant="secondary" size="default" :ghost="true" @click="onCancel">
             {{ $tc('global.default.cancel') }}
         </mt-button>
         <mt-button
             variant="primary"
+            size="default"
             :isLoading="isLoading"
             :disabled="!hasChanges"
             @click="onSave"

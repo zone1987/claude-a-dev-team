@@ -12,4 +12,5 @@ theme compilation (no manual import needed). Bootstrap 5 is available.
 ```
 
 Compiled via `bin/console theme:compile` (or the watcher). Expose configurable values as SCSS variables
-(`sw-scss-variables`). Lint: `composer stylelint`. Put larger UI logic into JS plugins (`sw-storefront-js-plugin`).
+(`sw-scss-variables`). Lint: `composer lint:scss`, part of the gate — the configuration is in
+[STOREFRONT-LINTING.md](STOREFRONT-LINTING.md). Put larger UI logic into JS plugins.

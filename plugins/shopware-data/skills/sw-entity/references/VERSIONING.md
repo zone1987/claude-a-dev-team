@@ -12,8 +12,6 @@ $this->repo->merge($versionId, $context);                        // apply to LIV
 Versionable entities need a `VersionField` (part of the PK); relations to them need a `ReferenceVersionField`.
 The default is the live version (`Defaults::LIVE_VERSION`). Typical for orders and complex editing flows.
 
-→ Mechanics, merge/clone details: [VERSIONING-DETAIL.md](VERSIONING-DETAIL.md)
-
 ## Versioning System
 
 ### Overview

@@ -8,7 +8,7 @@ Reference for regional configuration: currencies, languages and countries.
 - [Sprachen](#sprachen) — system language, inheritance, ISO codes
 - [Länder](#länder) — country/region management, address formats, VAT ID
 
-Detailed reference: [CURRENCIES-LANGUAGES-DETAIL.md](CURRENCIES-LANGUAGES-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – Währungen (Currencies), Sprachen (Languages) & Länder (Countries) – complete reference
 

@@ -8,7 +8,7 @@
 The CLI command that replaces it:
 
 ```bash
-bin/console translation:install --locales it-IT
+ddev exec bin/console translation:install --locales it-IT
 ```
 
 ## Contents
@@ -31,7 +31,7 @@ bin/console translation:install --locales it-IT
 Nothing changes. Install further languages with the command, which takes a comma-separated list:
 
 ```bash
-bin/console translation:install --locales it-IT,fr-FR
+ddev exec bin/console translation:install --locales it-IT,fr-FR
 ```
 
 ## If you do use the Language Pack
@@ -39,7 +39,7 @@ bin/console translation:install --locales it-IT,fr-FR
 1. **Install every language your shop uses:**
 
    ```bash
-   bin/console translation:install --locales en-GB,de-DE
+   ddev exec bin/console translation:install --locales en-GB,de-DE
    ```
 
    It draws on the same source as the plugin — translate.shopware.com — but is updated more often, so

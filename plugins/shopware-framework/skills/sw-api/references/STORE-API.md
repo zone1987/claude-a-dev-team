@@ -156,17 +156,28 @@ class ItemRoute extends AbstractItemRoute
 
 ## Service Registration
 
-```xml
-<service id="FfContentPlus\Core\Content\Item\SalesChannel\ItemRoute">
-    <argument type="service" id="ff_content_plus_item.repository"/>
-</service>
+```php
+<?php declare(strict_types=1);
 
-<!-- Register abstract route for decoration -->
-<service id="FfContentPlus\Core\Content\Item\SalesChannel\AbstractItemRoute"
-         class="FfContentPlus\Core\Content\Item\SalesChannel\ItemRoute">
-    <argument type="service" id="ff_content_plus_item.repository"/>
-</service>
+namespace FfContentPlus\Resources\config\services;
+
+use FfContentPlus\Core\Content\Item\SalesChannel\AbstractItemRoute;
+use FfContentPlus\Core\Content\Item\SalesChannel\ItemRoute;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(ItemRoute::class)
+        ->args([service('ff_content_plus_item.repository')]);
+
+    $services->alias(AbstractItemRoute::class, ItemRoute::class);
+};
 ```
+
+The alias is the decoration point: a decorator registers against `AbstractItemRoute`.
 
 ## Route Registration (routes.xml)
 
@@ -190,12 +201,19 @@ Examples:
 
 ## Decorating Existing Routes
 
-```xml
-<service id="FfContentPlus\Core\Decorator\DecoratedProductDetailRoute"
-         decorates="Shopware\Core\Content\Product\SalesChannel\Detail\ProductDetailRoute">
-    <argument type="service" id="FfContentPlus\Core\Decorator\DecoratedProductDetailRoute.inner"/>
-</service>
+```php
+use FfContentPlus\Core\Decorator\DecoratedProductDetailRoute;
+use FfContentPlus\Service\MyService;
+
+$services->set(DecoratedProductDetailRoute::class)
+    ->decorate('Shopware\Core\Content\Product\SalesChannel\Detail\ProductDetailRoute')
+    ->args([
+        service(DecoratedProductDetailRoute::class . '.inner'),
+        service(MyService::class),
+    ]);
 ```
+
+`.inner` is the decorated service and is passed first so the decorator can delegate.
 
 ```php
 class DecoratedProductDetailRoute extends AbstractProductDetailRoute

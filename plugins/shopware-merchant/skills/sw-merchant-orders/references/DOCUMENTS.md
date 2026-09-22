@@ -2,7 +2,6 @@
 
 Complete reference for document management in orders.
 
-
 ## Contents
 
 - [Document types](#document-types)

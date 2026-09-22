@@ -17,8 +17,6 @@ public function uninstall(UninstallContext $uninstallContext): void
 Rules of thumb: apply schema changes through **migrations** (`sw-migration` / `shopware-data`), not in the lifecycle.
 On `uninstall` always respect `keepUserData()`. Use `activate`/`deactivate` for data that only applies while the plugin is active.
 
-→ All hooks, order & examples: [LIFECYCLE-DETAIL.md](LIFECYCLE-DETAIL.md)
-
 ## Plugin Lifecycle
 
 ### Contents

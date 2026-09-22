@@ -1,5 +1,11 @@
 # Administration (sw-*) components
 
+> **`size="default"` on every `mt-button` you write.** The component defaults to
+> `size="small"` — 32 pixels against the 40 of every core control beside it. Examples below
+> that are quoted from Shopware's own source keep the core's spelling; **a plugin's own
+> template sets the size explicitly.**
+> → `shopware-admin` → `sw-meteor` → `COMPONENTS.md`
+
 49 components, each with its props, slots, events and examples exactly as the generator extracted them. One file per component cost 1044 unreachable references; grouped, every component stays one direct link from SKILL.md.
 
 ## Contents
@@ -57,7 +63,7 @@
 ## sw-tabs-deprecated
 
 > **Deprecated in 6.7** — Use `mt-tabs` instead. Will be removed in 6.8.
-> See [mt-tabs](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-TABS.md) for the replacement.
+> See mt-tabs for the replacement.
 
 - [Props](#props)
 - [Slots](#slots)
@@ -351,7 +357,7 @@ Source: `sw-settings-logging/component/sw-settings-logging-entry-info/sw-setting
 ## sw-tabs
 
 > **Migration wrapper** — Delegates to `mt-tabs` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-tabs](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-TABS.md) for the new component.
+> See mt-tabs for the new component.
 
 - [Slots](#slots)
 - [Methods](#methods)
@@ -1163,7 +1169,7 @@ Source: `sw-manufacturer/page/sw-manufacturer-detail/sw-manufacturer-detail.html
 ## sw-text-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-text-field` instead. Will be removed in 6.8.
-> See [mt-text-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-TEXT-FIELD.md) for the replacement.
+> See mt-text-field for the replacement.
 
 ### Migration
 
@@ -1228,7 +1234,7 @@ Source: `sw-manufacturer/page/sw-manufacturer-detail/sw-manufacturer-detail.html
 ## sw-text-field
 
 > **Migration wrapper** — Delegates to `mt-text-field` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-text-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-TEXT-FIELD.md) for the new component.
+> See mt-text-field for the new component.
 
 ### Props
 
@@ -2148,7 +2154,7 @@ Source: `sw-cms/elements/video/config/sw-cms-el-config-video.html.twig`
 ## sw-url-field-deprecated
 
 > **Deprecated in 6.7** — Use `mt-url-field` instead. Will be removed in 6.8.
-> See [mt-url-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-URL-FIELD.md) for the replacement.
+> See mt-url-field for the replacement.
 
 ### Migration
 
@@ -2216,7 +2222,7 @@ Source: `sw-cms/elements/video/config/sw-cms-el-config-video.html.twig`
 ## sw-url-field
 
 > **Migration wrapper** — Delegates to `mt-url-field` by default. The deprecated implementation is available via the `deprecated` prop.
-> See [mt-url-field](COMPONENTS-SHOPWARE-6.7-MIGRATION-MT-URL-FIELD.md) for the new component.
+> See mt-url-field for the new component.
 
 ### Props
 

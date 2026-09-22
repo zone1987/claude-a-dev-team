@@ -14,7 +14,7 @@ work is not done — never "green apart from".
 ```json
 "gate":       ["@gate:fix", "@gate:check"],
 "gate:fix":   ["@rector:fix", "@cs-fix"],
-"gate:check": ["@phpstan", "@cs", "@rector", "@test:unit"],
+"gate:check": ["@phpstan", "@cs", "@rector", "@lint:scss", "@test:unit"],
 ```
 
 Fix first, then check: a run that reformats and then verifies the result cannot leave the
@@ -76,7 +76,7 @@ pointed at.
     "allow-plugins": {
         "infection/extension-installer": true,
         "phpstan/extension-installer": true,
-        "symfony/runtime": true
+        "symfony/runtime": false
     }
 }
 ```
@@ -103,7 +103,7 @@ actually breaks.
 "rector": "rector process --dry-run --no-progress-bar",
 "rector:fix": "rector process --no-progress-bar",
 
-"test": ["@test:unit", "@test:integration"],
+"test": ["@test:unit", "@test:admin", "@test:integration"],
 "test:unit": "../../../vendor/bin/phpunit -c phpunit.unit.xml.dist",
 "test:integration": "../../../vendor/bin/phpunit -c phpunit.xml.dist --testsuite=integration",
 "test:admin": "npm --prefix src/Resources/app/administration run unit",
@@ -140,8 +140,10 @@ parameters:
             # resolves against them and fails on the prefixed namespace.
             - vendor/friendsofphp
             - vendor/rector
-            # Acceptance tests are TypeScript with their own node_modules.
-            - tests/Acceptance
+            # Both npm trees ship a stray PHP file of their own: flatted carries a php
+            # port beside its javascript, and it is nobody's code but its author's.
+            - src/Resources/app/administration/node_modules
+            - src/Resources/app/storefront/node_modules
     tmpDir: var/phpstan
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: true
@@ -154,14 +156,10 @@ parameters:
         no_mixed_caller: true
         null_over_false: true
 
-    ignoreErrors:
-        # Shopware's Package attribute declares a whitelist of core domain names. It is
-        # not binding for third-party plugins, which use their own.
-        -
-            identifier: argument.type
-            message: '#Parameter \#1 \$package of attribute class Shopware\\Core\\Framework\\Log\\Package#'
-            paths:
-                - src/*
+    # No ignoreErrors block. The plugin carries its OWN Package attribute under
+    # src/Framework/Log/Package.php, so the core's whitelist of domain names never
+    # applies to it and there is nothing to excuse.
+    # → shopware-core → sw-plugin → PLUGIN-PACKAGE-ATTRIBUTE.md
 
 services:
     -
@@ -202,6 +200,9 @@ All five share this shape; only bootstrap, cache directory, suites and coverage 
         <exclude>
             <!-- Container configuration, executed at boot and never by a test. -->
             <directory suffix=".php">src/Resources/config</directory>
+            <!-- Both npm trees ship a stray php file of their own. -->
+            <directory suffix=".php">src/Resources/app/administration/node_modules</directory>
+            <directory suffix=".php">src/Resources/app/storefront/node_modules</directory>
         </exclude>
     </source>
 
@@ -211,6 +212,11 @@ All five share this shape; only bootstrap, cache directory, suites and coverage 
 </phpunit>
 ```
 
+**These three excludes appear in four places and have to match everywhere:** every phpunit
+config's `<source>` block, `phpstan.neon`'s `excludePaths`, and `infection.json5`. Where
+one diverges it measures something the others do not, and two figures contradict each
+other with no way to tell which is right.
+
 `failOnRisky` and `failOnWarning` are not decoration. PHPUnit 12 reports a mock without
 expectations as a notice; with these set it becomes a failure, which is what makes you
 write `createStub` where you meant a stub.
@@ -218,7 +224,7 @@ write `createStub` where you meant a stub.
 The integration variants add:
 
 ```xml
-<env name="KERNEL_CLASS" value="Shopware\Core\Kernel"/>
+<server name="KERNEL_CLASS" value="Shopware\Core\Kernel"/>
 <env name="APP_ENV" value="test"/>
 <env name="APP_DEBUG" value="0"/>
 <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>

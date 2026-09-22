@@ -11,7 +11,18 @@
 
 ## Overview
 
-Plugins can register custom CLI commands using Symfony's command system. Commands are auto-discovered when using `autoconfigure="true"` in services.xml.
+Plugins can register custom CLI commands using Symfony's command system. Without
+`autoconfigure` — the standard for new plugins — the command is registered explicitly in
+`services/commands.php` and carries its own `console.command` tag:
+
+```php
+$services->set(MyCommand::class)
+    ->args([service('product.repository')])
+    ->tag('console.command');
+```
+
+Older plugins rely on `autoconfigure="true"` in `services.xml` to discover them; see
+[DEPENDENCY-INJECTION.md](DEPENDENCY-INJECTION.md).
 
 ## Command Class
 
@@ -20,7 +31,7 @@ Plugins can register custom CLI commands using Symfony's command system. Command
 
 namespace FfContentPlus\Command;
 
-use Shopware\Core\Framework\Log\Package;
+use {PluginNamespace}\Framework\Log\Package;   // the plugin's OWN attribute
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -37,7 +48,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
     name: 'ff:content-plus:import',
     description: 'Import content data from external source',
 )]
-#[Package('custom-plugins')]
+#[Package('{PluginName}.{Area}')]
 class ImportDataCommand extends Command
 {
     /**
@@ -89,7 +100,11 @@ class ImportDataCommand extends Command
 
 ## Service Registration
 
-With `autoconfigure="true"`, the command is auto-registered:
+Older plugins with `autoconfigure="true"` had the command registered for them:
+
+**New plugins do not use `autoconfigure`** (→ [DEPENDENCY-INJECTION.md](DEPENDENCY-INJECTION.md)),
+so the tag is set by hand. Forgetting it is silent: the class exists, the service is
+registered, and nothing ever calls it.
 
 ```xml
 <service id="FfContentPlus\Command\ImportDataCommand"/>

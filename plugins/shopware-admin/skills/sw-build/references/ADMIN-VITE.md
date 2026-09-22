@@ -4,10 +4,10 @@
 `src/Resources/app/administration/src/` with `main.js` as the entry — Shopware includes it automatically.
 
 ```
-bin/console administration:build      # Build
-./bin/watch-administration.sh         # Dev watcher (HMR)
+ddev exec shopware-cli project admin-build --only-extensions <PluginName>   # Build
+ddev exec shopware-cli project admin-watch --only-extensions <PluginName>   # Dev watcher (HMR)
 ```
 
 No custom Webpack config handling needed any more; Vite adjustments go through the Shopware build mechanics. Assets/SCSS
-are bundled along (`sw-admin-assets`, `sw-admin-styles`). Lint: `composer eslint:admin`. For plugins migrating from
+are bundled along (`sw-admin-assets`, `sw-admin-styles`). Lint: `npm --prefix src/Resources/app/administration run lint`. For plugins migrating from
 Webpack, see `shopware-migration` (`sw-vite-migration`).

@@ -4,7 +4,7 @@ Reference for user management and role configuration.
 
 **Path:** Einstellungen (Settings) > System > Benutzer & Rechte
 
-Detailed reference: [USERS-PERMISSIONS-DETAIL.md](USERS-PERMISSIONS-DETAIL.md)
+Detailed reference
 
 ## Shopware 6 – Benutzer & Rechte (Users & permissions) – complete reference
 

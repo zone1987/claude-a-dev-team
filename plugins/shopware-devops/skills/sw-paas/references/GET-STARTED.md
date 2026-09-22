@@ -73,8 +73,6 @@ Plugin management **only via Composer**. Stateless, check S3 compatibility.
 
 ## Deep dive
 
-[GET-STARTED-DETAIL.md](GET-STARTED-DETAIL.md)
-
 ## Shopware PaaS Native — Get Started (Deep Reference)
 
 Sources: `products/paas/shopware/get-started/` (index.md, quickstart.md, cli.md,

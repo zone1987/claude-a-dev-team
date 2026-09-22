@@ -15,6 +15,6 @@ tag — it defines the mapping plus the data per document.
 Implement `AbstractAdminIndexer` (custom entity in the admin ES search). All 18 core admin entities already have
 ready-made indexers.
 
-Rebuild the index after mapping changes (`bin/console es:index`). Basics/activation: `sw-elasticsearch`.
+Rebuild the index after mapping changes (`ddev exec bin/console es:index`). Basics/activation: `sw-elasticsearch`.
 
 → Complete patterns (definition, field mapping, custom fields, admin indexer, examples): [ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md](ELASTICSEARCH-EXTENSION-EXTENSION-PATTERNS.md)

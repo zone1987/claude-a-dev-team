@@ -2,7 +2,6 @@
 
 Complete reference for every editing option on an opened order.
 
-
 ## Tabs in the order detail view
 
 - **Allgemein** (General): info area, line items, documents, tags

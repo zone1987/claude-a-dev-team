@@ -2,7 +2,6 @@
 
 > Auto-generated from `src/` — 5 definitions
 
-
 ## Storefront
 
 ### `theme` [E]

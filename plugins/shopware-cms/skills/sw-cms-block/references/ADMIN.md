@@ -7,6 +7,7 @@ Every block needs two admin components: the **block component** (renders the slo
 Shopware.Component.register('sw-cms-block-ff-image-text', { template });
 Shopware.Component.register('sw-cms-preview-ff-image-text', { template: previewTemplate });
 ```
+
 ```twig
 {# sw-cms-block-ff-image-text.html.twig #}
 {% block sw_cms_block_ff_image_text %}

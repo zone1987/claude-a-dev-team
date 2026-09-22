@@ -25,7 +25,7 @@ public function testTheServiceUsesTheConfiguredValue(): void
             Context::createDefaultContext()
         )
     );
-    $repository->expects(static::once())->method('update');
+    $repository->expects($this->once())->method('update');
 
     $service = new MyService($repository);
     $service->doSomething(Context::createDefaultContext());
@@ -88,20 +88,51 @@ $repository->addSearch(new EntityCollection([$product]));
 $repository->addSearch(fn (Criteria $criteria, Context $context) => new EntityCollection());
 ```
 
-### Using Callables for Dynamic Results
+### Using callables — how a unit test asserts on the criteria
 
-Pass a callable to inspect the criteria or context and return results conditionally:
+**This is the single most important trick for Shopware unit tests.**
+
+A fixed result answers "what came back". It does not answer the question that usually
+matters: **which criteria did the code build?** A callable does, because
+`StaticEntityRepository::search()` calls it with the criteria the production code
+assembled.
 
 ```php
 $repository = new StaticEntityRepository([
-    function (Criteria $criteria, Context $context): EntityCollection {
+    function (Criteria $criteria, Context $context, $repository): EntitySearchResult {
         // Assert the criteria built by the service under test
-        static::assertTrue($criteria->hasFilter('active'));
+        static::assertSame([$id], $criteria->getIds());
+        static::assertTrue($criteria->hasAssociation('categories'));
+        static::assertCount(1, $criteria->getFilters());
 
-        return new EntityCollection([$product]);
+        return new EntitySearchResult(/* … */);
     },
 ]);
 ```
+
+The callable receives **three** arguments — `$criteria`, `$context` and the repository
+itself (verified in `Shopware\Core\Test\Stub\DataAbstractionLayer\StaticEntityRepository`
+at 6.7). Filters, associations, sorting and limits all become assertable without a
+database.
+
+**The boundary:** a unit test proves **which criteria was built**. Whether that criteria
+finds the right rows is only proved by an integration test against the real DAL. Both
+levels are needed; neither replaces the other.
+
+> **A belief that cost five points of mutation score:** a project note once claimed a stub
+> repository ignores the criteria entirely, so criteria mutants were treated as unkillable.
+> They were not. Check the stub's source rather than assuming what it can do.
+
+### Fixture entities need one extra call
+
+```php
+$entity = new MyEntity();
+$entity->setId($id);
+$entity->internalSetEntityData('mock', new FieldVisibility([]));
+```
+
+Without `internalSetEntityData()` the stub reports its rows as a `mock` entity, and any
+assertion on the entity name finds nothing.
 
 ### With EntityDefinition
 

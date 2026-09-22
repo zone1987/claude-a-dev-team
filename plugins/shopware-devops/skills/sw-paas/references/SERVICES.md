@@ -65,8 +65,6 @@ Comment out the relationship in `applications.yaml` as well.
 
 ## Deep dive
 
-[SERVICES-DETAIL.md](SERVICES-DETAIL.md)
-
 ## Shopware PaaS — Services (Deep Reference)
 
 Sources: `products/paas/shopware/resources/databases.md`,

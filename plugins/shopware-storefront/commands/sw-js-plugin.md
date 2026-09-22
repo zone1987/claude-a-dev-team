@@ -18,8 +18,9 @@ Produce a storefront JS plugin. Skill: `sw-javascript`.
    - The entry in `src/Resources/app/storefront/src/main.js`:
      `PluginManager.register('<Name>', <Class>, '[<selector>]')`.
    - Optionally a template hook (`<div data-…>`).
-3. Note the follow-up: the storefront build (`bin/build-storefront.sh`) and
-   `composer eslint:storefront`.
+3. Note the follow-up: the build —
+   `ddev exec shopware-cli project storefront-build --only-extensions <PluginName>` — and
+   `npm --prefix src/Resources/app/storefront run lint`.
 
 To change an existing plugin, override or extend it instead (`sw-javascript`); check what is already
 there with `/sw-js-plugin-map`.
