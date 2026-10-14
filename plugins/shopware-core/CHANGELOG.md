@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.0 (2026-10-14)
+
+### Changed
+
+- `shopware-dev` loads the plugin rule book (`shopware-quality:sw-guidelines`, `PLUGIN-RULES.md`) together with
+  `shopware-testing:sw-testing-standard` and names both when delegating.
+- Language row corrected: code is English, every Markdown file of a plugin is German.
+- New rule rows: every PhpStorm inspection is resolved, nothing internal from Shopware (not even in tests), the plugin
+  never stops the shop.
+- Tables of contents added to five references.
+- The copied list of plugin rules in `shopware-dev` and `shopware-backend` is replaced by a pointer to `sw-testing-standard` and the plugin rule book in `sw-guidelines`.
+
 ## 2.0.0 — 2026-08-20
 
 Restructured from 18 skills into 3 domain skills. **Breaking:** every skill ID changed.

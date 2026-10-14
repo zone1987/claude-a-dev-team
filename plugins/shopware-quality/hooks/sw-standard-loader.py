@@ -15,14 +15,17 @@ from pathlib import Path
 
 NOTICE = """[shopware] Shopware project detected. The binding standard applies to every plugin here.
 
-BEFORE writing code, load the skill `sw-testing-standard` (plugin: shopware-testing).
-It settles what must exist in a plugin, how it is configured, and when work is finished.
+BEFORE writing code, load the skill `sw-testing-standard` (plugin: shopware-testing)
+and the plugin rule book in `sw-guidelines` (plugin: shopware-quality, references/PLUGIN-RULES.md).
+Together they settle what must exist in a plugin, how it is built, and when work is finished.
 
 Rules that hold whatever the task:
-- Everything in English except README.md and the wiki. No prose comments in code.
+- Code, identifiers, comments and commits in English, every Markdown file of a plugin in German.
+- No prose comments in code. Every PhpStorm inspection is resolved, @throws included.
+- Nothing internal from Shopware, not even in tests. The plugin never stops the shop.
 - No copyright headers in classes; the licence lives in LICENSE and composer.json.
 - `composer gate` before every commit - not ecs-fix or phpstan on their own.
-- Commit only on a feature branch, ask once at the start whether committing is wanted,
+- Commit on a feature branch in Conventional Commits, the owner merges,
   and NEVER `git push`.
 - Build only with `shopware-cli project admin-build|storefront-build --only-extensions <Plugin>`.
 - Everything runs in DDEV; credentials come from shopware/.env.local and are never printed.

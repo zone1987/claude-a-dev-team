@@ -5,6 +5,16 @@ complete `playwright.config.ts`, the three `.env` files, the pinned versions and
 clean-up rule — lives in the `sw-testing-standard` skill, `STANDARD-PLAYWRIGHT.md` and
 `STANDARD-CLEANUP.md`.** This file covers writing a spec once that exists.
 
+## Contents
+
+- [Not "sparingly"](#not-sparingly)
+- [Built on the Acceptance Test Suite, not on plain Playwright](#built-on-the-acceptance-test-suite-not-on-plain-playwright)
+- [What the example above encodes](#what-the-example-above-encodes)
+- [Administration flows](#administration-flows)
+- [Running](#running)
+- [Not part of `composer gate`](#not-part-of-composer-gate)
+- [The suite is not finished until it leaves no trace](#the-suite-is-not-finished-until-it-leaves-no-trace)
+
 ## Not "sparingly"
 
 Older guidance called end-to-end tests expensive and advised a handful of critical flows.

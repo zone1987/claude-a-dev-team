@@ -300,7 +300,7 @@
       "name": "shopware-admin",
       "source": "./plugins/shopware-admin",
       "description": "Shopware 6.7 Administration: Vue 3 components and modules, routing, repositoryFactory data handling, Pinia stores, ACL, the Vite build, and the Meteor design system with the Admin SDK — 4 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -322,7 +322,7 @@
       "name": "shopware-api",
       "source": "./plugins/shopware-api",
       "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading — 3 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -343,7 +343,7 @@
       "name": "shopware-apps",
       "source": "./plugins/shopware-apps",
       "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -363,7 +363,7 @@
       "name": "shopware-checkout",
       "source": "./plugins/shopware-checkout",
       "description": "Shopware 6.7 checkout: the cart pipeline (collectors, processors, validators, prices, line items), payment handlers and app payment, deliveries and the order state machine, documents — 4 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -385,7 +385,7 @@
       "name": "shopware-cms",
       "source": "./plugins/shopware-cms",
       "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver — 2 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -405,7 +405,7 @@
       "name": "shopware-commercial",
       "source": "./plugins/shopware-commercial",
       "description": "Shopware Commercial extensions for developers: B2B Suite and Components, Sales Agent, Digital Sales Rooms, Subscriptions, Advanced Search, Nexus, Migration Assistant — 4 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -448,7 +448,7 @@
       "name": "shopware-core",
       "source": "./plugins/shopware-core",
       "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -469,7 +469,7 @@
       "name": "shopware-data",
       "source": "./plugins/shopware-data",
       "description": "Shopware 6.7 Data Abstraction Layer: entities and definitions, all field types and flags, the four association kinds, Criteria queries, aggregations, write events and migrations, plus the 312-entity core reference — 4 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -491,7 +491,7 @@
       "name": "shopware-devops",
       "source": "./plugins/shopware-devops",
       "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting — 5 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -514,7 +514,7 @@
       "name": "shopware-framework",
       "source": "./plugins/shopware-framework",
       "description": "Shopware 6.7 framework: Store and Admin API extension, Flow Builder, custom rules, scheduled tasks, the message queue, mail templates, media and Elasticsearch — 4 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -536,7 +536,7 @@
       "name": "shopware-frontends",
       "source": "./plugins/shopware-frontends",
       "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -594,7 +594,7 @@
       "name": "shopware-migration",
       "source": "./plugins/shopware-migration",
       "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) — 2 domain skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -614,7 +614,7 @@
       "name": "shopware-quality",
       "source": "./plugins/shopware-quality",
       "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration — 3 domain skills.",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -635,7 +635,7 @@
       "name": "shopware-storefront",
       "source": "./plugins/shopware-storefront",
       "description": "Shopware 6.7 Storefront: controllers, Pages and PageLoaders, Twig templates and extensions, JavaScript plugins with their event catalogue, themes and SCSS, listing filters, SEO and caching — 5 domain skills.",
-      "version": "3.2.0",
+      "version": "3.2.1",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -659,7 +659,7 @@
       "name": "shopware-testing",
       "source": "./plugins/shopware-testing",
       "description": "Shopware 6 testing: the binding standard every plugin is built to — gate, 100 % coverage, mutation baselines, clean-up — plus PHPUnit, Jest for administration and storefront, and Playwright end-to-end. 4 domain skills.",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -677,10 +677,10 @@
       ],
       "category": "development",
       "skills": [
-        "./skills/sw-testing-standard",
         "./skills/sw-e2e",
         "./skills/sw-javascript",
-        "./skills/sw-phpunit"
+        "./skills/sw-phpunit",
+        "./skills/sw-testing-standard"
       ]
     },
     {

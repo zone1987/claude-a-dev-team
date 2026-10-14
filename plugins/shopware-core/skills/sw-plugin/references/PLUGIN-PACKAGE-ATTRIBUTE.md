@@ -2,6 +2,13 @@
 
 **Every plugin brings its own `#[Package]` attribute.** Shopware's own one is not used.
 
+## Contents
+
+- [Why not the core's](#why-not-the-cores)
+- [The plugin's own version](#the-plugins-own-version)
+- [Usage](#usage)
+- [What this removes](#what-this-removes)
+
 ## Why not the core's
 
 `Shopware\Core\Framework\Log\Package` is marked **`@internal`**, and its `PackageString`

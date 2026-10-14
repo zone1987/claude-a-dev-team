@@ -6,6 +6,14 @@
 among thousands of lines other code wrote. A dedicated channel writes a dedicated file
 that holds only what this plugin has to say.
 
+## Contents
+
+- [The configuration](#the-configuration)
+- [The plugin class must override `build()` — this is the trap](#the-plugin-class-must-override-build-this-is-the-trap)
+- [The service alias](#the-service-alias)
+- [What is logged](#what-is-logged)
+- [In a test](#in-a-test)
+
 ## The configuration
 
 `src/Resources/config/packages/monolog.yaml`:

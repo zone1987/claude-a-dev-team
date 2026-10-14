@@ -1,6 +1,6 @@
 {
   "name": "shopware-testing",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Shopware 6 testing: the binding standard every plugin is built to — gate, thresholds, clean-up — plus PHPUnit (unit, integration, Store and Admin API), Jest for administration and storefront, and Playwright end-to-end. 4 domain skills, an orchestrator and a test specialist.",
   "author": {
     "name": "zone1987",
@@ -19,9 +19,9 @@
     "phpstan"
   ],
   "skills": [
-    "./skills/sw-testing-standard",
     "./skills/sw-e2e",
     "./skills/sw-javascript",
-    "./skills/sw-phpunit"
+    "./skills/sw-phpunit",
+    "./skills/sw-testing-standard"
   ]
 }

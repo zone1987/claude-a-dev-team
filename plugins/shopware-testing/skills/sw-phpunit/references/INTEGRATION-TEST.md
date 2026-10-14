@@ -3,6 +3,14 @@
 Tests against a real database and container: the DAL, service wiring, anything that only
 behaves correctly when Shopware is actually running.
 
+## Contents
+
+- [The rules this example encodes](#the-rules-this-example-encodes)
+- [What belongs here rather than in a unit test](#what-belongs-here-rather-than-in-a-unit-test)
+- [What does not](#what-does-not)
+- [tests/Integration must exist even while empty](#testsintegration-must-exist-even-while-empty)
+- [Builders and fixtures](#builders-and-fixtures)
+
 `IntegrationTestBehaviour` wraps every test method in a transaction and rolls it back, so
 tests stay isolated and fast despite the database.
 

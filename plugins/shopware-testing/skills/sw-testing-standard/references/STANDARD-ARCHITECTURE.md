@@ -4,6 +4,15 @@
 PHPStan, cost no extra execution, and catch the class of mistake that unit tests never see:
 a dependency pointing the wrong way.
 
+## Contents
+
+- [phpat, through PHPStan — not Deptrac](#phpat-through-phpstan-not-deptrac)
+- [Setup](#setup)
+- [tests/Architecture/LayerTest.php](#testsarchitecturelayertestphp)
+- [What is worth asserting](#what-is-worth-asserting)
+- [Beyond layering](#beyond-layering)
+- [When a rule fails](#when-a-rule-fails)
+
 ## phpat, through PHPStan — not Deptrac
 
 `phpat` runs as a PHPStan extension, which means it shares PHPStan's type resolution. It

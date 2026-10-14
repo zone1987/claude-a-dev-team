@@ -1,12 +1,13 @@
 ---
 name: sw-guidelines
-description: Shopware coding guidelines: code structure, domain exceptions, extendability rules, ADR knowledge, documentation guidelines, plus our own plugin ground rules, ADR, CLAUDE.md/CONTEXT.md and workflow conventions. Use when reviewing Shopware code against the platform's own conventions or against our plugin working method.
+description: Shopware coding guidelines, domain exceptions and our plugin rule book. Use when writing or reviewing plugin code against coding guidelines, domain exceptions, the rule book or an ADR.
 ---
 
 # Shopware coding guidelines
 
 The platform's own rules for platform-shaped code. Domain exceptions and extendability are where most plugins diverge.
-The `PLUGIN-*` references carry our own working method for the plugins we write — distinct from the core's rules.
+The `PLUGIN-*` references carry our own working method for the plugins we write, distinct from the core's rules.
+The plugin rule book is the binding standard for our plugins and is loaded before plugin code is written or reviewed.
 
 ## Reference map
 
@@ -16,10 +17,24 @@ The `PLUGIN-*` references carry our own working method for the plugins we write 
 - **[DOCUMENTATION-GUIDELINES.md](references/DOCUMENTATION-GUIDELINES.md)**:
 - **[DOMAIN-EXCEPTIONS.md](references/DOMAIN-EXCEPTIONS.md)**: Instead of many individual exception classes: **one factory per domain** with static methods that return typed….
 - **[EXTENDABILITY.md](references/EXTENDABILITY.md)**:
-- **[PLUGIN-ADR.md](references/PLUGIN-ADR.md)**: The ADRs a plugin writes **for itself** — file name, frontmatter, Context/Decision/Consequences, `_superseded/`, and why an accepted ADR is never edited. Not the core's ADRs.
+- **[PLUGIN-ADR.md](references/PLUGIN-ADR.md)**: The ADRs a plugin writes **for itself**, file name, frontmatter, Context/Decision/Consequences, `_superseded/`, and why an accepted ADR is never edited. Not the core's ADRs.
 - **[PLUGIN-CLAUDE-MD.md](references/PLUGIN-CLAUDE-MD.md)**: What is documented where: `CLAUDE.md` (layout, 200-line limit), `CONTEXT.md` (purpose, 90/95/98 % rewrites, gitignored) and the rule that there is no general `TODO.md`.
-- **[PLUGIN-GROUND-RULES.md](references/PLUGIN-GROUND-RULES.md)**: The nine non-negotiable rules of our own plugins — English everywhere but the README, no prose comments, no copyright headers, the git rule, foreign code, `shopware-cli`, DDEV, credentials, one task at a time. Plus the placeholder table.
-- **[PLUGIN-WORKFLOW.md](references/PLUGIN-WORKFLOW.md)**: The 15-step order inside a task, two browser tabs, Conventional Commits, measured versus asserted — and the 15-point definition of "done".
+- **[PLUGIN-GROUND-RULES.md](references/PLUGIN-GROUND-RULES.md)**: The nine non-negotiable rules of our own plugins: code in English, every Markdown file in German, no prose comments, no copyright headers, the git rule, foreign code, `shopware-cli`, DDEV, credentials, one task at a time. Plus the placeholder table.
+- **[PLUGIN-WORKFLOW.md](references/PLUGIN-WORKFLOW.md)**: The 15-step order inside a task, two browser tabs, Conventional Commits, measured versus asserted, and the 15-point definition of "done".
+
+## Plugin rule book
+
+Binding decisions for every plugin of ours, merged from the ADRs of nine plugins, each decision once. Load [PLUGIN-RULES.md](references/PLUGIN-RULES.md) first, then the chapter that fits the work.
+
+- **[PLUGIN-RULES.md](references/PLUGIN-RULES.md)**: Index with precedence, usage and one table per chapter.
+- **[PLUGIN-RULES-CODE.md](references/PLUGIN-RULES-CODE.md)**: Comments, DocBlocks, `@throws`, imports, structure, layers, registries, money.
+- **[PLUGIN-RULES-SHOPWARE.md](references/PLUGIN-RULES-SHOPWARE.md)**: Shopware first, nothing internal, DAL, system config, caching, parallel run.
+- **[PLUGIN-RULES-UI.md](references/PLUGIN-RULES-UI.md)**: Administration components, empty states, storefront overrides, accessibility.
+- **[PLUGIN-RULES-RESILIENCE-SECURITY.md](references/PLUGIN-RULES-RESILIENCE-SECURITY.md)**: Never stop the shop, typed errors, privacy, consent, ACL, secrets.
+- **[PLUGIN-RULES-INTEGRATION.md](references/PLUGIN-RULES-INTEGRATION.md)**: API clients, rate limits, connection tests, snapshots, webhooks, dry runs.
+- **[PLUGIN-RULES-DATA.md](references/PLUGIN-RULES-DATA.md)**: Uninstall, migrations, cleanup of references, default data, sync on activation.
+- **[PLUGIN-RULES-TESTING.md](references/PLUGIN-RULES-TESTING.md)**: Test levels, honest coverage, failing tests, end-to-end, mutation testing.
+- **[PLUGIN-RULES-PROCESS.md](references/PLUGIN-RULES-PROCESS.md)**: Language, git workflow, ADRs, CONTEXT.md, task order, licence, images.
 
 ## Source
 

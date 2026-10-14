@@ -10,6 +10,30 @@ uses a real browser against a running shop with real clicks, the only one that a
 Built on `@shopware-ag/acceptance-test-suite`, which supplies the shop customer, the API
 clients and the test data service. Do not reimplement those.
 
+## Contents
+
+- [The governing principle: an end-to-end test does what a person does](#the-governing-principle-an-end-to-end-test-does-what-a-person-does)
+- [Where the files go](#where-the-files-go)
+- [`playwright.config.ts`, complete](#playwrightconfigts-complete)
+- [The decisions in it](#the-decisions-in-it)
+- [`package.json` of the E2E suite](#packagejson-of-the-e2e-suite)
+- [`tsconfig.json` — without it the imports do not resolve](#tsconfigjson-without-it-the-imports-do-not-resolve)
+- [Running it](#running-it)
+- [Test data: a prefix, and quantities that are argued for](#test-data-a-prefix-and-quantities-that-are-argued-for)
+- [Clean-up and counting](#clean-up-and-counting)
+- [What an E2E suite has to cover](#what-an-e2e-suite-has-to-cover)
+- [The traps in the browser](#the-traps-in-the-browser)
+- [Filling the cart](#filling-the-cart)
+- [Reaching the off-canvas cart](#reaching-the-off-canvas-cart)
+- [Page objects pin the markup](#page-objects-pin-the-markup)
+- [Not part of the gate](#not-part-of-the-gate)
+- [The DDEV add-on](#the-ddev-add-on)
+- [The right endpoint](#the-right-endpoint)
+- [The token](#the-token)
+- [`BROWSERLESS_TIMEOUT` — the most important setting](#browserless_timeout-the-most-important-setting)
+- [The debugger](#the-debugger)
+- [The typical traps](#the-typical-traps)
+
 ## The governing principle: an end-to-end test does what a person does
 
 It clicks, types, pages and reads what is on the screen. **It does not call an API to

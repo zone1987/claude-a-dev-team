@@ -1,5 +1,15 @@
 # Workflow: the order things are built in, and when they are done
 
+## Contents
+
+- [Test first, and the test fails first](#test-first-and-the-test-fails-first)
+- [Test names state the rule, not the method](#test-names-state-the-rule-not-the-method)
+- [The order a suite is built in](#the-order-a-suite-is-built-in)
+- [Done means all of this](#done-means-all-of-this)
+- [Verification is claimed only when it has been run](#verification-is-claimed-only-when-it-has-been-run)
+- [CONTEXT.md carries the state](#contextmd-carries-the-state)
+- [Scope discipline when a test fails](#scope-discipline-when-a-test-fails)
+
 ## Test first, and the test fails first
 
 ```
@@ -87,10 +97,8 @@ Every new flow, every new configuration switch.
   the result is right on screen is something only a person sees
 - committed on the feature branch, **nothing pushed**
 
-**Committing is part of done — under three conditions.** Ask at the start of a project
-whether committing is wanted (a "no" holds for the whole project), commit only on a
-feature branch, and **never push**.
-→ Git is the plugin owner's: [STANDARD-DECISIONS.md](STANDARD-DECISIONS.md)
+**Committing is part of done.** Git: commit on a feature branch in Conventional Commits, never on main, master or trunk. The owner merges. **`git push` never.**
+→ The git rules are the decision `git-workflow` in the skill `sw-guidelines` of the plugin `shopware-quality` (`PLUGIN-RULES-PROCESS.md`).
 
 ## Verification is claimed only when it has been run
 

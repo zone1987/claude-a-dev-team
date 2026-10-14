@@ -5,6 +5,12 @@ impactDescription: Makes definition assertions possible in unit tests, and preve
 tags: mock, dal, definition, unit-test, mutation
 ---
 
+## Contents
+
+- [Compiling a definition without booting the kernel](#compiling-a-definition-without-booting-the-kernel)
+- [The trap: `get()` caches statically](#the-trap-get-caches-statically)
+- [What is asserted with it](#what-is-asserted-with-it)
+
 ## Compiling a definition without booting the kernel
 
 A unit test that asserts on a DAL definition — its fields, their flags, their descriptions

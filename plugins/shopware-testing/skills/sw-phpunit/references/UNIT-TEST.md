@@ -3,6 +3,14 @@
 Isolated logic — services, value objects, calculations — **without** kernel or database.
 The fastest level, and where most of the 100 % comes from.
 
+## Contents
+
+- [The rules this example encodes](#the-rules-this-example-encodes)
+- [Mocks and stubs are not the same thing](#mocks-and-stubs-are-not-the-same-thing)
+- [Exceptions](#exceptions)
+- [A tautological assertion is not a test](#a-tautological-assertion-is-not-a-test)
+- [Where the boundary is](#where-the-boundary-is)
+
 Configured by `sw-testing-standard` → `STANDARD-GATE.md`. Runs through `tests/UnitBootstrap.php`, which loads autoloaders and nothing else:
 
 ```bash

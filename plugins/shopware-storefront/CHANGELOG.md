@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.1] (2026-10-14)
+
+### Changed
+
+- The copied list of plugin rules in `shopware-storefront` and `shopware-storefront-lead` is replaced by a pointer to
+  `sw-testing-standard` and the plugin rule book in `sw-guidelines`.
+
 ## [3.2.0] - 2026-08-26
 
 ### Added

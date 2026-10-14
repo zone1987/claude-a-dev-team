@@ -1,7 +1,7 @@
-# Shopware 6 plugin — ground rules
+# Shopware 6 plugin: ground rules
 
 These nine rules override everything else. They hold in **every** plugin, they are not negotiable, and they are not
-"cleaned up later" — a violation that is noticed is corrected immediately.
+"cleaned up later", a violation that is noticed is corrected immediately.
 
 These are the rules of *our own* plugins, not the Shopware core's. Core conventions live in
 [CODING-GUIDELINES.md](CODING-GUIDELINES.md); the plugin process built on top of these rules is in
@@ -11,10 +11,10 @@ Target environment: Shopware 6.7.x, PHP 8.3, DDEV, `shopware-cli`.
 
 ## Contents
 
-- [1. Everything is English, except the README](#1-everything-is-english-except-the-readme)
+- [1. Code is English, every Markdown file is German](#1-code-is-english-every-markdown-file-is-german)
 - [2. No prose comments](#2-no-prose-comments)
 - [3. No copyright headers in classes](#3-no-copyright-headers-in-classes)
-- [4. Git: commit in a feature branch, never push, ask first](#4-git-commit-in-a-feature-branch-never-push-ask-first)
+- [4. Git: commit in a feature branch, the owner merges, never push](#4-git-commit-in-a-feature-branch-the-owner-merges-never-push)
 - [5. Foreign code is not touched](#5-foreign-code-is-not-touched)
 - [6. Build only with shopware-cli](#6-build-only-with-shopware-cli)
 - [7. Everything runs in DDEV](#7-everything-runs-in-ddev)
@@ -24,32 +24,32 @@ Target environment: Shopware 6.7.x, PHP 8.3, DDEV, `shopware-cli`.
 
 ---
 
-## 1. Everything is English, except the README
+## 1. Code is English, every Markdown file is German
 
 | What | Language |
 |---|---|
-| Variables, parameters, functions, classes, types | **English** |
+| Code, identifiers (variables, parameters, functions, classes, types) | **English** |
 | File and directory names | **English** |
 | Comments, DocBlocks | **English** |
 | Test names (PHPUnit, Jest, Playwright) | **English** |
 | Commit messages, branch names | **English** |
-| ADRs, `CLAUDE.md`, `CONTEXT.md`, `UPGRADE-*.md`, `SECURITY.md`, `CHANGELOG.md` | **English** |
-| `README.md` | **German** |
-| Wiki | **German** |
+| Every Markdown file: `README.md`, `CHANGELOG.md`, `CLAUDE.md`, `CONTEXT.md`, ADRs, `docs/` | **German** |
 | Admin snippets `de-DE.json` | German content, **English keys** |
 | Conversation in the terminal | **German** |
 
-**Why:** a German comment sits exactly where the reasoning for a decision sits. Whoever reads the code later without
-German loses not a word but the knowledge behind it. `README.md` is the exception because it addresses the shop
-operator, not the developer — and that operator is German-speaking here.
+**Why:** German is what explains, English is what is executed. A German comment or identifier sits exactly where the
+reasoning for a decision sits, and whoever reads the code later without German loses not a word but the knowledge
+behind it. Documents have a different audience than code: the people who decide and carry responsibility work in
+German, and a trade-off is more precise in the mother tongue.
 
-An ADR records this, e.g. `adr/YYYY-MM-DD-everything-is-written-in-english.md`.
+The full decision with its table and consequences is `language-code-english-markdown-german` in
+[PLUGIN-RULES-PROCESS.md](PLUGIN-RULES-PROCESS.md#language-code-english-markdown-german-code-identifiers-file-names-comments-and-commits-are-english-and-every-markdown-file-of-a-plugin-is-german).
 
 ---
 
 ## 2. No prose comments
 
-Multi-line explanatory blocks telling background, trade-offs or decision history do not belong in the code — not even
+Multi-line explanatory blocks telling background, trade-offs or decision history do not belong in the code, not even
 when they are factually correct.
 
 **Still allowed:**
@@ -64,10 +64,10 @@ when they are factually correct.
 **Where the knowledge goes instead:**
 
 1. into an **ADR**, if it is a decision
-2. into **`CONTEXT.md`**, if it is an interim state or a trap
+2. into **`CONTEXT.md`** (local and gitignored), if it is an interim state or a trap
 3. into a **test name**, if it is a rule
 
-A test named `it rejects a path containing ..` documents the rule better than ten lines of prose about it — and it
+A test named `it rejects a path containing ..` documents the rule better than ten lines of prose about it, and it
 breaks when someone violates the rule. A comment never breaks.
 
 ---
@@ -91,10 +91,10 @@ After removal the file starts directly with:
 <?php declare(strict_types=1);
 ```
 
-**Why:** the statement already sits where it is maintained — in `LICENSE` and in `composer.json`. In the class it is a
+**Why:** the statement already sits where it is maintained, in `LICENSE` and in `composer.json`. In the class it is a
 copy nobody updates. Years go stale, a changed licence is corrected in one place and not in a hundred others, the
 company name stays put when a project changes owner. A statement that sits in a hundred places and is maintained in
-one is worse than none — it asserts something false with authority.
+one is worse than none, it asserts something false with authority.
 
 On top of that: the block displaces the first screenful of every file, where the namespace and the imports would
 otherwise stand.
@@ -105,26 +105,22 @@ The rule is enforced by php-cs-fixer.
 
 ---
 
-## 4. Git: commit in a feature branch, never push, ask first
+## 4. Git: commit in a feature branch, the owner merges, never push
 
 **Three rules, in this order.**
 
-**1. Before a project's first commit, ask.** At the start of the work, settle whether committing is wanted at all.
-**A "no" holds for the whole project** — from then on the work stays in the working tree, and `git status` and
-`git diff` are how the maintainer sees it. The question is asked once, not before every commit.
+**1. Commits go into a content-named feature branch and nowhere else.** The branch is named after its content
+(`feature/<topic>`, `fix/<topic>`). Nothing is committed in `main`, `master`, `trunk` or a release branch. Commits are
+Conventional Commits in sensible blocks and only with a green gate.
 
-**2. Commits go into a feature branch and nowhere else.** Where committing has been agreed, it happens in the feature
-branch only. Nothing is committed in `main`, `master`, `trunk` or a release branch — branch first, or leave the work
-uncommitted and say so.
+**2. The owner merges.** The agent never merges into the main branch. The owner does that, with `--no-ff`.
 
-**3. Never `git push`.** Not once, not "just this branch", not after a green gate. The maintainer pushes after their
-own review.
+**3. Never `git push`.** Not once, not "just this branch", not after a green gate. Nothing that reaches a remote is run.
 
 **Why the push is the absolute rule:** it is the only step here that can no longer be quietly taken back once someone
-else has fetched the state. Everything else — commit, rebase, reset — stays locally repairable.
+else has fetched the state. Everything else, commit, rebase, reset, stays locally repairable.
 
-Within these rules the ordinary writing commands are available: `add`, `commit`, `branch`, `rm --cached`. Outside
-them nothing is written.
+The full decision is `git-workflow` in [PLUGIN-RULES-PROCESS.md](PLUGIN-RULES-PROCESS.md#git-workflow-work-happens-on-content-named-feature-branches-in-grouped-conventional-commits-merged-by-the-owner-and-never-pushed).
 
 ---
 
@@ -177,14 +173,14 @@ SHOPWARE_ACCESS_KEY_ID=…
 SHOPWARE_SECRET_ACCESS_KEY=…
 ```
 
-They are read from there — not asked of the user, not guessed from the database, **never printed to the console**, and
+They are read from there, not asked of the user, not guessed from the database, **never printed to the console**, and
 never written into commits, `CONTEXT.md` or any other documentation.
 
 ---
 
 ## 9. One task at a time
 
-Done means: committed, with a green gate. Not "the code runs".
+Done means: committed in the feature branch, with a green gate. Not "the code runs". Order: all features first, then all tests, mutation testing last (`one-task-at-a-time` in [PLUGIN-RULES-PROCESS.md](PLUGIN-RULES-PROCESS.md)).
 
 The full ordering inside a task is in [PLUGIN-WORKFLOW.md](PLUGIN-WORKFLOW.md).
 
@@ -192,7 +188,7 @@ The full ordering inside a task is in [PLUGIN-WORKFLOW.md](PLUGIN-WORKFLOW.md).
 
 ## Placeholders
 
-Examples use placeholders in angle brackets. **They must be replaced with the real values when a plugin is created** —
+Examples use placeholders in angle brackets. **They must be replaced with the real values when a plugin is created**, 
 a file still containing `<PLUGIN-NAME>` has been copied, not adopted.
 
 | Placeholder | Meaning | Example |
@@ -220,5 +216,5 @@ a file still containing `<PLUGIN-NAME>` has been copied, not adopted.
 | `<titel>` | ADR title, kebab-case | `test-strategy` |
 
 The running example is `AcmeProductBadge` (`acme/product-badge`): a plugin that inserts notice tiles into a product
-listing. Where an example needs a class, field or table name, it comes from there — and is replaced like any other
+listing. Where an example needs a class, field or table name, it comes from there, and is replaced like any other
 placeholder.

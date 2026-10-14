@@ -1,13 +1,13 @@
 ---
 name: sw-testing-standard
-description: The binding testing standard for every Shopware 6 plugin — which tools, which configuration, which thresholds, and the clean-up rule. Use before setting up a plugin's test suite, when adding a test level to an existing plugin, or when deciding whether something is finished.
+description: Binding testing standard for Shopware 6 plugins: tools, thresholds, clean-up rule. Use when setting up a Shopware test suite, adding a test level or checking whether work is finished.
 ---
 
 # The Shopware plugin testing standard
 
 **This is law, not advice.**
 
-Every Shopware plugin in this workspace is built to it — existing ones are brought up to
+Every Shopware plugin in this workspace is built to it, existing ones are brought up to
 it, new ones start from it. A plugin that does not meet this standard is not finished,
 whatever else is true of it.
 
@@ -49,20 +49,20 @@ integration, architecture and acceptance tests. If the plugin adds it, tests cov
 
 ## Reference map
 
-- **[STANDARD-GATE.md](references/STANDARD-GATE.md)**: the one command that must be green, and every file that makes it work — `composer.json` scripts, `phpstan.neon`, `.php-cs-fixer.dist.php`, `rector.php`, the five phpunit configs, `infection.json5`.
+- **[STANDARD-GATE.md](references/STANDARD-GATE.md)**: the one command that must be green, and every file that makes it work, `composer.json` scripts, `phpstan.neon`, `.php-cs-fixer.dist.php`, `rector.php`, the five phpunit configs, `infection.json5`.
 - **[STANDARD-COVERAGE.md](references/STANDARD-COVERAGE.md)**: why 100 % is the floor and not the goal, what it does not tell you, and how the figure is produced and read.
 - **[STANDARD-MUTATION.md](references/STANDARD-MUTATION.md)**: Infection's configuration, how to judge a surviving mutant, and why baselines are committed while coverage reports are not.
 - **[STANDARD-JEST-ADMIN.md](references/STANDARD-JEST-ADMIN.md)**: complete Jest setup for a plugin's administration, including the Shopware global stub, the Twig transformer and the mixin stand-ins.
 - **[STANDARD-JEST-STOREFRONT.md](references/STANDARD-JEST-STOREFRONT.md)**: complete Jest setup for storefront JavaScript, which differs from the administration in ways that cost hours if you assume otherwise.
 - **[STANDARD-PLAYWRIGHT.md](references/STANDARD-PLAYWRIGHT.md)**: the Acceptance Test Suite setup, and the traps the Shopware documentation does not mention.
 - **[STANDARD-CLEANUP.md](references/STANDARD-CLEANUP.md)**: **a test run leaves the shop as it found it.** Three levels of clean-up, the one that silently fails, and the single documented exception.
-- **[STANDARD-ARCHITECTURE.md](references/STANDARD-ARCHITECTURE.md)**: phpat rules through PHPStan — what to assert, and why not Deptrac.
+- **[STANDARD-ARCHITECTURE.md](references/STANDARD-ARCHITECTURE.md)**: phpat rules through PHPStan, what to assert, and why not Deptrac.
 - **[STANDARD-WORKFLOW.md](references/STANDARD-WORKFLOW.md)**: test-first, the order the levels are built in, and what "done" means.
 - **[STANDARD-ANNOTATIONS.md](references/STANDARD-ANNOTATIONS.md)**: the DocBlock rules, and the twelve Rector plus seven php-cs-fixer rules that must stay disabled or the gate deletes them on every run.
-- **[STANDARD-DECISIONS.md](references/STANDARD-DECISIONS.md)**: every decision behind this standard with its reasoning — Pest, PHPUnit's location, what is committed, and the rest.
-- **[STANDARD-DIAGNOSIS.md](references/STANDARD-DIAGNOSIS.md)**: how to find out why a test fails — naming the three causes, the throwaway console probe, reading coverage and mutation output, and counting rather than reading.
-- **[STANDARD-DECISION-RECORDS.md](references/STANDARD-DECISION-RECORDS.md)**: ADRs and `CONTEXT.md` — the shape of each, what belongs in them, and why an accepted ADR is never edited.
-- **[STANDARD-SOURCE-OF-TRUTH.md](references/STANDARD-SOURCE-OF-TRUTH.md)**: **read Shopware's own source at the exact installed version** before deciding how anything is done — `github.com/shopware/shopware/tree/v<VERSION>`, with the tag matched to the shop.
+- **[STANDARD-DECISIONS.md](references/STANDARD-DECISIONS.md)**: pointer only. The decisions behind this standard (Pest, PHPUnit's location, what is committed, and the rest) live in the skill `sw-guidelines` of the plugin `shopware-quality`: `PLUGIN-RULES.md`, chapter `PLUGIN-RULES-TESTING.md`.
+- **[STANDARD-DIAGNOSIS.md](references/STANDARD-DIAGNOSIS.md)**: how to find out why a test fails, naming the three causes, the throwaway console probe, reading coverage and mutation output, and counting rather than reading.
+- **[STANDARD-DECISION-RECORDS.md](references/STANDARD-DECISION-RECORDS.md)**: pointer only. ADRs and `CONTEXT.md` live in the skill `sw-guidelines` of the plugin `shopware-quality`: `PLUGIN-ADR.md` and `PLUGIN-CLAUDE-MD.md`.
+- **[STANDARD-SOURCE-OF-TRUTH.md](references/STANDARD-SOURCE-OF-TRUTH.md)**: **read Shopware's own source at the exact installed version** before deciding how anything is done, `github.com/shopware/shopware/tree/v<VERSION>`, with the tag matched to the shop.
 
 ## The two rules that are argued about most
 
@@ -80,7 +80,7 @@ installed version.** On 6.7.14.0 that is `v6.7.14.0`; on 6.7.19.2 it is `v6.7.19
 trunk link describes code the shop does not run.
 
 Constructor argument order, default values of feature flags, whether a field is nullable in
-this version, how the core tests this kind of class — all of it is in there, and all of it
+this version, how the core tests this kind of class, all of it is in there, and all of it
 has been got wrong by assuming. → [STANDARD-SOURCE-OF-TRUTH.md](references/STANDARD-SOURCE-OF-TRUTH.md)
 
 ## Where this came from
@@ -92,10 +92,16 @@ display).
 **Every configuration here is running, not proposed**, and was verified against the code
 it came from: the gate and its configurations, the five phpunit configs, both bootstraps,
 `infection.json5`, the architecture rules, both Jest setups, `playwright.config.ts`, and
-the clean-up — the last measured by counting rows before and after two consecutive runs.
+the clean-up, the last measured by counting rows before and after two consecutive runs.
 
 The storefront Jest setup was the last to be proven: it was written here first, then built
 in `FfFreeShippingProgress` and run. Six specs, 100 % on all four metrics. Building it
-surfaced a defect the standard predicted — a dead branch in `_isMotionActive()` that
-reported as covered while being unreachable — which is the argument for
+surfaced a defect the standard predicted, a dead branch in `_isMotionActive()` that
+reported as covered while being unreachable, which is the argument for
 [STANDARD-MUTATION.md](references/STANDARD-MUTATION.md) in one line.
+
+## Source
+
+The owner's own plugin standard, distilled from the plugins it was proven on (Shopware 6.7.14.0,
+checked 2026-10-14), plus the official Shopware testing documentation where it applies
+(https://developer.shopware.com/docs/guides/plugins/plugins/testing/). Generic, with no client names.

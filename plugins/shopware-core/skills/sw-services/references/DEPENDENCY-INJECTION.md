@@ -5,6 +5,17 @@
 `src/Resources/config/services.php` plus one file per area under
 `src/Resources/config/services/`.
 
+## Contents
+
+- [Why PHP and not XML](#why-php-and-not-xml)
+- [The structure](#the-structure)
+- [One service file](#one-service-file)
+- [No autowiring, no autoconfigure](#no-autowiring-no-autoconfigure)
+- [Tags you now have to set yourself](#tags-you-now-have-to-set-yourself)
+- [Repositories](#repositories)
+- [Decorators](#decorators)
+- [Migrating an existing plugin from XML](#migrating-an-existing-plugin-from-xml)
+
 ## Why PHP and not XML
 
 **Shopware is removing XML.** `Framework/Bundle.php` carries this on its `XmlFileLoader`:

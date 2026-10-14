@@ -1,6 +1,6 @@
 {
   "name": "shopware-api",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shopware 6.7 APIs: Admin API (OAuth, CRUD, Criteria search, Sync), Store API (access key and context token), plus shared headers, errors, versioning and partial loading — 3 domain skills.",
   "author": {
     "name": "zone1987",

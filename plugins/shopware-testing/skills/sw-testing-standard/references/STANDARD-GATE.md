@@ -9,6 +9,18 @@ composer gate
 It fixes what can be fixed, then checks everything. Green means mergeable. Red means the
 work is not done — never "green apart from".
 
+## Contents
+
+- [What it runs](#what-it-runs)
+- [Where every file goes](#where-every-file-goes)
+- [composer.json](#composerjson)
+- [phpstan.neon](#phpstanneon)
+- [The phpunit configs](#the-phpunit-configs)
+- [The bootstraps](#the-bootstraps)
+- [tests/Integration must exist even while empty](#testsintegration-must-exist-even-while-empty)
+- [A coverage driver has to be present — this is a DDEV setting](#a-coverage-driver-has-to-be-present-this-is-a-ddev-setting)
+- [The acceptance check, once the gate is green](#the-acceptance-check-once-the-gate-is-green)
+
 ## What it runs
 
 ```json

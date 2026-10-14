@@ -1,6 +1,6 @@
 {
   "name": "shopware-quality",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Shopware code quality: the platform's coding guidelines, domain exceptions, extendability rules and ADRs, plus PHPStan, ECS, Deptrac and Rector configuration — 3 domain skills.",
   "author": {
     "name": "zone1987",
