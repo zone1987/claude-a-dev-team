@@ -1,6 +1,6 @@
 {
   "name": "shopware-core",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
   "author": {
     "name": "zone1987",

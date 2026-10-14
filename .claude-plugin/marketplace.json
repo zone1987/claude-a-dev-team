@@ -448,7 +448,7 @@
       "name": "shopware-core",
       "source": "./plugins/shopware-core",
       "description": "Shopware 6.7 plugin fundamentals: plugin base and lifecycle, dependency injection, service decoration and tags, event subscribers with the full event catalogue, CLI commands, system config, logging — 3 domain skills.",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -491,7 +491,7 @@
       "name": "shopware-devops",
       "source": "./plugins/shopware-devops",
       "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting — 5 domain skills.",
-      "version": "2.0.1",
+      "version": "2.1.0",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"
@@ -594,7 +594,7 @@
       "name": "shopware-migration",
       "source": "./plugins/shopware-migration",
       "description": "Shopware plugin upgrades: the 6.6 to 6.7 to 6.8 path, release notes, deprecation handling, PHP migration patterns, and the three administration migrations (Meteor, Vite, Pinia) — 2 domain skills.",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "author": {
         "name": "zone1987",
         "url": "https://github.com/zone1987"

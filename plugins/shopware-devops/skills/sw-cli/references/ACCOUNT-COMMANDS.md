@@ -181,13 +181,10 @@ build:
       enable: true
     pack:
       excludes:
-        # Patterns to exclude
-        - "node_modules"
-        - "src/Resources/app/*/node_modules"
-        - ".git"
-        - "*.test.*"
-        - "phpunit.xml*"
-        - "tests/"
+        # an object with paths, never a plain list
+        paths:
+          - "tests"
+          - "phpunit.xml.dist"
 ```
 
 ---

@@ -18,6 +18,7 @@ Where a plugin hooks into the platform, and which lifecycle method runs when.
 - **[PLUGIN-STRUCTURE.md](references/PLUGIN-STRUCTURE.md)**: The full directory tree of a plugin plus the complete `.gitignore` and the five entries that need an explanation.
 - **[PLUGIN-COMPOSER.md](references/PLUGIN-COMPOSER.md)**: The plugin `composer.json` in full: head, `conflict` block, `require-dev` with a reason per package, `config.allow-plugins`, all 22 scripts.
 - **[PLUGIN-PACKAGE-ATTRIBUTE.md](references/PLUGIN-PACKAGE-ATTRIBUTE.md)**: Why a plugin ships its own `#[Package]` attribute instead of the core's `@internal` one, the complete class, and the `ignoreErrors` block it removes.
+- **[PLUGIN-EXTENSION-CONFIG.md](references/PLUGIN-EXTENSION-CONFIG.md)**: `.config/shopware-extension.yml` in every plugin: `compatibility_date` and the excludes that keep development files out of the release archive.
 - **[PLUGIN-CHECKLIST.md](references/PLUGIN-CHECKLIST.md)**: The checklist for a new plugin, from skeleton and tooling through tests to completion.
 
 ## Source

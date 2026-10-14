@@ -127,7 +127,7 @@ shopware-cli extension zip path/to/MyPlugin --overwrite-version 2.0.0
 | `--filename string` | | Explicit file name (default: `<Name>-<tag>.zip`) |
 
 **Controlling zip contents:**
-The files that end up in the zip are controlled by `.gitignore` and the `excluded_paths` key in `.shopware-extension.yml`.
+The files that end up in the zip are controlled by `.gitignore` and `build.zip.pack.excludes.paths` in `.config/shopware-extension.yml` (the preferred path, `.shopware-extension.yml` in the root is a legacy fallback). `extension zip` is deprecated, use `extension package`, which needs `shopware/core` under `require` in `composer.json`.
 
 ## extension fix
 

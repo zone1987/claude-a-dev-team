@@ -105,7 +105,7 @@ Build the assets of an extension (Administration + Storefront). Reads the Shopwa
 shopware-cli extension build path/to/MyPlugin
 ```
 
-**Configuration via `.shopware-extension.yml`:**
+**Configuration via `.config/shopware-extension.yml`** (preferred path, `.shopware-extension.yml` in the root is a legacy fallback, schema from `shopware-cli extension config-schema`, set `compatibility_date`):
 ```yaml
 build:
   shopwareVersionConstraint: '6.6.9.0'  # version override

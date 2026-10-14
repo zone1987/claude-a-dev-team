@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.2 (2026-10-14)
+
+### Changed
+
+- `DEPRECATION-HANDLING.md`: deprecations are registered in `docs/DEPRECATIONS.md` (with `@deprecated` on the using
+  element), the upgrade steps live in `docs/UPGRADE-<next>.md`, both excluded from the release archive.
+
 ## 2.0.1 (2026-10-14)
 
 ### Changed

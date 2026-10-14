@@ -23,6 +23,8 @@ Create a new Shopware 6 plugin. Use the `sw-plugin` skill for the detailed rules
 ## The structure it creates
 ```
 <PluginName>/
+├── .config/
+│   └── shopware-extension.yml   # compatibility_date + release archive excludes, always
 ├── composer.json          # type: shopware-platform-plugin, extra.shopware-plugin-class, extra.label (de/en),
 │                          # autoload psr-4 "{PluginName}\\": "src/", the conflict range
 ├── src/
@@ -31,6 +33,9 @@ Create a new Shopware 6 plugin. Use the `sw-plugin` skill for the detailed rules
 ├── README.md
 └── CHANGELOG.md
 ```
+
+`.config/shopware-extension.yml` is created for every plugin, with `compatibility_date` set to today:
+→ `sw-plugin` → `PLUGIN-EXTENSION-CONFIG.md`. The rest of the skeleton follows `PLUGIN-CHECKLIST.md`.
 
 Namespace = `{PluginName}\{PluginName}`, PSR-4 root `src/`. Keep the plugin class minimal — logic goes through DI.
 Afterwards point out `bin/console plugin:refresh && plugin:install --activate <PluginName>`, and

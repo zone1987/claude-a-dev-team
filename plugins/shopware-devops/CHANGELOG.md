@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0 (2026-10-14)
+
+### Fixed
+
+- `sw-cli`: the release archive excludes are `build.zip.pack.excludes.paths` (an object with `paths`, not a list, and no
+  `excluded_paths` key), the preferred file is `.config/shopware-extension.yml`, `extension zip` is deprecated in favour
+  of `extension package`, which needs `shopware/core` under `require`.
+
 ## 2.0.1 (2026-10-14)
 
 ### Changed

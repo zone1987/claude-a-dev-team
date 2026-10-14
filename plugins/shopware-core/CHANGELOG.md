@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.2.0 (2026-10-14)
+
+### Added
+
+- `sw-plugin` reference `PLUGIN-EXTENSION-CONFIG.md`: every plugin carries `.config/shopware-extension.yml` with
+  `compatibility_date` and `build.zip.pack.excludes.paths`, so ADRs, tests, tool configurations, `docs/` and the
+  working notes never reach the release archive. Shape and traps measured against `shopware-cli` 0.19.1.
+
+### Changed
+
+- `PLUGIN-STRUCTURE.md`, `PLUGIN-CHECKLIST.md` and `/sw-plugin-create` create `.config/shopware-extension.yml` for every
+  plugin.
+- `docs/DEPRECATIONS.md` and `docs/UPGRADE-{shopwareNext}.md` live under `docs/` and are linked from `README.md` and
+  `CLAUDE.md`.
+
 ## 2.1.0 (2026-10-14)
 
 ### Changed

@@ -1,6 +1,6 @@
 {
   "name": "shopware-devops",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Shopware 6 operations: shopware-cli, self-hosting (webserver, database, search, caching, workers, deployment), Shopware PaaS, development tooling and troubleshooting — 5 domain skills.",
   "author": {
     "name": "zone1987",

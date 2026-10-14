@@ -29,14 +29,17 @@ ddev exec bin/console dal:validate
 It validates the entity definitions against the schema and reports deprecated field types
 and flags.
 
-## Writing them down: `UPGRADE-<next>.md`
+## Writing them down: `docs/DEPRECATIONS.md` and `docs/UPGRADE-<next>.md`
 
-**One file per upcoming major version**, in the plugin root — `UPGRADE-6.8.md` while the
-plugin runs on 6.7.
+Two files under `docs/`, both linked from `README.md` and `CLAUDE.md`, both excluded from the release
+archive through `.config/shopware-extension.yml`:
 
-**Why not `DEPRECATIONS.md`:** the name says what has to be done, not merely what is
-obsolete. It also matches what Shopware itself uses, so the file can point at its
-counterpart:
+- **`docs/DEPRECATIONS.md`** is the register: one row per deprecated core element the plugin still
+  uses (our element, the core element, deprecated since and removed in, replacement). The using
+  element in the plugin carries the same `@deprecated tag:v<next>` (PHP DocBlock, Twig comment or JS
+  DocBlock), so it is found again. A new use is added to the register in the same commit.
+- **`docs/UPGRADE-<next>.md`** says what has to be done for the next major, `UPGRADE-6.8.md` while
+  the plugin runs on 6.7. It points at the register and at its counterpart in Shopware:
 
 ```markdown
 See also: https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.8.md

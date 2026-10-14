@@ -23,6 +23,7 @@ plugin's own values. A file that still contains `{PluginName}` has been copied, 
 - [ ] The five PHPUnit configurations
 - [ ] `tests/UnitBootstrap.php` and `tests/TestBootstrap.php`
 - [ ] `cliff.toml`
+- [ ] `.config/shopware-extension.yml` — `compatibility_date`, `build.zip.pack.excludes.paths`
 - [ ] `.gitignore` — `/sbom.json`, `CONTEXT.md`, mutation and coverage reports
 
 ## Tests
@@ -57,7 +58,7 @@ plugin's own values. A file that still contains `{PluginName}` has been copied, 
 - [ ] `adr/_superseded/` created
 - [ ] `README.md` — German, for the shop operator
 - [ ] `SECURITY.md` — CRA article 13 paragraph 8
-- [ ] `UPGRADE-{shopwareNext}.md`
+- [ ] `docs/DEPRECATIONS.md` and `docs/UPGRADE-{shopwareNext}.md`, both linked from `README.md` and `CLAUDE.md`
 - [ ] `CHANGELOG.md` — via `composer changelog`
 - [ ] `CONTEXT.md` — during the work, gitignored
 
@@ -73,4 +74,5 @@ plugin's own values. A file that still contains `{PluginName}` has been copied, 
 
 → Tree and `.gitignore`: [PLUGIN-STRUCTURE.md](PLUGIN-STRUCTURE.md)
 → `composer.json` in full: [PLUGIN-COMPOSER.md](PLUGIN-COMPOSER.md)
+→ `.config/shopware-extension.yml`: [PLUGIN-EXTENSION-CONFIG.md](PLUGIN-EXTENSION-CONFIG.md)
 → The `Package` attribute: [PLUGIN-PACKAGE-ATTRIBUTE.md](PLUGIN-PACKAGE-ATTRIBUTE.md)
