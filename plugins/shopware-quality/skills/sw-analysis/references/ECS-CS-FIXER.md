@@ -4,6 +4,15 @@
 follows the core's `.php-cs-fixer.dist.php` instead, because that is the file the core
 publishes its rule choices in and the one a plugin can adopt directly.
 
+## Contents
+
+- [The skeleton](#the-skeleton)
+- [The base sets](#the-base-sets)
+- [The rules that must stay OFF](#the-rules-that-must-stay-off)
+- [Taken from the core](#taken-from-the-core)
+- [Running it](#running-it)
+- [Exact version pinning](#exact-version-pinning)
+
 ## The skeleton
 
 `.php-cs-fixer.dist.php` in the plugin root:

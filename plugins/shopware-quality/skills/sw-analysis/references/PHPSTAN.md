@@ -2,6 +2,19 @@
 
 **`level: max`, from the start, with no `ignoreErrors` block.**
 
+## Contents
+
+- [The configuration, complete](#the-configuration-complete)
+- [`level: max`, and why not a lower one](#level-max-and-why-not-a-lower-one)
+- [No `ignoreErrors`, and no baseline](#no-ignoreerrors-and-no-baseline)
+- [The paths](#the-paths)
+- [The five extensions](#the-five-extensions)
+- [`rector/type-perfect`](#rectortype-perfect)
+- [`treatPhpDocTypesAsCertain: false`](#treatphpdoctypesascertain-false)
+- [Exact version pinning](#exact-version-pinning)
+- [Running it](#running-it)
+- [The trap](#the-trap)
+
 ## The configuration, complete
 
 `phpstan.neon` in the plugin root:

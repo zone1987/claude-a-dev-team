@@ -1,4 +1,4 @@
-# Shopware 6 plugin — `CLAUDE.md`, `CONTEXT.md`, and the `TODO.md` rule
+# Shopware 6 plugin: `CLAUDE.md`, `CONTEXT.md`, and the `TODO.md` rule
 
 Three files that answer one question together: **what is documented where**. `CLAUDE.md` says what holds,
 `CONTEXT.md` carries unfinished work across a break, and there is deliberately no general task file. Reasons go into
@@ -15,15 +15,17 @@ an ADR ([PLUGIN-ADR.md](PLUGIN-ADR.md)).
   - [Purpose](#purpose)
   - [What belongs in it](#what-belongs-in-it)
   - [The maintenance rules](#the-maintenance-rules)
+  - [Three rules](#three-rules)
   - [It is gitignored](#it-is-gitignored)
   - [When it goes away](#when-it-goes-away)
+- [How the three fit together](#how-the-three-fit-together)
 - [TODO.md](#todomd)
 
 ---
 
 # `CLAUDE.md`
 
-The plugin's rulebook. It sits in the root and is the file read at the start of every session.
+The plugin's rulebook. It sits in the root and is the file read at the start of every session. Its first rule describes how `CONTEXT.md` is handled. Like every Markdown file of a plugin it is written in German. It also states whether mutation testing runs without an explicit request (the default is on request).
 
 ## The layout
 
@@ -52,7 +54,7 @@ One or two sentences: what the plugin does.
 `<PACKAGE-NAME>`, table prefix `<TABLE-PREFIX>`, log channel `<LOG-CHANNEL>`.
 ```
 
-**`## Commands`:** the commands actually used — half a sentence per line saying what they do. Not all of them, just
+**`## Commands`:** the commands actually used, half a sentence per line saying what they do. Not all of them, just
 the ones needed daily.
 
 **`## Architecture`:** three to five sentences about the structure, plus the one thing you must know in order to break
@@ -89,7 +91,7 @@ nothing.
 
 ## It is maintained continuously
 
-**Every trap that has cost time goes into the `Traps` section** — immediately, not later. Every new rule goes into
+**Every trap that has cost time goes into the `Traps` section**, immediately, not later. Every new rule goes into
 `Rules`. Every new ADR goes into the table.
 
 **A change to `CLAUDE.md` interrupts the running task** and is carried out at once. It is the sole exception to the
@@ -106,7 +108,7 @@ The knowledge and status collection kept **during** development.
 
 ## Purpose
 
-After a `/compact` or in a new session, work must be able to continue seamlessly from `CONTEXT.md` alone — without
+After a `/compact` or in a new session, work must be able to continue seamlessly from `CONTEXT.md` alone, without
 loss of knowledge.
 
 ## What belongs in it
@@ -122,16 +124,42 @@ loss of knowledge.
 **Very precisely:** selectors, snippet keys, routes, file and line references, commands, root-cause hypotheses with
 evidence.
 
+Typical sections:
+
+| Section | Content |
+|---|---|
+| Where the plugin stands | version, what it does, what is live |
+| What was built this session | file paths, exactly |
+| What was verified | and **how**: "Playwright green" versus "two runs, counts identical" |
+| Decisions taken, and why | the short form, the long form is an ADR |
+| Defects found | including ones caused and fixed in the same session |
+| Mistakes made | what was assumed, what it cost, what settled it |
+| Open questions | with the next concrete step |
+
 ## The maintenance rules
 
 | When | What |
 |---|---|
-| **Before every task** | read it — even for apparently small changes |
+| **Before every task** | read it, even for apparently small changes |
 | **After every task** | log entry: what, where, how, when, verification state, open points |
 | **At 90 %, 95 % and 98 % context usage** | rewrite it completely, the whole current state |
 
-**Never shorten it to save space.** Length is irrelevant — 50,000 lines is fine. Completeness and precision take
+**Never shorten it to save space.** Length is irrelevant, 50,000 lines is fine. Completeness and precision take
 priority. Finished items are marked "done", not deleted.
+
+## Three rules
+
+**Never shortened to save space.** Completed items are marked done, not deleted. Length is not a defect, loss is. A file of several thousand lines is working as intended.
+
+**Verification is claimed only when it has been run.** "Tests green" means a run was observed. A figure quoted is a figure that was measured. A summary claiming 100 % coverage without a run behind it is worse than no summary, because it stops anyone from checking.
+
+**Write down the mistakes.** This is the part people skip, and the part with the highest value per line:
+
+> **`Price` takes net before gross.** I asserted it the other way round, "corrected" a passing test into a failing one, and only reading the constructor settled it.
+
+That paragraph saves the next person an hour. A record listing only what worked will not stop anyone repeating what did not.
+
+**Rewrite it in full before compression.** At 90 %, 95 % and 98 % context usage, restate the complete current state. Everything not written down is lost when the session compacts, and the restatement is cheap compared with rediscovering it.
 
 ## It is gitignored
 
@@ -139,7 +167,7 @@ priority. Finished items are marked "done", not deleted.
 /CONTEXT.md
 ```
 
-**Why it is not committed:** it is working state, not a result. What should survive it moves to its proper place at
+**Why it is not committed:** it is working state, not a result, and it holds local development knowledge such as paths and the course of the work. It is local and unversioned (see `knowledge-in-adrs-claude-md-and-context-md` in [PLUGIN-RULES-PROCESS.md](PLUGIN-RULES-PROCESS.md)). What should survive it moves to its proper place at
 the end of the task:
 
 | Content | Destination |
@@ -154,10 +182,23 @@ the end of the task:
 **When the plugin is finished.** A file whose purpose is to carry unfinished work across a break describes nothing
 once there is no unfinished work.
 
-A status document nobody maintains is worse than none: it asserts something that was once true — with the authority
+A status document nobody maintains is worse than none: it asserts something that was once true, with the authority
 of a checked-in file.
 
 **At the next larger piece of work it is created again.**
+
+---
+
+# How the three fit together
+
+| Where | What | Checked by |
+|---|---|---|
+| Test name | the rule | it fails when the rule stops holding |
+| ADR | why this rule and not the alternative | review, and the next person reading it |
+| `CONTEXT.md` | what is done, verified, open | read at the start of every session |
+| Code comment | a non-obvious constraint, one line | nothing |
+
+If reasoning does not land in one of the first three, it has not been recorded.
 
 ---
 
@@ -177,7 +218,7 @@ Afterwards:
 | a decision about how things work | into a new ADR |
 | a change to the working rules | into `CLAUDE.md` |
 | a behavioural change visible to the operator | into `CHANGELOG.md` |
-| work to be done next | into the reply — and then it is done |
+| work to be done next | into the reply, and then it is done |
 
 ## Why no catch-all file
 
@@ -192,7 +233,7 @@ moment the request arrives is less comfortable and puts the knowledge where some
 
 ## When a TODO file is right after all
 
-**As a work list inside a single, large task** — created at the start, removed at the end.
+**As a work list inside a single, large task**, created at the start, removed at the end.
 
 **The difference from the forbidden catch-all file:** this list has a defined end point. It describes a task, not a
 state.

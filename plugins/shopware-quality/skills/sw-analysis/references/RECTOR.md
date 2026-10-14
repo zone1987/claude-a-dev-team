@@ -2,6 +2,15 @@
 
 Rector is the only tool in the gate that does not merely format code but **rewrites** it.
 
+## Contents
+
+- [The configuration, complete](#the-configuration-complete)
+- [The three settings that are not optional](#the-three-settings-that-are-not-optional)
+- [The one rule worth adding by hand](#the-one-rule-worth-adding-by-hand)
+- [Never the next major's set](#never-the-next-majors-set)
+- [The twelve skip rules](#the-twelve-skip-rules)
+- [How it is used](#how-it-is-used)
+
 ## The configuration, complete
 
 `rector.php` in the plugin root:

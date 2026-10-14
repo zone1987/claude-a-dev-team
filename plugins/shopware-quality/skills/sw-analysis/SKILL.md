@@ -1,6 +1,6 @@
 ---
 name: sw-analysis
-description: Shopware static analysis: PHPStan at level max, php-cs-fixer, Rector, and phpat for architecture rules — all behind the one command, composer gate. Use when configuring or fixing Shopware static analysis.
+description: Shopware static analysis: PHPStan max, php-cs-fixer, Rector, phpat and Deptrac behind composer gate. Use when configuring or fixing Shopware static analysis or architecture rules.
 ---
 
 # Shopware static analysis
@@ -10,8 +10,9 @@ The tool chain a Shopware plugin is expected to pass, with the configuration eac
 ## Reference map
 
 - **[STATIC-ANALYSIS.md](references/STATIC-ANALYSIS.md)**: **Start here.** The whole matrix behind `composer gate`, the order it runs in, and what deliberately stays out of it.
-- **[ECS-CS-FIXER.md](references/ECS-CS-FIXER.md)**: **php-cs-fixer, not ECS** — including the seven DocBlock rules that must stay off, or the gate deletes the tags on every run.
+- **[ECS-CS-FIXER.md](references/ECS-CS-FIXER.md)**: **php-cs-fixer, not ECS**, including the seven DocBlock rules that must stay off, or the gate deletes the tags on every run.
 - **[PHPSTAN.md](references/PHPSTAN.md)**: `level: max` from the start, no `ignoreErrors`, no baseline. [PHPSTAN-SHOPWARE-RULES](references/PHPSTAN-SHOPWARE-RULES.md), [PHPSTAN-SHOPWARE](references/PHPSTAN-SHOPWARE.md).
+- **[DEPTRAC.md](references/DEPTRAC.md)**: Deptrac, superseded by phpat. Read it only for projects that still use it.
 - **[RECTOR.md](references/RECTOR.md)**: the full `rector.php`, the twelve skip rules, and why the next major's set is never applied.
 
 ## Source
