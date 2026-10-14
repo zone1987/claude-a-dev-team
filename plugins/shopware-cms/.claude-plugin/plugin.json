@@ -1,6 +1,6 @@
 {
   "name": "shopware-cms",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shopware 6 CMS extension: custom Shopping Experience blocks with slot configuration, and custom elements with their administration component, storefront template and data resolver — 2 domain skills.",
   "author": {
     "name": "zone1987",

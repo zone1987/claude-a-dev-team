@@ -1,6 +1,6 @@
 {
   "name": "shopware-apps",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shopware 6 app system: the complete manifest.xml reference, registration and signatures, in-app purchases, plus the app-php-sdk and app-sdk-js — 2 domain skills.",
   "author": {
     "name": "zone1987",

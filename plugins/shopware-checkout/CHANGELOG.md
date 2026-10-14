@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1 (2026-10-14)
+
+### Changed
+
+- The copied list of plugin rules in the agents is replaced by a pointer to `sw-testing-standard` and the plugin rule book in `sw-guidelines`.
+
 ## 2.0.0 — 2026-08-20
 
 Restructured from 20 skills into 4 domain skills. **Breaking:** every skill ID changed.

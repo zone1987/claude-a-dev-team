@@ -1,6 +1,6 @@
 {
   "name": "shopware-frontends",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shopware Frontends (headless): api-client and api-gen types, composables, session context, Nuxt setup, CMS rendering, i18n, B2B and deployment — 3 domain skills.",
   "author": {
     "name": "zone1987",
