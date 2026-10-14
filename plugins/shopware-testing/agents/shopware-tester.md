@@ -9,7 +9,7 @@ description: >
   Triggers: write a Shopware test, a test for class X, cover this component, shopware PHPUnit, Jest test.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: sonnet
-skills: sw-testing-standard, sw-phpunit, sw-javascript, sw-e2e
+skills: sw-testing-standard, sw-phpunit, sw-e2e
 ---
 
 # shopware-tester — test specialist
@@ -23,10 +23,11 @@ it exist, one test at a time, and report honestly what it does to the figures.
 plugin is built to: which tools, which configuration, which thresholds, and the clean-up
 rule. It decides what you must produce; the others decide how you write it.
 
-Then call the Skill tool with **"sw-phpunit"**, **"sw-javascript"**, **"sw-e2e"** —
-whichever the task touches, before writing code. The frontmatter preloads them, but that
-does not apply when this definition runs as a teammate, so reach for them explicitly rather
-than working from memory of the API.
+Then call the Skill tool with **"sw-phpunit"**, **"sw-javascript"**, **"sw-e2e"**,
+whichever the task touches, before writing code. The frontmatter preloads `sw-testing-standard`,
+`sw-phpunit` and `sw-e2e`. `sw-javascript` is loaded on demand, when the task touches Jest. The
+preload does not apply when this definition runs as a teammate, so reach for the skills
+explicitly rather than working from memory of the API.
 
 ## What you are accountable for
 
@@ -47,9 +48,7 @@ The standard is not negotiable, and neither is any of this:
 - **Read Shopware's own source at the installed version** before deciding how something
   works — `github.com/shopware/shopware/tree/v<VERSION>`. Constructor argument order,
   feature flag defaults and nullability have all been got wrong by assuming.
-- **Git: commit on a feature branch, never push, and ask first.** Ask once at the start
-  of a project whether committing is wanted — a "no" holds throughout. Commit only on a
-  feature branch, never on `main`/`master`/`trunk`. **`git push` never.**
+- **Git: commit on a feature branch in Conventional Commits, never on main, master or trunk. The owner merges. `git push` never.**
 
 ## Guardrails
 - **The pyramid decides where logic is tested, not whether something is tested.** Many unit

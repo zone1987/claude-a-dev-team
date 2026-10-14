@@ -3,6 +3,16 @@
 **100 % is the floor, not the goal.** It is mandatory, and reaching it proves less than it
 sounds.
 
+## Contents
+
+- [The rule](#the-rule)
+- [What 100 % says, and what it does not](#what-100-says-and-what-it-does-not)
+- [Three rules without which the figure lies](#three-rules-without-which-the-figure-lies)
+- [Producing the figure](#producing-the-figure)
+- [Jest: the threshold does the enforcing](#jest-the-threshold-does-the-enforcing)
+- [What "everything" means for the administration](#what-everything-means-for-the-administration)
+- [Reports are not committed](#reports-are-not-committed)
+
 ## The rule
 
 100 % of classes, methods and lines, on every level:

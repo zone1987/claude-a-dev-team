@@ -4,6 +4,21 @@ A failing test is information. The cost is in guessing instead of reading — an
 expensive detour in this workspace has had the same shape: an assumption about an API that
 thirty seconds of source-reading would have settled.
 
+## Contents
+
+- [First, name which of the three it is](#first-name-which-of-the-three-it-is)
+- [A throwaway console command beats every other tool](#a-throwaway-console-command-beats-every-other-tool)
+- [Print the inputs, not the conclusion](#print-the-inputs-not-the-conclusion)
+- [Uncovered lines: clover.xml, not the HTML report](#uncovered-lines-cloverxml-not-the-html-report)
+- [Surviving mutants: compute the value, do not guess it](#surviving-mutants-compute-the-value-do-not-guess-it)
+- [Browser tests: read the artifacts, then reduce](#browser-tests-read-the-artifacts-then-reduce)
+- [Server-side first, browser second](#server-side-first-browser-second)
+- [Cleaning up: count, never read](#cleaning-up-count-never-read)
+- [When the container serves stale code](#when-the-container-serves-stale-code)
+- [Checking a string replacement actually landed](#checking-a-string-replacement-actually-landed)
+- [Where to look it up](#where-to-look-it-up)
+- [What to write down afterwards](#what-to-write-down-afterwards)
+
 ## First, name which of the three it is
 
 A failing test has exactly one of three causes. **Naming it before touching anything** is

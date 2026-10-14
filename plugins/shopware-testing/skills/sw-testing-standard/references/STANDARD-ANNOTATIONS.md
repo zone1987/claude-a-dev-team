@@ -4,6 +4,15 @@ This is a testing standard, so why annotations? Because **the gate deletes them 
 run unless nineteen rules are switched off**, and a gate that quietly removes what the
 project requires is worse than no gate.
 
+## Contents
+
+- [The rule](#the-rule)
+- [The nineteen rules that must be off](#the-nineteen-rules-that-must-be-off)
+- [The check that proves it](#the-check-that-proves-it)
+- [Two style rules that also matter](#two-style-rules-that-also-matter)
+- [No prose comments](#no-prose-comments)
+- [An architecture test can check the tags](#an-architecture-test-can-check-the-tags)
+
 ## The rule
 
 Every class, property and method carries the conventional DocBlock tags — `@class`,

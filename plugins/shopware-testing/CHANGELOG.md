@@ -4,6 +4,21 @@
 > from `tests/Acceptance/` with `zone1987/ddev-playwright` to `tests/E2E/` with
 > `avhulst/ddev-browserless`; see `STANDARD-PLAYWRIGHT.md` for what holds now.
 
+## 3.1.0 (2026-10-14)
+
+### Changed
+
+- The decisions behind the standard moved to the plugin rule book in the skill `sw-guidelines` of the plugin
+  `shopware-quality` (`PLUGIN-RULES.md`, `PLUGIN-RULES-TESTING.md`, `PLUGIN-RULES-PROCESS.md`, `PLUGIN-ADR.md`,
+  `PLUGIN-CLAUDE-MD.md`). `STANDARD-DECISIONS.md` and `STANDARD-DECISION-RECORDS.md` are now short pointer files.
+- Tables of contents in all references over 100 lines.
+- `sw-testing-standard`: description shortened to 200 characters with a "Use when" part, `## Source` section added,
+  dashes removed.
+- The agents `shopware-test-lead` and `shopware-tester` preload three skills (`sw-testing-standard`, `sw-phpunit`,
+  `sw-e2e`). `sw-javascript` is loaded on demand.
+- `STANDARD-MUTATION.md` and `STANDARD-WORKFLOW.md`: one sentence rephrased, one link to the removed content replaced.
+- Git rule no longer asks before committing, matching the plugin rule book. Commit on a feature branch in Conventional Commits, never on main, master or trunk. The owner merges. Never push.
+
 ## [3.0.0] - 2026-09-11
 
 ### Added

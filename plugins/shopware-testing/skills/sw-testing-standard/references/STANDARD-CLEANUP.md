@@ -6,6 +6,14 @@ A suite that leaves entities behind fills the administration with noise nobody c
 from real configuration, and it eventually changes what the next run measures. This is not
 tidiness — it is the difference between a test environment and a landfill.
 
+## Contents
+
+- [What it looks like when this goes wrong](#what-it-looks-like-when-this-goes-wrong)
+- [Three levels, and each exists because the one before it failed](#three-levels-and-each-exists-because-the-one-before-it-failed)
+- [How to prove it](#how-to-prove-it)
+- [The one exception, decided deliberately](#the-one-exception-decided-deliberately)
+- [What is not yours to delete](#what-is-not-yours-to-delete)
+
 ## What it looks like when this goes wrong
 
 Twenty-one shipping methods named `Test-ShippingMethod-107193782568048` in the shipping

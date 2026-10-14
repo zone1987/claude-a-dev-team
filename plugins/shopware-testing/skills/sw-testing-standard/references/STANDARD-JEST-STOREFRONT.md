@@ -3,6 +3,19 @@
 Same rule as the administration — **everything the plugin ships is tested, 100 %, enforced
 by the threshold** — but the setup differs in ways that cost hours if you assume otherwise.
 
+## Contents
+
+- [What is different from the administration](#what-is-different-from-the-administration)
+- [Where the files go](#where-the-files-go)
+- [The rule for where a spec lives](#the-rule-for-where-a-spec-lives)
+- [package.json](#packagejson)
+- [jest.config.js — and the ordering trap](#jestconfigjs-and-the-ordering-trap)
+- [Resolving plugin.class — a local double, not a path into the core](#resolving-pluginclass-a-local-double-not-a-path-into-the-core)
+- [test/_setup/storefront.js — three globals jsdom lacks](#test_setupstorefrontjs-three-globals-jsdom-lacks)
+- [Writing a spec](#writing-a-spec)
+- [Dead code is deleted, not covered](#dead-code-is-deleted-not-covered)
+- [The build has to work before any of this matters](#the-build-has-to-work-before-any-of-this-matters)
+
 ## What is different from the administration
 
 | | Administration | Storefront |

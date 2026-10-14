@@ -8,6 +8,18 @@ Shopware ships no plugin Jest setup. Every file below is the plugin's own, and v
 pinned to what the target Shopware version declares so the test environment matches the
 runtime.
 
+## Contents
+
+- [Where the files go](#where-the-files-go)
+- [The rule for where a spec lives](#the-rule-for-where-a-spec-lives)
+- [package.json](#packagejson)
+- [jest.config.js](#jestconfigjs)
+- [babel.config.js](#babelconfigjs)
+- [The transformers](#the-transformers)
+- [test/_setup/shopware.js — the global stub](#test_setupshopwarejs-the-global-stub)
+- [Writing a spec](#writing-a-spec)
+- [Running it](#running-it)
+
 ## Where the files go
 
 All under `src/Resources/app/administration/`:

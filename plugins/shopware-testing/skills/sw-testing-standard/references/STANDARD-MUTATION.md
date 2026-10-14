@@ -3,6 +3,19 @@
 Coverage says every line ran. Mutation testing says a test would have failed if the line
 were wrong. **It is the only figure that measures the assertions rather than the reach.**
 
+## Contents
+
+- [The target](#the-target)
+- [infection.json5](#infectionjson5)
+- [Running it, and what the switches do](#running-it-and-what-the-switches-do)
+- [A measured result](#a-measured-result)
+- ["No source code was executed by the test framework"](#no-source-code-was-executed-by-the-test-framework)
+- [Reading a run](#reading-a-run)
+- [Judging a survivor](#judging-a-survivor)
+- [Stryker — the same thing for JavaScript](#stryker-the-same-thing-for-javascript)
+- [Baselines are committed — coverage reports are not](#baselines-are-committed-coverage-reports-are-not)
+- [When to run it](#when-to-run-it)
+
 ## The target
 
 **As close to 100 % as honest tests reach.** Not 100 % as a hard gate, and the distinction
@@ -12,7 +25,7 @@ matters:
   **documented with the reason it cannot be killed**.
 - A mutant is never hidden with an ignore rule.
 - A test is never written for the sole purpose of killing a mutant.
-- Production logic is never changed to make a mutant die.
+- Production logic is never changed to get a mutant killed.
 
 A score of 96 % with two documented survivors is better than 100 % reached by any of those
 four routes, and a plugin is judged on the documentation of the survivors, not on the

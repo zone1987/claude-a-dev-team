@@ -7,6 +7,15 @@ plugin's own; if it does not exist yet, create it from there.
 
 This file covers writing a spec once that exists.
 
+## Contents
+
+- [The rule](#the-rule)
+- [A spec](#a-spec)
+- [Three things jsdom does not give you](#three-things-jsdom-does-not-give-you)
+- [The trap that costs the most time](#the-trap-that-costs-the-most-time)
+- [Dead code is deleted, not covered](#dead-code-is-deleted-not-covered)
+- [The build has to work first](#the-build-has-to-work-first)
+
 ## The rule
 
 **Everything the plugin's storefront ships is tested, to 100 %**, enforced by

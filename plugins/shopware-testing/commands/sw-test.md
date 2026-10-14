@@ -69,5 +69,4 @@ yet, **create it first** — the standard specifies every file.
 - **Never weaken an assertion to make a test pass.** The failure is the finding.
 - **Never write a tautological assertion** — `assertInstanceOf` on a statically known type
   reaches the line and proves nothing. PHPStan rejects it, correctly.
-- **Git: commit on a feature branch, never push, and ask first** — a "no" at the start of
-  a project holds throughout.
+- **Git: commit on a feature branch in Conventional Commits, never on main, master or trunk. The owner merges. `git push` never.**
