@@ -2,6 +2,14 @@
 
 The full tree of a plugin under `custom/static-plugins/`, plus the `.gitignore` that belongs to it.
 
+## Contents
+
+- [Directory tree](#directory-tree)
+- [Two files that are not in the tree, and do not belong there](#two-files-that-are-not-in-the-tree-and-do-not-belong-there)
+- [Not every plugin needs every entry](#not-every-plugin-needs-every-entry)
+- [The complete `.gitignore`](#the-complete-gitignore)
+- [The five entries that need an explanation](#the-five-entries-that-need-an-explanation)
+
 ## Directory tree
 
 ```

@@ -2,6 +2,14 @@
 
 Head, `conflict`, `require-dev`, `config.allow-plugins`, all 22 scripts.
 
+## Contents
+
+- [The head](#the-head)
+- [`require-dev`, complete](#require-dev-complete)
+- [`config.allow-plugins` — without this block three of them do not load](#configallow-plugins-without-this-block-three-of-them-do-not-load)
+- [What deliberately is NOT in `require-dev`: `phpunit/phpunit`](#what-deliberately-is-not-in-require-dev-phpunitphpunit)
+- [All 22 scripts, verbatim](#all-22-scripts-verbatim)
+
 ## The head
 
 ```json
